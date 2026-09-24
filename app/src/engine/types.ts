@@ -322,6 +322,8 @@ export interface Character {
   covenantId?: string;
   virtues: CharVirtue[];
   characteristics: Record<Characteristic, number>;
+  /** short descriptors such as 'keen-eyed' */
+  characteristicNotes?: Partial<Record<Characteristic, string>>;
   /** Aging points per characteristic */
   agingPoints: Partial<Record<Characteristic, number>>;
   abilities: CharAbility[];

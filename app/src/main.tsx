@@ -1,2 +1,13 @@
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-createRoot(document.getElementById('root')!).render(<div>loading</div>);
+import { HashRouter } from 'react-router-dom';
+import App from './ui/App';
+import './styles.css';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </StrictMode>,
+);
