@@ -337,3 +337,18 @@ export function creationSpellLimit(d: DerivedCharacter, arts: ArtsUsed, bonus: n
 export function magnitude(level: number): number {
   return Math.max(1, Math.ceil(level / 5));
 }
+
+/** Outcome of a Formulaic or Ritual casting (DE p.213 tables). Fatigue from rituals is long-term. */
+export function castingOutcome(kind: 'formulaic' | 'ritual', castingTotal: number, level: number): { cast: boolean; fatigue: number; longTerm: boolean; text: string } {
+  const diff = castingTotal - level;
+  if (kind === 'formulaic') {
+    if (diff >= 0) return { cast: true, fatigue: 0, longTerm: false, text: 'Spell cast.' };
+    if (diff >= -10) return { cast: true, fatigue: 1, longTerm: false, text: 'Spell cast; lose one Fatigue level.' };
+    return { cast: false, fatigue: 1, longTerm: false, text: 'Spell fails; lose one Fatigue level.' };
+  }
+  if (diff >= 0) return { cast: true, fatigue: 1, longTerm: true, text: 'Ritual cast; lose one long-term Fatigue level.' };
+  if (diff >= -5) return { cast: true, fatigue: 2, longTerm: true, text: 'Ritual cast; lose two long-term Fatigue levels.' };
+  if (diff >= -10) return { cast: true, fatigue: 3, longTerm: true, text: 'Ritual cast; lose three long-term Fatigue levels.' };
+  if (diff >= -15) return { cast: false, fatigue: 4, longTerm: true, text: 'Ritual fails; lose four long-term Fatigue levels.' };
+  return { cast: false, fatigue: 5, longTerm: true, text: 'Ritual fails; lose five long-term Fatigue levels.' };
+}

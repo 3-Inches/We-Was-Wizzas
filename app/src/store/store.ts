@@ -111,7 +111,7 @@ export const useStore = create<Store>()((set, get) => ({
       const sagas = Object.fromEntries(Object.entries(data.sagas ?? {}).map(([k, v]) => [k, migrateSaga(v)]));
       const characters = Object.fromEntries(Object.entries(data.characters ?? {}).map(([k, v]) => [k, migrateCharacter(v)]));
       const covenants = Object.fromEntries(Object.entries(data.covenants ?? {}).map(([k, v]) => [k, migrateCovenant(v)]));
-      set({ sagas, characters, covenants, activeSagaId: data.activeSagaId, ui: { theme: 'auto', streamMode: false, ...(data.ui ?? {}) }, loaded: true });
+      set({ sagas, characters, covenants, activeSagaId: data.activeSagaId, ui: { ...{ theme: 'auto' as const, streamMode: false }, ...((data.ui ?? {}) as object) } as PersistedState['ui'], loaded: true });
     } else set({ loaded: true });
   },
 

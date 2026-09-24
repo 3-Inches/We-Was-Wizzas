@@ -307,3 +307,34 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .warn-text { color: var(--warn); }
 .bad-text { color: var(--bad); }
 .good-text { color: var(--good); }
+
+/* ---- sheet & tool extras ---- */
+.card.inset { background: var(--bg-2); box-shadow: none; margin: 6px 0; }
+tr.selected td { background: var(--panel-2); font-weight: 600; }
+.grid-table td { vertical-align: top; min-width: 44px; }
+.grid-table th { text-align: center; }
+.info-text { color: var(--info); }
+button.big { font-size: 1.1em; padding: 10px 22px; }
+
+.dice-result { margin-top: 14px; padding: 14px; border: 2px solid var(--line-strong); border-radius: 10px; text-align: center; background: var(--bg-2); }
+.dice-result.good { border-color: var(--good); }
+.dice-result.warn { border-color: var(--warn); }
+.dice-result.bad { border-color: var(--bad); }
+.dice-total { font-family: var(--font-head); font-size: 3em; line-height: 1.1; color: var(--accent); }
+
+/* ---- book reader ---- */
+.reader-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 16px; align-items: start; }
+.reader-toc { position: sticky; top: 10px; max-height: calc(100vh - 20px); display: flex; flex-direction: column; gap: 4px; }
+.reader-results { max-height: 35vh; overflow-y: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+.toc-list { position: relative; overflow-y: auto; flex: 1; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 4px 0; }
+.toc-item { padding: 3px 10px; cursor: pointer; font-size: 0.86em; line-height: 1.3; }
+.toc-item:hover { background: var(--panel-2); }
+.toc-item.active { background: var(--accent); color: #fbf2dc; }
+.toc-item.lvl-1 { font-weight: 700; }
+.toc-item.lvl-2 { padding-left: 18px; }
+.toc-item.lvl-3 { padding-left: 30px; color: var(--ink-soft); }
+.book-body { padding: 18px 24px; line-height: 1.55; }
+.book-body table { font-size: 0.9em; }
+.reader-target { scroll-margin-top: 12px; border-top: 3px solid var(--accent); margin-bottom: 4px; }
+.reader-target + * { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+@media (max-width: 900px) { .reader-layout { grid-template-columns: 1fr; } .reader-toc { position: static; max-height: none; } .toc-list { max-height: 40vh; } }

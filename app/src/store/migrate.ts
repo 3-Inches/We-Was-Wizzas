@@ -32,14 +32,14 @@ export function migrateCharacter(c: Character): Character {
     reputations: c.reputations ?? [],
     agingPoints: c.agingPoints ?? {},
     confidence: c.confidence ?? { score: 1, points: 3 },
-    equipment: { weapons: [], armorCoverage: 'none', other: '', ...(c.equipment ?? {}) },
+    equipment: withDefaults<Character['equipment']>({ weapons: [], armorCoverage: 'none', other: '' }, c.equipment),
     items: c.items ?? [],
-    wounds: { light: 0, medium: 0, heavy: 0, incapacitating: 0, ...(c.wounds ?? {}) },
+    wounds: withDefaults<Character['wounds']>({ light: 0, medium: 0, heavy: 0, incapacitating: 0 }, c.wounds),
     twilightScars: c.twilightScars ?? [],
     overrides: c.overrides ?? {},
     acknowledgedIssues: c.acknowledgedIssues ?? [],
     seasonLog: c.seasonLog ?? [],
-    creation: { step: 0, apprenticeshipStartAge: 10, yearsPostGauntlet: 0, postGauntletLabSeasons: 0, finalized: false, extraPools: [], ...(c.creation ?? {}) },
+    creation: withDefaults<Character['creation']>({ step: 0, apprenticeshipStartAge: 10, yearsPostGauntlet: 0, postGauntletLabSeasons: 0, finalized: false, extraPools: [] }, c.creation),
     fatigueLost: c.fatigueLost ?? 0,
     longTermFatigueLost: c.longTermFatigueLost ?? 0,
     warpingPoints: c.warpingPoints ?? 0,
@@ -59,4 +59,8 @@ export function migrateCovenant(c: Covenant): Covenant {
     loyalty: { ...base.loyalty, ...(c.loyalty ?? {}) },
     schemaVersion: SCHEMA_VERSION,
   };
+}
+
+function withDefaults<T extends object>(defaults: T, v: Partial<T> | undefined): T {
+  return { ...defaults, ...(v ?? {}) };
 }

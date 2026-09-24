@@ -119,7 +119,7 @@ function Sidebar({ open }: { open: boolean }) {
           </>
         )}
         <div className="nav-group">Reference</div>
-        <NavLink to="/reference">❦ Rules reference</NavLink>
+        <NavLink to="/reference" end>❦ Rules reference</NavLink>
         <NavLink to="/reference/book/DE">📖 Definitive Edition</NavLink>
         <NavLink to="/dice">⚄ Dice</NavLink>
         <NavLink to="/help">? Guide</NavLink>

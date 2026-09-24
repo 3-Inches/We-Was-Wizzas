@@ -65,9 +65,9 @@ export default function SheetSummary({ ed }: { ed: CharEditor }) {
             <b>Arts:</b> {arts.slice(0, 5).join(', ')}; {arts.slice(5).join(', ')}
           </p>
         )}
-        {c.twilightScars.length > 0 && (
+        {c.twilightScars.some(Boolean) && (
           <p>
-            <b>Twilight Scars:</b> {c.twilightScars.join('; ')}
+            <b>Twilight Scars:</b> {c.twilightScars.filter(Boolean).join('; ')}
           </p>
         )}
         {c.equipment.other && (

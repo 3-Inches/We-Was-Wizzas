@@ -15,7 +15,7 @@ export function makeCharSpell(s: SpellDef, source: CharSpell['source'], flawless
 
 export function masteryScore(cs: CharSpell, d: DerivedCharacter): number {
   let xp = 0;
-  for (const [k, v] of Object.entries(cs.masteryXp)) {
+  for (const v of Object.values(cs.masteryXp)) {
     if (!v) continue;
     // Flawless Magic doubles mastery Advancement Totals in play; creation pools are raw xp
     xp += v;

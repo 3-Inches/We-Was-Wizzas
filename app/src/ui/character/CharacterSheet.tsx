@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useCharEditor } from './useChar';
 import { Card, Empty, IssueList, Tabs } from '../kit';
 import { HOUSE_BY_ID } from '../../data/houses';
@@ -19,7 +19,9 @@ type TabId = 'overview' | 'abilities' | 'magic' | 'combat' | 'advancement' | 'la
 export default function CharacterSheet() {
   const ed = useCharEditor();
   const nav = useNavigate();
-  const [tab, setTab] = useState<TabId>('overview');
+  const [params, setParams] = useSearchParams();
+  const tab = (params.get('tab') as TabId) || 'overview';
+  const setTab = (t: TabId) => setParams({ tab: t }, { replace: true });
   const [share, setShare] = useState('');
   const deleteCharacter = useStore((s) => s.deleteCharacter);
   const { c, d, saga, issues } = ed;

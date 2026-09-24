@@ -15,6 +15,12 @@ The public is welcome to commit fixes, new and better versions of any of these f
 <br/>
 <br/>
 
+#### Saga Toolkit (web app)
+
+The [**/app**](/app/) folder contains a browser-based saga toolkit built from these markdowns. It handles character creation for all four character types, covenant building with Build Points and laboratories, spell design, enchantment, seasonal advancement, and rules checking, and it includes a reader for the books. See [app/README.md](/app/README.md).
+<br/>
+<br/>
+
 #### New to Ars Magica?
 
 The game is about incredibly powerful - but politically limited - Wizards in the rich setting of 13th century Mythic Europe, where the superstitions and myths are true. Faeries drink milk left on doorsteps, demons roam the countryside, and wizards wield magic beyond the ken of mortals. Ars Magica is generally lauded for having the best magic system of any RPG, bar none.

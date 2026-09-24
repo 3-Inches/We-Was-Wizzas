@@ -123,3 +123,20 @@ describe('dice', () => {
     expect(r.botches).toBe(1);
   });
 });
+
+describe('casting outcomes (DE p.213)', () => {
+  it('formulaic: fail by up to 10 still casts with fatigue', async () => {
+    const { castingOutcome } = await import('./magic');
+    expect(castingOutcome('formulaic', 20, 20)).toMatchObject({ cast: true, fatigue: 0 });
+    expect(castingOutcome('formulaic', 10, 20)).toMatchObject({ cast: true, fatigue: 1 });
+    expect(castingOutcome('formulaic', 9, 20)).toMatchObject({ cast: false, fatigue: 1 });
+  });
+  it('ritual: long-term fatigue grows with shortfall', async () => {
+    const { castingOutcome } = await import('./magic');
+    expect(castingOutcome('ritual', 30, 30)).toMatchObject({ cast: true, fatigue: 1, longTerm: true });
+    // DE example: casting total 22 vs level 30 (8 short) -> cast, three levels
+    expect(castingOutcome('ritual', 22, 30)).toMatchObject({ cast: true, fatigue: 3 });
+    expect(castingOutcome('ritual', 16, 30)).toMatchObject({ cast: false, fatigue: 4 });
+    expect(castingOutcome('ritual', 10, 30)).toMatchObject({ cast: false, fatigue: 5 });
+  });
+});

@@ -143,8 +143,9 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   const labsForMagi = new Set(cov.labs.map((l) => l.ownerId).filter(Boolean));
   for (const l of labs) lines.push({ category: 'Laboratories', label: `${l.lab.name} (Size ${l.lab.size})`, cost: l.buildPoints });
   if (cov.spareLabs) lines.push({ category: 'Laboratories', label: `${cov.spareLabs} spare lab(s)`, cost: 50 * cov.spareLabs });
+  // DE Laboratory chapter (lab Build Points): each magus who completely lacks a lab frees 50 Build Points.
   const lacking = members.filter((m) => m.type === 'magus' && !labsForMagi.has(m.id)).length;
-  void lacking;
+  if (lacking && cov.labs.length) lines.push({ category: 'Laboratories', label: `${lacking} magus/magi without a lab`, cost: -50 * lacking });
   const bpSpent = lines.reduce((t, l) => t + l.cost, 0);
   for (const l of lines) if (l.issue) issues.push(`${l.label}: ${l.issue}`);
   if (bpSpent > cov.buildPoints) issues.push(`Spent ${bpSpent} Build Points of ${cov.buildPoints}.`);
