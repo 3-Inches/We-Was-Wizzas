@@ -1,0 +1,402 @@
+{
+ "CrAn": {
+  "text": "Most Animal spells cannot be used with Personal range, so the level of a spell must be higher than the guidelines given.\n\nTo create treated animal products (like leather, jointed meat, and cloth) add one magnitude to the level necessary to create the equivalent amount of dead animal. To create treated and processed animal products, such as a leather jacket or a woolen tunic, add two magnitudes to the level necessary to create the equivalent amount of dead animal.\n\nIn order to influence the behavior of created animals, a Rego requisite is required, and as this is an additional effect it adds at least one magnitude to the spell level. Otherwise they just do what comes naturally.\n\nCreo Animal botches often produce the wrong sort of animal, or produce an animal enraged with the caster.",
+  "source": {
+   "book": "DE",
+   "line": 12466,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ "InAn": {
+  "text": "When you try to get information from an animal, remember that its memories are gathered through its particular senses, with their particular strengths and weaknesses. For example, dogs remember much about odors of various things, but often forget details of how they looked. Animals do not remember human words, but might remember tone of voice and such. You may not get the exact information you are looking for.\n\nTo communicate with an animal, you must bring yourself to the animal's mental level — a process that might have strange, though temporary, effects on you. For example, you might have a craving for raw meat or speak very slowly for a moment after communicating with a bear.\n\nSince Animal includes aspects of both Corpus and Mentem with regard to beasts, guidelines that apply to the latter two may apply to Animal. InCo and InMe may be referred to for additional ideas.\n\nBotches with InAn normally result in false information.",
+  "source": {
+   "book": "DE",
+   "line": 12530,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ "MuAn": {
+  "text": "Animals granted new abilities, such as wings, will need a few minutes to get used to them. When transforming things, you can transform things that they are carrying with appropriate requisites. For example, you could transform a horse and its armor with a Terram requisite.\n\nAnimals are not infinitely mutable, and using too many of these spells for too long on an animal can warp its natural constitution and even destroy it. Muto Corpus spells may be examined to get additional ideas and guidelines for Muto Animal Spells. Common sigils seen in Muto Animal spells involve animals being changed in some strange way. Beasts transformed by Julian of Flambeau, with *The Beast Remade* (MuAn 25), might have bright red hair in their new form, while toads created by Silva of Merinita, with *Transformation of the Ravenous Beast to the Torpid Toad* (MuAn 30), might have a comical coloration.\n\nMuAn botches often change the caster instead of the target, or change the target in a way very different from that intended.",
+  "source": {
+   "book": "DE",
+   "line": 12580,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ "PeAn": {
+  "text": "There is normally no Soak against Perdo Animal — the magic does not create something that causes damage, it just causes damage. Magic Resistance is the only way to withstand it.\n\nA common sigil among Flambeau magi, and others who cast Perdo spells, is to leave some type of mark with the damage they do.\n\nWhen inventing new spells, you may wish to consult Perdo Corpus for guidelines and ideas.\n\nPeAn botches might affect the caster, or affect the wrong animal.",
+  "source": {
+   "book": "DE",
+   "line": 12645,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ "ReAn": {
+  "text": "You may further refer to Corpus for ideas and guidelines on controlling an animal's body, and Rego Mentem spells for ideas and guidelines on controlling an animal's mind.\n\nSigils typical in Rego Animal spells are those that cause beasts to act in certain ways.\n\nReAn botches could put the caster under the control of the animal, or make the animal act in a way opposite to that intended. They could also appear to work, and then suddenly reverse at an extremely inconvenient moment.",
+  "source": {
+   "book": "DE",
+   "line": 12704,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ "CrAq": {
+  "text": "Water created temporarily quenches thirst but provides no lasting benefits to the drinker. It can be used to wash, and the things washed stay clean. Common sigils for Creo Aquam spells include water with a specific scent, color, or flavor.\n\nCrAq botches might create far too much water (think of the Sorcerer's Apprentice), or the wrong kind of liquid.\n\nSlightly unnatural liquids are one magnitude harder than water, very unnatural liquids are two magnitudes harder, and require a Muto requisite.\n\nPoisons created at the guideline level have an Ease Factor of 3. Each magnitude added to the level of the spell adds 3 to the Ease Factor.",
+  "source": {
+   "book": "DE",
+   "line": 12800,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ "InAq": {
+  "text": "Note that Intellego Aquam spells do not normally require requisites depending on the type of liquid targeted.\n\nMost sigils manifest in Intellego Aquam spells by causing the information to be reported in some slightly quirky way. For example, Chavin of Tytalus's version of Voice of the Lake always makes the lake sound strong, masculine, and arrogant.\n\nBotched InAq spells generally provide false information.",
+  "source": {
+   "book": "DE",
+   "line": 12853,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ "MuAq": {
+  "text": "You cannot transform liquids within someone's body unless the spell is designed that way (and has a Corpus or Animal requisite).\n\nMuto Aquam botches might change liquids inside the caster, change the wrong liquid outside him, or change the liquid in the wrong way.\n\nPoisons created at the guideline level have an Ease Factor of 3. For every magnitude added to the spell, add three to the Ease Factor.",
+  "source": {
+   "book": "DE",
+   "line": 12914,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ "PeAq": {
+  "text": "As magnitudes in these spells rise, the destruction caused becomes more subtle, or more pervasive. Sigils commonly seen in Perdo Aquam spells usually involve destruction in some specific way. Destroying water that is part of something, such as the fluid in a human being, requires a target of Part. Destroying water that is merely on someone, such as the water making a person wet, only needs a target of Individual.\n\nPerdo Aquam botches might destroy all water in the caster, as Curse of the Desert, or create water instead of destroying it.",
+  "source": {
+   "book": "DE",
+   "line": 12955,
+   "anchor": "perdo-aquam-guidelines"
+  }
+ },
+ "ReAq": {
+  "text": "Rego Aquam can change water into ice or steam, because these are both states that water can have naturally.\n\nRego Aquam botches generally involve spectacular and dangerous loss of control of the water.\n\nAdd one magnitude if the controlled movement is slightly unnatural, two if it is very unnatural.",
+  "source": {
+   "book": "DE",
+   "line": 13006,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ "CrAu": {
+  "text": "Weather phenomena are normally created at Sight range. This is because most weather phenomena (clouds, rain, storms, and so on) naturally begin in the upper air, and so spells to create weather must have enough Range to reach this area. It is possible to create weather phenomena that start at ground level, but they are often very unnatural, and the increase in level for that precisely offsets the decrease from reducing Range to Touch. A flying wizard could, of course, use Touch range to create natural weather phenomena, but such spells are not very popular in the Order.\n\nSigils in Creo Auram spells commonly give the air specific properties, such as special scents or colors.\n\nCreo Auram botches may create the wrong sort of weather, or create it targeted at the caster or some other ally.",
+  "source": {
+   "book": "DE",
+   "line": 13120,
+   "anchor": "creo-auram-guidelines"
+  }
+ },
+ "InAu": {
+  "text": "Intellego Auram botches normally reveal false information.",
+  "source": {
+   "book": "DE",
+   "line": 13234,
+   "anchor": "intellego-auram-guidelines"
+  }
+ },
+ "MuAu": {
+  "text": "Transforming only one property of air generally lowers the level by one magnitude.\n\nMuto Auram botches could change the caster temporarily into air, or change the air in an undesirable way.",
+  "source": {
+   "book": "DE",
+   "line": 13271,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ "PeAu": {
+  "text": "Causing the destruction of air with great precision raises the magnitude by at least one level.",
+  "source": {
+   "book": "DE",
+   "line": 13324,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ "ReAu": {
+  "text": "Rego Auram allows the maga to control existing weather phenomena. It is not possible to create a breeze with Rego Auram, but it is possible to direct the course of a storm. This includes starting and stopping the rain at the maga's command.\n\nControlling an amount of air with great strength or great precision raises the magnitude of the spell by one level.",
+  "source": {
+   "book": "DE",
+   "line": 13360,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ "CrCo": {
+  "text": "Many Creo Corpus spells are most useful as Ritual spells. Unless otherwise noted, a healing spell cast other than as a Momentary Duration Ritual actually suspends the healing process so that, upon the spell's expiration, wounds are as fresh as they were when the spell was cast. No Hermetic spell can restore Fatigue levels.\n\nA spell that can heal something can also heal less serious versions of the same thing. Thus, a spell that can heal Medium Wounds can also heal Light Wounds. However, a spell to heal wounds cannot cure diseases, no matter how high its level, and vice versa. Spells that give a bonus to Recovery rolls work no matter what the character is recovering from.\n\nThe physical characteristics are Strength, Stamina, Dexterity, and Quickness, and they can be affected and improved by Corpus magic.\n\nCreo Corpus botches often inflict damage instead of healing it.\n\nCreo Animal spells may be used as guidelines and examples for Creo Corpus spells.",
+  "source": {
+   "book": "DE",
+   "line": 13421,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ "InCo": {
+  "text": "Common sigils seen in Intellego Corpus spells usually report information in some strange or quirky way.\n\nLike most Intellego botches, Intellego Corpus botches normally provide false information.",
+  "source": {
+   "book": "DE",
+   "line": 13528,
+   "anchor": "intellego-corpus-guidelines"
+  }
+ },
+ "MuCo": {
+  "text": "These spells transform people. There are beneficial spells to cast on yourself and your companions, and harmful spells to cast on your foes.\n\nTransformations do not usually completely eradicate the original form; something of the original remains. If you turn a fat, one-armed man into a wolf, the wolf is fat, three-legged, and male.\n\nTransformations can have subtle (or sometimes dramatic) permanent effects. Someone who spends a month or more as an animal begins to act and think like that animal. Eventually, weak-willed individuals might lose their human identity altogether. When transformed back into a human, the target might temporarily or permanently retain some feature of the other shape. Someone turned into a rabbit and back might keep a fondness for carrots or retain unnaturally big ears. Transformations are tricky things.\n\nMuto Corpus spells cannot alter a person's mind, so they leave the transformed person's intelligence and knowledge intact. Magi can cast spells while in animal form, but they suffer the normal –15 penalty for casting without hands or voice. The transformed person gains any abilities the animal form has though it may take a day or so of experience to get used to using them.\n\nTo change accouterments along with the body involves requisites. For example, you need a casting requisite of Animal for leather worn, Aquam for any liquids carried, and Terram for metal objects worn (including studs in armor). Accouterments are transformed only if they are actually being worn, not if they are just being carried in the hand. Simply put, equipment will not be transformed for one of two reasons: either because you choose not to use the casting requisites or because the storyguide rules that the equipment is not sufficiently part of the target's worn equipment. This untransformed equipment falls to the ground.\n\nCertain shapechanging spells allow the target to change back by concentrating. While concentrating, you symbolically remove some item to break the spell, such as a wolfskin cloak or some water in your hands. These foci are essential if you are to be able to break the spell in this way. If you cast the spell without them, you must either dispel the magic with Perdo Vim, or wait for the duration to expire.\n\nMuto Corpus botches may lead to a spell lasting indefinitely, and proving hard to dispel.",
+  "source": {
+   "book": "DE",
+   "line": 13587,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ "PeCo": {
+  "text": "These spells harm people directly, often permanently, unless outside magics are used to repair the damage.\n\nDiseases caused by magic have a base Ease Factor of 6. For every magnitude by which the spell level increases, the Ease Factor increases by 1. It is not possible to reduce the level by reducing the Ease Factor. (See page 8)",
+  "source": {
+   "book": "DE",
+   "line": 13723,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ "ReCo": {
+  "text": "Rego Corpus botches often take control of the caster's body, and move it in ways he would not want.\n\nRego Corpus can be used to perform surgery. Detailed rules for surgery can be found in Art and Academe.",
+  "source": {
+   "book": "DE",
+   "line": 13818,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ "CrHe": {
+  "text": "These spells create and heal plants. Any food created is nutritious only if the creation is a Ritual. The guideline levels given below are generally for conjuring the leafy parts of plants.\n\nPlants may be created living or dead with equal ease. To create treated Herbam products (for example, cut timber, a vegetarian meal, or linen or cotton cloth) add one magnitude to the level necessary to create the equivalent amount of unworked living or dead plants. To create treated and processed Herbam products (for example, clothes or furniture), add two magnitudes.\n\nA single spell generally only creates a single type of plant product.\n\nCreo Herbam botches may create plants in the wrong place, or create the wrong kind of plant.",
+  "source": {
+   "book": "DE",
+   "line": 13927,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ "InHe": {
+  "text": "As with most Intellego magic, Intellego Herbam botches generally give false information.",
+  "source": {
+   "book": "DE",
+   "line": 13993,
+   "anchor": "intellego-herbam-guidelines"
+  }
+ },
+ "MuHe": {
+  "text": "These guidelines assume that when you change a plant, it's still a plant in some way. Changing a plant into something else usually involves a spell one level of magnitude higher than the guideline most appropriate to the action. To change plants into treated or finished material (for example, wooden furniture, a vegetarian meal, linen or cotton cloth) add one magnitude to the level necessary to change plants into natural, unworked plants.\n\nMuto Herbam botches may turn the caster into a plant, or turn the target into an animated plant hostile to the caster.",
+  "source": {
+   "book": "DE",
+   "line": 14042,
+   "anchor": "muto-herbam-guidelines"
+  }
+ },
+ "PeHe": {
+  "text": "These spells destroy plants and plant material. Since many items are made of wood, these spells can be quite destructive. The guidelines given are for destroying dead wood. Destroying live wood is usually a bit harder — add one magnitude.\n\nPerdo Herbam botches normally destroy the wrong thing, possibly including some of the caster's clothing.",
+  "source": {
+   "book": "DE",
+   "line": 14108,
+   "anchor": "perdo-herbam-guidelines"
+  }
+ },
+ "ReHe": {
+  "text": "It is equally easy to control living and dead wood.\n\nRego Herbam botches normally result in the wood doing something contrary to what the caster wants.",
+  "source": {
+   "book": "DE",
+   "line": 14158,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ "CrIg": {
+  "text": "Spells that create fires are versatile weapons — destructive to living things, undead, buildings, and morale. Those who depend on fire spells, however, risk botching. Fire is an unforgiving element for those who lose control of it, and self-incineration is always a possibility.\n\nTypical sigils seen in Creo Ignem spells involve the flame being a specific color or shape, or giving off an unusual smell.",
+  "source": {
+   "book": "DE",
+   "line": 14262,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ "InIg": {
+  "text": "Intellego Ignem botches typically provide false information, although they may also render the caster incapable of detecting heat or flames for a time.",
+  "source": {
+   "book": "DE",
+   "line": 14352,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ "MuIg": {
+  "text": "The intensity of a fire also affects the difficulty of changing it. For every five points by which the fire's damage exceeds +5, add one magnitude to the level of the spell.",
+  "source": {
+   "book": "DE",
+   "line": 14400,
+   "anchor": "muto-ignem-guidelines"
+  }
+ },
+ "PeIg": {
+  "text": "The intensity of a fire also affects the difficulty of destroying it. For every five points by which the fire's damage exceeds +5, add one magnitude to the level of the spell.\n\nPerdo Ignem botches might create fire instead of destroying it, or freeze the caster.",
+  "source": {
+   "book": "DE",
+   "line": 14459,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ "ReIg": {
+  "text": "The intensity of a fire also affects the difficulty of controlling it. For every five points by which the fire's damage exceeds +5, add one magnitude to the level of the spell.\n\nRego Ignem spells can control heat or light as well as fire.\n\nRego Ignem botches normally result in the fire doing exactly what the caster does not want.",
+  "source": {
+   "book": "DE",
+   "line": 14521,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ "CrIm": {
+  "text": "These spells create and restore images. It is important to note that Creo Imaginem spells only create the images of things, not the things themselves. An image of a bucket will not hold water poured into it, nor will the image of a horse be able to carry a rider. This is often the first (and most important) clue that the image is just an illusion. On the other hand, the illusion of a wall may feel solid, but will present no resistance if someone pushes a hand through it.\n\nIncreasing the complexity of a sensory perception, such as making a moving visual image or making clear words instead of noise, adds an additional level of magnitude. Making an image move or make noise at your direction as you concentrate adds two levels of magnitude. In addition, very intricate images (for example, an intricately ornamented bridge) are generally one level of magnitude higher as well.\n\nWizard's sigils can be very obvious in Creo Imaginem spells. The illusions commonly have some small quirk that marks them as belonging to a certain magus. For example, illusions cast by Fortunatus of Jerbiton often have some small religious icon worked into their structure, due to the manner in which he invents his spells.\n\nCreo Imaginem botches might create obvious illusions which are clearly linked to the caster, thus marking him as a wizard.",
+  "source": {
+   "book": "DE",
+   "line": 14592,
+   "anchor": "creo-imaginem-guidelines"
+  }
+ },
+ "InIm": {
+  "text": "Generally, these spells have the least to do with illusions of all the Imaginem spells, because one detects an image without altering or controlling it. These spells improve upon your senses by bringing in images (usually sounds and sights) not normally available.\n\nNote that seeing or hearing into another room or a hundred miles away does you no good if there is no light or sound there. As in CrIm spells, each additional sense you wish to perceive increases the level of the spell by one magnitude.\n\nAs with most Intellego magic, Intellego Imaginem botches normally give false information.",
+  "source": {
+   "book": "DE",
+   "line": 14655,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ "MuIm": {
+  "text": "These are useful and powerful illusion spells, altering the visual image, noises, smell, or taste of some object or being. The image remains altered without your concentration and adapts itself appropriately to the medium. The accuracy of duplication depends on your knowledge of the subject. For instance, if you want to make a voice like that of a specific person, you must be familiar with the voice that you want to mimic. Those more familiar with the face, voice, body, or other aspect being mimicked might see through an illusion by mundane means (\"Duke Tybol, isn't your scar on your left cheek?\").\n\nMuto Imaginem, or indeed other Imaginem magic, cannot overcome the effects of The Gift, although it might offset them a little.\n\nMuto Imaginem botches often change the caster's appearance in dangerous or embarrassing ways.",
+  "source": {
+   "book": "DE",
+   "line": 14714,
+   "anchor": "muto-imaginem-guidelines"
+  }
+ },
+ "PeIm": {
+  "text": "In addition to destroying created images, these spells dull the sensual properties of things — making wine tasteless, sneaks silent, and magi invisible. Destroying changing images is more difficult — add one level of magnitude to spells that do so.\n\nNote that images are naturally generated constantly, so that a Perdo Imaginem spell with Momentary duration merely makes an object seem to flicker for a moment. Longer durations are required if the image is to stay gone.\n\nNote also that shadows are due to the physical body blocking the light. Destroying something's shadow is thus Creo Ignem, or possibly Rego Ignem, not Perdo Imaginem. Mirror images, however, are caused by the species bouncing off the mirror, so a spell destroying (or changing) the species also changes mirror images.\n\nPerdo Imaginem botches might make the image more intense, or destroy the wrong image.",
+  "source": {
+   "book": "DE",
+   "line": 14765,
+   "anchor": "perdo-imaginem-guidelines"
+  }
+ },
+ "ReIm": {
+  "text": "These spells make things appear to be somewhere other than where they actually are. As with CrIm and PeIm, it is slightly harder to affect changing images. Add one level of magnitude to spells that do so. Add a further level of magnitude if the image is to change along with the object. Add one level of magnitude to the guidelines for each additional sense to be affected.\n\nRego Imaginem botches might control the wrong image, or do something completely inappropriate to the targeted image.",
+  "source": {
+   "book": "DE",
+   "line": 14837,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ "CrMe": {
+  "text": "In addition to healing minds, these spells can also create thoughts, emotions, and memories in another person's mind. These creations interact normally with the target's other thoughts, and may be changed in the process.\n\nTypical sigils for Creo Mentem spells involve some small quirk in what is created. A specific idea may lie in the background of all memories created, for example.\n\nCreo Mentem botches might create inappropriate emotions in the caster's mind.",
+  "source": {
+   "book": "DE",
+   "line": 14911,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ "InMe": {
+  "text": "These spells are superb for cutting through the confusion of social interaction and the endless banter of the rabble. The InAn spells that deal with the mind may also be used for ideas and guidelines for this section.\n\nNote that writing does not contain any information of itself, and is generally Animal and Herbam or Terram, for the materials, not Mentem. To translate writing, you need someone who can read it, although you could read the translation from their mind.\n\nIn general, a momentary Mentem spell can answer a single question, although it is not necessary that the answer be expressible in a brief form. A Momentary spell could, for example, tell you exactly how the target felt about his father, no matter how complex the feeling, but it wouldn't tell you why he felt that way. Finding out a lot of information takes time.\n\nSigils for InMe spells usually involve information being transmitted in unique ways.\n\nIntellego Mentem botches normally supply false information.",
+  "source": {
+   "book": "DE",
+   "line": 14979,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ "MuMe": {
+  "text": "Muto Mentem spells give a mind properties it could not naturally acquire. These fall into three main categories.\n\nFirst, changing memories. While memories may decay over time, they do not naturally change radically, so making them do so is Muto.\n\nSecond, emotions and thoughts that people cannot normally feel. This includes the thoughts of animals and similar.\n\nThird, non-mental properties. This covers making a mind physical, and is very difficult.\n\nMuto Mentem botches might change the mind of the caster, thus making this magic potentially very risky.\n\nWhile Intellego spells can grant magical senses to a single person, granting a magical sense to multiple people is a function of Muto Mentem. The base level is one magnitude higher than the level of an Intellego spell to grant that sense at a Range of Personal and Duration of Momentary, and the Muto Mentem spell has requisites of Intellego and the appropriate Form or Forms. As for all base levels, this is for a spell with Range Personal, Duration Momentary, and Target Individual.",
+  "source": {
+   "book": "DE",
+   "line": 15042,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ "PeMe": {
+  "text": "Emotions naturally reappear in a person, so spells that destroy them must have a continuing duration to ensure that they do not come back. Memories do not naturally return, so Momentary Duration spells remove them forever, although a person could be told what he had forgotten, or reconstruct the memory from things he does remember. A continuing spell would prevent a person from relearning that information, however.",
+  "source": {
+   "book": "DE",
+   "line": 15105,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ "ReMe": {
+  "text": "The Rego Animal spells that deal with the mind may also be used as good guidelines for levels of Rego Mentem spells. Many changes to the mind are Rego effects, because the mind could naturally assume that state.\n\nRego Mentem botches can change the target's mental state in the wrong way, or change the state of mind of the caster.",
+  "source": {
+   "book": "DE",
+   "line": 15184,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ "CrTe": {
+  "text": "Creating earth in an elaborate shape or, with a Muto requisite, with some unnatural property is one level of magnitude higher than the listed guidelines.\n\nWizard's sigils commonly visible in Creo Terram spells involve the object created being bizarre in some way, such as dirt being a specific color or texture.\n\nCreo Terram botches can entomb the caster in earth or stone, as well as creating the wrong sort of material, or creating it in the wrong place.",
+  "source": {
+   "book": "DE",
+   "line": 15296,
+   "anchor": "creo-terram-guidelines"
+  }
+ },
+ "InTe": {
+  "text": "Intellego Terram spell levels are not affected by the material of the thing affected, except as explicitly noted in the guidelines.\n\nIntellego Terram botches normally provide false information.",
+  "source": {
+   "book": "DE",
+   "line": 15342,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ "MuTe": {
+  "text": "The targets below are for changing dirt. To change to or from sand, mud, or clay, use the same level of magnitude as for dirt. To change to or from stone or glass, add one level of magnitude. To change to or from metal or gemstone, add two levels of magnitude. These adjustments only apply once, so that changing metal to metal is only two magnitudes higher.\n\nThe amount of material you can change is limited by the guidelines for each end. Thus, you can turn a cubic pace of stone into a cubic inch of gemstone with a base Individual.\n\nSerious Muto Terram botches have a tendency to turn the caster to stone or metal, but lesser botches transform the wrong thing, or transform things in the wrong way.",
+  "source": {
+   "book": "DE",
+   "line": 15420,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ "PeTe": {
+  "text": "To destroy sand, mud, or clay, use the same level of magnitude as for earth. To destroy stone or glass, add one magnitude. To destroy metal or gemstone, add two magnitudes.\n\nPerdo Terram botches, as well as destroying the wrong thing, can destroy the ground that the caster is standing on, or metal objects that he is holding.",
+  "source": {
+   "book": "DE",
+   "line": 15484,
+   "anchor": "perdo-terram-guidelines"
+  }
+ },
+ "ReTe": {
+  "text": "The guidelines for controlling dirt, sand, mud, or clay are listed below. Add one magnitude to control stone or glass, and two for metal or gemstones, unless the item is simply being moved from one place to another (as in Unseen Arm or either Invisible Sling). Manipulating objects with great precision may also be higher, depending on the level of precision.\n\nRego Terram botches often result in the caster being struck by large amounts of flying stone.",
+  "source": {
+   "book": "DE",
+   "line": 15545,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ "CrVi": {
+  "text": "There are few Creo Vim spells known throughout the Order.\n\nCreo Vim botches often give the caster additional Warping Points, as the raw magic runs out of control.",
+  "source": {
+   "book": "DE",
+   "line": 15676,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ "InVi": {
+  "text": "Since magic is a tricky thing to understand, spells that detect magic are at once difficult and important. Although demons deal in Vim, they are made of the essence of deception itself. If a demon does not wish to be detected, it cannot be (at least to the common knowledge of the Order), and for this reason there are no demon-locating magics. Magic items cannot be investigated with simple magic spells. Investigation requires that you spend at least one season in the laboratory to discover what magic an enchanted item contains (see the Laboratory chapter). A spell will suffice to tell you that an item is magical, however, and may give you some idea of its powers. Spells will never tell you how to use an item.\n\nThe base level of a spell to detect magic also gives a fairly good idea of the strength of the magic (within a magnitude). The addition of one magnitude will say whether the effect is Hermetic, and a magus familiar with other types of magic will be able to identify them as well. The addition of two magnitudes will give information about Technique and Form, or nearest equivalent for other types of magic. The addition of three magnitudes gives the rough details of the effect and the sigil of the caster, and reveals whether a Hermetic effect was created by a spell or invested device. A magus with extensive experience of a particular kind of non-Hermetic magic can do the same for that, the spell reveals the information, but the caster may not be able to interpret it. Further increases in level yield further information, depending on the design of the specific spell.\n\nDifferent spells may be invented to detect Faerie, Divine, or Infernal effects. Each spell only affects one realm, and storyguides may wish to disallow spells to detect the Divine or Infernal.\n\nAs a general rule, residues of magic decline as follows. As soon as the magic finishes, the magnitude halves. It then drops by one for every duration of the spell that passes. Once this reaches zero, the residues decline more slowly. Residues of non-Ritual Momentary, Concentration, and Diameter Duration drop by one every month, while residues of other effects drop by one every year. A 'negative magnitude' of 10 indicates that the residue has disappeared completely, and no longer exists to be detected.\n\nMagical items have an effective residue magnitude equal to the number of pawns of vis used to open the enchantment (or the total pawns used for lesser enchanted devices). Magnitudes of non-Hermetic items must be set by the storyguide. A spell to detect items will not also detect effects or creatures, and vice-versa. Variants will detect items enchanted by different Realms, as above.\n\nMagical creatures can also be detected. Treat their Might as the level of the effect; for Hermetic magi, use their highest Art. Divide Might or highest Art by five (rounding up) to get the effective residue magnitude. Again, this requires a dedicated spell, and variants may detect Faerie and possibly Divine creatures. Demons may not be detected. Troupes may, at their option, allow spells that detect other Infernal creatures, such as diabolists and undead.\n\nRaw vis will show up as magical, simply as raw vis, under any magical detection. The level of the detecting spell is irrelevant, as is the realm of power that it was designed to detect. However, only specially designed spells will yield any information other than that it is raw vis.\n\nIntellego Vim botches generally give false information.",
+  "source": {
+   "book": "DE",
+   "line": 15724,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ "MuVi": {
+  "text": "These spells let you change other spells.\n\nThese meta-magical spells have certain special restrictions, which apply to all Muto Vim spells invented according to Hermetic theory. First of all, they cannot be cast on Spontaneous spells. Such magic is being manipulated at whim-any attempt to alter it further would make the caster lose control. (This is necessary for game balance.)\n\nSecond, you must make an Intelligence + Concentration roll against an Ease Factor of 9 if you are casting both spells (that is, the MuVi spell and the spell it is affecting). If this fails, the spells do not go off. If it botches, they botch. (This is slightly easier than normal.)\n\nIf you wish to cast one of these spells on a spell being cast by another magus, you must either be co-operating, or you must fast cast the MuVi spell. There is no other way to get the timing right. In addition, your Penetration total for the Muto Vim spell must beat the other magus's Penetration total for the spell to be changed, unless you are co-operating.\n\nTouch range is sufficient to affect your own spells, but Voice range, at least, is needed to affect another magus's casting. You cannot touch the spell itself.\n\nThese spells can only be used on Hermetic magic, as they depend on a good understanding of the processes involved.\n\nYou may only put a Muto Vim effect into a magical item if it is to work with another effect in that item. All Muto Vim spells require some tailoring to the specific use, and a magical item effect cannot be so tailored.\n\nNote that a spell invented according to one of the guidelines below will change another spell in a specific way: it is not possible to invent a single spell which changes another spell however the caster wants. See the example spells for ideas on how specific this should be.\n\nIt is not possible, for reasons that Hermetic theorists do not well understand, to use Muto Vim to affect another spell after it has been cast.\n\nIf the parameters of an effect after it has been changed by a Muto Vim spell would normally require a Ritual, then at least one of the original spell and the Muto Vim spell must be a Ritual. For example, a Formulaic or Spontaneous Muto Vim effect on a Formulaic spell cannot produce an effect that would normally require a Ritual.\n\nMuto Vim botches can have any conceivable effect, as they alter the other spell in unpredictable ways.\n\nMuto Vim spells work by altering the magical energies that create the spell as it is being cast. The spell is the result of the combination of the base casting and the Muto Vim effect, and has its effect once both the casting and the Muto Vim effect have finished. This means that a Muto Vim spell must have a duration at least as long as the casting of the target spell, but need not last for as long as the spell itself. For normally-cast formulaic spells, a Momentary Duration is sufficient, but if the casting time is longer for any reason, the Muto Vim spell must also have a longer Duration; Sun is sufficient for any practical Ritual.\n\nAn increase in power or parameters may not raise the level of the target spell above the level of the Muto Vim spell.",
+  "source": {
+   "book": "DE",
+   "line": 15800,
+   "anchor": "muto-vim-guidelines"
+  }
+ },
+ "PeVi": {
+  "text": "Most Perdo Vim spells are specific to one of the four Supernatural Realms. If you want to cast a Perdo Vim spell on a character who has Magic Resistance, you must overcome the Magic Resistance.",
+  "source": {
+   "book": "DE",
+   "line": 15884,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ "ReVi": {
+  "text": "Rego Vim spells repel demons and other supernatural creatures. Theoretically, it is possible to conjure and control demons through Rego Vim spells, but this knowledge and its use are forbidden by the Hermetic Code. Any who find and dare to use this knowledge face dangers from both the beings they deal with and those in the Order of Hermes who strongly object to such practices.\n\nRego Vim would also be the combination of Arts that granted Magic Resistance, but not even Bonisagus was able to turn Parma Magica into a spell. Aegis of the Hearth is the best that has been managed, and that spell is not fully integrated into Hermetic theory.",
+  "source": {
+   "book": "DE",
+   "line": 15927,
+   "anchor": "rego-vim-guidelines"
+  }
+ }
+}

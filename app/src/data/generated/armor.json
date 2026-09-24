@@ -1,0 +1,56 @@
+[
+ {
+  "id": "quilted-fur",
+  "name": "Quilted/Fur",
+  "partialProt": 1,
+  "partialLoad": 2,
+  "fullProt": null,
+  "fullLoad": null,
+  "cost": "Inexp."
+ },
+ {
+  "id": "heavy-leather",
+  "name": "Heavy Leather",
+  "partialProt": 2,
+  "partialLoad": 3,
+  "fullProt": null,
+  "fullLoad": null,
+  "cost": "Inexp."
+ },
+ {
+  "id": "metal-reinf-leather",
+  "name": "Metal Reinf. Leather",
+  "partialProt": 2,
+  "partialLoad": 2,
+  "fullProt": 4,
+  "fullLoad": 4,
+  "cost": "Std."
+ },
+ {
+  "id": "leather-scale",
+  "name": "Leather Scale",
+  "partialProt": 3,
+  "partialLoad": 3,
+  "fullProt": 5,
+  "fullLoad": 5,
+  "cost": "Std."
+ },
+ {
+  "id": "metal-scale",
+  "name": "Metal Scale",
+  "partialProt": 4,
+  "partialLoad": 4,
+  "fullProt": 7,
+  "fullLoad": 7,
+  "cost": "Std."
+ },
+ {
+  "id": "chain-mail",
+  "name": "Chain Mail",
+  "partialProt": 6,
+  "partialLoad": 4,
+  "fullProt": 9,
+  "fullLoad": 6,
+  "cost": "Exp."
+ }
+]
