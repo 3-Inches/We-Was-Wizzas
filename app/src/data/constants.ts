@@ -70,7 +70,7 @@ export const SOCIETIES = [
   'North Africa', 'Provençal', 'Jewish',
 ];
 
-/** DE social statuses by culture (p.65). Keys are V&F names. */
+/** DE social statuses by culture (p.64). Keys are V&F names. */
 export const STATUS_CULTURES: Record<string, string[]> = {
   // All cultures
   Apprentice: ['All Cultures'], Covenfolk: ['All Cultures'], Craftsman: ['All Cultures'],

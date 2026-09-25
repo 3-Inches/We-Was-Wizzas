@@ -95,6 +95,30 @@ export default function HelpPage() {
           transcribed and may have errors. If something looks wrong, use an override and check the source text in the reader.
         </p>
       </Card>
+      <Card title="License & credits" id="credits">
+        <p className="small">
+          <i>
+            Based on the material for Ars Magica, ©1993–2024, licensed by Trident, Inc. d/b/a Atlas Games®, under{' '}
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
+              Creative Commons Attribution-ShareAlike 4.0 International
+            </a>{' '}
+            ("CC BY-SA 4.0").
+          </i>{' '}
+          Ars Magica and Mythic Europe are trademarks of Trident, Inc. Order of Hermes, Tremere, Doissetep and Grimgroth are trademarks of Paradox Interactive AB.
+        </p>
+        <p className="small">
+          The book text comes from the Open License markdown edition by OriginalMadman (
+          <a href="https://github.com/OriginalMadman/Ars-Magica-Open-License" target="_blank" rel="noreferrer">
+            github.com/OriginalMadman/Ars-Magica-Open-License
+          </a>
+          ). This toolkit is an unofficial fan project, not affiliated with or endorsed by Atlas Games or Paradox Interactive. As the license requires, its rules data and text are shared
+          under the same CC BY-SA 4.0 license. More about the Open License:{' '}
+          <a href="https://www.atlas-games.com/arsmagica/openars" target="_blank" rel="noreferrer">
+            atlas-games.com/arsmagica/openars
+          </a>
+          . The published books, with their art and layout, are available from Atlas Games.
+        </p>
+      </Card>
     </div>
   );
 }

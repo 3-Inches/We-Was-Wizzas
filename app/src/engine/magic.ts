@@ -328,7 +328,7 @@ export function magicResistance(d: DerivedCharacter, form: Form, o: { aura?: Aur
   return { total: Math.max(0, total), parts, halved: false, notes };
 }
 
-/** Highest spell level learnable at character creation (DE p.50): Te + Fo + Int + MT + 3, Virtues as for Lab Totals. */
+/** Highest spell level learnable at character creation (DE p.49): Te + Fo + Int + MT + 3, Virtues as for Lab Totals. */
 export function creationSpellLimit(d: DerivedCharacter, arts: ArtsUsed, bonus: number, inFocus = false): TotalResult {
   const r = labTotal(d, arts, { activity: 'spells', aura: { realm: 'Magic', strength: bonus }, inFocus, fromText: false });
   return r;

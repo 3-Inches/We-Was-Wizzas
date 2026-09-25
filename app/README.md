@@ -83,3 +83,9 @@ app/src/ui/           React pages: character wizard & sheet, covenant, tools, re
 - **Mechanics are written by hand** in `src/data/mechanics.ts`, one entry per Virtue or Flaw, as declarative effects: xp pools, bonuses, Lab Total modifiers and so on. Virtues and Flaws without numeric effects appear on the sheet as text for the troupe to adjudicate.
 - **Every total carries its breakdown.** Clicking a number shows how it was calculated.
 - **Books marked WIP** in this repository are still being transcribed. Content from them can contain transcription errors, and each saga can switch them off.
+
+## License
+
+Based on the material for Ars Magica, ©1993–2024, licensed by Trident, Inc. d/b/a Atlas Games®, under [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) ("CC BY-SA 4.0"). The book text comes from the Open License markdown edition by [OriginalMadman](https://github.com/OriginalMadman/Ars-Magica-Open-License).
+
+This toolkit is an unofficial fan project and is not affiliated with or endorsed by Atlas Games or Paradox Interactive. Ars Magica and Mythic Europe are trademarks of Trident, Inc. Order of Hermes, Tremere, Doissetep and Grimgroth are trademarks of Paradox Interactive AB. Like the rest of this repository, the toolkit is shared under CC BY-SA 4.0 (see `LICENSE.md`). The app shows this credit in its sidebar and on its Guide page.

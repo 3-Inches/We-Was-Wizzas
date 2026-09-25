@@ -30,7 +30,7 @@ export default function BasicsStep({ ed }: { ed: CharEditor }) {
           <Field label="Gender (as perceived by society)" hint="Only matters for some Social Statuses (DE p.62).">
             <input value={c.gender} onChange={(e) => update((x) => void (x.gender = e.target.value))} placeholder="e.g. male, female, …" />
           </Field>
-          <Field label="Society / culture" hint="Filters Social Status Virtues (DE p.65).">
+          <Field label="Society / culture" hint="Filters Social Status Virtues (DE p.64).">
             <select value={c.society} onChange={(e) => update((x) => void (x.society = e.target.value))}>
               {SOCIETIES.filter((s) => s !== 'All Cultures').map((s) => (
                 <option key={s}>{s}</option>
