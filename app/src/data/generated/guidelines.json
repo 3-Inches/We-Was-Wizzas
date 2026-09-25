@@ -1,0 +1,7322 @@
+[
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 1,
+  "general": false,
+  "text": "Give an animal a +1 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 12478,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 2,
+  "general": false,
+  "text": "Give an animal a +3 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 12479,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 2,
+  "general": false,
+  "text": "Preserve a corpse from decay",
+  "source": {
+   "book": "DE",
+   "line": 12479,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 3,
+  "general": false,
+  "text": "Give an animal a +6 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 12480,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 4,
+  "general": false,
+  "text": "Give an animal a +9 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 12481,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Create an animal product, such as spidersilk or wool (Note that an Individual is a single hair, a single hide, or a single tusk)",
+  "source": {
+   "book": "DE",
+   "line": 12482,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Create an insect or similar bug",
+  "source": {
+   "book": "DE",
+   "line": 12482,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Give an animal a +12 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 12482,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Create the corpse of an animal",
+  "source": {
+   "book": "DE",
+   "line": 12483,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Create a bird, reptile, fish, or amphibian",
+  "source": {
+   "book": "DE",
+   "line": 12483,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Give an animal a +15 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 12483,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Heal a Light Wound",
+  "source": {
+   "book": "DE",
+   "line": 12484,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Give an animal a +18 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 12484,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Create a mammal",
+  "source": {
+   "book": "DE",
+   "line": 12484,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Cause an animal to reach full maturity over a single day or night (requires Sun Duration spell; maturation only applies during spell's Duration)",
+  "source": {
+   "book": "DE",
+   "line": 12484,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 20,
+  "general": false,
+  "text": "Heal a Medium Wound",
+  "source": {
+   "book": "DE",
+   "line": 12485,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 20,
+  "general": false,
+  "text": "Give an animal a +21 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 12485,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 20,
+  "general": false,
+  "text": "Cause an animal to reach full maturity over about two hours",
+  "source": {
+   "book": "DE",
+   "line": 12485,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 25,
+  "general": false,
+  "text": "Stop the progress of a disease",
+  "source": {
+   "book": "DE",
+   "line": 12486,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 25,
+  "general": false,
+  "text": "Heal a Heavy Wound",
+  "source": {
+   "book": "DE",
+   "line": 12486,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 25,
+  "general": false,
+  "text": "Restore a lost sense",
+  "source": {
+   "book": "DE",
+   "line": 12486,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 25,
+  "general": false,
+  "text": "Restore a lost limb",
+  "source": {
+   "book": "DE",
+   "line": 12486,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 25,
+  "general": false,
+  "text": "Cure a disease, counteracting its effects (unless Momentary Ritual, same as stopping progress)",
+  "source": {
+   "book": "DE",
+   "line": 12486,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 25,
+  "general": false,
+  "text": "Cause an animal to reach full maturity over ten Diameters (twenty minutes)",
+  "source": {
+   "book": "DE",
+   "line": 12486,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 30,
+  "general": false,
+  "text": "Heal an Incapacitating Wound",
+  "source": {
+   "book": "DE",
+   "line": 12487,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 30,
+  "general": false,
+  "text": "Increase one of an animal's Characteristics by one point, to no more than the average score for that kind of animal",
+  "source": {
+   "book": "DE",
+   "line": 12487,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 30,
+  "general": false,
+  "text": "Cause an animal to reach full maturity over the course of a single Diameter",
+  "source": {
+   "book": "DE",
+   "line": 12487,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 35,
+  "general": false,
+  "text": "Heal all wounds",
+  "source": {
+   "book": "DE",
+   "line": 12488,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 35,
+  "general": false,
+  "text": "Increase one of an animal's Characteristics by one point, to no more than one higher than the average score for that kind of animal",
+  "source": {
+   "book": "DE",
+   "line": 12488,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 40,
+  "general": false,
+  "text": "Increase one of an animal's Characteristics by one point, to no more than two higher than the average score for that kind of animal",
+  "source": {
+   "book": "DE",
+   "line": 12489,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 40,
+  "general": false,
+  "text": "Cause an animal to reach full maturity in a moment",
+  "source": {
+   "book": "DE",
+   "line": 12489,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 45,
+  "general": false,
+  "text": "Increase one of an animal's Characteristics by one point, to no more than three higher than the average score for that kind of animal",
+  "source": {
+   "book": "DE",
+   "line": 12490,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 50,
+  "general": false,
+  "text": "Create a magical beast. When creating a magical creature, the Magic Might of the creature cannot exceed the level of the spell, and requisites must be included for any special powers (for example, Ignem if it can breathe fire, Rego and Mentem if it can control people's minds). A Vim requisite, for the magical nature, is always required.",
+  "source": {
+   "book": "DE",
+   "line": 12491,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 50,
+  "general": false,
+  "text": "Increase one of an animal's Characteristics by one point, to no more than four higher than the average score for that kind of animal",
+  "source": {
+   "book": "DE",
+   "line": 12491,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 55,
+  "general": false,
+  "text": "Increase one of an animal's Characteristics by one point, to no more than five higher than the average score for that kind of animal. A greater increase is not within the natural range for the animal, and thus cannot be effected by Creo magic.",
+  "source": {
+   "book": "DE",
+   "line": 12492,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "An",
+  "level": 75,
+  "general": false,
+  "text": "Raise an animal from the dead",
+  "source": {
+   "book": "DE",
+   "line": 12493,
+   "anchor": "creo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 1,
+  "general": false,
+  "text": "Get a mental image of an animal",
+  "source": {
+   "book": "DE",
+   "line": 12542,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 3,
+  "general": false,
+  "text": "Sense the state of consciousness of a beast",
+  "source": {
+   "book": "DE",
+   "line": 12543,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 3,
+  "general": false,
+  "text": "Get general information about an animal's body",
+  "source": {
+   "book": "DE",
+   "line": 12543,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 4,
+  "general": false,
+  "text": "Sense the dominant drive of a beast",
+  "source": {
+   "book": "DE",
+   "line": 12544,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 4,
+  "general": false,
+  "text": "Learn a specific fact about an animal's body",
+  "source": {
+   "book": "DE",
+   "line": 12544,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Learn the origin, age, and history of something made of animal products",
+  "source": {
+   "book": "DE",
+   "line": 12545,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Speak with an animal",
+  "source": {
+   "book": "DE",
+   "line": 12546,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Read an animal's surface thoughts",
+  "source": {
+   "book": "DE",
+   "line": 12546,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Read the recent memories of a beast",
+  "source": {
+   "book": "DE",
+   "line": 12547,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "An",
+  "level": 20,
+  "general": false,
+  "text": "Thoroughly probe the mind of a beast",
+  "source": {
+   "book": "DE",
+   "line": 12548,
+   "anchor": "intellego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 1,
+  "general": false,
+  "text": "Make a superficial change to something made of animal products (like changing its color)",
+  "source": {
+   "book": "DE",
+   "line": 12590,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 2,
+  "general": false,
+  "text": "Make a major change to something made of animal products that preserves the substance (for example, turn a leather jerkin into a saddle)",
+  "source": {
+   "book": "DE",
+   "line": 12591,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 2,
+  "general": false,
+  "text": "Make a superficial change to a beast",
+  "source": {
+   "book": "DE",
+   "line": 12591,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 3,
+  "general": false,
+  "text": "Change an animal's limb",
+  "source": {
+   "book": "DE",
+   "line": 12592,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 3,
+  "general": false,
+  "text": "Change something made of animal products into a different animal product",
+  "source": {
+   "book": "DE",
+   "line": 12592,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 4,
+  "general": false,
+  "text": "Make a major change in a beast, while leaving it recognizably the same sort of animal (for example, make a horse bigger and change its color)",
+  "source": {
+   "book": "DE",
+   "line": 12593,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 4,
+  "general": false,
+  "text": "Change something made of animal products in a minor unnatural way",
+  "source": {
+   "book": "DE",
+   "line": 12593,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Change an animal into a different animal",
+  "source": {
+   "book": "DE",
+   "line": 12594,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Change an animal in a minor way so that it is no longer natural (for example, change the color of a horse's coat to match the covenant's coat of arms)",
+  "source": {
+   "book": "DE",
+   "line": 12594,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Change something made of animal products in a major unnatural way",
+  "source": {
+   "book": "DE",
+   "line": 12594,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Change an animal into a human (though it retains its animal mentality and does not gain a soul; requires a Corpus requisite)",
+  "source": {
+   "book": "DE",
+   "line": 12595,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Change an animal into a plant (requires a Herbam requisite)",
+  "source": {
+   "book": "DE",
+   "line": 12595,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Change an animal in a major unnatural way (for example, give a horse claws, fangs, and scaly armored skin)",
+  "source": {
+   "book": "DE",
+   "line": 12596,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Change an animal into a non-living item (appropriate requisite required)",
+  "source": {
+   "book": "DE",
+   "line": 12596,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "An",
+  "level": 25,
+  "general": false,
+  "text": "Radically change an animal in an unnatural way (for example, give a horse wings); give an animal a 'magical' ability, such as the ability to breathe fire (requires a requisite for the ability)",
+  "source": {
+   "book": "DE",
+   "line": 12597,
+   "anchor": "muto-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 2,
+  "general": false,
+  "text": "Damage something made of animal products",
+  "source": {
+   "book": "DE",
+   "line": 12657,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 3,
+  "general": false,
+  "text": "Do superficial damage to a beast (for example, remove its hair)",
+  "source": {
+   "book": "DE",
+   "line": 12658,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 4,
+  "general": false,
+  "text": "Destroy something made of animal products",
+  "source": {
+   "book": "DE",
+   "line": 12659,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 4,
+  "general": false,
+  "text": "Cause a beast pain, but do no real damage",
+  "source": {
+   "book": "DE",
+   "line": 12659,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 4,
+  "general": false,
+  "text": "Make a beast lose one Fatigue level",
+  "source": {
+   "book": "DE",
+   "line": 12659,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Injure an animal so that it is hampered, but not damaged (for example, make a horse lame, a bird lose its voice, or weaken the scales of a serpent; this roughly halves the effectiveness of the targeted thing; recovery as from a Light Wound)",
+  "source": {
+   "book": "DE",
+   "line": 12660,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Destroy an animal's corpse",
+  "source": {
+   "book": "DE",
+   "line": 12660,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Inflict a Light Wound",
+  "source": {
+   "book": "DE",
+   "line": 12660,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Inflict a Medium Wound",
+  "source": {
+   "book": "DE",
+   "line": 12661,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Destroy one of a beast's minor senses",
+  "source": {
+   "book": "DE",
+   "line": 12662,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Inflict a Heavy Wound",
+  "source": {
+   "book": "DE",
+   "line": 12662,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Cripple a beast's limb, so that it is unusable but could heal",
+  "source": {
+   "book": "DE",
+   "line": 12662,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Age a beast by one-twelfth of its natural lifespan (only affects beasts that have already reached maturity)",
+  "source": {
+   "book": "DE",
+   "line": 12662,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 20,
+  "general": false,
+  "text": "Inflict an Incapacitating Wound",
+  "source": {
+   "book": "DE",
+   "line": 12663,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 20,
+  "general": false,
+  "text": "Destroy or sever a beast's limb, so that it cannot naturally regain it",
+  "source": {
+   "book": "DE",
+   "line": 12663,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 20,
+  "general": false,
+  "text": "Destroy one of a beast's major senses",
+  "source": {
+   "book": "DE",
+   "line": 12663,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 30,
+  "general": false,
+  "text": "Kill an animal",
+  "source": {
+   "book": "DE",
+   "line": 12664,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "An",
+  "level": 40,
+  "general": false,
+  "text": "Destroy one property of an animal, such as its weight or aggression",
+  "source": {
+   "book": "DE",
+   "line": 12665,
+   "anchor": "perdo-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": null,
+  "general": true,
+  "text": "Ward against beings associated with Animal from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 12714,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": null,
+  "general": true,
+  "text": "Create a circle warding against animals from one realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle). Note that animals are not necessarily associated with Animal, or vice versa",
+  "source": {
+   "book": "DE",
+   "line": 12714,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 1,
+  "general": false,
+  "text": "Manipulate items made from animal products",
+  "source": {
+   "book": "DE",
+   "line": 12715,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 2,
+  "general": false,
+  "text": "Plant a single suggestion in the mind of an animal",
+  "source": {
+   "book": "DE",
+   "line": 12716,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 2,
+  "general": false,
+  "text": "Protect the target from animal attacks (only affects animals without supernatural abilities)",
+  "source": {
+   "book": "DE",
+   "line": 12716,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 2,
+  "general": false,
+  "text": "Treat items made of animal products",
+  "source": {
+   "book": "DE",
+   "line": 12716,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 3,
+  "general": false,
+  "text": "Treat and process items made of animal products",
+  "source": {
+   "book": "DE",
+   "line": 12717,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 4,
+  "general": false,
+  "text": "Calm an animal",
+  "source": {
+   "book": "DE",
+   "line": 12718,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Manipulate an animal's emotions",
+  "source": {
+   "book": "DE",
+   "line": 12719,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Paralyze an animal",
+  "source": {
+   "book": "DE",
+   "line": 12719,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Ward against animals or objects made from animal products (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 12719,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Control a disembodied spirit associated with Animal",
+  "source": {
+   "book": "DE",
+   "line": 12719,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 5,
+  "general": false,
+  "text": "Cause vermin to spontaneously generate in appropriate matter, such as flesh, plants, soil, or water",
+  "source": {
+   "book": "DE",
+   "line": 12719,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Make an animal completely passive",
+  "source": {
+   "book": "DE",
+   "line": 12720,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 10,
+  "general": false,
+  "text": "Transport an animal instantly up to 5 paces; non-living animal products are transported with Rego Terram (add 1 magnitude to increase distance to 50 paces, 2 magnitudes for 500 paces, 3 magnitudes for 1 league, 4 magnitudes for seven leagues, and 5 magnitudes to a place for which you have an Arcane Connection)",
+  "source": {
+   "book": "DE",
+   "line": 12720,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Completely control an animal",
+  "source": {
+   "book": "DE",
+   "line": 12721,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "An",
+  "level": 15,
+  "general": false,
+  "text": "Summon a disembodied spirit associated with Animal",
+  "source": {
+   "book": "DE",
+   "line": 12721,
+   "anchor": "rego-animal-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": null,
+  "general": true,
+  "text": "Create a corrosive substance doing +(Level) damage (increasing the range to more than Touch is a very good idea)",
+  "source": {
+   "book": "DE",
+   "line": 12812,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 2,
+  "general": false,
+  "text": "Fill a container with water (or some other natural liquid, with appropriate requisites)",
+  "source": {
+   "book": "DE",
+   "line": 12813,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 3,
+  "general": false,
+  "text": "Create water (or some other natural liquid) that is not contained (for example, spread over a surface)",
+  "source": {
+   "book": "DE",
+   "line": 12814,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 3,
+  "general": false,
+  "text": "Create ice in a natural shape, such as a floe or icicle",
+  "source": {
+   "book": "DE",
+   "line": 12814,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Create water (or some other natural liquid) in an unnatural shape (for example, in a sphere over someone's head) — but water so created will behave normally",
+  "source": {
+   "book": "DE",
+   "line": 12815,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Create a spring with a low rate of flow",
+  "source": {
+   "book": "DE",
+   "line": 12815,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Create a poison that causes a Light Wound",
+  "source": {
+   "book": "DE",
+   "line": 12816,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Create a spring with a high rate of flow",
+  "source": {
+   "book": "DE",
+   "line": 12816,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 10,
+  "general": false,
+  "text": "Create a geyser with a very high rate of flow",
+  "source": {
+   "book": "DE",
+   "line": 12817,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 10,
+  "general": false,
+  "text": "Create poison that causes a Medium Wound",
+  "source": {
+   "book": "DE",
+   "line": 12817,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 15,
+  "general": false,
+  "text": "Create poison that causes a Heavy Wound",
+  "source": {
+   "book": "DE",
+   "line": 12818,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 20,
+  "general": false,
+  "text": "Create a poison that causes an Incapacitating Wound",
+  "source": {
+   "book": "DE",
+   "line": 12819,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 25,
+  "general": false,
+  "text": "Create a poison that causes a Fatal Wound",
+  "source": {
+   "book": "DE",
+   "line": 12820,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Aq",
+  "level": 25,
+  "general": false,
+  "text": "Create a water elemental from a base amount of elemental material (Ritual)",
+  "source": {
+   "book": "DE",
+   "line": 12820,
+   "anchor": "creo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Aq",
+  "level": 1,
+  "general": false,
+  "text": "Make a sense unaffected by water",
+  "source": {
+   "book": "DE",
+   "line": 12863,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Aq",
+  "level": 2,
+  "general": false,
+  "text": "Get an image of water within range",
+  "source": {
+   "book": "DE",
+   "line": 12864,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Aq",
+  "level": 3,
+  "general": false,
+  "text": "Get an image of water and its immediate surroundings within range",
+  "source": {
+   "book": "DE",
+   "line": 12865,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Aq",
+  "level": 3,
+  "general": false,
+  "text": "Learn the natural properties of a liquid",
+  "source": {
+   "book": "DE",
+   "line": 12865,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Learn the natural properties of a mixture of liquids",
+  "source": {
+   "book": "DE",
+   "line": 12866,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Learn the magical properties of a liquid",
+  "source": {
+   "book": "DE",
+   "line": 12867,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Aq",
+  "level": 10,
+  "general": false,
+  "text": "Learn the magical properties of a mixture of liquids",
+  "source": {
+   "book": "DE",
+   "line": 12868,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Aq",
+  "level": 15,
+  "general": false,
+  "text": "Speak with a natural body of water",
+  "source": {
+   "book": "DE",
+   "line": 12869,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Aq",
+  "level": 20,
+  "general": false,
+  "text": "Speak with an artificial body of water (like a fountain)",
+  "source": {
+   "book": "DE",
+   "line": 12870,
+   "anchor": "intellego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": null,
+  "general": true,
+  "text": "Change a liquid into a liquid that does +(Level) points of damage on contact",
+  "source": {
+   "book": "DE",
+   "line": 12924,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": null,
+  "general": true,
+  "text": "Convert part of a water elemental's body into another type of water (salt water to fresh water, etc.), reducing the elemental's Might pool by the level of the spell +2 magnitudes. If the elemental is not destroyed by this effect, when the duration ends it can restore this Might by re-absorbing the matter",
+  "source": {
+   "book": "DE",
+   "line": 12924,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 2,
+  "general": false,
+  "text": "Change a natural liquid into another natural liquid",
+  "source": {
+   "book": "DE",
+   "line": 12925,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 2,
+  "general": false,
+  "text": "Change a liquid into a poison causing a Light Wound",
+  "source": {
+   "book": "DE",
+   "line": 12925,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 3,
+  "general": false,
+  "text": "Change a liquid into a poison causing a Medium Wound",
+  "source": {
+   "book": "DE",
+   "line": 12926,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 3,
+  "general": false,
+  "text": "Change a natural liquid into a slightly unnatural liquid (for example, make blue water or strawberry flavored castor oil), or vice versa",
+  "source": {
+   "book": "DE",
+   "line": 12926,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Change a liquid into an unrelated solid or gas (with requisites; Terram for solids and Auram for gases)",
+  "source": {
+   "book": "DE",
+   "line": 12927,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Change a natural liquid into two or more different natural liquids, with the two types separate (although they will mix again normally)",
+  "source": {
+   "book": "DE",
+   "line": 12927,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Change a liquid into a poison causing a Heavy Wound",
+  "source": {
+   "book": "DE",
+   "line": 12927,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Change a liquid into a very unnatural liquid (for example, a shocking pink liquid that causes bizarre hallucinations) — requisites will often be required",
+  "source": {
+   "book": "DE",
+   "line": 12927,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Change a liquid into a mixture of any liquid, solid (with Terram requisite), or gas (with Auram requisite)",
+  "source": {
+   "book": "DE",
+   "line": 12928,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Change a liquid into a slightly unnatural solid or gas",
+  "source": {
+   "book": "DE",
+   "line": 12928,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Change a liquid into a poison causing an Incapacitating Wound",
+  "source": {
+   "book": "DE",
+   "line": 12928,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 10,
+  "general": false,
+  "text": "Change a liquid into a very unnatural solid or gas",
+  "source": {
+   "book": "DE",
+   "line": 12929,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Aq",
+  "level": 10,
+  "general": false,
+  "text": "Change a liquid into a poison causing a Fatal Wound",
+  "source": {
+   "book": "DE",
+   "line": 12929,
+   "anchor": "muto-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Aq",
+  "level": null,
+  "general": true,
+  "text": "Destroy sufficient matter to reduce a water elemental's Might Score by the level of the spell +2 magnitudes",
+  "source": {
+   "book": "DE",
+   "line": 12963,
+   "anchor": "perdo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Completely dry something (up to the size of a small house) that is wet",
+  "source": {
+   "book": "DE",
+   "line": 12964,
+   "anchor": "perdo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Greatly reduce the amount of a liquid without destroying it completely",
+  "source": {
+   "book": "DE",
+   "line": 12965,
+   "anchor": "perdo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Aq",
+  "level": 10,
+  "general": false,
+  "text": "Destroy a liquid (requisites may be required)",
+  "source": {
+   "book": "DE",
+   "line": 12966,
+   "anchor": "perdo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Aq",
+  "level": 15,
+  "general": false,
+  "text": "Destroy one property of a liquid (like alcohol's ability to intoxicate or sea water's saltiness)",
+  "source": {
+   "book": "DE",
+   "line": 12967,
+   "anchor": "perdo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Aq",
+  "level": 20,
+  "general": false,
+  "text": "Destroy a small spring, so that it never flows again",
+  "source": {
+   "book": "DE",
+   "line": 12968,
+   "anchor": "perdo-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": null,
+  "general": true,
+  "text": "Ward against beings associated with Aquam from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 13016,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 1,
+  "general": false,
+  "text": "Control a liquid in an extremely gentle way",
+  "source": {
+   "book": "DE",
+   "line": 13017,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 3,
+  "general": false,
+  "text": "Change a liquid into the corresponding solid or gas (for example, change water into ice or steam); this does not require requisites",
+  "source": {
+   "book": "DE",
+   "line": 13018,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Control a liquid in a forceful but calm way, such as a fast but constant current",
+  "source": {
+   "book": "DE",
+   "line": 13019,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 4,
+  "general": false,
+  "text": "Transport a liquid instantly up to 5 paces (add 1 magnitude to increase the distance to 50 paces, 2 magnitudes for 500 paces, 3 magnitudes for 1 league, 4 magnitudes for seven leagues, and 5 magnitudes to a place for which you have an Arcane Connection)",
+  "source": {
+   "book": "DE",
+   "line": 13019,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Ward against mundane water",
+  "source": {
+   "book": "DE",
+   "line": 13020,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Control a liquid in a violent way",
+  "source": {
+   "book": "DE",
+   "line": 13020,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Control a disembodied spirit associated with Aquam",
+  "source": {
+   "book": "DE",
+   "line": 13020,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 5,
+  "general": false,
+  "text": "Completely control a water elemental",
+  "source": {
+   "book": "DE",
+   "line": 13020,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 10,
+  "general": false,
+  "text": "Control a liquid in an extremely violent way",
+  "source": {
+   "book": "DE",
+   "line": 13021,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 15,
+  "general": false,
+  "text": "Summon a disembodied spirit associated with Aquam",
+  "source": {
+   "book": "DE",
+   "line": 13022,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Aq",
+  "level": 20,
+  "general": false,
+  "text": "Ward against liquids (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 13023,
+   "anchor": "rego-aquam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Au",
+  "level": 1,
+  "general": false,
+  "text": "Create a minor weather phenomenon: a breeze, a mist, a light drizzle",
+  "source": {
+   "book": "DE",
+   "line": 13130,
+   "anchor": "creo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Au",
+  "level": 2,
+  "general": false,
+  "text": "Create a normal weather phenomenon: a cloud, wind, fog, rain from a cloud that already exists",
+  "source": {
+   "book": "DE",
+   "line": 13131,
+   "anchor": "creo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Au",
+  "level": 3,
+  "general": false,
+  "text": "Create a severe weather phenomenon: deafening thunder, monsoon rain, impenetrable fog, gale force wind",
+  "source": {
+   "book": "DE",
+   "line": 13132,
+   "anchor": "creo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Au",
+  "level": 3,
+  "general": false,
+  "text": "Create a debilitating kind of air: noxious stench, mild poison, etc.",
+  "source": {
+   "book": "DE",
+   "line": 13132,
+   "anchor": "creo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Au",
+  "level": 5,
+  "general": false,
+  "text": "Create a very severe weather phenomenon: hurricane force winds, lightning strike, tornado",
+  "source": {
+   "book": "DE",
+   "line": 13133,
+   "anchor": "creo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Au",
+  "level": 25,
+  "general": false,
+  "text": "Create an air elemental from a base amount of elemental material (Ritual)",
+  "source": {
+   "book": "DE",
+   "line": 13134,
+   "anchor": "creo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Au",
+  "level": 1,
+  "general": false,
+  "text": "Make your senses unhindered by the air (for example, you can hear over a howling wind)",
+  "source": {
+   "book": "DE",
+   "line": 13240,
+   "anchor": "intellego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Au",
+  "level": 2,
+  "general": false,
+  "text": "Sense one property of air (for example, determine if it is safe to breathe)",
+  "source": {
+   "book": "DE",
+   "line": 13241,
+   "anchor": "intellego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Au",
+  "level": 4,
+  "general": false,
+  "text": "Learn all mundane properties of the air",
+  "source": {
+   "book": "DE",
+   "line": 13242,
+   "anchor": "intellego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Au",
+  "level": 4,
+  "general": false,
+  "text": "Have an intuition about some fact regarding the air",
+  "source": {
+   "book": "DE",
+   "line": 13242,
+   "anchor": "intellego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Au",
+  "level": 15,
+  "general": false,
+  "text": "Speak with air",
+  "source": {
+   "book": "DE",
+   "line": 13243,
+   "anchor": "intellego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Au",
+  "level": null,
+  "general": true,
+  "text": "Transform air into a gas doing +level damage",
+  "source": {
+   "book": "DE",
+   "line": 13279,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Au",
+  "level": null,
+  "general": true,
+  "text": "Convert part of an air elemental's body into another type of air (wind to smoke, etc.), reducing the elemental's Might pool by the level of the spell +2 magnitudes. If the elemental is not destroyed by this effect, when the duration ends it can restore this Might by re-absorbing the matter",
+  "source": {
+   "book": "DE",
+   "line": 13279,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Au",
+  "level": 3,
+  "general": false,
+  "text": "Transform an amount of air into another form of air",
+  "source": {
+   "book": "DE",
+   "line": 13280,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Au",
+  "level": 4,
+  "general": false,
+  "text": "Transform an amount of air into another element (fire, earth, or water)",
+  "source": {
+   "book": "DE",
+   "line": 13281,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Au",
+  "level": 4,
+  "general": false,
+  "text": "Transform a gas into a harmful gas causing a Light Wound (Stamina roll against Ease Factor 6 to resist)",
+  "source": {
+   "book": "DE",
+   "line": 13281,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Au",
+  "level": 5,
+  "general": false,
+  "text": "Transform an amount of air into a mixture of elements",
+  "source": {
+   "book": "DE",
+   "line": 13282,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Au",
+  "level": 5,
+  "general": false,
+  "text": "Transform an amount of air into something slightly unnatural",
+  "source": {
+   "book": "DE",
+   "line": 13282,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Au",
+  "level": 5,
+  "general": false,
+  "text": "Transform a gas into a harmful gas causing a Medium Wound (Stamina roll against Ease Factor 6 to resist)",
+  "source": {
+   "book": "DE",
+   "line": 13282,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Au",
+  "level": 10,
+  "general": false,
+  "text": "Transform an amount of air into something wholly unnatural",
+  "source": {
+   "book": "DE",
+   "line": 13283,
+   "anchor": "muto-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Au",
+  "level": null,
+  "general": true,
+  "text": "Destroy sufficient matter to reduce an air elemental's Might Score by the level of the spell +2 magnitudes",
+  "source": {
+   "book": "DE",
+   "line": 13330,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Au",
+  "level": 3,
+  "general": false,
+  "text": "Make air stuffy and poor for breathing",
+  "source": {
+   "book": "DE",
+   "line": 13331,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Au",
+  "level": 4,
+  "general": false,
+  "text": "Destroy still air",
+  "source": {
+   "book": "DE",
+   "line": 13332,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Au",
+  "level": 4,
+  "general": false,
+  "text": "Destroy a minor weather phenomenon: a breeze, a mist, a light drizzle",
+  "source": {
+   "book": "DE",
+   "line": 13332,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Au",
+  "level": 4,
+  "general": false,
+  "text": "Reduce the intensity of a weather phenomenon by one step (for example, from very severe to severe, or from normal to minor)",
+  "source": {
+   "book": "DE",
+   "line": 13332,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Au",
+  "level": 5,
+  "general": false,
+  "text": "Destroy a normal weather phenomenon: a cloud, wind, fog, rain from a cloud that already exists",
+  "source": {
+   "book": "DE",
+   "line": 13333,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Au",
+  "level": 10,
+  "general": false,
+  "text": "Destroy a severe weather phenomenon: deafening thunder, monsoon rain, impenetrable fog, gale force wind",
+  "source": {
+   "book": "DE",
+   "line": 13334,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Au",
+  "level": 10,
+  "general": false,
+  "text": "Destroy a debilitating kind of air: noxious stench, mild poison, etc.",
+  "source": {
+   "book": "DE",
+   "line": 13334,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Au",
+  "level": 15,
+  "general": false,
+  "text": "Destroy a very severe weather phenomenon: hurricane force winds, lightning strike, tornado",
+  "source": {
+   "book": "DE",
+   "line": 13335,
+   "anchor": "perdo-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": null,
+  "general": true,
+  "text": "Ward against beings associated with Auram from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 13368,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 2,
+  "general": false,
+  "text": "Control a minor weather phenomenon",
+  "source": {
+   "book": "DE",
+   "line": 13369,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 3,
+  "general": false,
+  "text": "Control a normal weather phenomenon",
+  "source": {
+   "book": "DE",
+   "line": 13370,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 3,
+  "general": false,
+  "text": "Ward someone against a type of minor weather phenomenon",
+  "source": {
+   "book": "DE",
+   "line": 13370,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 4,
+  "general": false,
+  "text": "Control a severe weather phenomenon",
+  "source": {
+   "book": "DE",
+   "line": 13371,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 4,
+  "general": false,
+  "text": "Ward someone against a type of normal weather phenomenon",
+  "source": {
+   "book": "DE",
+   "line": 13371,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 5,
+  "general": false,
+  "text": "Control a very severe weather phenomenon",
+  "source": {
+   "book": "DE",
+   "line": 13372,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 5,
+  "general": false,
+  "text": "Control a disembodied spirit associated with Auram",
+  "source": {
+   "book": "DE",
+   "line": 13372,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 5,
+  "general": false,
+  "text": "Completely control an air elemental",
+  "source": {
+   "book": "DE",
+   "line": 13372,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 5,
+  "general": false,
+  "text": "Ward someone against a type of severe weather phenomenon",
+  "source": {
+   "book": "DE",
+   "line": 13372,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 10,
+  "general": false,
+  "text": "Ward someone against a type of very severe weather phenomenon",
+  "source": {
+   "book": "DE",
+   "line": 13373,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Au",
+  "level": 15,
+  "general": false,
+  "text": "Summon a disembodied spirit associated with Auram",
+  "source": {
+   "book": "DE",
+   "line": 13374,
+   "anchor": "rego-auram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 1,
+  "general": false,
+  "text": "Give a character a +1 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 13435,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 1,
+  "general": false,
+  "text": "The target's wounds are treated as one category less serious for the purposes of activities while injured",
+  "source": {
+   "book": "DE",
+   "line": 13435,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 2,
+  "general": false,
+  "text": "Give a character a +3 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 13436,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 2,
+  "general": false,
+  "text": "Preserve a corpse from decay",
+  "source": {
+   "book": "DE",
+   "line": 13436,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 3,
+  "general": false,
+  "text": "Give a character a +6 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 13437,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 3,
+  "general": false,
+  "text": "Prevent all of a target's wounds from getting any worse",
+  "source": {
+   "book": "DE",
+   "line": 13437,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 4,
+  "general": false,
+  "text": "Give a character a +9 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 13438,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Give a character a +12 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 13439,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Create an entire human corpse",
+  "source": {
+   "book": "DE",
+   "line": 13439,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Give a character a +15 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 13440,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Heal a Light Wound",
+  "source": {
+   "book": "DE",
+   "line": 13441,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Give a character a +18 bonus to Recovery rolls",
+  "source": {
+   "book": "DE",
+   "line": 13441,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Resolve a minor aging crisis",
+  "source": {
+   "book": "DE",
+   "line": 13441,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Heal a Medium Wound",
+  "source": {
+   "book": "DE",
+   "line": 13442,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Heal the debilitating after-effects of a disease, poison, or injury",
+  "source": {
+   "book": "DE",
+   "line": 13442,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Resolve a serious aging crisis",
+  "source": {
+   "book": "DE",
+   "line": 13442,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 25,
+  "general": false,
+  "text": "Heal a Heavy Wound",
+  "source": {
+   "book": "DE",
+   "line": 13443,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 25,
+  "general": false,
+  "text": "Improve all wounds by one level of severity",
+  "source": {
+   "book": "DE",
+   "line": 13443,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 25,
+  "general": false,
+  "text": "Restore a lost limb",
+  "source": {
+   "book": "DE",
+   "line": 13443,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 25,
+  "general": false,
+  "text": "Resolve a major aging crisis",
+  "source": {
+   "book": "DE",
+   "line": 13443,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 30,
+  "general": false,
+  "text": "Heal an Incapacitating Wound",
+  "source": {
+   "book": "DE",
+   "line": 13444,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 30,
+  "general": false,
+  "text": "Increase one of a person's physical Characteristics by one point, to no more than 0",
+  "source": {
+   "book": "DE",
+   "line": 13444,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 30,
+  "general": false,
+  "text": "Cause a person to reach full physical maturity over the course of a single day or night (accelerated maturation only applies during the spell's Duration; people do not learn under the influence of this spell; full maturity is reached around age twenty)",
+  "source": {
+   "book": "DE",
+   "line": 13444,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 30,
+  "general": false,
+  "text": "Resolve a critical aging crisis",
+  "source": {
+   "book": "DE",
+   "line": 13444,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 35,
+  "general": false,
+  "text": "Heal all wounds",
+  "source": {
+   "book": "DE",
+   "line": 13445,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 35,
+  "general": false,
+  "text": "Resolve a terminal aging crisis",
+  "source": {
+   "book": "DE",
+   "line": 13445,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 35,
+  "general": false,
+  "text": "Increase one of a person's physical Characteristics by one point, to no more than +1",
+  "source": {
+   "book": "DE",
+   "line": 13445,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 40,
+  "general": false,
+  "text": "Increase one of a person's physical Characteristics by one point, to no more than +2",
+  "source": {
+   "book": "DE",
+   "line": 13446,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 45,
+  "general": false,
+  "text": "Increase one of a person's physical Characteristics by one point, to no more than +3",
+  "source": {
+   "book": "DE",
+   "line": 13447,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 50,
+  "general": false,
+  "text": "Increase one of a person's physical Characteristics by one point, to no more than +4",
+  "source": {
+   "book": "DE",
+   "line": 13448,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 55,
+  "general": false,
+  "text": "Increase one of a person's physical Characteristics by one point, to no more than +5 (further increases are not natural to human beings, and thus cannot be effected by Creo magic)",
+  "source": {
+   "book": "DE",
+   "line": 13449,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Co",
+  "level": 70,
+  "general": false,
+  "text": "Raise the dead, to a point (see The Shadow of Life Renewed)",
+  "source": {
+   "book": "DE",
+   "line": 13450,
+   "anchor": "creo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Co",
+  "level": 3,
+  "general": false,
+  "text": "Locate a person",
+  "source": {
+   "book": "DE",
+   "line": 13536,
+   "anchor": "intellego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Co",
+  "level": 4,
+  "general": false,
+  "text": "Sense very general information about a body",
+  "source": {
+   "book": "DE",
+   "line": 13537,
+   "anchor": "intellego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Sense a specific piece of information about a body",
+  "source": {
+   "book": "DE",
+   "line": 13538,
+   "anchor": "intellego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Speak with a dead body",
+  "source": {
+   "book": "DE",
+   "line": 13538,
+   "anchor": "intellego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Sense all useful information about a body",
+  "source": {
+   "book": "DE",
+   "line": 13539,
+   "anchor": "intellego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 2,
+  "general": false,
+  "text": "Change someone to give them a minor ability",
+  "source": {
+   "book": "DE",
+   "line": 13605,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 3,
+  "general": false,
+  "text": "Utterly change the appearance or size of a person (though they must still remain human in form)",
+  "source": {
+   "book": "DE",
+   "line": 13606,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 3,
+  "general": false,
+  "text": "Change non-living human bone to have an unnatural property (requisites may be needed)",
+  "source": {
+   "book": "DE",
+   "line": 13606,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Make a body resistant to damage (+1 Soak)",
+  "source": {
+   "book": "DE",
+   "line": 13607,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Add or remove human body parts from the target in such a way that he no longer looks human; these parts are normally functional, although a spell may be deliberately designed so that they are not (the Target is Part, not Individual, although Group and higher Targets work as normal)",
+  "source": {
+   "book": "DE",
+   "line": 13607,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Turn a human into a land animal (with an Animal requisite)",
+  "source": {
+   "book": "DE",
+   "line": 13608,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Make a body resistant to damage (+2 Soak)",
+  "source": {
+   "book": "DE",
+   "line": 13608,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Make a body resistant to damage (+3 Soak)",
+  "source": {
+   "book": "DE",
+   "line": 13609,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Turn a human into a bird or a fish (Animal requisite)",
+  "source": {
+   "book": "DE",
+   "line": 13610,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Make a body resistant to damage (+4 Soak)",
+  "source": {
+   "book": "DE",
+   "line": 13610,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 25,
+  "general": false,
+  "text": "Turn a human into a solid inanimate object (Terram requisite)",
+  "source": {
+   "book": "DE",
+   "line": 13611,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 25,
+  "general": false,
+  "text": "Make a body resistant to damage (+5 Soak)",
+  "source": {
+   "book": "DE",
+   "line": 13611,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 25,
+  "general": false,
+  "text": "Turn a human into a plant (Herbam requisite)",
+  "source": {
+   "book": "DE",
+   "line": 13611,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Co",
+  "level": 30,
+  "general": false,
+  "text": "Turn a human into an insubstantial object (Auram requisite)",
+  "source": {
+   "book": "DE",
+   "line": 13612,
+   "anchor": "muto-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 3,
+  "general": false,
+  "text": "Do superficial damage to a body (for example, remove its hair)",
+  "source": {
+   "book": "DE",
+   "line": 13731,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 4,
+  "general": false,
+  "text": "Cause a person pain, but do no real damage",
+  "source": {
+   "book": "DE",
+   "line": 13732,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Inflict a Light Wound",
+  "source": {
+   "book": "DE",
+   "line": 13733,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Destroy a corpse",
+  "source": {
+   "book": "DE",
+   "line": 13733,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Hamper a person without actually injuring them (for example, make them lame, blur their eyesight; heals as a Light Wound)",
+  "source": {
+   "book": "DE",
+   "line": 13733,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Inflict a Medium Wound",
+  "source": {
+   "book": "DE",
+   "line": 13734,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Cause the loss of a Fatigue level",
+  "source": {
+   "book": "DE",
+   "line": 13734,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Age someone by up to five years",
+  "source": {
+   "book": "DE",
+   "line": 13735,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Cripple a limb, making it unusable but still capable of healing (heals as a Medium Wound)",
+  "source": {
+   "book": "DE",
+   "line": 13735,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Destroy one of a person's minor senses (heals as a Medium Wound)",
+  "source": {
+   "book": "DE",
+   "line": 13735,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Inflict a Heavy Wound",
+  "source": {
+   "book": "DE",
+   "line": 13735,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Destroy one of a person's major senses (heals as a Heavy Wound)",
+  "source": {
+   "book": "DE",
+   "line": 13736,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Inflict a major disease",
+  "source": {
+   "book": "DE",
+   "line": 13736,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Destroy or sever a limb, so that it cannot heal naturally",
+  "source": {
+   "book": "DE",
+   "line": 13736,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Inflict an Incapacitating Wound",
+  "source": {
+   "book": "DE",
+   "line": 13736,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 30,
+  "general": false,
+  "text": "Kill a person",
+  "source": {
+   "book": "DE",
+   "line": 13737,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Co",
+  "level": 40,
+  "general": false,
+  "text": "Destroy one property of a person, such as their weight or solidity",
+  "source": {
+   "book": "DE",
+   "line": 13738,
+   "anchor": "perdo-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": null,
+  "general": true,
+  "text": "Ward against creatures associated with Corpus from one realm (Divine, Faerie, Infernal, or Magic) with a Might less than or equal to the level of the spell (note that Hermetic magi have no Might, and thus are not affected by such spells) (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 13826,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 2,
+  "general": false,
+  "text": "Make a target lose control of a body part",
+  "source": {
+   "book": "DE",
+   "line": 13827,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 3,
+  "general": false,
+  "text": "Move a target slowly in one direction, as long as the surface can support its weight",
+  "source": {
+   "book": "DE",
+   "line": 13828,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 3,
+  "general": false,
+  "text": "Invoke a minor symptom of a disease without creating any underlying malaise (e.g. rash, mild fever, cough)",
+  "source": {
+   "book": "DE",
+   "line": 13828,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 4,
+  "general": false,
+  "text": "Control the large-scale physical movements of a target",
+  "source": {
+   "book": "DE",
+   "line": 13829,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 4,
+  "general": false,
+  "text": "Move a target slowly in any direction you please",
+  "source": {
+   "book": "DE",
+   "line": 13829,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 4,
+  "general": false,
+  "text": "Move a target slowly straight up, or in one direction over surfaces that cannot support it",
+  "source": {
+   "book": "DE",
+   "line": 13829,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Hold a target's body motionless",
+  "source": {
+   "book": "DE",
+   "line": 13830,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Invoke a major symptom of a disease without creating any underlying malaise (e.g. vomiting, boils, paralysis)",
+  "source": {
+   "book": "DE",
+   "line": 13830,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Move a target slowly in any direction you please, even if the target is unsupported",
+  "source": {
+   "book": "DE",
+   "line": 13830,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Perform a trivial surgical procedure (inflicting a Fatigue level)",
+  "source": {
+   "book": "DE",
+   "line": 13830,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 5,
+  "general": false,
+  "text": "Control a disembodied spirit associated with Corpus",
+  "source": {
+   "book": "DE",
+   "line": 13830,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Control a target's motions",
+  "source": {
+   "book": "DE",
+   "line": 13831,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Eliminate the penalties of Fatigue and wounds",
+  "source": {
+   "book": "DE",
+   "line": 13831,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Animate a corpse",
+  "source": {
+   "book": "DE",
+   "line": 13831,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Transport the target instantly up to 5 paces",
+  "source": {
+   "book": "DE",
+   "line": 13831,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 10,
+  "general": false,
+  "text": "Perform a minor surgical procedure, inflicting a Light Wound or preventing a Light Wound from worsening",
+  "source": {
+   "book": "DE",
+   "line": 13831,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Direct the flow of bodily energy",
+  "source": {
+   "book": "DE",
+   "line": 13832,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Move a target quickly in any direction you please, even if it is unsupported",
+  "source": {
+   "book": "DE",
+   "line": 13832,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Summon a disembodied spirit associated with Corpus",
+  "source": {
+   "book": "DE",
+   "line": 13832,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Transport the target instantly up to 50 paces",
+  "source": {
+   "book": "DE",
+   "line": 13832,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Ward a target against other human beings (to ward off a Hermetic magus, the ward must penetrate his Magic Resistance)",
+  "source": {
+   "book": "DE",
+   "line": 13832,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 15,
+  "general": false,
+  "text": "Perform a major surgical procedure, inflicting a Medium Wound or preventing a Medium Wound from worsening",
+  "source": {
+   "book": "DE",
+   "line": 13832,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Transport the target instantly up to 500 paces",
+  "source": {
+   "book": "DE",
+   "line": 13833,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 20,
+  "general": false,
+  "text": "Perform a critical surgical procedure, preventing a Heavy Wound from worsening",
+  "source": {
+   "book": "DE",
+   "line": 13833,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 25,
+  "general": false,
+  "text": "Transport the target instantly up to one league",
+  "source": {
+   "book": "DE",
+   "line": 13834,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 25,
+  "general": false,
+  "text": "Perform a life-saving surgical procedure, preventing an Incapacitating or Fatal Wound from worsening",
+  "source": {
+   "book": "DE",
+   "line": 13834,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 30,
+  "general": false,
+  "text": "Transport the target instantly up to seven leagues",
+  "source": {
+   "book": "DE",
+   "line": 13835,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Co",
+  "level": 35,
+  "general": false,
+  "text": "Transport the target instantly to a place you have an Arcane Connection to",
+  "source": {
+   "book": "DE",
+   "line": 13836,
+   "anchor": "rego-corpus-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 1,
+  "general": false,
+  "text": "Ensure that a plant grows well for the duration of the spell (can affect a plant up to ten paces in each direction, i.e. a large tree; includes a +3 Size enhancement)",
+  "source": {
+   "book": "DE",
+   "line": 13939,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 1,
+  "general": false,
+  "text": "Create a plant product (like a fruit or leaf)",
+  "source": {
+   "book": "DE",
+   "line": 13939,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 1,
+  "general": false,
+  "text": "Create a plant",
+  "source": {
+   "book": "DE",
+   "line": 13939,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 1,
+  "general": false,
+  "text": "Prevent a plant from becoming sick",
+  "source": {
+   "book": "DE",
+   "line": 13939,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 1,
+  "general": false,
+  "text": "Heal a Light Wound to a plant",
+  "source": {
+   "book": "DE",
+   "line": 13939,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 2,
+  "general": false,
+  "text": "Create a processed plant product, like a finished plank of wood",
+  "source": {
+   "book": "DE",
+   "line": 13940,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 2,
+  "general": false,
+  "text": "Preserve a dead plant from decay",
+  "source": {
+   "book": "DE",
+   "line": 13940,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 2,
+  "general": false,
+  "text": "Heal a Medium Wound to a plant",
+  "source": {
+   "book": "DE",
+   "line": 13940,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 3,
+  "general": false,
+  "text": "Create wood in an unnatural shape, such as a living wall or bridge",
+  "source": {
+   "book": "DE",
+   "line": 13941,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 3,
+  "general": false,
+  "text": "Heal a Heavy Wound to a plant",
+  "source": {
+   "book": "DE",
+   "line": 13941,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 4,
+  "general": false,
+  "text": "Heal an Incapacitating Wound to a plant",
+  "source": {
+   "book": "DE",
+   "line": 13942,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 5,
+  "general": false,
+  "text": "Heal all Wounds to a plant",
+  "source": {
+   "book": "DE",
+   "line": 13943,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 10,
+  "general": false,
+  "text": "Heal all damage to a plant, including wounds, disease, and poison",
+  "source": {
+   "book": "DE",
+   "line": 13944,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 15,
+  "general": false,
+  "text": "Bring a plant to maturity in a single day or night (accelerated growth only happens during the duration of the spell; full maturity requires a Sun duration spell cast soon after sunrise or sunset)",
+  "source": {
+   "book": "DE",
+   "line": 13945,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 15,
+  "general": false,
+  "text": "Restore a manufactured wooden item that has been damaged to the peak of its capabilities (can also restore decay, but the damage must be light)",
+  "source": {
+   "book": "DE",
+   "line": 13945,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 20,
+  "general": false,
+  "text": "Bring a plant to maturity in about two hours",
+  "source": {
+   "book": "DE",
+   "line": 13946,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 25,
+  "general": false,
+  "text": "Bring a plant to maturity in about ten Diameters (twenty minutes)",
+  "source": {
+   "book": "DE",
+   "line": 13947,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 30,
+  "general": false,
+  "text": "Bring a plant to maturity in a single Diameter",
+  "source": {
+   "book": "DE",
+   "line": 13948,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "He",
+  "level": 40,
+  "general": false,
+  "text": "Bring a plant to maturity in a moment",
+  "source": {
+   "book": "DE",
+   "line": 13949,
+   "anchor": "creo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "He",
+  "level": 1,
+  "general": false,
+  "text": "Gain an intuitive knowledge of a plant (for example, know whether a given action would harm a plant)",
+  "source": {
+   "book": "DE",
+   "line": 13999,
+   "anchor": "intellego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "He",
+  "level": 2,
+  "general": false,
+  "text": "Locate a plant",
+  "source": {
+   "book": "DE",
+   "line": 14000,
+   "anchor": "intellego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "He",
+  "level": 3,
+  "general": false,
+  "text": "Learn general information, or a single specific fact about a plant or an item made from plant products",
+  "source": {
+   "book": "DE",
+   "line": 14001,
+   "anchor": "intellego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "He",
+  "level": 4,
+  "general": false,
+  "text": "Learn all mundane properties of a plant or an item made from plant products",
+  "source": {
+   "book": "DE",
+   "line": 14002,
+   "anchor": "intellego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "He",
+  "level": 15,
+  "general": false,
+  "text": "Speak with a plant",
+  "source": {
+   "book": "DE",
+   "line": 14003,
+   "anchor": "intellego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "He",
+  "level": 3,
+  "general": false,
+  "text": "Change a plant or item made from plant products",
+  "source": {
+   "book": "DE",
+   "line": 14050,
+   "anchor": "muto-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "He",
+  "level": 4,
+  "general": false,
+  "text": "Change a plant or item made from plant products into metal or stone (Terram requisite)",
+  "source": {
+   "book": "DE",
+   "line": 14051,
+   "anchor": "muto-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "He",
+  "level": 4,
+  "general": false,
+  "text": "Awaken the consciousness of a plant (Mentem requisite)",
+  "source": {
+   "book": "DE",
+   "line": 14051,
+   "anchor": "muto-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "He",
+  "level": 5,
+  "general": false,
+  "text": "Cause a plant to bend or twist rapidly in place",
+  "source": {
+   "book": "DE",
+   "line": 14052,
+   "anchor": "muto-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "He",
+  "level": 2,
+  "general": false,
+  "text": "Cause the leaves to fall off a plant",
+  "source": {
+   "book": "DE",
+   "line": 14116,
+   "anchor": "perdo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "He",
+  "level": 3,
+  "general": false,
+  "text": "Spoil an amount of food",
+  "source": {
+   "book": "DE",
+   "line": 14117,
+   "anchor": "perdo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "He",
+  "level": 4,
+  "general": false,
+  "text": "Destroy an amount of dead wood",
+  "source": {
+   "book": "DE",
+   "line": 14118,
+   "anchor": "perdo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "He",
+  "level": 5,
+  "general": false,
+  "text": "Destroy a plant",
+  "source": {
+   "book": "DE",
+   "line": 14119,
+   "anchor": "perdo-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": null,
+  "general": true,
+  "text": "Ward against beings associated with Herbam from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 14166,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 3,
+  "general": false,
+  "text": "Control an amount of wood",
+  "source": {
+   "book": "DE",
+   "line": 14167,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 3,
+  "general": false,
+  "text": "Manipulate items made of plant products",
+  "source": {
+   "book": "DE",
+   "line": 14167,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 4,
+  "general": false,
+  "text": "Deflect a single attack by a wooden weapon",
+  "source": {
+   "book": "DE",
+   "line": 14168,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 4,
+  "general": false,
+  "text": "Control an entire plant, moving it around as you direct, although it remains rooted if it is a rooted plant",
+  "source": {
+   "book": "DE",
+   "line": 14168,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 4,
+  "general": false,
+  "text": "Treat items made of plant products",
+  "source": {
+   "book": "DE",
+   "line": 14168,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 5,
+  "general": false,
+  "text": "Control an entire plant, moving it around as you direct, and it need not remain rooted",
+  "source": {
+   "book": "DE",
+   "line": 14169,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 5,
+  "general": false,
+  "text": "Control a disembodied spirit associated with Herbam",
+  "source": {
+   "book": "DE",
+   "line": 14169,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 5,
+  "general": false,
+  "text": "Summon a mobile plant",
+  "source": {
+   "book": "DE",
+   "line": 14169,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 5,
+  "general": false,
+  "text": "Treat and process items made of plant products",
+  "source": {
+   "book": "DE",
+   "line": 14169,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 5,
+  "general": false,
+  "text": "Ward a plant against mundane plant diseases",
+  "source": {
+   "book": "DE",
+   "line": 14169,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 10,
+  "general": false,
+  "text": "Make a plant or thing made of plant products move with purpose and intelligence, without requiring your constant control",
+  "source": {
+   "book": "DE",
+   "line": 14170,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 10,
+  "general": false,
+  "text": "Transport a plant instantly up to 5 paces; non-living plant products are transported with Rego Terram (add 1 magnitude to increase the distance to 50 paces, 2 magnitudes for 500 paces, 3 magnitudes for 1 league, 4 magnitudes for seven leagues, and 5 magnitudes to a place for which you have an Arcane Connection)",
+  "source": {
+   "book": "DE",
+   "line": 14170,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 15,
+  "general": false,
+  "text": "Ward someone against mundane plant products",
+  "source": {
+   "book": "DE",
+   "line": 14171,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 15,
+  "general": false,
+  "text": "Make a tree blossom out of season, in a moment",
+  "source": {
+   "book": "DE",
+   "line": 14171,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 15,
+  "general": false,
+  "text": "Weave thread into a tunic",
+  "source": {
+   "book": "DE",
+   "line": 14171,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "He",
+  "level": 15,
+  "general": false,
+  "text": "Summon a disembodied spirit associated with Herbam",
+  "source": {
+   "book": "DE",
+   "line": 14171,
+   "anchor": "rego-herbam-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 1,
+  "general": false,
+  "text": "Create light equivalent to moonlight",
+  "source": {
+   "book": "DE",
+   "line": 14270,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 2,
+  "general": false,
+  "text": "Create light equivalent to candlelight",
+  "source": {
+   "book": "DE",
+   "line": 14271,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 2,
+  "general": false,
+  "text": "Heat an object to be warm to the touch",
+  "source": {
+   "book": "DE",
+   "line": 14271,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 2,
+  "general": false,
+  "text": "Ignite something extremely flammable (like oil or a wick)",
+  "source": {
+   "book": "DE",
+   "line": 14271,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Create light equivalent to torchlight",
+  "source": {
+   "book": "DE",
+   "line": 14272,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Heat an object to be hot to the touch",
+  "source": {
+   "book": "DE",
+   "line": 14272,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Ignite something very flammable (like parchment)",
+  "source": {
+   "book": "DE",
+   "line": 14272,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Create a fire doing +5 damage",
+  "source": {
+   "book": "DE",
+   "line": 14273,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Create light as bright as a cloudy day",
+  "source": {
+   "book": "DE",
+   "line": 14273,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Ignite something flammable (like dry wood or charcoal)",
+  "source": {
+   "book": "DE",
+   "line": 14273,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Heat an object enough to boil water",
+  "source": {
+   "book": "DE",
+   "line": 14273,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Create a fire doing +10 damage",
+  "source": {
+   "book": "DE",
+   "line": 14274,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Create a fire doing +5 damage in an unnatural shape, such as in a ring or sheet, or covering an item (purely cosmetic shapes are free)",
+  "source": {
+   "book": "DE",
+   "line": 14274,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Create light as bright as direct sunlight on a clear day",
+  "source": {
+   "book": "DE",
+   "line": 14274,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Ignite something slightly flammable (like leather or damp wood)",
+  "source": {
+   "book": "DE",
+   "line": 14274,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Heat an object enough to make it glow red-hot (hot enough to melt tin or lead)",
+  "source": {
+   "book": "DE",
+   "line": 14274,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 10,
+  "general": false,
+  "text": "Create a fire doing +15 damage",
+  "source": {
+   "book": "DE",
+   "line": 14275,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 10,
+  "general": false,
+  "text": "Create a fire doing +10 damage in an unnatural shape",
+  "source": {
+   "book": "DE",
+   "line": 14275,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 10,
+  "general": false,
+  "text": "Ignite something barely flammable (like a human body)",
+  "source": {
+   "book": "DE",
+   "line": 14275,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 10,
+  "general": false,
+  "text": "Heat an object enough to make it glow white-hot (hot enough to melt almost all metals, and many rocks)",
+  "source": {
+   "book": "DE",
+   "line": 14275,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 15,
+  "general": false,
+  "text": "Create a fire doing +20 damage",
+  "source": {
+   "book": "DE",
+   "line": 14276,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 20,
+  "general": false,
+  "text": "Create a fire doing +25 damage",
+  "source": {
+   "book": "DE",
+   "line": 14277,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 20,
+  "general": false,
+  "text": "Create a fire doing +20 damage in an unnatural shape",
+  "source": {
+   "book": "DE",
+   "line": 14277,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 25,
+  "general": false,
+  "text": "Create a fire doing +30 damage",
+  "source": {
+   "book": "DE",
+   "line": 14278,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Ig",
+  "level": 25,
+  "general": false,
+  "text": "Create a fire elemental from a base amount of elemental matter (Ritual)",
+  "source": {
+   "book": "DE",
+   "line": 14278,
+   "anchor": "creo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 1,
+  "general": false,
+  "text": "Sense one property of a fire",
+  "source": {
+   "book": "DE",
+   "line": 14358,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 1,
+  "general": false,
+  "text": "Locate a fire",
+  "source": {
+   "book": "DE",
+   "line": 14358,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 2,
+  "general": false,
+  "text": "Sense all mundane properties of a fire",
+  "source": {
+   "book": "DE",
+   "line": 14359,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 2,
+  "general": false,
+  "text": "Become aware of all fires within the target area",
+  "source": {
+   "book": "DE",
+   "line": 14359,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 2,
+  "general": false,
+  "text": "See a fire",
+  "source": {
+   "book": "DE",
+   "line": 14359,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 2,
+  "general": false,
+  "text": "Sense levels of heat",
+  "source": {
+   "book": "DE",
+   "line": 14359,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Sense all mundane properties of ash",
+  "source": {
+   "book": "DE",
+   "line": 14360,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Detect the traces of fires which burned within the last lunar month",
+  "source": {
+   "book": "DE",
+   "line": 14360,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "See clearly through raging fire (an Auram requisite may be necessary if smoke is present as well)",
+  "source": {
+   "book": "DE",
+   "line": 14361,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Learn the magical properties of a fire",
+  "source": {
+   "book": "DE",
+   "line": 14361,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 10,
+  "general": false,
+  "text": "See a fire and all things it illuminates (for example, see a campfire and everything within its circle of light)",
+  "source": {
+   "book": "DE",
+   "line": 14362,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Ig",
+  "level": 20,
+  "general": false,
+  "text": "Speak with a fire",
+  "source": {
+   "book": "DE",
+   "line": 14363,
+   "anchor": "intellego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Ig",
+  "level": null,
+  "general": true,
+  "text": "Convert part of a fire elemental's body into another type of fire (clear to sooty flame, etc.), reducing the elemental's Might pool by the level of the spell +2 magnitudes. If the elemental is not destroyed by this effect, when the duration ends it can restore this Might by re-absorbing the matter",
+  "source": {
+   "book": "DE",
+   "line": 14406,
+   "anchor": "muto-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Ig",
+  "level": 1,
+  "general": false,
+  "text": "Change one characteristic of a fire within the target area (for example, make a fire burn more brightly, or produce more smoke)",
+  "source": {
+   "book": "DE",
+   "line": 14407,
+   "anchor": "muto-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Ig",
+  "level": 2,
+  "general": false,
+  "text": "Totally change a fire into another natural fire (changing any or all of its characteristics)",
+  "source": {
+   "book": "DE",
+   "line": 14408,
+   "anchor": "muto-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Change a fire so that it is slightly unnatural (for example, make the flames colored, or make the smoke smell of roses); may require requisites",
+  "source": {
+   "book": "DE",
+   "line": 14409,
+   "anchor": "muto-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Change a fire so that it is completely unnatural (for example, multicolored flames that form images while the popping of the fire plays music); often requires requisites",
+  "source": {
+   "book": "DE",
+   "line": 14410,
+   "anchor": "muto-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Change a fire into a natural example of another element, with an appropriate requisite",
+  "source": {
+   "book": "DE",
+   "line": 14411,
+   "anchor": "muto-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Ig",
+  "level": 10,
+  "general": false,
+  "text": "Change a fire into an unnatural example of another element, with an appropriate requisite",
+  "source": {
+   "book": "DE",
+   "line": 14412,
+   "anchor": "muto-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": null,
+  "general": true,
+  "text": "Destroy sufficient matter to reduce a fire elemental's Might Score by the level of the spell +2 magnitudes",
+  "source": {
+   "book": "DE",
+   "line": 14467,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 2,
+  "general": false,
+  "text": "Greatly reduce the amount of light in an area",
+  "source": {
+   "book": "DE",
+   "line": 14468,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Completely extinguish all light in an area",
+  "source": {
+   "book": "DE",
+   "line": 14469,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Reduce the size of a fire without destroying it completely",
+  "source": {
+   "book": "DE",
+   "line": 14469,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Extinguish a fire, cooling the ashes to merely warm",
+  "source": {
+   "book": "DE",
+   "line": 14470,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Chill an object",
+  "source": {
+   "book": "DE",
+   "line": 14470,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Chill a person so that they lose a Fatigue level",
+  "source": {
+   "book": "DE",
+   "line": 14470,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Strongly chill an object (for example, freeze water)",
+  "source": {
+   "book": "DE",
+   "line": 14471,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Chill a person so that they take +5 damage",
+  "source": {
+   "book": "DE",
+   "line": 14471,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 10,
+  "general": false,
+  "text": "Destroy one aspect of a fire (for example, heat or light)",
+  "source": {
+   "book": "DE",
+   "line": 14472,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Ig",
+  "level": 10,
+  "general": false,
+  "text": "Chill a person so strongly that they take +10 damage",
+  "source": {
+   "book": "DE",
+   "line": 14472,
+   "anchor": "perdo-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": null,
+  "general": true,
+  "text": "Ward against beings associated with Ignem from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 14531,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Control a fire in a natural fashion (for example, control its direction of spread)",
+  "source": {
+   "book": "DE",
+   "line": 14532,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Move a fire quickly through space while leaving it burning naturally",
+  "source": {
+   "book": "DE",
+   "line": 14532,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 3,
+  "general": false,
+  "text": "Transport a fire instantly up to 5 paces (add 1 magnitude to increase the distance to 50 paces, 2 magnitudes for 500 paces, 3 magnitudes for 1 league, 4 magnitudes for seven leagues, and 5 magnitudes to a place for which you have an Arcane Connection)",
+  "source": {
+   "book": "DE",
+   "line": 14532,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 4,
+  "general": false,
+  "text": "Control a fire in a slightly unnatural fashion (for example, stop it from burning a person)",
+  "source": {
+   "book": "DE",
+   "line": 14533,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Control a disembodied spirit associated with Ignem",
+  "source": {
+   "book": "DE",
+   "line": 14534,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 5,
+  "general": false,
+  "text": "Completely control a fire elemental",
+  "source": {
+   "book": "DE",
+   "line": 14534,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 10,
+  "general": false,
+  "text": "Control a fire in a very unnatural fashion (for example, fashion into a dancing humanoid shape)",
+  "source": {
+   "book": "DE",
+   "line": 14535,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 15,
+  "general": false,
+  "text": "Summon a disembodied spirit associated with Ignem",
+  "source": {
+   "book": "DE",
+   "line": 14536,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 15,
+  "general": false,
+  "text": "Ward against fire doing up to +5 damage (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 14536,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 20,
+  "general": false,
+  "text": "Ward against fire doing up to +10 damage (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 14537,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 25,
+  "general": false,
+  "text": "Ward against fire doing up to +15 damage (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 14538,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 30,
+  "general": false,
+  "text": "Ward against fire doing up to +20 damage (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 14539,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 35,
+  "general": false,
+  "text": "Ward against fire doing up to +25 damage (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 14540,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Ig",
+  "level": 40,
+  "general": false,
+  "text": "Ward against fire doing up to +30 damage (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 14541,
+   "anchor": "rego-ignem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Im",
+  "level": 1,
+  "general": false,
+  "text": "Create an image that affects a single sense",
+  "source": {
+   "book": "DE",
+   "line": 14604,
+   "anchor": "creo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Im",
+  "level": 2,
+  "general": false,
+  "text": "Create an image that affects two senses",
+  "source": {
+   "book": "DE",
+   "line": 14605,
+   "anchor": "creo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Im",
+  "level": 3,
+  "general": false,
+  "text": "Create an image that affects three senses",
+  "source": {
+   "book": "DE",
+   "line": 14606,
+   "anchor": "creo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Im",
+  "level": 4,
+  "general": false,
+  "text": "Create an image that affects four senses",
+  "source": {
+   "book": "DE",
+   "line": 14607,
+   "anchor": "creo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Im",
+  "level": 5,
+  "general": false,
+  "text": "Create an image that affects five senses",
+  "source": {
+   "book": "DE",
+   "line": 14608,
+   "anchor": "creo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Im",
+  "level": null,
+  "general": true,
+  "text": "Discern illusions caused by spells of equal or lower level than the level of this spell (Vision target)",
+  "source": {
+   "book": "DE",
+   "line": 14665,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Im",
+  "level": 1,
+  "general": false,
+  "text": "Use one sense at a distance",
+  "source": {
+   "book": "DE",
+   "line": 14666,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Im",
+  "level": 1,
+  "general": false,
+  "text": "Memorize or perfect your memory about an image you have encountered",
+  "source": {
+   "book": "DE",
+   "line": 14666,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Im",
+  "level": 1,
+  "general": false,
+  "text": "Be able to discern your own false images",
+  "source": {
+   "book": "DE",
+   "line": 14666,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Im",
+  "level": 2,
+  "general": false,
+  "text": "Use two senses at a distance",
+  "source": {
+   "book": "DE",
+   "line": 14667,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Im",
+  "level": 3,
+  "general": false,
+  "text": "Use three senses at a distance",
+  "source": {
+   "book": "DE",
+   "line": 14668,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Im",
+  "level": 3,
+  "general": false,
+  "text": "Enhance one of your senses in one way (to see clearly at a distance, to see small things, or to see in the dark, for example)",
+  "source": {
+   "book": "DE",
+   "line": 14668,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Im",
+  "level": 4,
+  "general": false,
+  "text": "Use four senses at a distance",
+  "source": {
+   "book": "DE",
+   "line": 14669,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Im",
+  "level": 5,
+  "general": false,
+  "text": "Use all senses at a distance",
+  "source": {
+   "book": "DE",
+   "line": 14670,
+   "anchor": "intellego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Im",
+  "level": 1,
+  "general": false,
+  "text": "Change one sensation of an object (for example, make a leaf look like a coin), but not its type (i.e. not from sight to sound)",
+  "source": {
+   "book": "DE",
+   "line": 14724,
+   "anchor": "muto-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Im",
+  "level": 2,
+  "general": false,
+  "text": "Change two sensations of an object",
+  "source": {
+   "book": "DE",
+   "line": 14725,
+   "anchor": "muto-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Im",
+  "level": 2,
+  "general": false,
+  "text": "Transform species that affect one sense into those that affect another (for example, transform audible species into visual species, so that sounds can be seen)",
+  "source": {
+   "book": "DE",
+   "line": 14725,
+   "anchor": "muto-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Im",
+  "level": 3,
+  "general": false,
+  "text": "Change three sensations of an object",
+  "source": {
+   "book": "DE",
+   "line": 14726,
+   "anchor": "muto-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Im",
+  "level": 4,
+  "general": false,
+  "text": "Change four sensations of an object",
+  "source": {
+   "book": "DE",
+   "line": 14727,
+   "anchor": "muto-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Im",
+  "level": 5,
+  "general": false,
+  "text": "Change the appearance of an object completely, in all things except solidity",
+  "source": {
+   "book": "DE",
+   "line": 14728,
+   "anchor": "muto-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Im",
+  "level": 2,
+  "general": false,
+  "text": "Destroy an object's ability to affect taste or touch",
+  "source": {
+   "book": "DE",
+   "line": 14777,
+   "anchor": "perdo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Im",
+  "level": 3,
+  "general": false,
+  "text": "Destroy an object's ability to affect smell or hearing",
+  "source": {
+   "book": "DE",
+   "line": 14778,
+   "anchor": "perdo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Im",
+  "level": 3,
+  "general": false,
+  "text": "Destroy an object's ability to affect taste and touch",
+  "source": {
+   "book": "DE",
+   "line": 14778,
+   "anchor": "perdo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Im",
+  "level": 4,
+  "general": false,
+  "text": "Destroy an object's ability to affect sight",
+  "source": {
+   "book": "DE",
+   "line": 14779,
+   "anchor": "perdo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Im",
+  "level": 4,
+  "general": false,
+  "text": "Destroy an object's ability to affect any three of taste, touch, smell, or hearing",
+  "source": {
+   "book": "DE",
+   "line": 14779,
+   "anchor": "perdo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Im",
+  "level": 5,
+  "general": false,
+  "text": "Destroy an object's ability to affect any four senses",
+  "source": {
+   "book": "DE",
+   "line": 14780,
+   "anchor": "perdo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Im",
+  "level": 10,
+  "general": false,
+  "text": "Destroy an object's ability to affect all five senses",
+  "source": {
+   "book": "DE",
+   "line": 14781,
+   "anchor": "perdo-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": null,
+  "general": true,
+  "text": "Ward against beings associated with Imaginem from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 14845,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 2,
+  "general": false,
+  "text": "Make an object appear (to one sense) to be up to one pace away from its actual position",
+  "source": {
+   "book": "DE",
+   "line": 14846,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 3,
+  "general": false,
+  "text": "Make an object appear (to one sense) to be up to five paces away from its actual position",
+  "source": {
+   "book": "DE",
+   "line": 14847,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 3,
+  "general": false,
+  "text": "Make objects appear to move rapidly in a disorientating way",
+  "source": {
+   "book": "DE",
+   "line": 14847,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 4,
+  "general": false,
+  "text": "Make an object appear (to one sense) to be up to fifteen paces from its actual position",
+  "source": {
+   "book": "DE",
+   "line": 14848,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 4,
+  "general": false,
+  "text": "Make an object appear (to one sense) to be contained in or attached to another object defined at the time of casting (for example, make someone's voice appear to come from within a bag)",
+  "source": {
+   "book": "DE",
+   "line": 14848,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 5,
+  "general": false,
+  "text": "Make an object appear (to one sense) to be up to one hundred paces from its actual position",
+  "source": {
+   "book": "DE",
+   "line": 14849,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 5,
+  "general": false,
+  "text": "Control a disembodied spirit associated with Imaginem",
+  "source": {
+   "book": "DE",
+   "line": 14849,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 10,
+  "general": false,
+  "text": "Make an object appear (to one sense) to be in Sight of its actual position",
+  "source": {
+   "book": "DE",
+   "line": 14850,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 15,
+  "general": false,
+  "text": "Make an object appear (to one sense) to be in a location that the caster has an Arcane Connection to",
+  "source": {
+   "book": "DE",
+   "line": 14851,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Im",
+  "level": 15,
+  "general": false,
+  "text": "Summon a disembodied spirit associated with Imaginem",
+  "source": {
+   "book": "DE",
+   "line": 14851,
+   "anchor": "rego-imaginem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 3,
+  "general": false,
+  "text": "Form words in another's mind",
+  "source": {
+   "book": "DE",
+   "line": 14921,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 4,
+  "general": false,
+  "text": "Put a thought or emotion into another's mind",
+  "source": {
+   "book": "DE",
+   "line": 14922,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 4,
+  "general": false,
+  "text": "Restore a memory of a brief event to a fresh state, as long as a fragment of it remains (the affected memory can be no more extensive than a short conversation of two or three rounds)",
+  "source": {
+   "book": "DE",
+   "line": 14922,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 5,
+  "general": false,
+  "text": "Create a memory in another's mind",
+  "source": {
+   "book": "DE",
+   "line": 14923,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 5,
+  "general": false,
+  "text": "Restore a memory of an event to a fresh state, as long as a fragment of it remains (the affected memory can be no more extensive than about two minutes)",
+  "source": {
+   "book": "DE",
+   "line": 14923,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 10,
+  "general": false,
+  "text": "Restore a memory of a day's events to a fresh state, as long as a fragment of it remains (events are remembered as if they had occurred only an hour before)",
+  "source": {
+   "book": "DE",
+   "line": 14924,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 10,
+  "general": false,
+  "text": "Spark a twinge of conscience in an intelligent being's mind, overriding the temporary obsession of a demon",
+  "source": {
+   "book": "DE",
+   "line": 14924,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 30,
+  "general": false,
+  "text": "Increase one of a person's mental Characteristics by one point, to no more than 0",
+  "source": {
+   "book": "DE",
+   "line": 14925,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 35,
+  "general": false,
+  "text": "Increase one of a person's mental Characteristics by one point, to no more than +1",
+  "source": {
+   "book": "DE",
+   "line": 14926,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 40,
+  "general": false,
+  "text": "Increase one of a person's mental Characteristics by one point, to no more than +2",
+  "source": {
+   "book": "DE",
+   "line": 14927,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 45,
+  "general": false,
+  "text": "Increase one of a person's mental Characteristics by one point, to no more than +3",
+  "source": {
+   "book": "DE",
+   "line": 14928,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 50,
+  "general": false,
+  "text": "Increase one of a person's mental Characteristics by one point, to no more than +4",
+  "source": {
+   "book": "DE",
+   "line": 14929,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Me",
+  "level": 55,
+  "general": false,
+  "text": "Increase one of a person's mental Characteristics by one point, to no more than +5",
+  "source": {
+   "book": "DE",
+   "line": 14930,
+   "anchor": "creo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 4,
+  "general": false,
+  "text": "Sense the state of consciousness of one intelligent being (for example, asleep, awake, meditating, dead, drugged, insane, or comatose)",
+  "source": {
+   "book": "DE",
+   "line": 14993,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 5,
+  "general": false,
+  "text": "Sense a single emotion in a being",
+  "source": {
+   "book": "DE",
+   "line": 14994,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 5,
+  "general": false,
+  "text": "Understand the meaning behind spoken sounds",
+  "source": {
+   "book": "DE",
+   "line": 14994,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 10,
+  "general": false,
+  "text": "Sense all of the emotions in a being",
+  "source": {
+   "book": "DE",
+   "line": 14995,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 10,
+  "general": false,
+  "text": "Discover the truth of a statement",
+  "source": {
+   "book": "DE",
+   "line": 14995,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Speak with any one human",
+  "source": {
+   "book": "DE",
+   "line": 14996,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Read a person's surface thoughts",
+  "source": {
+   "book": "DE",
+   "line": 14996,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Pick a single answer from the mind of a target",
+  "source": {
+   "book": "DE",
+   "line": 14996,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 20,
+  "general": false,
+  "text": "Read the last day's memories from one person",
+  "source": {
+   "book": "DE",
+   "line": 14997,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Me",
+  "level": 25,
+  "general": false,
+  "text": "Learn all the information you wish from a person's mind",
+  "source": {
+   "book": "DE",
+   "line": 14998,
+   "anchor": "intellego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 1,
+  "general": false,
+  "text": "Make a minor change in a person's memory of an event",
+  "source": {
+   "book": "DE",
+   "line": 15058,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 2,
+  "general": false,
+  "text": "Make a major change to a person's memory of an event",
+  "source": {
+   "book": "DE",
+   "line": 15059,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 3,
+  "general": false,
+  "text": "Make a major change to a person's memory of a series of events",
+  "source": {
+   "book": "DE",
+   "line": 15060,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 3,
+  "general": false,
+  "text": "Make a major change to a person's emotion",
+  "source": {
+   "book": "DE",
+   "line": 15060,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 4,
+  "general": false,
+  "text": "Make major changes to a person's memory of a period of their life",
+  "source": {
+   "book": "DE",
+   "line": 15061,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 4,
+  "general": false,
+  "text": "Completely change a person's emotions",
+  "source": {
+   "book": "DE",
+   "line": 15061,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 5,
+  "general": false,
+  "text": "Turn a single memory or emotion into a solid object (requisite of the Form of the shape; the person whose memory or emotion was transformed must be touching the item to feel the emotion or recall the memory; other people touching the object do not experience its mental aspects)",
+  "source": {
+   "book": "DE",
+   "line": 15062,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 10,
+  "general": false,
+  "text": "Completely rewrite a person's memories",
+  "source": {
+   "book": "DE",
+   "line": 15063,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Make a mind or spirit visible (Imaginem requisite)",
+  "source": {
+   "book": "DE",
+   "line": 15064,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Utterly change a person's mind",
+  "source": {
+   "book": "DE",
+   "line": 15064,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Me",
+  "level": 25,
+  "general": false,
+  "text": "Make a mind or spirit solid (requisite of the Form of the shape)",
+  "source": {
+   "book": "DE",
+   "line": 15065,
+   "anchor": "muto-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 3,
+  "general": false,
+  "text": "Remove a minor detail from a person's memory",
+  "source": {
+   "book": "DE",
+   "line": 15111,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 4,
+  "general": false,
+  "text": "Remove an important detail from a person's memory",
+  "source": {
+   "book": "DE",
+   "line": 15112,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 4,
+  "general": false,
+  "text": "Diminish a single mental capability in a person",
+  "source": {
+   "book": "DE",
+   "line": 15112,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 4,
+  "general": false,
+  "text": "Reduce the intensity of all of a person's emotions",
+  "source": {
+   "book": "DE",
+   "line": 15112,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 5,
+  "general": false,
+  "text": "Quell an emotion in a person",
+  "source": {
+   "book": "DE",
+   "line": 15113,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 10,
+  "general": false,
+  "text": "Remove a minor or short memory from a person's mind",
+  "source": {
+   "book": "DE",
+   "line": 15114,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 10,
+  "general": false,
+  "text": "Reduce all of a person's mental capabilities",
+  "source": {
+   "book": "DE",
+   "line": 15114,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Remove a major or long memory from a person's mind",
+  "source": {
+   "book": "DE",
+   "line": 15115,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Remove all emotions from a person",
+  "source": {
+   "book": "DE",
+   "line": 15115,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Drive a person insane",
+  "source": {
+   "book": "DE",
+   "line": 15115,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Me",
+  "level": 25,
+  "general": false,
+  "text": "Leave a person a mindless husk",
+  "source": {
+   "book": "DE",
+   "line": 15116,
+   "anchor": "perdo-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": null,
+  "general": true,
+  "text": "Ward against beings associated with Mentem from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 15192,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": null,
+  "general": true,
+  "text": "Ward against spirits belonging to one realm (Divine, Faerie, Infernal, or Magic) with a Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 15192,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 3,
+  "general": false,
+  "text": "Make a subtle difference to the target's mental state",
+  "source": {
+   "book": "DE",
+   "line": 15193,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 4,
+  "general": false,
+  "text": "Control a target's mental state (for example, awake, asleep, or confused)",
+  "source": {
+   "book": "DE",
+   "line": 15194,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 5,
+  "general": false,
+  "text": "Control a natural emotion (for example, calm, fear); the target must feel the emotion before you can control it",
+  "source": {
+   "book": "DE",
+   "line": 15195,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 5,
+  "general": false,
+  "text": "Control a disembodied spirit associated with Mentem, such as most ghosts",
+  "source": {
+   "book": "DE",
+   "line": 15195,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 5,
+  "general": false,
+  "text": "Incline a person to a particular sort of response",
+  "source": {
+   "book": "DE",
+   "line": 15195,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 10,
+  "general": false,
+  "text": "Control an unnatural emotion (for example, cultivate a person's feelings of bravery where he is usually cowardly)",
+  "source": {
+   "book": "DE",
+   "line": 15196,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 10,
+  "general": false,
+  "text": "Imbue all of a person's responses with a particular emotion",
+  "source": {
+   "book": "DE",
+   "line": 15196,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Control a person as long as you can see them",
+  "source": {
+   "book": "DE",
+   "line": 15197,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 15,
+  "general": false,
+  "text": "Summon a disembodied spirit associated with Mentem, such as a ghost",
+  "source": {
+   "book": "DE",
+   "line": 15197,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 20,
+  "general": false,
+  "text": "Give a person one complex command, which he tries to carry out to the best of his ability",
+  "source": {
+   "book": "DE",
+   "line": 15198,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Me",
+  "level": 25,
+  "general": false,
+  "text": "Completely control a person's mind and emotions",
+  "source": {
+   "book": "DE",
+   "line": 15199,
+   "anchor": "rego-mentem-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Te",
+  "level": 1,
+  "general": false,
+  "text": "Create sand, dirt, mud, or clay",
+  "source": {
+   "book": "DE",
+   "line": 15306,
+   "anchor": "creo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Te",
+  "level": 3,
+  "general": false,
+  "text": "Create stone or glass",
+  "source": {
+   "book": "DE",
+   "line": 15307,
+   "anchor": "creo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Te",
+  "level": 5,
+  "general": false,
+  "text": "Create base metal",
+  "source": {
+   "book": "DE",
+   "line": 15308,
+   "anchor": "creo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Te",
+  "level": 15,
+  "general": false,
+  "text": "Create precious metal",
+  "source": {
+   "book": "DE",
+   "line": 15309,
+   "anchor": "creo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Te",
+  "level": 15,
+  "general": false,
+  "text": "Repair a crafted item, returning it to an \"as new\" state",
+  "source": {
+   "book": "DE",
+   "line": 15309,
+   "anchor": "creo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Te",
+  "level": 25,
+  "general": false,
+  "text": "Create gemstone",
+  "source": {
+   "book": "DE",
+   "line": 15310,
+   "anchor": "creo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Te",
+  "level": 25,
+  "general": false,
+  "text": "Create an earth elemental from a base amount of elemental matter (Ritual)",
+  "source": {
+   "book": "DE",
+   "line": 15310,
+   "anchor": "creo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 2,
+  "general": false,
+  "text": "Learn one visible property of an object (a property that someone with appropriate skills could determine just by looking)",
+  "source": {
+   "book": "DE",
+   "line": 15350,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 4,
+  "general": false,
+  "text": "Learn one mundane property of an object",
+  "source": {
+   "book": "DE",
+   "line": 15351,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 4,
+  "general": false,
+  "text": "See an object and its surroundings",
+  "source": {
+   "book": "DE",
+   "line": 15351,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 5,
+  "general": false,
+  "text": "Learn all components of a mixture or alloy",
+  "source": {
+   "book": "DE",
+   "line": 15352,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 10,
+  "general": false,
+  "text": "Learn all the natural properties of an object",
+  "source": {
+   "book": "DE",
+   "line": 15353,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 15,
+  "general": false,
+  "text": "Sense all the mundane properties of a composite object",
+  "source": {
+   "book": "DE",
+   "line": 15354,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 20,
+  "general": false,
+  "text": "Learn the magical properties of an object",
+  "source": {
+   "book": "DE",
+   "line": 15355,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 20,
+  "general": false,
+  "text": "Make your senses unhindered by earth (for example, see right through a rock)",
+  "source": {
+   "book": "DE",
+   "line": 15355,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 20,
+  "general": false,
+  "text": "Speak with a natural rock (for example, a boulder)",
+  "source": {
+   "book": "DE",
+   "line": 15355,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 25,
+  "general": false,
+  "text": "Speak with an artificial rock (for example, a statue)",
+  "source": {
+   "book": "DE",
+   "line": 15356,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 30,
+  "general": false,
+  "text": "Commune with a natural rock; speak with a metal object (for example, a knife)",
+  "source": {
+   "book": "DE",
+   "line": 15357,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 35,
+  "general": false,
+  "text": "Commune with an artificial rock (for example, a statue)",
+  "source": {
+   "book": "DE",
+   "line": 15358,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Te",
+  "level": 40,
+  "general": false,
+  "text": "Commune with a metal object (for example, a knife)",
+  "source": {
+   "book": "DE",
+   "line": 15359,
+   "anchor": "intellego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": null,
+  "general": true,
+  "text": "Convert part of an earth elemental's body into another type of earth (soil to dust, etc.), reducing the elemental's Might pool by the level of the spell +2 magnitudes. If the elemental is not destroyed by this effect, when the duration ends it can restore this Might by re-absorbing the matter",
+  "source": {
+   "book": "DE",
+   "line": 15430,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 1,
+  "general": false,
+  "text": "Change one property of dirt",
+  "source": {
+   "book": "DE",
+   "line": 15431,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 2,
+  "general": false,
+  "text": "Change dirt to another type of natural earth (for example, sand to loam)",
+  "source": {
+   "book": "DE",
+   "line": 15432,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 3,
+  "general": false,
+  "text": "Change dirt so that it is slightly unnatural (requisites may be required)",
+  "source": {
+   "book": "DE",
+   "line": 15433,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 3,
+  "general": false,
+  "text": "Change dirt into a liquid or gas (with requisites)",
+  "source": {
+   "book": "DE",
+   "line": 15433,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 3,
+  "general": false,
+  "text": "Change dirt to stone, or vice versa",
+  "source": {
+   "book": "DE",
+   "line": 15433,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 4,
+  "general": false,
+  "text": "Change dirt so that it is highly unnatural (requisites will often be required)",
+  "source": {
+   "book": "DE",
+   "line": 15434,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 4,
+  "general": false,
+  "text": "Change dirt into a mixture of liquids, solids, and gases (with requisites)",
+  "source": {
+   "book": "DE",
+   "line": 15434,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 4,
+  "general": false,
+  "text": "Change dirt into a plant (with requisites)",
+  "source": {
+   "book": "DE",
+   "line": 15434,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 4,
+  "general": false,
+  "text": "Make something grow to ten times its previous volume",
+  "source": {
+   "book": "DE",
+   "line": 15434,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 5,
+  "general": false,
+  "text": "Change dirt into a slightly unnatural liquid or gas (with requisites)",
+  "source": {
+   "book": "DE",
+   "line": 15435,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 5,
+  "general": false,
+  "text": "Change dirt into an animal (with requisites)",
+  "source": {
+   "book": "DE",
+   "line": 15435,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Te",
+  "level": 10,
+  "general": false,
+  "text": "Change dirt into a highly unnatural liquid or gas (with requisites)",
+  "source": {
+   "book": "DE",
+   "line": 15436,
+   "anchor": "muto-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Te",
+  "level": null,
+  "general": true,
+  "text": "Destroy sufficient matter to reduce an earth elemental's Might Score by the level of the spell +2 magnitudes",
+  "source": {
+   "book": "DE",
+   "line": 15492,
+   "anchor": "perdo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Te",
+  "level": 2,
+  "general": false,
+  "text": "Weaken dirt",
+  "source": {
+   "book": "DE",
+   "line": 15493,
+   "anchor": "perdo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Te",
+  "level": 3,
+  "general": false,
+  "text": "Destroy dirt",
+  "source": {
+   "book": "DE",
+   "line": 15494,
+   "anchor": "perdo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Te",
+  "level": 5,
+  "general": false,
+  "text": "Destroy one aspect of dirt, such as its weight or its cohesiveness",
+  "source": {
+   "book": "DE",
+   "line": 15495,
+   "anchor": "perdo-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": null,
+  "general": true,
+  "text": "Ward against beings associated with Terram from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 15553,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 1,
+  "general": false,
+  "text": "Control or move dirt in a natural fashion",
+  "source": {
+   "book": "DE",
+   "line": 15554,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 2,
+  "general": false,
+  "text": "Control or move dirt in a slightly unnatural fashion",
+  "source": {
+   "book": "DE",
+   "line": 15555,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 2,
+  "general": false,
+  "text": "Keep dirt away from you, under your conscious control (that is, you must be aware of its presence)",
+  "source": {
+   "book": "DE",
+   "line": 15555,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 2,
+  "general": false,
+  "text": "Shape and form dirt, as if a craftsman had worked it",
+  "source": {
+   "book": "DE",
+   "line": 15555,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 3,
+  "general": false,
+  "text": "Control or move dirt in a very unnatural fashion",
+  "source": {
+   "book": "DE",
+   "line": 15556,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 4,
+  "general": false,
+  "text": "Transport a non-living object instantly up to 5 paces (add one magnitude for 50 paces, two magnitudes for 500 paces, three magnitudes for one league, four magnitudes for seven leagues, and five magnitudes for a place to which you have an Arcane Connection; casting requisites may be needed if the item is primarily not under the Form of Terram)",
+  "source": {
+   "book": "DE",
+   "line": 15557,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 5,
+  "general": false,
+  "text": "Keep all dirt away from your body, or ward a target against dirt",
+  "source": {
+   "book": "DE",
+   "line": 15558,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 5,
+  "general": false,
+  "text": "Control a disembodied spirit associated with Terram",
+  "source": {
+   "book": "DE",
+   "line": 15558,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 5,
+  "general": false,
+  "text": "Completely control an earth elemental",
+  "source": {
+   "book": "DE",
+   "line": 15558,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 5,
+  "general": false,
+  "text": "Hurl a hard projectile with enough force to do +5 damage (range increment of 20 paces; this applies magical force to the projectile at the moment of casting, and the projectile then moves naturally)",
+  "source": {
+   "book": "DE",
+   "line": 15558,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 10,
+  "general": false,
+  "text": "Hurl a hard projectile with enough force to do +10 damage (range increment of 20 paces; this applies magical force to the projectile at the moment of casting, and the projectile then moves naturally)",
+  "source": {
+   "book": "DE",
+   "line": 15559,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 15,
+  "general": false,
+  "text": "Summon a disembodied spirit associated with Terram",
+  "source": {
+   "book": "DE",
+   "line": 15560,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Te",
+  "level": 15,
+  "general": false,
+  "text": "Hurl a hard projectile with enough force to do +15 damage (range increment of 20 paces; this applies magical force to the projectile at the moment of casting, and the projectile then moves naturally)",
+  "source": {
+   "book": "DE",
+   "line": 15560,
+   "anchor": "rego-terram-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Create a magical shell which looks real to Intellego spells with a level less than or equal to twice its level, plus one magnitude (this aura is generic 'magic' only — no misleading information can be supplied)",
+  "source": {
+   "book": "DE",
+   "line": 15684,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Create a magical shell which prevents Intellego spells with a level less than or equal to its level, plus one magnitude from learning any details about the magic on the target",
+  "source": {
+   "book": "DE",
+   "line": 15684,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Create a magical shell which gives false information about the target to Intellego spells with level less than or equal to half its level plus one magnitude",
+  "source": {
+   "book": "DE",
+   "line": 15684,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Refreshes all spell traces within the target that are less than the magnitude of the guideline –1, in negative magnitude (this restores them to their initial strength, generally half the magnitude of the spell)",
+  "source": {
+   "book": "DE",
+   "line": 15684,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": 3,
+  "general": false,
+  "text": "Taint something with magic",
+  "source": {
+   "book": "DE",
+   "line": 15685,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": 4,
+  "general": false,
+  "text": "Create a temporary Arcane Connection to a target within range (this Arcane Connection cannot be fixed in a laboratory, and does not itself give a bonus to Penetration, but does allow the magus to use other methods to boost Penetration and to use other spells on the target even if the magus can no longer perceive it; note that this spell must Penetrate the target's Magic Resistance like any other spell)",
+  "source": {
+   "book": "DE",
+   "line": 15686,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": 5,
+  "general": false,
+  "text": "Create a burst of magic that gives the target one Warping Point (spells that grant Warping cannot have a duration of greater than Momentary; note that doing this to a magus is an attack and clearly against the Code)",
+  "source": {
+   "book": "DE",
+   "line": 15687,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": 5,
+  "general": false,
+  "text": "Decrease the rate of decay of an Arcane Connection as if the connection were one step higher on the table on page 220 (if this increases the Duration to Years or greater, the duration continues to be measured in years; Hermetic magic cannot make an Arcane Connection last indefinitely without fixing it in the laboratory)",
+  "source": {
+   "book": "DE",
+   "line": 15687,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": 10,
+  "general": false,
+  "text": "Give the target two Warping Points",
+  "source": {
+   "book": "DE",
+   "line": 15688,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": 10,
+  "general": false,
+  "text": "Decrease the rate of decay of an Arcane Connection as if the connection were two steps higher on the table on page 220, subject to the same limits as above",
+  "source": {
+   "book": "DE",
+   "line": 15688,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": 15,
+  "general": false,
+  "text": "Give the target three Warping Points",
+  "source": {
+   "book": "DE",
+   "line": 15689,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Cr",
+  "form": "Vi",
+  "level": 15,
+  "general": false,
+  "text": "Decrease the rate of decay of an Arcane Connection as if the connection were three steps higher on the table on page 220, subject to the same limits as above",
+  "source": {
+   "book": "DE",
+   "line": 15689,
+   "anchor": "creo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Detect the traces of magic of negative magnitude up to the magnitude of the guideline used – 2",
+  "source": {
+   "book": "DE",
+   "line": 15744,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 1,
+  "general": false,
+  "text": "Detect magic of tenth magnitude or higher",
+  "source": {
+   "book": "DE",
+   "line": 15745,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 1,
+  "general": false,
+  "text": "Detect the presence of a supernatural aura",
+  "source": {
+   "book": "DE",
+   "line": 15745,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 1,
+  "general": false,
+  "text": "Detect the presence of vis (as concentrated magic, vis is not hard to spot)",
+  "source": {
+   "book": "DE",
+   "line": 15745,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 2,
+  "general": false,
+  "text": "Detect magic of eighth magnitude or higher",
+  "source": {
+   "book": "DE",
+   "line": 15746,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 2,
+  "general": false,
+  "text": "Determine the power of a supernatural aura",
+  "source": {
+   "book": "DE",
+   "line": 15746,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 3,
+  "general": false,
+  "text": "Detect magic of sixth magnitude or higher",
+  "source": {
+   "book": "DE",
+   "line": 15747,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 3,
+  "general": false,
+  "text": "Detect regio boundaries (if cast with a Vision target, this provides enough information to find a way between levels for regiones that allow that sort of entrance; otherwise, it reveals the presence of a regio, and possibly its rough shape)",
+  "source": {
+   "book": "DE",
+   "line": 15747,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 4,
+  "general": false,
+  "text": "Detect magic of third magnitude or higher",
+  "source": {
+   "book": "DE",
+   "line": 15748,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 4,
+  "general": false,
+  "text": "Judge the amount of vis present",
+  "source": {
+   "book": "DE",
+   "line": 15748,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 4,
+  "general": false,
+  "text": "Discern the Art of vis",
+  "source": {
+   "book": "DE",
+   "line": 15748,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "In",
+  "form": "Vi",
+  "level": 5,
+  "general": false,
+  "text": "Detect any active magic",
+  "source": {
+   "book": "DE",
+   "line": 15749,
+   "anchor": "intellego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Superficially change a spell of less than or equal to twice the (level + 1 magnitude) of the Vim spell (this may not change the primary effect of the spell, or its power)",
+  "source": {
+   "book": "DE",
+   "line": 15830,
+   "anchor": "muto-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Significantly change a spell of less than or equal to the level + 1 magnitude of the Vim spell (this may not change either the Technique or Form of the target spell; a change in power of plus or minus one magnitude is a significant change, as is a change of target if the target was possible for the original spell)",
+  "source": {
+   "book": "DE",
+   "line": 15830,
+   "anchor": "muto-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Mu",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Totally change a spell of less than or equal to half the (level + 1 magnitude) of the Vim spell (this may change the Technique, Form, or both of the target spell, and needs no requisites for those Arts; the Vim spell affects the structure of the spell, not the things that the spell targets; a change in power of up to two magnitudes is a total change; any greater change requires either Creo or Perdo to create more magical energy or destroy some)",
+  "source": {
+   "book": "DE",
+   "line": 15830,
+   "anchor": "muto-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Make something (including a magical item) seem non-magical to any Intellego spell of less than or equal to twice the (level + 2 magnitudes) of this spell",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Dispel effects of a specific type with a level less than or equal to the level + 4 magnitudes of the Vim spell + a stress die (no botch); a specific type could be Hermetic Terram magic, or Shamanic spirit control magic; a magus must have some knowledge of a type of magic to invent a spell to affect it",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Reduce a target's Might Score by the level of the spell + 2 magnitudes, as long as the spell penetrates the creature's Magic Resistance",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Reduce a target's Might Pool by the level of the spell + 2 magnitudes, as long as the spell penetrates the creature's Magic Resistance",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Dispel any supernatural effect of one realm with a level less than or equal to half the (level + 4 magnitudes + a stress die (no botch)) of the Vim spell",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Reduce the casting total for all supernatural powers of one realm cast by the target by half the (level + 2 magnitudes) of the spell (if two or more such spells affect one target, only the highest has any effect; the spell must penetrate the target's Magic Resistance)",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Reduce the casting total for a specific type of supernatural effect cast by the target by the (level + 2 magnitudes) of the spell (if two or more such spells affect one target, only the highest has any effect; the spell must penetrate the target's Magic Resistance; a maga must be familiar with a type of supernatural effect to invent a spell to affect it)",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Age a spell trace to a negative magnitude equal to the guideline used (for example, –2 for a level 10 guideline)",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Dispel a Hermetic enchantment with a level less than the guideline level used + 1 magnitude + a stress die (no botch); the spell must be a Ritual",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Dispel a specific type of enchantment with a level less than twice the guideline level used + 2 magnitudes + a stress die (no botch); the spell must specify a particular Hermetic Form or a specific type of enchantment such as Talismans, Familiars or Longevity Rituals; spell must be a Ritual",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Dispel Hermetic Form Resistance aligned to a given Form with a level less than or equal to the level of the Vim spell + 2 magnitudes + a stress die (no botch); spell must penetrate the Vim-based Magic Resistance of the target",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Dispel Magic Resistance from a Might score aligned to one Realm with a level less than or equal to the level of the Vim spell + 4 magnitudes + a stress die (no botch); spell must penetrate the Vim-based Magic Resistance of the target",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Destroy an amount of raw vis equal to the level of the spell",
+  "source": {
+   "book": "DE",
+   "line": 15890,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": 5,
+  "general": false,
+  "text": "Reduce the duration of an Arcane Connection by one step on the table on page 220 (if this reduces the duration below Hours, the connection expires immediately; does not work on connections that naturally have Indefinite duration, but can make a fixed connection expire; note that the Range is the range to the Arcane Connection)",
+  "source": {
+   "book": "DE",
+   "line": 15891,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": 10,
+  "general": false,
+  "text": "Reduce the duration of an Arcane Connection by two steps on the table on page 220, subject to the same limits as above",
+  "source": {
+   "book": "DE",
+   "line": 15892,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": 15,
+  "general": false,
+  "text": "Reduce the duration of an Arcane Connection by three steps on the table on page 220, subject to the same limits as above",
+  "source": {
+   "book": "DE",
+   "line": 15893,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": 20,
+  "general": false,
+  "text": "Reduce the duration of an Arcane Connection by four steps on the table on page 220, subject to the same limits as above",
+  "source": {
+   "book": "DE",
+   "line": 15894,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": 25,
+  "general": false,
+  "text": "Reduce the duration of an Arcane Connection by five steps on the table on page 220, subject to the same limits as above",
+  "source": {
+   "book": "DE",
+   "line": 15895,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Pe",
+  "form": "Vi",
+  "level": 30,
+  "general": false,
+  "text": "Reduce the duration of an Arcane Connection by six steps on the table on page 220, subject to the same limits as above (this level of effect is sufficient to make almost any Arcane Connection expire instantly)",
+  "source": {
+   "book": "DE",
+   "line": 15896,
+   "anchor": "perdo-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Ward against all supernatural beings from one realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
+  "source": {
+   "book": "DE",
+   "line": 15935,
+   "anchor": "rego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Sustain or suppress a spell you have cast whose level is less than or equal to the level + 2 magnitudes of the Vim spell (this cannot make a spell last longer than it could have naturally, so the sustaining version is only useful with Concentration Duration among standard Hermetic Durations; a suppressed spell still ends when its original duration expires)",
+  "source": {
+   "book": "DE",
+   "line": 15935,
+   "anchor": "rego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Create a conduit or container for spells with level less than or equal to the level + 5 magnitudes of the Vim spell (a conduit puts you in mystical contact with the target at effective Touch range, while a container holds a spell for a specific length of time before releasing it)",
+  "source": {
+   "book": "DE",
+   "line": 15935,
+   "anchor": "rego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Sustain or suppress a spell cast by another with level less than or equal to half the (level + 5 magnitudes) of the Vim spell (this guideline may target the spell itself or the caster of the spells)",
+  "source": {
+   "book": "DE",
+   "line": 15935,
+   "anchor": "rego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Vi",
+  "level": null,
+  "general": true,
+  "text": "Sustain or suppress a spell or spells of a specific type cast by another with level less than the level + 2 magnitudes of the Vim spell (examples of specific types include Hermetic Terram magic and Shamanic spirit control magic; this guideline may target the spell itself or the caster of the spells)",
+  "source": {
+   "book": "DE",
+   "line": 15935,
+   "anchor": "rego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Vi",
+  "level": 5,
+  "general": false,
+  "text": "Control any disembodied spirit associated with one of the four supernatural realms (a different spell is needed for each realm)",
+  "source": {
+   "book": "DE",
+   "line": 15936,
+   "anchor": "rego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Vi",
+  "level": 10,
+  "general": false,
+  "text": "Move raw vis from one physical object to another, without needing a laboratory",
+  "source": {
+   "book": "DE",
+   "line": 15937,
+   "anchor": "rego-vim-guidelines"
+  }
+ },
+ {
+  "technique": "Re",
+  "form": "Vi",
+  "level": 15,
+  "general": false,
+  "text": "Summon any disembodied spirit associated with one of the four supernatural realms (a different spell is needed for each realm)",
+  "source": {
+   "book": "DE",
+   "line": 15938,
+   "anchor": "rego-vim-guidelines"
+  }
+ }
+]

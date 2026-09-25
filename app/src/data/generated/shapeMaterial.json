@@ -1,0 +1,3130 @@
+[
+ {
+  "id": "adze",
+  "name": "Adze",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "beautify wood structures"
+   }
+  ]
+ },
+ {
+  "id": "agate",
+  "name": "Agate",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "air"
+   },
+   {
+    "bonus": 5,
+    "effect": "protection from storms"
+   },
+   {
+    "bonus": 7,
+    "effect": "protection from venom"
+   }
+  ]
+ },
+ {
+  "id": "alabaster",
+  "name": "Alabaster",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "forgiving"
+   },
+   {
+    "bonus": 4,
+    "effect": "mental acuity"
+   }
+  ]
+ },
+ {
+  "id": "alder-wood",
+  "name": "Alder Wood",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "resist decay"
+   },
+   {
+    "bonus": 2,
+    "effect": "royalty"
+   }
+  ]
+ },
+ {
+  "id": "almond-wood",
+  "name": "Almond Wood",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "Creo Herbam"
+   }
+  ]
+ },
+ {
+  "id": "aloe",
+  "name": "Aloe",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "friendship"
+   }
+  ]
+ },
+ {
+  "id": "amber",
+  "name": "Amber",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "controlling movement"
+   },
+   {
+    "bonus": 3,
+    "effect": "Corpus"
+   }
+  ]
+ },
+ {
+  "id": "amethyst",
+  "name": "Amethyst",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "wealth"
+   },
+   {
+    "bonus": 2,
+    "effect": "hearing"
+   },
+   {
+    "bonus": 3,
+    "effect": "versus poison"
+   },
+   {
+    "bonus": 3,
+    "effect": "dreams"
+   },
+   {
+    "bonus": 4,
+    "effect": "temperance"
+   },
+   {
+    "bonus": 7,
+    "effect": "versus drunkenness"
+   }
+  ]
+ },
+ {
+  "id": "amulet-bearing-the-sigils-of-angels",
+  "name": "Amulet Bearing the Sigils of Angels",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "ward against demons"
+   },
+   {
+    "bonus": 7,
+    "effect": "banish demons"
+   }
+  ]
+ },
+ {
+  "id": "anchor",
+  "name": "Anchor",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "prevent movement"
+   }
+  ]
+ },
+ {
+  "id": "animal-bone",
+  "name": "Animal Bone",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "harm or destroy animals"
+   }
+  ]
+ },
+ {
+  "id": "animal-hide",
+  "name": "Animal Hide",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "turn into appropriate animal"
+   }
+  ]
+ },
+ {
+  "id": "apple-wood",
+  "name": "Apple Wood",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "longevity"
+   },
+   {
+    "bonus": 1,
+    "effect": "Corpus"
+   }
+  ]
+ },
+ {
+  "id": "aquamarine",
+  "name": "Aquamarine",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "water"
+   }
+  ]
+ },
+ {
+  "id": "armillary-sphere",
+  "name": "Armillary Sphere",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "display the heavens"
+   },
+   {
+    "bonus": 5,
+    "effect": "celestial time"
+   }
+  ]
+ },
+ {
+  "id": "armor",
+  "name": "Armor",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "protect wearer"
+   }
+  ]
+ },
+ {
+  "id": "arrow",
+  "name": "Arrow",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "aiming"
+   },
+   {
+    "bonus": 3,
+    "effect": "direction"
+   }
+  ]
+ },
+ {
+  "id": "artifacts-from-pompeii-and-herculaneum",
+  "name": "Artifacts from Pompeii and Herculaneum",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "volcanoes"
+   }
+  ]
+ },
+ {
+  "id": "ash-burned-debris",
+  "name": "Ash (Burned Debris)",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "burning things"
+   },
+   {
+    "bonus": 2,
+    "effect": "Ignem"
+   },
+   {
+    "bonus": 5,
+    "effect": "affect things that have been burned"
+   }
+  ]
+ },
+ {
+  "id": "ash-wood",
+  "name": "Ash Wood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "harm people"
+   }
+  ]
+ },
+ {
+  "id": "aspen-wood",
+  "name": "Aspen Wood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "cure disease"
+   },
+   {
+    "bonus": 5,
+    "effect": "cure fever"
+   }
+  ]
+ },
+ {
+  "id": "astrolabe",
+  "name": "Astrolabe",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "astrology"
+   },
+   {
+    "bonus": 5,
+    "effect": "measure the stars and heavens"
+   },
+   {
+    "bonus": 5,
+    "effect": "navigation"
+   }
+  ]
+ },
+ {
+  "id": "auger",
+  "name": "Auger",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "shape wood"
+   },
+   {
+    "bonus": 2,
+    "effect": "puncture wood"
+   }
+  ]
+ },
+ {
+  "id": "axe",
+  "name": "Axe",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "destroy wood"
+   }
+  ]
+ },
+ {
+  "id": "bag-sack",
+  "name": "Bag/Sack",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "moving things into or out of"
+   },
+   {
+    "bonus": 5,
+    "effect": "trapping things within"
+   }
+  ]
+ },
+ {
+  "id": "bandage",
+  "name": "Bandage",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "healing wounds"
+   }
+  ]
+ },
+ {
+  "id": "basalt",
+  "name": "Basalt",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "Ignem"
+   },
+   {
+    "bonus": 3,
+    "effect": "Perdo"
+   }
+  ]
+ },
+ {
+  "id": "basilisk-eye",
+  "name": "Basilisk Eye",
+  "bonuses": [
+   {
+    "bonus": 8,
+    "effect": "kill at a distance"
+   }
+  ]
+ },
+ {
+  "id": "basket",
+  "name": "Basket",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "collect items"
+   },
+   {
+    "bonus": 3,
+    "effect": "create things within"
+   },
+   {
+    "bonus": 4,
+    "effect": "preserve contents"
+   },
+   {
+    "bonus": 5,
+    "effect": "create food within"
+   }
+  ]
+ },
+ {
+  "id": "bed",
+  "name": "Bed",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "affect sleep and dreams"
+   }
+  ]
+ },
+ {
+  "id": "beech-wood",
+  "name": "Beech Wood",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "knowledge"
+   }
+  ]
+ },
+ {
+  "id": "bell",
+  "name": "Bell",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "warning"
+   }
+  ]
+ },
+ {
+  "id": "bellows",
+  "name": "Bellows",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "create wind"
+   },
+   {
+    "bonus": 5,
+    "effect": "strengthen fire"
+   }
+  ]
+ },
+ {
+  "id": "belt-or-girdle",
+  "name": "Belt or Girdle",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "affect strength"
+   }
+  ]
+ },
+ {
+  "id": "beryl",
+  "name": "Beryl",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "water"
+   }
+  ]
+ },
+ {
+  "id": "billhook",
+  "name": "Billhook",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "pruning"
+   }
+  ]
+ },
+ {
+  "id": "birch-wood",
+  "name": "Birch Wood",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "Creo"
+   },
+   {
+    "bonus": 3,
+    "effect": "childbirth"
+   }
+  ]
+ },
+ {
+  "id": "blackthorn-wood",
+  "name": "Blackthorn Wood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "dark fay"
+   },
+   {
+    "bonus": 6,
+    "effect": "guardians"
+   }
+  ]
+ },
+ {
+  "id": "bloodstone",
+  "name": "Bloodstone",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "blood and wounds"
+   }
+  ]
+ },
+ {
+  "id": "boat",
+  "name": "Boat",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "sailing"
+   }
+  ]
+ },
+ {
+  "id": "bookshelf",
+  "name": "Bookshelf",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "hide things within"
+   },
+   {
+    "bonus": 4,
+    "effect": "protect things within"
+   }
+  ]
+ },
+ {
+  "id": "boots",
+  "name": "Boots",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "affect walking"
+   }
+  ]
+ },
+ {
+  "id": "bow",
+  "name": "Bow",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "destroy things at a distance"
+   }
+  ]
+ },
+ {
+  "id": "brass",
+  "name": "Brass",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "music"
+   },
+   {
+    "bonus": 3,
+    "effect": "Ignem"
+   },
+   {
+    "bonus": 4,
+    "effect": "demons, devils, and angels"
+   }
+  ]
+ },
+ {
+  "id": "bronze",
+  "name": "Bronze",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "Terram"
+   },
+   {
+    "bonus": 5,
+    "effect": "darkness"
+   }
+  ]
+ },
+ {
+  "id": "candle-black",
+  "name": "Candle, Black",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "summon demons"
+   }
+  ]
+ },
+ {
+  "id": "candle-made-of-goat-fat",
+  "name": "Candle Made of Goat Fat",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "summon demons"
+   }
+  ]
+ },
+ {
+  "id": "cappadocian-salt",
+  "name": "Cappadocian Salt",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "purifying effects"
+   }
+  ]
+ },
+ {
+  "id": "carving-of-behemoth",
+  "name": "Carving of Behemoth",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "great size"
+   }
+  ]
+ },
+ {
+  "id": "cask",
+  "name": "Cask",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "induce drunkenness"
+   }
+  ]
+ },
+ {
+  "id": "cats-eye",
+  "name": "Cat's Eye",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "versus malign Corpus"
+   }
+  ]
+ },
+ {
+  "id": "catoblepas-esophagus",
+  "name": "Catoblepas Esophagus",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "kill or harm humans"
+   }
+  ]
+ },
+ {
+  "id": "cedar-wood",
+  "name": "Cedar Wood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "binding spirits"
+   },
+   {
+    "bonus": 5,
+    "effect": "any effect with Mentem and Herbam requisites"
+   }
+  ]
+ },
+ {
+  "id": "chalice",
+  "name": "Chalice",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "detect poison within"
+   },
+   {
+    "bonus": 5,
+    "effect": "transform or create liquid in"
+   }
+  ]
+ },
+ {
+  "id": "chalk-blue",
+  "name": "Chalk, Blue",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "wards against demons"
+   }
+  ]
+ },
+ {
+  "id": "cherry-wood",
+  "name": "Cherry Wood",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "bloodshed"
+   }
+  ]
+ },
+ {
+  "id": "chestnut-wood",
+  "name": "Chestnut Wood",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "justice"
+   },
+   {
+    "bonus": 4,
+    "effect": "honesty"
+   }
+  ]
+ },
+ {
+  "id": "chimera-tongue",
+  "name": "Chimera Tongue",
+  "bonuses": [
+   {
+    "bonus": 8,
+    "effect": "create fire"
+   }
+  ]
+ },
+ {
+  "id": "cinnabar",
+  "name": "Cinnabar",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "long life"
+   },
+   {
+    "bonus": 4,
+    "effect": "wealth"
+   },
+   {
+    "bonus": 4,
+    "effect": "language"
+   },
+   {
+    "bonus": 5,
+    "effect": "dragons"
+   }
+  ]
+ },
+ {
+  "id": "cinnamon",
+  "name": "Cinnamon",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "destroying ghosts"
+   },
+   {
+    "bonus": 4,
+    "effect": "Imaginem"
+   }
+  ]
+ },
+ {
+  "id": "cinquefoil",
+  "name": "Cinquefoil",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "making amends"
+   },
+   {
+    "bonus": 3,
+    "effect": "drive away demons"
+   },
+   {
+    "bonus": 4,
+    "effect": "resist poison"
+   }
+  ]
+ },
+ {
+  "id": "clam-shell",
+  "name": "Clam Shell",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "protection"
+   }
+  ]
+ },
+ {
+  "id": "cleaver",
+  "name": "Cleaver",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "butchery"
+   },
+   {
+    "bonus": 3,
+    "effect": "Perdo Animal"
+   }
+  ]
+ },
+ {
+  "id": "clear-glass",
+  "name": "Clear Glass",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "invisibility"
+   },
+   {
+    "bonus": 5,
+    "effect": "seeing through something"
+   }
+  ]
+ },
+ {
+  "id": "cloak",
+  "name": "Cloak",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "flight"
+   },
+   {
+    "bonus": 4,
+    "effect": "transform wearer"
+   },
+   {
+    "bonus": 5,
+    "effect": "alter/suppress wearer's image"
+   }
+  ]
+ },
+ {
+  "id": "cloth-shears",
+  "name": "Cloth Shears",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "shaping fabrics"
+   }
+  ]
+ },
+ {
+  "id": "coin",
+  "name": "Coin",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "induce greed"
+   },
+   {
+    "bonus": 4,
+    "effect": "wealth and mercantile"
+   }
+  ]
+ },
+ {
+  "id": "collar",
+  "name": "Collar",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "control wearer"
+   }
+  ]
+ },
+ {
+  "id": "comb",
+  "name": "Comb",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "beauty"
+   },
+   {
+    "bonus": 7,
+    "effect": "affect hair"
+   }
+  ]
+ },
+ {
+  "id": "container",
+  "name": "Container",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "create or transform within"
+   }
+  ]
+ },
+ {
+  "id": "copper",
+  "name": "Copper",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "passion"
+   },
+   {
+    "bonus": 2,
+    "effect": "sex magic"
+   },
+   {
+    "bonus": 3,
+    "effect": "bloodshed"
+   },
+   {
+    "bonus": 4,
+    "effect": "effects that change its own shape"
+   },
+   {
+    "bonus": 4,
+    "effect": "deftness"
+   }
+  ]
+ },
+ {
+  "id": "coral-red",
+  "name": "Coral, Red",
+  "bonuses": [
+   {
+    "bonus": 10,
+    "effect": "versus demons"
+   }
+  ]
+ },
+ {
+  "id": "cross",
+  "name": "Cross",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "ward away supernatural"
+   },
+   {
+    "bonus": 5,
+    "effect": "cause damage to Infernal creatures"
+   },
+   {
+    "bonus": 5,
+    "effect": "banish demons"
+   }
+  ]
+ },
+ {
+  "id": "crowbar",
+  "name": "Crowbar",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "moving stone"
+   }
+  ]
+ },
+ {
+  "id": "crown",
+  "name": "Crown",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "wisdom"
+   },
+   {
+    "bonus": 3,
+    "effect": "control people"
+   },
+   {
+    "bonus": 5,
+    "effect": "gain respect, authority"
+   }
+  ]
+ },
+ {
+  "id": "crystal",
+  "name": "Crystal",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "water-related effect"
+   }
+  ]
+ },
+ {
+  "id": "cypress-wood",
+  "name": "Cypress Wood",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "spirits"
+   },
+   {
+    "bonus": 3,
+    "effect": "necromancy"
+   }
+  ]
+ },
+ {
+  "id": "dagger-knife",
+  "name": "Dagger/ Knife",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "precise destruction"
+   },
+   {
+    "bonus": 3,
+    "effect": "betrayal, assassination"
+   },
+   {
+    "bonus": 3,
+    "effect": "poisoning"
+   }
+  ]
+ },
+ {
+  "id": "diamond",
+  "name": "Diamond",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "versus demons"
+   }
+  ]
+ },
+ {
+  "id": "dividers",
+  "name": "Dividers",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "measuring"
+   }
+  ]
+ },
+ {
+  "id": "dogwood",
+  "name": "Dogwood",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "pixies"
+   }
+  ]
+ },
+ {
+  "id": "door",
+  "name": "Door",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "warding"
+   }
+  ]
+ },
+ {
+  "id": "doorway",
+  "name": "Doorway",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "magical transportation"
+   },
+   {
+    "bonus": 7,
+    "effect": "affect movement through"
+   },
+   {
+    "bonus": 7,
+    "effect": "magical gates and portals"
+   }
+  ]
+ },
+ {
+  "id": "doum-palm-leaf",
+  "name": "Doum Palm Leaf",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "controlling instincts and base emotions"
+   }
+  ]
+ },
+ {
+  "id": "down",
+  "name": "Down",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "silence"
+   }
+  ]
+ },
+ {
+  "id": "dragon-eye",
+  "name": "Dragon Eye",
+  "bonuses": [
+   {
+    "bonus": 8,
+    "effect": "protection against ghosts"
+   }
+  ]
+ },
+ {
+  "id": "dragon-heart",
+  "name": "Dragon Heart",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "Intellego"
+   }
+  ]
+ },
+ {
+  "id": "dragon-teeth",
+  "name": "Dragon Teeth",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "invisibility"
+   }
+  ]
+ },
+ {
+  "id": "drum",
+  "name": "Drum",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "cause fear"
+   },
+   {
+    "bonus": 3,
+    "effect": "create storms and thunder"
+   },
+   {
+    "bonus": 5,
+    "effect": "deafening"
+   }
+  ]
+ },
+ {
+  "id": "earring",
+  "name": "Earring",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "affect hearing"
+   }
+  ]
+ },
+ {
+  "id": "elder-wood",
+  "name": "Elder Wood",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "Vim"
+   },
+   {
+    "bonus": 4,
+    "effect": "malicious magic"
+   }
+  ]
+ },
+ {
+  "id": "electrum",
+  "name": "Electrum",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "scrying"
+   },
+   {
+    "bonus": 3,
+    "effect": "deception"
+   },
+   {
+    "bonus": 4,
+    "effect": "Muto Terram"
+   }
+  ]
+ },
+ {
+  "id": "elm-wood",
+  "name": "Elm Wood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "death and decay"
+   }
+  ]
+ },
+ {
+  "id": "emerald",
+  "name": "Emerald",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "incite love or passion"
+   },
+   {
+    "bonus": 7,
+    "effect": "snakes and dragonkind"
+   },
+   {
+    "bonus": 2,
+    "effect": "calm"
+   }
+  ]
+ },
+ {
+  "id": "fan",
+  "name": "Fan",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "banish weather phenomena"
+   },
+   {
+    "bonus": 4,
+    "effect": "create or control winds"
+   }
+  ]
+ },
+ {
+  "id": "fig-wood",
+  "name": "Fig Wood",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "sex magic"
+   },
+   {
+    "bonus": 3,
+    "effect": "gambling"
+   }
+  ]
+ },
+ {
+  "id": "fir-wood",
+  "name": "Fir Wood",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "darkness"
+   },
+   {
+    "bonus": 1,
+    "effect": "malicious faeries"
+   }
+  ]
+ },
+ {
+  "id": "fired-clay",
+  "name": "Fired Clay",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "contain or protect from fire"
+   }
+  ]
+ },
+ {
+  "id": "flail",
+  "name": "Flail",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "harvesting grain"
+   }
+  ]
+ },
+ {
+  "id": "floor",
+  "name": "Floor",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "affect movement across"
+   }
+  ]
+ },
+ {
+  "id": "frankincense",
+  "name": "Frankincense",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "Perdo Vim"
+   },
+   {
+    "bonus": 3,
+    "effect": "dreams"
+   },
+   {
+    "bonus": 4,
+    "effect": "cleanse a place of Infernal influence"
+   }
+  ]
+ },
+ {
+  "id": "garnet",
+  "name": "Garnet",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "navigation"
+   },
+   {
+    "bonus": 2,
+    "effect": "strengthen body and mind"
+   },
+   {
+    "bonus": 2,
+    "effect": "vigor"
+   },
+   {
+    "bonus": 3,
+    "effect": "bonds of commitment"
+   },
+   {
+    "bonus": 4,
+    "effect": "repel insects"
+   }
+  ]
+ },
+ {
+  "id": "glove",
+  "name": "Glove",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "affect things by touch"
+   },
+   {
+    "bonus": 4,
+    "effect": "manipulation at a distance"
+   }
+  ]
+ },
+ {
+  "id": "gold",
+  "name": "Gold",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "health"
+   },
+   {
+    "bonus": 4,
+    "effect": "induce greed"
+   },
+   {
+    "bonus": 4,
+    "effect": "nobility"
+   },
+   {
+    "bonus": 4,
+    "effect": "peace"
+   },
+   {
+    "bonus": 4,
+    "effect": "affect wealth"
+   }
+  ]
+ },
+ {
+  "id": "granite",
+  "name": "Granite",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "wealth"
+   },
+   {
+    "bonus": 3,
+    "effect": "Terram"
+   }
+  ]
+ },
+ {
+  "id": "green-turquoise",
+  "name": "Green Turquoise",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "necromancy"
+   }
+  ]
+ },
+ {
+  "id": "griffin-feather",
+  "name": "Griffin Feather",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "strength"
+   },
+   {
+    "bonus": 6,
+    "effect": "flying"
+   }
+  ]
+ },
+ {
+  "id": "hall",
+  "name": "Hall",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "magical transportation"
+   },
+   {
+    "bonus": 6,
+    "effect": "affect movement through"
+   }
+  ]
+ },
+ {
+  "id": "handsaw",
+  "name": "Handsaw",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "delicately shape wood"
+   }
+  ]
+ },
+ {
+  "id": "hat",
+  "name": "Hat",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "affect image of self"
+   }
+  ]
+ },
+ {
+  "id": "hatchet",
+  "name": "Hatchet",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "destroy wood"
+   }
+  ]
+ },
+ {
+  "id": "hawthorn-wood",
+  "name": "Hawthorn Wood",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "wards"
+   }
+  ]
+ },
+ {
+  "id": "hazel-wood",
+  "name": "Hazel Wood",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "good judgement"
+   },
+   {
+    "bonus": 3,
+    "effect": "divination"
+   }
+  ]
+ },
+ {
+  "id": "hearth",
+  "name": "Hearth",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "destroy things within"
+   },
+   {
+    "bonus": 7,
+    "effect": "create fire and heat"
+   }
+  ]
+ },
+ {
+  "id": "helmet",
+  "name": "Helmet",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "affect wearer's mind/emotions"
+   },
+   {
+    "bonus": 6,
+    "effect": "affect wearer's sight"
+   }
+  ]
+ },
+ {
+  "id": "hippogriff-liver",
+  "name": "Hippogriff Liver",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "freedom from restraints"
+   },
+   {
+    "bonus": 6,
+    "effect": "flying"
+   }
+  ]
+ },
+ {
+  "id": "holly-wood",
+  "name": "Holly Wood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "inflict wounds"
+   },
+   {
+    "bonus": 2,
+    "effect": "inflict pain"
+   }
+  ]
+ },
+ {
+  "id": "hornbeam-wood",
+  "name": "Hornbeam Wood",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "strength"
+   },
+   {
+    "bonus": 6,
+    "effect": "Vim against hostile magic"
+   }
+  ]
+ },
+ {
+  "id": "horseshoe",
+  "name": "Horseshoe",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "warding"
+   },
+   {
+    "bonus": 6,
+    "effect": "affect horse's movement"
+   }
+  ]
+ },
+ {
+  "id": "hourglass",
+  "name": "Hourglass",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "increasing speed"
+   },
+   {
+    "bonus": 7,
+    "effect": "timing and alarms"
+   }
+  ]
+ },
+ {
+  "id": "human-bone",
+  "name": "Human Bone",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "destroy the human mind"
+   },
+   {
+    "bonus": 4,
+    "effect": "destroy the human body"
+   }
+  ]
+ },
+ {
+  "id": "human-skull",
+  "name": "Human Skull",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "destroy human body"
+   },
+   {
+    "bonus": 5,
+    "effect": "destroy human mind"
+   },
+   {
+    "bonus": 5,
+    "effect": "destroy or control ghosts"
+   },
+   {
+    "bonus": 10,
+    "effect": "destroy or control ghost of particular skull"
+   }
+  ]
+ },
+ {
+  "id": "hyacinth",
+  "name": "Hyacinth",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "healing"
+   }
+  ]
+ },
+ {
+  "id": "hydra-teeth",
+  "name": "Hydra Teeth",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "Creo"
+   },
+   {
+    "bonus": 8,
+    "effect": "regeneration"
+   }
+  ]
+ },
+ {
+  "id": "ink-of-hermes",
+  "name": "Ink of Hermes",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "Vim"
+   },
+   {
+    "bonus": 5,
+    "effect": "books"
+   }
+  ]
+ },
+ {
+  "id": "iron",
+  "name": "Iron",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "harm or repel faeries"
+   }
+  ]
+ },
+ {
+  "id": "iron-shackles",
+  "name": "Iron Shackles",
+  "bonuses": [
+   {
+    "bonus": 8,
+    "effect": "bind faeries"
+   }
+  ]
+ },
+ {
+  "id": "ivory",
+  "name": "Ivory",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "healing"
+   }
+  ]
+ },
+ {
+  "id": "jade",
+  "name": "Jade",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "Aquam"
+   }
+  ]
+ },
+ {
+  "id": "jasper",
+  "name": "Jasper",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "healing"
+   },
+   {
+    "bonus": 2,
+    "effect": "versus demons"
+   }
+  ]
+ },
+ {
+  "id": "jet",
+  "name": "Jet",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "protection"
+   },
+   {
+    "bonus": 3,
+    "effect": "darkness"
+   }
+  ]
+ },
+ {
+  "id": "jewelry-clothing",
+  "name": "Jewelry/Clothing",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "move self"
+   },
+   {
+    "bonus": 4,
+    "effect": "protect self"
+   },
+   {
+    "bonus": 4,
+    "effect": "transform self"
+   }
+  ]
+ },
+ {
+  "id": "lamp",
+  "name": "Lamp",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "create fire"
+   },
+   {
+    "bonus": 7,
+    "effect": "produce light"
+   }
+  ]
+ },
+ {
+  "id": "linden-wood",
+  "name": "Linden Wood",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "good fortune"
+   },
+   {
+    "bonus": 2,
+    "effect": "protection against weapons"
+   }
+  ]
+ },
+ {
+  "id": "lead",
+  "name": "Lead",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "summoning or binding ghosts and spirits"
+   },
+   {
+    "bonus": 3,
+    "effect": "hatred"
+   },
+   {
+    "bonus": 4,
+    "effect": "wards"
+   }
+  ]
+ },
+ {
+  "id": "lemon-wood",
+  "name": "Lemon Wood",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "hearing"
+   }
+  ]
+ },
+ {
+  "id": "leucrota-tongue",
+  "name": "Leucrota Tongue",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "mimic human voices"
+   }
+  ]
+ },
+ {
+  "id": "lilac-wood",
+  "name": "Lilac Wood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "travel"
+   }
+  ]
+ },
+ {
+  "id": "lions-blood",
+  "name": "Lion’s Blood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "leadership"
+   },
+   {
+    "bonus": 3,
+    "effect": "courage"
+   },
+   {
+    "bonus": 4,
+    "effect": "protection from wild beasts"
+   }
+  ]
+ },
+ {
+  "id": "lions-mane",
+  "name": "Lion's Mane",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "strength, courage, pride"
+   }
+  ]
+ },
+ {
+  "id": "lyre",
+  "name": "Lyre",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "create sounds"
+   },
+   {
+    "bonus": 5,
+    "effect": "affect music"
+   }
+  ]
+ },
+ {
+  "id": "magnes-stone-female",
+  "name": "Magnes Stone (Female)",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "invisibility"
+   },
+   {
+    "bonus": 3,
+    "effect": "purification"
+   }
+  ]
+ },
+ {
+  "id": "magnes-stone-male",
+  "name": "Magnes Stone (Male)",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "divination"
+   },
+   {
+    "bonus": 7,
+    "effect": "control iron"
+   }
+  ]
+ },
+ {
+  "id": "magnet",
+  "name": "Magnet",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "Rego"
+   },
+   {
+    "bonus": 4,
+    "effect": "Rego Corpus"
+   },
+   {
+    "bonus": 4,
+    "effect": "Rego Terram"
+   }
+  ]
+ },
+ {
+  "id": "magnetite",
+  "name": "Magnetite",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "Animal"
+   }
+  ]
+ },
+ {
+  "id": "mallet",
+  "name": "Mallet",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "precision"
+   }
+  ]
+ },
+ {
+  "id": "manacles",
+  "name": "Manacles",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "binding"
+   }
+  ]
+ },
+ {
+  "id": "marble",
+  "name": "Marble",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "cold"
+   },
+   {
+    "bonus": 3,
+    "effect": "beauty"
+   },
+   {
+    "bonus": 5,
+    "effect": "wards"
+   }
+  ]
+ },
+ {
+  "id": "mask",
+  "name": "Mask",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "affect wearer's sight"
+   },
+   {
+    "bonus": 2,
+    "effect": "affect wearer’s breathing"
+   },
+   {
+    "bonus": 3,
+    "effect": "hiding"
+   },
+   {
+    "bonus": 7,
+    "effect": "disguise"
+   }
+  ]
+ },
+ {
+  "id": "mason-chisel",
+  "name": "Mason Chisel",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "shape stone"
+   }
+  ]
+ },
+ {
+  "id": "mast",
+  "name": "Mast",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "protection from temptation"
+   }
+  ]
+ },
+ {
+  "id": "mercury",
+  "name": "Mercury",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "arts and sciences"
+   },
+   {
+    "bonus": 3,
+    "effect": "Aquam"
+   },
+   {
+    "bonus": 3,
+    "effect": "Terram"
+   },
+   {
+    "bonus": 5,
+    "effect": "Muto"
+   }
+  ]
+ },
+ {
+  "id": "mirror",
+  "name": "Mirror",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "summon or bind ghosts"
+   },
+   {
+    "bonus": 5,
+    "effect": "see the truth"
+   },
+   {
+    "bonus": 6,
+    "effect": "display images"
+   },
+   {
+    "bonus": 7,
+    "effect": "illusions"
+   }
+  ]
+ },
+ {
+  "id": "myrmecoleon-exoskeleton",
+  "name": "Myrmecoleon Exoskeleton",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "deprivation and starvation"
+   }
+  ]
+ },
+ {
+  "id": "myrrh",
+  "name": "Myrrh",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "spirits"
+   }
+  ]
+ },
+ {
+  "id": "necklace",
+  "name": "Necklace",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "affect breathing and speaking"
+   }
+  ]
+ },
+ {
+  "id": "net",
+  "name": "Net",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "immobilization"
+   }
+  ]
+ },
+ {
+  "id": "oak-wood",
+  "name": "Oak Wood",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "protection from storms"
+   }
+  ]
+ },
+ {
+  "id": "oar",
+  "name": "Oar",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "affect currents"
+   }
+  ]
+ },
+ {
+  "id": "obsidian",
+  "name": "Obsidian",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "darkness"
+   }
+  ]
+ },
+ {
+  "id": "onyx",
+  "name": "Onyx",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "darkness"
+   },
+   {
+    "bonus": 4,
+    "effect": "death"
+   }
+  ]
+ },
+ {
+  "id": "opal",
+  "name": "Opal",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "images"
+   },
+   {
+    "bonus": 2,
+    "effect": "imagination"
+   },
+   {
+    "bonus": 2,
+    "effect": "invisibility"
+   },
+   {
+    "bonus": 4,
+    "effect": "travel"
+   },
+   {
+    "bonus": 4,
+    "effect": "memory"
+   },
+   {
+    "bonus": 6,
+    "effect": "eyes"
+   }
+  ]
+ },
+ {
+  "id": "orange-tree-wood",
+  "name": "Orange Tree Wood",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "sight"
+   }
+  ]
+ },
+ {
+  "id": "palm-wood",
+  "name": "Palm Wood",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "animating wood"
+   }
+  ]
+ },
+ {
+  "id": "panpipes",
+  "name": "Panpipes",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "affect emotions"
+   },
+   {
+    "bonus": 5,
+    "effect": "control children"
+   },
+   {
+    "bonus": 5,
+    "effect": "revelry"
+   },
+   {
+    "bonus": 6,
+    "effect": "affect faerie emotion"
+   }
+  ]
+ },
+ {
+  "id": "panther-of-virtues-hide",
+  "name": "Panther of Virtue’s Hide",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "song and melodious sounds"
+   }
+  ]
+ },
+ {
+  "id": "pearl",
+  "name": "Pearl",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "detect or eliminate poisons"
+   }
+  ]
+ },
+ {
+  "id": "pelican-of-virtues-beak",
+  "name": "Pelican of Virtue’s Beak",
+  "bonuses": [
+   {
+    "bonus": 8,
+    "effect": "healing and nurturing"
+   }
+  ]
+ },
+ {
+  "id": "pepper",
+  "name": "Pepper",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "Perdo"
+   }
+  ]
+ },
+ {
+  "id": "peridot",
+  "name": "Peridot",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "protection against nightmares"
+   }
+  ]
+ },
+ {
+  "id": "phoenix-ashes",
+  "name": "Phoenix Ashes",
+  "bonuses": [
+   {
+    "bonus": 11,
+    "effect": "rejuvenation and regeneration"
+   }
+  ]
+ },
+ {
+  "id": "phylactery",
+  "name": "Phylactery",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "protect wearer"
+   }
+  ]
+ },
+ {
+  "id": "pick",
+  "name": "Pick",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "destroy stone"
+   }
+  ]
+ },
+ {
+  "id": "pin-feather",
+  "name": "Pin Feather",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "Auram"
+   },
+   {
+    "bonus": 5,
+    "effect": "flight"
+   }
+  ]
+ },
+ {
+  "id": "pine-wood",
+  "name": "Pine Wood",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "friendly faeries"
+   },
+   {
+    "bonus": 3,
+    "effect": "light"
+   }
+  ]
+ },
+ {
+  "id": "pitchfork",
+  "name": "Pitchfork",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "gathering reaped grain"
+   }
+  ]
+ },
+ {
+  "id": "plum-wood",
+  "name": "Plum Wood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "blood"
+   }
+  ]
+ },
+ {
+  "id": "pure-honey",
+  "name": "Pure Honey",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "preservation"
+   },
+   {
+    "bonus": 5,
+    "effect": "spiritual travel"
+   }
+  ]
+ },
+ {
+  "id": "quartz",
+  "name": "Quartz",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "invisibility"
+   }
+  ]
+ },
+ {
+  "id": "quill",
+  "name": "Quill",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "scribing"
+   }
+  ]
+ },
+ {
+  "id": "rat-skull",
+  "name": "Rat Skull",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "cause disease"
+   }
+  ]
+ },
+ {
+  "id": "red-gold",
+  "name": "Red Gold",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "Perdo"
+   },
+   {
+    "bonus": 4,
+    "effect": "war"
+   }
+  ]
+ },
+ {
+  "id": "remora-of-virtues-fins",
+  "name": "Remora of Virtue’s Fins",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "slow or halt a moving object"
+   }
+  ]
+ },
+ {
+  "id": "rhodocrosite",
+  "name": "Rhodocrosite",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "memories"
+   },
+   {
+    "bonus": 3,
+    "effect": "forgetfulness"
+   },
+   {
+    "bonus": 3,
+    "effect": "binding wounds"
+   }
+  ]
+ },
+ {
+  "id": "ring",
+  "name": "Ring",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "constant effect"
+   }
+  ]
+ },
+ {
+  "id": "rock-crystal",
+  "name": "Rock Crystal",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "healing"
+   },
+   {
+    "bonus": 3,
+    "effect": "ice"
+   },
+   {
+    "bonus": 4,
+    "effect": "clarity"
+   },
+   {
+    "bonus": 5,
+    "effect": "clairvoyance"
+   }
+  ]
+ },
+ {
+  "id": "room",
+  "name": "Room",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "create things within"
+   },
+   {
+    "bonus": 6,
+    "effect": "affect everything within at once"
+   }
+  ]
+ },
+ {
+  "id": "rope-or-cord",
+  "name": "Rope or Cord",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "strangulation"
+   },
+   {
+    "bonus": 4,
+    "effect": "restraint or binding"
+   }
+  ]
+ },
+ {
+  "id": "rowan-wood",
+  "name": "Rowan Wood",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "Vim"
+   },
+   {
+    "bonus": 4,
+    "effect": "protection against malicious magic"
+   }
+  ]
+ },
+ {
+  "id": "ruby",
+  "name": "Ruby",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "courage"
+   },
+   {
+    "bonus": 3,
+    "effect": "battle wounds"
+   },
+   {
+    "bonus": 3,
+    "effect": "affect blood"
+   },
+   {
+    "bonus": 4,
+    "effect": "leadership in war"
+   },
+   {
+    "bonus": 6,
+    "effect": "fire-related effect"
+   }
+  ]
+ },
+ {
+  "id": "rug",
+  "name": "Rug",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "affect those upon it"
+   }
+  ]
+ },
+ {
+  "id": "saddle",
+  "name": "Saddle",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "affect horse"
+   },
+   {
+    "bonus": 7,
+    "effect": "affect riding"
+   }
+  ]
+ },
+ {
+  "id": "saffron",
+  "name": "Saffron",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "physical strength"
+   }
+  ]
+ },
+ {
+  "id": "salamander-of-virtues-skin",
+  "name": "Salamander of Virtue’s Skin",
+  "bonuses": [
+   {
+    "bonus": 8,
+    "effect": "extinguish fire"
+   }
+  ]
+ },
+ {
+  "id": "sapphire",
+  "name": "Sapphire",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "knowledge"
+   },
+   {
+    "bonus": 2,
+    "effect": "versus malign Corpus"
+   },
+   {
+    "bonus": 2,
+    "effect": "Perdo Vim against spirits"
+   },
+   {
+    "bonus": 3,
+    "effect": "healing"
+   },
+   {
+    "bonus": 3,
+    "effect": "reducing anger"
+   }
+  ]
+ },
+ {
+  "id": "sardonyx",
+  "name": "Sardonyx",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "versus malign Corpus"
+   }
+  ]
+ },
+ {
+  "id": "scales",
+  "name": "Scales",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "weighing goods and money"
+   }
+  ]
+ },
+ {
+  "id": "scythe",
+  "name": "Scythe",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "reaping"
+   },
+   {
+    "bonus": 3,
+    "effect": "Year-Duration effects"
+   },
+   {
+    "bonus": 4,
+    "effect": "effects expressly causing death"
+   }
+  ]
+ },
+ {
+  "id": "sea-shell",
+  "name": "Sea Shell",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "the sea"
+   },
+   {
+    "bonus": 3,
+    "effect": "sea creatures"
+   }
+  ]
+ },
+ {
+  "id": "serpentine",
+  "name": "Serpentine",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "vs. infection and animal poison"
+   }
+  ]
+ },
+ {
+  "id": "shackles",
+  "name": "Shackles",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "restraint or magical binding"
+   }
+  ]
+ },
+ {
+  "id": "sharp-blade",
+  "name": "Sharp Blade",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "shape leather"
+   }
+  ]
+ },
+ {
+  "id": "shearing-shears",
+  "name": "Shearing Shears",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "fleecing"
+   }
+  ]
+ },
+ {
+  "id": "shield",
+  "name": "Shield",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "protection"
+   }
+  ]
+ },
+ {
+  "id": "ship",
+  "name": "Ship",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "sailing"
+   }
+  ]
+ },
+ {
+  "id": "ship-sail",
+  "name": "Ship Sail",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "affect winds"
+   }
+  ]
+ },
+ {
+  "id": "siberian-six-legged-antelope-hoof",
+  "name": "Siberian Six-Legged Antelope Hoof",
+  "bonuses": [
+   {
+    "bonus": 6,
+    "effect": "speed and quickness"
+   }
+  ]
+ },
+ {
+  "id": "sickle",
+  "name": "Sickle",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "harvesting"
+   }
+  ]
+ },
+ {
+  "id": "silver",
+  "name": "Silver",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "Terram"
+   },
+   {
+    "bonus": 2,
+    "effect": "Intellego"
+   },
+   {
+    "bonus": 3,
+    "effect": "protect spirits"
+   },
+   {
+    "bonus": 5,
+    "effect": "lycanthropes in general"
+   },
+   {
+    "bonus": 10,
+    "effect": "harm lycanthropes"
+   }
+  ]
+ },
+ {
+  "id": "small-hammer",
+  "name": "Small Hammer",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "building"
+   }
+  ]
+ },
+ {
+  "id": "snake-tongue",
+  "name": "Snake Tongue",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "deception"
+   },
+   {
+    "bonus": 6,
+    "effect": "lying"
+   }
+  ]
+ },
+ {
+  "id": "snip",
+  "name": "Snip",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "shape metal"
+   }
+  ]
+ },
+ {
+  "id": "spade",
+  "name": "Spade",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "move or destroy earth"
+   }
+  ]
+ },
+ {
+  "id": "star-ruby",
+  "name": "Star Ruby",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "conjure/control occult entities"
+   }
+  ]
+ },
+ {
+  "id": "sulfur",
+  "name": "Sulfur",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "sowing discord"
+   },
+   {
+    "bonus": 2,
+    "effect": "preserving or decaying"
+   },
+   {
+    "bonus": 3,
+    "effect": "binding tongues"
+   },
+   {
+    "bonus": 4,
+    "effect": "demons"
+   }
+  ]
+ },
+ {
+  "id": "sun-scarab",
+  "name": "Sun Scarab",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "detect magic"
+   }
+  ]
+ },
+ {
+  "id": "sword",
+  "name": "Sword",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "block single attack"
+   },
+   {
+    "bonus": 4,
+    "effect": "harm human and animal bodies"
+   }
+  ]
+ },
+ {
+  "id": "tablet",
+  "name": "Tablet",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "command spirits"
+   }
+  ]
+ },
+ {
+  "id": "tin",
+  "name": "Tin",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "law"
+   },
+   {
+    "bonus": 3,
+    "effect": "weakness"
+   }
+  ]
+ },
+ {
+  "id": "tongs",
+  "name": "Tongs",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "controlling metal"
+   }
+  ]
+ },
+ {
+  "id": "topaz",
+  "name": "Topaz",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "leadership"
+   },
+   {
+    "bonus": 4,
+    "effect": "strength, courage, pride"
+   },
+   {
+    "bonus": 5,
+    "effect": "controlling wild beast"
+   }
+  ]
+ },
+ {
+  "id": "toy",
+  "name": "Toy",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "control children"
+   }
+  ]
+ },
+ {
+  "id": "trowel",
+  "name": "Trowel",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "building"
+   }
+  ]
+ },
+ {
+  "id": "true-purple",
+  "name": "True Purple",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "control people"
+   },
+   {
+    "bonus": 7,
+    "effect": "rulership and authority"
+   },
+   {
+    "bonus": 10,
+    "effect": "royalty"
+   }
+  ]
+ },
+ {
+  "id": "turquoise",
+  "name": "Turquoise",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "necromancy"
+   }
+  ]
+ },
+ {
+  "id": "unicorn-horn",
+  "name": "Unicorn Horn",
+  "bonuses": [
+   {
+    "bonus": 8,
+    "effect": "healing"
+   },
+   {
+    "bonus": 10,
+    "effect": "detect poison"
+   },
+   {
+    "bonus": 11,
+    "effect": "fertility"
+   }
+  ]
+ },
+ {
+  "id": "vent",
+  "name": "Vent",
+  "bonuses": [
+   {
+    "bonus": 7,
+    "effect": "affect air passing through it"
+   }
+  ]
+ },
+ {
+  "id": "violet-amethyst",
+  "name": "Violet Amethyst",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "ascendancy over masses"
+   },
+   {
+    "bonus": 7,
+    "effect": "versus drunkenness"
+   }
+  ]
+ },
+ {
+  "id": "walnut-wood",
+  "name": "Walnut Wood",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "mind"
+   }
+  ]
+ },
+ {
+  "id": "wand-staff",
+  "name": "Wand/Staff",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "repel things"
+   },
+   {
+    "bonus": 3,
+    "effect": "project bolt or other missile"
+   },
+   {
+    "bonus": 4,
+    "effect": "control things at a distance"
+   },
+   {
+    "bonus": 4,
+    "effect": "destroy things at a distance"
+   }
+  ]
+ },
+ {
+  "id": "waterskin",
+  "name": "Waterskin",
+  "bonuses": [
+   {
+    "bonus": 5,
+    "effect": "create liquid within"
+   }
+  ]
+ },
+ {
+  "id": "whip",
+  "name": "Whip",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "control human or animal body"
+   },
+   {
+    "bonus": 5,
+    "effect": "induce fear in animals"
+   }
+  ]
+ },
+ {
+  "id": "white-poplar-wood",
+  "name": "White Poplar Wood",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "mind"
+   }
+  ]
+ },
+ {
+  "id": "willow-wood",
+  "name": "Willow Wood",
+  "bonuses": [
+   {
+    "bonus": 1,
+    "effect": "cure wounds"
+   },
+   {
+    "bonus": 4,
+    "effect": "restore limb"
+   }
+  ]
+ },
+ {
+  "id": "wood-dead",
+  "name": "Wood (Dead)",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "affect living wood"
+   },
+   {
+    "bonus": 4,
+    "effect": "affect dead wood"
+   }
+  ]
+ },
+ {
+  "id": "wood-from-a-tree-struck-by-lightning",
+  "name": "Wood from a Tree Struck by Lightning",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "Auram"
+   }
+  ]
+ },
+ {
+  "id": "wood-from-a-twisted-tree-in-a-field",
+  "name": "Wood from a Twisted Tree in a Field",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "disfigure"
+   }
+  ]
+ },
+ {
+  "id": "yellow-sandalwood",
+  "name": "Yellow Sandalwood",
+  "bonuses": [
+   {
+    "bonus": 3,
+    "effect": "binding people"
+   }
+  ]
+ },
+ {
+  "id": "yew-wood",
+  "name": "Yew Wood",
+  "bonuses": [
+   {
+    "bonus": 2,
+    "effect": "corpses"
+   },
+   {
+    "bonus": 2,
+    "effect": "visions"
+   }
+  ]
+ },
+ {
+  "id": "yoke",
+  "name": "Yoke",
+  "bonuses": [
+   {
+    "bonus": 4,
+    "effect": "control wearer"
+   },
+   {
+    "bonus": 5,
+    "effect": "enhance strength of wearer"
+   }
+  ]
+ }
+]

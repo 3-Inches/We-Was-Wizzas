@@ -1,0 +1,3548 @@
+[
+ {
+  "id": "greater-feature",
+  "name": "Greater Feature",
+  "kind": "virtue",
+  "size": "Major",
+  "group": "Structure",
+  "repeatable": true,
+  "text": "The lab prominently features a unique and extensive structure which aids certain types of lab work — see the list of possible Features later (page 296).",
+  "modText": "+2 Aesthetics; 3 points on appropriate Specialization(s).",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 2
+   },
+   "specializations": {},
+   "choicePoints": 3,
+   "choice": "appropriate Specialization(s)"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11783,
+   "anchor": "greater-feature"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5874,
+    "anchor": "greater-feature"
+   }
+  ]
+ },
+ {
+  "id": "natural-environment",
+  "name": "Natural Environment",
+  "kind": "virtue",
+  "size": "Major",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "A swathe of natural scenery, such as forest, desert, or a river, is located in the lab, or the lab is built in or around it.",
+  "modText": "+2 Aesthetics; 3 points among Specializations in Cr, An, Aq, Au, He, Ig, or Te, depending upon terrain type.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 2
+   },
+   "specializations": {},
+   "choicePoints": 3,
+   "choice": "Specializations in Cr, An, Aq, Au, He, Ig, or Te, depending upon terrain type"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11785,
+   "anchor": "natural-environment"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5876,
+    "anchor": "natural-environment"
+   }
+  ]
+ },
+ {
+  "id": "extensive-stores",
+  "name": "Extensive Stores",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab's large stores mean that it can withstand shortages better. In the case of a lack of funds, the lab can last six seasons before you have to take a Flaw to lower the Upkeep, instead of the usual two. However you need to make a one-off payment of a number of pounds equal to the lab's yearly maintenance cost, to stock up the stores in the first place. Vis and dangerous materials can also be stored more safely.",
+  "modText": "+2 Safety.",
+  "mods": {
+   "characteristics": {
+    "Safety": 2
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11789,
+   "anchor": "extensive-stores"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5882,
+    "anchor": "extensive-stores"
+   }
+  ]
+ },
+ {
+  "id": "gallery",
+  "name": "Gallery",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is fitted with an interior gallery or platform, designed to allow someone to view the whole of the lab without disturbing it.",
+  "modText": "+1 Safety, +1 Aesthetics; +1 Teaching.",
+  "mods": {
+   "characteristics": {
+    "Safety": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Teaching": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11791,
+   "anchor": "gallery"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5884,
+    "anchor": "gallery"
+   }
+  ]
+ },
+ {
+  "id": "lesser-feature",
+  "name": "Lesser Feature",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": true,
+  "text": "The lab features a unique structure which aids certain types of lab work — see the list of possible Features later (page 296).",
+  "modText": "+1 Aesthetics; 1 point on an appropriate Specialization.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "an appropriate Specialization"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11793,
+   "anchor": "lesser-feature"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5886,
+    "anchor": "lesser-feature"
+   }
+  ]
+ },
+ {
+  "id": "dedicated-building",
+  "name": "Dedicated Building",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab (and probably the living quarters of the owner) is in its own building, shared with no-one else. There are likely to be fewer distractions.",
+  "modText": "+1 Upkeep, +1 Aesthetics; +1 Re.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Re": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11797,
+   "anchor": "dedicated-building"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5906,
+    "anchor": "dedicated-building"
+   }
+  ]
+ },
+ {
+  "id": "mobile",
+  "name": "Mobile",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The entire lab can be readily moved. For example, it might be located on a ship or (if it is very small) a cart. This Virtue is usually taken with the Unstable Flaw.",
+  "modText": "+1 Experimentation.",
+  "mods": {
+   "characteristics": {},
+   "specializations": {
+    "Experimentation": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11799,
+   "anchor": "mobile"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5916,
+    "anchor": "mobile"
+   }
+  ]
+ },
+ {
+  "id": "superior-construction",
+  "name": "Superior Construction",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab benefits from distinguished construction techniques, for example, high quality building materials were used, or it was made by a master architect or a magus (such as with the spell *Conjuring the Mystic Tower*). If constructing the building, its cost is doubled.",
+  "modText": "+1 Safety, +1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Safety": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11801,
+   "anchor": "superior-construction"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5920,
+    "anchor": "superior-construction"
+   }
+  ]
+ },
+ {
+  "id": "deformed-flaw",
+  "name": "Deformed",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "Part of the structure has subsided or is otherwise warped. For example, one wall has partially collapsed into rubble, and has to be propped up.",
+  "modText": "–1 Safety, –1 Aesthetics; +1 Mu or Pe.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "Mu or Pe"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11805,
+   "anchor": "deformed"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5926,
+    "anchor": "deformed"
+   }
+  ]
+ },
+ {
+  "id": "empty-flaw",
+  "name": "Empty",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": true,
+  "text": "The lab has a large amount of empty, unused space. A lab that is much bigger than it needs to be is a disadvantage since it costs more to maintain the empty space — it takes more to heat, light, and clean the chamber. Alternatively, if the empty space is neglected, it will likely gather dirt and cobwebs, or cause a draft. This Flaw should be taken for every full two points by which the Size of the lab exceeds the occupied Size. As soon as the empty space is filled up, this Flaw is lost.",
+  "modText": "–1 Aesthetics, either +1 Upkeep or –1 Health.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": -1,
+    "Upkeep": 1,
+    "Health": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11807,
+   "anchor": "empty"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5930,
+    "anchor": "empty"
+   }
+  ]
+ },
+ {
+  "id": "low-ceiling-flaw",
+  "name": "Low Ceiling",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": true,
+  "text": "The ceiling is lower than the requisite ten feet, which slightly hampers some magical activities. This Flaw should be taken twice if the ceiling is less than eight feet, or thrice if the magus has to stoop (in which case also take —2 Health).",
+  "modText": "—1 General Quality, —1 Safety, —1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11809,
+   "anchor": "low-ceiling"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5932,
+    "anchor": "low-ceiling"
+   }
+  ]
+ },
+ {
+  "id": "subterranean-flaw",
+  "name": "Subterranean",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is underground. There is a lack of natural light, and so more candles are required for lighting.",
+  "modText": "+1 Upkeep, -1 Health, -1 Aesthetics; +1 Te.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Health": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {
+    "Te": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11811,
+   "anchor": "subterranean"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5934,
+    "anchor": "subterranean"
+   }
+  ]
+ },
+ {
+  "id": "unstable-flaw",
+  "name": "Unstable",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": true,
+  "text": "The lab is prone to movements, for example it is on a ship, is earthquake-prone, or merely has dodgy foundations, which is the occasional cause of accidents or breakages. This Flaw may be taken more than once for a greater instability.",
+  "modText": "+1 Upkeep, -1 Safety.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Safety": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11813,
+   "anchor": "unstable"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5940,
+    "anchor": "unstable"
+   }
+  ]
+ },
+ {
+  "id": "cramped-flaw",
+  "name": "Cramped",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab equipment is packed a little too close together for comfort, due to lack of space. This slightly hampers all but one type of lab activity, which is taken as a Specialization. The lab can be reconfigured to change the Specialization with a season of work. (This can be done at the same time as working to increase the Refinement.)",
+  "modText": "–1 General Quality, –1 Upkeep, –2 Safety, –1 Aesthetics; 1 point on an activity Specialization",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Upkeep": -1,
+    "Safety": -2,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "an activity Specialization"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11817,
+   "anchor": "cramped"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5950,
+    "anchor": "cramped"
+   }
+  ]
+ },
+ {
+  "id": "lesser-focus-flaw",
+  "name": "Lesser Focus",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "An existing Lesser Feature is the central focus of the lab, enhancing the Feature, but making activities that do not involve its use more difficult.",
+  "modText": "–1 General Quality, 2 points among Specializations provided by the Feature.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1
+   },
+   "specializations": {},
+   "choicePoints": 2,
+   "choice": "Specializations provided by the Feature"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11819,
+   "anchor": "lesser-focus"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5956,
+    "anchor": "lesser-focus"
+   }
+  ]
+ },
+ {
+  "id": "no-stores-flaw",
+  "name": "No Stores",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab has nowhere to store supplies, and so it cannot withstand any shortages (in the case of a lack of funds, compulsory Flaw(s) to reduce the Upkeep are taken immediately, instead of after the usual two seasons). Vis and dangerous materials cannot be stored very safely.",
+  "modText": "–2 Safety.",
+  "mods": {
+   "characteristics": {
+    "Safety": -2
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11821,
+   "anchor": "no-stores"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5958,
+    "anchor": "no-stores"
+   }
+  ]
+ },
+ {
+  "id": "greater-focus-flaw",
+  "name": "Greater Focus",
+  "kind": "flaw",
+  "size": "Major",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "An existing Greater Feature is the overwhelming focus of the lab, enhancing the Feature, but making activities that do not involve its use more difficult.",
+  "modText": "–2 General Quality, 4 points among Specializations provided by the Feature.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -2
+   },
+   "specializations": {},
+   "choicePoints": 4,
+   "choice": "Specializations provided by the Feature"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11825,
+   "anchor": "greater-focus"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5964,
+    "anchor": "greater-focus"
+   }
+  ]
+ },
+ {
+  "id": "greater-expansion",
+  "name": "Greater Expansion",
+  "kind": "virtue",
+  "size": "Major",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The extent of the lab is greatly increased, with at least double the usual amount of equipment. This allows it to have more areas and equipment dedicated to specialized tasks.",
+  "modText": "+2 General Quality, +4 Upkeep, +1 Aesthetics; 2 points on any Specialization(s).",
+  "mods": {
+   "characteristics": {
+    "General Quality": 2,
+    "Upkeep": 4,
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": 2,
+   "choice": "any Specialization(s)"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11833,
+   "anchor": "greater-expansion"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5974,
+    "anchor": "greater-expansion"
+   }
+  ]
+ },
+ {
+  "id": "lesser-expansion",
+  "name": "Lesser Expansion",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The extent of the lab is increased, with some more specialized equipment.",
+  "modText": "+1 General Quality, +2 Upkeep, 1 point on any Specialization.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 1,
+    "Upkeep": 2
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "any Specialization"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11837,
+   "anchor": "lesser-expansion"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5984,
+    "anchor": "lesser-expansion"
+   }
+  ]
+ },
+ {
+  "id": "living-quarters",
+  "name": "Living Quarters",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab contains suitable furniture, such as a bed, a wardrobe, and so on, such that the owner may live and sleep in it. There is a small benefit to lab work if you live in the lab proper, but it is not good for your health, and is considered somewhat obsessive.",
+  "modText": "+1 General Quality, -1 Safety, -2 Health, -2 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 1,
+    "Safety": -1,
+    "Health": -2,
+    "Aesthetics": -2
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11839,
+   "anchor": "living-quarters"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5986,
+    "anchor": "living-quarters"
+   }
+  ]
+ },
+ {
+  "id": "specimens",
+  "name": "Specimens",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": true,
+  "text": "The lab has a large collection of related things, stored in visible containers such as jars, or otherwise serving as objects of study or decoration.",
+  "modText": "+1 Upkeep, +1 Aesthetics; 1 point on any Form Specialization.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "any Form Specialization"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11841,
+   "anchor": "specimens"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 5996,
+    "anchor": "specimens"
+   }
+  ]
+ },
+ {
+  "id": "assistant",
+  "name": "Assistant",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": true,
+  "text": "A Gifted assistant (such as an Hermetic apprentice) helps out in the lab, affording a bonus to lab work.",
+  "modText": "+(assistant's Intelligence + Magic Theory) General Quality. (This is simply a restatement of the existing bonuses.)",
+  "mods": {
+   "characteristics": {},
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11845,
+   "anchor": "assistant"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6006,
+    "anchor": "assistant"
+   }
+  ]
+ },
+ {
+  "id": "guard",
+  "name": "Guard",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": true,
+  "text": "A shield grog is on permanent duty at the lab's entrance, and may dissuade unwanted visitors from pestering the magus or intruding.",
+  "modText": "+1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11847,
+   "anchor": "guard"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6008,
+    "anchor": "guard"
+   }
+  ]
+ },
+ {
+  "id": "highly-organized",
+  "name": "Highly Organized",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab's contents have been optimally arranged. There is a chance to gain this Virtue whenever a season of work is undertaken to improve the Refinement (see Refinement, above). A season of such work (with the normal chances of changes to laboratory Virtues and Flaws) may still be undertaken, even if no improvement to Refinement is possible. This Virtue is lost if a major accident is suffered, if someone else uses the lab, or if someone of lower Intelligence helps in it.",
+  "modText": "+1 General Quality.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11849,
+   "anchor": "highly-organized"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6010,
+    "anchor": "highly-organized"
+   }
+  ]
+ },
+ {
+  "id": "person",
+  "name": "Person",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": true,
+  "text": "There is another person, perhaps a close family member or a maid, who is to be found very frequently (as a rule of thumb, most days, for at least an hour) in the lab. This Virtue may be taken once for each such person who regularly comes in to the lab. Do not count the owner or any full-time lab assistants, such as an apprentice. A full-time trained mundane assistant is instead catered for by the Servant Virtue.",
+  "modText": "–1 Safety; +1 Co or Me.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "Co or Me"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11851,
+   "anchor": "person"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6012,
+    "anchor": "person"
+   }
+  ]
+ },
+ {
+  "id": "servant",
+  "name": "Servant",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "One of the covenfolk is employed as a full-time lab servant, to perform the most mundane or bothersome tasks in the lab, and cater to the needs of the magus.",
+  "modText": "+(servant's Intelligence/2, rounding up) Safety, +1 Aesthetics; +1 Me.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Me": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11853,
+   "anchor": "servant"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6018,
+    "anchor": "servant"
+   }
+  ]
+ },
+ {
+  "id": "spotless",
+  "name": "Spotless",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is impeccably clean. This requires a season of work to gain. Also, there is a chance to gain this Virtue whenever a season of work is undertaken to improve the Refinement (see Refinement, above). This Virtue is lost if cleanliness is not maintained, or after an accident or neglect is suffered.",
+  "modText": "+1 Health, +1 Aesthetics; +1 Cr.",
+  "mods": {
+   "characteristics": {
+    "Health": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Cr": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11855,
+   "anchor": "spotless"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6020,
+    "anchor": "spotless"
+   }
+  ]
+ },
+ {
+  "id": "basic-flaw",
+  "name": "Basic",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab setup is incomplete, and not all the necessary equipment has been installed. This Flaw is acquired after the first season of lab construction (see The Standard Hermetic Laboratory, earlier). It is removed after the second season of work completes the lab.",
+  "modText": "–3 General Quality.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -3
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11859,
+   "anchor": "basic"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6028,
+    "anchor": "basic"
+   }
+  ]
+ },
+ {
+  "id": "damaged-flaw",
+  "name": "Damaged",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is partially damaged, for example as the result of a lab accident. It takes one season to repair the damage and lose this Flaw.",
+  "modText": "-2 General Quality, -1 Safety, -1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -2,
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11861,
+   "anchor": "damaged"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6030,
+    "anchor": "damaged"
+   }
+  ]
+ },
+ {
+  "id": "disorganized-flaw",
+  "name": "Disorganized",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is organized in a rather haphazard or carefree fashion. Some magi prefer it this way.",
+  "modText": "–1 Safety, –1 Aesthetics; +1 Mu or Experimentation.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "Mu or Experimentation"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11863,
+   "anchor": "disorganized"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6038,
+    "anchor": "disorganized"
+   }
+  ]
+ },
+ {
+  "id": "hidden-defect-flaw",
+  "name": "Hidden Defect",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": true,
+  "text": "A subtle and potentially dangerous error exists in the lab's configuration. This is usually the fault of the owner, but it may also be caused by a malicious and clever third party. There is a chance to gain (or lose) this Flaw whenever a season of work is undertaken to improve the Refinement (see Refinement, earlier). Whenever this defect is the cause of a lab botch, make a Perception + Magic Theory roll against an Ease Factor of 12. If this succeeds, the defect is spotted and may be corrected with a few hours of work.",
+  "modText": "–3 Safety.",
+  "mods": {
+   "characteristics": {
+    "Safety": -3
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11865,
+   "anchor": "hidden-defect"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6042,
+    "anchor": "hidden-defect"
+   }
+  ]
+ },
+ {
+  "id": "missing-ingredients-flaw",
+  "name": "Missing Ingredients",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": true,
+  "text": "Due to a lack of certain ingredients, lab work involving either one specific Technique or two specific Forms is severely hampered — relevant Lab Totals are halved. For example, the lab might contain no silver, in which case Terram and Vim Lab Totals are halved. It does not take a season to remove this Flaw, if sufficient funds are available to increase the Upkeep.",
+  "modText": "–1 Upkeep.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11867,
+   "anchor": "missing-ingredients"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6052,
+    "anchor": "missing-ingredients"
+   }
+  ]
+ },
+ {
+  "id": "missing-sanctum-marker-flaw",
+  "name": "Missing Sanctum Marker",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The sanctum marker is not prominently displayed, and is thus easy to miss, or it is missing altogether. Hermetic magi might (unwittingly or knowingly) intrude. It does not take a season to remove this Flaw.",
+  "modText": "–1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11869,
+   "anchor": "missing-sanctum-marker"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6054,
+    "anchor": "missing-sanctum-marker"
+   }
+  ]
+ },
+ {
+  "id": "wrecked-flaw",
+  "name": "Wrecked",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is very heavily damaged, for example as the result of a major lab accident. It takes two seasons to repair the damage completely and lose this Flaw. (After one season, it may be replaced by the Damaged Flaw.)",
+  "modText": "–5 General Quality, –2 Safety, –2 Aesthetics",
+  "mods": {
+   "characteristics": {
+    "General Quality": -5,
+    "Safety": -2,
+    "Aesthetics": -2
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11871,
+   "anchor": "wrecked"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6056,
+    "anchor": "wrecked"
+   }
+  ]
+ },
+ {
+  "id": "missing-equipment-flaw",
+  "name": "Missing Equipment",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": true,
+  "text": "Due to a lack of certain equipment, lab work in one or two types of activity is totally impossible. For example, if there is no desk, parchment, or inks, you cannot work with texts. If you pick Items, Spells, or Texts, only this one activity cannot be undertaken. Otherwise, you must pick two of the activity categories (see the Specialization section earlier, page 290). This Flaw cannot be taken more than twice.",
+  "modText": "—1 Upkeep.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11875,
+   "anchor": "missing-equipment"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6064,
+    "anchor": "missing-equipment"
+   }
+  ]
+ },
+ {
+  "id": "undecorated-flaw",
+  "name": "Undecorated",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab has very spartan decoration, or the decoration is completely lacking, making the place rather uninspiring and unwelcoming.",
+  "modText": "–1 Upkeep, –1 Aesthetics; subtract one point from any Specializations with a score of 2 or more.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11877,
+   "anchor": "undecorated"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6066,
+    "anchor": "undecorated"
+   }
+  ]
+ },
+ {
+  "id": "elementary-flaw",
+  "name": "Elementary",
+  "kind": "flaw",
+  "size": "Major",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "This is a cut-down version of a Hermetic laboratory, with an extremely limited selection of lab equipment installed, so that only one category of lab activity (see the list of possible activity Specializations earlier on page ) is possible at all. The type of activity is determined at the time of construction, and is fixed thereafter. Still, such a limited lab is cheaper to maintain and takes only one season to build completely. It might be suitable for an extremely confined space, such as in a small cave, or in a wagon. Some covenants build elementary labs in powerful auras for the purposes of vis extraction.",
+  "modText": "–2 General Quality, –3 Upkeep.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -2,
+    "Upkeep": -3
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11881,
+   "anchor": "elementary"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6070,
+    "anchor": "elementary"
+   }
+  ]
+ },
+ {
+  "id": "greater-guardian",
+  "name": "Greater Guardian",
+  "kind": "virtue",
+  "size": "Major",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "A powerful supernatural creature (Might 20 or higher), which is not the familiar of the owner, resides in the lab and acts as its protector, being well-disposed to the owner. Woe betide any who should intrude.",
+  "modText": "+(creature's Intelligence) Safety, +1 Warping, +1 Aesthetics; 3 points on appropriate Art specialization(s).",
+  "mods": {
+   "characteristics": {
+    "Warping": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": 3,
+   "choice": "appropriate Art specialization(s)"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11889,
+   "anchor": "greater-guardian"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6084,
+    "anchor": "greater-guardian"
+   }
+  ]
+ },
+ {
+  "id": "familiar",
+  "name": "Familiar",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The owner of the lab has a familiar, and the familiar lives in the lab. Perhaps it even helps with lab work. This Virtue assumes that the familiar takes up a non-trivial amount of space. If not, this can be instead taken as a Free Virtue.",
+  "modText": "+(familiar's Intelligence + Magic Theory) General Quality, +(Golden Cord) Safety. (This is simply a restatement of the existing bonuses.)",
+  "mods": {
+   "characteristics": {},
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11893,
+   "anchor": "familiar"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6090,
+    "anchor": "familiar"
+   }
+  ]
+ },
+ {
+  "id": "lesser-guardian",
+  "name": "Lesser Guardian",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "A supernatural creature (less than Might 20), which is not the familiar of the owner, resides in the lab and acts as its protector, being well-disposed to the owner.",
+  "modText": "+1 Safety; 1 point on an appropriate Art specialization.",
+  "mods": {
+   "characteristics": {
+    "Safety": 1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "an appropriate Art specialization"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11895,
+   "anchor": "lesser-guardian"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6094,
+    "anchor": "lesser-guardian"
+   }
+  ]
+ },
+ {
+  "id": "vis-source",
+  "name": "Vis Source",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Supernatural",
+  "repeatable": true,
+  "text": "A naturally-occurring source of vis is to be found in the lab.",
+  "modText": "-1 Safety, +1 Warping; 2 points on the appropriate Art Specialization.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Warping": 1
+   },
+   "specializations": {},
+   "choicePoints": 2,
+   "choice": "the appropriate Art Specialization"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11897,
+   "anchor": "vis-source"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6098,
+    "anchor": "vis-source"
+   }
+  ]
+ },
+ {
+  "id": "enchantment",
+  "name": "Enchantment",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": true,
+  "text": "The lab itself has been enchanted as a magic item. This may grant Virtues or Flaws, alter Characteristics, or add to Specializations (see the guidelines later).",
+  "modText": "",
+  "mods": {
+   "characteristics": {},
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11901,
+   "anchor": "enchantment"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6106,
+    "anchor": "enchantment"
+   }
+  ]
+ },
+ {
+  "id": "inexhaustible-supplies",
+  "name": "Inexhaustible Supplies",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab is blessed with magically replenishing ingredients and consumables which never run out.",
+  "modText": "–3 Upkeep, +1 Warping.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": -3,
+    "Warping": 1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11903,
+   "anchor": "inexhaustible-supplies"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6116,
+    "anchor": "inexhaustible-supplies"
+   }
+  ]
+ },
+ {
+  "id": "magic-item",
+  "name": "Magic Item",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": true,
+  "text": "A magic item is installed in the lab. It might be self-made, donated, purchased, or perhaps some kind of artifact which was found in the lab. If the item is very large, taking up a significant amount of space in the lab, then it should be treated as a Minor Virtue instead of a Free Virtue. This may grant Virtues or Flaws, alter Characteristics, or add to Specializations (see the guidelines later).",
+  "modText": "",
+  "mods": {
+   "characteristics": {},
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11905,
+   "anchor": "magic-item"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6120,
+    "anchor": "magic-item"
+   }
+  ]
+ },
+ {
+  "id": "regio",
+  "name": "Regio",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": true,
+  "text": "The interior of the lab is in a regio, and there is another regio level, which the owner can navigate easily. If there are further regio levels, this Virtue may be taken more than once.",
+  "modText": "+3 Size, +1 Warping.",
+  "mods": {
+   "characteristics": {
+    "Size": 3,
+    "Warping": 1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11907,
+   "anchor": "regio"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6128,
+    "anchor": "regio"
+   }
+  ]
+ },
+ {
+  "id": "abyss-flaw",
+  "name": "Abyss",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab contains some kind of magical void, such as a bottomless well. This may be made into a Void Feature (purchased as usual).",
+  "modText": "–2 Safety; +2 Pe.",
+  "mods": {
+   "characteristics": {
+    "Safety": -2
+   },
+   "specializations": {
+    "Pe": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11911,
+   "anchor": "abyss"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6140,
+    "anchor": "abyss"
+   }
+  ]
+ },
+ {
+  "id": "haunted-flaw",
+  "name": "Haunted",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab is home to a haunting spirit, who occasionally disturbs the current owner.",
+  "modText": "+1 Warping, -1 Aesthetics; +2 Me.",
+  "mods": {
+   "characteristics": {
+    "Warping": 1,
+    "Aesthetics": -1
+   },
+   "specializations": {
+    "Me": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11913,
+   "anchor": "haunted"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6152,
+    "anchor": "haunted"
+   }
+  ]
+ },
+ {
+  "id": "impregnable-flaw",
+  "name": "Impregnable",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab is completely inaccessible, except through reasonably powerful magic. For example, it is blocked off by a stone wall and requires a Muto Terram spell to access. While the owner is much less likely to be disturbed, fewer people will ever get to see the lab, or they may assume that the owner is rather paranoid.",
+  "modText": "—2 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": -2
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11915,
+   "anchor": "impregnable"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6154,
+    "anchor": "impregnable"
+   }
+  ]
+ },
+ {
+  "id": "inhabitants-flaw",
+  "name": "Inhabitants",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "Residency in the lab is shared with some other creatures, who consider the place as their home, not a lab. They may provide a nuisance to the owner, and vice-versa.",
+  "modText": "–1 Safety, –1 Aesthetics; 1 point on an appropriate Art Specialization.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "an appropriate Art Specialization"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11917,
+   "anchor": "inhabitants"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6156,
+    "anchor": "inhabitants"
+   }
+  ]
+ },
+ {
+  "id": "predecessor-flaw",
+  "name": "Predecessor",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab retains some foibles due to its (notable) previous owner.",
+  "modText": "–1 Safety, +1 Warping; +1 Experimentation.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Warping": 1
+   },
+   "specializations": {
+    "Experimentation": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11919,
+   "anchor": "predecessor"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6164,
+    "anchor": "predecessor"
+   }
+  ]
+ },
+ {
+  "id": "restriction-flaw",
+  "name": "Restriction",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab might forbid certain activities (one category of lab activity cannot be performed), or otherwise tiresome or expensive rituals or practices are required in order to perform lab work.",
+  "modText": "—1 General Quality or +2 Upkeep as appropriate.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Upkeep": 2
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11921,
+   "anchor": "restriction"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6166,
+    "anchor": "restriction"
+   }
+  ]
+ },
+ {
+  "id": "lesser-illusion-flaw",
+  "name": "Lesser Illusion",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Supernatural",
+  "repeatable": true,
+  "text": "One of the seeming merits of the lab is but an illusion. You should take one Minor Virtue immediately (there is no time cost) to balance this Flaw, but note that it is illusory and its effects are negated completely. For example, the lab may appear to be hung with fine tapestries, but which do not really exist. In this case, take the Superior Decoration Virtue, but do not apply its modifications to the lab's statistics.",
+  "modText": "+1 Warping, +1 Aesthetics; +1 Im.",
+  "mods": {
+   "characteristics": {
+    "Warping": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Im": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11925,
+   "anchor": "lesser-illusion"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6180,
+    "anchor": "lesser-illusion"
+   }
+  ]
+ },
+ {
+  "id": "lightless-flaw",
+  "name": "Lightless",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab is totally dark and its contents cannot be seen. The owner must devise some other means of spatial perception in order to work normally.",
+  "modText": "-1 Upkeep, +1 Warping, the Aesthetics score cannot exceed -1; +1 Pe or Im.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": -1,
+    "Warping": 1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "Pe or Im"
+  },
+  "source": {
+   "book": "DE",
+   "line": 11927,
+   "anchor": "lightless"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6182,
+    "anchor": "lightless"
+   }
+  ]
+ },
+ {
+  "id": "greater-illusion-flaw",
+  "name": "Greater Illusion",
+  "kind": "flaw",
+  "size": "Major",
+  "group": "Supernatural",
+  "repeatable": true,
+  "text": "One of the major parts or aspects of the lab is but an illusion. You should take one Major Virtue immediately (there is no time cost) to balance this Flaw, but note that it is illusory and its effects are negated completely. For example, the lab may appear to be twice as large as it really is. In this case, take the Greater Expansion Virtue, but do not apply its modifications to the lab's statistics.",
+  "modText": "+2 Warping, +2 Aesthetics; +2 Im.",
+  "mods": {
+   "characteristics": {
+    "Warping": 2,
+    "Aesthetics": 2
+   },
+   "specializations": {
+    "Im": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "DE",
+   "line": 11931,
+   "anchor": "greater-illusion"
+  },
+  "alsoIn": [
+   {
+    "book": "Cov",
+    "line": 6188,
+    "anchor": "greater-illusion"
+   }
+  ]
+ },
+ {
+  "id": "auspicious-shape",
+  "name": "Auspicious Shape",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab or its building is formed into a magically beneficial shape, such as a hexagon or pentagram. A circle or square does not count.",
+  "modText": "+1 Aesthetics; +1 Vi.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Vi": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5880,
+   "anchor": "auspicious-shape"
+  }
+ },
+ {
+  "id": "spacious",
+  "name": "Spacious",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab has enough spare room that its outfittings can be spread out a little. If building a lab from scratch and if space permits, you may choose to start with this Virtue, without needing an extra season of work.",
+  "modText": "+2 Safety, +1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Safety": 2,
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5888,
+   "anchor": "spacious"
+  }
+ },
+ {
+  "id": "well-insulated",
+  "name": "Well Insulated",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is especially well shielded from the outside world, due to an extra partition wall or a layer of thick curtains, perhaps. Little noise or disturbance emerges from within, making it suitable for a sensitive location such as a city.",
+  "modText": "+1 Safety, +1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Safety": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5890,
+   "anchor": "well-insulated"
+  }
+ },
+ {
+  "id": "defenses",
+  "name": "Defenses",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab has some kind of sturdy defense, such as a portcullis or battlements.",
+  "modText": "+1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5908,
+   "anchor": "defenses"
+  }
+ },
+ {
+  "id": "elevated",
+  "name": "Elevated",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is located at least four floors up, or on the top floor of a tower, which affords a commanding view of the surroundings.",
+  "modText": "+1 Aesthetics; +1 Au.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Au": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5910,
+   "anchor": "elevated"
+  }
+ },
+ {
+  "id": "grand-entrance",
+  "name": "Grand Entrance",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "An elaborate and sizable entranceway, such as a great door or arch, an opulent lobby, or perhaps a reception room leads to the lab. This takes up more of the sanctum space, but not usually of the laboratory chamber itself. It often takes a season or more for craftsmen to build or outfit. The sanctum marker is likely displayed prominently. The lab at least looks good from the outside, so casual observers are likely to be impressed.",
+  "modText": "+2 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 2
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5912,
+   "anchor": "grand-entrance"
+  }
+ },
+ {
+  "id": "idyllic-surroundings",
+  "name": "Idyllic Surroundings",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is located some way by itself, in a charming and peaceful location, such as in a beautiful vale or garden.",
+  "modText": "+2 Health, +1 Aesthetics; 1 point on a Specialization in Cr, An, Aq, He, or Te, depending upon terrain type.",
+  "mods": {
+   "characteristics": {
+    "Health": 2,
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "a Specialization in Cr, An, Aq, He, or Te, depending upon terrain type"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5914,
+   "anchor": "idyllic-surroundings"
+  }
+ },
+ {
+  "id": "mountaintop",
+  "name": "Mountaintop",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is located at the peak of a mountain. This is a dramatic and remote setting with a spectacular view, prone to strong winds and snows.",
+  "modText": "–1 Safety, +1 Upkeep, +2 Aesthetics; +2 Au.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Upkeep": 1,
+    "Aesthetics": 2
+   },
+   "specializations": {
+    "Au": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5918,
+   "anchor": "mountaintop"
+  }
+ },
+ {
+  "id": "studio",
+  "name": "Studio",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "An ornate room just outside the lab proper is set aside for the sole purpose of displaying and showing off the owner's most prized possessions to guests. Verditius magi commonly build studios in order to display the items they have crafted to potential customers (see *Houses of Hermes: Mystery Cults*). The studio takes up more of the sanctum space, but not usually of the laboratory chamber itself.",
+  "modText": "+1 to +3 Aesthetics, depending on the number and magnificence of items displayed.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": 3
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5922,
+   "anchor": "studio"
+  }
+ },
+ {
+  "id": "disguised-flaw",
+  "name": "Disguised",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab or its entrance is protected by some mundane concealment, such as a hidden door.",
+  "modText": "–1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5928,
+   "anchor": "disguised"
+  }
+ },
+ {
+  "id": "exposed-flaw",
+  "name": "Exposed",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The building is partially exposed to the elements. For example, it is unroofed or poorly roofed, or wind blows through large cracks.",
+  "modText": "–1 Safety, +1 Upkeep, –2 Health, –1 Aesthetics; +1 Au.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Upkeep": 1,
+    "Health": -2,
+    "Aesthetics": -1
+   },
+   "specializations": {
+    "Au": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5936,
+   "anchor": "exposed"
+  }
+ },
+ {
+  "id": "uneven-floor-flaw",
+  "name": "Uneven Floor",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab has a wonky or dangerous floor. The lab might be in a cave, or maybe the floor is covered with sand or pebbles.",
+  "modText": "–1 Safety, –1 Health, –1 Aesthetics; +1 Mu or Te.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Health": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "Mu or Te"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5938,
+   "anchor": "uneven-floor"
+  }
+ },
+ {
+  "id": "vile-surroundings-flaw",
+  "name": "Vile Surroundings",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is located in an undesirable or unpleasant place, such as in a swamp, next to a filthy peasant hovel, or by a dirty and busy road.",
+  "modText": "–2 Health, –1 Aesthetics; 1 point on a Specialization in Pe, An, Aq, Au, or Co, depending upon terrain type.",
+  "mods": {
+   "characteristics": {
+    "Health": -2,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "a Specialization in Pe, An, Aq, Au, or Co, depending upon terrain type"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5942,
+   "anchor": "vile-surroundings"
+  }
+ },
+ {
+  "id": "vulnerable-flaw",
+  "name": "Vulnerable",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is lacking even basic defenses, and is easily broken or stumbled into. For example, it is on the ground floor and has no door.",
+  "modText": "–1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5944,
+   "anchor": "vulnerable"
+  }
+ },
+ {
+  "id": "awkward-shape-flaw",
+  "name": "Awkward Shape",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab's chamber is a difficult shape, for example, it is long and thin, or is partitioned in two.",
+  "modText": "–2 Safety, –1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Safety": -2,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5948,
+   "anchor": "awkward-shape"
+  }
+ },
+ {
+  "id": "diminutive-flaw",
+  "name": "Diminutive",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is configured for an especially small magus (Size –1 or less), who may use it normally. However, a normal-sized magus (or a normal-sized assistant) would have (or cause) considerable difficulty.",
+  "modText": "For characters with Size 0 or greater: –1 General Quality, –2 Safety, –1 Health, –1 Aesthetics).",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Safety": -2,
+    "Health": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5952,
+   "anchor": "diminutive"
+  }
+ },
+ {
+  "id": "heinous-architecture-flaw",
+  "name": "Heinous Architecture",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The construction of the chamber is deliberately inauspicious, perverse, or erroneous.",
+  "modText": "–1 General Quality, –2 Safety, +1 Warping, –2 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Safety": -2,
+    "Warping": 1,
+    "Aesthetics": -2
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5954,
+   "anchor": "heinous-architecture"
+  }
+ },
+ {
+  "id": "poorly-insulated-flaw",
+  "name": "Poorly Insulated",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab is poorly shielded from the outside world, perhaps due to thin walls or ceilings. It is easy to hear what is going on inside, and noise from the lab is likely to be a nuisance to nearby people or adjacent floors.",
+  "modText": "–1 Safety, –1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5960,
+   "anchor": "poorly-insulated"
+  }
+ },
+ {
+  "id": "outdoors-flaw",
+  "name": "Outdoors",
+  "kind": "flaw",
+  "size": "Major",
+  "group": "Structure",
+  "repeatable": false,
+  "text": "The lab (but not necessarily the living quarters of the magus) is not housed in a building at all and is completely exposed to the elements. This Flaw should be taken with the Natural Environment Virtue (although in this case it does not take any time to gain the Virtue, since the natural environment is already present). Size may be increased to any desired number.",
+  "modText": "–1 General Quality, +2 Upkeep, –1 Safety, –2 Health, –3 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Upkeep": 2,
+    "Safety": -1,
+    "Health": -2,
+    "Aesthetics": -3
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5966,
+   "anchor": "outdoors"
+  }
+ },
+ {
+  "id": "palatial",
+  "name": "Palatial",
+  "kind": "virtue",
+  "size": "Major",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is lavishly and magnificently outfitted, with the very best of comforts and decoration.",
+  "modText": "+1 General Quality, +3 Upkeep, +2 Health, +4 Aesthetics; +2 Teaching, 1 point on any other Specialization.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 1,
+    "Upkeep": 3,
+    "Health": 2,
+    "Aesthetics": 4
+   },
+   "specializations": {
+    "Teaching": 2
+   },
+   "choicePoints": 1,
+   "choice": "any other Specialization"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5976,
+   "anchor": "palatial"
+  }
+ },
+ {
+  "id": "excessive-heating",
+  "name": "Excessive Heating",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is kept far more warm than is necessary, and has the necessary facilities for it. For example, it has a half-dozen fireplaces.",
+  "modText": "+2 Upkeep, –1 Safety; +2 Ig.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 2,
+    "Safety": -1
+   },
+   "specializations": {
+    "Ig": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5980,
+   "anchor": "excessive-heating"
+  }
+ },
+ {
+  "id": "excessive-lighting",
+  "name": "Excessive Lighting",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is lit far more than is necessary. For example, there are several hundred candles or lamps, which take up more space than usual.",
+  "modText": "+2 Upkeep; +2 Im.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 2
+   },
+   "specializations": {
+    "Im": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5982,
+   "anchor": "excessive-lighting"
+  }
+ },
+ {
+  "id": "menagerie",
+  "name": "Menagerie",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab contains a collection of live animals.",
+  "modText": "+1 Upkeep, –1 Safety, –1 Aesthetics; +2 An.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {
+    "An": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5988,
+   "anchor": "menagerie"
+  }
+ },
+ {
+  "id": "opulent",
+  "name": "Opulent",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is comfortable and well furnished.",
+  "modText": "+1 Upkeep, +1 Health, +2 Aesthetics; +1 Teaching.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Health": 1,
+    "Aesthetics": 2
+   },
+   "specializations": {
+    "Teaching": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5990,
+   "anchor": "opulent"
+  }
+ },
+ {
+  "id": "pot-plants",
+  "name": "Pot Plants",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab contains dozens of potted plants.",
+  "modText": "+1 Upkeep, +1 Aesthetics; +1 He.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "He": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5992,
+   "anchor": "pot-plants"
+  }
+ },
+ {
+  "id": "slaves",
+  "name": "Slaves",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "Human slaves are employed in the lab, either as manual labor or as experimental subjects.",
+  "modText": "+1 Upkeep, –1 Safety, –1 Aesthetics; +2 Co or Me.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": 2,
+   "choice": "Co or Me"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5994,
+   "anchor": "slaves"
+  }
+ },
+ {
+  "id": "superior-decoration",
+  "name": "Superior Decoration",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is luxuriantly or generously decorated. For example, many fine tapestries hang on the walls.",
+  "modText": "+1 Upkeep, +2 Aesthetics; +1 Im.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Aesthetics": 2
+   },
+   "specializations": {
+    "Im": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 5998,
+   "anchor": "superior-decoration"
+  }
+ },
+ {
+  "id": "superior-heating",
+  "name": "Superior Heating",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab has superior facilities for heating, and the snug occupant is never chilly. For example, there is under-floor heating, or several fireplaces.",
+  "modText": "+1 Upkeep, +1 Health, +1 Aesthetics; +1 Ig.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Health": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Ig": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6000,
+   "anchor": "superior-heating"
+  }
+ },
+ {
+  "id": "superior-lighting",
+  "name": "Superior Lighting",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is very well lit, so that things are easy to find, and books are easy to read, without eye-strain.",
+  "modText": "+1 Upkeep, +1 Aesthetics; +1 Texts, +1 Im.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Texts": 1,
+    "Im": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6002,
+   "anchor": "superior-lighting"
+  }
+ },
+ {
+  "id": "precious-ingredients",
+  "name": "Precious Ingredients",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is supplied with more expensive ingredients than a typical covenant can afford.",
+  "modText": "+1 General Quality, +2 Upkeep; +1 Longevity Rituals.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 1,
+    "Upkeep": 2
+   },
+   "specializations": {
+    "Longevity Rituals": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6014,
+   "anchor": "precious-ingredients"
+  }
+ },
+ {
+  "id": "priceless-ingredients",
+  "name": "Priceless Ingredients",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is supplied with the kind of things that most people can only dream of, such as copious quantities of gold and gems.",
+  "modText": "+2 General Quality, +4 Upkeep; +2 Longevity Rituals.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 2,
+    "Upkeep": 4
+   },
+   "specializations": {
+    "Longevity Rituals": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6016,
+   "anchor": "priceless-ingredients"
+  }
+ },
+ {
+  "id": "superior-equipment",
+  "name": "Superior Equipment",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is supplied with higher-quality equipment, for example Venetian glassware. If the equipment was made at the covenant, the craftsman should have a Craft Ability of 6 or more, but do not increase Upkeep.",
+  "modText": "+1 General Quality, +2 Upkeep, +1 Safety; +1 Vis Extraction.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 1,
+    "Upkeep": 2,
+    "Safety": 1
+   },
+   "specializations": {
+    "Vis Extraction": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6022,
+   "anchor": "superior-equipment"
+  }
+ },
+ {
+  "id": "superior-tools",
+  "name": "Superior Tools",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab's tools were produced by master craftsmen. If the tools were made at the covenant, the craftsman should have a Craft Ability of 6 or more, but do not increase Upkeep.",
+  "modText": "+1 Upkeep, +1 Safety; +1 Items.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Safety": 1
+   },
+   "specializations": {
+    "Items": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6024,
+   "anchor": "superior-tools"
+  }
+ },
+ {
+  "id": "damp-flaw",
+  "name": "Damp",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is waterlogged or moist. Parchment and some ingredients will spoil quickly.",
+  "modText": "+1 Upkeep, –1 Health, –1 Aesthetics; +1 Aq.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Health": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {
+    "Aq": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6032,
+   "anchor": "damp"
+  }
+ },
+ {
+  "id": "decaying-flaw",
+  "name": "Decaying",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The equipment, furnishings, and materials of the lab are neglected (or have been allowed to go bad).",
+  "modText": "–1 General Quality, –1 Upkeep, –1 Safety, –1 Aesthetics; +2 Pe.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Upkeep": -1,
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {
+    "Pe": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6034,
+   "anchor": "decaying"
+  }
+ },
+ {
+  "id": "dirty-flaw",
+  "name": "Dirty",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is not kept to basic standards of cleanliness. Its owner often emerges from it smelly or dirty, and most visitors find it pretty unbearable.",
+  "modText": "–1 Health, –2 Aesthetics; +1 Pe.",
+  "mods": {
+   "characteristics": {
+    "Health": -1,
+    "Aesthetics": -2
+   },
+   "specializations": {
+    "Pe": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6036,
+   "anchor": "dirty"
+  }
+ },
+ {
+  "id": "gaudy-flaw",
+  "name": "Gaudy",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab's decoration is tasteless and excessive.",
+  "modText": "+1 Upkeep, –1 Aesthetics; +1 Im.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Aesthetics": -1
+   },
+   "specializations": {
+    "Im": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6040,
+   "anchor": "gaudy"
+  }
+ },
+ {
+  "id": "inferior-equipment-flaw",
+  "name": "Inferior Equipment",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is outfitted with shoddy wares. It does not take a season to remove this Flaw, if sufficient funds are available to increase the Upkeep.",
+  "modText": "–1 General Quality, –1 Upkeep.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Upkeep": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6044,
+   "anchor": "inferior-equipment"
+  }
+ },
+ {
+  "id": "inferior-tools-flaw",
+  "name": "Inferior Tools",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab's tools are crudely crafted, and are prone to breakage. It does not take a season to remove this Flaw, if sufficient funds are available to increase the Upkeep.",
+  "modText": "–1 Upkeep, –1 Safety.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": -1,
+    "Safety": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6046,
+   "anchor": "inferior-tools"
+  }
+ },
+ {
+  "id": "infested-flaw",
+  "name": "Infested",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab has an animal or plant infestation, for example a nest of mice, a vine, or fungi. Depending on the nature of the infestation, it may not necessarily take a season to remove this Flaw.",
+  "modText": "–1 Safety, –1 Aesthetics; +1 An or He.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "An or He"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6048,
+   "anchor": "infested"
+  }
+ },
+ {
+  "id": "lousy-ingredients-flaw",
+  "name": "Lousy Ingredients",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is supplied with dirty, impure, or poor-quality ingredients. It does not take a season to remove this Flaw, if sufficient funds are available to increase the Upkeep.",
+  "modText": "–1 General Quality, –1 Upkeep.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Upkeep": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6050,
+   "anchor": "lousy-ingredients"
+  }
+ },
+ {
+  "id": "defective-heating-flaw",
+  "name": "Defective Heating",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab has an inadequate or missing heating mechanism, and is rather too cold for comfort in the winter months.",
+  "modText": "–1 General Quality, –1 Upkeep, –1 Health, –1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Upkeep": -1,
+    "Health": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6060,
+   "anchor": "defective-heating"
+  }
+ },
+ {
+  "id": "defective-lighting-flaw",
+  "name": "Defective Lighting",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is poorly lit, making it dingy and gloomy. It can be more difficult to read or find things.",
+  "modText": "–1 General Quality, –1 Upkeep, –1 Safety, –1 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Upkeep": -1,
+    "Safety": -1,
+    "Aesthetics": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6062,
+   "anchor": "defective-lighting"
+  }
+ },
+ {
+  "id": "hovel-flaw",
+  "name": "Hovel",
+  "kind": "flaw",
+  "size": "Major",
+  "group": "Outfittings",
+  "repeatable": false,
+  "text": "The lab is very cramped, neglected, and filthy — it amounts to little more than a stinking dump. Most magi would never even consider setting foot in such a wretched hole.",
+  "modText": "–1 General Quality, –2 Upkeep, –2 Safety, –3 Health, –4 Aesthetics.",
+  "mods": {
+   "characteristics": {
+    "General Quality": -1,
+    "Upkeep": -2,
+    "Safety": -2,
+    "Health": -3,
+    "Aesthetics": -4
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6072,
+   "anchor": "hovel"
+  }
+ },
+ {
+  "id": "greater-horde",
+  "name": "Greater Horde",
+  "kind": "virtue",
+  "size": "Major",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "A large community of resident minor supernatural creatures are at the owner's command. They are intelligent enough to serve a protective function and assist with simple lab tasks.",
+  "modText": "+2 General Quality, +1 Upkeep, +(creature's Intelligence) Safety, +2 Aesthetics; 2 points on Rego or other appropriate Art specialization(s).",
+  "mods": {
+   "characteristics": {
+    "General Quality": 2,
+    "Upkeep": 1,
+    "Aesthetics": 2
+   },
+   "specializations": {},
+   "choicePoints": 2,
+   "choice": "Rego or other appropriate Art specialization(s)"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6086,
+   "anchor": "greater-horde"
+  }
+ },
+ {
+  "id": "gateway",
+  "name": "Gateway",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab is located at a supernatural gateway, for example, an entrance to a regio or a faerie realm, or a Mercere Portal. The owner of the lab usually controls access to the gateway, and might get some tangible benefits, such as receiving a toll from those who use the gateway, or simply the ability to pass through the gateway herself. The gateway may be made into a Portal Feature (purchased as usual) and might also be combined with the Thoroughfare Flaw.",
+  "modText": "–1 Safety, +1 Aesthetics; 1 point on Rego or another appropriate Art Specialization.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "Rego or another appropriate Art Specialization"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6092,
+   "anchor": "gateway"
+  }
+ },
+ {
+  "id": "lesser-horde",
+  "name": "Lesser Horde",
+  "kind": "virtue",
+  "size": "Minor",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "A small group of semiintelligent creatures helps out in the lab.",
+  "modText": "+1 General Quality, +1 Upkeep, +1 Safety, +1 Aesthetics; 1 point on Rego or another appropriate Art specialization.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 1,
+    "Upkeep": 1,
+    "Safety": 1,
+    "Aesthetics": 1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "Rego or another appropriate Art specialization"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6096,
+   "anchor": "lesser-horde"
+  }
+ },
+ {
+  "id": "airborne",
+  "name": "Airborne",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab flies upon the winds or clouds, and rarely lands. Needless to say, only very powerful magics are able to permanently levitate an entire building, or erect a lab upon a cloud. This Virtue is often combined with the Unstable Flaw, since flying is a tricky business.",
+  "modText": "+1 Upkeep, –2 Safety, +2 Warping, +1 Health, +4 Aesthetics; +1 Experimentation, +4 Au.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Safety": -2,
+    "Warping": 2,
+    "Health": 1,
+    "Aesthetics": 4
+   },
+   "specializations": {
+    "Experimentation": 1,
+    "Au": 4
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6102,
+   "anchor": "airborne"
+  }
+ },
+ {
+  "id": "boundless",
+  "name": "Boundless",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The interior of the lab has an unlimited amount of space, despite the seeming mundane limitations of its structure from the outside. This effect is outside the scope of normal Hermetic magic, but it might have a non-Hermetic or faerie origin. Size may be increased to any desired number.",
+  "modText": "+2 Warping.",
+  "mods": {
+   "characteristics": {
+    "Warping": 2
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6104,
+   "anchor": "boundless"
+  }
+ },
+ {
+  "id": "faerie-ingredients",
+  "name": "Faerie Ingredients",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "Some of the lab's stores are supplied by faeries, and have beneficial (if sometimes unpredictable) properties. For example, faerie silver is used in place of real silver.",
+  "modText": "+1 General Quality, - 1 Upkeep, +1 Warping; +1 Experimentation, 1 point on an appropriate Specialization.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 1,
+    "Upkeep": -1,
+    "Warping": 1
+   },
+   "specializations": {
+    "Experimentation": 1
+   },
+   "choicePoints": 1,
+   "choice": "an appropriate Specialization"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6108,
+   "anchor": "faerie-ingredients"
+  }
+ },
+ {
+  "id": "flawless-equipment",
+  "name": "Flawless Equipment",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The outfittings of the lab are flawless, perhaps even too perfect to have been crafted by mortal hands.",
+  "modText": "+2 General Quality, +2 Upkeep (unless the equipment is continuously protected, created, or donated by supernatural means, in which case –1 Upkeep); +2 Vis Extraction.",
+  "mods": {
+   "characteristics": {
+    "General Quality": 2,
+    "Upkeep": 1
+   },
+   "specializations": {
+    "Vis Extraction": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6110,
+   "anchor": "flawless-equipment"
+  }
+ },
+ {
+  "id": "flawless-tools",
+  "name": "Flawless Tools",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The craftsman who created such perfect tools as are found in this lab must have been legendary.",
+  "modText": "+1 Upkeep (unless the equipment is continuously protected, created, or donated by supernatural means, in which case –1 Upkeep); +2 Items.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 0
+   },
+   "specializations": {
+    "Items": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6112,
+   "anchor": "flawless-tools"
+  }
+ },
+ {
+  "id": "ice-cavern",
+  "name": "Ice Cavern",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab is located in a structure built of ice that never melts. Either it is located in the extreme north or high up a mountain, or else magic is used to prevent the ice from melting. The owner of such a lab presumably does not mind the cold.",
+  "modText": "+1 Upkeep, +1 Warping, –2 Health (unless immune to the cold), +2 Aesthetics; +2 Re or Aq.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Warping": 1,
+    "Health": -2,
+    "Aesthetics": 2
+   },
+   "specializations": {},
+   "choicePoints": 2,
+   "choice": "Re or Aq"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6114,
+   "anchor": "ice-cavern"
+  }
+ },
+ {
+  "id": "invisible",
+  "name": "Invisible",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The interior of the lab, and its outfittings, are invisible. Naturally, this requires the owner of the lab to have some magical means of seeing them, otherwise he is not going to get very far with his lab work.",
+  "modText": "+1 Warping, halve the Aesthetics score after all other modifications ; +2 Im.",
+  "mods": {
+   "characteristics": {
+    "Warping": 1
+   },
+   "specializations": {
+    "Im": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6118,
+   "anchor": "invisible"
+  }
+ },
+ {
+  "id": "magical-heating",
+  "name": "Magical Heating",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "Heating is provided magically. This Virtue functions as either Superior Heating or Excessive Heating (but without the space and Upkeep cost).",
+  "modText": "",
+  "mods": {
+   "characteristics": {},
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6122,
+   "anchor": "magical-heating"
+  }
+ },
+ {
+  "id": "magical-lighting",
+  "name": "Magical Lighting",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "Lighting is provided magically. This Virtue functions as either Superior Lighting or Excessive Lighting (but without the space and Upkeep cost).",
+  "modText": "",
+  "mods": {
+   "characteristics": {},
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6124,
+   "anchor": "magical-lighting"
+  }
+ },
+ {
+  "id": "preserved",
+  "name": "Preserved",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab, or part of its contents, is immune from natural decay.",
+  "modText": "–1 Upkeep, +1 Warping, +2 Health, +1 Aesthetics; +1 Cr.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": -1,
+    "Warping": 1,
+    "Health": 2,
+    "Aesthetics": 1
+   },
+   "specializations": {
+    "Cr": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6126,
+   "anchor": "preserved"
+  }
+ },
+ {
+  "id": "relocation",
+  "name": "Relocation",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The location of the lab in the physical world can be magically adjusted. For example, it is enchanted with a powerful Rego Terram effect. This may provide benefits for travel, but it also makes the lab and its occupant hard to find.",
+  "modText": "+1 Warping (if the relocation is in constant effect); +1 Experimentation.",
+  "mods": {
+   "characteristics": {
+    "Warping": 1
+   },
+   "specializations": {
+    "Experimentation": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6130,
+   "anchor": "relocation"
+  }
+ },
+ {
+  "id": "sentient",
+  "name": "Sentient",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab seems to have developed an independent mind. This is unlikely to have resulted from Hermetic magic (unless a breakthrough), but could be a result of being many decades in a high-level magic or faerie aura.",
+  "modText": "+1 Warping; +1 Experimentation, +1 Me.",
+  "mods": {
+   "characteristics": {
+    "Warping": 1
+   },
+   "specializations": {
+    "Experimentation": 1,
+    "Me": 1
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6132,
+   "anchor": "sentient"
+  }
+ },
+ {
+  "id": "shrouded",
+  "name": "Shrouded",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab is hidden or protected by a supernatural effect such as *The Shrouded Glen*.",
+  "modText": "+1 Warping, halve the Aesthetics score after all other modifications .",
+  "mods": {
+   "characteristics": {
+    "Warping": 1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6134,
+   "anchor": "shrouded"
+  }
+ },
+ {
+  "id": "site-of-legend",
+  "name": "Site of Legend",
+  "kind": "virtue",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "Stories are told about this lab, and legends are associated with it. *Any adjustments to Characteristics and Specializations as appropriate.*",
+  "modText": "",
+  "mods": {
+   "characteristics": {},
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6136,
+   "anchor": "site-of-legend"
+  }
+ },
+ {
+  "id": "afire-flaw",
+  "name": "Afire",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab, or large portions thereof, are engulfed in flames which never die out. This naturally requires some kind of protection or immunity to work in, and it means that whole categories of lab work (for example, research with Corpus, Animal, or Aquam) may be impossible.",
+  "modText": "+1 Upkeep, –3 Safety, +2 Warping, +2 Aesthetics; +1 Experimentation, +3 Ig.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 1,
+    "Safety": -3,
+    "Warping": 2,
+    "Aesthetics": 2
+   },
+   "specializations": {
+    "Experimentation": 1,
+    "Ig": 3
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6142,
+   "anchor": "afire"
+  }
+ },
+ {
+  "id": "chaotic-flaw",
+  "name": "Chaotic",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab or its outfittings are in a constant state of flux or motion.",
+  "modText": "–2 Safety, +1 Warping; +1 Experimentation, +2 Mu or Re.",
+  "mods": {
+   "characteristics": {
+    "Safety": -2,
+    "Warping": 1
+   },
+   "specializations": {
+    "Experimentation": 1
+   },
+   "choicePoints": 2,
+   "choice": "Mu or Re"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6144,
+   "anchor": "chaotic"
+  }
+ },
+ {
+  "id": "cursed-flaw",
+  "name": "Cursed",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab suffers from a supernatural curse. *Any penalties to Characteristics (often Safety) as may be appropriate.*",
+  "modText": "",
+  "mods": {
+   "characteristics": {},
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6146,
+   "anchor": "cursed"
+  }
+ },
+ {
+  "id": "degenerative-flaw",
+  "name": "Degenerative",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The equipment and ingredients of the lab decay and wear unnaturally quickly.",
+  "modText": "+2 Upkeep, –1 Safety, +1 Warping, –2 Health, –1 Aesthetics; +2 Pe.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 2,
+    "Safety": -1,
+    "Warping": 1,
+    "Health": -2,
+    "Aesthetics": -1
+   },
+   "specializations": {
+    "Pe": 2
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6148,
+   "anchor": "degenerative"
+  }
+ },
+ {
+  "id": "gremlins-flaw",
+  "name": "Gremlins",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab is home to deliberately disruptive creatures, spirits, or demons.",
+  "modText": "–3 Safety, +1 Warping, –1 Aesthetics; +1 Experimentation, 1 point on an appropriate Art Specialization.",
+  "mods": {
+   "characteristics": {
+    "Safety": -3,
+    "Warping": 1,
+    "Aesthetics": -1
+   },
+   "specializations": {
+    "Experimentation": 1
+   },
+   "choicePoints": 1,
+   "choice": "an appropriate Art Specialization"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6150,
+   "anchor": "gremlins"
+  }
+ },
+ {
+  "id": "labyrinth-flaw",
+  "name": "Labyrinth",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab, or at least its exterior portions, consists of some kind of maze or other structural puzzle. Most magi would find this tiresome and unnecessary, but some Criamon magi like to make their labs into labyrinths.",
+  "modText": "–1 Safety, –1 Health, –2 Aesthetics; +2 Me or Vi.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Health": -1,
+    "Aesthetics": -2
+   },
+   "specializations": {},
+   "choicePoints": 2,
+   "choice": "Me or Vi"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6158,
+   "anchor": "labyrinth"
+  }
+ },
+ {
+  "id": "lair-flaw",
+  "name": "Lair",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "A creature hides or hibernates in the lab, either known or unknown.",
+  "modText": "–1 Safety, +1 Warping; 1 point on an appropriate Art Specialization.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1,
+    "Warping": 1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "an appropriate Art Specialization"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6160,
+   "anchor": "lair"
+  }
+ },
+ {
+  "id": "precarious-flaw",
+  "name": "Precarious\\",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "*: The lab is located in a supernaturally dangerous place, such as inside a volcano. This Virtue may be taken more than once, for greater degrees of danger.",
+  "modText": "–1 Safety; 1 point on an appropriate Art Specialization.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1
+   },
+   "specializations": {},
+   "choicePoints": 1,
+   "choice": "an appropriate Art Specialization"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6162,
+   "anchor": "precarious"
+  }
+ },
+ {
+  "id": "sacrifices-flaw",
+  "name": "Sacrifices",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "Animal sacrifices are needed in order for the lab to function.",
+  "modText": "+2 Upkeep, –1 Safety, +1 Warping, –1 Health, –3 Aesthetics; 2 points on any Technique or Animal Specialization as appropriate.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": 2,
+    "Safety": -1,
+    "Warping": 1,
+    "Health": -1,
+    "Aesthetics": -3
+   },
+   "specializations": {},
+   "choicePoints": 2,
+   "choice": "any Technique or Animal Specialization as appropriate"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6168,
+   "anchor": "sacrifices"
+  }
+ },
+ {
+  "id": "thoroughfare-flaw",
+  "name": "Thoroughfare",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "Supernatural creatures, such as gnomes, pass through the lab occasionally and cause a minor nuisance.",
+  "modText": "–1 Safety.",
+  "mods": {
+   "characteristics": {
+    "Safety": -1
+   },
+   "specializations": {},
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6170,
+   "anchor": "thoroughfare"
+  }
+ },
+ {
+  "id": "underwater-flaw",
+  "name": "Underwater",
+  "kind": "flaw",
+  "size": "Free",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab is filled with water, instead of air, presenting certain logistical difficulties with breathing and moving promptly and precisely from one point to another. Some categories of lab work (for example, working with texts, Auram, or Ignem) may be impossible.",
+  "modText": "+2 Safety, +1 Warping, –2 Aesthetics; +1 Experimentation, +4 Aq.",
+  "mods": {
+   "characteristics": {
+    "Safety": 2,
+    "Warping": 1,
+    "Aesthetics": -2
+   },
+   "specializations": {
+    "Experimentation": 1,
+    "Aq": 4
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6172,
+   "anchor": "underwater"
+  }
+ },
+ {
+  "id": "living-flaw",
+  "name": "Living",
+  "kind": "flaw",
+  "size": "Minor",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The lab's structure is in some way alive. For example, it is inside a faerie tree, or in the belly of a slumbering beast.",
+  "modText": "–2 Safety, +2 Warping; 3 points on appropriate Art Specialization(s).",
+  "mods": {
+   "characteristics": {
+    "Safety": -2,
+    "Warping": 2
+   },
+   "specializations": {},
+   "choicePoints": 3,
+   "choice": "appropriate Art Specialization(s)"
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6184,
+   "anchor": "living"
+  }
+ },
+ {
+  "id": "mental-construct-flaw",
+  "name": "Mental Construct",
+  "kind": "flaw",
+  "size": "Major",
+  "group": "Supernatural",
+  "repeatable": false,
+  "text": "The entire lab (or a significant portion thereof) is all in the mind of the magus, created by a powerful Creo Mentem Ritual spell, perhaps. The Size of the lab (or its imaginary part) cannot be higher than the Intelligence score of the magus. The imaginary parts of the lab may be improved as usual (that is, Virtues and Flaws may be gained, the Refinement may be increased, and so on) with the usual time cost, but disregard any changes to Upkeep, Health, or Aesthetics. Without sophisticated magic, the magus cannot use the lab to bond with a familiar, enchant items or Longevity Rituals, or teach. He probably also cannot extract vis in it. However he can invent spells, work with Laboratory Texts, and study Arts \"normally.",
+  "modText": "\" –5 Upkeep, +2 Warping, –2 Aesthetics; +3 Me.",
+  "mods": {
+   "characteristics": {
+    "Upkeep": -5,
+    "Warping": 2,
+    "Aesthetics": -2
+   },
+   "specializations": {
+    "Me": 3
+   },
+   "choicePoints": null,
+   "choice": null
+  },
+  "source": {
+   "book": "Cov",
+   "line": 6190,
+   "anchor": "mental-construct"
+  }
+ }
+]

@@ -1,0 +1,534 @@
+[
+ {
+  "id": "altar",
+  "name": "Altar",
+  "text": "An ornamental place of ritual worship, such as a raised dais.",
+  "specializations": [
+   "any Technique",
+   "Vi"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11939,
+   "anchor": "altar"
+  }
+ },
+ {
+  "id": "animal-pen",
+  "name": "Animal Pen",
+  "text": "An enclosure for one or more animals, often a familiar, to dwell.",
+  "specializations": [
+   "Familiar",
+   "An"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11941,
+   "anchor": "animal-pen"
+  }
+ },
+ {
+  "id": "antechamber",
+  "name": "Antechamber",
+  "text": "A separate enclosure or compartment. Spells may be cast here in a more secure environment.",
+  "specializations": [
+   "Experimentation",
+   "Spells",
+   "Re"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11943,
+   "anchor": "antechamber"
+  }
+ },
+ {
+  "id": "astronomical-device",
+  "name": "Astronomical Device",
+  "text": "A sophisticated tool for measuring the movements of the heavens, often placed near a window or skylight. The most common such item is an astrolabe; and example of a more advanced device is the armillary sphere.",
+  "specializations": [
+   "In",
+   "Vi"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11945,
+   "anchor": "astronomical-device"
+  }
+ },
+ {
+  "id": "balance",
+  "name": "Balance",
+  "text": "An exact weighing device, such as a pair of scales.",
+  "specializations": [
+   "Vis Extraction",
+   "In",
+   "Re"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11947,
+   "anchor": "balance"
+  }
+ },
+ {
+  "id": "balcony",
+  "name": "Balcony",
+  "text": "An outdoors balcony, where the magus may cast spells into the open air.",
+  "specializations": [
+   "Spells",
+   "Au"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11949,
+   "anchor": "balcony"
+  }
+ },
+ {
+  "id": "cage",
+  "name": "Cage",
+  "text": "A large cage, usually built of sturdy metal bars, for imprisoning or immobilizing a subject.",
+  "specializations": [
+   "Pe",
+   "Re",
+   "Co",
+   "An"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11951,
+   "anchor": "cage"
+  }
+ },
+ {
+  "id": "cauldron",
+  "name": "Cauldron",
+  "text": "A heavy copper or brass cauldron, for the heating and mixing of large quantities of ingredients.",
+  "specializations": [
+   "Experimentation",
+   "Longevity Rituals",
+   "Vis Extraction",
+   "Mu",
+   "Aq",
+   "He",
+   "Ig"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11953,
+   "anchor": "cauldron"
+  }
+ },
+ {
+  "id": "desk",
+  "name": "Desk",
+  "text": "A comfortable and stout table, designed for reading and scribing.",
+  "specializations": [
+   "Texts",
+   "In"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11955,
+   "anchor": "desk"
+  }
+ },
+ {
+  "id": "fireplace",
+  "name": "Fireplace",
+  "text": "A stone enclosure, where fuel is burnt for heating, but where substances may also be heated or immolated.",
+  "specializations": [
+   "Pe",
+   "Ig",
+   "Im"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11957,
+   "anchor": "fireplace"
+  }
+ },
+ {
+  "id": "forge",
+  "name": "Forge",
+  "text": "A furnace — a more tightly enclosed and robust fireplace often operated by bellows, which yields heat sufficient for the smelting of metals — accompanied by an anvil and smithy.",
+  "specializations": [
+   "Items",
+   "Ig",
+   "Te"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11959,
+   "anchor": "forge"
+  }
+ },
+ {
+  "id": "grave",
+  "name": "Grave",
+  "text": "The burial place of one or more corpses. This may be either a simple earthen grave or something more elaborate, such as a stone sarcophagus.",
+  "specializations": [
+   "Pe",
+   "Co"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11961,
+   "anchor": "grave"
+  }
+ },
+ {
+  "id": "lofty-ceiling",
+  "name": "Lofty Ceiling",
+  "text": "A light, airy space overhead, for which a tall chamber, perhaps with a vaulted ceiling, is required.",
+  "specializations": [
+   "Au"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11963,
+   "anchor": "lofty-ceiling"
+  }
+ },
+ {
+  "id": "loom",
+  "name": "Loom",
+  "text": "A large wooden apparatus for the weaving of threads into a fabric.",
+  "specializations": [
+   "Re",
+   "He"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11965,
+   "anchor": "loom"
+  }
+ },
+ {
+  "id": "map",
+  "name": "Map",
+  "text": "An elaborate and detailed plan or model, accurately illustrating surrounding lands or buildings, perhaps.",
+  "specializations": [
+   "In",
+   "Te"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11967,
+   "anchor": "map"
+  }
+ },
+ {
+  "id": "mechanism",
+  "name": "Mechanism",
+  "text": "Any kind of large mechanical device, consisting of many moving parts such as cogs and wheels, used for the basic automation of one or more tasks.",
+  "specializations": [
+   "Vis Extraction",
+   "Re"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11969,
+   "anchor": "mechanism"
+  }
+ },
+ {
+  "id": "mirror",
+  "name": "Mirror",
+  "text": "A grand and ornamental silvered mirror, or other reflective surface.",
+  "specializations": [
+   "In",
+   "Im",
+   "Me"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11971,
+   "anchor": "mirror"
+  }
+ },
+ {
+  "id": "monolith",
+  "name": "Monolith",
+  "text": "A huge slab of primal rock, possibly carved with mystical symbols.",
+  "specializations": [
+   "Te",
+   "Vi"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11973,
+   "anchor": "monolith"
+  }
+ },
+ {
+  "id": "orb",
+  "name": "Orb",
+  "text": "A smooth sphere of precious stone, possibly opaque or semi-opaque, used in conjunction with divinatory effects.",
+  "specializations": [
+   "In",
+   "Im",
+   "Me",
+   "Vi"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11975,
+   "anchor": "orb"
+  }
+ },
+ {
+  "id": "pallet",
+  "name": "Pallet",
+  "text": "A bed upon which a patient may be treated or examined, perhaps equipped with some surgeon's tools.",
+  "specializations": [
+   "Longevity Rituals",
+   "Cr",
+   "Co"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11977,
+   "anchor": "pallet"
+  }
+ },
+ {
+  "id": "pit",
+  "name": "Pit",
+  "text": "A deep hole dug in the floor. Things placed inside it cannot easily get out.",
+  "specializations": [
+   "Pe",
+   "Te"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11979,
+   "anchor": "pit"
+  }
+ },
+ {
+  "id": "pool",
+  "name": "Pool",
+  "text": "A still body of water, or a well. It may be used when scrying.",
+  "specializations": [
+   "In",
+   "Aq"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11981,
+   "anchor": "pool"
+  }
+ },
+ {
+  "id": "portal",
+  "name": "Portal",
+  "text": "A gateway, through which things may be summoned or sent away.",
+  "specializations": [
+   "Cr",
+   "Re"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11983,
+   "anchor": "portal"
+  }
+ },
+ {
+  "id": "rack",
+  "name": "Rack",
+  "text": "A rather unpleasant large mechanical construct, used for torturing persons placed inside it.",
+  "specializations": [
+   "Pe",
+   "Co",
+   "Me"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11985,
+   "anchor": "rack"
+  }
+ },
+ {
+  "id": "running-water",
+  "name": "Running Water",
+  "text": "Any kind of water which runs through or around the lab, such as a stream or fountain.",
+  "specializations": [
+   "Items",
+   "Aq"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11987,
+   "anchor": "running-water"
+  }
+ },
+ {
+  "id": "summoning-circle",
+  "name": "Summoning Circle",
+  "text": "An elaborate pentagram marked on the floor, into which things are summoned.",
+  "specializations": [
+   "Experimentation",
+   "Spells",
+   "Cr",
+   "Re",
+   "An",
+   "Vi"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11989,
+   "anchor": "summoning-circle"
+  }
+ },
+ {
+  "id": "statue",
+  "name": "Statue",
+  "text": "A carved semblance of some person, creature, or thing, usually made of stone, metal, or porcelain.",
+  "specializations": [
+   "Re",
+   "An",
+   "Co",
+   "Te"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11991,
+   "anchor": "statue"
+  }
+ },
+ {
+  "id": "still",
+  "name": "Still",
+  "text": "A network of glass or metal tubing connecting delicate containers, such as retorts, designed for the distillation and refinement of compounds.",
+  "specializations": [
+   "Vis Extraction",
+   "Mu",
+   "Re",
+   "Aq"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11993,
+   "anchor": "still"
+  }
+ },
+ {
+  "id": "tablet",
+  "name": "Tablet",
+  "text": "A large framed slab of wax, for temporary scribing with a stylus.",
+  "specializations": [
+   "Texts",
+   "In",
+   "Im"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11995,
+   "anchor": "tablet"
+  }
+ },
+ {
+  "id": "tank",
+  "name": "Tank",
+  "text": "A bulky container for storing fluids.",
+  "specializations": [
+   "Vis Extraction",
+   "Re",
+   "Aq"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11997,
+   "anchor": "tank"
+  }
+ },
+ {
+  "id": "throne",
+  "name": "Throne",
+  "text": "An opulent and raised seat for a ruler (or at least, the self-important) to sit in.",
+  "specializations": [
+   "Teaching",
+   "Re",
+   "Me"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 11999,
+   "anchor": "throne"
+  }
+ },
+ {
+  "id": "tree",
+  "name": "Tree",
+  "text": "A live tree or a large plant, such as a vine.",
+  "specializations": [
+   "Cr",
+   "He"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 12001,
+   "anchor": "tree"
+  }
+ },
+ {
+  "id": "void",
+  "name": "Void",
+  "text": "A shaft, hole, or opening.",
+  "specializations": [
+   "In",
+   "Pe",
+   "Au"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 12003,
+   "anchor": "void"
+  }
+ },
+ {
+  "id": "wall",
+  "name": "Wall",
+  "text": "A large blank wall, onto which images may be summoned.",
+  "specializations": [
+   "In",
+   "Im"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 12005,
+   "anchor": "wall"
+  }
+ },
+ {
+  "id": "wheel",
+  "name": "Wheel",
+  "text": "A wheel powered by water, wind, horse, slaves, or magic.",
+  "specializations": [
+   "Items",
+   "Re"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 12007,
+   "anchor": "wheel"
+  }
+ },
+ {
+  "id": "window",
+  "name": "Window",
+  "text": "A portal to the outside world, which lets in the sun, moon, and stars.",
+  "specializations": [
+   "In",
+   "Au",
+   "Im"
+  ],
+  "source": {
+   "book": "DE",
+   "line": 12009,
+   "anchor": "window"
+  }
+ }
+]
