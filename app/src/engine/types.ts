@@ -125,6 +125,8 @@ export interface CharVirtue {
   note?: string;
   /** Ex Miscellanea compulsory flaw / Diedne dark secret: gives no Virtue points */
   noPoints?: boolean;
+  /** uid of the Virtue/Flaw whose rules made the character take this one (removed with it) */
+  requiredBy?: string;
 }
 
 export interface CharAbility {

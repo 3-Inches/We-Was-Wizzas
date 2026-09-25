@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 import { STATUS_CULTURES, type VFCategory, type VFSize, type VirtueFlawDef } from '../../../data';
 import { addVirtue, removeVirtue } from '../../../engine/character/factory';
-import { vfDisplayName } from '../../../engine/character/derive';
+import { deriveCharacter, vfDisplayName } from '../../../engine/character/derive';
+import { vfAvailability, vfProblems, type VFProblem } from '../../../engine/character/restrictions';
 import { BookBadge, Card, Markdown, Meter, SearchInput } from '../../kit';
 import ParamInput from '../ParamInput';
 import type { CharEditor } from '../useChar';
@@ -50,6 +51,7 @@ function TakenList({ ed }: { ed: CharEditor }) {
   const { c, d, data, update } = ed;
   const [open, setOpen] = useState<string | null>(null);
   if (!c || !d) return null;
+  const requiredBy = (uid?: string) => (uid ? d.virtues.find((x) => x.cv.uid === uid)?.name : undefined);
   const virtues = d.virtues.filter((v) => v.def?.kind !== 'flaw');
   const flaws = d.virtues.filter((v) => v.def?.kind === 'flaw');
   const row = (v: (typeof d.virtues)[number]) => {
@@ -76,6 +78,7 @@ function TakenList({ ed }: { ed: CharEditor }) {
           ))}
           {v.cv.free && <span className="badge good" title={v.cv.freeReason}>free · {v.cv.freeReason}</span>}
           {v.cv.noPoints && <span className="badge warn">no points</span>}
+          {requiredBy(v.cv.requiredBy) && <span className="badge info">required by {requiredBy(v.cv.requiredBy)}</span>}
           {def && <BookBadge book={def.source.book} anchor={def.source.anchor} line={def.source.line} />}
           <span className="spacer" />
           <span className="small muted">{v.points > 0 ? `costs ${v.points}` : v.points < 0 ? `gives ${-v.points}` : ''}</span>
@@ -83,6 +86,17 @@ function TakenList({ ed }: { ed: CharEditor }) {
             ✕
           </button>
         </div>
+        {def &&
+          vfProblems(d, data, def, v.cv)
+            .filter((p) => p.severity !== 'info' && !c.acknowledgedIssues.includes(p.id))
+            .map((p) => (
+              <div key={p.id} className={`small ${p.severity === 'error' ? 'bad-text' : 'warn-text'}`} style={{ marginTop: 4 }}>
+                {p.severity === 'error' ? '✕' : '!'} {p.message}{' '}
+                <button className="small ghost" onClick={() => ed.acknowledge(p.id)} title="Record a troupe ruling that allows this">
+                  Allow
+                </button>
+              </div>
+            ))}
         {def?.param && (
           <div className="row small" style={{ marginTop: 4 }}>
             <span>{def.param.label}:</span>
@@ -116,25 +130,11 @@ function TakenList({ ed }: { ed: CharEditor }) {
   );
 }
 
-export function availability(ed: CharEditor, v: VirtueFlawDef): string | null {
-  const { c, d, data } = ed;
-  if (!c || !d) return null;
-  if (!data.isBookEnabled(v.source.book)) return 'Book not enabled for this saga';
-  if (v.forTypes && !v.forTypes.includes(c.type)) return `Not for ${c.type}s`;
-  if (c.type === 'grog') {
-    if (!v.sizes.includes('Minor') && !v.sizes.includes('Free')) return 'Grogs take only Minor Virtues/Flaws';
-    if (v.categories.includes('Hermetic')) return 'Grogs cannot take Hermetic Virtues/Flaws';
-    if (v.categories.includes('Story')) return 'Grogs should not take Story Flaws';
-  }
-  if (v.id === 'the-gift' && c.type === 'grog') return 'Grogs cannot have The Gift';
-  if ((v.requiresGift || v.categories.includes('Hermetic')) && !d.hasGift && v.id !== 'the-gift' && !v.categories.includes('General')) return 'Requires The Gift';
-  if (v.categories.includes('Mythic Companion') && c.type !== 'mythic') return 'Mythic Companions only';
-  if (v.id === 'hermetic-magus' && c.type !== 'magus') return 'Magi only';
-  if (!v.repeatable && c.virtues.some((x) => x.defId === v.id) && !v.param) return 'Already taken';
-  const ex = (v.excludes ?? []).find((e) => c.virtues.some((x) => x.defId === e));
-  if (ex) return `Incompatible with ${data.vfById.get(ex)?.name}`;
-  if (v.house && c.house && v.house !== c.house) return `House ${v.house} only`;
-  return null;
+/** Why this Virtue/Flaw can't (error) or shouldn't (warning) be taken now; null if it can. */
+export function availability(ed: CharEditor, v: VirtueFlawDef): VFProblem | null {
+  const { d, data } = ed;
+  if (!d) return null;
+  return vfAvailability(d, data, v);
 }
 
 function VirtueBrowser({ ed }: { ed: CharEditor }) {
@@ -159,7 +159,7 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
       .filter((v) => (source === 'DE' ? v.source.book === 'DE' : source === 'enabled' ? data.isBookEnabled(v.source.book) : true))
       .filter((v) => showCreature || !v.creatureOnly)
       .filter((v) => !qq || v.name.toLowerCase().includes(qq) || v.text.toLowerCase().includes(qq))
-      .filter((v) => !hideUnavailable || !availability(ed, v))
+      .filter((v) => !hideUnavailable || availability(ed, v)?.severity !== 'error')
       .filter((v) => {
         if (!v.categories.includes('Social Status')) return true;
         const cult = STATUS_CULTURES[v.name];
@@ -215,6 +215,15 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
       <div className="stack">
         {list.slice(0, limit).map((v) => {
           const why = availability(ed, v);
+          const blocked = why?.severity === 'error';
+          const take = (s: VFSize, allow = false) =>
+            update((x) => {
+              const cv = addVirtue(x, data, v.id, s);
+              if (!allow || !ed.saga) return;
+              // record the troupe ruling for whatever the rules check now flags on this Virtue
+              const dd = deriveCharacter(x, data, ed.saga.houseRules);
+              for (const p of vfProblems(dd, data, v, cv)) if (p.severity === 'error' && !x.acknowledgedIssues.includes(p.id)) x.acknowledgedIssues.push(p.id);
+            });
           return (
             <div key={v.id} className={`vf-item ${v.kind}`}>
               <div className="row">
@@ -229,15 +238,27 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
                   </span>
                 ))}
                 {v.tainted && <span className="badge bad">Tainted</span>}
+                {v.beings && <span className="badge warn" title={`For ${v.beings}`}>non-human</span>}
+                {v.tradition && <span className="badge" title="Hedge tradition">{v.tradition.replace(/ \(.*\)$/, '')}</span>}
+                {v.region && <span className="badge" title="Only exists in this region">{v.region}</span>}
                 {v.effects?.some((e) => e.type !== 'note') && <span className="badge info" title="Mechanical effects are applied automatically">auto</span>}
                 <BookBadge book={v.source.book} anchor={v.source.anchor} line={v.source.line} />
                 <span className="spacer" />
-                {why && <span className="small warn-text">{why}</span>}
+                {why && (
+                  <span className={`small ${blocked ? 'bad-text' : 'warn-text'}`} title={why.message}>
+                    {why.short}
+                  </span>
+                )}
                 {v.sizes.map((s) => (
-                  <button key={s} className="small" onClick={() => update((x) => void addVirtue(x, data, v.id, s))} title={why ?? `Take as ${s}`}>
+                  <button key={s} className="small" disabled={blocked} onClick={() => take(s)} title={why?.message ?? `Take as ${s}`}>
                     + {s}
                   </button>
                 ))}
+                {blocked && why.id !== `taken-${v.id}` && (
+                  <button className="small ghost" onClick={() => take(v.sizes[0], true)} title={`${why.message} Take it anyway as a troupe ruling.`}>
+                    allow anyway
+                  </button>
+                )}
               </div>
               <div className={`vf-text ${open === v.id ? 'open' : ''}`} onClick={() => setOpen(open === v.id ? null : v.id)}>
                 {open === v.id ? <Markdown text={v.text} /> : v.text.slice(0, 260)}

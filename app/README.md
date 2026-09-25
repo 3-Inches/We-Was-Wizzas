@@ -10,6 +10,8 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 
 - It tracks the Virtue/Flaw balance, Characteristic points, and every experience pool: native language, childhood, later life, apprenticeship, post-Gauntlet, and pools granted by Virtues.
 - It applies Affinities, Puissance, the age cap, House benefits, the Ex Miscellanea traditions, and spell levels learnable at creation.
+- It enforces who may take each Virtue or Flaw: character type, House, The Gift, gender, prerequisites, incompatible combinations, Characteristic and age limits, and Virtues meant only for faeries, magic beings or hedge traditions. Virtues that bring a Flaw with them (Blood of the Nephilim and Greedy, Diedne Magic and a Major Story Flaw) add it for you, and Virtues with a sub-choice (Faerie Blood heritage, Corrupted Arts) offer a dropdown.
+- An Affinity added after experience was spent keeps the scores you bought and frees the extra xp, instead of silently raising them.
 - A rules check cites the book for each issue. Any issue can be allowed as a troupe ruling.
 - Recommendations follow the concept themes you pick.
 
@@ -79,8 +81,9 @@ app/src/store/        zustand store persisted to IndexedDB, migrations, export/i
 app/src/ui/           React pages: character wizard & sheet, covenant, tools, reference, reader
 ```
 
-- **Rules data is extracted automatically:** 962 Virtues & Flaws, 122 Abilities, 1,205 spells, 610 guidelines, 128 lab Virtues & Flaws, 36 lab features, 198 Hooks & Boons, 240 Shape & Material entries, and weapons and armor.
+- **Rules data is extracted automatically:** 959 Virtues & Flaws, 122 Abilities, 1,205 spells, 610 guidelines, 128 lab Virtues & Flaws, 36 lab features, 198 Hooks & Boons, 240 Shape & Material entries, and weapons and armor.
 - **Mechanics are written by hand** in `src/data/mechanics.ts`, one entry per Virtue or Flaw, as declarative effects: xp pools, bonuses, Lab Total modifiers and so on. Virtues and Flaws without numeric effects appear on the sheet as text for the troupe to adjudicate.
+- **Restrictions are curated** in `src/data/restrictions.ts` from the sentences in the books that limit a Virtue or Flaw, each quoted in the rules check. `src/engine/character/restrictions.ts` applies them in both the Virtue picker and the rules check.
 - **Every total carries its breakdown.** Clicking a number shows how it was calculated.
 - **Books marked WIP** in this repository are still being transcribed. Content from them can contain transcription errors, and each saga can switch them off.
 

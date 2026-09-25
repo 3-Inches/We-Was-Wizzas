@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { LIVING_LANGUAGES, DEAD_LANGUAGES, PARAMETERIZED_ABILITIES, SAMPLE_CHILDHOODS, abilityTypeOf, type GameData } from '../../../data';
-import { canSpend, sumAlloc, type DerivedCharacter, type XpBudget } from '../../../engine/character/derive';
+import { CREATION_SOURCES, canSpend, sumAlloc, type DerivedCharacter, type XpBudget } from '../../../engine/character/derive';
 import { ensureAbility } from '../../../engine/character/factory';
 import { abilityXpForScore, withAffinity } from '../../../engine/xp';
 import type { Character, XpSource } from '../../../engine/types';
@@ -8,14 +8,15 @@ import { Card, Meter, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
 
 /** Raw xp to add to one source so the ability reaches `targetScore`. */
-export function rawNeeded(c: Character, d: DerivedCharacter, abUid: string, src: XpSource, targetScore: number, affinityMult: number): number {
+export function rawNeeded(c: Character, d: DerivedCharacter, abUid: string, src: XpSource, targetScore: number): number {
   const ab = c.abilities.find((a) => a.uid === abUid);
   const da = d.abilityByUid.get(abUid);
   if (!ab || !da) return 0;
   const target = abilityXpForScore(targetScore);
   const cur = ab.xp[src] ?? 0;
-  const isCreation = src !== 'play' && src !== 'adjust' && src !== 'free';
-  const mult = da.affinity && isCreation ? affinityMult : 1;
+  // Affinity and Linguist multiply creation and Virtue-pool xp, not free/play/adjust xp
+  const multiplied = CREATION_SOURCES.includes(src) || src.startsWith('pool:');
+  const mult = multiplied ? da.multiplier : 1;
   const eff = (x: number) => (mult !== 1 ? withAffinity(x, mult) : x);
   const base = da.effectiveXp - eff(cur);
   // minimal raw xp from this source that reaches the target score (works for raising and lowering)
@@ -165,11 +166,11 @@ export default function AbilitiesStep({ ed }: { ed: CharEditor }) {
                       <td>
                         {pool && ok.ok ? (
                           <span className="row tight">
-                            <button className="small icon" title="Lower one score level" disabled={inPool === 0} onClick={() => update((x) => setPool(x, ab.uid, pool.id, rawNeeded(x, d, ab.uid, pool.id, da.score - 1, saga.houseRules.affinityMultiplier)))}>
+                            <button className="small icon" title="Lower one score level" disabled={inPool === 0} onClick={() => update((x) => setPool(x, ab.uid, pool.id, rawNeeded(x, d, ab.uid, pool.id, da.score - 1)))}>
                               −1
                             </button>
                             <Stepper value={inPool} min={0} step={1} width={46} onChange={(v) => update((x) => setPool(x, ab.uid, pool.id, v))} title="Raw xp from this pool" />
-                            <button className="small icon" title="Raise one score level" onClick={() => update((x) => setPool(x, ab.uid, pool.id, rawNeeded(x, d, ab.uid, pool.id, da.score + 1, saga.houseRules.affinityMultiplier)))}>
+                            <button className="small icon" title="Raise one score level" onClick={() => update((x) => setPool(x, ab.uid, pool.id, rawNeeded(x, d, ab.uid, pool.id, da.score + 1)))}>
                               +1
                             </button>
                           </span>

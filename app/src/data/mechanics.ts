@@ -5,7 +5,7 @@
 //
 // Saga house rules can override any of this at runtime (see engine/houseRules.ts).
 
-import type { AbilityType, CharType, Effect, ParamSpec } from './types';
+import type { AbilityType, CharType, Effect, ParamSpec, VirtueFlawDef } from './types';
 
 export interface Mechanics {
   param?: ParamSpec;
@@ -21,6 +21,19 @@ export interface Mechanics {
   compatibleStatuses?: string[];
   creatureOnly?: boolean;
   house?: string;
+  houses?: VirtueFlawDef['houses'];
+  houseSeverity?: VirtueFlawDef['houseSeverity'];
+  notForTypes?: CharType[];
+  needs?: VirtueFlawDef['needs'];
+  noGift?: boolean;
+  minChar?: VirtueFlawDef['minChar'];
+  maxChar?: VirtueFlawDef['maxChar'];
+  minAge?: number;
+  beings?: string;
+  tradition?: string;
+  region?: string;
+  paramEffects?: VirtueFlawDef['paramEffects'];
+  restrictionText?: string;
 }
 
 const P = {
@@ -31,6 +44,25 @@ const P = {
   char: (label = 'Characteristic'): ParamSpec => ({ kind: 'characteristic', label }),
   text: (label: string, options?: string[]): ParamSpec => ({ kind: 'text', label, options }),
   realm: (label = 'Realm'): ParamSpec => ({ kind: 'realm', label, options: ['Magic', 'Faerie', 'Divine', 'Infernal'] }),
+};
+
+// Faerie Blood heritages: the Definitive Edition list, then the extra ones in Realms of Power: Faerie.
+const FAERIE_HERITAGE: ParamSpec = {
+  kind: 'text',
+  label: 'Faerie heritage',
+  groups: [
+    { label: 'Definitive Edition', options: ['Bee King', 'Dwarf', 'Goblin', 'Satyr', 'Sidhe', 'Spinnen', 'Undine'] },
+    { label: 'Realms of Power: Faerie', options: ['Bloodcap', 'Brownie', 'Ettin', 'Faerie God', 'Ghul', 'Huldra', 'Nymph', 'Padfoot', 'Selkie'] },
+  ],
+};
+const FAERIE_HERITAGE_EFFECTS: Record<string, Effect[]> = {
+  'Bee King': [{ type: 'note', text: 'Bee King: may give simple instructions to bees touched and understand the thoughts of hives (Penetration 25 for warrior bees).' }],
+  Dwarf: [{ type: 'note', text: 'Dwarf Blood: +1 to any total including a Craft Ability.' }],
+  Goblin: [{ type: 'note', text: 'Goblin Blood: +1 on all totals involving stealth.' }],
+  Satyr: [{ type: 'note', text: 'Satyr Blood: +1 to Communication and Presence totals with sexually compatible characters.' }],
+  Sidhe: [{ type: 'charBonus', char: 'Pre', amount: 1, max: 3 }],
+  Spinnen: [{ type: 'note', text: 'Spinnen Blood: converts own body weight of fiber into cloth per day by touch.' }],
+  Undine: [{ type: 'note', text: 'Undine Blood: +2 to any action taken underwater (partially offsets the penalty).' }],
 };
 
 const ACADEMIC: Effect = { type: 'abilityAccess', abilityTypes: ['Academic'] };
@@ -138,8 +170,8 @@ export const MECHANICS: Record<string, Mechanics> = {
   'outlaw-flaw': { effects: [MARTIAL, rep(2, 'Outlaw', 'bad')] },
   'outlaw-leader-flaw': { effects: [MARTIAL, rep(3, 'Outlaw', 'bad', 'Local')] },
   'student-of-realm': { repeatable: true, param: P.realm(), effects: [{ type: 'abilityAccess', note: 'The chosen (Realm) Lore' }, note('+2 on all uses of the chosen Realm Lore')], tags: ['supernatural', 'scholar'] },
-  'faerie-blood': { effects: [{ type: 'abilityAccess', abilities: ['faerie-lore'] }, { type: 'agingRoll', amount: -1 }], param: P.text('Faerie heritage', ['Bee King', 'Dwarf', 'Goblin', 'Satyr', 'Sidhe', 'Spinnen', 'Other']), tags: ['faerie'], excludes: ['strong-faerie-blood'] },
-  'strong-faerie-blood': { effects: [{ type: 'abilityAccess', abilities: ['faerie-lore'] }, { type: 'agingRoll', amount: -3 }, { type: 'agingStartAge', age: 50 }, { type: 'implies', virtue: 'second-sight', note: 'Second Sight free' }], tags: ['faerie'], excludes: ['faerie-blood'] },
+  'faerie-blood': { effects: [{ type: 'abilityAccess', abilities: ['faerie-lore'] }, { type: 'agingRoll', amount: -1 }], param: FAERIE_HERITAGE, paramEffects: FAERIE_HERITAGE_EFFECTS, tags: ['faerie'], excludes: ['strong-faerie-blood'] },
+  'strong-faerie-blood': { effects: [{ type: 'abilityAccess', abilities: ['faerie-lore'] }, { type: 'agingRoll', amount: -3 }, { type: 'agingStartAge', age: 50 }, { type: 'implies', virtue: 'second-sight', note: 'Second Sight free' }], param: FAERIE_HERITAGE, paramEffects: FAERIE_HERITAGE_EFFECTS, tags: ['faerie'], excludes: ['faerie-blood'] },
   'blood-of-the-nephilim': { effects: [{ type: 'abilityAccess', abilities: ['dominion-lore'] }, { type: 'size', amount: 1 }, { type: 'agingRoll', amount: -5 }], tags: ['divine'] },
 
   // ------------------------------------------------------------------ Later-life XP
@@ -216,10 +248,10 @@ export const MECHANICS: Record<string, Mechanics> = {
   'cyclic-magic-positive': { requiresGift: true, param: P.text('Cycle'), effects: [{ type: 'castingScore', amount: 3, when: 'circumstance' }, { type: 'labTotal', amount: 3, when: 'circumstance' }] },
   'cyclic-magic-negative-flaw': { requiresGift: true, param: P.text('Cycle'), effects: [{ type: 'castingScore', amount: -3, when: 'circumstance' }, { type: 'labTotal', amount: -3, when: 'circumstance' }] },
   'life-boost': { requiresGift: true, tags: ['casting', 'penetration'] },
-  'mercurian-magic': { requiresGift: true, effects: [{ type: 'ritualVisMultiplier', multiplier: 0.5 }, { type: 'requiresFlaw', flaw: 'ceremonial-spontaneous-magic-flaw', note: 'All known Mercurians have Ceremonial Spontaneous Magic' }], tags: ['ritual'] },
+  'mercurian-magic': { requiresGift: true, effects: [{ type: 'ritualVisMultiplier', multiplier: 0.5 }], tags: ['ritual'] },
   'weak-magic-flaw': { requiresGift: true, effects: [{ type: 'penetrationMultiplier', multiplier: 0.5 }] },
   'mythic-blood': { requiresGift: true, effects: [{ type: 'implies', virtue: 'minor-magical-focus', note: 'Includes a Minor Magical Focus' }], tags: ['casting'] },
-  'diedne-magic': { requiresGift: true, effects: [note('Must also take a Major Story Flaw (e.g. Dark Secret) that grants no Virtue points.')], tags: ['spontaneous'] },
+  'diedne-magic': { requiresGift: true, tags: ['spontaneous'] },
   'gorgiastic': { requiresGift: true },
   'leper-magus': { requiresGift: true, requires: ['leprosy-flaw'], house: 'tytalus', effects: [{ type: 'implies', virtue: 'life-boost' }] },
   'imbued-with-the-spirit-of-form': { requiresGift: true, param: P.form() },

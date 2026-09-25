@@ -44,6 +44,10 @@ export default function HelpPage() {
             <li>Pick grog, companion, Mythic Companion or magus. The wizard walks through every step and never throws away a choice; you can jump between steps.</li>
             <li>Every step shows its budget (Virtue points, Characteristic points, xp pools, spell levels) and a live rules check with book references.</li>
             <li>Recommendations suggest Virtues, Abilities, Arts and spells that fit the concept themes you pick.</li>
+            <li>
+              The Virtue list hides what the character may not take (House-only Flaws, Virtues for faerie beings, missing prerequisites…). Untick <b>Only what this character can take</b> to
+              see them with the reason; <b>allow anyway</b> takes one as a troupe ruling.
+            </li>
             <li>If the troupe allows something the rules forbid, press <b>Allow</b> on the warning to record it as a ruling for that character.</li>
             <li>Finish creation to switch to the in-play sheet. You can always return to creation.</li>
           </ol>
@@ -90,7 +94,7 @@ export default function HelpPage() {
       </div>
       <Card title="About the rules data">
         <p className="small">
-          The rules come from the markdown books in this repository: 962 Virtues and Flaws, 122 Abilities, 1,205 spells, 610 guideline entries, 128 laboratory Virtues and Flaws, 198 Hooks
+          The rules come from the markdown books in this repository: 959 Virtues and Flaws, 122 Abilities, 1,205 spells, 610 guideline entries, 128 laboratory Virtues and Flaws, 198 Hooks
           and Boons and 240 Shape & Material entries, all extracted automatically, with hand-written mechanics for the Virtues and Flaws that change numbers. Books marked WIP are still being
           transcribed and may have errors. If something looks wrong, use an override and check the source text in the reader.
         </p>
