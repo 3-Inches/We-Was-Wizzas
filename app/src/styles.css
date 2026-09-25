@@ -338,3 +338,4 @@ button.big { font-size: 1.1em; padding: 10px 22px; }
 .reader-target { scroll-margin-top: 12px; border-top: 3px solid var(--accent); margin-bottom: 4px; }
 .reader-target + * { background: color-mix(in srgb, var(--accent) 10%, transparent); }
 @media (max-width: 900px) { .reader-layout { grid-template-columns: 1fr; } .reader-toc { position: static; max-height: none; } .toc-list { max-height: 40vh; } }
+.sidebar-credit { margin-top: 16px; line-height: 1.4; font-size: 0.72em; }

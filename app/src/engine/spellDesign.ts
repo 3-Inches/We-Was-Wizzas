@@ -160,7 +160,7 @@ export function inventionSeasons(labTotal: number, level: number, opts: { fromTe
   return { possible: true, seasons: Math.ceil(level / per), perSeason: per };
 }
 
-/** Spell Mastery special abilities (DE p.225-227). The Mastery score itself adds to the
+/** Spell Mastery special abilities (DE p.225–226). The Mastery score itself adds to the
  *  Casting Score of the spell and subtracts from its botch dice. */
 export const MASTERY_ABILITIES = [
   { name: 'Adaptive Casting', text: 'Use this Mastery score and its special abilities when casting similar spells.' },

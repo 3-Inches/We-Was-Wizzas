@@ -78,7 +78,7 @@ function makeDarius() {
   return c;
 }
 
-describe('character derivation (Darius of Flambeau, DE p.50-54)', () => {
+describe('character derivation (Darius of Flambeau, DE p.44–54)', () => {
   const c = makeDarius();
   const d = deriveCharacter(c, data, rules);
 

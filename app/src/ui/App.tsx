@@ -135,6 +135,13 @@ function Sidebar({ open }: { open: boolean }) {
           <input type="checkbox" checked={ui.streamMode} onChange={(e) => setStream(e.target.checked)} /> Stream mode (large text)
         </label>
       </div>
+      <p className="small muted sidebar-credit">
+        Based on the material for Ars Magica, ©1993–2024, licensed by Trident, Inc. d/b/a Atlas Games®, under{' '}
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
+          CC BY-SA 4.0
+        </a>
+        . Unofficial fan tool. <Link to="/help">Credits</Link>
+      </p>
     </aside>
   );
 }

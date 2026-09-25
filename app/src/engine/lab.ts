@@ -1,4 +1,4 @@
-// Laboratory personalization (DE p.286-297, Covenants ch.9).
+// Laboratory personalization (DE p.286–296, Covenants ch.9).
 
 import type { GameData, LabCharacteristic } from '../data';
 import type { Laboratory } from './types';
