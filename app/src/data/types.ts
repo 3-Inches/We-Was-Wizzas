@@ -47,10 +47,32 @@ export type ParamKind =
 export interface ParamSpec {
   kind: ParamKind;
   label: string;
-  /** optional list of allowed values */
+  /** optional list of allowed values (for kind=ability/art/form: allowed ids) */
   options?: string[];
+  /** grouped choices, e.g. Faerie Blood heritages by book; shown as a dropdown with "Other" */
+  groups?: { label: string; options: string[] }[];
   /** for kind=ability: restrict to ability types */
   abilityTypes?: AbilityType[];
+  /** several values may be chosen (stored comma-separated) */
+  multiple?: boolean;
+  /** the choice can be left blank without a warning */
+  optional?: boolean;
+}
+
+/**
+ * Something a Virtue or Flaw needs the character to have as well. Satisfied by any taken
+ * V&F in `anyOf` or matching `match`. Tokens: '$gift' (has The Gift), '$academic' /
+ * '$arcane' / '$martial' (may learn that ability type), '$supernaturalAbility'.
+ */
+export interface VFNeed {
+  anyOf?: string[];
+  match?: { category?: VFCategory; size?: VFSize; kind?: VFKind };
+  label: string;
+  /** the book's wording of this requirement */
+  quote?: string;
+  /** added automatically when this V&F is taken; counts normally unless noPoints */
+  auto?: { id: string; size?: VFSize; noPoints?: boolean };
+  severity?: 'error' | 'warning';
 }
 
 /** '$param' means "the parameter chosen when the Virtue was taken". */
@@ -165,8 +187,31 @@ export interface VirtueFlawDef {
   creatureOnly?: boolean;
   /** Requires The Gift */
   requiresGift?: boolean;
-  /** houses-specific */
+  /** houses-specific (soft: a House's own Virtue) */
   house?: string;
+  /** only magi of these Houses may take it */
+  houses?: string[];
+  houseSeverity?: 'error' | 'warning';
+  /** not available to these character types */
+  notForTypes?: CharType[];
+  /** other V&F (or abilities) this needs; see VFNeed */
+  needs?: VFNeed[];
+  /** may not be taken by a character with The Gift */
+  noGift?: boolean;
+  /** limits on the final Characteristic scores */
+  minChar?: Partial<Record<Characteristic, number>>;
+  maxChar?: Partial<Record<Characteristic, number>>;
+  minAge?: number;
+  /** for non-human beings built with a Realms of Power creation chapter (e.g. "faerie characters") */
+  beings?: string;
+  /** belongs to a hedge tradition; normally only its members take it */
+  tradition?: string;
+  /** only exists in these regions (informational) */
+  region?: string;
+  /** extra effects that apply when the chosen parameter has this value */
+  paramEffects?: Record<string, Effect[]>;
+  /** the book's own wording of the restriction, quoted in rules messages */
+  restrictionText?: string;
   custom?: boolean;
 }
 

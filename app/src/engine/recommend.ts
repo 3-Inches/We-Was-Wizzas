@@ -4,6 +4,7 @@
 
 import { ARTS, ART_NAMES, type Art, type GameData, type VirtueFlawDef } from '../data';
 import type { DerivedCharacter } from './character/derive';
+import { vfProblems } from './character/restrictions';
 
 export interface Archetype {
   id: string;
@@ -46,9 +47,10 @@ export interface Suggestion {
 
 const has = (d: DerivedCharacter, id: string, param?: string) => d.char.virtues.some((v) => v.defId === id && (param === undefined || v.param === param));
 
-function allowed(d: DerivedCharacter, v: VirtueFlawDef): boolean {
+function allowed(d: DerivedCharacter, v: VirtueFlawDef, data: GameData): boolean {
   const t = d.char.type;
   if (v.creatureOnly) return false;
+  if (vfProblems(d, data, v).some((p) => p.severity === 'error' || (p.severity === 'warning' && !p.id.startsWith('char-')))) return false;
   if (v.forTypes && !v.forTypes.includes(t)) return false;
   if (v.requiresGift && !d.hasGift) return false;
   if (t === 'grog' && (v.sizes.every((s) => s === 'Major') || v.categories.includes('Hermetic') || v.categories.includes('Story'))) return false;
@@ -66,7 +68,7 @@ export function recommend(d: DerivedCharacter, data: GameData, archetypeIds: str
   const push = (s: Suggestion) => {
     if (s.id && (s.kind === 'virtue' || s.kind === 'flaw')) {
       const def = data.vfById.get(s.id);
-      if (!def || !allowed(d, def)) return;
+      if (!def || !allowed(d, def, data)) return;
       if (!data.isBookEnabled(def.source.book)) return;
       if (has(d, s.id, s.param)) return;
     }
@@ -134,7 +136,7 @@ export function recommend(d: DerivedCharacter, data: GameData, archetypeIds: str
   if (tags.size) {
     const scored: { v: VirtueFlawDef; s: number }[] = [];
     for (const v of data.virtuesFlaws) {
-      if (!allowed(d, v) || !data.isBookEnabled(v.source.book)) continue;
+      if (!allowed(d, v, data) || !data.isBookEnabled(v.source.book)) continue;
       const overlap = (v.tags ?? []).filter((x) => tags.has(x)).length;
       if (!overlap) continue;
       let s = overlap * 2;

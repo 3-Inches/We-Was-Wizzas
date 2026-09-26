@@ -49,6 +49,7 @@ export default function App() {
           </button>
           <b style={{ fontFamily: 'var(--font-head)' }}>Ars Magica Toolkit</b>
         </div>
+        <Notice />
         <main className="main">
           <Suspense fallback={<div className="muted">Loading…</div>}>
             <Routes>
@@ -70,6 +71,26 @@ export default function App() {
           </Suspense>
         </main>
       </div>
+    </div>
+  );
+}
+
+/** Tells the user when the app changed something for them (e.g. xp rebalanced for an Affinity). */
+function Notice() {
+  const notice = useStore((s) => s.notice);
+  const setNotice = useStore((s) => s.setNotice);
+  useEffect(() => {
+    if (!notice) return;
+    const t = setTimeout(() => setNotice(undefined), 15000);
+    return () => clearTimeout(t);
+  }, [notice, setNotice]);
+  if (!notice) return null;
+  return (
+    <div className="notice no-print" role="status">
+      <span>{notice.text}</span>
+      <button className="small ghost" onClick={() => setNotice(undefined)} aria-label="Dismiss">
+        ✕
+      </button>
     </div>
   );
 }

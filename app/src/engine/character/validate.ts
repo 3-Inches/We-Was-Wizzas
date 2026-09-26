@@ -11,6 +11,8 @@ import type { Character, HouseRules } from '../types';
 import { canSpend, sumAlloc, type DerivedCharacter } from './derive';
 import { creationSpellLimit } from '../magic';
 import { HOUSE_BY_ID } from '../../data/houses';
+import { vfProblems } from './restrictions';
+import { hasFaerieVirtue } from './factory';
 
 export type Severity = 'error' | 'warning' | 'info';
 export type Step = 'basics' | 'house' | 'virtues' | 'characteristics' | 'abilities' | 'arts' | 'spells' | 'personality' | 'equipment' | 'sheet';
@@ -27,7 +29,10 @@ export interface Issue {
 export function validateCharacter(d: DerivedCharacter, data: GameData, rules: HouseRules): Issue[] {
   const c = d.char;
   const issues: Issue[] = [];
+  const seenIds = new Set<string>();
   const add = (i: Issue) => {
+    if (seenIds.has(i.id)) return;
+    seenIds.add(i.id);
     if (!c.acknowledgedIssues.includes(i.id)) issues.push(i);
   };
   const t = d.tally;
@@ -42,7 +47,6 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (type === 'magus' && !d.hasGift) add({ id: 'magus-gift', severity: 'error', step: 'virtues', message: 'All magi must have The Gift.', ref: 'DE p.63', fix: 'Add The Gift (free).' });
   if (type === 'grog' && d.hasGift) add({ id: 'grog-gift', severity: 'error', step: 'virtues', message: 'Grogs may not have The Gift.', ref: 'DE p.63' });
   if (type === 'magus' && !c.virtues.some((v) => v.defId === 'hermetic-magus')) add({ id: 'magus-status', severity: 'error', step: 'virtues', message: 'Magi must take the Hermetic Magus Social Status.', ref: 'DE p.63', fix: 'Add Hermetic Magus (free).' });
-  if (type !== 'magus' && c.virtues.some((v) => v.defId === 'hermetic-magus')) add({ id: 'nonmagus-status', severity: 'error', step: 'virtues', message: 'Only Hermetic magi may take the Hermetic Magus Social Status.', ref: 'DE p.85' });
   if (t.socialStatuses.length === 0) add({ id: 'status-none', severity: 'error', step: 'virtues', message: 'Every character must take one Social Status.', ref: 'DE p.63', fix: type === 'grog' ? 'Covenfolk is the usual choice.' : 'Covenfolk, Wanderer or a status fitting the concept.' });
   if (t.socialStatuses.length > 1) {
     const names = t.socialStatuses.map((s) => s.def?.name ?? '');
@@ -59,11 +63,6 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   // --------------------------------------------------------------- point totals
   if (type === 'grog') {
     if (t.flawPoints > rules.grogMaxFlawPoints) add({ id: 'grog-flaws', severity: 'error', step: 'virtues', message: `Grogs may take at most ${rules.grogMaxFlawPoints} points of Flaws (have ${t.flawPoints}).`, ref: 'DE p.63' });
-    for (const v of d.virtues) {
-      if (v.cv.size === 'Major' && !v.cv.free) add({ id: `grog-major-${v.cv.uid}`, severity: 'error', step: 'virtues', message: `Grogs may not take Major Virtues or Flaws (${v.name}).`, ref: 'DE p.63' });
-      if (v.def?.categories.includes('Hermetic')) add({ id: `grog-hermetic-${v.cv.uid}`, severity: 'error', step: 'virtues', message: `Grogs may not take Hermetic Virtues or Flaws (${v.name}).`, ref: 'DE p.63' });
-    }
-    if (t.storyFlaws > 0) add({ id: 'grog-story', severity: 'warning', step: 'virtues', message: 'Grogs should not take Story Flaws.', ref: 'DE p.63' });
     if (t.personalityFlaws > 1) add({ id: 'grog-personality', severity: 'warning', step: 'virtues', message: 'Grogs should not take more than one Personality Flaw.', ref: 'DE p.63' });
   } else {
     if (t.flawPoints > rules.maxFlawPoints) add({ id: 'max-flaws', severity: 'error', step: 'virtues', message: `At most ${rules.maxFlawPoints} points of Flaws (have ${t.flawPoints}).`, ref: 'DE p.61' });
@@ -100,13 +99,12 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       const hasFlaw = pkg.some((v) => data.vfById.get(v.defId)?.categories.includes('Hermetic') && v.size === 'Major' && data.vfById.get(v.defId)?.kind === 'flaw');
       if (!hasMinor || !hasMajor || !hasFlaw) add({ id: 'exmisc-package', severity: 'warning', step: 'house', message: 'Ex Miscellanea magi get a free Minor Hermetic Virtue, a free Major non-Hermetic Virtue, and a compulsory Major Hermetic Flaw.', ref: 'DE p.44' });
     }
-    if (c.house === 'merinita') {
-      const faerie = c.virtues.some((v) => v.freeReason !== 'House Virtue' && /faerie|fae/i.test(data.vfById.get(v.defId)?.name ?? '') );
+    if (c.house === 'merinita' && (creating || c.seasonLog.length === 0)) {
+      const faerie = hasFaerieVirtue(c, data);
       if (!faerie && c.warpingPoints < 1) add({ id: 'merinita-warping', severity: 'info', step: 'house', message: 'Merinita magi without a faerie-related Virtue or Flaw start with 1 Warping Point.', ref: 'DE p.44', fix: 'Set Warping Points to 1 on the sheet.' });
+      if (faerie && c.warpingPoints === 1) add({ id: 'merinita-warping-faerie', severity: 'warning', step: 'house', message: 'This Merinita magus has a faerie-related Virtue or Flaw, so does not take the Warping Point the House gives to magi without one.', ref: 'DE p.44', fix: 'Set Warping Points to 0 (unless another rule gave the point).' });
     }
     if (c.house === 'bjornaer' && c.familiar) add({ id: 'bjornaer-familiar', severity: 'warning', step: 'sheet', message: 'Bjornaer magi cannot bind familiars.', ref: 'DE p.233' });
-  } else if (!d.hasGift) {
-    for (const v of d.virtues) if (v.def?.categories.includes('Hermetic') && !v.def.categories.includes('General')) add({ id: `nogift-hermetic-${v.cv.uid}`, severity: 'error', step: 'virtues', message: `${v.name} is Hermetic; only characters with The Gift may take Hermetic Virtues and Flaws.`, ref: 'DE p.63–64' });
   }
 
   // --------------------------------------------------------------- mythic companions
@@ -117,8 +115,6 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (d.hasGift) add({ id: 'mythic-gift', severity: 'error', step: 'virtues', message: 'Mythic Companion Virtues are incompatible with The Gift.', ref: 'DE p.55' });
     const freeMinor = c.virtues.filter((v) => v.free && v.freeReason === 'Mythic Companion free Minor Virtue');
     if (freeMinor.length === 0) add({ id: 'mythic-free-minor', severity: 'info', step: 'virtues', message: 'Mythic Companions gain a free Minor Virtue, normally specified by their type.', ref: 'DE p.55' });
-  } else if (d.virtues.some((v) => v.def?.categories.includes('Mythic Companion'))) {
-    add({ id: 'mythic-nonmythic', severity: 'error', step: 'virtues', message: 'Only Mythic Companions may take a Mythic Companion Virtue.', ref: 'DE p.55' });
   }
 
   // --------------------------------------------------------------- per virtue checks
@@ -132,17 +128,8 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     const key = `${def.id}|${v.cv.param ?? ''}`;
     seen.set(key, (seen.get(key) ?? 0) + 1);
     if (!def.sizes.includes(v.cv.size) && !v.cv.free) add({ id: `size-${v.cv.uid}`, severity: 'warning', step: 'virtues', message: `${def.name} is normally ${def.sizes.join(' or ')}, taken as ${v.cv.size}.` });
-    if (def.param && !v.cv.param) add({ id: `param-${v.cv.uid}`, severity: 'warning', step: 'virtues', message: `${def.name}: choose the ${def.param.label}.` });
-    if (def.forTypes && !def.forTypes.includes(type)) add({ id: `fortype-${v.cv.uid}`, severity: 'error', step: 'virtues', message: `${def.name} is not available to ${typeLabel(type)} characters.`, ref: def.source.book });
-    if (def.requiresGift && !d.hasGift) add({ id: `gift-${v.cv.uid}`, severity: 'error', step: 'virtues', message: `${def.name} requires The Gift.` });
-    if (def.maleOnly && c.gender && /^f/i.test(c.gender)) add({ id: `male-${v.cv.uid}`, severity: 'info', step: 'virtues', message: `${def.name} is only available to characters perceived by society as male (see Paid Rights, and DE p.62 on social statuses and gender).` });
-    for (const ex of def.excludes ?? []) {
-      if (c.virtues.some((o) => o.defId === ex)) add({ id: `excl-${def.id}-${ex}`, severity: 'error', step: 'virtues', message: `${def.name} cannot be combined with ${data.vfById.get(ex)?.name ?? ex}.` });
-    }
-    for (const r of def.requires ?? []) {
-      if (!c.virtues.some((o) => o.defId === r)) add({ id: `req-${v.cv.uid}-${r}`, severity: 'warning', step: 'virtues', message: `${def.name} requires ${data.vfById.get(r)?.name ?? r}.` });
-    }
-    if (def.house && c.house && def.house !== c.house && !v.cv.free) add({ id: `house-only-${v.cv.uid}`, severity: 'warning', step: 'virtues', message: `${def.name} is normally only available to House ${HOUSE_BY_ID[def.house]?.name ?? def.house}.` });
+    if (def.param && !def.param.optional && !v.cv.param) add({ id: `param-${v.cv.uid}`, severity: 'warning', step: 'virtues', message: `${def.name}: choose the ${def.param.label}.` });
+    for (const p of vfProblems(d, data, def, v.cv)) add({ id: p.id, severity: p.severity, step: 'virtues', message: p.message, ref: p.ref, fix: p.fix });
     if (!data.isBookEnabled(def.source.book)) add({ id: `book-${v.cv.uid}`, severity: 'info', step: 'virtues', message: `${def.name} comes from ${def.source.book}, which is not enabled for this saga.` });
     if (def.id === 'great-characteristic' && v.cv.param) {
       const base = c.characteristics[v.cv.param as keyof typeof c.characteristics];
@@ -151,11 +138,6 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (def.id === 'poor-characteristic-flaw' && v.cv.param) {
       const base = c.characteristics[v.cv.param as keyof typeof c.characteristics];
       if (base !== undefined && base > -3) add({ id: `poorchar-${v.cv.uid}`, severity: 'error', step: 'characteristics', message: `Poor ${CHAR_NAMES[v.cv.param as keyof typeof CHAR_NAMES]} requires a purchased score of –3 or lower (have ${base}).`, ref: 'DE p.141' });
-    }
-    const wealthStatus = (def.id === 'wealthy' || def.id === 'poor-flaw') && c.virtues.find((o) => ['covenfolk', 'custos', 'turb-trained', 'almogavar', 'guild-apprentice'].includes(o.defId));
-    if (wealthStatus) {
-      const statusName = data.vfById.get(wealthStatus.defId)?.name ?? wealthStatus.defId;
-      add({ id: `wealth-status-${v.cv.uid}`, severity: 'error', step: 'virtues', message: `${def.name} cannot be taken with ${statusName}: that Social Status sets your standard of living.`, ref: `DE, ${statusName} (Social Status)` });
     }
   }
   for (const [key, count] of seen) {
@@ -186,7 +168,9 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       else if (b.total - b.spent > 0 && b.id !== 'native') add({ id: `budget-left-${b.id}`, severity: 'info', step: b.id === 'apprenticeship' || b.id === 'postGauntlet' ? 'arts' : 'abilities', message: `${b.label}: ${b.total - b.spent} experience points unspent.` });
       if (b.spellLevels && b.spellLevels.spent > b.spellLevels.total) add({ id: `spell-levels-${b.id}`, severity: 'error', step: 'spells', message: `Apprenticeship spells total ${b.spellLevels.spent} levels; limit is ${b.spellLevels.total}.`, ref: 'DE p.49' });
     }
-    // Allocation legality
+  }
+  // Allocation legality: xp spent at creation stays checked after play starts
+  {
     for (const ab of c.abilities) {
       const da = d.abilityByUid.get(ab.uid);
       for (const [src, xp] of Object.entries(ab.xp)) {
@@ -199,10 +183,10 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
         const ok = canSpend(d, data, b, ab);
         if (!ok.ok) add({ id: `illegal-${ab.uid}-${src}`, severity: 'error', step: 'abilities', message: `${da?.name}: ${ok.reason} (${b.label}).` });
       }
-      if (da && rules.enforceAbilityAgeCap && da.score > da.cap && !c.virtues.some((v) => v.defId === 'mentored-by-demons')) {
+      if (creating && da && rules.enforceAbilityAgeCap && da.score > da.cap && !c.virtues.some((v) => v.defId === 'mentored-by-demons')) {
         add({ id: `cap-${ab.uid}`, severity: 'error', step: 'abilities', message: `${da.name} ${da.score} exceeds the age-based maximum of ${da.cap} at character creation.`, ref: 'DE p.48' });
       }
-      if (da?.type === 'Academic' && !ab.abilityId.includes('language') && !c.abilities.some((x) => (x.abilityId === 'dead-language' && /latin|greek|hebrew|arabic/i.test(x.param ?? '')) && (d.abilityByUid.get(x.uid)?.score ?? 0) >= 3)) {
+      if (creating && da?.type === 'Academic' && !ab.abilityId.includes('language') && !c.abilities.some((x) => (x.abilityId === 'dead-language' && /latin|greek|hebrew|arabic/i.test(x.param ?? '')) && (d.abilityByUid.get(x.uid)?.score ?? 0) >= 3)) {
         if (da.score > 0) add({ id: `academic-lang-${ab.uid}`, severity: 'info', step: 'abilities', message: `Learning ${da.name} normally requires Latin, Greek, Hebrew, or Arabic of at least 3.`, ref: 'DE p.158' });
       }
     }
@@ -213,7 +197,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       }
     }
     const native = c.abilities.filter((a) => a.native);
-    if (native.length === 0) add({ id: 'native-lang', severity: 'warning', step: 'abilities', message: 'Choose a native language (75 xp, normally score 5).', ref: 'DE p.48' });
+    if (creating && native.length === 0) add({ id: 'native-lang', severity: 'warning', step: 'abilities', message: 'Choose a native language (75 xp, normally score 5).', ref: 'DE p.48' });
   }
 
   // magus minimum abilities
@@ -260,10 +244,6 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (c.age > 35 && creating) add({ id: 'aging', severity: 'info', step: 'basics', message: 'Characters older than 35 must make aging rolls for each year from 35 before play (use the Aging tool on the sheet).', ref: 'DE p.50' });
 
   return issues;
-}
-
-function typeLabel(t: string) {
-  return { grog: 'grog', companion: 'companion', mythic: 'Mythic Companion', magus: 'magus' }[t] ?? t;
 }
 
 function escapeRe(s: string) {

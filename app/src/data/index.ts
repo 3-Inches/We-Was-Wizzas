@@ -13,6 +13,7 @@ import shapeMaterialJson from './generated/shapeMaterial.json';
 import weaponsJson from './generated/weapons.json';
 import armorJson from './generated/armor.json';
 import { MECHANICS, type Mechanics } from './mechanics';
+import { NOT_REAL_VF, RESTRICTIONS } from './restrictions';
 import type {
   AbilityDef, ArmorDef, GuidelineDef, HookBoonDef, LabFeatureDef, LabVFDef, ShapeMaterialDef,
   SpellDef, VirtueFlawDef, WeaponDef, Effect, AbilityType,
@@ -21,7 +22,7 @@ import type {
 export * from './types';
 export * from './constants';
 
-const RAW_VF = vfJson as unknown as VirtueFlawDef[];
+const RAW_VF = (vfJson as unknown as VirtueFlawDef[]).filter((v) => !NOT_REAL_VF.has(v.id));
 const RAW_ABILITIES = abilitiesJson as unknown as AbilityDef[];
 const RAW_SPELLS = spellsJson as unknown as SpellDef[];
 
@@ -125,6 +126,23 @@ function autoTags(v: VirtueFlawDef): string[] {
   return [...tags];
 }
 
+/**
+ * Combine the restriction data, the hand-written mechanics and a saga's override for one
+ * Virtue/Flaw. Later layers win, except that the lists of prerequisites and incompatibilities
+ * from the first two layers are combined (an override replaces them outright).
+ */
+export function mergeMechanics(restr: Mechanics = {}, mech: Mechanics = {}, override: Partial<Mechanics> = {}): Mechanics {
+  const union = (a?: string[], b?: string[]) => (a || b ? [...new Set([...(a ?? []), ...(b ?? [])])] : undefined);
+  const out: Mechanics = { ...restr, ...mech };
+  const excludes = union(restr.excludes, mech.excludes);
+  const requires = union(restr.requires, mech.requires);
+  const needs = restr.needs || mech.needs ? [...(restr.needs ?? []), ...(mech.needs ?? [])] : undefined;
+  if (excludes) out.excludes = excludes;
+  if (requires) out.requires = requires;
+  if (needs) out.needs = needs;
+  return { ...out, ...override };
+}
+
 // --------------------------------------------------------------------------------------
 // Saga customization
 
@@ -190,7 +208,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
   const abilityIds = new Set(abilities.map((a) => a.id));
 
   const vfs: VirtueFlawDef[] = [...RAW_VF, ...custom.virtuesFlaws].map((v) => {
-    const mech: Mechanics = { ...(MECHANICS[v.id] ?? {}), ...(opts.mechanicsOverrides?.[v.id] ?? {}) };
+    const mech = mergeMechanics(RESTRICTIONS[v.id], MECHANICS[v.id], opts.mechanicsOverrides?.[v.id]);
     const effects = mech.effects ?? inferGrant(v, abilityIds);
     const creatureOnly = mech.creatureOnly ?? (CREATURE_NOTE.test(v.notes ?? '') || (v.source.book.startsWith('RoP') && CREATURE_TEXT.test(v.text)));
     return {
@@ -202,6 +220,14 @@ export function buildGameData(opts: DataOptions = {}): GameData {
       requiresGift: mech.requiresGift ?? (v.categories.includes('Hermetic') ? true : undefined),
     };
   });
+  // "A cannot be taken with B" works both ways.
+  const byId = new Map(vfs.map((v) => [v.id, v]));
+  for (const v of vfs) {
+    for (const ex of v.excludes ?? []) {
+      const other = byId.get(ex);
+      if (other && !(other.excludes ?? []).includes(v.id)) other.excludes = [...(other.excludes ?? []), v.id];
+    }
+  }
 
   const spells = [...RAW_SPELLS, ...custom.spells];
   const labVF = [...(labVFJson as unknown as LabVFDef[]), ...custom.labVirtuesFlaws];

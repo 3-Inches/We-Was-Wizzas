@@ -33,6 +33,8 @@ export interface DerivedAbility {
   bonus: number; // Puissant etc.
   total: number; // score + bonus
   affinity: boolean;
+  /** multiplier applied to creation and Virtue-pool xp (Affinity, Linguist) */
+  multiplier: number;
   cap: number;
   granted: number; // score granted by virtues
 }
@@ -47,6 +49,7 @@ export interface DerivedArt {
   value: number; // score + puissant (before deficiency)
   deficient: 'none' | 'all' | 'notMR';
   affinity: boolean;
+  multiplier: number;
   elementalBonus: number;
 }
 
@@ -97,7 +100,13 @@ export interface DerivedCharacter {
   abilityByUid: Map<string, DerivedAbility>;
   arts: Record<Art, DerivedArt>;
   budgets: XpBudget[];
-  abilityAccess: { types: Set<AbilityType>; abilities: Set<string>; notes: string[] };
+  abilityAccess: {
+    types: Set<AbilityType>;
+    abilities: Set<string>;
+    notes: string[];
+    /** abilities a magus can only have learned in apprenticeship (from a Hermetic or House Virtue) */
+    apprenticeshipOnly: Set<string>;
+  };
   laterLifeYears: number;
   ageCap: number;
   confidence: { score: number; points: number };
@@ -131,11 +140,14 @@ const SIZE_POINTS: Record<string, number> = { Major: 3, Minor: 1, Free: 0 };
 export function vfDisplayName(def: VirtueFlawDef | undefined, cv: CharVirtue, data?: GameData): string {
   const base = def?.name ?? cv.defId;
   if (!cv.param) return base;
-  let label = cv.param;
-  if (def?.param?.kind === 'ability' && data) label = data.abilityById.get(cv.param)?.name ?? cv.param;
-  if (def?.param?.kind === 'art' || def?.param?.kind === 'technique' || def?.param?.kind === 'form') {
-    label = ({ Cr: 'Creo', In: 'Intellego', Mu: 'Muto', Pe: 'Perdo', Re: 'Rego', An: 'Animal', Aq: 'Aquam', Au: 'Auram', Co: 'Corpus', He: 'Herbam', Ig: 'Ignem', Im: 'Imaginem', Me: 'Mentem', Te: 'Terram', Vi: 'Vim' } as Record<string, string>)[cv.param] ?? cv.param;
-  }
+  const one = (p: string) => {
+    if (def?.param?.kind === 'ability' && data) return data.abilityById.get(p)?.name ?? p;
+    if (def?.param?.kind === 'art' || def?.param?.kind === 'technique' || def?.param?.kind === 'form') {
+      return ({ Cr: 'Creo', In: 'Intellego', Mu: 'Muto', Pe: 'Perdo', Re: 'Rego', An: 'Animal', Aq: 'Aquam', Au: 'Auram', Co: 'Corpus', He: 'Herbam', Ig: 'Ignem', Im: 'Imaginem', Me: 'Mentem', Te: 'Terram', Vi: 'Vim' } as Record<string, string>)[p] ?? p;
+    }
+    return p;
+  };
+  const label = def?.param?.multiple ? paramValues(cv.param).map(one).join(', ') : one(cv.param);
   if (/\(.*\)/.test(base)) return base.replace(/\(([^)]*)\)/, `(${label})`);
   if (/ Ability$/.test(base)) return base.replace(/Ability$/, label);
   if (/ Art$/.test(base)) return base.replace(/Art$/, label);
@@ -152,10 +164,16 @@ export function abilityDisplayName(ab: { abilityId: string; param?: string }, da
   return `${base}: ${ab.param}`;
 }
 
+/** The values of a Virtue's parameter (several for multi-choice parameters such as Corrupted Arts). */
+export function paramValues(param?: string): string[] {
+  return (param ?? '').split(',').map((x) => x.trim()).filter(Boolean);
+}
+
 function resolveEffects(virtues: ResolvedVirtue[]): ResolvedEffect[] {
   const out: ResolvedEffect[] = [];
   for (const v of virtues) {
-    for (const e of v.def?.effects ?? []) {
+    const byParam = v.def?.paramEffects && v.cv.param ? v.def.paramEffects[v.cv.param] ?? [] : [];
+    for (const e of [...(v.def?.effects ?? []), ...byParam]) {
       const r: Record<string, unknown> = { ...e, fromUid: v.cv.uid, fromName: v.name, param: v.cv.param };
       for (const k of ['ability', 'art', 'char']) if (r[k] === '$param') r[k] = v.cv.param ?? '';
       out.push(r as ResolvedEffect);
@@ -164,9 +182,9 @@ function resolveEffects(virtues: ResolvedVirtue[]): ResolvedEffect[] {
   return out;
 }
 
-const CREATION_SOURCES: XpSource[] = ['native', 'childhood', 'laterLife', 'apprenticeship', 'postGauntlet'];
+export const CREATION_SOURCES: XpSource[] = ['native', 'childhood', 'laterLife', 'apprenticeship', 'postGauntlet'];
 
-function effectiveXp(alloc: XpAlloc, multiplier: number): number {
+export function effectiveXp(alloc: XpAlloc, multiplier: number): number {
   let total = 0;
   for (const [src, v] of Object.entries(alloc) as [XpSource, number][]) {
     if (!v) continue;
@@ -292,16 +310,27 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const charPointsSpent = CHARACTERISTICS.reduce((s, c) => s + charCost(Math.max(-3, Math.min(3, char.characteristics[c] ?? 0))), 0);
 
   // ---------------------------------------------------------------- ability access
-  const access = { types: new Set<AbilityType>(['General']), abilities: new Set<string>(), notes: [] as string[] };
+  const access = { types: new Set<AbilityType>(['General']), abilities: new Set<string>(), notes: [] as string[], apprenticeshipOnly: new Set<string>() };
   for (const a of eff('abilityAccess')) {
     const chosen = a.param && ['Martial', 'Academic', 'Arcane'].includes(a.param) ? [a.param as AbilityType] : a.abilityTypes;
     for (const t of chosen ?? []) access.types.add(t);
-    for (const ab of a.abilities ?? []) access.abilities.add(ab);
+    for (const ab of a.abilities ?? []) if (ab !== '$param' || a.param) access.abilities.add(ab === '$param' ? a.param! : ab);
     if (a.note) access.notes.push(`${a.fromName}: ${a.note}`);
     if (a.fromName.startsWith('Student of') && a.param) access.abilities.add(`${a.param.toLowerCase()}-lore`.replace('divine-lore', 'dominion-lore'));
   }
   for (const g of eff('grantAbility')) access.abilities.add(g.ability);
   if (isMagus) {
+    // Abilities that come only from Hermetic or House Virtues are taught during apprenticeship
+    const hermeticSource = (uid: string) => {
+      const v = virtues.find((x) => x.cv.uid === uid);
+      return !!v && (v.cv.freeReason === 'House Virtue' || !!v.def?.categories.includes('Hermetic') || !!v.def?.house);
+    };
+    const fromHermetic = new Set<string>();
+    const fromOther = new Set<string>();
+    const note = (ability: string, uid: string) => (hermeticSource(uid) ? fromHermetic : fromOther).add(ability);
+    for (const g of eff('grantAbility')) note(g.ability, g.fromUid);
+    for (const a of eff('abilityAccess')) for (const ab of a.abilities ?? []) if (ab !== '$param') note(ab, a.fromUid);
+    for (const ab of fromHermetic) if (!fromOther.has(ab)) access.apprenticeshipOnly.add(ab);
     // magi may buy Academic/Arcane/Martial during & after apprenticeship
     notes.push('Magi may buy Academic, Arcane, and Martial Abilities during and after apprenticeship.');
   }
@@ -347,6 +376,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
       bonus,
       total: score + bonus,
       affinity,
+      multiplier: mult,
       cap: ageCap + capBonus(ab.abilityId),
       granted: granted.get(ab.abilityId) ?? 0,
     };
@@ -378,7 +408,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   for (const a of ARTS) {
     const xp = char.arts[a] ?? {};
     const affinity = artAffinity(a);
-    let exp = effectiveXp(xp, affinity ? rules.affinityMultiplier : 1) + (elementalBonus[a] ?? 0);
+    const multiplier = affinity ? rules.affinityMultiplier : 1;
+    let exp = effectiveXp(xp, multiplier) + (elementalBonus[a] ?? 0);
     let score = artScoreFromXp(exp);
     const ov = char.overrides[`art:${a}`];
     if (ov !== undefined) {
@@ -388,7 +419,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     const puissant = artPuissant(a);
     arts[a] = {
       art: a, xp, effectiveXp: exp, score, remainder: ov !== undefined ? 0 : artXpRemainder(exp), puissant,
-      value: score + puissant, deficient: deficiency(a), affinity, elementalBonus: elementalBonus[a] ?? 0,
+      value: score + puissant, deficient: deficiency(a), affinity, multiplier, elementalBonus: elementalBonus[a] ?? 0,
     };
   }
 
@@ -562,6 +593,9 @@ export function canSpend(
     return { ok: true };
   }
   // later life / generic
+  if (d.isMagus && d.abilityAccess.apprenticeshipOnly.has(id)) {
+    return { ok: false, reason: 'Magi learn this in apprenticeship (it comes from a Hermetic or House Virtue); use the Apprenticeship or Post-Gauntlet pool' };
+  }
   if (type === 'General') return { ok: true };
   if (d.abilityAccess.abilities.has(id)) return { ok: true };
   if (type === 'Supernatural') return supernaturalOk ? { ok: true } : { ok: false, reason: 'Requires the Virtue granting this Supernatural Ability' };

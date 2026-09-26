@@ -2,6 +2,7 @@ import { ARTS, CHARACTERISTICS, type Art, type CharType, type GameData, type VFS
 import { HOUSE_BY_ID, EX_MISC_TRADITIONS } from '../../data/houses';
 import { SCHEMA_VERSION, type CharAbility, type Character, type CharVirtue, type XpSource } from '../types';
 import { uid } from '../../util/id';
+import { needMet } from './restrictions';
 
 export function newCharacter(type: CharType, sagaId: string, year = 1220): Character {
   const now = new Date().toISOString();
@@ -77,7 +78,30 @@ export function addVirtue(c: Character, data: GameData, defId: string, size?: VF
     }
     if (e.type === 'grantAbility') ensureAbility(c, e.ability === '$param' ? param ?? '' : e.ability, { free: 5 * ((e.score * (e.score + 1)) / 2) });
   }
+  // Virtues and Flaws that this one makes the character take (e.g. Blood of the Nephilim -> Greedy)
+  for (const n of def?.needs ?? []) {
+    if (!n.auto || needMet(n, c.virtues, data)) continue;
+    const adef = data.vfById.get(n.auto.id);
+    if (adef) c.virtues.push({ uid: uid(), defId: n.auto.id, size: n.auto.size ?? adef.sizes[0], noPoints: n.auto.noPoints || undefined, requiredBy: cv.uid });
+  }
+  syncMerinitaWarping(c, data);
   return cv;
+}
+
+/** A faerie-related Virtue or Flaw, other than the Merinita House Virtue itself (DE p.44). */
+export function hasFaerieVirtue(c: Character, data: GameData): boolean {
+  return c.virtues.some((v) => v.freeReason !== 'House Virtue' && /faerie|\bfae\b|\bfay\b|fairy/i.test(data.vfById.get(v.defId)?.name ?? ''));
+}
+
+/**
+ * Merinita magi without a faerie-related Virtue or Flaw start with a Warping Point. Keep that
+ * point in step with the Virtues while the character is being created.
+ */
+export function syncMerinitaWarping(c: Character, data: GameData) {
+  if (c.house !== 'merinita' || c.type !== 'magus' || c.creation.finalized) return;
+  const faerie = hasFaerieVirtue(c, data);
+  if (!faerie && c.warpingPoints < 1) c.warpingPoints = 1;
+  if (faerie && c.warpingPoints === 1) c.warpingPoints = 0;
 }
 
 export function removeVirtue(c: Character, data: GameData, uidToRemove: string) {
@@ -85,8 +109,8 @@ export function removeVirtue(c: Character, data: GameData, uidToRemove: string) 
   if (!cv) return;
   const def = data.vfById.get(cv.defId);
   c.virtues = c.virtues.filter((v) => v.uid !== uidToRemove);
-  // remove implied freebies that came only from this virtue
-  c.virtues = c.virtues.filter((v) => !(v.free && v.freeReason === `from ${def?.name}`));
+  // remove implied freebies that came only from this virtue, and the Flaws it made the character take
+  c.virtues = c.virtues.filter((v) => !(v.free && v.freeReason === `from ${def?.name}`) && v.requiredBy !== uidToRemove);
   // remove granted free xp
   for (const e of def?.effects ?? []) {
     if (e.type === 'grantAbility') {
@@ -103,6 +127,7 @@ export function removeVirtue(c: Character, data: GameData, uidToRemove: string) 
   }
   const key = `pool:${cv.uid}` as XpSource;
   for (const s of c.spells) delete s.masteryXp[key];
+  syncMerinitaWarping(c, data);
 }
 
 export function ensureAbility(c: Character, abilityId: string, xp: Partial<Record<XpSource, number>> = {}, param?: string): CharAbility {
@@ -120,6 +145,8 @@ export function setHouse(c: Character, data: GameData, houseId: string, benefitI
   // remove previous house freebies
   const prevHouse = c.virtues.filter((v) => v.freeReason === 'House Virtue' || v.freeReason === 'Ex Miscellanea');
   for (const v of prevHouse) removeVirtue(c, data, v.uid);
+  // leaving Merinita during creation takes back its Warping Point
+  if (c.house === 'merinita' && houseId !== 'merinita' && !c.creation.finalized && !hasFaerieVirtue(c, data) && c.warpingPoints === 1) c.warpingPoints = 0;
   c.house = houseId;
   c.creation.houseBenefit = benefitIndex;
   const h = HOUSE_BY_ID[houseId];
@@ -130,10 +157,7 @@ export function setHouse(c: Character, data: GameData, houseId: string, benefitI
   } else if (h.freeChoiceFrom && jerbitonChoice) {
     addVirtue(c, data, jerbitonChoice.defId, 'Minor', jerbitonChoice.param, { free: true, freeReason: 'House Virtue' });
   }
-  if (houseId === 'merinita') {
-    const faerie = c.virtues.some((v) => /faerie|fae/i.test(data.vfById.get(v.defId)?.name ?? '') && v.freeReason !== 'House Virtue');
-    if (!faerie && c.warpingPoints < 1) c.warpingPoints = 1;
-  }
+  syncMerinitaWarping(c, data);
 }
 
 export function applyExMiscTradition(c: Character, data: GameData, traditionId: string, picks?: { major?: string; minor?: string; minorParam?: string; flaw?: string; flawParam?: string }) {

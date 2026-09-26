@@ -7,10 +7,10 @@ import { labTotal } from '../../../engine/magic';
 import { Card, Meter, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
 
-function rawNeededArt(c: Character, d: DerivedCharacter, art: Art, src: XpSource, targetScore: number, mult: number): number {
+function rawNeededArt(c: Character, d: DerivedCharacter, art: Art, src: XpSource, targetScore: number): number {
   const da = d.arts[art];
   const cur = c.arts[art]?.[src] ?? 0;
-  const eff = (x: number) => (da.affinity ? withAffinity(x, mult) : x);
+  const eff = (x: number) => (da.multiplier !== 1 ? withAffinity(x, da.multiplier) : x);
   const base = da.effectiveXp - eff(cur);
   const target = artXpForScore(Math.max(0, targetScore));
   let raw = 0;
@@ -24,7 +24,6 @@ export default function ArtsStep({ ed }: { ed: CharEditor }) {
   if (!c || !d || !saga) return null;
   const pools = d.budgets.filter((b) => b.id === 'apprenticeship' || b.id === 'postGauntlet');
   const pool = pools.find((p) => p.id === poolId) ?? pools[0];
-  const mult = saga.houseRules.affinityMultiplier;
   const setArt = (art: Art, v: number) =>
     update((x) => {
       const alloc = x.arts[art] ?? (x.arts[art] = {});
@@ -80,11 +79,11 @@ export default function ArtsStep({ ed }: { ed: CharEditor }) {
                       <td>
                         {pool && (
                           <span className="row tight">
-                            <button className="small icon" disabled={!inPool} onClick={() => setArt(a, rawNeededArt(c, d, a, pool.id, da.score - 1, mult))}>
+                            <button className="small icon" disabled={!inPool} onClick={() => setArt(a, rawNeededArt(c, d, a, pool.id, da.score - 1))}>
                               −1
                             </button>
                             <Stepper value={inPool} min={0} width={46} onChange={(v) => setArt(a, v)} />
-                            <button className="small icon" onClick={() => setArt(a, rawNeededArt(c, d, a, pool.id, da.score + 1, mult))}>
+                            <button className="small icon" onClick={() => setArt(a, rawNeededArt(c, d, a, pool.id, da.score + 1))}>
                               +1
                             </button>
                           </span>
