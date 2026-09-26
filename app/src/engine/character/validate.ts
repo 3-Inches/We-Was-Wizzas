@@ -11,7 +11,7 @@ import type { Character, HouseRules } from '../types';
 import { canSpend, sumAlloc, type DerivedCharacter } from './derive';
 import { creationSpellLimit } from '../magic';
 import { HOUSE_BY_ID } from '../../data/houses';
-import { vfProblems } from './restrictions';
+import { statusesCompatible, vfProblems } from './restrictions';
 import { hasFaerieVirtue } from './factory';
 
 export type Severity = 'error' | 'warning' | 'info';
@@ -19,11 +19,21 @@ export type Step = 'basics' | 'house' | 'virtues' | 'characteristics' | 'abiliti
 
 export interface Issue {
   id: string;
+  /** the kind of issue (defaults to the id); fixes are offered by kind */
+  code?: string;
   severity: Severity;
   step: Step;
   message: string;
   ref?: string; // rules reference
   fix?: string;
+  // what the issue is about, for one-click fixes
+  vf?: string; // uid of the character's Virtue/Flaw
+  other?: string; // another Virtue/Flaw id, Characteristic... involved
+  needIndex?: number;
+  ability?: string; // uid of the character's Ability
+  art?: string;
+  pool?: string; // xp source
+  spell?: string; // uid of the character's spell
 }
 
 export function validateCharacter(d: DerivedCharacter, data: GameData, rules: HouseRules): Issue[] {
@@ -33,7 +43,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   const add = (i: Issue) => {
     if (seenIds.has(i.id)) return;
     seenIds.add(i.id);
-    if (!c.acknowledgedIssues.includes(i.id)) issues.push(i);
+    if (!c.acknowledgedIssues.includes(i.id)) issues.push({ ...i, code: i.code ?? i.id });
   };
   const t = d.tally;
   const type = c.type;
@@ -49,9 +59,12 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (type === 'magus' && !c.virtues.some((v) => v.defId === 'hermetic-magus')) add({ id: 'magus-status', severity: 'error', step: 'virtues', message: 'Magi must take the Hermetic Magus Social Status.', ref: 'DE p.63', fix: 'Add Hermetic Magus (free).' });
   if (t.socialStatuses.length === 0) add({ id: 'status-none', severity: 'error', step: 'virtues', message: 'Every character must take one Social Status.', ref: 'DE p.63', fix: type === 'grog' ? 'Covenfolk is the usual choice.' : 'Covenfolk, Wanderer or a status fitting the concept.' });
   if (t.socialStatuses.length > 1) {
-    const names = t.socialStatuses.map((s) => s.def?.name ?? '');
-    const compatible = t.socialStatuses.every((s) => s.def?.text && t.socialStatuses.filter((o) => o !== s).every((o) => new RegExp(`compatible[^.]*${escapeRe(o.def?.name ?? '')}`, 'i').test(s.def!.text) || new RegExp(`compatible[^.]*${escapeRe(s.def?.name ?? '')}`, 'i').test(o.def?.text ?? '') || /Free/.test(o.cv.size)));
-    add({ id: 'status-many', severity: compatible ? 'info' : 'warning', step: 'virtues', message: `More than one Social Status (${names.join(', ')}). Only allowed where the descriptions say they are compatible.`, ref: 'DE p.63' });
+    const names = t.socialStatuses.map((s) => s.name);
+    const compatible = t.socialStatuses.every((s) => t.socialStatuses.every((o) => o === s || !s.def || !o.def || statusesCompatible(s.def, o.def)));
+    add({
+      id: 'status-many', severity: compatible ? 'info' : 'error', step: 'virtues', ref: 'DE p.63',
+      message: compatible ? `More than one Social Status (${names.join(', ')}); their descriptions say they are compatible.` : `More than one Social Status (${names.join(', ')}). A character may only take more than one if the descriptions say they are compatible.`,
+    });
   }
   for (const s of t.socialStatuses) {
     const cultures = STATUS_CULTURES[s.def?.name ?? ''];
@@ -122,28 +135,28 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   for (const v of d.virtues) {
     const def = v.def;
     if (!def) {
-      add({ id: `unknown-${v.cv.uid}`, severity: 'warning', step: 'virtues', message: `Unknown Virtue/Flaw "${v.cv.defId}" (removed from data or custom content?).` });
+      add({ id: `unknown-${v.cv.uid}`, code: 'unknown', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `Unknown Virtue/Flaw "${v.cv.defId}" (removed from data or custom content?).` });
       continue;
     }
     const key = `${def.id}|${v.cv.param ?? ''}`;
     seen.set(key, (seen.get(key) ?? 0) + 1);
-    if (!def.sizes.includes(v.cv.size) && !v.cv.free) add({ id: `size-${v.cv.uid}`, severity: 'warning', step: 'virtues', message: `${def.name} is normally ${def.sizes.join(' or ')}, taken as ${v.cv.size}.` });
-    if (def.param && !def.param.optional && !v.cv.param) add({ id: `param-${v.cv.uid}`, severity: 'warning', step: 'virtues', message: `${def.name}: choose the ${def.param.label}.` });
-    for (const p of vfProblems(d, data, def, v.cv)) add({ id: p.id, severity: p.severity, step: 'virtues', message: p.message, ref: p.ref, fix: p.fix });
+    if (!def.sizes.includes(v.cv.size) && !v.cv.free) add({ id: `size-${v.cv.uid}`, code: 'size', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${def.name} is normally ${def.sizes.join(' or ')}, taken as ${v.cv.size}.` });
+    if (def.param && !def.param.optional && !v.cv.param) add({ id: `param-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${def.name}: choose the ${def.param.label}.` });
+    for (const p of vfProblems(d, data, def, v.cv)) add({ id: p.id, code: p.code, vf: v.cv.uid, other: p.other, needIndex: p.needIndex, severity: p.severity, step: 'virtues', message: p.message, ref: p.ref, fix: p.fix });
     if (!data.isBookEnabled(def.source.book)) add({ id: `book-${v.cv.uid}`, severity: 'info', step: 'virtues', message: `${def.name} comes from ${def.source.book}, which is not enabled for this saga.` });
     if (def.id === 'great-characteristic' && v.cv.param) {
       const base = c.characteristics[v.cv.param as keyof typeof c.characteristics];
-      if (base !== undefined && base < 3) add({ id: `great-${v.cv.uid}`, severity: 'error', step: 'characteristics', message: `Great ${CHAR_NAMES[v.cv.param as keyof typeof CHAR_NAMES]} requires a purchased score of at least +3 (have ${base}).`, ref: 'DE p.83' });
+      if (base !== undefined && base < 3) add({ id: `great-${v.cv.uid}`, code: 'great', vf: v.cv.uid, other: v.cv.param, severity: 'error', step: 'characteristics', message: `Great ${CHAR_NAMES[v.cv.param as keyof typeof CHAR_NAMES]} requires a purchased score of at least +3 (have ${base}).`, ref: 'DE p.83' });
     }
     if (def.id === 'poor-characteristic-flaw' && v.cv.param) {
       const base = c.characteristics[v.cv.param as keyof typeof c.characteristics];
-      if (base !== undefined && base > -3) add({ id: `poorchar-${v.cv.uid}`, severity: 'error', step: 'characteristics', message: `Poor ${CHAR_NAMES[v.cv.param as keyof typeof CHAR_NAMES]} requires a purchased score of –3 or lower (have ${base}).`, ref: 'DE p.141' });
+      if (base !== undefined && base > -3) add({ id: `poorchar-${v.cv.uid}`, code: 'poorchar', vf: v.cv.uid, other: v.cv.param, severity: 'error', step: 'characteristics', message: `Poor ${CHAR_NAMES[v.cv.param as keyof typeof CHAR_NAMES]} requires a purchased score of –3 or lower (have ${base}).`, ref: 'DE p.141' });
     }
   }
   for (const [key, count] of seen) {
     if (count > 1) {
       const def = data.vfById.get(key.split('|')[0]);
-      if (def && !def.repeatable) add({ id: `dup-${key}`, severity: 'error', step: 'virtues', message: `${def.name} can only be taken once (unless its description says otherwise).`, ref: 'DE p.63' });
+      if (def && !def.repeatable) add({ id: `dup-${key}`, code: 'dup', other: key, severity: 'error', step: 'virtues', message: `${def.name} can only be taken once (unless its description says otherwise).`, ref: 'DE p.63' });
     }
   }
 
@@ -153,7 +166,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     else if (d.charPointsSpent < d.charPointsBudget) add({ id: 'char-under', severity: 'info', step: 'characteristics', message: `${d.charPointsBudget - d.charPointsSpent} Characteristic point(s) unspent.` });
     for (const ch of CHARACTERISTICS) {
       const b = c.characteristics[ch];
-      if (b > 3 || b < -3) add({ id: `char-range-${ch}`, severity: 'error', step: 'characteristics', message: `${CHAR_NAMES[ch]} must be bought between –3 and +3 (use Great/Poor Characteristic to go beyond).`, ref: 'DE p.48' });
+      if (b > 3 || b < -3) add({ id: `char-range-${ch}`, code: 'char-range', other: ch, severity: 'error', step: 'characteristics', message: `${CHAR_NAMES[ch]} must be bought between –3 and +3 (use Great/Poor Characteristic to go beyond).`, ref: 'DE p.48' });
     }
     if (type === 'magus') {
       if (c.characteristics.Int < 1) add({ id: 'magus-int', severity: 'info', step: 'characteristics', message: 'Intelligence is central to laboratory work; magi should seriously consider a positive score.', ref: 'DE p.48' });
@@ -164,9 +177,9 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   // --------------------------------------------------------------- xp budgets
   if (creating) {
     for (const b of d.budgets) {
-      if (b.spent > b.total) add({ id: `budget-${b.id}`, severity: 'error', step: b.id === 'apprenticeship' || b.id === 'postGauntlet' ? 'arts' : 'abilities', message: `${b.label}: spent ${b.spent} of ${b.total} experience points.` });
-      else if (b.total - b.spent > 0 && b.id !== 'native') add({ id: `budget-left-${b.id}`, severity: 'info', step: b.id === 'apprenticeship' || b.id === 'postGauntlet' ? 'arts' : 'abilities', message: `${b.label}: ${b.total - b.spent} experience points unspent.` });
-      if (b.spellLevels && b.spellLevels.spent > b.spellLevels.total) add({ id: `spell-levels-${b.id}`, severity: 'error', step: 'spells', message: `Apprenticeship spells total ${b.spellLevels.spent} levels; limit is ${b.spellLevels.total}.`, ref: 'DE p.49' });
+      if (b.spent > b.total) add({ id: `budget-${b.id}`, code: 'budget', pool: b.id, severity: 'error', step: b.id === 'apprenticeship' || b.id === 'postGauntlet' ? 'arts' : 'abilities', message: `${b.label}: spent ${b.spent} of ${b.total} experience points.` });
+      else if (b.total - b.spent > 0 && b.id !== 'native') add({ id: `budget-left-${b.id}`, code: 'budget-left', pool: b.id, severity: 'info', step: b.id === 'apprenticeship' || b.id === 'postGauntlet' ? 'arts' : 'abilities', message: `${b.label}: ${b.total - b.spent} experience points unspent.` });
+      if (b.spellLevels && b.spellLevels.spent > b.spellLevels.total) add({ id: `spell-levels-${b.id}`, code: 'spell-levels', pool: b.id, severity: 'error', step: 'spells', message: `Apprenticeship spells total ${b.spellLevels.spent} levels; limit is ${b.spellLevels.total}.`, ref: 'DE p.49' });
     }
   }
   // Allocation legality: xp spent at creation stays checked after play starts
@@ -177,14 +190,14 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
         if (!xp || src === 'play' || src === 'adjust' || src === 'free') continue;
         const b = d.budgets.find((x) => x.id === src);
         if (!b) {
-          add({ id: `orphan-${ab.uid}-${src}`, severity: 'warning', step: 'abilities', message: `${da?.name}: ${xp} xp assigned to a pool that no longer exists (${src}).`, fix: 'Move the experience to another pool.' });
+          add({ id: `orphan-${ab.uid}-${src}`, code: 'orphan', ability: ab.uid, pool: src, severity: 'warning', step: 'abilities', message: `${da?.name}: ${xp} xp assigned to a pool that no longer exists (${src}).`, fix: 'Move the experience to another pool.' });
           continue;
         }
         const ok = canSpend(d, data, b, ab);
-        if (!ok.ok) add({ id: `illegal-${ab.uid}-${src}`, severity: 'error', step: 'abilities', message: `${da?.name}: ${ok.reason} (${b.label}).` });
+        if (!ok.ok) add({ id: `illegal-${ab.uid}-${src}`, code: 'illegal', ability: ab.uid, pool: src, severity: 'error', step: 'abilities', message: `${da?.name}: ${ok.reason} (${b.label}).` });
       }
       if (creating && da && rules.enforceAbilityAgeCap && da.score > da.cap && !c.virtues.some((v) => v.defId === 'mentored-by-demons')) {
-        add({ id: `cap-${ab.uid}`, severity: 'error', step: 'abilities', message: `${da.name} ${da.score} exceeds the age-based maximum of ${da.cap} at character creation.`, ref: 'DE p.48' });
+        add({ id: `cap-${ab.uid}`, code: 'cap', ability: ab.uid, severity: 'error', step: 'abilities', message: `${da.name} ${da.score} exceeds the age-based maximum of ${da.cap} at character creation.`, ref: 'DE p.48' });
       }
       if (creating && da?.type === 'Academic' && !ab.abilityId.includes('language') && !c.abilities.some((x) => (x.abilityId === 'dead-language' && /latin|greek|hebrew|arabic/i.test(x.param ?? '')) && (d.abilityByUid.get(x.uid)?.score ?? 0) >= 3)) {
         if (da.score > 0) add({ id: `academic-lang-${ab.uid}`, severity: 'info', step: 'abilities', message: `Learning ${da.name} normally requires Latin, Greek, Hebrew, or Arabic of at least 3.`, ref: 'DE p.158' });
@@ -193,7 +206,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     for (const art of Object.keys(c.arts)) {
       for (const [src, xp] of Object.entries(c.arts[art as keyof typeof c.arts] ?? {})) {
         if (!xp) continue;
-        if (!['apprenticeship', 'postGauntlet', 'play', 'adjust', 'free'].includes(src) && !src.startsWith('pool:')) add({ id: `art-src-${art}-${src}`, severity: 'error', step: 'arts', message: `Arts can only be bought during and after apprenticeship (${art} has ${xp} xp from ${src}).` });
+        if (!['apprenticeship', 'postGauntlet', 'play', 'adjust', 'free'].includes(src) && !src.startsWith('pool:')) add({ id: `art-src-${art}-${src}`, code: 'art-src', art, pool: src, severity: 'error', step: 'arts', message: `Arts can only be bought during and after apprenticeship (${art} has ${xp} xp from ${src}).` });
       }
     }
     const native = c.abilities.filter((a) => a.native);
@@ -220,14 +233,14 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     for (const s of c.spells) {
       if (s.source !== 'apprenticeship' && s.source !== 'postGauntlet') continue;
       const lim = creationSpellLimit(d, { technique: s.spell.technique, form: s.spell.form, requisites: s.spell.requisites }, rules.spellLevelLimitBonus, !!s.notes?.includes('[focus]'));
-      if ((s.spell.level ?? 0) > lim.total) add({ id: `spell-limit-${s.uid}`, severity: 'error', step: 'spells', message: `${s.spell.name} (level ${s.spell.level}) exceeds the maximum ${lim.total} for ${s.spell.technique}${s.spell.form} (Te + Fo + Int + Magic Theory + ${rules.spellLevelLimitBonus}).`, ref: 'DE p.49' });
+      if ((s.spell.level ?? 0) > lim.total) add({ id: `spell-limit-${s.uid}`, code: 'spell-limit', spell: s.uid, severity: 'error', step: 'spells', message: `${s.spell.name} (level ${s.spell.level}) exceeds the maximum ${lim.total} for ${s.spell.technique}${s.spell.form} (Te + Fo + Int + Magic Theory + ${rules.spellLevelLimitBonus}).`, ref: 'DE p.49' });
     }
   }
 
   // mastery pools
   for (const mp of d.masteryPools) {
     const spent = c.spells.reduce((s, sp) => s + (sp.masteryXp[`pool:${mp.uid}`] ?? 0), 0);
-    if (spent > mp.total) add({ id: `mastery-pool-${mp.uid}`, severity: 'error', step: 'spells', message: `${mp.label}: ${spent} of ${mp.total} mastery xp spent.` });
+    if (spent > mp.total) add({ id: `mastery-pool-${mp.uid}`, code: 'mastery-pool', pool: `pool:${mp.uid}`, severity: 'error', step: 'spells', message: `${mp.label}: ${spent} of ${mp.total} mastery xp spent.` });
   }
 
   // --------------------------------------------------------------- personality & misc
@@ -244,10 +257,6 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (c.age > 35 && creating) add({ id: 'aging', severity: 'info', step: 'basics', message: 'Characters older than 35 must make aging rolls for each year from 35 before play (use the Aging tool on the sheet).', ref: 'DE p.50' });
 
   return issues;
-}
-
-function escapeRe(s: string) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 export function summarize(issues: Issue[]) {

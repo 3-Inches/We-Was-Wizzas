@@ -54,6 +54,8 @@ export interface DerivedCovenant {
   powerLevel: (typeof POWER_LEVELS)[number];
   labs: DerivedLab[];
   issues: string[];
+  /** the same issues, with one-click fixes */
+  issueList: CovIssue[];
   finances: FinanceResult;
   loyalty: LoyaltyResult;
   visIncome: Record<string, number>;
@@ -89,8 +91,19 @@ function memberGiftMod(ch: Character, data: GameData): number {
   return 0;
 }
 
+/** A fix for a covenant issue: change the covenant, or open the tab where it is decided. */
+export type CovFix = { kind: 'apply'; label: string; apply: (c: Covenant) => void } | { kind: 'goto'; label: string; tab: string };
+export interface CovIssue {
+  message: string;
+  fixes: CovFix[];
+}
+
+const LINE_TAB: Record<string, string> = { Library: 'library', Vis: 'library', 'Enchanted items': 'items', Specialists: 'folk', Laboratories: 'labs' };
+
 export function deriveCovenant(cov: Covenant, data: GameData, characters: Character[]): DerivedCovenant {
-  const issues: string[] = [];
+  const issueList: CovIssue[] = [];
+  const issue = (message: string, ...fixes: CovFix[]) => issueList.push({ message, fixes });
+  const removeHB = (uid: string, name: string): CovFix => ({ kind: 'apply', label: `Remove ${name}`, apply: (c) => void (c.hooksBoons = c.hooksBoons.filter((x) => x.uid !== uid)) });
   const members = characters.filter((c) => cov.memberIds.includes(c.id));
   // Hooks & boons
   let hookPoints = 0;
@@ -105,14 +118,34 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
     if (hb.kind === 'boon' && /hidden resources/i.test(hb.name)) hidden += 250;
     if (hb.kind === 'boon') {
       const def = hb.defId ? data.hookBoonById.get(hb.defId) : undefined;
-      if (def?.requires && !cov.hooksBoons.some((x) => x.name.toLowerCase().includes(def.requires!.toLowerCase()))) issues.push(`${hb.name} requires the ${def.requires} Hook.`);
+      if (def?.requires && !cov.hooksBoons.some((x) => x.name.toLowerCase().includes(def.requires!.toLowerCase()))) {
+        const want = def.requires.toLowerCase();
+        const hook = data.hooksBoons.find((h) => h.kind === 'hook' && h.name.toLowerCase() === want) ?? data.hooksBoons.find((h) => h.kind === 'hook' && h.name.toLowerCase().includes(want));
+        issue(
+          `${hb.name} requires the ${def.requires} Hook.`,
+          ...(hook ? [{ kind: 'apply' as const, label: `Add the ${hook.name} Hook`, apply: (c: Covenant) => void c.hooksBoons.push({ uid: `${hb.uid}-req`, defId: hook.id, name: hook.name, kind: 'hook', size: hook.size === 'Major' ? 'Major' : 'Minor' }) }] : []),
+          removeHB(hb.uid, hb.name),
+        );
+      }
     }
   }
-  if (boonPoints > hookPoints) issues.push(`Boons cost ${boonPoints} points but Hooks only provide ${hookPoints}.`);
-  if (auraBoons > 7) issues.push('The Minor Aura Boon may be taken at most seven times (aura 10).');
+  if (boonPoints > hookPoints) issue(`Boons cost ${boonPoints} points but Hooks only provide ${hookPoints}.`, { kind: 'goto', label: 'Add Hooks or drop Boons', tab: 'hooks' });
+  if (auraBoons > 7) {
+    issue('The Minor Aura Boon may be taken at most seven times (aura 10).', {
+      kind: 'apply', label: `Drop ${auraBoons - 7} Aura Boon(s)`,
+      apply: (c) => {
+        let extra = auraBoons - 7;
+        c.hooksBoons = [...c.hooksBoons].reverse().filter((h) => !(extra > 0 && h.kind === 'boon' && h.size === 'Minor' && /^aura$/i.test(h.name) && extra--)).reverse();
+      },
+    });
+  }
   const hasHook = (n: RegExp) => cov.hooksBoons.some((h) => h.kind === 'hook' && n.test(h.name));
   const hasBoon = (n: RegExp) => cov.hooksBoons.some((h) => h.kind === 'boon' && n.test(h.name));
-  if (hasBoon(/seclusion/i) && (hasHook(/road/i) || hasHook(/urban/i))) issues.push('Seclusion cannot be taken with the Road or Urban Hooks.');
+  if (hasBoon(/seclusion/i) && (hasHook(/road/i) || hasHook(/urban/i))) {
+    const secl = cov.hooksBoons.find((h) => h.kind === 'boon' && /seclusion/i.test(h.name))!;
+    const clash = cov.hooksBoons.filter((h) => h.kind === 'hook' && /road|urban/i.test(h.name));
+    issue('Seclusion cannot be taken with the Road or Urban Hooks.', removeHB(secl.uid, secl.name), ...clash.map((h) => removeHB(h.uid, h.name)));
+  }
   const aura = cov.aura + auraBoons;
 
   // Build points
@@ -122,7 +155,10 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
     if (b.kind === 'mundane') continue;
     const { cost, issue } = summaCost(b);
     let iss = issue;
-    if ((b.kind === 'labText' || b.kind === 'castingTablet') && b.level > pl.maxItemLevel) iss = `Level ${b.level} exceeds the ${pl.level} power level maximum of ${pl.maxItemLevel}.`;
+    // a bundle of lab texts (subject "various") is checked by its largest text, not its total
+    const bundle = b.kind === 'labText' && (b.collectionMax !== undefined || b.subject === 'various');
+    const itemLevel = bundle ? b.collectionMax ?? 0 : b.level;
+    if ((b.kind === 'labText' || b.kind === 'castingTablet') && itemLevel > pl.maxItemLevel) iss = `Level ${itemLevel} exceeds the ${pl.level} power level maximum of ${pl.maxItemLevel}.`;
     lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)})`, cost: b.hidden ? 0 : cost, issue: iss });
   }
   for (const s of cov.visSources) lines.push({ category: 'Vis', label: `${s.name} (${s.pawnsPerYear} ${s.art}/year)`, cost: 5 * s.pawnsPerYear });
@@ -147,9 +183,25 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   const lacking = members.filter((m) => m.type === 'magus' && !labsForMagi.has(m.id)).length;
   if (lacking && cov.labs.length) lines.push({ category: 'Laboratories', label: `${lacking} magus/magi without a lab`, cost: -50 * lacking });
   const bpSpent = lines.reduce((t, l) => t + l.cost, 0);
-  for (const l of lines) if (l.issue) issues.push(`${l.label}: ${l.issue}`);
-  if (bpSpent > cov.buildPoints) issues.push(`Spent ${bpSpent} Build Points of ${cov.buildPoints}.`);
-  if (cov.buildPoints < pl.min || cov.buildPoints > pl.max) issues.push(`${cov.buildPoints} Build Points is outside the ${pl.level} power range (${pl.min}–${pl.max === Infinity ? '∞' : pl.max}).`);
+  for (const l of lines) if (l.issue) issue(`${l.label}: ${l.issue}`, { kind: 'goto', label: `Open ${l.category}`, tab: LINE_TAB[l.category] ?? 'overview' });
+  if (bpSpent > cov.buildPoints) {
+    const fits = POWER_LEVELS.find((p) => bpSpent >= p.min && bpSpent <= p.max);
+    issue(
+      `Spent ${bpSpent} Build Points of ${cov.buildPoints}.`,
+      ...(bpSpent <= pl.max ? [{ kind: 'apply' as const, label: `Raise Build Points to ${bpSpent}`, apply: (c: Covenant) => void (c.buildPoints = bpSpent) }] : []),
+      ...(bpSpent > pl.max && fits ? [{ kind: 'apply' as const, label: `Make it a ${fits.level} covenant with ${bpSpent} Build Points`, apply: (c: Covenant) => void ((c.buildPoints = bpSpent), (c.powerLevel = fits.level)) }] : []),
+      { kind: 'goto', label: 'Review what is bought', tab: 'overview' },
+    );
+  }
+  if (cov.buildPoints < pl.min || cov.buildPoints > pl.max) {
+    const fits = POWER_LEVELS.find((p) => cov.buildPoints >= p.min && cov.buildPoints <= p.max);
+    issue(
+      `${cov.buildPoints} Build Points is outside the ${pl.level} power range (${pl.min}–${pl.max === Infinity ? '∞' : pl.max}).`,
+      ...(fits ? [{ kind: 'apply' as const, label: `Call it a ${fits.level} covenant`, apply: (c: Covenant) => void (c.powerLevel = fits.level) }] : []),
+      { kind: 'apply', label: `Set Build Points to ${cov.buildPoints < pl.min ? pl.min : pl.max}`, apply: (c) => void (c.buildPoints = cov.buildPoints < pl.min ? pl.min : (pl.max as number)) },
+    );
+  }
+  const issues = issueList.map((i) => i.message);
 
   // Vis income
   const visIncome: Record<string, number> = {};
@@ -159,7 +211,7 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   const loyalty = computeLoyalty(cov, members, data);
   return {
     cov, hookPoints, boonPoints, aura, hiddenResourcesBP: hidden, bpLines: lines, bpSpent, bpAvailable: cov.buildPoints,
-    powerLevel: pl, labs, issues, finances, loyalty, visIncome, members,
+    powerLevel: pl, labs, issues, issueList, finances, loyalty, visIncome, members,
   };
 }
 

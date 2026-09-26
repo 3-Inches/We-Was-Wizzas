@@ -355,3 +355,20 @@ button.big { font-size: 1.1em; padding: 10px 22px; }
   font-size: 0.92em;
 }
 .notice span { flex: 1; }
+
+/* rules check: click an issue to fix it */
+.issue.clickable { cursor: pointer; }
+.issue.clickable:hover { outline: 1px solid var(--accent-2); outline-offset: -1px; }
+.issue.compact { padding: 4px 6px; margin-top: 4px; font-size: 0.9em; }
+.fix-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; align-items: center; }
+.fix-row select { max-width: 100%; }
+button.fix-primary { border-color: var(--accent-2); color: var(--accent-2); font-weight: 600; }
+.resolve-bar { margin-bottom: 8px; }
+.resolve-bar.open { padding: 8px 10px; border: 1px solid var(--accent-2); border-radius: 6px; background: var(--panel-2); }
+.resolve-bar ul { margin: 4px 0; padding-left: 18px; }
+
+/* Virtue & Flaw tags */
+.tag-row { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 2px; }
+.badge.tag { cursor: pointer; font-size: 0.75em; opacity: 0.9; }
+.badge.tag:hover { opacity: 1; text-decoration: underline; }
+.badge.house { border-color: var(--accent); color: var(--accent); }

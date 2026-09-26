@@ -81,13 +81,24 @@ function Notice() {
   const setNotice = useStore((s) => s.setNotice);
   useEffect(() => {
     if (!notice) return;
-    const t = setTimeout(() => setNotice(undefined), 15000);
+    const t = setTimeout(() => setNotice(undefined), notice.undo ? 30000 : 8000);
     return () => clearTimeout(t);
   }, [notice, setNotice]);
   if (!notice) return null;
   return (
     <div className="notice no-print" role="status">
       <span>{notice.text}</span>
+      {notice.undo && (
+        <button
+          className="small"
+          onClick={() => {
+            notice.undo!();
+            setNotice('Undone.');
+          }}
+        >
+          Undo
+        </button>
+      )}
       <button className="small ghost" onClick={() => setNotice(undefined)} aria-label="Dismiss">
         ✕
       </button>

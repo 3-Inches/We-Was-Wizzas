@@ -142,6 +142,25 @@ export const HOUSES: HouseDef[] = [
 
 export const HOUSE_BY_ID: Record<string, HouseDef> = Object.fromEntries(HOUSES.map((h) => [h.id, h]));
 
+/**
+ * Virtues and Flaws that suit each House (with a suggested choice where they take one). Used for
+ * recommendations and for the "House" tag and filter in the Virtue list.
+ */
+export const HOUSE_SUGGESTED_VF: Record<string, [string, string?][]> = {
+  bonisagus: [['inventive-genius'], ['affinity-with-ability', 'magic-theory'], ['book-learner'], ['good-teacher']],
+  flambeau: [['affinity-with-art', 'Ig'], ['affinity-with-art', 'Pe'], ['fast-caster'], ['flawless-magic'], ['puissant-ability', 'penetration'], ['tough']],
+  guernicus: [['clear-thinker'], ['puissant-ability', 'code-of-hermes'], ['piercing-gaze'], ['strong-willed']],
+  jerbiton: [['gentle-gift'], ['educated'], ['free-expression'], ['social-contacts']],
+  mercere: [['well-traveled'], ['affinity-with-art', 'Re'], ['wilderness-sense']],
+  merinita: [['faerie-blood'], ['second-sight'], ['affinity-with-art', 'Mu'], ['inoffensive-to-beings', 'faeries']],
+  tremere: [['puissant-art', 'Vi'], ['affinity-with-art', 'Vi'], ['self-confident'], ['strong-willed']],
+  tytalus: [['puissant-art', 'Me'], ['affinity-with-art', 'Me'], ['strong-willed']],
+  verditius: [['inventive-genius'], ['puissant-ability', 'craft-type'], ['affinity-with-ability', 'magic-theory'], ['adept-laboratory-student']],
+  bjornaer: [['puissant-ability', 'heartbeast'], ['affinity-with-art', 'An'], ['wilderness-sense']],
+  criamon: [['affinity-with-ability', 'enigmatic-wisdom'], ['strong-willed'], ['clear-thinker']],
+  'ex-miscellanea': [['cautious-sorcerer'], ['inventive-genius']],
+};
+
 export interface ExMiscTradition {
   id: string;
   name: string;

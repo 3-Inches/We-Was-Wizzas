@@ -5,6 +5,7 @@
 import { ARTS, ART_NAMES, type Art, type GameData, type VirtueFlawDef } from '../data';
 import type { DerivedCharacter } from './character/derive';
 import { vfProblems } from './character/restrictions';
+import { HOUSE_SUGGESTED_VF } from '../data/houses';
 
 export interface Archetype {
   id: string;
@@ -108,20 +109,7 @@ export function recommend(d: DerivedCharacter, data: GameData, archetypeIds: str
 
   // ------------------------------------------------------------- House packages
   if (t === 'magus' && d.char.house) {
-    const houseRecs: Record<string, [string, string?, string?][]> = {
-      bonisagus: [['inventive-genius'], ['affinity-with-ability', 'magic-theory'], ['book-learner'], ['good-teacher']],
-      flambeau: [['affinity-with-art', 'Ig'], ['affinity-with-art', 'Pe'], ['fast-caster'], ['flawless-magic'], ['puissant-ability', 'penetration'], ['tough']],
-      guernicus: [['clear-thinker'], ['puissant-ability', 'code-of-hermes'], ['piercing-gaze'], ['strong-willed']],
-      jerbiton: [['gentle-gift'], ['educated'], ['free-expression'], ['social-contacts']],
-      mercere: [['well-traveled'], ['affinity-with-art', 'Re'], ['wilderness-sense']],
-      merinita: [['faerie-blood'], ['second-sight'], ['affinity-with-art', 'Mu'], ['inoffensive-to-beings', 'faeries']],
-      tremere: [['puissant-art', 'Vi'], ['affinity-with-art', 'Vi'], ['self-confident'], ['strong-willed']],
-      tytalus: [['puissant-art', 'Me'], ['affinity-with-art', 'Me'], ['strong-willed']],
-      verditius: [['inventive-genius'], ['puissant-ability', 'craft-type'], ['affinity-with-ability', 'magic-theory'], ['adept-laboratory-student']],
-      bjornaer: [['puissant-ability', 'heartbeast'], ['affinity-with-art', 'An'], ['wilderness-sense']],
-      criamon: [['affinity-with-ability', 'enigmatic-wisdom'], ['strong-willed'], ['clear-thinker']],
-      'ex-miscellanea': [['cautious-sorcerer'], ['inventive-genius']],
-    };
+    const houseRecs = HOUSE_SUGGESTED_VF;
     for (const [id, param] of houseRecs[d.char.house] ?? []) {
       const def = data.vfById.get(id);
       if (!def) continue;

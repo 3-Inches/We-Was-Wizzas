@@ -11,6 +11,7 @@ import { ART_NAMES, ARTS, type GameData } from '../../data';
 import type { Character, HouseRules, XpAlloc, XpSource } from '../types';
 import { withAffinity } from '../xp';
 import { CREATION_SOURCES, deriveCharacter, effectiveXp, type DerivedCharacter } from './derive';
+import { describeChanges, trimPool } from './xpops';
 
 /** Pools to take xp back from first. Virtue pools are restricted, so they are kept spent. */
 const RELEASE_ORDER: XpSource[] = ['postGauntlet', 'apprenticeship', 'laterLife', 'childhood'];
@@ -116,4 +117,32 @@ export function describeRebalance(notes: RebalanceNote[], d?: DerivedCharacter):
       return `${n.target}: score kept the same; ${parts.join(', ')}.`;
     })
     .join(' ');
+}
+
+/** Did the character's Virtues and Flaws change (added, removed, resized, re-chosen)? */
+function virtuesChanged(a: Character, b: Character): boolean {
+  const sig = (c: Character) => c.virtues.map((v) => `${v.uid}:${v.defId}:${v.size}:${v.param ?? ''}:${v.free ? 1 : 0}`).join('|');
+  return sig(a) !== sig(b);
+}
+
+/**
+ * After a change to the character, keep what was already bought consistent:
+ * - an Affinity or Linguist added or removed keeps the scores (see rebalanceAffinityXp);
+ * - a Virtue or Flaw that shrinks a budget (Wealthy removed, Poor, Weak Parens, Savantism...)
+ *   takes the excess back from that pool, most recently added Abilities first.
+ * `before` must be derived from a copy made before the change. Returns a sentence per
+ * adjustment, for the notice. Mutates `c`.
+ */
+export function adjustAfterChange(c: Character, before: DerivedCharacter, data: GameData, rules: HouseRules): string[] {
+  const notes = describeRebalance(rebalanceAffinityXp(c, before, data, rules), before);
+  const out = notes ? [notes] : [];
+  if (c.creation.finalized || !virtuesChanged(before.char, c)) return out;
+  const after = deriveCharacter(c, data, rules);
+  for (const b of after.budgets) {
+    const was = before.budgets.find((x) => x.id === b.id);
+    if (b.spent <= b.total || !was || was.spent > was.total || b.total >= was.total) continue;
+    const taken = trimPool(c, b.id, b.spent - b.total, data);
+    if (taken.length) out.push(`${b.label} dropped to ${b.total} xp, so ${describeChanges(taken)} was taken back.`);
+  }
+  return out;
 }

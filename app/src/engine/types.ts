@@ -390,6 +390,8 @@ export interface LibraryBook {
   hidden?: boolean; // part of Hidden Resources
   notes?: string;
   readBy?: string[]; // character ids who studied (tractatus once)
+  /** a bundle of lab texts (e.g. from a covenant package): `level` is the total, this the most for one text */
+  collectionMax?: number;
 }
 
 export interface VisSource {

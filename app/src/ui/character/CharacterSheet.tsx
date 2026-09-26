@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useCharEditor } from './useChar';
-import { Card, Empty, IssueList, Tabs } from '../kit';
+import { Card, Empty, Tabs } from '../kit';
+import { CharIssueList } from './CharIssues';
 import { HOUSE_BY_ID } from '../../data/houses';
 import { exportCharacter, useStore } from '../../store/store';
 import { bundleToShareLink, downloadJson, safeFilename } from '../../util/files';
@@ -87,7 +88,7 @@ export default function CharacterSheet() {
       {tab === 'summary' && <SheetSummary ed={ed} />}
       {tab === 'rules' && (
         <Card title="Rules check">
-          <IssueList issues={issues} onAcknowledge={ed.acknowledge} />
+          <CharIssueList ed={ed} issues={issues} resolveAll />
           {c.acknowledgedIssues.length > 0 && (
             <div className="row small" style={{ marginTop: 8 }}>
               {c.acknowledgedIssues.length} issue(s) allowed as troupe rulings.

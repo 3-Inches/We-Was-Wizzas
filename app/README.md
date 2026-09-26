@@ -12,7 +12,13 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 - It applies Affinities, Puissance, the age cap, House benefits, the Ex Miscellanea traditions, and spell levels learnable at creation.
 - It enforces who may take each Virtue or Flaw: character type, House, The Gift, gender, prerequisites, incompatible combinations, Characteristic and age limits, and Virtues meant only for faeries, magic beings or hedge traditions. Virtues that bring a Flaw with them (Blood of the Nephilim and Greedy, Diedne Magic and a Major Story Flaw) add it for you, and Virtues with a sub-choice (Faerie Blood heritage, Corrupted Arts) offer a dropdown.
 - An Affinity added after experience was spent keeps the scores you bought and frees the extra xp, instead of silently raising them.
-- A rules check cites the book for each issue. Any issue can be allowed as a troupe ruling.
+- Virtues that change a budget can be added or removed at any time: Wealthy, Poor, Skilled or Weak Parens, and Virtues with their own xp pool. When a budget shrinks, the excess is taken back from the most recently added Abilities and the app tells you what moved.
+- Every Virtue and Flaw is tagged from its rules: character type, House, The Gift, what it adds (free or counted) and what it needs. Tags can be searched and clicked to filter. "Only what this character can take" also hides picks that would break a creation limit, such as the 10 Flaw points or 5 Minor Flaws.
+- A rules check cites the book for each issue. Click an issue to fix it:
+  - It adds or removes a Virtue, sets a value, moves or takes back xp, or shows the dropdown for a choice.
+  - When the troupe has to decide, it opens the step where the decision is made.
+  - "Resolve all" previews every automatic fix before applying it, and every fix can be undone.
+  - Any issue can instead be allowed as a troupe ruling. Covenant issues get the same fix buttons.
 - Recommendations follow the concept themes you pick.
 
 **In-play sheet:**

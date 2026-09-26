@@ -48,6 +48,11 @@ export default function HelpPage() {
               The Virtue list hides what the character may not take (House-only Flaws, Virtues for faerie beings, missing prerequisites…). Untick <b>Only what this character can take</b> to
               see them with the reason; <b>allow anyway</b> takes one as a troupe ruling.
             </li>
+            <li>
+              <b>Click an issue</b> in the rules check to fix it: it adds or removes the Virtue, sets the value, moves the xp, shows the dropdown for a choice, or opens the step
+              where you decide. <b>Resolve all</b> previews every automatic fix first, and <b>Undo</b> in the notice at the top reverses any fix.
+            </li>
+            <li>Click a tag on a Virtue (House, character type, The Gift, what it adds) to filter the list by it; the chips above the list filter by your House and more.</li>
             <li>If the troupe allows something the rules forbid, press <b>Allow</b> on the warning to record it as a ruling for that character.</li>
             <li>Finish creation to switch to the in-play sheet. You can always return to creation.</li>
           </ol>
