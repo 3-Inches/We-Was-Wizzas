@@ -2,9 +2,11 @@ import { useMemo, useState } from 'react';
 import { STATUS_CULTURES, type VFCategory, type VFSize, type VirtueFlawDef } from '../../../data';
 import { addVirtue, removeVirtue } from '../../../engine/character/factory';
 import { deriveCharacter, vfDisplayName } from '../../../engine/character/derive';
-import { vfAvailability, vfProblems, type VFProblem } from '../../../engine/character/restrictions';
+import { vfAvailability, vfProblems, vfSizeProblems, type VFProblem } from '../../../engine/character/restrictions';
+import { HOUSE_BY_ID } from '../../../data/houses';
 import { BookBadge, Card, Markdown, Meter, SearchInput } from '../../kit';
 import ParamInput from '../ParamInput';
+import { CharIssueList } from '../CharIssues';
 import type { CharEditor } from '../useChar';
 
 const CATS: VFCategory[] = ['General', 'Hermetic', 'Supernatural', 'Social Status', 'Personality', 'Story', 'Mythic Companion', 'Heroic', 'Mystery', 'Special'];
@@ -86,17 +88,7 @@ function TakenList({ ed }: { ed: CharEditor }) {
             ✕
           </button>
         </div>
-        {def &&
-          vfProblems(d, data, def, v.cv)
-            .filter((p) => p.severity !== 'info' && !c.acknowledgedIssues.includes(p.id))
-            .map((p) => (
-              <div key={p.id} className={`small ${p.severity === 'error' ? 'bad-text' : 'warn-text'}`} style={{ marginTop: 4 }}>
-                {p.severity === 'error' ? '✕' : '!'} {p.message}{' '}
-                <button className="small ghost" onClick={() => ed.acknowledge(p.id)} title="Record a troupe ruling that allows this">
-                  Allow
-                </button>
-              </div>
-            ))}
+        <CharIssueList ed={ed} compact issues={ed.issues.filter((i) => i.vf === v.cv.uid && i.severity !== 'info' && i.code !== 'param')} />
         {def?.param && (
           <div className="row small" style={{ marginTop: 4 }}>
             <span>{def.param.label}:</span>
@@ -132,13 +124,27 @@ function TakenList({ ed }: { ed: CharEditor }) {
 
 /** Why this Virtue/Flaw can't (error) or shouldn't (warning) be taken now; null if it can. */
 export function availability(ed: CharEditor, v: VirtueFlawDef): VFProblem | null {
-  const { d, data } = ed;
+  const { d, data, saga } = ed;
   if (!d) return null;
-  return vfAvailability(d, data, v);
+  return vfAvailability(d, data, v, { rules: saga?.houseRules });
+}
+
+const TAG_CLASS: Record<string, string> = { type: 'warn', gift: 'info', house: 'house', adds: 'good', needs: 'info', 'not-with': '', gender: '', being: 'bad', tradition: '', region: '', limit: 'info', xp: 'good' };
+
+/** Quick filters built on the tags. */
+function quickFilters(ed: CharEditor): { id: string; label: string; test: (v: VirtueFlawDef) => boolean }[] {
+  const { c } = ed;
+  const out: { id: string; label: string; test: (v: VirtueFlawDef) => boolean }[] = [];
+  if (c?.house) out.push({ id: 'my-house', label: `Suits House ${HOUSE_BY_ID[c.house]?.name ?? c.house}`, test: (v) => !!v.houseIds?.includes(c.house!) });
+  out.push({ id: 'gift', label: 'Needs The Gift', test: (v) => !!v.ruleTags?.some((t) => t.id.startsWith('gift:needs')) });
+  out.push({ id: 'no-gift', label: 'Without The Gift', test: (v) => !v.ruleTags?.some((t) => t.id.startsWith('gift:needs')) });
+  out.push({ id: 'adds', label: 'Adds other Virtues/Flaws', test: (v) => !!v.ruleTags?.some((t) => t.kind === 'adds') });
+  out.push({ id: 'xp', label: 'Changes experience', test: (v) => !!v.ruleTags?.some((t) => t.kind === 'xp') });
+  return out;
 }
 
 function VirtueBrowser({ ed }: { ed: CharEditor }) {
-  const { c, data, update } = ed;
+  const { c, d, data, saga, change } = ed;
   const [q, setQ] = useState('');
   const [kind, setKind] = useState<'all' | 'virtue' | 'flaw'>('all');
   const [cats, setCats] = useState<VFCategory[]>([]);
@@ -146,20 +152,37 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
   const [source, setSource] = useState<'enabled' | 'DE' | 'all'>('enabled');
   const [hideUnavailable, setHideUnavailable] = useState(true);
   const [showCreature, setShowCreature] = useState(false);
+  const [tagFilter, setTagFilter] = useState<{ id: string; label: string }[]>([]);
+  const [quick, setQuick] = useState<string[]>([]);
   const [limit, setLimit] = useState(60);
   const [open, setOpen] = useState<string | null>(null);
+  const rules = saga?.houseRules;
+  const quicks = quickFilters(ed);
+
+  // problems per size for every entry, once per change to the character
+  const problems = useMemo(() => {
+    const m = new Map<string, Partial<Record<VFSize, VFProblem[]>>>();
+    if (!d) return m;
+    for (const v of data.virtuesFlaws) m.set(v.id, vfSizeProblems(d, data, v, rules));
+    return m;
+  }, [d, data, rules]);
+  const worst = (ps: VFProblem[] = []) => ps.find((p) => p.severity === 'error') ?? ps.find((p) => p.severity === 'warning') ?? ps.find((p) => p.severity === 'info');
+  const blockedAll = (v: VirtueFlawDef) => v.sizes.every((s) => problems.get(v.id)?.[s]?.some((p) => p.severity === 'error'));
 
   const list = useMemo(() => {
     if (!c) return [];
     const qq = q.trim().toLowerCase();
+    const hay = (v: VirtueFlawDef) => `${v.name} ${v.text} ${(v.ruleTags ?? []).map((t) => t.label).join(' ')} ${(v.houseIds ?? []).map((h) => HOUSE_BY_ID[h]?.name ?? h).join(' ')}`.toLowerCase();
     return data.virtuesFlaws
       .filter((v) => (kind === 'all' ? true : v.kind === kind))
       .filter((v) => (cats.length ? v.categories.some((x) => cats.includes(x)) : true))
       .filter((v) => (size === 'all' ? true : v.sizes.includes(size)))
       .filter((v) => (source === 'DE' ? v.source.book === 'DE' : source === 'enabled' ? data.isBookEnabled(v.source.book) : true))
       .filter((v) => showCreature || !v.creatureOnly)
-      .filter((v) => !qq || v.name.toLowerCase().includes(qq) || v.text.toLowerCase().includes(qq))
-      .filter((v) => !hideUnavailable || availability(ed, v)?.severity !== 'error')
+      .filter((v) => tagFilter.every((t) => v.ruleTags?.some((x) => x.id === t.id)))
+      .filter((v) => quick.every((id) => quicks.find((f) => f.id === id)?.test(v) ?? true))
+      .filter((v) => !qq || hay(v).includes(qq))
+      .filter((v) => !hideUnavailable || !blockedAll(v))
       .filter((v) => {
         if (!v.categories.includes('Social Status')) return true;
         const cult = STATUS_CULTURES[v.name];
@@ -172,13 +195,30 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
         if ((a.source.book === 'DE') !== (b.source.book === 'DE')) return a.source.book === 'DE' ? -1 : 1;
         return a.name.localeCompare(b.name);
       });
-  }, [data, q, kind, cats, size, source, hideUnavailable, showCreature, c, ed]);
+  }, [data, q, kind, cats, size, source, hideUnavailable, showCreature, c, problems, tagFilter, quick]);
 
   if (!c) return null;
+  const take = (v: VirtueFlawDef, s: VFSize, allow = false) =>
+    change((x) => {
+      // a new Social Status replaces the one it cannot be combined with
+      const replaced = (problems.get(v.id)?.[s] ?? []).flatMap((p) => p.replaces ?? []);
+      const names = replaced.map((uid) => data.vfById.get(x.virtues.find((y) => y.uid === uid)?.defId ?? '')?.name).filter(Boolean);
+      for (const uid of replaced) removeVirtue(x, data, uid);
+      const cv = addVirtue(x, data, v.id, s);
+      const addedBy = x.virtues.filter((y) => y.requiredBy === cv.uid || y.freeReason === `from ${v.name}`).map((y) => data.vfById.get(y.defId)?.name);
+      if (allow && saga) {
+        // record the troupe ruling for whatever the rules check now flags on this Virtue
+        const dd = deriveCharacter(x, data, saga.houseRules);
+        for (const p of vfProblems(dd, data, v, cv)) if (p.severity === 'error' && !x.acknowledgedIssues.includes(p.id)) x.acknowledgedIssues.push(p.id);
+      }
+      const parts = [names.length ? `${v.name} replaces ${names.join(', ')}.` : '', addedBy.length ? `${v.name} also added ${addedBy.join(', ')}.` : ''].filter(Boolean);
+      return parts.length ? parts.join(' ') : undefined;
+    });
+  const toggleTag = (t: { id: string; label: string }) => setTagFilter((ts) => (ts.some((x) => x.id === t.id) ? ts.filter((x) => x.id !== t.id) : [...ts, t]));
   return (
     <Card title="Browse Virtues & Flaws">
       <div className="row" style={{ marginBottom: 8 }}>
-        <SearchInput value={q} onChange={(v) => { setQ(v); setLimit(60); }} placeholder="Search names and text (e.g. 'Puissant', 'Lab Total', 'faerie')" />
+        <SearchInput value={q} onChange={(v) => { setQ(v); setLimit(60); }} placeholder="Search names, text and tags (e.g. 'Puissant', 'Merinita', 'Needs The Gift')" />
         <select value={kind} onChange={(e) => setKind(e.target.value as typeof kind)}>
           <option value="all">Virtues & Flaws</option>
           <option value="virtue">Virtues</option>
@@ -196,13 +236,25 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
           <option value="all">All 5e books</option>
         </select>
       </div>
-      <div className="chip-row" style={{ marginBottom: 8 }}>
+      <div className="chip-row" style={{ marginBottom: 6 }}>
         {CATS.map((cat) => (
           <span key={cat} className={`chip ${cats.includes(cat) ? 'on' : ''}`} onClick={() => setCats((cs) => (cs.includes(cat) ? cs.filter((x) => x !== cat) : [...cs, cat]))}>
             {cat}
           </span>
         ))}
-        <label className="inline small">
+      </div>
+      <div className="chip-row" style={{ marginBottom: 8 }}>
+        {quicks.map((f) => (
+          <span key={f.id} className={`chip ${quick.includes(f.id) ? 'on' : ''}`} onClick={() => setQuick((qs) => (qs.includes(f.id) ? qs.filter((x) => x !== f.id) : [...qs.filter((x) => (f.id === 'gift' ? x !== 'no-gift' : f.id === 'no-gift' ? x !== 'gift' : true)), f.id]))}>
+            {f.label}
+          </span>
+        ))}
+        {tagFilter.map((t) => (
+          <span key={t.id} className="chip on" onClick={() => toggleTag(t)} title="Remove this tag filter">
+            {t.label} ✕
+          </span>
+        ))}
+        <label className="inline small" title="Hide what this character cannot take: wrong type, House or Gift, missing prerequisites, incompatible choices, and anything over a creation limit">
           <input type="checkbox" checked={hideUnavailable} onChange={(e) => setHideUnavailable(e.target.checked)} /> Only what this character can take
         </label>
         <label className="inline small">
@@ -210,20 +262,13 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
         </label>
       </div>
       <div className="small muted" style={{ marginBottom: 6 }}>
-        {list.length} results
+        {list.length} results{tagFilter.length || quick.length ? ' (filtered by tag)' : ''} · click a tag to filter by it
       </div>
       <div className="stack">
         {list.slice(0, limit).map((v) => {
-          const why = availability(ed, v);
-          const blocked = why?.severity === 'error';
-          const take = (s: VFSize, allow = false) =>
-            update((x) => {
-              const cv = addVirtue(x, data, v.id, s);
-              if (!allow || !ed.saga) return;
-              // record the troupe ruling for whatever the rules check now flags on this Virtue
-              const dd = deriveCharacter(x, data, ed.saga.houseRules);
-              for (const p of vfProblems(dd, data, v, cv)) if (p.severity === 'error' && !x.acknowledgedIssues.includes(p.id)) x.acknowledgedIssues.push(p.id);
-            });
+          const byS = problems.get(v.id) ?? {};
+          const first = v.sizes.map((s) => worst(byS[s])).find((p) => p && p.severity !== 'info') ?? v.sizes.map((s) => worst(byS[s])).find(Boolean);
+          const blocked = blockedAll(v);
           return (
             <div key={v.id} className={`vf-item ${v.kind}`}>
               <div className="row">
@@ -238,28 +283,38 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
                   </span>
                 ))}
                 {v.tainted && <span className="badge bad">Tainted</span>}
-                {v.beings && <span className="badge warn" title={`For ${v.beings}`}>non-human</span>}
-                {v.tradition && <span className="badge" title="Hedge tradition">{v.tradition.replace(/ \(.*\)$/, '')}</span>}
-                {v.region && <span className="badge" title="Only exists in this region">{v.region}</span>}
                 {v.effects?.some((e) => e.type !== 'note') && <span className="badge info" title="Mechanical effects are applied automatically">auto</span>}
                 <BookBadge book={v.source.book} anchor={v.source.anchor} line={v.source.line} />
                 <span className="spacer" />
-                {why && (
-                  <span className={`small ${blocked ? 'bad-text' : 'warn-text'}`} title={why.message}>
-                    {why.short}
+                {first && (
+                  <span className={`small ${first.severity === 'error' ? 'bad-text' : first.severity === 'warning' ? 'warn-text' : 'muted'}`} title={first.message}>
+                    {first.short}
                   </span>
                 )}
-                {v.sizes.map((s) => (
-                  <button key={s} className="small" disabled={blocked} onClick={() => take(s)} title={why?.message ?? `Take as ${s}`}>
-                    + {s}
-                  </button>
-                ))}
-                {blocked && why.id !== `taken-${v.id}` && (
-                  <button className="small ghost" onClick={() => take(v.sizes[0], true)} title={`${why.message} Take it anyway as a troupe ruling.`}>
+                {v.sizes.map((s) => {
+                  const p = worst(byS[s]);
+                  const no = p?.severity === 'error';
+                  return (
+                    <button key={s} className="small" disabled={no} onClick={() => take(v, s)} title={p ? p.message : `Take as ${s}`}>
+                      + {s}
+                    </button>
+                  );
+                })}
+                {blocked && first && first.code !== 'taken' && (
+                  <button className="small ghost" onClick={() => take(v, v.sizes[0], true)} title={`${first.message} Take it anyway as a troupe ruling.`}>
                     allow anyway
                   </button>
                 )}
               </div>
+              {(v.ruleTags?.length ?? 0) > 0 && (
+                <div className="tag-row">
+                  {v.ruleTags!.map((t) => (
+                    <span key={t.id + t.label} className={`badge tag ${TAG_CLASS[t.kind] ?? ''}`} title={t.title ?? 'Filter by this tag'} onClick={() => toggleTag(t)}>
+                      {t.label}
+                    </span>
+                  ))}
+                </div>
+              )}
               <div className={`vf-text ${open === v.id ? 'open' : ''}`} onClick={() => setOpen(open === v.id ? null : v.id)}>
                 {open === v.id ? <Markdown text={v.text} /> : v.text.slice(0, 260)}
               </div>

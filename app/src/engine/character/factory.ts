@@ -120,12 +120,11 @@ export function removeVirtue(c: Character, data: GameData, uidToRemove: string) 
         if (Object.values(ab.xp).every((x) => !x)) c.abilities = c.abilities.filter((a) => a !== ab);
       }
     }
-    if (e.type === 'xpPool') {
-      const key = `pool:${cv.uid}` as XpSource;
-      for (const ab of c.abilities) delete ab.xp[key];
-    }
   }
+  // xp spent from a pool this Virtue gave (Educated, Warrior, Book Learner mastery...) goes with it
   const key = `pool:${cv.uid}` as XpSource;
+  for (const ab of c.abilities) delete ab.xp[key];
+  for (const a of Object.values(c.arts)) if (a) delete a[key];
   for (const s of c.spells) delete s.masteryXp[key];
   syncMerinitaWarping(c, data);
 }

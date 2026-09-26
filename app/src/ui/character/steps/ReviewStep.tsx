@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { summarize } from '../../../engine/character/validate';
-import { Card, IssueList } from '../../kit';
+import { Card } from '../../kit';
+import { CharIssueList } from '../CharIssues';
 import type { CharEditor } from '../useChar';
 import SheetSummary from '../SheetSummary';
 
 export default function ReviewStep({ ed }: { ed: CharEditor }) {
-  const { c, d, issues, update, saga, acknowledge } = ed;
+  const { c, d, issues, update, saga } = ed;
   const nav = useNavigate();
   if (!c || !d || !saga) return null;
   const s = summarize(issues);
@@ -21,7 +22,7 @@ export default function ReviewStep({ ed }: { ed: CharEditor }) {
           {s.warnings} warning(s), {s.infos} note(s). You can finalize anyway — issues you have not fixed stay visible on the sheet, and any you
           <i> Allow</i> are recorded as troupe rulings.
         </p>
-        <IssueList issues={issues} onAcknowledge={acknowledge} />
+        <CharIssueList ed={ed} issues={issues} resolveAll />
         <div className="row" style={{ marginTop: 10 }}>
           <button
             className="primary"

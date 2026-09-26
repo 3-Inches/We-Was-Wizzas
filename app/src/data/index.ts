@@ -14,6 +14,7 @@ import weaponsJson from './generated/weapons.json';
 import armorJson from './generated/armor.json';
 import { MECHANICS, type Mechanics } from './mechanics';
 import { NOT_REAL_VF, RESTRICTIONS } from './restrictions';
+import { buildVfTags, vfHouses } from './vfTags';
 import type {
   AbilityDef, ArmorDef, GuidelineDef, HookBoonDef, LabFeatureDef, LabVFDef, ShapeMaterialDef,
   SpellDef, VirtueFlawDef, WeaponDef, Effect, AbilityType,
@@ -227,6 +228,10 @@ export function buildGameData(opts: DataOptions = {}): GameData {
       const other = byId.get(ex);
       if (other && !(other.excludes ?? []).includes(v.id)) other.excludes = [...(other.excludes ?? []), v.id];
     }
+  }
+  for (const v of vfs) {
+    v.ruleTags = buildVfTags(v, (id) => byId.get(id)?.name ?? id);
+    v.houseIds = vfHouses(v);
   }
 
   const spells = [...RAW_SPELLS, ...custom.spells];

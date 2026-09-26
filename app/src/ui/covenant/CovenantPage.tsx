@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { BASE_COVENANTS, POWER_LEVELS } from '../../engine/covenant';
+import { BASE_COVENANTS, POWER_LEVELS, type CovFix } from '../../engine/covenant';
 import type { Covenant } from '../../engine/types';
 import { exportCovenant, useStore } from '../../store/store';
 import { useDerivedCovenant, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
@@ -93,7 +93,7 @@ export default function CovenantPage() {
         {dc.issues.length > 0 && <span className="badge warn">{dc.issues.length} issue(s)</span>}
       </div>
       <Tabs tabs={tabs} value={tab} onChange={setTab} />
-      {tab === 'overview' && <OverviewTab cov={cov} update={update} dc={dc} sagaId={saga.id} />}
+      {tab === 'overview' && <OverviewTab cov={cov} update={update} dc={dc} sagaId={saga.id} setTab={setTab} />}
       {tab === 'hooks' && <HooksTab cov={cov} update={update} dc={dc} data={data} />}
       {tab === 'library' && <LibraryTab cov={cov} update={update} dc={dc} data={data} />}
       {tab === 'labs' && <LabsTab cov={cov} update={update} dc={dc} data={data} />}
@@ -114,7 +114,7 @@ export default function CovenantPage() {
 
 type TabProps = Omit<CovTabProps, 'data'>;
 
-function OverviewTab({ cov, update, dc, sagaId }: TabProps & { sagaId: string }) {
+function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: string; setTab: (t: TabId) => void }) {
   const chars = useSagaCharacters(sagaId);
   const updateCharacter = useStore((s) => s.updateCharacter);
   const byCat = new Map<string, number>();
@@ -136,7 +136,7 @@ function OverviewTab({ cov, update, dc, sagaId }: TabProps & { sagaId: string })
           subjectType: isAbility ? 'ability' : 'art', subject: isAbility ? '' : 'Cr', level: 'level' in bk ? (bk.level as number) : 0, quality: bk.quality, language: 'Latin',
         });
       }
-      if (b.labTextLevels) x.library.push({ uid: uid(), title: `Lab texts (${b.labTextLevels} levels, max ${b.maxLabText === Infinity ? 'any' : b.maxLabText})`, kind: 'labText', subjectType: 'other', subject: 'various', level: b.labTextLevels, quality: 0, language: 'Latin' });
+      if (b.labTextLevels) x.library.push({ uid: uid(), title: `Lab texts (${b.labTextLevels} levels, max ${b.maxLabText === Infinity ? 'any' : b.maxLabText})`, kind: 'labText', subjectType: 'other', subject: 'various', level: b.labTextLevels, quality: 0, language: 'Latin', collectionMax: b.maxLabText === Infinity ? undefined : b.maxLabText });
       if (b.visPerYear) x.visSources.push({ uid: uid(), name: 'Vis sources (to detail)', art: 'Vi', pawnsPerYear: b.visPerYear });
       if (b.visStock) x.visStocks.push({ art: 'Vi', pawns: b.visStock });
     });
@@ -225,15 +225,30 @@ function OverviewTab({ cov, update, dc, sagaId }: TabProps & { sagaId: string })
             </tbody>
           </table>
           <h4>Rules check</h4>
-          {dc.issues.length === 0 ? (
+          {dc.issueList.length === 0 ? (
             <div className="small good-text">No problems found.</div>
           ) : (
-            dc.issues.map((i, k) => (
-              <div key={k} className="issue warning">
-                <span className="badge warn">check</span>
-                <div className="msg">{i}</div>
-              </div>
-            ))
+            dc.issueList.map((i, k) => {
+              const run = (f: CovFix) => (f.kind === 'goto' ? setTab(f.tab as TabId) : update((x) => f.apply(x)));
+              const primary = i.fixes[0];
+              return (
+                <div key={k} className={`issue warning ${primary ? 'clickable' : ''}`} onClick={primary ? () => run(primary) : undefined} title={primary ? `Click to ${primary.kind === 'goto' ? 'open' : 'fix'}: ${primary.label}` : undefined} role={primary ? 'button' : undefined}>
+                  <span className="badge warn">check</span>
+                  <div className="msg">
+                    {i.message}
+                    {i.fixes.length > 0 && (
+                      <div className="fix-row" onClick={(e) => e.stopPropagation()}>
+                        {i.fixes.map((f, n) => (
+                          <button key={n} className={`small ${n === 0 ? 'fix-primary' : 'ghost'}`} onClick={() => run(f)}>
+                            {f.kind === 'goto' ? `→ ${f.label}` : f.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })
           )}
           <p className="small muted">
             Costs (DE p.178–180): Art summa level + quality; Ability summa quality + 3 × level; tractatus = quality; lab texts 1 BP / 5 levels; casting tablets 2 BP / 5 levels; vis

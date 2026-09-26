@@ -21,8 +21,8 @@ export interface PersistedState {
 interface Store extends PersistedState {
   loaded: boolean;
   /** a short message about something the app did on the user's behalf (not persisted) */
-  notice?: { text: string; at: number };
-  setNotice: (text?: string) => void;
+  notice?: { text: string; at: number; undo?: () => void };
+  setNotice: (text?: string, undo?: () => void) => void;
   load: () => Promise<void>;
   createSaga: (name: string) => Saga;
   updateSaga: (id: string, fn: (s: Saga) => void) => void;
@@ -143,7 +143,7 @@ export const useStore = create<Store>()((set, get) => ({
     });
     scheduleSave(get);
   },
-  setNotice: (text) => set({ notice: text ? { text, at: Date.now() } : undefined }),
+  setNotice: (text, undo) => set({ notice: text ? { text, at: Date.now(), undo } : undefined }),
   setActiveSaga: (id) => {
     set({ activeSagaId: id });
     scheduleSave(get);

@@ -212,6 +212,10 @@ export interface VirtueFlawDef {
   paramEffects?: Record<string, Effect[]>;
   /** the book's own wording of the restriction, quoted in rules messages */
   restrictionText?: string;
+  /** tags built from the fields above (see vfTags.ts): shown, searched and filtered on */
+  ruleTags?: { id: string; label: string; kind: string; title?: string }[];
+  /** Houses this is tied to or suits */
+  houseIds?: string[];
   custom?: boolean;
 }
 

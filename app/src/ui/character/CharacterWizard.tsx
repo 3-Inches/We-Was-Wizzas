@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useCharEditor } from './useChar';
-import { Card, Empty, IssueList } from '../kit';
-import type { Step } from '../../engine/character/validate';
+import { Card, Empty } from '../kit';
+import { CharIssueList } from './CharIssues';
+import { visibleSteps } from './wizardSteps';
 import BasicsStep from './steps/BasicsStep';
 import HouseStep from './steps/HouseStep';
 import VirtuesStep from './steps/VirtuesStep';
@@ -14,31 +15,13 @@ import ReviewStep from './steps/ReviewStep';
 import RecommendationsPanel from './RecommendationsPanel';
 import { useState } from 'react';
 
-interface StepDef {
-  id: Step | 'review';
-  label: string;
-  show: (t: string) => boolean;
-}
-
-const STEPS: StepDef[] = [
-  { id: 'basics', label: '1 · Concept', show: () => true },
-  { id: 'house', label: '2 · House', show: (t) => t === 'magus' || t === 'mythic' },
-  { id: 'virtues', label: 'Virtues & Flaws', show: () => true },
-  { id: 'characteristics', label: 'Characteristics', show: () => true },
-  { id: 'abilities', label: 'Abilities', show: () => true },
-  { id: 'arts', label: 'Arts', show: (t) => t === 'magus' },
-  { id: 'spells', label: 'Spells', show: (t) => t === 'magus' },
-  { id: 'personality', label: 'Personality & Gear', show: () => true },
-  { id: 'review', label: 'Review', show: () => true },
-];
-
 export default function CharacterWizard() {
   const ed = useCharEditor();
   const nav = useNavigate();
   const [showRecs, setShowRecs] = useState(true);
   const { c, saga, issues } = ed;
   if (!c || !saga || !ed.d) return <Empty>Character not found.</Empty>;
-  const steps = STEPS.filter((s) => s.show(c.type)).map((s, i) => ({ ...s, label: s.id === 'house' && c.type === 'mythic' ? `${i + 1} · Mythic type` : s.label.replace(/^\d+ · /, `${i + 1} · `) }));
+  const steps = visibleSteps(c.type);
   const idx = Math.min(c.creation.step, steps.length - 1);
   const step = steps[idx];
   const go = (i: number) => ed.update((x) => void (x.creation.step = Math.max(0, Math.min(steps.length - 1, i))));
@@ -94,7 +77,7 @@ export default function CharacterWizard() {
         {showRecs && (
           <div className="stack">
             <Card title="Rules check" className="accent">
-              <IssueList issues={stepIssues} onAcknowledge={ed.acknowledge} empty="Everything on this step follows the rules." />
+              <CharIssueList ed={ed} issues={stepIssues} resolveAll empty="Everything on this step follows the rules." />
             </Card>
             <RecommendationsPanel ed={ed} step={step.id} />
           </div>
