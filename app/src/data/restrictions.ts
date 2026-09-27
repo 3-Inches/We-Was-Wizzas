@@ -252,3 +252,12 @@ export const RESTRICTIONS: Record<string, Mechanics> = build();
 
 /** Extraction artifacts (summary tables caught as entries); hidden from the data. */
 export const NOT_REAL_VF = new Set(['summary-of-new-flaws-flaw', 'summary-of-new-virtues', 'new-virtues-and-flaws-for-rhine-magi']);
+
+/**
+ * Laboratory Virtues and Flaws that the extraction filed with the character ones. They are
+ * moved to the lab list (HP, the Infernal laboratory sidebar) with these modifiers.
+ */
+export const LAB_ONLY_VF: Record<string, { id: string; mods: { characteristics: Record<string, number>; specializations: Record<string, number> } }> = {
+  'hell-portal-flaw': { id: 'hell-portal', mods: { characteristics: { Safety: -2, Warping: 2 }, specializations: { Re: 1, Vi: 3 } } },
+  'volcanic-spirit-forge': { id: 'volcanic-spirit-forge', mods: { characteristics: { Upkeep: -1, Safety: -1 }, specializations: { Experimentation: 1, Re: 1, Ig: 1 } } },
+};

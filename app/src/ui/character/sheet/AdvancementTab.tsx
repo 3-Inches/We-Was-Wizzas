@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES, SEASONS, type Art, type Characteristic } from '../../../data';
-import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, newSeasonEntry, twilightAvoidance, twilightComprehension, visForStudy, type AgingResult, type StudySource } from '../../../engine/longterm';
+import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, magianLinkedGains, newSeasonEntry, twilightAvoidance, twilightComprehension, visForStudy, type AgingResult, type StudySource } from '../../../engine/longterm';
 import { stressDie, describeStress } from '../../../engine/dice';
 import { abilityXpForScore } from '../../../engine/xp';
 import type { SeasonLogEntry } from '../../../engine/types';
+import { ensureAbility } from '../../../engine/character/factory';
 import { Card, Field, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
@@ -27,7 +28,7 @@ const ACTIVITY: Record<Kind, SeasonLogEntry['activity']> = {
 };
 
 export default function AdvancementTab({ ed }: { ed: CharEditor }) {
-  const { c, d, update, saga, ctx } = ed;
+  const { c, d, data, update, saga, ctx } = ed;
   const updateCovenant = useStore((s) => s.updateCovenant);
   const [kind, setKind] = useState<Kind>('summa');
   const [target, setTarget] = useState<string>('art:Cr');
@@ -73,6 +74,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   }
   const cov = ctx.covenant;
   const res = src ? computeStudy(d, src, { art, abilityUid }) : null;
+  const linked = src && res && res.xp > 0 ? magianLinkedGains(d, data, src, abilityUid, res.advancementTotal) : [];
   const trainingNotAllowed = kind === 'training' && isArt;
   const visPawns = art ? visForStudy(d.arts[art].score) : 0;
   const tractatusRead = kind === 'tractatus' && bookUid && library.find((b) => b.uid === bookUid)?.readBy?.includes(c.id);
@@ -80,13 +82,16 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const logSeason = () => {
     const gains: Record<string, number> = {};
     if (res && res.xp > 0) gains[target] = res.xp;
-    const text = summary || (kind === 'other' ? 'Other activity' : `${KIND_LABEL[kind]}: ${subject}${res ? ` (+${res.xp} xp)` : ''}`);
+    const linkedText = linked.filter((l) => l.xp > 0).map((l) => `${l.name} +${l.xp}`).join(', ');
+    const text = summary || (kind === 'other' ? 'Other activity' : `${KIND_LABEL[kind]}: ${subject}${res ? ` (+${res.xp} xp)` : ''}${linkedText ? `; Magian Lineage: ${linkedText}` : ''}`);
     const entry = newSeasonEntry(year, season, ACTIVITY[kind], text, gains);
     if (res) entry.sourceQuality = res.advancementTotal;
     if (kind === 'vis' && art) entry.visUsed = [{ art, pawns: visPawns }];
     if (kind === 'vis' && visBotch) entry.warpingPoints = visBotch;
     if (bookUid) entry.bookId = bookUid;
     update((x) => {
+      // Magian Lineage: the connected Abilities gain too (added to the character if new)
+      for (const l of linked) if (l.xp > 0) entry.gains[`ability:${l.uid ?? ensureAbility(x, l.abilityId).uid}`] = l.xp;
       applySeason(x, entry, 1);
       x.seasonLog.push(entry);
     });
@@ -303,6 +308,12 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 {n}
               </span>
             ))}
+            {linked.length > 0 && (
+              <span className="small" title="Major Magian Lineage: half the Source Quality (rounded up) in each other connected Ability (DE, Magian Lineage)">
+                Magian Lineage:{' '}
+                {linked.map((l) => (l.xp > 0 ? `${l.name} +${l.xp} xp` : `${l.name}: nothing (${l.blocked})`)).join(' · ')}
+              </span>
+            )}
           </div>
         )}
         <div className="row" style={{ marginTop: 8 }}>

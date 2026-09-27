@@ -45,9 +45,15 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
             {c.type !== 'grog' && (
               <div className="stat">
                 <span className="v">
-                  {c.confidence.score} ({c.confidence.points})
+                  {d.confidence.score} ({d.confidence.points})
                 </span>
                 <span className="l">Confidence</span>
+              </div>
+            )}
+            {(d.trueFaith > 0 || d.relicFaith > 0) && (
+              <div className="stat" title="Faith Points can be spent like Confidence; Magic Resistance from True Faith (score × 10) or a relic (Faith × 10) does not stack with Parma (DE p.419)">
+                <span className="v">{d.trueFaith > 0 ? `${d.trueFaith} (${d.faithPoints})` : d.relicFaith}</span>
+                <span className="l">{d.trueFaith > 0 ? 'True Faith' : 'Relic Faith'}</span>
               </div>
             )}
           </div>
@@ -79,6 +85,29 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
                 Spend 1 (+3)
               </button>
               <span className="small muted">Score {c.confidence.score}</span>
+            </div>
+          )}
+          {d.trueFaith > 0 && (
+            <div className="row" style={{ marginTop: 8 }} title="Spend like Confidence Points, up to your True Faith Score at once, when acting in accordance with God's will. Each dawn regain points up to your Score (DE p.419).">
+              <span>Faith Points:</span>
+              <Stepper value={d.faithPoints} min={0} max={99} onChange={(v) => update((x) => void (x.faith = { score: d.trueFaith, points: v }))} />
+              <button className="small" disabled={d.faithPoints < 1} onClick={() => update((x) => void (x.faith = { score: d.trueFaith, points: d.faithPoints - 1 }))}>
+                Spend 1 (+3)
+              </button>
+              <button className="small" disabled={d.faithPoints >= d.trueFaith} onClick={() => update((x) => void (x.faith = { score: d.trueFaith, points: Math.max(d.faithPoints, d.trueFaith) }))}>
+                Dawn
+              </button>
+              <span className="small muted">True Faith {d.trueFaith} · Magic Resistance {d.trueFaith * 10}</span>
+            </div>
+          )}
+          {d.relicFaith > 0 && (
+            <div className="small" style={{ marginTop: 8 }}>
+              <b>Relic:</b> Faith {d.relicFaith} (its Faith Points can be used as Confidence) · Magic Resistance {d.relicFaith * 10} · Divine Might {d.relicFaith * 10}, pool refreshed
+              each sunrise; Infernal creatures of lower Might cannot come within {d.relicFaith * 10} feet (DE p.419).
+              {(() => {
+                const power = d.virtues.find((v) => v.cv.defId === 'powerful-relic')?.cv.param;
+                return power ? ` Power: ${power}.` : '';
+              })()}
             </div>
           )}
           <div className="small" style={{ marginTop: 8 }}>

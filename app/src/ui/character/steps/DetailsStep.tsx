@@ -60,11 +60,16 @@ export default function DetailsStep({ ed }: { ed: CharEditor }) {
           ) : (
             <div className="row">
               <Field label="Confidence Score">
-                <Stepper value={d.confidence.score} min={0} max={10} onChange={(v) => update((x) => void (x.confidence = { ...d.confidence, score: v }))} />
+                <Stepper value={d.confidence.score} min={0} max={10} onChange={(v) => update((x) => { x.confidence = { ...d.confidence, score: v }; x.creation.confidenceSet = true; })} />
               </Field>
               <Field label="Confidence Points">
-                <Stepper value={d.confidence.points} min={0} max={30} onChange={(v) => update((x) => void (x.confidence = { ...d.confidence, points: v }))} />
+                <Stepper value={d.confidence.points} min={0} max={30} onChange={(v) => update((x) => { x.confidence = { ...d.confidence, points: v }; x.creation.confidenceSet = true; })} />
               </Field>
+              {c.creation.confidenceSet && !c.creation.finalized && (
+                <button className="small ghost" onClick={() => update((x) => void (x.creation.confidenceSet = false))} title="Go back to the saga's starting Confidence and what the Virtues give">
+                  Reset to the rules
+                </button>
+              )}
             </div>
           )}
           <Field label="Starting Warping Points" hint="Merinita without a faerie Virtue/Flaw start with 1; Warped by Magic gives 5.">

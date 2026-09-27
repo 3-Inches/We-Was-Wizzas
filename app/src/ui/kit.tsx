@@ -225,3 +225,60 @@ export function SearchInput(props: { value: string; onChange: (v: string) => voi
 export function signed(n: number): string {
   return n > 0 ? `+${n}` : String(n);
 }
+
+/**
+ * A dropdown of suggested values with "Other (type your own)…", which shows a text box. A value
+ * not in the list counts as typed-in, so saved free text is never lost.
+ */
+export function SelectOrType(props: {
+  value: string;
+  onChange: (v: string) => void;
+  options?: string[];
+  groups?: { label: string; options: string[] }[];
+  placeholder?: string;
+  otherLabel?: string;
+  ariaLabel?: string;
+}) {
+  const { value, onChange } = props;
+  const all = [...(props.options ?? []), ...(props.groups ?? []).flatMap((g) => g.options)];
+  const isOther = !!value && !all.includes(value);
+  const [otherOpen, setOtherOpen] = useState(isOther);
+  const showOther = otherOpen || isOther;
+  return (
+    <span className="select-or-type">
+      <select
+        value={showOther ? '__other' : value}
+        aria-label={props.ariaLabel ?? props.placeholder}
+        onChange={(e) => {
+          if (e.target.value === '__other') {
+            setOtherOpen(true);
+            if (!isOther) onChange('');
+          } else {
+            setOtherOpen(false);
+            onChange(e.target.value);
+          }
+        }}
+      >
+        <option value="">{props.placeholder ?? '— choose —'}</option>
+        {(props.options ?? []).map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+        {(props.groups ?? []).map((g) => (
+          <optgroup key={g.label} label={g.label}>
+            {g.options.map((o) => (
+              <option key={o} value={o}>
+                {o}
+              </option>
+            ))}
+          </optgroup>
+        ))}
+        <option value="__other">{props.otherLabel ?? 'Other (type your own)…'}</option>
+      </select>
+      {showOther && (
+        <input value={value} onChange={(e) => onChange(e.target.value)} placeholder="Type your own" aria-label={`${props.ariaLabel ?? props.placeholder ?? 'Value'} (your own)`} autoFocus={otherOpen && !isOther} />
+      )}
+    </span>
+  );
+}

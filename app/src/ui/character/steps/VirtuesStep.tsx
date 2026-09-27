@@ -7,6 +7,7 @@ import { HOUSE_BY_ID } from '../../../data/houses';
 import { BookBadge, Card, Markdown, Meter, SearchInput } from '../../kit';
 import ParamInput from '../ParamInput';
 import { CharIssueList } from '../CharIssues';
+import PowersCard from '../PowersCard';
 import type { CharEditor } from '../useChar';
 
 const CATS: VFCategory[] = ['General', 'Hermetic', 'Supernatural', 'Social Status', 'Personality', 'Story', 'Mythic Companion', 'Heroic', 'Mystery', 'Special'];
@@ -43,6 +44,7 @@ export default function VirtuesStep({ ed }: { ed: CharEditor }) {
         </p>
       </Card>
       <TakenList ed={ed} />
+      <PowersCard ed={ed} />
       <VirtueBrowser ed={ed} />
       {data && null}
     </>

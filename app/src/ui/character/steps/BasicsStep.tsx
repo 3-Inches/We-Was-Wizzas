@@ -1,11 +1,14 @@
 import { SOCIETIES, type CharType } from '../../../data';
+import { HOMELANDS } from '../../../data/lists';
+import { genderOf } from '../../../engine/character/restrictions';
 import { recomputeAge } from '../../../engine/character/factory';
 import { ARCHETYPES } from '../../../engine/recommend';
-import { Card, Field, Stepper } from '../../kit';
+import { Card, Field, SelectOrType, Stepper } from '../../kit';
 import type { CharEditor } from '../useChar';
+import AgingBeforePlay from '../AgingBeforePlay';
 
 export default function BasicsStep({ ed }: { ed: CharEditor }) {
-  const { c, update, saga, d } = ed;
+  const { c, update, change, saga, d } = ed;
   if (!c || !saga || !d) return null;
   const year = saga.currentYear;
   const arche = c.creation.archetypes ?? [];
@@ -27,8 +30,12 @@ export default function BasicsStep({ ed }: { ed: CharEditor }) {
               <option value="grog">Grog</option>
             </select>
           </Field>
-          <Field label="Gender (as perceived by society)" hint="Only matters for some Social Statuses (DE p.62).">
-            <input value={c.gender} onChange={(e) => update((x) => void (x.gender = e.target.value))} placeholder="e.g. male, female, …" />
+          <Field label="Gender (as perceived by society)" hint="Some Social Statuses are only for men or only for women (DE p.62); Paid Rights lets a woman take a man's status.">
+            <select value={genderOf(c.gender) === 'male' ? 'Male' : genderOf(c.gender) === 'female' ? 'Female' : ''} onChange={(e) => update((x) => void (x.gender = e.target.value))} aria-label="Gender">
+              <option value="">— choose —</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
           </Field>
           <Field label="Society / culture" hint="Filters Social Status Virtues (DE p.64).">
             <select value={c.society} onChange={(e) => update((x) => void (x.society = e.target.value))}>
@@ -37,8 +44,22 @@ export default function BasicsStep({ ed }: { ed: CharEditor }) {
               ))}
             </select>
           </Field>
-          <Field label="Nationality / homeland">
-            <input value={c.nationality} onChange={(e) => update((x) => void (x.nationality = e.target.value))} placeholder="e.g. Bavarian" />
+          <Field label="Nationality / homeland" hint="Choosing a people also sets the matching society, which you can change.">
+            <SelectOrType
+              value={c.nationality}
+              groups={HOMELANDS}
+              placeholder="— homeland —"
+              ariaLabel="Nationality / homeland"
+              onChange={(v) => {
+                const culture = HOMELANDS.find((g) => g.options.includes(v))?.culture;
+                if (culture && culture !== c.society && SOCIETIES.includes(culture)) {
+                  change((x) => {
+                    x.nationality = v;
+                    x.society = culture;
+                  }, `Society set to ${culture} to match ${v}.`);
+                } else update((x) => void (x.nationality = v));
+              }}
+            />
           </Field>
         </div>
       </Card>
@@ -77,6 +98,8 @@ export default function BasicsStep({ ed }: { ed: CharEditor }) {
           </Field>
         )}
       </Card>
+
+      <AgingBeforePlay ed={ed} />
 
       <Card title="Concept">
         <Field label="Concept in a sentence" hint="The first step in creating a character (DE p.43).">

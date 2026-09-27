@@ -84,7 +84,11 @@ function MultiChoice(props: { spec: ParamSpec; choices: Group[]; value?: string;
   const { spec, choices, value, onChange } = props;
   const chosen = paramValues(value);
   const all = choices.flatMap((g) => g.options);
-  const toggle = (v: string) => onChange((chosen.includes(v) ? chosen.filter((x) => x !== v) : [...chosen, v]).join(','));
+  const full = spec.max !== undefined && chosen.length >= spec.max;
+  const toggle = (v: string) => {
+    if (!chosen.includes(v) && full) return;
+    onChange((chosen.includes(v) ? chosen.filter((x) => x !== v) : [...chosen, v]).join(','));
+  };
   if (all.length > 20) {
     // long lists (Abilities): chips for what is chosen plus a dropdown to add more
     return (
@@ -94,8 +98,8 @@ function MultiChoice(props: { spec: ParamSpec; choices: Group[]; value?: string;
             {all.find((o) => o.value === v)?.label ?? v} ✕
           </span>
         ))}
-        <select value="" onChange={(e) => e.target.value && toggle(e.target.value)} aria-label={`Add ${spec.label}`}>
-          <option value="">+ add…</option>
+        <select value="" disabled={full} onChange={(e) => e.target.value && toggle(e.target.value)} aria-label={`Add ${spec.label}`}>
+          <option value="">{full ? `${spec.max} chosen` : spec.max ? `+ add (${chosen.length}/${spec.max})…` : '+ add…'}</option>
           {all
             .filter((o) => !chosen.includes(o.value))
             .map((o) => (
@@ -110,7 +114,7 @@ function MultiChoice(props: { spec: ParamSpec; choices: Group[]; value?: string;
   return (
     <span className="chip-row" aria-label={spec.label}>
       {all.map((o) => (
-        <span key={o.value} className={`chip ${chosen.includes(o.value) ? 'on' : ''}`} onClick={() => toggle(o.value)}>
+        <span key={o.value} className={`chip ${chosen.includes(o.value) ? 'on' : full ? 'muted' : ''}`} onClick={() => toggle(o.value)}>
           {o.label}
         </span>
       ))}

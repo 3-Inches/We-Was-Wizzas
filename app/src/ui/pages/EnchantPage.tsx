@@ -43,8 +43,8 @@ export default function EnchantPage() {
       {c && d && (
         <p className="small muted">
           {c.name}: aura {ctx.aura.realm} {ctx.aura.strength}
-          {ctx.lab ? `, working in ${ctx.lab.lab.name}` : ', no laboratory assigned (assign one on the covenant page)'}; Magic Theory {d.abilities.find((a) => a.abilityId === 'magic-theory')?.total ?? 0}
-          , vis limit {visLimit(d.abilities.find((a) => a.abilityId === 'magic-theory')?.total ?? 0)} pawns per season.
+          {ctx.lab ? `, working in ${ctx.lab.lab.name}` : ', no laboratory assigned (assign one on the covenant page)'}; {d.theoryAbility === 'magic-theory' ? 'Magic Theory' : 'Holy Magic'} {d.abilities.find((a) => a.abilityId === d.theoryAbility)?.total ?? 0}
+          , vis limit {visLimit(d.abilities.find((a) => a.abilityId === d.theoryAbility)?.total ?? 0)} pawns per season.
         </p>
       )}
       <Tabs

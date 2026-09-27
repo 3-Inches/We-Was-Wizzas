@@ -21,7 +21,7 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
   const magus = d.isMagus;
   const lab = ctx.lab;
   const labCtx = lab ? { generalQuality: lab.characteristics['General Quality'], specializations: lab.specializations } : undefined;
-  const mt = d.abilities.find((a) => a.abilityId === 'magic-theory')?.total ?? 0;
+  const mt = d.abilities.find((a) => a.abilityId === d.theoryAbility)?.total ?? 0;
 
   const lr = labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'longevity', aura: ctx.aura, lab: labCtx, forSelfLongevity: true });
   const lrTotal = (ltOverride ?? lr.total) + extraVis;

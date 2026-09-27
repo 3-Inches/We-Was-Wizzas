@@ -21,8 +21,11 @@ export function migrateCharacter(c: Character): Character {
   for (const a of ARTS) arts[a] = arts[a] ?? {};
   const chars = { ...(c.characteristics ?? {}) } as Character['characteristics'];
   for (const k of CHARACTERISTICS) chars[k] = chars[k] ?? 0;
+  const g = (c.gender ?? '').trim().toLowerCase();
+  const gender = /^(f|woman|girl|lady|maga\b)/.test(g) ? 'Female' : /^(m|man|boy)/.test(g) ? 'Male' : c.gender ?? '';
   return {
     ...c,
+    gender,
     arts,
     characteristics: chars,
     virtues: c.virtues ?? [],

@@ -34,6 +34,8 @@ export function vfHouses(def: VirtueFlawDef): string[] {
   return [...out];
 }
 
+const cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
+
 export function buildVfTags(def: VirtueFlawDef, nameOf: (id: string) => string): VFTag[] {
   const tags: VFTag[] = [];
   const t = (id: string, label: string, kind: VFTagKind, title?: string) => tags.push({ id, label, kind, title });
@@ -57,7 +59,15 @@ export function buildVfTags(def: VirtueFlawDef, nameOf: (id: string) => string):
   for (const e of def.effects ?? []) {
     if (e.type === 'implies') t(`adds:${e.virtue}`, `Adds ${nameOf(e.virtue)} (free)`, 'adds', e.note);
     if (e.type === 'grantAbility' && e.ability !== '$param') t(`grants:${e.ability}`, `Gives ${e.ability.replace(/-/g, ' ')} ${e.score}`, 'adds');
+    if (e.type === 'labTheory') t('adds:lab-theory', `${cap(e.ability.replace(/-/g, ' '))} replaces Magic Theory`, 'adds');
+    if (e.type === 'trueFaith') t('adds:faith', `True Faith ${e.score} (Magic Resistance ${e.score * 10})`, 'adds');
+    if (e.type === 'relic') t('adds:relic', `Relic: ${e.faith} Faith Point${e.faith === 1 ? '' : 's'}, Magic Resistance ${e.faith * 10}`, 'adds');
+    if (e.type === 'powers') t(`powers:${e.kind}`, `${e.levels} levels of powers`, 'adds', 'Design the powers on the Virtues step or the Abilities tab');
+    if (e.type === 'confidence' && e.score) t('adds:confidence', `Confidence ${e.score}${e.points ? ` (${e.points} points)` : ''}`, 'adds');
+    if (e.type === 'personalityRange') t('limit:ptrait', `Personality Traits up to ±${e.max}`, 'limit');
   }
+  if (def.categories.includes('Mystery')) t('needs:initiation', 'Needs Initiation (or Cabal Legacy)', 'needs', 'Mystery Virtues come by Initiation; Cabal Legacy lets a magus start with them (TMRE)');
+  if (def.id === 'cabal-legacy-flaw') t('adds:mystery', 'Lets you take Mystery Virtues at creation', 'adds');
   for (const n of def.needs ?? []) {
     if (n.auto) {
       const how = n.auto.noPoints ? 'no Virtue points' : 'counts as a normal Flaw';

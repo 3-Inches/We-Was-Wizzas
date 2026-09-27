@@ -33,6 +33,7 @@ export interface Mechanics {
   tradition?: string;
   region?: string;
   paramEffects?: VirtueFlawDef['paramEffects'];
+  sizeEffects?: VirtueFlawDef['sizeEffects'];
   restrictionText?: string;
 }
 
@@ -307,7 +308,13 @@ export const MECHANICS: Record<string, Mechanics> = {
   'leprosy-flaw': { effects: [{ type: 'livingConditions', amount: -2 }] },
   unaging: { tags: ['supernatural'] },
   'age-quickly-flaw': {},
-  'magian-lineage': { effects: [note('Minor: –1 aging rolls. Major: see text.')] },
+  'magian-lineage': {
+    param: { kind: 'ability', label: 'Connected Abilities (Major: choose three Arcane or Supernatural)', abilityTypes: ['Arcane', 'Supernatural'], multiple: true, max: 3, optional: true },
+    effects: [{ type: 'agingRoll', amount: -1 }, note('+3 to resist the effects of disease.')],
+    sizeEffects: {
+      Major: [note('The three connected Abilities: studying one from a source gives half the Source Quality (rounded up) in each of the other two.')],
+    },
+  },
 
   // ------------------------------------------------------------------ Warping
   'warped-by-magic-flaw': { effects: [{ type: 'warpingPoints', amount: 5 }] },
@@ -335,9 +342,54 @@ export const MECHANICS: Record<string, Mechanics> = {
   'whistle-up-the-wind': { effects: [{ type: 'grantAbility', ability: 'whistle-up-the-wind', score: 1 }], tags: ['supernatural', 'weather'] },
   'crafters-healing': { effects: [{ type: 'grantAbility', ability: 'crafters-healing', score: 1 }], tags: ['supernatural', 'healing', 'craft'] },
   'enchanting-ability': { param: P.text('Artistic ability (e.g. Music)'), effects: [{ type: 'grantAbility', ability: 'enchanting-ability', score: 1 }], tags: ['supernatural', 'social'] },
-  'true-faith': { effects: [note('True Faith score 1.')], tags: ['divine'] },
-  relic: { effects: [note('Relic with True Faith 1.')], tags: ['divine'] },
-  'powerful-relic': { effects: [note('Relic with True Faith 3 and one power.')], tags: ['divine'] },
+  'true-faith': {
+    effects: [
+      { type: 'trueFaith', score: 1, points: 1 },
+      note('Spend Faith Points like Confidence (up to your True Faith score at once) when acting in accordance with God\'s will; regain up to your score each dawn. Magic Resistance = True Faith × 10 (DE p.419).'),
+    ],
+    tags: ['divine'],
+  },
+  relic: { effects: [{ type: 'relic', faith: 1 }, note('The relic\'s Faith Points can be used as Confidence; only one relic helps at a time (DE p.419).')], tags: ['divine'] },
+  'powerful-relic': {
+    param: { kind: 'text', label: 'Relic power (agreed with the storyguide)', optional: true },
+    effects: [{ type: 'relic', faith: 3 }, note('The relic\'s Faith Points can be used as Confidence; it stops working while you behave impiously (DE p.419).')],
+    tags: ['divine'],
+  },
+  'holy-magic': {
+    requiresGift: true,
+    effects: [
+      { type: 'grantAbility', ability: 'holy-magic', score: 1 },
+      { type: 'labTheory', ability: 'holy-magic' },
+      rep(3, 'Hedge wizard', 'bad', 'Order of Hermes'),
+      note('No Hermetic words or gestures (usually –15 to casting, or a Presence + Theology roll of 15+ to pray instead). Attuned to Divine and Magic auras. Halve Lab Totals learning from Hermetic texts.'),
+    ],
+    tags: ['divine'],
+  },
+  'heroic-personality-flaw': {
+    effects: [{ type: 'confidence', score: 2, points: 5 }, { type: 'personalityRange', max: 5 }, note('The storyguide may occasionally tell you what your character does.')],
+  },
+  'heroes-birthright': {
+    repeatable: true,
+    effects: [{ type: 'powers', kind: 'birthright', levels: 15 }, note('A Hermetic effect of up to level 15 per time taken, invoked and cancelled at will like Mythic Blood; no power above level 30.')],
+  },
+  'cabal-legacy-flaw': {
+    effects: [note('Lets a magus start as an initiate of a Mystery Cult, taking its Virtues and Flaws as normal ones at character creation. Occasionally the cult asks a season\'s service.')],
+  },
+  'greater-power': { repeatable: true, effects: [{ type: 'powers', kind: 'greater', levels: 50 }] },
+  'lesser-power': { repeatable: true, effects: [{ type: 'powers', kind: 'lesser', levels: 25 }] },
+  'personal-power': { repeatable: true, effects: [{ type: 'powers', kind: 'personal', levels: 25 }, note('Each power must be Range: Personal, or constant.')] },
+  'ritual-power': { repeatable: true, effects: [{ type: 'powers', kind: 'ritual', levels: 25 }, note('Costs a Confidence Point per magnitude to use.')] },
+  'commanding-aura': {
+    param: { kind: 'text', label: 'Rank in the Church', options: ['Pope', 'Cardinal / legatus a latere', 'Legatus missus', 'Archbishop'] },
+    paramEffects: {
+      Pope: [{ type: 'magicResistance', amount: 25, when: 'all' }, { type: 'soak', amount: 5 }],
+      'Cardinal / legatus a latere': [{ type: 'magicResistance', amount: 20, when: 'all' }, { type: 'soak', amount: 4 }],
+      'Legatus missus': [{ type: 'magicResistance', amount: 15, when: 'all' }, { type: 'soak', amount: 3 }],
+      Archbishop: [{ type: 'magicResistance', amount: 10, when: 'all' }, { type: 'soak', amount: 2 }],
+    },
+    effects: [note('Aura of Rightful Authority at Voice Range, at no cost and with no Penetration.')],
+    tags: ['divine'],
+  },
   'demonic-blood': { effects: [{ type: 'mightScore', realm: 'Infernal', score: 5 }], tags: ['infernal'] },
   'strong-angelic-heritage': { requires: ['blood-of-the-nephilim'], tags: ['divine'] },
 

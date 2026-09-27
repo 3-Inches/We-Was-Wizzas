@@ -1,5 +1,6 @@
 import { CHARACTERISTICS, CHAR_NAMES, charCost, type Characteristic } from '../../../data';
-import { Card, Meter, Stepper, signed } from '../../kit';
+import { Card, Meter, SelectOrType, Stepper, signed } from '../../kit';
+import { CHAR_DESCRIPTORS } from '../../../data/lists';
 import type { CharEditor } from '../useChar';
 
 const DESCRIPTIONS: Record<Characteristic, string> = {
@@ -53,11 +54,16 @@ export default function CharacteristicsStep({ ed }: { ed: CharEditor }) {
                     {fin.notes.length > 0 && <div className="small muted">{fin.notes.join(', ')}</div>}
                   </td>
                   <td>
-                    <input
+                    <SelectOrType
                       value={c.characteristicNotes?.[k] ?? ''}
-                      placeholder={v >= 2 ? 'e.g. keen, brawny, graceful…' : v <= -2 ? 'e.g. frail, dull, awkward…' : ''}
-                      onChange={(e) => update((x) => void (x.characteristicNotes = { ...(x.characteristicNotes ?? {}), [k]: e.target.value }))}
-                      style={{ width: '100%' }}
+                      ariaLabel={`${CHAR_NAMES[k]} description`}
+                      placeholder="— description —"
+                      {...(fin.value > 0
+                        ? { options: CHAR_DESCRIPTORS[k].high }
+                        : fin.value < 0
+                          ? { options: CHAR_DESCRIPTORS[k].low }
+                          : { groups: [{ label: 'High', options: CHAR_DESCRIPTORS[k].high }, { label: 'Low', options: CHAR_DESCRIPTORS[k].low }] })}
+                      onChange={(val) => update((x) => void (x.characteristicNotes = { ...(x.characteristicNotes ?? {}), [k]: val }))}
                     />
                   </td>
                 </tr>
