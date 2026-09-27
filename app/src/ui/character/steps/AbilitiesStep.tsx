@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react';
-import { LIVING_LANGUAGES, DEAD_LANGUAGES, PARAMETERIZED_ABILITIES, SAMPLE_CHILDHOODS, abilityTypeOf, type GameData } from '../../../data';
+import { ART_NAMES, FORMS, LIVING_LANGUAGES, DEAD_LANGUAGES, PARAMETERIZED_ABILITIES, SAMPLE_CHILDHOODS, abilityTypeOf, type GameData } from '../../../data';
+import { AREAS, CRAFTS, MYSTERY_CULTS, ORGANIZATIONS, PROFESSIONS } from '../../../data/lists';
+import { abilityAvailability } from '../../../engine/character/restrictions';
 import { CREATION_SOURCES, canSpend, sumAlloc, type DerivedCharacter, type XpBudget } from '../../../engine/character/derive';
 import { ensureAbility } from '../../../engine/character/factory';
 import { abilityXpForScore, withAffinity } from '../../../engine/xp';
 import type { Character, XpSource } from '../../../engine/types';
-import { Card, Meter, Stepper, Total } from '../../kit';
+import { Card, Meter, SelectOrType, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
 
 /** Raw xp to add to one source so the ability reaches `targetScore`. */
@@ -60,12 +62,13 @@ export default function AbilitiesStep({ ed }: { ed: CharEditor }) {
       {!native && (
         <Card title="Native language">
           <div className="row">
-            <select onChange={(e) => e.target.value && update((x) => { const a = ensureAbility(x, 'living-language', { native: saga.houseRules.nativeLanguageXp }, e.target.value); a.native = true; })} defaultValue="">
-              <option value="">— choose native language —</option>
-              {LIVING_LANGUAGES.map((l) => (
-                <option key={l}>{l}</option>
-              ))}
-            </select>
+            <SelectOrType
+              value=""
+              options={LIVING_LANGUAGES}
+              placeholder="— choose native language —"
+              ariaLabel="Native language"
+              onChange={(v) => v && update((x) => { const a = ensureAbility(x, 'living-language', { native: saga.houseRules.nativeLanguageXp }, v); a.native = true; })}
+            />
             <span className="small muted">75 xp → score 5.</span>
           </div>
         </Card>
@@ -103,7 +106,7 @@ export default function AbilitiesStep({ ed }: { ed: CharEditor }) {
               className="small"
               onClick={() =>
                 update((x) => {
-                  const need: [string, number, string?][] = [['dead-language', 4, 'Latin'], ['artes-liberales', 1], ['magic-theory', 3], ['parma-magica', 1]];
+                  const need: [string, number, string?][] = [['dead-language', 4, 'Latin'], ['artes-liberales', 1], [d.theoryAbility, 3], ['parma-magica', 1]];
                   for (const [id, score, param] of need) {
                     const ab = ensureAbility(x, id, {}, param);
                     const cur = sumAlloc(ab.xp);
@@ -229,20 +232,26 @@ function poolLabel(k: string, budgets: XpBudget[]): string {
   return { free: 'Granted by Virtue', play: 'Gained in play', adjust: 'Adjustment', native: 'Native language' }[k] ?? k;
 }
 
+/** Suggested values for an Ability that takes a choice (which language, craft, lore...). */
+export function abilityParamChoices(abilityId: string): { options?: string[]; groups?: { label: string; options: string[] }[] } {
+  switch (abilityId) {
+    case 'living-language': return { options: LIVING_LANGUAGES };
+    case 'dead-language': return { options: DEAD_LANGUAGES };
+    case 'craft-type': return { options: CRAFTS };
+    case 'profession-type': return { options: PROFESSIONS };
+    case 'organization-lore': return { groups: ORGANIZATIONS };
+    case 'mystery-cult-lore': return { groups: MYSTERY_CULTS };
+    case 'area-lore': return { groups: AREAS };
+    case 'form-resistance': return { options: FORMS.map((f) => ART_NAMES[f]) };
+    default: return {};
+  }
+}
+
 function ParamEdit(props: { value: string; abilityId: string; onChange: (v: string) => void }) {
-  const opts = props.abilityId === 'living-language' ? LIVING_LANGUAGES : props.abilityId === 'dead-language' ? DEAD_LANGUAGES : [];
-  const id = `p-${props.abilityId}`;
   return (
-    <>
-      <input value={props.value} placeholder={PARAMETERIZED_ABILITIES[props.abilityId]} onChange={(e) => props.onChange(e.target.value)} list={opts.length ? id : undefined} style={{ width: 120, marginLeft: 6 }} />
-      {opts.length > 0 && (
-        <datalist id={id}>
-          {opts.map((o) => (
-            <option key={o} value={o} />
-          ))}
-        </datalist>
-      )}
-    </>
+    <span style={{ marginLeft: 6 }}>
+      <SelectOrType value={props.value} onChange={props.onChange} placeholder={`— ${PARAMETERIZED_ABILITIES[props.abilityId] ?? 'choice'} —`} ariaLabel={PARAMETERIZED_ABILITIES[props.abilityId]} {...abilityParamChoices(props.abilityId)} />
+    </span>
   );
 }
 
@@ -265,10 +274,12 @@ function AddAbility(props: {
   value: string; setValue: (s: string) => void; param: string; setParam: (s: string) => void; onAdd: () => void;
 }) {
   const { data, d, pool } = props;
+  // what the character can learn at all, and (unless "show all") what the chosen pool can buy
   const list = data.abilities
     .filter((a) => data.isBookEnabled(a.source.book))
-    .filter((a) => props.showAll || !pool || canSpend(d, data, pool, { abilityId: a.id }).ok || a.id === 'living-language' || a.id === 'dead-language')
+    .filter((a) => props.showAll || (abilityAvailability(d, data, a.id).ok && (!pool || canSpend(d, data, pool, { abilityId: a.id }).ok || a.id === 'living-language' || a.id === 'dead-language')))
     .sort((a, b) => a.name.localeCompare(b.name));
+  const why = props.value ? abilityAvailability(d, data, props.value) : undefined;
   return (
     <div className="row" style={{ marginTop: 10 }}>
       <select value={props.value} onChange={(e) => props.setValue(e.target.value)}>
@@ -280,13 +291,14 @@ function AddAbility(props: {
         ))}
       </select>
       {props.value && PARAMETERIZED_ABILITIES[props.value] && (
-        <input value={props.param} onChange={(e) => props.setParam(e.target.value)} placeholder={PARAMETERIZED_ABILITIES[props.value]} />
+        <SelectOrType value={props.param} onChange={props.setParam} placeholder={`— ${PARAMETERIZED_ABILITIES[props.value]} —`} ariaLabel={PARAMETERIZED_ABILITIES[props.value]} {...abilityParamChoices(props.value)} />
       )}
+      {why && !why.ok && <span className="small warn-text">{why.reason}</span>}
       <button className="primary small" disabled={!props.value} onClick={props.onAdd}>
         Add
       </button>
       <label className="inline small">
-        <input type="checkbox" checked={props.showAll} onChange={(e) => props.setShowAll(e.target.checked)} /> show Abilities this pool cannot buy
+        <input type="checkbox" checked={props.showAll} onChange={(e) => props.setShowAll(e.target.checked)} /> also show Abilities this character or pool cannot use
       </label>
     </div>
   );

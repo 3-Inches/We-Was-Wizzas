@@ -155,6 +155,14 @@ export function vfProblems(d: DerivedCharacter, data: GameData, def: VirtueFlawD
   }
   if (def.noGift && d.hasGift) push('nogift', 'error', 'Not with The Gift', `${def.name} cannot be taken by a character with The Gift.${quote}`);
 
+  // ---------------------------------------------------------------- Mystery Virtues
+  // Cult Virtues come by Initiation; only Cabal Legacy lets a magus start play with them as
+  // ordinary Virtues (TMRE, Cabal Legacy). A Mystery House's own Virtues are the House's gift.
+  const mystery = def.categories.includes('Mystery') && def.id !== 'cabal-legacy-flaw';
+  if (mystery && !cv?.free && !packaged && !c.creation.finalized && !(c.house && def.houses?.includes(c.house)) && !others.some((v) => v.defId === 'cabal-legacy-flaw')) {
+    push('mystery-init', 'warning', 'Needs Initiation (or Cabal Legacy)', `${def.name} is a Mystery Virtue, gained through Initiation. To begin play with it, the magus needs the Cabal Legacy Flaw (TMRE).`, { ref: 'TMRE, Cabal Legacy' });
+  }
+
   // ---------------------------------------------------------------- Houses
   if (def.houses?.length && !packaged) {
     const names = houseNames(def.houses);
@@ -224,6 +232,14 @@ export function vfProblems(d: DerivedCharacter, data: GameData, def: VirtueFlawD
     }
   }
 
+  if (def.id === 'magian-lineage' && cv) {
+    const linked = (cv.param ?? '').split(',').map((x) => x.trim()).filter(Boolean);
+    if (cv.size === 'Major' && linked.length !== 3) {
+      push('magian-three', 'warning', 'Choose three Abilities', `Major Magian Lineage: choose three Arcane or Supernatural Abilities to be connected (${linked.length} chosen).`, { ref: 'DE, Magian Lineage' });
+    }
+    if (cv.size !== 'Major' && linked.length) push('magian-minor', 'info', 'Minor: no connected Abilities', 'Only the Major Magian Lineage connects three Abilities; the Minor Virtue gives the Aging and disease bonuses only.', { ref: 'DE, Magian Lineage' });
+  }
+
   // ---------------------------------------------------------------- picker-only
   if (adding) {
     if (!data.isBookEnabled(def.source.book)) push('book', 'error', 'Book not enabled for this saga', `${def.source.book} is not enabled for this saga.`);
@@ -291,4 +307,53 @@ export function vfSizeProblems(d: DerivedCharacter, data: GameData, def: VirtueF
   const out: Partial<Record<VFSize, VFProblem[]>> = {};
   for (const size of def.sizes) out[size] = vfProblems(d, data, def, undefined, { rules, size });
   return out;
+}
+
+const MYSTERY_HOUSES = ['bjornaer', 'criamon', 'merinita', 'verditius'];
+
+/**
+ * Arcane Abilities only a House's magi can learn, even with access to Arcane Abilities (DE,
+ * Abilities: Heartbeast, Faerie Magic; DE, House Criamon; HoH:MC for Charms and House Merinita
+ * Lore). A Virtue that grants one (Gorgiastic magi, say) still allows it.
+ */
+const HOUSE_ABILITIES: Record<string, string[]> = {
+  heartbeast: ['bjornaer'],
+  'enigmatic-wisdom': ['criamon'],
+  'faerie-magic': ['merinita'],
+  'house-merinita-lore': ['merinita'],
+  charms: ['merinita'],
+};
+
+/**
+ * Can the character learn this Ability at all (DE, Characters chapter: Abilities)? General: anyone.
+ * Academic, Arcane and Martial: magi, or a Virtue that gives access. Supernatural: only with the
+ * Virtue that grants it (or The Gift, for hedge wizards). Spell Mastery: magi. Mystery Cult Lore:
+ * initiates (a Mystery House, or Cabal Legacy). Heartbeast, Enigmatic Wisdom, Faerie Magic: their House.
+ */
+export function abilityAvailability(d: DerivedCharacter, data: GameData, abilityId: string): { ok: boolean; reason?: string } {
+  const def = data.abilityById.get(abilityId);
+  if (def && !data.isBookEnabled(def.source.book)) return { ok: false, reason: 'Book not enabled for this saga' };
+  const type = def?.type ?? 'General';
+  const access = d.abilityAccess;
+  if (access.abilities.has(abilityId)) return { ok: true };
+  const houses = HOUSE_ABILITIES[abilityId];
+  if (houses && !(d.isMagus && houses.includes(d.char.house ?? ''))) {
+    return { ok: false, reason: `Only magi of House ${houses.map((h) => HOUSE_BY_ID[h]?.name ?? h).join(' or ')} can learn it` };
+  }
+  if (abilityId === 'mystery-cult-lore') {
+    const initiate = (d.isMagus && MYSTERY_HOUSES.includes(d.char.house ?? '')) || d.char.virtues.some((v) => v.defId === 'cabal-legacy-flaw');
+    return initiate ? { ok: true } : { ok: false, reason: 'For initiates of a Mystery Cult (a Mystery House, or the Cabal Legacy Flaw)' };
+  }
+  switch (type) {
+    case 'General':
+      return { ok: true };
+    case 'Academic': case 'Arcane': case 'Martial':
+      return d.isMagus || access.types.has(type) ? { ok: true } : { ok: false, reason: `${type} Abilities need a Virtue (e.g. ${type === 'Academic' ? 'Educated' : type === 'Martial' ? 'Warrior' : 'Arcane Lore'})` };
+    case 'Supernatural':
+      return d.hasGift && !d.isMagus ? { ok: true } : { ok: false, reason: 'Needs the Virtue that grants it' };
+    case 'Spell Mastery':
+      return d.isMagus ? { ok: true } : { ok: false, reason: 'Magi only' };
+    default:
+      return access.types.has(type) ? { ok: true } : { ok: false, reason: `Needs a Virtue giving ${type} Abilities` };
+  }
 }

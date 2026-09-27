@@ -2,9 +2,10 @@
 
 import type { Art, GameData } from '../data';
 import type { Character, SeasonLogEntry, XpSource } from './types';
-import type { DerivedCharacter } from './character/derive';
+import { paramValues, type DerivedCharacter } from './character/derive';
+import { abilityAvailability } from './character/restrictions';
 import { stressDie, simpleDie, type Rng, defaultRng } from './dice';
-import { abilityScoreFromXp, withAffinity } from './xp';
+import { abilityScoreFromXp, abilityXpForScore, withAffinity } from './xp';
 import { uid } from '../util/id';
 
 export type StudySource =
@@ -123,6 +124,39 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
   return { sourceQuality: sq, advancementTotal: total, xp, parts, gainLimit, notes, capped };
 }
 
+export interface LinkedGain {
+  abilityId: string;
+  name: string;
+  /** the character's Ability, if it already has it */
+  uid?: string;
+  xp: number;
+  /** why it gets nothing (no access to a Supernatural Ability, say) */
+  blocked?: string;
+}
+
+/**
+ * Major Magian Lineage (DE, Magian Lineage): studying one of the three connected Abilities from
+ * a source dedicated to it also gives half the Source Quality (rounded up) in each of the other
+ * two, if the character has access to them.
+ */
+export function magianLinkedGains(d: DerivedCharacter, data: GameData, src: StudySource, abilityUid: string | undefined, sourceQuality: number): LinkedGain[] {
+  if (!abilityUid || src.kind === 'exposure' || src.kind === 'adventure' || src.kind === 'vis') return [];
+  const ml = d.virtues.find((v) => v.cv.defId === 'magian-lineage' && v.cv.size === 'Major');
+  const linked = paramValues(ml?.cv.param);
+  const studied = d.abilityByUid.get(abilityUid);
+  if (!ml || !studied || !linked.includes(studied.abilityId)) return [];
+  const half = Math.ceil(sourceQuality / 2);
+  return linked
+    .filter((id) => id !== studied.abilityId)
+    .map((id) => {
+      const have = d.abilities.find((a) => a.abilityId === id);
+      const name = have?.name ?? data.abilityById.get(id)?.name ?? id;
+      const access = have && have.effectiveXp > 0 ? { ok: true } : abilityAvailability(d, data, id);
+      if (!access.ok) return { abilityId: id, name, uid: have?.uid, xp: 0, blocked: access.reason ?? 'No access' };
+      return { abilityId: id, name, uid: have?.uid, xp: have?.affinity ? withAffinity(half) : half };
+    });
+}
+
 /** Pawns of vis needed to study an Art: 1 per 5 levels (or part), minimum 1. */
 export function visForStudy(score: number): number {
   return Math.max(1, Math.ceil(score / 5));
@@ -216,6 +250,7 @@ export function applyAgingPoint(c: Character, char: keyof Character['characteris
   if ((c.agingPoints[char] ?? 0) > Math.abs(v)) {
     c.characteristics[char] = v - 1;
     c.agingPoints[char] = 0;
+    c.agingLoss = { ...(c.agingLoss ?? {}), [char]: (c.agingLoss?.[char] ?? 0) + 1 };
     return `${char} drops to ${v - 1}.`;
   }
   return `${char} aging points: ${c.agingPoints[char]}.`;
@@ -223,6 +258,75 @@ export function applyAgingPoint(c: Character, char: keyof Character['characteris
 
 export function decrepitudeScore(points: number): number {
   return abilityScoreFromXp(points);
+}
+
+export interface AgingPlan {
+  /** total Living Conditions modifier */
+  livingConditions: number;
+  /** Longevity Ritual bonus (used while the character has a ritual) */
+  longevity: number;
+  /** other modifiers to the roll (Virtues and Flaws) */
+  extra: number;
+  /** where Aging Points "in any Characteristic" go */
+  anyChar: keyof Character['characteristics'];
+  /** re-perform the Longevity Ritual after a crisis (magi re-invest vis before play) */
+  renewLongevity: boolean;
+}
+
+export interface AgingYear {
+  age: number;
+  text: string;
+}
+
+/**
+ * Aging before play (DE p.50): one aging roll for each year of age from `from` to `to`, applied
+ * to the character. A crisis adds Aging Points up to the next Decrepitude level and rolls on the
+ * crisis table; the Stamina roll to survive an illness is made for the character. The book lets a
+ * player who dies of old age go back a year, so a fatal year is not applied: rolling stops there
+ * and that year can be rolled again.
+ */
+export function ageYears(c: Character, from: number, to: number, plan: AgingPlan, rng: Rng = defaultRng): { years: AgingYear[]; died?: AgingYear } {
+  const years: AgingYear[] = [];
+  for (let age = from; age <= to; age++) {
+    const before = structuredClone(c);
+    const lr = c.longevity ? plan.longevity : 0;
+    const r = agingRoll(age, plan.livingConditions, lr, plan.extra, rng, !!c.longevity && age < 35);
+    const notes: string[] = [];
+    if (r.apparentAging) c.apparentAge = (c.apparentAge ?? age) + 1;
+    for (const p of r.agingPoints) notes.push(applyAgingPoint(c, p.char as keyof Character['characteristics'], p.points));
+    if (r.anyChar) notes.push(applyAgingPoint(c, plan.anyChar, r.anyChar));
+    let dead = '';
+    if (r.crisis) {
+      const need = Math.max(1, abilityXpForScore(decrepitudeScore(c.decrepitudePoints) + 1) - c.decrepitudePoints);
+      for (let i = 0; i < need; i++) notes.push(applyAgingPoint(c, plan.anyChar, 1));
+      const crisis = crisisRoll(age, decrepitudeScore(c.decrepitudePoints), rng);
+      notes.push(`Crisis ${crisis.roll}: ${crisis.text}`);
+      if (crisis.roll >= 19) dead = 'a terminal illness';
+      else if (crisis.ease !== undefined) {
+        const save = stressDie(0, rng).value + (c.characteristics.Sta ?? 0);
+        if (save < crisis.ease) dead = `an illness (Stamina roll ${save} against ${crisis.ease})`;
+        else notes.push(`Survived (Stamina roll ${save} against ${crisis.ease}).`);
+      }
+      if (c.longevity && !dead) {
+        if (plan.renewLongevity) notes.push('Longevity Ritual renewed after the crisis.');
+        else {
+          c.longevity = undefined;
+          notes.push('The crisis ended the Longevity Ritual.');
+        }
+      }
+    }
+    if (!dead && decrepitudeScore(c.decrepitudePoints) >= 5) dead = 'Decrepitude 5';
+    if (dead) {
+      for (const k of Object.keys(c)) if (!(k in before)) delete (c as unknown as Record<string, unknown>)[k];
+      Object.assign(c, before);
+      return { years, died: { age, text: `Age ${age}: roll ${r.roll}. The character would die of ${dead}. That year was not applied; roll it again, or stop here.` } };
+    }
+    c.creation.agedThrough = age;
+    const line = `Age ${age}: roll ${r.roll} (${r.die} on the die). ${r.text}${notes.length ? ' ' + notes.join(' ') : ''}`;
+    years.push({ age, text: line });
+    c.creation.agingLog = [...(c.creation.agingLog ?? []), line];
+  }
+  return { years };
 }
 
 // ------------------------------------------------------------------ Twilight

@@ -57,6 +57,8 @@ export interface ParamSpec {
   multiple?: boolean;
   /** the choice can be left blank without a warning */
   optional?: boolean;
+  /** for multiple: at most this many */
+  max?: number;
 }
 
 /**
@@ -137,7 +139,15 @@ export type Effect =
   | { type: 'requiresFlaw'; flaw: string; note?: string }
   | { type: 'socialPenalty'; amount: number; vs: string }
   | { type: 'mightScore'; realm: 'Magic' | 'Faerie' | 'Divine' | 'Infernal'; score: number }
+  | { type: 'labTheory'; ability: string } // Holy Magic in place of Magic Theory
+  | { type: 'trueFaith'; score: number; points: number }
+  | { type: 'relic'; faith: number }
+  | { type: 'powers'; kind: PowerKind; levels: number }
+  | { type: 'personalityRange'; max: number }
   | { type: 'note'; text: string };
+
+/** Supernatural powers bought with levels (DE: Greater, Lesser, Personal and Ritual Power; Heroes' Birthright). */
+export type PowerKind = 'greater' | 'lesser' | 'personal' | 'ritual' | 'birthright';
 
 export type LabCondition =
   | 'all'
@@ -210,6 +220,8 @@ export interface VirtueFlawDef {
   region?: string;
   /** extra effects that apply when the chosen parameter has this value */
   paramEffects?: Record<string, Effect[]>;
+  /** extra effects for the Major or Minor version */
+  sizeEffects?: Partial<Record<VFSize, Effect[]>>;
   /** the book's own wording of the restriction, quoted in rules messages */
   restrictionText?: string;
   /** tags built from the fields above (see vfTags.ts): shown, searched and filtered on */

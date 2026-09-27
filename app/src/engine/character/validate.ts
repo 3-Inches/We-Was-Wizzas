@@ -7,12 +7,14 @@
 //   info    – reminders and suggestions
 
 import { CHARACTERISTICS, CHAR_NAMES, STATUS_CULTURES, abilityTypeOf, type GameData } from '../../data';
+import { LAB_ONLY_VF } from '../../data/restrictions';
 import type { Character, HouseRules } from '../types';
-import { canSpend, sumAlloc, type DerivedCharacter } from './derive';
+import { canSpend, purchasedCharacteristic, sumAlloc, type DerivedCharacter } from './derive';
 import { creationSpellLimit } from '../magic';
 import { HOUSE_BY_ID } from '../../data/houses';
-import { statusesCompatible, vfProblems } from './restrictions';
+import { abilityAvailability, statusesCompatible, vfProblems } from './restrictions';
 import { hasFaerieVirtue } from './factory';
+import { POWER_KINDS, POWER_KIND_ORDER, powerSpending } from './powers';
 
 export type Severity = 'error' | 'warning' | 'info';
 export type Step = 'basics' | 'house' | 'virtues' | 'characteristics' | 'abilities' | 'arts' | 'spells' | 'personality' | 'equipment' | 'sheet';
@@ -134,6 +136,11 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   const seen = new Map<string, number>();
   for (const v of d.virtues) {
     const def = v.def;
+    if (!def && LAB_ONLY_VF[v.cv.defId]) {
+      const lab = data.labVFById.get(LAB_ONLY_VF[v.cv.defId].id);
+      add({ id: `lab-vf-${v.cv.uid}`, code: 'unknown', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${lab?.name ?? v.cv.defId} is a laboratory ${lab?.kind === 'flaw' ? 'Flaw' : 'Virtue'}, not a character one: add it to the magus's lab instead.`, ref: 'HP' });
+      continue;
+    }
     if (!def) {
       add({ id: `unknown-${v.cv.uid}`, code: 'unknown', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `Unknown Virtue/Flaw "${v.cv.defId}" (removed from data or custom content?).` });
       continue;
@@ -145,11 +152,11 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     for (const p of vfProblems(d, data, def, v.cv)) add({ id: p.id, code: p.code, vf: v.cv.uid, other: p.other, needIndex: p.needIndex, severity: p.severity, step: 'virtues', message: p.message, ref: p.ref, fix: p.fix });
     if (!data.isBookEnabled(def.source.book)) add({ id: `book-${v.cv.uid}`, severity: 'info', step: 'virtues', message: `${def.name} comes from ${def.source.book}, which is not enabled for this saga.` });
     if (def.id === 'great-characteristic' && v.cv.param) {
-      const base = c.characteristics[v.cv.param as keyof typeof c.characteristics];
+      const base = purchasedCharacteristic(c, v.cv.param as keyof typeof c.characteristics);
       if (base !== undefined && base < 3) add({ id: `great-${v.cv.uid}`, code: 'great', vf: v.cv.uid, other: v.cv.param, severity: 'error', step: 'characteristics', message: `Great ${CHAR_NAMES[v.cv.param as keyof typeof CHAR_NAMES]} requires a purchased score of at least +3 (have ${base}).`, ref: 'DE p.83' });
     }
     if (def.id === 'poor-characteristic-flaw' && v.cv.param) {
-      const base = c.characteristics[v.cv.param as keyof typeof c.characteristics];
+      const base = purchasedCharacteristic(c, v.cv.param as keyof typeof c.characteristics);
       if (base !== undefined && base > -3) add({ id: `poorchar-${v.cv.uid}`, code: 'poorchar', vf: v.cv.uid, other: v.cv.param, severity: 'error', step: 'characteristics', message: `Poor ${CHAR_NAMES[v.cv.param as keyof typeof CHAR_NAMES]} requires a purchased score of –3 or lower (have ${base}).`, ref: 'DE p.141' });
     }
   }
@@ -165,7 +172,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (d.charPointsSpent > d.charPointsBudget) add({ id: 'char-over', severity: 'error', step: 'characteristics', message: `Characteristics cost ${d.charPointsSpent} points; only ${d.charPointsBudget} available.`, ref: 'DE p.48' });
     else if (d.charPointsSpent < d.charPointsBudget) add({ id: 'char-under', severity: 'info', step: 'characteristics', message: `${d.charPointsBudget - d.charPointsSpent} Characteristic point(s) unspent.` });
     for (const ch of CHARACTERISTICS) {
-      const b = c.characteristics[ch];
+      const b = purchasedCharacteristic(c, ch);
       if (b > 3 || b < -3) add({ id: `char-range-${ch}`, code: 'char-range', other: ch, severity: 'error', step: 'characteristics', message: `${CHAR_NAMES[ch]} must be bought between –3 and +3 (use Great/Poor Characteristic to go beyond).`, ref: 'DE p.48' });
     }
     if (type === 'magus') {
@@ -186,6 +193,10 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   {
     for (const ab of c.abilities) {
       const da = d.abilityByUid.get(ab.uid);
+      const can = abilityAvailability(d, data, ab.abilityId);
+      if (!can.ok && !ab.xp.free && !da?.granted) {
+        add({ id: `ability-unavailable-${ab.uid}`, code: 'ability-unavailable', ability: ab.uid, severity: 'warning', step: 'abilities', message: `${da?.name ?? ab.abilityId}: this character cannot learn it (${can.reason}).` });
+      }
       for (const [src, xp] of Object.entries(ab.xp)) {
         if (!xp || src === 'play' || src === 'adjust' || src === 'free') continue;
         const b = d.budgets.find((x) => x.id === src);
@@ -221,19 +232,26 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     };
     const latin = sc('dead-language', 'latin');
     if (sc('parma-magica') < 1) add({ id: 'min-parma', severity: 'error', step: 'abilities', message: 'Magi must have Parma Magica 1 or they would not be admitted to the Order.', ref: 'DE p.49' });
-    if (sc('magic-theory') < 1) add({ id: 'min-mt', severity: 'error', step: 'abilities', message: 'Magi must have Magic Theory 1.', ref: 'DE p.49' });
+    const theory = d.theoryAbility === 'magic-theory' ? 'Magic Theory' : data.abilityById.get(d.theoryAbility)?.name ?? d.theoryAbility;
+    if (sc(d.theoryAbility) < 1) add({ id: 'min-mt', severity: 'error', step: 'abilities', message: `Magi must have ${theory} 1.`, ref: d.theoryAbility === 'magic-theory' ? 'DE p.49' : 'RoP: The Divine, Holy Magic' });
+    if (d.theoryAbility !== 'magic-theory' && creating) {
+      const mtAb = c.abilities.find((a) => a.abilityId === 'magic-theory');
+      if (mtAb && (['apprenticeship', 'postGauntlet', 'laterLife'] as const).some((s) => mtAb.xp[s])) {
+        add({ id: 'mt-with-holy', code: 'mt-with-holy', ability: mtAb.uid, severity: 'warning', step: 'abilities', message: `A magus with ${theory} did not learn Magic Theory; ${theory} is used in its place.`, ref: 'RoP: The Divine, Holy Magic' });
+      }
+    }
     if (latin < 1) add({ id: 'min-latin', severity: 'error', step: 'abilities', message: 'Magi must have Latin 1.', ref: 'DE p.49' });
     if (latin >= 1 && latin < 4) add({ id: 'rec-latin', severity: 'warning', step: 'abilities', message: 'Without Latin 4 (and Artes Liberales 1) the magus cannot read the books of the Order.', ref: 'DE p.49' });
     if (latin === 4) add({ id: 'rec-latin5', severity: 'info', step: 'abilities', message: 'Latin below 5 means the magus cannot write books.', ref: 'DE p.49' });
     if (sc('artes-liberales') < 1) add({ id: 'rec-al', severity: 'warning', step: 'abilities', message: 'Artes Liberales 1 is needed to read (and for Ritual casting).', ref: 'DE p.49' });
-    const mt = sc('magic-theory');
-    if (mt >= 1 && mt < 3) add({ id: 'rec-mt', severity: 'warning', step: 'abilities', message: 'Magic Theory below 3 is weak, and the magus cannot set up a laboratory.', ref: 'DE p.49' });
+    const mt = sc(d.theoryAbility);
+    if (mt >= 1 && mt < 3) add({ id: 'rec-mt', severity: 'warning', step: 'abilities', message: `${theory} below 3 is weak, and the magus cannot set up a laboratory.`, ref: 'DE p.49' });
     if (sc('parma-magica') > 1 && c.creation.yearsPostGauntlet === 0) add({ id: 'parma-high', severity: 'info', step: 'abilities', message: 'Very few magi have Parma Magica above 1 just out of apprenticeship.', ref: 'DE p.49' });
     // spell limits
     for (const s of c.spells) {
       if (s.source !== 'apprenticeship' && s.source !== 'postGauntlet') continue;
       const lim = creationSpellLimit(d, { technique: s.spell.technique, form: s.spell.form, requisites: s.spell.requisites }, rules.spellLevelLimitBonus, !!s.notes?.includes('[focus]'));
-      if ((s.spell.level ?? 0) > lim.total) add({ id: `spell-limit-${s.uid}`, code: 'spell-limit', spell: s.uid, severity: 'error', step: 'spells', message: `${s.spell.name} (level ${s.spell.level}) exceeds the maximum ${lim.total} for ${s.spell.technique}${s.spell.form} (Te + Fo + Int + Magic Theory + ${rules.spellLevelLimitBonus}).`, ref: 'DE p.49' });
+      if ((s.spell.level ?? 0) > lim.total) add({ id: `spell-limit-${s.uid}`, code: 'spell-limit', spell: s.uid, severity: 'error', step: 'spells', message: `${s.spell.name} (level ${s.spell.level}) exceeds the maximum ${lim.total} for ${s.spell.technique}${s.spell.form} (Te + Fo + Int + ${theory} + ${rules.spellLevelLimitBonus}).`, ref: 'DE p.49' });
     }
   }
 
@@ -253,8 +271,36 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (type === 'grog' && !c.personality.some((p) => /loyal/i.test(p.trait))) add({ id: 'grog-loyal', severity: 'info', step: 'personality', message: 'Grogs should all have a score in Loyal.', ref: 'DE p.52' });
   const warrior = c.abilities.some((a) => abilityTypeOf(data, a.abilityId) === 'Martial' && sumAlloc(a.xp) > 0);
   if (warrior && !c.personality.some((p) => /brave|cowardly/i.test(p.trait))) add({ id: 'warrior-brave', severity: 'info', step: 'personality', message: 'Warriors should all have a score in Brave.', ref: 'DE p.52' });
-  for (const p of c.personality) if (Math.abs(p.score) > 3 && !d.virtues.some((v) => v.def?.categories.includes('Personality'))) add({ id: `ptrait-range-${p.uid}`, severity: 'info', step: 'personality', message: `${p.trait}: starting Personality Traits range from –3 to +3 unless a Personality Flaw justifies more.` });
-  if (c.age > 35 && creating) add({ id: 'aging', severity: 'info', step: 'basics', message: 'Characters older than 35 must make aging rolls for each year from 35 before play (use the Aging tool on the sheet).', ref: 'DE p.50' });
+  for (const p of c.personality) if (Math.abs(p.score) > d.personalityMax && !d.virtues.some((v) => v.def?.categories.includes('Personality'))) add({ id: `ptrait-range-${p.uid}`, severity: 'info', step: 'personality', message: `${p.trait}: starting Personality Traits range from –${d.personalityMax} to +${d.personalityMax} unless a Personality Flaw justifies more.` });
+  // --------------------------------------------------------------- supernatural powers
+  const spentLevels = powerSpending(c.powers);
+  for (const kind of POWER_KIND_ORDER) {
+    const info = POWER_KINDS[kind];
+    const budget = d.powerBudgets[kind] ?? 0;
+    const spent = spentLevels[kind] ?? 0;
+    if (spent > budget) {
+      add({
+        id: `powers-${kind}`, code: 'powers-over', other: kind, severity: 'error', step: 'virtues', ref: info.ref,
+        message: budget
+          ? `${info.label}: the powers use ${spent} levels but the Virtue gives ${budget}.`
+          : `${info.label} powers are listed but the character does not have ${info.label}.`,
+      });
+    }
+    if (budget > 0 && spent < budget) add({ id: `powers-unspent-${kind}`, code: 'powers-unspent', other: kind, severity: 'info', step: 'virtues', ref: info.ref, message: `${info.label}: ${budget - spent} of ${budget} levels not yet designed into a power.` });
+  }
+  for (const p of c.powers ?? []) {
+    const max = POWER_KINDS[p.kind].maxLevel;
+    if (max && p.level > max) add({ id: `power-level-${p.uid}`, code: 'power-level', other: p.uid, severity: 'error', step: 'virtues', ref: POWER_KINDS[p.kind].ref, message: `${p.name || 'A power'}: ${POWER_KINDS[p.kind].label} powers cannot be above level ${max}.` });
+  }
+
+  const lastAgingYear = c.age - 1;
+  const agedThrough = c.creation.agedThrough ?? d.agingStartAge - 1;
+  if (creating && lastAgingYear >= d.agingStartAge && agedThrough < lastAgingYear) {
+    add({
+      id: 'aging', severity: 'warning', step: 'basics', ref: 'DE p.50',
+      message: `Characters older than ${d.agingStartAge} make an aging roll for each year before play: ages ${Math.max(d.agingStartAge, agedThrough + 1)}–${lastAgingYear} still to roll.`,
+    });
+  }
 
   return issues;
 }

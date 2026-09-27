@@ -1,7 +1,7 @@
 // Persisted domain model: sagas, characters, covenants, laboratories.
 // Everything here is plain JSON (it is saved to IndexedDB and exported to files).
 
-import type { Art, Characteristic, CharType, Form, Technique, VFSize, SpellDef, LabCharacteristic, AbilityType } from '../data/types';
+import type { Art, Characteristic, CharType, Form, Technique, VFSize, SpellDef, LabCharacteristic, AbilityType, PowerKind } from '../data/types';
 import type { CustomContent } from '../data';
 import type { Mechanics } from '../data/mechanics';
 
@@ -127,6 +127,17 @@ export interface CharVirtue {
   noPoints?: boolean;
   /** uid of the Virtue/Flaw whose rules made the character take this one (removed with it) */
   requiredBy?: string;
+}
+
+export interface CharPower {
+  uid: string;
+  name: string;
+  kind: PowerKind;
+  level: number;
+  penetration: number;
+  /** a Hermetic spell the power copies, if any */
+  spellId?: string;
+  notes?: string;
 }
 
 export interface CharAbility {
@@ -298,6 +309,18 @@ export interface CharacterCreationState {
   finalized: boolean;
   /** player-entered pools e.g. Simple Student years */
   extraPools: { uid: string; label: string; amount: number; abilityTypes?: AbilityType[] }[];
+  /** aging before play (DE p.50): the last age rolled for, and what happened */
+  agedThrough?: number;
+  agingLog?: string[];
+  /** where Aging Points the player may place go, when rolling many years at once */
+  agingAnyChar?: Characteristic;
+  /** renew the Longevity Ritual after a crisis (magi re-invest vis before play) */
+  renewLongevity?: boolean;
+  agingLivingConditions?: number;
+  /** Confidence was set by hand on the Details step (otherwise it follows the rules and Virtues) */
+  confidenceSet?: boolean;
+  /** what aging before play changed, kept so it can all be undone */
+  preAging?: Pick<Character, 'characteristics' | 'agingPoints' | 'decrepitudePoints' | 'agingLoss' | 'apparentAge' | 'longevity'>;
   /** Ex Miscellanea tradition id */
   exMiscTradition?: string;
   /** chosen house benefit option index */
@@ -319,6 +342,12 @@ export interface Character {
   birthYear: number;
   age: number;
   apparentAge?: number;
+  /** supernatural powers bought with the levels of Greater/Lesser/Personal/Ritual Power, Heroes' Birthright */
+  powers?: CharPower[];
+  /** True Faith score and Faith Points, once play changes them (the Virtue starts at 1 and 1) */
+  faith?: { score: number; points: number };
+  /** how far aging has lowered each Characteristic (the purchased value is this much higher) */
+  agingLoss?: Partial<Record<Characteristic, number>>;
   description: string;
   house?: string;
   covenantId?: string;

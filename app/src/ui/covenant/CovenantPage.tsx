@@ -6,7 +6,8 @@ import { exportCovenant, useStore } from '../../store/store';
 import { useDerivedCovenant, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
 import { bundleToShareLink, downloadJson, safeFilename } from '../../util/files';
 import { uid } from '../../util/id';
-import { Card, Empty, Field, Meter, Stepper, Tabs } from '../kit';
+import { Card, Empty, Field, Meter, SelectOrType, Stepper, Tabs } from '../kit';
+import { TRIBUNALS } from '../../data/lists';
 import ItemsEditor from '../items/ItemEditor';
 import HooksTab from './HooksTab';
 import LibraryTab from './LibraryTab';
@@ -150,7 +151,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
               <input value={cov.name} onChange={(e) => update((x) => void (x.name = e.target.value))} />
             </Field>
             <Field label="Tribunal">
-              <input value={cov.tribunal} onChange={(e) => update((x) => void (x.tribunal = e.target.value))} placeholder="e.g. Stonehenge" />
+              <SelectOrType value={cov.tribunal} options={TRIBUNALS} placeholder="— Tribunal —" otherLabel="Other (your own Tribunal)…" onChange={(v) => update((x) => void (x.tribunal = v))} />
             </Field>
             <Field label="Season" hint="Affects inhabitant points and living conditions">
               <select value={cov.season} onChange={(e) => update((x) => void (x.season = e.target.value as Covenant['season']))}>

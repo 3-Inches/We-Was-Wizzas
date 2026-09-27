@@ -13,7 +13,7 @@ import shapeMaterialJson from './generated/shapeMaterial.json';
 import weaponsJson from './generated/weapons.json';
 import armorJson from './generated/armor.json';
 import { MECHANICS, type Mechanics } from './mechanics';
-import { NOT_REAL_VF, RESTRICTIONS } from './restrictions';
+import { LAB_ONLY_VF, NOT_REAL_VF, RESTRICTIONS } from './restrictions';
 import { buildVfTags, vfHouses } from './vfTags';
 import type {
   AbilityDef, ArmorDef, GuidelineDef, HookBoonDef, LabFeatureDef, LabVFDef, ShapeMaterialDef,
@@ -23,7 +23,22 @@ import type {
 export * from './types';
 export * from './constants';
 
-const RAW_VF = (vfJson as unknown as VirtueFlawDef[]).filter((v) => !NOT_REAL_VF.has(v.id));
+const RAW_VF = (vfJson as unknown as VirtueFlawDef[]).filter((v) => !NOT_REAL_VF.has(v.id) && !LAB_ONLY_VF[v.id]);
+/** Laboratory Virtues and Flaws that were extracted with the character ones. */
+const LAB_FROM_VF: LabVFDef[] = (vfJson as unknown as VirtueFlawDef[])
+  .filter((v) => LAB_ONLY_VF[v.id])
+  .map((v) => ({
+    id: LAB_ONLY_VF[v.id].id,
+    name: v.name,
+    kind: v.kind,
+    size: v.sizes[0],
+    group: 'Supernatural',
+    repeatable: false,
+    text: v.text.replace(/\s*\*[^*]*\*\s*$/, ''),
+    modText: v.text.match(/\*([^*]*)\*\s*$/)?.[1] ?? '',
+    mods: { ...LAB_ONLY_VF[v.id].mods, choicePoints: null, choice: null } as LabVFDef['mods'],
+    source: v.source,
+  }));
 const RAW_ABILITIES = abilitiesJson as unknown as AbilityDef[];
 const RAW_SPELLS = spellsJson as unknown as SpellDef[];
 
@@ -235,7 +250,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
   }
 
   const spells = [...RAW_SPELLS, ...custom.spells];
-  const labVF = [...(labVFJson as unknown as LabVFDef[]), ...custom.labVirtuesFlaws];
+  const labVF = [...(labVFJson as unknown as LabVFDef[]), ...LAB_FROM_VF, ...custom.labVirtuesFlaws];
   const hb = [...(hooksBoonsJson as unknown as HookBoonDef[]), ...custom.hooksBoons].map((h) => ({
     ...h,
     requires: h.requires ?? (/shell keep|tower keep|curtain walls/i.test(h.name) ? 'Castle' : null),

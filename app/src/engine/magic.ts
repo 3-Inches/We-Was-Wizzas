@@ -188,11 +188,13 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
   const notes: string[] = [];
   const hasFM = d.virtues.some((v) => v.cv.defId === 'faerie-magic');
   const { tech, form, deficient } = effectiveArts(d, arts, { elementalMagic: d.effects.some((e) => e.type === 'elementalMagic') });
-  const mt = d.abilities.find((a) => a.abilityId === 'magic-theory');
+  // Holy magi use Holy Magic wherever Magic Theory would be used (RoP: The Divine)
+  const mt = d.abilities.find((a) => a.abilityId === d.theoryAbility);
+  const mtName = d.theoryAbility === 'magic-theory' ? 'Magic Theory' : mt?.name ?? d.theoryAbility;
   parts.push({ label: `Technique (${arts.technique})`, value: tech });
   parts.push({ label: `Form (${arts.form})`, value: form });
   parts.push({ label: 'Intelligence', value: d.characteristics.Int.value });
-  parts.push({ label: 'Magic Theory', value: mt?.total ?? 0 });
+  parts.push({ label: mtName, value: mt?.total ?? 0 });
   const spec = (mt?.specialty ?? '').toLowerCase();
   const specHit =
     (o.activity === 'spells' && /spell/.test(spec)) ||
@@ -201,7 +203,7 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
     (o.activity === 'longevity' && /longevity/.test(spec)) ||
     (o.activity === 'experimentation' && /experiment/.test(spec)) ||
     (spec && [arts.technique, arts.form].some((a) => spec.includes(artName(a).toLowerCase())));
-  if (specHit) parts.push({ label: `Magic Theory specialty (${mt?.specialty})`, value: 1 });
+  if (specHit) parts.push({ label: `${mtName} specialty (${mt?.specialty})`, value: 1 });
   if (o.inFocus && d.magicalFocus !== 'none') parts.push({ label: 'Magical Focus', value: Math.min(tech, form) });
   const aura = auraModifier('Magic', o.aura, { faerieMagic: hasFM });
   if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})`, value: aura.mod });
@@ -232,7 +234,7 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
     const raw = (o.shapeMaterialBonus ?? 0) + (o.verditiusRunes ?? 0);
     const cap = mt?.total ?? 0;
     const v = Math.min(raw, cap);
-    parts.push({ label: `Shape & Material${o.verditiusRunes ? ' + Verditius runes' : ''}${raw > cap ? ` (capped at Magic Theory ${cap})` : ''}`, value: v });
+    parts.push({ label: `Shape & Material${o.verditiusRunes ? ' + Verditius runes' : ''}${raw > cap ? ` (capped at ${mtName} ${cap})` : ''}`, value: v });
   }
   if (o.craftBonus) parts.push({ label: 'Verditius craft', value: o.craftBonus });
   if (o.talisman) parts.push({ label: 'Own talisman', value: 5 });
@@ -319,8 +321,21 @@ export function magicResistance(d: DerivedCharacter, form: Form, o: { aura?: Aur
     const a = auraModifier('Magic', o.aura);
     if (a.mod) parts.push({ label: 'Aura', value: a.mod });
   }
-  for (const e of effectsOf(d, 'magicResistance')) parts.push({ label: e.fromName, value: e.amount });
-  let total = parts.reduce((s, p) => s + p.value, 0);
+  // Magic Resistance from different sources does not stack: use the highest (DE p.55)
+  const others: Part[] = [];
+  if (d.trueFaith > 0) others.push({ label: `True Faith (${d.trueFaith} × 10)`, value: d.trueFaith * 10 });
+  if (d.relicFaith > 0) others.push({ label: `Relic (True Faith ${d.relicFaith} × 10)`, value: d.relicFaith * 10 });
+  for (const e of effectsOf(d, 'magicResistance')) others.push({ label: e.fromName, value: e.amount });
+  const parmaTotal = parts.reduce((s, p) => s + p.value, 0);
+  const best = others.reduce<Part | undefined>((b, p) => (!b || p.value > b.value ? p : b), undefined);
+  let total = parmaTotal;
+  if (best && best.value > parmaTotal) {
+    if (parmaTotal) notes.push(`Parma Magica and Form ${parmaTotal} (not used: a higher source applies)`);
+    parts.length = 0;
+    parts.push(best);
+    total = best.value;
+  } else if (best) notes.push(`${best.label} ${best.value} (not added: Magic Resistance from different sources does not stack)`);
+  for (const p of others) if (p !== best) notes.push(`${p.label} ${p.value} (not added: only the highest source counts)`);
   if (o.vsRealm && d.virtues.some((v) => v.cv.defId === `susceptibility-to-${o.vsRealm?.toLowerCase()}-power-flaw`)) {
     total = Math.floor(total / 2);
     notes.push(`Susceptibility to ${o.vsRealm} Power: halved`);

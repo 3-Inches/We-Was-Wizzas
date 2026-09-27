@@ -54,6 +54,12 @@ export default function HelpPage() {
             </li>
             <li>Click a tag on a Virtue (House, character type, The Gift, what it adds) to filter the list by it; the chips above the list filter by your House and more.</li>
             <li>If the troupe allows something the rules forbid, press <b>Allow</b> on the warning to record it as a ruling for that character.</li>
+            <li>
+              Tribunal, homeland, Characteristic descriptions and Ability types (Craft, Profession, Language, Lore) are dropdowns; choose <b>Other (type your own)</b> for anything not
+              listed.
+            </li>
+            <li>A character older than 35 rolls aging before play on the Concept step. A year that would kill the character is not applied, so you can roll it again.</li>
+            <li>Powers from Greater, Lesser, Personal or Ritual Power and Heroes&apos; Birthright are designed on the Virtues step: pick a spell within the level budget or describe your own.</li>
             <li>Finish creation to switch to the in-play sheet. You can always return to creation.</li>
           </ol>
         </Card>
@@ -99,7 +105,7 @@ export default function HelpPage() {
       </div>
       <Card title="About the rules data">
         <p className="small">
-          The rules come from the markdown books in this repository: 959 Virtues and Flaws, 122 Abilities, 1,205 spells, 610 guideline entries, 128 laboratory Virtues and Flaws, 198 Hooks
+          The rules come from the markdown books in this repository: 957 Virtues and Flaws, 122 Abilities, 1,205 spells, 610 guideline entries, 130 laboratory Virtues and Flaws, 198 Hooks
           and Boons and 240 Shape & Material entries, all extracted automatically, with hand-written mechanics for the Virtues and Flaws that change numbers. Books marked WIP are still being
           transcribed and may have errors. If something looks wrong, use an override and check the source text in the reader.
         </p>

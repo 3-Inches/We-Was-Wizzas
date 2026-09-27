@@ -4,7 +4,7 @@
 import {
   ARTS, CHARACTERISTICS, CHILDHOOD_ABILITIES, abilityCapForAge, childModifier, charCost, isForm, isTechnique,
   PARAMETERIZED_ABILITIES, abilityMatches, abilityTypeOf, isLanguageAbility,
-  type Art, type Characteristic, type Effect, type GameData, type VirtueFlawDef, type AbilityType, type AbilityDef,
+  type Art, type Characteristic, type Effect, type GameData, type VirtueFlawDef, type AbilityType, type AbilityDef, type PowerKind,
 } from '../../data';
 import type { Character, CharAbility, CharVirtue, HouseRules, XpAlloc, XpSource } from '../types';
 import { abilityScoreFromXp, abilityXpRemainder, artScoreFromXp, artXpRemainder, withAffinity, warpingScoreFromPoints } from '../xp';
@@ -116,6 +116,19 @@ export interface DerivedCharacter {
   decrepitude: number;
   livingConditionsMod: number;
   agingRollMod: number;
+  /** aging rolls start at this age (35, or later with e.g. Strong Faerie Blood) */
+  agingStartAge: number;
+  /** the Ability used where Hermetic magic uses Magic Theory (Holy Magic replaces it) */
+  theoryAbility: string;
+  /** True Faith score and Faith Points (0 without the Virtue) */
+  trueFaith: number;
+  faithPoints: number;
+  /** True Faith of the relic the character relies on (0 if none) */
+  relicFaith: number;
+  /** largest starting Personality Trait (3, or more with e.g. Heroic Personality) */
+  personalityMax: number;
+  /** levels available for each kind of supernatural power */
+  powerBudgets: Partial<Record<PowerKind, number>>;
   soak: number;
   woundPenaltyAdj: number;
   fatiguePenaltyAdj: number;
@@ -173,7 +186,8 @@ function resolveEffects(virtues: ResolvedVirtue[]): ResolvedEffect[] {
   const out: ResolvedEffect[] = [];
   for (const v of virtues) {
     const byParam = v.def?.paramEffects && v.cv.param ? v.def.paramEffects[v.cv.param] ?? [] : [];
-    for (const e of [...(v.def?.effects ?? []), ...byParam]) {
+    const bySize = v.def?.sizeEffects?.[v.cv.size] ?? [];
+    for (const e of [...(v.def?.effects ?? []), ...byParam, ...bySize]) {
       const r: Record<string, unknown> = { ...e, fromUid: v.cv.uid, fromName: v.name, param: v.cv.param };
       for (const k of ['ability', 'art', 'char']) if (r[k] === '$param') r[k] = v.cv.param ?? '';
       out.push(r as ResolvedEffect);
@@ -192,6 +206,25 @@ export function effectiveXp(alloc: XpAlloc, multiplier: number): number {
     else total += v;
   }
   return total;
+}
+
+/** The value bought at creation: the current value plus what aging has taken off. */
+export function purchasedCharacteristic(c: Character, ch: Characteristic): number {
+  return (c.characteristics[ch] ?? 0) + (c.agingLoss?.[ch] ?? 0);
+}
+
+/**
+ * Experience from the years after Gauntlet (DE p.50): 30 points a year, less 10 for each season
+ * of lab work that year, never below 0. Lab seasons are packed into whole years, as the book
+ * recommends, so they cost as little as possible.
+ */
+export function postGauntletXp(years: number, labSeasons: number, perYear: number, perSeason: number) {
+  const lab = Math.max(0, Math.min(labSeasons, years * 4));
+  const fullLabYears = Math.floor(lab / 4);
+  const rest = lab % 4;
+  const partial = rest ? Math.max(0, perYear - perSeason * rest) : 0;
+  const studyYears = Math.max(0, years - fullLabYears - (rest ? 1 : 0));
+  return { total: studyYears * perYear + partial, studyYears, fullLabYears, partialSeasons: rest, partial };
 }
 
 export function sumAlloc(alloc: XpAlloc, pred?: (s: XpSource) => boolean): number {
@@ -307,7 +340,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     characteristics[c] = { base, value, notes: cn };
   }
   const charPointsBudget = rules.characteristicPoints + eff('charPoints').reduce((s, e) => s + e.amount, 0);
-  const charPointsSpent = CHARACTERISTICS.reduce((s, c) => s + charCost(Math.max(-3, Math.min(3, char.characteristics[c] ?? 0))), 0);
+  // points are spent on the purchased values, before any aging
+  const charPointsSpent = CHARACTERISTICS.reduce((s, c) => s + charCost(Math.max(-3, Math.min(3, purchasedCharacteristic(char, c)))), 0);
 
   // ---------------------------------------------------------------- ability access
   const access = { types: new Set<AbilityType>(['General']), abilities: new Set<string>(), notes: [] as string[], apprenticeshipOnly: new Set<string>() };
@@ -463,12 +497,17 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     });
   }
   if (isMagus && char.creation.yearsPostGauntlet > 0) {
-    const total = char.creation.yearsPostGauntlet * rules.postGauntletPointsPerYear - char.creation.postGauntletLabSeasons * rules.postGauntletLabSeasonCost;
+    const pg = postGauntletXp(char.creation.yearsPostGauntlet, char.creation.postGauntletLabSeasons, rules.postGauntletPointsPerYear, rules.postGauntletLabSeasonCost);
     const spellsSpent = char.spells.filter((s) => s.source === 'postGauntlet').reduce((t, s) => t + (s.spell.level ?? 0), 0);
+    const parts = [
+      `${pg.studyYears} yrs × ${rules.postGauntletPointsPerYear}`,
+      pg.fullLabYears ? `${pg.fullLabYears} yrs in the lab` : '',
+      pg.partialSeasons ? `1 yr with ${pg.partialSeasons} lab season${pg.partialSeasons > 1 ? 's' : ''} (${pg.partial})` : '',
+    ].filter(Boolean);
     budgets.push({
-      id: 'postGauntlet', label: `After Gauntlet (${char.creation.yearsPostGauntlet} yrs × ${rules.postGauntletPointsPerYear})`,
-      total: Math.max(0, total), spent: spentBy('postGauntlet') + spellsSpent,
-      allows: 'Experience in Arts or Abilities, or levels of spells (1 point each). Each season of lab work costs 10 points.',
+      id: 'postGauntlet', label: `After Gauntlet (${parts.join(', ')})`,
+      total: pg.total, spent: spentBy('postGauntlet') + spellsSpent,
+      allows: `Experience in Arts or Abilities, or levels of spells (1 point each). Each season of lab work costs 10 of that year's ${rules.postGauntletPointsPerYear} points, never below 0 (DE p.50).`,
       kind: 'mixed',
     });
   }
@@ -480,9 +519,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   // ---------------------------------------------------------------- confidence, reputations
   let confidence = char.type === 'grog' ? { score: 0, points: 0 } : { score: rules.startingConfidenceScore, points: rules.startingConfidencePoints };
   for (const c of eff('confidence')) confidence = { score: c.score ?? confidence.score, points: c.points ?? confidence.points };
-  if (char.creation.finalized || char.confidence.score || char.confidence.points) {
-    if (char.creation.finalized) confidence = { ...char.confidence };
-  }
+  if (char.creation.finalized || char.creation.confidenceSet) confidence = { ...char.confidence };
   const reputations = [
     ...eff('reputation').map((r) => ({ text: r.label + (r.kind === 'bad' ? ' (bad)' : ''), scope: r.scope ?? 'General', score: r.score, fromVirtue: r.fromName })),
     ...char.reputations.map((r) => ({ text: r.text, scope: r.scope, score: r.score })),
@@ -494,6 +531,15 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const decrepitude = warpingScoreFromPoints(char.decrepitudePoints);
   const livingConditionsMod = eff('livingConditions').reduce((s, e) => s + e.amount, 0);
   const agingRollMod = eff('agingRoll').reduce((s, e) => s + e.amount, 0);
+  const agingStartAge = eff('agingStartAge').reduce((m, e) => Math.max(m, e.age), 35);
+  const theoryAbility = eff('labTheory')[0]?.ability ?? 'magic-theory';
+  const faithEff = eff('trueFaith')[0];
+  const trueFaith = char.faith?.score ?? (faithEff ? faithEff.score : 0);
+  const faithPoints = char.faith?.points ?? (faithEff ? faithEff.points : 0);
+  const relicFaith = eff('relic').reduce((m, e) => Math.max(m, e.faith), 0);
+  const personalityMax = eff('personalityRange').reduce((m, e) => Math.max(m, e.max), 3);
+  const powerBudgets: Partial<Record<PowerKind, number>> = {};
+  for (const p of eff('powers')) powerBudgets[p.kind] = (powerBudgets[p.kind] ?? 0) + p.levels;
 
   // ---------------------------------------------------------------- combat & body
   const sta = characteristics.Sta.value;
@@ -547,7 +593,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   return {
     char, virtues, effects, hasGift, giftType, isMagus, tally, size, characteristics, charPointsBudget, charPointsSpent,
     abilities, abilityByUid, arts, budgets, abilityAccess: access, laterLifeYears, ageCap, confidence, reputations,
-    warpingScore, warpingPoints, decrepitude, livingConditionsMod, agingRollMod, soak, woundPenaltyAdj, fatiguePenaltyAdj,
+    warpingScore, warpingPoints, decrepitude, livingConditionsMod, agingRollMod, agingStartAge, theoryAbility, trueFaith, faithPoints, relicFaith, personalityMax, powerBudgets, soak, woundPenaltyAdj, fatiguePenaltyAdj,
     load, burden, encumbrance, woundRanges, fatigueLevels, currentWoundPenalty, currentFatiguePenalty,
     apprenticeshipSpellLevelBudget, masteryPools, flawless: eff('flawlessMagic').length > 0,
     magicalFocus: focus ? focus.scope : 'none', focusText: focusVirtue?.cv.param, socialPenalty, notes,

@@ -11,7 +11,7 @@ import { masteryScore } from '../steps/SpellsStep';
 const REALMS: Realm[] = ['Magic', 'Faerie', 'Divine', 'Infernal', 'None'];
 
 export default function MagicTab({ ed }: { ed: CharEditor }) {
-  const { c, d, update, ctx } = ed;
+  const { c, d, data, update, ctx } = ed;
   const [aura, setAura] = useState<AuraState>(ctx.aura);
   const [useLab, setUseLab] = useState(true);
   const [pen, setPen] = useState<PenetrationOptions>({ arcaneConnection: 'none', sympathetic: 0 });
@@ -184,12 +184,12 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             </tbody>
           </table>
         </div>
-        <p className="small muted">Click any number to see how it was calculated. Magic Resistance = Parma Magica × 5 + Form (DE p.221).</p>
+        <p className="small muted">Click any number to see how it was calculated. Magic Resistance = the highest of Parma Magica × 5 + Form, True Faith × 10, or a relic's Faith × 10; they do not add together (DE p.55, p.221, p.419).</p>
       </Card>
 
       <Card title="Casting Scores and Lab Totals">
         <p className="small muted" style={{ marginTop: 0 }}>
-          Top: Casting Score (Te + Fo + Sta + aura + modifiers; add a die for a Formulaic Casting Total). Bottom: Lab Total for inventing spells (Te + Fo + Int + Magic Theory + aura + lab).
+          Top: Casting Score (Te + Fo + Sta + aura + modifiers; add a die for a Formulaic Casting Total). Bottom: Lab Total for inventing spells (Te + Fo + Int + {d.theoryAbility === "magic-theory" ? "Magic Theory" : data.abilityById.get(d.theoryAbility)?.name} + aura + lab).
         </p>
         <div className="table-wrap">
           <table className="compact grid-table">

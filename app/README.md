@@ -19,6 +19,12 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
   - When the troupe has to decide, it opens the step where the decision is made.
   - "Resolve all" previews every automatic fix before applying it, and every fix can be undone.
   - Any issue can instead be allowed as a troupe ruling. Covenant issues get the same fix buttons.
+- Fields the rules read are dropdowns with an "Other" option to type your own: Tribunal, homeland (which also sets the society), Characteristic descriptions, and the type of Craft, Profession, Language, Lore or Organization. Gender is Male or Female, the two the Virtue and Flaw rules refer to.
+- The Ability list hides what the character cannot learn: Supernatural Abilities without their Virtue, House Abilities (Heartbeast, Enigmatic Wisdom, Faerie Magic), and Mystery Cult Lore for non-initiates.
+- Post-Gauntlet years give 30 xp each, less 10 per season of lab work, never below 0 in a year (DE p.50).
+- Characters older than 35 roll aging before play, one year at a time or all at once, with Living Conditions, the Longevity Ritual, crises, and undo. Aging does not change what the Characteristics cost at creation.
+- Powers from Greater, Lesser, Personal and Ritual Power and Heroes' Birthright are built against their level budgets, with Penetration, Initiative, Fatigue and Confidence cost, or copied from a spell.
+- Holy Magic replaces Magic Theory in Lab Totals and the creation checks. True Faith and relics give Magic Resistance, and only the highest source counts.
 - Recommendations follow the concept themes you pick.
 
 **In-play sheet:**
@@ -28,7 +34,7 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 | Magic | Casting Scores and Lab Totals for every Technique + Form in the current aura, Magic Resistance per Form, Penetration with Arcane Connections |
 | Spellcasting | Formulaic, Ritual and spontaneous casting with the correct die, botch dice, Fatigue and Mastery |
 | Health | Wounds from damage vs. Soak, Fatigue tracking, recovery rolls |
-| Seasons | Books, teachers, training, practice, exposure, adventure and vis, with gain limits; aging and crises; Warping and Twilight |
+| Seasons | Books, teachers, training, practice, exposure, adventure and vis, with gain limits and Magian Lineage's linked Abilities; aging and crises; Warping and Twilight |
 | Lab & items | Enchanted devices, talisman and attunements, familiar cords, Longevity Ritual |
 | Other | Printable stat block, overrides for any number |
 
@@ -87,7 +93,7 @@ app/src/store/        zustand store persisted to IndexedDB, migrations, export/i
 app/src/ui/           React pages: character wizard & sheet, covenant, tools, reference, reader
 ```
 
-- **Rules data is extracted automatically:** 959 Virtues & Flaws, 122 Abilities, 1,205 spells, 610 guidelines, 128 lab Virtues & Flaws, 36 lab features, 198 Hooks & Boons, 240 Shape & Material entries, and weapons and armor.
+- **Rules data is extracted automatically:** 957 Virtues & Flaws, 122 Abilities, 1,205 spells, 610 guidelines, 130 lab Virtues & Flaws, 36 lab features, 198 Hooks & Boons, 240 Shape & Material entries, and weapons and armor.
 - **Mechanics are written by hand** in `src/data/mechanics.ts`, one entry per Virtue or Flaw, as declarative effects: xp pools, bonuses, Lab Total modifiers and so on. Virtues and Flaws without numeric effects appear on the sheet as text for the troupe to adjudicate.
 - **Restrictions are curated** in `src/data/restrictions.ts` from the sentences in the books that limit a Virtue or Flaw, each quoted in the rules check. `src/engine/character/restrictions.ts` applies them in both the Virtue picker and the rules check.
 - **Every total carries its breakdown.** Clicking a number shows how it was calculated.

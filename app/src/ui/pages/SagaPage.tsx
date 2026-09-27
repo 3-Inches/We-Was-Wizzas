@@ -6,7 +6,8 @@ import { newCharacter } from '../../engine/character/factory';
 import { newCovenant } from '../../engine/covenant';
 import { deriveCharacter } from '../../engine/character/derive';
 import { validateCharacter, summarize } from '../../engine/character/validate';
-import { Card, Confirm, Empty, Field, Stepper } from '../kit';
+import { Card, Confirm, Empty, Field, Stepper, SelectOrType } from '../kit';
+import { TRIBUNALS } from '../../data/lists';
 import { downloadJson, isBundle, pickJsonFile, safeFilename } from '../../util/files';
 import { HOUSE_BY_ID } from '../../data/houses';
 import type { CharType } from '../../data';
@@ -104,7 +105,7 @@ export default function SagaPage() {
             </button>
           </div>
           <Field label="Tribunal">
-            <input value={saga.tribunal} onChange={(e) => updateSaga(saga.id, (s) => void (s.tribunal = e.target.value))} />
+            <SelectOrType value={saga.tribunal} options={TRIBUNALS} placeholder="— Tribunal —" otherLabel="Other (your own Tribunal)…" onChange={(v) => updateSaga(saga.id, (s) => void (s.tribunal = v))} />
           </Field>
           <Field label="Saga name">
             <input value={saga.name} onChange={(e) => updateSaga(saga.id, (s) => void (s.name = e.target.value))} />

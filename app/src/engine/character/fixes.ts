@@ -13,6 +13,7 @@ import { addVirtue, applyMythicType, MYTHIC_TYPES, removeVirtue } from './factor
 import { validateCharacter, type Issue, type Step } from './validate';
 import { vfAvailability } from './restrictions';
 import { describeChanges, lowerAbilityTo, moveXp, raiseAbilityTo, rawForAbilityScore, trimPool } from './xpops';
+import { POWER_KINDS } from './powers';
 
 export type Fix =
   | { kind: 'apply'; label: string; auto?: boolean; apply: (c: Character) => string | void }
@@ -110,7 +111,7 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
       return list(goto('basics', 'Change age'), ...removeThis());
     case 'arcane-parma':
       return [add('enemies-flaw', { size: 'Major', param: 'the Order of Hermes', auto: true })];
-    case 'param':
+    case 'param': case 'magian-three':
       return def?.param && cv
         ? [{ kind: 'param', label: `Choose the ${def.param.label}`, spec: def.param, apply: (x, val) => void (x.virtues.find((v) => v.uid === cv.uid)!.param = val || undefined) }]
         : [];
@@ -236,12 +237,24 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
       return da ? [{ kind: 'apply', label: `Lower ${da.name} to ${da.cap}`, auto: true, apply: (x) => `Took back ${describeChanges(lowerAbilityTo(x, data, rules, da.uid, da.cap))}.` }] : [];
     }
     case 'native-lang': return [goto('abilities', 'Choose a native language')];
+    case 'mt-with-holy': {
+      const ab = issue.ability ? c.abilities.find((a) => a.uid === issue.ability) : undefined;
+      return ab ? [{ kind: 'apply', label: 'Remove Magic Theory', apply: (x) => void (x.abilities = x.abilities.filter((a) => a.uid !== ab.uid)) }] : [];
+    }
+    case 'ability-unavailable': {
+      const ab = issue.ability ? c.abilities.find((a) => a.uid === issue.ability) : undefined;
+      const name = ab ? d.abilityByUid.get(ab.uid)?.name ?? ab.abilityId : 'it';
+      return ab ? [{ kind: 'apply', label: `Remove ${name}`, apply: (x) => void (x.abilities = x.abilities.filter((a) => a.uid !== ab.uid)) }] : [];
+    }
     case 'min-parma': case 'min-mt': case 'min-latin': case 'rec-latin': case 'rec-al': case 'rec-mt': {
       const spec: Record<string, [string, string | undefined, number, string]> = {
         'min-parma': ['parma-magica', undefined, 1, 'Parma Magica'], 'min-mt': ['magic-theory', undefined, 1, 'Magic Theory'], 'min-latin': ['dead-language', 'Latin', 1, 'Latin'],
         'rec-latin': ['dead-language', 'Latin', 4, 'Latin'], 'rec-al': ['artes-liberales', undefined, 1, 'Artes Liberales'], 'rec-mt': ['magic-theory', undefined, 3, 'Magic Theory'],
       };
-      const [id, param, score, label] = spec[code];
+      const [specId, param, score, specLabel] = spec[code];
+      const theory = code === 'min-mt' || code === 'rec-mt';
+      const id = theory ? d.theoryAbility : specId;
+      const label = theory && d.theoryAbility !== 'magic-theory' ? data.abilityById.get(d.theoryAbility)?.name ?? specLabel : specLabel;
       const pools = (['apprenticeship', 'postGauntlet'] as XpSource[]).map((p) => d.budgets.find((b) => b.id === p)).filter(Boolean) as XpBudget[];
       const cost = (b: XpBudget) => {
         const probe = structuredClone(c);
@@ -255,7 +268,30 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
         goto('abilities'),
       );
     }
-    case 'name': case 'aging':
+    case 'mystery-init':
+      return list(
+        !!data.vfById.get('cabal-legacy-flaw') && add('cabal-legacy-flaw', { size: 'Minor' }),
+        ...removeThis(false),
+      );
+    case 'aging':
+      return [goto('basics', 'Roll aging on the Concept step')];
+    case 'powers-over': {
+      const kind = issue.other;
+      const none = !(d.powerBudgets[kind as keyof typeof d.powerBudgets] ?? 0);
+      return list(
+        none && { kind: 'apply', label: 'Remove these powers', apply: (x) => void (x.powers = (x.powers ?? []).filter((p) => p.kind !== kind)) },
+        goto('virtues', 'Edit the powers'),
+      );
+    }
+    case 'power-level': {
+      const p = (c.powers ?? []).find((x) => x.uid === issue.other);
+      const max = p ? POWER_KINDS[p.kind].maxLevel : undefined;
+      return list(
+        !!p && !!max && { kind: 'apply', label: `Lower ${p.name || 'it'} to level ${max}`, auto: true, apply: (x) => void ((x.powers ?? []).find((y) => y.uid === p.uid)!.level = max) },
+        goto('virtues', 'Edit the powers'),
+      );
+    }
+    case 'name':
       return [goto('basics')];
     default:
       return issue.step && issue.step !== 'sheet' ? [goto(issue.step)] : [];

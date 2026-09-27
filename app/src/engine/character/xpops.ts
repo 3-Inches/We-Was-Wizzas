@@ -13,7 +13,7 @@ export interface XpChange {
 }
 
 /** Abilities a magus must keep at 1; they are trimmed last. */
-const PROTECTED = new Set(['parma-magica', 'magic-theory', 'dead-language']);
+const PROTECTED = new Set(['parma-magica', 'magic-theory', 'holy-magic', 'dead-language']);
 
 /**
  * Take `amount` raw xp back from one pool: from the most recently added Abilities first, then
