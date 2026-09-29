@@ -87,6 +87,8 @@ export interface Saga {
   updatedAt: string;
   schemaVersion: number;
   journal: JournalEntry[];
+  /** the storyguide's settings for the guided build */
+  guided?: SagaGuidedSettings;
 }
 
 export interface JournalEntry {
@@ -127,6 +129,8 @@ export interface CharVirtue {
   noPoints?: boolean;
   /** uid of the Virtue/Flaw whose rules made the character take this one (removed with it) */
   requiredBy?: string;
+  /** why the guided build chose it ("from: I expect to cast in a fight — 9") */
+  why?: string;
 }
 
 export interface CharPower {
@@ -149,6 +153,8 @@ export interface CharAbility {
   xp: XpAlloc;
   /** Native language flag */
   native?: boolean;
+  /** why the guided build chose it */
+  why?: string;
 }
 
 export interface CharSpell {
@@ -160,6 +166,8 @@ export interface CharSpell {
   masteryAbilities: string[];
   source: 'apprenticeship' | 'postGauntlet' | 'play' | 'free';
   notes?: string;
+  /** why the guided build chose it */
+  why?: string;
 }
 
 export interface PersonalityTrait {
@@ -319,6 +327,8 @@ export interface CharacterCreationState {
   agingLivingConditions?: number;
   /** Confidence was set by hand on the Details step (otherwise it follows the rules and Virtues) */
   confidenceSet?: boolean;
+  /** why the guided build chose each Art, Characteristic and the Social Status ('art:Cr', 'char:Int', 'status') */
+  guidedWhy?: Record<string, string>;
   /** what aging before play changed, kept so it can all be undone */
   preAging?: Pick<Character, 'characteristics' | 'agingPoints' | 'decrepitudePoints' | 'agingLoss' | 'apparentAge' | 'longevity'>;
   /** Ex Miscellanea tradition id */
@@ -342,6 +352,8 @@ export interface Character {
   birthYear: number;
   age: number;
   apparentAge?: number;
+  /** the guided build's answers (Concept step → Guided build) */
+  guided?: GuidedState;
   /** supernatural powers bought with the levels of Greater/Lesser/Personal/Ritual Power, Heroes' Birthright */
   powers?: CharPower[];
   /** True Faith score and Faith Points, once play changes them (the Virtue starts at 1 and 1) */
@@ -530,4 +542,24 @@ export interface Covenant {
   notes: string;
   createdAt: string;
   updatedAt: string;
+}
+
+/** What a player has told the guided build (design spec: Guided Build). */
+export interface GuidedState {
+  /** question id → 0-10; 'tb:<tag>' tie-breaker ratings; 'vf:<id>' "still interested?" */
+  answers: Record<string, number>;
+  /** Virtues and Flaws the player turned down */
+  declined: string[];
+  /** a House the player picked in the guided build */
+  house?: string;
+}
+
+/** The storyguide's saga settings for the guided build (never asked of players). */
+export interface SagaGuidedSettings {
+  /** how present each realm is, 0-10 (5: as in the core book) */
+  realms: Record<'magic' | 'faerie' | 'divine' | 'infernal' | 'mundane', number>;
+  /** 0: the saga covers a few years … 10: it spans decades */
+  speed: number;
+  /** how much Hermetic politics, 0-10 */
+  politics: number;
 }
