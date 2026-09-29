@@ -90,6 +90,7 @@ function TakenList({ ed }: { ed: CharEditor }) {
             ✕
           </button>
         </div>
+        {v.cv.why && <div className="why">{v.cv.why}</div>}
         <CharIssueList ed={ed} compact issues={ed.issues.filter((i) => i.vf === v.cv.uid && i.severity !== 'info' && i.code !== 'param')} />
         {def?.param && (
           <div className="row small" style={{ marginTop: 4 }}>

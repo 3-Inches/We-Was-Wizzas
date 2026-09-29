@@ -59,7 +59,7 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
 
   switch (code) {
     // -------------------------------------------------------------- one Virtue/Flaw is not allowed
-    case 'fortype': case 'mythic-only': case 'grog-hermetic': case 'being': case 'nogift': case 'excl-puissant': case 'unknown':
+    case 'fortype': case 'mythic-only': case 'grog-hermetic': case 'being': case 'nogift': case 'excl-puissant': case 'unknown': case 'one-focus':
       return removeThis();
     case 'grog-story': case 'tradition':
       return removeThis(false);

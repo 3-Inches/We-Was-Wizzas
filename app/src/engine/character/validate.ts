@@ -261,6 +261,10 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (spent > mp.total) add({ id: `mastery-pool-${mp.uid}`, code: 'mastery-pool', pool: `pool:${mp.uid}`, severity: 'error', step: 'spells', message: `${mp.label}: ${spent} of ${mp.total} mastery xp spent.` });
   }
 
+  // only one Magical Focus, Major or Minor, whatever its source (DE, Magical Focus)
+  const foci = d.virtues.filter((v) => v.cv.defId === 'major-magical-focus' || v.cv.defId === 'minor-magical-focus');
+  for (const v of foci.slice(1)) add({ id: `one-focus-${v.cv.uid}`, code: 'one-focus', vf: v.cv.uid, severity: 'error', step: 'virtues', message: `A character can have only one Magical Focus, whatever its source; ${v.name} is a second one.`, ref: 'DE, Major Magical Focus' });
+
   // --------------------------------------------------------------- personality & misc
   for (const v of d.virtues) {
     if (v.def?.categories.includes('Personality') && v.def.kind === 'flaw') {

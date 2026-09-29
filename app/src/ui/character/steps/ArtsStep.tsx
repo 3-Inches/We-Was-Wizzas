@@ -68,6 +68,7 @@ export default function ArtsStep({ ed }: { ed: CharEditor }) {
                         {da.puissant > 0 && <span className="badge good">+{da.puissant}</span>}
                         {da.deficient !== 'none' && <span className="badge bad">Deficient</span>}
                         {da.elementalBonus > 0 && <span className="badge">+{da.elementalBonus} elemental xp</span>}
+                        {c.creation.guidedWhy?.[`art:${a}`] && <div className="why">{c.creation.guidedWhy[`art:${a}`]}</div>}
                       </td>
                       <td className="num">
                         <Total

@@ -26,6 +26,12 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 - Powers from Greater, Lesser, Personal and Ritual Power and Heroes' Birthright are built against their level budgets, with Penetration, Initiative, Fatigue and Confidence cost, or copied from a spell.
 - Holy Magic replaces Magic Theory in Lab Totals and the creation checks. True Faith and relics give Magic Resistance, and only the highest source counts.
 - Recommendations follow the concept themes you pick.
+- **Guided build** (Concept step): the player rates statements about what they want to play, 0–10 (skipping counts as 5), and gets Virtues, Flaws, a House, Arts and Abilities recommended from every enabled book, then a complete draft that passes the rules check.
+  - Every Virtue and Flaw has a record of outcome tags (Casting Totals, Penetration, Faerie, the Church…) with a direction and strength, built from the hand-written mechanics and the book text, plus region and culture gates.
+  - Follow-up questions open at 7 or more (or 3 or less) and stop once fewer than 10 options remain. Concept themes pre-set answers; a covenant in the toolkit answers the questions about vis, money, the library and the aura.
+  - Each option shows its fit (how well it matches the answers) and its strength (what it is worth in this saga, in seasons over the first years). Mechanical Flaws are suggested for what the player rated low, Story and Personality Flaws for what they rated high, and a Flaw that hurts something rated high never.
+  - A tie-breaker round when too much is rated 9–10, House recommendations, explainers and "Still interested?" for complex options, and Browse by tag.
+  - The draft records why each choice was made ("from: I expect to cast in a fight — 9"). The storyguide sets the saga's realms, speed and politics once on the saga settings page.
 
 **In-play sheet:**
 

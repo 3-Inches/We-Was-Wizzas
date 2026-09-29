@@ -6,9 +6,11 @@ import { ARCHETYPES } from '../../../engine/recommend';
 import { Card, Field, SelectOrType, Stepper } from '../../kit';
 import type { CharEditor } from '../useChar';
 import AgingBeforePlay from '../AgingBeforePlay';
+import { useNavigate } from 'react-router-dom';
 
 export default function BasicsStep({ ed }: { ed: CharEditor }) {
   const { c, update, change, saga, d } = ed;
+  const nav = useNavigate();
   if (!c || !saga || !d) return null;
   const year = saga.currentYear;
   const arche = c.creation.archetypes ?? [];
@@ -128,6 +130,19 @@ export default function BasicsStep({ ed }: { ed: CharEditor }) {
         <Field label="Description, background, appearance">
           <textarea value={c.description} onChange={(e) => update((x) => void (x.description = e.target.value))} rows={5} />
         </Field>
+      </Card>
+
+      <Card title="Guided build" className="accent">
+        <p className="small" style={{ marginTop: 0 }}>
+          Not sure what to take? Rate statements about what you want to play (0–10; skipping counts as 5) and get Virtues, Flaws{c.type === 'magus' ? ', a House, Arts' : ''} and
+          Abilities recommended from every enabled book, each with the reason and the page. It can then build a complete draft that passes the rules check. The themes
+          above pre-set some answers.
+        </p>
+        <div className="row">
+          <button className="primary" onClick={() => nav(`/saga/${saga!.id}/character/${c.id}/guided`)}>
+            {c.guided && Object.keys(c.guided.answers).length ? `Continue the guided build (${Object.keys(c.guided.answers).length} answered)` : 'Start the guided build'}
+          </button>
+        </div>
       </Card>
     </>
   );

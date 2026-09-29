@@ -8,6 +8,7 @@ import ImportPage from './pages/ImportPage';
 
 const CharacterWizard = lazy(() => import('./character/CharacterWizard'));
 const CharacterSheet = lazy(() => import('./character/CharacterSheet'));
+const GuidedBuildPage = lazy(() => import('./character/guided/GuidedBuildPage'));
 const CovenantPage = lazy(() => import('./covenant/CovenantPage'));
 const SpellsPage = lazy(() => import('./pages/SpellsPage'));
 const EnchantPage = lazy(() => import('./pages/EnchantPage'));
@@ -57,6 +58,7 @@ export default function App() {
               <Route path="/import" element={<ImportPage />} />
               <Route path="/saga/:sagaId" element={<SagaPage />} />
               <Route path="/saga/:sagaId/character/:charId/create" element={<CharacterWizard />} />
+              <Route path="/saga/:sagaId/character/:charId/guided" element={<GuidedBuildPage />} />
               <Route path="/saga/:sagaId/character/:charId" element={<CharacterSheet />} />
               <Route path="/saga/:sagaId/covenant/:covId" element={<CovenantPage />} />
               <Route path="/saga/:sagaId/spells" element={<SpellsPage />} />

@@ -66,7 +66,18 @@ export function useCharEditor() {
     });
   }, [change, data, rules]);
 
-  return { saga, data, c, d, issues, update, change, acknowledge, applyFix, resolveAll, ctx };
+  /** Put a whole new version of the character in place as it is (no automatic adjustments), with Undo. */
+  const replace = useCallback(
+    (next: Character, message: string) => {
+      if (!c) return;
+      const snapshot = structuredClone(c);
+      putCharacter(next);
+      setNotice(message, () => putCharacter(snapshot));
+    },
+    [c, putCharacter, setNotice],
+  );
+
+  return { saga, data, c, d, issues, update, change, replace, acknowledge, applyFix, resolveAll, ctx };
 }
 
 export type CharEditor = ReturnType<typeof useCharEditor>;

@@ -155,6 +155,7 @@ export default function AbilitiesStep({ ed }: { ed: CharEditor }) {
                         {da.abilityId in PARAMETERIZED_ABILITIES && !ab.native && (
                           <ParamEdit value={ab.param ?? ''} abilityId={ab.abilityId} onChange={(v) => update((x) => void (x.abilities.find((y) => y.uid === ab.uid)!.param = v))} />
                         )}
+                        {ab.why && <div className="why">{ab.why}</div>}
                       </td>
                       <td className="small">{da.type}</td>
                       <td className="num">
