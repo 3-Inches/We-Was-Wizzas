@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { BOOKS, SEASONS, type AbilityType, type VFCategory, type VFKind, type VFSize, type VirtueFlawDef, type WeaponDef } from '../../data';
 import type { Mechanics } from '../../data/mechanics';
-import { DEFAULT_HOUSE_RULES, type HouseRules, type Saga } from '../../engine/types';
+import { DEFAULT_HOUSE_RULES, DEFAULT_SAGA_SETTINGS, type HouseRules, type Saga, type SagaGuidedSettings } from '../../engine/types';
 import { useGameData, useSaga } from '../../store/hooks';
 import { exportSaga, useStore } from '../../store/store';
 import { downloadJson, safeFilename } from '../../util/files';
 import { uid } from '../../util/id';
-import { Card, Empty, Field, Stepper, Tabs } from '../kit';
+import { Card, Empty, Field, SelectOrType, Stepper, Tabs } from '../kit';
+import { TRIBUNALS } from '../../data/lists';
 
 type TabId = 'saga' | 'books' | 'rules' | 'custom' | 'mechanics';
 
@@ -74,14 +75,23 @@ export default function HouseRulesPage() {
 type P = { saga: Saga; update: (fn: (s: Saga) => void) => void };
 
 function SagaTab({ saga, update }: P) {
+  const g = saga.guided ?? DEFAULT_SAGA_SETTINGS;
+  const setG = (fn: (x: SagaGuidedSettings) => void) =>
+    update((s) => {
+      const x = structuredClone(s.guided ?? DEFAULT_SAGA_SETTINGS);
+      fn(x);
+      s.guided = x;
+    });
+  const REALM_LABEL: Record<keyof SagaGuidedSettings['realms'], string> = { magic: 'Magic', faerie: 'Faerie', divine: 'the Divine', infernal: 'the Infernal', mundane: 'the mundane world' };
   return (
+    <>
     <Card className="accent">
       <div className="grid grid-2">
         <Field label="Saga name">
           <input value={saga.name} onChange={(e) => update((s) => void (s.name = e.target.value))} />
         </Field>
-        <Field label="Tribunal">
-          <input value={saga.tribunal} onChange={(e) => update((s) => void (s.tribunal = e.target.value))} />
+        <Field label="Tribunal" hint="Region-specific Virtues and Flaws in the guided build follow it.">
+          <SelectOrType value={saga.tribunal} options={TRIBUNALS} placeholder="— Tribunal —" ariaLabel="Tribunal" onChange={(v) => update((s) => void (s.tribunal = v))} />
         </Field>
         <Field label="Current year">
           <Stepper value={saga.currentYear} width={60} onChange={(v) => update((s) => void (s.currentYear = v))} />
@@ -98,6 +108,26 @@ function SagaTab({ saga, update }: P) {
         <textarea rows={5} value={saga.description} onChange={(e) => update((s) => void (s.description = e.target.value))} />
       </Field>
     </Card>
+    <Card title="Guided build (storyguide)">
+      <p className="small muted" style={{ marginTop: 0 }}>
+        Set once for the saga; players are never asked. These move how much each option is worth in play here (its strength), never how well it fits a player&apos;s
+        answers. 5 is as the core book describes Mythic Europe.
+      </p>
+      <div className="grid grid-2">
+        {(Object.keys(REALM_LABEL) as (keyof SagaGuidedSettings['realms'])[]).map((r) => (
+          <Field key={r} label={`How present ${REALM_LABEL[r]} is (0–10)`}>
+            <Stepper value={g.realms[r]} min={0} max={10} onChange={(v) => setG((x) => void (x.realms[r] = v))} />
+          </Field>
+        ))}
+        <Field label="Saga speed (0–10)" hint={`0: a few years of play … 10: decades. Strength is counted over about ${Math.round(5 * Math.pow(2, (g.speed - 5) / 5) * 10) / 10} years.`}>
+          <Stepper value={g.speed} min={0} max={10} onChange={(v) => setG((x) => void (x.speed = v))} />
+        </Field>
+        <Field label="Hermetic politics (0–10)">
+          <Stepper value={g.politics} min={0} max={10} onChange={(v) => setG((x) => void (x.politics = v))} />
+        </Field>
+      </div>
+    </Card>
+    </>
   );
 }
 

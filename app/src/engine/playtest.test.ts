@@ -198,3 +198,12 @@ describe('gender', () => {
     expect(migrateCharacter({ ...c, gender: 'man' }).gender).toBe('Male');
   });
 });
+
+describe('Magical Focus (DE)', () => {
+  it('allows only one Magical Focus, whatever its source', () => {
+    const c = magus('tremere'); // Minor Magical Focus (Certamen) from the House
+    expect(codes(c)).not.toContain('one-focus');
+    addVirtue(c, data, 'minor-magical-focus', 'Minor', 'healing');
+    expect(codes(c)).toContain('one-focus');
+  });
+});

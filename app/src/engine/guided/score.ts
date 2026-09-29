@@ -5,7 +5,9 @@
 
 import { ARTS, CHARACTERISTICS, STATUS_CULTURES, type Art, type Characteristic, type CharType, type GameData, type VFSize, type VirtueFlawDef } from '../../data';
 import { HOUSES } from '../../data/houses';
-import type { Character, Covenant, GuidedState, HouseRules, Saga, SagaGuidedSettings } from '../types';
+import { DEFAULT_SAGA_SETTINGS, type Character, type Covenant, type GuidedState, type HouseRules, type Saga, type SagaGuidedSettings } from '../types';
+
+export { DEFAULT_SAGA_SETTINGS };
 
 export type { GuidedState, SagaGuidedSettings };
 import type { DerivedCharacter } from '../character/derive';
@@ -14,7 +16,6 @@ import { abilityTag, vfRecords, type TagLink, type VFRecord } from './records';
 import { QUESTIONS, SECTIONS, childrenOf, type Question } from './questions';
 import { isThemeTag, tagLabel } from './tags';
 
-export const DEFAULT_SAGA_SETTINGS: SagaGuidedSettings = { realms: { magic: 5, faerie: 5, divine: 5, infernal: 5, mundane: 5 }, speed: 5, politics: 5 };
 
 export interface GuidedContext {
   c: Character;
@@ -596,14 +597,26 @@ export interface Group {
 }
 
 /** Group options under the question they count towards most; within a group, by fit. */
+/** How much of an option's fit comes from one answer: its share of each tag weight it touches. */
+function questionShare(s: Scored, v: VisibleQuestion, w: Record<string, number>): number {
+  let contrib = 0;
+  for (const m of s.matches) {
+    const k = v.q.tags[m.tag];
+    const total = w[m.tag];
+    if (!k || !total) continue;
+    contrib += (m.contribution * ((v.answer - 5) * k)) / total;
+  }
+  return contrib;
+}
+
 export function groupByQuestion(items: Scored[], st: GuidedState, ctx: GuidedContext): Group[] {
   const vis = visibleQuestions(st, ctx, { weightsOnly: true }).filter((v) => v.answer !== 5);
+  const w = tagWeights(st, ctx);
   const groups = new Map<string, Group>();
   for (const s of items) {
     let best: { q?: Question; v: number } = { v: 0 };
     for (const v of vis) {
-      let contrib = 0;
-      for (const m of s.matches) if (v.q.tags[m.tag]) contrib += m.contribution * Math.sign(v.q.tags[m.tag]) * Math.sign(v.answer - 5);
+      const contrib = questionShare(s, v, w);
       if (contrib > best.v) best = { q: v.q, v: contrib };
     }
     const key = best.q?.id ?? 'other';
@@ -616,10 +629,10 @@ export function groupByQuestion(items: Scored[], st: GuidedState, ctx: GuidedCon
 /** "from: I expect to cast in a fight — 9": the answers behind a recommendation. */
 export function traceOf(s: Scored, st: GuidedState, ctx: GuidedContext): string {
   const vis = visibleQuestions(st, ctx, { weightsOnly: true }).filter((v) => v.answer !== 5);
+  const w = tagWeights(st, ctx);
   const lines: { text: string; v: number }[] = [];
   for (const v of vis) {
-    let contrib = 0;
-    for (const m of s.matches) if (v.q.tags[m.tag]) contrib += m.contribution * Math.sign(v.q.tags[m.tag]) * Math.sign(v.answer - 5);
+    const contrib = questionShare(s, v, w);
     if (contrib > 0) lines.push({ text: `${v.q.text.replace(/[.…]$/, '')}${v.q.low ? ` (${v.answer < 5 ? v.q.low : v.q.high})` : ''} — ${v.answer}`, v: contrib });
   }
   for (const [k, a] of Object.entries(st.answers)) if (k.startsWith('tb:') && s.matches.some((m) => m.tag === k.slice(3))) lines.push({ text: `tie-breaker: ${tagLabel(k.slice(3))} — ${a}`, v: 1 });

@@ -59,6 +59,11 @@ export default function HelpPage() {
               listed.
             </li>
             <li>A character older than 35 rolls aging before play on the Concept step. A year that would kill the character is not applied, so you can roll it again.</li>
+            <li>
+              <b>Guided build</b> (Concept step): rate statements 0–10 about what you want to play and get recommendations with the reason and the page, or a whole draft
+              that passes the rules check. Skipped questions count as 5. The storyguide sets the saga&apos;s realms, speed and politics once under{' '}
+              <b>House rules &amp; books → Saga</b>.
+            </li>
             <li>Powers from Greater, Lesser, Personal or Ritual Power and Heroes&apos; Birthright are designed on the Virtues step: pick a spell within the level budget or describe your own.</li>
             <li>Finish creation to switch to the in-play sheet. You can always return to creation.</li>
           </ol>

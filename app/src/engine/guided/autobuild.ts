@@ -54,7 +54,7 @@ function answer(id: string, st: GuidedState, ctx: GuidedContext): number {
 }
 
 /** A generic value for a text sub-choice the player still has to decide. */
-const TO_DECIDE = '(to be decided)';
+const TO_DECIDE = 'to be decided';
 
 function paramFor(s: Scored): string | undefined {
   const spec = s.def.param;
@@ -91,7 +91,7 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
         }
       });
       setHouse(c, inp.data, pick, best);
-      why.house = st.house ? 'you chose it' : 'the best fit for your answers';
+      why.house = st.house ? 'you chose it' : 'from: the best fit for your answers';
       log.push(`House ${h.name} (${why.house}).`);
       refresh();
     }

@@ -563,3 +563,5 @@ export interface SagaGuidedSettings {
   /** how much Hermetic politics, 0-10 */
   politics: number;
 }
+
+export const DEFAULT_SAGA_SETTINGS: SagaGuidedSettings = { realms: { magic: 5, faerie: 5, divine: 5, infernal: 5, mundane: 5 }, speed: 5, politics: 5 };
