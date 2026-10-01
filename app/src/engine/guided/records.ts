@@ -3,6 +3,7 @@
 // built from the hand-written mechanics where they exist and from the book text otherwise; each
 // one points back at its source and never replaces it.
 
+import { ARCHETYPES, CHOICE_LINKS, MAGNITUDES, RANKED_TOTALS } from './magnitudes';
 import { ARTS, CHARACTERISTICS, type AbilityType, type Effect, type GameData, type VirtueFlawDef } from '../../data';
 import { isThemeTag } from './tags';
 
@@ -445,6 +446,7 @@ export function buildRecord(def: VirtueFlawDef, data: GameData): VFRecord {
     if (!prev || dr.strength > prev.strength) byTag.set(dr.tag, { tag: dr.tag, dir, strength: dr.strength, why: dr.why, ...(hook ? { hook } : {}) });
   }
   const links = [...byTag.values()];
+  addRankedLinks(def, links);
 
   const spellLike = real.some((e) => e.type === 'powers') || /\bpower\b/i.test(def.name) || SPELL_LIKE.test(def.text);
   const otherBook = def.source.book !== 'DE' || OTHER_BOOK.test(def.text);
@@ -469,6 +471,41 @@ export function buildRecord(def: VirtueFlawDef, data: GameData): VFRecord {
     flags: { complexity, otherBook, spellLike, beneficialFlaw, infernal: def.tainted || /\b(demonic|infernal)\b/i.test(def.name) || /\b(sold (his|her) soul|demonic (parent|familiar|pact)|diabolis(t|m))\b/i.test(def.text) },
     regions: [...new Set(regions)], cultures, paramKind, computed, pile, summary: firstSentence(def.text),
   };
+}
+
+const PROGRESSION_EFFECTS = new Set(['artAffinity', 'abilityAffinity', 'xpPool', 'sourceQuality', 'secondaryInsight', 'elementalMagic', 'advancementMultiplier', 'apprenticeXp', 'apprenticeshipTotalXp', 'laterLifeXpPerYear']);
+const MAG_MAX: Record<string, number> = {};
+for (const m of Object.values(MAGNITUDES)) for (const { tag } of RANKED_TOTALS) if (m[tag]) MAG_MAX[tag] = Math.max(MAG_MAX[tag] ?? 0, Math.abs(m[tag]!));
+
+/**
+ * Links from the size of an option's edge: on each Total it moves, its strength is set by how it
+ * compares with the other options that move that Total; progression Virtues link to "progression"
+ * and flat bonuses away from it; this-or-that choices and archetypes link to their questions.
+ */
+function addRankedLinks(def: VirtueFlawDef, links: TagLink[]) {
+  const set = (tag: string, dir: 1 | -1, strength: number, why: string, hook?: boolean) => {
+    const i = links.findIndex((l) => l.tag === tag);
+    const link: TagLink = { tag, dir, strength: Math.round(strength * 10) / 10, why, ...(hook ? { hook } : {}) };
+    if (i >= 0) links[i] = link;
+    else links.push(link);
+  };
+  const mag = MAGNITUDES[def.id];
+  for (const { tag } of RANKED_TOTALS) {
+    const v = mag?.[tag];
+    if (!v || tag === 'xp') continue;
+    // a Flaw's penalty stays below the strength that rules it out for every magus
+    const strength = 1.5 + (2 * Math.abs(v)) / MAG_MAX[tag];
+    set(tag, v > 0 ? 1 : -1, def.kind === 'flaw' ? Math.min(2.5, strength) : strength, mag!.note);
+  }
+  const progression = mag?.xp ?? ((def.effects ?? []).some((e) => PROGRESSION_EFFECTS.has(e.type)) && def.kind === 'virtue' ? 3 : 0);
+  if (progression > 0) set('progression', 1, 1.5 + (2 * progression) / 10, mag?.note ?? 'faster progression');
+  else if (progression < 0) set('progression', -1, 1.5, mag!.note);
+  else if (def.kind === 'virtue' && mag && (mag.casting || mag.lab)) set('progression', -1, 1, 'a flat bonus rather than faster progression', true);
+  for (const [tag, strength] of CHOICE_LINKS[def.id] ?? []) set(tag, 1, strength, mag?.note ?? 'from the text', true);
+  for (const a of ARCHETYPES) {
+    const hit = a.vf.find(([id]) => id === def.id);
+    if (hit) set(`arch:${a.id}`, 1, hit[1], `suits a ${a.name.toLowerCase()}`, true);
+  }
 }
 
 function describeValue(real: Effect[], kind: EffectKind, def: VirtueFlawDef): string {

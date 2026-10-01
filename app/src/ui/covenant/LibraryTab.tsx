@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ARTS, ART_NAMES, type Art } from '../../data';
-import { summaCost } from '../../engine/covenant';
+import { summaCost, type BPLine, type DerivedCovenant } from '../../engine/covenant';
+import { mechanicOf, miracleMultiplierOf, receivedAfterTithe } from '../../engine/covenantRules';
 import type { LibraryBook } from '../../engine/types';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper } from '../kit';
@@ -28,6 +29,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
   const libraryBP = dc.bpLines.filter((l) => l.category === 'Library').reduce((s, l) => s + l.cost, 0);
   const visBP = dc.bpLines.filter((l) => l.category === 'Vis').reduce((s, l) => s + l.cost, 0);
   const abilities = data.abilities.slice().sort((a, b) => a.name.localeCompare(b.name));
+  const miracles = cov.hooksBoons.some((h) => mechanicOf(h) === 'tithing-miracles');
   const spellNames = data.spells.map((s) => `${s.name} (${s.technique}${s.form} ${s.level ?? 'Gen'})`);
   return (
     <div className="stack">
@@ -159,7 +161,9 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                     <td>
                       <input value={b.language} style={{ width: 70 }} onChange={(e) => setBook(b.uid, (x) => void (x.language = e.target.value))} />
                     </td>
-                    <td className="num">{b.hidden ? <s>{cost}</s> : cost}</td>
+                    <td className="num">
+                      <PaidBy cost={cost} line={dc.bpLines.find((l) => l.ref === b.uid)} dc={dc} />
+                    </td>
                     <td>
                       <input type="checkbox" checked={!!b.hidden} title="Part of Hidden Resources (no BP)" onChange={(e) => setBook(b.uid, (x) => void (x.hidden = e.target.checked))} />
                     </td>
@@ -174,7 +178,10 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
             </tbody>
           </table>
         </div>
-        {dc.hiddenResourcesBP > 0 && <p className="small muted">Hidden Resources: {dc.hiddenResourcesBP} BP of books and resources marked hidden are not charged to the covenant.</p>}
+        <p className="small muted">
+          The hidden box puts a book in the covenant's Hidden Resources. To pay for resources from Hidden, Flawed or Illusory Resources, pick them on that Boon or Hook (Hooks & Boons tab).
+          {dc.hiddenResourcesBP > 0 && ` Hidden Resources hold ${dc.hiddenResourcesBP} BP of resources.`}
+        </p>
       </Card>
 
       <div className="grid grid-2">
@@ -195,6 +202,20 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
               <label className="inline small">
                 <input type="checkbox" checked={!!s.contested} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.contested = e.target.checked))} /> contested
               </label>
+              <label className="inline small" title="A tenth goes to the Church">
+                <input type="checkbox" checked={!!s.tithed} onChange={(e) => update((x) => { const y = x.visSources.find((z) => z.uid === s.uid)!; y.tithed = e.target.checked; if (!e.target.checked) y.miracle = false; })} /> tithed
+              </label>
+              {miracles && (
+                <label className="inline small" title={`Tithing Miracles: ×${miracleMultiplierOf(cov)}, rounded up (vis is given The Increase)`}>
+                  <input type="checkbox" checked={!!s.miracle} onChange={(e) => update((x) => { const y = x.visSources.find((z) => z.uid === s.uid)!; y.miracle = e.target.checked; if (e.target.checked) y.tithed = true; })} /> Tithing Miracle
+                </label>
+              )}
+              {(s.tithed || dc.unreal.has(s.uid)) && (
+                <span className="badge">
+                  {dc.unreal.has(s.uid) ? 'not real: gives nothing' : `receives ${receivedAfterTithe(s.pawnsPerYear, true, !!s.miracle && miracles, miracleMultiplierOf(cov)).received}/yr`}
+                </span>
+              )}
+              <PaidBy cost={5 * s.pawnsPerYear} line={dc.bpLines.find((l) => l.ref === s.uid)} dc={dc} onlyPool />
               <button className="small ghost" onClick={() => update((x) => void (x.visSources = x.visSources.filter((y) => y.uid !== s.uid)))}>
                 ✕
               </button>
@@ -266,4 +287,17 @@ function summaryRows(lib: LibraryBook[], data: CovTabProps['data']) {
     m.set(key, r);
   }
   return [...m.values()].sort((a, b) => a.label.localeCompare(b.label));
+}
+
+/** A resource's Build Point cost, or the Boon or Hook that pays for it. */
+export function PaidBy({ cost, line, dc, onlyPool }: { cost: number; line?: BPLine; dc: DerivedCovenant; onlyPool?: boolean }) {
+  const hb = line?.paidBy ? dc.cov.hooksBoons.find((h) => h.uid === line.paidBy) : undefined;
+  if (!hb) return onlyPool ? null : line && line.cost === 0 && line.label.includes('Exceptional Book') ? <span className="badge good">free (Exceptional Book)</span> : <>{cost}</>;
+  const lost = dc.unreal.has(line!.ref!);
+  return (
+    <span className={`badge ${lost ? 'bad' : 'info'}`} title={`${cost} BP paid from ${hb.name}`}>
+      <s>{cost}</s> {hb.name}
+      {lost ? (/illusory/i.test(hb.name) ? ': not real' : ': lost') : ''}
+    </span>
+  );
 }

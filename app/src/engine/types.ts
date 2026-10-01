@@ -414,6 +414,16 @@ export interface CovenantHookBoon {
   /** Unknown hook: a Minor hook counting as Major */
   unknown?: boolean;
   note?: string;
+  /** the income or vis source a Resources Boon or Hook applies to */
+  target?: string;
+  /** Hidden, Flawed and Illusory Resources: the resources (by uid) paid from its 250 Build Points */
+  resources?: string[];
+  /** Flawed Resource: how its story went */
+  outcome?: 'pending' | 'saved' | 'lost' | 'botched';
+  /** Flawed Resource saved: the resources kept (up to half) */
+  kept?: string[];
+  /** Natural Disaster: it has struck. Indebted: the debt is still owed (default yes). */
+  active?: boolean;
 }
 
 export interface LibraryBook {
@@ -433,6 +443,8 @@ export interface LibraryBook {
   readBy?: string[]; // character ids who studied (tractatus once)
   /** a bundle of lab texts (e.g. from a covenant package): `level` is the total, this the most for one text */
   collectionMax?: number;
+  /** the Exceptional Book Boon that provides this book (no Build Points) */
+  boonUid?: string;
 }
 
 export interface VisSource {
@@ -443,6 +455,10 @@ export interface VisSource {
   season?: string;
   description?: string;
   contested?: boolean;
+  /** a tenth goes to the Church */
+  tithed?: boolean;
+  /** the Tithing Miracles Boon increases it */
+  miracle?: boolean;
 }
 
 export interface VisStock {
@@ -462,6 +478,29 @@ export interface Specialist {
   rare?: boolean;
   characterId?: string;
   notes?: string;
+  /** craftsmen: the craft (CRAFTS id) */
+  craft?: string;
+  /** how many people of this kind (default 1) */
+  count?: number;
+  /** sets the most a starting score can be (DE p.48) */
+  age?: number;
+  /** part of the base covenant or recruited in play: no Build Points */
+  free?: boolean;
+}
+
+/** A Virtue or Flaw taken by a lab, with the player's choices for it. */
+export interface LabVirtueEntry {
+  uid: string;
+  defId: string;
+  /** Specialization points assigned */
+  choice?: Record<string, number>;
+  note?: string;
+  /** numbers the effect depends on (a creature's Intelligence…), or own effects for free-form entries */
+  inputs?: Record<string, number>;
+  /** which version of an either/or entry */
+  alt?: string;
+  /** conditions switched on or off */
+  toggles?: Record<string, boolean>;
 }
 
 export interface Laboratory {
@@ -470,7 +509,7 @@ export interface Laboratory {
   ownerId?: string; // character id
   size: number;
   refinement: number;
-  virtues: { uid: string; defId: string; choice?: Record<string, number>; note?: string }[];
+  virtues: LabVirtueEntry[];
   customMods: Partial<Record<LabCharacteristic, number>>;
   customSpecs: Record<string, number>;
   droppedSpecs: string[];
@@ -491,12 +530,25 @@ export interface CovenfolkCounts {
   horses: number;
 }
 
+export type IncomeModification = 'Slump' | 'Contraction' | 'Stagnation' | 'Status Quo' | 'Growth' | 'Expansion' | 'Boom';
+
 export interface IncomeSource {
   uid: string;
   name: string;
   type: string;
-  level: 'Lesser' | 'Typical' | 'Greater' | 'Legendary';
+  level: 'None' | 'Lesser' | 'Typical' | 'Greater' | 'Legendary';
+  /** pounds a year when entered by hand (customPounds) */
   pounds: number;
+  /** use `pounds` instead of the book value for the level */
+  customPounds?: boolean;
+  /** the yearly change set by the storyguide (Covenants ch.5) */
+  modification?: IncomeModification;
+  /** gained or changed in play: its level is not set by Boons and Hooks */
+  inPlay?: boolean;
+  /** a tenth goes to the Church */
+  tithed?: boolean;
+  /** the Tithing Miracles Boon increases it */
+  miracle?: boolean;
 }
 
 export interface Covenant {
@@ -534,8 +586,15 @@ export interface Covenant {
     livingConditions: number;
     weaponArmorPoints: number;
     magicSavings: number;
+    /** older files: moved to craftsmen in `specialists` */
     craftSavings: { uid: string; craft: string; category: string; score: number; rare: boolean }[];
     paidSoldierPennies: number;
+    /** Tithing Miracles: what tithed income and vis is multiplied by (1.8 = the tithed tenth made good and the rest doubled) */
+    miracleMultiplier?: number;
+    /** starting reserve bought with Build Points (1 BP per 10 pounds) */
+    startingReserve?: number;
+    /** adjust the principal income by 15 pounds per magus above or below six (Covenants ch.5) */
+    magiIncomeAdjust?: boolean;
   };
   loyalty: { actionPoints: number; yearsFounded?: number };
   log: { uid: string; year: number; season?: string; text: string; treasuryDelta?: number; visDelta?: VisStock[] }[];

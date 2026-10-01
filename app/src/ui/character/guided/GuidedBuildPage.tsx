@@ -8,10 +8,11 @@ import { autoBuild, type BuildResult } from '../../../engine/guided/autobuild';
 import { CARDS } from '../../../engine/guided/cards';
 import { SECTIONS, type Question } from '../../../engine/guided/questions';
 import {
-  evaluate, groupByQuestion, recommendHouses, shortlist, statusShortlist, tieBreaker, traceOf, visibleQuestions,
+  evaluate, groupByQuestion, questionHint, recommendHouses, shortlist, statusShortlist, tieBreaker, traceOf, visibleQuestions,
   type Evaluation, type GuidedContext, type GuidedState, type Scored, type VisibleQuestion,
 } from '../../../engine/guided/score';
 import { FAMILY_LABEL, TAGS, tagLabel, type TagFamily } from '../../../engine/guided/tags';
+import { RANKED_TOTALS } from '../../../engine/guided/magnitudes';
 import type { Character } from '../../../engine/types';
 import { visibleSteps } from '../wizardSteps';
 import { BookBadge, Card, Empty, Modal, Tabs } from '../../kit';
@@ -97,7 +98,7 @@ export default function GuidedBuildPage() {
       />
       <div className="grid" style={{ gridTemplateColumns: tab === 'browse' ? '1fr' : 'minmax(0, 1fr) 340px', marginTop: 10 }}>
         <div className="stack">
-          {tab === 'questions' && <QuestionList vis={vis} st={st} ctx={ctx} setAnswer={setAnswer} setHouse={(h) => setState((s) => void (h ? (s.house = h) : delete s.house))} />}
+          {tab === 'questions' && <QuestionList vis={vis} ev={ev} st={st} ctx={ctx} setAnswer={setAnswer} setHouse={(h) => setState((s) => void (h ? (s.house = h) : delete s.house))} />}
           {tab === 'results' && <Results ev={ev} st={st} ctx={ctx} ed={ed} setState={setState} setAnswer={setAnswer} />}
           {tab === 'browse' && <BrowseByTag ev={ev} ctx={ctx} />}
         </div>
@@ -172,10 +173,13 @@ export function Bubbles(props: { value: number; source: string; onChange: (v: nu
 
 // ------------------------------------------------------------------ questions
 
-function QuestionList(props: { vis: VisibleQuestion[]; st: GuidedState; ctx: GuidedContext; setAnswer: (id: string, v: number | undefined) => void; setHouse: (h?: string) => void }) {
-  const { vis, st, ctx, setAnswer } = props;
+function QuestionList(props: { vis: VisibleQuestion[]; ev: Evaluation; st: GuidedState; ctx: GuidedContext; setAnswer: (id: string, v: number | undefined) => void; setHouse: (h?: string) => void }) {
+  const { vis, st, ctx, setAnswer, ev } = props;
   const [open, setOpen] = useState<string | null>(null);
-  const bySection = SECTIONS.map((s) => ({ s, qs: vis.filter((v) => v.q.section === s.id) })).filter((x) => x.qs.length);
+  const hints = useMemo(() => new Map(vis.map((v) => [v.q.id, questionHint(v.q, ev)])), [vis, ev]);
+  // pick-any choices are shown together under their question
+  const chipsOf = (id: string) => vis.filter((v) => v.q.chip && v.q.parent === id);
+  const bySection = SECTIONS.map((s) => ({ s, qs: vis.filter((v) => v.q.section === s.id && !v.q.chip) })).filter((x) => x.qs.length);
   return (
     <>
       {bySection.map(({ s, qs }) => (
@@ -186,7 +190,10 @@ function QuestionList(props: { vis: VisibleQuestion[]; st: GuidedState; ctx: Gui
           {qs.map((v) => (
             <div key={v.q.id} className={`q-row depth-${Math.min(v.depth, 3)}`}>
               <div className="row">
-                <span className="q-text">{v.q.text}</span>
+                <span className="q-text">
+                  {v.q.text}
+                  {hints.get(v.q.id) && <span className="q-hint"> — {hints.get(v.q.id)}</span>}
+                </span>
                 {v.q.explainer && (
                   <button className="small ghost" onClick={() => setOpen(open === v.q.id ? null : v.q.id)} title="What this means">
                     ?
@@ -197,6 +204,19 @@ function QuestionList(props: { vis: VisibleQuestion[]; st: GuidedState; ctx: Gui
               </div>
               {open === v.q.id && <p className="small explainer">{v.q.explainer}</p>}
               <Bubbles label={v.q.text} value={v.answer} source={v.source} low={v.q.low} high={v.q.high} disabled={v.source === 'covenant'} onChange={(a) => setAnswer(v.q.id, a)} />
+              {chipsOf(v.q.id).length > 0 && (
+                <div className="stack" style={{ marginTop: 6, gap: 4 }}>
+                  {chipsOf(v.q.id).map((c) => (
+                    <label key={c.q.id} className="small" style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+                      <input type="checkbox" style={{ flexShrink: 0 }} checked={c.answer >= 7} onChange={(e) => setAnswer(c.q.id, e.target.checked ? 10 : undefined)} />
+                      <span>
+                        {c.q.text}
+                        {hints.get(c.q.id) && <span className="q-hint"> — {hints.get(c.q.id)}</span>}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              )}
               {v.q.id === 'a-house' && v.answer >= 7 && (
                 <div className="row small" style={{ marginTop: 4 }}>
                   <span>House:</span>
@@ -251,6 +271,14 @@ function paramLabel(s: Scored, data: GameData): string {
   return s.param;
 }
 
+/** Where an option stands among those that move the Total the player cares most about. */
+function rankText(s: Scored, w: Record<string, number>): string | undefined {
+  if (!s.ranks?.length) return undefined;
+  const weightOf = (tag: string) => w[tag === 'xp' ? 'progression' : tag] ?? 0;
+  const r = [...s.ranks].sort((a, b) => weightOf(b.tag) - weightOf(a.tag) || a.rank / a.of - b.rank / b.of)[0];
+  return `${r.label}: #${r.rank} of ${r.of}`;
+}
+
 function strengthText(s: Scored): string {
   if (s.strength.lane === 'numeric') return `${(s.strength.seasons ?? 0) > 0 ? '+' : ''}${s.strength.seasons} seasons`;
   return s.strength.lane === 'story' ? 'story' : 'variable';
@@ -271,6 +299,11 @@ function Shortlist(props: { ev: Evaluation; ctx: GuidedContext; st: GuidedState 
       </span>
       <span className="spacer" />
       {!neutral && <span className="badge accent" title="How well it matches your answers">fit {Math.round(s.fit)}</span>}
+      {rankText(s, ev.weights) && (
+        <span className="badge info" title={s.ranks!.map((r) => `${r.label}: #${r.rank} of ${r.of} (${r.note})`).join('\n')}>
+          {rankText(s, ev.weights)}
+        </span>
+      )}
       <span className="badge" title="What it is worth in play here">
         {strengthText(s)}
       </span>
@@ -394,6 +427,11 @@ function OptionCard(props: { s: Scored; st: GuidedState; ctx: GuidedContext; tak
         <span className="badge accent" title="How well it matches your answers">
           fit {Math.round(s.fit)}
         </span>
+        {s.ranks?.length ? (
+          <span className="badge info" title={s.ranks.map((r) => `${r.label}: #${r.rank} of ${r.of} (${r.note})`).join('\n')}>
+            {s.ranks[0].note}
+          </span>
+        ) : null}
         <span className="badge" title={s.strength.text}>
           {strengthText(s)}
         </span>
@@ -436,6 +474,11 @@ function OptionCard(props: { s: Scored; st: GuidedState; ctx: GuidedContext; tak
         {weak ? ' · fits you well, but worth little in play here' : ''}
       </div>
       {s.strength.lane === 'numeric' && open && <div className="small muted">Strength: {s.strength.text}</div>}
+      {open && s.ranks?.map((r) => (
+        <div key={r.tag} className="small muted">
+          {r.label}: #{r.rank} of the {r.of} options that raise it ({r.note})
+        </div>
+      ))}
       {needsExplainer && (
         <details open={open} className="explainer">
           <summary className="small">What taking it means{interest !== undefined ? ` · your interest: ${interest}` : ''}</summary>
@@ -482,8 +525,11 @@ function BrowseByTag(props: { ev: Evaluation; ctx: GuidedContext }) {
     .map((s) => ({ s, link: s.rec.links.find((l) => l.tag === tag || (l.tag === '$param' && s.param && `art:${s.param}` === tag)) }))
     .filter((x) => x.link)
     .map((x) => ({ ...x, size: x.link!.dir * (x.s.strength.lane === 'numeric' ? Math.max(0.1, Math.abs(x.s.strength.seasons ?? 0)) : 0) * x.link!.strength }));
-  const variable = items.filter((x) => x.s.strength.lane !== 'numeric').sort((a, b) => b.link!.strength - a.link!.strength);
-  const numeric = items.filter((x) => x.s.strength.lane === 'numeric').sort((a, b) => b.size - a.size);
+  // a Total ranks its options by the size of their edge on it, whatever else they are worth
+  const rankedTotal = RANKED_TOTALS.some((r) => r.tag === tag);
+  const bySize = (a: (typeof items)[number], b: (typeof items)[number]) => b.link!.dir * b.link!.strength - a.link!.dir * a.link!.strength;
+  const variable = rankedTotal ? [] : items.filter((x) => x.s.strength.lane !== 'numeric').sort((a, b) => b.link!.strength - a.link!.strength);
+  const numeric = rankedTotal ? [...items].sort(bySize) : items.filter((x) => x.s.strength.lane === 'numeric').sort((a, b) => b.size - a.size);
   const row = (x: (typeof items)[number]) => (
     <div key={x.s.def.id} className="short-row">
       <span className={x.link!.dir > 0 ? 'good-text' : 'bad-text'}>{x.link!.dir > 0 ? '+' : '–'}</span>

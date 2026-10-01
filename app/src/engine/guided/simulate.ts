@@ -69,5 +69,6 @@ export function simulate(profile: Profile, ctx: GuidedContext, maxRounds = 20): 
 
 /** A profile from a list of answers by question id (anything else is skipped). */
 export function fixedProfile(name: string, answers: Record<string, number>, rest?: number): Profile {
-  return { name, answer: (q) => answers[q.id] ?? rest };
+  // a pick-any choice is only taken when the profile names it
+  return { name, answer: (q) => answers[q.id] ?? (q.chip ? undefined : rest) };
 }

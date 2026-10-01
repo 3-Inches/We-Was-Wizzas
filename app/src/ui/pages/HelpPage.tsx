@@ -33,10 +33,19 @@ export default function HelpPage() {
             <li>
               From the saga page, <b>Found a covenant</b>. Choose its season, aura and power level (Build Points).
             </li>
-            <li>Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1.</li>
+            <li>
+              Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1. Click a Hook or Boon to read it. Resources Boons and Hooks (Wealth, Secondary Income, Poverty,
+              Indebted…) take an income source; Hidden, Flawed and Illusory Resources take the resources they pay for; Exceptional Book adds its summa free.
+            </li>
             <li>Buy the library, lab texts, vis sources, enchanted items and specialists; the toolkit prices everything and enforces the creation limits.</li>
-            <li>Build one laboratory per magus (Size, Virtues and Flaws, Specializations). Labs feed straight into each magus's Lab Totals.</li>
-            <li>Set covenfolk, income and spending to see the yearly balance and Loyalty.</li>
+            <li>
+              Build one laboratory per magus (Size, Virtues and Flaws, Specializations). Labs feed straight into each magus's Lab Totals. Click a lab Characteristic to see how it is
+              worked out, and a lab Virtue to read it; enter the numbers some need (a Guardian&apos;s Intelligence, an Assistant&apos;s Magic Theory).
+            </li>
+            <li>
+              Set covenfolk, income and spending to see the yearly balance and Loyalty. Use <b>Quick add</b> for specialists, teachers and craftsmen within the starting limits, pick each
+              craftsman&apos;s craft, and press <b>optimal</b> for the number of laborers or craftsmen that keeps spending lowest. Tick <b>tithed</b> and <b>Tithing Miracle</b> per source.
+            </li>
           </ol>
         </Card>
         <Card title="3. Make characters">
@@ -61,7 +70,8 @@ export default function HelpPage() {
             <li>A character older than 35 rolls aging before play on the Concept step. A year that would kill the character is not applied, so you can roll it again.</li>
             <li>
               <b>Guided build</b> (Concept step): rate statements 0–10 about what you want to play and get recommendations with the reason and the page, or a whole draft
-              that passes the rules check. Skipped questions count as 5. The storyguide sets the saga&apos;s realms, speed and politics once under{' '}
+              that passes the rules check. Skipped questions count as 5. Each question ends with what its best options give (Minor then Major Virtues, then Flaws). The storyguide
+              sets the saga&apos;s realms, speed and politics once under{' '}
               <b>House rules &amp; books → Saga</b>.
             </li>
             <li>Powers from Greater, Lesser, Personal or Ritual Power and Heroes&apos; Birthright are designed on the Virtues step: pick a spell within the level budget or describe your own.</li>

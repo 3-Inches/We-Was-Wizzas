@@ -4,8 +4,9 @@
 // filtered, and live in the restrictions data instead.
 
 import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES } from '../../data';
+import { ARCHETYPES } from './magnitudes';
 
-export type TagFamily = 'total' | 'char' | 'art' | 'realm' | 'currency' | 'casting' | 'activity' | 'theme' | 'meta';
+export type TagFamily = 'total' | 'char' | 'art' | 'realm' | 'currency' | 'casting' | 'activity' | 'theme' | 'archetype' | 'meta';
 
 export interface OutcomeTag {
   id: string;
@@ -51,6 +52,7 @@ export const TAGS: OutcomeTag[] = [
   // currencies: what a character spends or gains over time
   t('currency', 'seasons', 'Free seasons'),
   t('currency', 'xp', 'Experience'),
+  t('currency', 'progression', 'Faster progression (rather than flat bonuses)'),
   t('currency', 'vis', 'Vis'),
   t('currency', 'wealth', 'Money'),
   t('currency', 'warping', 'Safety from Warping'),
@@ -112,6 +114,12 @@ export const TAGS: OutcomeTag[] = [
   t('meta', 'spell-like', 'Spell-like effects'),
   t('meta', 'other-book', 'Needs another book'),
   t('meta', 'specialist', 'Excellent at a few things'),
+  t('meta', 'one-art', 'A boost to one Art'),
+  t('meta', 'focus', 'A Magical Focus'),
+  t('meta', 'trade-off', 'A weakness elsewhere, accepted'),
+  t('meta', 'swingy', 'Stronger at some times, weaker at others'),
+  // archetypes: Virtues that only make sense for one kind of character
+  ...ARCHETYPES.map((a) => t('archetype', `arch:${a.id}`, a.name)),
 ];
 
 export const TAG_BY_ID = new Map(TAGS.map((x) => [x.id, x]));
@@ -125,6 +133,7 @@ export const FAMILY_LABEL: Record<TagFamily, string> = {
   casting: 'How you cast',
   activity: 'Activities',
   theme: 'Themes',
+  archetype: 'Archetypes',
   meta: 'Other',
 };
 

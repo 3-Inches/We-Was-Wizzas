@@ -15,6 +15,7 @@ import { vfProblems } from '../character/restrictions';
 import { abilityTag, vfRecords, type TagLink, type VFRecord } from './records';
 import { QUESTIONS, SECTIONS, childrenOf, type Question } from './questions';
 import { isThemeTag, tagLabel } from './tags';
+import { MAGNITUDES, RANKED_TOTALS } from './magnitudes';
 
 
 export interface GuidedContext {
@@ -163,6 +164,8 @@ export interface Scored {
   matches: Match[];
   /** why it is not recommended even though it passed the gates */
   excluded?: string;
+  /** where it stands against the other options for each Total it moves (best first) */
+  ranks?: { tag: string; label: string; rank: number; of: number; note: string }[];
 }
 
 /** When nothing distinguishes the choices: what this kind of character usually wants first. */
@@ -245,17 +248,19 @@ export function scoreOption(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, 
     textScale.set(x.l, c > 0 ? (textPositives++ < 2 ? 1 : 0.2) : 1);
   }
   const core = CORE_TAGS[ctx.c.type];
+  // the player said they would accept a weakness elsewhere for a narrow strength
+  const acceptsTrade = isFlaw && (w['trade-off'] ?? 0) >= 2 && rec.links.some((l) => l.tag === 'trade-off');
   for (const l of rec.links) {
     const { tag, weight } = linkWeight(l, w, pc.tag);
     // a Flaw that cripples what the character type lives on needs an explicit low rating
-    if (isFlaw && !l.hook && l.dir < 0 && l.strength >= 3 && core.includes(tag) && weight > -3) excluded = `Hurts ${tagLabel(tag)}, which a ${ctx.c.type} relies on`;
+    if (isFlaw && !acceptsTrade && !l.hook && l.dir < 0 && l.strength >= 3 && core.includes(tag) && weight > -3) excluded = `Hurts ${tagLabel(tag)}, which a ${ctx.c.type} relies on`;
     if (!weight) continue;
     const contribution = weight * l.strength * l.dir * (textScale.get(l) ?? 1);
     fit += contribution;
     matches.push({ tag, contribution, why: l.why });
     // a Flaw that hurts something the player rated high is never recommended
     // (a word in the text counts once the rating is strong)
-    if (isFlaw && !l.hook && l.dir < 0 && (l.strength >= 2 ? weight >= 2 : weight >= 4)) excluded = `Hurts ${tagLabel(tag)}, which you rated high`;
+    if (isFlaw && !acceptsTrade && !l.hook && l.dir < 0 && (l.strength >= 2 ? weight >= 2 : weight >= 4)) excluded = `Hurts ${tagLabel(tag)}, which you rated high`;
   }
   const still = st.answers[`vf:${def.id}`];
   if (still !== undefined) {
@@ -449,7 +454,61 @@ export function evaluate(st: GuidedState, ctx: GuidedContext): Evaluation {
     }
     scored.push(scoreOption(def, rec, st, w, ctx));
   }
+  rankTotals(scored);
   return { weights: w, scored, gated, complexityOk, type: ctx.c.type };
+}
+
+/** Ranks each option against the others that move the same Total, by the size of its edge. */
+function rankTotals(scored: Scored[]) {
+  for (const { tag, label } of RANKED_TOTALS) {
+    const size = (s: Scored) => MAGNITUDES[s.def.id]?.[tag] ?? 0;
+    const movers = scored.filter((s) => size(s) > 0);
+    for (const s of movers) {
+      const rank = 1 + movers.filter((o) => size(o) > size(s)).length;
+      (s.ranks ??= []).push({ tag, label, rank, of: movers.length, note: MAGNITUDES[s.def.id]!.note });
+    }
+  }
+}
+
+const HINT_GROUPS: { label: string; kind: 'virtue' | 'flaw'; size: 'Minor' | 'Major' }[] = [
+  { label: 'Minor Virtues', kind: 'virtue', size: 'Minor' },
+  { label: 'Major Virtues', kind: 'virtue', size: 'Major' },
+  { label: 'Minor Flaws', kind: 'flaw', size: 'Minor' },
+  { label: 'Major Flaws', kind: 'flaw', size: 'Major' },
+];
+
+/**
+ * What the best options for a question give, for the end of the question: Minor then Major
+ * Virtues, then Minor then Major Flaws, each with a very short note of its edge.
+ */
+export function questionHint(q: Question, ev: Evaluation): string {
+  if (q.noHint) return '';
+  if (q.hint) return q.hint;
+  // an archetype names its own options; its other tags only nudge
+  const tags = Object.entries(q.tags).filter(([t, k]) => k > 0 && (!q.chip || t.startsWith('arch:')));
+  if (!tags.length) return '';
+  const top = tags.reduce((m, [, k]) => Math.max(m, k), 0);
+  const main = new Set(tags.filter(([, k]) => k >= top / 2).map(([t]) => t));
+  const scoredFor = ev.scored
+    .map((s) => {
+      const hits = s.rec.links.filter((l) => main.has(l.tag) && l.dir > 0 && l.strength >= 2);
+      return { s, score: hits.reduce((t, l) => t + l.strength * (q.tags[l.tag] ?? 0), 0), why: hits.sort((a, b) => b.strength - a.strength)[0]?.why };
+    })
+    .filter((x) => x.score > 0 && !x.s.def.categories.includes('Social Status'));
+  const parts: string[] = [];
+  for (const g of HINT_GROUPS) {
+    const best = scoredFor
+      .filter((x) => x.s.def.kind === g.kind && x.s.size === g.size)
+      .sort((a, b) => b.score - a.score || a.s.def.name.localeCompare(b.s.def.name))
+      .slice(0, 3);
+    if (!best.length) continue;
+    const say = (x: (typeof best)[number]) => {
+      const note = MAGNITUDES[x.s.def.id]?.note ?? (x.s.rec.value && !/^(Variable|A story hook)/.test(x.s.rec.value) && x.s.rec.value.length <= 60 ? x.s.rec.value : '');
+      return note ? `${x.s.def.name} (${note})` : x.s.def.name;
+    };
+    parts.push(`${g.label}: ${best.map(say).join(', ')}`);
+  }
+  return parts.join(' · ');
 }
 
 /** Options that match what the player said, best first; the neutral fallback when nothing does. */

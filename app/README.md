@@ -29,6 +29,9 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 - **Guided build** (Concept step): the player rates statements about what they want to play, 0–10 (skipping counts as 5), and gets Virtues, Flaws, a House, Arts and Abilities recommended from every enabled book, then a complete draft that passes the rules check.
   - Every Virtue and Flaw has a record of outcome tags (Casting Totals, Penetration, Faerie, the Church…) with a direction and strength, built from the hand-written mechanics and the book text, plus region and culture gates.
   - Follow-up questions open at 7 or more (or 3 or less) and stop once fewer than 10 options remain. Concept themes pre-set answers; a covenant in the toolkit answers the questions about vis, money, the library and the aura.
+  - For magi, what they do comes first: a starter question on faster progression versus flat bonuses (and why the one Major Hermetic Virtue matters most), then each activity (casting, the lab), the outputs within it (combat casting, Penetration, spontaneous magic, rituals; inventing, lab texts, enchanting, longevity, familiars, experimenting, vis extraction, teaching), then broad versus narrow (a Focus, one Art, or a weakness accepted elsewhere), steady versus cyclic magic, and a pick-any archetype question (Elementalist, Shapeshifter, Healer…).
+  - Each question ends with what its best options give, Minor then Major Virtues, then Minor then Major Flaws ("Minor Virtues: Life Boost (+5 per Fatigue level spent, even into Wounds)…").
+  - Options that move a Total (Casting, Lab, Penetration, spontaneous magic, progression) are ranked against the others that move the same Total by the size of their edge.
   - Each option shows its fit (how well it matches the answers) and its strength (what it is worth in this saga, in seasons over the first years). Mechanical Flaws are suggested for what the player rated low, Story and Personality Flaws for what they rated high, and a Flaw that hurts something rated high never.
   - A tie-breaker round when too much is rated 9–10, House recommendations, explainers and "Still interested?" for complex options, and Browse by tag.
   - The draft records why each choice was made ("from: I expect to cast in a fight — 9"). The storyguide sets the saga's realms, speed and politics once on the saga settings page.
@@ -49,7 +52,12 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 - Hooks & Boons, including the DE situation packages.
 - Build Points for the library (with the creation limits), lab texts, casting tablets, vis sources and stocks, enchanted items, specialists and teachers, and laboratories.
 - Laboratory personalization: Size, Refinement, lab Virtues & Flaws, Specializations and Upkeep.
+  - Entries whose bonus depends on something take a number (a Guardian's or Horde's Intelligence, a Servant's, an Assistant's Intelligence + Magic Theory, a Familiar's Golden Cord, a Studio's display). Either/or entries take a version (Magical Heating and Lighting as the Superior or Excessive version without Upkeep). Conditions can be switched off (Relocation's Warping). Specialization points offer only the allowed choices.
+  - Every Characteristic shows how it is worked out; Safety includes the occupied-Size penalty (DE: base Safety = Refinement − occupied Size).
 - Covenfolk inhabitant points, yearly finances and Loyalty. Members, labs and the aura feed into each character's totals.
+  - Income sources follow the Boons and Hooks (Wealth, Secondary Income, Poverty, Natural Disaster, Indebted, Right, Contested Resource), with the book's source types and yearly Income Modification. Tithes and Tithing Miracles are set per income and vis source, and what the covenant receives is rounded up.
+  - Hidden, Flawed and Illusory Resources each pay for 250 Build Points of chosen resources; a Flawed Resource's story can save half, lose all, or double the loss. The Exceptional Book Boon adds its summa free. Only Hooks whose text allows it can be Unknown.
+  - Craftsmen choose a craft, which sets their cost saving and its limits; buttons find the number of laborers, servants, teamsters and each craft that keeps spending lowest. Quick add makes specialists, teachers and craftsmen within the starting age limits.
 
 **Tools:**
 

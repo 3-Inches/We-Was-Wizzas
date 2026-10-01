@@ -5,8 +5,9 @@
 // Virtue by name: the tags decide which Virtues that means.
 
 import { ARTS, ART_NAMES, CHARACTERISTICS, TECHNIQUES, type Art, type CharType, type Characteristic } from '../../data';
+import { ARCHETYPES } from './magnitudes';
 
-export type SectionId = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I';
+export type SectionId = 'A' | 'O' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I';
 
 export interface Question {
   id: string;
@@ -29,10 +30,17 @@ export interface Question {
   presets?: Record<string, number>;
   /** answered from the covenant when the character has one */
   covenant?: 'vis' | 'wealth' | 'library' | 'aura';
+  /** what the best options for it give, shown at the end of the question (else worked out from the options) */
+  hint?: string;
+  /** no list of options at the end */
+  noHint?: boolean;
+  /** one of a set picked together under its parent (shown as a choice, not rated 0-10) */
+  chip?: boolean;
 }
 
 export const SECTIONS: { id: SectionId; title: string; intro: string; types?: CharType[] }[] = [
   { id: 'A', title: 'The big picture', intro: 'A few broad questions first. Skip any you have no opinion on: a skipped question counts as 5.' },
+  { id: 'O', title: 'What your magus does', intro: 'What you want your magus to be good at: casting spells, lab work, or both. Rate each activity, then the parts of it you care about, then how narrow you want to go. The numbers at the end of a question show what the best options for it give.', types: ['magus'] },
   { id: 'B', title: 'The Arts', intro: 'Which of the fifteen Arts your magus is best at.', types: ['magus'] },
   { id: 'C', title: 'How you cast', intro: 'The situations your magus casts spells in.', types: ['magus'] },
   { id: 'D', title: 'Magical conflict', intro: 'Magic aimed at you, and your magic against others.' },
@@ -88,6 +96,10 @@ const CHAR_PRESETS: Partial<Record<Characteristic, Record<string, number>>> = {
 };
 
 export const EXPLAINERS = {
+  progression:
+    'Virtues that speed up progression (more experience, an Affinity, Elemental Magic, better study) pay off most when taken at the start, because they compound over every season of play. Flat bonuses (Puissant Art, a Magical Focus, Life Boost) give the same edge whenever you get them. But Virtues are hard to gain after creation: only through Initiation into a Mystery, Original Research or Twilight, all slow or risky. A magus may have only one Major Hermetic Virtue (DE p.63), so which one you take is the most build-defining choice you make: Elemental Magic and a Major Magical Focus, for example, can\'t both be had at the start.',
+  narrow:
+    'A Magical Focus adds your lowest Art in it a second time, but only inside its area (a Major Focus covers a broad area such as fire, a Minor one a narrow one such as healing wounds). Puissant Art and an Affinity help everything one Art does. Broad boosts such as Life Boost or Method Caster help every spell. Flaws like a Deficient Art or a Restriction pay for a narrow strength with a weakness elsewhere.',
   focus:
     'Hermetic magic adds a Technique to a Form, so one strong Technique helps every Form it is paired with, and one strong Form helps every Technique. Each extra point in an Art costs more experience than the last. Concentrating gets you high numbers early in a narrow specialty; spreading gets you more spells you can cast and learn, none of them great. Neither is wrong: it is what the character will spend their time on.',
   abilitiesVsArts:
@@ -97,11 +109,48 @@ export const EXPLAINERS = {
 export const QUESTIONS: Question[] = [
   // ------------------------------------------------------------------ A. Big picture
   { id: 'a-complexity', section: 'A', text: 'I’m happy to take options that add extra rules and complexity.', tags: { complexity: 1, 'spell-like': 1 }, build: true },
+  {
+    id: 'a-progression', section: 'A', types: MAGI, build: true, explainer: EXPLAINERS.progression,
+    text: 'At the start of play, I’d rather have Virtues that make my magus grow faster than ones that give fixed bonuses now.', low: 'fixed bonuses now', high: 'faster growth', tags: { progression: 1 },
+  },
   { id: 'a-house', section: 'A', text: 'I care which House my magus belongs to.', tags: {}, types: MAGI, build: true },
   { id: 'a-chars', section: 'A', text: 'I care about my character’s Characteristics (Intelligence, Stamina and so on).', tags: { chars: 1 }, build: true },
   ...CHARACTERISTICS.map((c): Question => ({ id: `a-char-${c}`, section: 'A', parent: 'a-chars', text: `My character is ${CHAR_TEXT[c]}.`, tags: { [`char:${c}`]: 1 }, build: true, presets: CHAR_PRESETS[c] })),
   { id: 'a-focus', section: 'A', text: 'I’d rather be excellent at a few things than decent at many.', tags: { specialist: 1 }, build: true, explainer: EXPLAINERS.focus },
   { id: 'a-abilities', section: 'A', text: 'When play starts, I’d rather have strong Abilities than strong Arts.', low: 'strong Arts', high: 'strong Abilities', tags: {}, types: MAGI, build: true, explainer: EXPLAINERS.abilitiesVsArts },
+
+  // ------------------------------------------------------------------ O. What your magus does: activities, their outputs, then broad or narrow
+  { id: 'o-cast', section: 'O', text: 'Casting spells during stories is a big part of how I want to play.', tags: { casting: 1 }, types: MAGI, build: true, presets: { 'battle-mage': 9, warrior: 7, healer: 7, elemental: 8 } },
+  { id: 'c-fight', section: 'O', parent: 'o-cast', text: 'I expect to cast spells in the middle of a fight.', tags: { speed: 1, casting: 0.3, concentration: 0.5, fatigue: 0.5 }, types: MAGI, presets: { 'battle-mage': 9, warrior: 7 } },
+  { id: 'd-penetrate', section: 'O', parent: 'o-cast', text: 'I’ll need to get my spells past other magi’s or magical creatures’ defences.', tags: { penetration: 1 }, types: MAGI, presets: { 'battle-mage': 8, 'demon-hunter': 8 } },
+  { id: 'c-improvise', section: 'O', parent: 'o-cast', text: 'I’d rather improvise a spell on the spot than learn exactly the right one.', tags: { spont: 1, flexible: 0.5 }, types: MAGI },
+  { id: 'c-no-fatigue', section: 'O', parent: 'c-improvise', text: 'I’d rather my spontaneous magic didn’t tire me.', tags: { 'no-fatigue': 1, fatigue: 0.5 }, types: MAGI },
+  { id: 'c-flexible', section: 'O', parent: 'c-improvise', text: 'I’d like to bend my learned spells to fit the moment (more range, a longer duration, a bigger target).', tags: { flexible: 1 }, types: MAGI },
+  { id: 'c-trade', section: 'O', parent: 'o-cast', text: 'I’d spend Fatigue, even Wounds, to make a spell much stronger when it counts.', tags: { 'cost-power': 1, casting: 0.3, penetration: 0.3 }, types: MAGI },
+  { id: 'c-ritual', section: 'O', parent: 'o-cast', text: 'I care about ritual magic: big, slow ceremonies that use vis.', tags: { ritual: 1 }, types: MAGI },
+  { id: 'c-mastery', section: 'O', parent: 'o-cast', text: 'I’d like a few signature spells I know inside out.', tags: { mastery: 1 }, types: MAGI },
+  { id: 'e-lab', section: 'O', text: 'I want to spend most of my seasons in the lab.', low: 'always out adventuring', high: 'rarely leaves the lab', tags: { lab: 1, adventure: -1 }, types: MAGI, build: true, presets: { lab: 9, enchanter: 8, scholar: 7, warrior: 3, explorer: 3 } },
+  { id: 'e-invent', section: 'O', parent: 'e-lab', text: 'In the lab: inventing new spells.', tags: { 'lab-invent': 1 }, types: MAGI },
+  { id: 'e-texts', section: 'O', parent: 'e-lab', text: 'In the lab: learning spells from other magi’s lab texts.', tags: { 'lab-texts': 1 }, types: MAGI },
+  { id: 'e-enchant', section: 'O', parent: 'e-lab', text: 'In the lab: enchanting items.', tags: { 'lab-enchant': 1 }, types: MAGI, presets: { enchanter: 9 } },
+  { id: 'e-longevity', section: 'O', parent: 'e-lab', text: 'In the lab: longevity rituals, for yourself and others.', tags: { 'lab-longevity': 1, aging: 0.5 }, types: MAGI },
+  { id: 'e-familiar', section: 'O', parent: 'e-lab', text: 'In the lab: binding and strengthening a familiar.', tags: { 'lab-familiar': 1, companion: 0.5 }, types: MAGI, presets: { beast: 8 } },
+  { id: 'e-experiment', section: 'O', parent: 'e-lab', text: 'In the lab: experimenting, and chasing breakthroughs.', tags: { experiment: 1 }, types: MAGI },
+  { id: 'o-lab-vis', section: 'O', parent: 'e-lab', text: 'In the lab: extracting vis from the aura.', tags: { vis: 1 }, types: MAGI },
+  { id: 'e-teach', section: 'O', parent: 'e-lab', text: 'Teaching apprentices and writing books.', tags: { teaching: 1, writing: 1 }, types: MAGI },
+  { id: 'e-adventure-learn', section: 'O', parent: 'e-lab', when: 'low', text: 'When I’m out adventuring, I’d like it to teach me as much as the lab would.', tags: { adventure: 1, xp: 0.5 }, types: MAGI },
+  {
+    id: 'o-narrow', section: 'O', types: MAGI, build: true, explainer: EXPLAINERS.narrow,
+    text: 'I’d rather my magic be superb in one area than a bit better at everything.', low: 'a bit better at everything', high: 'superb in one area', tags: { focus: 0.6, 'one-art': 0.6, specialist: 0.3 },
+  },
+  { id: 'o-narrow-focus', section: 'O', parent: 'o-narrow', text: 'That area is a kind of effect that runs across Arts, such as healing, fire, animals or illusions.', tags: { focus: 1 }, types: MAGI },
+  { id: 'o-narrow-art', section: 'O', parent: 'o-narrow', text: 'That area is one Art (a Technique or a Form).', tags: { 'one-art': 1 }, types: MAGI },
+  { id: 'o-narrow-cost', section: 'O', parent: 'o-narrow', text: 'I’d accept a weakness elsewhere in my magic to pay for it.', tags: { 'trade-off': 1 }, types: MAGI },
+  { id: 'o-swing', section: 'O', text: 'I’m fine with magic that is stronger at some times and weaker at others (by season, day and night, or the moon).', low: 'always the same', high: 'happy with ups and downs', tags: { swingy: 1 }, types: MAGI },
+  { id: 'o-archetype', section: 'O', text: 'I have a particular kind of magus in mind. (Pick any that strike your fancy.)', tags: {}, types: MAGI, noHint: true, presets: Object.fromEntries(ARCHETYPES.filter((a) => a.preset).map((a) => [a.preset!, 8])) },
+  ...ARCHETYPES.map((a): Question => ({
+    id: `o-arch-${a.id}`, section: 'O', parent: 'o-archetype', types: MAGI, chip: true, text: `${a.name}: ${a.blurb}.`, tags: { [`arch:${a.id}`]: 1, ...a.tags }, presets: a.preset ? { [a.preset]: 9 } : undefined,
+  })),
 
   // ------------------------------------------------------------------ B. The Arts
   { id: 'b-arts', section: 'B', text: 'I care which Arts my magus is best at.', tags: {}, types: MAGI, build: true, presets: { elemental: 8, lab: 7, 'battle-mage': 7, healer: 7, beast: 7 } },
@@ -111,24 +160,15 @@ export const QUESTIONS: Question[] = [
   })),
 
   // ------------------------------------------------------------------ C. How you cast
-  { id: 'c-fight', section: 'C', text: 'I expect to cast spells in the middle of a fight.', tags: { speed: 1, casting: 0.3, concentration: 0.5, fatigue: 0.5 }, types: MAGI, presets: { 'battle-mage': 9, warrior: 7 } },
   { id: 'c-hidden', section: 'C', text: 'I’ll often cast where people mustn’t see or hear me doing magic.', tags: { silent: 1 }, types: MAGI, presets: { rogue: 8, social: 7 } },
-  { id: 'c-improvise', section: 'C', text: 'I’d rather improvise a spell on the spot than learn exactly the right one.', tags: { spont: 1, flexible: 0.5 }, types: MAGI },
-  { id: 'c-trade', section: 'C', parent: 'c-improvise', text: 'I’d trade Fatigue or Wounds for more powerful spells.', tags: { 'cost-power': 1, fatigue: -0.5 }, types: MAGI },
-  { id: 'c-trade-formulaic', section: 'C', parent: 'c-trade', text: 'I’d want that trade for formulaic spells too, not just spontaneous ones.', tags: { 'cost-power': 1, casting: 0.5 }, types: MAGI },
-  { id: 'c-no-fatigue', section: 'C', parent: 'c-improvise', text: 'I’d rather my spontaneous magic didn’t tire me.', tags: { 'no-fatigue': 1, fatigue: 0.5 }, types: MAGI },
-  { id: 'c-flexible', section: 'C', parent: 'c-improvise', text: 'I’d like to bend my learned spells to fit the moment (more range, a longer duration, a bigger target).', tags: { flexible: 1 }, types: MAGI },
   { id: 'c-range', section: 'C', text: 'My spells will need to reach far away.', tags: { range: 1 }, types: MAGI },
   { id: 'c-duration', section: 'C', text: 'My spells will need to last a long time.', tags: { duration: 1 }, types: MAGI },
   { id: 'c-target', section: 'C', text: 'My spells will need to affect a lot of people or things at once.', tags: { target: 1 }, types: MAGI },
   { id: 'c-shape', section: 'C', text: 'I’d like to cast while in an animal’s shape.', tags: { shapechanged: 1 }, types: MAGI, presets: { beast: 8 } },
   { id: 'c-multi', section: 'C', text: 'I’d like to cast two spells at once.', tags: { multicast: 1 }, types: MAGI },
-  { id: 'c-ritual', section: 'C', text: 'I care about ritual magic: big, slow ceremonies that use vis.', tags: { ritual: 1 }, types: MAGI },
   { id: 'c-reliable', section: 'C', text: 'I want my magic to be dependable, with few disasters.', tags: { reliability: 1 }, types: MAGI },
-  { id: 'c-mastery', section: 'C', text: 'I’d like a few signature spells I know inside out.', tags: { mastery: 1 }, types: MAGI },
 
   // ------------------------------------------------------------------ D. Magical conflict
-  { id: 'd-penetrate', section: 'D', text: 'I’ll need to get my spells past other magi’s or magical creatures’ defences.', tags: { penetration: 1 }, types: MAGI, presets: { 'battle-mage': 8, 'demon-hunter': 8 } },
   { id: 'd-resist', section: 'D', text: 'I expect hostile magic to be aimed at me.', tags: { 'magic-resistance': 1 }, presets: { 'demon-hunter': 8, 'battle-mage': 7 } },
   { id: 'd-realm-faerie', section: 'D', parent: 'f-faerie', text: 'I’ll be dealing with faeries through my magic.', tags: { 'realm:faerie': 0.5, penetration: 0.5 }, types: MAGI },
   { id: 'd-realm-divine', section: 'D', parent: 'f-divine', text: 'I’ll be dealing with holy figures and places through my magic.', tags: { 'realm:divine': 0.5, 'magic-resistance': 0.5 }, types: MAGI },
@@ -139,15 +179,6 @@ export const QUESTIONS: Question[] = [
   { id: 'd-first', section: 'D', parent: 'd-fight', text: 'I’d like my character to strike first.', tags: { speed: 1, 'char:Qik': 0.5 }, types: NON_MAGI },
 
   // ------------------------------------------------------------------ E. The lab and the long game
-  { id: 'e-lab', section: 'E', text: 'I want to spend most of my seasons in the lab.', low: 'always out adventuring', high: 'rarely leaves the lab', tags: { lab: 1, adventure: -1 }, types: MAGI, build: true, presets: { lab: 9, enchanter: 8, scholar: 7, warrior: 3, explorer: 3 } },
-  { id: 'e-invent', section: 'E', parent: 'e-lab', text: 'In the lab: inventing new spells.', tags: { 'lab-invent': 1 }, types: MAGI },
-  { id: 'e-enchant', section: 'E', parent: 'e-lab', text: 'In the lab: enchanting items.', tags: { 'lab-enchant': 1 }, types: MAGI, presets: { enchanter: 9 } },
-  { id: 'e-longevity', section: 'E', parent: 'e-lab', text: 'In the lab: longevity rituals, for yourself and others.', tags: { 'lab-longevity': 1, aging: 0.5 }, types: MAGI },
-  { id: 'e-familiar', section: 'E', parent: 'e-lab', text: 'In the lab: binding and strengthening a familiar.', tags: { 'lab-familiar': 1, companion: 0.5 }, types: MAGI, presets: { beast: 8 } },
-  { id: 'e-texts', section: 'E', parent: 'e-lab', text: 'In the lab: learning spells from other magi’s lab texts.', tags: { 'lab-texts': 1 }, types: MAGI },
-  { id: 'e-experiment', section: 'E', parent: 'e-lab', text: 'In the lab: experimenting, and chasing breakthroughs.', tags: { experiment: 1 }, types: MAGI },
-  { id: 'e-teach', section: 'E', parent: 'e-lab', text: 'Teaching apprentices and writing books.', tags: { teaching: 1, writing: 1 }, types: MAGI },
-  { id: 'e-adventure-learn', section: 'E', parent: 'e-lab', when: 'low', text: 'When I’m out adventuring, I’d like it to teach me as much as the lab would.', tags: { adventure: 1, xp: 0.5 }, types: MAGI },
   { id: 'e-vis', section: 'E', text: 'I want to get more out of every pawn of vis.', tags: { vis: 1 }, types: MAGI },
   { id: 'e-study', section: 'E', text: 'I want to learn faster from books and teachers.', tags: { study: 1, xp: 0.5 }, presets: { scholar: 8 } },
   { id: 'e-time', section: 'E', text: 'I want plenty of free time for my own projects.', tags: { seasons: 1 }, types: NON_MAGI },
