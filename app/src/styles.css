@@ -389,6 +389,7 @@ button.fix-primary { border-color: var(--accent-2); color: var(--accent-2); font
 .q-row.depth-1 { margin-left: 22px; }
 .q-row.depth-2 { margin-left: 44px; }
 .q-row.depth-3 { margin-left: 66px; }
+.q-hint { color: var(--muted, #8a7a66); font-size: 0.85em; }
 .q-text { flex: 1; }
 .explainer { background: var(--panel-2); border-left: 3px solid var(--info); padding: 6px 10px; margin: 6px 0; }
 .short-row { display: flex; gap: 6px; align-items: center; padding: 2px 0; font-size: 0.9em; }

@@ -8,10 +8,11 @@ import { newCharacter, setHouse } from '../character/factory';
 import { deriveCharacter } from '../character/derive';
 import { validateCharacter } from '../character/validate';
 import { newCovenant } from '../covenant';
-import { QUESTIONS, childrenOf } from './questions';
+import { QUESTIONS, QUESTION_BY_ID, childrenOf } from './questions';
+import { ARCHETYPES, MAGNITUDES } from './magnitudes';
 import { TAGS } from './tags';
 import { inventory, vfRecords } from './records';
-import { candidatesFor, evaluate, shortlist, statusShortlist, STOP_BELOW, traceOf, visibleQuestions, type GuidedContext } from './score';
+import { candidatesFor, evaluate, questionHint, shortlist, statusShortlist, STOP_BELOW, traceOf, visibleQuestions, type GuidedContext } from './score';
 import { fixedProfile, simulate } from './simulate';
 import { autoBuild } from './autobuild';
 
@@ -50,9 +51,10 @@ describe('guided build: the data', () => {
 describe('guided build: the questionnaire', () => {
   it('path length: the longest path stays near 100 answered questions; typical ones far fewer', () => {
     const longest = simulate(fixedProfile('all tens', {}, 10), ctxOf(character('magus')));
-    expect(longest.answered).toBeLessThanOrEqual(118);
+    // every follow-up opened: the outputs-first questions (activity, outputs, broad or narrow) add a few
+    expect(longest.answered).toBeLessThanOrEqual(125);
     const typical = [
-      simulate(fixedProfile('battle mage', { 'c-fight': 10, 'd-penetrate': 9, 'b-arts': 8, 'b-art-Pe': 10, 'b-art-Ig': 9, 'e-lab': 2 }), ctxOf(character('magus', 'flambeau'))),
+      simulate(fixedProfile('battle mage', { 'o-cast': 10, 'c-fight': 10, 'd-penetrate': 9, 'b-arts': 8, 'b-art-Pe': 10, 'b-art-Ig': 9, 'e-lab': 2 }), ctxOf(character('magus', 'flambeau'))),
       simulate(fixedProfile('faerie', { 'f-faerie': 10, 'f-faerie-blood': 9, 'h-social': 8 }), ctxOf(character('companion'))),
       simulate(fixedProfile('grog', { 'd-fight': 10, 'h-fight': 10 }), ctxOf(character('grog'))),
     ];
@@ -103,7 +105,7 @@ describe('guided build: recommendations', () => {
   });
 
   it('flaw direction: rating ritual magic 0 surfaces ritual Flaws; the Divine at 10 surfaces Divine Story and Personality Flaws', () => {
-    const noRituals = simulate(fixedProfile('no rituals', { 'c-ritual': 0 }), ctxOf(character('magus')));
+    const noRituals = simulate(fixedProfile('no rituals', { 'o-cast': 8, 'c-ritual': 0 }), ctxOf(character('magus')));
     expect(noRituals.flaws.slice(0, 15).some((s) => s.rec.links.some((l) => l.tag === 'ritual' && l.dir < 0))).toBe(true);
     const divine = simulate(fixedProfile('divine', { 'f-divine': 10, 'g-church': 9, 'g-good': 9 }), ctxOf(character('companion')));
     const top = divine.flaws.slice(0, 10);
@@ -124,7 +126,7 @@ describe('guided build: recommendations', () => {
 
   it('traceability: every recommendation carries its source and the answers behind it', () => {
     const c = character('magus', 'flambeau');
-    const r = simulate(fixedProfile('battle mage', { 'c-fight': 9, 'd-penetrate': 9 }), ctxOf(c));
+    const r = simulate(fixedProfile('battle mage', { 'o-cast': 9, 'c-fight': 9, 'd-penetrate': 9 }), ctxOf(c));
     for (const s of [...r.virtues.slice(0, 20), ...r.flaws.slice(0, 10)]) {
       expect(s.def.source.book).toBeTruthy();
       if (s.fit > 0) expect(traceOf(s, r.state, ctxOf(c))).toMatch(/— \d+/);
@@ -139,7 +141,7 @@ describe('guided build: recommendations', () => {
       return expected.filter((id) => ids.has(id)).length / expected.length;
     };
     // Darius of Flambeau (DE p.108)
-    expect(recall(character('magus', 'flambeau'), { 'b-arts': 9, 'b-art-Pe': 10, 'b-art-Ig': 6, 'c-fight': 9, 'c-mastery': 9, 'd-penetrate': 8, 'd-resist': 7, 'f-senses': 9, 'f-politics': 7, 'g-fame': 8, 'g-rival': 9, 'g-duty': 7, 'g-heroic': 7, 'd-concentrate': 7, 'e-lab': 3, 'h-social': 2, 'g-outsider': 7 },
+    expect(recall(character('magus', 'flambeau'), { 'o-cast': 9, 'b-arts': 9, 'b-art-Pe': 10, 'b-art-Ig': 6, 'c-fight': 9, 'c-mastery': 9, 'd-penetrate': 8, 'd-resist': 7, 'f-senses': 9, 'f-politics': 7, 'g-fame': 8, 'g-rival': 9, 'g-duty': 7, 'g-heroic': 7, 'd-concentrate': 7, 'e-lab': 3, 'h-social': 2, 'g-outsider': 7 },
       ['affinity-with-art', 'flawless-magic', 'fast-caster', 'hermetic-prestige', 'premonitions', 'second-sight', 'strong-willed', 'enduring-constitution', 'blatant-gift-flaw', 'driven-flaw', 'enemies-flaw', 'disfigured-flaw'])).toBeGreaterThan(0.6);
     // the sample knight (DE, Companions)
     expect(recall(character('companion'), { 'g-birth': 10, 'g-wealth': 9, 'h-fight': 10, 'd-fight': 10, 'f-divine': 7, 'f-divine-faith': 7, 'g-duty': 9, 'g-vice': 7, 'a-chars': 8, 'a-focus': 8 },
@@ -196,7 +198,7 @@ describe('guided build: auto-build', () => {
 
   it('drafts from strong answers pass the rules check too, and every choice says why', () => {
     const drafts = [
-      build('magus', { 'c-fight': 10, 'd-penetrate': 10, 'b-arts': 9, 'b-art-Pe': 10, 'b-art-Ig': 10, 'c-ritual': 0, 'e-lab': 2, 'g-rival': 8 }),
+      build('magus', { 'o-cast': 10, 'c-fight': 10, 'd-penetrate': 10, 'b-arts': 9, 'b-art-Pe': 10, 'b-art-Ig': 10, 'c-ritual': 0, 'e-lab': 2, 'g-rival': 8 }),
       build('magus', { 'e-lab': 10, 'e-invent': 9, 'e-enchant': 10, 'b-arts': 8, 'b-art-Cr': 9, 'b-art-Te': 9, 'a-focus': 9 }, undefined, 'verditius'),
       build('companion', { 'f-faerie': 10, 'f-faerie-blood': 9, 'h-social': 8, 'g-love': 8 }),
       build('grog', { 'd-fight': 10, 'd-hard-to-hurt': 9, 'h-fight': 10 }),
@@ -216,5 +218,53 @@ describe('guided build: auto-build', () => {
     // the battle mage spends on the Arts they rated
     const d = deriveCharacter(drafts[0].c, data, rules);
     expect(d.arts.Pe.score).toBeGreaterThan(d.arts.Cr.score);
+  });
+});
+
+describe('guided build: outputs first, Totals ranked, ranges in the questions', () => {
+  it('ranks options against the others that move the same Total: Life Boost is near the top for casting', () => {
+    const c = character('magus');
+    const r = simulate(fixedProfile('caster', { 'o-cast': 10 }), ctxOf(c));
+    const lb = r.evaluation.scored.find((s) => s.def.id === 'life-boost')!;
+    expect(lb.ranks?.find((x) => x.tag === 'casting')?.rank).toBe(1);
+    const top = r.virtues.slice(0, 8).map((s) => s.def.id);
+    expect(top).toContain('life-boost');
+    expect(top.indexOf('life-boost')).toBeLessThan(top.indexOf('puissant-art') < 0 ? 99 : top.indexOf('puissant-art'));
+  });
+  it('ends numeric questions with what the best options give, Minor before Major and Virtues before Flaws', () => {
+    const c = character('magus');
+    const ev = evaluate({ answers: {}, declined: [] }, ctxOf(c));
+    const hint = questionHint(QUESTION_BY_ID.get('o-cast')!, ev);
+    expect(hint).toMatch(/^Minor Virtues: .*Life Boost \(\+5 per Fatigue level spent, even into Wounds\)/);
+    expect(hint).toMatch(/Major Virtues: .*Major Magical Focus \(lowest Art added twice/);
+    expect(hint.indexOf('Minor Virtues')).toBeLessThan(hint.indexOf('Major Virtues'));
+    const narrow = questionHint(QUESTION_BY_ID.get('o-narrow-cost')!, ev);
+    expect(narrow).toMatch(/Minor Flaws: .*Deficient Form/);
+  });
+  it('asks the archetype question and recommends what only that archetype wants', () => {
+    const c = character('magus');
+    const plain = simulate(fixedProfile('caster', { 'o-cast': 9 }), ctxOf(c));
+    expect(plain.virtues.slice(0, 5).map((s) => s.def.id)).not.toContain('elemental-magic');
+    const r = simulate(fixedProfile('elementalist', { 'o-cast': 9, 'o-archetype': 9, 'o-arch-elementalist': 10 }), ctxOf(c));
+    expect(r.virtues.slice(0, 5).map((s) => s.def.id)).toContain('elemental-magic');
+  });
+  it('recommends progression Virtues first when the player asks for growth', () => {
+    const c = character('magus');
+    const r = simulate(fixedProfile('grower', { 'a-progression': 10, 'o-cast': 8 }), ctxOf(c));
+    const ids = r.virtues.map((s) => s.def.id);
+    expect(ids.indexOf('affinity-with-art')).toBeLessThan(ids.indexOf('puissant-art'));
+    const flat = simulate(fixedProfile('flat', { 'a-progression': 0, 'o-cast': 8 }), ctxOf(c)).virtues.map((s) => s.def.id);
+    expect(flat.indexOf('puissant-art')).toBeLessThan(flat.indexOf('affinity-with-art') < 0 ? 999 : flat.indexOf('affinity-with-art'));
+  });
+  it('lets a narrow-at-a-cost magus take a Deficient Art even while rating casting high', () => {
+    const c = character('magus');
+    const no = simulate(fixedProfile('caster', { 'o-cast': 9 }), ctxOf(c));
+    expect(no.evaluation.scored.find((s) => s.def.id === 'deficient-form-flaw')?.excluded).toBeTruthy();
+    const yes = simulate(fixedProfile('narrow', { 'o-cast': 9, 'o-narrow': 9, 'o-narrow-cost': 10 }), ctxOf(c));
+    expect(yes.evaluation.scored.find((s) => s.def.id === 'deficient-form-flaw')?.excluded).toBeUndefined();
+    expect(yes.flaws.slice(0, 10).map((s) => s.def.id)).toContain('deficient-form-flaw');
+  });
+  it('knows every Virtue and Flaw its tables name', () => {
+    for (const id of [...Object.keys(MAGNITUDES), ...ARCHETYPES.flatMap((a) => a.vf.map(([v]) => v))]) expect(data.vfById.has(id), id).toBe(true);
   });
 });
