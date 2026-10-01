@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
 import { SITUATIONS } from '../../engine/covenant';
+import { canBeUnknown, mechanicOf } from '../../engine/covenantRules';
+import { HookMechanics } from './HookMechanics';
 import type { HookBoonDef } from '../../data';
 import { uid } from '../../util/id';
 import { BookBadge, Card, Markdown, SearchInput } from '../kit';
@@ -27,7 +29,17 @@ export default function HooksTab({ cov, update, dc, data }: CovTabProps) {
     return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0]));
   }, [list]);
 
-  const add = (h: HookBoonDef) => update((x) => void x.hooksBoons.push({ uid: uid(), defId: h.id, name: h.name, kind: h.kind, size: h.size }));
+  const add = (h: HookBoonDef) =>
+    update((x) => {
+      const hb = { uid: uid(), defId: h.id, name: h.name, kind: h.kind, size: h.size };
+      x.hooksBoons.push(hb);
+      // Secondary Income is a source of its own: add it to the finances
+      if (mechanicOf(hb) === 'secondary-income') {
+        const src = { uid: uid(), name: 'Secondary income', type: 'Trade', level: 'Typical' as const, pounds: 100, customPounds: false };
+        x.income.push(src);
+        Object.assign(x.hooksBoons[x.hooksBoons.length - 1], { target: src.uid });
+      }
+    });
 
   const applySituation = (name: string) => {
     const sit = SITUATIONS[name];
@@ -62,15 +74,15 @@ export default function HooksTab({ cov, update, dc, data }: CovTabProps) {
                   return (
                     <div key={h.uid} className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
                       <div className="row">
-                        <span className="clickable" onClick={() => setOpen(open === h.uid ? null : h.uid)}>
-                          <b>{h.name}</b>
+                        <span className="clickable" title="Show what it is" onClick={() => setOpen(open === h.uid ? null : h.uid)}>
+                          {open === h.uid ? '▾' : '▸'} <b>{h.name}</b>
                         </span>
                         <span className="badge">{h.size}</span>
                         {h.unknown && <span className="badge warn">Unknown (counts as Major)</span>}
                         {def && <BookBadge book={def.source.book} line={def.source.line} />}
                         <span style={{ flex: 1 }} />
-                        {k === 'hook' && h.size === 'Minor' && (
-                          <label className="inline small" title="An unknown Minor Hook counts as Major for Boon points (DE p.181–184)">
+                        {k === 'hook' && h.size === 'Minor' && (canBeUnknown(def) || h.unknown) && (
+                          <label className="inline small" title="An Unknown Minor Hook counts as Major for Boon points. Only Hooks whose text says they can be Unknown may be (Covenants ch.2).">
                             <input type="checkbox" checked={!!h.unknown} onChange={(e) => update((x) => void (x.hooksBoons.find((y) => y.uid === h.uid)!.unknown = e.target.checked))} /> unknown
                           </label>
                         )}
@@ -85,6 +97,7 @@ export default function HooksTab({ cov, update, dc, data }: CovTabProps) {
                         onChange={(e) => update((x) => void (x.hooksBoons.find((y) => y.uid === h.uid)!.note = e.target.value))}
                       />
                       {open === h.uid && def && <Markdown text={def.deText ?? def.text} />}
+                      <HookMechanics hb={h} cov={cov} update={update} dc={dc} />
                     </div>
                   );
                 })}
@@ -140,6 +153,7 @@ export default function HooksTab({ cov, update, dc, data }: CovTabProps) {
                       <b>{h.name}</b>
                     </span>
                     <span className="badge">{h.size}</span>
+                    {canBeUnknown(h) && <span className="badge" title="This Hook may be taken as Unknown">can be Unknown</span>}
                     {h.requires && <span className="badge info">requires {h.requires}</span>}
                     <BookBadge book={h.source.book} line={h.source.line} />
                     <span style={{ flex: 1 }} />

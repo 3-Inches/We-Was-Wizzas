@@ -1,14 +1,13 @@
 import { useMemo, useState } from 'react';
-import { ARTS, ART_NAMES, type LabCharacteristic, type LabVFDef } from '../../data';
-import { deriveLab, newLab } from '../../engine/lab';
-import type { Laboratory } from '../../engine/types';
+import { ART_NAMES, type LabCharacteristic, type LabVFDef } from '../../data';
+import { deriveLab, labChoiceOptions, newLab } from '../../engine/lab';
+import { FREE_FORM_CHARS, LAB_OPTIONS } from '../../data/labOptions';
+import type { LabVirtueEntry, Laboratory } from '../../engine/types';
 import { useSagaCharacters } from '../../store/hooks';
 import { uid } from '../../util/id';
-import { BookBadge, Card, Field, Markdown, SearchInput, Stepper } from '../kit';
+import { BookBadge, Card, Field, Markdown, SearchInput, Stepper, Total } from '../kit';
 import type { CovTabProps } from './shared';
 
-const ACTIVITIES = ['Experimentation', 'Familiar', 'Items', 'Longevity Rituals', 'Spells', 'Teaching', 'Texts', 'Vis Extraction'];
-const SPEC_KEYS = [...ACTIVITIES, ...ARTS];
 const CHAR_KEYS: LabCharacteristic[] = ['Size', 'Refinement', 'General Quality', 'Upkeep', 'Safety', 'Warping', 'Health', 'Aesthetics'];
 
 export default function LabsTab({ cov, update, dc, data }: CovTabProps) {
@@ -111,7 +110,7 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
               </select>
             </Field>
             <Field label="Size (bought)" hint="20 BP per point">
-              <Stepper value={lab.size} min={-3} max={10} width={36} onChange={(v) => set((l) => void (l.size = v))} />
+              <Stepper value={lab.size} min={-3} max={40} width={36} onChange={(v) => set((l) => void (l.size = v))} />
             </Field>
             <Field label="Refinement" hint="gained by improving the lab in play">
               <Stepper value={lab.refinement} min={0} width={36} onChange={(v) => set((l) => void (l.refinement = v))} />
@@ -128,15 +127,22 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
           <div className="row">
             {CHAR_KEYS.map((k) => (
               <div key={k} className="stat">
-                <span className="v">{dl.characteristics[k] >= 0 && k !== 'Size' ? `+${dl.characteristics[k]}` : dl.characteristics[k]}</span>
+                <span className="v">
+                  <Total value={dl.characteristics[k] >= 0 && k !== 'Size' ? `+${dl.characteristics[k]}` : dl.characteristics[k]} parts={dl.parts[k]} label={k} />
+                </span>
                 <span className="l">{k}</span>
               </div>
             ))}
           </div>
           <div className="small" style={{ marginTop: 6 }}>
-            Virtue points {dl.virtuePoints} − Flaw points {dl.flawPoints} = {dl.virtuePoints - dl.flawPoints}; capacity Size + Refinement = {dl.size + dl.refinement}; free space {dl.freeSpace}.
-            Upkeep costs {dl.upkeepPoints} points ({dl.yearlyCost} £/year at {lab.use} use). Build cost {dl.buildPoints} BP.
+            Virtue points {dl.virtuePoints} − Flaw points {dl.flawPoints} = {dl.virtuePoints - dl.flawPoints}; capacity Size + Refinement = {dl.size + dl.refinement}; free space {dl.freeSpace};
+            occupied Size {dl.occupiedSize}. Upkeep costs {dl.upkeepPoints} points ({dl.yearlyCost} £/year at {lab.use} use). Build cost {dl.buildPoints} BP.
           </div>
+          <p className="small muted">
+            Click a number to see how it is worked out. Base Safety is Refinement − occupied Size, and the occupied Size (Virtue points − Flaw points − Refinement) only counts once it is
+            above 0. So every Minor or Major Virtue that fills space lowers Safety by 1 or 3 once the lab's free room is used up, even ones that list no Safety change (such as the
+            Expansions). Raising Refinement gives that Safety back (DE Laboratory chapter).
+          </p>
           <h4>Specializations</h4>
           <div className="row">
             {Object.entries(dl.specializations).map(([k, v]) => (
@@ -161,62 +167,9 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
           ))}
           <h4>Virtues & Flaws</h4>
           {lab.virtues.length === 0 && <div className="small muted">None — a standard lab.</div>}
-          {lab.virtues.map((v, idx) => {
-            const def = data.labVFById.get(v.defId);
-            const used = Object.values(v.choice ?? {}).reduce((s, n) => s + n, 0);
-            return (
-              <div key={v.uid} className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
-                <div className="row">
-                  <b>{def?.name ?? v.defId}</b>
-                  <span className={`badge ${def?.kind === 'flaw' ? 'bad' : 'good'}`}>
-                    {def?.size} {def?.kind}
-                  </span>
-                  <span className="small soft" style={{ flex: 1 }}>
-                    {def?.modText}
-                  </span>
-                  <button className="small ghost" onClick={() => set((l) => void l.virtues.splice(idx, 1))}>
-                    ✕
-                  </button>
-                </div>
-                {def?.mods.choicePoints ? (
-                  <div className="row small">
-                    Assign {def.mods.choicePoints} point(s) ({def.mods.choice}): {used}/{def.mods.choicePoints}
-                    {Object.entries(v.choice ?? {}).map(([k, n]) => (
-                      <span key={k} className="badge">
-                        {k} +{n}
-                        <span className="clickable" onClick={() => set((l) => { const c = { ...(l.virtues[idx].choice ?? {}) }; delete c[k]; l.virtues[idx].choice = c; })}>
-                          ✕
-                        </span>
-                      </span>
-                    ))}
-                    {used < def.mods.choicePoints && (
-                      <select
-                        value=""
-                        onChange={(e) => e.target.value && set((l) => { const c = { ...(l.virtues[idx].choice ?? {}) }; c[e.target.value] = (c[e.target.value] ?? 0) + 1; l.virtues[idx].choice = c; })}
-                      >
-                        <option value="">+1 to…</option>
-                        {SPEC_KEYS.map((k) => (
-                          <option key={k} value={k}>
-                            {ART_NAMES[k as keyof typeof ART_NAMES] ?? k}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                    {/feature/i.test(def.name) && (
-                      <select value="" onChange={(e) => e.target.value && set((l) => void (l.virtues[idx].note = e.target.value))} title="Pick a feature">
-                        <option value="">{v.note ?? 'choose feature…'}</option>
-                        {data.labFeatures.map((f) => (
-                          <option key={f.id} value={f.name} title={f.text}>
-                            {f.name} ({f.specializations.join(', ')})
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                  </div>
-                ) : null}
-              </div>
-            );
-          })}
+          {lab.virtues.map((v, idx) => (
+            <LabEntryRow key={v.uid} lab={lab} entry={v} idx={idx} set={set} data={data} />
+          ))}
           <h4>Custom adjustments (house rulings)</h4>
           <div className="row">
             {CHAR_KEYS.filter((k) => k !== 'Size' && k !== 'Refinement').map((k) => (
@@ -280,13 +233,154 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
                     {has && !v.repeatable ? 'taken' : '+ Add'}
                   </button>
                 </div>
-                <div className="small soft">{v.modText}</div>
-                {openVf === v.id && <Markdown text={v.text} />}
+                <div className="small soft">
+                  {v.modText}
+                  {spaceNote(v, dl)}
+                </div>
+                {openVf === v.id && (
+                  <>
+                    <Markdown text={v.text} />
+                    {LAB_OPTIONS[v.id]?.note && <div className="small muted">{LAB_OPTIONS[v.id]!.note}</div>}
+                  </>
+                )}
               </div>
             );
           })}
         </div>
       </Card>
+    </div>
+  );
+}
+
+/** What taking a Virtue or Flaw does to Safety through the space it fills or frees. */
+function spaceNote(v: LabVFDef, dl: ReturnType<typeof deriveLab>): string {
+  const pts = v.size === 'Major' ? 3 : v.size === 'Minor' ? 1 : 0;
+  if (!pts) return '';
+  const after = dl.occupiedSize + (v.kind === 'virtue' ? pts : -pts);
+  const delta = Math.max(0, dl.occupiedSize) - Math.max(0, after);
+  if (!delta) return v.kind === 'virtue' ? ` · fills ${pts} point(s) of free space` : '';
+  return ` · ${v.kind === 'virtue' ? 'fills' : 'frees'} ${pts} point(s) of space: Safety ${delta > 0 ? '+' : ''}${delta} here`;
+}
+
+const specLabel = (k: string) => ART_NAMES[k as keyof typeof ART_NAMES] ?? k;
+
+/** A Virtue or Flaw the lab has, with the choices it needs. */
+function LabEntryRow({ lab, entry: v, idx, set, data }: { lab: Laboratory; entry: LabVirtueEntry; idx: number; set: (fn: (l: Laboratory) => void) => void; data: CovTabProps['data'] }) {
+  const [open, setOpen] = useState(false);
+  const def = data.labVFById.get(v.defId);
+  const opt = LAB_OPTIONS[v.defId];
+  const edit = (fn: (e: LabVirtueEntry) => void) => set((l) => void fn(l.virtues[idx]));
+  const want = def?.mods.choicePoints ?? 0;
+  const used = Object.values(v.choice ?? {}).reduce((s, n) => s + n, 0);
+  const options = labChoiceOptions(v.defId, lab, data);
+  const free = opt?.freeForm;
+  return (
+    <div className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
+      <div className="row">
+        <span className="clickable" title="Show what it is" onClick={() => setOpen(!open)}>
+          {open ? '▾' : '▸'} <b>{def?.name ?? v.defId}</b>
+        </span>
+        <span className={`badge ${def?.kind === 'flaw' ? 'bad' : 'good'}`}>
+          {def?.size} {def?.kind}
+        </span>
+        <span className="small soft" style={{ flex: 1 }}>
+          {def?.modText}
+        </span>
+        <button className="small ghost" onClick={() => set((l) => void l.virtues.splice(idx, 1))}>
+          ✕
+        </button>
+      </div>
+      {open && def && (
+        <div>
+          <Markdown text={def.text} />
+          <BookBadge book={def.source.book} line={def.source.line} />
+        </div>
+      )}
+      {opt?.note && <div className="small muted">{opt.note}</div>}
+      {opt?.alts && (
+        <div className="row small">
+          Version:
+          <select value={v.alt ?? opt.alts[0].id} onChange={(e) => edit((x) => void (x.alt = e.target.value))}>
+            {opt.alts.map((a) => (
+              <option key={a.id} value={a.id}>
+                {a.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      {opt?.inputs && (
+        <div className="row small">
+          {opt.inputs.map((i) => (
+            <Field key={i.key} label={i.label}>
+              <Stepper value={v.inputs?.[i.key] ?? i.def} min={i.min} max={i.max} width={32} onChange={(n) => edit((x) => void (x.inputs = { ...(x.inputs ?? {}), [i.key]: n }))} />
+            </Field>
+          ))}
+        </div>
+      )}
+      {opt?.toggles?.map((t) => (
+        <label key={t.key} className="inline small">
+          <input type="checkbox" checked={v.toggles?.[t.key] ?? t.def} onChange={(e) => edit((x) => void (x.toggles = { ...(x.toggles ?? {}), [t.key]: e.target.checked }))} /> {t.label}
+        </label>
+      ))}
+      {free && (
+        <div className="row small">
+          {FREE_FORM_CHARS.map((k) => (
+            <Field key={k} label={k}>
+              <Stepper value={v.inputs?.[k] ?? 0} width={32} onChange={(n) => edit((x) => void (x.inputs = { ...(x.inputs ?? {}), [k]: n }))} />
+            </Field>
+          ))}
+        </div>
+      )}
+      {/feature/i.test(def?.name ?? '') && (
+        <div className="row small">
+          Feature:
+          <select value={v.note ?? ''} onChange={(e) => edit((x) => void (x.note = e.target.value || undefined))} title="Pick a feature">
+            <option value="">choose feature…</option>
+            {data.labFeatures.map((f) => (
+              <option key={f.id} value={f.name} title={f.text}>
+                {f.name} ({f.specializations.join(', ')})
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      {want > 0 && opt?.choiceSingle && (
+        <div className="row small">
+          {want} point(s) on:
+          <select value={Object.keys(v.choice ?? {})[0] ?? ''} onChange={(e) => edit((x) => void (x.choice = e.target.value ? { [e.target.value]: want } : {}))}>
+            <option value="">choose…</option>
+            {options.map((k) => (
+              <option key={k} value={k}>
+                {specLabel(k)}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      {(want > 0 && !opt?.choiceSingle) || free ? (
+        <div className="row small">
+          {free ? 'Specializations:' : `Assign ${want} point(s) (${def?.mods.choice}): ${used}/${want}`}
+          {Object.entries(v.choice ?? {}).map(([k, n]) => (
+            <span key={k} className="badge">
+              {specLabel(k)} +{n}
+              <span className="clickable" onClick={() => edit((x) => { const c = { ...(x.choice ?? {}) }; delete c[k]; x.choice = c; })}>
+                ✕
+              </span>
+            </span>
+          ))}
+          {(free || used < want) && (
+            <select value="" onChange={(e) => e.target.value && edit((x) => { const c = { ...(x.choice ?? {}) }; c[e.target.value] = (c[e.target.value] ?? 0) + 1; x.choice = c; })}>
+              <option value="">+1 to…</option>
+              {options.map((k) => (
+                <option key={k} value={k}>
+                  {specLabel(k)}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -1,7 +1,12 @@
 // Covenant creation and management (DE Chapter 6; Covenants).
 
 import type { GameData } from '../data';
-import type { Character, Covenant, LibraryBook } from './types';
+import { ARTS, ART_NAMES } from '../data/constants';
+import type { Character, Covenant, LibraryBook, Specialist } from './types';
+import {
+  CATEGORY_LIMIT, abilityCapAtAge, canBeUnknown, computeIncome, computePools, countOf, craftOf, craftsmanSaving, findCraft, mechanicOf, miracleMultiplierOf,
+  receivedAfterTithe, specialistCost, type BPPool, type CostCategory, type CovResource, type CraftDef, type IncomeLine, type IncomeResult,
+} from './covenantRules';
 import { deriveLab, type DerivedLab } from './lab';
 import { abilityScoreFromXp } from './xp';
 
@@ -15,8 +20,15 @@ export const POWER_LEVELS = [
 export interface BPLine {
   category: string;
   label: string;
+  /** Build Points charged to the covenant's own total (0 when a Boon or Hook pays) */
   cost: number;
   issue?: string;
+  /** the resource bought (book, vis source, item, specialist or lab uid) */
+  ref?: string;
+  /** what it costs before any Boon or Hook pays for it */
+  fullCost?: number;
+  /** the Boon or Hook whose Build Points pay for it */
+  paidBy?: string;
 }
 
 export function summaCost(b: LibraryBook): { cost: number; issue?: string } {
@@ -49,6 +61,10 @@ export interface DerivedCovenant {
   aura: number;
   hiddenResourcesBP: number;
   bpLines: BPLine[];
+  /** Hidden, Flawed and Illusory Resources */
+  pools: BPPool[];
+  /** resources that are illusory, or lost to a Flawed Resource story */
+  unreal: Set<string>;
   bpSpent: number;
   bpAvailable: number;
   powerLevel: (typeof POWER_LEVELS)[number];
@@ -62,6 +78,15 @@ export interface DerivedCovenant {
   members: Character[];
 }
 
+export interface CraftLine {
+  craft: CraftDef;
+  people: number;
+  /** what they could save, before the limits */
+  potential: number;
+  applied: { category: CostCategory; pounds: number; limit: number }[];
+  saved: number;
+}
+
 export interface FinanceResult {
   inhabitantPoints: number;
   servantsRequired: number;
@@ -69,10 +94,19 @@ export interface FinanceResult {
   labPoints: number;
   expenditures: { label: string; pounds: number }[];
   savings: { label: string; pounds: number }[];
+  /** each cost category before savings, with what one craft may save of it */
+  categories: { category: CostCategory; total: number; perCraft: number; saved: number }[];
+  crafts: CraftLine[];
+  /** craftsmen whose craft is not one that saves money */
+  noCraft: Specialist[];
   totalExpenditure: number;
   income: number;
+  incomeLines: IncomeLine[];
+  incomeIssues: IncomeResult['issues'];
+  debt: number;
   balance: number;
   writersCount: number;
+  laborerSaving: number;
 }
 
 export interface LoyaltyResult {
@@ -109,13 +143,11 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   let hookPoints = 0;
   let boonPoints = 0;
   let auraBoons = 0;
-  let hidden = 0;
   for (const hb of cov.hooksBoons) {
     const pts = hb.size === 'Major' || hb.unknown ? 3 : 1;
     if (hb.kind === 'hook') hookPoints += pts;
     else boonPoints += hb.size === 'Major' ? 3 : 1;
     if (hb.kind === 'boon' && hb.size === 'Minor' && /^aura$/i.test(hb.name)) auraBoons++;
-    if (hb.kind === 'boon' && /hidden resources/i.test(hb.name)) hidden += 250;
     if (hb.kind === 'boon') {
       const def = hb.defId ? data.hookBoonById.get(hb.defId) : undefined;
       if (def?.requires && !cov.hooksBoons.some((x) => x.name.toLowerCase().includes(def.requires!.toLowerCase()))) {
@@ -151,6 +183,7 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   // Build points
   const lines: BPLine[] = [];
   const pl = POWER_LEVELS.find((p) => p.level === cov.powerLevel) ?? POWER_LEVELS[1];
+  const exceptional = new Map(cov.hooksBoons.filter((h) => mechanicOf(h) === 'exceptional-book').map((h) => [h.uid, h]));
   for (const b of cov.library) {
     if (b.kind === 'mundane') continue;
     const { cost, issue } = summaCost(b);
@@ -159,29 +192,77 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
     const bundle = b.kind === 'labText' && (b.collectionMax !== undefined || b.subject === 'various');
     const itemLevel = bundle ? b.collectionMax ?? 0 : b.level;
     if ((b.kind === 'labText' || b.kind === 'castingTablet') && itemLevel > pl.maxItemLevel) iss = `Level ${itemLevel} exceeds the ${pl.level} power level maximum of ${pl.maxItemLevel}.`;
-    lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)})`, cost: b.hidden ? 0 : cost, issue: iss });
+    if (b.boonUid && exceptional.has(b.boonUid)) {
+      // Exceptional Book: no Build Points; (level + quality) = 35, quality at most 25, level at most 20
+      const bad = b.kind !== 'summa' || b.subjectType !== 'art' ? 'it must be a summa on an Art' : b.level + b.quality !== 35 ? `level + quality must be 35 (is ${b.level + b.quality})` : b.quality > 25 ? 'quality may not exceed 25' : b.level > 20 ? 'level may not exceed 20' : undefined;
+      lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)}) — Exceptional Book Boon`, cost: 0, fullCost: 0, ref: b.uid, issue: bad ? `Exceptional Book: ${bad}.` : undefined });
+      continue;
+    }
+    lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)})`, cost, ref: b.uid, issue: iss });
   }
-  for (const s of cov.visSources) lines.push({ category: 'Vis', label: `${s.name} (${s.pawnsPerYear} ${s.art}/year)`, cost: 5 * s.pawnsPerYear });
+  for (const s of cov.visSources) lines.push({ category: 'Vis', label: `${s.name} (${s.pawnsPerYear} ${s.art}/year)`, cost: 5 * s.pawnsPerYear, ref: s.uid });
   const stock = cov.visStocks.reduce((t, v) => t + v.pawns, 0);
   if (stock) lines.push({ category: 'Vis', label: `Vis stocks (${stock} pawns)`, cost: Math.ceil(stock / 5) });
   for (const it of cov.items) {
     const levels = it.effects.reduce((t, e) => t + e.modifiedLevel, 0);
     const over = it.effects.find((e) => e.modifiedLevel > pl.maxItemLevel);
-    lines.push({ category: 'Enchanted items', label: it.name, cost: Math.ceil(levels / 5) * 2, issue: over ? `${over.name} (level ${over.modifiedLevel}) exceeds the power level maximum ${pl.maxItemLevel}.` : undefined });
+    lines.push({ category: 'Enchanted items', label: it.name, cost: Math.ceil(levels / 5) * 2, ref: it.uid, issue: over ? `${over.name} (level ${over.modifiedLevel}) exceeds the power level maximum ${pl.maxItemLevel}.` : undefined });
   }
   for (const sp of cov.specialists) {
-    if (sp.characterId) continue;
-    const cost = sp.role === 'teacher' ? (sp.com ?? 0) + (sp.teaching ?? 0) + sp.score : sp.score;
-    lines.push({ category: 'Specialists', label: `${sp.name} (${sp.ability} ${sp.score})`, cost });
+    if (sp.characterId || sp.free) continue;
+    const n = countOf(sp);
+    lines.push({ category: 'Specialists', label: `${n > 1 ? `${n} × ` : ''}${sp.name || sp.role} (${sp.ability || craftOf(sp)?.name || '?'} ${sp.score})`, cost: specialistCost(sp), ref: sp.uid });
+    const cap = abilityCapAtAge(sp.age ?? 46);
+    const who = sp.name || `Unnamed ${craftOf(sp)?.name.toLowerCase() ?? sp.role.replace('-', ' ')}`;
+    const atAge = sp.age ? `age ${sp.age}` : 'any age';
+    if (sp.score > cap) issue(`${who}: a score of ${sp.score} is above the starting limit (${cap} at ${atAge}, DE p.48).`, { kind: 'apply', label: `Set it to ${cap}`, apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.score = cap) }, { kind: 'apply', label: 'Recruited in play: no Build Points or limit', apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.free = true) });
+    if (sp.role === 'teacher') {
+      if ((sp.teaching ?? 0) > cap) issue(`${who}: Teaching ${sp.teaching} is above the starting limit (${cap} at ${atAge}).`, { kind: 'apply', label: `Set Teaching to ${cap}`, apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.teaching = cap) });
+      if ((sp.com ?? 0) > 3) issue(`${who}: Communication ${sp.com} is above +3 (a starting Characteristic is −3 to +3; +4 or +5 needs Great Communication).`, { kind: 'apply', label: 'Set Communication to +3', apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.com = 3) });
+      if (ARTS_SET.has(sp.ability)) issue(`${who}: teachers can't have The Gift, so can't teach the Hermetic Arts (DE p.180).`);
+    }
   }
+  if (cov.finances.startingReserve) lines.push({ category: 'Money', label: `Starting reserve (${cov.finances.startingReserve} £)`, cost: Math.ceil(cov.finances.startingReserve / 10) });
   const labs = cov.labs.map((l) => deriveLab(l, data));
   const magiCount = members.filter((m) => m.type === 'magus').length;
   const labsForMagi = new Set(cov.labs.map((l) => l.ownerId).filter(Boolean));
-  for (const l of labs) lines.push({ category: 'Laboratories', label: `${l.lab.name} (Size ${l.lab.size})`, cost: l.buildPoints });
+  for (const l of labs) lines.push({ category: 'Laboratories', label: `${l.lab.name} (Size ${l.lab.size})`, cost: l.buildPoints, ref: l.lab.uid });
   if (cov.spareLabs) lines.push({ category: 'Laboratories', label: `${cov.spareLabs} spare lab(s)`, cost: 50 * cov.spareLabs });
   // DE Laboratory chapter (lab Build Points): each magus who completely lacks a lab frees 50 Build Points.
   const lacking = members.filter((m) => m.type === 'magus' && !labsForMagi.has(m.id)).length;
   if (lacking && cov.labs.length) lines.push({ category: 'Laboratories', label: `${lacking} magus/magi without a lab`, cost: -50 * lacking });
+
+  // Hidden, Flawed and Illusory Resources pay for the resources tied to them
+  const kindOf: Record<string, CovResource['kind']> = { Library: 'book', Vis: 'vis', 'Enchanted items': 'item', Specialists: 'specialist', Laboratories: 'lab' };
+  const resources: CovResource[] = lines.filter((l) => l.ref && l.cost > 0).map((l) => ({ uid: l.ref!, kind: kindOf[l.category], label: l.label, cost: l.cost }));
+  const pools = computePools(cov, resources);
+  const firstHidden = pools.find((p) => p.mechanic === 'hidden-resources');
+  for (const b of cov.library) {
+    if (!b.hidden || pools.some((p) => p.resources.some((r) => r.uid === b.uid))) continue;
+    const r = resources.find((x) => x.uid === b.uid);
+    if (r && firstHidden) (firstHidden.resources.push(r), (firstHidden.spent += r.cost));
+    else if (r) issue(`${b.title} is marked hidden, but the covenant has no Hidden Resources Boon to pay for it.`, { kind: 'goto', label: 'Open Hooks & Boons', tab: 'hooks' });
+  }
+  const unreal = new Set<string>();
+  for (const p of pools) {
+    for (const r of p.resources) {
+      const line = lines.find((l) => l.ref === r.uid);
+      if (line) ((line.fullCost = line.cost), (line.cost = 0), (line.paidBy = p.hb.uid));
+      if (p.mechanic === 'illusory-resources') unreal.add(r.uid);
+    }
+    for (const r of p.lost) unreal.add(r.uid);
+    const name = `${p.hb.name}${p.hb.note ? ` (${p.hb.note})` : ''}`;
+    if (p.spent > p.capacity) issue(`${name} pays for ${p.spent} Build Points of resources but holds ${p.capacity}.`, { kind: 'goto', label: 'Open Hooks & Boons', tab: 'hooks' });
+    if (p.mechanic === 'flawed-resource' && p.hb.outcome === 'saved') {
+      const kept = p.resources.filter((r) => !p.lost.includes(r)).reduce((t, r) => t + r.cost, 0);
+      if (kept > p.spent / 2) issue(`${name}: a successful story saves at most half (${Math.floor(p.spent / 2)} BP); ${kept} BP are kept.`, { kind: 'goto', label: 'Open Hooks & Boons', tab: 'hooks' });
+    }
+  }
+  for (const hb of cov.hooksBoons) {
+    const def = hb.defId ? data.hookBoonById.get(hb.defId) : undefined;
+    if (hb.unknown && !canBeUnknown(def)) issue(`${hb.name} cannot be Unknown: only Hooks whose text says so can be.`, { kind: 'apply', label: 'Make it known', apply: (c) => void (c.hooksBoons.find((x) => x.uid === hb.uid)!.unknown = false) });
+  }
+
   const bpSpent = lines.reduce((t, l) => t + l.cost, 0);
   for (const l of lines) if (l.issue) issue(`${l.label}: ${l.issue}`, { kind: 'goto', label: `Open ${l.category}`, tab: LINE_TAB[l.category] ?? 'overview' });
   if (bpSpent > cov.buildPoints) {
@@ -201,19 +282,28 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
       { kind: 'apply', label: `Set Build Points to ${cov.buildPoints < pl.min ? pl.min : pl.max}`, apply: (c) => void (c.buildPoints = cov.buildPoints < pl.min ? pl.min : (pl.max as number)) },
     );
   }
-  const issues = issueList.map((i) => i.message);
 
-  // Vis income
+  // Vis income: what each source gives after any tithe and Tithing Miracle, rounded up
   const visIncome: Record<string, number> = {};
-  for (const s of cov.visSources) visIncome[s.art] = (visIncome[s.art] ?? 0) + s.pawnsPerYear;
+  const mult = miracleMultiplierOf(cov);
+  const miracles = cov.hooksBoons.some((h) => mechanicOf(h) === 'tithing-miracles');
+  for (const s of cov.visSources) {
+    if (unreal.has(s.uid)) continue;
+    const got = receivedAfterTithe(s.pawnsPerYear, !!s.tithed, !!s.miracle && miracles, mult).received;
+    visIncome[s.art] = (visIncome[s.art] ?? 0) + got;
+  }
 
-  const finances = computeFinances(cov, members, labs, magiCount);
+  const finances = computeFinances(cov, members, labs, magiCount, unreal);
+  for (const i of finances.incomeIssues) issue(i.message, ...(i.fix ? [{ kind: 'apply' as const, label: i.fixLabel ?? 'Fix', apply: i.fix }] : []), { kind: 'goto', label: 'Open Covenfolk & finances', tab: 'folk' });
+  const issues = issueList.map((i) => i.message);
   const loyalty = computeLoyalty(cov, members, data);
   return {
-    cov, hookPoints, boonPoints, aura, hiddenResourcesBP: hidden, bpLines: lines, bpSpent, bpAvailable: cov.buildPoints,
-    powerLevel: pl, labs, issues, issueList, finances, loyalty, visIncome, members,
+    cov, hookPoints, boonPoints, aura, hiddenResourcesBP: pools.filter((p) => p.mechanic === 'hidden-resources').reduce((t, p) => t + p.spent, 0), bpLines: lines, pools, unreal, bpSpent,
+    bpAvailable: cov.buildPoints, powerLevel: pl, labs, issues, issueList, finances, loyalty, visIncome, members,
   };
 }
+
+const ARTS_SET = new Set<string>([...ARTS, ...Object.values(ART_NAMES)]);
 
 function bookKindLabel(b: LibraryBook): string {
   if (b.kind === 'summa') return `Summa ${b.subject} L${b.level} Q${b.quality}`;
@@ -223,15 +313,18 @@ function bookKindLabel(b: LibraryBook): string {
   return b.kind;
 }
 
-export function computeFinances(cov: Covenant, members: Character[], labs: DerivedLab[], magiCount: number): FinanceResult {
+export function computeFinances(cov: Covenant, members: Character[], labs: DerivedLab[], magiCount: number, unreal: Set<string> = new Set()): FinanceResult {
   const summerAutumn = cov.season === 'Summer' || cov.season === 'Autumn';
   const pts = summerAutumn ? { magus: 10, companion: 5, specialist: 3, other: 2 } : { magus: 5, companion: 3, specialist: 2, other: 1 };
   const f = cov.covenfolk;
   const magi = Math.max(magiCount, members.filter((m) => m.type === 'magus').length);
   const companions = members.filter((m) => m.type === 'companion' || m.type === 'mythic').length + f.companions;
   const grogPCs = members.filter((m) => m.type === 'grog').length;
-  const specialists = f.specialists + cov.specialists.filter((s) => !s.characterId).length;
-  const base = magi * pts.magus + companions * pts.companion + specialists * pts.specialist + f.craftsmen * pts.specialist + (f.grogs + grogPCs) * pts.other + f.dependents * pts.other + f.horses;
+  // specialists and craftsmen listed by name (an illusory one is not really there)
+  const listed = cov.specialists.filter((s) => !s.characterId && !unreal.has(s.uid));
+  const listedPeople = listed.reduce((t, s) => t + countOf(s), 0);
+  const base = magi * pts.magus + companions * pts.companion + (f.specialists + f.craftsmen + listedPeople) * pts.specialist + (f.grogs + grogPCs) * pts.other + f.dependents * pts.other + f.horses;
+  // Covenants ch.5: 2 servants per 10 points (rounded up); 1 teamster per 10 points after servants, less twice the laborers
   const servantsRequired = 2 * Math.ceil(base / 10);
   const withServants = base + Math.max(f.servants, servantsRequired) * pts.other;
   const teamsterBase = withServants - 2 * f.laborers;
@@ -245,37 +338,116 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
   const provisions = (5 * inhabitantPoints) / 10;
   const wageMult = { none: 0, miserly: 0.5, standard: 1, generous: 1.5, lavish: 2 }[cov.finances.wages];
   const wages = ((2 * inhabitantPoints) / 10) * wageMult + cov.finances.paidSoldierPennies;
-  const writers = magi + cov.specialists.filter((s) => s.role === 'scribe' || /bookbind|illuminat|scribe/i.test(s.ability)).length;
+  const writerPeople = listed.filter((s) => s.role === 'scribe' || craftOf(s)?.writer || /bookbind|illuminat|scribe/i.test(s.ability)).reduce((t, s) => t + countOf(s), 0);
+  const writers = magi + writerPeople;
+  const weapons = cov.finances.weaponArmorPoints / 320;
+  const income = computeIncome(cov, magi);
   const expenditures = [
     { label: 'Buildings', pounds: round1(buildings) },
     { label: 'Consumables', pounds: round1(consumables) },
     { label: 'Provisions', pounds: round1(provisions) },
     { label: 'Wages', pounds: round1(wages) },
     { label: 'Laboratories', pounds: round1(labPoints / 10) },
-    { label: 'Weapons & Armor', pounds: round1(cov.finances.weaponArmorPoints / 320) },
+    { label: 'Weapons & Armor', pounds: round1(weapons) },
     { label: 'Writing Materials', pounds: writers },
     { label: 'Inflation', pounds: cov.finances.inflation },
-    { label: 'Tithes', pounds: cov.finances.tithes },
+    { label: 'Other tithes & taxes', pounds: cov.finances.tithes },
+    ...(income.debt ? [{ label: 'Debt interest (Indebted)', pounds: income.debt }] : []),
     { label: 'Sundry', pounds: cov.finances.sundry },
   ];
   const savings: { label: string; pounds: number }[] = [];
-  if (f.laborers) savings.push({ label: `Laborers (${f.laborers})`, pounds: -Math.min(f.laborers, provisions / 2) });
-  const catTotals: Record<string, number> = { Buildings: buildings, Consumables: consumables, Laboratories: labPoints / 10, Provisions: provisions, 'Weapons and Armor': cov.finances.weaponArmorPoints / 320, 'Writing Materials': writers };
-  const catLimit: Record<string, number> = { Buildings: 0.5, Consumables: 0.2, Laboratories: 0.2, Provisions: 0.2, 'Weapons and Armor': 0.5, 'Writing Materials': 0.5 };
-  const perCraft: Record<string, number> = {};
-  for (const cs of cov.finances.craftSavings) {
-    const save = cs.rare ? cs.score : 1 + Math.floor(cs.score / 2);
-    const key = `${cs.category}|${cs.craft.toLowerCase()}`;
-    const limit = (catTotals[cs.category] ?? 0) * (catLimit[cs.category] ?? 0.2);
-    const already = perCraft[key] ?? 0;
-    const allowed = Math.max(0, Math.min(save, limit - already));
-    perCraft[key] = already + allowed;
-    savings.push({ label: `${cs.craft} (${cs.category})`, pounds: -round1(allowed) });
+  const catTotals: Record<CostCategory, number> = { Buildings: buildings, Consumables: consumables, Laboratories: labPoints / 10, Provisions: provisions, 'Weapons and Armor': weapons, 'Writing Materials': writers };
+  const catSaved: Record<CostCategory, number> = { Buildings: 0, Consumables: 0, Laboratories: 0, Provisions: 0, 'Weapons and Armor': 0, 'Writing Materials': 0 };
+  // laborers: 1 pound each, at most half the Provisions
+  const laborerSaving = Math.min(f.laborers, provisions / 2);
+  if (f.laborers) savings.push({ label: `Laborers (${f.laborers})`, pounds: -round1(laborerSaving) });
+  catSaved.Provisions += laborerSaving;
+  // craftsmen: each craft saves up to its limit in each category it serves, never more than the category costs
+  const byCraft = new Map<string, { craft: CraftDef; people: number; potential: number }>();
+  const noCraft: Specialist[] = [];
+  for (const s of listed) {
+    if (s.role !== 'craftsman') continue;
+    const craft = craftOf(s);
+    if (!craft || !craft.categories.length) {
+      if (!craft) noCraft.push(s);
+      continue;
+    }
+    const e = byCraft.get(craft.id) ?? { craft, people: 0, potential: 0 };
+    e.people += countOf(s);
+    e.potential += countOf(s) * craftsmanSaving(s.score, s.rare ?? craft.rare);
+    byCraft.set(craft.id, e);
+  }
+  // older files: craft savings entered without a craftsman
+  for (const cs of cov.finances.craftSavings ?? []) {
+    const craft = findCraftOrCustom(cs.craft, cs.category as CostCategory);
+    const e = byCraft.get(craft.id) ?? { craft, people: 0, potential: 0 };
+    e.people += 1;
+    e.potential += craftsmanSaving(cs.score, cs.rare);
+    byCraft.set(craft.id, e);
+  }
+  const crafts: CraftLine[] = [];
+  for (const { craft, people, potential } of byCraft.values()) {
+    let left = potential;
+    const applied: CraftLine['applied'] = [];
+    for (const cat of craft.categories) {
+      const limit = catTotals[cat] * CATEGORY_LIMIT[cat];
+      const room = Math.max(0, catTotals[cat] - catSaved[cat]);
+      const pounds = Math.max(0, Math.min(left, limit, room));
+      applied.push({ category: cat, pounds: round1(pounds), limit: round1(limit) });
+      catSaved[cat] += pounds;
+      left -= pounds;
+    }
+    const saved = round1(applied.reduce((t, a) => t + a.pounds, 0));
+    crafts.push({ craft, people, potential, applied, saved });
+    if (saved) savings.push({ label: `${craft.name}${people > 1 ? ` ×${people}` : ''} (${applied.filter((a) => a.pounds).map((a) => a.category).join(' + ')})`, pounds: -saved });
   }
   if (cov.finances.magicSavings) savings.push({ label: 'Magic items / rituals', pounds: -cov.finances.magicSavings });
+  const categories = (Object.keys(catTotals) as CostCategory[]).map((c) => ({ category: c, total: round1(catTotals[c]), perCraft: round1(catTotals[c] * CATEGORY_LIMIT[c]), saved: round1(catSaved[c]) }));
   const totalExpenditure = round1(expenditures.reduce((t, e) => t + e.pounds, 0) + savings.reduce((t, s) => t + s.pounds, 0));
-  const income = cov.income.reduce((t, i) => t + i.pounds, 0);
-  return { inhabitantPoints: round1(inhabitantPoints), servantsRequired, teamstersRequired, labPoints, expenditures, savings, totalExpenditure, income, balance: round1(income - totalExpenditure), writersCount: writers };
+  return {
+    inhabitantPoints: round1(inhabitantPoints), servantsRequired, teamstersRequired, labPoints, expenditures, savings, categories, crafts, noCraft, totalExpenditure,
+    income: income.income, incomeLines: income.lines, incomeIssues: income.issues, debt: income.debt, balance: round1(income.income - totalExpenditure), writersCount: writers,
+    laborerSaving: round1(laborerSaving),
+  };
+}
+
+function findCraftOrCustom(name: string, category: CostCategory): CraftDef {
+  const known = findCraft(name);
+  if (known && known.categories.includes(category)) return known;
+  return { id: `custom:${name.toLowerCase()}|${category}`, name: name || 'Craft', categories: [category], rare: false };
+}
+
+/** Totals spent a year with `n` of something changed, for the optimal-number buttons. */
+function expenditureWith(cov: Covenant, members: Character[], labs: DerivedLab[], change: (c: Covenant) => void): number {
+  const c = structuredClone(cov);
+  change(c);
+  return computeFinances(c, members, labs, members.filter((m) => m.type === 'magus').length).totalExpenditure;
+}
+
+/**
+ * The number of laborers that keeps yearly spending lowest: each saves a pound of Provisions (up to
+ * half) and every five spare a teamster, but each also counts as an inhabitant (Covenants ch.5).
+ */
+export function optimalLaborers(cov: Covenant, members: Character[], labs: DerivedLab[]): number {
+  let best = 0;
+  let bestCost = Infinity;
+  const limit = Math.max(50, Math.ceil(cov.covenfolk.laborers * 2 + 200));
+  for (let n = 0; n <= limit; n++) {
+    const cost = expenditureWith(cov, members, labs, (c) => void (c.covenfolk.laborers = n));
+    if (cost < bestCost - 1e-9) ((bestCost = cost), (best = n));
+  }
+  return best;
+}
+
+/** The number of craftsmen of one entry's kind that keeps yearly spending lowest. */
+export function optimalCraftsmen(cov: Covenant, members: Character[], labs: DerivedLab[], specialistUid: string): number {
+  let best = 0;
+  let bestCost = Infinity;
+  for (let n = 0; n <= 60; n++) {
+    const cost = expenditureWith(cov, members, labs, (c) => void (c.specialists.find((s) => s.uid === specialistUid)!.count = n));
+    if (cost < bestCost - 1e-9) ((bestCost = cost), (best = n));
+  }
+  return best;
 }
 
 function round1(n: number) {
@@ -333,7 +505,7 @@ export function newCovenant(sagaId: string, year: number): Covenant {
     labs: [],
     spareLabs: 0,
     covenfolk: { grogs: 6, companions: 0, specialists: 3, craftsmen: 0, laborers: 0, servants: 0, teamsters: 0, dependents: 0, horses: 0 },
-    income: [{ uid: 'inc1', name: 'Typical income', type: 'Agriculture', level: 'Typical', pounds: 100 }],
+    income: [{ uid: 'inc1', name: 'Principal income', type: 'Agriculture', level: 'Typical', pounds: 100, customPounds: false }],
     finances: {
       treasury: 0, inflation: 0, tithes: 0, sundry: 1, wages: 'standard', pension: false, equipment: 'standard',
       livingConditions: 0, weaponArmorPoints: 320, magicSavings: 0, craftSavings: [], paidSoldierPennies: 0,

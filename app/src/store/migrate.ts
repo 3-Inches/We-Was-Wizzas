@@ -3,6 +3,7 @@
 import { ARTS, CHARACTERISTICS, emptyCustomContent } from '../data';
 import { DEFAULT_HOUSE_RULES, SCHEMA_VERSION, type Character, type Covenant, type Saga } from '../engine/types';
 import { newCovenant } from '../engine/covenant';
+import { INCOME_LEVEL_POUNDS, findCraft } from '../engine/covenantRules';
 
 export function migrateSaga(s: Saga): Saga {
   return {
@@ -54,7 +55,7 @@ export function migrateCharacter(c: Character): Character {
 
 export function migrateCovenant(c: Covenant): Covenant {
   const base = newCovenant(c.sagaId, c.foundedYear ?? 1220);
-  return {
+  const out: Covenant = {
     ...base,
     ...c,
     covenfolk: { ...base.covenfolk, ...(c.covenfolk ?? {}) },
@@ -62,6 +63,22 @@ export function migrateCovenant(c: Covenant): Covenant {
     loyalty: { ...base.loyalty, ...(c.loyalty ?? {}) },
     schemaVersion: SCHEMA_VERSION,
   };
+  // craft savings used to be a separate list: they are craftsmen now (no Build Points, as before)
+  const old = out.finances.craftSavings ?? [];
+  if (old.length) {
+    out.specialists = [
+      ...out.specialists,
+      ...old.map((cs) => {
+        const craft = findCraft(cs.craft);
+        return { uid: cs.uid, name: cs.craft, role: 'craftsman' as const, ability: `Craft (${craft?.name ?? cs.craft})`, craft: craft?.id ?? cs.craft, score: cs.score, rare: cs.rare, count: 1, free: true };
+      }),
+    ];
+    out.covenfolk = { ...out.covenfolk, craftsmen: Math.max(0, out.covenfolk.craftsmen - old.length) };
+    out.finances = { ...out.finances, craftSavings: [] };
+  }
+  // income entered by hand keeps its figure; otherwise the book value for its level is used
+  out.income = out.income.map((i) => (i.customPounds === undefined ? { ...i, customPounds: i.pounds !== INCOME_LEVEL_POUNDS[i.level] } : i));
+  return out;
 }
 
 function withDefaults<T extends object>(defaults: T, v: Partial<T> | undefined): T {
