@@ -165,6 +165,26 @@ export type CastCondition = 'all' | 'formulaic' | 'ritual' | 'formulaicAndRitual
 
 export type StudyKind = 'book' | 'teaching' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'worship';
 
+/**
+ * Where a Virtue or Flaw's text points for its rules (tools/extract/extract_vf_refs.py): another
+ * Virtue or Flaw (vf), a section of a book (s, a key of GameData.ruleSections), or a page that
+ * could not be placed in a section (p, "BOOK:page"). q is the citing words.
+ */
+export interface VFRef {
+  vf?: string;
+  s?: string;
+  p?: string;
+  q: string;
+}
+
+/** A section of rules from a book, quoted where a Virtue or Flaw cites it. */
+export interface RuleSection {
+  book: string;
+  anchor: string;
+  title: string;
+  text: string;
+}
+
 export interface VirtueFlawDef {
   id: string;
   name: string;
@@ -224,6 +244,8 @@ export interface VirtueFlawDef {
   sizeEffects?: Partial<Record<VFSize, Effect[]>>;
   /** the book's own wording of the restriction, quoted in rules messages */
   restrictionText?: string;
+  /** what the text cites for its rules: other Virtues and Flaws, sections of the books */
+  refs?: VFRef[];
   /** tags built from the fields above (see vfTags.ts): shown, searched and filtered on */
   ruleTags?: { id: string; label: string; kind: string; title?: string }[];
   /** Houses this is tied to or suits */

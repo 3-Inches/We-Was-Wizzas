@@ -4,12 +4,13 @@ import { addVirtue, removeVirtue } from '../../../engine/character/factory';
 import { deriveCharacter, vfDisplayName } from '../../../engine/character/derive';
 import { vfAvailability, vfProblems, vfSizeProblems, type VFProblem } from '../../../engine/character/restrictions';
 import { HOUSE_BY_ID } from '../../../data/houses';
-import { BookBadge, Card, Markdown, Meter, SearchInput } from '../../kit';
+import { BookBadge, Card, Meter, SearchInput } from '../../kit';
 import ParamInput from '../ParamInput';
 import { CharIssueList } from '../CharIssues';
 import PowersCard from '../PowersCard';
 import type { CharEditor } from '../useChar';
 import { LaterNote } from '../../LaterNote';
+import { VFText } from '../../VFText';
 
 const CATS: VFCategory[] = ['General', 'Hermetic', 'Supernatural', 'Social Status', 'Personality', 'Story', 'Mythic Companion', 'Heroic', 'Mystery', 'Special'];
 
@@ -102,7 +103,7 @@ function TakenList({ ed }: { ed: CharEditor }) {
         )}
         {open === v.cv.uid && def && (
           <div style={{ marginTop: 6 }}>
-            <Markdown text={def.text} />
+            <VFText def={def} data={data} />
             <div className="row small">
               <label className="inline">
                 <input type="checkbox" checked={!!v.cv.free} onChange={(e) => update((x) => { const y = x.virtues.find((z) => z.uid === v.cv.uid)!; y.free = e.target.checked; y.freeReason = e.target.checked ? y.freeReason ?? 'Troupe ruling' : undefined; })} /> Free (does not cost/give points)
@@ -321,7 +322,7 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
                 </div>
               )}
               <div className={`vf-text ${open === v.id ? 'open' : ''}`} onClick={() => setOpen(open === v.id ? null : v.id)}>
-                {open === v.id ? <Markdown text={v.text} /> : v.text.slice(0, 260)}
+                {open === v.id ? <VFText def={v} data={data} /> : v.text.slice(0, 260)}
               </div>
             </div>
           );

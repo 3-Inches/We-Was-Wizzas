@@ -12,12 +12,13 @@ import hooksBoonsJson from './generated/hooksBoons.json';
 import shapeMaterialJson from './generated/shapeMaterial.json';
 import weaponsJson from './generated/weapons.json';
 import armorJson from './generated/armor.json';
+import vfRefsJson from './generated/vfRefs.json';
 import { MECHANICS, type Mechanics } from './mechanics';
 import { LAB_ONLY_VF, NOT_REAL_VF, RESTRICTIONS } from './restrictions';
 import { buildVfTags, vfHouses } from './vfTags';
 import type {
   AbilityDef, ArmorDef, GuidelineDef, HookBoonDef, LabFeatureDef, LabVFDef, ShapeMaterialDef,
-  SpellDef, VirtueFlawDef, WeaponDef, Effect, AbilityType,
+  SpellDef, VirtueFlawDef, WeaponDef, Effect, AbilityType, RuleSection, VFRef,
 } from './types';
 
 export * from './types';
@@ -204,7 +205,11 @@ export interface GameData {
   armor: ArmorDef[];
   armorById: Map<string, ArmorDef>;
   isBookEnabled: (book: string) => boolean;
+  /** sections of the books that Virtues and Flaws cite for their rules */
+  ruleSections: Record<string, RuleSection>;
 }
+
+const VF_REFS = vfRefsJson as unknown as { refs: Record<string, VFRef[]>; sections: Record<string, RuleSection> };
 
 const cache = new Map<string, GameData>();
 
@@ -231,6 +236,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
       ...v,
       ...mech,
       effects,
+      refs: v.refs ?? VF_REFS.refs[v.id],
       creatureOnly,
       tags: [...new Set([...(mech.tags ?? []), ...autoTags(v)])],
       requiresGift: mech.requiresGift ?? (v.categories.includes('Hermetic') ? true : undefined),
@@ -261,6 +267,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
   const data: GameData = {
     virtuesFlaws: vfs,
     vfById: new Map(vfs.map((v) => [v.id, v])),
+    ruleSections: VF_REFS.sections,
     abilities,
     abilityById: new Map(abilities.map((a) => [a.id, a])),
     spells,

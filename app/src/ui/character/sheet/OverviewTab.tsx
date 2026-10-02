@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES } from '../../../data';
-import { BookBadge, Card, Field, Markdown, Stepper, signed } from '../../kit';
+import { BookBadge, Card, Field, Stepper, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
 import { COMPANION_FLAWS, CompanionSheetLink, CreatureCard } from './Creature';
+import { VFText } from '../../VFText';
 
 export default function OverviewTab({ ed }: { ed: CharEditor }) {
-  const { c, d, update, saga } = ed;
+  const { c, d, data, update, saga } = ed;
   const [openVf, setOpenVf] = useState<string | null>(null);
   const covs = useSagaCovenants(saga?.id);
   const updateCovenant = useStore((s) => s.updateCovenant);
@@ -171,7 +172,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
                       ))}
                       {v.def && <BookBadge book={v.def.source.book} anchor={v.def.source.anchor} line={v.def.source.line} />}
                     </div>
-                    {openVf === v.cv.uid && v.def && <Markdown text={v.def.text} />}
+                    {openVf === v.cv.uid && v.def && <VFText def={v.def} data={data} notes={false} />}
                     {COMPANION_FLAWS.has(v.cv.defId) && <CompanionSheetLink ed={ed} uid={v.cv.uid} />}
                     {v.def?.effects?.filter((e) => e.type === 'note').map((e, i) => (
                       <div key={i} className="small soft">

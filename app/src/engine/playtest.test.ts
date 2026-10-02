@@ -326,3 +326,21 @@ describe('Virtues that give another Virtue free (playtest)', () => {
     expect(ss.grantedBy).toBe(sfb.uid);
   });
 });
+
+describe('rules a Virtue or Flaw refers to (playtest)', () => {
+  it('links the Virtues and Flaws it names and the book sections it cites', () => {
+    const sfb = data.vfById.get('strong-faerie-blood')!;
+    expect(sfb.refs?.map((r) => r.vf)).toEqual(expect.arrayContaining(['second-sight', 'faerie-blood']));
+    expect(sfb.refs?.find((r) => r.s)?.s).toBe('DE#opening-the-arts');
+    const aura = data.vfById.get('commanding-aura')!.refs?.find((r) => r.s);
+    expect(data.ruleSections[aura!.s!].title).toBe('Aura of Rightful Authority');
+    expect(data.ruleSections['DE#opening-the-arts'].text).toMatch(/Supernatural Ability/);
+    // every link resolves
+    for (const v of data.virtuesFlaws) {
+      for (const r of v.refs ?? []) {
+        if (r.vf) expect(data.vfById.has(r.vf) || r.vf === v.id).toBe(true);
+        if (r.s) expect(data.ruleSections[r.s]).toBeTruthy();
+      }
+    }
+  });
+});
