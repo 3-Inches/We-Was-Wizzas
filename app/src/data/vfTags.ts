@@ -65,6 +65,16 @@ export function buildVfTags(def: VirtueFlawDef, nameOf: (id: string) => string):
     if (e.type === 'powers') t(`powers:${e.kind}`, `${e.levels} levels of powers`, 'adds', 'Design the powers on the Virtues step or the Abilities tab');
     if (e.type === 'confidence' && e.score) t('adds:confidence', `Confidence ${e.score}${e.points ? ` (${e.points} points)` : ''}`, 'adds');
     if (e.type === 'personalityRange') t('limit:ptrait', `Personality Traits up to ±${e.max}`, 'limit');
+    // what experience it gives or takes, in seasons of study at a typical Source Quality of 10
+    const seasons = (xp: number) => `${Math.round(Math.abs(xp) / 5) / 2} season${Math.abs(xp) === 10 ? '' : 's'}`;
+    const XP_TITLE = 'Counted at a Source Quality of 10, a typical summa or teacher';
+    if (e.type === 'xpPool') t('xp:pool', `${e.amount > 0 ? '+' : ''}${e.amount} xp ≈ ${seasons(e.amount)} of study`, 'adds', XP_TITLE);
+    if (e.type === 'apprenticeXp') t('xp:apprentice', `${e.amount > 0 ? '+' : ''}${e.amount} xp ≈ ${seasons(e.amount)} of study`, 'adds', XP_TITLE);
+    if (e.type === 'laterLifeXpPerYear' && e.amount !== 15) t('xp:later', `${e.amount - 15 > 0 ? '+' : ''}${e.amount - 15} xp a year of later life ≈ ${seasons(e.amount - 15)} a year`, 'adds', XP_TITLE);
+    if (e.type === 'sourceQuality') t('xp:quality', `+${e.amount} Source Quality (${(e.when as string[]).join(', ')}) ≈ ${seasons(e.amount)} more for every season of it`, 'adds', XP_TITLE);
+    if (e.type === 'secondaryInsight') t('xp:insight', '+4 xp (Technique) or +2 xp (Form) in other Arts per study season', 'adds');
+    if (e.type === 'artAffinity' || e.type === 'abilityAffinity') t('xp:affinity', 'Experience ×1.5 in one: two seasons count as three', 'adds');
+    if (e.type === 'freeSeasons') t('xp:seasons', `${e.amount} free seasons a year`, 'adds');
   }
   if (def.categories.includes('Mystery')) t('needs:initiation', 'Needs Initiation (or Cabal Legacy)', 'needs', 'Mystery Virtues come by Initiation; Cabal Legacy lets a magus start with them (TMRE)');
   if (def.id === 'cabal-legacy-flaw') t('adds:mystery', 'Lets you take Mystery Virtues at creation', 'adds');

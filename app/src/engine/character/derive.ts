@@ -145,6 +145,14 @@ export interface DerivedCharacter {
   magicalFocus: 'none' | 'minor' | 'major';
   focusText?: string;
   socialPenalty: number;
+  /** extra social penalties with one kind of being (Unbearable to Beings) */
+  socialPenalties: { vs: string; amount: number; from: string }[];
+  /** Characteristic specialties (Mythic Characteristic): +1 and one fewer botch die when they apply */
+  charSpecialties: { char: string; text: string; from: string }[];
+  /** Wizard's Twilight is checked on a single Warping Point (Twilight Prone) */
+  twilightProne: boolean;
+  /** the player chooses Twilight effects (Twilight Mastery) */
+  twilightMastery: boolean;
   notes: string[];
 }
 
@@ -189,7 +197,7 @@ function resolveEffects(virtues: ResolvedVirtue[]): ResolvedEffect[] {
     const bySize = v.def?.sizeEffects?.[v.cv.size] ?? [];
     for (const e of [...(v.def?.effects ?? []), ...byParam, ...bySize]) {
       const r: Record<string, unknown> = { ...e, fromUid: v.cv.uid, fromName: v.name, param: v.cv.param };
-      for (const k of ['ability', 'art', 'char']) if (r[k] === '$param') r[k] = v.cv.param ?? '';
+      for (const k of ['ability', 'art', 'char', 'vs']) if (r[k] === '$param') r[k] = v.cv.param ?? '';
       out.push(r as ResolvedEffect);
     }
   }
@@ -306,7 +314,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
 
   // ---------------------------------------------------------------- size & characteristics
   const child = childModifier(char.age);
-  let size = eff('size').reduce((s, e) => s + e.amount, 0) + child.size;
+  let size = eff('size').reduce((s, e) => s + e.amount, 0) + child.size + (char.creature?.size ?? 0);
   if (has('blood-of-the-nephilim') && char.age >= 100) size += Math.floor(char.age / 100);
 
   const characteristics = {} as DerivedCharacter['characteristics'];
@@ -597,6 +605,10 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     load, burden, encumbrance, woundRanges, fatigueLevels, currentWoundPenalty, currentFatiguePenalty,
     apprenticeshipSpellLevelBudget, masteryPools, flawless: eff('flawlessMagic').length > 0,
     magicalFocus: focus ? focus.scope : 'none', focusText: focusVirtue?.cv.param, socialPenalty, notes,
+    socialPenalties: eff('socialPenalty').map((e) => ({ vs: String((e as { vs?: string }).vs ?? ''), amount: -Math.abs(e.amount), from: e.fromName })),
+    charSpecialties: virtues.filter((v) => v.cv.defId === 'mythic-characteristic' && v.cv.param).map((v) => ({ char: v.cv.param!, text: v.cv.note ?? '', from: v.name })),
+    twilightProne: has('twilight-prone-flaw'),
+    twilightMastery: has('twilight-mastery'),
   };
 }
 

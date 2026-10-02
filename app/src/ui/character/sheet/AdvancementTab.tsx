@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES, SEASONS, type Art, type Characteristic } from '../../../data';
-import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, magianLinkedGains, newSeasonEntry, twilightAvoidance, twilightComprehension, visForStudy, type AgingResult, type StudySource } from '../../../engine/longterm';
+import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, SEASONS, TECHNIQUES, type Art, type Characteristic } from '../../../data';
+import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, magianLinkedGains, newSeasonEntry, visForStudy, type AgingResult, type StudySource } from '../../../engine/longterm';
 import { stressDie, describeStress } from '../../../engine/dice';
 import { abilityXpForScore } from '../../../engine/xp';
 import type { SeasonLogEntry } from '../../../engine/types';
@@ -8,6 +8,7 @@ import { ensureAbility } from '../../../engine/character/factory';
 import { Card, Field, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
+import { TwilightCard } from './Twilight';
 
 type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'other';
 
@@ -49,8 +50,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [lcOverride, setLcOverride] = useState<number | null>(null);
   const [agingText, setAgingText] = useState<string[]>([]);
   const [anyChar, setAnyChar] = useState<Characteristic>('Sta');
-  const [twGain, setTwGain] = useState(2);
-  const [twText, setTwText] = useState<string[]>([]);
+  const [insightArts, setInsightArts] = useState<string[]>([]);
   if (!c || !d || !saga) return null;
 
   const isArt = target.startsWith('art:');
@@ -75,6 +75,12 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const cov = ctx.covenant;
   const res = src ? computeStudy(d, src, { art, abilityUid }) : null;
   const linked = src && res && res.xp > 0 ? magianLinkedGains(d, data, src, abilityUid, res.advancementTotal) : [];
+  // Secondary Insight: a season studying a Technique (book, teacher or vis) gives 1 xp in up to four Forms;
+  // a Form gives 1 xp in up to two Techniques (DE Secondary Insight)
+  const insight = !!art && d.virtues.some((v) => v.cv.defId === 'secondary-insight') && ['summa', 'tractatus', 'teacher', 'vis'].includes(kind) && !!res && res.xp > 0;
+  const insightMax = art && (TECHNIQUES as readonly string[]).includes(art) ? 4 : 2;
+  const insightPool: string[] = art ? ((TECHNIQUES as readonly string[]).includes(art) ? [...FORMS] : [...TECHNIQUES]).filter((a) => a !== art) : [];
+  const insightPicked = insightArts.filter((a) => insightPool.includes(a)).slice(0, insightMax);
   const trainingNotAllowed = kind === 'training' && isArt;
   const visPawns = art ? visForStudy(d.arts[art].score) : 0;
   const tractatusRead = kind === 'tractatus' && bookUid && library.find((b) => b.uid === bookUid)?.readBy?.includes(c.id);
@@ -83,7 +89,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     const gains: Record<string, number> = {};
     if (res && res.xp > 0) gains[target] = res.xp;
     const linkedText = linked.filter((l) => l.xp > 0).map((l) => `${l.name} +${l.xp}`).join(', ');
-    const text = summary || (kind === 'other' ? 'Other activity' : `${KIND_LABEL[kind]}: ${subject}${res ? ` (+${res.xp} xp)` : ''}${linkedText ? `; Magian Lineage: ${linkedText}` : ''}`);
+    const insightText = insight && insightPicked.length ? `; Secondary Insight: +1 ${insightPicked.join(', ')}` : '';
+    const text = summary || (kind === 'other' ? 'Other activity' : `${KIND_LABEL[kind]}: ${subject}${res ? ` (+${res.xp} xp)` : ''}${linkedText ? `; Magian Lineage: ${linkedText}` : ''}${insightText}`);
     const entry = newSeasonEntry(year, season, ACTIVITY[kind], text, gains);
     if (res) entry.sourceQuality = res.advancementTotal;
     if (kind === 'vis' && art) entry.visUsed = [{ art, pawns: visPawns }];
@@ -92,6 +99,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     update((x) => {
       // Magian Lineage: the connected Abilities gain too (added to the character if new)
       for (const l of linked) if (l.xp > 0) entry.gains[`ability:${l.uid ?? ensureAbility(x, l.abilityId).uid}`] = l.xp;
+      if (insight) for (const a of insightPicked) entry.gains[`art:${a}`] = (entry.gains[`art:${a}`] ?? 0) + 1;
       applySeason(x, entry, 1);
       x.seasonLog.push(entry);
     });
@@ -308,6 +316,22 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 {n}
               </span>
             ))}
+            {insight && (
+              <span className="small">
+                Secondary Insight: +1 xp each in up to {insightMax} {insightMax === 4 ? 'Forms' : 'Techniques'} ({insightPicked.length} picked):{' '}
+                {insightPool.map((a) => (
+                  <label key={a} className="inline">
+                    <input
+                      type="checkbox"
+                      checked={insightPicked.includes(a)}
+                      disabled={!insightPicked.includes(a) && insightPicked.length >= insightMax}
+                      onChange={(e) => setInsightArts(e.target.checked ? [...insightArts, a] : insightArts.filter((x) => x !== a))}
+                    />{' '}
+                    {a}
+                  </label>
+                ))}
+              </span>
+            )}
             {linked.length > 0 && (
               <span className="small" title="Major Magian Lineage: half the Source Quality (rounded up) in each other connected Ability (DE, Magian Lineage)">
                 Magian Lineage:{' '}
@@ -442,62 +466,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           ))}
         </Card>
 
-        <Card title="Warping & Twilight">
-          <div className="row">
-            <div className="stat">
-              <span className="v">
-                {d.warpingScore} ({d.warpingPoints})
-              </span>
-              <span className="l">Warping</span>
-            </div>
-            <Field label="Warping points">
-              <Stepper value={c.warpingPoints} min={0} width={46} onChange={(v) => update((x) => void (x.warpingPoints = v))} />
-            </Field>
-          </div>
-          {(d.isMagus || d.hasGift) && (
-            <>
-              <div className="row" style={{ marginTop: 8 }}>
-                <Field label="Warping points just gained">
-                  <Stepper value={twGain} min={0} width={36} onChange={setTwGain} />
-                </Field>
-                <button
-                  className="small"
-                  onClick={() => {
-                    const r = twilightAvoidance(d, twGain, ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0);
-                    setTwText((t) => [`Avoid Twilight: ${r.my} vs ${r.tw} — ${r.success ? 'avoided (still gain the Warping points)' : r.botch ? 'BOTCH: enter Twilight' : 'enter Twilight'}. ${r.detail}`, ...t]);
-                  }}
-                >
-                  Try to avoid Twilight
-                </button>
-                <button
-                  className="small"
-                  onClick={() => {
-                    const r = twilightComprehension(d, twGain);
-                    setTwText((t) => [`Comprehend Twilight: ${r.my} vs ${r.tw} — ${r.success ? 'understood (beneficial scar/insight)' : r.botch ? 'BOTCH (harmful)' : 'not understood (harmful scar likely)'}. Duration: ${r.duration}.`, ...t]);
-                  }}
-                >
-                  Roll comprehension
-                </button>
-              </div>
-              <p className="small muted">
-                A Twilight episode is risked when gaining 2+ Warping points at once. Avoidance: Sta + Concentration + Vim/5 + stress die vs Warping Score + points gained + Enigmatic Wisdom + aura
-                + stress die (DE p.228–230).
-              </p>
-            </>
-          )}
-          {twText.map((t, i) => (
-            <div key={i} className="small list-row">
-              {t}
-            </div>
-          ))}
-          <Field label="Twilight scars & effects">
-            <textarea
-              rows={3}
-              value={c.twilightScars.join('\n')}
-              onChange={(e) => update((x) => void (x.twilightScars = e.target.value.split('\n')))}
-            />
-          </Field>
-        </Card>
+        <TwilightCard ed={ed} />
       </div>
     </div>
   );

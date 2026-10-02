@@ -4,6 +4,7 @@ import { BookBadge, Card, Field, Markdown, Stepper, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
+import { COMPANION_FLAWS, CompanionSheetLink, CreatureCard } from './Creature';
 
 export default function OverviewTab({ ed }: { ed: CharEditor }) {
   const { c, d, update, saga } = ed;
@@ -22,6 +23,13 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
                 <span className="l">{CHAR_NAMES[k]}</span>
                 {c.characteristicNotes?.[k] && <span className="small muted">{c.characteristicNotes[k]}</span>}
                 {(c.agingPoints[k] ?? 0) > 0 && <span className="small warn-text">{c.agingPoints[k]} aging pt</span>}
+                {d.charSpecialties
+                  .filter((sp) => sp.char === k)
+                  .map((sp, i) => (
+                    <span key={i} className="small good-text" title={`${sp.from}: when it applies, +1 and one fewer botch die`}>
+                      {signed(d.characteristics[k].value + 1)} {sp.text ? `(${sp.text})` : '(specialty: write it in the Virtue note)'}
+                    </span>
+                  ))}
               </div>
             ))}
           </div>
@@ -122,6 +130,19 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
               {d.socialPenalty ? ` — ${d.socialPenalty} to social rolls with mundanes and animals` : ' — no social penalty'}
             </div>
           )}
+          {d.socialPenalties.map((p, i) => (
+            <div key={i} className="small">
+              <b>{p.from}:</b> a further {p.amount} to social rolls with {p.vs || 'the chosen beings'} (total {d.socialPenalty + p.amount})
+            </div>
+          ))}
+          {d.virtues.some((v) => v.cv.defId === 'all-according-to-plan') && (
+            <div className="row small" style={{ marginTop: 6 }}>
+              <b>All According to Plan:</b> {c.session?.aatpUsed ? 'used this session' : 'ready (reroll one botch die)'}
+              <button className="small ghost" onClick={() => update((x) => void (x.session = { ...(x.session ?? {}), aatpUsed: !c.session?.aatpUsed }))}>
+                {c.session?.aatpUsed ? 'New session' : 'Mark used'}
+              </button>
+            </div>
+          )}
           {c.sigil && (
             <div className="small">
               <b>Sigil:</b> {c.sigil}
@@ -151,6 +172,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
                       {v.def && <BookBadge book={v.def.source.book} anchor={v.def.source.anchor} line={v.def.source.line} />}
                     </div>
                     {openVf === v.cv.uid && v.def && <Markdown text={v.def.text} />}
+                    {COMPANION_FLAWS.has(v.cv.defId) && <CompanionSheetLink ed={ed} uid={v.cv.uid} />}
                     {v.def?.effects?.filter((e) => e.type === 'note').map((e, i) => (
                       <div key={i} className="small soft">
                         {(e as { text: string }).text}
@@ -162,6 +184,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
           ))}
         </div>
       </Card>
+      {c.creature && <CreatureCard ed={ed} />}
       <Card title="Notes">
         <textarea value={c.notes} rows={6} onChange={(e) => update((x) => void (x.notes = e.target.value))} placeholder="Session notes, goals, secrets…" />
       </Card>

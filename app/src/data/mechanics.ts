@@ -207,6 +207,20 @@ export const MECHANICS: Record<string, Mechanics> = {
   'potent-magic': { requiresGift: true, repeatable: true, param: P.text('Field of Potent Magic'), effects: [note('Minor: +3 to Lab Totals and Casting Score in field. Major: +6.')] },
 
   // ------------------------------------------------------------------ Study & teaching
+  'mythic-characteristic': {
+    repeatable: true, param: P.char('Characteristic (positive)'),
+    effects: [note('Write the specialty in the note (e.g. great knowledge): when it applies, the Characteristic counts one higher and you roll one fewer botch die.')],
+  },
+  'all-according-to-plan': { effects: [note('Once per session, reroll a botch die: the character planned for exactly this failure (describe the plan). The casting roller offers it.')] },
+  'twilight-mastery': {
+    requiresGift: true,
+    effects: [note('You choose the effects of your Wizard\'s Twilight (from the bad ones if you fail to comprehend it). Once a day, a touch gives a being 2 Warping Points (Penetration +5); a Hermetic magus touched must check for Twilight.')],
+  },
+  'greater-charm-flaw': {
+    param: P.text('Charmed Virtue'),
+    effects: [note('Only one charm exists, and whoever holds it (or performs it) has the Virtue. A troupe can use this on purpose: pass the charm around to share the Virtue between characters.')],
+  },
+  'twilight-prone-flaw': { requiresGift: true, effects: [note('A single magical botch (one Warping Point) makes you check for Twilight, not two.')] },
   'apt-student': { effects: [{ type: 'sourceQuality', amount: 5, when: ['teaching', 'training'] }], tags: ['study'] },
   'book-learner': { effects: [{ type: 'sourceQuality', amount: 3, when: ['book'] }], tags: ['study', 'scholar'] },
   'independent-study': { effects: [{ type: 'sourceQuality', amount: 2, when: ['practice'] }, { type: 'sourceQuality', amount: 3, when: ['adventure'] }], tags: ['study'] },
@@ -403,7 +417,10 @@ export const MECHANICS: Record<string, Mechanics> = {
   'alluring-to-beings': { param: P.text('Beings', ['mundane animals', 'faeries', 'magical beings']) },
   'inoffensive-to-beings': { param: P.text('Beings', ['animals', 'divine beings', 'faeries', 'demons', 'magical creatures']) },
   'offensive-to-beings-flaw': { param: P.text('Beings', ['animals', 'mundane humans', 'divine beings', 'faeries', 'demons', 'magical creatures']) },
-  'unbearable-to-beings-flaw': { param: P.text('Beings', ['mundane humans', 'demons', 'divine beings']) },
+  'unbearable-to-beings-flaw': {
+    param: P.text('Beings', ['mundane humans', 'demons', 'divine beings']), requiresGift: true, excludes: ['blatant-gift-flaw'],
+    effects: [{ type: 'socialPenalty', amount: 3, vs: '$param' }],
+  },
   'cautious-with-ability': { repeatable: true, param: P.ability() },
   'careless-with-ability-flaw': { repeatable: true, param: P.ability() },
   'learn-ability-from-mistakes': { repeatable: true, param: P.ability() },

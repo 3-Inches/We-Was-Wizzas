@@ -7,9 +7,9 @@ import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import { addVirtue, ensureAbility, newCharacter, setHouse } from './character/factory';
 import { deriveCharacter, postGauntletXp } from './character/derive';
 import { validateCharacter } from './character/validate';
-import { abilityAvailability } from './character/restrictions';
+import { abilityAvailability, vfAvailability } from './character/restrictions';
 import { POWER_KINDS, powerSpending, powerStats } from './character/powers';
-import { ageYears, computeStudy, magianLinkedGains } from './longterm';
+import { ageYears, computeStudy, magianLinkedGains, twilightEffects, twilightTriggered, warpingScoreWith } from './longterm';
 import { castingScore, conditionalBonuses, labTotal, magicResistance } from './magic';
 import { migrateCharacter } from '../store/migrate';
 
@@ -225,5 +225,47 @@ describe('one-click conditional bonuses (playtest)', () => {
     expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', circumstance: [] }).total).toBe(base);
     expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', other: -4 }).total).toBe(base - 4);
     expect(labTotal(d, { technique: 'Cr', form: 'Ig' }, { activity: 'spells', other: 2 }).total).toBe(labTotal(d, { technique: 'Cr', form: 'Ig' }, { activity: 'spells' }).total + 2);
+  });
+});
+
+describe('Virtues and Flaws from the second playtest character', () => {
+  it('allows only one Magical Focus between the Major and Minor versions', () => {
+    const c = magus('criamon');
+    addVirtue(c, data, 'minor-magical-focus', 'Minor', 'buffing');
+    const d = derive(c);
+    expect(vfAvailability(d, data, data.vfById.get('major-magical-focus')!)?.severity).toBe('error');
+  });
+  it('gives Mythic Characteristic a specialty and Unbearable to Beings its extra penalty', () => {
+    const c = magus('criamon');
+    addVirtue(c, data, 'mythic-characteristic', 'Minor', 'Int');
+    c.virtues[c.virtues.length - 1].note = 'great knowledge';
+    addVirtue(c, data, 'unbearable-to-beings-flaw', 'Minor', 'demons');
+    const d = derive(c);
+    expect(d.charSpecialties).toMatchObject([{ char: 'Int', text: 'great knowledge' }]);
+    expect(d.socialPenalties).toMatchObject([{ vs: 'demons', amount: -3 }]);
+  });
+  it('checks for Twilight on one Warping Point with Twilight Prone, and uses the Warping Score after adding the points', () => {
+    const c = magus('criamon');
+    const plain = derive(c);
+    expect(twilightTriggered(plain, 1)).toBe(false);
+    expect(twilightTriggered(plain, 2)).toBe(true);
+    addVirtue(c, data, 'twilight-prone-flaw', 'Major');
+    expect(twilightTriggered(derive(c), 1)).toBe(true);
+    c.warpingPoints = 13;
+    expect(warpingScoreWith(derive(c), 2, false)).toBe(2); // 15 points: Warping Score 2
+    expect(warpingScoreWith(derive(c), 2, true)).toBe(1);
+    expect(twilightEffects(true, 8).find((e) => e.id === 'virtue')?.ok).toBe(true);
+    expect(twilightEffects(false, 3).find((e) => e.id === 'flaw')?.ok).toBe(false);
+  });
+  it('gives a creature Magic Resistance from its Might, and adds Apt Student to teaching', () => {
+    const pet = newCharacter('companion', 's1');
+    pet.creature = { realm: 'Magic', might: 13, size: -3, kind: 'animal', intelligence: 'companion' };
+    const d = derive(pet);
+    expect(d.size).toBe(-3);
+    expect(magicResistance(d, 'An').total).toBe(13);
+    const c = magus();
+    addVirtue(c, data, 'apt-student', 'Minor');
+    const teach = computeStudy(derive(c), { kind: 'teacher', com: 1, teaching: 3, teacherScore: 10, students: 1, goodTeacher: false, isArt: true, subject: 'Creo' }, { art: 'Cr' });
+    expect(teach.parts.some((p) => /Apt Student/.test(p.label) && p.value === 5)).toBe(true);
   });
 });

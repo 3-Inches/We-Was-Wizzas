@@ -123,7 +123,7 @@ export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, c
   if (!data.isBookEnabled(def.source.book)) return 'Book not enabled';
   if (def.id === 'the-gift' || def.id === 'hermetic-magus') return 'Given by the character type';
   if (st.declined.includes(def.id)) return 'You turned it down';
-  if (!def.repeatable && !def.param && c.virtues.some((v) => v.defId === def.id)) return 'Already taken';
+  if (!def.repeatable && c.virtues.some((v) => v.defId === def.id)) return 'Already taken';
   const region = sagaRegion(ctx);
   if (region && rec.regions.length && !rec.regions.includes(region)) return `Belongs to the ${rec.regions.join(' or ')} Tribunal`;
   if (rec.cultures.length && !rec.cultures.includes(c.society)) return `For ${rec.cultures.join(' or ')} characters`;

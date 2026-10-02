@@ -26,6 +26,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [lifeBoost, setLifeBoost] = useState(0);
   const [other, setOther] = useState(0);
   const [similar, setSimilar] = useState('');
+  // All According to Plan: once per session, reroll a botch die
+  const [aatp, setAatp] = useState<{ spell: string; faces: number[] } | null>(null);
 
   const talismanItem = c?.items.find((i) => i.uid === c.talismanUid);
   const talismanBonus = talismanItem ? talismanItem.attunements.reduce((s, a) => Math.max(s, a.bonus), 0) : 0;
@@ -55,6 +57,19 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const hasImprovisation = d.virtues.some((v) => v.cv.defId === 'spell-improvisation');
   const conditional = conditionalBonuses(d);
   const spellFocus = (sp: CharSpell) => sp.inFocus ?? !!sp.notes?.includes('[focus]');
+  const aatpReady = d.virtues.some((v) => v.cv.defId === 'all-according-to-plan') && !c.session?.aatpUsed;
+  const useAatp = () => {
+    if (!aatp) return;
+    const i = aatp.faces.indexOf(0);
+    const again = simpleDie().value % 10;
+    const faces = [...aatp.faces];
+    if (i >= 0) faces[i] = again;
+    const left = faces.filter((f) => f === 0).length;
+    push(`All According to Plan (${aatp.spell}): rerolled a botch die: ${again}. ${left === 0 ? 'No botch left: the roll counts as a 0 instead (take back the Warping Points from the botch).' : `${left} zero${left > 1 ? 's' : ''} remain.`}`);
+    if (left < aatp.faces.filter((f) => f === 0).length) update((x) => void ((x.warpingPoints = Math.max(0, x.warpingPoints - 1)), (x.session = { ...(x.session ?? {}), aatpUsed: true })));
+    else update((x) => void (x.session = { ...(x.session ?? {}), aatpUsed: true }));
+    setAatp(null);
+  };
   const diedne = d.virtues.some((v) => v.cv.defId === 'diedne-magic');
   const push = (s: string) => setLog((l) => [s, ...l].slice(0, 30));
 
@@ -69,10 +84,14 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     let dieText: string;
     let die: number;
     let botched = false;
+    let botchCount = 0;
+    let lastBotchFaces: number[] = [];
     if (stress || sp.spell.ritual || ms > 0) {
       const r = stressDie(stress ? botchDice : 0, undefined, !stress);
       die = r.value;
       botched = r.botches > 0;
+      botchCount = r.botches;
+      lastBotchFaces = r.botchFaces;
       dieText = describeStress(r);
     } else {
       const r = simpleDie();
@@ -82,6 +101,14 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     const raw = res.parts.reduce((s, p) => s + p.value, 0);
     let total = res.halved ? Math.ceil((raw + die) / 2) : res.total + die;
     if (botched) total = 0;
+    // a magical botch: one Warping Point per zero; Twilight is checked on 2+ (1 with Twilight Prone)
+    const wp = botched ? botchCount : 0;
+    if (wp) {
+      update((x) => void (x.warpingPoints += wp));
+      const check = wp >= 2 || (wp >= 1 && d.twilightProne);
+      push(`Botch: ${wp} Warping Point${wp > 1 ? 's' : ''} added.${check ? ` Check for Wizard's Twilight${d.twilightProne && wp < 2 ? ' (Twilight Prone)' : ''}: Advancement tab, Warping & Twilight (points already added).` : ''}`);
+      if (aatpReady) setAatp({ spell: sp.spell.name, faces: lastBotchFaces });
+    }
     const out = castingOutcome(sp.spell.ritual ? 'ritual' : 'formulaic', total, level);
     const penT = out.cast ? penetrationTotal(d, total, level, { ...pen, masteryScore: sp.masteryAbilities.includes('Penetration') ? ms : 0 }) : 0;
     // Life Boost: the Fatigue levels are spent whatever the result; past Unconscious they become damage
@@ -444,6 +471,20 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         {diedne && <p className="small good-text">Diedne Magic: non-fatiguing spontaneous spells may roll as fatiguing without losing Fatigue.</p>}
       </Card>
 
+      {aatp && (
+        <div className="issue warning">
+          <span className="badge warn">botch</span>
+          <div className="msg">
+            {aatp.spell} botched (botch dice {aatp.faces.join(', ')}). All According to Plan lets you reroll one botch die once this session: describe the contingency plan.
+          </div>
+          <button className="small" onClick={useAatp}>
+            Reroll a botch die
+          </button>
+          <button className="small ghost" onClick={() => setAatp(null)}>
+            Keep it
+          </button>
+        </div>
+      )}
       {log.length > 0 && (
         <Card title="Casting log" actions={<button className="small ghost" onClick={() => setLog([])}>Clear</button>}>
           {log.map((l, i) => (
