@@ -88,6 +88,21 @@ export const CHOICE_LINKS: Record<string, [string, number][]> = {
   'cyclic-magic-positive': [['swingy', 3]],
   'cyclic-magic-negative-flaw': [['swingy', 3]],
   'special-circumstances': [['swingy', 2]],
+  // rerolls, fewer botches and ways out of trouble
+  'all-according-to-plan': [['escape', 3]],
+  luck: [['escape', 3]],
+  'charmed-life': [['escape', 3]],
+  'guardian-angel': [['escape', 3]],
+  intuition: [['escape', 2]],
+  premonitions: [['escape', 2]],
+  'self-confident': [['escape', 2]],
+  'cautious-sorcerer': [['escape', 2]],
+  'heroic-personality-flaw': [['escape', 2]],
+  'mythic-characteristic': [['escape', 1]],
+  'light-touch': [['escape', 1]],
+  'ways-of-the-land': [['escape', 1]],
+  // the book's advice for a beginning player
+  'common-sense': [['new-player', 3]],
 };
 
 export interface Archetype {

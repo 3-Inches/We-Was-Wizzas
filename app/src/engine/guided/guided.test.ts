@@ -51,8 +51,8 @@ describe('guided build: the data', () => {
 describe('guided build: the questionnaire', () => {
   it('path length: the longest path stays near 100 answered questions; typical ones far fewer', () => {
     const longest = simulate(fixedProfile('all tens', {}, 10), ctxOf(character('magus')));
-    // every follow-up opened: the outputs-first questions (activity, outputs, broad or narrow) add a few
-    expect(longest.answered).toBeLessThanOrEqual(125);
+    // every follow-up opened: the outputs-first questions, new player, rerolls and Characteristics-later add a few
+    expect(longest.answered).toBeLessThanOrEqual(128);
     const typical = [
       simulate(fixedProfile('battle mage', { 'o-cast': 10, 'c-fight': 10, 'd-penetrate': 9, 'b-arts': 8, 'b-art-Pe': 10, 'b-art-Ig': 9, 'e-lab': 2 }), ctxOf(character('magus', 'flambeau'))),
       simulate(fixedProfile('faerie', { 'f-faerie': 10, 'f-faerie-blood': 9, 'h-social': 8 }), ctxOf(character('companion'))),
