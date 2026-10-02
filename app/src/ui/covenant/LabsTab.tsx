@@ -7,6 +7,7 @@ import { useSagaCharacters } from '../../store/hooks';
 import { uid } from '../../util/id';
 import { BookBadge, Card, Field, Markdown, SearchInput, Stepper, Total } from '../kit';
 import type { CovTabProps } from './shared';
+import { LaterNote } from '../LaterNote';
 
 const CHAR_KEYS: LabCharacteristic[] = ['Size', 'Refinement', 'General Quality', 'Upkeep', 'Safety', 'Warping', 'Health', 'Aesthetics'];
 
@@ -38,6 +39,7 @@ export default function LabsTab({ cov, update, dc, data }: CovTabProps) {
           Each member magus gets a standard Size 0 lab free; bigger labs cost 20 BP per point of Size (smaller labs refund), Minor Virtues 10 BP and Major Virtues 20 BP; spare labs 50 BP;
           magi with no lab refund 50 BP (DE Laboratory chapter).
         </p>
+        <LaterNote topic="lab" />
         <div className="row">
           <Field label="Spare labs (50 BP each)">
             <Stepper value={cov.spareLabs} min={0} width={36} onChange={(v) => update((x) => void (x.spareLabs = v))} />

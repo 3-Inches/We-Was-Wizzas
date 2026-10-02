@@ -399,3 +399,7 @@ button.fix-primary { border-color: var(--accent-2); color: var(--accent-2); font
 .card-dl dt { font-weight: 700; }
 .card-dl dd { margin: 0; }
 .why { font-size: 0.82em; color: var(--ink-soft); font-style: italic; }
+
+.later-note { margin: 4px 0 8px; color: var(--muted); }
+.later-note summary { cursor: pointer; }
+.later-note ul { margin: 4px 0 0; padding-left: 18px; }

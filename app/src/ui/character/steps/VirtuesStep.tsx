@@ -9,6 +9,7 @@ import ParamInput from '../ParamInput';
 import { CharIssueList } from '../CharIssues';
 import PowersCard from '../PowersCard';
 import type { CharEditor } from '../useChar';
+import { LaterNote } from '../../LaterNote';
 
 const CATS: VFCategory[] = ['General', 'Hermetic', 'Supernatural', 'Social Status', 'Personality', 'Story', 'Mythic Companion', 'Heroic', 'Mystery', 'Special'];
 
@@ -20,6 +21,7 @@ export default function VirtuesStep({ ed }: { ed: CharEditor }) {
   return (
     <>
       <Card title="Point balance" className="accent">
+        <LaterNote topic="virtues" />
         <div className="grid grid-4">
           <Meter label="Flaw points" value={t.flawPoints} max={maxFlaws} />
           <Meter label={c.type === 'mythic' ? 'Virtue points (2 per Flaw point)' : 'Virtue points'} value={t.virtuePoints} max={t.allowedVirtuePoints} />

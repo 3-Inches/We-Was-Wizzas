@@ -2,6 +2,7 @@ import { CHARACTERISTICS, CHAR_NAMES, charCost, type Characteristic } from '../.
 import { Card, Meter, SelectOrType, Stepper, signed } from '../../kit';
 import { CHAR_DESCRIPTORS } from '../../../data/lists';
 import type { CharEditor } from '../useChar';
+import { LaterNote } from '../../LaterNote';
 
 const DESCRIPTIONS: Record<Characteristic, string> = {
   Int: 'Reasoning and memory. Central to Lab Totals.',
@@ -19,6 +20,7 @@ export default function CharacteristicsStep({ ed }: { ed: CharEditor }) {
   if (!c || !d) return null;
   return (
     <Card title="Characteristics" className="accent">
+        <LaterNote topic="characteristics" />
       <Meter label="Points spent" value={d.charPointsSpent} max={d.charPointsBudget} />
       <p className="small muted">
         Buy each Characteristic from –3 to +3. Costs: +1 = 1, +2 = 3, +3 = 6; –1 gives 1, –2 gives 3, –3 gives 6. You have {d.charPointsBudget} points (7

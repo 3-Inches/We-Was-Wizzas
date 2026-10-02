@@ -8,6 +8,7 @@ import type { Covenant, CovenfolkCounts, IncomeModification, IncomeSource, Speci
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
 import type { CovTabProps } from './shared';
+import { LaterNote } from '../LaterNote';
 
 const FOLK: { key: keyof CovenfolkCounts; label: string; hint?: string }[] = [
   { key: 'grogs', label: 'Grogs (non-player)' },
@@ -128,6 +129,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
       </div>
 
       <Card title={`Specialists & teachers (${people.reduce((s, x) => s + specialistCost(x), 0)} BP)`}>
+        <LaterNote topic="covenfolk" />
         {people.length === 0 && <div className="small muted">None listed. Use Quick add above.</div>}
         {people.map((s) => (
           <PersonRow key={s.uid} s={s} update={update} />

@@ -6,6 +6,7 @@ import type { DerivedCharacter } from '../../../engine/character/derive';
 import { labTotal } from '../../../engine/magic';
 import { Card, Meter, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
+import { LaterNote } from '../../LaterNote';
 
 function rawNeededArt(c: Character, d: DerivedCharacter, art: Art, src: XpSource, targetScore: number): number {
   const da = d.arts[art];
@@ -34,6 +35,7 @@ export default function ArtsStep({ ed }: { ed: CharEditor }) {
   return (
     <>
       <Card title="Hermetic Arts" className="accent">
+        <LaterNote topic="arts" />
         <div className="grid grid-2">
           {pools.map((b) => (
             <div key={b.id} className={`vf-item clickable ${pool?.id === b.id ? 'taken' : ''}`} onClick={() => setPoolId(b.id)}>
