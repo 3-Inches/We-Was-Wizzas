@@ -443,6 +443,12 @@ function spendExperience(c: Character, st: GuidedState, inp: BuildInput, get: ()
     log.push(`Native language: ${lang}.`);
     refresh();
   }
+  // Abilities a Virtue gives (Second Sight from Strong Faerie Blood) say which one
+  for (const ab of c.abilities) {
+    if (ab.why || !ab.xp.free) continue;
+    const by = c.virtues.find((v) => data.vfById.get(v.defId)?.effects?.some((e) => e.type === 'grantAbility' && (e.ability === ab.abilityId || (e.ability === '$param' && v.param === ab.abilityId))));
+    if (by) ab.why = `from: ${data.vfById.get(by.defId)?.name}${by.grantedBy ? ` (free with ${data.vfById.get(c.virtues.find((v) => v.uid === by.grantedBy)?.defId ?? '')?.name})` : ''}`;
+  }
   const focus = answer('a-focus', st, get());
   const width = focus >= 8 ? 3 : focus >= 6 ? 4 : focus <= 3 ? 7 : 5;
   const ranked = rankedAbilities(c, st, get());

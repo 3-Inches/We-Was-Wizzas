@@ -131,6 +131,10 @@ export interface CharVirtue {
   characterId?: string;
   /** uid of the Virtue/Flaw whose rules made the character take this one (removed with it) */
   requiredBy?: string;
+  /** uid of the Virtue that gives this one at no cost (Strong Faerie Blood: Second Sight); kept in step with it */
+  grantedBy?: string;
+  /** it was bought before the Virtue that gives it free: it stays (and costs again) if that Virtue goes */
+  wasTaken?: boolean;
   /** why the guided build chose it ("from: I expect to cast in a fight — 9") */
   why?: string;
 }

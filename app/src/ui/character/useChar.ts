@@ -5,6 +5,7 @@ import { useCharacter, useCharacterContext, useDerived, useGameData, useSaga } f
 import type { Character } from '../../engine/types';
 import { deriveCharacter } from '../../engine/character/derive';
 import { adjustAfterChange } from '../../engine/character/rebalance';
+import { syncImpliedVirtues } from '../../engine/character/factory';
 import { resolveAll as resolveAllIssues, type Fix } from '../../engine/character/fixes';
 
 export function useCharEditor() {
@@ -29,11 +30,16 @@ export function useCharEditor() {
       if (!charId) return;
       updateCharacter(charId, (x) => {
         const snapshot = structuredClone(x);
-        if (!rules) return void fn(x);
+        if (!rules) {
+          fn(x);
+          return void syncImpliedVirtues(x, data);
+        }
         const before = deriveCharacter(snapshot, data, rules);
         const note = fn(x);
+        // a new parameter can change what a Virtue gives free (Magical Blood of a magic spirit)
+        const implied = syncImpliedVirtues(x, data);
         const adjusted = adjustAfterChange(x, before, data, rules);
-        const text = [message, note, ...adjusted].filter(Boolean).join(' ');
+        const text = [message, note, ...implied, ...adjusted].filter(Boolean).join(' ');
         if (message || note || adjusted.length) setNotice(text, () => putCharacter(snapshot));
       });
     },

@@ -210,7 +210,7 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
       const names = replaced.map((uid) => data.vfById.get(x.virtues.find((y) => y.uid === uid)?.defId ?? '')?.name).filter(Boolean);
       for (const uid of replaced) removeVirtue(x, data, uid);
       const cv = addVirtue(x, data, v.id, s);
-      const addedBy = x.virtues.filter((y) => y.requiredBy === cv.uid || y.freeReason === `from ${v.name}`).map((y) => data.vfById.get(y.defId)?.name);
+      const addedBy = x.virtues.filter((y) => y.requiredBy === cv.uid || y.grantedBy === cv.uid).map((y) => data.vfById.get(y.defId)?.name);
       if (allow && saga) {
         // record the troupe ruling for whatever the rules check now flags on this Virtue
         const dd = deriveCharacter(x, data, saga.houseRules);

@@ -4,7 +4,7 @@
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
-import { addVirtue, ensureAbility, newCharacter, setHouse } from './character/factory';
+import { addVirtue, ensureAbility, newCharacter, removeVirtue, setHouse, syncImpliedVirtues } from './character/factory';
 import { deriveCharacter, postGauntletXp } from './character/derive';
 import { validateCharacter } from './character/validate';
 import { abilityAvailability, vfAvailability } from './character/restrictions';
@@ -267,5 +267,62 @@ describe('Virtues and Flaws from the second playtest character', () => {
     addVirtue(c, data, 'apt-student', 'Minor');
     const teach = computeStudy(derive(c), { kind: 'teacher', com: 1, teaching: 3, teacherScore: 10, students: 1, goodTeacher: false, isArt: true, subject: 'Creo' }, { art: 'Cr' });
     expect(teach.parts.some((p) => /Apt Student/.test(p.label) && p.value === 5)).toBe(true);
+  });
+});
+
+describe('Virtues that give another Virtue free (playtest)', () => {
+  const ids = (c: Character) => c.virtues.map((v) => v.defId);
+  it('gives Magical Blood the Virtue or bonus of its kind of magic being, and follows a change of kind', () => {
+    const c = newCharacter('companion', 's1');
+    const mb = addVirtue(c, data, 'magical-blood', 'Minor');
+    expect(ids(c)).toEqual(['magical-blood']);
+    mb.param = 'Magic Spirit: Second Sight';
+    syncImpliedVirtues(c, data);
+    const ss = c.virtues.find((v) => v.defId === 'second-sight')!;
+    expect(ss).toMatchObject({ free: true, grantedBy: mb.uid });
+    expect(c.abilities.find((a) => a.abilityId === 'second-sight')?.xp.free).toBe(5);
+    expect(derive(c).tally.virtuePoints).toBe(1);
+    mb.param = 'Magic Human: Strength';
+    expect(syncImpliedVirtues(c, data)).toEqual(['Second Sight went with it.']);
+    expect(ids(c)).toEqual(['magical-blood']);
+    expect(c.abilities.some((a) => a.abilityId === 'second-sight')).toBe(false);
+    c.characteristics.Str = 3;
+    const d = derive(c);
+    expect(d.characteristics.Str.value).toBe(3);
+    c.characteristics.Str = 1;
+    expect(derive(c).characteristics.Str.value).toBe(2);
+    expect(derive(c).reputations.some((r) => r.score === 3 && /bloodline/.test(r.scope))).toBe(true);
+    mb.param = 'Magic Thing: Lesser Power';
+    syncImpliedVirtues(c, data);
+    expect(derive(c).powerBudgets.lesser).toBe(25);
+  });
+  it('makes a Virtue already bought free, and charges for it again when the giver goes', () => {
+    const c = newCharacter('companion', 's1');
+    addVirtue(c, data, 'second-sight', 'Minor');
+    expect(derive(c).tally.virtuePoints).toBe(1);
+    const sfb = addVirtue(c, data, 'strong-faerie-blood', 'Major');
+    expect(c.virtues.filter((v) => v.defId === 'second-sight')).toHaveLength(1);
+    expect(derive(c).tally.virtuePoints).toBe(3);
+    removeVirtue(c, data, sfb.uid);
+    const ss = c.virtues.find((v) => v.defId === 'second-sight')!;
+    expect([ss.free, ss.grantedBy]).toEqual([undefined, undefined]);
+    expect(derive(c).tally.virtuePoints).toBe(1);
+  });
+  it('passes a free Virtue on when two Virtues give it', () => {
+    const c = newCharacter('companion', 's1');
+    const sfb = addVirtue(c, data, 'strong-faerie-blood', 'Major');
+    const mb = addVirtue(c, data, 'magical-blood', 'Minor', 'Magic Spirit: Second Sight');
+    expect(c.virtues.filter((v) => v.defId === 'second-sight')).toHaveLength(1);
+    removeVirtue(c, data, sfb.uid);
+    expect(c.virtues.find((v) => v.defId === 'second-sight')?.grantedBy).toBe(mb.uid);
+  });
+  it('adopts freebies saved before they were linked', () => {
+    const c = newCharacter('companion', 's1');
+    const sfb = addVirtue(c, data, 'strong-faerie-blood', 'Major');
+    const ss = c.virtues.find((v) => v.defId === 'second-sight')!;
+    delete ss.grantedBy;
+    syncImpliedVirtues(c, data);
+    expect(c.virtues.filter((v) => v.defId === 'second-sight')).toHaveLength(1);
+    expect(ss.grantedBy).toBe(sfb.uid);
   });
 });
