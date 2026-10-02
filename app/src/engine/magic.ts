@@ -23,6 +23,8 @@ export interface TotalResult {
   halved: boolean;
   notes: string[];
   botchDice?: number;
+  /** the lab cannot be used for this work (Missing Equipment) */
+  impossible?: boolean;
 }
 
 /** DE Realm Interaction Table (p.410). */
@@ -188,9 +190,17 @@ export function spontaneousTotal(score: number, fatiguing: boolean, die = 0, die
 
 export type LabActivity = 'spells' | 'items' | 'familiar' | 'longevity' | 'texts' | 'visExtraction' | 'experimentation' | 'teaching' | 'other';
 
+/** The activity Specialization each kind of lab work uses (DE Laboratory). */
+export const LAB_ACTIVITY_SPEC: Record<LabActivity, string | null> = {
+  spells: 'Spells', items: 'Items', familiar: 'Familiar', longevity: 'Longevity Rituals', texts: 'Texts',
+  visExtraction: 'Vis Extraction', experimentation: 'Experimentation', teaching: 'Teaching', other: null,
+};
+
 export interface LabContext {
   generalQuality: number;
   specializations: Record<string, number>;
+  /** activities that cannot be done in this lab (Missing Equipment) */
+  impossible?: string[];
   safety?: number;
   auraOverride?: AuraState;
 }
@@ -245,11 +255,7 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
   if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})`, value: aura.mod });
   if (o.lab) {
     if (o.lab.generalQuality) parts.push({ label: 'Lab General Quality', value: o.lab.generalQuality });
-    const actKey: Record<LabActivity, string | null> = {
-      spells: 'Spells', items: 'Items', familiar: 'Familiar', longevity: 'Longevity Rituals', texts: 'Texts',
-      visExtraction: 'Vis Extraction', experimentation: 'Experimentation', teaching: 'Teaching', other: null,
-    };
-    const ak = actKey[o.activity];
+    const ak = LAB_ACTIVITY_SPEC[o.activity];
     if (ak && o.lab.specializations[ak]) parts.push({ label: `Lab specialization: ${ak}`, value: o.lab.specializations[ak] });
     if (o.experimenting && o.activity !== 'experimentation' && o.lab.specializations.Experimentation) parts.push({ label: 'Lab specialization: Experimentation', value: o.lab.specializations.Experimentation });
     if (o.fromText && o.activity !== 'texts' && o.lab.specializations.Texts) parts.push({ label: 'Lab specialization: Texts', value: o.lab.specializations.Texts });
@@ -299,7 +305,9 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
     }
   }
   if (aura.note) notes.push(`${aura.note}: extra botch dice ${aura.botch}`);
-  return { total, parts, halved, notes, botchDice: aura.botch + botchDiceFor(d, 'lab') };
+  const ruledOut = o.lab?.impossible?.find((a) => a === LAB_ACTIVITY_SPEC[o.activity] || (a === 'Experimentation' && o.experimenting) || (a === 'Texts' && o.fromText));
+  if (ruledOut) notes.unshift(`This lab cannot be used for ${ruledOut} (Missing Equipment).`);
+  return { total, parts, halved, notes, botchDice: aura.botch + botchDiceFor(d, 'lab'), impossible: !!ruledOut };
 }
 
 function artName(a: Art): string {

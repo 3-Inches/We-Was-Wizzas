@@ -21,6 +21,8 @@ export interface LabAltDef {
   label: string;
   characteristics: CharMods;
   specializations?: Record<string, number>;
+  /** lab activities that cannot be done in the lab with this version (Missing Equipment) */
+  rulesOut?: string[];
 }
 
 /** A condition the player switches on or off; its effects apply only while it is on. */
@@ -38,6 +40,12 @@ export interface LabOptionDef {
   /** Characteristic bonuses from the inputs */
   formula?: (n: Record<string, number>) => CharMods;
   alts?: LabAltDef[];
+  /** the version must be chosen: there is no sensible default */
+  altRequired?: boolean;
+  /** how many times the lab may take it */
+  maxTimes?: number;
+  /** Boundless: the Size can be anything, so it grows to hold the Virtues at no cost */
+  boundless?: boolean;
   toggles?: LabToggleDef[];
   /** replaces the extracted effects (extraction errors and conditional parts moved to toggles) */
   fix?: { characteristics: CharMods; specializations?: Record<string, number> };
@@ -53,6 +61,16 @@ export interface LabOptionDef {
   reduceHighSpecs?: boolean;
   note?: string;
 }
+
+// Missing Equipment (DE): "If you pick Items, Spells, or Texts, only this one activity cannot be
+// undertaken. Otherwise, you must pick two of the activity categories." The other categories are
+// those of the activity Specializations.
+const SINGLE_GAPS = ['Items', 'Spells', 'Texts'];
+const PAIRED_GAPS = ['Experimentation', 'Familiar', 'Longevity Rituals', 'Teaching', 'Vis Extraction'];
+const MISSING_EQUIPMENT_ALTS: LabAltDef[] = [
+  ...SINGLE_GAPS.map((a) => ({ id: a, label: `no ${a}`, characteristics: { Upkeep: -1 }, rulesOut: [a] })),
+  ...PAIRED_GAPS.flatMap((a, i) => PAIRED_GAPS.slice(i + 1).map((b) => ({ id: `${a}+${b}`, label: `no ${a} and no ${b}`, characteristics: { Upkeep: -1 }, rulesOut: [a, b] }))),
+];
 
 const INT = (label: string): LabInputDef => ({ key: 'int', label, min: -5, max: 10, def: 0 });
 const MT: LabInputDef = { key: 'mt', label: 'Magic Theory', min: 0, max: 15, def: 0 };
@@ -112,6 +130,14 @@ export const LAB_OPTIONS: Record<string, LabOptionDef> = {
       { id: 'upkeep', label: '+2 Upkeep', characteristics: { Upkeep: 2 } },
     ],
   },
+
+  'missing-equipment-flaw': {
+    alts: MISSING_EQUIPMENT_ALTS,
+    altRequired: true,
+    maxTimes: 2,
+    note: 'Lab work of the chosen kind is impossible in this lab. Items, Spells or Texts alone, or two of the other activities. At most twice.',
+  },
+  boundless: { boundless: true, note: 'Size may be increased to any desired number: it grows to hold the Virtues, and that extra Size costs no Build Points.' },
 
   // conditions
   relocation: {

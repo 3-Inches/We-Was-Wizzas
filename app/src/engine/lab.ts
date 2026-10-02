@@ -24,6 +24,10 @@ export interface DerivedLab {
   buildPoints: number; // cost in covenant build points
   issues: string[];
   emptyFlawsNeeded: number;
+  /** activities the lab cannot be used for (Missing Equipment) */
+  impossible: string[];
+  /** Boundless: Size grows to hold the Virtues */
+  boundless: boolean;
 }
 
 export const SPEC_ACTIVITIES = ['Experimentation', 'Familiar', 'Items', 'Longevity Rituals', 'Spells', 'Teaching', 'Texts', 'Vis Extraction'];
@@ -71,7 +75,7 @@ export function labEntryEffects(v: LabVirtueEntry, def: LabVFDef): { characteris
   const addSpecs = (c: Record<string, number> | undefined) => {
     for (const [k, n] of Object.entries(c ?? {})) if (n) specs[k] = (specs[k] ?? 0) + n;
   };
-  const alt = opt?.alts ? opt.alts.find((a) => a.id === v.alt) ?? opt.alts[0] : undefined;
+  const alt = opt?.alts ? opt.alts.find((a) => a.id === v.alt) ?? (opt.altRequired ? undefined : opt.alts[0]) : undefined;
   if (alt) {
     add(alt.characteristics);
     addSpecs(alt.specializations);
@@ -109,6 +113,9 @@ export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
   let aestheticsMax = Infinity;
   let halveAesthetics = false;
   let reduceHighSpecs = false;
+  let boundless = false;
+  const impossible: string[] = [];
+  const counts: Record<string, number> = {};
   for (const v of lab.virtues) {
     const def = data.labVFById.get(v.defId);
     if (!def) continue;
@@ -132,6 +139,20 @@ export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
     if (opt?.aestheticsMax !== undefined) aestheticsMax = Math.min(aestheticsMax, opt.aestheticsMax);
     if (opt?.halveAesthetics) halveAesthetics = true;
     if (opt?.reduceHighSpecs) reduceHighSpecs = true;
+    if (opt?.boundless) boundless = true;
+    counts[v.defId] = (counts[v.defId] ?? 0) + 1;
+    if (opt?.alts && opt.altRequired) {
+      const chosen = opt.alts.find((a) => a.id === v.alt);
+      if (!chosen) issues.push(`${def.name}: choose which lab work it rules out.`);
+      for (const a of chosen?.rulesOut ?? []) {
+        if (impossible.includes(a)) issues.push(`${def.name}: ${a} is already ruled out; choose another activity.`);
+        else impossible.push(a);
+      }
+    }
+  }
+  for (const [id, n] of Object.entries(counts)) {
+    const max = LAB_OPTIONS[id]?.maxTimes;
+    if (max && n > max) issues.push(`${data.labVFById.get(id)?.name ?? id} cannot be taken more than ${max === 2 ? 'twice' : `${max} times`} (taken ${n}).`);
   }
   chars.Size = size;
   for (const [k, val] of Object.entries(lab.customMods)) {
@@ -141,8 +162,14 @@ export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
   }
   for (const [k, val] of Object.entries(lab.customSpecs)) specs[k] = (specs[k] ?? 0) + val;
   const net = vp - fp;
-  const capacity = size + lab.refinement;
   const occupiedSize = net - lab.refinement;
+  // Boundless (Covenants): "Size may be increased to any desired number", so it holds whatever the Virtues need
+  if (boundless && size < occupiedSize) {
+    parts.Size.push({ label: 'Boundless: grows to hold the Virtues', value: occupiedSize - size });
+    size = occupiedSize;
+    chars.Size = size;
+  }
+  const capacity = size + lab.refinement;
   const freeSpace = capacity - net;
   if (freeSpace < 0) issues.push(`Virtues exceed space: Virtue points − Flaw points (${net}) must not exceed Size + Refinement (${capacity}).`);
   // DE: base Safety = Refinement − occupied Size (only when the occupied Size is above 0)
@@ -186,7 +213,7 @@ export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
   return {
     lab, size, refinement: lab.refinement, virtuePoints: vp, flawPoints: fp, freeSpace, occupiedSize,
     characteristics: chars, parts, specializations: finalSpecs, droppedSpecs: [...dropped], specWarnings,
-    upkeepPoints: up, yearlyCost: (up / 10) * mult, buildPoints: bp, issues, emptyFlawsNeeded,
+    upkeepPoints: up, yearlyCost: (up / 10) * mult, buildPoints: bp, issues, emptyFlawsNeeded, impossible, boundless,
   };
 }
 
@@ -195,4 +222,9 @@ export function newLab(name: string, ownerId?: string): Laboratory {
     uid: Math.random().toString(16).slice(2, 14), name, ownerId, size: 0, refinement: 0, virtues: [],
     customMods: {}, customSpecs: {}, droppedSpecs: [], personalityTraits: [], use: 'typical',
   };
+}
+
+/** What a character's Lab Totals take from the lab: General Quality, Specializations, and the work it cannot do. */
+export function labContextOf(dl: DerivedLab): { generalQuality: number; specializations: Record<string, number>; impossible: string[] } {
+  return { generalQuality: dl.characteristics['General Quality'], specializations: dl.specializations, impossible: dl.impossible };
 }

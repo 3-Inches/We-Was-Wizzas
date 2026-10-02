@@ -10,6 +10,7 @@ import { uid } from '../../util/id';
 import { BookBadge, Card, Empty, Field, Markdown, SearchInput, Stepper, Tabs, Total } from '../kit';
 import { FragmentRow, makeCharSpell } from '../character/steps/SpellsStep';
 import { ConditionsBar, useConditions } from '../character/Conditions';
+import { labContextOf } from '../../engine/lab';
 
 type TabId = 'browse' | 'design' | 'guidelines';
 
@@ -160,7 +161,7 @@ function Browse({ charId, onMsg }: { charId: string; onMsg: (s: string) => void 
               const known = c?.spells.some((x) => x.spell.name === s.name && x.spell.technique === s.technique);
               const cs = d ? castingScore(d, { technique: s.technique, form: s.form, requisites: s.requisites }, { kind: s.ritual ? 'ritual' : 'formulaic', aura: ctx.aura }).total : null;
               const lt = d
-                ? labTotal(d, { technique: s.technique, form: s.form, requisites: s.requisites }, { activity: 'spells', aura: ctx.aura, lab: ctx.lab ? { generalQuality: ctx.lab.characteristics['General Quality'], specializations: ctx.lab.specializations } : undefined, fromText: false }).total
+                ? labTotal(d, { technique: s.technique, form: s.form, requisites: s.requisites }, { activity: 'spells', aura: ctx.aura, lab: ctx.lab ? labContextOf(ctx.lab) : undefined, fromText: false }).total
                 : null;
               return (
                 <FragmentRow key={s.id} s={s} open={open === s.id} onToggle={() => setOpen(open === s.id ? null : s.id)}>
@@ -216,7 +217,7 @@ function Designer({ charId, onMsg }: { charId: string; onMsg: (s: string) => voi
   const res = designSpell({ technique: te, form: fo, requisites: reqs, baseLevel: base, range, duration, target, sizeMagnitudes: size, otherMagnitudes: other, forceRitual });
   const guides = data.guidelines.filter((g) => g.technique === te && g.form === fo);
   const note = data.guidelineNotes[te + fo];
-  const lab = ctx.lab ? { generalQuality: ctx.lab.characteristics['General Quality'], specializations: ctx.lab.specializations } : undefined;
+  const lab = ctx.lab ? labContextOf(ctx.lab) : undefined;
   const arts = { technique: te, form: fo, requisites: reqs.map((r) => r.art) };
   const lt = d ? labTotal(d, arts, { activity: 'spells', aura: ctx.aura, lab, inFocus: cond.focus, circumstance: cond.circumstance, other: cond.other }) : null;
   const inv = lt ? inventionSeasons(lt.total, res.level) : null;

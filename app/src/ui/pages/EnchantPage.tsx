@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import { ARTS, ART_NAMES, type Art } from '../../data';
 import { deriveCharacter } from '../../engine/character/derive';
 import { FREQUENCY, MATERIAL_BASE, SIZE_MULT, labTextCopyLevels, labTextWritingLevels, longevityBonus, longevityVisCost, maxTractatus, planSumma, tractatusQuality, visLimit } from '../../engine/enchant';
-import { labTotal } from '../../engine/magic';
+import { labTotal, type LabContext } from '../../engine/magic';
 import { useCharacterContext, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { Card, Empty, Field, SearchInput, Stepper, Tabs, Total } from '../kit';
 import ItemsEditor from '../items/ItemEditor';
 import { ConditionsBar, useConditions } from '../character/Conditions';
+import { labContextOf } from '../../engine/lab';
 
 type TabId = 'items' | 'longevity' | 'vis' | 'writing' | 'tables';
 
@@ -25,7 +26,7 @@ export default function EnchantPage() {
   const ctx = useCharacterContext(c, data);
   const d = useMemo(() => (c && saga ? deriveCharacter(c, data, saga.houseRules) : undefined), [c, saga, data]);
   if (!saga) return <Empty>Saga not found.</Empty>;
-  const lab = ctx.lab ? { generalQuality: ctx.lab.characteristics['General Quality'], specializations: ctx.lab.specializations } : undefined;
+  const lab = ctx.lab ? labContextOf(ctx.lab) : undefined;
   return (
     <div>
       <div className="topbar">
@@ -83,7 +84,7 @@ export default function EnchantPage() {
   );
 }
 
-type Props = { d: NonNullable<ReturnType<typeof deriveCharacter>>; aura: ReturnType<typeof useCharacterContext>['aura']; lab?: { generalQuality: number; specializations: Record<string, number> } };
+type Props = { d: NonNullable<ReturnType<typeof deriveCharacter>>; aura: ReturnType<typeof useCharacterContext>['aura']; lab?: LabContext };
 
 function LongevityForOthers({ d, aura, lab }: Props) {
   const { sagaId } = useParams();

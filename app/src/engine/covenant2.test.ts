@@ -6,7 +6,11 @@ import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { computeFinances, deriveCovenant, newCovenant, optimalLaborers } from './covenant';
 import { CRAFTS, canBeUnknown, computeIncome, receivedAfterTithe } from './covenantRules';
-import { deriveLab, newLab } from './lab';
+import { deriveLab, labContextOf, newLab } from './lab';
+import { labTotal } from './magic';
+import { deriveCharacter } from './character/derive';
+import { newCharacter, setHouse } from './character/factory';
+import { DEFAULT_HOUSE_RULES } from './types';
 import type { Covenant, CovenantHookBoon, Laboratory, Specialist } from './types';
 import { migrateCovenant } from '../store/migrate';
 
@@ -245,5 +249,36 @@ describe('craftsmen and cost saving (Covenants ch.5)', () => {
     expect(m.finances.craftSavings).toEqual([]);
     expect(m.specialists[0]).toMatchObject({ role: 'craftsman', craft: 'carpenter', free: true });
     expect(m.covenfolk.craftsmen).toBe(4);
+  });
+});
+
+describe('lab notes from the playtest covenant', () => {
+  it('makes Missing Equipment rule out the chosen work, at most twice', () => {
+    const one = lab(['missing-equipment-flaw', { alt: 'Texts' }]);
+    const dl = deriveLab(one, data);
+    expect(dl.impossible).toEqual(['Texts']);
+    expect(dl.characteristics.Upkeep).toBe(-1);
+    expect(deriveLab(lab('missing-equipment-flaw'), data).issues.some((i) => /choose which lab work/.test(i))).toBe(true);
+    const pair = deriveLab(lab(['missing-equipment-flaw', { alt: 'Familiar+Longevity Rituals' }], ['missing-equipment-flaw', { alt: 'Spells' }]), data);
+    expect(pair.impossible).toEqual(['Familiar', 'Longevity Rituals', 'Spells']);
+    expect(pair.issues.filter((i) => /Missing Equipment/.test(i))).toEqual([]);
+    const three = deriveLab(lab(['missing-equipment-flaw', { alt: 'Items' }], ['missing-equipment-flaw', { alt: 'Spells' }], ['missing-equipment-flaw', { alt: 'Texts' }]), data);
+    expect(three.issues.some((i) => /more than twice/.test(i))).toBe(true);
+    // the Lab Total says the work cannot be done here
+    const c = newCharacter('magus', 's1');
+    setHouse(c, data, 'bonisagus', 0);
+    const d = deriveCharacter(c, data, DEFAULT_HOUSE_RULES);
+    expect(labTotal(d, { technique: 'Cr', form: 'Ig' }, { activity: 'spells', lab: labContextOf(pair) }).impossible).toBe(true);
+    expect(labTotal(d, { technique: 'Cr', form: 'Ig' }, { activity: 'items', lab: labContextOf(pair) }).impossible).toBe(false);
+  });
+  it('lets a Boundless lab grow to hold its Virtues, at no Build Point cost', () => {
+    const full = lab('superior-equipment', 'spacious', 'superior-tools', 'opulent');
+    const tight = deriveLab(full, data);
+    expect(tight.issues.some((i) => /exceed space/.test(i))).toBe(true);
+    const roomy = deriveLab({ ...full, virtues: [...full.virtues, { uid: 'b', defId: 'boundless' }] }, data);
+    expect(roomy.issues.filter((i) => /exceed space/.test(i))).toEqual([]);
+    expect(roomy.size).toBe(roomy.occupiedSize);
+    expect(roomy.characteristics.Warping).toBe(2);
+    expect(roomy.buildPoints).toBe(tight.buildPoints);
   });
 });

@@ -8,6 +8,7 @@ import { Card, Field, Stepper, Total } from '../../kit';
 import ItemsEditor, { characterTalismanCapacity } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
 import { uid } from '../../../util/id';
+import { labContextOf } from '../../../engine/lab';
 
 const newFamiliar = (): Familiar => ({
   name: '', species: '', might: 5, size: -2, realm: 'Magic', bindingTechnique: 'Re', bindingForm: 'An', bindingLabTotal: 0, golden: 0, silver: 0, bronze: 0, pawnsSpent: 0, powers: [],
@@ -20,7 +21,7 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
   if (!c || !d || !saga) return null;
   const magus = d.isMagus;
   const lab = ctx.lab;
-  const labCtx = lab ? { generalQuality: lab.characteristics['General Quality'], specializations: lab.specializations } : undefined;
+  const labCtx = lab ? labContextOf(lab) : undefined;
   const mt = d.abilities.find((a) => a.abilityId === d.theoryAbility)?.total ?? 0;
 
   const lr = labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'longevity', aura: ctx.aura, lab: labCtx, forSelfLongevity: true });
@@ -54,6 +55,11 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
               {Object.keys(lab.specializations).length > 0 && (
                 <div className="small" style={{ marginTop: 6 }}>
                   Specializations: {Object.entries(lab.specializations).map(([k, v]) => `${k} ${v >= 0 ? '+' : ''}${v}`).join(', ')}
+                </div>
+              )}
+              {lab.impossible.length > 0 && (
+                <div className="small" style={{ marginTop: 6 }}>
+                  <span className="badge bad">Missing Equipment</span> No {lab.impossible.join(', ')} in this lab.
                 </div>
               )}
             </div>

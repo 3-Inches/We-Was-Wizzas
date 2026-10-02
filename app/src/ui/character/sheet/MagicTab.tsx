@@ -7,6 +7,7 @@ import type { CharSpell } from '../../../engine/types';
 import { Card, Field, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { masteryScore } from '../steps/SpellsStep';
+import { labContextOf } from '../../../engine/lab';
 
 const REALMS: Realm[] = ['Magic', 'Faerie', 'Divine', 'Infernal', 'None'];
 
@@ -34,7 +35,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
 
   const grid = useMemo(() => {
     if (!d) return null;
-    const lab = useLab && ctx.lab ? { generalQuality: ctx.lab.characteristics['General Quality'], specializations: ctx.lab.specializations } : undefined;
+    const lab = useLab && ctx.lab ? labContextOf(ctx.lab) : undefined;
     const cs: Record<string, number> = {};
     const lt: Record<string, number> = {};
     for (const t of TECHNIQUES)
@@ -46,7 +47,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   }, [d, aura, useLab, ctx.lab, words, focusNow, conds, other]);
 
   if (!c || !d || !grid) return null;
-  const labCtx = useLab && ctx.lab ? { generalQuality: ctx.lab.characteristics['General Quality'], specializations: ctx.lab.specializations } : undefined;
+  const labCtx = useLab && ctx.lab ? labContextOf(ctx.lab) : undefined;
   const pb = penetrationBonus(d, pen);
   const similarSp = c.spells.find((x) => x.uid === similar);
   const spont = castingScore(d, { technique: tech, form }, {
