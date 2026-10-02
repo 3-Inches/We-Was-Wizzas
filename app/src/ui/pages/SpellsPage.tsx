@@ -9,6 +9,7 @@ import { useStore } from '../../store/store';
 import { uid } from '../../util/id';
 import { BookBadge, Card, Empty, Field, Markdown, SearchInput, Stepper, Tabs, Total } from '../kit';
 import { FragmentRow, makeCharSpell } from '../character/steps/SpellsStep';
+import { ConditionsBar, useConditions } from '../character/Conditions';
 
 type TabId = 'browse' | 'design' | 'guidelines';
 
@@ -210,15 +211,16 @@ function Designer({ charId, onMsg }: { charId: string; onMsg: (s: string) => voi
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [showAll, setShowAll] = useState(false);
+  const [cond, setCond] = useConditions();
   const hasVirtue = (id?: string) => !id || !c || c.virtues.some((v) => v.defId === id) || showAll;
   const res = designSpell({ technique: te, form: fo, requisites: reqs, baseLevel: base, range, duration, target, sizeMagnitudes: size, otherMagnitudes: other, forceRitual });
   const guides = data.guidelines.filter((g) => g.technique === te && g.form === fo);
   const note = data.guidelineNotes[te + fo];
   const lab = ctx.lab ? { generalQuality: ctx.lab.characteristics['General Quality'], specializations: ctx.lab.specializations } : undefined;
   const arts = { technique: te, form: fo, requisites: reqs.map((r) => r.art) };
-  const lt = d ? labTotal(d, arts, { activity: 'spells', aura: ctx.aura, lab }) : null;
+  const lt = d ? labTotal(d, arts, { activity: 'spells', aura: ctx.aura, lab, inFocus: cond.focus, circumstance: cond.circumstance, other: cond.other }) : null;
   const inv = lt ? inventionSeasons(lt.total, res.level) : null;
-  const cs = d ? castingScore(d, arts, { kind: res.ritual ? 'ritual' : 'formulaic', aura: ctx.aura }) : null;
+  const cs = d ? castingScore(d, arts, { kind: res.ritual ? 'ritual' : 'formulaic', aura: ctx.aura, inFocus: cond.focus, circumstance: cond.circumstance, other: cond.other }) : null;
   const cname = c?.name || 'this magus';
   const known = c?.spells.filter((s) => s.spell.technique === te && s.spell.form === fo && (s.spell.level ?? 0) >= res.level - 5 && (s.spell.level ?? 0) < res.level) ?? [];
 
@@ -342,6 +344,7 @@ function Designer({ charId, onMsg }: { charId: string; onMsg: (s: string) => voi
               {w}
             </div>
           ))}
+          {c && d && lt && inv && cs && <ConditionsBar d={d} value={cond} onChange={setCond} />}
           {c && d && lt && inv && cs && (
             <div className="row" style={{ marginTop: 8 }}>
               <div className="stat">

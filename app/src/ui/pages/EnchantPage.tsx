@@ -8,6 +8,7 @@ import { useCharacterContext, useGameData, useSaga, useSagaCharacters } from '..
 import { useStore } from '../../store/store';
 import { Card, Empty, Field, SearchInput, Stepper, Tabs, Total } from '../kit';
 import ItemsEditor from '../items/ItemEditor';
+import { ConditionsBar, useConditions } from '../character/Conditions';
 
 type TabId = 'items' | 'longevity' | 'vis' | 'writing' | 'tables';
 
@@ -92,9 +93,10 @@ function LongevityForOthers({ d, aura, lab }: Props) {
   const [subjectId, setSubjectId] = useState('');
   const [extra, setExtra] = useState(0);
   const [bonus, setBonus] = useState(0);
+  const [cond, setCond] = useConditions();
   const subject = chars.find((c) => c.id === subjectId);
   const self = subject?.id === d.char.id;
-  const lt = labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'longevity', aura, lab, forSelfLongevity: self, extra: bonus ? [{ label: 'Other (assistants, etc.)', value: bonus }] : [] });
+  const lt = labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'longevity', aura, lab, forSelfLongevity: self, inFocus: cond.focus, circumstance: cond.circumstance, other: cond.other, extra: bonus ? [{ label: 'Other (assistants, etc.)', value: bonus }] : [] });
   const total = lt.total + extra;
   const mundane = subject ? subject.type !== 'magus' && !subject.virtues.some((v) => /gift|supernatural/i.test(v.defId)) : true;
   const age = subject?.age ?? 35;
@@ -102,6 +104,7 @@ function LongevityForOthers({ d, aura, lab }: Props) {
   const tooLow = !self && lt.total < 30;
   return (
     <Card title="Longevity Ritual" className="accent">
+      <ConditionsBar d={d} value={cond} onChange={setCond} />
       <div className="row">
         <Field label="Subject">
           <select value={subjectId} onChange={(e) => setSubjectId(e.target.value)}>
@@ -152,9 +155,11 @@ function LongevityForOthers({ d, aura, lab }: Props) {
 }
 
 function VisExtraction({ d, aura, lab }: Props) {
-  const lt = labTotal(d, { technique: 'Cr', form: 'Vi' }, { activity: 'visExtraction', aura, lab });
+  const [cond, setCond] = useConditions();
+  const lt = labTotal(d, { technique: 'Cr', form: 'Vi' }, { activity: 'visExtraction', aura, lab, inFocus: cond.focus, circumstance: cond.circumstance, other: cond.other });
   return (
     <Card title="Vis extraction (Creo Vim)" className="accent">
+      <ConditionsBar d={d} value={cond} onChange={setCond} />
       <div className="row">
         <div className="stat">
           <span className="v">

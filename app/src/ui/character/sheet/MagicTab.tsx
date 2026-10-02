@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type Technique } from '../../../data';
-import { castingOutcome, castingScore, labTotal, magicResistance, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm } from '../../../engine/magic';
+import { castingOutcome, castingScore, conditionalBonuses, labTotal, magicResistance, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm } from '../../../engine/magic';
 import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
 import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
 import type { CharSpell } from '../../../engine/types';
@@ -20,6 +20,12 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [tech, setTech] = useState<Technique>('Cr');
   const [form, setForm] = useState<Form>('Co');
   const [log, setLog] = useState<string[]>([]);
+  // what applies right now: one click instead of doing the arithmetic by hand
+  const [focusNow, setFocusNow] = useState(false);
+  const [conds, setConds] = useState<string[]>([]);
+  const [lifeBoost, setLifeBoost] = useState(0);
+  const [other, setOther] = useState(0);
+  const [similar, setSimilar] = useState('');
 
   const talismanItem = c?.items.find((i) => i.uid === c.talismanUid);
   const talismanBonus = talismanItem ? talismanItem.attunements.reduce((s, a) => Math.max(s, a.bonus), 0) : 0;
@@ -31,23 +37,31 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     const lt: Record<string, number> = {};
     for (const t of TECHNIQUES)
       for (const f of FORMS) {
-        cs[t + f] = castingScore(d, { technique: t, form: f }, { kind: 'formulaic', aura, wordsGestures: words }).total;
-        lt[t + f] = labTotal(d, { technique: t, form: f }, { activity: 'spells', aura, lab }).total;
+        cs[t + f] = castingScore(d, { technique: t, form: f }, { kind: 'formulaic', aura, wordsGestures: words, inFocus: focusNow, circumstance: conds, other }).total;
+        lt[t + f] = labTotal(d, { technique: t, form: f }, { activity: 'spells', aura, lab, inFocus: focusNow, circumstance: conds, other }).total;
       }
     return { cs, lt };
-  }, [d, aura, useLab, ctx.lab, words]);
+  }, [d, aura, useLab, ctx.lab, words, focusNow, conds, other]);
 
   if (!c || !d || !grid) return null;
   const labCtx = useLab && ctx.lab ? { generalQuality: ctx.lab.characteristics['General Quality'], specializations: ctx.lab.specializations } : undefined;
   const pb = penetrationBonus(d, pen);
-  const spont = castingScore(d, { technique: tech, form }, { kind: 'spontaneous', aura, wordsGestures: words, talismanBonus: talisman ? talismanBonus : 0 });
+  const similarSp = c.spells.find((x) => x.uid === similar);
+  const spont = castingScore(d, { technique: tech, form }, {
+    kind: 'spontaneous', aura, wordsGestures: words, talismanBonus: talisman ? talismanBonus : 0, inFocus: focusNow, circumstance: conds, other,
+    similarSpell: similarSp ? { name: similarSp.spell.name, magnitude: Math.ceil((similarSp.spell.level ?? 0) / 5) } : undefined,
+  });
+  const hasLifeBoost = d.virtues.some((v) => v.cv.defId === 'life-boost');
+  const hasImprovisation = d.virtues.some((v) => v.cv.defId === 'spell-improvisation');
+  const conditional = conditionalBonuses(d);
+  const spellFocus = (sp: CharSpell) => sp.inFocus ?? !!sp.notes?.includes('[focus]');
   const diedne = d.virtues.some((v) => v.cv.defId === 'diedne-magic');
   const push = (s: string) => setLog((l) => [s, ...l].slice(0, 30));
 
   const castSpell = (sp: CharSpell, stress: boolean) => {
     const ms = masteryScore(sp, d);
     const res = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
-      kind: sp.spell.ritual ? 'ritual' : 'formulaic', aura, inFocus: !!sp.notes?.includes('[focus]'), wordsGestures: words,
+      kind: sp.spell.ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
       talismanBonus: talisman ? talismanBonus : 0, extra: ms ? [{ label: 'Mastery', value: ms }] : [],
     });
     const level = sp.spell.level ?? 0;
@@ -70,11 +84,17 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     if (botched) total = 0;
     const out = castingOutcome(sp.spell.ritual ? 'ritual' : 'formulaic', total, level);
     const penT = out.cast ? penetrationTotal(d, total, level, { ...pen, masteryScore: sp.masteryAbilities.includes('Penetration') ? ms : 0 }) : 0;
-    push(`${sp.spell.name}: ${res.total} + die ${dieText} = ${total} vs level ${level}. ${botched ? `BOTCH (${botchDice} botch dice). ` : ''}${out.text}${out.cast ? ` Penetration ${penT}.` : ''}`);
-    if (out.fatigue) {
+    // Life Boost: the Fatigue levels are spent whatever the result; past Unconscious they become damage
+    const boost = hasLifeBoost ? lifeBoost : 0;
+    const left = 5 - c.fatigueLost;
+    const overBy = Math.max(0, boost - left);
+    const boostText = boost ? ` Life Boost spends ${boost} Fatigue level${boost > 1 ? 's' : ''}${overBy ? `; ${overBy} beyond your Fatigue: Soak ${5 * overBy} + stress die without armor` : ''}.` : '';
+    push(`${sp.spell.name}: ${res.total} + die ${dieText} = ${total} vs level ${level}. ${botched ? `BOTCH (${botchDice} botch dice). ` : ''}${out.text}${out.cast ? ` Penetration ${penT}.` : ''}${boostText}`);
+    if (out.fatigue || boost) {
       update((x) => {
         if (out.longTerm) x.longTermFatigueLost = Math.min(5, x.longTermFatigueLost + out.fatigue);
         else x.fatigueLost = Math.min(5, x.fatigueLost + out.fatigue);
+        x.fatigueLost = Math.min(5, x.fatigueLost + boost);
       });
     }
   };
@@ -126,6 +146,30 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
               <input type="checkbox" checked={useLab} onChange={(e) => setUseLab(e.target.checked)} /> Lab Totals in {ctx.lab.lab.name}
             </label>
           )}
+        </div>
+        <h4>What applies right now</h4>
+        <div className="row">
+          {d.magicalFocus !== 'none' && (
+            <label className="inline small" title="Adds the lower of the Technique and Form again. Each spell has its own Focus box below.">
+              <input type="checkbox" checked={focusNow} onChange={(e) => setFocusNow(e.target.checked)} /> Inside my Magical Focus ({d.focusText ?? d.magicalFocus}) for the grid,
+              Lab Totals and spontaneous magic
+            </label>
+          )}
+          {conditional.map((b) => (
+            <label key={b.uid} className="inline small">
+              <input type="checkbox" checked={conds.includes(b.uid)} onChange={(e) => setConds(e.target.checked ? [...conds, b.uid] : conds.filter((x) => x !== b.uid))} /> {b.label}
+              {b.casting ? ` (casting ${b.casting > 0 ? '+' : ''}${b.casting})` : ''}
+              {b.lab ? ` (Lab ${b.lab > 0 ? '+' : ''}${b.lab})` : ''}
+            </label>
+          ))}
+          {hasLifeBoost && (
+            <Field label="Life Boost: Fatigue levels to spend" hint="+5 each on Formulaic and Ritual Casting Totals; spent when you cast">
+              <Stepper value={lifeBoost} min={0} max={10} width={36} onChange={setLifeBoost} />
+            </Field>
+          )}
+          <Field label="Other modifier" hint="Anything temporary or obscure; applies to every total here">
+            <Stepper value={other} min={-30} max={30} width={40} onChange={setOther} />
+          </Field>
           <button className="small ghost" onClick={() => setAura(ctx.aura)}>
             Reset to covenant aura ({ctx.aura.realm} {ctx.aura.strength})
           </button>
@@ -208,8 +252,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                 <tr key={t}>
                   <th title={ART_NAMES[t]}>{t}</th>
                   {FORMS.map((f) => {
-                    const r = castingScore(d, { technique: t, form: f }, { kind: 'formulaic', aura, wordsGestures: words });
-                    const l = labTotal(d, { technique: t, form: f }, { activity: 'spells', aura, lab: labCtx });
+                    const r = castingScore(d, { technique: t, form: f }, { kind: 'formulaic', aura, wordsGestures: words, inFocus: focusNow, circumstance: conds, other });
+                    const l = labTotal(d, { technique: t, form: f }, { activity: 'spells', aura, lab: labCtx, inFocus: focusNow, circumstance: conds, other });
                     return (
                       <td key={f} className="num">
                         <div>
@@ -279,7 +323,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                   .map((sp) => {
                     const ms = masteryScore(sp, d);
                     const r = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
-                      kind: sp.spell.ritual ? 'ritual' : 'formulaic', aura, inFocus: !!sp.notes?.includes('[focus]'), wordsGestures: words,
+                      kind: sp.spell.ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
                       talismanBonus: talisman ? talismanBonus : 0, extra: ms ? [{ label: 'Mastery', value: ms }] : [],
                     });
                     const lvl = sp.spell.level ?? 0;
@@ -291,7 +335,11 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                         <td>
                           <b>{sp.spell.name}</b>
                           {sp.spell.ritual && <span className="badge accent">Ritual</span>}
-                          {sp.notes?.includes('[focus]') && <span className="badge info">Focus</span>}
+                          {d.magicalFocus !== 'none' && (
+                            <label className="inline small" title="This spell is inside your Magical Focus">
+                              <input type="checkbox" checked={spellFocus(sp)} onChange={(e) => update((x) => void (x.spells.find((z) => z.uid === sp.uid)!.inFocus = e.target.checked))} /> Focus
+                            </label>
+                          )}
                         </td>
                         <td>
                           {sp.spell.technique}
@@ -375,6 +423,20 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             <span className="v">{Math.floor(spontaneousTotal(spont.total, true, 5.5))}</span>
             <span className="l">Fatiguing, avg die (÷2)</span>
           </div>
+          {hasImprovisation && (
+            <Field label="Similar Formulaic spell (Spell Improvisation)" hint="Adds its magnitude">
+              <select value={similar} onChange={(e) => setSimilar(e.target.value)}>
+                <option value="">— none —</option>
+                {c.spells
+                  .filter((x) => !x.spell.ritual)
+                  .map((x) => (
+                    <option key={x.uid} value={x.uid}>
+                      {x.spell.name} (+{Math.ceil((x.spell.level ?? 0) / 5)})
+                    </option>
+                  ))}
+              </select>
+            </Field>
+          )}
           <button onClick={() => castSpont(false)}>Cast (no fatigue)</button>
           <button onClick={() => castSpont(true)}>Cast (fatiguing)</button>
         </div>

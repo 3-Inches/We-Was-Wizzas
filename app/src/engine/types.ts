@@ -166,6 +166,8 @@ export interface CharSpell {
   masteryAbilities: string[];
   source: 'apprenticeship' | 'postGauntlet' | 'play' | 'free';
   notes?: string;
+  /** the caster's Magical Focus applies to it */
+  inFocus?: boolean;
   /** why the guided build chose it */
   why?: string;
 }

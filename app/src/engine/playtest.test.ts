@@ -10,7 +10,7 @@ import { validateCharacter } from './character/validate';
 import { abilityAvailability } from './character/restrictions';
 import { POWER_KINDS, powerSpending, powerStats } from './character/powers';
 import { ageYears, computeStudy, magianLinkedGains } from './longterm';
-import { labTotal, magicResistance } from './magic';
+import { castingScore, conditionalBonuses, labTotal, magicResistance } from './magic';
 import { migrateCharacter } from '../store/migrate';
 
 const data = buildGameData();
@@ -205,5 +205,25 @@ describe('Magical Focus (DE)', () => {
     expect(codes(c)).not.toContain('one-focus');
     addVirtue(c, data, 'minor-magical-focus', 'Minor', 'healing');
     expect(codes(c)).toContain('one-focus');
+  });
+});
+
+describe('one-click conditional bonuses (playtest)', () => {
+  it('adds Life Boost per Fatigue level, a similar spell for Spell Improvisation, chosen circumstances and other modifiers', () => {
+    const c = magus();
+    addVirtue(c, data, 'life-boost', 'Minor');
+    addVirtue(c, data, 'spell-improvisation', 'Minor');
+    addVirtue(c, data, 'special-circumstances', 'Minor', 'storms');
+    const d = derive(c);
+    const base = castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic' }).total;
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', lifeBoost: 2 }).total).toBe(base + 10);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'spontaneous', lifeBoost: 2 }).total).toBe(base);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'spontaneous', similarSpell: { name: 'Pilum', magnitude: 4 } }).total).toBe(base + 4);
+    const bonus = conditionalBonuses(d);
+    expect(bonus).toHaveLength(1);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', circumstance: [bonus[0].uid] }).total).toBe(base + 3);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', circumstance: [] }).total).toBe(base);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', other: -4 }).total).toBe(base - 4);
+    expect(labTotal(d, { technique: 'Cr', form: 'Ig' }, { activity: 'spells', other: 2 }).total).toBe(labTotal(d, { technique: 'Cr', form: 'Ig' }, { activity: 'spells' }).total + 2);
   });
 });
