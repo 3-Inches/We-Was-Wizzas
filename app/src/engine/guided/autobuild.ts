@@ -5,10 +5,10 @@
 // draft is clean. Every item records why it was chosen.
 
 import { ARTS, CHARACTERISTICS, CHILDHOOD_ABILITIES, SAMPLE_CHILDHOODS, TECHNIQUES, type Art, type Characteristic, type Form, type Technique, type GameData, type VFSize, type VirtueFlawDef } from '../../data';
-import { HOUSE_BY_ID } from '../../data/houses';
+import { EX_MISC_TRADITIONS, HOUSE_BY_ID } from '../../data/houses';
 import type { CharSpell, Character, Covenant, GuidedState, HouseRules, Saga, XpSource } from '../types';
 import { canSpend, deriveCharacter, sumAlloc, type DerivedCharacter, type XpBudget } from '../character/derive';
-import { addVirtue, ensureAbility, removeVirtue, setHouse } from '../character/factory';
+import { addVirtue, applyExMiscTradition, ensureAbility, removeVirtue, setHouse } from '../character/factory';
 import { abilityAvailability, vfProblems } from '../character/restrictions';
 import { validateCharacter, type Issue } from '../character/validate';
 import { fixesFor, resolveAll } from '../character/fixes';
@@ -91,6 +91,17 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
         }
       });
       setHouse(c, inp.data, pick, best);
+      // Ex Miscellanea: the tradition whose Virtues fit best, and whose Flaw hurts least
+      if (pick === 'ex-miscellanea') {
+        const fitOf = (id: string) => ev.scored.find((x) => x.def.id === id)?.fit ?? 0;
+        const trad = [...EX_MISC_TRADITIONS.filter((t) => t.id !== 'custom')].sort(
+          (a, b) => fitOf(b.majorNonHermetic) + fitOf(b.minorHermetic) - fitOf(b.majorHermeticFlaw) - (fitOf(a.majorNonHermetic) + fitOf(a.minorHermetic) - fitOf(a.majorHermeticFlaw)),
+        )[0];
+        if (trad) {
+          applyExMiscTradition(c, inp.data, trad.id);
+          log.push(`Ex Miscellanea tradition: ${trad.name}.`);
+        }
+      }
       why.house = st.house ? 'you chose it' : 'from: the best fit for your answers';
       log.push(`House ${h.name} (${why.house}).`);
       refresh();

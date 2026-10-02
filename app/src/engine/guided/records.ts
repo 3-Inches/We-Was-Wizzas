@@ -5,7 +5,7 @@
 
 import { ARCHETYPES, CHOICE_LINKS, MAGNITUDES, RANKED_TOTALS } from './magnitudes';
 import { ARTS, CHARACTERISTICS, type AbilityType, type Effect, type GameData, type VirtueFlawDef } from '../../data';
-import { isThemeTag } from './tags';
+import { TAG_BY_ID, isThemeTag } from './tags';
 
 /** How a Virtue or Flaw relates to a tag. */
 export interface TagLink {
@@ -37,6 +37,8 @@ export interface VFRecord {
   paramKind?: 'art' | 'ability' | 'char' | 'realm';
   /** the rules engine computes something for it */
   computed: boolean;
+  /** what its experience can be spent on, when that is limited (tags) */
+  xpTargets?: string[];
   /** for options the engine does not compute: how the work to describe it sorts */
   pile?: 'self-contained' | 'other-book' | 'story-only';
   summary: string;
@@ -164,7 +166,8 @@ function effectLinks(e: Effect, data: GameData): Draft[] {
     case 'woundPenalty': case 'fatiguePenalty': return [L('fatigue', sgn(-e.amount), `${e.amount < 0 ? 'Smaller' : 'Larger'} ${e.type === 'woundPenalty' ? 'Wound' : 'Fatigue'} penalties`)];
     case 'initiative': case 'spellInitiative': return [L('speed', sgn(e.amount), `${e.amount > 0 ? '+' : ''}${e.amount} Initiative`)];
     case 'confidence': return [L('confidence', 1, 'More Confidence')];
-    case 'reputation': return [L('fame', e.kind === 'bad' ? -1 : 1, `${e.kind === 'bad' ? 'Bad ' : ''}Reputation ${e.score}: ${e.label}`, 2)];
+    // any Reputation makes the character known, good or bad (the player's "unknown … famous")
+    case 'reputation': return [L('fame', 1, `${e.kind === 'bad' ? 'Bad ' : ''}Reputation ${e.score}: ${e.label}`, 2)];
     case 'warpingPoints': return [L('warping', sgn(-e.amount), `${e.amount} Warping Points`)];
     case 'apprenticeXp': case 'apprenticeshipTotalXp': return [L('xp', sgn(e.type === 'apprenticeXp' ? e.amount : e.amount - 240), 'Apprenticeship experience')];
     case 'apprenticeSpellLevels': return [L('xp', sgn(e.amount), 'Spell levels at creation', 2)];
@@ -394,6 +397,18 @@ const KEYWORDS: [RegExp, string][] = [
   [/\bmystery cults?\b|\binitiat(e|es|ion)\b|\bmystae\b/, 'mystery'],
 ];
 
+/**
+ * Words that only look like a tag: a dust devil is a whirlwind, not a demon; a power's own
+ * "+0 Penetration" stat says nothing about the character's spells getting through.
+ */
+function cleanForKeywords(t: string): string {
+  return t
+    .replace(/\bdust devils?\b/g, 'whirlwind')
+    .replace(/[+–-]?\s?\d+\s+penetration\b/g, ' ')
+    .replace(/\bpenetration (of|is) [+–-]?\d+\b/g, ' ')
+    .replace(/\bwith (no|a) penetration\b/g, ' ');
+}
+
 const OTHER_BOOK = /\b(see|described in|found in|detailed in)\b[^.]{0,80}\b(Realms of Power|Houses of Hermes|The Mysteries|Hedge Magic|Ancient Magic|Art (&|and) Academe|City (&|and) Guild|Lords of Men|Legends of Hermes|Rival Magic|Apprentices|Magi of Hermes|Covenants|The Church|Cradle (&|and) the Crescent|Grogs)\b/i;
 const SPELL_LIKE = /\bas if it were a (hermetic )?spell\b|\bdesign(ed)? (the|an|its|each) (effect|power)s?\b|\blevel of (the )?(effect|power)\b|\bequivalent to a (formulaic )?hermetic spell\b/i;
 
@@ -413,8 +428,8 @@ export function buildRecord(def: VirtueFlawDef, data: GameData): VFRecord {
   const drafts: Draft[] = real.flatMap((e) => effectLinks(e, data));
 
   // the book's words: the name counts double
-  const name = def.name.toLowerCase();
-  const text = def.text.toLowerCase();
+  const name = cleanForKeywords(def.name.toLowerCase());
+  const text = cleanForKeywords(def.text.toLowerCase());
   for (const [re, tag] of KEYWORDS) {
     if (re.test(name)) drafts.push({ tag, dir: 1, strength: 2, why: `“${def.name}”` });
     else if (re.test(text)) drafts.push({ tag, dir: 1, strength: 1, why: 'mentioned in the text' });
@@ -436,7 +451,8 @@ export function buildRecord(def: VirtueFlawDef, data: GameData): VFRecord {
     if (isFlaw) {
       // A Flaw pulls stories towards its themes (and, for Story and Personality Flaws, its realm);
       // everything else it touches, a number or an activity, it hurts.
-      const theme = isThemeTag(dr.tag) || ((storyish || beneficialFlaw) && dr.tag.startsWith('realm:'));
+      // a Story Flaw also pulls the character into activities (a Seeker investigates)
+      const theme = isThemeTag(dr.tag) || ((storyish || beneficialFlaw) && dr.tag.startsWith('realm:')) || (def.categories.includes('Story') && TAG_BY_ID.get(dr.tag)?.family === 'activity');
       if (theme) {
         hook = true;
         dir = 1;
@@ -469,11 +485,37 @@ export function buildRecord(def: VirtueFlawDef, data: GameData): VFRecord {
   return {
     id: def.id, links, kind, value,
     flags: { complexity, otherBook, spellLike, beneficialFlaw, infernal: def.tainted || /\b(demonic|infernal)\b/i.test(def.name) || /\b(sold (his|her) soul|demonic (parent|familiar|pact)|diabolis(t|m))\b/i.test(def.text) },
-    regions: [...new Set(regions)], cultures, paramKind, computed, pile, summary: firstSentence(def.text),
+    regions: [...new Set(regions)], cultures, paramKind, computed, pile, summary: firstSentence(def.text), xpTargets: xpTargets(def, data),
   };
 }
 
-const PROGRESSION_EFFECTS = new Set(['artAffinity', 'abilityAffinity', 'xpPool', 'sourceQuality', 'secondaryInsight', 'elementalMagic', 'advancementMultiplier', 'apprenticeXp', 'apprenticeshipTotalXp', 'laterLifeXpPerYear']);
+/** How much each kind of effect speeds a character's growth: lasting study gains count most. */
+const PROGRESSION_EFFECTS: Record<string, number> = {
+  artAffinity: 3, elementalMagic: 3, secondaryInsight: 3, sourceQuality: 3, advancementMultiplier: 3, apprenticeXp: 2.5, apprenticeshipTotalXp: 2.5,
+  abilityAffinity: 1.5, laterLifeXpPerYear: 1.5,
+};
+
+/** The tags an option's experience is spent on, when it can only go to some Abilities. */
+export function xpTargets(def: VirtueFlawDef, data: GameData): string[] {
+  const out = new Set<string>();
+  for (const e of def.effects ?? []) {
+    if (e.type !== 'xpPool' || e.arts || e.spellLevels) continue;
+    for (const t of e.abilityTypes ?? []) out.add(abilityTag('', t) || (t === 'General' ? '' : t.toLowerCase()));
+    for (const a of e.abilities ?? []) out.add(abilityTag(a, data.abilityById.get(a)?.type));
+  }
+  out.delete('');
+  return [...out];
+}
+
+function progressionOf(def: VirtueFlawDef): number {
+  if (def.kind !== 'virtue') return 0;
+  let best = 0;
+  for (const e of def.effects ?? []) {
+    if (e.type === 'xpPool') best = Math.max(best, e.arts ? 2.5 : 1.5);
+    else best = Math.max(best, PROGRESSION_EFFECTS[e.type] ?? 0);
+  }
+  return best;
+}
 const MAG_MAX: Record<string, number> = {};
 for (const m of Object.values(MAGNITUDES)) for (const { tag } of RANKED_TOTALS) if (m[tag]) MAG_MAX[tag] = Math.max(MAG_MAX[tag] ?? 0, Math.abs(m[tag]!));
 
@@ -497,8 +539,10 @@ function addRankedLinks(def: VirtueFlawDef, links: TagLink[]) {
     const strength = 1.5 + (2 * Math.abs(v)) / MAG_MAX[tag];
     set(tag, v > 0 ? 1 : -1, def.kind === 'flaw' ? Math.min(2.5, strength) : strength, mag!.note);
   }
-  const progression = mag?.xp ?? ((def.effects ?? []).some((e) => PROGRESSION_EFFECTS.has(e.type)) && def.kind === 'virtue' ? 3 : 0);
-  if (progression > 0) set('progression', 1, 1.5 + (2 * progression) / 10, mag?.note ?? 'faster progression');
+  const auto = progressionOf(def);
+  const progression = mag?.xp ?? 0;
+  if (progression > 0) set('progression', 1, 1.5 + (2 * progression) / 10, mag!.note);
+  else if (auto > 0) set('progression', 1, auto, 'faster progression');
   else if (progression < 0) set('progression', -1, 1.5, mag!.note);
   else if (def.kind === 'virtue' && mag && (mag.casting || mag.lab)) set('progression', -1, 1, 'a flat bonus rather than faster progression', true);
   for (const [tag, strength] of CHOICE_LINKS[def.id] ?? []) set(tag, 1, strength, mag?.note ?? 'from the text', true);

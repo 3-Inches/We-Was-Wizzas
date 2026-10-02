@@ -222,7 +222,7 @@ function QuestionList(props: { vis: VisibleQuestion[]; ev: Evaluation; st: Guide
                   <span>House:</span>
                   <select value={st.house ?? ''} onChange={(e) => props.setHouse(e.target.value || undefined)}>
                     <option value="">— recommend one from my answers —</option>
-                    {HOUSES.filter((h) => !h.exMiscellanea).map((h) => (
+                    {HOUSES.filter((h) => !h.exMiscellanea || h.id === 'ex-miscellanea').map((h) => (
                       <option key={h.id} value={h.id}>
                         {h.name}
                       </option>
