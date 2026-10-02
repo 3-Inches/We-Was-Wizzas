@@ -51,11 +51,11 @@
   "aristotelian-training": [
    {
     "s": "AA#disputatio",
-    "q": "es Liberales rolls for grammar, logic, and rhetoric, as well as a +1 bonus when calculating Disputatio Totals (see Art and Academe, page 103"
+    "q": "…Liberales rolls for grammar, logic, and rhetoric, as well as a +1 bonus when calculating Disputatio Totals (see Art and Academe, page 103"
    },
    {
     "s": "AA#the-new-aristotle",
-    "q": "magus with this Virtue may add +1 to his Lab Totals if attempting to synthesize the New Aristotle with Magic Theory (as described on page 11"
+    "q": "…with this Virtue may add +1 to his Lab Totals if attempting to synthesize the New Aristotle with Magic Theory (as described on page 11"
    },
    {
     "vf": "puissant-ability",
@@ -113,7 +113,7 @@
    },
    {
     "s": "RoP_D#divine-and-holy-powers",
-    "q": "not take The Gift or True Faith, Hermetic Virtues or Flaws, Methods or Powers (see Realms of Power: The Divine, Revised Edition, pages 46-56"
+    "q": "…take The Gift or True Faith, Hermetic Virtues or Flaws, Methods or Powers (see Realms of Power: The Divine, Revised Edition, pages 46-56"
    },
    {
     "vf": "faerie-blood",
@@ -157,11 +157,11 @@
   "clan-ilfetu": [
    {
     "p": "TMRE:58",
-    "q": "ssible that the magus has also been Initiated into the Esoteric Mystery of Divination and Augury (see The Mysteries Revised Edition, page 58"
+    "q": "…that the magus has also been Initiated into the Esoteric Mystery of Divination and Augury (see The Mysteries Revised Edition, page 58"
    },
    {
     "s": "HoH_MC#clan-ilfetu",
-    "q": "See *Houses of Hermes:* Mystery Cults, page 12"
+    "q": "See Houses of Hermes: Mystery Cults, page 12"
    }
   ],
   "clerk": [
@@ -185,7 +185,7 @@
    },
    {
     "p": "RoP_D:42",
-    "q": "See *Realms of Power: The Divine, Revised Edition*, page 42"
+    "q": "See Realms of Power: The Divine, Revised Edition, page 42"
    }
   ],
   "convoluted-mind": [
@@ -371,7 +371,7 @@
    },
    {
     "s": "DE#words-and-gestures",
-    "q": "rmetic methods instead of those of his native tradition, but can choose to reduce or forgo words and gestures in the usual fashion (page 216"
+    "q": "…methods instead of those of his native tradition, but can choose to reduce or forgo words and gestures in the usual fashion (page 216"
    }
   ],
   "extractor-of-form-vis": [
@@ -449,7 +449,7 @@
   "feather-messenger": [
    {
     "s": "BSS#the-daughters-of-four-fathers",
-    "q": "tue is particularly associated with a north African magical tradition called the Daughters of Four Fathers (see Between Sand & Sea, page 107"
+    "q": "…is particularly associated with a north African magical tradition called the Daughters of Four Fathers (see Between Sand & Sea, page 107"
    }
   ],
   "fidai": [
@@ -463,7 +463,7 @@
    },
    {
     "p": "CC:162",
-    "q": "See *The Cradle and the Crescent*, from page 162"
+    "q": "See The Cradle and the Crescent, from page 162"
    }
   ],
   "focus-power": [
@@ -561,7 +561,7 @@
   "guardian-angel": [
    {
     "s": "DE#true-faith-1",
-    "q": "Parma Magica, or Magic Resistance from most other sources, but it does add to the Magic Resistance resulting from Faith Points (see page 419"
+    "q": "…Magica, or Magic Resistance from most other sources, but it does add to the Magic Resistance resulting from Faith Points (see page 419"
    }
   ],
   "guild-apprentice": [
@@ -929,7 +929,7 @@
    },
    {
     "s": "DE#spell-mastery",
-    "q": "'s Vigil (page 370) or other spells, such as Wizard's Communion (page 369), with the same function, you may add your Mastery score (page 225"
+    "q": "…Vigil (page 370) or other spells, such as Wizard's Communion (page 369), with the same function, you may add your Mastery score (page 225"
    },
    {
     "vf": "ceremonial-spontaneous-magic-flaw",
@@ -1109,7 +1109,7 @@
   "redcap": [
    {
     "s": "DE#house-mercere",
-    "q": "ough you do not have The Gift and cannot work Hermetic magic, you are a full member of the Order of Hermes and of House Mercere (see page 15"
+    "q": "…you do not have The Gift and cannot work Hermetic magic, you are a full member of the Order of Hermes and of House Mercere (see page 15"
    },
    {
     "vf": "hermetic-magus",
@@ -1117,7 +1117,7 @@
    },
    {
     "s": "DE#effect-modifications",
-    "q": "vels of effect, including modifications to the level due to factors such as the number of uses per day (see the Laboratory chapter, page 256"
+    "q": "…of effect, including modifications to the level due to factors such as the number of uses per day (see the Laboratory chapter, page 256"
    },
    {
     "s": "DE#detailed-character-creation",
@@ -1173,7 +1173,7 @@
   "second-sight": [
    {
     "s": "DE#regiones",
-    "q": "e, including invisibility, and can also see naturally invisible things such as spirits and the boundaries between regio levels (see page 421"
+    "q": "…including invisibility, and can also see naturally invisible things such as spirits and the boundaries between regio levels (see page 421"
    },
    {
     "s": "DE#second-sight-1",
@@ -1233,7 +1233,7 @@
   "skinchanger-dove": [
    {
     "s": "BSS#the-daughters-of-four-fathers",
-    "q": "ociated with an all-female magical tradition called the Daughters of Four Fathers, found in north Africa (see *Between Sand & Sea*, page 107"
+    "q": "…with an all-female magical tradition called the Daughters of Four Fathers, found in north Africa (see Between Sand & Sea, page 107"
    }
   ],
   "sofer": [
@@ -1245,7 +1245,7 @@
   "spell-improvisation": [
    {
     "s": "DE#similar-spells",
-    "q": "mulaic spell he knows as a bonus to his Casting Total when Spontaneously casting a spell that is similar to it (see Similar Spells, page 260"
+    "q": "…spell he knows as a bonus to his Casting Total when Spontaneously casting a spell that is similar to it (see Similar Spells, page 260"
    }
   ],
   "spirit-votary": [
@@ -1265,7 +1265,7 @@
    },
    {
     "s": "RoP_D#divine-and-holy-powers",
-    "q": " effects using the Hermetic spell guidelines (or the guidelines for Holy Powers in Realms of Power: The Divine Revised Edition, from page 46"
+    "q": "…effects using the Hermetic spell guidelines (or the guidelines for Holy Powers in Realms of Power: The Divine Revised Edition, from page 46"
    }
   ],
   "strong-faerie-blood": [
@@ -1483,7 +1483,7 @@
    },
    {
     "s": "Cov#major-site-hooks",
-    "q": "This Flaw may only be taken by grogs and is suitable for the Warping to a Pattern Minor Site Hook presented in *Covenants*, page 11"
+    "q": "This Flaw may only be taken by grogs and is suitable for the Warping to a Pattern Minor Site Hook presented in Covenants, page 11"
    }
   ],
   "branded-criminal-flaw": [
@@ -1599,7 +1599,7 @@
    },
    {
     "s": "RoP_I#infernal-powers",
-    "q": "al with sacrifices, and use an Infernal Ceremony to include others in the activation, as described in Realms of Power: The Infernal, page 91"
+    "q": "…with sacrifices, and use an Infernal Ceremony to include others in the activation, as described in Realms of Power: The Infernal, page 91"
    }
   ],
   "feral-scent-flaw": [
@@ -1675,7 +1675,7 @@
   "leprosy-flaw": [
    {
     "s": "DE#aging",
-    "q": "odifier to her Living Condition (with an additional -1 if she lives in a leper colony), and whenever she undergoes an Aging Crisis (page 392"
+    "q": "…to her Living Condition (with an additional -1 if she lives in a leper colony), and whenever she undergoes an Aging Crisis (page 392"
    }
   ],
   "lycanthrope-flaw": [
@@ -1881,11 +1881,11 @@
   "uncertain-faith-flaw": [
    {
     "s": "RoP_D#invoking-gods-aid",
-    "q": "nfluence, tempering an aura, invoking God's aid, or invoking a saint or baraka (see Realms of Power: The Divine Revised Edition, pages 38-41"
+    "q": "…tempering an aura, invoking God's aid, or invoking a saint or baraka (see Realms of Power: The Divine Revised Edition, pages 38-41"
    },
    {
     "s": "RoP_I#infernal-powers",
-    "q": " which always provides demons with an opportunity to sow further doubt through their Obsession power (Realms of Power: The Infernal, page 31"
+    "q": "…which always provides demons with an opportunity to sow further doubt through their Obsession power (Realms of Power: The Infernal, page 31"
    },
    {
     "vf": "true-faith",
@@ -1937,13 +1937,13 @@
   "enchant-casting-tools": [
    {
     "s": "DE#similar-spells",
-    "q": " in the first place, adding the magnitude of the spell to the Lab Total, much like the bonus received from knowing a similar spell (page 260"
+    "q": "…in the first place, adding the magnitude of the spell to the Lab Total, much like the bonus received from knowing a similar spell (page 260"
    }
   ],
   "hermetic-inclination-in-form": [
    {
     "s": "DE#forms",
-    "q": "His score in the Form offers the maestro no Magic Resistance, but does provide a Form Bonus in appropriate situations (see **ArM5**, page 77"
+    "q": "His score in the Form offers the maestro no Magic Resistance, but does provide a Form Bonus in appropriate situations (see ArM5, page 77"
    }
   ],
   "life-linked-art": [
@@ -2009,7 +2009,7 @@
   "mythic-farrier": [
    {
     "p": "CG:71",
-    "q": "The character may use the Touched by (Realm) Virtue (*City & Guild*, page 71"
+    "q": "The character may use the Touched by (Realm) Virtue (City & Guild, page 71"
    }
   ],
   "pack-leader-natural-leader": [
@@ -2243,7 +2243,7 @@
    },
    {
     "s": "DE#opening-the-arts",
-    "q": "This is a supernatural ability, and you cannot lose it when being trained as a magus (see **Ars Magica** 5th Edition, page 107"
+    "q": "This is a supernatural ability, and you cannot lose it when being trained as a magus (see Ars Magica 5th Edition, page 107"
    }
   ],
   "miles-flaw": [
@@ -2255,7 +2255,7 @@
   "ring-circle-magic": [
    {
     "s": "DE#changing-ranges-durations-and-targets",
-    "q": "mbae can only take advantage of these benefits when casting Hermetic spells of Range Touch, Duration Ring, and Target Circle (ArM5, page 114"
+    "q": "…can only take advantage of these benefits when casting Hermetic spells of Range Touch, Duration Ring, and Target Circle (ArM5, page 114"
    }
   ],
   "orphic-magic": [
@@ -2337,7 +2337,7 @@
   "planetary-magic": [
    {
     "s": "DE#distractions-from-lab-work",
-    "q": "vorable hours and then loses time from the laboratory, and attempts to catch up by working harder for the rest of the season (ArM5, page 103"
+    "q": "…hours and then loses time from the laboratory, and attempts to catch up by working harder for the rest of the season (ArM5, page 103"
    }
   ],
   "vulgar-alchemy": [
@@ -2377,7 +2377,7 @@
   "periapt": [
    {
     "s": "DE#charged-items",
-    "q": "e a Periapt Horoscope for a proposed activity, and use this as a temporary, single-use Lab Text for creating charged devices (ArM5, page 102"
+    "q": "…a Periapt Horoscope for a proposed activity, and use this as a temporary, single-use Lab Text for creating charged devices (ArM5, page 102"
    }
   ],
   "celestial-magic": [
@@ -2409,7 +2409,7 @@
    },
    {
     "s": "DE#intellego-mentem-guidelines",
-    "q": "enses, or allow the maga to \"speak with X.\" This is represented by limiting the effects to those with Momentary duration (see ArM5, page 149"
+    "q": "…or allow the maga to \"speak with X.\" This is represented by limiting the effects to those with Momentary duration (see ArM5, page 149"
    }
   ],
   "hermetic-dream-interpreter": [
@@ -2429,7 +2429,7 @@
    },
    {
     "s": "DE#ritual-spells",
-    "q": "he minimum level of a Ritual effect is 20, even if the final effect level calculation would make it lower (see Ritual Spells, ArM5, page 114"
+    "q": "…minimum level of a Ritual effect is 20, even if the final effect level calculation would make it lower (see Ritual Spells, ArM5, page 114"
    }
   ],
   "spirit-familiar": [
@@ -2455,7 +2455,7 @@
   "living-ghost": [
    {
     "s": "DE#target",
-    "q": " appears to offer an easy design level, but is very risky due to the number of rolls needed to scribe a circle correctly (see ArM5, page 112"
+    "q": "…appears to offer an easy design level, but is very risky due to the number of rolls needed to scribe a circle correctly (see ArM5, page 112"
    },
    {
     "vf": "puissant-ability",
@@ -2477,7 +2477,7 @@
    },
    {
     "s": "DE#muto-vim-spells",
-    "q": "g Invocation Magic, the consequences can be dire — the Muto Vim botch targets his magic, and may have any conceivable effect (ArM5, page 159"
+    "q": "…Invocation Magic, the consequences can be dire — the Muto Vim botch targets his magic, and may have any conceivable effect (ArM5, page 159"
    }
   ],
   "hermetic-theurgy": [
@@ -2491,7 +2491,7 @@
    },
    {
     "s": "DE#arcane-connections",
-    "q": "serves as an indefinite duration Arcane Connection allowing the magus to summon the spirit and to use sympathetic magic on it (ArM5, page 84"
+    "q": "…as an indefinite duration Arcane Connection allowing the magus to summon the spirit and to use sympathetic magic on it (ArM5, page 84"
    },
    {
     "vf": "slow-caster-flaw",
@@ -2563,13 +2563,13 @@
   "canaanite-necromancy": [
    {
     "s": "DE#whispers-through-the-black-gate",
-    "q": "For example, if Zephaniah attempts to replicate *Whispers Through the Black Gate* (InCo 15) (ArM5, page 130"
+    "q": "For example, if Zephaniah attempts to replicate Whispers Through the Black Gate (InCo 15) (ArM5, page 130"
    }
   ],
   "canaanite-magic": [
    {
     "s": "DE#arcane-connections",
-    "q": "gus can exploit this Arcane Connection for a +4 Penetration multiplier bonus, much like any other permanent Arcane Connection (ArM5, page 84"
+    "q": "…can exploit this Arcane Connection for a +4 Penetration multiplier bonus, much like any other permanent Arcane Connection (ArM5, page 84"
    }
   ],
   "mechanica-of-heron": [
@@ -2605,7 +2605,7 @@
    },
    {
     "s": "HoH_MC#automata-major-house-mystery",
-    "q": "Powers may be drawn from those used by automata in *Houses of Hermes: Mystery Cults*, page 130"
+    "q": "Powers may be drawn from those used by automata in Houses of Hermes: Mystery Cults, page 130"
    },
    {
     "s": "DE#training-abilities",
@@ -2723,10 +2723,10 @@
   "external-soul": [
    {
     "s": "DE#damage-table",
-    "q": " would mean immediate death for Dombnall, but the gruagach has an External Soul, so the storyguide consults the Damage Table (ArM5, page 171"
+    "q": "…would mean immediate death for Dombnall, but the gruagach has an External Soul, so the storyguide consults the Damage Table (ArM5, page 171"
    },
    {
-    "s": "DE#effects-of-warping",
+    "s": "DE#gaining-warping-points",
     "q": "see ArM5, page 168"
    }
   ],
@@ -2751,7 +2751,7 @@
    },
    {
     "p": "RoP_D:92",
-    "q": "he Universities and Medicine chapters of Art & Academe are very appropriate, as are those listed in Realms of Power: The Divine, pages 92-93"
+    "q": "…Universities and Medicine chapters of Art & Academe are very appropriate, as are those listed in Realms of Power: The Divine, pages 92-93"
    },
    {
     "vf": "wealthy",
@@ -2865,11 +2865,11 @@
   "lesser-craft-magic": [
    {
     "s": "DE#lesser-enchantments",
-    "q": "The character may craft objects that already contain raw vis into magical devices with lesser enchantments (see **ArM5** page 96"
+    "q": "The character may craft objects that already contain raw vis into magical devices with lesser enchantments (see ArM5 page 96"
    },
    {
     "p": "CG:68",
-    "q": "this takes the normal amount of time to make (see *City and Guild*, page 68"
+    "q": "this takes the normal amount of time to make (see City and Guild, page 68"
    },
    {
     "vf": "greater-immunity",
@@ -2905,7 +2905,7 @@
   "sortes-virgilianae": [
    {
     "s": "TMRE#hermetic-divination",
-    "q": "stand why this has happened, and will learn the Mystery Virtue Hermetic Divination, as described in *The Mysteries Revised Edition*, page 58"
+    "q": "…why this has happened, and will learn the Mystery Virtue Hermetic Divination, as described in The Mysteries Revised Edition, page 58"
    }
   ],
   "submitted-qareen": [
@@ -2915,7 +2915,7 @@
    },
    {
     "s": "RoP_F#chapter-three--faerie-characters",
-    "q": "age 193) or else created as Companion-level characters using the rules for creating Faerie Characters (*Realms of Power: Faerie*, page 43-63"
+    "q": "…page 193) or else created as Companion-level characters using the rules for creating Faerie Characters (Realms of Power: Faerie, page 43-63"
    },
    {
     "vf": "faerie-speech",
@@ -2951,7 +2951,7 @@
    },
    {
     "s": "DE#recovery-from-incapacitation",
-    "q": "tating wound from an item that is a Traditional Ward, then in addition to the usual effects of Incapacitating wounds (**ArM5**, page 178–179"
+    "q": "…wound from an item that is a Traditional Ward, then in addition to the usual effects of Incapacitating wounds (ArM5, page 178–179"
    }
   ],
   "mazdean-alchemy": [
@@ -2963,7 +2963,7 @@
   "saoshyants-elixir": [
    {
     "p": "RoP_D:117",
-    "q": "The ritual of Saoshyant's Elixir (*Realms of Power: The Divine*, page 117"
+    "q": "The ritual of Saoshyant's Elixir (Realms of Power: The Divine, page 117"
    }
   ],
   "gifts-of-gayomart": [
@@ -2973,7 +2973,7 @@
    },
    {
     "s": "RoP_D#embodying-the-light",
-    "q": " grants the character additional powers as his True Faith score increases (see \"Embodying the Light,\" *Realms of Power: The Divine*, page 61"
+    "q": "…grants the character additional powers as his True Faith score increases (see \"Embodying the Light,\" Realms of Power: The Divine, page 61"
    }
   ],
   "confluence-of-the-realms": [
@@ -2985,7 +2985,7 @@
   "insight-of-the-realms": [
    {
     "s": "DE#regiones",
-    "q": "re, Infernal Lore, and Magic Lore Abilities to be used to detect and see through a target regio boundary, as described in **ArM5**, page 189"
+    "q": "…Lore, Infernal Lore, and Magic Lore Abilities to be used to detect and see through a target regio boundary, as described in ArM5, page 189"
    },
    {
     "vf": "second-sight",
@@ -3045,7 +3045,7 @@
   "improved-powers": [
    {
     "s": "DE#mastered-spell-special-abilities",
-    "q": "ricacy score with the power is increased by 1, and this gives the character a spell mastery special ability (such as those listed on page 87"
+    "q": "…score with the power is increased by 1, and this gives the character a spell mastery special ability (such as those listed on page 87"
    }
   ],
   "faerie-background": [
@@ -3145,7 +3145,7 @@
    },
    {
     "s": "DE#lesser-infernal-power",
-    "q": "if it requires a Penetration Total to work. (Otherwise, it is a Lesser Infernal Power.) To calculate a Penetration Total, see ArM5, page 191"
+    "q": "…it requires a Penetration Total to work. (Otherwise, it is a Lesser Infernal Power.) To calculate a Penetration Total, see ArM5, page 191"
    }
   ],
   "lesser-infernal-power": [
@@ -3167,13 +3167,13 @@
    },
    {
     "vf": "hermetic-magus",
-    "q": "**Journeyman**: This is equivalent to the Free Status Hermetic Magus (see ArM5, page 43"
+    "q": "Journeyman: This is equivalent to the Free Status Hermetic Magus (see ArM5, page 43"
    }
   ],
   "immortality-of-the-forest": [
    {
-    "s": "DE#effects-of-warping",
-    "q": "ke an Aging roll, but instead gain one Warping Point for being under a constant mystical effect (as per **Ars Magica** 5th Edition, page 167"
+    "s": "DE#gaining-warping-points",
+    "q": "…make an Aging roll, but instead gain one Warping Point for being under a constant mystical effect (as per Ars Magica 5th Edition, page 167"
    }
   ],
   "twilight-mastery": [
@@ -3185,7 +3185,7 @@
   "elysian-ecstasy-and-olympian-pact": [
    {
     "s": "RoP_F#sympathy-traits",
-    "q": "for more information see *Realms of Power: Faerie*, pages 102–105"
+    "q": "for more information see Realms of Power: Faerie, pages 102–105"
    },
    {
     "vf": "susceptibility-to-faerie-power-flaw",
@@ -3207,11 +3207,11 @@
    },
    {
     "s": "RoP_M#transformation",
-    "q": "This allows their ghosts to undergo Transformation after death (*Realms of Power: Magic* page 52"
+    "q": "This allows their ghosts to undergo Transformation after death (Realms of Power: Magic page 52"
    },
    {
     "s": "TMRE#description",
-    "q": "The akh is a Daimon, described in more detail in *The Mysteries: Revised Edition* (pages 82–86"
+    "q": "The akh is a Daimon, described in more detail in The Mysteries: Revised Edition (pages 82–86"
    },
    {
     "vf": "magical-blood",
@@ -3265,7 +3265,7 @@
    },
    {
     "p": "HMRE:42",
-    "q": "(*Hedge Magic Revised Edition*, page 42"
+    "q": "(Hedge Magic Revised Edition, page 42"
    }
   ],
   "of-kings-and-giants-antaeus-bloodline": [
@@ -3319,7 +3319,7 @@
    },
    {
     "s": "HoH_MC#theriomorphy-minor-house-mystery",
-    "q": "A similar Bjornaer Minor Mystery, Theriomorphy, is described in *Houses of Hermes: Mystery* Cults, page 29"
+    "q": "A similar Bjornaer Minor Mystery, Theriomorphy, is described in Houses of Hermes: Mystery Cults, page 29"
    }
   ]
  },
@@ -3528,12 +3528,6 @@
    "title": "Effects of Twilight",
    "text": "Every Twilight experience marks the maga. The strength of the mark is random. Roll a simple die. The maga gains that many Warping Points, in addition to the points that triggered the Twilight.\n\nIf the maga comprehended the Twilight, the effects are good.\n\n**Twilight Scar:** Something minor and magical, and also neutral or beneficial. For example, the area around the maga always smells faintly and pleasantly of roses, the maga's eyes glitter with many colors, the maga walks a fraction of an inch above any surface. In the case of a maga who wants to keep her magic inconspicuous, the effect may not be obviously magical: people around her become slightly more cheerful, insects don't bite her, and so on.\n\nIn addition, the storyguide should pick one of the following effects:\n\n**Increased Knowledge:** A number of experience points in an Art, Magic Theory, or Enigmatic Wisdom, equal to twice the number of Warping Points gained.\n\n**New Hermetic or Supernatural Virtue:** Minor (if between 7 and 10 Warping Points, inclusive), or major (if more than ten Warping Points). Virtues cannot be gained if the maga gains fewer than seven Warping Points.\n\n**New Spell:** The maga knows a new Formulaic or Ritual spell, with a magnitude equal to the number of Warping Points gained. This spell is chosen by the storyguide, and the maga need not be able to cast it. She may write a Lab Text about it as normal.\n\nIf the maga failed to comprehend the Twilight, the effects are bad.\n\n**Twilight Scar:** Something minor, magical, and annoying. For example, the area around the maga smells faintly of sulfur, the maga's touch stains skin black (it washes off, with effort), the maga's footprints create myriads of fine cracks in any surface. At the storyguide's discretion, a maga who tries to keep her magic inconspicuous might get a scar she can hide. For example, the smell of iron makes her feel nauseous, or insects always bite her given the chance.\n\nIn addition, the storyguide should pick one of the following effects:\n\n**Lost Knowledge:** Lose two experience points for every Warping Point gained in an Art, Magic Theory, or Enigmatic Wisdom. This cannot reduce the score below zero.\n\n**New Hermetic or Supernatural Flaw:** Minor (if between 7 and 10 Warping Points, inclusive) or major (if 10 Warping Points or above). The maga can only gain a Flaw if she gains at least seven Warping Points.\n\n…"
   },
-  "DE#effects-of-warping": {
-   "book": "DE",
-   "anchor": "effects-of-warping",
-   "title": "Effects of Warping",
-   "text": "The effects of warping depend on a character's Warping Score, the nature of the character, and the source of the warping.\n\nHermetic magi are made more prone to Wizard's Twilight by their Warping Score. This replaces the normal effects.\n\nMundane characters gain a Minor Flaw when they reach a Warping Score of one. Note that most inhabitants of Mythic Europe have no Warping Points at all, because they live in a low aura and have never been the subject of a supernatural effect. Even those who have been affected by a powerful supernatural effect once only have one Warping Point, not enough for a Minor Flaw.\n\nThis Minor Flaw should reflect the predominant source of the Warping Points. If they are mainly due to an aura, the Minor Flaw will reflect the aura, and most characters will get the same Minor Flaw. If they are mainly due to magical effects, they will reflect the effect. For example, a character who has been repeatedly healed with powerful magic might gain a stigmatic wound, which neither hurts nor causes damage, but looks and feels real.\n\nWhen the Warping Score reaches 3, the character gains a second Minor Flaw.\n\nAt a Warping Score of 5, the character gains a supernatural Minor Virtue attuned to the primary source of Warping Points. This stops any further gain of points from living in a strong aura of the same type as the Minor Virtue.\n\nAt a Warping Score of 6, and every point thereafter, the character gains a Major Flaw appropriate to the main sources of the warping."
-  },
   "DE#enchanting-ability-1": {
    "book": "DE",
    "anchor": "enchanting-ability-1",
@@ -3569,6 +3563,12 @@
    "anchor": "forms",
    "title": "Forms",
    "text": "#### Animal (An) \"animal\"\n\nAnimal concerns animals of all kinds, from the fish of the sea to the birds of the air. Animal spells cannot affect people, and Hermetic theorists still debate the reason for this.\n\n*Form Bonus:* Soak against animal attacks (claws, bites, etc.), rolls to resist animal poisons.\n\nPronounced 'ah-nee-MAHL.'\n\n#### Aquam (Aq) \"water\"\n\nAquam concerns water and all manner of liquids, as well as properties of liquidity.\n\n*Form Bonus:* Rolls to resist drowning and thirst, soak against water jets and the like.\n\nPronounced 'AH-kwahm.'\n\n#### Auram (Au) \"air\"\n\nAuram is the Art of air, wind, and weather. It also governs gaseous forms in general.\n\n*Form bonus:* Rolls to resist suffocation, including drowning, soak against weather phenomena such as lightning.\n\nPronounced 'OW-rahm.'\n\n#### Corpus (Co) \"body\"\n\nCorpus is the Art of human bodies. This Art affects dead bodies and the bodies of magical or faerie creatures that look human, as well as those of living humans. Since natural philosophy asserts that these things have no more in common than their appearance, and Corpus does not affect human statues, Hermetic theorists are puzzled by the range of this Form.\n\n*Form bonus:* Soak against human unarmed attacks, rolls to resist disease. It does not apply to aging rolls.\n\nPronounced 'COR-poos.'\n\n#### Herbam (He) \"plant\"\n\nThis Form concerns plants and trees. This includes plant matter of all types, including that which is no longer alive — like dead wood and linens.\n\n*Form bonus:* Soak against wooden weapons, rolls to resist herbal poisons, rolls to resist starvation.\n\nPronounced 'HARE-bahm.'\n\n#### Ignem (Ig) \"fire\"\n\nThis Form concerns fire, heat, and light.\n\n*Form bonus:* Soak against fire and cold. Pronounced 'IG-nem.'\n\n#### Imaginem (Im) \"image\"\n\nThis Form concerns the things in the world that the senses respond to. Natural philosophy calls them species (SPEH-kee-ayss, to be distinguished from species of animals and such). All things constantly give off species for each of the senses. Those for touch and taste do not travel far, while those for sight require light to get any distance from the originating body. Imaginem spells normally affect the process by which species are produced, rather than the species themselves. Thus, the species emanating from an illusion are not themselves magical.\n\n…"
+  },
+  "DE#gaining-warping-points": {
+   "book": "DE",
+   "anchor": "gaining-warping-points",
+   "title": "Gaining Warping Points",
+   "text": "There are four main sources of Warping Points:\n\n1. Living in a strong (6 or higher) supernatural aura.\n2. Being affected by a powerful supernatural effect, unless you created the effect, or it was designed especially for you.\n3. Being continuously under the influence of a supernatural effect, whether powerful or not.\n4. Botching a roll to use a supernatural ability.\n\nNote that these are separate sources of Warping Points. Thus, if a magus designs a powerful supernatural effect, such as a Longevity Ritual, for himself, he doesn't gain Warping Points for being under a powerful supernatural effect, but he does gain them from being under a continuous supernatural effect.\n\nAll sources of Warping Points stack. A character continuously affected by a strong supernatural effect that wasn't designed for him and that he didn't cast gains Warping Points both from being affected by a strong supernatural effect, and for being continuously under the influence of a supernatural effect.\n\n#### Living in Strong Auras\n\nAuras of over five points have an effect on anyone living within them, reflected in gaining Warping Points. The number of points gained depends on the strength of the aura and the length of time spent there.\n\nA character is 'always within' an aura if she lives, works, and sleeps there. Occasional visits outside the aura do not matter. 'Half time within' applies to someone who sleeps in the aura but works elsewhere, or vice-versa. It also covers someone who spends two weeks constantly in an aura, and two weeks outside. 'Frequent visits' means that the character spends about a quarter of her time in the aura.\n\nThis time refers to the total length of time spent in an aura, even if there are several different auras involved. Time spent in higher auras may be treated as time in a lower aura if this increases the number of Warping Points gained. For example, a character who spends half her time in a level 6 aura, with frequent visits to level 7 and 8 auras, should gain one Warping Point per year, because she is always in an aura of at least level 6.\n\n…"
   },
   "DE#ghostly-warder-1": {
    "book": "DE",

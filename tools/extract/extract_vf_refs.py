@@ -279,8 +279,8 @@ def match(book_id, head_text, cw):
     if not hw:
         return 0, 0
     hit = hw & cw
-    total = sum(weight(book_id, w) for w in hw)
-    return sum(weight(book_id, w) for w in hit) / total, len(hit)
+    total = sum(weight(book_id, w) for w in sorted(hw))
+    return round(sum(weight(book_id, w) for w in sorted(hit)) / total, 6), len(hit)
 
 
 def context_of(t, start, end):
@@ -445,6 +445,8 @@ OVERRIDES = {
     'uncertain-faith-flaw': {38: 'RoP_D#invoking-gods-aid'},
     'clan-ilfetu': {12: 'HoH_MC#clan-ilfetu'},
     'elysian-ecstasy-and-olympian-pact': {102: 'RoP_F#sympathy-traits'},
+    'immortality-of-the-forest': {167: 'DE#gaining-warping-points'},
+    'external-soul': {168: 'DE#gaining-warping-points'},
 }
 OVERRIDE_KEYS = {(v, p) for v, ps in OVERRIDES.items() for p in ps}
 
@@ -506,7 +508,7 @@ def main():
         cw = words(ctx[-110:])
         heads = [h for h in b[1] if words(h[2]) and words(h[2]) <= cw and not is_broad(h)]
         # a lone common word ("Powers", "Magic") names nothing in particular
-        heads = [h for h in heads if sum(weight(book_id, w) for w in words(h[2])) >= 0.6]
+        heads = [h for h in heads if round(sum(weight(book_id, w) for w in sorted(words(h[2]))), 6) >= 0.6]
         return max(heads, key=lambda h: (len(words(h[2])), h[1])) if heads else None
 
     for v in vfs:
@@ -522,7 +524,9 @@ def main():
             ctx = context_of(t, m.start(), m.end())
             own = t[max(0, m.start() - 160):m.start()]
             own = re.split(r'[.;!?]\s(?=[^.;!?]*$)|\n', own)[-1]
-            quote = re.sub(r'\s+', ' ', own + t[m.start():m.end()]).strip()[-140:]
+            quote = re.sub(r'\s+', ' ', (own + t[m.start():m.end()]).replace('*', '')).strip()
+            if len(quote) > 140:
+                quote = '…' + quote[-140:].split(' ', 1)[-1]
             # a Virtue or Flaw named right before the citation is what it cites
             named = [n for n in names if m.start() - 70 <= n[1] <= m.start() and only_citation(t[n[1]:m.start()])]
             ref = None
