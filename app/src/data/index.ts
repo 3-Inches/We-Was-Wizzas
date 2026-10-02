@@ -14,6 +14,7 @@ import weaponsJson from './generated/weapons.json';
 import armorJson from './generated/armor.json';
 import vfRefsJson from './generated/vfRefs.json';
 import { MECHANICS, type Mechanics } from './mechanics';
+import { CROSS_REF_MECHANICS } from './crossRefs';
 import { LAB_ONLY_VF, NOT_REAL_VF, RESTRICTIONS } from './restrictions';
 import { buildVfTags, vfHouses } from './vfTags';
 import type {
@@ -160,6 +161,31 @@ export function mergeMechanics(restr: Mechanics = {}, mech: Mechanics = {}, over
   return { ...out, ...override };
 }
 
+/**
+ * Add what a Virtue or Flaw's references to others give it (data/crossRefs.ts) to its hand-coded
+ * mechanics: lists are joined, per-parameter and per-size effects are added to, and anything the
+ * hand-coded mechanics already set is kept.
+ */
+export function addCrossRefs(m: Mechanics, x?: Mechanics): Mechanics {
+  if (!x) return m;
+  const union = (a?: string[], b?: string[]) => (a || b ? [...new Set([...(a ?? []), ...(b ?? [])])] : undefined);
+  const join = <K extends string>(a?: Partial<Record<K, Effect[]>>, b?: Partial<Record<K, Effect[]>>) => {
+    if (!a && !b) return undefined;
+    const out: Partial<Record<K, Effect[]>> = { ...a };
+    for (const [k, v] of Object.entries(b ?? {}) as [K, Effect[]][]) out[k] = [...(out[k] ?? []), ...v];
+    return out;
+  };
+  const out: Mechanics = { ...x };
+  for (const [k, v] of Object.entries(m)) if (v !== undefined) (out as Record<string, unknown>)[k] = v;
+  out.excludes = union(m.excludes, x.excludes);
+  out.requires = union(m.requires, x.requires);
+  out.needs = m.needs || x.needs ? [...(m.needs ?? []), ...(x.needs ?? [])] : undefined;
+  out.paramEffects = join(m.paramEffects, x.paramEffects) as Mechanics['paramEffects'];
+  out.sizeEffects = join(m.sizeEffects, x.sizeEffects) as Mechanics['sizeEffects'];
+  delete out.effects;
+  return out;
+}
+
 // --------------------------------------------------------------------------------------
 // Saga customization
 
@@ -229,8 +255,11 @@ export function buildGameData(opts: DataOptions = {}): GameData {
   const abilityIds = new Set(abilities.map((a) => a.id));
 
   const vfs: VirtueFlawDef[] = [...RAW_VF, ...custom.virtuesFlaws].map((v) => {
-    const mech = mergeMechanics(RESTRICTIONS[v.id], MECHANICS[v.id], opts.mechanicsOverrides?.[v.id]);
-    const effects = mech.effects ?? inferGrant(v, abilityIds);
+    const base = mergeMechanics(RESTRICTIONS[v.id], MECHANICS[v.id]);
+    const cross = CROSS_REF_MECHANICS[v.id];
+    const override = opts.mechanicsOverrides?.[v.id] ?? {};
+    const mech: Mechanics = { ...addCrossRefs(base, cross), ...override };
+    const effects = override.effects ?? [...(base.effects ?? inferGrant(v, abilityIds)), ...(cross?.effects ?? [])];
     const creatureOnly = mech.creatureOnly ?? (CREATURE_NOTE.test(v.notes ?? '') || (v.source.book.startsWith('RoP') && CREATURE_TEXT.test(v.text)));
     return {
       ...v,

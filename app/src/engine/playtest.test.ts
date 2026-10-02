@@ -12,6 +12,7 @@ import { POWER_KINDS, powerSpending, powerStats } from './character/powers';
 import { ageYears, computeStudy, magianLinkedGains, twilightEffects, twilightTriggered, warpingScoreWith } from './longterm';
 import { castingScore, conditionalBonuses, labTotal, magicResistance } from './magic';
 import { migrateCharacter } from '../store/migrate';
+import { CROSS_REF_MECHANICS } from '../data/crossRefs';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -342,5 +343,54 @@ describe('rules a Virtue or Flaw refers to (playtest)', () => {
         if (r.s) expect(data.ruleSections[r.s]).toBeTruthy();
       }
     }
+  });
+});
+
+describe('mechanics from the rules a Virtue or Flaw refers to (playtest)', () => {
+  it('names only Virtues and Flaws that exist', () => {
+    for (const [id, m] of Object.entries(CROSS_REF_MECHANICS)) {
+      expect(data.vfById.has(id), id).toBe(true);
+      const effs = [...(m.effects ?? []), ...Object.values(m.paramEffects ?? {}).flat(), ...Object.values(m.sizeEffects ?? {}).flat()];
+      const ids = [...effs.flatMap((e) => (e.type === 'implies' ? [e.virtue] : [])), ...(m.requires ?? []), ...(m.excludes ?? []), ...(m.needs ?? []).flatMap((n) => n.anyOf ?? [])];
+      for (const x of ids) expect(data.vfById.has(x), `${id} -> ${x}`).toBe(true);
+    }
+  });
+  it('gives what the text says it includes, by size and by choice', () => {
+    const c = newCharacter('companion', 's1');
+    addVirtue(c, data, 'templar-commander', 'Major');
+    expect(c.virtues.filter((v) => v.free).map((v) => v.defId).sort()).toEqual(['brother-knight', 'temporal-influence']);
+    const g = newCharacter('companion', 's1');
+    addVirtue(g, data, 'of-kings-and-giants-antaeus-bloodline', 'Major');
+    expect(g.virtues.filter((v) => v.grantedBy).map((v) => v.defId).sort()).toEqual(['greater-malediction-flaw', 'large', 'magic-sensitivity']);
+    const dg = derive(g);
+    expect(dg.size).toBe(1);
+    expect(dg.agingStartAge).toBe(50);
+    expect(dg.tally.flawPoints).toBe(0); // the Flaw comes with the Virtue and gives no points
+    const l = newCharacter('magus', 's1');
+    const lla = addVirtue(l, data, 'life-linked-art', 'Major', 'Inspirational');
+    expect(l.virtues.find((v) => v.defId === 'inspirational')?.grantedBy).toBe(lla.uid);
+  });
+  it('works the same as the Virtue it names, and keeps the hand-coded rules', () => {
+    expect(data.vfById.get('eastern-priest')?.effects?.some((e) => e.type === 'abilityAccess')).toBe(true);
+    expect(data.vfById.get('redcap')?.effects?.some((e) => e.type === 'implies' && e.virtue === 'well-traveled')).toBe(true);
+    const c = magus();
+    addVirtue(c, data, 'potent-magic', 'Minor', 'fire');
+    expect(conditionalBonuses(derive(c))).toEqual([expect.objectContaining({ casting: 3, lab: 3 })]);
+  });
+  it('rules out what the text rules out, both ways', () => {
+    const c = newCharacter('companion', 's1');
+    addVirtue(c, data, 'mendicant-friar', 'Minor');
+    expect(vfAvailability(derive(c), data, data.vfById.get('wealthy')!)?.severity).toBe('error');
+    const r = newCharacter('companion', 's1');
+    addVirtue(r, data, 'wealthy', 'Major');
+    expect(vfAvailability(derive(r), data, data.vfById.get('redcap')!)?.severity).toBe('error');
+  });
+  it('lets Deft Form cast without the penalty for odd words and gestures', () => {
+    const c = magus();
+    addVirtue(c, data, 'deft-form', 'Minor', 'Ig');
+    const d = derive(c);
+    const ig = castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', wordsGestures: -10 });
+    const an = castingScore(d, { technique: 'Cr', form: 'An' }, { kind: 'formulaic', wordsGestures: -10 });
+    expect(ig.total - an.total).toBe(10 + d.arts.Ig.score - d.arts.An.score);
   });
 });

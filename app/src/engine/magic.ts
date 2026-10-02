@@ -128,7 +128,12 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
   const aura = auraModifier('Magic', o.aura, { faerieMagic: hasFM });
   if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})`, value: aura.mod });
   if (d.encumbrance) parts.push({ label: 'Encumbrance', value: -d.encumbrance });
-  if (o.wordsGestures) parts.push({ label: 'Words & gestures', value: o.wordsGestures });
+  if (o.wordsGestures) {
+    // Deft Form: no penalty for non-standard voice or gestures in that Form (DE)
+    const deft = o.wordsGestures < 0 && d.virtues.some((v) => v.cv.defId === 'deft-form' && v.cv.param === arts.form);
+    if (deft) notes.push(`Deft Form (${arts.form}): no penalty for the words and gestures.`);
+    else parts.push({ label: 'Words & gestures', value: o.wordsGestures });
+  }
   if (o.talismanBonus) parts.push({ label: 'Talisman attunement', value: o.talismanBonus });
   if (o.visPawns) parts.push({ label: `Raw vis (${o.visPawns} pawns)`, value: 2 * o.visPawns });
   for (const e of effectsOf(d, 'castingScore')) {
