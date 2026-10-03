@@ -5,7 +5,7 @@ import type { Character, SeasonLogEntry, XpSource } from './types';
 import { paramValues, type DerivedCharacter } from './character/derive';
 import { abilityAvailability } from './character/restrictions';
 import { stressDie, simpleDie, type Rng, defaultRng } from './dice';
-import { abilityScoreFromXp, abilityXpForScore, withAffinity } from './xp';
+import { abilityScoreFromXp, abilityXpForScore, warpingScoreFromPoints, withAffinity } from './xp';
 import { uid } from '../util/id';
 
 export type StudySource =
@@ -333,32 +333,71 @@ export function ageYears(c: Character, from: number, to: number, plan: AgingPlan
 
 export const TWILIGHT_TIME = ['Moment', 'Diameter (2 minutes)', 'Two hours', 'Sun', 'Day (24 hours)', 'Moon', 'Season', 'Year', 'Seven years', 'Seven + stress die years', 'Final Twilight'];
 
-export function twilightAvoidance(d: DerivedCharacter, warpingGained: number, aura: number, rng: Rng = defaultRng) {
+/** Whether gaining these Warping Points at once means checking for Twilight (2+, or 1 with Twilight Prone). */
+export function twilightTriggered(d: DerivedCharacter, warpingGained: number): boolean {
+  return warpingGained >= 2 || (warpingGained >= 1 && d.twilightProne);
+}
+
+/** The Warping Score once the points from this event are added (DE: add them, then roll). */
+export function warpingScoreWith(d: DerivedCharacter, warpingGained: number, alreadyAdded: boolean): number {
+  return warpingScoreFromPoints(d.warpingPoints + (alreadyAdded ? 0 : warpingGained));
+}
+
+const enigmaticWisdom = (d: DerivedCharacter) => d.abilities.find((a) => a.abilityId === 'enigmatic-wisdom');
+
+export function twilightAvoidance(d: DerivedCharacter, warpingGained: number, aura: number, rng: Rng = defaultRng, alreadyAdded = false) {
   const conc = d.abilities.find((a) => a.abilityId === 'concentration')?.total ?? 0;
-  const ew = d.abilities.find((a) => a.abilityId === 'enigmatic-wisdom')?.total ?? 0;
+  const ew = enigmaticWisdom(d)?.total ?? 0;
   const vimBonus = Math.ceil(d.arts.Vi.value / 5);
+  const score = warpingScoreWith(d, warpingGained, alreadyAdded);
   const mine = stressDie(1, rng);
   const theirs = stressDie(0, rng, true);
   const my = d.characteristics.Sta.value + conc + vimBonus + mine.value;
-  const tw = d.warpingScore + warpingGained + ew + aura + theirs.value;
-  return { my, tw, success: !mine.botches && my > tw, botch: mine.botches > 0, detail: `Sta ${d.characteristics.Sta.value} + Concentration ${conc} + Vim bonus ${vimBonus} + die ${mine.value} vs Warping ${d.warpingScore} + gained ${warpingGained} + Enigmatic Wisdom ${ew} + aura ${aura} + die ${theirs.value}` };
+  const tw = score + warpingGained + ew + aura + theirs.value;
+  return {
+    my, tw, success: !mine.botches && my > tw, botch: mine.botches > 0,
+    detail: `Sta ${d.characteristics.Sta.value} + Concentration ${conc} + Vim bonus ${vimBonus} + die ${mine.value} vs Warping Score ${score} + gained ${warpingGained} + Enigmatic Wisdom ${ew} + aura ${aura} + die ${theirs.value}`,
+  };
 }
 
-export function twilightComprehension(d: DerivedCharacter, warpingGained: number, rng: Rng = defaultRng) {
-  const ew = d.abilities.find((a) => a.abilityId === 'enigmatic-wisdom')?.total ?? 0;
+export function twilightComprehension(d: DerivedCharacter, warpingGained: number, rng: Rng = defaultRng, alreadyAdded = false) {
+  const ewAb = enigmaticWisdom(d);
+  // an Enigmatic Wisdom specialty in Twilight applies to comprehending it
+  const ew = (ewAb?.total ?? 0) + (ewAb?.specialty && /twilight|comprehen/i.test(ewAb.specialty) ? 1 : 0);
+  const score = warpingScoreWith(d, warpingGained, alreadyAdded);
   const botchDice = 1 + warpingGained;
   const mine = stressDie(botchDice, rng);
   const theirs = stressDie(botchDice, rng);
   const int = d.characteristics.Int.value;
   const my = int + ew + mine.value;
-  const tw = theirs.botches ? 0 : d.warpingScore + theirs.value;
+  const tw = theirs.botches ? 0 : score + theirs.value;
   const success = !mine.botches && my > tw;
   let steps = 0;
   if (success) steps = Math.max(0, int + mine.value - tw);
-  let idx = Math.min(10, Math.max(1, d.warpingScore));
+  let idx = Math.min(10, Math.max(1, score));
   if (mine.botches) idx = Math.min(10, idx + mine.botches);
   idx = Math.max(0, idx - steps);
-  return { my, tw, success, botch: mine.botches > 0, duration: TWILIGHT_TIME[idx], extraWarping: simpleDie(rng).value };
+  return {
+    my, tw, success, botch: mine.botches > 0, duration: TWILIGHT_TIME[idx], extraWarping: simpleDie(rng).value,
+    detail: `Int ${int} + Enigmatic Wisdom ${ew} + die ${mine.value} vs Warping Score ${score} + die ${theirs.botches ? '(botched: 0)' : theirs.value}`,
+  };
+}
+
+/** What a Twilight can do to the maga (DE Effects of Twilight): good if she comprehended it, bad if not. */
+export type TwilightEffect = 'knowledge' | 'virtue' | 'spell' | 'lost-knowledge' | 'flaw' | 'lost-spells';
+export function twilightEffects(comprehended: boolean, totalWarping: number): { id: TwilightEffect; label: string; ok: boolean }[] {
+  const size = totalWarping > 10 ? 'Major' : 'Minor';
+  return comprehended
+    ? [
+        { id: 'knowledge', label: `Increased Knowledge: ${2 * totalWarping} xp in an Art, Magic Theory or Enigmatic Wisdom`, ok: true },
+        { id: 'virtue', label: `New ${size} Hermetic or Supernatural Virtue`, ok: totalWarping >= 7 },
+        { id: 'spell', label: `New spell of magnitude ${totalWarping}`, ok: true },
+      ]
+    : [
+        { id: 'lost-knowledge', label: `Lost Knowledge: −${2 * totalWarping} xp in an Art, Magic Theory or Enigmatic Wisdom`, ok: true },
+        { id: 'flaw', label: `New ${totalWarping >= 10 ? 'Major' : 'Minor'} Hermetic or Supernatural Flaw`, ok: totalWarping >= 7 },
+        { id: 'lost-spells', label: `Lost spells totalling ${totalWarping} magnitudes`, ok: true },
+      ];
 }
 
 export function formBonus(score: number): number {

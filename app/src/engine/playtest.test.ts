@@ -4,14 +4,15 @@
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
-import { addVirtue, ensureAbility, newCharacter, setHouse } from './character/factory';
+import { addVirtue, ensureAbility, newCharacter, removeVirtue, setHouse, syncImpliedVirtues } from './character/factory';
 import { deriveCharacter, postGauntletXp } from './character/derive';
 import { validateCharacter } from './character/validate';
-import { abilityAvailability } from './character/restrictions';
+import { abilityAvailability, vfAvailability } from './character/restrictions';
 import { POWER_KINDS, powerSpending, powerStats } from './character/powers';
-import { ageYears, computeStudy, magianLinkedGains } from './longterm';
-import { labTotal, magicResistance } from './magic';
+import { ageYears, computeStudy, magianLinkedGains, twilightEffects, twilightTriggered, warpingScoreWith } from './longterm';
+import { castingScore, conditionalBonuses, labTotal, magicResistance } from './magic';
 import { migrateCharacter } from '../store/migrate';
+import { CROSS_REF_MECHANICS } from '../data/crossRefs';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -205,5 +206,191 @@ describe('Magical Focus (DE)', () => {
     expect(codes(c)).not.toContain('one-focus');
     addVirtue(c, data, 'minor-magical-focus', 'Minor', 'healing');
     expect(codes(c)).toContain('one-focus');
+  });
+});
+
+describe('one-click conditional bonuses (playtest)', () => {
+  it('adds Life Boost per Fatigue level, a similar spell for Spell Improvisation, chosen circumstances and other modifiers', () => {
+    const c = magus();
+    addVirtue(c, data, 'life-boost', 'Minor');
+    addVirtue(c, data, 'spell-improvisation', 'Minor');
+    addVirtue(c, data, 'special-circumstances', 'Minor', 'storms');
+    const d = derive(c);
+    const base = castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic' }).total;
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', lifeBoost: 2 }).total).toBe(base + 10);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'spontaneous', lifeBoost: 2 }).total).toBe(base);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'spontaneous', similarSpell: { name: 'Pilum', magnitude: 4 } }).total).toBe(base + 4);
+    const bonus = conditionalBonuses(d);
+    expect(bonus).toHaveLength(1);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', circumstance: [bonus[0].uid] }).total).toBe(base + 3);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', circumstance: [] }).total).toBe(base);
+    expect(castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', other: -4 }).total).toBe(base - 4);
+    expect(labTotal(d, { technique: 'Cr', form: 'Ig' }, { activity: 'spells', other: 2 }).total).toBe(labTotal(d, { technique: 'Cr', form: 'Ig' }, { activity: 'spells' }).total + 2);
+  });
+});
+
+describe('Virtues and Flaws from the second playtest character', () => {
+  it('allows only one Magical Focus between the Major and Minor versions', () => {
+    const c = magus('criamon');
+    addVirtue(c, data, 'minor-magical-focus', 'Minor', 'buffing');
+    const d = derive(c);
+    expect(vfAvailability(d, data, data.vfById.get('major-magical-focus')!)?.severity).toBe('error');
+  });
+  it('gives Mythic Characteristic a specialty and Unbearable to Beings its extra penalty', () => {
+    const c = magus('criamon');
+    addVirtue(c, data, 'mythic-characteristic', 'Minor', 'Int');
+    c.virtues[c.virtues.length - 1].note = 'great knowledge';
+    addVirtue(c, data, 'unbearable-to-beings-flaw', 'Minor', 'demons');
+    const d = derive(c);
+    expect(d.charSpecialties).toMatchObject([{ char: 'Int', text: 'great knowledge' }]);
+    expect(d.socialPenalties).toMatchObject([{ vs: 'demons', amount: -3 }]);
+  });
+  it('checks for Twilight on one Warping Point with Twilight Prone, and uses the Warping Score after adding the points', () => {
+    const c = magus('criamon');
+    const plain = derive(c);
+    expect(twilightTriggered(plain, 1)).toBe(false);
+    expect(twilightTriggered(plain, 2)).toBe(true);
+    addVirtue(c, data, 'twilight-prone-flaw', 'Major');
+    expect(twilightTriggered(derive(c), 1)).toBe(true);
+    c.warpingPoints = 13;
+    expect(warpingScoreWith(derive(c), 2, false)).toBe(2); // 15 points: Warping Score 2
+    expect(warpingScoreWith(derive(c), 2, true)).toBe(1);
+    expect(twilightEffects(true, 8).find((e) => e.id === 'virtue')?.ok).toBe(true);
+    expect(twilightEffects(false, 3).find((e) => e.id === 'flaw')?.ok).toBe(false);
+  });
+  it('gives a creature Magic Resistance from its Might, and adds Apt Student to teaching', () => {
+    const pet = newCharacter('companion', 's1');
+    pet.creature = { realm: 'Magic', might: 13, size: -3, kind: 'animal', intelligence: 'companion' };
+    const d = derive(pet);
+    expect(d.size).toBe(-3);
+    expect(magicResistance(d, 'An').total).toBe(13);
+    const c = magus();
+    addVirtue(c, data, 'apt-student', 'Minor');
+    const teach = computeStudy(derive(c), { kind: 'teacher', com: 1, teaching: 3, teacherScore: 10, students: 1, goodTeacher: false, isArt: true, subject: 'Creo' }, { art: 'Cr' });
+    expect(teach.parts.some((p) => /Apt Student/.test(p.label) && p.value === 5)).toBe(true);
+  });
+});
+
+describe('Virtues that give another Virtue free (playtest)', () => {
+  const ids = (c: Character) => c.virtues.map((v) => v.defId);
+  it('gives Magical Blood the Virtue or bonus of its kind of magic being, and follows a change of kind', () => {
+    const c = newCharacter('companion', 's1');
+    const mb = addVirtue(c, data, 'magical-blood', 'Minor');
+    expect(ids(c)).toEqual(['magical-blood']);
+    mb.param = 'Magic Spirit: Second Sight';
+    syncImpliedVirtues(c, data);
+    const ss = c.virtues.find((v) => v.defId === 'second-sight')!;
+    expect(ss).toMatchObject({ free: true, grantedBy: mb.uid });
+    expect(c.abilities.find((a) => a.abilityId === 'second-sight')?.xp.free).toBe(5);
+    expect(derive(c).tally.virtuePoints).toBe(1);
+    mb.param = 'Magic Human: Strength';
+    expect(syncImpliedVirtues(c, data)).toEqual(['Second Sight went with it.']);
+    expect(ids(c)).toEqual(['magical-blood']);
+    expect(c.abilities.some((a) => a.abilityId === 'second-sight')).toBe(false);
+    c.characteristics.Str = 3;
+    const d = derive(c);
+    expect(d.characteristics.Str.value).toBe(3);
+    c.characteristics.Str = 1;
+    expect(derive(c).characteristics.Str.value).toBe(2);
+    expect(derive(c).reputations.some((r) => r.score === 3 && /bloodline/.test(r.scope))).toBe(true);
+    mb.param = 'Magic Thing: Lesser Power';
+    syncImpliedVirtues(c, data);
+    expect(derive(c).powerBudgets.lesser).toBe(25);
+  });
+  it('makes a Virtue already bought free, and charges for it again when the giver goes', () => {
+    const c = newCharacter('companion', 's1');
+    addVirtue(c, data, 'second-sight', 'Minor');
+    expect(derive(c).tally.virtuePoints).toBe(1);
+    const sfb = addVirtue(c, data, 'strong-faerie-blood', 'Major');
+    expect(c.virtues.filter((v) => v.defId === 'second-sight')).toHaveLength(1);
+    expect(derive(c).tally.virtuePoints).toBe(3);
+    removeVirtue(c, data, sfb.uid);
+    const ss = c.virtues.find((v) => v.defId === 'second-sight')!;
+    expect([ss.free, ss.grantedBy]).toEqual([undefined, undefined]);
+    expect(derive(c).tally.virtuePoints).toBe(1);
+  });
+  it('passes a free Virtue on when two Virtues give it', () => {
+    const c = newCharacter('companion', 's1');
+    const sfb = addVirtue(c, data, 'strong-faerie-blood', 'Major');
+    const mb = addVirtue(c, data, 'magical-blood', 'Minor', 'Magic Spirit: Second Sight');
+    expect(c.virtues.filter((v) => v.defId === 'second-sight')).toHaveLength(1);
+    removeVirtue(c, data, sfb.uid);
+    expect(c.virtues.find((v) => v.defId === 'second-sight')?.grantedBy).toBe(mb.uid);
+  });
+  it('adopts freebies saved before they were linked', () => {
+    const c = newCharacter('companion', 's1');
+    const sfb = addVirtue(c, data, 'strong-faerie-blood', 'Major');
+    const ss = c.virtues.find((v) => v.defId === 'second-sight')!;
+    delete ss.grantedBy;
+    syncImpliedVirtues(c, data);
+    expect(c.virtues.filter((v) => v.defId === 'second-sight')).toHaveLength(1);
+    expect(ss.grantedBy).toBe(sfb.uid);
+  });
+});
+
+describe('rules a Virtue or Flaw refers to (playtest)', () => {
+  it('links the Virtues and Flaws it names and the book sections it cites', () => {
+    const sfb = data.vfById.get('strong-faerie-blood')!;
+    expect(sfb.refs?.map((r) => r.vf)).toEqual(expect.arrayContaining(['second-sight', 'faerie-blood']));
+    expect(sfb.refs?.find((r) => r.s)?.s).toBe('DE#opening-the-arts');
+    const aura = data.vfById.get('commanding-aura')!.refs?.find((r) => r.s);
+    expect(data.ruleSections[aura!.s!].title).toBe('Aura of Rightful Authority');
+    expect(data.ruleSections['DE#opening-the-arts'].text).toMatch(/Supernatural Ability/);
+    // every link resolves
+    for (const v of data.virtuesFlaws) {
+      for (const r of v.refs ?? []) {
+        if (r.vf) expect(data.vfById.has(r.vf) || r.vf === v.id).toBe(true);
+        if (r.s) expect(data.ruleSections[r.s]).toBeTruthy();
+      }
+    }
+  });
+});
+
+describe('mechanics from the rules a Virtue or Flaw refers to (playtest)', () => {
+  it('names only Virtues and Flaws that exist', () => {
+    for (const [id, m] of Object.entries(CROSS_REF_MECHANICS)) {
+      expect(data.vfById.has(id), id).toBe(true);
+      const effs = [...(m.effects ?? []), ...Object.values(m.paramEffects ?? {}).flat(), ...Object.values(m.sizeEffects ?? {}).flat()];
+      const ids = [...effs.flatMap((e) => (e.type === 'implies' ? [e.virtue] : [])), ...(m.requires ?? []), ...(m.excludes ?? []), ...(m.needs ?? []).flatMap((n) => n.anyOf ?? [])];
+      for (const x of ids) expect(data.vfById.has(x), `${id} -> ${x}`).toBe(true);
+    }
+  });
+  it('gives what the text says it includes, by size and by choice', () => {
+    const c = newCharacter('companion', 's1');
+    addVirtue(c, data, 'templar-commander', 'Major');
+    expect(c.virtues.filter((v) => v.free).map((v) => v.defId).sort()).toEqual(['brother-knight', 'temporal-influence']);
+    const g = newCharacter('companion', 's1');
+    addVirtue(g, data, 'of-kings-and-giants-antaeus-bloodline', 'Major');
+    expect(g.virtues.filter((v) => v.grantedBy).map((v) => v.defId).sort()).toEqual(['greater-malediction-flaw', 'large', 'magic-sensitivity']);
+    const dg = derive(g);
+    expect(dg.size).toBe(1);
+    expect(dg.agingStartAge).toBe(50);
+    expect(dg.tally.flawPoints).toBe(0); // the Flaw comes with the Virtue and gives no points
+    const l = newCharacter('magus', 's1');
+    const lla = addVirtue(l, data, 'life-linked-art', 'Major', 'Inspirational');
+    expect(l.virtues.find((v) => v.defId === 'inspirational')?.grantedBy).toBe(lla.uid);
+  });
+  it('works the same as the Virtue it names, and keeps the hand-coded rules', () => {
+    expect(data.vfById.get('eastern-priest')?.effects?.some((e) => e.type === 'abilityAccess')).toBe(true);
+    expect(data.vfById.get('redcap')?.effects?.some((e) => e.type === 'implies' && e.virtue === 'well-traveled')).toBe(true);
+    const c = magus();
+    addVirtue(c, data, 'potent-magic', 'Minor', 'fire');
+    expect(conditionalBonuses(derive(c))).toEqual([expect.objectContaining({ casting: 3, lab: 3 })]);
+  });
+  it('rules out what the text rules out, both ways', () => {
+    const c = newCharacter('companion', 's1');
+    addVirtue(c, data, 'mendicant-friar', 'Minor');
+    expect(vfAvailability(derive(c), data, data.vfById.get('wealthy')!)?.severity).toBe('error');
+    const r = newCharacter('companion', 's1');
+    addVirtue(r, data, 'wealthy', 'Major');
+    expect(vfAvailability(derive(r), data, data.vfById.get('redcap')!)?.severity).toBe('error');
+  });
+  it('lets Deft Form cast without the penalty for odd words and gestures', () => {
+    const c = magus();
+    addVirtue(c, data, 'deft-form', 'Minor', 'Ig');
+    const d = derive(c);
+    const ig = castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', wordsGestures: -10 });
+    const an = castingScore(d, { technique: 'Cr', form: 'An' }, { kind: 'formulaic', wordsGestures: -10 });
+    expect(ig.total - an.total).toBe(10 + d.arts.Ig.score - d.arts.An.score);
   });
 });

@@ -5,6 +5,7 @@ import { EX_MISC_TRADITIONS, HOUSES } from '../../data/houses';
 import { useGameData } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { BookBadge, Card, Markdown, SearchInput, Tabs } from '../kit';
+import { VFText } from '../VFText';
 
 type TabId = 'vf' | 'abilities' | 'houses' | 'labvf' | 'hooks' | 'weapons' | 'books';
 
@@ -128,14 +129,7 @@ function VFRef({ data }: { data: Data }) {
           </div>
           {open === v.id && (
             <>
-              <Markdown text={v.text} />
-              {v.effects
-                ?.filter((e) => e.type === 'note')
-                .map((e, i) => (
-                  <div key={i} className="small soft">
-                    Toolkit note: {(e as { text: string }).text}
-                  </div>
-                ))}
+              <VFText def={v} data={data} />
             </>
           )}
         </div>

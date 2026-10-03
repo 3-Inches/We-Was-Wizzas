@@ -88,6 +88,21 @@ export const CHOICE_LINKS: Record<string, [string, number][]> = {
   'cyclic-magic-positive': [['swingy', 3]],
   'cyclic-magic-negative-flaw': [['swingy', 3]],
   'special-circumstances': [['swingy', 2]],
+  // rerolls, fewer botches and ways out of trouble
+  'all-according-to-plan': [['escape', 3]],
+  luck: [['escape', 3]],
+  'charmed-life': [['escape', 3]],
+  'guardian-angel': [['escape', 3]],
+  intuition: [['escape', 2]],
+  premonitions: [['escape', 2]],
+  'self-confident': [['escape', 2]],
+  'cautious-sorcerer': [['escape', 2]],
+  'heroic-personality-flaw': [['escape', 2]],
+  'mythic-characteristic': [['escape', 1]],
+  'light-touch': [['escape', 1]],
+  'ways-of-the-land': [['escape', 1]],
+  // the book's advice for a beginning player
+  'common-sense': [['new-player', 3]],
 };
 
 export interface Archetype {
@@ -113,3 +128,29 @@ export const ARCHETYPES: Archetype[] = [
   { id: 'faerie-wizard', name: 'Faerie wizard', blurb: 'learns magic from the fae and works it their way', vf: [['faerie-magic', 2], ['faerie-raised-magic', 3]], tags: { 'realm:faerie': 0.5 }, preset: 'faerie' },
   { id: 'spirit-master', name: 'Spirit master', blurb: 'sees and deals with ghosts and spirits', vf: [['second-sight', 2], ['spirit-familiar', 2]], tags: { 'art:Me': 0.3, senses: 0.5 }, preset: 'mystic' },
 ];
+
+/**
+ * What each House is about, beyond its free Virtue: the answers that should point to it. A House's
+ * free Virtue alone is a poor guide (Tremere's Certamen focus is a narrow bonus; Criamon's Enigma
+ * is about Twilight whether you embrace it or fear it).
+ */
+export const HOUSE_IDENTITY: Record<string, Record<string, number>> = {
+  bjornaer: { shapechanged: 3, animals: 2, 'arch:shapeshifter': 3, 'art:An': 1, outdoors: 1 },
+  bonisagus: { 'lab-invent': 3, lab: 2, experiment: 2, teaching: 1, politics: 1 },
+  criamon: { twilight: 3, mystery: 3, visions: 2, outsider: 1, scholarship: 1, temperament: 1 },
+  'ex-miscellanea': { outsider: 2, 'realm:magic': 1, complexity: 1, 'realm:faerie': 0.5 },
+  flambeau: { combat: 2, penetration: 2, speed: 1, 'arch:duelist': 3, 'art:Pe': 1, 'art:Ig': 1, 'realm:infernal': 1, rival: 1 },
+  guernicus: { investigation: 3, politics: 2, order: 2, duty: 1 },
+  jerbiton: { 'realm:mundane': 2, nobility: 2, social: 2, performance: 2, crafts: 1, church: 1 },
+  mercere: { travel: 3, order: 2, politics: 1, wealth: 1 },
+  merinita: { 'realm:faerie': 3, 'arch:faerie-wizard': 3, mystery: 2, courts: 1, outdoors: 1 },
+  tremere: { politics: 2, leadership: 2, order: 1, duty: 1, rival: 1 },
+  tytalus: { rival: 2, confidence: 2, politics: 1, vice: 1, temperament: 1 },
+  verditius: { 'lab-enchant': 3, crafts: 3, 'arch:enchanter': 3, mystery: 1 },
+};
+
+/** Tags where a strong answer either way points to the House (Criamon embraces or masters Twilight). */
+export const HOUSE_EITHER_WAY: Record<string, string[]> = { criamon: ['twilight'] };
+
+/** How much of a House Virtue's usual worth applies: Tremere's Focus covers only Certamen. */
+export const HOUSE_BENEFIT_SCALE: Record<string, number> = { tremere: 0.35 };

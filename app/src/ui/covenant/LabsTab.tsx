@@ -7,6 +7,7 @@ import { useSagaCharacters } from '../../store/hooks';
 import { uid } from '../../util/id';
 import { BookBadge, Card, Field, Markdown, SearchInput, Stepper, Total } from '../kit';
 import type { CovTabProps } from './shared';
+import { LaterNote } from '../LaterNote';
 
 const CHAR_KEYS: LabCharacteristic[] = ['Size', 'Refinement', 'General Quality', 'Upkeep', 'Safety', 'Warping', 'Health', 'Aesthetics'];
 
@@ -38,6 +39,7 @@ export default function LabsTab({ cov, update, dc, data }: CovTabProps) {
           Each member magus gets a standard Size 0 lab free; bigger labs cost 20 BP per point of Size (smaller labs refund), Minor Virtues 10 BP and Major Virtues 20 BP; spare labs 50 BP;
           magi with no lab refund 50 BP (DE Laboratory chapter).
         </p>
+        <LaterNote topic="lab" />
         <div className="row">
           <Field label="Spare labs (50 BP each)">
             <Stepper value={cov.spareLabs} min={0} width={36} onChange={(v) => update((x) => void (x.spareLabs = v))} />
@@ -109,8 +111,8 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
                 ))}
               </select>
             </Field>
-            <Field label="Size (bought)" hint="20 BP per point">
-              <Stepper value={lab.size} min={-3} max={40} width={36} onChange={(v) => set((l) => void (l.size = v))} />
+            <Field label="Size (bought)" hint={dl.boundless ? 'Boundless: the Size grows to hold the Virtues at no cost; buy more only for room to spare' : '20 BP per point'}>
+              <Stepper value={lab.size} min={-3} max={dl.boundless ? 999 : 40} width={36} onChange={(v) => set((l) => void (l.size = v))} />
             </Field>
             <Field label="Refinement" hint="gained by improving the lab in play">
               <Stepper value={lab.refinement} min={0} width={36} onChange={(v) => set((l) => void (l.refinement = v))} />
@@ -138,6 +140,11 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
             Virtue points {dl.virtuePoints} − Flaw points {dl.flawPoints} = {dl.virtuePoints - dl.flawPoints}; capacity Size + Refinement = {dl.size + dl.refinement}; free space {dl.freeSpace};
             occupied Size {dl.occupiedSize}. Upkeep costs {dl.upkeepPoints} points ({dl.yearlyCost} £/year at {lab.use} use). Build cost {dl.buildPoints} BP.
           </div>
+          {dl.impossible.length > 0 && (
+            <div className="small" style={{ marginTop: 4 }}>
+              <span className="badge bad">Missing Equipment</span> This lab cannot be used for {dl.impossible.join(', ')}.
+            </div>
+          )}
           <p className="small muted">
             Click a number to see how it is worked out. Base Safety is Refinement − occupied Size, and the occupied Size (Virtue points − Flaw points − Refinement) only counts once it is
             above 0. So every Minor or Major Virtue that fills space lowers Safety by 1 or 3 once the lab's free room is used up, even ones that list no Safety change (such as the
@@ -216,7 +223,9 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
         </div>
         <div className="scroll-y" style={{ maxHeight: 900 }}>
           {list.map((v) => {
-            const has = lab.virtues.some((x) => x.defId === v.id);
+            const count = lab.virtues.filter((x) => x.defId === v.id).length;
+            const max = LAB_OPTIONS[v.id]?.maxTimes;
+            const has = count > 0 && (!v.repeatable || (max !== undefined && count >= max));
             return (
               <div key={v.id} className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
                 <div className="row">
@@ -229,8 +238,8 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
                   <span className="badge">{v.group}</span>
                   <BookBadge book={v.source.book} line={v.source.line} />
                   <span style={{ flex: 1 }} />
-                  <button className="small" disabled={has && !v.repeatable} onClick={() => set((l) => void l.virtues.push({ uid: uid(), defId: v.id }))}>
-                    {has && !v.repeatable ? 'taken' : '+ Add'}
+                  <button className="small" disabled={has} onClick={() => set((l) => void l.virtues.push({ uid: uid(), defId: v.id }))}>
+                    {has ? (max && v.repeatable ? `taken ${count}× (max)` : 'taken') : '+ Add'}
                   </button>
                 </div>
                 <div className="small soft">
@@ -299,8 +308,9 @@ function LabEntryRow({ lab, entry: v, idx, set, data }: { lab: Laboratory; entry
       {opt?.note && <div className="small muted">{opt.note}</div>}
       {opt?.alts && (
         <div className="row small">
-          Version:
-          <select value={v.alt ?? opt.alts[0].id} onChange={(e) => edit((x) => void (x.alt = e.target.value))}>
+          {opt.altRequired ? 'Rules out:' : 'Version:'}
+          <select value={v.alt ?? (opt.altRequired ? '' : opt.alts[0].id)} onChange={(e) => edit((x) => void (x.alt = e.target.value || undefined))}>
+            {opt.altRequired && <option value="">— choose —</option>}
             {opt.alts.map((a) => (
               <option key={a.id} value={a.id}>
                 {a.label}

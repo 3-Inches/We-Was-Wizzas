@@ -60,6 +60,7 @@ export const TAGS: OutcomeTag[] = [
   t('currency', 'aging', 'Long life'),
   t('currency', 'fatigue', 'Endurance (Fatigue and Wounds)'),
   t('currency', 'confidence', 'Confidence'),
+  t('currency', 'escape', 'Rerolls, fewer botches and ways out'),
   // casting conditions
   t('casting', 'range', 'Long Range'),
   t('casting', 'duration', 'Long Duration'),
@@ -114,6 +115,7 @@ export const TAGS: OutcomeTag[] = [
   t('meta', 'spell-like', 'Spell-like effects'),
   t('meta', 'other-book', 'Needs another book'),
   t('meta', 'specialist', 'Excellent at a few things'),
+  t('meta', 'new-player', 'Help for a new player'),
   t('meta', 'one-art', 'A boost to one Art'),
   t('meta', 'focus', 'A Magical Focus'),
   t('meta', 'trade-off', 'A weakness elsewhere, accepted'),

@@ -4,11 +4,13 @@ import { addVirtue, removeVirtue } from '../../../engine/character/factory';
 import { deriveCharacter, vfDisplayName } from '../../../engine/character/derive';
 import { vfAvailability, vfProblems, vfSizeProblems, type VFProblem } from '../../../engine/character/restrictions';
 import { HOUSE_BY_ID } from '../../../data/houses';
-import { BookBadge, Card, Markdown, Meter, SearchInput } from '../../kit';
+import { BookBadge, Card, Meter, SearchInput } from '../../kit';
 import ParamInput from '../ParamInput';
 import { CharIssueList } from '../CharIssues';
 import PowersCard from '../PowersCard';
 import type { CharEditor } from '../useChar';
+import { LaterNote } from '../../LaterNote';
+import { VFText } from '../../VFText';
 
 const CATS: VFCategory[] = ['General', 'Hermetic', 'Supernatural', 'Social Status', 'Personality', 'Story', 'Mythic Companion', 'Heroic', 'Mystery', 'Special'];
 
@@ -20,6 +22,7 @@ export default function VirtuesStep({ ed }: { ed: CharEditor }) {
   return (
     <>
       <Card title="Point balance" className="accent">
+        <LaterNote topic="virtues" />
         <div className="grid grid-4">
           <Meter label="Flaw points" value={t.flawPoints} max={maxFlaws} />
           <Meter label={c.type === 'mythic' ? 'Virtue points (2 per Flaw point)' : 'Virtue points'} value={t.virtuePoints} max={t.allowedVirtuePoints} />
@@ -100,7 +103,7 @@ function TakenList({ ed }: { ed: CharEditor }) {
         )}
         {open === v.cv.uid && def && (
           <div style={{ marginTop: 6 }}>
-            <Markdown text={def.text} />
+            <VFText def={def} data={data} />
             <div className="row small">
               <label className="inline">
                 <input type="checkbox" checked={!!v.cv.free} onChange={(e) => update((x) => { const y = x.virtues.find((z) => z.uid === v.cv.uid)!; y.free = e.target.checked; y.freeReason = e.target.checked ? y.freeReason ?? 'Troupe ruling' : undefined; })} /> Free (does not cost/give points)
@@ -208,7 +211,7 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
       const names = replaced.map((uid) => data.vfById.get(x.virtues.find((y) => y.uid === uid)?.defId ?? '')?.name).filter(Boolean);
       for (const uid of replaced) removeVirtue(x, data, uid);
       const cv = addVirtue(x, data, v.id, s);
-      const addedBy = x.virtues.filter((y) => y.requiredBy === cv.uid || y.freeReason === `from ${v.name}`).map((y) => data.vfById.get(y.defId)?.name);
+      const addedBy = x.virtues.filter((y) => y.requiredBy === cv.uid || y.grantedBy === cv.uid).map((y) => data.vfById.get(y.defId)?.name);
       if (allow && saga) {
         // record the troupe ruling for whatever the rules check now flags on this Virtue
         const dd = deriveCharacter(x, data, saga.houseRules);
@@ -319,7 +322,7 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
                 </div>
               )}
               <div className={`vf-text ${open === v.id ? 'open' : ''}`} onClick={() => setOpen(open === v.id ? null : v.id)}>
-                {open === v.id ? <Markdown text={v.text} /> : v.text.slice(0, 260)}
+                {open === v.id ? <VFText def={v} data={data} /> : v.text.slice(0, 260)}
               </div>
             </div>
           );

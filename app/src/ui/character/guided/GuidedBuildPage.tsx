@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { HOUSES } from '../../../data/houses';
 import { ART_NAMES, BOOK_BY_ID, type Art, type GameData } from '../../../data';
-import { addVirtue } from '../../../engine/character/factory';
+import { addVirtue, removeVirtue } from '../../../engine/character/factory';
 import { deriveCharacter } from '../../../engine/character/derive';
 import { autoBuild, type BuildResult } from '../../../engine/guided/autobuild';
 import { CARDS } from '../../../engine/guided/cards';
@@ -102,7 +102,12 @@ export default function GuidedBuildPage() {
           {tab === 'results' && <Results ev={ev} st={st} ctx={ctx} ed={ed} setState={setState} setAnswer={setAnswer} />}
           {tab === 'browse' && <BrowseByTag ev={ev} ctx={ctx} />}
         </div>
-        {tab !== 'browse' && <Shortlist ev={ev} ctx={ctx} st={st} />}
+        {tab !== 'browse' && (
+          <div className="stack">
+            <TakenCard d={d} remove={(uid) => ed.change((x) => removeVirtue(x, data, uid), 'Removed.')} />
+            <Shortlist ev={ev} ctx={ctx} st={st} />
+          </div>
+        )}
       </div>
       {draft && (
         <Modal
@@ -222,7 +227,7 @@ function QuestionList(props: { vis: VisibleQuestion[]; ev: Evaluation; st: Guide
                   <span>House:</span>
                   <select value={st.house ?? ''} onChange={(e) => props.setHouse(e.target.value || undefined)}>
                     <option value="">— recommend one from my answers —</option>
-                    {HOUSES.filter((h) => !h.exMiscellanea).map((h) => (
+                    {HOUSES.filter((h) => !h.exMiscellanea || h.id === 'ex-miscellanea').map((h) => (
                       <option key={h.id} value={h.id}>
                         {h.name}
                       </option>
@@ -277,6 +282,37 @@ function rankText(s: Scored, w: Record<string, number>): string | undefined {
   const weightOf = (tag: string) => w[tag === 'xp' ? 'progression' : tag] ?? 0;
   const r = [...s.ranks].sort((a, b) => weightOf(b.tag) - weightOf(a.tag) || a.rank / a.of - b.rank / b.of)[0];
   return `${r.label}: #${r.rank} of ${r.of}`;
+}
+
+/** What the character has taken so far, without leaving the guided build. */
+function TakenCard(props: { d: NonNullable<ReturnType<typeof deriveCharacter>>; remove: (uid: string) => void }) {
+  const { d } = props;
+  const taken = d.virtues.filter((v) => v.def);
+  const t = d.tally;
+  return (
+    <Card title={`Taken so far (${taken.length})`}>
+      <div className="small muted" style={{ marginBottom: 4 }}>
+        Virtue points {t.virtuePoints} · Flaw points {t.flawPoints}
+      </div>
+      {taken.length === 0 && <div className="small muted">Nothing yet.</div>}
+      {taken.map((v) => (
+        <div key={v.cv.uid} className="short-row">
+          <span className={v.def!.kind === 'flaw' ? 'bad-text' : 'good-text'}>{v.def!.kind === 'flaw' ? '–' : '+'}</span>
+          <span>
+            {v.name}
+            {v.cv.param ? ` (${v.cv.param})` : ''}
+          </span>
+          <span className="spacer" />
+          <span className="badge">{v.cv.free ? 'free' : v.cv.size}</span>
+          {!v.cv.free && (
+            <button className="small ghost" title="Remove" onClick={() => props.remove(v.cv.uid)}>
+              ✕
+            </button>
+          )}
+        </div>
+      ))}
+    </Card>
+  );
 }
 
 function strengthText(s: Scored): string {

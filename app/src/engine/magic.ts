@@ -23,6 +23,8 @@ export interface TotalResult {
   halved: boolean;
   notes: string[];
   botchDice?: number;
+  /** the lab cannot be used for this work (Missing Equipment) */
+  impossible?: boolean;
 }
 
 /** DE Realm Interaction Table (p.410). */
@@ -71,6 +73,25 @@ export function effectiveArts(d: DerivedCharacter, a: ArtsUsed, opts: { elementa
   return { tech, form, used, deficient: deficientAll, deficientCount };
 }
 
+/** Whether a "circumstance" bonus applies: all of them (true) or only the chosen ones (by Virtue uid). */
+function circumstanceApplies(c: boolean | string[] | undefined, e: Record<string, unknown>): boolean {
+  return Array.isArray(c) ? c.includes(String(e.fromUid)) : !!c;
+}
+
+/** Bonuses that apply only sometimes, for the player to switch on with one click. */
+export function conditionalBonuses(d: DerivedCharacter): { uid: string; label: string; casting?: number; lab?: number }[] {
+  const out = new Map<string, { uid: string; label: string; casting?: number; lab?: number }>();
+  for (const e of d.effects) {
+    const r = e as unknown as { type: string; when?: string; amount?: number; fromUid: string; fromName: string; param?: string };
+    if (r.when !== 'circumstance' || (r.type !== 'castingScore' && r.type !== 'labTotal')) continue;
+    const x = out.get(r.fromUid) ?? { uid: r.fromUid, label: `${r.fromName}${r.param ? ` (${r.param})` : ''}` };
+    if (r.type === 'castingScore') x.casting = (x.casting ?? 0) + (r.amount ?? 0);
+    else x.lab = (x.lab ?? 0) + (r.amount ?? 0);
+    out.set(r.fromUid, x);
+  }
+  return [...out.values()];
+}
+
 function effectsOf(d: DerivedCharacter, type: string) {
   return d.effects.filter((e) => e.type === type) as Array<Record<string, unknown> & { amount: number; when?: string; fromName: string; multiplier?: number }>;
 }
@@ -81,8 +102,15 @@ export interface CastingOptions {
   inFocus?: boolean;
   talismanBonus?: number;
   wordsGestures?: number; // e.g. loud+exaggerated = +2
-  circumstance?: boolean; // Special Circumstances / Cyclic Magic applies
+  /** Special Circumstances / Cyclic Magic applies: all of them, or those from these Virtue uids */
+  circumstance?: boolean | string[];
   ceremonial?: boolean;
+  /** Life Boost: Fatigue levels spent, +5 each on a Formulaic or Ritual Casting Total */
+  lifeBoost?: number;
+  /** Spell Improvisation: a similar Formulaic spell's magnitude, for spontaneous casting */
+  similarSpell?: { name: string; magnitude: number };
+  /** anything else that applies now (a temporary or obscure bonus) */
+  other?: number;
   extra?: Part[];
   masteryScore?: number; // added to casting total for mastered spells? (not by default)
   visPawns?: number; // +2 casting score per pawn
@@ -102,12 +130,20 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
   const aura = auraModifier('Magic', o.aura, { faerieMagic: hasFM });
   if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})`, value: aura.mod });
   if (d.encumbrance) parts.push({ label: 'Encumbrance', value: -d.encumbrance });
-  if (o.wordsGestures) parts.push({ label: 'Words & gestures', value: o.wordsGestures });
+  if (o.wordsGestures) {
+    // Deft Form: no penalty for non-standard voice or gestures in that Form (DE)
+    const deft = o.wordsGestures < 0 && d.virtues.some((v) => v.cv.defId === 'deft-form' && v.cv.param === arts.form);
+    if (deft) notes.push(`Deft Form (${arts.form}): no penalty for the words and gestures.`);
+    else parts.push({ label: 'Words & gestures', value: o.wordsGestures });
+  }
   if (o.talismanBonus) parts.push({ label: 'Talisman attunement', value: o.talismanBonus });
   if (o.visPawns) parts.push({ label: `Raw vis (${o.visPawns} pawns)`, value: 2 * o.visPawns });
   for (const e of effectsOf(d, 'castingScore')) {
-    if (e.when === 'all' || (e.when === 'circumstance' && o.circumstance)) parts.push({ label: e.fromName, value: e.amount });
+    if (e.when === 'all' || (e.when === 'circumstance' && circumstanceApplies(o.circumstance, e))) parts.push({ label: e.fromName, value: e.amount });
   }
+  if (o.lifeBoost && o.kind !== 'spontaneous' && d.virtues.some((v) => v.cv.defId === 'life-boost')) parts.push({ label: `Life Boost (${o.lifeBoost} Fatigue level${o.lifeBoost > 1 ? 's' : ''})`, value: 5 * o.lifeBoost });
+  if (o.similarSpell && o.kind === 'spontaneous' && d.virtues.some((v) => v.cv.defId === 'spell-improvisation')) parts.push({ label: `Spell Improvisation (${o.similarSpell.name})`, value: o.similarSpell.magnitude });
+  if (o.other) parts.push({ label: 'Other modifier', value: o.other });
   for (const e of effectsOf(d, 'castingTotal')) {
     const w = e.when;
     const ok = w === 'all' || w === o.kind || (w === 'formulaicAndRitual' && o.kind !== 'spontaneous');
@@ -154,9 +190,17 @@ export function spontaneousTotal(score: number, fatiguing: boolean, die = 0, die
 
 export type LabActivity = 'spells' | 'items' | 'familiar' | 'longevity' | 'texts' | 'visExtraction' | 'experimentation' | 'teaching' | 'other';
 
+/** The activity Specialization each kind of lab work uses (DE Laboratory). */
+export const LAB_ACTIVITY_SPEC: Record<LabActivity, string | null> = {
+  spells: 'Spells', items: 'Items', familiar: 'Familiar', longevity: 'Longevity Rituals', texts: 'Texts',
+  visExtraction: 'Vis Extraction', experimentation: 'Experimentation', teaching: 'Teaching', other: null,
+};
+
 export interface LabContext {
   generalQuality: number;
   specializations: Record<string, number>;
+  /** activities that cannot be done in this lab (Missing Equipment) */
+  impossible?: string[];
   safety?: number;
   auraOverride?: AuraState;
 }
@@ -168,8 +212,10 @@ export interface LabOptions {
   inFocus?: boolean;
   fromText?: boolean;
   experimenting?: boolean;
-  circumstance?: boolean;
+  circumstance?: boolean | string[];
   similarSpellMagnitude?: number;
+  /** anything else that applies now */
+  other?: number;
   shapeMaterialBonus?: number; // before MT cap
   verditiusRunes?: number; // Philosophiae added to S&M (still capped by MT)
   craftBonus?: number; // Verditius craft
@@ -209,11 +255,7 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
   if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})`, value: aura.mod });
   if (o.lab) {
     if (o.lab.generalQuality) parts.push({ label: 'Lab General Quality', value: o.lab.generalQuality });
-    const actKey: Record<LabActivity, string | null> = {
-      spells: 'Spells', items: 'Items', familiar: 'Familiar', longevity: 'Longevity Rituals', texts: 'Texts',
-      visExtraction: 'Vis Extraction', experimentation: 'Experimentation', teaching: 'Teaching', other: null,
-    };
-    const ak = actKey[o.activity];
+    const ak = LAB_ACTIVITY_SPEC[o.activity];
     if (ak && o.lab.specializations[ak]) parts.push({ label: `Lab specialization: ${ak}`, value: o.lab.specializations[ak] });
     if (o.experimenting && o.activity !== 'experimentation' && o.lab.specializations.Experimentation) parts.push({ label: 'Lab specialization: Experimentation', value: o.lab.specializations.Experimentation });
     if (o.fromText && o.activity !== 'texts' && o.lab.specializations.Texts) parts.push({ label: 'Lab specialization: Texts', value: o.lab.specializations.Texts });
@@ -226,7 +268,7 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
   }
   for (const e of effectsOf(d, 'labTotal')) {
     const w = e.when;
-    const ok = w === 'all' || (w === 'notFromText' && !o.fromText) || (w === 'fromText' && o.fromText) || (w === 'experimenting' && o.experimenting) || (w === 'circumstance' && o.circumstance);
+    const ok = w === 'all' || (w === 'notFromText' && !o.fromText) || (w === 'fromText' && o.fromText) || (w === 'experimenting' && o.experimenting) || (w === 'circumstance' && circumstanceApplies(o.circumstance, e));
     if (ok) parts.push({ label: e.fromName, value: e.amount });
   }
   if (o.similarSpellMagnitude) parts.push({ label: 'Similar spell known', value: o.similarSpellMagnitude });
@@ -242,6 +284,7 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
   if (o.familiarBond === 'both') parts.push({ label: 'Familiar bond (matches Te and Fo)', value: 10 });
   if (o.sameArtEffects) parts.push({ label: 'Existing effects sharing Te/Fo', value: o.sameArtEffects });
   for (const a of o.assistants ?? []) parts.push({ label: `Assistant: ${a.name}`, value: a.int + a.mt });
+  if (o.other) parts.push({ label: 'Other modifier', value: o.other });
   if (d.currentWoundPenalty) parts.push({ label: 'Wounds', value: d.currentWoundPenalty });
   if (d.currentFatiguePenalty) parts.push({ label: 'Fatigue', value: d.currentFatiguePenalty });
   for (const x of o.extra ?? []) parts.push(x);
@@ -262,7 +305,9 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
     }
   }
   if (aura.note) notes.push(`${aura.note}: extra botch dice ${aura.botch}`);
-  return { total, parts, halved, notes, botchDice: aura.botch + botchDiceFor(d, 'lab') };
+  const ruledOut = o.lab?.impossible?.find((a) => a === LAB_ACTIVITY_SPEC[o.activity] || (a === 'Experimentation' && o.experimenting) || (a === 'Texts' && o.fromText));
+  if (ruledOut) notes.unshift(`This lab cannot be used for ${ruledOut} (Missing Equipment).`);
+  return { total, parts, halved, notes, botchDice: aura.botch + botchDiceFor(d, 'lab'), impossible: !!ruledOut };
 }
 
 function artName(a: Art): string {
@@ -326,6 +371,12 @@ export function magicResistance(d: DerivedCharacter, form: Form, o: { aura?: Aur
   if (d.trueFaith > 0) others.push({ label: `True Faith (${d.trueFaith} × 10)`, value: d.trueFaith * 10 });
   if (d.relicFaith > 0) others.push({ label: `Relic (True Faith ${d.relicFaith} × 10)`, value: d.relicFaith * 10 });
   for (const e of effectsOf(d, 'magicResistance')) others.push({ label: e.fromName, value: e.amount });
+  // a creature's Might gives Magic Resistance: Might + aura modifier (DE Creature Might)
+  const cr = d.char.creature;
+  if (cr && cr.realm !== 'None' && cr.might > 0) {
+    const auraMod = o.aura ? auraModifier(cr.realm, o.aura).mod : 0;
+    others.push({ label: `${cr.realm} Might ${cr.might}${auraMod ? ` + aura ${auraMod}` : ''}`, value: cr.might + auraMod });
+  }
   const parmaTotal = parts.reduce((s, p) => s + p.value, 0);
   const best = others.reduce<Part | undefined>((b, p) => (!b || p.value > b.value ? p : b), undefined);
   let total = parmaTotal;

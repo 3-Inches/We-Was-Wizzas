@@ -75,6 +75,11 @@ export default function HelpPage() {
               <b>House rules &amp; books → Saga</b>.
             </li>
             <li>Powers from Greater, Lesser, Personal or Ritual Power and Heroes&apos; Birthright are designed on the Virtues step: pick a spell within the level budget or describe your own.</li>
+            <li>
+              A Virtue that gives another (Strong Faerie Blood → Second Sight, Magical Blood by the kind of magic being) adds it free. A copy you already bought becomes free.
+              Open any Virtue or Flaw to see <b>Rules it refers to</b>: the Virtues, Flaws and book sections its text points to, quoted in place.
+            </li>
+            <li>A companion Flaw (Magical Animal, Realm Spirit, Animal Companion) can create the companion&apos;s own sheet, with its Might, Size and powers.</li>
             <li>Finish creation to switch to the in-play sheet. You can always return to creation.</li>
           </ol>
         </Card>
@@ -82,14 +87,15 @@ export default function HelpPage() {
           <ul className="small">
             <li>
               <b>Magic tab:</b> every Casting Score and Lab Total for the current aura, Magic Resistance per Form, Penetration with Arcane Connections, spell casting with the right die,
-              botch dice, fatigue and ritual costs, spontaneous magic.
+              botch dice, fatigue and ritual costs, spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, any other
+              modifier) and it is added to the totals. A botch adds its Warping Points.
             </li>
             <li>
               <b>Combat & Health:</b> apply damage against Soak to get the wound, track Fatigue, roll recovery.
             </li>
             <li>
               <b>Seasons & Aging:</b> plan a season (books, teachers, training, practice, vis, adventure) and log it; experience is added with Affinities, gain limits and Virtues. Roll aging,
-              crises and Twilight.
+              crises and Wizard&apos;s Twilight: avoid it, comprehend it, then apply the effect and the scar.
             </li>
             <li>
               <b>Lab & Items:</b> enchanted devices, talisman, familiar cords, Longevity Ritual.

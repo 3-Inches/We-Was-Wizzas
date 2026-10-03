@@ -6,6 +6,7 @@ import type { HookBoonDef } from '../../data';
 import { uid } from '../../util/id';
 import { BookBadge, Card, Markdown, SearchInput } from '../kit';
 import type { CovTabProps } from './shared';
+import { LaterNote } from '../LaterNote';
 
 export default function HooksTab({ cov, update, dc, data }: CovTabProps) {
   const [q, setQ] = useState('');
@@ -60,6 +61,7 @@ export default function HooksTab({ cov, update, dc, data }: CovTabProps) {
     <div className="grid grid-2">
       <div className="stack">
         <Card title="Chosen Hooks & Boons" className="accent">
+        <LaterNote topic="boons" />
           <p className="small muted" style={{ marginTop: 0 }}>
             Boons are paid for with Hooks: Major = 3 points, Minor = 1 (DE p.181–184). Hook points {dc.hookPoints}, Boon points {dc.boonPoints}. Current aura {dc.aura}.
           </p>

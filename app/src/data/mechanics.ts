@@ -6,6 +6,7 @@
 // Saga house rules can override any of this at runtime (see engine/houseRules.ts).
 
 import type { AbilityType, CharType, Effect, ParamSpec, VirtueFlawDef } from './types';
+import { CHARACTERISTICS, CHAR_NAMES } from './constants';
 
 export interface Mechanics {
   param?: ParamSpec;
@@ -64,6 +65,36 @@ const FAERIE_HERITAGE_EFFECTS: Record<string, Effect[]> = {
   Sidhe: [{ type: 'charBonus', char: 'Pre', amount: 1, max: 3 }],
   Spinnen: [{ type: 'note', text: 'Spinnen Blood: converts own body weight of fiber into cloth per day by touch.' }],
   Undine: [{ type: 'note', text: 'Undine Blood: +2 to any action taken underwater (partially offsets the penalty).' }],
+};
+
+// Magical Blood (DE): the minor advantage of one of the four kinds of magic being. The
+// spirit's Supernatural Ability and the thing's power are the matching Virtues, given free.
+const MAGIC_SPIRIT_VIRTUES: Record<string, string> = { 'Magic Sensitivity': 'magic-sensitivity', Premonitions: 'premonitions', 'Second Sight': 'second-sight', 'Wilderness Sense': 'wilderness-sense' };
+const MAGIC_THING_VIRTUES: Record<string, string> = { 'Lesser Power': 'lesser-power', 'Personal Power': 'personal-power' };
+const MAGICAL_BLOOD: ParamSpec = {
+  kind: 'text',
+  label: 'Kind of magic being',
+  groups: [
+    { label: 'Magic animal', options: ['Magic Animal'] },
+    { label: 'Magic human: +1 to a Characteristic', options: CHARACTERISTICS.map((c) => `Magic Human: ${CHAR_NAMES[c]}`) },
+    { label: 'Magic spirit: a Supernatural Virtue', options: Object.keys(MAGIC_SPIRIT_VIRTUES).map((k) => `Magic Spirit: ${k}`) },
+    { label: 'Magic thing: a power', options: Object.keys(MAGIC_THING_VIRTUES).map((k) => `Magic Thing: ${k}`) },
+  ],
+};
+const MAGICAL_BLOOD_EFFECTS: Record<string, Effect[]> = {
+  'Magic Animal': [{ type: 'note', text: 'Magic animal: a feature such as wings, scales, gills, teeth or claws, worth up to +3 to fitting activities or letting you do what others cannot (fly, breathe water). Very hard to hide.' }],
+  ...Object.fromEntries(
+    CHARACTERISTICS.map((c) => [
+      `Magic Human: ${CHAR_NAMES[c]}`,
+      [{ type: 'charBonus', char: c, amount: 1, max: 3 }, { type: 'reputation', score: 3, label: 'Of the bloodline', kind: 'good', scope: 'others of the bloodline' }, { type: 'note', text: 'Magic human: an otherworldly look.' }] as Effect[],
+    ]),
+  ),
+  ...Object.fromEntries(
+    Object.entries(MAGIC_SPIRIT_VIRTUES).map(([k, id]) => [`Magic Spirit: ${k}`, [{ type: 'implies', virtue: id, note: `${k} free` }, { type: 'note', text: 'Magic spirit: whenever you use the Ability, you look plainly supernatural (black eyes, rising off the ground, an unfelt wind).' }] as Effect[]]),
+  ),
+  ...Object.fromEntries(
+    Object.entries(MAGIC_THING_VIRTUES).map(([k, id]) => [`Magic Thing: ${k}`, [{ type: 'implies', virtue: id, note: `${k} free` }, { type: 'note', text: 'Magic thing: the power is tied to an object or thing, and using it changes your look to suit its Form (soot and smoke for a power against fire).' }] as Effect[]]),
+  ),
 };
 
 const ACADEMIC: Effect = { type: 'abilityAccess', abilityTypes: ['Academic'] };
@@ -173,6 +204,7 @@ export const MECHANICS: Record<string, Mechanics> = {
   'student-of-realm': { repeatable: true, param: P.realm(), effects: [{ type: 'abilityAccess', note: 'The chosen (Realm) Lore' }, note('+2 on all uses of the chosen Realm Lore')], tags: ['supernatural', 'scholar'] },
   'faerie-blood': { effects: [{ type: 'abilityAccess', abilities: ['faerie-lore'] }, { type: 'agingRoll', amount: -1 }], param: FAERIE_HERITAGE, paramEffects: FAERIE_HERITAGE_EFFECTS, tags: ['faerie'], excludes: ['strong-faerie-blood'] },
   'strong-faerie-blood': { effects: [{ type: 'abilityAccess', abilities: ['faerie-lore'] }, { type: 'agingRoll', amount: -3 }, { type: 'agingStartAge', age: 50 }, { type: 'implies', virtue: 'second-sight', note: 'Second Sight free' }], param: FAERIE_HERITAGE, paramEffects: FAERIE_HERITAGE_EFFECTS, tags: ['faerie'], excludes: ['faerie-blood'] },
+  'magical-blood': { effects: [{ type: 'abilityAccess', abilities: ['magic-lore'] }, { type: 'agingRoll', amount: -1 }], param: MAGICAL_BLOOD, paramEffects: MAGICAL_BLOOD_EFFECTS, tags: ['magic'] },
   'blood-of-the-nephilim': { effects: [{ type: 'abilityAccess', abilities: ['dominion-lore'] }, { type: 'size', amount: 1 }, { type: 'agingRoll', amount: -5 }], tags: ['divine'] },
 
   // ------------------------------------------------------------------ Later-life XP
@@ -207,6 +239,20 @@ export const MECHANICS: Record<string, Mechanics> = {
   'potent-magic': { requiresGift: true, repeatable: true, param: P.text('Field of Potent Magic'), effects: [note('Minor: +3 to Lab Totals and Casting Score in field. Major: +6.')] },
 
   // ------------------------------------------------------------------ Study & teaching
+  'mythic-characteristic': {
+    repeatable: true, param: P.char('Characteristic (positive)'),
+    effects: [note('Write the specialty in the note (e.g. great knowledge): when it applies, the Characteristic counts one higher and you roll one fewer botch die.')],
+  },
+  'all-according-to-plan': { effects: [note('Once per session, reroll a botch die: the character planned for exactly this failure (describe the plan). The casting roller offers it.')] },
+  'twilight-mastery': {
+    requiresGift: true,
+    effects: [note('You choose the effects of your Wizard\'s Twilight (from the bad ones if you fail to comprehend it). Once a day, a touch gives a being 2 Warping Points (Penetration +5); a Hermetic magus touched must check for Twilight.')],
+  },
+  'greater-charm-flaw': {
+    param: P.text('Charmed Virtue'),
+    effects: [note('Only one charm exists, and whoever holds it (or performs it) has the Virtue. A troupe can use this on purpose: pass the charm around to share the Virtue between characters.')],
+  },
+  'twilight-prone-flaw': { requiresGift: true, effects: [note('A single magical botch (one Warping Point) makes you check for Twilight, not two.')] },
   'apt-student': { effects: [{ type: 'sourceQuality', amount: 5, when: ['teaching', 'training'] }], tags: ['study'] },
   'book-learner': { effects: [{ type: 'sourceQuality', amount: 3, when: ['book'] }], tags: ['study', 'scholar'] },
   'independent-study': { effects: [{ type: 'sourceQuality', amount: 2, when: ['practice'] }, { type: 'sourceQuality', amount: 3, when: ['adventure'] }], tags: ['study'] },
@@ -403,7 +449,10 @@ export const MECHANICS: Record<string, Mechanics> = {
   'alluring-to-beings': { param: P.text('Beings', ['mundane animals', 'faeries', 'magical beings']) },
   'inoffensive-to-beings': { param: P.text('Beings', ['animals', 'divine beings', 'faeries', 'demons', 'magical creatures']) },
   'offensive-to-beings-flaw': { param: P.text('Beings', ['animals', 'mundane humans', 'divine beings', 'faeries', 'demons', 'magical creatures']) },
-  'unbearable-to-beings-flaw': { param: P.text('Beings', ['mundane humans', 'demons', 'divine beings']) },
+  'unbearable-to-beings-flaw': {
+    param: P.text('Beings', ['mundane humans', 'demons', 'divine beings']), requiresGift: true, excludes: ['blatant-gift-flaw'],
+    effects: [{ type: 'socialPenalty', amount: 3, vs: '$param' }],
+  },
   'cautious-with-ability': { repeatable: true, param: P.ability() },
   'careless-with-ability-flaw': { repeatable: true, param: P.ability() },
   'learn-ability-from-mistakes': { repeatable: true, param: P.ability() },

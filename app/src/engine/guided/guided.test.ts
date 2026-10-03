@@ -12,7 +12,7 @@ import { QUESTIONS, QUESTION_BY_ID, childrenOf } from './questions';
 import { ARCHETYPES, MAGNITUDES } from './magnitudes';
 import { TAGS } from './tags';
 import { inventory, vfRecords } from './records';
-import { candidatesFor, evaluate, questionHint, shortlist, statusShortlist, STOP_BELOW, traceOf, visibleQuestions, type GuidedContext } from './score';
+import { candidatesFor, evaluate, questionHint, recommendHouses, shortlist, statusShortlist, STOP_BELOW, traceOf, visibleQuestions, type GuidedContext } from './score';
 import { fixedProfile, simulate } from './simulate';
 import { autoBuild } from './autobuild';
 
@@ -51,8 +51,8 @@ describe('guided build: the data', () => {
 describe('guided build: the questionnaire', () => {
   it('path length: the longest path stays near 100 answered questions; typical ones far fewer', () => {
     const longest = simulate(fixedProfile('all tens', {}, 10), ctxOf(character('magus')));
-    // every follow-up opened: the outputs-first questions (activity, outputs, broad or narrow) add a few
-    expect(longest.answered).toBeLessThanOrEqual(125);
+    // every follow-up opened: the outputs-first questions, new player, rerolls and Characteristics-later add a few
+    expect(longest.answered).toBeLessThanOrEqual(128);
     const typical = [
       simulate(fixedProfile('battle mage', { 'o-cast': 10, 'c-fight': 10, 'd-penetrate': 9, 'b-arts': 8, 'b-art-Pe': 10, 'b-art-Ig': 9, 'e-lab': 2 }), ctxOf(character('magus', 'flambeau'))),
       simulate(fixedProfile('faerie', { 'f-faerie': 10, 'f-faerie-blood': 9, 'h-social': 8 }), ctxOf(character('companion'))),
@@ -266,5 +266,39 @@ describe('guided build: outputs first, Totals ranked, ranges in the questions', 
   });
   it('knows every Virtue and Flaw its tables name', () => {
     for (const id of [...Object.keys(MAGNITUDES), ...ARCHETYPES.flatMap((a) => a.vf.map(([v]) => v))]) expect(data.vfById.has(id), id).toBe(true);
+  });
+});
+
+describe('guided build: playtest fixes (tags, Houses, tie-breaker)', () => {
+  it('reads words for what they mean: a dust devil is no demon, a power\'s Penetration stat is not the magus\'s', () => {
+    const recs = vfRecords(data);
+    expect(recs.get('dust-devil')!.links.some((l) => l.tag === 'realm:infernal')).toBe(false);
+    expect(recs.get('leather-ripper')!.links.some((l) => l.tag === 'penetration')).toBe(false);
+  });
+  it('does not recommend experience that can only go where the player rated low', () => {
+    const r = simulate(fixedProfile('scholar mage', { 'a-progression': 10, 'h-fight': 0, 'f-travel': 0 }), ctxOf(character('magus')));
+    const warrior = r.evaluation.scored.find((s) => s.def.id === 'warrior');
+    expect(warrior?.excluded).toMatch(/rated low/);
+    expect(r.virtues.slice(0, 10).map((s) => s.def.id)).not.toContain('warrior');
+  });
+  it('points Twilight answers either way to Criamon, and Faerie to Merinita; offers Ex Miscellanea', () => {
+    const top = (answers: Record<string, number>) => {
+      const ctx = ctxOf(character('magus'));
+      return recommendHouses(evaluate({ answers, declined: [] }, ctx), ctx);
+    };
+    expect(top({ 'e-warping': 0 })[0].id).toBe('criamon');
+    expect(top({ 'e-warping': 10 })[0].id).toBe('criamon');
+    expect(top({ 'f-faerie': 10 })[0].id).toBe('merinita');
+    expect(top({}).some((h) => h.id === 'ex-miscellanea')).toBe(true);
+    // Tremere's free Focus covers only Certamen: casting answers alone do not make it the pick
+    expect(top({ 'o-cast': 10, 'a-focus': 10 })[0].id).not.toBe('tremere');
+  });
+  it('keeps the tie-breaker among the tied tags: 0 lowers a tag but never below zero, 10 never raises it', () => {
+    const ctx = ctxOf(character('magus'));
+    const base = evaluate({ answers: { 'e-lab': 10, 'o-cast': 10 }, declined: [] }, ctx).weights;
+    const tb = evaluate({ answers: { 'e-lab': 10, 'o-cast': 10, 'tb:lab': 0, 'tb:casting': 10 }, declined: [] }, ctx).weights;
+    expect(tb.casting).toBe(base.casting);
+    expect(tb.lab).toBeGreaterThan(0);
+    expect(tb.lab).toBeLessThan(base.lab);
   });
 });

@@ -96,6 +96,8 @@ const CHAR_PRESETS: Partial<Record<Characteristic, Record<string, number>>> = {
 };
 
 export const EXPLAINERS = {
+  charsLater:
+    'Characteristics can be raised in play by magic. A Creo Corpus Ritual raises a physical Characteristic (Strength, Stamina, Dexterity, Quickness) and a Creo Mentem Ritual a mental one (Intelligence, Perception, Presence, Communication) by one point each casting: level 30 to bring it to 0, 35 to +1, 40 to +2, 45 to +3, 50 to +4 and 55 to +5, which is the human limit (DE Corpus and Mentem guidelines). A lasting change from a Momentary Creo spell must be a Ritual, so each casting costs vis. With a Group, Room or Structure Target (+2, +2, +3 magnitudes) one casting raises everyone there, a whole cohort of the covenant at once. So a covenant with a strong Creo magus can give everyone better Characteristics over time; Virtues for Characteristics matter most at the start of play.',
   progression:
     'Virtues that speed up progression (more experience, an Affinity, Elemental Magic, better study) pay off most when taken at the start, because they compound over every season of play. Flat bonuses (Puissant Art, a Magical Focus, Life Boost) give the same edge whenever you get them. But Virtues are hard to gain after creation: only through Initiation into a Mystery, Original Research or Twilight, all slow or risky. A magus may have only one Major Hermetic Virtue (DE p.63), so which one you take is the most build-defining choice you make: Elemental Magic and a Major Magical Focus, for example, can\'t both be had at the start.',
   narrow:
@@ -108,7 +110,12 @@ export const EXPLAINERS = {
 
 export const QUESTIONS: Question[] = [
   // ------------------------------------------------------------------ A. Big picture
+  {
+    id: 'a-new', section: 'A', text: 'I’m new to Ars Magica.', tags: { 'new-player': 1 }, build: true,
+    explainer: 'The Definitive Edition recommends the Common Sense Virtue for a beginning player: the storyguide warns you whenever you are about to do something that makes no sense in the setting, which makes any help the storyguide gives part of the game.',
+  },
   { id: 'a-complexity', section: 'A', text: 'I’m happy to take options that add extra rules and complexity.', tags: { complexity: 1, 'spell-like': 1 }, build: true },
+  { id: 'a-escape', section: 'A', text: 'I like having a way out when the dice turn against me: rerolls, fewer botches, luck.', tags: { escape: 1 } },
   {
     id: 'a-progression', section: 'A', types: MAGI, build: true, explainer: EXPLAINERS.progression,
     text: 'At the start of play, I’d rather have Virtues that make my magus grow faster than ones that give fixed bonuses now.', low: 'fixed bonuses now', high: 'faster growth', tags: { progression: 1 },
@@ -116,6 +123,11 @@ export const QUESTIONS: Question[] = [
   { id: 'a-house', section: 'A', text: 'I care which House my magus belongs to.', tags: {}, types: MAGI, build: true },
   { id: 'a-chars', section: 'A', text: 'I care about my character’s Characteristics (Intelligence, Stamina and so on).', tags: { chars: 1 }, build: true },
   ...CHARACTERISTICS.map((c): Question => ({ id: `a-char-${c}`, section: 'A', parent: 'a-chars', text: `My character is ${CHAR_TEXT[c]}.`, tags: { [`char:${c}`]: 1 }, build: true, presets: CHAR_PRESETS[c] })),
+  {
+    id: 'a-char-later', section: 'A', parent: 'a-chars', noHint: true, explainer: EXPLAINERS.charsLater,
+    text: 'I’d rather raise Characteristics later with Creo Rituals than spend Virtues on them now.', low: 'Virtues now', high: 'Rituals later',
+    tags: { chars: -0.5, 'art:Cr': 0.5, 'art:Co': 0.3, 'art:Me': 0.3, ritual: 0.3 },
+  },
   { id: 'a-focus', section: 'A', text: 'I’d rather be excellent at a few things than decent at many.', tags: { specialist: 1 }, build: true, explainer: EXPLAINERS.focus },
   { id: 'a-abilities', section: 'A', text: 'When play starts, I’d rather have strong Abilities than strong Arts.', low: 'strong Arts', high: 'strong Abilities', tags: {}, types: MAGI, build: true, explainer: EXPLAINERS.abilitiesVsArts },
 

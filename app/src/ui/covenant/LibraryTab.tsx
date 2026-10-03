@@ -6,6 +6,7 @@ import type { LibraryBook } from '../../engine/types';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper } from '../kit';
 import type { CovTabProps } from './shared';
+import { LaterNote } from '../LaterNote';
 
 const KIND_LABEL: Record<LibraryBook['kind'], string> = {
   summa: 'Summa',
@@ -46,6 +47,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
           </>
         }
       >
+        <LaterNote topic="library" />
         <div className="row" style={{ marginBottom: 6 }}>
           <select value={filter} onChange={(e) => setFilter(e.target.value as typeof filter)}>
             <option value="all">All books ({cov.library.length})</option>

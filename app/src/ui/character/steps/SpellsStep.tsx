@@ -8,6 +8,7 @@ import type { DerivedCharacter } from '../../../engine/character/derive';
 import { uid } from '../../../util/id';
 import { BookBadge, Card, Markdown, Meter, SearchInput, Stepper } from '../../kit';
 import type { CharEditor } from '../useChar';
+import { LaterNote } from '../../LaterNote';
 
 export function makeCharSpell(s: SpellDef, source: CharSpell['source'], flawless: boolean): CharSpell {
   return { uid: uid(), spellId: s.custom ? undefined : s.id, spell: structuredClone(s), masteryXp: flawless ? { free: 5 } : {}, masteryAbilities: [], source };
@@ -60,6 +61,7 @@ export default function SpellsStep({ ed }: { ed: CharEditor }) {
   return (
     <>
       <Card title="Spells known" className="accent">
+        <LaterNote topic="spells" />
         <div className="grid grid-3">
           {app?.spellLevels && <Meter label="Apprenticeship spell levels" value={app.spellLevels.spent} max={app.spellLevels.total} />}
           {pg && <Meter label="Post-Gauntlet points (xp + spell levels)" value={pg.spent} max={pg.total} />}

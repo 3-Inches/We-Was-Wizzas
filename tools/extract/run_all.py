@@ -6,9 +6,11 @@ import extract_abilities
 import extract_covlab
 import extract_spells
 import extract_vf
+import extract_vf_refs
 
 if __name__ == "__main__":
     extract_vf.main()
+    extract_vf_refs.main()
     extract_abilities.main()
     extract_spells.main()
     extract_covlab.lab_data()

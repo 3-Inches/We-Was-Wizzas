@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { HOUSES, HOUSE_BY_ID, EX_MISC_TRADITIONS } from '../../../data/houses';
 import { applyExMiscTradition, applyMythicType, MYTHIC_TYPES, setHouse } from '../../../engine/character/factory';
-import { Card, Markdown, BookBadge } from '../../kit';
+import { Card, BookBadge } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { vfDisplayName } from '../../../engine/character/derive';
+import { VFText } from '../../VFText';
 
 export default function HouseStep({ ed }: { ed: CharEditor }) {
   const { c } = ed;
@@ -200,7 +201,7 @@ function MythicTypeStep({ ed }: { ed: CharEditor }) {
       </div>
       {current && data.vfById.get(current[1].virtue) && (
         <div style={{ marginTop: 10 }}>
-          <Markdown text={data.vfById.get(current[1].virtue)!.text} />
+          <VFText def={data.vfById.get(current[1].virtue)!} data={data} />
         </div>
       )}
       <p className="small muted">Other Mythic Companion types (from Realms of Power and other books) can be built by adding their defining Virtue in the next step.</p>

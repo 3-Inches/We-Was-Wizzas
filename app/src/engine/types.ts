@@ -127,8 +127,14 @@ export interface CharVirtue {
   note?: string;
   /** Ex Miscellanea compulsory flaw / Diedne dark secret: gives no Virtue points */
   noPoints?: boolean;
+  /** a companion Flaw's own character sheet (Magical Being Companion…) */
+  characterId?: string;
   /** uid of the Virtue/Flaw whose rules made the character take this one (removed with it) */
   requiredBy?: string;
+  /** uid of the Virtue that gives this one at no cost (Strong Faerie Blood: Second Sight); kept in step with it */
+  grantedBy?: string;
+  /** it was bought before the Virtue that gives it free: it stays (and costs again) if that Virtue goes */
+  wasTaken?: boolean;
   /** why the guided build chose it ("from: I expect to cast in a fight — 9") */
   why?: string;
 }
@@ -166,6 +172,8 @@ export interface CharSpell {
   masteryAbilities: string[];
   source: 'apprenticeship' | 'postGauntlet' | 'play' | 'free';
   notes?: string;
+  /** the caster's Magical Focus applies to it */
+  inFocus?: boolean;
   /** why the guided build chose it */
   why?: string;
 }
@@ -339,11 +347,32 @@ export interface CharacterCreationState {
   archetypes?: string[];
 }
 
+/** A supernatural or animal being with a sheet of its own (DE Chapter 13: Creature Might, Size). */
+export interface CreatureInfo {
+  realm: 'Magic' | 'Faerie' | 'Divine' | 'Infernal' | 'None';
+  might: number;
+  size: number;
+  /** magic animal, magic human, spirit, or animate thing (RoP: Magic) */
+  kind: 'animal' | 'human' | 'spirit' | 'thing';
+  /** how independent it is: an extension of the owner's will, follows orders, or acts on its own */
+  intelligence: 'grog' | 'companion' | 'magus';
+  /** the character whose Flaw it is */
+  ownerId?: string;
+  /** that Flaw's uid on the owner */
+  ownerVirtueUid?: string;
+  /** its powers: Name, Might cost, Init, Form: description */
+  powers?: string;
+}
+
 export interface Character {
   id: string;
   sagaId: string;
   schemaVersion: number;
   type: CharType;
+  /** a creature's Might, Size and kind */
+  creature?: CreatureInfo;
+  /** things used up once per game session (All According to Plan) */
+  session?: { aatpUsed?: boolean };
   name: string;
   player: string;
   gender: string;

@@ -399,3 +399,12 @@ button.fix-primary { border-color: var(--accent-2); color: var(--accent-2); font
 .card-dl dt { font-weight: 700; }
 .card-dl dd { margin: 0; }
 .why { font-size: 0.82em; color: var(--ink-soft); font-style: italic; }
+
+.later-note { margin: 4px 0 8px; color: var(--muted); }
+.later-note summary { cursor: pointer; }
+.later-note ul { margin: 4px 0 0; padding-left: 18px; }
+.vf-refs { margin-top: 8px; padding-left: 10px; border-left: 3px solid var(--line); }
+.vf-refs > .l { color: var(--muted); font-size: 12px; margin-bottom: 2px; }
+.vf-ref { margin: 2px 0; }
+.vf-ref summary { cursor: pointer; }
+.vf-ref .markdown { margin: 4px 0 6px; }

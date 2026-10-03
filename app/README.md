@@ -26,6 +26,10 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 - Powers from Greater, Lesser, Personal and Ritual Power and Heroes' Birthright are built against their level budgets, with Penetration, Initiative, Fatigue and Confidence cost, or copied from a spell.
 - Holy Magic replaces Magic Theory in Lab Totals and the creation checks. True Faith and relics give Magic Resistance, and only the highest source counts.
 - Recommendations follow the concept themes you pick.
+- A Virtue that gives another adds it free and keeps it in step: Strong Faerie Blood gives Second Sight; Magical Blood gives the kind of magic being's advantage (+1 Characteristic, a Supernatural Virtue or a power); Templar Commander gives Temporal Influence. If the character already paid for that Virtue, it becomes free.
+- Every Virtue and Flaw description ends with **Rules it refers to**: the Virtues and Flaws it names and the book sections it cites ("see page 225"), quoted in place.
+- Each step has a short note on how its Characteristics, Virtues, Abilities, Arts or spells can be gained or improved in play (Characteristic Rituals, teaching Hermetic Virtues, Initiation, Twilight…).
+- Companion Flaws (Magical Animal, Realm Spirit, Animal Companion) create a linked sheet for the companion, with Might, Size and powers.
 - **Guided build** (Concept step): the player rates statements about what they want to play, 0–10 (skipping counts as 5), and gets Virtues, Flaws, a House, Arts and Abilities recommended from every enabled book, then a complete draft that passes the rules check.
   - Every Virtue and Flaw has a record of outcome tags (Casting Totals, Penetration, Faerie, the Church…) with a direction and strength, built from the hand-written mechanics and the book text, plus region and culture gates.
   - Follow-up questions open at 7 or more (or 3 or less) and stop once fewer than 10 options remain. Concept themes pre-set answers; a covenant in the toolkit answers the questions about vis, money, the library and the aura.
@@ -40,10 +44,10 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 
 | Area | What it covers |
 |---|---|
-| Magic | Casting Scores and Lab Totals for every Technique + Form in the current aura, Magic Resistance per Form, Penetration with Arcane Connections |
-| Spellcasting | Formulaic, Ritual and spontaneous casting with the correct die, botch dice, Fatigue and Mastery |
+| Magic | Casting Scores and Lab Totals for every Technique + Form in the current aura, Magic Resistance per Form, Penetration with Arcane Connections. One-click modifiers: Magical Focus, Special Circumstances, Cyclic and Potent Magic, Life Boost, Spell Improvisation's similar spell, and any other modifier |
+| Spellcasting | Formulaic, Ritual and spontaneous casting with the correct die, botch dice, Fatigue and Mastery; a botch adds its Warping Points, and All According to Plan rerolls a botch die once a session |
 | Health | Wounds from damage vs. Soak, Fatigue tracking, recovery rolls |
-| Seasons | Books, teachers, training, practice, exposure, adventure and vis, with gain limits and Magian Lineage's linked Abilities; aging and crises; Warping and Twilight |
+| Seasons | Books, teachers, training, practice, exposure, adventure and vis, with gain limits and Magian Lineage's linked Abilities; Secondary Insight; aging and crises; Warping and Wizard's Twilight (avoid, comprehend, effects and scars, with Twilight Prone and Twilight Mastery) |
 | Lab & items | Enchanted devices, talisman and attunements, familiar cords, Longevity Ritual |
 | Other | Printable stat block, overrides for any number |
 
@@ -109,6 +113,7 @@ app/src/ui/           React pages: character wizard & sheet, covenant, tools, re
 
 - **Rules data is extracted automatically:** 957 Virtues & Flaws, 122 Abilities, 1,205 spells, 610 guidelines, 130 lab Virtues & Flaws, 36 lab features, 198 Hooks & Boons, 240 Shape & Material entries, and weapons and armor.
 - **Mechanics are written by hand** in `src/data/mechanics.ts`, one entry per Virtue or Flaw, as declarative effects: xp pools, bonuses, Lab Total modifiers and so on. Virtues and Flaws without numeric effects appear on the sheet as text for the troupe to adjudicate.
+- **References are followed:** `tools/extract/extract_vf_refs.py` finds the Virtues and Flaws each text names and the pages it cites. It resolves each citation to its section through the Definitive Edition's indexes, the original core book's index mapped by topic, or the heading named in other books, plus a short list checked by hand. What those references mean for the rules (free Virtues, "the same as", requirements and exclusions) is in `src/data/crossRefs.ts`, added to the hand-written mechanics.
 - **Restrictions are curated** in `src/data/restrictions.ts` from the sentences in the books that limit a Virtue or Flaw, each quoted in the rules check. `src/engine/character/restrictions.ts` applies them in both the Virtue picker and the rules check.
 - **Every total carries its breakdown.** Clicking a number shows how it was calculated.
 - **Books marked WIP** in this repository are still being transcribed. Content from them can contain transcription errors, and each saga can switch them off.

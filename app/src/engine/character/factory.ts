@@ -68,14 +68,17 @@ export function newCharacter(type: CharType, sagaId: string, year = 1220): Chara
 
 /** Add a Virtue/Flaw and any Virtues it implies (as free). */
 export function addVirtue(c: Character, data: GameData, defId: string, size?: VFSize, param?: string, extra: Partial<CharVirtue> = {}): CharVirtue {
+  const cv = addVirtueOnly(c, data, defId, size, param, extra);
+  syncImpliedVirtues(c, data);
+  syncMerinitaWarping(c, data);
+  return cv;
+}
+
+function addVirtueOnly(c: Character, data: GameData, defId: string, size?: VFSize, param?: string, extra: Partial<CharVirtue> = {}): CharVirtue {
   const def = data.vfById.get(defId);
   const cv: CharVirtue = { uid: uid(), defId, size: size ?? def?.sizes[0] ?? 'Minor', param, ...extra };
   c.virtues.push(cv);
   for (const e of def?.effects ?? []) {
-    if (e.type === 'implies' && !c.virtues.some((v) => v.defId === e.virtue)) {
-      const idef = data.vfById.get(e.virtue);
-      if (idef) c.virtues.push({ uid: uid(), defId: e.virtue, size: idef.sizes[0], free: true, freeReason: `from ${def?.name}` });
-    }
     if (e.type === 'grantAbility') ensureAbility(c, e.ability === '$param' ? param ?? '' : e.ability, { free: 5 * ((e.score * (e.score + 1)) / 2) });
   }
   // Virtues and Flaws that this one makes the character take (e.g. Blood of the Nephilim -> Greedy)
@@ -84,8 +87,73 @@ export function addVirtue(c: Character, data: GameData, defId: string, size?: VF
     const adef = data.vfById.get(n.auto.id);
     if (adef) c.virtues.push({ uid: uid(), defId: n.auto.id, size: n.auto.size ?? adef.sizes[0], noPoints: n.auto.noPoints || undefined, requiredBy: cv.uid });
   }
-  syncMerinitaWarping(c, data);
   return cv;
+}
+
+/**
+ * The Virtues a Virtue gives at no cost, with its chosen parameter and size: Strong Faerie Blood
+ * gives Second Sight, Magical Blood of a magic spirit gives that spirit's Supernatural Virtue.
+ */
+export function impliedVirtues(cv: CharVirtue, data: GameData): string[] {
+  const def = data.vfById.get(cv.defId);
+  if (!def) return [];
+  const byParam = (cv.param && def.paramEffects?.[cv.param]) || [];
+  return [...(def.effects ?? []), ...byParam, ...(def.sizeEffects?.[cv.size] ?? [])].flatMap((e) => (e.type === 'implies' ? [e.virtue] : []));
+}
+
+/**
+ * Keep the Virtues other Virtues give for free in step with them: add what is missing (a copy the
+ * character already bought becomes free), and take away what no longer applies, after any change
+ * (a new Virtue, a removed one, a different parameter). Returns notes for the player.
+ */
+export function syncImpliedVirtues(c: Character, data: GameData): string[] {
+  const notes: string[] = [];
+  const nameOf = (id: string) => data.vfById.get(id)?.name ?? id;
+  for (let pass = 0; pass < 4; pass++) {
+    let changed = false;
+    // saves from before grantedBy: "from <name>" freebies belong to the Virtue of that name
+    for (const v of c.virtues) {
+      if (v.grantedBy || !v.free || !v.freeReason?.startsWith('from ')) continue;
+      const src = c.virtues.find((s) => s !== v && `from ${nameOf(s.defId)}` === v.freeReason && impliedVirtues(s, data).includes(v.defId));
+      if (src) v.grantedBy = src.uid;
+    }
+    for (const v of [...c.virtues]) {
+      if (!v.grantedBy) continue;
+      const src = c.virtues.find((s) => s.uid === v.grantedBy);
+      if (src && impliedVirtues(src, data).includes(v.defId)) continue;
+      if (v.wasTaken) {
+        delete v.grantedBy;
+        delete v.wasTaken;
+        delete v.free;
+        delete v.freeReason;
+        notes.push(`${nameOf(v.defId)} is no longer free, and costs its points again.`);
+      } else {
+        removeVirtueOnly(c, data, v.uid);
+        notes.push(`${nameOf(v.defId)} went with it.`);
+      }
+      changed = true;
+    }
+    for (const src of [...c.virtues]) {
+      const srcName = nameOf(src.defId);
+      for (const id of impliedVirtues(src, data)) {
+        const idef = data.vfById.get(id);
+        if (!idef || c.virtues.some((v) => v.grantedBy === src.uid && v.defId === id)) continue;
+        // one copy is enough unless the Virtue can be taken several times (Lesser Power)
+        if (!idef.repeatable && c.virtues.some((v) => v.defId === id && (v.free || v.grantedBy))) continue;
+        const bought = !idef.repeatable && c.virtues.find((v) => v.defId === id && !v.free && !v.grantedBy && !v.requiredBy);
+        if (bought) {
+          Object.assign(bought, { free: true, freeReason: `from ${srcName}`, grantedBy: src.uid, wasTaken: true });
+          notes.push(`${idef.name} is now free with ${srcName}, and its points come back.`);
+        } else {
+          addVirtueOnly(c, data, id, idef.sizes[0], undefined, { free: true, freeReason: `from ${srcName}`, grantedBy: src.uid });
+          notes.push(`${srcName} gives ${idef.name} free.`);
+        }
+        changed = true;
+      }
+    }
+    if (!changed) break;
+  }
+  return notes;
 }
 
 /** A faerie-related Virtue or Flaw, other than the Merinita House Virtue itself (DE p.44). */
@@ -105,12 +173,18 @@ export function syncMerinitaWarping(c: Character, data: GameData) {
 }
 
 export function removeVirtue(c: Character, data: GameData, uidToRemove: string) {
+  removeVirtueOnly(c, data, uidToRemove);
+  syncImpliedVirtues(c, data);
+  syncMerinitaWarping(c, data);
+}
+
+function removeVirtueOnly(c: Character, data: GameData, uidToRemove: string) {
   const cv = c.virtues.find((v) => v.uid === uidToRemove);
   if (!cv) return;
   const def = data.vfById.get(cv.defId);
   c.virtues = c.virtues.filter((v) => v.uid !== uidToRemove);
-  // remove implied freebies that came only from this virtue, and the Flaws it made the character take
-  c.virtues = c.virtues.filter((v) => !(v.free && v.freeReason === `from ${def?.name}`) && v.requiredBy !== uidToRemove);
+  // the Flaws it made the character take go with it (the Virtues it gave free: syncImpliedVirtues)
+  c.virtues = c.virtues.filter((v) => v.requiredBy !== uidToRemove);
   // remove granted free xp
   for (const e of def?.effects ?? []) {
     if (e.type === 'grantAbility') {
@@ -126,7 +200,6 @@ export function removeVirtue(c: Character, data: GameData, uidToRemove: string) 
   for (const ab of c.abilities) delete ab.xp[key];
   for (const a of Object.values(c.arts)) if (a) delete a[key];
   for (const s of c.spells) delete s.masteryXp[key];
-  syncMerinitaWarping(c, data);
 }
 
 export function ensureAbility(c: Character, abilityId: string, xp: Partial<Record<XpSource, number>> = {}, param?: string): CharAbility {

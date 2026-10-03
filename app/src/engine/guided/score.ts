@@ -15,7 +15,7 @@ import { vfProblems } from '../character/restrictions';
 import { abilityTag, vfRecords, type TagLink, type VFRecord } from './records';
 import { QUESTIONS, SECTIONS, childrenOf, type Question } from './questions';
 import { isThemeTag, tagLabel } from './tags';
-import { MAGNITUDES, RANKED_TOTALS } from './magnitudes';
+import { HOUSE_BENEFIT_SCALE, HOUSE_EITHER_WAY, HOUSE_IDENTITY, MAGNITUDES, RANKED_TOTALS } from './magnitudes';
 
 
 export interface GuidedContext {
@@ -94,8 +94,13 @@ export function tagWeights(st: GuidedState, ctx: GuidedContext): Record<string, 
     for (const [tag, k] of Object.entries(v.q.tags)) w[tag] = (w[tag] ?? 0) + a * k;
   }
   for (const k of Object.keys(w)) w[k] = Math.max(-10, Math.min(10, w[k]));
-  // the tie-breaker round re-rates the competing tags directly
-  for (const [k, a] of Object.entries(st.answers)) if (k.startsWith('tb:')) w[k.slice(3)] = (a - 5) * 2;
+  // the tie-breaker round only orders the tied tags among themselves: 10 keeps a tag's weight,
+  // 0 cuts it to 40%, so it never rises above, or turns against, what was not in the round
+  for (const [k, a] of Object.entries(st.answers)) {
+    if (!k.startsWith('tb:')) continue;
+    const tag = k.slice(3);
+    if (w[tag]) w[tag] = Math.round(w[tag] * (0.4 + (0.6 * a) / 10) * 10) / 10;
+  }
   return w;
 }
 
@@ -118,7 +123,7 @@ export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, c
   if (!data.isBookEnabled(def.source.book)) return 'Book not enabled';
   if (def.id === 'the-gift' || def.id === 'hermetic-magus') return 'Given by the character type';
   if (st.declined.includes(def.id)) return 'You turned it down';
-  if (!def.repeatable && !def.param && c.virtues.some((v) => v.defId === def.id)) return 'Already taken';
+  if (!def.repeatable && c.virtues.some((v) => v.defId === def.id)) return 'Already taken';
   const region = sagaRegion(ctx);
   if (region && rec.regions.length && !rec.regions.includes(region)) return `Belongs to the ${rec.regions.join(' or ')} Tribunal`;
   if (rec.cultures.length && !rec.cultures.includes(c.society)) return `For ${rec.cultures.join(' or ')} characters`;
@@ -262,6 +267,8 @@ export function scoreOption(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, 
     // (a word in the text counts once the rating is strong)
     if (isFlaw && !acceptsTrade && !l.hook && l.dir < 0 && (l.strength >= 2 ? weight >= 2 : weight >= 4)) excluded = `Hurts ${tagLabel(tag)}, which you rated high`;
   }
+  // experience that can only go where the player rated low is not worth taking
+  if (!isFlaw && rec.xpTargets?.length && rec.xpTargets.every((t) => (w[t] ?? 0) <= -2)) excluded = `Its experience goes to ${rec.xpTargets.map(tagLabel).join(', ')}, which you rated low`;
   const still = st.answers[`vf:${def.id}`];
   if (still !== undefined) {
     if (still <= FOLLOW_UP_LOW) excluded = 'You were not interested';
@@ -619,29 +626,42 @@ export function recommendHouses(ev: Evaluation, ctx: GuidedContext): HouseRec[] 
   const out: HouseRec[] = [];
   const st: GuidedState = { answers: {}, declined: [] };
   for (const h of HOUSES) {
-    if (h.exMiscellanea) continue;
+    if (h.exMiscellanea && h.id !== 'ex-miscellanea') continue;
     const reasons: string[] = [];
     let score = 0;
+    // what the House is about
+    const either = HOUSE_EITHER_WAY[h.id] ?? [];
+    const identity = Object.entries(HOUSE_IDENTITY[h.id] ?? {})
+      .map(([tag, k]) => ({ tag, v: (either.includes(tag) ? Math.abs(ev.weights[tag] ?? 0) : ev.weights[tag] ?? 0) * k }))
+      .filter((x) => x.v > 0)
+      .sort((a, b) => b.v - a.v);
+    score += identity.reduce((t, x) => t + x.v, 0) * 0.6;
+    if (identity.length) reasons.push(identity.slice(0, 3).map((x) => tagLabel(x.tag)).join(', '));
+    // its free Virtue
     let best = -Infinity;
+    let bestReason = '';
     for (const b of h.benefitOptions) {
       const def = ctx.data.vfById.get(b.virtueId);
       const rec = def && recs.get(def.id);
       if (!def || !rec) continue;
       const s = scoreOption(def, rec, st, ev.weights, ctx, b.param);
       // equal fits: the benefit worth more in play
-      const f = s.fit + (s.strength.seasons ?? 0) * 0.01;
+      const f = s.fit * (HOUSE_BENEFIT_SCALE[h.id] ?? 1) + (s.strength.seasons ?? 0) * 0.01;
       if (f > best) {
         best = f;
-        if (s.fit > 0) reasons.push(`${b.label}: ${s.matches.filter((m) => m.contribution > 0).slice(0, 2).map((m) => tagLabel(m.tag)).join(', ')}`);
+        bestReason = s.fit > 0 ? `${b.label}: ${s.matches.filter((m) => m.contribution > 0).slice(0, 2).map((m) => tagLabel(m.tag)).join(', ')}` : '';
       }
     }
     if (best > -Infinity) score += Math.max(0, best);
+    if (bestReason) reasons.push(bestReason);
+    // Virtues only its members can take
     const houseOnly = ctx.data.virtuesFlaws.filter((v) => v.houses?.includes(h.id) && v.kind === 'virtue' && ctx.data.isBookEnabled(v.source.book));
     const fits = houseOnly.map((v) => scoreOption(v, recs.get(v.id)!, st, ev.weights, ctx)).filter((s) => s.fit > 0).sort((a, b) => b.fit - a.fit).slice(0, 3);
     for (const f of fits) {
       score += f.fit / 2;
       reasons.push(`unlocks ${f.def.name}`);
     }
+    if (h.id === 'ex-miscellanea') reasons.push('a free Minor Hermetic and Major non-Hermetic Virtue with a Major Hermetic Flaw');
     out.push({ id: h.id, name: h.name, score: Math.round(score * 10) / 10, reasons });
   }
   return out.sort((a, b) => b.score - a.score);
