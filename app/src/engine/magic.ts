@@ -371,11 +371,11 @@ export function magicResistance(d: DerivedCharacter, form: Form, o: { aura?: Aur
   if (d.trueFaith > 0) others.push({ label: `True Faith (${d.trueFaith} × 10)`, value: d.trueFaith * 10 });
   if (d.relicFaith > 0) others.push({ label: `Relic (True Faith ${d.relicFaith} × 10)`, value: d.relicFaith * 10 });
   for (const e of effectsOf(d, 'magicResistance')) others.push({ label: e.fromName, value: e.amount });
-  // a creature's Might gives Magic Resistance: Might + aura modifier (DE Creature Might)
-  const cr = d.char.creature;
-  if (cr && cr.realm !== 'None' && cr.might > 0) {
-    const auraMod = o.aura ? auraModifier(cr.realm, o.aura).mod : 0;
-    others.push({ label: `${cr.realm} Might ${cr.might}${auraMod ? ` + aura ${auraMod}` : ''}`, value: cr.might + auraMod });
+  // Might gives Magic Resistance: Might + aura modifier (DE Creature Might); a creature's own, or
+  // from a Virtue (Strong Angelic Heritage: Divine Might = age / 20)
+  if (d.might && d.might.score > 0) {
+    const auraMod = o.aura ? auraModifier(d.might.realm, o.aura).mod : 0;
+    others.push({ label: `${d.might.realm} Might ${d.might.score}${d.might.source !== 'creature' ? ` (${d.might.source})` : ''}${auraMod ? ` + aura ${auraMod}` : ''}`, value: d.might.score + auraMod });
   }
   const parmaTotal = parts.reduce((s, p) => s + p.value, 0);
   const best = others.reduce<Part | undefined>((b, p) => (!b || p.value > b.value ? p : b), undefined);

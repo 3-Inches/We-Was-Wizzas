@@ -7,6 +7,7 @@ import {
   type Art, type Characteristic, type Effect, type GameData, type VirtueFlawDef, type AbilityType, type AbilityDef, type PowerKind,
 } from '../../data';
 import type { Character, CharAbility, CharVirtue, HouseRules, XpAlloc, XpSource } from '../types';
+import { deriveMagicCharacter, characteristicQualities, SEASON_AGE, type MagicCharacterDerived } from './magicCharacter';
 import { abilityScoreFromXp, abilityXpRemainder, artScoreFromXp, artXpRemainder, withAffinity, warpingScoreFromPoints } from '../xp';
 
 export type ResolvedEffect = Effect & { fromUid: string; fromName: string; param?: string };
@@ -125,6 +126,10 @@ export interface DerivedCharacter {
   faithPoints: number;
   /** True Faith of the relic the character relies on (0 if none) */
   relicFaith: number;
+  /** the character's Might, if it has one: a creature's, or from a Virtue (Strong Angelic Heritage, Demonic Blood) */
+  might: { realm: 'Magic' | 'Faerie' | 'Divine' | 'Infernal'; score: number; form?: string; source: string } | null;
+  /** built with the Realms of Power: Magic character rules */
+  magicChar: MagicCharacterDerived | null;
   /** largest starting Personality Trait (3, or more with e.g. Heroic Personality) */
   personalityMax: number;
   /** levels available for each kind of supernatural power */
@@ -313,8 +318,11 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   tally.allowedVirtuePoints = char.type === 'mythic' ? tally.flawPoints * rules.mythicVirtueRatio : tally.flawPoints;
 
   // ---------------------------------------------------------------- size & characteristics
-  const child = childModifier(char.age);
-  let size = eff('size').reduce((s, e) => s + e.amount, 0) + child.size + (char.creature?.size ?? 0);
+  // a magic character (RoP: Magic) has no childhood: Season replaces age; its true form sets Size
+  const mc = char.creature?.magicCharacter;
+  const magicChar = char.creature && mc ? deriveMagicCharacter(char.creature, mc) : null;
+  const child = magicChar ? { size: 0, char: 0 } : childModifier(char.age);
+  let size = eff('size').reduce((s, e) => s + e.amount, 0) + child.size + (magicChar ? magicChar.size : char.creature?.size ?? 0);
   if (has('blood-of-the-nephilim') && char.age >= 100) size += Math.floor(char.age / 100);
 
   const characteristics = {} as DerivedCharacter['characteristics'];
@@ -339,6 +347,18 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     if (child.char) {
       value += child.char;
       cn.push(`child ${child.char}`);
+    }
+    if (magicChar && (c === 'Str' || c === 'Qik')) {
+      const sz = c === 'Str' ? magicChar.str : magicChar.qik;
+      if (sz) {
+        value += sz;
+        cn.push(`Size ${sz > 0 ? '+' : ''}${sz}`);
+      }
+    }
+    const fromQualities = mc ? characteristicQualities(mc.qualities)[c] : undefined;
+    if (fromQualities) {
+      value += fromQualities;
+      cn.push(`${fromQualities > 0 ? 'Improved' : 'Reduced'} (${c}) ${fromQualities > 0 ? '+' : ''}${fromQualities}`);
     }
     const ov = char.overrides[`char:${c}`];
     if (ov !== undefined) {
@@ -384,7 +404,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     eff('abilityAffinity').some((e) => e.ability === id || (param && e.ability === `${id}:${param}`));
   const capBonus = (id: string) => eff('abilityCapBonus').filter((e) => e.ability === id).reduce((s, e) => s + e.amount, 0);
   const linguist = eff('languageAffinity')[0];
-  const ageCap = abilityCapForAge(char.age);
+  const ageCap = abilityCapForAge(magicChar ? SEASON_AGE[magicChar.season] : char.age);
 
   const granted = new Map<string, number>();
   for (const g of eff('grantAbility')) granted.set(g.ability, Math.max(granted.get(g.ability) ?? 0, g.score));
@@ -479,9 +499,17 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     return t;
   };
   const budgets: XpBudget[] = [];
-  budgets.push({ id: 'native', label: 'Native Language', total: rules.nativeLanguageXp, spent: spentBy('native'), allows: 'Your native language only', kind: 'ability' });
-  budgets.push({ id: 'childhood', label: 'Early Childhood', total: rules.childhoodXp, spent: spentBy('childhood'), allows: 'Area Lore, Athletics, Awareness, Brawl, Charm, Folk Ken, Guile, a second Living Language, Stealth, Survival, Swim', kind: 'ability', abilities: CHILDHOOD_ABILITIES });
-  budgets.push({ id: 'laterLife', label: `Later Life (${laterLifeYears} yrs × ${rate})`, total: laterLifeYears * rate, spent: spentBy('laterLife'), allows: 'Any Ability your Virtues allow', kind: 'ability' });
+  if (magicChar) {
+    // RoP: Magic: Season, not age, gives a magic character its experience (languages included)
+    budgets.push({
+      id: 'laterLife', label: `Season: ${magicChar.xpParts.map((p) => `${p.label} ${p.value > 0 && p !== magicChar.xpParts[0] ? '+' : ''}${p.value}`).join(', ')}`,
+      total: Math.max(0, magicChar.xp), spent: spentBy('laterLife'), allows: 'Any Ability its Virtues and Flaws allow (RoP: Magic, Season)', kind: 'ability',
+    });
+  } else {
+    budgets.push({ id: 'native', label: 'Native Language', total: rules.nativeLanguageXp, spent: spentBy('native'), allows: 'Your native language only', kind: 'ability' });
+    budgets.push({ id: 'childhood', label: 'Early Childhood', total: rules.childhoodXp, spent: spentBy('childhood'), allows: 'Area Lore, Athletics, Awareness, Brawl, Charm, Folk Ken, Guile, a second Living Language, Stealth, Survival, Swim', kind: 'ability', abilities: CHILDHOOD_ABILITIES });
+    budgets.push({ id: 'laterLife', label: `Later Life (${laterLifeYears} yrs × ${rate})`, total: laterLifeYears * rate, spent: spentBy('laterLife'), allows: 'Any Ability your Virtues allow', kind: 'ability' });
+  }
   for (const p of eff('xpPool')) {
     const id = `pool:${p.fromUid}` as XpSource;
     budgets.push({ id, label: p.label, total: p.amount, spent: spentBy(id), allows: describePool(p, data), kind: p.arts ? 'art+ability' : 'ability', abilityTypes: p.abilityTypes, abilities: p.abilities, arts: p.arts });
@@ -527,6 +555,11 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   // ---------------------------------------------------------------- confidence, reputations
   let confidence = char.type === 'grog' ? { score: 0, points: 0 } : { score: rules.startingConfidenceScore, points: rules.startingConfidencePoints };
   for (const c of eff('confidence')) confidence = { score: c.score ?? confidence.score, points: c.points ?? confidence.points };
+  // RoP: Magic: an intelligent magic character that is not a grog starts with Confidence 1 (3); Improved Confidence adds
+  if (magicChar && char.creature) {
+    const base = char.creature.intelligence === 'grog' ? { score: 0, points: 0 } : { score: 1, points: 3 };
+    confidence = { score: base.score + magicChar.confidence.score, points: base.points + magicChar.confidence.points };
+  }
   if (char.creation.finalized || char.creation.confidenceSet) confidence = { ...char.confidence };
   const reputations = [
     ...eff('reputation').map((r) => ({ text: r.label + (r.kind === 'bad' ? ' (bad)' : ''), scope: r.scope ?? 'General', score: r.score, fromVirtue: r.fromName })),
@@ -546,8 +579,18 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const faithPoints = char.faith?.points ?? (faithEff ? faithEff.points : 0);
   const relicFaith = eff('relic').reduce((m, e) => Math.max(m, e.faith), 0);
   const personalityMax = eff('personalityRange').reduce((m, e) => Math.max(m, e.max), 3);
+  // Might: the highest of a creature's own and the Might Virtues give (Strong Angelic Heritage: age / 20)
+  let might: DerivedCharacter['might'] = null;
+  const cr = char.creature;
+  if (cr && magicChar) might = { realm: cr.realm === 'None' ? 'Magic' : cr.realm, score: Math.max(0, magicChar.might), form: magicChar.form, source: 'creature' };
+  else if (cr && cr.realm !== 'None' && cr.might > 0) might = { realm: cr.realm, score: cr.might, form: cr.form, source: 'creature' };
+  for (const m of eff('mightScore')) {
+    const score = m.perYears ? Math.floor(char.age / m.perYears) : m.score;
+    if (!might || score > might.score) might = { realm: m.realm, score, form: m.form, source: m.fromName };
+  }
   const powerBudgets: Partial<Record<PowerKind, number>> = {};
   for (const p of eff('powers')) powerBudgets[p.kind] = (powerBudgets[p.kind] ?? 0) + p.levels;
+  for (const [k, n] of Object.entries(magicChar?.powers ?? {})) powerBudgets[k as PowerKind] = (powerBudgets[k as PowerKind] ?? 0) + (n ?? 0);
 
   // ---------------------------------------------------------------- combat & body
   const sta = characteristics.Sta.value;
@@ -569,7 +612,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const burden = burdenFromLoad(load);
   const encumbrance = str > 0 ? Math.max(0, burden - str) : burden;
   const bronze = char.familiar?.bronze ?? 0;
-  let soak = sta + armorProt + eff('soak').reduce((s, e) => s + e.amount, 0) + bronze;
+  let soak = sta + armorProt + eff('soak').reduce((s, e) => s + e.amount, 0) + bronze + (magicChar?.soak ?? 0);
   if (char.overrides.soak !== undefined) soak = char.overrides.soak;
   const woundPenaltyAdj = eff('woundPenalty').reduce((s, e) => s + e.amount, 0);
   const fatiguePenaltyAdj = eff('fatiguePenalty').reduce((s, e) => s + e.amount, 0);
@@ -601,11 +644,15 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   return {
     char, virtues, effects, hasGift, giftType, isMagus, tally, size, characteristics, charPointsBudget, charPointsSpent,
     abilities, abilityByUid, arts, budgets, abilityAccess: access, laterLifeYears, ageCap, confidence, reputations,
-    warpingScore, warpingPoints, decrepitude, livingConditionsMod, agingRollMod, agingStartAge, theoryAbility, trueFaith, faithPoints, relicFaith, personalityMax, powerBudgets, soak, woundPenaltyAdj, fatiguePenaltyAdj,
+    warpingScore, warpingPoints, decrepitude, livingConditionsMod, agingRollMod, agingStartAge, theoryAbility, trueFaith, faithPoints, relicFaith, might, personalityMax, powerBudgets, soak, woundPenaltyAdj, fatiguePenaltyAdj,
     load, burden, encumbrance, woundRanges, fatigueLevels, currentWoundPenalty, currentFatiguePenalty,
     apprenticeshipSpellLevelBudget, masteryPools, flawless: eff('flawlessMagic').length > 0,
     magicalFocus: focus ? focus.scope : 'none', focusText: focusVirtue?.cv.param, socialPenalty, notes,
-    socialPenalties: eff('socialPenalty').map((e) => ({ vs: String((e as { vs?: string }).vs ?? ''), amount: -Math.abs(e.amount), from: e.fromName })),
+    socialPenalties: [
+      ...eff('socialPenalty').map((e) => ({ vs: String((e as { vs?: string }).vs ?? ''), amount: -Math.abs(e.amount), from: e.fromName })),
+      ...(magicChar?.monstrous ? [{ vs: 'mundane humans and animals', amount: -6, from: 'Monstrous Appearance (magic character)' }] : []),
+    ],
+    magicChar,
     charSpecialties: virtues.filter((v) => v.cv.defId === 'mythic-characteristic' && v.cv.param).map((v) => ({ char: v.cv.param!, text: v.cv.note ?? '', from: v.name })),
     twilightProne: has('twilight-prone-flaw'),
     twilightMastery: has('twilight-mastery'),

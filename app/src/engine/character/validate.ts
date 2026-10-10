@@ -59,7 +59,23 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (type === 'magus' && !d.hasGift) add({ id: 'magus-gift', severity: 'error', step: 'virtues', message: 'All magi must have The Gift.', ref: 'DE p.63', fix: 'Add The Gift (free).' });
   if (type === 'grog' && d.hasGift) add({ id: 'grog-gift', severity: 'error', step: 'virtues', message: 'Grogs may not have The Gift.', ref: 'DE p.63' });
   if (type === 'magus' && !c.virtues.some((v) => v.defId === 'hermetic-magus')) add({ id: 'magus-status', severity: 'error', step: 'virtues', message: 'Magi must take the Hermetic Magus Social Status.', ref: 'DE p.63', fix: 'Add Hermetic Magus (free).' });
-  if (t.socialStatuses.length === 0) add({ id: 'status-none', severity: 'error', step: 'virtues', message: 'Every character must take one Social Status.', ref: 'DE p.63', fix: type === 'grog' ? 'Covenfolk is the usual choice.' : 'Covenfolk, Wanderer or a status fitting the concept.' });
+  if (t.socialStatuses.length === 0) add({ id: 'status-none', severity: 'error', step: 'virtues', message: 'Every character must take one Social Status.', ref: 'DE p.63', fix: d.magicChar ? 'A magic character takes Magical Master, Champion, Covenfolk, Friend or Monster.' : type === 'grog' ? 'Covenfolk is the usual choice.' : 'Covenfolk, Wanderer or a status fitting the concept.' });
+  // --------------------------------------------------------------- magic characters (RoP: Magic)
+  if (c.creature && c.creature.realm !== 'None' && !d.magicChar) {
+    add({ id: 'magic-rules', code: 'magic-rules', severity: 'info', step: 'basics', message: 'A magical being: the Magic Character Creation rules of Realms of Power: Magic give its experience by Season (not age), its Might by the saga\'s power level and role, and Qualities. Turn them on in the Creature card on the sheet.', ref: 'RoP: Magic, Magic Character Creation' });
+  }
+  if (d.magicChar) {
+    for (const [i, m] of d.magicChar.issues.entries()) add({ id: `magic-char-${i}`, code: 'magic-char', severity: 'error', step: 'basics', message: m, ref: 'RoP: Magic, Magic Character Creation' });
+    // a companion Flaw's being is designed with the Magical Friend Social Status (RoP: Magic, Magic (Being) Companion)
+    // a character switched to these rules after creation keeps what it bought with its age: say so
+    const season = d.budgets.find((b) => b.id === 'laterLife');
+    if (c.creation.finalized && season && season.spent > season.total) {
+      add({ id: 'magic-season-xp', code: 'magic-season-xp', severity: 'warning', step: 'abilities', message: `${season.label}: its Abilities use ${season.spent} experience points of ${season.total}. They were bought from its age before the Realms of Power: Magic rules applied; use Edit creation to rebuild them from its Season.`, ref: 'RoP: Magic, Season' });
+    }
+    if (c.creature?.ownerId && !c.virtues.some((v) => v.defId === 'magical-friend-flaw')) {
+      add({ id: 'magic-friend', code: 'magic-friend', severity: 'warning', step: 'virtues', message: 'A companion brought by Magic (Being) Companion is designed with the Magical Friend Social Status Flaw.', ref: 'RoP: Magic, Magic (Being) Companion' });
+    }
+  }
   if (t.socialStatuses.length > 1) {
     const names = t.socialStatuses.map((s) => s.name);
     const compatible = t.socialStatuses.every((s) => t.socialStatuses.every((o) => o === s || !s.def || !o.def || statusesCompatible(s.def, o.def)));
@@ -221,7 +237,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       }
     }
     const native = c.abilities.filter((a) => a.native);
-    if (creating && native.length === 0) add({ id: 'native-lang', severity: 'warning', step: 'abilities', message: 'Choose a native language (75 xp, normally score 5).', ref: 'DE p.48' });
+    if (creating && native.length === 0 && !d.magicChar) add({ id: 'native-lang', severity: 'warning', step: 'abilities', message: 'Choose a native language (75 xp, normally score 5).', ref: 'DE p.48' });
   }
 
   // magus minimum abilities

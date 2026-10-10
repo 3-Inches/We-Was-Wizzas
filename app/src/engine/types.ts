@@ -362,6 +362,35 @@ export interface CreatureInfo {
   ownerVirtueUid?: string;
   /** its powers: Name, Might cost, Init, Form: description */
   powers?: string;
+  /** the Form its Might is associated with */
+  form?: Art;
+  /** built with the Magic Character Creation rules of Realms of Power: Magic */
+  magicCharacter?: MagicCharacterInfo;
+}
+
+export type MagicSeason = 'spring' | 'summer' | 'autumn' | 'winter';
+export type PowerLevel = 'Low' | 'Medium' | 'High' | 'Legendary';
+
+/** A Magic Quality or Inferiority a magic character has (RoP: Magic). */
+export interface CreatureQuality {
+  uid: string;
+  id: string;
+  /** a Characteristic, Form or natural weapon it names */
+  param?: string;
+  /** the Virtue or Flaw a Minor/Major Virtue Quality or Flaw Inferiority brought */
+  virtueUid?: string;
+}
+
+/** Realms of Power: Magic, Magic Character Creation. */
+export interface MagicCharacterInfo {
+  /** replaces age for starting experience */
+  season: MagicSeason;
+  /** the saga's power level, which sets the suggested Might */
+  powerLevel: PowerLevel;
+  /** the Might chosen before Size (magic animals), Improved and Reduced Might; also the Quality points */
+  baseMight: number;
+  form?: Art;
+  qualities: CreatureQuality[];
 }
 
 export interface Character {
@@ -591,7 +620,7 @@ export interface Covenant {
   description: string;
   aura: number; // base aura (3) — boons add
   auraRealm: 'Magic' | 'Faerie' | 'Divine' | 'Infernal';
-  powerLevel: 'Low' | 'Medium' | 'High' | 'Legendary';
+  powerLevel: PowerLevel;
   buildPoints: number;
   memberIds: string[];
   hooksBoons: CovenantHookBoon[];

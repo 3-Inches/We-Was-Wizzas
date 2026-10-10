@@ -9,10 +9,11 @@ import { deriveCharacter, postGauntletXp } from './character/derive';
 import { validateCharacter } from './character/validate';
 import { abilityAvailability, vfAvailability } from './character/restrictions';
 import { POWER_KINDS, powerSpending, powerStats } from './character/powers';
-import { ageYears, computeStudy, magianLinkedGains, twilightEffects, twilightTriggered, warpingScoreWith } from './longterm';
+import { ageYears, computeStudy, magianLinkedGains, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith } from './longterm';
 import { castingScore, conditionalBonuses, labTotal, magicResistance } from './magic';
 import { migrateCharacter } from '../store/migrate';
 import { CROSS_REF_MECHANICS } from '../data/crossRefs';
+import { planBook } from './books';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -392,5 +393,90 @@ describe('mechanics from the rules a Virtue or Flaw refers to (playtest)', () =>
     const ig = castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'formulaic', wordsGestures: -10 });
     const an = castingScore(d, { technique: 'Cr', form: 'An' }, { kind: 'formulaic', wordsGestures: -10 });
     expect(ig.total - an.total).toBe(10 + d.arts.Ig.score - d.arts.An.score);
+  });
+});
+
+describe('third playtest: Twilight sizes, Strong Angelic Heritage, magic characters', () => {
+  it('gives a Twilight Virtue of the size the Warping Points allow', () => {
+    expect(twilightSizes('virtue', 6)).toEqual([]);
+    expect(twilightSizes('virtue', 9)).toEqual(['Minor']);
+    expect(twilightSizes('virtue', 10)).toEqual(['Minor']);
+    expect(twilightSizes('virtue', 11)).toEqual(['Major']);
+    expect(twilightSizes('flaw', 10)).toEqual(['Minor', 'Major']);
+  });
+  it('lets Strong Angelic Heritage be taken again for more holy powers, with Divine Might of age / 20', () => {
+    const c = newCharacter('companion', 's1');
+    c.age = 60;
+    addVirtue(c, data, 'blood-of-the-nephilim', 'Major');
+    addVirtue(c, data, 'strong-angelic-heritage', 'Minor');
+    expect(vfAvailability(derive(c), data, data.vfById.get('strong-angelic-heritage')!)?.code).not.toBe('dup');
+    addVirtue(c, data, 'strong-angelic-heritage', 'Minor');
+    const d = derive(c);
+    expect(codes(c)).not.toContain('dup');
+    expect(d.powerBudgets.holy).toBe(60);
+    expect(d.might).toMatchObject({ realm: 'Divine', score: 3 });
+    expect(magicResistance(d, 'Co').total).toBe(3);
+  });
+  const magicHuman = () => {
+    const c = newCharacter('companion', 's1');
+    c.age = 120;
+    c.creature = { realm: 'Magic', kind: 'human', size: 0, might: 0, intelligence: 'companion', magicCharacter: { season: 'summer', powerLevel: 'Medium', baseMight: 10, form: 'Co', qualities: [] } };
+    return c;
+  };
+  it('builds a magic character from its Season, not its age, and adds up its Might and Qualities', () => {
+    const c = magicHuman();
+    ensureAbility(c, 'teaching', { laterLife: 75 });
+    let d = derive(c);
+    expect(d.budgets.find((b) => b.id === 'laterLife')?.total).toBe(360);
+    expect(d.budgets.some((b) => b.id === 'childhood' || b.id === 'native')).toBe(false);
+    expect(d.might?.score).toBe(10);
+    expect(d.socialPenalties.some((p) => p.amount === -6)).toBe(true);
+    c.creature!.magicCharacter!.qualities.push({ uid: 'q1', id: 'improved-abilities' }, { uid: 'q2', id: 'improved-might' }, { uid: 'q3', id: 'natural-appearance' });
+    d = derive(c);
+    expect(d.budgets.find((b) => b.id === 'laterLife')?.total).toBe(410);
+    expect(d.might?.score).toBe(11);
+    expect(d.magicChar?.points).toMatchObject({ budget: 10, spent: 5 });
+    expect(d.socialPenalties.some((p) => p.amount === -6)).toBe(false);
+    // Might is subtracted from every Advancement Total
+    const ab = c.abilities.find((a) => a.abilityId === 'teaching')!;
+    const study = computeStudy(d, { kind: 'teacher', com: 3, teaching: 5, teacherScore: 8, students: 1, goodTeacher: true, isArt: false, subject: 'Teaching', labTeaching: 3 }, { abilityUid: ab.uid });
+    expect(study.parts.find((p) => /Lab Teaching/.test(p.label))?.value).toBe(3);
+    expect(study.advancementTotal).toBe(3 + 5 + 3 + 6 + 5 + 3 - 11);
+  });
+  it('sizes a magic animal: Might less its Size, Strength and Quickness from its Size', () => {
+    const c = newCharacter('companion', 's1');
+    c.creature = { realm: 'Magic', kind: 'animal', size: -3, might: 0, intelligence: 'companion', magicCharacter: { season: 'summer', powerLevel: 'Medium', baseMight: 10, qualities: [] } };
+    const d = derive(c);
+    expect(d.might?.score).toBe(13);
+    expect(d.characteristics.Str.value).toBe(-6);
+    expect(d.characteristics.Qik.value).toBe(3);
+    expect(d.size).toBe(-3);
+  });
+  it('gives a magic character a magical Social Status, and its companion no companion of its own', () => {
+    const c = magicHuman();
+    c.creature!.ownerId = 'owner';
+    addVirtue(c, data, 'redcap', 'Major');
+    expect(codes(c)).toEqual(expect.arrayContaining(['magic-status', 'magic-friend']));
+    expect(vfAvailability(derive(c), data, data.vfById.get('magic-being-companion-flaw')!)?.code).toBe('companion-of-companion');
+    expect(vfAvailability(derive(newCharacter('companion', 's1')), data, data.vfById.get('magical-friend-flaw')!)?.code).toBe('magic-only');
+  });
+});
+
+describe('writing books (DE Writing Books)', () => {
+  it('follows the Quintus example and adds Good Teacher', () => {
+    const c = magus();
+    const q = planBook(derive(c), { kind: 'summa', isArt: true, score: 24, com: -1, language: 5 });
+    expect([q.level, q.perSeason, q.seasons, q.quality]).toEqual([12, 4, 3, 5]);
+    const six = planBook(derive(c), { kind: 'summa', isArt: true, score: 24, level: 6, com: -1, language: 5 });
+    expect([six.seasons, six.quality]).toEqual([2, 10]);
+    addVirtue(c, data, 'good-teacher', 'Minor');
+    const t = planBook(derive(c), { kind: 'tractatus', isArt: false, score: 9, com: 3, language: 5 });
+    expect([t.quality, t.tractatusLimit]).toEqual([12, 5]);
+    // an Ability summa gains 3 Quality per Level dropped, never more than the base Quality
+    const ab = planBook(derive(c), { kind: 'summa', isArt: false, score: 9, level: 1, com: 3, language: 5 });
+    expect(ab.quality).toBe(12 + 9);
+    expect(ab.seasons).toBe(1);
+    const capped = planBook(derive(c), { kind: 'summa', isArt: false, score: 20, level: 1, com: 3, language: 5 });
+    expect(capped.quality).toBe(24);
   });
 });

@@ -9,7 +9,7 @@ import type { CharEditor } from './useChar';
  */
 export default function AgingBeforePlay({ ed }: { ed: CharEditor }) {
   const { c, d, change, update, ctx } = ed;
-  if (!c || !d) return null;
+  if (!c || !d || d.magicChar) return null;
   const start = d.agingStartAge;
   const last = c.age - 1;
   if (last < start && !(c.creation.agingLog?.length)) return null;

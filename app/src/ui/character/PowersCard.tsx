@@ -16,7 +16,9 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
   const spent = powerSpending(c.powers);
   const kinds = POWER_KIND_ORDER.filter((k) => (d.powerBudgets[k] ?? 0) > 0 || (spent[k] ?? 0) > 0);
   if (!kinds.length) return null;
-  const qik = c.characteristics.Qik;
+  const qik = d.characteristics.Qik.value;
+  // a character with Might pays for its powers in Might points, not Fatigue (RoP: Magic, Magic Powers)
+  const mightBased = !!d.magicChar;
   const edit = (uidOf: string, fn: (p: CharPower) => void) => update((x) => void fn((x.powers ?? []).find((p) => p.uid === uidOf)!));
   return (
     <Card title="Supernatural powers" className="accent">
@@ -45,14 +47,14 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
                     {info.penetration && <th className="num">Penetration</th>}
                     <th className="num">Mag.</th>
                     {kind !== 'birthright' && <th className="num">Init</th>}
-                    {kind !== 'birthright' && <th className="num">Fatigue</th>}
+                    {kind !== 'birthright' && <th className="num">{mightBased || kind === 'holy' ? 'Might' : 'Fatigue'}</th>}
                     {kind === 'ritual' && <th className="num">Confidence</th>}
                     <th />
                   </tr>
                 </thead>
                 <tbody>
                   {powers.map((p) => {
-                    const st = powerStats(p, qik);
+                    const st = powerStats(p, qik, mightBased);
                     const spell = p.spellId ? ed.data.spellById.get(p.spellId) : undefined;
                     const tooHigh = info.maxLevel !== undefined && p.level > info.maxLevel;
                     return (
@@ -76,7 +78,7 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
                         )}
                         <td className="num">{st.magnitude}</td>
                         {kind !== 'birthright' && <td className="num">{signed(st.init)}</td>}
-                        {kind !== 'birthright' && <td className="num">{st.fatigue}</td>}
+                        {kind !== 'birthright' && <td className="num">{st.mightCost ?? st.fatigue}</td>}
                         {kind === 'ritual' && <td className="num">{st.confidence}</td>}
                         <td>
                           <span className="small muted">{powerCost(p)} lv</span>{' '}

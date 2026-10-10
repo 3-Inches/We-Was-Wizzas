@@ -3,6 +3,7 @@
 // entry from the list also flags it when it was taken anyway, imported, or made illegal by a
 // later change (a new House, a lower Presence, a removed prerequisite...).
 
+import { COMPANION_FLAWS, MAGIC_STATUSES } from './magicCharacter';
 import { CHAR_NAMES, type CharType, type GameData, type VFNeed, type VFSize, type VirtueFlawDef } from '../../data';
 import { HOUSE_BY_ID } from '../../data/houses';
 import type { CharVirtue, HouseRules } from '../types';
@@ -154,6 +155,19 @@ export function vfProblems(d: DerivedCharacter, data: GameData, def: VirtueFlawD
     push('gift', 'error', 'Requires The Gift', hermetic ? `${def.name} is Hermetic; only characters with The Gift may take Hermetic Virtues and Flaws.` : `${def.name} requires The Gift.${quote}`, hermetic ? { ref: 'DE p.63–64' } : {});
   }
   if (def.noGift && d.hasGift) push('nogift', 'error', 'Not with The Gift', `${def.name} cannot be taken by a character with The Gift.${quote}`);
+
+  // ---------------------------------------------------------------- magic characters (RoP: Magic)
+  if (!packaged) {
+    if (MAGIC_STATUSES.includes(def.id) && !d.magicChar) {
+      push('magic-only', 'error', 'Magic characters only', `${def.name} is only for characters designed with the Magic Character Creation rules (Realms of Power: Magic). Turn those rules on in the Creature card first.`, { ref: 'RoP: Magic' });
+    }
+    if (d.magicChar && def.categories.includes('Social Status') && !MAGIC_STATUSES.includes(def.id)) {
+      push('magic-status', 'error', 'A magic character takes a magical Social Status', `A magic character takes one of the five magical Social Statuses (Magical Master, Champion, Covenfolk, Friend or Monster) instead of ${def.name} (RoP: Magic, Magic Character Creation).`, { ref: 'RoP: Magic' });
+    }
+    if (c.creature?.ownerId && COMPANION_FLAWS.has(def.id)) {
+      push('companion-of-companion', 'error', 'Not for a companion', `Characters created to be Magical Companions cannot themselves have Magical Companion characters (RoP: Magic, Magical Friend).`, { ref: 'RoP: Magic' });
+    }
+  }
 
   // ---------------------------------------------------------------- Mystery Virtues
   // Cult Virtues come by Initiation; only Cabal Legacy lets a magus start play with them as
