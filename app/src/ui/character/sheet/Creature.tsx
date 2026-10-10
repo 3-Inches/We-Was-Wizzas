@@ -116,7 +116,7 @@ export function CreatureCard({ ed }: { ed: CharEditor }) {
           </select>
         </Field>
         <Field label="Size" hint="of its true form: 0 is an adult human; −3 a cat or falcon, −4 a crow or raven">
-          <Stepper value={cr.size} min={-21} max={10} width={36} onChange={(v) => set((x) => void (x.size = v))} />
+          <Stepper value={cr.size} min={-21} max={10} width={46} onChange={(v) => set((x) => void (x.size = v))} />
         </Field>
         <Field label="Role">
           <select value={cr.intelligence} onChange={(e) => set((x) => void (x.intelligence = e.target.value as CreatureInfo['intelligence']))}>

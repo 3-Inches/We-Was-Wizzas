@@ -125,6 +125,14 @@ def parse_combined_heading(text):
     return None
 
 
+# Setting text that follows a Virtue or Flaw in the book with nothing to mark the break: cut there.
+TRIM_AT = {
+    "of-kings-and-giants-antaeus-bloodline": "Several important cities thrive within Tunisia",
+    "chattel-slave": "There are seven episcopal sees",
+    "freed-slave": "caste breeding with their slaves",
+}
+
+
 def kind_from_text(body):
     """A last resort: an entry that calls itself "this Virtue" (or "this Flaw") and never the other."""
     v = len(re.findall(r"\bth(?:is|e) Virtue\b", body, re.I))
@@ -227,11 +235,36 @@ def extract_book(book_id, text):
             if lines[k].strip() == "---":
                 end = k
                 break
+            # another entry's type line ("*Major, Supernatural Virtue*", "*Special Free Virtue*"): the
+            # entry it belongs to was not recognised, but this one ends before its name
+            if k > start + 1 and (is_type_line(lines[k]) or re.match(r"^\s*\*[^*]*\b(Virtue|Flaw)\*\s*$", strip_quote(lines[k]))):
+                end = k - 1 if strip_quote(lines[k - 1]).strip() else k
+                while end > start and not strip_quote(lines[end - 1]).strip():
+                    end -= 1
+                # the name line just above it belongs to that entry
+                if end > start and re.match(r"^\s*(\*\*[^*]+\*\*|#+ .+)\s*$", strip_quote(lines[end - 1])):
+                    end -= 1
+                break
+            # a paragraph that starts in lower case after one that ended its sentence is text from
+            # another page or column flowing in (a sentence or word carried over a page break is not)
+            if k > start and not strip_quote(lines[k - 1]).strip() and re.match(r"^[a-z]", strip_quote(lines[k])):
+                prev = next((strip_quote(lines[j]).strip() for j in range(k - 1, start - 1, -1) if strip_quote(lines[j]).strip()), "")
+                if re.search(r"[.!?:)\]\"”]$", prev):
+                    end = k
+                    break
         body_lines = lines[start:end]
+        trim = TRIM_AT.get(slug(e["name"]))
+        if trim:
+            joined = "\n".join(body_lines)
+            cut = joined.find(trim)
+            if cut > 0:
+                body_lines = joined[:cut].split("\n")
         # Drop a following "name/type" pair that belongs to an unrecognised entry: cap length
         body = clean_body(body_lines)
-        if len(body) > 12000:
-            body = body[:12000] + "\n\n…"
+        # a word split over a page break: "ex-" / "tinct" becomes "extinct"
+        body = re.sub(r"([a-z])-\n\n([a-z])", r"\1\2", body)
+        if len(body) > 40000:
+            body = body[:40000] + "\n\n…"
         info = e["info"]
         kind = info["kind"] or section_kind(e["ctx"])
         # weaker evidence: the book's own section (not a sidebar), the entry's wording, a Story or
@@ -307,8 +340,9 @@ def main():
                     e["name"] = e["name"][pm.end():].strip()
                 if "Structure" in e["categories"] or BAD_NAMES.match(e["name"]) or re.match(r"^forbidden\b", e["name"], re.I):
                     continue
-                # "Elementalist Virtues", "Vitkar Flaws": headings over a list, not entries
-                if re.match(r"^[\w'-]+ (Virtues|Flaws)$", e["name"]):
+                # "Elementalist Virtues", "Vitkar Flaws", "New Christian Virtues": headings over a
+                # list, not entries
+                if re.match(r"^(?:New )?[\w'-]+ (Virtues|Flaws)$", e["name"]):
                     continue
                 if re.search(r",\s*continued$", e["name"], re.I):
                     continue

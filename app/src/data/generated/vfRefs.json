@@ -1946,64 +1946,10 @@
     "q": "His score in the Form offers the maestro no Magic Resistance, but does provide a Form Bonus in appropriate situations (see ArM5, page 77"
    }
   ],
-  "life-linked-art": [
-   {
-    "vf": "affinity-with-ability",
-    "q": "Affinity with Craft"
-   },
-   {
-    "vf": "free-expression",
-    "q": "Free Expression"
-   },
-   {
-    "vf": "puissant-ability",
-    "q": "Puissant Craft"
-   }
-  ],
   "summary-of-new-virtues": [
    {
     "vf": "domestic-animal",
     "q": "Domestic Animal"
-   },
-   {
-    "vf": "master-of-kennels",
-    "q": "Master of Kennels"
-   },
-   {
-    "vf": "turb-trained",
-    "q": "Turb Trained"
-   },
-   {
-    "vf": "mythic-farrier",
-    "q": "Mythic Farrier"
-   },
-   {
-    "vf": "craft-guild-training",
-    "q": "Craft Guild Training"
-   },
-   {
-    "vf": "forgettable-face",
-    "q": "Forgettable Face"
-   },
-   {
-    "vf": "hermetic-experience",
-    "q": "Hermetic Experience"
-   },
-   {
-    "vf": "master-of-form-creatures",
-    "q": "Master of (Form) Creatures"
-   },
-   {
-    "vf": "mild-aging",
-    "q": "Mild Aging"
-   },
-   {
-    "vf": "minor-enchantments",
-    "q": "Minor Enchantments"
-   },
-   {
-    "vf": "pack-leader-natural-leader",
-    "q": "Pack Leader / Natural Leader"
    }
   ],
   "mythic-farrier": [
@@ -2022,142 +1968,6 @@
    {
     "vf": "compulsive-lying-flaw",
     "q": "Compulsive Lying"
-   },
-   {
-    "vf": "a-deal-with-the-devil-flaw",
-    "q": "A Deal with the Devil"
-   },
-   {
-    "vf": "the-falling-evil-flaw",
-    "q": "The Falling Evil"
-   },
-   {
-    "vf": "companion-animal-flaw",
-    "q": "Companion Animal"
-   },
-   {
-    "vf": "foreign-upbringing-flaw",
-    "q": "Foreign Upbringing"
-   },
-   {
-    "vf": "imagined-folk-tradition-vulnerability-flaw",
-    "q": "Imagined Folk Tradition Vulnerability"
-   },
-   {
-    "vf": "magical-fascination-flaw",
-    "q": "Magical Fascination"
-   },
-   {
-    "vf": "pack-mentality-flaw",
-    "q": "Pack Mentality"
-   },
-   {
-    "vf": "weak-personality-flaw",
-    "q": "Weak Personality"
-   },
-   {
-    "vf": "bound-to-role-role-flaw",
-    "q": "Bound to (Role) Role"
-   },
-   {
-    "vf": "broken-vessel-flaw",
-    "q": "Broken Vessel"
-   },
-   {
-    "vf": "curse-of-slander-flaw",
-    "q": "Curse of Slander"
-   },
-   {
-    "vf": "cursed-guile-flaw",
-    "q": "Cursed Guile"
-   },
-   {
-    "vf": "manifest-sin-flaw",
-    "q": "Manifest Sin"
-   },
-   {
-    "vf": "necessary-realm-aura-for-ability-flaw",
-    "q": "Necessary (Realm) Aura for (Ability)"
-   },
-   {
-    "vf": "realm-stigmatic-flaw",
-    "q": "(Realm) Stigmatic"
-   },
-   {
-    "vf": "susceptible-to-warping-flaw",
-    "q": "Susceptible to Warping"
-   },
-   {
-    "vf": "warped-by-magic-flaw",
-    "q": "Warped by Magic"
-   },
-   {
-    "vf": "careless-with-ability-flaw",
-    "q": "Careless with (Ability)"
-   },
-   {
-    "vf": "craving-for-travel-flaw",
-    "q": "Craving for Travel"
-   },
-   {
-    "vf": "fish-out-of-water-terrain-flaw",
-    "q": "Fish Out of Water (Terrain)"
-   },
-   {
-    "vf": "independent-craftsman-flaw",
-    "q": "Independent Craftsman"
-   },
-   {
-    "vf": "lingering-injury-flaw",
-    "q": "Lingering Injury"
-   },
-   {
-    "vf": "master-of-none-flaw",
-    "q": "Master of None"
-   },
-   {
-    "vf": "night-terrors-flaw",
-    "q": "Night Terrors"
-   },
-   {
-    "vf": "poor-living-conditions-flaw",
-    "q": "Poor Living Conditions"
-   },
-   {
-    "vf": "primitive-equipment-flaw",
-    "q": "Primitive Equipment"
-   },
-   {
-    "vf": "raised-in-the-gutter-flaw",
-    "q": "Raised in the Gutter"
-   },
-   {
-    "vf": "restricted-learning-flaw",
-    "q": "Restricted Learning"
-   },
-   {
-    "vf": "rolling-stone-flaw",
-    "q": "Rolling Stone"
-   },
-   {
-    "vf": "sleep-disorder-flaw",
-    "q": "Sleep Disorder"
-   },
-   {
-    "vf": "stuck-in-his-ways-flaw",
-    "q": "Stuck in His Ways"
-   },
-   {
-    "vf": "uncertain-faith-flaw",
-    "q": "Uncertain Faith"
-   },
-   {
-    "vf": "uncontrollable-strength-flaw",
-    "q": "Uncontrollable Strength"
-   },
-   {
-    "vf": "worthless-abilities-flaw",
-    "q": "Worthless Abilities"
    }
   ],
   "knightly-demands-flaw": [
@@ -2534,6 +2344,10 @@
    {
     "vf": "slow-caster-flaw",
     "q": "Slow Caster"
+   },
+   {
+    "vf": "daimon",
+    "q": "Daimon"
    }
   ],
   "theurgic-spirit-familiar": [
@@ -2978,32 +2792,6 @@
     "q": "Outsider"
    }
   ],
-  "horrifying-appearance-three-heads-flaw": [
-   {
-    "vf": "giant-blood",
-    "q": "Giant Blood"
-   },
-   {
-    "vf": "large",
-    "q": "Large"
-   },
-   {
-    "vf": "muspelli",
-    "q": "Muspelli"
-   },
-   {
-    "vf": "greater-immunity",
-    "q": "Greater Immunity"
-   },
-   {
-    "vf": "greater-magical-defenses",
-    "q": "Greater Magical Defenses"
-   },
-   {
-    "vf": "weak-characteristics-flaw",
-    "q": "Weak Characteristics"
-   }
-  ],
   "invocation-of-names-of-power": [
    {
     "vf": "names-of-power",
@@ -3262,46 +3050,6 @@
    {
     "vf": "true-faith",
     "q": "True Faith"
-   }
-  ],
-  "new-christian-virtues": [
-   {
-    "vf": "ars-notoria",
-    "q": "Ars Notoria"
-   },
-   {
-    "vf": "holy-music",
-    "q": "Holy Music"
-   },
-   {
-    "vf": "senior-clergy",
-    "q": "Senior Clergy"
-   },
-   {
-    "vf": "brother-chaplain",
-    "q": "Brother Chaplain"
-   },
-   {
-    "vf": "brother-knight",
-    "q": "Brother Knight"
-   },
-   {
-    "vf": "brother-sergeant",
-    "q": "Brother Sergeant"
-   },
-   {
-    "vf": "eastern-priest",
-    "q": "Eastern Priest"
-   }
-  ],
-  "new-christian-flaws": [
-   {
-    "vf": "monastic-vows-hermetic-flaw",
-    "q": "Monastic Vows (Hermetic)"
-   },
-   {
-    "vf": "failed-monk-flaw",
-    "q": "Failed Monk"
    }
   ],
   "ars-notoria": [

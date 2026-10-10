@@ -67,6 +67,11 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (d.magicChar) {
     for (const [i, m] of d.magicChar.issues.entries()) add({ id: `magic-char-${i}`, code: 'magic-char', severity: 'error', step: 'basics', message: m, ref: 'RoP: Magic, Magic Character Creation' });
     // a companion Flaw's being is designed with the Magical Friend Social Status (RoP: Magic, Magic (Being) Companion)
+    // a character switched to these rules after creation keeps what it bought with its age: say so
+    const season = d.budgets.find((b) => b.id === 'laterLife');
+    if (c.creation.finalized && season && season.spent > season.total) {
+      add({ id: 'magic-season-xp', code: 'magic-season-xp', severity: 'warning', step: 'abilities', message: `${season.label}: its Abilities use ${season.spent} experience points of ${season.total}. They were bought from its age before the Realms of Power: Magic rules applied; use Edit creation to rebuild them from its Season.`, ref: 'RoP: Magic, Season' });
+    }
     if (c.creature?.ownerId && !c.virtues.some((v) => v.defId === 'magical-friend-flaw')) {
       add({ id: 'magic-friend', code: 'magic-friend', severity: 'warning', step: 'virtues', message: 'A companion brought by Magic (Being) Companion is designed with the Magical Friend Social Status Flaw.', ref: 'RoP: Magic, Magic (Being) Companion' });
     }
