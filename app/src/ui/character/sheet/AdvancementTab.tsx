@@ -9,6 +9,9 @@ import { Card, Field, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
 import { TwilightCard } from './Twilight';
+import { WritingCard } from './Writing';
+import { useSagaCharacters } from '../../../store/hooks';
+import { deriveCharacter } from '../../../engine/character/derive';
 
 type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'other';
 
@@ -40,6 +43,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [teacherScore, setTeacherScore] = useState(10);
   const [students, setStudents] = useState(1);
   const [goodTeacher, setGoodTeacher] = useState(false);
+  const [teacherId, setTeacherId] = useState('');
+  const [labTeaching, setLabTeaching] = useState(0);
+  const sagaChars = useSagaCharacters(c?.sagaId);
   const [visDie, setVisDie] = useState<number | null>(null);
   const [visBotch, setVisBotch] = useState(0);
   const [summary, setSummary] = useState('');
@@ -59,13 +65,28 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const masterySpell = target.startsWith('mastery:') ? c.spells.find((s) => s.uid === target.slice(8)) : undefined;
   const subject = art ? ART_NAMES[art] : masterySpell ? `Mastery of ${masterySpell.spell.name}` : d.abilityByUid.get(abilityUid ?? '')?.name ?? '';
   const library = ctx.covenant?.library ?? [];
+  // another character of the saga as teacher or master: their Communication, Teaching, Good Teacher and score in the subject
+  const pickTeacher = (id: string) => {
+    setTeacherId(id);
+    const t = sagaChars.find((x) => x.id === id);
+    if (!t) return;
+    const td = deriveCharacter(t, data, saga.houseRules);
+    setCom(td.characteristics.Com.value);
+    setTeaching(td.abilities.find((a) => a.abilityId === 'teaching')?.score ?? 0);
+    setGoodTeacher(td.virtues.some((v) => v.cv.defId === 'good-teacher'));
+    const mine = abilityUid ? c.abilities.find((a) => a.uid === abilityUid) : undefined;
+    const theirs = mine ? t.abilities.find((a) => a.abilityId === mine.abilityId && (a.param ?? '') === (mine.param ?? '')) : undefined;
+    const score = art ? td.arts[art].score : theirs ? td.abilityByUid.get(theirs.uid)?.score ?? 0 : 0;
+    setTeacherScore(score);
+  };
+  const myLabTeaching = ctx.lab?.specializations.Teaching ?? 0;
 
   let src: StudySource | null = null;
   switch (kind) {
     case 'summa': src = { kind, quality, level, isArt, subject }; break;
     case 'tractatus': src = { kind, quality, isArt, subject }; break;
-    case 'teacher': src = { kind, com, teaching, teacherScore, students, goodTeacher, isArt, subject }; break;
-    case 'training': src = { kind, masterScore: teacherScore, subject }; break;
+    case 'teacher': src = { kind, com, teaching, teacherScore, students, goodTeacher, isArt, subject, labTeaching }; break;
+    case 'training': src = { kind, masterScore: teacherScore, subject, labTeaching }; break;
     case 'practice': src = { kind, quality, subject }; break;
     case 'exposure': src = { kind, subject }; break;
     case 'adventure': src = { kind, quality: Math.min(quality, 5), subject }; break;
@@ -251,6 +272,30 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               <Stepper value={level} min={1} width={40} onChange={setLevel} />
             </Field>
           )}
+          {(kind === 'teacher' || kind === 'training') && (
+            <>
+              <Field label={kind === 'teacher' ? 'Teacher' : 'Master'} hint="fills in their Communication, Teaching, Good Teacher and score">
+                <select value={teacherId} onChange={(e) => pickTeacher(e.target.value)}>
+                  <option value="">— someone else —</option>
+                  {sagaChars
+                    .filter((x) => x.id !== c.id)
+                    .map((x) => (
+                      <option key={x.id} value={x.id}>
+                        {x.name || 'unnamed'}
+                      </option>
+                    ))}
+                </select>
+              </Field>
+              <Field label="Lab Teaching Specialization" hint="when the lessons are given in a lab with a Teaching Specialization (at most +3)">
+                <Stepper value={labTeaching} min={0} max={3} width={32} onChange={setLabTeaching} />
+              </Field>
+              {myLabTeaching > 0 && labTeaching !== Math.min(3, myLabTeaching) && (
+                <button className="small" onClick={() => setLabTeaching(Math.min(3, myLabTeaching))}>
+                  In my lab (+{Math.min(3, myLabTeaching)})
+                </button>
+              )}
+            </>
+          )}
           {kind === 'teacher' && (
             <>
               <Field label="Teacher Com">
@@ -426,7 +471,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 </>
               ) : null}
             </div>
-            <button onClick={rollAging} disabled={c.age < 35 && !c.longevity}>
+            {d.magicChar && <p className="small muted">A magic character does not age (RoP: Magic), so it makes no aging rolls.</p>}
+            <button onClick={rollAging} disabled={!!d.magicChar || (c.age < 35 && !c.longevity)}>
               Roll aging
             </button>
           </div>
@@ -467,6 +513,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         </Card>
 
         <TwilightCard ed={ed} />
+        <WritingCard ed={ed} />
       </div>
     </div>
   );

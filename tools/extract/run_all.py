@@ -7,10 +7,12 @@ import extract_covlab
 import extract_spells
 import extract_vf
 import extract_vf_refs
+import extract_magic_qualities
 
 if __name__ == "__main__":
     extract_vf.main()
     extract_vf_refs.main()
+    extract_magic_qualities.main()
     extract_abilities.main()
     extract_spells.main()
     extract_covlab.lab_data()

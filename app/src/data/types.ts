@@ -138,7 +138,7 @@ export type Effect =
   | { type: 'implies'; virtue: string; note?: string } // grants another V&F for free
   | { type: 'requiresFlaw'; flaw: string; note?: string }
   | { type: 'socialPenalty'; amount: number; vs: string }
-  | { type: 'mightScore'; realm: 'Magic' | 'Faerie' | 'Divine' | 'Infernal'; score: number }
+  | { type: 'mightScore'; realm: 'Magic' | 'Faerie' | 'Divine' | 'Infernal'; score: number; form?: string; /** Might = age / this (Strong Angelic Heritage) */ perYears?: number }
   | { type: 'labTheory'; ability: string } // Holy Magic in place of Magic Theory
   | { type: 'trueFaith'; score: number; points: number }
   | { type: 'relic'; faith: number }
@@ -147,7 +147,7 @@ export type Effect =
   | { type: 'note'; text: string };
 
 /** Supernatural powers bought with levels (DE: Greater, Lesser, Personal and Ritual Power; Heroes' Birthright). */
-export type PowerKind = 'greater' | 'lesser' | 'personal' | 'ritual' | 'birthright';
+export type PowerKind = 'greater' | 'lesser' | 'personal' | 'ritual' | 'focus' | 'birthright' | 'holy';
 
 export type LabCondition =
   | 'all'

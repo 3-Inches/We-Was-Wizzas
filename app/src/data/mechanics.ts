@@ -422,6 +422,7 @@ export const MECHANICS: Record<string, Mechanics> = {
     effects: [note('Lets a magus start as an initiate of a Mystery Cult, taking its Virtues and Flaws as normal ones at character creation. Occasionally the cult asks a season\'s service.')],
   },
   'greater-power': { repeatable: true, effects: [{ type: 'powers', kind: 'greater', levels: 50 }] },
+  'focus-power': { repeatable: true, effects: [{ type: 'powers', kind: 'focus', levels: 25 }, note('Without Might: 2 points of the 25 raise the maximum effect level by 1, 1 point raises Penetration by 1; it costs Fatigue levels equal to the Might cost / 5, rounded up (RoP: Magic).')] },
   'lesser-power': { repeatable: true, effects: [{ type: 'powers', kind: 'lesser', levels: 25 }] },
   'personal-power': { repeatable: true, effects: [{ type: 'powers', kind: 'personal', levels: 25 }, note('Each power must be Range: Personal, or constant.')] },
   'ritual-power': { repeatable: true, effects: [{ type: 'powers', kind: 'ritual', levels: 25 }, note('Costs a Confidence Point per magnitude to use.')] },
@@ -437,7 +438,16 @@ export const MECHANICS: Record<string, Mechanics> = {
     tags: ['divine'],
   },
   'demonic-blood': { effects: [{ type: 'mightScore', realm: 'Infernal', score: 5 }], tags: ['infernal'] },
-  'strong-angelic-heritage': { requires: ['blood-of-the-nephilim'], tags: ['divine'] },
+  'strong-angelic-heritage': {
+    requires: ['blood-of-the-nephilim'],
+    repeatable: true,
+    effects: [
+      { type: 'mightScore', realm: 'Divine', score: 0, form: 'Co', perYears: 20 },
+      { type: 'powers', kind: 'holy', levels: 30 },
+      note('Immune to Warping; only Divine powers. Contains Corpus vis equal to Divine Might / 10 (at least one pawn), extracted only after death. Each further time it is taken adds 30 levels of holy powers but no Might.'),
+    ],
+    tags: ['divine'],
+  },
 
   // ------------------------------------------------------------------ Mythic companions
   'devil-child': { forTypes: ['mythic'], effects: [{ type: 'implies', virtue: 'demonic-might', note: 'Demonic Might or Demonic Powers free' }], requires: ['demonic-blood'] },

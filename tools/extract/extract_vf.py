@@ -125,6 +125,17 @@ def parse_combined_heading(text):
     return None
 
 
+def kind_from_text(body):
+    """A last resort: an entry that calls itself "this Virtue" (or "this Flaw") and never the other."""
+    v = len(re.findall(r"\bth(?:is|e) Virtue\b", body, re.I))
+    f = len(re.findall(r"\bth(?:is|e) Flaw\b", body, re.I))
+    if v and not f:
+        return "virtue"
+    if f and not v:
+        return "flaw"
+    return None
+
+
 def section_kind(heading_stack):
     """Look at enclosing headings for a hint of Virtue vs Flaw."""
     for _, text in reversed(heading_stack):
@@ -159,6 +170,8 @@ def extract_book(book_id, text):
     lines = text.split("\n")
     entries = []
     heading_stack = []  # (level, text)
+    # the book's own headings, without those of sidebars (quoted blocks), which must not end a section
+    main_stack = []
     starts = []  # indices of entry starts for body termination
     i = 0
     n = len(lines)
@@ -170,11 +183,15 @@ def extract_book(book_id, text):
             while heading_stack and heading_stack[-1][0] >= level:
                 heading_stack.pop()
             heading_stack.append((level, htext))
+            if not re.match(r"^\s*>", line):
+                while main_stack and main_stack[-1][0] >= level:
+                    main_stack.pop()
+                main_stack.append((level, htext))
             combo = parse_combined_heading(htext)
             if combo:
                 name, info = combo
                 entries.append({"line": i, "name": name, "level": level, "info": info,
-                                "body_start": i + 1, "ctx": list(heading_stack[:-1])})
+                                "body_start": i + 1, "ctx": list(heading_stack[:-1]), "main": list(main_stack[:-1])})
                 i += 1
                 continue
         info = is_type_line(line)
@@ -186,9 +203,11 @@ def extract_book(book_id, text):
             if j >= 0:
                 name, level = name_from_line(lines[j])
                 if name and not BAD_NAMES.match(name) and 1 < len(name) < 70 and not name.endswith(":"):
+                    own = strip_quote(lines[j]).lstrip('#').strip()
                     entries.append({"line": j, "name": title_case_if_shouting(name), "level": level,
                                     "info": info, "body_start": i + 1,
-                                    "ctx": [x for x in heading_stack if not (x[1] == strip_quote(lines[j]).lstrip('#').strip())]})
+                                    "ctx": [x for x in heading_stack if not (x[1] == own)],
+                                    "main": [x for x in main_stack if not (x[1] == own)]})
         i += 1
 
     # Determine body extents: until the next entry or a heading of level <= entry level.
@@ -215,10 +234,17 @@ def extract_book(book_id, text):
             body = body[:12000] + "\n\n…"
         info = e["info"]
         kind = info["kind"] or section_kind(e["ctx"])
-        if not kind:
-            if set(info["categories"]) & {"Story", "Personality"}:
-                kind = "flaw"
+        # weaker evidence: the book's own section (not a sidebar), the entry's wording, a Story or
+        # Personality category (always Flaws), and otherwise a Virtue (Flaws say so). Entries found
+        # this way are added after all the others, so they never displace an existing entry.
+        weak = not kind
+        kind = kind or section_kind(e.get("main", [])) or kind_from_text(body)
+        if not kind and set(info["categories"]) & {"Story", "Personality"}:
+            kind = "flaw"
+        if not kind and info["categories"]:
+            kind = "virtue"
         result.append({
+            "weak": weak,
             "name": e["name"],
             "kind": kind,
             "sizes": info["sizes"],
@@ -256,6 +282,7 @@ def main():
     stats = {}
     # DE first so it is authoritative
     ordered = sorted([b for b in BOOKS if b[5]], key=lambda b: 0 if b[0] == "DE" else 1)
+    found_by_book = []
     for book in ordered:
         book_id = book[0]
         text = read_book(book_id)
@@ -264,37 +291,50 @@ def main():
             found = extract_de(text)
         else:
             found = extract_book(book_id, text)
-        added = 0
-        for e in found:
-            if not e["kind"]:
-                continue
-            pm = re.match(r"^(?:New\s+)?(Virtue|Flaw)\s*:\s*", e["name"], flags=re.I)
-            if pm:
-                e["kind"] = pm.group(1).lower()
-                e["name"] = e["name"][pm.end():].strip()
-            if "Structure" in e["categories"] or BAD_NAMES.match(e["name"]) or re.match(r"^forbidden\b", e["name"], re.I):
-                continue
-            if re.search(r",\s*continued$", e["name"], re.I):
-                continue
-            norm = (normalize_name(e["name"]), e["kind"])
-            if norm in by_norm:
-                existing = all_entries[by_norm[norm]]
-                if e["source"]["book"] != existing["source"]["book"]:
-                    alts = existing.setdefault("alsoIn", [])
-                    if e["source"]["book"] not in [a["book"] for a in alts]:
-                        alts.append(e["source"])
-                continue
-            base_id = slug(e["name"]) + ("" if e["kind"] == "virtue" else "-flaw")
-            vid = base_id
-            k = 2
-            while vid in all_entries:
-                vid = f"{base_id}-{k}"
-                k += 1
-            e["id"] = vid
-            all_entries[vid] = e
-            by_norm[norm] = vid
-            added += 1
-        stats[book_id] = (len(found), added)
+        found_by_book.append((book_id, found))
+        stats[book_id] = [len(found), 0]
+    # entries whose kind is certain first, in book order; then those whose kind was inferred, so
+    # that an inferred entry never takes over an existing one as its main source
+    order = {b[0]: i for i, b in enumerate(ordered)}
+    for weak_pass in (False, True):
+        for book_id, found in found_by_book:
+            for e in found:
+                if bool(e.get("weak")) != weak_pass or not e["kind"]:
+                    continue
+                pm = re.match(r"^(?:New\s+)?(Virtue|Flaw)\s*:\s*", e["name"], flags=re.I)
+                if pm:
+                    e["kind"] = pm.group(1).lower()
+                    e["name"] = e["name"][pm.end():].strip()
+                if "Structure" in e["categories"] or BAD_NAMES.match(e["name"]) or re.match(r"^forbidden\b", e["name"], re.I):
+                    continue
+                # "Elementalist Virtues", "Vitkar Flaws": headings over a list, not entries
+                if re.match(r"^[\w'-]+ (Virtues|Flaws)$", e["name"]):
+                    continue
+                if re.search(r",\s*continued$", e["name"], re.I):
+                    continue
+                norm = (normalize_name(e["name"]), e["kind"])
+                if norm in by_norm:
+                    existing = all_entries[by_norm[norm]]
+                    if e["source"]["book"] != existing["source"]["book"]:
+                        alts = existing.setdefault("alsoIn", [])
+                        if e["source"]["book"] not in [a["book"] for a in alts]:
+                            alts.append(e["source"])
+                    continue
+                base_id = slug(e["name"]) + ("" if e["kind"] == "virtue" else "-flaw")
+                vid = base_id
+                k = 2
+                while vid in all_entries:
+                    vid = f"{base_id}-{k}"
+                    k += 1
+                e["id"] = vid
+                all_entries[vid] = e
+                by_norm[norm] = vid
+                stats[book_id][1] += 1
+    # keep the file in book and line order
+    for e in all_entries.values():
+        e.get("alsoIn", []).sort(key=lambda a: (order.get(a["book"], 999), a["line"]))
+    ordered_entries = sorted(all_entries.values(), key=lambda e: (order.get(e["source"]["book"], 999), e["source"]["line"]))
+    all_entries = OrderedDict((e["id"], e) for e in ordered_entries)
     for k, v in stats.items():
         print(f"{k:8s} found {v[0]:4d} added {v[1]:4d}")
     data = list(all_entries.values())

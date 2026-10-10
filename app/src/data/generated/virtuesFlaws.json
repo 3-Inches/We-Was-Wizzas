@@ -358,7 +358,14 @@
    "book": "DE",
    "line": 3504,
    "anchor": "archieunuch"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "SE",
+    "line": 1597,
+    "anchor": "new-virtue-archieunuch"
+   }
+  ]
  },
  {
   "id": "aristotelian-training",
@@ -594,6 +601,11 @@
     "book": "RoP_D",
     "line": 4568,
     "anchor": "brother-chaplain"
+   },
+   {
+    "book": "AtD",
+    "line": 3609,
+    "anchor": "brother-chaplain"
    }
   ]
  },
@@ -625,6 +637,11 @@
     "book": "RoP_D",
     "line": 4574,
     "anchor": "brother-knight"
+   },
+   {
+    "book": "AtD",
+    "line": 3615,
+    "anchor": "brother-knight"
    }
   ]
  },
@@ -655,6 +672,11 @@
    {
     "book": "RoP_D",
     "line": 4580,
+    "anchor": "brother-sergeant"
+   },
+   {
+    "book": "AtD",
+    "line": 3621,
     "anchor": "brother-sergeant"
    }
   ]
@@ -951,7 +973,14 @@
    "book": "DE",
    "line": 3673,
    "anchor": "corpse-magic"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "LotN",
+    "line": 4635,
+    "anchor": "new-virtue-corpse-magic"
+   }
+  ]
  },
  {
   "id": "covenfolk",
@@ -1155,7 +1184,14 @@
    "book": "DE",
    "line": 3717,
    "anchor": "demonic-blood"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4176,
+    "anchor": "demonic-blood"
+   }
+  ]
  },
  {
   "id": "demonic-might",
@@ -1174,7 +1210,14 @@
    "book": "DE",
    "line": 3731,
    "anchor": "demonic-might"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4192,
+    "anchor": "demonic-might"
+   }
+  ]
  },
  {
   "id": "demonic-powers",
@@ -1193,7 +1236,14 @@
    "book": "DE",
    "line": 3735,
    "anchor": "demonic-powers"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4198,
+    "anchor": "demonic-powers"
+   }
+  ]
  },
  {
   "id": "devil-child",
@@ -1601,7 +1651,14 @@
    "book": "DE",
    "line": 3831,
    "anchor": "enticer-of-multitudes"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4228,
+    "anchor": "enticer-of-multitudes"
+   }
+  ]
  },
  {
   "id": "entrancement",
@@ -1639,7 +1696,14 @@
    "book": "DE",
    "line": 3839,
    "anchor": "eunuch"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "SE",
+    "line": 1603,
+    "anchor": "new-virtue-eunuch"
+   }
+  ]
  },
  {
   "id": "exotic-casting",
@@ -1664,6 +1728,11 @@
     "book": "HoH_S",
     "line": 4446,
     "anchor": "exotic-casting"
+   },
+   {
+    "book": "FF",
+    "line": 3965,
+    "anchor": "exotic-casting"
    }
   ]
  },
@@ -1684,7 +1753,14 @@
    "book": "DE",
    "line": 3847,
    "anchor": "extractor-of-form-vis"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2164,
+    "anchor": "extractor-of-form-vis"
+   }
+  ]
  },
  {
   "id": "eye-of-hephaestus",
@@ -2024,6 +2100,11 @@
     "anchor": "ferocity"
    },
    {
+    "book": "RoP_M",
+    "line": 2170,
+    "anchor": "ferocity"
+   },
+   {
     "book": "RoP_I",
     "line": 3862,
     "anchor": "ferocity"
@@ -2133,6 +2214,11 @@
   },
   "alsoIn": [
    {
+    "book": "RoP_M",
+    "line": 2178,
+    "anchor": "focus-power"
+   },
+   {
     "book": "RoP_F",
     "line": 2648,
     "anchor": "focus-power"
@@ -2156,7 +2242,19 @@
    "book": "DE",
    "line": 3975,
    "anchor": "folk-magic"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "DI",
+    "line": 6134,
+    "anchor": "new-virtue-folk-magic"
+   },
+   {
+    "book": "SE",
+    "line": 4281,
+    "anchor": "new-virtue-folk-magic"
+   }
+  ]
  },
  {
   "id": "font-of-knowledge",
@@ -2175,7 +2273,14 @@
    "book": "DE",
    "line": 3989,
    "anchor": "font-of-knowledge"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "Antag",
+    "line": 4618,
+    "anchor": "new-virtue-font-of-knowledge"
+   }
+  ]
  },
  {
   "id": "forge-companion",
@@ -2310,7 +2415,14 @@
    "book": "DE",
    "line": 4019,
    "anchor": "gender-shift"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4234,
+    "anchor": "gender-shift"
+   }
+  ]
  },
  {
   "id": "gentle-gift",
@@ -2424,7 +2536,14 @@
    "book": "DE",
    "line": 4043,
    "anchor": "giant-blood"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2190,
+    "anchor": "giant-blood"
+   }
+  ]
  },
  {
   "id": "gorgiastic",
@@ -2507,7 +2626,14 @@
    "book": "DE",
    "line": 4059,
    "anchor": "greater-benediction"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_F",
+    "line": 6413,
+    "anchor": "greater-benediction"
+   }
+  ]
  },
  {
   "id": "greater-immunity",
@@ -2547,6 +2673,11 @@
    "anchor": "greater-power"
   },
   "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2206,
+    "anchor": "greater-power"
+   },
    {
     "book": "RoP_F",
     "line": 2658,
@@ -2794,7 +2925,14 @@
    "book": "DE",
    "line": 4143,
    "anchor": "hex"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4248,
+    "anchor": "hex"
+   }
+  ]
  },
  {
   "id": "homing-instinct",
@@ -2813,7 +2951,14 @@
    "book": "DE",
    "line": 4147,
    "anchor": "homing-instinct"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2212,
+    "anchor": "homing-instinct"
+   }
+  ]
  },
  {
   "id": "imbued-with-the-spirit-of-form",
@@ -2832,7 +2977,14 @@
    "book": "DE",
    "line": 4153,
    "anchor": "imbued-with-the-spirit-of-form"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2219,
+    "anchor": "imbued-with-the-spirit-of-form"
+   }
+  ]
  },
  {
   "id": "immune-to-disease",
@@ -2851,7 +3003,14 @@
    "book": "DE",
    "line": 4163,
    "anchor": "immune-to-disease"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4254,
+    "anchor": "immune-to-disease"
+   }
+  ]
  },
  {
   "id": "immunity-to-cold",
@@ -2870,7 +3029,14 @@
    "book": "DE",
    "line": 4167,
    "anchor": "immunity-to-cold"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "MoH",
+    "line": 11764,
+    "anchor": "new-virtue-immunity-to-cold"
+   }
+  ]
  },
  {
   "id": "improved-characteristics",
@@ -3005,7 +3171,14 @@
    "book": "DE",
    "line": 4195,
    "anchor": "infernal-heirloom"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4285,
+    "anchor": "infernal-heirloom"
+   }
+  ]
  },
  {
   "id": "inoffensive-to-beings",
@@ -3030,6 +3203,11 @@
    {
     "book": "HoH_MC",
     "line": 3243,
+    "anchor": "inoffensive-to-beings"
+   },
+   {
+    "book": "RoP_M",
+    "line": 2231,
     "anchor": "inoffensive-to-beings"
    }
   ]
@@ -3198,7 +3376,14 @@
    "book": "DE",
    "line": 4241,
    "anchor": "kassalan-exorcism"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "LotN",
+    "line": 4089,
+    "anchor": "new-virtue-kassalan-exorcism"
+   }
+  ]
  },
  {
   "id": "keen-vision",
@@ -3326,7 +3511,14 @@
    "book": "DE",
    "line": 4279,
    "anchor": "land-regio-network"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2241,
+    "anchor": "land-regio-network"
+   }
+  ]
  },
  {
   "id": "landed-noble",
@@ -3364,7 +3556,14 @@
    "book": "DE",
    "line": 4297,
    "anchor": "large"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2251,
+    "anchor": "large"
+   }
+  ]
  },
  {
   "id": "lasiq",
@@ -3485,7 +3684,14 @@
    "book": "DE",
    "line": 4321,
    "anchor": "lesser-benediction"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_F",
+    "line": 6419,
+    "anchor": "lesser-benediction"
+   }
+  ]
  },
  {
   "id": "lesser-immunity",
@@ -3525,6 +3731,11 @@
    "anchor": "lesser-power"
   },
   "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2259,
+    "anchor": "lesser-power"
+   },
    {
     "book": "RoP_F",
     "line": 2666,
@@ -3773,7 +3984,14 @@
    "book": "DE",
    "line": 4407,
    "anchor": "magian-lineage"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "CC",
+    "line": 4529,
+    "anchor": "new-virtue-magian-lineage"
+   }
+  ]
  },
  {
   "id": "magic-items",
@@ -3856,7 +4074,14 @@
    "book": "DE",
    "line": 4427,
    "anchor": "magical-blood"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2288,
+    "anchor": "magical-blood"
+   }
+  ]
  },
  {
   "id": "magical-mount",
@@ -3875,7 +4100,14 @@
    "book": "DE",
    "line": 4441,
    "anchor": "magical-mount"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2334,
+    "anchor": "magical-mount"
+   }
+  ]
  },
  {
   "id": "magical-warder",
@@ -3894,7 +4126,14 @@
    "book": "DE",
    "line": 4445,
    "anchor": "magical-warder"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2340,
+    "anchor": "magical-warder"
+   }
+  ]
  },
  {
   "id": "magister-in-artibus",
@@ -4093,7 +4332,14 @@
    "book": "DE",
    "line": 4525,
    "anchor": "master-bard"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "CI",
+    "line": 4371,
+    "anchor": "new-virtue-master-bard"
+   }
+  ]
  },
  {
   "id": "master-of-form-creatures",
@@ -4117,6 +4363,11 @@
    {
     "book": "Grogs",
     "line": 2940,
+    "anchor": "master-of-form-creatures"
+   },
+   {
+    "book": "RoP_M",
+    "line": 2348,
     "anchor": "master-of-form-creatures"
    }
   ]
@@ -4209,7 +4460,14 @@
    "book": "DE",
    "line": 4548,
    "anchor": "mazdean-priest"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "CC",
+    "line": 4542,
+    "anchor": "new-virtue-mazdean-priest"
+   }
+  ]
  },
  {
   "id": "mendicant-friar",
@@ -4247,7 +4505,14 @@
    "book": "DE",
    "line": 4564,
    "anchor": "mentored-by-demons"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4305,
+    "anchor": "mentored-by-demons"
+   }
+  ]
  },
  {
   "id": "mercenary-captain",
@@ -4553,7 +4818,14 @@
    "book": "DE",
    "line": 4666,
    "anchor": "notary"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "FF",
+    "line": 603,
+    "anchor": "virtue-notary"
+   }
+  ]
  },
  {
   "id": "nuntius",
@@ -4686,7 +4958,14 @@
    "book": "DE",
    "line": 4700,
    "anchor": "perfectus"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "FF",
+    "line": 705,
+    "anchor": "virtue-perfectus"
+   }
+  ]
  },
  {
   "id": "performance-magic",
@@ -4731,7 +5010,14 @@
    "book": "DE",
    "line": 4778,
    "anchor": "persona"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "HoH_S",
+    "line": 3889,
+    "anchor": "persona"
+   }
+  ]
  },
  {
   "id": "personal-power",
@@ -4752,6 +5038,11 @@
    "anchor": "personal-power"
   },
   "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2355,
+    "anchor": "personal-power"
+   },
    {
     "book": "RoP_F",
     "line": 2674,
@@ -5221,6 +5512,11 @@
   },
   "alsoIn": [
    {
+    "book": "RoP_M",
+    "line": 2361,
+    "anchor": "ritual-power"
+   },
+   {
     "book": "RoP_F",
     "line": 2721,
     "anchor": "ritual-power"
@@ -5315,7 +5611,14 @@
    "book": "DE",
    "line": 4960,
    "anchor": "secondary-insight"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "HMRE",
+    "line": 6249,
+    "anchor": "secondary-insight"
+   }
+  ]
  },
  {
   "id": "see-in-darkness",
@@ -5334,7 +5637,14 @@
    "book": "DE",
    "line": 4964,
    "anchor": "see-in-darkness"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "MoH",
+    "line": 11758,
+    "anchor": "new-virtue-see-in-darkness"
+   }
+  ]
  },
  {
   "id": "self-confident",
@@ -5372,7 +5682,14 @@
    "book": "DE",
    "line": 4972,
    "anchor": "senior-bard"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "CI",
+    "line": 4361,
+    "anchor": "new-virtue-senior-bard"
+   }
+  ]
  },
  {
   "id": "senior-clergy",
@@ -5460,7 +5777,14 @@
    "book": "DE",
    "line": 4998,
    "anchor": "sense-passions"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4323,
+    "anchor": "sense-passions"
+   }
+  ]
  },
  {
   "id": "shadchan",
@@ -5780,7 +6104,14 @@
    "book": "DE",
    "line": 5074,
    "anchor": "spirit-votary"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 5390,
+    "anchor": "new-virtue-spirit-votary"
+   }
+  ]
  },
  {
   "id": "spiritual-pact",
@@ -5799,7 +6130,19 @@
    "book": "DE",
    "line": 5078,
    "anchor": "spiritual-pact"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 5398,
+    "anchor": "new-virtue-spiritual-pact"
+   },
+   {
+    "book": "ML",
+    "line": 6627,
+    "anchor": "new-virtue-spiritual-pact"
+   }
+  ]
  },
  {
   "id": "strong-angelic-heritage",
@@ -5844,7 +6187,14 @@
    "book": "DE",
    "line": 5100,
    "anchor": "strong-faerie-blood"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_F",
+    "line": 6431,
+    "anchor": "strong-faerie-blood"
+   }
+  ]
  },
  {
   "id": "strong-willed",
@@ -6011,7 +6361,14 @@
    "book": "DE",
    "line": 5165,
    "anchor": "tainted-treasure"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_I",
+    "line": 4341,
+    "anchor": "tainted-treasure"
+   }
+  ]
  },
  {
   "id": "templar-administrator",
@@ -6307,7 +6664,14 @@
    "book": "DE",
    "line": 5225,
    "anchor": "troubadourtrobairitz"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "FF",
+    "line": 593,
+    "anchor": "virtue-troubadourtrobairitz"
+   }
+  ]
  },
  {
   "id": "troupe-upbringing",
@@ -6409,7 +6773,14 @@
    "book": "DE",
    "line": 5251,
    "anchor": "unaffected-by-the-gift"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2377,
+    "anchor": "unaffected-by-the-gift"
+   }
+  ]
  },
  {
   "id": "unaging",
@@ -6492,7 +6863,14 @@
    "book": "DE",
    "line": 5267,
    "anchor": "variable-power"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2383,
+    "anchor": "variable-power"
+   }
+  ]
  },
  {
   "id": "venditor",
@@ -6575,7 +6953,14 @@
    "book": "DE",
    "line": 5287,
    "anchor": "voice-of-the-land"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "RoP_M",
+    "line": 2393,
+    "anchor": "voice-of-the-land"
+   }
+  ]
  },
  {
   "id": "wanderer",
@@ -7441,7 +7826,14 @@
    "book": "DE",
    "line": 5845,
    "anchor": "castratus"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "SE",
+    "line": 1609,
+    "anchor": "new-flaw-castratus"
+   }
+  ]
  },
  {
   "id": "ceremonial-spontaneous-magic-flaw",
@@ -8709,7 +9101,14 @@
    "book": "DE",
    "line": 6108,
    "anchor": "exciting-experimentation"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "MoH",
+    "line": 2106,
+    "anchor": "new-flaw-exciting-experimentation"
+   }
+  ]
  },
  {
   "id": "excommunicate-flaw",
@@ -9721,7 +10120,14 @@
    "book": "DE",
    "line": 6332,
    "anchor": "horrifying-appearance--snake-legs"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "SE",
+    "line": 4111,
+    "anchor": "new-flaw-horrifying-appearance--snake-legs"
+   }
+  ]
  },
  {
   "id": "humble-flaw",
@@ -11379,6 +11785,11 @@
     "book": "Grogs",
     "line": 3300,
     "anchor": "poor-living-conditions"
+   },
+   {
+    "book": "TtA",
+    "line": 8853,
+    "anchor": "new-flaw-poor-living-conditions"
    }
   ]
  },
@@ -12167,6 +12578,11 @@
    {
     "book": "RoP_M",
     "line": 2655,
+    "anchor": "slow-power"
+   },
+   {
+    "book": "RoP_F",
+    "line": 2756,
     "anchor": "slow-power"
    }
   ]
@@ -13260,6 +13676,11 @@
     "book": "HoH_S",
     "line": 4462,
     "anchor": "vulnerable-to-folk-tradition"
+   },
+   {
+    "book": "RoP_D",
+    "line": 6818,
+    "anchor": "new-flaw-vulnerable-to-folk-tradition"
    }
   ]
  },
@@ -14348,6 +14769,101 @@
   }
  },
  {
+  "id": "samovily-blood",
+  "name": "Samovily Blood",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Bulgarians use the term \"Samovily\" for several different types of mystical maiden. Most are faeries, but at least one is an infernal spirit. The blood that runs in characters is of the faerie kind, however.\n\nSome samovily are maidens of the woodland, who ride deer, are archers, and can milk the moon like a cow. They love music, and kidnap shepherds to force them to play their pipes. These maidens bathe at dusk and can be forced into servitude by those who steal their clothing. They make poor mothers and flee when they find their clothes.\n\nOther samovily are spirits of the waters, or winged spirits the air. Some are spirits of the waters in Spring and Summer, but spirits of the Air in Autumn and Winter. Spirits of the air are sometimes young women doing penance for frivolous lives. Others are ghosts of women who died on their wedding day. This last type is able to suck the breath out of young men (see Wili, above).\n\nCharacters with samovily blood gain the usual bonuses for Faerie Blood, and one bonus from the list below:\n\n- +1 on all archery rolls\n- +2 on all riding rolls\n- +1 on all rolls involving music, including dancing and carousing\n- +1 on all Presence rolls for characters that find young, blonde women attractive.\n- +2 on all activities undertaken underwater.",
+  "source": {
+   "book": "HoH_TL",
+   "line": 4954,
+   "anchor": "samovily-blood"
+  }
+ },
+ {
+  "id": "mythic-blood-zmey",
+  "name": "Mythic Blood (Zmey)",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Hermetic"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Zmey are a variety of dragon native to the Transylvania Tribunal. Each village has a zmey, which rouses itself to fight evil spirits that attempt to enter its territory to cause hail or drought. This creates storms.\n\nZmey have many powers. They fly by controlling the wind. Their natural form glows when they fly, but they can become invisible at will. They can change shape, into dogs or humans, but can also impersonate manufactured objects, like necklaces and garlands of flowers. Some play enchanting music on shepherd's pipes. Female zmey, zmeyitsas, can take ursine form.\n\nZmey often charm young women, which usually leads to their death. Sometimes the zmey leaves, and the woman pines away. Local herbalists have a concoction that sometimes restores the desire to live. The zmey often asks the woman to elope, taking her away to his chthonic home. Occasionally, women survive relationships with zmey, and bear children. The children of zmey look human, except for small membranous wings that connect their torso and underarms. These wings are useless vestiges.\n\nA human who eats the heart of a zmey gains many of its powers, including supernatural strength. Humans can become zmey through spells or herbal preparations.\n\nDescent from a zmey grants a Minor Magical Focus with Storms, and the Minor Personality Flaw tends to be one of Lecherous, Meddler, or Proud. The granted power may be invisibility (as *Veil of Invisibility* (ArM5 page 146), but with Personal Range and no Penetration, castable without words or gestures), the ability to fly on the wind (as *Wings of the Soaring Wind* (ArM5 page 126), requires words and gestures), or the ability to turn into a dog or bear (like *Shape of the Woodland Prowler* (ArM5 page 131), but with Personal Range, and requiring only a gesture).",
+  "source": {
+   "book": "HoH_TL",
+   "line": 4972,
+   "anchor": "mythic-blood-zmey"
+  }
+ },
+ {
+  "id": "leadworker",
+  "name": "Leadworker",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Hermetic"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Leadworking is a skill descended from the style of necromancy practiced by the Aita cult. The name refers to the ability to craft *katadesmoi*. A katadesmos is a tablet that is used to curse and control the individual whose name is written upon it. Occasionally figurines, *kolossoi* are created instead. Curse tablets are most easily crafted from lead, but modern Tremere also use the non-reflective sides of mirrors.\n\nMuch of the original power of the tradition has been lost in the move to Hermetic magic, but two useful powers remain to the leadworkers. They may also create a fixed Arcane Connection to someone by incorporating an Arcane Connection taken from the body of the victim into a kolossos, without spending vis or study time. Success in both activities is automatic.\n\n**Penetration bonus table additions:**\n\nKatadesmos tablet, inscribed with the name of a victim (+2)\n\nA Kolossos is a representation, like any other (+2)\n\nA Kolossos constructed with a sympathetic connection from the body of the victim imbedded in it (+3)",
+  "source": {
+   "book": "HoH_TL",
+   "line": 4986,
+   "anchor": "leadworker"
+  }
+ },
+ {
+  "id": "harenarius",
+  "name": "Harenarius",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Hermetic"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "A \"Person of the Sand\" is one of the very few magi able to master two Certamen Schools on an instinctual level. Tremere magi respect this talent, but its past possessors have been less mentally stable than the House prefers.\n\nA Harenarius may choose to fight as a member of one of his schools at the commencement of certamen, or may choose to fight as a generalist, as other magi do. Harenarii begin with a Reputation 2, as a master duelist, with Tremere magi. They are more likely to be sought out by Magi seeking Certamen instructors than other Tremere magi. Harenarii pioneer the majority of new Certamen schools and tricks.",
+  "source": {
+   "book": "HoH_TL",
+   "line": 5002,
+   "anchor": "harenarius"
+  }
+ },
+ {
+  "id": "nyktophylax",
+  "name": "Nyktophylax",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Hermetic"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Nyktophylaxes, \"night guards,\" are magi whose magic of Sun duration fails at noon and midnight, rather than dawn and dusk. Their name comes from their role as sentries during the Schism War.",
+  "source": {
+   "book": "HoH_TL",
+   "line": 5010,
+   "anchor": "nyktophylax"
+  }
+ },
+ {
   "id": "pack-mentality-follower-flaw",
   "name": "Pack Mentality / Follower",
   "kind": "flaw",
@@ -14559,6 +15075,25 @@
   }
  },
  {
+  "id": "banishing",
+  "name": "Banishing",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Choosing this Virtue confers a Supernatural Accelerated Ability called Banishing, which begins at a score of 1. The character is able to banish any creature with a Might score for a limited amount of time. While banished, the creature must avoid the location described by the character or suffer intense pain and discomfort.\n\nTo banish a creature, the character loudly calls upon the source of the Accelerated Ability, forcefully commands all creatures of a specific realm to depart the designated area, and expends one level of Fatigue. This declaration means that anyone present during the use of the Accelerated Ability immediately knows the source of the character's Banishing power. The character must state the nature of the target's Might in the command. If the character omits or incorrectly states the source of the target's Might, his Banishing attempt fails.\n\nThe player must make a stress roll of the character's Presence and Banishing score against the Ease Factor as described below. Multiple creatures may be banished from the designated location; the target Ease Factor does not increase. The amount by which the total exceeds the Ease Factor is the Penetration of the Accelerated Ability.\n\n**Banishing Total: stress die + Presence + Banishing + aura**\n\nIf Banishing penetrates, the character banishes any creatures of the realm selected from the designated location for Sun Duration. The character must be within the designated area when the Accelerated Ability is used. If the character does not state a specific location, the default Ease Factor is Near Range, which is defined as the area within 10 paces of the character.\n\n| Ease Factor | Area      |\n|:-----------:|-----------|\n| 3           | Near      |\n| 6           | Structure |\n| 9           | Boundary  |\n\nA successful Banishing attempt expels all creatures of the appropriate realm from the designated area, whether the character is aware of them or not. The only way to avoid Banishing friendly creatures of the same realm as the one targeted is to include the True Name of the target of the banishment. (See *Realms of Power: The Infernal*, page 34.)\n\nA banished creature must depart the designated location by the quickest means available to it. The creature may attempt to return to the designated location by succeeding in a Stamina + (Realm) Lore roll against an Ease Factor of 12, where the applicable (Realm) Lore is the origin of the character's Banishing Ability. If the designated location is within an aura that is aligned with the character's Banishing Ability, the creature's roll is modified by the Realm Interaction Table on ArM5, page 183. If the creature succeeds, it may enter the designated location, but its Might score is reduced by one-half the character's Banishing score. If the creature's Might score would be reduced to zero or lower, the creature may not enter. If the creature leaves the designated location, its Might score returns to normal.\n\nWhile an affected creature is in the designated location, its Might score is reduced and it suffers overwhelming pain and discomfort (and negative modifiers) as described in *Weight of a Thousand Hells* (ArM5, page 148). This extreme discomfort causes most creatures to develop deep enmity for the character who banished them. Infernal and other creatures of appropriate temperament may develop an obsession with exacting revenge on the character. If a creature is unable to avenge a banishment, it often seeks allies or assistance in punishing the character. Friendly creatures may not go to these lengths for revenge, but few are pleased to suffer the torment of banishment.\n\nAlthough all of the Donatores's Banishing capabilities are aligned with the Divine, Banishing may be aligned with any realm. A character may use Banishing against creatures aligned with the same realm as the character's Banishing Ability, but it is difficult to keep an aligned creature out of the designated area. Of course, Divine creatures are immune to the effects of Banishing if they are fulfilling God's Divine plans.\n\n*Example: Allessandro has a score of 18 in Banishing and Presence of 2. He is surprised by the ghost of his former master and wants to banish it from the covenant. Allessandro loudly calls upon the powers of nature and all that is magical (his Banishing Ability is aligned with the Magic realm) to expel this Infernal creature from the covenant, which falls under the Structure category and gives him an Ease Factor of 6. The Infernal ghost has a Might of 25. Allessandro rolls a 6, for a total of 26. The covenant is in a Magic aura of 6, which improves his total to 32. Because Allessandro has no suitable Arcane Connection to his master with him, his Penetration is 26 (32 – 6), which forces the creature to leave the covenant immediately. The ghost may attempt to re-enter the covenant by succeeding in a Stamina + Magic Lore roll against an Ease Factor of 12, but because Allessandro's Ability is aligned with Magic and he is in a Magic aura, the Infernal ghost must add 6 to the Ease Factor because of the realm interaction modifier. Had the ghost been of the Magic or Faerie realms, the Ease Factor would have been lowered appropriately. If the ghost succeeds, its Might is reduced by 9 (onehalf Allessandro's score in Banishing) until the next sunrise or sunset. The ghost flees, giving Allessandro time to find an Arcane Connection to his master and prepare for the final battle.*\n\n**Specialties:** Any Realm (Supernatural)",
+  "source": {
+   "book": "HoH_S",
+   "line": 4851,
+   "anchor": "new-virtue-banishing"
+  }
+ },
+ {
   "id": "orphic-magic",
   "name": "Orphic Magic",
   "kind": "virtue",
@@ -14613,7 +15148,14 @@
    "book": "HoH_S",
    "line": 5127,
    "anchor": "mythic-herbalism"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "HMRE",
+    "line": 4208,
+    "anchor": "mythic-herbalism"
+   }
+  ]
  },
  {
   "id": "root-cutter",
@@ -14708,7 +15250,14 @@
    "book": "HoH_S",
    "line": 5437,
    "anchor": "sihr"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "CC",
+    "line": 1459,
+    "anchor": "sihr"
+   }
+  ]
  },
  {
   "id": "cabal-legacy-flaw",
@@ -15351,6 +15900,44 @@
   }
  },
  {
+  "id": "araquiels-secret",
+  "name": "Araquiel's Secret",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": "Divine",
+  "text": "Some say that what the Grigori taught their students was the basis of Hermetic magic. Sadly, as there are no living practitioners of these arts, it is difficult to say with certainty. There are definitely links between the two, however, as this Virtue demonstrates. Araquiel's Secret allows anyone who possesses it and who can use the Arts of Creo, Corpus, and Terram to use vis for any of these Arts interchangeably. When using vis in this way in either a Divine or Infernal aura, however, the wielder must roll double the usual number of botch dice. Araquiel's Secret also allows the possessor to ignore Creo, Corpus, or Terram requisites for any spell that uses another of these three Arts.",
+  "source": {
+   "book": "AM",
+   "line": 2345,
+   "anchor": "araquiels-secret"
+  }
+ },
+ {
+  "id": "araquiels-legacy",
+  "name": "Araquiel's Legacy",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Hermetic"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Any magus who possesses this Virtue may use Creo, Corpus, and Terram vis interchangeably. Araquiel's Legacy also allows the possessor to ignore Creo, Corpus, or Terram requisites for any spell that uses another of these three Arts.",
+  "source": {
+   "book": "AM",
+   "line": 2351,
+   "anchor": "araquiels-legacy"
+  }
+ },
+ {
   "id": "mechanica-of-heron",
   "name": "Mechanica of Heron",
   "kind": "virtue",
@@ -15443,6 +16030,25 @@
    "book": "AM",
    "line": 3598,
    "anchor": "hyperborean-descent"
+  }
+ },
+ {
+  "id": "hyperborean-relic",
+  "name": "Hyperborean Relic",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "General"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Your character owns a Hyperborean relic, either a tapestry or a bouquet of feathers and beeswax. This relic has 30 levels of Powers from the sample list. You may take this Virtue multiple times to increase the number of levels of Powers the relic has, by 30 each additional time the Virtue is taken. Note that if your character's Personality Traits are incompatible with the relic, its Powers may begin to fade.\n\nThere are two common types of relic: elaborate tapestries, and those made of beeswax and feathers. Most of the relics' Powers are activated by invoking one of the sacred names or epithets of Apollo. Most of these names are now lost, although a Hermetic magus could investigate a relic in the laboratory.",
+  "source": {
+   "book": "AM",
+   "line": 4273,
+   "anchor": "new-virtue-hyperborean-relic"
   }
  },
  {
@@ -15707,6 +16313,86 @@
   }
  },
  {
+  "id": "type-controlling",
+  "name": "(Type) Controlling",
+  "kind": "virtue",
+  "sizes": [
+   "Major",
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Controlling is an Elementalist Art that can be combined with mastery of the four elements to control the behavior of different types of beings, as described under Elementalist Techniques, later in this chapter. Taking this Virtue gives the character a score of 0 in Controlling.\n\nThis Virtue may be taken up to three times, to indicate that the character can control multiple types of elemental targets (Medicinal, Philosophical, or Theurgical). The first type chosen requires a Major Virtue, the others are Minor. Each type of Controlling must be learned separately, but all three use the same Art score, so that a character who takes this Virtue three times would have only one Controlling Art, not (Medicinal) Controlling, (Philosophical) Controlling, and (Theurgical) Controlling.",
+  "source": {
+   "book": "HMRE",
+   "line": 1010,
+   "anchor": "type-controlling"
+  }
+ },
+ {
+  "id": "type-divining",
+  "name": "(Type) Divining",
+  "kind": "virtue",
+  "sizes": [
+   "Major",
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This Elementalist Art allows an elementalist to locate, understand, and predict the behavior of the four elements, as described under Elementalist Techniques, later in this chapter. This Virtue gives the character an initial Divining score of 0.\n\nThis Virtue may be taken up to three times, to indicate that the character can find and comprehend multiple types of elemental targets (Medicinal, Philosophical, or Theurgical). The first type chosen requires a Major Virtue, the others are Minor. Each type of Divining must be learned separately, but all three use the same Art score, so that a character that takes this Virtue three times would have only one Divining Art, not (Medicinal) Divining, (Philosophical) Divining, and (Theurgical) Divining.",
+  "source": {
+   "book": "HMRE",
+   "line": 1017,
+   "anchor": "type-divining"
+  }
+ },
+ {
+  "id": "type-refining",
+  "name": "(Type) Refining",
+  "kind": "virtue",
+  "sizes": [
+   "Major",
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "With this Elementalist Art, the character can purify a target by subjecting it to the four elements, as described under Elementalist Techniques, later in this chapter. Taken as a Virtue, it grants Refining with an initial score of 0.\n\nThis Virtue may be taken up to three times, to indicate that the character can refine multiple types of elemental targets (Medicinal, Philosophical, or Theurgical). The first type chosen requires a Major Virtue, the others are Minor. Each type of Refining must be learned separately, but all three use the same Art score, so that a character that takes this Virtue three times would have only one Refining Art, not (Medicinal) Refining, (Philosophical) Refining, and (Theurgical) Refining.",
+  "source": {
+   "book": "HMRE",
+   "line": 1024,
+   "anchor": "type-refining"
+  }
+ },
+ {
+  "id": "type-summoning",
+  "name": "(Type) Summoning",
+  "kind": "virtue",
+  "sizes": [
+   "Major",
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Summoning is an Elementalist Art that allows the character to use his knowledge of the Elementalist Forms to summon a target associated with that element to him. This target is somehow appropriate to his background — a disease, an aspect of nature, or an elemental being, as determined by the type of Summoning he learns (Medicinal, Philosophical, or Theurgical). This is described in more detail under Elementalist Techniques, later in this chapter. Selecting this Virtue gives the character a score of 0 in Summoning. This Virtue may be taken up to three times, to indicate that the character can summon more than one type of elemental target. The first type chosen requires a Major Virtue, the others are Minor Virtues. Each type of Summoning must be learned separately, but all three types use the same Art score, so that a character that takes this Virtue three times would only have one Summoning Art, not (Medicinal) Summoning, (Philosophical) Summoning, and (Theurgical) Summoning.",
+  "source": {
+   "book": "HMRE",
+   "line": 1031,
+   "anchor": "type-summoning"
+  }
+ },
+ {
   "id": "vulnerable-to-form-flaw",
   "name": "Vulnerable to (Form)",
   "kind": "flaw",
@@ -15744,6 +16430,25 @@
    "book": "HMRE",
    "line": 1072,
    "anchor": "weak-elemental-resistance"
+  }
+ },
+ {
+  "id": "gruagach",
+  "name": "Gruagach",
+  "kind": "virtue",
+  "sizes": [
+   "Free"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character is a member of the gruagach magical tradition. The character may perform gruagach laboratory activities and is a member of a gruagach collective. This Virtue is compatible with many other Social Virtues and Flaws, and with Wealthy and Poor. A normal gruagach must spend time supporting himself. UnGifted gruagachan usually do this by performing their normal vocations, but more-powerful Gifted gruagachan may perform services for the community, provide services to local lords, or receive rewards for enforcing justice — these services are usually arranged for by unGifted gruagachan, who interact with the general populace.",
+  "source": {
+   "book": "HMRE",
+   "line": 2798,
+   "anchor": "new-virtue-gruagach"
   }
  },
  {
@@ -16172,6 +16877,215 @@
   }
  },
  {
+  "id": "strong-amulet-magic",
+  "name": "Strong Amulet Magic",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character is especially adept at creating chartae and amulets. When creating either, the character receives a +10 bonus to all Lab Totals.",
+  "source": {
+   "book": "HMRE",
+   "line": 4269,
+   "anchor": "strong-amulet-magic"
+  }
+ },
+ {
+  "id": "strong-verbal-charms",
+  "name": "Strong Verbal Charms",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character is especially proficient in verbal charms. When casting a verbal charm, the character's casting total plus die roll is used to determine the spell level; the sum is not divided by two. When casting a charm from a text, the sum of the character's casting total and his die roll is divided by two rather than the normal five.",
+  "source": {
+   "book": "HMRE",
+   "line": 4274,
+   "anchor": "strong-verbal-charms"
+  }
+ },
+ {
+  "id": "succurro",
+  "name": "Succurro",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This Virtue gives the character the Technique of Succurro. It is a Difficult Art that advances as an Ability. It is described more fully later and is useless unless the character also possesses one of the Forms in this chapter.",
+  "source": {
+   "book": "HMRE",
+   "line": 4279,
+   "anchor": "succurro"
+  }
+ },
+ {
+  "id": "tueor",
+  "name": "Tueor",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This Virtue gives the character the Technique of Tueor. It is a Difficult Art that advances as an Ability. It is described more fully later and is useless unless the character also possesses one of the Forms in this chapter.",
+  "source": {
+   "book": "HMRE",
+   "line": 4284,
+   "anchor": "tueor"
+  }
+ },
+ {
+  "id": "vulnero",
+  "name": "Vulnero",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This Virtue gives the character the Technique of Vulnero. It is a Difficult Art that advances as an Ability. It is described more fully later and is useless unless the character also possesses one of the Forms in this chapter.",
+  "source": {
+   "book": "HMRE",
+   "line": 4289,
+   "anchor": "vulnero"
+  }
+ },
+ {
+  "id": "entreat-the-realm-powers",
+  "name": "Entreat the (Realm) Powers",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The player must choose one realm when this Virtue is selected for the character. The character gains the ability to call upon the powers of that realm to minimize or overcome the negative effects associated with using his Magic-aligned abilities in hostile auras (Divine or Infernal). The mechanics for using this Virtue are described fully later, under Magic of the Learned Magicians: Mitigation of Realm Interaction Effects.",
+  "source": {
+   "book": "HMRE",
+   "line": 4294,
+   "anchor": "entreat-the-realm-powers"
+  }
+ },
+ {
+  "id": "fortunam",
+  "name": "Fortunam",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This Virtue gives the character the Form of Fortunam. The Form advances as an Art. It is described more fully later and is useless unless the character also possesses a Technique from this chapter.",
+  "source": {
+   "book": "HMRE",
+   "line": 4299,
+   "anchor": "fortunam"
+  }
+ },
+ {
+  "id": "magicam",
+  "name": "Magicam",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This Virtue gives the character the Form of Magicam. The Form advances as an Art. It is described more fully later and is useless unless the character also possesses a Technique from this chapter.",
+  "source": {
+   "book": "HMRE",
+   "line": 4304,
+   "anchor": "magicam"
+  }
+ },
+ {
+  "id": "natural-magician",
+  "name": "Natural Magician",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This Virtue allows the character to utilize natural magic principles — such as elemental forces, natural affinities, magical contagion, and sympathetic connections — in performing any Magic-aligned Supernatural Ability to limit or eliminate the negative realm interaction effects of Divine or Infernal realms. Because of the time and materials required to utilize all of the natural magical principles, this ability may only aid activities that take a season or longer to perform.\n\nThe player adds his character's Philosophiae score to the Casting Total, Laboratory Total, or Supernatural Ability roll. The Philosophiae score may never be greater than the absolute amount of the negative realm interaction modifier. It is only useful in overcoming the negative realm interaction effects of an aura. The use of this Virtue never assists the character in achieving the initial effect total, and cannot aid in Penetration. This Virtue provides no benefit for activities performed in Faerie or Magic realms. This Virtue may be used in conjunction with Entreat the Powers.",
+  "source": {
+   "book": "HMRE",
+   "line": 4309,
+   "anchor": "natural-magician"
+  }
+ },
+ {
+  "id": "salutem",
+  "name": "Salutem",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": "Form",
+  "text": "This Virtue gives the character the Form of Salutem. The Form advances as an Art. It is described more fully later and is useless unless the character also possesses a Technique from this chapter.",
+  "source": {
+   "book": "HMRE",
+   "line": 4316,
+   "anchor": "salutem"
+  }
+ },
+ {
+  "id": "skilled-master",
+  "name": "Skilled Master",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "General"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Due to the skill of the learned magician's master or his extensive time studying under his master, the character may spend an extra 50 experience points on Arts, Abilities, and charms. This Virtue may be taken multiple times.",
+  "source": {
+   "book": "HMRE",
+   "line": 4321,
+   "anchor": "skilled-master"
+  }
+ },
+ {
   "id": "charm-magician-flaw",
   "name": "Charm Magician",
   "kind": "flaw",
@@ -16530,6 +17444,63 @@
    "book": "HMRE",
    "line": 6217,
    "anchor": "minor-rune-focus"
+  }
+ },
+ {
+  "id": "nameless-runes",
+  "name": "Nameless Runes",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character may cast rune spells without inscribing his name into the script at no penalty, though he receives no benefit when he does. The runes still form a magical connection to him that other magic characters can detect with their spells and use to identify him, but it is not obvious to those who can read the writing on the stone.",
+  "source": {
+   "book": "HMRE",
+   "line": 6244,
+   "anchor": "nameless-runes"
+  }
+ },
+ {
+  "id": "secret-runes",
+  "name": "Secret Runes",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character may hide the runes that describe the effect of his rune scripts without suffering a penalty to his Casting Total, and taking only a –5 penalty when he does not describe the effect at all. He gains no benefit from inscribing the runes normally, but does receive a bonus when he exaggerates the runes. He may take this Virtue twice to eliminate the penalty altogether.",
+  "source": {
+   "book": "HMRE",
+   "line": 6254,
+   "anchor": "secret-runes"
+  }
+ },
+ {
+  "id": "vitki",
+  "name": "Vitki",
+  "kind": "virtue",
+  "sizes": [
+   "Free"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character is a Norse rune wizard, believed by magi to belong to a group called the Order of Odin. At one time he was respected and feared by other men living in the north, but now very few of his people even know his kind exists. He is still considered by many magi to be an enemy of the Order of Hermes, and those who discover what he is may try to hunt him down and kill him, or else attempt to force him to teach them his magical secrets.\n\nVitkir may take Arcane Abilities, Martial Abilities, or Academic Abilities during or after their apprenticeship, just like Hermetic magi, as long as these Abilities are appropriate to their masters' backgrounds (for example, an academic vitki is unlikely to teach his apprentice Great Weapon, and a warrior vitki probably does not ensure his followers are well versed in Philosophiae).\n\nAll vitkir must take this as their Social Status Virtue, and it is only available to them.",
+  "source": {
+   "book": "HMRE",
+   "line": 6259,
+   "anchor": "vitki"
   }
  },
  {
@@ -17086,6 +18057,234 @@
   }
  },
  {
+  "id": "muspelli",
+  "name": "Muspelli",
+  "kind": "virtue",
+  "sizes": [
+   "Free"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character has been initiated into the ways of the Muspelli, and has access to six Supernatural Abilities; as determined by his patron. The appellation\n\n\"Muspelli\" means little to the common Norseman or someone from outside Scandinavia, but strikes fear into the hearts of Norse magicians from other traditions. Should this affiliation become known, the character will be treated as if he had the Outsider Major Flaw.",
+  "source": {
+   "book": "RM",
+   "line": 4106,
+   "anchor": "new-virtue-muspelli"
+  }
+ },
+ {
+  "id": "horrifying-appearance-three-heads-flaw",
+  "name": "Horrifying Appearance — Three Heads",
+  "kind": "flaw",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character possesses a hideous deformity. Most commonly, the character seems to have three faces on one head, with each face sharing an eye with its neighbor: thus the character has three noses, three mouths, four eyes, and two ears. A more extreme variety has three separate heads. The extra features grant no enhanced abilities to their possessor. This Flaw occurs particularly in humans descended from frost giants, and there is probably a tale attached to the reason the character was not killed at birth or while growing up.\n\ncharacter sheet for it. Make the following adjustments (in the indicated order):\n\n**Characteristics**: Add up to 3 points to the physical Characteristics of the human form (Strength, Stamina, Dexterity, or Quickness). These points cannot be applied to a Characteristic that is already +3 or greater. The extra points can be added to more than one Characteristic, but if they cannot all be spent to increase the Characteristics, then they are lost.\n\n**Virtues and Flaws**: Add the Giant Blood Virtue. If the character already has this or the Large Virtue (both common among Muspelli), then the character's etin-mod is Size +3 and he gains a further +2 adjustment to his Strength and a –1 adjustment to his Quickness.\n\nAdd the Greater Immunity to Sleep Virtue. The Muspelli in etin-mod still gets tired, but need not (indeed, cannot) sleep while this form is maintained. He is immune to spells or powers that force him into sleep or unconsciousness. If he should tire himself to the Unconscious Fatigue level, then he reverts to human form immediately.\n\nAdd the Greater Magical Defenses Virtue (see Introduction). If the character already has this Virtue, he gains no additional benefit.\n\nThe etin-mod has all the Virtues of the human form, but remove all General Flaws (Major and Minor). If the character has the Weak Characteristics Flaw in human form, then the lost points are returned in etin-mod. Flaws that are not General Flaws are inherited by the giant form.\n\n**Abilities**: Use the same Abilities as the human form.\n\n**Qualities**: Pick two Mundane Qualities from the nearby insert.\n\n**Special**: Remove all Characteristic loss due to Aging rolls, and all Decrepitude points. The etin-mod has an intrinsic +3 to Soak. A character in etin-mod suffers\n\na –6 to all social interaction rolls due to his highly unnatural appearance.\n\n**Magic**: When using any of his Supernatural Abilities during an etin-mod episode, the Muspelli can produce more powerful effects as described later under Trolldomur.",
+  "source": {
+   "book": "RM",
+   "line": 4114,
+   "anchor": "new-flaw-horrifying-appearance--three-heads"
+  }
+ },
+ {
+  "id": "invocation-of-names-of-power",
+  "name": "Invocation of Names of Power",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The sahir is capable of casting a unique type of spell called a Name of Power, which is invented like a summoning spell (see Seasonal Summoning, later in this chapter) but grants a bonus to a subsequently cast spell, similar in scope to those found on the Shape and Material Bonus table. The spell level is equal to five times the bonus; some example Names of Power are given in the nearby insert. If the sahir knows a Name of Power that governs the area of another spell he wishes to cast, he may \"utter\" (cast) the Name of Power first, and the subsequent spell's Casting Total receives a bonus equal to that of the Name of Power. Thus, a Name of Power: Shamash can give a bonus to any formula involving light or justice. A sahir may utter any number of applicable Names of Power before casting a spell, but the total bonus cannot exceed his Finesse score. Names of Power can also be used in conjunction with summoning; the Names invoked must match the type of spirit being summoned. Some examples are:\n\n**Name Type** Adad storms, divination Dumuzi livestock, crops Ishtar healing, love Nergal destruction, disease Ninhursag earth Shamash light, justice",
+  "source": {
+   "book": "CC",
+   "line": 1433,
+   "anchor": "invocation-of-names-of-power"
+  }
+ },
+ {
+  "id": "sahir",
+  "name": "Sahir",
+  "kind": "virtue",
+  "sizes": [
+   "Free"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "By demonstrating to the Majlis that he can summon a spirit, the character has been accepted into the Suhhar and is affiliated with a magical academy known as a bayt al-hikma, or \"house of wisdom.\" He is obliged to further the Suhhar's causes for one season every year, but is supported by them and benefits from increased access to its teachers, books, and vis sources. During character creation, the character may take appropriate Academic or Arcane Abilities.\n\nIf the character does not actually possess the power to summon a spirit, he should take the Dark Secret Story Flaw, as he will be immediately expelled from the Suhhar when this fact is discovered.\n\nThis Virtue should be taken along with another Social Status Virtue or Flaw, to describe the character's status among non-sahirs.",
+  "source": {
+   "book": "CC",
+   "line": 1449,
+   "anchor": "sahir"
+  }
+ },
+ {
+  "id": "solomonic-alchemy",
+  "name": "Solomonic Alchemy",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character gains an Accelerated Supernatural Ability, Solomonic Alchemy, with an initial score of 0.",
+  "source": {
+   "book": "CC",
+   "line": 1465,
+   "anchor": "solomonic-alchemy"
+  }
+ },
+ {
+  "id": "solomonic-astrology",
+  "name": "Solomonic Astrology",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Taking this Virtue gives the character the Accelerated Supernatural Ability of Solomonic Astrology with an initial score of 0.",
+  "source": {
+   "book": "CC",
+   "line": 1471,
+   "anchor": "solomonic-astrology"
+  }
+ },
+ {
+  "id": "solomonic-physic",
+  "name": "Solomonic Physic",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Taking this Virtue gives the character the Accelerated Supernatural Ability of Solomonic Physic with an initial score of 0.",
+  "source": {
+   "book": "CC",
+   "line": 1477,
+   "anchor": "solomonic-physic"
+  }
+ },
+ {
+  "id": "solomonic-storytelling",
+  "name": "Solomonic Storytelling",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Taking this Virtue gives the character the Accelerated Supernatural Ability Solomonic Storytelling with an initial score of 0.",
+  "source": {
+   "book": "CC",
+   "line": 1483,
+   "anchor": "solomonic-storytelling"
+  }
+ },
+ {
+  "id": "solomonic-travel",
+  "name": "Solomonic Travel",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character gains an initial score of 0 in the Accelerated Supernatural Ability of Solomonic Travel.",
+  "source": {
+   "book": "CC",
+   "line": 1489,
+   "anchor": "solomonic-travel"
+  }
+ },
+ {
+  "id": "vizier",
+  "name": "Vizier",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character has been elected as representative for a community of sahirs. This gives him several political advantages, such as the ability to attend Majlis and speak before the grand vizier, as well as additional responsibilities at his bayt alhikma. The character has a Reputation of level 3 among the Suhhar, which can be positive or negative.\n\nOnly characters with the Sahir Virtue may take this Virtue.",
+  "source": {
+   "book": "CC",
+   "line": 1495,
+   "anchor": "vizier"
+  }
+ },
+ {
+  "id": "yatu-magic",
+  "name": "Yatu Magic",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The sahir's heritage comes from the yatus of Persia (see Mazandaran, Chapter 8). He is attuned to both Magic and\n\nFaerie auras, and his magical effects can be treated as either Magic or Faerie powers, depending upon which gives him the most favorable (or least unfavorable) aura bonus. He does not gain Warping Points from living in either type of aura.",
+  "source": {
+   "book": "CC",
+   "line": 1503,
+   "anchor": "yatu-magic"
+  }
+ },
+ {
+  "id": "bound-spells",
+  "name": "Bound Spells",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "All of the sahir's spells are bound to a specific spirit when they are invented, the spirit that was present in the laboratory to power the effect. Unlike other sahirs, the character cannot cast his spells through any spirit he summons, but must use the spirit to which the spell is bound. The sahir may easily reinvent a spell in one season that he has learned to cast with another spirit, since he effectively possesses a lab text for that spell.",
+  "source": {
+   "book": "CC",
+   "line": 1516,
+   "anchor": "bound-spells"
+  }
+ },
+ {
   "id": "patron-flaw",
   "name": "Patron",
   "kind": "flaw",
@@ -17430,6 +18629,26 @@
   }
  },
  {
+  "id": "knowledge-of-true-names",
+  "name": "Knowledge of True Names",
+  "kind": "virtue",
+  "sizes": [
+   "Minor",
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Your character may start play knowing one or more True Names of supernatural beings. Any Mazdean character may take this Virtue, although it is only of use to those characters with supernatural abilities or powers. This Virtue reflects the deep and ancient occult knowledge possessed by the mobeds.\n\nAt the storyguide's discretion, this virtue may be made available to other characters, such as sahirs, Hermetic theurgists, infernalists, or Holy Magi.\n\n**Minor:** This virtue grants you 30 experience points to spend on True Names — each True Name costs 5 experience points to learn. Names with fewer than 5 experience points provide no benefit at all, but you can decide to partially learn a True Name by spending fewer than 5 experience points on it. Each True Name is recorded under Abilities as \"True Name of (Being).\" The character may know the True Names of beings from the Magic, Faerie and Infernal realms. You may take this virtue more than once to gain additional experience points to spend on True Names.\n\n**Major:** The Major Virtue version of Knowledge of True Names is identical to the Minor version, also granting 30 experience points, except that you may also know the True Names of angels and other divine beings. Storyguides and troupes should consider this Virtue carefully before allowing it.",
+  "source": {
+   "book": "CC",
+   "line": 4556,
+   "anchor": "new-virtue-knowledge-of-true-names"
+  }
+ },
+ {
   "id": "blessing-of-ameshaspand",
   "name": "Blessing of [Ameshaspand]",
   "kind": "virtue",
@@ -17544,6 +18763,25 @@
   }
  },
  {
+  "id": "greater-power-command-the-masses",
+  "name": "Greater Power (Command The Masses)",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This new Virtue grants the Command the Masses power that is described later. The Greater Power Virtue is further described in *Realms of Power: Magic*, page 44.\n\n*Command the Masses*, no cost, Init Qik – 2, Mentem: The Ghuzz can issue an order, and a standard Group of men are strongly inclined to obey this order. In battle, this secures total leadership, and the Ghuzz need not spend his turn forming a trained group or changing their actions. ReMe 30 (Base 5, +2 Voice, +1 Diam, +2 Group) Greater Power (30 levels, –3 Might/Fatigue cost, +1 Init)",
+  "source": {
+   "book": "CC",
+   "line": 6594,
+   "anchor": "new-virtue-greater-power-command-the-masses"
+  }
+ },
+ {
   "id": "volcanic-spirit-forge",
   "name": "Volcanic Spirit Forge",
   "kind": "virtue",
@@ -17579,6 +18817,26 @@
    "book": "HP",
    "line": 1556,
    "anchor": "hell-portal"
+  }
+ },
+ {
+  "id": "hermetic-metamorphosis",
+  "name": "Hermetic Metamorphosis",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural",
+   "Hermetic"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "You are able to graft organs onto an animal's body to make a new creature. The donor organs can be from another animal or created magically using a Creo Animal ritual spell of Momentary Duration. The recipient must be an animal — a further breakthrough is needed to extend this Virtue to allow a human to be the recipient of an animal organ. The process of metamorphosis requires the casting of a special ritual spell that can only be invented by those who possess this Virtue. It's not known if such creatures breed true, but most likely not.\n\nNote that this Virtue does not yet exist, but once Marcus has completed his work it will be integrated into Hermetic theory through Original Research, and may be taught to other magi either through personal instruction or by writing a tractatus describing the breakthrough. The source must grant at least 5 experience points in a single season for the Virtue to be conferred.",
+  "source": {
+   "book": "MoH",
+   "line": 7861,
+   "anchor": "new-virtue-hermetic-metamorphosis"
   }
  },
  {
@@ -17636,6 +18894,140 @@
    "book": "LoH",
    "line": 768,
    "anchor": "true-understanding-of-the-realms"
+  }
+ },
+ {
+  "id": "composer-of-power",
+  "name": "Composer of Power",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character is a recognized composer of magical music. This means that he can teach songs of power to other characters. Such a song allows the character that learns it to replicate the effect of a single Power that the composer character knows, by expending vis of the appropriate Form equal to (1 + the Might Point cost of the Power). For example, a bird that is taught to sing *Call the Flock* must expend 3 Animal vis each time that it sings the song.\n\nIn a season, the character can teach a single song to a number of characers equal to his Leadership Ability score, and the students only retain the ability to sing the song for a year.",
+  "source": {
+   "book": "RoP_M",
+   "line": 2149,
+   "anchor": "composer-of-power"
+  }
+ },
+ {
+  "id": "essential-virtue",
+  "name": "Essential Virtue",
+  "kind": "virtue",
+  "sizes": [
+   "Major",
+   "Minor"
+  ],
+  "categories": [
+   "General"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character receives one generally beneficial Essential Trait at either +3 for Minor or +6 for Major, which either positively affects rolls associated with a particular Characteristic in certain situations, like Intuitive +3 or Good Aim +6, or gives the character a beneficial Personality Trait that is part of its essential nature and cannot be influenced by magic (see Essential Traits, below).\n\nYou can take this Virtue more than once, so long as you choose a different Essential Trait each time.",
+  "source": {
+   "book": "RoP_M",
+   "line": 2157,
+   "anchor": "essential-virtue"
+  }
+ },
+ {
+  "id": "greater-immunity-deprivation",
+  "name": "Greater Immunity (Deprivation)",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "(See the Virtue on **ArM5**, page 43.)\n\nMuch like magical beings, the character is immune to deprivation, suffering no loss of Fatigue or wounds from going without air, food or drink. However, like magic characters, she cannot regain long-term Fatigue without rest and sustenance, and if she is injured deprivation could cause her wounds to worsen.",
+  "source": {
+   "book": "RoP_M",
+   "line": 2198,
+   "anchor": "greater-immunity-deprivation"
+  }
+ },
+ {
+  "id": "magical-champion",
+  "name": "Magical Champion",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Only characters designed using the rules for Magic Character Creation may take this Virtue.\n\nA small group of individuals considers the character to be their particular representative, by virtue of its magical nature. They might be the grogs at the covenant, or all the animals in a single pack, or all the magical trees in a particular forest. These beings give the character special respect, and so others typically recognize and deal with the character as the leader of the group. Outside of this group, the character does not command any special respect because of its magical nature; if it looks human it will be treated like a person, otherwise it will probably be perceived as either a dumb beast or a monster.\n\nThis Virtue may be combined with other Social Status Virtues and Flaws that are appropriate to the character's form.",
+  "source": {
+   "book": "RoP_M",
+   "line": 2304,
+   "anchor": "magical-champion"
+  }
+ },
+ {
+  "id": "magical-covenfolk",
+  "name": "Magical Covenfolk",
+  "kind": "virtue",
+  "sizes": [
+   "Free"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Only characters designed using the rules for Magic Character Creation may take this Virtue.\n\nThe character is a magical being that is generally accepted by the other people at the covenant as an equal. The character does not command any special respect because of its magical nature, however, and how outsiders treat it depends upon its appearance; if it looks human it will be treated like a person, otherwise it will be seen as either a dumb beast or a monster.\n\nThis Virtue may be combined with other Social Status Virtues and Flaws that are appropriate to the character's form.",
+  "source": {
+   "book": "RoP_M",
+   "line": 2314,
+   "anchor": "magical-covenfolk"
+  }
+ },
+ {
+  "id": "magical-master",
+  "name": "Magical Master",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Only characters designed using the rules for Magic Character Creation may take this Virtue.\n\nThe character is recognized as a higher power by a relatively large group, and this status depends on its magical nature. This group might be everyone in a particular village or covenant, or all the animals in a single forest, or all of the trees of a particular variety in Mythic Europe. There is something about the character's powers or physical appearance that allows members of the group to easily recognize the character. Members of this special group generally defer to the character, and perhaps even worship or venerate it depending on their sophistication and beliefs. Outside of this community, the character does not command any special respect; if it looks human it will be treated like a person, otherwise it will probably be perceived as either a dumb beast or a monster.\n\nThis Virtue may be combined with other Social Status Virtues and Flaws that are appropriate to the character's form.",
+  "source": {
+   "book": "RoP_M",
+   "line": 2324,
+   "anchor": "magical-master"
+  }
+ },
+ {
+  "id": "transformed-being",
+  "name": "Transformed (Being)",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character has been transformed by the power of Magic, losing his mundane nature and changing into a supernatural being — see the Special Virtues Magic Animal, Magic Human, Magic Spirit, or Magic Thing, above, for examples of how Magic changes a character.\n\nInitially the character has a Might Score of 0 and no Magic Qualities, though the player may take a number of Magic Inferiorities equal to his maximum allotment of Flaws during this transformation — three points for a grog character, and ten for a magus or companion — and gaining a corresponding number of Magic Qualities. The magic character also gains an Essential Trait at +3 that describes the character's origin or true form, what the character is at a fundamental level. This should be related to the Form of the character's Might in some way.\n\nCharacters with a Might Score associated with any realm of power other than Magic cannot take this Virtue. If the character has Supernatural Virtues or Flaws associated with other realms, these are also affected by the transformation. Generally, divine powers are lost, faerie powers become magic ones, and infernal powers become magic but tainted with evil (see *Realms of Power: The Infernal* for more information about tainted powers). For example, a character's Strong Faerie Blood might become a Greater Power, infernal Entrancement would become magical but would be infernally tainted, and True Faith would be gone forever.",
+  "source": {
+   "book": "RoP_M",
+   "line": 2367,
+   "anchor": "transformed-being"
   }
  },
  {
@@ -17732,6 +19124,25 @@
    "book": "RoP_M",
    "line": 2607,
    "anchor": "magical-monster"
+  }
+ },
+ {
+  "id": "daimon",
+  "name": "Daimon",
+  "kind": "virtue",
+  "sizes": [
+   "Free"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": "spirits only",
+  "text": "This free Virtue is possessed by all Daimons. All Daimons have a Confidence Score of at least 1. A Daimon is a permanent resident of the Magic Realm and cannot enter the material world; instead, it creates an Aspect as its agent on Earth. An Aspect may be created or destroyed with a moment's thought, and costs no Might points to create. Each Aspect is like an independent spirit, with some or all of the characteristics and powers of the original spirit, but its own Might score (usually a mere fraction of the parent Daimon), and its own pool of Might points. An Aspect cannot recover spent Might points, rather it is dispelled when exhausted and replaced (if necessary) with another Aspect. Defeating or destroying the Aspect has no impact on the originating Daimon, except perhaps on its disposition towards the perpetrators of these acts. No permanent changes can be made to any Aspect, as they never last. Only the Aspect is ever trapped or bound by magic, and the Daimon can escape by discarding the Aspect. An Aspect cannot appear within several miles of another Aspect of the same Daimon, and no Aspect can return to the same location (as defined by the storyguide) within a day of leaving it. Not all Aspects created by the same Daimon need be identical; designed for different functions, they might have different powers and Mights.\n\nAn Aspect is a constant Arcane Connection of indefinite duration which is in constant mental contact with its Daimon. While an Aspect may be used to target spells of Arcane Range against its parent Daimon, few magi have sufficient power to make such spells penetrate the larger Might of the Daimon itself. A failed attempt to target a Daimon in this fashion can prove very dangerous for the impertinent magus!",
+  "source": {
+   "book": "RoP_M",
+   "line": 6187,
+   "anchor": "new-virtue-daimon"
   }
  },
  {
@@ -18212,6 +19623,25 @@
   }
  },
  {
+  "id": "passes-for-human",
+  "name": "Passes for Human",
+  "kind": "virtue",
+  "sizes": [
+   "Free"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": "Interaction",
+  "text": "The character suffers no social consequences, as it can seem human. The character lives at the margins of human society and does not mimic prestigious human roles; to do so requires the Infiltrator Virtue, described later.",
+  "source": {
+   "book": "RoP_F",
+   "line": 2504,
+   "anchor": "passes-for-human"
+  }
+ },
+ {
   "id": "positive-folktales",
   "name": "Positive Folktales",
   "kind": "virtue",
@@ -18267,6 +19697,25 @@
    "book": "RoP_F",
    "line": 2534,
    "anchor": "incognizant"
+  }
+ },
+ {
+  "id": "narrowly-cognizant",
+  "name": "Narrowly Cognizant",
+  "kind": "virtue",
+  "sizes": [
+   "Free"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": "Choice",
+  "text": "The character is able to improve itself in ways traditional for characters of this type. A dwarf may seek to become a dwarf king, for example. Or a faerie maid may wish to steal a child to raise as her own.",
+  "source": {
+   "book": "RoP_F",
+   "line": 2540,
+   "anchor": "narrowly-cognizant"
   }
  },
  {
@@ -18517,8 +19966,18 @@
   },
   "alsoIn": [
    {
+    "book": "AM",
+    "line": 4189,
+    "anchor": "virtue-ceremony"
+   },
+   {
     "book": "RoP_D",
     "line": 1937,
+    "anchor": "ceremony"
+   },
+   {
+    "book": "RoP_I",
+    "line": 4164,
     "anchor": "ceremony"
    }
   ]
@@ -18696,6 +20155,120 @@
   }
  },
  {
+  "id": "grant",
+  "name": "Grant",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "See Chapter 6: Faerie Wizardry for a full description of this Faerie Power. Choosing this Virtue gives the character Grant with an initial score of 1.",
+  "source": {
+   "book": "RoP_F",
+   "line": 6407,
+   "anchor": "grant"
+  }
+ },
+ {
+  "id": "portage",
+  "name": "Portage",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "See Chapter 6: Faerie Wizardry for a full description of this Faerie Power. Choosing this Virtue gives the character Portage with an initial score of 1.",
+  "source": {
+   "book": "RoP_F",
+   "line": 6425,
+   "anchor": "portage"
+  }
+ },
+ {
+  "id": "summoning",
+  "name": "Summoning",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "See Chapter 6: Faerie Wizardry for a full description. Choosing this Virtue gives the character Summoning with an initial score of 0.",
+  "source": {
+   "book": "RoP_F",
+   "line": 6439,
+   "anchor": "summoning"
+  }
+ },
+ {
+  "id": "ware",
+  "name": "Ware",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "See Chapter 6: Faerie Wizardry for a full description of this Faerie Power. Choosing this Virtue gives the character Ware with an initial score of 1.",
+  "source": {
+   "book": "RoP_F",
+   "line": 6445,
+   "anchor": "ware"
+  }
+ },
+ {
+  "id": "weal",
+  "name": "Weal",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "See Chapter 6: Faerie Wizardry for a full description of this Faerie Power. Choosing this Virtue gives the character Weal with an initial score of 1.",
+  "source": {
+   "book": "RoP_F",
+   "line": 6469,
+   "anchor": "weal"
+  }
+ },
+ {
+  "id": "woe",
+  "name": "Woe",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "See Chapter 6: Faerie Wizardry for a full description of this Faerie Power. Choosing this Virtue gives the character Woe with an initial score of 1.",
+  "source": {
+   "book": "RoP_F",
+   "line": 6475,
+   "anchor": "woe"
+  }
+ },
+ {
   "id": "faerie-antipathy-flaw",
   "name": "Faerie Antipathy",
   "kind": "flaw",
@@ -18829,7 +20402,14 @@
    "book": "RoP_D",
    "line": 1925,
    "anchor": "adjuration"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "CC",
+    "line": 4713,
+    "anchor": "adjuration"
+   }
+  ]
  },
  {
   "id": "cursing",
@@ -18906,7 +20486,14 @@
    "book": "RoP_D",
    "line": 1963,
    "anchor": "invocation"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "CC",
+    "line": 4725,
+    "anchor": "invocation"
+   }
+  ]
  },
  {
   "id": "meditation",
@@ -19001,7 +20588,14 @@
    "book": "RoP_D",
    "line": 2033,
    "anchor": "wonders"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "CC",
+    "line": 4770,
+    "anchor": "wonders"
+   }
+  ]
  },
  {
   "id": "eremite-flaw",
@@ -19039,6 +20633,44 @@
    "book": "RoP_D",
    "line": 2053,
    "anchor": "non-traditional"
+  }
+ },
+ {
+  "id": "new-christian-virtues",
+  "name": "New Christian Virtues",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Hermetic"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Ars Notoria\n\n**MAJOR, SUPERNATURAL ABILITIES**\n\nArs Notoria\n\n**MAJOR, SUPERNATURAL METHOD**\n\nHoly Music\n\n**MAJOR, SOCIAL STATUS**\n\nSenior Clergy\n\n**MINOR, SOCIAL STATUS**\n\nBrother Chaplain \nBrother Knight \nBrother Sergeant \nEastern Priest",
+  "source": {
+   "book": "RoP_D",
+   "line": 4498,
+   "anchor": "new-christian-virtues"
+  }
+ },
+ {
+  "id": "new-christian-flaws",
+  "name": "New Christian Flaws",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Hermetic"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Monastic Vows (Hermetic)\n\n**MAJOR, STORY**\n\nExcommunicate \nPagan \nUnbaptised\n\n**MAJOR, SUPERNATURAL**\n\nPagan\n\n**MINOR, SOCIAL STATUS**\n\nFailed Monk",
+  "source": {
+   "book": "RoP_D",
+   "line": 4523,
+   "anchor": "new-christian-flaws"
   }
  },
  {
@@ -19173,7 +20805,14 @@
    "book": "RoP_D",
    "line": 6903,
    "anchor": "craft-amulets"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "BSS",
+    "line": 5580,
+    "anchor": "craft-amulets"
+   }
+  ]
  },
  {
   "id": "dream-interpretation",
@@ -19192,7 +20831,19 @@
    "book": "RoP_D",
    "line": 6909,
    "anchor": "dream-interpretation"
-  }
+  },
+  "alsoIn": [
+   {
+    "book": "CC",
+    "line": 4719,
+    "anchor": "dream-interpretation"
+   },
+   {
+    "book": "BSS",
+    "line": 5586,
+    "anchor": "dream-interpretation"
+   }
+  ]
  },
  {
   "id": "gematria",
@@ -19462,6 +21113,45 @@
   }
  },
  {
+  "id": "hermetic-sorcery",
+  "name": "Hermetic Sorcery",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Hermetic"
+  ],
+  "tainted": true,
+  "notes": null,
+  "text": "Through instruction or intuition, the character is able to easily translate his knowledge of sorcery into Hermetic magic. Whenever he studies one of the four Goetic Arts (Ablating, Binding, Commanding, or Summoning), he also gains half as many experience points in Rego. Similarly, whenever he studies a form of supernatural Lore (Dominion Lore, Faerie Lore, Infernal Lore, or Magic Lore) he receives half as many experience points in Vim.\n\nThe character does not have to have any of the Goetic Arts opened to take this Virtue, though obviously it is twice as useful if he does.",
+  "source": {
+   "book": "RoP_I",
+   "line": 4240,
+   "anchor": "hermetic-sorcery"
+  }
+ },
+ {
+  "id": "infernal-blessing",
+  "name": "Infernal Blessing",
+  "kind": "virtue",
+  "sizes": [
+   "Major",
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": true,
+  "notes": null,
+  "text": "Because of the character's association with demons or an Infernal tradition (see Chapter 13: Infernal Traditions), she has been affected by a demon's Infernal Powers or targeted by one or more unholy maleficia (see Chapter 10). These effects are beneficial to her for the most part, and are perhaps a reward or an enticement for her service to Hell.\n\nIf this is a Minor Virtue, you receive 60 levels of unholy effects, designed as if they were cast on the character with Touch Range, probably with Forsaken Duration (Chapter 10: The Maleficia; New Ranges, Durations, and Targets), with the limit that no single effect can exceed level 40. If this is a Major Virtue, you receive 120 levels of effects, and the maximum level of an effect is level 60. These effects should correspond to the Methods and Powers available to the character's Infernal tradition (see Chapter 13), or seem appropriate to a demon with which the character is familiar. If these blessings do come directly from a demon, you should still determine the level of the effect in the same way as if they were maleficia.\n\nYou may take this Virtue more than once, and the total number of levels may be added together, so that two Minor Virtues gives you 120 levels, though you are still limited to level 40 effects. Because this is a Tainted Virtue, you cannot take it more than five times (or ten times, if the character is a Mythic Companion).\n\nHere are some common blessings. All, of course, are subject to storyguide approval, and should be examined to determine if they would imbalance your saga.\n\n- **Infernal Ability** (Debauchery, Phantasm, Level 20): The character's body is changed to give her an unnatural ability (such as wings, an additional limb, retracting fangs, or eyes that can see in the dark), though this does not function in the Dominion or when she is subjected to an uncommon circumstance such as salt, running water, or iron.\n- **Infernal Confidence** (Debauchery, Psychomachia, Level 20): The character gains an additional Confidence Point.\n- **Infernal Device** (Incantation, Effusion, Level 40): The character has a device enchanted to produce an unholy effect of up to level 15.\n- **Infernal Greatness** (Incantation, Diablerie, Level 60): The character receives the effects of an appropriate Major Virtue, such as Greater Immunity, Ways of the (Land), or Wealthy.\n- **Infernal Health** (Incantation, Consumption, Level 40): The character gains a +3 bonus to all Aging rolls at the expense of another, who receives a –3 penalty. If this victim dies, her blessing ceases to be effective.\n- **Infernal Powers** (Incantation, Diablerie, Level 40): The character receives the effects of an appropriate Minor Virtue, such as Affinity with (Ability), Increased Characteristics, Puissant (Ability), or Self-Confident.\n- **Infernal Protection** (Incantation, Diablerie, Level 40): The character has a Magic Resistance score of 15.\n- **Infernal Prowess** (Debauchery, Consumption, Level 40): The character has enhanced the effectiveness of her body, giving her a +3 bonus to either Soak or Damage, but adding 3 to her Load; or increasing her Initiative, Attack, or Defense by 3, but penalizing her Fatigue rolls by the same amount.\n\nTaking this Virtue also gives the character 3 Warping Points and an experience point in a relevant Infernal Reputation.\n\nIt is marginally possible for the character to have blessings that she is not aware are Infernal, since people in Mythic Europe do not know how many points of Virtues and Flaws they have, and thus she may think that she has been rewarded by a benevolent power. However, this requires that she has not accepted absolution from the Divine since she gained these Powers, and she must have some sort of Infernal background that explains why she has been kept in the dark about this. When she realizes the truth, she must decide whether she wishes to continue as an infernalist, or repent and lose her Powers forever.",
+  "source": {
+   "book": "RoP_I",
+   "line": 4260,
+   "anchor": "infernal-blessing"
+  }
+ },
+ {
   "id": "no-tradition-flaw",
   "name": "No Tradition",
   "kind": "flaw",
@@ -19630,6 +21320,63 @@
    "book": "AtD",
    "line": 5871,
    "anchor": "foe-art"
+  }
+ },
+ {
+  "id": "scry-art",
+  "name": "Scry Art",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Choosing this Virtue gives the character the Scry Art with an initial score of 0. Scry is a Difficult Art, meaning that it is treated as any other Art except that it uses the Ability Advancement Table rather than the Art Advancement Table. The Scry Art must be combined with at least one (Foe) Art to be used.",
+  "source": {
+   "book": "AtD",
+   "line": 5902,
+   "anchor": "scry-art"
+  }
+ },
+ {
+  "id": "slay-art",
+  "name": "Slay Art",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Choosing this Virtue gives the character the Slay Art with an initial score of 0. Slay is a Difficult Art, meaning that it is treated as any other Art except that it uses the Ability Advancement Table rather than the Art Advancement Table. The Slay Art must be combined with at least one (Foe) Art to be used.",
+  "source": {
+   "book": "AtD",
+   "line": 5908,
+   "anchor": "slay-art"
+  }
+ },
+ {
+  "id": "ban-art",
+  "name": "Ban Art",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Choosing this Virtue gives the character the Ban Art with an initial score of 0. Ban is a Difficult Art, meaning that it is treated as any other Art except that it uses the Ability Advancement Table rather than the Art Advancement Table. The Ban Art must be combined with at least one (Foe) Art to be used.",
+  "source": {
+   "book": "AtD",
+   "line": 5914,
+   "anchor": "ban-art"
   }
  },
  {
@@ -19882,6 +21629,63 @@
   }
  },
  {
+  "id": "soban-alchemy",
+  "name": "Soban Alchemy",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Taking this Virtue grants the Supernatural Ability of Soban Alchemy at a score of 1. Soban Alchemy is usually aligned to the Magic realm.",
+  "source": {
+   "book": "LotN",
+   "line": 4299,
+   "anchor": "new-virtue-soban-alchemy"
+  }
+ },
+ {
+  "id": "alchemist-of-soba",
+  "name": "Alchemist of Soba",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "You are an alchemist trained in Soba. You may have Academic Abilities at character creation, and must have a Philosophiae of at least 3. Unless you take the Wealthy Virtue, you are employed by the Soban Ministry of Works (or a private patron if you take the Protection Virtue), and are obliged to spend at least two seasons per year laboring on the behalf of your employer. You receive only Exposure experience points for these seasons. If you have the Soban Alchemy Virtue, you cannot make Sovereign Reagent in seasons that you work for the ministry, but you can spend one of your 'free' seasons making Sovereign Reagent on the city's coin. You are typically required to use at least half of these doses discharging your duties.",
+  "source": {
+   "book": "LotN",
+   "line": 4334,
+   "anchor": "new-virtue-alchemist-of-soba"
+  }
+ },
+ {
+  "id": "saints-aid",
+  "name": "Saint's Aid",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This Virtue grants the Ability Saint's Aid at a score of 1. By beseeching St. Valerie (or another saint with a particular interest in the character) for help when performing Divine Powers and Methods or Holy Magic, the character may ignore the necessary Fatigue or Confidence cost. This blessing may be used a number of times between confessions equal to the character's score in Saint's Aid. This Virtue is always associated with the Divine realm.",
+  "source": {
+   "book": "FF",
+   "line": 2348,
+   "anchor": "new-virtue-saints-aid"
+  }
+ },
+ {
   "id": "faerie-blood-jentil",
   "name": "Faerie Blood: Jentil",
   "kind": "virtue",
@@ -19921,6 +21725,25 @@
   }
  },
  {
+  "id": "chthonic-sorginak-magic",
+  "name": "Chthonic Sorginak Magic",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This grants a variant of the Supernatural Ability of Chthonic Magic beginning at a score of 1. Similar to the Hermetic Virtue, this magic, said to spring from instruction by Mari, grants the sorgina the ability to tap into sinister powers. The sorgina is attuned to both the Magic and Infernal realms. She gains botch dice from neither, and enjoys the benefits of both. She can use Infernal vis without penalty, and adds her Chthonic Magic to her Folk Witch Magic Theory when determining how many pawns of Infernal vis she can use in a season. Neither Faerie nor Magic-aligned detection can sense this tainted Infernal alignment, but Divine and Infernal powers can.\n\nFinally, if she incorporates a knowingly blasphemous action in her magic, the sorgina gains a +6 bonus to the roll or total in question, and she may optionally incorporate Casting Items to also add their Shape & Material bonuses (up to her Folk Witch Magic Theory score). She does not gain the additional Ranges, Targets or Durations ordinarily associated with Chthonic Magic, such as Crossroads, Cursed, or Passion. See *Realms of Power: Infernal*, page 123 for additional details.",
+  "source": {
+   "book": "FF",
+   "line": 3637,
+   "anchor": "chthonic-sorginak-magic"
+  }
+ },
+ {
   "id": "ecstatic-magic",
   "name": "Ecstatic Magic",
   "kind": "virtue",
@@ -19956,6 +21779,63 @@
    "book": "FF",
    "line": 3667,
    "anchor": "sorgina"
+  }
+ },
+ {
+  "id": "bardic-education",
+  "name": "Bardic Education",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "General"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character has attended one of the great bardic schools, either to receive an education (in which case he need not have attempted the punishing examination) or to commence training as a bard (in which case you should also take an appropriate bardic Social Status Virtue). For Senior or Master Bards (see later) this Virtue represents additional years of study. You receive 50 extra experience points to spend on Art of Memory, Profession: Storyteller, Profession: Poet, any Area Lore, or any Organization Lore.",
+  "source": {
+   "book": "CI",
+   "line": 4343,
+   "anchor": "new-virtue-bardic-education"
+  }
+ },
+ {
+  "id": "lesser-malediction-machas-birth-pangs-flaw",
+  "name": "Lesser Malediction: Macha's Birth-Pangs",
+  "kind": "flaw",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "To possess this Flaw, the character must be male, and a true-born Érainn (see Chapter 9). Whenever the character's home (village, parish, or province) is threatened, the character is afflicted by the stabbing pains of childbirth for nine half-days (five days and four nights). This pain is equivalent to a Medium wound: it is cumulative with other wound penalties and has a chance of worsening if the character indulges in activities while this wound persists (**ArM5**, pages 178–179), although he cannot die from this wound worsening. Chirurgy cannot assist any Wound Recovery rolls for this wound, because the pain is entirely phantom.",
+  "source": {
+   "book": "CI",
+   "line": 4483,
+   "anchor": "lesser-malediction-machas-birth-pangs"
+  }
+ },
+ {
+  "id": "luan-laith",
+  "name": "Lúan láith",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The *lúan láith*, or hero's light, is a physical projection of light from the forehead. It commonly manifests in characters who have the Berserk or Ríastradh Virtues. The character can will the light to appear with a moment's concentration, but it often manifests spontaneously at times of stress. It gutters and fades if the character acts in a cowardly manner. It can be seen by all even on the brightest day. The *lúan láith*",
+  "source": {
+   "book": "CI",
+   "line": 4589,
+   "anchor": "new-virtue-lúan-láith"
   }
  },
  {
@@ -20150,6 +22030,140 @@
   }
  },
  {
+  "id": "astrological-geomancy",
+  "name": "Astrological Geomancy",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Mystery"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character has learnt how to incorporate basic astrological techniques into his geomantic techniques by using a so-called \"house chart.\" He can incorporate Sympathetic bonuses by using Artes Liberales (astronomy) to calculate his target's nativity horoscope. On a successful Int + Artes Liberales + die roll against an Ease Factor of 9, the geomancer may add 3 to her Casting Total for questions regarding a particular target.",
+  "source": {
+   "book": "BSS",
+   "line": 4757,
+   "anchor": "astrological-geomancy"
+  }
+ },
+ {
+  "id": "geomancy",
+  "name": "Geomancy",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural",
+   "Mystery"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character is skilled in the semiliterate divinatory art of geomancy and can discover the answer to questions by scratching marks in the earth and\n\ninterpreting the patterns through calculation. Choosing this Virtue confers the Supernatural Ability Geomancy 1 (see above).",
+  "source": {
+   "book": "BSS",
+   "line": 4763,
+   "anchor": "geomancy"
+  }
+ },
+ {
+  "id": "lesser-geomancy",
+  "name": "Lesser Geomancy",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character is capable of performing very minor acts of divinatory magic through an incomplete knowledge of the art of geomancy. Choose one (Realm) Lore that is the key Ability for this magic; he may learn this Ability at Character Creation even if he is normally unable to take Arcane Abilities. The choice of (Realm) Lore also determines to which supernatural realm his power is aligned for the purposes of aura modifiers. He can only reproduce effects in one narrow area; he can effectively use geomantic methods to acquire magical senses that detect health, wealth, and mental state using Intellego Corpus, Intellego Mentem, and Intellego Terram guidelines.\n\nTo construct a shield chart the character must expend a Fatigue level, whether the divination succeeds or fails. He must also spend at least 15 minutes preparing the shield chart, during which time he needs unbroken concentration and makes the random marks necessary to create the basic geomantic figures. Unlike true geomancy, this lesser technique does not benefit from styluses made of different materials.\n\nThe lesser geomantic question is designed exactly like a Hermetic spell. The Casting Total is equal to (Stamina + (Realm) Lore + aura modifier + stress die) / 2. Penetration is calculated in the normal fashion: Casting Total – Spell Level + Penetration modifiers.",
+  "source": {
+   "book": "BSS",
+   "line": 4772,
+   "anchor": "lesser-geomancy"
+  }
+ },
+ {
+  "id": "skilled-geomancer",
+  "name": "Skilled Geomancer",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "General"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character is particularly skilled with diving using geomantic techniques. The character receives 50 experience points that can be put into Divination (geomancy), Dowsing, Geomancy, (Realm) Lore, Profession: Soothsayer and Wilderness Sense. This Virtue does not grant any Supernatural Abilities; these must be purchased separately.",
+  "source": {
+   "book": "BSS",
+   "line": 4782,
+   "anchor": "skilled-geomancer"
+  }
+ },
+ {
+  "id": "inenden-crafter",
+  "name": "Inenden Crafter",
+  "kind": "virtue",
+  "sizes": [
+   "Major"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "This character belongs to the minor *inenden* craft tradition of the Tuareg. The character possesses equivalents of the Maker of Water Vessels and Maker of Textured Vessels Minor Supernatural Virtues (detailed earlier), but produces wooden or metal tools if male or glass and metal jewelry if female. This Virtue also includes the effect of the Crafter's Eye Minor Virtue detailed below.\n\n*Major, Supernatural*\n\nThrough membership of the inenden caste, the character has a small amount of magic in his blood. This allows the inenden to craft non-Hermetic magical items limited to only two Forms (Terram and usually Animal, although some have ability with Corpus, Herbam, or Mentem).\n\nThis supernatural ability does not interfere with any type of social interaction. You must determine the source of this power: Divine, Faerie, Infernal, or Magic. He is considered to be affiliated with the realm you choose, and thus immune to Warping due to prolonged exposure to auras of that realm.",
+  "source": {
+   "book": "BSS",
+   "line": 4808,
+   "anchor": "inenden-crafter"
+  }
+ },
+ {
+  "id": "mythic-saddle-maker",
+  "name": "Mythic Saddle-maker",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character may craft wooden saddles and other wooden items with magical effects, using the guidelines for a single Hermetic Form chosen at character creation. Animal is a popular choice, although Terram is also common. The powers of the saddle can only affect the camel itself, or its immediate environment. A Terram effect, for instance to make the sand which the camel touches stable is permissible, but an Auram power to change the weather isn't.\n\nTo calculate the Craft Total, add the controlling characteristic to the Craft: Woodcarver Ability. As this field of work requires wit as well as deftness of hand, either Intelligence or Dexterity may be used; this is a permanent choice that must be made at character creation. This ability is most often aligned to the Magic or Faerie realm, but an In-",
+  "source": {
+   "book": "BSS",
+   "line": 4822,
+   "anchor": "mythic-saddle-maker"
+  }
+ },
+ {
+  "id": "crafters-eye",
+  "name": "Crafter's Eye",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Supernatural"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character can innately tell the quality of a manufactured item. If the item is somehow flawed he is instantly aware of that by merely touching it. He also has a chance to tell if an item is magical. For supernatural items made by a craftsman, make a Perception + Awareness + stress die roll against an Ease Factor of 9. If successful, the character knows the power of the item. For Hermetic enchanted items, or those made by other sorcerers, make a Perception + Awareness + stress die roll against a 12. If successful, the character knows the item is enchanted, but has no idea how, or what its powers might be. Botching either roll results in false information. This Virtue does not offer any information about the actions or commands necessary to trigger an item's powers.\n\nThis Virtue is identical to the Eye of Hephaestus Virtue presented in *City & Guild*, page 71.",
+  "source": {
+   "book": "BSS",
+   "line": 4906,
+   "anchor": "crafters-eye"
+  }
+ },
+ {
   "id": "sex-shift",
   "name": "Sex Shift",
   "kind": "virtue",
@@ -20186,6 +22200,44 @@
    "book": "BSS",
    "line": 5098,
    "anchor": "theriomorph"
+  }
+ },
+ {
+  "id": "murabit",
+  "name": "Murabit",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "Your character is a murabit, a scholar of the Divine, a wise man and worker of wonders. He is a member of a Murabit Tradition and treats Blessing, Ceremony, Craft Amulet, Dream Interpretation, and Understanding as favored Abilities, and may take Divine Lore and Theology at character creation.",
+  "source": {
+   "book": "BSS",
+   "line": 5568,
+   "anchor": "murabit"
+  }
+ },
+ {
+  "id": "talib",
+  "name": "Talib",
+  "kind": "virtue",
+  "sizes": [
+   "Minor"
+  ],
+  "categories": [
+   "Social Status"
+  ],
+  "tainted": false,
+  "notes": null,
+  "text": "The character is a member of a murabit's brotherhood, considered a student, guardian, and close follower of the murabit. Expected to serve and travel with the murabit, he should consider taking either the Oath of Fealty or Vow Flaw. The character may take either Academic or Martial Abilities at character creation.",
+  "source": {
+   "book": "BSS",
+   "line": 5574,
+   "anchor": "talib"
   }
  }
 ]

@@ -1,0 +1,578 @@
+[
+ {
+  "id": "fatigue-mastery",
+  "name": "Fatigue Mastery",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1875,
+   "anchor": "fatigue-mastery"
+  },
+  "text": "The character can spend its Fatigue levels instead of Might Points. Each Fatigue level is worth a number of Might Points equal to the character's (Might Score / 5)."
+ },
+ {
+  "id": "focus-power",
+  "name": "Focus Power",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1877,
+   "anchor": "focus-power"
+  },
+  "text": "The character has a magical power with a narrow range of effects, like the ability to cast spontaneous spells that are associated with a single type of magic. This power is like a magical focus, in that all of the possible effects have to be related to a specialty that is smaller than a single Hermetic Form.\n\nThe player receives 25 spell levels to spend on this power, which indicates the highest level effect that the power can produce. You can take it more than once to allow for more-powerful effects, but you are also limited by the character's Might Score — the level of effects that this power generates cannot exceed it. You can always take the power at a level higher than the character's Might and increase its Might Score later, and you can also allow the character to create effects of a level exceeding its Might Score with mastery points (see Minor Magic Qualities, Improved Powers, below). This power has a Might Point cost of the magnitude of the effect cast, and an initiative score of (the character's Quickness – the power's maximum magnitude). You should also note the Form or Forms associated with the effect, for the purposes of evaluating magic resistance.\n\nAny spell levels that are left over may be used to increase the effect level of other Focus Powers, or converted into mastery points, with 5 full levels of effects equal to 1 mastery point. These may be spent like the mastery points gained from the Improved Powers Minor Quality on any of the character's Focus Powers. Note that the cost of a Focus Power cannot be reduced with mastery points."
+ },
+ {
+  "id": "gentle-air",
+  "name": "Gentle Air",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1883,
+   "anchor": "gentle-air"
+  },
+  "text": "For those with Gifted or Magical Air, this Quality removes all the social penalties associated with the character's magical nature, as if it did not have The Gift at all. If the character is both Gifted and has an inherent Magical Air, this lessens the penalty from a Blatant Magical Air to that of the normal effects of The Gift."
+ },
+ {
+  "id": "gifted",
+  "name": "Gifted",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1885,
+   "anchor": "gifted"
+  },
+  "text": "The character has The Gift, or something very like it, in that it can learn Supernatural Abilities, can initiate new Virtues and Flaws through a Mystery Cult, and has a disturbing magical presence, as if it had the Magical Air Flaw. The character can even be opened to the Hermetic Arts, though its master's Intellego Vim Lab Total must equal or exceed ((30 + the character's Might Score) x 2) for the opening of the Arts to be successful. Only intelligent magic characters can take this Quality."
+ },
+ {
+  "id": "gigantic",
+  "name": "Gigantic",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1887,
+   "anchor": "gigantic"
+  },
+  "text": "The character's Size is magically increased, making it obviously superior to mundane creatures. Because of this, the character is also stronger and proportionally slower to react. Consult the following chart to determine the amount by which the character's Size, Strength, and Quickness should be adjusted. Also note that this Quality does not change the relative shape or apparent age of the character, so that a Gigantic human child (Size –2) would become the size of a large adult (Size +1), but would still have the proportions and features of a child.\n\n| Size | Size Increase | Bonus Strength | Quickness Penalty |\n|---|---|---|---|\n| –11 or less | +5 | +10 | –5 |\n| –6 to –10 | +4 | +8 | –4 |\n| –2 to –5 | +3 | +6 | –3 |\n| –1 to +1 | +2 | +4 | –2 |\n| +2 or more | +1 | +2 | –1 |\n\nIf the character has other Virtues, Flaws, Qualities, or Inferiorities that modify its Size, you should apply them in this order: Flaws, Inferiorities, Virtues, Qualities. You should determine its Characteristics first, so that they may be modified appropriately. For example, a base Size 0 character with Str 0, Qik 0, Improved Characteristics, Small Frame, and Gigantic would apply Improved Characteristics first, increasing its Str to +2; then Small Frame, reducing Size to –1; and finally Gigantic, increasing Size by +2, Str by +4, and reducing Quickness by –2, for a final result of Size +1, Str +6, and Qik –2.\n\nThis Quality may be taken more than once. If it is, apply the effects one at a time, and base the Size increase on the Size after the previous Qualities have been applied. For example, a base Size 0 character who took Gigantic twice would increase to Size +2 from the first, and then, because his Size is now +2, by +1 for the second, to a final Size of +3."
+ },
+ {
+  "id": "greater-power",
+  "name": "Greater Power",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1901,
+   "anchor": "greater-power"
+  },
+  "text": "The character has a spelllike power designed like a formulaic spell. Taking this Quality gives the character 50 spell levels to spend on this power, and these can be combined with the spell levels gained when taking this Quality more than once to allow for greater level effects. The power has a Might Point cost equal to (the magnitude of the effect / 2), and an initiative score equal to the character's Quickness – (the magnitude of the effect / 2). You should also note the Form or Forms associated with the effect, for the purposes of evaluating magic resistance.\n\nAny spell levels that are left over may be used to increase the effect level of other Greater or Lesser Powers, or converted into mastery points, with five full levels of effects equal to one mastery point. These may be spent like the mastery points gained from the Improved Powers Minor Quality on any of the character’s Greater or Lesser Powers."
+ },
+ {
+  "id": "improved-characteristic",
+  "name": "Improved (Characteristic)",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1905,
+   "anchor": "improved-characteristic"
+  },
+  "text": "Increase by one a Characteristic that is already +5 or more. This boost is applied before the character's Strength and Quickness are adjusted for Size, so that a Size +2 and Quickness +3 character (Quickness +5 before Size is subtracted) who took this Quality could raise its Quickness to +4. This Quality may be taken more than once."
+ },
+ {
+  "id": "magical-meditation",
+  "name": "Magical Meditation",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1907,
+   "anchor": "magical-meditation"
+  },
+  "text": "This Quality gives the character the Supernatural Ability Magical Meditation at 1 (see New and Modified Abilities, below)."
+ },
+ {
+  "id": "major-virtue",
+  "name": "Major Virtue",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1909,
+   "anchor": "major-virtue"
+  },
+  "text": "The character gains a Major Virtue, usually either General or Supernatural (Magic), to represent an advantage of its magical nature. Note that while this Quality may be taken more than once, only Virtues that allow a character to take them multiple times may be duplicated multiple times. Also, if a Virtue has requirements or restrictions on the characters who may take it, the magic character must meet them. For example, only a magic character with The Gift (or the Gifted Quality described above) can take Hermetic Virtues."
+ },
+ {
+  "id": "natural-appearance",
+  "name": "Natural Appearance",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1911,
+   "anchor": "natural-appearance"
+  },
+  "text": "The character appears to be a normal human being, with no traces of his magical nature. Just as the Gentle Gift hides all traces of The Gift in a magus, this allows Magic Humans to hide their inherently monstrous appearance, and Magic Things in the shape of humans or animals to seem to be living flesh and blood, rather than animated matter."
+ },
+ {
+  "id": "no-fatigue",
+  "name": "No Fatigue",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1913,
+   "anchor": "no-fatigue"
+  },
+  "text": "The character is tireless, meaning that it has no Fatigue levels, does not suffer Fatigue penalties, does not need to make Fatigue rolls, and cannot fall unconscious. It also cannot exert itself as other characters do, though the character can still simulate the loss of a Fatigue level by spending a Confidence Point, if necessary.\n\nThe character does not need to sleep, which means that it effectively has two additional seasons each year in which to study. However, because of the limitations on magic character advancement, it is unlikely the character will be able to take advantage of this extra time."
+ },
+ {
+  "id": "ritual-power",
+  "name": "Ritual Power",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1917,
+   "anchor": "ritual-power"
+  },
+  "text": "The character has 25 levels of powers that replicate Ritual-level effects, and if this Quality is taken multiple times, these spell levels can be combined to allow for an effect of greater magnitude. Any effect can be designed with this sort of power, even effects that break Hermetic limits. These powers have a Might Point cost, which defaults to the magnitude of the effect, and Initiative for the power is equal to the character's Quickness – (the magnitude of the effect x 2). You should also note the Form or Forms of the effect, for the purposes of evaluating Magic Resistance.\n\nBesides reducing the character's Might Pool, Ritual Powers also require the player to subtract one from the character's Might Score for each point in the Might cost, whenever it activates the effect. This lost Might may return over time, at the storyguide's discretion, but at a much slower rate than recovering lost Might Points. For example, each point of lost Might Score could require the character to rest for an entire season in a Magic aura of no less than (its Might Score / 5), or perhaps to consume vis of the same type as its Might, a number of pawns equal to its original Might Score.\n\nAlternatively, instead of reducing its Might Score, the character can lose one Confidence Point for each Might Point in the activation cost. It can do this whenever it has enough Confidence Points, even if the number of Confidence Points would exceed the character's Confidence Score. If the character has Confidence because of the Ferocity Virtue, it can only use them to activate the Ritual Power in the specific circumstances associated with that Virtue."
+ },
+ {
+  "id": "vis-mastery",
+  "name": "Vis Mastery",
+  "kind": "quality",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1923,
+   "anchor": "vis-mastery"
+  },
+  "text": "The character may expend some of its magic as vis. Each pawn manifests as the same Form as that associated with the character's Might Score, and either costs the character a Confidence Point or subtracts one from the character's permanent Might Score.\n\nThe character may also consume vis in place of Confidence Points. Each pawn is equivalent to a single Confidence Point, and the player may spend them to activate any power the character possesses that requires Confidence Points, but the player cannot spend more pawns at once than the character's Confidence Score in this way."
+ },
+ {
+  "id": "form-resistance",
+  "name": "(Form) Resistance",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1929,
+   "anchor": "form-resistance"
+  },
+  "text": "The character's Magic Resistance is aligned to a particular form, and it begins with a score of 1 in the corresponding Supernatural Ability (see New and Modified Abilities, below)."
+ },
+ {
+  "id": "gift-of-speech",
+  "name": "Gift of Speech",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1931,
+   "anchor": "gift-of-speech"
+  },
+  "text": "The character can speak and make sounds as a human. (This Quality allows a Magic Animal to overcome its natural inability to talk.)"
+ },
+ {
+  "id": "improved-abilities",
+  "name": "Improved Abilities",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1933,
+   "anchor": "improved-abilities"
+  },
+  "text": "You gain 50 experience points, which may be spent on any Abilities or Arts that the character can learn. This Quality may be taken more than once."
+ },
+ {
+  "id": "improved-attack",
+  "name": "Improved Attack",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1935,
+   "anchor": "improved-attack"
+  },
+  "text": "One of the character's natural weapons is magically enhanced, making it more accurate. Increase its Attack value by 2. This Quality may be taken more than once."
+ },
+ {
+  "id": "improved-confidence",
+  "name": "Improved Confidence",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1937,
+   "anchor": "improved-confidence"
+  },
+  "text": "The character's Confidence Score is increased by one. A starting character also gains two additional Confidence Points to spend. This Quality may be taken more than once."
+ },
+ {
+  "id": "improved-damage",
+  "name": "Improved Damage",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1939,
+   "anchor": "improved-damage"
+  },
+  "text": "One of the character's natural weapons is magically enhanced, making it sharper, heavier, or somehow more dangerous. Increase its Damage value by 3. This Quality may be taken more than once."
+ },
+ {
+  "id": "improved-defense",
+  "name": "Improved Defense",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1941,
+   "anchor": "improved-defense"
+  },
+  "text": "One of the character's natural weapons is magically enhanced, so that the character can better parry or dodge. Increase its Defense value by 2. This Quality may be taken more than once."
+ },
+ {
+  "id": "improved-fatigue",
+  "name": "Improved Fatigue",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1943,
+   "anchor": "improved-fatigue"
+  },
+  "text": "The character can last longer before becoming tired, as its resistance to fatigue is magically increased. The character gains an additional Fatigue level each time you take this Quality. The new Fatigue levels are added in descending order, not counting Fresh or Unconscious, so that a character with 2 additional Fatigue levels has 2 Winded levels, 2 Weary levels, and 1 of each of the others. A character with 6 additional Fatigue levels would have 3 Winded and Weary levels, and 2 each of Tired and Dazed."
+ },
+ {
+  "id": "improved-initiative",
+  "name": "Improved Initiative",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1945,
+   "anchor": "improved-initiative"
+  },
+  "text": "One of the character's natural weapons is magically enhanced, making it faster. Increase its Initiative value by 3. This Quality may be taken more than once."
+ },
+ {
+  "id": "improved-might",
+  "name": "Improved Might",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1947,
+   "anchor": "improved-might"
+  },
+  "text": "Increase the character's Magic Might Score by 1. Note that this does not give a starting character additional Quality points to spend. This Quality may be taken more than once."
+ },
+ {
+  "id": "improved-powers",
+  "name": "Improved Powers",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1949,
+   "anchor": "improved-powers"
+  },
+  "text": "The character is more skilled with its magical powers, making them more potent, activate faster, or cost fewer Might Points. This Quality gives the character 5 mastery points to spend on any of his powers, and each point can increase Initiative by 1, reduce the Might cost of a power by 1, or give the character 5 experience points in Concentration, Finesse, or Penetration. Also, a mastery point can increase the maximum level of a Focus Power by 5, so that it exceeds the character's Might. Personal, Lesser or Greater Powers can have a Might Point cost of 0; Ritual Powers have a minimum cost of (the effect's magnitude / 2, rounded up), and you cannot modify the cost of Focus Powers at all.\n\nAt the storyguide's discretion, this Quality can also be used to modify a power in the same way magi can master a Hermetic spell. Each time this Quality is taken, the character's mastery score with the power is increased by 1, and this gives the character a spell mastery special ability (such as those listed on page 87 of **Ars Magica** Fifth Edition). Note that activating powers does not require a die roll, so many of the typical benefits of mastering a spell (such as reduced botch dice) do not apply to mastered powers. This Quality may be taken more than once."
+ },
+ {
+  "id": "improved-recovery",
+  "name": "Improved Recovery",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1953,
+   "anchor": "improved-recovery"
+  },
+  "text": "The character recovers Might Points in half the normal time. Instead of completely refreshing its Might over the course of 24 hours, the character restores its entire Might Pool in only 12 hours. A magical being with Magic Might 30 and this Quality would recover 1 Might Point approximately every 20 minutes. This Quality may be taken more than once."
+ },
+ {
+  "id": "improved-soak",
+  "name": "Improved Soak",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1955,
+   "anchor": "improved-soak"
+  },
+  "text": "The character's natural protection is magically enhanced, making it more effective at warding away blows and physical injury. Increase the character's Soak by 2. This Quality may be taken more than once."
+ },
+ {
+  "id": "lesser-power",
+  "name": "Lesser Power",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1957,
+   "anchor": "lesser-power"
+  },
+  "text": "The character has 25 levels of powers designed like a formulaic spell. If this Quality is taken multiple times, these spell levels can be combined to allow for an effect of greater magnitude. These powers have a Might Point cost, which defaults to the magnitude of the effect, and Initiative for the power is equal to the character's Quickness – (the magnitude of the effect x 2). You should also note the Form or Forms of the effect, for the purposes of evaluating Magic Resistance.\n\nAny spell levels that are left over after the Lesser Power is designed may be used to increase the effect level of other Lesser Powers, or converted into mastery points, with 5 full levels of effects equal to 1 mastery point. These may be spent like the mastery points gained from the Improved Powers Minor Quality on any of the character's Lesser Powers."
+ },
+ {
+  "id": "minor-virtue",
+  "name": "Minor Virtue",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1961,
+   "anchor": "minor-virtue"
+  },
+  "text": "The character gains a Minor Virtue, usually either General or Supernatural (Magic), to represent an advantage of its magical nature. Note that while this Quality may be taken more than once, only Virtues that allow a character to take them multiple times may be duplicated. Also, if a Virtue has requirements or restrictions on the characters that may take it, the magic character must meet them. For example, only a magic character with The Gift (or the Gifted Virtue described below) can take Hermetic Virtues."
+ },
+ {
+  "id": "personal-power",
+  "name": "Personal Power",
+  "kind": "quality",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 1963,
+   "anchor": "personal-power"
+  },
+  "text": "The character has a spell-like power, which is designed like a Greater Power (see Major Magic Qualities, above) except that the effect is limited in some way. The effect must meet at least one of the following criteria:\n\n- The effect must be Range: Personal, OR\n- The effect must be constant (see the Magic Powers sidebar, above).\n\nTaking this Quality gives the character 25 levels to spend on these powers, which can be combined with the spell levels gained from taking this Quality more than once to allow for a power with a higher level.\n\nPersonal Powers have a Might Point cost equal to (the magnitude of the effect / 2), and an initiative score equal to the character's Quickness – (the magnitude of the effect / 2). You should also note the Form or Forms associated with the effect, for the purposes of evaluating Magic Resistance.\n\nAny spell levels that are left over may be used to increase the effect level of other Personal Powers, or converted into mastery points, with 5 full levels of effects equal to 1 mastery point. These may be spent like the mastery points gained from the Improved Powers Minor Quality on any of the character's Personal Powers."
+ },
+ {
+  "id": "acclimation-prone-inferiority",
+  "name": "Acclimation Prone",
+  "kind": "inferiority",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1976,
+   "anchor": "acclimation-prone"
+  },
+  "text": "It is twice as difficult for the character to protect itself against Acclimation (see Acclimation, under Advancement, below). You must treat the character's Might Score as double its actual value when remaining in a Magic aura or accounting for pawns of vis consumed, and double the number of seasons necessary to avoid Acclimation with magical effects. For example, each year a character with Might 25 would need to remain in a level 10 aura, consume 25 pawns of vis, or participate in a constant magical effect all year to avoid losing one of its Magic Qualities to Acclimation."
+ },
+ {
+  "id": "major-flaw-inferiority",
+  "name": "Major Flaw",
+  "kind": "inferiority",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1978,
+   "anchor": "major-flaw"
+  },
+  "text": "The character has a Major General or Supernatural (Magic) Flaw, which represents a disadvantage of its magical nature. This Inferiority may be taken more than once."
+ },
+ {
+  "id": "miniature-inferiority",
+  "name": "Miniature",
+  "kind": "inferiority",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1980,
+   "anchor": "miniature"
+  },
+  "text": "The character has been magically shrunk in size, making it smaller and harder to catch, and much weaker than other beings of its type. It is otherwise exactly the same, simply on a reduced scale. This reduces the character's Size and Strength, and increases its Quickness, as shown on the chart below.\n\n| Size | Size Decrease | Penalty Strength | Quickness Bonus |\n|---|---|---|---|\n| –10 or less | –5 | –10 | +5 |\n| –5 to –9 | –4 | –8 | +4 |\n| –1 to –4 | –3 | –6 | +3 |\n| 0 to +2 | –2 | –4 | +2 |\n| +3 or more | –1 | –2 | +1 |\n\nIf the character has Virtues or Flaws that modify its Size, or other Qualities or Inferiorities with a similar effect, you should always determine its base Characteristics first, and then apply the changes for Size in this order: Flaws, Inferiorities, Virtues, Qualities. For example, a Size 0 character with Str 0, Improved Characteristics, Large, and Miniature would first apply Improved Characteristics to raise its Str to +2, then Miniature to reduce Size to –2 and Str to –2, and finally Large for a final result of Size –1 and Str –2.\n\nThis Inferiority may be taken more than once. If it is taken more than once, the Inferiorities should be applied one at a time, and the reduction is based on the Size after the previous Inferiorities have taken effect. For example, a base Size 0 character who took the Inferiority twice would drop to Size –2 from the first, and then by a further –3 from the second because his Size is now –2, to a final Size of –5."
+ },
+ {
+  "id": "monstrous-appearance-inferiority",
+  "name": "Monstrous Appearance",
+  "kind": "inferiority",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1994,
+   "anchor": "monstrous-appearance"
+  },
+  "text": "Something about the character looks strange and frightening, be it horns, scales, sharp teeth, claws, an enormous head, double-jointed arms, unnaturally colored skin, or other supernatural features. These qualities give the character a –6 penalty in all social situations, or to any rolls involving the trust or loyalty of others. Most people will attack or run away from the character on sight, rather than engage it in conversation.\n\nAll Magic Humans have this Inferiority inherently, for no benefit."
+ },
+ {
+  "id": "reduced-characteristic-inferiority",
+  "name": "Reduced (Characteristic)",
+  "kind": "inferiority",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 1998,
+   "anchor": "reduced-characteristic"
+  },
+  "text": "This reduces a Characteristic that is already –5 or less because of the Poor (Characteristic) Flaw by a further 1. This penalty is applied before the character's Strength and Quickness are adjusted for Size, so that a character with Size –1 and Strength –5 would have Strength –8. Also, this Inferiority cannot reduce a Characteristic any further than the inverse value of the character's greatest Characteristic, again before Size is applied, so that a Size +2 character with Stamina +8 could not reduce its Quickness below –10."
+ },
+ {
+  "id": "temporary-might-inferiority",
+  "name": "Temporary Might",
+  "kind": "inferiority",
+  "size": "Major",
+  "source": {
+   "book": "RoP_M",
+   "line": 2000,
+   "anchor": "temporary-might"
+  },
+  "text": "The character does not replenish its Might Pool every day, but instead only recovers Might Points when resting in a Magic aura of no less than (its Might Score / 5), and at an extremely slow rate. It takes the character an entire season to recover all of its spent Might in this way, though like other magic characters it can still regain Might Points immediately by consuming vis: 5 Might Points for every pawn of vis associated with same Form as its Might, or 2 Might Points for every pawn of vis associated with any other Art.\n\nWhen the character is injured, it loses Might Points equal to the penalty of the wound — a Light wound removes 1 Might Point, a Medium wound 3 Might Points, and a Heavy wound 5 Might Points. When incapacitated, it loses 5 Might Points. Each time the character is wounded, part of its body is separated from the rest, and these pieces contain some of the character's vis, a number of pawns equal to ((total Wound penalty / 5) – the number of pawns already lost). For example, a Light wound would separate a pawn of vis from the character, and produce another pawn after five more Light wounds.\n\nAll Magic Things have this Inferiority inherently, for no benefit."
+ },
+ {
+  "id": "limited-gestures-inferiority",
+  "name": "Limited Gestures",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2008,
+   "anchor": "limited-gestures"
+  },
+  "text": "This Inferiority is similar to the No Hands Flaw, except that the character can still grasp and manipulate objects with its appendages, just like characters with hands. Its control is limited, so that it cannot make more than vague gestures, and cannot wield a weapon with any degree of skill. Magi with this Inferiority suffer a –5 to all spellcasting totals, though this penalty may be offset by taking the Subtle Magic Virtue. (Magic Animals and characters with the No Hands or Arthritis Flaws cannot take this Inferiority.)"
+ },
+ {
+  "id": "limited-movement-inferiority",
+  "name": "Limited Movement",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2010,
+   "anchor": "limited-movement"
+  },
+  "text": "The character can move and turn in place, and even move about freely within a limited area, such as in a room or on horseback, but is otherwise unable to transport itself further than short distances without assistance. Magic Things may take this Inferiority; cloaks slither, for example, tables could walk, and a sword jerks along the floor. It is impossible for a character with this Inferiority to carry itself further than about ten paces in an hour's time, even when pushing itself in a cart or trolley. (Characters with the Crippled or Lame Flaws cannot take this Inferiority.)"
+ },
+ {
+  "id": "limited-speech-inferiority",
+  "name": "Limited Speech",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2012,
+   "anchor": "limited-speech"
+  },
+  "text": "The character cannot speak intelligibly, though it can make noises that allow it to gain attention, and can shape these sounds into words that may be understood with effort. The character is probably silent most of the time, and suffers a –3 to all Communication rolls when it does speak. Magi with this Inferiority suffer a –5 to all spellcasting totals, though the penalty may be offset with the Quiet Magic Virtue. (Characters with the Mute or Afflicted Tongue Flaws cannot take this Inferiority.)"
+ },
+ {
+  "id": "minor-flaw-inferiority",
+  "name": "Minor Flaw",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2014,
+   "anchor": "minor-flaw"
+  },
+  "text": "The character has a Minor General or Supernatural (Magic) Flaw that represents a disadvantage of its magical nature. This Inferiority may be taken more than once."
+ },
+ {
+  "id": "reduced-abilities-inferiority",
+  "name": "Reduced Abilities",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2016,
+   "anchor": "reduced-abilities"
+  },
+  "text": "Subtract 50 experience points from the character's existing Abilities — this represents the fact that the character has somehow lost some of its memories or has magically reverted to an earlier stage of life. This Inferiority may be taken more than once, but you cannot take this Flaw unless the character has at least 50 experience points to lose."
+ },
+ {
+  "id": "reduced-attack-inferiority",
+  "name": "Reduced Attack",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2018,
+   "anchor": "reduced-attack"
+  },
+  "text": "One of the character's natural weapons has been magically worsened, making it less accurate and less likely to hit. Decrease its Attack bonus by 2. This Inferiority may be taken only if the character's Attack bonus for that weapon is greater than 0, though it can be taken more than once."
+ },
+ {
+  "id": "reduced-defense-inferiority",
+  "name": "Reduced Defense",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2021,
+   "anchor": "reduced-defense"
+  },
+  "text": "One of the character's natural weapons has been magically weakened, making it less effective at blocking or dodging other attacks. Decrease its Defense bonus by 2. This Inferiority may be taken only if the character's Defense bonus for that weapon is greater than 0, though it can be taken more than once."
+ },
+ {
+  "id": "reduced-fatigue-inferiority",
+  "name": "Reduced Fatigue",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2023,
+   "anchor": "reduced-fatigue"
+  },
+  "text": "Each time you take this Inferiority, the character loses one of its Fatigue levels, removed in descending order and not counting Fresh or Unconscious. Thus, a normal character who takes this Inferiority twice would have only Tired and Dazed Fatigue levels. You cannot take it more than four times unless the character has extra Fatigue levels."
+ },
+ {
+  "id": "reduced-initiative-inferiority",
+  "name": "Reduced Initiative",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2025,
+   "anchor": "reduced-initiative"
+  },
+  "text": "One of the character's natural weapons has been magically slowed, making the character less able to act quickly. Decrease its Initiative bonus by 3. This Inferiority may be taken only if the character's Initiative bonus for that weapon is greater than 0, though it can be taken more than once."
+ },
+ {
+  "id": "reduced-might-inferiority",
+  "name": "Reduced Might",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2027,
+   "anchor": "reduced-might"
+  },
+  "text": "Decrease the character's Magic Might Score by 1. Note that this does not give a starting character fewer Quality points to spend. This Inferiority may be taken more than once."
+ },
+ {
+  "id": "reduced-power-inferiority",
+  "name": "Reduced Power",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2029,
+   "anchor": "reduced-power"
+  },
+  "text": "Subtract 5 mastery points from any of the character's powers. Each lost mastery point increases the number of Might Points spent to activate a power by 1, or subtracts 1 from the character's Initiative score for a power. This Inferiority may be taken more than once, but the activation cost for a power may not exceed the character's Might Score, and you cannot reduce a power's Initiative below 0."
+ },
+ {
+  "id": "reduced-soak-inferiority",
+  "name": "Reduced Soak",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2031,
+   "anchor": "reduced-soak"
+  },
+  "text": "The character's natural protection is magically weakened, making it more vulnerable to physical damage. Reduce the character's Soak by 2. This Inferiority may be taken only if the character's Soak is greater than 0, though it can be taken more than once."
+ },
+ {
+  "id": "susceptible-to-deprivation-inferiority",
+  "name": "Susceptible to Deprivation",
+  "kind": "inferiority",
+  "size": "Minor",
+  "source": {
+   "book": "RoP_M",
+   "line": 2033,
+   "anchor": "susceptible-to-deprivation"
+  },
+  "text": "Unlike other magical beings, the character cannot survive without air, food, or water, and suffers all the normal consequences when going without them. The character is still immune to aging, unless it has the Age Quickly Flaw."
+ }
+]

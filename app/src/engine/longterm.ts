@@ -11,8 +11,8 @@ import { uid } from '../util/id';
 export type StudySource =
   | { kind: 'summa'; quality: number; level: number; isArt: boolean; subject: string }
   | { kind: 'tractatus'; quality: number; isArt: boolean; subject: string }
-  | { kind: 'teacher'; com: number; teaching: number; teacherScore: number; students: number; goodTeacher: boolean; isArt: boolean; subject: string }
-  | { kind: 'training'; masterScore: number; subject: string }
+  | { kind: 'teacher'; com: number; teaching: number; teacherScore: number; students: number; goodTeacher: boolean; isArt: boolean; subject: string; labTeaching?: number }
+  | { kind: 'training'; masterScore: number; subject: string; labTeaching?: number }
   | { kind: 'practice'; quality: number; subject: string }
   | { kind: 'exposure'; subject: string }
   | { kind: 'adventure'; quality: number; subject: string }
@@ -88,12 +88,20 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
       kindKey = 'vis';
       break;
   }
+  // a lab's Teaching Specialization adds to teaching and training done in it, at most +3 (DE Laboratory)
+  if ((src.kind === 'teacher' || src.kind === 'training') && src.labTeaching) parts.push({ label: 'Lab Teaching Specialization', value: Math.min(3, src.labTeaching) });
   const sq = parts.reduce((s, p) => s + p.value, 0);
   for (const m of sqMods(d, kindKey)) parts.push(m);
   let total = parts.reduce((s, p) => s + p.value, 0);
   if (kindKey === 'teaching' || kindKey === 'book') {
     // Poor Student: -3, but never below 1 (already in sqMods as negative)
     total = Math.max(1, total);
+  }
+  // a magic character subtracts its Might Score from all Advancement Totals (RoP: Magic, Magic Might)
+  if (d.magicChar && d.magicChar.might > 0) {
+    parts.push({ label: `Magic Might ${d.magicChar.might} (a magic character's Might is subtracted)`, value: -d.magicChar.might });
+    total = Math.max(0, total - d.magicChar.might);
+    if (!total) notes.push('A magic character with this much Might learns nothing from this source (RoP: Magic, Advancement).');
   }
   // Affinity
   let xp = total;
@@ -383,6 +391,17 @@ export function twilightComprehension(d: DerivedCharacter, warpingGained: number
   };
 }
 
+/**
+ * The size of Virtue or Flaw a Twilight can bring (DE Effects of Twilight): a Virtue is Minor at 7 to
+ * 10 Warping Points and Major above 10; a Flaw is Minor at 7 to 10 and Major at 10 or more (the
+ * book overlaps at 10, so either). Nothing below 7.
+ */
+export function twilightSizes(kind: 'virtue' | 'flaw', totalWarping: number): ('Minor' | 'Major')[] {
+  if (totalWarping < 7) return [];
+  if (kind === 'virtue') return totalWarping > 10 ? ['Major'] : ['Minor'];
+  return totalWarping > 10 ? ['Major'] : totalWarping === 10 ? ['Minor', 'Major'] : ['Minor'];
+}
+
 /** What a Twilight can do to the maga (DE Effects of Twilight): good if she comprehended it, bad if not. */
 export type TwilightEffect = 'knowledge' | 'virtue' | 'spell' | 'lost-knowledge' | 'flaw' | 'lost-spells';
 export function twilightEffects(comprehended: boolean, totalWarping: number): { id: TwilightEffect; label: string; ok: boolean }[] {
@@ -395,7 +414,7 @@ export function twilightEffects(comprehended: boolean, totalWarping: number): { 
       ]
     : [
         { id: 'lost-knowledge', label: `Lost Knowledge: −${2 * totalWarping} xp in an Art, Magic Theory or Enigmatic Wisdom`, ok: true },
-        { id: 'flaw', label: `New ${totalWarping >= 10 ? 'Major' : 'Minor'} Hermetic or Supernatural Flaw`, ok: totalWarping >= 7 },
+        { id: 'flaw', label: `New ${twilightSizes('flaw', totalWarping).join(' or ') || 'Minor'} Hermetic or Supernatural Flaw`, ok: totalWarping >= 7 },
         { id: 'lost-spells', label: `Lost spells totalling ${totalWarping} magnitudes`, ok: true },
       ];
 }

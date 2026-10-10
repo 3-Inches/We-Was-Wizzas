@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { ARTS, ART_NAMES, type Art } from '../../../data';
 import { addVirtue } from '../../../engine/character/factory';
-import { twilightAvoidance, twilightComprehension, twilightEffects, twilightTriggered, warpingScoreWith, type TwilightEffect } from '../../../engine/longterm';
+import { twilightAvoidance, twilightComprehension, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith, type TwilightEffect } from '../../../engine/longterm';
 import { Card, Field, Stepper } from '../../kit';
 import type { CharEditor } from '../useChar';
 
@@ -25,6 +25,7 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
   const [effect, setEffect] = useState<TwilightEffect | ''>('');
   const [target, setTarget] = useState('art:Vi');
   const [vfId, setVfId] = useState('');
+  const [vfSize, setVfSize] = useState<'Minor' | 'Major' | ''>('');
   const [scar, setScar] = useState('');
   if (!c || !d) return null;
   const aura = ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0;
@@ -57,8 +58,10 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
         if (ab) shiftXp(ab.xp, xp);
       }
       if ((effect === 'virtue' || effect === 'flaw') && vfId) {
-        const size = effect === 'virtue' ? (total > 10 ? 'Major' : 'Minor') : total >= 10 ? 'Major' : 'Minor';
-        addVirtue(x, data, vfId, size, undefined, { free: true, freeReason: 'Twilight' });
+        // only the size the Warping Points allow, and only a Virtue or Flaw that comes in that size
+        const allowed = twilightSizes(effect, total).filter((z) => data.vfById.get(vfId)?.sizes.includes(z));
+        const size = allowed.includes(vfSize as 'Minor' | 'Major') ? (vfSize as 'Minor' | 'Major') : allowed[0];
+        if (size) addVirtue(x, data, vfId, size, undefined, { free: true, freeReason: 'Twilight' });
       }
       if (scar.trim()) x.twilightScars = [...x.twilightScars.filter(Boolean), scar.trim()];
     });
@@ -66,11 +69,16 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
     setStage({ kind: 'idle' });
     setScar('');
     setVfId('');
+    setVfSize('');
   };
 
   const total = stage.kind === 'outcome' ? stage.gained + stage.extra : 0;
   const choices = stage.kind === 'outcome' ? twilightEffects(stage.comprehended, total).filter((e) => e.ok) : [];
-  const vfList = data.virtuesFlaws.filter((v) => v.kind === (effect === 'flaw' ? 'flaw' : 'virtue') && (v.categories.includes('Hermetic') || v.categories.includes('Supernatural')));
+  const sizes = effect === 'virtue' || effect === 'flaw' ? twilightSizes(effect, total) : [];
+  const vfList = data.virtuesFlaws.filter(
+    (v) => v.kind === (effect === 'flaw' ? 'flaw' : 'virtue') && (v.categories.includes('Hermetic') || v.categories.includes('Supernatural')) && v.sizes.some((z) => sizes.includes(z as 'Minor' | 'Major')),
+  );
+  const pickSizes = sizes.filter((z) => data.vfById.get(vfId)?.sizes.includes(z));
 
   return (
     <Card title="Warping & Twilight">
@@ -145,13 +153,22 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
                   </Field>
                 )}
                 {(effect === 'virtue' || effect === 'flaw') && (
-                  <Field label={effect === 'virtue' ? 'Virtue gained' : 'Flaw gained'}>
-                    <select value={vfId} onChange={(e) => setVfId(e.target.value)}>
+                  <Field label={`${sizes.join(' or ')} ${effect === 'virtue' ? 'Virtue' : 'Flaw'} gained`} hint={`${total} Warping Points: ${effect === 'virtue' ? 'Minor at 7–10, Major above 10' : 'Minor at 7–10, Major at 10 or more'} (DE)`}>
+                    <select value={vfId} onChange={(e) => (setVfId(e.target.value), setVfSize(''))}>
                       <option value="">— choose —</option>
                       {vfList.map((v) => (
                         <option key={v.id} value={v.id}>
-                          {v.name} ({v.sizes.join('/')})
+                          {v.name} ({v.sizes.filter((z) => sizes.includes(z as 'Minor' | 'Major')).join('/')})
                         </option>
+                      ))}
+                    </select>
+                  </Field>
+                )}
+                {pickSizes.length > 1 && (
+                  <Field label="Size">
+                    <select value={vfSize || pickSizes[0]} onChange={(e) => setVfSize(e.target.value as 'Minor' | 'Major')}>
+                      {pickSizes.map((z) => (
+                        <option key={z}>{z}</option>
                       ))}
                     </select>
                   </Field>

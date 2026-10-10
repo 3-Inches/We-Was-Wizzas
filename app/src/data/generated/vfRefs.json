@@ -2246,6 +2246,30 @@
     "q": "This is a supernatural ability, and you cannot lose it when being trained as a magus (see Ars Magica 5th Edition, page 107"
    }
   ],
+  "samovily-blood": [
+   {
+    "vf": "faerie-blood",
+    "q": "Faerie Blood"
+   }
+  ],
+  "mythic-blood-zmey": [
+   {
+    "vf": "minor-magical-focus",
+    "q": "Minor Magical Focus"
+   },
+   {
+    "vf": "lecherous-flaw",
+    "q": "Lecherous"
+   },
+   {
+    "s": "DE#veil-of-invisibility",
+    "q": "The granted power may be invisibility (as Veil of Invisibility (ArM5 page 146"
+   },
+   {
+    "s": "DE#wings-of-the-soaring-wind",
+    "q": "…Range and no Penetration, castable without words or gestures), the ability to fly on the wind (as Wings of the Soaring Wind (ArM5 page 126"
+   }
+  ],
   "miles-flaw": [
    {
     "vf": "higher-purpose-flaw",
@@ -2256,6 +2280,20 @@
    {
     "s": "DE#changing-ranges-durations-and-targets",
     "q": "…can only take advantage of these benefits when casting Hermetic spells of Range Touch, Duration Ring, and Target Circle (ArM5, page 114"
+   }
+  ],
+  "banishing": [
+   {
+    "s": "RoP_I#infernal-powers",
+    "q": "(See Realms of Power: The Infernal, page 34"
+   },
+   {
+    "s": "DE#realm-interaction",
+    "q": "…that is aligned with the character's Banishing Ability, the creature's roll is modified by the Realm Interaction Table on ArM5, page 183"
+   },
+   {
+    "s": "DE#weight-of-a-thousand-hells",
+    "q": "…reduced and it suffers overwhelming pain and discomfort (and negative modifiers) as described in Weight of a Thousand Hells (ArM5, page 148"
    }
   ],
   "orphic-magic": [
@@ -2710,6 +2748,12 @@
     "q": "Elementalist Water"
    }
   ],
+  "type-summoning": [
+   {
+    "vf": "summoning",
+    "q": "Summoning"
+   }
+  ],
   "vulnerable-to-form-flaw": [
    {
     "vf": "elementalist-water",
@@ -2718,6 +2762,16 @@
    {
     "vf": "elementalist-fire",
     "q": "Elementalist Fire"
+   }
+  ],
+  "gruagach": [
+   {
+    "vf": "wealthy",
+    "q": "Wealthy"
+   },
+   {
+    "vf": "poor-flaw",
+    "q": "Poor"
    }
   ],
   "external-soul": [
@@ -2774,6 +2828,12 @@
    {
     "s": "CG#raw-materials",
     "q": "The alchemist may prepare enough raw materials for a craftsman to use in one season (City & Guild, page 68"
+   }
+  ],
+  "natural-magician": [
+   {
+    "vf": "entreat-the-powers",
+    "q": "Entreat the Powers"
    }
   ],
   "charm-magician-flaw": [
@@ -2880,6 +2940,10 @@
     "q": "Puissant Single Weapon)"
    },
    {
+    "vf": "muspelli",
+    "q": "Muspelli"
+   },
+   {
     "vf": "shapeshifter",
     "q": "Shapeshifter"
    },
@@ -2906,6 +2970,62 @@
    {
     "s": "TMRE#hermetic-divination",
     "q": "…why this has happened, and will learn the Mystery Virtue Hermetic Divination, as described in The Mysteries Revised Edition, page 58"
+   }
+  ],
+  "muspelli": [
+   {
+    "vf": "outsider-flaw",
+    "q": "Outsider"
+   }
+  ],
+  "horrifying-appearance-three-heads-flaw": [
+   {
+    "vf": "giant-blood",
+    "q": "Giant Blood"
+   },
+   {
+    "vf": "large",
+    "q": "Large"
+   },
+   {
+    "vf": "muspelli",
+    "q": "Muspelli"
+   },
+   {
+    "vf": "greater-immunity",
+    "q": "Greater Immunity"
+   },
+   {
+    "vf": "greater-magical-defenses",
+    "q": "Greater Magical Defenses"
+   },
+   {
+    "vf": "weak-characteristics-flaw",
+    "q": "Weak Characteristics"
+   }
+  ],
+  "invocation-of-names-of-power": [
+   {
+    "vf": "names-of-power",
+    "q": "Names of Power"
+   }
+  ],
+  "sahir": [
+   {
+    "vf": "dark-secret-flaw",
+    "q": "Dark Secret"
+   }
+  ],
+  "vizier": [
+   {
+    "vf": "sahir",
+    "q": "Sahir"
+   }
+  ],
+  "hermetic-realm-initiation": [
+   {
+    "vf": "solomonic-travel",
+    "q": "Solomonic Travel"
    }
   ],
   "submitted-qareen": [
@@ -2976,6 +3096,12 @@
     "q": "…grants the character additional powers as his True Faith score increases (see \"Embodying the Light,\" Realms of Power: The Divine, page 61"
    }
   ],
+  "greater-power-command-the-masses": [
+   {
+    "vf": "greater-power",
+    "q": "Greater Power"
+   }
+  ],
   "confluence-of-the-realms": [
    {
     "vf": "flexible-formulaic-magic",
@@ -2992,10 +3118,34 @@
     "q": "Second Sight"
    }
   ],
+  "greater-immunity-deprivation": [
+   {
+    "vf": "ghostly-warder",
+    "q": "(See the Virtue on ArM5, page 43"
+   }
+  ],
+  "transformed-being": [
+   {
+    "vf": "strong-faerie-blood",
+    "q": "Strong Faerie Blood"
+   },
+   {
+    "vf": "greater-power",
+    "q": "Greater Power"
+   },
+   {
+    "vf": "true-faith",
+    "q": "True Faith"
+   }
+  ],
   "bound-to-magic-flaw": [
    {
     "vf": "warped-by-magic-flaw",
     "q": "Warped by Magic"
+   },
+   {
+    "vf": "transformed-being",
+    "q": "Transformed Animals"
    }
   ],
   "magic-being-companion-flaw": [
@@ -3034,6 +3184,12 @@
    {
     "vf": "common-sense",
     "q": "Common Sense"
+   }
+  ],
+  "passes-for-human": [
+   {
+    "vf": "infiltrator",
+    "q": "Infiltrator"
    }
   ],
   "infiltrator": [
@@ -3108,6 +3264,46 @@
     "q": "True Faith"
    }
   ],
+  "new-christian-virtues": [
+   {
+    "vf": "ars-notoria",
+    "q": "Ars Notoria"
+   },
+   {
+    "vf": "holy-music",
+    "q": "Holy Music"
+   },
+   {
+    "vf": "senior-clergy",
+    "q": "Senior Clergy"
+   },
+   {
+    "vf": "brother-chaplain",
+    "q": "Brother Chaplain"
+   },
+   {
+    "vf": "brother-knight",
+    "q": "Brother Knight"
+   },
+   {
+    "vf": "brother-sergeant",
+    "q": "Brother Sergeant"
+   },
+   {
+    "vf": "eastern-priest",
+    "q": "Eastern Priest"
+   }
+  ],
+  "new-christian-flaws": [
+   {
+    "vf": "monastic-vows-hermetic-flaw",
+    "q": "Monastic Vows (Hermetic)"
+   },
+   {
+    "vf": "failed-monk-flaw",
+    "q": "Failed Monk"
+   }
+  ],
   "ars-notoria": [
    {
     "vf": "magister-in-artibus",
@@ -3152,6 +3348,20 @@
    {
     "vf": "greater-infernal-power",
     "q": "Greater Infernal Power"
+   }
+  ],
+  "infernal-blessing": [
+   {
+    "vf": "greater-immunity",
+    "q": "Greater Immunity"
+   },
+   {
+    "vf": "affinity-with-ability",
+    "q": "Affinity with (Ability)"
+   },
+   {
+    "vf": "puissant-ability",
+    "q": "Puissant (Ability)"
    }
   ],
   "foe-art": [
@@ -3234,6 +3444,26 @@
     "q": "Outcast"
    }
   ],
+  "alchemist-of-soba": [
+   {
+    "vf": "wealthy",
+    "q": "Wealthy"
+   },
+   {
+    "vf": "protection",
+    "q": "Protection"
+   },
+   {
+    "vf": "soban-alchemy",
+    "q": "Soban Alchemy"
+   }
+  ],
+  "saints-aid": [
+   {
+    "vf": "holy-magic",
+    "q": "Holy Magic"
+   }
+  ],
   "faerie-blood-jentil": [
    {
     "vf": "large",
@@ -3242,6 +3472,16 @@
    {
     "vf": "second-sight",
     "q": "Second Sight"
+   }
+  ],
+  "chthonic-sorginak-magic": [
+   {
+    "vf": "chthonic-magic",
+    "q": "Chthonic Magic"
+   },
+   {
+    "p": "FF:123",
+    "q": "See Realms of Power: Infernal, page 123"
    }
   ],
   "ecstatic-magic": [
@@ -3266,6 +3506,18 @@
    {
     "p": "HMRE:42",
     "q": "(Hedge Magic Revised Edition, page 42"
+   }
+  ],
+  "lesser-malediction-machas-birth-pangs-flaw": [
+   {
+    "s": "DE#activities-while-injured",
+    "q": "…other wound penalties and has a chance of worsening if the character indulges in activities while this wound persists (ArM5, pages 178–179"
+   }
+  ],
+  "luan-laith": [
+   {
+    "vf": "berserk",
+    "q": "Berserk"
    }
   ],
   "of-kings-and-giants-antaeus-bloodline": [
@@ -3300,6 +3552,36 @@
     "q": "Poor"
    }
   ],
+  "skilled-geomancer": [
+   {
+    "vf": "wilderness-sense",
+    "q": "Wilderness Sense"
+   }
+  ],
+  "inenden-crafter": [
+   {
+    "vf": "maker-of-water-vessels",
+    "q": "Maker of Water Vessels"
+   },
+   {
+    "vf": "maker-of-textured-vessels",
+    "q": "Maker of Textured Vessels"
+   },
+   {
+    "vf": "crafters-eye",
+    "q": "Crafter's Eye"
+   }
+  ],
+  "crafters-eye": [
+   {
+    "vf": "eye-of-hephaestus",
+    "q": "Eye of Hephaestus"
+   },
+   {
+    "p": "CG:71",
+    "q": "This Virtue is identical to the Eye of Hephaestus Virtue presented in City & Guild, page 71"
+   }
+  ],
   "theriomorph": [
    {
     "vf": "factor",
@@ -3320,6 +3602,22 @@
    {
     "s": "HoH_MC#theriomorphy-minor-house-mystery",
     "q": "A similar Bjornaer Minor Mystery, Theriomorphy, is described in Houses of Hermes: Mystery Cults, page 29"
+   }
+  ],
+  "murabit": [
+   {
+    "vf": "dream-interpretation",
+    "q": "Dream Interpretation"
+   }
+  ],
+  "talib": [
+   {
+    "vf": "oath-of-fealty-flaw",
+    "q": "Oath of Fealty"
+   },
+   {
+    "vf": "vow-flaw",
+    "q": "Vow"
    }
   ]
  },
@@ -3395,6 +3693,12 @@
    "anchor": "abilities-with-no-score",
    "title": "Abilities With No Score",
    "text": "If a character has no score in an Ability, she may or may not be able to use it. If the Ability is not asterisked in the list from page 159, she may use it as if it had a score of zero, but rolling three extra botch dice. If it is asterisked, she cannot use it at all.\n\nA character who has placed a single experience point into an Ability may use it with a score of zero, with no extra botch dice, regardless of whether or not it is asterisked. Experience points represent a noticeable amount of training, and thus make the Ability available to the character.\n\nCharacters cannot use Supernatural Abilities unless they have at least one experience point in the Ability. Most characters cannot put experience points into any Supernatural Abilities. In most cases, a character needs a particular Virtue in order to put experience points into a particular Supernatural Ability, but there are exceptions. The most important exception is The Gift, which is covered later, and other exceptions are described in supplements.\n\n> ## Ability Roll:\n>\n> **Characteristic + Ability + die roll, meet or exceed the Ease Factor to succeed**\n>\n> Ability of 0 can be used if not asterisked, adding 3 botch dice.\n> Add +1 when using an Ability's specialization."
+  },
+  "DE#activities-while-injured": {
+   "book": "DE",
+   "anchor": "activities-while-injured",
+   "title": "Activities While Injured",
+   "text": "Characters are severely limited in what they can safely do while injured. Obviously, Incapacitated characters can do nothing. Less wounded characters are also limited. Any character who does more than his injuries allow must make an immediate Recovery roll for his most serious wound. This roll can result in the wound worsening, but not in a bonus to future rolls or improvement.\n\nCharacters who are injured in a combat need not make Recovery rolls for further activities within that combat, but must make the rolls if they take excessive action afterwards.\n\nWound Penalty –6 or greater: The character can talk, eat, and move himself short distances given time and assistance. Productive activities (including study, Hermetic Lab work, and craft work) are impossible.\n\nWound Penalty -3 to -5: The character can walk, provided he is allowed to go slowly and take frequent rests. All long-distance travel rates are halved. The character may study, but his Advancement Total is halved if he is at this level of penalty for one month or more of the season. Hermetic Lab work and craft work are impossible.\n\nWound Penalty –1 or –2: The character can travel and study normally, but cannot undertake strenuous activities, including casting spells that cost Fatigue. Hermetic Lab work and craft work can be undertaken as normal."
   },
   "DE#aging": {
    "book": "DE",
@@ -3804,6 +4108,12 @@
    "title": "True Faith",
    "text": "Those who give up mundane pursuits entirely and selflessly dedicate themselves to leading holy lives benefit from True Faith. True Faith is measured in Faith Points, which represent a person's connection to God. Those with True Faith may be Jewish, Christian, or Muslim, and, it seems, need not be wholly orthodox.\n\nTrue Faith, like Confidence, has a Score and Points. Taking the True Faith Major Virtue grants you a True Faith Score of 1, and a single Faith Point. Only by possessing the True Faith Major Virtue may a character have a True Faith score. Any character may possess any number of Faith Points (gained through the sacraments, a pilgrimage, or other holy endeavors) that once spent, do not return.\n\nYou may spend Faith Points like Confidence Points (and may spend as many Faith Points at once as your True Faith Score), as long as you are acting in accordance with God's will. If you do not possess a True Faith Score, then you may only spend one Faith Point at a time.\n\nA character with Faith Points but no True Faith Score does not benefit from Magic Resistance. A character with a True Faith Score gains Magic Resistance equal to this score multiplied by ten.\n\n**TRUE FAITH MAGIC RESISTANCE: True Faith Score X 10**\n\nEach dawn, you regain a number of Faith Points up to your True Faith Score, although if you already have more Faith Points than your True Faith Score, you do not gain additional Points.\n\nFor more details on True Faith, see *Realms of Power: The Divine Revised Edition*, page 56."
   },
+  "DE#veil-of-invisibility": {
+   "book": "DE",
+   "anchor": "veil-of-invisibility",
+   "title": "Veil of Invisibility",
+   "text": "R: Touch, D: Sun, T: Ind<br>\nThe target becomes completely undetectable to normal sight, regardless of what it does, but still casts a shadow.<br>\n(Base 4, +1 Touch, +2 Sun, +1 changing image)"
+  },
   "DE#verditius--verditius-magic": {
    "book": "DE",
    "anchor": "verditius--verditius-magic",
@@ -3816,6 +4126,12 @@
    "title": "Vis Extraction",
    "text": "You can extract raw vis from a magical environment (that is, any area with a Magical aura) by focusing the magical energy into a physical form. For each season that you spend extracting vis from the environment, calculate your Creo Vim Lab Total. For every ten points or part thereof in the result, one pawn of Vim vis is produced.\n\n**VIS EXTRACTION: One tenth (round up) of Creo Vim Lab Total pawns of Vim vis**"
   },
+  "DE#weight-of-a-thousand-hells": {
+   "book": "DE",
+   "anchor": "weight-of-a-thousand-hells",
+   "title": "Weight of a Thousand Hells",
+   "text": "R: Eye, D: Moon, T: Ind<br>\nCauses the victim to feel the despair, anguish, pain, and sorrow of a thousand sinners in Hell. This is a horrible spell, for the victim loses almost all motivation and earthly cares. All he can feel is his own pain – endless, inexorable, and searing. Appropriate Personality Trait rolls suffer a harmful adjustment of –5, and the target suffers –2 on any rolls that require thought or concentration. The target has a strong tendency to do nothing but brood.<br>\n(Base 4, +1 Eye, +3 Moon, +1 complex effect)"
+  },
   "DE#whispers-through-the-black-gate": {
    "book": "DE",
    "anchor": "whispers-through-the-black-gate",
@@ -3827,6 +4143,12 @@
    "anchor": "wilderness-sense-1",
    "title": "Wilderness Sense",
    "text": "You are mystically attuned to the ways of the wilderness. A Perception + Wilderness Sense roll against an Ease Factor of 9 lets you determine the direction of north, the upcoming weather, or the presence of natural hazards or resources. One roll will only reveal one piece of information.<br>\n*Specialties:* direction, weather, hazards, resources. (Supernatural)\n\n---"
+  },
+  "DE#wings-of-the-soaring-wind": {
+   "book": "DE",
+   "anchor": "wings-of-the-soaring-wind",
+   "title": "Wings of the Soaring Wind",
+   "text": "R: Touch, D: Conc, T: Ind<br>\nReq: Rego<br>\nGenerates a massive gust of air around you that supports and pushes you along through the air at speeds up to 40 miles per hour. Hovering in place is difficult, and requires a Finesse roll against an Ease Factor of 9 per round. It is dangerous for extended travel, because if you lose concentration, you are likely to sustain serious injuries (+15 damage, on average, although it may be more if the magus was very high up).<br>\n(Base 5, +1 Touch, +1 Conc, +2, highly unnatural, +1 Rego requisite)"
   },
   "DE#wizards-communion": {
    "book": "DE",
