@@ -79,7 +79,11 @@ export default function HelpPage() {
               A Virtue that gives another (Strong Faerie Blood → Second Sight, Magical Blood by the kind of magic being) adds it free. A copy you already bought becomes free.
               Open any Virtue or Flaw to see <b>Rules it refers to</b>: the Virtues, Flaws and book sections its text points to, quoted in place.
             </li>
-            <li>A companion Flaw (Magical Animal, Realm Spirit, Animal Companion) can create the companion&apos;s own sheet, with its Might, Size and powers.</li>
+            <li>
+              A companion Flaw (Magical Animal, Realm Spirit, Animal Companion) can create the companion&apos;s own sheet, with its Might, Size and powers. A magical companion is
+              built as a <i>Realms of Power: Magic</i> magic character: experience from its Season instead of age, Might from the saga&apos;s power level, Magic Qualities bought with
+              Might, and the Magical Friend status.
+            </li>
             <li>Finish creation to switch to the in-play sheet. You can always return to creation.</li>
           </ol>
         </Card>
@@ -95,7 +99,9 @@ export default function HelpPage() {
             </li>
             <li>
               <b>Seasons & Aging:</b> plan a season (books, teachers, training, practice, vis, adventure) and log it; experience is added with Affinities, gain limits and Virtues. Roll aging,
-              crises and Wizard&apos;s Twilight: avoid it, comprehend it, then apply the effect and the scar.
+              crises and Wizard&apos;s Twilight: avoid it, comprehend it, then apply the effect and the scar. A Twilight Virtue or Flaw is Minor or Major by the Warping Points gained.
+              Choose a teacher from the saga to fill in their scores, and add a lab&apos;s Teaching Specialization. <b>Write a book</b> works out a summa or tractatus and adds it to the
+              covenant library.
             </li>
             <li>
               <b>Lab & Items:</b> enchanted devices, talisman, familiar cords, Longevity Ritual.
@@ -126,7 +132,7 @@ export default function HelpPage() {
       </div>
       <Card title="About the rules data">
         <p className="small">
-          The rules come from the markdown books in this repository: 957 Virtues and Flaws, 122 Abilities, 1,205 spells, 610 guideline entries, 130 laboratory Virtues and Flaws, 198 Hooks
+          The rules come from the markdown books in this repository: 1,042 Virtues and Flaws, 48 Magic Qualities and Inferiorities, 122 Abilities, 1,205 spells, 610 guideline entries, 130 laboratory Virtues and Flaws, 198 Hooks
           and Boons and 240 Shape & Material entries, all extracted automatically, with hand-written mechanics for the Virtues and Flaws that change numbers. Books marked WIP are still being
           transcribed and may have errors. If something looks wrong, use an override and check the source text in the reader.
         </p>

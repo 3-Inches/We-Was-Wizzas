@@ -23,13 +23,18 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 - The Ability list hides what the character cannot learn: Supernatural Abilities without their Virtue, House Abilities (Heartbeast, Enigmatic Wisdom, Faerie Magic), and Mystery Cult Lore for non-initiates.
 - Post-Gauntlet years give 30 xp each, less 10 per season of lab work, never below 0 in a year (DE p.50).
 - Characters older than 35 roll aging before play, one year at a time or all at once, with Living Conditions, the Longevity Ritual, crises, and undo. Aging does not change what the Characteristics cost at creation.
-- Powers from Greater, Lesser, Personal and Ritual Power and Heroes' Birthright are built against their level budgets, with Penetration, Initiative, Fatigue and Confidence cost, or copied from a spell.
+- Powers from Greater, Lesser, Personal and Ritual Power, Focus Power and Heroes' Birthright are built against their level budgets, with Penetration, Initiative, Fatigue and Confidence cost, or copied from a spell. Strong Angelic Heritage can be taken more than once; each copy adds 30 levels of holy powers, paid from the Divine Might it gives (Corpus, a twentieth of the character's age), which also counts as Magic Resistance.
 - Holy Magic replaces Magic Theory in Lab Totals and the creation checks. True Faith and relics give Magic Resistance, and only the highest source counts.
 - Recommendations follow the concept themes you pick.
 - A Virtue that gives another adds it free and keeps it in step: Strong Faerie Blood gives Second Sight; Magical Blood gives the kind of magic being's advantage (+1 Characteristic, a Supernatural Virtue or a power); Templar Commander gives Temporal Influence. If the character already paid for that Virtue, it becomes free.
 - Every Virtue and Flaw description ends with **Rules it refers to**: the Virtues and Flaws it names and the book sections it cites ("see page 225"), quoted in place.
 - Each step has a short note on how its Characteristics, Virtues, Abilities, Arts or spells can be gained or improved in play (Characteristic Rituals, teaching Hermetic Virtues, Initiation, Twilight…).
 - Companion Flaws (Magical Animal, Realm Spirit, Animal Companion) create a linked sheet for the companion, with Might, Size and powers.
+- A magical companion follows *Realms of Power: Magic*'s rules for magic characters:
+  - Experience comes from the Season (spring 120, summer 360, autumn 720, winter 1200) instead of age, and the character does not age.
+  - Might comes from the saga's power level and the character's role, less Size for an animal. It buys Magic Qualities, Inferiorities give more points, and grogs take no Major Qualities.
+  - Size changes Strength and Quickness, Might is subtracted from Advancement Totals, and a magic human has Monstrous Appearance unless it takes Natural Appearance.
+  - Mundane Social Statuses give way to the five magical ones (a companion granted by a Flaw is a Magical Friend), and a companion cannot have companions of its own.
 - **Guided build** (Concept step): the player rates statements about what they want to play, 0–10 (skipping counts as 5), and gets Virtues, Flaws, a House, Arts and Abilities recommended from every enabled book, then a complete draft that passes the rules check.
   - Every Virtue and Flaw has a record of outcome tags (Casting Totals, Penetration, Faerie, the Church…) with a direction and strength, built from the hand-written mechanics and the book text, plus region and culture gates.
   - Follow-up questions open at 7 or more (or 3 or less) and stop once fewer than 10 options remain. Concept themes pre-set answers; a covenant in the toolkit answers the questions about vis, money, the library and the aura.
@@ -47,7 +52,7 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 | Magic | Casting Scores and Lab Totals for every Technique + Form in the current aura, Magic Resistance per Form, Penetration with Arcane Connections. One-click modifiers: Magical Focus, Special Circumstances, Cyclic and Potent Magic, Life Boost, Spell Improvisation's similar spell, and any other modifier |
 | Spellcasting | Formulaic, Ritual and spontaneous casting with the correct die, botch dice, Fatigue and Mastery; a botch adds its Warping Points, and All According to Plan rerolls a botch die once a session |
 | Health | Wounds from damage vs. Soak, Fatigue tracking, recovery rolls |
-| Seasons | Books, teachers, training, practice, exposure, adventure and vis, with gain limits and Magian Lineage's linked Abilities; Secondary Insight; aging and crises; Warping and Wizard's Twilight (avoid, comprehend, effects and scars, with Twilight Prone and Twilight Mastery) |
+| Seasons | Books, teachers, training, practice, exposure, adventure and vis, with gain limits and Magian Lineage's linked Abilities. Pick a teacher from the saga to fill in their Communication, Teaching and score; Apt Student, Good Teacher and a lab's Teaching Specialization (up to +3) are added. Secondary Insight; aging and crises; Warping and Wizard's Twilight (avoid, comprehend, effects and scars, with Twilight Prone and Twilight Mastery; a Twilight Virtue or Flaw is Minor or Major by the Warping Points gained). Write a summa or tractatus: Quality, Level and seasons from the author's scores, with the *Covenants* rules for artisans and resonant materials, and the finished book goes to the covenant library |
 | Lab & items | Enchanted devices, talisman and attunements, familiar cords, Longevity Ritual |
 | Other | Printable stat block, overrides for any number |
 
@@ -111,7 +116,7 @@ app/src/store/        zustand store persisted to IndexedDB, migrations, export/i
 app/src/ui/           React pages: character wizard & sheet, covenant, tools, reference, reader
 ```
 
-- **Rules data is extracted automatically:** 957 Virtues & Flaws, 122 Abilities, 1,205 spells, 610 guidelines, 130 lab Virtues & Flaws, 36 lab features, 198 Hooks & Boons, 240 Shape & Material entries, and weapons and armor.
+- **Rules data is extracted automatically:** 1,042 Virtues & Flaws, 48 Magic Qualities and Inferiorities, 122 Abilities, 1,205 spells, 610 guidelines, 130 lab Virtues & Flaws, 36 lab features, 198 Hooks & Boons, 240 Shape & Material entries, and weapons and armor.
 - **Mechanics are written by hand** in `src/data/mechanics.ts`, one entry per Virtue or Flaw, as declarative effects: xp pools, bonuses, Lab Total modifiers and so on. Virtues and Flaws without numeric effects appear on the sheet as text for the troupe to adjudicate.
 - **References are followed:** `tools/extract/extract_vf_refs.py` finds the Virtues and Flaws each text names and the pages it cites. It resolves each citation to its section through the Definitive Edition's indexes, the original core book's index mapped by topic, or the heading named in other books, plus a short list checked by hand. What those references mean for the rules (free Virtues, "the same as", requirements and exclusions) is in `src/data/crossRefs.ts`, added to the hand-written mechanics.
 - **Restrictions are curated** in `src/data/restrictions.ts` from the sentences in the books that limit a Virtue or Flaw, each quoted in the rules check. `src/engine/character/restrictions.ts` applies them in both the Virtue picker and the rules check.
