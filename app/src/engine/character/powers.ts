@@ -39,9 +39,12 @@ export function powerMagnitude(level: number): number {
   return Math.max(1, Math.ceil(level / 5));
 }
 
-/** Levels a power uses from its Virtue's pool: its level plus any Penetration bought. */
-export function powerCost(p: CharPower): number {
-  return p.level + (POWER_KINDS[p.kind].penetration ? p.penetration : 0);
+/**
+ * Levels a power uses from its Virtue's pool: its level plus any Penetration bought. A magic
+ * character's powers buy no Penetration with levels: theirs comes from Might (RoP: Magic).
+ */
+export function powerCost(p: CharPower, mightBased = false): number {
+  return p.level + (POWER_KINDS[p.kind].penetration && !mightBased ? p.penetration : 0);
 }
 
 export interface PowerStats {
@@ -59,8 +62,18 @@ export interface PowerStats {
  * for Greater and Personal ones.
  */
 export function powerStats(p: CharPower, qik: number, mightBased = false): PowerStats {
+  const base = basePowerStats(p, qik, mightBased);
+  if (!mightBased || !p.mastery || base.mightCost === undefined) return base;
+  // mastery points (RoP: Magic, Improved Powers): Personal, Lesser and Greater Powers can cost 0;
+  // a Ritual Power costs at least half its magnitude (rounded up); a Focus Power's cost never changes
+  const min = p.kind === 'ritual' ? Math.ceil(base.magnitude / 2) : 0;
+  const mightCost = p.kind === 'focus' ? base.mightCost : Math.max(Math.min(min, base.mightCost), base.mightCost - (p.mastery.cost ?? 0));
+  return { ...base, mightCost, init: base.init + (p.mastery.init ?? 0) };
+}
+
+function basePowerStats(p: CharPower, qik: number, mightBased: boolean): PowerStats {
   const magnitude = powerMagnitude(p.level);
-  const half = Math.max(1, Math.floor(magnitude / 2));
+  const half = Math.max(mightBased ? 0 : 1, Math.floor(magnitude / 2));
   const might = (n: number) => (mightBased ? { fatigue: 0, mightCost: n } : {});
   switch (p.kind) {
     case 'greater':
@@ -80,8 +93,62 @@ export function powerStats(p: CharPower, qik: number, mightBased = false): Power
 }
 
 /** Levels spent per kind. */
-export function powerSpending(powers: CharPower[] = []): Partial<Record<PowerKind, number>> {
+export function powerSpending(powers: CharPower[] = [], mightBased = false): Partial<Record<PowerKind, number>> {
   const out: Partial<Record<PowerKind, number>> = {};
-  for (const p of powers) out[p.kind] = (out[p.kind] ?? 0) + powerCost(p);
+  for (const p of powers) out[p.kind] = (out[p.kind] ?? 0) + powerCost(p, mightBased);
   return out;
+}
+
+/** Mastery points a power uses: each Might point of cost taken off, each point of Initiative, each 5 levels of a Focus Power beyond Might. */
+export function masteryOn(p: CharPower): number {
+  const m = p.mastery ?? {};
+  return (m.cost ?? 0) + (m.init ?? 0) + (m.level ?? 0);
+}
+
+export interface MasteryPools {
+  /** from Improved Powers (5 each), less Reduced Power (5 each): for any power */
+  general: number;
+  /** unused levels of each power Quality, 5 to a point: for powers of that kind (Greater also for Lesser) */
+  leftover: Partial<Record<PowerKind, number>>;
+  /** points used on powers and turned into experience */
+  spent: number;
+  available: number;
+  /** points used beyond what the pools allow */
+  over: number;
+}
+
+/**
+ * A magic character's mastery points (RoP: Magic). Improved Powers gives 5 for any power; the
+ * spell levels left over from a power Quality become 1 point per 5 levels for powers of the same
+ * kind (Greater Power's also for Lesser Powers); Reduced Power takes 5 away, to be spent as a higher
+ * cost or lower Initiative. Points may also become 5 experience points each in Concentration,
+ * Finesse or Penetration.
+ */
+export function masteryPools(powers: CharPower[] = [], budgets: Partial<Record<PowerKind, number>>, general: number, xpPoints = 0): MasteryPools {
+  const used = powerSpending(powers, true);
+  const leftover: Partial<Record<PowerKind, number>> = {};
+  for (const k of ['greater', 'lesser', 'personal', 'ritual', 'focus'] as PowerKind[]) {
+    const n = Math.floor(Math.max(0, (budgets[k] ?? 0) - (used[k] ?? 0)) / 5);
+    if (n) leftover[k] = n;
+  }
+  const on = (k: PowerKind) => powers.filter((p) => p.kind === k).reduce((s, p) => s + masteryOn(p), 0);
+  let fromGeneral = xpPoints;
+  const pool = { ...leftover };
+  const draw = (need: number, from: PowerKind[]) => {
+    let rest = need;
+    for (const f of from) {
+      const take = Math.max(0, Math.min(rest, pool[f] ?? 0));
+      pool[f] = (pool[f] ?? 0) - take;
+      rest -= take;
+    }
+    fromGeneral += rest;
+  };
+  draw(on('greater'), ['greater']);
+  draw(on('lesser'), ['lesser', 'greater']);
+  draw(on('personal'), ['personal']);
+  draw(on('ritual'), ['ritual']);
+  draw(on('focus'), ['focus']);
+  const spent = powers.reduce((s, p) => s + masteryOn(p), 0) + xpPoints;
+  const available = general + Object.values(leftover).reduce((s, n) => s + (n ?? 0), 0);
+  return { general, leftover, spent, available, over: Math.max(0, fromGeneral - general) };
 }

@@ -4,16 +4,17 @@
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
-import { addVirtue, ensureAbility, newCharacter, removeVirtue, setHouse, syncImpliedVirtues } from './character/factory';
+import { addQualities, addVirtue, ensureAbility, newCharacter, removeQualities, removeVirtue, setHouse, syncImpliedVirtues } from './character/factory';
 import { deriveCharacter, postGauntletXp } from './character/derive';
 import { validateCharacter } from './character/validate';
 import { abilityAvailability, vfAvailability } from './character/restrictions';
-import { POWER_KINDS, powerSpending, powerStats } from './character/powers';
+import { POWER_KINDS, masteryPools, powerSpending, powerStats } from './character/powers';
 import { ageYears, computeStudy, magianLinkedGains, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith } from './longterm';
 import { castingScore, conditionalBonuses, labTotal, magicResistance } from './magic';
 import { migrateCharacter } from '../store/migrate';
 import { CROSS_REF_MECHANICS } from '../data/crossRefs';
 import { planBook } from './books';
+import { fixesFor } from './character/fixes';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -459,6 +460,10 @@ describe('third playtest: Twilight sizes, Strong Angelic Heritage, magic charact
     expect(codes(c)).toEqual(expect.arrayContaining(['magic-status', 'magic-friend']));
     expect(vfAvailability(derive(c), data, data.vfById.get('magic-being-companion-flaw')!)?.code).toBe('companion-of-companion');
     expect(vfAvailability(derive(newCharacter('companion', 's1')), data, data.vfById.get('magical-friend-flaw')!)?.code).toBe('magic-only');
+    // and a magic character may take it: it is one of the five magical Social Statuses
+    const friend = magicHuman();
+    addVirtue(friend, data, 'magical-friend-flaw', 'Minor');
+    expect(codes(friend)).not.toContain('being');
   });
 });
 
@@ -478,5 +483,114 @@ describe('writing books (DE Writing Books)', () => {
     expect(ab.seasons).toBe(1);
     const capped = planBook(derive(c), { kind: 'summa', isArt: false, score: 20, level: 1, com: 3, language: 5 });
     expect(capped.quality).toBe(24);
+  });
+});
+
+describe('fourth playtest: a magic character\'s Qualities and powers (RoP: Magic)', () => {
+  const bingus = () => {
+    const c = newCharacter('companion', 's1');
+    c.creature = { realm: 'Magic', kind: 'animal', size: 0, might: 0, intelligence: 'companion', magicCharacter: { season: 'summer', powerLevel: 'Medium', baseMight: 10, form: 'An', qualities: [] } };
+    return c;
+  };
+  const issuesOf = (c: Character, code: string) => validateCharacter(derive(c), data, rules).filter((i) => i.code === code);
+  it('adds several copies at once, and holds Improved and Reduced (Characteristic) to their prerequisites', () => {
+    const c = bingus();
+    addQualities(c, data, 'improved-characteristic', 3, 'Int');
+    addQualities(c, data, 'reduced-characteristic-inferiority', 4, 'Dex');
+    expect(c.creature!.magicCharacter!.qualities).toHaveLength(7);
+    let d = derive(c);
+    // Improved needs +5 already, Reduced −5 from Poor (Characteristic): neither applies, and the Inferiorities give no points
+    expect([d.characteristics.Int.value, d.characteristics.Dex.value]).toEqual([0, 0]);
+    expect(d.magicChar!.points).toMatchObject({ budget: 10, spent: 9, fromInferiorities: 0 });
+    expect(issuesOf(c, 'magic-quality').map((i) => i.quality)).toEqual([
+      { id: 'improved-characteristic', param: 'Int', count: 3 },
+      { id: 'reduced-characteristic-inferiority', param: 'Dex', count: 4 },
+    ]);
+    // Great Intelligence twice takes Int 3 to 5; Poor Dexterity twice takes Dex −3 to −5
+    c.characteristics.Int = 3;
+    c.characteristics.Dex = -3;
+    for (let i = 0; i < 2; i++) {
+      addVirtue(c, data, 'great-characteristic', 'Minor', 'Int');
+      addVirtue(c, data, 'poor-characteristic-flaw', 'Minor', 'Dex');
+    }
+    d = derive(c);
+    expect(d.characteristics.Int.value).toBe(8);
+    // no lower than the inverse of the greatest Characteristic (Int +8): three of the four apply
+    expect(d.characteristics.Dex.value).toBe(-8);
+    expect(d.magicChar!.points.fromInferiorities).toBe(9);
+    const fix = issuesOf(c, 'magic-quality');
+    expect(fix.map((i) => i.quality)).toEqual([{ id: 'reduced-characteristic-inferiority', param: 'Dex', count: 1 }]);
+    const f = fixesFor(fix[0], derive(c), data, rules)[0];
+    expect(f.label).toBe('Remove Reduced (Characteristic) (Dexterity)');
+    if (f.kind === 'apply') f.apply(c);
+    expect(c.creature!.magicCharacter!.qualities.filter((q) => q.id === 'reduced-characteristic-inferiority')).toHaveLength(3);
+    removeQualities(c, data, 'improved-characteristic', 'Int', 2);
+    expect(c.creature!.magicCharacter!.qualities.filter((q) => q.id === 'improved-characteristic')).toHaveLength(1);
+  });
+  it('takes the Inferiority with the Flaw it brought, so its points go too', () => {
+    const c = bingus();
+    const [q] = addQualities(c, data, 'minor-flaw-inferiority', 1);
+    const live = c.creature!.magicCharacter!.qualities.find((x) => x.uid === q.uid)!;
+    live.virtueUid = addVirtue(c, data, 'greedy-flaw', 'Minor', undefined, { noPoints: true }).uid;
+    expect(derive(c).magicChar!.points.budget).toBe(11);
+    removeVirtue(c, data, live.virtueUid);
+    expect(c.creature!.magicCharacter!.qualities).toHaveLength(0);
+    expect(derive(c).magicChar!.points.budget).toBe(10);
+  });
+  it('raises Confidence with Improved Confidence, also on a finished character', () => {
+    const c = bingus();
+    addQualities(c, data, 'improved-confidence', 2);
+    expect(derive(c).confidence).toEqual({ score: 3, points: 7 });
+    c.creation.finalized = true;
+    c.confidence = { score: 3, points: 7 };
+    addQualities(c, data, 'improved-confidence', 1);
+    expect(c.confidence).toEqual({ score: 4, points: 9 });
+    removeQualities(c, data, 'improved-confidence', undefined, 2);
+    expect(c.confidence).toEqual({ score: 2, points: 5 });
+    // a Score that no longer matches is flagged, and the fix keeps the points spent so far
+    c.confidence = { score: 1, points: 21 };
+    const issue = issuesOf(c, 'magic-confidence')[0];
+    expect(issue).toBeDefined();
+    const f = fixesFor(issue, derive(c), data, rules)[0];
+    if (f.kind === 'apply') f.apply(c);
+    expect(c.confidence).toEqual({ score: 2, points: 21 });
+  });
+  it('gives Magical Meditation as an Ability at 1, and takes it away with the Quality', () => {
+    const c = bingus();
+    addQualities(c, data, 'magical-meditation', 1);
+    const d = derive(c);
+    const ab = d.abilities.find((a) => a.abilityId === 'magical-meditation');
+    expect(ab?.score).toBe(1);
+    expect(abilityAvailability(d, data, 'magical-meditation').ok).toBe(true);
+    expect(codes(c)).not.toContain('ability-access');
+    removeQualities(c, data, 'magical-meditation', undefined, 1);
+    expect(c.abilities.some((a) => a.abilityId === 'magical-meditation')).toBe(false);
+  });
+  it('spends mastery points from Improved Powers and unused levels on its powers', () => {
+    const c = bingus();
+    addQualities(c, data, 'improved-powers', 1);
+    addQualities(c, data, 'lesser-power', 1);
+    addQualities(c, data, 'ritual-power', 2);
+    c.powers = [
+      { uid: 'p1', name: 'From Nag to Charger', kind: 'lesser', level: 15, penetration: 0, mastery: { cost: 2 } },
+      { uid: 'p2', name: 'Grant Virtue', kind: 'ritual', level: 50, penetration: 0, mastery: { cost: 9 } },
+    ];
+    const d = derive(c);
+    // the book's Aeolus: a level 15 Lesser Power with 10 levels left over costs 1 Might
+    expect(powerStats(c.powers[0], 0, true).mightCost).toBe(1);
+    // a Ritual Power costs at least half its magnitude
+    expect(powerStats(c.powers[1], 0, true).mightCost).toBe(5);
+    const mp = masteryPools(c.powers, d.powerBudgets, d.magicChar!.mastery);
+    expect([mp.general, mp.leftover.lesser, mp.spent, mp.over]).toEqual([5, 2, 11, 4]);
+    expect(codes(c)).toContain('mastery-over');
+    c.powers[1].mastery = { cost: 5 };
+    expect(codes(c)).not.toContain('mastery-over');
+    // effects of level 50 or more are Ritual Powers
+    addQualities(c, data, 'personal-power', 2);
+    c.powers.push({ uid: 'p3', name: 'Super Form', kind: 'personal', level: 50, penetration: 0 });
+    expect(codes(c)).toContain('power-ritual');
+    // mastery points taken as experience in Concentration, Finesse or Penetration
+    c.creature!.magicCharacter!.masteryXp = 2;
+    expect(derive(c).budgets.find((b) => b.id === 'pool:mastery')?.total).toBe(10);
   });
 });

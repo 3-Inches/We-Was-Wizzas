@@ -9,11 +9,12 @@
 import { ART_NAMES, CHAR_NAMES, type Art, type Characteristic, type GameData, type ParamSpec, type VFSize, type VirtueFlawDef } from '../../data';
 import type { Character, HouseRules, XpSource } from '../types';
 import { deriveCharacter, canSpend, type DerivedCharacter, type XpBudget } from './derive';
-import { addVirtue, applyMythicType, MYTHIC_TYPES, removeVirtue } from './factory';
+import { addVirtue, applyMythicType, MYTHIC_TYPES, removeQualities, removeVirtue } from './factory';
 import { validateCharacter, type Issue, type Step } from './validate';
 import { vfAvailability } from './restrictions';
 import { describeChanges, lowerAbilityTo, moveXp, raiseAbilityTo, rawForAbilityScore, trimPool } from './xpops';
 import { POWER_KINDS } from './powers';
+import { MAGIC_QUALITY_BY_ID } from './magicCharacter';
 
 export type Fix =
   | { kind: 'apply'; label: string; auto?: boolean; apply: (c: Character) => string | void }
@@ -62,6 +63,25 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
     case 'fortype': case 'mythic-only': case 'grog-hermetic': case 'being': case 'nogift': case 'excl-puissant': case 'unknown': case 'one-focus':
     case 'magic-only': case 'magic-status': case 'companion-of-companion':
       return removeThis();
+    case 'magic-confidence': {
+      if (!d.magicChar) return [];
+      const base = c.creature?.intelligence === 'grog' ? { score: 0, points: 0 } : { score: 1, points: 3 };
+      const score = base.score + d.magicChar.confidence.score;
+      // points are spent in play: never take any away, only make up what the Qualities give a new character
+      const points = Math.max(c.confidence.points, base.points + d.magicChar.confidence.points);
+      return [{ kind: 'apply', label: `Set Confidence to ${score} (${points})`, auto: true, apply: (x) => void (x.confidence = { score, points }) }];
+    }
+    case 'magic-quality': {
+      // copies of a Magic Quality the rules do not allow: remove them (and any Virtue or Flaw they brought)
+      const q = issue.quality;
+      if (!q) return [];
+      const qd = MAGIC_QUALITY_BY_ID.get(q.id);
+      const label = `${qd?.name ?? q.id}${q.param ? ` (${CHAR_NAMES[q.param as Characteristic] ?? q.param})` : ''}`;
+      return [{
+        kind: 'apply', label: `Remove ${q.count === 1 ? label : `${q.count} × ${label}`}`, auto: qd?.kind === 'quality',
+        apply: (x) => void removeQualities(x, data, q.id, q.param, q.count),
+      }];
+    }
     case 'magic-friend':
       return [add('magical-friend-flaw', { auto: true })];
     case 'grog-story': case 'tradition':
@@ -291,6 +311,14 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
       const max = p ? POWER_KINDS[p.kind].maxLevel : undefined;
       return list(
         !!p && !!max && { kind: 'apply', label: `Lower ${p.name || 'it'} to level ${max}`, auto: true, apply: (x) => void ((x.powers ?? []).find((y) => y.uid === p.uid)!.level = max) },
+        goto('virtues', 'Edit the powers'),
+      );
+    }
+    case 'power-ritual': {
+      // RoP: Magic: an effect of level 50 or more is a Ritual Power (its levels come from Ritual Power)
+      const p = (c.powers ?? []).find((x) => x.uid === issue.other);
+      return list(
+        !!p && { kind: 'apply', label: `Make ${p.name || 'it'} a Ritual Power`, apply: (x) => void ((x.powers ?? []).find((y) => y.uid === p.uid)!.kind = 'ritual') },
         goto('virtues', 'Edit the powers'),
       );
     }

@@ -1,8 +1,9 @@
-import { ARTS, CHARACTERISTICS, type Art, type CharType, type GameData, type VFSize, type Characteristic } from '../../data';
+import { ARTS, ART_NAMES, CHARACTERISTICS, type Art, type CharType, type GameData, type VFSize, type Characteristic } from '../../data';
 import { HOUSE_BY_ID, EX_MISC_TRADITIONS } from '../../data/houses';
-import { SCHEMA_VERSION, type CharAbility, type Character, type CharVirtue, type XpSource } from '../types';
+import { SCHEMA_VERSION, type CharAbility, type Character, type CharVirtue, type CreatureQuality, type XpSource } from '../types';
 import { uid } from '../../util/id';
 import { needMet } from './restrictions';
+import { QUALITY_RULES } from './magicCharacter';
 
 export function newCharacter(type: CharType, sagaId: string, year = 1220): Character {
   const now = new Date().toISOString();
@@ -185,6 +186,9 @@ function removeVirtueOnly(c: Character, data: GameData, uidToRemove: string) {
   c.virtues = c.virtues.filter((v) => v.uid !== uidToRemove);
   // the Flaws it made the character take go with it (the Virtues it gave free: syncImpliedVirtues)
   c.virtues = c.virtues.filter((v) => v.requiredBy !== uidToRemove);
+  // a Virtue or Flaw a Magic Quality or Inferiority brought takes the Quality with it, so its points go too
+  const mcq = c.creature?.magicCharacter;
+  if (mcq?.qualities.some((q) => q.virtueUid === uidToRemove)) removeQualityCopies(c, data, mcq.qualities.filter((q) => q.virtueUid === uidToRemove));
   // remove granted free xp
   for (const e of def?.effects ?? []) {
     if (e.type === 'grantAbility') {
@@ -310,4 +314,75 @@ export function recomputeAge(c: Character, currentYear: number) {
     c.age = c.creation.apprenticeshipStartAge + 15 + c.creation.yearsPostGauntlet;
   }
   c.birthYear = currentYear - c.age;
+}
+
+/**
+ * Add copies of a Magic Quality or Inferiority (RoP: Magic). Improved Confidence raises a finished
+ * character's stored Confidence too, and Magical Meditation or (Form) Resistance gives its
+ * Supernatural Ability at 1.
+ */
+export function addQualities(c: Character, data: GameData, id: string, count = 1, param?: string): CreatureQuality[] {
+  const mc = c.creature?.magicCharacter;
+  if (!mc) return [];
+  const r = QUALITY_RULES[id] ?? {};
+  const added: CreatureQuality[] = [];
+  for (let i = 0; i < count; i++) {
+    const q: CreatureQuality = { uid: uid(), id, param };
+    mc.qualities.push(q);
+    added.push(q);
+    if (r.confidence && (c.creation.finalized || c.creation.confidenceSet)) {
+      c.confidence = { score: c.confidence.score + r.confidence.score, points: c.confidence.points + r.confidence.points };
+    }
+  }
+  syncQualityAbilities(c, data);
+  return added;
+}
+
+/** Remove the last `count` copies of a Quality (with a given Characteristic, Form or weapon). */
+export function removeQualities(c: Character, data: GameData, id: string, param: string | undefined, count: number) {
+  const mc = c.creature?.magicCharacter;
+  if (!mc) return;
+  const copies = mc.qualities.filter((q) => q.id === id && (q.param ?? '') === (param ?? ''));
+  removeQualityCopies(c, data, copies.slice(Math.max(0, copies.length - count)));
+}
+
+/** Remove one Quality by its uid (with the Virtue or Flaw it brought). */
+export function removeQualityUid(c: Character, data: GameData, quid: string) {
+  removeQualityCopies(c, data, (c.creature?.magicCharacter?.qualities ?? []).filter((q) => q.uid === quid));
+}
+
+function removeQualityCopies(c: Character, data: GameData, qs: CreatureQuality[]) {
+  const mc = c.creature?.magicCharacter;
+  if (!mc || !qs.length) return;
+  const gone = new Set(qs.map((q) => q.uid));
+  mc.qualities = mc.qualities.filter((q) => !gone.has(q.uid));
+  for (const q of qs) {
+    const r = QUALITY_RULES[q.id] ?? {};
+    if (r.confidence && (c.creation.finalized || c.creation.confidenceSet)) {
+      c.confidence = { score: Math.max(0, c.confidence.score - r.confidence.score), points: Math.max(0, c.confidence.points - r.confidence.points) };
+    }
+    // the Virtue or Flaw it brought goes with it
+    if (q.virtueUid) removeVirtue(c, data, q.virtueUid);
+  }
+  syncQualityAbilities(c, data);
+}
+
+/** The free score of 1 a Quality gives in its Supernatural Ability, kept in step with the Qualities. */
+export function syncQualityAbilities(c: Character, _data: GameData) {
+  const qs = c.creature?.magicCharacter?.qualities ?? [];
+  const want = new Set<string>();
+  for (const q of qs) {
+    const g = QUALITY_RULES[q.id]?.grantAbility;
+    if (!g) continue;
+    const param = g === 'form-resistance' ? (q.param ? ART_NAMES[q.param as Art] : undefined) : undefined;
+    if (g === 'form-resistance' && !param) continue;
+    want.add(`${g}|${param ?? ''}`);
+    const ab = ensureAbility(c, g, {}, param);
+    ab.xp.quality = 5;
+  }
+  for (const ab of [...c.abilities]) {
+    if (ab.xp.quality === undefined || want.has(`${ab.abilityId}|${ab.param ?? ''}`)) continue;
+    delete ab.xp.quality;
+    if (Object.values(ab.xp).every((x) => !x)) c.abilities = c.abilities.filter((a) => a !== ab);
+  }
 }
