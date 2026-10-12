@@ -7,7 +7,7 @@ import {
   type Art, type Characteristic, type Effect, type GameData, type VirtueFlawDef, type AbilityType, type AbilityDef, type PowerKind,
 } from '../../data';
 import type { Character, CharAbility, CharVirtue, HouseRules, XpAlloc, XpSource } from '../types';
-import { deriveMagicCharacter, characteristicQualities, SEASON_AGE, type MagicCharacterDerived } from './magicCharacter';
+import { deriveMagicCharacter, SEASON_AGE, type MagicCharacterDerived } from './magicCharacter';
 import { abilityScoreFromXp, abilityXpRemainder, artScoreFromXp, artXpRemainder, withAffinity, warpingScoreFromPoints } from '../xp';
 
 export type ResolvedEffect = Effect & { fromUid: string; fromName: string; param?: string };
@@ -320,12 +320,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   // ---------------------------------------------------------------- size & characteristics
   // a magic character (RoP: Magic) has no childhood: Season replaces age; its true form sets Size
   const mc = char.creature?.magicCharacter;
-  const magicChar = char.creature && mc ? deriveMagicCharacter(char.creature, mc) : null;
-  const child = magicChar ? { size: 0, char: 0 } : childModifier(char.age);
-  let size = eff('size').reduce((s, e) => s + e.amount, 0) + child.size + (magicChar ? magicChar.size : char.creature?.size ?? 0);
-  if (has('blood-of-the-nephilim') && char.age >= 100) size += Math.floor(char.age / 100);
-
-  const characteristics = {} as DerivedCharacter['characteristics'];
+  // Characteristics after Virtues and Flaws, before Size and Qualities: what Improved and Reduced
+  // (Characteristic) look at
+  const core = {} as Record<Characteristic, { base: number; value: number; notes: string[] }>;
   for (const c of CHARACTERISTICS) {
     const base = char.characteristics[c] ?? 0;
     let value = base;
@@ -344,6 +341,20 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
         cn.push(`${b.fromName} ${b.amount > 0 ? '+' : ''}${b.amount}`);
       }
     }
+    core[c] = { base, value, notes: cn };
+  }
+  const poorChars = new Set(eff('greatChar').filter((g) => g.amount < 0).map((g) => g.char as Characteristic));
+  const preSize = Object.fromEntries(CHARACTERISTICS.map((c) => [c, core[c].value])) as Record<Characteristic, number>;
+  const magicChar = char.creature && mc ? deriveMagicCharacter(char.creature, mc, { preSize, poor: poorChars }) : null;
+  const child = magicChar ? { size: 0, char: 0 } : childModifier(char.age);
+  let size = eff('size').reduce((s, e) => s + e.amount, 0) + child.size + (magicChar ? magicChar.size : char.creature?.size ?? 0);
+  if (has('blood-of-the-nephilim') && char.age >= 100) size += Math.floor(char.age / 100);
+
+  const characteristics = {} as DerivedCharacter['characteristics'];
+  for (const c of CHARACTERISTICS) {
+    const { base } = core[c];
+    let value = core[c].value;
+    const cn = [...core[c].notes];
     if (child.char) {
       value += child.char;
       cn.push(`child ${child.char}`);
@@ -355,7 +366,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
         cn.push(`Size ${sz > 0 ? '+' : ''}${sz}`);
       }
     }
-    const fromQualities = mc ? characteristicQualities(mc.qualities)[c] : undefined;
+    const fromQualities = magicChar?.chars[c];
     if (fromQualities) {
       value += fromQualities;
       cn.push(`${fromQualities > 0 ? 'Improved' : 'Reduced'} (${c}) ${fromQualities > 0 ? '+' : ''}${fromQualities}`);
@@ -381,6 +392,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     if (a.fromName.startsWith('Student of') && a.param) access.abilities.add(`${a.param.toLowerCase()}-lore`.replace('divine-lore', 'dominion-lore'));
   }
   for (const g of eff('grantAbility')) access.abilities.add(g.ability);
+  // Magical Meditation and (Form) Resistance come with their Qualities (RoP: Magic)
+  for (const g of magicChar?.grants ?? []) access.abilities.add(g.ability);
   if (isMagus) {
     // Abilities that come only from Hermetic or House Virtues are taught during apprenticeship
     const hermeticSource = (uid: string) => {
@@ -408,6 +421,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
 
   const granted = new Map<string, number>();
   for (const g of eff('grantAbility')) granted.set(g.ability, Math.max(granted.get(g.ability) ?? 0, g.score));
+  for (const g of magicChar?.grants ?? []) granted.set(g.ability, Math.max(granted.get(g.ability) ?? 0, 1));
 
   const abilities: DerivedAbility[] = char.abilities.map((ab) => deriveAbility(ab));
   function deriveAbility(ab: CharAbility): DerivedAbility {
@@ -505,6 +519,13 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
       id: 'laterLife', label: `Season: ${magicChar.xpParts.map((p) => `${p.label} ${p.value > 0 && p !== magicChar.xpParts[0] ? '+' : ''}${p.value}`).join(', ')}`,
       total: Math.max(0, magicChar.xp), spent: spentBy('laterLife'), allows: 'Any Ability its Virtues and Flaws allow (RoP: Magic, Season)', kind: 'ability',
     });
+    // mastery points from Improved Powers can be taken as 5 experience points each (RoP: Magic)
+    if (mc?.masteryXp) {
+      budgets.push({
+        id: 'pool:mastery', label: `Mastery points as experience (${mc.masteryXp} × 5)`, total: 5 * mc.masteryXp, spent: spentBy('pool:mastery'),
+        allows: 'Concentration, Finesse or Penetration (RoP: Magic, Improved Powers)', kind: 'ability', abilities: ['concentration', 'finesse', 'penetration'],
+      });
+    }
   } else {
     budgets.push({ id: 'native', label: 'Native Language', total: rules.nativeLanguageXp, spent: spentBy('native'), allows: 'Your native language only', kind: 'ability' });
     budgets.push({ id: 'childhood', label: 'Early Childhood', total: rules.childhoodXp, spent: spentBy('childhood'), allows: 'Area Lore, Athletics, Awareness, Brawl, Charm, Folk Ken, Guile, a second Living Language, Stealth, Survival, Swim', kind: 'ability', abilities: CHILDHOOD_ABILITIES });

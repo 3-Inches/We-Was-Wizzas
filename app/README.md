@@ -23,7 +23,7 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 - The Ability list hides what the character cannot learn: Supernatural Abilities without their Virtue, House Abilities (Heartbeast, Enigmatic Wisdom, Faerie Magic), and Mystery Cult Lore for non-initiates.
 - Post-Gauntlet years give 30 xp each, less 10 per season of lab work, never below 0 in a year (DE p.50).
 - Characters older than 35 roll aging before play, one year at a time or all at once, with Living Conditions, the Longevity Ritual, crises, and undo. Aging does not change what the Characteristics cost at creation.
-- Powers from Greater, Lesser, Personal and Ritual Power, Focus Power and Heroes' Birthright are built against their level budgets, with Penetration, Initiative, Fatigue and Confidence cost, or copied from a spell. Strong Angelic Heritage can be taken more than once; each copy adds 30 levels of holy powers, paid from the Divine Might it gives (Corpus, a twentieth of the character's age), which also counts as Magic Resistance.
+- Powers from Greater, Lesser, Personal and Ritual Power, Focus Power and Heroes' Birthright are built against their level budgets, with Penetration, Initiative, Fatigue and Confidence cost, or copied from a spell; the spell list shows what each spell does. Strong Angelic Heritage can be taken more than once; each copy adds 30 levels of holy powers, paid from the Divine Might it gives (Corpus, a twentieth of the character's age), which also counts as Magic Resistance.
 - Holy Magic replaces Magic Theory in Lab Totals and the creation checks. True Faith and relics give Magic Resistance, and only the highest source counts.
 - Recommendations follow the concept themes you pick.
 - A Virtue that gives another adds it free and keeps it in step: Strong Faerie Blood gives Second Sight; Magical Blood gives the kind of magic being's advantage (+1 Characteristic, a Supernatural Virtue or a power); Templar Commander gives Temporal Influence. If the character already paid for that Virtue, it becomes free.
@@ -35,6 +35,17 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
   - Might comes from the saga's power level and the character's role, less Size for an animal. It buys Magic Qualities, Inferiorities give more points, and grogs take no Major Qualities.
   - Size changes Strength and Quickness, Might is subtracted from Advancement Totals, and a magic human has Monstrous Appearance unless it takes Natural Appearance.
   - Mundane Social Statuses give way to the five magical ones (a companion granted by a Flaw is a Magical Friend), and a companion cannot have companions of its own.
+  - The Creature card (on the sheet, and on the Virtues step while creating) lists the creation steps in the book's order, with how far each has got: Characteristics, Virtues and Flaws, Season and Abilities, Might and Qualities, powers, finishing touches.
+  - Repeatable Qualities are added several at a time and shown once with a count. Each Quality's limits are checked, with a fix that removes the copies that do not count:
+    - Improved (Characteristic) needs the Characteristic at +5 or more first.
+    - Reduced (Characteristic) needs it at −5 or less from Poor (Characteristic), and no lower than minus the greatest Characteristic.
+    - Reduced Fatigue and Reduced Abilities have their caps; Limited Gestures is not for animals.
+    - Inferiorities that do not count give no points.
+  - Removing the Flaw an Inferiority brought removes the Inferiority and its points.
+  - Improved Confidence raises the Confidence Score and points, also on a finished character.
+  - Magical Meditation and (Form) Resistance give their Supernatural Ability at 1.
+  - Improved Powers gives 5 mastery points each, and unused power levels give 1 per 5 levels for powers of their kind. They are spent on each power's Might cost, its Initiative, or a Focus Power's level beyond Might, or taken as experience in Concentration, Finesse or Penetration. Reduced Power takes 5 away.
+  - A magic character's power Penetration is Might − 5 × its Might cost + Penetration, and effects of level 50 or more must be Ritual Powers.
 - **Guided build** (Concept step): the player rates statements about what they want to play, 0–10 (skipping counts as 5), and gets Virtues, Flaws, a House, Arts and Abilities recommended from every enabled book, then a complete draft that passes the rules check.
   - Every Virtue and Flaw has a record of outcome tags (Casting Totals, Penetration, Faerie, the Church…) with a direction and strength, built from the hand-written mechanics and the book text, plus region and culture gates.
   - Follow-up questions open at 7 or more (or 3 or less) and stop once fewer than 10 options remain. Concept themes pre-set answers; a covenant in the toolkit answers the questions about vis, money, the library and the aura.

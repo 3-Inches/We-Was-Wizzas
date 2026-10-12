@@ -4,19 +4,23 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, type Art } from '../../../data';
-import { addVirtue, newCharacter, removeVirtue } from '../../../engine/character/factory';
+import { ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, type Art, type Characteristic } from '../../../data';
+import { addQualities, addVirtue, newCharacter, removeQualities, removeQualityUid, removeVirtue, syncQualityAbilities } from '../../../engine/character/factory';
 import {
-  COMPANION_FLAWS, MAGIC_QUALITIES, MAGIC_QUALITY_BY_ID, MIGHT_BY_POWER, POINTS, QUALITY_RULES, SEASON_XP, newMagicCharacter, type MagicQualityDef,
+  COMPANION_FLAWS, MAGIC_QUALITIES, MAGIC_QUALITY_BY_ID, MIGHT_BY_POWER, POINTS, QUALITY_RULES, SEASON_XP, groupQualities, newMagicCharacter,
+  type MagicCharacterDerived, type MagicQualityDef,
 } from '../../../engine/character/magicCharacter';
-import type { Character, CreatureInfo, CreatureQuality, MagicCharacterInfo, MagicSeason, PowerLevel } from '../../../engine/types';
-import { uid } from '../../../util/id';
+import { powerSpending } from '../../../engine/character/powers';
+import type { Character, CreatureInfo, MagicCharacterInfo, MagicSeason, PowerLevel } from '../../../engine/types';
+import { useGoto } from '../CharIssues';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
-import { Card, Field, Markdown, Meter, Stepper, Total } from '../../kit';
+import { Card, Field, Markdown, Meter, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 
 export { COMPANION_FLAWS };
+
+type QualityGroup = ReturnType<typeof groupQualities>[number];
 
 const DEFAULTS: Record<string, Partial<CreatureInfo>> = {
   'magical-being-companion-flaw': { realm: 'Magic', kind: 'animal' },
@@ -181,6 +185,8 @@ export function CreatureCard({ ed }: { ed: CharEditor }) {
 function MagicCharacterSection({ ed, mcInfo }: { ed: CharEditor; mcInfo: MagicCharacterInfo }) {
   const { c, d, data, update } = ed;
   const [adding, setAdding] = useState('');
+  const [addParam, setAddParam] = useState('');
+  const [addCount, setAddCount] = useState(1);
   const [open, setOpen] = useState<string | null>(null);
   if (!c?.creature || !d?.magicChar) return null;
   const cr = c.creature;
@@ -189,19 +195,18 @@ function MagicCharacterSection({ ed, mcInfo }: { ed: CharEditor; mcInfo: MagicCh
   const suggested = MIGHT_BY_POWER[mcInfo.powerLevel][cr.intelligence];
   const grog = cr.intelligence === 'grog';
   const pickable = MAGIC_QUALITIES.filter((q) => (!grog || q.size === 'Minor') && (QUALITY_RULES[q.id]?.repeatable || !mcInfo.qualities.some((x) => x.id === q.id)));
-  const addQuality = (id: string) =>
-    update((y) => {
-      const m = y.creature!.magicCharacter!;
-      m.qualities.push({ uid: uid(), id });
-    });
-  const removeQuality = (q: CreatureQuality) =>
-    update((y) => {
-      const m = y.creature!.magicCharacter!;
-      if (q.virtueUid) removeVirtue(y, data, q.virtueUid);
-      m.qualities = m.qualities.filter((x) => x.uid !== q.uid);
-    });
+  const addDef = adding ? MAGIC_QUALITY_BY_ID.get(adding) : undefined;
+  const addRule = adding ? QUALITY_RULES[adding] ?? {} : {};
+  const groups = groupQualities(mcInfo.qualities);
+  const add = () => {
+    update((y) => void addQualities(y, data, adding, addRule.repeatable ? addCount : 1, addParam || undefined));
+    setAdding('');
+    setAddParam('');
+    setAddCount(1);
+  };
   return (
     <div className="stack" style={{ marginTop: 8 }}>
+      <MagicSteps ed={ed} />
       <div className="row">
         <Field label="Season" hint="replaces age for a magic character's experience">
           <select value={mcInfo.season} onChange={(e) => setMc((x) => void (x.season = e.target.value as MagicSeason))}>
@@ -250,7 +255,7 @@ function MagicCharacterSection({ ed, mcInfo }: { ed: CharEditor; mcInfo: MagicCh
       </div>
       <Meter label={`Quality points: ${mc.points.spent} of ${mc.points.budget} (Might ${mcInfo.baseMight}${mc.points.fromInferiorities ? ` + Inferiorities ${mc.points.fromInferiorities}` : ''})`} value={mc.points.spent} max={mc.points.budget} />
       <div className="small muted">
-        Experience: {mc.xpParts.map((p) => `${p.label} ${p.value}`).join(', ')} = {mc.xp} xp (in the Later Life pool). Size {mc.size} changes Strength by {mc.str >= 0 ? '+' : ''}
+        Experience: {mc.xpParts.map((p) => `${p.label} ${p.value}`).join(', ')} = {mc.xp} xp (in the Season pool). Size {mc.size} changes Strength by {mc.str >= 0 ? '+' : ''}
         {mc.str} and Quickness by {mc.qik >= 0 ? '+' : ''}
         {mc.qik}. It does not age, eat or sleep, and its Might is subtracted from every Advancement Total.
       </div>
@@ -260,12 +265,12 @@ function MagicCharacterSection({ ed, mcInfo }: { ed: CharEditor; mcInfo: MagicCh
         </div>
       )}
       <div>
-        {mcInfo.qualities.map((q) => (
-          <QualityRow key={q.uid} ed={ed} q={q} def={MAGIC_QUALITY_BY_ID.get(q.id)} open={open === q.uid} toggle={() => setOpen(open === q.uid ? null : q.uid)} remove={() => removeQuality(q)} />
+        {groups.map((g) => (
+          <QualityRow key={g.key} ed={ed} g={g} def={MAGIC_QUALITY_BY_ID.get(g.id)} open={open === g.key} toggle={() => setOpen(open === g.key ? null : g.key)} />
         ))}
       </div>
       <div className="row small">
-        <select value={adding} onChange={(e) => setAdding(e.target.value)} aria-label="Quality or Inferiority">
+        <select value={adding} onChange={(e) => (setAdding(e.target.value), setAddParam(''))} aria-label="Quality or Inferiority">
           <option value="">— add a Quality or Inferiority —</option>
           {(['quality', 'inferiority'] as const).map((k) => (
             <optgroup key={k} label={k === 'quality' ? 'Qualities (cost points)' : 'Inferiorities (give points)'}>
@@ -279,56 +284,22 @@ function MagicCharacterSection({ ed, mcInfo }: { ed: CharEditor; mcInfo: MagicCh
             </optgroup>
           ))}
         </select>
-        <button className="small" disabled={!adding} onClick={() => (addQuality(adding), setAdding(''))}>
-          + Add
-        </button>
-        {grog && <span className="muted">A grog-level character takes only Minor Qualities and Inferiorities.</span>}
-      </div>
-    </div>
-  );
-}
-
-function QualityRow({ ed, q, def, open, toggle, remove }: { ed: CharEditor; q: CreatureQuality; def?: MagicQualityDef; open: boolean; toggle: () => void; remove: () => void }) {
-  const { c, data, update } = ed;
-  const r = QUALITY_RULES[q.id] ?? {};
-  if (!c || !def) return null;
-  const setQ = (fn: (x: CreatureQuality) => void) => update((y) => void fn(y.creature!.magicCharacter!.qualities.find((x) => x.uid === q.uid)!));
-  const vfOptions = r.vf
-    ? data.virtuesFlaws.filter((v) => v.kind === r.vf!.kind && v.sizes.includes(r.vf!.size) && (v.categories.includes('General') || v.categories.includes('Supernatural')))
-    : [];
-  const chooseVf = (id: string) =>
-    update((y) => {
-      const qq = y.creature!.magicCharacter!.qualities.find((x) => x.uid === q.uid)!;
-      if (qq.virtueUid) removeVirtue(y, data, qq.virtueUid);
-      qq.virtueUid = undefined;
-      qq.param = id || undefined;
-      if (id) {
-        const extra = r.vf!.kind === 'virtue' ? { free: true, freeReason: def.name } : { noPoints: true, freeReason: def.name };
-        qq.virtueUid = addVirtue(y, data, id, r.vf!.size, undefined, extra).uid;
-      }
-    });
-  return (
-    <div className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
-      <div className="row">
-        <span className="clickable" onClick={toggle}>
-          {open ? '▾' : '▸'} <b>{def.name}</b>
-        </span>
-        <span className={`badge ${def.kind === 'quality' ? 'good' : 'bad'}`}>
-          {def.size} {def.kind} ({def.kind === 'quality' ? '−' : '+'}
-          {POINTS[def.size]})
-        </span>
-        {r.param === 'characteristic' && (
-          <select value={q.param ?? ''} onChange={(e) => setQ((x) => void (x.param = e.target.value || undefined))}>
+        {addRule.param === 'characteristic' && (
+          <select value={addParam} onChange={(e) => setAddParam(e.target.value)} aria-label="Characteristic">
             <option value="">— Characteristic —</option>
-            {CHARACTERISTICS.map((ch) => (
-              <option key={ch} value={ch}>
-                {CHAR_NAMES[ch]}
-              </option>
-            ))}
+            {CHARACTERISTICS.map((ch) => {
+              const why = charBlock(adding, ch, mc);
+              return (
+                <option key={ch} value={ch} disabled={!!why}>
+                  {CHAR_NAMES[ch]} {signed(mc.preSize?.[ch] ?? 0)}
+                  {why ? ` — ${why}` : ''}
+                </option>
+              );
+            })}
           </select>
         )}
-        {r.param === 'form' && (
-          <select value={q.param ?? ''} onChange={(e) => setQ((x) => void (x.param = e.target.value || undefined))}>
+        {addRule.param === 'form' && (
+          <select value={addParam} onChange={(e) => setAddParam(e.target.value)} aria-label="Form">
             <option value="">— Form —</option>
             {FORMS.map((f) => (
               <option key={f} value={f}>
@@ -337,7 +308,177 @@ function QualityRow({ ed, q, def, open, toggle, remove }: { ed: CharEditor; q: C
             ))}
           </select>
         )}
-        {r.param === 'text' && <input value={q.param ?? ''} placeholder="natural weapon" onChange={(e) => setQ((x) => void (x.param = e.target.value || undefined))} />}
+        {addRule.repeatable && (
+          <label className="inline">
+            ×
+            <Stepper value={addCount} min={1} max={99} width={44} onChange={setAddCount} title="How many to add" />
+          </label>
+        )}
+        <button className="small" disabled={!adding || (addRule.param === 'characteristic' && !addParam)} onClick={add}>
+          + Add{addRule.repeatable && addCount > 1 ? ` ${addCount}` : ''}
+        </button>
+        {addDef && (
+          <span className="muted">
+            {addDef.kind === 'quality' ? 'costs' : 'gives'} {POINTS[addDef.size] * (addRule.repeatable ? addCount : 1)} point{POINTS[addDef.size] * (addRule.repeatable ? addCount : 1) === 1 ? '' : 's'}
+            {addRule.note ? `; ${addRule.note}` : ''}
+          </span>
+        )}
+        {grog && <span className="muted">A grog-level character takes only Minor Qualities and Inferiorities.</span>}
+      </div>
+    </div>
+  );
+}
+
+/** Why Improved or Reduced (Characteristic) cannot be taken for a Characteristic, if it cannot. */
+function charBlock(id: string, ch: Characteristic, mc: MagicCharacterDerived): string | null {
+  const v = mc.preSize?.[ch];
+  if (v === undefined) return null;
+  if (id === 'improved-characteristic' && v < 5) return 'needs +5 or more first';
+  if (id === 'reduced-characteristic-inferiority') {
+    if (!mc.poor.includes(ch)) return 'needs Poor (Characteristic)';
+    if (v > -5) return 'needs −5 or less first';
+  }
+  return null;
+}
+
+/** The order of Magic Character Creation (RoP: Magic), with where each part is done and how far it has got. */
+function MagicSteps({ ed }: { ed: CharEditor }) {
+  const { c, d } = ed;
+  const goto = useGoto(ed);
+  if (!c || !d?.magicChar) return null;
+  const mc = d.magicChar;
+  const t = d.tally;
+  const season = d.budgets.find((b) => b.id === 'laterLife');
+  const used = Object.values(powerSpending(c.powers)).reduce((s, n) => s + (n ?? 0), 0);
+  const levels = Object.values(d.powerBudgets).reduce((s, n) => s + (n ?? 0), 0);
+  const status = (done: boolean, text: string) => (
+    <span className={done ? 'good-text' : 'muted'}>
+      {done ? '✓ ' : ''}
+      {text}
+    </span>
+  );
+  return (
+    <details className="small" open={!c.creation.finalized}>
+      <summary>
+        <b>Building a magic character</b> (Realms of Power: Magic): this card holds its Size, Season, Might and Qualities; the rest is made as for any character.
+      </summary>
+      <ol style={{ margin: '4px 0', paddingLeft: 20 }}>
+        <li>
+          <b>Concept:</b> the true form below stands for the Special Virtue (Magic Animal, Human, Spirit or Thing). Characteristics take 7 points, none above +3 or below −3,
+          before Size; then Virtues and Flaws as usual, with a magical Social Status.{' '}
+          {status(d.charPointsSpent === d.charPointsBudget, `Characteristics ${d.charPointsSpent} of ${d.charPointsBudget}`)} ·{' '}
+          {status(t.virtuePoints === t.allowedVirtuePoints && t.flawPoints > 0, `Virtues ${t.virtuePoints} of ${t.allowedVirtuePoints}`)}{' '}
+          <button className="small ghost" onClick={() => goto('characteristics')}>
+            Characteristics
+          </button>
+          <button className="small ghost" onClick={() => goto('virtues')}>
+            Virtues &amp; Flaws
+          </button>
+        </li>
+        <li>
+          <b>Season and Abilities:</b> the Season&apos;s experience (and Improved Abilities) buys Abilities the Virtues allow.{' '}
+          {season && status(season.spent === season.total, `${season.spent} of ${season.total} xp`)}{' '}
+          <button className="small ghost" onClick={() => goto('abilities')}>
+            Abilities
+          </button>
+        </li>
+        <li>
+          <b>Might and Qualities</b> (here): Quality points equal the starting Might; Inferiorities give more. {status(mc.points.spent === mc.points.budget, `${mc.points.spent} of ${mc.points.budget} points`)}
+        </li>
+        <li>
+          <b>Powers:</b> design them with the levels the power Qualities give, under Supernatural powers (Virtues step, or the Abilities tab). Improved Powers gives mastery
+          points to spend there. {levels > 0 && status(used === levels, `${used} of ${levels} levels`)}
+        </li>
+        <li>
+          <b>Finishing touches:</b> Confidence (1 and 3 points if not a grog, plus Improved Confidence), Personality Traits with an Essential Trait for its true form (such as
+          &ldquo;Cat* +3&rdquo;), equipment and inherent vis.{' '}
+          <button className="small ghost" onClick={() => goto('personality')}>
+            Personality
+          </button>
+        </li>
+      </ol>
+    </details>
+  );
+}
+
+function QualityRow({ ed, g, def, open, toggle }: { ed: CharEditor; g: QualityGroup; def?: MagicQualityDef; open: boolean; toggle: () => void }) {
+  const { c, d, data, update } = ed;
+  const r = QUALITY_RULES[g.id] ?? {};
+  if (!c || !def || !d?.magicChar) return null;
+  const n = g.items.length;
+  const q = g.items[0];
+  const problem = d.magicChar.issues.find((i) => i.remove && i.remove.id === g.id && (i.remove.param ?? '') === (g.param ?? ''));
+  const setParam = (value: string) =>
+    update((y) => {
+      for (const it of y.creature!.magicCharacter!.qualities) if (g.items.some((x) => x.uid === it.uid)) it.param = value || undefined;
+      syncQualityAbilities(y, data);
+    });
+  const setCount = (want: number) =>
+    update((y) => {
+      if (want > n) addQualities(y, data, g.id, want - n, g.param);
+      else removeQualities(y, data, g.id, g.param, n - want);
+    });
+  const vfOptions = r.vf
+    ? data.virtuesFlaws.filter((v) => v.kind === r.vf!.kind && v.sizes.includes(r.vf!.size) && (v.categories.includes('General') || v.categories.includes('Supernatural')))
+    : [];
+  const chooseVf = (id: string) =>
+    update((y) => {
+      const qq = y.creature!.magicCharacter!.qualities.find((x) => x.uid === q.uid)!;
+      // let go of the old choice first, so removing it does not take the Quality with it
+      const old = qq.virtueUid;
+      qq.virtueUid = undefined;
+      if (old) removeVirtue(y, data, old);
+      qq.param = id || undefined;
+      if (id) {
+        const extra = r.vf!.kind === 'virtue' ? { free: true, freeReason: def.name } : { noPoints: true, freeReason: def.name };
+        qq.virtueUid = addVirtue(y, data, id, r.vf!.size, undefined, extra).uid;
+      }
+    });
+  const pts = POINTS[def.size] * n;
+  // copies the rules do not allow give no points (they still cost, for a Quality)
+  const counted = def.kind === 'inferiority' ? POINTS[def.size] * (n - (problem?.remove?.count ?? 0)) : pts;
+  return (
+    <div className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
+      <div className="row">
+        <span className="clickable" onClick={toggle}>
+          {open ? '▾' : '▸'} <b>{def.name}</b>
+        </span>
+        {r.repeatable && !r.vf ? (
+          <label className="inline small" title="How many times it is taken">
+            ×
+            <Stepper value={n} min={0} max={99} width={44} onChange={setCount} />
+          </label>
+        ) : null}
+        <span className={`badge ${def.kind === 'quality' ? 'good' : 'bad'}`}>
+          {def.size} {def.kind} ({def.kind === 'quality' ? '−' : '+'}
+          {counted}
+          {counted !== pts ? ` of ${pts}` : ''})
+        </span>
+        {r.param === 'characteristic' && (
+          <select value={g.param ?? ''} onChange={(e) => setParam(e.target.value)}>
+            <option value="">— Characteristic —</option>
+            {CHARACTERISTICS.map((ch) => {
+              const why = charBlock(g.id, ch, d.magicChar!);
+              return (
+                <option key={ch} value={ch} disabled={!!why && ch !== g.param}>
+                  {CHAR_NAMES[ch]} {signed(d.magicChar!.preSize?.[ch] ?? 0)}
+                  {why ? ` — ${why}` : ''}
+                </option>
+              );
+            })}
+          </select>
+        )}
+        {r.param === 'form' && (
+          <select value={g.param ?? ''} onChange={(e) => setParam(e.target.value)}>
+            <option value="">— Form —</option>
+            {FORMS.map((f) => (
+              <option key={f} value={f}>
+                {ART_NAMES[f]}
+              </option>
+            ))}
+          </select>
+        )}
+        {r.param === 'text' && <input value={g.param ?? ''} placeholder="natural weapon" onChange={(e) => setParam(e.target.value)} />}
         {r.vf && (
           <select value={q.param ?? ''} onChange={(e) => chooseVf(e.target.value)} aria-label={`${def.name}: choice`}>
             <option value="">— {r.vf.size} {r.vf.kind} —</option>
@@ -350,10 +491,18 @@ function QualityRow({ ed, q, def, open, toggle, remove }: { ed: CharEditor; q: C
         )}
         <span style={{ flex: 1 }} />
         {r.note && <span className="small muted">{r.note}</span>}
-        <button className="small ghost" title="Remove" onClick={remove}>
+        <button className="small ghost" title={n > 1 ? `Remove all ${n}` : 'Remove'} onClick={() => update((y) => void (r.vf ? removeQualityUid(y, data, q.uid) : removeQualities(y, data, g.id, g.param, n)))}>
           ✕
         </button>
       </div>
+      {problem?.remove && (
+        <div className="row small">
+          <span className={problem.severity === 'error' ? 'bad-text' : 'warn-text'}>{problem.text}</span>
+          <button className="small" onClick={() => update((y) => void removeQualities(y, data, g.id, g.param, problem.remove!.count))}>
+            Remove {problem.remove.count === n ? (n === 1 ? 'it' : `all ${n}`) : problem.remove.count}
+          </button>
+        </div>
+      )}
       {open && <Markdown text={def.text} className="small" />}
     </div>
   );

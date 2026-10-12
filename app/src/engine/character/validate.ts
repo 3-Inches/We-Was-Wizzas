@@ -14,7 +14,7 @@ import { creationSpellLimit } from '../magic';
 import { HOUSE_BY_ID } from '../../data/houses';
 import { abilityAvailability, statusesCompatible, vfProblems } from './restrictions';
 import { hasFaerieVirtue } from './factory';
-import { POWER_KINDS, POWER_KIND_ORDER, powerSpending } from './powers';
+import { POWER_KINDS, POWER_KIND_ORDER, masteryPools, powerSpending, powerStats } from './powers';
 
 export type Severity = 'error' | 'warning' | 'info';
 export type Step = 'basics' | 'house' | 'virtues' | 'characteristics' | 'abilities' | 'arts' | 'spells' | 'personality' | 'equipment' | 'sheet';
@@ -36,6 +36,8 @@ export interface Issue {
   art?: string;
   pool?: string; // xp source
   spell?: string; // uid of the character's spell
+  /** copies of a Magic Quality to remove */
+  quality?: { id: string; param?: string; count: number };
 }
 
 export function validateCharacter(d: DerivedCharacter, data: GameData, rules: HouseRules): Issue[] {
@@ -65,12 +67,25 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     add({ id: 'magic-rules', code: 'magic-rules', severity: 'info', step: 'basics', message: 'A magical being: the Magic Character Creation rules of Realms of Power: Magic give its experience by Season (not age), its Might by the saga\'s power level and role, and Qualities. Turn them on in the Creature card on the sheet.', ref: 'RoP: Magic, Magic Character Creation' });
   }
   if (d.magicChar) {
-    for (const [i, m] of d.magicChar.issues.entries()) add({ id: `magic-char-${i}`, code: 'magic-char', severity: 'error', step: 'basics', message: m, ref: 'RoP: Magic, Magic Character Creation' });
+    for (const [i, m] of d.magicChar.issues.entries()) {
+      add({ id: `magic-char-${i}`, code: m.remove ? 'magic-quality' : 'magic-char', severity: m.severity, step: 'sheet', message: m.text, ref: 'RoP: Magic, Qualities and Inferiorities', quality: m.remove });
+    }
     // a companion Flaw's being is designed with the Magical Friend Social Status (RoP: Magic, Magic (Being) Companion)
     // a character switched to these rules after creation keeps what it bought with its age: say so
     const season = d.budgets.find((b) => b.id === 'laterLife');
     if (c.creation.finalized && season && season.spent > season.total) {
       add({ id: 'magic-season-xp', code: 'magic-season-xp', severity: 'warning', step: 'abilities', message: `${season.label}: its Abilities use ${season.spent} experience points of ${season.total}. They were bought from its age before the Realms of Power: Magic rules applied; use Edit creation to rebuild them from its Season.`, ref: 'RoP: Magic, Season' });
+    }
+    // Improved Confidence raises the Score (and a starting character's points): a finished character keeps
+    // what is stored, so say when the Score no longer matches its Qualities
+    if (c.creation.finalized || c.creation.confidenceSet) {
+      const want = (c.creature?.intelligence === 'grog' ? 0 : 1) + d.magicChar.confidence.score;
+      if (c.confidence.score !== want) {
+        add({
+          id: 'magic-confidence', code: 'magic-confidence', severity: 'warning', step: 'sheet', ref: 'RoP: Magic, Improved Confidence',
+          message: `Confidence Score ${c.confidence.score}, but ${d.magicChar.confidence.score ? `Improved Confidence ×${d.magicChar.confidence.score} on a base of ${want - d.magicChar.confidence.score}` : 'its Qualities'} give ${want}.`,
+        });
+      }
     }
     if (c.creature?.ownerId && !c.virtues.some((v) => v.defId === 'magical-friend-flaw')) {
       add({ id: 'magic-friend', code: 'magic-friend', severity: 'warning', step: 'virtues', message: 'A companion brought by Magic (Being) Companion is designed with the Magical Friend Social Status Flaw.', ref: 'RoP: Magic, Magic (Being) Companion' });
@@ -210,7 +225,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     for (const ab of c.abilities) {
       const da = d.abilityByUid.get(ab.uid);
       const can = abilityAvailability(d, data, ab.abilityId);
-      if (!can.ok && !ab.xp.free && !da?.granted) {
+      if (!can.ok && !ab.xp.free && !ab.xp.quality && !da?.granted) {
         add({ id: `ability-unavailable-${ab.uid}`, code: 'ability-unavailable', ability: ab.uid, severity: 'warning', step: 'abilities', message: `${da?.name ?? ab.abilityId}: this character cannot learn it (${can.reason}).` });
       }
       for (const [src, xp] of Object.entries(ab.xp)) {
@@ -293,7 +308,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (warrior && !c.personality.some((p) => /brave|cowardly/i.test(p.trait))) add({ id: 'warrior-brave', severity: 'info', step: 'personality', message: 'Warriors should all have a score in Brave.', ref: 'DE p.52' });
   for (const p of c.personality) if (Math.abs(p.score) > d.personalityMax && !d.virtues.some((v) => v.def?.categories.includes('Personality'))) add({ id: `ptrait-range-${p.uid}`, severity: 'info', step: 'personality', message: `${p.trait}: starting Personality Traits range from –${d.personalityMax} to +${d.personalityMax} unless a Personality Flaw justifies more.` });
   // --------------------------------------------------------------- supernatural powers
-  const spentLevels = powerSpending(c.powers);
+  const spentLevels = powerSpending(c.powers, !!d.magicChar);
   for (const kind of POWER_KIND_ORDER) {
     const info = POWER_KINDS[kind];
     const budget = d.powerBudgets[kind] ?? 0;
@@ -307,6 +322,37 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       });
     }
     if (budget > 0 && spent < budget) add({ id: `powers-unspent-${kind}`, code: 'powers-unspent', other: kind, severity: 'info', step: 'virtues', ref: info.ref, message: `${info.label}: ${budget - spent} of ${budget} levels not yet designed into a power.` });
+  }
+  if (d.magicChar) {
+    // RoP: Magic, Magic Powers and Improved Powers
+    const mp = masteryPools(c.powers, d.powerBudgets, d.magicChar.mastery, c.creature?.magicCharacter?.masteryXp ?? 0);
+    if (mp.over > 0) {
+      add({
+        id: 'mastery-over', severity: 'error', step: 'virtues', ref: 'RoP: Magic, Improved Powers',
+        message: mp.general < 0 && mp.spent <= 0
+          ? `Reduced Power takes ${-mp.general} mastery points: give its powers a higher Might cost or lower Initiative.`
+          : `The powers use ${mp.spent} mastery points; Improved Powers${Object.keys(mp.leftover).length ? ' and unused power levels' : ''} give ${mp.available}${mp.over < mp.spent ? ` (${mp.over} too many for the pools they may come from)` : ''}.`,
+      });
+    }
+    const might = d.magicChar.might;
+    for (const p of c.powers ?? []) {
+      const name = p.name || `A ${POWER_KINDS[p.kind].label}`;
+      if (p.kind === 'holy' || p.kind === 'birthright') continue;
+      if (p.kind !== 'ritual' && p.level >= 50) {
+        add({ id: `power-ritual-${p.uid}`, code: 'power-ritual', other: p.uid, severity: 'error', step: 'virtues', ref: 'RoP: Magic, Magic Powers', message: `${name}: a power of level 50 or more must be a Ritual Power (level ${p.level}).` });
+      }
+      if (p.kind === 'ritual' && p.level < 20) {
+        add({ id: `power-ritual-min-${p.uid}`, severity: 'warning', step: 'virtues', ref: 'RoP: Magic, Magic Powers', message: `${name}: Ritual Powers are always at least level 20.` });
+      }
+      if (p.kind === 'focus' && p.level > might + 5 * (p.mastery?.level ?? 0)) {
+        add({ id: `power-focus-${p.uid}`, severity: 'warning', step: 'virtues', ref: 'RoP: Magic, Focus Power', message: `${name}: a Focus Power's effects cannot exceed the Might Score (${might})${p.mastery?.level ? ` plus ${5 * p.mastery.level} from mastery` : ''} until its Might grows; mastery points can raise the limit by 5 each.` });
+      }
+      if (p.kind === 'focus' && p.mastery?.cost) {
+        add({ id: `power-focus-cost-${p.uid}`, severity: 'error', step: 'virtues', ref: 'RoP: Magic, Focus Power', message: `${name}: mastery points cannot change a Focus Power's Might cost.` });
+      }
+      const st = powerStats(p, d.characteristics.Qik.value, true);
+      if ((st.mightCost ?? 0) > might) add({ id: `power-cost-${p.uid}`, severity: 'error', step: 'virtues', ref: 'RoP: Magic, Reduced Power', message: `${name}: its Might cost (${st.mightCost}) may not exceed the Might Score (${might}).` });
+    }
   }
   for (const p of c.powers ?? []) {
     const max = POWER_KINDS[p.kind].maxLevel;

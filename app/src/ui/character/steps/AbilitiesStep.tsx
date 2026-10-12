@@ -188,7 +188,7 @@ export default function AbilitiesStep({ ed }: { ed: CharEditor }) {
                         <SpecialtyEdit value={ab.specialty ?? ''} options={da.def?.specialties ?? []} onChange={(v) => update((x) => void (x.abilities.find((y) => y.uid === ab.uid)!.specialty = v))} />
                       </td>
                       <td>
-                        {!ab.xp.free && (
+                        {!ab.xp.free && !ab.xp.quality && (
                           <button className="small ghost" onClick={() => update((x) => void (x.abilities = x.abilities.filter((y) => y.uid !== ab.uid)))} title="Remove">
                             ✕
                           </button>

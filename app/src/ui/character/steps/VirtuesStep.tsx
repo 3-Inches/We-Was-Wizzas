@@ -8,6 +8,7 @@ import { BookBadge, Card, Meter, SearchInput } from '../../kit';
 import ParamInput from '../ParamInput';
 import { CharIssueList } from '../CharIssues';
 import PowersCard from '../PowersCard';
+import { CreatureCard } from '../sheet/Creature';
 import type { CharEditor } from '../useChar';
 import { LaterNote } from '../../LaterNote';
 import { VFText } from '../../VFText';
@@ -47,6 +48,8 @@ export default function VirtuesStep({ ed }: { ed: CharEditor }) {
         </p>
       </Card>
       <TakenList ed={ed} />
+      {/* a magic character's Qualities give its power levels: design both here */}
+      {c?.creature && <CreatureCard ed={ed} />}
       <PowersCard ed={ed} />
       <VirtueBrowser ed={ed} />
       {data && null}

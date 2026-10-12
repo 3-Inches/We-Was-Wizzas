@@ -110,6 +110,7 @@ export type XpSource =
   | 'apprenticeship'
   | 'postGauntlet'
   | 'free' // granted by virtues (e.g. Second Sight 1)
+  | 'quality' // granted by a Magic Quality (Magical Meditation 1)
   | 'play' // gained in play (already includes affinity etc.)
   | 'adjust' // manual correction
   | `pool:${string}`; // virtue xp pools, keyed by the virtue instance uid
@@ -148,6 +149,8 @@ export interface CharPower {
   /** a Hermetic spell the power copies, if any */
   spellId?: string;
   notes?: string;
+  /** a magic character's mastery points on it (RoP: Magic, Improved Powers): lower Might cost, more Initiative, a Focus Power's level beyond Might (5 each) */
+  mastery?: { cost?: number; init?: number; level?: number };
 }
 
 export interface CharAbility {
@@ -391,6 +394,8 @@ export interface MagicCharacterInfo {
   baseMight: number;
   form?: Art;
   qualities: CreatureQuality[];
+  /** mastery points turned into experience: 5 each in Concentration, Finesse or Penetration */
+  masteryXp?: number;
 }
 
 export interface Character {

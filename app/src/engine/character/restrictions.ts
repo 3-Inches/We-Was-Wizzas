@@ -225,7 +225,9 @@ export function vfProblems(d: DerivedCharacter, data: GameData, def: VirtueFlawD
   if (def.minAge && c.age < def.minAge) push('age', 'error', `Age ${def.minAge}+ only`, `${def.name} needs a character at least ${def.minAge} years old (age ${c.age}).${quote}`);
 
   // ---------------------------------------------------------------- beings & traditions
-  if (def.beings && !cv?.free) {
+  // a being of that realm is what these are for: a magic character (RoP: Magic) or a creature of Faerie
+  const isBeing = !!def.beings && (/^magic beings/.test(def.beings) ? !!d.magicChar || c.creature?.realm === 'Magic' : /faerie/i.test(def.beings) && c.creature?.realm === 'Faerie');
+  if (def.beings && !cv?.free && !isBeing) {
     push('being', 'error', `For ${def.beings.replace(/ \(.*\)$/, '')} only`, `${def.name} is for ${def.beings}, not for characters built with the normal character-creation rules.`);
   }
   if (def.tradition && type === 'magus' && !cv?.free) {

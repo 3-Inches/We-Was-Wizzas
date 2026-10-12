@@ -74,7 +74,7 @@ export default function HelpPage() {
               sets the saga&apos;s realms, speed and politics once under{' '}
               <b>House rules &amp; books → Saga</b>.
             </li>
-            <li>Powers from Greater, Lesser, Personal or Ritual Power and Heroes&apos; Birthright are designed on the Virtues step: pick a spell within the level budget or describe your own.</li>
+            <li>Powers from Greater, Lesser, Personal or Ritual Power and Heroes&apos; Birthright are designed on the Virtues step: pick a spell within the level budget (click its name to read what it does) or describe your own.</li>
             <li>
               A Virtue that gives another (Strong Faerie Blood → Second Sight, Magical Blood by the kind of magic being) adds it free. A copy you already bought becomes free.
               Open any Virtue or Flaw to see <b>Rules it refers to</b>: the Virtues, Flaws and book sections its text points to, quoted in place.
@@ -82,7 +82,9 @@ export default function HelpPage() {
             <li>
               A companion Flaw (Magical Animal, Realm Spirit, Animal Companion) can create the companion&apos;s own sheet, with its Might, Size and powers. A magical companion is
               built as a <i>Realms of Power: Magic</i> magic character: experience from its Season instead of age, Might from the saga&apos;s power level, Magic Qualities bought with
-              Might, and the Magical Friend status.
+              Might, and the Magical Friend status. Its Creature card lists the creation steps in the book&apos;s order: Characteristics, Virtues and Flaws, Abilities and
+              powers are made as for any character. Repeatable Qualities take a count, the rules check removes copies the rules do not allow, and Improved Powers&apos; mastery
+              points are spent on each power under Supernatural powers.
             </li>
             <li>Finish creation to switch to the in-play sheet. You can always return to creation.</li>
           </ol>
