@@ -88,7 +88,11 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       }
     }
     if (c.creature?.ownerId && !c.virtues.some((v) => v.defId === 'magical-friend-flaw')) {
-      add({ id: 'magic-friend', code: 'magic-friend', severity: 'warning', step: 'virtues', message: 'A companion brought by Magic (Being) Companion is designed with the Magical Friend Social Status Flaw.', ref: 'RoP: Magic, Magic (Being) Companion' });
+      const other = d.virtues.filter((v) => ['magical-master', 'magical-champion', 'magical-covenfolk'].includes(v.cv.defId)).map((v) => v.name);
+      add({
+        id: 'magic-friend', code: 'magic-friend', severity: 'warning', step: 'virtues', ref: 'RoP: Magic, Magic (Being) Companion',
+        message: `The companion of a Magic (Being) Companion Flaw: "Design this being as a magic character with the Magical Friend Social Status Flaw."${other.length ? ` ${other.join(' and ')} may be combined with it, so take both.` : ''}`,
+      });
     }
   }
   if (t.socialStatuses.length > 1) {
@@ -335,11 +339,21 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       });
     }
     const might = d.magicChar.might;
+    const reduced = !!c.creature?.magicCharacter?.qualities.some((q) => q.id === 'reduced-power-inferiority');
     for (const p of c.powers ?? []) {
       const name = p.name || `A ${POWER_KINDS[p.kind].label}`;
       if (p.kind === 'holy' || p.kind === 'birthright') continue;
       if (p.kind !== 'ritual' && p.level >= 50) {
-        add({ id: `power-ritual-${p.uid}`, code: 'power-ritual', other: p.uid, severity: 'error', step: 'virtues', ref: 'RoP: Magic, Magic Powers', message: `${name}: a power of level 50 or more must be a Ritual Power (level ${p.level}).` });
+        add({
+          id: `power-ritual-${p.uid}`, code: 'power-ritual', other: p.uid, severity: 'error', step: 'virtues', ref: 'RoP: Magic, Magic Powers (sidebar)',
+          message: `${name} is level ${p.level}: "all powers with effects of Level 50 or more must be designed as Ritual Powers."`,
+        });
+      }
+      if (!reduced && ((p.mastery?.cost ?? 0) < 0 || (p.mastery?.init ?? 0) < 0)) {
+        add({
+          id: `power-mastery-neg-${p.uid}`, code: 'power-mastery-neg', other: p.uid, severity: 'warning', step: 'virtues', ref: 'RoP: Magic, Reduced Power',
+          message: `${name}: its mastery ${(p.mastery?.cost ?? 0) < 0 ? `raises its Might cost by ${-(p.mastery!.cost!)}` : `lowers its Initiative by ${-(p.mastery!.init!)}`}; only the Reduced Power Inferiority does that.`,
+        });
       }
       if (p.kind === 'ritual' && p.level < 20) {
         add({ id: `power-ritual-min-${p.uid}`, severity: 'warning', step: 'virtues', ref: 'RoP: Magic, Magic Powers', message: `${name}: Ritual Powers are always at least level 20.` });

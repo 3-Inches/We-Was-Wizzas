@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ART_NAMES, type PowerKind, type SpellDef } from '../../data';
 import { POWER_KINDS, POWER_KIND_ORDER, masteryPools, powerCost, powerSpending, powerStats } from '../../engine/character/powers';
 import type { CharPower } from '../../engine/types';
+import { MASTERY_XP_ABILITIES, setMasteryXp } from '../../engine/character/factory';
 import { uid } from '../../util/id';
 import { Card, Markdown, Meter, SearchInput, Stepper, signed } from '../kit';
 import type { CharEditor } from './useChar';
@@ -26,18 +27,21 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
   const penetrationScore = d.abilities.find((a) => a.abilityId === 'penetration')?.total ?? 0;
   const masteryXp = c.creature?.magicCharacter?.masteryXp ?? 0;
   const mp = d.magicChar ? masteryPools(c.powers, d.powerBudgets, d.magicChar.mastery, masteryXp) : null;
+  // only Reduced Power makes a power cost more or act slower
+  const reduced = !!c.creature?.magicCharacter?.qualities.some((q) => q.id === 'reduced-power-inferiority');
   const edit = (uidOf: string, fn: (p: CharPower) => void) => update((x) => void fn((x.powers ?? []).find((p) => p.uid === uidOf)!));
   const setMastery = (uidOf: string, key: 'cost' | 'init' | 'level', v: number) =>
     edit(uidOf, (x) => {
       x.mastery = { ...x.mastery, [key]: v || undefined };
       if (!x.mastery.cost && !x.mastery.init && !x.mastery.level) delete x.mastery;
     });
+  const xpPoints = (id: string) => (c.abilities.find((a) => a.abilityId === id && !a.param)?.xp['pool:mastery'] ?? 0) / 5;
   return (
     <Card title="Supernatural powers" className="accent">
       <p className="small muted" style={{ marginTop: 0 }}>
         Each power is designed like a Hermetic spell.{' '}
         {mightBased
-          ? "Its Penetration is Might − 5 × its Might cost + Penetration (RoP: Magic). Effects of level 50 or more must be Ritual Powers."
+          ? 'Its Penetration is Might − 5 × its Might cost + Penetration (RoP: Magic). Effects of level 50 or more must be Ritual Powers.'
           : "Levels may also buy Penetration one for one (not for Heroes' Birthright)."}{' '}
         Pick a spell from the list to copy its level, or add a power and describe it yourself.
       </p>
@@ -45,7 +49,7 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
         <div style={{ marginBottom: 10 }}>
           <Meter
             label={`Mastery points: ${mp.spent} of ${mp.available} (${[
-              mp.general ? `Improved Powers and Reduced Power ${mp.general}` : '',
+              mp.general ? `Improved Powers${reduced ? ' and Reduced Power' : ''} ${mp.general}` : '',
               ...Object.entries(mp.leftover).map(([k, n]) => `unused ${POWER_KINDS[k as PowerKind].label} levels ${n}`),
             ]
               .filter(Boolean)
@@ -53,22 +57,20 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
             value={mp.spent}
             max={Math.max(0, mp.available)}
           />
+          <p className="small muted" style={{ margin: '4px 0' }}>
+            Each point lowers one power&apos;s Might cost by 1 (Personal, Lesser and Greater down to 0; Ritual to half its magnitude; never a Focus Power&apos;s), and so raises its
+            Penetration by 5; or adds 1 to its Initiative; or lets a Focus Power reach 5 levels beyond Might. Points can also become 5 experience points each in Penetration,
+            which helps every power. Unused levels count only for powers of their own kind (Greater also for Lesser).
+          </p>
           <div className="row small">
-            <span className="muted">
-              Each point takes 1 off a power&apos;s Might cost (Personal, Lesser and Greater down to 0; Ritual to half its magnitude; never a Focus Power&apos;s), adds 1 to its
-              Initiative, or adds 5 to a Focus Power&apos;s highest level. Unused levels count only for powers of their own kind (Greater also for Lesser).
-            </span>
-            <label className="inline" title="Mastery points taken as experience, 5 each, in Concentration, Finesse or Penetration">
-              as experience
-              <Stepper
-                value={masteryXp}
-                min={0}
-                max={99}
-                width={34}
-                onChange={(v) => update((x) => void (x.creature!.magicCharacter!.masteryXp = v || undefined))}
-              />
-              <span className="muted">= {5 * masteryXp} xp in Concentration, Finesse or Penetration</span>
-            </label>
+            <span>As experience (5 xp a point):</span>
+            {MASTERY_XP_ABILITIES.map((id) => (
+              <label key={id} className="inline">
+                {id[0].toUpperCase() + id.slice(1)}
+                <Stepper value={xpPoints(id)} min={0} max={99} width={36} onChange={(v) => update((x) => setMasteryXp(x, id, v))} />
+              </label>
+            ))}
+            <span className="muted">Penetration score {penetrationScore}</span>
           </div>
         </div>
       )}
@@ -85,95 +87,86 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
               <span className="small muted">{info.rule}</span>
             </div>
             <Meter label={`${used} of ${budget} levels`} value={used} max={budget} />
-            {powers.length > 0 && (
-              <table className="compact">
-                <thead>
-                  <tr>
-                    <th>Power</th>
-                    <th className="num">Level</th>
-                    {info.penetration && <th className="num">Penetration</th>}
-                    <th className="num">Mag.</th>
-                    {kind !== 'birthright' && <th className="num">Init</th>}
-                    {kind !== 'birthright' && <th className="num">{mightBased || kind === 'holy' ? 'Might' : 'Fatigue'}</th>}
-                    {kind === 'ritual' && (
-                      <th className="num" title={mightBased ? 'Each use lowers the Might Score by its Might cost, or spends that many Confidence Points (RoP: Magic, Ritual Power)' : '1 Confidence Point per magnitude'}>
-                        {mightBased ? 'Might Score or Conf.' : 'Confidence'}
-                      </th>
-                    )}
-                    {usesMastery && <th title="Mastery points: Might cost taken off, Initiative added (and a Focus Power's level beyond Might, 5 each)">Mastery</th>}
-                    <th />
-                  </tr>
-                </thead>
-                <tbody>
-                  {powers.map((p) => {
-                    const st = powerStats(p, qik, mightBased);
-                    const spell = p.spellId ? ed.data.spellById.get(p.spellId) : undefined;
-                    const tooHigh = info.maxLevel !== undefined && p.level > info.maxLevel;
-                    const pen = might - 5 * (st.mightCost ?? 0) + penetrationScore;
-                    return (
-                      <tr key={p.uid}>
-                        <td>
-                          <input value={p.name} placeholder="Name the power" aria-label="Power name" onChange={(e) => edit(p.uid, (x) => void (x.name = e.target.value))} />
-                          {spell && (
-                            <div className="small muted">
-                              as{' '}
-                              <span className="clickable" title="Show what the spell does" onClick={() => setShown(shown === p.uid ? null : p.uid)}>
-                                {shown === p.uid ? '▾' : '▸'} {spell.name}
-                              </span>{' '}
-                              ({ART_NAMES[spell.technique]} {ART_NAMES[spell.form]} {spell.level}; {spell.range}/{spell.duration}/{spell.target})
-                            </div>
-                          )}
-                          {spell && shown === p.uid && <SpellText spell={spell} />}
-                          <input className="small" value={p.notes ?? ''} placeholder="effect, limits, realm…" aria-label="Power notes" onChange={(e) => edit(p.uid, (x) => void (x.notes = e.target.value || undefined))} />
-                        </td>
-                        <td className={`num ${tooHigh ? 'bad-text' : ''}`}>
-                          <Stepper value={p.level} min={1} max={info.maxLevel ?? 200} onChange={(v) => edit(p.uid, (x) => void (x.level = v))} title={tooHigh ? `No more than level ${info.maxLevel}` : 'Level'} />
-                        </td>
-                        {info.penetration && (
-                          <td className="num">
-                            {mightBased ? (
-                              <span title={`Might ${might} − 5 × ${st.mightCost ?? 0} + Penetration ${penetrationScore}`}>{signed(pen)}</span>
-                            ) : (
-                              <Stepper value={p.penetration} min={0} onChange={(v) => edit(p.uid, (x) => void (x.penetration = v))} title="Penetration (costs levels one for one)" />
-                            )}
-                          </td>
-                        )}
-                        <td className="num">{st.magnitude}</td>
-                        {kind !== 'birthright' && <td className="num">{signed(st.init)}</td>}
-                        {kind !== 'birthright' && <td className="num">{st.mightCost ?? st.fatigue}</td>}
-                        {kind === 'ritual' && <td className="num">{mightBased ? st.mightCost : st.confidence}</td>}
-                        {usesMastery && (
-                          <td className="small">
-                            {kind !== 'focus' && (
-                              <label className="inline" title="Might cost taken off (a negative number raises it, for Reduced Power)">
-                                cost −
-                                <Stepper value={p.mastery?.cost ?? 0} min={-20} max={20} width={30} onChange={(v) => setMastery(p.uid, 'cost', v)} />
-                              </label>
-                            )}
-                            <label className="inline" title="Initiative added (negative for Reduced Power)">
-                              Init +
-                              <Stepper value={p.mastery?.init ?? 0} min={-20} max={40} width={30} onChange={(v) => setMastery(p.uid, 'init', v)} />
-                            </label>
-                            {kind === 'focus' && (
-                              <label className="inline" title="Each point lets the Focus Power reach 5 levels beyond the Might Score">
-                                +5 lv ×
-                                <Stepper value={p.mastery?.level ?? 0} min={0} max={40} width={30} onChange={(v) => setMastery(p.uid, 'level', v)} />
-                              </label>
-                            )}
-                          </td>
-                        )}
-                        <td>
-                          <span className="small muted">{powerCost(p, mightBased)} lv</span>{' '}
-                          <button className="small ghost" title="Remove" onClick={() => update((x) => void (x.powers = (x.powers ?? []).filter((y) => y.uid !== p.uid)))}>
-                            ✕
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            )}
+            {powers.map((p) => {
+              const st = powerStats(p, qik, mightBased);
+              const base = mightBased ? powerStats({ ...p, mastery: undefined }, qik, true) : st;
+              const spell = p.spellId ? ed.data.spellById.get(p.spellId) : undefined;
+              const tooHigh = info.maxLevel !== undefined && p.level > info.maxLevel;
+              const pen = might - 5 * (st.mightCost ?? 0) + penetrationScore;
+              const stat = (label: string, value: string | number, title?: string) => (
+                <span className="small" title={title} style={{ whiteSpace: 'nowrap' }}>
+                  <span className="muted">{label}</span> <b>{value}</b>
+                </span>
+              );
+              return (
+                <div key={p.uid} className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 4 }}>
+                  <div className="row">
+                    <input style={{ flex: '1 1 160px', minWidth: 120 }} value={p.name} placeholder="Name the power" aria-label="Power name" onChange={(e) => edit(p.uid, (x) => void (x.name = e.target.value))} />
+                    <label className={`inline small ${tooHigh ? 'bad-text' : ''}`} title={tooHigh ? `No more than level ${info.maxLevel}` : undefined}>
+                      Level
+                      <Stepper value={p.level} min={1} max={info.maxLevel ?? 200} width={48} onChange={(v) => edit(p.uid, (x) => void (x.level = v))} />
+                    </label>
+                    {info.penetration &&
+                      (mightBased ? (
+                        stat('Pen.', signed(pen), `Might ${might} − 5 × ${st.mightCost ?? 0} + Penetration ${penetrationScore}`)
+                      ) : (
+                        <label className="inline small" title="Penetration (costs levels one for one)">
+                          Pen.
+                          <Stepper value={p.penetration} min={0} width={36} onChange={(v) => edit(p.uid, (x) => void (x.penetration = v))} />
+                        </label>
+                      ))}
+                    {stat('Mag.', st.magnitude)}
+                    {kind !== 'birthright' && stat('Init', signed(st.init))}
+                    {kind !== 'birthright' && stat(mightBased || kind === 'holy' ? 'Might' : 'Fatigue', st.mightCost ?? st.fatigue)}
+                    {kind === 'ritual' &&
+                      stat(
+                        mightBased ? 'Might Score or Conf.' : 'Conf.',
+                        mightBased ? st.mightCost ?? 0 : st.confidence,
+                        mightBased ? 'Each use lowers the Might Score by its Might cost, or spends that many Confidence Points (RoP: Magic, Ritual Power)' : '1 Confidence Point per magnitude',
+                      )}
+                    <span className="small muted">{powerCost(p, mightBased)} lv</span>
+                    <button className="small ghost" title="Remove" onClick={() => update((x) => void (x.powers = (x.powers ?? []).filter((y) => y.uid !== p.uid)))}>
+                      ✕
+                    </button>
+                  </div>
+                  {spell && (
+                    <div className="small muted">
+                      as{' '}
+                      <span className="clickable" title="Show what the spell does" onClick={() => setShown(shown === p.uid ? null : p.uid)}>
+                        {shown === p.uid ? '▾' : '▸'} {spell.name}
+                      </span>{' '}
+                      ({ART_NAMES[spell.technique]} {ART_NAMES[spell.form]} {spell.level}; {spell.range}/{spell.duration}/{spell.target})
+                    </div>
+                  )}
+                  {spell && shown === p.uid && <SpellText spell={spell} />}
+                  <input className="small" value={p.notes ?? ''} placeholder="effect, limits, realm…" aria-label="Power notes" onChange={(e) => edit(p.uid, (x) => void (x.notes = e.target.value || undefined))} />
+                  {usesMastery && (
+                    <div className="row small">
+                      <span className="muted">Mastery:</span>
+                      {kind !== 'focus' && (
+                        <label className="inline" title={reduced ? 'Might cost taken off (below 0 raises it, for Reduced Power)' : 'Might cost taken off'}>
+                          Might cost −
+                          <Stepper value={p.mastery?.cost ?? 0} min={reduced ? -20 : 0} max={Math.max(0, (base.mightCost ?? 0) - (kind === 'ritual' ? Math.ceil(base.magnitude / 2) : 0))} width={36} onChange={(v) => setMastery(p.uid, 'cost', v)} />
+                          <span className="muted">
+                            ({base.mightCost} → {st.mightCost})
+                          </span>
+                        </label>
+                      )}
+                      <label className="inline" title={reduced ? 'Initiative added (below 0 lowers it, for Reduced Power)' : 'Initiative added'}>
+                        Init +
+                        <Stepper value={p.mastery?.init ?? 0} min={reduced ? -20 : 0} max={40} width={36} onChange={(v) => setMastery(p.uid, 'init', v)} />
+                      </label>
+                      {kind === 'focus' && (
+                        <label className="inline" title="Each point lets the Focus Power reach 5 levels beyond the Might Score">
+                          5 levels beyond Might ×
+                          <Stepper value={p.mastery?.level ?? 0} min={0} max={40} width={36} onChange={(v) => setMastery(p.uid, 'level', v)} />
+                        </label>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
             <AddPower ed={ed} kind={kind} left={budget - used} />
           </div>
         );

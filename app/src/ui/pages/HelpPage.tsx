@@ -84,7 +84,7 @@ export default function HelpPage() {
               built as a <i>Realms of Power: Magic</i> magic character: experience from its Season instead of age, Might from the saga&apos;s power level, Magic Qualities bought with
               Might, and the Magical Friend status. Its Creature card lists the creation steps in the book&apos;s order: Characteristics, Virtues and Flaws, Abilities and
               powers are made as for any character. Repeatable Qualities take a count, the rules check removes copies the rules do not allow, and Improved Powers&apos; mastery
-              points are spent on each power under Supernatural powers.
+              points are spent on each power under Supernatural powers, or turned into Penetration experience there.
             </li>
             <li>Finish creation to switch to the in-play sheet. You can always return to creation.</li>
           </ol>
