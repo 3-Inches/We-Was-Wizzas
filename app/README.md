@@ -44,7 +44,9 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
   - Removing the Flaw an Inferiority brought removes the Inferiority and its points.
   - Improved Confidence raises the Confidence Score and points, also on a finished character.
   - Magical Meditation and (Form) Resistance give their Supernatural Ability at 1.
-  - Improved Powers gives 5 mastery points each, and unused power levels give 1 per 5 levels for powers of their kind. They are spent on each power's Might cost, its Initiative, or a Focus Power's level beyond Might, or taken as experience in Concentration, Finesse or Penetration. Reduced Power takes 5 away.
+  - Improved Powers gives 5 mastery points each, and unused power levels give 1 per 5 levels for powers of their kind. They are spent on each power's Might cost (5 more Penetration a point), its Initiative, or a Focus Power's level beyond Might, or turned into 5 experience points each in Penetration, Concentration or Finesse right on the powers card. Reduced Power takes 5 away; only it lets mastery raise a cost or lower Initiative.
+  - Magical Master, Champion and Covenfolk combine with another Social Status, so a companion Flaw's being can have one alongside the Magical Friend the Flaw asks for.
+  - A magic character has no free native language: its Season experience buys any language it knows.
   - A magic character's power Penetration is Might − 5 × its Might cost + Penetration, and effects of level 50 or more must be Ritual Powers.
 - **Guided build** (Concept step): the player rates statements about what they want to play, 0–10 (skipping counts as 5), and gets Virtues, Flaws, a House, Arts and Abilities recommended from every enabled book, then a complete draft that passes the rules check.
   - Every Virtue and Flaw has a record of outcome tags (Casting Totals, Penetration, Faerie, the Church…) with a direction and strength, built from the hand-written mechanics and the book text, plus region and culture gates.

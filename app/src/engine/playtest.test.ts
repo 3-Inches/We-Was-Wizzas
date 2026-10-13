@@ -4,10 +4,10 @@
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
-import { addQualities, addVirtue, ensureAbility, newCharacter, removeQualities, removeVirtue, setHouse, syncImpliedVirtues } from './character/factory';
+import { addQualities, addVirtue, ensureAbility, newCharacter, removeQualities, removeVirtue, setHouse, setMasteryXp, syncImpliedVirtues } from './character/factory';
 import { deriveCharacter, postGauntletXp } from './character/derive';
 import { validateCharacter } from './character/validate';
-import { abilityAvailability, vfAvailability } from './character/restrictions';
+import { abilityAvailability, statusesCompatible, vfAvailability } from './character/restrictions';
 import { POWER_KINDS, masteryPools, powerSpending, powerStats } from './character/powers';
 import { ageYears, computeStudy, magianLinkedGains, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith } from './longterm';
 import { castingScore, conditionalBonuses, labTotal, magicResistance } from './magic';
@@ -592,5 +592,43 @@ describe('fourth playtest: a magic character\'s Qualities and powers (RoP: Magic
     // mastery points taken as experience in Concentration, Finesse or Penetration
     c.creature!.magicCharacter!.masteryXp = 2;
     expect(derive(c).budgets.find((b) => b.id === 'pool:mastery')?.total).toBe(10);
+  });
+});
+
+describe('fifth playtest: a magical companion\'s status and mastery as experience (RoP: Magic)', () => {
+  const bingus = () => {
+    const c = newCharacter('companion', 's1');
+    c.creature = { realm: 'Magic', kind: 'animal', size: 0, might: 0, intelligence: 'companion', ownerId: 'billy', magicCharacter: { season: 'summer', powerLevel: 'Medium', baseMight: 10, form: 'An', qualities: [] } };
+    return c;
+  };
+  it('lets Magical Master sit alongside the Magical Friend a companion Flaw asks for', () => {
+    const c = bingus();
+    addVirtue(c, data, 'magical-master', 'Major');
+    const warn = validateCharacter(derive(c), data, rules).find((i) => i.code === 'magic-friend');
+    expect(warn?.message).toMatch(/Magical Master may be combined with it/);
+    expect(statusesCompatible(data.vfById.get('magical-master')!, data.vfById.get('magical-friend-flaw')!)).toBe(true);
+    addVirtue(c, data, 'magical-friend-flaw', 'Minor');
+    expect(codes(c)).not.toContain('magic-friend');
+    expect(validateCharacter(derive(c), data, rules).find((i) => i.id === 'status-many')?.severity).toBe('info');
+  });
+  it('turns mastery points into Penetration experience, and flags mastery that raises a cost without Reduced Power', () => {
+    const c = bingus();
+    addQualities(c, data, 'improved-powers', 1);
+    addQualities(c, data, 'personal-power', 1);
+    setMasteryXp(c, 'penetration', 3);
+    let d = derive(c);
+    expect(c.creature!.magicCharacter!.masteryXp).toBe(3);
+    expect(d.budgets.find((b) => b.id === 'pool:mastery')).toMatchObject({ total: 15, spent: 15 });
+    expect(d.abilities.find((a) => a.abilityId === 'penetration')?.score).toBe(2);
+    setMasteryXp(c, 'penetration', 0);
+    expect(c.abilities.some((a) => a.abilityId === 'penetration')).toBe(false);
+    expect(c.creature!.magicCharacter!.masteryXp).toBeUndefined();
+    c.powers = [{ uid: 'p1', name: 'Super Form', kind: 'personal', level: 20, penetration: 0, mastery: { cost: -4 } }];
+    d = derive(c);
+    const issue = validateCharacter(d, data, rules).find((i) => i.code === 'power-mastery-neg')!;
+    expect(issue.message).toMatch(/raises its Might cost by 4/);
+    const f = fixesFor(issue, d, data, rules)[0];
+    if (f.kind === 'apply') f.apply(c);
+    expect(c.powers[0].mastery).toBeUndefined();
   });
 });

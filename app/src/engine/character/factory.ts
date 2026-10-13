@@ -386,3 +386,26 @@ export function syncQualityAbilities(c: Character, _data: GameData) {
     if (Object.values(ab.xp).every((x) => !x)) c.abilities = c.abilities.filter((a) => a !== ab);
   }
 }
+
+/** The abilities mastery points can become experience in (RoP: Magic, Improved Powers). */
+export const MASTERY_XP_ABILITIES = ['penetration', 'concentration', 'finesse'] as const;
+
+/**
+ * Put `points` mastery points into an Ability as experience (5 each), and keep the character's
+ * total of mastery points taken as experience in step.
+ */
+export function setMasteryXp(c: Character, abilityId: (typeof MASTERY_XP_ABILITIES)[number], points: number) {
+  const mc = c.creature?.magicCharacter;
+  if (!mc) return;
+  const key = 'pool:mastery' as XpSource;
+  if (points > 0) ensureAbility(c, abilityId).xp[key] = 5 * points;
+  else {
+    const ab = c.abilities.find((a) => a.abilityId === abilityId && !a.param);
+    if (ab) {
+      delete ab.xp[key];
+      if (Object.values(ab.xp).every((x) => !x)) c.abilities = c.abilities.filter((a) => a !== ab);
+    }
+  }
+  const total = c.abilities.reduce((s, a) => s + (a.xp[key] ?? 0), 0) / 5;
+  mc.masteryXp = total || undefined;
+}

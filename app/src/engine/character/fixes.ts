@@ -318,8 +318,24 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
       // RoP: Magic: an effect of level 50 or more is a Ritual Power (its levels come from Ritual Power)
       const p = (c.powers ?? []).find((x) => x.uid === issue.other);
       return list(
-        !!p && { kind: 'apply', label: `Make ${p.name || 'it'} a Ritual Power`, apply: (x) => void ((x.powers ?? []).find((y) => y.uid === p.uid)!.kind = 'ritual') },
+        !!p && p.kind !== 'focus' && { kind: 'apply', label: `Make ${p.name || 'it'} a Ritual Power`, apply: (x) => void ((x.powers ?? []).find((y) => y.uid === p.uid)!.kind = 'ritual') },
+        !!p && { kind: 'apply', label: `Lower ${p.name || 'it'} to level 45`, apply: (x) => void ((x.powers ?? []).find((y) => y.uid === p.uid)!.level = 45) },
         goto('virtues', 'Edit the powers'),
+      );
+    }
+    case 'power-mastery-neg': {
+      const p = (c.powers ?? []).find((x) => x.uid === issue.other);
+      return list(
+        !!p && {
+          kind: 'apply', label: 'Clear the negative mastery', auto: true,
+          apply: (x) => {
+            const y = (x.powers ?? []).find((z) => z.uid === p.uid)!;
+            if (!y.mastery) return;
+            if ((y.mastery.cost ?? 0) < 0) delete y.mastery.cost;
+            if ((y.mastery.init ?? 0) < 0) delete y.mastery.init;
+            if (!y.mastery.cost && !y.mastery.init && !y.mastery.level) delete y.mastery;
+          },
+        },
       );
     }
     case 'name':

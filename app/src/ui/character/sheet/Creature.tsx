@@ -376,7 +376,8 @@ function MagicSteps({ ed }: { ed: CharEditor }) {
           </button>
         </li>
         <li>
-          <b>Season and Abilities:</b> the Season&apos;s experience (and Improved Abilities) buys Abilities the Virtues allow.{' '}
+          <b>Season and Abilities:</b> the Season&apos;s experience (and Improved Abilities) buys Abilities the Virtues allow. There is no free native language: any
+          language it knows is bought from this experience (the book&apos;s talking horse Aeolus took Living Language 4). A magic animal also needs Gift of Speech to talk.{' '}
           {season && status(season.spent === season.total, `${season.spent} of ${season.total} xp`)}{' '}
           <button className="small ghost" onClick={() => goto('abilities')}>
             Abilities

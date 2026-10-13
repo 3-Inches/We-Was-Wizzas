@@ -51,6 +51,8 @@ export function cheapestSize(def: VirtueFlawDef): VFSize {
 export function statusesCompatible(a: VirtueFlawDef, b: VirtueFlawDef): boolean {
   const says = (x: VirtueFlawDef, y: VirtueFlawDef) => {
     if (x.compatibleStatuses?.includes(y.id) || x.compatibleStatuses?.includes('*')) return true;
+    // Magical Master, Champion and Covenfolk "may be combined with other Social Status Virtues and Flaws" (RoP: Magic)
+    if (/may be combined with other Social Status/i.test(x.text)) return true;
     const name = y.name.replace(/\s*\(.*\)$/, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     return new RegExp(`compatible[^.]*${name}`, 'i').test(x.text);
   };
