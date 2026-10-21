@@ -110,6 +110,10 @@ export interface MasteryPools {
   general: number;
   /** unused levels of each power Quality, 5 to a point: for powers of that kind (Greater also for Lesser) */
   leftover: Partial<Record<PowerKind, number>>;
+  /** leftover points no power of their kind has used */
+  unused: Partial<Record<PowerKind, number>>;
+  /** points drawn from the general pool (powers beyond their own leftovers, and experience) */
+  fromGeneral: number;
   /** points used on powers and turned into experience */
   spent: number;
   available: number;
@@ -150,5 +154,6 @@ export function masteryPools(powers: CharPower[] = [], budgets: Partial<Record<P
   draw(on('focus'), ['focus']);
   const spent = powers.reduce((s, p) => s + masteryOn(p), 0) + xpPoints;
   const available = general + Object.values(leftover).reduce((s, n) => s + (n ?? 0), 0);
-  return { general, leftover, spent, available, over: Math.max(0, fromGeneral - general) };
+  const unused = Object.fromEntries(Object.entries(pool).filter(([, n]) => (n ?? 0) > 0)) as Partial<Record<PowerKind, number>>;
+  return { general, leftover, unused, fromGeneral, spent, available, over: Math.max(0, fromGeneral - general) };
 }

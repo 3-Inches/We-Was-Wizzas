@@ -12,6 +12,10 @@ export interface ExperimentOptions {
   originalResearch?: boolean;
   /** the project is an enchanted item or a familiar (a Complete Failure may destroy it) */
   enchantment?: boolean;
+  /** the laboratory's Safety, taken off the chart's botch dice; a negative Safety adds them (Covenants, Laboratories) */
+  safety?: number;
+  /** a familiar's golden cord: fewer botch dice, never down to none (DE, The Three Cords) */
+  goldenCord?: number;
 }
 
 export interface ExperimentResult {
@@ -29,6 +33,12 @@ export interface ExperimentResult {
 /** The most risk an original researcher may take: +1 per 5 points (or fraction) of Magic Theory, up to +3. */
 export function researchRiskLimit(magicTheory: number): number {
   return Math.min(3, Math.max(0, Math.ceil(magicTheory / 5)));
+}
+
+/** Botch dice on the Extraordinary Results Chart: one, plus the risk modifier and the aura, less Safety and the golden cord. */
+export function experimentBotchDice(o: ExperimentOptions): number {
+  const n = Math.max(0, 1 + Math.max(0, Math.min(3, o.risk)) + Math.max(0, o.auraStrength) - (o.safety ?? 0));
+  return n > 1 ? Math.max(1, n - (o.goldenCord ?? 0)) : n;
 }
 
 const DISASTER = [
@@ -78,7 +88,7 @@ export function rollExperiment(o: ExperimentOptions, rng: Rng = defaultRng): Exp
   let warpingPoints = 0;
 
   const chart = (depth: number) => {
-    const r = stressDie(1 + risk + Math.max(0, o.auraStrength), rng);
+    const r = stressDie(experimentBotchDice(o), rng);
     if (r.botches) {
       disaster = true;
       warpingPoints += r.botches;

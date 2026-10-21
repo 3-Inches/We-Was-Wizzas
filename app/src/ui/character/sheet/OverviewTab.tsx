@@ -121,6 +121,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
           )}
           <div className="small" style={{ marginTop: 8 }}>
             <b>Personality:</b> {c.personality.map((p) => `${p.trait} ${signed(p.score)}`).join(', ') || '—'}
+            {c.familiar?.silver ? <span className="muted"> (silver cord: {signed(c.familiar.silver)} to Personality rolls and to resisting mental influence)</span> : null}
           </div>
           <div className="small">
             <b>Reputations:</b> {d.reputations.map((r) => `${r.text} ${r.score} (${r.scope})`).join(', ') || '—'}

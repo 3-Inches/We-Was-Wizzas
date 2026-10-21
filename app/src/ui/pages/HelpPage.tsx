@@ -154,6 +154,11 @@ export default function HelpPage() {
             each craftsman&apos;s craft, and press <b>optimal</b> for the number of laborers or craftsmen that keeps spending lowest. Tick <b>tithed</b> and <b>Tithing Miracle</b>{' '}
             per source.
           </li>
+          <li>
+            At the end of each year press <b>Close the year</b> on the Finances tab: it shows the treasury after the year&apos;s balance, the rise in inflation, the vis gathered
+            and the year of familiarity, then applies them (with Undo). Roll the <b>Income Modification</b> with 🎲, record <b>Loyalty events</b> as they happen, and use the one-off
+            spending presets for sundry costs.
+          </li>
         </ul>
       </Card>
 
@@ -195,19 +200,23 @@ export default function HelpPage() {
         <ul className="small">
           <li>
             <b>Magic:</b> every Casting Score and Lab Total for the current aura, Magic Resistance per Form, Penetration with Arcane Connections, spell casting with the right die,
-            botch dice, fatigue and ritual costs, spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, any other
-            modifier) and it is added to the totals. A botch adds its Warping Points.
+            botch dice, fatigue and ritual costs, spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, raw vis,
+            days away from the lab, any other modifier) and it is added to the totals. A botch adds its Warping Points. Casting Virtues and Flaws (Diedne Magic, Weak
+            Spontaneous Magic, Vulnerable Casting…) are applied when you cast; the card lists which, and reminds you of the ones you apply yourself.
           </li>
           <li>
-            <b>Combat &amp; Health:</b> apply damage against Soak to get the wound, track Fatigue, roll recovery.
+            <b>Combat &amp; Health:</b> apply damage against Soak to get the wound, track Fatigue, roll recovery. Tick mounted, exertion or scuffling for a round. <b>Fighting as a
+            group</b> picks the saga&apos;s grogs to fight beside this character and works out the group&apos;s totals and how its blows are spread.
           </li>
           <li>
             <b>Seasons &amp; Aging:</b> plan a season (books, teachers, training, practice, vis, adventure) and log it; experience is added with Affinities, gain limits and Virtues.
             Roll aging, crises and Wizard&apos;s Twilight. Choose a teacher from the saga to fill in their scores. <b>Write a book</b> works out a summa or tractatus and adds it to
-            the covenant library.
+            the covenant library. With <i>City &amp; Guild</i> enabled, a craftsman or laborer can track a <b>livelihood</b>: Labor Points, the Workshop Total and the quality
+            each season makes.
           </li>
           <li>
-            <b>Lab &amp; Items:</b> enchanted devices, talisman, familiar cords, Longevity Ritual.
+            <b>Lab &amp; Items:</b> enchanted devices, talisman, Longevity Ritual, experimentation. A familiar&apos;s cords are applied where they belong (golden to botch dice,
+            bronze to Soak, recovery and aging), and its bond can be empowered with the +5 or +10 bonus.
           </li>
           <li>
             The <Link to="/dice">Dice</Link> page rolls simple, stress and botch dice for anyone at the table.

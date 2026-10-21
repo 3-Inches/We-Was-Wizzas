@@ -260,6 +260,27 @@ export interface Familiar {
   characterId?: string; // optional full character sheet for the familiar
 }
 
+/** A craftsman's or laborer's livelihood (City & Guild): the business, its workshop and banked Labor Points. */
+export interface Workshop {
+  /** the Craft or Profession worked (an ability uid) */
+  abilityUid?: string;
+  /** the craft's primary Characteristic (Dexterity for most crafts, Strength for smiths and laborers) */
+  primary: Characteristic;
+  innovation: number;
+  rawMaterials: number;
+  laborPoints: number;
+  /** a guild master loses 3 Labor Points a season for each worker short of his Leadership */
+  guildMaster?: boolean;
+  assistants: { uid: string; name: string; craft: number }[];
+  manual: number;
+  /** raises the base Craft Level of 6 (war, famine, scarce materials, interruptions, auras…) */
+  craftLevelMod: number;
+  /** seasons worked since the year was last closed */
+  seasonsWorked: number;
+  reputationXp: number;
+  shoddyStreak: number;
+}
+
 export interface LongevityRitual {
   labTotal: number;
   bonus: number;
@@ -449,6 +470,7 @@ export interface Character {
   items: EnchantedItem[];
   talismanUid?: string;
   familiar?: Familiar;
+  workshop?: Workshop;
   longevity?: LongevityRitual;
   wounds: WoundState;
   fatigueLost: number;
@@ -522,6 +544,8 @@ export interface VisSource {
   tithed?: boolean;
   /** the Tithing Miracles Boon increases it */
   miracle?: boolean;
+  /** dedicated vis (RoP: Magic): 7.5 Build Points a pawn a year instead of 5 */
+  dedicated?: boolean;
 }
 
 export interface VisStock {
@@ -612,6 +636,8 @@ export interface IncomeSource {
   tithed?: boolean;
   /** the Tithing Miracles Boon increases it */
   miracle?: boolean;
+  /** past years' lasting changes (Income Modification made permanent), multiplied together */
+  factor?: number;
 }
 
 export interface Covenant {
@@ -658,8 +684,13 @@ export interface Covenant {
     startingReserve?: number;
     /** adjust the principal income by 15 pounds per magus above or below six (Covenants ch.5) */
     magiIncomeAdjust?: boolean;
+    /** the Pound of Enumerus: a pound of untraceable spending a year, added to sundry (Covenants ch.5) */
+    enumerus?: boolean;
+    /** last closed year's expenditure: inflation does not rise in a year expenditure falls */
+    lastExpenditure?: number;
   };
-  loyalty: { actionPoints: number; yearsFounded?: number };
+  /** unGiftedCouncil: council members without The Gift whose votes count equally (they add 0 to Base Loyalty) */
+  loyalty: { actionPoints: number; yearsFounded?: number; unGiftedCouncil?: number };
   log: { uid: string; year: number; season?: string; text: string; treasuryDelta?: number; visDelta?: VisStock[] }[];
   notes: string;
   createdAt: string;

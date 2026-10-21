@@ -63,11 +63,12 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 | Area | What it covers |
 |---|---|
 | Magic | Casting Scores and Lab Totals for every Technique + Form in the current aura, Magic Resistance per Form, Penetration with Arcane Connections. One-click modifiers: Magical Focus, Special Circumstances, Cyclic and Potent Magic, Life Boost, Spell Improvisation's similar spell, and any other modifier |
-| Spellcasting | Formulaic, Ritual and spontaneous casting with the correct die, botch dice, Fatigue and Mastery; a botch adds its Warping Points, and All According to Plan rerolls a botch die once a session |
+| Spellcasting | Formulaic, Ritual and spontaneous casting with the correct die, botch dice (aura, a Ritual's vis, Cautious Sorcerer, a familiar's golden cord, Mastery), Fatigue and Mastery; a botch adds its Warping Points, and All According to Plan rerolls a botch die once a session. Ceremonial casting, and raw vis to raise a Casting Score (+2 a pawn and a botch die each, up to Technique + Form less any Ritual vis). The casting Virtues and Flaws are applied as you cast: Diedne Magic (the lowest Art doubled when exerted, or a calm ÷2 on a stress die), Weak, Difficult and Ceremonial Spontaneous Magic, Unpredictable Magic, Life-Linked Spontaneous Magic and Chaotic Magic (a declared level), Vulnerable and Withstand Casting, Rigid Magic, Unstructured Caster, Mercurian Magic and Waster of Vis on Ritual vis; others are listed as reminders |
 | Certamen | The six totals for the chosen Technique and Form (House Tremere's focus doubles the lower Art), vis, and rounds rolled against an opponent's numbers, with the Fatigue they cost |
-| Health | Wounds from damage vs. Soak, Fatigue tracking, recovery rolls |
-| Seasons | Books, teachers, training, practice, exposure, adventure and vis, with gain limits and Magian Lineage's linked Abilities. Pick a teacher from the saga to fill in their Communication, Teaching and score; Apt Student, Good Teacher and a lab's Teaching Specialization (up to +3) are added. Secondary Insight; aging and crises; Warping and Wizard's Twilight (avoid, comprehend, effects and scars, with Twilight Prone and Twilight Mastery; a Twilight Virtue or Flaw is Minor or Major by the Warping Points gained). Write a summa or tractatus: Quality, Level and seasons from the author's scores, with the *Covenants* rules for artisans and resonant materials, and the finished book goes to the covenant library |
-| Lab & items | Enchanted devices, talisman and attunements, familiar cords, Longevity Ritual. Experimentation: the season's Lab Total bonus and a roll on the Extraordinary Results Chart with its sub-tables and Disasters, and original research for a Breakthrough |
+| Health & combat | Wounds from damage vs. Soak, Fatigue tracking, recovery rolls (a bronze cord adds to them). Mounted combat, combat exertion and scuffling. Fighting as a group: the vanguard's totals, a trained group's bonus capped by the leader's Leadership, the five-point range, and how a group's blows are spread |
+| Seasons | Books, teachers, training, practice, exposure, adventure and vis, with gain limits and Magian Lineage's linked Abilities. Pick a teacher from the saga to fill in their Communication, Teaching and score; Apt Student, Good Teacher and a lab's Teaching Specialization (up to +3) are added. Secondary Insight; aging and crises; Warping and Wizard's Twilight (avoid, comprehend, effects and scars, with Twilight Prone and Twilight Mastery; a Twilight Virtue or Flaw is Minor or Major by the Warping Points gained). Write a summa or tractatus: Quality, Level and seasons from the author's scores, with the *Covenants* rules for artisans and resonant materials, and the finished book goes to the covenant library. Months lost to distraction cut the season's total by a third each. A bronze cord adds to aging rolls |
+| Lab & items | Enchanted devices, talisman capacity and attunements (pick the one that applies when casting), Longevity Ritual. Familiars: binding level, vis and cords, each cord's effect applied where it belongs, the silver cord's roll to free your mind, and empowering the bond (+5 or +10). Days away from the lab cost Lab Total. Experimentation: the season's Lab Total bonus and a roll on the Extraordinary Results Chart with its sub-tables and Disasters (botch dice less the lab's Safety and the golden cord), and original research for a Breakthrough |
+| Livelihood (*City & Guild*, opt-in) | For a craftsman or laborer: the Workshop Total (Innovation, Raw Materials, assistants up to Leadership, a craft manual) against the Craft Level and what quality it makes, Labor Points by wealth with an understaffed master's loss, the yearly upkeep, improvements and rising in wealth, workshop exertion with its results chart, haggling a sale, and wondrous items |
 | Other | Printable stat block, overrides for any number |
 
 **Covenants:**
@@ -81,6 +82,9 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
   - Income sources follow the Boons and Hooks (Wealth, Secondary Income, Poverty, Natural Disaster, Indebted, Right, Contested Resource), with the book's source types and yearly Income Modification. Tithes and Tithing Miracles are set per income and vis source, and what the covenant receives is rounded up.
   - Hidden, Flawed and Illusory Resources each pay for 250 Build Points of chosen resources; a Flawed Resource's story can save half, lose all, or double the loss. The Exceptional Book Boon adds its summa free. Only Hooks whose text allows it can be Unknown.
   - Craftsmen choose a craft, which sets their cost saving and its limits; buttons find the number of laborers, servants, teamsters and each craft that keeps spending lowest. Quick add makes specialists, teachers and craftsmen within the starting age limits.
+  - Closing the year (*Covenants*): a preview of the treasury after the year's balance, inflation (which stays put in a year spending fell), the year's vis gathered into stocks (skip any source), a year of familiarity for Loyalty, and income changes made lasting; one click applies it, with undo. The Income Modification roll, the Pound of Enumerus, one-off spending presets and lab outfitting.
+  - Loyalty events from the book's table (a wound by magic counts a level worse), what the Prevailing Loyalty means for the covenfolk, and unGifted council members in the Base Loyalty.
+  - Vis sources: the yield guide by size and the 7.5 Build Points a pawn of dedicated vis costs. Book prices for buying and selling.
 
 **Tools:**
 
@@ -94,7 +98,7 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 
 **Reference:**
 
-- **Game mechanics:** the rules players and storyguides use, from the core book and the reviewed supplements (over 5,000), in 14 areas. Each area runs from the rules every session uses to the ones that need a Virtue, House, initiation, tradition or kind of being, and character creation is grouped by the kind of character. Each entry has a summary, the key rules quoted word for word, "see also" links, and the book's own text on demand. Search covers every mechanic, and a filter shows what matters to magi, companions, grogs or the storyguide.
+- **Game mechanics:** the rules players and storyguides use, from the core book and the reviewed supplements (over 5,000), in 14 areas. A rule reprinted in several books is shown once, from the book that takes precedence (the Definitive Edition, then the newest), with "Also printed in" links and the other books' versions when they differ. Each area runs from the rules every session uses to the ones that need a Virtue, House, initiation, tradition or kind of being, and character creation is grouped by the kind of character. Each entry has a summary, the key rules quoted word for word, "see also" links, and the book's own text on demand. Search covers every mechanic, and a filter shows what matters to magi, companions, grogs or the storyguide.
 - Searchable Virtues & Flaws, Abilities, Houses, lab Virtues & Flaws, Hooks & Boons, weapons, and Shape & Material.
 - A built-in reader for every 5th Edition book. Entries across the app link to the exact line of their source.
 
@@ -103,6 +107,18 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 - Export or import a saga, character or covenant as a file.
 - Share links that import a copy (useful on Discord).
 - Stream mode with large text for screen sharing, and a print layout.
+
+## Not yet automated
+
+Rules the toolkit shows as text or reminders, kept here for later work:
+
+- **Casting:** Boosted Magic and Flexible Formulaic Magic (changing a spell's parameters as it is cast), the per-Art split of boosting vis (only the total is checked), Spell Improvisation's "does not stack with other bonuses", Clumsy Magic's −3 to Finesse and aiming botches (there is no aiming roller yet), ceremonial casting's limit of one magnitude per fifteen minutes, and Waster of Vis outside Ritual vis (vis study, Certamen, the lab).
+- **Mystery and hedge magic:** the casting systems of the Mystery Cults (Hermetic Numerology, Planetary and Celestial Magic, Theurgy, Invocation, Dream Magic, Synthemata and the like) and of the hedge traditions are reference only.
+- **Familiars and talismans:** the Mystery Cults' Hermes, Isis and Hekate cords and the faerie cords; a talisman's one-new-attunement-a-season limit.
+- **City & Guild:** guild ranks and their requirements, journeyman contracts, merchant investments (charity, speculation, smuggling, ventures), trading companies, and the travel and price tables. For a wondrous item, the aura and Shape and Material bonus are added by hand.
+- **Combat:** *Lords of Men* mass combat, tournaments and sieges; splitting groups, disengaging and the special maneuvers; trained animal groups.
+- **Covenants:** the effect of low Loyalty on productivity, and building projects.
+- **Seasons:** the Church's ordination, good works and pilgrimages, the apprenticeship schedule, *Grogs*' per-decade aging shortcut, and *Lords of Men*'s random method of death.
 
 ## Running it
 

@@ -26,7 +26,16 @@ export interface MechanicsEntry {
   related?: { text: string; to?: string }[];
   /** the topic it sits under, in a group split by topic */
   section?: string;
+  /** the same rules, printed in other books */
+  alsoIn?: { book: string; line: number; endLine?: number; title: string }[];
+  /**
+   * Other books' versions of this rule, with different text. A rule several books give is listed
+   * once: under the Definitive Edition if it has it, otherwise under the newest book.
+   */
+  versions?: MechanicsVersion[];
 }
+
+export type MechanicsVersion = Omit<MechanicsEntry, 'versions' | 'audience' | 'creation' | 'alsoIn' | 'section'>;
 
 export interface MechanicsGroup {
   id: string;

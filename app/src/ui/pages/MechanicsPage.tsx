@@ -8,6 +8,7 @@ import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom'
 import { BOOK_BY_ID } from '../../data';
 import {
   MECHANICS_FILTERS,
+  type MechanicsVersion,
   type MechanicsArea,
   type MechanicsAreaSummary,
   type MechanicsAudience,
@@ -151,7 +152,8 @@ function IndexView({ data }: { data: MechanicsIndex }) {
         for (const entry of group.entries) {
           if (!forAudience(entry, who)) continue;
           const title = entry.title.toLowerCase();
-          const hay = `${title} ${group.title} ${entry.summary} ${entry.requires ?? ''}`.toLowerCase();
+          const others = (entry.versions ?? []).map((v) => `${v.title} ${v.summary}`).join(' ');
+          const hay = `${title} ${group.title} ${entry.summary} ${entry.requires ?? ''} ${others}`.toLowerCase();
           if (!hay.includes(qq)) continue;
           out.push({ area, group, entry, score: (title.includes(qq) ? 0 : 1) + entry.prevalence / 10 });
         }
@@ -170,6 +172,10 @@ function IndexView({ data }: { data: MechanicsIndex }) {
           The {total.toLocaleString()} rules players and storyguides actually use, gathered from the core rules and every reviewed 5th Edition supplement, from the
           rules everyone uses to the ones a Virtue, House, initiation or tradition opens. Each has a short summary, the key rules quoted from the book, and the book&apos;s own
           text a click away. The summaries are a guide; the book text is the rule.
+        </p>
+        <p className="small muted" style={{ marginTop: 0 }}>
+          A rule several books print is listed once, under the Definitive Edition if it has it, otherwise under the newest book; the other books are named with it. Where another
+          book says it differently, its version sits under the entry: the Definitive Edition rules, then the newer book, unless your troupe prefers the older one.
         </p>
       </div>
       <div className="row">
@@ -397,6 +403,24 @@ function EntryCard({ entry, focused, who }: { entry: MechanicsEntry; focused: bo
           ))}
         </ul>
       )}
+      {entry.alsoIn && entry.alsoIn.length > 0 && (
+        <div className="small muted row tight">
+          Also printed in:
+          {entry.alsoIn.map((a) => (
+            <BookBadge key={`${a.book}-${a.line}`} book={a.book} line={a.line} />
+          ))}
+        </div>
+      )}
+      {entry.versions && entry.versions.length > 0 && (
+        <details className="small" style={{ margin: '4px 0' }}>
+          <summary style={{ cursor: 'pointer' }}>
+            {entry.versions.length === 1 ? 'Another book’s version' : `Other books’ versions (${entry.versions.length})`}: {entry.versions.map((v) => BOOK_BY_ID[v.book]?.abbr ?? v.book).join(', ')}
+          </summary>
+          {entry.versions.map((v) => (
+            <VersionCard key={v.id} version={v} />
+          ))}
+        </details>
+      )}
       {entry.related && entry.related.length > 0 && (
         <div className="small muted">
           See also:{' '}
@@ -426,3 +450,44 @@ function EntryCard({ entry, focused, who }: { entry: MechanicsEntry; focused: bo
     </section>
   );
 }
+
+/** Another book's version of a rule, under the entry that comes first. */
+function VersionCard({ version: v }: { version: MechanicsVersion }) {
+  const [open, setOpen] = useState(false);
+  const sec = useBookSection(v.book, v.line, v.endLine, open);
+  return (
+    <div style={{ borderLeft: '3px solid var(--line)', paddingLeft: 10, margin: '6px 0' }}>
+      <div className="row tight" style={{ alignItems: 'baseline' }}>
+        <b>{v.title}</b>
+        <BookBadge book={v.book} line={v.line} />
+        {v.prevalence === 4 && <span className="badge warn">gated</span>}
+      </div>
+      {v.requires && (
+        <div>
+          <b>Needs:</b> {v.requires}
+        </div>
+      )}
+      <div>{v.summary}</div>
+      {v.quotes && v.quotes.length > 0 && (
+        <ul style={{ margin: '4px 0', paddingLeft: 18 }}>
+          {v.quotes.map((q) => (
+            <li key={q}>
+              <q>{q}</q>
+            </li>
+          ))}
+        </ul>
+      )}
+      <button className="small" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+        {open ? 'Hide the rules' : 'Read the rules'}
+      </button>
+      {open && (
+        <div style={{ marginTop: 6 }}>
+          {sec.loading && <div className="muted">Loading the book…</div>}
+          {sec.error && <div className="bad-text">{sec.error}</div>}
+          {sec.text && <Markdown text={sec.text} />}
+        </div>
+      )}
+    </div>
+  );
+}
+

@@ -9,6 +9,8 @@ import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
+import { DEFAULT_YEAR_END, LOYALTY_EVENTS, SUNDRY_PRESETS, labOutfitCost, applyYearEnd, loyaltyAttitude, loyaltyEventPoints, planYearEnd, rollIncomeModification, type YearEndOptions } from '../../engine/covenantYear';
+import { useStore } from '../../store/store';
 
 const FOLK: { key: keyof CovenfolkCounts; label: string; hint?: string }[] = [
   { key: 'grogs', label: 'Grogs (non-player)' },
@@ -45,20 +47,6 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
   const hasMiracles = cov.hooksBoons.some((h) => mechanicOf(h) === 'tithing-miracles');
   const [newScore, setNewScore] = useState(6);
   const [newBought, setNewBought] = useState(true);
-
-  const advanceYear = () => {
-    if (!window.confirm(`Close the year: add ${f.balance} £ to the treasury and this year's vis income to the stocks?`)) return;
-    update((x) => {
-      x.finances.treasury = Math.round((x.finances.treasury + f.balance) * 10) / 10;
-      for (const [art, n] of Object.entries(dc.visIncome)) {
-        const s = x.visStocks.find((v) => v.art === art);
-        if (s) s.pawns += n;
-        else x.visStocks.push({ art: art as never, pawns: n });
-      }
-      x.loyalty.yearsFounded = (x.loyalty.yearsFounded ?? 0) + 1;
-      x.log.push({ uid: uid(), year: x.foundedYear + (x.loyalty.yearsFounded ?? 0), text: `Year closed: ${f.balance >= 0 ? 'surplus' : 'deficit'} of ${Math.abs(f.balance)} £; vis collected.`, treasuryDelta: f.balance });
-    });
-  };
 
   const optimalLab = () => optimalLaborers(cov, dc.members, dc.labs);
   /** every cost-saving craft the covenant lacks, at the number that saves most */
@@ -188,6 +176,8 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
         </p>
       </Card>
 
+      <CloseYear cov={cov} update={update} dc={dc} />
+
       <div className="grid grid-2">
         <IncomeCard cov={cov} update={update} dc={dc} hasMiracles={hasMiracles} />
 
@@ -236,7 +226,9 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
             <Field label="Treasury (£)">
               <Stepper value={cov.finances.treasury} width={60} onChange={(v) => setFin('treasury', v)} />
             </Field>
-            <button onClick={advanceYear}>Close the year</button>
+            <label className="inline small" title="A pound of spending nobody can account for, every year (Covenants ch.5)">
+              <input type="checkbox" checked={!!cov.finances.enumerus} onChange={(e) => setFin('enumerus', e.target.checked)} /> the Pound of Enumerus
+            </label>
           </div>
           <p className="small muted">Laboratory upkeep points: {f.labPoints}. Writing materials: 1 £ per magus, scribe, bookbinder and illuminator ({f.writersCount}).</p>
           <h4>Spending choices</h4>
@@ -268,6 +260,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
             <Field label="Inflation (£)">
               <Stepper value={cov.finances.inflation} min={0} width={40} onChange={(v) => setFin('inflation', v)} />
             </Field>
+            <OneOffSpending cov={cov} update={update} dc={dc} />
             <Field label="Sundry (£)">
               <Stepper value={cov.finances.sundry} min={0} width={40} onChange={(v) => setFin('sundry', v)} />
             </Field>
@@ -305,7 +298,15 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
           <Field label="Years since founding">
             <Stepper value={cov.loyalty.yearsFounded ?? 0} min={0} width={36} onChange={(v) => update((x) => void (x.loyalty.yearsFounded = v))} />
           </Field>
+          <Field label="UnGifted council members" hint="Votes equal to the magi's: each adds 0 to the Base average">
+            <Stepper value={cov.loyalty.unGiftedCouncil ?? 0} min={0} width={36} onChange={(v) => update((x) => void (x.loyalty.unGiftedCouncil = v || undefined))} />
+          </Field>
         </div>
+        <p className="small" style={{ margin: '6px 0' }}>
+          <b>Prevailing Loyalty {dc.loyalty.score}:</b> {loyaltyAttitude(dc.loyalty.score)}
+          {dc.loyalty.score <= -3 && ' A Prevailing Loyalty of −3 or less brings periodic crises of faithfulness, like a Hook.'}
+        </p>
+        <LoyaltyEvent cov={cov} update={update} />
         <table className="compact" style={{ marginTop: 8 }}>
           <tbody>
             {dc.loyalty.parts.map((p) => (
@@ -624,14 +625,19 @@ function IncomeCard({ cov, update, dc, hasMiracles }: Omit<CovTabProps, 'data'> 
               </label>
             </div>
             <div className="row small">
-              <Field label="This year">
-                <select value={i.modification ?? 'Status Quo'} onChange={(e) => set((x) => void (x.modification = e.target.value as IncomeModification))}>
-                  {INCOME_MODIFICATIONS.map((m) => (
-                    <option key={m.id} value={m.id}>
-                      {m.id} (×{m.mult})
-                    </option>
-                  ))}
-                </select>
+              <Field label="This year" hint="The storyguide's choice; usually lasting">
+                <div className="row tight">
+                  <select value={i.modification ?? 'Status Quo'} onChange={(e) => set((x) => void (x.modification = e.target.value as IncomeModification))}>
+                    {INCOME_MODIFICATIONS.map((m) => (
+                      <option key={m.id} value={m.id}>
+                        {m.id} (×{m.mult})
+                      </option>
+                    ))}
+                  </select>
+                  <button className="small ghost" title="Roll the Income Modification table: a stress die, botch Slump … 20+ Boom (Covenants ch.5)" onClick={() => set((x) => void (x.modification = rollIncomeModification().id))}>
+                    🎲
+                  </button>
+                </div>
               </Field>
               <label className="inline" title={`Enter the pounds by hand instead of the book's ${INCOME_LEVEL_POUNDS[l.level]} £`}>
                 <input type="checkbox" checked={!!i.customPounds} onChange={(e) => set((x) => void ((x.customPounds = e.target.checked), e.target.checked && (x.pounds = l.base)))} /> own figure
@@ -696,3 +702,155 @@ function IncomeCard({ cov, update, dc, hasMiracles }: Omit<CovTabProps, 'data'> 
     </Card>
   );
 }
+
+/** Record something that changes the covenfolk's loyalty, from the book's table (DE; Covenants ch.4). */
+function LoyaltyEvent({ cov, update }: { cov: Covenant; update: CovTabProps['update'] }) {
+  const [id, setId] = useState('attitude');
+  const [level, setLevel] = useState(0);
+  const [magic, setMagic] = useState(false);
+  const [what, setWhat] = useState('');
+  const e = LOYALTY_EVENTS.find((x) => x.id === id)!;
+  const pts = loyaltyEventPoints(id, level, magic && (id === 'wound' || id === 'altruism'));
+  const record = () =>
+    update((x) => {
+      x.loyalty.actionPoints += pts;
+      x.log.push({ uid: uid(), year: x.foundedYear + (x.loyalty.yearsFounded ?? 0), text: `Loyalty ${pts > 0 ? '+' : ''}${pts}: ${e.label}${e.levels ? ` (${e.levels[level]}${magic ? ', by magic' : ''})` : ''}${what ? ` — ${what}` : ''}.` });
+    });
+  return (
+    <div className="row small" style={{ alignItems: 'flex-end' }}>
+      <Field label="Record an event" hint={e.hint}>
+        <select value={id} onChange={(ev) => (setId(ev.target.value), setLevel(0))}>
+          <optgroup label="Costs loyalty">
+            {LOYALTY_EVENTS.filter((x) => x.kind === 'penalty').map((x) => (
+              <option key={x.id} value={x.id}>
+                {x.label}
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Earns loyalty">
+            {LOYALTY_EVENTS.filter((x) => x.kind === 'gain').map((x) => (
+              <option key={x.id} value={x.id}>
+                {x.label}
+              </option>
+            ))}
+          </optgroup>
+        </select>
+      </Field>
+      {e.levels && (
+        <select value={level} onChange={(ev) => setLevel(Number(ev.target.value))}>
+          {e.levels.map((l, k) => (
+            <option key={l} value={k}>
+              {l}
+            </option>
+          ))}
+        </select>
+      )}
+      {(id === 'wound' || id === 'altruism') && (
+        <label className="inline">
+          <input type="checkbox" checked={magic} onChange={(ev) => setMagic(ev.target.checked)} /> by {id === 'wound' ? 'magic' : 'conspicuous magic'}
+        </label>
+      )}
+      <input value={what} placeholder="who, what (optional)" style={{ flex: '1 1 140px' }} onChange={(ev) => setWhat(ev.target.value)} />
+      <button className="small" onClick={record}>
+        {pts > 0 ? '+' : ''}
+        {pts} points
+      </button>
+      <span className="muted">Reputations known to the covenfolk: ±5 points per point of Reputation ({cov.loyalty.actionPoints} recorded so far).</span>
+    </div>
+  );
+}
+
+/** Close the year (Covenants ch.5): what it does, then do it, with Undo. */
+function CloseYear({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
+  const [o, setO] = useState<YearEndOptions>(DEFAULT_YEAR_END);
+  const [open, setOpen] = useState(false);
+  const putCovenant = useStore((s) => s.putCovenant);
+  const setNotice = useStore((s) => s.setNotice);
+  const year = cov.foundedYear + (cov.loyalty.yearsFounded ?? 0);
+  const plan = planYearEnd(cov, dc, o);
+  const close = () => {
+    const snapshot = structuredClone(cov);
+    update((x) => applyYearEnd(x, plan, year, o));
+    setNotice(`Year ${year} closed: treasury ${plan.treasuryAfter} £.`, () => putCovenant(snapshot));
+    setOpen(false);
+  };
+  const flag = (k: keyof YearEndOptions, label: string, title?: string) => (
+    <label className="inline small" title={title}>
+      <input type="checkbox" checked={!!o[k]} onChange={(e) => setO({ ...o, [k]: e.target.checked })} /> {label}
+    </label>
+  );
+  return (
+    <Card title={`The year ${year}`} actions={<button onClick={() => setOpen((v) => !v)}>{open ? 'Cancel' : 'Close the year…'}</button>}>
+      <div className="row small">
+        <span className={`badge ${dc.finances.balance < 0 ? 'bad' : 'good'}`}>
+          {dc.finances.balance >= 0 ? '+' : ''}
+          {dc.finances.balance} £ this year
+        </span>
+        <span>Treasury {cov.finances.treasury} £ → {plan.treasuryAfter} £</span>
+        <span className="muted">Set each income source&apos;s change for the year below (or roll it), and record one-off spending in Sundry.</span>
+      </div>
+      {open && (
+        <div style={{ marginTop: 8 }}>
+          <div className="row">
+            {flag('permanentIncome', "this year's income changes last", 'The book: such changes are usually permanent; untick for a one-year bumper harvest or plague of locusts')}
+            {flag('inflation', 'inflation rises', '1 £ per 100 £ of expenditure, not in a year expenditure fell')}
+            {flag('harvestVis', 'gather the vis')}
+            {flag('clearSundry', 'clear one-off sundry spending')}
+          </div>
+          {o.harvestVis && cov.visSources.length > 0 && (
+            <div className="row small">
+              Not gathered this year:
+              {cov.visSources.map((s) => (
+                <label key={s.uid} className="inline">
+                  <input type="checkbox" checked={o.skipVis.includes(s.uid)} onChange={(e) => setO({ ...o, skipVis: e.target.checked ? [...o.skipVis, s.uid] : o.skipVis.filter((x) => x !== s.uid) })} /> {s.name}
+                </label>
+              ))}
+            </div>
+          )}
+          <ul className="small">
+            {plan.lines.map((l) => (
+              <li key={l}>{l}</li>
+            ))}
+          </ul>
+          <button className="primary" onClick={close}>
+            Close {year}
+          </button>
+        </div>
+      )}
+    </Card>
+  );
+}
+
+/** Add a one-off expense to this year's sundry spending, at the book's figure (Covenants ch.5). */
+function OneOffSpending({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
+  const [id, setId] = useState('redcap');
+  const [count, setCount] = useState(1);
+  const labs = dc.labs.map((l) => ({ id: `lab:${l.lab.uid}`, label: `Outfitting ${l.lab.name || 'a laboratory'} from bare walls`, pounds: labOutfitCost(l.upkeepPoints), hint: '1 £ per 2 points of laboratory (Upkeep 0: 5 £); raising Upkeep costs 1 £ per 2 points gained.' }));
+  const options = [...SUNDRY_PRESETS, ...labs];
+  const o = options.find((x) => x.id === id) ?? options[0];
+  const pounds = Math.round(o.pounds * count * 1000) / 1000;
+  const add = () =>
+    update((x) => {
+      x.finances.sundry = Math.round((x.finances.sundry + pounds) * 1000) / 1000;
+      x.log.push({ uid: uid(), year: x.foundedYear + (x.loyalty.yearsFounded ?? 0), text: `Sundry: ${o.label}${count > 1 ? ` ×${count}` : ''}, ${pounds} £.` });
+    });
+  return (
+    <Field label="Add one-off spending to Sundry" hint={o.hint}>
+      <div className="row tight">
+        <select value={o.id} onChange={(e) => setId(e.target.value)} style={{ maxWidth: 260 }}>
+          {options.map((x) => (
+            <option key={x.id} value={x.id}>
+              {x.label} ({x.pounds} £)
+            </option>
+          ))}
+        </select>
+        <Stepper value={count} min={1} width={34} onChange={setCount} />
+        <button className="small" onClick={add} title={`Adds ${pounds} £ to Sundry; closing the year clears it`}>
+          +{pounds} £
+        </button>
+      </div>
+      <span className="small muted">{cov.finances.sundry} £ so far this year</span>
+    </Field>
+  );
+}
+

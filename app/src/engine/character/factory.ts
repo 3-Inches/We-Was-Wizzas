@@ -86,7 +86,7 @@ function addVirtueOnly(c: Character, data: GameData, defId: string, size?: VFSiz
   for (const n of def?.needs ?? []) {
     if (!n.auto || needMet(n, c.virtues, data)) continue;
     const adef = data.vfById.get(n.auto.id);
-    if (adef) c.virtues.push({ uid: uid(), defId: n.auto.id, size: n.auto.size ?? adef.sizes[0], noPoints: n.auto.noPoints || undefined, requiredBy: cv.uid });
+    if (adef) c.virtues.push({ uid: uid(), defId: n.auto.id, size: n.auto.size ?? adef.sizes[0], ...(n.auto.param ? { param: n.auto.param } : {}), noPoints: n.auto.noPoints || undefined, requiredBy: cv.uid });
   }
   return cv;
 }

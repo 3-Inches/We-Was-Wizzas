@@ -191,7 +191,7 @@ const EXPLICIT: Record<string, Mechanics> = {
     restrictionText: 'All known members of the Mercurian lineage also have the Minor Flaw Ceremonial Spontaneous Magic.',
   },
   'diedne-magic': {
-    needs: [{ match: { category: 'Story', size: 'Major', kind: 'flaw' }, label: 'a Major Story Flaw such as Dark Secret, which gives no Virtue points', auto: { id: 'dark-secret-flaw', size: 'Major', noPoints: true } }],
+    needs: [{ match: { category: 'Story', size: 'Major', kind: 'flaw' }, label: 'a Major Story Flaw such as Dark Secret, which gives no Virtue points', auto: { id: 'dark-secret-flaw', size: 'Major', noPoints: true, param: 'Diedne lineage' } }],
     restrictionText: 'You must keep your lineage hidden from the Order, giving you a Major Story Flaw. This is in addition to your normal allowance of Flaws, and does not grant you any points.',
   },
 

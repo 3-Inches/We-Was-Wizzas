@@ -105,6 +105,8 @@ export interface CastingOptions {
   /** Special Circumstances / Cyclic Magic applies: all of them, or those from these Virtue uids */
   circumstance?: boolean | string[];
   ceremonial?: boolean;
+  /** Diedne Magic, exerting oneself on a spontaneous spell: the lowest Art counts twice */
+  diedneExerted?: boolean;
   /** Life Boost: Fatigue levels spent, +5 each on a Formulaic or Ritual Casting Total */
   lifeBoost?: number;
   /** Spell Improvisation: a similar Formulaic spell's magnitude, for spontaneous casting */
@@ -141,6 +143,7 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
   for (const e of effectsOf(d, 'castingScore')) {
     if (e.when === 'all' || (e.when === 'circumstance' && circumstanceApplies(o.circumstance, e))) parts.push({ label: e.fromName, value: e.amount });
   }
+  if (o.diedneExerted && o.kind === 'spontaneous' && d.virtues.some((v) => v.cv.defId === 'diedne-magic')) parts.push({ label: 'Diedne Magic (lowest Art doubled)', value: Math.min(tech, form) });
   if (o.lifeBoost && o.kind !== 'spontaneous' && d.virtues.some((v) => v.cv.defId === 'life-boost')) parts.push({ label: `Life Boost (${o.lifeBoost} Fatigue level${o.lifeBoost > 1 ? 's' : ''})`, value: 5 * o.lifeBoost });
   if (o.similarSpell && o.kind === 'spontaneous' && d.virtues.some((v) => v.cv.defId === 'spell-improvisation')) parts.push({ label: `Spell Improvisation (${o.similarSpell.name})`, value: o.similarSpell.magnitude });
   if (o.other) parts.push({ label: 'Other modifier', value: o.other });
@@ -169,6 +172,8 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
     notes.push('Short-Ranged Magic: halved when not touching the target.');
   }
   if (aura.note) notes.push(`${aura.note}: +${aura.botch} botch dice`);
+  const golden = d.char.familiar?.golden ?? 0;
+  if (golden) notes.push(`Familiar's golden cord: ${golden} fewer botch dice (never down to none).`);
   if (halved) total = Math.ceil(total / 2);
   return { total, parts, halved, notes, botchDice: aura.botch + botchDiceFor(d, 'spells') };
 }
@@ -182,10 +187,21 @@ export function botchDiceFor(d: DerivedCharacter, when: 'spells' | 'lab'): numbe
   return n;
 }
 
-/** Spontaneous Casting Total from a Casting Score. */
-export function spontaneousTotal(score: number, fatiguing: boolean, die = 0, diedne = false): number {
-  if (!fatiguing) return diedne ? Math.max(score / 5, (score + die) / 2) : score / 5;
-  return (score + die) / 2;
+/**
+ * Botch dice on a stress roll for magic: one, plus the extra dice (aura, vis, Virtues and Flaws), less a
+ * familiar's golden cord, never below one, and then Spell Mastery, which may reach none (DE, Sources of
+ * Botch Dice, Cautious Sorcerer and The Three Cords).
+ */
+export function magicBotchDice(extra: number, golden = 0, mastery = 0): number {
+  // Cautious Sorcerer and the like never take it below one; only Spell Mastery can reach zero
+  const n = Math.max(1, 1 + extra);
+  const corded = Math.max(1, n - golden);
+  return Math.max(0, corded - mastery);
+}
+
+/** Spontaneous Casting Total from a Casting Score: ÷5 calm, (score + stress die) ÷ 2 exerted (or Diedne Magic's calm option). */
+export function spontaneousTotal(score: number, fatiguing: boolean, die = 0): number {
+  return fatiguing ? (score + die) / 2 : score / 5;
 }
 
 export type LabActivity = 'spells' | 'items' | 'familiar' | 'longevity' | 'texts' | 'visExtraction' | 'experimentation' | 'teaching' | 'other';
@@ -226,6 +242,15 @@ export interface LabOptions {
   extra?: Part[];
   rangeBeyondTouch?: boolean;
   forSelfLongevity?: boolean;
+  /** days away from the lab this season (DE, Distractions from Lab Work) */
+  daysAway?: number;
+}
+
+/** Up to ten days away costs nothing; then −10, and −2 a day past ten, to −30 at twenty; past twenty, no lab work that season. */
+export function labDistraction(days: number): { penalty: number; impossible: boolean } {
+  if (days <= 10) return { penalty: 0, impossible: false };
+  if (days > 20) return { penalty: 0, impossible: true };
+  return { penalty: -(10 + 2 * (days - 10)), impossible: false };
 }
 
 /** Lab Total = Technique + Form + Intelligence + Magic Theory + Aura + lab & other modifiers. */
@@ -307,7 +332,13 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
   if (aura.note) notes.push(`${aura.note}: extra botch dice ${aura.botch}`);
   const ruledOut = o.lab?.impossible?.find((a) => a === LAB_ACTIVITY_SPEC[o.activity] || (a === 'Experimentation' && o.experimenting) || (a === 'Texts' && o.fromText));
   if (ruledOut) notes.unshift(`This lab cannot be used for ${ruledOut} (Missing Equipment).`);
-  return { total, parts, halved, notes, botchDice: aura.botch + botchDiceFor(d, 'lab'), impossible: !!ruledOut };
+  const away = labDistraction(o.daysAway ?? 0);
+  if (away.penalty) {
+    parts.push({ label: `${o.daysAway} days away from the lab`, value: away.penalty });
+    total += away.penalty;
+  }
+  if (away.impossible) notes.unshift(`${o.daysAway} days away from the lab: more than twenty days out of synchronization with the heavens, so no lab work this season.`);
+  return { total, parts, halved, notes, botchDice: aura.botch + botchDiceFor(d, 'lab'), impossible: !!ruledOut || away.impossible };
 }
 
 function artName(a: Art): string {
@@ -455,6 +486,93 @@ export function creationSpellLimit(d: DerivedCharacter, arts: ArtsUsed, bonus: n
 
 export function magnitude(level: number): number {
   return Math.max(1, Math.ceil(level / 5));
+}
+
+/** What a character's Virtues and Flaws change about casting spells, beyond the Casting Score (DE). */
+export interface CastingRules {
+  /** Weak Spontaneous Magic: never exerts, always divides by five (a stress die still checks for a botch) */
+  weakSpontaneous: boolean;
+  /** Difficult Spontaneous Magic: must exert, so no Fatigue-free spontaneous spells */
+  difficultSpontaneous: boolean;
+  /** Ceremonial Spontaneous Magic: spontaneous spells only by ceremonial casting */
+  ceremonialSpontaneous: boolean;
+  /** Diedne Magic: a calm spontaneous spell may divide by two with a stress die; exerted, the lowest Art counts twice */
+  diedne: boolean;
+  /** Unpredictable Magic: always a stress die, and at least one botch die even when mastered */
+  unpredictable: boolean;
+  /** Life-Linked Spontaneous Magic: declare a level, pay a Fatigue level per 5 (or fraction) short */
+  lifeLinked: boolean;
+  /** Chaotic Magic: declare a level; more than one level off either way, the storyguide decides what happens */
+  chaotic: boolean;
+  /** Rigid Magic: no vis when casting, so no Ritual spells */
+  rigid: boolean;
+  /** Unstructured Caster: Formulaic spells are cast as Rituals, vis and all */
+  unstructured: boolean;
+  /** Vulnerable Casting: extra Fatigue levels whenever casting costs Fatigue (one per time taken) */
+  vulnerable: number;
+  /** Withstand Casting: Fatigue levels withstood, never below one (one per time taken) */
+  withstand: number;
+  /** Mercurian Magic halves Ritual vis */
+  ritualVisMultiplier: number;
+  /** Waster of Vis: a quarter (rounded up) of the pawns used are lost */
+  wasterOfVis: boolean;
+  /** reminders the roller can't apply itself, in a line each */
+  notes: string[];
+}
+
+export function castingRules(d: DerivedCharacter): CastingRules {
+  const count = (id: string) => d.virtues.filter((v) => v.cv.defId === id).length;
+  const has = (id: string) => count(id) > 0;
+  const notes: string[] = [];
+  if (has('slow-caster-flaw')) notes.push('Slow Caster: Formulaic and Spontaneous spells take two rounds (one when fast-cast, and for fast-cast Mastered spells).');
+  if (has('clumsy-magic-flaw')) notes.push('Clumsy Magic: −3 to Finesse rolls, and an aiming roll of 0 is a botch.');
+  if (has('boosted-magic')) notes.push('Boosted Magic: a pawn of vis per magnitude raises a Formulaic spell\'s Range, Duration, Target or size (one botch die each; level, Fatigue and Penetration stay the original).');
+  if (has('flexible-formulaic-magic')) notes.push('Flexible Formulaic Magic: raise or lower the casting level one magnitude to move one of Range, Duration, Target or size one step.');
+  if (has('enduring-magic')) notes.push('Enduring Magic: the storyguide secretly multiplies a non-Ritual spell\'s Duration by a simple die.');
+  if (has('harmless-magic-flaw')) notes.push('Harmless Magic: non-Ritual Perdo spells only disrupt their target for the Duration.');
+  if (has('unnatural-magic-flaw')) notes.push('Unnatural Magic: Creo Rituals have no lasting effect.');
+  if (has('weak-magic-resistance-flaw')) notes.push('Weak Magic Resistance: under its condition, Penetration is not reduced by the effect\'s level.');
+  return {
+    weakSpontaneous: has('weak-spontaneous-magic-flaw'),
+    difficultSpontaneous: has('difficult-spontaneous-magic-flaw'),
+    ceremonialSpontaneous: has('ceremonial-spontaneous-magic-flaw'),
+    diedne: has('diedne-magic'),
+    unpredictable: has('unpredictable-magic-flaw'),
+    lifeLinked: has('life-linked-spontaneous-magic'),
+    chaotic: has('chaotic-magic-flaw'),
+    rigid: has('rigid-magic-flaw'),
+    unstructured: has('unstructured-caster-flaw'),
+    vulnerable: count('vulnerable-casting-flaw'),
+    withstand: count('withstand-casting'),
+    ritualVisMultiplier: effectsOf(d, 'ritualVisMultiplier').reduce((m, e) => m * (e.multiplier ?? 1), 1),
+    wasterOfVis: has('waster-of-vis-flaw'),
+    notes,
+  };
+}
+
+/** Fatigue a casting costs after Vulnerable Casting, then Withstand Casting (never below one); a casting that costs none still costs none. */
+export function castingFatigue(base: number, r: Pick<CastingRules, 'vulnerable' | 'withstand'>): number {
+  if (base <= 0) return 0;
+  return Math.max(1, base + r.vulnerable - r.withstand);
+}
+
+/** Pawns of vis a casting needs when `needed` must reach the effect, with Waster of Vis losing a quarter (rounded up) of all pawns used. */
+export function visWithWaste(needed: number, waster: boolean): { pawns: number; wasted: number } {
+  if (!waster || needed <= 0) return { pawns: needed, wasted: 0 };
+  let u = needed;
+  while (u - Math.ceil(u / 4) < needed) u++;
+  return { pawns: u, wasted: u - needed };
+}
+
+/** A Ritual's vis: a pawn per magnitude, halved by Mercurian Magic (rounded up here), plus what Waster of Vis loses. */
+export function ritualVis(level: number, r: Pick<CastingRules, 'ritualVisMultiplier' | 'wasterOfVis'>): { pawns: number; wasted: number } {
+  const base = Math.max(1, Math.ceil(level / 5));
+  return visWithWaste(Math.max(1, Math.ceil(base * r.ritualVisMultiplier)), r.wasterOfVis);
+}
+
+/** Life-Linked Spontaneous Magic: extra Fatigue levels for falling short of the declared level, one per 5 points or fraction. */
+export function lifeLinkedFatigue(result: number, declared: number): number {
+  return result >= declared ? 0 : Math.ceil((declared - result) / 5);
 }
 
 /** Outcome of a Formulaic or Ritual casting (DE p.213 tables). Fatigue from rituals is long-term. */

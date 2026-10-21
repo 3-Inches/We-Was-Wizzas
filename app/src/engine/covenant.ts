@@ -2,7 +2,7 @@
 
 import type { GameData } from '../data';
 import { ARTS, ART_NAMES } from '../data/constants';
-import type { Character, Covenant, LibraryBook, Specialist } from './types';
+import type { Character, Covenant, LibraryBook, Specialist, VisSource } from './types';
 import {
   CATEGORY_LIMIT, abilityCapAtAge, canBeUnknown, computeIncome, computePools, countOf, craftOf, craftsmanSaving, findCraft, mechanicOf, miracleMultiplierOf,
   receivedAfterTithe, specialistCost, type BPPool, type CostCategory, type CovResource, type CraftDef, type IncomeLine, type IncomeResult,
@@ -30,6 +30,9 @@ export interface BPLine {
   /** the Boon or Hook whose Build Points pay for it */
   paidBy?: string;
 }
+
+/** Build Points for a vis source: 5 a pawn a year, 7.5 for dedicated vis (RoP: Magic), rounded up. */
+export const visSourceCost = (s: VisSource) => Math.ceil((s.dedicated ? 7.5 : 5) * s.pawnsPerYear);
 
 export function summaCost(b: LibraryBook): { cost: number; issue?: string } {
   if (b.kind === 'summa' && b.subjectType === 'art') {
@@ -200,7 +203,7 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
     }
     lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)})`, cost, ref: b.uid, issue: iss });
   }
-  for (const s of cov.visSources) lines.push({ category: 'Vis', label: `${s.name} (${s.pawnsPerYear} ${s.art}/year)`, cost: 5 * s.pawnsPerYear, ref: s.uid });
+  for (const s of cov.visSources) lines.push({ category: 'Vis', label: `${s.name} (${s.pawnsPerYear} ${s.art}/year${s.dedicated ? ', dedicated' : ''})`, cost: visSourceCost(s), ref: s.uid });
   const stock = cov.visStocks.reduce((t, v) => t + v.pawns, 0);
   if (stock) lines.push({ category: 'Vis', label: `Vis stocks (${stock} pawns)`, cost: Math.ceil(stock / 5) });
   for (const it of cov.items) {
@@ -354,6 +357,7 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
     { label: 'Other tithes & taxes', pounds: cov.finances.tithes },
     ...(income.debt ? [{ label: 'Debt interest (Indebted)', pounds: income.debt }] : []),
     { label: 'Sundry', pounds: cov.finances.sundry },
+    ...(cov.finances.enumerus ? [{ label: 'The Pound of Enumerus', pounds: 1 }] : []),
   ];
   const savings: { label: string; pounds: number }[] = [];
   const catTotals: Record<CostCategory, number> = { Buildings: buildings, Consumables: consumables, Laboratories: labPoints / 10, Provisions: provisions, 'Weapons and Armor': weapons, 'Writing Materials': writers };
@@ -457,8 +461,10 @@ function round1(n: number) {
 export function computeLoyalty(cov: Covenant, members: Character[], data: GameData): LoyaltyResult {
   const magi = members.filter((m) => m.type === 'magus');
   const parts: { label: string; value: number }[] = [];
-  const base = magi.length ? Math.round(magi.reduce((t, m) => t + memberGiftMod(m, data), 0) / magi.length) : 0;
-  parts.push({ label: 'Base (Gift of the magi)', value: base });
+  // unGifted council members whose votes count equally add 0 each to the average (Covenants ch.4)
+  const council = magi.length + Math.max(0, cov.loyalty.unGiftedCouncil ?? 0);
+  const base = council ? Math.round(magi.reduce((t, m) => t + memberGiftMod(m, data), 0) / council) : 0;
+  parts.push({ label: cov.loyalty.unGiftedCouncil ? `Base (Gift of the magi, with ${cov.loyalty.unGiftedCouncil} unGifted on the council)` : 'Base (Gift of the magi)', value: base });
   const lc = cov.finances.livingConditions;
   if (lc) parts.push({ label: 'Living conditions', value: lc * 10 });
   const eq = { inexpensive: -10, standard: 0, 'standard+expensive': 10, any: 20 }[cov.finances.equipment];
@@ -507,7 +513,7 @@ export function newCovenant(sagaId: string, year: number): Covenant {
     covenfolk: { grogs: 6, companions: 0, specialists: 3, craftsmen: 0, laborers: 0, servants: 0, teamsters: 0, dependents: 0, horses: 0 },
     income: [{ uid: 'inc1', name: 'Principal income', type: 'Agriculture', level: 'Typical', pounds: 100, customPounds: false }],
     finances: {
-      treasury: 0, inflation: 0, tithes: 0, sundry: 1, wages: 'standard', pension: false, equipment: 'standard',
+      treasury: 0, inflation: 0, tithes: 0, sundry: 0, enumerus: true, wages: 'standard', pension: false, equipment: 'standard',
       livingConditions: 0, weaponArmorPoints: 320, magicSavings: 0, craftSavings: [], paidSoldierPennies: 0,
     },
     loyalty: { actionPoints: 0, yearsFounded: 0 },

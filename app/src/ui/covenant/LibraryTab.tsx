@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ARTS, ART_NAMES, type Art } from '../../data';
-import { summaCost, type BPLine, type DerivedCovenant } from '../../engine/covenant';
+import { summaCost, visSourceCost, type BPLine, type DerivedCovenant } from '../../engine/covenant';
+import { VIS_YIELDS, bookPrice, type BookTier } from '../../engine/covenantYear';
 import { mechanicOf, miracleMultiplierOf, receivedAfterTithe } from '../../engine/covenantRules';
 import type { LibraryBook } from '../../engine/types';
 import { uid } from '../../util/id';
@@ -199,7 +200,10 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                 ))}
               </select>
               <Stepper value={s.pawnsPerYear} min={0} width={36} title="Pawns per year" onChange={(v) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.pawnsPerYear = v))} />
-              <span className="small muted">/yr = {5 * s.pawnsPerYear} BP</span>
+              <span className="small muted">/yr = {visSourceCost(s)} BP</span>
+              <label className="inline small" title="Dedicated vis (RoP: Magic): 7.5 Build Points a pawn a year, worth 1.5 normal pawns in trade">
+                <input type="checkbox" checked={!!s.dedicated} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.dedicated = e.target.checked || undefined))} /> dedicated
+              </label>
               <input value={s.season ?? ''} placeholder="when" style={{ width: 80 }} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.season = e.target.value))} />
               <label className="inline small">
                 <input type="checkbox" checked={!!s.contested} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.contested = e.target.checked))} /> contested
@@ -217,7 +221,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                   {dc.unreal.has(s.uid) ? 'not real: gives nothing' : `receives ${receivedAfterTithe(s.pawnsPerYear, true, !!s.miracle && miracles, miracleMultiplierOf(cov)).received}/yr`}
                 </span>
               )}
-              <PaidBy cost={5 * s.pawnsPerYear} line={dc.bpLines.find((l) => l.ref === s.uid)} dc={dc} onlyPool />
+              <PaidBy cost={visSourceCost(s)} line={dc.bpLines.find((l) => l.ref === s.uid)} dc={dc} onlyPool />
               <button className="small ghost" onClick={() => update((x) => void (x.visSources = x.visSources.filter((y) => y.uid !== s.uid)))}>
                 ✕
               </button>
@@ -226,6 +230,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
           <button className="small" onClick={() => update((x) => void x.visSources.push({ uid: uid(), name: 'New source', art: 'Vi', pawnsPerYear: 1 }))}>
             + Vis source
           </button>
+          <VisYieldGuide />
           <h4>Stocks</h4>
           <div className="grid grid-3">
             {ARTS.map((a) => {
@@ -249,7 +254,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
               );
             })}
           </div>
-          <p className="small muted">Vis sources cost 5 BP per pawn per year; stocks 1 BP per 5 pawns.</p>
+          <p className="small muted">Vis sources cost 5 BP per pawn per year (7.5 for dedicated vis); stocks 1 BP per 5 pawns.</p>
         </Card>
         <Card title="Library summary">
           <table className="compact">
@@ -271,6 +276,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
             </tbody>
           </table>
           <p className="small muted">Lab texts: {cov.library.filter((b) => b.kind === 'labText').reduce((s, b) => s + b.level, 0)} levels. Casting tablets: {cov.library.filter((b) => b.kind === 'castingTablet').length}.</p>
+          <BookTrade />
         </Card>
       </div>
     </div>
@@ -303,3 +309,58 @@ export function PaidBy({ cost, line, dc, onlyPool }: { cost: number; line?: BPLi
     </span>
   );
 }
+
+/** Vis Source Yields (Covenants ch.6): how big a source should be, by the saga's vis level. */
+function VisYieldGuide() {
+  const [level, setLevel] = useState<keyof typeof VIS_YIELDS>('Moderate');
+  const y = VIS_YIELDS[level];
+  return (
+    <div className="small muted" style={{ marginTop: 6 }}>
+      Yield guide: in a{' '}
+      <select value={level} onChange={(e) => setLevel(e.target.value as keyof typeof VIS_YIELDS)}>
+        {Object.keys(VIS_YIELDS).map((k) => (
+          <option key={k}>{k}</option>
+        ))}
+      </select>{' '}
+      vis saga a low-, moderate- or high-yield source gives {y.low}, {y.moderate} or {y.high} pawns a year; a high-yield source gives about what one magus receives in a year
+      (Covenants ch.6). Vis trades at roughly 10 £ a pawn when it must be priced in silver.
+    </div>
+  );
+}
+
+/** Buying books and researching in the library (Covenants ch.7). */
+function BookTrade() {
+  const [kind, setKind] = useState<'summa' | 'tractatus'>('summa');
+  const [level, setLevel] = useState(10);
+  const [tier, setTier] = useState<BookTier>('sound');
+  return (
+    <div className="small" style={{ marginTop: 8 }}>
+      <h4 style={{ margin: '6px 0' }}>Buying books</h4>
+      <div className="row tight">
+        <select value={tier} onChange={(e) => setTier(e.target.value as BookTier)}>
+          <option value="damaged">damaged</option>
+          <option value="vain">vain</option>
+          <option value="sound">sound</option>
+          <option value="excellent">excellent</option>
+        </select>
+        <select value={kind} onChange={(e) => setKind(e.target.value as 'summa' | 'tractatus')}>
+          <option value="summa">summa</option>
+          <option value="tractatus">tractatus</option>
+        </select>
+        {kind === 'summa' && (
+          <>
+            level <Stepper value={level} min={1} width={36} onChange={setLevel} />
+          </>
+        )}
+        <span>
+          costs <b>{bookPrice(kind, level, tier)}</b>
+        </span>
+      </div>
+      <p className="muted" style={{ margin: '4px 0 0' }}>
+        Hermetic books trade for vis, usually under the Cow and Calf Oath (no copies without the seller&apos;s leave). Researching a fact: Intelligence + Ability + stress die, +1 for a
+        few books on the subject up to +5 for a peerless collection (Covenants ch.7).
+      </p>
+    </div>
+  );
+}
+

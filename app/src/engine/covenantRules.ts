@@ -268,6 +268,10 @@ export function computeIncome(cov: Covenant, magi: number): IncomeResult {
       base = Math.max(0, base + per * (magi - 6));
       notes.push(`${magi > 6 ? '+' : '−'}${per * Math.abs(magi - 6)} £ for ${magi} magi`);
     }
+    if (s.factor && s.factor !== 1) {
+      base = Math.round(base * s.factor * 10) / 10;
+      notes.push(`×${Math.round(s.factor * 100) / 100} from past years`);
+    }
     let gross = base * (INCOME_MODIFICATIONS.find((m) => m.id === (s.modification ?? 'Status Quo'))?.mult ?? 1);
     for (const a of applied) {
       if (a.mechanic === 'natural-disaster' && a.hb.active) {

@@ -19,7 +19,7 @@ import json
 import os
 import re
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 from books import BOOK_BY_ID, ROOT, book_path
 from mechanics_topics import broad_topic
@@ -134,6 +134,100 @@ def for_audience(x, who):
     return who in a or 'all' in a or (who == 'magi' and 'covenant' in a)
 
 
+# When books repeat a rule: the Definitive Edition comes first (the newest core rules, with the
+# errata), then the newer book. Publication years, for that order.
+BOOK_YEAR = {
+    'DE': 2024, 'Hooks': 2016, 'DI': 2015, 'LotN': 2014, 'Church': 2013, 'AtD': 2012, 'TME': 2012, 'LoH': 2011,
+    'AA': 2010, 'HMRE': 2010, 'ML': 2010, 'LaL': 2010, 'SE': 2010, 'HoH_S': 2009, 'App': 2008, 'Grogs': 2008,
+    'AM': 2008, 'TMRE': 2008, 'RoP_D': 2008, 'RoP_I': 2008, 'LoM': 2008, 'Cov': 2007, 'CG': 2007, 'RoP_M': 2006,
+    'RoP_F': 2006, 'HoH_MC': 2006, 'GotF': 2006, 'HoH_TL': 2005,
+}
+
+
+def precedence(book):
+    """Sort key: the book whose version of a repeated rule is shown first."""
+    return (book != 'DE', -BOOK_YEAR.get(book, 0), list(BOOK_BY_ID).index(book) if book in BOOK_BY_ID else 99)
+
+
+def shingles(text):
+    """The section's text as overlapping five-word runs, to find the same rules in two books."""
+    w = re.sub(r'[^a-z0-9 ]', ' ', re.sub(r'[*_#|\\]', ' ', text.lower())).split()
+    return {' '.join(w[k:k + 5]) for k in range(max(0, len(w) - 4))}
+
+
+def fold_duplicates(entries):
+    """
+    One entry for a rule that several books print. Two sections from different books whose texts
+    share most of their five-word runs (at least 60% of the longer one) are the same rules: the
+    one from the book that comes first (see precedence) stays, and the others become its
+    'also in'. Sections from different books with the same title in the same topic but different
+    text are versions of a rule: they are folded under the first as 'versions', shown with it.
+    Returns how many entries were folded.
+    """
+    posting = defaultdict(list)
+    for i, x in enumerate(entries):
+        for sh in x['_shingles']:
+            posting[sh].append(i)
+    shared = Counter()
+    for ids in posting.values():
+        if len(ids) > 25:  # common phrases say nothing about two sections being the same
+            continue
+        for a in range(len(ids)):
+            for b in range(a + 1, len(ids)):
+                if entries[ids[a]]['book'] != entries[ids[b]]['book']:
+                    shared[(ids[a], ids[b])] += 1
+    parent = list(range(len(entries)))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    for (a, b), n in shared.items():
+        la, lb = len(entries[a]['_shingles']), len(entries[b]['_shingles'])
+        if min(la, lb) >= 15 and n / max(la, lb) >= 0.6:
+            parent[find(a)] = find(b)
+    clusters = defaultdict(list)
+    for i in range(len(entries)):
+        clusters[find(i)].append(i)
+    gone = set()
+    for ids in clusters.values():
+        if len(ids) < 2:
+            continue
+        ids.sort(key=lambda i: (precedence(entries[i]['book']), entries[i]['line']))
+        keep = entries[ids[0]]
+        for i in ids[1:]:
+            x = entries[i]
+            keep.setdefault('alsoIn', []).append({'book': x['book'], 'line': x['line'], **({'endLine': x['endLine']} if x.get('endLine') else {}), 'title': x['title']})
+            keep['audience'] = sorted(set(keep['audience']) | set(x['audience']))
+            keep['prevalence'] = min(keep['prevalence'], x['prevalence'])
+            if x.get('creation'):
+                keep['creation'] = True
+            keep['_folded'] = keep.get('_folded', []) + [x['id']]
+            gone.add(i)
+    # versions: the same title in the same topic, from other books
+    by_title = defaultdict(list)
+    for i, x in enumerate(entries):
+        if i not in gone:
+            by_title[(title_key(x['title']), x['_topic'])].append(i)
+    for ids in by_title.values():
+        if len({entries[i]['book'] for i in ids}) < 2:
+            continue
+        ids.sort(key=lambda i: (precedence(entries[i]['book']), entries[i]['line']))
+        keep = entries[ids[0]]
+        for i in ids[1:]:
+            x = entries[i]
+            if x['book'] == keep['book']:
+                continue
+            keep.setdefault('versions', []).append({k: v for k, v in x.items() if not k.startswith('_') and k not in ('audience', 'creation', 'versions')})
+            keep['audience'] = sorted(set(keep['audience']) | set(x['audience']))
+            keep['_folded'] = keep.get('_folded', []) + [x['id']] + x.get('_folded', [])
+            gone.add(i)
+    folded = len(gone)
+    entries[:] = [x for i, x in enumerate(entries) if i not in gone]
+    return folded
+
+
 def clean_quote(q):
     """A quote as it reads on the page: without the markdown emphasis and escapes of the book file."""
     q = q.replace('\\', '').replace('**', '').replace('__', '')
@@ -231,7 +325,10 @@ def main():
                 # the agent's own topic picks the kind of character; the broader one groups the mechanic
                 '_raw_topic': canonical_topic(e.get('topic')),
                 '_topic': canonical_topic(broad_topic(canonical_topic(e.get('topic')))),
+                '_shingles': shingles(text),
             })
+
+    merged = fold_duplicates(entries)
 
     def sort_entries(es):
         return sorted(es, key=lambda x: (x['prevalence'], order.get(x['book'], 99), x['line']))
@@ -305,6 +402,8 @@ def main():
                 if x['id'] not in where:
                     where[x['id']] = f"/mechanics/{a['id']}/{g['id']}#{x['id']}"
                     by_title[title_key(x['title'])].append(x)
+                    for v in x.get('versions', []):
+                        by_title[title_key(v['title'])].append(x)
     linked = 0
     for a in areas:
         for g in a['groups'] + a['gated']:
@@ -345,7 +444,7 @@ def main():
     print(f'wrote {OUT}: {total} mechanics in {len(areas)} areas ({moved} headings moved to their line, {len(dropped)} dropped, {bad_quotes} quotes not found, {len(number_flags)} summaries with numbers not in the text)')
     for a in areas:
         print(f"  {a['title']}: {sum(len(g['entries']) for g in a['groups'])} in {len(a['groups'])} groups, {sum(len(g['entries']) for g in a['gated'])} gated in {len(a['gated'])}")
-    print(f'  {linked} "see also" notes link to another mechanic')
+    print(f'  {linked} "see also" notes link to another mechanic; {merged} repeated in another book were folded into one')
     if report:
         print('\nDropped:'); print('\n'.join(dropped))
         print('\nSummaries to check:'); print('\n'.join(number_flags))

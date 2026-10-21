@@ -10,6 +10,7 @@ import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
 import { TwilightCard } from './Twilight';
 import { WritingCard } from './Writing';
+import { WorkshopCard } from './WorkshopCard';
 import { useSagaCharacters } from '../../../store/hooks';
 import { deriveCharacter } from '../../../engine/character/derive';
 
@@ -49,6 +50,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [visDie, setVisDie] = useState<number | null>(null);
   const [visBotch, setVisBotch] = useState(0);
   const [summary, setSummary] = useState('');
+  const [monthsLost, setMonthsLost] = useState(0);
   const [bookUid, setBookUid] = useState('');
   const [year, setYear] = useState(saga?.currentYear ?? 1220);
   const [season, setSeason] = useState<SeasonLogEntry['season']>(saga?.currentSeason ?? 'Spring');
@@ -94,7 +96,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     default: src = null;
   }
   const cov = ctx.covenant;
-  const res = src ? computeStudy(d, src, { art, abilityUid }) : null;
+  const res = src ? computeStudy(d, src, { art, abilityUid, monthsLost }) : null;
   const linked = src && res && res.xp > 0 ? magianLinkedGains(d, data, src, abilityUid, res.advancementTotal) : [];
   // Secondary Insight: a season studying a Technique (book, teacher or vis) gives 1 xp in up to four Forms;
   // a Form gives 1 xp in up to two Techniques (DE Secondary Insight)
@@ -158,7 +160,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const lr = c.longevity?.bonus ?? 0;
 
   const rollAging = () => {
-    const r = agingRoll(c.age, lc, lr, d.agingRollMod, undefined, !!c.longevity && c.age < 35);
+    const r = agingRoll(c.age, lc, lr, d.agingRollParts, undefined, !!c.longevity && c.age < 35);
     setAging(r);
     setAgingText([]);
   };
@@ -202,6 +204,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               </select>
               <Stepper value={year} width={56} onChange={setYear} />
             </div>
+          </Field>
+          <Field label="Months lost" hint="DE Distractions: each full month away takes a third of the total">
+            <Stepper value={monthsLost} min={0} max={3} width={30} onChange={setMonthsLost} />
           </Field>
           <Field label="Activity">
             <select value={kind} onChange={(e) => setKind(e.target.value as Kind)}>
@@ -464,12 +469,12 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             </Field>
             <div className="small">
               Longevity Ritual: <b>{lr ? `−${lr}` : 'none'}</b>
-              {d.agingRollMod ? (
-                <>
+              {d.agingRollParts.map((m) => (
+                <span key={m.label}>
                   <br />
-                  Virtues: {signed(d.agingRollMod)}
-                </>
-              ) : null}
+                  {m.label}: {signed(m.value)}
+                </span>
+              ))}
             </div>
             {d.magicChar && <p className="small muted">A magic character does not age (RoP: Magic), so it makes no aging rolls.</p>}
             <button onClick={rollAging} disabled={!!d.magicChar || (c.age < 35 && !c.longevity)}>
@@ -514,6 +519,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
 
         <TwilightCard ed={ed} />
         <WritingCard ed={ed} />
+        <WorkshopCard ed={ed} />
       </div>
     </div>
   );

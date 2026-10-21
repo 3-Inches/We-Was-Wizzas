@@ -31,7 +31,7 @@ export default function AgingBeforePlay({ ed }: { ed: CharEditor }) {
           agingLoss: x.agingLoss, apparentAge: x.apparentAge, longevity: x.longevity,
         });
       }
-      const r = ageYears(x, next, to, { livingConditions: lc, longevity: lr, extra: d.agingRollMod, anyChar, renewLongevity: renew });
+      const r = ageYears(x, next, to, { livingConditions: lc, longevity: lr, extra: d.agingRollParts, anyChar, renewLongevity: renew });
       const summary = r.years.length ? `Aged ${r.years.length} year${r.years.length > 1 ? 's' : ''} (to ${r.years[r.years.length - 1].age}).` : '';
       if (r.died) x.creation.agingLog = [...(x.creation.agingLog ?? []), r.died.text];
       return [summary, r.died?.text].filter(Boolean).join(' ');
@@ -49,7 +49,7 @@ export default function AgingBeforePlay({ ed }: { ed: CharEditor }) {
     <Card title="Aging before play">
       <p className="small muted" style={{ marginTop: 0 }}>
         A character over {start} makes an aging roll for each year of age from {start} before the saga begins (DE p.50): a stress die + age/10 (rounded up) − Living Conditions −
-        Longevity Ritual bonus{d.agingRollMod ? ` ${signed(d.agingRollMod)} from Virtues and Flaws` : ''}. A result that would kill the character is not applied, so that year can be
+        Longevity Ritual bonus{d.agingRollParts.map((m) => ` ${signed(m.value)} (${m.label})`).join('')}. A result that would kill the character is not applied, so that year can be
         rolled again.
       </p>
       <div className="row">

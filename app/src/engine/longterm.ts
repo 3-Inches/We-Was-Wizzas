@@ -37,7 +37,7 @@ function sqMods(d: DerivedCharacter, when: string): { label: string; value: numb
 }
 
 /** Compute xp from a season of study for a given target (art code or ability uid). */
-export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string }): StudyResult {
+export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string; monthsLost?: number }): StudyResult {
   const parts: { label: string; value: number }[] = [];
   const notes: string[] = [];
   let gainLimit: number | undefined;
@@ -102,6 +102,13 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
     parts.push({ label: `Magic Might ${d.magicChar.might} (a magic character's Might is subtracted)`, value: -d.magicChar.might });
     total = Math.max(0, total - d.magicChar.might);
     if (!total) notes.push('A magic character with this much Might learns nothing from this source (RoP: Magic, Advancement).');
+  }
+  // DE Distractions: each full month of the season lost takes a third of the original total (fractions rounded up)
+  const months = Math.min(3, Math.max(0, Math.floor(target.monthsLost ?? 0)));
+  if (months) {
+    const left = Math.ceil((total * (3 - months)) / 3);
+    parts.push({ label: `${months} month${months > 1 ? 's' : ''} lost to distraction`, value: left - total });
+    total = left;
   }
   // Affinity
   let xp = total;
@@ -211,14 +218,16 @@ const AGING_TABLE: Record<number, string[]> = {
   14: ['Qik'], 15: ['Sta'], 16: ['Per'], 17: ['Pre'], 18: ['Str', 'Sta'], 19: ['Dex', 'Qik'], 20: ['Com', 'Pre'], 21: ['Int', 'Per'],
 };
 
-export function agingRoll(age: number, livingConditions: number, longevity: number, extra: number, rng: Rng = defaultRng, underLongevityYoung = false): AgingResult {
+export function agingRoll(age: number, livingConditions: number, longevity: number, extra: number | { label: string; value: number }[], rng: Rng = defaultRng, underLongevityYoung = false): AgingResult {
   const sd = stressDie(0, rng, true);
   const mods = [
     { label: 'Age / 10 (round up)', value: Math.ceil(age / 10) },
     { label: 'Living Conditions', value: -livingConditions },
     { label: 'Longevity Ritual', value: -longevity },
   ];
-  if (extra) mods.push({ label: 'Other modifiers', value: extra });
+  if (typeof extra === 'number') {
+    if (extra) mods.push({ label: 'Other modifiers', value: extra });
+  } else mods.push(...extra.filter((m) => m.value));
   let roll = sd.value + mods.reduce((s, m) => s + m.value, 0);
   if (underLongevityYoung && age < 35 && roll >= 10) roll = 9;
   const res: AgingResult = { roll, die: sd.value, mods, apparentAging: roll >= 3, agingPoints: [], anyChar: 0, crisis: false, text: '' };
@@ -273,8 +282,8 @@ export interface AgingPlan {
   livingConditions: number;
   /** Longevity Ritual bonus (used while the character has a ritual) */
   longevity: number;
-  /** other modifiers to the roll (Virtues and Flaws) */
-  extra: number;
+  /** other modifiers to the roll (Virtues and Flaws, a bronze cord) */
+  extra: number | { label: string; value: number }[];
   /** where Aging Points "in any Characteristic" go */
   anyChar: keyof Character['characteristics'];
   /** re-perform the Longevity Ritual after a crisis (magi re-invest vis before play) */

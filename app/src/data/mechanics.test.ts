@@ -44,13 +44,19 @@ describe('mechanics reference', () => {
     expect(bad.map((e) => `${e.id} ${e.title}`)).toEqual([]);
   });
 
-  it('finds each quote in the section the app shows', () => {
+  it('finds each quote in the section the app shows, for every version', () => {
     const bad: string[] = [];
-    for (const e of entries) {
+    for (const e of entries.flatMap((x) => [x, ...(x.versions ?? [])])) {
       const text = norm(sectionLines(bookLines(e.book)!, e.line, e.endLine).join(' '));
       for (const q of e.quotes ?? []) if (!text.includes(norm(q))) bad.push(`${e.id}: ${q.slice(0, 60)}`);
     }
     expect(bad).toEqual([]);
+  });
+
+  it('points "also printed in" and versions at headings', () => {
+    const others = entries.flatMap((x) => [...(x.alsoIn ?? []), ...(x.versions ?? [])]);
+    expect(others.length).toBeGreaterThan(100);
+    expect(others.filter((o) => !headingOf(bookLines(o.book)?.[o.line - 1])).map((o) => `${o.book}:${o.line}`)).toEqual([]);
   });
 
   it('links "see also" notes only to mechanics that exist', () => {

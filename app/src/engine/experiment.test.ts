@@ -3,8 +3,9 @@ import { buildGameData } from '../data';
 import { DEFAULT_HOUSE_RULES } from './types';
 import { addVirtue, ensureAbility, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
-import { certamenFatigue, certamenTotals } from './magic';
-import { researchRiskLimit, rollExperiment } from './experiment';
+import { castingFatigue, castingRules, castingScore, certamenFatigue, certamenTotals, lifeLinkedFatigue, magicBotchDice, ritualVis, visWithWaste } from './magic';
+import { experimentBotchDice, researchRiskLimit, rollExperiment } from './experiment';
+import { agingRoll, computeStudy } from './longterm';
 
 const data = buildGameData();
 
@@ -86,5 +87,79 @@ describe('arcane experimentation (DE, Extraordinary Results Chart)', () => {
       const r = rollExperiment({ risk: i % 4, auraStrength: i % 5, originalResearch: i % 3 === 0, enchantment: i % 2 === 0 });
       expect(r.lines.join(' ')).not.toMatch(/undefined|NaN/);
     }
+  });
+});
+
+describe('a familiar\'s cords and the lab\'s Safety on botch dice (DE, The Three Cords; Covenants)', () => {
+  it('takes the golden cord off casting botch dice, never down to none, then Spell Mastery', () => {
+    expect(magicBotchDice(0, 2)).toBe(1); // one die stays one
+    expect(magicBotchDice(3, 2)).toBe(2); // 4 dice − 2
+    expect(magicBotchDice(3, 9)).toBe(1); // never to zero
+    expect(magicBotchDice(3, 9, 1)).toBe(0); // Mastery can
+  });
+  it('counts risk, aura, Safety and the golden cord on the Extraordinary Results Chart', () => {
+    expect(experimentBotchDice({ risk: 2, auraStrength: 3 })).toBe(6);
+    expect(experimentBotchDice({ risk: 2, auraStrength: 3, safety: 2, goldenCord: 1 })).toBe(3);
+    expect(experimentBotchDice({ risk: 0, auraStrength: 1, goldenCord: 5 })).toBe(1);
+    expect(experimentBotchDice({ risk: 0, auraStrength: 0, safety: -2 })).toBe(3);
+  });
+  it('adds the bronze cord to Soak and to the aging roll', () => {
+    const c = newCharacter('magus', 's1');
+    const before = deriveCharacter(c, data, DEFAULT_HOUSE_RULES);
+    c.familiar = { name: 'Cattus', species: 'cat', might: 5, size: -2, realm: 'Magic', bindingTechnique: 'In', bindingForm: 'Aq', bindingLabTotal: 25, golden: 1, silver: 1, bronze: 2, pawnsSpent: 5, powers: [] };
+    const d = deriveCharacter(c, data, DEFAULT_HOUSE_RULES);
+    expect(d.soak).toBe(before.soak + 2);
+    expect(d.agingRollParts).toContainEqual({ label: "Familiar's bronze cord", value: -2 });
+    expect(agingRoll(40, 0, 0, d.agingRollParts, () => 0.55).roll).toBe(5 + 4 - 2);
+  });
+});
+
+describe('casting Virtues and Flaws (DE)', () => {
+  const magus = (...ids: string[]) => {
+    const c = newCharacter('magus', 's1');
+    for (const id of ids) addVirtue(c, data, id);
+    c.arts.Cr = { apprenticeship: 21 }; // 6
+    c.arts.Ig = { apprenticeship: 10 }; // 4
+    return deriveCharacter(c, data, DEFAULT_HOUSE_RULES);
+  };
+  it('reads the casting Flaws and counts repeated Withstand Casting', () => {
+    const r = castingRules(magus('weak-spontaneous-magic-flaw', 'unpredictable-magic-flaw', 'withstand-casting', 'withstand-casting', 'mercurian-magic'));
+    expect(r.weakSpontaneous && r.unpredictable).toBe(true);
+    expect(r.withstand).toBe(2);
+    expect(r.ritualVisMultiplier).toBe(0.5);
+  });
+  it('applies Vulnerable Casting first, then Withstand Casting, never below one', () => {
+    expect(castingFatigue(1, { vulnerable: 2, withstand: 0 })).toBe(3);
+    expect(castingFatigue(3, { vulnerable: 0, withstand: 3 })).toBe(1);
+    expect(castingFatigue(0, { vulnerable: 2, withstand: 0 })).toBe(0);
+  });
+  it("prices a Ritual's vis with Mercurian Magic and Waster of Vis (12 → 16, 10 → 14)", () => {
+    expect(visWithWaste(12, true)).toEqual({ pawns: 16, wasted: 4 });
+    expect(visWithWaste(10, true)).toEqual({ pawns: 14, wasted: 4 });
+    expect(ritualVis(30, { ritualVisMultiplier: 1, wasterOfVis: false }).pawns).toBe(6);
+    expect(ritualVis(30, { ritualVisMultiplier: 0.5, wasterOfVis: false }).pawns).toBe(3);
+  });
+  it('charges Life-Linked a Fatigue level per 5 points or fraction short', () => {
+    expect(lifeLinkedFatigue(12, 20)).toBe(2);
+    expect(lifeLinkedFatigue(20, 20)).toBe(0);
+  });
+  it('doubles the lowest Art for an exerted Diedne caster', () => {
+    const d = magus('diedne-magic');
+    const plain = castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'spontaneous' });
+    const exerted = castingScore(d, { technique: 'Cr', form: 'Ig' }, { kind: 'spontaneous', diedneExerted: true });
+    expect(exerted.total - plain.total).toBe(4);
+    expect(exerted.parts.some((p) => /Diedne/.test(p.label))).toBe(true);
+  });
+  it('keeps botch dice at one or more until Spell Mastery (Cautious Sorcerer)', () => {
+    expect(magicBotchDice(-3)).toBe(1);
+    expect(magicBotchDice(-3, 0, 1)).toBe(0);
+  });
+});
+
+describe('study distractions (DE, Distractions)', () => {
+  it('takes a third of the total for each full month lost: 15, 10, 5, 0', () => {
+    const d = deriveCharacter(newCharacter('magus', 's1'), data, DEFAULT_HOUSE_RULES);
+    const xp = (m: number) => computeStudy(d, { kind: 'tractatus', quality: 15, isArt: true, subject: 'Vim' }, { art: 'Vi', monthsLost: m }).advancementTotal;
+    expect([0, 1, 2, 3].map(xp)).toEqual([15, 10, 5, 0]);
   });
 });

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type Technique } from '../../../data';
-import { castingOutcome, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, magicResistance, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm } from '../../../engine/magic';
+import { castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm } from '../../../engine/magic';
 import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
 import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
 import type { CharSpell } from '../../../engine/types';
@@ -18,7 +18,9 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [useLab, setUseLab] = useState(true);
   const [pen, setPen] = useState<PenetrationOptions>({ arcaneConnection: 'none', sympathetic: 0 });
   const [words, setWords] = useState(0);
-  const [talisman, setTalisman] = useState(false);
+  // the talisman attunement that matches what is being cast (DE: only when touching it, and only the highest that applies)
+  const [attunement, setAttunement] = useState(-1);
+  const talisman = attunement >= 0;
   const [tech, setTech] = useState<Technique>('Cr');
   const [form, setForm] = useState<Form>('Co');
   const [log, setLog] = useState<string[]>([]);
@@ -27,12 +29,19 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [conds, setConds] = useState<string[]>([]);
   const [lifeBoost, setLifeBoost] = useState(0);
   const [other, setOther] = useState(0);
+  const [daysAway, setDaysAway] = useState(0);
+  // raw vis spent to raise a Casting Score: +2 a pawn, a botch die each (DE, Vis Boost to Casting Score)
+  const [visBoost, setVisBoost] = useState(0);
   const [similar, setSimilar] = useState('');
+  // spontaneous casting: ceremonial casting, and the level declared for Life-Linked or Chaotic Magic
+  const [ceremonial, setCeremonial] = useState(false);
+  const [declared, setDeclared] = useState(10);
+  const [lifeLinkedOn, setLifeLinkedOn] = useState(false);
   // All According to Plan: once per session, reroll a botch die
   const [aatp, setAatp] = useState<{ spell: string; faces: number[] } | null>(null);
 
   const talismanItem = c?.items.find((i) => i.uid === c.talismanUid);
-  const talismanBonus = talismanItem ? talismanItem.attunements.reduce((s, a) => Math.max(s, a.bonus), 0) : 0;
+  const talismanBonus = talismanItem?.attunements[attunement]?.bonus ?? 0;
 
   const grid = useMemo(() => {
     if (!d) return null;
@@ -42,19 +51,25 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     for (const t of TECHNIQUES)
       for (const f of FORMS) {
         cs[t + f] = castingScore(d, { technique: t, form: f }, { kind: 'formulaic', aura, wordsGestures: words, inFocus: focusNow, circumstance: conds, other }).total;
-        lt[t + f] = labTotal(d, { technique: t, form: f }, { activity: 'spells', aura, lab, inFocus: focusNow, circumstance: conds, other }).total;
+        lt[t + f] = labTotal(d, { technique: t, form: f }, { activity: 'spells', aura, lab, inFocus: focusNow, circumstance: conds, other, daysAway }).total;
       }
     return { cs, lt };
-  }, [d, aura, useLab, ctx.lab, words, focusNow, conds, other]);
+  }, [d, aura, useLab, ctx.lab, words, focusNow, conds, other, daysAway]);
 
   if (!c || !d || !grid) return null;
   const labCtx = useLab && ctx.lab ? labContextOf(ctx.lab) : undefined;
   const pb = penetrationBonus(d, pen);
   const similarSp = c.spells.find((x) => x.uid === similar);
-  const spont = castingScore(d, { technique: tech, form }, {
-    kind: 'spontaneous', aura, wordsGestures: words, talismanBonus: talisman ? talismanBonus : 0, inFocus: focusNow, circumstance: conds, other,
+  const rules = castingRules(d);
+  // ceremonial casting needs experience in Artes Liberales or Philosophiae (DE, Ceremonial Casting)
+  const canCeremonial = d.abilities.some((a) => (a.abilityId === 'artes-liberales' || a.abilityId === 'philosophiae') && a.effectiveXp > 0);
+  const cer = rules.ceremonialSpontaneous || (ceremonial && canCeremonial);
+  const spontOpts = {
+    kind: 'spontaneous' as const, aura, wordsGestures: words, talismanBonus: talisman ? talismanBonus : 0, inFocus: focusNow, circumstance: conds, other, ceremonial: cer,
     similarSpell: similarSp ? { name: similarSp.spell.name, magnitude: Math.ceil((similarSp.spell.level ?? 0) / 5) } : undefined,
-  });
+  };
+  const spont = castingScore(d, { technique: tech, form }, spontOpts);
+  const spontExerted = rules.diedne ? castingScore(d, { technique: tech, form }, { ...spontOpts, diedneExerted: true }) : spont;
   const hasLifeBoost = d.virtues.some((v) => v.cv.defId === 'life-boost');
   const hasImprovisation = d.virtues.some((v) => v.cv.defId === 'spell-improvisation');
   const conditional = conditionalBonuses(d);
@@ -72,24 +87,70 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     else update((x) => void (x.session = { ...(x.session ?? {}), aatpUsed: true }));
     setAatp(null);
   };
-  const diedne = d.virtues.some((v) => v.cv.defId === 'diedne-magic');
+  const golden = d.char.familiar?.golden ?? 0;
   const push = (s: string) => setLog((l) => [s, ...l].slice(0, 30));
+
+  /** a magical botch: one Warping Point per zero; Twilight is checked on 2+ (1 with Twilight Prone) */
+  const onBotch = (name: string, wp: number, faces: number[]) => {
+    if (!wp) return;
+    update((x) => void (x.warpingPoints += wp));
+    const check = wp >= 2 || (wp >= 1 && d.twilightProne);
+    push(`Botch: ${wp} Warping Point${wp > 1 ? 's' : ''} added.${check ? ` Check for Wizard's Twilight${d.twilightProne && wp < 2 ? ' (Twilight Prone)' : ''}: Advancement tab, Warping & Twilight (points already added).` : ''}`);
+    if (aatpReady) setAatp({ spell: name, faces });
+  };
+  /** Fatigue spent on a casting, after Vulnerable and Withstand Casting; Life Boost and Life-Linked levels are added as they are */
+  const spendFatigue = (levels: number, longTerm: boolean) => {
+    if (!levels) return '';
+    const left = 5 - (c.fatigueLost + c.longTermFatigueLost);
+    const over = Math.max(0, levels - left);
+    update((x) => {
+      if (longTerm) x.longTermFatigueLost = Math.min(5, x.longTermFatigueLost + levels);
+      else x.fatigueLost = Math.min(5, x.fatigueLost + levels);
+    });
+    return over ? ` ${over} level${over > 1 ? 's' : ''} beyond your Fatigue: ${longTerm ? 'they become wounds' : 'unconscious an hour for each'}.` : '';
+  };
+  const fatigueNote = rules.vulnerable || rules.withstand ? ` (${[rules.vulnerable && `Vulnerable Casting +${rules.vulnerable}`, rules.withstand && `Withstand Casting −${rules.withstand}`].filter(Boolean).join(', ')})` : '';
+
+  /** raw vis to boost a casting: no more than the Technique and Form scores together, less any Ritual vis; Rigid Magic forbids it; Waster of Vis loses a quarter */
+  const visBoostFor = (te: Technique, fo: Form, ritualPawns: number) => {
+    if (!visBoost) return { pawns: 0, used: 0, text: '' };
+    if (rules.rigid) return { pawns: 0, used: 0, text: ' Rigid Magic: no vis when casting.' };
+    const limit = Math.max(0, d.arts[te].score + d.arts[fo].score - ritualPawns);
+    const pawns = Math.min(visBoost, limit);
+    const w = visWithWaste(pawns, rules.wasterOfVis);
+    return {
+      pawns, used: w.pawns,
+      text: ` Raw vis: ${w.pawns} pawn${w.pawns === 1 ? '' : 's'} (+${2 * pawns})${pawns < visBoost ? `, held to ${limit} by your ${te} and ${fo} scores` : ''}${w.wasted ? `, ${w.wasted} wasted (Waster of Vis)` : ''}; no more than your score in each Art may be of its kind.`,
+    };
+  };
 
   const castSpell = (sp: CharSpell, stress: boolean) => {
     const ms = masteryScore(sp, d);
-    const res = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
-      kind: sp.spell.ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
-      talismanBonus: talisman ? talismanBonus : 0, extra: ms ? [{ label: 'Mastery', value: ms }] : [],
-    });
+    // Unstructured Caster: every Formulaic spell is cast as a Ritual, vis and all
+    const ritual = !!sp.spell.ritual || rules.unstructured;
+    if (ritual && rules.rigid) {
+      push(`${sp.spell.name}: Rigid Magic: you cannot use vis when casting, so you cannot cast Ritual spells.`);
+      return;
+    }
     const level = sp.spell.level ?? 0;
-    const botchDice = Math.max(0, (res.botchDice ?? 0) + 1 - ms);
+    // a Ritual's vis: a botch die per pawn, including the pawns that make the Ritual possible (DE, Vis Botch Dice)
+    const vis = ritual ? ritualVis(level, rules) : { pawns: 0, wasted: 0 };
+    const visB = visBoostFor(sp.spell.technique, sp.spell.form, vis.pawns);
+    const res = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
+      kind: ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
+      talismanBonus: talisman ? talismanBonus : 0, extra: ms ? [{ label: 'Mastery', value: ms }] : [], visPawns: visB.pawns,
+    });
+    const botchDice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((res.botchDice ?? 0) + vis.pawns + visB.used, golden, ms));
+    // a stress die for stress, for Rituals and mastered spells, and always with Unpredictable Magic; calm and
+    // mastered means no botch dice, and a calm Ritual still risks a botch unless it is mastered
+    const canBotch = stress || (ritual && ms === 0) || rules.unpredictable;
     let dieText: string;
     let die: number;
     let botched = false;
     let botchCount = 0;
     let lastBotchFaces: number[] = [];
-    if (stress || sp.spell.ritual || ms > 0) {
-      const r = stressDie(stress ? botchDice : 0, undefined, !stress);
+    if (stress || ritual || ms > 0 || rules.unpredictable) {
+      const r = stressDie(canBotch ? botchDice : 0, undefined, !canBotch);
       die = r.value;
       botched = r.botches > 0;
       botchCount = r.botches;
@@ -103,40 +164,75 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     const raw = res.parts.reduce((s, p) => s + p.value, 0);
     let total = res.halved ? Math.ceil((raw + die) / 2) : res.total + die;
     if (botched) total = 0;
-    // a magical botch: one Warping Point per zero; Twilight is checked on 2+ (1 with Twilight Prone)
-    const wp = botched ? botchCount : 0;
-    if (wp) {
-      update((x) => void (x.warpingPoints += wp));
-      const check = wp >= 2 || (wp >= 1 && d.twilightProne);
-      push(`Botch: ${wp} Warping Point${wp > 1 ? 's' : ''} added.${check ? ` Check for Wizard's Twilight${d.twilightProne && wp < 2 ? ' (Twilight Prone)' : ''}: Advancement tab, Warping & Twilight (points already added).` : ''}`);
-      if (aatpReady) setAatp({ spell: sp.spell.name, faces: lastBotchFaces });
-    }
-    const out = castingOutcome(sp.spell.ritual ? 'ritual' : 'formulaic', total, level);
+    const out = castingOutcome(ritual ? 'ritual' : 'formulaic', total, level);
     const penT = out.cast ? penetrationTotal(d, total, level, { ...pen, masteryScore: sp.masteryAbilities.includes('Penetration') ? ms : 0 }) : 0;
+    const visText = ritual
+      ? ` Vis: ${vis.pawns} pawn${vis.pawns > 1 ? 's' : ''}${rules.ritualVisMultiplier !== 1 ? ' (Mercurian Magic: half, rounded up)' : ''}${vis.wasted ? `, ${vis.wasted} of them wasted (Waster of Vis)` : ''}.${sp.spell.ritual ? '' : ' Unstructured Caster: cast as a Ritual.'}`
+      : '';
+    const fatigue = castingFatigue(out.fatigue, rules);
     // Life Boost: the Fatigue levels are spent whatever the result; past Unconscious they become damage
     const boost = hasLifeBoost ? lifeBoost : 0;
     const left = 5 - c.fatigueLost;
     const overBy = Math.max(0, boost - left);
     const boostText = boost ? ` Life Boost spends ${boost} Fatigue level${boost > 1 ? 's' : ''}${overBy ? `; ${overBy} beyond your Fatigue: Soak ${5 * overBy} + stress die without armor` : ''}.` : '';
-    push(`${sp.spell.name}: ${res.total} + die ${dieText} = ${total} vs level ${level}. ${botched ? `BOTCH (${botchDice} botch dice). ` : ''}${out.text}${out.cast ? ` Penetration ${penT}.` : ''}${boostText}`);
-    if (out.fatigue || boost) {
-      update((x) => {
-        if (out.longTerm) x.longTermFatigueLost = Math.min(5, x.longTermFatigueLost + out.fatigue);
-        else x.fatigueLost = Math.min(5, x.fatigueLost + out.fatigue);
-        x.fatigueLost = Math.min(5, x.fatigueLost + boost);
-      });
-    }
+    const fatigueText = fatigue !== out.fatigue ? ` Fatigue lost: ${fatigue}${fatigueNote}.` : '';
+    push(`${sp.spell.name}: ${res.total} + die ${dieText} = ${total} vs level ${level}. ${botched ? `BOTCH (${botchDice} botch dice). ` : ''}${out.text}${fatigueText}${out.cast ? ` Penetration ${penT}.` : ''}${visText}${visB.text}${boostText}`);
+    onBotch(sp.spell.name, botched ? botchCount : 0, lastBotchFaces);
+    const over = spendFatigue(fatigue, out.longTerm);
+    if (boost) update((x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + boost)));
+    if (over) push(`${sp.spell.name}:${over}`);
   };
 
-  const castSpont = (fatiguing: boolean) => {
-    if (!fatiguing) {
-      push(`Spontaneous ${tech}${form} (non-fatiguing): ${spont.total}/5 = ${Math.floor(spontaneousTotal(spont.total, false))} (rounded down)`);
-      return;
+  /**
+   * Spontaneous magic: calm (÷5, no roll), Diedne's calm option (÷2 on a stress die, no Fatigue), or
+   * exerted (÷2 on a stress die, a Fatigue level). Weak Spontaneous Magic still checks for a botch under
+   * stress, and Unpredictable Magic always does.
+   */
+  const castSpont = (mode: 'calm' | 'calm-stress' | 'diedne' | 'exerted') => {
+    const name = `Spontaneous ${tech}${form}${cer ? ' (ceremonial)' : ''}`;
+    const boost = visBoostFor(tech, form, 0);
+    const score = (mode === 'exerted' ? spontExerted.total : spont.total) + 2 * boost.pawns;
+    const dice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((spont.botchDice ?? 0) + boost.used, golden));
+    let total: number;
+    let text: string;
+    let botch = { n: 0, faces: [] as number[] };
+    if (mode === 'calm' || mode === 'calm-stress') {
+      total = Math.floor(spontaneousTotal(score, false));
+      text = `${name} (non-fatiguing): ${score}/5 = ${total} (rounded down)`;
+      if (mode === 'calm-stress' || rules.unpredictable) {
+        const r = stressDie(dice);
+        if (r.botches) {
+          total = 0;
+          botch = { n: r.botches, faces: r.botchFaces };
+        }
+        text += `; botch check ${describeStress(r)}${r.botches ? `: BOTCH (${dice} botch dice)` : ''}${rules.unpredictable ? ' (Unpredictable Magic)' : ''}`;
+      }
+      text += '.';
+    } else {
+      const r = stressDie(dice);
+      total = r.botches ? 0 : Math.floor(spontaneousTotal(score, true, r.value));
+      if (r.botches) botch = { n: r.botches, faces: r.botchFaces };
+      text = `${name} (${mode === 'diedne' ? 'Diedne Magic, no Fatigue' : 'fatiguing'}): (${score} + ${describeStress(r)}) / 2 = ${total} (rounded down)${r.botches ? `: BOTCH (${dice} botch dice)` : ''}.`;
     }
-    const r = stressDie((spont.botchDice ?? 0) + 1);
-    const tot = r.botches ? 0 : spontaneousTotal(spont.total, true, r.value, diedne);
-    push(`Spontaneous ${tech}${form} (fatiguing): (${spont.total} + ${describeStress(r)}) / 2 = ${Math.floor(tot)} (rounded down). Lose one Fatigue level.`);
-    update((x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + 1)));
+    const target = rules.chaotic || (rules.lifeLinked && lifeLinkedOn) ? declared : null;
+    if (target !== null && !botch.n) {
+      text += ` Declared level ${target}.`;
+      if (rules.chaotic && Math.abs(total - target) > 1) text += ' Chaotic Magic: more than one level off, so the storyguide decides what the spell does.';
+    }
+    let levels = mode === 'exerted' ? castingFatigue(1, rules) : 0;
+    if (mode === 'exerted' && rules.lifeLinked && lifeLinkedOn && !botch.n) {
+      const extra = lifeLinkedFatigue(total, declared);
+      if (extra) {
+        text += ` Life-Linked: ${extra} more Fatigue level${extra > 1 ? 's' : ''} to reach it.`;
+        levels += extra;
+      } else text += ' Life-Linked: the spell reaches it.';
+    }
+    if (levels) text += ` Lose ${levels} Fatigue level${levels > 1 ? 's' : ''}${fatigueNote}.`;
+    text += boost.text;
+    push(text);
+    onBotch(name, botch.n, botch.faces);
+    const over = spendFatigue(levels, false);
+    if (over) push(`${name}:${over}${rules.lifeLinked && lifeLinkedOn ? ' Life-Linked: the levels still needed count as Damage beyond your Soak (DE).' : ''}`);
   };
 
   return (
@@ -165,10 +261,20 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
               <option value={2}>loud & exaggerated (+2)</option>
             </select>
           </Field>
-          {talismanItem && (
-            <label className="inline small">
-              <input type="checkbox" checked={talisman} onChange={(e) => setTalisman(e.target.checked)} /> using talisman attunement (+{talismanBonus})
-            </label>
+          {talismanItem && talismanItem.attunements.length > 0 && (
+            <Field label="Talisman attunement" hint="Touching the talisman, for a spell the attunement fits">
+              <select value={attunement} onChange={(e) => setAttunement(Number(e.target.value))}>
+                <option value={-1}>none applies</option>
+                {talismanItem.attunements
+                  .map((a, i) => ({ a, i }))
+                  .sort((x, y) => y.a.bonus - x.a.bonus)
+                  .map(({ a, i }) => (
+                    <option key={i} value={i}>
+                      +{a.bonus} {a.label}
+                    </option>
+                  ))}
+              </select>
+            </Field>
           )}
           {ctx.lab && (
             <label className="inline small">
@@ -198,6 +304,12 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           )}
           <Field label="Other modifier" hint="Anything temporary or obscure; applies to every total here">
             <Stepper value={other} min={-30} max={30} width={40} onChange={setOther} />
+          </Field>
+          <Field label="Raw vis to boost a casting" hint={rules.rigid ? 'Rigid Magic: none' : '+2 Casting Score a pawn, a botch die each; up to your Technique + Form'}>
+            <Stepper value={visBoost} min={0} max={30} width={36} onChange={setVisBoost} />
+          </Field>
+          <Field label="Days away from the lab" hint={daysAway > 20 ? 'Past twenty: no lab work this season' : daysAway > 10 ? `Lab Totals ${10 + 2 * (daysAway - 10) > 30 ? -30 : -(10 + 2 * (daysAway - 10))}` : 'Up to ten cost nothing'}>
+            <Stepper value={daysAway} min={0} max={30} width={36} onChange={setDaysAway} />
           </Field>
           <button className="small ghost" onClick={() => setAura(ctx.aura)}>
             Reset to covenant aura ({ctx.aura.realm} {ctx.aura.strength})
@@ -282,7 +394,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                   <th title={ART_NAMES[t]}>{t}</th>
                   {FORMS.map((f) => {
                     const r = castingScore(d, { technique: t, form: f }, { kind: 'formulaic', aura, wordsGestures: words, inFocus: focusNow, circumstance: conds, other });
-                    const l = labTotal(d, { technique: t, form: f }, { activity: 'spells', aura, lab: labCtx, inFocus: focusNow, circumstance: conds, other });
+                    const l = labTotal(d, { technique: t, form: f }, { activity: 'spells', aura, lab: labCtx, inFocus: focusNow, circumstance: conds, other, daysAway });
                     return (
                       <td key={f} className="num">
                         <div>
@@ -352,7 +464,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                   .map((sp) => {
                     const ms = masteryScore(sp, d);
                     const r = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
-                      kind: sp.spell.ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
+                      kind: sp.spell.ritual || rules.unstructured ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
                       talismanBonus: talisman ? talismanBonus : 0, extra: ms ? [{ label: 'Mastery', value: ms }] : [],
                     });
                     const lvl = sp.spell.level ?? 0;
@@ -400,7 +512,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                           ))}
                         </td>
                         <td className="nowrap">
-                          {!sp.spell.ritual && (
+                          {(!(sp.spell.ritual || rules.unstructured) || ms > 0) && (
                             <button className="small" onClick={() => castSpell(sp, false)} title="Calm: simple die (or stress die without botch if mastered)">
                               Calm
                             </button>
@@ -417,9 +529,10 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           </div>
         )}
         <p className="small muted">
-          Formulaic: fail by 1–10 and the spell still works at a cost of one Fatigue level. Ritual: always costs long-term Fatigue and 1 pawn of vis per magnitude. Mastery adds its score
-          to the Casting Total and removes a botch die per point.
+          Formulaic: fail by 1–10 and the spell still works at a cost of one Fatigue level. Ritual: always costs long-term Fatigue and 1 pawn of vis per magnitude, and each pawn is a
+          botch die; a Ritual always rolls a stress die. Mastery adds its score to the Casting Total and removes a botch die per point.
         </p>
+        <CastingRulesNote rules={rules} />
       </Card>
 
       <Card title="Spontaneous magic">
@@ -449,7 +562,9 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             <span className="l">Non-fatiguing (÷5)</span>
           </div>
           <div className="stat">
-            <span className="v">{Math.floor(spontaneousTotal(spont.total, true, 5.5))}</span>
+            <span className="v">
+              {rules.weakSpontaneous ? '—' : <Total value={Math.floor(spontaneousTotal(spontExerted.total, true, 5.5))} parts={spontExerted.parts} notes={['Exerted: (Casting Score + stress die) ÷ 2, shown with an average die of 5.5.', ...spontExerted.notes]} label="Exerted spontaneous" />}
+            </span>
             <span className="l">Fatiguing, avg die (÷2)</span>
           </div>
           {hasImprovisation && (
@@ -466,11 +581,44 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
               </select>
             </Field>
           )}
-          <button onClick={() => castSpont(false)}>Cast (no fatigue)</button>
-          <button onClick={() => castSpont(true)}>Cast (fatiguing)</button>
+        </div>
+        <div className="row" style={{ marginTop: 6 }}>
+          <label className="inline small" title={canCeremonial ? 'Fifteen minutes per magnitude; the spell is limited to one magnitude per fifteen minutes spent' : 'Needs experience in Artes Liberales or Philosophiae'}>
+            <input type="checkbox" checked={cer} disabled={rules.ceremonialSpontaneous || !canCeremonial} onChange={(e) => setCeremonial(e.target.checked)} /> Ceremonial casting (+Artes Liberales
+            and Philosophiae; 15 minutes a magnitude){rules.ceremonialSpontaneous ? ': required by Ceremonial Spontaneous Magic' : ''}
+          </label>
+          {(rules.chaotic || rules.lifeLinked) && (
+            <Field label="Declared level" hint={rules.chaotic ? 'Chaotic Magic: declare every spontaneous spell (Penetration levels included)' : 'Life-Linked: may include levels for Penetration'}>
+              <Stepper value={declared} min={1} step={1} width={40} onChange={setDeclared} />
+            </Field>
+          )}
+          {rules.lifeLinked && (
+            <label className="inline small">
+              <input type="checkbox" checked={lifeLinkedOn} onChange={(e) => setLifeLinkedOn(e.target.checked)} /> Use Life-Linked Spontaneous Magic (a Fatigue level per 5 points short)
+            </label>
+          )}
+        </div>
+        <div className="row" style={{ marginTop: 6 }}>
+          <button onClick={() => castSpont('calm')} disabled={rules.difficultSpontaneous} title={rules.difficultSpontaneous ? 'Difficult Spontaneous Magic: you must exert yourself' : 'Casting Score ÷ 5, no roll'}>
+            Cast (no fatigue)
+          </button>
+          {rules.weakSpontaneous && !rules.difficultSpontaneous && (
+            <button onClick={() => castSpont('calm-stress')} title="Weak Spontaneous Magic: under stress you still roll for a botch, but the die adds nothing">
+              Cast under stress (÷5, botch check)
+            </button>
+          )}
+          {rules.diedne && !rules.difficultSpontaneous && (
+            <button onClick={() => castSpont('diedne')} title="Diedne Magic: divide by 2 instead of 5 with a stress die (may botch), without spending Fatigue">
+              Cast (no fatigue, ÷2 on a stress die)
+            </button>
+          )}
+          <button onClick={() => castSpont('exerted')} disabled={rules.weakSpontaneous} title={rules.weakSpontaneous ? 'Weak Spontaneous Magic: you may not exert yourself' : 'Stress die, ÷ 2, one Fatigue level'}>
+            Cast (fatiguing)
+          </button>
         </div>
         <p className="small muted">Totals are rounded down (the DE default when a rule doesn't say otherwise).</p>
-        {diedne && <p className="small good-text">Diedne Magic: non-fatiguing spontaneous spells may roll as fatiguing without losing Fatigue.</p>}
+        {rules.weakSpontaneous && rules.difficultSpontaneous && <p className="small bad-text">Weak and Difficult Spontaneous Magic together: you cannot cast spontaneous spells at all.</p>}
+        {rules.diedne && <p className="small good-text">Diedne Magic: exerted, your lowest Art counts twice before dividing by two (in the fatiguing total); calm, you may divide by 2 on a stress die instead of by 5.</p>}
       </Card>
 
       <Certamen ed={ed} push={push} />
@@ -630,5 +778,39 @@ function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
         Arts through their Parma), by their surrender, or by their failed Concentration roll (DE, Certamen).
       </p>
     </Card>
+  );
+}
+
+/** Which casting Virtues and Flaws the roller applies, and reminders for the ones it can't. */
+function CastingRulesNote({ rules }: { rules: ReturnType<typeof castingRules> }) {
+  const applied = [
+    rules.unstructured && 'Unstructured Caster (Formulaic spells cast as Rituals)',
+    rules.rigid && 'Rigid Magic (no Rituals)',
+    rules.unpredictable && 'Unpredictable Magic (always a stress die, at least one botch die)',
+    rules.vulnerable && `Vulnerable Casting (+${rules.vulnerable} Fatigue)`,
+    rules.withstand && `Withstand Casting (−${rules.withstand} Fatigue, never below one)`,
+    rules.ritualVisMultiplier !== 1 && 'Mercurian Magic (half the Ritual vis)',
+    rules.wasterOfVis && 'Waster of Vis (a quarter of the vis lost)',
+    rules.weakSpontaneous && 'Weak Spontaneous Magic',
+    rules.difficultSpontaneous && 'Difficult Spontaneous Magic',
+    rules.ceremonialSpontaneous && 'Ceremonial Spontaneous Magic',
+    rules.diedne && 'Diedne Magic',
+    rules.lifeLinked && 'Life-Linked Spontaneous Magic',
+    rules.chaotic && 'Chaotic Magic',
+  ].filter(Boolean);
+  if (!applied.length && !rules.notes.length) return null;
+  return (
+    <div className="small">
+      {applied.length > 0 && (
+        <div>
+          <b>Applied when you cast:</b> {applied.join('; ')}.
+        </div>
+      )}
+      {rules.notes.map((n) => (
+        <div key={n} className="muted">
+          {n}
+        </div>
+      ))}
+    </div>
   );
 }

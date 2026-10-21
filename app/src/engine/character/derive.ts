@@ -117,6 +117,8 @@ export interface DerivedCharacter {
   decrepitude: number;
   livingConditionsMod: number;
   agingRollMod: number;
+  /** every modifier to the aging roll besides age, Living Conditions and longevity */
+  agingRollParts: { label: string; value: number }[];
   /** aging rolls start at this age (35, or later with e.g. Strong Faerie Blood) */
   agingStartAge: number;
   /** the Ability used where Hermetic magic uses Magic Theory (Holy Magic replaces it) */
@@ -307,8 +309,11 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
         if (v.cv.size === 'Minor') tally.minorFlaws++;
         if (v.cv.size === 'Major') tally.majorFlaws++;
       }
-      if (d.categories.includes('Story')) tally.storyFlaws++;
-      if (d.categories.includes('Personality')) {
+      // a Flaw another Virtue brings without points (Diedne Magic's Story Flaw) is "in addition to
+      // your normal allowance of Flaws": it does not count toward the Story and Personality limits
+      const extra = !!(v.cv.noPoints && v.cv.requiredBy);
+      if (d.categories.includes('Story') && !extra) tally.storyFlaws++;
+      if (d.categories.includes('Personality') && !extra) {
         tally.personalityFlaws++;
         if (v.cv.size === 'Major') tally.majorPersonalityFlaws++;
       }
@@ -593,6 +598,11 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const decrepitude = warpingScoreFromPoints(char.decrepitudePoints);
   const livingConditionsMod = eff('livingConditions').reduce((s, e) => s + e.amount, 0);
   const agingRollMod = eff('agingRoll').reduce((s, e) => s + e.amount, 0);
+  // the aging roll beyond age, Living Conditions and longevity: Virtues and Flaws, and a familiar's bronze cord (DE, The Three Cords)
+  const agingRollParts = [
+    ...(agingRollMod ? [{ label: 'Virtues and Flaws', value: agingRollMod }] : []),
+    ...(char.familiar?.bronze ? [{ label: "Familiar's bronze cord", value: -char.familiar.bronze }] : []),
+  ];
   const agingStartAge = eff('agingStartAge').reduce((m, e) => Math.max(m, e.age), 35);
   const theoryAbility = eff('labTheory')[0]?.ability ?? 'magic-theory';
   const faithEff = eff('trueFaith')[0];
@@ -665,7 +675,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   return {
     char, virtues, effects, hasGift, giftType, isMagus, tally, size, characteristics, charPointsBudget, charPointsSpent,
     abilities, abilityByUid, arts, budgets, abilityAccess: access, laterLifeYears, ageCap, confidence, reputations,
-    warpingScore, warpingPoints, decrepitude, livingConditionsMod, agingRollMod, agingStartAge, theoryAbility, trueFaith, faithPoints, relicFaith, might, personalityMax, powerBudgets, soak, woundPenaltyAdj, fatiguePenaltyAdj,
+    warpingScore, warpingPoints, decrepitude, livingConditionsMod, agingRollMod, agingRollParts, agingStartAge, theoryAbility, trueFaith, faithPoints, relicFaith, might, personalityMax, powerBudgets, soak, woundPenaltyAdj, fatiguePenaltyAdj,
     load, burden, encumbrance, woundRanges, fatigueLevels, currentWoundPenalty, currentFatiguePenalty,
     apprenticeshipSpellLevelBudget, masteryPools, flawless: eff('flawlessMagic').length > 0,
     magicalFocus: focus ? focus.scope : 'none', focusText: focusVirtue?.cv.param, socialPenalty, notes,
