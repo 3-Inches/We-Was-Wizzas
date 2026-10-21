@@ -1,0 +1,1327 @@
+[
+  {
+    "title": "Spell Levels and Magnitudes",
+    "heading": "Levels",
+    "line": 12032,
+    "endLine": 12042,
+    "category": "magic",
+    "topic": "Spell design",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Defines a spell's level as its base level from the guideline plus adjustments for Range, Duration, Target and size, and explains magnitudes (level divided by five, rounded up), which also give the vis cost of a ritual.",
+    "quotes": [
+      "The magnitude of a spell is equal to one fifth of its level, rounded up.",
+      "the number of pawns of vis needed to cast a ritual spell",
+      "SPELL MAGNITUDE: Level/5 (rounded up)"
+    ]
+  },
+  {
+    "title": "The Central Rule of Spell Design",
+    "heading": "The Central Rule",
+    "line": 12046,
+    "endLine": 12048,
+    "category": "magic",
+    "topic": "Spell design",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The troupe may always override the guideline system and set a higher or lower level for an odd combination of Range, Duration, Target and effect; storyguides should not let the system force things past common sense.",
+    "quotes": [
+      "The troupe may always intervene and declare that a certain combination of Range, Duration, Target, and effect warrants a higher or lower level than that described by the guidelines and the system below."
+    ]
+  },
+  {
+    "title": "Level Guidelines",
+    "heading": "Level Guidelines",
+    "line": 12050,
+    "endLine": 12054,
+    "category": "magic",
+    "topic": "Spell design",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Explains that the guidelines give the lowest level at which a Ritual, Formulaic or Spontaneous spell can produce an effect, using the lowest Range, Duration and Target as the baseline.",
+    "quotes": [
+      "the range of the spell is Personal, the duration is Momentary, and the target is Individual."
+    ]
+  },
+  {
+    "title": "Ranges, Durations, Targets (overview)",
+    "heading": "Ranges, Durations, Targets",
+    "line": 12056,
+    "endLine": 12061,
+    "category": "magic",
+    "topic": "Spell parameters",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Introduces the three spell parameters and their ordering by difficulty. Spontaneous spells must use the standard categories, while Formulaic and Ritual spells may be invented with non-standard ones at troupe discretion.",
+    "quotes": [
+      "The Range governs how far the target can be from the magus, the Duration determines how long the target will be affected, and the Target describes what the spell can affect."
+    ]
+  },
+  {
+    "title": "Changing Ranges, Durations and Targets",
+    "heading": "Changing Ranges, Durations, and Targets",
+    "line": 12062,
+    "endLine": 12069,
+    "category": "magic",
+    "topic": "Spell parameters",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Shows how to calculate a spell's level when its Range, Duration or Target is raised or lowered from the base, a magnitude per step, with a special rule that below level five a magnitude is a single level. Includes a worked example.",
+    "quotes": [
+      "add one magnitude (five levels) to the level of the spell for every step by which the parameter is raised",
+      "Below level 5, adding a magnitude only adds one level, and subtracting a magnitude only subtracts one level."
+    ]
+  },
+  {
+    "title": "Range, Duration and Target Table",
+    "heading": "Ranges, Durations, and Targets",
+    "line": 12070,
+    "endLine": 12078,
+    "category": "magic",
+    "topic": "Spell parameters",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Table ranking every Range, Duration, Object, Container and Sense target by the additional magnitudes it adds to a guideline.",
+    "quotes": []
+  },
+  {
+    "title": "Spell Ranges",
+    "heading": "Ranges",
+    "line": 12080,
+    "endLine": 12097,
+    "category": "magic",
+    "topic": "Spell parameters",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Describes each Range (Personal, Touch, Eye, Voice, Sight, Arcane Connection): how distance to the nearest part of the target is measured, how far a voice carries, what eye contact requires, and how continuing spells behave if the caster moves away.",
+    "quotes": [
+      "The range of a spell is the distance to the nearest part of the target of the spell.",
+      "Typically, firm words carry about 15 paces, while quiet words are audible within 5 paces and a shout carries about 50."
+    ]
+  },
+  {
+    "title": "Spell Durations",
+    "heading": "Durations",
+    "line": 12098,
+    "endLine": 12125,
+    "category": "magic",
+    "topic": "Spell parameters",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Describes each Duration (Momentary, Concentration, Diameter, Sun, Ring, Moon, Year), what happens to momentary effects under longer durations, recasting a spell to keep it continuous, and the rules for drawing a Ring.",
+    "quotes": [
+      "In the absence of distractions, assume that a magus can concentrate for fifteen minutes per point of Concentration ability.",
+      "A spell with this duration must be ritual."
+    ],
+    "related": [
+      "ArM5 p.215 Hermetic Magic chapter, concentration rules"
+    ]
+  },
+  {
+    "title": "Spell Targets",
+    "heading": "Target",
+    "line": 12126,
+    "endLine": 12147,
+    "category": "magic",
+    "topic": "Spell parameters",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Describes the object, container and sense Targets (Individual, Circle, Part, Group, Room, Structure, Boundary), what each can affect, and which require Ritual casting.",
+    "quotes": [
+      "There are three types of target: objects, containers, and senses.",
+      "A spell with this target must be a Ritual."
+    ]
+  },
+  {
+    "title": "Magical Senses",
+    "heading": "Magical Senses",
+    "line": 12148,
+    "endLine": 12169,
+    "category": "magic",
+    "topic": "Spell parameters",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Intellego spells can grant a magical sense (Taste, Touch, Smell, Hearing, Vision) as a Target; the information is limited like the mundane sense, must penetrate Magic Resistance, and one spell grants only one sense.",
+    "quotes": [
+      "A single spell grants a single magical sense."
+    ]
+  },
+  {
+    "title": "Magical Wards",
+    "heading": "Magical Wards",
+    "line": 12170,
+    "endLine": 12179,
+    "category": "magic",
+    "topic": "Spell parameters",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Rego wards protect the thing targeted from things of a Form; Circle wards bar crossing in both directions, are usually Ring Duration, and must Penetrate and equal or beat the Might of what they hold off.",
+    "quotes": [
+      "because a ward with these parameters wards against creatures with a Might equal to or less than its level"
+    ]
+  },
+  {
+    "title": "Magical Craft (Creo and Rego)",
+    "heading": "Magical Craft",
+    "line": 12180,
+    "endLine": 12222,
+    "category": "magic",
+    "topic": "Magical craft",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Rules for making natural and artificial things with magic: Creo creates natural objects directly, Rego rearranges materials like a craftsman, and a Finesse roll sets details and quality with Ease Factors based on mundane craft.",
+    "quotes": [
+      "REGO CRAFT MAGIC ROLL: Perception + Finesse",
+      "CREO CRAFT MAGIC ROLL: Intelligence + Finesse",
+      "BASE EASE FACTOR: Highest Ease Factor for a Mundane Craftsman + 3"
+    ],
+    "related": [
+      "Covenants p.49",
+      "Houses of Hermes: Societates pp.60-62"
+    ]
+  },
+  {
+    "title": "Ease Factors for Creating and Crafting Objects",
+    "heading": "Ease Factors for Creating and Crafting Objects",
+    "line": 12224,
+    "endLine": 12238,
+    "category": "magic",
+    "topic": "Magical craft",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Table of crafting task difficulty with Ease Factors (including the adjustment for magic) from Trivial to Almost Impossible, with examples, for use with the Finesse craft rolls.",
+    "quotes": [],
+    "related": [
+      "City and Guild ch.4",
+      "Art and Academe ch.8"
+    ]
+  },
+  {
+    "title": "Summoning Spirits",
+    "heading": "Summoning Spirits",
+    "line": 12240,
+    "endLine": 12244,
+    "category": "magic",
+    "topic": "Summoning spirits",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Hermetic magic can bring a spirit instantly to the caster without granting control. A Formulaic or Spontaneous spell suffices for a spirit in Mythic Europe, but a spirit in another realm needs a Ritual.",
+    "quotes": [
+      "Summoning spells are normally cast at Arcane Connection range, making them quite high level."
+    ]
+  },
+  {
+    "title": "Static and Dynamic Container Targets",
+    "heading": "Static and Dynamic Targets",
+    "line": 12250,
+    "endLine": 12261,
+    "category": "magic",
+    "topic": "Container targets",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Spells with container Targets either affect what is inside at the moment of casting (static) or whatever is inside throughout the duration (dynamic); this is fixed when the spell is designed and gives two different spells.",
+    "quotes": [
+      "This is the way that spells with object Targets work, and can be referred to as a static target",
+      "This can be referred to as a dynamic target, because the things that are targeted by the spell can change over the duration."
+    ]
+  },
+  {
+    "title": "Being Inside a Container",
+    "heading": "Being Inside a Container",
+    "line": 12262,
+    "endLine": 12265,
+    "category": "magic",
+    "topic": "Container targets",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Uses an intuitive definition of what counts as inside a Circle, Room, Structure or Boundary, with examples, and lets the troupe be more precise if needed.",
+    "quotes": []
+  },
+  {
+    "title": "Persistence of Containers",
+    "heading": "Persistence of Containers",
+    "line": 12266,
+    "endLine": 12270,
+    "category": "magic",
+    "topic": "Container targets",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Explains when a container target still exists for a spell (same container, moved, resized, rebuilt) and why Circles and bare-marker Boundaries are vulnerable to being broken or altered.",
+    "quotes": []
+  },
+  {
+    "title": "Targets and Sizes",
+    "heading": "Targets and Sizes",
+    "line": 12272,
+    "endLine": 12311,
+    "category": "magic",
+    "topic": "Targets and sizes",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Target types depend on kind of thing not size, but the size of the target affects spell level in every Form except Intellego and Circle targets: each magnitude added multiplies the allowed mass or volume. Gives the base Part, Group, Room, Structure and Boundary sizes, and how to adjust for enlarging or shrinking.",
+    "quotes": [
+      "Adding one magnitude (five levels) to the spell multiplies the maximum size of its target by ten.",
+      "A base Room is large enough to fit a hundred standard Individuals with some squashing.",
+      "Mass of ten standard Individuals"
+    ]
+  },
+  {
+    "title": "Targets and Creo",
+    "heading": "Targets and Creo",
+    "line": 12312,
+    "endLine": 12316,
+    "category": "magic",
+    "topic": "Targets and sizes",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "A Creo spell's Target is the thing created, always Individual or Group; creating a part of something is healing or Muto, and filling a room needs a Group target with a size modifier.",
+    "quotes": [
+      "The target of a Creo spell that actually creates something is the thing created."
+    ]
+  },
+  {
+    "title": "Volumes and Targets",
+    "heading": "Volumes and Targets",
+    "line": 12318,
+    "endLine": 12346,
+    "category": "magic",
+    "topic": "Targets and sizes",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Reference list of volumes in tenfold steps, each equal to one magnitude of size, matched to base Individuals for several Forms and to the Material and Size table.",
+    "quotes": [],
+    "related": [
+      "ArM5 p.255 Material and Size table"
+    ]
+  },
+  {
+    "title": "Ritual Spells",
+    "heading": "Ritual Spells",
+    "line": 12348,
+    "endLine": 12364,
+    "category": "magic",
+    "topic": "Spell design",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Lists what only Ritual spells can do or must be Ritual: Year Duration, Boundary Target, levels above the Formulaic limit, lasting Momentary Creo creations, and effects the troupe judges too spectacular. Rituals have a minimum level and cannot be replicated spontaneously.",
+    "quotes": [
+      "Ritual spells are always at least level 20, even if the level calculation would make them lower.",
+      "Formulaic and Spontaneous spells may not have a level greater than 50.",
+      "It is never possible to replicate the effects of a Ritual spell with Spontaneous magic, even when casting Ceremonially."
+    ]
+  },
+  {
+    "title": "Requisites",
+    "heading": "Requisites",
+    "line": 12366,
+    "endLine": 12389,
+    "category": "magic",
+    "topic": "Requisites",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Explains requisite Arts: those needed for the effect add no levels, those that add an effect add at least a magnitude. A requisite limits the casting score to the lower of it and the primary Art, and requisites never change Magic Resistance or vis matching.",
+    "quotes": [
+      "REQUISITE NECESSARY FOR SPELL'S EFFECT: +0 magnitudes",
+      "REQUISITE ENHANCES SPELL'S EFFECT: +1 magnitude or more",
+      "ADDED EFFECT IS PURELY COSMETIC: No requisite"
+    ]
+  },
+  {
+    "title": "Casting Requisites",
+    "heading": "Casting Requisites",
+    "line": 12390,
+    "endLine": 12393,
+    "category": "magic",
+    "topic": "Requisites",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Casting requisites are chosen at casting time rather than listed with the spell; the lowest Technique and Form among the primary and chosen requisite Arts is used for the Casting Total.",
+    "quotes": []
+  },
+  {
+    "title": "Spontaneous Requisites",
+    "heading": "Spontaneous Requisites",
+    "line": 12394,
+    "endLine": 12397,
+    "category": "magic",
+    "topic": "Requisites",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Requisites limit the Arts of Spontaneous spells in the same way as Formulaic ones.",
+    "quotes": []
+  },
+  {
+    "title": "How to Read a Spell (Technique and Form)",
+    "heading": "Spell Format",
+    "line": 12398,
+    "endLine": 12409,
+    "category": "magic",
+    "topic": "Spell design",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Explains how spells are presented (grouped by Form then Technique), that guideline Range, Duration and Target default to Personal, Momentary and Individual unless noted, and the two-letter abbreviation style such as CrIg 15.",
+    "quotes": [
+      "If the guideline does not specify a Range, Duration, or Target, they are Personal, Momentary, and Individual."
+    ]
+  },
+  {
+    "title": "General Level Spells",
+    "heading": "Level",
+    "line": 12414,
+    "endLine": 12423,
+    "category": "magic",
+    "topic": "Spell design",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "General (Gen) spells can be learned at any level; the level at which you know one is where you learned or invented it, it cannot be used above or below that level, and each level is a different spell.",
+    "quotes": [
+      "General level spells are open-ended only in the sense that they may be learned at any level."
+    ]
+  },
+  {
+    "title": "Spell Design Line",
+    "heading": "Design",
+    "line": 12438,
+    "endLine": 12441,
+    "category": "magic",
+    "topic": "Spell design",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Describes the parenthetical calculation at the end of each spell: base level in levels plus modifications in magnitudes, with the reminder that a magnitude is one level up to level five.",
+    "quotes": []
+  },
+  {
+    "title": "Spell Damage",
+    "heading": "Spell Damage",
+    "line": 12442,
+    "endLine": 12445,
+    "category": "magic",
+    "topic": "Spell damage",
+    "audience": [
+      "all",
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Spell damage written as +X means a stress die plus X, rolled anew each casting, which the target resists with Soak Total plus a stress die.",
+    "quotes": [
+      "This is an abbreviation for stress die + X.",
+      "The target resists this damage with their Soak Total + stress die."
+    ],
+    "related": [
+      "ArM5 Combat chapter, damage and Soak"
+    ]
+  },
+  {
+    "title": "The Wizard's Sigil",
+    "heading": "The Wizard's Sigil",
+    "line": 12446,
+    "endLine": 12450,
+    "category": "magic",
+    "topic": "Wizard's sigil",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "A magus's personal quirk that shows up in the spells they invent and identifies the caster; it does not usually change effectiveness, and learned spells still carry your own sigil.",
+    "quotes": [
+      "it is always your sigil that manifests in your spells."
+    ],
+    "related": [
+      "ArM5 p.224 Hermetic Magic chapter, sigils"
+    ]
+  },
+  {
+    "title": "Animal: How It Works",
+    "heading": "Animal Spells",
+    "line": 12454,
+    "endLine": 12464,
+    "category": "magic",
+    "topic": "Animal magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "What Animal magic covers and the boundary with Mentem and Corpus: creatures with Cunning are affected by Animal in the mind, those with Intelligence need Mentem. Covers shapechangers, Bjornaer in animal form, animal parts on humans, and the base Individual.",
+    "quotes": [
+      "If the creature has Intelligence, a Mentem spell must be used. If it has Cunning, an Animal spell must be used.",
+      "A basic Individual for Animal is an animal of about the same size as a pony, Size +1 or lower."
+    ]
+  },
+  {
+    "title": "Aquam: How It Works",
+    "heading": "Aquam Spells",
+    "line": 12784,
+    "endLine": 12798,
+    "category": "magic",
+    "topic": "Aquam magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "What Aquam affects (water and other liquids, but not liquids that are part of a body without special design), how target categories apply to bodies of liquid, and base Individual sizes for water, natural, processed and corrosive liquids and poisons.",
+    "quotes": [
+      "A base Individual for Aquam is a pool of water about five paces (fifteen feet) across, and two paces deep at the center."
+    ]
+  },
+  {
+    "title": "Auram: How It Works",
+    "heading": "Auram Spells",
+    "line": 13108,
+    "endLine": 13118,
+    "category": "magic",
+    "topic": "Auram magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Auram covers air and most weather; explains how Individual and Group apply to weather phenomena and gives the base Individual as a phenomenon affecting a Boundary-sized area.",
+    "quotes": [
+      "A base Individual for Auram is a weather phenomenon that affects the area within a standard Boundary"
+    ]
+  },
+  {
+    "title": "Corpus: How It Works",
+    "heading": "Corpus Spells",
+    "line": 13415,
+    "endLine": 13419,
+    "category": "magic",
+    "topic": "Corpus magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Corpus affects human and humanlike bodies, including many faeries, and the base Individual is an adult human.",
+    "quotes": [
+      "A base Individual for Corpus is an adult human being, up to Size +1."
+    ]
+  },
+  {
+    "title": "Herbam: How It Works",
+    "heading": "Herbam Spells",
+    "line": 13921,
+    "endLine": 13925,
+    "category": "magic",
+    "topic": "Herbam magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Herbam covers living and dead plants and plant matter including wood, and its base Individual is a plant about a pace in each direction.",
+    "quotes": [
+      "A base Individual for Herbam is a plant roughly one pace in each direction."
+    ]
+  },
+  {
+    "title": "Ignem: How It Works",
+    "heading": "Ignem Spells",
+    "line": 14254,
+    "endLine": 14260,
+    "category": "magic",
+    "topic": "Ignem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Ignem covers fire, light and heat (including cold as absence of heat); warns that botches should be deadly, and gives the base Individual as a large campfire.",
+    "quotes": [
+      "The base Individual for Ignem is a large campfire or the fire in the hearth of a great hall."
+    ]
+  },
+  {
+    "title": "Imaginem: How It Works",
+    "heading": "Imaginem Spells",
+    "line": 14580,
+    "endLine": 14590,
+    "category": "magic",
+    "topic": "Imaginem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Imaginem affects images and sensations rather than light or minds: how beasts, demons, faeries and the Church react to illusions, and a Perception + Finesse stress roll with Ease Factors to mimic specific objects or people.",
+    "quotes": [
+      "It is more difficult to mimic a specific object or person using an Imaginem spell than it is to mimic a general image, and requires a Perception + Finesse stress roll.",
+      "For mimicking people, a roll against an Ease Factor of 6 lets you fool acquaintances of the person, an Ease Factor of 9 lets you fool friends, and an Ease Factor of 12 lets you fool close friends and relatives."
+    ]
+  },
+  {
+    "title": "Mentem: How It Works",
+    "heading": "Mentem Spells",
+    "line": 14903,
+    "endLine": 14909,
+    "category": "magic",
+    "topic": "Mentem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Mentem governs intelligent minds, thoughts, emotions, memories and the mental Characteristics; beasts need Animal magic. Minds have no size so size modifiers do not apply to Individual targets, but Groups and containers scale as normal.",
+    "quotes": [
+      "Minds do not have a size, so size modifiers do not apply to Mentem effects with Individual targets."
+    ]
+  },
+  {
+    "title": "Terram: How It Works",
+    "heading": "Terram Spells",
+    "line": 15288,
+    "endLine": 15294,
+    "category": "magic",
+    "topic": "Terram magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Terram covers earth, stone, clay, metal, glass and many inanimate objects. It lists materials in order of difficulty and gives base Individual sizes that depend on the material.",
+    "quotes": [
+      "it is harder to affect certain materials: Here, in increasing order of difficulty, are the materials Terram spells affect: earth (sand, dirt, mud), clay, stone, glass, metal, gemstones."
+    ]
+  },
+  {
+    "title": "Vim: How It Works",
+    "heading": "Vim Spells",
+    "line": 15656,
+    "endLine": 15674,
+    "category": "magic",
+    "topic": "Vim magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "How Vim magic works: it acts on spells, magical effects, spirits and demons, most Vim spells are General level and their guidelines relate the Vim spell's level to the level of the target, with modified Range or Target costing power. Spells and effects have no size.",
+    "quotes": [
+      "Most Vim spells are of General level, because the magic that Vim spells affect varies widely in power."
+    ]
+  },
+  {
+    "title": "Creo Animal Notes",
+    "heading": "Creo Animal Guidelines",
+    "line": 12466,
+    "endLine": 12474,
+    "category": "magic",
+    "topic": "Animal magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Notes on creating animals and animal products: treated and processed products cost extra magnitudes, created animals just act naturally unless a Rego requisite is added, and Personal range is rarely usable.",
+    "quotes": [
+      "Most Animal spells cannot be used with Personal range, so the level of a spell must be higher than the guidelines given."
+    ]
+  },
+  {
+    "title": "Perdo Animal Notes",
+    "heading": "Perdo Animal Guidelines",
+    "line": 12645,
+    "endLine": 12653,
+    "category": "magic",
+    "topic": "Animal magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Perdo Animal causes damage directly, so there is normally no Soak against it and only Magic Resistance defends.",
+    "quotes": [
+      "There is normally no Soak against Perdo Animal"
+    ]
+  },
+  {
+    "title": "Creo Aquam Notes",
+    "heading": "Creo Aquam Guidelines",
+    "line": 12800,
+    "endLine": 12808,
+    "category": "magic",
+    "topic": "Aquam magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Created water only quenches thirst temporarily; unnatural liquids cost extra magnitudes and need Muto requisites; poisons created have a base Ease Factor that rises with each magnitude.",
+    "quotes": [
+      "Poisons created at the guideline level have an Ease Factor of 3. Each magnitude added to the level of the spell adds 3 to the Ease Factor."
+    ]
+  },
+  {
+    "title": "Muto Aquam Notes",
+    "heading": "Muto Aquam Guidelines",
+    "line": 12914,
+    "endLine": 12920,
+    "category": "magic",
+    "topic": "Aquam magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Liquids inside a body can only be transformed by a spell designed for it with a Corpus or Animal requisite; poisons made by Muto use the same Ease Factor scaling as Creo Aquam.",
+    "quotes": [
+      "Poisons created at the guideline level have an Ease Factor of 3. For every magnitude added to the spell, add three to the Ease Factor."
+    ]
+  },
+  {
+    "title": "Rego Aquam Notes",
+    "heading": "Rego Aquam Guidelines",
+    "line": 13006,
+    "endLine": 13012,
+    "category": "magic",
+    "topic": "Aquam magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Rego Aquam can turn water to ice or steam; slightly or very unnatural controlled movement costs extra magnitudes.",
+    "quotes": [
+      "Rego Aquam can change water into ice or steam, because these are both states that water can have naturally."
+    ]
+  },
+  {
+    "title": "Creo Auram Notes",
+    "heading": "Creo Auram Guidelines",
+    "line": 13120,
+    "endLine": 13126,
+    "category": "magic",
+    "topic": "Auram magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Weather is normally created at Sight range because it begins in the upper air; ground-level weather is unnatural and its extra cost cancels the saving from shorter range.",
+    "quotes": [
+      "Weather phenomena are normally created at Sight range."
+    ]
+  },
+  {
+    "title": "Rego Auram Notes",
+    "heading": "Rego Auram Guidelines",
+    "line": 13360,
+    "endLine": 13364,
+    "category": "magic",
+    "topic": "Auram magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Rego Auram controls existing weather, including starting and stopping rain, but cannot create a breeze; precise or powerful control raises the magnitude.",
+    "quotes": [
+      "It is not possible to create a breeze with Rego Auram, but it is possible to direct the course of a storm."
+    ]
+  },
+  {
+    "title": "Creo Corpus Healing Rules",
+    "heading": "Creo Corpus Guidelines",
+    "line": 13421,
+    "endLine": 13431,
+    "category": "magic",
+    "topic": "Healing magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Rules for healing with magic: only a Momentary Duration Ritual heals permanently, otherwise the healing is suspended and wounds return; healing a wound level also heals lesser ones; wounds and diseases need separate spells; Fatigue cannot be restored; physical Characteristics can be improved.",
+    "quotes": [
+      "a healing spell cast other than as a Momentary Duration Ritual actually suspends the healing process so that, upon the spell's expiration, wounds are as fresh as they were when the spell was cast.",
+      "No Hermetic spell can restore Fatigue levels.",
+      "a spell to heal wounds cannot cure diseases, no matter how high its level, and vice versa."
+    ]
+  },
+  {
+    "title": "Muto Corpus Shapechanging Rules",
+    "heading": "Muto Corpus Guidelines",
+    "line": 13587,
+    "endLine": 13601,
+    "category": "magic",
+    "topic": "Shapechanging",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Rules for transforming people: the original form leaves traces, long stays in animal form change behaviour, the mind and knowledge stay intact, magi can cast in animal form with the no-hands-or-voice penalty, worn items need casting requisites, and foci allow the target to change back.",
+    "quotes": [
+      "Magi can cast spells while in animal form, but they suffer the normal –15 penalty for casting without hands or voice.",
+      "Muto Corpus spells cannot alter a person's mind, so they leave the transformed person's intelligence and knowledge intact."
+    ]
+  },
+  {
+    "title": "Perdo Corpus Notes",
+    "heading": "Perdo Corpus Guidelines",
+    "line": 13723,
+    "endLine": 13727,
+    "category": "magic",
+    "topic": "Corpus magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Perdo Corpus harm is often permanent unless repaired by other magic; diseases inflicted by magic have a base Ease Factor that rises with each magnitude and cannot be reduced by lowering level.",
+    "quotes": [
+      "Diseases caused by magic have a base Ease Factor of 6. For every magnitude by which the spell level increases, the Ease Factor increases by 1."
+    ]
+  },
+  {
+    "title": "Rego Corpus Notes",
+    "heading": "Rego Corpus Guidelines",
+    "line": 13818,
+    "endLine": 13822,
+    "category": "magic",
+    "topic": "Corpus magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Rego Corpus can perform surgery; detailed surgical rules are in another book.",
+    "quotes": [
+      "Rego Corpus can be used to perform surgery."
+    ],
+    "related": [
+      "Art and Academe, surgery rules"
+    ]
+  },
+  {
+    "title": "Creo Herbam Notes",
+    "heading": "Creo Herbam Guidelines",
+    "line": 13927,
+    "endLine": 13935,
+    "category": "magic",
+    "topic": "Herbam magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Created food is nutritious only if the spell is a Ritual; plants can be created living or dead; treated and processed plant products cost extra magnitudes; one spell creates one type of plant product.",
+    "quotes": [
+      "Any food created is nutritious only if the creation is a Ritual."
+    ]
+  },
+  {
+    "title": "Muto Ignem Notes",
+    "heading": "Muto Ignem Guidelines",
+    "line": 14400,
+    "endLine": 14402,
+    "category": "magic",
+    "topic": "Ignem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "More intense fires are harder to change: spell level rises with the fire's damage above a threshold.",
+    "quotes": [
+      "For every five points by which the fire's damage exceeds +5, add one magnitude to the level of the spell."
+    ]
+  },
+  {
+    "title": "Perdo Ignem Notes",
+    "heading": "Perdo Ignem Guidelines",
+    "line": 14459,
+    "endLine": 14463,
+    "category": "magic",
+    "topic": "Ignem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "More intense fires are harder to destroy: spell level rises with the fire's damage above a threshold; botches may create fire or freeze the caster.",
+    "quotes": [
+      "For every five points by which the fire's damage exceeds +5, add one magnitude to the level of the spell."
+    ]
+  },
+  {
+    "title": "Rego Ignem Notes",
+    "heading": "Rego Ignem Guidelines",
+    "line": 14521,
+    "endLine": 14527,
+    "category": "magic",
+    "topic": "Ignem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "More intense fires are harder to control, with a magnitude added for each step of fire damage above a threshold; Rego Ignem also controls heat and light.",
+    "quotes": [
+      "Rego Ignem spells can control heat or light as well as fire."
+    ]
+  },
+  {
+    "title": "Creo Imaginem Notes",
+    "heading": "Creo Imaginem Guidelines",
+    "line": 14592,
+    "endLine": 14600,
+    "category": "magic",
+    "topic": "Imaginem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Creo Imaginem makes only images, not the things themselves (an image bucket holds no water); extra complexity, movement, intelligible speech or intricacy add magnitudes.",
+    "quotes": [
+      "Creo Imaginem spells only create the images of things, not the things themselves."
+    ]
+  },
+  {
+    "title": "Intellego Imaginem Notes",
+    "heading": "Intellego Imaginem Guidelines",
+    "line": 14655,
+    "endLine": 14661,
+    "category": "magic",
+    "topic": "Imaginem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Intellego Imaginem detects real images at a distance; it needs light or sound at the place observed, and each extra sense perceived adds a magnitude.",
+    "quotes": [
+      "each additional sense you wish to perceive increases the level of the spell by one magnitude"
+    ]
+  },
+  {
+    "title": "Muto Imaginem Notes",
+    "heading": "Muto Imaginem Guidelines",
+    "line": 14714,
+    "endLine": 14720,
+    "category": "magic",
+    "topic": "Imaginem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Muto Imaginem alters existing images and persists without concentration; mimicking a specific voice or face needs familiarity and acquaintances may see through it; Imaginem cannot overcome the Gift.",
+    "quotes": [
+      "Muto Imaginem, or indeed other Imaginem magic, cannot overcome the effects of The Gift, although it might offset them a little."
+    ]
+  },
+  {
+    "title": "Perdo Imaginem Notes",
+    "heading": "Perdo Imaginem Guidelines",
+    "line": 14765,
+    "endLine": 14773,
+    "category": "magic",
+    "topic": "Imaginem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Perdo Imaginem dulls the senses an object affects (including invisibility); destroying changing images costs more, Momentary duration only makes an object flicker, shadows are Ignem not Imaginem, and mirror images follow the changed species.",
+    "quotes": [
+      "Destroying something's shadow is thus Creo Ignem, or possibly Rego Ignem, not Perdo Imaginem."
+    ]
+  },
+  {
+    "title": "Rego Imaginem Notes",
+    "heading": "Rego Imaginem Guidelines",
+    "line": 14837,
+    "endLine": 14841,
+    "category": "magic",
+    "topic": "Imaginem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Rego Imaginem displaces where an image appears to be; changing images and images that change with the object cost extra magnitudes, as does each additional sense.",
+    "quotes": [
+      "Add one level of magnitude to the guidelines for each additional sense to be affected."
+    ]
+  },
+  {
+    "title": "Intellego Mentem Notes",
+    "heading": "Intellego Mentem Guidelines",
+    "line": 14979,
+    "endLine": 14989,
+    "category": "magic",
+    "topic": "Mentem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "A Momentary Intellego Mentem spell can answer a single question, however complex the feeling, but not why; writing is not Mentem (it is Animal and Herbam or Terram), so translation needs a reader.",
+    "quotes": [
+      "In general, a momentary Mentem spell can answer a single question, although it is not necessary that the answer be expressible in a brief form."
+    ]
+  },
+  {
+    "title": "Muto Mentem Notes",
+    "heading": "Muto Mentem Guidelines",
+    "line": 15042,
+    "endLine": 15054,
+    "category": "magic",
+    "topic": "Mentem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Muto Mentem covers changed memories, unnatural thoughts and emotions, and making a mind physical. Also explains how to grant a magical sense to many people at once, using Muto Mentem with Intellego and Form requisites.",
+    "quotes": [
+      "granting a magical sense to multiple people is a function of Muto Mentem."
+    ]
+  },
+  {
+    "title": "Perdo Mentem Notes",
+    "heading": "Perdo Mentem Guidelines",
+    "line": 15105,
+    "endLine": 15107,
+    "category": "magic",
+    "topic": "Mentem magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Destroyed emotions return naturally so need a continuing Duration; destroyed memories stay gone with Momentary Duration unless a continuing spell prevents relearning.",
+    "quotes": [
+      "Emotions naturally reappear in a person, so spells that destroy them must have a continuing duration to ensure that they do not come back."
+    ]
+  },
+  {
+    "title": "Creo Terram Notes",
+    "heading": "Creo Terram Guidelines",
+    "line": 15296,
+    "endLine": 15302,
+    "category": "magic",
+    "topic": "Terram magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Creating earth in an elaborate shape, or with an unnatural property and a Muto requisite, costs an extra magnitude; botches can entomb the caster.",
+    "quotes": [
+      "Creating earth in an elaborate shape or, with a Muto requisite, with some unnatural property is one level of magnitude higher than the listed guidelines."
+    ]
+  },
+  {
+    "title": "Muto Terram Notes",
+    "heading": "Muto Terram Guidelines",
+    "line": 15420,
+    "endLine": 15426,
+    "category": "magic",
+    "topic": "Terram magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Guidelines assume dirt; changing to or from stone or glass, or metal or gemstone, adds magnitudes once, and the amount changed is limited by the base Individual at each end.",
+    "quotes": [
+      "To change to or from stone or glass, add one level of magnitude. To change to or from metal or gemstone, add two levels of magnitude."
+    ]
+  },
+  {
+    "title": "Perdo Terram Notes",
+    "heading": "Perdo Terram Guidelines",
+    "line": 15484,
+    "endLine": 15488,
+    "category": "magic",
+    "topic": "Terram magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Guidelines assume dirt; destroying stone or glass adds a magnitude and metal or gemstone adds more; botches can destroy the ground under the caster or metal they hold.",
+    "quotes": [
+      "To destroy stone or glass, add one magnitude. To destroy metal or gemstone, add two magnitudes."
+    ]
+  },
+  {
+    "title": "Rego Terram Notes",
+    "heading": "Rego Terram Guidelines",
+    "line": 15545,
+    "endLine": 15549,
+    "category": "magic",
+    "topic": "Terram magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Guidelines assume dirt; controlling stone or glass adds a magnitude and metal or gemstones add two, except when simply moving an item, and very precise manipulation costs more.",
+    "quotes": [
+      "Add one magnitude to control stone or glass, and two for metal or gemstones, unless the item is simply being moved from one place to another"
+    ]
+  },
+  {
+    "title": "Intellego Vim: Detecting Magic and Spell Residues",
+    "heading": "Intellego Vim Guidelines",
+    "line": 15724,
+    "endLine": 15740,
+    "category": "magic",
+    "topic": "Vim magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "How magic detection works: the base level gives rough strength within a magnitude, extra magnitudes reveal realm, Arts, and details; items need a season in the lab to investigate; residues of spells halve and then decay over time; creatures and raw vis are detected by dedicated spells.",
+    "quotes": [
+      "Investigation requires that you spend at least one season in the laboratory to discover what magic an enchanted item contains",
+      "As soon as the magic finishes, the magnitude halves.",
+      "A 'negative magnitude' of 10 indicates that the residue has disappeared completely, and no longer exists to be detected."
+    ]
+  },
+  {
+    "title": "Muto Vim: Changing Other Spells",
+    "heading": "Muto Vim Guidelines",
+    "line": 15800,
+    "endLine": 15826,
+    "category": "magic",
+    "topic": "Vim magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Rules for meta-magic that alters other Hermetic spells: not usable on Spontaneous spells, needs an Intelligence + Concentration roll when you cast both, timing and Penetration against another magus' spell, Duration at least as long as the target casting, and Ritual requirements.",
+    "quotes": [
+      "you must make an Intelligence + Concentration roll against an Ease Factor of 9 if you are casting both spells",
+      "It is not possible, for reasons that Hermetic theorists do not well understand, to use Muto Vim to affect another spell after it has been cast."
+    ]
+  },
+  {
+    "title": "Muto Vim Spells and Enchanted Devices",
+    "heading": "Muto Vim Spells & Enchanted Devices",
+    "line": 15832,
+    "endLine": 15844,
+    "category": "magic",
+    "topic": "Vim magic",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "When a Muto Vim effect may be put into a magic item, and how to use or counter one against a device's effect: cooperation and timing, fast casting, beating Penetration, and identifying the Form.",
+    "quotes": [
+      "The caster must succeed with an Intelligence + Concentration roll against an Ease Factor of 9."
+    ],
+    "related": [
+      "ArM5 p.217 Determining Form of Magical Effect"
+    ]
+  },
+  {
+    "title": "Aegis of the Hearth",
+    "heading": "Aegis of the Hearth",
+    "line": 15944,
+    "endLine": 15965,
+    "category": "covenant",
+    "topic": "Aegis of the Hearth",
+    "audience": [
+      "magi",
+      "covenant"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The covenant's Ritual protection that works like a Parma Magica over a boundary: bars supernatural creatures with Might below its level, forces foreign effects to Penetrate it, weakens foreign castings inside, and defines natives and invitations.",
+    "quotes": [
+      "No foreign supernatural creature with Might, of any type, can cross the boundary of the Aegis unless its Might exceeds the level of the Aegis.",
+      "must Penetrate a Magic Resistance equal to the level of the Aegis of the Hearth to take effect",
+      "must subtract half the level of the Aegis from any Casting Total or equivalent"
+    ],
+    "related": [
+      "ArM5 p.277 Major Breakthrough"
+    ]
+  },
+  {
+    "title": "Wizard's Communion (Group Casting)",
+    "heading": "Wizard's Communion",
+    "line": 15870,
+    "endLine": 15874,
+    "category": "magic",
+    "topic": "Group casting",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Lets several magi pool power to cast one spell: limits on participants, the combined level needed, the reduced target number for the caster, extra botch dice per participant, and shared Warping on a botch.",
+    "quotes": [
+      "Only one extra magus may join the Communion for each 5 levels of the specified spell being cast.",
+      "the target number for the spellcasting roll is the spell's level divided by the number of magi participating in the Communion"
+    ],
+    "related": [
+      "ArM5 p.263 Casting Tablet",
+      "ArM5 p.225 multiple casting"
+    ]
+  }
+]

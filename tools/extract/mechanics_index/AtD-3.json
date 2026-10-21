@@ -1,0 +1,1692 @@
+[
+ {
+  "title": "Giants and their Mothers (Transylvanian giants)",
+  "heading": "Giants and their Mothers",
+  "line": 4589,
+  "endLine": 4594,
+  "category": "beings",
+  "topic": "Faerie characters: Transylvanian roles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian faerie giants",
+  "summary": "Describes how Transylvanian giants differ from the stock stupid giant: they are refined, arm and armor themselves like knights, and can change Size and shape. Used when designing or running giant faeries.",
+  "quotes": [
+   "many Transylvanian giants can change Size, ranging from Size +2 to +5, with some growing even larger"
+  ],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Giants' Mothers",
+  "heading": "Giants' Mothers",
+  "line": 4673,
+  "endLine": 4677,
+  "category": "beings",
+  "topic": "Faerie characters: Transylvanian roles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian faerie giants",
+  "summary": "Explains the faerie role of the giant's mother, a sorceress who manages her son, pursues those who defeat him, and adopts a new son if she loses him. Also notes the hereditary hair growing under the tongue of those with giant blood.",
+  "quotes": [
+   "A giant's mother is always a sorceress, and invariably smarter than her son."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Horses",
+  "heading": "Faerie Horses",
+  "line": 4725,
+  "endLine": 4729,
+  "category": "beings",
+  "topic": "Faerie characters: Transylvanian roles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian faerie horses",
+  "summary": "Describes the faerie horse's story role (rescued from a giant's mother's ranch, serves a hero, leaves before the final victory) and the limited foresight a highly cognizant faerie has about other faeries' roles.",
+  "quotes": [
+   "He cannot see into the future, but because he is more cognizant than other participating faeries"
+  ],
+  "related": [
+   "Realms of Power: Faerie p.62 Flight"
+  ]
+ },
+ {
+  "title": "Vampires as Faeries (vitality from blood and fear)",
+  "heading": "Vampires",
+  "line": 4765,
+  "endLine": 4771,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Establishes that Transylvanian vampires are faeries that feed on blood and on the fear their presence causes, gaining vitality whenever peasant rituals repulse them. Every vampire is unique, with its own rites, limitations and vulnerabilities.",
+  "quotes": [
+   "a vampire is a form of faerie that derives vitality both from blood and from the fear its presence engenders",
+   "Every time that a vampire is repulsed by the superstitious rituals of a peasant, the vampire's story is enforced, and it gains vitality."
+  ],
+  "related": [
+   "Realms of Power: Faerie p.12 vitality"
+  ]
+ },
+ {
+  "title": "Becoming a Vampire",
+  "heading": "Becoming a Vampire",
+  "line": 4777,
+  "endLine": 4783,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Lists the folk beliefs about who becomes a vampire and explains that these circumstances merely attract a faerie which takes the vampire role unless the correct propitiatory rites are performed. Correct precautions feed the faerie vitality so that it moves on.",
+  "quotes": [
+   "these rituals in truth feed the faerie vitality, causing it to become sated and to move on"
+  ],
+  "related": [
+   "Realms of Power: Faerie p.12 vitality"
+  ]
+ },
+ {
+  "title": "Precautions Against Vampires",
+  "heading": "Precautions Against Vampires",
+  "line": 4789,
+  "endLine": 4813,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Gives a list of folk precautions of which the storyguide chooses some for each vampire; performing all of them prevents that vampire forming.",
+  "quotes": [
+   "choose one to three items from the following list",
+   "If more than one is chosen, all precautions must be met."
+  ],
+  "related": [
+   "Chapter 9 Hunting Vampires"
+  ]
+ },
+ {
+  "title": "The Vampire Life Cycle",
+  "heading": "The Vampire Life Cycle",
+  "line": 4815,
+  "endLine": 4821,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Describes the phases a vampire passes through from invisible zduhacz to shapeless gadja to human-shaped platenik and finally the long-lived kukudhi, which masquerades as a human and fathers dhampirs.",
+  "quotes": [
+   "Immediately after death, a vampire takes an invisible, ghostlike form (the zduhacz) and haunts the family of the deceased."
+  ],
+  "related": [
+   "Chapter 9 Dhampir"
+  ]
+ },
+ {
+  "title": "Creating a Vampire Character",
+  "heading": "Creating a Vampire Character",
+  "line": 4823,
+  "endLine": 4825,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Running Transylvanian vampires",
+  "summary": "States that vampires are storyguide characters, with only a narrow exception for self-aware kukudhi vampires as possible player characters in a high-power saga.",
+  "quotes": [
+   "Vampires are intended as storyguide characters."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vampiric Virtues, Flaws, and Powers",
+  "heading": "Vampiric Virtues, Flaws, and Powers",
+  "line": 4827,
+  "endLine": 4833,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Lists the Virtues and Flaws every vampire must have when built as a faerie character: a physical form, a cognizance level, a social-interaction trait, Feast of the Dead, a Traditional Ward of sunlight, and the Sap the Life Lesser Power.",
+  "quotes": [
+   "All vampires have the Feast of the Dead Virtue that allows them to obtain vitality from human life, and have a Traditional Ward of sunlight which causes them to take damage if exposed to the light of day.",
+   "Finally, all vampires have the Sap the Life Lesser Power (see insert)."
+  ],
+  "related": [
+   "Realms of Power: Faerie Chapter 3"
+  ]
+ },
+ {
+  "title": "Common Vampire Virtues and Flaws",
+  "heading": "Common Virtues",
+  "line": 4835,
+  "endLine": 4846,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Short lists of Virtues and Flaws commonly given to vampires when designing them as faerie characters.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: Faerie Chapter 3"
+  ]
+ },
+ {
+  "title": "Powers for Vampires (sidebar)",
+  "heading": "Powers for Vampires",
+  "line": 4848,
+  "endLine": 4934,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Sidebar of ready-made faerie powers for vampires, grouped as Lesser Powers, Focus Powers and Personal Powers, each with Might cost, Initiative and Hermetic-style parameters.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Lesser Powers and Converting to Greater Powers",
+  "heading": "Lesser Powers",
+  "line": 4852,
+  "endLine": 4854,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Explains that each Lesser Power Virtue buys a set number of power levels and gives the conversion to a Greater Power by adjusting Might cost and Initiative penalty.",
+  "quotes": [
+   "Each Lesser Power Virtue is a Minor Virtue that grants 25 levels of powers.",
+   "halve the Might cost and the penalty to Initiative"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sap the Life (vampiric disease power)",
+  "heading": "Sap the Life",
+  "line": 4874,
+  "endLine": 4881,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Vampire power: Sap the Life",
+  "summary": "A touch power that drains a target's vitality, treated as a disease causing a Light Wound and loss of Fatigue levels, with weekly Disease Recovery Rolls against fixed ease factors. Faerie Lore or Medicine can treat it.",
+  "quotes": [
+   "he must beat an Ease Factor of 12 to remain stable, and a 18 to improve",
+   "the victim loses two Fatigue levels which cannot be regained until the disease has abated"
+  ],
+  "related": [
+   "Art & Academe disease rules"
+  ]
+ },
+ {
+  "title": "Ghost Touch (Focus Power for moving objects)",
+  "heading": "Ghost Touch (Focus Power)",
+  "line": 4887,
+  "endLine": 4892,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Vampire Focus Power: Ghost Touch",
+  "summary": "A variable-cost power letting a spirit move or hurl loose objects, with weight limits that scale with Might spent, extra damage for thrown items, and the option to fight with objects; physical attacks must penetrate Magic Resistance.",
+  "quotes": [
+   "For 1 Might point, a maximum of 5 lbs. can be moved; every additional Might point doubles this weight limit.",
+   "the item inflicts +5 damage per Might point spent"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vampire Personal Powers (Flight, Invisibility, Silent Motion, Supernatural Agility)",
+  "heading": "Personal Powers",
+  "line": 4894,
+  "endLine": 4934,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Vampire Personal Powers",
+  "summary": "Personal Powers are Minor Virtues buying a fixed number of effect levels; the sidebar gives Flight, Invisibility, Silent Motion and Supernatural Agility with their limits (for example no combat while flying swiftly and no flight when heavily encumbered).",
+  "quotes": [
+   "Personal Powers are Minor Virtues, and each allows a character to buy 25 levels of effects."
+  ],
+  "related": [
+   "ArM5 p.146 Veil of Invisibility"
+  ]
+ },
+ {
+  "title": "Vampire Limitations (Traditional Wards)",
+  "heading": "Limitations",
+  "line": 4936,
+  "endLine": 4951,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Describes how folk rituals repel vampires because they feed the faerie vitality, and gives a list of limitations of which one to three are chosen for each vampire.",
+  "quotes": [
+   "For each vampire, pick one to three of the following limitations; the vampire has to obey these rules:"
+  ],
+  "related": [
+   "Realms of Power: Faerie Traditional Ward"
+  ]
+ },
+ {
+  "title": "Ways to Kill a Vampire",
+  "heading": "Ways to Kill a Vampire",
+  "line": 4953,
+  "endLine": 4966,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Explains that the correct folk rituals sate a vampire for good, after which the faerie reforms elsewhere, whereas a botched killing lets it return within days or weeks. Lists methods of dispatch of which one is picked for each vampire.",
+  "quotes": [
+   "For each vampire, pick a method of dispatch that results in permanent death:"
+  ],
+  "related": [
+   "Chapter 9 Killing Vampires"
+  ]
+ },
+ {
+  "title": "Magi as Vampire Slayers (sidebar)",
+  "heading": "Magi as Vampire Slayers",
+  "line": 4968,
+  "endLine": 4970,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Warns that simply destroying a vampire and taking its vis does not end the threat, because the community's psychic wound attracts a replacement vampire until the proper rites are performed.",
+  "quotes": [
+   "Even if a magus extracts the vis from the corpse (killing it permanently), another vampire is attracted by the community's wound and takes up where the other left off."
+  ],
+  "related": []
+ },
+ {
+  "title": "Infernal Vampires (broukolak)",
+  "heading": "Infernal Vampires",
+  "line": 5222,
+  "endLine": 5226,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Explains that not all vampires are faeries: a demon can consume a corpse and take the deceased's form, and cursing oneself at death attracts one. Introduces the broukolak and its effect on the surrounding area.",
+  "quotes": [
+   "Sometimes, a demon consumes a corpse, and takes the form of the deceased."
+  ],
+  "related": [
+   "Realms of Power: The Infernal",
+   "The Sundered Eagle Chapter 12"
+  ]
+ },
+ {
+  "title": "Living Vampires",
+  "heading": "Living Vampires",
+  "line": 5276,
+  "endLine": 5278,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Introduces living vampires, human witches and sorcerers who prey on locals but are not faeries and need not drink blood. When they die they attract powerful vampiric faeries.",
+  "quotes": [
+   "Living vampires are witches or sorcerers, who prey on the locals much like the dead vampires."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Strigoi and Vjestitza (living vampire witches)",
+  "heading": "The Strigoi and Vjestitza",
+  "line": 5280,
+  "endLine": 5286,
+  "category": "traditions",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Nightwalkers (Hedge Magic Revised Edition)",
+  "summary": "Describes the strigoi viu or vjestitza, a witch whose spirit leaves her body at night to feed on the heart-blood of victims and who belongs to a coven. Suggests building them as Nightwalkers, infernal witches or faerie wizards.",
+  "quotes": [
+   "These characters are Nightwalkers (*Hedge Magic Revised Edition*, Chapter 6), but they may have other powers."
+  ],
+  "related": [
+   "Hedge Magic Revised Edition Chapter 6",
+   "Realms of Power: The Infernal",
+   "Realms of Power: Faerie Ars Fabulosa"
+  ]
+ },
+ {
+  "title": "The Varcolac and Vukodlak (werewolf living vampires)",
+  "heading": "The Varcolac and Vukodlak",
+  "line": 5302,
+  "endLine": 5306,
+  "category": "traditions",
+  "topic": "Werewolves and shapeshifters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Shapeshifter or Skinchanger",
+  "summary": "Describes werewolf-like varcolaci, how they come about, their wolf brotherhoods that hunt vampires and the mischievous ones that are Nightwalkers. Says which Virtue a varcolac character takes and that they die as bestial vampires.",
+  "quotes": [
+   "A varcolac character has either the Shapeshifter Virtue if he was born a werewolf, or the Skinchanger Virtue if he has learned to change shape."
+  ],
+  "related": [
+   "Chapter 9 Kresnik",
+   "Hedge Magic Revised Edition Chapter 6"
+  ]
+ },
+ {
+  "title": "Divine Werewolves (shapeshifting kings)",
+  "heading": "Divine Werewolves",
+  "line": 5314,
+  "endLine": 5316,
+  "category": "realms",
+  "topic": "Werewolves and shapeshifters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Crowned Slavic, Magyar or Vlach king",
+  "summary": "Rules for Divinely favored kings: a king crowned by the Roman and Greek Churches gains Magic Resistance, and a Slavic, Magyar or Vlach one also gets the Shapeshifter Virtue with wolf, lion and dragon forms.",
+  "quotes": [
+   "kings crowned by the religious representatives of both the Roman and Greek Church receive a Magic Resistance of 10",
+   "he also receives the free Supernatural Major Virtue: Shapeshifter"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.43"
+  ]
+ },
+ {
+  "title": "Vilas (White Ladies)",
+  "heading": "Vilas (White Ladies)",
+  "line": 5318,
+  "endLine": 5320,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Introduces vilas as faerie women who play different roles in each community, to be built from a generic faerie woman and tailored to the role.",
+  "quotes": [
+   "Storyguides designing vilas should use the statistics for a generic faerie woman, and then tailor them to the role that the particular vila plays."
+  ],
+  "related": []
+ },
+ {
+  "title": "Generic Minor Vila (template and power-conversion notes)",
+  "heading": "Generic Minor Vila",
+  "line": 5322,
+  "endLine": 5341,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Template for a weak generic vila usable as a grog-level antagonist or player character, with notes on buying powers as Greater or Lesser Powers, Personal Powers and a quick-play option for faerie power costs.",
+  "quotes": [
+   "Troupes preferring speed over accuracy should double the Might cost and quadruple the Initiative penalty of the powers given here."
+  ],
+  "related": [
+   "Realms of Power: Faerie p.57"
+  ]
+ },
+ {
+  "title": "Vila Wards (hair, offerings and External Vis)",
+  "heading": "Wards",
+  "line": 5343,
+  "endLine": 5349,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Describes vila Wards: a strand of hair as a Sovereign Ward, hair as a Minor External Vis source that keeps the vila from truly dying, the Residual Power Virtue, and offerings used as Traditional Wards.",
+  "quotes": [
+   "Vilas often have a Sovereign Ward Flaw for a strand of their own hair.",
+   "The hair of a vila is often a Minor External Vis source."
+  ],
+  "related": [
+   "Realms of Power: Faerie p.50",
+   "Realms of Power: Faerie p.51"
+  ]
+ },
+ {
+  "title": "Powers Found In Many Roles (vila powers)",
+  "heading": "Powers Found In Many Roles",
+  "line": 5351,
+  "endLine": 5353,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Introduces the five groups of powers common to vilas regardless of role: Shapeshifter, Enthralling Voice, Blessing Dance, Cursing Dance and Spirit Away.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Vila Shapeshifter Powers",
+  "heading": "Shapeshifter",
+  "line": 5355,
+  "endLine": 5371,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Lists personal shapeshifting powers for vilas that turn them into animals, birds or fish, with Might cost and Initiative by Size and duration; transforming back to human costs the same as the inverse power.",
+  "quotes": [
+   "Faeries retain the power of speech in animal form.",
+   "Transform into Human costs the same as the inverse power."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vila Enthralling Voice Powers",
+  "heading": "Enthralling Voice",
+  "line": 5373,
+  "endLine": 5387,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Mentem powers modelling a vila's voice: Allure, Enthralling Sound, Enthrallment, Guide, Kiss of Forgetfulness and Steal Judgment, with their costs, durations and the rolls used to resist them.",
+  "quotes": [
+   "Grants a +3 bonus on all rolls that convince or impress others.",
+   "A Personality trait roll against an Ease Factor of 9 allows a character to ignore this effect.",
+   "Can be resisted with an Intelligence roll against an Ease Factor of 6 for implausible lies."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vila Blessing Dance Powers",
+  "heading": "Blessing Dance",
+  "line": 5389,
+  "endLine": 5397,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Powers a vila uses to grant magical gifts to mortals who dance with her or pass tests: Grant (Major or Minor Virtue) and Grant Puissance in an Ability.",
+  "quotes": [
+   "For every added point spent, a group can be granted +1 on all rolls in a certain situation (combat or court, for example), or one character can be given +3 on a particular Total or roll"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vila Cursing Dance Powers",
+  "heading": "Cursing Dance",
+  "line": 5399,
+  "endLine": 5403,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Notes how cursed dances reuse the Enthralling Voice powers and adds Craft Magical Trinket, which makes a dancing circle a cursed magic item with a cost set by the severity of the Flaw.",
+  "quotes": [
+   "This power, which makes the circle a kind of magic item, costs 10 points if the curse is a Minor Flaw, and 15 points if it is a Major Flaw."
+  ],
+  "related": []
+ },
+ {
+  "title": "Spirit Away (vila power)",
+  "heading": "Spirit Away",
+  "line": 5405,
+  "endLine": 5409,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "The power that lets faeries draw mortals into the Faerie realms, with a shortcut for troupes not using the full rules.",
+  "quotes": [
+   "Troupes not using these rules should just assume the attempt succeeds when it suits the story."
+  ],
+  "related": [
+   "Realms of Power: Faerie Chapter 2"
+  ]
+ },
+ {
+  "title": "Role-Specific Vila Powers (customizing by role)",
+  "heading": "Role-Specific Powers",
+  "line": 5411,
+  "endLine": 5413,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Explains how to build a vila for a story role, balancing added Virtues with Flaws for a player character, and how the Ostentatious and Pretentious Virtues give extra pretense points.",
+  "quotes": [
+   "The first adds 10 times the average age of the PC magi points to the character's pool of pretense points. The second adds 5 times the average age of the PC magi points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vila Role: Captured Wife",
+  "heading": "Captured Wife",
+  "line": 5415,
+  "endLine": 5419,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "A vila who changes shape and is held by hiding her skin or feathers; the skin can be modeled mechanically as a Skinchanger prop, an External Vis Source or a Sovereign Ward.",
+  "quotes": [
+   "The animal skins can be designed mechanically as the prop for the Skinchanger virtue, as External Vis Source, or as a Sovereign Ward"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vila Role: Cloud or Storm Maiden",
+  "heading": "Cloud or Storm Maiden",
+  "line": 5421,
+  "endLine": 5429,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Powers for cloud and storm vilas: Flight, a Storms Focus power covering Hermetic weather spells up to a level cap, and Guide used to cause travelers to become lost.",
+  "quotes": [
+   "The character has a range of weather-related powers, simulating all Hermetic weather spells of level 25 or less."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vila Role: Cursed Lover",
+  "heading": "Cursed Lover",
+  "line": 5431,
+  "endLine": 5437,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "A vila who unknowingly kills her mortal lovers through the Pine Away power, treated as a disease, or through a cursed trinket with a recurring accident motif.",
+  "quotes": [
+   "Simulated as a major disease with an Ease Factor of 9 that causes a Light Wound."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vila Role: Huntress",
+  "heading": "Huntress",
+  "line": 5439,
+  "endLine": 5451,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Additions to the generic vila for a mounted archer, plus the Shake the Earth power which makes characters in 100 paces make a stress roll or fall, with listed modifiers.",
+  "quotes": [
+   "Characters fall unless they make a Quickness \u2013 Encumbrance stress roll against an Ease Factor of 10, modified as follows: +2 standing still, +2 on solid stone, +0 moving slowly or on earth, \u20132 running, \u20136 on a narrow bridge."
+  ],
+  "related": [
+   "ArM5 p.56 Earth Shock"
+  ]
+ },
+ {
+  "title": "Vila Role: Temptress",
+  "heading": "Temptress",
+  "line": 5453,
+  "endLine": 5459,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Powers for a vila who steals young men into woods or waters: Allure, Illusory Home and Pine Away.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Vila Role: Water Maiden",
+  "heading": "Water Maiden",
+  "line": 5461,
+  "endLine": 5467,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Powers for drowned-maiden vilas: Illusory Home and Kiss of the Mermaid, which lets the recipient breathe water until next stepping on dry land.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Vila Role: Woodland Maiden",
+  "heading": "Woodland Maiden",
+  "line": 5473,
+  "endLine": 5485,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "Powers for woodland vilas: Extend Glamor, Guide, a Manifestation Focus power covering Animal and Herbam spells within a level cap in the vila's glamour, and the Transform Victim powers.",
+  "quotes": [
+   "Allows the faerie to simulate any Creo Animal, Rego Animal, Creo Herbam or Rego Herbam spell of level 25 or less in the area of its glamor."
+  ],
+  "related": [
+   "Realms of Power: Faerie p.61"
+  ]
+ },
+ {
+  "title": "Vila Role: Wise Woman",
+  "heading": "Wise Woman",
+  "line": 5487,
+  "endLine": 5491,
+  "category": "beings",
+  "topic": "Faerie characters: Vilas",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing Transylvanian vilas",
+  "summary": "A vila role that mimics a folk witch, with a Healing Focus power that simulates Hermetic healing spells up to a level cap, and a Prophecy power that is only a pretense of foresight.",
+  "quotes": [
+   "Allows the faerie to simulate any Hermetic healing spell up to level 25."
+  ],
+  "related": []
+ },
+ {
+  "title": "Storm Wizards (hedge tradition)",
+  "heading": "Storm Wizards",
+  "line": 5505,
+  "endLine": 5511,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Introduces the Transylvanian storm wizards, a rare Gifted hedge tradition whose apprentices are found as exposed infants on mountain slopes and taken by storm giants. Almost all are male and live alone in caves above the snowline.",
+  "quotes": [
+   "The Transylvanian storm wizards are an old but lonely Gifted tradition."
+  ],
+  "related": [
+   "Hedge Magic Revised Edition"
+  ]
+ },
+ {
+  "title": "Storm Wizards and the Order",
+  "heading": "Storm Wizards and the Order",
+  "line": 5513,
+  "endLine": 5521,
+  "category": "order",
+  "topic": "Storm Wizards",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Explains how the Order of Hermes regards storm wizards: few know of them, the join-or-die Code provision technically applies because they are Gifted, and some joined House Ex Miscellanea during the Schism War.",
+  "quotes": [
+   "As storm wizards are Gifted, the \"join or die\" provisions of the Code technically apply to them."
+  ],
+  "related": []
+ },
+ {
+  "title": "Storm Wizards and Giants (Giant Blood and the mystery initiation)",
+  "heading": "Storm Wizards and Giants",
+  "line": 5563,
+  "endLine": 5567,
+  "category": "mysteries",
+  "topic": "Storm Wizards",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Storm wizards get the Giant Blood Virtue free, earned by a mystery initiation at the end of apprenticeship in which the apprentice slays a giant and eats its heart. Powers are usable as soon as the Gift is opened, before the initiation.",
+  "quotes": [
+   "If you are making a storm wizard character, this Virtue is free.",
+   "storm wizards undergo a mystery initiation in which they must slay a true giant and eat his heart"
+  ],
+  "related": [
+   "ArM5 p.43 Giant Blood"
+  ]
+ },
+ {
+  "title": "Heart of the Storm Initiation",
+  "heading": "Heart of the Storm Initiation",
+  "line": 5569,
+  "endLine": 5577,
+  "category": "mysteries",
+  "topic": "Storm Wizards",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Heart of the Storm (Storm Wizards)",
+  "summary": "Sidebar giving the initiation ease factor, initiation total formula and script bonus for the storm wizard initiation that grants Giant Blood.",
+  "quotes": [
+   "**Initiation Ease Factor:** 21",
+   "Presence + Organization Lore: Storm Wizards + Script Bonus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Storm Wizard Magic",
+  "heading": "Storm Wizard Magic",
+  "line": 5585,
+  "endLine": 5587,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Overview of storm wizard magic: exclusively Gifted, Magic-realm powers built on three Supernatural Abilities, an Arcane Ability and a seasonal activity called ice harvesting.",
+  "quotes": [
+   "Their magic consists of three favored Supernatural Abilities: Storm Calling, Storm Riding, and Storm Fighting."
+  ],
+  "related": []
+ },
+ {
+  "title": "Storm Wizard Virtues and Abilities",
+  "heading": "Storm Wizard Virtues and Abilities",
+  "line": 5589,
+  "endLine": 5621,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Sidebar explaining that storm wizards gain their Supernatural Abilities at Score 0 when the Gift is opened, and giving the Storm Calling, Storm Riding and Storm Fighting Virtues, the free Storm Wizard status and the Organization Lore: Storm Wizard Arcane Ability.",
+  "quotes": [
+   "Opening Total is generated as Intelligence + Organization Lore: Storm Wizards"
+  ],
+  "related": [
+   "Hedge Magic Revised Edition p.7"
+  ]
+ },
+ {
+  "title": "Storm Calling (Supernatural Ability)",
+  "heading": "Storm Calling",
+  "line": 5624,
+  "endLine": 5640,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Supernatural Ability to create or move a storm: a roll against an Ease Factor set by the storm's size and duration, plus Auram vis sacrificed to create one. Created storms are natural once formed, and moving one costs no vis.",
+  "quotes": [
+   "**Storm Calling Roll: Communication + Storm Calling + Stress Die vs Ease Factor**",
+   "It takes a number of rounds equal to the required Ease Factor for the storm to manifest."
+  ],
+  "related": []
+ },
+ {
+  "title": "Storm Calling Ease Factors (storm size, duration and vis cost)",
+  "heading": "Storm Calling Ease Factors",
+  "line": 5641,
+  "endLine": 5659,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Sidebar table of the Ease Factor modifiers for storm size and duration and the Auram vis cost per size, with a worked example of creating and moving a provincial storm.",
+  "quotes": [
+   "The Base Ease Factor for creating and moving a storm is 0."
+  ],
+  "related": []
+ },
+ {
+  "title": "Penetration with Storm Wizard Powers",
+  "heading": "Penetration with Storm Wizard Powers",
+  "line": 5663,
+  "endLine": 5669,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "How Penetration is figured for storm wizard powers, using the effect roll minus the Ease Factor plus a Penetration Bonus built as for Hermetic magi, with access to the Penetration Ability.",
+  "quotes": [
+   "Penetration: Storm Wizard Effect Roll \u2013 Ease Factor + Penetration Bonus"
+  ],
+  "related": [
+   "ArM5 p.84"
+  ]
+ },
+ {
+  "title": "Magnitude of Storm Wizard Effects",
+  "heading": "Magnitude of Effect",
+  "line": 5671,
+  "endLine": 5675,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "States how to determine the magnitude of a storm wizard power when it matters, for example for Warping or dispelling.",
+  "quotes": [
+   "Magnitude: Storm Wizard Supernatural Ability Score"
+  ],
+  "related": []
+ },
+ {
+  "title": "Realm Interaction for Storm Wizard Powers",
+  "heading": "Realm Interaction",
+  "line": 5677,
+  "endLine": 5679,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Storm wizard powers are Magical Supernatural Abilities and take bonuses or penalties from the local aura per the Realm Interaction Table.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.183 Realm Interaction"
+  ]
+ },
+ {
+  "title": "Storm Trance: Warping",
+  "heading": "Storm Trance: Warping",
+  "line": 5681,
+  "endLine": 5687,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "When a storm wizard gains Warping Points, a Storm Trance roll may turn him into a local-sized storm for a Moon, during which he cannot use his powers and can try daily to reform. Failure to reform can kill him or send him into the Magic Realm.",
+  "quotes": [
+   "Storm Trance Roll: Strength + Stress Die",
+   "Storm Trance Ease Factor: 3 + Warping Score"
+  ],
+  "related": []
+ },
+ {
+  "title": "Inside the Storm",
+  "heading": "Inside the Storm",
+  "line": 5689,
+  "endLine": 5691,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Rule of thumb for deciding when a character counts as within a storm for storm wizard powers: being rained on or blown about by it, not merely being inside a building.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Storm Riding (Supernatural Ability)",
+  "heading": "Storm Riding",
+  "line": 5693,
+  "endLine": 5707,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Supernatural Ability to sense from, or instantly travel to, any point in a visible storm (or send another character there), with a +3 bonus when the wizard is inside the storm and three ease factors by effect.",
+  "quotes": [
+   "Storm Riding Roll: Perception + Storm Riding + Stress Die vs Ease Factor",
+   "he receives a +3 bonus to the Storm Riding roll if he is actually inside the storm when he uses the Ability"
+  ],
+  "related": [
+   "ArM5 p.181 falling damage"
+  ]
+ },
+ {
+  "title": "Storm Fighting (Supernatural Ability)",
+  "heading": "Storm Fighting",
+  "line": 5709,
+  "endLine": 5727,
+  "category": "traditions",
+  "topic": "Storm Wizards",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "Supernatural Ability to attack with a storm, with five attack types (Buffet, Deluge, Hail, Erosion, Lightning), each with its own Ease Factor, area, damage and Penetration rules.",
+  "quotes": [
+   "Storm Fighting Roll: Strength + Storm Fighting + Stress Die vs Ease Factor",
+   "Lightning: Ease Factor 12."
+  ],
+  "related": [
+   "ArM5 p.86 Aimed spells"
+  ]
+ },
+ {
+  "title": "Ice Harvesting (seasonal activity)",
+  "heading": "Ice Harvesting",
+  "line": 5729,
+  "endLine": 5733,
+  "category": "seasons",
+  "topic": "Storm Wizards",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Storm Wizards",
+  "summary": "A season-long ritual that gathers the magical non-melting ice storm wizards need as Auram vis to call storms, gathered at secret mountain sites. The vis yield comes from a formula using Intelligence, Organization Lore and the Magic aura.",
+  "quotes": [
+   "(Intelligence + Organization Lore: Storm Wizard + Magic Aura) / 3 (round up) pawns of Auram vis per season"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vampire Hunters",
+  "heading": "Vampire Hunters",
+  "line": 5741,
+  "endLine": 5743,
+  "category": "traditions",
+  "topic": "Vampire hunters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Vampire hunter characters",
+  "summary": "Introduces vampire hunters as specially touched humans whose magic works on all supernatural creatures, who arise by birth circumstances, vampire parentage or Hermetic training (fector).",
+  "quotes": [],
+  "related": [
+   "Chapter 3 Laniena"
+  ]
+ },
+ {
+  "title": "The Sabotnik (Saturday-born hunters)",
+  "heading": "The Sabotnik",
+  "line": 5749,
+  "endLine": 5755,
+  "category": "traditions",
+  "topic": "Vampire hunters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Born on a Saturday or during the Unclean Days or Wolf Holiday",
+  "summary": "Describes the sabotnik, who is born on a Saturday and so is immune to the direct powers of vampires bound by that taboo, can sense vampires and magicians, and may be fated to become a vampire. Notes the option to randomly determine birth days.",
+  "quotes": [
+   "Anyone born on a Saturday is therefore immune to the direct powers of such vampire."
+  ],
+  "related": [
+   "The Sundered Eagle Chapter 5"
+  ]
+ },
+ {
+  "title": "The Glog (vampire-protecting hunters)",
+  "heading": "The Glog",
+  "line": 5799,
+  "endLine": 5801,
+  "category": "traditions",
+  "topic": "Vampire hunters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Born feet first, with teeth or with red hair",
+  "summary": "Describes the glog, a hunter specialising in protecting people from vampires, who crafts defensive weapons from black hawthorn and is usually aggressive and physically gifted.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Black Hawthorn (Shape and Material Bonuses)",
+  "heading": "Black Hawthorn",
+  "line": 5803,
+  "endLine": 5807,
+  "category": "lab",
+  "topic": "Vampire hunters",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Enchanting items with black hawthorn",
+  "summary": "Sidebar giving the Shape and Material bonuses of black hawthorn for enchanting, notably a protection-from-vampires bonus.",
+  "quotes": [
+   "Protection from vampires +7 Protection from evil +4 Prevent disease +4"
+  ],
+  "related": [
+   "ArM5 Shape and Material Bonuses"
+  ]
+ },
+ {
+  "title": "The Dhampir (child of a vampire)",
+  "heading": "The Dhampir",
+  "line": 5827,
+  "endLine": 5831,
+  "category": "traditions",
+  "topic": "Vampire hunters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being a child of a vampire (Dhampir Virtue)",
+  "summary": "Describes dhampiri, the hunters sired by vampires, who charge a fee that by tradition cannot be bargained down and who will themselves rise as vampires after death unless precautions are taken.",
+  "quotes": [
+   "dhampiri carry a dark secret: that they themselves will become vampires following their death"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages"
+  ]
+ },
+ {
+  "title": "The Vampirdzhi (son of a vampire)",
+  "heading": "The Vampirdzhi",
+  "line": 5833,
+  "endLine": 5839,
+  "category": "traditions",
+  "topic": "Vampire hunters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being a vampire's son",
+  "summary": "Describes vampirdzhia, sons of vampires who become hunters out of necessity rather than tradition, may be trained, and also risk rising as vampires after death.",
+  "quotes": [
+   "Only men are believed to be vampirdzhia; the daughters of vampires become witches instead."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hunters' Arts (Practice and Foe Arts)",
+  "heading": "Hunters' Arts",
+  "line": 5841,
+  "endLine": 5845,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art",
+  "summary": "Overview of the Hunters' Arts, a splintered hedge tradition with three Practice Arts (Scry, Ban, Slay) each paired with a Foe Art. Explains how the Arts are bought as Virtues, how the first Foe Art comes free, how experience is gained and why most hunters can only use their Arts on one kind of foe.",
+  "quotes": [
+   "There are three Practices that are akin to Hermetic Techniques: Scry, Ban, and Slay.",
+   "Practice Arts are bought as Major Supernatural Virtues, whereas Foe Arts are Minor Supernatural Virtues, but a character buying his first Practice Art as a Virtue gets one free Foe Art at no additional Virtue point cost."
+  ],
+  "related": [
+   "ArM5 Chapter 10 advancement"
+  ]
+ },
+ {
+  "title": "The Hunters' Arts and Mortal Foes",
+  "heading": "The Hunters' Arts and Mortal Foes",
+  "line": 5847,
+  "endLine": 5849,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art",
+  "summary": "Sidebar explaining that Hunters' Arts also work on humans and creatures aligned to a Realm but lacking Might, at a raised effect level.",
+  "quotes": [
+   "Against such mortal foes, the levels of all effects are 10 higher."
+  ],
+  "related": []
+ },
+ {
+  "title": "Penetration and the Hunters' Arts",
+  "heading": "Penetration and the Hunters' Arts",
+  "line": 5851,
+  "endLine": 5857,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art",
+  "summary": "Gives the Penetration Total formula used by every Hunters' Art and notes that hunters rely on Arcane and sympathetic connections to foes.",
+  "quotes": [
+   "Penetration Total: Art Total + Penetration Bonus \u2013 Level"
+  ],
+  "related": [
+   "ArM5 p.84"
+  ]
+ },
+ {
+  "title": "(Foe) Art (Virtue and rules for Foe Arts)",
+  "heading": "(Foe) Art",
+  "line": 5871,
+  "endLine": 5875,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art",
+  "summary": "Describes the Foe Art Virtue: what counts as a valid foe, the storyguide's say over its breadth, and that Foe Arts are Difficult Arts that advance like Abilities and must be combined with a Practice Art.",
+  "quotes": [
+   "A foe must have some supernatural power: wholly mundane groups cannot be foes.",
+   "(Foe) Arts are Difficult Arts, meaning that they are treated as any other Art except that they use the Ability Advancement Table rather than the Art Advancement Table."
+  ],
+  "related": []
+ },
+ {
+  "title": "Connections to a Foe (sympathetic and arcane connection tables)",
+  "heading": "Connections to a Foe",
+  "line": 5877,
+  "endLine": 5900,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art",
+  "summary": "Sidebar tables of extra sympathetic connection bonuses and arcane connection durations and multipliers commonly used in the Hunters' Arts, such as names, wounds, graves and the vampire's children.",
+  "quotes": [
+   "in addition to those in **ArM5**, page 84"
+  ],
+  "related": [
+   "ArM5 p.84",
+   "Realms of Power: Faerie pp.11-12"
+  ]
+ },
+ {
+  "title": "Hunter Characters",
+  "heading": "Hunter Characters",
+  "line": 5920,
+  "endLine": 5928,
+  "category": "creation",
+  "topic": "Vampire hunters",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Vampire hunter characters",
+  "summary": "Character-creation guidance for sabotnici, glogove, kresnici, talt\u00f3s, dhampiri and vampirdzhia: suggested Virtues, Flaws, Arts and Abilities, and a note that the Gift is not required.",
+  "quotes": [
+   "Sabotnici and glogove characters should have the Second Sight Virtue, and possibly the Magic Sensitivity Virtue in addition.",
+   "Dhampir and vampirdzhi characters should take the Dhampir Virtue (see earlier) to represent their vampire ancestry."
+  ],
+  "related": [
+   "Hedge Magic Revised Edition pp.114-115"
+  ]
+ },
+ {
+  "title": "Scry Art: Forging the Initial Connection",
+  "heading": "Forging the Initial Connection",
+  "line": 5934,
+  "endLine": 5962,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Scry",
+  "summary": "How a hunter makes a Scry roll to connect to a foe, with a table of Scry Levels giving direction, senses and sympathetic bonuses by strength, Range and mortal-foe adjustments, botch consequences, and how connections are replaced or cancelled.",
+  "quotes": [
+   "Scry Total: Perception + Scry + (Foe) + Aura bonus + stress die",
+   "Add 10 levels (not magnitudes) if the foe lacks a Might score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Scry Art: Using the Scrying Connection",
+  "heading": "Using the Scrying Connection",
+  "line": 5964,
+  "endLine": 5972,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Scry",
+  "summary": "Once a connection exists the hunter concentrates for a round and makes a non-magical roll against an Ease Factor set by the foe's strength to sense it.",
+  "quotes": [
+   "Sense a Foe: Stamina + Concentration + stress die",
+   "Ease Factor: 6 + (foe's Might/5)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Scry Art: Exploitation of Scry by a Foe",
+  "heading": "Exploitation of Scry by a Foe",
+  "line": 5974,
+  "endLine": 5978,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Scry",
+  "summary": "How a foe may detect and exploit a scryer's connection: an Awareness roll against a falling Ease Factor, and then using Eye, Sight or Arcane range powers on the scryer through an Arcane Connection.",
+  "quotes": [
+   "The Ease Factor starts at 12, but decreases by 1 every time the scryer uses her connection to find the foe."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ban Art (warding amulets overview)",
+  "heading": "Ban",
+  "line": 5980,
+  "endLine": 5984,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Ban",
+  "summary": "Introduces the Ban Art and its three amulets (Physical, Supernatural and Weakening Bans), noting that only the highest Ban protects a person and that Magic Resistance can nullify an amulet.",
+  "quotes": [
+   "A character cannot be protected by more than one Physical or Supernatural Ban; only the one with the highest Ban Total takes effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating a Physical Ban",
+  "heading": "Creating a Physical Ban",
+  "line": 5986,
+  "endLine": 6008,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Ban",
+  "summary": "Amulet that absorbs wounds from a foe: made over twelve hours with a Sun Duration, its Ban Strength is spent by wound severity per a table until exhausted, with a worked example.",
+  "quotes": [
+   "Physical Ban Total: Presence + Ban + (Foe) + Aura modifier + stress die",
+   "Physical Ban Strength: Physical Ban Total \u2013 Level",
+   "It takes twelve continuous hours to create a Physical Ban, and it has a Sun Duration."
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating a Supernatural Ban",
+  "heading": "Creating a Supernatural Ban",
+  "line": 6011,
+  "endLine": 6030,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Ban",
+  "summary": "Single-use amulet that partly protects against a foe's powers by shortening durations and forcing extra Concentration rolls, with three Levels of effect; mortal foes add to the Level.",
+  "quotes": [
+   "Supernatural Ban Total: Intelligence + Ban + (Foe) + Aura modifier + stress die"
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating a Weakening Ban",
+  "heading": "Creating a Weakening Ban",
+  "line": 6032,
+  "endLine": 6044,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Ban",
+  "summary": "Area ward laid out with prepared hawthorn stakes that suppresses a foe's Might Score while it is inside, with rules for the number of stakes, activation, the roll and Penetration.",
+  "quotes": [
+   "Weakening Ban Total: Intelligence + Ban + (Foe) + Aura bonus + stress die",
+   "The minimum number of stakes is one per 16 paces of the diameter of a circle, rounded up."
+  ],
+  "related": []
+ },
+ {
+  "title": "Slay Art: Making the Slaying Weapon",
+  "heading": "Making the Slaying Weapon",
+  "line": 6050,
+  "endLine": 6066,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Slay",
+  "summary": "How a hunter turns a fresh weapon into a one-use foe-slayer in a day, paying a Long Term Fatigue level, with a Slay Total, a Level lowered by correct facts about the foe and raised by wrong ones, and an Incapacitating Wound effect on a successful strike.",
+  "quotes": [
+   "Slay Total: Dexterity + Slay + (Foe) + Aura + stress die",
+   "It takes one day (24 hours) of continuous work to turn a normal weapon into a tool of foe-slaying, and costs the slayer one Long Term Fatigue level.",
+   "The Level is decreased by five points (to a minimum of 5, or 15 for mortal Foes) for every correct fact about the foe that the slayer has been able to discover."
+  ],
+  "related": [
+   "City & Guild p.67"
+  ]
+ },
+ {
+  "title": "Relevant Facts About Foes",
+  "heading": "Relevant Facts About Foes",
+  "line": 6068,
+  "endLine": 6080,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Slay",
+  "summary": "Sidebar listing the kinds of facts about a foe that count toward lowering the Slay Level.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "After Slaying",
+  "heading": "After Slaying",
+  "line": 6082,
+  "endLine": 6084,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Hunters' Arts Practice Art (Scry, Ban or Slay) with a (Foe) Art - Slay",
+  "summary": "A slaying weapon loses all magic after it is used or after its foe dies by other means, and can never be enchanted again.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Working Together (hunter teamwork and Hermetic cooperation)",
+  "heading": "Working Together",
+  "line": 6136,
+  "endLine": 6139,
+  "category": "traditions",
+  "topic": "Hunters' Arts",
+  "audience": [
+   "companions",
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Vampire hunter characters",
+  "summary": "Sidebar on how the different hunter types and Practice Arts complement each other, and how hunters can help Hermetic magi, for example by weakening foes so spells Penetrate more easily.",
+  "quotes": [
+   "the Slay Art does not destroy the vis in a creature's body like some Perdo Vim spells can"
+  ],
+  "related": []
+ },
+ {
+  "title": "Preventing Vampires (hunter practice)",
+  "heading": "Preventing Vampires",
+  "line": 6145,
+  "endLine": 6155,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Explains that vampire precautions are done either to the corpse (feet, hands, mouth) or to the place of death, that they work only against some vampire types, and that the Church objects to routine mutilation.",
+  "quotes": [
+   "Most remedies only work on some vampires rather than being universal solutions"
+  ],
+  "related": [
+   "Chapter 8 Precautions Against Vampires"
+  ]
+ },
+ {
+  "title": "Killing Vampires (hunter procedure)",
+  "heading": "Killing Vampires",
+  "line": 6157,
+  "endLine": 6171,
+  "category": "beings",
+  "topic": "Vampires",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running Transylvanian vampires",
+  "summary": "Step-by-step approach to hunting a vampire: identify its type, find its daytime resting place (Scry helps), confirm it, ban the grave to weaken it, then destroy it in the exact required way. Includes tactics such as hunting on a Saturday.",
+  "quotes": [
+   "Hunting a vampire on a Saturday is a common tactic, taking advantage of the frequent limitation on vampires that prevents them from spending Might points on a Saturday.",
+   "neither a white stallion nor a gander will step over a vampire's grave"
+  ],
+  "related": [
+   "Chapter 8 Ways to Kill a Vampire"
+  ]
+ }
+]

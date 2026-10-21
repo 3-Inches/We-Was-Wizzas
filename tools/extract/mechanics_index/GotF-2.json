@@ -1,0 +1,461 @@
+[
+ {
+  "title": "The Glade of the Seven Waterfalls (regio)",
+  "heading": "The Glade of the Seven Waterfalls",
+  "line": 1489,
+  "endLine": 1496,
+  "category": "realms",
+  "topic": "Regiones and magical sites",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide-placed site in the Black Forest (never found)",
+  "summary": "A forest-spirit regio whose levels are the seven waterfalls; a visitor may only ascend each level by completing a different Quest, gaining a new level of understanding of the Forest at each step. Gives the spirit's Might, traits and powers as a stat block.",
+  "quotes": [
+   "**Magic Might:** 50",
+   "Grant Virtue (Clear Thinker), Guide, Oath-Swearing, Regio, Shroud"
+  ],
+  "related": [
+   "Realms and Forest Paths in the Rhine Tribunal"
+  ]
+ },
+ {
+  "title": "Studying in the Great Library (Durenmar)",
+  "heading": "STUDYING IN THE GREAT LIBRARY",
+  "line": 1565,
+  "endLine": 1579,
+  "category": "setting",
+  "topic": "Durenmar Great Library",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visit to Durenmar (members and House Bonisagus exempt)",
+  "summary": "Visiting magi earn seasons of study credit at the Great Library by contributing tomes, new spells or a season of copying, or by paying vis; rules cover priority when two magi want the same tome, certamen to settle disputes, and limits on removing or copying books.",
+  "quotes": [
+   "For each new contribution to the Great Library, a magus is permitted to study freely there for two seasons.",
+   "a magus may instead gain a single season of credit by volunteering for a season of copying"
+  ],
+  "related": [
+   "ArM5 Certamen",
+   "Houses of Hermes: True Lineages (House Bonisagus)"
+  ]
+ },
+ {
+  "title": "Searching the Great Library: lab notes, spells, tractatus and summae",
+  "heading": "THE CONTENTS OF THE GREAT LIBRARY",
+  "line": 1584,
+  "endLine": 1618,
+  "category": "setting",
+  "topic": "Durenmar Great Library",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visit to Durenmar",
+  "summary": "Floor-by-floor procedures for finding a desired item in the Great Library: Intelligence + Magic Theory to locate lab notes, a stress die against an Ease Factor to find a Lab Text, and simple-die rolls (with Durenmar Lore and rank bonuses) to find tractatus and summae and to set their Quality.",
+  "quotes": [
+   "The success should be determined by an Intelligence + Magic Theory roll against an appropriate Ease Factor.",
+   "The Ease Factor for standard spells is 3, or 6 for a specific version of a general-level standard spell up to level 40.",
+   "To determine the Quality of a studied tractatus, roll a simple die and add 2.",
+   "To determine whether a summa of a specified Art is available to a magus, roll a simple die and add 10."
+  ],
+  "related": [
+   "ArM5 Lab Texts",
+   "ArM5 Books: Summae and Tractatus",
+   "Durenmar Lore Ability"
+  ]
+ },
+ {
+  "title": "Durenmar covenfolk: Warping from the strong Magic aura",
+  "heading": "Covenfolk",
+  "line": 1850,
+  "endLine": 1852,
+  "category": "covenant",
+  "topic": "Covenfolk and Warping",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenfolk of Durenmar (covenant in a strong Magic aura)",
+  "summary": "Durenmar's servants and grogs are shaped by life in a strong Magic aura: each has Warping-derived Minor Flaws, and the very old gain a Supernatural Ability Virtue. A model for generating covenfolk of any covenant that lives in a strong aura.",
+  "quotes": [
+   "All covenfolk have at least one Minor Flaw due to Warping, and those over 30 years old have two."
+  ],
+  "related": [
+   "ArM5 Warping",
+   "ArM5 Covenfolk"
+  ]
+ },
+ {
+  "title": "The Fane of the Founders",
+  "heading": "The Fane of the Founders",
+  "line": 1854,
+  "endLine": 1860,
+  "category": "realms",
+  "topic": "Regiones and magical sites",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide-placed site near Durenmar",
+  "summary": "A hidden glade with a Magic aura in which twelve magi renew the Oath of the Founders every seven years; the stone is treated as an artifact with Magic Might and a limited set of forest powers, and it yields vis to those who perform the rite.",
+  "quotes": [
+   "Thus, the Fane may be treated as if it has a Magic Might of 40",
+   "Produce Vis, Shroud, Oath-Swearing, Grant Virtue (Clear Thinker; temporarily)"
+  ],
+  "related": [
+   "The Glade of the Seven Waterfalls"
+  ]
+ },
+ {
+  "title": "The Source of the Danube (Faerie regio)",
+  "heading": "The Source of the Danube",
+  "line": 1932,
+  "endLine": 1934,
+  "category": "realms",
+  "topic": "Regiones and magical sites",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide-placed site in the eastern Black Forest",
+  "summary": "An enchanted spring and bottomless pool with a Faerie aura that rises within the water and in the deeper levels of a regio, ending in a gateway to Arcadia; large amounts of Aquam vis can be harvested at the cost of angering the river spirit.",
+  "quotes": [
+   "There is a Faerie aura of 3 in the region of the pool, which rises to 5 if one is within the water itself."
+  ],
+  "related": [
+   "ArM5 Realms: Faerie",
+   "ArM5 Regiones"
+  ]
+ },
+ {
+  "title": "The Rottweiler (playable dog grog)",
+  "heading": "The Rottweiler",
+  "line": 1952,
+  "endLine": 1957,
+  "category": "creation",
+  "topic": "Animal and non-human grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Storyguide approval; a magus who keeps Rottweilers",
+  "summary": "Optional rules for playing a faerie-blooded hunting dog as a grog: it uses Cunning in place of Intelligence, receives a fixed package of Virtues and Flaws, and has its age and aging rolls scaled to dog years. Some have faerie blood that slows aging or grants Second Sight.",
+  "quotes": [
+   "the hound may be created as a normal character, except that it has Cunning instead of Intelligence",
+   "Their bite has the same combat statistics as a dagger.",
+   "Calculate their age (and experience) as for a human, and use this age for making aging rolls"
+  ],
+  "related": [
+   "ArM5 Grogs",
+   "ArM5 Aging"
+  ]
+ },
+ {
+  "title": "The Magestones of Verditius (portable Magic aura)",
+  "heading": "The Magestones of Verditius",
+  "line": 2107,
+  "endLine": 2110,
+  "category": "lab",
+  "topic": "Magic auras and laboratories",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Possession of a magestone (Durenmar and Oculus Septentrionalis hold them)",
+  "summary": "Rare Creo Vim artifacts that each project a small Magic aura, allowing a covenant with no natural aura to give its magi lab work in a Magic aura for a limited number of seasons a year; Hermetic theory cannot replicate them.",
+  "quotes": [
+   "Each stone manifests a Magic aura of 3, large enough to cover a large room or laboratory.",
+   "so that they are able to work in a Magic aura in their labs for up to two seasons every year"
+  ],
+  "related": [
+   "ArM5 Auras",
+   "ArM5 Laboratory"
+  ]
+ },
+ {
+  "title": "The Holy Vehm (secret courts of northern Germany)",
+  "heading": "The Holy Vehm",
+  "line": 2322,
+  "endLine": 2329,
+  "category": "setting",
+  "topic": "Vehmic courts",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Northern Germany (Saxony and Westphalia)",
+  "summary": "Describes how the secret Vehmic courts try capital crimes: who may be a member and who is exempt, the officials, how a summons works, and how many witnesses are needed for proof or acquittal. Useful for running a Vehm trial or hunt against suspected hedge wizards.",
+  "quotes": [
+   "his accuser can present to the court seven witnesses to his own character as a man to be trusted",
+   "he requires twenty-one witnesses in favor of innocence to assure his acquittal"
+  ],
+  "related": [
+   "ArM5 Code of Hermes",
+   "Order of Hermes and mundane law"
+  ]
+ },
+ {
+  "title": "The Brocken: Faerie aura that doubles on Walpurgis Night",
+  "heading": "The Brocken",
+  "line": 2435,
+  "endLine": 2439,
+  "category": "realms",
+  "topic": "Regiones and magical sites",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visit to the Brocken in the Harz",
+  "summary": "A potent supernatural mountain where the Faerie aura varies by altitude and doubles on Walpurgis Night; also a source of a vis plant, a vision-granting spring and a place to find potential apprentices.",
+  "quotes": [
+   "The lower slopes of the Brocken have a Faerie aura of 2, with 4 at the summit. These values are doubled on Walpurgis Night."
+  ],
+  "related": [
+   "ArM5 Auras",
+   "Walpurga and the Wild Hunt"
+  ]
+ },
+ {
+  "title": "Fengheld's Chapter Houses (covenant chapter rules)",
+  "heading": "Fengheld's Chapter Houses",
+  "line": 2494,
+  "endLine": 2507,
+  "category": "covenant",
+  "topic": "Chapter houses",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A covenant that has founded chapter houses",
+  "summary": "Explains how a covenant can be spread over several sites as chapter houses: all chapters remain part of the main covenant, share its charter and Tribunal rulings, and may add a local charter for their own residents. The sidebar also suggests how a player covenant can become one of the chapters.",
+  "quotes": [
+   "All magi must accept the charter of Fengheld, and any strictures or rulings from the Tribunal that apply to Fengheld also apply to the chapter houses (and vice versa).",
+   "a chapter usually has a local charter that applies only to those magi who live in the chapter house"
+  ],
+  "related": [
+   "ArM5 Covenants",
+   "Covenants (book)"
+  ]
+ },
+ {
+  "title": "The Feengrotten (shifting caves yielding Imaginem vis)",
+  "heading": "The Feengrotten",
+  "line": 2633,
+  "endLine": 2637,
+  "category": "realms",
+  "topic": "Regiones and magical sites",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visit to the Thuringian Forest",
+  "summary": "A faerie-touched cave network with a weak Magic aura whose passages shift; only those who are genuinely lost for days emerge covered in Imaginem vis dust, while anyone trying to exploit the property gets plain dust.",
+  "quotes": [
+   "The Feengrotten has a Magic aura of 1.",
+   "the dust is Imaginem vis, the quantity dependent on how many days that they were lost"
+  ],
+  "related": [
+   "ArM5 Vis"
+  ]
+ },
+ {
+  "title": "Crintera's four-level heartbeast regio",
+  "heading": "Setting and Physical Description",
+  "line": 2809,
+  "endLine": 2817,
+  "category": "realms",
+  "topic": "Heartbeast",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Crintera (the House Bjornaer domus magna on Rugen)",
+  "summary": "Crintera lies in a four-level regio whose auras rise by level; as each boundary is crossed every visitor must resist a Corpus effect that brings out a heartbeast, first changing Personality Traits and then causing minor physical changes. Parma Magica and a Bjornaer Heartbeast roll can resist or shrug off the changes.",
+  "quotes": [
+   "There are four levels to the magical regio, with auras of 1, 3, 5, and 8.",
+   "every character must resist a Corpus effect with a Penetration Total equal to the Ease Factor needed to see the next level",
+   "Of course, magi of House Bjornaer can shrug off these changes with a Heartbeast roll, should they want to."
+  ],
+  "related": [
+   "ArM5 p.189 Regiones",
+   "ArM5 Heartbeast (Virtue)",
+   "House Bjornaer"
+  ]
+ },
+ {
+  "title": "The Gathering of Twelve Years (House Bjornaer)",
+  "heading": "The Gathering of Twelve Years",
+  "line": 2819,
+  "endLine": 2826,
+  "category": "houses",
+  "topic": "House Bjornaer",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer",
+  "summary": "The House Bjornaer assembly held at Crintera every twelve years, when most initiations into the House's Mysteries take place. Includes advice for running the Gathering in a saga, including giving non-Bjornaer players a Bjornaer character for the event.",
+  "quotes": [
+   "most initiations into the Mysteries of House Bjornaer are conducted during the gathering",
+   "The next gathering, due in 1227, is likely to be politically explosive"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages (House Bjornaer)",
+   "ArM5 Heartbeast"
+  ]
+ },
+ {
+  "title": "Council of Elders and the Seats of Crintera (Bjornaer governance)",
+  "heading": "Culture and Traditions",
+  "line": 2828,
+  "endLine": 2838,
+  "category": "houses",
+  "topic": "House Bjornaer",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer",
+  "summary": "How the Council of Elders of Crintera is organized: six seats with fixed duties, how vacant seats are filled at the Gathering, the Primus's Seat of the Wolf, the reserved Senior Elder seat and its casting vote.",
+  "quotes": [
+   "When an Elder dies or passes into Final Twilight, he will not be replaced until the next Gathering of Twelve Years.",
+   "The Senior Elder has the casting vote in any decision of the council"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages (House Bjornaer)"
+  ]
+ },
+ {
+  "title": "Durenmar guest laboratories and vis fees",
+  "heading": "THE TOWER OF NOTATUS",
+  "line": 1531,
+  "endLine": 1533,
+  "category": "covenant",
+  "topic": "Guest laboratories",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Durenmar",
+  "summary": "Describes the fee in vis a covenant may charge a visiting magus of suitable rank for a season in its guest laboratories, with a cheaper rate for the small standard labs; a model for pricing guest lab use.",
+  "quotes": [
+   "albeit with a charge of at least five pawns of vis",
+   "for the lesser fee of two pawns of vis per season each"
+  ],
+  "related": [
+   "ArM5 Laboratory",
+   "ArM5 Vis"
+  ]
+ },
+ {
+  "title": "Crintera covenfolk: the six animal clans",
+  "heading": "Covenfolk",
+  "line": 2961,
+  "endLine": 2977,
+  "category": "covenant",
+  "topic": "Covenfolk and Warping",
+  "audience": [
+   "covenant",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of House Bjornaer (Crintera) or a similar heartbeast-themed turb",
+  "summary": "Organizes the grogs and covenfolk of Crintera into six animal clans mirroring the Elders' seats, each with a role, preferred weapons and a clan leader; shows how to build a themed turb whose warriors share a heartbeast style.",
+  "quotes": [
+   "The grogs and covenfolk are divided into six clans, named just as the six seats of the Elders."
+  ],
+  "related": [
+   "ArM5 Grogs",
+   "Covenants (book): turbs"
+  ]
+ },
+ {
+  "title": "Pomeranian werewolves (skinchanger families)",
+  "heading": "The Werewolves of Pomerania",
+  "line": 3006,
+  "endLine": 3016,
+  "category": "beings",
+  "topic": "Werewolves and skinchangers",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Born into a Pomeranian werewolf family (storyguide approval)",
+  "summary": "Explains how shapeshifting is inherited in Pomeranian werewolf families, which Virtue or Flaw a child receives, how animals react to them, and offers a list of suitable additional Virtues and Flaws for playing a werewolf companion.",
+  "quotes": [
+   "A child born into a werewolf family will acquire the Skinchanger Virtue.",
+   "Those unlucky enough to be born into human families will usually acquire the Lycanthrope Flaw, and be unable to control their change."
+  ],
+  "related": [
+   "Hedge Magic (Skinchanger, Shapeshifter)",
+   "ArM5 Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "Slave trade and prices",
+  "heading": "The Slave Trade",
+  "line": 3090,
+  "endLine": 3093,
+  "category": "social",
+  "topic": "Wealth and prices",
+  "audience": [
+   "storyguide",
+   "companions",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Prague and the Eastern Marches",
+  "summary": "Describes the Prague slave market, who controls it, and gives a rule of thumb for what a slave costs relative to a horse, with higher prices for skilled, strong or young slaves.",
+  "quotes": [
+   "An unremarkable slave may be purchased for as little as a few schillings",
+   "the younger, healthier, and stronger the slave is, the more he or she may be sold for"
+  ],
+  "related": [
+   "ArM5 Wealth and Mundane Purchases"
+  ]
+ }
+]

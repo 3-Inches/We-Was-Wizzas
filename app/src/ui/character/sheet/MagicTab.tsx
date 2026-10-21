@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type Technique } from '../../../data';
-import { castingOutcome, castingScore, conditionalBonuses, labTotal, magicResistance, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm } from '../../../engine/magic';
+import { castingOutcome, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, magicResistance, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm } from '../../../engine/magic';
 import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
 import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
 import type { CharSpell } from '../../../engine/types';
+import type { CertamenArt } from '../../../engine/magic';
 import { Card, Field, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { masteryScore } from '../steps/SpellsStep';
@@ -472,6 +473,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         {diedne && <p className="small good-text">Diedne Magic: non-fatiguing spontaneous spells may roll as fatiguing without losing Fatigue.</p>}
       </Card>
 
+      <Certamen ed={ed} push={push} />
+
       {aatp && (
         <div className="issue warning">
           <span className="badge warn">botch</span>
@@ -497,5 +500,135 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
       )}
       <p className="small muted">Botch dice: 1 for a stressful casting, plus the aura strength in a non-Magic aura (doubled in a regio), plus Virtues and Flaws, minus Mastery.</p>
     </div>
+  );
+}
+
+/** Certamen (DE): the totals for the chosen Technique and Form, and a round rolled against an opponent's numbers. */
+function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
+  const { c, d, update } = ed;
+  const [tech, setTech] = useState<Technique>('Re');
+  const [form, setForm] = useState<Form>('Te');
+  const [attackWith, setAttackWith] = useState<CertamenArt>('technique');
+  const [vis, setVis] = useState(0);
+  const [opp, setOpp] = useState({ defense: 10, resistance: 5, attack: 12, weakening: 4 });
+  if (!c || !d) return null;
+  const t = certamenTotals(d, tech, form);
+  const defendWith: CertamenArt = attackWith === 'technique' ? 'form' : 'technique';
+  const artName = (w: CertamenArt) => (w === 'technique' ? ART_NAMES[tech] : ART_NAMES[form]);
+  const visMax = (w: CertamenArt) => t.visLimit[w];
+  const pawns = (w: CertamenArt) => Math.min(vis, visMax(w));
+  const roll = (base: number) => {
+    const r = stressDie(1);
+    return { r, total: r.botches ? 0 : base + r.value };
+  };
+  const rollInitiative = () => {
+    const { r, total } = roll(t.initiative.total);
+    push(`Certamen initiative: ${t.initiative.total} + ${describeStress(r)} = ${total}.`);
+  };
+  const attack = () => {
+    const p = pawns(attackWith);
+    const { r, total } = roll(t.attack[attackWith].total + 2 * p);
+    const adv = total - opp.defense;
+    const weak = t.weakening.total + Math.max(0, adv);
+    const lost = adv > 0 ? certamenFatigue(weak, opp.resistance) : 0;
+    push(
+      `Certamen attack with ${artName(attackWith)}: ${t.attack[attackWith].total}${p ? ` + ${p} pawns of vis (+${2 * p})` : ''} + ${describeStress(r)} = ${total} vs Defense ${opp.defense}. ` +
+        (r.botches ? 'Botch: the storyguide decides what goes wrong.' : adv > 0 ? `Attack Advantage ${adv}; Weakening ${weak} vs Resistance ${opp.resistance}: the opponent loses ${lost} Fatigue level${lost === 1 ? '' : 's'}.` : 'No damage (the defender wins ties).'),
+    );
+  };
+  const defend = () => {
+    const p = pawns(defendWith);
+    const { r, total } = roll(t.defense[defendWith].total + 2 * p);
+    const adv = opp.attack - total;
+    const lost = adv > 0 ? certamenFatigue(opp.weakening + adv, t.resistance.total) : 0;
+    push(
+      `Certamen defense with ${artName(defendWith)}: ${t.defense[defendWith].total}${p ? ` + ${p} pawns of vis (+${2 * p})` : ''} + ${describeStress(r)} = ${total} vs Attack ${opp.attack}. ` +
+        (r.botches ? 'Botch: the storyguide decides what goes wrong. ' : '') +
+        (adv > 0 ? `Their Weakening ${opp.weakening} + Advantage ${adv} vs your Resistance ${t.resistance.total}: you lose ${lost} Fatigue level${lost === 1 ? '' : 's'}.` : 'You hold (the defender wins ties).'),
+    );
+    if (lost) {
+      const over = Math.max(0, c.fatigueLost + lost - 5);
+      update((x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + lost)));
+      if (over) push(`Unconscious: ${over} more hour${over > 1 ? 's' : ''} for the levels beyond your Fatigue. You lose the certamen.`);
+    }
+  };
+  const stat = (label: string, r: { total: number; parts: { label: string; value: number }[]; notes: string[] }) => (
+    <div className="stat">
+      <span className="v">
+        <Total value={r.total} parts={r.parts} notes={r.notes} label={label} />
+      </span>
+      <span className="l">{label}</span>
+    </div>
+  );
+  return (
+    <Card title="Certamen">
+      <div className="row">
+        <Field label="Technique (the challenger picks)">
+          <select value={tech} onChange={(e) => setTech(e.target.value as Technique)}>
+            {TECHNIQUES.map((x) => (
+              <option key={x} value={x}>
+                {ART_NAMES[x]}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Form (the defender picks)">
+          <select value={form} onChange={(e) => setForm(e.target.value as Form)}>
+            {FORMS.map((x) => (
+              <option key={x} value={x}>
+                {ART_NAMES[x]}
+              </option>
+            ))}
+          </select>
+        </Field>
+        {stat('Initiative', t.initiative)}
+        {stat(`Attack with ${ART_NAMES[tech]}`, t.attack.technique)}
+        {stat(`Attack with ${ART_NAMES[form]}`, t.attack.form)}
+        {stat(`Defense with ${ART_NAMES[tech]}`, t.defense.technique)}
+        {stat(`Defense with ${ART_NAMES[form]}`, t.defense.form)}
+        {stat('Weakening', t.weakening)}
+        {stat('Resistance', t.resistance)}
+      </div>
+      <h4>A round</h4>
+      <div className="row">
+        <Field label="This round you attack with">
+          <select value={attackWith} onChange={(e) => setAttackWith(e.target.value as CertamenArt)}>
+            <option value="technique">{ART_NAMES[tech]} (defend with {ART_NAMES[form]})</option>
+            <option value="form">{ART_NAMES[form]} (defend with {ART_NAMES[tech]})</option>
+          </select>
+        </Field>
+        <Field label="Raw vis this round (+2 a pawn)" hint={`Attuned to the Art it adds to; at most your score in it (${visMax('technique')} ${tech}, ${visMax('form')} ${form})`}>
+          <Stepper value={vis} min={0} max={Math.max(visMax('technique'), visMax('form'))} width={36} onChange={setVis} />
+        </Field>
+        <Field label="Opponent's Defense Total">
+          <Stepper value={opp.defense} min={-20} max={99} width={40} onChange={(v) => setOpp({ ...opp, defense: v })} />
+        </Field>
+        <Field label="Opponent's Resistance">
+          <Stepper value={opp.resistance} min={-10} max={60} width={40} onChange={(v) => setOpp({ ...opp, resistance: v })} />
+        </Field>
+        <Field label="Opponent's Attack Total">
+          <Stepper value={opp.attack} min={-20} max={99} width={40} onChange={(v) => setOpp({ ...opp, attack: v })} />
+        </Field>
+        <Field label="Opponent's Weakening">
+          <Stepper value={opp.weakening} min={-10} max={60} width={40} onChange={(v) => setOpp({ ...opp, weakening: v })} />
+        </Field>
+      </div>
+      <div className="row" style={{ marginTop: 6 }}>
+        <button className="small" onClick={rollInitiative}>
+          Roll initiative
+        </button>
+        <button className="small" onClick={attack}>
+          Roll attack
+        </button>
+        <button className="small" onClick={defend} title="Adds the Fatigue levels you lose">
+          Roll defense
+        </button>
+      </div>
+      <p className="small muted" style={{ marginBottom: 0 }}>
+        Each round, use one Art to attack and the other to defend; you may swap them between rounds. Every 5 points (or fraction) of Weakening over Resistance costs a Fatigue level,
+        and Fatigue penalties count against Attack and Defense. Certamen causes no wounds. Win by knocking the opponent unconscious (you may then cast one spell of the duel&apos;s
+        Arts through their Parma), by their surrender, or by their failed Concentration roll (DE, Certamen).
+      </p>
+    </Card>
   );
 }

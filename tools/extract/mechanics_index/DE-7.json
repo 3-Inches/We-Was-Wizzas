@@ -1,0 +1,3451 @@
+[
+ {
+  "title": "Using Experience Points",
+  "heading": "Using Experience Points",
+  "line": 16022,
+  "endLine": 16029,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how experience points raise Arts and Abilities and gives the cost formulas for gaining a level in each.",
+  "quotes": [
+   "INCREASE AN ABILITY BY ONE: (Ability + 1) x 5 experience points",
+   "INCREASE AN ART BY ONE: Art + 1 experience points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Advancement Tables",
+  "heading": "Advancement Tables",
+  "line": 16030,
+  "endLine": 16057,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Lookup table of the experience points needed to buy a score from zero, or to raise it by one, for Arts and Abilities.",
+  "quotes": [
+   "To buy: The number of experience points required to raise a score from zero to that number."
+  ],
+  "related": []
+ },
+ {
+  "title": "Advancement Total",
+  "heading": "Advancement",
+  "line": 16059,
+  "endLine": 16065,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the Advancement Total earned by a season of study and the rule that only one source of experience may be used per season, apart from Exposure.",
+  "quotes": [
+   "ADVANCEMENT TOTAL: Source Quality + Bonus from Virtues - Penalty from Flaws"
+  ],
+  "related": []
+ },
+ {
+  "title": "Calculating Experience Points",
+  "heading": "Calculating Experience Points",
+  "line": 16067,
+  "endLine": 16077,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Three-step procedure from Source Quality to Advancement Total to experience points gained, and which Virtues and Flaws modify each step.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Assigning Seasons",
+  "heading": "Assigning Seasons",
+  "line": 16079,
+  "endLine": 16083,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how seasons are abstractly assigned to work and study for ordinary characters, and how magi differ because lab work takes a whole real season and they have genuinely free seasons.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Gain Limit",
+  "heading": "Limits",
+  "line": 16085,
+  "endLine": 16087,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A study source with its own level caps the score a student can reach from it, and gives no experience towards the next level.",
+  "quotes": [
+   "This limit is called the Gain Limit."
+  ],
+  "related": []
+ },
+ {
+  "title": "Exposure",
+  "heading": "Exposure",
+  "line": 16089,
+  "endLine": 16100,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "The weakest source of experience: simply using or assisting with an Ability or Art during a season; experience may be split between two subjects, and lab work grants Exposure to lead magus and assistants.",
+  "quotes": [
+   "EXPOSURE SOURCE QUALITY: Two"
+  ],
+  "related": []
+ },
+ {
+  "title": "Adventure Experience",
+  "heading": "Adventure",
+  "line": 16102,
+  "endLine": 16110,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Adventures give a whole season of experience with a Source Quality set by the storyguide, which can be split among Abilities used and Arts used on stage.",
+  "quotes": [
+   "ADVENTURE SOURCE QUALITY: 5\u201310"
+  ],
+  "related": []
+ },
+ {
+  "title": "Practice",
+  "heading": "Practice",
+  "line": 16112,
+  "endLine": 16131,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Full-time self-directed study of an Ability, with special higher Source Qualities for native-tongue languages, Area Lore, feedback-rich crafts and practising spells for mastery; Arts cannot be raised this way.",
+  "quotes": [
+   "PRACTICE SOURCE QUALITY: 4\u20138, usually 4"
+  ],
+  "related": []
+ },
+ {
+  "title": "Training",
+  "heading": "Training",
+  "line": 16133,
+  "endLine": 16145,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "One-on-one instruction by a master who has a higher score and is using the Ability to earn a living; Hermetic Arts cannot be raised by training.",
+  "quotes": [
+   "TRAINING SOURCE QUALITY: Master's score in Ability being taught + 3",
+   "TRAINING GAIN LIMIT: Master's score in Ability being taught"
+  ],
+  "related": []
+ },
+ {
+  "title": "Worship",
+  "heading": "Worship",
+  "line": 16147,
+  "endLine": 16155,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Christian character with access to a chapel or church (similar activities for other Divine faiths)",
+  "summary": "A free-season devotional routine whose Source Quality is the Divine aura of the church, spent on Church Lore, Concentration, Music or Divine-aligned Abilities and Arts.",
+  "quotes": [
+   "Worship has a Source Quality equal to the Divine aura in the church."
+  ],
+  "related": []
+ },
+ {
+  "title": "Teaching",
+  "heading": "Teaching",
+  "line": 16157,
+  "endLine": 16171,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Lessons from a teacher with a higher score and a shared language, with Source Quality depending on the teacher's Communication and Teaching and a bonus that depends on class size; Arts may only be taught one-on-one.",
+  "quotes": [
+   "TEACHING SOURCE QUALITY: Teacher's Communication + Teaching + 3 + bonus",
+   "TEACHING GAIN LIMIT: The teacher's score in the Art or Ability"
+  ],
+  "related": []
+ },
+ {
+  "title": "Studying From Books",
+  "heading": "Books",
+  "line": 16173,
+  "endLine": 16191,
+  "category": "seasons",
+  "topic": "Books",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for studying summae and tractatus: language and literacy prerequisites, level limits for summae, one-time study of each tractatus, and Supernatural Abilities needing a score of at least one.",
+  "quotes": [
+   "SUMMAE: Source Quality and Level",
+   "SUMMA GAIN LIMIT: Summa Level",
+   "TRACTATUS: Source Quality"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vis Study",
+  "heading": "Vis",
+  "line": 16193,
+  "endLine": 16201,
+  "category": "seasons",
+  "topic": "Vis study",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Magi study an Art from raw vis, consuming pawns of that Art's vis for the season; a double botch on the stress die can lead to Wizard's Twilight.",
+  "quotes": [
+   "VIS SOURCE QUALITY: Stress Die + Aura Bonus"
+  ],
+  "related": [
+   "ArM5 p.228 Twilight"
+  ]
+ },
+ {
+  "title": "Distractions",
+  "heading": "Distractions",
+  "line": 16203,
+  "endLine": 16214,
+  "category": "seasons",
+  "topic": "Advancement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Distractions of more than a month reduce an Advancement or writing total by a fraction for each full month lost, rounding fractions up.",
+  "quotes": [
+   "For every full month lost, reduce the total by one third of its original amount."
+  ],
+  "related": []
+ },
+ {
+  "title": "Standard Texts (Roots and Branches of the Arts)",
+  "heading": "Standard Texts",
+  "line": 16220,
+  "endLine": 16230,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the widely available Roots of the Arts primers and the prized Branches of the Arts summae, which troupes may assign to Arts as needed for their saga.",
+  "quotes": [
+   "These texts vary, but all have a Level of at least 7, and a Quality of at least 21."
+  ],
+  "related": []
+ },
+ {
+  "title": "Writing Books",
+  "heading": "Writing Books",
+  "line": 16232,
+  "endLine": 16243,
+  "category": "seasons",
+  "topic": "Writing books",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Prerequisite scores for writing a useful book and the Source Quality formulas for summae and tractatus.",
+  "quotes": [
+   "SUMMA SOURCE QUALITY: Author's Communication + 6 + bonus",
+   "Tractatus Source Quality: Author's Communication + 6"
+  ],
+  "related": []
+ },
+ {
+  "title": "Writing Summae",
+  "heading": "Summae",
+  "line": 16244,
+  "endLine": 16255,
+  "category": "seasons",
+  "topic": "Writing books",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "How a summa's Level and Quality are chosen, the Quality bonus for a lower Level, and how many points per season accumulate until the book is finished, with a worked example.",
+  "quotes": [
+   "the summa is complete."
+  ],
+  "related": []
+ },
+ {
+  "title": "Writing Tractatus",
+  "heading": "Tractatus",
+  "line": 16256,
+  "endLine": 16261,
+  "category": "seasons",
+  "topic": "Writing books",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A tractatus takes one season to write and has a limit on how many one author can write in a given Art or Ability.",
+  "quotes": [
+   "It takes one season to write a tractatus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Copying Books",
+  "heading": "Copying Books",
+  "line": 16262,
+  "endLine": 16271,
+  "category": "seasons",
+  "topic": "Writing books",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Careful copying keeps the original's quality; quick copying is three times as fast but lowers quality; the copyist's Profession: Scribe score drives the pace for summae.",
+  "quotes": [
+   "COPYING CAREFULLY: 1 tractatus per season, or 6 + Profession (Scribe) points towards a summa.",
+   "COPYING QUICKLY: Three times as fast as careful copying, copy Source Quality is 1 lower than copied book."
+  ],
+  "related": []
+ },
+ {
+  "title": "Corrupted Copies",
+  "heading": "Corrupted Copies",
+  "line": 16272,
+  "endLine": 16281,
+  "category": "seasons",
+  "topic": "Writing books",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the minimum language, Realm Lore and Magic Theory scores a scribe needs to copy a text without corrupting it, since a corrupted text is useless.",
+  "quotes": [
+   "A corrupted text is useless."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Books: Definition of Categories of Value",
+  "heading": "Hermetic Books: Definition of Categories of Value",
+  "line": 16282,
+  "endLine": 16294,
+  "category": "seasons",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar giving typical Quality ranges for summae and tractatus (excellent, sound, vain, discarded and legendary books) as a function of Level.",
+  "quotes": [
+   "These Summae have a Quality of (25 \u2013 Level) or below."
+  ],
+  "related": []
+ },
+ {
+  "title": "Acquiring Books",
+  "heading": "Acquisition",
+  "line": 16296,
+  "endLine": 16299,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Overview of the Order's book trade: sale of finished books through Redcaps and Tribunals, and scribal hospitality in other covenants' libraries.",
+  "quotes": [],
+  "related": [
+   "Houses of Hermes: True Lineages p.101"
+  ]
+ },
+ {
+  "title": "The Sale of Hermetic Books",
+  "heading": "The Sale of Hermetic Books",
+  "line": 16300,
+  "endLine": 16313,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the four postal sale methods (public offer, tender, exchange, subscription) and how books are sold at Tribunal.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Prices for Books and the Cow and Calf Oath",
+  "heading": "Prices for Books",
+  "line": 16314,
+  "endLine": 16317,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the Cow and Calf Oath, a Hibernian ruling restricting resale or gifting of purchased copies, which the later price guidelines assume has been sworn.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Mundane Book Prices",
+  "heading": "Mundane Books",
+  "line": 16318,
+  "endLine": 16321,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Mundane books are bought with cash from a stationer, with a delay of a season for uncommon titles and a cheaper unbound paper version available.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hermetic Book Trade as Barter",
+  "heading": "Books Concerning the Arts and Arcane Abilities",
+  "line": 16322,
+  "endLine": 16325,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that Hermetic books are traded by barter and haggling, and that book values shift with events and with the vis a covenant holds.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Least Expensive Books",
+  "heading": "Least Expensive Books",
+  "line": 16326,
+  "endLine": 16329,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on how damaged and discarded books are acquired, typically for about a pawn of vis per damaged summa, with cheap tractatus available in lots after a disaster.",
+  "quotes": [
+   "A covenant wanting to purchase damaged summae with vis can usually find a seller for about a pawn of vis per book"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vain Book Prices",
+  "heading": "Vain Books",
+  "line": 16330,
+  "endLine": 16335,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Pricing guidance for vain summae and tractatus, and the warning that a vanity book bought from someone other than its author costs as much as a sound one.",
+  "quotes": [
+   "Characters can usually purchase vain summae for half their level in pawns of vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sound Book Prices",
+  "heading": "Sound Books",
+  "line": 16336,
+  "endLine": 16339,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guideline price in vis for ordering sound summae and tractatus from covenants with permanent copyists, including a surcharge for an immediately available copy.",
+  "quotes": [
+   "These charge a number of pawns of vis equal to the book's level, if the purchaser is willing to wait a season for the copy to be produced."
+  ],
+  "related": []
+ },
+ {
+  "title": "Excellent Books",
+  "heading": "Excellent Books",
+  "line": 16340,
+  "endLine": 16347,
+  "category": "order",
+  "topic": "Books",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Books of the highest Quality are normally gifts rather than purchases, with copying restricted; describes how Houses Bonisagus and Tremere handle them.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Learning Supernatural Abilities",
+  "heading": "Learning Supernatural Abilities",
+  "line": 16348,
+  "endLine": 16362,
+  "category": "seasons",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "The Gift for Magic realm Abilities",
+  "summary": "How a character first learns a Supernatural Ability by Training or Teaching, with a Source Quality penalty equal to scores in other Supernatural Abilities and a larger penalty if the Hermetic Arts have been opened.",
+  "quotes": [
+   "SUPERNATURAL ABILITY SOURCE QUALITY: Normal Source Quality - Total Score in Supernatural Abilities"
+  ],
+  "related": [
+   "ArM5 p.206 Opening the Arts"
+  ]
+ },
+ {
+  "title": "Training Creatures (Overview)",
+  "heading": "Training Creatures",
+  "line": 16364,
+  "endLine": 16367,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces taming of animals with a Cunning characteristic, by magi, magical characters or mundane handlers, followed by further training in tricks.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Taming Animals",
+  "heading": "Taming Animals",
+  "line": 16368,
+  "endLine": 16377,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Taming is a seasonal activity accumulating points over consecutive seasons until they exceed the creature's Might; the tamer may split points among creatures of one species up to a limit set by Animal Handling.",
+  "quotes": [
+   "REQUIRED POINTS TO TAME A CREATURE: Might of the Creature, Minimum 1"
+  ],
+  "related": []
+ },
+ {
+  "title": "Taming Mundane Beasts",
+  "heading": "Taming Mundane Beasts",
+  "line": 16378,
+  "endLine": 16381,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar giving mundane beasts an effective Might for taming purposes and noting that taming is a social activity so The Gift penalties apply.",
+  "quotes": [
+   "mundane beasts have an effective (Animal) Might of 1 + 2 x Confidence Score"
+  ],
+  "related": []
+ },
+ {
+  "title": "A Hermetic Tamer",
+  "heading": "A Hermetic Tamer",
+  "line": 16382,
+  "endLine": 16391,
+  "category": "lab",
+  "topic": "Taming and training animals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A magus tames an animal as a laboratory activity using a Rego (Form) Lab Total, producing a Lab Text that can later be reused to tame another creature of the same species.",
+  "quotes": [
+   "TAMING POINTS ACCUMULATED EACH SEASON: Re(Fo) Lab Total \u2013 Creature's Might"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Bonuses to Taming Lab Total",
+  "heading": "Hermetic Bonuses to Taming Lab Total",
+  "line": 16392,
+  "endLine": 16399,
+  "category": "lab",
+  "topic": "Taming and training animals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "List of bonuses added to a Hermetic taming Lab Total: Animal Handling, Animal Ken, Experimentation and similar Lab Texts.",
+  "quotes": [
+   "Animal Handling Ability Score",
+   "Animal Ken Ability Score"
+  ],
+  "related": []
+ },
+ {
+  "title": "A Magical Trainer",
+  "heading": "A Magical Trainer",
+  "line": 16401,
+  "endLine": 16407,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Master of (Form) Creatures",
+  "summary": "Taming points per season for a character with the Master of (Form) Creatures Virtue, using Might, Animal Handling and Animal Ken minus the creature's Might.",
+  "quotes": [
+   "Trainer's Might + Trainer's Animal Handling + Trainer's Animal Ken \u2013 Creature's Might"
+  ],
+  "related": []
+ },
+ {
+  "title": "A Mundane Trainer",
+  "heading": "A Mundane Trainer",
+  "line": 16409,
+  "endLine": 16415,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Taming points per season for a mundane handler, who can usually only tame beasts with a small Magic Might.",
+  "quotes": [
+   "Int + Animal Handling + Animal Ken \u2013 Creature's Might"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tricks, Stunts, and Tasks",
+  "heading": "Tricks, Stunts, and Tasks",
+  "line": 16417,
+  "endLine": 16419,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Who may command a tamed animal, and that a tamed animal is not considered to be under a continuing mystical effect.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Loyalty",
+  "heading": "Loyalty",
+  "line": 16421,
+  "endLine": 16427,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A tamed creature gains a Loyal Personality Trait towards its tamer; Loyalty Tests and extra seasons of training can raise or transfer that loyalty.",
+  "quotes": [
+   "LOYALTY TEST: Loyal Personality Trait + stress die vs Ease Factor"
+  ],
+  "related": []
+ },
+ {
+  "title": "Training Animal Abilities",
+  "heading": "Training Abilities",
+  "line": 16429,
+  "endLine": 16433,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character with Animal Handling can train a tamed animal's existing Abilities with the standard training rules, and the troupe may allow new Abilities subject to a Loyalty test.",
+  "quotes": [
+   "make a Loyalty test for the animal against an Ease Factor of 6"
+  ],
+  "related": []
+ },
+ {
+  "title": "Trained Groups of Animals",
+  "heading": "Trained Groups",
+  "line": 16435,
+  "endLine": 16437,
+  "category": "combat",
+  "topic": "Taming and training animals",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A handler may lead tamed animals in combat as a trained group, using Animal Handling in place of Leadership, with exceptions to the usual Combat Score matching.",
+  "quotes": [
+   "The character's Animal Handling Ability score is used instead of his Leadership Ability score"
+  ],
+  "related": [
+   "ArM5 p.396 Groups"
+  ]
+ },
+ {
+  "title": "Commanding a Creature",
+  "heading": "Commanding a Creature",
+  "line": 16439,
+  "endLine": 16453,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Roll to command a tamed beast against an Ease Factor set by how unusual, frightening or dangerous the task is, with Loyalty tests required for the most extreme tasks.",
+  "quotes": [
+   "COMMAND BEAST: Presence + Animal Handling (or Ride or Magic Lore) + stress die vs Ease Factor"
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Ken and Animals",
+  "heading": "Animal Ken",
+  "line": 16455,
+  "endLine": 16457,
+  "category": "beings",
+  "topic": "Taming and training animals",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Animal Ken",
+  "summary": "A character with Animal Ken can reason with any animal using Animal Handling to get it to follow an instruction without taming it, and can give tamed animals more complex commands.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.159 Animal Ken"
+  ]
+ },
+ {
+  "title": "Changing Reputations",
+  "heading": "Changing Reputations",
+  "line": 16459,
+  "endLine": 16465,
+  "category": "basics",
+  "topic": "Reputation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "How noteworthy actions grant experience in a Reputation, how a bad Reputation can be supplanted by building a new one, and how multiple Reputations are rolled for.",
+  "quotes": [
+   "Treat the Reputation as an Ability, and give the character one 'experience point' in it for every noteworthy action he performs."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mystery Initiation",
+  "heading": "Mystery Initiation",
+  "line": 16467,
+  "endLine": 16499,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a Mystery cult (House Lore)",
+  "summary": "Summary of how a Mystagogue's Initiation Total is compared with a Target Level (no die roll), including Target Levels, the effect of earlier Ordeals, and the minimum.",
+  "quotes": [
+   "INITIATION TOTAL: Presence + (House) Lore + Script bonus",
+   "To Initiate a Minor Virtue known by the Mystagogue, the target level is 15",
+   "To Initiate a Major Virtue known by the Mystagogue, the target level is 21"
+  ],
+  "related": [
+   "The Mysteries Revised Edition, Chapter 2: Entering the Mysteries"
+  ]
+ },
+ {
+  "title": "The Initiation Script",
+  "heading": "The Initiation Script",
+  "line": 16501,
+  "endLine": 16503,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a Mystery cult (House Lore)",
+  "summary": "A written text describing a successful Initiation, whose price may be an Ordeal, a Quest or a Sacrifice, and whose bonuses contribute to the Initiation Total if followed exactly.",
+  "quotes": [],
+  "related": [
+   "The Mysteries Revised Edition, Chapter 2: Entering the Mysteries"
+  ]
+ },
+ {
+  "title": "Example Elements of an Initiation Script",
+  "heading": "Example Elements of an Initiation Script",
+  "line": 16505,
+  "endLine": 16518,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a Mystery cult (House Lore)",
+  "summary": "Table of common Script bonuses for special place and time, Quests, sacrifices and Ordeals of varying severity.",
+  "quotes": [
+   "Initiate has to complete a specific Quest"
+  ],
+  "related": []
+ },
+ {
+  "title": "Varying a Script",
+  "heading": "Varying a Script",
+  "line": 16520,
+  "endLine": 16534,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a Mystery cult (House Lore)",
+  "summary": "A Mystagogue may modify an Initiation Script with a test against an Ease Factor depending on whether a component is added or changed; only one change per Initiation is allowed.",
+  "quotes": [
+   "Stress Die + Intelligence + (House) Lore vs. Ease Factor"
+  ],
+  "related": []
+ },
+ {
+  "title": "Warping",
+  "heading": "Warping",
+  "line": 16536,
+  "endLine": 16549,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the Warping Score, advanced with Warping Points like an Ability, and gives the table of Warping Points needed per score.",
+  "quotes": [
+   "To increase the Warping Score by one point, a character needs five times the new score extra Warping Points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Warping and Non-Humans",
+  "heading": "Warping and Non-Humans",
+  "line": 16551,
+  "endLine": 16557,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Mundane creatures and things can be warped, but the storyguide just describes effects; creatures with a Might score are immune to Warping.",
+  "quotes": [
+   "Creatures with a Might score are absolutely immune to warping."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining Warping Points",
+  "heading": "Gaining Warping Points",
+  "line": 16559,
+  "endLine": 16570,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the four separate sources of Warping Points, all of which stack.",
+  "quotes": [
+   "Living in a strong (6 or higher) supernatural aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Warping from Living in Strong Auras",
+  "heading": "Living in Strong Auras",
+  "line": 16572,
+  "endLine": 16588,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of Warping Points gained per period by aura strength and how much time is spent in the aura; characters whose own powers come from that realm are exempt.",
+  "quotes": [
+   "Auras of over five points have an effect on anyone living within them"
+  ],
+  "related": []
+ },
+ {
+  "title": "Warping from Powerful Supernatural Effects",
+  "heading": "Powerful Supernatural Effects",
+  "line": 16590,
+  "endLine": 16592,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A Warping Point is gained from being subjected to a powerful supernatural effect not created by or specifically designed for you; sixth magnitude and higher Hermetic spells count.",
+  "quotes": [
+   "any Hermetic spell of sixth magnitude or higher counts"
+  ],
+  "related": []
+ },
+ {
+  "title": "Warping from Constant Supernatural Effects",
+  "heading": "Constant Supernatural Effects",
+  "line": 16594,
+  "endLine": 16615,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters continuously under supernatural effects gain Warping Points over time regardless of effect strength; explains what counts as constant, exceptions such as Parma Magica, and a summary table of effect types.",
+  "quotes": [
+   "A character who is constantly under the influence of one or more active supernatural effects gains one Warping Point per year for each effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "Warping from Supernatural Botches",
+  "heading": "Supernatural Botches",
+  "line": 16617,
+  "endLine": 16619,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Botching the roll to invoke a supernatural effect gives Warping Points equal to the number of zeros on the botch dice.",
+  "quotes": [
+   "she gains one Warping Point for every zero on the botch dice."
+  ],
+  "related": []
+ },
+ {
+  "title": "Effects of Warping",
+  "heading": "Effects of Warping",
+  "line": 16621,
+  "endLine": 16635,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "What a rising Warping Score does to a character: more prone to Twilight for magi, and for mundane characters a progression of Minor Flaws, a supernatural Minor Virtue and then Major Flaws.",
+  "quotes": [
+   "At a Warping Score of 6, and every point thereafter, the character gains a Major Flaw appropriate to the main sources of the warping."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aging",
+  "heading": "Aging",
+  "line": 16637,
+  "endLine": 16714,
+  "category": "aging",
+  "topic": "Aging",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Yearly aging roll against the Living Conditions and Longevity Ritual modifiers, the Aging table (apparent age, Aging Points, Decrepitude), and the Crisis procedure, table, medical attention and Creo Corpus remedies.",
+  "quotes": [
+   "AGING TOTAL: Stress die (no botch) + age/10 (round up)",
+   "CRISIS TOTAL: Simple die + age/10 (round up) + Decrepitude Score",
+   "Characters begin aging in the Winter after they turn 35."
+  ],
+  "related": [
+   "ArM5 p.261 Longevity Rituals"
+  ]
+ },
+ {
+  "title": "Combat Scores",
+  "heading": "Combat Scores",
+  "line": 16728,
+  "endLine": 16744,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "The five combat scores (Initiative, Attack, Defense, Damage, Soak) and the formulas for each total, plus Attack Advantage.",
+  "quotes": [
+   "ATTACK TOTAL: Dexterity + Combat Ability + Weapon Attack Modifier + Stress Die",
+   "DEFENSE TOTAL: Quickness + Combat Ability + Weapon Defense Modifier + Stress Die",
+   "ATTACK ADVANTAGE: Attacker's Attack Total - Defender's Defense Total"
+  ],
+  "related": [
+   "ArM5 pp.400-401 weapon table"
+  ]
+ },
+ {
+  "title": "Combat Botches",
+  "heading": "Combat Botches",
+  "line": 16746,
+  "endLine": 16750,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar on how botched combat rolls reduce the total to zero (and why a botched Defense is so deadly), with an exception for combatants with a negative base Defense.",
+  "quotes": [
+   "A botch on a combat roll reduces the total to zero, just as for any other botch."
+  ],
+  "related": [
+   "ArM5 p.227 Botching"
+  ]
+ },
+ {
+  "title": "Combat Sequence",
+  "heading": "Combat Sequence",
+  "line": 16752,
+  "endLine": 16766,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Step-by-step combat round: one Initiative roll for the whole fight, parties act in decreasing order, attacker and defender each roll a stress die, and a hit deals damage minus Soak.",
+  "quotes": [
+   "Initiative is determined once for the whole combat, and then remains the same every round.",
+   "If you miss, you cannot do any damage, no matter how high your Damage Total."
+  ],
+  "related": []
+ },
+ {
+  "title": "Length of a Combat Round",
+  "heading": "Length of a Combat Round",
+  "line": 16768,
+  "endLine": 16770,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "A combat round lasts about six seconds, which also determines how many rounds a Diameter spell lasts.",
+  "quotes": [
+   "A combat round lasts for about six seconds, so that a Diameter Duration spell lasts for twenty rounds."
+  ],
+  "related": []
+ },
+ {
+  "title": "Spell Damage",
+  "heading": "Spell Damage",
+  "line": 16772,
+  "endLine": 16774,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar explaining how a spell's listed damage is turned into a Damage Total with a stress die and how Soak is applied, and that Attack Advantage does not change spell damage.",
+  "quotes": [
+   "The target's Soak Total + Stress Die is then subtracted from this to determine the wounds suffered."
+  ],
+  "related": []
+ },
+ {
+  "title": "Damage Table",
+  "heading": "Damage Table",
+  "line": 16776,
+  "endLine": 16789,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Table converting damage past Soak into a wound level (Light to Dead) for each creature Size, with the rule for extrapolating beyond the table.",
+  "quotes": [
+   "For every 5 + size points by which the Damage Total exceeds the Soak Total, the wound level increases by one."
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiative Ties",
+  "heading": "Initiative Ties",
+  "line": 16791,
+  "endLine": 16793,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of re-rolling tied Initiative, where the re-roll only orders the tied parties relative to each other.",
+  "quotes": [
+   "The reroll only determines the relative ordering of C, D, and E; it does not over-ride the initial initiative result."
+  ],
+  "related": []
+ },
+ {
+  "title": "Combat: Simple Example",
+  "heading": "Combat: Simple Example",
+  "line": 16795,
+  "endLine": 16813,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of two-party combat showing Initiative, Attack, Defense, botch checks, Attack Advantage, Soak, the Damage Table and Wound Penalties across two rounds.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Missile Combat",
+  "heading": "Missile Combat",
+  "line": 16815,
+  "endLine": 16821,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Range increment penalties for missile attacks and the rule that only a shield's Defense bonus helps against missiles.",
+  "quotes": [
+   "The Attack Total suffers a -3 penalty for every range increment beyond the first between the attackers and the defenders."
+  ],
+  "related": []
+ },
+ {
+  "title": "Moving in Combat",
+  "heading": "Moving in Combat",
+  "line": 16823,
+  "category": "combat",
+  "topic": "Combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Three movement speeds in combat (walk, hurry, run) with pace-per-round formulas, and the length of a pace.",
+  "quotes": [
+   "WALK: 10 + Qik \u2013 Encumbrance paces per round",
+   "HURRY: 2 x (10 + Qik \u2013 Encumbrance) paces per round",
+   "RUN: 4 x (10 + Qik \u2013 Encumbrance) paces per round"
+  ],
+  "related": []
+ },
+ {
+  "title": "Groups",
+  "heading": "Groups",
+  "line": 16843,
+  "endLine": 16853,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Basic rules for forming combat groups: size limit, roughly comparable Combat Totals, a vanguard, an optional leader, and when a group splits or reforms.",
+  "quotes": [
+   "Groups are handled together for combat purposes, and may consist of one to six characters, inclusive."
+  ],
+  "related": []
+ },
+ {
+  "title": "Group Damage",
+  "heading": "Group Damage",
+  "line": 16855,
+  "endLine": 16861,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A group deals its damage once per member, distributed as evenly as possible among the opposing group, with the vanguard taking at least as many blows and its wound penalties applying to the group.",
+  "quotes": [
+   "The vanguard must always take at least as many blows as every other member of the group."
+  ],
+  "related": []
+ },
+ {
+  "title": "Untrained Group",
+  "heading": "Untrained Group",
+  "line": 16863,
+  "endLine": 16865,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A group of similar-ability characters whose combat statistics are simply those of the vanguard.",
+  "quotes": [
+   "Combat statistics are as for the vanguard."
+  ],
+  "related": []
+ },
+ {
+  "title": "Trained Group",
+  "heading": "Trained Group",
+  "line": 16867,
+  "endLine": 16877,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Groups that have trained together get a leader, a limit on size from Leadership, and a bonus from the other members' combat abilities capped by the leader's Leadership, applied to either Attack or Defense.",
+  "quotes": [
+   "The maximum number of fighters that can be coordinated is equal to the leader's Leadership score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Defender",
+  "heading": "Defender",
+  "line": 16879,
+  "endLine": 16883,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "magi",
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters (such as a magus with shield grogs) can be protected by defenders who fight as a group and the defended is only harmed if they fail.",
+  "quotes": [
+   "The number of characters defended may not exceed the number of characters defending."
+  ],
+  "related": []
+ },
+ {
+  "title": "Defenders Without Groups",
+  "heading": "Defenders Without Groups",
+  "line": 16885,
+  "endLine": 16887,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar allowing defenders even when the group rules are not used.",
+  "quotes": [
+   "A defended character cannot be attacked until all his defenders have been incapacitated."
+  ],
+  "related": []
+ },
+ {
+  "title": "Disengaging",
+  "heading": "Disengaging",
+  "line": 16893,
+  "endLine": 16899,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A party disengages by beating the Attack Totals of those who attacked it with a Defense Total, gaining a cumulative bonus on repeated attempts.",
+  "quotes": [
+   "A party that tries to disengage repeatedly gets a +3 cumulative bonus for every attempt after the first"
+  ],
+  "related": []
+ },
+ {
+  "title": "Exertion",
+  "heading": "Exertion",
+  "line": 16901,
+  "endLine": 16903,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Spend a Fatigue level to add Combat Ability to an attack or to defense rolls for a round; groups must all spend a level and use the vanguard's Combat Ability.",
+  "quotes": [
+   "By expending a Fatigue level you can add a bonus equal to your Combat Ability to either attack or defense for one round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic in Combat",
+  "heading": "Magic",
+  "line": 16905,
+  "endLine": 16909,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Magi cast at their Quickness-based place in the initiative order, take about a round to cast, and may fast-cast in response to other actions.",
+  "quotes": [
+   "A magus Fast Casting a spell (see page 217) acts in immediate response to another action, and thus not at a particular initiative point."
+  ],
+  "related": [
+   "ArM5 p.217 Fast Casting"
+  ]
+ },
+ {
+  "title": "Mounted Combat",
+  "heading": "Mounted Combat",
+  "line": 16911,
+  "endLine": 16913,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A mounted fighter adds Ride, to a limit, to Attack and Defense Totals.",
+  "quotes": [
+   "A mounted character adds his Ride score, to a maximum of +3, to his Attack and Defense Totals"
+  ],
+  "related": []
+ },
+ {
+  "title": "Non-Lethal Combat (Scuffling and Grappling)",
+  "heading": "Non-Lethal Combat",
+  "line": 16915,
+  "endLine": 16931,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Scuffles convert wound levels into lost Short-Term Fatigue, and grapples use Attack Advantage to build a Grapple Strength that the grappled character must reduce to escape.",
+  "quotes": [
+   "A character attempting to grapple another succeeds if his Attack Advantage is greater than zero.",
+   "Fatigue levels inflicted in a scuffle are Short-Term Fatigue levels."
+  ],
+  "related": []
+ },
+ {
+  "title": "Scuffle Effects",
+  "heading": "Scuffle Effects",
+  "line": 16933,
+  "endLine": 16941,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table converting the wound level an attack would normally cause into Fatigue levels and lesser wounds in a scuffle.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Special Combat Effects (Maneuvers)",
+  "heading": "Special Effects",
+  "line": 16943,
+  "endLine": 16947,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Non-damaging maneuvers such as tripping or disarming use the normal combat sequence with a target Attack Advantage required to succeed, usually based on Brawl.",
+  "quotes": [
+   "Follow the normal combat sequence, and set an Attack Advantage needed to succeed."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sample Advantages for Maneuvers",
+  "heading": "Sample Advantages",
+  "line": 16949,
+  "endLine": 16956,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of required Attack Advantage for disarming, tripping, grabbing a worn item and taking a weapon.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Splitting Groups",
+  "heading": "Splitting Groups",
+  "line": 16958,
+  "endLine": 16964,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Several attacking groups can try to break a defending group apart with an attack resolved on Attack Advantage rather than damage, dividing it evenly.",
+  "quotes": [
+   "Groups may only try to split their opponents' groups in melee combat."
+  ],
+  "related": []
+ },
+ {
+  "title": "Combat: Complex Example",
+  "heading": "Combat: Complex Example",
+  "line": 16966,
+  "endLine": 17000,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of group combat between a trained and an untrained group, showing the group bonus, re-rolled Initiative ties, Wound Penalties and disengaging.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Armor",
+  "heading": "Armor",
+  "line": 17002,
+  "endLine": 17004,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Armor is described by its material and by how much of the body it covers, and its Protection adds to Soak.",
+  "quotes": [
+   "Two factors describe the armor a given character wears: what it is made of and how much of it the character is wearing."
+  ],
+  "related": []
+ },
+ {
+  "title": "Armor Outfittings",
+  "heading": "Outfittings",
+  "line": 17010,
+  "endLine": 17012,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes partial versus full armor and states that only the predominant material of a suit affects game statistics.",
+  "quotes": [
+   "For simplicity, only the predominant material of the suit has any effect on game statistics (Protection and Load)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Armor Table",
+  "heading": "Armor Table",
+  "line": 17014,
+  "endLine": 17027,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of Protection, Load and Cost for partial and full armor of each material.",
+  "quotes": [
+   "The bonus the armor grants to the character's Soak score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Melee Weapon Statistics",
+  "heading": "Melee Weapon Statistics",
+  "line": 17029,
+  "endLine": 17073,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of Initiative, Attack, Defense and Damage modifiers, strength minimums, Load and Cost for brawling, single, and great melee weapons and shields.",
+  "quotes": [
+   "The minimum strength requirements for a weapon and a shield must be met separately."
+  ],
+  "related": []
+ },
+ {
+  "title": "Missile Weapon Statistics",
+  "heading": "Missile Weapon Statistics",
+  "line": 17075,
+  "endLine": 17097,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of thrown and bow weapons with modifiers, range increments, strength minimums, Load and Cost.",
+  "quotes": [
+   "The range increment for the weapon, in paces."
+  ],
+  "related": []
+ },
+ {
+  "title": "Weapon Descriptions",
+  "heading": "Weapon Descriptions",
+  "line": 17099,
+  "endLine": 17175,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Brief definitions of each weapon in the tables, including notes on how some are used (a lance only mounted, throwing weapons also usable in melee).",
+  "quotes": [
+   "The lance may only be used from horseback, where it is a Single weapon."
+  ],
+  "related": []
+ },
+ {
+  "title": "Encumbrance",
+  "heading": "Encumbrance",
+  "line": 17177,
+  "endLine": 17197,
+  "category": "combat",
+  "topic": "Encumbrance",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Total Load from carried items determines Burden, and Strength offsets Burden to give Encumbrance, which is subtracted from many rolls though not from combat Attack and Defense when due to weapons and armor.",
+  "quotes": [
+   "Burden increases when Load reaches the level for that Burden, so that a character with a Load of 9 has a Burden of 3.",
+   "If the character's Strength is zero or negative, his Encumbrance is the same as his Burden."
+  ],
+  "related": [
+   "ArM5 p.213 Casting"
+  ]
+ },
+ {
+  "title": "Fatigue Levels",
+  "heading": "Fatigue",
+  "line": 17199,
+  "endLine": 17203,
+  "category": "combat",
+  "topic": "Fatigue",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Names the Fatigue levels from Fresh to Unconscious, explains that Short-Term and Long-Term losses share one track, and gives the penalties that apply to rolls other than Soak.",
+  "quotes": [
+   "Most characters have six Fatigue levels",
+   "The penalty for Weary is -1, for Tired -3, and for Dazed -5."
+  ],
+  "related": []
+ },
+ {
+  "title": "Short-Term Fatigue",
+  "heading": "Short-Term Fatigue",
+  "line": 17205,
+  "endLine": 17208,
+  "category": "combat",
+  "topic": "Fatigue",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Strenuous actions require a Fatigue roll on Stamina minus Encumbrance against an Ease Factor; failure costs a Short-Term Fatigue level and a botch costs two, with combat and magic using their own rules.",
+  "quotes": [
+   "roll Stamina \u2014 Encumbrance on a stress die against an Ease Factor of 6"
+  ],
+  "related": [
+   "ArM5 p.213 Spontaneous casting fatigue",
+   "ArM5 p.231",
+   "ArM5 p.397"
+  ]
+ },
+ {
+  "title": "Recovery from Short-Term Fatigue",
+  "heading": "Recovery from Short-Term Fatigue",
+  "line": 17209,
+  "endLine": 17213,
+  "category": "combat",
+  "topic": "Fatigue",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Fatigue is recovered one level at a time with rest, using the Fatigue Recovery Chart, with an optional Stamina roll to halve the time.",
+  "quotes": [
+   "Success allows recovery in half the normal time."
+  ],
+  "related": []
+ },
+ {
+  "title": "Long-Term Fatigue",
+  "heading": "Long-Term Fatigue",
+  "line": 17215,
+  "endLine": 17219,
+  "category": "combat",
+  "topic": "Fatigue",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Extended exertion costs Long-Term Fatigue levels at the storyguide's discretion, regained only by a good night's rest, with the more serious levels treated as short term.",
+  "quotes": [
+   "One night's rest removes one Long-Term Fatigue level."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fatigue Recovery Chart",
+  "heading": "Fatigue Recovery Chart",
+  "line": 17221,
+  "endLine": 17229,
+  "category": "combat",
+  "topic": "Fatigue",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of the time needed to recover from each Fatigue level to the next lower one.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Wounds",
+  "heading": "Wounds",
+  "line": 17231,
+  "endLine": 17239,
+  "category": "combat",
+  "topic": "Wounds",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Damage beyond Soak becomes wounds; a character can have many wounds, their penalties add up and apply to all actions but not Soak, and non-fatal wounds cannot kill immediately.",
+  "quotes": [
+   "The character suffers a penalty to all actions (rolls and totals) equal to the sum of all penalties due to his wounds"
+  ],
+  "related": []
+ },
+ {
+  "title": "Damage Table (Wounds)",
+  "heading": "Damage Table",
+  "line": 17241,
+  "endLine": 17254,
+  "category": "combat",
+  "topic": "Wounds",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Repeat of the Damage Table converting damage past Soak into wound levels by Size.",
+  "quotes": [
+   "For every 5 + size points by which the Damage Total exceeds the Soak Total, the wound level increases by one."
+  ],
+  "related": []
+ },
+ {
+  "title": "Wound Table",
+  "heading": "Wound Table",
+  "line": 17256,
+  "endLine": 17265,
+  "category": "combat",
+  "topic": "Wounds",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of the penalty each wound level applies to actions, with Incapacitated characters unable to act.",
+  "quotes": [
+   "The character may not undertake any actions."
+  ],
+  "related": []
+ },
+ {
+  "title": "Activities While Injured",
+  "heading": "Activities While Injured",
+  "line": 17267,
+  "endLine": 17277,
+  "category": "combat",
+  "topic": "Wounds",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "What a wounded character can safely do at each band of Wound Penalty, including travel, study and lab work, and the Recovery roll risked by overexertion.",
+  "quotes": [
+   "Any character who does more than his injuries allow must make an immediate Recovery roll for his most serious wound."
+  ],
+  "related": []
+ },
+ {
+  "title": "Recovering From Wounds",
+  "heading": "Recovering From Wounds",
+  "line": 17279,
+  "endLine": 17297,
+  "category": "combat",
+  "topic": "Wounds",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Each wound gets a Recovery roll at an interval depending on its severity, compared with Stable and Improvement Ease Factors, so wounds may improve, hold steady with a bonus, or worsen.",
+  "quotes": [
+   "RECOVERY TOTAL: Stamina + Medic's Chirurgy or Medicine score + Magical Aid + Stress Die",
+   "Recovery rolls do not suffer from the Wound Penalty."
+  ],
+  "related": []
+ },
+ {
+  "title": "Recovery from Incapacitation",
+  "heading": "Recovery from Incapacitation",
+  "line": 17298,
+  "endLine": 17302,
+  "category": "combat",
+  "topic": "Wounds",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Incapacitated characters make two Recovery rolls a day, dying on a low result and improving to Heavy on a high one, with a cumulative penalty otherwise.",
+  "quotes": [
+   "On a roll of 0 or less, the character dies."
+  ],
+  "related": []
+ },
+ {
+  "title": "Medical Attention",
+  "heading": "Medical Attention",
+  "line": 17304,
+  "endLine": 17308,
+  "category": "combat",
+  "topic": "Wounds",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A medic's Chirurgy (for injuries) or Medicine (for disease and poison) adds to Recovery rolls; only one Ability can help with a given wound.",
+  "quotes": [
+   "Combat wounds and similar injuries require Chirurgy, while diseases and poison require Medicine."
+  ],
+  "related": [
+   "Art and Academe, Chapter 4"
+  ]
+ },
+ {
+  "title": "Healing Spells",
+  "heading": "Healing Spells",
+  "line": 17310,
+  "endLine": 17314,
+  "category": "combat",
+  "topic": "Wounds",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Creo Corpus rituals can heal wounds immediately, while other Creo Corpus spells add a bonus to Recovery rolls for as long as they remain in effect, and may cause Warping.",
+  "quotes": [
+   "Certain Creo Corpus rituals can heal wounds immediately, without requiring a roll"
+  ],
+  "related": [
+   "ArM5 p.332 The Chirurgeon's Healing Touch",
+   "ArM5 p.389 Warping"
+  ]
+ },
+ {
+  "title": "Debilitation",
+  "heading": "Debilitation",
+  "line": 17318,
+  "endLine": 17323,
+  "category": "hazards",
+  "topic": "Disease and poison",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Diseases and poisons require a Stamina check against an Ease Factor set by the agent; failure means a wound treated with Medicine that then recovers by the usual rules.",
+  "quotes": [
+   "Anyone exposed to a debilitating agent, whether poison or a cause of disease, must make a Stamina check against an Ease Factor set by the cause of the disease."
+  ],
+  "related": []
+ },
+ {
+  "title": "Diseases",
+  "heading": "Diseases",
+  "line": 17324,
+  "endLine": 17336,
+  "category": "hazards",
+  "topic": "Disease and poison",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How diseases are modelled: humoral imbalances or disease spirits, handled via aging or debilitation, with Ease Factors indicating how much of a population is affected.",
+  "quotes": [
+   "a disease with an Ease Factor of six will afflict about half of the population"
+  ],
+  "related": [
+   "Art and Academe, pages 45-51"
+  ]
+ },
+ {
+  "title": "Disease Table",
+  "heading": "Disease Table",
+  "line": 17338,
+  "endLine": 17345,
+  "category": "hazards",
+  "topic": "Disease and poison",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of four sample diseases with the excess humor and symptoms of each.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Poisons",
+  "heading": "Poisons",
+  "line": 17347,
+  "endLine": 17349,
+  "category": "hazards",
+  "topic": "Disease and poison",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Poison Ease Factors have a minimum and a maximum, and poisons can inflict fatal wounds from the start.",
+  "quotes": [
+   "The Ease Factor for the initial Stamina check is at least 3"
+  ],
+  "related": [
+   "Art and Academe, pages 64-65"
+  ]
+ },
+ {
+  "title": "Poison Table",
+  "heading": "Poison Table",
+  "line": 17351,
+  "endLine": 17358,
+  "category": "hazards",
+  "topic": "Disease and poison",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of sample poisons with their Ease Factor and the wound they cause.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Deprivation",
+  "heading": "Deprivation",
+  "line": 17360,
+  "endLine": 17364,
+  "category": "hazards",
+  "topic": "Deprivation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters deprived of food, water or air make repeated Stamina checks with rising Ease Factor, losing Fatigue levels and then suffering worsening wounds.",
+  "quotes": [
+   "The Ease Factor for the check starts at 3, and increases by one for every time period that passes."
+  ],
+  "related": []
+ },
+ {
+  "title": "Deprivation Table",
+  "heading": "Deprivation Table",
+  "line": 17366,
+  "endLine": 17372,
+  "category": "hazards",
+  "topic": "Deprivation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of the time between checks for deprivation of air, water and food.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Injuries (Non-Combat Damage)",
+  "heading": "Injuries",
+  "line": 17374,
+  "endLine": 17384,
+  "category": "hazards",
+  "topic": "Non-combat damage",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Non-combat damage adds a damage bonus to a stress die and soak adds a stress die to Soak; the same rules calculate spell damage.",
+  "quotes": [
+   "NON-COMBAT DAMAGE TOTAL: Damage Bonus + Stress Die",
+   "NON-COMBAT SOAK TOTAL: Soak Total + Stress Die."
+  ],
+  "related": []
+ },
+ {
+  "title": "Heat and Corrosion",
+  "heading": "Heat and Corrosion",
+  "line": 17386,
+  "endLine": 17390,
+  "category": "hazards",
+  "topic": "Non-combat damage",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Damage bonus from heat and corrosion is multiplied by how much of the body is exposed and inflicted once per combat round.",
+  "quotes": [
+   "If it covers an entire limb, the damage bonus is doubled."
+  ],
+  "related": []
+ },
+ {
+  "title": "Heat and Corrosion Table",
+  "heading": "Heat and Corrosion Table",
+  "line": 17392,
+  "endLine": 17404,
+  "category": "hazards",
+  "topic": "Non-combat damage",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of intensity bonuses for common heat and corrosion sources.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Impact",
+  "heading": "Impact",
+  "line": 17406,
+  "endLine": 17418,
+  "category": "hazards",
+  "topic": "Non-combat damage",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Damage from falling or falling objects is taken once, with a table of sample impact damage bonuses.",
+  "quotes": [
+   "Characters may also take damage from falling, or having things fall on them."
+  ],
+  "related": []
+ },
+ {
+  "title": "Travel",
+  "heading": "Travel",
+  "line": 17420,
+  "endLine": 17432,
+  "category": "hazards",
+  "topic": "Travel",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidelines for daily travel distances on foot, mounted, by cart and at sea, and the Long-Term Fatigue cost of hurried travel.",
+  "quotes": [
+   "Attempts to travel quickly cost one Long-Term Fatigue level per day, as long as the characters actually travel."
+  ],
+  "related": [
+   "City and Guild, Chapter 5"
+  ]
+ },
+ {
+  "title": "Realms: Belonging and Affiliation",
+  "heading": "Chapter 12: Realms",
+  "line": 17436,
+  "endLine": 17446,
+  "category": "realms",
+  "topic": "Realms",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the four realms and the difference between a creature belonging to a realm and merely being affiliated with it.",
+  "quotes": [
+   "A creature that belongs to a realm cannot be affiliated with any other realm."
+  ],
+  "related": []
+ },
+ {
+  "title": "Realm Auras",
+  "heading": "Realm Auras",
+  "line": 17462,
+  "endLine": 17469,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Auras rate how strongly a realm holds an area on a scale up to 10, usually act as a modifier on supernatural activity, and when two realms contest a place only the stronger holds sway at a time.",
+  "quotes": [
+   "which can be rated in power on a scale from 1 to 10"
+  ],
+  "related": [
+   "ArM5 p.420 Regiones"
+  ]
+ },
+ {
+  "title": "Realm Interaction",
+  "heading": "Realm Interaction",
+  "line": 17470,
+  "endLine": 17475,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "all",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "An aura modifies all supernatural activity in it according to the Realm Interaction table and adds botch dice for acts in a foreign realm.",
+  "quotes": [
+   "For each point of aura rating, roll an extra botch die."
+  ],
+  "related": []
+ },
+ {
+  "title": "Realm Interaction Table",
+  "heading": "Realm Interaction Table",
+  "line": 17476,
+  "endLine": 17487,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "all",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of how each realm's aura modifies powers of each realm, with a worked example, and the rule that Divine powers are not hampered by other auras.",
+  "quotes": [
+   "Divine powers have no penalty and no additional botch dice in auras of the other realms."
+  ],
+  "related": []
+ },
+ {
+  "title": "Supernatural Activity Rolls Modified by Aura",
+  "heading": "Supernatural Activity Rolls Modified by Aura",
+  "line": 17489,
+  "endLine": 17499,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar listing which rolls and totals the aura modifier applies to: casting, lab totals, supernatural Ability rolls, Magic Resistance and Penetration.",
+  "quotes": [
+   "Thus, a magus in a Magic aura of 4 has a +4 bonus to his Magic Resistance, while a demon has a -4 penalty.",
+   "The aura modifier does not apply to Penetration twice."
+  ],
+  "related": []
+ },
+ {
+  "title": "Creatures of a Realm",
+  "heading": "Creatures of a Realm",
+  "line": 17501,
+  "endLine": 17505,
+  "category": "beings",
+  "topic": "Realms",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on how a creature's realm shapes its attitude towards humans (Infernal, Magic, Divine, Faerie), illustrated with a talking dog in each realm.",
+  "quotes": [
+   "Creatures of the Infernal are always interested in corrupting and harming human beings"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Resistance and Penetration of Creatures",
+  "heading": "Magic Resistance and Penetration",
+  "line": 17507,
+  "endLine": 17521,
+  "category": "beings",
+  "topic": "Magic Resistance and Penetration",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Creatures with a Might Score derive Magic Resistance and Penetration from it, and characters with non-Hermetic supernatural abilities have their own Penetration formula.",
+  "quotes": [
+   "CREATURE MAGIC RESISTANCE: Might Score + Aura Modifier",
+   "CREATURE PENETRATION: Might Score \u2013 (5 x Might Points spent on power) + Penetration Bonus + Aura Modifier",
+   "CHARACTER PENETRATION: Effect Roll \u2013 Ease Factor + Penetration Bonus + Aura Modifier"
+  ],
+  "related": [
+   "ArM5 p.215 Penetration"
+  ]
+ },
+ {
+  "title": "Magical Auras",
+  "heading": "Magical Auras",
+  "line": 17539,
+  "endLine": 17547,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes typical strengths and character of Magic auras, where covenants are usually sited, and the dangers of the strongest auras; Magic auras do not vary cyclically.",
+  "quotes": [
+   "Most magical areas have an aura from 1 to 5."
+  ],
+  "related": [
+   "Realms of Power: Magic, chapter 2"
+  ]
+ },
+ {
+  "title": "Sources of Magical Auras",
+  "heading": "Sources of Magical Auras",
+  "line": 17549,
+  "endLine": 17555,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Magic auras arise from fine natural features or from magical creatures and activity, and the usual upper limits on the strengths produced.",
+  "quotes": [
+   "If a moderately powerful (Might 30 or more) magical creature takes up residence in an area, that place will, over the course of years, acquire a weak Magical aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Infernal Creatures",
+  "heading": "Infernal Creatures",
+  "line": 17581,
+  "endLine": 17587,
+  "category": "realms",
+  "topic": "Infernal realm",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Infernal creatures may take attractive forms, and their lies cannot be detected by Magic realm powers, though ordinary investigation can still reveal the truth.",
+  "quotes": [
+   "The lies of creatures that belong to the Infernal realm cannot be detected by the powers of the Magic realm."
+  ],
+  "related": []
+ },
+ {
+  "title": "Infernal Auras",
+  "heading": "Infernal Auras",
+  "line": 17589,
+  "endLine": 17595,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the effects of Infernal auras on travelers and magic, that magic can detect them, and that they wax at night and wane on holy days.",
+  "quotes": [
+   "Of greater concern to magi, Infernal auras interfere with the use of magic."
+  ],
+  "related": [
+   "Realms of Power: The Infernal, pp.10-17"
+  ]
+ },
+ {
+  "title": "Sources of Infernal Auras",
+  "heading": "Sources of Infernal Auras",
+  "line": 17597,
+  "endLine": 17601,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Infernal auras arise from serious or repeated sin and from infernal creatures or powers, with examples of the strengths produced.",
+  "quotes": [
+   "In an area with no aura, a cruel and premeditated murder can create a level 1 aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Creatures",
+  "heading": "Faerie Creatures",
+  "line": 17611,
+  "endLine": 17619,
+  "category": "realms",
+  "topic": "Faerie realm",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faeries gain Vitality when humans play out their stories, cannot truly create, change or learn without mortal aid, and are predictable if you know their story.",
+  "quotes": [
+   "They are interested in having humans play out their stories, because faeries gain energy, called Vitality, when this happens."
+  ],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Faerie Auras",
+  "heading": "Faerie Auras",
+  "line": 17621,
+  "endLine": 17631,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faerie auras range from weak to immense and vary in strength with how closely the surroundings match the nature of the faeries within.",
+  "quotes": [
+   "Faerie auras tend to vary in strength depending on how closely the surrounding world matches the nature of the faeries within."
+  ],
+  "related": [
+   "Realms of Power: Faerie, pp.14-18"
+  ]
+ },
+ {
+  "title": "Sources of Faerie Auras",
+  "heading": "Sources of Faerie Auras",
+  "line": 17633,
+  "endLine": 17637,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faerie auras arise from faeries, their powers, and stories told about a place, and tend to be stronger than other aura types.",
+  "quotes": [
+   "Faerie auras also arise when stories are told about a place."
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Auras",
+  "heading": "Divine Auras",
+  "line": 17661,
+  "endLine": 17667,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Divine auras (the Dominion) are nearly ubiquitous where believers live, strengthen on Sundays and holy days, and wane at night and on evil days.",
+  "quotes": [
+   "On Sundays and holy days the power of the Dominion increases; at night and on evil days it wanes."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sources of Divine Auras",
+  "heading": "Sources of Divine Auras",
+  "line": 17669,
+  "endLine": 17675,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Typical Divine aura strengths for fields, villages, towns, places of worship, relic sites and the holiest places.",
+  "quotes": [
+   "Most places of worship have an aura of 4, while places with wider significance, such as cathedrals, important mosques, and the churches of major monasteries, have an aura of 5."
+  ],
+  "related": [
+   "Realms of Power: The Divine Revised Edition, pp.10-17"
+  ]
+ },
+ {
+  "title": "True Faith",
+  "heading": "True Faith",
+  "line": 17677,
+  "endLine": 17691,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "True Faith is measured by a Score and Faith Points that work like Confidence, and the Score gives Magic Resistance; Faith Points are regained each dawn up to the Score.",
+  "quotes": [
+   "TRUE FAITH MAGIC RESISTANCE: True Faith Score X 10",
+   "Each dawn, you regain a number of Faith Points up to your True Faith Score"
+  ],
+  "related": [
+   "Realms of Power: The Divine Revised Edition, p.56"
+  ]
+ },
+ {
+  "title": "Relics",
+  "heading": "Relics",
+  "line": 17693,
+  "endLine": 17701,
+  "category": "realms",
+  "topic": "Relics",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A relic",
+  "summary": "Every relic has Faith giving Confidence-like Faith Points and Magic Resistance, a Divine Might limiting uses of its powers, and a power that repels Infernal creatures.",
+  "quotes": [
+   "A relic's Divine Might is equal to the relic's Faith score (or highest Faith score, if more than one applies) multiplied by 10, and the Might Pool is refreshed with every sunrise."
+  ],
+  "related": [
+   "Realms of Power: The Divine Revised Edition, pp.88-89"
+  ]
+ },
+ {
+  "title": "Miracles",
+  "heading": "Miracles",
+  "line": 17709,
+  "endLine": 17711,
+  "category": "realms",
+  "topic": "Divine realm",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Miracles are direct divine intervention and cannot fail or be resisted.",
+  "quotes": [
+   "As such, they can do anything, cannot fail, and cannot be resisted by any other power."
+  ],
+  "related": [
+   "ArM5 p.505 Mythic Europe"
+  ]
+ },
+ {
+  "title": "Magic Resistance For Church Officers and Sovereigns",
+  "heading": "Magic Resistance For Church Officers and Sovereigns",
+  "line": 17713,
+  "endLine": 17727,
+  "category": "realms",
+  "topic": "Magic Resistance and Penetration",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ordained or crowned office",
+  "summary": "Sidebar giving ordained and anointed leaders Magic Resistance by rank, a Soak bonus derived from it, and the effect of excommunication.",
+  "quotes": [
+   "The religious and secular leaders listed below receive a Magic Resistance score as listed here, and a Soak bonus equal to Magic Resistance / 5."
+  ],
+  "related": [
+   "The Church, p.31"
+  ]
+ },
+ {
+  "title": "The Mundane",
+  "heading": "The Mundane",
+  "line": 17730,
+  "endLine": 17734,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Mundane areas have no aura, so powers work there without hindrance, though most settlements share somewhat in the Dominion.",
+  "quotes": [
+   "The mundane has no aura rating"
+  ],
+  "related": []
+ },
+ {
+  "title": "Regiones",
+  "heading": "Regiones",
+  "line": 17736,
+  "endLine": 17746,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces regiones, layered levels of aura at one physical location whose higher levels have stronger auras and stranger inhabitants.",
+  "quotes": [
+   "Regiones consist of several levels of aura, layered one on top of another in order of increasing power, the lowest level is connected to the mundane world."
+  ],
+  "related": []
+ },
+ {
+  "title": "Entering and Leaving Regiones",
+  "heading": "Entering and Leaving Regiones",
+  "line": 17748,
+  "endLine": 17770,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The three ways into a regio (being led, entering voluntarily by sight or path, or getting lost) and the roll and Ease Factor for seeing into a regio level.",
+  "quotes": [
+   "REGIO SIGHT ROLL: Perception + Appropriate Ability + Stress Die",
+   "EASE FACTOR: 5 + (2 \u00d7 difference between current level's aura and sought level's aura)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic in Regiones",
+  "heading": "Magic in Regiones",
+  "line": 17772,
+  "endLine": 17774,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Powers used in a regio level are modified by that level's aura per the Realm Interaction Table, with doubled botch dice for powers of a different realm.",
+  "quotes": [
+   "any power used within a regio of a realm different from that of the power attracts twice the normal number of botch dice."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Origins of Regiones",
+  "heading": "The Origins of Regiones",
+  "line": 17776,
+  "endLine": 17782,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Two common ways regiones arise (a besieged aura moving up, or a powerful event creating a new level), and that Hermetic magi cannot create them at will.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Vis Sources",
+  "heading": "Vis Sources",
+  "line": 17784,
+  "endLine": 17790,
+  "category": "covenant",
+  "topic": "Vis sources",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains what a vis source is, the Art and amount of vis it normally yields, and how vis must be gathered.",
+  "quotes": [
+   "Sometimes, however, it is possible to take a certain number of pawns of vis from a place every year."
+  ],
+  "related": [
+   "ArM5 p.212 Raw vis"
+  ]
+ },
+ {
+  "title": "Tainted Vis",
+  "heading": "Tainted Vis",
+  "line": 17805,
+  "endLine": 17811,
+  "category": "realms",
+  "topic": "Vis sources",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Vis from Faerie, Divine and Infernal auras may be tainted, with Infernal vis adding botch dice to spellcasting and demanding an experimental-results roll for enchanted items.",
+  "quotes": [
+   "At the very least, using Infernally tainted vis adds twice as many botch dice as usual to spellcasting"
+  ],
+  "related": [
+   "Realms of Power: Faerie, pp.18-19",
+   "Realms of Power: The Infernal, pp.18-19"
+  ]
+ },
+ {
+  "title": "Creature Might",
+  "heading": "Creature Might",
+  "line": 17825,
+  "endLine": 17835,
+  "category": "beings",
+  "topic": "Creature Might",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Might Score gives a supernatural creature Magic Resistance, fuels its powers through the Might Pool and sets Penetration; the Pool normally refreshes over a day.",
+  "quotes": [
+   "A creature that hasn't used any powers recently has a Might Pool equal to its Might Score.",
+   "Might Pools almost always refresh to the creature's Might Score over the course of a day.",
+   "CREATURE MAGIC RESISTANCE: Might Score + Aura Modifier"
+  ],
+  "related": []
+ },
+ {
+  "title": "Creature Powers",
+  "heading": "Creature Powers",
+  "line": 17837,
+  "endLine": 17859,
+  "category": "beings",
+  "topic": "Creature powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Creature powers have no levels and instead cost Might points, with a standard format, a Penetration formula based on Might and cost, and a dispelling level equal to Might.",
+  "quotes": [
+   "Power Name, X points, Init Y, Form: Description.",
+   "CREATURE POWER PENETRATION: Might Score \u2013 (5 x Might Point cost of the power) + Penetration Bonus",
+   "CREATURE POWER LEVEL FOR DISPELLING: Creature's Might Score"
+  ],
+  "related": [
+   "ArM5 p.219 Penetration"
+  ]
+ },
+ {
+  "title": "Creature Format",
+  "heading": "Creature Format",
+  "line": 17861,
+  "endLine": 17901,
+  "category": "beings",
+  "topic": "Creature statistics",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Line-by-line explanation of a creature's stat block (Might, Characteristics with Cunning, Size, Confidence, Fatigue and Wound Penalty notation, Abilities, Powers, Vis).",
+  "quotes": [
+   "Size 0 is the same size (volume, and thus normally roughly mass) as an adult human being.",
+   "An increase or decrease of three points of Size is approximately equivalent to a factor of ten change in size."
+  ],
+  "related": [
+   "ArM5 p.391 Aging",
+   "ArM5 p.389 Warping",
+   "ArM5 p.403 Encumbrance"
+  ]
+ },
+ {
+  "title": "Size Examples",
+  "heading": "Size Examples",
+  "line": 17903,
+  "endLine": 17930,
+  "category": "beings",
+  "topic": "Creature statistics",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of Size values with approximate heights, weights and example creatures, and the rule of thumb that each Size category roughly doubles weight.",
+  "quotes": [
+   "Each Size category is approximately twice as heavy as the previous size category."
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating Creatures",
+  "heading": "Creating Creatures",
+  "line": 17932,
+  "endLine": 17948,
+  "category": "beings",
+  "topic": "Creature creation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Advice for storyguides designing creatures: start from a concept and role, then choose Might, combat statistics and power costs to suit the intended challenge.",
+  "quotes": [
+   "A Might Score of 20 indicates that starting magi will have a lot of trouble affecting the creature with magic."
+  ],
+  "related": []
+ },
+ {
+  "title": "Beasts in Combat",
+  "heading": "Beasts in Combat",
+  "line": 17954,
+  "endLine": 17960,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Beasts can use most human combat options, usually fight as untrained groups, and may use only one natural weapon per round, the best listed first.",
+  "quotes": [
+   "Regardless of how many weapons a beast has, it may only attack with one weapon in a given round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating Mundane Beasts",
+  "heading": "Creating Mundane Beasts",
+  "line": 18440,
+  "endLine": 18442,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces the step-by-step method for building statistics for any mundane beast, for example a shapechanger's animal form.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Beast Creation Step 1: Type and Size",
+  "heading": "1. Type and Size",
+  "line": 18444,
+  "endLine": 18446,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Beasts are sorted into four categories (Birds, Fish, Hoofed Beasts and Clawed Beasts), which drive later steps.",
+  "quotes": [
+   "There are four categories of beasts: Birds, Fish, Hoofed Beasts and Clawed Beasts."
+  ],
+  "related": []
+ },
+ {
+  "title": "Beast Creation Step 2: Characteristics",
+  "heading": "2. Characteristics",
+  "line": 18448,
+  "endLine": 18463,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Beasts use Cunning instead of Intelligence, spend characteristic points only on the four physical Characteristics, then adjust Strength and Quickness for Size; mental Characteristics come from the beast's type.",
+  "quotes": [
+   "Unlike human characters, animals only spend points on their four physical characteristics (Stamina, Strength, Dexterity and Quickness).",
+   "Add twice the Size to Strength",
+   "Subtract Size from Quickness"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mental Characteristics of Creatures",
+  "heading": "Mental Characteristics of Creatures",
+  "line": 18465,
+  "endLine": 18472,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of Cunning, Perception, Presence and Communication for each beast type.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Example Physical Characteristics of Creatures",
+  "heading": "Example Physical Characteristics of Creatures",
+  "line": 18474,
+  "endLine": 18486,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of typical Size and physical Characteristics for common kinds of animal, as starting points for new beasts.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Creatures of Non-Standard Size",
+  "heading": "Creatures of Non-Standard Size",
+  "line": 18488,
+  "endLine": 18490,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How to scale a creature larger or smaller than average, such as after a Muto Animal spell, by adjusting Strength, Quickness and wound ranges per Size point.",
+  "quotes": [
+   "for every point of Size removed, subtract two from Strength (and therefore Damage total), add one to Quickness (and therefore Initiative and Defense totals), and decrease the damage range for each wound level by 1 (minimum of 1)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Beast Creation Step 3: Virtues and Flaws",
+  "heading": "3. Virtues and Flaws",
+  "line": 18492,
+  "endLine": 18498,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Species Virtues and Flaws come free to all members of a species and are not balanced for game purposes, while exceptional individuals need balanced individual Virtues and Flaws.",
+  "quotes": [
+   "It is recommended that a species have at least one point of Flaws for every three points of Virtues."
+  ],
+  "related": []
+ },
+ {
+  "title": "Suitable Virtues and Flaws for Beasts",
+  "heading": "Suitable Virtues and Flaws",
+  "line": 18500,
+  "endLine": 18506,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists Virtues and Flaws appropriate to beasts and a note that Improved Characteristics grants more characteristic points to larger creatures.",
+  "quotes": [
+   "A creature of Size +1 or smaller gets 3 characteristic points from this Virtue as normal, a creature of Size +2 gets 6 characteristic points, a creature of size +3 gets 9 characteristic points, and so on."
+  ],
+  "related": []
+ },
+ {
+  "title": "Beast Creation Step 4: Basic Abilities",
+  "heading": "4. Basic Abilities",
+  "line": 18508,
+  "endLine": 18523,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of the Abilities every creature of each type has, plus rules that animals with Cunning cannot gain experience or learn new Abilities as adults except through an Animal Handling teacher.",
+  "quotes": [
+   "Animals (at least, those with Cunning rather than Intelligence) cannot acquire experience points to improve their Abilities once they have reached adulthood, nor can they learn new Abilities."
+  ],
+  "related": []
+ },
+ {
+  "title": "Beast Creation Step 5: Qualities",
+  "heading": "5. Qualities",
+  "line": 18525,
+  "endLine": 18621,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Catalog of creature Qualities (such as Ambush Predator, Constriction, Grapple, Overrun, Swallow Whole, Tough Hide and Venomous) that adjust characteristics, Abilities, Protection and special attacks, with how extra Fatigue levels are granted.",
+  "quotes": [
+   "One extra Fatigue level grants an additional Winded level, two extra grant another Winded Level and another Weary Level, etc."
+  ],
+  "related": [
+   "ArM5 p.398 Grappling",
+   "ArM5 p.407 Deprivation"
+  ]
+ },
+ {
+  "title": "Beast Creation Step 6: Combat Statistics",
+  "heading": "6. Combat Statistics",
+  "line": 18623,
+  "endLine": 18625,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A beast's combat totals are calculated as normal using the Natural Weapons Table.",
+  "quotes": [
+   "Combat Statistics are calculated as normal (page 393), using the Natural Weapons Table."
+  ],
+  "related": []
+ },
+ {
+  "title": "Natural Weapons Table",
+  "heading": "Natural Weapons Table",
+  "line": 18631,
+  "endLine": 18646,
+  "category": "beings",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of Initiative, Attack, Defense and Damage modifiers for natural weapons such as teeth, claws, horns and hooves.",
+  "quotes": [
+   "All natural weapons use the Brawl Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aging of Animals",
+  "heading": "Aging",
+  "line": 18648,
+  "endLine": 18652,
+  "category": "aging",
+  "topic": "Creating mundane beasts",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Adjusts the age at which aging starts, the age modifier and the number of aging rolls per year for an animal from its average lifespan relative to a human's.",
+  "quotes": [
+   "Thus a creature with an average lifespan of 10 years has a modifier of (50/10) or five."
+  ],
+  "related": [
+   "ArM5 p.391 Aging"
+  ]
+ },
+ {
+  "title": "Statistics of Shapechangers",
+  "heading": "Statistics of Shapechangers",
+  "line": 18654,
+  "endLine": 18656,
+  "category": "beings",
+  "topic": "Shapechanger statistics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shapechanger (for example House Bjornaer Heartbeast or Skinchanger)",
+  "summary": "Introduces the seven-step procedure for combining a human's and an animal species' statistics into those of a shapechanger's animal form.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Shapechanger Step 1: Characteristics",
+  "heading": "1. Characteristics",
+  "line": 18658,
+  "endLine": 18665,
+  "category": "beings",
+  "topic": "Shapechanger statistics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shapechanger (for example House Bjornaer Heartbeast or Skinchanger)",
+  "summary": "For each Characteristic other than Intelligence/Cunning, take the lower value if both are negative, the higher if both are positive, and otherwise add the two.",
+  "quotes": [
+   "If the human and the animal Characteristic are both negative, use the lower of the two.",
+   "If the human and the animal Characteristic are both positive, use the higher of the two."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shapechanger Step 2: Cunning Versus Intelligence",
+  "heading": "2. Cunning Vs. Intelligence",
+  "line": 18667,
+  "endLine": 18695,
+  "category": "beings",
+  "topic": "Shapechanger statistics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shapechanger (for example House Bjornaer Heartbeast or Skinchanger)",
+  "summary": "Shapechangers normally keep human Intelligence, though lycanthropes lose it for Cunning; a worked example combines a magus's and a wolf's Characteristics.",
+  "quotes": [
+   "In most cases, the shapechanger retains human Intelligence."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shapechanger Step 3: Size",
+  "heading": "3. Size",
+  "line": 18697,
+  "endLine": 18699,
+  "category": "beings",
+  "topic": "Shapechanger statistics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shapechanger (for example House Bjornaer Heartbeast or Skinchanger)",
+  "summary": "The animal form uses the animal's Size; a Size-affecting Virtue or Flaw makes the character a notably large or small member of the species.",
+  "quotes": [
+   "Human Size has no impact on the Size statistic of the shapechanged form."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shapechanger Step 4: Virtues and Flaws",
+  "heading": "4. Virtues & Flaws",
+  "line": 18701,
+  "endLine": 18703,
+  "category": "beings",
+  "topic": "Shapechanger statistics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shapechanger (for example House Bjornaer Heartbeast or Skinchanger)",
+  "summary": "Virtues and Flaws of both human and animal forms apply in animal form, but a duplicate applies only once.",
+  "quotes": [
+   "If the animal form already has a Virtue or Flaw possessed by the character, it applies only once."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shapechanger Step 5: General Abilities",
+  "heading": "5. General Abilities",
+  "line": 18705,
+  "endLine": 18707,
+  "category": "beings",
+  "topic": "Shapechanger statistics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shapechanger (for example House Bjornaer Heartbeast or Skinchanger)",
+  "summary": "A shapechanged character uses the animal form's General Abilities, keeping only languages, lores, Supernatural Abilities and (if Intelligence is retained) Arcane and Academic Abilities.",
+  "quotes": [
+   "Use the General Abilities of the animal form."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shapechanger Step 6: Communicating",
+  "heading": "6. Communicating",
+  "line": 18709,
+  "endLine": 18711,
+  "category": "beings",
+  "topic": "Shapechanger statistics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shapechanger (for example House Bjornaer Heartbeast or Skinchanger)",
+  "summary": "A shapechanger can communicate with animals of the same or similar species, grouped by temperament, aspect, diet and habitat.",
+  "quotes": [
+   "Acquire the ability to communicate with members of the same or similar species as the shapechanged form."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shapechanger Step 7: Wounds and Experience",
+  "heading": "7. Wounds & Experience",
+  "line": 18713,
+  "endLine": 18717,
+  "category": "beings",
+  "topic": "Shapechanger statistics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shapechanger (for example House Bjornaer Heartbeast or Skinchanger)",
+  "summary": "Wounds carry between human and animal forms (lycanthropes heal animal-form wounds on reverting), and experience gained in animal form may go to animal-form Abilities.",
+  "quotes": [
+   "Any wounds taken in the human form are reflected in the animal form, and vice versa."
+  ],
+  "related": []
+ }
+]

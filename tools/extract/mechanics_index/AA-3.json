@@ -1,0 +1,484 @@
+[
+ {
+  "title": "Artists and Artwork (Craft vs. Profession)",
+  "heading": "Chapter Eight: Artists",
+  "line": 4338,
+  "endLine": 4348,
+  "category": "creation",
+  "topic": "Artists",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how the book splits artists into production artists (who use a Craft Ability) and performance artists (who use a Profession Ability), which free Social Status Virtue each should take, and what counts as artwork (with an Aesthetic Quality) rather than a manufactured item.",
+  "quotes": [
+   "Production artists should take the free Social Status Virtue: Craftsman, and performance artists should take the free Social Status Virtue: Wanderer.",
+   "Every piece of artwork has an Aesthetic Quality that determines how beautiful it is."
+  ],
+  "related": []
+ },
+ {
+  "title": "Identifying an Artist's Work",
+  "heading": "Production Artists",
+  "line": 4350,
+  "endLine": 4358,
+  "category": "basics",
+  "topic": "Artists",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how production artists work for a select clientele and gives the rolls for recognising who made a piece of artwork, with artists identifying work more easily than non-artists and a higher Reputation making it easier still.",
+  "quotes": [
+   "An artist character can identify an artwork's creator with a Perception + the creator's (Artist) Reputation + a simple die roll against an Ease Factor of 15.",
+   "Non-artist characters may identify a particular piece of artwork with a Perception + the creator's (Artist) Reputation + simple die roll against an Ease Factor of 18."
+  ],
+  "related": [
+   "City and Guild"
+  ]
+ },
+ {
+  "title": "Vernacular Literature: Writing and Studying Poetry",
+  "heading": "Vernacular Literature",
+  "line": 4416,
+  "category": "seasons",
+  "topic": "Artists",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Vernacular literature has an Aesthetic Quality rather than a Source Quality, and a poet may write it in any language he knows well enough and whose alphabet he can write. Poets can study other poets' work to raise Craft: Poetry, and non-poets can spend a season reading it for exposure experience in Abilities the storyguide picks.",
+  "quotes": [
+   "The poet can write it in any language in which he has a score of 5",
+   "The character gains exposure experience points that can apply to any of the various topics the piece might cover."
+  ],
+  "related": []
+ },
+ {
+  "title": "Performers' (Profession) Ability and Picking Pockets",
+  "heading": "Jugglers and Acrobats",
+  "line": 4446,
+  "category": "basics",
+  "topic": "Artists",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains when a performer uses his (Profession) Ability and when a general Ability applies, and when the Profession may substitute for a physical Ability such as Athletics or Brawl. Also gives the roll for performers who captivate a crowd while a thief among them picks pockets.",
+  "quotes": [
+   "Dexterity + (Profession) Ability + stress die roll against an Ease Factor of 12",
+   "the thief gets a +3 bonus to his roll"
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Training and Commanding Beasts",
+  "heading": "Animal Trainers",
+  "line": 4456,
+  "category": "seasons",
+  "topic": "Animal training",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A trainer spends seasons building training points against an animal's Might, and once the animal is trained the trainer rolls to have it obey commands of varying difficulty. The same rules serve riders training mounts, who may use Ride in place of Animal Handling.",
+  "quotes": [
+   "This total is the character's Intelligence + Animal Handling \u2013 Creature's Might.",
+   "a mundane animal is considered to have a Might score of 1 + 2 x Confidence Score",
+   "Presence + Animal Handling + stress die vs. a variable Ease Factor"
+  ],
+  "related": [
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Styles of Music",
+  "heading": "Styles of Music",
+  "line": 4498,
+  "endLine": 4502,
+  "category": "seasons",
+  "topic": "Artists",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each musician character has a base regional style of music, and studying a different style for a season grants a one-time bonus of experience points that grows with the distance of the new style from the character's own.",
+  "quotes": [
+   "he receives a one-time study bonus of 1 to 3 extra experience points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Minstrels Who Are Also Poets",
+  "heading": "Minstrels",
+  "line": 4572,
+  "category": "basics",
+  "topic": "Artists",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A minstrel who is also a poet holds both a Profession Ability and a Craft Ability, using the Profession to set the Aesthetic Quality of a song and the Craft: Poetry to set the Aesthetic Quality of a written poem.",
+  "quotes": [
+   "When composing a song, he would use his Profession: Minnesinger Ability to determine the song's Aesthetic Quality."
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating Art: Fame, Muses and Artist Reputation Goal",
+  "heading": "Creating Art",
+  "line": 4586,
+  "endLine": 4592,
+  "category": "basics",
+  "topic": "Artists",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the artist's career arc in game terms: a successful artist attracts a muse, a supernatural patron who eventually carries him to a realm of immortality, and his (Artist) Reputation grows from the quality of his work, his benefactor's power and the praise he receives.",
+  "quotes": [
+   "In game terms, every artist character strives to reach an (Artist) Reputation of 10, achieving various benefits along the way."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aesthetic Quality of Artwork",
+  "heading": "The Piece of Artwork",
+  "line": 4594,
+  "category": "basics",
+  "topic": "Artists",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Every piece of artwork has an Aesthetic Quality, worked out from Dexterity plus a Craft Ability for production arts or Communication plus a Profession Ability for performance arts, then modified by listed bonuses such as Virtues, extra time, overtime, liberal arts knowledge, a muse and, for legendary artists, the local aura. A player may also gamble on experimentation, rolling a bonus die and then consulting the experimentation results.",
+  "quotes": [
+   "Aesthetic Quality: Dexterity + Craft Ability + bonuses OR Communication + Profession Ability + bonuses",
+   "An artist can double the time it takes to create a piece of artwork and receive a +1 bonus."
+  ],
+  "related": [
+   "ArM5 p.165 book Quality",
+   "ArM5 p.163 seasons"
+  ]
+ },
+ {
+  "title": "Time Spent Creating Artwork",
+  "heading": "Time Spent Creating",
+  "line": 4616,
+  "endLine": 4635,
+  "category": "seasons",
+  "topic": "Artists",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives base creation times for different kinds of artwork (a season, a year or decades), scales that time by the piece's Aesthetic Quality, and explains how assistants limited by Leadership and deliberately hurried work change the time taken. Artists also use the usual free and work seasons, with work seasons earning exposure experience.",
+  "quotes": [
+   "multiply it by 1/10 the Aesthetic Quality of the expected finished piece to determine the full length of time required",
+   "The creating character can have assistants equal to his Leadership score.",
+   "Doing this divides a piece's Aesthetic Quality by half."
+  ],
+  "related": [
+   "ArM5 p.163 free and work seasons"
+  ]
+ },
+ {
+  "title": "Artist Experimentation Results",
+  "heading": "Artist Experimentation Results",
+  "line": 4636,
+  "endLine": 4658,
+  "category": "basics",
+  "topic": "Artists",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table and explanation of what happens when an artist experiments with a piece: results run from disaster and ruined artwork through no effect to the artwork or the artist being praised, affecting Aesthetic Quality and (Artist) Reputation.",
+  "quotes": [
+   "The character gains experience points in his (Artist) Reputation equal to the Aesthetic Quality of the piece.",
+   "The art is so excellent that the artist gains enough experience points to raise his (Artist) Reputation score one whole level."
+  ],
+  "related": []
+ },
+ {
+  "title": "Performing a Performance",
+  "heading": "Producers vs. Performers",
+  "line": 4660,
+  "endLine": 4670,
+  "category": "basics",
+  "topic": "Artists",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A performer fixes the Aesthetic Quality of a routine, play or song when first creating it, and normally no further roll is needed. In unusual circumstances the storyguide calls for a roll, using the highest-skilled participant for group performances.",
+  "quotes": [
+   "Communication or Dexterity + Profession Ability + stress die vs. Aesthetic Quality/2"
+  ],
+  "related": []
+ },
+ {
+  "title": "Art as an Arcane Connection",
+  "heading": "Art as an Arcane Connection",
+  "line": 4672,
+  "endLine": 4680,
+  "category": "magic",
+  "topic": "Arcane Connections",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An original piece of artwork acts as an Arcane Connection to its creator for a limited time that depends on how long it took to make, shortened by assistants, while copies and very large works do not count. Performances need Imaginem magic to capture, and the connection can be fixed like any other.",
+  "quotes": [
+   "a piece of art maintains an Arcane Connection to its creator for a length of time equal to half the time it took to create it",
+   "Subtract one week from the length of time an Arcane Connection lasts for every assistant the creating artist had."
+  ],
+  "related": [
+   "ArM5 p.94 fixing Arcane Connections"
+  ]
+ },
+ {
+  "title": "Studying Artwork as an Advancement Source",
+  "heading": "Pieces of Art as Advancement Sources",
+  "line": 4682,
+  "category": "seasons",
+  "topic": "Artists",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Artists can study another artist's piece in the same Craft or Profession as a season of study, using half its Aesthetic Quality as the Advancement total. Performances must be practised and contemplated, each work can be studied only once, and a character cannot study his own work.",
+  "quotes": [
+   "Divide the artwork's Aesthetic Quality by two to determine the Advancement total.",
+   "Source Quality: Aesthetic Quality/2"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining and Losing Artist Reputation",
+  "heading": "Artist Reputation",
+  "line": 4690,
+  "endLine": 4720,
+  "category": "basics",
+  "topic": "Artist Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An artist character keeps a separate (Artist) Reputation for each Craft or Profession, which grows like an Ability from experience points earned specifically for it. The usual source is completing artwork of high enough Aesthetic Quality, with further lists of events that add or subtract Reputation experience points.",
+  "quotes": [
+   "Aesthetic Quality greater than 3 times Artist Reputation = 1 Artist Reputation experience point",
+   "Gaining a patron grants 6 experience points",
+   "Losing a patron subtracts 12 experience points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Benefits of Artist Reputation",
+  "heading": "Benefits of Reputation",
+  "line": 4721,
+  "endLine": 4752,
+  "category": "basics",
+  "topic": "Artist Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes what each Artist Reputation threshold gives: a bonus to impressive social rolls, a minor muse, the right to sign work and a Confidence increase, a major muse, a permanent bonus to Aesthetic Quality, and finally legendary status. It also covers losing Reputation through truly deplorable behavior.",
+  "quotes": [
+   "Once a character's Artist Reputation is 6, she can add +1 to any social roll in which her status would impress or influence a person.",
+   "the character does receive a 1-point increase in his Confidence Score when his Artist Reputation reaches 8",
+   "He gains a permanent +3 to the final Aesthetic Quality of his artwork, added on top of the normal calculation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Legendary Artists",
+  "heading": "Legendary Artists",
+  "line": 4759,
+  "endLine": 4775,
+  "category": "beings",
+  "topic": "Legendary artists",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Artist Reputation 11 (becoming a legendary artist)",
+  "summary": "Explains what happens to an artist who becomes a legendary artist: he becomes an immortal creature of his muse's realm with a Might score and powers based on his art, is vulnerable to Hermetic magic affecting supernatural beings, and can keep gained experience only by means of mnemonic artwork or a supernatural familiar.",
+  "quotes": [
+   "He gains a Might score equal to two times his highest Craft or Profession Ability, and a number of supernatural powers equal to that same Craft or Profession Ability.",
+   "The piece of artwork must have a finished Aesthetic Quality equal to twice the number of recently gained experience points.",
+   "Each point of Might allows the artist to retain 5 experience points from study."
+  ],
+  "related": [
+   "Realms of Power: Magic",
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Muses",
+  "heading": "Muses",
+  "line": 4777,
+  "endLine": 4791,
+  "category": "beings",
+  "topic": "Muses",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Artist Reputation 7 (attracts a minor muse)",
+  "summary": "Describes muses as supernatural patrons of any realm, divided into minor and major by Might. A muse can temporarily sacrifice some of its Might to grant the artist supernatural Virtues or powers, and the bond brings Warping to the artist.",
+  "quotes": [
+   "A minor muse is any supernatural creature that acts as an artist's patron and has a Might score of 15 or less.",
+   "Minor muses may sacrifice 5 points of Might and grant the character a minor, supernatural Virtue.",
+   "The artist gains 1 Warping point a year from a minor muse and 3 from a major muse."
+  ],
+  "related": [
+   "ArM5 p.168 Warping"
+  ]
+ },
+ {
+  "title": "Sponsors: Patrons and Benefactors",
+  "heading": "Sponsors: Patrons and Benefactors",
+  "line": 4801,
+  "category": "social",
+  "topic": "Artist sponsors",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Every artwork needs a sponsor, either a benefactor for one piece or a patron for ongoing support. The artist spends a season rolling to find one, with modifiers by sponsor type and standing, increasingly wealthy sponsors required as Reputation grows, a ways to lose a sponsor, and a minimum payment when a player character sponsors an artist.",
+  "quotes": [
+   "Finding a Sponsor: Communication + Bargain + Artist Reputation + stress die vs. 12 + modifiers",
+   "A player can make a Perception + Folk Ken + stress die roll against an Ease Factor of 12.",
+   "Cost to Sponsor an Artwork (Completed in One Season): At least 1 Mythic Pound per point of Artist Reputation"
+  ],
+  "related": [
+   "City & Guild pp.53, 108"
+  ]
+ },
+ {
+  "title": "Magically Created Art",
+  "heading": "Art and Magic",
+  "line": 4836,
+  "endLine": 4844,
+  "category": "magic",
+  "topic": "Artists",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magi can create artwork instantly using the mundane-object creation rules, rolling Finesse to determine the Aesthetic Quality. Mundane artists cannot gain experience by studying such art, and intangible art needs Mentem magic.",
+  "quotes": [
+   "Magically Created Art Aesthetic Quality: Intelligence + Finesse, \u20136, \u20139, \u201312, or \u201315"
+  ],
+  "related": [
+   "Covenants p.49 mundane objects"
+  ]
+ },
+ {
+  "title": "The Maestro: A Mythic Companion",
+  "heading": "The Maestro: A Mythic Companion",
+  "line": 4874,
+  "endLine": 4890,
+  "category": "creation",
+  "topic": "Maestro",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Maestro",
+  "summary": "Rules for building a maestro, a mythic artist companion: the special Maestro Virtue gives extra Virtue points per Flaw point and a free artistic Virtue, the character is tied to one of the four realms, may not have the Gift, must take a Susceptibility Flaw and may learn any Ability at creation.",
+  "quotes": [
+   "The character must take the special Virtue: Maestro, which then allows him to have twice as many points of Virtues as he has points of Flaws.",
+   "The player may then purchase up to 10 points of Flaws for the character, with each point spent allowing him to purchase two points of Virtues."
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.81-82",
+   "Houses of Hermes: True Lineages pp.103-109"
+  ]
+ },
+ {
+  "title": "Instilling Magic Effects in Artwork",
+  "heading": "Instilling Magic Effects in Artwork",
+  "line": 4945,
+  "category": "magic",
+  "topic": "Maestro",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Maestro with Virtue: Hermetic Inclination in (Form)",
+  "summary": "Hermetic magi instill effects into artwork by the normal procedure, ignoring Aesthetic Quality. Maestros with Hermetic Inclination instead build the effect while making the piece, accumulating points from an Ability total against the effect level and paying Fatigue for higher-level effects.",
+  "quotes": [
+   "the player compares his character's Dexterity + Craft Ability + Form to the final level of the effect",
+   "Instilling a magical effect in a piece of artwork costs a Fatigue Level per 10 levels of the spell-like power."
+  ],
+  "related": [
+   "ArM5 p.97 Material and Size Table",
+   "ArM5 p.99 constant effects",
+   "ArM5 p.183 Realm Interaction Table"
+  ]
+ }
+]

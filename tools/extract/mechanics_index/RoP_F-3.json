@@ -1,0 +1,1168 @@
+[
+ {
+  "title": "Faerie Blood: Origins and Inheritance",
+  "heading": "Faerie Blood",
+  "line": 5986,
+  "endLine": 5994,
+  "category": "beings",
+  "topic": "Faerie Blood",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Faerie Blood or Strong Faerie Blood",
+  "summary": "Explains how humans come to have Faerie Blood (through faerie procreation, theft of fertility, or influence on a pregnancy or infant) and how the taint is inherited down the generations.",
+  "quotes": [
+   "Faerie Blood manifests regardless of the number of generations between the first character to bear it and the current generation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Varieties of Faerie Blood",
+  "heading": "Varieties of Faerie Blood",
+  "line": 5996,
+  "endLine": 6163,
+  "category": "creation",
+  "topic": "Faerie Blood",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Faerie Blood or Strong Faerie Blood",
+  "summary": "Lists specific kinds of Faerie Blood (bloodcap, brownie, dwarf, ettin, faerie god, ghul, goblin, huldra, nymph, padfoot, satyr, selkie, sidhe, undine), each with its benefit, an enhanced benefit for Faerie Legacy, typical Sympathies, suggested Virtues and Flaws, and appearance.",
+  "quotes": [
+   "Note that this enhanced effect replaces the normal benefit of Faerie Blood, it is not in addition to it."
+  ],
+  "related": [
+   "ArM5 p.42 Faerie Blood"
+  ]
+ },
+ {
+  "title": "Faerie Powers for the Faerie Blooded",
+  "heading": "Faerie Powers for the Faerie Blooded",
+  "line": 6032,
+  "endLine": 6043,
+  "category": "creation",
+  "topic": "Faerie Blood",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Faerie Blood or Strong Faerie Blood (storyguide option)",
+  "summary": "Optional rule letting a character with Faerie Blood take a restricted list of faerie-only Virtues and Flaws, paying Might costs of their powers in Fatigue rather than Might points.",
+  "quotes": [
+   "instead of spending Might points, the character instead loses 1 Fatigue level for every 5 points (or fraction) of the cost",
+   "assume that the character has a Might Score of zero"
+  ],
+  "related": [
+   "Chapter 3: Faerie Characters"
+  ]
+ },
+ {
+  "title": "Changelings",
+  "heading": "Changelings",
+  "line": 6179,
+  "endLine": 6183,
+  "category": "beings",
+  "topic": "Changelings",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie theft of a child",
+  "summary": "Introduces how faeries steal or exchange human infants, leaving behind a faerie child, an ancient faerie or a stock, and what results for the child who is retrieved or who is raised by faeries.",
+  "quotes": [],
+  "related": [
+   "Chapter 1: Nature of Faerie"
+  ]
+ },
+ {
+  "title": "Retrieved Changelings",
+  "heading": "Retrieved Changelings",
+  "line": 6185,
+  "endLine": 6187,
+  "category": "beings",
+  "topic": "Changelings",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Faerie theft of a child",
+  "summary": "Describes how parents can retrieve a stolen child by tricking the changeling faerie into revealing itself, and what a retrieved child tends to gain, such as Second Sight or Faerie Blood of the kidnappers' variety.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Faerie Upbringing (Changelings)",
+  "heading": "Faerie Upbringing",
+  "line": 6189,
+  "endLine": 6193,
+  "category": "creation",
+  "topic": "Changelings",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Flaw: Faerie Upbringing",
+  "summary": "Explains children raised among faeries, who have the Faerie Upbringing Flaw and usually Faerie Blood, and gives the list of Abilities from which a character with this background has an Ability Block.",
+  "quotes": [
+   "Choose any five Abilities from the following list as unavailable to a character with this Flaw: Animal Handling, Charm, Church Lore, Dominion Lore, Etiquette, Folk Ken, Guile, Leadership, Ride, Theology"
+  ],
+  "related": []
+ },
+ {
+  "title": "Linked Lives",
+  "heading": "Linked Lives",
+  "line": 6195,
+  "endLine": 6201,
+  "category": "creation",
+  "topic": "Changelings",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Exchanged with a troll or trowie changeling",
+  "summary": "Describes a human whose life is bound to the faerie changeling left in his place, represented by Faerie Blood, possibly Faerie Upbringing, and the Death Prophecy Virtue, with a Faerie Friend or Mistaken Identity relationship.",
+  "quotes": [
+   "that the character can only die if his faerie copy is killed first"
+  ],
+  "related": []
+ },
+ {
+  "title": "Milk Brothers",
+  "heading": "Milk Brothers",
+  "line": 6203,
+  "endLine": 6207,
+  "category": "creation",
+  "topic": "Changelings",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Shared milk with a gwiber",
+  "summary": "Describes the bond between a human who has shared milk with a gwiber and the creature: the Animal Ken Virtue and the Faerie Friend Flaw rather than Faerie Blood.",
+  "quotes": [],
+  "related": [
+   "Chapter 4: Faerie Bestiary, Gwiber"
+  ]
+ },
+ {
+  "title": "Nympholepts",
+  "heading": "Nympholepts",
+  "line": 6209,
+  "endLine": 6211,
+  "category": "creation",
+  "topic": "Changelings",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Years spent with nymphs",
+  "summary": "Describes mortals taken to live with nymphs for years, who gain Faerie Blood effects plus often a prophetic power such as Premonitions, the Visions Flaw or the Faerie Power of Dream.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Faerie Virtues and Flaws",
+  "heading": "Virtues and Flaws",
+  "line": 6213,
+  "endLine": 6217,
+  "category": "realms",
+  "topic": "Faerie characters",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Faerie-origin Supernatural Virtue or Flaw",
+  "summary": "Explains that a Supernatural Virtue can be designated as having a Faerie origin, which gives it the Faerie bonuses on the Realm Interaction Table and spares the character Warping from living in a Faerie aura; notes Benediction and Malediction as typical faerie gifts and curses.",
+  "quotes": [
+   "characters with a Faerie Virtue or Flaw do not gain Warping from living in a Faerie aura."
+  ],
+  "related": [
+   "ArM5 p.183 Realm Interaction Table",
+   "ArM5 pp.54-55 Greater and Lesser Malediction"
+  ]
+ },
+ {
+  "title": "Faerie Ceremony",
+  "heading": "Ceremony",
+  "line": 6569,
+  "endLine": 6581,
+  "category": "traditions",
+  "topic": "Faerie Ceremony",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Ceremony (Virtue: Ceremony)",
+  "summary": "A Faerie Supernatural Ability that lets a group join a focus character in a faerie effect, adding a group modifier and each participant's Characteristic plus Ability or Method to the focus character's total.",
+  "quotes": [
+   "Group Modifier: total Ceremony scores \u2013 number of participants"
+  ],
+  "related": [
+   "Faerie rites"
+  ]
+ },
+ {
+  "title": "Curse-Throwing",
+  "heading": "Curse-Throwing",
+  "line": 6583,
+  "endLine": 6628,
+  "category": "traditions",
+  "topic": "Curse-Throwing",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Curse-Throwing (Virtue: Curse-Throwing)",
+  "summary": "Supernatural Ability to cure diseases, lift curses and dispel harmful effects by transferring them to another person, with a Casting Total against an Ease Factor by affliction type, ritual time, Penetration and modifiers for how the recipient is represented; includes a worked example.",
+  "quotes": [
+   "Curse-Throwing Casting Total: Presence + Curse-Throwing + Aura + stress die",
+   "Penetration Total: Casting Total \u2013 Ease Factor + Penetration Bonus"
+  ],
+  "related": [
+   "ArM5 p.84 Penetration",
+   "Art & Academe, Chapter 4: Medicine"
+  ]
+ },
+ {
+  "title": "Learning Faerie Abilities",
+  "heading": "Learning Faerie Abilities",
+  "line": 6630,
+  "endLine": 6634,
+  "category": "traditions",
+  "topic": "Faerie Supernatural Abilities",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Strong alignment to the Faerie realm (Sympathy Traits and Faerie Rank)",
+  "summary": "Describes how characters aligned to Faerie learn Faerie Supernatural Abilities and Arts like Gifted characters learn Magic Abilities, with experience limited by Faerie Rank and easier study of a tradition's four Favored Abilities.",
+  "quotes": [
+   "the sum of the character's strongest positive and negative Sympathy Traits must equal at least 5 at the start of the season for him to learn a new Ability in this way"
+  ],
+  "related": [
+   "ArM5 p.166 Gifted characters learning Magic Abilities"
+  ]
+ },
+ {
+  "title": "Faerie Doctors as Mythic Companions",
+  "heading": "Faerie Doctors as Mythic Companions",
+  "line": 6648,
+  "endLine": 6665,
+  "category": "creation",
+  "topic": "Faerie Doctors",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Faerie Doctor",
+  "summary": "Character-building rules for playing a faerie doctor, either as a Mythic Companion with the Faerie Doctor Special Virtue and doubled Virtue points per Flaw, or as a Gifted or ordinary character, with compulsory Virtues and Flaws and Favored Abilities.",
+  "quotes": [
+   "receives 2 points to spend on Virtues for every point he spends on Flaws"
+  ],
+  "related": [
+   "ArM5 p.28 Virtue and Flaw balance",
+   "ArM5 p.166 Learning Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Sin-Eating",
+  "heading": "Sin-Eating",
+  "line": 6657,
+  "endLine": 6661,
+  "category": "traditions",
+  "topic": "Curse-Throwing",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Curse-Throwing",
+  "summary": "Describes Sin-Eating as a cultural form of Curse-Throwing, in which sins of the dying are treated as afflictions to be transferred, usually onto the practitioner.",
+  "quotes": [
+   "The magnitude of the unforgiven sin should be considered to be a Minor, Serious, or Major Affliction as appropriate."
+  ],
+  "related": []
+ },
+ {
+  "title": "Homunculi Wizards",
+  "heading": "Homunculi Wizards",
+  "line": 6667,
+  "endLine": 6679,
+  "category": "traditions",
+  "topic": "Homunculus Wizards",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Flaw: Homunculus Wizard (character with The Gift)",
+  "summary": "Explains hedge wizards who gain a faerie version of The Gift through a bond with a homunculus: what they can do, their dependence on feeding and hiding the homunculus, and how to build one as a character.",
+  "quotes": [
+   "To play a Homunculus Wizard as a character, take The Gift and the Homunculus Wizard Flaw during character creation."
+  ],
+  "related": [
+   "House Merinita outer mystery of Faerie Magic"
+  ]
+ },
+ {
+  "title": "Faerie Warping",
+  "heading": "Faerie Warping",
+  "line": 6681,
+  "endLine": 6693,
+  "category": "realms",
+  "topic": "Faerie Warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural powers aligned to the Faerie realm",
+  "summary": "Gives the pattern by which Faerie-aligned characters respond to Warping at each Warping Score, developing a glamour (a Reputation Flaw), a need to act on it or suffer Deprivation, Sympathy Traits, Virtues and Flaws.",
+  "quotes": [
+   "The character must act in a manner concordant with his Reputation at least once a season, or else he suffers the effects of Deprivation"
+  ],
+  "related": [
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Sources of Faerie Warping",
+  "heading": "Sources of Faerie Warping",
+  "line": 6695,
+  "endLine": 6713,
+  "category": "realms",
+  "topic": "Faerie Warping",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie realm, aura or power",
+  "summary": "Lists how Warping Points are gained from faerie sources: the Faerie realm, powerful Faerie auras and regiones, faerie powers, and botches.",
+  "quotes": [
+   "One Warping Point is gained for every botch die that comes up a zero when using faerie powers or supernatural effects aligned to the Faerie realm."
+  ],
+  "related": [
+   "ArM5 p.167-168 Warping",
+   "Chapter 2: The Faerie Realm"
+  ]
+ },
+ {
+  "title": "Faerie Calling",
+  "heading": "Faerie Calling",
+  "line": 6715,
+  "endLine": 6739,
+  "category": "realms",
+  "topic": "Faerie Calling",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie Rank and Sympathy Traits, with no magical, divine or infernal tradition",
+  "summary": "Procedure for the dreamlike Faerie Calling that occurs when a faerie-aligned character gains two or more Warping Points at once: acting during the Calling, designing setting and conflict, a resolution roll, and its effects on Sympathy Traits or permanent departure to Faerie.",
+  "quotes": [
+   "Act During Faerie Calling: stress die + Perception + Awareness vs. ((Warping Score + Warping Points gained) x 3)",
+   "Resolve the Faerie Calling: stress die + Perception + Concentration vs. (Warping Score \u2013 Faerie Rank) x 3"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.63 Divine Ascent",
+   "Realms of Power: The Infernal p.95 Vituperation"
+  ]
+ },
+ {
+  "title": "Faerie Wizardry Overview",
+  "heading": "Chapter Six: Faerie Wizardry",
+  "line": 6741,
+  "endLine": 6743,
+  "category": "traditions",
+  "topic": "Faerie wizardry",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie Sympathy (Sympathy Traits)",
+  "summary": "Introduces faerie wizards, or faerie hedge wizards, who use faerie rites and faerie bargaining, and the traditions that teach their Abilities and Arts.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Rites of Faerie",
+  "heading": "Rites of Faerie",
+  "line": 6745,
+  "endLine": 6747,
+  "category": "traditions",
+  "topic": "Faerie rites",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie Method, Faerie Power and Sympathy Trait",
+  "summary": "Introduces faerie rites, spontaneous spell-like effects that faerie wizards focus through a Faerie Method and Power.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Performing Faerie Rites",
+  "heading": "Performing Faerie Rites",
+  "line": 6749,
+  "endLine": 6765,
+  "category": "traditions",
+  "topic": "Faerie rites",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie Method, Faerie Power and Sympathy Trait",
+  "summary": "Procedure for casting a faerie rite: the stress die plus Characteristic, Method, Power and aura gives the level, capped by the applicable Sympathy Traits, with rules for negative Traits, botches, experience, ritual-level rites and the lack of permanent effects.",
+  "quotes": [
+   "Rite Casting Total: stress die + Characteristic + Method + Power + aura modifier",
+   "Maximum Rite Level: (Sympathy Traits x 5)"
+  ],
+  "related": [
+   "ArM5 pp.111-114 Hermetic Ranges, Durations and Targets"
+  ]
+ },
+ {
+  "title": "Hermetic Rites",
+  "heading": "Hermetic Rites",
+  "line": 6767,
+  "endLine": 6769,
+  "category": "traditions",
+  "topic": "Faerie rites",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie Method and Power",
+  "summary": "Allows a magus with a Faerie Method and Power to design Hermetic rituals using faerie rite guidelines and the special Faerie Ranges, Durations and Targets, using Method and Power in place of Artes Liberales and Philosophiae.",
+  "quotes": [
+   "the caster may add his scores in the Method and Power instead of Artes Liberales and Philosophiae to his Casting Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Ranges, Durations, and Targets",
+  "heading": "Faerie Ranges, Durations, and Targets",
+  "line": 6771,
+  "endLine": 6825,
+  "category": "magic",
+  "topic": "Faerie rites",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie wizard: Faerie Method, Faerie Power and Sympathy Trait",
+  "summary": "Sidebar of extra Ranges (Crossroads, Presence, Prop, Symbol), Durations (Held, Focus, While, Geas, Hour + 1, Midday/Midnight, Not, Season, Aura, Faerie, Hidden, If, Symbol) and Targets (Medium, Passion, Symbol) available to faerie rites, with their equivalent spell levels and conditions.",
+  "quotes": [
+   "Anyone with a total of 6 or higher is affected."
+  ],
+  "related": [
+   "ArM5 pp.111-114 Hermetic Ranges, Durations, Targets",
+   "ArM5 pp.92-93 House Merinita Faerie Magic"
+  ]
+ },
+ {
+  "title": "Faerie Methods",
+  "heading": "Faerie Methods",
+  "line": 6827,
+  "endLine": 6831,
+  "category": "traditions",
+  "topic": "Faerie Methods",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie wizard: Faerie Method, Faerie Power and Sympathy Trait",
+  "summary": "Explains that Methods are Supernatural Abilities used with a Faerie Power to perform a rite, and gives guidance for designing new Methods with a Characteristic, a cost and an advantage.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Evocation (Faerie Method)",
+  "heading": "Evocation",
+  "line": 6833,
+  "endLine": 6839,
+  "category": "traditions",
+  "topic": "Faerie Methods",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Evocation",
+  "summary": "Faerie Method using Communication that calls on faerie patrons at the cost of a Warping Point or Confidence Point, and lets the user add vis to any rite for a bonus with a limit and botch risk.",
+  "quotes": [
+   "with each pawn spent increasing his Rite Casting Total by 2."
+  ],
+  "related": []
+ },
+ {
+  "title": "Enchantment (Faerie Method)",
+  "heading": "Enchantment",
+  "line": 6841,
+  "endLine": 6849,
+  "category": "traditions",
+  "topic": "Faerie Methods",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Enchantment",
+  "summary": "Faerie Method using Presence in which the user performs an Ability roll against an Ease Factor tied to the intended magnitude, building up a bonus over several rounds before casting the rite; can also roll a simple die to avoid botching.",
+  "quotes": [
+   "making a roll against an Ease Factor of (the magnitude of the intended effect x 3)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Empathy (Faerie Method)",
+  "heading": "Empathy",
+  "line": 6851,
+  "endLine": 6857,
+  "category": "traditions",
+  "topic": "Faerie Methods",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Empathy",
+  "summary": "Faerie Method using Stamina that requires spending a Fatigue level on a lengthy trance ritual, and lets the user spend more Fatigue to extend the rite, reset bonus limits and multiply the effect cap from Sympathy Traits.",
+  "quotes": [
+   "Empathy allows him to effectively double the value of the Sympathy Traits that determine his effect level"
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Powers",
+  "heading": "Faerie Powers",
+  "line": 6859,
+  "endLine": 6863,
+  "category": "traditions",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie wizard: Faerie Method, Faerie Power and Sympathy Trait",
+  "summary": "Explains that Faerie Powers are Supernatural Abilities used only with a Faerie Method, and that each Power has a vulnerability chosen when it is gained.",
+  "quotes": [
+   "Every Faerie Power is vulnerable to certain uncommon circumstances, such as when touching iron, running water, or salt, when in the Dominion, or when repeating the character's name three times."
+  ],
+  "related": []
+ },
+ {
+  "title": "Beguile (Faerie Power)",
+  "heading": "Beguile",
+  "line": 6865,
+  "endLine": 6869,
+  "category": "traditions",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Beguile",
+  "summary": "Faerie Power for commanding targets or altering their memories, perceptions and emotions; any Sympathy Trait appropriate to the memory, emotion or perception can apply.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Beguile Guidelines",
+  "heading": "Beguile Guidelines",
+  "line": 6896,
+  "endLine": 6924,
+  "category": "magic",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Beguile",
+  "summary": "Spell guideline table by level for Beguile effects: altering memories, perceptions and emotions, planting suggestions, commands and total control.",
+  "quotes": [
+   "Completely control the target, including its movement and communication."
+  ],
+  "related": []
+ },
+ {
+  "title": "Conjure (Faerie Power)",
+  "heading": "Conjure",
+  "line": 6926,
+  "endLine": 6934,
+  "category": "traditions",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Conjure",
+  "summary": "Faerie Power creating solid glamours or transforming a target into something else; the caster needs Sympathy Traits for both the original and new forms, and glamours can defy ordinary space and end unpredictably.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Conjure Guidelines",
+  "heading": "Conjure Guidelines",
+  "line": 6954,
+  "endLine": 6974,
+  "category": "magic",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Conjure",
+  "summary": "Guideline table for Conjure effects: extra magnitudes for intricate or controllable glamours and for changing animate to inanimate, conjuring faeries, and changing targets into glamours by Size.",
+  "quotes": [
+   "Conjure a faerie with Faerie Might equal to the base level of this effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dream (Faerie Power)",
+  "heading": "Dream",
+  "line": 6985,
+  "endLine": 6989,
+  "category": "traditions",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream",
+  "summary": "Faerie Power for perceiving things from outside one's body and glimpsing the future; includes advice for storyguides on handling prophetic visions as vague good or bad omens tied to a symbol.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Dream Guidelines",
+  "heading": "Dream Guidelines",
+  "line": 6991,
+  "endLine": 7027,
+  "category": "magic",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream",
+  "summary": "Guideline table for Dream effects: remote senses, mental communication, understanding speech, reading thoughts and memories, and answering questions about the likely future over increasing time spans.",
+  "quotes": [
+   "Treat the target as if it possessed the Premonitions Ability for the duration, with a score of (the base level of this effect / 5)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Grant (Faerie Power)",
+  "heading": "Grant",
+  "line": 7056,
+  "endLine": 7060,
+  "category": "traditions",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Grant",
+  "summary": "Faerie Power for blessing or cursing a target with Warping Points, temporary Virtues and Flaws, or temporary Sympathy Traits that cannot be increased and do not affect Faerie Rank.",
+  "quotes": [],
+  "related": [
+   "Chapter 5: Touches of Faerie, Charms and Sympathetic Influence"
+  ]
+ },
+ {
+  "title": "Grant Guidelines",
+  "heading": "Grant Guidelines",
+  "line": 7072,
+  "endLine": 7102,
+  "category": "magic",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Grant",
+  "summary": "Guideline table for Grant effects: restoring Faerie Might, giving the target a power, temporary Sympathy Traits, Warping Points, temporary Virtues and Flaws, and temporary Faerie auras or regiones.",
+  "quotes": [
+   "The target faerie regains a number of Faerie Might Points equal to (the base level of this effect + 5) for the duration."
+  ],
+  "related": []
+ },
+ {
+  "title": "Portage (Faerie Power)",
+  "heading": "Portage",
+  "line": 7124,
+  "endLine": 7126,
+  "category": "traditions",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Portage",
+  "summary": "Faerie Power for instant travel by faerie trods, moving the target and what is attached to it from one place to another.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Portage Guidelines",
+  "heading": "Portage Guidelines",
+  "line": 7128,
+  "endLine": 7142,
+  "category": "magic",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Portage",
+  "summary": "Guideline table for Portage effects: moving targets through regio boundaries into or out of the Faerie Realm by level, instant transport to Sympathy Trait objects, and changes to movement speed and Fatigue.",
+  "quotes": [
+   "Transport the target through a regio boundary to a regio with a level less than or equal to ((the base level of this effect + 15) / 5)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ware (Faerie Power)",
+  "heading": "Ware",
+  "line": 7171,
+  "endLine": 7175,
+  "category": "traditions",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ware",
+  "summary": "Faerie Power for protecting a target with wards against chosen things; wards often need a second Sympathy Trait describing what is warded against, both used for the maximum level, and must penetrate Magic Resistance.",
+  "quotes": [
+   "Use both of these Traits to determine the maximum level of the effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ware Guidelines",
+  "heading": "Ware Guidelines",
+  "line": 7206,
+  "endLine": 7236,
+  "category": "magic",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ware",
+  "summary": "Guideline table for Ware effects: suppressing supernatural effects, wards against things by Might limit depending on the caster's positive, negative or any Sympathy Traits, and bonuses to Soak and Defense.",
+  "quotes": [
+   "Ward the target against anything associated with one of the caster's positive Sympathy Traits, with Faerie Might no greater than (the base level of this effect + 20)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Weal (Faerie Power)",
+  "heading": "Weal",
+  "line": 7238,
+  "endLine": 7242,
+  "category": "traditions",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Weal",
+  "summary": "Faerie Power that alters natural healing and aging for the duration, speeding recovery or slowing aging; cannot return a character to childhood.",
+  "quotes": [
+   "This effect cannot cause a character to revert to childhood, nor can it affect a character who has not yet reached physical maturity."
+  ],
+  "related": []
+ },
+ {
+  "title": "Weal Guidelines",
+  "heading": "Weal Guidelines",
+  "line": 7244,
+  "endLine": 7284,
+  "category": "magic",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Weal",
+  "summary": "Guideline table for Weal effects: bonuses and penalties to Recovery and Aging rolls, healing wounds for the duration, shortening wound recovery intervals, and reducing apparent age.",
+  "quotes": [
+   "Give the target a bonus to Recovery rolls and a penalty to Aging rolls, or a bonus to Aging rolls and a penalty to Recovery rolls, equal to ((3 + magnitude) x 3)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Woe (Faerie Power)",
+  "heading": "Woe",
+  "line": 7315,
+  "endLine": 7317,
+  "category": "traditions",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Woe",
+  "summary": "Faerie Power for inflicting wounds, Fatigue loss, aging and slowed healing that vanish when the effect ends.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Woe Guidelines",
+  "heading": "Woe Guidelines",
+  "line": 7348,
+  "endLine": 7386,
+  "category": "magic",
+  "topic": "Faerie Powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Woe",
+  "summary": "Guideline table for Woe effects: penalties to Recovery or Aging rolls, Fatigue loss, wounds at each severity for the duration, lengthened wound recovery intervals and forced Aging rolls.",
+  "quotes": [
+   "Give the target a penalty to Recovery or Aging rolls equal to ((3 + magnitude) x 3)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Bargaining (Ars Fabulosa)",
+  "heading": "Faerie Bargaining",
+  "line": 7392,
+  "endLine": 7402,
+  "category": "traditions",
+  "topic": "Faerie Bargaining",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie Bargaining: one of the Virtues Summoning, Bonding, Captivating or Dismissing",
+  "summary": "Introduces the Ars Fabulosa, the hedge art of bargaining with faeries through four powers (Summoning, Bonding, Captivating, Dismissing) that start at score 0, increase like Arts, and are learned as Supernatural Abilities or from Virtues.",
+  "quotes": [
+   "There are four powers associated with bargaining: Summoning, Bonding, Captivating, and Dismissing."
+  ],
+  "related": [
+   "Chapter 5: Touches of Faerie, Learning Faerie Abilities"
+  ]
+ },
+ {
+  "title": "Summoning (Faerie Bargaining)",
+  "heading": "Summoning",
+  "line": 7404,
+  "endLine": 7434,
+  "category": "traditions",
+  "topic": "Faerie Bargaining",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Summoning",
+  "summary": "Procedure for summoning a faerie: Sympathy Traits cap the Might that can be summoned, a Fatigue level is spent, a Summoning Total is rolled against the faerie's Might and Magic Resistance, and success holds the faerie to listen and bargain; covers botches, specific faeries, failure, and the experience and penalty for keeping or breaking a bargain.",
+  "quotes": [
+   "Summoning Total: stress die + Presence + Summoning + Faerie Rank + aura Maximum Might",
+   "The sum of these Traits, multiplied by 5, determines the maximum Might Score that the character can summon."
+  ],
+  "related": []
+ },
+ {
+  "title": "Summoning Faeries",
+  "heading": "Summoning Faeries",
+  "line": 7416,
+  "endLine": 7424,
+  "category": "traditions",
+  "topic": "Summoning arts",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: a Summoning art",
+  "summary": "Sidebar comparing the other Summoning arts that can call faeries or spirits: (Spirit) Summoning, (Elemental) Summoning and Sihr.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: The Infernal pp.114-115",
+   "Hedge Magic, Chapter 2: Elementalists",
+   "Houses of Hermes: Societates pp.135-136"
+  ]
+ },
+ {
+  "title": "Bonding (Faerie Bargaining)",
+  "heading": "Bonding",
+  "line": 7436,
+  "endLine": 7455,
+  "category": "traditions",
+  "topic": "Faerie Bargaining",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Bonding",
+  "summary": "Power forming a mystic bond with a faerie, using a Bonding Total against the faerie's Might and Magic Resistance, which lets the bearer use the faerie's Characteristics, powers, a shared enchanted effect, or protections from Warping and hardship; bonds to objects need a charm and only one bond can be held at a time.",
+  "quotes": [
+   "Bonding Total: stress die + Communication + Bonding + Faerie Rank + aura",
+   "Maximum Might Score: (Sympathy Traits x 5)"
+  ],
+  "related": [
+   "Chapter 5: Touches of Faerie, Charms"
+  ]
+ },
+ {
+  "title": "Faerie Bargains",
+  "heading": "Faerie Bargains",
+  "line": 7457,
+  "endLine": 7465,
+  "category": "traditions",
+  "topic": "Faerie Bargaining",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie Bargaining: one of the Virtues Summoning, Bonding, Captivating or Dismissing",
+  "summary": "Guidance on conducting a bargaining session with a faerie: working out what it wants with Intelligence + Faerie Lore, roleplaying etiquette, a contested roll to resolve a stalled session, and typical offers and requests.",
+  "quotes": [
+   "you can quickly resolve the bargaining session with a contested Communication + Bargain roll, modified by the character's Faerie Rank."
+  ],
+  "related": []
+ },
+ {
+  "title": "Captivating (Faerie Bargaining)",
+  "heading": "Captivating",
+  "line": 7467,
+  "endLine": 7481,
+  "category": "traditions",
+  "topic": "Faerie Bargaining",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Captivating",
+  "summary": "Power for exchanging places with a faerie, with a Captivating Total against the faerie's Might and Magic Resistance; covers what is exchanged, struggles for dominance, and the Warping Points gained.",
+  "quotes": [
+   "Captivating Total: stress die + Perception + Captivating + Faerie Rank + aura"
+  ],
+  "related": []
+ },
+ {
+  "title": "Dismissing (Faerie Bargaining)",
+  "heading": "Dismissing",
+  "line": 7483,
+  "endLine": 7499,
+  "category": "traditions",
+  "topic": "Faerie Bargaining",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dismissing",
+  "summary": "Power for cancelling effects made by beings with Might, ending effects on them, or releasing them from supernatural agreements, using a Dismissing Total limited by Sympathy Traits; can deflect powers and dismiss several effects with a cumulative penalty.",
+  "quotes": [
+   "Dismissing Total: stress die + Intelligence + Dismissing + Faerie Rank + aura"
+  ],
+  "related": []
+ },
+ {
+  "title": "Pagan Traditions",
+  "heading": "Pagan Traditions",
+  "line": 7501,
+  "endLine": 7505,
+  "category": "traditions",
+  "topic": "Faerie traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Faerie hedge wizard tradition",
+  "summary": "Introduces faerie hedge wizard traditions, with Favored Abilities that are easier to learn, Initiation Scripts, and the minimum Virtue points and Sympathy Traits needed to build a starting faerie wizard.",
+  "quotes": [
+   "the player must devote at least four points of the character's starting Virtues to a Faerie Method and a Faerie Power"
+  ],
+  "related": [
+   "Hedge Magic",
+   "Chapter 5: Touches of Faerie, Learning Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Borrowers",
+  "heading": "Borrowers",
+  "line": 7507,
+  "endLine": 7515,
+  "category": "traditions",
+  "topic": "Faerie traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Borrowers",
+  "summary": "Faerie bargaining tradition of travelling traders who sell goods to faeries; Favored Arts are Summoning, Bonding, Captivating and Dismissing.",
+  "quotes": [
+   "Summoning, Bonding, Captivating, Dismissing"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ollamhain",
+  "heading": "Ollamhain",
+  "line": 7517,
+  "endLine": 7521,
+  "category": "traditions",
+  "topic": "Faerie traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Ollamhain",
+  "summary": "Irish poet-sage tradition of faerie wizardry; Favored Abilities are Enchantment, Beguile, Dream and Portage.",
+  "quotes": [
+   "Enchantment, Beguile, Dream, Portage"
+  ],
+  "related": []
+ },
+ {
+  "title": "Volkhvy",
+  "heading": "Volkhvy",
+  "line": 7523,
+  "endLine": 7527,
+  "category": "traditions",
+  "topic": "Faerie traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Volkhvy",
+  "summary": "Russian pagan faerie wizards who work communal rites; Favored Abilities are Evocation, Ceremony, Conjure and Grant.",
+  "quotes": [
+   "Evocation, Ceremony, Conjure, Grant"
+  ],
+  "related": []
+ },
+ {
+  "title": "Wise Folk",
+  "heading": "Wise Folk",
+  "line": 7529,
+  "endLine": 7533,
+  "category": "traditions",
+  "topic": "Faerie traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Wise Folk",
+  "summary": "Village wise men and women who ward off the supernatural and mend or injure; Favored Abilities are Empathy, Ware, Weal and Woe.",
+  "quotes": [
+   "Empathy, Ware, Weal, Woe"
+  ],
+  "related": []
+ }
+]

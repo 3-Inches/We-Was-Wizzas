@@ -1,7 +1,7 @@
 // Hermetic magic totals: Casting Scores, Lab Totals, Penetration, Magic Resistance.
 // Every result carries a breakdown ("parts") so the UI can show *why* a number is what it is.
 
-import { isForm, isTechnique, type Art, type Form, type Technique } from '../data';
+import { ART_NAMES, CHAR_NAMES, isForm, isTechnique, type Art, type Form, type Technique } from '../data';
 import type { DerivedCharacter } from './character/derive';
 
 export type Realm = 'Magic' | 'Faerie' | 'Divine' | 'Infernal' | 'None';
@@ -341,6 +341,59 @@ export function penetrationTotal(d: DerivedCharacter, castingTotal: number, leve
   let p = castingTotal + bonus - level;
   if (d.effects.some((e) => e.type === 'penetrationMultiplier')) p = Math.floor(p / 2);
   return p;
+}
+
+/** Which Art a magus puts into a certamen attack or defense. */
+export type CertamenArt = 'technique' | 'form';
+
+export interface CertamenTotals {
+  initiative: TotalResult;
+  attack: Record<CertamenArt, TotalResult>;
+  defense: Record<CertamenArt, TotalResult>;
+  weakening: TotalResult;
+  resistance: TotalResult;
+  /** the most raw vis a round can use, by the Art it is attuned to */
+  visLimit: Record<CertamenArt, number>;
+}
+
+/**
+ * Certamen (DE, Certamen): the six totals without their dice. Initiative = Qik + Finesse;
+ * Attack = Pre + Technique or Form; Defense = Per + the other Art; Weakening = Int + Penetration
+ * (+ the Attack Advantage); Resistance = Sta + Parma Magica (not ×5). A Minor Magical Focus in
+ * Certamen (House Tremere) doubles the lower of the two Arts. Wound and Fatigue penalties apply
+ * to Initiative, Attack and Defense, as in the book's example.
+ */
+export function certamenTotals(d: DerivedCharacter, technique: Technique, form: Form): CertamenTotals {
+  const ch = d.characteristics;
+  const ability = (id: string) => d.abilities.find((a) => a.abilityId === id)?.total ?? 0;
+  const penalties: Part[] = [];
+  if (d.currentWoundPenalty) penalties.push({ label: 'Wounds', value: d.currentWoundPenalty });
+  if (d.currentFatiguePenalty) penalties.push({ label: 'Fatigue', value: d.currentFatiguePenalty });
+  const value = { technique: d.arts[technique].value, form: d.arts[form].value };
+  const focus = d.virtues.some((v) => v.cv.defId === 'minor-magical-focus' && /certamen/i.test(`${v.cv.param ?? ''} ${v.cv.note ?? ''}`)) || /certamen/i.test(d.focusText ?? '');
+  const lower: CertamenArt = value.technique <= value.form ? 'technique' : 'form';
+  const art = (which: CertamenArt): Part[] => {
+    const name = which === 'technique' ? ART_NAMES[technique] : ART_NAMES[form];
+    const parts: Part[] = [{ label: name, value: value[which] }];
+    if (focus && which === lower) parts.push({ label: 'Magical Focus (Certamen): the lower Art doubled', value: value[which] });
+    return parts;
+  };
+  const total = (parts: Part[], notes: string[] = []): TotalResult => ({ total: parts.reduce((s, p) => s + p.value, 0), parts, halved: false, notes });
+  const side = (stat: 'Pre' | 'Per', which: CertamenArt) => total([{ label: CHAR_NAMES[stat], value: ch[stat].value }, ...art(which), ...penalties]);
+  return {
+    initiative: total([{ label: 'Quickness', value: ch.Qik.value }, { label: 'Finesse', value: ability('finesse') }, ...penalties]),
+    attack: { technique: side('Pre', 'technique'), form: side('Pre', 'form') },
+    defense: { technique: side('Per', 'technique'), form: side('Per', 'form') },
+    weakening: total([{ label: 'Intelligence', value: ch.Int.value }, { label: 'Penetration', value: ability('penetration') }], ['Add the Attack Advantage.']),
+    resistance: total([{ label: 'Stamina', value: ch.Sta.value }, { label: 'Parma Magica (not ×5)', value: ability('parma-magica') }]),
+    visLimit: { technique: d.arts[technique].score, form: d.arts[form].score },
+  };
+}
+
+/** Fatigue levels lost to a certamen attack: one per five points (or fraction) of Weakening Total over Resistance Total. */
+export function certamenFatigue(weakeningTotal: number, resistanceTotal: number): number {
+  const over = weakeningTotal - resistanceTotal;
+  return over > 0 ? Math.ceil(over / 5) : 0;
 }
 
 export function magicResistance(d: DerivedCharacter, form: Form, o: { aura?: AuraState; includeAura?: boolean; sharing?: boolean; vsRealm?: Realm } = {}): TotalResult {

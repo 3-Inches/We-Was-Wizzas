@@ -1,0 +1,1685 @@
+[
+ {
+  "title": "The Chiefs of Ten and their Secrets",
+  "heading": "The Chiefs of Ten and their Secrets",
+  "line": 2361,
+  "endLine": 2374,
+  "category": "traditions",
+  "topic": "Grigori Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Grigori Magic (Secrets of the Watchers)",
+  "summary": "Lists the Technique and pair of Forms covered by the Secret of each known Watcher, which is the template for each Grigori Supernatural and Hermetic Virtue.",
+  "quotes": [
+   "**Araquiel:** Creo, Terram, Corpus",
+   "**Shamsiel:** Rego, Ignem, Vim"
+  ],
+  "related": []
+ },
+ {
+  "title": "Library Consultation",
+  "heading": "Library Consultation",
+  "line": 2386,
+  "endLine": 2390,
+  "category": "seasons",
+  "topic": "Library consultation",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional extended fact-finding research rules: a character spends a season consulting books on a single question, gaining temporary experience, then rolls against the question's Ease Factor. Suited to very hard questions.",
+  "quotes": [
+   "a magus can consult a number of books on the relevant ability up to his Intelligence + Artes Liberales per season",
+   "At the end of the season, the magus rolls Intelligence plus the temporarily boosted Ability against the Ease Factor of the question."
+  ],
+  "related": [
+   "Covenants p.98 research rules"
+  ]
+ },
+ {
+  "title": "Finding the Grigori: search Ease Factors",
+  "heading": "Finding the Grigori",
+  "line": 2408,
+  "endLine": 2422,
+  "category": "setting",
+  "topic": "Grigori Magic",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Grigori Magic stories",
+  "summary": "Suggested Abilities and Ease Factors for quickly resolving the search for the Grigori relics and sites with simple Ability rolls instead of a full adventure.",
+  "quotes": [
+   "Order of Hermes Lore, Ease Factor 12",
+   "Dominion Lore, Ease Factor 21"
+  ],
+  "related": []
+ },
+ {
+  "title": "Heron's Art: Mechanica",
+  "heading": "Heron's Art: Mechanica",
+  "line": 2622,
+  "endLine": 2625,
+  "category": "traditions",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Mechanica of Heron, or Hermetic integration of Heron's Mechanica",
+  "summary": "Introduces the Mechanica of Heron Supernatural Virtue, how a Gifted character learns it from a surviving practitioner, and why a magus would rather integrate it into Hermetic theory.",
+  "quotes": [
+   "A new Major Supernatural Virtue, Mechanica of Heron, represents the magical techniques described in this chapter."
+  ],
+  "related": [
+   "ArM5 p.166 learning Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Integrating Heron's Mechanica into Hermetic Theory",
+  "heading": "Integrating Heron's Mechanica into Hermetic Theory",
+  "line": 2626,
+  "endLine": 2637,
+  "category": "magic",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic breakthrough research (Mutable Device and Awakened Device)",
+  "summary": "Describes the two suggested Breakthroughs needed to fold Mechanica into Hermetic theory, and how uncorrupted texts and working mechanica give Insight and a one-time Lab Total bonus when inventing a matching device.",
+  "quotes": [
+   "Integrating Heron's Mechanica requires the following two suggested Breakthroughs: Mutable Device and Awakened Device.",
+   "Mechanica provide a bonus equal to the magnitude of the device's effect."
+  ],
+  "related": [
+   "Ancient Magic Introduction: Insight and breakthroughs"
+  ]
+ },
+ {
+  "title": "Ability: Mechanica of Heron",
+  "heading": "Ability Mechanica of Heron",
+  "line": 2630,
+  "endLine": 2634,
+  "category": "traditions",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Mechanica of Heron",
+  "summary": "The Supernatural Ability covering what mechanica are, how to build them and use them, mainly in the laboratory, with its suggested specialties.",
+  "quotes": [
+   "Inventing Mechanica, Constructing Anima, working with a particular material."
+  ],
+  "related": []
+ },
+ {
+  "title": "Understanding Mechanica",
+  "heading": "Understanding Mechanica",
+  "line": 2638,
+  "endLine": 2646,
+  "category": "lab",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic breakthrough research on Heron's Mechanica",
+  "summary": "A magus studies a mechanica for a season using the Investigating Enchantments rules to learn to use it as well as possibly gain Insight; also gives the accumulated breakthrough points suggested for Mutable Device.",
+  "quotes": [
+   "Study Mechanica: Intellego Vim Lab Total + stress die vs. device spell or effect level",
+   "If the study total generated exceeds the level of the effect in the device, the magus understands the device sufficiently to use the device"
+  ],
+  "related": [
+   "ArM5 p.100 Investigating Enchantments"
+  ]
+ },
+ {
+  "title": "Mechanica of Heron: constructing mechanica",
+  "heading": "Major Supernatural Virtue: Mechanica of Heron",
+  "line": 2648,
+  "endLine": 2677,
+  "category": "traditions",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Mechanica of Heron",
+  "summary": "How a Mechanician builds and alters ordinary mechanica in a laboratory: a creation total against a creation level based on the effect's magnitude, modifiers for size and time to employ, a cost in Mythic Pounds rather than vis, and a week's study to alter a device's effect.",
+  "quotes": [
+   "Construct Mechanica of Heron Total: Intelligence + Mechanica of Heron Ability + (lower of Philosophiae or Artes Liberales) + aura",
+   "Mechanica Creation Level: (3 x Magnitude of Imbued Effect) + modifiers",
+   "Creating Mechanica Cost: 1 Mythic Pound per 3 points of Mechanica Creation Level"
+  ],
+  "related": [
+   "ArM5 p.97-98 enchanting modifiers",
+   "ArM5 p.187 auras and magical devices"
+  ]
+ },
+ {
+  "title": "Mechanica of Heron: awakened simulacra (anima)",
+  "heading": "Major Supernatural Virtue: Mechanica of Heron, Continued",
+  "line": 2679,
+  "endLine": 2699,
+  "category": "traditions",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Mechanica of Heron",
+  "summary": "Rules for building a simulacrum of an animal, working out its Magic Might from size and material, awakening its anima with a cumulative-bonus lab project, and playing the resulting sentient mechanica (traits, Abilities, powers of movement and speech).",
+  "quotes": [
+   "Anima's Magic Might: Size + Material Base Points + (lower of Philosophiae or Artes Liberales)",
+   "Awaken Anima Total: Intelligence + Mechanica of Heron Ability + (lower of Philosophiae or Artes Liberales) + Aura",
+   "Awaken Anima Level: 9 + Magnitude of Anima's Magic Might"
+  ],
+  "related": [
+   "ArM5 p.192 Size Example Table",
+   "ArM5 p.97 Material Table",
+   "Houses of Hermes: Mystery Cults p.129 automata powers"
+  ]
+ },
+ {
+  "title": "Major Breakthrough: Mutable Device",
+  "heading": "Major Breakthrough: Mutable Device",
+  "line": 2701,
+  "endLine": 2703,
+  "category": "lab",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Breakthrough: Mutable Device (Heron's Mechanica integrated)",
+  "summary": "Hermetic enchanted devices whose invested effect can be altered later in the laboratory using vis, as long as the new effect shares Form and Technique and does not exceed the original level.",
+  "quotes": [
+   "A mutable item is created like a Lesser Enchanted Device with the new Mutable Device property adding +10 to the device's level of effect."
+  ],
+  "related": [
+   "ArM5 p.110 shape and material bonuses"
+  ]
+ },
+ {
+  "title": "Integrating Mechanica: the integration process",
+  "heading": "Integration Process",
+  "line": 2705,
+  "endLine": 2709,
+  "category": "lab",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic breakthrough research on Heron's Mechanica",
+  "summary": "After an Insight Lab Text exists, the magus makes Hermetic devices that duplicate a mechanica's effects to earn breakthrough points; building enchanted devices without vis breaks the Lesser Limit of Creation.",
+  "quotes": [
+   "Incorporating the Mechanicians' ability to build enchanted devices without vis breaks the Lesser Limit of Creation (ArM5, page 80), requiring a Hermetic Breakthrough to achieve."
+  ],
+  "related": [
+   "ArM5 p.80 Lesser Limit of Creation"
+  ]
+ },
+ {
+  "title": "Major Breakthrough: Awakened Device",
+  "heading": "Major Breakthrough: Awakened Device",
+  "line": 2719,
+  "endLine": 2725,
+  "category": "lab",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Breakthrough: Awakened Device (Heron's Mechanica integrated)",
+  "summary": "The breakthrough that allows Hermetic magi to awaken enchanted devices; it is a Major Breakthrough unless Mutable Device has already been discovered, in which case it is Minor.",
+  "quotes": [
+   "If the researcher has already discovered Mutable Device, she builds upon existing work and the discovery becomes a Minor Breakthrough requiring 30 points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Major Hermetic Virtue: Awaken Device",
+  "heading": "Major Hermetic Virtue: Awaken Device",
+  "line": 2735,
+  "endLine": 2755,
+  "category": "lab",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Awaken Device (after the Awakened Device breakthrough)",
+  "summary": "Hermetic procedure for awakening a simulacrum into a sentient Awakened Device: Magic Might from material and Magic Theory, vis cost, a Lab Total accumulated over uninterrupted seasons, and further enchanting for locomotion and communication.",
+  "quotes": [
+   "Awakened Device's Magic Might: Material Base Points + Magic Theory",
+   "Awakened Device Lab Total: Creo + Form + Intelligence + Magic Theory + Aura",
+   "Awakened Device Level: Awakened Device's Magical Might + (Size x 5)"
+  ],
+  "related": [
+   "ArM5 p.96-100 making enchanted devices",
+   "ArM5 p.97 Material and Size Table"
+  ]
+ },
+ {
+  "title": "Entering the Temple of Serapis",
+  "heading": "Entering the Temple",
+  "line": 2945,
+  "endLine": 2949,
+  "category": "realms",
+  "topic": "Heron's legacy",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Heron's legacy story",
+  "summary": "The lost temple's regio is accessible only when the local Dominion aura drops below a threshold; characters carrying a mechanica enter automatically, and the window closes after a few hours.",
+  "quotes": [
+   "When the Dominion aura dips below 4, the doorway to the Temple of Serapis appears as a ghostly archway of shadows beneath the lintel."
+  ],
+  "related": [
+   "ArM5 p.189 entering a regio"
+  ]
+ },
+ {
+  "title": "Ptolemaic coordinates versus Arcane Connections",
+  "heading": "Consequences",
+  "line": 3101,
+  "endLine": 3107,
+  "category": "magic",
+  "topic": "Ptolemaic coordinates",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ptolemaic coordinates integrated into Hermetic theory",
+  "summary": "Explains how coordinates work as Arcane Connections that rely on the Law of Names: they do not fade, can be carried in the mind, written down or built into items, and can be shared without being lost.",
+  "quotes": [
+   "They are information rather than objects, so they can be given away, and yet retained by the giver.",
+   "They do not need to be collected from a place, because they rely on the Law of Names, not the Law of Contagion."
+  ],
+  "related": []
+ },
+ {
+  "title": "Using Magical Coordinates",
+  "heading": "Using Magical Coordinates",
+  "line": 3109,
+  "endLine": 3117,
+  "category": "magic",
+  "topic": "Ptolemaic coordinates",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ptolemaic coordinates (reconstructing Ptolemy's The Geography)",
+  "summary": "Overview of integrating Ptolemaic coordinates into Hermetic magic: learn to measure the array of fixed stars, then calibrate the system by observing the array at the origin point. No new Virtue or Ability is needed and the technique can be taught.",
+  "quotes": [
+   "As soon as a character has completed the tasks required to reconstruct Ptolemy's work, it can be applied immediately to Hermetic magic, and may be taught to others."
+  ],
+  "related": []
+ },
+ {
+  "title": "Deriving Coordinates",
+  "heading": "Deriving Coordinates",
+  "line": 3119,
+  "endLine": 3121,
+  "category": "magic",
+  "topic": "Ptolemaic coordinates",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ptolemaic coordinates",
+  "summary": "The three ways a character can learn the coordinates of a place (stellar observation, other astronomers' observations, spellcasting), and the note that known coordinates can be used day or night, indoors or underground.",
+  "quotes": [
+   "A character does not require starlight to use coordinates; the character can use known coordinates during the day, from inside buildings, or underground."
+  ],
+  "related": []
+ },
+ {
+  "title": "Observation of the Fixed Stars",
+  "heading": "Observation of the Fixed Stars",
+  "line": 3123,
+  "endLine": 3135,
+  "category": "magic",
+  "topic": "Ptolemaic coordinates",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ptolemaic coordinates",
+  "summary": "How to derive a place's coordinates by astronomical observation: an Intelligence + Artes Liberales roll with a clear sky, simple tools and time for calculation (shortened by supernaturally accurate timepieces or Ptolemy's tables). It cannot work without the array of fixed stars at the origin.",
+  "quotes": [
+   "A character who makes an Intelligence + Artes Liberales roll against an Ease Factor of 15 makes an accurate observation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Learning Coordinates from Other Astronomers",
+  "heading": "Learning Coordinates from Other Astronomers",
+  "line": 3137,
+  "endLine": 3143,
+  "category": "magic",
+  "topic": "Ptolemaic coordinates",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ptolemaic coordinates",
+  "summary": "Coordinates can be taken from Ptolemy's published lists, but their accuracy varies by region, being excellent near Alexandria, often good within the old Western Roman Empire and poor beyond it.",
+  "quotes": [
+   "His coordinates for places around Alexandria are perfect, and those within the borders of the fallen Western Roman Empire are often correct to within a few miles."
+  ],
+  "related": []
+ },
+ {
+  "title": "Stellar Measurement by Spellcasting",
+  "heading": "Stellar Measurement by Spellcasting",
+  "line": 3145,
+  "endLine": 3157,
+  "category": "magic",
+  "topic": "Ptolemaic coordinates",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ptolemaic coordinates plus the Celestial Magic Mystery",
+  "summary": "Magi with the Celestial Magic Mystery can measure coordinates by spell instead of by eye; the sample spell shows the effect and notes how precisely a magus can hold a coordinate in mind.",
+  "quotes": [
+   "A magus is unable to hold coordinates in her mind with sufficient precision to represent a circle less than 1000 paces across."
+  ],
+  "related": [
+   "The Mysteries Revised Edition Chapter 6: Hermetic Astrology (Celestial Magic)"
+  ]
+ },
+ {
+  "title": "The Problem of the Origin Point",
+  "heading": "The Problem of the Origin Point",
+  "line": 3159,
+  "endLine": 3165,
+  "category": "magic",
+  "topic": "Ptolemaic coordinates",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ptolemaic coordinates",
+  "summary": "Characters cannot use the system until they know the array of fixed stars at the origin point, which they must infer from stellar readings, including one taken on the Zero Longitude in the Purple Islands.",
+  "quotes": [
+   "The characters require three stellar readings."
+  ],
+  "related": []
+ },
+ {
+  "title": "Research on the Purple Islands",
+  "heading": "Research",
+  "line": 3171,
+  "endLine": 3186,
+  "category": "setting",
+  "topic": "Purple Islands",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Purple Islands story",
+  "summary": "Rolls and Ease Factors for what characters can learn about the Purple Islands from classical geography and Magic Lore before they sail.",
+  "quotes": [
+   "An Intelligence + Artes Liberales roll, against an Ease Factor of 6, gives the following information:",
+   "An Intelligence + Magic Lore roll, against an Ease Factor of 9, gives the following information:"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Code of Hermes and the Guan",
+  "heading": "The Code May Not Protect the Guan",
+  "line": 3198,
+  "endLine": 3202,
+  "category": "order",
+  "topic": "Purple Islands",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Purple Islands story",
+  "summary": "Discusses whether the Code of Hermes protects the Guan from Hermetic interference, since they serve hedge-magician kings whom the Order may demand to submit.",
+  "quotes": [
+   "The servants of magicians are the property of those magicians, and may be legitimately targeted."
+  ],
+  "related": []
+ },
+ {
+  "title": "Guan king magic (meceny)",
+  "heading": "Magic",
+  "line": 3230,
+  "endLine": 3244,
+  "category": "traditions",
+  "topic": "Guan magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Guan kings (mecenys)",
+  "summary": "Community-ceremony magic of the Guan kings: it cannot fail or botch when the traditional formulae are used, and every meceny can perform a fixed set of effects with village help plus two minor effects unique to his tribe.",
+  "quotes": [
+   "The magic of Guan kings is performed with community ceremonies, and cannot fail or botch, provided the ancient and tested formulae are used.",
+   "All meceny can perform the following effects, if assisted by their villages:"
+  ],
+  "related": [
+   "ArM5 p.135 The Bountiful Feast",
+   "ArM5 p.153 Coerce the Spirits of the Night"
+  ]
+ },
+ {
+  "title": "Canarian dialects and silbo (whistled speech)",
+  "heading": "Dialects",
+  "line": 3254,
+  "endLine": 3260,
+  "category": "setting",
+  "topic": "Guan dialects",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Purple Islands setting",
+  "summary": "How well speakers of one Canarian dialect understand another, how silbo (whistled speech) is learned, and how magi can use silbo to extend the range of Voice-range spells.",
+  "quotes": [
+   "A person skilled in any Canarian dialect can communicate with speakers of other Canarian dialects as if his Ability were two points lower.",
+   "Spells in silbo are considered to be cast in booming voice."
+  ],
+  "related": [
+   "Ancient Magic Chapter 1: The Language of Adam (casting in other languages)"
+  ]
+ },
+ {
+  "title": "Statistics for Guan Weapons",
+  "heading": "Statistics for Guan Weapons",
+  "line": 3270,
+  "endLine": 3290,
+  "category": "combat",
+  "topic": "Guan weapons",
+  "audience": [
+   "storyguide",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Purple Islands setting",
+  "summary": "The adjustment applied to weapons made of stone or volcanic glass instead of metal, with the melee and missile weapon tables for the Guan.",
+  "quotes": [
+   "Those Guan weapons constructed with stone or volcanic glass, in lieu of metal, and have a Damage modifier 2 points lower than usual, to a minimum Damage modifier of +1."
+  ],
+  "related": []
+ },
+ {
+  "title": "Entering the Garden of the Hesperides",
+  "heading": "Entering the Garden",
+  "line": 3336,
+  "endLine": 3346,
+  "category": "realms",
+  "topic": "Purple Islands",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Purple Islands story",
+  "summary": "How characters enter the regio hiding the Garden, its Magic aura, the restriction on entering while facing east, and the effects of the golden apples (a pawn of Creo vis and a reduction in Apparent Age).",
+  "quotes": [
+   "The regio has a Magic aura of 9.",
+   "Each apple contains a pawn of Creo vis."
+  ],
+  "related": [
+   "ArM5 p.189 entering a regio"
+  ]
+ },
+ {
+  "title": "Serpent-dryad growth",
+  "heading": "Serpent-dryads",
+  "line": 3424,
+  "endLine": 3438,
+  "category": "beings",
+  "topic": "Serpent-dryads",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dragon tree grown from Ladon's blood",
+  "summary": "Describes how dragon trees grown from Ladon's blood produce serpent-dryads and the progression by which the serpent gains heads and improves its Might, Soak, Size, Strength, Confidence and mental Characteristics as the tree flowers.",
+  "quotes": [
+   "At each flowering, the serpent gains an extra head.",
+   "For every five heads, the creature gains a point of Might and Soak."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Hyperborean Hymns of Apollo (overview)",
+  "heading": "The Hyperborean Hymns of Apollo",
+  "line": 3576,
+  "endLine": 3584,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Introduces the hymns, the sacred names taught by Apollo, whose power derives from the Magic realm rather than the Divine.",
+  "quotes": [
+   "although their power derives from the Magic realm, not the Divine."
+  ],
+  "related": []
+ },
+ {
+  "title": "Performing the Hyperborean hymns",
+  "heading": "Performing the Hymns",
+  "line": 3586,
+  "endLine": 3588,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns (The Gift or Virtue: Hyperborean Hymnist)",
+  "summary": "Each hymn is learned as its own Supernatural Ability, and only Gifted characters or those with the Hyperborean Hymnist Virtue can recite a hymn successfully; Hermetic magi can study discovered hymns only for Insight.",
+  "quotes": [
+   "Only characters with The Gift or with the Virtue Hyperborean Hymnist can ever successfully recite a hymn and gain the supernatural powers it provides."
+  ],
+  "related": [
+   "ArM5 p.166 learning multiple Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Hyperborean New Virtues (Hymnist and Descent)",
+  "heading": "New Virtues",
+  "line": 3590,
+  "endLine": 3635,
+  "category": "creation",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "The character-creation Virtues that grant access to the hymns: Hyperborean Hymnist (a starting hymn with its powers already infused), and Minor and Major Hyperborean Descent (longevity, spirit affinity, a Mythic Blood variant with a bird or flight feat).",
+  "quotes": [
+   "Your character starts with one recited hymn, which confers the Supernatural Ability of [Hymn] 1, and 15 levels of Powers (which have already been infused at the start of play)."
+  ],
+  "related": [
+   "ArM5 p.47 Mythic Blood"
+  ]
+ },
+ {
+  "title": "Supernatural Ability: Hyperborean Hymn",
+  "heading": "New Supernatural Ability: Hyperborean Hymn",
+  "line": 3606,
+  "endLine": 3616,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Each hymn is a separate Supernatural Ability: every level gives levels of powers, adds to Soak against the hymn's principles, and can be added to a Lab Total when the hymn is involved in the effect or item.",
+  "quotes": [
+   "For each level of a Hymn Ability, your character gains 15 levels of powers (see below for details).",
+   "Hymns may be also used in the laboratory, by adding the Ability to your character's Lab Total if the hymn involves either the effect or item being enchanted."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dead Language: Hyperborean",
+  "heading": "Dead Language: Hyperborean",
+  "line": 3618,
+  "endLine": 3622,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "The Hyperborean language, understood by spirits and related to Ancient Greek; it aids hymn recitation but is not required, and its alphabet needs a separate level of Artes Liberales.",
+  "quotes": [
+   "everyday usage, poetry, religious usage, talking to spirits."
+  ],
+  "related": []
+ },
+ {
+  "title": "Illumination: Hyperborean Warping",
+  "heading": "Illumination: Hyperborean Warping",
+  "line": 3643,
+  "endLine": 3645,
+  "category": "realms",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns (as first and primary magical tradition)",
+  "summary": "A Gifted character whose primary tradition is the hymns suffers Illumination in place of ordinary Warping or Hermetic Twilight; Hermetic magi are unaffected and still experience Twilight.",
+  "quotes": [
+   "Illumination does not affect Hermetic magi, who always experience Twilight."
+  ],
+  "related": [
+   "ArM5 pp.167-168 Warping",
+   "ArM5 p.88 Twilight"
+  ]
+ },
+ {
+  "title": "Apollo's Light: Illumination Control roll",
+  "heading": "Apollo's Light",
+  "line": 3647,
+  "endLine": 3657,
+  "category": "realms",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Warping gives a Hyperborean wizard an Apollonian Personality Trait; gaining several Warping Points at once forces an Illumination Control roll, and failure transforms the character into an animal or separates the spirit from the body.",
+  "quotes": [
+   "Illumination Control Roll: Stamina + Concentration + highest Hymn Ability score + stress die",
+   "Illumination Ease Factor: character's updated Warping Score + number of Warping Points gained + aura + modifiers + stress die"
+  ],
+  "related": []
+ },
+ {
+  "title": "Illumination transformation and the Bright Lightening",
+  "heading": "Illumination: Hyperborean Warping, Continued",
+  "line": 3659,
+  "endLine": 3665,
+  "category": "realms",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "What happens while an Illuminated character is transformed, the second Control roll needed to return to human form, and the voluntary Bright Lightening that trades extra Warping for experience in a hymn.",
+  "quotes": [
+   "This transformation lasts for a number of hours equal to the total number of Warping Points the character has."
+  ],
+  "related": []
+ },
+ {
+  "title": "Illumination Example",
+  "heading": "Illumination Example",
+  "line": 3667,
+  "endLine": 3669,
+  "category": "realms",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "A worked example of an Illumination Control roll, including the effect of Descent and infused power levels, and of voluntarily failing the roll.",
+  "quotes": [
+   "Abaris's Warping Score is 8 (223 Warping Points)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Reciting the Hymns",
+  "heading": "Reciting the Hymns",
+  "line": 3671,
+  "endLine": 3693,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "How a hymnist infuses a Power: a season of contemplation, then a recitation total against an Ease Factor derived from the Power's level. Once infused the Power is used at will and invoked with a brief prayer, with no gestures; includes a worked example.",
+  "quotes": [
+   "Hymn Recitation Total: Communication + Hymn Ability + modifiers + aura",
+   "Hymn Recitation Ease Factor: (total level of Power(s) + Power level modifiers) / 3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Puissant hymns and hymn Affinities",
+  "heading": "Puissant hymns and hymn Affinities",
+  "line": 3695,
+  "endLine": 3697,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Affinity with Ability and Puissant Ability can be taken for a hymn; Puissant raises recitation and Soak totals but does not increase the points for Powers.",
+  "quotes": [
+   "Puissant Hymn effectively increases your hymn recitation totals for that hymn, and other totals that may use your character's Hymn Ability score (such as Soak)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Apollonian Personality Traits",
+  "heading": "Apollonian Personality Traits",
+  "line": 3699,
+  "endLine": 3701,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Guidance on which Personality Traits Apollo favors and disfavors, used for Dutybound characters and Illumination.",
+  "quotes": [
+   "Apollo symbolized a number of virtuous Personality Traits, the most prominent one being Austerity."
+  ],
+  "related": []
+ },
+ {
+  "title": "Finding hymns, the Easy Way",
+  "heading": "Finding hymns, the Easy Way",
+  "line": 3703,
+  "endLine": 3707,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "A season-long stress roll to track down a hymn teacher, fragment or relic as a shortcut to a full adventure, with outcomes for failure and botch.",
+  "quotes": [
+   "Finding a Hyperborean Hymn Source: Intelligence + Magic Lore + stress die vs. Ease Factor 21"
+  ],
+  "related": []
+ },
+ {
+  "title": "Recitation Total Modifiers",
+  "heading": "Recitation Total Modifiers",
+  "line": 3709,
+  "endLine": 3726,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Table of modifiers to a hymn recitation total: devotional behavior, distraction, Descent, knowing the language, and honorable or dishonorable Personality Flaws.",
+  "quotes": [
+   "Devotional behavior means spending a season prior to reciting the hymn in activity devoted to the veneration of Apollo."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hymn Powers",
+  "heading": "Hymn Powers",
+  "line": 3728,
+  "endLine": 3761,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "How hymn Powers are designed: levels are set with the Hermetic guidelines and effect modifiers, the Ease Factor to recite is a fraction of the level, and hymns need no vis or Rituals even for permanent effects.",
+  "quotes": [
+   "The Ease Factor to recite a hymn is determined by dividing the level of the Power by three (round up)."
+  ],
+  "related": [
+   "ArM5 pp.98-99 effect modifications",
+   "ArM5 p.168 constant mystical effects"
+  ]
+ },
+ {
+  "title": "New Duration: 19 Years",
+  "heading": "New Duration: 19 Years",
+  "line": 3738,
+  "endLine": 3744,
+  "category": "magic",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "A new Duration for hymn Powers lasting until the stars complete their nineteen-year revolution, one magnitude above Year Duration.",
+  "quotes": [
+   "The power or spell lasts for 19 years, or until the stars complete their 19-year revolution, whichever is the lesser."
+  ],
+  "related": []
+ },
+ {
+  "title": "Learning to Speak Hyperborean",
+  "heading": "Learning to Speak Hyperborean",
+  "line": 3750,
+  "endLine": 3758,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Ways a character can acquire the Hyperborean language: similarity to Ancient Greek, decoding paired prayers, or instruction from Hyperborean ghosts and spirits.",
+  "quotes": [
+   "knowing Ancient Greek allows limited understanding of Hyperborean."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining New Powers and Improving Existing Ones",
+  "heading": "Gaining New Powers and Improving Existing Ones",
+  "line": 3763,
+  "endLine": 3773,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Raising a Hymn Ability grants more levels of powers that can be spent on new Powers or on improving old ones, each requiring a recitation season; includes a worked example.",
+  "quotes": [
+   "Each time you increase one of your character's Hymn Ability scores, he gains 15 additional levels in powers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining More Levels (hymns and vis)",
+  "heading": "Gaining More Levels",
+  "line": 3777,
+  "endLine": 3783,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Hymnists can exceed the practical limit on powers per hymn by spending vis during a recitation, one extra level per pawn, with a suggested adjustment for high-vis sagas.",
+  "quotes": [
+   "For each pawn of vis expended during the recitation of a hymn, the character gains one extra level to spend on Powers."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Seven Beautiful Names of Light: principles and invocation",
+  "heading": "The Seven Beautiful Names of Light",
+  "line": 3785,
+  "endLine": 3813,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Introduces the seven surviving hymns, the idea of principles (the hymn equivalent of Forms, relevant to Magic Resistance), the Magic Resistance power common to all hymns, and the longer invocation time at night.",
+  "quotes": [
+   "During the nighttime the hymn takes longer to invoke: 15 minutes per point of the Ease Factor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hymn: Azai (Beautiful Light)",
+  "heading": "Azai (Beautiful Light)",
+  "line": 3815,
+  "endLine": 3831,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hymn Ability: Azai",
+  "summary": "The hymn of life, authority and vitality, and its list of principles (what its Powers can affect and their related Hermetic Forms for Magic Resistance).",
+  "quotes": [
+   "*Corpus*: birth, the heart, vitality"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hymn: Eloure (Fire Delighter)",
+  "heading": "Eloure (Fire Delighter)",
+  "line": 3883,
+  "endLine": 3895,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hymn Ability: Eloure",
+  "summary": "The hymn of emotion, water and fertility, and its principles.",
+  "quotes": [
+   "*Mentem*: emotions, dreams, honesty, maternal urges"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hymn: Ia\u00f3 (Fire Feeler)",
+  "heading": "Ia\u00f3 (Fire Feeler)",
+  "line": 3929,
+  "endLine": 3937,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hymn Ability: Ia\u00f3",
+  "summary": "The hymn of senses, pleasure and beauty, and its principles.",
+  "quotes": [
+   "*Mentem*: affection, attraction, creativity, pleasure"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hymn: \u00d3ai (Light Breather)",
+  "heading": "\u00d3ai (Light Breather)",
+  "line": 3971,
+  "endLine": 3983,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hymn Ability: \u00d3ai",
+  "summary": "The hymn of intellect, animals, secrecy and travel (including the spirit world), and its principles.",
+  "quotes": [
+   "*Animal*: birds, crows, dolphins, grasshoppers, hawks, mice, snakes, swans, wolves"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hymn: Pentiterouni (Firewalker)",
+  "heading": "Pentiterouni (Firewalker)",
+  "line": 4019,
+  "endLine": 4035,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hymn Ability: Pentiterouni",
+  "summary": "The hymn of discipline, the body, earth and stern authority, and its principles.",
+  "quotes": [
+   "*Corpus*: aging and growth, bones, the organs and flesh, skin, trembling"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hymn: Psyrinpheu (Fire Breather)",
+  "heading": "Psyrinpheu (Fire Breather)",
+  "line": 4061,
+  "endLine": 4075,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hymn Ability: Psyrinpheu",
+  "summary": "The hymn of passion, war and victory, and its principles.",
+  "quotes": [
+   "*Corpus*: fevers, the head, muscles, sexuality, stamina, youth"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hymn: Semesilam (Encloser, Lightmaker)",
+  "heading": "Semesilam (Encloser, Lightmaker)",
+  "line": 4145,
+  "endLine": 4161,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hymn Ability: Semesilam",
+  "summary": "The hymn of the arts, justice, optimism and prosperity, and its principles.",
+  "quotes": [
+   "*Mentem*: benevolence, justice, morality, optimism"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hyperborean Choirs (overview)",
+  "heading": "Hyperborean Choirs",
+  "line": 4185,
+  "endLine": 4187,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Singing hymns in a choir is the only way to use more than one hymn at once, and requires the Supernatural Ability Ceremony.",
+  "quotes": [
+   "singing hymns in a choir is the only way to use more than one Hyperborean hymn at once."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.34 Ceremony"
+  ]
+ },
+ {
+  "title": "Choir Mechanics",
+  "heading": "Choir Mechanics",
+  "line": 4197,
+  "endLine": 4203,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "How a choir of hymnists produces a one-off free-form effect: a focus character, a storyguide-set Ease Factor, extra level per additional hymn, members adding Communication plus Hymn Ability, a day or more of trance, and a vis cost equal to the Ease Factor.",
+  "quotes": [
+   "Each member of the choir then adds his Communication + Hymn Ability to the focus character's recitation total.",
+   "If the effect calls on more than one hymn, increase the level of the Power by 5 for every extra hymn it requires."
+  ],
+  "related": []
+ },
+ {
+  "title": "Choir Recitation Modifier",
+  "heading": "Choir Recitation Modifier",
+  "line": 4213,
+  "endLine": 4224,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "Table of bonuses to a choir recitation for spending longer than a day performing the hymn, up to a stated maximum.",
+  "quotes": [
+   "This is the maximum bonus possible."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ability: Ceremony (group effort)",
+  "heading": "Ability: Ceremony",
+  "line": 4226,
+  "endLine": 4244,
+  "category": "traditions",
+  "topic": "Ceremony",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ceremony",
+  "summary": "The Supernatural Ability that lets a group combine totals: each participant adds Characteristic plus Ability to the focus character's total, with a leader limiting contributors and a penalty if there is no leader; it can also boost seasonal activities.",
+  "quotes": [
+   "Ceremony Bonus: Characteristic + Ability total of each participant",
+   "All participants add their totals of the appropriate Characteristic + Ability to the focus character's total."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.36 Ceremony"
+  ]
+ },
+ {
+  "title": "Choir Example",
+  "heading": "Choir Example",
+  "line": 4247,
+  "endLine": 4251,
+  "category": "traditions",
+  "topic": "Hyperborean hymns",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "A worked example of six hymnists using a choir to call down a plague, showing the Ease Factor, vis cost and Ceremony Bonus calculation.",
+  "quotes": [
+   "The focus character's recitation total is 8 (Communication 2 + Hymn Ia\u00f3 6) with a Ceremony Bonus of 25*"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hyperborean Enchantments (relics)",
+  "heading": "Hyperborean Enchantments",
+  "line": 4261,
+  "endLine": 4463,
+  "category": "lab",
+  "topic": "Hyperborean relics",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Hyperborean hymns",
+  "summary": "How a hymnist crafts relics: an enchantment total against an Ease Factor from the Powers' level, no vis but Warping instead, one season per Power, no size or material limits, plus the things hymn enchanting cannot do. Includes sample relic powers and how profaning or damage strips Powers.",
+  "quotes": [
+   "Enchantment Total: Intelligence + Hymn Ability + modifiers + aura",
+   "Enchantment Ease Factor: (total level of Power(s) + modifiers) / 3",
+   "Furthermore, instead of using vis, the Hyperborean enchanter Warps his own body, at a rate of 2 Warping Points for every pawn of vis the enchantment would have needed"
+  ],
+  "related": [
+   "ArM5 pp.95-100 Magical Enchantments"
+  ]
+ },
+ {
+  "title": "New Shape and Material Bonuses",
+  "heading": "New Shape and Material Bonuses",
+  "line": 4281,
+  "endLine": 4291,
+  "category": "lab",
+  "topic": "Enchanting materials",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Four new materials with enchanting bonuses available to all characters: Cappadocian Salt, Doum Palm Leaf, Pure Honey and Sun Scarab.",
+  "quotes": [
+   "Cappadocian Salt: +6 purifying effects",
+   "Sun Scarab: +4 detect magic"
+  ],
+  "related": [
+   "ArM5 p.97 Material Table"
+  ]
+ },
+ {
+  "title": "Hyperborean breakthroughs (integration targets)",
+  "heading": "The Breakthrough",
+  "line": 4493,
+  "endLine": 4507,
+  "category": "magic",
+  "topic": "Hyperborean integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic breakthrough research on Hyperborean magic",
+  "summary": "The minimum breakthrough points required to integrate each aspect of Hyperborean magic (a new Duration, spirit-travel, vis-less permanent magic and enchantment, removing shape, material and size limits, and Ritual effect enchantment), with advice to vary the totals slightly.",
+  "quotes": [
+   "Integrating Vis-less Permanent Magic: 70 breakthrough points",
+   "Integrating a New Duration (Minor Breakthrough): 30 breakthrough points"
+  ],
+  "related": [
+   "Ancient Magic Introduction: Hermetic breakthroughs and Insight"
+  ]
+ },
+ {
+  "title": "Hyperborean Integration Process",
+  "heading": "Hyperborean Integration Process",
+  "line": 4509,
+  "endLine": 4515,
+  "category": "magic",
+  "topic": "Hyperborean integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic breakthrough research on Hyperborean magic",
+  "summary": "The five-step process for integrating Hyperborean magic: find a source, gain Insight, incorporate it into a matching effect, research as in the Introduction, and consider the consequences. Each source gives one Insight tied to its most significant Power.",
+  "quotes": [
+   "Each source allows your character to gain one Insight, which permits him to create one specific effect."
+  ],
+  "related": [
+   "Ancient Magic Introduction"
+  ]
+ },
+ {
+  "title": "Hyperborean Insight",
+  "heading": "Hyperborean Insight",
+  "line": 4517,
+  "endLine": 4533,
+  "category": "magic",
+  "topic": "Hyperborean integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic breakthrough research on Hyperborean magic",
+  "summary": "Modifiers to the Insight roll from hymn fragments, relics, teachers, knowledge of the Hyperborean language, and combining multiple sources, with the rule that a single source gives Insight only once; includes an example.",
+  "quotes": [
+   "Having only a fragment of a hymn (such as a sacred name or fragments of a prayer string) imposes a \u20132 penalty on the Insight roll, while a near-complete fragment grants a +2 bonus to the roll.",
+   "Having a basic proficiency in Hyperborean grants +1 to the Insight roll for every point the researcher has in the Ability above 4, to a maximum of +3."
+  ],
+  "related": []
+ },
+ {
+  "title": "Consequences of integrating Hyperborean magic",
+  "heading": "Consequences",
+  "line": 4535,
+  "endLine": 4547,
+  "category": "magic",
+  "topic": "Hyperborean integration",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic breakthrough research on Hyperborean magic",
+  "summary": "Storyguide advice on what each Hyperborean breakthrough would change in the Order: a 19-year Duration, safer spirit travel, vis-less spells and enchantment (supplementing vis with Warping), unlimited shape, material and size, and enchanting Ritual effects.",
+  "quotes": [
+   "This Breakthrough would allow the enchantment of magical devices by supplementing vis with Warping Points, at a rate of 2 Warping Points for every pawn of vis that would have been needed."
+  ],
+  "related": [
+   "ArM5 p.97 Preparation for Enchantment",
+   "ArM5 p.161 Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "Locating the Basilica of Ten Thousand Columns",
+  "heading": "Finding the Basilica",
+  "line": 4567,
+  "endLine": 4601,
+  "category": "setting",
+  "topic": "Basilica of Ten Thousand Columns",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hyperborean magic story",
+  "summary": "A shortcut season of research to learn where the basilica lies, resolved by an Order of Hermes Lore stress roll; failure wastes the season and a botch gives a false location.",
+  "quotes": [
+   "Locating the Basilica: Intelligence + Order of Hermes Lore + stress die vs. Ease Factor 21"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Basilica's Aura",
+  "heading": "The Basilica's Aura",
+  "line": 4625,
+  "endLine": 4631,
+  "category": "realms",
+  "topic": "Basilica of Ten Thousand Columns",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting the Basilica of Ten Thousand Columns",
+  "summary": "The varying Magic aura levels across the vale and buildings, the waxing and waning with the moon, small Dominion and Divine auras, and a doubling of aura benefit for certain spirit, divination and disease magic.",
+  "quotes": [
+   "any spells cast or supernatural abilities used that relate to the summoning or control of the dead, divining the future, curing or causing disease, or invoking spirits receive double the benefit from the magical aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Agyieus Pillars (enchanting bonuses)",
+  "heading": "Agyieus Pillars",
+  "line": 4643,
+  "endLine": 4647,
+  "category": "lab",
+  "topic": "Enchanting materials",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to an Agyieus pillar",
+  "summary": "Agyieus pillars sacred to Apollo may be enchanted and give listed shape and material bonuses for spirits, divination, sunlight, disease and protection.",
+  "quotes": [
+   "The pillars may be enchanted, and provide the following shape and material bonuses: +2 invoking or controlling spirits, +3 divining the future, + 3 summoning sunlight, +5 cause or cure disease, and + 5 protection from hostile spirits."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Altars of Alexander the Great (Arcane Connections)",
+  "heading": "The Altars of Alexander the Great",
+  "line": 4662,
+  "endLine": 4670,
+  "category": "magic",
+  "topic": "Arcane Connections",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to an Alexandrian altar",
+  "summary": "The altars are linked by dragon lines; casting an Arcane Connection Range spell while touching one treats the other linked shrines, cities and temples as having an Arcane Connection with a bonus multiplier.",
+  "quotes": [
+   "is considered to have an Arcane Connection with a +4 multiplier to the other shrines, cities, or temples connected by the dragon lines."
+  ],
+  "related": [
+   "Covenants p.98 Magic Lore research"
+  ]
+ },
+ {
+  "title": "Nekuomanteioi: ghosts as Arcane Connections for necromantic divination",
+  "heading": "The Nekuomanteioi, Hyperborean Priests of Apollo",
+  "line": 4694,
+  "endLine": 4748,
+  "category": "magic",
+  "topic": "Necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to a nekuomanteioi ghost",
+  "summary": "Stat block for the oracular ghosts of the basilica, with a necromancer rule at the end: using such a ghost as an Arcane Connection for Intellego spells to look into the past or future makes the spell a Ritual of higher magnitude and inflicts Warping.",
+  "quotes": [
+   "This increases the magnitude of the spell by 4 if looking into the past, or 5 if looking into the hazy and indistinct future."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.49 Adjuration"
+  ]
+ },
+ {
+  "title": "Spirit guardians of the basilica (manifesting)",
+  "heading": "Spirit Guardians",
+  "line": 4798,
+  "endLine": 4806,
+  "category": "beings",
+  "topic": "Underworld spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting the Basilica of Ten Thousand Columns",
+  "summary": "The underworld spirits bound to the basilica may be treated as chthonic and mistaken for Infernal creatures by holiness-sensing Virtues, and can spend Might to manifest in a physical form that can be wounded but not killed.",
+  "quotes": [
+   "All of the spirits here can spend 1 Magic Might point to manifest in physical form (and return to spiritual form at will)."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.123 Sense Holiness and Unholiness"
+  ]
+ },
+ {
+  "title": "Hyperborea as a regio",
+  "heading": "The Legend",
+  "line": 4950,
+  "endLine": 4994,
+  "category": "realms",
+  "topic": "Hyperborea",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hyperborea story",
+  "summary": "Describes Hyperborea as an island in a multi-level regio that cannot be entered by accident (passwords or an invitation are needed), its inhabitants' Supernatural Powers, and Apollo's visit every nineteen years; includes sidebars on famous Hyperboreans and how to get in.",
+  "quotes": [
+   "Hyperborea is an island hidden in a level 7 regio (although at its highest level it extends to a level 10 regio)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Detecting and recognising rune magic",
+  "heading": "Heirlooms and Artifacts",
+  "line": 5071,
+  "endLine": 5081,
+  "category": "traditions",
+  "topic": "Rune Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Rune Magic (Order of Odin) story",
+  "summary": "Rune-enchanted objects do not register as magical to Intellego Vim, and active runes are lasting Arcane Connections to the caster, so finding and proving working rune magic takes observation and investigation.",
+  "quotes": [
+   "Because of the way that rune magic changes the nature of its target, objects with active effects do not seem magical to Intellego Vim spells."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dvergar-forged rune items",
+  "heading": "The Dvergar",
+  "line": 5083,
+  "endLine": 5109,
+  "category": "traditions",
+  "topic": "Rune Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Contact with the dvergar of Nithavellir",
+  "summary": "How the faerie dvergar craft rune items on commission: they can do more than human rune wizards, their items resemble Hermetic devices, they work only for the person they were made for, and the price is set afterwards and carries hidden costs.",
+  "quotes": [
+   "items only function for the person for whom they were crafted, though they may be inherited by a blood relative"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Integration of Rune Magic",
+  "heading": "Hermetic Integration",
+  "line": 5111,
+  "endLine": 5126,
+  "category": "magic",
+  "topic": "Rune Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic breakthrough research on Rune Magic",
+  "summary": "After investigating active rune magic, a magus can integrate it into Hermetic theory (a Major Breakthrough) to gain the Hermetic Rune Magic Virtue and the Rune Magic Ability, and learns the three formulas for inscribing a rune spell. Includes the Enchantment Runes sidebar.",
+  "quotes": [
+   "(a Major Breakthrough requiring 45 breakthrough points), producing the new Hermetic Rune Magic Virtue, described below.",
+   "There are three ways to formulate a rune spell."
+  ],
+  "related": []
+ },
+ {
+  "title": "Enchantment Runes",
+  "heading": "Enchantment Runes",
+  "line": 5115,
+  "endLine": 5119,
+  "category": "lab",
+  "topic": "Rune Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Rune Magic",
+  "summary": "How magi with Hermetic Rune Magic invent enchanted devices using the Rune Duration and Inscription Target, and the bonus available to Verditius magi who have the Elder Verditius Runes Mystery.",
+  "quotes": [
+   "they must inscribe the runes onto the item as part of investing the effect."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.127"
+  ]
+ },
+ {
+  "title": "Hermetic Rune Magic: Rune Duration and Inscription Target",
+  "heading": "New Virtue",
+  "line": 5127,
+  "endLine": 5158,
+  "category": "magic",
+  "topic": "Rune Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Hermetic Rune Magic",
+  "summary": "The extended mechanic behind the Hermetic Rune Magic Virtue: the Rune Duration and Inscription Target, how and how fast runes are inscribed, casting-total modifiers for hiding or omitting the name and description, the craft-roll alternative, and the drawbacks (a lasting Arcane Connection and a Warping Point for the target).",
+  "quotes": [
+   "This Duration is equivalent to Moon, adding three magnitudes to a spell's base level.",
+   "If the magus does not inscribe his name into the inscription, he receives a \u20135 penalty."
+  ],
+  "related": [
+   "Opening the Intangible Tunnel (ReVi Gen)"
+  ]
+ },
+ {
+  "title": "Ability: Rune Magic",
+  "heading": "New Ability: Rune Magic",
+  "line": 5160,
+  "endLine": 5162,
+  "category": "traditions",
+  "topic": "Rune Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Rune Magic study or Virtue: Hermetic Rune Magic",
+  "summary": "The Arcane Ability covering knowledge of runes: their symbolism, formulating and encrypting rune-script, and copying books on rune magic.",
+  "quotes": [
+   "hiding runes, identifying rune magic, runes associated with a particular Art."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rune Magic and Creo Spells",
+  "heading": "Rune Magic and Creo Spells",
+  "line": 5168,
+  "endLine": 5172,
+  "category": "magic",
+  "topic": "Rune Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Rune Magic",
+  "summary": "Special rules for Creo with rune magic: created targets need the runes on an Arcane Connection to the target and are only created if it does not already exist, and healing runes take the place of natural healing while they remain on the target.",
+  "quotes": [
+   "If the effect creates a target, the runes must be written on an Arcane Connection to that target, and the target is only created if it does not already exist."
+  ],
+  "related": [
+   "ArM5 p.179 Recovery rolls"
+  ]
+ }
+]

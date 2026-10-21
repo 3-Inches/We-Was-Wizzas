@@ -1,0 +1,1448 @@
+[
+ {
+  "title": "Indulgences",
+  "heading": "Indulgences",
+  "line": 683,
+  "endLine": 693,
+  "category": "seasons",
+  "topic": "Indulgences",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains what an indulgence is (a reduction of a priest-decreed penance, not a payment for absolution), how its price scales with the buyer's means and the length of remission, and what a character must do afterwards to gain Reputation experience and a temporary Faith Point.",
+  "quotes": [
+   "The poor donate what they feel they can afford, in most cases six Mythic pennies per season, and the wealthy at least a pound per season."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.58 Faith Points"
+  ]
+ },
+ {
+  "title": "Example of Creating a Devout Character",
+  "heading": "Example of Creating a Devout Character",
+  "line": 703,
+  "endLine": 705,
+  "category": "realms",
+  "topic": "Devotion",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Christian character with a positive Personality Trait: Pious",
+  "summary": "A worked example of assigning starting Devotion Points to saints for a pious lay character, including the extra Devotion Points a relic can grant.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Vigils & Fasting",
+  "heading": "Vigils & Fasting",
+  "line": 707,
+  "endLine": 713,
+  "category": "realms",
+  "topic": "Devotion",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for spending a night in prayer (a Confidence Point at the cost of a Fatigue level) and for fasting for a season (a Petitioning bonus at the cost of constant Fatigue).",
+  "quotes": [
+   "A Fatigue level is lost, and will not be recovered until the character has made up a full night's sleep, but the character gains one Confidence Point that may be spent the next day on a specified virtuous task.",
+   "A fast lasts for a season and grants a +1 noncumulative bonus to Petitioning a Saint"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.87 Petitioning a Saint"
+  ]
+ },
+ {
+  "title": "Devotion",
+  "heading": "Devotion",
+  "line": 715,
+  "endLine": 723,
+  "category": "realms",
+  "topic": "Devotion",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Christian character with a positive Personality Trait: Pious (or the Pious Personality Flaw)",
+  "summary": "Introduces Devotions to particular saints as a Divine-aligned Ability-like statistic bought with separate Devotion Points rather than ordinary experience, and gives the character-generation rule for how many Devotions and Devotion Points a pious Christian starts with.",
+  "quotes": [
+   "Devotions advance as an Ability, but do not use normal, generalized Experience Points, instead relying on a dedicated form of experience points called Devotion Points.",
+   "may spend Devotion Points equal to the positive score in that trait to establish Devotions"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.87 Invoking a saint"
+  ]
+ },
+ {
+  "title": "The Benefits of Devotion",
+  "heading": "The Benefits of Devotion",
+  "line": 725,
+  "endLine": 737,
+  "category": "realms",
+  "topic": "Devotion",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Devotion to the saint invoked",
+  "summary": "A Devoted character can invoke any saint he has Devotion in; the Devotion score is added to the invocation roll. Also explains sacramentals as ordinary invocations of an appropriate saint, which avoid the unknown-saint penalty.",
+  "quotes": [
+   "Communication + Charm + modifiers\\* + a simple die vs. 15 + a simple die",
+   "the \u201315 penalty for invoking an unknown saint is not applied"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.87 Invoking a saint"
+  ]
+ },
+ {
+  "title": "Relics & Devotion",
+  "heading": "Relics & Devotion",
+  "line": 739,
+  "endLine": 743,
+  "category": "realms",
+  "topic": "Devotion",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Possession of a relic of a saint",
+  "summary": "A carried or tended relic of a saint adds to the Devotion Total when asking that saint to intercede, once a day, and also removes the unfamiliar-saint penalty.",
+  "quotes": [
+   "**Relic Bonus:** (Faith Points in relic) x 2 bonus to Devotion Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Costs of Devotion",
+  "heading": "The Costs of Devotion",
+  "line": 745,
+  "endLine": 747,
+  "category": "realms",
+  "topic": "Devotion",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Devotion to a saint",
+  "summary": "A Devoted character must observe the saint's feast day each year, losing the day for seasonal activities, and loses Devotion Points if he fails to do so.",
+  "quotes": [
+   "A character failing to celebrate the festival of his saint in some manner will lose at least three Devotion Points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Patron Saints",
+  "heading": "Patron Saints",
+  "line": 749,
+  "endLine": 755,
+  "category": "realms",
+  "topic": "Devotion",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains who counts as a character's patron saint for invocation, and that anyone may invoke Mary or a saint whose traditional interest fits the matter at hand, with no Piety required.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: The Divine p.87 Patron saints"
+  ]
+ },
+ {
+  "title": "Gaining Devotion Points",
+  "heading": "Gaining Devotion Points",
+  "line": 757,
+  "endLine": 803,
+  "category": "realms",
+  "topic": "Devotion",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Devotion to a saint",
+  "summary": "Lists the activities that earn Devotion Points in play (seasons of prayer, endowing churches, guild membership, shrine visits, sponsoring art, studying hagiographies, advancing the saint's cultus, witnessing miracles, processions, pilgrimage, visions) and the usual award for each.",
+  "quotes": [
+   "Spending a season engaged in prayer and meditation at a shrine to a saint earns 5 Devotion Points.",
+   "grants a number of Devotion Points equal to the Aesthetic Quality of the final artwork",
+   "worth Devotion Points equal to Quality/2"
+  ],
+  "related": [
+   "Art & Academe p.123 Aesthetic Quality",
+   "City & Guild p.41 Guild membership",
+   "Lords of Men p.46 Feasting",
+   "The Church Ch.3 Petitioning the Church"
+  ]
+ },
+ {
+  "title": "False Devotion",
+  "heading": "False Devotion",
+  "line": 805,
+  "endLine": 809,
+  "category": "realms",
+  "topic": "Devotion",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Devotion to a saint",
+  "summary": "Devotion can be directed at an unrecognised saint or even a mistaken entity of another realm without heresy, because dulia is not worship; true worship (latria) of anything but God is a serious sin.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Becoming a Saint",
+  "heading": "Becoming a Saint",
+  "line": 811,
+  "endLine": 821,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Troupe decision; character died with the Personality Trait Pious at the required level",
+  "summary": "Sets out the conditions under which a deceased character may become a genuine saint and, separately, be formally canonised by the Church, and points to the saint-design rules in Realms of Power: The Divine.",
+  "quotes": [
+   "died with a Personality Trait Pious of 6 or higher"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.60-61 Miracles",
+   "Realms of Power: The Divine p.89 Designing saints"
+  ]
+ },
+ {
+  "title": "The Mechanics of a Pilgrimage Story",
+  "heading": "The Mechanics of a Pilgrimage Story",
+  "line": 833,
+  "endLine": 854,
+  "category": "seasons",
+  "topic": "Pilgrimage",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines minor and major pilgrimages and a Pilgrimage Target Level for each desired outcome (gaining or losing Virtues and Flaws, removing traits, penance, miracles), plus limits on which Virtues and Flaws a pilgrimage can change.",
+  "quotes": [
+   "A minor pilgrimage is one that requires a Target Level of 18 and that occurs in a single season, requiring a story.",
+   "A major pilgrimage is one that requires a Target Level of 30 and that takes multiple seasons, and possibly multiple stories, to play out."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.60 Miracles"
+  ]
+ },
+ {
+  "title": "Oppositional Elements",
+  "heading": "Oppositional Elements",
+  "line": 856,
+  "endLine": 888,
+  "category": "seasons",
+  "topic": "Pilgrimage",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How the storyguide builds a pilgrimage story from Oppositional Elements with assigned values that each pilgrim must personally overcome, with a table of example elements by value.",
+  "quotes": [
+   "**Total of Oppositional Elements Values** = Pilgrimage Target Level",
+   "The Oppositional Elements for the pilgrimage should have total value at least equal to the Target Level of the Pilgrimage."
+  ],
+  "related": [
+   "Art & Academe pp.45-51 Hazards"
+  ]
+ },
+ {
+  "title": "An Example of a Pilgrimage Story",
+  "heading": "An Example of a Pilgrimage Story",
+  "line": 890,
+  "endLine": 906,
+  "category": "seasons",
+  "topic": "Pilgrimage",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A worked example of setting Target Levels, totalling Oppositional Elements and tracking which characters overcome them on a major pilgrimage.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Pilgrimage & Devotion",
+  "heading": "Pilgrimage & Devotion",
+  "line": 908,
+  "endLine": 910,
+  "category": "realms",
+  "topic": "Pilgrimage",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Devotion to a saint",
+  "summary": "Gives the Devotion Points a Devoted character earns for pilgrimage to a saint's shrine and for further relevant sites and relics seen along the way.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Taking the Cross",
+  "heading": "Taking the Cross",
+  "line": 918,
+  "endLine": 922,
+  "category": "social",
+  "topic": "Crusades",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for a character committing to a Church-preached crusade: he gains an indulgence for outstanding penance and a temporary Faith Point, must fund his own travel and upkeep, and may at the troupe's discretion shed a Social Status Flaw.",
+  "quotes": [
+   "He receives a single temporary Faith Point for the commitment"
+  ],
+  "related": [
+   "The Church Ch.7 Templars"
+  ]
+ },
+ {
+  "title": "Christian Mysticism",
+  "heading": "Christian Mysticism",
+  "line": 924,
+  "endLine": 946,
+  "category": "traditions",
+  "topic": "Christian mysticism",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Character aligned with the Divine realm",
+  "summary": "Introduces the mystic as a personal, non-institutional path to God, distinguishes contemplative and monistic mysticism and their dangers, and states that mystics must be Divine-aligned and that their Warping takes the form of Divine Ascent.",
+  "quotes": [
+   "Both forms of mysticism require the character to be aligned with the Divine realm."
+  ],
+  "related": [
+   "Realms of Power: The Divine Holy Traditions"
+  ]
+ },
+ {
+  "title": "Experiencing Divine Ascent",
+  "heading": "Experiencing Divine Ascent",
+  "line": 948,
+  "endLine": 954,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Divine-aligned character gaining Warping Points",
+  "summary": "A Divine-aligned character who gains enough Warping Points in a single event rolls to resist Divine Ascent, and on a failure undergoes Divine Form (contemplatives) or Divine Gloom (monistics) and takes extra Warping Points equal to the margin of failure.",
+  "quotes": [
+   "Presence + Concentration (or Meditation) + Stress die vs. Warping Score + Warping Points gained + True Faith Score local aura + stress die (no botch)"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.63 Divine Ascent"
+  ]
+ },
+ {
+  "title": "Personality Traits, Sins, and Tempers",
+  "heading": "Personality Traits, Sins, and Tempers",
+  "line": 956,
+  "endLine": 988,
+  "category": "basics",
+  "topic": "Personality traits",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Divine-aligned characters and mystics (Sinful Traits and Tempers)",
+  "summary": "Groups Personality Traits into paired Sins and Tempers, lets a trait be annotated with its Sin or Temper, and explains that a trait's value counts negatively for the opposed one.",
+  "quotes": [
+   "When dealing with opposing tempers or sins, treat the trait's value as negative."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.40 Sins and Tempers"
+  ]
+ },
+ {
+  "title": "Contemplative Mysticism",
+  "heading": "Contemplative Mysticism",
+  "line": 990,
+  "endLine": 998,
+  "category": "traditions",
+  "topic": "Christian mysticism",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Positive Pious Personality Trait; association with the Divine realm; no Sinful Personality Traits",
+  "summary": "Describes the contemplative path of imitating Christ and sets its entry requirements: a positive Pious trait, no Sinful traits and an association with the Divine realm.",
+  "quotes": [
+   "the mystic must possess a positive Pious Personality Trait score"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.40 Sinful Personality Traits",
+   "ArM5 p.18 Changing Personality Traits"
+  ]
+ },
+ {
+  "title": "Divine Warping and the Contemplative Mystic",
+  "heading": "Divine Warping and the Contemplative Mystic",
+  "line": 1000,
+  "endLine": 1015,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Contemplative mystic who has suffered Divine Form",
+  "summary": "Summarizes the permanent changes of Divine Form for a contemplative mystic: added Magic Resistance, a Soak bonus, a Penetration bonus, extra botch dice for impious acts, automatic wounds for sin and a continuous Commanding Aura.",
+  "quotes": [
+   "The character gains a Penetration Bonus equal to her Warping Score, with an additional bonus equal to her (True Faith Score multiplied by 5).",
+   "The character gains a bonus to physical Soak totals equal to the Magic Resistance Total divided by 5"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.64 Divine Form"
+  ]
+ },
+ {
+  "title": "Spiritual Paths and Revelations",
+  "heading": "Spiritual Paths and Revelations",
+  "line": 1017,
+  "endLine": 1067,
+  "category": "traditions",
+  "topic": "Christian mysticism",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Contemplative mysticism",
+  "summary": "A contemplative mystic gains new Virtues, Methods, Powers or Supernatural Abilities by following a Spiritual Path: a Path Total is set by the Revelation sought, reduced by the character's Pious score to a Path Target, and met by completing Quest Components of listed values.",
+  "quotes": [
+   "**Path Target** = Path Total \u2013 score in Personality Trait Pious",
+   "**Total Quest Component Values** = Path Total"
+  ],
+  "related": [
+   "The Church Ch.2 Pilgrimages"
+  ]
+ },
+ {
+  "title": "Monistic Mysticism",
+  "heading": "Monistic Mysticism",
+  "line": 1069,
+  "endLine": 1075,
+  "category": "traditions",
+  "topic": "Christian mysticism",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Flaw: Visions or Major Virtue: True Faith; positive Pious trait; association with the Divine realm",
+  "summary": "Describes the monistic path, its entry requirements, and its Twilight-Prone-like effect that a single Warping Point forces a test for Divine Ascent, so the mystic learns from Warping experiences rather than Spiritual Paths.",
+  "quotes": [
+   "requires the mystic to possess either the Flaw Visions or the Major Virtue True Faith"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.63 Divine Gloom"
+  ]
+ },
+ {
+  "title": "Advantages of Pursuing Monistic Mysticism",
+  "heading": "Advantages of Pursuing Monistic Mysticism",
+  "line": 1077,
+  "endLine": 1090,
+  "category": "traditions",
+  "topic": "Christian mysticism",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Monistic mysticism",
+  "summary": "Monistic mystics gain extra experience from practising Holy Abilities (equal to Concentration) and, after Divine Ascent, may roll to integrate a Revelation and choose a benefit such as keeping mundane experience, a new Virtue, substituting Dominion Lore for another Realm Lore, or accepting the Infernal as subordinate to the Divine.",
+  "quotes": [
+   "Intelligence + Concentration + stress die vs. Warping Score + stress die (no botch)",
+   "gains experience points equal to her Concentration Ability score rather than 4 experience points"
+  ],
+  "related": [
+   "ArM5 Wizard's Twilight"
+  ]
+ },
+ {
+  "title": "Divine Warping and the Monistic Mystic",
+  "heading": "Divine Warping and the Monistic Mystic",
+  "line": 1092,
+  "endLine": 1105,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Monistic mystic who has suffered Divine Gloom",
+  "summary": "Summarizes Divine Gloom for a monistic mystic: Warping Points convert into experience in Dominion Lore and Holy Abilities at the cost of mundane Ability experience, with a bonus against Celestial Disorientation and attraction of supernatural beings.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: The Divine p.63 Divine Gloom",
+   "Realms of Power: The Divine p.14 Celestial Disorientation"
+  ]
+ },
+ {
+  "title": "Improving True Faith",
+  "heading": "Improving True Faith",
+  "line": 1107,
+  "endLine": 1119,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "True Faith can only be gained or raised through a story and a troupe decision, and higher scores grant extra abilities such as dispelling illusions, doubled Magic Resistance against Mentem, and an Empyreal Aura.",
+  "quotes": [
+   "At True Faith 3, the character gains double Magic Resistance against Mentem spells and similar supernatural powers, and adds +6 instead of +3 to a die roll for each Faith Point spent."
+  ],
+  "related": [
+   "Realms of Power: The Divine pp.56-63 True Faith",
+   "Realms of Power: The Divine p.12 Empyreal Aura"
+  ]
+ },
+ {
+  "title": "Clergy as Player Characters",
+  "heading": "Clergy as Player Characters",
+  "line": 1165,
+  "endLine": 1175,
+  "category": "creation",
+  "topic": "Clergy characters",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Clergy characters are built as ordinary grogs or companions under the standard character rules; the sidebar lists ways clergy can be tied into a covenant saga.",
+  "quotes": [],
+  "related": [
+   "ArM5 Ch.3 Character creation"
+  ]
+ },
+ {
+  "title": "Vows",
+  "heading": "Vows",
+  "line": 1239,
+  "endLine": 1245,
+  "category": "creation",
+  "topic": "Clergy characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Guidance on how to represent a Church character's vows at character creation: the Monastic Vows Story Flaw only if the troupe wants vow-driven stories, a suitable Personality Flaw or Regular otherwise, or simply a note with no Virtue or Flaw.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.56 Monastic Vows"
+  ]
+ },
+ {
+  "title": "Faith Points",
+  "heading": "Faith Points",
+  "line": 1247,
+  "endLine": 1249,
+  "category": "realms",
+  "topic": "Faith Points",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faith Points are spent like Confidence Points for a bonus to a roll, normally one per roll; they do not regenerate on their own unless the character has True Faith.",
+  "quotes": [
+   "Faith Points may be spent like Confidence Points to gain a +3 bonus to a roll, and usually a character may only spend 1 Faith Point on each roll."
+  ],
+  "related": [
+   "ArM5 p.189 True Faith",
+   "Realms of Power: The Divine pp.56-60 Faith Points"
+  ]
+ },
+ {
+  "title": "Worship",
+  "heading": "Worship",
+  "line": 1255,
+  "endLine": 1261,
+  "category": "seasons",
+  "topic": "Church seasonal activities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Christian character with access to a chapel or church",
+  "summary": "A free-season activity of fasting, prayer and meditation whose Source Quality comes from the Divine aura of the church, with experience restricted to Church Lore, Concentration, Music and Divine-aligned Abilities or Arts the character already has.",
+  "quotes": [
+   "Worship has a Source Quality equal to the Divine Aura in the church."
+  ],
+  "related": []
+ },
+ {
+  "title": "Good Works",
+  "heading": "Good Works",
+  "line": 1263,
+  "endLine": 1267,
+  "category": "seasons",
+  "topic": "Church seasonal activities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A season spent on charitable deeds, which for clergy may be a non-free season, giving experience in an appropriate Ability and a Faith Point.",
+  "quotes": [
+   "Good works has a Source Quality of 2 in an appropriate Ability, and the character also gains 1 Faith Point."
+  ],
+  "related": []
+ },
+ {
+  "title": "Care of Souls",
+  "heading": "Care of Souls",
+  "line": 1269,
+  "endLine": 1275,
+  "category": "seasons",
+  "topic": "Church seasonal activities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ordained priest leading a congregation",
+  "summary": "A priest spends a season preaching to his congregation on a virtue theme, giving willing parishioners a bonus to matching activities for the next year and the priest experience in Leadership, Area Lore or Church Lore; it can be replaced by the aura-tempering rules.",
+  "quotes": [
+   "Care of souls has a Source Quality of 2 for the priest, in Leadership, Area Lore, or Church Lore."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.38 Tempering an Aura"
+  ]
+ },
+ {
+  "title": "Recommended and Required Virtues, Flaws, and Abilities",
+  "heading": "Recommended and Required Virtues, Flaws, and Abilities",
+  "line": 1277,
+  "endLine": 1303,
+  "category": "creation",
+  "topic": "Clergy characters",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A table of the Virtues and Flaws required and recommended, and the minimum Ability scores suggested, for popes, cardinals and archbishops; for bishops, abbots and senior officials; and for ordinary clergy.",
+  "quotes": [
+   "Recommended Minimum Ability Scores: Artes Liberales 1, Church Lore 5, Civil and Canon Law 5, Dead Language: Latin 5, Theology 3."
+  ],
+  "related": []
+ },
+ {
+  "title": "Election of the Bishop",
+  "heading": "Election of the Bishop",
+  "line": 1314,
+  "endLine": 1322,
+  "category": "social",
+  "topic": "Church hierarchy",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a bishop is elected by the cathedral canons, what candidate qualifications mean in game terms (Latin literacy and usually a positive Church reputation), and the grounds on which an election can be challenged by petition.",
+  "quotes": [
+   "The bishop is elected by a simple majority, in a secret ballot, of the cathedral canons."
+  ],
+  "related": [
+   "The Church Ch.3 Petitioning the Church"
+  ]
+ },
+ {
+  "title": "Proctors",
+  "heading": "Proctors",
+  "line": 1402,
+  "endLine": 1406,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Proctors represent bishops, nobles or religious houses at the papal curia, presenting and appealing petitions, and are bound by four rules on tenure, concubinage, number per client and substitutes.",
+  "quotes": [
+   "There are four rules for proctors:"
+  ],
+  "related": [
+   "The Church Ch.3 Petitioning the Church"
+  ]
+ },
+ {
+  "title": "Ordination",
+  "heading": "Ordination",
+  "line": 1490,
+  "endLine": 1538,
+  "category": "seasons",
+  "topic": "Ordination",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Ordination is a seasonal activity ending in an oral examination: the Examination Total is compared with an Ease Factor set by the grade sought, with Reputation consequences for a very good or marginal result, a Faith Point on success, and appeal or petition when the exam is failed or botched.",
+  "quotes": [
+   "**Ordination Examination Total:** Intelligence + (Church Lore or Civil and Canon Law) + stress die",
+   "If the character's Ordination Exam Total is more than double the required Ease Factor",
+   "misses the required Ease Factor by less than 6"
+  ],
+  "related": [
+   "ArM5 p.167 Reputation experience",
+   "The Church Ch.3 Petitioning the Church"
+  ]
+ },
+ {
+  "title": "Rapid Ordinations",
+  "heading": "Rapid Ordinations",
+  "line": 1540,
+  "endLine": 1542,
+  "category": "seasons",
+  "topic": "Ordination",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character ordained through several grades at once, for example when elected bishop, still gains only a single Faith Point from ordination.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Possession and Exorcism",
+  "heading": "Possession and Exorcism",
+  "line": 1564,
+  "endLine": 1574,
+  "category": "realms",
+  "topic": "Exorcism",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An exorcist spends a Confidence or Faith Point and generates an Exorcism Total, which succeeds if it meets an Ease Factor equal to the Might Points the demon has invested in the possessed victim; ordination as exorcist, holy water and a crucifix add bonuses.",
+  "quotes": [
+   "**Exorcism Total:** Stress Die + Bonuses",
+   "If the Exorcism Total equals or exceeds an Ease Factor equal to the number of Might Points invested in the energumen by the demon, then the demon is exorcised."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.32 Possession",
+   "ArM5 p.184 Penetration"
+  ]
+ },
+ {
+  "title": "Canon Courts",
+  "heading": "Canon Courts",
+  "line": 1612,
+  "endLine": 1634,
+  "category": "social",
+  "topic": "Canon law",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains who judges in the Church's courts, how clergy are shielded from secular justice, what falls under canon jurisdiction, how summons and judgments work, and how compurgation can acquit a defendant on character witnesses.",
+  "quotes": [
+   "A person cannot be forced, except by papal decree, to attend a canon court further than two days travel from his diocese."
+  ],
+  "related": []
+ },
+ {
+  "title": "Punishment",
+  "heading": "Punishment",
+  "line": 1636,
+  "endLine": 1656,
+  "category": "social",
+  "topic": "Canon law",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the Church's punishments: excommunication, irregularity (which stops a cleric using Faith Points), monition, public penance, imprisonment in a religious house, fines and suspension of a benefice; canon courts may not impose death or physical punishment.",
+  "quotes": [
+   "An irregular clergyman cannot make use of Faith Points.",
+   "An excommunicate character is cursed and receives no benefit from any of the Sacraments except penance"
+  ],
+  "related": []
+ },
+ {
+  "title": "Shedding of Blood",
+  "heading": "Shedding of Blood",
+  "line": 1662,
+  "endLine": 1672,
+  "category": "social",
+  "topic": "Canon law",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists what clerics are forbidden to do with regard to bloodshed, including sentencing, attending punishments, commanding fighting men and ordeals, and (for major orders) practising chirurgy.",
+  "quotes": [
+   "Clerics are forbidden to shed blood.",
+   "In addition, clerics in major orders may not practice chirurgy."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.78 Ordeals"
+  ]
+ },
+ {
+  "title": "Sanctuary",
+  "heading": "Sanctuary",
+  "line": 1678,
+  "endLine": 1680,
+  "category": "social",
+  "topic": "Canon law",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A church, churchyard and cemetery give fugitives a limited period of sanctuary during which blood may not be spilled.",
+  "quotes": [
+   "Sanctuary is granted for up to 40 days"
+  ],
+  "related": []
+ },
+ {
+  "title": "Simony",
+  "heading": "Simony",
+  "line": 1692,
+  "endLine": 1694,
+  "category": "social",
+  "topic": "Canon law",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Buying or selling sacred things is a canon crime; the buyer loses what was gained and the seller is fined and may be excommunicated for repeat offences.",
+  "quotes": [
+   "The seller is fined twice the value of the transaction"
+  ],
+  "related": []
+ },
+ {
+  "title": "Relics",
+  "heading": "Relics",
+  "line": 1696,
+  "endLine": 1704,
+  "category": "realms",
+  "topic": "Relics",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Summarizes how relics work: Faith Score and Faith Points, Magic Resistance for the holder, a Divine Might Score and an aura hostile to the Infernal that damages entering creatures of lesser Might.",
+  "quotes": [
+   "Anyone who holds the relic has a Magic Resistance equal to 10 x the Faith Score"
+  ],
+  "related": [
+   "Realms of Power: The Divine pp.43-46 Relics"
+  ]
+ },
+ {
+  "title": "Tithes",
+  "heading": "Tithes",
+  "line": 1722,
+  "endLine": 1724,
+  "category": "covenant",
+  "topic": "Tithes",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Everyone owes the Church a tenth of income, and canon courts prosecute under-payment, a risk for Hermetic covenants that evade the tithe.",
+  "quotes": [
+   "In 1220, everyone tithes a tenth of their income to the Church."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sorcery and Witchcraft",
+  "heading": "Sorcery and Witchcraft",
+  "line": 1730,
+  "endLine": 1732,
+  "category": "social",
+  "topic": "Canon law",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minor sorcery is rarely heard in canon courts and usually earns a public penance, while serious sorcery is prosecuted by secular courts with death as a possible punishment.",
+  "quotes": [
+   "A typical penance involves wearing a white sheet before the congregation"
+  ],
+  "related": []
+ },
+ {
+  "title": "Church Auras",
+  "heading": "Church Auras",
+  "line": 1756,
+  "endLine": 1767,
+  "category": "realms",
+  "topic": "Divine auras",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Divine auras spread from the church altar as far as the bells can be heard or to the parish boundary, with the aura level depending on the type of church or distance from it, given in a table.",
+  "quotes": [
+   "Divine auras radiate from the church altar for as far as the church bells can be heard, or to the edge of the parish boundary, whichever is closer."
+  ],
+  "related": []
+ },
+ {
+  "title": "Spells in Church",
+  "heading": "Spells in Church",
+  "line": 1769,
+  "endLine": 1771,
+  "category": "magic",
+  "topic": "Targeting buildings",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "For Hermetic spells, explains how a church is divided into Rooms (nave, tower floors, a petitioned-off chancel) and that the whole church can be targeted as a Structure.",
+  "quotes": [
+   "For Hermetic magic, the nave and each floor of the tower count as separate Rooms."
+  ],
+  "related": [
+   "ArM5 Ch.4 Target Room and Structure"
+  ]
+ },
+ {
+  "title": "Hermetic Magic and the Sacraments",
+  "heading": "Hermetic Magic and the Sacraments",
+  "line": 1783,
+  "endLine": 1787,
+  "category": "magic",
+  "topic": "Sacraments",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Notes the observable magical effects of the Sacraments for Hermetic magic, such as baptismal names being useless as Sympathetic Connections and bodies that have received Extreme Unction being immune to magic for a time.",
+  "quotes": [
+   "bodies that have received Extreme Unction cannot be affected by magic for three days"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Sacraments",
+  "heading": "The Sacraments",
+  "line": 1793,
+  "endLine": 1809,
+  "category": "realms",
+  "topic": "Sacraments",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Treats the seven Sacraments as supernatural Divine powers that need no Penetration but require willing participants, with a Faith Point available from each and specific effects for baptism, confirmation, Mass, marriage, penance, ordination and extreme unction.",
+  "quotes": [
+   "A character may not have more than 1 Faith Point from each Sacrament."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.74 Sacraments"
+  ]
+ },
+ {
+  "title": "The Benefice",
+  "heading": "The Benefice",
+  "line": 1843,
+  "endLine": 1855,
+  "category": "social",
+  "topic": "Church benefices",
+  "audience": [
+   "all",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the benefice as the income attached to a parish, who may assign it, the legitimate reasons for a priest to be absent (study, service elsewhere, pluralism), and how licenses of absence and benefice exchanges are handled.",
+  "quotes": [],
+  "related": [
+   "The Church Ch.3 Petitioning the Church"
+  ]
+ },
+ {
+  "title": "Spells to Affect a Parish",
+  "heading": "Spells to Affect a Parish",
+  "line": 1867,
+  "endLine": 1871,
+  "category": "magic",
+  "topic": "Targeting areas",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the Boundary-target Size Modifiers needed for Hermetic spells to cover a typical rural parish, urban parish or whole diocese, provided the borders are clearly defined.",
+  "quotes": [
+   "A rural parish of typical size requires a spell with a Boundary target, with a +4 Size Modifier."
+  ],
+  "related": [
+   "ArM5 Ch.4 Target: Boundary"
+  ]
+ },
+ {
+  "title": "Visitations",
+  "heading": "Visitations",
+  "line": 1955,
+  "endLine": 1971,
+  "category": "seasons",
+  "topic": "Church seasonal activities",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Bishop, archdeacon or rural dean making visitations",
+  "summary": "Describes the yearly visitation of parishes by bishops and their deputies, its cost to the parish, retinue size limits by rank, and the experience a season of visitation earns the visitor and retinue.",
+  "quotes": [
+   "A season spent on visitation is worth 2 exposure experience points in Church Lore, Civil and Canon Law, Area Lore, or Ride for the visitor and his retinue."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Petition Total",
+  "heading": "The Petition Total",
+  "line": 1995,
+  "endLine": 2083,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The core procedure for getting the Church to act: a Petition Total, built from Communication or Presence plus Church Lore plus modifiers and with no die roll, is compared with an Ease Factor set by the request, with a list of example Ease Factors and rules for who can grant what, written versus audience petitions, and scribes.",
+  "quotes": [
+   "**Petition Church:** Petition Total vs Petition Ease Factor",
+   "**Written Petition Total:** Com + Church Lore + Modifiers",
+   "**Audience Petition Total:** Pre + Church Lore + Modifiers"
+  ],
+  "related": [
+   "The Church Ch.3 Ordination",
+   "The Church Ch.2 Furthering the cultus"
+  ]
+ },
+ {
+  "title": "Modifiers to the Petition Total",
+  "heading": "Modifiers to the Petition Total",
+  "line": 2003,
+  "endLine": 2039,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the bonuses and penalties that supporters, donations, arguments based on Abilities, visions, miracles and reputation add to a Petition Total, how an argument is rolled, and which bonuses do not stack.",
+  "quotes": [
+   "**Argument Success:** Int + Ability Score + stress die vs Ease Factor of 9"
+  ],
+  "related": []
+ },
+ {
+  "title": "Henri of Toulouse's Petition",
+  "heading": "Henri of Toulouse's Petition",
+  "line": 2085,
+  "endLine": 2096,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A worked example of building a Petition Total for founding a monastery from a scribe's total plus several supporting modifiers.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Petition of the Parish of Long Melford",
+  "heading": "The Petition of the Parish of Long Melford",
+  "line": 2098,
+  "endLine": 2105,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A second worked example of a Petition Total, for moving a parish's feast days.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Acting Without Authority",
+  "heading": "Acting Without Authority",
+  "line": 2107,
+  "endLine": 2115,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sets the highest Ease Factor of petition that a bishop or a priest may grant on his own authority, and notes that such decisions can still be questioned later and that characters may act beyond their authority at some risk.",
+  "quotes": [
+   "A bishop (or equivalently ranked character) may grant any petition or take any action with an Ease Factor of up to 15 without consulting his peers or superiors."
+  ],
+  "related": []
+ },
+ {
+  "title": "Appealing a Petition",
+  "heading": "Appealing a Petition",
+  "line": 2117,
+  "endLine": 2127,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An appeal is itself a petition whose Ease Factor to overturn is based on the original Petition Total, with a compromise offered if it falls only slightly short, and a penalty for appealing after the original season.",
+  "quotes": [
+   "**Ease Factor to Overturn a Petition:** Original Petition Total + 3",
+   "**Ease Factor to Open Negotiations for Compromise:** Original Petition Total \u2013 3",
+   "If an appeal is not made in the same season as the original petition, then the appeal has a \u20133 penalty to its Petition Total."
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating Game Statistics for a Church",
+  "heading": "Creating Game Statistics for a Church",
+  "line": 2129,
+  "endLine": 2131,
+  "category": "covenant",
+  "topic": "Church statistics",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces describing a church with Build Points, Hooks and Boons in the same way a covenant is described, to show how the Church affects the saga.",
+  "quotes": [],
+  "related": [
+   "ArM5 pp.68-74 Covenant creation"
+  ]
+ },
+ {
+  "title": "Basic Church Features",
+  "heading": "Basic Church Features",
+  "line": 2133,
+  "endLine": 2151,
+  "category": "covenant",
+  "topic": "Church statistics",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how a church is built from Build Points, Hooks and Boons (major and minor), and gives the base Divine aura and Build Points for each kind of church from cathedral to chapel.",
+  "quotes": [
+   "You may usually choose up to 10 points of Hooks for the church.",
+   "A parish church has a base Divine Aura of 4, and 250 build points."
+  ],
+  "related": [
+   "ArM5 pp.72-74 Hooks and Boons"
+  ]
+ },
+ {
+  "title": "Resources",
+  "heading": "Resources",
+  "line": 2153,
+  "endLine": 2201,
+  "category": "covenant",
+  "topic": "Church statistics",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Build Point costs for a church's resources: books, enchanted items, relics priced by Faith Score and powers, specialists and vis, mostly at the same cost as for a covenant.",
+  "quotes": [
+   "**Enchanted Item Cost:** 1 Build Point per Level of Effect",
+   "**Relic Cost:** Cost for Faith Score + 5 Build Points per Power"
+  ],
+  "related": [
+   "ArM5 pp.71-72 Covenant resources"
+  ]
+ },
+ {
+  "title": "Hooks and Boons",
+  "heading": "Hooks and Boons",
+  "line": 2203,
+  "endLine": 2205,
+  "category": "covenant",
+  "topic": "Church statistics",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Notes that most covenant Hooks and Boons from the core rules and Covenants also suit churches, with a few new church-specific ones added.",
+  "quotes": [
+   "are suitable for a church, although some may require interpretation by the troupe"
+  ],
+  "related": [
+   "ArM5 pp.72-74 Hooks and Boons",
+   "Covenants pp.6-27 Hooks and Boons"
+  ]
+ },
+ {
+  "title": "Becoming a Monk or Nun",
+  "heading": "Becoming a Monk or Nun",
+  "line": 2293,
+  "endLine": 2311,
+  "category": "setting",
+  "topic": "Monastic life",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The procedure for entering a religious house: harsh testing on arrival, a probationary year as a novice, the three solemn vows, and rules on oblates and the admission of girls to nunneries.",
+  "quotes": [
+   "The three chief vows that are sworn as solemn oaths are for chastity, poverty, and obedience."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Opus Dei, Divine Office",
+  "heading": "The Opus Dei, Divine Office",
+  "line": 2321,
+  "endLine": 2341,
+  "category": "setting",
+  "topic": "Monastic life",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A timetable of the canonical hours, meals and chapter meetings in a monastery, giving the storyguide a guide to where monks are and what they are doing at any hour.",
+  "quotes": [
+   "Roused from sleep by the sacristan with a bell, the monks attend the first service of the day."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sign Language (Monastery)",
+  "heading": "Sign Language (Monastery)",
+  "line": 2399,
+  "endLine": 2401,
+  "category": "basics",
+  "topic": "Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Monastic or convent life",
+  "summary": "A language Ability specific to a monastery or nunnery, with a fluency scale and defaults to the sign languages of related and unrelated houses at different penalties.",
+  "quotes": [
+   "It defaults to an Ability in the language of other monasteries of the same order at \u20133"
+  ],
+  "related": []
+ },
+ {
+  "title": "Monastic Roles and Positions",
+  "heading": "Monastic Roles and Positions",
+  "line": 2432,
+  "endLine": 2562,
+  "category": "setting",
+  "topic": "Monastic life",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing a monk or nun with an office in a religious house",
+  "summary": "Describes the offices of a religious house (abbot or abbess, prior, terrar, cellarer, bursar, infirmarian, sacrist, hostillar, chancellor and others) with the Abilities, Social Status Virtue and reputation suited to each, useful for building monastic characters and contacts.",
+  "quotes": [
+   "She has a reputation of level 4, either good or bad, in both the local community and the Church."
+  ],
+  "related": [
+   "The Church Ch.3 Senior Clergy"
+  ]
+ },
+ {
+  "title": "The Religious in Your Saga",
+  "heading": "The Religious in Your Saga",
+  "line": 2564,
+  "endLine": 2576,
+  "category": "creation",
+  "topic": "Monastic life",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Advice on playing a monk or nun in a saga: limited free seasons outside the house, how religious roles bring them into the wider world, and the economic importance of monasteries and their hospitality to travellers.",
+  "quotes": [
+   "even the most trusted monk may seem unlikely to have more than one free season outside the monastery each year"
+  ],
+  "related": []
+ },
+ {
+  "title": "Female Religious in the Covenant",
+  "heading": "Female Religious in the Covenant",
+  "line": 2586,
+  "endLine": 2594,
+  "category": "creation",
+  "topic": "Women in the Church",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "When a female religious character may live at a covenant: beguines, penitents and anchoresses need the bishop's permission, a nun needs a harder petition, episcopal visits must be managed, and vows and Flaws should reflect the character's way of life.",
+  "quotes": [
+   "a Petition Ease Factor of 9 is appropriate",
+   "the Petition Ease Factor is 12"
+  ],
+  "related": [
+   "The Church Ch.3 Petitioning the Church",
+   "The Lion and the Lily p.106 Cunfin"
+  ]
+ },
+ {
+  "title": "Options for Absent Players",
+  "heading": "Options for Absent Players",
+  "line": 2596,
+  "endLine": 2600,
+  "category": "creation",
+  "topic": "Women in the Church",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Suggests using an enclosed religious or anchoress character for a player who cannot attend sessions, with ways of passing letters between the cell and the covenant.",
+  "quotes": [],
+  "related": []
+ }
+]

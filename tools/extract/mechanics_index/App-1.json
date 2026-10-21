@@ -1,0 +1,1286 @@
+[
+ {
+  "title": "Ages of Man",
+  "heading": "Ages of Man",
+  "line": 258,
+  "endLine": 262,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines the infant, child and adolescent life stages by age band, and explains that the liminal periods between stages let a player modify the character.",
+  "quotes": [
+   "an infant character is between birth and seven years old, a child character between eight and 14, and an adolescent character between 15 and 21"
+  ],
+  "related": [
+   "Transitions of Maturation"
+  ]
+ },
+ {
+  "title": "Starting Age for Young Characters",
+  "heading": "Age",
+  "line": 289,
+  "endLine": 293,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how to choose a young character's starting age, the penalties younger characters suffer, and that starting age also fixes starting experience points.",
+  "quotes": [
+   "Characters younger than 14 have penalties applied to Characteristics and Size"
+  ],
+  "related": []
+ },
+ {
+  "title": "Aging Chart (Characteristic and Size Modifiers by Age)",
+  "heading": "Aging Chart",
+  "line": 295,
+  "endLine": 311,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A table giving, for each age, the Characteristic Modifier applied to every Characteristic and the Size Modifier of a young character.",
+  "quotes": [
+   "apply the Characteristic Modifier to all of the character's Characteristics"
+  ],
+  "related": []
+ },
+ {
+  "title": "Characteristics and Size for Young Characters",
+  "heading": "Characteristics and Size",
+  "line": 316,
+  "endLine": 318,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Young characters allocate Characteristic points like adults, then apply the age-based Characteristic and Size modifiers from the Aging Chart.",
+  "quotes": [
+   "younger characters have 7 points allocated toward Characteristics"
+  ],
+  "related": [
+   "Aging Chart"
+  ]
+ },
+ {
+  "title": "Virtues and Flaws for Young Characters",
+  "heading": "Virtues & Flaws",
+  "line": 320,
+  "endLine": 328,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Age does not change how many Virtues and Flaws a character may take; they must balance at child character generation, with an exception for apprentices who already have the Free House Virtue.",
+  "quotes": [
+   "At character generation, the number of Virtues must equal the number of Flaws.",
+   "Young grogs can have up to three points of Virtues and Flaws, and young companions and apprentices can have up to ten"
+  ],
+  "related": [
+   "ArM5 p.37 Virtues and Flaws Rules and Guidelines"
+  ]
+ },
+ {
+  "title": "Changing Social Status",
+  "heading": "Changing Social Status",
+  "line": 330,
+  "endLine": 332,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar on how a child's Social Status Virtue or Flaw changes during play, and that the change does not require re-balancing other Virtues and Flaws.",
+  "quotes": [
+   "In such cases, simply change the Social Status Virtue or Flaw."
+  ],
+  "related": []
+ },
+ {
+  "title": "Social Status for Young Characters",
+  "heading": "Social Status Virtues & Flaws",
+  "line": 334,
+  "endLine": 358,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A child normally takes the Social Status of the parent as Son or Daughter of that status; children without a recognized parent are bastards or orphans, and apprentices take the Apprentice status.",
+  "quotes": [
+   "Every character needs a Social Status Virtue or Flaw."
+  ],
+  "related": []
+ },
+ {
+  "title": "Virtues That Grant Experience Points (and Skilled/Weak Parens)",
+  "heading": "Virtues That Grant Experience Points",
+  "line": 361,
+  "endLine": 367,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Experience-granting Virtues are barred for young characters, and Skilled Parens and Weak Parens are given concrete Teaching Source Quality and Lab Total values within a standard apprenticeship.",
+  "quotes": [
+   "a Skilled Parens must generate a Teaching Source Quality of 18, or have a combined Communication + Teaching of 9, and needs a highest applicable Lab Total of 50"
+  ],
+  "related": [
+   "A Standard Apprenticeship"
+  ]
+ },
+ {
+  "title": "Virtues and Flaws That Affect Size",
+  "heading": "Virtues & Flaws That Affect Size",
+  "line": 369,
+  "endLine": 375,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How Size-altering Virtues and Flaws apply as a child grows, including how smaller characters stay stunted and when they advance a Size step.",
+  "quotes": [
+   "A normal baby grows to Size 0 by age 14"
+  ],
+  "related": []
+ },
+ {
+  "title": "Inherited Virtues and Flaws",
+  "heading": "Inherited Virtues & Flaws",
+  "line": 377,
+  "endLine": 385,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A new type of Virtue or Flaw that is paid for at creation but only manifests later, by player choice or in response to play; it must appear by adulthood.",
+  "quotes": [
+   "All Inherited Virtues and Flaws must materialize by adulthood (age 21)."
+  ],
+  "related": [
+   "Transitions of Maturation"
+  ]
+ },
+ {
+  "title": "Child Virtues and Flaws",
+  "heading": "Child Virtues & Flaws",
+  "line": 387,
+  "endLine": 393,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A new type of Virtue and Flaw reflecting childhood boons and banes; they must be exchanged for another of like value during a Transition of Maturation.",
+  "quotes": [
+   "you must exchange the Child Virtue or Flaw for another Virtue or Flaw of like value (Minor for Minor, Major for Major)"
+  ],
+  "related": [
+   "Transitions of Maturation"
+  ]
+ },
+ {
+  "title": "Abilities for Young Characters",
+  "heading": "Abilities",
+  "line": 512,
+  "endLine": 557,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Covers yearly experience points for Abilities by starting age, vocational Abilities limited by the parent's score, Supernatural Abilities for Gifted children, the mid-career apprentice experience model, and age limits on Ability scores.",
+  "quotes": [
+   "After 5 years of age, the character gains 15 experience points a year.",
+   "The child character's score is limited to half the parent's vocational Ability score during these years.",
+   "The character receives 19 experience points per year of apprenticeship for the first 12 years"
+  ],
+  "related": [
+   "ArM5 p.31 Ability caps by age",
+   "ArM5 p.32 spells at character generation"
+  ]
+ },
+ {
+  "title": "Example Childhoods",
+  "heading": "Example Childhoods",
+  "line": 516,
+  "endLine": 538,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Sidebar of ready-made Ability packages for the experience points a character has accumulated by age five, to speed up character creation.",
+  "quotes": [
+   "The following Ability packages describe how to spend the 45 experience points a character has accumulated by age 5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Optional Rule: Abilities for Infants",
+  "heading": "Optional Rule: Abilities for Infants",
+  "line": 540,
+  "endLine": 542,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Optional rule for characters aged five or younger giving yearly experience points, a fixed part of which must go to a Living Language and the rest to a short list of Abilities.",
+  "quotes": [
+   "he receives 24 experience points per year"
+  ],
+  "related": []
+ },
+ {
+  "title": "More Powerful than Normal",
+  "heading": "More Powerful than Normal",
+  "line": 550,
+  "endLine": 554,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Sidebar warning that young Gifted characters advanced season by season can outstrip stock magi, and advising the standard study model to keep power level equal.",
+  "quotes": [
+   "limit them to the standard study model"
+  ],
+  "related": [
+   "ArM5 p.29 apprenticeship",
+   "ArM5 p.33 Extremely Complex Character Generation"
+  ]
+ },
+ {
+  "title": "Transitions of Maturation",
+  "heading": "Transitions of Maturation",
+  "line": 558,
+  "endLine": 570,
+  "category": "creation",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "At the ages between life stages the player may exchange Virtues and Flaws for ones of equal value, with restrictions on experience-affecting, Size-affecting and background Virtues and Flaws, and Child Virtues and Flaws must be gone by the last transition.",
+  "quotes": [
+   "Both must be exchanged for Virtues and Flaws of equal value: Minor replaced with Minor and Major replaced with Major."
+  ],
+  "related": [
+   "Grogs chapter 5 transitions"
+  ]
+ },
+ {
+  "title": "A Standard Apprenticeship",
+  "heading": "A Standard Apprenticeship",
+  "line": 572,
+  "endLine": 580,
+  "category": "creation",
+  "topic": "Hermetic apprenticeship",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A benchmark year-by-year model of a fifteen-year apprenticeship giving the experience points and spell levels an apprentice receives, used to build mid-apprenticeship characters.",
+  "quotes": [
+   "In game terms, the player receives 240 experience points to spend on Abilities and Arts, and 120 levels of spells.",
+   "an apprentice gains 19 experience points a year for eleven years of the apprenticeship"
+  ],
+  "related": [
+   "ArM5 p.29 apprenticeship"
+  ]
+ },
+ {
+  "title": "Childbearing",
+  "heading": "CHILDBEARING",
+  "line": 599,
+  "endLine": 605,
+  "category": "hazards",
+  "topic": "Childbirth",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Resolves whether a birth succeeds by treating the delivering mother as having an imaginary wound with recovery rolls, with the baby losing Fatigue as it worsens; midwives, physicians, relics and Creo Corpus spells can help.",
+  "quotes": [
+   "treat the delivering mother as if she had a Medium Wound",
+   "If the baby loses five Fatigue levels, it dies."
+  ],
+  "related": [
+   "Art & Academe p.63 childbirth"
+  ]
+ },
+ {
+  "title": "Birth Apparitions",
+  "heading": "BIRTH APPARITIONS",
+  "line": 607,
+  "endLine": 611,
+  "category": "realms",
+  "topic": "Birth apparitions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters with realm-linked Virtues or Flaws may be born with a brief apparition from their realm, whose Might depends on how strong the Virtue or Flaw is; an Aegis of the Hearth may block it.",
+  "quotes": [
+   "Most have a Might Score of 5, if the child has a Minor Supernatural Virtue or Flaw, or 10 for a Major Virtue or Flaw, and rarely have magical powers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Religious Rites for New Babies",
+  "heading": "RELIGIOUS RITES FOR NEW BABIES",
+  "line": 613,
+  "endLine": 617,
+  "category": "realms",
+  "topic": "Baptism and birth rites",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Christian baptism and the equivalent Jewish and Muslim birth rites cancel non-Divine supernatural effects on a child and drive out possessing spirits, without hindering The Gift.",
+  "quotes": [
+   "baptism cancels any supernatural effect not associated with the Divine realm that may be affecting the child at the time of baptism"
+  ],
+  "related": []
+ },
+ {
+  "title": "Born with The Gift",
+  "heading": "Born with The Gift",
+  "line": 672,
+  "endLine": 678,
+  "category": "mysteries",
+  "topic": "The Gift in children",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Discusses whether The Gift is hereditary in a saga, with an adjusted Ease Factor for finding Gifted children if it is, and how Gifted babies relate to the Order.",
+  "quotes": [
+   "reduce the Ease Factor to 6"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.53 Blood Rights"
+  ]
+ },
+ {
+  "title": "Gifted Babies",
+  "heading": "Gifted Babies",
+  "line": 718,
+  "endLine": 720,
+  "category": "social",
+  "topic": "The Gift in children",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how the social penalties of The Gift affect an infant's relationships, from loving parents to abandonment, as background for a Gifted child character.",
+  "quotes": [
+   "The negative social influence of The Gift permeates every relationship in life, both intimate and incidental."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Gift Revealed",
+  "heading": "The Gift Revealed",
+  "line": 722,
+  "endLine": 726,
+  "category": "social",
+  "topic": "The Gift in children",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that The Gift can show itself at birth, at puberty or after a trauma, and that its social consequences begin as soon as it emerges.",
+  "quotes": [
+   "Sometimes it is evident at birth, other times it is triggered by puberty or an early traumatic event."
+  ],
+  "related": []
+ },
+ {
+  "title": "Turbulence",
+  "heading": "Turbulence",
+  "line": 741,
+  "endLine": 743,
+  "category": "magic",
+  "topic": "Turbulence",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "The Gift (young Gifted character)",
+  "summary": "Introduces Turbulences, uncontrolled magical outbursts from a Gifted child's emotional distress.",
+  "quotes": [
+   "Hermetic magi refer to these displays as **Turbulences**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Incurring a Turbulence",
+  "heading": "Incurring a Turbulence",
+  "line": 745,
+  "endLine": 755,
+  "category": "magic",
+  "topic": "Turbulence",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "The Gift (young Gifted character)",
+  "summary": "When a Gifted child botches a stressful activity involving magic, a roll against the storyguide's stress die, and also against the character's age, determines whether a Turbulence occurs.",
+  "quotes": [
+   "To see if a character incurs a Turbulence the player rolls the character's Intelligence + a stress die + Aura against the storyguide's roll of a stress die (no botch).",
+   "INCURRING A TURBULENCE: Intelligence + stress die + Aura vs. Higher of stress die (no botch) and character's age"
+  ],
+  "related": [
+   "ArM5 p.183 Realms Interaction Table"
+  ]
+ },
+ {
+  "title": "Controlling Turbulences",
+  "heading": "Controlling Turbulences",
+  "line": 757,
+  "endLine": 771,
+  "category": "magic",
+  "topic": "Turbulence",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "The Gift (young Gifted character)",
+  "summary": "A Stamina roll against the character's Warping Score decides whether the child controls a Turbulence; the difference of the two totals, halved, sets the magnitude of the effect.",
+  "quotes": [
+   "CONTROLLING A TURBULENCE: Stamina + stress die vs. Warping Score + stress die",
+   "CONTROLLED TURBULENCE MAGNITUDE: Stamina + stress die total \u2013 Warping Score + stress die total/2",
+   "UNCONTROLLED TURBULENCE MAGNITUDE: Warping Score + stress die total \u2013 Stamina + stress die total/2"
+  ],
+  "related": [
+   "Temporary Twilight"
+  ]
+ },
+ {
+  "title": "Effects of Turbulence",
+  "heading": "Effects of Turbulence",
+  "line": 773,
+  "endLine": 789,
+  "category": "magic",
+  "topic": "Turbulence",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "The Gift (young Gifted character)",
+  "summary": "Describes what Technique and Form a Turbulence takes, how it interacts with Magic Resistance and Penetration, how a child can deliberately force one by spending a Confidence point, and how Turbulences fade as the child ages.",
+  "quotes": [
+   "TURBULENCE PENETRATION: Penetration Ability times (1 + sympathetic multiplier)",
+   "The player must spend a Confidence point, at which point he checks to incur a Turbulence"
+  ],
+  "related": [
+   "ArM5 p.84 sympathetic multiplier"
+  ]
+ },
+ {
+  "title": "Turbulences and the Aegis of the Hearth",
+  "heading": "Turbulences and the Aegis of the Hearth",
+  "line": 791,
+  "endLine": 795,
+  "category": "magic",
+  "topic": "Turbulence",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "The Gift (young Gifted character)",
+  "summary": "Sidebar on how a covenant's Aegis of the Hearth affects a child's Turbulence depending on whether the child took part in the Aegis ritual, plus the invitation-token debate for apprentices.",
+  "quotes": [
+   "Subtract half the level of the *Aegis of the Hearth* spell from the roll the player makes to incur a Turbulence."
+  ],
+  "related": [
+   "Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "Infant Character Design Notes (Wounds)",
+  "heading": "Character Design Notes",
+  "line": 801,
+  "endLine": 809,
+  "category": "combat",
+  "topic": "Young characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Warns that infant characters are extremely fragile and offers two options for damage: trading wounds for Flaws or adding the age modifier penalty to Wound Recovery rolls.",
+  "quotes": [
+   "The second option is add the child character's age modifier penalty to any wound recovery roll that the character needs to make."
+  ],
+  "related": [
+   "Lords of Men p.125 Option: Mitigating Deadly Wounds"
+  ]
+ },
+ {
+  "title": "Growing Up: Training by Parents",
+  "heading": "Growing Up",
+  "line": 908,
+  "endLine": 920,
+  "category": "seasons",
+  "topic": "Young characters",
+  "audience": [
+   "grogs",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Mundane children learn by copying the same-sex parent; grog and companion parents can spend a free season training a child using their Training Source Quality, and covenant upbringing differs from village life.",
+  "quotes": [
+   "A parent spends one of the free seasons training the child, who receives experience points based on the parent's Training Source Quality."
+  ],
+  "related": [
+   "ArM5 p.164 training",
+   "Art & Academe chapters 6 and 7"
+  ]
+ },
+ {
+  "title": "Finding an Apprentice",
+  "heading": "Finding an Apprentice",
+  "line": 1008,
+  "endLine": 1014,
+  "category": "seasons",
+  "topic": "Hermetic apprenticeship",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A magus can spend a season searching for an apprentice with a Perception roll against an Ease Factor, helped by assistants whose own checks lower that Ease Factor.",
+  "quotes": [
+   "The player makes a Perception + stress die roll against an Ease Factor of 12 to successfully find an apprentice",
+   "The assistant character makes a Characteristic + Ability check against an Ease Factor of 12."
+  ],
+  "related": [
+   "ArM5 p.106",
+   "Houses of Hermes: True Lineages p.17 Bonisagus apprentice rules",
+   "Houses of Hermes: Societates p.128 Pralix"
+  ]
+ },
+ {
+  "title": "Detecting the Gift",
+  "heading": "Detecting the Gift",
+  "line": 1016,
+  "endLine": 1020,
+  "category": "magic",
+  "topic": "Detecting the Gift",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar giving the Intellego Vim guideline for detecting The Gift, its limits against the False Gift and Magic Resistance, and the warning that scrying on another magus is forbidden.",
+  "quotes": [
+   "Intellego Vim spells can detect The Gift. The base level is 10"
+  ],
+  "related": []
+ },
+ {
+  "title": "Becoming an Apprentice",
+  "heading": "Becoming an Apprentice",
+  "line": 1036,
+  "endLine": 1042,
+  "category": "seasons",
+  "topic": "Hermetic apprenticeship",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How a found child becomes an apprentice, which Abilities a pre-apprentice child may have, and how an untrained child can help in the laboratory by adding to Safety, Aesthetics and a Mentem Specialty.",
+  "quotes": [
+   "The character adds his Intelligence divided by 2 to a lab's Safety, +1 to Aesthetics, and +1 to a Mentem Specialty"
+  ],
+  "related": [
+   "Covenants p.116"
+  ]
+ },
+ {
+  "title": "Opening the Arts",
+  "heading": "Opening the Arts",
+  "line": 1086,
+  "endLine": 1090,
+  "category": "seasons",
+  "topic": "Opening the Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Opening the Arts is a season-long procedure that lets an apprentice cast and legally binds the apprentice to the magus; a parens with a low Art score gives the apprentice a Deficiency, which is a crime.",
+  "quotes": [
+   "A magus should have a score of 5 in all 15 Hermetic Techniques and Forms."
+  ],
+  "related": []
+ },
+ {
+  "title": "Opening Arts with Supernatural Abilities",
+  "heading": "OPENING ARTS WITH SUPERNATURAL ABILITIES",
+  "line": 1092,
+  "endLine": 1098,
+  "category": "magic",
+  "topic": "Opening the Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Apprentice with a Supernatural Virtue or Ability",
+  "summary": "When a Gifted child has Supernatural Abilities, the parens needs a high enough Intellego Vim Lab Total to Open the Arts; meeting it destroys the Ability, doubling it keeps it, and the Ability can be converted into an Hermetic Virtue.",
+  "quotes": [
+   "the parens' Intellego Vim Lab Total must equal or exceed 5 times the apprentice's score in any non-Hermetic Supernatural Ability",
+   "To maintain existing Supernatural Abilities, the Lab Total must double the necessary level."
+  ],
+  "related": [
+   "Teaching Hermetic Virtues"
+  ]
+ },
+ {
+  "title": "After the Arts Are Opened",
+  "heading": "AFTER THE ARTS ARE OPENED",
+  "line": 1128,
+  "endLine": 1130,
+  "category": "magic",
+  "topic": "Opening the Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Once Opened, an apprentice has score 0 in every Art, can cast spontaneous spells and read casting tablets with the right Abilities, and uses the standard magical formulas with current Arts.",
+  "quotes": [
+   "Once the Arts are Opened, the apprentice character has a 0 in each of the five Techniques and ten Forms."
+  ],
+  "related": []
+ },
+ {
+  "title": "Delaying Opening the Arts",
+  "heading": "Delaying Opening the Arts",
+  "line": 1132,
+  "endLine": 1136,
+  "category": "order",
+  "topic": "Opening the Arts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A magus may delay Opening the Arts, but the child is not legally his apprentice until then and other magi may take her; keeping a Gifted lab assistant is a low crime.",
+  "quotes": [
+   "He can declare the child his apprentice, but she isn't legally bound to him until he Opens her Arts."
+  ],
+  "related": [
+   "Wizard's War"
+  ]
+ },
+ {
+  "title": "Teaching Schedule",
+  "heading": "Teaching Schedule",
+  "line": 1138,
+  "endLine": 1160,
+  "category": "seasons",
+  "topic": "Hermetic apprenticeship",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar explaining the traditional apprenticeship schedule from Bonisagus' letters: score 5 in all Arts before Opening, one teaching season each year, early Latin and Magic Theory study, and a Gauntlet at the end.",
+  "quotes": [
+   "According to the Peripheral Code, a magus must teach his apprentice for one season every year.",
+   "Generally, apprentice magi gain scores of Latin 4, Artes Liberales 1 and Magic Theory 3 by the time they reach adolescence."
+  ],
+  "related": [
+   "Apprenticeship's End: The Gauntlet"
+  ]
+ },
+ {
+  "title": "Legal Issues for Apprentices",
+  "heading": "Legal Issues",
+  "line": 1170,
+  "endLine": 1186,
+  "category": "order",
+  "topic": "Apprentices and the Code",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covers the Code of Hermes provisions on apprentices: legal recognition on Opening the Arts, the season of instruction, the apprentice as the parens' property in Wizards' Wars and trades, the parens' liability, no appeal for the apprentice, and fosterage.",
+  "quotes": [
+   "The parens must personally instruct the apprentice for one season during each year of apprenticeship"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.17"
+  ]
+ },
+ {
+  "title": "Teaching Hermetic Virtues",
+  "heading": "Teaching Hermetic Virtues",
+  "line": 1247,
+  "endLine": 1265,
+  "category": "seasons",
+  "topic": "Teaching Hermetic Virtues",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A Gifted parens trained in Magic Theory can teach an Hermetic Virtue he has in one season by generating a Teaching Source Quality that meets a Target Level, which rises with the student's existing Hermetic Virtues and falls if the teacher includes an Hermetic Flaw.",
+  "quotes": [
+   "TEACHING SOURCE QUALITY: Communication + Teaching + 3 + bonus",
+   "THE TARGET LEVEL IS 15 TO LEARN A MINOR HERMETIC VIRTUE",
+   "THE TARGET LEVEL IS 21 TO LEARN A MAJOR HERMETIC VIRTUE"
+  ],
+  "related": [
+   "ArM5 p.164 teaching bonuses",
+   "ArM5 p.166 learning Supernatural Abilities",
+   "The Mysteries Revised Edition p.13"
+  ]
+ },
+ {
+  "title": "Acquiring House Virtues",
+  "heading": "ACQUIRING HOUSE VIRTUES",
+  "line": 1267,
+  "endLine": 1279,
+  "category": "houses",
+  "topic": "House Virtues",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "An apprentice gains the free Minor House Virtue after enough seasons of one-on-one interaction with the parens, while Mystery Cult Houses use an initiation into the Outer Mystery and House Ex Miscellanea gives a package of Virtues and Flaws.",
+  "quotes": [
+   "ACQUIRING THE MINOR HERMETIC HOUSE VIRTUE REQUIRES 10 SEASONS OF ONE-ON-ONE INTERACTION WITH PARENS"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.16 Ritual of Twelve Years"
+  ]
+ },
+ {
+  "title": "Gaining Hermetic Flaws",
+  "heading": "GAINING HERMETIC FLAWS",
+  "line": 1281,
+  "endLine": 1285,
+  "category": "magic",
+  "topic": "Teaching Hermetic Virtues",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic Flaws gained after character generation take effect immediately and are permanent barring a story; common sources are learning Virtues with a Flaw, uncontrolled Temporary Twilight and Deficiencies from Opening the Arts.",
+  "quotes": [
+   "Hermetic Flaws acquired after character generation affect a character as soon as they are gained, their effects manifesting immediately."
+  ],
+  "related": [
+   "ArM5 p.89 Twilight"
+  ]
+ },
+ {
+  "title": "Teachers (Gifted Students and Mundane Teachers)",
+  "heading": "TEACHERS",
+  "line": 1291,
+  "endLine": 1299,
+  "category": "seasons",
+  "topic": "Study",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Mundane teachers dislike Gifted students; The Gift's social penalty applies to Teaching Source Quality for a Gifted teacher and to a Gifted student, and the Parma Magica removes it.",
+  "quotes": [
+   "A character with the Gentle Gift is not penalized, and a character with the Blatant Gift suffers a \u20136 penalty."
+  ],
+  "related": [
+   "ArM5 p.75 The Gift social penalty",
+   "ArM5 p.106 Teaching Source Quality"
+  ]
+ },
+ {
+  "title": "Book Learning for Young Characters",
+  "heading": "BOOK LEARNING",
+  "line": 1301,
+  "endLine": 1305,
+  "category": "seasons",
+  "topic": "Study",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A young student can study summae and tractatus if he can read and has enough fluency in the book's language, subject to the owner's or covenant's limits on access.",
+  "quotes": [
+   "must be fluent in the language used in the book (a score of 4 or higher in the written language)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Training an Apprentice",
+  "heading": "TRAINING",
+  "line": 1307,
+  "endLine": 1311,
+  "category": "seasons",
+  "topic": "Study",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A magus may train an apprentice in Abilities, not Arts, without needing Teaching, though the Training Source Quality is usually lower; it still counts as a season of one-on-one instruction.",
+  "quotes": [
+   "Only Abilities can be trained, not Arts, but a trainer does not need an additional Ability (Teaching) to train, like a teacher does."
+  ],
+  "related": [
+   "ArM5 p.164 Training"
+  ]
+ },
+ {
+  "title": "Cantations",
+  "heading": "Cantations",
+  "line": 1325,
+  "endLine": 1331,
+  "category": "magic",
+  "topic": "Cantations",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Cantations are low-level formulaic spells taught to child apprentices; an apprentice can learn many in a season, and being formulaic they are cast even when the casting total falls somewhat short of the spell level.",
+  "quotes": [
+   "In a single season, an apprentice can learn a number of spells equal to her parens' highest applicable Lab Total",
+   "the spell casting total needs to fall short of the spell level by 10 or more to fail"
+  ],
+  "related": [
+   "ArM5 p.95 teaching formulaic spells",
+   "ArM5 p.81 casting formulaic spells"
+  ]
+ },
+ {
+  "title": "Optional Rule: Learning Cantations in Play",
+  "heading": "Optional Rule: Learning Cantations in Play",
+  "line": 1599,
+  "endLine": 1605,
+  "category": "magic",
+  "topic": "Cantations",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule letting a player turn a spontaneous spell the character has cast repeatedly in play into a formulaic spell by spending adventure experience points, at a cost based on the spell level.",
+  "quotes": [
+   "He must use the same spell repeatedly, at least as many times as the level of the spell.",
+   "The level of the spell determines its cost, at one experience point per level."
+  ],
+  "related": [
+   "Cantations"
+  ]
+ },
+ {
+  "title": "Supernatural Interests in Adolescents",
+  "heading": "Supernatural Interests",
+  "line": 1682,
+  "endLine": 1694,
+  "category": "realms",
+  "topic": "Supernatural interest in youth",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how Infernal, Divine, Faerie and Magic beings treat adolescents, including a bonus for adolescents invoking a patron saint and the point that magical compulsion toward sin is not itself a sin.",
+  "quotes": [
+   "who receive a +1 bonus to the roll to invoke their patron saint"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.87"
+  ]
+ },
+ {
+  "title": "Life in the Covenant (Adolescent Characters)",
+  "heading": "Life in the Covenant",
+  "line": 1704,
+  "endLine": 1710,
+  "category": "seasons",
+  "topic": "Young characters",
+  "audience": [
+   "grogs",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Adolescent characters follow the same two-work, two-free season pattern as their parents, and can take part in adventures, often being chosen for low-risk missions.",
+  "quotes": [
+   "an adolescent character must work two seasons a year"
+  ],
+  "related": []
+ },
+ {
+  "title": "Life in the Laboratory (Apprentice as Lab Assistant)",
+  "heading": "Life in the Laboratory",
+  "line": 1712,
+  "endLine": 1730,
+  "category": "lab",
+  "topic": "Lab assistants",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for an apprentice assisting in the parens' laboratory: adding to the Lab Total, sharing the parens' work schedule, limits on missed days, shared labs, creating and improving spare labs, and low-level solo activities like extracting vis, fixing arcane connections and opening devices.",
+  "quotes": [
+   "Like other laboratory assistants, an apprentice adds his Int + Magic Theory to his parens' Lab Total.",
+   "The apprentice can also miss up to 10 days out of the season and not damage the laboratory activity."
+  ],
+  "related": [
+   "ArM5 p.103 distractions in the lab",
+   "ArM5 p.130 Leadership",
+   "Covenants pp.107-110 laboratory routines and refinements"
+  ]
+ },
+ {
+  "title": "New Laboratory Flaw: Shared Lab",
+  "heading": "New Laboratory Flaw: Shared Lab",
+  "line": 1732,
+  "endLine": 1734,
+  "category": "lab",
+  "topic": "Laboratory Virtues and Flaws",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A new laboratory Flaw for a lab too small for several magi working on independent projects at once, with its Quality and Safety penalties.",
+  "quotes": [
+   "**Shared Lab** is a Free Outfitting Flaw."
+  ],
+  "related": [
+   "Covenants laboratory Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "Laboratory Turbulences",
+  "heading": "LABORATORY TURBULENCES",
+  "line": 1744,
+  "endLine": 1746,
+  "category": "lab",
+  "topic": "Turbulence",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "The Gift (young Gifted apprentice)",
+  "summary": "A young apprentice may have to check for a Turbulence midway through a stressful laboratory season; an uncontrolled one cuts the apprentice's contribution to the Lab Total.",
+  "quotes": [
+   "if it is uncontrolled, reduce the Apprentice's Lab Total aid by half"
+  ],
+  "related": [
+   "Incurring a Turbulence",
+   "Controlling Turbulences"
+  ]
+ },
+ {
+  "title": "Bellum",
+  "heading": "Bellum",
+  "line": 1754,
+  "endLine": 1766,
+  "category": "magic",
+  "topic": "Bellum",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A game apprentices play by casting Ager Belli to make illusionary soldiers fight, decided by repeated Intelligence plus Finesse rolls judged by a peer, or by forcing the opponent to lose concentration with a second spell.",
+  "quotes": [
+   "Each round, the participants make an Intelligence + Finesse + stress die roll.",
+   "Maintaining a spell while casting a second requires a Stamina + Concentration + stress die against an Ease Factor of 15."
+  ],
+  "related": [
+   "ArM5 p.82 Concentration Table"
+  ]
+ },
+ {
+  "title": "Failing an Apprentice",
+  "heading": "Failing an Apprentice",
+  "line": 1788,
+  "endLine": 1794,
+  "category": "order",
+  "topic": "Failing an apprentice",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Apprentices fail mainly by losing The Gift, gaining the Failed Apprentice Social Status in place of Apprentice, or by being abandoned by their parens, which is a low crime and leaves the apprentice outside the Order.",
+  "quotes": [
+   "Once The Gift is lost, the character immediately gains the Minor Social Status Virtue: Failed Apprentice"
+  ],
+  "related": [
+   "ArM5 p.42 Failed Apprentice",
+   "Guardians of the Forests p.114 Fenistal"
+  ]
+ },
+ {
+  "title": "Losing the Gift",
+  "heading": "LOSING THE GIFT",
+  "line": 1796,
+  "endLine": 1802,
+  "category": "mysteries",
+  "topic": "Failing an apprentice",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "For player characters, losing or suppressing The Gift is the player's choice and never a die roll; for storyguide characters it can be chosen or determined by an optional botch-dice roll after a stressful laboratory season.",
+  "quotes": [
+   "For a player character, losing The Gift is always the player's choice and never decided by a die roll.",
+   "roll an additional number of botch dice equal to the parens' Lab Total divided by 10 (round up)"
+  ],
+  "related": [
+   "Suppressed Gift",
+   "Laboratory Turbulences"
+  ]
+ },
+ {
+  "title": "Apprenticeship's End: The Gauntlet",
+  "heading": "Apprenticeship's End: The Gauntlet",
+  "line": 1804,
+  "endLine": 1824,
+  "category": "order",
+  "topic": "Gauntlet",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Gauntlet is the parens' test that decides whether an apprentice becomes a magus; it covers who sets it, how long a parens may delay it, how to run it as an adventure, and an optional single roll to pass it.",
+  "quotes": [
+   "Make an Intelligence + Ability + stress die roll against an Ease Factor of 9 for the apprentice character.",
+   "OPTIONAL RULE FOR PASSING A GAUNTLET: Apprentice's Intelligence + Appropriate Ability + stress die vs. 9"
+  ],
+  "related": [
+   "ArM5 p.30 Hermetic Houses Summary",
+   "Houses of Hermes: Societates p.83 Tytalus"
+  ]
+ },
+ {
+  "title": "Learning Parma Magica",
+  "heading": "LEARNING PARMA MAGICA",
+  "line": 1826,
+  "endLine": 1832,
+  "category": "magic",
+  "topic": "Parma Magica",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "An apprentice accumulates Parma Magica experience through exposure but cannot invoke it until the final key instruction is given after swearing the Oath of Hermes; teaching it earlier is a High Crime.",
+  "quotes": [
+   "Usually, an apprentice character finishes apprenticeship with a score of 1 in Parma Magica.",
+   "doing so before the apprentice swears the Oath of Hermes is a High Crime"
+  ],
+  "related": []
+ },
+ {
+  "title": "Post-Apprenticeship",
+  "heading": "Post-Apprenticeship",
+  "line": 1834,
+  "endLine": 1840,
+  "category": "creation",
+  "topic": "Hermetic apprenticeship",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "What a newly Gauntleted magus does next, customary gifts, and the recommended minimum Ability scores, noting that an apprentice is a magus once Opened, trained and passed.",
+  "quotes": [
+   "The recommended minimum Ability scores for a magus are Artes Liberales 1, Latin 4, Magic Theory 3, and Parma Magica 1"
+  ],
+  "related": [
+   "ArM5 p.32"
+  ]
+ },
+ {
+  "title": "Houses of Hermes Gauntlets",
+  "heading": "Houses of Hermes Gauntlets",
+  "line": 1842,
+  "endLine": 1894,
+  "category": "houses",
+  "topic": "Gauntlet",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar summarizing the typical Gauntlet of each Hermetic House and how to build a pre-Gauntlet adventure around it.",
+  "quotes": [
+   "An apprentice of House Tremere must face his master in certamen to pass his Gauntlet."
+  ],
+  "related": [
+   "Houses of Hermes series"
+  ]
+ },
+ {
+  "title": "Scholae Magicae",
+  "heading": "Scholae Magicae",
+  "line": 1896,
+  "endLine": 1910,
+  "category": "covenant",
+  "topic": "Schools of magic",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains why schools for Gifted apprentices rarely work: Gifted children clash without a Parma Magica, Turbulences are common, mundane teachers need protection, and the Arts must be taught one-on-one.",
+  "quotes": [
+   "The Hermetic Arts must be taught one-on-one, from magus to apprentice, and this limitation has yet to be overcome."
+  ],
+  "related": [
+   "The Sundered Eagle: The Theban Tribunal p.33",
+   "Against the Darkness: The Transylvania Tribunal chapter 6"
+  ]
+ }
+]

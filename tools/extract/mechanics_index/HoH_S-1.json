@@ -1,0 +1,1126 @@
+[
+ {
+  "title": "Joining House Flambeau (Gauntlet by combat)",
+  "heading": "Joining House Flambeau",
+  "line": 700,
+  "endLine": 714,
+  "category": "houses",
+  "topic": "House Flambeau",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Flambeau",
+  "summary": "How a candidate joins House Flambeau: finding a sponsor, a public combat-oriented Gauntlet judged by the sponsor, failure consequences, direct acceptance and the initiation ceremony.",
+  "quotes": [
+   "By the Peripheral Code, an apprentice who fails his Gauntlet three times is given his fourth by a Quaesitor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tournament Certamen",
+  "heading": "Certamen",
+  "line": 956,
+  "endLine": 960,
+  "category": "houses",
+  "topic": "Certamen",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Altered certamen rules used at Flambeau tournaments: single elimination, best of three duels per match, rest periods, and who chooses Technique and Form.",
+  "quotes": [
+   "The winner of two out of three duels within the match proceeds to the next round.",
+   "The youngest magus chooses the Form, and the oldest the Technique"
+  ],
+  "related": [
+   "ArM5 certamen"
+  ]
+ },
+ {
+  "title": "Forceless Casting",
+  "heading": "Forceless Casting",
+  "line": 962,
+  "endLine": 966,
+  "category": "magic",
+  "topic": "Forceless casting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Option for a magus to cast a spell deliberately without Penetration so it cannot affect magi with Magic Resistance, useful in tournaments or large-area spells.",
+  "quotes": [
+   "A magus can deliberately ensure the Penetration Total of a spell does not exceed 0."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dimicatio",
+  "heading": "Dimicatio",
+  "line": 968,
+  "endLine": 976,
+  "category": "houses",
+  "topic": "Dimicatio",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Tournament contest in which magi cast real spells at each other using forceless casting while defending with fast-cast defenses; the first spell to reach the opponent's Parma wins.",
+  "quotes": [
+   "The first magus whose spell reaches his opponent's Parma is the winner."
+  ],
+  "related": [
+   "ArM5 p.83 fast-cast defense"
+  ]
+ },
+ {
+  "title": "Dimicatio in Detail",
+  "heading": "Dimicatio in Detail",
+  "line": 978,
+  "category": "houses",
+  "topic": "Dimicatio",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How to play out a dimicatio with the normal combat rules: range, initiative, alternating offensive spells and fast-cast defenses judged by the storyguide.",
+  "quotes": [
+   "Both competitors roll Initiative and the winner casts the first offensive spell.",
+   "a fast-cast defense of one-half the level of the incoming spell is usually sufficient"
+  ],
+  "related": [
+   "ArM5 p.83 fast-cast defense",
+   "ArM5 p.160 dispelling magic"
+  ],
+  "endLine": 984
+ },
+ {
+  "title": "Wizards' Melee",
+  "heading": "Wizards' Melee",
+  "line": 986,
+  "category": "houses",
+  "topic": "Wizards' melee",
+  "audience": [
+   "magi",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A tournament team event where a magus and grogs try to touch the opposing magus with a forceless spell; lists the usual restrictions on ranges, weapons, damage spells and devices.",
+  "quotes": [
+   "Each team consists of one magus and five grogs.",
+   "blunted weapons (\u20133 to Damage)"
+  ],
+  "related": [],
+  "endLine": 997
+ },
+ {
+  "title": "Tournament Prizes",
+  "heading": "Tournament Prizes",
+  "line": 999,
+  "category": "houses",
+  "topic": "Tournaments",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on the kinds of prizes a tournament host offers, with vis as the simplest.",
+  "quotes": [
+   "a rook (ten pawns) is a moderate prize"
+  ],
+  "related": [],
+  "endLine": 1003
+ },
+ {
+  "title": "Wizard's War and the Order",
+  "heading": "Wizard's War and the Order",
+  "line": 1017,
+  "category": "order",
+  "topic": "Wizard's War",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Practical rules of Wizard's War under the Code and Peripheral Code: timing of declaration and duration, limits on harming uninvolved magi, covenant sanctuary, renewed declarations and multiple simultaneous wars.",
+  "quotes": [
+   "A Wizard's War must be declared on the night of a full moon.",
+   "It then begins at the rise of the following full moon and lasts until the rise of the third full moon."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages pp.47-48"
+  ],
+  "endLine": 1030
+ },
+ {
+  "title": "Declaration of War",
+  "heading": "Declaration of War",
+  "line": 1031,
+  "category": "order",
+  "topic": "Wizard's War",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional ways Tribunals may treat service of a Wizard's War declaration when the recipient is absent: forwarding addresses, representatives, Quaesitor review and Redcap delivery.",
+  "quotes": [
+   "Most Tribunals hold a declaration of war to be duly served if the recipient was present at the covenant and the declaration was nailed to the door of his sanctum."
+  ],
+  "related": [],
+  "endLine": 1041
+ },
+ {
+  "title": "Reasons to Declare Wizard's War",
+  "heading": "Reasons to Declare Wizard's War",
+  "line": 1050,
+  "category": "order",
+  "topic": "Wizard's War",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the motives and uses of Wizard's War beyond killing, including harassment, committing otherwise illegal acts, vengeance pledges and enforcing pacts.",
+  "quotes": [
+   "The Code permits combatants to kill one another, but it doesn't require them to do so."
+  ],
+  "related": [],
+  "endLine": 1062
+ },
+ {
+  "title": "Preparing for Wizard's War",
+  "heading": "Preparing for Wizard's War",
+  "line": 1064,
+  "category": "order",
+  "topic": "Wizard's War",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advice on defending against Wizard's War: retreating to the covenant and its Aegis, self-imposed exile, personal refuges, and outside assistance such as Moon Duration spells.",
+  "quotes": [
+   "Especially useful are spells of Moon Duration, which last until both the full moon and the new moon have set."
+  ],
+  "related": [],
+  "endLine": 1074
+ },
+ {
+  "title": "Waging Wizard's War",
+  "heading": "Waging Wizard's War",
+  "line": 1076,
+  "category": "order",
+  "topic": "Wizard's War",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Tactics for fighting a Wizard's War: stealth and reconnaissance, the importance of Arcane Connections to Penetration, finding the enemy, and how magical disguise outpaces detection.",
+  "quotes": [
+   "The real value of an Arcane Connection is the bonus it provides to one's Penetration multiplier (see ArM5, page 84)."
+  ],
+  "related": [
+   "ArM5 p.84 Arcane Connections"
+  ],
+  "endLine": 1090
+ },
+ {
+  "title": "Schools of Magical Combat",
+  "heading": "Schools of Magical Combat",
+  "line": 1092,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the Flambeau idea of a 'school' of magical combat: a named, coherent style combining particular Arts, Abilities and spells.",
+  "quotes": [],
+  "related": [],
+  "endLine": 1099
+ },
+ {
+  "title": "Choosing a School",
+  "heading": "Choosing a School",
+  "line": 1100,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How magi pick a combat school to suit their Hermetic Virtues and Flaws, and how Flambeau apprentices have a school chosen for them by their parens.",
+  "quotes": [],
+  "related": [],
+  "endLine": 1119
+ },
+ {
+  "title": "Schools of Magical Combat at a Glance",
+  "heading": "Schools of Magical Combat at a Glance",
+  "line": 1106,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Quick-reference table of the six example schools, what each does, and the Virtue recommended for it.",
+  "quotes": [
+   "| The Founder | Attacks using fire                            | Puissant Ignem                                   |"
+  ],
+  "related": [],
+  "endLine": 1115
+ },
+ {
+  "title": "The School of the Founder",
+  "heading": "The School of the Founder",
+  "line": 1125,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Fire-based combat school: strengths, weaknesses and play advice for a magus who relies on Ignem attacks.",
+  "quotes": [
+   "Ignem spells do excellent damage compared to other spells of similar magnitude."
+  ],
+  "related": [
+   "ArM5 p.87 Spell Mastery magic resistance"
+  ],
+  "endLine": 1153
+ },
+ {
+  "title": "Option: Variant House Benefits",
+  "heading": "Option: Variant House Benefits",
+  "line": 1145,
+  "category": "houses",
+  "topic": "House Flambeau",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Flambeau",
+  "summary": "Optional rule restricting the Flambeau free Minor House Virtue to Puissant Art (Ignem or Perdo), with substitutions allowed for the Ramius, Sebastian and Vilano schools.",
+  "quotes": [
+   "This free Virtue must be either Puissant Art (Ignem) or Puissant Art (Perdo)."
+  ],
+  "related": [],
+  "endLine": 1149
+ },
+ {
+  "title": "The School of Apromor",
+  "heading": "The School of Apromor",
+  "line": 1155,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Perdo-based combat school aimed at damaging opponents directly, with versatile non-damaging uses but heavy demands on Penetration and Spell Mastery.",
+  "quotes": [
+   "Perdo spells usually disregard the target's Soak"
+  ],
+  "related": [
+   "ArM5 p.87 still casting"
+  ],
+  "endLine": 1183
+ },
+ {
+  "title": "Enhancing Spell Penetration",
+  "heading": "Enhancing Spell Penetration",
+  "line": 1163,
+  "category": "magic",
+  "topic": "Penetration",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Practical advice for overcoming high Magic Resistance: favor low-level spells, improve Penetration, use Spell Mastery, and add Arcane and sympathetic connections.",
+  "quotes": [
+   "so if one has both a name and a picture of one's target, the multiplier would be x4"
+  ],
+  "related": [
+   "ArM5 p.84 Arcane and sympathetic connections",
+   "ArM5 p.87 Spell Mastery"
+  ],
+  "endLine": 1175
+ },
+ {
+  "title": "The School of Boreas",
+  "heading": "The School of Boreas",
+  "line": 1185,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Combat school built on the single combination of Perdo Ignem, using cold and darkness; a narrower, cheaper-to-learn alternative to the Apromor and Founder styles.",
+  "quotes": [
+   "The School of Boreas relies on the single Form-Technique combination of Perdo Ignem."
+  ],
+  "related": [],
+  "endLine": 1199
+ },
+ {
+  "title": "The School of Ramius",
+  "heading": "The School of Ramius",
+  "line": 1201,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Combat school that bypasses Magic Resistance with mundane weapons backed by defensive magic, including the problem of a magus's own Parma Magica blocking self-targeted spells.",
+  "quotes": [
+   "Spells of Personal Range always bypass the caster's own Magic Resistance (ArM5, page 85), but Touch- and Voice-Range spells are resisted."
+  ],
+  "related": [
+   "ArM5 p.85 Magic Resistance",
+   "ArM5 p.98 Talismans"
+  ],
+  "endLine": 1221
+ },
+ {
+  "title": "The Schools of Sebastian",
+  "heading": "The Schools of Sebastian",
+  "line": 1223,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A family of minor combat schools that conjure harmful substances with Forms other than Ignem, usually supported by a Magical Focus.",
+  "quotes": [
+   "Most members of the Sebastian family of schools have a Magical Focus (either Major or Minor)"
+  ],
+  "related": [],
+  "endLine": 1251
+ },
+ {
+  "title": "Magical Foci for the Schools of Sebastian",
+  "heading": "Magical Foci for the Schools of Sebastian",
+  "line": 1235,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sample Magical Foci by Form suited to the Sebastian schools, with note on which count as Major.",
+  "quotes": [
+   "Except where noted, all of them would count as Minor Magical Foci."
+  ],
+  "related": [
+   "ArM5 pp.45-46 Magical Focus"
+  ],
+  "endLine": 1251
+ },
+ {
+  "title": "The School of Vilano",
+  "heading": "The School of Vilano",
+  "line": 1253,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Combat school based on indirect spells that bypass Magic Resistance; notes aiming with Finesse and the double botch risk of aimed spells.",
+  "quotes": [
+   "indirect spells require two stress rolls (one to cast the spell and another to aim it) and therefore have two chances to botch."
+  ],
+  "related": [
+   "ArM5 p.86 indirect attacks"
+  ],
+  "endLine": 1269
+ },
+ {
+  "title": "Indirect Spells from ArM5",
+  "heading": "Indirect Spells from ArM5",
+  "line": 1271,
+  "category": "combat",
+  "topic": "Schools of magical combat",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "List of core-book spells that can have at least partial effect without penetrating Magic Resistance, with notes on why each works.",
+  "quotes": [
+   "Magic Resistance does not protect against non-magical stone falling due to gravity."
+  ],
+  "related": [
+   "ArM5 p.86 indirect attacks"
+  ],
+  "endLine": 1309
+ },
+ {
+  "title": "House Acclaim",
+  "heading": "House Acclaim",
+  "line": 1317,
+  "category": "houses",
+  "topic": "House Acclaim",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Flambeau",
+  "summary": "Flambeau's free Hermetic Reputation measuring prestige: gained through witnessed deeds, lost through inactivity or ignoble acts, never below zero.",
+  "quotes": [
+   "House Acclaim is a free Reputation that every Flambeau magus gains at the start of play.",
+   "Loss of House Acclaim is handled by taking away experience points instead of adding them."
+  ],
+  "related": [
+   "ArM5 p.167 Reputation",
+   "Houses of Hermes: True Lineages p.21 House Acclaim (Bonisagus)"
+  ],
+  "endLine": 1325
+ },
+ {
+  "title": "Example Acclaim Awards",
+  "heading": "Example Acclaim Awards",
+  "line": 1327,
+  "category": "houses",
+  "topic": "House Acclaim",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Flambeau",
+  "summary": "Table of sample experience-point awards and penalties in House Acclaim for tournaments, certamen, Wizard's War, slaying beasts and renegades, and inactivity.",
+  "quotes": [],
+  "related": [],
+  "endLine": 1351
+ },
+ {
+  "title": "Fighting Invisibly",
+  "heading": "Fighting Invisibly",
+  "line": 1373,
+  "category": "combat",
+  "topic": "Invisibility in combat",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for what invisibility does in a fight: protection from melee, missiles and targeted spells, Stealth bonuses, surprise attacks, and the limits of invisible weapons.",
+  "quotes": [
+   "During the first round only, the invisible character automatically goes first and gains a +3 Attack bonus"
+  ],
+  "related": [],
+  "endLine": 1389
+ },
+ {
+  "title": "Locating an Invisible Character",
+  "heading": "Locating an Invisible Character",
+  "line": 1390,
+  "category": "combat",
+  "topic": "Invisibility in combat",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Opposed roll procedure to pinpoint an invisible character well enough to attack or target him, and when location is automatic or needs no roll.",
+  "quotes": [
+   "make an opposed Perception + Awareness roll against the invisible character's Dexterity + Stealth \u2013 Encumbrance + Stealth bonus"
+  ],
+  "related": [],
+  "endLine": 1401
+ },
+ {
+  "title": "Effects of Invisibility",
+  "heading": "Effects of Invisibility",
+  "line": 1402,
+  "category": "combat",
+  "topic": "Invisibility in combat",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table giving melee Attack, Defense and Stealth bonuses for an invisible character according to how clear the visual signs of presence are.",
+  "quotes": [
+   "Invisibility grants a bonus to melee attack rolls, but not to missile attacks."
+  ],
+  "related": [],
+  "endLine": 1424
+ },
+ {
+  "title": "Invisibility and Group Combat",
+  "heading": "Invisibility and Group Combat",
+  "line": 1426,
+  "category": "combat",
+  "topic": "Invisibility in combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Invisible characters cannot fight as trained groups; an untrained group with invisible members gains extra botch dice.",
+  "quotes": [
+   "everyone in the group gains an extra botch die per invisible character"
+  ],
+  "related": [
+   "ArM5 p.173 group combat"
+  ],
+  "endLine": 1432
+ },
+ {
+  "title": "Effect Modification for Enchanted Items",
+  "heading": "Effect Modification for Enchanted Items",
+  "line": 1438,
+  "category": "lab",
+  "topic": "Enchanting items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New enchanting modification, Fast Trigger, which speeds an item effect's Initiative at a cost in effect level.",
+  "quotes": [
+   "The effect gains a +3 Initiative modifier. This adds +5 to the level of the effect."
+  ],
+  "related": [],
+  "endLine": 1445
+ },
+ {
+  "title": "Spell Mastery Special Abilities",
+  "heading": "Spell Mastery Special Abilities",
+  "line": 1446,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Spell Mastery special abilities: Imperturbable Casting, Obfuscated Casting, Precise Casting and Quick Casting.",
+  "quotes": [
+   "Add +1 to the caster's Initiative Total when he casts the Mastered spell."
+  ],
+  "related": [
+   "ArM5 p.87 Spell Mastery"
+  ],
+  "endLine": 1464
+ },
+ {
+  "title": "Mercurian Spell Mastery Abilities",
+  "heading": "Mercurian Spell Mastery Abilities",
+  "line": 1484,
+  "category": "traditions",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Mercury",
+  "summary": "Exclusive Spell Mastery special abilities available to members of the Cult of Mercury.",
+  "quotes": [
+   "The first time in a session that the caster botches a roll for this spell or fails the casting roll by exactly one point, she gains 5 experience points toward Mastery of this spell."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages pp.99-100"
+  ],
+  "endLine": 1500
+ },
+ {
+  "title": "Creo Aquam Guidelines",
+  "heading": "Creo Aquam Guidelines",
+  "line": 1516,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Creo Aquam guideline for creating ice in natural shapes.",
+  "quotes": [
+   "Create ice in a natural shape, such as a floe or icicle."
+  ],
+  "related": [],
+  "endLine": 1518
+ },
+ {
+  "title": "Projectiles and Rego Magic",
+  "heading": "Projectiles and Rego Magic",
+  "line": 1520,
+  "category": "magic",
+  "topic": "Rego projectiles",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains three ways Rego magic can attack (propelled, natural motion, and thrown projectiles) and which bypass Magic Resistance, aiming and range rules for thrown projectiles.",
+  "quotes": [
+   "Most projectiles thrown by spells have a range increment of 20 paces."
+  ],
+  "related": [
+   "ArM5 pp.85-86 Magic Resistance",
+   "ArM5 p.172 missile range"
+  ],
+  "endLine": 1532
+ },
+ {
+  "title": "Muto Auram Guidelines",
+  "heading": "Muto Auram Guidelines",
+  "line": 1596,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Muto Auram guidelines for turning a gas into a harmful gas that causes a Light or Medium Wound.",
+  "quotes": [
+   "Transform a gas into a harmful gas causing a Light Wound (Stamina roll against Ease Factor 6 to resist)"
+  ],
+  "related": [],
+  "endLine": 1600
+ },
+ {
+  "title": "Perdo Terram Guidelines",
+  "heading": "Perdo Terram Guidelines",
+  "line": 1750,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Perdo Terram guideline for destroying a single aspect of dirt.",
+  "quotes": [
+   "Destroy one aspect of dirt, such as its weight or its cohesiveness"
+  ],
+  "related": [],
+  "endLine": 1752
+ },
+ {
+  "title": "Rego Terram Guidelines",
+  "heading": "Rego Terram Guidelines",
+  "line": 1778,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Rego Terram guidelines for throwing stone projectiles, with damage limited by spell level.",
+  "quotes": [
+   "Hurl a stone projectile with enough force to do +5 damage (range increment of 20 paces)"
+  ],
+  "related": [],
+  "endLine": 1786
+ },
+ {
+  "title": "Family and Inheritance",
+  "heading": "Family",
+  "line": 2045,
+  "category": "social",
+  "topic": "Families and inheritance",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a magus's birth or adoptive family interacts with the Gift and with law: choosing apprentices, and why magi cannot hold feudal land but may inherit other property and have stewards for child heirs.",
+  "quotes": [
+   "Magi may not enter into feudal relationships, and so may not inherit land."
+  ],
+  "related": [],
+  "endLine": 2051
+ },
+ {
+  "title": "Nepotism",
+  "heading": "Nepotism",
+  "line": 2053,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional use of family members as agents: the player links story events to their fortunes so Bond Maintenance points from adventure experience can be spent on them.",
+  "quotes": [
+   "This allows the magus to spend Bond Maintenance points, which equal the Adventure experience they receive for the story, on their family members."
+  ],
+  "related": [
+   "Agencies appendix"
+  ],
+  "endLine": 2063
+ },
+ {
+  "title": "Family Reputation",
+  "heading": "Family Reputation",
+  "line": 2065,
+  "category": "social",
+  "topic": "Reputation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Families carry shared Reputations that characters may use instead of their own among strangers, shaped by every family member's actions.",
+  "quotes": [
+   "characters may use this Reputation instead of their own, among people who do not personally know the character"
+  ],
+  "related": [
+   "ArM5 p.167 Reputation"
+  ],
+  "endLine": 2067
+ },
+ {
+  "title": "Interference With the Mundanes",
+  "heading": "Interference With the Mundanes",
+  "line": 2069,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "List of activities that in most Tribunals, and especially where Jerbiton magi are active, are not treated as breaking the Code's ban on interfering with mundanes.",
+  "quotes": [
+   "Be identified as a magus, or cast spells before witnesses, provided this doesn't provoke the mundanes."
+  ],
+  "related": [],
+  "endLine": 2078
+ },
+ {
+  "title": "Etiquette Performances",
+  "heading": "Etiquette",
+  "line": 2137,
+  "category": "social",
+  "topic": "Etiquette",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces etiquette as symbolic communication at events and the three kinds of performance a character can attempt; an observer can tell which kind is being attempted with a roll.",
+  "quotes": [
+   "an Intelligence + Etiquette roll against an Ease Factor of 3"
+  ],
+  "related": [],
+  "endLine": 2143
+ },
+ {
+  "title": "Individual Etiquette",
+  "heading": "Individual",
+  "line": 2145,
+  "category": "social",
+  "topic": "Etiquette",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Communication + Etiquette roll against a host-set Ease Factor to be the most memorable attendee at an event and earn Reputation experience; results can be given to another person.",
+  "quotes": [
+   "A character wishing to make an individual impression at an event makes a Communication + Etiquette roll.",
+   "At minimum this is 6, but can be as high as 21."
+  ],
+  "related": [],
+  "endLine": 2147
+ },
+ {
+  "title": "Competitive Etiquette (Etiquette Duels)",
+  "heading": "Competitive",
+  "line": 2149,
+  "category": "social",
+  "topic": "Etiquette",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Etiquette duel in which each rival chooses a self-inflicted penalty to impose on both Communication + Etiquette rolls, then results are compared to see who looks boorish or wins the exchange.",
+  "quotes": [
+   "A participant cannot choose a penalty greater than his Etiquette score.",
+   "The sum of both selected penalties is subtracted from the standard Etiquette roll of both individuals."
+  ],
+  "related": [],
+  "endLine": 2153
+ },
+ {
+  "title": "Collaborative Etiquette",
+  "heading": "Collaborative",
+  "line": 2155,
+  "category": "social",
+  "topic": "Etiquette",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Group etiquette where participants' rolls are summed into a score compared with past events, with penalties for botches and sample scores for Tribunal feasts, Primus elections and symposia.",
+  "quotes": [
+   "the rolls of all participants are added together",
+   "A person who botches during such an event reduces the score by 10, and may develop a poor Reputation."
+  ],
+  "related": [],
+  "endLine": 2163
+ },
+ {
+  "title": "Money and Good Manners",
+  "heading": "Money and Good Manners",
+  "line": 2171,
+  "category": "social",
+  "topic": "Etiquette",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for boosting an Etiquette roll by spending money or by giving suitable gifts, and a roll to learn what gifts a particular magus would value.",
+  "quotes": [
+   "The bonus is equal to +1 for each time the character spends the weekly income of all of his guests.",
+   "A character cannot gain a bonus higher than his Etiquette score by spending money.",
+   "An Intelligence + Order of Hermes Lore + Reputation (of the receiver) roll against an Ease Factor of"
+  ],
+  "related": [],
+  "endLine": 2186
+ },
+ {
+  "title": "Hermetic Courtesy and Hospitality",
+  "heading": "Hermetic Courtesy and Hospitality",
+  "line": 2188,
+  "category": "social",
+  "topic": "Hospitality",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Jerbiton",
+  "summary": "Jerbiton code of conduct listing the obligations of guests and hosts when visiting another Jerbiton magus's territory; breaking it is taken as a deliberate insult.",
+  "quotes": [
+   "It is rude to refuse to offer hospitality, but it is also rude to demand it."
+  ],
+  "related": [],
+  "endLine": 2211
+ },
+ {
+  "title": "Electing the Primus (Jerbiton)",
+  "heading": "Electing the Primus",
+  "line": 2221,
+  "category": "houses",
+  "topic": "House Jerbiton",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Jerbiton",
+  "summary": "Procedure for choosing and dismissing the Jerbiton Primus: nomination, hourly ballots eliminating the lowest candidate, proxies, and a petition of one-third of the House to dismiss.",
+  "quotes": [
+   "A maximum of fourteen hourly ballots are taken in a day.",
+   "The Primus can be dismissed by one-third of the members of the House requesting that he resign."
+  ],
+  "related": [],
+  "endLine": 2233
+ },
+ {
+  "title": "Rhaetian",
+  "heading": "Rhaetian",
+  "line": 2269,
+  "category": "setting",
+  "topic": "Languages",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Rhaetian speakers (Valnastium)",
+  "summary": "Language note: how well a Rhaetian speaker and a Latin speaker understand each other, based on Rhaetian score.",
+  "quotes": [
+   "A character with a score of 5 in Rhaetian can speak to a person who knows Latin as if he had a score of 2 in that language"
+  ],
+  "related": [],
+  "endLine": 2271
+ },
+ {
+  "title": "League Membership",
+  "heading": "League Membership",
+  "line": 2273,
+  "category": "houses",
+  "topic": "Jerbiton leagues",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Jerbiton",
+  "summary": "Explains Jerbiton leagues, the interest-based clubs most Jerbiton magi belong to, and how they accept other-House members and fit into saga pacing.",
+  "quotes": [],
+  "related": [],
+  "endLine": 2279
+ },
+ {
+  "title": "Designing a League",
+  "heading": "Designing a League",
+  "line": 2281,
+  "category": "houses",
+  "topic": "Jerbiton leagues",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Jerbiton",
+  "summary": "Options a troupe can choose when building a league: desired stories, senior connections, headquarters, a shared Reputation bonus, assistance and a name, with a worked example.",
+  "quotes": [
+   "All Reputations act as if they were 3 points higher, between colleagues."
+  ],
+  "related": [],
+  "endLine": 2297
+ },
+ {
+  "title": "Less Intelligent Magi?",
+  "heading": "Less Intelligent Magi?",
+  "line": 2325,
+  "category": "creation",
+  "topic": "House Jerbiton",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Jerbiton",
+  "summary": "Optional character-creation note allowing Jerbiton magi with a Gentle Gift and a lower than usual Intelligence in sagas where the Gift is rare.",
+  "quotes": [
+   "An Intelligence score less than +3 reflects a premium placed upon Gentle Giftedness by masters in House Jerbiton."
+  ],
+  "related": [],
+  "endLine": 2327
+ },
+ {
+  "title": "Free Virtue (Jerbiton)",
+  "heading": "Free Virtue",
+  "line": 2329,
+  "category": "creation",
+  "topic": "House Jerbiton",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Jerbiton",
+  "summary": "Jerbiton magi choose their own free House Virtue, limited to Minor Virtues relating to scholarship, art or dealing with people; includes suggested Virtues and Abilities and a ruling on Ability-linked Virtues.",
+  "quotes": [
+   "This choice is limited to Minor Virtues that relate to scholarship, art, or interacting with people.",
+   "the magus does not lose this advantage when the Ability is used on non-mundane people"
+  ],
+  "related": [],
+  "endLine": 2333
+ }
+]

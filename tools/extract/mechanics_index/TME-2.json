@@ -1,0 +1,1053 @@
+[
+ {
+  "title": "Ritual Wards and Other Boundary Spells",
+  "heading": "Ritual Wards and Other Boundary Spells",
+  "line": 2670,
+  "endLine": 2678,
+  "category": "magic",
+  "topic": "Boundary wards",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Ring, Circle and Boundary wards are cast around a walled magical island: tracing a Ring or Circle on foot is slow and risky, while Boundary spells are rituals that need vis but are easier and safer, and the Range, Duration and Target of a ward add a fixed number of levels to the level the caster chooses.",
+  "quotes": [
+   "cannot move faster than 10 paces per round, and must make an Intelligence + Concentration roll of 6+ per round",
+   "A Ward's level is selected by the caster, but the Touch Range, Sun Duration and Boundary Target add 35 levels."
+  ],
+  "related": [
+   "ArM5 p.112 Ring and Circle wards",
+   "ArM5 p.161 Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "Using a Wall as a Spell Boundary",
+  "heading": "Other Boundary Spells",
+  "line": 2785,
+  "endLine": 2791,
+  "category": "magic",
+  "topic": "Boundary wards",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Three considerations when a large wall is the target of Boundary spells: they are rituals and so must be prepared in advance, some wards need a second marked boundary, and the size of the Boundary requires extra magnitudes as the area grows.",
+  "quotes": [
+   "Boundary spells are Rituals, and Rituals cannot be cast spontaneously.",
+   "The basic Boundary is only 100 paces wide",
+   "a circular island with a diameter of 3 miles requires 2 added magnitudes, a 30 mile diameter island requires 3 added magnitudes, and a 300 mile wide island requires 4 added magnitudes"
+  ],
+  "related": [
+   "ArM5 Boundary Target"
+  ]
+ },
+ {
+  "title": "Sea Depths of the North Sea",
+  "heading": "Comparatively Shallow",
+  "line": 3013,
+  "endLine": 3022,
+  "category": "setting",
+  "topic": "Magical land creation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: raising a magical island from the sea",
+  "summary": "Average depths of the parts of the North Sea, plus the extra height allowed for storm waves and freak waves, used to work out how high a raised wall must be.",
+  "quotes": [
+   "The Dogger Bank is the shallowest part of the North Sea, between 17 and 33 paces deep."
+  ],
+  "related": []
+ },
+ {
+  "title": "A Note on The Powers of Demons",
+  "heading": "A Note on The Powers of Demons",
+  "line": 3193,
+  "endLine": 3201,
+  "category": "beings",
+  "topic": "Infernal beings",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal beings (demons)",
+  "summary": "Describes three common demonic powers: Coagulation (building a solid body), Envisioning (invading dreams) and Obsession (imposing a temporary Personality trait that may become permanent).",
+  "quotes": [
+   "Manifesting takes (Might) rounds, but dissolving again requires only one round of concentration.",
+   "This gives the person a temporary Personality trait equal to the number of points spent"
+  ],
+  "related": [
+   "Realms of Power: The Infernal"
+  ]
+ },
+ {
+  "title": "Demon Weaknesses",
+  "heading": "Demon Weaknesses",
+  "line": 3203,
+  "endLine": 3207,
+  "category": "beings",
+  "topic": "Infernal beings",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal beings (demons)",
+  "summary": "Each demon has a Weakness that characters can learn with a lore roll; a weakness that is a material forces the demon to flee and stops it regaining Might, while a protected group cannot be harmed by it.",
+  "quotes": [
+   "make an Intelligence + Infernal Lore roll against an Ease factor of 9 + (Might / 5)"
+  ],
+  "related": [
+   "Realms of Power: The Infernal"
+  ]
+ },
+ {
+  "title": "Tainted Vis (Simplified)",
+  "heading": "A Note on Tainted Vis",
+  "line": 3244,
+  "endLine": 3250,
+  "category": "realms",
+  "topic": "Tainted vis",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal vis (sordida)",
+  "summary": "A simple fallback for troupes not using the full Infernal rules: tainted vis gives a larger casting bonus, adds botch dice for users not aligned with the Infernal, and slowly implants a sinful Personality trait in whoever carries it.",
+  "quotes": [
+   "Adds 5 instead of 2 to casting totals.",
+   "Adds three botch dice per pawn, for non-Infernally aligned users."
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.18-19"
+  ]
+ },
+ {
+  "title": "Wall Ring Size in the Atlantic",
+  "heading": "The Atlantic Ocean",
+  "line": 3394,
+  "endLine": 3401,
+  "category": "setting",
+  "topic": "Magical land creation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: raising a magical island from the sea",
+  "summary": "Because the ocean is very deep, the diameter of the stone ring a spell can raise depends sharply on its level; the section lists the ring size produced by each higher spell level in the Atlantic.",
+  "quotes": [
+   "A level 45 spell creates a ring 22 miles in diameter.",
+   "A level 40 spell creates a ring just over two miles in diameter."
+  ],
+  "related": [
+   "The Wedding Ring of Gaea"
+  ]
+ },
+ {
+  "title": "Wall Ring Size in the Baltic Sea",
+  "heading": "The Baltic Sea",
+  "line": 3434,
+  "endLine": 3439,
+  "category": "setting",
+  "topic": "Magical land creation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: raising a magical island from the sea",
+  "summary": "Gives the ring size produced by the wall spell at two levels in the shallow Baltic, and notes that the larger one is too big for the sea.",
+  "quotes": [
+   "The Baltic Sea averages 60 paces in depth, which means:",
+   "it creates a ring 150 miles across"
+  ],
+  "related": [
+   "The Wedding Ring of Gaea"
+  ]
+ },
+ {
+  "title": "Wall Ring Size in the Black Sea",
+  "heading": "The Black Sea",
+  "line": 3443,
+  "endLine": 3449,
+  "category": "setting",
+  "topic": "Magical land creation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: raising a magical island from the sea",
+  "summary": "Gives the ring size produced by the wall spell at three levels in the deep Black Sea.",
+  "quotes": [
+   "A spell of level 40 gives a ring 11200 paces (6.36 miles) wide.",
+   "This sea averages 1420 paces deep"
+  ],
+  "related": [
+   "The Wedding Ring of Gaea"
+  ]
+ },
+ {
+  "title": "Wall Ring Size in the Mediterranean",
+  "heading": "The Mediterranean",
+  "line": 3453,
+  "endLine": 3455,
+  "category": "setting",
+  "topic": "Magical land creation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: raising a magical island from the sea",
+  "summary": "The Mediterranean is deeper than the North Sea, so the same wall spell yields a much smaller ring; the section gives the depth and the resulting diameter.",
+  "quotes": [
+   "On average, the Mediterranean is 1630 paces deep"
+  ],
+  "related": [
+   "The Wedding Ring of Gaea"
+  ]
+ },
+ {
+  "title": "A Floating Island",
+  "heading": "A Floating Island",
+  "line": 3465,
+  "endLine": 3473,
+  "category": "setting",
+  "topic": "Magical land creation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: raising a magical island from the sea",
+  "summary": "A mobile island is made by shaping the wall as a circular cap of pumice; the section lists the size of cap produced at each spell level and the ways it can be steered.",
+  "quotes": [
+   "A level 35 spell creates a circular cap around 2500 paces (1.4 miles) across."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shape and Material Bonuses for Scrying Devices",
+  "heading": "Clairvoyance and Clairaudience",
+  "line": 3549,
+  "endLine": 3553,
+  "category": "magic",
+  "topic": "Scrying",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines scrying as Intellego at Arcane Connection Range, notes that the Code of Hermes uses the word more broadly, and collects the Shape and Material bonuses commonly used in clairvoyance and clairaudience devices (rock crystal, electrum, silver, mirrors).",
+  "quotes": [
+   "Rock crystal is perhaps the most potent, granting +5 clairvoyance",
+   "they also grant a +6 bonus to effects that display images within the mirror"
+  ],
+  "related": [
+   "ArM5 p.110",
+   "Houses of Hermes: Mystery Cults p.137",
+   "Houses of Hermes: True Lineages pp.52, 139"
+  ]
+ },
+ {
+  "title": "Scrying Devices and the Code of Hermes",
+  "heading": "\"I Will Not Use Magic to Scry...\"",
+  "line": 3639,
+  "endLine": 3645,
+  "category": "order",
+  "topic": "Scrying",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how a twinned or room-targeting scrying device can cause its user to commit the High Crime of scrying on another magus, why zero Penetration avoids this, how Tribunals tend to treat entrapment, and why remote writing carries none of these risks.",
+  "quotes": [
+   "Designing the device with a Penetration of zero prevents this, but also prevents distant communication between magi.",
+   "has committed a High Crime"
+  ],
+  "related": [
+   "Hermetic Oath",
+   "Peripheral Code"
+  ]
+ },
+ {
+  "title": "Scrying Devices and Penetration",
+  "heading": "Why it May Not Work: Lack of Penetration",
+  "line": 3647,
+  "endLine": 3653,
+  "category": "order",
+  "topic": "Scrying",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Because the Oath forbids scrying on other magi, devices sold to mundanes should have no Penetration, which makes them useless for contacting magi; remote writing devices avoid the problem but spread permanent Arcane Connections.",
+  "quotes": [
+   "any magus embarking on plans to distribute scrying devices to mundanes should design them with zero Penetration"
+  ],
+  "related": [
+   "Hermetic Oath"
+  ]
+ },
+ {
+  "title": "Fixing Arcane Connections for Communication Devices",
+  "heading": "I'm Sorry, Your Call Could Not Be Arcanely Connected",
+  "line": 3669,
+  "endLine": 3671,
+  "category": "lab",
+  "topic": "Arcane Connections",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magical communication relies on Arcane Connections that must be fixed in the laboratory to stop them expiring or becoming connections to something else; fixing is work that apprentices and junior magi can do, and it limits which places can be contacted.",
+  "quotes": [
+   "these would probably need to be fixed in the laboratory (**ArM5**, page 94)"
+  ],
+  "related": [
+   "ArM5 p.94 fixing Arcane Connections",
+   "ArM5 p.84"
+  ]
+ },
+ {
+  "title": "Limits of Hermetic Magic: Knowledge, Reading and Translation",
+  "heading": "Limitations of Hermetic Theory",
+  "line": 3697,
+  "endLine": 3707,
+  "category": "magic",
+  "topic": "Limits of magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "States what Hermetic magic cannot do with knowledge: it cannot create or transfer inscribed memories, Intellego does not cover the meaning of information, and no spell can read or translate written words because they have no mind behind them.",
+  "quotes": [
+   "A magus cannot create knowledge using magic, and can only manipulate it indirectly.",
+   "There is, for example, a profound lack of a spell that can translate the written word from one language to another"
+  ],
+  "related": [
+   "Art & Academe pp.31-32",
+   "Houses of Hermes: Societates pp.68-70"
+  ]
+ },
+ {
+  "title": "Rego Craft Magic",
+  "heading": "Rego Craft Magic",
+  "line": 3709,
+  "endLine": 3715,
+  "category": "magic",
+  "topic": "Rego craft magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Summary of how Rego magic can do the work of a craftsman: the magus supplies the raw materials, the Duration is normally Momentary, and a Finesse roll is made against an Ease Factor raised above the mundane craft roll, with further increases for compressing long work into an instant or for many intermediate steps.",
+  "quotes": [
+   "Rego craft magic requires a Finesse roll, the Ease Factor for which is at least three higher than the Craft roll needed by a mundane craftsman making an equivalent object.",
+   "doing a month's work in an instant requires an additional +3; doing a season's work in an instant incurs a +6; and a year's work imposes a +9 to the Ease Factor"
+  ],
+  "related": [
+   "Covenants p.49"
+  ]
+ },
+ {
+  "title": "Magically Copying a Single Page",
+  "heading": "Copying a Single Page",
+  "line": 3717,
+  "endLine": 3737,
+  "category": "magic",
+  "topic": "Book copying",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Copying a page with magic is a two-stage process: one effect lays an image of the original over a blank page and a Rego craft effect makes the ink follow it, with an Intelligence + Finesse roll whose Ease Factor depends on the Quality of the book being copied.",
+  "quotes": [
+   "The caster must make an Intelligence + Finesse roll to determine the accuracy of the spell's copying.",
+   "for a Quality of 7 to 9 the copying Ease Factor is 12, and for a Quality of 10 or more the Ease Factor is 15"
+  ],
+  "related": [
+   "Covenants p.97 The First Furrow Guides the Second"
+  ]
+ },
+ {
+  "title": "Magically Copying an Entire Book",
+  "heading": "Copying an Entire Book",
+  "line": 3739,
+  "endLine": 3745,
+  "category": "magic",
+  "topic": "Book copying",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the time a mundane scribe needs to copy a tractatus, summa or Bible, and explains that copying a whole book in one casting needs a very hard Finesse roll, so copying page by page is compared on a table of the caster's Finesse Total against the Quality retained.",
+  "quotes": [
+   "would require an Intelligence + Finesse roll against an Ease Factor of 15, minimum",
+   "compare the Finesse Total (Intelligence + Finesse) of the caster on the nearby table to determine how much Quality is retained from the original book"
+  ],
+  "related": [
+   "Covenants p.88"
+  ]
+ },
+ {
+  "title": "Quality Remaining After Copying",
+  "heading": "Quality Remaining After Copying",
+  "line": 3747,
+  "endLine": 3757,
+  "category": "magic",
+  "topic": "Book copying",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table showing, for a given Finesse Total, how many pages are spoiled when a book is copied page by page with magic and how far the Quality of the copy falls below the original, with adjustments for easier or harder books.",
+  "quotes": [
+   "This table assumes an Ease Factor of 12 (i.e. Quality 7 to 9), a simple die roll, and no proofreading.",
+   "For books requiring Finesse rolls of Ease Factor 9, add 3 to the Finesse Total; and subtract 3 for books requiring Finesse rolls of Ease Factor 15."
+  ],
+  "related": []
+ },
+ {
+  "title": "Resonances and Binding of Copied Books",
+  "heading": "Resonances",
+  "line": 3759,
+  "endLine": 3765,
+  "category": "magic",
+  "topic": "Book copying",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A book copied with magic loses any resonant materials or aura clarification of the original, though a new binding can add similar benefits; unbound books are easily damaged and cannot have resonances.",
+  "quotes": [
+   "If such techniques have been used in the production of a book that is then copied with magic, the benefits of such resonances are lost."
+  ],
+  "related": [
+   "Covenants pp.87-88"
+  ]
+ },
+ {
+  "title": "Proofreading Copies",
+  "heading": "Discovering Mistakes",
+  "line": 3767,
+  "endLine": 3777,
+  "category": "magic",
+  "topic": "Book copying",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Intellego Imaginem can compare a copy with its original to find differing places, though a person who understands the text must still check them; proofreading with such a device is far faster than writing.",
+  "quotes": [
+   "a text that would normally take a season to write can be proofread and corrected in a week with unlimited uses of this spell"
+  ],
+  "related": []
+ },
+ {
+  "title": "Copying Laboratory Texts with Magic",
+  "heading": "Copying Laboratory Texts",
+  "line": 3837,
+  "endLine": 3841,
+  "category": "lab",
+  "topic": "Laboratory texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Laboratory Texts can be copied magically but must be copied exactly: failed pages must be repeated and one botched page ruins the whole text, so the Finesse Total needed for a month's or a season's worth of text is higher than for ordinary books.",
+  "quotes": [
+   "a single botched page corrupts the entire Laboratory Text",
+   "120 levels in a month, and 360 levels in a season",
+   "a Finesse Total of 14 or more to copy a season's worth in the same manner"
+  ],
+  "related": [
+   "ArM5 laboratory texts"
+  ]
+ },
+ {
+  "title": "Optional Rule: Hazardous Laboratory Texts",
+  "heading": "Optional Rule: Hazardous Laboratory Texts",
+  "line": 3843,
+  "endLine": 3845,
+  "category": "lab",
+  "topic": "Laboratory texts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An optional rule in which errors in a magically copied Laboratory Text do not make it useless but add extra Experimentation rolls, with a risk modifier based on how many pages were spoiled, to the season of work that uses it.",
+  "quotes": [
+   "the magus must make an extra roll on the Experimentation Table",
+   "then the users of the second generation copy must make two extra Experimentation rolls"
+  ],
+  "related": [
+   "ArM5 p.109 Experimentation Table"
+  ]
+ },
+ {
+  "title": "Optional Rule: No Magical Copying of Laboratory Texts",
+  "heading": "Optional Rule: No Magical Copying of Laboratory Texts",
+  "line": 3847,
+  "endLine": 3849,
+  "category": "lab",
+  "topic": "Laboratory texts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An optional ruling that Laboratory Texts are too sensitive to scribal error to be copied with Rego craft magic, so each must be handwritten and remains valuable.",
+  "quotes": [
+   "Laboratory Texts are too sensitive to scribal errors to be copied with Rego craft magic"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rules for a Large Library",
+  "heading": "Rules for a Large Library",
+  "line": 3885,
+  "endLine": 3889,
+  "category": "covenant",
+  "topic": "Libraries",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A way to record a big library as a single Level and Quality per Art or Ability: the best summa gives the base score and extra summae and tractatus add experience points to Level and Quality only if they are close enough to the library's current score.",
+  "quotes": [
+   "Each Art and Ability is represented as a single Level and Quality that represents the sum total of the knowledge that the library has on that subject.",
+   "A book does not contribute an experience point to Quality unless its Quality is within three points of the library Quality"
+  ],
+  "related": []
+ },
+ {
+  "title": "Studying from the Library",
+  "heading": "Studying from the Library",
+  "line": 3891,
+  "endLine": 3903,
+  "category": "seasons",
+  "topic": "Libraries",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a magus studies from a large library: while the Art score is below the library's Level the library gives its Quality with a bonus, afterwards it gives only Quality for a limited number of seasons, and several magi studying one subject split the books; includes a worked example.",
+  "quotes": [
+   "A maga whose score in an Art is less than the library's Level in that Art gains the library's (Quality + 3) in experience points in the relevant Art."
+  ],
+  "related": []
+ },
+ {
+  "title": "Optional Rule: Limits on Instant Transportation",
+  "heading": "Optional Rule: Limits on Instant Transportation",
+  "line": 3921,
+  "endLine": 3925,
+  "category": "magic",
+  "topic": "Instant transportation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An optional way to limit instant transportation: the traveller moves through every point between origin and destination, so needs an unobstructed path, and is stopped at the nearest barrier such as a closed door or shackles.",
+  "quotes": [
+   "a character must have an unobstructed path between the two locations to use such spells"
+  ],
+  "related": [
+   "ArM5 p.134 Gift of Frog's Legs"
+  ]
+ },
+ {
+  "title": "New Guidelines for Instant Transportation",
+  "heading": "New Guidelines for Instant Transportation",
+  "line": 3933,
+  "endLine": 3955,
+  "category": "magic",
+  "topic": "Instant transportation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New spell guidelines for instantly transporting animals, liquids, plants, fire and non-living objects short distances, with extra magnitudes to extend the distance up to travelling to an Arcane Connection.",
+  "quotes": [
+   "In all cases, add 1 magnitude to increase the distance to 50 paces, 2 magnitudes for 500 paces, 3 magnitudes for 1 league, 4 magnitudes for seven leagues, and 5 magnitudes to a place for which you have an Arcane Connection.",
+   "Transport a non-living object instantly up to 5 paces."
+  ],
+  "related": [
+   "ArM5 Rego guidelines"
+  ]
+ },
+ {
+  "title": "Instant Transportation and Requisites",
+  "heading": "Instant Transportation and Requisites",
+  "line": 3957,
+  "endLine": 3965,
+  "category": "magic",
+  "topic": "Instant transportation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Discusses whether instant transportation needs casting requisites: Rego Corpus moves what the body wears and carries, but a heavy burden or mixed materials justify a requisite, and the primary Form comes from the highest base level.",
+  "quotes": [
+   "any Burden which causes an Encumbrance of 3 or more should require a requisite appropriate to the material comprising the majority of the weight"
+  ],
+  "related": [
+   "ArM5 Encumbrance"
+  ]
+ },
+ {
+  "title": "Shape and Material Bonuses for Transport Effects",
+  "heading": "New Spells for Instant Travel",
+  "line": 3971,
+  "endLine": 3973,
+  "category": "magic",
+  "topic": "Shape and Material bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists Shape and Material bonuses that suit magical transport effects invested in devices (doorways, halls, opal).",
+  "quotes": [
+   "doorways (+5 magical transportation) or halls (+3 magical transportation), or incorporate opal (+4 travel)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Flying and Fast Travel Spells",
+  "heading": "New Spells for Very Fast Travel",
+  "line": 4137,
+  "endLine": 4203,
+  "category": "magic",
+  "topic": "Flight and fast travel",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Example flight and fast-travel effects that set out how speed, Finesse rolls to change direction, and Load limits work for a flying caster, rug, boat or wind form, including how a gale form can knock objects over.",
+  "quotes": [
+   "this is reduced by one mile an hour for every point of Load he carries",
+   "Ease Factor 12 at moderate speed, Ease Factor 15 at maximum speed of forty miles an hour"
+  ],
+  "related": [
+   "Grogs chapter 4 Load",
+   "ArM5 p.181 falling damage"
+  ]
+ },
+ {
+  "title": "Hermes' Portal and Mercere's Portals Compared",
+  "heading": "What About The Hermes' Portal?",
+  "line": 4187,
+  "endLine": 4191,
+  "category": "magic",
+  "topic": "Instant transportation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Compares the Hermes' Portal ritual and the permanent Mercere's Portals with instant-transportation devices: portals need a pair of high-level castings or enchantments and cannot be redirected, but they carry any object and give no Warping to the traveller.",
+  "quotes": [
+   "A *Hermes' Portal* requires two casters (or groups using *Wizard's Communion*) who can cast a 75th level Ritual spell, and it lasts just a year.",
+   "still constitute a 65th level enchantment"
+  ],
+  "related": [
+   "ArM5 p.156 Hermes' Portal",
+   "Houses of Hermes: True Lineages pp.80, 100-101"
+  ]
+ },
+ {
+  "title": "Warping from Repeated Instant Transportation",
+  "heading": "Warping Gained from Instant Transportation",
+  "line": 4205,
+  "endLine": 4209,
+  "category": "aging",
+  "topic": "Warping",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Transportation effects of high level give a Warping point at every casting; after several castings the target gains a Minor Flaw, again after more, and after a very large number of transits a Minor Virtue. Inanimate objects are warped too, and there are no firm rules for what that does.",
+  "quotes": [
+   "if a person, animal, or object is affected 5 times or more, it will suffer a Minor Flaw (**ArM5**, page 168), and another after 15 castings",
+   "Should one target experience 75 or more transits, it also accumulates a Minor Virtue."
+  ],
+  "related": [
+   "ArM5 pp.167-168 Warping"
+  ]
+ },
+ {
+  "title": "Technological Cost Saving",
+  "heading": "Technological Cost Saving",
+  "line": 4356,
+  "endLine": 4364,
+  "category": "covenant",
+  "topic": "Covenant upkeep",
+  "audience": [
+   "covenant",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How magic can cut a covenant's yearly costs: each laborer replaced saves a pound of Provisions, and the food bill, being the largest share of the cost per inhabitant point, offers the most saving, especially bread; wages and consumables are harder to cut.",
+  "quotes": [
+   "it costs one Mythic Pound to support one point of inhabitants",
+   "Half this cost \u2014 i.e. 10 shillings \u2014 is taken up by provisions."
+  ],
+  "related": [
+   "Covenants pp.66-69",
+   "Covenants chapter 5"
+  ]
+ },
+ {
+  "title": "Storage and Loss of Magically-Created Grain",
+  "heading": "Storage and Life of Magically-Created Grain",
+  "line": 4396,
+  "endLine": 4402,
+  "category": "covenant",
+  "topic": "Covenant upkeep",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magically created grain spoils like ordinary grain: a yearly percentage is lost to rot and vermin, more without precautions, while each inhabitant point consumes a fixed number of bushels a year; a worked example shows how long a store lasts.",
+  "quotes": [
+   "A peasant in Mythic Europe requires about 24 bushels of grain each year to support his nutritional needs.",
+   "the loss rate can be 5 to 10 per cent"
+  ],
+  "related": [
+   "Covenants chapter 5"
+  ]
+ },
+ {
+  "title": "Silver Consensus (Optional Order Ruling)",
+  "heading": "Why it May Not Work: The Silver Consensus",
+  "line": 4430,
+  "endLine": 4438,
+  "category": "order",
+  "topic": "Silver Consensus",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Optional saga rule",
+  "summary": "An optional Tribunal ruling that limits how much silver a covenant may magically create each year, intended to stop magi destabilising mundane economies; it may apply to the whole Order, one Tribunal, or not yet exist.",
+  "quotes": [
+   "no covenant may create more than two Mythic Pounds of silver per member per year"
+  ],
+  "related": []
+ },
+ {
+  "title": "Principles of the Silver Consensus",
+  "heading": "The Principles of the Silver Consensus",
+  "line": 4440,
+  "endLine": 4462,
+  "category": "order",
+  "topic": "Silver Consensus",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Optional saga rule",
+  "summary": "The five principles of the Consensus: its intent cannot be dodged by wordplay, a limited value of magical goods may be sold to mundanes per magus per year, magical wealth taints what it produces, a magus's household counts as his property, and magic items that do not create wealth may be sold.",
+  "quotes": [
+   "No more than two silver pounds worth of goods, procured by magical means, may be trafficked to the mundanes by any magus in a single year.",
+   "Wealth created by magic taints such wealth as it generates."
+  ],
+  "related": []
+ },
+ {
+  "title": "Enforcing the Silver Consensus",
+  "heading": "Enforcing the Silver Consensus",
+  "line": 4464,
+  "endLine": 4470,
+  "category": "order",
+  "topic": "Silver Consensus",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Optional saga rule",
+  "summary": "Which covenants and Houses support the Consensus and how loosely it is enforced: attention is drawn only when magical wealth visibly unbalances a regional economy.",
+  "quotes": [
+   "The Consensus is not enforced strictly."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Mechanical Power",
+  "heading": "Mechanical Power",
+  "line": 4476,
+  "endLine": 4490,
+  "category": "magic",
+  "topic": "Magical technology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An example enchantment that does the work of a draft animal by turning an axle, with the rule that each added magnitude multiplies its power output.",
+  "quotes": [
+   "the Hermetic Generans can do as much work as a person or animal with a Strength of +5 (approximately one horse-power)",
+   "each magnitude added to the effect increases the power output ten-fold"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Devices in Warfare",
+  "heading": "Warfare and Weapons",
+  "line": 4498,
+  "endLine": 4508,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Practical limits on using enchanted devices in battle: high-level effects are costly, carrying and activating items mid-fight is dangerous, a Group target needs a clearly separated group so crowds rarely qualify, and Aegis-protected covenants are immune to breaching devices.",
+  "quotes": [
+   "a group must be clearly separated from others of its kind (**ArM5**, page 113)",
+   "devices like the Instant Breach are useless against covenants protected by an *Aegis of the Hearth*"
+  ],
+  "related": [
+   "ArM5 p.113 Group target"
+  ]
+ },
+ {
+  "title": "Magical Medicine and Disease Recovery",
+  "heading": "Medicine",
+  "line": 4525,
+  "endLine": 4529,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how a bonus to Disease Recovery rolls from a healing device changes the odds of a severe disease worsening or improving, and that ritual cures cannot be put into enchanted items.",
+  "quotes": [
+   "with a +6 bonus to Disease Recovery rolls he has an even chance of improving, and has only a one in a hundred chance of getting worse"
+  ],
+  "related": [
+   "ArM5 disease rules"
+  ]
+ },
+ {
+  "title": "Enchantments are Arcane Connections",
+  "heading": "Enchantments are Arcane Connections",
+  "line": 4608,
+  "endLine": 4618,
+  "category": "lab",
+  "topic": "Arcane Connections",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An enchanted item is an Arcane Connection to its maker for a time that depends on the kind of enchantment, an optional rule makes charged items connections for a shorter time, and a Vim spell can shorten a connection's duration before an item is sold.",
+  "quotes": [
+   "A lesser enchantment is an Arcane Connection to its creator that persists for weeks after creation, and invested items last years.",
+   "As an option, a saga might decide that charged items remain Arcane Connections for days."
+  ],
+  "related": [
+   "ArM5 Arcane Connections"
+  ]
+ },
+ {
+  "title": "Selling Enchantments to Mundanes",
+  "heading": "The Sale of Enchantments",
+  "line": 4658,
+  "endLine": 4666,
+  "category": "order",
+  "topic": "Selling magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Tribunal rulings that forbid taking mundane payment for arcane services, the two loopholes (payment in magical goods and sale through mundane intermediaries), House Verditius's standard price per pawn of vis, and what draws Quaesitores' attention.",
+  "quotes": [
+   "made it illegal to accept money or other mundane goods as payment for arcane services from anyone other than a member of the Order of Hermes or a Hermetic covenant",
+   "15 Mythic Pounds per pawn of vis used to enchant the item"
+  ],
+  "related": [
+   "ArM5 p.16",
+   "Houses of Hermes: Mystery Cults pp.114-115"
+  ]
+ },
+ {
+  "title": "Crafters of Wondrous Items",
+  "heading": "Crafters of Wondrous Items",
+  "line": 4746,
+  "endLine": 4754,
+  "category": "traditions",
+  "topic": "Non-Hermetic enchanters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Touched by (Realm)",
+  "summary": "Characters with a Touched by (Realm) Virtue can make enchanted items without vis and with workshop help, but only in two Forms, only for one named user, and with strict limits on Range, Duration and Target and no Penetration.",
+  "quotes": [
+   "the effect is limited to Range: Personal or Touch, the Duration must be Sun or less, and the Target must be Individual",
+   "These devices cannot Penetrate any Magic Resistance."
+  ],
+  "related": [
+   "City & Guild p.71"
+  ]
+ },
+ {
+  "title": "The Rusticani and Craft Magic",
+  "heading": "The Rusticani",
+  "line": 4756,
+  "endLine": 4758,
+  "category": "traditions",
+  "topic": "Non-Hermetic enchanters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Craft Magic (Rusticani, House Ex Miscellanea)",
+  "summary": "Craft Magic lets a hedge wizard turn any magic he knows into a charged item or lesser enchantment; it needs vis already in the crafted object but takes only as long as making the mundane object.",
+  "quotes": [
+   "the Craft Magic Major Supernatural Virtue permits its possessor to enchant any other magic he knows or Virtue he possesses into a charged item or lesser enchantment"
+  ],
+  "related": [
+   "Houses of Hermes: Societates pp.130-133"
+  ]
+ },
+ {
+  "title": "Learned Magicians as Inventors",
+  "heading": "Learned Magicians",
+  "line": 4760,
+  "endLine": 4762,
+  "category": "traditions",
+  "topic": "Non-Hermetic enchanters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Learned magicians can produce only the equivalent of charged items in the laboratory, but make chartae in hours or days rather than a season, so their inventions are limited to small local benefits.",
+  "quotes": [
+   "While their laboratory activities can only produce the equivalent of charged items, their production of chartae in particular is very swift, taking a matter of hours or days rather than a season."
+  ],
+  "related": [
+   "Hedge Magic Revised Edition chapter 5"
+  ]
+ },
+ {
+  "title": "Inanis (Optional Magical Pollution)",
+  "heading": "Inanis",
+  "line": 4770,
+  "endLine": 4774,
+  "category": "magic",
+  "topic": "Inanis",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Optional saga rule",
+  "summary": "An optional rule for magical pollution: residue left when vis is imbued into objects can be gathered into pawns of inanis, which cancel magical effects of limited magnitude within a radius over time and drain Might from supernatural creatures that linger in its area.",
+  "quotes": [
+   "One pawn of inanis takes one round to stop a first magnitude magical effect from working within one pace.",
+   "Supernatural creatures with a Might less than or equal to (5 x pawns) of inanis lose one Might for every season they spend within its area of effect."
+  ],
+  "related": []
+ }
+]

@@ -1,0 +1,742 @@
+[
+ {
+  "title": "Faerie Cognizance and Pretenses",
+  "heading": "Faeries",
+  "line": 479,
+  "endLine": 485,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running faeries (Realms of Power: Faerie)",
+  "summary": "Explains that faeries are Incognizant, Narrowly Cognizant or Cognizant depending on how freely they can step outside their story role, and that they have Pretenses in place of Abilities. Pretenses are used exactly like Abilities in play.",
+  "quotes": [
+   "Faeries have Pretenses instead of Abilities.",
+   "In play, use Pretenses exactly as Abilities"
+  ],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Raising a Faerie's Might (Increased Might)",
+  "heading": "Changing Power",
+  "line": 495,
+  "endLine": 497,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running faeries (Realms of Power: Faerie)",
+  "summary": "Quick way to make faeries tougher for powerful magi by giving them the Increased Might Virtue, in its Major or Minor form.",
+  "quotes": [
+   "The Major Faerie Virtue Increased Might increases a faerie's Might Score by 15."
+  ],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Faerie Aura Grown from Faerie Sovereignty of a Fief",
+  "heading": "A New Queen",
+  "line": 562,
+  "endLine": 568,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie ruler holding a mundane fief",
+  "summary": "When a faerie queen inherits a mundane fief, a Faerie aura appears across it and strengthens each spring equinox up to a cap, often overlapping existing Dominion or other auras. Includes notes on the fief's heralds and their limits against the Aegis of the Hearth.",
+  "quotes": [
+   "every spring equinox the Faerie aura increases by 1, until it reaches a value of 4"
+  ],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Faerie Court Regio",
+  "heading": "The Faerie Court",
+  "line": 570,
+  "endLine": 578,
+  "category": "realms",
+  "topic": "Faerie regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie regio (Realms of Power: Faerie)",
+  "summary": "Describes a faerie court regio with a strong Faerie aura, how characters cross into it from the mundane forest, and its endless-looking but finite geography. Useful as a worked example of a faerie regio.",
+  "quotes": [
+   "which is a regio with a Faerie aura of 4"
+  ],
+  "related": [
+   "ArM5 p.189 regiones"
+  ]
+ },
+ {
+  "title": "Finding a Moving Regio Entrance by Horoscope",
+  "heading": "Entering the Nursery",
+  "line": 734,
+  "endLine": 740,
+  "category": "realms",
+  "topic": "Faerie regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A regio whose entrance shifts with sun and moon",
+  "summary": "A regio whose entrance is the darkest place in a forest moves with the seasons and the heavenly bodies. A character can work out where it will be by casting a horoscope, then needs to be able to see the way in; carrying light defeats the purpose, and an Arcane Connection spell can bypass the entrance.",
+  "quotes": [
+   "Intelligence + Artes Liberales (astronomy) roll against an Ease Factor of 9"
+  ],
+  "related": [
+   "ArM5 p.158 Piercing the Faerie Veil"
+  ]
+ },
+ {
+  "title": "Moving Through Sticky Webs",
+  "heading": "Moving Through The Web",
+  "line": 742,
+  "endLine": 746,
+  "category": "hazards",
+  "topic": "Faerie regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Old Nanny's web-choked Nursery regio",
+  "summary": "Webs fill a regio so that any movement, even flying, needs a successful roll. Stuck characters cannot attack or defend, and a botch in melee can leave a free character stuck.",
+  "quotes": [
+   "moving around (including flying) requires a successful Strength + Stress Die roll against an Ease Factor of 9"
+  ]
+ },
+ {
+  "title": "The Time Trap (Frozen Time in a Regio)",
+  "heading": "The Time Trap",
+  "line": 748,
+  "endLine": 756,
+  "category": "realms",
+  "topic": "Faerie regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Regio in which time has been stopped",
+  "summary": "In a regio where time is frozen, long-Duration spells and effects do not expire, while Momentary spells work as usual. Destroying enough of the web that holds time releases it, aging everything inside and ending short-Duration effects.",
+  "quotes": [
+   "any spells (and other effects) cast with a long Duration in the regio do not expire",
+   "everything in the regio ages by one year; make Aging rolls if required"
+  ]
+ },
+ {
+  "title": "Decoding the Clay Tablets and Searching for En-Dor",
+  "heading": "Mechanics of the Tablets",
+  "line": 817,
+  "endLine": 821,
+  "category": "seasons",
+  "topic": "Ancient magic research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Possession of the Canaanite clay tablets (Ancient Magic)",
+  "summary": "Deciphering the tablets is a seasonal activity with a stress roll, after which they function as a Summa in Area Lore: Canaan whose Quality falls with each missing tablet. Searching for En-Dor in the field is a further seasonal roll, harder when done as off-site research.",
+  "quotes": [
+   "Decoding is a seasonal activity requiring a stress roll of Intelligence + Hebrew against an Ease Factor of 18.",
+   "A complete sequence of six tablets is Level 10 Quality 15, with each missing tablet subtracting three from Quality.",
+   "A season's worth of search requires an Intelligence + Area Lore: Canaan roll against an Ease Factor of 18 for success."
+  ],
+  "related": [
+   "Ancient Magic pp.34-36"
+  ]
+ },
+ {
+  "title": "Copying Unintelligible Tablets",
+  "heading": "Copying the Tablets",
+  "line": 827,
+  "endLine": 829,
+  "category": "seasons",
+  "topic": "Ancient magic research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Possession of the Canaanite clay tablets (Ancient Magic)",
+  "summary": "Copying a text you cannot read risks errors, so copying either goes at half rate or costs Quality in the final translated text. Quick rubbings are fast but also cost Quality.",
+  "quotes": [
+   "Careful copying is done at half the standard rate, while copying at normal speed means \u20133 Quality for the final, translated text."
+  ]
+ },
+ {
+  "title": "Researching Other Magi and the Order",
+  "heading": "Further Investigation",
+  "line": 913,
+  "endLine": 917,
+  "category": "order",
+  "topic": "Researching magi",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How magi look up information about another magus: an Intelligence plus relevant Ability roll against a storyguide-set Ease Factor, modified by the reputation of the subject and the quality of the library or contacts consulted.",
+  "quotes": [
+   "The researcher rolls Intelligence + Ability against an Ease Factor set by the storyguide"
+  ]
+ },
+ {
+  "title": "Canaanite Necromancy",
+  "heading": "Canaanite Necromancy",
+  "line": 1003,
+  "endLine": 1005,
+  "category": "traditions",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Canaanite necromancy (Ancient Magic)",
+  "summary": "Short account of what the ancient Canaanite necromancers could do beyond Hermetic limits, such as affecting the dead at any range and creating Arcane Connections to them easily, and why the Order fears their rediscovery.",
+  "quotes": [],
+  "related": [
+   "Ancient Magic p.35"
+  ]
+ },
+ {
+  "title": "Converting a Dead Character to a Spectre",
+  "heading": "Spectres",
+  "line": 1031,
+  "endLine": 1035,
+  "category": "beings",
+  "topic": "Ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Running ghosts (Realms of Power: Magic)",
+  "summary": "Defines a spectre as a ghost bound to its vocation and gives simple rules for turning a dead character into one: assign a Might by importance, keep Virtues, Flaws and Characteristics where they still apply, and keep only the Abilities of the vocation.",
+  "quotes": [
+   "Might is assigned depending on importance and power, typically between 1 and 20."
+  ],
+  "related": [
+   "Realms of Power: Magic ch.5, pp.115-116"
+  ]
+ },
+ {
+  "title": "Lore of the Dead (Supernatural Ability and Necromantic Rites)",
+  "heading": "New Supernatural Ability: Lore of the Dead",
+  "line": 1063,
+  "endLine": 1135,
+  "category": "traditions",
+  "topic": "Necromantic rites",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Lore of the Dead",
+  "summary": "Explains how a character with the Lore of the Dead Virtue casts necromantic rites, ceremonially in an hour or casually in a round, with the casting totals and Penetration formula, followed by four sample rites (Eyes of the Dead, Touch of Ghostly Calling, Dirge, Anchored in the Veil) with Ease Factors and vis costs.",
+  "quotes": [
+   "Stamina + Lore of the Dead + Shape & Material bonus + stress die",
+   "Casual rites take only one round, but the casting total is halved unless a Fatigue level is spent.",
+   "Casting Total \u2013 Ease Factor + Penetration ability"
+  ],
+  "related": [
+   "Ancient Magic",
+   "Houses of Hermes: True Lineages"
+  ]
+ },
+ {
+  "title": "House Bjornaer: Harmonists, Wilderists, Clans and Septs",
+  "heading": "Concepts from Houses of Hermes: Mystery Cults",
+  "line": 1282,
+  "endLine": 1294,
+  "category": "houses",
+  "topic": "House Bjornaer",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer",
+  "summary": "Background summary of House Bjornaer's two philosophical factions, its six clans and the role of septs, including clan Ilfetu's link to the Heartbeast initiation.",
+  "quotes": [],
+  "related": [
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Awakening a Genius Loci (Rossen-Antunnuac)",
+  "heading": "Rossen-Antunnuac",
+  "line": 1427,
+  "endLine": 1433,
+  "category": "realms",
+  "topic": "Nature spirits and auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A dormant Genius Loci (Realms of Power: Magic)",
+  "summary": "A comatose Genius Loci bound to a site awakens through constant magical activity over it, starts weak, and grows over months to a high Magic Might. As it strengthens, the local Magic aura rises until it suppresses the Dominion aura outside the church.",
+  "quotes": [
+   "it achieves Magic Might 40"
+  ],
+  "related": [
+   "Realms of Power: Magic pp.106-107"
+  ]
+ },
+ {
+  "title": "Initiation of the Simple Heartbeast (Bjornaer Mystery)",
+  "heading": "New Bjornaer Mystery: Initiation of the Simple Heartbeast",
+  "line": 1435,
+  "endLine": 1447,
+  "category": "mysteries",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Bjornaer mystagogue of Clan Ilfetu (Organization Lore: Bjornaer)",
+  "summary": "A Clan Ilfetu initiation script that awakens a heartbeast in a character who lacks the Gift, giving the Initiate the Flaw Magical Air. It gives the Ease Factor, script bonus, regio bonus and the witness-temperament participation modifier.",
+  "quotes": [
+   "**Ease Factor:** 15 (Minor Virtue known to the Mystagogue)",
+   "The Initiate must not possess The Gift."
+  ],
+  "related": [
+   "ArM5 pp.91-92 Heartbeast",
+   "The Mysteries Revised Edition",
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Supply Shortage in Laboratories",
+  "heading": "Shortages in Labs",
+  "line": 1573,
+  "endLine": 1579,
+  "category": "covenant",
+  "topic": "Lab supplies shortage",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for a lab supply shortage that halves lab capacity: with core rules the number of active labs is cut, and with the Covenants lab rules the total Upkeep is halved by taking Flaws or removing Virtues. Labs shut down completely if the shortage lasts four seasons.",
+  "quotes": [
+   "the shortage means that the number of active labs must be reduced to half (round down)"
+  ],
+  "related": [
+   "Covenants pp.106-124"
+  ]
+ },
+ {
+  "title": "Gathering Information in Town",
+  "heading": "Information in Town",
+  "line": 1613,
+  "endLine": 1615,
+  "category": "social",
+  "topic": "Gathering information",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance for the roll to pick up facts and rumors in town: which Abilities and Characteristics fit each location, a baseline Ease Factor and modifiers for location, Ability used and tactful bribes.",
+  "quotes": [
+   "An Ease Factor of 9 is sufficient, while modifiers between \u20133 and +3 apply"
+  ]
+ },
+ {
+  "title": "Court Mechanics (Town Court and Guild Hearings)",
+  "heading": "Court Mechanics",
+  "line": 1719,
+  "endLine": 1737,
+  "category": "social",
+  "topic": "Courts and legal cases",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Procedure for resolving a mundane trial or guild hearing: each side makes a Communication plus legal Ability roll with situation modifiers for the Gift, witnesses, reputation and actual innocence, and the court finds for the higher total. Sentence follows from the town charter or written law.",
+  "quotes": [
+   "A roll of Communication + Civil and Canon Law or Artes Liberales (logic) versus an Ease Factor of 9 results in a credible statement.",
+   "The court finds in favor of the side which rolls higher."
+  ],
+  "related": [
+   "City and Guild"
+  ]
+ },
+ {
+  "title": "Demonic Possession of an Animal by Investing Might",
+  "heading": "The Black Cockerel",
+  "line": 2024,
+  "endLine": 2036,
+  "category": "realms",
+  "topic": "Infernal possession",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Demon with the Possession power (Realms of Power: The Infernal)",
+  "summary": "A demon can possess an animal by investing Might in an independent, weaker copy of itself that shares its powers and statistics but has no body. The copy senses and controls the host, can use limited powers, and is exorcised by an Oblivion-type spell without harming the host or the original demon.",
+  "quotes": [
+   "This means that an independent Infernal Might 1 copy of the demon resides within the cockerel."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.32"
+  ]
+ },
+ {
+  "title": "Entering a Haunted Infernal Regio and Its Heat and Smoke",
+  "heading": "Dealing with the Cloven Hoofed Monk",
+  "line": 2100,
+  "endLine": 2106,
+  "category": "hazards",
+  "topic": "Infernal regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal regio (Realms of Power: The Infernal)",
+  "summary": "An Infernal regio that opens at set times and can be crossed by those who can see into it. Characters who stay inside must make a Deprivation check each Diameter for heat and smoke, with a bonus for covering the face.",
+  "quotes": [
+   "A character who wraps his face in a cloth receives a +3 bonus to the Deprivation roll."
+  ],
+  "related": [
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Hellfire Damage and Escaping a Burning Regio",
+  "heading": "Escaping The Church",
+  "line": 2116,
+  "endLine": 2124,
+  "category": "hazards",
+  "topic": "Fire and hellfire",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal regio with hellfire",
+  "summary": "Rules for passing through supernatural hellfire: damage per exposure, much larger damage for total immersion, a Soak bonus for magi from their Ignem Form, and ways to avoid immersion by flying, teleporting or wards. The fire is a natural feature of the regio so cannot be dispelled or blocked by Magic Resistance.",
+  "quotes": [
+   "These terrifically hot black flames inflict +15 damage.",
+   "Any character running through the flames takes +60 damage (due to total immersion; **ArM5**, page 181)."
+  ],
+  "related": [
+   "ArM5 p.181"
+  ]
+ },
+ {
+  "title": "Harvesting an Infernal Vis Source",
+  "heading": "An Infernal Vis Source",
+  "line": 2096,
+  "endLine": 2098,
+  "category": "realms",
+  "topic": "Infernal vis",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal aura or regio",
+  "summary": "Describes harvesting hellfire as a tainted Ignem vis source with a seasonal yield that the storyguide may adjust, with the reminder that Hell offers vis as a temptation.",
+  "quotes": [
+   "Five pawns of Ignem vis can be harvested per season, and this vis is tainted with the infernal."
+  ]
+ },
+ {
+  "title": "Mechanica of Heron",
+  "heading": "Mechanica of Heron",
+  "line": 2229,
+  "endLine": 2231,
+  "category": "traditions",
+  "topic": "Mechanica of Heron",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Mechanica of Heron (Ancient Magic)",
+  "summary": "Introduces the Mechanica of Heron as both a Major Supernatural Virtue and its Supernatural Ability, letting a character build magical wonders and sentient animae. Mechanicians can also make permanent enchantments without vis and build devices whose effects can later be changed within the same Technique and Form pairing.",
+  "quotes": [
+   "Mechanica of Heron refers to both a Major Supernatural Virtue and its attendant Supernatural Ability."
+  ],
+  "related": [
+   "Ancient Magic pp.77-78"
+  ]
+ },
+ {
+  "title": "Animae as Enchanted Devices",
+  "heading": "Characters",
+  "line": 2249,
+  "endLine": 2255,
+  "category": "beings",
+  "topic": "Animae",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Anima (Mechanica of Heron)",
+  "summary": "Explains how to treat animae in play: they are enchanted devices, so they hold no vis and are immune to Might-stripping but not to Disenchant, their Might acts as Magic Resistance, and their powers follow magic-item rules for uses per day and Penetration. Hostile auras lower their Magic Resistance and Penetration but do not stop them affecting themselves or ordinary people.",
+  "quotes": [
+   "The primary function of their Might Score is to provide them with Magic Resistance.",
+   "The powers of animae work like those of Hermetic magic items in terms of uses per day and Penetration."
+  ],
+  "related": [
+   "Ancient Magic",
+   "Grogs p.86 Worthless Abilities"
+  ]
+ },
+ {
+  "title": "Damage Levels and Repair of Animae",
+  "heading": "Mechanica and Damage",
+  "line": 2257,
+  "endLine": 2261,
+  "category": "beings",
+  "topic": "Animae",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Anima (Mechanica of Heron)",
+  "summary": "Animae track damage as object-style Damage Levels instead of Wound Penalties. Damage past Soak forces a Stamina roll to avoid losing a level, they do not heal naturally, and craftsmen with the right Ability can repair levels each season.",
+  "quotes": [
+   "Whenever an anima suffers damage exceeding its Soak, it must make a Stamina roll against an Ease Factor equal to the amount by which the damage exceeded the Soak.",
+   "Maahes and Ailuros each have 5 Damage Levels."
+  ],
+  "related": [
+   "Ancient Magic p.75",
+   "Houses of Hermes: Mystery Cults p.128"
+  ]
+ },
+ {
+  "title": "Quick Trial Resolution",
+  "heading": "Jacques' Trial",
+  "line": 2436,
+  "endLine": 2440,
+  "category": "social",
+  "topic": "Courts and legal cases",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A short rule for deciding a mundane trial in a single roll of Communication plus a legal Ability, with the Gift penalty already built into the Ease Factor, and the consequences of success or failure.",
+  "quotes": [
+   "Communication + Civil and Canon Law roll versus an Ease Factor of 9"
+  ],
+  "related": [
+   "City and Guild p.29"
+  ]
+ },
+ {
+  "title": "Guardians of the Forests (Rhine Peripheral Code Ruling)",
+  "heading": "The Guardians of the Forests",
+  "line": 2492,
+  "endLine": 2498,
+  "category": "order",
+  "topic": "Peripheral Code",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Rhine Tribunal Peripheral Code",
+  "summary": "Describes a Rhine Tribunal ruling letting a recognized guardian of a forest do otherwise forbidden things in its defense, how guardian status becomes official only if the Tribunal accepts the claim, and why it does not apply outside the Rhine.",
+  "quotes": [],
+  "related": [
+   "Guardians of the Forests: The Rhine Tribunal p.18"
+  ]
+ },
+ {
+  "title": "Nature Lore Supernatural Abilities",
+  "heading": "Nature Lore",
+  "line": 2500,
+  "endLine": 2504,
+  "category": "basics",
+  "topic": "Nature Lore",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Nature Lore / Forest Lore",
+  "summary": "Nature Lore Supernatural Abilities let a character interact specially with a natural feature such as a forest or river. A river version lets its holder find regiones and vis, speak with supernatural inhabitants and commune with the river spirit without Hermetic magic.",
+  "quotes": [
+   "This allows him to find regiones and vis within the Danube, speak with supernatural river inhabitants, and commune with the river spirit, all without the use of Hermetic magic."
+  ],
+  "related": [
+   "Guardians of the Forests p.37",
+   "Houses of Hermes: Mystery Cults p.103"
+  ]
+ },
+ {
+  "title": "Detecting Spell Traces",
+  "heading": "Detecting Spell Traces",
+  "line": 2790,
+  "endLine": 2796,
+  "category": "magic",
+  "topic": "Spell traces",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When a spell's Duration ends it leaves traces whose strength fades over time at rates depending on the original Duration. Investigators can detect them with Intellego Vim effects whose level scales with the trace strength, and extra magnitudes reveal the Form, Technique and even the caster's sigil.",
+  "quotes": [
+   "When a spell's Duration expires it leaves behind spell traces equal to half the magnitude of the original spell.",
+   "Traces down to magnitude zero can be detected by a base InVi 10 effect."
+  ]
+ },
+ {
+  "title": "Identifying a Magus by Sigil",
+  "heading": "Investigating Trajan's Crimes",
+  "line": 2776,
+  "endLine": 2780,
+  "category": "order",
+  "topic": "Spell traces",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Once a caster's sigil has been detected in spell traces, an investigator familiar with that Tribunal's magi can recognise whose it is with an Intelligence plus Organization Lore roll, which is harder for an unfamiliar investigator.",
+  "quotes": [
+   "make an Intelligence + Organization Lore: Order of Hermes roll against an Ease Factor of 9 (or 15 if the investigator is unfamiliar with Rhine magi)"
+  ],
+  "related": [
+   "Detecting Spell Traces"
+  ]
+ },
+ {
+  "title": "Tribunal Politics and Trial Procedure Decisions",
+  "heading": "Tribunal Politics in the Saga",
+  "line": 2820,
+  "endLine": 2829,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A checklist of decisions a troupe should make about how its Tribunal handles a prosecution: when and how a case is brought, what evidence is allowed, how truthfulness is judged, and whether magi vote by favor, by character of the accused or by the facts.",
+  "quotes": []
+ },
+ {
+  "title": "Greater Malediction of Hereditary Madness (Personality Flaws on Aging)",
+  "heading": "Sir Erwan's Greater Malediction",
+  "line": 2947,
+  "endLine": 2961,
+  "category": "aging",
+  "topic": "Greater Malediction",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Flaw: Greater Malediction (hereditary madness)",
+  "summary": "A hereditary curse that adds a Minor Personality Flaw each time the cursed character's Decrepitude increases, chosen on a table by a die plus Decrepitude. A repeated Flaw becomes Major, with no further effect once already Major.",
+  "quotes": [
+   "The curse means that every time Sir Erwan's Decrepitude Score increases he gains a Minor Personality Flaw, in addition to any other aging effects",
+   "To determine the Personality Flaw roll a simple die + Decrepitude Score and compare to the list that follows."
+  ],
+  "related": [
+   "ArM5 p.17 aging"
+  ]
+ },
+ {
+  "title": "Trained Group and Mounted Bonuses for a Knightly Band",
+  "heading": "Fighting As A Group",
+  "line": 3121,
+  "endLine": 3125,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Shows how a band of companions fights as a trained group, the vanguard gaining a combat bonus from the others, and that mounted combatants add a bonus to Attack and Defense.",
+  "quotes": [
+   "each receive a +3 bonus to their Attack and Defense Totals"
+  ],
+  "related": [
+   "ArM5 pp.172-173 group combat"
+  ]
+ },
+ {
+  "title": "Protections Against Magic for Mundane Characters",
+  "heading": "Supernatural Protection",
+  "line": 3149,
+  "endLine": 3163,
+  "category": "magic",
+  "topic": "Mundane protection against magic",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Ways a mundane character can be shielded from magic: a relic giving Magic Resistance, a Guardian Angel, or effective folk charms. Five sample charms each give a roll, Ease Factor or bonus against a specific kind of ongoing magical effect.",
+  "quotes": [
+   "Sir Erwan may have a Guardian Angel (which gives him a magic resistance of 15",
+   "gives Sir Erwan a +3 Soak bonus against magic sources of damage"
+  ],
+  "related": [
+   "ArM5 p.189 Magic Resistance",
+   "ArM5 p.43 Guardian Angel"
+  ]
+ }
+]

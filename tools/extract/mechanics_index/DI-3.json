@@ -1,0 +1,461 @@
+[
+ {
+  "title": "Playing Loki",
+  "heading": "Playing Loki",
+  "line": 5059,
+  "endLine": 5063,
+  "category": "beings",
+  "topic": "Daimon Aspects",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: Loki and Ragnarok",
+  "summary": "Advice for a storyguide running a being far cleverer than the storyguide: invent obstacles retroactively to fill loopholes in his plans, but let a genuinely clever player plan succeed.",
+  "quotes": [
+   "the storyguide is justified in inventing new obstacles for the players on the spur of the moment and playing them as if they had always been there"
+  ]
+ },
+ {
+  "title": "Aspects of Loki",
+  "heading": "Aspects of Loki",
+  "line": 5065,
+  "endLine": 5075,
+  "category": "beings",
+  "topic": "Daimon Aspects",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: Loki and Ragnarok",
+  "summary": "Limits on how Loki, a Daimon of kosmokrator rank, creates and uses Aspects: how many copies may exist, the loss of constant communication, regaining Might from vis, and the proximity restriction between Aspects.",
+  "quotes": [
+   "Loki can only have a number of copies of the same Aspect active at any one time equal to the Intelligence Characteristic of that Aspect (with a minimum of one)",
+   "an Aspect of Loki cannot come within one mile of a place that another Aspect of Loki has been within the last 24 hours",
+   "5 points per pawn if the Form matches their Might, 2 points per pawn otherwise"
+  ],
+  "related": [
+   "Realms of Power: Magic p.29"
+  ]
+ },
+ {
+  "title": "Gifts of the Gods",
+  "heading": "Gifts of the Gods",
+  "line": 5275,
+  "endLine": 5281,
+  "category": "beings",
+  "topic": "Daimon Aspects",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: Loki and Ragnarok",
+  "summary": "How an Aspect of Loki can loan one of its powers to another being as a mystical item: the Might cost, the item acting as an Arcane Connection, and what happens if the Aspect is destroyed or the original owner recovers the item.",
+  "quotes": [
+   "The item is an Arcane Connection to the Aspect that created it (not to Loki himself), with a +3 Penetration modifier."
+  ]
+ },
+ {
+  "title": "Prophecies of the End Times",
+  "heading": "Prophecies of the End Times",
+  "line": 5469,
+  "endLine": 5473,
+  "category": "basics",
+  "topic": "Research from books",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: Loki and Ragnarok",
+  "summary": "Rules for using prophetic texts as sources of lore: a character who can read the language but lacks the Ability may roll to find a specific fact, and each extra book on the subject helps at the cost of more research time.",
+  "quotes": [
+   "It takes about an hour to find the information.",
+   "For every different book he has on the same subject, he adds +1 to the roll but requires an additional hour of research time."
+  ]
+ },
+ {
+  "title": "Letting the World Burn",
+  "heading": "Letting the World Burn",
+  "line": 5535,
+  "endLine": 5545,
+  "category": "setting",
+  "topic": "Saga structure",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: Loki and Ragnarok",
+  "summary": "Optional variant in which the player characters ally with Loki instead of opposing him, with storyguide characters taking the opposing role, plus advice on keeping characters from standing aside as bystanders.",
+  "quotes": [
+   "Instead of opposing Loki, they could become his allies"
+  ]
+ },
+ {
+  "title": "Five Acts to Destroy the World",
+  "heading": "Five Acts to Destroy the World",
+  "line": 5547,
+  "endLine": 5553,
+  "category": "setting",
+  "topic": "Saga structure",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: Loki and Ragnarok",
+  "summary": "Explains how Loki's success is judged: he must fulfil enough symbolic signs of the prophecy, not every one, so disrupting one plan does not end the threat and many minor successes can still bring about Ragnarok.",
+  "quotes": [
+   "Loki might still be able to get Ragnarok started with a large number of minor successes rather than a few major successes.",
+   "Loki has to fulfill a certain number of signs"
+  ]
+ },
+ {
+  "title": "The Magogoli",
+  "heading": "The Magogoli",
+  "line": 5617,
+  "endLine": 5653,
+  "category": "beings",
+  "topic": "Magic Humans and Magic Kin",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: Giants in the East",
+  "summary": "Shows how to build Magogoli troopers, generals and spirit summoners by adjusting existing character templates with Giant Blood, Magic Human and Gigantic features, and notes how a Nightwalking summoner without a Might score interacts with wards.",
+  "quotes": [
+   "A common trooper is a grog character, although he also has the Giant Blood Virtue on top of his normal allotment.",
+   "it has no Magic Might and so cannot be affected by spells targeting a creature's Might"
+  ],
+  "related": [
+   "ArM5 p.21 Specialist template",
+   "ArM5 p.23 Knight template",
+   "Realms of Power: the Infernal p.119",
+   "The Cradle and the Crescent pp.179-184",
+   "Hedge Magic Revised Edition Chapter 9"
+  ]
+ },
+ {
+  "title": "The Eastern Bastion",
+  "heading": "The Eastern Bastion",
+  "line": 5665,
+  "endLine": 5671,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: Giants in the East",
+  "summary": "Notes on how magic fares against a massed army (foot soldiers exceed the base Individual size, weakening Group-target spells) and a summary of Mongol-style Magogoli battle tactics.",
+  "quotes": [
+   "The footsoldiers are outside the range of a base Individual of Corpus, which also reduces the effectiveness of Target: Group spells fivefold."
+  ]
+ },
+ {
+  "title": "The Monsters in the Ironwood",
+  "heading": "The Monsters in the Ironwood",
+  "line": 5681,
+  "endLine": 5687,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: Loki and Ragnarok",
+  "summary": "Describes the Ironwood regio: its single-level Magic aura aligned to a giant-derived tradition so only users of that magic gain the aura bonus, its hostile terrain, and the warped Hundings and Muspelli who live there.",
+  "quotes": [
+   "The Ironwood has a single level with a Magic aura of 9.",
+   "This aura is aligned to trolldomur (*Rival Magic* page 92), which means that only those using giant-derived magic can benefit from the aura modifier."
+  ],
+  "related": [
+   "Rival Magic p.92"
+  ]
+ },
+ {
+  "title": "The Snatcher of the Moon",
+  "heading": "The Snatcher of the Moon",
+  "line": 5897,
+  "endLine": 5905,
+  "category": "traditions",
+  "topic": "Muspelli utiseta",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Muspelli (Rival Magic)",
+  "summary": "Worked example of a Muspelli utiseta ritual, setting out the Ease Factor, Range, Duration and Target components and the Power Modifiers a practitioner needs, and noting that separate Muspelli cannot combine powers.",
+  "quotes": [
+   "Sjonhverfing Ease Factor 48",
+   "(Base 12, +9 Sight, +15 Decade, +12 Boundary)",
+   "would need Power Modifiers of x5 or x6"
+  ],
+  "related": [
+   "Rival Magic Chapter 4"
+  ]
+ },
+ {
+  "title": "Lunar Eclipses",
+  "heading": "Lunar Eclipses",
+  "line": 5911,
+  "endLine": 5913,
+  "category": "setting",
+  "topic": "Calendar and astronomy",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Reference list of the dates of total lunar eclipses visible in Mythic Europe across the saga period, with a reminder that the storyguide may add or move eclipses.",
+  "quotes": [
+   "Total lunar eclipses occur in October 1222, February 1226, September 1233, January 1237"
+  ]
+ },
+ {
+  "title": "The Army of the Faerie Gods",
+  "heading": "The Army of the Faerie Gods",
+  "line": 5997,
+  "endLine": 6001,
+  "category": "traditions",
+  "topic": "Muspelli",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Muspelli (Rival Magic)",
+  "summary": "Gives a quick way to statistic the einherjar warriors from an existing template and changes how Muspelli Warping works once they are awakened, so that a failed Heipt Roll brings a group of them down on the Muspelli.",
+  "quotes": [
+   "use the Berserker or Grizzled Veteran Template (ArM5 page 21) but also give him a Faerie Might of 5 (Corpus)"
+  ],
+  "related": [
+   "Rival Magic p.85",
+   "ArM5 p.21",
+   "ArM5 p.157 The Enigma's Gift"
+  ]
+ },
+ {
+  "title": "Loki Succeeds",
+  "heading": "Loki Succeeds",
+  "line": 6094,
+  "endLine": 6098,
+  "category": "realms",
+  "topic": "Post-Ragnarok world",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: the world after the Second Titanomachy",
+  "summary": "Describes the course of the Second Titanomachy if Loki succeeds: all bindings fail for the duration, and ordinary people survive only by sheltering in Divine or Magic auras or within the Dominion, while those outside risk Warping.",
+  "quotes": [
+   "The sympathetic magic of this event is so great that all bindings fail, all knots untie, and all locks open.",
+   "All Divine and Magic auras prove refuges against the war of the powers"
+  ]
+ },
+ {
+  "title": "Wild Magic",
+  "heading": "Wild Magic",
+  "line": 6108,
+  "endLine": 6120,
+  "category": "realms",
+  "topic": "Post-Ragnarok world",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: the world after the Second Titanomachy",
+  "summary": "Lists the lasting rule changes from the flood of wild magic: Magic Lore becomes a General Ability, Magic auras strengthen, regio travel gets easier, many creatures and objects are warped, vis and The Gift become more common, and unGifted initiates and Folk Magic are affected.",
+  "quotes": [
+   "Magic Lore becomes a General Ability rather than an Arcane Ability",
+   "All Magic auras of level 9 or less increase by one point.",
+   "reduce all Ease Factors for Regio Sight rolls for Magic regiones (ArM5 page 189)"
+  ],
+  "related": [
+   "ArM5 p.189",
+   "Realms of Power: Magic pp.25, 48, 120, 124"
+  ]
+ },
+ {
+  "title": "The Golden Chain",
+  "heading": "The Golden Chain",
+  "line": 6122,
+  "endLine": 6132,
+  "category": "magic",
+  "topic": "Golden Chain",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: the world after the Second Titanomachy",
+  "summary": "After the Titanomachy, Magic-aligned practitioners must connect to a being higher in the hierarchy of magic to fuel their powers. Describes the hierarchy, who keeps working, how a Gifted magus forms a pact with a patron (treated as an Initiation), and the cap the patron's Might places on Casting and Lab Totals.",
+  "quotes": [
+   "The character's Casting Totals and Lab Totals cannot be higher than the Might of the creature with which one has made a pact",
+   "then the Target Ease Factor for the Initiation should be equal to two-thirds of the patron's Might",
+   "Only characters connected to this 'Golden Chain' can sequester the power necessary to fuel their spells."
+  ],
+  "related": [
+   "The Mysteries Revised Edition Chapter 2",
+   "Hedge Magic Revised Edition p.87",
+   "Realms of Power: the Infernal p.124",
+   "Realms of Power: the Divine p.66"
+  ]
+ },
+ {
+  "title": "New Virtue: Folk Magic",
+  "heading": "New Virtue: Folk Magic",
+  "line": 6134,
+  "endLine": 6150,
+  "category": "traditions",
+  "topic": "Folk Magic",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Folk Magic",
+  "summary": "A new Minor Supernatural Virtue giving very minor spell-like magic in one narrow area, keyed to a Realm Lore. It explains the allowed categories of effect, the casting cost and preparation, and the halved Casting Total formula.",
+  "quotes": [
+   "Your Casting Total is equal to (Stamina + (Realm) Lore + Aura modifier + stress die) / 2.",
+   "To cast a spell you must expend a fatigue level, whether the spell succeeds or fails."
+  ],
+  "related": [
+   "Covenants p.49"
+  ]
+ },
+ {
+  "title": "All Bonds Break",
+  "heading": "All Bonds Break",
+  "line": 6152,
+  "endLine": 6158,
+  "category": "magic",
+  "topic": "Golden Chain",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: the world after the Second Titanomachy",
+  "summary": "Rule changes after the Titans are freed: summonings, wards and banishments no longer work on Magic creatures higher on the Golden Chain than their originator, Perdo and Rego cannot defeat their Might, and familiar bonds with Magic-Might creatures are broken.",
+  "quotes": [
+   "all summonings, wards, and banishments no longer work against Magic creatures that are higher up the Golden Chain than the originator of the effect"
+  ]
+ },
+ {
+  "title": "Impacts on Non-Hermetic Magicians",
+  "heading": "Impacts on Non-Hermetic Magicians",
+  "line": 6164,
+  "endLine": 6170,
+  "category": "traditions",
+  "topic": "Golden Chain",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: the world after the Second Titanomachy",
+  "summary": "Summarises how each non-Hermetic tradition fares once magic is regulated by the Golden Chain: which are already connected, which must find patrons, and which lose the ability to bind Magic and Faerie spirits.",
+  "quotes": [
+   "Learned Magicians who Entreat the Magic Powers are already connected to the Golden Chain",
+   "Other wizards have to find a patron in the same way as Hermetic magi."
+  ],
+  "related": [
+   "The Cradle and the Crescent Chapter 3"
+  ]
+ },
+ {
+  "title": "Deicide",
+  "heading": "Deicide",
+  "line": 6188,
+  "endLine": 6192,
+  "category": "realms",
+  "topic": "Post-Ragnarok world",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: the world after the Second Titanomachy",
+  "summary": "Describes how Faerie power collapses: the greatest faeries are gone, surviving ones have much reduced Faerie Might, and faerie wizardry, charm-based magic and Folk Mysteries stop working.",
+  "quotes": [
+   "the most powerful faeries still abroad in the world have a Faerie Might around 20"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults pp.96-99",
+   "Realms of Power: Faerie pp.104-105"
+  ]
+ },
+ {
+  "title": "No Faerie Auras",
+  "heading": "No Faerie Auras",
+  "line": 6194,
+  "endLine": 6200,
+  "category": "realms",
+  "topic": "Post-Ragnarok world",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: the world after the Second Titanomachy",
+  "summary": "Gives the conversion of existing Faerie auras into weaker Magic auras by level, the collapse of faerie regiones, and the guardians placed on the strongest former Faerie auras.",
+  "quotes": [
+   "All Faerie auras of level 1 or 2 vanish entirely.",
+   "Those of level 3 to 5 become Magic auras of level 1."
+  ]
+ },
+ {
+  "title": "Vitality Is No Longer Enough",
+  "heading": "Vitality Is No Longer Enough",
+  "line": 6202,
+  "endLine": 6206,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: the world after the Second Titanomachy",
+  "summary": "Explains how surviving faeries sustain themselves after the Titanomachy through a formal, knowing yearly exchange with humans, and how those who fail lose Might and Virtues over time.",
+  "quotes": [
+   "Faeries incapable of forging or sustaining a formal bond with humans cannot maintain their glamour and lose one point of Might every year."
+  ]
+ },
+ {
+  "title": "Realm Interaction Table",
+  "heading": "Realm Interaction Table",
+  "line": 6208,
+  "endLine": 6216,
+  "category": "realms",
+  "topic": "Realm interaction",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: the world after the Second Titanomachy",
+  "summary": "A revised table of how auras of one Realm modify the powers of another, reflecting the weakened Faerie Realm and strengthened Magic Realm.",
+  "quotes": [
+   "The Realm Interaction Table has changed with the weakening of the Faerie Realm's influence on the world and the burgeoning power of the Magic Realm."
+  ],
+  "related": [
+   "ArM5 Realm Interaction Table"
+  ]
+ }
+]

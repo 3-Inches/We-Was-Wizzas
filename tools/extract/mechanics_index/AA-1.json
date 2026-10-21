@@ -1,0 +1,1182 @@
+[
+ {
+  "title": "Aristotelian and Platonic Magic Theory breakthroughs",
+  "heading": "Hermetic Magic and Philosophical Breakthroughs",
+  "line": 562,
+  "endLine": 568,
+  "category": "magic",
+  "topic": "Magic Theory breakthroughs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Troupe decision that the breakthrough exists; research by a magus",
+  "summary": "Optional saga-level rules for researching Aristotelian or Platonic Magic Theory as a Hermetic breakthrough, which Arts must be used in the experiments, and what the finished breakthrough adds to a magus's totals. A tractatus lets others incorporate it as a minor breakthrough.",
+  "quotes": [
+   "would allow a magus character to add his score in Artes Liberales to his Lab Totals and his formulaic spell casting totals"
+  ],
+  "related": [
+   "ArM5 Houses of Hermes: True Lineages p.26 (original research)"
+  ]
+ },
+ {
+  "title": "Grammar: vocabularies and dictionaries as tractatus",
+  "heading": "Grammar",
+  "line": 576,
+  "endLine": 586,
+  "category": "basics",
+  "topic": "Books and writing",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how grammar is taught and gives the one game rule in the section: vocabularies and dictionaries count as tractatus for the Latin Ability.",
+  "quotes": [
+   "In game terms, dictionaries are equivalent to tractatus, the relevant Ability being Latin."
+  ],
+  "related": []
+ },
+ {
+  "title": "Preaching",
+  "heading": "Preaching",
+  "line": 612,
+  "endLine": 622,
+  "category": "social",
+  "topic": "Preaching",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Preaching is a Profession Ability used to sway an audience to a course of action with a Communication roll against an Ease Factor, and to teach Theology to regular listeners over a season. Covers audience size, language requirement, and failure and botch results.",
+  "quotes": [
+   "Communication + Preaching + stress die vs. 12",
+   "The group can be no larger than the character's Leadership score times ten."
+  ],
+  "related": []
+ },
+ {
+  "title": "Writing Systems and Artes Liberales",
+  "heading": "Writing Systems",
+  "line": 768,
+  "endLine": 806,
+  "category": "basics",
+  "topic": "Languages and writing",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains that a character's Artes Liberales score also limits how many writing systems he can read and write, lists the writing systems of Mythic Europe, and describes how new systems are learned from a source.",
+  "quotes": [
+   "Each point of a character's Artes Liberales score allows him to use one writing system, defined as a separate alphabet and script as well as a separate language."
+  ],
+  "related": [
+   "ArM5 p.62 Artes Liberales"
+  ]
+ },
+ {
+  "title": "The Lyceum on Substance and Categories",
+  "heading": "The Lyceum on Substance and Categories",
+  "line": 842,
+  "endLine": 866,
+  "category": "magic",
+  "topic": "Spell design and natural philosophy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Goes through Aristotle's ten categories and says which of them Hermetic Techniques currently affect, which are indirect, and which would need a new Technique or a breakthrough. Useful guidance when adjudicating or inventing unusual effects.",
+  "quotes": [
+   "Changes in continuous quantity are under the control of Muto; such changes are rarely natural."
+  ],
+  "related": []
+ },
+ {
+  "title": "Causality and Spell Design",
+  "heading": "Causality and Spell Design",
+  "line": 898,
+  "endLine": 900,
+  "category": "magic",
+  "topic": "Spell design and natural philosophy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Uses Aristotelian causes to decide which Hermetic Form a spell that imitates a natural phenomenon belongs to: the target is the material cause and magic replaces the efficient cause.",
+  "quotes": [
+   "The target of Hermetic magic is always the material cause of the spell, and so the correct Hermetic Form can be determined by considering that which is changed."
+  ],
+  "related": [
+   "ArM5 p.156 Earth Shock"
+  ]
+ },
+ {
+  "title": "Consequences of Generation and Destruction (Creo and Perdo)",
+  "heading": "Consequences of Generation and Destruction",
+  "line": 904,
+  "endLine": 908,
+  "category": "magic",
+  "topic": "Spell design and natural philosophy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains what Creo can and cannot create (only things that can exist as natural forms, healing as restoring a form) and why Perdo dissolves substance rather than improving it.",
+  "quotes": [
+   "Further, Creo magic cannot cause a cat to grow wings, because wings are not part of the form of a cat, but it can restore a leg which has been removed.",
+   "Perdo magic dissolves substances, not matter."
+  ],
+  "related": []
+ },
+ {
+  "title": "Consequences of Alteration (Rego and Muto)",
+  "heading": "Consequences of Alteration",
+  "line": 914,
+  "endLine": 918,
+  "category": "magic",
+  "topic": "Spell design and natural philosophy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Distinguishes natural alteration, which is handled by Rego, from Muto, which changes categories of quality without changing substance. Includes the implications for shapechanging and Bjornaer heartbeasts.",
+  "quotes": [
+   "Alteration does not necessarily fall under the Hermetic Technique of Muto; in fact, most alteration is in terms of natural changes, and is the purview of Rego spells."
+  ],
+  "related": [
+   "Chapter Five: Experimental Philosophy (alchemy)"
+  ]
+ },
+ {
+  "title": "Consequences of Growth and Diminution (Creo and Muto)",
+  "heading": "Consequences of Growth and Diminution",
+  "line": 926,
+  "endLine": 928,
+  "category": "magic",
+  "topic": "Spell design and natural philosophy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Says growth is best simulated with Creo, while Muto growth changes the category of quantity and cannot be permanent.",
+  "quotes": [
+   "Growth is most easily simulated with magic by creating more substance directly by informing new matter to account for the change in size, and thus is an exercise of the Technique of Creo."
+  ],
+  "related": []
+ },
+ {
+  "title": "Consequences of Motion (Rego, Penetration and Aiming)",
+  "heading": "Consequences of Motion",
+  "line": 952,
+  "endLine": 956,
+  "category": "magic",
+  "topic": "Spell design and natural philosophy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains why thrown missiles do no extra damage for speed, why objects guided by Rego are affected by Magic Resistance, and the two ways a Rego spell can avoid needing Penetration, each of which requires an Aiming roll.",
+  "quotes": [
+   "This method requires an Aiming roll to ensure the object is released in the right position."
+  ],
+  "related": [
+   "Houses of Hermes: Societates, House Flambeau"
+  ]
+ },
+ {
+  "title": "Encyclopedias",
+  "heading": "Encyclopedias",
+  "line": 958,
+  "endLine": 978,
+  "category": "basics",
+  "topic": "Books and writing",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for treating encyclopedias as series of tractatus and for using them as a library for quick research: an hour's search, an Intelligence + Ability roll against an Ease Factor set by obscurity, with a bonus per relevant tractatus. Lists example encyclopedias.",
+  "quotes": [
+   "treat every 5 books (or fraction) as a single tractatus on a given subject",
+   "each tractatus in an encyclopedia on the appropriate subject gives a +1 bonus to the Ability roll for that subject"
+  ],
+  "related": [
+   "Covenants pp.98-99 (research rules)"
+  ]
+ },
+ {
+  "title": "Generating Worms (Rego Animal vermin)",
+  "heading": "Generating Worms",
+  "line": 1071,
+  "endLine": 1073,
+  "category": "magic",
+  "topic": "Spell design and natural philosophy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how Rego Animal spells can produce vermin from suitable raw substrate, how many creatures a Target: Group spell yields, and the cap on creatures per standard individual of the substrate.",
+  "quotes": [
+   "a Target: Group spell is capable of producing a mass of animals equal to 10 standard targets (animals of Size +1)",
+   "can produce a maximum of 1000 creatures regardless of their size"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Rego Animal Guideline (vermin)",
+  "heading": "New Rego Animal Guideline",
+  "line": 1075,
+  "endLine": 1079,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Rego Animal spell guideline for causing vermin to generate spontaneously, with a note on when a requisite for the substrate is needed.",
+  "quotes": [
+   "Cause vermin to spontaneously generate in appropriate matter, such as flesh, plants, soil, or water."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Human Mind and the five inner wits",
+  "heading": "The Human Mind",
+  "line": 1097,
+  "endLine": 1123,
+  "category": "magic",
+  "topic": "Mentem and the inner wits",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the five inner wits (common sense, imagination, cognition, estimation, memory) and the soul's reason and intellect. This is the model that the extended Mentem guidelines in this chapter are built on.",
+  "quotes": [
+   "The functions of the sensitive faculty \u2014 collectively called the inner wits \u2014 are the five components of the mind."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Hermetic Art of Mentem",
+  "heading": "The Hermetic Art of Mentem",
+  "line": 1125,
+  "endLine": 1130,
+  "category": "magic",
+  "topic": "Mentem and the inner wits",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how the existing Mentem spell guidelines map onto the five inner wits, which are easier to affect, and that Hermetic magic cannot touch reason or intellect directly.",
+  "quotes": [
+   "Broadly speaking, an existing guideline that mentions emotions is operating on the estimation, and a guideline that mentions thoughts is operating on the imagination."
+  ],
+  "related": [
+   "ArM5 pp.148-152 (Mentem guidelines)",
+   "The Mysteries Revised Edition pp.102-113 (dream spells)"
+  ]
+ },
+ {
+  "title": "Creo Mentem Guidelines (inner wits)",
+  "heading": "Creo Mentem Guidelines",
+  "line": 1133,
+  "endLine": 1147,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Extends the Creo Mentem guidelines to show which inner wit each affects, including hallucinations in the common sense, planted thoughts and emotions, and dreams or plans in cognition.",
+  "quotes": [
+   "Additional species cost one magnitude each"
+  ],
+  "related": [
+   "ArM5 p.144 (complex images)"
+  ]
+ },
+ {
+  "title": "Intellego Mentem Guidelines (inner wits)",
+  "heading": "Intellego Mentem Guidelines",
+  "line": 1167,
+  "endLine": 1175,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Extends the Intellego Mentem guidelines to read emotions, senses, surface thoughts, memories, short-term plans, and dreams through the relevant wit.",
+  "quotes": [
+   "interrogates the imagination, and can also be used to read the entire common sense"
+  ],
+  "related": []
+ },
+ {
+  "title": "Muto Mentem Guidelines (inner wits)",
+  "heading": "Muto Mentem Guidelines",
+  "line": 1187,
+  "endLine": 1195,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Extends the Muto Mentem guidelines so changes to memories, emotions and rewriting a mind can alter imagination, estimation, common sense and cognition.",
+  "quotes": [
+   "can rewrite any of the five wits"
+  ],
+  "related": []
+ },
+ {
+  "title": "Perdo Mentem Guidelines (inner wits)",
+  "heading": "Perdo Mentem Guidelines",
+  "line": 1223,
+  "endLine": 1233,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Extends the Perdo Mentem guidelines to the five wits, noting that damage to wits other than memory heals naturally.",
+  "quotes": [
+   "Unlike memories, destroyed aspects of the imagination, cognition, common sense, and estimation naturally restore themselves."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rego Mentem Guidelines (inner wits)",
+  "heading": "Rego Mentem Guidelines",
+  "line": 1261,
+  "endLine": 1267,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Extends the Rego Mentem guidelines to control emotions, thoughts, dream subject and content, and complex commands through the relevant wit.",
+  "quotes": [
+   "directly controls the cognition, setting the target's goals towards that determined by the caster."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Affecting Conscience (removing a demon's Obsession)",
+  "heading": "Magic Affecting Conscience",
+  "line": 1313,
+  "endLine": 1319,
+  "category": "magic",
+  "topic": "Mentem and the inner wits",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sparking a target's conscience with Creo Mentem can strip a demon's Obsession Trait but cannot change existing Personality Traits. Includes the new level 10 Creo Mentem guideline for it.",
+  "quotes": [
+   "**Level 10:** Spark a twinge of conscience in an intelligent being's mind, overriding the temporary obsession of a demon."
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.31-32 (obsession power)"
+  ]
+ },
+ {
+  "title": "The Four Humors and their correspondences",
+  "heading": "The Four Humors",
+  "line": 1361,
+  "endLine": 1373,
+  "category": "hazards",
+  "topic": "Medicine and humors",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the four humors (blood, choler, melancholy, phlegm) and includes a table linking each to a bodily force, age, season, element, quality and opposed humor. This is the basis for diagnosing complexion and prescribing treatments.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Vital Faculty and Hermetic Limits",
+  "heading": "The Vital Faculty and Hermetic Limits",
+  "line": 1413,
+  "endLine": 1415,
+  "category": "magic",
+  "topic": "Hermetic Limits",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "States that the vital faculty is beyond Hermetic magic, so spells cannot restore fatigue, reverse old age or revive a corpse, and notes the debate over whether this is part of the Limit of the Divine.",
+  "quotes": [
+   "Affecting the vital faculty is beyond the power of Hermetic magic."
+  ],
+  "related": []
+ },
+ {
+  "title": "Complexion",
+  "heading": "Complexion",
+  "line": 1427,
+  "endLine": 1431,
+  "category": "hazards",
+  "topic": "Medicine and humors",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains complexion as a person's blend of humors, the four basic complexions, how people usually combine two or three, and why a physician must determine it first.",
+  "quotes": [
+   "The four basic complexions are **sanguine**, **choleric**, **melancholic**, and **phlegmatic.**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Physical Qualities of the Four Complexions",
+  "heading": "Physical Qualities of the Four Complexions",
+  "line": 1433,
+  "endLine": 1446,
+  "category": "hazards",
+  "topic": "Medicine and humors",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of stature, build, hair, pulse, appetite, digestion, urine, skin and dreams for sanguine, choleric, melancholic and phlegmatic complexions, used to diagnose a patient or describe a character.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Personality Traits for the Four Complexions",
+  "heading": "Personality Traits for the Four Complexions",
+  "line": 1448,
+  "endLine": 1456,
+  "category": "basics",
+  "topic": "Medicine and humors",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists suggested Personality Traits associated with each of the four complexions, useful when choosing a character's Traits or reading a patient's complexion.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Complexional Magic",
+  "heading": "Complexional Magic",
+  "line": 1458,
+  "endLine": 1462,
+  "category": "magic",
+  "topic": "Medicine and humors",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Minor Breakthrough in Hermetic Theory (Corpus complexion magic)",
+  "summary": "Mentem can provoke the five emotional states, but directly changing or controlling a target's complexion and personality with Corpus would need a minor breakthrough and may induce symptoms of disease as a side effect.",
+  "quotes": [
+   "This requires a Minor Breakthrough in Hermetic Theory"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages pp.26-30"
+  ]
+ },
+ {
+  "title": "States of Ill-Health",
+  "heading": "States of Ill-Health",
+  "line": 1470,
+  "endLine": 1474,
+  "category": "hazards",
+  "topic": "Medicine and humors",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Divides ill health into injuries, malformations and diseases, caused by non-naturals and contra-naturals, and says which kind of practitioner treats each.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Non-Naturals",
+  "heading": "The Non-Naturals",
+  "line": 1476,
+  "endLine": 1478,
+  "category": "hazards",
+  "topic": "Medicine and regimens",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the non-naturals (air, diet, exercise and rest, sleep, evacuation, emotions and sensory species) as the outside influences that determine humoral balance and health.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Qualities of Common Foods",
+  "heading": "Qualities of Common Foods",
+  "line": 1492,
+  "endLine": 1500,
+  "category": "hazards",
+  "topic": "Medicine and regimens",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists common foods by whether they heat or cool and moisten or dry, for planning diets that counter a patient's dominant humor.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Forms of Exercise",
+  "heading": "Forms of Exercise",
+  "line": 1506,
+  "endLine": 1510,
+  "category": "hazards",
+  "topic": "Medicine and regimens",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists examples of strenuous and mild exercise for prescribing a regimen.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Effects of the Non-Naturals and Causes of Heat, Cold, Moisture and Dryness",
+  "heading": "Effects of the Non-Naturals",
+  "line": 1526,
+  "endLine": 1592,
+  "category": "hazards",
+  "topic": "Medicine and regimens",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how excess heat, cold, moisture or dryness in the non-naturals harms the body, and tabulates the climate, diet, exercise, sleep, evacuation, emotion and sensory causes of each quality.",
+  "quotes": [
+   "Any excess of a source of heat, cold, dryness, or moisture has a detrimental effect on the body."
+  ],
+  "related": []
+ },
+ {
+  "title": "Emotional States",
+  "heading": "Emotional States",
+  "line": 1594,
+  "endLine": 1606,
+  "category": "hazards",
+  "topic": "Medicine and humors",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The five emotional states (gaudium, laetitia, tristitia, ira, timor), their effect on the humors and health, and their link to the emotion-affecting Mentem guidelines.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Contra-Naturals",
+  "heading": "The Contra-Naturals",
+  "line": 1612,
+  "endLine": 1618,
+  "category": "hazards",
+  "topic": "Medicine and humors",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the contra-naturals that cause wounds, poison, vermin, malign celestial influences behind epidemics, and supernatural harm.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Injury and wound location",
+  "heading": "Injury",
+  "line": 1620,
+  "endLine": 1626,
+  "category": "hazards",
+  "topic": "Injury and wound forms",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Injuries are treated with Chirurgy, with Medicine only helping against infection. Offers an optional way to determine the location and form of Medium, Heavy and Incapacitating wounds.",
+  "quotes": [
+   "All injuries are treated using the Chirurgy Ability"
+  ],
+  "related": []
+ },
+ {
+  "title": "Optional Rule: Lasting Consequences of Serious Damage",
+  "heading": "Optional Rule: Lasting Consequences of Serious Damage",
+  "line": 1628,
+  "endLine": 1632,
+  "category": "hazards",
+  "topic": "Injury and wound forms",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule: when an Incapacitating wound is dealt the player rolls Stamina, and failure gives a lasting Minor Flaw complication, possibly leading to loss of a limb through surgery.",
+  "quotes": [
+   "the player should immediately make a Stamina roll, against an Ease Factor of 6"
+  ],
+  "related": []
+ },
+ {
+  "title": "Crushing Damage",
+  "heading": "Crushing Damage",
+  "line": 1634,
+  "endLine": 1642,
+  "category": "hazards",
+  "topic": "Injury and wound forms",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Examples of what injuries crushing damage causes at Medium, Heavy and Incapacitating or Fatal wound levels.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Piercing Damage",
+  "heading": "Piercing Damage",
+  "line": 1644,
+  "endLine": 1652,
+  "category": "hazards",
+  "topic": "Injury and wound forms",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Examples of what injuries piercing damage causes at Medium, Heavy and Incapacitating or Fatal wound levels.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Slashing Damage",
+  "heading": "Slashing Damage",
+  "line": 1654,
+  "endLine": 1662,
+  "category": "hazards",
+  "topic": "Injury and wound forms",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Examples of what injuries slashing damage causes at Medium, Heavy and Incapacitating or Fatal wound levels.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Burns and Scalds",
+  "heading": "Burns and Scalds",
+  "line": 1664,
+  "endLine": 1672,
+  "category": "hazards",
+  "topic": "Injury and wound forms",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Examples of what injuries burns, scalds, cold and poison cause at Medium, Heavy and Incapacitating or Fatal wound levels.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Malformations",
+  "heading": "Malformations",
+  "line": 1674,
+  "endLine": 1678,
+  "category": "hazards",
+  "topic": "Malformations",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Malformations are structural disorders, mostly represented in play as Flaws or as effects of aging, and they cannot be cured by physicians or chirurgeons.",
+  "quotes": [
+   "Malformations cannot be cured with either Medicine or Chirurgy."
+  ],
+  "related": []
+ },
+ {
+  "title": "Flaws Representing Malformations",
+  "heading": "Flaws Representing Malformations",
+  "line": 1680,
+  "endLine": 1684,
+  "category": "hazards",
+  "topic": "Malformations",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "List of Minor and Major Flaws that stand in for malformations in game terms.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Symptoms of humoral imbalance",
+  "heading": "Symptoms",
+  "line": 1686,
+  "endLine": 1698,
+  "category": "hazards",
+  "topic": "Medicine and humors",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes plethoras of quantity and quality and the characteristic symptoms of an excess of normal or morbid blood, choler, melancholy and phlegm, for diagnosis and for inventing diseases.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Disease (overview)",
+  "heading": "Disease",
+  "line": 1700,
+  "endLine": 1706,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains diseases as humoral imbalance, how they corrupt the faculties if they persist, which Ability treats them, and how supernatural beings may cause them.",
+  "quotes": [
+   "The treatment of diseases is almost exclusively the purview of the Medicine Ability"
+  ],
+  "related": []
+ },
+ {
+  "title": "Describing a Disease",
+  "heading": "Describing a Disease",
+  "line": 1708,
+  "endLine": 1718,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the statistics of a disease: Severity, Interval between recovery rolls, and the Stable and Improvement Ease Factors.",
+  "quotes": [
+   "Diseases can be Minor, Serious, Major, or Critical"
+  ],
+  "related": []
+ },
+ {
+  "title": "Demons of Disease (Diseased Possession)",
+  "heading": "Demons of Disease",
+  "line": 1720,
+  "endLine": 1726,
+  "category": "beings",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal demon of disease",
+  "summary": "Infernal power by which a demon possesses a victim and spends Might to inflict a disease, with the victim getting a Disease Avoidance roll to expel it. Includes a worked example.",
+  "quotes": [
+   "The demon must then spend one point of this Might per five points (or fraction) of the disease's Severity to inflict its victim with the contagion"
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.32-33 (Possession)",
+   "ArM5 p.191 (Penetration)"
+  ]
+ },
+ {
+  "title": "Contracting a Disease",
+  "heading": "Contracting a Disease",
+  "line": 1728,
+  "endLine": 1738,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a character is exposed to disease and rolls to avoid it, what a failure or botch means, and the incubation period.",
+  "quotes": [
+   "Disease Avoidance roll: Stamina + Living Conditions Modifier + (Corpus/5) + Wound Penalty + stress die"
+  ],
+  "related": [
+   "ArM5 p.170 (Crisis)",
+   "ArM5 p.77 (Form Bonus)"
+  ]
+ },
+ {
+  "title": "Disease Table and Modifiers to Severity",
+  "heading": "Disease Table",
+  "line": 1740,
+  "endLine": 1764,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Tables giving base Severity and Disease Penalty for each disease level, and the Severity modifiers for Interval and for Stable and Improvement Ease Factors.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Disease Progression and Recovery",
+  "heading": "Disease Progression and Recovery",
+  "line": 1766,
+  "endLine": 1790,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Disease Penalties work, how Disease Recovery rolls make a disease worse, stable or better, lifelong diseases, resting while ill, and the Disease Recovery roll formula.",
+  "quotes": [
+   "If a character fails to meet the Stable Ease Factor, then the disease level worsens by one.",
+   "Stamina + Medicine\\* + (Corpus/5) + Wound Penalty + Recovery Modifiers (see below) + stress die"
+  ],
+  "related": [
+   "ArM5 pp.178-179 (Activities When Injured)"
+  ]
+ },
+ {
+  "title": "Make Your Own Plague",
+  "heading": "Make Your Own Plague",
+  "line": 1776,
+  "endLine": 1780,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Guidance for building a new disease or a disease-causing spell: pick symptoms, translate them into penalties or Flaws, then derive severity, interval and Ease Factors.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Crises (critical diseases)",
+  "heading": "Crises",
+  "line": 1792,
+  "endLine": 1794,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for a character with a Critical disease: twice-daily Disease Recovery rolls, death on a very low total, improvement on meeting the Stable Ease Factor, and a permanent aging point for survivors.",
+  "quotes": [
+   "The player must make two Disease Recovery rolls each day (at sunrise and sunset) that the character remains in Crisis."
+  ],
+  "related": [
+   "ArM5 p.170 (Aging Crisis)"
+  ]
+ },
+ {
+  "title": "Calculating the Severity of a Disease",
+  "heading": "Calculating the Severity of a Disease",
+  "line": 1796,
+  "endLine": 1800,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Procedure for working out a disease's Severity from its base level plus Interval and Ease Factor modifiers, with a worked example.",
+  "quotes": [
+   "The Improvement Ease Factor must always be greater than the Stable Ease Factor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Some Common Diseases (sample disease catalogue)",
+  "heading": "Some Common Diseases",
+  "line": 1802,
+  "endLine": 2035,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Catalogue of ready-made diseases, each with its level, humor, Severity, Stable and Improvement Ease Factors, Interval, cause and symptoms or Flaws, including special rules for leprosy, convulsions, tumors and others.",
+  "quotes": [],
+  "related": [
+   "City & Guild pp.25-28 (further disease details)"
+  ]
+ },
+ {
+  "title": "Setting Up Business (physician income)",
+  "heading": "Setting Up Business",
+  "line": 2048,
+  "endLine": 2054,
+  "category": "social",
+  "topic": "Income and wealth",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Physicians and chirurgeons earn money using Medicine or Chirurgy in place of a Craft or Profession, with income brackets by training and location, and licensing restrictions in some cities.",
+  "quotes": [
+   "Physicians use (Intelligence + Medicine) to calculate Craft totals and labor points, whereas chirurgeons use (Dexterity + Chirurgy)."
+  ],
+  "related": [
+   "City & Guild (earning income through Craft or Profession)"
+  ]
+ },
+ {
+  "title": "Formally Trained Physician Characters",
+  "heading": "Formally Trained Physician Characters",
+  "line": 2107,
+  "endLine": 2113,
+  "category": "creation",
+  "topic": "Physician characters",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Character creation guidance for medici, chirurgeons, clerical physicians and apothecaries: when a character may use the titles medicus or doctor and which Social Status and other Virtues and Abilities suit each.",
+  "quotes": [
+   "Anyone with Medicine 1 or greater may call himself a medicus"
+  ],
+  "related": [
+   "Chapter Seven: Universities (Doctor in (Faculty))"
+  ]
+ },
+ {
+  "title": "Purifying Touch and Immunity",
+  "heading": "Purifying Touch and Immunity",
+  "line": 2129,
+  "endLine": 2135,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Purifying Touch or Immunity",
+  "summary": "Clarifies which diseases the Lesser and Greater Purifying Touch Virtues can cure and what the Lesser and Greater Immunity Virtues protect against.",
+  "quotes": [
+   "Any Minor or Serious disease can be chosen as the disease cured by this Virtue."
+  ],
+  "related": [
+   "ArM5 pp.43-44"
+  ]
+ },
+ {
+  "title": "Specialties for Medicine",
+  "heading": "Specialties for Medicine",
+  "line": 2137,
+  "endLine": 2139,
+  "category": "basics",
+  "topic": "Medicine Ability",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the areas that are suitable as Medicine specialties under the rules in this chapter.",
+  "quotes": [
+   "diagnosis, prognosis, therapy, regimens, theriac, a specific disease"
+  ],
+  "related": []
+ },
+ {
+  "title": "Profession Apothecary",
+  "heading": "Profession Apothecary",
+  "line": 2141,
+  "endLine": 2145,
+  "category": "basics",
+  "topic": "Medicine Ability",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes the Profession: Apothecary Ability for identifying, growing and preparing medicinal ingredients, and the Medicine penalty when no medicinal supplies are available.",
+  "quotes": [
+   "makes all Medicine rolls at a penalty of \u20133"
+  ],
+  "related": []
+ },
+ {
+  "title": "Recovery Modifiers",
+  "heading": "Recovery Modifiers",
+  "line": 2155,
+  "endLine": 2172,
+  "category": "hazards",
+  "topic": "Injury and recovery",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of cumulative modifiers for living conditions, diet, activity, missing instruments or herbs and self-treatment that apply to Chirurgy and Medicine rolls and to Wound and Disease Recovery rolls, with an extra botch die for each modifier that applies.",
+  "quotes": [
+   "for each modifier that applies from this list the Chirurgy or Medicine roll receives one extra botch die"
+  ],
+  "related": [
+   "ArM5 pp.179-180 (recovery)"
+  ]
+ },
+ {
+  "title": "Empiricus Characters",
+  "heading": "Empiricus Characters",
+  "line": 2182,
+  "endLine": 2188,
+  "category": "creation",
+  "topic": "Physician characters",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Character creation guidance for empirici, barber-surgeons, midwives and herbwives: suitable Social Status Virtues and Flaws, and how a midwife's removed thumbs are handled.",
+  "quotes": [
+   "If a midwife has had her thumbs removed she effectively has the Palsied Hands Flaw; except in rolls involving childbirth, where she has a +2 bonus instead of the penalty."
+  ],
+  "related": []
+ }
+]

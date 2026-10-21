@@ -1,0 +1,479 @@
+[
+ {
+  "title": "Venatores (demon-hunters)",
+  "heading": "The Venatores",
+  "line": 6036,
+  "endLine": 6042,
+  "category": "traditions",
+  "topic": "Demon-hunters",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dedicated demon-hunter / Venator",
+  "summary": "Describes the Venatores, magi who hunt demons and pass on their lore as an advanced apprenticeship, and how demon-slaying earns them a Venator Reputation and a high Hierarchy Score.",
+  "quotes": [
+   "Each demon they defeat increases their poor Reputation among demons, so that Venatores usually have a powerful Hierarchy Score."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, House Quaesitor, Deals with Devils"
+  ]
+ },
+ {
+  "title": "Apotropaic Guidelines",
+  "heading": "Apotropaic Guidelines",
+  "line": 6089,
+  "endLine": 6115,
+  "category": "magic",
+  "topic": "Spell guidelines: Vim vs. demons",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar of new Vim spell guidelines for dealing with demons: restoring Might, creating Arcane Connections, speaking with, binding, weakening, commanding and summoning them.",
+  "quotes": [
+   "Restore a demon's Might Pool by (the level of the spell + 10), as long as the spell penetrates its Magic Resistance.",
+   "Reduce the Casting Total for a specific type of magic (such as Infernal Powers) cast by the target by the (level + 2 magnitudes) of the spell."
+  ]
+ },
+ {
+  "title": "Apotropaic Mastery",
+  "heading": "Apotropaic Mastery",
+  "line": 6198,
+  "endLine": 6202,
+  "category": "magic",
+  "topic": "Spell mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell with Infernal Might as its direct target; Hierarchy Score",
+  "summary": "A spell mastery ability that boosts the effect level of spells aimed directly at Infernal Might, using the caster's Hierarchy Score.",
+  "quotes": [
+   "It allows the caster to add his (Mastery Score x Hierarchy Score) to the level of effect produced by the mastered spell."
+  ],
+  "related": [
+   "ArM5 p.87 Spell Mastery"
+  ]
+ },
+ {
+  "title": "Chthonic Magic",
+  "heading": "Chthonic Magic",
+  "line": 6208,
+  "endLine": 6244,
+  "category": "traditions",
+  "topic": "Chthonic magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Supernatural Ability: Chthonic Magic (lineage, tradition, societas, Hermetic Virtue or Mystery Cult)",
+  "summary": "Low magic associated with underworld gods and night spirits that is ambiguously Infernal: the magus is attuned to Magic and Infernal auras, can use Infernal vis safely and maleficia Ranges/Durations/Targets, and gains a doubled lowest Art after a sinful act.",
+  "quotes": [
+   "Finally, a chthonic magus may always add his lowest Art score to his Lab Total or Casting Total twice",
+   "The chthonic magus becomes attuned to both Magical and Infernal auras, and so gains Warping Points from neither, and the benefits of both."
+  ],
+  "related": [
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Shape and Material Bonuses (demon-related)",
+  "heading": "Shape and Material Bonuses",
+  "line": 6214,
+  "endLine": 6233,
+  "category": "lab",
+  "topic": "Shapes and materials",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of Shape and Material bonuses for enchanting items and casting effects that summon, ward against, bind or banish demons and spirits, with the roll needed to make an angelic-sigil amulet.",
+  "quotes": [
+   "An Intelligence + Infernal or Divine Lore roll against an Ease Factor of 12 is required to make such an amulet"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.137",
+   "ArM5 p.97"
+  ]
+ },
+ {
+  "title": "Goetic Magic",
+  "heading": "Goetic Magic",
+  "line": 6245,
+  "endLine": 6254,
+  "category": "traditions",
+  "topic": "Goetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Possession of the Goetic Arts in question",
+  "summary": "Lets a magus who has studied the Ars Goetia substitute Rego and Vim scores in Goetic formulae, and bond a spirit as familiar using the Summoning Art.",
+  "quotes": [
+   "a magus may substitute his score in Rego for his score in Summoning, Ablating, Binding, or Commanding"
+  ]
+ },
+ {
+  "title": "Goetic Mastery",
+  "heading": "Goetic Mastery",
+  "line": 6255,
+  "endLine": 6261,
+  "category": "magic",
+  "topic": "Spell mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Goetic Arts; Rego Vim spell targeting spirits",
+  "summary": "A spell mastery ability for spells that target spirits, adding a Goetic Art to the Casting Total and Hierarchy Score to Penetration, and tainting the spell as Unholy.",
+  "quotes": [
+   "He also adds his (Hierarchy Score x 5) to his Penetration Total when he casts this spell on a demon."
+  ],
+  "related": [
+   "ArM5 p.87 Spell Mastery"
+  ]
+ },
+ {
+  "title": "False Gift (False Magic)",
+  "heading": "False Magic",
+  "line": 6263,
+  "endLine": 6271,
+  "category": "realms",
+  "topic": "False Gift / False Power",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: False Gift; Flaw: False Power",
+  "summary": "Explains the Infernally corrupted Gift: it carries the usual social penalties, its Supernatural Abilities are False Powers, Warping causes Vituperation instead of Twilight, and confessing and being absolved removes the Gift.",
+  "quotes": [
+   "When exposed to Warping, instead of experiencing Twilight, a character with the False Gift must undergo Vituperation.",
+   "The False Gift has no cost, like its magical counterpart, though it requires the False Power Flaw"
+  ],
+  "related": [
+   "Chapter 9: Infernal Characters"
+  ]
+ },
+ {
+  "title": "Infernal Traditions: learning Infernal Abilities and Favored Abilities",
+  "heading": "Chapter 13: Infernal Traditions",
+  "line": 6329,
+  "endLine": 6345,
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Touched by evil (Warping Point from an Infernal source, a deal with a demon, or any Infernal Virtue or Flaw)",
+  "summary": "Defines Infernal traditions for game purposes, who can learn Infernal Supernatural Abilities and how the study activity works, and the four Favored Abilities each tradition specializes in (one tradition per lifetime).",
+  "quotes": [
+   "you must subtract the character's scores in other Supernatural Abilities from the total experience gained in a season of study, and you must reach a score of 1 in that season to learn the Ability.",
+   "Infernal traditions usually have four Supernatural Abilities in which they specialize"
+  ],
+  "related": [
+   "ArM5 p.166 Supernatural Abilities study"
+  ]
+ },
+ {
+  "title": "Designing New Traditions",
+  "heading": "Designing New Traditions",
+  "line": 6347,
+  "endLine": 6353,
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Guidance for building your own Infernal traditions out of Methods, Powers and other Favored Abilities, including how new Powers and Methods must be linked.",
+  "quotes": [
+   "New Powers must be associated with at least one Method, and a new Method must be associated with at least two Powers."
+  ],
+  "related": [
+   "Chapter 9: Infernal Characters"
+  ]
+ },
+ {
+  "title": "Luciferans (Infernal tradition)",
+  "heading": "Infernal Tradition: The Luciferans",
+  "line": 6363,
+  "endLine": 6432,
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal Tradition: The Luciferans",
+  "summary": "Infernalists deceived into following a seemingly holy Lucifer; lists their Favored Abilities and notes that a character can play one who thinks he is pious, with Powers relabeled as Divine counterparts.",
+  "quotes": [
+   "**Favored Abilities:** Debauchery, Diablerie, Malediction, Sense Passions"
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Unknowing Evil (playing an unwitting Luciferan)",
+  "heading": "Unknowing Evil",
+  "line": 6421,
+  "endLine": 6423,
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Infernal Tradition: The Luciferans",
+  "summary": "Optional rule letting the storyguide disguise a Luciferan character's Powers under Divine-sounding names so the player can portray an infernalist who believes he is holy.",
+  "quotes": [
+   "labeling Debauchery, Diablerie, and Malediction as Purity, Adjuration, and Cursing"
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Strigae (Infernal tradition)",
+  "heading": "Infernal Tradition: Strigae",
+  "line": 6433,
+  "endLine": 6466,
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal Tradition: Strigae",
+  "summary": "Night-witch covens led by a senior infernalist with a demonic patron; lists the Favored Abilities and describes how covens operate, including the Benandanti nightwalkers who fight the stregoni.",
+  "quotes": [
+   "**Favored Abilities:** Debauchery, Effusion, Phantasm, Ceremony"
+  ],
+  "related": [
+   "Chapter 4: The Infernal Legions"
+  ]
+ },
+ {
+  "title": "Witch-Hammers (Infernal tradition)",
+  "heading": "Infernal Tradition: The Witch-Hammers",
+  "line": 6467,
+  "endLine": 6509,
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal Tradition: The Witch-Hammers",
+  "summary": "Infernalists who hunt witches and heretics, taught by the malleus epistula, which acts as a summa on the tradition's four Favored Abilities.",
+  "quotes": [
+   "**Favored Abilities:** Ablating, Incantation, Psychomachia, Summoning",
+   "is essentially a summa (Quality 26, Level 1) on all four Favored Abilities of the tradition"
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Dark Gnostics (Infernal tradition)",
+  "heading": "Infernal Tradition: Dark Gnostics",
+  "line": 6516,
+  "endLine": 6549,
+  "requires": "Infernal Tradition: Dark Gnostics",
+  "summary": "Infernalist heretics who teach that sinful acts have moral value; the entry lists their Favored Abilities and describes their beliefs and use of maleficia to gain insight.",
+  "quotes": [
+   "**Favored Abilities:** Diablerie, Entrancement, Incantation, Phantasm"
+  ],
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false
+ },
+ {
+  "title": "The Dread Host (Infernal tradition)",
+  "heading": "Infernal Tradition: The Dread Host",
+  "line": 6550,
+  "endLine": 6581,
+  "requires": "Infernal Tradition: The Dread Host",
+  "summary": "Infernalists who bind demons and spirits into servants, relics and possessed followers, hoping to become Infernal ghosts after death; lists the Favored Abilities and describes the possession-driven danse macabre.",
+  "quotes": [
+   "**Favored Abilities:** Binding, Effusion, Incantation, Summoning"
+  ],
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false
+ },
+ {
+  "title": "The Mulhidun (Infernal tradition)",
+  "heading": "Infernal Tradition: The Mulhidun",
+  "line": 6582,
+  "endLine": 6610,
+  "requires": "Infernal Tradition: The Mulhidun",
+  "summary": "Eastern demonologists who summon and enslave demons to labor for them; lists the Favored Abilities and describes how binding demons to charms lets outsiders think all of them can command demons.",
+  "quotes": [
+   "**Favored Abilities:** Ablating, Binding, Commanding, Summoning"
+  ],
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false
+ },
+ {
+  "title": "The Damhadh-Duidsan (Infernal societas)",
+  "heading": "Infernal Societas: The Damhadh-Duidsan",
+  "line": 6618,
+  "endLine": 6645,
+  "requires": "Infernal Societas: The Damhadh-Duidsan (House Ex Miscellanea lineage)",
+  "summary": "Hermetic lineage descended from a Gaelic hedge wizard that uses rune-based curses; gives the Favored Abilities and a template for designing a member, with Giant Blood common.",
+  "quotes": [
+   "**Favored Abilities:** Consumption, Incantation, Malediction, Shapechanging",
+   "use the Ex Miscellanea character template, taking Puissant Corpus, Necessary Condition (runes), and either Shapechanging, Giant Blood, or Incantation for your free Virtues and Flaws"
+  ],
+  "related": [
+   "Chapter 10: The Maleficia"
+  ],
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true
+ },
+ {
+  "title": "Ogam Writing",
+  "heading": "Ogam Writing",
+  "line": 6626,
+  "endLine": 6630,
+  "requires": "Infernal Societas: The Damhadh-Duidsan",
+  "summary": "Explains the Gaelic runic writing used by the Damhadh-Duidsan to inscribe incantations and the modest Language requirement it carries.",
+  "quotes": [
+   "a Language score of at least 2 that may be used to sound out the letters"
+  ],
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false
+ },
+ {
+  "title": "The Ordo Vagorum (Infernal societas)",
+  "heading": "Infernal Societas: The Ordo Vagorum",
+  "line": 6646,
+  "endLine": 6667,
+  "requires": "Infernal Societas: The Ordo Vagorum (Goliards; Clerk or Educated, sinful Compulsion)",
+  "summary": "Wandering student-clergy infernalists (Goliards) loosely tied to House Mercere; lists Favored Abilities and the requirements for joining, such as Clerk or Educated plus a sinful Compulsion and an Infernal background Virtue or Flaw.",
+  "quotes": [
+   "**Favored Abilities:** Consumption, Corruption, Debauchery, Psychomachia",
+   "they should take either Clerk or Educated, and have some sort of sinful Compulsion"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, p.93 Goliards"
+  ],
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true
+ },
+ {
+  "title": "The Witches of Thessaly (Infernal societas)",
+  "heading": "Infernal Societas: The Witches of Thessaly",
+  "line": 6668,
+  "endLine": 6700,
+  "requires": "Infernal Societas: The Witches of Thessaly (Ex Miscellanea or other witches; Chthonic Magic)",
+  "summary": "Chthonic witches of Thessaly and their Hermetic sisters; lists Favored Abilities, notes that kin in the tradition learn Supernatural Abilities without penalty, and gives free Virtue and Flaw suggestions for Ex Miscellanea Thessalians.",
+  "quotes": [
+   "**Favored Abilties:** Chthonic Magic, Commanding, Hex, Summoning",
+   "for as members of the same Infernal tradition they can learn their Supernatural Abilities without penalty"
+  ],
+  "related": [
+   "Spirit Masters (Chapter 10: The Maleficia)"
+  ],
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true
+ },
+ {
+  "title": "Drawing Down the Moon",
+  "heading": "Drawing Down the Moon",
+  "line": 6690,
+  "endLine": 6696,
+  "requires": "Infernal Societas: The Witches of Thessaly",
+  "summary": "The Thessalian rite of summoning the succubus Selene to seduce a man, which yields virus lunare that serves as an Arcane Connection, and can be made fixed by working it into a kolossos figurine.",
+  "quotes": [
+   "This liquid is treated as an Arcane Connection to the man she seduced, and lasts for one month."
+  ],
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false
+ }
+]

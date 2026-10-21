@@ -1,0 +1,941 @@
+[
+ {
+  "title": "Founding a Covenant in the Rhine Tribunal",
+  "heading": "Early Conflicts",
+  "line": 429,
+  "endLine": 441,
+  "category": "order",
+  "topic": "Rhine Tribunal customs",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains the Rhine Tribunal's rule that a new covenant needs the approval of every existing covenant before it is recognized, the consequences of lacking recognition, the bargaining and gift-giving that follow, and the sidebar ruling that requires a sponsor from each covenant.",
+  "quotes": [
+   "prospective covenants have been required to obtain the explicit permission of all the Tribunal's other covenants, in order to obtain recognition",
+   "If a covenant is not successful in getting approval from the Tribunal, they may try again in seven years time."
+  ],
+  "related": [
+   "Covenants"
+  ]
+ },
+ {
+  "title": "Retired Magi and Proxy Voting Sigils",
+  "heading": "The Return of the Elder Magi",
+  "line": 415,
+  "endLine": 427,
+  "category": "order",
+  "topic": "Rhine Tribunal customs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how the Rhine Tribunal treats magi lost to Twilight as retired rather than dead, and how their voting sigils may be held by proxy by magisters and archmagi, with the number strictly limited by rank.",
+  "quotes": [
+   "a magus whom no other has witnessed for a period of two Tribunals or more shall be deemed to be retired",
+   "a magister may hold only one such sigil, an archmagus at most two"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Guardians of the Forests Ruling",
+  "heading": "Protecting the Wildernesses",
+  "line": 455,
+  "endLine": 465,
+  "category": "order",
+  "topic": "Rhine Tribunal customs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Rhine Tribunal's Peripheral Code ruling that obliges magi to protect forests, vis sources and auras from the encroachment of mundane settlement and the Dominion, its later clause limiting action that would anger mundanes, and how inconsistently it is enforced.",
+  "quotes": [
+   "We must take care to only act in such a fashion so as not to incur the wrath of the mundanes",
+   "We must become Guardians of the Forests, for none will halt this decline if we do not."
+  ],
+  "related": [
+   "Peripheral Code"
+  ]
+ },
+ {
+  "title": "Laws of Hospitality and the Peregrinatores",
+  "heading": "Laws of Hospitality and the Peregrinatores",
+  "line": 566,
+  "endLine": 576,
+  "category": "order",
+  "topic": "Rhine Tribunal customs",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Peripheral Code ruling that lets any magus request hospitality from a Rhine covenant for a fixed span of years in return for vis or service, setting out the duties of guest and host and how many magi travel as peregrinatores.",
+  "quotes": [
+   "guarantee him at least three, but no more than seven years at the covenant",
+   "a fee of three pawns of vis per year paid to the host"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rhine Apprenticeship and Durenmar Training",
+  "heading": "Apprentice",
+  "line": 649,
+  "endLine": 655,
+  "category": "order",
+  "topic": "Rhine ranks",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes the legal status of a Rhine apprentice and the Peripheral Code requirement that every apprentice trained in the Tribunal spend time at Durenmar, including the optional induction into a political gild.",
+  "quotes": [
+   "must spend a minimum of one season learning at Durenmar, to complement their normal studies"
+  ],
+  "related": [
+   "Rhine gilds"
+  ]
+ },
+ {
+  "title": "Rhine Journeyman Rank",
+  "heading": "Journeyman",
+  "line": 657,
+  "endLine": 661,
+  "category": "order",
+  "topic": "Rhine ranks",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how a magus becomes a journeyman (tyro) at Durenmar after the Gauntlet, receiving a voting sigil and the option to declare for a gild, and the choices of founding a covenant, joining one, or wandering as a peregrinator.",
+  "quotes": [
+   "The magus is now legally a journeyman, and he may declare membership of a gild, if he wishes."
+  ],
+  "related": [
+   "Laws of Hospitality and the Peregrinatores"
+  ]
+ },
+ {
+  "title": "Earning the Rank of Master",
+  "heading": "Master",
+  "line": 663,
+  "endLine": 683,
+  "category": "order",
+  "topic": "Rhine ranks",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Rhine Tribunal magus",
+  "summary": "How a Rhine magus becomes a magister: three masters of different covenants, Houses and gilds must each give a token of approval, and the candidate needs a reputation for magical prowess (or loyal service for Redcaps). Masters may take apprentices, hold one retired magus's sigil, and outrank lower ranks in disputes that could be settled by certamen.",
+  "quotes": [
+   "The rank can only be conferred at the discretion of three magi who are masters themselves.",
+   "Once three of these tokens are collected, the new master may immediately style himself magister",
+   "One must achieve the status of master before being allowed to take an apprentice.",
+   "a higher-ranked magus automatically has priority"
+  ],
+  "related": [
+   "Certamen",
+   "Voting in the Rhine Tribunal"
+  ]
+ },
+ {
+  "title": "Earning the Rank of Archmage",
+  "heading": "Archmage",
+  "line": 729,
+  "endLine": 737,
+  "category": "order",
+  "topic": "Rhine ranks",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Rank: Master (Rhine magus), 7th magnitude spell, great deed, successful archmage challenge",
+  "summary": "Sets out the requirements for archmagehood, including the challenge each archmage sets, the limits on challenging and granting the title, and the Rhine privileges of archmagi (extra proxy sigils and automatic victory in disputes against lower ranks).",
+  "quotes": [
+   "they are permitted to hold the voting sigils of two retired magi",
+   "no archmage may grant the title to more than seven magi",
+   "a magus must have invented a spell of at least 7th magnitude"
+  ],
+  "related": [
+   "ArM5 Archmage"
+  ]
+ },
+ {
+  "title": "The Mercere Portals",
+  "heading": "The Mercere Portals",
+  "line": 759,
+  "endLine": 762,
+  "category": "magic",
+  "topic": "Mercere Portals",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercere Portal access (Durenmar or other linked covenant)",
+  "summary": "Explains that Mercere Portals are permanent paired gateways with the effect of the ritual Hermes Portal, how Durenmar's are used and what visitors pay, and advises the storyguide how freely to allow long-range instant travel.",
+  "quotes": [
+   "Each single Portal may only connect to one other, its matching pair.",
+   "all others are obliged to pay a fee of two pawns of vis each"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages",
+   "Hermes Portal"
+  ]
+ },
+ {
+  "title": "Voting in the Rhine Tribunal",
+  "heading": "Voting in the Rhine Tribunal",
+  "line": 764,
+  "endLine": 772,
+  "category": "order",
+  "topic": "Rhine Tribunal customs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how voting sigils work at the Rhine Tribunal, with masters and archmagi receiving proxy sigils of retired magi at a ceremony, and the political effect this has on covenants and younger magi.",
+  "quotes": [
+   "Upon achieving promotion to the rank of master, a magus is formally entrusted with the sigil of a retired (Twilight) Rhine magus, to wield by proxy."
+  ],
+  "related": [
+   "Retired Magi and Proxy Voting Sigils"
+  ]
+ },
+ {
+  "title": "The Praeco of the Rhine Tribunal",
+  "heading": "The Praeco of the Rhine Tribunal",
+  "line": 784,
+  "endLine": 788,
+  "category": "order",
+  "topic": "Rhine Tribunal customs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Rhine Tribunal",
+  "summary": "Explains that unlike other Tribunals, where the oldest magus presides, the Rhine Tribunal's Praeco is by tradition the Primus of House Bonisagus.",
+  "quotes": [
+   "but instead is always the Primus of House Bonisagus, who wields Bonisagus's voting sigil by proxy"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Gild System",
+  "heading": "The Gilds of the Rhine Tribunal",
+  "line": 794,
+  "endLine": 804,
+  "category": "order",
+  "topic": "Rhine gilds",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how the Rhine Tribunal's political gilds work: joining is open and public, members are expected to vote with the gild, gild members can call on each other for help and are protected from Wizard War by their fellows, and leaving or being expelled carries a social price.",
+  "quotes": [
+   "Nevertheless, the Oath of Hermes forbids any mechanism to coerce a magus to vote in a particular way",
+   "All gilds forbid Wizard War among their members",
+   "Those that do not do so within seven years of their Gauntlet or their arrival in the Tribunal generally acquire a reputation as a loner."
+  ],
+  "related": [
+   "(Gild) Trained",
+   "(Gild) Enmity"
+  ]
+ },
+ {
+  "title": "The Oak Gild (Eichengilde)",
+  "heading": "The Eichengilde (Oak Gild)",
+  "line": 806,
+  "endLine": 808,
+  "category": "order",
+  "topic": "Rhine gilds",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gild: Oak",
+  "summary": "The largest and oldest Rhine gild, devoted to tradition, respect for the Founders and elders, and shunning outside wisdom, and led by the Prima of Bonisagus.",
+  "quotes": [],
+  "related": [
+   "Rhine gilds"
+  ]
+ },
+ {
+  "title": "The Hawthorn Gild (Weissdorngilde)",
+  "heading": "The Weissdorngilde (Hawthorn Gild)",
+  "line": 810,
+  "endLine": 812,
+  "category": "order",
+  "topic": "Rhine gilds",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gild: Hawthorn",
+  "summary": "The smallest and one of the oldest Rhine gilds, which seeks to protect wild places and creatures from mundanes and is dominated by Bjornaer Wilderists.",
+  "quotes": [],
+  "related": [
+   "Rhine gilds"
+  ]
+ },
+ {
+  "title": "The Ash Gild (Eschengilde)",
+  "heading": "The Eschengilde (Ash Gild)",
+  "line": 814,
+  "endLine": 816,
+  "category": "order",
+  "topic": "Rhine gilds",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gild: Ash",
+  "summary": "An aggressive, magically powerful gild favoring dominion over the magi's lands and open dealing with mundanes, with a hidden focus on combating the Order of Odin.",
+  "quotes": [],
+  "related": [
+   "Rhine gilds"
+  ]
+ },
+ {
+  "title": "The Elder Gild (Holundergilde)",
+  "heading": "The Holundergilde (Elder Gild)",
+  "line": 818,
+  "endLine": 820,
+  "category": "order",
+  "topic": "Rhine gilds",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gild: Elder",
+  "summary": "A gild, largely of Merinita magi, devoted to preserving the fae and promoting friendly contact between magi and faeries.",
+  "quotes": [],
+  "related": [
+   "Rhine gilds"
+  ]
+ },
+ {
+  "title": "The Linden Gild (Lindengilde)",
+  "heading": "The Lindengilde (Linden Gild)",
+  "line": 822,
+  "endLine": 824,
+  "category": "order",
+  "topic": "Rhine gilds",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gild: Linden",
+  "summary": "A small, altruistic go-between gild founded after the Schism War to build trust and peaceful resolution between magi and covenants.",
+  "quotes": [],
+  "related": [
+   "Rhine gilds"
+  ]
+ },
+ {
+  "title": "The Apple Gild (Apfelgilde)",
+  "heading": "The Apfelgilde (Apple Gild)",
+  "line": 826,
+  "endLine": 828,
+  "category": "order",
+  "topic": "Rhine gilds",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gild: Apple",
+  "summary": "The newest and weakest Rhine gild, advocating peaceful relations with and acceptance in the mundane world.",
+  "quotes": [],
+  "related": [
+   "Rhine gilds"
+  ]
+ },
+ {
+  "title": "Gild Alliances and Tribunal Politics",
+  "heading": "Tribunal Politics",
+  "line": 830,
+  "endLine": 834,
+  "category": "order",
+  "topic": "Rhine gilds",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes which Rhine gilds ally with or oppose each other and the main fault line between wilderness-minded and mundane-minded magi.",
+  "quotes": [],
+  "related": [
+   "Rhine gilds"
+  ]
+ },
+ {
+  "title": "Fates of the Forest Spirits",
+  "heading": "The Forest Spirits",
+  "line": 864,
+  "endLine": 882,
+  "category": "realms",
+  "topic": "Forests",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the four fates (survival, dissolution, replacement, alliance) of the genii loci that fragmented from the original Hercynian Forest spirit, and how each produces magical, mundane, faerie, divine or infernal forests.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Forest Types by Realm",
+  "heading": "A Walk Through a Magical Forest",
+  "line": 884,
+  "endLine": 898,
+  "category": "realms",
+  "topic": "Forests",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Short descriptions of how a forest looks and behaves when it lies in the Magic, Faerie, Divine or Infernal realm, as guidance for the storyguide.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Forest Spirit General Powers",
+  "heading": "General Powers",
+  "line": 900,
+  "endLine": 911,
+  "category": "beings",
+  "topic": "Forest spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Genius locus (forest spirit)",
+  "summary": "Rules for a forest's Might score and the three powers every forest spirit has: Presence, Manifestation (controlling animals or growing plants) and Produce Vis.",
+  "quotes": [
+   "but all forests have a Might of at least 30",
+   "For a cost of 5 points of Might, a single Size 0 creature (or an equivalent mass of smaller creatures) can be controlled.",
+   "a yearly harvest of vis, of a number of pawns up to the Might score"
+  ],
+  "related": [
+   "ArM5 Might",
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Forest Spirit Specific Powers",
+  "heading": "Specific Powers",
+  "line": 912,
+  "endLine": 938,
+  "category": "beings",
+  "topic": "Forest spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Genius locus (forest spirit)",
+  "summary": "A catalogue of optional powers a forest spirit can buy with Might (weather control, granting Virtues and Flaws, victory, guidance, healing, possession, oath-enforcement, regiones, shrouding and stasis), with costs, initiative and Forms, and a note that spirits have only Might, Personality Traits and powers.",
+  "quotes": [
+   "5 points for Minor Flaw, 10 points for Major Flaw, Init 0, Vim",
+   "A supernatural power requires 1 Might point per magnitude to produce, in addition to the Might cost (if any) to the possessed.",
+   "10 points per level, Init 0"
+  ],
+  "related": [
+   "ArM5 p.167 Warping"
+  ]
+ },
+ {
+  "title": "Wood Properties: The Trees of Germany",
+  "heading": "The Trees of Germany",
+  "line": 940,
+  "endLine": 978,
+  "category": "lab",
+  "topic": "Shape and Material Bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists Shape and Material bonuses for the woods of the common German trees for enchanting items, and notes that enchanting an entire living tree multiplies the bonus.",
+  "quotes": [
+   "If an entire living tree is enchanted, any such bonuses are tripled."
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material Bonuses"
+  ]
+ },
+ {
+  "title": "The Passage of the Seasons (Might Pools by Month)",
+  "heading": "The Passage of the Seasons",
+  "line": 980,
+  "endLine": 996,
+  "category": "beings",
+  "topic": "Forest spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "A month-by-month record of the Might Pools and faerie auras of the four seasonal courts as they struggle through the year, for the storyguide to track.",
+  "quotes": [
+   "King Holly (Might Pool 35) slays King Oak (Might Pool 15)"
+  ],
+  "related": [
+   "The Courts of the Seasons"
+  ]
+ },
+ {
+  "title": "The Courts of the Seasons",
+  "heading": "The Courts of the Seasons",
+  "line": 998,
+  "endLine": 1018,
+  "category": "beings",
+  "topic": "Forest spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes four linked faerie forests ruled by seasonal lords, with Might, traits and powers, and the rule by which each ruler's Might Pool and aura rise and fall through the year.",
+  "quotes": [
+   "Throughout the year they retain a Might Score of 30, used for Magic Resistance and Penetration",
+   "Every month following the height of their power, they lose 5 Might points to their opposing court"
+  ],
+  "related": [
+   "Forest Spirit Specific Powers"
+  ]
+ },
+ {
+  "title": "The Paths Through the Forest",
+  "heading": "The Paths Through the Forest",
+  "line": 1032,
+  "endLine": 1038,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Forest Lore; communion with a genius locus",
+  "summary": "Introduces the idea of walking solitary paths to the primal power of the forests, which can overcome Lesser Limits of Hermetic magic but is dangerous and has no teacher except in a few cases.",
+  "quotes": [
+   "each path must be walked alone, and it is easy to become lost"
+  ],
+  "related": []
+ },
+ {
+  "title": "The First Step: Gaining Forest Lore",
+  "heading": "The First Step",
+  "line": 1085,
+  "endLine": 1087,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spending time in a supernatural forest",
+  "summary": "The first step on a forest path is spending time in a supernatural forest to learn the Forest Lore Ability, using the aura as Source Quality, which can happen without the character knowing it.",
+  "quotes": [
+   "the Source Quality is the strength of the aura in which the student spends most of his time",
+   "Once this Ability reaches a score of at least 1, the character has reached the level of understanding which will allow him to find the path that he wishes to travel."
+  ],
+  "related": [
+   "New Arcane Ability: Forest Lore"
+  ]
+ },
+ {
+  "title": "Walking the Path: Communion, Sacrifice and Fruit",
+  "heading": "Walking the Path",
+  "line": 1089,
+  "endLine": 1097,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Forest Lore at least 1",
+  "summary": "How a character finds a path and enters communion with a genius locus, forming a pact in game terms: a Flaw (the Sacrifice) is taken first and, after a Quest, a Virtue (the Fruit) is gained to balance it.",
+  "quotes": [
+   "Intelligence + Forest Lore roll against an Ease Factor of 9, one attempt per season",
+   "In game terms, at the conclusion of the communion, the character will acquire a Flaw (termed the Sacrifice)."
+  ],
+  "related": [
+   "The Path of Aging",
+   "The Path of Energy",
+   "The Path of Warping"
+  ]
+ },
+ {
+  "title": "New Arcane Ability: Forest Lore",
+  "heading": "New Arcane Ability: Forest Lore",
+  "line": 1099,
+  "endLine": 1113,
+  "category": "basics",
+  "topic": "Forest Lore",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Arcane Ability; learned in a supernatural forest",
+  "summary": "Defines the Forest Lore Arcane Ability, its scope for home and foreign forests, how it is advanced, and a table of what each score of understanding allows.",
+  "quotes": [
+   "Forest Lore can only be increased through practice, and the Source Quality is always equal to the strength of the forest's aura.",
+   "For example, a score of 4 (instead of 1) is required to enter communion with a foreign genius locus."
+  ],
+  "related": [
+   "Walking the Path: Communion, Sacrifice and Fruit"
+  ]
+ },
+ {
+  "title": "Sacrifices on the Forest Paths",
+  "heading": "Sacrifices",
+  "line": 1115,
+  "endLine": 1117,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Forest Lore; communion with a genius locus",
+  "summary": "Guidance for choosing the Flaw taken as the Sacrifice of a forest path, with typical examples and a reminder that it needs the player's consent.",
+  "quotes": [
+   "Sacrifices are not a manifestation of a forest spirit's Grant Flaw power, but instead permanent changes to those who take them on."
+  ],
+  "related": []
+ },
+ {
+  "title": "Quests on the Forest Paths",
+  "heading": "Quests",
+  "line": 1119,
+  "endLine": 1123,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Forest Lore; communion with a genius locus",
+  "summary": "Explains that a Quest is a task with a clear end set by the genius locus to earn a Fruit, that the questing character gains no experience from it, and how Major quests compare with Minor ones.",
+  "quotes": [
+   "A character undertaking a Quest will not gain any experience points for doing so",
+   "Quests for a Minor Virtue typically take no more than two seasons."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fruits of the Forest Paths",
+  "heading": "Fruits",
+  "line": 1125,
+  "endLine": 1127,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Forest Lore; completed Quest",
+  "summary": "Explains that a Fruit is a permanent supernatural effect, usually a Virtue that unGifted characters can also gain, and advises storyguides on linking and inventing Virtues for a path.",
+  "quotes": [
+   "Fruits are not a manifestation of the Grant Virtue power, they are permanent effects which do not fade when exiting the forest."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Path of Aging",
+  "heading": "The Path of Aging",
+  "line": 1129,
+  "endLine": 1149,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Forest Lore; communion with a genius locus",
+  "summary": "An example forest path that yields longevity effects, listing its two Sacrifices, Quests and Fruits and including the Immortality of the Forest Virtue that replaces Aging rolls with Warping.",
+  "quotes": [
+   "For each year in which you remain completely within its supernatural aura, you do not make an Aging roll, but instead gain one Warping Point"
+  ],
+  "related": [
+   "ArM5 p.167 Warping"
+  ]
+ },
+ {
+  "title": "The Path of Energy",
+  "heading": "The Path of Energy",
+  "line": 1151,
+  "endLine": 1163,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Forest Lore; communion with a genius locus",
+  "summary": "An example forest path for drawing energy from the forest to replenish a magus, with its two Sacrifices, Quests and Fruits.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Path of Warping",
+  "heading": "The Path of Warping",
+  "line": 1175,
+  "endLine": 1191,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Forest Lore; communion with a genius locus",
+  "summary": "An example forest path built on mastering Warping, including the Twilight Mastery Virtue that lets a magus choose his Twilight effects and inflict Warping, and the Sacrifices, Quests and Fruits of the path.",
+  "quotes": [
+   "once per day you may grant somebody 2 Warping Points",
+   "This effect has a Penetration of +5"
+  ],
+  "related": [
+   "ArM5 p.89 Twilight",
+   "ArM5 p.167 Warping"
+  ]
+ },
+ {
+  "title": "The Path of the Heartbeast",
+  "heading": "The Path of the Heartbeast",
+  "line": 1193,
+  "endLine": 1195,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer",
+  "summary": "Describes the Bjornaer heartbeast as a forest path overcoming the Limit of Essential Nature, whose price is that the magus can never bind a familiar.",
+  "quotes": [
+   "The sacrifice for this power is the inability to ever bind a familiar."
+  ],
+  "related": [
+   "ArM5 p.91 Heartbeast"
+  ]
+ },
+ {
+  "title": "The Arcadian Path",
+  "heading": "The Arcadian Path",
+  "line": 1203,
+  "endLine": 1223,
+  "category": "mysteries",
+  "topic": "Forest Paths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Forest Lore; Mystery of Faerie Magic",
+  "summary": "A forest path through Arcadia that lets a Merinita-style magus partly overcome the Limit of True Feeling, including the Dispassionate Personality Flaw, the Thief of Emotions Virtue with its Emotion Theft roll, and the path's Sacrifices, Quests and Fruits.",
+  "quotes": [
+   "You cannot have a Personality Trait greater than +1 or less than \u20131.",
+   "You may then make a Presence + Emotion Theft roll against an Ease Factor of 6 + the target's Personality Trait for that emotion."
+  ],
+  "related": [
+   "ArM5 p.92 Mystery of Faerie Magic"
+  ]
+ },
+ {
+  "title": "The Rhinefalls: Aura, Regio and Vis",
+  "heading": "The Rhinefalls",
+  "line": 1239,
+  "endLine": 1245,
+  "category": "setting",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Site: the Rhinefalls",
+  "summary": "Describes the Rhinefalls island's Magic aura, the rolls needed to land on and climb the rock, the way to harvest Aquam vis by sacrificing goods to the river spirit, and the regio that rises with the rock.",
+  "quotes": [
+   "Profession: Boating roll against an Ease Factor of 9",
+   "Athletics roll against an Ease Factor of 12",
+   "Each is worth one pawn of Aquam vis."
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Auras of German Churches",
+  "heading": "The Imperial Cathedrals",
+  "line": 1275,
+  "endLine": 1279,
+  "category": "realms",
+  "topic": "Divine auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the strengths of Divine auras for the great cathedrals, other cathedrals and ordinary cities in Germany and notes where Divine auras are generally strongest and weakest.",
+  "quotes": [
+   "The cathedral of Mainz, as the seat of a Holy See, has a Divine aura of 7",
+   "most cities have a Divine aura of 3"
+  ],
+  "related": [
+   "ArM5 p.188 Divine auras"
+  ]
+ },
+ {
+  "title": "Rhine Tribunal Ranks",
+  "heading": "Upon Being a Rhine Magus",
+  "line": 542,
+  "endLine": 544,
+  "category": "order",
+  "topic": "Rhine ranks",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces the four ranks by which the Rhine Tribunal classes its magi: apprentice, journeyman, master and archmage.",
+  "quotes": [
+   "The Rhine Tribunal has four recognized ranks by which it classes its members."
+  ],
+  "related": [
+   "Apprentice",
+   "Journeyman",
+   "Master",
+   "Archmage"
+  ]
+ },
+ {
+  "title": "Rhine Tribunal Gatherings",
+  "heading": "Tribunal Gatherings",
+  "line": 739,
+  "endLine": 741,
+  "category": "order",
+  "topic": "Rhine Tribunal customs",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "States when and where the Rhine Tribunal meets and how the gathering and the gild meetings before it are timed.",
+  "quotes": [
+   "Meetings of the Rhine Tribunal are held every seven years and by tradition always take place at Durenmar."
+  ],
+  "related": [
+   "Voting in the Rhine Tribunal"
+  ]
+ },
+ {
+  "title": "The Lineage of Irmele",
+  "heading": "The Lineage of Irmele",
+  "line": 643,
+  "endLine": 647,
+  "category": "houses",
+  "topic": "Bonisagus lineages",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bonisagus, lineage of Irmele (Trianoma)",
+  "summary": "Describes a wandering Bonisagus lineage in the Rhine whose members travel as peregrinatores, tend to weather magic, are strong in Arts and rich in vis, and often rely on spontaneous magic for lack of a laboratory.",
+  "quotes": [
+   "Once they achieve the status of master, they will, unlike others, typically remain a peregrinator for a couple of decades"
+  ],
+  "related": [
+   "Laws of Hospitality and the Peregrinatores",
+   "Houses of Hermes: True Lineages"
+  ]
+ }
+]

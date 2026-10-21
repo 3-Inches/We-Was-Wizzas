@@ -1,0 +1,1692 @@
+[
+ {
+  "title": "Criamon Paths",
+  "heading": "The Paths",
+  "line": 2271,
+  "endLine": 2279,
+  "category": "houses",
+  "topic": "House Criamon paths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Explains that Criamon magi follow spiritual paths of Mystery Virtues, that only one path may be followed at a time, and what is lost or kept when switching paths or following the Winding Path.",
+  "quotes": [
+   "A magus may follow only one path at a time.",
+   "A magus who steps from his path to another begins without the use of any stations upon it, save Enigmatic Wisdom."
+  ],
+  "related": [
+   "The Mysteries Revised Edition (discovering new Virtues)"
+  ]
+ },
+ {
+  "title": "Enigmatic Wisdom and House Criamon Lore",
+  "heading": "Enigmatic Wisdom and House Criamon Lore",
+  "line": 2285,
+  "category": "houses",
+  "topic": "House Criamon paths",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Introduces House Criamon Lore, the Ability measuring a magus's understanding of the House's strategy, alongside Enigmatic Wisdom; House Lore gates progress along the stations.",
+  "quotes": [],
+  "related": [
+   "ArM5 Enigmatic Wisdom"
+  ]
+ },
+ {
+  "title": "Guides and Mystagogues in Criamon Initiation",
+  "heading": "Guides",
+  "line": 2289,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Describes how a guide fills the Mystagogue role in Criamon Initiations using the same numbers and formulae, and notes the Paths of the Mirror and Strife as exceptions with formal Initiation by superiors.",
+  "quotes": [],
+  "related": [
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Stations and Avenues",
+  "heading": "Stations",
+  "line": 2295,
+  "endLine": 2322,
+  "category": "houses",
+  "topic": "House Criamon paths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Each path has five stations reached by following an avenue, which requires a minimum House Criamon Lore, a trial or investiture, and an insight story; also sets assumed guide values for Initiation Script calculations and how Vow and Pious Flaws tie to path conduct.",
+  "quotes": [
+   "The magus must have a House Criamon Lore score of at least one more than the station's position on the path, undergo a trial or ritual investiture, and find insight in a story.",
+   "The Initiation Script calculations given below for each avenue assume the guide's Presence + House Criamon Lore score equals 6."
+  ],
+  "related": [
+   "The Mysteries Revised Edition Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Psychodrama",
+  "heading": "Psychodrama",
+  "line": 2311,
+  "endLine": 2317,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Advice for running introspective avenue ordeals as allegorical stories inside the magus's mind; failure may block progress or force Twilight checks.",
+  "quotes": [
+   "failure can force checks for Twilight"
+  ],
+  "related": []
+ },
+ {
+  "title": "Living the Path: Vow and Pious",
+  "heading": "To Do Is to Be. to Be Is to Do",
+  "line": 2319,
+  "category": "houses",
+  "topic": "House Criamon paths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "A magus who lives against the path's lifestyle loses the associated powers until purity is restored; the Vow and Pious Flaws model this obligation.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Enigmatic Wisdom for Criamon",
+  "heading": "Enigmatic Wisdom",
+  "line": 2323,
+  "endLine": 2326,
+  "category": "houses",
+  "topic": "Enigmatic Wisdom",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Overview of Enigmatic Wisdom as the start of every path, trained by meditating on riddles and deepened by the insights of others.",
+  "quotes": [],
+  "related": [
+   "ArM5 Enigmatic Wisdom"
+  ]
+ },
+ {
+  "title": "Symbolic Understanding",
+  "heading": "Symbolic Understanding",
+  "line": 2327,
+  "category": "houses",
+  "topic": "Enigmatic Wisdom",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon (Enigmatic Wisdom)",
+  "summary": "Criamon use Enigmatic Wisdom to read stigmata, detect Warping and interpret dreams and visions, with Ease Factors for how much they learn.",
+  "quotes": [
+   "a successful Intelligence + Enigmatic Wisdom roll against an Ease Factor of 6",
+   "Perception + Enigmatic Wisdom roll against an Ease Factor six or more"
+  ],
+  "related": []
+ },
+ {
+  "title": "Labyrinth Meditations",
+  "heading": "Labyrinth Meditations",
+  "line": 2335,
+  "category": "houses",
+  "topic": "Enigmatic Wisdom",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon (Enigmatic Wisdom)",
+  "summary": "A walking meditation in a labyrinth grants a bonus to one roll for an hour, with the meditation time and need for a physical maze shrinking as Enigmatic Wisdom rises.",
+  "quotes": [
+   "The bonus is equal to half the magus's Enigmatic Wisdom score.",
+   "Labyrinth rituals take sixteen hours for characters with a score of one in Enigmatic Wisdom."
+  ],
+  "related": []
+ },
+ {
+  "title": "Criamon and Twilight",
+  "heading": "Twilight",
+  "line": 2345,
+  "category": "houses",
+  "topic": "Twilight",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Criamon magi are better at navigating Twilight, referring to the Twilight rules in the core book.",
+  "quotes": [],
+  "related": [
+   "ArM5 pp.88-89 Twilight"
+  ]
+ },
+ {
+  "title": "Path of the Body",
+  "heading": "The Path of the Body",
+  "line": 2349,
+  "endLine": 2355,
+  "category": "houses",
+  "topic": "Path of the Body",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "Introduces the Path of the Body, its five stations and the alternative order of the second and third stations, which changes the scripts and when the Pious Flaw is gained.",
+  "quotes": [
+   "a Major Flaw (Pious) is always gained in the third avenue"
+  ],
+  "related": []
+ },
+ {
+  "title": "Path of the Body Initiation Scripts",
+  "heading": "The Path of the Body, Expressed Symbolically",
+  "line": 2367,
+  "endLine": 2401,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "Initiation Script target levels, ordeals and script bonuses for each avenue of the Path of the Body.",
+  "quotes": [
+   "Target level 21, as Major Virtue (Minor Potency in an aspect of Corpus, may use Enigmatic Wisdom in lieu of Medicine and Chirurgy)"
+  ],
+  "related": [
+   "The Mysteries Revised Edition Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Station of the Perfect Tool",
+  "heading": "The Avenue of Subduing the Meat and the Station of the Perfect Tool",
+  "line": 2403,
+  "category": "houses",
+  "topic": "Path of the Body",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "First station of the Path of the Body: a Corpus aspect with Minor Potency, Enigmatic Wisdom substituted for healing Abilities, and the Vow and Deleterious Circumstances Flaws.",
+  "quotes": [
+   "They may use Enigmatic Wisdom in place of Chirurgy and Medicine in rolls."
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of Spiritual Nourishment",
+  "heading": "The Avenue of Drinking the Winds of Inspiration and the Station of Spiritual Nourishment",
+  "line": 2411,
+  "category": "houses",
+  "topic": "Path of the Body",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "Initiates stop aging and need not eat, drink or sleep in suitable auras, but gain Warping and must meditate daily; the effect fails in some realms and auras.",
+  "quotes": [
+   "Characters Initiated into this station gain a Warping Point each year, but do not age.",
+   "They must engage in elaborate, delightful labyrinth meditations that take six hours every day, but do not sleep."
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of Perfect Economy of Movement",
+  "heading": "The Avenue of the Tiniest Seed and the Station of Perfect Economy of Movement",
+  "line": 2425,
+  "category": "houses",
+  "topic": "Path of the Body",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "Once a day after a labyrinth meditation the magus automatically succeeds at one Dexterity-related Ability roll up to a given Ease Factor; the Pious Flaw replaces the Vow.",
+  "quotes": [
+   "the character automatically succeeds on single Dexterity-related Ability roll with an Ease Factor of 21 or less"
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of the Microcosm",
+  "heading": "The Avenue of the Spherical Mirror and the Station of the Microcosm",
+  "line": 2433,
+  "category": "houses",
+  "topic": "Path of the Body",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "The magus may cast spells as if holding an Arcane Connection to any mundane place or thing he distinctly recalls, with an Intelligence roll against Ease Factors set by how familiar the place is.",
+  "quotes": [
+   "Places that the magus has visited regularly require a roll against an Ease Factor of 6.",
+   "Places the magus visits yearly require rolls against an Ease Factor of 9.",
+   "Places the magus visited a long time ago require rolls against an Ease Factor of 12."
+  ],
+  "related": [
+   "Leap of Homecoming"
+  ]
+ },
+ {
+  "title": "Threshold of Corporeal Repose",
+  "heading": "The Avenue of Repose in the Body and the Threshold of Corporeal Repose",
+  "line": 2449,
+  "category": "houses",
+  "topic": "Path of the Body",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "Final station of the Path of the Body; the magus drinks representations of the four humors from legendary sites and gains a body purified of frailty that no longer ages.",
+  "quotes": [
+   "The magus regains any attributes lost to aging and no longer uses the Aging Point system."
+  ],
+  "related": []
+ },
+ {
+  "title": "Path of Seeming",
+  "heading": "The Path of Seeming",
+  "line": 2469,
+  "endLine": 2471,
+  "category": "houses",
+  "topic": "Path of Seeming",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Seeming",
+  "summary": "Introduces the Path of Seeming, which looks for weak points in time by examining the world's distracting details.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Path of Seeming Initiation Scripts",
+  "heading": "The Path of Seeming, Depicted in Digits",
+  "line": 2483,
+  "endLine": 2515,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Seeming",
+  "summary": "Initiation Script target levels, ordeals and script bonuses for each avenue of the Path of Seeming.",
+  "quotes": [
+   "Target level 21: Package treated as a Major Virtue (Clear Thinker, Common Sense, and Keen Vision)"
+  ],
+  "related": [
+   "The Mysteries Revised Edition Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Station of Differentiation of Seeming",
+  "heading": "Avenue of Gruel, Water and Starlight and the Station of Differentiation of Seeming",
+  "line": 2517,
+  "category": "houses",
+  "topic": "Path of Seeming",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Seeming",
+  "summary": "First station of the Path of Seeming: the magus gains Clear Thinker, Common Sense and Keen Vision (or a similar sense Virtue) after a gruel-and-water investiture.",
+  "quotes": [
+   "Each magus develops the Clear Thinker, Common Sense, and Keen Vision Virtues"
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of True Sight",
+  "heading": "Avenue That Assaults the Modesty of the Universe and the Station of True Sight",
+  "line": 2523,
+  "category": "houses",
+  "topic": "Path of Seeming",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Seeming",
+  "summary": "Second station: after a season of mad wanderings the magus can use Enigmatic Wisdom as both Second Sight and Magic Sensitivity and gains the Vow Flaw.",
+  "quotes": [
+   "They may use their Enigmatic Wisdom score as if it were both the Second Sight and Magic Sensitivity Abilities."
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of Vivid Memories from Objects",
+  "heading": "The Avenue of the Unexpected Pages and the Station of Vivid Memories from Objects",
+  "line": 2529,
+  "category": "houses",
+  "topic": "Path of Seeming",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Seeming",
+  "summary": "The magus can recall an object's history by handling it, rolling Perception + Enigmatic Wisdom against Ease Factors based on how often the detail occurred, with a bonus for vivid events.",
+  "quotes": [
+   "A magus seeking a particular memory makes a Perception + Enigmatic Wisdom roll.",
+   "Add +3 to the Perception + Enigmatic Wisdom roll for vivid events."
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of Passing Through Seeming",
+  "heading": "The Avenue That Is a Crossroad and the Station of Passing Through Seeming",
+  "line": 2547,
+  "endLine": 2553,
+  "category": "houses",
+  "topic": "Path of Seeming",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Seeming",
+  "summary": "The magus sends his spirit travelling as a ghostly form that can see and speak at the destination and cast limited spells, while his body lies as if dead.",
+  "quotes": [
+   "At their destination, they may cast spells at Arcane Connection range."
+  ],
+  "related": []
+ },
+ {
+  "title": "Passing Through Rules",
+  "heading": "Passing Through Rules",
+  "line": 2555,
+  "endLine": 2571,
+  "category": "houses",
+  "topic": "Path of Seeming",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Seeming",
+  "summary": "Spirit-travel total and the totals needed to reach familiar, previously visited, unknown and distant places.",
+  "quotes": [
+   "A magus's Pass Through Seeming Total is a simple die + Intelligence + Enigmatic Wisdom + the magical aura of his destination.",
+   "hindered by an *Aegis of the Hearth* as if they were creatures with a Magic Might score of five times their Enigmatic Wisdom"
+  ],
+  "related": []
+ },
+ {
+  "title": "Station from Which to Ignore the Real",
+  "heading": "The Avenue That Leads to Transcendence and the Station from Which to Ignore the Real",
+  "line": 2573,
+  "category": "houses",
+  "topic": "Path of Seeming",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Seeming",
+  "summary": "The magus can briefly treat solid mundane objects as spectral with a Stamina + Concentration roll, with the Ease Factor rising for more objects; the station also makes Twilight more likely.",
+  "quotes": [
+   "With a Stamina + Concentration roll against an Ease Factor of six, and a round of preparation",
+   "The Ease Factor increases by one for every object after the first."
+  ],
+  "related": []
+ },
+ {
+  "title": "Path of Strife",
+  "heading": "The Path of Strife",
+  "line": 2587,
+  "endLine": 2591,
+  "category": "houses",
+  "topic": "Path of Strife",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Strife",
+  "summary": "Introduces the Path of Strife, the House's worldly and morally transgressive path whose followers do sinful work on behalf of the House and hunt demons.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Path of Strife Initiation Scripts",
+  "heading": "The Path of Strife, Portrayed With Figures",
+  "line": 2603,
+  "endLine": 2639,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Strife",
+  "summary": "Initiation Script target levels, ordeals and script bonuses for each avenue of the Path of Strife, including the alternative first-station script for killing the Primus.",
+  "quotes": [
+   "Target level 21: Treated as a Major Virtue (may sense magic and use a weapon with Enigmatic Wisdom score)"
+  ],
+  "related": [
+   "The Mysteries Revised Edition Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Station of the Eater of Sin",
+  "heading": "The Avenue of Faith in Strife and the Station of the Eater of Sin",
+  "line": 2641,
+  "category": "houses",
+  "topic": "Path of Strife",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Strife",
+  "summary": "First station: the magus senses strife, uses Enigmatic Wisdom as Magic Sensitivity without reducing Magic Resistance, gains the Blatant Gift, and uses Enigmatic Wisdom as a score for one weapon type.",
+  "quotes": [
+   "They may use their Enigmatic Wisdom as the Magic Sensitivity Ability, but they do not subtract it from their Magic Resistance.",
+   "A magus on this path may use his Enigmatic Wisdom score as if it were a score for a single type of weapon."
+  ],
+  "related": [
+   "ArM5 pp.176-177 weapon tables"
+  ]
+ },
+ {
+  "title": "Station of Blood and Bronze",
+  "heading": "The Avenue That Splinters and the Station of Blood and Bronze",
+  "line": 2649,
+  "category": "houses",
+  "topic": "Path of Strife",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Strife",
+  "summary": "Meditation can rot or rust objects and kill mundane things in an area, and weapon strikes gain greatly increased Attack and Penetration; the magus can no longer enter Final Twilight.",
+  "quotes": [
+   "They have four times the usual Attack Total, and can injure creatures immune to non-magical attacks.",
+   "This power's Penetration is (magus's Enigmatic Wisdom x 5), taking the Form of the weapon's striking edge.",
+   "which can be no wider than 500 feet across per level of Enigmatic Wisdom that the magus possesses"
+  ],
+  "related": []
+ },
+ {
+  "title": "Station That Repels and Attracts Elements",
+  "heading": "Avenue of Charm and Scorn, and the Station That Repels and Attracts Elements",
+  "line": 2659,
+  "category": "houses",
+  "topic": "Path of Strife",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Strife",
+  "summary": "The magus can attract or repel objects of a single Form at will, limited by combined weight, with no Penetration and no effect on warded objects.",
+  "quotes": [
+   "provided their combined weight does not exceed the magus's weight multiplied by three"
+  ],
+  "related": []
+ },
+ {
+  "title": "Station That Charms the Elements",
+  "heading": "The Avenue of Befriending the Silent and the Station That Charms the Elements",
+  "line": 2667,
+  "category": "houses",
+  "topic": "Path of Strife",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Strife",
+  "summary": "The magus can talk to elementally pure objects and persuade their spirits to give information or move, using Presence + Charm rolls against Ease Factors set by the request.",
+  "quotes": [
+   "With a Presence + Charm roll against an Ease Factor of 9 a magus can convince a spirit to give information, or to move in minor, useful ways."
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of Golden Cider",
+  "heading": "Avenue of Death and the Station of Golden Cider",
+  "line": 2681,
+  "category": "houses",
+  "topic": "Path of Strife",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Strife",
+  "summary": "The magus strips supernatural properties from items, creatures and some Gifts by touch after a preparatory meditation, at the cost of losing Creo with most Forms.",
+  "quotes": [
+   "the magus must have an Enigmatic Wisdom score at least one-fifth of the victim's Magic Resistance",
+   "this power has a Penetration score of (Enigmatic Wisdom x 5), with a Form of Corpus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Repose on the Path of Strife",
+  "heading": "Repose",
+  "line": 2695,
+  "category": "houses",
+  "topic": "Path of Strife",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Strife",
+  "summary": "Followers of this path cannot enter Final Twilight and instead die creating adulterations, so many end their lives by using Golden Cider on themselves.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Path of Walking Backwards",
+  "heading": "The Path of Walking Backwards",
+  "line": 2699,
+  "endLine": 2707,
+  "category": "houses",
+  "topic": "Path of Walking Backwards",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Walking Backwards",
+  "summary": "Introduces the Path of Walking Backwards and lets followers choose a reasoned labyrinth walk or an ecstatic dance; dancers use Dexterity for Enigmatic Wisdom rolls during labyrinth meditations.",
+  "quotes": [
+   "Spinners and dancers use Dexterity rather than Intelligence when making Enigmatic Wisdom rolls during Labyrinth meditations"
+  ],
+  "related": []
+ },
+ {
+  "title": "Path of Walking Backwards Initiation Scripts",
+  "heading": "The Path of Walking Backwards, Illustrated Arithmetically",
+  "line": 2717,
+  "endLine": 2749,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Walking Backwards",
+  "summary": "Initiation Script target levels, ordeals and script bonuses for each avenue of the Path of Walking Backwards.",
+  "quotes": [
+   "Target level 21, Major Virtue (Gentle Gift) or elimination of Flaw (Blatant Gift)"
+  ],
+  "related": [
+   "The Mysteries Revised Edition Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Station of Service to Harmony",
+  "heading": "The Avenue of Surrender and the Station of Service to Harmony",
+  "line": 2751,
+  "category": "houses",
+  "topic": "Path of Walking Backwards",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Walking Backwards",
+  "summary": "First station: after purification under a Mystagogue the magus's Gift becomes Gentle, or a Blatant Gift is removed.",
+  "quotes": [
+   "The Gift of most characters on this path becomes Gentle."
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of Rice and Honey",
+  "heading": "The Avenue of Healing and the Station of Rice and Honey",
+  "line": 2759,
+  "category": "houses",
+  "topic": "Path of Walking Backwards",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Walking Backwards",
+  "summary": "By labyrinth meditation the magus restores damaged objects to wholeness and can hold a dying person on the threshold of death for a limited time, but gains the Noncombatant Flaw.",
+  "quotes": [
+   "This power has a Penetration score of the magus's Enigmatic Wisdom multiplied by five.",
+   "A magus may safely continue performing meditations for a number of hours equal to his Enigmatic Wisdom score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of Expression",
+  "heading": "The Avenue of Adulation and Station of Expression",
+  "line": 2767,
+  "category": "houses",
+  "topic": "Path of Walking Backwards",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Walking Backwards",
+  "summary": "The magus gains Free Expression and Inspirational, may use Enigmatic Wisdom as an artistic skill, and can convey complex ideas through artworks to mundane audiences.",
+  "quotes": [
+   "Each magus who completes this avenue gains the Virtues Free Expression and Inspirational, and may use Enigmatic Wisdom in lieu of one artistic skill"
+  ],
+  "related": []
+ },
+ {
+  "title": "Station of Exaltation",
+  "heading": "The Avenue of a Thousand Beautiful Faces and the Station of Exaltation",
+  "line": 2775,
+  "category": "houses",
+  "topic": "Path of Walking Backwards",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Walking Backwards",
+  "summary": "By labyrinth meditation the magus draws out a latent positive property from a mundane object, with a difficult roll needed to know which will appear; the magus loses Perdo with most Forms.",
+  "quotes": [
+   "an extremely difficult Intelligence + Enigmatic Wisdom roll (Ease Factor 21 or more)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Threshold of Repose on the Path of Walking Backwards",
+  "heading": "Avenue of Silencing Discordant Whispers and the Threshold of Repose",
+  "line": 2785,
+  "category": "houses",
+  "topic": "Path of Walking Backwards",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Walking Backwards",
+  "summary": "The final station lets the magus freely change age, gender and species and choose the time of death, or ascend to join the Spharios.",
+  "quotes": [
+   "A magus of this station may select his age, gender, and species as often as he wishes, taking only the time of a breath to change."
+  ],
+  "related": []
+ },
+ {
+  "title": "Twilight and Walking Backwards",
+  "heading": "Twilight and Walking Backwards",
+  "line": 2799,
+  "endLine": 2801,
+  "category": "houses",
+  "topic": "Path of Walking Backwards",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of Walking Backwards",
+  "summary": "The threshold of repose gives no Twilight immunity, though abstaining from magic and strong supernatural auras and avoiding multiple Warping Points at once avoids Twilight.",
+  "quotes": [
+   "magi who abstain from all use of magic and stay out of powerful supernatural auras can avoid entering Twilight by avoiding gaining two or more Warping Points at once"
+  ],
+  "related": []
+ },
+ {
+  "title": "House Merinita Society and Initiation Groups",
+  "heading": "House Society",
+  "line": 3027,
+  "endLine": 3033,
+  "category": "houses",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Explains that House Merinita is one Mystery Cult made of many groups, that members first Initiate Faerie Magic, and that House Merinita Lore is needed to enter the Inner Mysteries.",
+  "quotes": [
+   "must have at least House Merinita Lore 1 to proceed into the Inner Mysteries"
+  ],
+  "related": [
+   "Mechanics of Initiation"
+  ]
+ },
+ {
+  "title": "The Wayfarers (Arcadian Travel Initiation)",
+  "heading": "The Wayfarers",
+  "line": 3053,
+  "endLine": 3071,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Describes the Wayfarers cult, which teaches Arcadian Travel, and gives a worked sample Initiation Script with Ease Factor, script bonus and itemised script details.",
+  "quotes": [
+   "Minor Virtue unknown to the Mystagogue"
+  ],
+  "related": [
+   "Arcadian Travel"
+  ]
+ },
+ {
+  "title": "Keepers of the Thousand Tales (Story Magic Initiation)",
+  "heading": "Keepers of the Thousand Tales",
+  "line": 3091,
+  "endLine": 3107,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Describes the Keepers cult, which Initiates Story Magic, Charm Magic and Becoming, with a worked sample Initiation Script for Story Magic.",
+  "quotes": [
+   "Major Virtue known to the Mystagogue"
+  ],
+  "related": [
+   "Story Magic",
+   "Charm Magic",
+   "Becoming"
+  ]
+ },
+ {
+  "title": "Faerie and Dreams",
+  "heading": "Faerie and Dreams",
+  "line": 3119,
+  "endLine": 3123,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Merinita Mystery: Arcadian Travel",
+  "summary": "Magi with Arcadian Travel can open trods into a dream-based Arcadia, travelling in spirit while their sleeping bodies do not age or need food and water.",
+  "quotes": [
+   "sleeping characters do not age or suffer ill effects of going without food or water"
+  ],
+  "related": [
+   "The Mysteries Revised Edition Dream Virtues"
+  ]
+ },
+ {
+  "title": "The Shadow-Masters (Glamour Initiation)",
+  "heading": "The Shadow-Masters",
+  "line": 3125,
+  "endLine": 3145,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Describes the Shadow-Masters cult and its Great Play tournament, which Initiates Glamour, Animae Magic and Perpetuity, with a worked sample Initiation Script for Glamour.",
+  "quotes": [
+   "Major Virtue known to the Mystagogue"
+  ],
+  "related": [
+   "Glamour",
+   "Animae Magic",
+   "Perpetuity"
+  ]
+ },
+ {
+  "title": "The Cult of Vesta (Nature Lore Initiation)",
+  "heading": "The Cult of Vesta",
+  "line": 3163,
+  "endLine": 3187,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Describes the Vestal cult, its two levels of Initiation (Vestal and the later Becoming or Guardian of Nature), the Lares Lore focus of Nature Lore, and a worked sample Initiation Script.",
+  "quotes": [
+   "15 (Minor Virtue known to the Mystagogue)"
+  ],
+  "related": [
+   "Nature Lore",
+   "Becoming",
+   "Guardian of Nature"
+  ]
+ },
+ {
+  "title": "Merinita Mysteries and Schools",
+  "heading": "Merinita Mysteries",
+  "line": 3195,
+  "endLine": 3201,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Explains that House Merinita Mysteries are grouped into schools, that Initiating the Outer Mystery counts as belonging to the House, and how lineages and groups provide Initiation.",
+  "quotes": [
+   "They maintain that if you have Initiated the Outer Mystery, you belong to their House."
+  ],
+  "related": [
+   "Mechanics of Initiation"
+  ]
+ },
+ {
+  "title": "Faerie Magic Ability",
+  "heading": "Faerie Magic",
+  "line": 3319,
+  "endLine": 3343,
+  "category": "mysteries",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Faerie Magic (Outer Mystery)",
+  "summary": "Arcane Ability gained by Merinita who Initiate Faerie Magic; it enables charms and can substitute for Magic Theory in some lab work with faerie vis, with its own vis limit and botch-dice effects.",
+  "quotes": [
+   "Faerie Magic may be substituted for Magic Theory when experimenting, when using faerie vis, or when practicing magic associated with the Faerie realm.",
+   "The amount of vis you can use in a single season is equal to your (Magic Theory + Faerie Magic) x 2, so long as all of it is faerie vis.",
+   "Add your score in Faerie Magic to the number of botch dice you roll in these conditions"
+  ],
+  "related": [
+   "ArM5 p.92 Faerie Magic"
+  ]
+ },
+ {
+  "title": "Charms",
+  "heading": "Charms",
+  "line": 3325,
+  "endLine": 3333,
+  "category": "mysteries",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie Magic Ability",
+  "summary": "Charms are symbolic casting aids made with an artistic Ability that, with an Arcane Connection, boost Penetration; temporary and permanent charms differ in time, target roll and reuse.",
+  "quotes": [
+   "increasing her Penetration multiplier by two",
+   "The maga produces an effective charm on a roll of six or more, or nine or more for a permanent charm."
+  ],
+  "related": [
+   "ArM5 p.84 Sympathetic Connections"
+  ]
+ },
+ {
+  "title": "House Merinita Lore",
+  "heading": "House Merinita Lore",
+  "line": 3345,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "The Ability used to Initiate House Merinita Mysteries, with a minimum score to enter the Inner Mysteries and typical scores for Mystagogues.",
+  "quotes": [
+   "Magi who wish to Initiate the Inner Mysteries should have at least a score of 1"
+  ],
+  "related": []
+ },
+ {
+  "title": "Enchanting a Faerie Familiar",
+  "heading": "Enchanting a Faerie Familiar",
+  "line": 3355,
+  "endLine": 3369,
+  "category": "magic",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Faerie Magic (Outer Mystery)",
+  "summary": "Rules for binding a faerie being as a familiar, including the Shared Powers, Shared Senses and Shared Fatigue effects and the yearly decay of the cords.",
+  "quotes": [
+   "Each Fatigue Level she spends is worth a number of Might Points equal to (familiar's Might Score / 5).",
+   "The familiar may regain (its Might Score / 5) Might Points by resting, just as the maga regain Fatigue Levels."
+  ],
+  "related": [
+   "ArM5 p.104 Familiar Bonding Lab Total"
+  ]
+ },
+ {
+  "title": "Temporary Familiars",
+  "heading": "Temporary Familiars",
+  "line": 3371,
+  "endLine": 3387,
+  "category": "magic",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Faerie Magic (Outer Mystery)",
+  "summary": "A ritual that binds a supernatural creature as a familiar until a condition ends, with a minimum spell level based on the creature's Might and cords that begin at zero.",
+  "quotes": [
+   "The level of the ritual must be no less than (the creature's Might + 15)",
+   "(Base effect, +1 Touch, +4 Until)"
+  ],
+  "related": [
+   "Familiars"
+  ]
+ },
+ {
+  "title": "The Three Faerie Cords",
+  "heading": "The Three Faerie Cords",
+  "line": 3389,
+  "endLine": 3405,
+  "category": "magic",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Faerie Magic (Outer Mystery)",
+  "summary": "Three negative cords (Leaden, Iron, Tin) bought like the normal cords that balance the positive ones to stop decay, but impose penalties in certain circumstances.",
+  "quotes": [
+   "so long as the sum of the values of one set of cords does not exceed the sum of the scores for the other, the cords do not degrade",
+   "add the value of this cord to the number of botch dice you must roll when the maga uses her powers in the Dominion or when touching a holy object"
+  ],
+  "related": [
+   "ArM5 p.104 Familiars"
+  ]
+ },
+ {
+  "title": "Binding the Gift",
+  "heading": "Binding the Gift (Minor House Mystery)",
+  "line": 3407,
+  "endLine": 3428,
+  "category": "mysteries",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Binding the Gift (Minor House Mystery)",
+  "summary": "Shares the Gift's social effects with the familiar, and lets each familiar cord add to or penalise social rolls against particular types of beings.",
+  "quotes": [
+   "In circumstances where more than one cord applies, use the one with the greater value."
+  ],
+  "related": []
+ },
+ {
+  "title": "Arcadian Travel",
+  "heading": "Arcadian Travel (Minor Arcadian Mystery)",
+  "line": 3434,
+  "endLine": 3453,
+  "category": "mysteries",
+  "topic": "Arcadian Travel",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Arcadian Travel (Minor Arcadian Mystery)",
+  "summary": "Lets a maga open trods between the mortal world, regio levels and Arcadia using a charm and an Arcadian Travel Total compared to Ease Factors from a table; she can bring a limited number of companions.",
+  "quotes": [
+   "Arcadian Travel Total: stress die + Perception + (Ability) + Aura",
+   "the Ease Factor is 12 for a mundane place, 15 for a regio level, and 18 if the destination is part of Arcadia",
+   "a trod can affect a number of other people equal to her Faerie Magic score"
+  ],
+  "related": [
+   "Charms"
+  ]
+ },
+ {
+  "title": "Animae Magic",
+  "heading": "Animae Magic (Major Arcadian Mystery)",
+  "line": 3455,
+  "endLine": 3463,
+  "category": "mysteries",
+  "topic": "Animae Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Animae Magic (Major Arcadian Mystery)",
+  "summary": "Lets a maga transform objects into, or summon, temporary faeries called animae using new spell guidelines; animae can be targeted by the Form that matches their nature.",
+  "quotes": [],
+  "related": [
+   "Animae Guidelines"
+  ]
+ },
+ {
+  "title": "Animae Spell Guidelines",
+  "heading": "Animae Guidelines",
+  "line": 3465,
+  "endLine": 3621,
+  "category": "magic",
+  "topic": "Animae Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Animae Magic (Major Arcadian Mystery)",
+  "summary": "New Creo and Muto spell guidelines, organised by Form, for creating faeries or transforming things into them; the faerie's Might adds to the spell level.",
+  "quotes": [
+   "Since all faeries have Might, and since their Might is added to the level of the spell, Animae spells must always be designed at a level greater than that given in the guidelines."
+  ],
+  "related": [
+   "Animae Magic"
+  ]
+ },
+ {
+  "title": "Becoming",
+  "heading": "Becoming (Major Arcadian Mystery)",
+  "line": 3623,
+  "endLine": 3663,
+  "category": "mysteries",
+  "topic": "Becoming",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Becoming (Major Arcadian Mystery)",
+  "summary": "A maga becomes a faerie through three lab rituals (Body, Mind, Spirit), each with its own level formula and Lab Total limit, then may use lesser transformation rituals; Ordeals reduce the required levels.",
+  "quotes": [
+   "Becoming Lab Total Limit: Warping Score X Faerie Magic",
+   "Transforming the Body: (Character's Age \u2013 35) + (5 x Decrepitude Score)",
+   "Transforming the Mind: Total Score in Abilities",
+   "Transforming the Spirit: Total Score in Arts",
+   "Faerie Might Score: Becoming Lab Total / 2"
+  ],
+  "related": [
+   "Faerie Magic",
+   "Familiars"
+  ]
+ },
+ {
+  "title": "The Line of Quendalon",
+  "heading": "The Line of Quendalon",
+  "line": 3665,
+  "endLine": 3681,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Describes the lineage that Initiates the Arcadian Mysteries, with a worked sample Initiation Script for Animae Magic.",
+  "quotes": [
+   "21 (Major Virtue known to the Mystagogue)"
+  ],
+  "related": [
+   "Animae Magic",
+   "Arcadian Travel",
+   "Becoming"
+  ]
+ },
+ {
+  "title": "Charm Magic",
+  "heading": "Charm Magic (Minor Folk Mystery)",
+  "line": 3687,
+  "endLine": 3725,
+  "category": "mysteries",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Charm Magic (Minor Folk Mystery)",
+  "summary": "Lets a maga build charms into particular spells for Casting Total bonuses per charm and category, boost Penetration with an Arcane Connection, and combine concepts into one charm.",
+  "quotes": [
+   "A single charm imparts a +2 bonus to the Casting Total of the spell.",
+   "Casting Total Bonus: +1 for each charm, +1 for each category represented",
+   "Sympathetic Connection Bonus: +2, +1 for each category beyond the first"
+  ],
+  "related": [
+   "Charms",
+   "ArM5 p.86 Sympathetic Connections"
+  ]
+ },
+ {
+  "title": "Charm Categories",
+  "heading": "Charm Categories",
+  "line": 3709,
+  "endLine": 3721,
+  "category": "mysteries",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Charm Magic (Minor Folk Mystery)",
+  "summary": "The six categories of charm (adage, aspect, character, event, item, place) used to count category bonuses with Charm Magic.",
+  "quotes": [],
+  "related": [
+   "Charm Magic"
+  ]
+ },
+ {
+  "title": "Story Magic",
+  "heading": "Story Magic (Major Folk Mystery)",
+  "line": 3727,
+  "endLine": 3741,
+  "category": "mysteries",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Story Magic (Major Folk Mystery)",
+  "summary": "A maga designs story charms and spends a confidence Point to make the storyguide work the charm's concept into the narrative, or substitutes story charms as wild cards in Charm Magic spells.",
+  "quotes": [
+   "Then she rolls the associated Characteristic + Ability against an Ease Factor of 9.",
+   "assume the character has a +3 bonus on all rolls associated with the charm for the entire scene"
+  ],
+  "related": [
+   "Charm Magic"
+  ]
+ },
+ {
+  "title": "Symbolic Magic",
+  "heading": "Symbolic Magic (Major Folk Mystery)",
+  "line": 3743,
+  "endLine": 3755,
+  "category": "lab",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Symbolic Magic (Major Folk Mystery)",
+  "summary": "Lab activities using charms: charm bonuses to invested devices and talismans, permanent charms others can use, and ritual spells with Symbol Range, Duration and Target.",
+  "quotes": [
+   "adding double the charm and category bonuses to her Lab Total instead of her Casting Total",
+   "this requires Faerie Magic 3 and a Characteristic + Ability roll against an Ease Factor of 12 to design the symbol"
+  ],
+  "related": [
+   "Charm Magic",
+   "Story Magic",
+   "Arcadian Travel"
+  ]
+ },
+ {
+  "title": "Symbol Range, Duration and Target",
+  "heading": "Symbol Range, Duration, & Target",
+  "line": 3757,
+  "endLine": 3763,
+  "category": "magic",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Symbolic Magic (Major Folk Mystery)",
+  "summary": "New ritual-only Range, Duration and Target that use a symbol as an Arcane Connection, last as long as the symbol, or affect all targets the symbol represents.",
+  "quotes": [
+   "It is the same level as Year, and requires a ritual to cast.",
+   "It is calculated at the same level as Boundary, though it is essentially a large Group"
+  ],
+  "related": [
+   "Symbolic Magic"
+  ]
+ },
+ {
+  "title": "Heirs to Merlin (Charm Magic Initiation)",
+  "heading": "Heirs to Merlin",
+  "line": 3769,
+  "endLine": 3789,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Describes the lineage that Initiates Charm Magic, Story Magic and later Symbolic Magic, with a worked sample Initiation Script for Charm Magic.",
+  "quotes": [
+   "15 (Minor Virtue known to the Mystagogue)"
+  ],
+  "related": [
+   "Charm Magic",
+   "Story Magic",
+   "Symbolic Magic"
+  ]
+ },
+ {
+  "title": "Spell Timing and New Durations",
+  "heading": "Spell Timing (Minor Illusion Mystery)",
+  "line": 3795,
+  "endLine": 3813,
+  "category": "magic",
+  "topic": "Spell Timing",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Spell Timing (Minor Illusion Mystery)",
+  "summary": "Gives new spell Durations (Held, Midday/Midnight, Season, While, Not, If) and rules for making a ritual spell recur.",
+  "quotes": [
+   "This duration is the same level as Concentration.",
+   "It is the same level as Moon, but requires a ritual spell like Year.",
+   "add four magnitudes to the level calculated based on the Duration that the spell has when it takes effect, and it must be cast as a ritual spell"
+  ],
+  "related": [
+   "Recurring Spells"
+  ]
+ },
+ {
+  "title": "Recurring Spells",
+  "heading": "Recurring Spells",
+  "line": 3815,
+  "endLine": 3825,
+  "category": "magic",
+  "topic": "Spell Timing",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Spell Timing (Minor Illusion Mystery)",
+  "summary": "Table of magnitude additions for making a ritual spell recur, based on how often it recurs, rounding up to the next magnitude.",
+  "quotes": [
+   "Spells cannot recur more often than once per minute."
+  ],
+  "related": [
+   "Spell Timing"
+  ]
+ },
+ {
+  "title": "Glamour",
+  "heading": "Glamour (Major Illusion Mystery)",
+  "line": 3827,
+  "endLine": 3862,
+  "category": "magic",
+  "topic": "Glamour",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Glamour (Major Illusion Mystery)",
+  "summary": "Glamours are Muto or Creo Imaginem spells that behave as real things; this covers how they are resisted by Magic Resistance, seen through with Second Sight, and the Vulnerable Magic Flaw gained on Initiation.",
+  "quotes": [
+   "Merinitae always gain the Vulnerable Magic Flaw when they Initiate this Mystery."
+  ],
+  "related": [
+   "Glamour Guidelines"
+  ]
+ },
+ {
+  "title": "Glamour Guidelines",
+  "heading": "Glamour Guidelines",
+  "line": 3833,
+  "endLine": 3844,
+  "category": "magic",
+  "topic": "Glamour",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Glamour (Major Illusion Mystery)",
+  "summary": "Spell guidelines and magnitude modifiers for creating glamours or changing a target into one.",
+  "quotes": [
+   "Creo Imaginem Level 10:** Create a glamour.",
+   "To produce a glamour that can move or act under the caster's mental direction adds two magnitudes."
+  ],
+  "related": [
+   "Glamour"
+  ]
+ },
+ {
+  "title": "Spell Glamours",
+  "heading": "Spell Glamours",
+  "line": 3846,
+  "endLine": 3858,
+  "category": "magic",
+  "topic": "Glamour",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Glamour (Major Illusion Mystery)",
+  "summary": "Glamours that change another's spell into a different spell, following the Muto Vim restrictions; useful as countermagic but socially risky.",
+  "quotes": [
+   "must be fast-cast, and must penetrate the spell's Penetration Total"
+  ],
+  "related": [
+   "Glamour"
+  ]
+ },
+ {
+  "title": "Perpetuity",
+  "heading": "Perpetuity (Major Illusion Mystery)",
+  "line": 3864,
+  "endLine": 3872,
+  "category": "magic",
+  "topic": "Perpetuity",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Perpetuity (Major Illusion Mystery)",
+  "summary": "Gives three ritual Durations (Might, aura, Hidden) that can last indefinitely under specified conditions.",
+  "quotes": [
+   "All three are the same level as Year, and always require a ritual to cast."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Followers of Pendule (Spell Timing Initiation)",
+  "heading": "Mystery Cult: the Followers of Pendule",
+  "line": 3874,
+  "endLine": 3892,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Describes the lineage that Initiates Spell Timing and Glamour, and a worked sample Initiation Script with Ease Factor, script bonus and Flaw Ordeals.",
+  "quotes": [
+   "15 (Minor Virtue known to the Mystagogue)"
+  ],
+  "related": [
+   "Spell Timing",
+   "Glamour",
+   "Perpetuity"
+  ]
+ },
+ {
+  "title": "Nature Lore",
+  "heading": "Nature Lore (Minor Outer Mystery)",
+  "line": 3898,
+  "endLine": 3934,
+  "category": "mysteries",
+  "topic": "Nature Mysteries",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Nature Lore (Minor Outer Mystery)",
+  "summary": "A nature Arcane Ability tied to a type of nature that works as Area Lore at home, is reduced outside its region, lets the maga commune with nature, and is the basis for walking the path to gain further Virtues.",
+  "quotes": [
+   "To represent this, always treat her score in Nature Lore as three less outside of her home region.",
+   "A Minor Flaw yields a Minor Virtue, and a Major Flaw grants a Major Virtue."
+  ],
+  "related": [
+   "Guardians of the Forests: The Rhine Tribunal"
+  ]
+ },
+ {
+  "title": "Sample Nature Lores",
+  "heading": "Sample Nature",
+  "line": 3902,
+  "endLine": 3911,
+  "category": "mysteries",
+  "topic": "Nature Mysteries",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Nature Lore (Minor Outer Mystery)",
+  "summary": "Table of example nature types (animal, water, weather, forest, desert, mountain) a maga can specialise in.",
+  "quotes": [],
+  "related": [
+   "Nature Lore"
+  ]
+ },
+ {
+  "title": "Using Nature Lore",
+  "heading": "Using Nature Lore",
+  "line": 3919,
+  "endLine": 3932,
+  "category": "mysteries",
+  "topic": "Nature Mysteries",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Nature Lore (Minor Outer Mystery)",
+  "summary": "Scale describing what a maga can do at each Nature Lore score, from basic area knowledge up to commanding all the area's denizens.",
+  "quotes": [
+   "Always treat a maga's score in Nature Lore as three less outside of her home region."
+  ],
+  "related": [
+   "Nature Lore"
+  ]
+ },
+ {
+  "title": "Awakening",
+  "heading": "Awakening (Minor Nature Mystery)",
+  "line": 3936,
+  "endLine": 3974,
+  "category": "mysteries",
+  "topic": "Nature Mysteries",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Awakening (Minor Nature Mystery)",
+  "summary": "Lab procedure to awaken a natural spirit or animal using Nature Lore, with a total, effect level, vis cost, and optional powers invested using Might Points.",
+  "quotes": [
+   "Awakening Total: Intelligence + Nature Lore + Technique + Form + Aura",
+   "Awakening Level: 25 + Might + (Size x 5), or (Aura + Size modifier) x 5",
+   "Awakening Cost: 1 pawn of vis per five levels or fraction",
+   "Power Cost: 1 Might Point per ten levels or fraction of the effect, minus 1 for every 5 pawns of (Technique or Form) vis"
+  ],
+  "related": [
+   "ArM5 Familiars"
+  ]
+ },
+ {
+  "title": "Area Size Modifiers",
+  "heading": "Area Size modifiers",
+  "line": 3948,
+  "endLine": 3956,
+  "category": "mysteries",
+  "topic": "Nature Mysteries",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Awakening (Minor Nature Mystery)",
+  "summary": "Table of Size modifiers by area diameter used for Awakening and Guardian of Nature.",
+  "quotes": [
+   "100 paces in diameter"
+  ],
+  "related": [
+   "Awakening",
+   "Guardian of Nature"
+  ]
+ },
+ {
+  "title": "Wilding",
+  "heading": "Wilding (Major Nature Mystery)",
+  "line": 3976,
+  "endLine": 3984,
+  "category": "lab",
+  "topic": "Nature Mysteries",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Wilding (Major Nature Mystery)",
+  "summary": "A season of work draws temporary vis from a wholly natural vessel matching the maga's Nature Lore; the vis must be used within days and only Wilding Initiates can use it.",
+  "quotes": [
+   "Wilding: (Nature Lore x 2) pawns of (appropriate Form) vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Guardian of Nature",
+  "heading": "Guardian of Nature (Major Nature Mystery)",
+  "line": 3986,
+  "endLine": 4002,
+  "category": "mysteries",
+  "topic": "Nature Mysteries",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Guardian of Nature (Major Nature Mystery)",
+  "summary": "A maga becomes a guardian spirit of an area (her locus) via a ritual with its own total, vis cost and level; the entry also covers her ghostly state, lack of aging, spellcasting limits and wounds to the locus.",
+  "quotes": [
+   "Guardian Ritual Total: stress die + Presence + Nature Lore",
+   "Guardian Ritual Vis Cost: (level of the aura) pawns of (appropriate Form) vis",
+   "Guardian Ritual Level: level of the aura x Size modifier"
+  ],
+  "related": [
+   "Awakening"
+  ]
+ },
+ {
+  "title": "The True Merinitae (Wilding Initiation)",
+  "heading": "Mystery Cult: True Merinitae",
+  "line": 4004,
+  "endLine": 4020,
+  "category": "mysteries",
+  "topic": "House Merinita Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita",
+  "summary": "Describes the lineage that Initiates the nature Mysteries and gives a worked sample Initiation Script for Wilding.",
+  "quotes": [
+   "21 (Major Virtue known to the Mystagogue)"
+  ],
+  "related": [
+   "Nature Lore",
+   "Wilding"
+  ]
+ },
+ {
+  "title": "Verditius Limit on Sales to Mundanes",
+  "heading": "Crises in the Order",
+  "line": 4146,
+  "endLine": 4151,
+  "category": "order",
+  "topic": "Selling magic items",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "Since the Order restricted direct sales of enchanted devices to mundane society, House Verditius limits each member to a set number of items sold to mundanes per year, sold through unGifted intermediaries; sales to Hermetic magi are unlimited and Tribunals may modify the limit.",
+  "quotes": [
+   "The number was set at one magical item per year, and the selling maga must use her network of intermediaries during the exchange."
+  ],
+  "related": [
+   "Verditius Magi"
+  ]
+ }
+]

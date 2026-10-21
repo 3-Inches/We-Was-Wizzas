@@ -1,0 +1,575 @@
+[
+ {
+  "title": "Forming a New Tribunal (Lotharingian Tribunal)",
+  "heading": "The Lotharingian Tribunal",
+  "line": 4043,
+  "endLine": 4051,
+  "category": "order",
+  "topic": "Tribunals",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the Hermetic-law requirement for founding a Tribunal and how a push to carve a new Lotharingian Tribunal out of Normandy and the Rhine can drive a saga, including how vassal covenants and leased legacies are affected.",
+  "quotes": [
+   "In Hermetic law, a Tribunal must consist of twelve or more magi from at least four different covenants."
+  ],
+  "related": [
+   "Chapter 3, Hermetic Culture: Hermetic History"
+  ]
+ },
+ {
+  "title": "Salvirius: Quest-Granted Virtues",
+  "heading": "Salvirius",
+  "line": 4113,
+  "endLine": 4120,
+  "category": "realms",
+  "topic": "Faerie patrons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide option: patronage of Salvirius (Boar King's court)",
+  "summary": "A faerie-court advisor who can grant Virtues to characters by assigning a mystical quest that costs a sacrifice, in the form of taking a Flaw.",
+  "quotes": [
+   "Salvirius can grant Virtues to other characters, through a process whereby he assigns to the character a mystical quest that requires a sacrifice (acquisition of a Flaw)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Romantic Saga Structure",
+  "heading": "Romantic Saga Structure",
+  "line": 4144,
+  "endLine": 4149,
+  "category": "setting",
+  "topic": "Saga structure",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advice on shaping a saga on the chivalric romances, with magi on quests and faerie regiones where knightly behavior is the norm, and on choosing between a physical Grail and a symbolic one.",
+  "quotes": [
+   "If the players wish to explore this path, the troupe should decide on the nature of the quest."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Children of Odin Mystery Cult",
+  "heading": "The Children of Odin",
+  "line": 4226,
+  "endLine": 4235,
+  "category": "mysteries",
+  "topic": "Children of Odin",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Children of Odin Mystery Cult",
+  "summary": "Describes the small, secretive Children of Odin cult led by Queen Skuld, its power-based philosophy, and the typical membership, including the suggestion that members need a good Ignem score.",
+  "quotes": [
+   "all members should have a relatively good Ignem Art score, which may favor Flambeau, so that they could survive the first Quest to the burning ships (see below)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Children of Odin Mystery Scripts and Ordeals",
+  "heading": "Mystery Scripts",
+  "line": 4236,
+  "endLine": 4251,
+  "category": "mysteries",
+  "topic": "Children of Odin",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Children of Odin Mystery Cult",
+  "summary": "Lists the Hermetic Virtues granted by the cult's Initiation Scripts and the Flaws that may be taken as Ordeals, including the new Minor Hermetic Flaw Blood Haze.",
+  "quotes": [
+   "The cult currently has Initiation Scripts that grant the following Virtues:",
+   "The maga is crazed by bloodshed, and if she is directly involved in a combat situation she has a \u201310 penalty to Formulaic magic and has a \u20133 penalty to her Concentration Ability Score."
+  ],
+  "related": [
+   "ArM5 p.44 Life Boost, Life-Linked Spontaneous Magic",
+   "ArM5 p.46 Minor Magical Focus",
+   "ArM5 p.53 Deficient Technique",
+   "ArM5 p.54 Flawed Parma Magica"
+  ]
+ },
+ {
+  "title": "The Ships of Flame (Odin Cult Quest Regiones)",
+  "heading": "The Ships of Flame",
+  "line": 4252,
+  "endLine": 4259,
+  "category": "realms",
+  "topic": "Children of Odin",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Children of Odin Mystery Cult",
+  "summary": "Three small Magical regiones on the Seine, each a burning longship that can only be entered on a particular day by drifting in a burning boat, and which serve as the cult's first Quest with a fire hazard on deck.",
+  "quotes": [
+   "Each Viking longship burns fiercely and inflicts fire damage (+20 each round) on anyone standing upon the deck. This is a magical attack with a Penetration of 30, which may be resisted as normal.",
+   "Cult Initiates must (as their first Quest) find their way, unaided, onto the deck of one of the longships and recover an axe from a fallen Viking warrior"
+  ],
+  "related": []
+ },
+ {
+  "title": "Simplified Mystery Cult Initiation",
+  "heading": "Mystery Cults",
+  "line": 4269,
+  "endLine": 4271,
+  "category": "mysteries",
+  "topic": "Mystery Initiation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery cult membership; fallback if the troupe lacks Houses of Hermes: Mystery Cults or The Mysteries: Revised Edition",
+  "summary": "Gives a quick approximation of Mystery Cult Initiation for troupes without the full rules: the Mystagogue assigns a year-long Quest, the Initiate suffers an Ordeal and gains a Virtue, guided by an Initiation Script.",
+  "quotes": [
+   "During the Quest, the Initiate undergoes an Ordeal (gains a Flaw) and comes to a higher understanding of the Mystery (gains a Virtue).",
+   "The instructions for an Initiation are contained in a special Laboratory Text called an Initiation Script."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults",
+   "The Mysteries: Revised Edition"
+  ]
+ },
+ {
+  "title": "Rune Magic for the Order of Odin",
+  "heading": "The Order of Odin",
+  "line": 4285,
+  "endLine": 4288,
+  "category": "mysteries",
+  "topic": "Children of Odin",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide option; Children of Odin Mystery Cult",
+  "summary": "Optional rule suggestion: if the cult is an authentic heir to the Order of Odin, add rune magic powers to its repertoire, or let a researcher integrate rune magic with Hermetic theory.",
+  "quotes": [
+   "you might like to add to the cult's repertoire some of the rune magic powers described in Ancient Magic (page 133)"
+  ],
+  "related": [
+   "Ancient Magic p.133"
+  ]
+ },
+ {
+  "title": "Covenants Held Through a Companion Knight",
+  "heading": "The Noble Life",
+  "line": 4337,
+  "endLine": 4344,
+  "category": "covenant",
+  "topic": "Covenants and mundane lords",
+  "audience": [
+   "covenant",
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how Normandy covenants cope with feudal land-holding by making a companion the nominal landholder, or by attaching to a monastery, an heiress or widow's manor, or a mercantile front, and what each choice drags into the saga.",
+  "quotes": [
+   "Some have come to embrace a companion as nominal holder of their lands, thereby hoping to evade the problems of land ownership in the feudal system."
+  ],
+  "related": [
+   "ArM5 p.218 slow saga"
+  ]
+ },
+ {
+  "title": "Duties and Privileges of the Knight",
+  "heading": "Duties of the Knight",
+  "line": 4345,
+  "endLine": 4359,
+  "category": "social",
+  "topic": "Knights and feudal duties",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Knightly status",
+  "summary": "Covers a knight's yearly military service (which may be commuted by paying Ecuage), court attendance, legal duties under Frankish Tribal Law (represented by the Common Law Ability), trial by combat, tournaments and knight errantry.",
+  "quotes": [
+   "Each knight owes military service to his liege forty days every year",
+   "the legal system is based on Frankish Tribal Law, and is best represented by the ability Common Law"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magi and Mundane Lords: Legal Precedents",
+  "heading": "Legal Issues",
+  "line": 4369,
+  "endLine": 4379,
+  "category": "order",
+  "topic": "Peripheral Code (Normandy)",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Covenant in or near the Normandy Tribunal",
+  "summary": "Summarizes Normandy Tribunal precedents on living in a mundane lord's castle or manor without being a court wizard, offering magical support as a consors, economic interference, and the legality of mundane raiding that spares labs and libraries.",
+  "quotes": [
+   "The vital aspect is that even if one lives within the actual home of a mundane noble, no vassal relationship exists.",
+   "As mundane resources are not protected under the infamous 1116 ruling, rebellion and mundane raiding is technically legal in the Tribunal, providing that the laboratories and libraries of the magi themselves are not damaged."
+  ],
+  "related": [
+   "ArM5 p.15 Order of Hermes and nobility"
+  ]
+ },
+ {
+  "title": "Castles as Covenant Sites",
+  "heading": "Castles",
+  "line": 4399,
+  "endLine": 4404,
+  "category": "covenant",
+  "topic": "Covenant hooks",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Possessing a castle ties a covenant into feudal vassal relationships, requires a landowning knight companion, and counts as a major hook that generates stories and problems.",
+  "quotes": [
+   "Castles are so obvious and party to problems that they are defined as a major hook (*Covenants*, page 12)"
+  ],
+  "related": [
+   "Covenants p.12 major hook"
+  ]
+ },
+ {
+  "title": "Growth of Towns and the Spreading Dominion",
+  "heading": "The Growth of Towns",
+  "line": 4425,
+  "endLine": 4428,
+  "category": "realms",
+  "topic": "Dominion spread",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how expanding cities convert surrounding wild land into farmland that falls under the Dominion, impairing magic and corroding vis-harvesting sites.",
+  "quotes": [
+   "Each city transforms the land around itself for a distance of twenty miles, gradually converting wild spaces into farmland.",
+   "Farmland is usually covered by the Dominion, which impairs magical practice and corrodes vis-harvesting sites."
+  ],
+  "related": [
+   "City and Guild"
+  ]
+ },
+ {
+  "title": "Masks (Disposable Agents)",
+  "heading": "Masks",
+  "line": 4476,
+  "endLine": 4478,
+  "category": "order",
+  "topic": "Masks (agents)",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines masks as disposable mundane agents who act for a covenant so the magi can hide their involvement, and gives a simple Intrigue-roll alternative to the complex agent rules in Houses of Hermes: Societates.",
+  "quotes": [
+   "Troupes preferring a simpler system should instead allow characters to use Intrigue rolls to demonstrate the effectiveness of the agents a character can control."
+  ],
+  "related": [
+   "Houses of Hermes: Societates",
+   "Chapter 3: Hermetic Culture"
+  ]
+ },
+ {
+  "title": "Masks for Parisian Stories",
+  "heading": "Masks for Parisian Stories",
+  "line": 4480,
+  "endLine": 4500,
+  "category": "order",
+  "topic": "Masks (agents)",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of the Normandy Tribunal with agents in Paris",
+  "summary": "Lists which Normandy covenants have established influence in which sections of Parisian society and explains why proxy battles between masks are now illegal there because Eboris is senex of Paris.",
+  "quotes": [
+   "These disruptions, usually provoked by Tytalus magi, are now illegal because Eboris is the senex of Paris."
+  ],
+  "related": []
+ },
+ {
+  "title": "Masks for Observing and Controlling Nobles",
+  "heading": "Masks for Observing and Controlling Nobles",
+  "line": 4502,
+  "endLine": 4520,
+  "category": "social",
+  "topic": "Masks (agents)",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Categories of agents (administrators, family members, servants, mercenary leaders, visitors, procurers) a covenant can use to watch or sway a nobleman, with the rule that agents need proximity to the noble or his activities.",
+  "quotes": [
+   "A covenant's agent requires proximity either to the noble's person, or to the noble's activities."
+  ],
+  "related": []
+ },
+ {
+  "title": "Masks Within the Church",
+  "heading": "Masks Within the Church",
+  "line": 4522,
+  "endLine": 4526,
+  "category": "order",
+  "topic": "Masks (agents)",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Notes that churchmen make useful masks because the Church mediates the Divine, and that French churchmen are less tied up with House Jerbiton than churchmen in the east or Italy.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Vassalage Between Covenants",
+  "heading": "Vassalage",
+  "line": 4532,
+  "endLine": 4535,
+  "category": "covenant",
+  "topic": "Covenant vassalage",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes vassalage as the weak paying the strong for protection, and how rising mundane hostility and the spreading Dominion make good lieges more expensive and weak lieges liabilities.",
+  "quotes": [
+   "Vassalage is a system in which the weak pay the strong for protection"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cracking of Old Wards",
+  "heading": "Cracking of Old Wards",
+  "line": 4540,
+  "endLine": 4543,
+  "category": "realms",
+  "topic": "Dominion spread",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "As the Dominion rises, old magical wards (such as those holding subdued creatures) weaken individually or in clusters, leaving weak auras that spring covenants may colonize.",
+  "quotes": [
+   "Sites that have contained powerful, subdued magical creatures for centuries are likely to have weak auras and be prime sites for colonization by spring covenants."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tytalus Cabals",
+  "heading": "Tytalus Schemes",
+  "line": 4548,
+  "endLine": 4552,
+  "category": "houses",
+  "topic": "House Tytalus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tytalus",
+  "summary": "Explains Tytalus cabals: anonymous clandestine groups formed to pursue a specific tactical goal, whose members may each have different motives.",
+  "quotes": [
+   "to do so they form clandestine organizations called cabals"
+  ],
+  "related": [
+   "Houses of Hermes: Societates, House Tytalus"
+  ]
+ },
+ {
+  "title": "Tytalus Primus Succession and the Two Primi",
+  "heading": "The Primi Tytali",
+  "line": 4590,
+  "endLine": 4606,
+  "category": "houses",
+  "topic": "House Tytalus",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tytalus",
+  "summary": "States how a Tytalus Primus claims the title and describes the current dispute between two Primi, the three ways it could end, and the approach of the Grand Tribunal as a crisis point.",
+  "quotes": [
+   "The condition of Primus-hood for House Tytalus is that one magus must force the others to accept his right to lead."
+  ],
+  "related": []
+ },
+ {
+  "title": "Confluensis Magical Resources and Local Auras",
+  "heading": "Magical Resources",
+  "line": 4711,
+  "endLine": 4716,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Confluensis",
+  "summary": "Describes the covenant's strong Magic aura, the tidal vortices harvested for vis on spring tides, and the Orchard island whose aura has shifted from Faerie to Magic with a minor Faerie aura returning on the solstices.",
+  "quotes": [
+   "The island's aura, once Faerie, has gradually been transformed to Magic, although a minor Faerie aura reappears on the solstices."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Tytalus Traitor",
+  "heading": "The Traitor",
+  "line": 4733,
+  "endLine": 4741,
+  "category": "houses",
+  "topic": "House Tytalus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tytalus",
+  "summary": "A voluntarily exiled Tytalus magus who counts as having lost every conflict and is an untouchable foe in House games. The Traitor's one duty is to restart stalled House conflicts, and they are often placed as Quaesitores or hoplites.",
+  "quotes": [
+   "The Traitor has a single obligation to House Tytalus: to restart the House's conflicts if they stall."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sample Oath of Fealty Between Covenants",
+  "heading": "Dragon's Rest",
+  "line": 4821,
+  "endLine": 4835,
+  "category": "covenant",
+  "topic": "Covenant vassalage",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant vassal of Confluensis",
+  "summary": "Presents a worked example of the terms of an oath of fealty between a liege covenant and its Mercere House vassal, covering mutual aid, voting, tithes, hospitality and non-competition, along with the Tribunal's Evangelium who reports Tourney results.",
+  "quotes": [
+   "Dragon's Rest will pay a tithe of one pawn of vis per year per member to Confluensis."
+  ],
+  "related": []
+ },
+ {
+  "title": "Chapter Houses and Cenobites in Normandy",
+  "heading": "The Chapter of Cherbourg",
+  "line": 4888,
+  "endLine": 4893,
+  "category": "order",
+  "topic": "Peripheral Code (Normandy)",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Shows how the Normandy Peripheral Code treats an outside covenant's chapter house: it is not recognized, so a lone resident magus is a cenobite, and recognition may come only over time.",
+  "quotes": [
+   "Chapter houses are not recognized under the Peripheral Code in the Normandy Tribunal, so the single magus who lives in the Cherbourg covenant is considered a cenobite."
+  ],
+  "related": [
+   "Guardians of the Forests: The Rhine Tribunal p.82"
+  ]
+ },
+ {
+  "title": "Young and In Charge: Player-Driven Covenant Saga",
+  "heading": "Young and In Charge",
+  "line": 4894,
+  "endLine": 4898,
+  "category": "setting",
+  "topic": "Saga structure",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional setup for troupes who want their characters to decide their own activities in Confluensis: they take over roles of the NPC magi, serve Proctor for a few missions, and then Proctor is removed and replaced by a senior Quaesitor who delegates.",
+  "quotes": [
+   "This can be accommodated with a few simple adjustments."
+  ],
+  "related": []
+ },
+ {
+  "title": "Languages of France and Mutual Comprehension",
+  "heading": "Languages in France",
+  "line": 5076,
+  "endLine": 5118,
+  "category": "basics",
+  "topic": "Languages",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the Living Languages of France and their dialects (taken as Ability specialties), and gives comprehension penalties when speakers of related languages or dialects talk to each other, with a worked example.",
+  "quotes": [
+   "\u20131 penalty to both speakers",
+   "\u20132 penalty to both speakers",
+   "\u20133 penalty (only \u20132 if Frisian dialect) to both speakers"
+  ],
+  "related": [
+   "ArM5 p.66 standard specialties"
+  ]
+ }
+]

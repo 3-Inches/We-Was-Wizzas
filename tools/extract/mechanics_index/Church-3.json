@@ -1,0 +1,325 @@
+[
+ {
+  "title": "Creating Templar Characters",
+  "heading": "Creating Templar Characters",
+  "line": 4550,
+  "endLine": 4635,
+  "category": "creation",
+  "topic": "Templar characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Templar membership (Brother-Knight, Brother-Priest, Brother-Sergeant or other Templar Virtue)",
+  "summary": "Explains how Templar characters are built, with Templar-specific Social Status Virtues that set which Ability groups may be taken at creation, who the character answers to, and starting Reputation. Includes the Templar Prestige and associate/servant options.",
+  "quotes": [
+   "You may take Academic and Martial Abilities during character generation.",
+   "He starts with a Reputation of level 4 within the Templars."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.92"
+  ]
+ },
+ {
+  "title": "Templar Equipment",
+  "heading": "Templar Equipment",
+  "line": 4564,
+  "endLine": 4576,
+  "category": "setting",
+  "topic": "Templar characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Templar membership",
+  "summary": "Lists the standard issue arms, armor, clothing, horses and squires for Templar brother-knights and brother-sergeants, and how squires differ from chivalric squires.",
+  "quotes": [
+   "Each brother-knight is issued with three horses and a squire"
+  ],
+  "related": []
+ },
+ {
+  "title": "Organization Lore: Knights Templar",
+  "heading": "Organization Lore: Knights Templar",
+  "line": 4640,
+  "endLine": 4642,
+  "category": "basics",
+  "topic": "Organization Lore",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue granting Templar membership (or troupe permission)",
+  "summary": "A new General Lore Ability covering Templar rules, personalities, provinces, tactics, sign language and ciphers. Normally only available to characters who belong to the order.",
+  "quotes": [
+   "This Ability also gives the character knowledge of the Templar sign language",
+   "**Specialties**: personalities, history, politics, tactics, sign language, a particular region. (General)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Templar Ciphers",
+  "heading": "Templar Ciphers",
+  "line": 4644,
+  "endLine": 4648,
+  "category": "setting",
+  "topic": "Templar characters",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Organization Lore: Knights Templar",
+  "summary": "Rules for sending Templar encrypted messages and for breaking the cipher, either without the key by an outsider or by a Templar with high Organization Lore.",
+  "quotes": [
+   "the player must succeed in an Intelligence + Artes Liberales (Arithmetic) roll against an Ease Factor of 21.",
+   "with an Intelligence + Organization Lore: Knights Templar roll against an Ease Factor of 12."
+  ],
+  "related": []
+ },
+ {
+  "title": "Joining the Franciscans",
+  "heading": "Joining the Franciscans",
+  "line": 4836,
+  "endLine": 4838,
+  "category": "creation",
+  "topic": "Franciscan characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Franciscan friar or Poor Sister character",
+  "summary": "Explains how to build male and female Franciscan characters: the Mendicant Friar Virtue for men, and the Religious Social Status plus suitable Virtues and Flaws for women. Notes that the usual Monastic Vows requirement can be swapped for alternatives.",
+  "quotes": [
+   "While the Virtue Mendicant Friar covers male Franciscan characters, it is not appropriate for female Franciscan characters."
+  ],
+  "related": [
+   "Chapter 3: The Diocese, Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "The Dominicans (character guidance)",
+  "heading": "The Dominicans",
+  "line": 4844,
+  "endLine": 4852,
+  "category": "creation",
+  "topic": "Mendicant characters",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Dominican friar character",
+  "summary": "Describes the Order of Preachers and advises that a Dominican character takes the Educated Virtue and, if male without a university degree, is usually sent to study theology and ordained.",
+  "quotes": [
+   "A character wishing to be a member of the Order of Preachers will have the Educated Virtue"
+  ],
+  "related": []
+ },
+ {
+  "title": "Preaching",
+  "heading": "Preaching",
+  "line": 4854,
+  "endLine": 4864,
+  "category": "social",
+  "topic": "Preaching",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules guidance for popular preaching: preachers are handled as performers with the Profession: Preacher Ability and Reputation, may change listeners' Personality Traits or teach Lores, and can be a study source for listeners. Lay preachers and the unordained risk trouble if they stray into doctrine.",
+  "quotes": [
+   "Reputation is everything, and preachers are perhaps best treated as performers using the *Art & Academe* rules",
+   "If a character dedicates a season of free time to following a preacher, the study source is equal to the Aesthetic Quality of the preacher's performance in the relevant Ability."
+  ],
+  "related": [
+   "Art & Academe pp.13-14",
+   "Art & Academe pp.125-129",
+   "Chapter 3: The Diocese, Care of Souls"
+  ]
+ },
+ {
+  "title": "Holy Tradition: Franciscans",
+  "heading": "Holy Tradition: Franciscans",
+  "line": 5099,
+  "endLine": 5103,
+  "category": "traditions",
+  "topic": "Franciscan Holy Tradition",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Franciscans (Franciscan friar or Poor Sister)",
+  "summary": "Treats the Franciscans as a Holy Tradition whose members can develop supernatural Abilities under the guidance of experienced Franciscans. Lists the favored Abilities and restricts membership to friars and Poor Sisters.",
+  "quotes": [
+   "**Favored Abilities:** Intervention, Meditation, Purity, Understanding."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.47"
+  ]
+ },
+ {
+  "title": "Joining the Franciscan Tradition",
+  "heading": "Joining the Tradition",
+  "line": 5105,
+  "endLine": 5109,
+  "category": "traditions",
+  "topic": "Franciscan Holy Tradition",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Franciscans",
+  "summary": "How a character becomes a member of the Franciscan tradition, either at character creation (supernatural Virtues balanced by Flaws, with Monastic Vows compulsory) or in play through an invitation from a Mystagogue.",
+  "quotes": [
+   "the Supernatural Virtues that bestow the favored Abilities must be balanced by Flaws in the conventional manner, and Monastic Vows is compulsory."
+  ],
+  "related": []
+ },
+ {
+  "title": "Franciscan Initiation Scripts",
+  "heading": "Initiation Scripts",
+  "line": 5111,
+  "endLine": 5115,
+  "category": "mysteries",
+  "topic": "Franciscan Holy Tradition",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Franciscans",
+  "summary": "Introduces the available Franciscan Initiation Scripts, which retrace formative experiences in Francis' life, and notes that two of them need a season at Francis' cave near Assisi. The Mystagogue must know the Virtue being granted.",
+  "quotes": [
+   "All require that the Mystagogue knows the Virtue to be gained."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Franciscan Initiation: Meditation",
+  "heading": "Initiation: Meditation",
+  "line": 5117,
+  "endLine": 5129,
+  "category": "mysteries",
+  "topic": "Franciscan Holy Tradition",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Franciscans; Mystagogue with Meditation",
+  "summary": "Initiation script for the Meditation Virtue: a season of solitary prayer in Francis' cave, with a Quest and Major Ordeal, granting the Meditation Virtue and the Driven Flaw. Gives the Initiation Total, Script Bonus and Sympathy bonus.",
+  "quotes": [
+   "Initiation Total 21, Script Bonus 15: Major Ordeal (9) + Quest (3) + Sympathy bonus: Path of the Founder (3)."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.59 (Psychodrama)"
+  ]
+ },
+ {
+  "title": "Franciscan Initiation: Understanding",
+  "heading": "Initiation: Understanding",
+  "line": 5131,
+  "endLine": 5143,
+  "category": "mysteries",
+  "topic": "Franciscan Holy Tradition",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Franciscans; Mystagogue with Understanding",
+  "summary": "Initiation script for the Understanding Virtue: a Quest for an old Byzantine crucifix followed by a vigil and vision at the chapel of Saint Damien, granting the Understanding Virtue and the Visions Flaw. An unworthy Initiate gains Plagued by Supernatural Entity instead.",
+  "quotes": [
+   "Initiation Total 12 (21 - 9 for previous Major Ordeal), Script Bonus 7: Minor Ordeal (3) + Quest (3) + Sympathy bonus: Path of the Founder (1)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Franciscan Initiation: Intervention",
+  "heading": "Initiation: Intervention",
+  "line": 5145,
+  "endLine": 5153,
+  "category": "mysteries",
+  "topic": "Franciscan Holy Tradition",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Franciscans; Mystagogue with Intervention",
+  "summary": "Initiation script for the Intervention Virtue: a winter season of study with the Mystagogue, a barefoot journey in rags to work as a scullion, and a trip to Rome to obtain a papal blessing without asking for it. Gives the Initiation Total and Script Bonus breakdown.",
+  "quotes": [
+   "Initiation Total 15 (21 - 6 for previous Major Ordeal; Script Bonus 9: Time and place (1) + Initiate's time (1) + Mystagogue's time (3) + Quest (3) + Sympathy bonus: Path of the Founder (1)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Franciscan Initiation: Purity",
+  "heading": "Initiation: Purity",
+  "line": 5155,
+  "endLine": 5165,
+  "category": "mysteries",
+  "topic": "Franciscan Holy Tradition",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Franciscans; Mystagogue with Purity",
+  "summary": "Initiation script for the Purity Virtue: a season of fasting in rags in Francis' cave, counted as an Ordeal that permanently harms the Initiate's constitution, with troupe-played temptations forming a Quest. Grants the Purity Virtue and the Fragile Constitution Flaw.",
+  "quotes": [
+   "Initiation Total 18 (21 - 3 for previous Major Ordeal), Script Bonus 9: Quest (3) + Minor Ordeal (3) + Sympathy bonus: Path of the Founder (3)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Franciscan Script Variations",
+  "heading": "Script Variations",
+  "line": 5167,
+  "endLine": 5169,
+  "category": "mysteries",
+  "topic": "Franciscan Holy Tradition",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Franciscans",
+  "summary": "Explains that Francis, guided by angelic advice, tailors the Initiation Scripts to each candidate, and that other Mystagogues may unknowingly use unsuitable Scripts. This deliberately bends the standard Mystery rules to vary Initiates' Flaws.",
+  "quotes": [
+   "This bends the rules set out in *The Mysteries: Revised Edition*"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition"
+  ]
+ }
+]

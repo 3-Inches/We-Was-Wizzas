@@ -1,0 +1,926 @@
+[
+ {
+  "title": "Naphtha Pots and Lighting Bombs",
+  "heading": "What is a Naphtha Pot? What is a Lighting Bomb?",
+  "line": 3054,
+  "endLine": 3066,
+  "category": "combat",
+  "topic": "Alchemical weapons",
+  "audience": [
+   "storyguide",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for Egyptian incendiary, explosive and poison grenades, including the damage each kind does and how troops react to them.",
+  "quotes": [
+   "Most pots contain a thick gel that burns for several minutes, doing +10 damage each turn to whatever the fuel touches.",
+   "Characters may face the naphtha with a Brave Personality trait roll against an Ease Factor of 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "Making Naphtha With Magic",
+  "heading": "Making Naphtha With Magic",
+  "line": 3068,
+  "endLine": 3070,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guideline for creating naphtha with Creo Aquam, giving the Base level and Base Individual size, and noting that it ignites if made outside a container.",
+  "quotes": [
+   "This gives Creo Aquam spells a Base level of 3, and the Base Individual target is a pool one foot across and six inches deep, regardless of the viscosity of the naphtha."
+  ],
+  "related": []
+ },
+ {
+  "title": "Teacher of the House (Mystery Initiation Path)",
+  "heading": "Teacher of the House (Mystery Initiation Path)",
+  "line": 3122,
+  "endLine": 3136,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into the House of the Sultan's school (mystagogue with Lore of the House)",
+  "summary": "Initiation scripts for the House's teaching Virtues, each with a mystagogue requirement, a ritual and a script bonus, including a debate with Seshat for Improved or Great Communication.",
+  "quotes": [
+   "The mystagogue must have a (Presence + Lore of the House) total of at least 6.",
+   "This requires a Communication + Charm roll against an Ease Factor of 12"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.14",
+   "Hedge Magic: Revised Edition p.14"
+  ]
+ },
+ {
+  "title": "The Baqt (Rego vis source)",
+  "heading": "The Baqt",
+  "line": 3563,
+  "endLine": 3569,
+  "category": "setting",
+  "topic": "Vis sources",
+  "audience": [
+   "storyguide",
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to copies of the Baqt in Nobatia, Makuria or Dongola Cathedral",
+  "summary": "Explains the Nubian-Egyptian treaty and the vis it yields: signed copies and the two original documents are Rego vis sources whose output depends on peace and the tribute being paid.",
+  "quotes": [
+   "Furthermore, the vis is only produced in years in which the Egyptians do not attack and the Nubian tribute is not in arrears."
+  ],
+  "related": []
+ },
+ {
+  "title": "Slavery in a Saga (slave, owner and slaver characters)",
+  "heading": "Slavery in a Saga",
+  "line": 3599,
+  "endLine": 3647,
+  "category": "setting",
+  "topic": "Slavery in Egypt and Nubia",
+  "audience": [
+   "storyguide",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Saga set in Egypt or Nubia (Slavelands)",
+  "summary": "Guidance for troupes on playing slaves, free Aithiopians, slave owners, slavers and campaigners against slavery, including which Virtues and Flaws suit each character type.",
+  "quotes": [
+   "Characters who are slavers should take the Merchant Social Status Virtue if they are mostly involved in the transport of slaves, or the Mercenary Captain Social Status Virtue if they are captors."
+  ],
+  "related": [
+   "Guardians of the Forests p.102"
+  ]
+ },
+ {
+  "title": "A Free Aithiopian Character",
+  "heading": "A Free Aithiopian Character",
+  "line": 3629,
+  "endLine": 3633,
+  "category": "creation",
+  "topic": "Slavery in Egypt and Nubia",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Aithiopian character in a saga set outside the Slavelands",
+  "summary": "Says which Social Status Flaw a free Aithiopian character should take and suggests related Story Flaws.",
+  "quotes": [
+   "Free Aithiopians should take either the Outsider or Outcast Social Status Flaw in any saga set outside of the Slavelands."
+  ],
+  "related": []
+ },
+ {
+  "title": "A Slave Owner Character",
+  "heading": "A Slave Owner Character",
+  "line": 3635,
+  "endLine": 3637,
+  "category": "creation",
+  "topic": "Slavery in Egypt and Nubia",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Saga set in Egypt or Nubia",
+  "summary": "In Egypt and Nubia owning slaves needs no Virtue, and a Christian owner in a Christian kingdom takes a small Local Reputation for the social disapproval.",
+  "quotes": [
+   "A Christian slave owner in a Christian kingdom has a Local Reputation at a score of 1, representing the social disapproval that this practice engenders."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ancient Auras",
+  "heading": "Ancient Auras",
+  "line": 3901,
+  "endLine": 3903,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set among ancient Egyptian or Nubian monuments",
+  "summary": "Explains how long-used ancient cemeteries and monuments gain Magic auras after their Faerie auras fade, and how natural features or decay modify the strength.",
+  "quotes": [
+   "These tethers have generated a Magic aura of 1 for every century that they saw continuous use"
+  ],
+  "related": [
+   "Realms of Power: Magic pp.8-10"
+  ]
+ },
+ {
+  "title": "Tumulus Graves (Magic aura)",
+  "heading": "Tumulus Graves",
+  "line": 3781,
+  "endLine": 3783,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Nobatia",
+  "summary": "Gives the Magic aura strength of intact Nobatian royal tumuli and notes the grave guardians that may protect them.",
+  "quotes": [
+   "Each intact tumulus (for some have been robbed) has a Magic aura of 1, and may contain a grave guardian such as a mummified dog."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lost Temple of Ramses (Faerie regio)",
+  "heading": "Lost Temple of Ramses",
+  "line": 3743,
+  "endLine": 3747,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Lower Nubia",
+  "summary": "Describes a hidden Faerie regio holding twin temples, its aura strength, and the baboon ritual that reveals the way in.",
+  "quotes": [
+   "Explorers have been unsuccessful in locating the lost temples because they reside within a Faerie regio with an aura of 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dju Wa'ab (Magic aura)",
+  "heading": "Dju Wa'ab",
+  "line": 3845,
+  "endLine": 3849,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Makuria",
+  "summary": "Gives the Magic aura of the sacred mountain Dju Wa'ab, hints that the surrounding burial sites are stronger, and notes the faded Faerie auras of the old temples.",
+  "quotes": [
+   "Dju Wa'ab, as an impressive natural feature, has a Magic aura of 3; the various burial sites might have a higher aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Kurru (Magic aura)",
+  "heading": "Kurru",
+  "line": 3873,
+  "endLine": 3875,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Makuria",
+  "summary": "The first Kushite pyramid field carries a Magic aura from two centuries of use as a royal cemetery.",
+  "quotes": [
+   "There is a Magic aura of 2 at Kurru, deriving from the use of this site for two centuries."
+  ],
+  "related": []
+ },
+ {
+  "title": "Nuri Necropolis (Magic aura)",
+  "heading": "Nuri",
+  "line": 3881,
+  "endLine": 3885,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Makuria",
+  "summary": "The later Napatan pyramid field has a strong Magic aura earned by about five hundred years of use as a royal cemetery.",
+  "quotes": [
+   "Nuri was in use for about five hundred years, before Arqamani moved the royal cemetery to Mero\u00eb, long enough for it to gain a Magic aura of 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Church of the Granite Columns (Dominion auras)",
+  "heading": "The Church Of The Granite Columns",
+  "line": 3895,
+  "endLine": 3899,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Dongola",
+  "summary": "Gives the Dominion aura strengths of Dongola's cathedral and the neighbouring Church of the Angels.",
+  "quotes": [
+   "There is a Dominion aura of 7 within the cathedral."
+  ],
+  "related": []
+ },
+ {
+  "title": "Kerma Cemetery (Magic auras)",
+  "heading": "Kerma",
+  "line": 3939,
+  "endLine": 3943,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Makuria",
+  "summary": "Gives the graded Magic aura levels across the huge royal tumuli and the rest of the ancient Kerma cemetery.",
+  "quotes": [
+   "A Magic aura of level 3 lingers around these four tumuli, but weakens to 2 over the rest of the royal cemetery and 1 over the rest of the graves."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Dihi (detachable-head race)",
+  "heading": "The Dihi",
+  "line": 3993,
+  "endLine": 3999,
+  "category": "beings",
+  "topic": "Mythic peoples as characters",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Dihi heritage (Blemmya and human offspring from northern Atbai)",
+  "summary": "Rules for playing a Dihi, whose head detaches under shock or strain: the stress-die trigger, botch effects, reattaching the head, inheritance, and the Flaw and Virtue that suit the condition.",
+  "quotes": [
+   "Under situations of physical or emotional stress roll a stress die; if the result is 9 or more then her head detaches.",
+   "It takes a round to reattach the head to the body."
+  ],
+  "related": [
+   "Realms of Power: Magic p.46"
+  ]
+ },
+ {
+  "title": "El-Hobagi (Faerie aura)",
+  "heading": "El-Hobagi",
+  "line": 4071,
+  "endLine": 4075,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Alodia (Keraba)",
+  "summary": "The tumulus and temple of Atum at el-Hobagi, with a Faerie aura around the temple and notes on entering the unopened tumulus.",
+  "quotes": [
+   "The Faerie aura of 3 at the temple suggests that the building is still used for worship of the Kushitic gods"
+  ],
+  "related": []
+ },
+ {
+  "title": "Kassalan Exorcists",
+  "heading": "Kassalan Exorcists",
+  "line": 4085,
+  "endLine": 4087,
+  "category": "traditions",
+  "topic": "Kassalan Exorcism",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Training by the Mortuary Society of Kassala",
+  "summary": "Describes the typical Virtues, Abilities and tactics of an exorcist of the Mortuary Society, who specialises in laying ghosts and the walking dead.",
+  "quotes": [
+   "Exorcists tend to concentrate on low level, high Penetration effects, and often work in concert to destroy powerful ghosts."
+  ],
+  "related": [
+   "Hedge Magic Revised Edition ch.5"
+  ]
+ },
+ {
+  "title": "New Virtue: Kassalan Exorcism",
+  "heading": "New Virtue: Kassalan Exorcism",
+  "line": 4089,
+  "endLine": 4095,
+  "category": "traditions",
+  "topic": "Kassalan Exorcism",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Kassalan Exorcism",
+  "summary": "A limited supernatural casting method for wards against ghosts and the walking dead and for stripping their Might, with its own fatigue cost, preparation time, Casting Total and Penetration rules.",
+  "quotes": [
+   "To cast a spell you must expend a Fatigue level, whether the spell succeeds or fails.",
+   "Your Casting Total is equal to (Stamina + Organization Lore: Mortuary Society + Aura modifier + stress die) / 2."
+  ],
+  "related": []
+ },
+ {
+  "title": "Kassalan Dust",
+  "heading": "Kassalan Dust",
+  "line": 4097,
+  "endLine": 4099,
+  "category": "traditions",
+  "topic": "Kassalan Exorcism",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Kassalan Exorcism or Organization Lore: Mortuary Society",
+  "summary": "The gold-based dust required for Kassalan Exorcism, with its bonuses against Corpse Magic and the dead and its cost in gold.",
+  "quotes": [
+   "A handful also adds +3 to uses of the Corpse Magic Supernatural Ability to command a corpse to return to its grave or prevent it from being affected by Corpse Magic."
+  ],
+  "related": []
+ },
+ {
+  "title": "Begarawiyah Necropolis (Magic auras)",
+  "heading": "Begarawiyah",
+  "line": 4101,
+  "endLine": 4109,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Alodia (Meroe)",
+  "summary": "Gives Magic aura strengths for each cemetery of the royal necropolis outside Meroe, based on centuries of royal burial, and notes occupied pyramids with stronger auras.",
+  "quotes": [
+   "There is a Magic aura of 4 here, representing the preternatural tether of over four hundred years of royal burials.",
+   "The preternatural tether of six and a half centuries of royal burials has resulted in a Magic aura of 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Alchemists of Soba",
+  "heading": "The Alchemists of Soba",
+  "line": 4285,
+  "endLine": 4291,
+  "category": "traditions",
+  "topic": "Soban Alchemy",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Soban Alchemy or Alchemist of Soba",
+  "summary": "Explains how to build a Soban Alchemist character, the Abilities and patronage they need, the obligation to stay near Soba, and how the craft is taught from books or by initiation.",
+  "quotes": [
+   "They also require the Profession: Apothecary Ability to manage and run a well-stocked alchemist's laboratory."
+  ],
+  "related": [
+   "Art & Academe",
+   "ArM5 p.166"
+  ]
+ },
+ {
+  "title": "Soban Alchemy",
+  "heading": "Soban Alchemy",
+  "line": 4293,
+  "endLine": 4297,
+  "category": "traditions",
+  "topic": "Soban Alchemy",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Soban Alchemy",
+  "summary": "Introduces Soban Alchemy as a supernatural science that makes temporary changes to matter, separate from Philosophiae reagents and not reproducible by Rego Craft magic.",
+  "quotes": [
+   "Unlike alchemical reagents made with Philosophiae, Soban Alchemy is a supernatural science, and cannot be duplicated with Rego Craft magic."
+  ],
+  "related": []
+ },
+ {
+  "title": "New Ability: Soban Alchemy (Sovereign Reagent)",
+  "heading": "New Ability: Soban Alchemy",
+  "line": 4305,
+  "endLine": 4332,
+  "category": "traditions",
+  "topic": "Soban Alchemy",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Soban Alchemy",
+  "summary": "Full procedure for making and applying Sovereign Reagent: dose cost and seasonal limits, which properties can change, Duration by Ability score, Casting Total against property Ease Factors, Penetration and Warping.",
+  "quotes": [
+   "Each dose of Sovereign Reagent costs the equivalent of a Mythic Pound of ingredients, or else a pawn of Muto vis.",
+   "After applying the reagent, generate a Casting Total from Intelligence + Soban Alchemy + Aura modifier + stress die against an Ease Factor determined by the type of change desired:",
+   "The Penetration Total is equal to Casting Total \u2013 Ease Factor + Penetration Bonus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Blemmyae Characters",
+  "heading": "Blemmyae Characters",
+  "line": 4412,
+  "endLine": 4421,
+  "category": "beings",
+  "topic": "Magic Humans as characters",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Blemmya heritage (Magic Human)",
+  "summary": "Describes the physical traits of Blemmyae and the Magic Qualities and Inferiorities they inherit as Magic Humans, with differences between male and female Blemmyae and notes on armor and shields.",
+  "quotes": [
+   "Male Blemmyae also have the Age Quickly Major Flaw as a Magic Inferiority, meaning that they have a lifespan typical of that of a human.",
+   "They cannot use large shields effectively."
+  ],
+  "related": [
+   "Realms of Power: Magic p.32"
+  ]
+ },
+ {
+  "title": "Swallow Whole (new Mundane Quality)",
+  "heading": "Scorpion Fish (Scorpaena)",
+  "line": 4473,
+  "endLine": 4505,
+  "category": "beings",
+  "topic": "Creature qualities",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The scorpion fish stat block introduces a reusable Swallow Whole Quality with rules for escaping, suffocation, stomach acid damage and bracing against immersion.",
+  "quotes": [
+   "The scorpaena can swallow whole any creature of Size 0 or smaller.",
+   "The fish cannot swallow a second creature until the previous one has reached the stomach."
+  ],
+  "related": [
+   "ArM5 p.180",
+   "ArM5 p.181"
+  ]
+ },
+ {
+  "title": "Structure of the Cult of Dedun",
+  "heading": "Structure of the Cult",
+  "line": 4515,
+  "endLine": 4517,
+  "category": "mysteries",
+  "topic": "Cult of Dedun",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Dedun (Mystery Cult)",
+  "summary": "Describes how the Cult of Dedun is organised into districts under temple priests, that its Mysteries are aligned to the Magic realm, and what its members seek.",
+  "quotes": [
+   "The Cult of Dedun is a Mystery Cult.",
+   "its Mysteries are aligned to the Magic realm rather than that of Faerie"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Initiation Process",
+  "heading": "The Initiation Process",
+  "line": 4519,
+  "endLine": 4525,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a Mystery Cult",
+  "summary": "Recaps how a Mystagogue rolls an Initiation Total against the script's Ease Factor, how not knowing the power raises the Ease Factor, and how The Gift affects Ordeals and self-initiation.",
+  "quotes": [
+   "generates an Initiation Total equal to his Presence + Organization Lore + Script Bonus",
+   "If the Mystagogue does not personally know the power then the Ease Factor is increased by 3 (if the power is a Minor Virtue) or 9 (if the power is a Major Virtue)."
+  ],
+  "related": [
+   "The Mysteries Revised Edition",
+   "Houses of Hermes: Mystery Cults",
+   "Hedge Magic Revised Edition"
+  ]
+ },
+ {
+  "title": "Cult of Dedun: Adherent",
+  "heading": "Adherent",
+  "line": 4527,
+  "endLine": 4529,
+  "category": "mysteries",
+  "topic": "Cult of Dedun",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Dedun, rank of Adherent",
+  "summary": "Explains who the cult's Adherents are, what is required of them, and how the cult's Prohibition protects its secrecy.",
+  "quotes": [
+   "relying on the cult's Prohibition (gained upon Initiation to the rank of adherent) to maintain secrecy"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation Script: Adherent of Dedun",
+  "heading": "Initiation Script for the Rank of Adherent",
+  "line": 4531,
+  "endLine": 4541,
+  "category": "mysteries",
+  "topic": "Cult of Dedun",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Dedun, rank of Adherent",
+  "summary": "Initiation Script for the lowest rank, which grants no Virtue but binds the Initiate with the Prohibition Flaw; also covers the aging-Crisis-like penalty for breaking it.",
+  "quotes": [
+   "Violating the cult's Prohibition causes Dedun's Shadow to pass over the oathbreaker."
+  ],
+  "related": [
+   "ArM5 p.170"
+  ]
+ },
+ {
+  "title": "Cult of Dedun: Altar Priest",
+  "heading": "Altar Priest",
+  "line": 4543,
+  "endLine": 4547,
+  "category": "mysteries",
+  "topic": "Cult of Dedun",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Dedun, rank of Altar Priest",
+  "summary": "Describes the duties and Ability requirements of altar priests and how they trade their Prohibition for a Vow.",
+  "quotes": [
+   "Altar priests are expected to have an Organization Lore: Cult of Dedun of 1 or more, and a Meroitic of at least 3 to perform the rites to Dedun."
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation Script: Altar Priest of Dedun (Dedun's Blessing)",
+  "heading": "Initiation Script for the Rank of Altar Priest",
+  "line": 4549,
+  "endLine": 4557,
+  "category": "mysteries",
+  "topic": "Cult of Dedun",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Dedun, rank of Altar Priest",
+  "summary": "Initiation Script that grants Dedun's Blessing, letting the character align Magic auras toward the dead through yearly ceremonies and an Intelligence + Magic Lore roll.",
+  "quotes": [
+   "The level of the aura is doubled when the activity matches the alignment",
+   "You may then make a roll of Intelligence + Magic Lore + stress die against an Ease Factor of (9+aura level)."
+  ],
+  "related": [
+   "Realms of Power: Magic p.15"
+  ]
+ },
+ {
+  "title": "Cult of Dedun: Temple Priest and the Court of the Dead",
+  "heading": "Temple Priest",
+  "line": 4559,
+  "endLine": 4571,
+  "category": "mysteries",
+  "topic": "Cult of Dedun",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Dedun, rank of Temple Priest",
+  "summary": "Rank requirements and duties of temple priests, including how they build a court of prepared corpses and how the court's strength is totalled from the Reputations of its members.",
+  "quotes": [
+   "To be considered for this rank, a character must have an Organization Lore: Cult of Dedun of at least 3, and knowledge of Meroitic at 4 or more.",
+   "Each member of the court contributes the highest Reputation that it had in life to the total strength of the court, with a minimum of 1."
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation Script: Temple Priest of Dedun (Unnatural Vitality)",
+  "heading": "Initiation Script for the Rank of Temple Priest",
+  "line": 4573,
+  "endLine": 4581,
+  "category": "mysteries",
+  "topic": "Cult of Dedun",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Dedun, rank of Temple Priest",
+  "summary": "Initiation Script that grants Unnatural Vitality, turning Decrepitude into a bonus to Casting and Laboratory Totals and softening the effects of old age.",
+  "quotes": [
+   "She gains a bonus to all Casting Totals and Laboratory Totals equal to (3 x Decrepitude Score)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cult of Dedun: The Undying Ones",
+  "heading": "The Undying Ones",
+  "line": 4583,
+  "endLine": 4593,
+  "category": "mysteries",
+  "topic": "Cult of Dedun",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Dedun, rank of Undying One",
+  "summary": "Prerequisites for the final rank, how it turns a Gifted initiate into a Magic Human, and how the corpse-court substitutes for a Magic aura to stave off Acclimation.",
+  "quotes": [
+   "Furthermore, the sum of the character's Warping Score and Decrepitude Score must equal or exceed 7.",
+   "The court substitutes for a Magic aura of a level equal to one tenth (or fraction) of the total strength."
+  ],
+  "related": [
+   "Realms of Power: Magic ch.4"
+  ]
+ },
+ {
+  "title": "Initiation Script: Undying One (Transformed Human)",
+  "heading": "Initiation Script for the Rank of Undying One",
+  "line": 4595,
+  "endLine": 4605,
+  "category": "mysteries",
+  "topic": "Cult of Dedun",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Dedun, Temple Priest with The Gift (self-initiation)",
+  "summary": "Initiation Script that makes the character a Magic Human with Might bought from the court's strength, removes ageing and Warping, and imposes a year-long ritual and the loss of The Gift.",
+  "quotes": [
+   "You can raise this Might above the base using the total strength of the character's court, buying Might Score as if it were an Art."
+  ],
+  "related": []
+ },
+ {
+  "title": "Losing The Gift",
+  "heading": "Losing The Gift",
+  "line": 4607,
+  "endLine": 4615,
+  "category": "mysteries",
+  "topic": "Losing The Gift",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Character who has lost The Gift (for example by Undying One initiation)",
+  "summary": "Lists the consequences of losing The Gift for a magical character, covering Favored Abilities, inventing spells, Initiation Scripts, Hermetic Virtues and Parma Magica.",
+  "quotes": [
+   "She loses all Hermetic Virtues and Flaws (these may only be possessed by Gifted characters)."
+  ],
+  "related": [
+   "ArM5 p.166"
+  ]
+ },
+ {
+  "title": "New Supernatural Ability: Corpse Magic",
+  "heading": "New Supernatural Ability: Corpse Magic",
+  "line": 4641,
+  "endLine": 4662,
+  "category": "traditions",
+  "topic": "Corpse Magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Corpse Magic",
+  "summary": "Procedure for reviving corpses to speak or work: the corpse requirements, the Casting Total, the Commanding roll, Ease Factors for each outcome, command difficulties and how long the dead stay animated.",
+  "quotes": [
+   "Casting Total: Communication + Corpse Magic + Aura modifier + stress die",
+   "Commanding roll: Communication + Leadership + stress die; Leadership may be limited by Language Ability",
+   "Single word commands have an Ease Factor of 6, simple questions or commands require a 9, and more complex instructions or questions need a 12 or more."
+  ],
+  "related": [
+   "Realms of Power: Magic ch.6"
+  ]
+ },
+ {
+  "title": "The Lost Regio of the Great Stelae",
+  "heading": "The Lost Regio of the Great Stelae",
+  "line": 4780,
+  "endLine": 4784,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Axum, Ethiopia",
+  "summary": "Describes a Faerie regio of the ancient afterlife reached through the Axum stelae, accessible only when the Divine aura recedes at the winter solstice, and the ghosts of kings who dwell there.",
+  "quotes": [
+   "on the night of the winter solstice, the Divine recedes just enough for Faerie to emerge for one short window, allowing easier entry to the regio within."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Ethiopian Calendar and Dates",
+  "heading": "The Ethiopian Calendar and Dates",
+  "line": 4816,
+  "endLine": 4834,
+  "category": "setting",
+  "topic": "Calendars",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Ethiopia",
+  "summary": "Table of Ethiopian months with their Julian start dates (and leap-year starts), plus a note that Year-duration spells are unaffected by the different calendar.",
+  "quotes": [
+   "This does not impact spells with Year durations, as the duration is based on Solstices, rather than mundane calendars."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ethiopian Calendar (year numbering)",
+  "heading": "Calendar",
+  "line": 4844,
+  "endLine": 4846,
+  "category": "setting",
+  "topic": "Calendars",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Ethiopia",
+  "summary": "Explains the Ethiopian month lengths, intercalary days and how to convert Ethiopian year numbers to Julian ones.",
+  "quotes": [
+   "so the number of the Ethiopian year is eight years less than the Julian year number from January 1 until August 30 or 31, and then seven years less for the remainder of the Julian year."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ethiopian Church Forests and Tabot (Divine auras)",
+  "heading": "Christianity",
+  "line": 4952,
+  "endLine": 4958,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Ethiopia",
+  "summary": "Explains how the sacred forest around an Ethiopian church concentrates its Divine aura, how a lush forest strengthens it, and how the consecrated tabot maintains the aura.",
+  "quotes": [
+   "In communities with these forests, the Divine aura is concentrated within the forest area, resulting in an aura one lower in the areas outside the forest, even if the church is in the middle of town."
+  ],
+  "related": [
+   "Realms of Power: Divine Revised p.10"
+  ]
+ },
+ {
+  "title": "Ark of the Covenant and Ring of Solomon (relic Faith Scores)",
+  "heading": "Story Seeds: The Birthright of Solomon",
+  "line": 4998,
+  "endLine": 5002,
+  "category": "realms",
+  "topic": "Relics",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in Ethiopia",
+  "summary": "Gives the Faith Scores and Divine Might of the Ark of the Covenant and the Ring of Solomon for different believers, the ring's bonus to Solomonic and Ars Notoria casting, and its use as a tractatus.",
+  "quotes": [
+   "The Ark of the Covenant has a Faith Score of 10, giving it 10 Faith points and a Divine Might of 100 for any Ethiopian, Falasha or Christian"
+  ],
+  "related": [
+   "Realms of Power: Divine Revised pp.44, 98",
+   "The Cradle & The Crescent pp.33-37"
+  ]
+ }
+]

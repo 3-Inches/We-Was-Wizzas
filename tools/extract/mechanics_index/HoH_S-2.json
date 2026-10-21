@@ -1,0 +1,1772 @@
+[
+ {
+  "title": "Lacunae",
+  "heading": "Lacunae",
+  "line": 2401,
+  "endLine": 2418,
+  "category": "realms",
+  "topic": "Lacunae",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains lacunae, small patches inside a city where the Dominion does not dominate, so magi can cast there without Dominion realm interaction penalties. Describes their typical size, aura and the theories of how they form.",
+  "quotes": [
+   "Lacunae allow magi to cast spells without realm interaction penalties due to the Dominion, provided they do not target things within the Dominion."
+  ],
+  "related": [
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Finding New Lacunae",
+  "heading": "Finding New Lacunae",
+  "line": 2420,
+  "endLine": 2431,
+  "category": "realms",
+  "topic": "Lacunae",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the ways lacunae enter a saga (covenant creation, character creation, story rewards) and the seasonal Area Lore search for them, including how many a character knows and the need for a limitation on bonus lacunae.",
+  "quotes": [
+   "A character seeking lacunae spends a season, then rolls Intelligence + Area Lore against an Ease Factor of 9."
+  ],
+  "related": []
+ },
+ {
+  "title": "Small Effects and High Penetration Bonuses (Subtle, Public and Wilderness Spells)",
+  "heading": "Small Effects and High Penetration Bonuses",
+  "line": 2433,
+  "endLine": 2456,
+  "category": "magic",
+  "topic": "Urban magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the three categories of spells urban magi choose (subtle, public and wilderness), how Dominion and casting-style penalties apply to each, and why low-level subtle spells have good Penetration.",
+  "quotes": [
+   "Most cities have a Divine aura of 3, which means that spellcasting rolls are penalized by \u20139."
+  ],
+  "related": [
+   "ArM5 p.145 Aura of Ennobled Presence",
+   "ArM5 p.151 The Call to Slumber"
+  ]
+ },
+ {
+  "title": "Performance Magic, In Brief",
+  "heading": "Performance Magic, In Brief",
+  "line": 2458,
+  "endLine": 2482,
+  "category": "magic",
+  "topic": "Performance Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Performance Magic",
+  "summary": "Abbreviated rules for the Performance Magic Virtue: disguising spellcasting with a performed Ability, recognizing the Form of such a spell, and a new Performance Duration for spells.",
+  "quotes": [
+   "Recognize Form of Performance Magic Spell: stress die + Perception + Awareness + effect magnitude vs. Ease Factor 15",
+   "Cast a Performance Duration Spell: die roll + Ability's Characteristic + Ability vs. Ease Factor 3"
+  ],
+  "related": [
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Ceremonial Magic: Props and Prepared Spaces",
+  "heading": "Ceremonial Magic",
+  "line": 2484,
+  "endLine": 2512,
+  "category": "magic",
+  "topic": "Ceremonial casting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Extends ceremonial casting with props that add to the Casting Score by size, and prepared spaces that reduce the minutes per magnitude needed to cast.",
+  "quotes": [
+   "Bonuses to Casting Score for casting with ceremonial props, by prop size, are:",
+   "Casting times when using ceremonial spaces, in minutes per magnitude, are:"
+  ],
+  "related": [
+   "ArM5 p.83 Ceremonial Casting",
+   "Mystical Choreography"
+  ]
+ },
+ {
+  "title": "Invocation of the Civic Patron",
+  "heading": "Invocation of the Civic Patron",
+  "line": 2514,
+  "endLine": 2516,
+  "category": "realms",
+  "topic": "Divine miracles",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Notes that a character may ask a city's patron saint for a miracle allowing virtuous magic to ignore Dominion penalties for a scene or story.",
+  "quotes": [
+   "the penalties the character suffers due to the Realm Interaction Chart are reduced to zero"
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Spell Mastery for Urban Characters",
+  "heading": "Spell Mastery for Urban Characters",
+  "line": 2518,
+  "endLine": 2520,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Points out which Spell Mastery abilities help urban magi and mentions a form of mastery that lets formulaic spells use ceremonial casting bonuses without any initiation.",
+  "quotes": [],
+  "related": [
+   "ArM5 pp.86-87 Spell Mastery",
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Finesse in Artistic Magic",
+  "heading": "Beautiful Objects and Detailed Illusions",
+  "line": 2532,
+  "endLine": 2535,
+  "category": "magic",
+  "topic": "Artistic magic (Finesse)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces using Finesse to add detail to created objects and illusions that magic otherwise fills in from the Form, and notes that the product carries the magus's sigil.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Creating Objects with Creo Magic",
+  "heading": "Creo Magic",
+  "line": 2536,
+  "endLine": 2541,
+  "category": "magic",
+  "topic": "Artistic magic (Finesse)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that Creo makes a functional natural object automatically, with an optional Intelligence + Finesse roll to add detail, and that artificial objects need the same Finesse as Rego.",
+  "quotes": [
+   "The magus may use an Intelligence + Finesse roll to add detail, making the creation particularly beautiful or suited to a task."
+  ],
+  "related": []
+ },
+ {
+  "title": "Crafting Objects with Rego Magic",
+  "heading": "Rego Magic",
+  "line": 2542,
+  "endLine": 2552,
+  "category": "magic",
+  "topic": "Artistic magic (Finesse)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the Finesse Ease Factor for doing with Rego what a mundane artist could do with tools, adjusted by how long the mundane work would take.",
+  "quotes": [
+   "The Finesse roll required is three more than the Ease Factor the mundane craftsman would have to make.",
+   "To do what a mundane artist could do in a season adds +6 to the Ease Factor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Flourishes",
+  "heading": "Flourishes",
+  "line": 2553,
+  "endLine": 2565,
+  "category": "magic",
+  "topic": "Artistic magic (Finesse)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lets artistic magi vary their sigil with cosmetic flourishes by concentrating, at a cost to the Finesse roll's Ease Factor.",
+  "quotes": [
+   "Attempting to create a flourish adds 3 to the Ease Factor for the spell's Intelligence + Finesse roll."
+  ],
+  "related": []
+ },
+ {
+  "title": "Crafting Items Using Rego Magic (Spell Levels by Material)",
+  "heading": "Crafting Items Using Rego Magic",
+  "line": 2566,
+  "endLine": 2581,
+  "category": "magic",
+  "topic": "Artistic magic (Finesse)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of base spell levels for Rego spells that make Individual-size items from raw materials at Personal Range and Momentary Duration.",
+  "quotes": [
+   "These levels are correct for all spells that make items of Individual size, at Personal Range, with Momentary Duration."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ease Factors for Creating and Crafting Objects",
+  "heading": "Ease Factors for Creating and Crafting Objects",
+  "line": 2584,
+  "endLine": 2600,
+  "category": "magic",
+  "topic": "Artistic magic (Finesse)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of Finesse Ease Factors by artistic task difficulty, with notes on the included magic adjustment and when Creo magic needs a roll.",
+  "quotes": [
+   "A character using Creo magic need not roll Finesse unless he desires the finished product to be of a quality higher than that represented by an Ease Factor of 9 on the following table."
+  ],
+  "related": []
+ },
+ {
+  "title": "Species",
+  "heading": "Species",
+  "line": 2606,
+  "endLine": 2616,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the four kinds of species (iconic, echoic, haptic, olfactory and gustative) that Imaginem magic manipulates and which sense each one reaches.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Level of Succes for Illusions",
+  "heading": "Level of Succes for Illusions",
+  "line": 2617,
+  "endLine": 2629,
+  "category": "magic",
+  "topic": "Artistic magic (Finesse)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A scale of Finesse results that says how much control a magus has over the details of an illusion, including how convincing a copy of a particular person is.",
+  "quotes": [
+   "The magus makes either a Perception + Finesse roll to copy something, or an Intelligence + Finesse roll to create an image without a model"
+  ],
+  "related": []
+ },
+ {
+  "title": "Finesse Bonuses and Penalties for Familiarity",
+  "heading": "Finesse Bonuses and Penalties for Familiarity",
+  "line": 2631,
+  "endLine": 2656,
+  "category": "magic",
+  "topic": "Artistic magic (Finesse)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the modifiers to the Finesse roll for creating, crafting or simulating objects, depending on how familiar the magus is with the simile of the object.",
+  "quotes": [
+   "The Finesse roll for using magic to create, craft, or simulate objects is adjusted by familiarity with the simile in the following ways."
+  ],
+  "related": []
+ },
+ {
+  "title": "Species Magic: New Targets for Species",
+  "heading": "Species Magic Example",
+  "line": 2658,
+  "endLine": 2674,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how Muto spells treat species as a slightly unnatural substance requiring an Imaginem requisite, and defines the Individual, Part and Group Targets used for species, with an example spell.",
+  "quotes": [
+   "The following Targets are used for species, supplementing those found in the core rulebook."
+  ],
+  "related": []
+ },
+ {
+  "title": "Additional, Minor Senses",
+  "heading": "Additional, Minor Senses",
+  "line": 2676,
+  "endLine": 2686,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes proprioception, balance and pain as internal senses that Mentem can target and Corpus can attack, and says how they count for base spell levels.",
+  "quotes": [
+   "Pain, proprioception and balance are treated as mental capabilities with regard to base levels for spellcasting given in the core rulebook."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mimicry: Making Illusionary Objects",
+  "heading": "Mimicry: Making Illusionary Objects",
+  "line": 2699,
+  "endLine": 2701,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes mimicry, the standard Hermetic illusion that sheds natural, non-magical species of a created object, needing little Finesse and not being resisted by the Parma Magica.",
+  "quotes": [
+   "Mimics are not resisted by the Parma Magica, because their species are not magical."
+  ],
+  "related": []
+ },
+ {
+  "title": "Transparency (Destroying Species Before They Reach a Viewer)",
+  "heading": "Transparency",
+  "line": 2707,
+  "endLine": 2717,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for illusions of transparency that hide an object from one viewer: the base level, the Individual Target used, the Perception + Finesse roll and a table of Ease Factor modifiers by size of the hidden object.",
+  "quotes": [
+   "Casting an illusion of transparency requires a Perception + Finesse roll against an Ease Factor of 6.",
+   "Transparencies use the Individual Target to represent the stream of species between the hidden object and observer."
+  ],
+  "related": [
+   "ArM5 p.146 Perdo Imaginem"
+  ]
+ },
+ {
+  "title": "Macrotures: Illusions of Proximity to the Organ of Perception",
+  "heading": "Macrotures: Illusions of Proximity to the Organ of Perception",
+  "line": 2757,
+  "endLine": 2759,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes macrotures, images magnified beyond what the eye can do by forcing species to strike the eye less concentrated, and the uses magi find for them.",
+  "quotes": [
+   "These are already discussed in the Intellego Imaginem guidelines in ArM5 (base level 3)."
+  ],
+  "related": [
+   "ArM5 Intellego Imaginem guidelines"
+  ]
+ },
+ {
+  "title": "Synaesthesia: Switching Organs of Perception",
+  "heading": "Synaesthesia: Switching Organs of Perception",
+  "line": 2761,
+  "endLine": 2767,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains synaesthetic illusions that alter species so a stronger sense perceives them, the limit that external-sense species changed into internal-sense ones have no effect, and the base level for such transformations.",
+  "quotes": [
+   "Spells that transform the species that trigger one sense into those that trigger another have a base level of 2."
+  ],
+  "related": []
+ },
+ {
+  "title": "Anamorphs",
+  "heading": "Anamorphs",
+  "line": 2803,
+  "endLine": 2829,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for shapeless illusions that exploit the viewer's tendency to fill in details: a Perception + Awareness roll for the victim against a computed Ease Factor, a table of outcomes by margin, the base level, and the penalty for fooling extra senses.",
+  "quotes": [
+   "Victim's Perception Ease Factor: die + value of dominant, active Personality Trait + caster's Perception + caster's Finesse",
+   "As images that affect a single sense, they have a base level of 1."
+  ],
+  "related": []
+ },
+ {
+  "title": "Anamorph Example",
+  "heading": "Anamorph Example",
+  "line": 2831,
+  "endLine": 2840,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A worked example of the anamorph rules showing how the victim's Ease Factor is totalled and how the guard's Perception + Awareness result is read.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Created Emotional Bias",
+  "heading": "Created Emotional Bias",
+  "line": 2842,
+  "endLine": 2848,
+  "category": "magic",
+  "topic": "Mentem magic guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidelines for spells that cloud a mind with emotion as an artificial Personality Trait, how extreme and milder emotions are resisted, and base levels for directed, undirected and class-directed emotions.",
+  "quotes": [
+   "Spells that create extreme emotions can be resisted with a roll of any opposed Personality Trait against an Ease Factor of 9.",
+   "Spells that create milder emotions are resisted by a roll against an Ease Factor of (4 + the score of the artificial Personality Trait)"
+  ],
+  "related": [
+   "ArM5 p.148 Panic of the Trembling Heart",
+   "ArM5 p.148 Rising Ire"
+  ]
+ },
+ {
+  "title": "Diminished Mental Capability",
+  "heading": "Diminished Mental Capability",
+  "line": 2850,
+  "endLine": 2869,
+  "category": "magic",
+  "topic": "Mentem magic guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Extends the Perdo Mentem guideline for destroying a mental capacity with a list of other capacities a spell can inhibit.",
+  "quotes": [
+   "This has a base level of 4, noted on page 150 of ArM5."
+  ],
+  "related": [
+   "ArM5 p.150 Trust of Childlike Faith"
+  ]
+ },
+ {
+  "title": "Miniatures: Tricks Using Perspective",
+  "heading": "Miniatures: Tricks Using Perspective",
+  "line": 2877,
+  "endLine": 2892,
+  "category": "magic",
+  "topic": "Species and perception",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for miniatures, small illusions that send species in one direction to fake a larger scene or fool a single viewer: the extra magnitude, the Perception + Finesse roll, and a table of Ease Factor modifiers.",
+  "quotes": [
+   "Most miniatures are one magnitude higher than the base level given by the table on page 144 of ArM5.",
+   "A miniature's caster must make a Perception + Finesse roll against an Ease Factor of 9 to successfully create the illusion."
+  ],
+  "related": [
+   "ArM5 p.144 Imaginem guidelines"
+  ]
+ },
+ {
+  "title": "States of Consciousness",
+  "heading": "States of Consciousness",
+  "line": 2894,
+  "endLine": 2908,
+  "category": "magic",
+  "topic": "Mentem magic guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guideline for Rego Mentem spells that alter a target's mental state, with a list of further states (animalist, anaesthetic, daydreaming, dreaming, self-aware, somnambulistic, unconscious) that can be targeted like the core examples.",
+  "quotes": [
+   "These spells have a base level of 4 (ArM5, page 151)."
+  ],
+  "related": [
+   "ArM5 p.151 Call to Slumber",
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Altering Thoughts",
+  "heading": "Altering Thoughts",
+  "line": 2962,
+  "endLine": 2966,
+  "category": "magic",
+  "topic": "Mentem magic guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that Mentem magic can target thoughts or the capacity to think, and that changing or destroying thoughts uses the same base levels as for memories.",
+  "quotes": [
+   "It is also possible to change and destroy thoughts, using the same base levels as for memories."
+  ],
+  "related": [
+   "ArM5 p.150 Tip of the Tongue"
+  ]
+ },
+ {
+  "title": "Memory",
+  "heading": "Memory",
+  "line": 2968,
+  "endLine": 2978,
+  "category": "magic",
+  "topic": "Memory magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces inscribed, procedural and episodic memories and what Hermetic magic can and cannot do with each, including that Abilities cannot be created by magic and episodic memories may give facts or a Lore success.",
+  "quotes": [
+   "The core rulebook assigns a base level of 5 to spells that create a single memory."
+  ],
+  "related": []
+ },
+ {
+  "title": "Procedural Memories",
+  "heading": "Procedural Memories",
+  "line": 2984,
+  "endLine": 2988,
+  "category": "magic",
+  "topic": "Memory magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Procedural memories are the sequences behind physical Abilities used without thought; Hermetic magic can target but not create them, and rare inherited procedural memory is modelled with Virtues.",
+  "quotes": [
+   "Hermetic magic may target procedural memories, but cannot create them."
+  ],
+  "related": []
+ },
+ {
+  "title": "Episodic Memories",
+  "heading": "Episodic Memories",
+  "line": 2990,
+  "endLine": 3003,
+  "category": "magic",
+  "topic": "Memory magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes episodic memories and gives the Intelligence + Finesse roll that sets how detailed and convincing a created episodic memory is, with results from botch to success by 9 or more.",
+  "quotes": [
+   "The level of detail in an episodic memory is dependent on an Intelligence + Finesse roll against an Ease Factor of 6."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Memorization of Created Knowledge",
+  "heading": "The Memorization of Created Knowledge",
+  "line": 3043,
+  "endLine": 3047,
+  "category": "magic",
+  "topic": "Memory magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how a target can retain a created thought or memory after the spell expires by using it to build episodic memories, and the time that takes and its imprecision.",
+  "quotes": [
+   "This is not an effective teaching aid, because it requires an hour of work for each image or significant cluster of facts to fix itself in memory."
+  ],
+  "related": []
+ },
+ {
+  "title": "Other Tricks of Memory (Storage and Inclinations)",
+  "heading": "Other Tricks of Memory",
+  "line": 3077,
+  "endLine": 3083,
+  "category": "magic",
+  "topic": "Memory magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives spell guidelines for turning a memory or emotion into a solid object and for Rego Mentem inclinations such as belief or lack of interest.",
+  "quotes": [
+   "The base level of this is 5, and it requires a Requisite for the final form of the memory."
+  ],
+  "related": [
+   "ArM5 pp.149-151 Mentem guidelines"
+  ]
+ },
+ {
+  "title": "Beloved Rivals (Tytalan Formal Rivalry)",
+  "heading": "Beloved Rivals",
+  "line": 3410,
+  "endLine": 3422,
+  "category": "houses",
+  "topic": "House Tytalus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tytalus",
+  "summary": "Describes the Tytalan custom of formally declaring a lifelong rivalry, how it is declared and what it commits the rivals to, and the formal modes of address that tell other Tytali not to interfere.",
+  "quotes": [
+   "Beloved Rivals most commonly exist between master and pupil, but could potentially exist between any pair of Tytali who have sufficient cause."
+  ],
+  "related": [
+   "Beloved Rival Flaw"
+  ]
+ },
+ {
+  "title": "Eristic Moots",
+  "heading": "Eristic Moots",
+  "line": 3424,
+  "endLine": 3448,
+  "category": "houses",
+  "topic": "House Tytalus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tytalus",
+  "summary": "Explains the eristic moot, a public dispute between Tytalan magi: who may attend, how the permitted weapons (debate, combat, certamen, magic) are agreed in advance, and the two special moots, the Apprentice's Gauntlet and the choice of a new Primus.",
+  "quotes": [
+   "By convention, the minimum attendance for an eristic moot is five"
+  ],
+  "related": [
+   "The Fine Art of Debate"
+  ]
+ },
+ {
+  "title": "Tytalan Apprenticeship",
+  "heading": "Apprenticeship",
+  "line": 3458,
+  "endLine": 3477,
+  "category": "houses",
+  "topic": "House Tytalus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tytalus",
+  "summary": "Describes how House Tytalus trains apprentices, from the education before opening the Arts through the harsh years of training and the Book of Instruction, and what happens to apprentices who fail to react to it.",
+  "quotes": [
+   "During the next 15 years, the apprentice's life is exceptionally hard."
+  ],
+  "related": [
+   "Failed Apprentice Social Virtue",
+   "Book of Instruction"
+  ]
+ },
+ {
+  "title": "The Apprentice's Gauntlet",
+  "heading": "The Apprentice's Gauntlet",
+  "line": 3499,
+  "endLine": 3503,
+  "category": "houses",
+  "topic": "House Tytalus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tytalus",
+  "summary": "How a Tytalan apprenticeship ends: the apprentice must force his master to accept him as a magus in an eristic moot, with consequences (Self Confident, Weak Parens, Tormenting Master) depending on how and when the Gauntlet is passed.",
+  "quotes": [
+   "The apprentice passes his Gauntlet if he can make his master accept him as an equal.",
+   "An apprentice who succeeds in killing his master at any point in his apprenticeship is elevated to the status of magus immediately, regardless of the state of his training."
+  ],
+  "related": [
+   "ArM5 p.107 Gauntlet"
+  ]
+ },
+ {
+  "title": "Joining House Tytalus",
+  "heading": "Joining House Tytalus",
+  "line": 3505,
+  "endLine": 3513,
+  "category": "houses",
+  "topic": "House Tytalus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tytalus",
+  "summary": "Explains how a magus of another House or a hedge wizard can become Tytalus by forcing a Tytalan magus to accept him, that dual membership is allowed only here, and how a magus leaves the House.",
+  "quotes": [
+   "Of course, since House Tytalus is the only one of the 12 Houses that permit dual membership"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, House Guernicus"
+  ]
+ },
+ {
+  "title": "Tytalan Cabals",
+  "heading": "Cabals",
+  "line": 3519,
+  "endLine": 3533,
+  "category": "houses",
+  "topic": "House Tytalus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tytalus",
+  "summary": "Describes how Tytalan cabals are formed and run: anonymous invitations, disguised attendance, an inaugural meeting, consensus tasking and closed membership.",
+  "quotes": [
+   "A cabal is usually initiated by a single magus, who decides that he needs support in completing a specific goal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Double Agents and Hostile Takeovers",
+  "heading": "Double Agents and Hostile Takeovers",
+  "line": 3623,
+  "endLine": 3627,
+  "category": "social",
+  "topic": "Agents and agencies",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Extends the Appendix agent rules: recruiting a rival's agent as a double or triple agent, and taking over a whole agency by impersonating its principal to use the Bond Strength he has built.",
+  "quotes": [
+   "as soon as the Resistance of the agent reaches zero, he becomes a double agent, working for both agencies, but most loyal to the principal with the highest Bond Strength."
+  ],
+  "related": [
+   "Appendix: Agents"
+  ]
+ },
+ {
+  "title": "Short-Term Disguises",
+  "heading": "Short-Term Disguises",
+  "line": 3647,
+  "endLine": 3653,
+  "category": "social",
+  "topic": "Disguises and personae",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for mundane disguises using the Guile Ability: an Intelligence + Guile roll made by the storyguide against a base Ease Factor, and an opposed Presence + Guile versus Intelligence + Folk Ken roll when interacting with someone.",
+  "quotes": [
+   "To determine the success of a disguise, make an Intelligence + Guile roll, with a base Ease Factor of 9, modified according to the magnitude of the desired change, as laid out in the nearby insert.",
+   "Disguise Roll: Int + Guile + stress die vs. Ease Factor 9 + modifiers"
+  ],
+  "related": []
+ },
+ {
+  "title": "Deep Cover Disguises",
+  "heading": "Deep Cover Disguises",
+  "line": 3655,
+  "endLine": 3705,
+  "category": "social",
+  "topic": "Disguises and personae",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for long-term false identities: establishing a Reputation for the cover, how that Reputation reduces later Disguise rolls and grows with experience, the Virtue limits on roles, how it offsets the social penalty of The Gift, and how it fades when dormant.",
+  "quotes": [
+   "This act grants a new Reputation as the disguised individual, at a score of 1 (see ArM5, page 167).",
+   "A character therefore subtracts his Reputation from the penalty to social rolls caused by The Gift, but only when dealing with those with whom he has regular contact."
+  ],
+  "related": [
+   "ArM5 p.167 Reputation",
+   "ArM5 p.75 The Gift",
+   "Mistaken Identity Flaw"
+  ]
+ },
+ {
+  "title": "Disguise Roll Modifiers",
+  "heading": "Disguise Roll Modifiers",
+  "line": 3659,
+  "endLine": 3668,
+  "category": "social",
+  "topic": "Disguises and personae",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of modifiers to the Disguise roll's Ease Factor for changes of social status, physical appearance or sex, and for how little preparation was possible.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "New Supernatural Ability: Persona",
+  "heading": "New Supernatural Ability: Persona\\*",
+  "line": 3679,
+  "endLine": 3687,
+  "category": "houses",
+  "topic": "Disguises and personae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Persona",
+  "summary": "Defines the Persona Supernatural Ability, which lets a character change into a number of full alternate identities by a roll, and what does and does not change when he does.",
+  "quotes": [
+   "Adopting a different identity requires one round of concentration and a roll of Stamina + Persona against an Ease Factor of 9."
+  ],
+  "related": [
+   "Persona Virtue"
+  ]
+ },
+ {
+  "title": "Hermetic Disguises and Personae",
+  "heading": "Hermetic Disguises and Personae",
+  "line": 3689,
+  "endLine": 3693,
+  "category": "order",
+  "topic": "Disguises and personae",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Notes on how the Code of Hermes treats magi who keep a disguise in another covenant or impersonate Quaesitores and Redcaps, including that magical impersonation can be prosecuted as scrying.",
+  "quotes": [
+   "This magus was successfully prosecuted for scrying, because he used magic to take the appearance of the Redcap"
+  ],
+  "related": []
+ },
+ {
+  "title": "Personae (Persona Supernatural Virtue)",
+  "heading": "Personae",
+  "line": 3707,
+  "endLine": 3709,
+  "category": "houses",
+  "topic": "Disguises and personae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Persona",
+  "summary": "Explains how a magus with the Persona Virtue gains personae with a starting Reputation, how Persona experience carries over to their Reputations, what a persona cannot do, and how the magic is detected and counted as an equivalent spell level.",
+  "quotes": [
+   "at the moment of transformation it can be detected as if it were a Muto Corpus spell of 10th level, but for every sunset or sunrise that passes after adopting the persona, the magnitude drops by one.",
+   "the equivalent spell level is equal to five times the score in the Ability"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.71"
+  ]
+ },
+ {
+  "title": "The Fine Art of Debate",
+  "heading": "The Fine Art of Debate",
+  "line": 3711,
+  "endLine": 3717,
+  "category": "social",
+  "topic": "Debate",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the debate rules, which have two parts: testing the strength of each side's position, then converting the result into the opinions of any observers.",
+  "quotes": [
+   "The rules given below present a mechanic for settling an argument through debate."
+  ],
+  "related": []
+ },
+ {
+  "title": "Resolving Differences (Debate Rounds)",
+  "heading": "Resolving Differences",
+  "line": 3719,
+  "endLine": 3771,
+  "category": "social",
+  "topic": "Debate",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The core debate procedure, modelled on certamen: each round the debaters pick an Attack Ability and Defense Ability and compare six totals, with debate fatigue, a table of attack modifiers by tactic and a worked example.",
+  "quotes": [
+   "Attack Total: Communication + Attack Ability + attack modifier + stress die",
+   "Defense Total: Intelligence + Defense Ability + stress die",
+   "Weakening Total: Presence + Attack Advantage"
+  ],
+  "related": [
+   "ArM5 Certamen"
+  ]
+ },
+ {
+  "title": "Winning Arguments",
+  "heading": "Winning Arguments",
+  "line": 3773,
+  "endLine": 3813,
+  "category": "social",
+  "topic": "Debate",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How to turn the result of a debate into votes from observers: divide them into factions, compute Argument Strength from Fatigue Levels lost, and read the share of neutral and hostile votes won from a table, with a worked example.",
+  "quotes": [
+   "Argument Strength: Difference between the number of Fatigue Levels lost",
+   "If a debate ends because one opponent's argument loses 5 or more Fatigue Levels, then the winner is clear."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Power of Truth",
+  "heading": "The Power of Truth",
+  "line": 3777,
+  "endLine": 3781,
+  "category": "social",
+  "topic": "Debate",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional modifiers to debate: starting fatigued when defending a patently flawed thesis, and a penalty from the Truthful Personality Trait when knowingly arguing a falsehood.",
+  "quotes": [
+   "If a character knows that the side he is taking is false, then his Defense Totals are penalized by his Truthful Personality Trait, if any."
+  ],
+  "related": []
+ },
+ {
+  "title": "Using Certamen Instead of Debate",
+  "heading": "Using Certamen Instead of Debate",
+  "line": 3799,
+  "endLine": 3801,
+  "category": "social",
+  "topic": "Debate",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Says when certamen can replace a formal debate at Tribunal and how to work out Argument Strength when a certamen settles only one issue in a larger case.",
+  "quotes": [
+   "In this situation, simply use the actual Fatigue Levels lost rather than debating Fatigue Levels when calculating the Argument Strength of the winner."
+  ],
+  "related": [
+   "ArM5 Certamen"
+  ]
+ },
+ {
+  "title": "Other Uses for the Debate Rules",
+  "heading": "Other Uses for the Debate Rules",
+  "line": 3815,
+  "endLine": 3817,
+  "category": "social",
+  "topic": "Debate",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Applies the voting system to mundane courts and English juries, including how jurors are assigned and how The Gift affects a magus's Defense Total.",
+  "quotes": [
+   "If a character with The Gift is on trial, only 10% of the jurors begin the case sympathetic towards that character's position.",
+   "Furthermore, the social penalty of The Gift is applied to the Defense Total of a magus when debating with mundanes before witnesses."
+  ],
+  "related": [
+   "ArM5 p.75 The Gift"
+  ]
+ },
+ {
+  "title": "Case Rulings (Debate at Tribunal)",
+  "heading": "Case Rulings",
+  "line": 3819,
+  "endLine": 3832,
+  "category": "order",
+  "topic": "Debate",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a contested Tribunal case is debated, including the use of testimonies to boost Attack or Defense Totals once each, with a table of bonuses by type of testimony.",
+  "quotes": [
+   "Each testimony possessed by an opponent may be used once per debate to support an argument."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, House Guernicus"
+  ]
+ },
+ {
+  "title": "Proposal Cases (Debate at Tribunal)",
+  "heading": "Proposal Cases",
+  "line": 3834,
+  "endLine": 3845,
+  "category": "order",
+  "topic": "Debate",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a magus proposing a clarification, addition or alteration to the Code is debated against the whole Tribunal, with a table of penalties to Argument Strength by type of case.",
+  "quotes": [
+   "Once all the points have been debated, the proposer's Argument Strength is used to determine the margin of victory in the usual way."
+  ],
+  "related": []
+ },
+ {
+  "title": "Leper Magus (Vis from Leprotic Wounds)",
+  "heading": "Leper Magus",
+  "line": 3863,
+  "endLine": 3867,
+  "category": "houses",
+  "topic": "Leper magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tytalus; Virtue: Leper Magus (requires Flaw: Leprosy)",
+  "summary": "A Major Hermetic Virtue whose extended mechanic lets a leper magus take a wound to generate vis for one spell or lab activity, with limits on recovery, aging and how often it can be used.",
+  "quotes": [
+   "By accepting a Light Wound, the magus can infuse a single magical working with three pawns of vis, of any Technique or Form.",
+   "A wound taken in this fashion must heal completely before the power may be used again, and any character using this power more than three times a year must make an extra Aging roll in winter."
+  ],
+  "related": [
+   "Leprosy Flaw",
+   "Life Boost"
+  ]
+ },
+ {
+  "title": "Titanoi (Mystery Cult of House Tytalus)",
+  "heading": "Titanoi",
+  "line": 3909,
+  "endLine": 3919,
+  "category": "mysteries",
+  "topic": "Titanoi",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tytalus; Titanoi Mystery Cult",
+  "summary": "Describes the Titanoi cult of spirit summoners: the Major Magical Focus in Spirits and Abilities taught in apprenticeship, and the Mystery Virtues the cult can initiate.",
+  "quotes": [
+   "The cult can Initiate the following Virtues: Hermetic Theurgy, Invocation Magic, Names of Power, Theurgic Spirit Familiar, and Student of Magic Realm."
+  ],
+  "related": [
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Leper Magi (Magi Aegroti)",
+  "heading": "Leper Magi",
+  "line": 3921,
+  "endLine": 3939,
+  "category": "houses",
+  "topic": "Leper magi",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tytalus; Virtue: Leper Magus; Flaw: Leprosy",
+  "summary": "Describes the lineage of leper magi, how later generations are found among lepers, their place in the Order, and the Virtues, Flaws and Magical Focus all of them have.",
+  "quotes": [
+   "All magi aegroti must buy the Leper Magus Virtue and the Leprosy Flaw."
+  ],
+  "related": [
+   "City & Guild"
+  ]
+ },
+ {
+  "title": "The Curse of Leprosy",
+  "heading": "The Curse of Leprosy",
+  "line": 3927,
+  "endLine": 3935,
+  "category": "setting",
+  "topic": "Leper magi",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Flaw: Leprosy",
+  "summary": "Explains leprosy as a Divine Curse in Mythic Europe and the legal and social restrictions the Office of the Seclusion places on lepers.",
+  "quotes": [
+   "It cannot be cured, and is only contracted by those who are spiritually impure."
+  ],
+  "related": [
+   "City & Guild, Chapter 1: Towns & Cities, Disease"
+  ]
+ },
+ {
+  "title": "Infernal Taint (Goetic Arts in the Titanoi)",
+  "heading": "Infernal Taint",
+  "line": 3941,
+  "endLine": 3945,
+  "category": "mysteries",
+  "topic": "Titanoi",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Titanoi Mystery Cult",
+  "summary": "Optional storyguide rule that the Titanoi mystagogues can also initiate the Goetic Arts as Major Mystery Virtues and teach Goetic Spell Mastery, with the social and supernatural taint that carries.",
+  "quotes": [
+   "At the option of the storyguide, the Mystagogues of the Titanoi can also Initiate the Goetic Arts of Summoning, Ablating, Binding, and Commanding as Major Mystery Virtues, and teach Goetic Spell Mastery."
+  ],
+  "related": [
+   "Realms of Power: The Infernal, Chapter 11: Ars Goetia"
+  ]
+ },
+ {
+  "title": "Magic for the Debating Arena",
+  "heading": "Magic for the Debating Arena",
+  "line": 3955,
+  "endLine": 3959,
+  "category": "magic",
+  "topic": "Debate",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tytalus",
+  "summary": "Covers using magic during Tribunal debates, how the Order frowns on it, and how self-enhancing spells can add bonuses to particular debate Defense Totals.",
+  "quotes": [
+   "granting a +3 bonus to all debating Defense Totals that use the Leadership Ability"
+  ],
+  "related": [
+   "ArM5 p.145 Aura of Ennobled Presence",
+   "Resolving Differences"
+  ]
+ },
+ {
+  "title": "The Magic of the Titanoi (Commanding Spirits and Daimons)",
+  "heading": "The Magic of the Titanoi",
+  "line": 4086,
+  "endLine": 4092,
+  "category": "beings",
+  "topic": "Spirits and Daimons",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how Form and Mentem spells command spirits, and how a Daimon can send an Aspect to a magus who forms a pact with it through a ritual spell.",
+  "quotes": [
+   "Spells of a specific Form can command any spirit tied to that Form, for example, Ignem can command any fiery spirit."
+  ],
+  "related": [
+   "The Mysteries Revised Edition",
+   "ArM5 p.151 Rego Mentem"
+  ]
+ },
+ {
+  "title": "New Corpus Guidelines",
+  "heading": "New Corpus Guidelines",
+  "line": 4182,
+  "endLine": 4186,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A new Creo Corpus spell guideline for improving all of a target's wounds at once.",
+  "quotes": [
+   "Level 25: Improve all wounds by one level of severity."
+  ],
+  "related": []
+ },
+ {
+  "title": "House Ex Miscellanea: Compulsory Tradition Virtues and Flaws",
+  "heading": "Magic",
+  "line": 4264,
+  "endLine": 4274,
+  "category": "houses",
+  "topic": "House Ex Miscellanea",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea",
+  "summary": "Every magus Ex Miscellanea gets a compulsory Major non-Hermetic Virtue, Major Hermetic Flaw and Minor Hermetic Virtue for his tradition, in addition to the normal allocation; this section explains what each represents and which Virtues and Flaws are typical.",
+  "quotes": [
+   "All members of this House have their particular tradition represented by a Major non-Hermetic Virtue, a Major Hermetic Flaw, and a Minor Hermetic Virtue (ArM5, page 30).",
+   "Note that Hermetic Virtues and Flaws, including the ones gained by being a member of House Ex Miscellanea, affect only the exercise of Hermetic magic, not non-Hermetic powers."
+  ],
+  "related": [
+   "ArM5 p.30 House Virtues"
+  ]
+ },
+ {
+  "title": "Supernatural Abilities (Designing Tradition Virtues)",
+  "heading": "Supernatural Abilities",
+  "line": 4292,
+  "endLine": 4296,
+  "category": "traditions",
+  "topic": "Designing Supernatural Abilities",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea or storyguide design",
+  "summary": "Introduces the system for designing a new Major Supernatural Virtue to be the mainstay of a tradition's magic, usable for player magi Ex Miscellanea and for non-player characters.",
+  "quotes": [
+   "This section provides guidance on how a troupe can design a new Major Supernatural Virtue to be the mainstay of the magic of a tradition in House"
+  ],
+  "related": []
+ },
+ {
+  "title": "Supernatural Abilities: The Basics (Casting and Penetration Totals)",
+  "heading": "The Basics",
+  "line": 4298,
+  "endLine": 4322,
+  "category": "traditions",
+  "topic": "Designing Supernatural Abilities",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability",
+  "summary": "How a Supernatural Ability is used: the storyguide sets an Ease Factor, the player rolls a Characteristic plus the Ability, penetration and equivalent spell level are worked out, and raw vis can boost the total.",
+  "quotes": [
+   "Casting Total: Characteristic + Ability + aura modifier + die roll",
+   "Penetration Total: Casting Total + Penetration Bonus \u2013 Ease Factor",
+   "Equivalent Spell Level: 5 x Ability"
+  ],
+  "related": [
+   "ArM5 p.84 Penetration",
+   "ArM5 p.82 Concentration"
+  ]
+ },
+ {
+  "title": "Accelerated Abilities",
+  "heading": "Accelerated Abilities",
+  "line": 4304,
+  "endLine": 4308,
+  "category": "traditions",
+  "topic": "Designing Supernatural Abilities",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Accelerated Supernatural Ability",
+  "summary": "Introduces Accelerated Abilities, Supernatural Abilities that advance on the Art experience scale and are compared with high Ease Factors such as Mights or spell levels, and lists the few ways they differ from standard Abilities.",
+  "quotes": [
+   "The only other difference between a Supernatural Accelerated Ability and a Supernatural Ability is that the equivalent spell level for an Accelerated Ability is equal to the Casting Total, not (Ability x 5)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Designing a Supernatural Ability",
+  "heading": "Designing a Supernatural Ability",
+  "line": 4324,
+  "endLine": 4342,
+  "category": "traditions",
+  "topic": "Designing Supernatural Abilities",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea or storyguide design",
+  "summary": "How to design a Major Supernatural Ability: describe its effect by Range, Duration, Target and base guideline, fix three parameters and let one vary with the Ability score or the Ease Factor achieved, and specify its non-Hermetic invocation.",
+  "quotes": [
+   "All Supernatural Abilities designed by these rules are Major Supernatural Virtues.",
+   "All Supernatural Abilities fix three of these parameters as unchangeable, and allow one to vary according to either the score in the Ability or the Ease Factor achieved by the Casting Total."
+  ],
+  "related": [
+   "ArM5 p.46 Minor Magical Focus",
+   "ArM5 p.65 Entrancement",
+   "ArM5 p.67 Shapeshifter"
+  ]
+ },
+ {
+  "title": "Summon Animals (Supernatural Ability)",
+  "heading": "Summon Animals",
+  "line": 4348,
+  "endLine": 4362,
+  "category": "traditions",
+  "topic": "Supernatural Abilities (Ex Miscellanea)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Summon Animals",
+  "summary": "An example Supernatural Ability that calls mundane animals from a distance; the Ability score determines how many arrive, and a Communication roll sets how fast they come.",
+  "quotes": [
+   "He must then make a Communication + Summon Animals roll against an Ease Factor of 9."
+  ],
+  "related": []
+ },
+ {
+  "title": "Whistle Up the Wind (Supernatural Ability)",
+  "heading": "Whistle Up the Wind",
+  "line": 4368,
+  "endLine": 4380,
+  "category": "traditions",
+  "topic": "Supernatural Abilities (Ex Miscellanea)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Whistle Up the Wind",
+  "summary": "An example Supernatural Ability that creates winds with a Stamina roll, with a table of Ease Factors by wind strength and rules for changing the wind later.",
+  "quotes": [
+   "To invoke the wind, the character literally has to whistle, and makes a Stamina + Whistle Up the Wind roll, against the Ease Factor listed in the table below."
+  ],
+  "related": [
+   "ArM5 p.82 Concentration"
+  ]
+ },
+ {
+  "title": "Control Fertility (Supernatural Ability)",
+  "heading": "Control Fertility",
+  "line": 4382,
+  "endLine": 4394,
+  "category": "traditions",
+  "topic": "Supernatural Abilities (Ex Miscellanea)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Control Fertility",
+  "summary": "An example Supernatural Ability that enhances or withdraws fertility in plants, animals and people; the Ability score sets the possible effects and a Presence roll sets how long they last.",
+  "quotes": [
+   "She must then make a Presence + Fertility roll against an Ease Factor of 9 to affect the target with the chosen power for a month"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magi Ex Miscellanea Without a Major Supernatural Ability",
+  "heading": "Magi Ex Miscellanea Without a Major Supernatural Ability",
+  "line": 4396,
+  "endLine": 4398,
+  "category": "houses",
+  "topic": "House Ex Miscellanea",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea",
+  "summary": "Allows the compulsory Major non-Hermetic Virtue of a magus Ex Miscellanea to be something other than a Supernatural Ability, and sets limits on designing such Virtues.",
+  "quotes": [
+   "New Supernatural Virtues that are not controlled by an Ability score should be designed following the rules for effects instilled into items, complete with uses per day, and should not exceed seventh magnitude."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magi Ex Miscellanea (Favored Ability)",
+  "heading": "Magi Ex Miscellanea",
+  "line": 4404,
+  "endLine": 4406,
+  "category": "houses",
+  "topic": "Favored Abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea",
+  "summary": "Says that a House-Virtue Supernatural Ability counts as the magus's Favored Ability, so no Source Quality penalty from his Art scores applies when learning it after Hermetic training.",
+  "quotes": [
+   "If a Supernatural Ability is acquired as part of the apprenticeship of a magus Ex Miscellanea (that is, as his House Virtue), then this Ability should be considered to be his Favored Ability"
+  ],
+  "related": [
+   "ArM5 p.166 Source Quality"
+  ]
+ },
+ {
+  "title": "Favored Abilities",
+  "heading": "Favored Abilities",
+  "line": 4408,
+  "endLine": 4410,
+  "category": "traditions",
+  "topic": "Favored Abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Gifted character with Supernatural Abilities",
+  "summary": "Defines Favored Abilities, a group of Supernatural Abilities that do not penalize each other's Source Quality for learning, and states which Abilities are favored for magi Ex Miscellanea.",
+  "quotes": [
+   "Magi Ex Miscellanea treat the Hermetic Arts and the Supernatural Ability of their tradition as Favored Abilities."
+  ],
+  "related": [
+   "ArM5 p.166 Source Quality"
+  ]
+ },
+ {
+  "title": "Mythic Companions (Non-Hermetic Magicians)",
+  "heading": "Mythic Companions",
+  "line": 4412,
+  "endLine": 4414,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Mythic Companion",
+  "summary": "Describes Mythic Companions as non-Gifted characters who can fill the role of non-Hermetic magicians, with a Special Virtue that replaces The Gift and a Virtue point allowance based on Flaws taken.",
+  "quotes": [
+   "Instead, a Mythic Companion has a Special Virtue akin to The Gift, which grants a Minor Virtue at no cost, and then two Virtue points for every point of Flaw he takes."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.104"
+  ]
+ },
+ {
+  "title": "Magi Orbi",
+  "heading": "Magi Orbi",
+  "line": 4416,
+  "endLine": 4424,
+  "category": "houses",
+  "topic": "House Ex Miscellanea",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea (exile from another House)",
+  "summary": "How to create a magus orbus, an exile from another House who joined House Ex Miscellanea, built with the former House's rules but without its privileges and Mystery Cults, and with an Orbus Reputation.",
+  "quotes": [
+   "A magus orbus has a Hermetic Reputation as an Orbus at a score of 2, and probably avoids his former colleagues."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults pp.52, 73",
+   "Guardians of the Forests: The Rhine Tribunal pp.62-64"
+  ]
+ },
+ {
+  "title": "Gifted Companions",
+  "heading": "Gifted Companions",
+  "line": 4426,
+  "endLine": 4440,
+  "category": "creation",
+  "topic": "Gifted Companions",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea; The Gift",
+  "summary": "Step-by-step method for creating a Gifted hedge wizard who keeps a native tradition instead of Hermetic magic: take The Gift and Hermetic Magus status, build as a Companion with Arcane Abilities, and gain a Hedge Wizard Reputation.",
+  "quotes": [
+   "Take The Gift and Hermetic Magus Social Status Virtues.",
+   "Gain the Reputation Hedge Wizard 2 (Hermetic)"
+  ],
+  "related": [
+   "ArM5 p.36 The Gift",
+   "ArM5 p.166 Source Quality"
+  ]
+ },
+ {
+  "title": "Beast Masters (Ex Miscellanea Tradition)",
+  "heading": "Beast Masters",
+  "line": 4472,
+  "endLine": 4482,
+  "category": "traditions",
+  "topic": "House Ex Miscellanea traditions",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea; Beast Masters tradition",
+  "summary": "Overview of a tradition that summons and controls wild creatures, giving its compulsory Virtue and Flaw package and the required Virtues and Flaws that cut its free Flaw points.",
+  "quotes": [
+   "They therefore have only 8 points of Flaws available to them to buy another 8 points of Virtues.",
+   "**Major Non-Hermetic Virtue:** Summon Animals"
+  ],
+  "related": [
+   "Summon Animals"
+  ]
+ },
+ {
+  "title": "Damhadh-Duidsan (Ex Miscellanea Tradition)",
+  "heading": "Damhadh-Duidsan",
+  "line": 4484,
+  "endLine": 4496,
+  "category": "traditions",
+  "topic": "House Ex Miscellanea traditions",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea; Damhadh-Duidsan tradition",
+  "summary": "Overview of the Ogam rune tradition that curses enemies and steals their life, with its compulsory Virtue and Flaw package.",
+  "quotes": [
+   "**Major Non-Hermetic Virtue:** Shapechanging, Giant Blood, or Incantation"
+  ],
+  "related": [
+   "Realms of Power: The Infernal"
+  ]
+ },
+ {
+  "title": "Hermetic Haruspexes (Ex Miscellanea Tradition)",
+  "heading": "Hermetic Haruspexes",
+  "line": 4498,
+  "endLine": 4506,
+  "category": "traditions",
+  "topic": "House Ex Miscellanea traditions",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea; Hermetic Haruspexes tradition",
+  "summary": "Overview of the Roman tradition of divination by inspecting the entrails of sacrificed animals, with its compulsory Virtue and Flaw package and its susceptibility to Twilight.",
+  "quotes": [
+   "**Major Non-Hermetic Virtue:** Divination and Augury"
+  ],
+  "related": []
+ },
+ {
+  "title": "Karaites (Ex Miscellanea Tradition)",
+  "heading": "Karaites",
+  "line": 4508,
+  "endLine": 4518,
+  "category": "traditions",
+  "topic": "House Ex Miscellanea traditions",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea; Karaites tradition",
+  "summary": "Overview of the Karaite Jewish tradition of holy magic, which may join the Order only if it practises holy magic, with its compulsory Virtue and Flaw package.",
+  "quotes": [
+   "**Major Non-Hermetic Virtue:** Holy Magic"
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Malocchi (Ex Miscellanea Tradition)",
+  "heading": "Malocchi",
+  "line": 4520,
+  "endLine": 4530,
+  "category": "traditions",
+  "topic": "House Ex Miscellanea traditions",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea; Malocchi tradition",
+  "summary": "Overview of the Italian tradition of Entrancement through the gaze, with its compulsory Virtue and Flaw package and a required extra Virtue.",
+  "quotes": [
+   "As well as his free Virtues and Flaws, a maloccho must also take Piercing Gaze as a compulsory Virtue."
+  ],
+  "related": [
+   "Realms of Power: The Infernal (Hex)",
+   "ArM5 p.65 Entrancement"
+  ]
+ },
+ {
+  "title": "Scinnfolk (Gifted Companions Tradition)",
+  "heading": "Scinnfolk (Gifted Companions)",
+  "line": 4532,
+  "endLine": 4538,
+  "category": "traditions",
+  "topic": "House Ex Miscellanea traditions",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "The Gift; Scinnfolk tradition",
+  "summary": "Overview of the cunning-folk tradition of Gifted Companions who keep natural and faerie charms instead of Hermetic magic, with its Virtue and common Virtue and Flaw choices.",
+  "quotes": [
+   "**Major Non-Hermetic Virtue:** Fertility (free with The Gift)"
+  ],
+  "related": [
+   "Gifted Companions",
+   "Control Fertility"
+  ]
+ },
+ {
+  "title": "Tempestaria (Weather Witch Tradition)",
+  "heading": "Tempestaria (Weather Witch)",
+  "line": 4540,
+  "endLine": 4548,
+  "category": "traditions",
+  "topic": "House Ex Miscellanea traditions",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea; Tempestaria tradition",
+  "summary": "Overview of the weather-witch tradition whose magic exceeds Hermetic Auram and needs improvised sympathetic tools, with its compulsory Virtue and Flaw package.",
+  "quotes": [
+   "**Major Non-Hermetic Virtue:** Whistle Up the Wind (or similar Ability)"
+  ],
+  "related": [
+   "Whistle Up the Wind"
+  ]
+ },
+ {
+  "title": "Witches of Thessaly (Ex Miscellanea Tradition)",
+  "heading": "Witches of Thessaly",
+  "line": 4550,
+  "endLine": 4560,
+  "category": "traditions",
+  "topic": "House Ex Miscellanea traditions",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea; Witches of Thessaly tradition",
+  "summary": "Overview of the Thessalian tradition of sorcery, necromancy and curses, with its compulsory Virtue and Flaw package and a note on its suspicion of diabolism.",
+  "quotes": [
+   "**Major Non-Hermetic Virtue:** Summoning"
+  ],
+  "related": [
+   "Realms of Power: The Infernal"
+  ]
+ }
+]

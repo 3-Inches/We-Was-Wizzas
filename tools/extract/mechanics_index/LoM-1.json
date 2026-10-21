@@ -1,0 +1,2324 @@
+[
+ {
+  "title": "The Gratitude System",
+  "heading": "The Gratitude System",
+  "line": 520,
+  "endLine": 540,
+  "category": "social",
+  "topic": "Noble advancement",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An optional structured advancement system in which characters earn Gratitude points from their lord for service beyond their station, then redeem them for higher office, land or goods. The text lists how many points different kinds of story outcome are worth.",
+  "quotes": [
+   "Characters earn Gratitude points when they perform a service to their lord that is beyond that required by their station.",
+   "If the story requires the character to complete a feat that will be widely renowned for its difficulty"
+  ],
+  "related": [
+   "Patron Virtue"
+  ]
+ },
+ {
+  "title": "Advancement Requirements Table",
+  "heading": "Advancement Requirements Table",
+  "line": 546,
+  "endLine": 572,
+  "category": "social",
+  "topic": "Noble advancement",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of what a character needs, and what it costs the granting lord, to move between ranks such as serf, freeman, knight, bacheler, landed noble, banneret and baron, or to take an office. Notes explain how many heroic or exceptional services a promotion normally takes.",
+  "quotes": [
+   "Gratitude 10, marriage to suitable heiress, or claiming land during war, or being offered land that has returned to the lord.",
+   "Appointment as an officer to Greater Baron or higher requires Gratitude 10, Landed Noble (at minimum), Reputation for loyalty to the lord, vacancy in the office, and office-specific traits."
+  ],
+  "related": [
+   "Chapter Three: A Comparison of Titles"
+  ]
+ },
+ {
+  "title": "Retinue",
+  "heading": "Retinue",
+  "line": 576,
+  "endLine": 578,
+  "category": "social",
+  "topic": "Noble households",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the four parts of a magnate's household (family, military, clerical and menial) and gives typical household sizes by noble rank, useful for sizing a lord's following.",
+  "quotes": [
+   "Speaking loosely, the household of a lord of the manor averages 10, that of a landed knight 16, that of a banneret 24, that of a baron 40, and that of an earl 140."
+  ],
+  "related": []
+ },
+ {
+  "title": "A Random Method of Death",
+  "heading": "A Random Method of Death",
+  "line": 586,
+  "endLine": 588,
+  "category": "aging",
+  "topic": "Random lifespan and heirs",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An optional method for secretly rolling the age at which non-player characters die, so that lines of inheritance take unexpected turns, with adjustments for wartime. The text warns it is harsher than the standard aging rules.",
+  "quotes": [
+   "Assume that any child has a 25% chance of dying of natural causes before adulthood is reached.",
+   "assume a death age of 6 simple dice + 20 years"
+  ],
+  "related": []
+ },
+ {
+  "title": "A Random Method of Life",
+  "heading": "A Random Method of Life",
+  "line": 590,
+  "endLine": 592,
+  "category": "social",
+  "topic": "Random lifespan and heirs",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Companion method for a character waiting to inherit: check each person ahead of them for a new legitimate child, then check each child for a random age of death.",
+  "quotes": [
+   "Then roll a die for each, assuming that on average half of them do have a child."
+  ],
+  "related": []
+ },
+ {
+  "title": "Designing a Family",
+  "heading": "Designing a Family",
+  "line": 602,
+  "endLine": 620,
+  "category": "creation",
+  "topic": "Noble family generation",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How a player may pick or randomly generate siblings and bastards for a noble character, set their birth order, and roll each sibling's Loyal Personality Trait toward the head of the family. Explains how primogeniture and military inclination change those loyalty results.",
+  "quotes": [
+   "roll two dice of different colors and halve each result",
+   "The maximum score is 3 and negative scores are permitted."
+  ],
+  "related": [
+   "ArM5 p.31 Arts table"
+  ]
+ },
+ {
+  "title": "Inheritance",
+  "heading": "Inheritance",
+  "line": 622,
+  "endLine": 632,
+  "category": "social",
+  "topic": "Inheritance and family",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how land passes to sons, nominated heirs, appanages or daughters in different parts of Mythic Europe, and the measures nobles use to limit fratricide.",
+  "quotes": [
+   "The average noble family fails to provide a male heir every fourth generation, so this churning of lands is common."
+  ],
+  "related": []
+ },
+ {
+  "title": "Marriage and Dowries",
+  "heading": "Marriage and Dowries",
+  "line": 634,
+  "endLine": 644,
+  "category": "social",
+  "topic": "Marriage and dowries",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How noble marriages are arranged, what the Church requires, and how dowries and widows' portions are handled in Italy, France and England, with a game-ready rule of thumb for a widow's share.",
+  "quotes": [
+   "For game purposes, assume this is one third of his estate, and that she likely loses this property if she remarries."
+  ],
+  "related": []
+ },
+ {
+  "title": "Size of Dowries",
+  "heading": "Size of Dowries",
+  "line": 654,
+  "endLine": 671,
+  "category": "social",
+  "topic": "Marriage and dowries",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A checklist of circumstances that push a bride's dowry down, with the note that dowries are more generous when those statements are untrue and that an exceptional bride may even earn her family a dower.",
+  "quotes": [
+   "Conversely, dowries are more generous if any of these statements are untrue."
+  ],
+  "related": []
+ },
+ {
+  "title": "Military",
+  "heading": "Military",
+  "line": 646,
+  "endLine": 695,
+  "category": "social",
+  "topic": "Mesnie",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covers the household knights (the mesnie) of a lord, the status of a bacheler and a carissimus, and how mesnie loyalty works in practice. Includes Intelligence + Intrigue rolls to recall a mesnie's common features or find a lord who favors a skill.",
+  "quotes": [
+   "A character may make an Intelligence + Intrigue roll against an Ease Factor of 6 to recall if the mesnie members of a lord with whom he is interacting have a common feature.",
+   "A knight becomes a bacheler by being offered a place in a mesnie."
+  ],
+  "related": [
+   "Advancement Requirements Table"
+  ]
+ },
+ {
+  "title": "Criminals",
+  "heading": "Criminals",
+  "line": 705,
+  "endLine": 732,
+  "category": "social",
+  "topic": "Criminals and agents",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Abstract rules for nobles hiring criminals: Intrigue is used to hire them, their results can be resolved without playing a scene, and typical prices are given for assassination, beatings, bribes, kidnapping, sabotage, spying and treachery. A table gives the added difficulty for different kinds of sabotage.",
+  "quotes": [
+   "the hiring character rolls Communication + Intrigue and uses the result in place of the proxy's roll, to determine the degree of success",
+   "Sabotage requires a Dexterity + Stealth + stress roll that exceeds the Perception + Awareness + stress roll of the most skilled sentry guarding the facility that the agent seeks to harm."
+  ],
+  "related": [
+   "Agents"
+  ]
+ },
+ {
+  "title": "Offices",
+  "heading": "Offices",
+  "line": 734,
+  "endLine": 742,
+  "category": "social",
+  "topic": "Noble offices",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Temporal Influence",
+  "summary": "Explains what an officer of a lord is, how officers differ from hereditary vassals, what their underlings will and will not do, and that characters built as officers need the Temporal Influence Virtue. The individual offices that follow are descriptive.",
+  "quotes": [
+   "Characters designed as officers need the Temporal Influence Virtue."
+  ],
+  "related": [
+   "Advancement Requirements Table"
+  ]
+ },
+ {
+  "title": "Intrigue and the Art of Indirect Action",
+  "heading": "Intrigue and the Art of Indirect Action",
+  "line": 744,
+  "endLine": 792,
+  "category": "social",
+  "topic": "Intrigue",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Graded Ease Factors for an Intelligence + Intrigue roll that uncover a noble's enmities, vices and secrets, or let the intriguer spread rumors or forged evidence to damage the target's Reputation. Time and cost scale with the Ease Factor, and targets or their friends may trace the culprit.",
+  "quotes": [
+   "For Ease factors higher than 6, this takes (3 x Ease) days and costs at least (Ease / 3) pounds.",
+   "The following Ease Factors, for an Intelligence + Intrigue roll, demonstrate what a character might learn about potential allies, or the harm they may cause by spreading gossip."
+  ],
+  "related": [
+   "Reputation"
+  ]
+ },
+ {
+  "title": "Money",
+  "heading": "Money",
+  "line": 917,
+  "endLine": 925,
+  "category": "social",
+  "topic": "Feudal obligations",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The taxes vassals owe their liege: relief on inherited land (with the four graces that make it affordable) and discretionary aids paid on occasions such as knighting an heir or ransom.",
+  "quotes": [
+   "it is capped at five pounds per manor, or 100 pounds for greater barons, regardless of actual income",
+   "In England, a lord owes approximately one year's income to his liege on the assumption of his title."
+  ],
+  "related": []
+ },
+ {
+  "title": "Warriors",
+  "heading": "Warriors",
+  "line": 927,
+  "endLine": 937,
+  "category": "social",
+  "topic": "Feudal obligations",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Military service owed by vassals: knights per manor, optional extra forces, peasant levies and what infantry are good for, and the limited number of days of service per year that vary by kingdom.",
+  "quotes": [
+   "vassals are required to provide their lord with the service of one knight for per manor that their fief contained at the time it was originally granted",
+   "Assume that a powerful landowner must provide, at minimum, 20 knights when called to war.",
+   "In England this is 40 days, in Sicily 60."
+  ],
+  "related": [
+   "Chapter Eight: Massed Combat"
+  ]
+ },
+ {
+  "title": "Scutage",
+  "heading": "Scutage",
+  "line": 939,
+  "endLine": 943,
+  "category": "social",
+  "topic": "Feudal obligations",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The money a vassal may pay in place of sending knights to a war, why both sides like it, and the English rate and its history.",
+  "quotes": [
+   "The scutage in England is usually two pounds per knight in 1220."
+  ],
+  "related": []
+ },
+ {
+  "title": "Advice",
+  "heading": "Advice",
+  "line": 945,
+  "endLine": 959,
+  "category": "social",
+  "topic": "Feudal obligations",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A vassal's duty to attend his liege's court and give advice, and how a lord uses summonses to control vassals, build consensus, expose rebels and weigh competing interests.",
+  "quotes": [
+   "A vassal asked to attend his liege's court has a duty to attend."
+  ],
+  "related": []
+ },
+ {
+  "title": "Wardship of Heirs",
+  "heading": "Wardship of Heirs",
+  "line": 961,
+  "endLine": 973,
+  "category": "social",
+  "topic": "Wardship",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a liege takes wardship of a dead vassal's heirs and heiresses: fostering, control of the revenues, choice of marriage partners, disparagement, and the value of heirs and heiresses as rewards.",
+  "quotes": [
+   "going straight into the treasury of the liege until the child turns 21 if male, or marries if female"
+  ],
+  "related": []
+ },
+ {
+  "title": "Wardship of Widows",
+  "heading": "Wardship of Widows",
+  "line": 981,
+  "endLine": 989,
+  "category": "social",
+  "topic": "Wardship",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a widow may become the ward of her husband's lord, what portion of the estate she is entitled to, and how the Church views the trade in marriages.",
+  "quotes": [
+   "A widow is entitled to a portion of her husband's estate, fixed at the time of marriage, to maintain herself until her death."
+  ],
+  "related": []
+ },
+ {
+  "title": "Affinity",
+  "heading": "Affinity",
+  "line": 996,
+  "endLine": 1002,
+  "category": "social",
+  "topic": "Affinity",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines a magnate's affinity and country as a political bloc, and says players can model it either as a Leadership bonus or by designing key members as agents.",
+  "quotes": [
+   "Players may model the power their character has through affinity in two ways."
+  ],
+  "related": [
+   "Affinity Leadership",
+   "Control Through Emotional Bonds",
+   "Chapter Eight: Massed Combat"
+  ]
+ },
+ {
+  "title": "Church Allies",
+  "heading": "Church Allies",
+  "line": 1012,
+  "endLine": 1022,
+  "category": "social",
+  "topic": "Affinity",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What a powerful churchman brings as an ally, including military aid from Church manors, the effects and limits of excommunication and interdiction, and lending his Reputation to a cause.",
+  "quotes": [
+   "A powerful churchman can lend his Reputation to a character's cause, so that disinterested or uninformed parties follow his guidance."
+  ],
+  "related": [
+   "The Church"
+  ]
+ },
+ {
+  "title": "Affinity Leadership",
+  "heading": "Affinity Leadership",
+  "line": 1034,
+  "endLine": 1063,
+  "category": "social",
+  "topic": "Affinity",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A bonus from a noble's Affinity score to social Ability rolls dealing with nobles, land-holding ecclesiastics and senior town councilors in his region, graded by rank and reduced when the area is split or the lord neglects his affinity. Examples of rolls it applies to are listed.",
+  "quotes": [
+   "A character may use his Affinity score as a bonus to social Ability rolls that are directly related to his role as a powerful and respected person within a specific region.",
+   "The bonus above is halved (round down) if the area is divided between two warring affinities.",
+   "+5 For being the senior noble beneath the king in the region (count, earl, duke)."
+  ],
+  "related": [
+   "Chapter Three: A Comparison of Titles",
+   "Chapter Eight: Massed Combat"
+  ]
+ },
+ {
+  "title": "Using Intrigue to Aggregate Class Opinion",
+  "heading": "Using Intrigue to Aggregate Class Opinion",
+  "line": 1046,
+  "endLine": 1048,
+  "category": "social",
+  "topic": "Intrigue",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A stress roll with Intelligence + Intrigue lets a character gauge how an organization or the nobles of a region will react to an event, provided he knows the ruling class there.",
+  "quotes": [
+   "A character may roll a stress die + Intelligence + Intrigue to feel the political mood of an organization, or the nobles of a region."
+  ],
+  "related": []
+ },
+ {
+  "title": "Control Through Emotional Bonds",
+  "heading": "Control Through Emotional Bonds",
+  "line": 1065,
+  "endLine": 1069,
+  "category": "social",
+  "topic": "Agents and emotional bonds",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces an optional network-of-influence system, adapted from other supplements, to model unexpected loyalties between noble allies whose tight emotional bonds make them act against their apparent interests. Troupes decide how far to use it.",
+  "quotes": [
+   "The rules in this section are used to model the unexpected interactions between people whose tight emotional bonds make them do things which, superficially, are not in their own interests."
+  ],
+  "related": [
+   "Merchant houses and magi's private agents (other supplements)"
+  ]
+ },
+ {
+  "title": "Agents",
+  "heading": "Agents",
+  "line": 1071,
+  "endLine": 1087,
+  "category": "social",
+  "topic": "Agents and emotional bonds",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines agents as directly controlled subordinates, gives the formula for how many a principal may have, and lists who does not count as an agent (magi, colorful characters, indirect subordinates, hirelings and other players' characters). A principal with weak Presence or Leadership can run a network through a single primary agent, called a factor.",
+  "quotes": [
+   "2 x (Presence + Intrigue or Leadership \u2013 social penalty for the Gift) or 1, whichever is larger."
+  ],
+  "related": []
+ },
+ {
+  "title": "Design of Agents",
+  "heading": "Design of Agents",
+  "line": 1089,
+  "endLine": 1100,
+  "category": "social",
+  "topic": "Agents and emotional bonds",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The handful of statistics each agent needs: a name, a Social Status Virtue or Flaw, a Bond expressed as a Personality Trait, and the resources the principal can draw on through the agent. Worked examples show how a vassal and a bishop are built.",
+  "quotes": [
+   "A Bond, which is a Personality Trait that expresses the reason for the agent's attachment to the principal, and its strength."
+  ],
+  "related": [
+   "Difficult Underlings Flaw"
+  ]
+ },
+ {
+  "title": "Acquiring Agents",
+  "heading": "Acquiring Agents",
+  "line": 1102,
+  "endLine": 1184,
+  "category": "social",
+  "topic": "Agents and emotional bonds",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How characters gain agents, either at character creation through certain Virtues or in play by impressing a prospect with a Presence + Leadership roll and then wearing down his resistance with Agency Experience points. Includes the recruitment, task and persuasion tables.",
+  "quotes": [
+   "Each of these virtues grants 12 points to spend on the accompanying Agent Recruitment Table for thematically appropriate agents.",
+   "a stress die + Presence + Leadership \u2013 social penalty for the Gift against an Ease Factor of 6.",
+   "A character's resistance is reduced by 1 in exchange for a number of Agency experience points equal to their current resistance."
+  ],
+  "related": [
+   "Social Contacts",
+   "Mercenary Captain",
+   "Close Family Ties",
+   "Landed Noble"
+  ]
+ },
+ {
+  "title": "Agent Recruitment Table",
+  "heading": "Agent Recruitment Table",
+  "line": 1110,
+  "endLine": 1147,
+  "category": "social",
+  "topic": "Agents and emotional bonds",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Tables that set a potential agent's starting resistance from his Social Status, then adjust it for circumstances such as inconvenient Flaws and for the resources he can offer the principal.",
+  "quotes": [
+   "A potential agent always has a minimum resistance score of 1."
+  ],
+  "related": [
+   "Acquiring Agents"
+  ]
+ },
+ {
+  "title": "Tasks For Agents Table",
+  "heading": "Tasks For Agents Table",
+  "line": 1150,
+  "endLine": 1174,
+  "category": "social",
+  "topic": "Agents and emotional bonds",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the persuasion Ease Factor for common agent tasks such as fetching information or performing easy, hard or impressive deeds, with modifiers for how quickly the task is needed and how much personal risk it carries.",
+  "quotes": [
+   "Perform an Impressive Task (Ease Factor 18 or less)."
+  ],
+  "related": [
+   "Using Agents"
+  ]
+ },
+ {
+  "title": "Using Agents",
+  "heading": "Using Agents",
+  "line": 1186,
+  "endLine": 1196,
+  "category": "social",
+  "topic": "Agents and emotional bonds",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a principal sets an agent a task with a persuasion roll against the Tasks for Agents table, how the agent then rolls his own Characteristics and Abilities, and how passive information gathering, active information gathering and requests for assistance are treated.",
+  "quotes": [
+   "stress die + Communication + (Charm, Intrigue, or Leadership as situationally appropriate) + Bond Strength \u2013 social penalty of the Gift vs. an Ease factor on the Tasks for Agents table"
+  ],
+  "related": []
+ },
+ {
+  "title": "Maintaining Agents",
+  "heading": "Maintaining Agents",
+  "line": 1198,
+  "endLine": 1206,
+  "category": "social",
+  "topic": "Agents and emotional bonds",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a principal keeps an agent's Bond from waning: by aiding the agent in stories and spending matching Agency experience points on the Bond, or less effectively by paying money.",
+  "quotes": [
+   "A character may buy 5 Agency experience points per pound, and spend them as above to increase the bond of characters."
+  ],
+  "related": [
+   "ArM5 p.31 Advancement Table"
+  ]
+ },
+ {
+  "title": "Reputation",
+  "heading": "Reputation",
+  "line": 1208,
+  "endLine": 1214,
+  "category": "social",
+  "topic": "Noble Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how players of nobles use Reputation rolls to estimate the overt traits, interests and resources of other members of the ruling class, and how a Reputation helps in dissuading enemies or in a knight's early career.",
+  "quotes": [
+   "The players of nobles can estimate the overt personality traits, publicly declared interests, and obvious resources of members of their class using Reputation rolls."
+  ],
+  "related": [
+   "ArM5 p.19 Reputation Table"
+  ]
+ },
+ {
+  "title": "Noble Reputation",
+  "heading": "Noble Reputation",
+  "line": 1216,
+  "endLine": 1218,
+  "category": "social",
+  "topic": "Noble Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Adds Noble Reputation as a fourth style of Reputation alongside Local, Hermetic and Ecclesiastic, and defines who counts as part of the landed class for these Reputations.",
+  "quotes": [
+   "This section extends the Reputation Table on page 19 of ArM5, providing a fourth style of Reputation to accompany Local, Hermetic, and Ecclesiastic."
+  ],
+  "related": [
+   "ArM5 p.19 Reputation Table"
+  ]
+ },
+ {
+  "title": "Prudhomme",
+  "heading": "Prudhomme",
+  "line": 1220,
+  "endLine": 1222,
+  "category": "social",
+  "topic": "Noble Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the ideal Reputation of a male noble, the prudhomme, and what a knight must be and do to be so regarded.",
+  "quotes": [
+   "A man is a prudhomme if he is noble of blood, handsome, demonstrates prowess, and is of suitable character."
+  ],
+  "related": []
+ },
+ {
+  "title": "Improving Noble Reputation",
+  "heading": "Improving Noble Reputation",
+  "line": 1230,
+  "endLine": 1250,
+  "category": "social",
+  "topic": "Noble Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a noble acquires a first Noble Reputation by entering feudal life and then raises it by spending seasons on notable deeds or through significant events, using the normal Ability experience table. Lists example activities and bonus experience for events like crusading or gaining a liege.",
+  "quotes": [
+   "Every time a noble spends a season performing great deeds notable to other members of his class, he adds 1 Experience to his reputation.",
+   "Gaining a royal liege grants 6 experience points."
+  ],
+  "related": [
+   "ArM5 p.31 Abilities table",
+   "ArM5 p.167"
+  ]
+ },
+ {
+  "title": "The Advantages of Reputation",
+  "heading": "The Advantages of Reputation",
+  "line": 1252,
+  "endLine": 1254,
+  "category": "social",
+  "topic": "Noble Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that a strong Reputation lets other nobles judge a character's interests and intentions, so it affects their plans even when he does nothing.",
+  "quotes": [
+   "A fierce Reputation is a potent envoy."
+  ],
+  "related": []
+ },
+ {
+  "title": "Reputation Roll Adjustments",
+  "heading": "Reputation Roll Adjustments",
+  "line": 1256,
+  "endLine": 1281,
+  "category": "social",
+  "topic": "Noble Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Tables of Ease Factors by distance and of modifiers for the subject's status and circumstances, used when rolling a Noble Reputation to recall what is known about another noble.",
+  "quotes": [
+   "Same shire, county, or equivalent",
+   "A commoner in the service of a noble.",
+   "A vassal of the character making the roll."
+  ],
+  "related": []
+ },
+ {
+  "title": "Reputation is Utterly Vital",
+  "heading": "Reputation is Utterly Vital",
+  "line": 1283,
+  "endLine": 1299,
+  "category": "social",
+  "topic": "Noble Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advice on how nobles use a rival's Reputation to predict willingness to fight, retreat, bargain or change sides, and how single actions change the effect of a Reputation without changing its score, illustrated with the story of William Marshal.",
+  "quotes": [
+   "In neither John nor Stephen's case does the Reputation score fall."
+  ],
+  "related": []
+ },
+ {
+  "title": "Public Power for Women",
+  "heading": "Public Power for Women",
+  "line": 1301,
+  "endLine": 1305,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Frames the constraints on women holding public power as storytelling material rather than prohibitions, and notes that women have fewer rights in England than elsewhere in Mythic Europe.",
+  "quotes": [
+   "The constraints, and ways to avoid them, listed here are suggested as material for storytelling, not as proscriptions."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dressing as a Man",
+  "heading": "Dressing as a Man",
+  "line": 1307,
+  "endLine": 1311,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The simplest way for a woman to avoid social conventions, with its practical limits for the long term; it may become a Dark Secret.",
+  "quotes": [
+   "This may become a Dark Secret."
+  ],
+  "related": [
+   "Dark Secret Flaw"
+  ]
+ },
+ {
+  "title": "Holding Land",
+  "heading": "Holding Land",
+  "line": 1313,
+  "endLine": 1315,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the six ways a woman can gain control of land, each of which is then detailed in a subsection.",
+  "quotes": [
+   "Women can gain control of land in six ways: during absence, through inheritance, via political success, through conquest, in a widow's portion, or as a steward."
+  ],
+  "related": []
+ },
+ {
+  "title": "Absence",
+  "heading": "Absence",
+  "line": 1317,
+  "endLine": 1335,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a noblewoman acts as deputy while her husband is away: her Abilities, her right to spend the income and command vassals, her role in siege defense and her networks of agents.",
+  "quotes": [
+   "Women raised for this task always have Leadership and Profession: Steward scores."
+  ],
+  "related": [
+   "Paid Rights: A Free Virtue"
+  ]
+ },
+ {
+  "title": "Paid Rights: A Free Virtue",
+  "heading": "Paid Rights: A Free Virtue",
+  "line": 1321,
+  "endLine": 1327,
+  "category": "creation",
+  "topic": "Women and public power",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Female character who has paid a fine for a normally forbidden right",
+  "summary": "Lets a woman character who paid a large fine or fee before play to hold a right normally forbidden to women take a free Virtue called Paid Rights, optionally balanced by a Story Flaw. It cannot buy anything that only men may do in Church administration, and knighthood is difficult.",
+  "quotes": [
+   "She may choose a free Virtue, called Paid Rights, to note that she has paid for the right to do a certain thing that is generally forbidden for women."
+  ],
+  "related": [
+   "Definitive Edition social status Virtues"
+  ]
+ },
+ {
+  "title": "Inheritance",
+  "heading": "Inheritance",
+  "line": 1337,
+  "endLine": 1342,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How women inherit land in different parts of Europe, whether they keep legal authority in marriage, and how dowry land relates to inheritance.",
+  "quotes": [
+   "A woman who rules a fief by inheritance usually retains legal authority in it during her marriage."
+  ],
+  "related": [
+   "Marriage and Dowries"
+  ]
+ },
+ {
+  "title": "Widow's Portion and Stewardship",
+  "heading": "Widow's Portion and Stewardship",
+  "line": 1352,
+  "endLine": 1354,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A rule of thumb for how much of her late husband's land a widow can keep and when she regains full ownership of her own lands.",
+  "quotes": [
+   "As a rule of thumb, assume a widow can keep the profit, not income, of a third of her husband's land until she remarries."
+  ],
+  "related": [
+   "Wardship of Widows"
+  ]
+ },
+ {
+  "title": "A Note on Life Expectancy",
+  "heading": "A Note on Life Expectancy",
+  "line": 1356,
+  "endLine": 1358,
+  "category": "aging",
+  "topic": "Random lifespan and heirs",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advises storyguides who want female nobles to hold power to cull male NPCs using the random method of death given earlier.",
+  "quotes": [
+   "Players in sagas designed for female nobles to play a significant role need to consciously cull male non-player characters."
+  ],
+  "related": [
+   "A Random Method of Death"
+  ]
+ },
+ {
+  "title": "Women as Warriors",
+  "heading": "Women as Warriors",
+  "line": 1360,
+  "endLine": 1388,
+  "category": "setting",
+  "topic": "Women and public power",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Notes how cultures react to women acting as knights and the Hermetic attitude toward it, with five historical examples (dressing as a man, inheritance, conquest, absence and political success) to guide backgrounds for female nobles seeking military roles.",
+  "quotes": [
+   "The following examples may guide the generation of background for female nobles who seek military roles."
+  ],
+  "related": []
+ },
+ {
+  "title": "Nuns",
+  "heading": "Nuns",
+  "line": 1392,
+  "endLine": 1396,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Church as a third avenue of power for women: nuns' legal status, their land, temporary vows and the use of nunneries as refuge.",
+  "quotes": [
+   "Nuns are considered wards of the bishop, and brides of Christ."
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Squire",
+  "heading": "Squire (Armiger, \u00c9cuyer)",
+  "line": 1408,
+  "endLine": 1412,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gentleman, Knight or Landed Noble Virtue",
+  "summary": "Describes the squire as a young knight-in-training or as a landholder who has chosen not to take knighthood, and says which social Virtues such a character may take.",
+  "quotes": [
+   "A squire may take the Gentleman, Knight, or Landed Noble Virtues."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bacheler Knight",
+  "heading": "Bacheler Knight",
+  "line": 1418,
+  "endLine": 1424,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Knight",
+  "summary": "The household knights of a lord's mesnie: which Virtues and Flaw they normally have, what their lord provides, and how rich bachelers can be Landed Nobles.",
+  "quotes": [
+   "A bacheler knight has the Virtues Knight and Protection, and the Oath of Fealty Flaw or Free Choice."
+  ],
+  "related": [
+   "Military"
+  ]
+ },
+ {
+  "title": "Knight Banneret",
+  "heading": "Knight Banneret",
+  "line": 1426,
+  "endLine": 1474,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Knight",
+  "summary": "The rank of a knight who leads other knights under his own banner, how it is claimed or awarded, and the land and Virtues that go with it, which make it economically close to a Wealthy Landed Noble.",
+  "quotes": [
+   "A knight may claim this rank simply by arriving at a battle with a force of ten knights all clad in his livery and willing to kill as instructed.",
+   "Bannerets are always Knights and are generally Landed Nobles."
+  ],
+  "related": [
+   "Landed Noble (Major Virtue)"
+  ]
+ },
+ {
+  "title": "Oath of Fealty (Major Story Flaw)",
+  "heading": "Oath of Fealty (Major Story Flaw)",
+  "line": 1434,
+  "endLine": 1440,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Flaw: Oath of Fealty",
+  "summary": "Optional guidance on adapting the Oath of Fealty Flaw: allodial holders need not have one, and troupes may allow insignificant oaths that do not count as Flaws so knights can still take other Story Flaws.",
+  "quotes": [
+   "A holder of allodial land need not have an Oath of Fealty."
+  ],
+  "related": [
+   "ArM5 p.56 Oath of Fealty"
+  ]
+ },
+ {
+  "title": "Knightly Demands (Major Story Flaw)",
+  "heading": "Knightly Demands (Major Story Flaw)",
+  "line": 1442,
+  "endLine": 1444,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Optional rule replacing Oath of Fealty",
+  "summary": "A variant Major Story Flaw that lets the Storyguide pull any knight into plots typical of medieval ballads, suited to high fantasy, mobile sagas; it replaces Oath of Fealty entirely.",
+  "quotes": [
+   "troupes may simply state that all knights have a Major Story Flaw, called Knightly Demands"
+  ],
+  "related": []
+ },
+ {
+  "title": "Landed Noble (Major Virtue)",
+  "heading": "Landed Noble (Major Virtue)",
+  "line": 1450,
+  "endLine": 1460,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Landed Noble",
+  "summary": "Extended description of what the Landed Noble Virtue provides at Poor, standard and Wealthy levels: manors, knight service, levies, free seasons per year and spending money.",
+  "quotes": [
+   "He has one season of free time per year.",
+   "This Virtue leaves the lord two seasons of free time per year, and ten pounds to spend on largesse, war, or other discretionary matters.",
+   "These lands provide the lord with the service of four knights, other than himself, 5 serjants, and 50 villeins."
+  ],
+  "related": [
+   "Privileged Upbringing Virtue"
+  ]
+ },
+ {
+  "title": "Great Noble (Two Major Virtues)",
+  "heading": "Great Noble (Two Major Virtues)",
+  "line": 1462,
+  "endLine": 1470,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Great Noble",
+  "summary": "How the Great Noble Virtue is priced for characters of greater baron rank or higher, and a warning about integrating such characters into a covenant-focused saga.",
+  "quotes": [
+   "Two Major Virtues for characters played in lieu of magi, as major protagonists in the plot."
+  ],
+  "related": []
+ },
+ {
+  "title": "Baron",
+  "heading": "Baron (Baro, Baron)",
+  "line": 1476,
+  "endLine": 1484,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Great Noble or Landed Noble",
+  "summary": "What it means to be a baron, the difference between greater and lesser barons, the Virtues and Flaw they usually take, military service owed and how much surplus money poor, average and Wealthy barons have.",
+  "quotes": [
+   "A man is considered greater baron if he has at least some land held directly from the king and expenses of at least 400 pounds per year.",
+   "An average baron has a surplus of 40 pounds per year that may be spent as he wishes."
+  ],
+  "related": []
+ },
+ {
+  "title": "Earl or Count",
+  "heading": "Earl or Count (Comes, Comte)",
+  "line": 1486,
+  "endLine": 1490,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Great Noble",
+  "summary": "The resources of a count or earl: his Virtue, yearly expenditure, the force he is expected to bring to battle, and spending money for average and wealthy counts.",
+  "quotes": [
+   "A count has a yearly expenditure of at least 1000 pounds.",
+   "The average count might be required to bring 50 knights to battle, along with their sergeants and 500 infantry."
+  ],
+  "related": []
+ },
+ {
+  "title": "Count Palatine and Marcher Lord",
+  "heading": "Count Palatine and Marcher Lord",
+  "line": 1496,
+  "endLine": 1502,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Border lordships",
+  "summary": "Counts given extra powers on a difficult border, with the special rights of marcher lords and the note that they are effectively Wealthy counts with fewer knights and more infantry.",
+  "quotes": [
+   "Some marcher lords are effectively Wealthy counts."
+  ],
+  "related": [
+   "Earl or Count"
+  ]
+ },
+ {
+  "title": "Duke",
+  "heading": "Duke (Dux, Duc)",
+  "line": 1504,
+  "endLine": 1508,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Great Noble",
+  "summary": "The standing of a duke or duchess, the Virtue they take and a rough estimate of a duke's personal forces and spending.",
+  "quotes": [
+   "As a rough estimate, a duke has, at minimum, personal forces that include 75 knights, their sergeants, and 750 infantry."
+  ],
+  "related": []
+ },
+ {
+  "title": "King",
+  "heading": "King (Rex, Roi)",
+  "line": 1510,
+  "endLine": 1532,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Royal rank",
+  "summary": "Defines kingship and succession, and in sidebars gives the scale of a king's lands, income, household army and greater barons, how few families make up the ruling class, and the effects of anointing, including minor magic resistance.",
+  "quotes": [
+   "A king is technically a Great Noble and need not be a Knight, although virtually all are.",
+   "All kings have minor magic resistance as noted in Chapter Four: Interference."
+  ],
+  "related": [
+   "Magic Resistance For Church Officers and Sovereigns"
+  ]
+ },
+ {
+  "title": "How Powerful is a King?",
+  "heading": "How Powerful is a King?",
+  "line": 1516,
+  "endLine": 1522,
+  "category": "setting",
+  "topic": "Noble titles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Royal rank",
+  "summary": "Scale figures for a strong king (demesne share, income, household knights, greater baron vassals and their service) using the King of England as the example.",
+  "quotes": [
+   "A king is technically a Great Noble and need not be a Knight, although virtually all are."
+  ],
+  "related": []
+ },
+ {
+  "title": "How Small is the Ruling Class of a Kingdom?",
+  "heading": "How Small is the Ruling Class of a Kingdom?",
+  "line": 1524,
+  "endLine": 1528,
+  "category": "setting",
+  "topic": "Noble titles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Counts of baronies, greater barons and knight's fees in England, showing how small and interrelated the ruling class is, with a note on squires who avoid knighthood for tax reasons.",
+  "quotes": [
+   "These 45 men are all closely related to each other by blood and marriage."
+  ],
+  "related": []
+ },
+ {
+  "title": "The German System",
+  "heading": "The German System",
+  "line": 1534,
+  "endLine": 1542,
+  "category": "setting",
+  "topic": "Noble titles",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the three sources of German titles (imperial, allodial and local) and their relative status, used to compare German ranks with the French system.",
+  "quotes": [
+   "Assume that an imperial knight has higher status than a free knight, who has higher status than a common knight."
+  ],
+  "related": [
+   "The French (and English) System"
+  ]
+ },
+ {
+  "title": "Iberian Systems",
+  "heading": "Iberian Systems",
+  "line": 1588,
+  "endLine": 1596,
+  "category": "setting",
+  "topic": "Noble titles",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Iberian town charters (fueros) shape military service, with a simplified model in which every householder serves unless exempted, fighting either on foot as peons or on horse as caballeros.",
+  "quotes": [
+   "As a simplified version of this model, all people who own a house are expected to serve, unless they have an exemption due to a clause in the fuero."
+  ],
+  "related": []
+ },
+ {
+  "title": "Caballero",
+  "heading": "Caballero",
+  "line": 1602,
+  "endLine": 1616,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Knight, or covenant-owned gear",
+  "summary": "The requirements and legal protection of a caballero's rank in Iberia, and how to build one as a player character using the Knight Virtue or covenant gear, with local custom usable as a Major Story Flaw.",
+  "quotes": [
+   "Players designing caballeros can either take the Knight Minor Social Status Virtue, or just use gear that belongs to the covenant."
+  ],
+  "related": [
+   "Catalonia"
+  ]
+ },
+ {
+  "title": "Caballero Villano",
+  "heading": "Caballero Villano",
+  "line": 1618,
+  "endLine": 1620,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Wealthy Knight tied to a town",
+  "summary": "A town-bound mounted warrior who keeps tax exemptions by residing in town and mustering for its defense; tied by his Dependents rather than honor, though troupes may allow Knightly Duties instead.",
+  "quotes": [
+   "This style of Wealthy Knight is tied to the town by his Dependents rather than his honor, although troupes may permit players to select Knightly Duties instead."
+  ],
+  "related": []
+ },
+ {
+  "title": "Caballero Hidalgo (or Fidalgo)",
+  "heading": "Caballero Hidalgo (or Fidalgo)",
+  "line": 1622,
+  "endLine": 1624,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Knight and Gentleman or Landed Noble",
+  "summary": "An ancestral caballero from a family that supports him in matters of honor, comparable to an English lord of the manor, with the Virtues he normally has.",
+  "quotes": [
+   "Hidalgos have the Knight Virtue and either Gentleman or Landed Noble."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ricohombre",
+  "heading": "Ricohombre",
+  "line": 1626,
+  "endLine": 1630,
+  "category": "creation",
+  "topic": "Noble titles",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Great Noble",
+  "summary": "The Iberian aristocratic upper class: how their honores work, the military service and restrictions they have, and the Great Noble Virtue they take.",
+  "quotes": [
+   "They have the Great Noble Virtue."
+  ],
+  "related": []
+ },
+ {
+  "title": "Alternatives to Conspiracy",
+  "heading": "Alternatives to Conspiracy",
+  "line": 1654,
+  "endLine": 1658,
+  "category": "order",
+  "topic": "Interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that a magus may harm a mundane rival by helping the rival's enemy without that enemy's knowledge, because conspiracy requires conscious common cause. Examples show acceptable indirect actions.",
+  "quotes": [
+   "Conspiracy requires conspirators working consciously at common cause."
+  ],
+  "related": [
+   "Code of Hermes"
+  ]
+ },
+ {
+  "title": "Making Riches",
+  "heading": "Making Riches",
+  "line": 1660,
+  "endLine": 1664,
+  "category": "order",
+  "topic": "Interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Tribunals differ on whether magi may magically make valuable goods, and how doing so lets a covenant lower its peasants' taxes or pay wages and align peasant interests with the covenant.",
+  "quotes": [
+   "Magi can simply produce money magically, but this has created trouble with the mundanes in previous centuries, so making valuable goods is forbidden in some Tribunals."
+  ],
+  "related": [
+   "Chapter Six: Manorial Fiefs"
+  ]
+ },
+ {
+  "title": "Interference Varies by Tribunal",
+  "heading": "Interference Varies by Tribunal",
+  "line": 1666,
+  "endLine": 1668,
+  "category": "order",
+  "topic": "Interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Contrasts how strictly different Tribunals define interference, from the strict Alps to Normandy, where an action is interference only if it demonstrably harms other magi.",
+  "quotes": [
+   "In Normandy an action is interference if it demonstrably harms the interests of other magi"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Items",
+  "heading": "Magic Items",
+  "line": 1670,
+  "endLine": 1700,
+  "category": "order",
+  "topic": "Interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The rules of thumb for selling magic items to nobles: the loophole of selling to mundane servants, typical Tribunal limits on how many items may be sold, and pending political disputes. Story seeds on the topic are included.",
+  "quotes": [
+   "Technically, no magus has been permitted to sell magic items to a nobleman since 1061",
+   "The commonest is that a magus may sell at most one magic item to a mortal per year, provided the system of mundane intermediaries is maintained."
+  ],
+  "related": []
+ },
+ {
+  "title": "Involvement",
+  "heading": "Involvement",
+  "line": 1702,
+  "endLine": 1706,
+  "category": "order",
+  "topic": "Interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines involvement as contact with mundanes that does not breach the Code, and sets the principle that a magus's response must be proportionate to the threat.",
+  "quotes": [
+   "Note that to be acceptable, a magus's actions must usually be proportionate to the threat he faces."
+  ],
+  "related": []
+ },
+ {
+  "title": "Self-Defense",
+  "heading": "Self-Defense",
+  "line": 1708,
+  "endLine": 1710,
+  "category": "order",
+  "topic": "Interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Members of the Order may defend themselves from broadly defined harm, with Tribunal examples of how taxes and land clearing are treated.",
+  "quotes": [
+   "Members of the Order are permitted to defend themselves from harm."
+  ],
+  "related": []
+ },
+ {
+  "title": "Defense of Sodales",
+  "heading": "Defense of Sodales",
+  "line": 1712,
+  "endLine": 1714,
+  "category": "order",
+  "topic": "Interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magi may do what any sensible sodalis would ask in that sodalis's defense, such as freeing a captive magus, avenging a harmed Redcap or taking children with the Gift.",
+  "quotes": [
+   "It is not a Hermetic crime to take children with The Gift, even though they are technically not sodales and are often the serfs of lords."
+  ],
+  "related": []
+ },
+ {
+  "title": "Defense of the Art",
+  "heading": "Defense of the Art",
+  "line": 1722,
+  "endLine": 1724,
+  "category": "order",
+  "topic": "Interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magi may treat as an enemy anyone who publicly declares an intent to purge wizards from an area, and may take such a declaration at face value.",
+  "quotes": [
+   "Members of the Order are permitted to treat as an enemy anyone who publicly declares his intent to purge wizards from an area."
+  ],
+  "related": []
+ },
+ {
+  "title": "How Much Do Nobles Know?",
+  "heading": "How Much Do Nobles Know?",
+  "line": 1732,
+  "endLine": 1807,
+  "category": "setting",
+  "topic": "Nobles and the Order",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What nobles typically know, believe and misunderstand about the Order of Hermes, from the facts almost all of them know to the extra knowledge of scholarly senior nobles and the misconceptions spread by House Jerbiton. Sidebars cover how nobles lodge pleas, harm to cities and special Magic Resistance for rulers and Church officers.",
+  "quotes": [
+   "Educated nobles may have low Order of Hermes Lore scores, and those who have family members \u2014 either current or ancestral \u2014 associated with House Jerbiton may know far more."
+  ],
+  "related": [
+   "Order of Hermes Lore"
+  ]
+ },
+ {
+  "title": "The Nature of the Plea",
+  "heading": "The Nature of the Plea",
+  "line": 1761,
+  "endLine": 1765,
+  "category": "order",
+  "topic": "Nobles and the Order",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How noblemen make a legal complaint against the Order in different Tribunals, who administers the facilities, and how mundane society regards such pleas as having no real authority.",
+  "quotes": [
+   "Most Tribunals have some way for noblemen to make known that they have a legal issue with the Order."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Resistance For Church Officers and Sovereigns",
+  "heading": "Magic Resistance For Church Officers and Sovereigns",
+  "line": 1767,
+  "endLine": 1779,
+  "category": "realms",
+  "topic": "Magic Resistance",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives set Magic Resistance scores for the pope, cardinals, archbishops and crowned kings, with a Soak bonus and an Aura of Rightful Authority, how excommunication removes them, and how wives and relics add to resistance.",
+  "quotes": [
+   "The religious and secular leaders listed below receive a Magic Resistance score as listed here, and a Soak bonus equal to Resistance / 5.",
+   "Excommunication cancels these benefits (but only if the excommunication is God's will).",
+   "Wives gain Magic Resistance equal to their husbands."
+  ],
+  "related": [
+   "Relics",
+   "Church Allies"
+  ]
+ },
+ {
+  "title": "Demonstrating Harm",
+  "heading": "Demonstrating Harm",
+  "line": 1781,
+  "endLine": 1783,
+  "category": "order",
+  "topic": "Interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that Jerbiton magi and some Mercere covenants intertwine their finances with a city so that damage to its economy counts informally as a Hermetic crime.",
+  "quotes": [
+   "An important part of the process of a plea is the demonstration of harm."
+  ],
+  "related": []
+ },
+ {
+  "title": "Why Don't Magi Break Mythic European Feudalism?",
+  "heading": "Why Don't Magi Break Mythic European Feudalism?",
+  "line": 1809,
+  "endLine": 1859,
+  "category": "setting",
+  "topic": "Saga assumptions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Offers several optional ways a troupe can explain, or ignore, why magi leave feudal society largely unchanged: ignoring it, a Code that simply works, coincidence, or hidden realm forces such as God's plan, demonic temptation, faeries or magi who designed feudalism.",
+  "quotes": [
+   "Troupes should discuss their approach to the impact of magi on society when designing their sagas, selecting an approach that suits the stories they wish to tell.",
+   "Ignoring the elements of the setting that don't seamlessly cohere between Mythic and historical Europe is the simplest solution, and the one suggested for most troupes."
+  ],
+  "related": []
+ },
+ {
+  "title": "Some Unusual Pets",
+  "heading": "Some Unusual Pets",
+  "line": 1875,
+  "endLine": 1877,
+  "category": "beings",
+  "topic": "Animal companions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Pet or Magical Animal Companion",
+  "summary": "Introduces game statistics for a few mundane pets (magpie, monkey, squirrel) built with the animal Qualities rules from Mystery Cults. Pets may be trained by their owners and the statistics can serve as templates for Magical Animal Companions.",
+  "quotes": [
+   "These animals may be trained by their owners."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.40"
+  ]
+ },
+ {
+  "title": "Board Games",
+  "heading": "Board Games",
+  "line": 1951,
+  "endLine": 1955,
+  "category": "social",
+  "topic": "Leisure",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes period board games and the social value of playing them well, noting that Carouse may win a game but Etiquette is also needed to impress an opponent.",
+  "quotes": [
+   "Playing well is a social grace, and while the Carouse Ability may allow a win, Etiquette is needed as well to impress one's opponent in what is, after all, a pursuit of polite company."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gambling",
+  "heading": "Gambling",
+  "line": 1961,
+  "endLine": 1967,
+  "category": "social",
+  "topic": "Leisure",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Notes common dice games and that Legerdemain or Luck can alter a die, and says which Abilities underlie gambling: Carouse for games of chance and Concentration for games of skill.",
+  "quotes": [
+   "Games of chance are based upon the Ability Carouse, games of skill upon the Ability Concentration."
+  ],
+  "related": [
+   "Tales of Mythic Europe: The Ship of Desire"
+  ]
+ },
+ {
+  "title": "A Game of Chance?",
+  "heading": "A Game of Chance?",
+  "line": 1969,
+  "endLine": 1971,
+  "category": "social",
+  "topic": "Leisure",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that imperfect dice let a skilled player gain an advantage with Perception + Carouse, with Luck and Legerdemain giving further edges and cheating leading to brawls.",
+  "quotes": [
+   "use Perception + Carouse Ability to gain an advantage over an unskilled player"
+  ],
+  "related": [
+   "Luck Virtue",
+   "Legerdemain"
+  ]
+ },
+ {
+  "title": "Good Drink, Song, and Dance",
+  "heading": "Good Drink, Song, and Dance",
+  "line": 1973,
+  "endLine": 1977,
+  "category": "social",
+  "topic": "Leisure",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Entertainment in noble halls and the dances of the period; knowing court dance steps uses Etiquette, local folk dances use Area Lore, and performing well depends on Athletics.",
+  "quotes": [
+   "While knowledge of the steps of any given court dance is based upon Etiquette (local folk dances fall under Area Lore), a successful performance depends upon the Ability Athletics."
+  ],
+  "related": [
+   "Art & Academe Chapter Eight"
+  ]
+ },
+ {
+  "title": "The Feast",
+  "heading": "The Feast",
+  "line": 1983,
+  "endLine": 1987,
+  "category": "social",
+  "topic": "Feasts and hospitality",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the noble feast as a frequent and special event, and notes that a host who fails to put on a feast for a guest earns a Reputation for being inhospitable.",
+  "quotes": [
+   "a host who does not put on a feast for a guest will soon gain a Reputation for being inhospitable"
+  ],
+  "related": []
+ },
+ {
+  "title": "Seating the Guests, and Good Manners",
+  "heading": "Seating the Guests, and Good Manners",
+  "line": 2013,
+  "endLine": 2019,
+  "category": "social",
+  "topic": "Feasts and hospitality",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a hall is laid out and guests are seated by precedence, with Etiquette used to place guests correctly, and the contrast between Etiquette at the high table and Carouse at the lower tables.",
+  "quotes": [
+   "Placing someone in too low a position can be seen as an insult, so Etiquette is used to decide the correct seating."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Host",
+  "heading": "The Host",
+  "line": 2029,
+  "endLine": 2035,
+  "category": "social",
+  "topic": "Feasts and hospitality",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How the quality of hospitality affects a host, including the insult of poor hospitality, the use by kings of demanded hospitality to weaken vassals, and the Reputation (or even a Gratitude point) earned by an exceptional feast.",
+  "quotes": [
+   "a good host who puts on a lavish feast will soon gain a Reputation for hospitality and generosity, and for feasts that are exceptional in food, entertainment, and gifts, even a Gratitude point"
+  ],
+  "related": [
+   "The Gratitude System"
+  ]
+ },
+ {
+  "title": "The Hunt",
+  "heading": "The Hunt",
+  "line": 2037,
+  "endLine": 2047,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Why nobles hunt, hunting rights in chases, warrens and forests, poaching, and the etiquette of noble hunting, including that spells making prey fall dead breach etiquette and that hunting sick prey costs Reputation.",
+  "quotes": [
+   "A chase or warren is a Minor Surroundings Boon",
+   "Spells that cause the prey to simply fall over dead, or otherwise fail to provide a challenging pursuit, are, however, regarded as a breach of etiquette"
+  ],
+  "related": [
+   "Covenants p.23"
+  ]
+ },
+ {
+  "title": "Varieties of Hunting Hounds",
+  "heading": "Varieties of Hunting Hounds",
+  "line": 2049,
+  "endLine": 2057,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The classes of hunting dog (lymers, running dogs, greyhounds, alaunts, mastiffs, harriers and bird dogs), what each does in a hunt, and the master of kennels who trains them.",
+  "quotes": [
+   "The main classes are lymers, running dogs, greyhounds, alaunts, mastiffs, harriers, and bird dogs."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hunting Dogs",
+  "heading": "Hunting Dogs",
+  "line": 2059,
+  "endLine": 2199,
+  "category": "beings",
+  "topic": "Hunting",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Game statistics for the main hunting hounds, built with the animal rules from Mystery Cults but usable without that book, used by the hunting rules.",
+  "quotes": [
+   "The hunting dog statistics presented here are based upon the rules in *Houses of Hermes: Mystery Cults*, page 38, but can be used fully without that book."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.38"
+  ]
+ },
+ {
+  "title": "Hounds and Aging",
+  "heading": "Hounds and Aging",
+  "line": 2202,
+  "endLine": 2206,
+  "category": "aging",
+  "topic": "Hunting",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional aging rules for important hounds: when they begin to age, how often they roll, how the modifier grows, and how kennels with a Master of Kennels give a Living Conditions bonus.",
+  "quotes": [
+   "A dog begins to age at ten years, and must make an Aging roll every season thereafter except in the spring, rather than every year as with a human."
+  ],
+  "related": [
+   "Aging rules"
+  ]
+ },
+ {
+  "title": "Taming Creatures",
+  "heading": "Taming Creatures",
+  "line": 2208,
+  "endLine": 2222,
+  "category": "seasons",
+  "topic": "Taming animals",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Ability: Animal Handling",
+  "summary": "A seasonal activity in which a character accumulates taming points from Intelligence + Animal Handling until a threshold based on the creature's Confidence is exceeded, plus rules for commanding tamed animals, building or transferring their Loyalty, and training their Abilities.",
+  "quotes": [
+   "The taming is complete when the accumulated total of points exceeds a total equal to 1 + (2 x the creature's Confidence Score).",
+   "Each additional season of training increases the Loyal Personality Trait by +1, to a maximum of +3.",
+   "make a Loyalty test for the animal against an Ease Factor of 6"
+  ],
+  "related": [
+   "ArM5 p.164 training",
+   "Animal Handling"
+  ]
+ },
+ {
+  "title": "Hunting with Hounds",
+  "heading": "Hunting with Hounds",
+  "line": 2224,
+  "endLine": 2226,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the most prestigious form of hunting, whose general format anyone with the Etiquette Ability knows, and which the following stage-by-stage sections detail.",
+  "quotes": [
+   "the general format is known and accepted by anyone with a score in the Ability Etiquette"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Quest",
+  "heading": "The Quest",
+  "line": 2228,
+  "endLine": 2230,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "First stage of a formal hunt: huntsmen with lymers track and assess prey using a tracking roll, a roll to keep the lymer quiet, and a roll to judge the quarry's age and condition.",
+  "quotes": [
+   "Huntsmen each make Perception + (the lymer's or huntsman's Hunt Ability, whichever is lower) rolls against Ease Factor 9, to track an appropriate beast to its lair."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Assembly",
+  "heading": "The Assembly",
+  "line": 2236,
+  "endLine": 2238,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The breakfast at which huntsmen present their finds and guests inspect droppings with a Perception + Hunt test to choose the day's prey.",
+  "quotes": [
+   "These are examined with a test of Perception +Hunt against Ease Factor 12"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Relay",
+  "heading": "The Relay",
+  "line": 2240,
+  "endLine": 2242,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Positioning of the running dogs, greyhounds, alaunts and mastiffs in advance along the prey's likely path, using Area Lore and Hunting, and what happens if the dogs are poorly placed.",
+  "quotes": [
+   "Area Lore is essential to understand the lay of the land, and the Ability Hunting to predict the pursued animal's erratic path correctly."
+  ],
+  "related": [
+   "The Terrain Bonus"
+  ]
+ },
+ {
+  "title": "The Chase",
+  "heading": "The Chase",
+  "line": 2248,
+  "endLine": 2260,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The core hunt resolution: each hourly round hunters roll to keep up, hounds and prey lose fatigue unless they pass Stamina rolls, and the hounds' Pursuit Total is compared to the prey's Evasion Total to decide who wins each round until one side has won enough rounds.",
+  "quotes": [
+   "Each round of the chase represents one hour of pursuit, and requires a Dexterity + Ride stress roll against Ease Factor 6 to keep in sight of the hounds.",
+   "Pursuit Total: Hound's Perception + hound's Hunt + stress die \u2013 lowest Fatigue penalty among the hounds vs.",
+   "Evasion Total: Prey's Dexterity + Athletics + Terrain Bonus (starts at 6) + stress die \u2013 Fatigue penalty"
+  ],
+  "related": [
+   "The Terrain Bonus"
+  ]
+ },
+ {
+  "title": "The Kill",
+  "heading": "The Kill",
+  "line": 2262,
+  "endLine": 2264,
+  "category": "combat",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "After the prey is cornered the hunters dismount to kill it, best resolved as a melee combat against an already fatigued quarry.",
+  "quotes": [
+   "This is best resolved as a melee combat, but as the prey is typically fatigued it is normally over swiftly."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Unmaking and Curee",
+  "heading": "The Unmaking and Curee",
+  "line": 2266,
+  "endLine": 2270,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The formal butchering of the quarry and rewarding of the dogs, with its customs represented by the Hunt Ability, and the note that informal hunts are also common.",
+  "quotes": [
+   "There is a formal set of customs to this, represented by the Hunt Ability"
+  ],
+  "related": []
+ },
+ {
+  "title": "Bow and Stable Hunting",
+  "heading": "Bow and Stable Hunting",
+  "line": 2272,
+  "endLine": 2278,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A drive hunt with archers and mounted beaters, which takes much game but has lower status than hunting with hounds except in certain Tribunals.",
+  "quotes": [
+   "bow and stable hunting lacks the status of hunting with hounds"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Terrain Bonus",
+  "heading": "The Terrain Bonus",
+  "line": 2280,
+  "endLine": 2292,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A bonus added to the prey's Evasion Total when it is native to the terrain, and the per-round rolls by the relay planners and hunters that can reduce it, even turning it into a penalty over a long hunt.",
+  "quotes": [
+   "This is reflected in a Terrain Bonus of +6 added to the prey's Evasion Total.",
+   "Every round, any character who participated in establishing the relay must make a stress roll of Intelligence + Hunt + 6 against an Ease Factor equal to the Evasion Total."
+  ],
+  "related": [
+   "The Chase"
+  ]
+ },
+ {
+  "title": "The Prey",
+  "heading": "The Prey",
+  "line": 2306,
+  "endLine": 2322,
+  "category": "social",
+  "topic": "Hunting",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Which animals nobles hunt and when: the preference order from magical animals through Beasts of Virtue to the finest mundane game, the seasons of the hart, boar and bear, and the prestige (or lack of it) of hunting hare, wolf, fox and otter.",
+  "quotes": [
+   "The order of preference for prey begins with powerful, unusual, and exotic magical animals (especially those that offer a great challenge and threaten the estate); continues to Beasts of Virtue; and ends with the very best specimens of mundane animals."
+  ],
+  "related": [
+   "The Book of Mundane Beasts, Realms of Power: Magic pp.140-144"
+  ]
+ },
+ {
+  "title": "Horses",
+  "heading": "Horses",
+  "line": 2324,
+  "endLine": 2330,
+  "category": "setting",
+  "topic": "Horses",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that medieval horses are classed by role rather than breed, the status and cost issues of owning horses, and the roles of mares and stallions in farming, travel and war.",
+  "quotes": [
+   "Medieval horses are not differentiated from one another by breed, but rather by their suitability for certain roles."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Types of Horses",
+  "heading": "The Types of Horses",
+  "line": 2332,
+  "endLine": 2464,
+  "category": "beings",
+  "topic": "Horses",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how the horse templates (destrier, courser or rouncey, palfrey or jennet, draught horse and working pony) can be individualized, then gives each template's statistics, uses, typical price and where the best animals come from.",
+  "quotes": [
+   "Horse templates typical of each type are provided that the storyguide can modify to individualize horses available at market or presented as gifts.",
+   "Owning such a beast is worth at least a single experience point in Reputation: Prudhomme.",
+   "A courser usually costs around 10 to 20 pounds"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.40",
+   "Covenants p.71"
+  ]
+ },
+ {
+  "title": "Horses and Aging",
+  "heading": "Horses and Aging",
+  "line": 2471,
+  "endLine": 2479,
+  "category": "aging",
+  "topic": "Horses",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional aging rules for important horses: lifespan, when a horse begins to age, rolling every season, and the stable bonus that needs a Profession Marshal score; also a loss of horses in a shoddy stable and the carrying capacity rule of thumb in the following sidebar.",
+  "quotes": [
+   "A horse begins to age at 14 years, and must make an aging roll every season thereafter, rather than every year as humans do.",
+   "Every five years a horse's aging modifier increases by one."
+  ],
+  "related": [
+   "Running an Establishment"
+  ]
+ },
+ {
+  "title": "A Note on Size and Capacity",
+  "heading": "A Note on Size and Capacity",
+  "line": 2475,
+  "endLine": 2477,
+  "category": "setting",
+  "topic": "Horses",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how horses are measured in hands and gives a rule of thumb for how much weight a horse can carry unencumbered.",
+  "quotes": [
+   "A horse can carry unencumbered about 30% of its weight in pounds"
+  ],
+  "related": []
+ }
+]

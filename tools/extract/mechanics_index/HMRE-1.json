@@ -1,0 +1,3397 @@
+[
+ {
+  "title": "Converts to the Order (hedge wizards joining Hermes)",
+  "heading": "Converts to the Order",
+  "line": 429,
+  "endLine": 436,
+  "category": "order",
+  "topic": "Hedge wizards and the Order",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Hedge wizard character who swears the Oath of Hermes (House Ex Miscellanea)",
+  "summary": "How to build a Gifted hedge wizard who has converted to the Order: use the tradition's creation rules up to the Oath, then continue as a Hermetic magus, with limits on learning the Hermetic Arts and social consequences of the conversion.",
+  "quotes": [
+   "Once the character has sworn the Oath of Hermes he gains the free Social Status Virtue Hermetic Magus"
+  ],
+  "related": [
+   "ArM5 p.43 Hermetic Magus",
+   "ArM5 p.54 Hedge Wizard Flaw",
+   "ArM5 p.106-107 Opening the Arts",
+   "Houses of Hermes: Societates, House Ex Miscellanea"
+  ]
+ },
+ {
+  "title": "UnGifted Hedge Wizards and the Order",
+  "heading": "UnGifted Hedge Wizards",
+  "line": 437,
+  "endLine": 451,
+  "category": "order",
+  "topic": "Hedge wizards and the Order",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "unGifted hedge wizard seeking membership in the Order",
+  "summary": "Explains why membership is normally restricted to Gifted characters, the rare exceptions, and what an unGifted member could never do; includes the sample spell The Numbness of The Gift for sensing the Gift.",
+  "quotes": [
+   "Membership in the Order of Hermes is restricted to characters with The Gift."
+  ],
+  "related": []
+ },
+ {
+  "title": "Identifying The Gift",
+  "heading": "Identifying The Gift",
+  "line": 453,
+  "endLine": 457,
+  "category": "magic",
+  "topic": "Hedge wizards and the Order",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dealing with hedge wizards",
+  "summary": "How Hermetic Intellego Vim effects detect the Gift and hedge Arts or Supernatural Abilities, giving the effective residual magnitude of such a target.",
+  "quotes": [
+   "an effective residual magnitude of his highest Art / 5",
+   "effective residual magnitude equal to his highest Supernatural Ability Score"
+  ],
+  "related": [
+   "ArM5 p.158 Residual magnitude"
+  ]
+ },
+ {
+  "title": "Hedge wizards and Certamen",
+  "heading": "Certamen",
+  "line": 459,
+  "endLine": 465,
+  "category": "order",
+  "topic": "Certamen",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge wizard facing a certamen challenge",
+  "summary": "Hedge wizards cannot take part in certamen unless their Hermetic Arts are Opened; a hedge wizard who accepts a challenge simply loses, which makes converts targets for bullying.",
+  "quotes": [
+   "he cannot cause his phantasm to manifest"
+  ],
+  "related": []
+ },
+ {
+  "title": "Allies to the Order (hedge allies of covenants)",
+  "heading": "Allies to the Order",
+  "line": 467,
+  "endLine": 473,
+  "category": "covenant",
+  "topic": "Hedge wizards and the Order",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant or magus allied with a hedge tradition",
+  "summary": "How to represent hedge-tradition allies of a covenant or a single magus with Covenant Boons and Virtues such as Social Contacts and Personal Vis Source.",
+  "quotes": [
+   "Minor Virtue Social Contacts (ArM5, page 49)"
+  ],
+  "related": [
+   "Covenants p.21 Hedge Tradition boon",
+   "ArM5 p.49 Social Contacts",
+   "ArM5 p.47 Personal Vis Source"
+  ]
+ },
+ {
+  "title": "Hedge Wizards and the Aegis of the Hearth",
+  "heading": "Hedge Wizards and the Aegis of the Hearth",
+  "line": 482,
+  "endLine": 488,
+  "category": "magic",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge wizard meeting an Aegis of the Hearth",
+  "summary": "How a hedge wizard's magic interacts with an Aegis of the Hearth: casting towards it must Penetrate, casting inside it suffers a penalty, and tokens or participation grant immunity.",
+  "quotes": [
+   "half the level of the Aegis is subtracted from his Casting Total"
+  ],
+  "related": [
+   "ArM5 p.161 Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "Hedge Magic: common rules",
+  "heading": "Hedge Magic",
+  "line": 490,
+  "endLine": 492,
+  "category": "traditions",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition",
+  "summary": "Introduces the common rules shared by hedge traditions and advises troupes designing their own traditions to break only a few of them.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Gift in hedge traditions",
+  "heading": "The Gift",
+  "line": 494,
+  "endLine": 496,
+  "category": "traditions",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition",
+  "summary": "Notes that some hedge traditions are exclusively Gifted and others include unGifted members, and what that implies about their size, isolation and survival.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Opening the Gift (hedge traditions)",
+  "heading": "Opening the Gift",
+  "line": 498,
+  "endLine": 534,
+  "category": "traditions",
+  "topic": "Opening the Gift",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gifted hedge wizard apprentice",
+  "summary": "A season-long ritual in which a Gifted master Opens an apprentice's Gift to the tradition; if the apprentice already has Supernatural Abilities or Arts, an Opening Total is compared with an Opening Ease Factor, with a worked example.",
+  "quotes": [
+   "It takes one season to Open The Gift, which occupies both the apprentice and the master for the whole season.",
+   "**Opening Ease Factor:** twice apprentice's Supernatural Ability + Art scores (+ 12 if Gift already Open)",
+   "unless the Opening Total exceeds twice the Opening Ease Factor the apprentice loses his existing Supernatural Ability and Art Scores"
+  ],
+  "related": [
+   "ArM5 p.106 Opening the Arts"
+  ]
+ },
+ {
+  "title": "Flawed Opening of The Gift",
+  "heading": "Flawed Opening of The Gift",
+  "line": 514,
+  "endLine": 516,
+  "category": "traditions",
+  "topic": "Opening the Gift",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gifted hedge wizard apprentice",
+  "summary": "A master who lacks competence in the tradition's Arts and Abilities passes on a Flaw to the apprentice for each shortfall.",
+  "quotes": [
+   "the character must have a score of at least 2 in each Supernatural Ability and Art of the tradition"
+  ],
+  "related": []
+ },
+ {
+  "title": "Opening the Arts after a hedge Opening",
+  "heading": "Opening the Arts",
+  "line": 536,
+  "endLine": 538,
+  "category": "magic",
+  "topic": "Opening the Gift",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Apprentice whose Gift was already Opened by a hedge tradition",
+  "summary": "Adds a penalty to the Intellego Vim Lab Total needed to Open the Hermetic Arts of an apprentice whose Gift has already been Opened by a hedge tradition.",
+  "quotes": [
+   "add 30 to the Intellego Vim Lab Total required by the magus"
+  ],
+  "related": [
+   "ArM5 p.106 Opening the Arts",
+   "Houses of Hermes: Societates p.128"
+  ]
+ },
+ {
+  "title": "Social Penalty of the Gift (hedge traditions)",
+  "heading": "Social Penalty of the Gift",
+  "line": 540,
+  "endLine": 542,
+  "category": "social",
+  "topic": "The Gift",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Gifted hedge wizard",
+  "summary": "Gifted hedge wizards suffer the Gift's social penalty even with other Gifted characters unless their tradition has found a remedy comparable to Parma Magica.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.75 The Gift"
+  ]
+ },
+ {
+  "title": "The Limits of Magic and hedge magic",
+  "heading": "The Limits of Magic",
+  "line": 544,
+  "endLine": 550,
+  "category": "traditions",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Designing a hedge tradition",
+  "summary": "Hedge magic is bound by the Limits of Magic; troupe-designed traditions should break at most one Lesser Limit and no Greater Limit, and should respect the new Limit of Magic Resistance.",
+  "quotes": [
+   "traditions devised by the troupe break no more than one of the Lesser Limits of Magic"
+  ],
+  "related": [
+   "ArM5 p.79-80 Limits of Magic"
+  ]
+ },
+ {
+  "title": "Hedge Arts and Supernatural Abilities",
+  "heading": "Hedge Arts and Supernatural Abilities",
+  "line": 552,
+  "endLine": 556,
+  "category": "traditions",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition",
+  "summary": "Hedge traditions produce effects through combinations of hedge Arts, through Supernatural Abilities, or both; hedge Arts do not combine with Hermetic Arts or with other traditions' Arts.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Difficult Arts Mechanically (design guideline)",
+  "heading": "Difficult Arts Mechanically",
+  "line": 558,
+  "endLine": 560,
+  "category": "traditions",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Designing a hedge tradition",
+  "summary": "Design advice: if a combination of hedge Arts can affect magi, at least one of them should be a Difficult Art so hedge wizards cannot easily get high Penetration.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Difficult Arts",
+  "heading": "Difficult Arts",
+  "line": 562,
+  "endLine": 566,
+  "category": "traditions",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Hedge tradition with Difficult Arts",
+  "summary": "Difficult Arts are bought and advanced like Abilities rather than Arts, but otherwise act as Arts for vis study, Magical Foci and Virtues that affect Arts.",
+  "quotes": [
+   "it costs 5 experience points for a score of 1, 15 experience points for a score of 2, etc"
+  ],
+  "related": [
+   "ArM5 p.31 Ability Advancement Table"
+  ]
+ },
+ {
+  "title": "Accelerated Abilities",
+  "heading": "Accelerated Abilities",
+  "line": 568,
+  "endLine": 570,
+  "category": "traditions",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Hedge tradition with Accelerated Abilities",
+  "summary": "The counterpart to Difficult Arts: Abilities that advance like Arts at one experience point for a score of 1, are not capped at creation, and are otherwise treated as Abilities.",
+  "quotes": [
+   "costing one experience point for a score of 1"
+  ],
+  "related": [
+   "Houses of Hermes: Societates"
+  ]
+ },
+ {
+  "title": "Favored Abilities",
+  "heading": "Favored Abilities",
+  "line": 572,
+  "endLine": 574,
+  "category": "traditions",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gifted member of a tradition with favored Supernatural Abilities",
+  "summary": "Gifted characters of some traditions need not subtract their favored Supernatural Ability scores from the source quality when learning other favored Abilities, but do subtract all of them when learning non-favored ones.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Limit of Magic Resistance",
+  "heading": "The Limit of Magic Resistance",
+  "line": 576,
+  "endLine": 580,
+  "category": "traditions",
+  "topic": "Hedge magic rules",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Designing a hedge tradition",
+  "summary": "A proposed new Limit of Magic: no hedge tradition has a general resistance to magic, and the Order ruthlessly eliminates any that develop one.",
+  "quotes": [
+   "No hedge tradition has a general resistance to magic."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Defenses (hedge wizards)",
+  "heading": "Magic Defenses",
+  "line": 582,
+  "endLine": 604,
+  "category": "traditions",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition that grants Magical Defenses",
+  "summary": "Hedge wizards have no true Magic Resistance but may gain limited Magical Defense Bonuses in their area of specialty, derived from a hedge Art or Supernatural Ability; defenses do not stack, cannot be switched off and do not apply to Personal Range effects.",
+  "quotes": [
+   "**Magical Defense Bonus:** Art divided by 5 (round up) or Ability Score",
+   "Magical defenses are not cumulative.",
+   "Magical defenses do not apply to effects that have a Personal Range."
+  ],
+  "related": [
+   "Hedge Magic: Greater Magical Defenses and No Magical Defenses"
+  ]
+ },
+ {
+  "title": "Magical Defense: Accelerated Expiry",
+  "heading": "Accelerated Expiry",
+  "line": 606,
+  "endLine": 608,
+  "category": "traditions",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition granting Accelerated Expiry",
+  "summary": "Spells cast on the hedge wizard within his specialty expire early by an amount that depends on the spell's Duration category.",
+  "quotes": [
+   "Diameter Duration spells expire a number of rounds too early equal to the hedge wizard's Magical Defense Bonus, but last at least one round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Defense: Alacritous Fortune",
+  "heading": "Alacritous Fortune",
+  "line": 610,
+  "endLine": 612,
+  "category": "traditions",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition granting Alacritous Fortune",
+  "summary": "The hedge wizard adds his Magical Defense Bonus to his Defense Total against spells aimed at him.",
+  "quotes": [
+   "The hedge wizard adds his Magical Defense Bonus to his Defense Total when spells are aimed at him."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Defense: Confounding Magics",
+  "heading": "Confounding Magics",
+  "line": 614,
+  "endLine": 616,
+  "category": "traditions",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition granting Confounding Magics",
+  "summary": "Makes Concentration rolls harder for casters of Concentration-duration effects aimed at the hedge wizard; in a Group effect only the best bonus among such hedge wizards applies.",
+  "quotes": [
+   "Add the hedge wizards Magical Defense Bonus to the Ease Factor of Concentration rolls"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Defense: Immovable Object",
+  "heading": "Immovable Object",
+  "line": 618,
+  "endLine": 620,
+  "category": "traditions",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition granting Immovable Object",
+  "summary": "Each round the hedge wizard rolls to shake off a controlling effect in his specialty, with his Strength and Magical Defense Bonus offsetting the effect's magnitude.",
+  "quotes": [
+   "Strength + Magical Defense Bonus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Defense: Magical Fortitude",
+  "heading": "Magical Fortitude",
+  "line": 622,
+  "endLine": 624,
+  "category": "traditions",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition granting Magical Fortitude",
+  "summary": "Damaging effects in the hedge wizard's specialty are soaked with an added Magical Defense Bonus.",
+  "quotes": [
+   "he receives a Magical Defense Bonus to his Soak Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Defense: Strength of Form",
+  "heading": "Strength of Form",
+  "line": 626,
+  "endLine": 628,
+  "category": "traditions",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition granting Strength of Form",
+  "summary": "When a form-changing effect in his specialty affects him, the hedge wizard may roll to return to his natural form.",
+  "quotes": [
+   "Stamina + Magical Defense Bonus + simple die roll against an Ease Factor of 9"
+  ],
+  "related": [
+   "Bjornaer Heartbeast"
+  ]
+ },
+ {
+  "title": "Warping of hedge wizards",
+  "heading": "Warping",
+  "line": 630,
+  "endLine": 634,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge wizard",
+  "summary": "Hedge wizards gain Warping Points by the usual methods except from living in a strong magic aura, and have no Wizard's Twilight; unGifted ones react like mundane characters and Gifted ones react in tradition-specific ways.",
+  "quotes": [
+   "he does not accumulate Warping points due to living in a strong magic aura"
+  ],
+  "related": [
+   "ArM5 p.167 Warping",
+   "ArM5 p.168 Warping effects"
+  ]
+ },
+ {
+  "title": "Vis and hedge wizards: detecting vis",
+  "heading": "Vis",
+  "line": 636,
+  "endLine": 638,
+  "category": "traditions",
+  "topic": "Detecting vis",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition that uses vis",
+  "summary": "Introduces how hedge wizards may use and detect vis, leading into the Magic Sensitivity and non-supernatural detection methods.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Detecting vis with Magic Sensitivity",
+  "heading": "Magic Sensitivity",
+  "line": 640,
+  "endLine": 642,
+  "category": "magic",
+  "topic": "Detecting vis",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Magic Sensitivity",
+  "summary": "A character with Magic Sensitivity can tell whether an object holds vis by rolling against an Ease Factor that falls as the vis in it rises.",
+  "quotes": [
+   "make a roll of Perception + Magic Sensitivity against an Ease Factor of (12 \u2014 the number of pawns of vis contained in the object)"
+  ],
+  "related": [
+   "ArM5 p.66 Magic Sensitivity"
+  ]
+ },
+ {
+  "title": "Detecting vis without supernatural means: Perception",
+  "heading": "Non-supernatural Perception",
+  "line": 644,
+  "endLine": 646,
+  "category": "magic",
+  "topic": "Detecting vis",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character without supernatural senses can pick the objects most likely to hold vis from a collection using Perception and a Theory or Magic Lore Ability; the result is only a guess until the vis is used.",
+  "quotes": [
+   "make a Perception + (Hedge Magic) Theory or Magic Lore roll against an Ease Factor of 12"
+  ],
+  "related": []
+ },
+ {
+  "title": "Detecting vis without supernatural means: Intelligence",
+  "heading": "Non-supernatural Intelligence",
+  "line": 648,
+  "endLine": 650,
+  "category": "magic",
+  "topic": "Detecting vis",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character can reason about where vis is likely to be found (for example, the first fruit of the season) with an Intelligence roll; finding it remains trial and error.",
+  "quotes": [
+   "make a roll for the character of Intelligence + (Hedge Magic) Theory or Magic Lore against an Ease Factor of 15"
+  ],
+  "related": [
+   "Covenants p.72 Vis sources"
+  ]
+ },
+ {
+  "title": "Creating Hedge Characters",
+  "heading": "Creating Hedge Characters",
+  "line": 652,
+  "endLine": 654,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Hedge tradition",
+  "summary": "Introduces the general framework for generating hedge wizard characters that each tradition chapter builds on.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hedge wizard as a Gifted Companion",
+  "heading": "As a Gifted Companions",
+  "line": 660,
+  "endLine": 662,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gifted hedge wizard companion",
+  "summary": "A Gifted companion gets The Gift for free, up to a set number of Virtue points balanced by Flaws, and usually gains access to the tradition's whole suite of powers through a free Social Status after Opening The Gift.",
+  "quotes": [
+   "Such a character may have up to 10 points worth of Virtues and balancing Flaws"
+  ],
+  "related": [
+   "ArM5 p.166 Learning Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Hedge wizard as an unGifted Companion",
+  "heading": "As an unGifted Companion",
+  "line": 664,
+  "endLine": 666,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "unGifted hedge wizard companion",
+  "summary": "An unGifted hedge wizard buys each power through individual Virtues and has no Gift to Open, so is typically weaker than a Gifted one.",
+  "quotes": [
+   "An un-Gifted companion character may have up to 10 points worth of Virtues and balancing Flaws."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hedge wizard as a Mythic Companion",
+  "heading": "As a Mythic Companion",
+  "line": 668,
+  "endLine": 670,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Mythic Companion hedge wizard",
+  "summary": "A more powerful unGifted hedge wizard built as a Mythic Companion with the free Mythic Companion Status, extra Flaws balancing double their value in Virtues, and an extra Minor Virtue.",
+  "quotes": [
+   "The character also receives an extra Minor Virtue at no cost. This means that the Mythic Companion character has a maximum of 21 points of Virtues."
+  ],
+  "related": [
+   "Mythic Companion Status Virtue"
+  ]
+ },
+ {
+  "title": "Hedge wizard as a Grog",
+  "heading": "As a Grog",
+  "line": 672,
+  "endLine": 674,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Grog hedge wizard",
+  "summary": "A very minor unGifted hedge wizard can be a grog with a few Minor Virtues representing his powers.",
+  "quotes": [
+   "created as a grog character who has up to three Minor Virtues to represent his powers"
+  ],
+  "related": []
+ },
+ {
+  "title": "Concerns in building hedge characters",
+  "heading": "Concerns",
+  "line": 676,
+  "endLine": 682,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Hedge tradition",
+  "summary": "Reminds troupes to follow the normal Virtue and Flaw mix for each character type, that only Gifted companions may take Hermetic Virtues and Flaws, and how hedge characters compare in power to magi when allocating them to players.",
+  "quotes": [
+   "only Gifted companion characters may be assigned Hermetic Virtues and Flaws"
+  ],
+  "related": [
+   "ArM5 p.28 Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "Hermetic Virtues and Flaws for hedge wizards",
+  "heading": "Hermetic Virtues and Flaws",
+  "line": 688,
+  "endLine": 690,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gifted hedge wizard",
+  "summary": "A Gifted hedge wizard may take Hermetic Virtues and Flaws that make sense for his tradition; unGifted members may get Supernatural versions, and may only take a Supernatural Flaw that limits a Virtue he has.",
+  "quotes": [
+   "An unGifted character may only take a Supernatural Flaw of this sort if he has a Virtue that will be limited by it."
+  ],
+  "related": [
+   "ArM5 p.28 Gifted characters"
+  ]
+ },
+ {
+  "title": "Free Social Status: (Hedge Wizard)",
+  "heading": "Free Social Status: (Hedge Wizard)",
+  "line": 692,
+  "endLine": 694,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Membership of a hedge tradition",
+  "summary": "Each tradition has its own free Social Status Virtue: for Gifted members it reflects the Opening of The Gift and access to favored Abilities or Arts, while unGifted members need the individual Virtues but still gain the social standing.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Arcane Abilities of hedge wizards",
+  "heading": "Arcane Abilities",
+  "line": 716,
+  "endLine": 718,
+  "category": "basics",
+  "topic": "Hedge Abilities",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Social Status: (Hedge Wizard)",
+  "summary": "The hedge wizard Social Status gives access to the Arcane Abilities Finesse, Magic Lore and Penetration, and often a tradition-specific analogue of Magic Theory.",
+  "quotes": [
+   "at least the Arcane Abilities Finesse, Magic Lore, and Penetration"
+  ],
+  "related": []
+ },
+ {
+  "title": "(Hedge Magic) Theory",
+  "heading": "(Hedge Magic) Theory",
+  "line": 720,
+  "endLine": 722,
+  "category": "basics",
+  "topic": "Hedge Abilities",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Hedge tradition with a theoretical basis",
+  "summary": "An Arcane Ability covering the technical practice of a hedge tradition's magic; traditions without practitioners holding it are poor at innovation, new effects and teaching.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "(Organization) Lore for hedge traditions",
+  "heading": "(Organization) Lore",
+  "line": 724,
+  "endLine": 726,
+  "category": "basics",
+  "topic": "Hedge Abilities",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "A General Ability for the legends, history, structure and goals of each hedge tradition; membership is not required, and some traditions use it in initiations.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.66 Organization Lore"
+  ]
+ },
+ {
+  "title": "Inherited and Learned Powers",
+  "heading": "Inherited and Learned Powers",
+  "line": 732,
+  "endLine": 738,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Hedge tradition",
+  "summary": "Hedge powers are either inherited as Supernatural Virtues that the tradition then trains, or learned through teaching, initiations or Opening the Gift; players should decide how a character acquired his powers.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hedge powers during character generation",
+  "heading": "During Character Generation",
+  "line": 740,
+  "endLine": 744,
+  "category": "creation",
+  "topic": "Hedge character creation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Hedge tradition",
+  "summary": "A Gifted companion with an Opened Gift may spend starting experience on tradition Arts and Abilities, while an unGifted one may only do so for those powers for which he has the corresponding Virtues.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hedge powers during play",
+  "heading": "During Play",
+  "line": 746,
+  "endLine": 748,
+  "category": "seasons",
+  "topic": "Hedge character creation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition",
+  "summary": "In play, hedge wizards improve existing Supernatural Abilities and Arts normally but cannot learn new ones without the necessary Virtues, typically gained by initiation.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hedge tradition Initiations",
+  "heading": "Initiations",
+  "line": 750,
+  "endLine": 758,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition that teaches powers by Initiation",
+  "summary": "A Mystagogue directs the Initiate through a Script of mystically significant tasks; an Initiation Total plus Script Bonus is compared to an Ease Factor and, on success, the Initiate gains a power, usually a Virtue.",
+  "quotes": [
+   "If the Mystagogue does not personally know the power then the Ease Factor is increased by 3 (if the power is a Minor Virtue), or by 9 (if the power is a Major Virtue).",
+   "The Script Bonus is added to the Initiation Total."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults",
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "UnGifted Initiations",
+  "heading": "UnGifted Initiations",
+  "line": 798,
+  "endLine": 804,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition that Initiates unGifted characters",
+  "summary": "Special rules for traditions that initiate unGifted characters: the Initiation must include an Ordeal, earlier Ordeals do not count, and the Initiate cannot act as his own Mystagogue.",
+  "quotes": [
+   "Initiations that affect unGifted characters must include an Ordeal"
+  ],
+  "related": []
+ },
+ {
+  "title": "Integration of Hedge Magic",
+  "heading": "Integration of Hedge Magic",
+  "line": 760,
+  "endLine": 762,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus researching a hedge tradition",
+  "summary": "Introduces how Hermetic magi, especially Bonisagus Seekers, study hedge traditions to extend Hermetic theory.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Breakthrough (integrating hedge magic)",
+  "heading": "The Breakthrough",
+  "line": 764,
+  "endLine": 776,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus researching a hedge tradition",
+  "summary": "Any magus may attempt to integrate a hedge tradition by accumulating breakthrough points; there are Minor, Major and Hermetic Breakthroughs of increasing difficulty, whose exact requirements the storyguide should vary.",
+  "quotes": [
+   "Typically requires around 30 breakthrough points",
+   "Typically requires around 45 breakthrough points",
+   "Typically requires around 60 breakthrough points"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, original research"
+  ]
+ },
+ {
+  "title": "Insight (integrating hedge magic)",
+  "heading": "Insight",
+  "line": 778,
+  "endLine": 796,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus researching a hedge tradition",
+  "summary": "A magus spends seasons studying texts, relics or teachers of a hedge tradition and rolls to gain an insight, which yields Lab Texts and a specified partially Hermetic effect; teachers can also assist.",
+  "quotes": [
+   "make a stress roll of Intelligence + Magic Theory against an Ease Factor of 18",
+   "insight Lab Texts have a level equal to the typical number of breakthrough points needed for the type of Breakthrough in question",
+   "A teacher can provide a number of insights equal to his (Hedge Magic) Theory Ability, in each Breakthrough associated with his tradition."
+  ],
+  "related": [
+   "ArM5 p.166 Learning Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "The Integration Process",
+  "heading": "The Integration Process",
+  "line": 806,
+  "endLine": 812,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus researching a hedge tradition",
+  "summary": "A five-step summary: find a source, investigate it for Insight, invent the specified spell or device while experimenting, keep researching to the threshold, then reap the consequences.",
+  "quotes": [
+   "gain a number of breakthrough points equal to the magnitude of the spell or device"
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating the Effect (from an insight)",
+  "heading": "Creating the Effect",
+  "line": 814,
+  "endLine": 830,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus holding an insight",
+  "summary": "An insight fixes one exact effect that the researcher must invent without varying it, gaining breakthrough points equal to its magnitude; other magi can reproduce it only from a Lab Text, again without variation.",
+  "quotes": [
+   "the magus gains a number of breakthrough points equal to the magnitude of the effect",
+   "The researcher must invent exactly the effect inspired by the insight."
+  ],
+  "related": [
+   "ArM5 p.103 Laboratory helpers",
+   "ArM5 p.107 Extraordinary Results"
+  ]
+ },
+ {
+  "title": "After the Breakthrough",
+  "heading": "After the Breakthrough",
+  "line": 852,
+  "endLine": 860,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Completed Breakthrough from a hedge tradition",
+  "summary": "How each kind of Breakthrough spreads: Minor ones are usable at once, Abilities convert breakthrough points to experience, new Virtues are gained without Initiation, and further teaching-free Breakthroughs need another Major Breakthrough.",
+  "quotes": [
+   "so that a magus who accrued 50 breakthrough points to integrate an Ability would start with a score of 4"
+  ],
+  "related": [
+   "The Mysteries Revised Edition, Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Hermetic Use of Hedge Theory",
+  "heading": "Hermetic Use of Hedge Theory",
+  "line": 862,
+  "endLine": 868,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge tradition lacking a Theory Ability",
+  "summary": "A Hermetic researcher or hedge wizard may invent a (Hedge Magic) Theory Ability as a Hermetic Breakthrough, converting the points to experience and then acting as his own source of insight.",
+  "quotes": [
+   "This Breakthrough normally requires 60 breakthrough points, but the researcher reduces this amount by his greatest existing (Hedge Magic) Theory or Magic Theory Ability Score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Original Research and Ancient Magic",
+  "heading": "Original Research and Ancient Magic",
+  "line": 870,
+  "endLine": 876,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus researching a hedge tradition",
+  "summary": "Breakthrough points from integrating hedge traditions, original research and ancient traditions are interchangeable for reaching a Breakthrough.",
+  "quotes": [
+   "breakthrough points from integration may be added to breakthrough points from original research to determine whether a Breakthrough has been achieved"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, original research",
+   "Ancient Magic"
+  ]
+ },
+ {
+  "title": "Integration by Hedge Wizard Researchers",
+  "heading": "Integration by Hedge Wizard Researchers",
+  "line": 878,
+  "endLine": 882,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hedge wizard with a (Hedge Magic) Theory Score",
+  "summary": "Hedge wizards can do their own integration research once they have a Theory Ability, but need more breakthrough points than a Hermetic researcher and face disapproving peers.",
+  "quotes": [
+   "a hedge researcher requires double the number of breakthrough points that an equivalent Hermetic researcher would require"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementalist Characters (Arts, vis use and study)",
+  "heading": "Elementalist Characters",
+  "line": 892,
+  "endLine": 906,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Elementalists",
+  "summary": "Elementalist magic uses four Techniques and four Forms that work only in combination and come in Medicinal, Philosophical and Theurgical types; it also covers how elementalists add vis to totals and study their Arts from vis or books.",
+  "quotes": [
+   "receiving a +2 bonus for each pawn of vis that corresponds to the Elementalist Form used in the formula",
+   "spend a number of pawns of vis associated with that Form equal to (their score in the Technique / 2), rounded up"
+  ],
+  "related": [
+   "Hedge Magic: Acquiring Hedge Wizard Powers"
+  ]
+ },
+ {
+  "title": "Elemental Affinities & Character Creation",
+  "heading": "Elemental Affinities & Character Creation",
+  "line": 1006,
+  "endLine": 1008,
+  "category": "creation",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Elementalists (Elemental Magic, Medicine, Philosophiae or Theurgy)",
+  "summary": "Optional character creation method that approximates these Virtues' free experience by treating them as an Affinity with the related Forms.",
+  "quotes": [
+   "an optional method is to treat the Virtue as an Affinity with the related Forms"
+  ],
+  "related": []
+ },
+ {
+  "title": "Other Summoning Arts",
+  "heading": "Other Summoning Arts",
+  "line": 1036,
+  "endLine": 1038,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Elementalist who also has infernal Summoning",
+  "summary": "Distinguishes elementalist (Elemental) Summoning from infernal (Spirit) Summoning, and which of Controlling and Commanding works on elementals, spirits or both.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: The Infernal pp.87, 114-115"
+  ]
+ },
+ {
+  "title": "Elemental Warping",
+  "heading": "Elemental Warping",
+  "line": 1079,
+  "endLine": 1095,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Elementalists",
+  "summary": "Elementalists gain elemental Personality Traits instead of Virtues and Flaws from Warping; the Traits add to Soak against the matching element, subtract from Recovery against matching humoral illness, and become Personality Flaws or madness as they rise.",
+  "quotes": [
+   "divide the Form by 5 (rounded up), and add this result to the value of the corresponding Trait",
+   "You must subtract the value of the Trait from the character's Recovery rolls whenever he is suffering from an illness of the corresponding humor.",
+   "Treat Traits of +6 or more as Major Personality Flaws"
+  ],
+  "related": [
+   "ArM5 p.167-168 Warping",
+   "Hedge Magic: Magical Fortitude"
+  ]
+ },
+ {
+  "title": "Elemental Traits",
+  "heading": "Elemental Traits",
+  "line": 1097,
+  "endLine": 1109,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Elementalists",
+  "summary": "Describes the four elemental Personality Traits (Choleric, Melancholic, Phlegmatic, Sanguine), the Form and opposed Trait for each, and notes that opposed Traits never cancel out.",
+  "quotes": [
+   "The effects of these Traits on the character's personality never cancel each other out"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementalist Forms",
+  "heading": "Elementalist Forms",
+  "line": 1111,
+  "endLine": 1113,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Elementalists",
+  "summary": "Introduces the four Elementalist Forms and what they can affect depending on the paired Technique type.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: Magic pp.132-139",
+   "Art & Academe"
+  ]
+ },
+ {
+  "title": "Elementalist Air",
+  "heading": "Elementalist Air",
+  "line": 1115,
+  "endLine": 1127,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Elementalist Air",
+  "summary": "A Difficult Art; defines what Medicinal, Philosophical and Theurgical elementalists can affect with air and gives a Soak bonus from the Sanguine Trait against air damage.",
+  "quotes": [
+   "The character adds his Sanguine Trait to his Soak whenever he is damaged by the element of air"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementalist Earth",
+  "heading": "Elementalist Earth",
+  "line": 1129,
+  "endLine": 1139,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Elementalist Earth",
+  "summary": "A Difficult Art; defines what elementalists can affect with earth and gives a Soak bonus from the Melancholy Trait against earth damage.",
+  "quotes": [
+   "The character adds his Melancholy Trait to his Soak whenever he is damaged by the element of earth"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementalist Fire",
+  "heading": "Elementalist Fire",
+  "line": 1141,
+  "endLine": 1149,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Elementalist Fire",
+  "summary": "A Difficult Art; defines what elementalists can affect with fire and gives a Soak bonus from the Choleric Trait against fire damage.",
+  "quotes": [
+   "The character adds his Choleric Trait to his Soak whenever he is damaged by the element of fire"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementalist Water",
+  "heading": "Elementalist Water",
+  "line": 1151,
+  "endLine": 1161,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Elementalist Water",
+  "summary": "A Difficult Art; defines what elementalists can affect with water and gives a Soak bonus from the Phlegmatic Trait against water damage.",
+  "quotes": [
+   "The character adds his Phlegmatic trait to his Soak when he is damaged by the element of water"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementalist Techniques",
+  "heading": "Elementalist Techniques",
+  "line": 1163,
+  "endLine": 1165,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Elementalists",
+  "summary": "Introduces the four Elementalist Techniques, each tied to a Characteristic, combined with a Form and applied to a Medicinal, Philosophical or Theurgical target.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Elementalist Summoning",
+  "heading": "Summoning",
+  "line": 1167,
+  "endLine": 1207,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Type) Summoning",
+  "summary": "The Summoning roll draws elements or targets to the elementalist at the cost of a long-term Fatigue level; the Total is looked up on a Size/Might chart, multiple Forms use the lowest score, summoning containers hold targets and ease later effects, and botches lose control.",
+  "quotes": [
+   "**SUMMONING TOTAL:** stress die + Stamina + Summoning + (Form) + aura",
+   "This procedure always costs the elementalist a long-term Fatigue level"
+  ],
+  "related": [
+   "ArM5 p.112 Rings and circles"
+  ]
+ },
+ {
+  "title": "Summoning (Medicinal)",
+  "heading": "Medicinal",
+  "line": 1209,
+  "endLine": 1211,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Medicinal) Summoning",
+  "summary": "An elemental physician touches a target to cure or cause disease by shifting its humors, with the Summoning Total giving the strength of the disease in terms of wound and illness severity.",
+  "quotes": [
+   "one magnitude more affects a disease equivalent to a Medium wound or a serious illness"
+  ],
+  "related": [
+   "Art & Academe disease rules"
+  ]
+ },
+ {
+  "title": "Summoning (Philosophical)",
+  "heading": "Philosophical",
+  "line": 1213,
+  "endLine": 1217,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Philosophical) Summoning",
+  "summary": "An elemental philosopher conjures raw natural phenomena or base matter, or native animals of a fitting temperament, within the Size and Might limits set by the Summoning Total.",
+  "quotes": [
+   "of an amount no more than the Size indicated by the Summoning Total on the chart earlier"
+  ],
+  "related": []
+ },
+ {
+  "title": "Summoning (Theurgical)",
+  "heading": "Theurgical",
+  "line": 1222,
+  "endLine": 1224,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Theurgical) Summoning",
+  "summary": "An elemental theurgist brings an elemental into being from raw base material, with the Summoning Total setting its maximum Might; the elemental is permanent but cannot recover Might except by consuming vis.",
+  "quotes": [
+   "Elementals are permanently summoned, but do not recover their Might Points over time unless they consume vis"
+  ],
+  "related": [
+   "Realms of Power: Magic, elementals"
+  ]
+ },
+ {
+  "title": "Summoning Elementals",
+  "heading": "Summoning Elementals",
+  "line": 1226,
+  "endLine": 1232,
+  "category": "beings",
+  "topic": "Elementalist magic",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Theurgical) Summoning",
+  "summary": "Summoned elementals are temporary, revert to base material when their Might Pool is empty, regain Might by eating vis (preferring the opposed Form), and are wild and dangerous unless contained.",
+  "quotes": [
+   "each pawn an elemental consumes returns 5 points of Might to it"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementalist Controlling",
+  "heading": "Controlling",
+  "line": 1234,
+  "endLine": 1246,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Type) Controlling",
+  "summary": "Controlling lets an elementalist dictate the behavior of summoned or encountered targets; it costs an ordinary Fatigue level, takes a round, must penetrate Magic Resistance, and is much easier against a bound target.",
+  "quotes": [
+   "**CONTROLLING TOTAL:** stress die + Presence + Controlling + (Form) + aura"
+  ],
+  "related": []
+ },
+ {
+  "title": "Controlling (Medicinal)",
+  "heading": "Medicinal",
+  "line": 1248,
+  "endLine": 1252,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Medicinal) Controlling",
+  "summary": "An elemental physician inspires or suppresses emotions as a temporary Personality Trait scaled to the Controlling Total, and can command supernatural creatures lodged in a human body.",
+  "quotes": [
+   "roughly equivalent to a Personality Trait with a positive or negative value of (Controlling Total / 10), rounded up"
+  ],
+  "related": []
+ },
+ {
+  "title": "Controlling (Philosophical)",
+  "heading": "Philosophical",
+  "line": 1258,
+  "endLine": 1262,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Philosophical) Controlling",
+  "summary": "An elemental philosopher can boost his Soak against a material of the matching element and give commands to animals of the matching temperament.",
+  "quotes": [
+   "He may add his (Controlling Total / 5) to his Soak against the target material for as long as he maintains concentration"
+  ],
+  "related": []
+ },
+ {
+  "title": "Controlling (Theurgical)",
+  "heading": "Theurgical",
+  "line": 1264,
+  "endLine": 1266,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Theurgical) Controlling",
+  "summary": "An elemental theurgist who equals or exceeds a being's Might can force it to carry out a single command, or banish an elemental permanently.",
+  "quotes": [
+   "assuming he can equal or exceed the being's Might on his Controlling roll"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementalist Divining",
+  "heading": "Divining",
+  "line": 1268,
+  "endLine": 1278,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Type) Divining",
+  "summary": "Divining costs no Fatigue and either senses an appropriate target nearby (Size only) or, by touch, communes with it (Size and Might, and penetration); it can also locate vis of an element and uses the lower Form when several are combined.",
+  "quotes": [
+   "**Divining Total:** stress die + Perception + Divining + (Form) + aura"
+  ],
+  "related": []
+ },
+ {
+  "title": "Divining (Medicinal)",
+  "heading": "Medicinal",
+  "line": 1280,
+  "endLine": 1282,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Medicinal) Divining",
+  "summary": "An elemental physician diagnoses humoral imbalance and, by tending a patient through recovery, adds a fraction of the Divining Total as magical aid to the patient's recovery roll.",
+  "quotes": [
+   "treat his (Divining Total / 5) as magical aid for the purposes of the target's recovery roll"
+  ],
+  "related": [
+   "ArM5 p.179 Recovery"
+  ]
+ },
+ {
+  "title": "Divining (Philosophical)",
+  "heading": "Philosophical",
+  "line": 1284,
+  "endLine": 1286,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Philosophical) Divining",
+  "summary": "An elemental philosopher senses natural materials of an element and animals of the matching temperament, including understanding an animal's thoughts by touch.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Divining (Theurgical)",
+  "heading": "Theurgical",
+  "line": 1288,
+  "endLine": 1290,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Theurgical) Divining",
+  "summary": "An elemental theurgist senses beings with Might of the element in the region and can converse with them or perceive their past by touch.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Elementalist Refining",
+  "heading": "Refining",
+  "line": 1296,
+  "endLine": 1306,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Type) Refining",
+  "summary": "A season-long laboratory-like activity that purifies or breaks down a target, often yielding raw vis; it also lets an elementalist brew a longevity potion costing vis scaled to his age.",
+  "quotes": [
+   "**REFINING TOTAL:** Intelligence + (associated Ability) + Refining + (Form) + aura",
+   "The potion gives him a bonus to his Aging rolls equal to his (Refining Total /5)",
+   "costs a number of pawns of vis equal to his (age /5), rounded up"
+  ],
+  "related": [
+   "ArM5 Longevity ritual"
+  ]
+ },
+ {
+  "title": "Refining (Medicinal)",
+  "heading": "Medicinal",
+  "line": 1308,
+  "endLine": 1320,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Medicinal) Refining",
+  "summary": "An elemental physician can make longevity potions for others and a year-long vigor potion that boosts a Characteristic chosen by Element, capped by his lowest Form; a table lists the Characteristics per element.",
+  "quotes": [
+   "This boosts one of the target's Characteristics (as shown below) by the elementalist's (Refining Total / 5)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Refining (Philosophical)",
+  "heading": "Philosophical",
+  "line": 1322,
+  "endLine": 1328,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Philosophical) Refining",
+  "summary": "An elemental philosopher extracts vis from an aura, drains or boosts the Might of supernatural animals for vis, and moves vis between objects, losing half if the Form must be changed.",
+  "quotes": [
+   "producing his (Refining Total / 10) in vis associated with the appropriate one of the four elements",
+   "his Refining Total for the season must equal or exceed (the total number of pawns of vis moved x 5)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Refining (Theurgical)",
+  "heading": "Theurgical",
+  "line": 1330,
+  "endLine": 1336,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: (Theurgical) Refining",
+  "summary": "An elemental theurgist restores Might to, or drains it from, an elemental or supernatural being depending on whether the Form matches, opposes or is unrelated to its own, producing vis from surplus or lost Might.",
+  "quotes": [
+   "this is the number of Might Points restored to it"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementalist Societies (and Opening the Gift)",
+  "heading": "Elementalist Societies",
+  "line": 1344,
+  "endLine": 1354,
+  "category": "traditions",
+  "topic": "Elementalist magic",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Elementalists",
+  "summary": "Societies teach particular Techniques and Forms; a Gifted member opens a Gifted student's Gift using a specific Opening Total, and the society's Arts indicate what unGifted initiates can be taught.",
+  "quotes": [
+   "**OPENING TOTAL:** Intelligence + highest Technique + lowest Form + aura"
+  ],
+  "related": [
+   "Hedge Magic: Opening the Gift",
+   "Hedge Magic: Initiations"
+  ]
+ },
+ {
+  "title": "Apostles of Apollonius",
+  "heading": "Apostles of Apollonius",
+  "line": 1356,
+  "endLine": 1369,
+  "category": "traditions",
+  "topic": "Elementalist societies",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Society: Apostles of Apollonius",
+  "summary": "An elementalist society that favors (Theurgical) Summoning, (Theurgical) Controlling and all four Elementalist Forms, with history and notes on its distribution in 1220.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Ikhwan as-Safa' (Brethren of Purity)",
+  "heading": "Ikhwan as-Safa'",
+  "line": 1411,
+  "endLine": 1415,
+  "category": "traditions",
+  "topic": "Elementalist societies",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Society: Ikhwan as-Safa'",
+  "summary": "An elementalist society whose Arts are Philosophical Summoning, Philosophical Refining and all four Elementalist Forms.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Teaching of the Brethren of Purity (grades)",
+  "heading": "Teaching of the Brethern of Purity",
+  "line": 1422,
+  "endLine": 1436,
+  "category": "traditions",
+  "topic": "Elementalist societies",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Society: Ikhwan as-Safa'",
+  "summary": "The Brethren advance through four grades with minimum Ability scores; Gifted members learn the society's Arts directly while unGifted members must be initiated.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Bload Oath of Becoming a Member of Ikhwan as-Safa'",
+  "heading": "Bload Oath of Becoming a Member of Ikhwan as-Safa'",
+  "line": 1438,
+  "endLine": 1442,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Society: Ikhwan as-Safa' (unGifted initiation)",
+  "summary": "Initiation Script that grants the Major Virtue Philosophical Refining with the Major Flaw Weak Elementalist Resistance, after a quest, a tractatus and a season of study.",
+  "quotes": [
+   "**Initiation Ease Factor:** 21",
+   "**Script Bonus:** +18 (+3 Quest, +9 Major Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sacrifice, +1 Sympathetic Bonus)"
+  ],
+  "related": [
+   "Hedge Magic: Initiations"
+  ]
+ },
+ {
+  "title": "Ritual of Uncovering the Elemental Nature of Man",
+  "heading": "Ritual of Uncovering the Elemental Nature of Man",
+  "line": 1444,
+  "endLine": 1450,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Society: Ikhwan as-Safa' (unGifted initiation)",
+  "summary": "Initiation Script that grants a score of 1 in an Elementalist Form (chosen by the Initiate's temperament) plus the Minor Flaw Mentor.",
+  "quotes": [
+   "**Initiation Ease Factor:** 15",
+   "**Script Bonus:** +12 (+3 Quest, +3 Minor Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus, +1 Sacrifice)"
+  ],
+  "related": [
+   "Hedge Magic: Initiations"
+  ]
+ },
+ {
+  "title": "Ritual of Making the Soul Actually Knowledgeable",
+  "heading": "Ritual of Making the Soul Actually Knowledgeable",
+  "line": 1452,
+  "endLine": 1456,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Society: Ikhwan as-Safa' (unGifted initiation)",
+  "summary": "Initiation Script that grants the Major Virtue Elemental Philosophiae and the Major Flaw Study Requirement after the supplicant writes a summa.",
+  "quotes": [
+   "**Initiation Ease Factor:** 21",
+   "**Script Bonus:** +18 (+3 Quest, +9 Major Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sacrifice, +1 Sympathetic Bonus)"
+  ],
+  "related": [
+   "Hedge Magic: Initiations"
+  ]
+ },
+ {
+  "title": "Ikhwan as-Safa' Characters",
+  "heading": "Characters",
+  "line": 1472,
+  "endLine": 1476,
+  "category": "creation",
+  "topic": "Elementalist societies",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Society: Ikhwan as-Safa'",
+  "summary": "Character generation notes for Brethren: yearly experience points for Arcane and Academic Abilities, typical Abilities, Virtues and Flaws.",
+  "quotes": [
+   "they receive 30 experience points to spend on Arcane and Academic Abilities"
+  ],
+  "related": [
+   "Learned Magicians: Mythic Alchemy, Mythic Herbalism"
+  ]
+ },
+ {
+  "title": "Tulab Ibn Sina",
+  "heading": "Tulab Ibn Sina",
+  "line": 1478,
+  "endLine": 1481,
+  "category": "traditions",
+  "topic": "Elementalist societies",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Society: Tulab Ibn Sina",
+  "summary": "An elementalist society of Islamic physicians whose Arts are Medicinal Summoning, Medicinal Divining and all four Elementalist Forms.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Teachings of Ibn Sina (access to Arts)",
+  "heading": "Teachings of Ibn Sina",
+  "line": 1489,
+  "endLine": 1493,
+  "category": "traditions",
+  "topic": "Elementalist societies",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Society: Tulab Ibn Sina",
+  "summary": "Who the Tulab accept as students; Gifted members learn Medicinal Summoning, Medicinal Divining and the Forms, while unGifted members gain Arts only through Initiation.",
+  "quotes": [
+   "Gifted members of this tradition learn Medicinal Summoning, Medicinal Divining, and all the Elementalist Forms."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rite of Testing the Physician's Dedication",
+  "heading": "Rite of Testing the Physician's Dedication",
+  "line": 1495,
+  "endLine": 1499,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Society: Tulab Ibn Sina (unGifted initiation)",
+  "summary": "Initiation Script granting a score of 1 in Medicinal Divining and the Major Flaw Restriction after a year of aiding disaster victims.",
+  "quotes": [
+   "**Initiation Ease Factor:** 21",
+   "**Script Bonus:** +18 (+3 Quest, +9 Major Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +2 Sympathetic Bonus)"
+  ],
+  "related": [
+   "Hedge Magic: Initiations"
+  ]
+ },
+ {
+  "title": "Ritual of Discovering the Physician's Humor",
+  "heading": "Ritual of Discovering the Physician's Humor",
+  "line": 1501,
+  "endLine": 1507,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Society: Tulab Ibn Sina (unGifted initiation)",
+  "summary": "Initiation Script in which the supplicant recovers from a Medium Wound as a pauper, then gains a score of 1 in an Elementalist Form matching his humor and the Minor Flaw Vow.",
+  "quotes": [
+   "**Initiation Ease Factor:** 15",
+   "**Script Bonus:** +11 (+3 Quest, +3 Minor Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": [
+   "Hedge Magic: Initiations"
+  ]
+ },
+ {
+  "title": "Ritual of Improving the Physician's Character",
+  "heading": "Ritual of Improving the Physician's Character",
+  "line": 1509,
+  "endLine": 1513,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Society: Tulab Ibn Sina (unGifted initiation)",
+  "summary": "Initiation Script granting the Major Virtue Elemental Medicine and the Major Flaw Study Requirement after a year of free healing for the poor.",
+  "quotes": [
+   "**Initiation Ease Factor:** 21",
+   "**Script Bonus:** +18 (+3 Quest, +9 Major Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus, +1 Sacrifice)"
+  ],
+  "related": [
+   "Hedge Magic: Initiations"
+  ]
+ },
+ {
+  "title": "Rite of Opening the Mind",
+  "heading": "Rite of Opening the Mind",
+  "line": 1515,
+  "endLine": 1522,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Society: Tulab Ibn Sina (advanced initiation)",
+  "summary": "Initiation Script involving a season of fasting and prayer at Ibn Sina's tomb, with a Stamina roll, granting a score of 1 in Premonitions with the Flaw Visions.",
+  "quotes": [
+   "**Initiation Ease Factor:** 15",
+   "**Script Bonus:** +12 (+3 Quest, +3 Minor Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +2 Sympathetic Bonus)",
+   "the player makes a Stamina roll against an Ease Factor of 9"
+  ],
+  "related": [
+   "Hedge Magic: Initiations"
+  ]
+ },
+ {
+  "title": "Tulab Ibn Sina Characters",
+  "heading": "Characters",
+  "line": 1534,
+  "endLine": 1540,
+  "category": "creation",
+  "topic": "Elementalist societies",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Society: Tulab Ibn Sina",
+  "summary": "Character generation notes for Tulab members: a short intense training period with set experience points, favored Abilities, typical Virtues and Flaws, and the Educated Virtue's allocation for Islamic lands.",
+  "quotes": [
+   "In a five-year period, the student gains 150 experience points to spend on Academic and Arcane Abilities."
+  ],
+  "related": [
+   "Realms of Power: The Divine pp.101, 114"
+  ]
+ },
+ {
+  "title": "Hermetic Integration of Elementalist magic",
+  "heading": "Hermetic Integration",
+  "line": 1542,
+  "endLine": 1550,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus integrating Elementalist magic",
+  "summary": "Minor Breakthroughs convert Elementalist background Virtues into Hermetic ones; a Major Breakthrough lets a magus substitute a Hermetic Technique or Form for an adapted Elementalist Art.",
+  "quotes": [
+   "a magus may substitute his score in an appropriate Hermetic Technique or Form for his score in the Elementalist Art"
+  ],
+  "related": [
+   "Hedge Magic: Integration of Hedge Magic"
+  ]
+ },
+ {
+  "title": "Creating a Folk Witch Character",
+  "heading": "Creating a Folk Witch Character",
+  "line": 1570,
+  "endLine": 1584,
+  "category": "creation",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "grogs",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Folk witches may be Gifted or unGifted (companion or grog), need at least one Flaw limiting their magic and the free Folk Witch Status, spend a ten-year apprenticeship with a special experience allotment, and can do limited laboratory work during creation.",
+  "quotes": [
+   "you may spend 200 experience points for the character on any Abilities",
+   "which gives her seven favored Supernatural Abilities",
+   "Each season spent on laboratory activities reduce the number of experience points received for that year by 10"
+  ],
+  "related": [
+   "Hedge Magic: Opening the Gift"
+  ]
+ },
+ {
+  "title": "Folk Witch minimum Ability Scores",
+  "heading": "Minimum Ability Scores",
+  "line": 1586,
+  "endLine": 1592,
+  "category": "creation",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Minimum Ability scores expected of a Gifted folk witch after apprenticeship, and the language scores needed for a literate or writing witch.",
+  "quotes": [
+   "she must have a score of at least 4 in a Language (which does not need to be Latin), and a score of at least 1 in Artes Liberales"
+  ],
+  "related": []
+ },
+ {
+  "title": "Folk Witch (Social Status)",
+  "heading": "Folk Witch",
+  "line": 1598,
+  "endLine": 1601,
+  "category": "creation",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Folk Witches",
+  "summary": "The free Social Status that grants folk witch laboratory activities, casting methods and magical defenses, coven membership and sabbat attendance, and requires two seasons a year of self-support.",
+  "quotes": [
+   "she must spend two seasons each year supporting herself"
+  ],
+  "related": []
+ },
+ {
+  "title": "Folk Witch Magic",
+  "heading": "Folk Witch Magic",
+  "line": 1717,
+  "endLine": 1723,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Folk witches use seven favored Supernatural Abilities, advanced on the standard Ability table, accessed by potions, incantations or fetish objects, with limited Magical Defenses but no Magic Resistance.",
+  "quotes": [
+   "folk witches use the standard Ability experience advancement table when improving these Abilities"
+  ],
+  "related": [
+   "ArM5 p.31 Ability advancement"
+  ]
+ },
+ {
+  "title": "Folk Witch Powers (casting formulas)",
+  "heading": "Folk Witch Powers",
+  "line": 1725,
+  "endLine": 1743,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "A folk witch's Casting Score is a Characteristic plus Ability plus aura, plus a stress die for the Total, compared to the effect's Ease Factor; Gifted witches can add vis, and Penetration follows from the Total.",
+  "quotes": [
+   "**FOLK WITCH CASTING SCORE:** Characteristic + Ability + Aura Modifier",
+   "**MAGNITUDE OF EFFECT:** Ability",
+   "**EQUIVALENT SPELL LEVEL:** (5 x Ability)",
+   "**PENETRATION TOTAL:** Casting Total + Penetration Bonus \u2014 Ease Factor",
+   "**MAXIMUM VIS EXPENDITURE:** Ability + Effect Vis Cost"
+  ],
+  "related": []
+ },
+ {
+  "title": "Folk Witch Casting Methods",
+  "heading": "Casting Methods",
+  "line": 1745,
+  "endLine": 1753,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Each Ability must be used by Potion, Incantation (a rhyme the target hears) or Fetish (a prepared item), with rules for losing the incantation from memory and for spare fetishes.",
+  "quotes": [
+   "make an Intelligence + Concentration roll against an Ease Factor of 6 for her every day after the memory-altering effect ceases"
+  ],
+  "related": [
+   "ArM5 p.83 Words and Gestures"
+  ]
+ },
+ {
+  "title": "Folk Witch Botches",
+  "heading": "Botches",
+  "line": 1755,
+  "endLine": 1757,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "A botch makes the effect happen uncontrolled and gives the witch Warping Points.",
+  "quotes": [
+   "She also gains 1 Warping Point for every 0 on the botch dice"
+  ],
+  "related": []
+ },
+ {
+  "title": "Folk Witch Mark",
+  "heading": "Mark",
+  "line": 1759,
+  "endLine": 1761,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Each witch's effects carry a personal mark that others can recognize with a Perception and Organization Lore roll; identifying merely that a witch cast it is easier.",
+  "quotes": [
+   "make a Perception + Organization Lore: Folk Witch roll against an Ease Factor of 9",
+   "a successful Perception + Organization Lore: Folk Witch roll against an Ease Factor of 6 identifies an effect as one cast by a Folk Witch"
+  ],
+  "related": []
+ },
+ {
+  "title": "Folk Witch Ability: Animal Ken",
+  "heading": "Animal Ken",
+  "line": 1763,
+  "endLine": 1769,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Animal Ken (folk witch)",
+  "summary": "Folk witch Animal Ken uses Communication and the Animal Form, delivered by incantation or potion.",
+  "quotes": [
+   "Characteristic: Communication"
+  ],
+  "related": [
+   "ArM5 p.62 Animal Ken"
+  ]
+ },
+ {
+  "title": "Folk Witch Ability: Cursing (and the curses)",
+  "heading": "Cursing",
+  "line": 1771,
+  "endLine": 1801,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Cursing (folk witch)",
+  "summary": "A witch curses a target via a woven fetish or potion, using Dexterity and a Form that depends on the curse; each curse type (disease, miscarriage, aging, emotion, tongue, paralysis, beast, reduction) has its own Ease Factor and effect, and the curse must penetrate the target's Magic Resistance throughout the preparation season.",
+  "quotes": [
+   "Preparing the curse is a laboratory activity that takes the folk witch an entire season",
+   "use the highest Magic Resistance the target has during the season"
+  ],
+  "related": [
+   "ArM5 p.170 Aging Crisis",
+   "ArM5 p.179-180 Recovery and disease"
+  ]
+ },
+ {
+  "title": "Folk Witch Ability: Dowsing",
+  "heading": "Dowsing",
+  "line": 1803,
+  "endLine": 1809,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Dowsing (folk witch)",
+  "summary": "Folk witch Dowsing uses Perception, a Form that depends on the target, and a fetish or potion; it lets witches find vis.",
+  "quotes": [
+   "This ability is important for folk witches as it allows them to find vis."
+  ],
+  "related": [
+   "ArM5 p.64 Dowsing"
+  ]
+ },
+ {
+  "title": "Folk Witch Ability: Flight",
+  "heading": "Flight",
+  "line": 1811,
+  "endLine": 1819,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Flight (folk witch)",
+  "summary": "A witch can fly using Stamina and Auram, at the cost of a long-term Fatigue level when using a fetish; it describes speed, duration, maneuver rolls and a combat bonus against non-flying opponents.",
+  "quotes": [
+   "The Ease Factor to take to the air is 9.",
+   "her Flight Ability score is added to both her Attack and Defense Totals"
+  ],
+  "related": []
+ },
+ {
+  "title": "Folk Witch Ability: Healing",
+  "heading": "Healing",
+  "line": 1821,
+  "endLine": 1833,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Healing (folk witch)",
+  "summary": "True healing of wounds and Fatigue that breaks the Limit of Energy; it costs Corpus vis according to a table of Ease Factors by wound or fatigue level, and must penetrate the target's Magic Resistance.",
+  "quotes": [
+   "the folk witch must spend a number of pawns of Corpus vis depending on the wound type (indicated below)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Folk Witch Ability: Second Sight",
+  "heading": "Second Sight",
+  "line": 1835,
+  "endLine": 1841,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Second Sight (folk witch)",
+  "summary": "Folk witch Second Sight uses Perception and the Vim Form, delivered by incantation or potion.",
+  "quotes": [
+   "Form: Vim"
+  ],
+  "related": [
+   "ArM5 p.67 Second Sight"
+  ]
+ },
+ {
+  "title": "Folk Witch Ability: Shapeshifter",
+  "heading": "Shapeshifter",
+  "line": 1843,
+  "endLine": 1849,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Shapeshifter (folk witch)",
+  "summary": "Folk witch Shapeshifter uses Stamina and the Animal Form, delivered by fetish (made from the animal's skin) or potion.",
+  "quotes": [
+   "The fetish is made from the skin of the animal form."
+  ],
+  "related": [
+   "ArM5 p.67 Shapeshifter"
+  ]
+ },
+ {
+  "title": "Folk Witch Magical Defenses",
+  "heading": "Magical Defenses",
+  "line": 1851,
+  "endLine": 1872,
+  "category": "traditions",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Lists which Magical Defense each folk witch power grants (for example Healing gives Magical Fortitude against Corpus effects); an unGifted witch only gets defenses for powers she has.",
+  "quotes": [
+   "Defense: Strength of Form. Defense against Animal or Corpus effects."
+  ],
+  "related": [
+   "Hedge Magic: Magic Defenses"
+  ]
+ },
+ {
+  "title": "Witch's Kitchen",
+  "heading": "Witch's Kitchen",
+  "line": 1874,
+  "endLine": 1884,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "A folk witch's kitchen works like a laboratory, with a Lab Total built from a Supernatural Ability, Intelligence, Folk Witch Magic Theory and aura; unGifted witches may do tasks only if they hold the matching Virtues.",
+  "quotes": [
+   "**Lab Total:** (Supernatural Ability) + Intelligence + Folk Witch Magic Theory + Aura Modifier"
+  ],
+  "related": []
+ },
+ {
+  "title": "Folk Witch Magic Theory",
+  "heading": "Folk Witch Magic Theory",
+  "line": 1886,
+  "endLine": 1888,
+  "category": "traditions",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Folk Witches",
+  "summary": "An Arcane Ability analogous to Magic Theory, covering the technical details of folk witch magic and used in kitchen laboratory activities; any character can be taught it.",
+  "quotes": [
+   "Any character can be taught this Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Building the Kitchen",
+  "heading": "Building the Kitchen",
+  "line": 1890,
+  "endLine": 1900,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Setting up a witch's kitchen or converting a Hermetic laboratory takes set seasons and minimum Theory scores; Covenants laboratory rules can be used with a size-scale adjustment.",
+  "quotes": [
+   "**SETTING UP A KITCHEN:** 2 Seasons and a minimum Folk Witch Magic Theory score of 3",
+   "add 3 to the Laboratory Size Scale"
+  ],
+  "related": [
+   "Covenants pp.106, 110 laboratory refinement"
+  ]
+ },
+ {
+  "title": "Help in the Kitchen",
+  "heading": "Help in the Kitchen",
+  "line": 1902,
+  "endLine": 1904,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Folk witches work alone except for their familiar and for mutual aid at a sabbat.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Experimenting (folk witches)",
+  "heading": "Experimenting",
+  "line": 1906,
+  "endLine": 1910,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Folk witches experiment as Hermetic magi do, gaining a Lab Total bonus and rolling on the Extraordinary Results table, often to overcome Divine aura penalties.",
+  "quotes": [
+   "**EXPERIMENTAL BONUS TO LAB TOTAL:** Simple die + Risk Modifier"
+  ],
+  "related": [
+   "ArM5 p.107-109 Extraordinary Results"
+  ]
+ },
+ {
+  "title": "Folk Witch Lab Texts",
+  "heading": "Lab Texts",
+  "line": 1912,
+  "endLine": 1916,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Only literate witches can write or use Lab Texts, which follow the Hermetic copying and writing rules but are not useful to magi and vice versa.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.102-103 Lab Texts"
+  ]
+ },
+ {
+  "title": "Folk Witch Vis (extraction, transfer, use)",
+  "heading": "Vis",
+  "line": 1918,
+  "endLine": 1926,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Witches find vis by Dowsing, extract Vim vis from the aura each season based on their Lab Total, move vis between forms in a day, and may use only a limited amount in laboratory projects.",
+  "quotes": [
+   "extract a number of pawns of Vim vis from the local aura equal to a tenth of her Lab Total (round up)",
+   "can only use up to twice her Folk Witch Magic Theory Ability score in pawns of vis on laboratory projects"
+  ],
+  "related": []
+ },
+ {
+  "title": "Fixing Arcane Connections",
+  "heading": "Fixing Arcane Connections",
+  "line": 1928,
+  "endLine": 1932,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "In a season a witch can lengthen an Arcane Connection's lifetime by one step, using her Lab Total and a pawn of Vim vis.",
+  "quotes": [
+   "costs 1 pawn of Vim vis"
+  ],
+  "related": [
+   "ArM5 p.84 Arcane Connections"
+  ]
+ },
+ {
+  "title": "Folk Witch Study",
+  "heading": "Study",
+  "line": 1934,
+  "endLine": 1936,
+  "category": "seasons",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Studying in the kitchen gives no bonus, and learning Supernatural Abilities remains difficult or impossible for unGifted witches without an existing score.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.166 Learning Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Curse Fetish Weaving",
+  "heading": "Curse Fetish Weaving",
+  "line": 1938,
+  "endLine": 1944,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Cursing (folk witch)",
+  "summary": "Weaving a curse fetish occupies a season in a kitchen, needs an active Arcane Connection to the target, and some curses take effect at once while others last until the fabric is destroyed or the connection expires.",
+  "quotes": [
+   "creating a single fabric (which targets an Individual) both occupies the character for an entire season, and requires a kitchen"
+  ],
+  "related": []
+ },
+ {
+  "title": "Dowsing Rod Binding",
+  "heading": "Dowsing Rod Binding",
+  "line": 1946,
+  "endLine": 1948,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Dowsing (folk witch)",
+  "summary": "Enchanting a dowsing rod fetish takes a season and a pawn of Intellego vis, and it lasts indefinitely unless destroyed.",
+  "quotes": [
+   "enchanting a dowsing rod takes 1 season and consumes 1 pawn of Intellego vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Flight Broom Preparation",
+  "heading": "Flight Broom Preparation",
+  "line": 1950,
+  "endLine": 1952,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Flight (folk witch)",
+  "summary": "Enchanting a flying aid fetish takes a season and a pawn of Auram vis, and it lasts indefinitely unless destroyed.",
+  "quotes": [
+   "enchanting a flying aid takes 1 season and consumes 1 pawn of Auram vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Skin Knitting",
+  "heading": "Skin Knitting",
+  "line": 1954,
+  "endLine": 1956,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Supernatural Ability: Shapeshifter (folk witch)",
+  "summary": "Enchanting an animal-skin fetish takes a season and a pawn of Animal vis; a witch needs a separate fetish for each animal type she can take.",
+  "quotes": [
+   "enchanting the fetish takes a season and consumes 1 pawn of Animal vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Potion Brewing",
+  "heading": "Potion Brewing",
+  "line": 1958,
+  "endLine": 1984,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches (not Primitive Tradition)",
+  "summary": "A season of brewing yields a batch of doses sharing a Brew Potency equal to the witch's Lab Total; a drinker's effective Casting Total is that Potency plus a stress die, with vis costs per dose and optional Lab Text bonus doses, with a worked example.",
+  "quotes": [
+   "**Brew Potency:** Supernatural Ability Lab Total",
+   "**POTION CASTING TOTAL:** Brew Potency + stress die",
+   "**Doses per Brew:** Folk Witch Magic Theory (+ Lab Text Level)",
+   "**Vis Cost:** 1 per Dose + Effect Cost"
+  ],
+  "related": []
+ },
+ {
+  "title": "Potion Effects",
+  "heading": "Potion Effects",
+  "line": 1986,
+  "endLine": 2015,
+  "category": "traditions",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "What each Ability's potion does for the drinker: temporary Ability scores and durations derived from the Brew Potency, curse potions, healing potions and shapeshifting.",
+  "quotes": [
+   "with an Ability score equal to the Brew Potency / 5 (round up)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Enriching Things of Virtue",
+  "heading": "Enriching Things of Virtue",
+  "line": 2017,
+  "endLine": 2019,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "A folk witch may enrich Things of Virtue using the rules in Realms of Power: Magic.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: Magic, Things of Virtue"
+  ]
+ },
+ {
+  "title": "Folk Witch Longevity Ritual",
+  "heading": "Longevity Ritual",
+  "line": 2021,
+  "endLine": 2023,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "A witch can make a Longevity Ritual only for herself, using the Hermetic rules with her Healing Lab Total, so it is weaker than a magus's.",
+  "quotes": [
+   "Use her Healing Ability Lab Total for this activity"
+  ],
+  "related": [
+   "ArM5 p.101 Longevity Ritual"
+  ]
+ },
+ {
+  "title": "Investigating a Potion",
+  "heading": "Investigating a Potion",
+  "line": 2025,
+  "endLine": 2031,
+  "category": "lab",
+  "topic": "Folk witch kitchen",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches or magus familiar with folk witch magic",
+  "summary": "A witch identifies a potion's Potency and effect with an Intelligence and Theory roll; to a magus a potion is an effect whose detection depends on extra magnitudes of Intellego Vim.",
+  "quotes": [
+   "**POTION INVESTIGATION:** Intelligence + Folk Witch Magic Theory + Stress Die vs Ease Factor of 9"
+  ],
+  "related": [
+   "ArM5 p.100 Investigating effects",
+   "ArM5 p.158 Intellego Vim"
+  ]
+ },
+ {
+  "title": "Folk Witch Familiars",
+  "heading": "Familiars",
+  "line": 2033,
+  "endLine": 2041,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "A witch binds one animal as a familiar in a season of laboratory work by beating a Binding Total built from the familiar's Size and Might.",
+  "quotes": [
+   "**FOLK WITCH FAMILIAR BINDING TOTAL:** 10 + Familiar's Size + Familiar's Magic Might"
+  ],
+  "related": [
+   "Realms of Power: Magic, Book of Mundane Beasts",
+   "Houses of Hermes: Mystery Cults p.38"
+  ]
+ },
+ {
+  "title": "Benefits of a Folk Witch Familiar",
+  "heading": "Benefits of a Familiar",
+  "line": 2043,
+  "endLine": 2063,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "A familiar gains human Intelligence and languages, can assist in the kitchen for a Lab Total bonus, ages with its mistress, serves as an Arcane Connection both ways, and lets the witch dowse for it and see through its senses.",
+  "quotes": [
+   "**Familiar Bonus to Lab Total:** Familiar's Intelligence + Familiar's Folk Witch Magic Theory"
+  ],
+  "related": []
+ },
+ {
+  "title": "Folk Witch Warping",
+  "heading": "Warping",
+  "line": 2065,
+  "endLine": 2069,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Folk witches gain Warping Points as usual plus from botches, but not from Magic auras; each time the Warping Score rises she suffers the Witch Moon instead of Twilight.",
+  "quotes": [
+   "She also gains Warping points when she botches using her Supernatural Abilities."
+  ],
+  "related": [
+   "ArM5 p.176 Warping"
+  ]
+ },
+ {
+  "title": "The Witch Moon",
+  "heading": "The Witch Moon",
+  "line": 2071,
+  "endLine": 2077,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "The folk witch's equivalent of Wizard's Twilight: a month or more of lost Supernatural Abilities and a fever Medium Wound, with a monthly roll to end it and extra Warping Points on failure or botch.",
+  "quotes": [
+   "**TO END WITCH MOON:** Stamina \u2013 Warping Score + stress die vs Ease Factor 6"
+  ],
+  "related": [
+   "ArM5 Wizard's Twilight"
+  ]
+ },
+ {
+  "title": "Effects of the Witch Moon",
+  "heading": "Effects of the Witch Moon",
+  "line": 2079,
+  "endLine": 2081,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "After recovering, the witch's experience is good or bad depending on whether the months taken exceeded her Warping Score, and the storyguide picks an effect from the matching list.",
+  "quotes": [
+   "If the folk witch took more months to recover from the Witch Moon than her Warping score, then the experience is bad."
+  ],
+  "related": []
+ },
+ {
+  "title": "Witch Moon: Good Experiences",
+  "heading": "Good Experiences",
+  "line": 2083,
+  "endLine": 2089,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Good Witch Moon outcomes: experience points in an existing Ability or Theory, a new Minor Virtue, or a new Supernatural Ability at score 1.",
+  "quotes": [
+   "equal to 5 x number of months spent in the Witch Moon"
+  ],
+  "related": []
+ },
+ {
+  "title": "Witch Moon: Bad Experiences",
+  "heading": "Bad Experinces",
+  "line": 2091,
+  "endLine": 2095,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Bad Witch Moon outcomes: lost experience in a Supernatural Ability or Theory per Warping Point gained, or a new Minor Flaw.",
+  "quotes": [
+   "She loses 2 experience points in a Supernatural Ability or in Folk Witch Magic Theory for every Warping Point gained during the Witch Moon."
+  ],
+  "related": []
+ },
+ {
+  "title": "Covens",
+  "heading": "Covens",
+  "line": 2097,
+  "endLine": 2103,
+  "category": "covenant",
+  "topic": "Folk witches",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "A coven is the folk witch equivalent of a covenant: a small, dispersed group of witches, each living a day's travel apart, with its strengths and vulnerabilities.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Folk Witch Opening the Gift",
+  "heading": "Opening the Gift",
+  "line": 2109,
+  "endLine": 2115,
+  "category": "traditions",
+  "topic": "Opening the Gift",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Gifted folk witch",
+  "summary": "Opening a folk witch's Gift follows the general rules with a folk-witch Opening Total and grants seven favored Supernatural Abilities, which troupes can swap for others.",
+  "quotes": [
+   "**FOLK WITCH OPENING TOTAL:** Int + Folk Witch Magic Theory + Sabbat Bonus"
+  ],
+  "related": [
+   "Hedge Magic: Opening the Gift"
+  ]
+ },
+ {
+  "title": "Organization Lore: Folk Witches",
+  "heading": "Organization Lore: Folk Witches",
+  "line": 2117,
+  "endLine": 2119,
+  "category": "basics",
+  "topic": "Hedge Abilities",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Folk Witches",
+  "summary": "The Ability covers folk witch effects, coven locations and reputations; its specialty is a home coven, with extra botch dice for covens farther away.",
+  "quotes": [
+   "roll an additional botch die for every week's travel this coven is from the character's \"home\" coven"
+  ],
+  "related": [
+   "Hedge Magic: (Organization) Lore"
+  ]
+ },
+ {
+  "title": "Initiations for unGifted Folk Witches",
+  "heading": "Initiations for unGifted Folk Witches",
+  "line": 2121,
+  "endLine": 2177,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "unGifted folk witch",
+  "summary": "unGifted witches are initiated by a Mystagogue who must know the power, with an Initiation Total using Presence and Theory; seven sample Scripts (Rhyme of the Beast, Venomous Darts, Sense of Place, Unbound by Land, Hands of Life, The Devil's Eye, Second Life) give the Supernatural Virtues and their ordeal Flaws.",
+  "quotes": [
+   "**FOLK WITCH INITIATION TOTAL:** Mystagogue's Presence + Mystagogue's Folk Witch Magic Theory + Script Bonus + Sabbat Bonus",
+   "**Script Bonus:** +10 (+9 Major Ordeal, +1 Time)"
+  ],
+  "related": [
+   "Hedge Magic: Initiations"
+  ]
+ },
+ {
+  "title": "Precocious Girls",
+  "heading": "Precocious Girls",
+  "line": 2133,
+  "endLine": 2135,
+  "category": "traditions",
+  "topic": "Opening the Gift",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Gifted girl initiated as unGifted",
+  "summary": "What a coven can do when it accidentally initiates a Gifted girl as if unGifted: find someone to Open her Gift properly or teach her Abilities without favored status.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Sabbat",
+  "heading": "Sabbat",
+  "line": 2179,
+  "endLine": 2183,
+  "category": "traditions",
+  "topic": "Folk witches",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "The coven meeting where witches trade vis and discuss threats; because witches lack Parma Magica the Gift's social effects often cause bickering, and a sabbat does not interrupt long-term tasks.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Sabbat Politics",
+  "heading": "Sabbat Politics",
+  "line": 2191,
+  "endLine": 2203,
+  "category": "social",
+  "topic": "Folk witches",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Four optional ways a sabbat can run (Easy, Bickering, Dictatorial, Feuding), depending on the Gifted makeup of the coven and the kind of stories wanted.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Sabbat Magic",
+  "heading": "Sabbat Magic",
+  "line": 2205,
+  "endLine": 2227,
+  "category": "lab",
+  "topic": "Folk witches",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "Witches cooperate at a sabbat to raise a brew's Potency, an Opening Total or an Initiation Total by a bonus per assistant limited by the site's Magic aura; each witch may take part in only one activity per sabbat.",
+  "quotes": [
+   "**POTENCY BONUS FOR SABBAT BREW:** +1 each folk witch assisting main caster",
+   "**MAXIMUM NUMBER OF ASSISTANTS:** Magic Aura at sabbat site",
+   "**TOTAL BONUS FOR SABBAT INITIATION:** +1 each folk witch assisting Mystagogue"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sabbat Times",
+  "heading": "Sabbat Times",
+  "line": 2229,
+  "endLine": 2240,
+  "category": "setting",
+  "topic": "Folk witches",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Folk Witches",
+  "summary": "A table of the traditional dates on which covens hold sabbats, grouped under the winter and summer solstices.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Creating a Coven",
+  "heading": "Creating a Coven",
+  "line": 2246,
+  "endLine": 2248,
+  "category": "covenant",
+  "topic": "Coven creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Saga set in a folk witch coven",
+  "summary": "A coven can be built with the Customized Covenant Creation rules, either as the saga's focus or as an antagonist, following a few adjustments.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.71 Customized Covenant Creation",
+   "Covenants pp.5, 6-29"
+  ]
+ },
+ {
+  "title": "Guidelines for a Coven",
+  "heading": "Guidelines for a Coven",
+  "line": 2250,
+  "endLine": 2275,
+  "category": "covenant",
+  "topic": "Coven creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Saga set in a folk witch coven",
+  "summary": "Covenant creation adjustments for dispersed covens: separate auras per site, Hooks and Boons balanced over the whole coven, vis sources assigned to individuals, initiation scripts bought with Build Points equal to their bonus, and Build Point ranges by power level.",
+  "quotes": [
+   "By default, the coven has a single site with a level-3 aura",
+   "Each initiation script costs a number of Build Points equal to the script bonus."
+  ],
+  "related": [
+   "Covenants"
+  ]
+ },
+ {
+  "title": "Hermetic Integration of folk witch magic",
+  "heading": "Hermetic Integration",
+  "line": 2553,
+  "endLine": 2555,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus integrating folk witch magic",
+  "summary": "Introduces example breakthroughs (Subtle Opening, Energy Magic, Sense of the Mystic, Ritual Items) that can be researched from folk witch practices, left to the troupe to allow or adapt.",
+  "quotes": [
+   "It's up to the troupe to decide if any of them are actually possible in your saga."
+  ],
+  "related": [
+   "Hedge Magic: Integration of Hedge Magic"
+  ]
+ },
+ {
+  "title": "Breakthrough: Subtle Opening",
+  "heading": "Subtle Opening",
+  "line": 2557,
+  "endLine": 2562,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus integrating folk witch magic",
+  "summary": "A breakthrough that merges the folk witch Opening of the Gift into the Hermetic Opening of the Arts, so apprentices avoid the Arts penalty when learning Supernatural Abilities; the discoverer may write a Lab Text for it.",
+  "quotes": [
+   "**Suggested Breakthrough Points:** 30",
+   "the apprentice gains the Minor Hermetic Virtue: Subtle Opening"
+  ],
+  "related": [
+   "ArM5 p.166 Learning Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Subtle Opening: Integration Effects",
+  "heading": "Integration Effects",
+  "line": 2569,
+  "endLine": 2571,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus integrating folk witch magic",
+  "summary": "How Insights contribute to the Subtle Opening: Vim effects, or varying the technique when Opening an apprentice's Arts with an Extraordinary Results roll, with dangers to the apprentice's Gift.",
+  "quotes": [
+   "the magus earns 5 breakthrough points"
+  ],
+  "related": [
+   "ArM5 p.107 Extraordinary Results"
+  ]
+ },
+ {
+  "title": "Breakthrough: Energy Magic",
+  "heading": "Energy Magic",
+  "line": 2595,
+  "endLine": 2597,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus integrating folk witch magic",
+  "summary": "Folk witches are not bound by the Limit of Energy, so studying them can yield additional Creo Corpus and Perdo Corpus guidelines for Fatigue.",
+  "quotes": [
+   "Suggested Breakthrough Points: 55"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Perdo Corpus Guidelines (Energy Magic)",
+  "heading": "New Perdo Corpus Guidelines",
+  "line": 2610,
+  "endLine": 2617,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Breakthrough: Energy Magic (Virtue: Energy Magic)",
+  "summary": "Guidelines for lengthening Short-Term Fatigue recovery, causing loss of Short-Term or Long-Term Fatigue, and preventing recovery by rest.",
+  "quotes": [
+   "Level 5: Cause a target to lose a Short-Term Fatigue level."
+  ],
+  "related": [
+   "ArM5 p.133 Perdo Corpus",
+   "ArM5 p.179 Fatigue Recovery Table"
+  ]
+ },
+ {
+  "title": "New Creo Corpus Guidelines (Energy Magic)",
+  "heading": "New Creo Corpus Guidelines",
+  "line": 2619,
+  "endLine": 2627,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Breakthrough: Energy Magic (Virtue: Energy Magic)",
+  "summary": "Guidelines for speeding Fatigue recovery and restoring Short-Term or Long-Term Fatigue levels; only Momentary Ritual effects truly restore, while other Durations cause the levels to return as Long-Term Fatigue loss.",
+  "quotes": [
+   "Ritual spells formulated according to these guidelines with Momentary Duration truly restore Fatigue levels.",
+   "Level 15: Restore a lost Long-Term Fatigue level."
+  ],
+  "related": [
+   "ArM5 p.179 Fatigue Recovery Table"
+  ]
+ },
+ {
+  "title": "Breakthrough: Sense of the Mystic",
+  "heading": "Sense of the Mystic",
+  "line": 2683,
+  "endLine": 2686,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus integrating folk witch magic",
+  "summary": "Studying the folk witch Second Sight, which senses invisible creatures without penetrating their Magic Resistance, yields a new Hermetic Virtue improving Intellego sensing magic; any character with Second Sight can provide insight.",
+  "quotes": [
+   "**Suggested Breakthrough Points:** 45"
+  ],
+  "related": [
+   "ArM5 p.67 Second Sight"
+  ]
+ },
+ {
+  "title": "Breakthrough: Ritual Items",
+  "heading": "Ritual Items",
+  "line": 2712,
+  "endLine": 2715,
+  "category": "magic",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus integrating folk witch magic",
+  "summary": "Integrating potion brewing could let magi make charged items that hold ritual effects, which is particularly powerful together with Energy Magic.",
+  "quotes": [
+   "**Suggested Breakthrough Points:** 45"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ritual Items (charged items with ritual effects)",
+  "heading": "New Virtue: Ritual Items",
+  "line": 2771,
+  "endLine": 2774,
+  "category": "lab",
+  "topic": "Integrating hedge magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Breakthrough: Ritual Items (Virtue: Ritual Items)",
+  "summary": "Explains how charged items holding ritual effects work: each charge costs the vis the ritual would normally cost, with the usual seasonal vis limit and charge calculation.",
+  "quotes": [
+   "Each charge requires the same number of pawns of vis that casting the effect normally would otherwise cost."
+  ],
+  "related": [
+   "ArM5 p.133 Curse of the Unportended Plague"
+  ]
+ }
+]

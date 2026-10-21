@@ -1,0 +1,993 @@
+[
+ {
+  "title": "What the Magi Know (location lore rolls)",
+  "heading": "What the Magi Know",
+  "line": 695,
+  "endLine": 706,
+  "category": "basics",
+  "topic": "Location lore rolls",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Before visiting a location, a character may already know something about it, found by an Intelligence + Ability roll against an Ease Factor. Information is sorted into four categories of knowledge, each with its own Ease Factor, and what is known may be misleading or false.",
+  "quotes": [
+   "Exactly what she might know is determined by an appropriate Intelligence + Ability roll measured against a set Ease Factor.",
+   "Information is divided into four categories: Known by All, Widely Known, Uncommon Knowledge, and Lost Secrets."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bath: Rumors (what is known by category)",
+  "heading": "Rumors",
+  "line": 724,
+  "endLine": 751,
+  "category": "setting",
+  "topic": "Location lore rolls",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bath",
+  "summary": "Bath's application of the lore-roll system: the roll uses Area Lore (or Organization Lore: Church with penalties by distance), and sorted lists show what is known at each of the four knowledge levels.",
+  "quotes": [
+   "Players can make an Intelligence + Area Lore: Stonehenge Tribunal to see what their characters know."
+  ],
+  "related": [
+   "Mythic Locations: What the Magi Know"
+  ]
+ },
+ {
+  "title": "Bath: Effects of the Baths",
+  "heading": "Effects of the Baths",
+  "line": 1032,
+  "endLine": 1042,
+  "category": "hazards",
+  "topic": "Healing baths",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bath",
+  "summary": "Bathing at Bath gives bonuses to Disease Recovery rolls depending on the care received, and the storyguide may instead pick other effects such as suppressing Flaws, bonuses to Aging, wound recovery or study totals.",
+  "quotes": [
+   "A character attempting Disease Recovery rolls adds +5 if given a full course of care, +3 if she bathes regularly and cares for herself, and +1 if she simply bathes each day until the symptoms abate."
+  ],
+  "related": [
+   "Art and Academe p.46 and p.58 Disease Recovery"
+  ]
+ },
+ {
+  "title": "Bath: A Fourth Set of Baths (Gift-suppressing baths and vis)",
+  "heading": "A Fourth Set of Baths?",
+  "line": 1051,
+  "endLine": 1059,
+  "category": "setting",
+  "topic": "Healing baths",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bath (hidden Hermetic baths)",
+  "summary": "An optional hidden set of baths that suppresses the social penalties of The Gift for a time, allows a spent Confidence point to be regained once per story, and can yield Vim vis from the skin of Gifted bathers tied to their Warping Score.",
+  "quotes": [
+   "The waters here suppress the negative communication effects of The Gift, for a week with each bathing.",
+   "The oil can only be drawn from a magus once after each time his Warping Score increases, and forms an Arcane Connection to the magus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bear Island: What the Magi Know (lore rolls)",
+  "heading": "What the Magi Know",
+  "line": 1258,
+  "endLine": 1296,
+  "category": "setting",
+  "topic": "Location lore rolls",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "Bear Island's specific lore rolls: Area Lore (Anatolia or Theban Tribunal) with a bonus for eastern magi, or Artes Liberales with a penalty, followed by what is known at each knowledge level.",
+  "quotes": [
+   "The legend is more popular in the east than the west, and an eastern magus receives a +3 bonus.",
+   "This roll is penalized by \u20136, because the Legend of the Golden Fleece is not popular or readily accessible."
+  ],
+  "related": [
+   "Mythic Locations: What the Magi Know"
+  ]
+ },
+ {
+  "title": "Bear Island: Temenos of Dindym\u00e9n\u00e9 (dual Magic and Faerie aura)",
+  "heading": "Mount Dindymon and the Temenos of Dindym\u00e9n\u00e9",
+  "line": 1384,
+  "endLine": 1390,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "A sacred grove holding overlapping Magic and Faerie auras, where the older Magic aura normally suppresses the Faerie one except on certain anniversaries and festival dates, and which is the doorway to a Magic regio and a Faerie regio.",
+  "quotes": [
+   "The temenos has both a Magic aura of 3 and a Faerie aura of 3.",
+   "At certain times of the year, however, the Faerie aura increases to 4 and suppresses the Magic aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bear Island: Chytus Harbor (Gegenees external vis boulders)",
+  "heading": "CHYTUS HARBOR",
+  "line": 1346,
+  "endLine": 1354,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "A Faerie aura site where the Gegenees keep their external vis in boulders; the number of vis-holding boulders is scaled to the saga's power level and moving or threatening them provokes an assault.",
+  "quotes": [
+   "How many of these hold vis depends on how many Gegenees you need for your saga: 50 for a low powered saga, 200 for a medium powered saga, and 1,000 or more for a high powered saga."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bear Island: The Jasonian Way (faerie regio path)",
+  "heading": "The Jasonian Way",
+  "line": 1396,
+  "endLine": 1404,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "A faerie regio path to the summit of Mount Dindymon with fixed travel time, entrances in weaker or stronger Faerie auras at each end, and a vast faerie forest of Gegenees off the path.",
+  "quotes": [
+   "It takes four hours to travel the trail, no matter what the characters do to expedite this process."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bear Island: Entering the regiones and Regio Sight ease factors",
+  "heading": "Entering the Temenos of Dindym\u00e9n\u00e9's Regiones",
+  "line": 1406,
+  "endLine": 1410,
+  "category": "realms",
+  "topic": "Regio entry and sight",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "How to enter the Faerie regio by ritual and how to find either regio by spell or Regio Sight roll, with Ease Factors that change depending on which aura currently dominates.",
+  "quotes": [
+   "Under the Temenos of Dindym\u00e9n\u00e9's Magic aura, the Ease Factor to see the Magic regio is 11 and to see the Faerie regio is 23.",
+   "When the temenos has a Faerie aura of 4, the Ease Factor to see the Magic regio is 25 and to see the Faerie regio is 9."
+  ],
+  "related": [
+   "ArM5 p.189 Regio Sight Roll"
+  ]
+ },
+ {
+  "title": "Bear Island: Faerie Regio of Dindym\u00e9n\u00e9",
+  "heading": "THE FAERIE REGIO OF DINDYM\u00c9N\u00c9",
+  "line": 1412,
+  "endLine": 1416,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "The Faerie regio behind the temenos, home of the Idaian Daktyls, stacked with a Magic aura and Magic regio.",
+  "quotes": [
+   "The Faerie regio has a Faerie aura of 6."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bear Island: Magic Regio of Dindym\u00e9n\u00e9",
+  "heading": "THE MAGIC REGIO OF DINDYM\u00c9N\u00c9",
+  "line": 1418,
+  "endLine": 1422,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "An enlarged, uninhabited Magic regio whose peace gives visitors a temporary Calm personality trait unless they have Magic-realm supernatural abilities, and which grows Herbam and Terram vis each year.",
+  "quotes": [
+   "With a Magic aura of 6, the Magic regio is an enlarged copy of the Temenos of Dindym\u00e9n\u00e9.",
+   "Entering characters gain a new Personality Trait, Calm +2, unless they have supernatural abilities derived from the Magic realm, which includes the Gift."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bear Island: The Xoanon of Dindym\u00e9n\u00e9 (pre-Hermetic artifact)",
+  "heading": "THE XOANON OF DINDYM\u00c9N\u00c9",
+  "line": 1424,
+  "endLine": 1430,
+  "category": "magic",
+  "topic": "Studying ancient artifacts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "A Magic-realm effigy with three command-word powers, usable once per day each, that can be studied in a lab using the listed equivalent Hermetic Lab Totals.",
+  "quotes": [
+   "Each of the xoanon's powers can be activated once per day."
+  ],
+  "related": [
+   "ArM5 p.100 Studying magic items",
+   "ArM5 p.126 Clouds of Rain and Thunder"
+  ]
+ },
+ {
+  "title": "Bear Island: Hunting Gegenees (faerie regeneration)",
+  "heading": "Monster Hunting",
+  "line": 1464,
+  "endLine": 1468,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "A slain Gegenes leaves its body and returns to its external-vis rock to craft a new body from glamor, so the supply of Gegenees to hunt is effectively unlimited and the corpse holds no vis.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Bear Island: Waking or sleeping the titaness (Dindym\u00e9n\u00e9 ritual)",
+  "heading": "Waking the Titaness",
+  "line": 1470,
+  "endLine": 1484,
+  "category": "magic",
+  "topic": "Rituals of ancient powers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Bear Island",
+  "summary": "The dance and chant around the xoanon that wakes or puts to sleep the titaness, with an Ease Factor, bonuses for observing or including Daktyls, botch consequences, and a note on penetrating her Magic Resistance.",
+  "quotes": [
+   "The player whose character is leading the dance must make a Faerie Lore + Communication + stress die against an Ease Factor of 18.",
+   "Faerie Lore + Communication + stress die vs. 18",
+   "Use the same formula if characters try to put Dindym\u00e9n\u00e9 to sleep, but increase the Ease Factor to 21."
+  ],
+  "related": [
+   "Realms of Power: Magic p.102 Daimons"
+  ]
+ },
+ {
+  "title": "Bear Island: Covenant Boons and Hooks for the temenos",
+  "heading": "Covenant Boons and Looks",
+  "line": 1625,
+  "endLine": 1631,
+  "category": "covenant",
+  "topic": "Covenant sites",
+  "audience": [
+   "covenant",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Location: Bear Island temenos used as a covenant site",
+  "summary": "Pre-built Boons and Hooks to apply during covenant creation if the Magic temenos is the covenant site, to be adjusted as events change the island.",
+  "quotes": [
+   "Boons: Major Site: Regio (Magic regio), Minor Site: Seclusion, Minor External Relations: Ungoverned, Free Fortification: Island"
+  ],
+  "related": [
+   "ArM5 Covenant creation Boons and Hooks"
+  ]
+ },
+ {
+  "title": "Bear Island: Founding a covenant (aura choices and patron spirit)",
+  "heading": "Home Sweet Home",
+  "line": 1757,
+  "endLine": 1765,
+  "category": "covenant",
+  "topic": "Covenant sites",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Location: Bear Island",
+  "summary": "Compares the three Magic aura sites on Bear Island as covenant locations and notes that covenants in the Theban Tribunal must bind a patron spirit, which could be a Daktyl or the titaness.",
+  "quotes": [
+   "In the Theban Tribunal, each covenant needs to bind a patron spirit."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cursewood: What is Known of Regulus (lore roll)",
+  "heading": "What is Known of Regulus",
+  "line": 1804,
+  "endLine": 1828,
+  "category": "setting",
+  "topic": "Location lore rolls",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "An Intelligence + Organization Lore: Order of Hermes roll to learn about Regulus, modified by training at his covenant or outside the Rhine Tribunal, with lists of what is known at each knowledge level.",
+  "quotes": [
+   "players roll Intelligence + Organization Lore: Order of Hermes",
+   "Magi trained outside the Rhine Tribunal suffer a -3 modifier to the roll."
+  ],
+  "related": [
+   "Mythic Locations: What the Magi Know"
+  ]
+ },
+ {
+  "title": "Spirit types: airy spirits, genii loci and daimons",
+  "heading": "Definitions of Spirits",
+  "line": 1842,
+  "endLine": 1844,
+  "category": "beings",
+  "topic": "Magic spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Short definitions distinguishing airy spirits, the more powerful genii loci that embody a place, and daimons that act in the world only through replaceable aspects.",
+  "quotes": [
+   "More powerful are the genii loci or spirits of place"
+  ],
+  "related": [
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Cursewood: What is Known about Pomerania (lore roll)",
+  "heading": "What is Known about Pomerania",
+  "line": 1880,
+  "endLine": 1900,
+  "category": "setting",
+  "topic": "Location lore rolls",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "An Intelligence + Area Lore: Pomerania roll at the first mention of the Cursewood, with the knowledge levels it unlocks.",
+  "quotes": [
+   "At the first mention of the Cursewood, players may make a roll of Intelligence + Area Lore: Pomerania."
+  ],
+  "related": [
+   "Mythic Locations: What the Magi Know"
+  ]
+ },
+ {
+  "title": "Cursewood: Forest Lore and communing with the forest spirit",
+  "heading": "Forest Lore",
+  "line": 1902,
+  "endLine": 1914,
+  "category": "traditions",
+  "topic": "Forest Lore",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Forest Lore (Guardians of the Forest)",
+  "summary": "A table of what a character with Forest Lore learns or can do in a foreign forest at each Ability score from 3 upward, from learning the spirit's name to being automatically judged worthy.",
+  "quotes": [
+   "can try to commune with the forest spirit, but as this is a foreign place the character must have an Ability level of at least 3 to have any effect.",
+   "Character may find vis, although it is vis sordida."
+  ],
+  "related": [
+   "Guardians of the Forest p.37 Forest Lore"
+  ]
+ },
+ {
+  "title": "Cursewood: Trekking (stages, rolls and modifiers)",
+  "heading": "Trekking in the Cursewood",
+  "line": 1916,
+  "endLine": 1939,
+  "category": "hazards",
+  "topic": "Cursewood trekking",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Procedure for crossing the Cursewood in five stages, each costing a Long Term Fatigue level, with a leader and guide, a terrain-dependent progress roll made with the guide's stats, and group-size and encumbrance modifiers.",
+  "quotes": [
+   "The leader and guide can manage a group of people no larger than their combined Leadership scores; exceeding this causes additional hazards as shown later.",
+   "Each stage takes a number of hours to complete equal to the number of hazards suffered, although always at least one.",
+   "+1 per group member who knows the Ability used apart from the guide"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cursewood: Trek Progress table",
+  "heading": "Trek Progress",
+  "line": 1941,
+  "endLine": 1953,
+  "category": "hazards",
+  "topic": "Cursewood trekking",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Converts the guide's progress roll into a number of hazards suffered in the stage, with extra hazards for oversized groups and a bonus or free stage for very high rolls.",
+  "quotes": [
+   "Add one extra hazard for each person exceeding the maximum group size, defined as the combined Leadership scores of the leader and guide."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cursewood: Retreat and Defeat",
+  "heading": "Retreat and Defeat",
+  "line": 1955,
+  "endLine": 1957,
+  "category": "hazards",
+  "topic": "Cursewood trekking",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "A group that retreats suffers little harassment and needs no rolls, taking only an hour per stage, but the terrain resets so later visits are no easier.",
+  "quotes": [
+   "they suffer minimal harassment on the way out, which takes only an hour per stage"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cursewood: Rest, Sleep, and Supplies",
+  "heading": "Rest, Sleep, and Supplies",
+  "line": 1959,
+  "endLine": 1961,
+  "category": "hazards",
+  "topic": "Cursewood trekking",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Fatigue recovery in the woods: Long Term levels need a night's rest, Short Term recovery is slowed, hazards at night prevent recovery, supplies are spoiled and eating local plants or water wounds.",
+  "quotes": [
+   "recovery times are doubled for Short Term Fatigue",
+   "ingesting any plants or water from the Cursewood immediately causes a Light Wound"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cursewood: Hazards and Penetration",
+  "heading": "Hazards",
+  "line": 1963,
+  "endLine": 1965,
+  "category": "hazards",
+  "topic": "Cursewood trekking",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "How hazards are chosen and when the spirit's effects must Penetrate, using Wyzwanie's Penetration with the regio bonus against characters weakened by the Infernal aura.",
+  "quotes": [
+   "A hazard caused indirectly by Wyzwanie\u2019s powers, like moving or reshaping terrain features, does not need to penetrate.",
+   "so gets a +7 bonus to Penetration"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cursewood: Forest hazards",
+  "heading": "Forest",
+  "line": 1967,
+  "endLine": 1987,
+  "category": "hazards",
+  "topic": "Cursewood trekking",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Sensory descriptions and example hazard events for forest stages, including corrupted trees, thorn walls and pitfalls with set damage.",
+  "quotes": [
+   "A fall of 10 feet results in a +2 damage for mud, +5 for dirt, or +10 for rocks."
+  ],
+  "related": [
+   "ArM5 p.135 Wall of Thorns"
+  ]
+ },
+ {
+  "title": "Cursewood: Hill hazards",
+  "heading": "Hills",
+  "line": 1989,
+  "endLine": 2010,
+  "category": "hazards",
+  "topic": "Cursewood trekking",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Example hazard events for hill stages, including loose-rock slides with Dexterity rolls and Ease Factors, hostile weather and exploding ground.",
+  "quotes": [
+   "The Ease Factor is 6 to stay in place or 15 to move up the slope."
+  ],
+  "related": [
+   "ArM5 p.125 Charge of the Angry Winds",
+   "ArM5 p.127 Talons of the Wind",
+   "ArM5 p.156 The Earth's Carbuncle"
+  ]
+ },
+ {
+  "title": "Cursewood: Swamp hazards",
+  "heading": "Swamplands",
+  "line": 2012,
+  "endLine": 2028,
+  "category": "hazards",
+  "topic": "Cursewood trekking",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Example hazard events for swamp stages, including quicksand hands that lead to deprivation of air and churning waters needing a swim or boating roll, with botch consequences for progress.",
+  "quotes": [
+   "Victims roll Strength + Swimming (or Profession: Boating) against an Ease Factor of 12 to reach the safety of the river banks."
+  ],
+  "related": [
+   "ArM5 p.156 Hands of the Grasping Earth",
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Cursewood: Malevolent Infernal aura effects",
+  "heading": "The Infernal Aura of the Cursewood",
+  "line": 2044,
+  "endLine": 2051,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Lists the game effects of the aura of 5 in the Cursewood, a Malevolent Infernal aura: penalties to wound Recovery, added Damage, extra botch dice on physical activities and reopening of demon-caused wounds.",
+  "quotes": [
+   "Wounds suffer a penalty to Recovery rolls equal to the aura rating of 5 while inside.",
+   "All physical activities suffer 5 additional botch dice from the aura; this includes all rolls for trek progress."
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.12-14 Malevolent auras"
+  ]
+ },
+ {
+  "title": "Cursewood: The Regio (entry only when led by Wyzwanie)",
+  "heading": "The Regio",
+  "line": 2059,
+  "endLine": 2061,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "The level 7 Magic regio containing Regulus' encampment, which may be entered only if the spirit allows it by letting the worthy cross the wall.",
+  "quotes": [
+   "Regulus' encampment is now hidden in a Magic regio of level 7."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cursewood: Poisoned Sap (vis sordida extraction formula)",
+  "heading": "The Poisoned Sap",
+  "line": 2067,
+  "endLine": 2069,
+  "category": "magic",
+  "topic": "Vis harvesting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Once per year a magus may spend a season extracting Perdo vis sordida from the old oak, with the yield set by a formula using the Infernal aura and a risk of Twilight on a double botch.",
+  "quotes": [
+   "collect pawns of Perdo vis sordida equal to (Aura + Intelligence + Infernal Lore + stress die)/5 rounding up."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cursewood: De-Corrupting the Vis",
+  "heading": "De-Corrupting the Vis",
+  "line": 2087,
+  "endLine": 2089,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Tainted vis stays corrupted, but once the Magic aura dominates again, and after a year free of Infernal influence, newly produced vis is clean.",
+  "quotes": [
+   "After a full year with no Infernal influence, all vis sources are free from corruption."
+  ],
+  "related": []
+ },
+ {
+  "title": "Changing an aura (reducing Infernal, raising Magic)",
+  "heading": "Changing the Aura",
+  "line": 2095,
+  "endLine": 2101,
+  "category": "realms",
+  "topic": "Changing auras",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "How a corrupting Infernal aura fades once its focus is removed and the Magic aura dominates, and how a Magic aura can be raised with a yearly stress roll and bonuses from magical activities.",
+  "quotes": [
+   "the Infernal aura drops by 1 after a number of years equal to its strength",
+   "A stress roll made once per year against an Ease Factor of 15 is needed for a permanent increase of 1."
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.10-11",
+   "Realms of Power: Magic pp.10-11"
+  ]
+ },
+ {
+  "title": "Using vis sordida (tainted vis)",
+  "heading": "Vis Sordida",
+  "line": 2103,
+  "endLine": 2112,
+  "category": "magic",
+  "topic": "Vis sordida",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to vis sordida (Infernal aura)",
+  "summary": "Risks and benefits of using Infernally tainted vis by non-Infernal users: a creeping Wrathful trait, bonuses to casting totals and study Source Quality, extra botch dice, and corrupted levels when preparing items for enchantment.",
+  "quotes": [
+   "Modify casting total by +5 per pawn.",
+   "Add three extra botch dice per pawn used",
+   "+1 bonus to Source Quality per pawn for studying Hermetic Arts."
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.18-19"
+  ]
+ },
+ {
+  "title": "Dealing with Wyzwanie (research the artifact)",
+  "heading": "Dealing with Wyzwanie",
+  "line": 2223,
+  "endLine": 2227,
+  "category": "realms",
+  "topic": "Dealing with spirits",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "How the forest daimon bargains once the magi reach him, including a season of research against an Ease Factor to learn how to cleanse the Infernal artifact and the benefits of lasting friendship.",
+  "quotes": [
+   "may roll Intelligence + Infernal or Dominion Lore versus an Ease Factor of 12 for a season of study with an appropriate selection of books."
+  ],
+  "related": [
+   "Guardians of the Forests Nature Lore"
+  ]
+ },
+ {
+  "title": "Cult of Wyzwanie (Walking the Path mystery)",
+  "heading": "Cult of Wyzwanie",
+  "line": 2229,
+  "endLine": 2231,
+  "category": "mysteries",
+  "topic": "Walking the Path",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Cult of Wyzwanie (Walking the Path)",
+  "summary": "A sketch of a mystery cult based on Walking the Path, where a character accepts a Flaw as Sacrifice, completes a Quest for the spirit and gains a Virtue as Fruit, with suggested appropriate Virtues and Quests.",
+  "quotes": [
+   "The character makes a Sacrifice (by accepting a Flaw), finishes a Quest (by serving the spirit in some way), in order to gain the Fruit (a Virtue)."
+  ],
+  "related": [
+   "Guardians of the Forests pp.35-40 Walking the Path",
+   "ArM5 p.41 Elemental Magic"
+  ]
+ },
+ {
+  "title": "Significatos in the Cursewood (study from natural events)",
+  "heading": "Significatos",
+  "line": 2233,
+  "endLine": 2235,
+  "category": "magic",
+  "topic": "Significatos",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Magical natural phenomena can be studied like vis, with the event substituting for pawns equal to the Might magnitude involved, limited to once per year each and one per season in this location.",
+  "quotes": [
+   "Resolve this as vis study with the event substituting for a number of pawns of vis equal to the magnitude of Might of creatures involved.",
+   "Any individual Significato may only be studied once per year, and Wyzwanie allows the use of only one each season."
+  ],
+  "related": [
+   "Covenants p.101 Significatos"
+  ]
+ },
+ {
+  "title": "Cursewood variant: Dark Faerie Aura",
+  "heading": "Variant: Dark Faerie Aura",
+  "line": 2237,
+  "endLine": 2239,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood (variant)",
+  "summary": "Variant in which a faerie aura rather than an Infernal one produces the same added botch dice, damage and ability penalties, but these effects must penetrate and use the faerie's Might.",
+  "quotes": [
+   "faerie powers and illusions result in the same effects as the Malevolent Infernal aura in the form of added botch dice, added damage, and penalties to Abilities and magic."
+  ],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Destroying an Infernal artifact permanently",
+  "heading": "Destroying the Infernal Artifact",
+  "line": 2335,
+  "endLine": 2337,
+  "category": "realms",
+  "topic": "Infernal artifacts",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "An Infernal artifact that can reform is permanently destroyed only in a place with a strong Dominion aura by an ordained cleric with True Faith spending a Faith Point after hours of prayer.",
+  "quotes": [
+   "it needs to be taken to a cathedral or other place with a Dominion aura of at least 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "Farne Islands: What You've Heard (lore rolls)",
+  "heading": "What You've Heard",
+  "line": 2383,
+  "endLine": 2411,
+  "category": "setting",
+  "topic": "Location lore rolls",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Farne Islands",
+  "summary": "Locals get a bonus to Area Lore rolls about the islands, followed by what is known at each knowledge level.",
+  "quotes": [
+   "Locals get a +3 bonus to their Area Lore: Northumberland rolls for what they know about the Farne Islands."
+  ],
+  "related": [
+   "Mythic Locations: What the Magi Know"
+  ]
+ },
+ {
+  "title": "Farne Islands: Inner Farne (Divine aura and miraculous barley vis)",
+  "heading": "Inner Farne",
+  "line": 2421,
+  "endLine": 2429,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Farne Islands",
+  "summary": "A Divine aura island with a miraculous spring and a one-month barley crop from which Creo vis can be harvested if the grain can be ripened supernaturally fast and protected from the magical birds.",
+  "quotes": [
+   "Divine aura 2, rising to 4 in the chapel."
+  ],
+  "related": []
+ },
+ {
+  "title": "Boats and boating (piloting, rowing and boat damage)",
+  "heading": "Boats and Boating",
+  "line": 2431,
+  "endLine": 2455,
+  "category": "hazards",
+  "topic": "Boats and sailing",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Basic rules for buying, crewing and piloting a small boat or rowing boat: Ability and Characteristic combinations for piloting, weather Ease Factors, quality and crew modifiers, fatigue from rowing, failure, botches and Damage levels.",
+  "quotes": [
+   "The Ease Factor for any rolls depends on the weather: mild wind or rain requires an Ease Factor of 3, a squall requires an Ease Factor of 9, an average storm an Ease Factor of 12, and a tempest an Ease Factor of 15 or more.",
+   "Piloting rolls are made with Strength + Athletics",
+   "Fatigue checks must be made after every hour of rowing in calm seas, every half hour in choppy waters, and every quarter of an hour in stormy weather."
+  ],
+  "related": [
+   "City & Guild p.86 ships",
+   "City & Guild p.69 quality",
+   "City & Guild p.77 Damage levels and Stress checks"
+  ]
+ },
+ {
+  "title": "Farne Islands: The Wideopens (gut hazard and tunnel regio)",
+  "heading": "The Wideopens",
+  "line": 2457,
+  "endLine": 2465,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Farne Islands",
+  "summary": "Unconsecrated burials make the dead vulnerable to necromancy, a gut needs ship handling rolls in bad weather, and a tunnel inside a Magic aura 2 regio opens only occasionally.",
+  "quotes": [
+   "a ship handling roll must be made every 100 paces in all but the calmest of weathers"
+  ],
+  "related": []
+ },
+ {
+  "title": "Farne Islands: The Bush (surviving immersion by faith)",
+  "heading": "The Bush",
+  "line": 2483,
+  "endLine": 2489,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Farne Islands (Divine aura 1)",
+  "summary": "A character of strong faith stranded here suffers no ill effects and can survive the tidal immersion by praying with a Stamina + Concentration roll; a year here can form part of a Test of Faith.",
+  "quotes": [
+   "If he prays during the hour that the island is totally immersed (requiring a Stamina + Concentration roll of Ease Factor 6) then he can survive without air to breathe."
+  ],
+  "related": [
+   "Realms of Power: the Divine p.59 Test of Faith"
+  ]
+ },
+ {
+  "title": "Farne Islands: Big Harcar (Magic Realm vestige)",
+  "heading": "Big and Little Harcar",
+  "line": 2561,
+  "endLine": 2571,
+  "category": "realms",
+  "topic": "Magic Realm vestiges",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Farne Islands",
+  "summary": "An island that is a tether and level 4 vestige to a being in the Aquam province of the Twilight Void, noticed with a Perception + Awareness roll, and acting as a gateway for Aquam-aligned Magic creatures.",
+  "quotes": [
+   "Big Harcar is a vestige of level 4, and for creatures with a Magic Might aligned to Aquam it acts as a gateway into the Magic Realm.",
+   "To see these features requires a Perception + Awareness simple roll of against an Ease Factor of 12; the character gets a +3 bonus if someone who has seen the oddities is pointing them out to him."
+  ],
+  "related": [
+   "Realms of Power: Magic pp.22-28 vestiges and magical travel"
+  ]
+ },
+ {
+  "title": "Cursewood: Using shortcuts and magic against the hazards",
+  "heading": "Using Shortcuts and Magic",
+  "line": 2053,
+  "endLine": 2057,
+  "category": "hazards",
+  "topic": "Cursewood trekking",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cursewood",
+  "summary": "Guidance on how the spirit treats magical shortcuts and spellcasting: the regio can only be entered when led by the spirit, clever low-magnitude magic earns respect but invites a different hazard, and elemental specialists fare better though the hostile aura still risks fatigue and botches.",
+  "quotes": [
+   "However the regio can only be entered by those led by Wyzwanie, and he only allows this once he is satisfied."
+  ],
+  "related": []
+ }
+]

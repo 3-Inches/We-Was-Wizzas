@@ -1,0 +1,2315 @@
+[
+ {
+  "title": "Mystery Virtues Taught to Non-Initiates",
+  "heading": "Bonisagus and the Mysteries",
+  "line": 259,
+  "endLine": 275,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Explains that Mystery Virtues, unlike intrinsic magical gifts, can be taught to the uninitiated under special circumstances, and what the cults do to those who leak their secrets.",
+  "quotes": [
+   "This usually requires a Minor Breakthrough"
+  ],
+  "related": [
+   "HoH:TL p.26 Minor Breakthrough"
+  ]
+ },
+ {
+  "title": "Lexicon of the Mysteries",
+  "heading": "Lexicon of the Mysteries",
+  "line": 293,
+  "endLine": 343,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Glossary of the terms used for Mystery Cult play, including Cabal Legacy, Common Magics, Initiation Script, Mystagogue, Probationer and School.",
+  "quotes": [
+   "**Initiation Script:** A document that sets out the rites, teachings, and prerequisites for Initiation, used by a Mystagogue to conduct an Initiation."
+  ]
+ },
+ {
+  "title": "Entering a Mystery Cult",
+  "heading": "Entering a Mystery Cult",
+  "line": 373,
+  "endLine": 427,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Describes the three ways a magus is drawn into a cult, the probationer stage, the season spent learning (Mystery Cult) Lore, and what Initiation grants (a Mystery Virtue plus possible Ordeal Flaws that cannot be undone).",
+  "quotes": [
+   "attaining a score of 1 or more in the Ability **(Mystery Cult) Lore**",
+   "Thus magic cannot undo Initiation effects."
+  ]
+ },
+ {
+  "title": "Revised Ability: (Mystery Cult) Lore",
+  "heading": "Revised Ability: (Mystery Cult) Lore",
+  "line": 429,
+  "endLine": 437,
+  "category": "mysteries",
+  "topic": "(Mystery Cult) Lore",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Defines (Mystery Cult) Lore as the Organization Lore of a particular cult, covering its rites, signals and ceremonies, and says how experience in it is gained and how it can fragment a cult.",
+  "quotes": [
+   "(Mystery Cult) Lore is the (Organization) Lore of a particular cult."
+  ]
+ },
+ {
+  "title": "(Mystery Cult) Lore and Degrees of Initiation",
+  "heading": "(Mystery Cult) Lore and Degrees of Initiation",
+  "line": 439,
+  "endLine": 447,
+  "category": "mysteries",
+  "topic": "(Mystery Cult) Lore",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Gives the usual (Mystery Cult) Lore scores required for a first Initiation, later Initiations and the inner circle of a cult.",
+  "quotes": [
+   "A score of 6 is normally required for Initiation to the inner circle"
+  ]
+ },
+ {
+  "title": "Quests, Ordeals, and Sacrifices",
+  "heading": "Quests, Ordeals, and Sacrifices",
+  "line": 449,
+  "endLine": 475,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Explains the three prices of Initiation: Ordeals that inflict a permanent Flaw but ease later Initiations, Quests that are always stories taking at least a season, and Sacrifices of time, wealth or items.",
+  "quotes": [
+   "All Initiation Quests take at least one season."
+  ]
+ },
+ {
+  "title": "Distractions and the Initiate",
+  "heading": "Distractions and the Initiate",
+  "line": 467,
+  "endLine": 473,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Special rule for what happens when an Initiation season is interrupted by distractions, which can make the Initiation fail.",
+  "quotes": [
+   "for each month lost to distractions, reduce the Initiation Total by one-third of its original amount (rounding fractions up)"
+  ]
+ },
+ {
+  "title": "Time and Initiation",
+  "heading": "Time and Initiation",
+  "line": 477,
+  "endLine": 489,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "States that an Initiation, including any Ordeal, takes an entire season in which no other activity is possible, and that the probationer needs a level of (Mystery Cult) Lore first.",
+  "quotes": [
+   "the Initiation (including associated Ordeals) itself requires an entire season"
+  ]
+ },
+ {
+  "title": "Time and the Mystagogue",
+  "heading": "Time and the Mystagogue",
+  "line": 481,
+  "endLine": 485,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Says how much of the Mystagogue's own time an Initiation costs, normally a short distraction unless he is teaching a Supernatural Ability.",
+  "quotes": [
+   "generally amounts to a seven-day distraction for the Mystagogue"
+  ]
+ },
+ {
+  "title": "The Mechanics of Initiation",
+  "heading": "The Mechanics of Initiation",
+  "line": 491,
+  "endLine": 495,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Introduces the principle that Mystery progress gives more gain than loss with no fixed ratio, measured in stories and seasons, and that Hermetic Flaws can be taken as Sacrifices of power.",
+  "quotes": [
+   "progress in a Mystery Cult depicts an increase in power, with more gain than loss, and no fixed ratio"
+  ]
+ },
+ {
+  "title": "The Mystagogue",
+  "heading": "The Mystagogue",
+  "line": 497,
+  "endLine": 505,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Describes the Mystagogue as a role (not a title) held by whoever conducts an Initiation, who must have the best (Mystery Cult) Lore and a higher degree than the Initiate; Presence makes leading Initiations easier.",
+  "quotes": [
+   "A high Presence makes leading Initiations easier"
+  ]
+ },
+ {
+  "title": "Virtues Initiated",
+  "heading": "Virtues Initiated",
+  "line": 507,
+  "endLine": 511,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Says which Virtues can be gained by Initiation and how Initiation lets Supernatural Abilities be learned without the usual study penalty, reaching level 1 after a season with a teacher.",
+  "quotes": [
+   "Mystery Cults can avoid the penalties described there through Initiation rituals and Ordeals"
+  ],
+  "related": [
+   "ArM5 p.166 Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Initiation Rites",
+  "heading": "Initiation Rites",
+  "line": 513,
+  "endLine": 541,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "The core Initiation procedure: the Mystagogue's Initiation Total has no die roll and must exceed a Target Level that depends on whether the Virtue is Major or Minor, whether the Mystagogue knows it, and any previous Ordeal.",
+  "quotes": [
+   "Initiation Total: Presence + (Mystery Cult) Lore + Script Bonus",
+   "To Initiate a Minor Virtue known by the Mystagogue, the Target Level is 15",
+   "There is a minimum Target Level of 9 no matter how great a reduction is applied."
+  ]
+ },
+ {
+  "title": "The Initiation Script",
+  "heading": "The Initiation Script",
+  "line": 543,
+  "endLine": 597,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Lists the components of an Initiation Script and the bonus each adds to the Initiation Total (travel, Quests, Ordeals, Sacrifices, Mystagogue's time, sympathetic bonus), with three sample Scripts and the rules for when a bonus is invalid.",
+  "quotes": [
+   "+9: The Initiate suffers a Major Ordeal inflicting a specific Major Flaw during the Initiation.",
+   "+3: The Initiate has to complete a specified Quest."
+  ]
+ },
+ {
+  "title": "Example Initiation Script Designs",
+  "heading": "Example Initiation Script Designs",
+  "line": 598,
+  "endLine": 607,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Notes on applying Scripts to non-player characters and how previous Ordeals usually make up the shortfall for Major Virtues.",
+  "quotes": [
+   "Note that the process of Initiation relies upon the Mystagogue's Presence + (Mystery Cult) Lore, not the Initiate's."
+  ]
+ },
+ {
+  "title": "Example: Darius Undergoes Initiation",
+  "heading": "Example: Darius Undergoes Initiation",
+  "line": 608,
+  "endLine": 636,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "A worked example of a probationer's first two Initiations showing the Initiation Total, Target Level changes, Script bonuses and Ordeal reductions in play.",
+  "quotes": [
+   "His Initiation Total before the Script bonus is, therefore, a respectable 10."
+  ]
+ },
+ {
+  "title": "Modifying the Initiation Script",
+  "heading": "Modifying the Initiation Script",
+  "line": 638,
+  "endLine": 662,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "A Mystagogue can vary an existing Script with a roll against an Ease Factor that depends on whether a component is added, changed or removed, with only one change attempted per Initiation and a failed change leaving the original Script usable.",
+  "quotes": [
+   "Stress Die + Intelligence + (Mystery Cult) Lore vs. Ease Factor",
+   "The Ease Factor is 9 to extend the Script by adding a new component",
+   "The Ease Factor is 15 to remove a component from the Script, reducing the Script bonus."
+  ]
+ },
+ {
+  "title": "Experimental Scripts",
+  "heading": "Experimental Scripts",
+  "line": 664,
+  "endLine": 696,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Procedure for a Mystagogue with no adequate Script to experiment on a new one: choose a Risk level, roll on the Extraordinary Results chart, check the rite's validity, receive a sympathy bonus, then compare the Initiation Total with the Target Level.",
+  "quotes": [
+   "Roll a **Stress Die + Risk Modifier** on the Extraordinary Results chart on ArM5, page 109.",
+   "Roll a Simple Die + Risk Modifier + Intelligence + (Mystery Cult) Lore vs. Ease Factor of (9 + Proposed Bonus)",
+   "Presence + (Mystery Cult) Lore + Revised Script Bonus + Risk Modifier"
+  ],
+  "related": [
+   "ArM5 p.109 Extraordinary Results"
+  ]
+ },
+ {
+  "title": "Inventing Your Own Cult",
+  "heading": "Inventing Your Own Cult",
+  "line": 698,
+  "endLine": 706,
+  "category": "mysteries",
+  "topic": "Founding a Mystery cult",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "How player characters can found a new Mystery Cult: the storyguide creates a new (Mystery Cult) Lore, characters study it, and one of them eventually experiments to produce the first Initiation Script.",
+  "quotes": [
+   "the storyguide to create a new (Mystery Cult) Lore for the new cult"
+  ]
+ },
+ {
+  "title": "The Initiated Apprentice And Beyond",
+  "heading": "The Initiated Apprentice And Beyond",
+  "line": 708,
+  "endLine": 745,
+  "category": "creation",
+  "topic": "Initiated characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Parens belonging to a Mystery Cult, with troupe permission",
+  "summary": "Rules for starting characters who are already Initiates, and for advancing a magus through Initiations as background experience (one season per Quest plus one for the Initiation itself), including how to sketch a Script quickly.",
+  "quotes": [
+   "The whole process takes one full season per Quest, and one for the Initiation itself.",
+   "each season of Initiation or Questing means the character loses 10 experience points from the yearly 30"
+  ],
+  "related": [
+   "ArM5 p.32 Laboratory background seasons"
+  ]
+ },
+ {
+  "title": "Experimenting To Discover a New Minor Virtue Script",
+  "heading": "Experimenting To Discover a New Minor Virtue Script",
+  "line": 712,
+  "endLine": 732,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Worked example of a Mystagogue experimenting to create a new Script (risk modifier, validity roll, sympathy bonus, Initiation Total) and a later Mystagogue extending it.",
+  "quotes": [
+   "Her player rolls Intelligence +3 and Seventh Wave Lore 6 vs. an Ease Factor of 9 (to add a component)."
+  ]
+ },
+ {
+  "title": "Cabal Legacy — Minor Hermetic Story Flaw",
+  "heading": "Cabal Legacy — Minor Hermetic Story Flaw",
+  "line": 746,
+  "endLine": 754,
+  "category": "creation",
+  "topic": "Initiated characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Story Flaw: Cabal Legacy (starting Initiate)",
+  "summary": "The Story Flaw that lets a new magus begin play already Initiated, taking cult Virtues and Ordeal Flaws as part of the normal ten points of Virtues and Flaws.",
+  "quotes": [
+   "It allows a magus character to be designed with cult Virtues as normal Virtues, part of the standard ten Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "Responsibilities of Membership",
+  "heading": "Responsibilities of Membership",
+  "line": 760,
+  "endLine": 772,
+  "category": "mysteries",
+  "topic": "Mystery cult membership",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Guidelines on duties, annual vis dues and time commitments that a cult can demand of its Initiates and how to balance them against character progression.",
+  "quotes": [
+   "A single pawn of vis a year is a reasonable symbolic requirement",
+   "A donation of perhaps seven or more pawns of vis seems appropriate for Initiation into a new degree."
+  ]
+ },
+ {
+  "title": "Progression in a Mystery Cult",
+  "heading": "Progression in a Mystery Cult",
+  "line": 824,
+  "endLine": 828,
+  "category": "mysteries",
+  "topic": "Mystery cult membership",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cults (Esoteric Mysteries)",
+  "summary": "Rule of thumb for how quickly characters should gain Initiations in slow, medium and fast sagas, measured in stories more than years.",
+  "quotes": [
+   "the figure of three years per Initiation provides a reasonable rule of thumb"
+  ]
+ },
+ {
+  "title": "The Art of Memory",
+  "heading": "The Art of Memory",
+  "line": 856,
+  "endLine": 863,
+  "category": "basics",
+  "topic": "Art of Memory",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the Art of Memory, once a Mystery Ability but now a common academic Ability that any scholar can learn or take at character creation.",
+  "quotes": [
+   "It has entered common knowledge and can be learned by any scholar"
+  ]
+ },
+ {
+  "title": "New Ability: Art of Memory",
+  "heading": "New Ability: Art of Memory",
+  "line": 864,
+  "endLine": 873,
+  "category": "basics",
+  "topic": "Art of Memory",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Academic Abilities",
+  "summary": "Roll to memorize a complex scene or document perfectly, and the penalty rules for characters who lack the Ability.",
+  "quotes": [
+   "Stress Die + Intelligence + Art of Memory vs. Ease Factor of 9 (or higher)"
+  ]
+ },
+ {
+  "title": "Constructing a Memory Palace",
+  "heading": "Constructing a Memory Palace",
+  "line": 874,
+  "endLine": 879,
+  "category": "basics",
+  "topic": "Art of Memory",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Art of Memory",
+  "summary": "Describes how a memory palace is structured, with five loci per room and a number of rooms equal to the Art of Memory score, and that memories can be deliberately forgotten.",
+  "quotes": [
+   "The number of rooms in the memory palace is equal to the score in the Ability Art of Memory"
+  ]
+ },
+ {
+  "title": "Memorization Ease Factors",
+  "heading": "Memorization Ease Factors",
+  "line": 886,
+  "endLine": 894,
+  "category": "basics",
+  "topic": "Art of Memory",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Art of Memory",
+  "summary": "Table of Ease Factors for memorizing letters, conversations, rooms and buildings, with modifiers for technical subject matter.",
+  "quotes": [
+   "**9 (Average):** Memorize a single-page letter verbatim",
+   "**12 (Hard):** Memorize a letter of up to 12 pages"
+  ]
+ },
+ {
+  "title": "Spell Binding — Minor Hermetic Virtue",
+  "heading": "Spell Binding — Minor Hermetic Virtue",
+  "line": 954,
+  "endLine": 981,
+  "category": "magic",
+  "topic": "Spell Binding",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spell Binding",
+  "summary": "Explains how a spell is bound into a physical container with a general Ritual spell so a trapped lesser spirit sustains it indefinitely, including what spells can be bound and how the container spell is timed.",
+  "quotes": [
+   "The spell to be sustained cannot be a Ritual spell, nor have a duration of Momentary.",
+   "The base level of this container ritual must equal or exceed the spell to be sustained."
+  ]
+ },
+ {
+  "title": "Suitable Spirits",
+  "heading": "Suitable Spirits",
+  "line": 982,
+  "endLine": 987,
+  "category": "magic",
+  "topic": "Spell Binding",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spell Binding",
+  "summary": "Which spirits can be bound to sustain a spell: disembodied spirits with sufficient Might, thematically linked to the spell and of the same realm as the magus's magic.",
+  "quotes": [
+   "must have a Might at least equal to the level of the spell to be sustained"
+  ]
+ },
+ {
+  "title": "Spirit, Spell and Container Combined",
+  "heading": "Spirit, Spell and Container Combined",
+  "line": 988,
+  "endLine": 1001,
+  "category": "magic",
+  "topic": "Spell Binding",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spell Binding",
+  "summary": "What a bound spirit can and cannot do, how the spell fails if the container is broken or the spirit's Might drops, and the level of spell needed to command the spirit out.",
+  "quotes": [
+   "If the spirit's Might falls below the level of the spell, the sustained spell fails",
+   "Such a spell must have a level that exceeds the level of the container spell that binds both the spell and spirit"
+  ]
+ },
+ {
+  "title": "New Summon and Command Spells",
+  "heading": "New Summon and Command Spells",
+  "line": 1002,
+  "endLine": 1017,
+  "category": "magic",
+  "topic": "Spell Binding",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Rego guidelines for controlling or summoning disembodied spirits by their own Form, plus the rule that Mentem or Animal spells can command spirits with Intelligence or Cunning.",
+  "quotes": [
+   "**Level 5:** Control a disembodied spirit of (Form)",
+   "**Level 15:** Summon a disembodied spirit of (Form)"
+  ],
+  "related": [
+   "ArM5 p.151 Rego Mentem guidelines"
+  ]
+ },
+ {
+  "title": "Performance Magic — Minor Hermetic Virtue",
+  "heading": "Performance Magic — Minor Hermetic Virtue",
+  "line": 1038,
+  "endLine": 1097,
+  "category": "magic",
+  "topic": "Performance Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Performance Magic",
+  "summary": "Lets a magus replace Hermetic words and gestures with the actions or words of a chosen mundane Ability, concealing spellcasting; covers which Abilities can be chosen and how normal casting adjustments still apply to components not replaced.",
+  "quotes": [
+   "You may not choose any Language, Supernatural, Academic, or Arcane Ability.",
+   "Words or gestures that are not being replaced by Performance Magic remain as normal mystical components of spellcasting"
+  ]
+ },
+ {
+  "title": "Performance Abilities",
+  "heading": "Performance Abilities",
+  "line": 1048,
+  "endLine": 1060,
+  "category": "magic",
+  "topic": "Performance Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Performance Magic",
+  "summary": "Lists which Abilities qualify for Performance Magic and the special stress die with extra botch dice needed to use a martial Ability while in combat.",
+  "quotes": [
+   "the player rolls a stress die with three extra botch dice, and treats all non-botches as die rolls of zero"
+  ],
+  "related": [
+   "ArM5 p.63 Abilities"
+  ]
+ },
+ {
+  "title": "Sorcerous Music (Performance Magic)",
+  "heading": "Sorcerous Music (Performance Magic)",
+  "line": 1062,
+  "endLine": 1070,
+  "category": "magic",
+  "topic": "Performance Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Performance Magic (Music)",
+  "summary": "Special rules for Performance Magic (Music): song or an instrument can replace gestures and/or words, and Voice Range carries as far as the music can be heard.",
+  "quotes": [
+   "cannot be performed silently"
+  ]
+ },
+ {
+  "title": "Recognizing Performance Magic",
+  "heading": "Recognizing Performance Magic",
+  "line": 1082,
+  "endLine": 1094,
+  "category": "magic",
+  "topic": "Performance Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Performance Magic",
+  "summary": "Gives the Ease Factor adjustments for other magi trying to determine the Form of a spell cast with mundane words or gestures.",
+  "quotes": [
+   "Stress Die + Perception + Awareness vs. 15 – effect magnitude",
+   "–3 if Hermetic words are spoken (and can be heard)",
+   "+3 if both words and gestures are mundane"
+  ],
+  "related": [
+   "ArM5 p.83 Fast Casting"
+  ]
+ },
+ {
+  "title": "New Duration for Performance Magic",
+  "heading": "New Duration for Performance Magic",
+  "line": 1098,
+  "endLine": 1111,
+  "category": "magic",
+  "topic": "Performance Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Performance Magic",
+  "summary": "Defines the Performance Duration, equivalent to Concentration, and the roll needed to start a spell with it; no further Concentration rolls are needed while the performance continues.",
+  "quotes": [
+   "Performance is equivalent to Concentration Duration.",
+   "Characteristic (varies with Ability) + Ability against an Ease Factor of 3."
+  ]
+ },
+ {
+  "title": "Planetary Magic — Minor Hermetic Virtue",
+  "heading": "Planetary Magic — Minor Hermetic Virtue",
+  "line": 1112,
+  "endLine": 1131,
+  "category": "lab",
+  "topic": "Planetary Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Planetary Magic",
+  "summary": "Lets a magus build a Laboratory Horoscope for a planet and gain an Astrological Modifier to the Lab Total when creating an enchanted device, by rolling against an Ease Factor tied to the desired bonus.",
+  "quotes": [
+   "Stress Die + Intelligence +Artes Liberales (Astronomy) vs. Three Times the Desired Bonus",
+   "Only one planet, and thus one bonus, may be invoked for any given season of work on an enchantment."
+  ]
+ },
+ {
+  "title": "Distractions from Planetary Magic",
+  "heading": "Distractions from Planetary Magic",
+  "line": 1132,
+  "endLine": 1135,
+  "category": "lab",
+  "topic": "Planetary Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Planetary Magic",
+  "summary": "How lost laboratory time affects an Astrological Modifier: missing a whole day cancels the bonus.",
+  "quotes": [
+   "she loses the benefit of the Astrological Modifier if she is ever forced to miss a whole day away from the laboratory"
+  ],
+  "related": [
+   "ArM5 p.103 Lab distractions"
+  ]
+ },
+ {
+  "title": "Lab Texts and Planetary Magic",
+  "heading": "Lab Texts and Planetary Magic",
+  "line": 1136,
+  "endLine": 1139,
+  "category": "lab",
+  "topic": "Planetary Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Planetary Magic",
+  "summary": "A Lab Text never carries an Astrological Modifier; any later season using it needs a fresh Laboratory Horoscope.",
+  "quotes": [
+   "must create a new Laboratory Horoscope using Planetary Magic"
+  ]
+ },
+ {
+  "title": "Potent Magic — Minor or Major Hermetic Virtue",
+  "heading": "Potent Magic — Minor or Major Hermetic Virtue",
+  "line": 1140,
+  "endLine": 1155,
+  "category": "magic",
+  "topic": "Potent Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Potent Magic",
+  "summary": "Gives a narrow-field (Minor) or wide-field (Major) bonus to Lab Totals and Casting Score and the ability to invent Potent spells; compatible with a Magical Focus and can be taken more than once for different areas.",
+  "quotes": [
+   "Minor Potent Magic covers the same narrow fields as a Minor Magical Focus, and grants a +3 bonus to Lab Totals and Casting Score.",
+   "Major Potent Magic covers the same wide fields as a Major Magical Focus, and grants a +6 bonus to Lab Totals and Casting Score."
+  ]
+ },
+ {
+  "title": "Potent Spells",
+  "heading": "Potent Spells",
+  "line": 1156,
+  "endLine": 1177,
+  "category": "magic",
+  "topic": "Potent Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Potent Magic (to design); any magus may learn one",
+  "summary": "Defines Potency as the sum of Shape and Material bonuses of the Casting Items built into a spell, added to the Casting Score; Potency is capped by Magic Theory and the caster must touch the Casting Items.",
+  "quotes": [
+   "Potency Score = Sum of Bonus from each Casting Item",
+   "Potency Bonus: Add Potency to Casting Score",
+   "a magus may not invent a Potent spell with a Potency higher than his Magic Theory score"
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material Bonuses"
+  ]
+ },
+ {
+  "title": "Initiation into Major Potent Magic",
+  "heading": "Initiation into Major Potent Magic",
+  "line": 1170,
+  "endLine": 1172,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Major Potent Magic",
+  "summary": "Major Potent Magic is normally Initiated as a progression that replaces Minor Potent Magic, making the loss an Ordeal.",
+  "quotes": [
+   "Major Potent Magic may be (and normally is) Initiated as a progression from a Minor Potent Magic"
+  ]
+ },
+ {
+  "title": "Potent Magic and Potent Spells",
+  "heading": "Potent Magic and Potent Spells",
+  "line": 1178,
+  "endLine": 1187,
+  "category": "magic",
+  "topic": "Potent Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Potent Magic",
+  "summary": "How a Potent Magic magus designs new Potent spells or variants with different Casting Items, as if from a Lab Text, and writes Lab Texts for them.",
+  "quotes": [
+   "The total Potency may not exceed the magus's Magic Theory."
+  ]
+ },
+ {
+  "title": "Designing Covenant Libraries",
+  "heading": "Designing Covenant Libraries",
+  "line": 1188,
+  "endLine": 1191,
+  "category": "covenant",
+  "topic": "Potent Magic",
+  "audience": [
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Potent Magic",
+  "summary": "At covenant creation, Potency counts toward a Potent spell's level when spending Build Points on Lab Texts.",
+  "quotes": [
+   "add Potency (if any) to spell level when counting Build Points"
+  ]
+ },
+ {
+  "title": "Vulgar Alchemy — Minor Hermetic Mystery Virtue",
+  "heading": "Vulgar Alchemy — Minor Hermetic Mystery Virtue",
+  "line": 1233,
+  "endLine": 1244,
+  "category": "lab",
+  "topic": "Vulgar Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Vulgar Alchemy",
+  "summary": "Introduces Vulgar Alchemy, which lets a magus experiment with new components during enchantment to discover personal Shape and Material Bonuses; it cannot be used on invested devices but works for charged and lesser enchanted devices.",
+  "quotes": [
+   "Vulgar Alchemy is not usable on invested devices"
+  ],
+  "related": [
+   "ArM5 p.107 Arcane Experiments"
+  ]
+ },
+ {
+  "title": "The Experiment",
+  "heading": "The Experiment",
+  "line": 1245,
+  "endLine": 1303,
+  "category": "lab",
+  "topic": "Vulgar Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Vulgar Alchemy",
+  "summary": "How to begin a Vulgar Alchemy enchantment season: choose components up to the limit of Magic Theory, complete the enchantment and determine the Experimentation Bonus.",
+  "quotes": [
+   "The magus may choose any number of components up to the limit of his Magic Theory score",
+   "Experimentation Bonus = Simple Die roll + Risk Modifier"
+  ],
+  "related": [
+   "ArM5 p.107 Experimentation Bonus"
+  ]
+ },
+ {
+  "title": "New Shape and Material Bonuses",
+  "heading": "New Shape and Material Bonuses",
+  "line": 1249,
+  "endLine": 1284,
+  "category": "lab",
+  "topic": "Shape and Material Bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of additional Shape and Material Bonuses from alchemical discoveries that any magus may use, particularly for Potent spells and Hermetic Alchemy.",
+  "quotes": [
+   "These shapes and materials are based on the discoveries of alchemists, but can be used by any magus."
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material Bonuses"
+  ]
+ },
+ {
+  "title": "Repeated Experiments to Determine a Category",
+  "heading": "Repeated Experiments to Determine a Category",
+  "line": 1286,
+  "endLine": 1298,
+  "category": "lab",
+  "topic": "Vulgar Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Vulgar Alchemy",
+  "summary": "Suggested formula for how many successful tests a component needs to establish a bonus covering a broader category, by scope.",
+  "quotes": [
+   "3 x proposed bonus score, plus a scope factor:",
+   "+15 if the scope is a single Hermetic Technique"
+  ]
+ },
+ {
+  "title": "Testing the Components",
+  "heading": "Testing the Components",
+  "line": 1304,
+  "endLine": 1319,
+  "category": "lab",
+  "topic": "Vulgar Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Vulgar Alchemy",
+  "summary": "How the Experimentation Bonus is divided among components, with a Perception + Magic Lore roll for each untested component against an Ease Factor based on the proposed bonus.",
+  "quotes": [
+   "Simple Die + Perception + Magic Lore vs. an Ease Factor of 3 + (3 x proposed Material or Shape Bonus)"
+  ]
+ },
+ {
+  "title": "Final Result",
+  "heading": "Final Result",
+  "line": 1320,
+  "endLine": 1333,
+  "category": "lab",
+  "topic": "Vulgar Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Vulgar Alchemy",
+  "summary": "The Vulgar Alchemy Lab Total for the experimental enchantment and for repeating it without experimentation, and what a Lab Text conveys to others.",
+  "quotes": [
+   "Intelligence + Magic Theory + Technique + Form + Aura + Magic Lore + Experimentation Bonus + Successful Component Bonuses",
+   "Intelligence + Magic Theory + Technique + Form + Aura + Magic Lore + Component Bonuses"
+  ]
+ },
+ {
+  "title": "The Bonuses",
+  "heading": "The Bonuses",
+  "line": 1334,
+  "endLine": 1364,
+  "category": "lab",
+  "topic": "Vulgar Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Vulgar Alchemy",
+  "summary": "How discovered bonuses stay personal, can be widened into categories, and can be taught to others by a Magic Theory tractatus whose Quality meets twice the Bonus Level.",
+  "quotes": [
+   "He may do this provided his Quality (Com + 6 + bonuses) for writing the book is at least twice the Bonus Level."
+  ]
+ },
+ {
+  "title": "Withstand Casting — Minor Hermetic Virtue",
+  "heading": "Withstand Casting — Minor Hermetic Virtue",
+  "line": 1366,
+  "endLine": 1375,
+  "category": "magic",
+  "topic": "Fatigue from casting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Withstand Casting",
+  "summary": "Reduces the Fatigue lost when casting by one level per level of the Virtue (never below one level lost), with the reduced loss keeping the same short-term or long-term character as normal.",
+  "quotes": [
+   "he loses 1 less Fatigue level than normal, with a minimum of 1 Fatigue level",
+   "withstand 1 Fatigue level for each level of the Virtue"
+  ]
+ },
+ {
+  "title": "Withstand Casting and Vulnerable Casting",
+  "heading": "Withstand Casting and Vulnerable Casting",
+  "line": 1376,
+  "endLine": 1381,
+  "category": "magic",
+  "topic": "Fatigue from casting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Withstand Casting / Flaw: Vulnerable Casting",
+  "summary": "A character cannot start with both, but may acquire both in play; the extra loss from Vulnerability is applied first and then withstood.",
+  "quotes": [
+   "You may not start your character with both Vulnerable Casting and Withstand Casting.",
+   "apply the extra loss from Vulnerability first, then withstand the increased loss"
+  ]
+ },
+ {
+  "title": "Life Boost and Life-Linked Spontaneous Magic",
+  "heading": "Life Boost and Life-Linked Spontaneous Magic",
+  "line": 1382,
+  "endLine": 1395,
+  "category": "magic",
+  "topic": "Fatigue from casting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Withstand Casting with Life Boost or Life-Linked Spontaneous Magic",
+  "summary": "Explains how Withstand Casting interacts with Virtues that pay for extra spell power with Fatigue: withstanding those levels removes the boost they paid for.",
+  "quotes": [
+   "if he does then he loses the benefits from withstood levels"
+  ]
+ },
+ {
+  "title": "Astrological Magical Focus and Potent Magic",
+  "heading": "Astrological Magical Focus and Potent Magic",
+  "line": 1400,
+  "endLine": 1416,
+  "category": "magic",
+  "topic": "Astrological Virtues",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Magical Focus or Potent Magic (astrological)",
+  "summary": "Allows a Magical Focus or Potent Magic to be defined by a single astrological sign, planet or house; spells that use such a benefit count as Astrological spells.",
+  "quotes": [
+   "Any magus may have a Major Magical Focus or Major Potent Magic covering effects governed by a single astrological sign."
+  ],
+  "related": [
+   "Hermetic Astrology appendix"
+  ]
+ },
+ {
+  "title": "Initiating Magic for Birth Sign, Planet, or House",
+  "heading": "Initiating Magic for Birth Sign, Planet, or House",
+  "line": 1417,
+  "endLine": 1428,
+  "category": "mysteries",
+  "topic": "Astrological Virtues",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: astrological Potent Magic or Focus",
+  "summary": "Relaxes the rule that the Mystagogue must know the Virtue when the Initiate's birth sign, planet or house matches, and gives sympathy bonuses or penalties for matching, other or opposed signs.",
+  "quotes": [
+   "magi Initiating into the magic of their birth have a +1 sympathy bonus for Initiation",
+   "causes a penalty of –3"
+  ]
+ },
+ {
+  "title": "Astrological Cyclic Magic — Minor Hermetic Virtue or Flaw",
+  "heading": "Astrological Cyclic Magic — Minor Hermetic Virtue or Flaw",
+  "line": 1429,
+  "endLine": 1444,
+  "category": "magic",
+  "topic": "Astrological Virtues",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue or Flaw: Cyclic Magic (astrological)",
+  "summary": "Lets Cyclic Magic follow astrological cycles of the zodiac, raising the bonus or penalty when the cycle covers less of the year.",
+  "quotes": [
+   "The bonus or penalty is increased to 5.",
+   "The bonus or penalty is increased to 6."
+  ],
+  "related": [
+   "ArM5 p.41 Cyclic Magic"
+  ]
+ },
+ {
+  "title": "(Astrological) Mutable Virtue or Flaw",
+  "heading": "(Astrological) Mutable Virtue or Flaw",
+  "line": 1445,
+  "endLine": 1461,
+  "category": "magic",
+  "topic": "Astrological Virtues",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue or Flaw: Mutable",
+  "summary": "Lets a Virtue or Flaw apply only in the four mutable signs: Major ones drop to Minor, Minor ones are doubled in intensity.",
+  "quotes": [
+   "the Virtue or Flaw is reduced to being Minor",
+   "the effect is doubled in intensity"
+  ]
+ },
+ {
+  "title": "New Mastery Ability — Ceremonial Casting",
+  "heading": "New Mastery Ability — Ceremonial Casting",
+  "line": 1474,
+  "endLine": 1481,
+  "category": "magic",
+  "topic": "Mastery Abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mastery Ability: Ceremonial Casting (Cult of Mercury)",
+  "summary": "A spell mastery option letting a magus apply the Ceremonial Casting rules to a specific spell that is not already a Ritual using them.",
+  "quotes": [
+   "The maga may apply the rules for Ceremonial Casting (ArM5, page 83) to casting this spell."
+  ],
+  "related": [
+   "ArM5 p.83 Ceremonial Casting"
+  ]
+ },
+ {
+  "title": "Hermetic Alchemy — Hermetic Minor Virtue",
+  "heading": "Hermetic Alchemy — Hermetic Minor Virtue",
+  "line": 1488,
+  "endLine": 1491,
+  "category": "lab",
+  "topic": "Hermetic Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Alchemy",
+  "summary": "Overview of the Virtue that lets a magus extract more vis, or Form-specific vis, in the laboratory.",
+  "quotes": [
+   "Hermetic Alchemy lets the magus extract more vis from an aura, or to extract Form-specific vis rather than Vim vis."
+  ]
+ },
+ {
+  "title": "Improved Extraction of Vis",
+  "heading": "Improved Extraction of Vis",
+  "line": 1492,
+  "endLine": 1500,
+  "category": "lab",
+  "topic": "Hermetic Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Alchemy",
+  "summary": "Lab Total for extracting vis using a crafted receptacle with Shape and Material Bonuses, and the number of pawns of Vim vis yielded.",
+  "quotes": [
+   "Alchemical Vis Extraction Lab Total = Creo + Vim + Intelligence + Magic Theory + Aura Modifier + Shape and Material Bonuses",
+   "Vim Vis Extracted = one-tenth (round up) of Vis Extraction Lab Total"
+  ]
+ },
+ {
+  "title": "Form-Specific Vis",
+  "heading": "Form-Specific Vis",
+  "line": 1538,
+  "endLine": 1547,
+  "category": "lab",
+  "topic": "Hermetic Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Alchemy",
+  "summary": "Extracting Form-specific vis rather than Vim vis halves the yield, uses a Form requisite for the Creo Vim Lab Total, and cannot produce Technique vis.",
+  "quotes": [
+   "Form-specific Vis Extraction Lab Total = Creo + Vim (Form requisite) + Intelligence + Magic Theory + Aura Modifier + Shape and Material Bonuses",
+   "Form Vis Extracted = one-twentieth (round up) of Vis Extraction Lab Total"
+  ]
+ },
+ {
+  "title": "Choosing Appropriate Shape and Material Factors",
+  "heading": "Choosing Appropriate Shape and Material Factors",
+  "line": 1548,
+  "endLine": 1564,
+  "category": "lab",
+  "topic": "Hermetic Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Alchemy",
+  "summary": "How to pick which Shape and Material Bonuses apply to a vis extraction by imagining a single invested effect of the desired Form, with the total bonus capped by Magic Theory.",
+  "quotes": [
+   "but the total Shape and Material Bonus is limited by the magus's Magic Theory score"
+  ],
+  "related": [
+   "ArM5 p.97 Compound devices"
+  ]
+ },
+ {
+  "title": "Philosophic Alchemy — Minor and Major Mystery Virtue",
+  "heading": "Philosophic Alchemy — Minor and Major Mystery Virtue",
+  "line": 1566,
+  "endLine": 1575,
+  "category": "lab",
+  "topic": "Hermetic Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Philosophic Alchemy",
+  "summary": "Lets an alchemical object digest on its own so vis is extracted (or ready-opened enchantment spaces created) with little attention; the Minor Virtue needs a year and the Major Virtue a single season.",
+  "quotes": [
+   "Minor Philosophic Alchemy requires a year (four continuous seasons) of fermentation and digestion",
+   "Major Philosophic Alchemy allows a more efficient digestion to be established, which is completed in a single season."
+  ]
+ },
+ {
+  "title": "Automatic Extraction of Vis",
+  "heading": "Automatic Extraction of Vis",
+  "line": 1576,
+  "endLine": 1587,
+  "category": "lab",
+  "topic": "Hermetic Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Philosophic Alchemy",
+  "summary": "A settled extraction counts as a seven-day distraction from other lab work, may run alongside other lab activities, and is ruined if distractions exceed 20 days.",
+  "quotes": [
+   "treating the vis extraction as a seven-day distraction from other lab work",
+   "if the distractions exceed 20 days, the digestion is spoiled and must be abandoned"
+  ],
+  "related": [
+   "ArM5 p.103 Lab distractions"
+  ]
+ },
+ {
+  "title": "Time Needed for Automatic Extraction of Vis",
+  "heading": "Time Needed for Automatic Extraction of Vis",
+  "line": 1588,
+  "endLine": 1595,
+  "category": "lab",
+  "topic": "Hermetic Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Philosophic Alchemy",
+  "summary": "Minor Philosophic Alchemy runs for four seasons and the vis extracted is based on the lowest of the four Lab Totals; only one extraction can run per season and experimentation spoils it.",
+  "quotes": [
+   "the vis extracted is determined by the lowest of the four Lab Totals",
+   "A magus may only manage a single vis extraction in any season"
+  ]
+ },
+ {
+  "title": "Ready-Opened Devices",
+  "heading": "Ready-Opened Devices",
+  "line": 1596,
+  "endLine": 1605,
+  "category": "lab",
+  "topic": "Hermetic Alchemy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Philosophic Alchemy",
+  "summary": "Philosophic Alchemy can instead produce a device with already-opened enchantment spaces, equal in number to the pawns of Vim vis that would have been extracted.",
+  "quotes": [
+   "The number of spaces open is equal to the number of pawns of Vim vis that would have been extracted into it as automatic vis extraction."
+  ]
+ },
+ {
+  "title": "The Lesser Elixir — Minor Mystery Virtue",
+  "heading": "The Lesser Elixir — Minor Mystery Virtue",
+  "line": 1606,
+  "endLine": 1617,
+  "category": "lab",
+  "topic": "Lesser Elixir",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Lesser Elixir",
+  "summary": "Introduces the Lesser Elixir, a personal formula that improves the aging bonus of a Longevity Ritual by adding special ingredients; it cannot be made for another.",
+  "quotes": [
+   "The Lesser Elixir increases the aging bonus of a Longevity Ritual by incorporating additional ingredients.",
+   "The Lesser Elixir requires Hermetic Alchemy."
+  ]
+ },
+ {
+  "title": "Creating the Lesser Elixir",
+  "heading": "Creating the Lesser Elixir",
+  "line": 1618,
+  "endLine": 1658,
+  "category": "lab",
+  "topic": "Lesser Elixir",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Lesser Elixir",
+  "summary": "Procedure for inventing a Lesser Elixir: perform the Longevity Ritual, spend a season adding an ingredient, and derive the Elixir Level from Elixir Points (capped by Magic Theory) to add to the Aging Bonus.",
+  "quotes": [
+   "Elixir Points = Total of Points from Extra Ingredients",
+   "Aging Bonus = Longevity Ritual Modifier + Elixir Level"
+  ]
+ },
+ {
+  "title": "Longevity Ritual Vis Limits",
+  "heading": "Longevity Ritual Vis Limits",
+  "line": 1626,
+  "endLine": 1636,
+  "category": "lab",
+  "topic": "Longevity rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Vis needed to design a Longevity Ritual and the much lighter limits when rebrewing a dose from its Lab Text.",
+  "quotes": [
+   "the enchantment requires one pawn of vis for every five years of age (rounded up)"
+  ]
+ },
+ {
+  "title": "Elixir Points",
+  "heading": "Elixir Points",
+  "line": 1659,
+  "endLine": 1670,
+  "category": "lab",
+  "topic": "Lesser Elixir",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Lesser Elixir",
+  "summary": "How ingredients earn Elixir Points from the Shape and Material Bonuses table; personally discovered items count double, but no single item may exceed the magus's Magic Theory.",
+  "quotes": [
+   "No single item may have a bonus exceeding the alchemist's Magic Theory score."
+  ]
+ },
+ {
+  "title": "Repeating the Lesser Elixir",
+  "heading": "Repeating the Lesser Elixir",
+  "line": 1671,
+  "endLine": 1676,
+  "category": "lab",
+  "topic": "Lesser Elixir",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Lesser Elixir",
+  "summary": "After an Aging Crisis the Lesser Elixir must be repeated on top of a fresh Longevity Ritual, and it may be reinvented with more ingredients for a further season.",
+  "quotes": [
+   "If the magus suffers an Aging Crisis, the Lesser Elixir loses its effectiveness, and must be repeated."
+  ]
+ },
+ {
+  "title": "The Great Elixir — Major Mystery Virtue",
+  "heading": "The Great Elixir — Major Mystery Virtue",
+  "line": 1677,
+  "endLine": 1682,
+  "category": "lab",
+  "topic": "Great Elixir",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Great Elixir (requires Unaging and Lesser Elixir)",
+  "summary": "Introduces the ritual by which an alchemist becomes an immortal being of Magic by creating and consuming a Great Elixir.",
+  "quotes": [
+   "The magus must have both the Virtues Unaging and the Lesser Elixir."
+  ]
+ },
+ {
+  "title": "Preparing the Great Elixir",
+  "heading": "Preparing the Great Elixir",
+  "line": 1683,
+  "endLine": 1716,
+  "category": "lab",
+  "topic": "Great Elixir",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Great Elixir",
+  "summary": "How the Great Elixir device is prepared, the enchantment spaces it takes, and the two unique Mystery effects (Become a Being of Magic, Grant Might) invested in it.",
+  "quotes": [
+   "The Lesser Elixir uses up (Longevity Ritual level/10) enchantment spaces in the Great Elixir device.",
+   "the magus gains Magic Might equal to half (effect level–20)"
+  ]
+ },
+ {
+  "title": "Testing the Great Elixir",
+  "heading": "Testing the Great Elixir",
+  "line": 1717,
+  "endLine": 1728,
+  "category": "lab",
+  "topic": "Great Elixir",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Great Elixir",
+  "summary": "Roll made when the maga drinks the potion; failure means a new dose and attempt, with Lab Text and cumulative bonuses to later attempts.",
+  "quotes": [
+   "Simple Die + Stamina + Lesser Elixir Level + Reroll Bonus vs. Ease Factor of (Age/10, round up)",
+   "each attempt at the Great Elixir grants a cumulative +1 bonus to the roll, to a limit of the maga's Magic Theory"
+  ]
+ },
+ {
+  "title": "Success! Effects of the Elixir",
+  "heading": "Success! Effects of the Elixir",
+  "line": 1729,
+  "endLine": 1736,
+  "category": "lab",
+  "topic": "Great Elixir",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Great Elixir",
+  "summary": "A successful Great Elixir permanently turns the magus into an immortal alchemical being of the Magic realm with a Might score from the potion.",
+  "quotes": [
+   "He may be slain, but he will not die of lesser wounds, nor age or Warping."
+  ],
+  "related": [
+   "Appendix A: Immortal Magi"
+  ]
+ },
+ {
+  "title": "Improving the Elixir after Transformation",
+  "heading": "Improving the Elixir after Transformation",
+  "line": 1737,
+  "endLine": 1744,
+  "category": "lab",
+  "topic": "Great Elixir",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Great Elixir",
+  "summary": "An immortal magus can brew a new Great Elixir to raise his Might; the Ease Factor stays fixed at the age at transformation and the cumulative bonus resets.",
+  "quotes": [
+   "The Ease Factor to test the potion remains fixed at the age when the magus transformed"
+  ]
+ },
+ {
+  "title": "Structure of the Order of the Green Cockerel",
+  "heading": "Structure of the Order of the Green Cockerel",
+  "line": 1763,
+  "endLine": 1799,
+  "category": "mysteries",
+  "topic": "Mystery cult: Green Cockerel",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Order of the Green Cockerel",
+  "summary": "The seven degrees of the Green Cockerel and the Virtue Initiated at each (Planetary Magic, Vulgar Alchemy, Unaging, Hermetic Alchemy, Lesser Elixir, Philosophic Alchemy, Great Elixir), with degree-specific requirements.",
+  "quotes": [
+   "creating at least seven new Shape and Material Bonuses before progressing to the next degree of Initiation"
+  ]
+ },
+ {
+  "title": "Periapt — Minor Mystery Virtue",
+  "heading": "Periapt — Minor Mystery Virtue",
+  "line": 1829,
+  "endLine": 1834,
+  "category": "lab",
+  "topic": "Periapt",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Periapt",
+  "summary": "Lets a magus create a seasonal Periapt Horoscope that acts as a single-use Lab Text for making astrological charged devices.",
+  "quotes": [
+   "the charges resulting equal those that the magus would produce if he already had a Lab Text for the enchantment"
+  ]
+ },
+ {
+  "title": "Creating a Periapt",
+  "heading": "Creating a Periapt",
+  "line": 1835,
+  "endLine": 1844,
+  "category": "lab",
+  "topic": "Periapt",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Periapt",
+  "summary": "Requirements for a Periapt Horoscope, the number of charges produced and the maximum Effect level, which depends on Artes Liberales (Astronomy).",
+  "quotes": [
+   "Number of charges = Lab Total / 5 (rounded up)",
+   "Maximum Effect level = 5 x Artes Liberales (Astronomy) score"
+  ],
+  "related": [
+   "ArM5 p.102 Charged devices"
+  ]
+ },
+ {
+  "title": "Creating a Periapt Horoscope",
+  "heading": "Creating a Periapt Horoscope",
+  "line": 1845,
+  "endLine": 1852,
+  "category": "lab",
+  "topic": "Periapt",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Periapt",
+  "summary": "The roll to prepare a seasonal Periapt Horoscope on an equinox or solstice, with failure and botch consequences for the whole season.",
+  "quotes": [
+   "Stress Die + Intelligence + Astronomy vs. an Ease Factor of 9"
+  ]
+ },
+ {
+  "title": "Celestial Magic — Major Mystery Virtue",
+  "heading": "Celestial Magic — Major Mystery Virtue",
+  "line": 1853,
+  "endLine": 1865,
+  "category": "lab",
+  "topic": "Celestial Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic (requires Planetary Magic)",
+  "summary": "Introduces the Major astrological Virtue that includes and replaces Planetary Magic and adds wider Horoscopes, astrological Durations, a favorable hour for casting and astrologically linked enchantments.",
+  "quotes": [
+   "This Virtue includes and replaces the benefits of Planetary Magic, which is a required prerequisite."
+  ]
+ },
+ {
+  "title": "Improved Laboratory Horoscopes",
+  "heading": "Improved Laboratory Horoscopes",
+  "line": 1866,
+  "endLine": 1881,
+  "category": "lab",
+  "topic": "Celestial Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "Celestial Magic lets the Laboratory Horoscope bonus apply to any laboratory activity, and also reduces the vis needed to open an invested device.",
+  "quotes": [
+   "Stress Die + Intelligence + Astronomy vs. Three Times the Desired Bonus",
+   "subtract the Laboratory Horoscope bonus for the opening season from the number of pawns of vis required to open the device (minimum of one pawn)"
+  ],
+  "related": [
+   "ArM5 p.103 Lab distractions"
+  ]
+ },
+ {
+  "title": "Astrological Durations",
+  "heading": "Astrological Durations",
+  "line": 1882,
+  "endLine": 1903,
+  "category": "magic",
+  "topic": "Celestial Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "Defines the astrological units of time (Minute, Hour, Day, Sign) that Celestial Magic can use for spell Durations and says an Astronomy roll is required.",
+  "quotes": [
+   "An Astrological Minute for spells is the same as a Hermetic Diameter Duration",
+   "Using Astrological Durations requires a roll of Astronomy."
+  ]
+ },
+ {
+  "title": "Limits on the Use of Astrological Time",
+  "heading": "Limits on the Use of Astrological Time",
+  "line": 1894,
+  "endLine": 1900,
+  "category": "magic",
+  "topic": "Celestial Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "Astrological conditions are only uniform within about 500 paces of the point of measurement, which limits the area and Target Size of astrological spells.",
+  "quotes": [
+   "conditions are essentially identical over an area extending approximately 500 paces in all directions from the point of measurement"
+  ]
+ },
+ {
+  "title": "New Duration: Minutes = Diameter",
+  "heading": "New Duration: Minutes = Diameter",
+  "line": 1904,
+  "endLine": 1933,
+  "category": "magic",
+  "topic": "Celestial Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "The four astrological Durations (Minutes=Diameter, Hours=Sun, Days=Moon, Signs=Year/Ritual), the Astronomy roll needed for each, and what happens when the calculation fails or botches.",
+  "quotes": [
+   "Die Roll + Intelligence + Astronomy vs. 6 + Number of Diameters Desired",
+   "Die roll + Intelligence + Astronomy vs. 6 + Number of Hours Desired",
+   "The maximum duration is one year, regardless of all other factors."
+  ]
+ },
+ {
+  "title": "Favorable Hour for Spellcasting",
+  "heading": "Favorable Hour for Spellcasting",
+  "line": 1934,
+  "endLine": 1971,
+  "category": "magic",
+  "topic": "Celestial Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "The magus can identify one favorable hour per day for a casting bonus of +1 to +5, with a roll against three times the desired bonus and a penalty equal to the bonus if botched.",
+  "quotes": [
+   "Only one hour in any day will favor the maga.",
+   "Stress Die + Intelligence + Astronomy vs. Three Times Desired Bonus"
+  ]
+ },
+ {
+  "title": "Options: Calculating an Astrological Duration",
+  "heading": "Options: Calculating an Astrological Duration",
+  "line": 1938,
+  "endLine": 1962,
+  "category": "magic",
+  "topic": "Celestial Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "Optional modifiers to the Astronomy Ease Factor: a Daily Horoscope, exact astrological time, precision end time, an armillary sphere, or non-stress calculation.",
+  "quotes": [
+   "Calculate Daily Horoscope: Subtract 3 from Ease Factor",
+   "Precision Astrology (Specify Exact End Time): Add 3 to Ease Factor",
+   "Consult a Magical Armillary Sphere: Halve the Adjusted Ease Factor (after all Additions and Subtractions)"
+  ],
+  "related": [
+   "ArM5 p.84 Daily Horoscope"
+  ]
+ },
+ {
+  "title": "The Time of Favorable Hour",
+  "heading": "The Time of Favorable Hour",
+  "line": 1972,
+  "endLine": 1974,
+  "category": "magic",
+  "topic": "Celestial Magic",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "A quick dice procedure for the storyguide to decide which hour of the day is favorable instead of using astrological tables.",
+  "quotes": [
+   "then divide by 4 (round up)"
+  ]
+ },
+ {
+  "title": "Astrologically Linked Enchantments",
+  "heading": "Astrologically Linked Enchantments",
+  "line": 1976,
+  "endLine": 2000,
+  "category": "lab",
+  "topic": "Celestial Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "Enchantments can be linked to a single target by a Nativity Horoscope, giving a Lab Total bonus, or attuned to a cycle of signs, adding bonuses and opposing penalties to Penetration or frequency.",
+  "quotes": [
+   "add the bonus for a Nativity Horoscope (+2)",
+   "The astrological cycle adjustment is the maga's Artes Liberales (Astronomy) score at the time she opens the device for enchantment"
+  ],
+  "related": [
+   "ArM5 p.84 Arcane Connection Bonus table"
+  ]
+ },
+ {
+  "title": "Spells to Determine Astrological Time",
+  "heading": "Spells to Determine Astrological Time",
+  "line": 2001,
+  "endLine": 2011,
+  "category": "magic",
+  "topic": "Celestial Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Intellego Vim guidelines for measuring astrological time and conditions, used with Astrological Durations; they need no astrological Virtue.",
+  "quotes": [
+   "Discern and measure a single astrological factor in the environment.",
+   "Discern and measure all astrological factors in the environment."
+  ],
+  "related": [
+   "ArM5 p.86 Aimed spells"
+  ]
+ },
+ {
+  "title": "New Enchanted Device: Magical Armillary Sphere",
+  "heading": "New Enchanted Device: Magical Armillary Sphere",
+  "line": 2045,
+  "endLine": 2050,
+  "category": "lab",
+  "topic": "Armillary sphere",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "Introduces the magical armillary sphere, an enchanted device that reports astrological conditions and eases calculation of Astrological Durations.",
+  "quotes": [
+   "greatly assists in calculating and working with Astrological Durations"
+  ]
+ },
+ {
+  "title": "Making an Armillary Sphere",
+  "heading": "Making an Armillary Sphere",
+  "line": 2051,
+  "endLine": 2074,
+  "category": "lab",
+  "topic": "Armillary sphere",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "Rolls to design and craft a precision mundane armillary sphere, with higher Ease Factors when another person designs or crafts it and a season of work required.",
+  "quotes": [
+   "Stress Die + Intelligence + Astronomy vs. an Ease Factor of 12",
+   "Stress Die + Dexterity + Craft (Mechanisms or Clocks) vs. an Ease Factor of 12",
+   "The Ease Factors are reduced by 3 if copying an existing precision armillary sphere."
+  ]
+ },
+ {
+  "title": "New Shape and Material Bonuses",
+  "heading": "New Shape and Material Bonuses",
+  "line": 2083,
+  "endLine": 2087,
+  "category": "lab",
+  "topic": "Shape and Material Bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Shape and Material Bonuses for an armillary sphere and an astrolabe.",
+  "quotes": [
+   "**Armillary Sphere:** +5 display the heavens, celestial time"
+  ]
+ },
+ {
+  "title": "Enchanting the Armillary Sphere",
+  "heading": "Enchanting the Armillary Sphere",
+  "line": 2121,
+  "endLine": 2152,
+  "category": "lab",
+  "topic": "Armillary sphere",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "The vis needed to open the armillary sphere as an invested device and the two constant effects (Know the Heavens, Track the Heavens) that sense and keep it set to local astrological time.",
+  "quotes": [
+   "The mechanism must be opened as an invested device, needing 15 pawns (base metal, x3 for skull sized), or 18 if constructed of silver, 30 for gold."
+  ]
+ },
+ {
+  "title": "Consulting the Armillary Sphere",
+  "heading": "Consulting the Armillary Sphere",
+  "line": 2153,
+  "endLine": 2162,
+  "category": "magic",
+  "topic": "Armillary sphere",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Celestial Magic",
+  "summary": "Using the sphere halves the Ease Factor for Astrological Duration calculations; for a distant location the magus must know conditions there and adjust the sphere with a roll.",
+  "quotes": [
+   "This halves the Ease Factor of Astrological Duration calculations.",
+   "To Adjust the Armillary Sphere: Stress Die + Intelligence + Astronomy vs. an Ease Factor of 9"
+  ]
+ },
+ {
+  "title": "Structure of the Magoi of the Star",
+  "heading": "Structure of the Magoi of the Star",
+  "line": 2183,
+  "endLine": 2223,
+  "category": "mysteries",
+  "topic": "Mystery cult: Magoi of the Star",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Magoi of the Star",
+  "summary": "The seven degrees of the Magoi of the Star and the Virtue Initiated at each (Planetary Magic, Potent Magic, Periapt, Celestial Magic, a Magical Focus or further Potent Magic, Divination and Augury: Astrology), with the Lore prerequisite for the first degree.",
+  "quotes": [
+   "The cult is organized into seven separate degrees of Initiation.",
+   "To be Initiated requires a knowledge of Artes Liberales at 4 or greater"
+  ]
+ },
+ {
+  "title": "Appendix: Astrological Correspondences",
+  "heading": "Appendix: Astrological Correspondences",
+  "line": 2225,
+  "endLine": 2256,
+  "category": "magic",
+  "topic": "Astrology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Reference for astrological correspondences, including how to cast a Daily Horoscope or Nativity Horoscope with an Intelligence + Astronomy roll against Ease Factor 9.",
+  "quotes": [
+   "Creating a Daily Horoscope takes one hour.",
+   "Creating a Nativity Horoscope takes a day's work."
+  ],
+  "related": [
+   "ArM5 p.84 Horoscopes"
+  ]
+ },
+ {
+  "title": "Signs by Category",
+  "heading": "Signs by Category",
+  "line": 2229,
+  "endLine": 2236,
+  "category": "magic",
+  "topic": "Astrology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table giving each zodiac sign's element, humor, gender and temperament (cardinal, fixed, mutable).",
+  "quotes": []
+ },
+ {
+  "title": "Signs and Decans",
+  "heading": "Signs and Decans",
+  "line": 2238,
+  "endLine": 2253,
+  "category": "magic",
+  "topic": "Astrology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of the influence of each of the three decans of every zodiac sign.",
+  "quotes": []
+ },
+ {
+  "title": "Astrological Houses",
+  "heading": "Astrological Houses",
+  "line": 2263,
+  "endLine": 2278,
+  "category": "magic",
+  "topic": "Astrology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of the twelve astrological houses and the province each governs.",
+  "quotes": []
+ },
+ {
+  "title": "Spheres of Influence of the Planets",
+  "heading": "Spheres of Influence of the Planets",
+  "line": 2280,
+  "endLine": 2290,
+  "category": "magic",
+  "topic": "Astrology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of what each planet influences and which Characteristic it governs.",
+  "quotes": [
+   "Influences rulership, kings, leadership, and authority, health, and well-being, and governs the characteristics Presence and Stamina."
+  ]
+ },
+ {
+  "title": "The 12 Astrological Houses",
+  "heading": "The 12 Astrological Houses",
+  "line": 2292,
+  "endLine": 2295,
+  "category": "magic",
+  "topic": "Astrology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the ascendant sign and how the circle of the Zodiac is mapped into twelve houses that shape how each sign influences the world.",
+  "quotes": [
+   "The sign is known as the ascendant, and is the starting point of the horoscope."
+  ]
+ },
+ {
+  "title": "Divination & Augury — Major Supernatural Virtue",
+  "heading": "Divination & Augury — Major Supernatural Virtue",
+  "line": 2308,
+  "endLine": 2315,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "Introduces Hermetic Divination as interpretive, not predictive, and subject to the Limit of Time.",
+  "quotes": [
+   "The divination is inherently interpretive in nature and not predictive, and is subject to the Limit of Time"
+  ]
+ },
+ {
+  "title": "Hermetic Divination",
+  "heading": "Hermetic Divination",
+  "line": 2316,
+  "endLine": 2321,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "Hermetic Divination gives results equivalent to Intellego spells of any Form, and is more flexible than Formulaic Magic but weaker, covering all ten Forms with a single Ability.",
+  "quotes": [
+   "Hermetic Divination provides results equivalent to casting Hermetic Intellego spells of any Form."
+  ]
+ },
+ {
+  "title": "Method and Additional Methods",
+  "heading": "Method and Additional Methods",
+  "line": 2322,
+  "endLine": 2335,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "Choosing a method of divination, how the first Initiation grants Divination at level 1, and how extra methods are added as Minor Virtues with prerequisites for Astrology, Numerology and Dream Interpretation.",
+  "quotes": [
+   "the Initiation rites enable him to learn the Supernatural Ability Divination at level 1"
+  ]
+ },
+ {
+  "title": "Limitation",
+  "heading": "Limitation",
+  "line": 2336,
+  "endLine": 2341,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "Divination only answers questions, is limited to Momentary effects, and cannot simulate Ritual Magic.",
+  "quotes": [
+   "Hermetic Divination cannot simulate the effects of Ritual Magic."
+  ],
+  "related": [
+   "ArM5 p.149 Momentary spells"
+  ]
+ },
+ {
+  "title": "Ease Factor",
+  "heading": "Ease Factor",
+  "line": 2342,
+  "endLine": 2401,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "Any non-Ritual Intellego question of Momentary Duration can be attempted; the Ease Factor is the equivalent spell level and the diviner rolls Characteristic + Divination + Aura + Bonuses against it.",
+  "quotes": [
+   "Stress Die + Characteristic + Divination + Aura + Bonuses vs. Ease Factor",
+   "The Ease Factor for Hermetic Divination is the level of the equivalent Hermetic spell.",
+   "In Divination, an Arcane Connection held in the hand may be interpreted as if the diviner were Touching the target"
+  ]
+ },
+ {
+  "title": "Example Divinations",
+  "heading": "Example Divinations",
+  "line": 2346,
+  "endLine": 2390,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "Worked examples of working out the Ease Factor for common divination questions from equivalent Intellego guidelines.",
+  "quotes": [
+   "The Ease Factor is 15 (Base 10, +1 Eye, or +1 touching an AC)."
+  ]
+ },
+ {
+  "title": "Penetration",
+  "heading": "Penetration",
+  "line": 2402,
+  "endLine": 2409,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "A divination's Penetration is the Divination Total plus Penetration Bonus less the Ease Factor.",
+  "quotes": [
+   "Divination Total + Penetration Bonus – Ease Factor"
+  ],
+  "related": [
+   "ArM5 p.84 Penetration Bonus"
+  ]
+ },
+ {
+  "title": "Ceremonial Augury Phenomena",
+  "heading": "Ceremonial Augury Phenomena",
+  "line": 2410,
+  "endLine": 2447,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "Table of divination methods, what each observes, and the Ceremonial Bonus it gives for different types of question.",
+  "quotes": []
+ },
+ {
+  "title": "Casual Divination",
+  "heading": "Casual Divination",
+  "line": 2453,
+  "endLine": 2462,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "Divination taking one round by reading signs in the immediate environment, rolled with Perception against the equivalent spell level, with no open-ended roll.",
+  "quotes": [
+   "Casual Divination takes one round",
+   "Stress Die + Perception + Divination + Aura + Bonus vs. Ease Factor (Equivalent Spell Level)"
+  ]
+ },
+ {
+  "title": "Ceremonial Divination",
+  "heading": "Ceremonial Divination",
+  "line": 2463,
+  "endLine": 2468,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "A slower divination, taking time per magnitude of Ease Factor, that allows sympathetic magic and devices and uses Intelligence in the roll.",
+  "quotes": [
+   "Ceremonial Divination takes 15 minutes per 5 Ease Factors (the same as 15 minutes per magnitude)",
+   "Stress Die + Intelligence + Divination + Aura + Bonuses vs. Ease Factor (Equivalent Spell Level)"
+  ]
+ },
+ {
+  "title": "Divination Bonuses",
+  "heading": "Divination Bonuses",
+  "line": 2469,
+  "endLine": 2489,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "The three bonuses added to a Ceremonial Divination roll: Ceremonial Bonus (+1 to +5 from the method), Sympathetic Magic Bonus from Arcane Connections and similar links, and Magical Bonus from an enchanted divinatory device.",
+  "quotes": [
+   "This ranges from +1 to +5.",
+   "The magus adds Ceremonial Bonus, sympathetic bonus, and Magic Bonus to the roll against the Ease Factor for the divination."
+  ],
+  "related": [
+   "ArM5 p.84 Sympathetic connections"
+  ]
+ },
+ {
+  "title": "Hermetic Dream Interpreter — Major Supernatural Mystery Virtue",
+  "heading": "Hermetic Dream Interpreter — Major Supernatural Mystery Virtue",
+  "line": 2491,
+  "endLine": 2500,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Dream Interpreter",
+  "summary": "Dream interpretation as a specialised divination method, which can also be Initiated as an extra Minor Virtue by a diviner.",
+  "quotes": [
+   "Hermetic Dream Interpretation permits Casual and Ceremonial Divination in a specialized manner through the interpretation of dreams."
+  ]
+ },
+ {
+  "title": "Hermetic Dream Interpretation",
+  "heading": "Hermetic Dream Interpretation",
+  "line": 2501,
+  "endLine": 2506,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Dream Interpreter",
+  "summary": "States that Hermetic Dream Interpretation uses the Divination and Augury rules plus the special uses described afterwards.",
+  "quotes": [
+   "Hermetic Dream Interpretation uses the rules for Hermetic Divination and Augury in this chapter."
+  ]
+ },
+ {
+  "title": "Divinatory Interpretation",
+  "heading": "Divinatory Interpretation",
+  "line": 2507,
+  "endLine": 2514,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Dream Interpreter",
+  "summary": "Using dream interpretation as Ceremonial Divination by ritual preparation before sleep, or by discussing another person's dream for at least an hour.",
+  "quotes": [
+   "This takes approximately half an hour of preparation"
+  ]
+ },
+ {
+  "title": "Enchantment of the Scrying Device",
+  "heading": "Enchantment of the Scrying Device",
+  "line": 2515,
+  "endLine": 2533,
+  "category": "lab",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Divination & Augury",
+  "summary": "A general Effect enchanted into a divinatory device whose level sets the Magical Bonus to Ceremonial Divination.",
+  "quotes": [
+   "Magical Bonus = Effect level / 10 (round up)"
+  ]
+ },
+ {
+  "title": "Symbolic Interpretation",
+  "heading": "Symbolic Interpretation",
+  "line": 2535,
+  "endLine": 2544,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Dream Interpreter",
+  "summary": "A non-divinatory dream reading made with an interpretation total compared to the Ease Factor table to judge how clearly the dream is understood.",
+  "quotes": [
+   "Stress Die + Intelligence + Divination (Dream Interpretation)"
+  ],
+  "related": [
+   "ArM5 p.7 Ease Factors"
+  ]
+ },
+ {
+  "title": "Dream Calling",
+  "heading": "Dream Calling",
+  "line": 2545,
+  "endLine": 2551,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Dream Interpreter",
+  "summary": "A supernatural action to ensure a touched person dreams about a chosen subject, rolled against Ease Factor 6.",
+  "quotes": [
+   "Stress Die + Presence + Dream Interpretation + Aura vs. an Ease Factor of 6"
+  ]
+ }
+]

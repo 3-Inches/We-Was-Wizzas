@@ -1,0 +1,2101 @@
+[
+ {
+  "title": "Hawking",
+  "heading": "Hawking",
+  "line": 2481,
+  "endLine": 2507,
+  "category": "setting",
+  "topic": "Hawking and Falconry",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How noble hawking works: the hawker rolls to release and command the bird, and a results table says how aggressively the hawk attacks its prey.",
+  "quotes": [
+   "The mechanics of hunting require a Presence + Animal Handling roll from the hawker, as he releases the hawk and issues commands."
+  ],
+  "related": [
+   "ArM5 Animal Handling"
+  ]
+ },
+ {
+  "title": "Birds and Aging",
+  "heading": "Birds and Aging",
+  "line": 2508,
+  "endLine": 2510,
+  "category": "aging",
+  "topic": "Hawking and Falconry",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tracking individual hawks or falcons",
+  "summary": "Optional rules for aging individual birds of prey, which age on a faster schedule than humans.",
+  "quotes": [
+   "A hawk or falcon begins to age at ten years, and must make an Aging roll every season thereafter",
+   "Every four years after age ten the aging modifier increases by 1."
+  ],
+  "related": []
+ },
+ {
+  "title": "Some Typical Prey Animals",
+  "heading": "Some Typical Prey Animals",
+  "line": 2512,
+  "endLine": 2521,
+  "category": "beings",
+  "topic": "Hawking and Falconry",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hawking scenes",
+  "summary": "A table of combat statistics for the small game animals a hawk typically hunts, for resolving a hawking attack.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Running an Establishment",
+  "heading": "Running an Establishment",
+  "line": 2525,
+  "endLine": 2596,
+  "category": "setting",
+  "topic": "Kennels, Mews, and Stables",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "General system for the quality, capacity, upkeep and staffing of kennels, mews and stables, including what happens when maintenance is not paid; includes a modifiable gyrfalcon template for other hawks and falcons.",
+  "quotes": [
+   "Reduce the number of animals by 15% (round up) for each season these requirements are not met.",
+   "Failure to meet the annual maintenance cost results in the establishment dropping to the next lower level of quality immediately."
+  ],
+  "related": [
+   "ArM5 Living Conditions"
+  ]
+ },
+ {
+  "title": "The Kennels",
+  "heading": "The Kennels",
+  "line": 2598,
+  "endLine": 2602,
+  "category": "setting",
+  "topic": "Kennels, Mews, and Stables",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What a kennel contains, giving the standard mix of hound types and how larger qualities scale it up.",
+  "quotes": [
+   "for every 12 running dogs there is one lymer and three greyhounds or alaunts"
+  ],
+  "related": []
+ },
+ {
+  "title": "Kennels, Mews, and Stables Tables",
+  "heading": "Kennels, Mews, and Stables Tables",
+  "line": 2612,
+  "endLine": 2643,
+  "category": "setting",
+  "topic": "Kennels, Mews, and Stables",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Tables giving capacity, yearly maintenance cost, staff and Living Conditions modifier for each quality of kennel, mews and stables.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Living Conditions and Specialists",
+  "heading": "Living Conditions and Specialists",
+  "line": 2645,
+  "endLine": 2649,
+  "category": "setting",
+  "topic": "Kennels, Mews, and Stables",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The specialist Ability needed to benefit from an establishment's positive Living Conditions modifier, and the yearly winter roll that decides whether it is well run or declines.",
+  "quotes": [
+   "A stress roll of Intelligence + Animal Handling against Ease Factor 9",
+   "a score in the relevant Profession Ability equal to at least twice the Living Conditions modifier"
+  ],
+  "related": []
+ },
+ {
+  "title": "Is Love True?",
+  "heading": "Is Love True?",
+  "line": 2718,
+  "endLine": 2726,
+  "category": "social",
+  "topic": "Courtly Love",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance for the troupe on whether and how courtly love features in the saga, with three rules of thumb for romance subplots.",
+  "quotes": [
+   "no character with the True Love or Lost Love Virtue or Flaw may ever be caught up in romance, except with the object of their affections."
+  ],
+  "related": []
+ },
+ {
+  "title": "Patronage",
+  "heading": "Patronage",
+  "line": 2728,
+  "endLine": 2754,
+  "category": "social",
+  "topic": "Patronage",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How giving gifts, grants and support to a specific social group earns a Reputation with that group, a Loyal Trait in the recipient and sometimes Gratitude, with notes on each kind of patron-recipient group.",
+  "quotes": [
+   "improves a Loyal Personality Trait in the recipient that is directed toward the patron",
+   "Reputations can pertain to Local (meaning all in the vicinity), Clergy, Order of Hermes, Nobles, or Academics."
+  ],
+  "related": [
+   "ArM5 Reputation",
+   "LoM Chapter Two: Politics, Gratitude",
+   "Art & Academe p.130 artistic patronage"
+  ]
+ },
+ {
+  "title": "The Tournament",
+  "heading": "The Tournament",
+  "line": 2756,
+  "endLine": 2772,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Overview of how a tournament unfolds from the commencailles and regars through the estor, melee and prize feast.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Staging a Tournament",
+  "heading": "Staging a Tournament",
+  "line": 2774,
+  "endLine": 2776,
+  "category": "setting",
+  "topic": "Tournaments",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How often tournaments of different sizes occur and when in the year they are held.",
+  "quotes": [
+   "a large tournament \u2014 in excess of a thousand knights \u2014 can be found on average once per season"
+  ],
+  "related": []
+ },
+ {
+  "title": "Bohorts, Tirocinia, and Jousts",
+  "heading": "Bohorts, Tirocinia, and Jousts",
+  "line": 2778,
+  "endLine": 2784,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the informal bohort, the youth-only tirocinium and the joust as variants of the tournament, and points to the non-lethal combat rules for the bohort.",
+  "quotes": [
+   "Use the non-lethal combat rules on ArM5, page 174"
+  ],
+  "related": [
+   "ArM5 p.174 non-lethal combat",
+   "LoM Chapter Nine: Optional Combat Rules, Option: Non-Lethal Combat"
+  ]
+ },
+ {
+  "title": "Costs",
+  "heading": "Costs",
+  "line": 2796,
+  "endLine": 2810,
+  "category": "social",
+  "topic": "Tournaments",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sponsoring a tournament",
+  "summary": "What a patron spends to host a tournament, the quality of prizes, and a rule of thumb for how much he should spend relative to his Prudhomme Reputation.",
+  "quotes": [
+   "a patron should spend ten Mythic Pounds per point of his Prudhomme Reputation to hold a tournament."
+  ],
+  "related": [
+   "City & Guild p.69 superior quality works"
+  ]
+ },
+ {
+  "title": "Team Sponsors",
+  "heading": "Team Sponsors",
+  "line": 2812,
+  "endLine": 2814,
+  "category": "social",
+  "topic": "Tournaments",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sponsoring a team of knights",
+  "summary": "The cost to a sponsor of retaining knights to fight under his banner at tournaments.",
+  "quotes": [
+   "Most nobles can expect to pay four Mythic Pounds per season per knight retained for tourney."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rules of Melee",
+  "heading": "Rules of Melee",
+  "line": 2846,
+  "endLine": 2850,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The customs of a tournament melee: safe territory, protection of non-participants, points of honor, and how knights break the rules.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Ransom",
+  "heading": "Ransom",
+  "line": 2852,
+  "endLine": 2858,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How surrender and ransom work in a melee, what may reasonably be demanded from knights of different means, and the Reputation cost of failing to pay.",
+  "quotes": [
+   "Those who do not make good their promises gain 1 experience point towards an appropriate negative Reputation.",
+   "Service cannot be demanded as a ransom, nor can oaths of loyalty."
+  ],
+  "related": []
+ },
+ {
+  "title": "Companies of Men",
+  "heading": "Companies of Men",
+  "line": 2860,
+  "endLine": 2864,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Knights fight in companies acting as trained groups, who may try to isolate a target and grapple the rider to lead him off for ransom.",
+  "quotes": [
+   "Companies engage as trained groups of usually no more than ten individuals (or six if using the core combat rules)",
+   "A grappled rider loses control of his horse to his attackers."
+  ],
+  "related": [
+   "ArM5 p.174 grappling"
+  ]
+ },
+ {
+  "title": "Profession Herald",
+  "heading": "Profession Herald",
+  "line": 2866,
+  "endLine": 2868,
+  "category": "basics",
+  "topic": "Abilities",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A new Profession Ability covering knowledge of the tournament circuit, heraldic devices, colors and deeds, tournament law, and locating tournaments in an area known by Area Lore.",
+  "quotes": [
+   "The Ability Profession: Herald allows a character to recognize knights by their colors and heraldic devices"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tournament Combat",
+  "heading": "Tournament Combat",
+  "line": 2885,
+  "endLine": 2889,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Melee fighting uses the optional non-lethal combat rules, which characters may drop round by round, and special maneuvers from the optional combat chapter may be used.",
+  "quotes": [
+   "Botches in non-lethal combat almost always inflict real damage to one party or another."
+  ],
+  "related": [
+   "LoM Chapter Nine: Optional Combat Rules, Option: Non-Lethal Combat"
+  ]
+ },
+ {
+  "title": "Jousting",
+  "heading": "Jousting",
+  "line": 2895,
+  "endLine": 2897,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a joust is resolved: each charge is one combat round using the optional shock of the charge rules, with botches possibly breaking equipment or injuring horse or rider.",
+  "quotes": [
+   "Each charge comprises a single combat round"
+  ],
+  "related": [
+   "LoM Chapter Nine: Optional Combat Rules, Option: Shock of the Charge"
+  ]
+ },
+ {
+  "title": "Melee Events Table",
+  "heading": "Melee Events Table",
+  "line": 2899,
+  "endLine": 2913,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A random-encounter table for the tournament melee, rolled with Prudhomme Reputation as a modifier, that says what kind of opponent presents itself and carries growing botch dice for each event rolled.",
+  "quotes": [
+   "Rolls on this table have a modifier equal to the character's Prudhomme Reputation.",
+   "Botch dice on the roll are equal to 1 + (1 per melee event rolled so far)."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Grand Charge",
+  "heading": "The Grand Charge",
+  "line": 2923,
+  "endLine": 2929,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The first of two ways to play the tournament melee: a series of stress rolls on the Melee Events Table giving chances to claim ransom, with opponents accumulating wounds as the melee goes on.",
+  "quotes": [
+   "characters in the melee make a stress roll on the Melee Events Table.",
+   "assume that the opponent(s) have picked up a new short-term light wound"
+  ],
+  "related": []
+ },
+ {
+  "title": "High Ambition",
+  "heading": "High Ambition",
+  "line": 2931,
+  "endLine": 2942,
+  "category": "combat",
+  "topic": "Tournaments",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Characters wishing to influence the whole melee",
+  "summary": "Runs the melee as a massed combat with custom story events, applying a short list of modifications to the massed combat rules.",
+  "quotes": [
+   "There is no territorial advantage or weight of numbers bonus."
+  ],
+  "related": [
+   "LoM Chapter Eight: Massed Combat"
+  ]
+ },
+ {
+  "title": "Gaining and Losing Reputation",
+  "heading": "Gaining and Losing Reputation",
+  "line": 2944,
+  "endLine": 2953,
+  "category": "social",
+  "topic": "Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists tourney achievements and the experience points each earns towards Prudhomme Reputation in a season, taking the highest reward earned.",
+  "quotes": [
+   "Extracting ransom from a stronger opponent earns 2 experience points."
+  ],
+  "related": [
+   "LoM Chapter Two: Politics"
+  ]
+ },
+ {
+  "title": "Company Reputations",
+  "heading": "Company Reputations",
+  "line": 2955,
+  "endLine": 2959,
+  "category": "social",
+  "topic": "Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fighting under a company's banner",
+  "summary": "Deeds done under a company banner build a Reputation for the company itself, usable only by knights who ride in its colors.",
+  "quotes": [
+   "Companies have a Reputation named after its leader or chant, which applies only within the tournament circuit."
+  ],
+  "related": []
+ },
+ {
+  "title": "Patronage",
+  "heading": "Patronage",
+  "line": 2965,
+  "endLine": 2970,
+  "category": "social",
+  "topic": "Reputation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hosting a tournament",
+  "summary": "Experience points toward Prudhomme Reputation earned by hosting tournaments and by commissioning an artist to record them, shared among co-hosts.",
+  "quotes": [
+   "Hosting one or more tournaments in a season earns 1 experience point, or 2 if the event is particularly lavish."
+  ],
+  "related": [
+   "Art & Academe p.123"
+  ]
+ },
+ {
+  "title": "Tournaments as Income",
+  "heading": "Tournaments as Income",
+  "line": 2972,
+  "endLine": 2996,
+  "category": "seasons",
+  "topic": "Labor Points",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Errant knight living off the tournament circuit",
+  "summary": "Applies the Labor Points system to knights who earn a living by tourneying, with seasons needed per year depending on wealth, plus guidelines for extra Labor Points from stories.",
+  "quotes": [
+   "It costs 36 Labor Points per year for an errant knight to sustain himself.",
+   "The knight gains Dexterity + Single/Great Weapon Labor Points per season on the tourney circuit."
+  ],
+  "related": [
+   "City & Guild p.38 Labor Points"
+  ]
+ },
+ {
+  "title": "Awards",
+  "heading": "Awards",
+  "line": 2998,
+  "endLine": 3004,
+  "category": "social",
+  "topic": "Tournaments",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance for storyguides on how prizes are won at a tournament and how valuable a prize should be.",
+  "quotes": [
+   "Storyguides should consider one Mythic Pound per point of Prudhomme Reputation as a baseline."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Simple System, From the Core Rulebook",
+  "heading": "The Simple System, From the Core Rulebook",
+  "line": 3010,
+  "endLine": 3018,
+  "category": "social",
+  "topic": "Wealth and Money",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Recaps the core wealth system in which wealth is relative to social class and set by Social Status and Virtues and Flaws, and how fiefs gain value as story rewards.",
+  "quotes": [
+   "a character's level of wealth is an effect of social status, modified by Virtues and Flaws like Wealthy or Poor"
+  ],
+  "related": [
+   "ArM5 Social Status"
+  ]
+ },
+ {
+  "title": "The Mythic Pound System, From Covenants",
+  "heading": "The Mythic Pound System, From Covenants",
+  "line": 3020,
+  "endLine": 3030,
+  "category": "social",
+  "topic": "Wealth and Money",
+  "audience": [
+   "all",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Recaps the Mythic Pound accounting system and applies it to a knight's manor, breaking down his expenses, surplus and income, and the cost of knight service.",
+  "quotes": [
+   "Each Mythic Pound can be divided into 20 shillings or 240 pence.",
+   "assume that a knight makes ten pounds each year for each manor that does not owe knight service."
+  ],
+  "related": [
+   "Covenants (Mythic Pound system)",
+   "LoM Chapter Two: Politics"
+  ]
+ },
+ {
+  "title": "The Manor: The Model Fief",
+  "heading": "The Manor: The Model Fief",
+  "line": 3052,
+  "endLine": 3056,
+  "category": "setting",
+  "topic": "Manors and Fiefs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines the manor as the basic game unit of fief, the land needed to support a knight and household, and lists what a typical manor contains.",
+  "quotes": [
+   "A manor, for the purposes of the game, comprises the amount of land traditionally required to maintain a knight, his family, and his household retainers."
+  ],
+  "related": [
+   "LoM Chapter Three: A Comparison of Titles"
+  ]
+ },
+ {
+  "title": "How Big is a\u2026?",
+  "heading": "How Big is a\u2026?",
+  "line": 3062,
+  "endLine": 3090,
+  "category": "setting",
+  "topic": "Manors and Fiefs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Reference sizes and incomes for acres, manors, hides, virgates, bovates, cottars, villages, towns and cities, with the typical split of peasant holdings and a Terram magic scale for an acre of earth.",
+  "quotes": [
+   "For the sake of simplicity an acre is considered to be 4,840 square yards.",
+   "A landed knight's income from a typical manor is twenty pounds per year",
+   "Twenty percent have a full virgate, thirty percent have a bovate, and fifty percent are cottars."
+  ],
+  "related": [
+   "City & Guild (how villages become towns)"
+  ]
+ },
+ {
+  "title": "Story Seed: The Foundation Charm",
+  "heading": "Story Seed: The Foundation Charm",
+  "line": 3118,
+  "endLine": 3124,
+  "category": "traditions",
+  "topic": "Witch bottles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide use of foundation charms or witch bottles",
+  "summary": "Describes foundation charms and witch bottles guarding halls, with default Hermetic-equivalent statistics for a witch bottle when Hedge Magic is not available.",
+  "quotes": [
+   "assume that the bottles can detect the magical power to curse (InVi 10, Penetration 5) as well as the Gift (InVi 15, Penetration 0)"
+  ],
+  "related": [
+   "Hedge Magic"
+  ]
+ },
+ {
+  "title": "Farmland",
+  "heading": "Farmland",
+  "line": 3186,
+  "endLine": 3192,
+  "category": "setting",
+  "topic": "Manors and Fiefs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The six legal statuses a piece of land can have and the main land types on a heavily farmed manor.",
+  "quotes": [
+   "Each piece of land has one of six legal statuses."
+  ],
+  "related": []
+ },
+ {
+  "title": "Arable",
+  "heading": "Arable",
+  "line": 3194,
+  "endLine": 3200,
+  "category": "setting",
+  "topic": "Farming",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How cropland is used and the average sowing rates and yields of winter and spring grain.",
+  "quotes": [
+   "The average winter grain crop is sown at two bushels an acre, and repays that effort with eight bushels of grain."
+  ],
+  "related": []
+ },
+ {
+  "title": "Pasture",
+  "heading": "Pasture",
+  "line": 3206,
+  "endLine": 3218,
+  "category": "setting",
+  "topic": "Farming",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Typical flock sizes, grazing rents and shares of sheep, pigs, goats and cattle on a manor.",
+  "quotes": [
+   "As a general rule, the lord has two-thirds of the sheep of any manor in his demesne flock."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Lord's Portion: The Demesne",
+  "heading": "The Lord's Portion: The Demesne",
+  "line": 3220,
+  "endLine": 3226,
+  "category": "setting",
+  "topic": "Manors and Fiefs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "What the demesne is, how it is worked by villeins, famuli and paid labor, and why free tenants' land is more productive than the lord's.",
+  "quotes": [
+   "Villeins do about a quarter of the work required to plow, sow, and reap the demesne."
+  ],
+  "related": [
+   "LoM Chapter Seven: The Peasantry"
+  ]
+ },
+ {
+  "title": "Waste",
+  "heading": "Waste",
+  "line": 3260,
+  "endLine": 3264,
+  "category": "realms",
+  "topic": "Manors and Fiefs",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the uncultivated waste of a manor as faerie domain outside the blessed fields, with clearing land spreading the Dominion.",
+  "quotes": [
+   "The wasteland is the domain of the faeries."
+  ],
+  "related": []
+ },
+ {
+  "title": "Warrens",
+  "heading": "Warrens",
+  "line": 3292,
+  "endLine": 3296,
+  "category": "setting",
+  "topic": "Manorial rights",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The lord's right of warren over small game, covering poaching and even magical creatures that could be familiars or vis sources.",
+  "quotes": [
+   "Magical monsters, including potential familiars and vis sources, may also belong to the lord under the right of warren."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mineral Rights",
+  "heading": "Mineral Rights",
+  "line": 3298,
+  "endLine": 3300,
+  "category": "setting",
+  "topic": "Manorial rights",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Who owns minerals found on or beneath land: the king reserves major rights and the lord may charge for any underground resource.",
+  "quotes": [
+   "In Mythic Europe a character who finds a gold nugget, or even a gold mine, doesn't own it"
+  ],
+  "related": []
+ },
+ {
+  "title": "Heriot, Mortuary, and Laity Objects",
+  "heading": "Heriot, Mortuary, and Laity Objects",
+  "line": 3310,
+  "endLine": 3322,
+  "category": "setting",
+  "topic": "Manorial rights",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The death duties owed by a peasant to the lord (heriot) and Church (mortuary, laity objects), and their effect on widows.",
+  "quotes": [
+   "The heriot is a death duty owed when the head of a household dies.",
+   "Mortuary is technically a fine, not a tax"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tallage",
+  "heading": "Tallage",
+  "line": 3324,
+  "endLine": 3338,
+  "category": "setting",
+  "topic": "Manorial rights",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The lord's right to demand an arbitrary sum from villeins in proportion to their holdings, its limits in practice, and its commutation to a fixed fee.",
+  "quotes": [
+   "Lords have a right called tallage, which they exercise sparingly, but may legally employ whenever they wish."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Manor Court",
+  "heading": "The Manor Court",
+  "line": 3340,
+  "endLine": 3342,
+  "category": "setting",
+  "topic": "Manor Court",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The three spheres of medieval justice (Church, royal and manorial courts) and which kinds of case the manorial court handles.",
+  "quotes": [
+   "The manorial courts deal with lesser matters."
+  ],
+  "related": []
+ },
+ {
+  "title": "Juries",
+  "heading": "Juries",
+  "line": 3350,
+  "endLine": 3360,
+  "category": "setting",
+  "topic": "Manor Court",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How manorial juries are empaneled and the three jobs they perform: swearing duties are done, deciding custom, and investigating a matter for the next session.",
+  "quotes": [
+   "A jury may serve three purposes, described below.",
+   "Juries of inquisition are groups of men appointed by the court to investigate a matter and report their findings at the next session."
+  ],
+  "related": []
+ },
+ {
+  "title": "Disputes",
+  "heading": "Disputes",
+  "line": 3362,
+  "endLine": 3364,
+  "category": "setting",
+  "topic": "Manor Court",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How disputes between serfs, or between serf and lord, reach the court, which fines they generate for the lord, and the cost of a binding ruling.",
+  "quotes": [
+   "A smaller fine is paid when a dispute is settled amicably outside the court.",
+   "the villein pays about a shilling for the court's time and trouble, or two shillings if the case went against him."
+  ],
+  "related": []
+ },
+ {
+  "title": "Disputes Based on Weights and Measures",
+  "heading": "Disputes Based on Weights and Measures",
+  "line": 3366,
+  "endLine": 3372,
+  "category": "setting",
+  "topic": "Manor Court",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that there are no standard measures and how natural measures, which tend to favor the lord, are used to settle what is owed.",
+  "quotes": [
+   "There are no standard measures in any kingdom of Mythic Europe."
+  ],
+  "related": []
+ },
+ {
+  "title": "Seizure",
+  "heading": "Seizure",
+  "line": 3394,
+  "endLine": 3396,
+  "category": "setting",
+  "topic": "Manorial fines",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "A felon's goods pass to his lord, and a new tenant pays a fee to take up vacated land.",
+  "quotes": [
+   "The goods of a felon automatically become the possession of his lord."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sex Taxes: Merchet, Leywrite, Childwrite, and Fines for Celibacy",
+  "heading": "Sex Taxes: Merchet, Leywrite, Childwrite, and Fines for Celibacy",
+  "line": 3406,
+  "endLine": 3420,
+  "category": "setting",
+  "topic": "Manorial fines",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The fines a lord levies on serfs over marriage, unmarried sex and pregnancy, and celibacy, and who inherits the property of serfs who die childless.",
+  "quotes": [
+   "To secure the permission of the lord, each serf pays a fine called merchet.",
+   "Leywrite, the right for laying down, is theoretically an adultery tax."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fines for Being Fined",
+  "heading": "Fines for Being Fined",
+  "line": 3422,
+  "endLine": 3424,
+  "category": "setting",
+  "topic": "Manorial fines",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "A peasant fined outside the manorial court owes his lord equivalent compensation, because what he pays is held to belong to the lord.",
+  "quotes": [
+   "The lord owns everything that the peasant owns."
+  ],
+  "related": []
+ },
+ {
+  "title": "Trade",
+  "heading": "Trade",
+  "line": 3426,
+  "endLine": 3432,
+  "category": "setting",
+  "topic": "Wealth and Money",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How this book treats non-agricultural income: as part of agricultural income or a simple bonus to it, with characters who trade seriously using the City & Guild rules.",
+  "quotes": [
+   "non-agricultural sources of wealth are treated either as an unremarked component of agricultural income or as a bonus to the character's agricultural income."
+  ],
+  "related": [
+   "City & Guild"
+  ]
+ },
+ {
+  "title": "Church",
+  "heading": "Church",
+  "line": 3436,
+  "endLine": 3444,
+  "category": "setting",
+  "topic": "Manorial Church",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The role of the local priest on a manor: curates versus rectors, their duties, who pays them, and the common limits of their education.",
+  "quotes": [
+   "Each is required to preach four sermons a year, although this rule is only weakly enforced."
+  ],
+  "related": [
+   "The Church"
+  ]
+ },
+ {
+  "title": "Improvement",
+  "heading": "Improvement",
+  "line": 3484,
+  "endLine": 3486,
+  "category": "setting",
+  "topic": "Improving Fiefs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "When non-magical lords invest in improving their lands, depending on how secure their holdings are.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Assarting",
+  "heading": "Assarting",
+  "line": 3488,
+  "endLine": 3496,
+  "category": "setting",
+  "topic": "Improving Fiefs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Clearing fertile waste into cropland or meadow, how fast a laborer can do it, and how magic can assart land and alarm neighboring lords.",
+  "quotes": [
+   "A single strong laborer with proper tools clears one acre of lightly wooded land per month, if he does no other work."
+  ],
+  "related": []
+ },
+ {
+  "title": "Land Management",
+  "heading": "Land Management",
+  "line": 3504,
+  "endLine": 3508,
+  "category": "setting",
+  "topic": "Improving Fiefs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Assumes manors have a competent bailiff, so characters cannot improve land just by managing it better unless it was noted as badly run, and says customary businesses are already counted in manor income.",
+  "quotes": [
+   "It is assumed in this section that characters cannot improve their lands simply by managing them better"
+  ],
+  "related": [
+   "City & Guild"
+  ]
+ },
+ {
+  "title": "Purchase",
+  "heading": "Purchase",
+  "line": 3514,
+  "endLine": 3516,
+  "category": "setting",
+  "topic": "Improving Fiefs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Buying land from neighbors costs a multiple of its annual income, adjustable if the seller keeps rights or the buyer takes on dues, and cheaper if paid in immediate coin.",
+  "quotes": [
+   "Characters may purchase land from their neighbors.",
+   "Characters can get a better price by paying in immediate coin"
+  ],
+  "related": []
+ },
+ {
+  "title": "Discuss Poverty in Your Saga",
+  "heading": "Discuss Poverty in Your Saga",
+  "line": 3554,
+  "endLine": 3578,
+  "category": "setting",
+  "topic": "Saga tone",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Optional guidance for the troupe on how realistic the saga's treatment of peasant hardship, noble villainy and Church oppression should be, including simply choosing a covenant's peasants to be happy at creation.",
+  "quotes": [
+   "Troupes should discuss this and choose a degree of realism that suits the stories they wish to tell."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Unemployed and Day Workers",
+  "heading": "The Unemployed and Day Workers",
+  "line": 3590,
+  "endLine": 3598,
+  "category": "social",
+  "topic": "Peasant classes",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The jobless and day-laboring poor outside the planting and reaping seasons, and the rule in some regions that a stranger who stays on a manor long enough becomes the lord's villein.",
+  "quotes": [
+   "the unemployment rate is around twenty percent outside of the planting and reaping seasons.",
+   "In France, any stranger who dwells in a manor for more than a year is automatically the villein of the lord"
+  ],
+  "related": []
+ },
+ {
+  "title": "Famuli and Other Retained Servants",
+  "heading": "Famuli and Other Retained Servants",
+  "line": 3600,
+  "endLine": 3610,
+  "category": "social",
+  "topic": "Peasant classes",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The lord's retained household servants, how they are housed and fed, and how their status compares with villeins who farm their own land.",
+  "quotes": [
+   "The famuli are the household staff of the lord."
+  ],
+  "related": []
+ },
+ {
+  "title": "Serf or Villein",
+  "heading": "Serf or Villein",
+  "line": 3612,
+  "endLine": 3628,
+  "category": "social",
+  "topic": "Peasant classes",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Legal status of serfs and what they owe their lord in rent, week works and boon works, the censum to buy off week work, and how tradesmen differ from other villeins.",
+  "quotes": [
+   "Serfs owe their lord rent, week works, and boon works.",
+   "Rent is traditionally a penny an acre a year, but may be far higher."
+  ],
+  "related": []
+ },
+ {
+  "title": "Offices for Villeins",
+  "heading": "Offices for Villeins",
+  "line": 3630,
+  "endLine": 3658,
+  "category": "social",
+  "topic": "Peasant classes",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How the reeve, beadle, hayward and other village offices are filled, what each does, how they are paid, and why reeves are disliked and corrupt.",
+  "quotes": [
+   "Reeves are usually paid a small wage: generally double whatever is being paid to other laborers",
+   "This fee is as high as a shilling a head a year in some places."
+  ],
+  "related": []
+ },
+ {
+  "title": "Free Peasants",
+  "heading": "Free Peasants",
+  "line": 3668,
+  "endLine": 3674,
+  "category": "social",
+  "topic": "Peasant classes",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "What freedom means for a peasant, the service free men may still owe, how freedom passes by birth and marriage, and where free peasants are most common.",
+  "quotes": [
+   "Free peasants make up less than ten percent of the population of most manors"
+  ],
+  "related": []
+ },
+ {
+  "title": "Officers",
+  "heading": "Officers",
+  "line": 3676,
+  "endLine": 3694,
+  "category": "social",
+  "topic": "Peasant classes",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The steward and the bailiff who run a manor for the lord, their duties, accounting obligations, and typical pay by size of holding.",
+  "quotes": [
+   "The steward, or seneschal, is the lord's representative on the manor.",
+   "A bailiff is paid approximately ten shillings a year in the smallest fiefs"
+  ],
+  "related": []
+ },
+ {
+  "title": "Peasant Loyalty",
+  "heading": "Peasant Loyalty",
+  "line": 3712,
+  "endLine": 3718,
+  "category": "social",
+  "topic": "Loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Peasants are not loyal to strangers, lowering taxes does not simply buy loyalty, and the loyalty of a noble's military household may be tracked with the Covenants loyalty system.",
+  "quotes": [
+   "Peasants in Mythic Europe are not required to be loyal to their lord.",
+   "The loyalty of the mesnie may be tracked using the system given in *Covenants*, page 38"
+  ],
+  "related": [
+   "Covenants p.38 loyalty"
+  ]
+ },
+ {
+  "title": "Community Loyalty",
+  "heading": "Community Loyalty",
+  "line": 3720,
+  "endLine": 3722,
+  "category": "social",
+  "topic": "Loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magi can keep rich peasants from becoming restive by offering a better deal than a royal charter gives, earning loyalty to the community rather than to the magi themselves.",
+  "quotes": [
+   "Magi can prevent their rich peasants from becoming restive by offering them a deal better than that provided by the nearest town's royal charter."
+  ],
+  "related": []
+ },
+ {
+  "title": "Flight and Rebellion",
+  "heading": "Flight and Rebellion",
+  "line": 3724,
+  "endLine": 3730,
+  "category": "social",
+  "topic": "Loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains why the Covenants loyalty mechanic fits large households but not noble-peasant relations, and what drives peasants to flee, rebel, or collectively refuse to work.",
+  "quotes": [
+   "The loyalty mechanic given in *Covenants*, beginning on page 36",
+   "A peasant flees the land when it seems he has better prospects elsewhere."
+  ],
+  "related": [
+   "Covenants p.36 loyalty"
+  ]
+ },
+ {
+  "title": "Nothing Grows for the Wicked",
+  "heading": "Nothing Grows for the Wicked",
+  "line": 3732,
+  "endLine": 3736,
+  "category": "social",
+  "topic": "Loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Optional folkloric rule chosen by the troupe",
+  "summary": "An optional folkloric approach in which virtuous, successful characters are blessed with good harvests and community loyalty, replacing the annual harvest roll.",
+  "quotes": [
+   "Troupes using this system select good harvests rather than making the annual roll called for by the Mythic Pound system (see *Covenants*)."
+  ],
+  "related": [
+   "Covenants (Mythic Pound system)"
+  ]
+ },
+ {
+  "title": "Improvement in Living Standards",
+  "heading": "Improvement in Living Standards",
+  "line": 3753,
+  "endLine": 3755,
+  "category": "social",
+  "topic": "Peasant sins and wealth",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the sinful ways peasants increase their wealth, which make a character richer than pious neighbors.",
+  "quotes": [
+   "Characters performing any of these sins will be substantially wealthier than their more pious neighbors"
+  ],
+  "related": []
+ },
+ {
+  "title": "Paying Tithes Inadequately",
+  "heading": "Paying Tithes Inadequately",
+  "line": 3757,
+  "endLine": 3771,
+  "category": "social",
+  "topic": "Tithes",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What is owed in tithes, the common ways peasants shortchange the Church, exemptions for the very poor, and how strictly tithes are enforced.",
+  "quotes": [
+   "One tenth of everything that a person gets must be given to the Church."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Economics of Tithing",
+  "heading": "The Economics of Tithing",
+  "line": 3773,
+  "endLine": 3779,
+  "category": "social",
+  "topic": "Tithes",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How heavy tithing is for a peasant and the traditional four-way division of tithes among rector, curate, church fabric and the poor.",
+  "quotes": [
+   "Tithing effectively swallows twenty percent of the income of most peasants.",
+   "One-quarter of all tithes go to the rector of the manor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Manumission by Lay Lords",
+  "heading": "Manumission by Lay Lords",
+  "line": 3894,
+  "endLine": 3902,
+  "category": "social",
+  "topic": "Freedom and manumission",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Serf character or covenfolk seeking freedom",
+  "summary": "How a lay lord frees a serf, what influences the price, and rule-of-thumb costs for a player character to buy freedom or to enter schooling for the priesthood.",
+  "quotes": [
+   "As a rule of thumb, a player character can purchase freedom, for himself and his descendants, for between six and ten pounds.",
+   "For player characters, assume this sum to be ten shillings"
+  ],
+  "related": []
+ },
+ {
+  "title": "Manumission by Membership of a Town's Guild",
+  "heading": "Manumission by Membership of a Town's Guild",
+  "line": 3910,
+  "endLine": 3912,
+  "category": "social",
+  "topic": "Freedom and manumission",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Serf escaping to a town",
+  "summary": "A villein becomes free through town guild membership, not just by living in a town for a year and a day; this usually needs a wealthy patron.",
+  "quotes": [
+   "To become free the person must not stray from the town, and must be accepted as a resident by the authorities of the town."
+  ],
+  "related": [
+   "City & Guild"
+  ]
+ },
+ {
+  "title": "The Agricultural Year",
+  "heading": "The Agricultural Year",
+  "line": 3918,
+  "endLine": 3920,
+  "category": "seasons",
+  "topic": "Farming",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How the agricultural year is divided into four uneven seasons by the work done, with the dates each begins and ends.",
+  "quotes": [
+   "The agricultural year is divided into four uneven seasons by the work done at that time, which is dependent on climate."
+  ],
+  "related": []
+ },
+ {
+  "title": "Two or Three Field Rotation",
+  "heading": "Two or Three Field Rotation",
+  "line": 3922,
+  "endLine": 3930,
+  "category": "setting",
+  "topic": "Farming",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How crops are rotated through fields under the two-field and three-field systems, and how the manor court decides what is planted in each furlong.",
+  "quotes": [
+   "In a three-field manor, wheat or rye is planted in autumn in the first field."
+  ],
+  "related": []
+ },
+ {
+  "title": "May",
+  "heading": "May",
+  "line": 4032,
+  "endLine": 4054,
+  "category": "traditions",
+  "topic": "Farming",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "May labors and festivals, including May Day fires that protect stock against hedge witch curses and Beltaine rituals that can hex magi who have let their Parma Magica lapse outside their Aegis.",
+  "quotes": [
+   "Many peasants run their cattle or sheep between two May Day fires, to defend them against the curses of hedge witches",
+   "The Beltaine rituals can hex those who practice magic"
+  ],
+  "related": [
+   "ArM5 Parma Magica",
+   "ArM5 Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "June",
+  "heading": "June",
+  "line": 4056,
+  "endLine": 4064,
+  "category": "setting",
+  "topic": "Farming",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "June duties including shearing and plowing, Midsummer beliefs, and how quickly a laborer can cut hay, with the fire risk from damp stacked hay.",
+  "quotes": [
+   "Each laborer can cut about an acre a day in good weather."
+  ],
+  "related": []
+ },
+ {
+  "title": "Medieval Armies",
+  "heading": "Medieval Armies",
+  "line": 4074,
+  "endLine": 4086,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The categories of troops in an army, the Living Conditions and disease cost of campaigning, the usual mix of units, and the baggage units an army needs, with a Leadership penalty when they are missing.",
+  "quotes": [
+   "Characters suffer a \u20131 Living Conditions modifier for each year during which they spend at least one season in a campaigning army.",
+   "For every ten units in an army (rounded up) the army also needs one unit of baggage."
+  ],
+  "related": [
+   "Art & Academe p.46 Disease Avoidance Roll"
+  ]
+ },
+ {
+  "title": "Vassals",
+  "heading": "Vassals",
+  "line": 4092,
+  "endLine": 4106,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of the standard combat groups of each troop type a lord can raise from his household and vassals by rank, how losses are replaced, and the use of scutage.",
+  "quotes": [
+   "the table below shows the average number of standard combat groups (each consisting of five fully equipped men)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Allies",
+  "heading": "Allies",
+  "line": 4108,
+  "endLine": 4110,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "An ally or agent from a Virtue or story event",
+  "summary": "A character with an ally or agent may claim that ally's forces, with the troupe's approval.",
+  "quotes": [
+   "may claim the forces of that ally or agent, with the approval of the troupe."
+  ],
+  "related": []
+ },
+ {
+  "title": "Affinity",
+  "heading": "Affinity",
+  "line": 4112,
+  "endLine": 4116,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Leader of a region",
+  "summary": "A regional leader calls lesser nobles to his banner with a roll whose result multiplies his core vassal force, using the Allied Troops Table.",
+  "quotes": [
+   "Presence + Leadership + Affinity score simple roll"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Articles of War",
+  "heading": "The Articles of War",
+  "line": 4118,
+  "endLine": 4122,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The Church's Peace of God and Truce of God, which protect certain people and forbid fighting on certain days, and the sin of breaking them or executing prisoners.",
+  "quotes": [
+   "The Truce of God (Treuga Dei) restricts the days on which war can be waged."
+  ],
+  "related": []
+ },
+ {
+  "title": "Chevauchee",
+  "heading": "Chevauchee",
+  "line": 4124,
+  "endLine": 4128,
+  "category": "hazards",
+  "topic": "Mass combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "A scorched-earth raiding tactic, with a Living Conditions penalty to the Aging rolls of those who return to the ravaged land and a possible Infernal aura in extreme cases.",
+  "quotes": [
+   "Those returning to such an area suffer a \u20132 Living Conditions modifier (in addition to any existing modifiers) to their next Aging roll."
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.11, 15"
+  ]
+ },
+ {
+  "title": "Mercenary Budget",
+  "heading": "Mercenary Budget",
+  "line": 4130,
+  "endLine": 4197,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How much a noble can spend on mercenaries by rank and wealth without lowering his standard of living, the Allied Troops Table, mercenary unit costs, and how a character may borrow against his income for a larger budget.",
+  "quotes": [
+   "A character who is Poor may not do this.",
+   "A character who is average may become Poor and in exchange borrow five times the average mercenary budget of someone of his class in coin."
+  ],
+  "related": [
+   "Covenants Chapter Five (cost of an armed force)"
+  ]
+ },
+ {
+  "title": "Allied Troops Table",
+  "heading": "Allied Troops Table",
+  "line": 4136,
+  "endLine": 4166,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Leader of a region",
+  "summary": "Converts the result of the affinity roll into a proportion of extra allied forces, with a list of situational modifiers to the roll.",
+  "quotes": [
+   "a character must roll better than 12 to raise additional allied forces past his own core force."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mercenary Units",
+  "heading": "Mercenary Units",
+  "line": 4177,
+  "endLine": 4187,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of the cost in Mythic Pounds and experience level of typical mercenary combat groups.",
+  "quotes": [
+   "The table below lists the costs of typical mercenary combat groups."
+  ],
+  "related": [
+   "Covenants Chapter Five"
+  ]
+ },
+ {
+  "title": "Winning the Battle from Afar",
+  "heading": "Winning the Battle from Afar",
+  "line": 4199,
+  "endLine": 4201,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "When the player characters are not central to a battle, the storyguide simply decides its outcome from the needs of the wider story and the characters' actions.",
+  "quotes": [
+   "the storyguide should simply decide the outcome of the battle"
+  ],
+  "related": []
+ },
+ {
+  "title": "Crusaders",
+  "heading": "Crusaders",
+  "line": 4203,
+  "endLine": 4205,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Senior Clergy",
+  "summary": "How the Church raises an army to crusade, using the Senior Clergy character's Holy Influence roll against an Army Size Table.",
+  "quotes": [
+   "is treated as having an affinity equal to the most prominent noble within his diocese or see"
+  ],
+  "related": [
+   "Realms of Power: The Divine pp.38, 93"
+  ]
+ },
+ {
+  "title": "Heroic Endeavors",
+  "heading": "Heroic Endeavors",
+  "line": 4207,
+  "endLine": 4211,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The overall approach to playing a battle as a series of vignettes with a player character as the decisive force, using the standard or optional combat rules.",
+  "quotes": [
+   "Battles are played as a series of vignettes, each with a player character as the decisive force."
+  ],
+  "related": [
+   "ArM5 Chapter 11",
+   "LoM Chapter Nine: Optional Combat Rules"
+  ]
+ },
+ {
+  "title": "Territorial Advantage",
+  "heading": "Territorial Advantage",
+  "line": 4213,
+  "endLine": 4240,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each army generates a Deployment Total, and the difference gives territorial advantage; commanders may delegate the roll to a lieutenant, and the battlefield's features and auras affect events.",
+  "quotes": [
+   "Deployment Total: Intelligence + Area Lore + Stress Die",
+   "Territorial Advantage: Deployment Total \u2013 Enemy Deployment Total"
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.10"
+  ]
+ },
+ {
+  "title": "The Flow of Battle",
+  "heading": "The Flow of Battle",
+  "line": 4223,
+  "endLine": 4230,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The four-step sequence for running a battle: territorial advantage, weight of numbers, a battlefield event for each player character, and deciding victory.",
+  "quotes": [
+   "The Weight of Numbers modifier is determined and assigned."
+  ],
+  "related": []
+ },
+ {
+  "title": "Knights Banneret and Mercenary Captains",
+  "heading": "Knights Banneret and Mercenary Captains",
+  "line": 4232,
+  "endLine": 4234,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Knight Banneret or Mercenary Captain status",
+  "summary": "These characters always treat their company as one combat group regardless of weight of numbers modifiers.",
+  "quotes": [
+   "always treat their company as a single combat group regardless of any Weight of Numbers modifiers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Using Magic to Seize Advantage",
+  "heading": "Using Magic to Seize Advantage",
+  "line": 4242,
+  "endLine": 4244,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic affecting terrain or troop deployment",
+  "summary": "Spells that alter terrain or misdirect troops add to the friendly Deployment Total.",
+  "quotes": [
+   "Add the highest magnitude of any spell used to affect the terrain, or the deployment of troops, to the friendly side's Deployment Total."
+  ],
+  "related": []
+ },
+ {
+  "title": "Weight of Numbers",
+  "heading": "Weight of Numbers",
+  "line": 4246,
+  "endLine": 4258,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A bonus or penalty to event totals from the ratio of army sizes counted in standard combat groups, recalculated as losses mount.",
+  "quotes": [
+   "The size of an army is measured in standard combat groups of five individuals."
+  ],
+  "related": []
+ },
+ {
+  "title": "Battlefield Events",
+  "heading": "Battlefield Events",
+  "line": 4260,
+  "endLine": 4286,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a battle is broken into pivotal events, each with a Battle Ease Factor that rises as the battle goes on, which the focal character must meet with an Event Total built from an Event Bonus of Maneuver, Enemy and Size.",
+  "quotes": [
+   "Event Total: Stamina + Leadership + Territorial Advantage + Weight of Numbers Bonus + Event Bonus",
+   "Event Bonus: Maneuver + Enemy + Size",
+   "Unless otherwise stated, each battlefield event lasts five combat rounds."
+  ],
+  "related": []
+ },
+ {
+  "title": "Maneuver",
+  "heading": "Maneuver",
+  "line": 4288,
+  "endLine": 4300,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The kinds of action a battlefield event demands, each with an Event Bonus value and win conditions: Defend, Attack, Run the Gauntlet, Take and Heroic Gesture.",
+  "quotes": [
+   "If the leading character dies during a Heroic Gesture, the event is won and the player should describe how that death secures victory."
+  ],
+  "related": []
+ },
+ {
+  "title": "Size",
+  "heading": "Size",
+  "line": 4302,
+  "endLine": 4316,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How many opposing combat groups a battlefield event involves, each option with an Event Bonus value, and how Weight of Numbers changes group sizes.",
+  "quotes": [
+   "The Size of a battlefield event describes the number of combat groups the characters must defeat before they can win the event."
+  ],
+  "related": []
+ },
+ {
+  "title": "Enemy",
+  "heading": "Enemy",
+  "line": 4318,
+  "endLine": 4330,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The kind of opponents in a battlefield event, from levies to special foes to attacking the baggage, each with an Event Bonus value; attacking baggage costs Reputation.",
+  "quotes": [
+   "Characters choosing this Enemy option gain 1 experience point towards a bad Reputation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Wounds and Attrition",
+  "heading": "Wounds and Attrition",
+  "line": 4332,
+  "endLine": 4340,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Losses to the defeated side after each event, the losing commander's Morale roll and rally attempt, and how player characters can rally a failing army.",
+  "quotes": [
+   "the commander of the losing side must make a Morale roll (see Chapter Nine: Optional Combat Rules) against Ease Factor 6.",
+   "On a failure, the commander can attempt to rally his forces (Ease Factor 9) at the beginning of the next event."
+  ],
+  "related": [
+   "LoM Chapter Nine: Optional Combat Rules (Morale)"
+  ]
+ },
+ {
+  "title": "Example Battlefield Events",
+  "heading": "Example Battlefield Events",
+  "line": 4342,
+  "endLine": 4446,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked examples of battlefield events, each showing the Maneuver, Size and Enemy chosen, the resulting Event Bonus and how the event plays out.",
+  "quotes": [
+   "Each round in which a light wound is inflicted on them prevents them advancing, otherwise they advance 15 paces each round."
+  ],
+  "related": [
+   "ArM5 p.173 disengaging",
+   "ArM5 p.180 deprivation"
+  ]
+ },
+ {
+  "title": "The Aftermath of Battle",
+  "heading": "The Aftermath of Battle",
+  "line": 4448,
+  "endLine": 4454,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rewards of victory in Confidence Points and Reputation, treatment of the wounded and their ability to travel, and the fate of prisoners by rank.",
+  "quotes": [
+   "A successful battle earns the victorious characters one Confidence Point for each successful battlefield event whether they took part in that event or not.",
+   "The leader of the army also gains 1 experience point towards an appropriate Reputation."
+  ],
+  "related": [
+   "Art & Academe p.43 treating injuries"
+  ]
+ },
+ {
+  "title": "Standard Combat Groups",
+  "heading": "Standard Combat Groups",
+  "line": 4456,
+  "endLine": 4474,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Combat statistics for standard five-person groups of knights, serjeants, infantry, archers, levies and baggage, and which are trained or untrained.",
+  "quotes": [
+   "Each group is assumed to be five individuals.",
+   "a group that serves together for a season is treated as trained thereafter"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mercenary Troops",
+  "heading": "Mercenary Troops",
+  "line": 4476,
+  "endLine": 4480,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Specialist mercenary troops may differ from the standard unit statistics, and a historical example of daily pay for knights, serjeants and infantry.",
+  "quotes": [
+   "Richard's knights received one shilling per day while his mounted serjeants received four pence per day"
+  ],
+  "related": []
+ }
+]

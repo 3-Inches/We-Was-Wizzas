@@ -1,0 +1,1475 @@
+[
+ {
+  "title": "Jinn (Free Virtue)",
+  "heading": "Jinn",
+  "line": 18763,
+  "endLine": 18765,
+  "category": "beings",
+  "topic": "Jinn",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Jinn (spirits of the Islamic lands)",
+  "summary": "Explains that Jinn is a Free Virtue marking spirits associated with the Islamic lands, who may belong to the Magic, Faerie or Infernal realm and are vulnerable to Sahir magic.",
+  "quotes": [
+   "The Free Virtue Jinn marks out a category of spirits associated with the Islamic lands."
+  ],
+  "related": [
+   "The Cradle and the Crescent, Chapters 3 and 4"
+  ]
+ },
+ {
+  "title": "Essential Traits",
+  "heading": "Essential Traits",
+  "line": 18814,
+  "endLine": 18816,
+  "category": "beings",
+  "topic": "Magic creatures",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Creatures of the Magic Realm with essential traits",
+  "summary": "Describes essential traits, features of a Magic Realm creature's very nature (marked with an asterisk in its stats) that magic cannot force it to act against.",
+  "quotes": [
+   "Magic cannot, therefore, make them act against those traits.",
+   "They are indicated with an asterisk in the character statistics"
+  ],
+  "related": [
+   "Realms of Power: Magic p.54"
+  ]
+ },
+ {
+  "title": "Daimons and Aspects",
+  "heading": "Daimons",
+  "line": 18818,
+  "endLine": 18834,
+  "category": "beings",
+  "topic": "Daimons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Daimon (Magic Realm spirit)",
+  "summary": "Rules for Daimons, named spirits that stay in the Magic Realm and act on Earth through expendable Aspects, each with its own Might and Might pool. Covers how Aspects are created, destroyed, summoned and bound, and how to give a Daimon statistics if the characters ever confront one.",
+  "quotes": [
+   "A Daimon is a permanent resident of the Magic Realm and cannot enter the material world; instead, it creates an Aspect as its agent on Earth.",
+   "An Aspect cannot appear within several miles of another Aspect of the same Daimon",
+   "Ordinary Hermetic magic cannot summon an Aspect of a Daimon from the Magic Realm"
+  ],
+  "related": [
+   "The Mysteries Revised Edition, Chapter 9 (theurgy)",
+   "Realms of Power: Magic",
+   "Dies Irae, The Twilight of the Gods"
+  ]
+ },
+ {
+  "title": "True Names and Synthemata",
+  "heading": "True Names and Synthemata",
+  "line": 18836,
+  "endLine": 18842,
+  "category": "beings",
+  "topic": "True Names",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Knowledge of a being's True Name or synthemata (theurgy)",
+  "summary": "Explains True Names, which act as indefinite-duration Arcane Connections to spirits and are learned as spell-like abilities with experience points, and synthemata, the signs and passwords that every being with Might has and that theurgic magic uses to command it.",
+  "quotes": [
+   "Each True Name is a spelllike ability recorded as \"True Name of (Being)\" on the character sheet, and costs 5 experience points to learn.",
+   "Knowing the True Name of a creature adds 5 to all lab totals to research synthemata for that same being.",
+   "A True Name is an Arcane Connection of indefinite duration"
+  ],
+  "related": [
+   "The Mysteries Revised Edition pp.86-88"
+  ]
+ },
+ {
+  "title": "Elementals: Rarefication",
+  "heading": "Elementals",
+  "line": 19094,
+  "endLine": 19100,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Elemental creatures",
+  "summary": "Describes what elementals are (pure elemental matter given pseudo-life by magic, not truly alive) and how rarefication forms one, including accidental and spontaneous formation in Magic auras. Once formed an elemental does not age, eat or fall ill.",
+  "quotes": [
+   "The process of forming an elemental is called rarefication.",
+   "raw elemental matter possessing a Warping Score of 5 may spontaneously rarefy into an elemental"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elementals and Might",
+  "heading": "Elementals and Might",
+  "line": 19102,
+  "endLine": 19104,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Elemental creatures",
+  "summary": "How elementals regain spent Might: slowly while resting in a suitable Magic aura, or immediately by consuming vis.",
+  "quotes": [
+   "An elemental does not replenish its Might Pool every day, but instead only recovers Might Points when resting in a Magic aura of no less than (its Might Score / 5)",
+   "5 Might Points for every pawn of vis associated with the same Form as its Might, or 2 Might Points for every pawn of vis associated with any other Art."
+  ],
+  "related": []
+ },
+ {
+  "title": "Size, Might and Characteristics of Elementals",
+  "heading": "Size, Might, and Characteristics of Elementals",
+  "line": 19106,
+  "endLine": 19122,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Elemental creatures",
+  "summary": "A table giving an elemental's Size and its eight Characteristics for each Might score from 1 to 50, used when designing a new elemental.",
+  "quotes": [
+   "The Size of an elemental is dependent on the Might chosen for it, and the Might of an elemental also determines its typical Characteristics."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic and Elementals",
+  "heading": "Magic and Elementals",
+  "line": 19124,
+  "endLine": 19128,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Elemental creatures",
+  "summary": "How Hermetic magic creates, controls, wards and destroys elementals, and how botched spells or lab activity involving an elemental Form in a Magic aura can accidentally rarefy one.",
+  "quotes": [
+   "Ritual Creo spells can create elementals, and they may be controlled using Rego magic.",
+   "The production of an elemental is a potential consequence of any botched spell or lab activity involving an elemental Form while in a Magic aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Elemental Combat",
+  "heading": "Elemental Combat",
+  "line": 19130,
+  "endLine": 19136,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Elemental creatures",
+  "summary": "Elementals cannot be wounded in the usual way: each blow also drains their Might Pool, they go inanimate at zero Might, and pieces knocked off in combat carry vis that can be collected or reabsorbed.",
+  "quotes": [
+   "each wound also reduces the elemental's Might Pool by a number of points equal to the Wound Penalty",
+   "An Incapacitating Wound removes 5 Might points, just like a Heavy Wound.",
+   "a number of pawns equal to ((total Wound penalty /5) \u2013 the number of pawns already lost)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elemental Powers",
+  "heading": "Elemental Powers",
+  "line": 19138,
+  "endLine": 19140,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Elemental creatures",
+  "summary": "Every elemental has a power from its elemental matter and a power describing its natural attack, plus usually one more. Its natural attack costs no Might points, so its Penetration is typically its Might.",
+  "quotes": [
+   "the elemental does not need to spend Might points for this attack, meaning that its Penetration for this is typically equal to its Might."
+  ],
+  "related": []
+ },
+ {
+  "title": "Earth Elementals (Genomi)",
+  "heading": "Earth Elementals",
+  "line": 19162,
+  "endLine": 19168,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Elemental creatures",
+  "summary": "What earth elementals can be rarefied from, how the quantity of raw material limits their Might, how they behave and attack, and which weapons can hurt them.",
+  "quotes": [
+   "Only bludgeoning weapons such as hammers, maces, or axes can damage an earth elemental",
+   "They may be rarefied from any large concretion of earth that has not been worked by human hands"
+  ],
+  "related": []
+ },
+ {
+  "title": "Earth Elemental Sample Powers",
+  "heading": "Earth Elemental Sample Powers",
+  "line": 19170,
+  "endLine": 19189,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Elemental creatures",
+  "summary": "The Crush power every earth elemental has (pinning and breaking equipment) and optional powers such as The Red Touch and Slake Thirst, with their spell-equivalent guidelines.",
+  "quotes": [
+   "All earth elementals have the following power:"
+  ],
+  "related": []
+ },
+ {
+  "title": "Water Elementals (Lymphae)",
+  "heading": "Water Elementals",
+  "line": 19225,
+  "endLine": 19231,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Elemental creatures",
+  "summary": "What water elementals can be rarefied from, their temperament, movement and attacks, and how weapons and fire affect them.",
+  "quotes": [
+   "A water elemental's attacks only inflict Scuffle damage",
+   "Only naturally occurring liquids can produce elementals, typically of salt or fresh water."
+  ],
+  "related": []
+ },
+ {
+  "title": "Water Elemental Sample Powers",
+  "heading": "Water Clemental Sample Powers",
+  "line": 19233,
+  "endLine": 19252,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Elemental creatures",
+  "summary": "The Drown power every water elemental has and optional powers such as Chill Touch and Sight of the River, with their spell-equivalent guidelines.",
+  "quotes": [
+   "All water elementals have the following power:"
+  ],
+  "related": [
+   "Deprivation rules"
+  ]
+ },
+ {
+  "title": "Air Elementals (Zephyri)",
+  "heading": "Air Elementals",
+  "line": 19293,
+  "endLine": 19299,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Elemental creatures",
+  "summary": "What air elementals can be rarefied from, their restless nature, perception and movement, and their immunity to weapons.",
+  "quotes": [
+   "Any air under the open sky or any natural weather phenomenon can produce a zephyrus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Air Elemental Sample Powers",
+  "heading": "Air Elemental Sample Powers",
+  "line": 19301,
+  "endLine": 19320,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Elemental creatures",
+  "summary": "The Sufficiale suffocation power every air elemental has, including the contested Quickness + Athletics roll to escape, plus optional powers such as Dissolution and Jupiter's Touch.",
+  "quotes": [
+   "All air elementals have the following power:",
+   "Compare Quickness + Athletics stress rolls of the victim and the elemental (using Might/5 for the elemental's Athletics), the highest wins."
+  ],
+  "related": [
+   "Deprivation rules"
+  ]
+ },
+ {
+  "title": "Fire Elementals (Phlegethi)",
+  "heading": "Fire Elementals",
+  "line": 19360,
+  "endLine": 19366,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Elemental creatures",
+  "summary": "What fire elementals can be rarefied from, how they feed, move across flammable surfaces and jump gaps, and how weapons and water affect them.",
+  "quotes": [
+   "It may also jump a gap of nonflammable surface (such as bare rock) up to a width equal to its Magic Might in feet.",
+   "Larger sources of water quench the elemental's body, inflicting \"wounds\" as if it were fire damage"
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.67"
+  ]
+ },
+ {
+  "title": "Fire Elemental Sample Powers",
+  "heading": "Fire Elemental Sample Powers",
+  "line": 19368,
+  "endLine": 19387,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Elemental creatures",
+  "summary": "The Burn power every fire elemental has (damage from a stress die plus its current Might pool) and optional powers such as Fascination and Heat of the Searing Forge.",
+  "quotes": [
+   "All fire elementals have the following power:",
+   "takes damage equal to a stress die plus the entity's current Might pool"
+  ],
+  "related": []
+ },
+ {
+  "title": "Revenants, the Walking Dead",
+  "heading": "Revenants, the Walking Dead",
+  "line": 19684,
+  "endLine": 19694,
+  "category": "beings",
+  "topic": "Revenants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Revenant creatures",
+  "summary": "Introduces revenants as restless dead whose only form is an animate material corpse driven by a spirit, and notes that their physical statistics also serve for spell-animated corpses, which have no Might.",
+  "quotes": [
+   "Such automatons are not supernatural beings and have no Might score (and hence no Magic Resistance)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fighting the Walking Dead",
+  "heading": "Fighting the Walking Dead",
+  "line": 19696,
+  "endLine": 19708,
+  "category": "beings",
+  "topic": "Revenants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Revenant creatures",
+  "summary": "How magic and weapons affect revenants: body and spirit are attacked separately, Incapacitating wounds count as Heavy, Perdo Corpus spells aimed at the living often fail, and legend-specific methods destroy the animating spirit.",
+  "quotes": [
+   "they cannot be Incapacitated; treat Incapacitating wounds as Heavy wounds instead.",
+   "Learning the method for destroying a revenant may require a story, or if the storyguide prefers she can assign it an Ease Factor of 9 on an Intelligence + Magic Lore roll."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Resistance to Piercing Weapons",
+  "heading": "Option: Resistance to Piercing Weapons",
+  "line": 19710,
+  "endLine": 19714,
+  "category": "beings",
+  "topic": "Revenants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Revenant creatures; troupe adopts the option",
+  "summary": "An optional rule letting revenants resist piercing weapons such as spears and arrows, either with a Soak bonus or total immunity, at the storyguide's judgment of what counts as piercing.",
+  "quotes": [
+   "The troupe may wish to grant revenants an additional +10 Soak bonus against such weapons, or simply rule them totally ineffective."
+  ],
+  "related": []
+ },
+ {
+  "title": "Animating Corpses with Magic",
+  "heading": "Animating Corpses with Magic",
+  "line": 19716,
+  "endLine": 19728,
+  "category": "magic",
+  "topic": "Revenants",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a corpse animated by a Rego Corpus spell, demonic possession or a Magic spirit is statted: no fatigue, no powers of its own, and a Might score only when a spirit's power animates it.",
+  "quotes": [
+   "Its Brawl skill is nominally 3, though as an optional rule the troupe may wish to assign a Brawl score equal to the caster's Finesse.",
+   "Regardless of how the corpse is animated, its unarmed attacks can be blocked by Magic Resistance."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.75"
+  ]
+ },
+ {
+  "title": "Creatures of Faerie: Roles and Pretenses",
+  "heading": "Creatures of Faerie",
+  "line": 20001,
+  "endLine": 20011,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie creatures",
+  "summary": "General rules for faeries: they are bound to story roles they cannot break, their physical attacks ignore Magic Resistance, and they have Pretenses rather than Abilities, which a skilled observer may detect with a Perception + Awareness roll.",
+  "quotes": [
+   "Despite this, their physical attacks are not blocked by Magic Resistance, including the Parma Magica.",
+   "Faeries have Pretenses instead of Abilities.",
+   "may make a Perception + Awareness roll against an Ease Factor of 12"
+  ],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Faerie Virtues and Flaws (Cognizance, Wards, Faerie Sight and Speech)",
+  "heading": "New Virtues and Flaws",
+  "line": 20013,
+  "endLine": 20027,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Faerie creatures",
+  "summary": "Explains the faerie-specific traits used to build faeries: regeneration without fatigue, degrees of Cognizance, Faerie Sight, Faerie Speech, and Traditional and Sovereign Wards that harm or exclude a faerie.",
+  "quotes": [
+   "Assume that the object acts as a source of damage with an intensity of +6.",
+   "Direct contact with a sovereign ward destroys the body of a faerie, removing it from the scenario.",
+   "The faerie cannot regenerate Might points in the presence of a traditional ward."
+  ],
+  "related": [
+   "Heat and Corrosion rules",
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Infernal Creatures: Demon Basics",
+  "heading": "Infernal Creatures",
+  "line": 20525,
+  "endLine": 20531,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal creatures (demons)",
+  "summary": "Introduces demons and devils as one group, notes that some corrupted physical beings with Infernal Might are not true demons, and states that demons can shed their physical forms at will and are not bothered by The Gift.",
+  "quotes": [
+   "All demons can put off their physical forms and revert to being pure spirits at will.",
+   "Demons are never noticeably bothered by The Gift."
+  ],
+  "related": [
+   "Realms of Power: The Infernal"
+  ]
+ },
+ {
+  "title": "Demonic Powers (Coagulation, Obsession, Envisioning, Possession)",
+  "heading": "Demonic Powers",
+  "line": 20533,
+  "endLine": 20561,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Infernal creatures (demons)",
+  "summary": "The powers common to demons: Coagulation to form a body, Obsession to impose a sinful Personality Trait on a mortal (with a worked example), Envisioning for dreams and waking visions, and Possession, which uses a separate Possession Might Pool.",
+  "quotes": [
+   "Manifesting a physical form takes a round for every point of Infernal Might possessed by the demon",
+   "the victim's player must make a simple roll and add the Obsession Trait; this must be lower than a simple roll + any other suitable Personality Trait to successfully resist the impulses",
+   "the demon may expend any number of points from its Might Pool to create a Possession Might Pool"
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.75"
+  ]
+ },
+ {
+  "title": "Demons and Magic",
+  "heading": "Demons and Magic",
+  "line": 20563,
+  "endLine": 20577,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Hermetic magic interacts with demons: deceptions and Infernal Might are invisible to truth-revealing spells, Second Sight is harder against them, they can be warded and attacked with Vim, and summoning them is forbidden by the Oath of Hermes.",
+  "quotes": [
+   "Hermetic magic cannot pierce any deception produced by a demon",
+   "this Ease Factor is increased by the magnitude of their Might.",
+   "a demon that is reduced to an Infernal Might of zero is destroyed, leaving behind no corpse (and thus no vis)"
+  ],
+  "related": [
+   "Realms of Power: The Infernal"
+  ]
+ },
+ {
+  "title": "Demonic Weaknesses",
+  "heading": "Demonic Weaknesses",
+  "line": 20579,
+  "endLine": 20597,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Infernal creatures (demons)",
+  "summary": "Every demon is vulnerable to expressions of God's power and has one extra weakness chosen from a list (abhorrent material, compulsiveness, ordering, protected group, running water, vulnerability). Learning a particular demon's weakness takes a roll.",
+  "quotes": [
+   "must make an Intelligence + Infernal Lore roll against an Ease Factor of 9 + (Might /5)",
+   "Subtract 3 from the Ease Factor if the demon is a member of a family"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.41"
+  ]
+ },
+ {
+  "title": "Demons and Free Will",
+  "heading": "Demons and Free Will",
+  "line": 20599,
+  "endLine": 20603,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal creatures (demons)",
+  "summary": "Explains that demons always follow their evil impulses and have no virtues, and that Confidence represents a demon's ability to act rationally against its passions; not all demons have it.",
+  "quotes": [
+   "Demons have no virtues at all, which includes such virtues as patience, courage, and self-control.",
+   "Not all demons have Confidence, so some demons are incapable of acting against the dictates of their passions."
+  ],
+  "related": [
+   "Realms of Power: The Infernal, Chapter 4"
+  ]
+ },
+ {
+  "title": "Religious Limitations on Demons",
+  "heading": "Religious Limitations on Demons",
+  "line": 20605,
+  "endLine": 20611,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal creatures (demons)",
+  "summary": "Religious restrictions on demons: they lose their physical form and cannot spend Might on Holy Saturday, are driven from Jewish households whose sins are atoned between Yom Kippur and Sukkot, and cannot use Infernal Might directly on a Muslim who has recently completed the hajj.",
+  "quotes": [
+   "In Christian lands, all demons are forced to abandon their physical form at dawn on Holy Saturday"
+  ],
+  "related": []
+ },
+ {
+  "title": "Demons, Auras and Regiones",
+  "heading": "Demons, Auras and Regiones",
+  "line": 20613,
+  "endLine": 20623,
+  "category": "realms",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal creatures (demons)",
+  "summary": "How quickly Infernal creatures regain Might: at a constant daily rate normally, faster in an Infernal aura, and not at all in a Divine aura.",
+  "quotes": [
+   "NUMBER OF HOURS TO RESTORE ALL MIGHT: 24 - (2 x Infernal Aura)",
+   "MIGHT POINTS RESTORED PER HOUR: Infernal Might / Number of hours",
+   "A demon cannot regenerate any Might in a Divine aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Corrupt Beasts",
+  "heading": "Corrupt Beasts",
+  "line": 21066,
+  "endLine": 21070,
+  "category": "beings",
+  "topic": "Corrupt beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Corrupted beasts (Infernal creatures)",
+  "summary": "How animals become corrupt (demonic influence, birth, Infernal auras or diabolists) and how to build one: start from a mundane beast, apply the compulsory Corrupted Beast Flaw and balance it with Virtues and Flaws from a restricted list.",
+  "quotes": [
+   "To create the game statistics of a Corrupt Beast, start with the statistics of a mundane beast, and apply the Corrupted Beast Flaw.",
+   "The corpse of a corrupted beast typically contains one pawn of vis for each five points of Might it possessed."
+  ],
+  "related": []
+ },
+ {
+  "title": "Virtues and Flaws for Corrupted Beasts",
+  "heading": "Virtues and Flaws for Corrupted Beasts",
+  "line": 21072,
+  "endLine": 21076,
+  "category": "beings",
+  "topic": "Corrupt beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Corrupted beasts (Infernal creatures)",
+  "summary": "The restricted list of Virtues and Flaws a corrupted beast may take.",
+  "quotes": [
+   "**Virtues:** Greater Immunity, Greater Infernal Power, Ferocity, Lesser Immunity, Lesser Infernal Power"
+  ],
+  "related": []
+ },
+ {
+  "title": "Corrupted Beast (Flaw)",
+  "heading": "Corrupted Beast",
+  "line": 21078,
+  "endLine": 21082,
+  "category": "beings",
+  "topic": "Corrupt beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Flaw: Corrupted Beast (animals only)",
+  "summary": "The compulsory Flaw that gives an animal an Infernal Might, a sinful Personality Trait, a repellent appearance and the Tainted with Evil Flaw, while leaving it unbothered by The Gift.",
+  "quotes": [
+   "The creature has been corrupted by Infernal power, and has acquired an Infernal Might of 5.",
+   "Corrupted Beasts do not react negatively to The Gift."
+  ],
+  "related": []
+ },
+ {
+  "title": "Greater Infernal Power (Corrupted Beasts)",
+  "heading": "Greater Infernal Power",
+  "line": 21108,
+  "endLine": 21114,
+  "category": "beings",
+  "topic": "Corrupt beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Greater Infernal Power (Corrupted Beasts only)",
+  "summary": "How to design a corrupted beast's Greater Infernal Power as a spell-like effect, with its Might cost, initiative bonus and level cap.",
+  "quotes": [
+   "The level of effect cannot exceed the Corrupted Beast's (Infernal Might + 10).",
+   "A Greater Power typically costs its magnitude in Might points to activate, and has an Init bonus equal to Qik + magnitude."
+  ],
+  "related": [
+   "Realms of Power: The Infernal"
+  ]
+ },
+ {
+  "title": "Lesser Infernal Power (Corrupted Beasts)",
+  "heading": "Lesser Infernal Power",
+  "line": 21116,
+  "endLine": 21120,
+  "category": "beings",
+  "topic": "Corrupt beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Lesser Infernal Power (Corrupted Beasts only)",
+  "summary": "How to design a corrupted beast's Lesser Infernal Power, which is cheap to use and cannot need a Penetration total (otherwise it counts as a Greater Power).",
+  "quotes": [
+   "The level of effect cannot exceed the Corrupted Beast's Infernal Might.",
+   "A Minor power typically costs 0-2 Might points to activate, and has an Init bonus equal to magnitude."
+  ],
+  "related": [
+   "Realms of Power: The Infernal"
+  ]
+ },
+ {
+  "title": "Creatures of the Divine: General Rules",
+  "heading": "Creatures of the Divine",
+  "line": 21196,
+  "endLine": 21204,
+  "category": "beings",
+  "topic": "Divine creatures",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Creatures with Divine Might",
+  "summary": "General rules for beings with Divine Might: ordinary Magic Resistance and Penetration rules apply, they are not omnipotent, they cannot have True Faith, and they are never bothered by The Gift.",
+  "quotes": [
+   "Creatures with Divine Might use the normal rules for determining Magic Resistance, Penetration, and whether their powers can be dispelled.",
+   "Creatures with Divine Might cannot have True Faith.",
+   "Creatures with Divine Might are never bothered by The Gift."
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Angelic Powers",
+  "heading": "Angelic Powers",
+  "line": 21206,
+  "endLine": 21217,
+  "category": "beings",
+  "topic": "Divine creatures",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Angels (Divine Might)",
+  "summary": "The powers every angel possesses: Angelic Mantle to take a material form, Enfolding to protect a soul or body from all harm briefly, and Envisioning to deliver Divine messages in dreams or waking visions.",
+  "quotes": [
+   "All angels possess the following powers:",
+   "An angel may also Enfold a person's body (costing 10 Might points)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Un-Fun History (Adjusting the Setting)",
+  "heading": "Un-Fun History",
+  "line": 21510,
+  "endLine": 21518,
+  "category": "setting",
+  "topic": "Saga setting options",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance for troupes who dislike parts of medieval society: they may gloss over or remove unpalatable features, play the oppressed, or lean on the Order of Hermes as a tolerant home base.",
+  "quotes": [
+   "The Order of Hermes is deliberately designed to be anachronistic and fundamentally tolerant"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic and Sin (Saga Decision)",
+  "heading": "Magic and Sin",
+  "line": 21552,
+  "endLine": 21558,
+  "category": "realms",
+  "topic": "Magic and the Divine",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The core rules leave open whether magic is inherently sinful. This sidebar explains how each choice changes the relationship between magi, the Church, saints and angels, and what counts as penance.",
+  "quotes": [
+   "If magic is inherently sinful, casting a spell is sinful no matter what the purpose."
+  ],
+  "related": [
+   "The Church"
+  ]
+ },
+ {
+  "title": "Hermetic Magic and the Sacraments",
+  "heading": "Hermetic Magic and the Sacraments",
+  "line": 21602,
+  "endLine": 21606,
+  "category": "realms",
+  "topic": "Sacraments",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the supernatural effects of the sacraments that magi can observe, such as baptismal names not serving as Sympathetic Connections and bodies that have received Extreme Unction being immune to magic for a few days.",
+  "quotes": [
+   "a baptismal name cannot be used as a Sympathetic Connection to aid Penetration (unlike a birth name)",
+   "bodies that have received Extreme Unction cannot be affected by magic for three days"
+  ],
+  "related": []
+ },
+ {
+  "title": "Miracles",
+  "heading": "Miracles",
+  "line": 21723,
+  "endLine": 21741,
+  "category": "realms",
+  "topic": "Miracles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How often and in what forms miracles occur in Mythic Europe (healing, punishment, miscellaneous), what makes one more likely, and how a storyguide can tune their frequency to set how Mythic the setting is.",
+  "quotes": [
+   "a miracle is more likely to be granted if it is sincerely requested by a pious person, if the cause of the affliction was entirely innocent, and if an appropriate saint adds his prayers",
+   "The frequency described in the main text is a default level"
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Mythic Options: The Nobility",
+  "heading": "Mythic Options",
+  "line": 21821,
+  "endLine": 21835,
+  "category": "setting",
+  "topic": "Mythic options",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional ways to put more magic into the nobility, such as faerie lords, supernatural noble lines, magical rulers or enchanted items of succession, to be used as much or as little as the troupe wants.",
+  "quotes": [
+   "If you want to keep medieval society fairly mundane, you shouldn't use any of them."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mythic Options: Towns and Trade",
+  "heading": "Mythic Options",
+  "line": 21887,
+  "endLine": 21893,
+  "category": "setting",
+  "topic": "Mythic options",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional ways to make towns more magical, such as faerie towns, supernatural traders, or a town that is a living being aligned to a realm.",
+  "quotes": [
+   "A town might be alive as a whole, and aligned to any realm."
+  ],
+  "related": []
+ },
+ {
+  "title": "Public Power for Women",
+  "heading": "Public Power for Women",
+  "line": 21905,
+  "endLine": 21909,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces how women gain public power in Mythic Europe, framed as material for storytelling rather than prohibition, and points to the Paid Rights Virtue for exceptional women characters.",
+  "quotes": [
+   "The Paid Rights Virtue (page 100) is a gamemechanical way to acknowledge that an exceptional woman is just that: exceptional."
+  ],
+  "related": [
+   "Virtue: Paid Rights"
+  ]
+ },
+ {
+  "title": "Dressing As A Man",
+  "heading": "Dressing As A Man",
+  "line": 21911,
+  "endLine": 21915,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The simplest way for a woman to avoid social conventions: dressing as a man, which may become a Dark Secret and may qualify for Gender Nonconforming.",
+  "quotes": [
+   "This may become a Dark Secret (page 124), and may also qualify the character for Gender Nonconforming (page 131)."
+  ],
+  "related": [
+   "Dark Secret",
+   "Gender Nonconforming"
+  ]
+ },
+ {
+  "title": "Holding Land (Women)",
+  "heading": "Holding Land",
+  "line": 21917,
+  "endLine": 21951,
+  "category": "social",
+  "topic": "Women and public power",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The six ways a woman can come to control land (absence, inheritance, political success, conquest, widow's portion, stewardship) with notes on how each works in practice and a rule of thumb for a widow's income.",
+  "quotes": [
+   "Women can gain control of land in six ways: during absence, through inheritance, via political success, through conquest, in a widow's portion, or as a steward.",
+   "As a rule of thumb, assume a widow can keep the profit, not income, of a third of her husband's land until she remarries."
+  ],
+  "related": []
+ },
+ {
+  "title": "Variable Outcomes",
+  "heading": "Variable Outcomes",
+  "line": 22025,
+  "endLine": 22031,
+  "category": "setting",
+  "topic": "Story design",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Storyguide guidance to give every story at least success, neutral and failure outcomes, to avoid disastrous consequences for failure, and to prefer setbacks like lost possessions or lost study time over character or covenant destruction.",
+  "quotes": [
+   "You should have at least three possible outcomes for any story: one corresponding to success, another to a neutral performance, and one to failure."
+  ],
+  "related": []
+ },
+ {
+  "title": "Story Types (Reactive, Proactive, Soap Opera)",
+  "heading": "Story Types",
+  "line": 22051,
+  "endLine": 22083,
+  "category": "setting",
+  "topic": "Story design",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Divides stories into reactive, proactive and soap opera types and explains how each works as the magi grow more powerful, since powerful magi short-circuit reactive and investigative plots.",
+  "quotes": [
+   "this discussion divides stories into three types: reactive, where something happens and the player characters respond"
+  ],
+  "related": [
+   "Saga Speed"
+  ]
+ },
+ {
+  "title": "Saga Background: History",
+  "heading": "History",
+  "line": 22205,
+  "endLine": 22217,
+  "category": "setting",
+  "topic": "Saga setup",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The troupe decides how closely the saga follows real history, how much mundane interaction there is, and whether magi can change history after the canonical start date.",
+  "quotes": [
+   "The troupe must simply decide whether the magi can change history."
+  ],
+  "related": [
+   "Making It Historical"
+  ]
+ },
+ {
+  "title": "Saga Background: The Order of Hermes",
+  "heading": "The Order of Hermes",
+  "line": 22219,
+  "endLine": 22225,
+  "category": "order",
+  "topic": "Saga setup",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The troupe decides how organized and intrusive the Order is in practice, from strict registration and enforcement to loose social Tribunals, which changes how much politics the saga contains.",
+  "quotes": [
+   "How organized is the Order in practice?"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rules Questions (House Rules)",
+  "heading": "Rules Questions",
+  "line": 22227,
+  "endLine": 22245,
+  "category": "setting",
+  "topic": "House rules",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advice on when the Laboratory and Long-Term Event rules matter and on adopting house rules, with examples such as using only simple dice, adding trade rules, giving mundane believers a Magic Resistance, or dropping statistics altogether.",
+  "quotes": [
+   "you can simply ignore stress dice, and always use a simple die",
+   "You might decide to give all Christians, Jews, and Muslims a Magic Resistance equal to five times the level of the local Dominion aura."
+  ],
+  "related": [
+   "City & Guild"
+  ]
+ },
+ {
+  "title": "Saga Background: The Church",
+  "heading": "The Church",
+  "line": 22247,
+  "endLine": 22255,
+  "category": "setting",
+  "topic": "Saga setup",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Choices for portraying the Church in a saga: basically good or basically evil, and whether it treats magic as sinful or as a God-given gift.",
+  "quotes": [
+   "The fundamental choice is between a Church which is basically good with a few bad members, is basically evil, with a few good members."
+  ],
+  "related": [
+   "The Church"
+  ]
+ },
+ {
+  "title": "Saga Background: The Fate of Magic",
+  "heading": "The Fate of Magic",
+  "line": 22263,
+  "endLine": 22273,
+  "category": "realms",
+  "topic": "Saga setup",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Options for whether magic is declining, rising or steady in a saga, including linking decline to the advance of the Dominion or to all supernatural realms together.",
+  "quotes": [
+   "In your saga, magic could be declining, rising, or steady."
+  ],
+  "related": []
+ },
+ {
+  "title": "Resources (Vis and Books Guidelines)",
+  "heading": "Resources",
+  "line": 22275,
+  "endLine": 22293,
+  "category": "covenant",
+  "topic": "Saga resources",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance for storyguides on how much vis and how many books to give the player characters, with Low, Moderate and High vis supply levels per magus per year and advice on handing out vis finds before vis sources.",
+  "quotes": [
+   "Up to 5 pawns/magus/year.",
+   "Around 10 pawns/magus/year.",
+   "Around 20 pawns/magus/year."
+  ],
+  "related": []
+ },
+ {
+  "title": "Saga Speed",
+  "heading": "Saga Speed",
+  "line": 22295,
+  "endLine": 22297,
+  "category": "setting",
+  "topic": "Saga speed",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces saga speed, the number of game seasons that pass per session, as a key choice that sets the style of a saga and can be changed later.",
+  "quotes": [
+   "the number of seasons of game time that pass for every game session is an extremely important factor in determining the style of a saga"
+  ],
+  "related": [
+   "Advancement"
+  ]
+ },
+ {
+  "title": "Slow Saga",
+  "heading": "Slow Saga",
+  "line": 22299,
+  "endLine": 22305,
+  "category": "setting",
+  "topic": "Saga speed",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A saga with two or more sessions per season: characters barely improve and lifespans hardly matter, laboratory rules see little use, and Virtues and Flaws affecting starting scores matter more than those affecting study or lifespan.",
+  "quotes": [
+   "In a slow saga there are, on average, two or more game sessions per season."
+  ],
+  "related": []
+ },
+ {
+  "title": "Medium Saga",
+  "heading": "Medium Saga",
+  "line": 22307,
+  "endLine": 22313,
+  "category": "setting",
+  "topic": "Saga speed",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A saga with one to four seasons per session: a good compromise and starting rate in which characters improve, companions and grogs may eventually die of old age, and study-related Flaws weigh about as much as starting-score ones.",
+  "quotes": [
+   "A medium saga has, on average, one to four seasons per game session."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fast Saga",
+  "heading": "Fast Saga",
+  "line": 22315,
+  "endLine": 22321,
+  "category": "setting",
+  "topic": "Saga speed",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A saga where more than a year passes per session: magi grow powerful quickly and may die of old age within it, companions are played only a few times, and Virtues and Flaws affecting only starting scores lose importance.",
+  "quotes": [
+   "In a fast saga, more than one year passes per game session, on average."
+  ],
+  "related": []
+ },
+ {
+  "title": "Pulsed Saga",
+  "heading": "Pulsed Saga",
+  "line": 22323,
+  "endLine": 22329,
+  "category": "setting",
+  "topic": "Saga speed",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A saga alternating bursts of intense play over a short span with long gaps of years, giving companions and grogs play time while magi advance during the downtime, at the cost of needing an in-game reason for the quiet periods.",
+  "quotes": [
+   "A dozen game sessions might cover a single season, but then twelve game years might pass before the next session."
+  ],
+  "related": []
+ },
+ {
+  "title": "Troupe-Style Roleplaying",
+  "heading": "Troupe-Style Roleplaying",
+  "line": 22331,
+  "endLine": 22343,
+  "category": "setting",
+  "topic": "Troupe-style play",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains why troupe-style play, in which players have several characters and the storyguide role can be shared, suits Ars Magica better than conventional single-character play given how different magi, companions and grogs are.",
+  "quotes": [
+   "it is almost always better to use some version of troupe-style play rather than conventional play"
+  ],
+  "related": []
+ },
+ {
+  "title": "Alternative Characters (Troupe Style)",
+  "heading": "Alternative Characters",
+  "line": 22345,
+  "endLine": 22351,
+  "category": "setting",
+  "topic": "Troupe-style play",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Each player has two or more characters, at least one a magus and one a companion, but plays only one per session, so the characters need good reasons not to adventure together.",
+  "quotes": [
+   "In this version of troupe-style play each player has two or more characters, but only plays one of them in a given session."
+  ],
+  "related": []
+ },
+ {
+  "title": "Pooled Characters (Troupe Style)",
+  "heading": "Pooled Characters",
+  "line": 22353,
+  "endLine": 22369,
+  "category": "setting",
+  "topic": "Troupe-style play",
+  "audience": [
+   "storyguide",
+   "all",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A shared pool of grogs and bit-part characters that any player can run, each looked after between sessions by a single player; keeps magi few, lets grogs die safely, and handles player absences because advancement does not depend on being played.",
+  "quotes": [
+   "in addition to a player's magi and companions, there is also a 'pool' of grogs and bit-parts, who can be played by anyone."
+  ],
+  "related": []
+ },
+ {
+  "title": "Guest Storyguiding",
+  "heading": "Guest Storyguiding",
+  "line": 22371,
+  "endLine": 22379,
+  "category": "setting",
+  "topic": "Troupe-style play",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A player occasionally runs a session while the regular storyguide plays pooled grogs; best used for isolated stories such as a distant island or a regio, agreeing in advance on rewards and risks.",
+  "quotes": [
+   "The next level of troupe-style playing involves a player occasionally running a session."
+  ],
+  "related": [
+   "Regiones"
+  ]
+ },
+ {
+  "title": "Alpha and Beta Storyguides",
+  "heading": "Alpha and Beta Storyguides",
+  "line": 22381,
+  "endLine": 22389,
+  "category": "setting",
+  "topic": "Troupe-style play",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Several people storyguide regularly: an alpha storyguide with veto power over the saga's overall shape and beta storyguides each responsible for a location or aspect, who must agree on reward level and tone.",
+  "quotes": [
+   "One storyguide, the alpha storyguide, is responsible for the overall shape of the saga, and has final veto power on story additions"
+  ],
+  "related": []
+ },
+ {
+  "title": "Pure Troupe Style",
+  "heading": "Pure Troupe Style",
+  "line": 22391,
+  "endLine": 22397,
+  "category": "setting",
+  "topic": "Troupe-style play",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Everyone storyguides in roughly equal amounts with no alpha storyguide, requiring an agreed method, such as a rules storyguide, for resolving rules disputes.",
+  "quotes": [
+   "In the purest form of troupe style, everyone runs games in roughly equal amounts, and there is no alpha storyguide."
+  ],
+  "related": []
+ },
+ {
+  "title": "Researching a Setting",
+  "heading": "Researching a Setting",
+  "line": 22399,
+  "endLine": 22433,
+  "category": "setting",
+  "topic": "Saga setup",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes levels of historical research a storyguide can put into a saga, from a pure fantasy world and no-research through low, medium, high and extreme research, with practical steps for each.",
+  "quotes": [
+   "There are a number of options for this, and none is better or worse than the others."
+  ],
+  "related": [
+   "Tribunal books"
+  ]
+ },
+ {
+  "title": "Saga Styles",
+  "heading": "Saga Styles",
+  "line": 22435,
+  "endLine": 22465,
+  "category": "setting",
+  "topic": "Saga setup",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Seven compatible styles of saga to choose or combine: high fantasy, mundane interactions, Hermetic life, action-adventure, investigation, politics and creation.",
+  "quotes": [
+   "all valid, and many compatible with each other"
+  ],
+  "related": []
+ },
+ {
+  "title": "Saga Priorities",
+  "heading": "Saga Priorities",
+  "line": 22467,
+  "endLine": 22479,
+  "category": "setting",
+  "topic": "Saga setup",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Puts player enjoyment first: talk through content that upsets players, let players adapt characters to the stories they like, and treat game balance only as a tool for sharing the spotlight when changing rules.",
+  "quotes": [
+   "The highest priority for any saga is to ensure that all the players are having fun.",
+   "As long as the changes help everyone to have fun, they are good."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fourth Edition Conversion: What Changed",
+  "heading": "The Long Answer",
+  "line": 22551,
+  "endLine": 22611,
+  "category": "creation",
+  "topic": "Fourth Edition conversion",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Converting from Fourth Edition",
+  "summary": "A summary of the main rule changes from Fourth to Fifth Edition in character generation, covenants, magic, long-term events and combat, useful when updating old material or house rules.",
+  "quotes": [
+   "Spell level is now subtracted from the casting total before determining Penetration.",
+   "Abilities now cost five times their (level + 1) to raise by one level.",
+   "First, Virtues and Flaws no longer have point values; they are split into Major and Minor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fourth Edition Character Conversion",
+  "heading": "Character Conversion",
+  "line": 22613,
+  "endLine": 22627,
+  "category": "creation",
+  "topic": "Fourth Edition conversion",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Converting a Fourth Edition character",
+  "summary": "Rule-of-thumb steps for converting a Fourth Edition character: adjust age, keep Characteristics, convert Virtues and Flaws, rescale Ability experience, replace uncastable spells and turn Twilight Points into a Warping Score.",
+  "quotes": [
+   "add 20% to a Fourth Edition character's age",
+   "Abilities: Leave at the old value, and multiply remaining XP by five.",
+   "Divide the number of Twilight Points by three, and use this as the Warping Score."
+  ],
+  "related": []
+ }
+]

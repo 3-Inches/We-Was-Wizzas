@@ -1,0 +1,1372 @@
+[
+ {
+  "title": "The Cost of Breaking Convention",
+  "heading": "Optional Guideline: The Cost of Breaking Convention",
+  "line": 589,
+  "endLine": 591,
+  "category": "social",
+  "topic": "Social interaction modifiers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional guideline that penalizes a magus who dresses above his station, trails armed men, or flaunts his familiar in public when dealing with mundanes, unless he makes an effort to follow convention.",
+  "quotes": [
+   "he suffers an additional \u20131 social interaction penalty"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Process in Brief (Fourth Estate)",
+  "heading": "The Process in Brief",
+  "line": 641,
+  "endLine": 650,
+  "category": "order",
+  "topic": "Fourth Estate",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Order of Hermes as the Fourth Estate",
+  "summary": "Outlines the sequence of steps a covenant follows to move the Order toward integration with mundane society, from test cases at Tribunal through negotiation with nobles and Church to the Grand Tribunal.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "A Life's Work (pacing the Fourth Estate)",
+  "heading": "A Life's Work",
+  "line": 670,
+  "endLine": 678,
+  "category": "order",
+  "topic": "Fourth Estate",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Order of Hermes as the Fourth Estate",
+  "summary": "Suggests measuring the pace of the integration saga in Tribunal meetings, with a fair-pace schedule of what happens at each successive Tribunal.",
+  "quotes": [
+   "With Tribunals held every seven years and a Grand Tribunal every 33 years"
+  ],
+  "related": []
+ },
+ {
+  "title": "Preparing for Tribunal Debate",
+  "heading": "The Tribunal",
+  "line": 751,
+  "endLine": 753,
+  "category": "order",
+  "topic": "Tribunal debate",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Order of Hermes as the Fourth Estate",
+  "summary": "Explains that the final integration debate is run with the Tribunal debate rules from Houses of Hermes: Societates, and that an argument bonus earned earlier from polemic texts can be applied to it.",
+  "quotes": [
+   "it can be applied to any debate which encompasses aspects of the polemic philosophy"
+  ],
+  "related": [
+   "Houses of Hermes: Societates p.91"
+  ]
+ },
+ {
+  "title": "Mundane Testimony at Tribunal",
+  "heading": "Mundane Testimony",
+  "line": 787,
+  "endLine": 794,
+  "category": "order",
+  "topic": "Tribunal debate",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Order of Hermes as the Fourth Estate",
+  "summary": "Mundanes may attend Tribunal and give testimony in support of or against a case; mechanically this gives a small bonus to argument strength, with most of the value being roleplaying.",
+  "quotes": [
+   "the testimony adds +1 to the argument strength"
+  ],
+  "related": [
+   "Houses of Hermes: Societates p.93"
+  ]
+ },
+ {
+  "title": "A New Breed of Craftsman (Rego Craft Magic and Finesse)",
+  "heading": "A New Breed of Craftsman",
+  "line": 932,
+  "endLine": 944,
+  "category": "lab",
+  "topic": "Rego Craft Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that Rego Craft Magic items rely on the user's Finesse for quality and are harder than mundane craftsmanship, so specialists skilled in Finesse become valuable as magical tools spread.",
+  "quotes": [
+   "the quality of the produced item is dependent on a Finesse roll against an Ease Factor that is always at least 3 points higher than that needed by a mundane craftsman"
+  ],
+  "related": [
+   "Covenants p.49 Rego Craft Magic"
+  ]
+ },
+ {
+  "title": "Writing and Responding to Polemic",
+  "heading": "Writing and Responding to Polemic",
+  "line": 976,
+  "endLine": 982,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the activity of writing persuasive texts in advance of a Tribunal debate, using three forms of writing: polemic, diatribe and apologia.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Polemic",
+  "heading": "Polemic",
+  "line": 984,
+  "endLine": 988,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A polemic is a summa or tractatus on a knowledge Ability such as Code of Hermes or Order of Hermes Lore that argues for a philosophical position; for these rules a polemic tractatus counts as Level 5.",
+  "quotes": [
+   "tractatus have a Level of 5"
+  ],
+  "related": [
+   "ArM5 p.165 Writing books"
+  ]
+ },
+ {
+  "title": "Diatribe",
+  "heading": "Diatribe",
+  "line": 990,
+  "endLine": 994,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A diatribe is a critical text written on the same Ability as the polemic it attacks, intended to damage the position and its proponents; each tractatus counts against the author's normal tractatus limit.",
+  "quotes": [
+   "Each tractatus counts towards the normal limit on the number of tractatus that the author may write."
+  ],
+  "related": [
+   "ArM5 p.165 Writing books"
+  ]
+ },
+ {
+  "title": "Apologia",
+  "heading": "Apologia",
+  "line": 996,
+  "endLine": 1000,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An apologia is a defensive rebuttal written on the same Ability as the diatribe it answers, strengthening the original proposition; each tractatus counts against the author's normal limit.",
+  "quotes": [
+   "Each tractatus counts towards the normal limit on the number of tractatus that the author may write."
+  ],
+  "related": [
+   "ArM5 p.165 Writing books"
+  ]
+ },
+ {
+  "title": "Like Father, Like Son (Views from Polemic)",
+  "heading": "Like Father, Like Son",
+  "line": 1002,
+  "endLine": 1004,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character who gains their first level in a knowledge Ability by reading a polemic is assumed to share the author's views on that subject.",
+  "quotes": [
+   "any character gaining his first level in a knowledge Ability through reading polemic shares the author's views on that subject"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Prevailing Wisdom",
+  "heading": "The Prevailing Wisdom",
+  "line": 1006,
+  "endLine": 1010,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The base difficulty of altering opinion in writing depends on how broad the change is; the level is read from the Prevailing Wisdom table.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Prevailing Wisdom Table",
+  "heading": "Prevailing Wisdom Table",
+  "line": 1012,
+  "endLine": 1020,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table giving the base level of the prevailing wisdom according to whether the change concerns a magus, covenant, Tribunal, House or the whole Order.",
+  "quotes": [
+   "The higher of 3 or the magus' reputation"
+  ],
+  "related": []
+ },
+ {
+  "title": "Prevailing Wisdom Examples",
+  "heading": "Prevailing Wisdom Examples",
+  "line": 1022,
+  "endLine": 1033,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of sample topics with the Ease Factor that applies to changing opinion about them, and the reason for each.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Winning the Argument",
+  "heading": "Winning the Argument",
+  "line": 1035,
+  "endLine": 1039,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how a polemic is written and why it must be of a level high enough to entice readers; its Quality contributes to a bonus in debate at Tribunal.",
+  "quotes": [
+   "Polemical tractatus are treated as level 5 for the purposes of circulating them."
+  ],
+  "related": [
+   "Houses of Hermes: Societates p.91 Debate"
+  ]
+ },
+ {
+  "title": "Circulating the Text",
+  "heading": "Circulating the Text",
+  "line": 1041,
+  "endLine": 1053,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A polemic must be circulated through copies, with a seasonal Circulation Roll against an Ease Factor set by the audience; success grants the author a Supporter of (ideal) Reputation.",
+  "quotes": [
+   "Circulation Total: Magus' Reputation + Summa Level (or 5 in the case of tractatus) + Simple Die",
+   "Ease Factor: 15 (Tribunal), 18 (House), 24 (the Order)",
+   "Each season spent circulating a text provides a bonus of +1 to the next Circulation Total."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Argument Total",
+  "heading": "The Argument Total",
+  "line": 1055,
+  "endLine": 1063,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Once circulated, the author works out an Argument Total from text quality minus the prevailing wisdom level, which converts into a debate bonus or penalty at Tribunal.",
+  "quotes": [
+   "Argument Total: Text Quality \u2013 Prevailing Wisdom Level",
+   "the final Argument Total acts as experience points toward buying a debate bonus as per the Art progression table on"
+  ],
+  "related": [
+   "ArM5 p.31 Art progression",
+   "Houses of Hermes: Societates pp.92-93"
+  ]
+ },
+ {
+  "title": "Responding with Diatribe",
+  "heading": "Responding with Diatribe",
+  "line": 1065,
+  "endLine": 1073,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A magus who studies a polemic for a season can write and circulate a diatribe whose quality is deducted from the Argument Total, gaining an Opposed to Reputation.",
+  "quotes": [
+   "The diatribe quality is deducted from the current Argument Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Responding with Apologia",
+  "heading": "Responding with Apologia",
+  "line": 1075,
+  "endLine": 1083,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Apologia answer diatribes or the original polemic after a season of study and add their quality to the Argument Total; allies other than the original author can write them, and the writer gains a Supporter of Reputation.",
+  "quotes": [
+   "the magus spends a season studying the associated work before writing either summa or tractatus in defense of the original argument"
+  ],
+  "related": []
+ },
+ {
+  "title": "Taking the Debate to Tribunal",
+  "heading": "Taking the Debate to Tribunal",
+  "line": 1085,
+  "endLine": 1095,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how the cycle of diatribe and apologia ends in a Tribunal debate, and how bonuses and persuaded parties carry over after a win and are lost after a defeat.",
+  "quotes": [
+   "Where the debate is won, indicated by a positive Argument Strength at the end of the debate, any bonus from circulating the texts also carries over to subsequent Tribunals"
+  ],
+  "related": []
+ },
+ {
+  "title": "Correspondences and Other Texts",
+  "heading": "Correspondences and Other Texts",
+  "line": 1097,
+  "endLine": 1103,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Debate letters between quarreling magi give a small seasonal study benefit, can serve as supporting testimony in debate, and bundling extra new items with a polemic makes it easier to circulate.",
+  "quotes": [
+   "gains +1 on attempts to circulate the text"
+  ],
+  "related": [
+   "Covenants p.90 Correspondence",
+   "Houses of Hermes: Societates p.92"
+  ]
+ },
+ {
+  "title": "Winning the Argument Outline",
+  "heading": "Winning the Argument Outline",
+  "line": 1139,
+  "endLine": 1146,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Step-by-step summary of the polemic procedure from defining the argument and writing the text through circulation, apologia and diatribe to the final use of the Argument Total at Tribunal.",
+  "quotes": [
+   "At Tribunal the argument total is used as experience points to buy a bonus (if the total is positive) or a penalty (if the total is negative)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Polemic, Diatribe, and Apologia",
+  "heading": "Example Polemic, Diatribe, and Apologia",
+  "line": 1148,
+  "endLine": 1158,
+  "category": "order",
+  "topic": "Polemic texts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of writing, circulating and opposing a polemic, showing Quality, circulation totals and the resulting Argument Total and debate bonus.",
+  "quotes": [
+   "The polemic has a Level of 4 and a Quality of 11"
+  ],
+  "related": []
+ },
+ {
+  "title": "Charters",
+  "heading": "Charters",
+  "line": 1353,
+  "endLine": 1365,
+  "category": "order",
+  "topic": "Charters",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains what a charter is and how it is structured, and why magi who engage with the mundane world will increasingly record rights and obligations in charters with nobles.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Military Service and Wizard War",
+  "heading": "Military Service and Wizard War",
+  "line": 1367,
+  "endLine": 1377,
+  "category": "order",
+  "topic": "Wizard War",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Discusses how military service owed under charters can be met by sending men or paying scutage rather than fighting in person, and gives the core interpretation that Wizard War needs a month's notice, which each Tribunal may rule on.",
+  "quotes": [
+   "notice of a lunar month must be provided before hostilities commence"
+  ],
+  "related": [
+   "ArM5 Wizard War"
+  ]
+ },
+ {
+  "title": "Optional Rule: Charter Strength",
+  "heading": "Optional Rule: Charter Strength",
+  "line": 1379,
+  "endLine": 1397,
+  "category": "order",
+  "topic": "Charters",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule giving each side of a charter a strength score generated by notaries, which is then tested by a seasonal search for loopholes that justify breaking provisions.",
+  "quotes": [
+   "Charter Strength: Intelligence + Civil and Canon Law + Stress Die",
+   "There is a default of three botch dice for this roll"
+  ],
+  "related": []
+ },
+ {
+  "title": "Realm Aligned Spells and Other Techniques",
+  "heading": "Realm Aligned Spells and Other Techniques",
+  "line": 1429,
+  "endLine": 1439,
+  "category": "magic",
+  "topic": "Realm-aligned spells",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Breakthrough: realm-aligned spells",
+  "summary": "Discusses ways for magi to avoid the aura penalty of the Dominion, including realm-aligned spells as a Hermetic Breakthrough and the work of Conciatta and the learned magicians.",
+  "quotes": [
+   "this is a Minor Breakthrough"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.34",
+   "Legends of Hermes",
+   "Hedge Magic Revised Edition",
+   "Ancient Magic"
+  ]
+ },
+ {
+  "title": "Magical Displays Earn Reputation",
+  "heading": "Using Magic for Political Leverage",
+  "line": 1449,
+  "endLine": 1457,
+  "category": "order",
+  "topic": "Fourth Estate",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Order of Hermes as the Fourth Estate",
+  "summary": "After a magus has published a polemic supporting integration, giving a community or noble a sufficiently powerful device or spell earns him experience in a Proponent Reputation.",
+  "quotes": [
+   "earns the magus one experience point towards his Proponent of (ideal) Reputation"
+  ],
+  "related": []
+ },
+ {
+  "title": "Warping While Under Constant Magical Effects",
+  "heading": "Warping While Under Constant Magical Effects",
+  "line": 1463,
+  "endLine": 1485,
+  "category": "magic",
+  "topic": "Warping",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Constant enchantments on people or places",
+  "summary": "Tables showing how many Warping Points and what Warping Score and effects accumulate over the years for targets under constant enchantments that improve living conditions.",
+  "quotes": [
+   "The second table assumes a single level 40 enchantment producing five warping points per year."
+  ],
+  "related": [
+   "Realms of Power: Magic p.132"
+  ]
+ },
+ {
+  "title": "Appropriate Virtues and Flaws for Warped Buildings",
+  "heading": "Appropriate Virtues and Flaws",
+  "line": 1487,
+  "endLine": 1491,
+  "category": "magic",
+  "topic": "Warping",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Warped buildings or places",
+  "summary": "Suggests the kinds of Virtues, Flaws, magical Qualities and Personal Powers a building may gain when it becomes warped.",
+  "quotes": [
+   "a Personal Power (an effect of Personal Range OR constant duration of up to 25 levels)"
+  ],
+  "related": [
+   "Realms of Power: Magic chapter 2"
+  ]
+ },
+ {
+  "title": "Can Magi Really Heal Lepers?",
+  "heading": "Can Magi Really Heal Lepers?",
+  "line": 1503,
+  "endLine": 1507,
+  "category": "aging",
+  "topic": "Living conditions",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Leprosy in the saga",
+  "summary": "Distinguishes Hermetic leprosy from true leprosy (a Divine curse) and notes that magic can offset the disease's living-conditions penalty by improving a colony's conditions.",
+  "quotes": [
+   "imposes a \u20132 living conditions modifier"
+  ],
+  "related": []
+ },
+ {
+  "title": "Improving Living Conditions with Magic",
+  "heading": "Living Conditions",
+  "line": 1509,
+  "endLine": 1521,
+  "category": "aging",
+  "topic": "Living conditions",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Indirect magical improvement of living conditions for aging rolls, by long-term enchantments on the environment, at the cost of Warping for whatever is under the enchantments.",
+  "quotes": [
+   "For every 40 levels of spells or enchantments used to improve the target living conditions, residents gain a +1 living conditions modifier.",
+   "targets under two level 20 enchantments gain two Warping Points each year",
+   "Targets under a single level 40 enchantment gain five Warping Points per year"
+  ],
+  "related": [
+   "Covenants pp.111, 121",
+   "ArM5 p.168 Warping"
+  ]
+ },
+ {
+  "title": "Longevity Rituals for Mundanes",
+  "heading": "Longevity Effects",
+  "line": 1523,
+  "endLine": 1533,
+  "category": "aging",
+  "topic": "Longevity rituals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Applies the Longevity Ritual rules to people without supernatural abilities, giving the requirements and costs, and lists the drawbacks of Warping, overstaying one's welcome and loss of fertility.",
+  "quotes": [
+   "the magus needs a Creo Corpus Lab Total of at least 30",
+   "the beneficiary of the Longevity Ritual gains one Warping Point per year"
+  ],
+  "related": [
+   "ArM5 p.101 Longevity Rituals"
+  ]
+ },
+ {
+  "title": "Researching Binding Magic as a Breakthrough",
+  "heading": "Binding Agreements",
+  "line": 1666,
+  "endLine": 1672,
+  "category": "magic",
+  "topic": "Hermetic Breakthroughs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Breakthrough research",
+  "summary": "Suggests that integrating faerie or hedge powers that enforce oaths could be a Minor or Major Hermetic Breakthrough, since Hermetic magic cannot directly enforce agreements.",
+  "quotes": [
+   "Researching or integrating a particular faerie power might be a Minor Breakthrough, while allowing freedom to vary the parameters and create similar spells may be a Major Breakthrough."
+  ],
+  "related": [
+   "Realms of Power: Faerie p.56",
+   "Hedge Magic Revised Edition p.63",
+   "Houses of Hermes: True Lineages p.26",
+   "Ancient Magic p.7"
+  ]
+ },
+ {
+  "title": "Construction: Earth Jacketed In Stone",
+  "heading": "Construction: Earth Jacketed In Stone",
+  "line": 1934,
+  "endLine": 1936,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Introduces the method of building an artificial island by casting Creo Terram rituals that make a thick stone wall jacketing an infill of earth.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Outer Wall Shapes",
+  "heading": "Outer Wall Shapes",
+  "line": 1938,
+  "endLine": 1944,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Describes the default design of the island's sea wall, how changing its height changes its diameter, and how a few extra spell levels greatly increase its area.",
+  "quotes": [
+   "an extra 5 spell levels increases the area incredibly"
+  ],
+  "related": []
+ },
+ {
+  "title": "Open Ended Cylinder",
+  "heading": "Open Ended Cylinder",
+  "line": 1946,
+  "endLine": 1954,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Gives the spell levels needed to create an open-ended cylindrical wall of a given diameter, and recommends treating a conical frustum as a cylinder for calculation.",
+  "quotes": [
+   "A level 30 spell creates a wall 30 paces high, 2 paces thick, and just over 3 miles in diameter."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tall Empty Cylinder",
+  "heading": "Tall Empty Cylinder",
+  "line": 1956,
+  "endLine": 1962,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Gives the spell levels for a much taller cylindrical wall suited to deeper water, with correspondingly smaller diameters.",
+  "quotes": [
+   "A level 30 spell creates a wall 240 paces high, two paces thick, and just over a third of a mile in diameter."
+  ],
+  "related": []
+ },
+ {
+  "title": "Simple Spells to Create Permanent Walls",
+  "heading": "Simple Spells to Create Permanent Walls",
+  "line": 1964,
+  "endLine": 2000,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "A set of ritual spells that create permanent stone walls of increasing volume, showing how size magnitudes scale and noting that rituals below a certain volume gain no advantage.",
+  "quotes": [
+   "which is a total of 100 cubic paces of stone",
+   "Due to the quirk of Hermetic magic that makes all Rituals fourth magnitude spells or greater"
+  ],
+  "related": [
+   "ArM5 p.153",
+   "ArM5 p.114"
+  ]
+ },
+ {
+  "title": "Open Ended Rectangular Prism",
+  "heading": "Open Ended Rectangular Prism",
+  "line": 2006,
+  "endLine": 2014,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Gives the spell levels for walls forming a rectangular island, noting that it suffers more erosion than a cylinder and that a pyramidal frustum is a better shape.",
+  "quotes": [
+   "A level 30 spell creates sufficient stone to make walls 30 paces high, 2 paces wide, and a top square with 4,166 paces (2.4 miles) per side."
+  ],
+  "related": []
+ },
+ {
+  "title": "Solid Stone Cylinder",
+  "heading": "Solid Stone Cylinder",
+  "line": 2016,
+  "endLine": 2022,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Gives the spell levels for a single monolithic stone cylinder that can be quarried into to create rooms.",
+  "quotes": [
+   "A level 30 spell creates a stone cylinder 30 paces high and 206 paces in diameter."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ablative Slope",
+  "heading": "Ablative Slope",
+  "line": 2024,
+  "endLine": 2028,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Explains how a slope of mud or sand at the base of the wall protects it from wave erosion and how its spell level compares with the wall's.",
+  "quotes": [
+   "the spell to create an ablative slope is three magnitudes lower than the spell that creates the wall"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ornamentation",
+  "heading": "Ornamentation",
+  "line": 2030,
+  "endLine": 2032,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Wall features can be added by raising the spell level of the initial spell, or retrofitted afterwards with Rego Terram or mundane craftsmen.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Maximum Magnitudes Due to Complexity",
+  "heading": "Maximum Magnitudes Due to Complexity",
+  "line": 2034,
+  "endLine": 2036,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Suggests the troupe cap the magnitudes added by complex features, after which the magus can shape his creation freely.",
+  "quotes": [
+   "after adding three magnitudes for complexity, the magus can manipulate his creation into any shape he wishes, without adding extra magnitudes"
+  ],
+  "related": []
+ },
+ {
+  "title": "Fortified Wall",
+  "heading": "Fortified Wall",
+  "line": 2038,
+  "endLine": 2048,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Lists fortress features for the sea wall and whether each adds a magnitude to the spell or merely uses stone: crenellations, fire step, height, machicolations and hoardings.",
+  "quotes": [
+   "Adding crenellations adds a magnitude."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sea Gates and Docks",
+  "heading": "Sea Gates and Docks",
+  "line": 2050,
+  "endLine": 2054,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "A sea gate and internal harbor wall add a single magnitude to the wall spell, with extra material needed for the harbor.",
+  "quotes": [
+   "it adds 1 magnitude because it has some metal parts, but requires no added material"
+  ],
+  "related": []
+ },
+ {
+  "title": "Statuary",
+  "heading": "Statuary",
+  "line": 2056,
+  "endLine": 2058,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Statues or reliefs on the wall cost nothing if they express the caster's sigil, otherwise they add a magnitude.",
+  "quotes": [
+   "If they are an artistic motif, they add a magnitude."
+  ],
+  "related": []
+ },
+ {
+  "title": "Base Metal Walls",
+  "heading": "Base Metals",
+  "line": 2102,
+  "endLine": 2112,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Walls of copper, bronze, brass or iron alloys cost extra magnitudes to create compared with stone, and the section gives example wall sizes by spell level.",
+  "quotes": [
+   "The base spell level is two magnitudes higher, while the base Individual of is 1/27th the volume."
+  ],
+  "related": []
+ },
+ {
+  "title": "Noble Metal Walls",
+  "heading": "Noble Metals",
+  "line": 2114,
+  "endLine": 2116,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Walls of silver or gold are possible with very high-level spells but are much more difficult than base metals and attract invaders.",
+  "quotes": [
+   "Walls made of valuable metals are three magnitudes more difficult to create than walls of base metals of equivalent size."
+  ],
+  "related": []
+ },
+ {
+  "title": "Unnatural Stones",
+  "heading": "Unnatural Stones",
+  "line": 2118,
+  "endLine": 2120,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Adding a Muto requisite lets the wall have unnatural properties, with further requisites needed for effects such as burning or self-healing.",
+  "quotes": [
+   "By adding a Muto requisite to the ritual used to create the wall, magi can create stone with unnatural properties."
+  ],
+  "related": []
+ },
+ {
+  "title": "Biological Substances",
+  "heading": "Biological Substances",
+  "line": 2122,
+  "endLine": 2124,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Walls of wood or bone are equally difficult to produce by volume, but vulnerable to predators and faerie influence, and human bone is as hard as base metal.",
+  "quotes": [
+   "When calculating volumes, stone, animal bone, and wood are equally difficult to produce."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dirt, With a Layer of Topsoil",
+  "heading": "Dirt, With a Layer of Topsoil",
+  "line": 2136,
+  "endLine": 2156,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Gives the soil volumes needed to fill islands of various sizes and the Creo Terram ritual levels that provide that volume.",
+  "quotes": [
+   "A level 35 spell provides up to 10 billion cubic paces of soil."
+  ],
+  "related": []
+ },
+ {
+  "title": "A Basic Quote (Island Cost)",
+  "heading": "A Basic Quote",
+  "line": 2158,
+  "endLine": 2162,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Worked example of the spells, vis and time needed to create a circular island of a given size with a standard wall and soil fill.",
+  "quotes": [
+   "that requires just two spells, a level 35 and a level 40, and 15 pawns of vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Clay Fill",
+  "heading": "Clay",
+  "line": 2164,
+  "endLine": 2168,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Clay fill is as easy to create as soil and is waterproof, so the soil calculations can be used for a topsoil-over-clay fill.",
+  "quotes": [
+   "Clay is as easy to create as soil."
+  ],
+  "related": []
+ },
+ {
+  "title": "Stone Fill",
+  "heading": "Stone",
+  "line": 2170,
+  "endLine": 2176,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Stone fill is harder to create than soil, and choosing a variety of stones adds a magnitude for complexity.",
+  "quotes": [
+   "Stone is three magnitudes more difficult to create than soil of the same volume."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rooms and Utility Spaces",
+  "heading": "Rooms and Utility Spaces",
+  "line": 2182,
+  "endLine": 2184,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Excavated or created underground rooms need extra magnitudes for elaborate design, using Conjuring the Mystic Tower as a reference.",
+  "quotes": [
+   "adds 3 magnitudes for elaborate design"
+  ],
+  "related": []
+ },
+ {
+  "title": "Road Works",
+  "heading": "Road works",
+  "line": 2190,
+  "endLine": 2204,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Explains why paved roads are the only worthwhile road to create magically and gives a ritual that makes road networks of a stated maximum length, with extra magnitudes for complex designs.",
+  "quotes": [
+   "the maximum length for this spell, which is 3.78 miles"
+  ],
+  "related": [
+   "ArM5 p.135 Bridge of Wood"
+  ]
+ },
+ {
+  "title": "Creating Houses and Other Buildings",
+  "heading": "Creating Houses and Other Buildings",
+  "line": 2206,
+  "endLine": 2244,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Ways of making housing on the island, including shell keeps and rituals that raise many identical cottages, with each added magnitude multiplying the number produced by ten.",
+  "quotes": [
+   "Every magnitude added to the spell multiplies the number of cottages produced by ten."
+  ],
+  "related": []
+ },
+ {
+  "title": "Water Works",
+  "heading": "Water Works",
+  "line": 2246,
+  "endLine": 2280,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Covers cisterns, canals and aqueducts on the island, with rituals that create stone-lined canals for local use and for seagoing vessels, scaled by spell level.",
+  "quotes": [
+   "A single horse can draw 30 tons of cargo on a barge"
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating Fields and Forests",
+  "heading": "Creating Fields and Forests",
+  "line": 2286,
+  "endLine": 2314,
+  "category": "magic",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Herbam rituals that create forests, acorns or grassland, where each added magnitude multiplies the quantity created by ten.",
+  "quotes": [
+   "Each added magnitude multiples this number of trees by 10."
+  ],
+  "related": []
+ },
+ {
+  "title": "How Many Peasants Are Needed?",
+  "heading": "How Many Peasants Are Needed?",
+  "line": 2316,
+  "endLine": 2324,
+  "category": "covenant",
+  "topic": "Island of the Magicians",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Gives manor size, income and peasant families per manor to estimate how many manors an island of a given size can support.",
+  "quotes": [
+   "A typical manor, for a landed knight, is 600 acres.",
+   "This provides 20 Mythic Pounds of income, before expenses, each year."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sources of Magic Auras",
+  "heading": "Auras",
+  "line": 2406,
+  "endLine": 2408,
+  "category": "realms",
+  "topic": "Auras on the artificial island",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Magic auras develop in four ways: through natural beauty, ancient structures, the residue of powerful rituals, and the habitation of magical creatures, which matters for an artificial island that starts without an aura.",
+  "quotes": [
+   "Magic auras develop in four main ways."
+  ],
+  "related": []
+ },
+ {
+  "title": "Story Seeds for the Residue of Great Magic (Moving an Aura)",
+  "heading": "Story Seeds for the Residue of Great Magic",
+  "line": 2389,
+  "endLine": 2398,
+  "category": "realms",
+  "topic": "Auras on the artificial island",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Moving a site of great works usually leaves its aura behind, because the spirit of place is tied to the location; overcoming this needs a Rego Vim effect or requisite, usually a ritual opposed by the Spirit of Place.",
+  "quotes": [
+   "the aura is usually left behind"
+  ],
+  "related": [
+   "Realms of Power: Magic p.106 Genius Loci"
+  ]
+ },
+ {
+  "title": "Natural Beauty (Aura Tether)",
+  "heading": "Natural Beauty",
+  "line": 2476,
+  "endLine": 2480,
+  "category": "realms",
+  "topic": "Auras on the artificial island",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Sites of great natural beauty can tether an aura; an uninhabited rock with an aura can be enclosed by the island, or a place of archetypal wind or wave action found nearby, giving only a weak tether.",
+  "quotes": [
+   "Sites of great natural beauty can provide the tether for an aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ancient Structures (Aura Tether)",
+  "heading": "Ancient Structures",
+  "line": 2482,
+  "endLine": 2484,
+  "category": "realms",
+  "topic": "Auras on the artificial island",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Structures slowly acquire magical tethers, and can be moved to the island while retaining some of their potency.",
+  "quotes": [
+   "each century adds 1 to the strength of the tether"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Residue of Great Magic (Aura Tether)",
+  "heading": "The Residue of Great Magic",
+  "line": 2486,
+  "endLine": 2488,
+  "category": "realms",
+  "topic": "Auras on the artificial island",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Rituals of sufficiently high level create magical tethers, but the rituals that build the wall and fill are normally too weak to do so unless the island is vast.",
+  "quotes": [
+   "Magical tethers are created by rituals of level 45 or higher."
+  ],
+  "related": [
+   "Realms of Power: Magic p.10"
+  ]
+ },
+ {
+  "title": "The Lair of Great Magical Creatures (Aura Tether)",
+  "heading": "The Lair of Great Magical Creatures",
+  "line": 2490,
+  "endLine": 2494,
+  "category": "realms",
+  "topic": "Auras on the artificial island",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga arc: Island of the Magicians",
+  "summary": "Places where potent spirits dwell eventually develop auras, but such creatures prefer to move into an existing aura, so this method works best after another method has made a weak aura.",
+  "quotes": [
+   "Places where potent spirits dwell eventually develop auras."
+  ],
+  "related": []
+ }
+]

@@ -1,0 +1,1220 @@
+[
+ {
+  "title": "Daimons and Aspects",
+  "heading": "Daimons and Aspects",
+  "line": 588,
+  "endLine": 594,
+  "category": "beings",
+  "topic": "Daimons and Aspects",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide running a Daimon antagonist",
+  "summary": "Explains how Magic Realm Daimons act in the world through Aspects: spirits with their own Might that serve as Arcane Connections to the Daimon, can be recreated when destroyed, and cannot be removed for good by Perdo Vim through an Aspect.",
+  "quotes": [
+   "Creating an Aspect does not cost the Daimon any Might points, and it can have any number of Aspects active at any one time.",
+   "An Aspect has its own Might Score, although its Might pool does not replenish"
+  ],
+  "related": [
+   "ArM5 Realms of Power: Magic p.102 Daimons"
+  ]
+ },
+ {
+  "title": "Criamon Player Characters in the End of Time",
+  "heading": "Criamon Player Characters",
+  "line": 636,
+  "endLine": 648,
+  "category": "setting",
+  "topic": "House Criamon plot",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon player characters in the End of Time chapter",
+  "summary": "Guidance for involving Criamon player magi in the doomsday plot: how much they learn as their understanding grows, what tasks the House asks of them (vis tribute, research resources, helping Andreva, preparing the move to Megiddo), and how secret to keep it.",
+  "quotes": [
+   "Those recently out of apprenticeship are considered young and unreliable"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Divine and Infernal Player Characters in the End of Time",
+  "heading": "Divine and Infernal Player Characters",
+  "line": 650,
+  "endLine": 654,
+  "category": "setting",
+  "topic": "House Criamon plot",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Characters with Divine or Infernal patrons",
+  "summary": "Notes that characters with Divine or Infernal patrons may receive visions or premonitions about each event, which should point toward House Criamon, even though the potential end of time is not God's will.",
+  "quotes": [
+   "Any Divine or Infernal visions or premonitions concerning story events should point the character squarely at House Criamon."
+  ],
+  "related": []
+ },
+ {
+  "title": "Everything is a Lie: What Criamon Know of the Plan",
+  "heading": "Everything is a Lie",
+  "line": 656,
+  "endLine": 669,
+  "category": "order",
+  "topic": "House Criamon plot",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon, Enigmatic Wisdom or House Criamon Lore",
+  "summary": "A table of how much a Criamon knows of the plot to end time according to their Enigmatic Wisdom or House Criamon Lore score, plus the note that once the breakthrough is made Criamon magi can be initiated into the new mysteries at Enigmatic Wisdom 7.",
+  "quotes": [
+   "magi of House Criamon are offered initiation into the secret new mysteries of the House when they reach Enigmatic Wisdom level 7",
+   "The world will escape all time with the coming conjunction on December 23rd in the year 1277."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Advancing the Antagonists (Aetheric Magic after the breakthrough)",
+  "heading": "Advancing the Antagonists",
+  "line": 726,
+  "endLine": 728,
+  "category": "mysteries",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide running the End of Time chapter",
+  "summary": "After the breakthrough the antagonist Andreva gains the Aetheric Magic Virtue and the Form of Aether, and the Virtue is then initiated out to Criamon magi and willing allies who gain the Form at a score of zero.",
+  "quotes": [
+   "This grants the new Form of Aether but at a score of zero."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cosmology of the Spheres",
+  "heading": "Cosmology",
+  "line": 1078,
+  "endLine": 1092,
+  "category": "magic",
+  "topic": "Cosmology and the Lunar Sphere",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the nested celestial spheres, which of them (the elemental ones) Hermetic magic can affect, and why the lunar sphere and the ethereal spheres beyond it, made of unchanging aether, lie outside Hermetic Magic Theory until a breakthrough.",
+  "quotes": [
+   "it *cannot* be affected by Hermetic magic"
+  ],
+  "related": [
+   "ArM5 Art & Academe cosmos discussion"
+  ]
+ },
+ {
+  "title": "Properties of the Axis Mundi",
+  "heading": "Properties of the Axis Mundi",
+  "line": 1104,
+  "endLine": 1112,
+  "category": "realms",
+  "topic": "Axis Mundi",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being at an Axis Mundi (End of Time chapter)",
+  "summary": "Rules for an Axis Mundi, a place where the ethereal spheres touch the world: bonuses to totals relating to the cosmological spheres, mutual Arcane Connections between all known Axes Mundi, and absence from the Magic, Divine and Infernal realms.",
+  "quotes": [
+   "Those within the Axis Mundi gain a bonus of +5 to any totals relating to the cosmological spheres."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Fallen Star: Searing Light of Heaven",
+  "heading": "The Fallen Star",
+  "line": 1509,
+  "endLine": 1519,
+  "category": "hazards",
+  "topic": "Aetheric hazards",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Encounter with the fallen star (End of Time chapter)",
+  "summary": "Statistics the blinding light of the fallen star as a Hermetic effect with no Penetration, with a Stamina stress roll to avoid blindness that magi can bolster with Ignem or Aether Form bonuses, and an explanation of the Spectacle Target.",
+  "quotes": [
+   "Those affected must make a Stamina stress roll against an Ease Factor of 9 to avoid blindness.",
+   "(Effect: Base 5, +2 Sun, +4 Spectacle; Modifications: +1 for 2/day, +3 triggered at sunrise/set)"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults (Spectacle Target)"
+  ]
+ },
+ {
+  "title": "Interrupting the Criamon Ritual",
+  "heading": "Interrupting the Ritual",
+  "line": 1705,
+  "endLine": 1721,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide running the End of Time chapter",
+  "summary": "Describes what happens if the characters violently interrupt House Criamon's great ritual: an immediate casting roll as if the ritual had finished, with a possible massive botch whose effects the storyguide decides.",
+  "quotes": [
+   "although this is with 30 botch dice due to the magnitude of the ritual and the pawns of vis being used"
+  ],
+  "related": []
+ },
+ {
+  "title": "The End of All Moments",
+  "heading": "The End of All Moments",
+  "line": 1752,
+  "endLine": 1758,
+  "category": "magic",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Criamon ritual has been completed",
+  "summary": "When the ritual completes, the spheres stop and all active Hermetic effects are canceled, as when crossing into the Magic Realm; spells relying on celestial-linked Durations fail again when recast, and the storyguide decides what time of day the region is stuck in.",
+  "quotes": [
+   "all active effects are suddenly canceled"
+  ],
+  "related": [
+   "Magic After the Apocalypse"
+  ]
+ },
+ {
+  "title": "Designing the Ritual: Hold the Sky in Thrall",
+  "heading": "Designing the Ritual",
+  "line": 1776,
+  "endLine": 1797,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Form of Aether (Aetheric Magic)",
+  "summary": "Gives the two Aether effects needed for the ending ritual: a sight effect to perceive aether and a unique ritual to stop its motion, with level builds and the Required Lab Total for different numbers of seasons.",
+  "quotes": [
+   "(Base 5, +3 Sight, +5 density, +20 size)",
+   "Required Lab Total**: 4 seasons (182), 8 seasons (164), 12 seasons (158), 16 seasons (153), 20 seasons (152)"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Falling of the World into Ruin (Moon Fragment Strikes)",
+  "heading": "The Falling of the World into Ruin",
+  "line": 1829,
+  "endLine": 1835,
+  "category": "hazards",
+  "topic": "Apocalypse of the Moon",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "A seasonal procedure for deciding when and how near moon fragments strike the player Tribunal, plus an Astronomy stress roll that lets a character foresee where the next strikes will land, with a penalty for each further season predicted.",
+  "quotes": [
+   "Characters may make an Intelligence + Artes Liberales (Astronomy) Stress Roll.",
+   "The target Ease Factor is 12 in order to determine which area will be affected in the next season."
+  ],
+  "related": []
+ },
+ {
+  "title": "Apocalypse Condition: Sickness",
+  "heading": "Sickness",
+  "line": 1845,
+  "endLine": 1849,
+  "category": "aging",
+  "topic": "Apocalypse of the Moon",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Smoke and ash cause non-natural sickness, raising the frequency of choleric diseases and imposing a modifier on aging rolls, even within covenants, which may in turn affect covenfolk loyalty.",
+  "quotes": [
+   "These conditions that promote sickness also impose a \u20132 aging roll modifier."
+  ],
+  "related": [
+   "ArM5 Art & Academe pp.47-51",
+   "ArM5 City & Guild pp.25-28",
+   "ArM5 Covenants p.38 covenant loyalty"
+  ]
+ },
+ {
+  "title": "Apocalypse Condition: Lunacy",
+  "heading": "Lunacy",
+  "line": 1851,
+  "endLine": 1855,
+  "category": "hazards",
+  "topic": "Apocalypse of the Moon",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Manifest aether drives people mad according to their dominant humor, with the afflicted gathering into roaming discordant pilgrimages.",
+  "quotes": [
+   "those with a dominant sanguine humor become hysterical"
+  ],
+  "related": []
+ },
+ {
+  "title": "Apocalypse Condition: Famine",
+  "heading": "Famine",
+  "line": 1857,
+  "endLine": 1863,
+  "category": "hazards",
+  "topic": "Apocalypse of the Moon",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Food becomes scarce, imposing a cumulative annual living standards modifier that covenants can offset with magical resources for their covenfolk and protected areas.",
+  "quotes": [
+   "Each year after the first, a cumulative \u20131 living standards modifier is imposed as food becomes more scarce and less nutritious."
+  ],
+  "related": []
+ },
+ {
+  "title": "Apocalypse Condition: Loss of Rule",
+  "heading": "Loss of Rule",
+  "line": 1865,
+  "endLine": 1869,
+  "category": "social",
+  "topic": "Apocalypse of the Moon",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Each season a mundane leader makes a Leadership stress roll to hold authority, with failures increasing a Poor Leader reputation and botches signalling an imminent uprising.",
+  "quotes": [
+   "must make a Communication or Presence + Leadership stress roll against an Ease Factor of 9"
+  ],
+  "related": []
+ },
+ {
+  "title": "Apocalypse Condition: Aetheric Storms",
+  "heading": "Aetheric Storms",
+  "line": 1871,
+  "endLine": 1877,
+  "category": "hazards",
+  "topic": "Apocalypse of the Moon",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Storms of aether sweep west across Europe, unbalancing humors and, at higher densities, causing damage per Diameter of exposure, with shelter giving protection.",
+  "quotes": [
+   "Those caught in such storms suffer +8 damage each diameter that they are exposed.",
+   "Aetheric earth moves at 100 paces per round"
+  ],
+  "related": []
+ },
+ {
+  "title": "Creatures of Lunar Fire",
+  "heading": "Creatures of Lunar Fire",
+  "line": 1913,
+  "endLine": 1919,
+  "category": "beings",
+  "topic": "Lunar creatures",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Lunar creatures after the apocalypse",
+  "summary": "Lunar-sphere creatures are built as ordinary Magical or mundane animals with the added Lunar Animal Quality.",
+  "quotes": [
+   "All creatures from the lunar sphere and beyond possess the Lunar Animal Quality, reflecting their strange physiognomy."
+  ],
+  "related": [
+   "ArM5 Realms of Power: Magic (Magical Animals)",
+   "Houses of Hermes: Mystery Cults (mundane animals)"
+  ]
+ },
+ {
+  "title": "New Animal Quality: Lunar",
+  "heading": "New Animal Quality: Lunar",
+  "line": 1927,
+  "endLine": 1933,
+  "category": "beings",
+  "topic": "Lunar creatures",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Lunar creatures",
+  "summary": "Defines the Lunar Animal Quality: invisible bodies that dissolve into aether, and attacks that sap the victim's highest Personality Trait which the creature can use like Ferocity.",
+  "quotes": [
+   "For each point of wound penalty inflicted, the victim loses one point off their highest Personality Trait."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lunar Poisoned Waters",
+  "heading": "The Poisoned Waters",
+  "line": 1921,
+  "endLine": 1925,
+  "category": "hazards",
+  "topic": "Lunar creatures",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Water contaminated by the lunar sphere",
+  "summary": "Rules for contaminated and aetheric lunar water, treated as a poison and as vitriol respectively, and how Perdo Aquam or Experimental Philosophy can purify it.",
+  "quotes": [
+   "Treat such water as a poison causing a Light Wound with an Ease Factor of 9 to resist if ingested.",
+   "(stress die + 9 in this case)"
+  ],
+  "related": [
+   "ArM5 pp.180-181 poison and vitriol",
+   "ArM5 Art & Academe p.67 Experimental Philosophy"
+  ]
+ },
+ {
+  "title": "Forests of the Dead (Lunar Plants)",
+  "heading": "Forests of the Dead",
+  "line": 1969,
+  "endLine": 1982,
+  "category": "beings",
+  "topic": "Lunar creatures",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Lunar plants after the apocalypse",
+  "summary": "How Lunar plants and their spores grow, hide and attack a host, with the Perception roll to notice a spore and the spore's attack, defense and Stealth bonuses.",
+  "quotes": [
+   "This gives the seed +6 to attack, +9 to defense, and +9 to Stealth rolls.",
+   "characters make a Perception + (Awareness or Hunt) roll against the seed's Dexterity + Stealth (+9, as above)"
+  ],
+  "related": [
+   "Houses of Hermes: Societates p.33 faint traces"
+  ]
+ },
+ {
+  "title": "The Lunar Infection (disease)",
+  "heading": "**The Lunar Infection**",
+  "line": 1983,
+  "endLine": 1988,
+  "category": "hazards",
+  "topic": "Lunar creatures",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Lunar spore infection",
+  "summary": "Disease statistics and symptoms for infection by a Lunar spore, which paralyses the body and gradually erodes the victim's most distinctive Personality Trait.",
+  "quotes": [
+   "Severity 18 Stable 6, Improve 18, Interval: Week"
+  ],
+  "related": [
+   "ArM5 Art & Academe pp.45-51 disease rules"
+  ]
+ },
+ {
+  "title": "Magic After the Apocalypse",
+  "heading": "Magic After the Apocalypse",
+  "line": 2064,
+  "endLine": 2068,
+  "category": "magic",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Introduces the new Lunar Realm and explains that, with the spheres stopped, spells and device effects with Sun, Moon or Year Duration fail unless altered by Flexible Formulaic Magic or similar.",
+  "quotes": [
+   "Spells and device effects relying on Sun, Moon, or Year Duration become obsolete and fail."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Lunar Aura",
+  "heading": "The Lunar Aura",
+  "line": 2070,
+  "endLine": 2076,
+  "category": "realms",
+  "topic": "Lunar Aura",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Lunar auras form wherever lunar material lies and scale with the amount of material; clearing material by the season weakens an aura but relocated material creates or strengthens another.",
+  "quotes": [
+   "Each season's work spent clearing an area of Lunar material reduces the aura strength by one."
+  ],
+  "related": [
+   "ArM5 Covenants p.49 Rego Craft Magic"
+  ]
+ },
+ {
+  "title": "Impact on Hermetic Magic",
+  "heading": "Impact on Hermetic Magic",
+  "line": 2078,
+  "endLine": 2080,
+  "category": "magic",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Summarises three ways Hermetic magic is hampered after the apocalypse: the hostile Lunar realm, failing celestial Durations, and the loss of the Aegis of the Hearth and Parma Magica.",
+  "quotes": [
+   "the Aegis of the Hearth ritual and even the Parma Magica, which are tied to the Year and Sun Durations, do not function"
+  ],
+  "related": []
+ },
+ {
+  "title": "Lunar Realm Interaction",
+  "heading": "Realm Interaction",
+  "line": 2082,
+  "endLine": 2086,
+  "category": "realms",
+  "topic": "Lunar Aura",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Within a Lunar aura",
+  "summary": "Explains that the Lunar realm imposes large penalties on Earthly powers and that lunar creatures' effects count as Lunar Powers for realm interaction, referring to the replacement Realm Interaction Table.",
+  "quotes": [
+   "any effects they use are considered a *Lunar Power* for the purposes of realm interaction"
+  ],
+  "related": []
+ },
+ {
+  "title": "Durations After the Apocalypse",
+  "heading": "Durations",
+  "line": 2088,
+  "endLine": 2090,
+  "category": "magic",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Notes that Hermetic Durations tied to the heavens no longer work and points to a table of which Durations still function and which are unusable, with replacements researchable.",
+  "quotes": [
+   "The nearby table shows which Durations still function correctly and those that are beyond use."
+  ],
+  "related": []
+ },
+ {
+  "title": "Parma Magica and the Aegis of the Hearth After the Apocalypse",
+  "heading": "Parma Magica and the Aegis of the Hearth",
+  "line": 2092,
+  "endLine": 2094,
+  "category": "magic",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "With the Sun and Year Durations disrupted, the Parma Magica and Aegis of the Hearth both fail until the Order researches new Durations and new versions of those rituals.",
+  "quotes": [
+   "The Sun and Year Durations are both disrupted once the lunar sphere falls."
+  ],
+  "related": []
+ },
+ {
+  "title": "New Lunar Durations",
+  "heading": "New Lunar Durations",
+  "line": 2096,
+  "endLine": 2110,
+  "category": "magic",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Replacement Durations that do not depend on the moving heavens (Burning of a Taper, At the Waking or the Sleeping, 300 Miles, The Weight of Years), each needing a Minor Breakthrough to formalize; improvising a non-standard Duration without the breakthrough raises its effective magnitude.",
+  "quotes": [
+   "each requiring a Minor Breakthrough and around 30 Breakthrough Points (or 150 levels of experimental effects)",
+   "but the Duration is considered one magnitude greater than it would have been had it been formalized through research."
+  ],
+  "related": [
+   "ArM5 p.114 non-standard Durations"
+  ]
+ },
+ {
+  "title": "Summary of Durations after the Apocalypse",
+  "heading": "Summary of Durations",
+  "line": 2112,
+  "endLine": 2126,
+  "category": "magic",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "A table showing which standard Durations still work (Momentary, Ring, Concentration) and which fail (Diameter, Sun, Moon, Year) after the heavens stop, with the alternative Duration for each; other traditions' Durations are judged against it.",
+  "quotes": [
+   "Durations granted by mystery cults or other traditions should be judged against this list."
+  ],
+  "related": []
+ },
+ {
+  "title": "New Realm Interaction Table (Lunar)",
+  "heading": "New Realm Interaction Table",
+  "line": 2128,
+  "endLine": 2134,
+  "category": "realms",
+  "topic": "Lunar Aura",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Lunar realm present in the saga",
+  "summary": "A replacement Realm Interaction table that adds a Lunar aura and Lunar power to the existing Magic, Divine, Faerie and Infernal columns and rows, giving the aura-based penalties and bonuses for each pairing.",
+  "quotes": [
+   "+ (1/2 aura)",
+   "- (3 x aura)"
+  ],
+  "related": [
+   "ArM5 Realm Interaction Table"
+  ]
+ },
+ {
+  "title": "Exotic Magic and Supernatural Beasts after the Apocalypse",
+  "heading": "Exotic Magic and Supernatural Beasts",
+  "line": 2136,
+  "endLine": 2140,
+  "category": "magic",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Non-Hermetic traditions suffer the same Duration limits as Hermetic magi, but the powers of supernatural beasts are unaffected even when they reference a disabled Duration.",
+  "quotes": [
+   "For the most part, the powers of supernatural beasts are unaffected by the Apocalypse."
+  ],
+  "related": []
+ },
+ {
+  "title": "Infernal and Divine Powers after the Apocalypse",
+  "heading": "Infernal and Divine Powers",
+  "line": 2142,
+  "endLine": 2144,
+  "category": "realms",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Infernal and Divine Powers keep working normally; only aura-interaction penalties apply to them.",
+  "quotes": [
+   "Infernal and Divine Powers are unaffected by the Apocalypse, with the exception of any aura-interaction penalties."
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation Script: Aetheric Magic",
+  "heading": "Initiation Script: Aetheric Magic",
+  "line": 2164,
+  "endLine": 2168,
+  "category": "mysteries",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Aetheric Magic",
+  "summary": "The initiation script for learning Aetheric Magic from House Criamon: a journey to Megiddo, paid tuition, a Criamon stigma that gives the Disfigured Flaw, and a vow to spread the knowledge.",
+  "quotes": [
+   "**Target Level**: 21",
+   "**Script Bonus**: +13"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults (initiation scripts)",
+   "The Mysteries: Revised Edition"
+  ]
+ },
+ {
+  "title": "Regiones and the Supernatural Realms as Refuge",
+  "heading": "Regiones and the Supernatural Realms",
+  "line": 2177,
+  "endLine": 2185,
+  "category": "realms",
+  "topic": "Magic After the Apocalypse",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "After the Criamon ritual succeeds",
+  "summary": "Magi can shelter from the apocalypse in deep regiones or by withdrawing into the Magic or Faerie Realms, where Hermetic magic works again, while the Divine and Infernal Realms offer no return.",
+  "quotes": [
+   "Magi who withdraw to the Magic Realm find that their command over Hermetic magic returns to them"
+  ],
+  "related": [
+   "ArM5 Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Touching the Sky: Breakthrough Points for Aetheric Research",
+  "heading": "Appendix: Touching the Sky",
+  "line": 2187,
+  "endLine": 2205,
+  "category": "magic",
+  "topic": "Hermetic Breakthroughs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Research towards a Hermetic Breakthrough",
+  "summary": "Summarises how breakthrough points are earned (experimenting on effects or studying a source of insight, one point per magnitude) and the point costs for breakthroughs such as Aetheric Magic, new Durations and new versions of the Parma Magica or Aegis of the Hearth.",
+  "quotes": [
+   "each magnitude of effect contributes one breakthrough point toward the specific breakthrough",
+   "Each of the new Durations represents a Minor Breakthrough requiring 30 breakthrough points, while a New Parma Magica or Aegis of the Hearth would take 60 points."
+  ],
+  "related": [
+   "ArM5 p.109 Extraordinary Results",
+   "Ancient Magic p.8-9",
+   "Houses of Hermes: True Lineages p.26"
+  ]
+ },
+ {
+  "title": "Hermetic Breakthrough: Aetheric Magic",
+  "heading": "Hermetic Breakthrough: Aetheric Magic",
+  "line": 2207,
+  "endLine": 2215,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Breakthrough: Aetheric Magic",
+  "summary": "The 100-point Hermetic Breakthrough that creates the Form of Aether: research must come from projects tied to each Technique, and completion grants the Aetheric Magic Major Hermetic Virtue with Aether bought from the converted experience points.",
+  "quotes": [
+   "a minimum of 20 points must be gained from projects associated with each of the Hermetic Techniques",
+   "the new Art of Aether at a starting score of 13 with a further nine experience points left over."
+  ],
+  "related": [
+   "Ancient Magic p.9"
+  ]
+ },
+ {
+  "title": "Aetheric Magic Virtue and the Form of Aether",
+  "heading": "Appendix: Aetheric Magic",
+  "line": 2217,
+  "endLine": 2221,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Aetheric Magic",
+  "summary": "The Aetheric Magic Major Hermetic Virtue grants the Form of Aether, which combines with every Technique like any other Form, with the usual rules for rituals.",
+  "quotes": [
+   "The Major Hermetic Virtue of Aetheric Magic grants knowledge of the new Hermetic Form of Aether."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aetheric Spells and Magic Resistance",
+  "heading": "New Spells",
+  "line": 2227,
+  "endLine": 2231,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Form of Aether",
+  "summary": "Spells that create aether must still penetrate Magic Resistance, but magi lacking the Form of Aether get no Form bonus to Magic Resistance or soak against aether; aether suits offense poorly and few attack spells exist.",
+  "quotes": [
+   "magi without knowledge of the Form of Aether do not receive any Form bonus either as part of their Magic Resistance or as a soak bonus to reduce any damage received."
+  ],
+  "related": []
+ },
+ {
+  "title": "Endurance of the Witch Moon (fallback Witch Moon rule)",
+  "heading": "Endurance of the Witch Moon",
+  "line": 2293,
+  "endLine": 2309,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Aetheric research project; Hedge Magic: Revised Edition optional",
+  "summary": "A research spell that forces a target to endure the Witch Moon, with a fallback procedure for troupes without the hedge magic rules: a fever, a month without the Gift, and a Stamina-based roll each month to end it, with failures adding Warping.",
+  "quotes": [
+   "To End Witch Moon: Stamina \u2013 Warping Score + stress die vs Ease Factor 6"
+  ],
+  "related": [
+   "Hedge Magic: Revised Edition p.42 Witch Moon",
+   "ArM5 p.157 The Enigma's Gift"
+  ]
+ },
+ {
+  "title": "Sample Aetheric Magic Projects",
+  "heading": "Sample Aetheric Magic Projects",
+  "line": 2275,
+  "endLine": 2410,
+  "category": "magic",
+  "topic": "Hermetic Breakthroughs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Research towards the Aetheric Magic breakthrough",
+  "summary": "A set of example research effects, grouped by Technique, that count toward the Aetheric Magic breakthrough, with the number of further breakthrough points each Technique still needs once the examples are completed.",
+  "quotes": [
+   "The examples below provide a total of 84 breakthrough points."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.26 experimentation",
+   "Ancient Magic p.8 insight"
+  ]
+ },
+ {
+  "title": "Arcane Knowledge: Aether Books and Lunar Lore",
+  "heading": "Arcane Knowledge",
+  "line": 2416,
+  "endLine": 2420,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Criamon aetheric library",
+  "summary": "The aetheric library's tractatus and summae can each be studied as a source of insight toward the Form of Aether breakthrough, and the new Lunar Lore Ability has no books and no knowledge of the Lunar realm until after the first fall.",
+  "quotes": [
+   "Each of these twelve volumes may be studied as a source of insight (as per the rules in *Ancient Magic*)"
+  ],
+  "related": [
+   "Ancient Magic (sources of insight)"
+  ]
+ },
+ {
+  "title": "The Form of Aether (Ae)",
+  "heading": "The Form of Aether (Ae)",
+  "line": 2422,
+  "endLine": 2437,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Aetheric Magic",
+  "summary": "Describes the new Form of Aether: the base Individual by density of aether, the east-to-west motion and speed of aether at each density, the associated Magic Realm Province, and the Form bonus for soaking aether damage and resisting its influence on the humors.",
+  "quotes": [
+   "**Form Bonus**: Soak against damage inflicted by aether, rolls to resist the influence of aether on the humors.",
+   "one pace per round for a density of metal, ten paces per round for stone, 100 paces for earth, 1,000 for water, 10,000 for fire, 100,000 for air, and 1,000,000 for intangible aether"
+  ],
+  "related": [
+   "ArM5 Realms of Power: Magic p.24 Provinces"
+  ]
+ },
+ {
+  "title": "Creo Aethera Guidelines",
+  "heading": "Creo Aethera Guidelines",
+  "line": 2439,
+  "endLine": 2453,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Form of Aether",
+  "summary": "Spell guidelines for creating aether at each density from intangible up to metal, with an extra magnitude for unusual or worked shapes.",
+  "quotes": [
+   "Creating that aether in some unusual or worked shape is one magnitude higher than the listed values."
+  ],
+  "related": []
+ },
+ {
+  "title": "Intellego Aethera Guidelines",
+  "heading": "Intellego Aethera Guidelines",
+  "line": 2454,
+  "endLine": 2466,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Form of Aether",
+  "summary": "Spell guidelines for sensing aether, whether free or within other material, perceiving its unnatural properties, and speaking with aetheric spirits, creatures and plants; they are unaffected by aether density.",
+  "quotes": [
+   "Intellego Aethera spells are not affected by the density of the aether."
+  ],
+  "related": []
+ },
+ {
+  "title": "Muto Aethera Guidelines",
+  "heading": "Muto Aethera Guidelines",
+  "line": 2467,
+  "endLine": 2479,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Form of Aether",
+  "summary": "Spell guidelines for giving aether new properties and sensory species, changing its speed, and transmuting it into elemental, living or intangible Forms, with extra magnitudes for denser aether.",
+  "quotes": [
+   "Add successive magnitudes for aether with densities of fire, air, water, earth, stone, and metal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Perdo Aethera Guidelines",
+  "heading": "Perdo Aethera Guidelines",
+  "line": 2481,
+  "endLine": 2491,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Form of Aether",
+  "summary": "Spell guidelines for destroying a property of aether, a quantity of free aether, or aether contained in other material, with extra magnitudes for denser aether.",
+  "quotes": [
+   "Perdo Aethera spells may be used to destroy an amount of aether."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rego Aethera Guidelines",
+  "heading": "Rego Aethera Guidelines",
+  "line": 2493,
+  "endLine": 2500,
+  "category": "magic",
+  "topic": "Aetheric Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Form of Aether",
+  "summary": "Spell guidelines for warding against aether, changing its density and moving it, with magnitude adjustments based on the highest density involved.",
+  "quotes": [
+   "Magnitude adjustments are required based on the highest density."
+  ],
+  "related": []
+ },
+ {
+  "title": "Seasons of Conflict: Pacing the Fimbulwinter Saga",
+  "heading": "Seasons of Conflict: Saga Pacing and Structure",
+  "line": 2599,
+  "endLine": 2607,
+  "category": "setting",
+  "topic": "Saga pacing",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide running the Fimbulwinter saga",
+  "summary": "Guidance on pacing the saga: a rough number of stories per antagonist for each stage, scripted optional hooks that proceed without the players, and letting the Muspelli succeed in their goals when the players pursue other plots.",
+  "quotes": [
+   "consider roughly two or three stories per Muspelli for each of the first two stages"
+  ],
+  "related": []
+ },
+ {
+  "title": "How did the Irminsul get There? (Irminsul Rules)",
+  "heading": "How did the Irminsul get There?",
+  "line": 2629,
+  "endLine": 2635,
+  "category": "realms",
+  "topic": "Irminsul",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fimbulwinter saga",
+  "summary": "Explains where Irminsul survive, that they can be moved and work in any aura, that they are Arcane Connections to the Aspects of Fimbulwinter but not to each other, and how the Muspelli and magi can locate them.",
+  "quotes": [
+   "Irminsul serve as Arcane Connections to the Aspects of Fimbulwinter, but not to each other."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Price of Ignorance (First Stage)",
+  "heading": "The Price of Ignorance",
+  "line": 2668,
+  "endLine": 2677,
+  "category": "setting",
+  "topic": "Saga pacing",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fimbulwinter saga, first stage",
+  "summary": "Consequences when the covenant ignores a Muspelli activity in the first stage: they gain an Arcane Connection and vis sample, materials for a talisman, and experience in Muspelli Lore.",
+  "quotes": [
+   "The Muspelli gains 5xp in Muspelli Lore, increasing this score for later use."
+  ],
+  "related": []
+ },
+ {
+  "title": "The End State (First Stage)",
+  "heading": "The End State",
+  "line": 2679,
+  "endLine": 2685,
+  "category": "setting",
+  "topic": "Saga pacing",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fimbulwinter saga, first stage",
+  "summary": "How the first stage should leave the covenant's knowledge of the Muspelli, and the experience the antagonists gain during seasons when they are not directly involved in stories.",
+  "quotes": [
+   "For every two seasons where the Muspelli are not directly involved in stories, the storyguide should provide them with 15 experience points to increase their abilities."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Alien Aura (Lunar Aura Effects)",
+  "heading": "The Alien Aura",
+  "line": 1483,
+  "endLine": 1487,
+  "category": "realms",
+  "topic": "Lunar Aura",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Lunar aura around fallen lunar material",
+  "summary": "A fallen star creates a Lunar aura that penalises casting totals, cannot be identified by Intellego Vim as any of the four known auras, stays when the object moves, and fades over a season once the Dominion reasserts itself.",
+  "quotes": [
+   "This Lunar Aura is of strength 3 and imposes a \u201315 penalty on casting totals generated within it."
+  ],
+  "related": []
+ },
+ {
+  "title": "What is Insight? (Muspelli sources of Insight)",
+  "heading": "What is Insight?",
+  "line": 2732,
+  "endLine": 2734,
+  "category": "magic",
+  "topic": "Hermetic Breakthroughs",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Original Research rules, or the storyguide's substitute",
+  "summary": "Explains that Insight comes from objects, texts or bodies that help a researcher towards a breakthrough, offers an experience-based substitute if those rules are not used, and notes that dead Muspelli stop being Arcane Connections to their patrons.",
+  "quotes": [
+   "Once dead, Muspelli are no longer Arcane Connections to their Jotun patrons."
+  ],
+  "related": [
+   "Ancient Magic (Original Research)",
+   "Houses of Hermes: True Lineages (Original Research)"
+  ]
+ },
+ {
+  "title": "When Do Other Muspelli Find Irminsul?",
+  "heading": "When Do Other Muspelli Find Irminsul?",
+  "line": 2774,
+  "endLine": 2778,
+  "category": "setting",
+  "topic": "Saga pacing",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fimbulwinter saga, second stage",
+  "summary": "A shortcut for resolving the offstage searches of the other Muspelli from the result of the player characters' encounter with the one near their covenant, and for deciding when the third stage can begin.",
+  "quotes": [
+   "then each other Muspelli has a 50% chance of securing his Irminsul."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Price of Ignorance (Second Stage)",
+  "heading": "The Price of Ignorance",
+  "line": 2790,
+  "endLine": 2792,
+  "category": "setting",
+  "topic": "Saga pacing",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fimbulwinter saga, second stage",
+  "summary": "If the covenant leaves the Muspelli alone, they find at least two Irminsul sites in the Tribunal and build further resources, a process expected to take around two years.",
+  "quotes": [
+   "This stage should probably take at least two years, with one year dedicated to finding Irminsul, and a second spent creating resources."
+  ],
+  "related": []
+ },
+ {
+  "title": "The End State (Second Stage)",
+  "heading": "The End State",
+  "line": 2794,
+  "endLine": 2800,
+  "category": "setting",
+  "topic": "Saga pacing",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fimbulwinter saga, second stage",
+  "summary": "What the covenant should know by the end of the second stage, the antagonists' experience gain during seasons off-screen, and how the Muspelli return to learn the summoning ritual and prepare to unleash the Aspects at a winter Solstice.",
+  "quotes": [
+   "For every two seasons where the Muspelli are not directly involved in stories, the storyguide should provide them with 15 experience points to increase their abilities."
+  ],
+  "related": []
+ },
+ {
+  "title": "Corrupting Auras (Trolldomur)",
+  "heading": "Corrupting Auras",
+  "line": 2870,
+  "endLine": 2872,
+  "category": "realms",
+  "topic": "Muspelli aura corruption",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Muspelli",
+  "summary": "Muspelli can destroy Faerie auras and convert Magic auras to Trolldomur-aligned ones by performing utiseta against an Ease Factor tied to the aura's strength; Divine auras are immune and Infernal ones nearly so.",
+  "quotes": [
+   "the Muspelli must enact utiseta with an Ease Factor equal to or greater than 5 times the Faerie Aura, or 10 times the Magic Aura"
+  ],
+  "related": [
+   "Rival Magic p.81"
+  ]
+ },
+ {
+  "title": "Death Which Does Not Die (Muspelli Walking Dead)",
+  "heading": "Death Which Does Not Die",
+  "line": 2910,
+  "endLine": 2914,
+  "category": "beings",
+  "topic": "Walking Dead",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Muspelli",
+  "summary": "How the Muspelli use animated corpses as tireless sentries and levies, noting that their usual Might means an Aegis of the Hearth keeps them out although the Parma gives no protection against their physical attacks, and that Walking Dead without Might exist only as part of an ongoing utiseta.",
+  "quotes": [
+   "Commonly, they possess a Might of 9, and so most covenants' *Aegis of the Hearth* keeps them outside."
+  ],
+  "related": [
+   "ArM5 Realms of Power: Magic p.98 Walking Dead"
+  ]
+ }
+]

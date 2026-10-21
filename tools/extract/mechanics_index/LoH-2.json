@@ -1,0 +1,508 @@
+[
+ {
+  "title": "Hermetic Viresculture (overview)",
+  "heading": "Viresculture",
+  "line": 3283,
+  "endLine": 3285,
+  "category": "magic",
+  "topic": "Hermetic Viresculture",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture (H\u00e9risson's Breakthrough)",
+  "summary": "Explains H\u00e9risson's breakthrough that lets magi grow self-replicating vis (Stirpes) rather than only harvest static vis (Grana); a Stirps must first be Vitalized and then Invigorated.",
+  "quotes": [
+   "Grana (singular Granum), which is ordinary, static vis; and Stirpes (singular Stirps), which is self-replicating vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Supernatural Ability: Hermetic Viresculture",
+  "heading": "New Supernatural Ability: Hermetic Viresculture",
+  "line": 3287,
+  "endLine": 3289,
+  "category": "magic",
+  "topic": "Hermetic Viresculture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture Ability (H\u00e9risson's Breakthrough)",
+  "summary": "Describes the Hermetic Viresculture Ability, which lets a character produce self-reproducing vis and cultivate vis as magical agriculture; it can be taught to magi and only works for those opened to the Hermetic Arts.",
+  "quotes": [
+   "Only those opened to the Hermetic Arts can make use of this Ability since it relies on Hermetic magic."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.29"
+  ]
+ },
+ {
+  "title": "The Stirps",
+  "heading": "The Stirps",
+  "line": 3291,
+  "endLine": 3293,
+  "category": "magic",
+  "topic": "Hermetic Viresculture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture Ability",
+  "summary": "Defines the Stirps, the first individual of a cultivar that holds usable vis and can reproduce; usually a living being, though even a small fire elemental can serve.",
+  "quotes": [
+   "This is the first individual that both contains usable vis and is capable of reproduction, and is the founder of a given cultivar"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vitalizing Vis",
+  "heading": "Vitalizing Vis",
+  "line": 3295,
+  "endLine": 3305,
+  "category": "lab",
+  "topic": "Hermetic Viresculture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture Ability",
+  "summary": "Laboratory activity, akin to creating an invested device, that turns a living magical creature or plant into a Stirps. Accumulate seasonal points against a target Level based on its Magic Might; it also lets vis be removed from a living donor without killing it.",
+  "quotes": [
+   "Vitalization Total: Intelligence + Creo + Vim + Hermetic Viresculture + Aura Modifier",
+   "Level of Effect: Magic Might",
+   "Vitalization costs one pawns of Vim vis per ten points of the Level of Effect (or fraction thereof)"
+  ],
+  "related": [
+   "ArM5 p.94 Transferring vis",
+   "Realms of Power: Magic p.62 Raven of Virtue"
+  ]
+ },
+ {
+  "title": "Stirpes from Lesser Enchantment Vis",
+  "heading": "Stirpes from Lesser Enchantment Vis",
+  "line": 3307,
+  "endLine": 3311,
+  "category": "lab",
+  "topic": "Hermetic Viresculture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture Ability",
+  "summary": "Lesser Enchantment Vis found in a self-reproducing living form can be Vitalized into a Stirps, using the level of its effect in place of Magic Might. Viresculture cannot create such vis, only let it propagate.",
+  "quotes": [
+   "instead of Magic Might, use the level of the effect possessed by the vis"
+  ],
+  "related": [
+   "Realms of Power: Magic p.119 Lesser Enchantment Vis",
+   "Realms of Power: Magic p.124 Enriched Things of Virtue"
+  ]
+ },
+ {
+  "title": "New Cultivars (sidebar)",
+  "heading": "New Cultivars",
+  "line": 3313,
+  "endLine": 3317,
+  "category": "magic",
+  "topic": "Hermetic Viresculture",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture Ability",
+  "summary": "Suggests further raw materials for Stirpes, such as gemstones that reproduce, elementals for the elemental Forms, and (impractically) Magic Humans.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: Magic p.83 Magic Humans"
+  ]
+ },
+ {
+  "title": "Lesser Enchantment Vis and Spell-Like Vis",
+  "heading": "Lesser Enchantment Vis and Spell-Like Vis",
+  "line": 3319,
+  "endLine": 3321,
+  "category": "magic",
+  "topic": "Lesser Enchantment Vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Reminder sidebar on two special kinds of vis: Lesser Enchantment Vis keeps a standing enchantment while unused, and Spell-Like Vis fires one spell (possibly a ritual) and is then expended.",
+  "quotes": [
+   "Lesser Enchantment Vis emulates a Lesser Enchantment, usually of level 30 or less.",
+   "Spell-Like Vis has a single use only, mimicking the effects of a spell of up to 60th level"
+  ],
+  "related": [
+   "Realms of Power: Magic pp.119-122"
+  ]
+ },
+ {
+  "title": "Invigorating a Stirps",
+  "heading": "Invigorating a Stirps",
+  "line": 3323,
+  "endLine": 3341,
+  "category": "lab",
+  "topic": "Hermetic Viresculture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture Ability",
+  "summary": "One-season laboratory activity that lets a Stirps produce vis-bearing offspring for a number of breeding seasons, with a set yield of vis pawns per litter or crop and a chance that a pawn is itself an uninvigorated Stirps.",
+  "quotes": [
+   "Invigoration Total: Intelligence + Creo + Form (Vim Requisite) + Hermetic Viresculture + Aura Modifier",
+   "Breeding Seasons: Invigoration Total / 10, rounded up",
+   "Number of Pawns of vis produced: (Magic Might/5) or (Level of Effect/5), rounded up"
+  ],
+  "related": [
+   "ArM5 p.94 Transferring vis"
+  ]
+ },
+ {
+  "title": "Growing and Harvesting Vis",
+  "heading": "Growing and Harvesting Vis",
+  "line": 3343,
+  "endLine": 3345,
+  "category": "lab",
+  "topic": "Hermetic Viresculture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture Ability",
+  "summary": "Describes harvesting pawns of vis from an Invigorated Stirps each breeding season, how its offspring are born Vitalized but uninvigorated, and how Stirps vis can be told apart with Intellego Vim.",
+  "quotes": [
+   "All Stirpes born to a Stirps are naturally Vitalized but uninvigorated."
+  ],
+  "related": []
+ },
+ {
+  "title": "Caring for Vis",
+  "heading": "Caring for Vis",
+  "line": 3347,
+  "endLine": 3379,
+  "category": "lab",
+  "topic": "Hermetic Viresculture",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture Ability",
+  "summary": "Upkeep rules for an Invigorated Stirps: it must be kept in a magical Aura, the magus can supervise only a limited number of Stirpes, neglect or too little labor cuts the yield, and each Stirps needs a set amount of Labor Points.",
+  "quotes": [
+   "A magus can only oversee the growth of a number of Stirpes (of any cultivar) equal to his Hermetic Viresculture Score.",
+   "It costs 12 Labor Points to care for each Stirps and its associated plants or animals.",
+   "Maximum Number of Stirpes fertile in a generation: Hermetic Viresculture"
+  ],
+  "related": []
+ },
+ {
+  "title": "Labor Points (sidebar)",
+  "heading": "Labor Points",
+  "line": 3355,
+  "endLine": 3359,
+  "category": "social",
+  "topic": "Labor Points",
+  "audience": [
+   "all",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines Labor Points as a measure of a worker's day-to-day output in seasons spent earning Exposure, how many are needed per year to keep a business or crop going, and how a foreman can pool workers' points.",
+  "quotes": [
+   "An individual must accumulate 36 Labor Points in a year to maintain his business or grow his crops.",
+   "he accumulates a number of Labor Points equal to three times his Communication + Profession Ability, or his Dexterity + Craft Ability"
+  ],
+  "related": [
+   "City & Guild pp.38-40"
+  ]
+ },
+ {
+  "title": "Weakening an Aura Through Hermetic Viresculture",
+  "heading": "Weakening an Aura Through Hermetic Viresculture",
+  "line": 3381,
+  "endLine": 3385,
+  "category": "realms",
+  "topic": "Aura Variation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Viresculture Ability",
+  "summary": "Optional interaction with Aura Variation: pawns harvested through Viresculture lower the Yearly Aura Modifier of the aura they grew in.",
+  "quotes": [
+   "Yearly Aura Modifier for Viresculture: \u2013 (total pawns / 5)"
+  ],
+  "related": [
+   "Realms of Power: Magic p.10 Aura Variation"
+  ]
+ },
+ {
+  "title": "Caerfloron's Magical Tradition (Homunculus Wizards)",
+  "heading": "Caerfloron's Magical Tradition",
+  "line": 3625,
+  "endLine": 3627,
+  "category": "traditions",
+  "topic": "Homunculus Wizards",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Homunculus Wizards",
+  "summary": "Describes the magi of Caerfloron as Homunculus Wizards whose magic comes from a manikin made of a Mandrake of Virtue, listing the Virtues and Flaws their tradition grants and the plant-like way they sustain themselves.",
+  "quotes": [
+   "Their magical tradition grants them the Greater Immunity to Deprivation and Faerie Magic Virtues, and the Homunculus Wizard Flaw."
+  ],
+  "related": [
+   "Realms of Power: Faerie ch.5"
+  ]
+ },
+ {
+  "title": "Warped Plants",
+  "heading": "Warped Plants",
+  "line": 3795,
+  "endLine": 3797,
+  "category": "beings",
+  "topic": "Warping of plants and animals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for Warping in plants: short-lived plants escape it, while older perennials and trees gain Minor Flaws (and Virtues) from warping, with common Flaw examples.",
+  "quotes": [
+   "Annual and biennial plants escape such effects by virtue of their short lifespans, but perennial plants that are five years or older possess a Minor Flaw from warping"
+  ],
+  "related": [
+   "ArM5 p.197 Warping",
+   "Realms of Power: Magic p.78 Warping of animals",
+   "Realms of Power: Magic pp.47-51"
+  ]
+ },
+ {
+  "title": "The Garden as a Source of Breakthrough",
+  "heading": "The Garden as a Source of Breakthrough",
+  "line": 4021,
+  "endLine": 4029,
+  "category": "lab",
+  "topic": "Insight and Breakthroughs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to H\u00e9risson's Garden",
+  "summary": "Explains how magi can recreate H\u00e9risson's Breakthroughs by studying his surviving inventions as Insight sources, using Hermetic Investigation in place of a Magic Theory roll and earning Breakthrough points by duplicating the effects; Stirpes count as level 15 enchantments.",
+  "quotes": [
+   "Each Stirps should be considered to be an enchantment of Level 15",
+   "earning Breakthrough points equal to the magnitude of the effect created"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.26 Original Research",
+   "Ancient Magic p.8 Insight",
+   "Hedge Magic p.14 Insight",
+   "ArM5 p.100 Investigation",
+   "ArM5 p.162 Gather the Essence of the Beast"
+  ]
+ },
+ {
+  "title": "The Garden as a Source of Study",
+  "heading": "The Garden as a Source of Study",
+  "line": 4031,
+  "endLine": 4035,
+  "category": "seasons",
+  "topic": "Study sources (realia)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to H\u00e9risson's Garden",
+  "summary": "Treats the garden's plants as realia for study in Herbam, and its Stirpes as realia of Hermetic Viresculture, each with a Source Quality and a limited number of uses.",
+  "quotes": [
+   "a magus generates a Source Quality of 6, and can study from the garden six times in total"
+  ],
+  "related": [
+   "Covenants p.102 Realia"
+  ]
+ },
+ {
+  "title": "The Garden as an Hermetic Laboratory",
+  "heading": "The Garden as an Hermetic Laboratory",
+  "line": 4037,
+  "endLine": 4071,
+  "category": "lab",
+  "topic": "Laboratory design",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to H\u00e9risson's Garden",
+  "summary": "Gives the garden's laboratory statistics (Virtues, Flaws, Characteristics, Specializations) and the rule that a season's equipment and ingredients are only available if a simple die roll comes in under the lab's Warping Characteristic.",
+  "quotes": [
+   "If it is under the Laboratory's Warping Characteristic, then the equipment and ingredients for that activity are available and the season can progress as planned"
+  ],
+  "related": [
+   "Covenants p.118 Taking Over a Laboratory"
+  ]
+ },
+ {
+  "title": "Laboratory Texts from the Garden (sidebar)",
+  "heading": "Laboratory Texts from the Garden",
+  "line": 4043,
+  "endLine": 4047,
+  "category": "lab",
+  "topic": "Insight and Breakthroughs",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to H\u00e9risson's Garden",
+  "summary": "Optional rule that H\u00e9risson's laboratory texts for his Original Research yield Breakthrough points when studied by recreating the experiment.",
+  "quotes": [
+   "Each of his Hermetic creations provides Breakthrough Points equal to the magnitude of the effect once it has been studied by recreating the experiment"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.29"
+  ]
+ },
+ {
+  "title": "Journeying Underwater",
+  "heading": "Journeying Underwater",
+  "line": 4368,
+  "endLine": 4372,
+  "category": "hazards",
+  "topic": "Underwater travel and combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covers the difficulties of moving, fighting, seeing, casting and descending underwater: slow swimming, weapons and trained groups that stop working, blurred vision, restricted spellcasting, and pressure that drains Fatigue levels with depth.",
+  "quotes": [
+   "Characters who know how to swim will travel by swimming at half the speed that a typical person walks.",
+   "After each 10 paces of descent, a character loses one-tenth of his current depth minus soak (extra soak from armor does not apply), in fatigue levels."
+  ],
+  "related": [
+   "ArM5 p.122 Lungs of the Fish",
+   "Magi of Hermes pp.70-78"
+  ]
+ },
+ {
+  "title": "Rego Vim Guidelines (activating enchanted devices)",
+  "heading": "Rego Vim Guidelines",
+  "line": 4511,
+  "endLine": 4513,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Rego Vim guideline letting a spell trigger an enchanted device that has a simple trigger, provided the caster knows the triggering action; linked and environmental triggers are excluded.",
+  "quotes": [
+   "Activate an enchanted device with a simple trigger (i.e., not a linked trigger or an environmental trigger, see "
+  ],
+  "related": [
+   "ArM5 p.99 Triggers"
+  ]
+ },
+ {
+  "title": "A Note on Warping by Enchanted Devices",
+  "heading": "A Note on Warping by Enchanted Devices",
+  "line": 4720,
+  "endLine": 4722,
+  "category": "lab",
+  "topic": "Warping from enchantments",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Clarifies that level modifications such as Penetration, uses per day and triggers are not counted when working out whether an enchanted effect warps its targets.",
+  "quotes": [
+   "Modifications to the level of an effect\u2014including Penetration, effect frequency, environmental trigger, linked trigger and effect use\u2014are not used to determine whether or not an effect causes warping to its targets through the power of the magical effect."
+  ],
+  "related": [
+   "ArM5 p.197 Warping"
+  ]
+ },
+ {
+  "title": "A Note on Boundary Effects",
+  "heading": "A Note on Boundary Effects",
+  "line": 5184,
+  "endLine": 5186,
+  "category": "magic",
+  "topic": "Boundary wards and Aegis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Points out that Boundary-range effects such as an Aegis of the Hearth or a ward cannot travel with a moving structure like a flying castle and are left behind.",
+  "quotes": [
+   "Boundary effects are not, by their nature, mobile."
+  ],
+  "related": [
+   "ArM5 Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "Sentinels and Justiciars (Herald of Imperative)",
+  "heading": "Herald of Imperative",
+  "line": 4501,
+  "endLine": 4509,
+  "category": "lab",
+  "topic": "Enchanted device design",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Coeris sentinel and justiciar design (Laboratory of Hermanus)",
+  "summary": "Describes a defensive device pattern in which sentinel items detect intruders with Intellego effects and fire a Herald of Imperative enchantment that activates justiciar items to trap them, all keyed to one pre-set triggering action.",
+  "quotes": [
+   "In the plans of Hermanus, a sentinel item's Intellego spell would detect an intruder and the item would activate the *Herald of Imperative* enchantment."
+  ],
+  "related": [
+   "ArM5 p.99 Triggers"
+  ]
+ }
+]

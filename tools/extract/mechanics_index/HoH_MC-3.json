@@ -1,0 +1,852 @@
+[
+ {
+  "title": "Verditius Apprenticeship and Gauntlet",
+  "heading": "Apprenticeship",
+  "line": 4170,
+  "endLine": 4180,
+  "category": "houses",
+  "topic": "House Verditius",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Verditius",
+  "summary": "How a Verditius apprentice is initiated into the Outer Mystery while the Arts are opened, what the master must know to do it, and how the apprentice's Gauntlet is a masterpiece enchanted item made in an extra season.",
+  "quotes": [
+   "Verditius magi must also have a score of 2 in Verditius Cult Lore.",
+   "The parens supplies the necessary vis, and gives the apprentice a season to work unaided in his laboratory."
+  ],
+  "related": [
+   "Verditius Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Forge-Companions and Venditores",
+  "heading": "Journeymen and Masters",
+  "line": 4192,
+  "endLine": 4200,
+  "category": "houses",
+  "topic": "House Verditius",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "Verditius ranks used in the Contest, plus the forge-companions who add to a magus's Lab Total when they share his Craft Ability and the venditores who sell his items to mundanes, and their murky legal status.",
+  "quotes": [
+   "each forge-companion may add +1 per 5 levels of Craft Ability score he possesses to the maga's Lab Total.",
+   "A Verditius magus may have a number of forge-companions equal to his Leadership score."
+  ],
+  "related": [
+   "Forge-Companion Virtue",
+   "Venditor Virtue"
+  ]
+ },
+ {
+  "title": "Verditius Prices for Enchantments",
+  "heading": "Prices for Enchantments",
+  "line": 4216,
+  "endLine": 4224,
+  "category": "houses",
+  "topic": "Selling enchanted items",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "The House's standard price for enchanted items sold to other magi (paid in vis) and to mundanes (paid in Mythic Pounds), and the social consequences of undercutting or overcharging.",
+  "quotes": [
+   "The standardized price of an item is twice the vis necessary to make it, in addition to the vis required for the project.",
+   "The Primus has decreed that 15 Mythic Pounds times the vis cost of an item is a suitable price."
+  ]
+ },
+ {
+  "title": "Verditius Vendettas",
+  "heading": "Vendettas",
+  "line": 4226,
+  "endLine": 4238,
+  "category": "houses",
+  "topic": "House Verditius",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "The non-lethal personal feuds between Verditius magi: how they start, what tactics are acceptable, the Reputation penalty for refusing one, and how the Primus ends escalating ones.",
+  "quotes": [
+   "any magus who refuses a vendetta gains a bad Reputation of Dishonorable 4 in the House"
+  ],
+  "related": [
+   "Vendetta Flaw",
+   "Hubris"
+  ]
+ },
+ {
+  "title": "Initiation into the Mysteries of Verditius",
+  "heading": "Initiation into the Mysteries of Verditius",
+  "line": 4260,
+  "endLine": 4270,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "How the general Mystery initiation rules are applied in House Verditius, including the Mystagogue's Initiation Total and the fact that the Outer Mystery needs no Verditius Cult Lore score.",
+  "quotes": [
+   "Initiation Total = Presence + Verditius Cult Lore + Script bonus",
+   "A Verditius Initiate does not need a score in Verditius Cult Lore to be initiated into the Outer Mystery of the House."
+  ],
+  "related": [
+   "The Mechanics of Initiation (Introduction)"
+  ]
+ },
+ {
+  "title": "Verditius Initiation Scripts",
+  "heading": "Verditius Initiation Scripts",
+  "line": 4272,
+  "endLine": 4286,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "The list of Script components specific to Verditius initiations (travel to a Forge, Quests, Ordeals, Sacrifices) and the bonus each one adds to the Initiation Total.",
+  "quotes": [
+   "+6 The Initiate must perform a unique Quest",
+   "+3 The Initiate Sacrifices a lesser enchanted item whose combined powers are of at least the fourth magnitude."
+  ],
+  "related": [
+   "Magic Items of Hephaestus"
+  ]
+ },
+ {
+  "title": "Verditius Cult Lore",
+  "heading": "New Ability: Verditius Cult Lore",
+  "line": 4288,
+  "endLine": 4294,
+  "category": "mysteries",
+  "topic": "Cult Lore Abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "Describes the Arcane Ability that holds the House's secrets, is raised like any Ability, and can be Trained as well as Taught by any member with a sufficient score.",
+  "quotes": [
+   "Training allows every Verditius magus who has at least a Verditius Cult Lore score of 2 to instruct the lower Initiates in the House's secrets"
+  ]
+ },
+ {
+  "title": "Outer Mystery of Verditius Magic",
+  "heading": "The Outer Mystery of Verditius Magic",
+  "line": 4316,
+  "endLine": 4320,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Verditius",
+  "summary": "The initiation that every Verditius apprentice undergoes at the Forges of Hephaestus, granting the Verditius Magic Virtue, with its Target Level, Mystagogue requirement and Script bonus.",
+  "quotes": [
+   "Mechanically, the Initiation Target Level is 15.",
+   "The Initiation Script has a bonus of +12"
+  ],
+  "related": [
+   "Verditius Magic Virtue"
+  ]
+ },
+ {
+  "title": "Initiating Hermetic Magi into Verditius",
+  "heading": "Initiating Hermetic Magi",
+  "line": 4322,
+  "endLine": 4343,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "The special ritual by which an already-Gauntleted magus of another House joins House Verditius: a probationary period, the Embrace of Boethius that forces reliance on casting tools, Warping, possible Twilight, and the traits and Virtue gained.",
+  "quotes": [
+   "He also develops the Personality Trait Proud 1",
+   "He receives the Minor Hermetic Virtue Verditius Magic and gains a Reputation, Convert 1, in the House"
+  ],
+  "related": [
+   "Embrace of Boethius",
+   "Spontaneous Casting Tools"
+  ]
+ },
+ {
+  "title": "Learning the Inner Mysteries of Verditius",
+  "heading": "Learning the Inner Mysteries",
+  "line": 4345,
+  "endLine": 4351,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "The Verditius Cult Lore scores a Mystagogue or Initiate needs at each stage (apprentice initiation, Minor Inner Mysteries, Major Inner Mysteries), and how self-initiation differs from learning from another member.",
+  "quotes": [
+   "A magus must increase his score to 2 before Initiating an apprentice whose Arts he wants to open at the same time.",
+   "He should have a Verditius Cult Lore score of 5 before he is Initiated into any of the Major Inner Mysteries."
+  ]
+ },
+ {
+  "title": "Hubris",
+  "heading": "Hubris",
+  "line": 4353,
+  "endLine": 4385,
+  "category": "mysteries",
+  "topic": "Hubris",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: first Verditius Inner Mystery",
+  "summary": "The Hubris Personality Trait gained with the first Inner Mystery: it grows with experience points from selling and winning, is added to certain Lab Totals, and can be resisted with opposed Personality Trait rolls, notably when refusing a vendetta.",
+  "quotes": [
+   "A Verditius magus can add his Hubris score to his Lab Totals for creating a talisman",
+   "you must make an opposed Personality Trait + stress die roll against an Ease Factor of your maga's Hubris score + her challenger's Hubris score"
+  ],
+  "related": [
+   "Vendettas",
+   "Increasing Hubris"
+  ]
+ },
+ {
+  "title": "Increasing Hubris",
+  "heading": "Increasing Hubris",
+  "line": 4363,
+  "endLine": 4378,
+  "category": "mysteries",
+  "topic": "Hubris",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: first Verditius Inner Mystery",
+  "summary": "A table of behaviors (selling items, winning the Contest, learning Inner Mysteries, vendettas) and the experience points each adds to the Hubris score.",
+  "quotes": [
+   "Winning the master category of the Contest. | 6 |",
+   "Selling an automaton. | 1/magnitude of Might |"
+  ],
+  "related": [
+   "Hubris"
+  ]
+ },
+ {
+  "title": "Verditius Ordeals",
+  "heading": "Ordeals",
+  "line": 4387,
+  "endLine": 4399,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "Sample Ordeals used to initiate Verditius Inner Mysteries (Sever the Ties That Bind, Self-Mutilation, Prone to Chance, Averse to Risk, Increased Hubris), each imposing a Flaw or personality change.",
+  "quotes": [
+   "Each Ordeal may only be used once by a single magus.",
+   "The first Ordeal, undertaken to learn the first Minor Inner Mystery, always grants the Minor Flaw Hubris."
+  ],
+  "related": [
+   "Confraternity Member Flaw"
+  ]
+ },
+ {
+  "title": "Verditius Confraternities",
+  "heading": "Confraternities",
+  "line": 4401,
+  "endLine": 4480,
+  "category": "mysteries",
+  "topic": "Verditius confraternities",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "Small sub-cults within the House that follow a set Mystery Path with a unique Inner Mystery; four examples (Roland, Balento, Irene the Younger, Himinis the Mad) give the path and a sample Initiation Script with Ease Factor and Script bonus.",
+  "quotes": [
+   "these subsets of magi only contain four to eight followers at any given time"
+  ],
+  "related": [
+   "Confraternity Member Flaw"
+  ]
+ },
+ {
+  "title": "Verditius Inner Mysteries Overview",
+  "heading": "House Verditius Inner Mysteries",
+  "line": 4481,
+  "endLine": 4483,
+  "category": "mysteries",
+  "topic": "Verditius Inner Mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "Introduces the four Minor and four Major Inner Mysteries, which may be learned in any order, and explains that each comes with a sample Initiation Script at a standard Target Level that can be lowered by an earlier Ordeal.",
+  "quotes": [
+   "There are four Minor and four Major Inner Mysteries of House Verditius."
+  ]
+ },
+ {
+  "title": "Enchant Casting Tools",
+  "heading": "Enchant Casting Tools (Minor House Mystery)",
+  "line": 4485,
+  "endLine": 4517,
+  "category": "lab",
+  "topic": "Casting tools",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Enchant Casting Tools (Verditius Minor Inner Mystery)",
+  "summary": "A lab activity letting a Verditius magus enchant his casting tools in one season to mirror a mastered spell and add casting bonuses; gives the special Lab Total, the list of extra effects with their level costs, and the vis cost.",
+  "quotes": [
+   "Technique + Form + Intelligence + Magic Theory + Aura modifier + Philosophiae + Hubris + Magnitude of Known Spell + Craft (if applicable)",
+   "one pawn of Techniqueor Form-specific vis per 10 levels of the final effect level total, rounded up."
+  ],
+  "related": [
+   "ArM5 p.101 similar spell bonus",
+   "Spontaneous Casting Tools Flaw",
+   "Bound Casting Tools Flaw"
+  ]
+ },
+ {
+  "title": "Items of Quality",
+  "heading": "Items of Quality (Minor House Mystery)",
+  "line": 4519,
+  "endLine": 4537,
+  "category": "lab",
+  "topic": "Items of Quality",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Items of Quality (Verditius Minor Inner Mystery)",
+  "summary": "How a Verditius magus draws out the latent Shape and Material bonus of an ordinary tool in one season for one pawn of Vim vis, giving a roll bonus capped by his Philosophiae; these are not true magic items for Magic Resistance or detection.",
+  "quotes": [
+   "Items of quality are easy to make, and any Verditius maga who knows this Mystery may successfully create one in a single season.",
+   "this bonus is limited by the magus's Philosophiae score at the time of creation",
+   "Regardless of the bonus these items provide, they have a Lab Total of 10 if investigated."
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material bonuses",
+   "Expanded Shape & Material Bonuses appendix"
+  ]
+ },
+ {
+  "title": "Reforging Enchanted Items",
+  "heading": "Reforging Enchanted Items (Minor House Mystery)",
+  "line": 4539,
+  "endLine": 4547,
+  "category": "lab",
+  "topic": "Reforging enchanted items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Reforging Enchanted Items (Verditius Minor Inner Mystery)",
+  "summary": "Overview of the Mystery that lets a magus repair, reforge or smelt enchanted items by rolling a Creo or Rego Vim Lab Total plus a stress die against the level of each power, one power at a time, over at least a season.",
+  "quotes": [
+   "Creo or Rego Vim Lab Total + stress die vs. level of effect of a power of an enchanted device"
+  ],
+  "related": [
+   "ArM5 p.100 investigating magic items"
+  ]
+ },
+ {
+  "title": "Repairing Enchanted Items",
+  "heading": "Repairing Enchanted Items",
+  "line": 4549,
+  "endLine": 4559,
+  "category": "lab",
+  "topic": "Reforging enchanted items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Reforging Enchanted Items (Verditius Minor Inner Mystery)",
+  "summary": "Procedure for mending a broken enchanted item: a physical repair roll, then an Intellego Vim investigation of each power, then a Creo Vim roll to rebind each power, with Warping on botches.",
+  "quotes": [
+   "You make a Dexterity + Craft stress roll against an Ease Factor of 9.",
+   "If a Verditius magus is accurately told the properties of an item, you may add +20 to your investigation rolls."
+  ]
+ },
+ {
+  "title": "Reforging Enchanted Devices",
+  "heading": "Reforging Enchanted Devices",
+  "line": 4561,
+  "endLine": 4575,
+  "category": "lab",
+  "topic": "Reforging enchanted items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Reforging Enchanted Items (Verditius Minor Inner Mystery)",
+  "summary": "How to re-craft a finished or merely opened device so it can hold extra vis beyond its normal limit, with the cost in vis, the penalty that raises later effect levels, and the results of failure and botches.",
+  "quotes": [
+   "The reforged item can hold a number of pawns of additional vis equal to his score in Philosophiae at the time of the reforging.",
+   "The final instilled levels of effect of each of the reforged device's powers are increased by five times his Philosophiae score"
+  ],
+  "related": [
+   "ArM5 p.97 Material and Size table"
+  ]
+ },
+ {
+  "title": "Smelting Enchanted Devices",
+  "heading": "Smelting Enchanted Devices",
+  "line": 4577,
+  "endLine": 4583,
+  "category": "lab",
+  "topic": "Reforging enchanted items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Reforging Enchanted Items (Verditius Minor Inner Mystery)",
+  "summary": "A season-long procedure that destroys an enchanted device to recover some of the vis used to make it, limited by Magic Theory and, with Elder Runes, Philosophiae, and with some vis always lost.",
+  "quotes": [
+   "One pawn in ten is always lost, evaporating away during the smelting process.",
+   "either by his Magic Theory times two or, if he knows the Inner Mystery Verditius Elder Runes, by his Magic Theory times Philosophiae"
+  ]
+ },
+ {
+  "title": "Verditius Elder Runes",
+  "heading": "Verditius Elder Runes (Minor House Mystery)",
+  "line": 4593,
+  "endLine": 4646,
+  "category": "lab",
+  "topic": "Verditius Elder Runes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Verditius Elder Runes (Verditius Minor Inner Mystery)",
+  "summary": "Elder runes (a table linking each rune to an Art and a tree) that can be inscribed on an item to double an Art for enchanting at the cost of a higher effect level and vis, with a bonus for matching wood and a higher seasonal vis limit.",
+  "quotes": [
+   "Each rune adds five to the final level of effect of the power being instilled in the device",
+   "each inscribed rune allows the magus to double the Art that the rune represents, exactly like a magical focus",
+   "It costs a pawn of Art-specific vis to inscribe each elder rune."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.26 (Minor Breakthroughs)"
+  ]
+ },
+ {
+  "title": "Automata",
+  "heading": "Automata (Major House Mystery)",
+  "line": 4648,
+  "endLine": 4656,
+  "category": "mysteries",
+  "topic": "Automata",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Automata (Verditius Major Inner Mystery)",
+  "summary": "Introduces the Major Mystery that grants the Craft Automata Ability and the three stages of building an automaton (body, spirit, mind); other Hermetic magi can learn it as a Supernatural Ability.",
+  "quotes": [
+   "Knowing this Mystery grants the Major Hermetic Virtue Craft Automata, an Ability with an initial score of 1."
+  ],
+  "related": [
+   "Craft Automata Virtue",
+   "ArM5 p.166 Study Totals for Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Creating an Automaton",
+  "heading": "Creating an Automaton",
+  "line": 4658,
+  "endLine": 4671,
+  "category": "lab",
+  "topic": "Automata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Automata (Verditius Major Inner Mystery)",
+  "summary": "Stage one of automaton construction: choose a species and material to get its Magic Might, pay a vis-equivalent cost in Mythic Pounds, and make an Intelligence + Craft Automata roll with a growing bonus after each failed season.",
+  "quotes": [
+   "Magic MigHt: 10 + Size + Material Base Points",
+   "Intelligence + Craft Automata + stress die vs. Automaton's Magic Might"
+  ],
+  "related": [
+   "ArM5 p.97 Material and Size Table",
+   "ArM5 p.192 Size examples"
+  ]
+ },
+ {
+  "title": "Preparing an Automaton for Enchantment",
+  "heading": "Preparing an Automaton for Enchantment",
+  "line": 4672,
+  "endLine": 4681,
+  "category": "lab",
+  "topic": "Automata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Automata (Verditius Major Inner Mystery)",
+  "summary": "Stage two: opening the constructed automaton for enchantment by spending Vim vis equal to its Magic Might in a single season; the result is a greater enchanted item that cannot be a talisman.",
+  "quotes": [
+   "This takes a number of pawns of Vim vis equal to the automaton's Magic Might score."
+  ]
+ },
+ {
+  "title": "Enchanting an Automaton",
+  "heading": "Enchanting an Automaton",
+  "line": 4682,
+  "endLine": 4707,
+  "category": "lab",
+  "topic": "Automata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Automata (Verditius Major Inner Mystery)",
+  "summary": "Stage three: instilling spell-like and Ability-like powers into an automaton, with fixed Range and Target, no Concentration Duration, a 'Cease' command, a vis limit equal to Magic Might, and a list of common automaton powers.",
+  "quotes": [
+   "the maximum number of pawns an automaton can hold equals its Magic Might score",
+   "Each power instilled requires one pawn of vis for every ten levels of the power's final effect, rounded up.",
+   "This effect adds +3 to the final level of the effect."
+  ]
+ },
+ {
+  "title": "The Construction Combined (Tie the Threads That Bind)",
+  "heading": "The Construction Combined",
+  "line": 4708,
+  "endLine": 4719,
+  "category": "lab",
+  "topic": "Automata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Automata (Verditius Major Inner Mystery)",
+  "summary": "The final step in making an automaton: casting the ritual Rego Vim spell Tie the Threads that Bind, whose level must exceed the automaton's Magic Might by a set margin.",
+  "quotes": [
+   "This spell's level must equal or exceed the finished construct's Magic Might + 15."
+  ]
+ },
+ {
+  "title": "Automata in Play",
+  "heading": "Automata in Play",
+  "line": 4720,
+  "endLine": 4727,
+  "category": "beings",
+  "topic": "Automata",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Automata (Verditius Major Inner Mystery)",
+  "summary": "How finished automata act (simple die only, no great successes or botches), the yearly maintenance roll against Magic Might, penalties from lost Might, and spot or seasonal repairs.",
+  "quotes": [
+   "At the end of every year, roll a stress die and compare it to the automaton's Magic Might score.",
+   "Ease Factor of (6 + the magnitude of the automaton's Magic Might score)"
+  ],
+  "related": [
+   "Aging rolls"
+  ]
+ },
+ {
+  "title": "Bind Curse",
+  "heading": "Bind Curse (Major House Mystery)",
+  "line": 4754,
+  "endLine": 4779,
+  "category": "lab",
+  "topic": "Bind Curse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Bind Curse (Verditius Major Inner Mystery)",
+  "summary": "How a magus binds Minor or Major Curses (Flaw-like maledictions that last seasons or years) into enchanted items: base effect levels, Range, Target and Duration, triggers, Penetration and vis cost.",
+  "quotes": [
+   "The basic enchantment effect level of a Minor Curse is level 25, and the basic enchantment effect level of a Major Curse is 50.",
+   "Each conditional trigger adds +3 to the final level of effect of the Curse.",
+   "Minor Curses last a number of seasons equal to the item's creator's Magic Theory score at the time of enchantment."
+  ],
+  "related": [
+   "Bound Casting Tools Flaw"
+  ]
+ },
+ {
+  "title": "Minor Curses",
+  "heading": "Minor Curses",
+  "line": 4780,
+  "endLine": 4795,
+  "category": "lab",
+  "topic": "Bind Curse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Bind Curse (Verditius Major Inner Mystery)",
+  "summary": "A sample list of Minor Curses (weakened Characteristic, susceptibility to magic, twisted spine, warts, cataracts and more) with the game penalties each inflicts and the Arts used.",
+  "quotes": [
+   "Hermetic magi suffer a \u20133 to their total Magic Resistance and must roll an additional botch die when botching using Hermetic magic."
+  ]
+ },
+ {
+  "title": "Major Curses",
+  "heading": "Major curses",
+  "line": 4796,
+  "endLine": 4811,
+  "category": "lab",
+  "topic": "Bind Curse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Bind Curse (Verditius Major Inner Mystery)",
+  "summary": "A sample list of Major Curses (Aging, leprosy, burning flesh, brittle bones, demon's visage, lust for life, doubt) with the rolls and penalties each imposes.",
+  "quotes": [
+   "A broken bone is treated as a Heavy Wound and heals normally."
+  ]
+ },
+ {
+  "title": "Removing Curses",
+  "heading": "Removing Curses",
+  "line": 4812,
+  "endLine": 4821,
+  "category": "lab",
+  "topic": "Bind Curse",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Bind Curse (Verditius Major Inner Mystery)",
+  "summary": "The ways a Curse can be lifted: waiting it out, a Perdo Vim spell matching its level, destroying or smelting the bestowing item (Minor Curses), or a powerful Magical or Divine creature.",
+  "quotes": [
+   "The level of the Perdo Vim spell must match the final effect level of the Curse."
+  ]
+ },
+ {
+  "title": "Bind Magical Creatures",
+  "heading": "Bind Magical Creatures (Major House Mystery)",
+  "line": 4830,
+  "endLine": 4850,
+  "category": "lab",
+  "topic": "Bind Magical Creatures",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Bind Magical Creatures (Verditius Major Inner Mystery)",
+  "summary": "Lets a magus drain a magical creature's Magic Might as vis for a greater enchanted item, or permanently bind one of its powers to his Gift, with the Lab Total requirements, costs and permanent loss of Might; also covers Faerie Might and the risk of Warping.",
+  "quotes": [
+   "For every point of Lab Total over the creature's Might score, the magus gains one pawn of vis that is usable toward the enchanted device.",
+   "the magus's Rego Vim Lab Total plus Hubris score must be equal to or exceed twice the creature's Magic Might.",
+   "Its Might is reduced by 5 times the Might cost necessary for the creature to use the power."
+  ],
+  "related": [
+   "Mythic Blood Virtue"
+  ]
+ },
+ {
+  "title": "Item Attunement",
+  "heading": "Item Attunement (Major House Mystery)",
+  "line": 4860,
+  "endLine": 4870,
+  "category": "lab",
+  "topic": "Attuned items",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Item Attunement (Verditius Major Inner Mystery)",
+  "summary": "How a magus prepares a greater enchanted item like a talisman with a larger vis capacity, enchants it with his Hubris added to Lab Totals, then severs its link to him; also the Covet Device trait the item imposes on later owners.",
+  "quotes": [
+   "The item can hold pawns of vis equal to his highest Technique + highest Form + Philosophiae score.",
+   "Compare his regular Perdo Vim Lab Total + a stress die to 10 + the maximum number of pawns of vis the device holds.",
+   "The device has a Covet Device Personality Trait equal to his Hubris score at the time of creation."
+  ],
+  "related": [
+   "ArM5 p.97 Material and Size Table"
+  ]
+ },
+ {
+  "title": "Shape & Material Bonuses: Tools",
+  "heading": "Tools",
+  "line": 4963,
+  "endLine": 4992,
+  "category": "lab",
+  "topic": "Shape and Material bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An expanded table of tools and the Shape and Material bonus each gives when enchanted, for use in lab totals and items of quality.",
+  "quotes": [
+   "+3 reaping, +3 year-duration effects, +4 effects expressly causing death"
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material bonuses",
+   "Items of Quality"
+  ]
+ },
+ {
+  "title": "Shape & Material Bonuses: Trees",
+  "heading": "Trees",
+  "line": 4994,
+  "endLine": 5013,
+  "category": "lab",
+  "topic": "Shape and Material bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An expanded table of tree woods and the Shape and Material bonus each gives to specific kinds of effect.",
+  "quotes": [
+   "+6 strength, +6 Vim on hostile magic"
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material bonuses",
+   "Items of Quality"
+  ]
+ },
+ {
+  "title": "Shape & Material Bonuses: Trees under Special Circumstances",
+  "heading": "Trees under Special Circumstances",
+  "line": 5015,
+  "endLine": 5021,
+  "category": "lab",
+  "topic": "Shape and Material bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Bonuses for wood that is dead, struck by lightning or a twisted tree in a field, for use alongside the tree table.",
+  "quotes": [
+   "+3 affect living wood, +4 affect dead wood"
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material bonuses",
+   "Items of Quality"
+  ]
+ },
+ {
+  "title": "Shape & Material Bonuses: Minerals",
+  "heading": "Minerals",
+  "line": 5023,
+  "endLine": 5043,
+  "category": "lab",
+  "topic": "Shape and Material bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An expanded table of stones, metals and other minerals and the Shape and Material bonus each gives to specific kinds of effect.",
+  "quotes": [
+   "+5 dragons, +4 wealth, +4 language, +3 long life"
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material bonuses",
+   "Items of Quality"
+  ]
+ },
+ {
+  "title": "The Verditius Contest",
+  "heading": "The Contest",
+  "line": 4240,
+  "endLine": 4248,
+  "category": "houses",
+  "topic": "House Verditius",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius",
+  "summary": "The eighteen-year competition at Verdi in which Verditius magi enter their finest item in apprentice, journeyman and master categories; judging criteria, tie-breaking by the Primus and the order in which winners pick prizes.",
+  "quotes": [
+   "The master category winner selects first, choosing three items for himself, the journeyman winner chooses two, followed by the apprentice winner who chooses a single item."
+  ],
+  "related": [
+   "Increasing Hubris (Contest wins)",
+   "Journeymen and Masters"
+  ]
+ }
+]

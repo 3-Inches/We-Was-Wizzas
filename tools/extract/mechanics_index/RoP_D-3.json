@@ -1,0 +1,1189 @@
+[
+ {
+  "title": "Invoking Muslim Holy Forbears (Baraka)",
+  "heading": "Holy Forbears",
+  "line": 5212,
+  "endLine": 5222,
+  "category": "realms",
+  "topic": "Invoking holy figures",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim character in a Dominion setting",
+  "summary": "Muslims seek baraka from venerated figures by reusing the Christian saint-invocation mechanics, with changes: they must be at the figure's shrine, may always invoke the Qur'an, and never threaten forbears.",
+  "quotes": [
+   "Muslim characters may attempt to invoke *baraka* from holy forbears using the same mechanics as those given above for invoking Christian saints",
+   "Muslims may **always** invoke the power of the Qur'an, no matter where they are.",
+   "Muslims **never** threaten their holy forbears."
+  ],
+  "related": [
+   "Realms of Power: The Divine, Mythic Christianity, Saints"
+  ]
+ },
+ {
+  "title": "Muslim Invocation Modifiers Table",
+  "heading": "Muslim Invocation Modifiers Table",
+  "line": 5223,
+  "endLine": 5241,
+  "category": "realms",
+  "topic": "Invoking holy figures",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim character invoking baraka",
+  "summary": "Table of situational modifiers applied to a Muslim's attempt to invoke baraka from a holy forbear, covering Personality Trait, aura, feast days, relics, donations, peril and sins.",
+  "quotes": [
+   "Highest Muslim Personality Trait | + value of the Trait",
+   "No zakat paid within a year | \u20133"
+  ],
+  "related": []
+ },
+ {
+  "title": "Khawass al-Qur'an (Invoking the Qur'an)",
+  "heading": "Khawass al-Qur'an",
+  "line": 5247,
+  "endLine": 5255,
+  "category": "realms",
+  "topic": "Invoking holy figures",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim character",
+  "summary": "The Qur'an itself acts as a holy figure that can be invoked anywhere, using the same method as a forbear, to gain earthly benefits from recitation.",
+  "quotes": [
+   "In game terms, the Qur'an itself may be invoked in the same way as a forbear, in an attempt to gain earthly benefits."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shahada: Effect on Infernal Creatures",
+  "heading": "1. SHAHADA (SHA-HEH-DA, TESTIMONY)",
+  "line": 5373,
+  "endLine": 5377,
+  "category": "realms",
+  "topic": "Pillars of Islam",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim declaring the shahada",
+  "summary": "Speaking the Muslim testimony of faith aloud causes brief discomfort to Infernal creatures that hear it, and pain to a rare few that are especially vulnerable.",
+  "quotes": [
+   "Any creature belonging to the Infernal realm who hears someone say the *shahada* out loud suffers momentary discomfort."
+  ],
+  "related": []
+ },
+ {
+  "title": "Salat: Ritual Prayer Raises Dominion Aura",
+  "heading": "2. SALAT (SA-LAWT, PRAYER)",
+  "line": 5379,
+  "endLine": 5385,
+  "category": "realms",
+  "topic": "Pillars of Islam",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim ritual prayer in an Islamic Dominion aura",
+  "summary": "Ritual prayer five times daily temporarily strengthens an Islamic Dominion aura while it is taking place.",
+  "quotes": [
+   "Any Islamic Dominion aura in which ritual prayer (*salat,* not *du'a'*) is taking place has its score raised by one for the duration of the prayer."
+  ],
+  "related": []
+ },
+ {
+  "title": "Zakat: Alms-Tax and the Infernal",
+  "heading": "3. ZAKAT (ZA-KEHT, ALMS-TAX)",
+  "line": 5387,
+  "endLine": 5391,
+  "category": "realms",
+  "topic": "Pillars of Islam",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim giving zakat",
+  "summary": "Infernal creatures cannot handle goods or money given as zakat without suffering great pain, until another person has touched them.",
+  "quotes": [
+   "Creatures belonging to the Infernal realm may not handle money or goods if they are being physically given to them as payment of the *zakat,* and they suffer excruciating pain if they attempt to do so."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sawm: Ramadan Fast Raises Dominion Aura",
+  "heading": "4. SAWM (SOWM, FASTING)",
+  "line": 5393,
+  "endLine": 5397,
+  "category": "realms",
+  "topic": "Pillars of Islam",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim Dominion aura during Ramadan",
+  "summary": "Muslim Dominion auras are strengthened throughout the month of Ramadan, when Muslims fast.",
+  "quotes": [
+   "The score of Muslim Dominion Auras increases by one during the month of Ramadan."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Muslim Calendar and Holiday Auras",
+  "heading": "The Muslim Calendar",
+  "line": 5399,
+  "endLine": 5443,
+  "category": "realms",
+  "topic": "Pillars of Islam",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim Dominion aura during a Muslim holiday",
+  "summary": "Lists the months and holidays of the Muslim lunar calendar and gives the aura bonus for holidays, which stacks with the bonus from ritual prayer.",
+  "quotes": [
+   "The scores of Muslim Dominion auras are increased by one during Muslim holidays."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hajj: Pilgrimage Rewards",
+  "heading": "5. HAJJ (PILGRIMAGE)",
+  "line": 5445,
+  "endLine": 5449,
+  "category": "realms",
+  "topic": "Pillars of Islam",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim character who completes the hajj",
+  "summary": "A Muslim completing the pilgrimage to Mecca gains a Pious Personality Trait and Faith Points, which can be regained by repeating the hajj but never raised above a cap.",
+  "quotes": [
+   "A Muslim who has completed the *hajj* gains a Personality Trait of Pious +3",
+   "The Muslim also gains 3 Faith Points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mosque Dominion Auras",
+  "heading": "Muslim Holy Places",
+  "line": 5451,
+  "endLine": 5458,
+  "category": "realms",
+  "topic": "Pillars of Islam",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim Dominion setting",
+  "summary": "Gives typical Dominion aura strengths for ordinary and famous mosques and notes that prayer or the Ramadan fast raises them further.",
+  "quotes": [
+   "Most mosques have a Dominion aura of 4, while major, famous mosques will usually have auras of 5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mecca and Medina Auras",
+  "heading": "MECCA AND MEDINA",
+  "line": 5459,
+  "endLine": 5463,
+  "category": "setting",
+  "topic": "Muslim holy sites",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim Dominion setting",
+  "summary": "Dominion auras in Mecca and Medina are stronger than normal, with specific scores for the haram and the Mosque of the Prophet.",
+  "quotes": [
+   "Here the Dominion aura has a score of 10",
+   "This holy site has a Dominion aura of 9."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aqsa Mosque and Dome of the Rock Auras",
+  "heading": "THE AQSA MOSQUE AND THE DOME OF THE ROCK",
+  "line": 5465,
+  "endLine": 5467,
+  "category": "setting",
+  "topic": "Muslim holy sites",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim Dominion setting",
+  "summary": "Gives the mixed Dominion auras on Jerusalem's Temple Mount and notes Muslims may pray at the Dome of the Rock for a blessing of Muhammad.",
+  "quotes": [
+   "The Dome of the Rock has a Dominion aura of 10"
+  ],
+  "related": []
+ },
+ {
+  "title": "Muslim Birth Rituals and True Names",
+  "heading": "BIRTH",
+  "line": 5493,
+  "endLine": 5497,
+  "category": "realms",
+  "topic": "Muslim religious practice",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim character",
+  "summary": "Muslim birth rituals protect a child's name from being used as a True Name in supernatural activities, just as Christian baptism does.",
+  "quotes": [
+   "The rituals associated with the birth have the effect of rendering the child's name unusable as a True Name in supernatural activities"
+  ],
+  "related": [
+   "Realms of Power: The Divine, baptism and True Names"
+  ]
+ },
+ {
+  "title": "Muslim Funerals and Summoning Ghosts",
+  "heading": "DEATH AND INHERITANCE",
+  "line": 5513,
+  "endLine": 5519,
+  "category": "realms",
+  "topic": "Muslim religious practice",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Muslim ghosts",
+  "summary": "Properly buried Muslims wait in their graves until the Last Judgment, so only Muslim ghosts lacking a funeral can be magically summoned, and prophets and martyrs cannot be summoned at all.",
+  "quotes": [
+   "This means that only Muslim ghosts that have not been given a Muslim funeral may be summoned to the world of the living by magic."
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating Muslim Characters",
+  "heading": "Characters",
+  "line": 5687,
+  "endLine": 5695,
+  "category": "creation",
+  "topic": "Muslim characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Muslim character",
+  "summary": "Muslim characters are made as normal, but some Virtues and Flaws are forbidden or renamed, extra ones are available, and two new Academic Knowledges are added.",
+  "quotes": [
+   "Muslim characters, be they rural or urban in origin, are generated in the same way as other characters."
+  ],
+  "related": []
+ },
+ {
+  "title": "Strangers in Foreign Lands (Non-Muslims and Muslims abroad)",
+  "heading": "Strangers in Foreign Lands",
+  "line": 5697,
+  "endLine": 5709,
+  "category": "creation",
+  "topic": "Muslim characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character living across the Muslim/non-Muslim divide",
+  "summary": "Non-Muslims under Muslim rule generally must take a status Flaw and are barred from some classes, while Muslims living in non-Muslim lands must take an Outsider-type Flaw.",
+  "quotes": [
+   "Almost all non-Muslim characters living under Muslim rule must also take the Minor General Flaw *Dhimmi*",
+   "they should always take the Major Social Status Flaw Outsider"
+  ],
+  "related": []
+ },
+ {
+  "title": "Forbidden Virtues for Muslim Characters",
+  "heading": "Forbidden Virtues",
+  "line": 5711,
+  "endLine": 5721,
+  "category": "creation",
+  "topic": "Muslim characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Muslim character",
+  "summary": "Lists the Social Status Virtues that Muslim characters may not take because the institutions do not exist in Muslim lands.",
+  "quotes": [
+   "Magister in Artibus *(European-style universities do not exist in Muslim lands)*"
+  ],
+  "related": []
+ },
+ {
+  "title": "Forbidden Flaws for Muslim Characters",
+  "heading": "Forbidden Flaws",
+  "line": 5723,
+  "endLine": 5731,
+  "category": "creation",
+  "topic": "Muslim characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Muslim character",
+  "summary": "Lists the Flaws that are not available to Muslim characters because their situations do not arise in Muslim societies.",
+  "quotes": [
+   "Branded Criminal *(Criminals are not branded in Muslim societies)*"
+  ],
+  "related": []
+ },
+ {
+  "title": "Islamic Law and Theology: Islam (Abilities)",
+  "heading": "Abilities",
+  "line": 5826,
+  "endLine": 5838,
+  "category": "basics",
+  "topic": "New Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Muslim character with access to Academic Abilities",
+  "summary": "Two Academic Knowledges used by Muslim characters: Islamic Law, the Muslim counterpart of Civil & Canon Law, and Theology: Islam, the counterpart of Christian Theology, each with suggested specialties.",
+  "quotes": [
+   "This is the Muslim version of Civil & Canon Law.",
+   "This is the Islamic equivalent of Christian Theology."
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Tradition: Sufis",
+  "heading": "HOLY TRADITION: SUFIS",
+  "line": 5842,
+  "endLine": 5850,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Holy Sufis",
+  "summary": "Describes the Sufi holy tradition, its favored Abilities and its group dhikr and sama' meditation rituals, whose benefits are boosted by a shaykh's Ceremony Ability.",
+  "quotes": [
+   "**Favored Abilities:** Ceremony, Meditation, Transcendence, Understanding",
+   "their *shaykhs* will often possess the Ceremony Ability, which enables them to synchronize their efforts in order to reach higher degrees of understanding."
+  ],
+  "related": [
+   "Realms of Power: The Divine, Blessed by God, New Abilities (Ceremony)"
+  ]
+ },
+ {
+  "title": "Holy Societas: Zoroastrians",
+  "heading": "HOLY SOCIETAS: ZOROASTRIANS",
+  "line": 5852,
+  "endLine": 5868,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Holy Societas Zoroastrians",
+  "summary": "Describes the Zoroastrian holy societas of Magoi, including favored Abilities, taboos of purity, and its link to Holy Magic and Hermetic House Flambeau.",
+  "quotes": [
+   "**Favored Abilities:** Invocation, Holy Magic, Sense Holiness and Unholiness, Wonders",
+   "These spells require Holy Magic to cast and are only taught to members of the tradition."
+  ],
+  "related": [
+   "The Mysteries (Revised)"
+  ]
+ },
+ {
+  "title": "(Immortal)'s Blessing (Zoroastrian Ritual)",
+  "heading": "(IMMORTAL)'S BLESSING (CRVIGEN)",
+  "line": 5870,
+  "endLine": 5889,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Holy Societas Zoroastrians; Holy Magic",
+  "summary": "A non-Hermetic holy ritual giving a bonus to the next spell cast, with seven versions tied to an Immortal, a Personality trait and a Form; the bonus is capped by the caster's trait.",
+  "quotes": [
+   "Your score in this Personality trait (or a closely related trait), multiplied by ten, determines the maximum bonus granted by this ritual."
+  ],
+  "related": []
+ },
+ {
+  "title": "Saoshyant's Elixir (Zoroastrian Ritual)",
+  "heading": "SAOSHYANT'S ELIXIR (CRCO50)",
+  "line": 5891,
+  "endLine": 5905,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Holy Societas Zoroastrians; Holy Magic",
+  "summary": "A non-Hermetic holy ritual of eternal life: after an ordeal and sacrifice the caster stops aging rolls and cannot die while strictly following Zoroastrianism, at the cost of accumulating Warping points.",
+  "quotes": [
+   "Drink this, and for as long as you strictly follow Zoroastrianism, you do not have to make aging rolls and cannot die."
+  ],
+  "related": [
+   "ArM5 p.181 Injuries, Heat and Corrosion"
+  ]
+ },
+ {
+  "title": "Mythic Companion: Zahids",
+  "heading": "MYTHIC COMPANION: ZAHIDS",
+  "line": 5907,
+  "endLine": 5929,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Mythic Companion Virtue: Zahid",
+  "summary": "Character-creation template for ascetic Sufi zahids, listing required Virtues, Flaws, Social Status choices and minimum Ability scores.",
+  "quotes": [
+   "All *zahids* must begin with the free Virtue *Zahid*, a Mythic Companion Virtue.",
+   "*Zahid* characters must spend 90 experience points on the following Abilities."
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Influence (Rabbis and Chief Rabbis)",
+  "heading": "Holy Influence",
+  "line": 6413,
+  "endLine": 6415,
+  "category": "realms",
+  "topic": "Holy Influence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Rabbi, Chief Rabbi or Exilarch with spiritual authority",
+  "summary": "Explains which Jewish leaders hold spiritual authority and may exert Holy Influence, including tempering an aura, and over what area or community each can do so.",
+  "quotes": [
+   "Rabbis have spiritual authority over the auras centered upon and the community served by their synagogue or yeshivah, while Chief Rabbis may extend their influence across their city."
+  ],
+  "related": [
+   "Realms of Power: The Divine, Chapter Three (tempering auras)"
+  ]
+ },
+ {
+  "title": "Jewish Ritual Objects as Relics",
+  "heading": "Holy Books and Artifacts",
+  "line": 6469,
+  "endLine": 6487,
+  "category": "realms",
+  "topic": "Relics",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Jewish ritual object",
+  "summary": "Describes Jewish sacred objects and notes the circumstances in which tefillin and the shofar count as relics with a Faith Point, and when they have no power.",
+  "quotes": [
+   "When it is sounded on a holy day or as part of a Jewish exorcism rite, the shofar is treated as a relic with one Faith Point.",
+   "those once owned by one of the Tzadikim Nistarim (see later) act as a relic with one Faith Point."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cherem and Karet (Jewish Excommunication)",
+  "heading": "CHEREM AND KARET",
+  "line": 6726,
+  "endLine": 6732,
+  "category": "realms",
+  "topic": "Excommunication",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Jewish character or community",
+  "summary": "Describes the two Halakhic forms of excommunication, cherem (civic ostracism) and the more serious karet (spiritual death), including that karet victims are treated as excommunicates and how either can be lifted.",
+  "quotes": [
+   "Characters punished through karet are treated as excommunicates as described in Chapter Four.",
+   "The Talmud identifies 24 crimes that may be punished by cherem."
+  ],
+  "related": [
+   "Realms of Power: The Divine, Chapter Four (excommunication)"
+  ]
+ },
+ {
+  "title": "Jewish Proscriptions Against Magic",
+  "heading": "Proscriptions Against Magic",
+  "line": 6765,
+  "endLine": 6788,
+  "category": "setting",
+  "topic": "Jewish characters",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Jewish character",
+  "summary": "Lists the mitzvot that forbid Jews from many kinds of magic and notes how this conflicts with being a Gifted Hermetic magus, with Karaite practice offering an accommodation.",
+  "quotes": [
+   "It is difficult for a Gifted Jew to remain true to both his faith and his magical arts."
+  ],
+  "related": [
+   "Holy Societates: Karaites"
+  ]
+ },
+ {
+  "title": "The City of Luz (Celestial Regio)",
+  "heading": "THE CITY OF LUZ",
+  "line": 6838,
+  "endLine": 6846,
+  "category": "realms",
+  "topic": "Celestial regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Celestial regio",
+  "summary": "A Divine regio where those inside do not die; it explains how to summon a pathway to it, how recovery rolls and aging behave inside, and the penalty for leaving after a long stay.",
+  "quotes": [
+   "It takes a Purity (or Merkavah) + Intervention miraculous effect of base 35 to summon a pathway to the city gates",
+   "any rolls of 0 or less impose an Aging Point in any physical Characteristic"
+  ],
+  "related": [
+   "ArM5 p.179 recovery rolls"
+  ]
+ },
+ {
+  "title": "Virtues Forbidden to Jewish Characters",
+  "heading": "Virtues",
+  "line": 6852,
+  "endLine": 6855,
+  "category": "creation",
+  "topic": "Jewish characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Jewish character",
+  "summary": "Explains which Social Status and other Virtues Jewish characters cannot take, and that they must take Educated (Hebrew) to gain Academic Abilities.",
+  "quotes": [
+   "Both Knight and Landed Noble imply a feudal position within society, which Jews cannot occupy.",
+   "must take Educated (Hebrew) instead to gain access to Academic Abilities"
+  ],
+  "related": []
+ },
+ {
+  "title": "Outsider Flaw for Jewish Characters",
+  "heading": "Flaws",
+  "line": 6991,
+  "endLine": 6993,
+  "category": "creation",
+  "topic": "Jewish characters",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Jewish character",
+  "summary": "Non-magus Jewish characters typically take a form of the Outsider Flaw (Major for companions, new Minor for grogs), which is incompatible with the Hermetic Magus Social Status Virtue.",
+  "quotes": [
+   "Non-magi Jewish characters typically take a form of the Outsider Flaw"
+  ],
+  "related": []
+ },
+ {
+  "title": "Craft Amulets: Shape and Material Bonuses",
+  "heading": "Shape and Material Bonuses",
+  "line": 7050,
+  "endLine": 7126,
+  "category": "traditions",
+  "topic": "Craft Amulets",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Craft Amulets",
+  "summary": "Lists materials, shapes and colors that give bonuses to enchanting amulets, plus extra bonuses for particular combinations; the total is capped by the crafter's Craft Amulets score.",
+  "quotes": [
+   "The total bonus provided by shapes or materials is limited to the character's Craft Amulets Score.",
+   "**Forming the amulet from a coin** provides an additional +1 bonus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Craft Amulets (Ability and Amulet Creation)",
+  "heading": "CRAFT AMULETS",
+  "line": 7142,
+  "endLine": 7160,
+  "category": "traditions",
+  "topic": "Craft Amulets",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Craft Amulets",
+  "summary": "Explains how Minor and Major amulets are made with Touch range and Worn duration, how long they take, the totals used to craft them, and how penetration is handled.",
+  "quotes": [
+   "**CRAFT MINOR AMULET TOTAL:** Dexterity + Craft Amulets + Shape and Material Bonus + Dominion Aura Bonus",
+   "**CRAFT MAJOR AMULET TOTAL:** Dexterity + Craft Amulets + Holy Method + Holy Power + Shape and Material Bonus + Dominion Aura Bonus",
+   "The crafter's Craft Amulets Total must be at least double the target level of effect."
+  ],
+  "related": [
+   "City & Guild (damage levels)"
+  ]
+ },
+ {
+  "title": "Dream Interpretation (Ability)",
+  "heading": "DREAM INTERPRETATION",
+  "line": 7163,
+  "endLine": 7177,
+  "category": "traditions",
+  "topic": "Dream Interpretation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Dream Interpretation",
+  "summary": "Supernatural Ability used either as a Holy Method for activating powers or as direct divination from dreams, with a preparation ritual, hours of contemplation and an Intelligence roll against an Ease Factor based on an equivalent Hermetic spell.",
+  "quotes": [
+   "He may then make an Intelligence + Dream Interpretation roll.",
+   "The Ease Factor is the level of the equivalent Momentary non-ritual Intellego Hermetic spell."
+  ],
+  "related": [
+   "ArM5 p.184 penetration"
+  ]
+ },
+ {
+  "title": "Gematria (Ability)",
+  "heading": "GEMATRIA",
+  "line": 7179,
+  "endLine": 7185,
+  "category": "traditions",
+  "topic": "Kabbalistic Abilities",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Gematria",
+  "summary": "A Jewish form of the Meditation Holy Method: study a text, then use the lower of Gematria and the book's Quality in place of Meditation; it also enables Shinnui Shem.",
+  "quotes": [
+   "At the end of this time, he uses the lower of either his Gematria score or the book's Quality in place of his Meditation when activating holy powers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Judaic Lore (Ability)",
+  "heading": "JUDAIC LORE",
+  "line": 7187,
+  "endLine": 7191,
+  "category": "basics",
+  "topic": "New Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Jewish character",
+  "summary": "A Knowledge of Jewish cultural practice such as poetry, folklore and songs, which all Jewish characters have to some degree and may take from childhood experience.",
+  "quotes": [
+   "All Jewish characters are versed in Judaic Lore to some degree"
+  ],
+  "related": []
+ },
+ {
+  "title": "Kabbalah (Ability)",
+  "heading": "KABBALAH",
+  "line": 7193,
+  "endLine": 7197,
+  "category": "traditions",
+  "topic": "Kabbalistic Abilities",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Kabbalah",
+  "summary": "The Jewish form of the Invocation Holy Method, and the knowledge used to form and animate a golem.",
+  "quotes": [
+   "Kabbalah is the Jewish form of the Invocation Divine Method and can be used in the same way."
+  ],
+  "related": []
+ },
+ {
+  "title": "Merkavah (Ability)",
+  "heading": "MERKAVAH",
+  "line": 7203,
+  "endLine": 7207,
+  "category": "traditions",
+  "topic": "Kabbalistic Abilities",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Merkavah",
+  "summary": "The Jewish form of the Purity Holy Method, also the study of the names and orders of angels, demons and other beings, used to learn True Names.",
+  "quotes": [
+   "Merkavah is the Jewish form of the Purity Divine Method and can be used in the same way."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rabbinical Law (Ability)",
+  "heading": "RABBINICAL LAW\\*",
+  "line": 7209,
+  "endLine": 7213,
+  "category": "basics",
+  "topic": "New Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Jewish character with access to Academic Abilities",
+  "summary": "The Jewish version of Civil & Canon Law, with suggested specialties.",
+  "quotes": [
+   "This is the Jewish version of Civil & Canon Law."
+  ],
+  "related": []
+ },
+ {
+  "title": "Theology: Judaism (Ability)",
+  "heading": "THEOLOGY: JUDAISM\\*",
+  "line": 7215,
+  "endLine": 7219,
+  "category": "basics",
+  "topic": "New Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Jewish character with access to Academic Abilities",
+  "summary": "The Jewish equivalent of Christian Theology, with suggested specialties.",
+  "quotes": [
+   "This is the Jewish equivalent of Christian Theology."
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Tradition: Ba'al Shem",
+  "heading": "HOLY TRADITION: BA'AL SHEM",
+  "line": 7225,
+  "endLine": 7233,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Holy Ba'al Shem",
+  "summary": "The tradition of itinerant Jewish folk magicians who make amulets and give blessings, with its favored Abilities and note that Initiations grant extra Methods and Powers.",
+  "quotes": [
+   "**Favored Abilities:** Adjuration, Blessing, Craft Amulets, and Invocation"
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Societates: Karaites",
+  "heading": "HOLY SOCIETATES: KARAITES",
+  "line": 7235,
+  "endLine": 7245,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "all",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Holy Societates Karaites",
+  "summary": "Describes Karaite Gifted magi who may join the Order if their magic is Holy Magic; lists required Flaws and favored Abilities, and the restriction on taking apprentices.",
+  "quotes": [
+   "**Favored Abilities:** Craft Amulets, Holy Magic, Merkavah, Transcendence",
+   "Hermetic Karaites can only take Gifted apprentices from within their own religion."
+  ],
+  "related": [
+   "Karaite Magic Flaw",
+   "Holy Magic (Chapter Three)"
+  ]
+ },
+ {
+  "title": "Mythic Companion: Kabbalist",
+  "heading": "MYTHIC COMPANION: KABBALIST",
+  "line": 7247,
+  "endLine": 7280,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Mythic Companion Virtue: Kabbalist",
+  "summary": "Character-creation template for kabbalists: favored Abilities, required Virtues and Flaws, minimum Ability scores, and the Tree of Life table of Sefirot levels.",
+  "quotes": [
+   "**Favored Abilities:** Ceremony, Gematria, Kabbalah, Merkavah",
+   "The kabbalist must start with the following minimum Ability scores:"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition (Initiation)"
+  ]
+ },
+ {
+  "title": "The Ba'al Ov (Jewish Summoning Tradition)",
+  "heading": "THE BA'AL OV",
+  "line": 7286,
+  "endLine": 7290,
+  "category": "traditions",
+  "topic": "Jewish magical traditions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Ba'al Ov",
+  "summary": "A Jewish necromantic tradition that uses the Summoning, Commanding and Binding Goetic Arts, forcing spirits to manifest through objects such as corpses and skulls rather than simple circles.",
+  "quotes": [
+   "use the Summoning, Commanding, and Binding Goetic Arts as presented in *Realms of Power: The Infernal*, pages 114\u2013119."
+  ],
+  "related": [
+   "Realms of Power: The Infernal, pp.114-119"
+  ]
+ },
+ {
+  "title": "Jewish Grogs Must Take Outsider",
+  "heading": "Grog Templates",
+  "line": 7292,
+  "endLine": 7294,
+  "category": "creation",
+  "topic": "Jewish characters",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Jewish grog character",
+  "summary": "Jewish grogs must take the Minor Outsider Flaw and live in a Jewish community or covenant, since a Jew outside such places is too conspicuous to be a background character.",
+  "quotes": [
+   "Jewish grogs must take the Outsider Minor Flaw"
+  ],
+  "related": []
+ },
+ {
+  "title": "Jewish Companions Must Take Outsider",
+  "heading": "Companion Templates",
+  "line": 7370,
+  "endLine": 7372,
+  "category": "creation",
+  "topic": "Jewish characters",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Jewish companion character",
+  "summary": "Jewish companions must take the Major Outsider Flaw to represent the prejudice they face outside Jewish communities and the covenant.",
+  "quotes": [
+   "Jewish companions must take the Outsider Major Flaw"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gematria: Divination from Texts",
+  "heading": "Gematria",
+  "line": 7505,
+  "endLine": 7510,
+  "category": "traditions",
+  "topic": "Kabbalistic Abilities",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Gematria",
+  "summary": "Explains how Gematria derives hidden meaning from the Torah by numeric values of Hebrew letters, and the limits when applying it to other books.",
+  "quotes": [
+   "Using other books requires a stress die. Books on Arts or Accelerated Abilities cannot be used."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shinnui Shem (Changing a True Name to Delay Aging)",
+  "heading": "SHINNUI SHEM",
+  "line": 7511,
+  "endLine": 7517,
+  "category": "aging",
+  "topic": "Shinnui Shem",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Gematria",
+  "summary": "A kabbalist spends a season changing a True Name, severing arcane connections and gaining a bonus to future Aging Rolls that ends at the next Aging Point and does not stack with other supernatural bonuses.",
+  "quotes": [
+   "**BONUS TO AGING ROLL:** (Simple Die + Intelligence + Gematria + Understanding + Book Quality + Dominion Aura) / 5",
+   "A character may only be renamed once by Shinnui Shem"
+  ],
+  "related": []
+ },
+ {
+  "title": "Kabbalah and the Sefirot",
+  "heading": "Kabbalah",
+  "line": 7519,
+  "endLine": 7525,
+  "category": "traditions",
+  "topic": "Kabbalistic Abilities",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Kabbalah",
+  "summary": "Describes practical kabbalah and ties a kabbalist's Kabbalah score to the Sefirah of the Tree of Life he has come to understand.",
+  "quotes": [
+   "so a kabbalist with a score of 5 in Kabbalah has achieved the understanding of tiferet and those with a score of 10 or more achieve understanding of Keter."
+  ],
+  "related": [
+   "Tree of Life table under Mythic Companion: Kabbalist"
+  ]
+ },
+ {
+  "title": "Golems (Introduction)",
+  "heading": "Golems",
+  "line": 7527,
+  "endLine": 7529,
+  "category": "beings",
+  "topic": "Golems",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Kabbalah",
+  "summary": "Introduces the golem as the pinnacle of kabbalistic achievement: unliving clay brought to life by Divine energies and usually made to protect a community.",
+  "quotes": [
+   "While Kabbalah is used by Jewish practitioners in place of the Invocation Holy Method, the pinnacle of kabbalistic achievement is the creation of the golem"
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating Golems",
+  "heading": "CREATING GOLEMS",
+  "line": 7531,
+  "endLine": 7575,
+  "category": "beings",
+  "topic": "Golems",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Ability: Kabbalah; studied the Sefer Yetzirah",
+  "summary": "Creating a golem takes several seasons: shape clay, then accumulate points toward its Might with an Awaken Golem Total, with a Might cap, botch dice and a limit of one golem per protected community.",
+  "quotes": [
+   "**AWAKEN GOLEM TOTAL:** Intelligence + Kabbalah + Wonders + Ceremony Bonus + Dominion Aura",
+   "**AWAKEN GOLEM EASE FACTOR:** 30",
+   "**MIGHT CAP:** Kabbalah x 5"
+  ],
+  "related": [
+   "Sefer Yetzirah (Jewish Library)"
+  ]
+ },
+ {
+  "title": "Standard Golem Traits",
+  "heading": "Standard Golem Traits",
+  "line": 7549,
+  "endLine": 7571,
+  "category": "beings",
+  "topic": "Golems",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Golem created by a kabbalist",
+  "summary": "Starting attributes for a human-form golem played as a Companion: free Characteristics, fixed Virtues and Flaws, starting Abilities and Personality Traits, and a True Name that cannot change.",
+  "quotes": [
+   "All golems have the Unaging and Improved Characteristics Virtues.",
+   "Golems do have a True Name, which is determined during their creation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Empowering Golems",
+  "heading": "EMPOWERING GOLEMS",
+  "line": 7577,
+  "endLine": 7589,
+  "category": "beings",
+  "topic": "Golems",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Kabbalah",
+  "summary": "A kabbalist spends seasons designing Holy Powers for a golem and accumulates points with an Empower Golem Total; using powers costs Divine Might points.",
+  "quotes": [
+   "**EMPOWER GOLEM TOTAL:** Intelligence + Kabbalah + Wonders + Ceremony Bonus + Dominion Aura",
+   "A golem may have a number of magnitudes of powers equal to its Divine Might Score."
+  ],
+  "related": [
+   "ArM5 p.191 Penetration"
+  ]
+ },
+ {
+  "title": "Altering a Golem's Powers",
+  "heading": "ALTERING THE GOLEM'S POWERS",
+  "line": 7591,
+  "endLine": 7595,
+  "category": "beings",
+  "topic": "Golems",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Kabbalist who awakened or empowered the golem",
+  "summary": "A kabbalist can change a golem's powers, gaining a bonus to the Empower Golem Total by removing an existing power; a worked example follows.",
+  "quotes": [
+   "By removing an existing power, the kabbalist gains a bonus equal to that power's level to his Empower Golem Total."
+  ],
+  "related": []
+ },
+ {
+  "title": "Golem Madness",
+  "heading": "MADNESS",
+  "line": 7597,
+  "endLine": 7609,
+  "category": "beings",
+  "topic": "Golems",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Golem",
+  "summary": "After a tragedy of hubris, an order to break a mitzvah, or removal from its community, the storyguide rolls a stress die on a table that permanently shifts the golem's Personality Traits or drives it mad.",
+  "quotes": [
+   "the storyguide should roll a stress die, comparing the result to the table below."
+  ],
+  "related": []
+ },
+ {
+  "title": "Destroying a Golem",
+  "heading": "DESTROYING A GOLEM",
+  "line": 7611,
+  "endLine": 7615,
+  "category": "beings",
+  "topic": "Golems",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Golem",
+  "summary": "Gives the three ways to destroy a golem, and how a trusting golem can be commanded into torpor by a member of its community.",
+  "quotes": [
+   "There are three ways of destroying a golem."
+  ],
+  "related": []
+ },
+ {
+  "title": "Learning the True Names of Angels (Merkavah Total)",
+  "heading": "UNDERSTANDING THE TRUE NAMES OF ANGELS",
+  "line": 7621,
+  "endLine": 7631,
+  "category": "traditions",
+  "topic": "Merkavah",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Merkavah",
+  "summary": "A kabbalist fasts and prays over seasons, spending long-term fatigue and accumulating points against the target's Might until its True Name is revealed, giving a Holy Connection and a Penetration bonus.",
+  "quotes": [
+   "**MERKAVAH TOTAL:** Stamina + Merkavah + Adjuration + Ceremony Bonus + Dominion Aura",
+   "**EASE FACTOR:** Target's Might Score",
+   "provides a +5 bonus to his Penetration modifier when affecting the being"
+  ],
+  "related": []
+ },
+ {
+  "title": "Dangers of Studying Merkavah Alone",
+  "heading": "THE DANGERS OF STUDY",
+  "line": 7633,
+  "endLine": 7635,
+  "category": "traditions",
+  "topic": "Merkavah",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Merkavah",
+  "summary": "A student studying or using Merkavah alone must pass a Personality Stress Roll each season or become obsessed; a botch attracts Infernal attention.",
+  "quotes": [
+   "the character must make a Disciplined Personality Stress Roll against Ease Factor 9."
+  ],
+  "related": []
+ }
+]

@@ -1,0 +1,1144 @@
+[
+ {
+  "title": "Becoming a Townsman (Citizenship and Sympathetic Connection)",
+  "heading": "Becoming a Townsman",
+  "line": 482,
+  "endLine": 486,
+  "category": "setting",
+  "topic": "Town charters",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains what it takes for a character to become a burgess of a chartered town, and that citizenship creates a sympathetic connection with everyone living under the same charter that can be used to aid magical attacks.",
+  "quotes": [
+   "provide a +1 multiplier bonus to the Penetration score of a magical attack",
+   "live in the town continuously for a year and a day"
+  ],
+  "related": [
+   "ArM5 p.84 Penetration"
+  ]
+ },
+ {
+  "title": "Minor Covenant Boon: Chartered Town",
+  "heading": "Minor Covenant Boon: Chartered Town",
+  "line": 502,
+  "endLine": 507,
+  "category": "covenant",
+  "topic": "Covenant boons and hooks",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant creation: Minor Boon",
+  "summary": "A covenant boon for a covenant that is itself a chartered town, freeing it from feudal interference and taxes while burdening it with townsfolk who expect to exercise their charter rights.",
+  "quotes": [
+   "This boon is incompatible with the Urban Hook (ArM5, page 74), and cannot be Unknown."
+  ],
+  "related": [
+   "ArM5 p.74 Urban Hook"
+  ]
+ },
+ {
+  "title": "Major Covenant Hook: Charter Lord",
+  "heading": "Major Covenant Look: Charter Lord",
+  "line": 509,
+  "endLine": 512,
+  "category": "covenant",
+  "topic": "Covenant boons and hooks",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant creation: Major Hook; covenant must be a large land owner",
+  "summary": "A covenant hook for a covenant that has granted charters to towns on its lands, drawing the attention of neighbouring lords and the Quaesitores and risking petitions or revolts from its townsfolk.",
+  "quotes": [
+   "This hook may only be taken by a covenant that is a large land owner"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ecclesiastical Lords and Town Divine Aura",
+  "heading": "Ecclesiastical Lords",
+  "line": 520,
+  "endLine": 524,
+  "category": "realms",
+  "topic": "Town charters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how bishops and abbots grant charters and gives the Divine aura level of a town under an ecclesiastical charter, noting that ecclesiastics usually cannot become citizens.",
+  "quotes": [
+   "Towns with ecclesiastical charters have a Divine aura of 3 within the town-walls"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.10"
+  ]
+ },
+ {
+  "title": "Supernatural Charter Lords (Faerie and Demonic Charters)",
+  "heading": "Supernatural Lords",
+  "line": 526,
+  "endLine": 542,
+  "category": "realms",
+  "topic": "Town charters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covers towns chartered by faerie lords or by demons: the effect on the town's Divine aura, and the typical Infernal Might and services a charter demon offers townsfolk, with their modifiers.",
+  "quotes": [
+   "have a reduced Divine aura of 1 within the townwalls",
+   "A typical charter demon has an Infernal Might of 15 (Mentem)",
+   "Relief from disease: +2 Living Condition Modifier."
+  ],
+  "related": []
+ },
+ {
+  "title": "Town Officials as a Virtue",
+  "heading": "Town Officials",
+  "line": 579,
+  "endLine": 580,
+  "category": "social",
+  "topic": "Town charters",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Optional rule: Town Magistrate Social Status Virtue",
+  "summary": "Advises treating town office as part of a story, but offers a variant of the Town Magistrate Virtue for a general town official, with the Civil and Canon Law requirement and Academic Abilities benefit dropped.",
+  "quotes": [
+   "a Virtue modeled upon the Minor Social Status Virtue: Town Magistrate (see Crime) can be used"
+  ],
+  "related": [
+   "City & Guild Crime (Town Magistrate)"
+  ]
+ },
+ {
+  "title": "Town Defenses and Relic Processions",
+  "heading": "Defenses",
+  "line": 633,
+  "endLine": 641,
+  "category": "realms",
+  "topic": "Town charters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Relics held in local churches",
+  "summary": "Describes town walls and gates, and notes that a procession of saints' relics around a threatened town counts as ceremonial influence on a Divine aura.",
+  "quotes": [
+   "This counts as ceremonial influence tempering the aura to Loyal, Calm, or Brave"
+  ],
+  "related": [
+   "Realms of Power: The Divine pp.38-40"
+  ]
+ },
+ {
+  "title": "Town Occupations Table",
+  "heading": "Occupations",
+  "line": 756,
+  "endLine": 762,
+  "category": "setting",
+  "topic": "Town populace",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table giving the share of a town's population working in agriculture, craft, service and trade by town size.",
+  "quotes": [
+   "Large Town  | 10%         | 30%   | 30%     | 30%"
+  ],
+  "related": []
+ },
+ {
+  "title": "Disease in Towns (Humors and Exposure)",
+  "heading": "Disease",
+  "line": 797,
+  "endLine": 801,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the humoral theory of disease in Mythic Europe, how Medicine and Hermetic spells diagnose and treat it, and how a storyguide decides when town dwellers are tested for exposure or contract disease through an Aging Crisis.",
+  "quotes": [
+   "Diagnosing and prescribing the correct treatment for a disease is represented by the Medicine Ability (ArM5, pages 66, 179, 180).",
+   "Precisely how often a character must be tested for exposure to sources of humoral imbalance is at the discretion of the storyguide."
+  ],
+  "related": [
+   "ArM5 p.130 Intellego and Creo Corpus spells",
+   "ArM5 p.170 Crisis Roll"
+  ]
+ },
+ {
+  "title": "Leprosy",
+  "heading": "Leprosy",
+  "line": 806,
+  "endLine": 835,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Major General Flaw: Leprosy",
+  "summary": "Describes leprosy as an incurable Divine mark that cannot be cured except by Divine intervention, how communities treat lepers, and the game effects of the Leprosy Flaw on Living Condition, Aging Crises and reputation.",
+  "quotes": [
+   "Lepers gain the Major General Flaw Leprosy.",
+   "Due to its Divine origins, leprosy cannot be cured except by Divine intervention"
+  ],
+  "related": [
+   "ArM5 p.133 Curse of the Leprous Flesh",
+   "ArM5 p.170 Aging Roll"
+  ]
+ },
+ {
+  "title": "Living Condition Modifiers for Disease and Trade",
+  "heading": "Living Condition Modifier",
+  "line": 820,
+  "endLine": 832,
+  "category": "aging",
+  "topic": "Living Conditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Additional modifiers to the Living Condition modifier on the Aging Roll for lepers, those in a leper colony and those working in bad-air trades or mines, with a worked example.",
+  "quotes": [
+   "A Living Condition modifier is applied to the Aging Roll (ArM5, page 170)."
+  ],
+  "related": [
+   "ArM5 p.170 Aging Roll"
+  ]
+ },
+ {
+  "title": "The Ague",
+  "heading": "The Ague",
+  "line": 837,
+  "endLine": 841,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A fever disease tied to urban bad air; a failed Stamina roll means the character contracts it and takes a wound, with the fever type determining the severity.",
+  "quotes": [
+   "a Stamina roll against an Ease Factor of 3, 6, or 9 (depending upon the strength of the bad air source) is failed"
+  ],
+  "related": []
+ },
+ {
+  "title": "St. Anthony's Fire",
+  "heading": "St. Anthony's Fire",
+  "line": 843,
+  "endLine": 849,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A disease caused by a minor demon lodged in the victim's intestines; it is a magical attack resisted with Magic Resistance and inflicts an escalating wound each season until exorcised.",
+  "quotes": [
+   "a Stamina roll against an Ease Factor of 9 is failed",
+   "a Light Wound in the first season, escalating to a Fatal Wound in the fifth"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tarantism",
+  "heading": "Tarantism",
+  "line": 851,
+  "endLine": 857,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A disease from a faerie tarantula bite that forces seasonal bouts of dancing; resisted with Stamina rolls and cured by hearing the tarentella.",
+  "quotes": [
+   "unless a Stamina roll is made against an Ease Factor of 9",
+   "Once per season a Stamina Roll against an Ease Factor of 3 (or 6 in summer) must be made for each afflicted character."
+  ],
+  "related": []
+ },
+ {
+  "title": "Childbed Fever",
+  "heading": "Childbed Fever",
+  "line": 862,
+  "endLine": 866,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A demon-borne danger when a character gives birth; a Stamina roll avoids it, and failure causes a wound, worse with birthing complications. It is a magical attack resisted with Magic Resistance.",
+  "quotes": [
+   "When a character gives birth a Stamina roll against an Ease Factor of 6 is made."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Bloody Flux",
+  "heading": "The Bloody Flux",
+  "line": 868,
+  "endLine": 872,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A disease from cold, wet conditions common in towns and armies; a failed Stamina roll against an Ease Factor tied to the excess of phlegm causes a wound of matching severity.",
+  "quotes": [
+   "If a Stamina roll against an Ease Factor of 3, 6, or 9 (depending upon the extent of the excess phlegm) is failed"
+  ],
+  "related": []
+ },
+ {
+  "title": "Worms",
+  "heading": "Worms",
+  "line": 874,
+  "endLine": 878,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A disease of an excess of the blood humor; a failed Stamina roll means infection, followed by seasonal Stamina rolls that can inflict a wound.",
+  "quotes": [
+   "A character with an excess of blood contracts worms if a Stamina roll against an Ease Factor of 6 is failed."
+  ],
+  "related": []
+ },
+ {
+  "title": "Abscesses (Deprivation Wounds)",
+  "heading": "Abscesses",
+  "line": 880,
+  "endLine": 882,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Links the colour of pustules to the missing humor and to the severity of the Deprivation Wound that produced them during famine.",
+  "quotes": [
+   "Black pustules indicate a lack of yellow bile, and develop from Incapacitating Deprivation Wounds."
+  ],
+  "related": [
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Court Decisions (Quick Trial Roll)",
+  "heading": "Court Decisions",
+  "line": 903,
+  "endLine": 912,
+  "category": "social",
+  "topic": "Trials and courts",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A quick method to decide a trial: a social roll of Communication plus the relevant law Ability against an Ease Factor adjusted by the defendant's guilt, reputation and witnesses.",
+  "quotes": [
+   "make a Communication + Civil and Canon Law roll against an Ease Factor of 6, on behalf of the defendant or his proxy",
+   "Defendant actually is innocent | \u20133"
+  ],
+  "related": []
+ },
+ {
+  "title": "Trial by Ordeal",
+  "heading": "Trial by Ordeal",
+  "line": 917,
+  "endLine": 926,
+  "category": "social",
+  "topic": "Trials and courts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Defendant found guilty who insists on innocence",
+  "summary": "Summarises the four trials by ordeal (combat, cold water, hot water, iron) and what counts as proof of innocence in each.",
+  "quotes": [
+   "A defendant who insists his innocence, even when the court finds him guilty, can choose to undergo a trial by ordeal."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.78"
+  ]
+ },
+ {
+  "title": "Income Bands (Trivial to Legendary)",
+  "heading": "Chapter Two: Labor",
+  "line": 1048,
+  "endLine": 1070,
+  "category": "social",
+  "topic": "Wealth and income bands",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines the six bands of annual profit (Trivial, Minor, Lesser, Typical, Greater, Legendary), what each means as spending money after expenses, example enterprises, and which Social Status Virtues buy each band.",
+  "quotes": [
+   "The income figure listed below for each band is the amount of money a character in that band could spend frivolously in a year without damaging his source of income.",
+   "A single workshop, in an average craft, earns 10 Mythic Pounds for its owner each year."
+  ],
+  "related": [
+   "Covenants (income sources)"
+  ]
+ },
+ {
+  "title": "Labor and Livelihood (Labor Points)",
+  "heading": "Labor and Livelihood",
+  "line": 1072,
+  "endLine": 1076,
+  "category": "seasons",
+  "topic": "Labor Points",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters who work for a living earn Labor Points each season spent tending their business, multiplied by wealth, and must spend a set number to maintain their enterprise.",
+  "quotes": [
+   "A character gains (primary Characteristic + Craft) or (Communication + Profession) Labor Points per season worked.",
+   "It costs 36 Labor Points to maintain a character's business interests at their current level."
+  ],
+  "related": [
+   "ArM5 p.163 Exposure experience"
+  ]
+ },
+ {
+  "title": "Improving Wealth and Social Status",
+  "heading": "Improving Wealth and Social Status",
+  "line": 1078,
+  "endLine": 1090,
+  "category": "seasons",
+  "topic": "Labor Points",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the Labor Point costs of moving between Poor, average and Wealthy, what happens when a character loses wealth or status, and the extra season and stories needed to reach higher income bands.",
+  "quotes": [
+   "To move from Poor to average costs 120 points.",
+   "To move from average to Wealthy costs 360 points.",
+   "Moving to a higher income band costs the Labor Points noted above, but also costs a season of time."
+  ],
+  "related": []
+ },
+ {
+  "title": "Overwork (Reputation Penalties)",
+  "heading": "Overwork",
+  "line": 1092,
+  "endLine": 1098,
+  "category": "social",
+  "topic": "Labor Points",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Working extra seasons or living below one's means to gain Labor Points faster earns a negative Reputation for impiety or miserliness.",
+  "quotes": [
+   "A character who is not Poor, but works three or more seasons in a year, gains a negative Reputation.",
+   "This imposes 1 or 3 experience in a Reputation for miserliness every year."
+  ],
+  "related": []
+ },
+ {
+  "title": "Labor Points from Stories",
+  "heading": "Labor Points from Stories",
+  "line": 1110,
+  "endLine": 1126,
+  "category": "seasons",
+  "topic": "Labor Points",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Stories that improve a character's economic or social status award extra Labor Points, scaled by how central the merchant is to the story.",
+  "quotes": [
+   "Half a season's worth of Labor Points when they are a subplot of a more significant story, dealt with by magi.",
+   "Two seasons' worth of Labor Points when the merchant is the central character of the story."
+  ],
+  "related": []
+ },
+ {
+  "title": "Investing Time",
+  "heading": "Investing Time",
+  "line": 1128,
+  "endLine": 1130,
+  "category": "seasons",
+  "topic": "Labor Points",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters can invest Labor Points as time or profits to improve their business, treated as minor stories that are not actually played.",
+  "quotes": [
+   "Characters may invest their time or profits, as represented by Labor Points, to improve their businesses."
+  ],
+  "related": []
+ },
+ {
+  "title": "Money and Investment (Labor Points to Pounds)",
+  "heading": "Money and Investment",
+  "line": 1132,
+  "endLine": 1145,
+  "category": "social",
+  "topic": "Wealth and income bands",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that Labor Points cannot be directly converted to money, and gives a guideline table of what a block of Labor Points is worth in pounds for each income band.",
+  "quotes": [
+   "the average character earns around 6 Labor Points a season, multiplied according to his level of wealth",
+   "This means that 9 Labor Points are worth:"
+  ],
+  "related": [
+   "City & Guild Chapter 4: Crafts"
+  ]
+ },
+ {
+  "title": "Guild Member Ages and Abilities",
+  "heading": "Guild Member Ages & Abilities",
+  "line": 1165,
+  "endLine": 1175,
+  "category": "creation",
+  "topic": "Guild characters",
+  "audience": [
+   "all",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Guild member character",
+  "summary": "A table of suggested ages, Craft scores and secondary Abilities for each guild rank, used as a guideline when creating guild member characters.",
+  "quotes": [
+   "Journeyman    | 5                | 2 (Bargain)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Abusive Lengths of Apprenticeship",
+  "heading": "Abusive Lengths of Apprenticeship",
+  "line": 1178,
+  "endLine": 1188,
+  "category": "creation",
+  "topic": "Guild characters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Optional rule for guild apprentices",
+  "summary": "An optional rule giving longer apprenticeships for certain guilds, and how the extra years of experience are earned and applied.",
+  "quotes": [
+   "Instead of the regular seven years of apprenticeship, use the lengths listed on the table below."
+  ],
+  "related": []
+ },
+ {
+  "title": "Guild Members (Ranks, Roster and Required Abilities)",
+  "heading": "Guild Members",
+  "line": 1190,
+  "endLine": 1198,
+  "category": "social",
+  "topic": "Guilds",
+  "audience": [
+   "all",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Guild member character (Social Status Virtue)",
+  "summary": "Introduces guild ranks, the guild roster, and the Abilities guild members need, including minimum Guild Lore scores by rank.",
+  "quotes": [
+   "Journeymen need at least a Guild Lore score of 1, masters need a 2, and senior masters and deans must have a Guild Lore score of 3."
+  ],
+  "related": []
+ },
+ {
+  "title": "Guild Lore (Ability)",
+  "heading": "Guild Lore",
+  "line": 1200,
+  "endLine": 1202,
+  "category": "basics",
+  "topic": "Guild Lore",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A new Organization Lore Ability covering a guild's rules and bylaws, used for checks about guild members, other guilds and trade matters, with suggested specialties.",
+  "quotes": [
+   "Guild Lore is an (Organization) Lore Ability that covers the rules and bylaws of the guild."
+  ],
+  "related": []
+ },
+ {
+  "title": "Guild Apprentices (Advancement and Apprentice Piece)",
+  "heading": "Guild Apprentices",
+  "line": 1204,
+  "endLine": 1224,
+  "category": "creation",
+  "topic": "Guild characters",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Guild Apprentice (or Craftsman for non-guild apprentices)",
+  "summary": "Rules for apprentice characters: the Virtue required, how the seven years of apprenticeship translate into seasons of experience and which Abilities may receive it, and the apprentice piece test that ends the apprenticeship.",
+  "quotes": [
+   "Starting guild apprentice characters must buy the Minor Social Status Virtue Guild Apprentice.",
+   "an apprentice character receives two seasons of Exposure experience, one season of Practice experience, and one season of Training a year",
+   "The apprentice makes a Primary Characteristic + Craft Ability + stress die roll against an Ease Factor of 9."
+  ],
+  "related": [
+   "ArM5 p.163 Advancement"
+  ]
+ },
+ {
+  "title": "Journeymen (Requirements, Contracts and Promotion)",
+  "heading": "Journeymen",
+  "line": 1268,
+  "endLine": 1306,
+  "category": "creation",
+  "topic": "Guild characters",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Journeyman",
+  "summary": "Describes journeyman characters: the Virtue, age and Craft requirements, how the wage contract is bargained for, joining a guild in another town via a harder apprentice piece, the cost and vote needed to become a master, and annual dues.",
+  "quotes": [
+   "Journeymen characters must buy the Minor Social Status Virtue Journeyman.",
+   "a Communication + Bargain + (Age / 10, rounded up) stress roll against a variable Ease Factor",
+   "The Ease Factor for this piece should be increased from 9 to 12."
+  ],
+  "related": []
+ },
+ {
+  "title": "Making a Journeyman Contract",
+  "heading": "Making a Contract: Communication + Bargain + (Age/10, rounded up) + a stress die",
+  "line": 1280,
+  "endLine": 1297,
+  "category": "seasons",
+  "topic": "Labor Points",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Journeyman",
+  "summary": "A table converting the result of a journeyman's contract-bargaining roll into a modifier on the Labor Points he earns, with modifiers for his history with the master, his Craft score and past guild fines.",
+  "quotes": [
+   "Communication + Bargain + (Age/10, rounded up) + a stress die",
+   "+2 Appropriate Craft Ability is 8+"
+  ],
+  "related": []
+ },
+ {
+  "title": "Craftsman's Stamp (Arcane Connection and Forgery)",
+  "heading": "Craftsman\u2019s Stamp",
+  "line": 1307,
+  "endLine": 1315,
+  "category": "magic",
+  "topic": "Arcane Connections",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A craftsman's stamp on his goods acts as an Arcane Connection to him for a duration depending on how long the item took to make, and the stamp can be forged or altered by magic or skill.",
+  "quotes": [
+   "A stamped good serves as an Arcane Connection to the crafter",
+   "this requires a Finesse roll against an Ease Factor of 18"
+  ],
+  "related": []
+ },
+ {
+  "title": "Guild Masters",
+  "heading": "Guild Masters",
+  "line": 1363,
+  "endLine": 1373,
+  "category": "creation",
+  "topic": "Guild characters",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Guild Master",
+  "summary": "Requirements for master characters and how many workers a master can employ, with a Labor Point penalty for being understaffed.",
+  "quotes": [
+   "Master characters must have the Minor Social Status Virtue Guild Master.",
+   "A master can employ a number of apprentices and journeymen equal to his Leadership score.",
+   "Subtract 3 Labor Points for every absent worker from the number of Labor Points the master accrues in a season."
+  ],
+  "related": []
+ },
+ {
+  "title": "Senior Masters",
+  "heading": "Senior Masters",
+  "line": 1417,
+  "endLine": 1423,
+  "category": "creation",
+  "topic": "Guild characters",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Senior Guild Master",
+  "summary": "Requirements for senior master characters and how many workshops they can operate.",
+  "quotes": [
+   "Character senior masters may effectively operate a number of workshops equal to one half their Leadership score rounded up."
+  ],
+  "related": []
+ },
+ {
+  "title": "Guild Officials and Inquisitors",
+  "heading": "Guild Officials",
+  "line": 1425,
+  "endLine": 1441,
+  "category": "social",
+  "topic": "Guilds",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Senior Master (to play an official)",
+  "summary": "Describes the board of guild officials, how they are chosen, their terms, powers (including defrocking masters), and the inquisitors who inspect workshops; playing an official needs no extra mechanic beyond the Virtue.",
+  "quotes": [
+   "Guild officials retain their office for six months, at which point they return to the pool of senior master candidates.",
+   "Substandard goods are confiscated on the spot, with a fine equal to the goods' value imposed on the master."
+  ],
+  "related": []
+ },
+ {
+  "title": "Guild Dean",
+  "heading": "Guild Dean",
+  "line": 1443,
+  "endLine": 1455,
+  "category": "creation",
+  "topic": "Guild characters",
+  "audience": [
+   "all",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Guild Dean",
+  "summary": "How deans are selected and removed, the starting requirements for a dean character, and the stipend a dean receives from his guild.",
+  "quotes": [
+   "he should be at least 50 years of age, have a Craft Ability of at least, 7 and have Bargain, Leadership, and Guild Lore scores of 5 or more",
+   "This stipend runs from 20 to 40 pounds, and can include properties like a large house or an additional workshop."
+  ],
+  "related": []
+ },
+ {
+  "title": "Craftswomen and the Male Guild Sponsor",
+  "heading": "Craftswomen",
+  "line": 1503,
+  "endLine": 1521,
+  "category": "social",
+  "topic": "Guilds",
+  "audience": [
+   "all",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Female guild character (Virtue: Male Guild Sponsor)",
+  "summary": "Explains how women are restricted in guilds and the ways they enter them through a father's or husband's name on the roster, and how the Male Guild Sponsor Virtue lets a female character join any guild in a saga.",
+  "quotes": [
+   "allows female characters to participate in any guild of the player's choice",
+   "Even if a woman gains the status of a master, she is legally forbidden the opportunity to be a guild official."
+  ],
+  "related": []
+ },
+ {
+  "title": "Craft Guilds",
+  "heading": "Craft Guilds",
+  "line": 1551,
+  "endLine": 1561,
+  "category": "social",
+  "topic": "Guilds",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how craft guilds are organised around a Craft Ability, which towns have them, which appear first, and how guilds split into narrower specialisations in later periods.",
+  "quotes": [
+   "For sagas starting in 1220, guilds generally correspond directly to a particular Craft Ability"
+  ],
+  "related": []
+ },
+ {
+  "title": "Number of Guilds in a Town",
+  "heading": "Number of Guilds in a Town",
+  "line": 1563,
+  "endLine": 1569,
+  "category": "social",
+  "topic": "Guilds",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A rough table of how many guilds a town has by population size and by saga date.",
+  "quotes": [
+   "1,000 or less  | 0\u20131"
+  ],
+  "related": []
+ },
+ {
+  "title": "Service Guilds",
+  "heading": "Service Guilds",
+  "line": 1571,
+  "endLine": 1577,
+  "category": "social",
+  "topic": "Guilds",
+  "audience": [
+   "all",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Service guild member",
+  "summary": "Service guilds follow the craft guild rules, with Profession replacing Craft for ability requirements and labor pools replacing workshops.",
+  "quotes": [
+   "Replace the requirement for specific scores in a Craft Ability with a requirement for the same score in a Profession Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Craftsmen (Regular Craftsman Characters)",
+  "heading": "Craftsmen",
+  "line": 1746,
+  "endLine": 1758,
+  "category": "creation",
+  "topic": "Craftsmen and workshops",
+  "audience": [
+   "all",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "Virtue: Craftsman",
+  "summary": "Rules for non-guild craftsman characters: the free Virtue, the Abilities they need, how many apprentices they may train, and how rural, urban, monastic and covenant craftsmen differ.",
+  "quotes": [
+   "A regular craftsman character must have the Free Social Virtue Craftsman.",
+   "Bargain and Craft are the only two mandatory Abilities that an average, non-guild member craftsman character needs.",
+   "A regular craftsman may have a number of apprentices at a single time equal to his Leadership score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Companions vs. Grogs for Craftsmen",
+  "heading": "Companions vs. Grogs",
+  "line": 1760,
+  "endLine": 1762,
+  "category": "creation",
+  "topic": "Craftsmen and workshops",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Clarifies that companion and grog status depends on narrative role rather than craft rank, while the Virtue and Flaw limits for each type still apply.",
+  "quotes": [
+   "Companions and grogs are defined by their narrative role"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laborers (Laborer Characters)",
+  "heading": "Laborers",
+  "line": 1764,
+  "endLine": 1768,
+  "category": "creation",
+  "topic": "Craftsmen and workshops",
+  "audience": [
+   "all",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "Virtue: Laborer",
+  "summary": "A laborer character has the free Laborer Virtue and a Profession Ability instead of a Craft Ability, with that Profession also covering wage negotiations.",
+  "quotes": [
+   "A laborer character must have the free Social Status Virtue Laborer."
+  ],
+  "related": []
+ },
+ {
+  "title": "Covenant Craftsmen",
+  "heading": "Covenant Craftsmen",
+  "line": 1770,
+  "endLine": 1778,
+  "category": "covenant",
+  "topic": "Craftsmen and workshops",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Options for deciding how covenant craftsmen relate to guilds, from simply treating all of them as regular craftsmen to making them expelled, runaway or illegal guild members, and how trade-based covenants sell their goods.",
+  "quotes": [
+   "The simplest method is to make every craftsman a regular craftsman."
+  ],
+  "related": [
+   "ArM5 p.72 Covenant Hooks"
+  ]
+ },
+ {
+  "title": "Crafting Items (Seasonal Production)",
+  "heading": "Crafting Items",
+  "line": 1780,
+  "endLine": 1786,
+  "category": "seasons",
+  "topic": "Craftsmen and workshops",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the seasonal rules for a craftsman's output, in which craftsmen work only part of the year, and says storyguide craftsmen only need these rules when asked to make a specific item.",
+  "quotes": [
+   "For purposes of the total amount of goods produced in a year, storyguide characters are only allowed three seasons of actual work.",
+   "Storyguide character craftsmen are assumed to be busily working in their workshops"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Craft Ability (Defined by Vocation)",
+  "heading": "The Craft Ability",
+  "line": 1788,
+  "endLine": 1806,
+  "category": "basics",
+  "topic": "Craft Abilities",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Rules clarification that a Craft Ability is normally named by the character's vocation rather than by the material worked, with a survey of the materials common crafts use.",
+  "quotes": [
+   "a craftsman should define his Craft Abilities by vocation rather than material"
+  ],
+  "related": [
+   "ArM5 p.64 Craft Abilities"
+  ]
+ },
+ {
+  "title": "Working with Related Material",
+  "heading": "Working with Related Material",
+  "line": 1808,
+  "endLine": 1812,
+  "category": "seasons",
+  "topic": "Craftsmen and workshops",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Penalties to a craftsman's Craft score when he works with raw materials outside his usual field, and the loss of his specialization bonus.",
+  "quotes": [
+   "Treat his Craft score as one less for determining his success.",
+   "the character's Craft score is penalized by three"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Workshop",
+  "heading": "The Workshop",
+  "line": 1814,
+  "endLine": 1822,
+  "category": "seasons",
+  "topic": "Craftsmen and workshops",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How long a workshop takes to build, what it costs for inexpensive, standard and expensive goods, and why workshop size does not affect production the way a laboratory's size does.",
+  "quotes": [
+   "Workshops for inexpensive goods cost one Mythic Pound to construct, while those for standard goods cost two, and those for expensive goods cost five.",
+   "It takes a season to build such a workshop"
+  ],
+  "related": [
+   "Covenants (laboratory size)"
+  ]
+ },
+ {
+  "title": "Craft Specialization",
+  "heading": "Specialization",
+  "line": 1824,
+  "endLine": 1826,
+  "category": "basics",
+  "topic": "Craft Abilities",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Guidance on choosing a Craft specialization: a single item, workshop activity or quality of goods, giving a bonus to that narrow aspect of the Ability.",
+  "quotes": [
+   "The intent of the specialization rules is to allow a character to gain a +1 bonus to a single aspect of a broader Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Workshop Innovation",
+  "heading": "Workshop Innovation",
+  "line": 1828,
+  "endLine": 1842,
+  "category": "seasons",
+  "topic": "Craftsmen and workshops",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A workshop has an Innovation score added to its Workshop Total, raised by spending Labor Points and a season of work, with a table of the cumulative Labor Point cost for each level.",
+  "quotes": [
+   "The workshop's Innovation score is added to the Workshop Total.",
+   "It takes 100 Labor Points to increase Innovation to +1, 200 more Labor Points for a +2 Innovation score, and another 300 Labor Points to have a +3 Innovation score"
+  ],
+  "related": []
+ },
+ {
+  "title": "Raw Materials (Workshop Raw Materials Score)",
+  "heading": "Raw Materials",
+  "line": 1844,
+  "endLine": 1858,
+  "category": "seasons",
+  "topic": "Craftsmen and workshops",
+  "audience": [
+   "all",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A workshop has a Raw Materials score improved by spending Labor Points and a season; unlike Innovation it is lost if the responsible character leaves and must be maintained at a Labor Point cost each year.",
+  "quotes": [
+   "It takes 50 Labor Points to increase the Raw Material score to 1, 100 more Labor Points to increase it to 2, and an additional 150 Labor Points to increase the score to 3",
+   "It costs 5 Labor Points per point of Raw Material to sustain a business with a positive Raw Material score."
+  ],
+  "related": []
+ }
+]

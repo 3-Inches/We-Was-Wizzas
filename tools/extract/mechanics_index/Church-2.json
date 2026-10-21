@@ -1,0 +1,697 @@
+[
+ {
+  "title": "Characters in a Nunnery",
+  "heading": "Characters in a Nunnery",
+  "line": 2674,
+  "endLine": 2741,
+  "category": "creation",
+  "topic": "Religious characters",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing a nun or other woman of a nunnery",
+  "summary": "Advice on building nun characters: which Flaws, Virtues and Abilities fit, plus background types (the Scholar, the Refugee, the Prisoner, the Revolutionary) and which Virtues and Flaws explain why a woman ends up in a nunnery.",
+  "quotes": [
+   "Most nuns come from a noble family, so Privileged Upbringing is a common Virtue.",
+   "Artes Liberales, Latin, and Church Lore are the Abilities expected of all nun characters, even if only at a low level"
+  ],
+  "related": [
+   "Chapter 4: The Rule and Religious Life"
+  ]
+ },
+ {
+  "title": "The Anchoress' Rule (Ancrene Riwle)",
+  "heading": "The Anchoress' Rule (Ancrene Riwle)",
+  "line": 2876,
+  "endLine": 2900,
+  "category": "setting",
+  "topic": "Religious characters",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing an anchoress or her servant",
+  "summary": "The rule governing an anchoress and her servants, covering speech, food, fasting, visitors, possessions and dress, which a player can adopt in part to make a character distinctively religious. Ends with ways a magical anchoress might slip out of her cell.",
+  "quotes": [
+   "The primary requirements of obedience, chastity, and permanence of abode remain."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mystics (female religious)",
+  "heading": "Mystics",
+  "line": 2916,
+  "endLine": 2922,
+  "category": "realms",
+  "topic": "Christian mysticism",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Visions Flaw, or True Faith with the Understanding power",
+  "summary": "Explains how to represent a religious mystic in game terms: usually the Visions Flaw, or occasionally True Faith with Understanding and Meditation. Also covers how a bishop's (or pope's) acceptance of a nun's visions earns her a Reputation as a mystic.",
+  "quotes": [
+   "In most case, the experiences of a religious mystic are covered by the Visions Flaw."
+  ],
+  "related": [
+   "Chapter 2: Congregation, Christian Mysticism",
+   "Realms of Power: The Divine pp.34, 36, 37, 54"
+  ]
+ },
+ {
+  "title": "False Visions",
+  "heading": "False Visions",
+  "line": 2990,
+  "endLine": 2998,
+  "category": "realms",
+  "topic": "Christian mysticism",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance for storyguides on non-divine sources of apparent visions (Spirits of Deceit, deluded or feigning individuals, Magic auras, faeries) and on the difficulty of proving a vision genuine, including a magus investigating inside a Dominion aura.",
+  "quotes": [
+   "It can be very difficult to prove whether or not a particular mystical experience is genuinely divine."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.38"
+  ]
+ },
+ {
+  "title": "Priests' Wives and Mistresses",
+  "heading": "Priests' Wives and Mistresses",
+  "line": 3006,
+  "endLine": 3012,
+  "category": "creation",
+  "topic": "Religious characters",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing a priest's wife or companion",
+  "summary": "Character-option advice for a woman living with a priest: the troupe decides whether the union counts as a valid marriage and whether it is a Dark Secret, and suggests roles in the parish such as a sacristan's wife.",
+  "quotes": [
+   "Troupes with a female player character who lives with a priest should decide whether the priest and his wife consider themselves to be living under valid vows of marriage, or whether they believe themselves to be in a sinful relationship."
+  ],
+  "related": [
+   "Realms of Power: The Divine pp.81-82"
+  ]
+ },
+ {
+  "title": "Heresy and Corruption",
+  "heading": "Heresy and Corruption",
+  "line": 3324,
+  "endLine": 3334,
+  "category": "realms",
+  "topic": "Heresy and Infernal corruption",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance for storyguides on when heresy actually counts as Infernal rather than merely mistaken: most heretics are sincere believers, and a false teaching is Infernal only when it leads to real sinful acts.",
+  "quotes": [
+   "A wrong teaching only becomes Infernal when it leads people directly to sinful behavior, and hence to damnation."
+  ],
+  "related": [
+   "Realms of Power: The Dominion",
+   "Realms of Power: The Infernal"
+  ]
+ },
+ {
+  "title": "Cluniac Influence on Petitioning the Church",
+  "heading": "Ecclesiastical Influence",
+  "line": 3394,
+  "endLine": 3396,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Favor of a Cluniac prior or abbot",
+  "summary": "Cluniac abbots and priors carry extra weight with the Church hierarchy, giving a bonus to Petitioning the Church totals when their favor is won.",
+  "quotes": [
+   "Gaining the favor of a Cluniac prior or abbot gives a +1 bonus to totals for Petitioning the Church (see Chapter 3: The Diocese) over and above the usual bonuses."
+  ],
+  "related": [
+   "Chapter 3: The Diocese, Petitioning the Church"
+  ]
+ },
+ {
+  "title": "Mortuary Masses",
+  "heading": "Mortuary Masses",
+  "line": 3358,
+  "endLine": 3360,
+  "category": "realms",
+  "topic": "Infernal rites",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Corrupt priest",
+  "summary": "Describes the Infernal perversion of a funeral Mass said for a living person, which is held to cause death and is treated as murder.",
+  "quotes": [
+   "It is widely believed that if a funeral Mass is celebrated for a man or woman still living, he will die."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Feast of All Souls and the Dominion",
+  "heading": "The Hermit and the Devils",
+  "line": 3402,
+  "endLine": 3404,
+  "category": "realms",
+  "topic": "Auras and festivals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Origin of the Feast of All Souls on 2 November, with its aura effect: on that day the Dominion is weaker than usual, Infernal auras are stronger, and some of the dead walk again.",
+  "quotes": [
+   "Infernal auras increase in strength by one, and some of the dead walk once more."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Corrupt Cluniacs",
+  "heading": "The Corrupt Cluniacs",
+  "line": 3468,
+  "endLine": 3502,
+  "category": "realms",
+  "topic": "Corrupt orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: the Cluniacs are Infernally corrupt",
+  "summary": "How to run the Cluniac order as the corrupt order in a saga: its history of corruption, the Goetic Favored Abilities and Supernatural Ability Corruption of its monks, profaned rites that create Infernal vis, Debauched Auras, and bound ghosts.",
+  "quotes": [
+   "The corrupt Cluniacs have Favored Abilities of the Goetic Arts of Ablating, Binding, Commanding, and Summoning."
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.14, 91, 96, 114-120",
+   "Rival Magic pp.47-74"
+  ]
+ },
+ {
+  "title": "Cistercian Influence on Petitioning the Church",
+  "heading": "Ecclesiastical Influence",
+  "line": 3594,
+  "endLine": 3596,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Favor of a Cistercian abbot",
+  "summary": "The Cistercians' standing with the papacy gives a bonus to Petitioning the Church totals when a Cistercian abbot's favor is gained.",
+  "quotes": [
+   "gaining the favor of a Cistercian abbot gives a +3 bonus to totals for Petitioning the Church (See Chapter 3: The Diocese) over and above the usual bonuses."
+  ],
+  "related": [
+   "Chapter 3: The Diocese, Petitioning the Church"
+  ]
+ },
+ {
+  "title": "Vallumbrosan Papal Influence",
+  "heading": "Papal Influence",
+  "line": 3754,
+  "endLine": 3756,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Support of a Vallumbrosan abbot; petition addressed to the papacy or curia",
+  "summary": "Vallumbrosan influence over the papacy adds a large bonus to the total of a petition made to the pope or curia, on top of the normal bonus for an abbot's support.",
+  "quotes": [
+   "If the papacy or curia are the recipients of a petition, add +5 to the total in addition to the normal bonus for the support of an abbot."
+  ],
+  "related": [
+   "Chapter 3: The Diocese, Petitioning the Church"
+  ]
+ },
+ {
+  "title": "The Corrupt Cistercians (Joachimite Illuminati)",
+  "heading": "The Corrupt Cistercians",
+  "line": 3602,
+  "endLine": 3646,
+  "category": "realms",
+  "topic": "Corrupt orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: the Cistercians are Infernally corrupt",
+  "summary": "How to run the Cistercian order as the corrupt order: the Joachimite heresy and the secret Illuminati society inside the order, with its three informal degrees of initiation culminating in an inner circle that teaches Maleficia through an Unholy Tradition.",
+  "quotes": [
+   "There are three degrees of initiation into the group, though these are not formal ranks as in a mystery cult."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.133",
+   "Realms of Power: The Infernal p.128"
+  ]
+ },
+ {
+  "title": "If the Vallumbrosans are Corrupt",
+  "heading": "If the Vallumbrosans are Corrupt",
+  "line": 3770,
+  "endLine": 3782,
+  "category": "realms",
+  "topic": "Corrupt orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: the Vallumbrosans are Infernally corrupt",
+  "summary": "How to run the Vallumbrosans as a diabolist order: monks are worn down until they can be offered a pact, bargaining for Virtues or loss of Flaws, with a limited term to recruit a successor before the soul is claimed.",
+  "quotes": [
+   "If they leave, they have seven years to find someone else to sign the pact, or they die, their soul claimed by hell."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.94"
+  ]
+ },
+ {
+  "title": "Templar Papal Privileges",
+  "heading": "Papal Privileges",
+  "line": 3886,
+  "endLine": 3904,
+  "category": "setting",
+  "topic": "Knights Templar",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Member of the Knights Templar",
+  "summary": "List of the legal and religious privileges granted to the Templars by papal bulls, such as keeping booty, freedom from tithes and oaths to outsiders, and their own clergy; useful for adjudicating how Templars interact with Church and lay authority.",
+  "quotes": [
+   "The order may keep the booty it captures from Muslims.",
+   "They need not pay tithes on the produce of their own lands."
+  ],
+  "related": []
+ },
+ {
+  "title": "Running a Templar Chapter Meeting",
+  "heading": "Running a Chapter Meeting",
+  "line": 4173,
+  "endLine": 4187,
+  "category": "setting",
+  "topic": "Knights Templar",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Templar characters",
+  "summary": "Storyguide options for staging a Templar chapter meeting (mundane, mystic or dark), with a pointer to the covenant rules for designing a priory or chapterhouse.",
+  "quotes": [
+   "There are broadly three options, and elements from each can be combined."
+  ],
+  "related": [
+   "Covenants (church-building guidelines)",
+   "Chapter 3: The Diocese"
+  ]
+ },
+ {
+  "title": "The Templar Grand Master",
+  "heading": "The Grand Master",
+  "line": 4193,
+  "endLine": 4199,
+  "category": "setting",
+  "topic": "Knights Templar",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Knights Templar",
+  "summary": "Powers and duties of the Templar grand master, including his spiritual authority over the order equal to that of a priest.",
+  "quotes": [
+   "He may exercise Holy Influence over the order as if he were a priest."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Grand Master's Commanding Aura",
+  "heading": "The Grand Master's Commanding Aura",
+  "line": 4211,
+  "endLine": 4213,
+  "category": "realms",
+  "topic": "Knights Templar",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holding the office of Templar grand master",
+  "summary": "The office of Templar grand master bestows the Commanding Aura Virtue on its holder, treated as spiritually equal to an archbishop.",
+  "quotes": [
+   "The grand master, as a position appointed by God, is the spiritual equivalent to an Archbishop, with a Magic Resistance of 10."
+  ],
+  "related": [
+   "Chapter 3: The Diocese"
+  ]
+ },
+ {
+  "title": "The Grand Master's Seal",
+  "heading": "The Grand Master's Seal",
+  "line": 4223,
+  "endLine": 4227,
+  "category": "realms",
+  "topic": "Knights Templar",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holding the office of Templar grand master",
+  "summary": "The grand master's seal is a Divine relic with its own Faith Score and Divine Might, which also adds extra Magic Resistance against effects tied to one particular sin.",
+  "quotes": [
+   "The seal has a Faith Score of 1, granting it a Divine Might of 10."
+  ],
+  "related": []
+ },
+ {
+  "title": "Templar Brother-Knights",
+  "heading": "Brother-Knights",
+  "line": 4263,
+  "endLine": 4273,
+  "category": "creation",
+  "topic": "Templar ranks",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Joining the Knights Templar as a brother-knight",
+  "summary": "Entry requirements, expected prior combat experience, group training and restrictions on possessions for Templar brother-knights, who are the core rank of the order.",
+  "quotes": [
+   "By 1220, the Templars require a brother-knight to be of noble birth, the son of a secular knight, or the son of the daughter of a knight to be admitted to this rank."
+  ],
+  "related": [
+   "Trained Group Combat"
+  ]
+ },
+ {
+  "title": "Templar Brother-Sergeants",
+  "heading": "Brother-Sergeants",
+  "line": 4275,
+  "endLine": 4279,
+  "category": "creation",
+  "topic": "Templar ranks",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Joining the Knights Templar as a brother-sergeant",
+  "summary": "The commoner rank of the Templars, serving as foot soldiers and as administrators, artisans and craftsmen under the same rule as the brother-knights.",
+  "quotes": [
+   "Brother-sergeants are from common backgrounds and social statuses, and are recruited from a wider area."
+  ],
+  "related": []
+ },
+ {
+  "title": "Templar Brother-Priests",
+  "heading": "Brother-Priests",
+  "line": 4281,
+  "endLine": 4291,
+  "category": "creation",
+  "topic": "Templar ranks",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Joining the Knights Templar as a brother-priest",
+  "summary": "How priests join the Templars and the sacramental authority they hold within the order, which exceeds that of local clergy.",
+  "quotes": [
+   "They can give services, celebrate Mass, hear confessions, give absolution for most offenses (except grievous sins such as murder, simony, or heresy) and bury the dead."
+  ],
+  "related": []
+ },
+ {
+  "title": "Templar Confreres and Consoeurs",
+  "heading": "Confreres and Consoeurs",
+  "line": 4301,
+  "endLine": 4305,
+  "category": "creation",
+  "topic": "Templar ranks",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Associate membership in the Knights Templar",
+  "summary": "Lay associate members of the Templars, who take vows without full profession and may keep their own homes, including temporary-vow pilgrims and wives of Templars.",
+  "quotes": [
+   "Confreres and consoeurs cannot vote in chapter meetings but otherwise interact daily with full members"
+  ],
+  "related": []
+ },
+ {
+  "title": "Templar Chaplains and Petitioning",
+  "heading": "Templar Chaplains and Petitioning",
+  "line": 4307,
+  "endLine": 4311,
+  "category": "social",
+  "topic": "Petitioning the Church",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Templar brother-priest",
+  "summary": "Templar clergy petition their own commanders, the grand master or the pope rather than bishops, and may act on their own authority up to a set Ease Factor for matters within the order.",
+  "quotes": [
+   "Brother-priests may, without reference to any outside authority, perform any action with an Ease Factor of 18 or less"
+  ],
+  "related": [
+   "Chapter 3: The Diocese, Petitioning the Church"
+  ]
+ },
+ {
+  "title": "Trained Group Combat (Templars)",
+  "heading": "Trained Group Combat",
+  "line": 4344,
+  "endLine": 4346,
+  "category": "combat",
+  "topic": "Trained groups",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Templar brother-knights and brother-sergeants",
+  "summary": "Templars who train together for a season count as a trained group in combat; without that season together they cannot form one.",
+  "quotes": [
+   "who train together for a season are considered a trained group for the purpose of combat"
+  ],
+  "related": [
+   "ArM5 p.173"
+  ]
+ },
+ {
+  "title": "Templars Calling on God's Aid",
+  "heading": "Calling on God's Aid",
+  "line": 4368,
+  "endLine": 4370,
+  "category": "realms",
+  "topic": "Calling on God's aid",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Templar brother-priest or ranking Templar",
+  "summary": "Templars routinely petition God's aid before battle, led by a brother-priest or, lacking one, the commanding Templar, using the Divine rules for calling on God's aid.",
+  "quotes": [
+   "The Templar commander (or ranking Templar) may also call on God's aid if there is no brother-priest."
+  ],
+  "related": [
+   "Realms of Power: The Divine pp.41-42"
+  ]
+ },
+ {
+  "title": "Templar Military Tactics",
+  "heading": "Military Tactics",
+  "line": 4372,
+  "endLine": 4378,
+  "category": "combat",
+  "topic": "Knights Templar",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Knights Templar",
+  "summary": "How Templars fight: the cavalry charge as the centerpiece, mercenary foot and archers, siege warfare, and the black and white banner that forbids retreat while raised and serves as the rallying point.",
+  "quotes": [
+   "While the banner is raised, no Templar is permitted to retreat."
+  ],
+  "related": []
+ },
+ {
+  "title": "Joining the Templars: The Membership Ritual",
+  "heading": "The Membership Ritual",
+  "line": 4392,
+  "endLine": 4396,
+  "category": "creation",
+  "topic": "Knights Templar",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Joining the Knights Templar",
+  "summary": "Step-by-step account of the traditional ceremony in which an applicant is questioned, tested with a menial task if a commoner, swears his vows and is invested with the mantle.",
+  "quotes": [
+   "Then he then swears the vows of obedience, chastity, and poverty, and promises to conquer and defend Jerusalem."
+  ],
+  "related": []
+ },
+ {
+  "title": "Joining the Templars as a Child",
+  "heading": "Joining as a Child",
+  "line": 4398,
+  "endLine": 4402,
+  "category": "creation",
+  "topic": "Knights Templar",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Joining the Knights Templar",
+  "summary": "Children may enter the Templars as novices once old enough to bear arms, with each local commander judging fitness; orphans are usually directed elsewhere.",
+  "quotes": [
+   "Ages of admission of children range from 11 to 14."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Templar Rule and Penances",
+  "heading": "The Templar Rule",
+  "line": 4404,
+  "endLine": 4414,
+  "category": "setting",
+  "topic": "Knights Templar",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Member of the Knights Templar",
+  "summary": "Outline of the Templar Rule and its penalties, from losing the mantle for a year and a day to expulsion, with a list of the offenses that earn them.",
+  "quotes": [
+   "There are seven major sections to the rule",
+   "Major punishments include the stripping of a Templar's mantle for a year and a day"
+  ],
+  "related": []
+ },
+ {
+  "title": "Playing a Templar Character",
+  "heading": "Playing a Templar Character",
+  "line": 4468,
+  "endLine": 4476,
+  "category": "creation",
+  "topic": "Knights Templar",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Knights Templar",
+  "summary": "Three ways to make a Templar playable despite the strictness of the rule: loose discipline (with a Story Flaw if the rule is to matter), outside responsibilities, or a lone Templar at a remote outpost.",
+  "quotes": [
+   "Templar characters should take an appropriate Story Flaw if they want to play through stories involving the rule and Templar restrictions."
+  ],
+  "related": []
+ },
+ {
+  "title": "Templar Banking, Letters of Credit and Insurance",
+  "heading": "Templar Banking, Letters of Credit & Insurance",
+  "line": 4502,
+  "endLine": 4508,
+  "category": "social",
+  "topic": "Banking and wealth",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dealing with the Templars",
+  "summary": "How the Templars handle deposits, letters of credit that can be redeemed at a distant priory, administration of pilgrims' assets, and a form of physical and spiritual insurance.",
+  "quotes": [
+   "In exchange, they receive a letter from that priory stating the value of the deposit."
+  ],
+  "related": [
+   "City and Guild"
+  ]
+ },
+ {
+  "title": "Templars and the Wealthy Virtue",
+  "heading": "Templars and the Wealthy Virtue",
+  "line": 4546,
+  "endLine": 4548,
+  "category": "creation",
+  "topic": "Knights Templar",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Templar character",
+  "summary": "Templars may take the Wealthy Virtue or Poor Flaw, but these represent responsibilities, authority and free time within a regimented day instead of personal money.",
+  "quotes": [
+   "Templar characters can take the Wealthy Major Virtue, and also the Poor Major Flaw."
+  ],
+  "related": []
+ }
+]

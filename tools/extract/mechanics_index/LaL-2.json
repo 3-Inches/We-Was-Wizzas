@@ -1,0 +1,742 @@
+[
+ {
+  "title": "Angers: Béhuard Island Dominion over Magic",
+  "heading": "Angers",
+  "line": 2303,
+  "endLine": 2307,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes a former pagan shrine on an island in the Loire whose weak Magic aura has been overwhelmed by a Dominion aura from local prayer, and notes one nearby valley free of any Dominion aura. A worked example of Dominion displacing Magic in a populated Christian region.",
+  "quotes": [
+   "their attentions have raised a Dominion aura to swamp the level-2 Magic aura of the old pagan shrine"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tavant: Residual Magic Aura Under a Church",
+  "heading": "Tavant",
+  "line": 2319,
+  "endLine": 2321,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A church built over the ruins of the old covenant of Sinapis keeps a residual Magic aura that is normally overridden by the Dominion aura.",
+  "quotes": [
+   "The residual Magic aura can only reassert itself when the Dominion aura is at its weakest."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tours: Magic and Faerie Auras Around the City",
+  "heading": "Tours",
+  "line": 2335,
+  "endLine": 2345,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists several nearby sites with stated aura levels: a Roman tower with a Magic aura that grows stronger toward its top, a cave valley suited to a covenant site with an Aquam vis source, and a dolmen whose Faerie aura strengthens when the fae are present.",
+  "quotes": [
+   "The structure normally has a Faerie aura of level 3, but this rises to 5 when the fae are present"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gennes: Nymph Regio",
+  "heading": "Gennes",
+  "line": 2373,
+  "endLine": 2375,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A small Magic regio beside a Roman amphitheatre where nymphs may give Aquam vis to visitors who please them, and where male visitors may find it hard to leave.",
+  "quotes": [
+   "There is a small Magic regio close beside this, where several nymphs live in a Gallo-Roman shrine."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vézère Valley: Magic Aura, Aligned Caves and Regio",
+  "heading": "Vézère",
+  "line": 2521,
+  "endLine": 2525,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes an extensive Magic aura under a river valley whose cave paintings and formations give higher, Form-aligned aura levels, plus a two-level regio reached through linked caves.",
+  "quotes": [
+   "Places with the most vivid depictions have a Magic aura of 5 or 6, aligned with Animal"
+  ],
+  "related": [
+   "Realms of Power: Magic",
+   "Houses of Hermes: Mystery Cults p.25"
+  ]
+ },
+ {
+  "title": "Clermont: Moon-Gated Regio",
+  "heading": "Clermont",
+  "line": 2533,
+  "endLine": 2535,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A regio grove with a Terram vis spring beneath a city, entered through a spring-fed clump of trees and passable only at a particular phase of the moon.",
+  "quotes": [
+   "The way in and out is only accessible when the moon is full."
+  ],
+  "related": []
+ },
+ {
+  "title": "Auvergne Mountains: Puy de Dôme Regio and Healing Springs",
+  "heading": "Auvergne Mountains",
+  "line": 2541,
+  "endLine": 2547,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covers a regio on the Puy de Dôme entered by following the Roman road, scattered low Magic auras that yield vis in particular ways, and hot springs and gases that give a bonus to recovery rolls when used for a limited time.",
+  "quotes": [
+   "Treat half an hour spent immersed in the water or breathing in the gas as giving a +3 to the recovery roll"
+  ],
+  "related": [
+   "ArM5 pp.179-180 recovery",
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Oleron: The Queen's Champion and the Challenges",
+  "heading": "The Queen's Champion and the Challenges",
+  "line": 2573,
+  "endLine": 2581,
+  "category": "realms",
+  "topic": "Faerie courts and regio rulership",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Oleron (Apple Mile regio)",
+  "summary": "Explains how the consort of the Faerie Queen of the Apple Mile is chosen by a Midsummer challenge, what a defeated challenger owes in restitution (a compelled task resisted as a Mentem effect with a stated Penetration), and what happens to the queen, her daughter and the old consort.",
+  "quotes": [
+   "This may be resisted as a ReMe effect with a Penetration of 75"
+  ],
+  "related": []
+ },
+ {
+  "title": "Oleron: Stone Couches and Sleepers",
+  "heading": "Spreading Stories and Creating Heroes",
+  "line": 2583,
+  "endLine": 2591,
+  "category": "beings",
+  "topic": "Faerie heroes (Sleepers)",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Oleron (Stone Couches)",
+  "summary": "Rules-flavored explanation of how tumuli grow faerie duplicates of folk heroes over years, how a Sleeper's powers and Might follow the hero's folklore and Reputation, when Sleepers wake, and what happens if an ordinary human is buried in a Couch.",
+  "quotes": [
+   "A tumulus will build a skeleton for its hero after three years, and grow his flesh over the next eighteen."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults (Mystery of Becoming)"
+  ]
+ },
+ {
+  "title": "Bee King (Strong Faerie Blood variety)",
+  "heading": "Bee King Virtue",
+  "line": 2714,
+  "endLine": 2724,
+  "category": "beings",
+  "topic": "Faerie blood Virtues",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Strong Faerie Blood (Bee King variety)",
+  "summary": "Describes the special powers of a Bee King: commanding bees, speaking with hives, immunity to biting insects, and treating attacking bee swarms as an automatic damage effect rather than a melee group, along with the fixed lifespan drawback.",
+  "quotes": [
+   "An attacking bee swarm is treated as an environmental effect, rather than an opposing mêlée group."
+  ],
+  "related": []
+ },
+ {
+  "title": "Templar Treasury: Deposits, Receipts and Loans",
+  "heading": "The Templar Treasury",
+  "line": 2884,
+  "endLine": 2888,
+  "category": "social",
+  "topic": "Banking and credit",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how the Knights Templar act as a bank: deposits against coded parchment receipts that are drawn down along a pilgrimage, transfers for merchants and nobles, and loans that avoid the usury ban by charging rents.",
+  "quotes": [
+   "the restriction on usury (the charging of interest) is sidestepped by the charging of"
+  ],
+  "related": []
+ },
+ {
+  "title": "Eboris: Injured Sodalis and Enforcing the Code in Paris",
+  "heading": "Assisting the Quaesitores",
+  "line": 3133,
+  "endLine": 3139,
+  "category": "order",
+  "topic": "Tribunal customs and Code enforcement",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how a local magus can serve as a convenient injured party so that otherwise tolerated activities become breaches of the Code, and why even minor infractions near Parisian potentates are punished in this Tribunal.",
+  "quotes": [
+   "An injured sodalis makes an undesired activity a breach of the Code."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fontainebleau: Fountain of Fair Waters Faerie Regio",
+  "heading": "The Fountain of Fair Waters",
+  "line": 3226,
+  "endLine": 3228,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A Faerie regio around a spring with a nymph, tolerant of humble visitors but cursing hunters who persist, with transformed boulders that can be harvested for vis.",
+  "quotes": [
+   "It has a Faerie aura of 6."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lapis Crudus: Regio Gate and Social Status Swap",
+  "heading": "Setting and Physical Description",
+  "line": 3248,
+  "endLine": 3252,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Lapis Crudus (sealed regio)",
+  "summary": "Describes the sealed Faerie regio containing the covenant and the mirror-hut gate through which people can cross only by exchanging places with someone of comparable Social Status, along with the regio's Faerie aura and vis sources.",
+  "quotes": [
+   "The persons must have comparable (but not necessarily identical) Social Status Virtues or Flaws to effect the passage to or from the regio",
+   "Within the regio, the covenant sits in a Faerie aura of 7."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lapis Crudus: Warping from a Strong Faerie Aura",
+  "heading": "Magi",
+  "line": 3258,
+  "endLine": 3260,
+  "category": "realms",
+  "topic": "Warping from living in an aura",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Lapis Crudus (sealed regio)",
+  "summary": "Notes that magi trapped for decades in a strong Faerie aura gather Warping from the aura itself, in addition to their Longevity Rituals, and risk Final Twilight.",
+  "quotes": [
+   "Each magus has accrued one Warping Point a year for the last eighty years of entrapment from the aura alone"
+  ],
+  "related": [
+   "ArM5 p.167 Warping"
+  ]
+ },
+ {
+  "title": "Lapis Crudus: Warping of Covenfolk Born in the Regio",
+  "heading": "Covenfolk",
+  "line": 3276,
+  "endLine": 3278,
+  "category": "realms",
+  "topic": "Warping from living in an aura",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Lapis Crudus (sealed regio)",
+  "summary": "Gives typical Warping Scores for mundane covenfolk raised in a strong Faerie regio at puberty and in later life, with the consequence that they treat magic items as normal.",
+  "quotes": [
+   "acquiring a Warping Score of 3 by the time the reach puberty, and a Score of 5 in their late forties"
+  ],
+  "related": [
+   "ArM5 p.167 Warping"
+  ]
+ },
+ {
+  "title": "Noirmoutier: Island Magic Aura with Higher Beach",
+  "heading": "Noirmoutier",
+  "line": 2417,
+  "endLine": 2419,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A coastal island with a modest Magic aura and a sacred beach where the aura is stronger, described as a possible covenant site with notable resources.",
+  "quotes": [
+   "The isle has a Magic aura of level 3."
+  ],
+  "related": []
+ },
+ {
+  "title": "Poitiers: Dominion Auras of Holy Sites",
+  "heading": "Poitiers",
+  "line": 2427,
+  "endLine": 2431,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives Dominion aura levels for specific holy sites, including one that has faded over time through changed usage.",
+  "quotes": [
+   "the Dominion aura there has faded to level 4",
+   "it has a Dominion aura of 5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Bavacum: Seven Roads and Mercury's Shortcuts",
+  "heading": "Bavacum",
+  "line": 3411,
+  "endLine": 3417,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A Magic aura site where one of seven Roman roads gives a shortened journey depending on the heavens, with a roll to predict which road is active and an annual day when all roads work and footprints yield vis.",
+  "quotes": [
+   "An Intelligence + Artes Liberales roll against an Ease Factor of 12 may be made to accurately predict which road will be active at any given time."
+  ],
+  "related": []
+ },
+ {
+  "title": "Flemish Cloth Fairs: Trade Fair Cycle",
+  "heading": "The Flemish Cloth Fairs",
+  "line": 3351,
+  "endLine": 3353,
+  "category": "social",
+  "topic": "Trade fairs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar giving the yearly cycle and order of Flemish cloth trade fairs, how the counts keep them secure, and a pointer to the general trade fair rules.",
+  "quotes": [
+   "The cycle of trade fairs in Flanders runs from February to November"
+  ],
+  "related": [
+   "City & Guild p.97 trade fairs"
+  ]
+ },
+ {
+  "title": "Faux de Verzy: Faerie Aura Grove",
+  "heading": "The Faux de Verzy",
+  "line": 3541,
+  "endLine": 3543,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A feared grove of twisted beeches with a stated Faerie aura, where captives are said to return scarred.",
+  "quotes": [
+   "This place, which has a Faerie aura of 4, is shunned by the nearby peasants."
+  ],
+  "related": []
+ },
+ {
+  "title": "Nanteuil: Possible Divine Regio",
+  "heading": "Nanteuil",
+  "line": 3549,
+  "endLine": 3551,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A Templar priory in a remote vale that one magus recorded as a regio of possibly Divine origin, though others blame a Twilight episode.",
+  "quotes": [
+   "found it to be a regio, possibly of Divine origin"
+  ],
+  "related": []
+ },
+ {
+  "title": "Blue Springs of the Somme: Faerie Pools",
+  "heading": "The Blue Springs of the Somme",
+  "line": 3573,
+  "endLine": 3575,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Enchanted pools with Faerie auras of varying strength whose sprites steal things or reward gifts and bless infants.",
+  "quotes": [
+   "The pools have Faerie auras of differing strengths, up to 3."
+  ],
+  "related": []
+ },
+ {
+  "title": "Caves of Naours: Pact with a Genius Loci",
+  "heading": "The Caves of Naours",
+  "line": 3577,
+  "endLine": 3581,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An underground village protected by a mutual-protection pact with a cave spirit, set within a weak Magic aura.",
+  "quotes": [
+   "A Magic aura of 2 pervades throughout."
+  ],
+  "related": [
+   "Realms of Power: Magic (genius loci)"
+  ]
+ },
+ {
+  "title": "Champagne Trade Fairs",
+  "heading": "The Champagne Trade Fairs",
+  "line": 3688,
+  "endLine": 3692,
+  "category": "social",
+  "topic": "Trade fairs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar describing the cycle of Champagne trade fairs, what is traded, and how Redcaps set up temporary Mercer Houses there to trade vis, books and news, with a pointer to the trade fair rules.",
+  "quotes": [
+   "There are six main trade fairs in the great Champagne cycle"
+  ],
+  "related": [
+   "City & Guild p.104 trade fairs"
+  ]
+ },
+ {
+  "title": "Clairvaux: Divine Aura of an Abbey",
+  "heading": "Clairvaux",
+  "line": 3700,
+  "endLine": 3704,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the Divine aura of a major Cistercian abbey as an example of a strong Dominion site.",
+  "quotes": [
+   "The entire abbey has a Divine aura of 6."
+  ],
+  "related": []
+ },
+ {
+  "title": "Catalaunian Fields: Infernal Aura and Solstice Regio",
+  "heading": "The Catalaunian Fields",
+  "line": 3710,
+  "endLine": 3718,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A battlefield with a Malevolent Infernal aura that on one night of the year opens into an Infernal regio of fighting shades, where Perdo and Corpus vis can be harvested, some of it Infernally tainted.",
+  "quotes": [
+   "A Malevolent Infernal aura of 3"
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.15"
+  ]
+ },
+ {
+  "title": "Cunfin: Magic Regio Within a Divine Aura",
+  "heading": "Setting and Physical Description",
+  "line": 3732,
+  "endLine": 3738,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Cunfin",
+  "summary": "A covenant sits in a Magic regio overlapping a monastery's strong Divine aura, a coexistence nobody can explain, with a single-level regio entered by anyone carrying a charm made from stones of the old fort.",
+  "quotes": [
+   "The regio's single level can be accessed by anyone holding a charm made from the stones of the fort."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cunfin: Holy Influence Calming the Dominion, Mercere Portal",
+  "heading": "Culture and Traditions",
+  "line": 3746,
+  "endLine": 3752,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Cunfin",
+  "summary": "Describes how a magus with Holy Influence shapes the temper of the surrounding Dominion to reduce conflict with mundanes, that the magi's Gentle Gift eases dealings with locals, and that the covenant hosts a Mercere Portal.",
+  "quotes": [
+   "Eloi uses his Holy Influence to give the Dominion surrounding the monastery a Calm temper"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mont Auxois: Magic and Divine Aura on One Hill",
+  "heading": "Mont Auxois",
+  "line": 3981,
+  "endLine": 3987,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A haunted hilltop ruin that keeps a Magic aura and could suit a covenant, with a separate Divine aura around a martyr's healing fountain on one edge.",
+  "quotes": [
+   "The place retains a Magic aura and might make a suitable site for a covenant",
+   "On the southwestern edge of the hilltop, a Divine aura prevails."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cave of Sabinus: Genius Loci and Luctatio",
+  "heading": "The Cave of Sabinus",
+  "line": 4001,
+  "endLine": 4003,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A cave with a demanding genius loci that permits Aquam vis to be harvested from its spring, treated by the Tribunal as a contested vis site (a luctatio).",
+  "quotes": [
+   "the site is, however, considered a luctatio by the Tribunal"
+  ],
+  "related": [
+   "Realms of Power: Magic (genius loci)"
+  ]
+ },
+ {
+  "title": "Cluny: Optional Infernal Corruption Inside a Divine Aura",
+  "heading": "Cluny",
+  "line": 4015,
+  "endLine": 4021,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Offers an optional dark option for a saga in which Infernal auras hide within, or weaken, the strong Divine aura of a wealthy monastery.",
+  "quotes": [
+   "as an optional, somewhat dark take for your saga"
+  ],
+  "related": []
+ },
+ {
+  "title": "Oleron: The Apple Mile Faerie Regio",
+  "heading": "Setting and Physical Description",
+  "line": 2559,
+  "endLine": 2565,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Oleron (Apple Mile regio)",
+  "summary": "Describes a covenant regio with a strong Faerie aura and perpetual summer, whose roads loop back on themselves and lead only to the mortal world and the Stone Couches.",
+  "quotes": [
+   "Within the regio, which has a Faerie aura of 5, it is always summer."
+  ],
+  "related": []
+ },
+ {
+  "title": "Atsingani: Council Chamber Fixed by Tribunal Custom",
+  "heading": "Setting and Physical Description",
+  "line": 2773,
+  "endLine": 2777,
+  "category": "order",
+  "topic": "Normandy Peripheral Code and covenant law",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mobile covenant (Atsingani)",
+  "summary": "A mobile covenant with no native aura is nonetheless bound by Tribunal custom to keep a fixed council chamber, which Quaesitors may check, and which also supplies its only stable vis.",
+  "quotes": [
+   "The Tribunal's customs forbid them from moving their council chamber"
+  ],
+  "related": []
+ },
+ {
+  "title": "Atsingani: Limits of a Mobile Covenant",
+  "heading": "Culture and Traditions",
+  "line": 2779,
+  "endLine": 2781,
+  "category": "covenant",
+  "topic": "Mobile covenants",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mobile covenant (Atsingani)",
+  "summary": "Lists the drawbacks of a covenant without a permanent base: no stable income, no fortifications, only poor shared tent laboratories, and a single fixed vis source.",
+  "quotes": [
+   "can only establish rather poor temporary laboratories (apart from the one belonging to Viviana) in tents, which they share"
+  ],
+  "related": []
+ },
+ {
+  "title": "Florum: Hiding a Source of Wealth Under the Peripheral Code",
+  "heading": "Setting and Physical Description",
+  "line": 3433,
+  "endLine": 3437,
+  "category": "order",
+  "topic": "Normandy Peripheral Code and covenant law",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Shows how a covenant disguises a magically produced income behind a factory and a fictional family so that its wealth remains lawful under the Tribunal's Peripheral Code.",
+  "quotes": [
+   "therefore legal according to the Tribunal's Peripheral Code"
+  ],
+  "related": []
+ },
+ {
+  "title": "Spider's Palace: Splitting Covenants to Claim Resources",
+  "heading": "Spider's Palace",
+  "line": 3509,
+  "endLine": 3513,
+  "category": "order",
+  "topic": "Normandy Peripheral Code and covenant law",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Illustrates how the Normandy way of apportioning magical resources pushes nearby sites to be declared separate covenants, with one resident magus keeping the legal claim.",
+  "quotes": [
+   "A single magus usually lives here, to maintain the covenant's claim to the surrounding resources"
+  ],
+  "related": []
+ }
+]

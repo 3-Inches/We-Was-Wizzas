@@ -1,0 +1,129 @@
+// Arcane Experimentation (DE, Arcane Experimentation and Arcane Discovery): the Lab Total bonus
+// and the Extraordinary Results Chart with its sub-tables, rolled.
+
+import { defaultRng, describeStress, simpleDie, stressDie, type Rng } from './dice';
+
+export interface ExperimentOptions {
+  /** the risk modifier, 0 to 3 */
+  risk: number;
+  /** the laboratory's aura: each point is an extra botch die on the chart, whatever its realm */
+  auraStrength: number;
+  /** original research for a Breakthrough: the risk modifier is not added to the Lab Total but may move the chart roll onto Discovery */
+  originalResearch?: boolean;
+  /** the project is an enchanted item or a familiar (a Complete Failure may destroy it) */
+  enchantment?: boolean;
+}
+
+export interface ExperimentResult {
+  /** added to the Lab Total for the season */
+  labBonus: number;
+  /** what happened, one line per result, in the book's words where it matters */
+  lines: string[];
+  disaster: boolean;
+  /** Warping Points each person in the laboratory gains from a Disaster (one per zero) */
+  warpingPoints: number;
+  /** a Discovery came up (for original research, the season yields breakthrough points) */
+  discovery: boolean;
+}
+
+/** The most risk an original researcher may take: +1 per 5 points (or fraction) of Magic Theory, up to +3. */
+export function researchRiskLimit(magicTheory: number): number {
+  return Math.min(3, Math.max(0, Math.ceil(magicTheory / 5)));
+}
+
+const DISASTER = [
+  'Everyone in the lab gains Warping Points equal to the number of zeroes on the botch roll; Hermetic magi who gain two or more roll for Twilight. The season is wasted (Complete Failure).',
+  'Your creation is destroyed.',
+  'Your laboratory gains the Damaged Flaw.',
+  'Explosion! The laboratory gains the Wrecked Flaw instead, and everyone in it takes two Heavy Wounds.',
+  'The storyguide picks: a story event that threatens the whole covenant, or the laboratory is destroyed outright (rebuilt from nothing, with the Deformed and Unstable Flaws) and everyone in it takes an Incapacitating Wound as well.',
+];
+
+function sideEffect(n: number): string {
+  if (n === 1) return 'Your sigil is exaggerated to many times its normal strength.';
+  if (n <= 3) return 'A minor flaw.';
+  if (n <= 5) return 'A minor side effect.';
+  if (n === 6) return 'A minor side benefit.';
+  if (n === 7) return 'A major flaw.';
+  if (n === 8) return 'A major side effect.';
+  if (n === 9) return 'A major side benefit.';
+  return 'A fatal flaw.';
+}
+
+function modified(n: number): string {
+  if (n <= 3) return 'The effect is reduced in Range, Duration, Target or potency.';
+  if (n <= 6) return 'The effect’s Range, Duration, Target or potency is increased.';
+  if (n <= 8) return 'The use of the effect is restricted (it fails in certain circumstances).';
+  if (n <= 10) return 'The actual effect is modified.';
+  return 'The effect is changed completely (same Technique and Form, similar level).';
+}
+
+function discoveryGain(n: number): string {
+  if (n <= 4) return '15 experience points in Magic Theory.';
+  if (n <= 6) return '15 experience points in an Ability related to the experiment.';
+  if (n <= 8) return '3 experience points in one of the Arts used.';
+  return 'Enough experience to raise one of the Arts used to its next level (at least 3 experience points).';
+}
+
+/** One season of experimentation: the Lab Total bonus and a roll on the Extraordinary Results Chart. */
+export function rollExperiment(o: ExperimentOptions, rng: Rng = defaultRng): ExperimentResult {
+  const risk = Math.max(0, Math.min(3, o.risk));
+  const die = simpleDie(rng).value;
+  const labBonus = o.originalResearch ? die : die + risk;
+  const lines: string[] = [
+    `Lab Total +${labBonus} (simple die ${die}${!o.originalResearch && risk ? ` + risk ${risk}` : ''}).`,
+  ];
+  let disaster = false;
+  let discovery = false;
+  let warpingPoints = 0;
+
+  const chart = (depth: number) => {
+    const r = stressDie(1 + risk + Math.max(0, o.auraStrength), rng);
+    if (r.botches) {
+      disaster = true;
+      warpingPoints += r.botches;
+      lines.push(`Chart: ${describeStress(r)}. Disaster, with ${r.botches} zero${r.botches > 1 ? 'es' : ''}:`);
+      for (let i = 0; i < Math.min(r.botches, DISASTER.length); i++) lines.push(`  ${i + 1}. ${DISASTER[i]}`);
+      return;
+    }
+    const v = r.value + risk;
+    const head = `Chart: ${describeStress(r)}${risk ? ` + risk ${risk}` : ''} = ${v}.`;
+    if (o.originalResearch && v !== 10 && Math.abs(10 - v) <= risk) {
+      discovery = true;
+      lines.push(`${head} You may ${v < 10 ? 'add' : 'subtract'} ${Math.abs(10 - v)} of your risk modifier for a Discovery as well (and must adjust every later season of this project the same way).`);
+    }
+    if (v <= 4) lines.push(`${head} No extraordinary effects.`);
+    else if (v <= 6) {
+      const s = simpleDie(rng).value;
+      lines.push(`${head} Side effect (simple die ${s}): ${sideEffect(s)} Work out the specifics with the storyguide.`);
+    } else if (v === 7) lines.push(`${head} No benefit: recalculate the Lab Total without the experimentation bonus; if it is now too low, the project is abandoned.`);
+    else if (v === 8) {
+      const s = simpleDie(rng);
+      lines.push(`${head} Complete failure: the season is wasted.${o.enchantment ? ` Simple die for the item or familiar: ${s.face}${s.face === 0 ? ', a 0: it is destroyed.' : ', it survives.'}` : ''}`);
+    } else if (v === 9) lines.push(`${head} Special or story event: extra vis, a bonus spell, a strange modification or a story, as the storyguide picks.`);
+    else if (v === 10) {
+      discovery = true;
+      if (o.originalResearch) lines.push(`${head} Discovery: the original research succeeds this season.`);
+      else {
+        const gain = (n: number) => `${discoveryGain(n)}`;
+        const s = simpleDie(rng).value + risk;
+        if (s >= 10) {
+          const a = simpleDie(rng).value + risk;
+          const b = simpleDie(rng).value + risk;
+          lines.push(`${head} Discovery (${s}, roll twice): ${gain(Math.min(a, 9))} ${gain(Math.min(b, 9))}`);
+        } else lines.push(`${head} Discovery (${s}): ${gain(s)}`);
+      }
+    } else if (v === 11) {
+      const s = simpleDie(rng).value + risk;
+      lines.push(`${head} Modified effect (${s}): ${modified(s)}`);
+    } else {
+      lines.push(`${head} Roll twice more on the chart.`);
+      if (depth < 4) {
+        chart(depth + 1);
+        chart(depth + 1);
+      }
+    }
+  };
+  chart(0);
+  return { labBonus, lines, disaster, warpingPoints, discovery };
+}

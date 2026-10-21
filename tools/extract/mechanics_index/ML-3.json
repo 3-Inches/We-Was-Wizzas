@@ -1,0 +1,532 @@
+[
+ {
+  "title": "Entering the Truffle Regio",
+  "heading": "The Realm of the Truffles",
+  "line": 5788,
+  "endLine": 5792,
+  "category": "realms",
+  "topic": "Truffle Regio",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Truffle Regio (Mythic Locations)",
+  "summary": "How characters find and enter the truffle regio: it needs a guide or exact location, one character able to see the regio, and a local Magic aura that only exists on the solstices and equinoxes. Leaving is possible at any time.",
+  "quotes": [
+   "The Magic aura outside of the regio is 1, only on the solstices and equinoxes, which means that the players must roll against an Ease Factor of 9 to see inside."
+  ],
+  "related": [
+   "ArM5 p.189 entering and leaving regiones",
+   "ArM5 p.158 Piercing the Magical Veil"
+  ]
+ },
+ {
+  "title": "Truffle Regio, first level (Regio Entrance)",
+  "heading": "Regio Entrance",
+  "line": 5794,
+  "endLine": 5806,
+  "category": "realms",
+  "topic": "Truffle Regio",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Truffle Regio (Mythic Locations)",
+  "summary": "Describes the outermost level of the regio, its Magic aura, how to spot the path leading onward, and how the Wild Boar of the Woods intercepts intruders and sends them after interloping wolves.",
+  "quotes": [
+   "The first level of the regio has a Magic aura of 3.",
+   "With a Hunt + Perception roll against an Ease Factor of 9, the character notices a path leading away from the regio entrance."
+  ],
+  "related": [
+   "Realms of Power: Magic p.55 Creatures of Virtue"
+  ]
+ },
+ {
+  "title": "Truffle Regio, second level (Truffle Fields)",
+  "heading": "Truffle Fields",
+  "line": 5958,
+  "endLine": 5962,
+  "category": "realms",
+  "topic": "Truffle Regio",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Truffle Regio (Mythic Locations)",
+  "summary": "Describes how to reach the second level of the regio, which has a stronger Magic aura, and what happens if the characters cannot see the way on and loop back to the first level.",
+  "quotes": [
+   "The second level of the regio has a Magic aura of 5."
+  ],
+  "related": [
+   "ArM5 p.158 Piercing the Magical Veil"
+  ]
+ },
+ {
+  "title": "Truffle Regio, third level (Truffle Holt)",
+  "heading": "Truffle Holt",
+  "line": 5972,
+  "endLine": 5976,
+  "category": "realms",
+  "topic": "Truffle Regio",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Truffle Regio (Mythic Locations)",
+  "summary": "Describes how characters cross into the third and final level of the regio, which has the strongest Magic aura, with help from the truffle workers or by finding the entrance themselves.",
+  "quotes": [
+   "The third and final level of the regio has a Magic aura of 7."
+  ]
+ },
+ {
+  "title": "Tests of the Truffle Matron",
+  "heading": "Tests of the Truffle Matron",
+  "line": 5996,
+  "endLine": 6011,
+  "category": "setting",
+  "topic": "Truffle Regio",
+  "audience": [
+   "storyguide",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Truffle Regio (Mythic Locations)",
+  "summary": "The Matron's trials before she makes requests: a scuffling duel, a tug-of-war resolved by opposed Simple Die rolls with Size bonuses, a plant-healing challenge, and a tribute procession, which together set the size of the vis reward.",
+  "quotes": [
+   "For every Size point the awakened tree is larger than the character, add +2 to the tree's die roll.",
+   "If the difference is less than 5, the two roll again and continue to roll until the accumulated difference between their rolls is 5 or more."
+  ],
+  "related": [
+   "ArM5 p.174 scuffling",
+   "ArM5 p.135 The Bountiful Feast"
+  ]
+ },
+ {
+  "title": "Creo-aligned aura of the Truffle Regio",
+  "heading": "Aura",
+  "line": 6016,
+  "endLine": 6020,
+  "category": "realms",
+  "topic": "Aligned auras",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Truffle Regio (Mythic Locations)",
+  "summary": "Explains the effects of a Creo-aligned Magic aura: doubled aura bonus for Creo activities, aura added to Recovery rolls, cheaper Might for Creo creatures, instant healing of minor hurts, slowed apparent aging and a Living Conditions bonus for a full year.",
+  "quotes": [
+   "The Magic aura bonus is doubled in the regio for all activities involving Creo.",
+   "For each season the character spends in the aura, his apparent age is decreased by one, but does not decrease below 27."
+  ],
+  "related": [
+   "Realms of Power: Magic p.16 aligned auras"
+  ]
+ },
+ {
+  "title": "Enriching a Beech Tree of Virtue",
+  "heading": "Beech Tree of Virtue",
+  "line": 6058,
+  "endLine": 6061,
+  "category": "realms",
+  "topic": "Enriching vis sources",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: Trees of Virtue in the Truffle Regio (Mythic Locations)",
+  "summary": "Procedure for Enriching branches from a Beech Tree of Virtue into an amulet that temporarily grants the Luck Virtue, and the vis obtained from its beechnuts.",
+  "quotes": [
+   "While the amulet is worn, the character is treated as having the Luck Virtue (**ArM5**, page 45)."
+  ],
+  "related": [
+   "Realms of Power: Magic Trees of Virtue"
+  ]
+ },
+ {
+  "title": "Enriching a Poplar Tree of Virtue",
+  "heading": "Poplar Tree of Virtue",
+  "line": 6062,
+  "endLine": 6065,
+  "category": "realms",
+  "topic": "Enriching vis sources",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: Trees of Virtue in the Truffle Regio (Mythic Locations)",
+  "summary": "Procedure for Enriching leaves and twigs from a Poplar Tree of Virtue into a crown that briefly grants the Long-Winded Virtue to one wearer, plus the vis from perfect leaves.",
+  "quotes": [
+   "The Enriched crown only grants the Long-Winded Virtue to one person"
+  ],
+  "related": [
+   "Realms of Power: Magic Trees of Virtue"
+  ]
+ },
+ {
+  "title": "Truffles of Virtue",
+  "heading": "Truffles of Virtue",
+  "line": 6070,
+  "endLine": 6073,
+  "category": "realms",
+  "topic": "Enriching vis sources",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Truffle Regio (Mythic Locations)",
+  "summary": "Explains how Truffles of Virtue are Enriched by being eaten by a Magic creature and propagated by fertilizing trees, and how they count as Dedicated vis if used another way.",
+  "quotes": [
+   "Truffles of Virtue may be Enriched by being devoured by a creature with a Magic Might of at least 5."
+  ],
+  "related": [
+   "Realms of Power: Magic p.122 Dedicated vis"
+  ]
+ },
+ {
+  "title": "New Creo Herbam guidelines (healing plants)",
+  "heading": "New Creo Herbam Guidelines",
+  "line": 6162,
+  "endLine": 6173,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Adds Creo Herbam guidelines for healing wounds, disease and poison in plants, and notes that non-Momentary healing spells suspend rather than complete healing, as for Creo Corpus.",
+  "quotes": [
+   "Like Creo Corpus healing spells, a healing spell cast other than as a Momentary Duration Ritual actually suspends the healing process"
+  ],
+  "related": [
+   "ArM5 Creo Corpus healing guidelines"
+  ]
+ },
+ {
+  "title": "The Wolf's Court aura and the She-Wolf's manifestation",
+  "heading": "The Court",
+  "line": 6505,
+  "endLine": 6509,
+  "category": "realms",
+  "topic": "Wolf's Court",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Wolf's Court (Mythic Locations)",
+  "summary": "Gives the Magic aura of the Wolf's Court and describes how the She-Wolf forms a body, assesses petitioners without negotiation and speaks with her Voice of the Wolf power.",
+  "quotes": [
+   "The Wolf's Court itself is situated in a Magic aura of 5."
+  ]
+ },
+ {
+  "title": "Aspects of a Daimon (the She-Wolf)",
+  "heading": "Inhabitants",
+  "line": 6511,
+  "endLine": 6519,
+  "category": "beings",
+  "topic": "Daimon Aspects",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Aspect of a Daimon",
+  "summary": "Explains how a spirit that creates a material body behaves: it can dismiss and recreate its body, the Daimon can send a new Aspect after a day, Acclimation applies, and spending Might on Virtues and Flaws erodes the Aspect. Also advises how to use such a spirit as a provider of vengeance rather than an antagonist.",
+  "quotes": [
+   "If the Aspect is destroyed, the spirit can send another to the Wolf's Court after a day has passed."
+  ],
+  "related": [
+   "Realms of Power: Magic p.102 Daimon",
+   "Realms of Power: Magic p.52 Acclimation",
+   "Realms of Power: Magic p.46 Master of Animal Creatures"
+  ]
+ },
+ {
+  "title": "How the She-Wolf grants revenge",
+  "heading": "How the She-Wolf Grants Revenge",
+  "line": 6587,
+  "endLine": 6599,
+  "category": "beings",
+  "topic": "Daimon Aspects",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Aspect of a Daimon",
+  "summary": "Describes how a spirit judges a petitioner's claim and then bestows Virtues or Flaws through its powers, either permanently (costing Might score as well as pool) or temporarily (Might not recovered while the effect lasts).",
+  "quotes": [
+   "If permanent, the power is a ritual-like power and costs points from the creature's Might score as well as Might pool.",
+   "If temporary, the power lasts until the She-Wolf dismisses it, but the Might points spent on this power are not recovered while it is ongoing."
+  ]
+ },
+ {
+  "title": "Ritual of passing on the power",
+  "heading": "The Ritual of Passing on the Power",
+  "line": 6601,
+  "endLine": 6605,
+  "category": "realms",
+  "topic": "Daimon Aspects",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Wolf's Court (Mythic Locations)",
+  "summary": "The optional ritual by which the She-Wolf endows a petitioner, which also gives the spirit an Arcane Connection and sympathetic connections to the recipient.",
+  "quotes": [
+   "This ritual is not strictly necessary, but it provides an appropriate amount of mystery and formality to the seeking of vengeance."
+  ]
+ },
+ {
+  "title": "Spiritual Pact (Major Supernatural Virtue)",
+  "heading": "New Virtue: Spiritual Pact",
+  "line": 6627,
+  "endLine": 6641,
+  "category": "realms",
+  "topic": "Spiritual Pact",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spiritual Pact (Major, Supernatural)",
+  "summary": "Extended rules for a character bound by pact to a Magic spirit: spending a Confidence Point to draw a temporary Might pool, how Penetration and duration work, the lack of a Might score, and how the spirit's own pool is reduced.",
+  "quotes": [
+   "Make a Presence + Magic Lore + stress die roll: this is the amount of Magic Might Pool that the character acquires from his spiritual master.",
+   "A character can only have a single pact."
+  ],
+  "related": [
+   "Realms of Power: Magic pp.88-89"
+  ]
+ },
+ {
+  "title": "The Wolf Brothers (Luperci cult overview)",
+  "heading": "The Wolf Brothers",
+  "line": 6649,
+  "endLine": 6653,
+  "category": "mysteries",
+  "topic": "Luperci",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: the Wolf's Court (Mythic Locations)",
+  "summary": "Introduces the Luperci as a non-Hermetic Mystery Cult whose members use the Wolf's Court for Initiations, with the She-Wolf as magical patron; the storyguide chooses how widespread it is.",
+  "quotes": [
+   "This priesthood still exists as a Mystery Cult"
+  ]
+ },
+ {
+  "title": "The Luperci Mystery Cult: grades and Initiations",
+  "heading": "The Luperci",
+  "line": 6655,
+  "endLine": 6661,
+  "category": "mysteries",
+  "topic": "Luperci",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Luperci (Wolf Brothers)",
+  "summary": "Describes the three grades of the Luperci cult, the Organization Lore: Luperci needed for each, the Virtues and Flaws gained at each Initiation and their Initiation Script bonuses and Ease Factors, and the lykaia rite for magistri.",
+  "quotes": [
+   "The most junior grade is called the *lupellis*, which requires an Organization Lore: Luperci of at least 1.",
+   "(Initiation Script +9 for the Major Flaw; Ease Factor 15)",
+   "a character must have an Organization Lore: Luperci of 5 before being considered for this rank"
+  ],
+  "related": [
+   "The Mysteries Revised Edition Chapter Two",
+   "Realms of Power: Magic p.45 Lesser Power"
+  ]
+ },
+ {
+  "title": "The Luperci as a Hermetic Mystery Cult (variant)",
+  "heading": "The Luperci as a Hermetic Mystery Cult",
+  "line": 6663,
+  "endLine": 6667,
+  "category": "mysteries",
+  "topic": "Luperci",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Optional variant: Hermetic version of the Luperci",
+  "summary": "Optional variant making the Luperci a Hermetic cult open only to magi, adjusting the crimes it avenges and the meaning of its Dark Secret, and noting that Gifted characters need not take an Ordeal at every Initiation.",
+  "quotes": [
+   "Unlike unGifted characters, Gifted individuals do not have to take an Ordeal at every Initiation"
+  ],
+  "related": [
+   "Hedge Magic Revised Edition p.14"
+  ]
+ },
+ {
+  "title": "The Lupercalia curse-breaking rite",
+  "heading": "THE LUPERCALIA",
+  "line": 6669,
+  "endLine": 6671,
+  "category": "mysteries",
+  "topic": "Luperci",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Luperci (Wolf Brothers)",
+  "summary": "Yearly festival during which the senior Luperci present may attempt to dispel a curse on the community with a Communication roll against the curse's level, with bonuses for individuals brought to justice.",
+  "quotes": [
+   "To evoke this power requires a Communication + Organization Lore: Luperci + stress die against an Ease Factor equal to the level of the spell that generated the curse (or 5 x the Supernatural Ability used to lay it).",
+   "it receives a bonus of +3 for every individual who has been brought to justice in the last year"
+  ]
+ },
+ {
+  "title": "Wolf pack hunt: overview of the five phases",
+  "heading": "Hunted by Colves",
+  "line": 6681,
+  "endLine": 6683,
+  "category": "hazards",
+  "topic": "Predator pack hunt and pursuit",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the structured procedure a storyguide uses when a wolf pack hunts the characters: stalk, encounter, rush, chase and kill.",
+  "quotes": [
+   "A wolf hunt has five main phases: the stalk, the encounter, the rush, the chase, and the kill."
+  ]
+ },
+ {
+  "title": "Pack hunt: the stalk",
+  "heading": "The Stalk",
+  "line": 6685,
+  "endLine": 6689,
+  "category": "hazards",
+  "topic": "Predator pack hunt and pursuit",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Tracking rolls to find and follow a trail, and the stealth-versus-awareness roll that determines how close a stalking pack creeps before the prey is alerted or spooked.",
+  "quotes": [
+   "A Perception + Awareness roll is needed to find tracks, and a Perception + Hunt roll is needed to follow them.",
+   "The wolf pack should make a Dexterity + Stealth roll; the Ease Factor is the Perception + Awareness roll of the prey.",
+   "Each success made by the pursuers allows them to creep (10+Qik) paces closer to their prey."
+  ]
+ },
+ {
+  "title": "Pack hunt: the encounter",
+  "heading": "The Encounter",
+  "line": 6691,
+  "endLine": 6693,
+  "category": "hazards",
+  "topic": "Predator pack hunt and pursuit",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The point at which prey and predators confront each other: prey that holds its ground leads to the kill, prey that flees leads to the rush, and wolves try to isolate individuals from a group.",
+  "quotes": [
+   "During the encounter wolves attempt to break up groups of prey, preferably isolating one or two from the rest."
+  ]
+ },
+ {
+  "title": "Pack hunt: the rush (short pursuit rules)",
+  "heading": "The Rush",
+  "line": 6695,
+  "endLine": 6709,
+  "category": "hazards",
+  "topic": "Predator pack hunt and pursuit",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Round-by-round pursuit rules for a short sprint: opposed Quickness and Athletics rolls open or close the distance, running speeds differ for four-legged and two-legged creatures, and each round also risks a Fatigue level.",
+  "quotes": [
+   "Rush Total: Quickness + Athletics \u2013 Encumbrance + stress die",
+   "Change of distance for winner (four legs): (10 + Quickness \u2013 Encumbrance) paces",
+   "Rush Fatigue roll: Stamina + Athletics \u2013 Encumbrance + stress die against Ease Factor 9"
+  ],
+  "related": [
+   "Lords of Men p.120 running speeds"
+  ]
+ },
+ {
+  "title": "Pack hunt: the chase (long pursuit rules)",
+  "heading": "The Chase",
+  "line": 6711,
+  "endLine": 6721,
+  "category": "hazards",
+  "topic": "Predator pack hunt and pursuit",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Long-distance pursuit rules: each round both sides test endurance for Long Term Fatigue, then compare a Pursuit Total against an Evasion Total, with modifiers for leg count and knowledge of the terrain, until one side wins enough rounds.",
+  "quotes": [
+   "Chase Fatigue roll: Stamina + Athletics \u2013 Encumbrance roll against Ease Factor 12",
+   "Pursuit Total: Perception + Hunt \u2013 Fatigue penalty + Pursuit modifiers + stress die",
+   "Dexterity + Athletics \u2013 Fatigue penalty + Evasion modifiers + stress die"
+  ]
+ },
+ {
+  "title": "Pack hunt: the kill (trained group and trip attacks)",
+  "heading": "The Kill",
+  "line": 6791,
+  "endLine": 6795,
+  "category": "combat",
+  "topic": "Predator pack hunt and pursuit",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How an attacking pack fights: a trained group led by the pack leader, swapping group members with a Leadership roll, and trip maneuvers that leave a target with a reduced Defense.",
+  "quotes": [
+   "making a roll of Communication + Leadership + stress die against an Ease Factor of 9",
+   "If the Attack Total exceeds the Defense Total by three or more, then the target is tripped"
+  ],
+  "related": [
+   "ArM5 p.175 trip maneuver",
+   "Lords of Men p.125 Evasion"
+  ]
+ }
+]

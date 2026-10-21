@@ -1,0 +1,490 @@
+[
+ {
+  "title": "Caricatures of Irencillia",
+  "heading": "Culture and Traditions",
+  "line": 3155,
+  "endLine": 3159,
+  "category": "setting",
+  "topic": "Irencillia",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Residence at Irencillia (House Merinita domus magna)",
+  "summary": "Every long-term magus resident at Irencillia gains a faerie double, a caricature raised from the servant-folk, whose Faerie Might can grow with the magus's status and which may become an Arcane Connection to its human. Residents are treated as having the Faerie Friend Flaw for the duration of their stay.",
+  "quotes": [
+   "In game terms, every long-term resident of Irencillia gains the Faerie Friend Flaw for the duration of his or her visit."
+  ],
+  "related": []
+ },
+ {
+  "title": "Irencillia: Shifting Appearance and Patchy Faerie Aura",
+  "heading": "Setting and Physical Description",
+  "line": 3133,
+  "endLine": 3147,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Irencillia",
+  "summary": "Faerie glamour makes the covenant look and feel different to each visitor, with sancta and communal areas settling into a firm consensus reality. Its Faerie aura varies from place to place, with the strongest patches (some inside regiones) holding the magi's sancta.",
+  "quotes": [
+   "The Faerie aura of Irencillia is highly patchy.",
+   "All areas within the boundary wall have an aura of at least 1"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mount Radhost Ritual and Corpus Vis",
+  "heading": "Mount Radhost",
+  "line": 3298,
+  "endLine": 3300,
+  "category": "setting",
+  "topic": "Roznov",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Roznov (pagan covenant of Radegast)",
+  "summary": "The summit temple holds a strong Magic aura, and the yearly solstice festival to Radegast, fuelled by human sacrifice, lets the Roznov magi harvest large amounts of vis, including Corpus vis from the blood.",
+  "quotes": [
+   "It has a Magic aura of 6.",
+   "The blood of the sacrifices is harvested for Corpus vis."
+  ],
+  "related": []
+ },
+ {
+  "title": "Radegast",
+  "heading": "Radegast",
+  "line": 3302,
+  "endLine": 3303,
+  "category": "setting",
+  "topic": "Slavic pagan gods",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Worship of Radegast",
+  "summary": "Describes the pagan Slavic god Radegast and the Virtues and Flaw his favored followers tend to display, useful when building his devotees as characters.",
+  "quotes": [
+   "Those he favors often display the Inspirational and Great Presence Virtues, as well as the Overconfident Flaw."
+  ],
+  "related": [
+   "Between the Devil and the Deep Blue Sea (Chapter 11)"
+  ]
+ },
+ {
+  "title": "Establishing Your Covenant: Four Starting Options",
+  "heading": "Establishing Your Covenant",
+  "line": 3343,
+  "endLine": 3359,
+  "category": "creation",
+  "topic": "Founding a covenant",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Sets out four ways a group of Rhine magi can begin a saga: founding a new covenant, establishing a chapter house, settling at an existing covenant, or travelling between covenants as peregrinatores. Each option carries different approval requirements, resources and independence.",
+  "quotes": [
+   "Any covenant with sufficient resources might support chapters"
+  ],
+  "related": [
+   "Chapter 3: The Rhine Tribunal, On the Founding of Covenants"
+  ]
+ },
+ {
+  "title": "Chapter Houses",
+  "heading": "ESTABLISHING A CHAPTER HOUSE",
+  "line": 3349,
+  "endLine": 3351,
+  "category": "covenant",
+  "topic": "Chapter houses",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A chapter house lets a covenant with enough resources support additional sites. Chapters need no Tribunal approval and receive resources from the motherhouse, but are bound by the parent covenant's charter.",
+  "quotes": [
+   "Chapters are not new covenants, therefore they do not require the approval of Tribunal; also, the motherhouse will provide resources for its foundation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Peregrinatores: Travelling Between Covenants",
+  "heading": "TRAVEL FROM COVENANT TO COVENANT",
+  "line": 3357,
+  "endLine": 3359,
+  "category": "order",
+  "topic": "Peregrinatores",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The Rhine Tribunal's tradition of hospitality lets wandering magi guest at other covenants without a permanent home of their own.",
+  "quotes": [
+   "traditions of hospitality for wandering magi"
+  ],
+  "related": [
+   "Chapter 3: The Rhine Tribunal, Upon Being a Rhine Magus"
+  ]
+ },
+ {
+  "title": "The Order of Odin: Norse Wizard Options",
+  "heading": "The Order of Odin",
+  "line": 3423,
+  "endLine": 3426,
+  "category": "traditions",
+  "topic": "Norse wizards",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide decision: existence of Norse wizards",
+  "summary": "Leaves it to the storyguide to decide whether Norse wizards exist and how organized they are, from a Norse equivalent of the Order of Hermes to scattered weak hedge magicians, and lists the kinds of magic Norse legends attribute to them.",
+  "quotes": [
+   "No single Norse magician should be capable of doing all these things."
+  ],
+  "related": []
+ },
+ {
+  "title": "Radegast and Gymir: Disguised Infernal Auras",
+  "heading": "Between the Devil and the Deep Blue Sea",
+  "line": 3428,
+  "endLine": 3432,
+  "category": "realms",
+  "topic": "Infernal influence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga: demonic infiltration",
+  "summary": "Describes two rival demon princes, how heavily the Order may be infiltrated, and Radegast's ability to disguise Infernal power so that his sites register as Magic or Faerie auras.",
+  "quotes": [
+   "he is able to disguise his infernal power as magic or faerie power"
+  ],
+  "related": [
+   "Chapter 9: The Eastern Marches, Pomerania",
+   "Chapter 10: Bohemia, Roznov"
+  ]
+ },
+ {
+  "title": "Fenistal: A Single-Level Magic Regio",
+  "heading": "Fenistal",
+  "line": 3455,
+  "endLine": 3456,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Fenistal",
+  "summary": "The exsules' hidden base lies in the upper level of a Magic regio from which all intermediate levels have been removed by powerful magic, making it very hard to reach.",
+  "quotes": [
+   "with a Magic aura of 8"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Exsules: A Renegade Hermetic Tradition",
+  "heading": "The Exsules",
+  "line": 3458,
+  "endLine": 3459,
+  "category": "traditions",
+  "topic": "Exsules",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Exsules of Fenistal (outcast House Merinita)",
+  "summary": "Profiles the isolated Hermetic exiles outside the Order, listing the Flaws they all share from their isolation and imperfect Parma Magica, the Virtues common among them, and how their magic should feel alien to Hermetic magi.",
+  "quotes": [
+   "all suffer the Weird Magic Flaw due to their isolation from the Order",
+   "all have inherited the Flawed Parma Magica Flaw"
+  ],
+  "related": [
+   "Chapter 4: The Forest (Paths through the Forest)"
+  ]
+ },
+ {
+  "title": "Saga Magi: Characters and Starting Resources",
+  "heading": "Magi",
+  "line": 3480,
+  "endLine": 3484,
+  "category": "creation",
+  "topic": "Saga character creation",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Guidance for building the player magi for the Curse of the Rhine Gorge saga: backgrounds, optional Gild Trained for Rhine-apprenticed magi, and a spread of starting resources such as shield grogs and money, with Fengheld magi favored.",
+  "quotes": [
+   "the Minor Virtue (Gild) Trained",
+   "which allows them to start with a personal shield grog and a reasonable sum of money"
+  ],
+  "related": [
+   "Chapter 3: Tribunal History and Customs, Upon Being a Rhine Magus"
+  ]
+ },
+ {
+  "title": "Saga Grogs and Shield Grogs",
+  "heading": "Grogs",
+  "line": 3573,
+  "endLine": 3577,
+  "category": "creation",
+  "topic": "Saga character creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains that grogs are less central than magi, need not be taken at the very start, and may be recruited or donated as a founding gift; a shield grog should be played by someone other than the magus's player.",
+  "quotes": [
+   "A grog who is assigned to be the shield grog of a particular magus should be played by someone other than the player of that magus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Saga Start: A Gentle Introduction",
+  "heading": "A GENTLE INTRODUCTION",
+  "line": 3560,
+  "endLine": 3562,
+  "category": "creation",
+  "topic": "Founding a covenant",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "An easier saga start in which an existing friendly covenant supplies labs, books, grogs, vis or money while the young magi explore before settling.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Saga Start: In at the Deep End",
+  "heading": "IN AT THE DEEP END",
+  "line": 3564,
+  "endLine": 3568,
+  "category": "creation",
+  "topic": "Founding a covenant",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A harder saga start in which the magi leave Durenmar lightly equipped with scant resources and must found the covenant from the ground up.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Mouse Swarm Attacks (M\u00e4useturm)",
+  "heading": "The Mice of the M\u00e4useturm",
+  "line": 3671,
+  "endLine": 3688,
+  "category": "beings",
+  "topic": "Swarm attacks",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Creature: demonic mouse swarm",
+  "summary": "A swarm of demonic mice automatically damages victims each round according to the protection they wear, with no attack roll, and is driven off when over half the mice are killed. Includes how area spells and Brawl attacks affect a swarm and why the swarm regenerates in an Infernal aura.",
+  "quotes": [
+   "No attack roll is required for the mice"
+  ],
+  "related": []
+ },
+ {
+  "title": "Loreley: Treacherous River Stretch",
+  "heading": "Loreley",
+  "line": 3811,
+  "endLine": 3813,
+  "category": "hazards",
+  "topic": "River navigation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Loreley gorge",
+  "summary": "The narrowest stretch of the Rhine Gorge is dangerous to boats even without the siren, with a Boating roll needed by crews who have not learned the positions of the rocks, and the cliff has a Faerie aura.",
+  "quotes": [
+   "Ease Factor 9 for those who have not learned the positions of the rocks"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Rhine Faerie Courts: Seasonal Dominion",
+  "heading": "The Faerie Courts",
+  "line": 3907,
+  "endLine": 3911,
+  "category": "realms",
+  "topic": "Faerie courts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Westerwald / Hunsrueck faerie courts",
+  "summary": "Describes the rival Seelie and Unseelie faerie courts on either side of the Rhine, when and where each can be found, how they alternate dominion through the year, and how they can become contested vis sources. Offers the Courts of the Seasons as an alternative.",
+  "quotes": [
+   "Dark Summer holds dominion over Bright Winter from Walpurgis Night until All Hallows Eve, and vice versa."
+  ],
+  "related": [
+   "Chapter 4: The Forest (Courts of the Seasons)"
+  ]
+ },
+ {
+  "title": "Seeking Tribunal Approval for a New Covenant",
+  "heading": "Seeking Tribunal Approval",
+  "line": 4069,
+  "endLine": 4071,
+  "category": "order",
+  "topic": "Founding a covenant",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Rhine law requires a prospective covenant to be sponsored by one magus from every other covenant, which usually means trading promises, favors and debts; the sponsorship of a single magus is enough from each covenant.",
+  "quotes": [
+   "a prospective covenant must be sponsored by one magus from every other covenant in the Tribunal"
+  ],
+  "related": [
+   "Chapter 3: Tribunal History and Customs, On the Founding of Covenants"
+  ]
+ },
+ {
+  "title": "The Receiving of Gifts",
+  "heading": "THE RECEIVING OF GIFTS",
+  "line": 4077,
+  "endLine": 4079,
+  "category": "covenant",
+  "topic": "Founding a covenant",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Each sponsor gives the new covenant a gift whose value reflects that covenant's greatness and attitude, such as books, magic items, valuables or grogs, delivered immediately or in later seasons.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Companions for the Saga",
+  "heading": "Companions",
+  "line": 4073,
+  "endLine": 4075,
+  "category": "creation",
+  "topic": "Saga character creation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Suggests companion character types that magi may befriend as the covenant settles in, and advises making a player's companion dissimilar to their magus.",
+  "quotes": [
+   "these two characters should ideally be dissimilar"
+  ],
+  "related": []
+ },
+ {
+  "title": "Imperial Toll Levels",
+  "heading": "IMPERIAL TOLL LEVELS",
+  "line": 4099,
+  "endLine": 4106,
+  "category": "covenant",
+  "topic": "Covenant income: tolls",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Covenant on a toll-collecting site",
+  "summary": "A table of the emperor's set toll per vessel type, the daily income a toll station can expect from passing traffic, and the need for armed enforcement against rivals and toll-runners.",
+  "quotes": [
+   "Small rowboat (5 persons or less) \u2014 1d",
+   "Large ship (two or more masts) \u2014 12d",
+   "providing a daily income of 10 schillings or more"
+  ],
+  "related": []
+ },
+ {
+  "title": "By Land or by River? (Merchant Route Choice)",
+  "heading": "BY LAND OR BY RIVER?",
+  "line": 4108,
+  "endLine": 4110,
+  "category": "social",
+  "topic": "Trade and travel routes",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how merchants weigh shipwreck risk against overland banditry and tolls when choosing between river transport and portage, including the common portage bypass of the Bingen Hole.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Languages in Germany and Mutual Intelligibility",
+  "heading": "LANGUAGES IN GERMANY",
+  "line": 4148,
+  "endLine": 4176,
+  "category": "basics",
+  "topic": "Languages and dialects",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the Living Languages of Germany with their dialect specialties and gives penalties applied when speakers of related languages or dialects try to understand each other, with a worked example.",
+  "quotes": [
+   "**Same language, different dialects:** \u20131 penalty to both speakers",
+   "**High German vs Low German:** \u20132 penalty to both speakers",
+   "**High German vs East Norse or English:** \u20134 penalty to both speakers"
+  ],
+  "related": [
+   "ArM5 p.66 (standard specialties)"
+  ]
+ }
+]

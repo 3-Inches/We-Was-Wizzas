@@ -1,0 +1,2710 @@
+[
+ {
+  "title": "Siegecraft",
+  "heading": "Siegecraft",
+  "line": 4490,
+  "endLine": 4494,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the abstract siege rules, which resolve the capture and defense of castles and fortified towns through military events rather than negotiation, and leaves the final fall of a castle to troupe judgment.",
+  "quotes": [
+   "It is for the troupe to determine when a castle finally becomes indefensible."
+  ],
+  "related": [
+   "Covenants"
+  ]
+ },
+ {
+  "title": "Magic on the Battlefield",
+  "heading": "Magic on the Battlefield",
+  "line": 4496,
+  "endLine": 4506,
+  "category": "magic",
+  "topic": "Mass combat",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sets the Concentration rolls needed to cast spells amid a battle and explains how the Group and Boundary targets can be scaled up to affect units or battlefield areas.",
+  "quotes": [
+   "Concentration roll against an Ease Factor of 9 in order to cast spells",
+   "Boosting the spell level by one magnitude increases the diameter to around 300 paces."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Battle",
+  "heading": "Example Battle",
+  "line": 4508,
+  "endLine": 4514,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A worked example of resolving a battle through a series of battlefield events, showing how the lead character's total, the Weight of Numbers modifier, the Ease Factor and the Event Bonus fit together.",
+  "quotes": [
+   "He needs an Event Bonus of +2 to reach the Ease Factor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Castle Free Choices",
+  "heading": "Free Choices",
+  "line": 4526,
+  "endLine": 4545,
+  "category": "creation",
+  "topic": "Castles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Landed Noble or Great Noble",
+  "summary": "Lists the simple strongholds (island, manor house, ringwork, small tower) a Landed or Great Noble can pick for free, with a description of how each works defensively.",
+  "quotes": [
+   "may select any of these options to describe his stronghold without spending extra money annually"
+  ],
+  "related": [
+   "Covenants",
+   "LoM Chapter Six: Manorial Fiefs"
+  ]
+ },
+ {
+  "title": "Minor Castles",
+  "heading": "Minor Castles",
+  "line": 4546,
+  "endLine": 4567,
+  "category": "creation",
+  "topic": "Castles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Landed Noble or Great Noble",
+  "summary": "Describes the shell keep and tower keep castle options for Landed or Great Nobles, with the yearly upkeep paid out of the character's frivolous spending money and the cost of extra guards.",
+  "quotes": [
+   "must pay two pounds per year",
+   "at the rate of one pound per man per year for mediocre servants"
+  ],
+  "related": [
+   "LoM Chapter Two: Politics"
+  ]
+ },
+ {
+  "title": "Curtain Walls and Mural Towers",
+  "heading": "Curtain Walls and Mural Towers",
+  "line": 4568,
+  "endLine": 4577,
+  "category": "creation",
+  "topic": "Castles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Great Noble",
+  "summary": "Describes great castles with curtain walls and mural towers, their yearly maintenance cost, the extra infantry required as guards, and the political cost of building many towers.",
+  "quotes": [
+   "A castle costs five pounds a year to maintain"
+  ],
+  "related": []
+ },
+ {
+  "title": "Keep Alternatives for Castles with Curtain Walls",
+  "heading": "Keep Alternatives for Castles with Curtain Walls",
+  "line": 4578,
+  "endLine": 4597,
+  "category": "creation",
+  "topic": "Castles",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Great Noble",
+  "summary": "Options for the keep of a curtain-walled castle (hall keep, courtyard castle, gatehouse keep) plus what a barbican and moat represent in game terms and how they affect upkeep.",
+  "quotes": [
+   "A barbican and moat are included in the cost of a castle with curtain walls.",
+   "A moat has no upkeep fee; it's a free choice for characters with castles that have curtain walls."
+  ],
+  "related": []
+ },
+ {
+  "title": "Describing Castles",
+  "heading": "Describing Castles",
+  "line": 4598,
+  "endLine": 4601,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the three characteristics (Garrison, Defenses, Supplies) that describe a castle for siege play, each with a quality and a check interval.",
+  "quotes": [
+   "the lowest interval pertaining to a given castle determines how often key siege events are played out when the castle is besieged"
+  ],
+  "related": []
+ },
+ {
+  "title": "Castle Garrison",
+  "heading": "Garrison",
+  "line": 4602,
+  "endLine": 4614,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A castle's Garrison is rated by the number of combat groups in it, which sets both the check interval and the Weight of Numbers modifier used in siege rolls.",
+  "quotes": [
+   "The castle Garrison is measured in combat groups"
+  ],
+  "related": []
+ },
+ {
+  "title": "Castle Defenses",
+  "heading": "Defenses",
+  "line": 4615,
+  "endLine": 4638,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rates a castle's walls and earthworks by quality grade to give a Defense Bonus and check interval, and uses castle size to work out how many damage levels each of its four walls has.",
+  "quotes": [
+   "Permanent defensive enchantments also add +1 to the overall Defense Bonus.",
+   "The castle's Defense Bonus is multiplied by the damage level modifier from the above table to determine the castle's damage levels."
+  ],
+  "related": [
+   "City & Guild p.67",
+   "City & Guild p.77"
+  ]
+ },
+ {
+  "title": "Castle Supplies",
+  "heading": "Supplies",
+  "line": 4639,
+  "endLine": 4651,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rates the food and materials stored in a castle and its ability to resupply, giving a check interval and a Siege Conditions Bonus used when the castle is stockaded.",
+  "quotes": [
+   "Supplies include the food, water, and raw materials stored inside the castle, and the ability of the castle to resupply itself."
+  ],
+  "related": []
+ },
+ {
+  "title": "Life Under Siege",
+  "heading": "Life Under Siege",
+  "line": 4652,
+  "endLine": 4657,
+  "category": "hazards",
+  "topic": "Siege warfare",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains what happens when a siege begins, how besieged castles and cities handle their populations, and the Living Conditions penalty for characters who spend a season under siege.",
+  "quotes": [
+   "Characters under siege suffer from a \u20132 Living Conditions modifier each year in which at least one season is spent under siege."
+  ],
+  "related": []
+ },
+ {
+  "title": "Stockade",
+  "heading": "Stockade",
+  "line": 4658,
+  "endLine": 4673,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for starving out a castle: the besiegers must cover enough walls, and at each check interval the castle makes a supplies roll whose failure degrades its supplies and can bring disease or surrender.",
+  "quotes": [
+   "Supplies Roll: Siege Conditions Bonus + stress die",
+   "Ease Factor: 3 + Garrison Weight of Numbers Modifiers + Number of Years Under Siege"
+  ],
+  "related": [
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Making Supply Rolls",
+  "heading": "Making Supply Rolls",
+  "line": 4674,
+  "endLine": 4676,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A shortcut for resolving a long siege quickly by rolling several supplies dice in one batch instead of one roll per interval.",
+  "quotes": [
+   "roll four dice to quickly resolve the passing of a month"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laying Siege",
+  "heading": "Laying Siege",
+  "line": 4686,
+  "endLine": 4693,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how a siege is played as a series of decisive events at intervals set by the castle's weakest characteristic, and the attacking and defending options available to each side.",
+  "quotes": [
+   "There are three options: undermining the walls, launching an artillery assault, or scaling the defenses."
+  ],
+  "related": []
+ },
+ {
+  "title": "Siege Engines",
+  "heading": "Siege Engines",
+  "line": 4694,
+  "endLine": 4712,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Statistics table for ballistae, mangonels and trebuchets (initiative, attack, damage, crew, range, cost), with notes on reloading and how they are used against walls or troops.",
+  "quotes": [
+   "Reloading these weapons takes two minutes and requires the whole crew."
+  ],
+  "related": [
+   "ArM5 p.181 Non-combat damage"
+  ]
+ },
+ {
+  "title": "Troop Deployment",
+  "heading": "Troop Deployment",
+  "line": 4714,
+  "endLine": 4719,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each army designates units as miners, artillery or soldiers and assigns them among the four castle walls; an undefended wall may provoke an undefended escalade.",
+  "quotes": [
+   "each army may nominate any number of its units as miners, artillery, or soldiers"
+  ],
+  "related": []
+ },
+ {
+  "title": "Undermining",
+  "heading": "Undermining",
+  "line": 4720,
+  "endLine": 4758,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Siege event in which miners tunnel under a chosen wall and burn the supports; attacker and castle each roll Intelligence plus Profession Sapper, and success lowers the castle's Defense Quality.",
+  "quotes": [
+   "Mine Attack Total: Intelligence + Profession Sapper + Stress Die",
+   "Castle Defense: Intelligence + Profession Sapper + Defense Bonus + Stress Die",
+   "If the Mine Attack Total exceeds the Castle Defense, the mine attack is successful."
+  ],
+  "related": []
+ },
+ {
+  "title": "New Abilities",
+  "heading": "New Abilities",
+  "line": 4736,
+  "endLine": 4754,
+  "category": "basics",
+  "topic": "Siege warfare",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines the Abilities Profession Sapper, Profession Siege Engineer and Siege Weapon, with what each covers and suggested specialities.",
+  "quotes": [
+   "This Ability may not be used untrained"
+  ],
+  "related": []
+ },
+ {
+  "title": "Artillery",
+  "heading": "Artillery",
+  "line": 4760,
+  "endLine": 4770,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Siege event in which groups of mangonels and trebuchets batter walls; a successful attack inflicts damage levels on the wall, and a wall reduced to nothing no longer gives the castle its Defense Bonus there.",
+  "quotes": [
+   "Artillery Attack: Intelligence + Siege Weapon Ability + Engine Attack Bonus + Stress Die",
+   "Castle Defense: Intelligence + Profession Siege Engineer + Defense Bonus + Stress Die"
+  ],
+  "related": [
+   "City & Guild p.77"
+  ]
+ },
+ {
+  "title": "Escalade",
+  "heading": "Escalade",
+  "line": 4772,
+  "endLine": 4788,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Siege event in which attackers scale the walls, resolved with the battlefield event rules with modifications for garrison, defense bonus and wall breaches.",
+  "quotes": [
+   "Each victory by the attacking side reduces the castle's garrison characteristic by one step (beginning with the next siege event)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: External Defenses",
+  "heading": "Option: External Defenses",
+  "line": 4789,
+  "endLine": 4791,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule letting a castle have outlying fortifications, bought as an extra minor castle, that attackers must capture first; they have their own Defense Bonus but share the main castle's supplies and garrison.",
+  "quotes": [
+   "Such features have their own Defense Bonus but rely on the larger castle's supplies and garrison."
+  ],
+  "related": []
+ },
+ {
+  "title": "Escalade Weapons and Defenses",
+  "heading": "Escalade Weapons and Defenses",
+  "line": 4793,
+  "endLine": 4797,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes siege towers, ladders, cats and battering rams for attackers and incendiaries for defenders, and how to treat rams and boiling liquids with existing weapon and damage rules.",
+  "quotes": [
+   "Battering rams are treated as bludgeons."
+  ],
+  "related": [
+   "City & Guild p.77",
+   "ArM5 p.181 Heat and corrosion"
+  ]
+ },
+ {
+  "title": "Counterattack",
+  "heading": "Counterattack",
+  "line": 4799,
+  "endLine": 4803,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The garrison may sally out to destroy specific enemy units, or fire its own siege engines at the enemy's engines; sorties are resolved as events with a fixed Battle Ease Factor and no Territorial Advantage or Weight of Numbers.",
+  "quotes": [
+   "These actions have a Battle Ease Factor of 9."
+  ],
+  "related": [
+   "City & Guild p.77"
+  ]
+ },
+ {
+  "title": "Example Siege Events",
+  "heading": "Example Siege Events",
+  "line": 4805,
+  "endLine": 4837,
+  "category": "combat",
+  "topic": "Siege warfare",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Three sample siege events (Scale the Ladders, Open the Gates, Take the Marshal), each with an Event Bonus built from the Man, Size and Enemy modifiers, showing how to frame a siege scene for a player character.",
+  "quotes": [
+   "Event Bonus +7",
+   "(+2 Run the Gauntlet, +4 I Stand Alone, +2 Expensive)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Chapter Nine: Optional Combat Rules",
+  "heading": "Chapter Nine: Optional Combat Rules",
+  "line": 4889,
+  "endLine": 4891,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces a chapter of optional, more detailed combat rules (tactical movement, mounted combat and more) that a troupe can adopt or ignore to keep combat simple.",
+  "quotes": [],
+  "related": [
+   "ArM5 Chapter on Combat"
+  ]
+ },
+ {
+  "title": "The Combat Round",
+  "heading": "The Combat Round",
+  "line": 4893,
+  "endLine": 4898,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Recaps the combat round (one action per character per round in Initiative order) and introduces the formal action categories used by the rest of the chapter, which may be ignored if the troupe prefers simple combat.",
+  "quotes": [
+   "Each round represents about six seconds of time in the game world."
+  ],
+  "related": [
+   "ArM5 pp.171-172 Combat round"
+  ]
+ },
+ {
+  "title": "When to Use Combat Rounds",
+  "heading": "When to Use Combat Rounds",
+  "line": 4899,
+  "endLine": 4902,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advises using the round-by-round structure for non-combat scenes such as chases, certamen or a courtly dance whenever the order of actions could affect the outcome.",
+  "quotes": [
+   "A chase scene, a certamen, or even a complicated courtly dance could all be resolved by dividing the action into rounds"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiative",
+  "heading": "Initiative",
+  "line": 4903,
+  "endLine": 4908,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "States when the storyguide calls for Initiative rolls and that any action not using a weapon, including spellcasting, has a weapon initiative modifier of zero.",
+  "quotes": [
+   "Any action that doesn't require a weapon, including spellcasting, has a weapon initiative modifier of 0."
+  ],
+  "related": [
+   "ArM5 pp.171-172 Initiative"
+  ]
+ },
+ {
+  "title": "When to Roll Initiative",
+  "heading": "When to Roll Initiative",
+  "line": 4909,
+  "endLine": 4914,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Everyone present rolls Initiative when combat begins, while newcomers join the sequence only once they are within missile range or one round's movement of the fight.",
+  "quotes": [
+   "Even characters who don't want to get involved in the battle should roll Initiative and act only on their turn."
+  ],
+  "related": []
+ },
+ {
+  "title": "Actions in Combat",
+  "heading": "Actions in Combat",
+  "line": 4915,
+  "endLine": 4922,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines an action as something a character can reasonably do in about one round on his own turn, including attacking and casting spells; a character normally performs one action per turn.",
+  "quotes": [
+   "Normally, a character can perform one action on his turn."
+  ],
+  "related": []
+ },
+ {
+  "title": "Not Everything is an Action",
+  "heading": "Not Everything is an Action",
+  "line": 4923,
+  "endLine": 4926,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rolls the storyguide demands, rather than ones the player initiates, are not actions, so a player can make any number of such rolls in a round.",
+  "quotes": [
+   "There is no limit to how many die rolls a player can make in one round, because die rolls are not necessarily actions."
+  ],
+  "related": []
+ },
+ {
+  "title": "Examples of Actions",
+  "heading": "Examples of Actions",
+  "line": 4927,
+  "endLine": 4941,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A reference list of common actions such as attacking, casting, moving, charging, mounting and opening doors.",
+  "quotes": [
+   "Mount or dismount a horse"
+  ],
+  "related": [
+   "ArM5 p.98 Triggering items",
+   "ArM5 p.174 Casting in combat"
+  ]
+ },
+ {
+  "title": "Reactions",
+  "heading": "Reactions",
+  "line": 4942,
+  "endLine": 4956,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Immediate responses to external events, such as Defense rolls, Fast Casting and Concentration rolls, are reactions that do not use up the character's action and have no per-round limit.",
+  "quotes": [
+   "Reactions aren't actions, so they don't count against the limit of one action per round."
+  ],
+  "related": [
+   "ArM5 p.83 Fast Casting",
+   "ArM5 p.82 Concentration"
+  ]
+ },
+ {
+  "title": "Extended Actions",
+  "heading": "Extended Actions",
+  "line": 4957,
+  "endLine": 4984,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for tasks that take a full round or longer: they cannot be delayed, exclude other actions while in progress, and need a Concentration roll if the character is distracted or attacked.",
+  "quotes": [
+   "A character can't perform any other actions, including fast actions, while he is carrying out an extended action."
+  ],
+  "related": [
+   "ArM5 p.82 Concentration"
+  ]
+ },
+ {
+  "title": "Option: Fast Actions",
+  "heading": "Option: Fast Actions",
+  "line": 4985,
+  "endLine": 5006,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule for brief activities like drawing a weapon or shouting a warning: a character can usually add one fast action to his regular action, or instead take several fast actions.",
+  "quotes": [
+   "a character can perform one fast action, in addition to his regular action, on his turn",
+   "Alternatively, a character can perform up to four fast actions on his turn instead of any regular actions."
+  ],
+  "related": [
+   "ArM5 p.92 Heartbeast",
+   "HoH:MC p.22"
+  ]
+ },
+ {
+  "title": "Delaying Actions",
+  "heading": "Delaying Actions",
+  "line": 5007,
+  "endLine": 5022,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character may hold his action and use it later, responding only after an opponent's action finishes; where several characters delay, the highest Initiative Total responds first.",
+  "quotes": [
+   "the delaying character with the highest Initiative Total has the first option to respond to a given event"
+  ],
+  "related": [
+   "ArM5 p.171 Initiative"
+  ]
+ },
+ {
+  "title": "Option: Interrupting Actions",
+  "heading": "Option: Interrupting Actions",
+  "line": 5023,
+  "endLine": 5048,
+  "category": "combat",
+  "topic": "Combat actions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule letting a character who delayed his action interrupt an opponent through an action priority contest in which the winner resolves first; magi use Finesse and may still try Fast Casting afterwards.",
+  "quotes": [
+   "Action Priority Total: Quickness + Ability \u2013 Encumbrance + stress die",
+   "Whoever has the highest Action Priority Total resolves his action first."
+  ],
+  "related": [
+   "ArM5 p.83 Fast Casting"
+  ]
+ },
+ {
+  "title": "Option: Fast Casting as Interruption",
+  "heading": "Option: Fast Casting as Interruption",
+  "line": 5049,
+  "endLine": 5054,
+  "category": "magic",
+  "topic": "Combat actions",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Variant replacing the Fast Casting speed roll's Ease Factor with the interrupted opponent's Action Priority Total, so Fast Casting and interrupting work alike.",
+  "quotes": [
+   "use the interrupted opponent's Action Priority Total as the Ease Factor of the Fast Casting speed roll"
+  ],
+  "related": [
+   "ArM5 p.83 Fast Casting"
+  ]
+ },
+ {
+  "title": "Tactical Movement",
+  "heading": "Tactical Movement",
+  "line": 5055,
+  "endLine": 5058,
+  "category": "combat",
+  "topic": "Tactical movement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces optional rules for handling movement on the battlefield in as much or as little detail as the troupe wants.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Moving in Combat",
+  "heading": "Moving in Combat",
+  "line": 5059,
+  "endLine": 5075,
+  "category": "combat",
+  "topic": "Tactical movement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Moving is an action with a choice of walk, hurry or run rates, each computed in paces per round from Quickness and Encumbrance; engaged characters must disengage first and running may require a Fatigue roll.",
+  "quotes": [
+   "Walk: 10 + Quickness \u2212 Encumbrance paces per round",
+   "Hurry: 2 x (10 + Quickness \u2013 Encumbrance) paces per round",
+   "Run: 4 x (10 + Quickness \u2013 Encumbrance) paces per round"
+  ],
+  "related": [
+   "ArM5 p.178 Fatigue"
+  ]
+ },
+ {
+  "title": "Movement and Groups",
+  "heading": "Movement and Groups",
+  "line": 5076,
+  "endLine": 5079,
+  "category": "combat",
+  "topic": "Tactical movement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Groups move as one unit at the speed of the slowest member, using the vanguard's Characteristics and Abilities for movement rolls.",
+  "quotes": [
+   "Their speed is that of the *slowest* member."
+  ],
+  "related": []
+ },
+ {
+  "title": "Obstacles, Barriers, and Movement",
+  "heading": "Obstacles, Barriers, and Movement",
+  "line": 5080,
+  "endLine": 5085,
+  "category": "combat",
+  "topic": "Tactical movement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Difficult terrain halves movement speed and adds a botch die to Attack, Defense and movement rolls, and groups must make a Discipline check to cross it under the advanced group rules.",
+  "quotes": [
+   "all difficult terrain slows movement to one-half normal speed"
+  ],
+  "related": []
+ },
+ {
+  "title": "Terrain Examples",
+  "heading": "Terrain Examples",
+  "line": 5086,
+  "endLine": 5130,
+  "category": "combat",
+  "topic": "Tactical movement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists example difficult terrain, hazards and obstacles with their effects on movement and stress rolls, plus a small table of Ease Factors for forcing doors and picking locks; hazards add botch dice without slowing movement, obstacles need a specific effort to cross, and cover protects against missiles.",
+  "quotes": [
+   "Movement speed halved (round up), extra botch die.",
+   "Extra botch die (or dice), botch potentially more serious.",
+   "Requires special action to move across."
+  ],
+  "related": [
+   "City & Guild p.78 Locks",
+   "ArM5 p.7 Botches"
+  ]
+ },
+ {
+  "title": "Engaging and Disengaging",
+  "heading": "Engaging and Disengaging",
+  "line": 5132,
+  "endLine": 5139,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Restates the two core engagement rules (a character is engaged when an enemy can plausibly attack him, and must disengage to move away) and says the following details are optional elaborations.",
+  "quotes": [
+   "Once engaged, the character must disengage in order to move away from his opponent."
+  ],
+  "related": [
+   "ArM5 p.173 Engagement"
+  ]
+ },
+ {
+  "title": "Engaging in Combat",
+  "heading": "Engaging in Combat",
+  "line": 5141,
+  "endLine": 5150,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains when a character becomes engaged in melee or in missile combat, by making Attack or Defense rolls or by coming within reach or range of an enemy, and treats engagement as an abstraction represented by the disengagement roll.",
+  "quotes": [
+   "A character becomes engaged in melee whenever he makes an Attack or Defense roll in melee combat."
+  ],
+  "related": []
+ },
+ {
+  "title": "Effects of Being Engaged",
+  "heading": "Effects of Being Engaged",
+  "line": 5151,
+  "endLine": 5160,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An engaged character cannot move away from melee without disengaging; in missile combat he can move but must disengage to reach a location with better cover. A failed attempt stops movement for the round.",
+  "quotes": [
+   "When a character who's engaged tries to disengage and fails, then the character's movement stops for the round and he remains engaged with his current opponent(s)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Engagement and Defenders",
+  "heading": "Engagement and Defenders",
+  "line": 5161,
+  "endLine": 5168,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Clarifies that under the standard defender rule defenders are always effective regardless of engagement, and points to the interceptor option as an alternative requiring an opposed roll.",
+  "quotes": [
+   "an opponent cannot attack the character being protected as long as any of his defenders can lift a sword"
+  ],
+  "related": [
+   "ArM5 p.173 Defenders"
+  ]
+ },
+ {
+  "title": "Option: No Engagement for Missile Combat",
+  "heading": "Option: No Engagement for Missile Combat",
+  "line": 5169,
+  "endLine": 5174,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule that applies engagement and disengagement only to melee combat rather than to both melee and missile combat.",
+  "quotes": [
+   "As an optional rule, you may use the engagement rules for melee combat only."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: No Missiles While Engaged in Melee",
+  "heading": "Option: No Missiles While Engaged in Melee",
+  "line": 5175,
+  "endLine": 5178,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule that forbids characters engaged in melee from making missile attacks.",
+  "quotes": [
+   "As an optional rule, you may disallow characters engaged in melee from making missile attacks."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Defenders as Interceptors",
+  "heading": "Option: Defenders as Interceptors",
+  "line": 5179,
+  "endLine": 5198,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A more complex alternative to the standard defender rule: the defender takes an extended action to guard a person or place and uses interrupting-action priority rolls to intercept melee and missile attackers, forcing them to target him instead. Includes a worked example.",
+  "quotes": [
+   "A defender can only protect one other character, and only as long as that character remains within two paces of him."
+  ],
+  "related": [
+   "ArM5 p.173 Defenders"
+  ]
+ },
+ {
+  "title": "Attempting to Disengage",
+  "heading": "Attempting to Disengage",
+  "line": 5203,
+  "endLine": 5212,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Disengaging is a reaction in which the mover's Defense Total must equal or beat the highest Attack Total of opponents who attacked him; repeated failed attempts earn a cumulative Defense bonus, and moving past an opponent with a delayed action lets that opponent attack.",
+  "quotes": [
+   "If the character's Defense Total is greater than or equal to the highest Attack Total, the character may move normally.",
+   "he gains a +3 bonus to his Defense Total for his roll to disengage only"
+  ],
+  "related": [
+   "ArM5 p.173 Disengaging"
+  ]
+ },
+ {
+  "title": "Automatic Disengagement",
+  "heading": "Automatic Disengagement",
+  "line": 5213,
+  "endLine": 5222,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the circumstances in which a character is no longer engaged without needing a roll, such as all opponents being disabled or no one having attacked him since his last turn, and the extra missile-combat cases.",
+  "quotes": [
+   "No opponents have attacked him since his last turn."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Reckless Disengagement",
+  "heading": "Option: Reckless Disengagement",
+  "line": 5223,
+  "endLine": 5226,
+  "category": "combat",
+  "topic": "Engagement",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule allowing a character to simply move away from an opponent, at the cost of giving that opponent a free attack against a Defense Total of zero.",
+  "quotes": [
+   "the character's opponent gets a free attack and the character gets no Defense roll: his Defense Total is 0"
+  ],
+  "related": []
+ },
+ {
+  "title": "Charging on Foot",
+  "heading": "Charging on Foot",
+  "line": 5235,
+  "endLine": 5246,
+  "category": "combat",
+  "topic": "Charging",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A charge lets a character move and make a melee or thrown attack in the same round, costing a Fatigue level and granting an Attack bonus from his Combat Ability, but no Defense penalty; the bonus is lost on difficult terrain.",
+  "quotes": [
+   "On foot, a charging character gains a bonus to his melee Attack roll equal to his Combat Ability."
+  ],
+  "related": [
+   "ArM5 p.173 Exertion"
+  ]
+ },
+ {
+  "title": "Option: Condensed Notation for Combat Scores",
+  "heading": "Option: Condensed Notation for Combat Scores",
+  "line": 5247,
+  "endLine": 5261,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character-sheet convention for recording a weapon's Defense with and without a shield as two numbers separated by a slash, so combat scores need not be recalculated if a shield breaks.",
+  "quotes": [
+   "Axe/Heater Shield: Init +0, Attack +12, Defense +9/+11, Damage +7"
+  ],
+  "related": [
+   "ArM5 p.22 Standard soldier"
+  ]
+ },
+ {
+  "title": "Option: Interrupting a Charge",
+  "heading": "Option: Interrupting a Charge",
+  "line": 5263,
+  "endLine": 5268,
+  "category": "combat",
+  "topic": "Charging",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains which Abilities enter the action priority contest when interrupting a charging character, and how to interrupt a charge by delaying and attacking if interrupting actions are not in use.",
+  "quotes": [
+   "a character who is charging on foot uses his Combat Ability as the relevant Ability in his Action Priority Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Ready Missiles",
+  "heading": "Option: Ready Missiles",
+  "line": 5269,
+  "endLine": 5276,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Used with the fast actions option: a bow or crossbow with a missile already on the string can be shot as a fast action, allowing a second action in the same round, with notes on how archers and crossbowmen reload.",
+  "quotes": [
+   "He can shoot as a fast action instead of an ordinary action."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Constriction Attacks",
+  "heading": "Option: Constriction Attacks",
+  "line": 5277,
+  "endLine": 5284,
+  "category": "beings",
+  "topic": "Combat options",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lets large creatures constrict a smaller victim using the grappling rules with fixed weapon statistics; a held victim is treated as deprived of air and makes periodic Stamina checks.",
+  "quotes": [
+   "a constriction attack has the following weapon statistics: Initiative 0, Attack +3, Defense 0, Damage n/a"
+  ],
+  "related": [
+   "ArM5 p.174 Grappling",
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Defending",
+  "heading": "Defending",
+  "line": 5285,
+  "endLine": 5288,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Generating a Defense Total is a reaction, not an action, so a character can make any number of Defense rolls in a round and nearly always gets one even if he does not see the attack coming.",
+  "quotes": [
+   "There is no limit to the number of Defense rolls a player may make for his character in one round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Defense when Unarmed",
+  "heading": "Defense when Unarmed",
+  "line": 5289,
+  "endLine": 5292,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Unarmed characters defend with Brawl, while characters with only a shield defend using Single Weapon.",
+  "quotes": [
+   "Completely unarmed characters use the Defense Total based on their Brawl Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Helpless Characters",
+  "heading": "Helpless Characters",
+  "line": 5293,
+  "endLine": 5296,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A totally helpless character gets no Defense roll; his Defense Total is a fixed negative value.",
+  "quotes": [
+   "treat his Defense Total as \u201310"
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Diceless Defense",
+  "heading": "Option: Diceless Defense",
+  "line": 5297,
+  "endLine": 5304,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule that replaces the stress die in Defense Totals with a constant, making Defense an Ease Factor for the Attack roll; it removes Defense botches and favors strong fighters, and can be applied selectively.",
+  "quotes": [
+   "you can replace the stress die in characters' Defense Totals with a constant value of 6"
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: No Defense for Missile Weapons",
+  "heading": "Option: No Defense for Missile Weapons",
+  "line": 5305,
+  "endLine": 5312,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule that stops missile weapon Abilities from being used to generate a Defense Total: characters holding such weapons defend with Brawl, while javelins and throwing axes use Single Weapon.",
+  "quotes": [
+   "A character holding a bow, crossbow, sling, knife, or stone uses the Brawl Ability for defense."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Evasion",
+  "heading": "Option: Evasion",
+  "line": 5313,
+  "endLine": 5332,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule that splits dodging from blocking: Defense then applies only to melee attacks and Evasion, which depends on Size and Encumbrance, can be used against any attack. Gives separate on-foot and mounted Evasion Totals and can be combined with diceless defense.",
+  "quotes": [
+   "Evasion Total on Foot: Quickness + Brawl \u2212 Size \u2212 Encumbrance + Shield Defense Modifier + stress die",
+   "Evasion Total While Mounted: Quickness + Ride \u2212 Size \u2212 Encumbrance + Shield Defense Modifier + stress die"
+  ],
+  "related": [
+   "ArM5 p.172 Defense"
+  ]
+ },
+ {
+  "title": "Option: Lasting Consequences of Serious Damage",
+  "heading": "Option: Lasting Consequences of Serious Damage",
+  "line": 5333,
+  "endLine": 5342,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule in which an Incapacitating Wound prompts a Stamina roll, and a failure leaves a lasting complication in the form of a Minor Flaw such as a lost limb.",
+  "quotes": [
+   "the player should immediately make a Stamina roll against an Ease Factor of 6"
+  ],
+  "related": [
+   "Art & Academe p.43",
+   "Art & Academe p.62 Surgical intervention"
+  ]
+ },
+ {
+  "title": "Option: Mitigating Deadly Wounds",
+  "heading": "Option: Mitigating Deadly Wounds",
+  "line": 5343,
+  "endLine": 5376,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional storyguide tool for trading a Major Wound for a lesser wound plus a permanent Flaw, with a rule of thumb for the trade and a list of suitable Minor and Major Flaws.",
+  "quotes": [
+   "an Incapacitating Wound can be reduced to a Heavy Wound plus a Minor Flaw"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.136 Hobbled"
+  ]
+ },
+ {
+  "title": "Mounted Combat",
+  "heading": "Mounted Combat",
+  "line": 5377,
+  "endLine": 5389,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the benefits of fighting from horseback: a situational Defense and melee Attack bonus tied to Ride, a separate action for the steed, proper use of the lance, special charge benefits and the ability to perform extended actions while the horse moves.",
+  "quotes": [
+   "A mounted character gains a situational bonus to both Defense and melee Attacks equal to his Ride skill or +3,whichever is less."
+  ],
+  "related": [
+   "ArM5 p.174 Mounted combat"
+  ]
+ },
+ {
+  "title": "Suggestions for Combat Botches",
+  "heading": "Suggestions for Combat Botches",
+  "line": 5390,
+  "endLine": 5406,
+  "category": "combat",
+  "topic": "Combat options",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A list of suggested botch results for combat rolls, ordered roughly from mild to severe, such as stumbling, dropping a weapon, colliding with an ally or a horse falling.",
+  "quotes": [
+   "Stumble; \u22123 to Defense rolls until your next turn."
+  ],
+  "related": [
+   "City & Guild p.77 Damage checks"
+  ]
+ },
+ {
+  "title": "Untrained Mounts",
+  "heading": "Untrained Mounts",
+  "line": 5408,
+  "endLine": 5415,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A rider on a horse not trained for battle gets no mounted-combat bonus, and the horse automatically panics when engaged in melee.",
+  "quotes": [
+   "An untrained horse automatically panics whenever it is engaged in melee."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mounted Movement",
+  "heading": "Mounted Movement",
+  "line": 5416,
+  "endLine": 5419,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A horse has four gaits and can use any of them in any round without building up speed.",
+  "quotes": [
+   "A horse has four gaits, which are listed on the Mounted Movement Rates table."
+  ],
+  "related": []
+ },
+ {
+  "title": "Charging on Horseback",
+  "heading": "Charging on Horseback",
+  "line": 5420,
+  "endLine": 5427,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A mounted charge combines movement and attack, adds the rider's Combat Ability to the Attack roll on top of the mounted bonus, and costs the horse rather than the rider a Fatigue level; the rider cannot also exert, and difficult terrain removes the bonus.",
+  "quotes": [
+   "it is the horse, not the rider, who expends a Fatigue level"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mounted Movement Rates",
+  "heading": "Mounted Movement Rates",
+  "line": 5428,
+  "endLine": 5452,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Tables of horse movement per round by gait and Quickness-type modifier, and of each gait's effects on missile Attack penalties, falling damage, the Ease Factor for extended actions in the saddle and an optional Defense bonus.",
+  "quotes": [
+   "A horse must make a Fatigue test every round it moves at a gallop."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Shock of the Charge",
+  "heading": "Option: Shock of the Charge",
+  "line": 5454,
+  "endLine": 5469,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule in which a mounted charge that hits a target smaller than the horse may knock it prone unless the target wins a reaction roll to stay upright.",
+  "quotes": [
+   "Resist Charge While Mounted: Dexterity + Ride + saddle modifier + stress die vs. Damage Total (before Soak) + Size of attacker's horse",
+   "Resist Charge While on Foot: Str + Size + Combat Ability + stress die vs. Damage Total (before Soak) + Size of attacker's horse"
+  ],
+  "related": []
+ },
+ {
+  "title": "Shooting Missiles from Horseback",
+  "heading": "Shooting Missiles from Horseback",
+  "line": 5470,
+  "endLine": 5477,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Mounted missile attacks take an Attack penalty that grows with the horse's gait, although a rider can move and shoot in the same round; the mounted Defense bonus applies but the mounted Attack bonus does not.",
+  "quotes": [
+   "The Attack bonus for mounted combat does not apply to missile attacks."
+  ],
+  "related": []
+ },
+ {
+  "title": "Actions Taken by Horses",
+  "heading": "Actions Taken by Horses",
+  "line": 5478,
+  "endLine": 5488,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A trained warhorse acts on its rider's turn and gets one action per turn (move or attack, not both), acts independently once the rider is unseated, and may use Confidence Points as directed by the rider's player.",
+  "quotes": [
+   "The horse does not roll Initiative on its own; it acts on the rider's turn."
+  ],
+  "related": []
+ },
+ {
+  "title": "Wounding Horses",
+  "heading": "Wounding Horses",
+  "line": 5495,
+  "endLine": 5506,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how a horse's wounds affect its rider by severity, from no effect for a Light Wound to Presence + Ride and Dexterity + Ride rolls for Medium and Heavy Wounds and a fall for the worst wounds.",
+  "quotes": [
+   "the rider must make a Presence + Ride roll vs. Ease Factor 9 to control it"
+  ],
+  "related": []
+ },
+ {
+  "title": "Controlling a Panicked Horse",
+  "heading": "Controlling a Panicked Horse",
+  "line": 5507,
+  "endLine": 5521,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sets when horses panic and the Presence + Ride roll needed to keep or regain control, with a reaction roll first and further attempts as actions; a panicked rider can do little else except complete a charge already begun.",
+  "quotes": [
+   "Maintain or Regain Control of Panicked Horse: Presence + Ride vs. Ease Factor 6 \u2013 horse's total Wound Penalties"
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Defensive Bonus for Moving Horses",
+  "heading": "Option: Defensive Bonus for Moving Horses",
+  "line": 5523,
+  "endLine": 5526,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule that makes moving horses harder to hit with missiles, adding the gait-based bonus to Evasion if that option is used or otherwise to Defense against missile attacks.",
+  "quotes": [
+   "The Mounted Movement Rates table lists an optional defensive bonus based on the horse's gait."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mounting and Dismounting",
+  "heading": "Mounting and Dismounting",
+  "line": 5527,
+  "endLine": 5530,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Mounting or dismounting in the usual way is an action that needs no die roll.",
+  "quotes": [
+   "Mounting or dismounting a horse in the usual way is an action, but does not require a die roll."
+  ],
+  "related": []
+ },
+ {
+  "title": "Leaping from the Saddle",
+  "heading": "Leaping from the Saddle",
+  "line": 5531,
+  "endLine": 5541,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A reaction roll lets a rider escape a panicking, falling or dying horse by leaping clear; with fast actions it can also be done voluntarily, and failure means falling.",
+  "quotes": [
+   "Leap from the Saddle: Dexterity + Athletics \u2013 Encumbrance + stress die vs. Ease Factor 9"
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Vaulting Into the Saddle",
+  "heading": "Option: Vaulting Into the Saddle",
+  "line": 5542,
+  "endLine": 5547,
+  "category": "combat",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "With the fast actions option, a character can vault into the saddle as a fast action with a Strength + Athletics roll and may then ride in the same round if he did not move first.",
+  "quotes": [
+   "Vault Into the Saddle: Strength + Athletics \u2013 Encumbrance + stress die vs. Ease Factor 6"
+  ],
+  "related": []
+ },
+ {
+  "title": "Falling from Horseback",
+  "heading": "Falling from Horseback",
+  "line": 5548,
+  "endLine": 5553,
+  "category": "hazards",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A rider who falls takes falling damage that depends on the horse's gait, lands prone and must spend an action to stand up.",
+  "quotes": [
+   "Any time a rider falls from his horse, he lands prone."
+  ],
+  "related": [
+   "ArM5 p.181 Falling damage"
+  ]
+ },
+ {
+  "title": "Being Pinned Under a Horse",
+  "heading": "Being Pinned Under a Horse",
+  "line": 5554,
+  "endLine": 5559,
+  "category": "hazards",
+  "topic": "Mounted combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When a horse goes down, the rider may leap clear; otherwise he takes falling damage and rolls Quickness + Ride to avoid being crushed and pinned, requiring a Strength roll by another character to pull him out.",
+  "quotes": [
+   "the horse lands on the rider, inflicting stress die + horse's Size + 6 damage"
+  ],
+  "related": []
+ },
+ {
+  "title": "General Situational Modifiers",
+  "heading": "General Situational Modifiers",
+  "line": 5566,
+  "endLine": 5573,
+  "category": "combat",
+  "topic": "Battlefield situations",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance for assigning bonuses to Attack or Defense for battlefield circumstances, suggesting the values +1, +3 and +6 as slight, substantial and very significant edges, and phrasing modifiers as applying to the character in the unusual situation.",
+  "quotes": [
+   "it is often easiest to simply choose between +1, +3, and +6"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cover",
+  "heading": "Cover",
+  "line": 5578,
+  "endLine": 5592,
+  "category": "combat",
+  "topic": "Battlefield situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Cover that actually stops attacks grants a Defense bonus against missile and melee attacks according to how much of the body is covered; it does not stack with concealment, only the higher bonus applies.",
+  "quotes": [
+   "The Defense bonus from cover applies against both missile and melee attacks.",
+   "If a character has both cover and concealment, only the highest Defense bonus applies."
+  ],
+  "related": []
+ },
+ {
+  "title": "Concealment, Darkness, and Invisibility",
+  "heading": "Concealment, Darkness, and Invisibility",
+  "line": 5593,
+  "endLine": 5611,
+  "category": "combat",
+  "topic": "Battlefield situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of concealment levels giving melee Attack and Defense bonuses (or Evasion) to hard-to-see characters, applying to both sides, plus extra botch dice for poor visibility and a pointer to the detailed invisibility rules.",
+  "quotes": [
+   "These bonuses and penalties apply to both the attacker and the defender."
+  ],
+  "related": [
+   "Houses of Hermes: Societates pp.32-33 Invisibility in combat"
+  ]
+ },
+ {
+  "title": "Higher Ground",
+  "heading": "Higher Ground",
+  "line": 5612,
+  "endLine": 5617,
+  "category": "combat",
+  "topic": "Battlefield situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Fighting from an elevated position gives a small Attack and Defense bonus against lower opponents, but mounted characters already include height in their mounted bonus unless charging down a steep slope.",
+  "quotes": [
+   "he enjoys an advantage that often translates to a +1 bonus to Attack and Defense in both melee and missile combat against opponents lower than himself"
+  ],
+  "related": [
+   "ArM5 p.174 Mounted combat"
+  ]
+ },
+ {
+  "title": "Light Sources and Range of Visibility",
+  "heading": "Light Sources and Range of Visibility",
+  "line": 5618,
+  "endLine": 5631,
+  "category": "combat",
+  "topic": "Battlefield situations",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table giving the longest range at which each level of concealment applies in conditions such as moonlight, torchlight, rain and fog, with an optional Perception roll to reduce the concealment by a step.",
+  "quotes": [
+   "a Perception roll of 9+ can sometimes reduce (by one step) the level of concealment due to poor visibility"
+  ],
+  "related": []
+ },
+ {
+  "title": "Fighting Indoors and in Narrow Spaces",
+  "heading": "Fighting Indoors and in Narrow Spaces",
+  "line": 5632,
+  "endLine": 5644,
+  "category": "combat",
+  "topic": "Battlefield situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Limits how many opponents can attack a defender in confined spaces such as against a wall or in a corridor, and notes cover, concealment and a penalty for large weapons in cramped quarters.",
+  "quotes": [
+   "A character with his back to a wall can be attacked only by four opponents at once."
+  ],
+  "related": [
+   "ArM5 p.172 Group combat"
+  ]
+ },
+ {
+  "title": "Option: Non-Lethal Combat",
+  "heading": "Option: Non-Lethal Combat",
+  "line": 5645,
+  "endLine": 5652,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces an optional replacement for the standard non-lethal combat rules, with more varied maneuvers and with unarmed attacks causing Bruises rather than Fatigue loss.",
+  "quotes": [
+   "unarmed attacks (scuffling) no longer cause Fatigue loss"
+  ],
+  "related": [
+   "ArM5 pp.174-175 Non-lethal combat"
+  ]
+ },
+ {
+  "title": "Non-Lethal Damage: Bruises",
+  "heading": "Non-Lethal Damage: Bruises",
+  "line": 5653,
+  "endLine": 5662,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Non-lethal attacks inflict Bruises, which work like lesser wounds with Bruise Penalties but heal faster; damage is calculated as usual and the target suffers a Bruise of the same severity as the wound it would have been.",
+  "quotes": [
+   "Calculate Damage from a non-lethal attack as usual, by subtracting the target's Soak score from the Damage Total."
+  ],
+  "related": [
+   "ArM5 p.171 Damage table"
+  ]
+ },
+ {
+  "title": "Recovering from Bruises",
+  "heading": "Recovering from Bruises",
+  "line": 5663,
+  "endLine": 5674,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "After resting for the Recovery Period a character rolls a Recovery Total for each Bruise; success improves it a category, serious Bruises leave one residual wound, and Ritual healing treats a Bruise as equivalent to its residual wound.",
+  "quotes": [
+   "Recovery Total: Stamina + Medic's Medicine or Chirurgy score + magical aid + stress die"
+  ],
+  "related": [
+   "ArM5 p.179 Recovery"
+  ]
+ },
+ {
+  "title": "Bruise Table",
+  "heading": "Bruise Table",
+  "line": 5675,
+  "endLine": 5683,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of Bruise levels giving each level's penalty, recovery interval, Improvement Ease Factor and the residual wound it leaves behind.",
+  "quotes": [
+   "| Heavy | \u20135 | Two Hours | 15 | Light Wound |"
+  ],
+  "related": [
+   "ArM5 p.179 Wound recovery"
+  ]
+ },
+ {
+  "title": "Your Arms are Too Short to Box with that Giant",
+  "heading": "Your Arms are Too Short to Box with that Giant",
+  "line": 5685,
+  "endLine": 5691,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rule of thumb for scuffling, grappling and disarming against very large creatures: the giant gets a Defense bonus based on the Size difference against such attacks, but not against ordinary weapon attacks.",
+  "quotes": [
+   "a giant gains a special bonus equal to double the difference between its Size and a smaller opponent's Size"
+  ],
+  "related": [
+   "Realms of Power: Magic p.85",
+   "ArM5 p.192 Size"
+  ]
+ },
+ {
+  "title": "Weapons and Bruises",
+  "heading": "Weapons and Bruises",
+  "line": 5693,
+  "endLine": 5700,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Weapons can be used to inflict Bruises at an Attack penalty; optionally clubs and similar weapons, and practice or tournament weapons, deal Bruises without that penalty.",
+  "quotes": [
+   "suffer a \u22123 penalty to their Attack Total when they do so"
+  ],
+  "related": []
+ },
+ {
+  "title": "Special Effects",
+  "heading": "Special Effects",
+  "line": 5701,
+  "endLine": 5734,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for special maneuvers such as trips, grapples, pins, tackles, disarms and unseating riders, resolved by an Attack roll against a reaction with a required Attack Advantage, plus the effects of each maneuver and a table of example maneuvers.",
+  "quotes": [
+   "Each maneuver requires a certain Attack Advantage in order to succeed.",
+   "The grappled defender suffers a \u20136 penalty on all attacks and most reactions, including Defense and Evasion, and can't perform spellcasting gestures."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Maneuvers Table",
+  "heading": "Example Maneuvers Table",
+  "line": 5715,
+  "endLine": 5726,
+  "category": "combat",
+  "topic": "Non-lethal combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table listing each example maneuver with its Attack Total, the defender's choice of reaction and the Attack Advantage required.",
+  "quotes": [
+   "| Disarm | Any Attack | Defense or Evasion | 9 |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Accelerated Group Training",
+  "heading": "Accelerated Group Training",
+  "line": 5740,
+  "endLine": 5761,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A good leader can train a group to fight together in less than a season by making a Communication + Leadership roll against an Ease Factor set by the available training time; trainees still gain experience only at season's end.",
+  "quotes": [
+   "Shorten Training Time: Communication + Leadership + stress die"
+  ],
+  "related": [
+   "ArM5 p.173 Trained groups"
+  ]
+ },
+ {
+  "title": "The Leader's Actions",
+  "heading": "The Leader's Actions",
+  "line": 5762,
+  "endLine": 5770,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Issuing orders is usually a fast action and the leader acts at the same point in the sequence as the group; a group member who does something other than attack is not counted in the group's combat bonus or damage multiplier.",
+  "quotes": [
+   "Issuing orders to command a group in combat is usually a fast action."
+  ],
+  "related": []
+ },
+ {
+  "title": "Morale and Discipline",
+  "heading": "Morale and Discipline",
+  "line": 5772,
+  "endLine": 5777,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces optional rules that moderately weaken groups while making the leader more important, with both Discipline and Morale being tested in battle.",
+  "quotes": [
+   "Effective group tactics require both discipline and morale."
+  ],
+  "related": []
+ },
+ {
+  "title": "Discipline",
+  "heading": "Discipline",
+  "line": 5778,
+  "endLine": 5796,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A group rolls Discipline as a reaction when tempted to break formation; the total is based on the leader's Presence and Leadership, with a bonus from a uniformly Loyal group, and a table of example Ease Factors. Failure leaves the group disordered.",
+  "quotes": [
+   "Group Discipline: leader's Presence + leader's Leadership + stress die"
+  ],
+  "related": []
+ },
+ {
+  "title": "Morale",
+  "heading": "Morale",
+  "line": 5797,
+  "endLine": 5815,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Groups make Morale rolls as reactions when bad things happen in battle; failure disorders the group and failure while already disordered routs it. A table gives example Ease Factors and a uniformly Brave group gets a bonus.",
+  "quotes": [
+   "Group Morale: leader's Presence + leader's Leadership + stress die"
+  ],
+  "related": []
+ },
+ {
+  "title": "Disordered Groups",
+  "heading": "Disordered Groups",
+  "line": 5816,
+  "endLine": 5825,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A disordered trained group functions as an untrained one, and a disordered untrained group lands only half its hits; a disordered group that fails a Morale check is routed.",
+  "quotes": [
+   "A trained group that is disordered functions as an untrained group."
+  ],
+  "related": []
+ },
+ {
+  "title": "Routed Groups",
+  "heading": "Routed Groups",
+  "line": 5826,
+  "endLine": 5831,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A routed group tries to disengage from all opponents and flee, and its members often scatter once clear; a group routs when it is already disordered and fails a Morale check.",
+  "quotes": [
+   "A group can become routed if it is already disordered and then fails a Morale check."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rallying a Group",
+  "heading": "Rallying a Group",
+  "line": 5832,
+  "endLine": 5848,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The leader may rally a disordered or routed group as an action with a Presence + Leadership roll against an Ease Factor depending on how the group is engaged and its casualties; success improves its status by one step.",
+  "quotes": [
+   "Rally a Group: Presence + Leadership + stress die"
+  ],
+  "related": []
+ },
+ {
+  "title": "Groups With No Leader",
+  "heading": "Groups With No Leader",
+  "line": 5849,
+  "endLine": 5861,
+  "category": "combat",
+  "topic": "Group combat",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Under the optional rules a group that loses its vanguard or leader can keep fighting, with rolls to replace the vanguard or assume leadership, though it automatically fails Morale and Discipline checks while leaderless.",
+  "quotes": [
+   "Replace a Vanguard in Combat: leader's Presence + leader's Leadership + stress die vs. Ease Factor 9",
+   "Assume Leadership in Combat: Presence + Leadership + stress die vs. Ease Factor 9"
+  ],
+  "related": [
+   "ArM5 p.173 Group combat"
+  ]
+ },
+ {
+  "title": "Equipment Availability",
+  "heading": "Equipment Availability",
+  "line": 5869,
+  "endLine": 5879,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the historical periods (ancient, early medieval, high and late medieval) and regional availability used in the weapon and armor tables, so equipment can be matched to the saga's era.",
+  "quotes": [
+   "The high period begins in the 11th century and lasts until the end of the 13th."
+  ],
+  "related": []
+ },
+ {
+  "title": "Quality of Arms and Armor",
+  "heading": "Quality of Arms and Armor",
+  "line": 5881,
+  "endLine": 5890,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Summarizes how shoddy, superior and excellent quality affects weapons, shields and armor, including breakage of shoddy items and the Protection, Attack and Defense bonuses of better ones.",
+  "quotes": [
+   "Superior armor grants +1 to Protection.",
+   "Shoddy items break easily; they are destroyed after failing a single stress check"
+  ],
+  "related": [
+   "City & Guild pp.67-69 Quality",
+   "City & Guild p.77 Damage checks"
+  ]
+ },
+ {
+  "title": "New Weapon Rules",
+  "heading": "New Weapon Rules",
+  "line": 5891,
+  "endLine": 5894,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Weapons are now categorized as crushing, piercing or slashing by the injuries they cause, which does not change their statistics but may matter for how magic and other rules interact with them.",
+  "quotes": [
+   "weapons are categorized as crushing, piercing, or slashing, according to the type of injuries they cause"
+  ],
+  "related": [
+   "Art & Academe pp.43-44",
+   "ArM5 p.154 Edge of the Razor"
+  ]
+ },
+ {
+  "title": "Primitive and Blunted Weapons",
+  "heading": "Primitive and Blunted Weapons",
+  "line": 5895,
+  "endLine": 5900,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Stone weapons have reduced Damage modifiers, and slashing or piercing weapons blunted for tournaments reduce their Damage modifier further.",
+  "quotes": [
+   "Subtract 3 from the Damage modifier of a blunted weapon."
+  ],
+  "related": [
+   "Ancient Magic p.95 Stone weapons"
+  ]
+ },
+ {
+  "title": "Option: Try Using the Other End",
+  "heading": "Option: Try Using the Other End",
+  "line": 5901,
+  "endLine": 5906,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule making the order of damage categories in the weapon table significant: the first is the normal mode and using the second applies an Attack penalty.",
+  "quotes": [
+   "Apply a \u20131 Attack penalty if it is used to deal its other damage type, due to awkwardness."
+  ],
+  "related": []
+ },
+ {
+  "title": "Melee Weapon Table",
+  "heading": "Melee Weapon Table",
+  "line": 5907,
+  "endLine": 5950,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Consolidated table of melee weapons and shields with Ability, Initiative, Attack, Defense, Damage, Strength, Load, Cost, availability, damage type and damage levels, with notes on nets, whips, long swords and polearms.",
+  "quotes": [
+   "A net or whip may be used to trip, grapple, or disarm using wielder's Single Weapon + Weapon Attack Bonus in lieu of Brawl.",
+   "A halberd or pole arm may be used to unseat a rider."
+  ],
+  "related": [
+   "City & Guild",
+   "Ancient Magic",
+   "Guardians of the Forest p.134"
+  ]
+ },
+ {
+  "title": "Missile Weapon Table",
+  "heading": "Missile Weapon Table",
+  "line": 5952,
+  "endLine": 5968,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Consolidated table of thrown and missile weapons, bows and crossbows with Ability, Initiative, Attack, Defense, Damage, Range, Strength, Load, Cost, availability and damage type.",
+  "quotes": [
+   "| Arbalest | Crossbow | 5 | 5 | 0 | 10\\* | 30 | \u20131 | 3 | Exp. | High | P | 2 | New |"
+  ],
+  "related": [
+   "Covenants p.18 Crossbows"
+  ]
+ },
+ {
+  "title": "Option: The Clash of Weapons",
+  "heading": "Option: The Clash of Weapons",
+  "line": 5970,
+  "endLine": 5984,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional weapon-breakage rule: when an Attack Total exactly equals the Defense Total, a Strength + Ability contest decides whose weapon is at risk, and a breakage roll that fails costs the item a damage level.",
+  "quotes": [
+   "Check for weapon breakage whenever the attacker's melee Attack Total exactly equals the defender's Defense Total.",
+   "Weapon Breakage: stress die + Weapon Ability vs. Ease Factor 9"
+  ],
+  "related": [
+   "City & Guild p.77 Damage checks"
+  ]
+ },
+ {
+  "title": "Using Crossbows",
+  "heading": "Using Crossbows",
+  "line": 5986,
+  "endLine": 5997,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Updated crossbow rules: no untrained-use botch dice, the user's Strength does not add to Damage, spanning is an Extended Action, and a loaded crossbow can be shot as a fast action with the ready missiles option.",
+  "quotes": [
+   "The user's Strength does not add to Damage for crossbows.",
+   "Spanning a crossbow is an Extended Action."
+  ],
+  "related": [
+   "Covenants p.18 Crossbows"
+  ]
+ },
+ {
+  "title": "Missile Weapon Descriptions",
+  "heading": "Missile Weapon Descriptions",
+  "line": 5998,
+  "endLine": 6013,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the arbalest, heavy arbalest, crossbow and bows, including the number of rounds of Extended Action needed to span each type of crossbow.",
+  "quotes": [
+   "To span a crossbow with a belt hook (the usual method) is a threeround Extended Action."
+  ],
+  "related": [
+   "Ancient Magic p.17",
+   "ArM5 p.177 Short bow"
+  ]
+ },
+ {
+  "title": "Melee Weapon Descriptions",
+  "heading": "Melee Weapon Descriptions",
+  "line": 6014,
+  "endLine": 6029,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes weapons from the melee table and how they work, including nets and whips used for trip, grapple, disarm and unseat attempts, the halberd, infantry shield and how a bastard sword is treated one- and two-handed.",
+  "quotes": [
+   "If used two-handed, treat it as a great sword."
+  ],
+  "related": [
+   "Ancient Magic p.95"
+  ]
+ },
+ {
+  "title": "Expanded Armor Rules",
+  "heading": "Expanded Armor Rules",
+  "line": 6030,
+  "endLine": 6033,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces an expanded set of historical armor types and rules for building armor from layers of different materials, compatible with the core armor statistics.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.176 Armor"
+  ]
+ },
+ {
+  "title": "Armor Materials",
+  "heading": "Armor Materials",
+  "line": 6034,
+  "endLine": 6037,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The expanded armor material categories replace those in the core rules while remaining compatible with their statistics.",
+  "quotes": [
+   "The following categories expand and supersede those described on page 176 of ArM5."
+  ],
+  "related": [
+   "ArM5 p.176 Armor"
+  ]
+ },
+ {
+  "title": "Inexpensive Materials",
+  "heading": "Inexpensive Materials",
+  "line": 6038,
+  "endLine": 6042,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines padded armor and boiled leather as the inexpensive armor material categories, and which similar materials use the same statistics.",
+  "quotes": [
+   "Also use these statistics for similar, semiresilient materials like rawhide, or even faerie armor made of tree bark."
+  ],
+  "related": []
+ },
+ {
+  "title": "Standard Materials",
+  "heading": "Standard Materials",
+  "line": 6043,
+  "endLine": 6049,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines reinforced armor, rigid scale and metal scale as the standard armor material categories.",
+  "quotes": [
+   "Metal scale includes all kinds of metal lamellar."
+  ],
+  "related": []
+ },
+ {
+  "title": "Weapon Table Key",
+  "heading": "Weapon Table Key",
+  "line": 6050,
+  "endLine": 6074,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains each column of the melee and missile weapon tables, including untrained weapon use, minimum Strength, Load, cost, availability, damage types and damage levels.",
+  "quotes": [
+   "add three extra botch dice unless the weapon is a crossbow"
+  ],
+  "related": [
+   "ArM5 p.178 Encumbrance"
+  ]
+ },
+ {
+  "title": "Expensive Materials",
+  "heading": "Expensive Materials",
+  "line": 6076,
+  "endLine": 6082,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines mail, plate, and plate and mail as the expensive armor material categories, with notes on when each appeared historically and that the complex armor rules do not cover 15th-century full plate.",
+  "quotes": [
+   "The complex armor design rules do not cover 15th-century full plate."
+  ],
+  "related": []
+ },
+ {
+  "title": "Expanded Armor Table",
+  "heading": "Expanded Armor Table",
+  "line": 6083,
+  "endLine": 6122,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Tables giving Protection and Load for each armor material in each garment type, plus surcoats, greaves and helmets, which are added together to get a character's total Protection and Load.",
+  "quotes": [
+   "Retain fractions until the end of the calculation and then round up to the next whole number."
+  ],
+  "related": [
+   "ArM5 p.176 Armor table"
+  ]
+ },
+ {
+  "title": "Armor Outfittings",
+  "heading": "Armor Outfittings",
+  "line": 6124,
+  "endLine": 6133,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Armor is built from three components (the armor itself, surcoat or greaves, and helmet) whose statistics are added; explains the common outfittings and why some material and garment combinations are not available.",
+  "quotes": [
+   "Full armor protects all four limbs as well as the torso and loins."
+  ],
+  "related": [
+   "ArM5 p.176 Armor table"
+  ]
+ },
+ {
+  "title": "Option: Penalty for Fighting Without a Helmet",
+  "heading": "Option: Penalty for Fighting Without a Helmet",
+  "line": 6134,
+  "endLine": 6139,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule adding a botch die to melee Defense and Evasion rolls for characters who fight without head protection, since helmets add little to Protection directly.",
+  "quotes": [
+   "add an extra botch die to melee Defense (and Evasion) rolls for any character so foolish as to fight without head protection"
+  ],
+  "related": []
+ },
+ {
+  "title": "Glossary of Armor Terms",
+  "heading": "Glossary of Armor Terms",
+  "line": 6140,
+  "endLine": 6209,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Definitions of armor terms such as hauberk, haubergeon, cuirass, jerkin, gambeson and brigandine, used to read the armor tables, with a few notes on which statistics to use for certain armors.",
+  "quotes": [
+   "Use the statistics for a metal scale cuirass."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Complex Armor Design",
+  "heading": "Option: Complex Armor Design",
+  "line": 6210,
+  "endLine": 6229,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Optional procedure for designing armor from any combination of materials: for each material add the Protection of the body areas it covers, multiply by the material's Load Factor, then sum all materials and round up.",
+  "quotes": [
+   "multiply it by the Load Factor for that material and retain any fraction to get the total Load of that material"
+  ],
+  "related": []
+ },
+ {
+  "title": "Complex Armor Design Table",
+  "heading": "Complex Armor Design Table",
+  "line": 6216,
+  "endLine": 6227,
+  "category": "combat",
+  "topic": "Armor and weapons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table giving, for each armor material, the Protection it provides on each body area and its Load Factor, for use with the complex armor design procedure.",
+  "quotes": [
+   "| Mail | 3 | 1 | 1 | 1 | 1 | 0.5 |"
+  ],
+  "related": []
+ }
+]

@@ -105,16 +105,18 @@ export default function ArtsStep({ ed }: { ed: CharEditor }) {
         <p className="small muted" style={{ marginTop: 0 }}>
           Technique + Form + Intelligence + Magic Theory + {limitBonus}, with Virtues and Flaws applied as for Lab Totals (DE p.49). Requisites lower this for specific spells.
         </p>
-        <div className="art-grid">
-          <div className="h" />
-          {FORMS.map((f) => (
-            <div key={f} className="h">
-              {f}
-            </div>
-          ))}
-          {TECHNIQUES.map((t) => (
-            <Row key={t} t={t} d={d} bonus={limitBonus} />
-          ))}
+        <div className="table-wrap">
+          <div className="art-grid">
+            <div className="h" />
+            {FORMS.map((f) => (
+              <div key={f} className="h">
+                {f}
+              </div>
+            ))}
+            {TECHNIQUES.map((t) => (
+              <Row key={t} t={t} d={d} bonus={limitBonus} />
+            ))}
+          </div>
         </div>
       </Card>
     </>
