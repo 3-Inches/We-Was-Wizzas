@@ -17,6 +17,7 @@ const HouseRulesPage = lazy(() => import('./pages/HouseRulesPage'));
 const ReferencePage = lazy(() => import('./pages/ReferencePage'));
 const BookReader = lazy(() => import('./pages/BookReader'));
 const HelpPage = lazy(() => import('./pages/HelpPage'));
+const MechanicsPage = lazy(() => import('./pages/MechanicsPage'));
 
 function applyTheme(theme: string, stream: boolean) {
   const root = document.documentElement;
@@ -68,6 +69,9 @@ export default function App() {
               <Route path="/reference" element={<ReferencePage />} />
               <Route path="/reference/book/:bookId" element={<BookReader />} />
               <Route path="/help" element={<HelpPage />} />
+              <Route path="/mechanics" element={<MechanicsPage />} />
+              <Route path="/mechanics/:areaId" element={<MechanicsPage />} />
+              <Route path="/mechanics/:areaId/:groupId" element={<MechanicsPage />} />
               <Route path="*" element={<div>Page not found. <Link to="/">Home</Link></div>} />
             </Routes>
           </Suspense>
@@ -153,6 +157,7 @@ function Sidebar({ open }: { open: boolean }) {
           </>
         )}
         <div className="nav-group">Reference</div>
+        <NavLink to="/mechanics">⚙ Game mechanics</NavLink>
         <NavLink to="/reference" end>❦ Rules reference</NavLink>
         <NavLink to="/reference/book/DE">📖 Definitive Edition</NavLink>
         <NavLink to="/dice">⚄ Dice</NavLink>

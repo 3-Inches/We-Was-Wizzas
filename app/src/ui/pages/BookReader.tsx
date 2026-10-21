@@ -4,6 +4,7 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import { BOOKS, BOOK_BY_ID } from '../../data';
 import { Card, Empty, SearchInput } from '../kit';
+import { bookCache } from '../bookText';
 
 interface Heading {
   line: number; // 0-based
@@ -18,7 +19,8 @@ interface Section {
   heading: Heading;
 }
 
-const cache = new Map<string, string[]>();
+// shared with the mechanics reference, so a book is fetched once
+const cache = bookCache;
 
 /** GitHub-style heading slug (what the books' internal links use), with -1, -2 for duplicates. */
 function githubSlug(text: string): string {

@@ -1,0 +1,1012 @@
+[
+ {
+  "title": "Mendip Battlefield: Aura",
+  "heading": "Aura",
+  "line": 3111,
+  "endLine": 3113,
+  "category": "realms",
+  "topic": "Local auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the Magic aura of the Mendip battlefield and notes that Faerie and Infernal influence is present in stories though no such aura exists yet.",
+  "quotes": [
+   "The battlefield has a Magic aura of 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Cave of the Inscription (aura and Watching Wards)",
+  "heading": "The Cave of the Inscription",
+  "line": 3115,
+  "endLine": 3123,
+  "category": "realms",
+  "topic": "Local auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the cave that binds Somerset's Winter faeries, its Magic aura, and the Watching Wards that guard the inscription and ink.",
+  "quotes": [
+   "The cave has a Magic aura of 6, which rises to 8 if the second working is written on the wall.",
+   "Each spell has a Penetration of +20."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Nature and Effects of The Second Working",
+  "heading": "The Nature and Effects of The Second Working",
+  "line": 3125,
+  "endLine": 3130,
+  "category": "realms",
+  "topic": "Local auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how inscribing the second working changes the faerie nature of Somerset and how Faerie auras in the county are reduced and converted to Magic auras.",
+  "quotes": [
+   "Most Faerie auras in Somerset, if lower than 10, fall by 4 points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Pseudoelementals",
+  "heading": "Arsenical Pseudoelemental",
+  "line": 3166,
+  "endLine": 3168,
+  "category": "beings",
+  "topic": "Magical creatures",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Creature type: pseudoelemental",
+  "summary": "Introduces pseudoelementals, creatures similar to elementals but not made of pure elemental matter, which lose Might from Wounds and may lose some vis as they are damaged.",
+  "quotes": [
+   "it loses Might points equal to the penalty it suffers from Wounds"
+  ],
+  "related": [
+   "Realms of Power: Magic p.133 Elementals"
+  ]
+ },
+ {
+  "title": "Metallic Arsenic (Material Bonuses)",
+  "heading": "METALLIC ARSENIC",
+  "line": 3535,
+  "endLine": 3543,
+  "category": "lab",
+  "topic": "Material bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to metallic arsenic (Verditius-style item crafting)",
+  "summary": "Describes arsenic smelted into a brittle metal for enchanted items and lists its material bonuses for different kinds of magic.",
+  "quotes": [
+   "+8 magic that kills directly, without intermediate media.",
+   "+4 preservation of dead things from decay"
+  ],
+  "related": []
+ },
+ {
+  "title": "Digging for Arsenic Is Dangerous",
+  "heading": "Digging For Arsenic Is Dangerous",
+  "line": 3554,
+  "endLine": 3557,
+  "category": "hazards",
+  "topic": "Poison",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for protecting oneself while harvesting arsenic: precautions determine whether the character is automatically poisoned or must make a Dexterity-based roll.",
+  "quotes": [
+   "against an Ease Factor of 5, +1 per dose"
+  ],
+  "related": [
+   "ArM5 p.180 Poison"
+  ]
+ },
+ {
+  "title": "The Cave on Saint's Island (Empyreal aura and the gate to Purgatory)",
+  "heading": "The Cave on Saint's Island",
+  "line": 3628,
+  "endLine": 3638,
+  "category": "realms",
+  "topic": "Purgatory of Saint Patrick",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the Empyreal aura of the island, and explains how the canons ritually open the gate to Purgatory, including the casting bonus from the Ceremony Ability and who may follow a pilgrim through.",
+  "quotes": [
+   "The aura on Inisnaoimh is an Empyreal aura of level 4.",
+   "He can rely on a Ceremony bonus to his casting total of at least +16"
+  ],
+  "related": [
+   "Realms of Power: the Divine p.7 Empyreal auras",
+   "Realms of Power: the Divine Revised Edition p.36 Ceremony"
+  ]
+ },
+ {
+  "title": "The Pilgrims' Progress (Torment in Purgatory)",
+  "heading": "The Pilgrims' Progress",
+  "line": 3640,
+  "endLine": 3652,
+  "category": "hazards",
+  "topic": "Purgatory of Saint Patrick",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how pilgrims experience Purgatory and how to simulate demonic torment using Deprivation rolls, including temporary wounds and what happens on death.",
+  "quotes": [
+   "Wounds inflicted by demonic torture are excruciating but temporary.",
+   "Once torture ends they recover as if they were Fatigue levels with the same penalty"
+  ],
+  "related": [
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Time in Purgatory",
+  "heading": "Time in Purgatory",
+  "line": 3654,
+  "endLine": 3659,
+  "category": "realms",
+  "topic": "Purgatory of Saint Patrick",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how time passes in Purgatory and the Earthly Paradise, when characters return, and why aging is based on mundane time and experience cannot be gained from the differential.",
+  "quotes": [
+   "Characters cannot use the differential passage of time to gain experience points"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Vision of Hell (Regio crossing)",
+  "heading": "The Vision of Hell",
+  "line": 3661,
+  "endLine": 3677,
+  "category": "realms",
+  "topic": "Purgatory of Saint Patrick",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the Divine and Tartaran regiones entered through Purgatory, the Ease Factors for crossing without a guide, and how to find a particular field of torment.",
+  "quotes": [
+   "the Ease Factor for the Regio Sight roll is 33",
+   "an Intelligence + Theology against an Ease Factor of 9 reveals which fields punish which sins"
+  ],
+  "related": [
+   "ArM5 p.189 Regio Sight"
+  ]
+ },
+ {
+  "title": "Tartaran Regiones",
+  "heading": "Tartaran Regiones",
+  "line": 3772,
+  "endLine": 3781,
+  "category": "realms",
+  "topic": "Infernal regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tartaran Infernal regio",
+  "summary": "A summary of the effects of hellfire in Tartaran regiones: no Fatigue recovery, added fire damage, and a damage bonus based on the victim's sinful Traits.",
+  "quotes": [
+   "No Fatigue levels can be recovered within the regio, and all Fatigue levels lost are Long-Term Fatigue.",
+   "Add sum of the sinful Personality Traits to all fire or heat Damage Totals, counting negative virtuous traits as sinful."
+  ],
+  "related": [
+   "Realms of Power: the Infernal p.16 Tartaran regiones"
+  ]
+ },
+ {
+  "title": "The Furnace (Insight and transmutation)",
+  "heading": "The Furnace",
+  "line": 3799,
+  "endLine": 3800,
+  "category": "realms",
+  "topic": "Purgatory of Saint Patrick",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Furnace in Purgatory",
+  "summary": "The Furnace of Purgatory transmutes vis, enchanted devices and mortals' Virtues or Flaws into fiery equivalents, and offers Insight into original research on Limits of Essential Nature and Vis.",
+  "quotes": [
+   "If vis of any Art is thrown into the Furnace it can be retrieved as Ignem vis.",
+   "The Furnace provides an insight towards the creation of a 50th level effect."
+  ],
+  "related": [
+   "Realms of Power: the Infernal p.76 Xaphan"
+  ]
+ },
+ {
+  "title": "The Mirror of Souls",
+  "heading": "The Mirror of Souls",
+  "line": 3808,
+  "endLine": 3811,
+  "category": "realms",
+  "topic": "Purgatory of Saint Patrick",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Abyssal Pit in Purgatory",
+  "summary": "A scrying mirror that works on a name or any Sympathetic Connection, and a source of Insight for original research into the Limit of Arcane Connections or of the Infernal.",
+  "quotes": [
+   "subsequent scrying does, using the Mirror's Penetration of 50",
+   "The Mirror provides an insight towards the creation of a 50th level effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Bridge to Paradise (crossing rolls)",
+  "heading": "The Bridge to Paradise",
+  "line": 3821,
+  "endLine": 3829,
+  "category": "realms",
+  "topic": "Purgatory of Saint Patrick",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how characters cross the knife-thin bridge from Purgatory's Infernal regio to the Earthly Paradise, with successive Athletics rolls, a Regio Sight difficulty for non-walking routes, and what happens to those who fall.",
+  "quotes": [
+   "must make three successive Dexterity + Athletics stress rolls of Ease Factors 6, 9, and 12",
+   "crossing in any other manner requires a Regio Sight roll of 37"
+  ],
+  "related": [
+   "ArM5 p.158 Piercing the Faerie Veil"
+  ]
+ },
+ {
+  "title": "Celestial Regiones",
+  "heading": "Celestial Regiones",
+  "line": 3845,
+  "endLine": 3854,
+  "category": "realms",
+  "topic": "Divine regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Celestial Divine regio",
+  "summary": "A summary of the effects of Celestial regiones on visitors: a stress roll to act normally, Fatigue loss over time, Warping, and the resulting Ascent.",
+  "quotes": [
+   "To act normally, a visitor must make a Stamina + Dominion Lore stress roll against an Ease Factor equal to (3 x aura).",
+   "Characters can spend 1 Faith Point to automatically succeed on the roll."
+  ],
+  "related": [
+   "Realms of Power: the Divine pp.14-15 Celestial regiones",
+   "Realms of Power: the Divine p.63 Ascension"
+  ]
+ },
+ {
+  "title": "The Fountain of Youth",
+  "heading": "The Fountain of Youth",
+  "line": 3868,
+  "endLine": 3873,
+  "category": "realms",
+  "topic": "Purgatory of Saint Patrick",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Fountain in Purgatory",
+  "summary": "A one-time-per-life fountain that removes Decrepitude or Warping, lowers Apparent Age, grants the Unaging Virtue, and also serves as an Insight source for the Limits of Aging or Warping.",
+  "quotes": [
+   "A single mouthful can remove up to 3 points of Decrepitude (and associated aging points) or 3 points of Warping Score, or some combination of the two.",
+   "It is only possible to benefit from the Fountain's power once in a lifetime."
+  ],
+  "related": []
+ },
+ {
+  "title": "Souls in Purgatory and Paradise",
+  "heading": "Souls in Purgatory and Paradise",
+  "line": 4029,
+  "endLine": 4043,
+  "category": "beings",
+  "topic": "Souls in Purgatory",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Regio of Purgatory or the Earthly Paradise",
+  "summary": "Rules for statting human souls found in Purgatory and the Earthly Paradise, including their Might Score, capped Abilities, lack of Decrepitude and Warping, and what happens if a soul is retrieved.",
+  "quotes": [
+   "Most souls have a Might of 5.",
+   "Add five Might for every point of the character's Confidence Score.",
+   "When used, the Abilities of Souls are limited to half of their Might score, rounded up."
+  ],
+  "related": []
+ },
+ {
+  "title": "Options for Characters Retrieved From Purgatory",
+  "heading": "Options for Characters Retrieved From Purgatory",
+  "line": 4045,
+  "endLine": 4053,
+  "category": "creation",
+  "topic": "Souls in Purgatory",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Character retrieved from Purgatory",
+  "summary": "Lists the existing Virtues, Flaws and character templates that suit characters who have been rescued from Purgatory or brought back from the dead.",
+  "quotes": [
+   "Raised From The Dead (Major Story/ Supernatural Flaw, Realms of Power: the Divine, page 36)"
+  ],
+  "related": [
+   "Realms of Power: the Divine p.36 Raised From The Dead",
+   "Grogs ch.6 Viaticarus",
+   "Realms of Power: Magic pp.96-97 Drowned Men",
+   "Realms of Power: Magic pp.115-118 Ghosts"
+  ]
+ },
+ {
+  "title": "A Destination for Pilgrimage",
+  "heading": "A Destination for Pilgrimage",
+  "line": 4059,
+  "endLine": 4065,
+  "category": "setting",
+  "topic": "Pilgrimage",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how a pilgrimage to the Purgatory works, including Oppositional Elements, the Circuit of Saint Patrick and the procedures and dates that govern admission.",
+  "quotes": [
+   "Those wishing to visit the Purgatory must plan to arrive at the island between June 1 and August 15; they will not be admitted outside these dates."
+  ],
+  "related": [
+   "The Church pp.16-19 Pilgrimages and Oppositional Elements",
+   "The Contested Isle ch.9 Ulaid"
+  ]
+ },
+ {
+  "title": "Insight into Original Research (Purgatory)",
+  "heading": "INSIGHT INTO ORIGINAL RESEARCH",
+  "line": 4099,
+  "endLine": 4105,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to Purgatory sources of insight",
+  "summary": "How a magus studies the Mirror of Souls, the Fountain of Youth or the Furnace for a season to gain an insight for original research, and the roll needed.",
+  "quotes": [
+   "make an Intelligence + Magic Theory stress roll against an Ease Factor of 18",
+   "The Inventive Genius Virtue adds 3 to this roll."
+  ],
+  "related": [
+   "Hedge Magic Revised Edition p.14 Insight",
+   "Ancient Magic p.8 Insight"
+  ]
+ },
+ {
+  "title": "Jailbreak (Retrieving Souls from Purgatory)",
+  "heading": "Jailbreak",
+  "line": 4127,
+  "endLine": 4133,
+  "category": "realms",
+  "topic": "Souls in Purgatory",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on whether and how characters might bring a soul out of Purgatory or the Earthly Paradise and restore it to life, including which souls are eligible and the need for a body.",
+  "quotes": [
+   "only the not completely good or not completely evil are eligible"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Triumphal Arch (entering the temple regio)",
+  "heading": "The Triumphal Arch",
+  "line": 4249,
+  "endLine": 4261,
+  "category": "realms",
+  "topic": "Fallen Temple of Mercury",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the auras around the ruined arch and the regio behind it, and how the arch must be rebuilt (in any material) in the right astrological position and shape before the regio can be entered.",
+  "quotes": [
+   "The area around the ruined triumphal arch, extending for about 100 paces, has a Magic aura of 1.",
+   "The regio behind the triumphal arch has a Magic aura of 5.",
+   "Intelligence + Artes Liberales (astronomy) roll against an Ease Factor of 9"
+  ],
+  "related": [
+   "ArM5 p.189 Regio Sight"
+  ]
+ },
+ {
+  "title": "The Town Beyond the Arch (regio layout and exits)",
+  "heading": "The Town Beyond the Arch",
+  "line": 4263,
+  "endLine": 4271,
+  "category": "realms",
+  "topic": "Fallen Temple of Mercury",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the self-wrapping town regio and its exits, including that the regio arch must stand to leave by it and that Leap of Homecoming-type effects work regardless.",
+  "quotes": [
+   "The town occupies the entire regio and it wraps around itself"
+  ],
+  "related": []
+ },
+ {
+  "title": "Aqueduct (repair and maintenance)",
+  "heading": "Aqueduct",
+  "line": 4378,
+  "endLine": 4386,
+  "category": "setting",
+  "topic": "Fallen Temple of Mercury",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for the labor needed to repair the temple's aqueduct and for the ongoing seasonal maintenance, with a die roll that determines whether neglect clogs it.",
+  "quotes": [
+   "It requires 20 man years to repair the aqueduct",
+   "Maintenance occupies 5 characters every season, and the work must be done every season.",
+   "roll a simple die against an Ease Factor of 3 + 1 for each consecutive season for which maintenance has been neglected"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Mercurian Rituals (overview)",
+  "heading": "The Mercurian Rituals",
+  "line": 4470,
+  "endLine": 4472,
+  "category": "traditions",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to Mercurian Ritual Lab Texts",
+  "summary": "Introduces the Cult of Mercury's non-Hermetic ritual Lab Texts and the translation work needed to reinvent them as Hermetic rituals.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Reading the Mercurian Rituals",
+  "heading": "Reading the Mercurian Rituals",
+  "line": 4474,
+  "endLine": 4478,
+  "category": "lab",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Latin and Magic Theory; Mercurian Lab Texts",
+  "summary": "A brief reading of a Mercurian Lab Text reveals its Technique, Form, magnitude and general purpose, but does not permit casting or reinvention.",
+  "quotes": [
+   "It takes a day to study each Lab Text in this way"
+  ],
+  "related": []
+ },
+ {
+  "title": "Learning the Mercurian Rituals (translating Lab Texts)",
+  "heading": "Learning the Mercurian Rituals",
+  "line": 4486,
+  "endLine": 4496,
+  "category": "lab",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercurian Lab Texts and a laboratory",
+  "summary": "Procedure for translating non-Hermetic Mercurian Lab Texts into Hermetic ones over several seasons, accumulating points from the Lab Total, before inventing the ritual normally.",
+  "quotes": [
+   "When the character has accumulated points equal to twice the level of the ritual he has translated it.",
+   "In order to translate the ritual in a single season, the magus requires a Lab Total equal to three times the ritual level."
+  ],
+  "related": [
+   "ArM5 p.107 Experimentation"
+  ]
+ },
+ {
+  "title": "Casting the Mercurian Rituals",
+  "heading": "Casting the Mercurian Rituals",
+  "line": 4512,
+  "endLine": 4514,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Translated and invented Mercurian ritual",
+  "summary": "Once translated and invented, Mercurian rituals are cast and dispelled as Hermetic rituals, though their non-Hermetic origin is visible to those with Magic Theory.",
+  "quotes": [
+   "he can cast them as if they were Hermetic rituals of the appropriate Arts"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Versions of the Mercurian Rituals",
+  "heading": "Hermetic Versions of the Mercurian Rituals",
+  "line": 4516,
+  "endLine": 4518,
+  "category": "traditions",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercurian Lab Texts translated",
+  "summary": "Introduces the list of recoverable Cult of Mercury rituals that can be reinvented as non-Hermetic Hermetic rituals.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Purification (Mercurian ritual)",
+  "heading": "Purification",
+  "line": 4520,
+  "endLine": 4534,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercurian Lab Text: Purification",
+  "summary": "A CrCo ritual that reduces another character's apparent age and Decrepitude and removes Aging Points; it breaks the Hermetic Limit of Aging.",
+  "quotes": [
+   "The target's apparent age is reduced by 5 years and his Decrepitude Score is reduced by 1.",
+   "This ritual breaks the Hermetic Limit of Aging."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Scrying Pool (Mercurian ritual)",
+  "heading": "The Scrying Pool",
+  "line": 4536,
+  "endLine": 4546,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercurian Lab Text: The Scrying Pool; the pool in the Scrying Office",
+  "summary": "An InIm ritual tied to one specific pool that has a special interaction with Wizard's Communion, letting participants take shifts to prolong the scrying.",
+  "quotes": [
+   "The ritual is specifically designed for this pool; another similar pool cannot be used.",
+   "Casting this spell on a member of Order of Hermes is illegal scrying."
+  ],
+  "related": [
+   "ArM5 p.160 Wizard's Communion"
+  ]
+ },
+ {
+  "title": "Penetrate the Regio Skin (Mercurian ritual)",
+  "heading": "PENETRATE THE REGIO SKIN",
+  "line": 4558,
+  "endLine": 4568,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercurian Lab Text: Penetrate the Regio Skin",
+  "summary": "A ritual that creates a new, small entrance through a Magic regio boundary, with a roll to control the entrance location.",
+  "quotes": [
+   "a successful Dex + Finesse roll against an Ease Factor of 6 is required to precisely control where the entrance physically is"
+  ],
+  "related": []
+ },
+ {
+  "title": "Blessing of Mercury (Mercurian ritual)",
+  "heading": "BLESSING OF MERCURY",
+  "line": 4570,
+  "endLine": 4578,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercurian Lab Text: Blessing of Mercury; consecrated temple of Mercury",
+  "summary": "A yearlong ritual cast in a consecrated temple of Mercury that boosts the target's Casting and Laboratory totals.",
+  "quotes": [
+   "The target gains +3 to all Casting and Laboratory totals for the duration of the spell."
+  ],
+  "related": []
+ },
+ {
+  "title": "Transformation of Flesh to Spirit (Mercurian ritual)",
+  "heading": "TRANSFORMATION OF FLESH TO SPIRIT",
+  "line": 4580,
+  "endLine": 4592,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercurian Lab Text: Transformation of Flesh to Spirit; consecrated temple of Mercury",
+  "summary": "A sacrificial ritual in which the caster dies to permanently raise the Magic aura of a temple, subject to requirements on the caster's Art Scores and Penetration.",
+  "quotes": [
+   "the caster must have no Art Score with a value less than twice the current aura level"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.8 Trianoma"
+  ]
+ },
+ {
+  "title": "Wizard's Initiation (Mercurian ritual)",
+  "heading": "WIZARD'S INITIATION",
+  "line": 4594,
+  "endLine": 4606,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercurian Lab Text: Wizard's Initiation; consecrated temple of Mercury",
+  "summary": "A ritual meant to grant The Gift that no longer works; casting it always fails and adds an extra botch die.",
+  "quotes": [
+   "The target of this ritual gains The Gift."
+  ],
+  "related": []
+ },
+ {
+  "title": "Consecration of Mercury's House (Mercurian ritual)",
+  "heading": "Consecration of Mercury's House",
+  "line": 4608,
+  "endLine": 4620,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mercurian Lab Text: Consecration of Mercury's House",
+  "summary": "A ritual that consecrates a temple to Mercury, creating a permanent low-level Magic aura and the consecration needed for other Mercurian rituals, at a cost of Faith Points for those inside.",
+  "quotes": [
+   "This creates a level 1 Magic aura within the temple precinct"
+  ],
+  "related": []
+ },
+ {
+  "title": "Integration of the Mercurian Rituals (new ritual guidelines)",
+  "heading": "Story Seed: Integration of the Mercurian Rituals",
+  "line": 4644,
+  "endLine": 4656,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration breakthrough research",
+  "summary": "Describes integration breakthroughs that would add new ritual guidelines (creating or raising Magic auras and opening regio entrances) and the Mercurian Magic Virtue, with Breakthrough Points required and insight sources.",
+  "quotes": [
+   "Breakthrough Points Required: 30.",
+   "This requires 45 Breakthrough points."
+  ],
+  "related": [
+   "Ancient Magic p.7 Integration",
+   "Hedge Magic Revised Edition p.14 Integration",
+   "ArM5 p.46 Mercurian Magic"
+  ]
+ },
+ {
+  "title": "Repairing the Wizard's Initiation Ritual (research project)",
+  "heading": "Saga Seed: The Failure of the Wizard's Initiation Ritual",
+  "line": 4658,
+  "endLine": 4672,
+  "category": "magic",
+  "topic": "Mercurian Rituals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration research project",
+  "summary": "Explains why the ritual that grants The Gift fails and the integration project, with its Breakthrough Point cost and new guideline, that could repair it.",
+  "quotes": [
+   "that requires 60 Breakthrough points and adds the following guideline"
+  ],
+  "related": [
+   "Ancient Magic p.7 Integration",
+   "Hedge Magic Revised Edition p.14 Integration"
+  ]
+ },
+ {
+  "title": "The Necropolis Regio",
+  "heading": "Story Seed: The Dead Amongst Us",
+  "line": 4696,
+  "endLine": 4702,
+  "category": "realms",
+  "topic": "Fallen Temple of Mercury",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes an optional dark-mirror regio into which characters who die in the temple regio pass as ghosts, and how ghosts may cross its boundary.",
+  "quotes": [
+   "The necropolis regio (Magic aura 7)"
+  ],
+  "related": [
+   "ArM5 p.189 Regio Sight"
+  ]
+ },
+ {
+  "title": "Rules for Ghosts (necropolis)",
+  "heading": "Rules for Ghosts",
+  "line": 4704,
+  "endLine": 4712,
+  "category": "beings",
+  "topic": "Ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ghost in the necropolis",
+  "summary": "Simple rules for playing a ghost in the necropolis: Mentem Might, no Fatigue, healing at moonrise, limits on casting spells, and the Leaving the Crypt power.",
+  "quotes": [
+   "has a Mentem Magic Might equal to his highest Ability or Art Score"
+  ],
+  "related": [
+   "Realms of Power: Magic pp.115-118 Ghosts"
+  ]
+ },
+ {
+  "title": "Devil's Lane Faerie Regio (the Streets)",
+  "heading": "The Streets",
+  "line": 4769,
+  "endLine": 4773,
+  "category": "realms",
+  "topic": "Devil's Lane",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the layout of the toy market regio and gives its Faerie aura.",
+  "quotes": [
+   "The entire market is a Faerie regio (aura level 6)."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Alley Wards",
+  "heading": "The Alley Wards",
+  "line": 4807,
+  "endLine": 4811,
+  "category": "realms",
+  "topic": "Devil's Lane",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the faerie wards on the regio entrances that block humans without faerie blood, what they do not stop, how they read to Intellego Vim, and that dispelled wards return at dawn or dusk.",
+  "quotes": [
+   "The alley wards have no Penetration, and thus do not keep out most magi (or others with Magic Resistance).",
+   "if dispelled the wards reappear at the next dawn or dusk (whichever is next)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Market Rules (Devil's Lane guild)",
+  "heading": "Market Rules",
+  "line": 4965,
+  "endLine": 4977,
+  "category": "setting",
+  "topic": "Devil's Lane",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The list of guild rules governing trade, residence, debts and enforcement within the faerie toy market.",
+  "quotes": [
+   "All debts must be paid within a year and a day."
+  ],
+  "related": []
+ },
+ {
+  "title": "Buying Toys (faerie market prices)",
+  "heading": "Buying Toys",
+  "line": 5001,
+  "endLine": 5009,
+  "category": "social",
+  "topic": "Faerie toys",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Devil's Lane market",
+  "summary": "How faerie merchants price premade toys in vis, the negotiating gap between the opening offer and the bottom line, and how payment is disguised as unusual goods containing vis.",
+  "quotes": [
+   "The faerie merchants sell toys for the number of pawns of vis required to create it plus one pawn.",
+   "Charged items cost a minimum of one pawn of vis per charge."
+  ],
+  "related": [
+   "Covenants ch.6 Vis sources",
+   "Realms of Power: Faerie pp.18-19 Vis sources"
+  ]
+ },
+ {
+  "title": "Commissioning Toys",
+  "heading": "Commissioning Toys",
+  "line": 5023,
+  "endLine": 5027,
+  "category": "social",
+  "topic": "Faerie toys",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Devil's Lane market",
+  "summary": "Price rules for commissioning a custom toy from the faeries, including the required Art type and upfront payment.",
+  "quotes": [
+   "the bottom-line price is twice the vis cost",
+   "The initial price is four times the vis cost."
+  ],
+  "related": []
+ },
+ {
+  "title": "Limited Life-Time of Faerie Toys",
+  "heading": "Limited Life-Time",
+  "line": 5029,
+  "endLine": 5031,
+  "category": "magic",
+  "topic": "Faerie toys",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie toy from Devil's Lane",
+  "summary": "Faerie toys are glamour and stop working after a fixed time, even charged items.",
+  "quotes": [
+   "All the toys, therefore, only last for seven years after purchase."
+  ],
+  "related": []
+ },
+ {
+  "title": "What Can Be Made? (faerie workshop commissions)",
+  "heading": "What Can Be Made?",
+  "line": 5366,
+  "endLine": 5372,
+  "category": "lab",
+  "topic": "Faerie toys",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Devil's Lane workshops",
+  "summary": "Sets the seasonal work limit of each faerie merchant's workshop access, what Hermetic item projects the elves can duplicate, and the Talisman exclusion.",
+  "quotes": [
+   "Each faerie merchant can commission in one season work equivalent to that done with a Lab Total of 100.",
+   "The workshop elves cannot create, attune, or enchant a Talisman."
+  ],
+  "related": [
+   "ArM5 p.96 Enchanting items",
+   "ArM5 p.99 Effect modifications",
+   "ArM5 p.92 Faerie magic parameters"
+  ]
+ },
+ {
+  "title": "Leaden, Iron, and Tin Cords (faerie familiar cords)",
+  "heading": "Leaden, Iron, and Tin Cords",
+  "line": 5654,
+  "endLine": 5661,
+  "category": "magic",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie familiar",
+  "summary": "Describes the three special negative cords that balance the normal familiar cords for faerie familiars, with their penalties to the magus (and familiar) near Divine auras, iron, or outside supernatural auras.",
+  "quotes": [
+   "The magus rolls this number of additional botch dice when casting within a Divine aura or when touching a holy relic.",
+   "If the magus is touching iron, subtract the cord value from all rolls made",
+   "subtract the value of the cord from all Personality Trait, healing, deprivation, and aging rolls, and from his Soak total"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.90 Familiar cords"
+  ]
+ }
+]

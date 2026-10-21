@@ -1,0 +1,1745 @@
+[
+ {
+  "title": "Craftsman Workshop Total and Craft Level",
+  "heading": "Basic Craftsman Production",
+  "line": 1860,
+  "endLine": 1869,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the five quality grades of finished goods and the Workshop Total (primary Characteristic + Craft Ability + the workshop's Innovation and Raw Materials) that a craftsman compares against a Craft Level to see what a season's work produces.",
+  "quotes": [
+   "Workshop Total: Primary Characteristic + Ability + Innovation + Raw Materials",
+   "If the Workshop Total equals or exceeds the Craft Level, the character produces a specific amount and quality of finished goods."
+  ]
+ },
+ {
+  "title": "Primary Characteristic of a Craft",
+  "heading": "Primary Characteristic",
+  "line": 1870,
+  "endLine": 1872,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar saying which Characteristic a craft or labour uses in its formulas (usually Dexterity for craftsmen, Strength for laborers, with exceptions the troupe decides).",
+  "quotes": [
+   "A common rule of thumb is that craftsmen use Dexterity and laborers use Strength."
+  ]
+ },
+ {
+  "title": "Finished Goods and Quality Craft Levels",
+  "heading": "Finished Goods",
+  "line": 1874,
+  "endLine": 1884,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sets the standard Craft Level for a season's work and the Craft Levels needed for shoddy, standard, superior, excellent and wondrous goods; a Workshop Total below standard yields shoddy goods and the storyguide may raise the Craft Level for adverse conditions.",
+  "quotes": [
+   "The standard Craft Level, which assumes adequate space, necessary materials, and no distractions, is 6.",
+   "Craft Level for Standard Items: 6",
+   "Craft Level for Wondrous Items: 12 + Magnitude of Effect"
+  ]
+ },
+ {
+  "title": "Modifying the Craft Level (situation table)",
+  "heading": "Finished Goods Craft Levels",
+  "line": 1886,
+  "endLine": 1898,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "storyguide",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar table of situational increases to the Craft Level (war, famine, plague, scarce materials, interruptions, staff changes, non-mundane auras); changing the base Craft Level shifts the levels for every quality grade equally.",
+  "quotes": [
+   "Modifying the basic Craft Level also changes the Craft Levels of different quality goods.",
+   "if the storyguide decides that the Basic Craft Level is 9, then a craftsman character needs a 15 to make superior goods and an 18 to make excellent goods."
+  ]
+ },
+ {
+  "title": "Seasonal Production Chart (scaling output by Craft score)",
+  "heading": "Seasonal Production Chart",
+  "line": 1900,
+  "endLine": 1905,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how to scale the number of items a craftsman makes in a season from his Craft Ability score, and how to convert seasonal output into days per item.",
+  "quotes": [
+   "Divide the character's Craft Ability score by five, then multiply this number by the number of items that a basic craftsman would make in a season.",
+   "divide 72 (which is the number of working days in a season, derived from 12 six-day weeks) by the number of items constructed in a season."
+  ]
+ },
+ {
+  "title": "Standard Quality Items Constructed in a Season (table)",
+  "heading": "Standard Quality Items Constructed in a Season",
+  "line": 1906,
+  "endLine": 1939,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of how many standard-quality goods of each kind a craftsman of average skill makes in a season, with the responsible guild and cost band, plus notes on large items that take several seasons and on teams and labor gangs.",
+  "quotes": [
+   "Instead, round to the nearest nice fraction."
+  ]
+ },
+ {
+  "title": "Shoddy Quality Items",
+  "heading": "Shoddy Quality Items",
+  "line": 1941,
+  "endLine": 1943,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Shoddy goods look and perform like standard goods but break on a botch, and a craftsman can spot them with a Perception roll.",
+  "quotes": [
+   "making a Perception + Craft Ability + simple roll against an Ease Factor of 6"
+  ]
+ },
+ {
+  "title": "Superior Quality Items",
+  "heading": "Superior Items",
+  "line": 1945,
+  "endLine": 1949,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Superior goods give a small bonus to one feature (strength, durability or appearance) for a specific activity; only one such bonus applies to any single roll or total, and the entry gives examples for clothing, tools, shields, swords and armor.",
+  "quotes": [
+   "Only one bonus from a superior or excellent quality item applies to a single total or roll, no matter how many such items are used."
+  ]
+ },
+ {
+  "title": "Crafted Item Quality and Enchanting",
+  "heading": "Regarding Enchanted Items",
+  "line": 1951,
+  "endLine": 1957,
+  "category": "lab",
+  "topic": "Enchanting crafted items",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar giving the Lab Total penalty or bonus a magus gets for enchanting an item of shoddy, standard, superior or excellent quality, and noting that wondrous goods count as superior and lose their non-Hermetic effects when enchanted.",
+  "quotes": [
+   "Regular, standard quality goods subtract one from a maga's Lab Total, and shoddy goods subtract three.",
+   "If a magus is enchanting a crafted item — be it a boot, blade, or broom — the item must be of at least superior quality."
+  ]
+ },
+ {
+  "title": "Excellent Quality Items",
+  "heading": "Excellent Quality Items",
+  "line": 1959,
+  "endLine": 1967,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Excellent goods earn extra bonuses for each block of points the Workshop Total exceeds the Craft Level, limited by the creator's Craft Ability, and the bonus applies to every use of the item.",
+  "quotes": [
+   "For every 3 points that exceed the Craft Level, add an additional +1 bonus to a feature of the item.",
+   "Total Bonus Limit: Craft Ability / 3, rounded up"
+  ]
+ },
+ {
+  "title": "Wondrous Items (craftsman-made minor enchantments)",
+  "heading": "Wondrous Items",
+  "line": 1969,
+  "endLine": 1993,
+  "category": "traditions",
+  "topic": "Wondrous items",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Touched by (Realm)",
+  "summary": "How a craftsman with Touched by (Realm) makes a non-Hermetic wondrous item for a specific customer: limits on its single effect, its Craft Level built from a base plus the magnitude and daily uses, how Workshop Total progress accumulates over seasons, helper limits, Arcane Connection to the recipient and verbal triggers.",
+  "quotes": [
+   "Base Supernatural Item Craft Level: 12 + Magnitude of Hermetic Effect + Modifier for Number of Uses per Day",
+   "To create wondrous items, a character must have the Major Supernatural Virtue Touched by (Realm).",
+   "Wondrous items have no Penetration scores and cannot affect anyone with even the slightest Magic Resistance."
+  ],
+  "related": [
+   "ArM5 p.98 Effect Frequency Table",
+   "ArM5 p.110 Shape and Material Bonus chart",
+   "ArM5 p.183 Realms Interaction Table"
+  ]
+ },
+ {
+  "title": "Craftsmen Supernatural Virtues (Eye of Hephaestus, Touched by (Realm), Crafter's Healing)",
+  "heading": "Craftsmen Supernatural Virtues",
+  "line": 2023,
+  "endLine": 2035,
+  "category": "traditions",
+  "topic": "Wondrous items",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Eye of Hephaestus, Touched by (Realm) or Crafter's Healing",
+  "summary": "Sidebar describing three craftsman-only Supernatural Virtues and the rolls they use: judging an item's quality and magic, enabling wondrous items, and the Crafter's Healing Ability for healing wounds at a cost in fatigue and Warping.",
+  "quotes": [
+   "make a Perception + Awareness + stress die roll against an Ease Factor of 9",
+   "Make a Presence + Crafter's Healing + stress die roll against an Ease Factor equal to the Improvement Ease Factor determined by the Wound Recovery Table (ArM5, page 179)."
+  ],
+  "related": [
+   "ArM5 p.179 Wound Recovery Table"
+  ]
+ },
+ {
+  "title": "Workshop Assistants",
+  "heading": "Assistants",
+  "line": 2037,
+  "endLine": 2041,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Craftsmen may employ apprentices or journeymen up to a limit set by Leadership, and each assistant boosts the Workshop Total by a fraction of his own Craft Ability.",
+  "quotes": [
+   "Each assistant adds half his Craft Ability score to the Workshop Total."
+  ]
+ },
+ {
+  "title": "Craftsman Manuals",
+  "heading": "Craftsman Manuals",
+  "line": 2043,
+  "endLine": 2053,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A literate craftsman can spend a Labor Point and a season to write a manual of his process; other craftsmen doing that activity may add its score to their Workshop Total, with only one manual usable per season.",
+  "quotes": [
+   "he produces a manual that has a score of one-third his Craft Ability score, rounded up",
+   "A craft manual adds its score to the Workshop Total."
+  ]
+ },
+ {
+  "title": "Workshop Exertion",
+  "heading": "Workshop Exertion",
+  "line": 2055,
+  "endLine": 2061,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A craftsman may push his workshop to boost the Workshop Total with a simple die, at the cost of an Aging roll each season and a roll on the Workshop Exertion Results table.",
+  "quotes": [
+   "When a character exerts himself in the workshop, add a simple die roll to the Workshop Total.",
+   "For every season that a character exerts himself, the player must make an Aging roll, regardless of the craftsman's actual age."
+  ]
+ },
+ {
+  "title": "Workshop Exertion Results (table)",
+  "heading": "Workshop Exertion Results",
+  "line": 2063,
+  "endLine": 2090,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar table and descriptions for the stress-die outcome of exerting in the workshop, from disaster through story events, inventions, increased Reputation and increased understanding.",
+  "quotes": [
+   "Put a simple die's worth of Labor Points towards the workshop's Innovation score.",
+   "Add a simple die worth of experience points to the craftsman's (Craft) Reputation score."
+  ]
+ },
+ {
+  "title": "Craftsman Reputations",
+  "heading": "Reputations",
+  "line": 2092,
+  "endLine": 2098,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each craftsman has a (Craft) Reputation that rises with excellent seasons and wondrous items and falls with repeated shoddy work.",
+  "quotes": [
+   "Any season a craftsman has a Workshop Total 6 or more points over the necessary Craft Level to produce standard quality goods, the character earns 1 experience point."
+  ]
+ },
+ {
+  "title": "Selling Finished Goods",
+  "heading": "Selling Finished Goods",
+  "line": 2100,
+  "endLine": 2114,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A craftsman may roll to haggle a better price, either against a fixed Ease Factor or in opposition to an important customer, with the price moving in fixed percentage steps up to a maximum.",
+  "quotes": [
+   "Presence + Bargain + simple die vs. Ease Factor 9",
+   "If successful, the character sells the item for 10% above its standard cost."
+  ]
+ },
+ {
+  "title": "Basic Laborer's Service",
+  "heading": "Basic Laborer's Service",
+  "line": 2134,
+  "endLine": 2138,
+  "category": "seasons",
+  "topic": "Craftsman production",
+  "audience": [
+   "grogs",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Laborers use a Labor Total compared against a Profession Level in the same way craftsmen use Workshop Totals, producing shoddy, standard or superior service but never excellent or wondrous.",
+  "quotes": [
+   "Labor Level is the laboring character's primary Characteristic + Profession Ability and the Profession Level has a base of 6"
+  ]
+ },
+ {
+  "title": "Damaged Goods: Stress Checks and Damage Levels",
+  "heading": "Damaged Goods",
+  "line": 2140,
+  "endLine": 2191,
+  "category": "combat",
+  "topic": "Item damage and repair",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When a story event or a botch threatens a valued item, its owner makes a stress check; failures remove damage levels, which depend on the item's quality and Size, until the item breaks. Covers modifiers, botches, unnatural use, and the different fate of wondrous and Hermetic items.",
+  "quotes": [
+   "Stress Check: stress die + modifiers vs. Ease Factor 15",
+   "If the stress check fails, the item loses one of its damage levels.",
+   "Wondrous items made by craftsmen cease to function if they sustain any damage."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults (House Verditius repairs)"
+  ]
+ },
+ {
+  "title": "Locks and Keys (making, breaking, picking)",
+  "heading": "Locks and Keys",
+  "line": 2193,
+  "endLine": 2217,
+  "category": "seasons",
+  "topic": "Locks and keys",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar on crafting locks (a high base Craft Level boosted by Artes Liberales), their doubled damage levels, and the rolls for breaking, pulling apart or picking a lock at different qualities.",
+  "quotes": [
+   "Locks are very hard to make, and the base Craft Level is 15, which is subject to the same modifications as other Craft Levels.",
+   "Make a Dexterity + Legerdemain + stress die roll against an Ease Factor of 12 to open a standard quality lock."
+  ]
+ },
+ {
+  "title": "Repairing Damaged Goods",
+  "heading": "Repairing Damaged Goods",
+  "line": 2219,
+  "endLine": 2223,
+  "category": "seasons",
+  "topic": "Item damage and repair",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A craftsman who could make an item can repair it without a roll over a season, paying Labor Points per damage level, but broken items cannot be repaired.",
+  "quotes": [
+   "He must also spend one Labor Point for every damage level he repairs."
+  ]
+ },
+ {
+  "title": "Means of Transport (relative costs of sea, river and road)",
+  "heading": "Means of Transport",
+  "line": 2231,
+  "endLine": 2235,
+  "category": "setting",
+  "topic": "Travel and transport",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Compares the cost and speed of sea, river and road travel, which the rest of the chapter uses for planning journeys and cargo.",
+  "quotes": [
+   "River travel is about twice as expensive as sea travel"
+  ]
+ },
+ {
+  "title": "Area Lore: The Hinterland as a Resource",
+  "heading": "Area Lore: The Hinterland as a Resource",
+  "line": 2296,
+  "endLine": 2298,
+  "category": "basics",
+  "topic": "Area Lore",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a character uses Area Lore to find people, resources and places in a city or its hinterland, with a penalty when searching away from where he usually lives.",
+  "quotes": [
+   "Characters who spend most of their time in a city, like craftsmen, subtract 3 from Area Lore rolls to find material in the hinterland."
+  ]
+ },
+ {
+  "title": "Vessels and Cargo Capacity",
+  "heading": "Vessels",
+  "line": 2300,
+  "endLine": 2302,
+  "category": "setting",
+  "topic": "Travel and transport",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the tun as the unit of cargo capacity used for all vessels, land and water.",
+  "quotes": [
+   "a ton of cargo takes up as much space and carrying capacity as a tun"
+  ]
+ },
+ {
+  "title": "Land Vessels (pack animals and carts)",
+  "heading": "Land Vessels",
+  "line": 2304,
+  "endLine": 2308,
+  "category": "setting",
+  "topic": "Travel and transport",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Load capacities, costs, road requirements and crew needs for pack animals and carts.",
+  "quotes": [
+   "A single person can effectively lead and tend three pack beasts if walking with a halter to the first beast, or six if riding."
+  ]
+ },
+ {
+  "title": "River Barges",
+  "heading": "River Barges",
+  "line": 2310,
+  "endLine": 2314,
+  "category": "setting",
+  "topic": "Travel and transport",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Capacity and crew of river barges and lighters, which vary with the depth of the water.",
+  "quotes": [
+   "Optimally, they have three crewmembers, but many have only a man and a boy."
+  ]
+ },
+ {
+  "title": "Area Lore Ease Factors (table)",
+  "heading": "Area Lore Ease Factors",
+  "line": 2316,
+  "endLine": 2345,
+  "category": "basics",
+  "topic": "Area Lore",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar table of Ease Factors for Intelligence + Area Lore rolls to know about shops, roads, inns, people, laws and hidden things, grouped by difficulty.",
+  "quotes": [
+   "This is also the level required to contact most hedge magicians.",
+   "A person selling a service or product that is illegal, and actively repressed."
+  ]
+ },
+ {
+  "title": "Seagoing Ships (buss, cog, galley, nef)",
+  "heading": "Seagoing Ships",
+  "line": 2347,
+  "endLine": 2363,
+  "category": "setting",
+  "topic": "Travel and transport",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the main seagoing ship types with typical cargo capacity, crew and cost, including limits on ship size and the larger crews of southern lateen-rigged ships.",
+  "quotes": [
+   "A sailing ship costs four pounds per ten tons of cargo it can carry."
+  ]
+ },
+ {
+  "title": "Comparison of Traveling Speeds",
+  "heading": "Comparison of Traveling Speeds",
+  "line": 2365,
+  "endLine": 2376,
+  "category": "setting",
+  "topic": "Travel and transport",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives ranges of miles per day for river barges, road cargoes, riders, coaches, couriers and sailing ships, in standard miles.",
+  "quotes": [
+   "Sailing vessels travel roughly 60 to 80 miles per day.",
+   "River barges travel 8 to 10 miles per day, faster downriver than upriver."
+  ]
+ },
+ {
+  "title": "Comparison of Traveling Costs",
+  "heading": "Comparison of Traveling Costs",
+  "line": 2378,
+  "endLine": 2390,
+  "category": "setting",
+  "topic": "Travel and transport",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Passage prices and relative costs for sea, river and road travel, chartering a ship, the surcharge for known magi, and the profit a carrier typically keeps.",
+  "quotes": [
+   "River travel costs twice as much as sea travel.",
+   "Known magi may need to offer double their usual fee for passage"
+  ]
+ },
+ {
+  "title": "Ship Combat",
+  "heading": "Ship Combat",
+  "line": 2392,
+  "endLine": 2394,
+  "category": "combat",
+  "topic": "Ship combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Overview of how ships fight: boarding and cramped melee are usual, with artillery, ramming and oar-shearing as alternatives.",
+  "quotes": []
+ },
+ {
+  "title": "Softening the Enemy (artillery, ramming, shearing oars)",
+  "heading": "Softening the Enemy",
+  "line": 2396,
+  "endLine": 2402,
+  "category": "combat",
+  "topic": "Ship combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for shipboard artillery kills, galley ramming resolved by opposed captain rolls, and shearing oars to incapacitate rowers.",
+  "quotes": [
+   "Two captains compare rolls of (stress die + Intelligence + Profession + up to 3 for experienced crews)"
+  ]
+ },
+ {
+  "title": "Boarding and Melee",
+  "heading": "Boarding and Melee",
+  "line": 2404,
+  "endLine": 2410,
+  "category": "combat",
+  "topic": "Ship combat",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Captains' opposed rolls decide whether a predator boards or a victim escapes, followed by group combat with a height bonus for merchant ships and extra crew from sacrificed cargo space.",
+  "quotes": [
+   "the two captains compare rolls of (stress die + Intelligence + Profession + up to 3 for experienced crews)",
+   "The added height grants them a +3 bonus on Attack and Defense Totals until they are boarded."
+  ],
+  "related": [
+   "ArM5 p.172 group combat rules"
+  ]
+ },
+ {
+  "title": "Sea Monsters (attacks on ships)",
+  "heading": "Sea Monsters",
+  "line": 2416,
+  "endLine": 2420,
+  "category": "combat",
+  "topic": "Ship combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How creatures of different Size threaten a ship: small ones barely harm it, while large ones hit automatically and destroy it as an environmental effect over rounds chosen by the storyguide.",
+  "quotes": [
+   "Ships are so large that melee attacks against them automatically hit, and missile weapons have a +6 attack bonus."
+  ]
+ },
+ {
+  "title": "Adding Places to the Land Trade Map and Naval Trade Tables",
+  "heading": "Adding Places to the Land Trade Map and Naval Trade Tables",
+  "line": 2432,
+  "endLine": 2440,
+  "category": "setting",
+  "topic": "Travel and transport",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A procedure for working out travel times to new places by dividing direct distance by a set figure for road, river with or against the current, or sea, plus a note on standard versus nautical miles.",
+  "quotes": [
+   "Divide that distance by 12 for road travel.",
+   "For sea travel, divide the direct distance by 60."
+  ]
+ },
+ {
+  "title": "Naval Trade Tables",
+  "heading": "Naval Trade Tables",
+  "line": 2442,
+  "endLine": 2512,
+  "category": "setting",
+  "topic": "Travel and transport",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar tables of sea travel times between ports in six regions, joined by junctions; a voyage is planned by adding the times to each junction and then to the final port.",
+  "quotes": [
+   "A player designing a voyage simply adds together the times to each junction, then to the final port."
+  ]
+ },
+ {
+  "title": "Weights and Measures (unit conversions)",
+  "heading": "Weights and Measures",
+  "line": 2562,
+  "endLine": 2595,
+  "category": "setting",
+  "topic": "Weights and measures",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar of conversion tables for length, capacity, weight, and the separate scales used for gold and silver and for apothecaries, as a guide to retail units.",
+  "quotes": [
+   "4 quarts = 1 gallon",
+   "16 ounces = 1 pound"
+  ]
+ },
+ {
+  "title": "Grant of a Fair",
+  "heading": "Grant of a Fair",
+  "line": 2697,
+  "endLine": 2702,
+  "category": "covenant",
+  "topic": "Fairs",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Who may be granted a fair, the profit and running cost of a medium fair, and how owning a fair rates as a covenant source of income under the Minor Resources Boon.",
+  "quotes": [
+   "A typical annual fair for a town counts as a Lesser Source of Income",
+   "for the Minor Resources Boon Rights"
+  ],
+  "related": [
+   "Covenants p.16 Minor Resources Boon Rights"
+  ]
+ },
+ {
+  "title": "The Champagne Cycle (fair calendar and trading order)",
+  "heading": "The Champagne Cycle",
+  "line": 2807,
+  "endLine": 2818,
+  "category": "setting",
+  "topic": "Fairs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar giving the dates and durations of the Champagne fairs and how trade in each six-week fair is regulated into set-up, cloth, leather, other goods and settling of accounts.",
+  "quotes": [
+   "Generally there is an interval of about two weeks in between fairs."
+  ]
+ },
+ {
+  "title": "The English Fair Cycle (fair calendar and owners)",
+  "heading": "The English Fair Cycle",
+  "line": 2824,
+  "endLine": 2838,
+  "category": "setting",
+  "topic": "Fairs",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar listing the major English fairs with their dates and owners.",
+  "quotes": [
+   "Stamford:** Ash Wednesday to Palm Sunday (owner: Earl Warenne)"
+  ]
+ },
+ {
+  "title": "Hermetic Mid-Summer Fair",
+  "heading": "Hermetic Mid-Summer Fair",
+  "line": 2858,
+  "endLine": 2864,
+  "category": "order",
+  "topic": "Hermetic trade",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A gathering hosted by a Greater Alps covenant where magi trade vis, books and enchanted devices, with individual deals or an auction run by the Quaesitores, using barter or vis as currency.",
+  "quotes": [
+   "All exchanges are by barter or by use of vis as currency."
+  ]
+ },
+ {
+  "title": "Virtues and Flaws for Traders (Social Status choices)",
+  "heading": "Virtues and Flaws for Traders",
+  "line": 2894,
+  "endLine": 2900,
+  "category": "creation",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Every trader takes a Social Status Virtue matching the style of trade, in order of wealth: Merchant, Merchant Adventurer, Factor and Capo, adjusted by Wealthy or Poor; lists other Virtues and Flaws that suit merchant characters.",
+  "quotes": [
+   "All traders have a Social Status Virtue representing the style of trade in which they engage.",
+   "These Virtues, in ascending order of wealth, are: Merchant (which suits urban merchants and local carriers), Merchant Adventurer, Factor, and Capo."
+  ]
+ },
+ {
+  "title": "Trading Companies (capo, partners, factors)",
+  "heading": "Companies",
+  "line": 2902,
+  "endLine": 2912,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a trading company is structured around a capo, partners and distant factors, how traders may work for a company, and how Employed by a Company interacts with Poor and Wealthy.",
+  "quotes": [
+   "A character may have both the Employed by a Company and Poor Flaws, but this requires an explanation approved by the troupe"
+  ]
+ },
+ {
+  "title": "The Urban Merchant",
+  "heading": "The Urban Merchant",
+  "line": 2978,
+  "endLine": 2982,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Merchant (Social Status)",
+  "summary": "Describes the urban merchant, the least affluent trader type, who retails in one city, and what such a character offers a covenant.",
+  "quotes": [
+   "They should select the Merchant Social Status Virtue."
+  ]
+ },
+ {
+  "title": "Urban Merchant Scale of Affluence",
+  "heading": "Scale of Affluence",
+  "line": 2984,
+  "endLine": 2990,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Merchant (Social Status)",
+  "summary": "Describes poor, average and wealthy urban merchants by lifestyle, home and trade.",
+  "quotes": [
+   "Wealthy merchants own their own home, and trade from a store near the market that they might own."
+  ]
+ },
+ {
+  "title": "Investments Suited to All Merchants",
+  "heading": "Investments Suited to all Merchants",
+  "line": 2992,
+  "endLine": 2994,
+  "category": "seasons",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "Introduces the ways any merchant can invest surplus Labor Points or spare seasons.",
+  "quotes": [
+   "All merchant types may invest their surplus Labor Points, or spend their spare seasons, in the following ways."
+  ]
+ },
+ {
+  "title": "Charity (investing Labor Points)",
+  "heading": "Charity",
+  "line": 2996,
+  "endLine": 3002,
+  "category": "seasons",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "Giving surplus labor to charity improves Reputation, gives social contacts, and lets the merchant summon a crowd of the people the charity helps, sized by a formula using Communication, Leadership, Reputation and a Social Status Multiplier.",
+  "quotes": [
+   "a number of people respond equal to the character's (Communication + Leadership) x his Reputation resulting from charity work x a Social Status Multiplier."
+  ]
+ },
+ {
+  "title": "Commodity Speculation (investing Labor Points)",
+  "heading": "Commodity Speculation",
+  "line": 3004,
+  "endLine": 3008,
+  "category": "seasons",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "Storing goods in hope of a price rise returns Labor Points each year on the amount invested, requires storage and guards, and can be lost to story events.",
+  "quotes": [
+   "The return for commodity speculation is 1 Labor Point per year for every 10 invested"
+  ]
+ },
+ {
+  "title": "Drawings (trading Labor Points for fine goods)",
+  "heading": "Drawings",
+  "line": 3010,
+  "endLine": 3014,
+  "category": "seasons",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "Merchants can spend Labor Points on sumptuous hand-sized goods, and an introduction-agent activity returns part of the invested Labor Points in exchange for a Favor.",
+  "quotes": [
+   "Every (1 x Wealth Multiplier) Labor Points spent is worth a single sumptuous item of hand tool size or smaller."
+  ]
+ },
+ {
+  "title": "Marriage Broker (investing seasons)",
+  "heading": "Marriage Broker",
+  "line": 3016,
+  "endLine": 3018,
+  "category": "seasons",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "Spending seasons of Labor Points to arrange a marriage earns Reputation, temporary Social Contacts and Favors owed by the couple or their parents.",
+  "quotes": [
+   "This costs two seasons' worth of Labor Points, which are lost."
+  ]
+ },
+ {
+  "title": "Market Changes (booms, crop failure, new products)",
+  "heading": "Market Changes",
+  "line": 3028,
+  "endLine": 3073,
+  "category": "seasons",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "Story and investment rules for booms (an Intelligence + Area Lore roll with graded outcomes when investing), crop failures and famine, and new products, with the Labor Point gains each can earn.",
+  "quotes": [
+   "a character can detect a boom coming by making an Intelligence + Area Lore roll",
+   "A roll of 18 lets a character prepare for years in advance",
+   "A product that spawns its own industries provides four seasons worth of Labor Points"
+  ]
+ },
+ {
+  "title": "Marriage and Dowries",
+  "heading": "Marriage and Dowries",
+  "line": 3075,
+  "endLine": 3083,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "How marriage consent and dowries work for merchants, including a husband's rights over a dowry in Italy, France and England and the share of an estate a widow keeps for game purposes.",
+  "quotes": [
+   "For game purposes, assume this is one third of his estate, and that she likely loses this property if she remarries."
+  ]
+ },
+ {
+  "title": "Calculating Dowries for Merchants' Daughters",
+  "heading": "Calculating Dowries For Merchants’ Daughters",
+  "line": 3085,
+  "endLine": 3103,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "Sidebar procedure for working out a bride's dowry from her father's annual profit and Social Status relative to the groom, with factors that make a dowry larger or smaller.",
+  "quotes": [
+   "This is figured by multiplying the father's annual profit by 10, then dividing by the number of children he has, except any daughters already married."
+  ]
+ },
+ {
+  "title": "Legal Action (investment of time)",
+  "heading": "Legal Action",
+  "line": 3109,
+  "endLine": 3113,
+  "category": "social",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "Besides the story, a merchant may bring a lawsuit as an investment of time, resolved by opposed Intelligence + Law rolls with modifiers for true or false claims and a change to a Reputation on a win.",
+  "quotes": [
+   "The merchant compares the Intelligence + Civil or Canon Law roll of his representative with that of his opponent"
+  ]
+ },
+ {
+  "title": "The Local Carrier",
+  "heading": "The Local Carrier",
+  "line": 3163,
+  "endLine": 3169,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Merchant (Social Status)",
+  "summary": "Describes local carriers, who work one route with stable goods, the waterman variant, and how they serve covenants.",
+  "quotes": [
+   "All local traders have the Merchant Virtue."
+  ]
+ },
+ {
+  "title": "Local Carrier Scale of Abundance",
+  "heading": "Scale of Abundance",
+  "line": 3171,
+  "endLine": 3177,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Merchant (Social Status)",
+  "summary": "Describes the cargo, home and staff of poor, average and wealthy local carriers.",
+  "quotes": [
+   "A local carrier of average wealth carries enough cargo to fill a single four-wheeled cart."
+  ]
+ },
+ {
+  "title": "Smuggling (setting up and investing time)",
+  "heading": "Smuggling",
+  "line": 3206,
+  "endLine": 3210,
+  "category": "seasons",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Any trader Social Status Virtue",
+  "summary": "Smuggling as a story reward and as an investment of time that yields Labor Points from Intelligence and Intrigue, with the Flaw and Virtue that smugglers acquire.",
+  "quotes": [
+   "Smuggling, as an investment of time, earns (Intelligence + Intrigue) x Wealth Multiplier Labor Points per season."
+  ]
+ },
+ {
+  "title": "The Merchant Adventurer",
+  "heading": "The Merchant Adventurer",
+  "line": 3230,
+  "endLine": 3236,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Merchant Adventurer (Social Status)",
+  "summary": "Describes the merchant adventurer who commands a ship or caravan, how the crew is built from the travel chapter's notes, and the city's expectations in time of war.",
+  "quotes": [
+   "All merchant adventurers, regardless of wealth or poverty, are in command of a ship, or a caravan of wagons or pack beasts."
+  ]
+ },
+ {
+  "title": "Ventures (planning a trading voyage)",
+  "heading": "Ventures",
+  "line": 3246,
+  "endLine": 3253,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Merchant Adventurer (Social Status)",
+  "summary": "Factors a merchant weighs when planning a venture with no certain buyer: return cargo, languages of trade, bulk versus luxury goods, and crew size traded against cargo space.",
+  "quotes": [
+   "Extra crew take up cargo space at the rate of one ton per eight additional sailors."
+  ],
+  "related": [
+   "City & Guild Chapter 5: Travel, Ship Combat"
+  ]
+ },
+ {
+  "title": "Convoys and Caravans",
+  "heading": "Convoys and Caravans",
+  "line": 3269,
+  "endLine": 3273,
+  "category": "social",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Merchant Adventurer (Social Status)",
+  "summary": "Leading a convoy earns Reputation and Labor Points as a story or as an investment of time, and a failed convoy damages Reputation.",
+  "quotes": [
+   "half a season's worth of Labor Points per season as an investment of time"
+  ]
+ },
+ {
+  "title": "Finding Investors",
+  "heading": "Finding Investors",
+  "line": 3279,
+  "endLine": 3285,
+  "category": "social",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Merchant Adventurer (Social Status)",
+  "summary": "A merchant adventurer needs a backer for each venture until his Reputation is high enough, and a season spent winning a sponsor earns Labor Points as a story or investment.",
+  "quotes": [
+   "until the merchant has a positive Reputation of at least 3"
+  ]
+ },
+ {
+  "title": "Warfare and Blockades (blockade running)",
+  "heading": "Warfare and Blockades",
+  "line": 3305,
+  "endLine": 3309,
+  "category": "social",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Merchant Adventurer (Social Status)",
+  "summary": "How war reroutes trade, and the seasonal shiphandling roll a blockade-runner makes against an Ease Factor to slip past the besiegers.",
+  "quotes": [
+   "Blockade running requires a seasonal shiphandling roll (Dexterity + suitable Profession) against an Ease Factor of 15"
+  ]
+ },
+ {
+  "title": "The Factor",
+  "heading": "The Factor",
+  "line": 3311,
+  "endLine": 3319,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Describes the factor who manages a trading house's assets in one city, his role and the Abilities factors typically have.",
+  "quotes": [
+   "Factors are skilled in Bargain, Civil or Common Law, Folk Ken, Leadership, and Profession Trader."
+  ]
+ },
+ {
+  "title": "Factor Scale of Affluence",
+  "heading": "Scale of Affluence",
+  "line": 3321,
+  "endLine": 3327,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Describes the lifestyle of poor, average and wealthy factors, company versus independent, and the consequences of failing to keep up appearances.",
+  "quotes": [
+   "The Factor Virtue is also used for independent traders who have sufficient capital to organize multiple shipments"
+  ]
+ },
+ {
+  "title": "Change of Government (investment of time)",
+  "heading": "Change of Government",
+  "line": 3333,
+  "endLine": 3335,
+  "category": "social",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "A factor can win over a new ruler as a story, or as an investment of time that yields Labor Points from Communication and Intrigue and the Favor of a minor political figure.",
+  "quotes": [
+   "(Communication + Intrigue) x Wealth multiplier Labor Points"
+  ]
+ },
+ {
+  "title": "Company Neighborhood (warehouses and guards)",
+  "heading": "Company Neighborhood",
+  "line": 3337,
+  "endLine": 3345,
+  "category": "covenant",
+  "topic": "Trading house assets",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Costs and staffing for a trading house's warehouse and the neighborhood built around it, including guards per ton of cargo and the season a factor spends supervising construction.",
+  "quotes": [
+   "Replacing a warehouse costs 10 pounds per hundred tons of cargo storage space.",
+   "most warehouses hire one guard for every ten tons of cargo"
+  ]
+ },
+ {
+  "title": "House Reputation (advocates and largesse)",
+  "heading": "House Reputation",
+  "line": 3361,
+  "endLine": 3373,
+  "category": "social",
+  "topic": "House Reputation",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "A merchant house has Reputations that its representatives borrow and change; they can be improved by representatives' deeds, hired advocates (limited to a small modifier) and largesse such as festivals and public buildings, with a cap on advocates per person.",
+  "quotes": [
+   "Several advocates working together can warp a victim's perception of the house markedly, but cannot ever produce a Reputation modifier greater than 3.",
+   "No person may be influenced by more than three advocates, altering the same Reputation, at the same time."
+  ]
+ },
+ {
+  "title": "Skullduggery (hiring criminals with Intrigue)",
+  "heading": "Skullduggery",
+  "line": 3375,
+  "endLine": 3378,
+  "category": "social",
+  "topic": "Skullduggery",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Characters committing commercial crime through hired professionals roll Communication + Intrigue in place of the proxy's roll when the crime is not played out as a story.",
+  "quotes": [
+   "the hiring character rolls Communication + Intrigue and uses the result in place of the proxy's roll"
+  ]
+ },
+ {
+  "title": "Assassination, Beatings and Kidnapping (costs)",
+  "heading": "Assassination",
+  "line": 3379,
+  "endLine": 3384,
+  "category": "social",
+  "topic": "Skullduggery",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Typical prices for hired assassins, beatings and kidnappings, and the Reputation cost of habitually having poor people attacked.",
+  "quotes": [
+   "An assassin usually charges two pounds for this service."
+  ]
+ },
+ {
+  "title": "Bribes",
+  "heading": "Bribes",
+  "line": 3385,
+  "endLine": 3395,
+  "category": "social",
+  "topic": "Skullduggery",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Bribe sizes scale with the official's wage and the risk of the favor, from a week's to a year's wages, with recurring favors paid as a percentage.",
+  "quotes": [
+   "An easily granted favor costs a week's wages."
+  ]
+ },
+ {
+  "title": "Sabotage",
+  "heading": "Sabotage",
+  "line": 3400,
+  "endLine": 3405,
+  "category": "social",
+  "topic": "Skullduggery",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Hired agents attempt sabotage with a Dexterity + Stealth roll against the best sentry's Perception + Awareness roll, with a bonus for each extra sentry and for the type of sabotage.",
+  "quotes": [
+   "Sabotage requires a Dexterity + Stealth + stress roll that exceeds the Perception + Awareness + stress roll of the most skilled sentry guarding the facility that the agent seeks to harm."
+  ]
+ },
+ {
+  "title": "Sabotage Table",
+  "heading": "Sabotage Table",
+  "line": 3406,
+  "endLine": 3414,
+  "category": "social",
+  "topic": "Skullduggery",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Table of the sentry's Awareness bonus by type of sabotage, from defacement to spoilage, with examples.",
+  "quotes": []
+ },
+ {
+  "title": "Spying",
+  "heading": "Spying",
+  "line": 3416,
+  "endLine": 3418,
+  "category": "social",
+  "topic": "Skullduggery",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Factors keep spies, often at little cost, but spies asked to betray their own business demand very large payments.",
+  "quotes": [
+   "Spies require very large payments for their assistance, sometimes as much as they earn by their legitimate profession."
+  ]
+ },
+ {
+  "title": "Theft",
+  "heading": "Theft",
+  "line": 3420,
+  "endLine": 3422,
+  "category": "social",
+  "topic": "Skullduggery",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Large-scale theft between rival houses needs at least a brief story, and the thieves usually demand a share of the stolen cargo's value.",
+  "quotes": [
+   "The thieves working for the characters usually request at least half the value of the stolen cargo for their effort, in coin."
+  ]
+ },
+ {
+  "title": "Largesse: The Costs of Excellent Building (table)",
+  "heading": "Largesse: The Costs of Excellent Building",
+  "line": 3428,
+  "endLine": 3439,
+  "category": "social",
+  "topic": "House Reputation",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Table of the cost in pounds of public works such as monuments, roads, wells, bridges, mills, chapels and churches that a house may sponsor to improve its Reputation.",
+  "quotes": []
+ },
+ {
+  "title": "Intrigue and the Art of Indirect Action",
+  "heading": "Intrigue and the Art of Indirect Action",
+  "line": 3457,
+  "endLine": 3489,
+  "category": "social",
+  "topic": "Intrigue",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar with an Intelligence + Intrigue roll table giving Ease Factors for learning about a noble target's enmities, vices and Flaws or for spreading and forging damaging information, plus the days and pounds each attempt costs.",
+  "quotes": [
+   "For Ease Factors higher than 6, this takes (3 x Ease Factor) days and costs at least (Ease Factor / 3) pounds."
+  ]
+ },
+ {
+  "title": "Young Talent (investment of time)",
+  "heading": "Young Talent",
+  "line": 3498,
+  "endLine": 3500,
+  "category": "social",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Factor (Social Status)",
+  "summary": "Recruiting young merchants into the house earns Labor Points as a story, or as an investment of time by rolling Communication + Leadership times the Wealth Multiplier, plus Favors owed by the recruits.",
+  "quotes": [
+   "As an investment of time, roll [{Communication + Leadership} x Wealth Multiplier] and gain that number of Labor Points"
+  ]
+ },
+ {
+  "title": "The Capo",
+  "heading": "The Capo",
+  "line": 3502,
+  "endLine": 3510,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Capo (Social Status)",
+  "summary": "Describes the capo who leads a merchant company, sets its strategy and culture, and what a capo offers a covenant.",
+  "quotes": [
+   "All characters with this role must select the Capo Social Status Virtue."
+  ]
+ },
+ {
+  "title": "Capo Scale of Affluence",
+  "heading": "Scale of Affluence",
+  "line": 3512,
+  "endLine": 3516,
+  "category": "social",
+  "topic": "Merchant characters",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Capo (Social Status)",
+  "summary": "Describes poor, average and wealthy capos and the role of the capo's house as the company's central office.",
+  "quotes": [
+   "An average capo lives luxuriously, like a nobleman."
+  ]
+ },
+ {
+  "title": "Personal Pleasure and Aggrandizement (entertaining guests)",
+  "heading": "Personal Pleasure and Aggrandizement",
+  "line": 3526,
+  "endLine": 3536,
+  "category": "social",
+  "topic": "Merchant investments",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Capo (Social Status)",
+  "summary": "A capo may throw a lavish themed party as an investment of time, rolling a die plus Characteristic plus the theme Ability with bonus from money spent, and gains Favors from the result; also notes local etiquette on display and marriage.",
+  "quotes": [
+   "A capo may entertain guests as an investment of time, throwing a lavish party, lasting days, that emphasizes a particular Ability.",
+   "The character gains the benefits of one Favor Flaw for every five points of this total, rounding up."
+  ]
+ },
+ {
+  "title": "Trade and the Order of Hermes",
+  "heading": "Trade and the Order of Hermes",
+  "line": 3550,
+  "endLine": 3552,
+  "category": "order",
+  "topic": "Hermetic trade",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Warns that Hermetic magic gives traders huge advantages and points troupes at the Inflation rules in Covenants when generating vast wealth.",
+  "quotes": [
+   "should familiarize themselves with the Inflation rules given in *Covenants*, Chapter 5: Wealth & Poverty"
+  ],
+  "related": [
+   "Covenants Chapter 5: Wealth & Poverty (Inflation)"
+  ]
+ },
+ {
+  "title": "Creating Wealth Using Magic",
+  "heading": "Creating Wealth Using Magic",
+  "line": 3554,
+  "endLine": 3564,
+  "category": "order",
+  "topic": "Hermetic trade",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "List of ways magi can generate profit with magic, from gathering and manufacturing goods to shrinking cargo, magical crews and faster travel.",
+  "quotes": [
+   "Magi are able to create wealth almost effortlessly."
+  ]
+ },
+ {
+  "title": "Novelties (optional technologies for trade)",
+  "heading": "Novelties",
+  "line": 3566,
+  "endLine": 3600,
+  "category": "setting",
+  "topic": "Trade novelties",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional innovations (business correspondence, deposit banking, insurance, letters of exchange, rudders, saws, vertical integration and others) that magi could introduce to change trade in a saga.",
+  "quotes": [
+   "Most cranes can handle only about two and a half tons of carefully stowed cargo"
+  ]
+ },
+ {
+  "title": "Commercial Sources of Trade Goods (reading the lists)",
+  "heading": "Commercial Sources of Trade Goods",
+  "line": 3782,
+  "endLine": 3786,
+  "category": "setting",
+  "topic": "Trade goods",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how to read the regional lists of trade goods: only major export sources are listed, italics mark famous exporters, and cheap or fine markers say which qualities are available.",
+  "quotes": [
+   "If a commodity is marked as cheap, then only standard and shoddy goods are available at that rate, while commodities marked fine include superior and excellent versions."
+  ]
+ },
+ {
+  "title": "Prices of Goods",
+  "heading": "Prices of Goods",
+  "line": 3873,
+  "endLine": 3877,
+  "category": "covenant",
+  "topic": "Trade goods",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the universal price table for commodities by quality, quoted in Mythic Pounds of silver per tun or ton, so players producing wealth magically can value what they create.",
+  "quotes": [
+   "All prices are in Mythic Pounds of silver per tun or ton."
+  ],
+  "related": [
+   "Covenants p.71 quality categories"
+  ]
+ },
+ {
+  "title": "Trade Weights and Measures (ton, tun, pound, yard)",
+  "heading": "Weights and Measures",
+  "line": 3879,
+  "endLine": 3892,
+  "category": "covenant",
+  "topic": "Weights and measures",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Conversion factors between retail units for dry goods, grain, liquids and cloth and the ton or tun used for bulk prices.",
+  "quotes": [
+   "16 ounces = 1 pound = 1/2,240 ton",
+   "A tun defines the weight of a ton."
+  ]
+ },
+ {
+  "title": "Prices of Goods Table",
+  "heading": "Prices of Goods Table",
+  "line": 3894,
+  "endLine": 3943,
+  "category": "covenant",
+  "topic": "Trade goods",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of commodity prices per ton in Mythic Pounds for shoddy, standard, superior and expensive qualities, with notes on unavailable grades and goods sold by other units.",
+  "quotes": []
+ },
+ {
+  "title": "Medieval Money",
+  "heading": "Medieval Money",
+  "line": 3951,
+  "endLine": 3961,
+  "category": "social",
+  "topic": "Money and prices",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains coins versus moneys-of-account and the fixed relationship between pound, shilling, penny and mark in the West, and how eastern bezants and denars relate to them.",
+  "quotes": [
+   "In the West, a Mythic Pound equals 20 Mythic Shillings and 240 Mythic Pennies.",
+   "In the East, a Mythic Pound equals two Mythic Bezants or Denars."
+  ]
+ },
+ {
+  "title": "Price List (common goods and quality multipliers)",
+  "heading": "Price List",
+  "line": 3963,
+  "endLine": 4013,
+  "category": "social",
+  "topic": "Money and prices",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sample prices for everyday goods for story flavor, extrapolated by the troupe for unlisted items, plus quality multipliers applied to a price from shoddy to wondrous; not intended for working out merchants' or craftsmen's yearly income.",
+  "quotes": [
+   "Adjust the price of an item by its quality."
+  ]
+ }
+]

@@ -1,0 +1,947 @@
+[
+ {
+  "title": "Inappropriate Virtues and Flaws for Faeries",
+  "heading": "Inappropriate Virtues and Flaws",
+  "line": 2614,
+  "endLine": 2624,
+  "category": "creation",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Designing a faerie character",
+  "summary": "Lists which Virtues and Flaws a faerie character may never take (Gift, Hermetic, Divine/Infernal powers, human social status and upbringing) and what to take instead.",
+  "quotes": [
+   "Faeries may not have The Gift, or any Virtue or Flaw specific to Hermetic magi.",
+   "If the faerie has a role that makes it appear part of human society, it should take the Infiltrator Virtue."
+  ]
+ },
+ {
+  "title": "Faeries and Confidence",
+  "heading": "Confidence",
+  "line": 2630,
+  "endLine": 2640,
+  "category": "creation",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Designing a faerie character",
+  "summary": "Faeries have no Confidence scores; the Reputation as Confidence Virtue gives them false Confidence points to back up their Reputations.",
+  "quotes": [
+   "Faeries do not have Confidence scores.",
+   "A faerie with this Virtue gains a number of false Confidence points equal to its highest reputation"
+  ]
+ },
+ {
+  "title": "Faerie Personality Flaws",
+  "heading": "Personality Flaws",
+  "line": 2642,
+  "endLine": 2644,
+  "category": "creation",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Designing a faerie character",
+  "summary": "Sets how many Personality Flaws a faerie may take, noting that role-linked Flaws are often required.",
+  "quotes": [
+   "Faeries may have up to three Minor Personality Flaws and one Major Personality Flaw"
+  ]
+ },
+ {
+  "title": "Focus Power",
+  "heading": "Focus Power",
+  "line": 2648,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Focus Power",
+  "summary": "Virtue giving a faerie a themed, spontaneous-style power built from a pool of spell levels, with Might cost and Initiative set by the effect's magnitude.",
+  "quotes": [
+   "The player receives 25 spell levels to spend on this power.",
+   "an initiative score of (the character's Quickness \u2013 the power's maximum magnitude)"
+  ]
+ },
+ {
+  "title": "Greater Power",
+  "heading": "Greater Power",
+  "line": 2658,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Greater Power",
+  "summary": "Virtue giving a faerie formulaic spell-like powers designed at character creation, with a reduced Might cost and Initiative penalty compared to Lesser Powers.",
+  "quotes": [
+   "Taking this Virtue gives the character 50 spell levels to spend on these powers",
+   "Each power has a Might Point cost equal to (the magnitude of the effect / 2)"
+  ]
+ },
+ {
+  "title": "Lesser Power",
+  "heading": "Lesser Power",
+  "line": 2666,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Lesser Power",
+  "summary": "Minor Virtue giving a faerie formulaic spell-like powers; cheaper to acquire than Greater Powers but each use costs more Might and is slower.",
+  "quotes": [
+   "Taking this Virtue gives the character 25 spell levels to spend on these powers",
+   "Each effect's Might Point cost is equal to the magnitude of the effect."
+  ]
+ },
+ {
+  "title": "Personal Power",
+  "heading": "Personal Power",
+  "line": 2674,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Personal Power",
+  "summary": "Minor Virtue giving a faerie a single Personal-range spell-like power designed like a formulaic spell.",
+  "quotes": [
+   "Personal powers must have Personal Range."
+  ]
+ },
+ {
+  "title": "An Exemplary Catalog of Faerie Powers",
+  "heading": "An Exemplary Catalog of Faerie Powers",
+  "line": 2682,
+  "endLine": 2692,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "General rules for using faerie powers: spending Might for uses, Penetration, wound penalties, running out of Might, and powers across realm boundaries.",
+  "quotes": [
+   "Faeries gain one use of a power each time they spend its cost in Might.",
+   "Might Score \u2013 (5 x Might Point cost) + Penetration bonus"
+  ],
+  "related": [
+   "ArM5 p.191 Penetration"
+  ]
+ },
+ {
+  "title": "Intricacy Points",
+  "heading": "Intricacy Points",
+  "line": 2694,
+  "endLine": 2700,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Intricacy points let a faerie make a power faster or cheaper in Might, and can be gained from unspent spell levels or the Improved Powers Virtue.",
+  "quotes": [
+   "Every 5 unspent levels equal an intricacy point."
+  ]
+ },
+ {
+  "title": "Odd Targets and Durations",
+  "heading": "Odd Targets and Durations",
+  "line": 2702,
+  "endLine": 2706,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Allows faerie powers to use Merinita Ranges, Targets and Durations, and defines the Until Duration and dual Durations.",
+  "quotes": [
+   "In this book it is treated as being equivalent to Year, but not requiring a Ritual."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Faerie Power Virtue Comparison Table",
+  "heading": "Faerie Power Virtue Comparison Table",
+  "line": 2708,
+  "endLine": 2717,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Table comparing spell levels, effect type, Might cost and Initiative for each faerie power Virtue.",
+  "quotes": [
+   "Qik \u2013 maximum magnitude"
+  ]
+ },
+ {
+  "title": "Ritual Power",
+  "heading": "Ritual Power",
+  "line": 2721,
+  "endLine": 2735,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Ritual Power",
+  "summary": "Major Virtue for ritual-level faerie effects, which cost Might Score as well as Might points whenever they are used.",
+  "quotes": [
+   "All Ritual Powers are at least Level 20, regardless of the actual level of the effect",
+   "The Initiative for the power is equal to the character's Quickness \u2013 (the magnitude of the effect x 2)."
+  ]
+ },
+ {
+  "title": "Improved Powers",
+  "heading": "Improved Powers",
+  "line": 2737,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Improved Powers",
+  "summary": "Minor Virtue granting intricacy points to a faerie's powers, or optionally mastery-like abilities for them.",
+  "quotes": [
+   "This Virtue gives the character 5 intricacy points to spend on any of its powers."
+  ]
+ },
+ {
+  "title": "Constant Powers",
+  "heading": "Constant Powers",
+  "line": 2752,
+  "endLine": 2754,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Rules for making a Greater, Lesser or Personal Power constant, triggering at every sunrise and sunset.",
+  "quotes": [
+   "costs an additional magnitude"
+  ]
+ },
+ {
+  "title": "Binding Oath",
+  "heading": "Binding Oath",
+  "line": 2764,
+  "endLine": 2776,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Ritual faerie power enforcing solemn oaths and contracts, warning and then penalising humans who break them.",
+  "quotes": [
+   "Faeries cannot break their oaths"
+  ]
+ },
+ {
+  "title": "Granting Virtues and Flaws",
+  "heading": "Grant (Major Virtue)",
+  "line": 2778,
+  "endLine": 2820,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Ritual faerie powers that impose a Virtue or Flaw (blessing or curse) on a target, permanently at the cost of Might Score or temporarily at the cost of Might points.",
+  "quotes": [
+   "The creature can decide to bestow the Virtue permanently or temporarily."
+  ]
+ },
+ {
+  "title": "Craft Magical Trinket",
+  "heading": "Craft Magical Trinket",
+  "line": 2880,
+  "endLine": 2890,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Faerie power that creates a glamour object letting its holder use one Virtue once, at a Might cost depending on the Virtue's size.",
+  "quotes": [
+   "A trinket costs 10 Might points if it invokes a Minor Virtue, and 15 points if it invokes a Major Virtue."
+  ]
+ },
+ {
+  "title": "Converting Greater Powers to Lesser Powers",
+  "heading": "Conversion",
+  "line": 2822,
+  "endLine": 2828,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Quick procedure to convert a Greater Power to a Lesser Power by adjusting Might cost and Initiative.",
+  "quotes": [
+   "double the Might cost and quadruple the Initiative penalty of the power"
+  ]
+ },
+ {
+  "title": "Greater and Lesser Faerie Powers",
+  "heading": "Greater and Lesser Faerie Powers",
+  "line": 2830,
+  "endLine": 2836,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Explains how Lesser Powers compare with Greater Powers and how the powers listed in the book are presented, including the Initiative bonus.",
+  "quotes": [
+   "each use costs twice as much Might as the equivalent Greater Power"
+  ]
+ },
+ {
+  "title": "Loosely Material",
+  "heading": "Loosely Material",
+  "line": 3004,
+  "endLine": 3014,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie (immaterial)",
+  "summary": "Power letting an immaterial faerie take on a physical body, whose Characteristics and Size are bought with Might points spent on activation.",
+  "quotes": [
+   "For each Might point spent on this power, 5 characteristic points are available to spend on the four physical Characteristics of Strength, Stamina, Dexterity, and Quickness.",
+   "A faerie's material body can have any Size up to a maximum of its Presence unless it spends additional Might points on Size."
+  ]
+ },
+ {
+  "title": "Powers of Transformation",
+  "heading": "Powers of Transformation",
+  "line": 3072,
+  "endLine": 3074,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Advice on which faerie power Virtue to use when designing transformation powers, depending on whether specific or varied substances are involved.",
+  "quotes": [
+   "then that is best designed as a Greater Power"
+  ]
+ },
+ {
+  "title": "Focus Powers",
+  "heading": "Focus Powers",
+  "line": 3104,
+  "endLine": 3106,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Intro to Focus Powers: broad themed effects whose Might cost and Initiative follow the magnitude produced, to be agreed with the troupe.",
+  "quotes": [
+   "Each use of a focus power has a Might Point cost equal to the magnitude of the effect"
+  ]
+ },
+ {
+  "title": "Extended Glamour",
+  "heading": "Extended Glamour",
+  "line": 3150,
+  "endLine": 3158,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Power letting a faerie be aware of everything in its domain, with the domain's size set by the faerie's Might Score, and yielding vis each year.",
+  "quotes": [
+   "The faerie's Might score determines the size of area possible: a Room (5\u201310 Might), a Structure (15\u201325 Might), or a standard Boundary (30+ Might).",
+   "The area controlled by the faerie can produce a yearly harvest of (Might/10) pawns of vis"
+  ]
+ },
+ {
+  "title": "Power Design: An Example",
+  "heading": "Power Design: An Example",
+  "line": 3160,
+  "endLine": 3176,
+  "category": "beings",
+  "topic": "Faerie powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Worked example of designing faerie powers from Hermetic spells, choosing between Personal, Greater, Lesser and Focus Powers and spending intricacy points.",
+  "quotes": [
+   "Personal powers cost (magnitude/2) points, rounding up"
+  ]
+ },
+ {
+  "title": "Pretense: Faerie Abilities",
+  "heading": "Pretense: Faerie Abilities",
+  "line": 3282,
+  "endLine": 3287,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Explains that faeries use Pretenses in place of Abilities, and that few faeries can teach humans, especially those linked to the dead.",
+  "quotes": [
+   "Some exceptional faeries are able to teach Abilities to humans."
+  ]
+ },
+ {
+  "title": "Faerie Instructor and Faerie Trainer",
+  "heading": "Faerie Instructor",
+  "line": 3288,
+  "endLine": 3297,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Faerie Instructor or Faerie Trainer",
+  "summary": "Virtues allowing a faerie to teach humans, either by trading stored Abilities or by training with conventional methods.",
+  "quotes": [
+   "The faerie imparts the Ability by trading it for the Ability that the student currently has."
+  ]
+ },
+ {
+  "title": "Player-Defined Pretenses",
+  "heading": "Player-Defined Pretenses",
+  "line": 3299,
+  "endLine": 3301,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Pretenses tied to a faerie's story role rather than a human Ability must be negotiated with the troupe.",
+  "quotes": [
+   "These player-defined pretenses must be negotiated with the troupe."
+  ]
+ },
+ {
+  "title": "Resistance and Pretenses",
+  "heading": "Resistance and Pretenses",
+  "line": 3303,
+  "endLine": 3309,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Explains that Pretenses guide a faerie's own actions and so are not resisted by Parma Magica, unlike powers or tools aimed at a magus.",
+  "quotes": [
+   "they are not resisted by Parma Magica"
+  ]
+ },
+ {
+  "title": "Player-Defined Pretense Example: Chivalrous Combat",
+  "heading": "Player-Defined Pretense Example: Chivalrous Combat",
+  "line": 3311,
+  "endLine": 3313,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Worked example of negotiating a broad player-defined Pretense with a built-in limitation.",
+  "quotes": []
+ },
+ {
+  "title": "Increasing Pretense",
+  "heading": "Increasing Pretense",
+  "line": 3315,
+  "endLine": 3351,
+  "category": "beings",
+  "topic": "Faerie advancement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "How faeries gain Pretense experience by closely involving themselves in humans' stories each season, plus the Virtues and Flaws that change how often this occurs.",
+  "quotes": [
+   "Faeries cannot gain experience from study, training, or practice",
+   "During character creation an ostentatious faerie has a Pretense multiplier of 25 instead of 15."
+  ]
+ },
+ {
+  "title": "Faerie Advancement Through Change",
+  "heading": "Faerie Advancement Through Change",
+  "line": 3353,
+  "endLine": 3355,
+  "category": "beings",
+  "topic": "Faerie advancement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Overview of what a faerie needs to alter its role and gain powers: cognizance, stored Pretense points, and a creative human collaborator.",
+  "quotes": [
+   "It requires the potential to change within its glamour, represented by the cognizance Virtues."
+  ]
+ },
+ {
+  "title": "Cognizance",
+  "heading": "Cognizance",
+  "line": 3357,
+  "endLine": 3359,
+  "category": "beings",
+  "topic": "Faerie advancement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Describes how incognizant, narrowly cognizant and highly cognizant faeries differ in their understanding of advancement.",
+  "quotes": [
+   "Only highly cognizant faeries understand that they can use human vitality and creativity to tailor their roles in amusing ways."
+  ]
+ },
+ {
+  "title": "Vitality",
+  "heading": "Vitality",
+  "line": 3361,
+  "endLine": 3369,
+  "category": "beings",
+  "topic": "Faerie advancement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Faeries store Pretense points as vitality for changing role, and can consume encased vis to lower the cost of change.",
+  "quotes": [
+   "it reduces the Pretence Cost in the nearby table by 1 for every pawn of vis consumed, to a maximum of the faerie's Might score"
+  ]
+ },
+ {
+  "title": "Using Abilities On Faeries",
+  "heading": "Using Abilities On Faeries",
+  "line": 3379,
+  "endLine": 3395,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Summarises how the common Abilities (Animal Handling, Animal Ken, Folk Ken, Faerie Lore, Language, Teaching and social Abilities) apply to faeries.",
+  "quotes": [
+   "Any Faerie with a score in Faerie Speech can understand any language.",
+   "Faeries cannot be taught, since they do not learn by doing."
+  ]
+ },
+ {
+  "title": "Creativity",
+  "heading": "Creativity",
+  "line": 3397,
+  "endLine": 3421,
+  "category": "beings",
+  "topic": "Faerie advancement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Procedure and table by which a creative human collaborates to change a faerie's glamour, with Ease Factors, Pretense costs and the Virtue and Flaw changes they buy.",
+  "quotes": [
+   "Lose a Virtue or Flaw and gain another of equal value",
+   "The Ease Factor should be reduced by 3 if the faerie\u2019s role has drifted away from the folklore of the area"
+  ]
+ },
+ {
+  "title": "Why Isn't My Faerie a Genius At Every Ability?",
+  "heading": "Why Isn't My Faerie a Genius At Every Ability?",
+  "line": 3423,
+  "endLine": 3437,
+  "category": "beings",
+  "topic": "Faerie advancement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Explains why starting faerie characters lack great experience, including how and when faeries lose Pretenses.",
+  "quotes": [
+   "Faeries often lose Pretenses."
+  ]
+ },
+ {
+  "title": "Giants in Combat",
+  "heading": "Giants in Combat",
+  "line": 5710,
+  "endLine": 5718,
+  "category": "combat",
+  "topic": "Giants in combat",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rules for fights between humans and giants: a defensive bonus for giants against scuffling, grappling and disarming, bending over, and the limits of Corpus spells on giants.",
+  "quotes": [
+   "grant the giant a special defensive bonus equal to double the difference between its Size and a smaller opponent's",
+   "Giants of Size +4 or larger must bend over double in order to reach a Size 0 human with their hands."
+  ],
+  "related": [
+   "ArM5 p.192 Size and mass"
+  ]
+ },
+ {
+  "title": "Faerie Monarchs",
+  "heading": "Faerie Monarchs",
+  "line": 4503,
+  "endLine": 4505,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Design benchmark for how mighty a faerie ruler must be to threaten senior magi and why a court helps.",
+  "quotes": [
+   "it requires a Faerie Might score of around 60, and the Penetration Pretense"
+  ]
+ },
+ {
+  "title": "Sympathy",
+  "heading": "Sympathy",
+  "line": 5832,
+  "endLine": 5836,
+  "category": "realms",
+  "topic": "Faerie sympathy",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait (from a Virtue or Faerie Warping)",
+  "summary": "Introduces sympathy, the lingering connection to what a faerie represents that lets characters work Faerie hedge wizardry; it is not an Arcane Connection.",
+  "quotes": [
+   "Sympathy represents a mystic relationship with a type of subject through the Faerie realm."
+  ]
+ },
+ {
+  "title": "Sympathy Traits",
+  "heading": "Sympathy Traits",
+  "line": 5838,
+  "endLine": 5846,
+  "category": "realms",
+  "topic": "Faerie sympathy",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait (from a Virtue or Faerie Warping)",
+  "summary": "Defines Sympathy Traits, which can act as a specialization bonus on non-Supernatural Abilities, and negative Traits that penalise Abilities and add botch dice.",
+  "quotes": [
+   "you may add the value of the Sympathy Trait to the Ability instead of the +1 bonus for an applicable specialization",
+   "Negative Sympathy Traits also give the player a number of additional botch dice equal to the character's worst Trait on all botch rolls"
+  ],
+  "related": [
+   "ArM5 p.46 Magical Focus"
+  ]
+ },
+ {
+  "title": "Increasing Sympathy Traits",
+  "heading": "Increasing Sympathy Traits",
+  "line": 5848,
+  "endLine": 5858,
+  "category": "realms",
+  "topic": "Faerie sympathy",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait (from a Virtue or Faerie Warping)",
+  "summary": "How Sympathy Traits grow with experience (limited by Warping Score), fluctuate on stress die results, and can be adjusted as story rewards.",
+  "quotes": [
+   "Practicing a Sympathy Trait for a season yields 5 experience points towards that Trait.",
+   "so long as the value of the Trait does not exceed the character's Warping Score"
+  ]
+ },
+ {
+  "title": "Faerie Rank",
+  "heading": "Faerie Rank",
+  "line": 5860,
+  "endLine": 5872,
+  "category": "realms",
+  "topic": "Faerie sympathy",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait (from a Virtue or Faerie Warping)",
+  "summary": "Faerie Rank measures a character's overall connection to Faerie from the best positive and worst negative Sympathy Traits, and affects how faeries regard the character.",
+  "quotes": [
+   "It is the value of the character's highest positive Sympathy Trait, modified by the character's lowest negative Sympathy Trait."
+  ]
+ },
+ {
+  "title": "Sympathetic Influence Table",
+  "heading": "Sympathetic Influence",
+  "line": 5864,
+  "endLine": 5870,
+  "category": "realms",
+  "topic": "Faerie sympathy",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait (from a Virtue or Faerie Warping)",
+  "summary": "Table converting a sympathetic influence roll into the Sympathy Trait value gained.",
+  "quotes": [
+   "+3 or \u20133 (max)"
+  ]
+ },
+ {
+  "title": "Sympathetic Influence",
+  "heading": "Sympathetic Influence",
+  "line": 5874,
+  "endLine": 5889,
+  "category": "realms",
+  "topic": "Faerie sympathy",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait (from a Virtue or Faerie Warping)",
+  "summary": "Procedure for temporarily gaining a Sympathy Trait by ceremonial or practical influence, using a Leadership roll tied to an appropriate Personality Trait.",
+  "quotes": [
+   "a simple die + Presence + Leadership",
+   "Sympathy Traits gained through sympathetic influence cannot be increased with experience points"
+  ]
+ },
+ {
+  "title": "Tinted Auras",
+  "heading": "Tinted Auras",
+  "line": 5891,
+  "endLine": 5923,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait (from a Virtue or Faerie Warping)",
+  "summary": "Rules for tinting a Faerie aura so that everyone within gains temporary Personality Traits, including the roll, how long tints last and combining tints.",
+  "quotes": [
+   "stress die + Presence + Concentration",
+   "In a tinted aura, every character is strangely drawn to things that are associated with the tint, and repelled by things that are not."
+  ]
+ },
+ {
+  "title": "Tinting an Aura Table",
+  "heading": "Tinting an Aura",
+  "line": 5906,
+  "endLine": 5921,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait (from a Virtue or Faerie Warping)",
+  "summary": "Table of Ease Factors for tinting a Faerie aura to a given Personality Trait value.",
+  "quotes": [
+   "+10 or \u201310 (max)"
+  ]
+ },
+ {
+  "title": "Charms",
+  "heading": "Charms",
+  "line": 5925,
+  "endLine": 5936,
+  "category": "traditions",
+  "topic": "Faerie charms",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Flaw: Greater or Lesser Charm",
+  "summary": "Explains how a Virtue can be tied to a secret faerie charm through the Charm Flaws, how the charm is lost if shared, and which Virtues may be charmed.",
+  "quotes": [
+   "The Virtue must affect what the character can do, not who he is.",
+   "if other characters become party to the charm, the power vanishes like mist in the sunlight"
+  ]
+ },
+ {
+  "title": "Folk Charms",
+  "heading": "Folk Charms",
+  "line": 5942,
+  "endLine": 5952,
+  "category": "traditions",
+  "topic": "Faerie charms",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait and Faerie Lore",
+  "summary": "Hedge-magic charm that ends a faerie effect, rolled with Intelligence and Faerie Lore, at the cost of a Fatigue level and a Warping point.",
+  "quotes": [
+   "stress die + Intelligence + Faerie Lore + aura",
+   "Activating a folk charm costs a Fatigue level and gives the character a point of Warping."
+  ]
+ },
+ {
+  "title": "Hermetic Charms",
+  "heading": "Hermetic Charms",
+  "line": 5954,
+  "endLine": 5984,
+  "category": "lab",
+  "topic": "Faerie charms",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sympathy Trait gained from exposure to the Faerie realm",
+  "summary": "Lets a magus apply Sympathy Traits to Hermetic Abilities, Lab Totals, talisman attunement and charmed devices, and treat the work as a Magic or Faerie effect for Realm Interaction.",
+  "quotes": [
+   "Sympathy Traits can be used as specializations to boost Abilities used to perform Hermetic magic, including Penetration and Magic Theory.",
+   "he may add the value of any of his Sympathy Traits that are appropriate to the shape or material to his Lab Total"
+  ]
+ },
+ {
+  "title": "Examples of Charmed Virtues",
+  "heading": "Examples of Charmed Virtues",
+  "line": 5960,
+  "endLine": 5978,
+  "category": "traditions",
+  "topic": "Faerie charms",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Flaw: Greater or Lesser Charm",
+  "summary": "Sidebar giving example Virtues with the charm that activates each.",
+  "quotes": []
+ }
+]

@@ -1,0 +1,1525 @@
+[
+  {
+    "title": "Die Rolls",
+    "heading": "Die Rolls",
+    "line": 536,
+    "endLine": 539,
+    "category": "basics",
+    "topic": "Dice and rolls",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 1,
+    "creation": false,
+    "requires": "",
+    "summary": "Most actions are resolved by adding a Characteristic and an Ability to a die roll and comparing the total with an Ease Factor; the margin of success shows how well the action went. Magic uses the same basic pattern with its own totals.",
+    "quotes": [
+      "the roll is normally Characteristic + Ability + Die Roll against an Ease Factor",
+      "If the total equals or exceeds the Ease Factor, the action succeeds."
+    ],
+    "related": []
+  },
+  {
+    "title": "Simple Die",
+    "heading": "Simple Die",
+    "line": 540,
+    "endLine": 543,
+    "category": "basics",
+    "topic": "Dice and rolls",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 1,
+    "creation": false,
+    "requires": "",
+    "summary": "The simple die is a single ten-sided die read at face value, with a zero counting as ten. It is used when a roll carries no risk of spectacular success or failure.",
+    "quotes": [
+      "Roll a ten-sided die. Each number counts for its value, except that a zero counts as ten."
+    ],
+    "related": []
+  },
+  {
+    "title": "Stress Die",
+    "heading": "Stress Die",
+    "line": 544,
+    "endLine": 569,
+    "category": "basics",
+    "topic": "Dice and rolls",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 1,
+    "creation": false,
+    "requires": "",
+    "summary": "A stress die is rolled when a character is under pressure. A one is rerolled with the result multiplied up each time it repeats, and a zero on the first roll means checking botch dice to see whether the roll is a botch or simply nothing.",
+    "quotes": [
+      "On a roll of one, roll again and double the number rolled.",
+      "On the first roll, zero counts as zero, and you must normally roll for a botch.",
+      "On a botch, your total for the roll is never any higher than zero, in addition to any other consequences."
+    ],
+    "related": []
+  },
+  {
+    "title": "Botch Dice",
+    "heading": "Botch Dice",
+    "line": 570,
+    "endLine": 596,
+    "category": "basics",
+    "topic": "Dice and rolls",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 1,
+    "creation": false,
+    "requires": "",
+    "summary": "Botch dice measure how likely a stress roll is to go disastrously wrong; the more that come up zero, the worse the outcome. The storyguide sets the number from circumstances, and a table gives the chance of a botch for each number of dice.",
+    "quotes": [
+      "The base for most situations is a single botch die.",
+      "the chance of a botch can never be higher than 10%."
+    ],
+    "related": []
+  },
+  {
+    "title": "Ease Factor",
+    "heading": "Ease Factor",
+    "line": 597,
+    "endLine": 611,
+    "category": "basics",
+    "topic": "Dice and rolls",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 1,
+    "creation": false,
+    "requires": "",
+    "summary": "A table of standard Ease Factors from trivial to almost impossible, with notes on how likely characters of differing skill are to succeed at each. Storyguides use it to set difficulties for ordinary rolls.",
+    "quotes": [
+      "Moderate skill is a score of 3 in an Ability, 'Skilled' means a score of 6, and 'Very Skilled' means 9."
+    ],
+    "related": []
+  },
+  {
+    "title": "Rounding",
+    "heading": "Rounding",
+    "line": 613,
+    "endLine": 615,
+    "category": "basics",
+    "topic": "Dice and rolls",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Where a rule involves division and does not say which way to round, the result is rounded down.",
+    "quotes": [
+      "but if it does not, round down."
+    ],
+    "related": []
+  },
+  {
+    "title": "The Houses of Hermes",
+    "heading": "The Houses of Hermes",
+    "line": 703,
+    "endLine": 709,
+    "category": "houses",
+    "topic": "Hermetic Houses",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Overview of the twelve Houses and their three kinds: true lineages, which cannot be joined later; Mystery Cults, which are joined by initiation; and societates, which accept magi after training. A magus belongs to only one House at a time.",
+    "quotes": [
+      "It is not possible to join those Houses later.",
+      "It is only possible to be a member of one House at a time."
+    ],
+    "related": [
+      "Houses of Hermes: True Lineages",
+      "Houses of Hermes: Mystery Cults",
+      "Houses of Hermes: Societates"
+    ]
+  },
+  {
+    "title": "House Bjornaer",
+    "heading": "House Bjornaer",
+    "line": 711,
+    "category": "houses",
+    "topic": "Hermetic Houses",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 4,
+    "creation": false,
+    "requires": "House Bjornaer",
+    "summary": "House overview with the rules-relevant points: every Bjornaer magus has a heartbeast form as the House's Outer Mystery, and Bjornaer magi cannot form the links needed for a familiar.",
+    "quotes": [
+      "Bjornaer magi are unable to forge the necessary links to have a familiar"
+    ],
+    "related": [
+      "ArM5 p.233 Bjornaer - The Heartbeast"
+    ]
+  },
+  {
+    "title": "House Guernicus",
+    "heading": "House Guernicus",
+    "line": 761,
+    "category": "houses",
+    "topic": "Hermetic Houses",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 4,
+    "creation": false,
+    "requires": "House Guernicus (Quaesitores)",
+    "summary": "House overview covering the Quaesitores, the Order's investigators and judges, who customarily receive vis for their work, and the Hoplites who support them. Only a character trained in House Guernicus can start play as a Quaesitor.",
+    "quotes": [
+      "A starting maga can only be a Quaesitor if she was trained in House Guernicus.",
+      "the custom of the Order is that the Quaesitors be given a few pawns of vis as a gift"
+    ],
+    "related": []
+  },
+  {
+    "title": "House Mercere",
+    "heading": "House Mercere",
+    "line": 785,
+    "category": "houses",
+    "topic": "Hermetic Houses",
+    "audience": [
+      "magi",
+      "companions"
+    ],
+    "prevalence": 4,
+    "creation": false,
+    "requires": "House Mercere",
+    "summary": "House overview covering the Redcaps: all Mercere count as members of the Order whether or not they have The Gift, and unGifted Redcaps attend Tribunals but only vote if Gifted.",
+    "quotes": [
+      "regardless of whether they possess The Gift, are officially recognized as magi of the Order.",
+      "Redcaps are permitted to attend Hermetic Tribunals, but by convention they only vote if they have The Gift."
+    ],
+    "related": []
+  },
+  {
+    "title": "House Tremere",
+    "heading": "House Tremere",
+    "line": 811,
+    "category": "houses",
+    "topic": "Hermetic Houses",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 4,
+    "creation": false,
+    "requires": "House Tremere",
+    "summary": "House overview with the Tremere custom of holding apprentices' voting sigils until they defeat their parens in certamen, which concentrates the House's votes in few hands.",
+    "quotes": [
+      "until the filius beats the parens in certamen, or until the parens dies"
+    ],
+    "related": [
+      "ArM5 p.224 Sigils"
+    ]
+  },
+  {
+    "title": "The Code of Hermes (overview)",
+    "heading": "The Code of Hermes",
+    "line": 857,
+    "endLine": 863,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Introduction to the Code of Hermes, the oath sworn by every magus on admission that fixes the Order's structure and limits what its members may do. Enforcement varies, but those caught breaking it usually face their Tribunal.",
+    "quotes": [
+      "all members of the Order recite and swear to it when they are admitted",
+      "Magi who violate the Oath and get caught, however, usually find themselves in trouble with their Tribunal."
+    ],
+    "related": []
+  },
+  {
+    "title": "The Code of Hermes (oath text)",
+    "heading": "The Code of Hermes",
+    "line": 865,
+    "endLine": 891,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The full text of the Hermetic Oath: no depriving or slaying fellow magi except in Wizards' War, abiding by Tribunal votes, not endangering the Order through mundane, demonic or faerie dealings, no scrying on magi, and duties regarding apprentices. Bonisagus magi swear a variant clause.",
+    "quotes": [
+      "I will not deprive nor attempt to deprive any member of the Order of his magical power.",
+      "I will have one vote at Tribunal, and I will use it prudently.",
+      "I will not use magic to scry upon members of the Order of Hermes, nor shall I use it to peer into their affairs."
+    ],
+    "related": []
+  },
+  {
+    "title": "The Peripheral Code",
+    "heading": "The Peripheral Code",
+    "line": 915,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The body of Tribunal precedent that interprets the Code. Death is the nominal penalty, though Tribunals usually impose fines or service, and refusing a Tribunal's punishment leads to a Wizard's March and Renouncing.",
+    "quotes": [
+      "In theory, the only penalty for breaking the Code is death.",
+      "refusing to submit to the punishment imposed by a Tribunal is always taken as reason for the death penalty."
+    ],
+    "related": [
+      "Houses of Hermes: True Lineages p.45"
+    ]
+  },
+  {
+    "title": "Depriving of Magical Power",
+    "heading": "Depriving of Magical Power",
+    "line": 923,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "How the clause forbidding depriving a magus of magical power is applied: Tribunals use it against harm short of physical injury, such as wrecking a lab or killing grogs.",
+    "quotes": [
+      "such as damaging his laboratory or killing grogs."
+    ],
+    "related": []
+  },
+  {
+    "title": "Wizards' War",
+    "heading": "Wizards' War",
+    "line": 927,
+    "category": "order",
+    "topic": "Wizards' War",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The procedure by which a feud between two magi becomes a formally declared open war in which they may kill each other without breaking the Code, timed by the moon. Overuse risks a Wizard's March.",
+    "quotes": [
+      "The war then begins on the rise of the following full moon, and lasts until the rise of the next full moon after that."
+    ],
+    "related": []
+  },
+  {
+    "title": "Interfering with Mundanes",
+    "heading": "Interfering with Mundanes",
+    "line": 937,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "How the controversial mundane-interference clause is read: dealings are allowed while they do not harm other magi, but precedent holds that serving as a court wizard breaks the Code.",
+    "quotes": [
+      "As long as dealings with mundanes do not harm other magi, nor seem likely to cause such harm, they are permitted.",
+      "Many precedents, however, have established that working as a court wizard is a violation of the Code."
+    ],
+    "related": []
+  },
+  {
+    "title": "Dealing with Demons",
+    "heading": "Dealing with Demons",
+    "line": 941,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The clause against dealing with demons, the one provision the Order enforces absolutely by hunting down offenders.",
+    "quotes": [
+      "This is the only clause enforced absolutely."
+    ],
+    "related": []
+  },
+  {
+    "title": "Molesting the Faeries",
+    "heading": "Molesting the Faeries",
+    "line": 945,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "How the clause against molesting faeries is interpreted: what counts as molestation is vague and prosecutions turn on politics, but friendly dealings with faeries are not prohibited.",
+    "quotes": [
+      "it does not prohibit friendly dealings with faeries, at any level."
+    ],
+    "related": []
+  },
+  {
+    "title": "Magical Creatures",
+    "heading": "Magical Creatures",
+    "line": 949,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The Code deliberately gives no protection to magical creatures or other wizards, though excessive interference can still be treated as endangering the Order.",
+    "quotes": [
+      "Notably missing from the Code is a clause granting protection to magical creatures or other wizards."
+    ],
+    "related": []
+  },
+  {
+    "title": "Scrying",
+    "heading": "Scrying",
+    "line": 953,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "How strictly Tribunals read the ban on scrying on magi, with rulings that scrying on a non-magus can count if it reveals a magus's activities, that walking around invisible is scrying, and that Intellego used on an unrecognised magus can be punished.",
+    "quotes": [
+      "simply walking around invisible is magical scrying"
+    ],
+    "related": []
+  },
+  {
+    "title": "Apprentices",
+    "heading": "Apprentices",
+    "line": 957,
+    "category": "order",
+    "topic": "Code of Hermes",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The apprentice clause is barely enforced, except that the right of Bonisagus magi to take apprentices from other magi and their duty to share work are upheld.",
+    "quotes": [
+      "Magi do not have to train apprentices",
+      "The special right of Bonisagus magi to take apprentices from other magi is upheld"
+    ],
+    "related": []
+  },
+  {
+    "title": "Tribunals",
+    "heading": "Tribunals",
+    "line": 963,
+    "endLine": 970,
+    "category": "order",
+    "topic": "Tribunals",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "What makes a Tribunal legal: attendance requirements, proxy voting with sigils, the presiding Quaesitor, and the Praeco who chairs and controls business. A Tribunal that loses its quorum or presiding Quaesitor ceases to be valid.",
+    "quotes": [
+      "A legal Tribunal must be attended, in person, by at least twelve magi from at least four different covenants."
+    ],
+    "related": [
+      "ArM5 p.224 Sigils"
+    ]
+  },
+  {
+    "title": "The Grand Tribunal",
+    "heading": "The Grand Tribunal",
+    "line": 971,
+    "category": "order",
+    "topic": "Tribunals",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The Order-wide Tribunal held at Durenmar, attended by delegates from each regional Tribunal and the Primi of all Houses, and the forum for inter-Tribunal disputes.",
+    "quotes": [
+      "The most important Tribunal of the Order is the Grand Tribunal, held every 33 years and drawing magi from the whole Order."
+    ],
+    "related": []
+  },
+  {
+    "title": "Regional Tribunals",
+    "heading": "Regional Tribunals",
+    "line": 977,
+    "category": "order",
+    "topic": "Tribunals",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "How regional Tribunals are formed and run: membership and visiting rules are set locally, Redcaps ensure every magus is invited, and the normal Tribunal rules apply.",
+    "quotes": [
+      "Regional Tribunals meet once every seven years"
+    ],
+    "related": []
+  },
+  {
+    "title": "The Church",
+    "heading": "The Church",
+    "line": 997,
+    "category": "order",
+    "topic": "Order and society",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 4,
+    "creation": false,
+    "requires": "",
+    "summary": "How the Order and the Church relate: no official contact, and Tribunals treat interfering with the Church as a very serious crime, so attacks on it risk Renouncing.",
+    "quotes": [
+      "Tribunals tend to treat interfering with the Church as a very serious crime"
+    ],
+    "related": []
+  },
+  {
+    "title": "Nobility",
+    "heading": "Nobility",
+    "line": 1005,
+    "category": "order",
+    "topic": "Order and society",
+    "audience": [
+      "magi",
+      "covenant",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "How nobles interact with covenants and what the Peripheral Code allows: deals not involving service or permanent magical aid are generally not interference with mundanes, though killing a noble rival invites a Wizard's March.",
+    "quotes": [
+      "The Peripheral Code has tended to rule that deals with nobles that don't involve service or permanent magical aid are not a violation of the clause against interfering with mundanes."
+    ],
+    "related": []
+  },
+  {
+    "title": "Magical Items",
+    "heading": "Magical Items",
+    "line": 1019,
+    "category": "order",
+    "topic": "Selling magic to mundanes",
+    "audience": [
+      "magi",
+      "covenant"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The 1061 rulings that bar taking mundane payment for arcane services from anyone outside the Order, and the two loopholes: payment in arcane items or vis, and mundane covenant members reselling items or taking commissions.",
+    "quotes": [
+      "making it illegal to accept money or other mundane goods as payment for arcane services from anyone other than a member of the Order of Hermes or a Hermetic covenant"
+    ],
+    "related": []
+  },
+  {
+    "title": "Other Wizards",
+    "heading": "Other Wizards",
+    "line": 1027,
+    "category": "order",
+    "topic": "Order and society",
+    "audience": [
+      "magi",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "The Order's 'join or die' policy toward non-Hermetic wizards, rarely enforced, except that any non-Hermetic wizard who learns Parma Magica or similar general magic resistance must join or be hunted down.",
+    "quotes": [
+      "Any non-Hermetic wizard who learns the Parma Magica, or any other form of general magic resistance, must join the Order of Hermes or be hunted down."
+    ],
+    "related": [
+      "Hedge Magic Revised Edition",
+      "Rival Magic"
+    ]
+  },
+  {
+    "title": "Character Types",
+    "heading": "Character Types",
+    "line": 1041,
+    "endLine": 1046,
+    "category": "creation",
+    "topic": "Character types",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Introduces the three kinds of player character: magi, companions and grogs. Most players keep more than one character, played according to what the saga needs.",
+    "quotes": [],
+    "related": [
+      "ArM5 p.528 Troupe-Style Roleplaying"
+    ]
+  },
+  {
+    "title": "Companions",
+    "heading": "Companions",
+    "line": 1053,
+    "endLine": 1060,
+    "category": "creation",
+    "topic": "Character types",
+    "audience": [
+      "companions"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Companions are important non-magi who belong to one player. They normally lack The Gift and should be linked to another player's magus rather than to their own.",
+    "quotes": [
+      "Companions should generally not have The Gift, unless you intend to play through apprenticeship so that they become magi at some point."
+    ],
+    "related": []
+  },
+  {
+    "title": "Mythic Companions (overview)",
+    "heading": "Mythic Companions",
+    "line": 1061,
+    "endLine": 1068,
+    "category": "creation",
+    "topic": "Mythic Companions",
+    "audience": [
+      "companions",
+      "storyguide"
+    ],
+    "prevalence": 4,
+    "creation": true,
+    "requires": "Troupe approval and a Mythic Companion Virtue",
+    "summary": "Introduces Mythic Companions, non-Hermetic characters such as non-Hermetic wizards or supernatural warriors whose power approaches a magus's. They are normally played as an alternative to a magus, and the troupe may disallow them.",
+    "quotes": [],
+    "related": [
+      "ArM5 Mythic Companions section"
+    ]
+  },
+  {
+    "title": "Grogs",
+    "heading": "Grogs",
+    "line": 1069,
+    "endLine": 1078,
+    "category": "creation",
+    "topic": "Character types",
+    "audience": [
+      "grogs"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Grogs are minor, often shared characters, usually built from templates or detailed creation with limits: no Major Virtues or Flaws, no Story Flaws, and never The Gift.",
+    "quotes": [
+      "grogs can never have The Gift"
+    ],
+    "related": [
+      "ArM5 p.31 Grog Templates"
+    ]
+  },
+  {
+    "title": "Size",
+    "heading": "Size",
+    "line": 1083,
+    "endLine": 1086,
+    "category": "basics",
+    "topic": "Size",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Every character has a Size score; adult humans are usually Size 0, and each step represents a multiplicative change in mass. Size matters more for non-human creatures.",
+    "quotes": [
+      "Every three points of Size represents a ten-fold increase or decrease in mass"
+    ],
+    "related": [
+      "ArM5 p.426 Bestiary"
+    ]
+  },
+  {
+    "title": "Characteristics",
+    "heading": "Characteristics",
+    "line": 1091,
+    "endLine": 1096,
+    "category": "basics",
+    "topic": "Characteristics",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 1,
+    "creation": false,
+    "requires": "",
+    "summary": "The eight inborn Characteristics each have a score centered on average; they are fixed apart from rare drastic events or powerful magic.",
+    "quotes": [
+      "All but the most exceptional of individuals have Characteristics that fall between -3 and +3."
+    ],
+    "related": []
+  },
+  {
+    "title": "Characteristic Descriptions",
+    "heading": "Characteristic Descriptions",
+    "line": 1097,
+    "endLine": 1130,
+    "category": "basics",
+    "topic": "Characteristics",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 1,
+    "creation": false,
+    "requires": "",
+    "summary": "Describes what each Characteristic (Intelligence, Perception, Strength, Stamina, Presence, Communication, Dexterity and Quickness) represents and which Abilities and activities rely on it.",
+    "quotes": [
+      "Spellcasting relies on Stamina.",
+      "Your effective Quickness is usually modified by your Encumbrance."
+    ],
+    "related": [
+      "ArM5 p.403 Encumbrance"
+    ]
+  },
+  {
+    "title": "Abilities",
+    "heading": "Abilities",
+    "line": 1131,
+    "endLine": 1138,
+    "category": "basics",
+    "topic": "Abilities",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 1,
+    "creation": false,
+    "requires": "",
+    "summary": "Abilities are learned skills in five types. Academic, Arcane and Martial Abilities need an appropriate Virtue or Flaw (or being a magus), Supernatural Abilities need a specific source, and Spell Mastery is for Hermetic magi only.",
+    "quotes": [
+      "A character can only learn Academic, Arcane, or Martial Abilities if he has an appropriate Virtue or Flaw, or is a magus."
+    ],
+    "related": [
+      "ArM5 p.157 Abilities chapter",
+      "ArM5 p.158 Spell Mastery"
+    ]
+  },
+  {
+    "title": "Personality Traits",
+    "heading": "Personality Traits",
+    "line": 1139,
+    "endLine": 1144,
+    "category": "basics",
+    "topic": "Personality Traits",
+    "audience": [
+      "grogs",
+      "storyguide"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Short descriptors with scores that guide roleplaying; for magi and companions they are mostly memory aids, but for shared grogs they can be rolled with a stress die when unsure of a reaction.",
+    "quotes": [
+      "If you do roll them, add nothing but the Personality Trait, and roll a stress die."
+    ],
+    "related": [
+      "ArM5 p.528 Troupe-Style Roleplaying"
+    ]
+  },
+  {
+    "title": "Personality Rolls",
+    "heading": "Personality Rolls",
+    "line": 1145,
+    "endLine": 1154,
+    "category": "basics",
+    "topic": "Personality Traits",
+    "audience": [
+      "grogs",
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "A table of suggested Ease Factors for Personality Trait rolls, with examples for Brave and Loyal and a general column for any Trait.",
+    "quotes": [],
+    "related": []
+  },
+  {
+    "title": "Changing Personality Traits",
+    "heading": "Changing Personality Traits",
+    "line": 1155,
+    "endLine": 1158,
+    "category": "basics",
+    "topic": "Personality Traits",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Personality Traits can be changed freely by the controlling player, but only between sessions, to reflect events or exceptional rolls.",
+    "quotes": [
+      "Personality Traits can only be changed by the player who controls the character, and only between game sessions."
+    ],
+    "related": []
+  },
+  {
+    "title": "Reputations",
+    "heading": "Reputations",
+    "line": 1159,
+    "endLine": 1170,
+    "category": "social",
+    "topic": "Reputations",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "A Reputation has a score, a content and a type (Local, Ecclesiastical or Hermetic). To see whether someone has heard of a character, roll a stress die plus the Reputation against an Ease Factor set by distance; a bigger success means more is known.",
+    "quotes": [
+      "A random person has heard of a character with a Reputation if a roll of a stress die plus the Reputation equals or exceeds the Ease Factor given on the table below."
+    ],
+    "related": [
+      "ArM5 p.386 Changing Reputations"
+    ]
+  },
+  {
+    "title": "Reputation Ease Factors",
+    "heading": "Reputation Ease Factors",
+    "line": 1171,
+    "endLine": 1180,
+    "category": "social",
+    "topic": "Reputations",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "A table of Ease Factors for being known, by Reputation type and how far away the listener is (village to country, parish to whole Church, covenant to whole Order).",
+    "quotes": [],
+    "related": []
+  },
+  {
+    "title": "Confidence",
+    "heading": "Confidence",
+    "line": 1181,
+    "endLine": 1186,
+    "category": "basics",
+    "topic": "Confidence",
+    "audience": [
+      "magi",
+      "companions"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Important characters have a Confidence Score and a pool of Confidence Points to spend, with no cap on how many points can be held.",
+    "quotes": [
+      "These characters start with three Confidence Points."
+    ],
+    "related": []
+  },
+  {
+    "title": "Using Confidence",
+    "heading": "Using Confidence",
+    "line": 1187,
+    "endLine": 1194,
+    "category": "basics",
+    "topic": "Confidence",
+    "audience": [
+      "magi",
+      "companions"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "Confidence Points can be spent after seeing a roll to boost the total, up to the character's Confidence Score per roll. Spent points are gone for good, and they cannot be used on a botch or on whole-season rolls.",
+    "quotes": [
+      "A player may spend Confidence Points on most rolls to get +3 to the total per point spent.",
+      "A player may spend any number of points up to, but not exceeding, the character's Confidence Score."
+    ],
+    "related": []
+  },
+  {
+    "title": "Getting New Confidence Points",
+    "heading": "Getting New Confidence Points",
+    "line": 1195,
+    "endLine": 1208,
+    "category": "basics",
+    "topic": "Confidence",
+    "audience": [
+      "storyguide",
+      "magi",
+      "companions"
+    ],
+    "prevalence": 2,
+    "creation": false,
+    "requires": "",
+    "summary": "At the end of a session the storyguide awards Confidence Points to characters who played a significant part, one for each of a list of achievements such as reaching goals, succeeding at a difficult task or good roleplaying.",
+    "quotes": [
+      "Typical characters should gain two or three Confidence Points per session."
+    ],
+    "related": []
+  },
+  {
+    "title": "Raising Confidence Score",
+    "heading": "Raising Confidence Score",
+    "line": 1209,
+    "endLine": 1212,
+    "category": "basics",
+    "topic": "Confidence",
+    "audience": [
+      "storyguide",
+      "magi",
+      "companions"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "A Confidence Score rises only through long-term events that greatly build self-reliance, using a Tytalus apprenticeship as the baseline.",
+    "quotes": [
+      "A character's Confidence Score can only be increased by long-term story events which greatly increase the character's self-confidence and self-reliance."
+    ],
+    "related": []
+  },
+  {
+    "title": "Character Templates",
+    "heading": "Character Templates",
+    "line": 1213,
+    "endLine": 1216,
+    "category": "creation",
+    "topic": "Character templates",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 3,
+    "creation": true,
+    "requires": "",
+    "summary": "Explains that ready-made grog, companion and magus templates give the quickest way to start, and that they can be customized or replaced by detailed creation.",
+    "quotes": [],
+    "related": [
+      "ArM5 p.43 Detailed Character Creation"
+    ]
+  },
+  {
+    "title": "Format",
+    "heading": "Format",
+    "line": 1217,
+    "endLine": 1258,
+    "category": "basics",
+    "topic": "Character templates",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 3,
+    "creation": false,
+    "requires": "",
+    "summary": "Explains each line of the standard character write-up: Characteristics, aging and Warping, Confidence, combat, Soak, Fatigue, wound penalties, the Ability and Art notation with experience points, equipment, Encumbrance and spells known.",
+    "quotes": [
+      "The format is Ability X(Z) (specialization), where X is the score in the Ability and Z is the number of experience points acquired towards the next level."
+    ],
+    "related": [
+      "ArM5 p.391 Aging",
+      "ArM5 p.389 Warping",
+      "ArM5 p.403 Fatigue",
+      "ArM5 p.403 Encumbrance"
+    ]
+  },
+  {
+    "title": "Detailed Character Creation",
+    "heading": "Detailed Character Creation",
+    "line": 2269,
+    "endLine": 2272,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Begins the from-scratch character creation process by choosing a concept for a magus, companion or grog.",
+    "quotes": [],
+    "related": []
+  },
+  {
+    "title": "Detailed Character Creation Summary",
+    "heading": "Detailed Character Creation Summary",
+    "line": 2273,
+    "endLine": 2295,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Numbered checklist for building a character: concept, House, Virtues and Flaws, Characteristics, early childhood, later life, apprenticeship and later years for magi, Personality, Reputation, Confidence and equipment, with differences between grogs, companions and magi.",
+    "quotes": [
+      "Minor Virtues and Flaws are worth one point, Major Virtues and Flaws three points each.",
+      "Start with 7 points.",
+      "Take 120 levels of spells, of no higher level than Technique + Form + Intelligence + Magic Theory +3."
+    ],
+    "related": [
+      "ArM5 p.27 Characteristic Descriptions"
+    ]
+  },
+  {
+    "title": "Starting Character Age",
+    "heading": "Starting Character Age",
+    "line": 2296,
+    "endLine": 2313,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all",
+      "storyguide"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Guidance on choosing starting ages: older characters are stronger but take longer to build and must make aging rolls, new players should make recently graduated magi, and companions should be fairly young.",
+    "quotes": [
+      "a character over the age of 35 must make aging rolls"
+    ],
+    "related": [
+      "ArM5 p.392 Aging",
+      "ArM5 p.527 Saga speed"
+    ]
+  },
+  {
+    "title": "Child Characters",
+    "heading": "Child Characters",
+    "line": 2314,
+    "endLine": 2329,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "storyguide"
+    ],
+    "prevalence": 4,
+    "creation": true,
+    "requires": "Playing a child character",
+    "summary": "Child characters are built normally and then take age-based modifiers to Characteristics and Size, with some Virtues and Flaws applying only as they grow up.",
+    "quotes": [
+      "To generate a child, use the normal rules, and then modify all Characteristics as follows:"
+    ],
+    "related": [
+      "Apprentices (supplement)"
+    ]
+  },
+  {
+    "title": "Magi Only: Hermetic House",
+    "heading": "Magi Only: Hermetic House",
+    "line": 2330,
+    "endLine": 2333,
+    "category": "creation",
+    "topic": "Hermetic Houses",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "Hermetic magus",
+    "summary": "Choosing a House is the next step in creating a magus, and each House grants a particular benefit at creation. A magus can belong to only one House.",
+    "quotes": [],
+    "related": []
+  },
+  {
+    "title": "Hermetic Houses Summary",
+    "heading": "Hermetic Houses Summary",
+    "line": 2334,
+    "endLine": 2351,
+    "category": "houses",
+    "topic": "Hermetic Houses",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "Hermetic magus",
+    "summary": "A table of each House with its type, a short description and the benefit it grants at character creation, such as a free Virtue or Mystery.",
+    "quotes": [],
+    "related": [
+      "ArM5 p.12 The Houses of Hermes"
+    ]
+  },
+  {
+    "title": "Virtues and Flaws at Character Creation",
+    "heading": "Virtues and Flaws",
+    "line": 2357,
+    "endLine": 2374,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "How Virtues and Flaws are allotted by character type: everyone takes a Social Status, grogs get a few minor points with extra limits, and companions and magi may balance Flaws against Virtues. Magi must have The Gift and should take at least one Hermetic Flaw.",
+    "quotes": [
+      "They may have up to three points of Flaws, and a corresponding number of Virtues.",
+      "Like companions, magi may take up to ten points of Flaws, and the same number of points of Virtues."
+    ],
+    "related": [
+      "ArM5 p.61 Virtues and Flaws chapter",
+      "ArM5 p.65 Social Statuses by Culture"
+    ]
+  },
+  {
+    "title": "Choosing Virtues and Flaws",
+    "heading": "Choosing Virtues and Flaws",
+    "line": 2375,
+    "endLine": 2388,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Advice on picking Virtues and Flaws, including the two cases where a Virtue is essential: access to Academic, Arcane, Martial or Supernatural Abilities, and a Social Status such as Knight.",
+    "quotes": [
+      "One is that a character must have a Virtue to buy Academic, Arcane, Martial, or Supernatural Abilities at character creation."
+    ],
+    "related": []
+  },
+  {
+    "title": "Quick and Easy Virtues and Flaws",
+    "heading": "Quick and Easy Virtues and Flaws",
+    "line": 2389,
+    "endLine": 2400,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 3,
+    "creation": true,
+    "requires": "",
+    "summary": "Simplified shortcut recipes of Virtues and Flaws for grogs, several kinds of companion and for magi, for building characters quickly.",
+    "quotes": [
+      "Take a Minor Personality Flaw that reflects how you want to play the character."
+    ],
+    "related": []
+  },
+  {
+    "title": "Buying Characteristics",
+    "heading": "Characteristics",
+    "line": 2408,
+    "endLine": 2423,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Characteristics are bought from a fixed pool of points using a cost table, with negative scores returning points. Magi are advised to value Intelligence and Stamina.",
+    "quotes": [
+      "Characteristics are bought on the following table. You start with seven points to spend."
+    ],
+    "related": []
+  },
+  {
+    "title": "Abilities at Character Creation",
+    "heading": "Abilities",
+    "line": 2430,
+    "endLine": 2443,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Abilities are acquired in blocks: early childhood, later life, and for magi apprenticeship and years afterward. A character's age caps the score in any Ability at creation, though some Virtues raise this.",
+    "quotes": [
+      "Your character's age determines the maximum score she can have in any Ability at character creation, although some Virtues raise this limit."
+    ],
+    "related": []
+  },
+  {
+    "title": "Early Childhood",
+    "heading": "Early Childhood",
+    "line": 2444,
+    "endLine": 2447,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "The first five years of life give experience points in the native language and a further pool to split among a fixed list of childhood Abilities.",
+    "quotes": [
+      "In the first five years of life, characters gain 75 experience points in their native language"
+    ],
+    "related": []
+  },
+  {
+    "title": "Sample Childhoods",
+    "heading": "Sample Childhoods",
+    "line": 2448,
+    "endLine": 2457,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 3,
+    "creation": true,
+    "requires": "",
+    "summary": "Ready-made Ability packages for five types of childhood, to speed up creation.",
+    "quotes": [
+      "Social Childhood: Charm 2, Folk Ken 2, Guile 2, Native Language 5"
+    ],
+    "related": []
+  },
+  {
+    "title": "Later Life",
+    "heading": "Later Life",
+    "line": 2458,
+    "endLine": 2462,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "After early childhood a character gains experience points each year to spend on Abilities the Virtues allow, with more for the Wealthy Virtue and fewer for the Poor Flaw.",
+    "quotes": [
+      "After early childhood, the character gains 15 experience points per year"
+    ],
+    "related": []
+  },
+  {
+    "title": "Advancement Table",
+    "heading": "Advancement Table",
+    "line": 2472,
+    "endLine": 2499,
+    "category": "basics",
+    "topic": "Experience and advancement",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 1,
+    "creation": false,
+    "requires": "",
+    "summary": "The experience point cost table for Arts and Abilities, showing the points needed to buy a score from zero and the points needed to raise it by one. Used in character creation and all later advancement.",
+    "quotes": [
+      "The number of experience points required to raise a score from zero to that number.",
+      "To Raise: The number of experience points required to raise a score by one point to that number."
+    ],
+    "related": []
+  },
+  {
+    "title": "Magus Only - Apprenticeship",
+    "heading": "Magus Only — Apprenticeship",
+    "line": 2501,
+    "endLine": 2505,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "Hermetic magus",
+    "summary": "A magus's apprenticeship grants experience points to spend on Arts and Abilities and levels of spells, with minimum required Abilities for admission to the Order and warnings about Latin and Magic Theory.",
+    "quotes": [
+      "The fifteen years of apprenticeship give the character 240 experience points, and 120 levels of spells.",
+      "Magi must have the following minimum Abilities: Parma Magica 1, Magic Theory 1, Latin 1."
+    ],
+    "related": []
+  },
+  {
+    "title": "Hermetic Magi Recommended Minimum Abilities",
+    "heading": "Hermetic Magi Recommended Minimum Abilities",
+    "line": 2519,
+    "endLine": 2534,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "Hermetic magus",
+    "summary": "A recommended minimum Ability set for new magi and the rule that the highest spell level a magus can learn at creation is limited by an Art-based total.",
+    "quotes": [
+      "The highest level spell you can learn is equal to Technique + Form + Intelligence + Magic Theory +3"
+    ],
+    "related": []
+  },
+  {
+    "title": "Magus Only - After Apprenticeship",
+    "heading": "Magus Only — After Apprenticeship",
+    "line": 2535,
+    "endLine": 2551,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "magi"
+    ],
+    "prevalence": 3,
+    "creation": true,
+    "requires": "Hermetic magus",
+    "summary": "Optional rules for creating a magus who is some years past apprenticeship: yearly points spread across Art and Ability experience and spell levels, a typical lab context, and a reduction for seasons spent on lab projects.",
+    "quotes": [
+      "For every year, the magus gets 30 points.",
+      "For each season that your magus spends working on a lab project, the character loses 10 points from the yearly 30 experience points"
+    ],
+    "related": [
+      "ArM5 p.391 Aging",
+      "ArM5 p.261 Longevity Ritual",
+      "ArM5 p.249 Laboratory chapter"
+    ]
+  },
+  {
+    "title": "Personality",
+    "heading": "Personality",
+    "line": 2568,
+    "endLine": 2575,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "all"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Creation step for choosing Personality Traits with scores that match any Personality Flaws; grogs need Loyal and warriors Brave.",
+    "quotes": [
+      "Choose a few words to describe your character's personality, and attach a value between -3 and +3 to each."
+    ],
+    "related": []
+  },
+  {
+    "title": "Confidence at Character Creation",
+    "heading": "Confidence",
+    "line": 2588,
+    "endLine": 2595,
+    "category": "creation",
+    "topic": "Confidence",
+    "audience": [
+      "magi",
+      "companions"
+    ],
+    "prevalence": 2,
+    "creation": true,
+    "requires": "",
+    "summary": "Creation step for Confidence: grogs have none, and companions and magi start with a Confidence Score and Points unless a Virtue or Flaw changes them.",
+    "quotes": [
+      "Grogs do not have Confidence Points."
+    ],
+    "related": [
+      "ArM5 p.29 Confidence"
+    ]
+  },
+  {
+    "title": "Option: Extremely Complex Character Generation",
+    "heading": "Option: Extremely Complex Character Generation",
+    "line": 2685,
+    "endLine": 2690,
+    "category": "creation",
+    "topic": "Detailed Character Creation",
+    "audience": [
+      "storyguide"
+    ],
+    "prevalence": 3,
+    "creation": true,
+    "requires": "Optional rule",
+    "summary": "An optional method of building a character by working out what he did in every season of his life using the Laboratory and Long-Term Events rules, which takes far longer.",
+    "quotes": [
+      "However, age-based limits on Abilities do not apply, and all Virtues and Flaws have their normal effect on character advancement."
+    ],
+    "related": []
+  },
+  {
+    "title": "Characters with Might Scores",
+    "heading": "Characters with Might Scores",
+    "line": 2691,
+    "endLine": 2700,
+    "category": "beings",
+    "topic": "Might characters",
+    "audience": [
+      "storyguide"
+    ],
+    "prevalence": 4,
+    "creation": true,
+    "requires": "Character with a Might Score",
+    "summary": "Special rules for characters with a Might Score: no Virtues tied to another realm, magic resistance from several sources does not stack, immunity to Warping, and immunity to supernatural backlashes of their own realm.",
+    "quotes": [
+      "Characters with a Might Score are immune to all Warping (see Warping and Non-Humans, page 389).",
+      "these totals do not stack"
+    ],
+    "related": [
+      "ArM5 p.389 Warping and Non-Humans"
+    ]
+  },
+  {
+    "title": "Mythic Companions (creation)",
+    "heading": "Mythic Companions",
+    "line": 2701,
+    "endLine": 2710,
+    "category": "creation",
+    "topic": "Mythic Companions",
+    "audience": [
+      "companions",
+      "storyguide"
+    ],
+    "prevalence": 4,
+    "creation": true,
+    "requires": "Mythic Companion Virtue",
+    "summary": "How to build a Mythic Companion: a free status Virtue, a free Minor Virtue, extra Virtue points for each Flaw point, and an agreed minimum set of Abilities.",
+    "quotes": [
+      "each point of Flaws is worth two points of Virtues",
+      "As for Hermetic magi, this set of Abilities should come to a total of 90 experience points."
+    ],
+    "related": []
+  },
+  {
+    "title": "Devil Child",
+    "heading": "Devil Child",
+    "line": 2711,
+    "endLine": 2735,
+    "category": "creation",
+    "topic": "Mythic Companions",
+    "audience": [
+      "companions"
+    ],
+    "prevalence": 4,
+    "creation": true,
+    "requires": "Mythic Companion Virtue: Devil Child",
+    "summary": "Mythic Companion type for the creation of a demon: required Virtues and Flaws, a bonus of extra Virtue points, and a recommendation for high-powered sagas.",
+    "quotes": [
+      "Devil Children may take three more points of Virtues at no cost (to balance the compulsory Major Flaw with six Virtue points)"
+    ],
+    "related": []
+  },
+  {
+    "title": "Faerie Doctors as Mythic Companions",
+    "heading": "Faerie Doctors as Mythic Companions",
+    "line": 2744,
+    "endLine": 2772,
+    "category": "creation",
+    "topic": "Mythic Companions",
+    "audience": [
+      "companions"
+    ],
+    "prevalence": 4,
+    "creation": true,
+    "requires": "Mythic Companion Virtue: Faerie Doctor",
+    "summary": "Required Virtues, Flaws and minimum Ability scores for a magus-level faerie doctor, plus how to play a lesser faerie doctor who is not a Mythic Companion.",
+    "quotes": [
+      "Curse-Throwing 4"
+    ],
+    "related": []
+  },
+  {
+    "title": "Sin-Eating",
+    "heading": "Sin-Eating",
+    "line": 2774,
+    "endLine": 2780,
+    "category": "traditions",
+    "topic": "Mythic Companions",
+    "audience": [
+      "companions",
+      "storyguide"
+    ],
+    "prevalence": 4,
+    "creation": false,
+    "requires": "Supernatural Ability: Curse-Throwing",
+    "summary": "Describes Sin-Eating as a cultural variant of Curse-Throwing, treating a sin as an affliction of Minor, Serious or Major magnitude.",
+    "quotes": [
+      "The magnitude of the unforgiven sin should be considered to be a Minor, Serious, or Major Affliction as appropriate."
+    ],
+    "related": []
+  },
+  {
+    "title": "Nephilim",
+    "heading": "Nephilim",
+    "line": 2782,
+    "category": "creation",
+    "topic": "Mythic Companions",
+    "audience": [
+      "companions"
+    ],
+    "prevalence": 4,
+    "creation": true,
+    "requires": "Mythic Companion Virtue: Nephilim",
+    "summary": "Mythic Companion type for divine giants: required Virtues, the Flaw points that pay for them, and minimum Ability scores. Recommended for high-powered sagas.",
+    "quotes": [
+      "Nephilim must take five points of Flaws to pay for these virtues and may take an additional five points of Flaws, which grants a further ten points of Virtues."
+    ],
+    "related": []
+  },
+  {
+    "title": "Spirit Votary",
+    "heading": "Spirit Votary",
+    "line": 2809,
+    "endLine": 2832,
+    "category": "creation",
+    "topic": "Mythic Companions",
+    "audience": [
+      "companions"
+    ],
+    "prevalence": 4,
+    "creation": true,
+    "requires": "Mythic Companion Virtue: Spirit Votary",
+    "summary": "Mythic Companion type for a worshiper of a magical spirit: required Virtues, a compulsory Pagan Flaw and minimum Ability scores.",
+    "quotes": [
+      "Spiritual Pact (Major, Supernatural)"
+    ],
+    "related": []
+  }
+]

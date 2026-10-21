@@ -1,0 +1,2160 @@
+[
+ {
+  "title": "Ranks of Magi Bonisagi",
+  "heading": "The Ranks of Magi Bonisagi",
+  "line": 370,
+  "endLine": 374,
+  "category": "houses",
+  "topic": "House Bonisagus acclaim",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus (magi Bonisagi)",
+  "summary": "Magi Bonisagi hold one of four research-based ranks, each with different duties and privileges (such as contributing a sigil to the Colentes pouch or being subject to the Primus's research commands). Rank is determined by House Acclaim.",
+  "quotes": [
+   "There are four ranks for magi Bonisagi."
+  ],
+  "related": [
+   "House Acclaim: Status in House Bonisagus"
+  ]
+ },
+ {
+  "title": "Colentes Arcanorum",
+  "heading": "Colentes Arcanorum",
+  "line": 380,
+  "endLine": 390,
+  "category": "houses",
+  "topic": "House Bonisagus organization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus (magi Bonisagi)",
+  "summary": "The five-member Bonisagus council, chosen at random from magi of cannophori rank or higher, that collects submitted Lab Texts and tractatus and compiles them into folios. Includes the chance that a character is selected and the council's powers over the Primus.",
+  "quotes": [
+   "a player character who has achieved the rank of *cannophori* has a 1 in 5 chance of being selected"
+  ],
+  "related": [
+   "Folios",
+   "Minor Hermetic Virtue: Colens Arcanorum"
+  ]
+ },
+ {
+  "title": "Submitted Texts (Colentes)",
+  "heading": "Submitted Texts",
+  "line": 399,
+  "endLine": 403,
+  "category": "houses",
+  "topic": "House Bonisagus organization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Colens Arcanorum",
+  "summary": "How many Lab Texts and tractatus a Colens receives during a term, what they look for, and how long it takes to judge a submission.",
+  "quotes": [
+   "It takes a day for Colens Arcanorum to briefly scan a submitted text and determine its value."
+  ],
+  "related": [
+   "Folios"
+  ]
+ },
+ {
+  "title": "Tenentes Occultorum",
+  "heading": "Tenentes Occultorum",
+  "line": 405,
+  "endLine": 427,
+  "category": "houses",
+  "topic": "House Bonisagus organization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus (magi Trianomae); Minor Status Virtue: Tenens Occultorum",
+  "summary": "The four seasonal Trianomae officers who guard House secrets and watch mundane seekers of arcane lore, each responsible for a set of Tribunals. Explains how a character can begin play as a Tenens.",
+  "quotes": [],
+  "related": [
+   "Ars Magica 5th Edition p.32 After Apprenticeship"
+  ]
+ },
+ {
+  "title": "Colloquium Delectorum",
+  "heading": "Colloquium Delectorum",
+  "line": 435,
+  "endLine": 441,
+  "category": "houses",
+  "topic": "House Bonisagus organization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus",
+  "summary": "The seven-yearly meeting at which the Colentes and Tenentes compile their findings, choose research for the next folio, and can be petitioned about the Primus's orders.",
+  "quotes": [],
+  "related": [
+   "Folios"
+  ]
+ },
+ {
+  "title": "The Primus of House Bonisagus",
+  "heading": "The Primus",
+  "line": 443,
+  "endLine": 451,
+  "category": "houses",
+  "topic": "House Bonisagus organization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus",
+  "summary": "The Primus's powers (agenda-setting at Tribunals, selecting the councils, directing a magus's research) and the qualifications a candidate for Primus must meet.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Taking Another Magus's Apprentice",
+  "heading": "Another Magus's Apprentice",
+  "line": 597,
+  "endLine": 612,
+  "category": "houses",
+  "topic": "House Bonisagus apprentices",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus",
+  "summary": "Magi of House Bonisagus alone may take another Hermetic magus's apprentice; the text lists informal House guidelines for using the right and the possible consequences (low crime charges, Wizard War), and notes that rank helps in finding an apprentice.",
+  "quotes": [
+   "Unique among the Lineages, magi of House Bonisagus may take another Hermetic magus"
+  ],
+  "related": [
+   "House Acclaim Points and Score"
+  ]
+ },
+ {
+  "title": "Multiple Apprentices",
+  "heading": "Multiple Apprentices",
+  "line": 614,
+  "endLine": 618,
+  "category": "lab",
+  "topic": "Apprentices and lab assistants",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus (magi Bonisagi)",
+  "summary": "Explains how many apprentices a magus can legally teach and the time cost, and gives magi Bonisagi the ability to use a second lab assistant so two apprentices can both assist in the lab.",
+  "quotes": [
+   "magi Bonisagi can always successfully use a second lab assistant"
+  ],
+  "related": [
+   "Working Together"
+  ]
+ },
+ {
+  "title": "Fostering Apprentices",
+  "heading": "Fostering",
+  "line": 620,
+  "endLine": 628,
+  "category": "houses",
+  "topic": "House Bonisagus apprentices",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bonisagus (magi Bonisagi)",
+  "summary": "Magi Bonisagi swap apprentices for a year of Ability training and then a stint of lab assistance, a procedure that gives both apprentices Teaching and Profession: Scribe and improves Latin and Magic Theory.",
+  "quotes": [
+   "At the end of two years, both apprentices should have scores of 2 in Teaching and Profession: Scribe, as well as improved scores in Latin and Magic Theory."
+  ],
+  "related": [
+   "ArM5 p.164 Teaching",
+   "Working Together"
+  ]
+ },
+ {
+  "title": "Optional Rule: Continuous Research",
+  "heading": "Optional Rule: Continuous Research",
+  "line": 630,
+  "endLine": 636,
+  "category": "lab",
+  "topic": "Lab Total",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An optional storyguide rule that rewards a magus who stays uninterrupted on a single lab project by adding a growing bonus to the Lab Total as seasons accumulate; interruptions or a change of subject end the benefit.",
+  "quotes": [
+   "Once you have spent five seasons on a project, accruing five Continual Research points, you may add 1 to your Lab Total."
+  ],
+  "related": [
+   "ArM5 p.103 Distractions from Lab Work",
+   "ArM5 p.218 Saga speed"
+  ]
+ },
+ {
+  "title": "Magic Theory Specializations of Magi Bonisagi",
+  "heading": "Types of Magi Bonisagi",
+  "line": 646,
+  "endLine": 650,
+  "category": "creation",
+  "topic": "Magic Theory specializations",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bonisagus (magi Bonisagi characters only)",
+  "summary": "Three optional Magic Theory specializations (traditionalist, dabbler, harmonizer) available only to magi Bonisagi, each applying when a particular kind of research, spell invention or enchantment is undertaken.",
+  "quotes": [
+   "You may choose traditionalist, dabbler, or harmonizer as a specialization for your Magic Theory"
+  ],
+  "related": [
+   "ArM5 p.62 Specializations",
+   "Original Research"
+  ]
+ },
+ {
+  "title": "Working Together (Bonisagus lab assistants)",
+  "heading": "Working Together",
+  "line": 656,
+  "endLine": 662,
+  "category": "lab",
+  "topic": "Apprentices and lab assistants",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus (magi Bonisagi, their apprentices and familiars)",
+  "summary": "Magi Bonisagi may have one more lab assistant than the normal rules allow, and the text explains when they are willing to act as assistants to other magi.",
+  "quotes": [
+   "magi Bonisagi can always have one more lab assistant than the normal **ArM5** rules would allow a magus character to have"
+  ],
+  "related": [
+   "ArM5 Laboratory chapter, lab assistants"
+  ]
+ },
+ {
+  "title": "The Cipher of Trianoma",
+  "heading": "The Cipher of Trianoma",
+  "line": 688,
+  "endLine": 698,
+  "category": "houses",
+  "topic": "House Bonisagus ciphers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus (magi Trianomae); others may decode",
+  "summary": "How magi of other lineages decipher the shorthand used by magi Trianomae, either by treating a cipher Lab Text as any other or by making a roll against a secret note.",
+  "quotes": [
+   "To decode Trianoma's cipher you make an Intelligence + Latin + stress die roll.",
+   "Having decoded a previous cipher adds 3 to your decoding rolls."
+  ],
+  "related": [
+   "ArM5 p.102 Translating Laboratory Texts"
+  ]
+ },
+ {
+  "title": "House Acclaim: Status in House Bonisagus",
+  "heading": "House Acclaim: Status in House Bonisagus",
+  "line": 702,
+  "endLine": 708,
+  "category": "houses",
+  "topic": "House Bonisagus acclaim",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bonisagus (magi Bonisagi)",
+  "summary": "A community-based Reputation that every magus Bonisagi starts with, which grows through finished and published laboratory research and moves the magus up the House ranks. Describes how Acclaim points accrue and are sped up by being included in a folio.",
+  "quotes": [
+   "House Acclaim is a free Reputation that every magus Bonisagi character receives at character generation.",
+   "The lucky author gains twice the Acclaim points listed on the following table if his research is included in a folio."
+  ],
+  "related": [
+   "ArM5 Reputations"
+  ]
+ },
+ {
+  "title": "Research and Acclaim Points",
+  "heading": "Research and Acclaim Points",
+  "line": 710,
+  "endLine": 728,
+  "category": "houses",
+  "topic": "House Bonisagus acclaim",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus (magi Bonisagi)",
+  "summary": "Table of how many Acclaim points each kind of laboratory achievement (tractatus, summae, spells, talismans, familiars, apprentices, Breakthroughs and so on) is worth, with a note on how rank affects fostering and gauntlets.",
+  "quotes": [
+   "Write an Art tractatus",
+   "Stabilize a Breakthrough"
+  ],
+  "related": [
+   "House Acclaim Points and Score"
+  ]
+ },
+ {
+  "title": "House Acclaim Points and Score",
+  "heading": "House Acclaim Points and Score",
+  "line": 730,
+  "endLine": 744,
+  "category": "houses",
+  "topic": "House Bonisagus acclaim",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus (magi Bonisagi)",
+  "summary": "Table converting Acclaim points into an Acclaim score and rank title, plus the uses of the score: social bonuses within the House, a bonus to resist magi Trianomae, and a bonus to the roll to find an apprentice.",
+  "quotes": [
+   "to any social skill roll involving her Presence characteristic when interacting with another magus of House Bonisagus",
+   "You may add your Acclaim score to your roll to find an apprentice"
+  ],
+  "related": [
+   "ArM5 p.106 Apprentices"
+  ]
+ },
+ {
+  "title": "Folios",
+  "heading": "Folios",
+  "line": 746,
+  "endLine": 751,
+  "category": "houses",
+  "topic": "Folios",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus",
+  "summary": "What a folio is, when and where the Colentes Arcanorum compile it, and how it is copied and circulated through the Order.",
+  "quotes": [
+   "Folios are collections of Laboratory Texts and tractatus compiled by the Colentes Arcanorum"
+  ],
+  "related": [
+   "Colentes Arcanorum",
+   "Colloquium Delectorum"
+  ]
+ },
+ {
+  "title": "Writing Folios",
+  "heading": "Writing Folios",
+  "line": 752,
+  "endLine": 764,
+  "category": "lab",
+  "topic": "Folios",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Colens Arcanorum",
+  "summary": "Procedure and capacity limit for creating a folio in a season, based on the Colentes' combined Magic Theory, plus how much each Colens can copy, with a worked example.",
+  "quotes": [
+   "The Colentes Arcanorum's combined Magic Theory scores are the maximum total of Lab Text magnitudes and tractatus Qualities that can be included in a single volume.",
+   "Folios: Colentes combined Magic Theory = Sum of Lab Text magnitudes and/or tractatus Qualities",
+   "A Colens may copy 12 magnitudes of Lab Texts per point in Profession: Scribe into a folio."
+  ],
+  "related": [
+   "ArM5 Laboratory chapter, copying texts"
+  ]
+ },
+ {
+  "title": "Reading Folios",
+  "heading": "Reading Folios",
+  "line": 766,
+  "endLine": 771,
+  "category": "lab",
+  "topic": "Folios",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each text in a folio is studied like a stand-alone text, and finishing one earns a small Order of Hermes Lore bonus.",
+  "quotes": [
+   "Each individual Lab Text or tractatus must be read for an entire season, just as if it was a stand alone text.",
+   "you receive one experience point in Order of Hermes Lore"
+  ],
+  "related": []
+ },
+ {
+  "title": "Editorial Disagreements",
+  "heading": "Editorial Disagreements",
+  "line": 772,
+  "endLine": 776,
+  "category": "houses",
+  "topic": "Folios",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus (Colentes Arcanorum)",
+  "summary": "Optional contest rolled between characters who argue over which texts go into a folio, using Presence + Leadership or Communication + Artes Liberales plus House Acclaim.",
+  "quotes": [
+   "Loud characters may make a Presence + Leadership stress roll.",
+   "Crafty characters may make a Communication + Artes Liberales stress roll."
+  ],
+  "related": [
+   "Colentes Arcanorum"
+  ]
+ },
+ {
+  "title": "Copying Folios",
+  "heading": "Copying Folios",
+  "line": 778,
+  "endLine": 780,
+  "category": "lab",
+  "topic": "Folios",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Rate at which a scribe copies a folio carefully or quickly, and the penalty to tractatus Quality for quick copying.",
+  "quotes": [
+   "If a scribe is copying a folio carefully, he accumulates points equal to 6 + his Profession: Scribe score in a season.",
+   "If he copies the folio quickly, he gains 18 + 3 times his Profession: Scribe score in accumulated points per season."
+  ],
+  "related": [
+   "ArM5 copying summae"
+  ]
+ },
+ {
+  "title": "Intrigue Rolls (Magi Trianomae)",
+  "heading": "Copying Folios",
+  "line": 778,
+  "endLine": 809,
+  "category": "social",
+  "topic": "Intrigue",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Intrigue subsection has lost its own heading in this file and follows Copying Folios (from line 782). It gives rolls and Ease Factors for influencing or interrogating an NPC with Intrigue, the Gift penalty, and the contested form between two active participants with a table of results by margin of victory.",
+  "quotes": [
+   "Influence a non-player character: Presence + Intrigue vs. variable Ease Factor",
+   "Interrogate a non-player character: Communication + Intrigue vs. variable Ease Factor",
+   "the magus Trianomae rolls Presence + Intrigue + a stress die against the target's Communication + Intrigue + stress die"
+  ],
+  "related": [
+   "ArM5 Intrigue ability"
+  ]
+ },
+ {
+  "title": "Folk Ken and Guile",
+  "heading": "Folk Ken and Guile",
+  "line": 811,
+  "endLine": 817,
+  "category": "social",
+  "topic": "Intrigue",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance for secret Folk Ken rolls to read an important NPC, how Guile counters them, and how Folk Ken feeds a bonus or penalty to Intrigue rolls at a Tribunal.",
+  "quotes": [
+   "the storyguide may make a secret Per + Folk Ken roll",
+   "A character attempting to deceive rolls Com + Guile."
+  ],
+  "related": [
+   "ArM5 Folk Ken",
+   "ArM5 Guile"
+  ]
+ },
+ {
+  "title": "Original Research",
+  "heading": "Original Research",
+  "line": 849,
+  "endLine": 856,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduction to original research, the process by which a magus tries to push the limits of Hermetic magic; notes that anyone can start at any time with no minimum Art or Ability.",
+  "quotes": [
+   "There are no minimum Art or Ability requirements for undertaking original research"
+  ],
+  "related": []
+ },
+ {
+  "title": "Breakthroughs",
+  "heading": "Breakthroughs",
+  "line": 857,
+  "endLine": 868,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the three kinds of Breakthrough (Minor, Major, Hermetic), with examples of each, and advises discussing the target with the troupe first.",
+  "quotes": [
+   "These achievements are called **Breakthroughs** and there are three types: Minor, Major, and Hermetic."
+  ],
+  "related": []
+ },
+ {
+  "title": "Seeking the Unknown",
+  "heading": "Seeking the Unknown",
+  "line": 869,
+  "endLine": 889,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "First stage of original research: experiment with a spell or enchantment to roll a Discovery on the Extraordinary Results Chart, using a Magic Theory-limited risk modifier applied to the roll rather than the Lab Total.",
+  "quotes": [
+   "For every five points or fraction thereof of Magic Theory (including Puissant Magic Theory) you may choose a risk modifier of 1.",
+   "Risk Modifier: +1 per 5 points of Magic Theory or fraction thereof, up to +3",
+   "Breakthrough: roll Discovery on the Extraordinary Results Chart during a season of Arcane Experimentation"
+  ],
+  "related": [
+   "ArM5 Arcane Experimentation",
+   "ArM5 Extraordinary Results Chart"
+  ]
+ },
+ {
+  "title": "Stabilizing the Unknown",
+  "heading": "Stabilizing the Unknown",
+  "line": 890,
+  "endLine": 901,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Second stage of original research: repeat the Discovery experiment exactly, with the same Lab Total, risk modifier use, vis and seasons, and avoid a harmful result to turn it into Breakthrough points and a Lab Text. Also covers the Warping Points gained from the attempt.",
+  "quotes": [
+   "As long as you do not roll a harmful effect (Disaster, No Benefit, Complete Failure) you stabilize your discovery.",
+   "Magnitudes of Stabilized Discovery equal Breakthrough points"
+  ],
+  "related": [
+   "ArM5 p.88 Wizard's Twilight"
+  ]
+ },
+ {
+  "title": "Warping Points from Stabilizing a Discovery",
+  "heading": "Warping Points gained: the Magnitude of the Stabilized Discovery minus a simple die",
+  "line": 902,
+  "endLine": 904,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Warping Points are gained whether stabilization succeeds or fails, and a failed stabilization may be retried in consecutive seasons.",
+  "quotes": [
+   "Warping Points gained: the Magnitude of the Stabilized Discovery minus a simple die",
+   "You receive Warping Points whether you succeed or fail at stabilizing your discovery."
+  ],
+  "related": []
+ },
+ {
+  "title": "Surpassing the Limits",
+  "heading": "Surpassing the Limits",
+  "line": 906,
+  "endLine": 915,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When accumulated stabilized-discovery points reach a secret target set by the storyguide, a Breakthrough is achieved; gives a rule-of-thumb target by Breakthrough type and explains why the player should not know it.",
+  "quotes": [
+   "A rough rule of thumb is 30 points are needed for a Minor Breakthrough, 45 for a Major and 60 for a true Hermetic Breakthrough."
+  ],
+  "related": []
+ },
+ {
+  "title": "Multiple Laboratory Texts (Collaborative Research)",
+  "heading": "Multiple Laboratory Texts",
+  "line": 916,
+  "endLine": 925,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a magus can add another magus's original-research Lab Texts to their own Breakthrough points by reading them for a season in a laboratory, without gaining Warping Points; the first researcher to reach the target makes the Breakthrough.",
+  "quotes": [
+   "You accumulate points equal to your Lab Total in the Arts concerned."
+  ],
+  "related": [
+   "ArM5 p.102 Translating Laboratory Texts"
+  ]
+ },
+ {
+  "title": "Breakthroughs in Play",
+  "heading": "Breakthroughs in Play",
+  "line": 926,
+  "endLine": 935,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a completed Minor, Major or Hermetic Breakthrough is used and passed on to other magi (through a spell, personal teaching, tractatus, or as an Arcane Ability).",
+  "quotes": [
+   "You do not have to subtract your total Hermetic Arts score from the Source Quality of the teaching source."
+  ],
+  "related": [
+   "ArM5 p.163 Teaching and Books"
+  ]
+ },
+ {
+  "title": "Hermetic Integration",
+  "heading": "Hermetic Integration",
+  "line": 936,
+  "endLine": 943,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how a further Breakthrough on a Major Breakthrough can fold its Virtue into ordinary Hermetic magic so that it no longer needs to be learned separately.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Exempli Gratia: Original Research",
+  "heading": "Exempli Gratia: Original Research",
+  "line": 944,
+  "endLine": 954,
+  "category": "lab",
+  "topic": "Original research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A worked example following a magus through experiments, a Discovery roll with a risk modifier, and the stabilization season.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Arma Magica (Parma Folds)",
+  "heading": "Arma Magica",
+  "line": 960,
+  "endLine": 964,
+  "category": "magic",
+  "topic": "Parma Magica folds",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: Major Breakthrough (Arma Magica)",
+  "summary": "Introduces the Arma Magica folds as Major Breakthroughs built on Parma Magica, and limits how many folds a magus can know and how many students can be taught a fold.",
+  "quotes": [
+   "A magus may know a number of folds equal to his Parma Magica score."
+  ],
+  "related": [
+   "Parma Magica Folds"
+  ]
+ },
+ {
+  "title": "Parma Magica Folds",
+  "heading": "Parma Magica Folds",
+  "line": 966,
+  "endLine": 982,
+  "category": "magic",
+  "topic": "Parma Magica folds",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: Arma Magica Breakthroughs",
+  "summary": "Rules for calculating magic resistance under the folds, and descriptions of the Ablativa, Absorbea, Condensa, Custodia, Repercussa and Restricta variants of Parma Magica with their effects, casting times and restrictions.",
+  "quotes": [
+   "Double a magus's Parma Magica score when calculating magic resistance.",
+   "Double the Parma Magica score against the specified Form, but divide it by two (round up) against all others.",
+   "The magus adds twice his Parma Magica score to any Defense totals in combat."
+  ],
+  "related": [
+   "ArM5 Parma Magica"
+  ]
+ },
+ {
+  "title": "Parmulae",
+  "heading": "Parmulae",
+  "line": 984,
+  "endLine": 994,
+  "category": "magic",
+  "topic": "Parmulae",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: Parmulae Minor Breakthrough",
+  "summary": "A lesser enchanted device giving its wearer fixed magic resistance for a limited time, with its construction cost, level of effect and limitations, plus a warning to discuss it with the troupe.",
+  "quotes": [
+   "Parmulae: Lesser Enchanted Device that provides a magic resistance of 30. Total level of effect is 44.",
+   "Its base level of effect is Rego Vim 30."
+  ],
+  "related": [
+   "ArM5 Lesser Enchanted Devices"
+  ]
+ },
+ {
+  "title": "Figurine Magic",
+  "heading": "Figurine Magic",
+  "line": 996,
+  "endLine": 1031,
+  "category": "magic",
+  "topic": "Figurine Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Figurine Magic (Minor Supernatural)",
+  "summary": "Procedure for crafting and enchanting short-lived wax or wood figurines for a single recipient, giving them a Minor Virtue or a Hermetic spell, with construction rolls, enchantment Ease Factors, and limits on which Virtues can be imbued.",
+  "quotes": [
+   "Constructing a figurine takes a month for a wax figurine or two for a wood figurine.",
+   "Making a figure: Dexterity + Craft: Sculptor + Stress die",
+   "Enchanting a figure: Intelligence + Figurine Magic +Aura Modifier"
+  ],
+  "related": [
+   "Minor Supernatural Virtue: Figurine Magic"
+  ]
+ },
+ {
+  "title": "Realm-Aligned Spells",
+  "heading": "Realm-Aligned Spells",
+  "line": 1033,
+  "endLine": 1045,
+  "category": "magic",
+  "topic": "Realm-aligned spells",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: Realm-Aligned Spell Minor Breakthrough",
+  "summary": "How to invent a spell flavored to the Magic, Faerie or Infernal realm so it is immune to that realm's normal interaction and rolls fewer botch dice, at the cost of a lower Lab Total during invention.",
+  "quotes": [
+   "you reduce your Lab Total by limiting your Magic Theory Ability score to the level of your appropriate Realm Lore"
+  ],
+  "related": [
+   "ArM5 p.95 Inventing Spells",
+   "ArM5 Realm Interaction"
+  ]
+ },
+ {
+  "title": "Realm-Aligned Spell Interaction Table",
+  "heading": "Realm-Aligned Spell Interaction Table",
+  "line": 1047,
+  "endLine": 1056,
+  "category": "magic",
+  "topic": "Realm-aligned spells",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: Realm-Aligned Spell Minor Breakthrough",
+  "summary": "Table giving the aura bonus or penalty applied to a realm-aligned spell by aura type and spell flavor, replacing the normal Realm Interaction Table.",
+  "quotes": [],
+  "related": [
+   "ArM5 Realm Interaction Table"
+  ]
+ },
+ {
+  "title": "Becoming a Quaesitor",
+  "heading": "Becoming a Quaesitor",
+  "line": 1201,
+  "endLine": 1213,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Quaesitor training (any House)",
+  "summary": "How a magus of any House is selected, mentored and appointed as a Quaesitor, and which Abilities the training and exposure covers in game terms.",
+  "quotes": [
+   "In game terms this gives the candidate training and exposure to, Code of Hermes, Hermes Lore, Awareness, Folk Ken and Intrigue."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tribunals and the First Tribunal",
+  "heading": "Tribunals",
+  "line": 1273,
+  "endLine": 1277,
+  "category": "order",
+  "topic": "Tribunal law",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Distinguishes the First Tribunal from the regional and Grand Tribunals, which matters for the hierarchy of Tribunal rulings.",
+  "quotes": [],
+  "related": [
+   "Traditionalists / Transitionalists"
+  ]
+ },
+ {
+  "title": "Magvillus Council",
+  "heading": "The Magvillus Council",
+  "line": 1365,
+  "endLine": 1373,
+  "category": "order",
+  "topic": "House Guernicus organization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Guernicus",
+  "summary": "Composition, quorum and decision rules of the inner and outer tiers of the council that governs House Guernicus and sits in judgment on wider matters.",
+  "quotes": [
+   "An attendance of twenty-one is considered quorum."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Law in Your Saga",
+  "heading": "The Law in Your Saga",
+  "line": 1391,
+  "endLine": 1397,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advice to troupes on how strictly the Code is enforced, how strong the Traditionalist and Transitionalist factions are, and how uniform Tribunals are in their saga.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Forfeit Immunity",
+  "heading": "Forfeit Immunity",
+  "line": 1399,
+  "endLine": 1407,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The key defense against Hermetic charges: a magus may lose legal protection in a Wizard War or while committing a crime, and the response must be proportional.",
+  "quotes": [
+   "This lack of legal protection is called forfeit immunity.",
+   "While forfeit other magi may act against him, but the response should be proportional."
+  ],
+  "related": [
+   "Slaying",
+   "Wizard War"
+  ]
+ },
+ {
+  "title": "The Hermetic Oath (Interpretation)",
+  "heading": "The Hermetic Oath",
+  "line": 1409,
+  "endLine": 1415,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that the following sections present a condensed Traditionalist reading of the First Tribunal rulings and that the Presiding Quaesitor is the authority on the Code.",
+  "quotes": [
+   "The Presiding Quaesitor is the authority on the Code"
+  ],
+  "related": []
+ },
+ {
+  "title": "High and Low Crimes",
+  "heading": "High and Low Crimes",
+  "line": 1417,
+  "endLine": 1440,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the high crimes under the Code and explains that only a high crime allows the prosecution to call for a Wizard's March; all other offenses are low crimes.",
+  "quotes": [
+   "If the case is a high crime, the prosecution can call for a Wizard's March, otherwise he cannot."
+  ],
+  "related": [
+   "Wizard's March"
+  ]
+ },
+ {
+  "title": "Deprivation of Magical Power",
+  "heading": "Deprivation of Magical Power",
+  "line": 1442,
+  "endLine": 1450,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What counts as depriving a magus of magical power, including injuries, vis, sites, items, familiars, apprentices, books and lab equipment.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Slaying a Magus",
+  "heading": "Slaying",
+  "line": 1452,
+  "endLine": 1474,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The prohibition on slaying a member of the Order, the defenses of forfeit immunity and sanctum intrusion, and sample Tribunal rulings.",
+  "quotes": [
+   "being within another's sanctum automatically confers forfeit immunity with respect to the owner of the sanctum"
+  ],
+  "related": [
+   "Forfeit Immunity"
+  ]
+ },
+ {
+  "title": "Amici",
+  "heading": "Amici",
+  "line": 1476,
+  "endLine": 1482,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The custom of sworn friendship between magi and the lasting moral duty to avenge an amicus, relevant before declaring a Wizard War.",
+  "quotes": [],
+  "related": [
+   "Wizard War"
+  ]
+ },
+ {
+  "title": "Wizard War",
+  "heading": "Wizard War",
+  "line": 1485,
+  "endLine": 1507,
+  "category": "order",
+  "topic": "Wizard War",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The legal procedure and limits of a Wizard War: delivery of the declaration, the time to prepare and the duration, what property may be attacked, immunity from prosecution, and sample rulings.",
+  "quotes": [
+   "the recipient of the declaration has a lunar month to prepare and then the war lasts for a lunar month",
+   "A magus cannot legally attack property in which his opponent has shared ownership, such as covenant buildings, vis sites and covenant books."
+  ],
+  "related": [
+   "Forfeit Immunity"
+  ]
+ },
+ {
+  "title": "Abide by Tribunal Decisions",
+  "heading": "Abide by Tribunal Decisions",
+  "line": 1509,
+  "endLine": 1521,
+  "category": "order",
+  "topic": "Tribunal law",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Whose rulings bind whom: regional Tribunal rulings apply to residents and visitors, First and Grand Tribunal rulings apply everywhere, and regional rulings may not contradict higher ones.",
+  "quotes": [
+   "A regional Tribunal cannot rule in contradiction to First and Grand Tribunal rulings."
+  ],
+  "related": [
+   "The Peripheral Code"
+  ]
+ },
+ {
+  "title": "Proxy Voting",
+  "heading": "Proxy Voting",
+  "line": 1523,
+  "endLine": 1539,
+  "category": "order",
+  "topic": "Tribunal voting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a magus can give his sigil to another magus to vote for him at Tribunal, the difference between directed and free proxies, the obligation to report the vote, and the Tremere practice of holding filii's sigils.",
+  "quotes": [
+   "A magus can give his sigil to an attending magus who agrees to act as proxy.",
+   "Not following the instructions is a high crime."
+  ],
+  "related": [
+   "Voting Rights"
+  ]
+ },
+ {
+  "title": "Voting Rights and Residency",
+  "heading": "Voting Rights",
+  "line": 1541,
+  "endLine": 1563,
+  "category": "order",
+  "topic": "Tribunal voting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each magus's single vote at their residential and the Grand Tribunal, how residency is chosen and changed, delinquent residency, and the duty to vote prudently.",
+  "quotes": [
+   "Each magus must have a single Tribunal of residence.",
+   "Such a magus has seven years to meet the requirements or join another Tribunal."
+  ],
+  "related": [
+   "Proxy Voting",
+   "Vagrancy"
+  ]
+ },
+ {
+  "title": "Vagrancy",
+  "heading": "Vagrancy",
+  "line": 1565,
+  "endLine": 1575,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The legal requirement to belong to a House, the time allowed to find a new one after leaving or being expelled, how sponsorship works, and vagrancy for lacking a residential Tribunal.",
+  "quotes": [
+   "Magi who renounce their House membership or are expelled have one year to obtain membership in another."
+  ],
+  "related": [
+   "Voting Rights"
+  ]
+ },
+ {
+  "title": "Endangerment",
+  "heading": "Endangerment",
+  "line": 1591,
+  "endLine": 1599,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Hermetic Oath provision against endangering the Order, what the prosecution must show, and how intent and negligence affect the penalty.",
+  "quotes": [
+   "The prosecution needs to show that magi other than the defendant were endangered."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mundane Interference",
+  "heading": "Mundane Interference",
+  "line": 1601,
+  "endLine": 1613,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The prohibition on interfering in mundane affairs, what it forbids, and how a magus in conflict with a mundane can stay within the law.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Deals with Devils",
+  "heading": "Deals with Devils",
+  "line": 1615,
+  "endLine": 1633,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The most strictly enforced high crime: knowingly making an agreement with an infernal agent, the only defense of ignorance, the legality of hunting demons, and a sample ruling.",
+  "quotes": [
+   "Magi are absolutely forbidden from knowingly making an agreement with an infernal agent."
+  ],
+  "related": []
+ },
+ {
+  "title": "Molesting the Fay",
+  "heading": "Molesting the Fay",
+  "line": 1635,
+  "endLine": 1645,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What the prosecution must show for a charge of molesting the fay and the defense of reasonable self-protection.",
+  "quotes": [
+   "The prosecution will have to show that a magus or covenant has endangered other magi."
+  ],
+  "related": []
+ },
+ {
+  "title": "Scrying on Members of the Order",
+  "heading": "Scrying",
+  "line": 1647,
+  "endLine": 1657,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What counts as illegal scrying on other magi, the legality of detection magics in a covenant, and the special protection of Redcaps and use of spells without Penetration.",
+  "quotes": [
+   "The key point is 'legal affairs'."
+  ],
+  "related": [
+   "Forceless Casting"
+  ]
+ },
+ {
+  "title": "Apprentices under the Code",
+  "heading": "Apprentices",
+  "line": 1659,
+  "endLine": 1673,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When an apprenticeship legally begins, how an unclaimed Gifted child can be taken, and how adult non-Hermetic wizards join the Order and are sponsored.",
+  "quotes": [
+   "To officially claim an apprentice a magus must initiate them into Hermetic magic."
+  ],
+  "related": [
+   "ArM5 Apprentices"
+  ]
+ },
+ {
+  "title": "Duty of the Parens",
+  "heading": "Duty of the Parens",
+  "line": 1687,
+  "endLine": 1693,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The parens's duty to strike down an apprentice who turns against the Order, who inherits the duty, and the legal consequences of failing to carry it out.",
+  "quotes": [
+   "The Oath demands the parens be the first to attack an outcast magus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bonisagus Rights and Duties",
+  "heading": "Bonisagus Rights and Duties",
+  "line": 1695,
+  "endLine": 1713,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Oath provisions requiring Bonisagus magi to share their discoveries and Lab Texts and requiring other magi to concede Bonisagus's right to take their apprentices, with a sample ruling.",
+  "quotes": [],
+  "related": [
+   "Another Magus's Apprentice"
+  ]
+ },
+ {
+  "title": "Casting Out",
+  "heading": "Casting Out",
+  "line": 1715,
+  "endLine": 1719,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a convicted magus who refuses the offered lesser punishment is cast out of the Order.",
+  "quotes": [
+   "If taken literally, all convictions should lead to a Wizard's March."
+  ],
+  "related": [
+   "Wizard's March"
+  ]
+ },
+ {
+  "title": "Enemies and Allies of the Order",
+  "heading": "Enemies and Allies",
+  "line": 1721,
+  "endLine": 1727,
+  "category": "order",
+  "topic": "Code of Hermes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magi who aid enemies or attack friends and allies of the Order may be prosecuted; only a Tribunal can declare an enemy.",
+  "quotes": [
+   "Only a Tribunal can declare an individual or group as an enemy"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Peripheral Code and Case Rulings",
+  "heading": "The Peripheral Code",
+  "line": 1729,
+  "endLine": 1739,
+  "category": "order",
+  "topic": "Peripheral Code",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that Tribunal rulings together form the Peripheral Code and how earlier case rulings are used by prosecution and defense.",
+  "quotes": [
+   "There are two types of Tribunal ruling, case and proposed."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Legality of Certamen",
+  "heading": "The Legality of Certamen",
+  "line": 1741,
+  "endLine": 1757,
+  "category": "order",
+  "topic": "Certamen",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Legal limits on Certamen: it cannot be used to defy a Tribunal judgment, force a Code breach or hide a violation, and a mutually accepted challenge cannot be appealed.",
+  "quotes": [
+   "Certamen could not be used to defy a Tribunal judgment, make a magus break the Code or ignore a Code violation.",
+   "If a challenge is mutually accepted no Tribunal appeal is possible."
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Proposal Rulings",
+  "heading": "Proposal Rulings",
+  "line": 1759,
+  "endLine": 1767,
+  "category": "order",
+  "topic": "Peripheral Code",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a magus proposes a new Tribunal ruling, how far in advance it must be published, and how popular rulings spread to other Tribunals.",
+  "quotes": [
+   "Proposals need to be published no later than two years prior to the Tribunal."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Detail of the Peripheral Code",
+  "heading": "The Detail",
+  "line": 1769,
+  "endLine": 1775,
+  "category": "order",
+  "topic": "Peripheral Code",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on inventing Tribunal rulings and a list of the kinds of matters the Peripheral Code normally covers.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Determining the Principals",
+  "heading": "Determining the Principals",
+  "line": 1783,
+  "endLine": 1791,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Who becomes prosecution and defense principal in a case, and the order of precedence among volunteers.",
+  "quotes": [
+   "In descending order these are: parens, filius, amicus, covenant sodales and then any other magus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Determining the Tribunal",
+  "heading": "Determining the Tribunal",
+  "line": 1793,
+  "endLine": 1798,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for deciding which Tribunal hears a case, including border regions, duty to give one's name and residence, and who bears travel costs.",
+  "quotes": [
+   "In all other situations, the case should be brought to the defendant's Tribunal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Apprentices of House Bonisagus",
+  "heading": "Apprentices",
+  "line": 585,
+  "endLine": 595,
+  "category": "houses",
+  "topic": "House Bonisagus apprentices",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bonisagus",
+  "summary": "How House Bonisagus apprentices are chosen and trained, and the distinct gauntlets of the two branches: the Theoretical Interview for magi Bonisagi and a solo journey for magi Trianomae.",
+  "quotes": [],
+  "related": [
+   "ArM5 Apprentices"
+  ]
+ },
+ {
+  "title": "Publishing a Case",
+  "heading": "Publishing a Case",
+  "line": 1799,
+  "endLine": 1805,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The prosecuting principal must notify the defendant, Presiding Quaesitor and Praeco in advance, usually through Redcaps; later-discovered crimes are heard only if the defendant attends.",
+  "quotes": [
+   "This should be done no later than three months prior to the Tribunal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lawful Tyranny",
+  "heading": "Lawful Tyranny",
+  "line": 1811,
+  "endLine": 1817,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A defendant may legally threaten Wizard War to make a prosecutor drop a case; transferring the case to a powerful principal or a Guernicus advocate is the usual counter.",
+  "quotes": [
+   "A prosecuting principal can always transfer a case before publishing it."
+  ],
+  "related": [
+   "Wizard War",
+   "Transferring a Case"
+  ]
+ },
+ {
+  "title": "Transferring a Case",
+  "heading": "Transferring a Case",
+  "line": 1819,
+  "endLine": 1823,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Either principal may hand their case to an advocate; covers the share of fines paid to a prosecution principal and the duty to prepare consistent witness testimony.",
+  "quotes": [
+   "A successful prosecution can net substantial fines, a third of which go to the prosecution principal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Private Hearing",
+  "heading": "Private Hearing",
+  "line": 1827,
+  "endLine": 1835,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The first stage of presenting a case: both principals summarize in private before the Presiding Quaesitor, who may rule on disputed facts, give an opinion and offer a summary judgment only if both sides agree.",
+  "quotes": [
+   "The Presiding Quaesitor cannot offer a summary judgment unless both the defense and prosecution principal agree to it."
+  ],
+  "related": []
+ },
+ {
+  "title": "Public Hearing",
+  "heading": "Public Hearing",
+  "line": 1837,
+  "endLine": 1853,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The order of presentation, witness testimony, perjury challenges and voting at a full Tribunal hearing, decided by a simple majority with the Praeco breaking ties.",
+  "quotes": [
+   "A simple majority decides, with the Praeco breaking any ties."
+  ],
+  "related": [
+   "Testimony"
+  ]
+ },
+ {
+  "title": "Acquittal",
+  "heading": "Acquittal",
+  "line": 1855,
+  "endLine": 1859,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "After an acquittal the prosecution principal covers the defense principal's costs, and any counter-case begins immediately with roles reversed.",
+  "quotes": [
+   "If a case ends in an acquittal the prosecution principal is liable for all the defense principal's costs."
+  ],
+  "related": [
+   "Counter-Case Example"
+  ]
+ },
+ {
+  "title": "Conviction",
+  "heading": "Conviction",
+  "line": 1861,
+  "endLine": 1865,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "After a conviction for a high crime the prosecution may call for a Wizard's March, voted by simple majority with a tie defeating the motion; otherwise the Presiding Quaesitor offers a lesser penalty.",
+  "quotes": [
+   "A simple majority decides, with a tie defeating the motion."
+  ],
+  "related": [
+   "Wizard's March"
+  ]
+ },
+ {
+  "title": "Testimony",
+  "heading": "Testimony",
+  "line": 1867,
+  "endLine": 1881,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for giving testimony in person or in writing, perjury challenges and the Presiding Quaesitor's veto of them, Quaesitorial endorsement, and testimony of testimony.",
+  "quotes": [
+   "No magus can be forced to submit to truth-detection spells."
+  ],
+  "related": [
+   "Endorsing Testimony"
+  ]
+ },
+ {
+  "title": "Counter-Case Example",
+  "heading": "Counter-Case Example",
+  "line": 1883,
+  "endLine": 1885,
+  "category": "order",
+  "topic": "Tribunal procedure",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of two magi who each charge the other over a vis source, showing how an acquittal triggers an immediate counter-case.",
+  "quotes": [],
+  "related": [
+   "Acquittal"
+  ]
+ },
+ {
+  "title": "Damages",
+  "heading": "Damages",
+  "line": 1893,
+  "endLine": 1895,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Damages are paid directly to the victim, including costs of the case, and in a March the victim normally receives a share of the outcast's estate.",
+  "quotes": [
+   "the Presiding Quaesitor will normally grant the victim one quarter of the outcast's estate"
+  ],
+  "related": []
+ },
+ {
+  "title": "Fines",
+  "heading": "Fines",
+  "line": 1897,
+  "endLine": 1899,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How fines are divided between the prosecutor and the Tribunal coffers, and how a March splits the outcast's estate.",
+  "quotes": [
+   "one third is given to the prosecutor, two-thirds to the Tribunal coffers"
+  ],
+  "related": []
+ },
+ {
+  "title": "Determining Penalties",
+  "heading": "Determining Penalties",
+  "line": 1905,
+  "endLine": 1917,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How the Presiding Quaesitor sets compensation and punishment, the convicted magus's options (accept, negotiate, refuse), payment deadlines, and appeal to Magvillus.",
+  "quotes": [
+   "If the magus refuses a lesser penalty three times the Quaesitor will declare the magus Marched.",
+   "Damages, fines or services should normally be paid or completed in full by the next Tribunal."
+  ],
+  "related": [
+   "Wizard's March"
+  ]
+ },
+ {
+  "title": "Wizard's March",
+  "heading": "Wizard's March",
+  "line": 1919,
+  "endLine": 1931,
+  "category": "order",
+  "topic": "Wizard's March",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What it means to be cast out of the Order: outlaw status, the parens's duty, the sanctity of Tribunal grounds and the usual grace period before the outcast can be attacked.",
+  "quotes": [
+   "Normally, magi that the Tribunal has voted to cast out have until the end of the Tribunal before they can be legally attacked."
+  ],
+  "related": [
+   "Casting Out",
+   "Calling a Wizard's March"
+  ]
+ },
+ {
+  "title": "Punishments (Hierarchy)",
+  "heading": "Punishments",
+  "line": 1933,
+  "endLine": 1936,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the ladder of Hermetic punishments from seasons of service up to the death of a familiar. This is the second heading named Punishments (the first, at line 1901, is a one-line overview).",
+  "quotes": [
+   "Punishments are set in a hierarchy to accord with the seriousness of the conviction."
+  ],
+  "related": []
+ },
+ {
+  "title": "Seasons of Service",
+  "heading": "Seasons of Service",
+  "line": 1938,
+  "endLine": 1943,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A convicted magus performs seasons of work for Mercere or Guernicus magi in support of their Tribunal duties, such as longevity rituals, invested devices or copying records.",
+  "quotes": [
+   "The Presiding Quaesitor normally splits the seasons in the favor of Mercere magi."
+  ],
+  "related": []
+ },
+ {
+  "title": "Investing Items (Punishment)",
+  "heading": "Investing Items",
+  "line": 1944,
+  "endLine": 1947,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The magus must invest items with negotiated effects and deliver them to Mercere or Guernicus members.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Loss of an Apprentice",
+  "heading": "Loss of an Apprentice",
+  "line": 1948,
+  "endLine": 1953,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The convicted magus surrenders their apprentice; the prosecuting principal has first claim and certamen settles competing candidates.",
+  "quotes": [
+   "If multiple suitable candidates step forward, certamen contests decide the matter."
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Banishment from Tribunal",
+  "heading": "Banishment from Tribunal",
+  "line": 1954,
+  "endLine": 1957,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The magus must avoid the Tribunal's area, arrange others to harvest any vis sources there, and find a new residential Tribunal.",
+  "quotes": [
+   "The magus is required to find another residential Tribunal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Loss of Familiar",
+  "heading": "Loss of Familiar",
+  "line": 1958,
+  "endLine": 1967,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The cords binding magus and familiar are cut by a Quaesitorial ritual or a season of lab work, and the former familiar normally cannot be rebound.",
+  "quotes": [
+   "The former familiar cannot normally be rebound."
+  ],
+  "related": [
+   "Familiars"
+  ]
+ },
+ {
+  "title": "Death of Familiar",
+  "heading": "Death of Familiar",
+  "line": 1968,
+  "endLine": 1971,
+  "category": "order",
+  "topic": "Penalties",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The harshest punishment short of a March: the familiar is killed, and some magi choose a March instead.",
+  "quotes": [
+   "The convicted magus's familiar must be killed."
+  ],
+  "related": [
+   "Familiars"
+  ]
+ },
+ {
+  "title": "Quaesitor in Good Standing",
+  "heading": "Quaesitor in Good Standing",
+  "line": 1978,
+  "endLine": 1980,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Quaesitor",
+  "summary": "A Quaesitor needs a current signed letter from the Guernicus Primus to have authority to demand cooperation or preside at Tribunal.",
+  "quotes": [
+   "This letter must be less than seven years old to be valid."
+  ],
+  "related": []
+ },
+ {
+  "title": "Investigation Duties",
+  "heading": "Investigation Duties",
+  "line": 1982,
+  "endLine": 1986,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Quaesitor",
+  "summary": "A Quaesitor must investigate serious complaints but is entitled to seasons of his own each year, which may be accrued.",
+  "quotes": [
+   "He is also entitled to at least three seasons every year to pursue his own studies or attend to covenant responsibilities."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cooperation with Investigations",
+  "heading": "Cooperation",
+  "line": 1988,
+  "endLine": 1992,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "By Grand Tribunal ruling, magi must cooperate with an official investigation and let their servants be questioned, but need not reveal legal magical secrets.",
+  "quotes": [
+   "Failure to cooperate with an investigation is a low crime."
+  ],
+  "related": []
+ },
+ {
+  "title": "Investigation Immunity",
+  "heading": "Investigation Immunity",
+  "line": 1994,
+  "endLine": 2006,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Quaesitor (or an agent) in a justified investigation",
+  "summary": "Limits on when a Quaesitor may use Intellego magic in investigations without breaching the scrying prohibition, what liability remains for incidental discoveries, and who else the immunity covers.",
+  "quotes": [
+   "However, Intellego Mentem magic can never be used on magi or their servants without their permission."
+  ],
+  "related": [
+   "Scrying on Members of the Order"
+  ]
+ },
+ {
+  "title": "Sanctum Invasions",
+  "heading": "Sanctum Invasions",
+  "line": 2008,
+  "endLine": 2012,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Quaesitor",
+  "summary": "A Quaesitor may enter a sanctum under investigation, during which time they are under forfeit immunity, though investigation immunity protects them from charges about the invasion.",
+  "quotes": [
+   "While within the sanctum, the Quaesitor and any of their agents are under forfeit immunity."
+  ],
+  "related": [
+   "Forfeit Immunity"
+  ]
+ },
+ {
+  "title": "Compensation for Quaesitors",
+  "heading": "Compensation",
+  "line": 2014,
+  "endLine": 2026,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Quaesitor",
+  "summary": "How vis spent on an investigation and a seasonal rate are repaid from Tribunal coffers or by an unfounded complainant, and the share of fines for a Quaesitor who also prosecutes.",
+  "quotes": [
+   "Three pawns per season is a typical figure, but this will vary between sagas and Tribunals."
+  ],
+  "related": []
+ },
+ {
+  "title": "Calling a Wizard's March",
+  "heading": "Calling a Wizard's March",
+  "line": 2028,
+  "endLine": 2034,
+  "category": "order",
+  "topic": "Wizard's March",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Quaesitor",
+  "summary": "A Quaesitor can declare a March outside Tribunal for an immediate threat such as a diabolist; the next Tribunal reviews it and the Quaesitor may not profit from it.",
+  "quotes": [
+   "By Grand Tribunal ruling, no Quaesitor can materially benefit in any way from calling a Wizard's March."
+  ],
+  "related": [
+   "Wizard's March"
+  ]
+ },
+ {
+  "title": "Consultation and Arbitration",
+  "heading": "Consultation and Arbitration",
+  "line": 2036,
+  "endLine": 2044,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Quaesitors may draft and witness agreements or arbitrate disputes; an arbitrated agreement is binding by Grand Tribunal ruling.",
+  "quotes": [
+   "Once agreed, failure to comply with this agreement is an offense by Grand Tribunal ruling."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Presiding Quaesitor",
+  "heading": "The Presiding Quaesitor",
+  "line": 2058,
+  "endLine": 2078,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a Presiding Quaesitor is chosen, the role of his two advisers, his powers of veto and appeal to the Grand Tribunal, and the vote to validate a Tribunal.",
+  "quotes": [
+   "He then calls for a vote to validate the Tribunal, which requires a twothirds majority."
+  ],
+  "related": [
+   "The Veto"
+  ]
+ },
+ {
+  "title": "Endorsing Testimony",
+  "heading": "Endorsing Testimony",
+  "line": 2080,
+  "endLine": 2092,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a Quaesitor magically verifies testimony: the witness lowers all defenses, the Quaesitor checks for manipulation, and conflicting endorsed testimony raises suspicion of infernal involvement.",
+  "quotes": [
+   "the Quaesitor endorsing the testimony must be senior to or at least a peer of the witness"
+  ],
+  "related": [
+   "Testimony"
+  ]
+ },
+ {
+  "title": "The Veto",
+  "heading": "The Veto",
+  "line": 2094,
+  "endLine": 2112,
+  "category": "order",
+  "topic": "Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When a Presiding Quaesitor may veto a ruling, how a veto is reviewed by Magvillus and appealed to the Grand Tribunal, and a suggested troupe roll to judge a clear conflict with the Code.",
+  "quotes": [
+   "This is a very limited judgment, requiring an Int + Code of Hermes roll of 6+ to determine."
+  ],
+  "related": [
+   "Abide by Tribunal Decisions"
+  ]
+ }
+]

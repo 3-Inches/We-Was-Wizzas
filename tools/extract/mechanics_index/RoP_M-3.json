@@ -1,0 +1,1155 @@
+[
+ {
+  "title": "Florae and Fauni",
+  "heading": "Florae and Fauni",
+  "line": 6200,
+  "endLine": 6208,
+  "category": "beings",
+  "topic": "Airy Spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Airy Spirit (flora/faunus)",
+  "summary": "Airy Spirits attached to individual plants and animals, with typical Magic Might range and powers for designing them.",
+  "quotes": [
+   "Most fauni and florae possess Cunning rather than Intelligence."
+  ]
+ },
+ {
+  "title": "Spirits of the Elements",
+  "heading": "Spirits of the Elements",
+  "line": 6239,
+  "endLine": 6255,
+  "category": "beings",
+  "topic": "Airy Spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Airy Spirit (element)",
+  "summary": "Airy Spirits tied to individual non-living natural objects, with Might scaling by the object's size and importance and differing outlooks by elemental Form.",
+  "quotes": [
+   "A spirit of an element can be present in any matter that is still in its natural form"
+  ]
+ },
+ {
+  "title": "Imagines, Spirits of Sensation",
+  "heading": "Imagines, the Spirits of Sensation",
+  "line": 6275,
+  "endLine": 6283,
+  "category": "beings",
+  "topic": "Airy Spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Airy Spirit (imago)",
+  "summary": "Airy Spirits embodying sensory species, with Imaginem Might and powers that replicate effects matching their sensation.",
+  "quotes": [
+   "The weakest of these spirits represents a specific incidence of a species, whereas those of Might 10 or more represent more-general qualities."
+  ]
+ },
+ {
+  "title": "Eidolons, Spirits of Emotions",
+  "heading": "Eidolons, the Spirits of Emotions",
+  "line": 6323,
+  "endLine": 6331,
+  "category": "beings",
+  "topic": "Airy Spirits",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Airy Spirit (eidolon)",
+  "summary": "Spirits of emotion created by humans in contact with strong magic; their Might derives from Personality Flaws or Traits and they can be summoned through an Arcane Connection to a person feeling the emotion.",
+  "quotes": [
+   "Otherwise, the spirit has a Might equal to (5 x Personality Trait)."
+  ]
+ },
+ {
+  "title": "Spell Spirits",
+  "heading": "Spell Spirits",
+  "line": 6363,
+  "endLine": 6365,
+  "category": "mysteries",
+  "topic": "Spirit magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Hermetic Theurgy",
+  "summary": "Theurgists can summon spirits whose only power duplicates a specific spell or Form; the summoning duration sets how long the spirit attends.",
+  "quotes": [
+   "A spell spirit has a Might at least equal to the level of the spell"
+  ]
+ },
+ {
+  "title": "Spirits of Place, Genii Loci",
+  "heading": "Spirits of Place, Genii Loci",
+  "line": 6367,
+  "endLine": 6375,
+  "category": "beings",
+  "topic": "Airy Spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Airy Spirit (genius loci)",
+  "summary": "The most powerful Airy Spirits, bound to a locus (a place) rather than an object, with typical powers and a protective relationship to everything in the locus.",
+  "quotes": [
+   "Further, all genii loci possess the Ways of the (Land) Virtue."
+  ]
+ },
+ {
+  "title": "Jinn",
+  "heading": "Jinn",
+  "line": 6377,
+  "endLine": 6385,
+  "category": "beings",
+  "topic": "Airy Spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Jinn (Magic, Faerie or Infernal)",
+  "summary": "A variety of genii loci from desert lands that can align to Magic, Faerie or Infernal Realms, share a bargain-binding Malediction, and can temporarily transfer their locus.",
+  "quotes": [
+   "it is bound to the agreed terms unless its partner reneges first"
+  ]
+ },
+ {
+  "title": "Lugra, Spirits of Hardship",
+  "heading": "Lugra, Spirits of Hardship",
+  "line": 6387,
+  "endLine": 6393,
+  "category": "beings",
+  "topic": "Airy Spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Airy Spirit (lugra)",
+  "summary": "Parasitic spirits of life's hardships that afflict randomly chosen hosts, with typical Control Human and Mastery powers.",
+  "quotes": []
+ },
+ {
+  "title": "The Named Spirits (Daimons and Aspects)",
+  "heading": "The Named Spirits",
+  "line": 6403,
+  "endLine": 6409,
+  "category": "beings",
+  "topic": "Daimons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Daimon (Daimon Virtue)",
+  "summary": "Daimons draw power from True Names and act in the world through Aspects, each of which is built as its own spirit with separate statistics.",
+  "quotes": [
+   "Each Aspect of a Daimon should be created as if it were an independent spirit."
+  ]
+ },
+ {
+  "title": "Spirits and Hermetic Magic",
+  "heading": "Spirits and Hermetic Magic",
+  "line": 6489,
+  "endLine": 6493,
+  "category": "magic",
+  "topic": "Spirit magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Hermetic magi summon and control Airy Spirits with Rego, and the extra requirements for summoning a Daimon's Aspect, with theurgist advantages.",
+  "quotes": [
+   "the spell of the non-theurgist must have a base level equal to twice the Daimon's Might"
+  ],
+  "related": [
+   "The Mysteries Revised Edition, Chapters 4, 8 and 9"
+  ]
+ },
+ {
+  "title": "Arcane Connections, True Names, and Synthemata (Spirits)",
+  "heading": "Arcane Connections, True Names, and Synthemata",
+  "line": 6495,
+  "endLine": 6501,
+  "category": "magic",
+  "topic": "True Names and synthemata",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What counts as an Arcane Connection to a spirit or Daimon, how True Names are learned as spell-like abilities with experience points, and how synthemata and True Names help with spirit magic.",
+  "quotes": [
+   "costs 5 experience points to learn",
+   "Knowing the True Name of a creature adds 5 to all lab totals to research synthemata for that same being."
+  ],
+  "related": [
+   "The Mysteries Revised Edition, pages 86-88"
+  ]
+ },
+ {
+  "title": "Spirits and Non-Hermetic Magic (Goetic Arts)",
+  "heading": "Spirits and Non-Hermetic Magic",
+  "line": 6503,
+  "endLine": 6509,
+  "category": "traditions",
+  "topic": "Goetic Arts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Goetic Arts",
+  "summary": "Summary of the four Goetic Arts used by non-Hermetic sorcerers to summon, drain, bind and command spirits, and which Realms each is aligned to.",
+  "quotes": [
+   "There are four Goetic Arts \u2014 namely Summoning, Ablating, Binding, and Commanding"
+  ],
+  "related": [
+   "Realms of Power: The Infernal, Chapter 11: Ars Goetia"
+  ]
+ },
+ {
+  "title": "New Spirit Spells and Spell Guidelines",
+  "heading": "New Spirit Spells and Spell Guidelines",
+  "line": 6511,
+  "endLine": 6513,
+  "category": "magic",
+  "topic": "Spirit spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "General rule that spells to summon, perceive or control spirits must penetrate the spirit's Magic Might, with notes on controlling a Daimon's Aspect.",
+  "quotes": [
+   "All spells to summon, perceive, or control a spirit must penetrate its Magic Might."
+  ]
+ },
+ {
+  "title": "Intellego (Form) Spirit Guidelines",
+  "heading": "Intellego (Form)",
+  "line": 6515,
+  "endLine": 6527,
+  "category": "magic",
+  "topic": "Spirit spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Intellego guidelines for sensing supernatural creatures whose Might is aligned to a Form, graded by minimum Might.",
+  "quotes": [
+   "Sense a supernatural creature of Might 30 or above with a Might associated with the Form."
+  ]
+ },
+ {
+  "title": "Rego (Form) Spirit Guidelines",
+  "heading": "Rego (Form)",
+  "line": 6537,
+  "endLine": 6543,
+  "category": "magic",
+  "topic": "Spirit spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rego guidelines for controlling and summoning Airy Spirits tied to a Form; an Arcane Connection is always needed to summon.",
+  "quotes": [
+   "Control an Airy Spirit of (Form).",
+   "Summon an Airy Spirit of (Form)."
+  ]
+ },
+ {
+  "title": "Rego Vim Spirit Guidelines",
+  "heading": "Rego Vim",
+  "line": 6545,
+  "endLine": 6551,
+  "category": "magic",
+  "topic": "Spirit spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rego Vim guidelines for controlling or summoning Airy Spirits of a Realm, and a general guideline for summoning a Daimon's Aspect as a Ritual.",
+  "quotes": [
+   "Summon an Aspect of a Daimon if (level + 4 magnitudes) equals or exceeds twice its Might. (Ritual)"
+  ]
+ },
+ {
+  "title": "Characters Touched by Spirits of Place",
+  "heading": "Example Spirits of Places",
+  "line": 6553,
+  "endLine": 6557,
+  "category": "beings",
+  "topic": "Spirits of place",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: genius loci",
+  "summary": "Ways characters can gain powers from long exposure to a genius loci: birth Virtues and Flaws, Grant powers, possession, bargains and pacts, communion for Mystery initiation, and Warping.",
+  "quotes": [
+   "Major bargains may constitute a pact (granting the Spiritual Pact Virtue)"
+  ],
+  "related": [
+   "ArM5 p.168 Warping"
+  ]
+ },
+ {
+  "title": "Ghosts (Apparitions, Shades, Spectres)",
+  "heading": "Ghosts",
+  "line": 6831,
+  "endLine": 6857,
+  "category": "beings",
+  "topic": "Ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: ghost",
+  "summary": "Describes the kinds of Magical ghost (apparitions, shades and spectres), how each remembers its life, what ties it to the world and how it can be laid to rest.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: The Infernal, page 36"
+  ]
+ },
+ {
+  "title": "Ghosts as Characters",
+  "heading": "Ghosts as Characters",
+  "line": 6869,
+  "endLine": 6873,
+  "category": "beings",
+  "topic": "Ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: ghost",
+  "summary": "Ghosts are built as spirits with the Magic Spirit Virtue, and the ability to take material form is treated as a supernatural power that not every ghost has.",
+  "quotes": [
+   "are spirits with no true material form and must have the Magic Spirit special Virtue"
+  ]
+ },
+ {
+  "title": "Designing a Ghost: Concept",
+  "heading": "Concept",
+  "line": 6875,
+  "endLine": 6889,
+  "category": "beings",
+  "topic": "Ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: ghost",
+  "summary": "Steps for building a ghost: choose a Flaw as its worldly tie, generate Characteristics as for a human, give it Magic Spirit and a Magical Social Status, and drop Virtues and Flaws that no longer apply.",
+  "quotes": [
+   "All ghosts should have the special Virtue, Magic Spirit"
+  ],
+  "related": [
+   "ArM5 pp.38-39 Flaws"
+  ]
+ },
+ {
+  "title": "Designing a Ghost: Season and Abilities",
+  "heading": "Season and Abilities",
+  "line": 6891,
+  "endLine": 6899,
+  "category": "beings",
+  "topic": "Ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: ghost",
+  "summary": "Guidance on which character Season to use for apparitions, shades and spectres according to how much of their living knowledge they retain.",
+  "quotes": [
+   "should usually be designed as Autumn characters."
+  ]
+ },
+ {
+  "title": "Extraordinary Vis",
+  "heading": "Extraordinary Vis",
+  "line": 7004,
+  "endLine": 7010,
+  "category": "realms",
+  "topic": "Extraordinary vis",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Extraordinary vis found in powerful magical places",
+  "summary": "Rules for vis that carries a special power: how it is detected, investigated in the lab, and the limits on its effects, Range and pawn count.",
+  "quotes": [
+   "A reasonable guideline is 1 pawn per 10 levels of the magical effect produced by the extraordinary vis.",
+   "the Laboratory Total to discover the vis' power and triggering event is equal to half the spell level of the spell-like vis."
+  ],
+  "related": [
+   "Sense the Nature of Vis"
+  ]
+ },
+ {
+  "title": "Lesser Enchantment Vis",
+  "heading": "Lesser Enchantment Vis",
+  "line": 7012,
+  "endLine": 7016,
+  "category": "realms",
+  "topic": "Extraordinary vis",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Extraordinary vis of the lesser enchantment type",
+  "summary": "Extraordinary vis that emulates a lesser enchantment, designed like a normal lesser enchantment but free of the usual material and size limits; moving it to another object destroys its power.",
+  "quotes": [
+   "This form of extraordinary vis emulates a lesser enchantment, usually level 30 or lower."
+  ],
+  "related": [
+   "ArM5 p.97"
+  ]
+ },
+ {
+  "title": "Spell-like Vis",
+  "heading": "Spell-like Vis",
+  "line": 7111,
+  "endLine": 7113,
+  "category": "realms",
+  "topic": "Extraordinary vis",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Extraordinary vis of the spell-like type",
+  "summary": "Extraordinary vis that mimics a high-level spell once, needs a triggering event, and is completely consumed by its effect.",
+  "quotes": [
+   "Unlike lesser enchantment vis, spell-like vis cannot produce a continuous magical effect and is completely consumed at the end of the effect."
+  ]
+ },
+ {
+  "title": "Dedicated Vis",
+  "heading": "Dedicated Vis",
+  "line": 7213,
+  "endLine": 7217,
+  "category": "lab",
+  "topic": "Dedicated vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dedicated vis (a specific Technique and Form pairing)",
+  "summary": "Rare vis tied to a Technique and Form combination that counts as two pawns and gives bonuses in spell use, study and enchantment creation when used for that combination.",
+  "quotes": [
+   "the vis may not be disaggregated into separate pawns of vis"
+  ]
+ },
+ {
+  "title": "Dedicated Vis in Spell Use",
+  "heading": "Spell Use",
+  "line": 7219,
+  "endLine": 7221,
+  "category": "magic",
+  "topic": "Dedicated vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dedicated vis (a specific Technique and Form pairing)",
+  "summary": "Dedicated vis used to power a spell, Ritual or enchantment of its own Technique and Form is twice as effective, including for botch dice.",
+  "quotes": [
+   "a magus using dedicated vis enjoys a vis boost of +4 per pawn used"
+  ]
+ },
+ {
+  "title": "Studying Dedicated Vis",
+  "heading": "Study",
+  "line": 7223,
+  "endLine": 7229,
+  "category": "seasons",
+  "topic": "Dedicated vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dedicated vis (a specific Technique and Form pairing)",
+  "summary": "How a magus studies from dedicated vis: each pawn counts double toward the minimum needed, Source Quality is halved, and botch dice are doubled; dedicated and normal vis can be mixed to study two Arts at once.",
+  "quotes": [
+   "The Source Quality is determined as normal and the total is divided by 2."
+  ]
+ },
+ {
+  "title": "Dedicated Vis in Enchantment Creation",
+  "heading": "Enchantment Creation",
+  "line": 7231,
+  "endLine": 7235,
+  "category": "lab",
+  "topic": "Dedicated vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dedicated vis (a specific Technique and Form pairing)",
+  "summary": "Dedicated vis grants double shape and material bonuses and counts as already-opened vis for enchanting the object it is in.",
+  "quotes": [
+   "it gives double the normal shape and material bonus"
+  ],
+  "related": [
+   "ArM5 p.97",
+   "The Mysteries Revised Edition, Ready-Opened Devices, page 41"
+  ]
+ },
+ {
+  "title": "Vis Storage",
+  "heading": "Vis Storage",
+  "line": 7237,
+  "endLine": 7273,
+  "category": "covenant",
+  "topic": "Vis storage",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule that large stockpiles of single-Art vis cause spontaneous Art-appropriate spells, with the spell magnitude growing with each multiple of the minimum stored, plus a simpler list of harmless effects per Art.",
+  "quotes": [
+   "For every multiple beyond the minimum, an additional magnitude is added to the level of spells that may spontaneously occur."
+  ]
+ },
+ {
+  "title": "Extraordinary and Dedicated Vis Costs (Covenant Creation)",
+  "heading": "Covenant Creation Costs",
+  "line": 7275,
+  "endLine": 7287,
+  "category": "covenant",
+  "topic": "Vis storage",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Build Point costs for covenant vis sources that produce extraordinary or dedicated vis, and how those costs set trade value relative to normal vis.",
+  "quotes": [
+   "Dedicated Vis Source Cost: 7.5 Build Points per pawn of vis per year",
+   "divide its cost in Build Points by 5"
+  ]
+ },
+ {
+  "title": "Insubstantial Vis",
+  "heading": "Insubstantial Vis",
+  "line": 7289,
+  "endLine": 7291,
+  "category": "lab",
+  "topic": "Extraordinary vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Special vis moved out of its native form loses its powers, so insubstantial vis (wind, scent, sound, light) must be kept in sealed vials or enchanted containers.",
+  "quotes": [
+   "Transferring special, dedicated, or unique vis from its native form to another shape destroys the special powers contained in the vis."
+  ]
+ },
+ {
+  "title": "Enriching a Thing of Virtue",
+  "heading": "Enriching a Thing of Virtue",
+  "line": 7308,
+  "endLine": 7322,
+  "category": "traditions",
+  "topic": "Things of Virtue",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Magic Lore",
+  "summary": "Procedure for Enriching Herbs and Objects of Virtue with a season of magical operation to grant a Virtue to the wearer, including the Magic Lore roll to learn the method, the Enrichment Total, the Virtues conferred, drawbacks and Warping.",
+  "quotes": [
+   "make an Intelligence + Magic Lore roll against an Ease Factor of 9",
+   "Enrichment Total: Intelligence + Magic Lore + aura"
+  ],
+  "related": [
+   "ArM5 p.168 Warping",
+   "ArM5 p.184 Penetration of Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Hedge Magicians and Enriched Things of Virtue",
+  "heading": "Hedge Magicians and Enriched Things of Virtue",
+  "line": 7324,
+  "endLine": 7326,
+  "category": "traditions",
+  "topic": "Things of Virtue",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Magic Lore",
+  "summary": "How ungifted hedge magicians use Enriched Things of Virtue to gain minor powers at the cost of accumulating Warping.",
+  "quotes": [
+   "The mechanics of Enriching a Thing of Virtue allow an unGifted character to acquire minor magical powers."
+  ]
+ },
+ {
+  "title": "Hermetic Magi and Enriched Things of Virtue",
+  "heading": "Hermetic Magi and Enriched Things of Virtue",
+  "line": 7328,
+  "endLine": 7332,
+  "category": "lab",
+  "topic": "Things of Virtue",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Magic Lore",
+  "summary": "Why magi rarely benefit from Enriched Things of Virtue and how one can be built into an invested item or talisman.",
+  "quotes": [
+   "An invested item made from an Enriched Thing of Virtue can only be made into a talisman if the magus Enriched the item himself."
+  ]
+ },
+ {
+  "title": "Shape and Material Bonuses for Herbs of Virtue",
+  "heading": "Shape and Material Bonuses for Herbs of Virtue",
+  "line": 7364,
+  "endLine": 7376,
+  "category": "lab",
+  "topic": "Shape and material bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "List of the shape and material bonuses that each example Herb of Virtue provides to enchantments.",
+  "quotes": [
+   "+7 divination"
+  ]
+ },
+ {
+  "title": "Objects of Virtue",
+  "heading": "Objects of Virtue",
+  "line": 7378,
+  "endLine": 7380,
+  "category": "traditions",
+  "topic": "Things of Virtue",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Magic Lore",
+  "summary": "Objects of Virtue derive their Virtues from the same Shape and Material Bonuses magi use, and any vis-bearing item with such a bonus to an Art can be Enriched to confer Puissant Art.",
+  "quotes": [
+   "can be Enriched to confer Puissant Art"
+  ]
+ },
+ {
+  "title": "Shape and Material Bonuses for Objects of Virtue",
+  "heading": "Shape and Material Bonuses for Objects of Virtue",
+  "line": 7456,
+  "endLine": 7470,
+  "category": "lab",
+  "topic": "Shape and material bonuses",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "List of the shape and material bonuses that each example Formed Stone or Object of Virtue provides to enchantments.",
+  "quotes": [
+   "+2 arthritis"
+  ]
+ },
+ {
+  "title": "Awakened Trees",
+  "heading": "Awakened Trees",
+  "line": 7472,
+  "endLine": 7478,
+  "category": "realms",
+  "topic": "Awakened trees",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Trees within a Magic aura",
+  "summary": "Trees in Magic auras are awake, with wakefulness rising with aura strength, and have Cunning instead of Intelligence and no Might score.",
+  "quotes": [
+   "In an aura of level 6 or higher, the trees are fully awake and can see and hear about as well as a human can."
+  ],
+  "related": [
+   "ArM5 p.137 Stir the Slumbering Tree"
+  ]
+ },
+ {
+  "title": "Animated Trees",
+  "heading": "Animated Trees",
+  "line": 7480,
+  "endLine": 7482,
+  "category": "beings",
+  "topic": "Awakened trees",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Trees animated by spell or spirit",
+  "summary": "How trees become mobile through spells or spirit powers, and when an animated tree has a Might score.",
+  "quotes": [
+   "temporarily gains Might equal to the activation cost of the power"
+  ]
+ },
+ {
+  "title": "Character Guide: An Animated Tree",
+  "heading": "Character Guide: An Animated Tree",
+  "line": 7484,
+  "endLine": 7518,
+  "category": "beings",
+  "topic": "Awakened trees",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Trees animated by spell or spirit",
+  "summary": "Stock statistics block to use for any animated tree, with guidance on uprooting and moving it via Manifestation.",
+  "quotes": [
+   "Under most circumstances, an animate tree has no Might score."
+  ],
+  "related": [
+   "ArM5 p.139 Lord of the Trees"
+  ]
+ },
+ {
+  "title": "Option: Brawl Skill for Animated Trees",
+  "heading": "Option: Brawl Skill for Animated Trees",
+  "line": 7520,
+  "endLine": 7524,
+  "category": "beings",
+  "topic": "Awakened trees",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Trees animated by spell or spirit",
+  "summary": "Optional rule giving each animated tree its own Brawl skill, set by the caster's Finesse or by the animating spirit.",
+  "quotes": [
+   "a tree animated by a spell has a Brawl skill equal to the caster's Finesse"
+  ]
+ },
+ {
+  "title": "Trees of Virtue",
+  "heading": "Trees of Virtue",
+  "line": 7530,
+  "endLine": 7536,
+  "category": "traditions",
+  "topic": "Things of Virtue",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Magic Lore",
+  "summary": "Trees of Virtue hold 1 to 3 pawns of vis tied to their powers and can be Enriched using only part of the tree, which depletes the tree's magic.",
+  "quotes": [
+   "Enriching this item, or collecting the tree's vis, depletes the tree's magical powers."
+  ]
+ },
+ {
+  "title": "Elementals and Rarefication",
+  "heading": "Elementals",
+  "line": 7764,
+  "endLine": 7770,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: elemental",
+  "summary": "What elementals are and how pure raw elemental matter rarefies into one, including spontaneous rarefication from Warped matter.",
+  "quotes": [
+   "raw elemental matter possessing a Warping Score of 5 may spontaneously rarefy into an elemental"
+  ]
+ },
+ {
+  "title": "Magic and Elementals",
+  "heading": "Magic and Elementals",
+  "line": 7778,
+  "endLine": 7782,
+  "category": "magic",
+  "topic": "Elementals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How magi create, control and destroy elementals with Creo, Rego and Perdo, and how botches or purification magic in a Magic aura can accidentally rarefy one.",
+  "quotes": [
+   "The production of an elemental is a potential consequence of any botched spell or lab activity involving an elemental Form while in a Magic aura."
+  ]
+ },
+ {
+  "title": "New Elementals Spells and Spell Guidelines",
+  "heading": "New Elementals Spells and Spell Guidelines",
+  "line": 7784,
+  "endLine": 7800,
+  "category": "magic",
+  "topic": "Elementals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines for creating, converting, controlling and destroying elementals using the elemental Forms.",
+  "quotes": [
+   "Create an elemental from a base amount of elemental matter (Ritual)",
+   "Completely control an elemental"
+  ]
+ },
+ {
+  "title": "Designing Elementals",
+  "heading": "Designing Elementals",
+  "line": 7820,
+  "endLine": 7826,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: elemental",
+  "summary": "Introduction to building an elemental character as a Magic Thing, with its inherited Virtues and Flaws.",
+  "quotes": [
+   "the general principles can be applied to use an elemental as the starting point for a magic character"
+  ]
+ },
+ {
+  "title": "Elemental Concept and Characteristics",
+  "heading": "Concept",
+  "line": 7828,
+  "endLine": 7845,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: elemental",
+  "summary": "How an elemental's Size and element determine its Characteristics, which Characteristics cannot be negative for each element, and the Size adjustment applied to Quickness and Strength.",
+  "quotes": [
+   "make the usual adjustment from Size, subtracting Size from Quickness and adding twice Size to Strength."
+  ]
+ },
+ {
+  "title": "Elemental Season and Abilities",
+  "heading": "Season and Abilities",
+  "line": 7861,
+  "endLine": 7863,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: elemental",
+  "summary": "Elementals are normally Spring characters and must buy Brawl and Athletics (or Swim for water) to a score tied to their Might, using Improved Abilities if experience runs short.",
+  "quotes": [
+   "Elementals are almost always Spring characters"
+  ]
+ },
+ {
+  "title": "Elemental Might and Qualities",
+  "heading": "Might and Qualities",
+  "line": 7865,
+  "endLine": 7869,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: elemental",
+  "summary": "Elemental Might is set by the amount of matter it formed from and fixes its Size, with fixed free Qualities and an obligatory Greater Power for its element.",
+  "quotes": [
+   "Every increase in magnitude of Might (as if it were a spell) adds three to the Size."
+  ]
+ },
+ {
+  "title": "Elemental Combat",
+  "heading": "Elemental Combat",
+  "line": 7871,
+  "endLine": 7877,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: elemental",
+  "summary": "Wounds taken by an elemental also drain its Might Pool, reaching zero leaves it inanimate, and broken-off matter holds recoverable vis.",
+  "quotes": [
+   "each wound also reduces the elemental's Might Pool by a number of points equal to the Wound Penalty"
+  ]
+ },
+ {
+  "title": "Elemental Powers",
+  "heading": "Elemental Powers",
+  "line": 7879,
+  "endLine": 7881,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: elemental",
+  "summary": "Every elemental has a power from its matter and one for its natural attack; the attack ignores Magic Resistance cost-free but Magic Resistance can still block touching.",
+  "quotes": []
+ },
+ {
+  "title": "Size, Might, and Characteristics of Elementals",
+  "heading": "Size, Might, and Characteristics of Elementals",
+  "line": 7883,
+  "endLine": 7899,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: elemental",
+  "summary": "Table giving the Size and the eight typical Characteristic values for elementals at each Might score, with no point cost.",
+  "quotes": [
+   "Like other Magic Things (see Chapter 3: Magic Characters), the Size of an elemental is dependent on the Might chosen for it"
+  ]
+ },
+ {
+  "title": "Earth Elementals",
+  "heading": "Earth Elementals",
+  "line": 7901,
+  "endLine": 7907,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: elemental",
+  "summary": "Description of earth elementals (genomi): what they rarefy from, how Size relates to raw material, how they move and attack and which weapons harm them.",
+  "quotes": [
+   "Only bludgeoning weapons such as hammers, maces, or axes can damage an earth elemental"
+  ]
+ },
+ {
+  "title": "Water Elementals",
+  "heading": "Water Elementals",
+  "line": 7980,
+  "endLine": 7986,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: elemental",
+  "summary": "Description of water elementals (lymphae): what they rarefy from, Size scale, movement, and how weapons, fire and Scuffle damage affect them.",
+  "quotes": [
+   "A water elemental's attacks only inflict Scuffle damage"
+  ]
+ },
+ {
+  "title": "Air Elementals",
+  "heading": "Air Elementals",
+  "line": 8060,
+  "endLine": 8066,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: elemental",
+  "summary": "Description of air elementals (zephyri): what forms them, Size scale, movement, immunity to weapons, and that they have no natural attack and rely on powers.",
+  "quotes": [
+   "Weapons are meaningless to a creature with this power, they simply pass straight through."
+  ]
+ },
+ {
+  "title": "Fire Elementals",
+  "heading": "Fire Elementals",
+  "line": 8140,
+  "endLine": 8146,
+  "category": "beings",
+  "topic": "Elementals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: elemental",
+  "summary": "Description of fire elementals (phlegethi): what they rarefy from, Size scale, movement over flammable surfaces, and how weapons and water affect them.",
+  "quotes": [
+   "It may also jump a gap of non-flammable surface (such as bare rock) up to a width equal to its Magic Might in feet."
+  ]
+ },
+ {
+  "title": "Beast Statistics",
+  "heading": "Beast Statistics",
+  "line": 8224,
+  "endLine": 8232,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Rules for mundane beast statistics: Characteristics outside the human range need no Virtue, Cunning replaces Intelligence, beasts cannot learn new Abilities without training, and they have no Might or vis.",
+  "quotes": [
+   "Beasts do not need a Virtue or Flaw to have Characteristics outside the normal human range of \u20133 to +3."
+  ],
+  "related": [
+   "ArM5 p.191"
+  ]
+ },
+ {
+  "title": "Modifying Beast Sizes",
+  "heading": "Modifying Beast Sizes",
+  "line": 8234,
+  "endLine": 8236,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How to change a beast's Size by adjusting Strength and Quickness per point of Size, then updating combat statistics.",
+  "quotes": [
+   "add 2 points of Strength and subtract one point of Quickness for each point of Size added"
+  ]
+ },
+ {
+  "title": "Beast Virtues, Flaws, and Qualities",
+  "heading": "Beast Virtues, Flaws, and Qualities",
+  "line": 8238,
+  "endLine": 8244,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Species Virtues and Flaws are free to all members and guide designing a species, while exceptional individuals may take balanced individual Virtues and Flaws, and Qualities adjust capabilities.",
+  "quotes": [
+   "It is recommended that a species have at least one point of Flaws for every three points of Virtues."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults, pages 40-43"
+  ]
+ },
+ {
+  "title": "New Virtues for Beasts (Ferocity)",
+  "heading": "New Virtues for Beasts",
+  "line": 8246,
+  "endLine": 8251,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ferocity (beasts only)",
+  "summary": "Beasts with Ferocity get a pool of Confidence points usable only when their natural ferocity is triggered, such as defending a den or fighting a natural enemy.",
+  "quotes": [
+   "take three points for you to use when those circumstances are met"
+  ]
+ },
+ {
+  "title": "Beasts in Combat",
+  "heading": "Beasts in Combat",
+  "line": 8253,
+  "endLine": 8259,
+  "category": "combat",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Beasts use most human combat options, can use Confidence if they have Ferocity, and attack with only one natural weapon per round.",
+  "quotes": [
+   "Regardless of how many weapons a beast has, it may only attack with one weapon in a given round."
+  ]
+ }
+]

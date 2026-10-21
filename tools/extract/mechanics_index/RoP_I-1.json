@@ -1,0 +1,1239 @@
+[
+ {
+  "title": "Infernal Aura Strengths",
+  "heading": "Infernal Auras",
+  "line": 383,
+  "endLine": 388,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how an Infernal aura feels and what it does to people and the landscape at each band of aura strength, from subtle ill temper to Hell on earth.",
+  "quotes": [
+   "Storyguides should ask for Personality rolls more frequently, to rein in these unusual impulses."
+  ],
+  "related": [
+   "ArM5 p.186 The Infernal Realm"
+  ]
+ },
+ {
+  "title": "Infernal Auras in Play",
+  "heading": "Infernal Auras in Play",
+  "line": 389,
+  "endLine": 410,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How an Infernal aura is centred on a focus, rises at night and on unholy days, changes on holy days in different faiths, coexists with stronger auras and erodes over time unless maintained.",
+  "quotes": [
+   "All Infernal auras increase by one at night.",
+   "it takes a number of years equal to the strength of the Infernal aura for it to lose one point of strength",
+   "Whatever the source of an increase in an Infernal aura, it can never increase to a value greater than 10."
+  ],
+  "related": []
+ },
+ {
+  "title": "Formation of an Infernal Aura (Corruption Roll)",
+  "heading": "The Formation of an Infernal Aura",
+  "line": 411,
+  "endLine": 449,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When a major sin is committed the storyguide makes a corruption roll to create, maintain or strengthen an Infernal aura; corruption rites let diabolists deliberately attempt this. Includes a worked example.",
+  "quotes": [
+   "Corruption Roll: stress die + temporary Infernal aura strength",
+   "Ease Factor (to maintain Infernal aura): 3 + dominant aura strength",
+   "Ease Factor (to increase Infernal aura): 6 + dominant aura strength",
+   "A corruption rite cannot be successfully performed more than once a season."
+  ],
+  "related": [
+   "Chapter 2: Sin and Redemption",
+   "Chapter 9: Infernal Characters, Sacrifice"
+  ]
+ },
+ {
+  "title": "Infernal Aura Examples Table",
+  "heading": "Infernal Aura Examples",
+  "line": 425,
+  "endLine": 437,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of example locations and the Infernal aura rating each would typically have, useful as a benchmark for setting aura strengths.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Effects of an Infernal Aura",
+  "heading": "Effects of an Infernal Aura",
+  "line": 451,
+  "endLine": 460,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Dominant Infernal auras impose the normal realm-interaction modifiers on Supernatural Powers and penalise recovery rolls for wounds, diseases and deprivation injuries for everyone inside.",
+  "quotes": [
+   "suffers a penalty to the recovery roll for those wounds equal to the aura strength"
+  ],
+  "related": [
+   "ArM5 p.183"
+  ]
+ },
+ {
+  "title": "Magical Reactions to the Infernal",
+  "heading": "Magical Reactions to the Infernal",
+  "line": 462,
+  "endLine": 464,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magic-realm beings avoid Infernal auras, and magi casting inside one may not notice the fatigue the aura costs them unless they pass a Perception roll.",
+  "quotes": [
+   "Perception + Magic Theory roll against an Ease Factor of (9 + aura strength)"
+  ],
+  "related": [
+   "Chapter 6: Demons as Deceivers, Enervators"
+  ]
+ },
+ {
+  "title": "Divine Reactions to the Infernal",
+  "heading": "Divine Reactions to the Infernal",
+  "line": 466,
+  "endLine": 470,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Divine-affiliated characters sense the corruption of an Infernal aura more easily, and those with a Faith Score are immune to the extra effects of the specific kinds of Infernal aura.",
+  "quotes": [
+   "receives a +3 bonus to all Perception rolls that would reveal the corrupt nature of the aura",
+   "characters with a Faith Score of at least 1 are immune to the additional effects imposed by different varieties of Infernal aura"
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Reactions to the Infernal",
+  "heading": "Faerie Reactions to the Infernal",
+  "line": 472,
+  "endLine": 476,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faeries are terrified of Infernal auras and rarely linger; their Supernatural Powers are weak and ineffectual there.",
+  "quotes": [
+   "The expression of Faerie-derived Supernatural Powers is often weak and ineffectual in Infernal auras."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tarnished Auras",
+  "heading": "Tarnished Auras",
+  "line": 478,
+  "endLine": 488,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A tarnished aura is tied to one sinful Personality Trait that shifts the Traits of everyone inside and makes sinning in line with the tarnish a ritualised sin.",
+  "quotes": [
+   "everyone within the aura suffers a modifier to Personality Traits equal to the strength of the aura"
+  ],
+  "related": [
+   "Chapter 2: Sin and Redemption"
+  ]
+ },
+ {
+  "title": "Corrupted Auras",
+  "heading": "Corrupted Auras",
+  "line": 490,
+  "endLine": 494,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Corrupted auras are permanently tarnished auras of at least a minimum strength that add special sin-encouraging features, grouped as Debauched, Malevolent and Perfidious.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Debauched Auras",
+  "heading": "Debauched Auras",
+  "line": 496,
+  "endLine": 508,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Corrupted auras of self-indulgence and indolence, with example features such as Personality rolls to leave or resist returning and a ban on spending Confidence Points.",
+  "quotes": [
+   "with an Ease Factor equal to (3 + aura strength)",
+   "Ease Factor equal to (6 + aura strength)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Malevolent Auras",
+  "heading": "Malevolent Auras",
+  "line": 520,
+  "endLine": 530,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Corrupted auras of cruelty and violence whose example effects add the aura strength to damage and to botch dice on physical activities, corrupt creatures and reopen old demonic wounds.",
+  "quotes": [
+   "The aura strength is added to any Damage total.",
+   "a number of additional botch dice equal to the aura strength"
+  ],
+  "related": [
+   "Chapter 8: Corrupted Beasts"
+  ]
+ },
+ {
+  "title": "Perfidious Auras",
+  "heading": "Perfidious Auras",
+  "line": 532,
+  "endLine": 542,
+  "category": "realms",
+  "topic": "Infernal auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Corrupted auras of deceit and betrayal that make lies harder to detect, give Infernal beings a temporary Confidence Point, and punish failed Confidence-modified rolls.",
+  "quotes": [
+   "all attempts to spot a lie have the aura strength added to the Ease Factor"
+  ],
+  "related": []
+ },
+ {
+  "title": "Infernal Regiones",
+  "heading": "Infernal Regiones",
+  "line": 548,
+  "endLine": 556,
+  "category": "realms",
+  "topic": "Infernal regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Infernal regiones are places God has left to the Infernal; Divine powers are suspended or penalised there and joy is impossible. Introduces the Tartaran and Abyssal types.",
+  "quotes": [
+   "Holy Powers or Holy magic suffer a penalty to their rolls equal to the aura strength of the Infernal regio"
+  ],
+  "related": [
+   "Realms of Power: The Divine, Chapter 3: Blessed by God",
+   "ArM5 p.183"
+  ]
+ },
+ {
+  "title": "Tartaran Regiones",
+  "heading": "Tartaran Regiones",
+  "line": 558,
+  "endLine": 560,
+  "category": "realms",
+  "topic": "Infernal regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Regiones of hellfire: Fatigue becomes long-term, metal burns, flames do heavy fire damage, and sinful Personality Traits increase fire damage taken.",
+  "quotes": [
+   "The flames, if touched directly, do anywhere from +5 to +35 fire damage"
+  ],
+  "related": []
+ },
+ {
+  "title": "Abyssal Regiones",
+  "heading": "Abyssal Regiones",
+  "line": 562,
+  "endLine": 564,
+  "category": "realms",
+  "topic": "Infernal regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Regiones of privation: every Characteristic is reduced by the aura strength, and each day inside risks madness in the form of a temporary Flaw.",
+  "quotes": [
+   "Every one of the eight Characteristics is reduced by a number of points equal to the strength of the aura in an Abyssal regio"
+  ],
+  "related": []
+ },
+ {
+  "title": "Infernal Warping",
+  "heading": "Infernal Warping",
+  "line": 566,
+  "endLine": 586,
+  "category": "realms",
+  "topic": "Infernal warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how Warping dominated by sin or Infernal contact produces sin-encouraging Flaws and Infernal Virtues at successive Warping Scores.",
+  "quotes": [
+   "The character acquires a Minor Personality Flaw that reflects his obsession with sinful behavior."
+  ],
+  "related": [
+   "ArM5 p.167"
+  ]
+ },
+ {
+  "title": "Causes of Infernal Warping",
+  "heading": "Causes of Infernal Warping",
+  "line": 588,
+  "endLine": 606,
+  "category": "realms",
+  "topic": "Infernal warping",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the ways a character gains Infernal Warping Points: ritualised sin, Infernal auras and regiones, Infernal Powers, and botches with unholy abilities.",
+  "quotes": [
+   "every time a character ritualizes a sin to acquire Confidence Points, she gains a Warping Point",
+   "if the level of the Power is 30 or more, or if a demon spends 6 or more points of Might activating the power",
+   "One Warping Point is gained for each zero on a botch dice when using an unholy Power or Infernal Supernatural Ability."
+  ],
+  "related": [
+   "ArM5 p.167",
+   "ArM5 p.168"
+  ]
+ },
+ {
+  "title": "Infernal Vis",
+  "heading": "Infernal Vis",
+  "line": 608,
+  "endLine": 614,
+  "category": "realms",
+  "topic": "Infernal vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces Infernally tainted vis, which looks ordinary to Hermetic detection but endangers non-Infernal users, and the temporary Personality Trait imposed by prolonged contact with it.",
+  "quotes": [
+   "The imposed trait either starts at a score of +1, or increases the trait by 1 if the magus already possesses it."
+  ],
+  "related": [
+   "Chapter 4: The Infernal Legions, Common Powers"
+  ]
+ },
+ {
+  "title": "Vis Infesta",
+  "heading": "Vis Infesta",
+  "line": 616,
+  "endLine": 624,
+  "category": "realms",
+  "topic": "Infernal vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The mildest Infernal vis: it adds no extra botch dice beyond raw vis but makes any botch more severe, and experimentation in enchantments always yields the worst result.",
+  "quotes": [
+   "one extra botch die per pawn of vis"
+  ],
+  "related": [
+   "ArM5 p.107"
+  ]
+ },
+ {
+  "title": "Vis Sordida",
+  "heading": "Vis Sordida",
+  "line": 626,
+  "endLine": 638,
+  "category": "realms",
+  "topic": "Infernal vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Potent but dangerous Infernal vis that boosts casting totals and Source Quality at the cost of extra botch dice, and corrupts levels of effects in items prepared with it. Includes a worked enchanting example.",
+  "quotes": [
+   "Each pawn of vis sordida used to enhance a casting total adds five to the roll, rather than the +2 of standard vis.",
+   "Using vis sordida always incurs three extra botch dice per pawn used",
+   "ten levels of effects in the item are corrupted for every pawn of vis sordida used"
+  ],
+  "related": [
+   "ArM5 p.165"
+  ]
+ },
+ {
+  "title": "Vis Prava",
+  "heading": "Vis Prava",
+  "line": 640,
+  "endLine": 652,
+  "category": "realms",
+  "topic": "Infernal vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The vilest Infernal vis: any roll using it is automatically a zero with extra botch dice, studying from it causes Warping, and enchanting with it ruins the item; it is far better for Infernally aligned wizards.",
+  "quotes": [
+   "rolling two extra botch dice for every pawn of vis prava used",
+   "vis prava offers a +5 bonus to Casting Totals per pawn employed"
+  ],
+  "related": [
+   "ArM5 p.94"
+  ]
+ },
+ {
+  "title": "What Counts as Sin",
+  "heading": "What is Sin?",
+  "line": 658,
+  "endLine": 672,
+  "category": "realms",
+  "topic": "Sin and redemption",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how the storyguide judges whether an act is sinful: aiding the Infernal always is, while other acts depend on whether they are selfish or secret.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Types of Sin",
+  "heading": "Types of Sin",
+  "line": 674,
+  "endLine": 678,
+  "category": "realms",
+  "topic": "Sin and redemption",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Distinguishes mortal sins from venial sins and notes that compelled or inadvertent acts are not sins, but dealing with the Infernal always stains the soul.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Sinful Traits",
+  "heading": "Sinful Traits",
+  "line": 680,
+  "endLine": 701,
+  "category": "realms",
+  "topic": "Sin and redemption",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional method of tying each Personality Trait to a virtue or vice, with a table of the seven deadly sins and their related traits, so that sin-related rolls can be called for by category.",
+  "quotes": [
+   "When dealing with opposing traits, treat the trait's value as negative."
+  ],
+  "related": []
+ },
+ {
+  "title": "Redemption",
+  "heading": "Redemption",
+  "line": 713,
+  "endLine": 720,
+  "category": "realms",
+  "topic": "Sin and redemption",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Notes that any sinner, however corrupt, may escape Hell by truly repenting, with the means of absolution depending on faith.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: The Divine, Chapters 4, 5, 6"
+  ]
+ },
+ {
+  "title": "Infernal Influence",
+  "heading": "Infernal Influence",
+  "line": 722,
+  "endLine": 758,
+  "category": "realms",
+  "topic": "Infernal influence",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernal Lore 1+ (ceremonial) or any infernalist",
+  "summary": "Infernalists inspire temporary sinful Personality Traits in willing followers through a season of personal influence or a short ceremony, with the strength set by a Presence + Leadership roll.",
+  "quotes": [
+   "simple die + Presence + Leadership",
+   "Infernal Influence: simple die + Presence + Leadership",
+   "traits gained from personal influence can linger as long as a year, while those from ceremonial influence usually fade within about a week"
+  ],
+  "related": []
+ },
+ {
+  "title": "Personality Flaws as Traits",
+  "heading": "Personality Flaws",
+  "line": 760,
+  "endLine": 762,
+  "category": "basics",
+  "topic": "Personality Traits",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "For rules involving Personality Traits, treats a Personality Flaw as an equivalent Personality Trait so that it can be opposed by influence.",
+  "quotes": [
+   "treat a Minor Personality Flaw as a +3 trait, and a Major Personality Flaw as a +6 trait"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tarnish",
+  "heading": "Tarnish",
+  "line": 764,
+  "endLine": 776,
+  "category": "realms",
+  "topic": "Infernal influence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernalist with Infernal Lore",
+  "summary": "Infernalists tarnish an Infernal aura by giving it a sinful Personality Trait, using a stress roll on Presence + Leadership; the tarnish fades over time.",
+  "quotes": [
+   "Tarnishing an aura: stress die + Presence + Leadership",
+   "its value decreases by one each morning"
+  ],
+  "related": [
+   "Chapter 1: Corrupted Auras"
+  ]
+ },
+ {
+  "title": "Gaining Confidence through Sin",
+  "heading": "Gaining Confidence through Sin",
+  "line": 778,
+  "endLine": 788,
+  "category": "realms",
+  "topic": "Sin and redemption",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters with a sinful Personality Trait can earn Confidence Points by indulging in that sin for a season or through a ritualised act that also costs a Warping Point; even characters without Confidence can bank and spend the points.",
+  "quotes": [
+   "Either activity yields a Confidence Point upon completion.",
+   "Generally speaking, venial sins are sufficient for traits of +3 or less"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Spiritual Form of a Demon",
+  "heading": "The Spiritual Form of a Demon",
+  "line": 886,
+  "endLine": 894,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Rules for a demon in spirit form: unseen and unable to affect matter, immune to non-supernatural wounds and ageing, fast flying, and slain only by loss of Infernal Might.",
+  "quotes": [
+   "spiritual demons may travel ten times faster than a human",
+   "can only be slain be effects that deplete its Infernal Might"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Physical Form of a Demon",
+  "heading": "The Physical Form of a Demon",
+  "line": 896,
+  "endLine": 902,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Rules for a demon in coagulated physical form: it can interact with matter and be hurt or slain, heals and ages only in this form, and leaves a corpse that may hold vis.",
+  "quotes": [
+   "typically a pawn for every magnitude of Infernal Might"
+  ],
+  "related": []
+ },
+ {
+  "title": "Demonic Might Tables (Order and Rank)",
+  "heading": "Demonic Might",
+  "line": 916,
+  "endLine": 939,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Tables giving the Infernal Might range and relative frequency of ranks for each of the nine demonic orders, plus the extra Infernal Might and equivalent Reputation each rank grants.",
+  "quotes": [
+   "| Master | +5 | 3 |",
+   "| Prince | +20 | 9 |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Common Demonic Traits",
+  "heading": "Common Demonic Traits",
+  "line": 941,
+  "endLine": 947,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Traits all demons share: Infernal Might, a defining sin as a Personality Trait, and an inability to display virtuous Personality Traits of their own free will.",
+  "quotes": [
+   "A demon automatically fails personality rolls (ArM5, page 18) if succeeding would make it act in a virtuous manner."
+  ],
+  "related": [
+   "ArM5 p.18"
+  ]
+ },
+ {
+  "title": "Demonic Might: Order and Rank",
+  "heading": "Demonic Might",
+  "line": 949,
+  "endLine": 951,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Explains that a demon's Infernal Might comes from its order plus a bonus for its rank, and that the two sources are indistinguishable in play.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Demonic Reputations",
+  "heading": "Demonic Reputations",
+  "line": 953,
+  "endLine": 957,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Demons may have Infernal Reputations known to other demons and infernalists; the highest of these and the rank's equivalent Reputation gives the demon's Hierarchy score used when it is summoned.",
+  "quotes": [
+   "The Hierarchy score of a demon is the highest of any Infernal Reputations it has"
+  ],
+  "related": [
+   "ArM5 pp.18-19",
+   "Chapter 11: Ars Goetia, Summoning"
+  ]
+ },
+ {
+  "title": "Demonic Characteristics",
+  "heading": "Demonic Characteristics",
+  "line": 959,
+  "endLine": 980,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "How to assign Characteristics to a demon: physical Characteristics are bought with points based on Infernal Might, mental ones with a small allotment, with a minimum physical score and no maximum. Includes example Infernal Reputations.",
+  "quotes": [
+   "Demon Physical Characteristics points: Infernal Might",
+   "Demon Mental Characteristics points: 0 – 7 (possibly more for powerful demons)"
+  ],
+  "related": [
+   "ArM5 p.32 Art Advancement Table"
+  ]
+ },
+ {
+  "title": "Demonic Powers (Coagulation, Obsession, Envisioning, Possession)",
+  "heading": "Demonic Powers",
+  "line": 982,
+  "endLine": 1010,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "The Powers common to all demons: Coagulation to form a body, Obsession to impose a sinful Personality Trait, Envisioning to send dreams and visions, and (for many) Possession of hosts via a separate Might Pool. Includes a worked Obsession example.",
+  "quotes": [
+   "Manifesting a physical form takes a round for every point of Infernal Might possessed by the demon",
+   "with a score equal to the number of Might Points spent by the demon (maximum of 3)",
+   "A Supernatural Power (including spellcasting) requires 1 Might Point per magnitude"
+  ],
+  "related": [
+   "ArM5 p.82 Concentration"
+  ]
+ },
+ {
+  "title": "Demons and Magic",
+  "heading": "Demons and Magic",
+  "line": 1012,
+  "endLine": 1026,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Hermetic magic interacts with demons: it cannot pierce their deceptions, Second Sight is harder against them, they can be warded by Form, and Perdo Vim spells erode their Infernal Might.",
+  "quotes": [
+   "this Ease Factor is increased by the magnitude of their Might",
+   "use the normal Ease Factor of 6 + magnitude of Might to pierce these deceptions"
+  ],
+  "related": [
+   "ArM5 p.80 Limit of Arcane Connections"
+  ]
+ },
+ {
+  "title": "Demonic Weaknesses",
+  "heading": "Demonic Weaknesses",
+  "line": 1028,
+  "endLine": 1054,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Demons are hurt by relics and Divine worship objects and each has an individual weakness chosen from a list; characters with Infernal Lore can roll to know a demon's weakness.",
+  "quotes": [
+   "Intelligence + Infernal Lore roll against an Ease Factor of 9 + (Might / 5)",
+   "Subtract 3 from the Ease Factor if the demon is a member of a family"
+  ],
+  "related": [
+   "Realms of Power: The Divine, pp.41, 43"
+  ]
+ },
+ {
+  "title": "Religious Limitations on Demons",
+  "heading": "Religious Limitations on Demons",
+  "line": 1032,
+  "endLine": 1038,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Calendar and faith-based restrictions on demons: Holy Saturday, the Jewish period between Yom Kippur and Sukkot, and the protection of a completed hajj.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "True Names",
+  "heading": "True Names",
+  "line": 1056,
+  "endLine": 1066,
+  "category": "beings",
+  "topic": "True Names",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "True Names are the only Arcane Connection to a spirit that has no body; characters buy each with experience in Infernal Lore, and a known True Name aids penetration and synthemata research.",
+  "quotes": [
+   "a +5 bonus to the Penetration Multiplier when penetrating an Infernal creature's Magic Resistance",
+   "Each True Name costs 5 experience points"
+  ],
+  "related": [
+   "The Mysteries Revised Edition, Chapter 9: Theurgy"
+  ]
+ },
+ {
+  "title": "Demons and Free Will",
+  "heading": "Demons and Free Will",
+  "line": 1068,
+  "endLine": 1074,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Demons have free will but always choose evil; only those with a Confidence Score can put aside their passions to act rationally.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Demons, Auras, and Regiones",
+  "heading": "Demons, Auras, and Regiones",
+  "line": 1076,
+  "endLine": 1086,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Governs how fast a demon regains Might Points normally, faster in Infernal auras, and not at all in a Divine aura.",
+  "quotes": [
+   "Number of hours to restore all Might in Infernal aura: 24 – (2 x Infernal Aura)",
+   "A demon cannot regenerate any Might at all in a Divine aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Infernal Hierarchy",
+  "heading": "The Infernal Hierarchy",
+  "line": 1108,
+  "endLine": 1114,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Introduces the nine-order hierarchy of demons used to classify them, with the caveat that storyguides need not be constrained by it.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Infernal Ghosts",
+  "heading": "Infernal Ghosts",
+  "line": 1116,
+  "endLine": 1120,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Infernal ghost",
+  "summary": "How to build an Infernal ghost as a demon: its role determines its order, and it lacks the Coagulation Power and physical statistics.",
+  "quotes": [
+   "Infernal ghosts should be designed like any other demon, except that they have no Power of Coagulation"
+  ],
+  "related": []
+ },
+ {
+  "title": "False Gods (Demonic Order)",
+  "heading": "False Gods",
+  "line": 1128,
+  "endLine": 1152,
+  "category": "beings",
+  "topic": "Demonic orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Order template for False Gods: Might limit, usual ranks, Personality Traits and the Powers Shroud the Stench of the Pit, The Wealth of Nations and His Master's Voice.",
+  "quotes": [
+   "Personality Traits:** Proud +6",
+   "for every point of Infernal Might possessed by the demon"
+  ],
+  "related": []
+ },
+ {
+  "title": "Spirits of Deceit (Demonic Order)",
+  "heading": "Spirits of Deceit",
+  "line": 1160,
+  "endLine": 1186,
+  "category": "beings",
+  "topic": "Demonic orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Order template for Spirits of Deceit: Might limit, ranks, Personality Traits and the Powers Change Form, Trust of the Innocent, Forked Tongue of the Serpent and The Serpent's Oracle.",
+  "quotes": [
+   "The Size of the altered form is limited to whatever is natural for the species",
+   "An Intelligence roll against an Ease Factor of 6 is allowed to resist the effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vessels of Iniquity (Demonic Order)",
+  "heading": "Vessels of Iniquity",
+  "line": 1193,
+  "endLine": 1217,
+  "category": "beings",
+  "topic": "Demonic orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Order template for Vessels of Iniquity: Might limit, ranks, Personality Traits and the Powers Form of Wickedness (a special Coagulation), Form of Man and Contagious Obsession.",
+  "quotes": [
+   "A Stamina stress roll against an Ease Factor of 6 is needed every hour",
+   "For every victim who comes under the sway of the Obsession, the demon loses a point from its Might Pool"
+  ],
+  "related": []
+ },
+ {
+  "title": "Avengers of Evil (Demonic Order)",
+  "heading": "Avengers of Evil",
+  "line": 1223,
+  "endLine": 1241,
+  "category": "beings",
+  "topic": "Demonic orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Order template for Avengers of Evil: Might limit, ranks, Personality Traits and the Punish the Sinner Power, whose wound depends on the victim's unatoned sin.",
+  "quotes": [
+   "he suffers a Heavy wound if this Power penetrates his Magic Resistance",
+   "a number of points of damage equal to a simple die plus the sum total of all his sinful Personality Traits"
+  ],
+  "related": []
+ },
+ {
+  "title": "Deluders (Demonic Order)",
+  "heading": "Deluders",
+  "line": 1263,
+  "endLine": 1283,
+  "category": "beings",
+  "topic": "Demonic orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Order template for Deluders: Might limit, ranks, Personality Traits and the Powers Delusion and Duplicate the Magi's Technique-based spell effects.",
+  "quotes": [
+   "A minor illusion which affects an Individual amount of material (such as the demon itself) costs one point",
+   "It cannot create any effect with a level greater than its Infernal Might, or duplicate Ritual effects."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aerial Powers (Demonic Order)",
+  "heading": "Aerial Powers",
+  "line": 1289,
+  "endLine": 1311,
+  "category": "beings",
+  "topic": "Demonic orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Order template for Aerial Powers: Might limit, ranks, Personality Traits and the Powers Elemental Control and Recalcitrance, which inflates the demon's effective Might against control attempts.",
+  "quotes": [
+   "at a cost of 1 Might Point per magnitude of effect",
+   "treats the demon's Might as if it were one-and-a-half times its actual Might"
+  ],
+  "related": []
+ },
+ {
+  "title": "Furies (Demonic Order)",
+  "heading": "Furies",
+  "line": 1319,
+  "endLine": 1349,
+  "category": "beings",
+  "topic": "Demonic orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Order template for Furies: Might limit, ranks, Personality Traits and the Powers Waxing Tide of Humors, Beserker Rage and Endurance of the Enraged.",
+  "quotes": [
+   "must make a stress roll against an Ease Factor of 9",
+   "The Furies do not suffer from wound penalties, except on Defense totals."
+  ],
+  "related": []
+ },
+ {
+  "title": "Accusers (Demonic Order)",
+  "heading": "Accusers",
+  "line": 1351,
+  "endLine": 1371,
+  "category": "beings",
+  "topic": "Demonic orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Order template for Accusers: Might limit, ranks, Personality Traits and the Powers Betrayal of the Heart and Whispers Behind the Back.",
+  "quotes": [
+   "This Power lasts for a month."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tempters & Evil Spirits (Demonic Order)",
+  "heading": "Tempters & Evil Spirits",
+  "line": 1377,
+  "endLine": 1401,
+  "category": "beings",
+  "topic": "Demonic orders",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Order template for Tempters and Evil Spirits, the largest order: Might limit, ranks, Personality Traits and Flaws, with no Powers specific to the order.",
+  "quotes": [
+   "Personality Traits:** Selfish +5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Checklist for Roleplaying Demons",
+  "heading": "Checklist for Roleplaying Demons",
+  "line": 1456,
+  "endLine": 1490,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Lists behaviours demons cannot perform and those they can manage only by spending a Confidence Point, derived from their lack of the seven virtues.",
+  "quotes": [
+   "Most demons cannot do the following, except with extreme effort (and spending a Confidence Point, which not all demons have):"
+  ],
+  "related": []
+ },
+ {
+  "title": "A Life Lacking in Virtue (Demon Psychology)",
+  "heading": "A Life Lacking in Virtue",
+  "line": 1418,
+  "endLine": 1428,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Demons lack all virtue and cannot be played like immoral humans; spending a Confidence Point lets a demon simulate a virtue for the duration of a situation.",
+  "quotes": [
+   "the expenditure of a Confidence Point allows a demon to simulate a virtue in a particular instance"
+  ],
+  "related": []
+ },
+ {
+  "title": "What are Demons?",
+  "heading": "What are Demons?",
+  "line": 876,
+  "endLine": 884,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Defines what counts as a demon (any creature with an Infernal Might) and the celestial, terrestrial and Infernal-angel origins, which have no functional differences in play.",
+  "quotes": [
+   "There are no functional differences between any of these groups."
+  ],
+  "related": []
+ },
+ {
+  "title": "Updating the Bestiary",
+  "heading": "Updating the Bestiary",
+  "line": 904,
+  "endLine": 906,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Guidance for converting the demons in the core rulebook bestiary to the new rules by assigning each an order, the order's general traits and the Powers all demons share.",
+  "quotes": [],
+  "related": [
+   "ArM5 Chapter 13 bestiary"
+  ]
+ },
+ {
+  "title": "Example Infernal Reputations",
+  "heading": "Example Infernal Reputations",
+  "line": 964,
+  "endLine": 972,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: demon",
+  "summary": "Table of example Infernal Reputation titles for each band of Reputation score, useful when giving a demon a Reputation.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Demons of God or Infernal Angels?",
+  "heading": "Demons of God or Infernal Angels?",
+  "line": 1247,
+  "endLine": 1251,
+  "category": "beings",
+  "topic": "Demons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: demon",
+  "summary": "Clarifies that Avengers of Evil and Accusers claiming to be angels are treated in game terms as demons with Infernal Might.",
+  "quotes": [
+   "both Avengers of Evil and Accusers are demons, because they have Infernal Might rather than Divine Might"
+  ],
+  "related": []
+ }
+]

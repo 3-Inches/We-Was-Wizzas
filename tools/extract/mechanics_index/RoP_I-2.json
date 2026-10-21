@@ -1,0 +1,1538 @@
+[
+ {
+  "title": "Creating Corrupted Beasts",
+  "heading": "Chapter 8: Corrupted Beasts",
+  "line": 3834,
+  "endLine": 3840,
+  "category": "beings",
+  "topic": "Corrupted beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how beasts become corrupted and how to build one: start from a mundane beast, apply the Corrupted Beast Flaw, balance it with Virtues, and pick only from the corrupted-beast Virtue and Flaw list. Also notes the vis found in a corpse.",
+  "quotes": [
+   "The corpse of a corrupted beast typically contains one pawn of vis for each 5 Might Points it possessed."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults pp.38-43"
+  ]
+ },
+ {
+  "title": "Virtues & Flaws for Corrupted Beasts",
+  "heading": "Virtues & Flaws for Corrupted Beasts",
+  "line": 3842,
+  "endLine": 3848,
+  "category": "beings",
+  "topic": "Corrupted beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the compulsory Flaw, the Virtues and the optional Flaws that a corrupted beast may be built from.",
+  "quotes": [
+   "**Optional Flaws:** Horrifying Appearance, Demonic Weakness, Lesser Malediction"
+  ],
+  "related": []
+ },
+ {
+  "title": "Corrupted Beast (Flaw)",
+  "heading": "Corrupted Beast",
+  "line": 3850,
+  "category": "beings",
+  "topic": "Corrupted beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Animal corrupted by Infernal power",
+  "summary": "The compulsory Flaw that gives an animal Infernal Might, a sinful Personality Trait, a repellent appearance with a frightening Presence, and the Tainted with Evil Flaw.",
+  "quotes": [
+   "acquires an Infernal Might of 5",
+   "decreasing its Presence to \u20136"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ferocity (animal Confidence)",
+  "heading": "Ferocity",
+  "line": 3862,
+  "category": "beings",
+  "topic": "Corrupted beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Ferocity (animals only)",
+  "summary": "Gives an animal a Confidence score that it may only use in situations that trigger its corrupt nature.",
+  "quotes": [
+   "in such circumstances the creature has 3 Confidence Points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Greater Infernal Power (corrupted beasts)",
+  "heading": "Greater Infernal Power",
+  "line": 3882,
+  "category": "beings",
+  "topic": "Corrupted beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Greater Infernal Power (corrupted beasts)",
+  "summary": "Rules for giving a corrupted beast a Power that must penetrate, designed with the Maleficia rules, including level cap, Might cost and Initiative.",
+  "quotes": [
+   "with a level of effect that cannot exceed the corrupted beast's (Infernal Might + 10)",
+   "has an Initiative bonus equal to Quickness + magnitude"
+  ],
+  "related": [
+   "ArM5 p.191",
+   "Chapter 10: Maleficia"
+  ]
+ },
+ {
+  "title": "Lesser Infernal Power (corrupted beasts)",
+  "heading": "Lesser Infernal Power",
+  "line": 3888,
+  "category": "beings",
+  "topic": "Corrupted beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Lesser Infernal Power (corrupted beasts)",
+  "summary": "Rules for giving a corrupted beast a constant or cheap Power that needs no Penetration Total, including level cap, Might cost and Initiative.",
+  "quotes": [
+   "The level of effect cannot exceed the corrupted beast's Infernal Might.",
+   "adds 2 to the Infernal Might of the corrupted beast"
+  ],
+  "related": [
+   "Chapter 10: Maleficia"
+  ]
+ },
+ {
+  "title": "False Powers",
+  "heading": "False Powers",
+  "line": 3974,
+  "category": "realms",
+  "topic": "False Powers",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains Powers aligned with the Magic or Faerie realms that are subtly tainted by the Infernal, how Divine investigation perceives them, and how Powers become False through Warping, botches or infernal interference.",
+  "quotes": [
+   "False Powers are no different from any other Supernatural Virtues or Flaws, save that Divine Powers (and some Infernal ones) perceive them as unholy"
+  ],
+  "related": [
+   "False Power Flaw"
+  ]
+ },
+ {
+  "title": "Mythic Companions",
+  "heading": "Mythic Companions",
+  "line": 4000,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Mythic Companion",
+  "summary": "Character-creation rules for Gift-less companions who rival magi: a special Free Virtue, a bonus Virtue point, Flaws worth double, and a list of the new Infernal Virtues available to them.",
+  "quotes": [
+   "each of these Flaws is worth twice as many Virtues",
+   "can have as many as 21 points of Virtues",
+   "Mythic Companions may not take The Gift."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tainted Virtues and Flaws (limits)",
+  "heading": "Tainted Virtues and Flaws",
+  "line": 4093,
+  "endLine": 4095,
+  "category": "creation",
+  "topic": "Tainted characters",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tainted character",
+  "summary": "Explains the Tainted category of Virtues and Flaws and the limit on how many a starting character may have.",
+  "quotes": [
+   "no more than five points of Tainted Flaws and five points of Tainted Virtues"
+  ],
+  "related": []
+ },
+ {
+  "title": "Characters with Might Scores",
+  "heading": "Characters with Might Scores",
+  "line": 4160,
+  "endLine": 4162,
+  "category": "realms",
+  "topic": "Might and realm affiliation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being with a Might score",
+  "summary": "Sets out what beings with a Might score cannot take (Virtues from another realm), how Magic Resistance from several sources combines, and their immunity to Warping and realm backlashes.",
+  "quotes": [
+   "No being with a Might score can have Virtues which affiliate them to another realm",
+   "these totals do not stack",
+   "Characters with a Might score are immune to all Warping"
+  ],
+  "related": [
+   "ArM5 p.168 Warping and Non-Humans"
+  ]
+ },
+ {
+  "title": "Demonic Blood",
+  "heading": "Demonic Blood",
+  "line": 4176,
+  "category": "beings",
+  "topic": "Demonic Blood",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Demonic Blood",
+  "summary": "Extended rules for a character with a demon parent: Infernal Might, up to 30 levels of Infernal Powers paid with Might Points, an attendant ruach, accelerated aging, and restrictions on other Virtues and Flaws.",
+  "quotes": [
+   "she is an Infernal being and possesses an Infernal Might (Corpus) score of 5",
+   "The Might cost for each Power is equal to its magnitude divided by two (but always at least one point).",
+   "increases two years for every year that passes"
+  ],
+  "related": [
+   "Demonic Might",
+   "Demonic Powers",
+   "Chapter 5: Demons as Corrupters"
+  ]
+ },
+ {
+  "title": "Infernal Blessing",
+  "heading": "Infernal Blessing",
+  "line": 4260,
+  "category": "traditions",
+  "topic": "Infernal Blessings",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Infernal Blessing (Tainted)",
+  "summary": "Explains how a Minor or Major Infernal Blessing grants a pool of unholy effect levels designed like maleficia, with a cap per effect, plus a list of example blessings, Warping Points and a Reputation gain.",
+  "quotes": [
+   "If this is a Major Virtue, you receive 120 levels of effects, and the maximum level of an effect is level 60.",
+   "Taking this Virtue also gives the character 3 Warping Points"
+  ],
+  "related": [
+   "Chapter 10: The Maleficia",
+   "Chapter 13: Infernal Traditions"
+  ]
+ },
+ {
+  "title": "False Power (Flaw)",
+  "heading": "False Power",
+  "line": 4463,
+  "endLine": 4483,
+  "category": "realms",
+  "topic": "False Powers",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Flaw: False Power",
+  "summary": "Extended rules for a Supernatural Virtue that is also tainted by the Infernal, including how it reads to investigation, optional treatment as an Infernal Power, repentance, and taking the Flaw several times.",
+  "quotes": [
+   "using the Infernal Power column of the realm interaction chart"
+  ],
+  "related": [
+   "False Powers"
+  ]
+ },
+ {
+  "title": "Ceremony (Infernal group rituals)",
+  "heading": "Ceremony\\*",
+  "line": 4566,
+  "endLine": 4580,
+  "category": "traditions",
+  "topic": "Infernal Ceremony",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Ceremony (Supernatural)",
+  "summary": "Lets a group of infernalists add their Characteristic and Ability or Method scores to a focus character's total, with a leader or a group modifier based on their Ceremony scores.",
+  "quotes": [
+   "Group Modifier: Total Ceremony scores \u2013 13",
+   "which for Infernal ceremonies must always number 13 (12 participants and the focus character)"
+  ],
+  "related": [
+   "Chapter 10: The Maleficia"
+  ]
+ },
+ {
+  "title": "Chthonic Magic (Ability)",
+  "heading": "Chthonic Magic\\*",
+  "line": 4582,
+  "category": "lab",
+  "topic": "Chthonic Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Chthonic Magic (magi only)",
+  "summary": "A Supernatural Ability that substitutes for Magic Theory when doing dark or sinister lab work and adds to the vis a magus may use if it is Infernal.",
+  "quotes": [
+   "You can substitute this Ability for Magic Theory when he is performing dark or sinister magic in the lab"
+  ],
+  "related": [
+   "Chapter 12: Black Magic"
+  ]
+ },
+ {
+  "title": "Corruption (Ability)",
+  "heading": "Corruption\\*",
+  "line": 4615,
+  "endLine": 4627,
+  "category": "traditions",
+  "topic": "Infernal Corruption",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Corruption",
+  "summary": "A Supernatural Ability for subverting others through ceremonial influence, written works and corrupted teaching; victims may resist with a Perception + Infernal Lore roll against the corrupter's total.",
+  "quotes": [
+   "roll a die (stress or simple, depending on the situation) and add her Communication and Corruption scores",
+   "Perception + Infernal Lore roll against this total"
+  ],
+  "related": [
+   "Chapter 2: Sin and Temptation"
+  ]
+ },
+ {
+  "title": "Debauchery (Ability)",
+  "heading": "Debauchery\\*",
+  "line": 4629,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Debauchery",
+  "summary": "The Unholy Method of focusing will through a strenuous physical act, at the cost of a long-term Fatigue level or a Light Wound, using Stamina for the maleficium roll.",
+  "quotes": [
+   "calls upon her Stamina for the maleficium roll"
+  ],
+  "related": [
+   "Chapter 10: The Maleficia"
+  ]
+ },
+ {
+  "title": "Hex (Ability)",
+  "heading": "Hex\\*",
+  "line": 4645,
+  "endLine": 4683,
+  "category": "traditions",
+  "topic": "Hex",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hex",
+  "summary": "Rules for cursing an enemy: three ways to activate the Power, a time frame whose delay modifier affects the roll, a Hex total compared to an Ease Factor table of severities, botch results, and how hexes are removed.",
+  "quotes": [
+   "Hex: stress die + Intelligence + Hex + aura bonus + modifiers",
+   "roll Intelligence + Hex + aura bonus + delay modifier",
+   "Treat the hex as having a spell level equal to the number of botch dice it approximates multiplied by 10"
+  ],
+  "related": [
+   "False Powers"
+  ]
+ },
+ {
+  "title": "Hex Effects (table)",
+  "heading": "Hex Effects",
+  "line": 4651,
+  "endLine": 4659,
+  "category": "traditions",
+  "topic": "Hex",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hex",
+  "summary": "Table of Ease Factors for a Hex roll, with the severity of the curse (as a number of botch dice) and an example of each.",
+  "quotes": [
+   "| 6+ | Minor (1 botch) | Automatic failure at an important task |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Incantation (Ability)",
+  "heading": "Incantation\\*",
+  "line": 4685,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Incantation",
+  "summary": "The Unholy Method of invoking Infernal power through chanted or written blasphemy, adding Communication to the roll and costing a Confidence point.",
+  "quotes": [
+   "requires that he spend a point of Confidence to call the effect into being"
+  ],
+  "related": [
+   "Chapter 10: The Maleficia"
+  ]
+ },
+ {
+  "title": "Realm Affiliations (Infernal Virtues and Abilities)",
+  "heading": "Realm Affiliations",
+  "line": 4691,
+  "endLine": 4736,
+  "category": "realms",
+  "topic": "Realm interaction",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of the Supernatural Virtues, Flaws and Abilities in this book with the realm each is affiliated to for realm interaction, and notes on aura penalties and re-flavouring Powers for other realms.",
+  "quotes": [
+   "| Ablating | Infernal | Chapter 11 |"
+  ],
+  "related": [
+   "Chapter 1: The Infernal Realm",
+   "Chapter 13: Infernal Traditions"
+  ]
+ },
+ {
+  "title": "Sense Passions (Ability)",
+  "heading": "Sense Passions\\*",
+  "line": 4756,
+  "endLine": 4772,
+  "category": "traditions",
+  "topic": "Sense Passions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Sense Passions",
+  "summary": "A Supernatural Ability to read emotions and Personality Traits, locate strong passions nearby, detect tarnished auras and sense incorporeal spirits, with Ease Factors for each use.",
+  "quotes": [
+   "Sense Passions: stress die + Perception + Sense Passions + aura",
+   "A Perception + Sense Passions roll against an Ease Factor of 9"
+  ],
+  "related": [
+   "ArM5 p.67 Sense Holiness and Unholiness",
+   "Realms of Power: The Divine p.38"
+  ]
+ },
+ {
+  "title": "True Name of (Being)",
+  "heading": "True Name of (Being)\\*",
+  "line": 4774,
+  "category": "traditions",
+  "topic": "True Names",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Realm Lore study",
+  "summary": "Explains that a True Name is learned through Realm Lore study and lets the character affect a being as if with a permanent Arcane Connection.",
+  "quotes": [
+   "the character can affect it as if she had a permanent Arcane Connection to it"
+  ],
+  "related": [
+   "Chapter 4: Infernal Legions, True Names"
+  ]
+ },
+ {
+  "title": "Becoming Infernal",
+  "heading": "Infernalists",
+  "line": 4778,
+  "endLine": 4784,
+  "category": "realms",
+  "topic": "Infernalists",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernalist",
+  "summary": "Explains how a being with another realm's Might can become Infernal, with its Might converting to Infernal Might, and why the reverse is rare.",
+  "quotes": [
+   "when a character with Divine, Faerie, or Magic Might becomes an infernalist, her Might Score becomes Infernal Might instead"
+  ],
+  "related": []
+ },
+ {
+  "title": "Infernal Hierarchy and Reputation",
+  "heading": "Hierarchy",
+  "line": 4786,
+  "endLine": 4794,
+  "category": "realms",
+  "topic": "Infernalists",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Infernalist",
+  "summary": "Introduces Infernal Reputations, the starting Infernal Reputation of level 1 and the Hierarchy Score used in Infernal Power formulas.",
+  "quotes": [
+   "This is simply the same as the score of the highest Reputation possessed by the character.",
+   "may begin with an appropriate Infernal Reputation of level 1"
+  ],
+  "related": [
+   "ArM5 p.167"
+  ]
+ },
+ {
+  "title": "Vituperation",
+  "heading": "Vituperation",
+  "line": 4796,
+  "endLine": 4812,
+  "category": "realms",
+  "topic": "Vituperation",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernalist",
+  "summary": "The backlash an infernalist faces after gaining Warping Points or losing control of Infernal power: a resistance roll, a possible spell in Hell lasting by Warping Score, an Aging roll including Warping Score, and possible Confidence gains.",
+  "quotes": [
+   "Warping Score + Number of Warping Points gained + Hierarchy Score + local aura + stress die (no botch)",
+   "Aging Roll: stress die (no botch) + (age / 10, rounded up) \u2013 living conditions modifier + Warping Score"
+  ],
+  "related": [
+   "ArM5 p.88 Wizard's Twilight",
+   "ArM5 p.170 living conditions"
+  ]
+ },
+ {
+  "title": "Infernal Sacrifice",
+  "heading": "Sacrifice",
+  "line": 4822,
+  "endLine": 4832,
+  "category": "traditions",
+  "topic": "Infernal sacrifice",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernalist",
+  "summary": "Ritual sacrifices add a bonus to an infernalist's effect total depending on the victim, at the cost of about an hour of ritual.",
+  "quotes": [
+   "| animal, black | +6 |",
+   "| human, innocent | +10 |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Profaning the Holy",
+  "heading": "Profaning the Holy",
+  "line": 4834,
+  "endLine": 4850,
+  "category": "realms",
+  "topic": "Profaning",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for turning a holy object or relic into a pawn of Infernal vis by spending Confidence or overcoming Faith, with example uses such as the Host.",
+  "quotes": [
+   "To profane a holy object costs the character a point of Confidence.",
+   "the character profaning it must have a Confidence Score greater than the relic's Faith Score to succeed"
+  ],
+  "related": [
+   "Chapter 1: Infernal Vis",
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Tainted Characters",
+  "heading": "Tainted Characters",
+  "line": 4852,
+  "endLine": 4854,
+  "category": "beings",
+  "topic": "Tainted characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tainted character",
+  "summary": "Introduces tainted people, children whose creation demons meddle with so that they become tools in the demons' schemes.",
+  "quotes": [],
+  "related": [
+   "Tainted Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "Key Flaws for the Tainted",
+  "heading": "Key Flaws for the Tainted",
+  "line": 4876,
+  "endLine": 4880,
+  "category": "creation",
+  "topic": "Tainted characters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tainted character",
+  "summary": "Tainted player characters must take Tragic Life or Plagued by Supernatural Entity and at least one Tainted Virtue or Flaw.",
+  "quotes": [
+   "All tainted characters should have at least one Tainted Virtue or Flaw."
+  ],
+  "related": [
+   "Tainted Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "Characters with Demonic Blood (guidance)",
+  "heading": "Characters with Demonic Blood",
+  "line": 4958,
+  "endLine": 4962,
+  "category": "beings",
+  "topic": "Demonic Blood",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Demonic Blood",
+  "summary": "Guidance on demon-blooded characters: sterile, no need to eat but still hungry, short tragic lives, usable as storyguide characters, and unable to have The Gift.",
+  "quotes": [
+   "A demon-blooded character cannot have The Gift because he is a member of the Infernal realm"
+  ],
+  "related": [
+   "Demonic Blood (Virtue)"
+  ]
+ },
+ {
+  "title": "Mythic Companion: Devil Child",
+  "heading": "Mythic Companion: Devil Child",
+  "line": 4964,
+  "endLine": 4980,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Devil Child",
+  "summary": "Character creation for a Devil Child Mythic Companion: the Devil Child Free Virtue replaces The Gift, with required Virtues and Flaws and extra Virtue points.",
+  "quotes": [
+   "It also grants a free Minor Virtue, allowing a maximum of 21 points of Virtues for 10 points of Flaws.",
+   "Devil Children may take three more points of Virtues at no cost"
+  ],
+  "related": [
+   "Mythic Companions",
+   "Demonic Blood"
+  ]
+ },
+ {
+  "title": "Maleficia (Infernal casting)",
+  "heading": "Chapter 10: The Maleficia",
+  "line": 5032,
+  "endLine": 5048,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernalist with a Method and a Power",
+  "summary": "Core rules for casting Infernal effects: combine a Method and a Power in a stress-die total against a target level, with failures costing botches and Warping, Hierarchy softening the consequences, a season to secure a soul after a botch, and the Vengeful Powers penalty for selfless use.",
+  "quotes": [
+   "Maleficium: stress die + Characteristic + Method + Power + aura bonus",
+   "Treat a failed roll as one botch for each ten levels or fraction thereof that the infernalist is lacking.",
+   "The infernalist may substitute his (Hierarchy Score x 10) for his Maleficium Total"
+  ],
+  "related": [
+   "Vituperation",
+   "Chapter 2: Sin and Redemption"
+  ]
+ },
+ {
+  "title": "Infernal Ranges, Durations, and Targets",
+  "heading": "Infernal Ranges, Durations, and Targets",
+  "line": 5054,
+  "endLine": 5064,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernalist",
+  "summary": "New spell parameters for maleficia: Range Crossroads, Duration Cursed (condition), Duration Forsaken and Target Passion, each with its equivalent magnitude.",
+  "quotes": [
+   "Range Crossroads is considered the same level as Range Voice.",
+   "Duration Forsaken is the same level as Duration Year",
+   "Target Passion is the same level as Target Group"
+  ],
+  "related": [
+   "ArM5 p.92 Faerie Magic Range: Road"
+  ]
+ },
+ {
+  "title": "Debauchery (Unholy Method)",
+  "heading": "Debauchery",
+  "line": 5066,
+  "endLine": 5074,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Debauchery",
+  "summary": "The Method of casting a maleficium through a corrupting ritual that costs a long-term Fatigue level or a Light Wound, using Stamina, and that can be extended over hours or a whole season to build up Confidence spending or add Infernal Lore.",
+  "quotes": [
+   "This uses the character's Stamina with the maleficium roll."
+  ],
+  "related": [
+   "Debauchery (Ability)"
+  ]
+ },
+ {
+  "title": "Example: Richard of Glastonbury (maleficium)",
+  "heading": "Example: Richard of Glastonbury",
+  "line": 5076,
+  "endLine": 5080,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernalist",
+  "summary": "A worked example of building and casting a maleficium, computing a casting total, rolling a possible botch and spending Confidence to limit the damage.",
+  "quotes": [
+   "This is a base 15 Incantation/Diablerie effect"
+  ],
+  "related": [
+   "Maleficia (Infernal casting)"
+  ]
+ },
+ {
+  "title": "Powerful Maleficia",
+  "heading": "Powerful Maleficia",
+  "line": 5082,
+  "endLine": 5096,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernalist",
+  "summary": "Lists the ways an infernalist can boost a maleficium total: Ceremony, Confidence, Hierarchy, Sacrifice and vis, and that they can be combined.",
+  "quotes": [],
+  "related": [
+   "Ceremony",
+   "Sacrifice",
+   "Hierarchy"
+  ]
+ },
+ {
+  "title": "Incantation (Unholy Method)",
+  "heading": "Incantation",
+  "line": 5098,
+  "endLine": 5102,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Incantation",
+  "summary": "The Method of casting through chanted words, using Communication, costing a Confidence Point or a Warping Point, and allowing infernal vis to boost the casting total.",
+  "quotes": [
+   "Each pawn of vis he expends while casting the maleficium gives him a +2 bonus to his casting total",
+   "The number of pawns he can use in a single maleficium is limited to his (Incantation + Power)."
+  ],
+  "related": [
+   "Profaning the Holy",
+   "Chapter 2: Gaining Confidence through Sin"
+  ]
+ },
+ {
+  "title": "New Methods and Powers",
+  "heading": "New Methods and Powers",
+  "line": 5104,
+  "endLine": 5108,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "Guidance for storyguides on designing additional Methods and Powers for maleficia, including the minimum pairings and how to adapt an existing Method.",
+  "quotes": [
+   "each new Method must be associated with at least two Powers, and each new Power must use at least one Method"
+  ],
+  "related": []
+ },
+ {
+  "title": "Unholy Powers (overview)",
+  "heading": "Unholy Powers",
+  "line": 5110,
+  "endLine": 5112,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Infernalist",
+  "summary": "Introduces the six unholy Powers, each combined with an unholy Method to form an effect, with guidelines per combination.",
+  "quotes": [
+   "There are six unholy Powers"
+  ],
+  "related": []
+ },
+ {
+  "title": "Consumption (Unholy Power)",
+  "heading": "Consumption",
+  "line": 5114,
+  "endLine": 5118,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Consumption",
+  "summary": "Describes the Power of drawing on the life and health of living beings: Debauchery reshapes the body, Incantation steals life from others, and failure deforms the caster.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Consumption Guidelines",
+  "heading": "Consumption Guidelines",
+  "line": 5128,
+  "endLine": 5132,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "General notes on victims and targets for Consumption effects, including extra magnitudes for animals and plants and the need to penetrate Magic Resistance.",
+  "quotes": [
+   "the effect must penetrate it to have any effect on the target"
+  ],
+  "related": []
+ },
+ {
+  "title": "Debauchery/Consumption guidelines",
+  "heading": "Debauchery/Consumption",
+  "line": 5134,
+  "endLine": 5164,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Debauchery/Consumption: bonuses and penalties transferred between target and victim, Characteristic shifts, Recovery changes, body exchange and aging.",
+  "quotes": [
+   "Add the magnitude of the effect to the target's Damage and Soak, and also add it to his Load."
+  ],
+  "related": []
+ },
+ {
+  "title": "Incantation/Consumption guidelines",
+  "heading": "Incantation/Consumption",
+  "line": 5166,
+  "endLine": 5204,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Incantation/Consumption: transferring wounds, illnesses, aging crises and Decrepitude from target to victim and placing the caster's soul in an object.",
+  "quotes": [
+   "Permanently heal all of a target's wounds, killing a victim."
+  ],
+  "related": []
+ },
+ {
+  "title": "Diablerie (Unholy Power)",
+  "heading": "Diablerie",
+  "line": 5232,
+  "endLine": 5236,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Diablerie",
+  "summary": "Describes the Power of influencing demons and other supernatural beings within range, and how Forsaken Duration effects become Infernal blessings treated as Vengeful Powers.",
+  "quotes": [
+   "Diablerie maleficia that grant Powers to the target are usually Forsaken Duration"
+  ],
+  "related": [
+   "Chapter 11: Ars Goetia"
+  ]
+ },
+ {
+  "title": "Diablerie Guidelines",
+  "heading": "Diablerie Guidelines",
+  "line": 5238,
+  "endLine": 5240,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines what a supernatural creature is for Diablerie guidelines and states that Diablerie cannot affect the Divine.",
+  "quotes": [
+   "Diablerie cannot affect the Divine."
+  ],
+  "related": []
+ },
+ {
+  "title": "Debauchery/Diablerie guidelines",
+  "heading": "Debauchery/Diablerie",
+  "line": 5242,
+  "endLine": 5258,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Debauchery/Diablerie: dispelling, wards against creatures, perceiving Might, Arcane Connections, freeing bound demons, and creating Infernal auras and regiones.",
+  "quotes": [
+   "Create an Infernal aura at level 1. Each additional magnitude increases it by one, to a maximum of 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "Incantation/Diablerie guidelines",
+  "heading": "Incantation/Diablerie",
+  "line": 5260,
+  "endLine": 5289,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Incantation/Diablerie: Magic Resistance, restoring a demon's Might, compelling and dominating creatures, False Powers and tainting vis.",
+  "quotes": [
+   "Give a person, object, or area Magic Resistance equal to the level of the effect + 5, which does not add to other forms of resistance.",
+   "Permanently taint vis with the power of the Infernal, producing vis infesta."
+  ],
+  "related": []
+ },
+ {
+  "title": "Effusion (Unholy Power)",
+  "heading": "Effusion",
+  "line": 5325,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Effusion",
+  "summary": "Describes the Power over base materials and insubstantial forces: Debauchery governs fire, air and unseen forces, Incantation governs water, earth and cold matter. It cannot create anything living or make something from nothing.",
+  "quotes": [
+   "Effusion cannot produce anything living"
+  ],
+  "related": [],
+  "endLine": 5331
+ },
+ {
+  "title": "Effusion Guidelines",
+  "heading": "Effusion Guidelines",
+  "line": 5353,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Notes that unnatural Effusion effects usually add two magnitudes to the level.",
+  "quotes": [
+   "usually add two additional magnitudes to the level"
+  ],
+  "related": [],
+  "endLine": 5355
+ },
+ {
+  "title": "Debauchery/Effusion guidelines",
+  "heading": "Debauchery/Effusion",
+  "line": 5357,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Debauchery/Effusion: softening objects, hotter flames, igniting materials of differing flammability, controlling natural phenomena of increasing severity and warding against them.",
+  "quotes": [
+   "Soften an object, giving it a penalty to Damage or Protection equal to the effect's magnitude."
+  ],
+  "related": [],
+  "endLine": 5385
+ },
+ {
+  "title": "Incantation/Effusion guidelines",
+  "heading": "Incantation/Effusion",
+  "line": 5387,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Incantation/Effusion: hardening objects, chilling, controlling substances, moving and teleporting objects over increasing distances and storing a maleficium in an object.",
+  "quotes": [
+   "Harden an object, giving it a bonus to Damage or Protection equal to the effect's magnitude.",
+   "Instantly transport an object to anywhere the caster has been before, or to which he has an Arcane Connection."
+  ],
+  "related": [],
+  "endLine": 5427
+ },
+ {
+  "title": "Malediction (Unholy Power)",
+  "heading": "Malediction",
+  "line": 5445,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Malediction",
+  "summary": "Describes the Power of cursing: Incantation lays general curses, Debauchery lays destructive ones, with Infernal curses usually Forsaken in Duration, bad-luck side effects for roll penalties, and backfire on failure.",
+  "quotes": [
+   "usually have a Forsaken Duration, so that they remain active until the victim can somehow dispel them"
+  ],
+  "related": [],
+  "endLine": 5453
+ },
+ {
+  "title": "Debauchery/Malediction guidelines",
+  "heading": "Debauchery/Malediction",
+  "line": 5493,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Debauchery/Malediction: hampering, fatigue loss, wounds of increasing severity, destroying targets, disease and striking dead.",
+  "quotes": [
+   "Strike a person or animal dead."
+  ],
+  "related": [],
+  "endLine": 5513
+ },
+ {
+  "title": "Incantation/Malediction guidelines",
+  "heading": "Incantation/Malediction",
+  "line": 5515,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Incantation/Malediction: roll penalties with extra botch dice, Characteristic reduction, and suppressing Virtues or granting Flaws.",
+  "quotes": [
+   "Give a target a penalty on all die rolls equal to the magnitude of the effect, as well as that many additional botch dice any time the target rolls a 0."
+  ],
+  "related": [],
+  "endLine": 5531
+ },
+ {
+  "title": "Phantasm (Unholy Power)",
+  "heading": "Phantasm",
+  "line": 5533,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Phantasm",
+  "summary": "Describes the Power of Infernal illusions that seem real: Debauchery conjures or transforms into phantasms, Incantation perceives and predicts. Phantasms are dispelled by the Divine, cannot survive in the Dominion, and are vulnerable to a chosen material.",
+  "quotes": [
+   "Phantasms cannot survive in the Dominion.",
+   "If a phantasm is somehow affected by the Divine, it is immediately dispelled"
+  ],
+  "related": [],
+  "endLine": 5541
+ },
+ {
+  "title": "Phantasm Guidelines",
+  "heading": "Phantasm Guidelines",
+  "line": 5567,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "General modifiers for phantasms: extra magnitudes for intricate or mobile phantasms and for turning animate things into inanimate ones, plus size modifiers when changing shape.",
+  "quotes": [
+   "adds two magnitudes"
+  ],
+  "related": [],
+  "endLine": 5573
+ },
+ {
+  "title": "Debauchery/Phantasm guidelines",
+  "heading": "Debauchery/Phantasm",
+  "line": 5575,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Debauchery/Phantasm: dangerous phantasms, granting abilities to a target, invisibility, creating phantasms with Infernal Might and separating a spirit from its body.",
+  "quotes": [
+   "Create a dangerous phantasm, like fire or poison, that does +(base level of the spell) Damage upon contact."
+  ],
+  "related": [],
+  "endLine": 5597
+ },
+ {
+  "title": "Incantation/Phantasm guidelines",
+  "heading": "Incantation/Phantasm",
+  "line": 5599,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Incantation/Phantasm: remote senses, perceiving spirits, seeing through Infernal illusions and ominous visions of the past or future of increasing range.",
+  "quotes": [
+   "Gain an ominous vision of an event that happened within a day in the past, or that is likely to happen within a day in the future."
+  ],
+  "related": [],
+  "endLine": 5617
+ },
+ {
+  "title": "Psychomachia (Unholy Power)",
+  "heading": "Psychomachia",
+  "line": 5630,
+  "category": "traditions",
+  "topic": "Maleficia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Psychomachia",
+  "summary": "Describes the Power over mind and emotion: Incantation reads and controls minds, Debauchery changes personality so the target wants to sin, and failure muddles the caster.",
+  "quotes": [
+   "with Debauchery the caster can change the target's personality"
+  ],
+  "related": [],
+  "endLine": 5634
+ },
+ {
+  "title": "Debauchery/Psychomachia guidelines",
+  "heading": "Debauchery/Psychomachia",
+  "line": 5670,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Debauchery/Psychomachia: tarnishing auras, changing emotions, shifting Personality Traits, granting temporary Traits, Warping Points and Confidence.",
+  "quotes": [
+   "Increase or decrease a character's Personality Trait by one step, to a maximum of +3 or \u20133."
+  ],
+  "related": [],
+  "endLine": 5699
+ },
+ {
+  "title": "Incantation/Psychomachia guidelines",
+  "heading": "Incantation/Psychomachia",
+  "line": 5701,
+  "category": "magic",
+  "topic": "Maleficia guidelines",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines by level for Incantation/Psychomachia: sensing Divine or Infernal effects and emotions, implanting thoughts and desires, compelling behaviour and controlling a mind completely.",
+  "quotes": [
+   "Compel a target to act on his immediate desires."
+  ],
+  "related": [],
+  "endLine": 5727
+ },
+ {
+  "title": "Mythic Companion: The Diabolist",
+  "heading": "Mythic Companion: The Diabolist",
+  "line": 5729,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Diabolist",
+  "summary": "How a character becomes a diabolist through a ceremony with a demon, and character creation for a Diabolist Mythic Companion with required Virtues and a split of Infernal Virtues.",
+  "quotes": [
+   "To become a diabolist, a character must only participate in a short ceremony with a demon",
+   "This leaves him with ten points of Flaws to spend, which balance out as many as 20 more points of Virtues."
+  ],
+  "related": [
+   "Mythic Companions"
+  ],
+  "endLine": 5747
+ },
+ {
+  "title": "The Goetic Arts",
+  "heading": "The Goetic Arts",
+  "line": 5807,
+  "category": "traditions",
+  "topic": "Ars Goetia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Ars Goetia (Goetic Art Virtues)",
+  "summary": "Overview of the four Goetic Arts (Summoning, Ablating, Binding, Commanding), which are learned like Supernatural Abilities but start at 0 and advance as Arts, with Penetration and optional sacrifice.",
+  "quotes": [
+   "they are opened at 0 instead of 1"
+  ],
+  "related": [],
+  "endLine": 5811
+ },
+ {
+  "title": "Summoning",
+  "heading": "Summoning",
+  "line": 5813,
+  "category": "traditions",
+  "topic": "Ars Goetia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Summoning",
+  "summary": "How a sorcerer draws a spirit into a circle: Summoning Total against double the spirit's Might, Hierarchy adjustments for demons, scouring for a non-specific spirit, time and Fatigue costs, concentration if the margin is thin, and botches.",
+  "quotes": [
+   "Summoning Total: stress die + Presence + Summoning + (Realm) Lore + aura + (Penetration x Penetration Modifier)",
+   "Scouring Total: stress die + Presence + Summoning + (Area) Lore + aura + Penetration",
+   "Summoning or Scouring Target Level: spirit's Might x 2"
+  ],
+  "related": [
+   "ArM5 p.82 Concentration Table"
+  ],
+  "endLine": 5853
+ },
+ {
+  "title": "Summoning and Other Realms",
+  "heading": "Summoning and Other Realms",
+  "line": 5849,
+  "category": "traditions",
+  "topic": "Ars Goetia",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Summoning",
+  "summary": "Explains that Summoning may belong to the Magic or Faerie realm for aura interaction yet always reads as unholy to Divine investigation.",
+  "quotes": [
+   "Summoning is always tainted"
+  ],
+  "related": [],
+  "endLine": 5851
+ },
+ {
+  "title": "Ablating",
+  "heading": "Ablating",
+  "line": 5855,
+  "category": "traditions",
+  "topic": "Ars Goetia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ablating",
+  "summary": "Rules for stripping Might from a summoned spirit: an Ablation Total against the spirit's Might, permanent loss of Might for the spirit, and Ablation Points spent on Confidence, Characteristics, health, longevity, Might, Powers, vis and more.",
+  "quotes": [
+   "Ablation Total: stress die + Stamina + Ablating + (Realm) Lore + aura + (Penetration x Penetration Multiplier)",
+   "Ablation Points: (Ablation Total \u2013 Ablation Target Level) / 5, or spirit's Might / 5"
+  ],
+  "related": [
+   "Characters with Might Scores"
+  ],
+  "endLine": 5893
+ },
+ {
+  "title": "Binding",
+  "heading": "Binding",
+  "line": 5895,
+  "category": "traditions",
+  "topic": "Ars Goetia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Binding",
+  "summary": "Rules for forcing a spirit into a person or object: a Binding Total against the spirit's Might, Magic Resistance from the bound spirit, anchoring maleficia in objects, learning the spirit's Abilities and Powers, and Warping and aging effects.",
+  "quotes": [
+   "Binding Total: stress die + Intelligence + Binding + (Realm) Lore + aura + (Penetration x Penetration Multiplier)",
+   "The binding can hold a number of spell levels equal to the spirit's (Might x 5)"
+  ],
+  "related": [
+   "ArM5 pp.95-100 laboratory rules"
+  ],
+  "endLine": 5919
+ },
+ {
+  "title": "Commanding",
+  "heading": "Commanding",
+  "line": 5921,
+  "endLine": 5951,
+  "category": "traditions",
+  "topic": "Ars Goetia",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Commanding",
+  "summary": "Rules for ordering a summoned spirit: a Commanding Total against its Might, commands lasting until midday or midnight, and a list of common commands such as Follow me, Aid me, Protect me and Teach me.",
+  "quotes": [
+   "Commanding Total: stress die + Communication + Commanding + (Realm) Lore + aura + (Penetration x Penetration Modifier)",
+   "A command has force for only a short while, however, only until midday or midnight"
+  ],
+  "related": [
+   "Binding"
+  ]
+ },
+ {
+  "title": "Mythic Companion: The Summoner",
+  "heading": "Mythic Companion: The Summoner",
+  "line": 6003,
+  "endLine": 6022,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Summoner",
+  "summary": "Character creation for a Summoner Mythic Companion: required Summoner and Summoning Virtues plus one free Minor Virtue, with the background of sorcerers and their ghostly mentors.",
+  "quotes": [
+   "Summoning (Major, Goetic Art)"
+  ],
+  "related": [
+   "Mythic Companions",
+   "The Goetic Arts"
+  ]
+ }
+]

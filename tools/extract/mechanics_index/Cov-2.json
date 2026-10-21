@@ -1,0 +1,2174 @@
+[
+ {
+  "title": "Covenant Income",
+  "heading": "Income",
+  "line": 3234,
+  "endLine": 3236,
+  "category": "covenant",
+  "topic": "Covenant income",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces covenant income: most covenants have one main source, trivial sources are ignored, and each source falls into one of four size categories.",
+  "quotes": [
+   "Each source of income comes in one of four categories, specifying broadly how much income it provides (see insert)."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Mythic Pound",
+  "heading": "The Mythic Pound",
+  "line": 3238,
+  "endLine": 3242,
+  "category": "covenant",
+  "topic": "Covenant income",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the abstract currency unit used for all covenant prices and accounting, so troupes need not track differing local coinages.",
+  "quotes": [
+   "One Mythic Pound is equivalent to a pound of silver, the annual income of a typical peasant, or enough money to maintain an average Hermetic laboratory for a year."
+  ],
+  "related": []
+ },
+ {
+  "title": "Income Baseline",
+  "heading": "Baseline",
+  "line": 3244,
+  "endLine": 3248,
+  "category": "covenant",
+  "topic": "Covenant income",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "The default covenant has one Typical source of income (or two Lesser ones), with guidance on scaling income to covenant size and starting with a small surplus.",
+  "quotes": [
+   "An alternative base option is to take two Lesser sources of income instead of one Typical source.",
+   "The annual income of 100 pounds is just a guideline, and assumes an average-sized covenant of about six magi."
+  ],
+  "related": []
+ },
+ {
+  "title": "Customizing Income Sources",
+  "heading": "Customization",
+  "line": 3250,
+  "endLine": 3252,
+  "category": "covenant",
+  "topic": "Covenant income",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Shows how the Hooks and Boons chosen at covenant creation determine how many sources of income the covenant has and of what category.",
+  "quotes": [
+   "has one Greater and one Typical source of income, with the Greater source being contested."
+  ],
+  "related": []
+ },
+ {
+  "title": "Improving or Reducing Income Each Year",
+  "heading": "Improvement",
+  "line": 3254,
+  "endLine": 3256,
+  "category": "covenant",
+  "topic": "Covenant income",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Each year the storyguide picks an effect from the Income Modification table for each source and applies its multiplier, usually permanently; success or neglect by the characters can grow or cut income.",
+  "quotes": [
+   "Each year, the storyguide should choose an appropriate effect according to the Income Modification table (see insert), and apply the relevant multiplier to that year's income from the source.",
+   "five years of Expansion results in a Typical source of income growing to become equivalent to a Greater source."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Improvement of Income",
+  "heading": "Magical Improvement",
+  "line": 3258,
+  "endLine": 3287,
+  "category": "covenant",
+  "topic": "Covenant income",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covers using magic to raise covenant income, its three drawbacks (lab time and vis, unwanted attention, local inflation), Tribunal limits on creating silver, and the storyguide choosing a one-off permanent income multiplier.",
+  "quotes": [
+   "several of the Tribunals have recently passed measures limiting each covenant to the creation of at most 2 pounds of silver (or its equivalent) per magus per year",
+   "The storyguide should decide upon the effectiveness of any magical improvement a covenant undertakes and choose an appropriate income multiplier"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, page 87"
+  ]
+ },
+ {
+  "title": "Source of Income Categories",
+  "heading": "Source of Income Categories",
+  "line": 3262,
+  "endLine": 3270,
+  "category": "covenant",
+  "topic": "Covenant income",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of the five income categories (None, Lesser, Typical, Greater, Legendary) with the Hook or Boon that grants each and its typical yearly income in pounds.",
+  "quotes": [
+   "| Typical          | n/a                   | 100                            |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Income Modification Table",
+  "heading": "Income Modification",
+  "line": 3272,
+  "endLine": 3282,
+  "category": "covenant",
+  "topic": "Covenant income",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of yearly effects on a source of income (Slump to Boom), each with an income multiplier and the stress die result used if the effect is rolled randomly.",
+  "quotes": [
+   "| Status Quo  | x 1               | 3\u20138               |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: Extremely Complex Wealth Management",
+  "heading": "Option: Extremely Complex Wealth Management",
+  "line": 3289,
+  "endLine": 3291,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Optional rule",
+  "summary": "Optional rule to track covenant finances down to shillings and pence, suited to very poor covenants or mundane/trade-focused sagas.",
+  "quotes": [
+   "you may keep track of the covenant's finances exactly, recording income and expenditure down to the level of shillings and pence."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sources of Income (general rules)",
+  "heading": "Sources of Income",
+  "line": 3293,
+  "endLine": 3305,
+  "category": "covenant",
+  "topic": "Covenant income",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "General rules for choosing and running sources of income: which need the Right Boon or Contested/Indiscreet Resource Hooks, why goods must be sold carefully, and that operating costs are already deducted from the income figure.",
+  "quotes": [
+   "it is not sufficient merely to produce the good in question, it must also be sold, either for other goods or cash.",
+   "the income provided by the source is simply the surplus after such \"operating costs\" have been deducted."
+  ],
+  "related": []
+ },
+ {
+  "title": "Option: No Wealth Management",
+  "heading": "Option: No Wealth Management",
+  "line": 3299,
+  "endLine": 3301,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Optional rule",
+  "summary": "Optional rule to skip bookkeeping entirely and let the storyguide introduce surpluses and shortfalls by judgment, suited to very rich covenants or high fantasy sagas.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Agriculture",
+  "heading": "Agriculture",
+  "line": 3307,
+  "endLine": 3325,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Farming as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Charity",
+  "heading": "Charity",
+  "line": 3327,
+  "endLine": 3343,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Regular gifts from a donor as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Crime",
+  "heading": "Crime",
+  "line": 3345,
+  "endLine": 3361,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Banditry, smuggling and similar crime as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Fishing",
+  "heading": "Fishing",
+  "line": 3363,
+  "endLine": 3381,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Fishing and whaling as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Forestry",
+  "heading": "Forestry",
+  "line": 3394,
+  "endLine": 3412,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Timber, fur and hunting as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Hospitality",
+  "heading": "Hospitality",
+  "line": 3414,
+  "endLine": 3430,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Inns, taverns and similar businesses as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Livestock",
+  "heading": "Livestock",
+  "line": 3432,
+  "endLine": 3451,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Herding for wool, hides and meat as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Manufacturing",
+  "heading": "Manufacturing",
+  "line": 3453,
+  "endLine": 3469,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Craft production of goods as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Mining",
+  "heading": "Mining",
+  "line": 3471,
+  "endLine": 3487,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Mines and quarries as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Money",
+  "heading": "Money",
+  "line": 3501,
+  "endLine": 3519,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Moneylending, banking and pawnbroking as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Service",
+  "heading": "Service",
+  "line": 3521,
+  "endLine": 3539,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Hiring out skilled covenfolk or companions as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Toll-Gathering",
+  "heading": "Toll-Gathering",
+  "line": 3553,
+  "endLine": 3570,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Charging tolls at a bridge, ford or pass as a covenant income source; needs ownership or permission, enforcement, and usually the Right Boon.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Trade",
+  "heading": "Trade",
+  "line": 3572,
+  "endLine": 3592,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Moving goods from where they are cheap to where they are dear as a covenant income source, with pros, cons, magical options and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Income Source: Wizardry",
+  "heading": "Wizardry",
+  "line": 3594,
+  "endLine": 3612,
+  "category": "covenant",
+  "topic": "Covenant income sources",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Selling magical services, items, or Hermetic goods such as books, lab texts, vis and longevity rituals as a covenant income source, with pros, cons and example sources at each size category.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Covenant Expenditure",
+  "heading": "Expenditure",
+  "line": 3614,
+  "endLine": 3620,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Overview of how to total a covenant's yearly expenditure: count inhabitants, support staff, weapons and armor, and laboratories, convert the points to costs by category, then add sundry expenses and subtract the total from income.",
+  "quotes": [
+   "Then, total up the points of inhabitants, points of weapons and armor, and points of laboratories",
+   "Every year, there is also at least one pound's worth (usually considerably more) of sundry expenses"
+  ],
+  "related": []
+ },
+ {
+  "title": "Points of Inhabitants",
+  "heading": "Points of Inhabitants",
+  "line": 3622,
+  "endLine": 3632,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Table giving the upkeep points of each kind of inhabitant (magi, companions, specialists, other covenfolk, horses) for Spring/Winter versus Summer/Autumn covenants, with rules for who is excluded and for pauper magi.",
+  "quotes": [
+   "| Magus, Noble | 5 | +1 | 10 | +2 |",
+   "impoverished magi may reduce their point cost to 3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Covenfolk Categories",
+  "heading": "Covenfolk Categories",
+  "line": 3634,
+  "endLine": 3658,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines the seven covenfolk categories used for accounting (craftsmen, dependents, grogs, laborers, servants, specialists, teamsters) and gives the procedure for the minimum number of servants and teamsters a covenant needs.",
+  "quotes": [
+   "For every ten points of this total, you need two servants.",
+   "Number of Servants Required: 2 for every 10 points of (all inhabitants, excluding laborers, servants, and teamsters)",
+   "Number of Teamsters Required: 1 for every 10 points of (all inhabitants, excluding laborers and teamsters"
+  ],
+  "related": []
+ },
+ {
+  "title": "Points of Laboratories",
+  "heading": "Points of Laboratories",
+  "line": 3660,
+  "endLine": 3684,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Table converting each laboratory's Upkeep score into expenditure points, with usage multipliers for maintenance costs and a formula extending the table above Upkeep +2.",
+  "quotes": [
+   "Beyond +2, the number of extra points gained per level of Upkeep increase is equal to the new Upkeep score times ten.",
+   "the number of points is equal to ten times the number of experience points needed to buy an Art score with the same value as the Upkeep"
+  ],
+  "related": [
+   "ArM5 p.32 Advancement Table"
+  ]
+ },
+ {
+  "title": "Points of Weapons and Armor",
+  "heading": "Points of Weapons and Armor",
+  "line": 3686,
+  "endLine": 3696,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of upkeep points for weapons, armor and siege engines by quality (Inexpensive, Standard, Expensive), summed across everyone at the covenant.",
+  "quotes": [
+   "| Weapon or shield            | 1           | 4        | 16        |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Yearly Expenditure Categories",
+  "heading": "Yearly Expenditure Categories",
+  "line": 3698,
+  "endLine": 3700,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces the regular expenditure categories and a rule of thumb for how many points of inhabitants a covenant can afford from its income.",
+  "quotes": [
+   "a very rough rule of thumb is that a covenant can afford a number of points of inhabitants equal to its income in pounds"
+  ],
+  "related": []
+ },
+ {
+  "title": "Buildings Expenditure",
+  "heading": "Buildings",
+  "line": 3702,
+  "endLine": 3708,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Yearly cost to maintain the covenant's buildings, with extra cost for Fortifications Boons that add to size or magnificence.",
+  "quotes": [
+   "Buildings Cost: 1 pound for every 10 points of inhabitants",
+   "Add two pounds for any relevant Minor Fortifications Boon, and five pounds for any relevant Major Fortifications Boon"
+  ],
+  "related": [
+   "Chapter 2: Boons and Hooks, Fortification"
+  ]
+ },
+ {
+  "title": "Consumables Expenditure",
+  "heading": "Consumables",
+  "line": 3710,
+  "endLine": 3714,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Yearly cost of everyday tools, clothing, fuel and similar consumables, scaled to points of inhabitants.",
+  "quotes": [
+   "Consumables Cost: 2 pounds for every 10 points of inhabitants"
+  ],
+  "related": []
+ },
+ {
+  "title": "Inflation",
+  "heading": "Inflation",
+  "line": 3716,
+  "endLine": 3720,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A crude model of the covenant's corrosive effect on local prices: a flat cost added to yearly expenditure that starts at zero and grows gradually each year.",
+  "quotes": [
+   "In the covenant's first year, the inflation cost should be zero.",
+   "As a rule of thumb, it is suggested that it increase by one pound per hundred pounds of expenditure every year"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratories Expenditure",
+  "heading": "Laboratories",
+  "line": 3722,
+  "endLine": 3726,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Yearly cost of keeping the covenant's laboratories stocked, based on each lab's Upkeep score.",
+  "quotes": [
+   "Laboratories Cost: 1 pound per 10 points of laboratories"
+  ],
+  "related": [
+   "Chapter 9: Laboratory"
+  ]
+ },
+ {
+  "title": "Provisions Expenditure",
+  "heading": "Provisions",
+  "line": 3728,
+  "endLine": 3732,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Yearly cost of feeding the covenant, often its largest single expense.",
+  "quotes": [
+   "Provisions Cost: 5 pounds for every 10 points of inhabitants"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tithes",
+  "heading": "Tithes",
+  "line": 3734,
+  "endLine": 3736,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Regular payments a covenant may owe to a master covenant, a feudal overlord, the Church, or creditors, added to yearly expenditure.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Wages Expenditure",
+  "heading": "Wages",
+  "line": 3738,
+  "endLine": 3746,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Yearly stipends for covenfolk, magi and horses, with the standard rate making no adjustment to Loyalty and extra pay for professional soldiers.",
+  "quotes": [
+   "Wages Cost: 2 pounds for every 10 points of inhabitants",
+   "Add one pound per each penny that is paid daily to any professional soldiers in the covenant's service."
+  ],
+  "related": [
+   "Chapter 4: Governance, Prevailing Loyalty"
+  ]
+ },
+ {
+  "title": "Cost Saving Limits by Craft",
+  "heading": "Cost Saving Limits by Craft",
+  "line": 3748,
+  "endLine": 3756,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of the maximum share of each expenditure category that a single craft can save, with example craftsmen.",
+  "quotes": [
+   "| Buildings | stonemason, carpenter, furniture maker, thatcher | 50% |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Weapons and Armor Expenditure",
+  "heading": "Weapons and Armor",
+  "line": 3758,
+  "endLine": 3762,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Yearly cost of cleaning, repairing and replacing the turb's weapons and armor.",
+  "quotes": [
+   "Weapons and Armor Cost: 1 pound for every 320 points of weapons and armor"
+  ],
+  "related": []
+ },
+ {
+  "title": "Writing Materials Expenditure",
+  "heading": "Writing Materials",
+  "line": 3764,
+  "endLine": 3768,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Yearly cost of parchment and ink for magi and scribal staff; precious materials for resonant books are counted as sundry expenses instead.",
+  "quotes": [
+   "As a rule of thumb, one pound provides enough materials to write four books, without embellishment.",
+   "Writing Materials Cost: 1 pound for every magus, scribe, bookbinder, and illuminator"
+  ],
+  "related": [
+   "Chapter 7: Library"
+  ]
+ },
+ {
+  "title": "Cost Saving",
+  "heading": "Cost Saving",
+  "line": 3770,
+  "endLine": 3772,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the three ways to cut expenditure (laborers, craftsmen, magic) and the benefits of each.",
+  "quotes": [
+   "There are three main ways in which a covenant may be able to reduce its expenditures"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cost Saving by Laborers",
+  "heading": "Laborers",
+  "line": 3774,
+  "endLine": 3776,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "How much each laborer saves on Provisions and the cap on total savings from laborers alone.",
+  "quotes": [
+   "Each laborer working for the covenant reduces expenditure on Provisions by one pound.",
+   "The maximum amount of money that can be saved by laborers is half of the Provisions total."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cost Saving by Craftsmen",
+  "heading": "Craftsmen",
+  "line": 3778,
+  "endLine": 3784,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Common and rare craftsmen save money according to their Craft Ability, subject to per-craft savings limits by expenditure category.",
+  "quotes": [
+   "A common craftsman reduces expenditure by a number of pounds equal to one plus half of his Craft Ability, rounded down.",
+   "A rare craftsman reduces expenditure by a number of pounds equal to his Craft Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cost Saving by Magic",
+  "heading": "Magic",
+  "line": 3786,
+  "endLine": 3790,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magical items and Ritual spells can substitute for consumables, laborers or craftsmen; a rule of thumb prices the savings per magnitude of effect.",
+  "quotes": [
+   "As a very simple rule of thumb, each magnitude of effect in such items can save one pound per year.",
+   "Each casting of a Ritual spell may save approximately five pounds per magnitude"
+  ],
+  "related": [
+   "Chapter 4: Covenfolk, Magical Alternatives to Covenfolk"
+  ]
+ },
+ {
+  "title": "Yearly Expenditure Summary",
+  "heading": "Yearly Expenditure Summary",
+  "line": 3792,
+  "endLine": 3827,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "One-page summary of every yearly expenditure formula and cost-saving rule, for quick reference when totalling a covenant's costs.",
+  "quotes": [
+   "Ritual spells: For each magnitude of effect, subtract 5 pounds",
+   "Magic items: For each magnitude of effect, subtract 1 pound"
+  ],
+  "related": []
+ },
+ {
+  "title": "Expenditure Worked Example (Vernus)",
+  "heading": "Expenditure \u2014 A Simple Example",
+  "line": 3829,
+  "endLine": 3867,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of computing inhabitant points, servants and teamsters, and yearly expenditure for a starting covenant and again after ten years of growth with laborers and craftsmen.",
+  "quotes": [
+   "It thus needs 12 servants (12 points), taking the total to 70 points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Expenditure Worked Example (Semita Errabunda)",
+  "heading": "The Finances of Semita Errabunda",
+  "line": 3869,
+  "endLine": 3920,
+  "category": "covenant",
+  "topic": "Covenant expenditure",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of a larger covenant's income and expenditure, including cost savings from laborers, craftsmen and magic items that stand in for servants.",
+  "quotes": [
+   "two magic items with a total of 4 magnitudes of effects take the place of 4 servants"
+  ],
+  "related": []
+ },
+ {
+  "title": "Emergency Savings",
+  "heading": "Emergency Savings",
+  "line": 3922,
+  "endLine": 3924,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Options when expenditure exceeds income: privileged members give up perks, wages are cut at a Loyalty cost, covenfolk are laid off, or categories of expenditure are neglected, with story consequences if servant and teamster minimums are not met.",
+  "quotes": [
+   "If you have fewer than these minimums, it will adversely affect the functioning of the covenant"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sundry Expenses",
+  "heading": "Sundry Expenses",
+  "line": 3926,
+  "endLine": 3928,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Irregular one-off yearly expenses such as travel, Redcap fees, equipment, buildings, land and lab upgrades, tracked separately from regular expenditure.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Price of Vis",
+  "heading": "The Price of Vis",
+  "line": 3930,
+  "endLine": 3932,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains why vis has no fixed silver price and gives a base guideline for the rare cases where it is bought or sold for silver.",
+  "quotes": [
+   "a base guideline of roughly ten pounds per pawn is a reasonable rule of thumb for a typical saga."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, page 87"
+  ]
+ },
+ {
+  "title": "Sundry Expense: Books",
+  "heading": "Books",
+  "line": 3934,
+  "endLine": 3938,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Costs for buying mundane books and for decorating Hermetic books with resonant materials.",
+  "quotes": [
+   "a good rule of thumb is that these precious materials cost one pound per book"
+  ],
+  "related": [
+   "Chapter 7: Library, Prices for Books",
+   "Chapter 7: Library, Resonances"
+  ]
+ },
+ {
+  "title": "Sundry Expense: Hermetic Commodities",
+  "heading": "Hermetic Commodities",
+  "line": 3940,
+  "endLine": 3942,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic goods traded between magi are normally priced in vis, with cash accepted only exceptionally.",
+  "quotes": [
+   "are almost always priced in vis, not silver"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sundry Expense: Hospitality",
+  "heading": "Hospitality",
+  "line": 3944,
+  "endLine": 3946,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Costs of hosting Redcaps, noble or magus guests, and festivals, which can also add Loyalty points.",
+  "quotes": [
+   "It is customary that each visiting Redcap is paid 30 silver pennies (an eighth of a pound) for her services."
+  ],
+  "related": [
+   "Chapter 4: Governance, Increasing Prevailing Loyalty"
+  ]
+ },
+ {
+  "title": "Sundry Expense: Laboratory Construction",
+  "heading": "Laboratory Construction",
+  "line": 3952,
+  "endLine": 3954,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Cost to outfit a new laboratory or to raise its Upkeep, based on the laboratory's points.",
+  "quotes": [
+   "cost one pound per two points of the laboratory"
+  ],
+  "related": [
+   "Chapter 9: Laboratories"
+  ]
+ },
+ {
+  "title": "Sundry Expense: Magi",
+  "heading": "Magi",
+  "line": 3956,
+  "endLine": 3958,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Major personal purchases by magi are added to sundry expenses; minor spending is already covered by the wages allowance.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Pound of Enumerus",
+  "heading": "The Pound of Enumerus",
+  "line": 3960,
+  "endLine": 3964,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A fixed extra amount of undocumented spending that is added to sundry expenses every year, and may be higher for a cursed or badly managed covenant.",
+  "quotes": [
+   "Every year, therefore, you should add one pound onto the sundry expenses."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sundry Expense: Property",
+  "heading": "Property",
+  "line": 3966,
+  "endLine": 3970,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Buying land or building new property: land needed per farmhand, building time per floor, a surcharge to build faster, and building cost tied to the points of inhabitants housed.",
+  "quotes": [
+   "roughly one virgate of arable land (a twentieth of a square mile) is needed for each farmhand laborer at the covenant",
+   "it takes one year per floor (or ten feet of height) to build.",
+   "This rate can be doubled by paying 50% more."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sundry Expense: Training",
+  "heading": "Training",
+  "line": 3972,
+  "endLine": 3974,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Paying outsiders to train covenfolk costs a fraction of what the same skilled person costs to employ.",
+  "quotes": [
+   "assume that a skilled individual costs half as much to recruit for teaching as to employ for work"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sundry Expense: Travel",
+  "heading": "Travel",
+  "line": 3976,
+  "endLine": 3978,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Travel and accommodation costs for expeditions; rough travel needs no accounting but may cost a season's Living Conditions modifier.",
+  "quotes": [
+   "If such a party is traveling rough, however, then you need not account for their expenses"
+  ],
+  "related": []
+ },
+ {
+  "title": "Price List",
+  "heading": "Price List",
+  "line": 3980,
+  "endLine": 4095,
+  "category": "covenant",
+  "topic": "Prices and wealth",
+  "audience": [
+   "all",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rough price tables in Mythic Pounds for animals, books, buildings, Hermetic items, hospitality, labor, land, precious materials, travel, and weapons and armor.",
+  "quotes": [
+   "prices are quoted in whole Mythic Pounds"
+  ],
+  "related": []
+ },
+ {
+  "title": "Quality and Size Multipliers",
+  "heading": "Quality and Size Multipliers",
+  "line": 3984,
+  "endLine": 3994,
+  "category": "covenant",
+  "topic": "Prices and wealth",
+  "audience": [
+   "all",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Multipliers applied to price list costs for item quality and size, which stack when both apply.",
+  "quotes": [
+   "| Excellent / Huge | x 5 |",
+   "something that is both Huge and of Excellent quality has a total multiplier of 25."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vis Sources: Yield and Design",
+  "heading": "Chapter Six : Vis Sources",
+  "line": 4098,
+  "endLine": 4104,
+  "category": "covenant",
+  "topic": "Vis sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Guidance on assigning a yield to a vis source according to the saga's vis level and the importance of the story attached, and on designing sources that need a story to reach but not to harvest.",
+  "quotes": [
+   "a source with a high yield should give about as much vis as an individual magus receives in a year."
+  ],
+  "related": [
+   "ArM5 p.218"
+  ]
+ },
+ {
+  "title": "Vis Source Yields",
+  "heading": "Vis Source Yields",
+  "line": 4106,
+  "endLine": 4112,
+  "category": "covenant",
+  "topic": "Vis sources",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of annual pawns of vis for low, moderate and high yield sources in low, moderate and high vis sagas.",
+  "quotes": [
+   "| High | 4 | 8 | 16 |"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Manufacture of Books",
+  "heading": "The Manufacture of Books",
+  "line": 4602,
+  "endLine": 4614,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how a covenant produces a book, from author or notary to scribe, illuminator and binder, and the staff needed; writing speed depends on the lower of the author's and notary's totals.",
+  "quotes": [
+   "The speed of this writing, as described in ArM5, page 165, is based on the Communication + Language total of either the author or notary, whichever is lower."
+  ],
+  "related": [
+   "ArM5 p.165"
+  ]
+ },
+ {
+  "title": "Extended Quality of Books (introduction)",
+  "heading": "Extended Suggestions on the Quality of Books",
+  "line": 4714,
+  "endLine": 4720,
+  "category": "covenant",
+  "topic": "Book quality",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces an optional, more detailed system in which a book's quality comes from author, scribe, binder and resonant materials, and can be reduced by secondary functions or damage.",
+  "quotes": [
+   "This section presents a more complicated system, which allows troupes to improve covenant libraries through play and construct great tools of learning."
+  ],
+  "related": [
+   "ArM5 Chapter on Books"
+  ]
+ },
+ {
+  "title": "Resonances and Clarification of Books",
+  "heading": "Resonances",
+  "line": 4722,
+  "endLine": 4778,
+  "category": "covenant",
+  "topic": "Book quality",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Resonant materials can add quality points to a book (one for purchased materials, one for materials from stories), and a third point comes from clarifying the book by enchantment and leaving it in a Magical aura; includes the sidebars on resonant components and a summary of quality rules.",
+  "quotes": [
+   "A book's quality can be increased by one point if the book incorporates resonant materials that the covenant purchases.",
+   "A third point of Quality can be gained by clarifying a book.",
+   "The book must then be left in a Magical aura for (12 / aura strength) years"
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material Bonus Table"
+  ]
+ },
+ {
+  "title": "Potentially Resonant Book Components",
+  "heading": "Potentially Resonant Book Components",
+  "line": 4730,
+  "endLine": 4742,
+  "category": "covenant",
+  "topic": "Book quality",
+  "audience": [
+   "covenant",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "List of the parts of a book (inks, pages, boards, ribbons, ornamentation, registers and so on) that can incorporate resonant materials.",
+  "quotes": [
+   "The cover boards"
+  ],
+  "related": []
+ },
+ {
+  "title": "Summary of Quality Rules",
+  "heading": "Summary of Quality Rules",
+  "line": 4744,
+  "endLine": 4774,
+  "category": "covenant",
+  "topic": "Book quality",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Side-by-side summary of the core and extended formulas for summa and tractatus quality, including maximum quality, the effect of skilled artisans and the bonus for resonant materials.",
+  "quotes": [
+   "Author's Communication + 6 + bonuses due to Virtues + bonus for writing to level less than half of Art score.",
+   "Quality may not exceed 2 x (Communication + Virtue bonuses + 6)."
+  ],
+  "related": [
+   "ArM5 Books"
+  ]
+ },
+ {
+  "title": "Extended Quality Rules (Summa and Tractatus)",
+  "heading": "Extended Rules",
+  "line": 4758,
+  "endLine": 4774,
+  "category": "covenant",
+  "topic": "Book quality",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Extended formulas for maximum summa and tractatus quality, adding bonuses for skilled scribe, binder and illuminator and for mystical resonance, with the skill threshold for artisans and the bonus for each kind of resonant material.",
+  "quotes": [
+   "A professional is considered to be skilled if she has a Profession score of 6 or more.",
+   "Resonant materials add +1 to quality if they are purchased items, +2 if they are rare items only to be gained from stories."
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material Bonus Table"
+  ]
+ },
+ {
+  "title": "Secondary Functions of Books",
+  "heading": "Secondary Functions",
+  "line": 4780,
+  "endLine": 4814,
+  "category": "covenant",
+  "topic": "Book quality",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Book variants that trade quality for another purpose (damaged, edition de luxe, epitome, ex libris, exemplar, flap-bound, holographical, huge and congregational codices, juvenilia, palimpsest, unbound), each with its own quality modifier or restriction.",
+  "quotes": [
+   "An exemplar has a \u20133 modification to quality.",
+   "A flap book has a quality modifier of \u20131 and cannot have resonant materials incorporated as cover ornamentation.",
+   "For the purposes of enchantment, a book has a material level of 2 and a size multiplier of 4.",
+   "A literate person may make 15 levels of juvenile copy in a season."
+  ],
+  "related": []
+ },
+ {
+  "title": "Opus Types",
+  "heading": "Opus Types",
+  "line": 4816,
+  "endLine": 4818,
+  "category": "covenant",
+  "topic": "Book quality",
+  "audience": [
+   "covenant",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the opus types, the styles of book that expand on the core summae and tractatus.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Casting Tablets",
+  "heading": "Casting Tablets",
+  "line": 4820,
+  "endLine": 4840,
+  "category": "magic",
+  "topic": "Casting tablets",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for casting a spell from a written tablet the magus has not learned: the author fixes the spell's parameters, a different casting total is used, and the result table sets Fatigue loss and Warping Points; includes who may author tablets and their covenant-creation cost.",
+  "quotes": [
+   "Casting Total: Stamina + Form + Technique + Aura + stress die (modified by Virtues, Flaws and requisites)",
+   "| 0 or more | Spell cast, lose one Fatigue level. |",
+   "Casting tablets purchased at covenant creation cost two Build Points per five levels of spells."
+  ],
+  "related": [
+   "ArM5 Wizard's Communion"
+  ]
+ },
+ {
+  "title": "Scriptoria",
+  "heading": "Scriptoria",
+  "line": 4842,
+  "endLine": 4848,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How mundane and Hermetic scriptoria work, including covenant copyists who need Magic Theory and Realm Lore to produce incorrupt copies.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.166"
+  ]
+ },
+ {
+  "title": "Other Opus Types",
+  "heading": "Other Opus Types",
+  "line": 4850,
+  "endLine": 4878,
+  "category": "covenant",
+  "topic": "Book quality",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Rules for commentaries, correspondences, florilegia, folios, glossed books, inspeximuses, pictorial works, pamphlets and primers, including their quality bonuses, study restrictions and how they are bought at covenant creation.",
+  "quotes": [
+   "A magus gains an extra experience point in each season in which he is engaged in useful correspondence.",
+   "If these minima are met, the tractatus all gain a +1 bonus to quality.",
+   "adds 1 to the quality of a book. It is performed during a season of reading.",
+   "which increases the level of his book by one-third of the difference between his current Art score and the Art score he had when he wrote the summa"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages (Folios)"
+  ]
+ },
+ {
+  "title": "The Hermetic Book Cycle",
+  "heading": "The Hermetic Book Cycle",
+  "line": 4944,
+  "endLine": 4946,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Overview of the life of a book in a Hermetic library: selection, acquisition, accession, use, and deselection and disposal.",
+  "quotes": [
+   "The book cycle describes the life of each book within a Hermetic library."
+  ],
+  "related": []
+ },
+ {
+  "title": "Standard Texts (Roots and Branches of the Arts)",
+  "heading": "Standard Texts",
+  "line": 4954,
+  "endLine": 4964,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the widely available basic texts (Roots) and the finest summae (Branches) for the Arts, how they are obtained, and why there are no standard tractatus.",
+  "quotes": [
+   "These texts, called the Roots of the Arts, are widely and cheaply available.",
+   "In eight of the Arts, there are summae that are widely accepted as the finest works yet produced."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Books: Categories of Value",
+  "heading": "Hermetic Books: Definition of Categories of Value",
+  "line": 4966,
+  "endLine": 4978,
+  "category": "covenant",
+  "topic": "Book quality",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Gives typical quality ranges, as a function of level, for summae from best-ever through vain and discarded, and typical qualities for excellent, sound, vain and damaged tractatus.",
+  "quotes": [
+   "Generally, however, an excellent tractatus has a quality of around 14, a sound tractatus approximately 11, and a vain tractatus around six."
+  ],
+  "related": []
+ },
+ {
+  "title": "Acquisition of Hermetic Books",
+  "heading": "Acquisition",
+  "line": 4980,
+  "endLine": 4982,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic books are acquired by sale through the Redcap system and Tribunal exchanges, or by scribal hospitality, where a visiting magus copies from another covenant's library.",
+  "quotes": [
+   "Scribal hospitality occurs when a magus is allowed to copy from the library of a covenant to which he does not belong."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, page 101"
+  ]
+ },
+ {
+  "title": "The Sale of Hermetic Books",
+  "heading": "The Sale of Hermetic Books",
+  "line": 4984,
+  "endLine": 4996,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Four methods of selling Hermetic books by post (public offer, tender, exchange and subscription) and how books are traded at Tribunal.",
+  "quotes": [
+   "There are four main methods of postal sale."
+  ],
+  "related": []
+ },
+ {
+  "title": "Prices for Books",
+  "heading": "Prices for Books",
+  "line": 4998,
+  "endLine": 5030,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on what Hermetic and mundane books cost, mostly in pawns of vis, by quality tier (mundane, damaged, vain, sound, excellent), including the Cow and Calf Oath restricting resale or copying.",
+  "quotes": [
+   "Many Hermetic books are sold under a condition called the Cow and Calf Oath.",
+   "Characters can usually purchase vain summae for half their level in pawns of vis",
+   "These charge a number of pawns of vis equal to the book's level, if the purchaser is willing to wait a season for the copy to be produced.",
+   "A surcharge of up to 20% is added if there is a spare copy available for the impatient."
+  ],
+  "related": []
+ },
+ {
+  "title": "Scribal Magic and Replacing Crafts",
+  "heading": "Scribal Magic",
+  "line": 5032,
+  "endLine": 5038,
+  "category": "magic",
+  "topic": "Books and libraries",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces magic for scribes and librarians and gives the rule that when Finesse and Rego replace a mundane craft, the target scores for quality of goods rise.",
+  "quotes": [
+   "when using Finesse and the Art of Rego to replace skill at mundane crafts, the target scores representing levels of quality of goods increase by at least 3 points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Accession",
+  "heading": "Accession",
+  "line": 5220,
+  "endLine": 5222,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Accession is preparing a new book for the library through physical preparation and then classification.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Shelf-Readying",
+  "heading": "Shelf-Readying",
+  "line": 5224,
+  "endLine": 5236,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The steps of preparing a book for the shelf (covering, numbering, ownership marks, vouchers, chaining); a voucher briefly acts as an arcane connection to the book it came from.",
+  "quotes": [
+   "The voucher briefly acts as an arcane connection to the book, due to the law of contagion."
+  ],
+  "related": []
+ },
+ {
+  "title": "Catalog as Proxy",
+  "heading": "Catalog as Proxy",
+  "line": 5238,
+  "endLine": 5242,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A library's catalog serves as an arcane connection to the whole collection and each book in it, giving protection against botched spells; a ritual binds a library to its catalog and must be repeated if every copy is destroyed.",
+  "quotes": [
+   "A magus performing it requires a season and a pawn of Vim vis."
+  ],
+  "related": []
+ },
+ {
+  "title": "Study in a Library",
+  "heading": "Study",
+  "line": 5248,
+  "endLine": 5250,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Study rules assume optimal reading conditions; poor conditions can impose a quality penalty at the storyguide's discretion, and magic gives no extra mechanical advantage to a reading room.",
+  "quotes": [
+   "A magus working in poor conditions suffers a quality penalty of up to \u20136, at the storyguide's discretion."
+  ],
+  "related": []
+ },
+ {
+  "title": "Library Research",
+  "heading": "Research",
+  "line": 5252,
+  "endLine": 5262,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A magus seeking a fact in a library rolls Intelligence plus an Ability, with a bonus that depends on how strong the library's holdings on the subject are, plus any bonus from a significant magical item.",
+  "quotes": [
+   "A magus seeking a fact in a library makes an Intelligence + Ability roll, with a bonus modified by the library's holdings.",
+   "+5 for a peerless collection on a subject"
+  ],
+  "related": []
+ },
+ {
+  "title": "Enchanted Space (Libraries)",
+  "heading": "Enchanted Space",
+  "line": 5274,
+  "endLine": 5288,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the functions a library enchanted as a space can provide (storage, retrieval, delivery, answers, theft prevention, structural capacity), including booby-trapped lab notes and catalogs used as proxy targets.",
+  "quotes": [
+   "a magus following an uncorrected copy, who fails an Intelligence + Magic Theory roll against an Ease Factor of 12, must roll as if he had botched an experiment"
+  ],
+  "related": []
+ },
+ {
+  "title": "Alternatives to Books",
+  "heading": "Alternatives to Books",
+  "line": 5444,
+  "endLine": 5448,
+  "category": "covenant",
+  "topic": "Books and libraries",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces the non-book study sources a covenant can collect (phenomena, information and knowledge) that magi can study from in place of books.",
+  "quotes": [
+   "Students may gain an understanding of a subject from three sources."
+  ],
+  "related": []
+ },
+ {
+  "title": "Significatos",
+  "heading": "Significatos",
+  "line": 5454,
+  "endLine": 5460,
+  "category": "covenant",
+  "topic": "Alternatives to books",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magically significant events or sites can give a magus study totals as if he were studying from vis, with a rule of thumb for how many pawns an event is worth and a season needed to absorb the lesson.",
+  "quotes": [
+   "As a rule of thumb, an event can substitute for a number of pawns of vis equal to one-fifth (round up) of the highest Might possessed by the creatures involved.",
+   "Study takes an entire season, even if the event itself is brief"
+  ],
+  "related": []
+ },
+ {
+  "title": "Realia",
+  "heading": "Realia",
+  "line": 5462,
+  "endLine": 5478,
+  "category": "covenant",
+  "topic": "Alternatives to books",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Collections of mundane or magical objects are studied as a tractatus whose quality depends on the number of unique specimens, cost Build Points at covenant creation, can be divided among several students, and give a small bonus to research rolls.",
+  "quotes": [
+   "A realia collection is studied as a tractatus.",
+   "Realia collections rarely rise above quality 6, which requires 32 excellent specimens.",
+   "A suitable collection of realia adds up to +1 on a research roll.",
+   "quality 1 costs one Build Point, quality 2 costs three points, three costs six points, four costs ten points, five costs 15 points, six costs 21 points."
+  ],
+  "related": [
+   "ArM5 p.31 Advancement Table"
+  ]
+ },
+ {
+  "title": "Alternatives to Parchment",
+  "heading": "Alternatives to Books",
+  "line": 5484,
+  "endLine": 5486,
+  "category": "covenant",
+  "topic": "Alternatives to books",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Unusual media that carry text, such as a magical mirror, are treated like books for study purposes and use the same quality scale.",
+  "quotes": [
+   "Alternatives to parchment are treated, for study purposes, as if they were books."
+  ],
+  "related": []
+ },
+ {
+  "title": "Great Works",
+  "heading": "Great Works",
+  "line": 5488,
+  "endLine": 5498,
+  "category": "covenant",
+  "topic": "Alternatives to books",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Great Works are large structures that teach like a summa or tractatus; they have a minimum cost, no scribing, binding or illumination bonuses but triple resonance and clarification bonuses, and are bought with Build Points like an equivalent book or as an Edifice Boon.",
+  "quotes": [
+   "Great Works are, in game terms, created and used as summae or tractatus.",
+   "However, a Great Work costs at least 100 Mythic Pounds to build, or a similar investment of magical resources.",
+   "On the other hand, it gains triple the normal bonus from resonant materials and clarification."
+  ],
+  "related": []
+ },
+ {
+  "title": "Knowledge-Based Libraries",
+  "heading": "Knowledge",
+  "line": 5500,
+  "endLine": 5502,
+  "category": "covenant",
+  "topic": "Alternatives to books",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Libraries made of teachers, such as ghosts or spirits, use the teaching rules rather than book study rules and are bought using the covenant creation guidelines for teachers.",
+  "quotes": [
+   "Knowledge-based libraries use the teaching rules rather than the book study rules."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sanctum and the Code",
+  "heading": "Chapter Eight: Sanctum",
+  "line": 5504,
+  "endLine": 5508,
+  "category": "order",
+  "topic": "Sanctum",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Code of Hermes lets each magus claim one marked sanctum where trespassers may be slain without penalty.",
+  "quotes": [
+   "The owner may slay a magus trespassing in a sanctum without penalty.",
+   "A magus may have only one sanctum at a time"
+  ],
+  "related": []
+ },
+ {
+  "title": "Defending the Sanctum",
+  "heading": "Defending the Sanctum",
+  "line": 5520,
+  "endLine": 5522,
+  "category": "covenant",
+  "topic": "Sanctum",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Overview of typical sanctum protections, from wards against casual visitors to lethal traps, and the risk they pose to the magus's own apprentice.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Mundane Defenses",
+  "heading": "Mundane Defenses",
+  "line": 5524,
+  "endLine": 5528,
+  "category": "covenant",
+  "topic": "Sanctum",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Mundane locks and traps mainly raise an alarm and define where a sanctum begins; nonmagical traps cannot be resisted with the Parma Magica and are invisible to spells that detect enchantments.",
+  "quotes": [
+   "they cannot be resisted using the Parma Magica, and they are invisible to spells that detect enchantments."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ring and Circle Wards",
+  "heading": "Ring and Circle Wards",
+  "line": 5530,
+  "endLine": 5532,
+  "category": "magic",
+  "topic": "Sanctum",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The standard sanctum defense: ring and circle wards against mundane things are easy to create, cost no vis, and do not warp the residents of the space; defacing the circle destroys them.",
+  "quotes": [
+   "Circle wards at entrances, unlike spells cast on the Room Targets, do not warp the residents of the warded space."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sanctum Magic Items",
+  "heading": "Magic Items",
+  "line": 5572,
+  "endLine": 5578,
+  "category": "magic",
+  "topic": "Sanctum",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sanctum defenses are often charged items or small effects with large Penetration bonuses, layered so that minor wards, then an immobilizing effect, then a fatal effect face an intruder.",
+  "quotes": [
+   "These usually have small effects, but tremendous Penetration bonuses."
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Personalization (introduction)",
+  "heading": "Chapter Nine: Laboratories",
+  "line": 5586,
+  "endLine": 5590,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the options for personalizing and specializing a laboratory, which add detail to the lab activities already covered in the core rules.",
+  "quotes": [],
+  "related": [
+   "ArM5 Laboratory chapter"
+  ]
+ },
+ {
+  "title": "The Standard Hermetic Laboratory",
+  "heading": "The Standard Hermetic Laboratory",
+  "line": 5592,
+  "endLine": 5598,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines the standard laboratory by size, outfitting cost and setup time, and says any requirement can be violated at the price of Flaws; a rushed or unskilled setup leaves the lab with a penalty or negative Refinement.",
+  "quotes": [
+   "The required outfittings cost five Mythic Pounds to procure.",
+   "It takes someone with a Magic Theory of three or more two seasons of work to set up the lab.",
+   "albeit with the Basic Flaw (see below), giving a \u20133 penalty to all Lab Totals."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Principles of Labwork",
+  "heading": "The Principles of Labwork",
+  "line": 5614,
+  "endLine": 5630,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Seven principles behind a functioning laboratory (experimentation, documentation, comfort, sympathy, quality, extent, focus), used as a guide to what makes a lab effective and how it can be personalized.",
+  "quotes": [
+   "The functioning of a Hermetic laboratory can be illustrated by listing seven main principles or factors that play a key role."
+  ],
+  "related": [
+   "ArM5 p.109 Experimentation",
+   "Chapter 7: Library, Resonances"
+  ]
+ },
+ {
+  "title": "Life in the Laboratory (Standard Routine)",
+  "heading": "Life in the Laboratory",
+  "line": 5632,
+  "endLine": 5636,
+  "category": "lab",
+  "topic": "Lab routines",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The standard lab routine of hours per day and days per week, how many work days can be missed in a season without penalty, and the penalty for being away from the lab too long.",
+  "quotes": [
+   "The standard lab routine assumes that a magus works in the lab for ten hours a day, six days a week.",
+   "Up to ten work days can be missed in a season (in any order) without penalty, provided that the lost time is made up by working on rest days."
+  ],
+  "related": [
+   "ArM5 p.103"
+  ]
+ },
+ {
+  "title": "Non-Standard Laboratory Routines",
+  "heading": "Non-Standard Laboratory Routines",
+  "line": 5638,
+  "endLine": 5660,
+  "category": "lab",
+  "topic": "Lab routines",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional seasonal routines (Early Riser, Nocturnal, Addled, Overtime, Double Overtime, Triple Overtime) that boost the Lab Total at the cost of Fatigue, Living Conditions, Aging rolls, Warping Points, extra botch dice and, for Addled, a recovery roll; working fewer hours reduces the totals.",
+  "quotes": [
+   "for each hour fewer, she simply loses 10% of her Lab Total or Advancement Total for the season.",
+   "gain +1 to the Lab Total for the season.",
+   "gain +2 to the Lab Total for the season.",
+   "she gains +9 to the Lab Total for the season."
+  ],
+  "related": [
+   "ArM5 Aging",
+   "ArM5 Warping"
+  ]
+ }
+]

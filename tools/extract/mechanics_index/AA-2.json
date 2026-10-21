@@ -1,0 +1,1698 @@
+[
+ {
+  "title": "Medical Seasonal Activities",
+  "heading": "Seasonal Activities",
+  "line": 2226,
+  "endLine": 2243,
+  "category": "seasons",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "magi",
+   "companions",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the care activities a medicus can combine in one season, and the ones that consume the whole season, with the number of patients served tied to the practitioner's Abilities. Characters who gain no experience from the chosen activities get Exposure experience instead.",
+  "quotes": [
+   "A character can do *two* different activities from the following list in a season",
+   "Provide therapy for up to (Medicine) characters",
+   "Therapy for up to (5 x Medicine) characters"
+  ],
+  "related": [
+   "ArM5 p.179-180 Wound Recovery"
+  ]
+ },
+ {
+  "title": "Epidemiology and the Prognosis Total",
+  "heading": "Epidemiology and the Prognosis Total",
+  "line": 2245,
+  "endLine": 2249,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the design intent of the new disease rules: a physician's Medicine only helps a patient recover if the physician's Prognosis Total is high enough for the disease, so diseases are harder to cure than in the core rules.",
+  "quotes": [
+   "the physician now has to have a sufficiently high Prognosis Total to have this effect"
+  ]
+ },
+ {
+  "title": "Magical Assistance to Disease Recovery Rolls",
+  "heading": "Magical Assistance to Disease Recovery Rolls",
+  "line": 2251,
+  "endLine": 2253,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Creo Corpus magic can add bonuses to Disease Recovery rolls, separate from the Prognosis Total. Diseases caused by possession require the magic to penetrate the possessing creature's Might.",
+  "quotes": [
+   "These bonuses to disease recovery do not affect the Prognosis Total"
+  ]
+ },
+ {
+  "title": "Diagnosis and Prognosis",
+  "heading": "Diagnosis and Prognosis",
+  "line": 2259,
+  "endLine": 2281,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the Prognosis Total, a roll-free total compared against a disease's Severity that decides whether the physician's Medicine counts toward the patient's recovery, and how modifiers from diet, apothecary and chirurgeon feed into it. Also gives a separate Perception + Medicine roll for diagnosis alone.",
+  "quotes": [
+   "Intelligence + Medicine + Diet modifier + Medication modifier + Surgery modifier",
+   "If the Prognosis Total is greater than the severity of the disease, then the medicus has sufficient skill to plan therapy for his patient",
+   "the physician should make a Perception + Medicine roll"
+  ],
+  "related": [
+   "ArM5 p.170 Living Conditions",
+   "ArM5 Disease Recovery"
+  ]
+ },
+ {
+  "title": "Medical Magic",
+  "heading": "Medical Magic",
+  "line": 2283,
+  "endLine": 2299,
+  "category": "magic",
+  "topic": "Medical magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Clarifies how existing Corpus spells from the core book behave under the new disease rules, and notes what Rego Corpus can and cannot do to mimic symptoms.",
+  "quotes": [
+   "adds +3 to the Prognosis total if the follow-up treatment is designed by the character",
+   "Rego Corpus cannot inflict Disease Penalties, nor cause pain"
+  ],
+  "related": [
+   "ArM5 pp.129-135 Corpus spells"
+  ]
+ },
+ {
+  "title": "New Creo Corpus Guidelines (Disease)",
+  "heading": "New Creo Corpus Guidelines",
+  "line": 2301,
+  "endLine": 2311,
+  "category": "magic",
+  "topic": "Medical magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines for curing diseases by their category, from Minor up to any disease.",
+  "quotes": [
+   "Cure a Minor disease",
+   "Cure a Critical disease",
+   "Cure any disease"
+  ]
+ },
+ {
+  "title": "New Perdo Corpus Guidelines (Disease)",
+  "heading": "New Perdo Corpus Guidelines",
+  "line": 2313,
+  "endLine": 2319,
+  "category": "magic",
+  "topic": "Medical magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines for inflicting diseases, limited by disease category and Severity at lower levels.",
+  "quotes": [
+   "Inflict a Minor or Serious disease with a maximum Severity 10",
+   "Inflict any disease"
+  ]
+ },
+ {
+  "title": "New Rego Corpus Guidelines (Disease)",
+  "heading": "New Rego Corpus Guidelines",
+  "line": 2321,
+  "endLine": 2325,
+  "category": "magic",
+  "topic": "Medical magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines for inducing a minor or major symptom of a disease without causing the underlying illness.",
+  "quotes": [
+   "Invoke a minor symptom of a disease without creating any underlying malaise",
+   "Invoke a major symptom of a disease without creating any underlying malaise"
+  ]
+ },
+ {
+  "title": "Therapy",
+  "heading": "Therapy",
+  "line": 2335,
+  "endLine": 2343,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Therapy is the day-to-day care that is resolved through the patient's Disease Recovery roll, including how many patients a physician can handle and how subordinates share his Prognosis. The Prognosis Total must be recalculated if apothecary or chirurgeon help is lost or the disease changes Severity.",
+  "quotes": [
+   "Recovery Modifiers + Magical Aid + stress die",
+   "A physician can provide therapy to a number of patients at a time equal to his Medicine Ability"
+  ]
+ },
+ {
+  "title": "Prevention of Disease (Regimens)",
+  "heading": "Prevention of Disease",
+  "line": 2345,
+  "endLine": 2366,
+  "category": "hazards",
+  "topic": "Regimens",
+  "audience": [
+   "companions",
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A physician can set a patient on a regimen that improves the patient's Living Conditions Modifier after a year, with the size of the bonus limited by the physician's Medicine and the number of clients. The bonus is lost if eucrasia is disrupted and takes a year to re-establish.",
+  "quotes": [
+   "Clients = Physician's (Medicine x 5) Bonus to Living Conditions Modifier: +1 Minimum Medicine: 1",
+   "Single Client Bonus to Living Conditions Modifier: +3 Minimum Medicine: 7",
+   "Each physician can only manage a single regimen"
+  ],
+  "related": [
+   "ArM5 p.170 Living Conditions Modifier"
+  ]
+ },
+ {
+  "title": "Regimens and Covenants",
+  "heading": "Regimens and Covenants",
+  "line": 2367,
+  "endLine": 2379,
+  "category": "covenant",
+  "topic": "Regimens",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the multiplier applied to Inhabitant points when covenfolk are kept on a regimen, making the diet expensive for the covenant's finances.",
+  "quotes": [
+   "Increased to +2 | x2",
+   "A regimen cannot be instituted if the covenant is applying Emergency Savings to their food budget"
+  ],
+  "related": [
+   "Covenants p.63 Inhabitant points",
+   "Covenants p.69 Emergency Savings"
+  ]
+ },
+ {
+  "title": "Specialties for Chirurgy",
+  "heading": "Specialties for Chirurgy",
+  "line": 2389,
+  "endLine": 2391,
+  "category": "basics",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the areas of practice that suit as specialties of the Chirurgy Ability under these rules.",
+  "quotes": [
+   "the following areas are suitable as specialties in the Chirurgy Ability: surgery, surgical intervention, first aid, palliative care, midwifery"
+  ]
+ },
+ {
+  "title": "Chirurgical Magic",
+  "heading": "Chirurgical Magic",
+  "line": 2393,
+  "endLine": 2397,
+  "category": "magic",
+  "topic": "Medical magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how Creo Corpus can duplicate the benefits of first aid and childbirth help, and how Rego Corpus can mimic surgery using an Intelligence + Finesse roll against the mundane Ease Factor plus a modifier.",
+  "quotes": [
+   "Intelligence + Finesse roll against an Ease Factor equal to (Ease Factor for the mundane surgeon + 3)",
+   "Magical surgery involves no cutting"
+  ],
+  "related": [
+   "Covenants p.49 Rego Craft Magic"
+  ]
+ },
+ {
+  "title": "New Creo Corpus Guidelines (Chirurgical)",
+  "heading": "New Creo Corpus Guidelines",
+  "line": 2399,
+  "endLine": 2407,
+  "category": "magic",
+  "topic": "Medical magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines for treating wounds as less serious for activity purposes and for granting bonuses to childbirth rolls.",
+  "quotes": [
+   "The target's wounds are treated as one category less serious for the purposes of activities while injured",
+   "Give a character a +6 to childbirth rolls"
+  ]
+ },
+ {
+  "title": "New Rego Corpus Guidelines (Surgery)",
+  "heading": "New Rego Corpus Guidelines",
+  "line": 2409,
+  "endLine": 2421,
+  "category": "magic",
+  "topic": "Medical magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines for performing magical surgical procedures of graded severity, which inflict or prevent worsening of wounds of matching category.",
+  "quotes": [
+   "Perform a trivial surgical procedure (inflicting a fatigue level)",
+   "Perform a life-saving surgical procedure, preventing an Incapacitating or Fatal Wound from worsening"
+  ]
+ },
+ {
+  "title": "Surgery",
+  "heading": "Surgery",
+  "line": 2447,
+  "endLine": 2470,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules and table of Ease Factors for surgical procedures, each of which inflicts a wound on the patient but gives a bonus to the next Disease Recovery roll on success. Failure and botch results are described.",
+  "quotes": [
+   "Dexterity + Chirurgy + Recovery Modifiers + stress die",
+   "the patient receives a +3 to his next Disease Recovery roll",
+   "Phlebotomy, cautery, and cupping can only affect the most trivial diseases (Severity 5 or less) on their own"
+  ]
+ },
+ {
+  "title": "Treatment of Wounds",
+  "heading": "Treatment of Wounds",
+  "line": 2472,
+  "endLine": 2478,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "magi",
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Expands the core Wound Recovery roll by splitting the Chirurgy bonus into a First Aid bonus and a Palliative Care bonus.",
+  "quotes": [
+   "Stamina + First Aid Bonus + Palliative Care Bonus + Recovery Modifiers + Magical Aid + stress die"
+  ],
+  "related": [
+   "ArM5 pp.179-180 Wound Recovery"
+  ]
+ },
+ {
+  "title": "First Aid",
+  "heading": "First Aid",
+  "line": 2480,
+  "endLine": 2490,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "magi",
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "First aid given within a day of injury adds a bonus to Wound Recovery, and a successful First Aid roll can also let a patient act as though his wounds were one category less serious for a day.",
+  "quotes": [
+   "First Aid Bonus to Wound Recovery: (Chirurgy / 2)",
+   "First Aid Roll: Dexterity + Chirurgy + Recovery Modifiers + Magical Aid + stress die vs Improvement Ease Factor"
+  ],
+  "related": [
+   "ArM5 p.178 Activity While Injured",
+   "ArM5 p.179 Wound Recovery Table"
+  ]
+ },
+ {
+  "title": "Nurses",
+  "heading": "Nurses",
+  "line": 2492,
+  "endLine": 2496,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "covenant",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how a nurse can lead or assist in first aid, palliative care and, with some Medicine, therapy.",
+  "quotes": [
+   "a nurse can act as the lead chirurgeon in both first aid and palliative care"
+  ]
+ },
+ {
+  "title": "Palliative Care",
+  "heading": "Palliative Care",
+  "line": 2498,
+  "endLine": 2506,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "magi",
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Ongoing wound care adds a bonus to Wound Recovery; the combined Chirurgy bonus from first aid and palliative care is capped by the Chirurgy of the caregiver. Also covers how many patients can be cared for and how subordinates help.",
+  "quotes": [
+   "Palliative Care Bonus to Wound Recovery: (Chirurgy / 2)",
+   "cannot exceed the Chirurgy Ability of the character supplying the palliative care"
+  ]
+ },
+ {
+  "title": "Surgical Intervention",
+  "heading": "Surgical Intervention",
+  "line": 2508,
+  "endLine": 2536,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "magi",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When a Wound Recovery roll fails, a chirurgeon can attempt emergency surgery to stop the wound worsening, at the price of a permanent consequence that depends on the wound's severity. A failed or botched Surgery roll makes matters worse, and lists give the Flaws and Characteristics affected by the wound's location.",
+  "quotes": [
+   "He must make a Surgery roll (see Surgery, above) against an Ease Factor of 9",
+   "Make an immediate Aging roll",
+   "Gain a Major Flaw appropriate to the type of wound"
+  ],
+  "related": [
+   "ArM5 p.179 Wound Recovery"
+  ]
+ },
+ {
+  "title": "Midwifery",
+  "heading": "Midwifery",
+  "line": 2538,
+  "endLine": 2544,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for resolving childbirth in play by treating labor as a pseudo-wound to the mother, with consequences for the baby as her condition changes.",
+  "quotes": [
+   "The onset of labor is treated as a Medium Wound to the mother, except that Wound Recovery rolls are made every 2 hours",
+   "suffers a \u20132 penalty to his Chirurgy Ability"
+  ]
+ },
+ {
+  "title": "The Practice of the Apothecary",
+  "heading": "The Practice of the Apothecary",
+  "line": 2546,
+  "endLine": 2552,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how Profession: Apothecary complements Medicine, and how a physician's constant access to an apothecary reduces the Disease Recovery penalty for lacking medicinals.",
+  "quotes": [
+   "is reduced by the Profession: Apothecary Ability, although it cannot become a bonus",
+   "Profession: Apothecary is an adjunct to Medicine"
+  ],
+  "related": [
+   "ArM5 Profession: Apothecary"
+  ]
+ },
+ {
+  "title": "Commonly Used Ingredients",
+  "heading": "Commonly Used Ingredients",
+  "line": 2554,
+  "endLine": 2612,
+  "category": "lab",
+  "topic": "Apothecary ingredients",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of common medicinal ingredients with their qualities and ruling planet, which can supply Shape and Material Bonuses for magi and philosophers according to their strongest degree.",
+  "quotes": [
+   "Use the largest degree of hot, cold, moist, or dry as the strength of the bonus."
+  ],
+  "related": [
+   "Chapter Five: Experimental Philosophy"
+  ]
+ },
+ {
+  "title": "Medicinals",
+  "heading": "Medicinals",
+  "line": 2624,
+  "endLine": 2635,
+  "category": "hazards",
+  "topic": "Medicine and Chirurgy",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the four degrees of strength of a medicinal and what each does to the body, and describes the effects of heating, moistening, drying and cooling medicines.",
+  "quotes": [
+   "causes destruction or death of tissue",
+   "Medicinals of the fourth degree are all poisonous"
+  ]
+ },
+ {
+  "title": "Pharmacy",
+  "heading": "Pharmacy",
+  "line": 2637,
+  "endLine": 2656,
+  "category": "hazards",
+  "topic": "Apothecary store and labor points",
+  "audience": [
+   "companions",
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes forms of medicinal preparation and gives a Dexterity + Profession: Apothecary roll, with an Ease Factor by duration, to determine how long a preserved ingredient keeps. Preservation can also extend the Duration of an Arcane Connection that is a plant or animal part.",
+  "quotes": [
+   "Make an Dexterity + Profession: Apothecary roll",
+   "the Duration of the Arcane Connection is increased by one category",
+   "Only Arcane Connections that are plants or animal body parts can be extended in this manner by an apothecary"
+  ],
+  "related": [
+   "City & Guild Labor"
+  ]
+ },
+ {
+  "title": "Poisons",
+  "heading": "Poisons",
+  "line": 2658,
+  "endLine": 2666,
+  "category": "hazards",
+  "topic": "Poisons",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Fourth-degree substances act as poisons, with different effects for each quality. Poison manufacture falls under Profession: Apothecary, and only simple poisons can be made without knowing the correct formula.",
+  "quotes": [
+   "Only simple poisons (those that inflict a Light Wound, and that have an Ease Factor of 6 or less to resist the damage"
+  ],
+  "related": [
+   "ArM5 p.180 Poison",
+   "Chapter Five: Experimental Philosophy"
+  ]
+ },
+ {
+  "title": "The Apothecary's Store",
+  "heading": "The Apothecary's Store",
+  "line": 2668,
+  "endLine": 2707,
+  "category": "seasons",
+  "topic": "Apothecary store and labor points",
+  "audience": [
+   "companions",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An apothecary generates Labor Points each season he practises his trade, loses stock every year and through extra drains such as regimens, formulae and ligatures, and can avoid those drains by searching for specific ingredients with a stress roll modified by terrain, season and assistants.",
+  "quotes": [
+   "Labor Points per Eligible Season: (Intelligence + Profession: Apothecary) x Wealth Multiplier",
+   "An apothecary's business loses 36 labor points every year",
+   "Per + Profession: Apothecary, against Ease Factor of 9"
+  ],
+  "related": [
+   "City & Guild Chapter Two: Labor, pp.37-40"
+  ]
+ },
+ {
+  "title": "Pharmacy Magic",
+  "heading": "Pharmacy Magic",
+  "line": 2709,
+  "endLine": 2715,
+  "category": "magic",
+  "topic": "Apothecary store and labor points",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Creo, Intellego and Rego Craft magic can stock an apothecary's store, speed the search for ingredients, or duplicate the preparation of ingredients.",
+  "quotes": [
+   "then the Ease Factor of searching for ingredients is reduced by 3",
+   "such spells require an Intelligence + Finesse roll equal to the Ease Factor + 6"
+  ],
+  "related": [
+   "Covenants p.49 Rego Craft Magic"
+  ]
+ },
+ {
+  "title": "Experimental Philosophy",
+  "heading": "Chapter Five: Experimental Philosophy",
+  "line": 2725,
+  "endLine": 2735,
+  "category": "lab",
+  "topic": "Experimental philosophy",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces experimental philosophy: its products are natural rather than supernatural, so they ignore auras, Magic Resistance and Warping, cannot be enhanced by vis or spells, and require no Gift.",
+  "quotes": [
+   "unaffected by supernatural auras and do not need to penetrate Magic Resistance to have an effect",
+   "vis has no use to the philosopher"
+  ]
+ },
+ {
+  "title": "Natural Principles",
+  "heading": "Natural Principles",
+  "line": 2745,
+  "endLine": 2774,
+  "category": "lab",
+  "topic": "Experimental philosophy",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the natural principles behind philosophical work and Shape and Material bonuses: prime qualities, contagion, affinity, similarity, hidden virtues and astrology.",
+  "quotes": [
+   "Magi know the products of this principle as Arcane Connections",
+   "Similarity imbues many objects with their Shape and Material bonuses."
+  ],
+  "related": [
+   "ArM5 p.103 Laboratory scheduling"
+  ]
+ },
+ {
+  "title": "Ligatures",
+  "heading": "Ligatures",
+  "line": 2776,
+  "endLine": 2788,
+  "category": "lab",
+  "topic": "Ligatures",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A ligature is a one-use charm built from an Arcane or Sympathetic Connection and natural principles that adds a bonus to a single roll in a limited time window. It is made by a character with an academic Ability and rolled for at creation.",
+  "quotes": [
+   "Int + Academic Ability + stress die",
+   "If the result is nine or greater, then some benefit is gained",
+   "An individual can only have one ligature granting him a bonus at any time (even botched ones)"
+  ],
+  "related": [
+   "The Practice of the Apothecary, Pharmacy"
+  ]
+ },
+ {
+  "title": "Ligature Bonus Table",
+  "heading": "Ligature Bonus Table",
+  "line": 2796,
+  "endLine": 2801,
+  "category": "lab",
+  "topic": "Ligatures",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table converting the total rolled when creating a ligature into the bonus it grants.",
+  "quotes": [
+   "+3 (max)"
+  ]
+ },
+ {
+  "title": "Formulae",
+  "heading": "Formulae",
+  "line": 2790,
+  "endLine": 2794,
+  "category": "lab",
+  "topic": "Formulae",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces formulae, recipes for astrological inceptions, alchemical reagents and pharmaceutical theriacs, which are first researched and then concocted in a laboratory without needing the Gift or supernatural aid.",
+  "quotes": [
+   "A formula is a recipe, similar to a Laboratory Text, which describes how to make one of three products",
+   "The Gift is not required to concoct a formula"
+  ],
+  "related": [
+   "ArM5 Laboratory Texts"
+  ]
+ },
+ {
+  "title": "Example Ligatures",
+  "heading": "Example Ligatures",
+  "line": 2803,
+  "endLine": 2839,
+  "category": "lab",
+  "topic": "Ligatures",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists, by Academic Ability and sub-field, the kinds of action a ligature can assist, and notes that ligatures cannot help craft ligatures and that medical ligatures cannot affect recovery rolls.",
+  "quotes": [
+   "A ligature cannot assist with the crafting of a ligature.",
+   "Medical ligatures cannot affect either Wound Recovery rolls or Disease Recovery rolls."
+  ]
+ },
+ {
+  "title": "Researching Formulae",
+  "heading": "Researching Formulae",
+  "line": 2841,
+  "endLine": 2845,
+  "category": "lab",
+  "topic": "Formulae",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A formula is learned by accumulating experience points from study or by spending a season of Practice, after which it can be used to create products. A philosopher may learn a formula he cannot yet create.",
+  "quotes": [
+   "Once the formula has accumulated 5 experience points, it has been learned",
+   "the philosopher earns 5 experience points towards the formula"
+  ],
+  "related": [
+   "ArM5 p.164 Practice"
+  ]
+ },
+ {
+  "title": "Converting Characters",
+  "heading": "Converting Characters",
+  "line": 2847,
+  "endLine": 2849,
+  "category": "creation",
+  "topic": "Formulae",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lets an existing character trade experience in an Academic Ability for formulae of the matching type.",
+  "quotes": [
+   "Every 5 experience points removed from a character's total grants one formula of the appropriate type."
+  ]
+ },
+ {
+  "title": "Concocting a Formula",
+  "heading": "Concocting a Formula",
+  "line": 2851,
+  "endLine": 2853,
+  "category": "lab",
+  "topic": "Formulae",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A philosopher needs a laboratory of minimum size and ceiling height, similar to a Hermetic laboratory but usable in any aura.",
+  "quotes": [
+   "The philosopher requires at least 500 square feet of floor area and a ceiling at least ten feet high."
+  ]
+ },
+ {
+  "title": "The Laboratories of Philosophers",
+  "heading": "The Laboratories of Philosophers",
+  "line": 2855,
+  "endLine": 2861,
+  "category": "lab",
+  "topic": "Formulae",
+  "audience": [
+   "magi",
+   "companions",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that magi and philosophers must re-arrange a lab to share it, how to treat a philosopher's workspace under the Covenants upkeep rules, and which laboratory features carry over to a philosopher.",
+  "quotes": [
+   "treat the philosopher's working space as an extra laboratory with an Upkeep score of \u20133",
+   "a philosopher cannot receive any benefit from a Supernatural Virtue or Flaw, but he can still suffer the downsides"
+  ],
+  "related": [
+   "Covenants laboratory Upkeep"
+  ]
+ },
+ {
+  "title": "The Lab Total",
+  "heading": "The Lab Total",
+  "line": 2863,
+  "endLine": 2883,
+  "category": "lab",
+  "topic": "Lab Total",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines a philosopher's Lab Total for all formulae, the sources of Philosophic Bonuses (Shape and Material, Risk Modifiers from experimentation, and laboratory bonuses), and how seasons accumulate points toward completing a formula.",
+  "quotes": [
+   "Lab Total: Intelligence + Academic Ability + Philosophic Bonuses",
+   "The Philosophic Bonuses that add to the Lab Total can never exceed the Ability used in the formula",
+   "for every season of working on the effect, the philosopher accumulates 1 point for each point by which his Lab Total exceeds the formula's level"
+  ],
+  "related": [
+   "ArM5 p.103 Distractions",
+   "ArM5 p.110 Shape and Material Bonuses",
+   "ArM5 pp.107-109 Experimentation"
+  ]
+ },
+ {
+  "title": "Replicating Formulae with Hermetic Magic",
+  "heading": "Replicating Formulae with Hermetic Magic",
+  "line": 2885,
+  "endLine": 2895,
+  "category": "magic",
+  "topic": "Formulae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus with a formula",
+  "summary": "Describes how Rego Craft or Creo magic can assemble a reagent or theriac in an instant, the requisites to use, and the Finesse roll needed. Astrological inceptions cannot be duplicated this way.",
+  "quotes": [
+   "The Ease Factor of this Finesse roll is the level of the formula + 9",
+   "A different spell is required for duplicating each formula.",
+   "Craft magic cannot duplicate astrological inceptions"
+  ],
+  "related": [
+   "Covenants p.49 Rego Craft Magic"
+  ]
+ },
+ {
+  "title": "Laboratory Texts (Formulae)",
+  "heading": "Laboratory Texts",
+  "line": 2906,
+  "endLine": 2914,
+  "category": "lab",
+  "topic": "Lab texts",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The first time a formula is completed, a Laboratory Text is made that lets the philosopher make multiple doses on later occasions. The text can be copied for others like a Hermetic text, but the reader must also learn the formula.",
+  "quotes": [
+   "(Lab Total) / 5 (round up)",
+   "cost a number of covenant Build Points equal to half their level"
+  ],
+  "related": [
+   "ArM5 p.102 Laboratory Texts"
+  ]
+ },
+ {
+  "title": "Astrological Inceptions",
+  "heading": "Astrological Inceptions",
+  "line": 2922,
+  "endLine": 2934,
+  "category": "lab",
+  "topic": "Astrological inceptions",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An inception is an astrological chart that answers a question about a target once the target's nativity horoscope is calculated. It cannot simply be copied, only re-created from its Laboratory Text.",
+  "quotes": [
+   "Int + Artes Liberales + die roll, against Ease Factor 9",
+   "it takes one minute per level of the inception to complete the calculation and reveal the answers sought",
+   "astrological inceptions cannot be simply copied"
+  ]
+ },
+ {
+  "title": "When's My Birthday?",
+  "heading": "When's My Birthday?",
+  "line": 2936,
+  "endLine": 2940,
+  "category": "lab",
+  "topic": "Astrological inceptions",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advice on whether characters know their birth date and place, and how imprecise information reduces the Detail an inception can reveal. Also notes Hermetic attitudes to inceptions.",
+  "quotes": [
+   "the inception should be treated as one Detail category less"
+  ]
+ },
+ {
+  "title": "Inception Guidelines",
+  "heading": "Inception Guidelines",
+  "line": 2952,
+  "endLine": 2972,
+  "category": "lab",
+  "topic": "Astrological inceptions",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the Detail parameter for inceptions (Binary, Basic, Brief, Thorough), the magnitude adjustments for asking about the past or future, and base levels for the information gained.",
+  "quotes": [
+   "A one-word answer between two choices (+0 magnitudes)",
+   "Reveals all relevant information associated with the target of the inception (+3 magnitudes)",
+   "Queries about the present add no magnitudes."
+  ]
+ },
+ {
+  "title": "Guidance on Using Astrological Inceptions",
+  "heading": "Guidance on Using Astrological Inceptions",
+  "line": 2974,
+  "endLine": 2984,
+  "category": "lab",
+  "topic": "Astrological inceptions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Storyguide advice on keeping inceptions from derailing stories: horoscopes show characteristics not motives, answer only indirect questions, do not fix destiny, and never give absolute answers.",
+  "quotes": [
+   "The stars hold the answers to indirect questions only"
+  ]
+ },
+ {
+  "title": "Alchemical Reagents",
+  "heading": "Alchemical Reagents",
+  "line": 3078,
+  "endLine": 3089,
+  "category": "lab",
+  "topic": "Alchemical reagents",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Reagents are natural substances made in a laboratory that alter the prime qualities of matter but cannot create matter or change the base substance. Concocting one draws on an apothecary's stores.",
+  "quotes": [
+   "they have the equivalent of a Momentary Duration",
+   "Alchemy cannot transform the base substance into another sort, nor can it cause an increase or decrease in the amount of matter",
+   "1 Labor Point per 5 points (or fraction) of the level"
+  ],
+  "related": [
+   "Chapter Three: Philosophiae, Change in Quality"
+  ]
+ },
+ {
+  "title": "Reagent Guidelines",
+  "heading": "Reagent Guidelines",
+  "line": 3091,
+  "endLine": 3127,
+  "category": "lab",
+  "topic": "Alchemical reagents",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the Alteration parameter for reagents (Slight, Minor, Substantial, Major) with its effect on damage and magnitudes, the volume of matter affected and how size scales, and base levels for changing or purifying simple and complex matter.",
+  "quotes": [
+   "A Reagent can affect one cubic pace of simple matter, or else fifty cubic inches of complex matter.",
+   "Each additional magnitude multiplies the base amount of matter by ten.",
+   "Enhance or diminish primary quality of simple matter"
+  ],
+  "related": [
+   "ArM5 p.97 Material and Size table"
+  ]
+ },
+ {
+  "title": "Volume Conversion Guide",
+  "heading": "Volume Conversion Guide",
+  "line": 3129,
+  "endLine": 3145,
+  "category": "lab",
+  "topic": "Alchemical reagents",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Converts the volume steps used for reagent size into familiar quantities, spheres, base Individuals and Material and Size categories.",
+  "quotes": [
+   "Each increase in size on this chart indicates approximately a ten-fold increase in volume."
+  ],
+  "related": [
+   "ArM5 p.97 Material and Size table"
+  ]
+ },
+ {
+  "title": "Alchemical Purification's Shape & Material Bonuses",
+  "heading": "Alchemical Purification's Shape & Material Bonuses",
+  "line": 3249,
+  "endLine": 3261,
+  "category": "lab",
+  "topic": "Alchemical reagents",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Alchemical purification can strengthen material-based Shape and Material bonuses, by an amount set by the Alteration level, and a short list of new bonuses is given that philosophers and magi can use.",
+  "quotes": [
+   "A Minor Alteration can add a +1 to the bonus, a Substantial Alteration adds +2, and a Major Alteration adds +3."
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material Bonuses"
+  ]
+ },
+ {
+  "title": "Pharmaceutical Theriacs",
+  "heading": "Pharmaceutical Theriacs",
+  "line": 3263,
+  "endLine": 3267,
+  "category": "lab",
+  "topic": "Pharmaceutical theriacs",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Theriacs are medicinal formulae learned as part of Medicine, made from an apothecary's ingredients, that can cure or cause wounds and disease effects.",
+  "quotes": [
+   "Each Theriac costs an apothecary's business 1 Labor Point per 5 points (or fraction) of the level"
+  ],
+  "related": [
+   "The Practice of the Apothecary"
+  ]
+ },
+ {
+  "title": "Theriac Guidelines",
+  "heading": "Theriac Guidelines",
+  "line": 3269,
+  "endLine": 3307,
+  "category": "lab",
+  "topic": "Pharmaceutical theriacs",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the Potency parameter for theriacs (Weak to Mighty) and which wounds, diseases or Fatigue levels each can affect, plus base levels for Recovery roll bonuses, pain relief, poison reduction and causing wounds.",
+  "quotes": [
+   "Affect a Light Wound, a Minor Disease, or Weary Fatigue level (+1 magnitude)",
+   "Grant a +3 to the patient's next Wound Recovery roll.",
+   "Different formulae are needed to affect Wound Recovery and Disease Recovery rolls."
+  ]
+ },
+ {
+  "title": "The Limits of Education",
+  "heading": "The Limits of Education",
+  "line": 3397,
+  "endLine": 3412,
+  "category": "creation",
+  "topic": "Institutional education",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Educated",
+  "summary": "Caps the starting score of Academic Abilities by the type of school attended, with major subjects at full limit and minor subjects at half (rounded up), and lists which subjects each institution teaches.",
+  "quotes": [
+   "Attending any of these schools demands that the character have the Virtue: Educated.",
+   "Minor subjects are limited to half the regular score limit listed below, rounded up."
+  ],
+  "related": [
+   "ArM5 p.31 Age limits on Abilities"
+  ]
+ },
+ {
+  "title": "Parish Schools",
+  "heading": "Parish Schools",
+  "line": 3414,
+  "endLine": 3432,
+  "category": "social",
+  "topic": "Institutional education",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how a character is accepted into a parish school with a social roll against a rural or urban Ease Factor, what the school costs and teaches, and how long a student typically stays.",
+  "quotes": [
+   "Presence + Bargain or Charm or Guile + stress die vs. 6 (rural parish) or 9 (urban parish)",
+   "A student character studies two seasons out of the year from the parish priest."
+  ]
+ },
+ {
+  "title": "Cathedral Schools",
+  "heading": "Cathedral Schools",
+  "line": 3434,
+  "endLine": 3468,
+  "category": "social",
+  "topic": "Institutional education",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covers entry to a cathedral school (a social roll reduced by Bad Reputation), the cost of attending, how a character's Presence and Academic Reputation determine the number of students a cathedral teacher attracts, and the seasonal duties of a teacher.",
+  "quotes": [
+   "Presence + Bargain, Charm, Guile or Intrigue + stress die \u2013 highest Bad Reputation vs. 12",
+   "A teacher can teach a number of students equal to five times the character's Teaching Ability",
+   "It costs a character one Mythic Pound to attend a cathedral school for one year."
+  ],
+  "related": [
+   "ArM5 p.164 Teaching"
+  ]
+ },
+ {
+  "title": "Monastic Schools",
+  "heading": "Monastic Schools",
+  "line": 3492,
+  "endLine": 3506,
+  "category": "social",
+  "topic": "Institutional education",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Monastic schools mostly admit their own brothers, use the cathedral school entry formula at a lower Ease Factor, and are of interest to magi chiefly for their libraries, which the precentor controls.",
+  "quotes": [
+   "use the formula for gaining entrance to a cathedral school, but lower the Ease Factor to 9"
+  ]
+ },
+ {
+  "title": "The Rules of Silence and Reading",
+  "heading": "The Rules of Silence and Reading",
+  "line": 3554,
+  "endLine": 3558,
+  "category": "basics",
+  "topic": "Institutional education",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Monastic background",
+  "summary": "Monastic characters may know Sign Language as an Ability, treated like a Living Language, and Benedictine houses loan out books during Lent.",
+  "quotes": [
+   "Monastic characters can know the Ability: Sign Language, which is equivalent to a Living Language but not as accessible."
+  ]
+ },
+ {
+  "title": "Urban Schools",
+  "heading": "Urban Schools",
+  "line": 3560,
+  "endLine": 3568,
+  "category": "social",
+  "topic": "Institutional education",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Municipal schools admit citizens and foreigners using the cathedral school entry formula at different Ease Factors, and a master may teach as many students as his Teaching allows.",
+  "quotes": [
+   "lower the Ease Factor to 9 if the prospective student is a citizen of the school's town. If he is a foreigner, make the Ease Factor 12.",
+   "(the teacher's Teaching score times five)"
+  ]
+ },
+ {
+  "title": "Private Instructors",
+  "heading": "Private Instructors",
+  "line": 3580,
+  "endLine": 3586,
+  "category": "social",
+  "topic": "Institutional education",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the role of private instructors, the most common teachers at a Hermetic covenant, and how a character working as one owes his employer a share of each year.",
+  "quotes": [
+   "The character will need to work for his employer for two seasons out of every year."
+  ],
+  "related": [
+   "ArM5 p.72 Teachers bought with Build Points"
+  ]
+ },
+ {
+  "title": "Translations",
+  "heading": "Translations",
+  "line": 3588,
+  "endLine": 3598,
+  "category": "seasons",
+  "topic": "Translations",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sets the language and Artes Liberales requirements to translate texts, the time needed for a tractatus or summa, and the Quality penalties for language and cultural differences.",
+  "quotes": [
+   "It takes a season to translate a tractatus.",
+   "Translated texts have their Quality reduced by 2, one for language differences and one for cultural differences."
+  ],
+  "related": [
+   "ArM5 p.165 Writing books"
+  ]
+ },
+ {
+  "title": "Warring Faiths",
+  "heading": "Warring Faiths",
+  "line": 3612,
+  "endLine": 3620,
+  "category": "social",
+  "topic": "Theological debate",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character can write books or debate against another faith by combining two Theology Abilities, and gains extra Academic Reputation experience from such a challenge.",
+  "quotes": [
+   "the character must average the scores in the two Theology Abilities to determine the maximum level of the summa",
+   "he receives double the normal amount of Academic Reputation experience points"
+  ],
+  "related": [
+   "ArM5 p.165 Writing books",
+   "Chapter Seven: Universities, Disputatio"
+  ]
+ },
+ {
+  "title": "Acquiring a Teaching Position",
+  "heading": "Acquiring a Teaching Position",
+  "line": 3630,
+  "endLine": 3648,
+  "category": "social",
+  "topic": "Institutional education",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An optional die-roll mechanic for finding academic work: a character spends a season and rolls against an Ease Factor set by the position, modified by Virtues and Academic Reputations. Failure wastes the season and a botch risks a wound or Bad Reputation.",
+  "quotes": [
+   "Presence + appropriate Ability + Good Academic Reputation + bonus for Virtues \u2013 Bad Academic Reputation + stress die vs. Variable Ease Factor",
+   "If the roll fails, the season is wasted."
+  ],
+  "related": [
+   "Chapter Seven: Universities"
+  ]
+ },
+ {
+  "title": "New Virtues and Flaws (Universities)",
+  "heading": "New Virtues and Flaws",
+  "line": 3659,
+  "endLine": 3669,
+  "category": "creation",
+  "topic": "University careers",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how the new university Social Status Virtues work: only one is normally held, it need not be rebalanced as a character advances, every student has benefit of clergy, and the stages from student to doctor each build on the previous Virtue.",
+  "quotes": [
+   "it is not necessary to balance Social Status Virtues after character generation",
+   "Every university student receives the benefit of clergy"
+  ],
+  "related": [
+   "ArM5 Social Status Virtues"
+  ]
+ },
+ {
+  "title": "Student-Run University",
+  "heading": "Student-Run University",
+  "line": 3774,
+  "endLine": 3794,
+  "category": "setting",
+  "topic": "University life",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the southern, student-governed model of university and gives sample statutes that bind masters, such as lecture attendance, original instruction and hosting disputationes.",
+  "quotes": [
+   "A master must host a disputatio at least once a term.",
+   "A master may not read directly from the text during his lecture, but must offer commentaries and arguments that gloss the text."
+  ]
+ },
+ {
+  "title": "University of Masters",
+  "heading": "University of Masters",
+  "line": 3796,
+  "endLine": 3829,
+  "category": "setting",
+  "topic": "University life",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the northern, master-governed model of university and gives sample statutes that bind students, such as dress, curfew, language and matriculation.",
+  "quotes": [
+   "A student must always speak Latin, at class and in his residence.",
+   "A student must be matriculated into his faculty and must swear his Oath of Matriculation."
+  ]
+ },
+ {
+  "title": "False Scholars",
+  "heading": "False Scholars",
+  "line": 3884,
+  "endLine": 3888,
+  "category": "social",
+  "topic": "University life",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character can pose as a student to gain a university education without paying, rolling each season to avoid being discovered; success gives full experience, failure half, and a botch brings legal trouble.",
+  "quotes": [
+   "Communication + Guile + stress die roll against an Ease Factor of 9",
+   "Penalties from The Gift apply to this roll."
+  ]
+ },
+ {
+  "title": "Student Life",
+  "heading": "Student Life",
+  "line": 3896,
+  "endLine": 3938,
+  "category": "seasons",
+  "topic": "University life",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covers how a student attaches to a master, matriculates and attends lectures, the costs of university life, and how copying a lecture text takes twice the normal time. A student character spends the usual two seasons a year on study.",
+  "quotes": [
+   "Tuition, food, and rent usually cost a student two Mythic Pounds a year.",
+   "Overall, it takes twice as long as normal",
+   "ordinary lectures count toward a license and extra-ordinary lectures do not"
+  ],
+  "related": [
+   "ArM5 p.163 Seasons",
+   "ArM5 p.166 Copying"
+  ]
+ },
+ {
+  "title": "Academic Learning and Experience Points",
+  "heading": "Academic Learning and Experience Points",
+  "line": 3912,
+  "endLine": 3918,
+  "category": "seasons",
+  "topic": "Academic learning",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Allows experience from being taught an Academic Ability to be split between that Ability and Latin or Teaching, with a minimum share going to the Ability taught, and similar rules for Latin and Artes Liberales.",
+  "quotes": [
+   "He must put at least half of the gained experience points in the Academic Ability taught",
+   "If a player puts experience points gained from Latin instruction into Artes Liberales, he must put at least half of them in Latin."
+  ]
+ },
+ {
+  "title": "Examinations",
+  "heading": "Examinations",
+  "line": 3948,
+  "endLine": 3954,
+  "category": "social",
+  "topic": "University examinations",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A student faces a single, difficult private examination per career stage and then a ceremonial public examination that cannot be failed, with the candidate paying for the ceremony.",
+  "quotes": [
+   "University students take only one exam per stage of their academic careers.",
+   "He cannot fail his public examination"
+  ]
+ },
+ {
+  "title": "Passing Examinations",
+  "heading": "Passing Examinations",
+  "line": 4008,
+  "endLine": 4022,
+  "category": "social",
+  "topic": "University examinations",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An abstract way to resolve a private examination: after the required years of study and a minimum Good Academic Reputation, the candidate makes an Exam Total against an Ease Factor set by the license. Passing the public examination only depends on paying for it.",
+  "quotes": [
+   "Communication + Artes Liberales + Good Academic Reputation - Bad Academic Reputation + Stress Die vs. 6",
+   "A baccalaureate candidate needs a Good Academic Reputation of at least 1, a magister in artibus candidate 2, and a doctoral candidate needs a minimum score of 3."
+  ],
+  "related": [
+   "Disputatio"
+  ]
+ },
+ {
+  "title": "The Life of a Master",
+  "heading": "The Life of a Master",
+  "line": 4036,
+  "endLine": 4056,
+  "category": "seasons",
+  "topic": "University careers",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes a master's duties and the difference between resident and visiting masters. A master character teaches for part of each year and earns Exposure experience for those seasons.",
+  "quotes": [
+   "Master characters must teach two seasons of every year"
+  ]
+ },
+ {
+  "title": "Lecture Commentaries",
+  "heading": "Lecture Commentaries",
+  "line": 4068,
+  "endLine": 4080,
+  "category": "seasons",
+  "topic": "Writing books",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A teaching character can have a scribe record his lectures into a tractatus whose Quality derives from the teacher's Communication and the scribe's skill, optionally improved by editing. Commentaries do not count against the character's normal tractatus limit.",
+  "quotes": [
+   "Lecture Commentary Quality: Teacher's Communication + scribe's Profession: Scribe/2",
+   "Edited Lecture Commentary Quality: Original Quality + 1 + bonuses from Virtues",
+   "A character can produce a number of lecture commentaries equal to his relevant Academic Ability score."
+  ],
+  "related": [
+   "ArM5 p.165 Writing books",
+   "Covenants glossing"
+  ]
+ },
+ {
+  "title": "Academic Reputations",
+  "heading": "Academic Reputations",
+  "line": 4082,
+  "endLine": 4117,
+  "category": "social",
+  "topic": "Reputation",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Academic Reputations are Reputations that grow like an Ability from experience points earned only through scholarly deeds, with lists of deeds that raise a Good or Bad Academic Reputation. Hermetic study gives no Academic Reputation.",
+  "quotes": [
+   "Each time a character does any of the following, he gains one Academic Reputation experience point:",
+   "Stagnating gains a character 1 experience point per year.",
+   "Studying, increasing, or writing about the Hermetic Arts does not award Academic Reputation experience points"
+  ],
+  "related": [
+   "ArM5 Reputation"
+  ]
+ },
+ {
+  "title": "Disputatio",
+  "heading": "Disputatio",
+  "line": 4119,
+  "endLine": 4127,
+  "category": "social",
+  "topic": "Disputatio",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the formal academic debate: its three types (epideictic, deliberative, forensic), the roles of opponent, responder and judge, and how questions and exchanges are structured.",
+  "quotes": [
+   "Disputationes have a set number of questions, determined beforehand and usually numbering seven, nine, or twelve."
+  ]
+ },
+ {
+  "title": "Basic Disputatio",
+  "heading": "Basic Disputatio",
+  "line": 4129,
+  "endLine": 4164,
+  "category": "social",
+  "topic": "Disputatio",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Resolves a disputatio like a certamen: each disputer's argument has symbolic Fatigue Levels worn down by Attack, Defense, Weakening and Resistance Totals, followed by an Over-Exertion check for real fatigue. Several Virtues and Flaws modify these totals.",
+  "quotes": [
+   "Attack Total: Communication + Ability + stress die",
+   "Weakening Total: Intelligence + Attack Advantage",
+   "Disputatio Over-Exertion Check: Stamina + stress die vs. Ease Factor equal to the number of rounds of the disputatio"
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Advanced Disputatio",
+  "heading": "Advanced Disputatio",
+  "line": 4166,
+  "endLine": 4180,
+  "category": "social",
+  "topic": "Disputatio",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional additions to the disputatio rules: minimum Ease Factors for statements, questions from the crowd, public Advent and Lent disputes, resolving a private examination as a disputatio, and experience rewards for winning.",
+  "quotes": [
+   "Roll a stress die (no botch) to determine the Attack Total.",
+   "Disputatio experience point rewards should not be granted more than once a season."
+  ],
+  "related": [
+   "Passing Examinations"
+  ]
+ },
+ {
+  "title": "Schoolmen's Disputationes and House Tytalus' Debates",
+  "heading": "Schoolmen's Disputationes and House Tytalus' Debates",
+  "line": 4182,
+  "endLine": 4188,
+  "category": "houses",
+  "topic": "Disputatio",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tytalus debate",
+  "summary": "Explains how Tytalus debate differs from academic disputatio, how a Tytalus and an academic character debate each other, and when the Gift penalizes a disputatio.",
+  "quotes": [
+   "Storyguides must determine if a \u20133 penalty is appropriate, depending on the situation."
+  ],
+  "related": [
+   "Houses of Hermes: Societates, House Tytalus"
+  ]
+ }
+]

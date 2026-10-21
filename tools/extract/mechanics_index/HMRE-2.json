@@ -1,0 +1,2818 @@
+[
+ {
+  "title": "Gruagach Character Generation",
+  "heading": "Character Generation",
+  "line": 2784,
+  "endLine": 2797,
+  "category": "creation",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Gruagachan",
+  "summary": "How Gifted and unGifted gruagachan are built: when apprenticeship happens, how the Opening of the Gift grants the gruagach Arts, and how many experience points and spell levels each kind of apprenticeship provides.",
+  "quotes": [
+   "160 experience points for any Abilities, including Arcane ones or the gruagach Arts, and 80 levels of spells",
+   "For each year of training, the player may spend 16 experience points in Abilities or gruagach Arts and take 8 levels of spells."
+  ],
+  "related": [
+   "ArM5 Opening of the Gift"
+  ]
+ },
+ {
+  "title": "Gruagach Training",
+  "heading": "Training",
+  "line": 2803,
+  "endLine": 2806,
+  "category": "traditions",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Explains how gruagachan are taught and how they improve: through a master, vis, exposure or adventure, with Abilities (but not Arts) also raisable by practice.",
+  "quotes": [
+   "gruagachan may not improve their Arts through practice"
+  ],
+  "related": []
+ },
+ {
+  "title": "Typical Gruagach Abilities",
+  "heading": "Typical Gruagach Abilities",
+  "line": 2807,
+  "category": "creation",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Minimum Abilities and Arts a Gifted gruagach must have after apprenticeship, plus the Technique, Form, Pictish and Lore thresholds needed before taking the Fetch and External Soul Virtues and initiating unGifted students.",
+  "quotes": [
+   "must have a score of 2 in Pictish and Gruagach Lore, as well as scores of 1 in all of the gruagach Arts"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gruagach Abilities (Gruagach Lore and Pictish Language)",
+  "heading": "Gruagach Abilities",
+  "line": 2813,
+  "category": "traditions",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Describes Gruagach Lore and Pictish Language, the latter acting as the gruagach equivalent of Magic Theory and capping how high the gruagach's Arts may rise.",
+  "quotes": [
+   "With a Pictish score of 1, a gruagach's Arts may not exceed a score of 5."
+  ],
+  "related": [
+   "ArM5 Magic Theory"
+  ]
+ },
+ {
+  "title": "Hermetic Virtues and Flaws for Gruagachan",
+  "heading": "Hermetic Virtues and Flaws for Gruagachan",
+  "line": 2939,
+  "category": "creation",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Lists which Hermetic Virtues and Flaws gruagach characters may take, with notes on Quiet Magic and on Flaws forbidden to unGifted gruagachan.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Gruagach Arts",
+  "heading": "Gruagach Arts",
+  "line": 2957,
+  "endLine": 2960,
+  "category": "traditions",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Introduces the gruagach Techniques and Forms; a caster needs both a Technique and a Form, and an unGifted gruagach needs the matching Virtue for each Art used.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Gruagach Techniques (Give and Take)",
+  "heading": "Techniques",
+  "line": 2961,
+  "endLine": 2970,
+  "category": "traditions",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Describes the Give and Take Techniques, which grant things to or remove things from a target, and how they relate to Hermetic Techniques.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Gruagach Forms (Blessing, Curse, Shape, Vision)",
+  "heading": "Forms",
+  "line": 2971,
+  "endLine": 2988,
+  "category": "traditions",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Describes the four gruagach Forms and what each can do with Give and Take, including which Virtues Blessing cannot affect and the conditions attached to curses.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Gruagach Spellcasting",
+  "heading": "Gruagach Spells",
+  "line": 2989,
+  "endLine": 3004,
+  "category": "magic",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Gives the gruagach casting score and casting-total formulas for Formulaic and Spontaneous spells, the Fatigue consequences of casting, and how Formulaic spells can be varied in Range, Duration, Target or size.",
+  "quotes": [
+   "Technique + Form + Stamina + Aura Modifier",
+   "(Casting Score + Stress Die) / 2",
+   "The final spell must be within 2 magnitudes of the original spell"
+  ],
+  "related": [
+   "ArM5 Flexible Formulaic Magic"
+  ]
+ },
+ {
+  "title": "Gruagach Spell Mastery",
+  "heading": "Spell Mastery",
+  "line": 3005,
+  "endLine": 3008,
+  "category": "magic",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Gruagachan may master Formulaic spells as Hermetic magi do and use Mastery Abilities the troupe allows, except Quiet Casting.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.86-87 Spell Mastery"
+  ]
+ },
+ {
+  "title": "Gruagach Flexible Casting Mastery",
+  "heading": "Flexible Casting",
+  "line": 3009,
+  "endLine": 3012,
+  "category": "magic",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "A Mastery Ability that widens, with Mastery Score, how many magnitudes a gruagach can vary a known Formulaic spell.",
+  "quotes": [
+   "For every full five points in the gruagach's Mastery Score, add one to the number of magnitudes by which he can vary the Range, Duration, Target, or size of a known Formulaic spell."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gruagach Ranges, Durations, and Targets",
+  "heading": "Ranges, Durations, and Targets",
+  "line": 3013,
+  "endLine": 3032,
+  "category": "magic",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Lists the limited Range, Duration and Target parameters gruagach spells may use, their base parameters, the vocalization requirement, and the Conversation Range.",
+  "quotes": [
+   "The base parameters for Shape and Vision spells are Personal, Momentary, and Individual. The base parameters for Blessing and Curse spells are Conversation, Momentary, and Individual.",
+   "Range: Personal, Conversation (0/+1), and Voice (+1/+2)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gruagach Laboratory Activities",
+  "heading": "Gruagach Laboratory Activities",
+  "line": 3033,
+  "endLine": 3040,
+  "category": "lab",
+  "topic": "Gruagach",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Lists the few laboratory activities open to gruagachan and the gruagach Lab Total, which uses Pictish Language in place of Magic Theory.",
+  "quotes": [
+   "Gruagach Technique + Gruagach Form + Intelligence + Pictish Language + Aura Modifier"
+  ],
+  "related": [
+   "ArM5 Lab Total"
+  ]
+ },
+ {
+  "title": "Gruagach Learning and Inventing Spells",
+  "heading": "Learning and Inventing New Spells",
+  "line": 3041,
+  "endLine": 3044,
+  "category": "lab",
+  "topic": "Gruagach",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Gruagachan learn and invent spells by the Hermetic rules.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.95"
+  ]
+ },
+ {
+  "title": "Enchanting Tattoos",
+  "heading": "Enchanting Tattoos",
+  "line": 3045,
+  "endLine": 3062,
+  "category": "lab",
+  "topic": "Gruagach",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Rules for gruagach tattoos, which work as Lesser Enchantments: size multipliers for material, Blessing tattoos, Warping, shape bonuses, plus a worked example.",
+  "quotes": [
+   "A tattoo has a base material score of 2, multiplied by a size modifier."
+  ],
+  "related": [
+   "ArM5 p.96 Lesser Enchantment"
+  ]
+ },
+ {
+  "title": "Gruagach Shape Bonuses",
+  "heading": "Gruagach Shape Bonuses",
+  "line": 3063,
+  "endLine": 3093,
+  "category": "lab",
+  "topic": "Gruagach",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Table of animal shapes for gruagach tattoos and the shape bonus each animal gives to particular kinds of effect.",
+  "quotes": [
+   "Boar: +3 ferocity, + 4 attacking",
+   "Dove: +6 granting visions or premonitions"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gruagach Vis Use",
+  "heading": "Vis",
+  "line": 3095,
+  "endLine": 3102,
+  "category": "lab",
+  "topic": "Gruagach",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "How gruagachan use and study raw vis, which Hermetic Forms of vis suit each gruagach Art, extracting Vim vis from auras and moving vis between physical forms.",
+  "quotes": [
+   "A gruagach may extract a number of pawns of Vim vis from a magical aura equal to one tenth of her Take Vision Lab Total.",
+   "The gruagach is limited in the number of pawns he may use in a single season to twice his score in Pictish Language."
+  ],
+  "related": [
+   "ArM5 p.82-83 vis in casting",
+   "ArM5 p.94 transferring vis",
+   "ArM5 p.165 studying vis"
+  ]
+ },
+ {
+  "title": "Gruagach Laboratory Texts",
+  "heading": "Laboratory Texts",
+  "line": 3103,
+  "endLine": 3108,
+  "category": "lab",
+  "topic": "Gruagach",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Gruagach Laboratory Texts follow the Hermetic rules but Pictish replaces Latin for the levels writable per season, and texts are written in Ogham.",
+  "quotes": [
+   "it replaces Latin to determine the number of levels that may be written per season"
+  ],
+  "related": [
+   "ArM5 p.102 Laboratory Texts"
+  ]
+ },
+ {
+  "title": "Gifted Gruagach Initiations",
+  "heading": "Gifted Gruagach Initiations",
+  "line": 3109,
+  "endLine": 3116,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan (Gifted)",
+  "summary": "Explains how Gifted gruagachan Initiate students into additional supernatural Abilities via Scripts, with the Initiation Total formula and notes on mystagogues, written scripts and self-initiation.",
+  "quotes": [
+   "Presence + Gruagach Lore + Script Bonus"
+  ],
+  "related": [
+   "Hedge Magic introduction: Initiation"
+  ]
+ },
+ {
+  "title": "Ritual of Calling the Fetch",
+  "heading": "Ritual of Calling the Fetch",
+  "line": 3117,
+  "endLine": 3123,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fetch (Gifted gruagach)",
+  "summary": "Initiation Script for the Fetch Virtue: a fasting vigil on a mountaintop, the Stamina plus Concentration rolls required, how the fetch animal is chosen, and the Restriction gained.",
+  "quotes": [
+   "Script Bonus:** +13 (+3 Quest, +9 Major Ordeal, +1 Sympathetic)",
+   "The player must succeed in a Stamina + Concentration roll against an Ease Factor of 9 on three consecutive attempts."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.19 Choosing the Heartbeast",
+   "ArM5 p.180 deprivation"
+  ]
+ },
+ {
+  "title": "Spirit Magic (gruagach sidebar)",
+  "heading": "Spirit Magic",
+  "line": 3125,
+  "endLine": 3127,
+  "category": "traditions",
+  "topic": "Gruagach",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "States that gruagach magic cannot affect the dead or their spirits, and points to the Ars Goetica rules for characters who want to command spirits.",
+  "quotes": [
+   "The magic of the gruagachan cannot affect the dead or their spirits."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.114 Ars Goetica"
+  ]
+ },
+ {
+  "title": "Extractions of the Soul from its Husk",
+  "heading": "Extractions of the Soul from its Husk",
+  "line": 3129,
+  "endLine": 3133,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: External Soul (Gifted gruagach)",
+  "summary": "Initiation Script for the External Soul Virtue: prerequisites such as a Vow to train apprentices and a vessel stone, a season-long ritual, and the Flaw gained.",
+  "quotes": [
+   "Initiation Ease Factor:** 21/30"
+  ],
+  "related": []
+ },
+ {
+  "title": "UnGifted Gruagach Initiations",
+  "heading": "UnGifted Gruagach Initiations",
+  "line": 3139,
+  "endLine": 3146,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Gruagachan (unGifted)",
+  "summary": "Explains how unGifted gruagachan gain each Art through an independent Initiation Script in any order, with no self-Initiation, and the usual progression of Arts.",
+  "quotes": [
+   "an unGifted gruagach may not self-Initiate any Arts"
+  ],
+  "related": [
+   "Hedge Magic introduction: Initiation"
+  ]
+ },
+ {
+  "title": "Initiation into the Give Technique",
+  "heading": "Initiation into the Give Technique",
+  "line": 3147,
+  "endLine": 3152,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Give (unGifted gruagach)",
+  "summary": "Initiation Script for the Give Technique, a quest for justice followed by training, with the Flaw gained.",
+  "quotes": [
+   "Script Bonus:** +17 (+3 Quest, +9 Major Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation into the Take Technique",
+  "heading": "Initiation into the Take Technique",
+  "line": 3153,
+  "endLine": 3158,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Take (unGifted gruagach)",
+  "summary": "Initiation Script for the Take Technique, a sacrifice at a place of worship followed by training, with the Flaw gained.",
+  "quotes": [
+   "Script Bonus:** +17 (+3 Special Place, +9 Major Ordeal, +3 Mystagogue's Time, +1 Sacrifice, +1 Initiate's Time)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation into the Blessing Form",
+  "heading": "Initiation into the Blessing Form",
+  "line": 3159,
+  "endLine": 3164,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Blessing (unGifted gruagach)",
+  "summary": "Initiation Script for the Blessing Form, requiring a permanent solution for a truly disadvantaged person, with the Flaw gained.",
+  "quotes": [
+   "Script Bonus:** +11 (+3 Quest, +3 Minor Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation into the Curse Form",
+  "heading": "Initiation into the Curse Form",
+  "line": 3165,
+  "endLine": 3170,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Curse (unGifted gruagach)",
+  "summary": "Initiation Script for the Curse Form, punishing a wicked individual with a poetically just penalty, with the Flaw gained.",
+  "quotes": [
+   "Script Bonus:** +11 (+3 Quest, +3 Minor Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation into the Shape Form",
+  "heading": "Initiation Into The Shape Form",
+  "line": 3171,
+  "endLine": 3176,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Shape (unGifted gruagach)",
+  "summary": "Initiation Script for the Shape Form, defeating a shapechanger and being transformed into its shape for a lunar month, with the Flaw gained.",
+  "quotes": [
+   "Script Bonus:** +11 (+3 Quest, +3 Minor Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation into the Vision Form",
+  "heading": "Initiation into the Vision Form",
+  "line": 3177,
+  "endLine": 3182,
+  "category": "mysteries",
+  "topic": "Gruagach initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Vision (unGifted gruagach)",
+  "summary": "Initiation Script for the Vision Form, a fast and meditation at a Pictish holy site with Concentration rolls, with the Flaw gained.",
+  "quotes": [
+   "The player must succeed in a Stamina + Concentration roll against an Ease Factor of 9 on three consecutive attempts."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gruagach Magical Defenses",
+  "heading": "Magical Defenses",
+  "line": 3183,
+  "endLine": 3210,
+  "category": "magic",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Lists the Form-specific magic defenses each gruagach Art grants against particular Forms of magic.",
+  "quotes": [
+   "Magical Fortitude: Defense against Corpus effects.",
+   "Strength of Form: Defense against Corpus or Animal effects."
+  ],
+  "related": [
+   "Hedge Magic introduction: Magical Defenses"
+  ]
+ },
+ {
+  "title": "Geas and Limit Durations",
+  "heading": "Geas and Limit Durations",
+  "line": 3219,
+  "endLine": 3222,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Introduces the Geas and Limit condition Durations, comparable to the Merinita condition Durations but with difficulty varying by how broad the prohibition is or how easily it can be ended.",
+  "quotes": [
+   "The gruagach Durations never require a Ritual"
+  ],
+  "related": [
+   "ArM5 p.92 condition Durations",
+   "Houses of Hermes: Mystery Cults p.100"
+  ]
+ },
+ {
+  "title": "Geas and Limit Duration Magnitudes",
+  "heading": "Geas and Limit Duration Magnitudes",
+  "line": 3223,
+  "endLine": 3228,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Table of the magnitude added to a spell by Geas or Limit Durations depending on whether the prohibition is sweeping, general or specific.",
+  "quotes": [
+   "Geas (Condition) | +4 magnitudes"
+  ],
+  "related": []
+ },
+ {
+  "title": "Geas (Condition) Duration",
+  "heading": "Geas (Condition) Duration",
+  "line": 3230,
+  "endLine": 3237,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Rules for geasa: magical prohibitions with grave consequences if broken, which Techniques and Forms may use them, how the caster states the condition, and how the geas and Limit Durations combine.",
+  "quotes": [
+   "Geasa come in the following three varieties: sweeping prohibitions (+4 magnitudes), general prohibitions (+2 magnitudes), and specific prohibitions (+1 magnitude).",
+   "only the larger of the two Durations is added to the magnitude of the spell"
+  ],
+  "related": []
+ },
+ {
+  "title": "Limit (Condition) Duration",
+  "heading": "Limit (Condition) Duration",
+  "line": 3238,
+  "endLine": 3243,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Rules for the Limit Duration used by all Blessing and Curse spells, where ease of lifting the spell sets its cost, and how geasa carry two conditions.",
+  "quotes": [
+   "All Blessing and Curse spells must use the Limit (Condition) Duration."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sweeping Prohibitions",
+  "heading": "Sweeping Progibitions",
+  "line": 3244,
+  "endLine": 3247,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Defines sweeping prohibitions, with examples, and their Duration equivalent and magnitude cost for geasa versus blessings and curses.",
+  "quotes": [
+   "Sweeping prohibitions for geasa are the equivalent of Year Duration and add +4 magnitudes to the level of the spell."
+  ],
+  "related": []
+ },
+ {
+  "title": "General Prohibitions",
+  "heading": "General Prohibitions",
+  "line": 3248,
+  "endLine": 3251,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Defines general prohibitions, comparable to the Flaw Restriction, with examples and their Duration equivalent and magnitude cost.",
+  "quotes": [
+   "General prohibitions are the equivalent of Sun Duration and add +2 magnitudes to the level of the spell cast."
+  ],
+  "related": []
+ },
+ {
+  "title": "Specific Prohibitions",
+  "heading": "Specific Prohibitions",
+  "line": 3252,
+  "endLine": 3255,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Defines specific prohibitions, narrower than the Flaw Restriction, with examples and their Duration equivalent and magnitude cost for geasa versus blessings and curses.",
+  "quotes": [
+   "Specific prohibitions for geasa are the equivalent of Diameter Duration and add +1 magnitude to the level of the spell cast."
+  ],
+  "related": []
+ },
+ {
+  "title": "Poetic Justice (geas and curse resistance)",
+  "heading": "Poetic Justice",
+  "line": 3256,
+  "endLine": 3270,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "A geas or curse that does not suit the victim's past acts is easier to resist; a table of modifiers to the victim's Stamina check measures how appropriate the geas and curse are.",
+  "quotes": [
+   "the victim receives a bonus to his Stamina check to avoid the effects of the geas or curse",
+   "The geas and/or curse are perfectly appropriate to address some past event"
+  ],
+  "related": []
+ },
+ {
+  "title": "Geas and Limit Durations in Play",
+  "heading": "Geas and Limit Durations in Play",
+  "line": 3271,
+  "endLine": 3282,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "How conditions are articulated in play, how gruagach flexibility lets a spell be altered when cast, and Warping: a Geas does not count as active until broken, but a Limit is active.",
+  "quotes": [
+   "A spell with Geas Duration does not count as an active supernatural effect until the character breaks the prohibition",
+   "a typical gruagach may alter freely the Range, Target, or Duration of a spell by 10 levels"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gruagach Alternative (all spells use Limit or Geas)",
+  "heading": "Gruagach Alternative",
+  "line": 3283,
+  "endLine": 3285,
+  "category": "magic",
+  "topic": "Geas and Limit durations",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Optional rule making every gruagach spell and laboratory effect use the Limit or Geas Durations.",
+  "quotes": [
+   "the troupe may decide that all spells and Laboratory effects by gruagachan must use the Limit or Geas Durations"
+  ],
+  "related": []
+ },
+ {
+  "title": "Blessing Spell Guidelines Overview",
+  "heading": "Blessings",
+  "line": 3291,
+  "endLine": 3294,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Introduces Blessing spells that temporarily grant Virtues, Ability bonuses and Characteristic improvements, and Take Blessing spells that remove Virtues, with the requirement that prohibitions fit the story.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Give Blessing Guidelines",
+  "heading": "Give Blessing Guidelines",
+  "line": 3297,
+  "endLine": 3331,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Guideline table for Give Blessing spells, which grant Virtues, Ability bonuses or Characteristic increases, with limits on which Virtues may be given and descriptions of sweeping, general and specific prohibitions.",
+  "quotes": [
+   "Level 5: Provide a bonus of +1 to a single Ability roll.",
+   "Level 20: Grant a Major General or Supernatural (Magic) Virtue."
+  ],
+  "related": []
+ },
+ {
+  "title": "Take Blessing Guidelines",
+  "heading": "Take Blessing Guidelines",
+  "line": 3355,
+  "endLine": 3377,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Guideline table for Take Blessing spells, which nullify Virtues, Abilities or Characteristics, including how the storyguide picks the target and the victim's Stamina resistance roll with poetic justice modifiers.",
+  "quotes": [
+   "Level 10: Reduce the score in a single Ability to 0.",
+   "the target has the opportunity to resist it with a Stamina check against an Ease Factor of 9"
+  ],
+  "related": []
+ },
+ {
+  "title": "Curse Spell Guidelines Overview",
+  "heading": "Curses",
+  "line": 3399,
+  "endLine": 3402,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Introduces Curse spells, which inflict Flaws or reduce Characteristics and Abilities, and Take Curse spells, which remove curses and lingering magic.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Give Curse Guidelines",
+  "heading": "Give Curse Guidelines",
+  "line": 3405,
+  "endLine": 3447,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Guideline table for Give Curse spells that inflict Flaws, diseases, injuries or penalties, which Flaws cannot be inflicted, prohibition types, the victim's Stamina resistance roll and the required Geas or Limit Duration.",
+  "quotes": [
+   "All Give Curse spells must have either the Geas or Limit Duration.",
+   "Level 15: Inflict a serious disease."
+  ],
+  "related": []
+ },
+ {
+  "title": "Take Curse Guidelines",
+  "heading": "Take Curse Guidelines",
+  "line": 3491,
+  "endLine": 3501,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Guidelines for Take Curse spells that learn the terms of or remove curses, the risk to a caster who fails or botches, and how Hermetic magic can dispel gruagach curses.",
+  "quotes": [
+   "If a gruagach fails to remove a curse, the caster suffers the effects of the curse also."
+  ],
+  "related": [
+   "ArM5 p.160 dispelling magic"
+  ]
+ },
+ {
+  "title": "Shape Spell Guidelines Overview",
+  "heading": "Shape Spells",
+  "line": 3519,
+  "endLine": 3522,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Introduces Give Shape and Take Shape spells for altering the physical shape of another or oneself, noting that carried items are incorporated into the new form.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Give Shape Guidelines",
+  "heading": "Give Shape Guidelines",
+  "line": 3525,
+  "endLine": 3545,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Guideline table for Give Shape spells that add features of other creatures or transform a willing recipient, including the target's inability to back out once the change is accepted.",
+  "quotes": [
+   "Give Shape spells are only effective on a willing recipient."
+  ],
+  "related": []
+ },
+ {
+  "title": "Take Shape Guidelines",
+  "heading": "Take Shape Guidelines",
+  "line": 3573,
+  "endLine": 3591,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Guideline table for Take Shape spells that force a foreign form on a target or let the caster mimic one, including the Stamina resistance roll modified by Personality Traits.",
+  "quotes": [
+   "the player would need to succeed at an Ease Factor of 6 to resist"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vision Spell Guidelines Overview",
+  "heading": "Vision Spells",
+  "line": 3633,
+  "endLine": 3636,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Introduces Vision spells that control perception, create simple illusions, grant invisibility, send out the fetch, and give glimpses of the future.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Give Vision Guidelines",
+  "heading": "Give Vision Guidelines",
+  "line": 3639,
+  "endLine": 3655,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Guideline table for Give Vision spells that create sight and sound illusions or grant Visions and Premonitions on a chosen topic, with magnitude increases for complex or moving images.",
+  "quotes": [
+   "Level 1: Create an image that affects sight or sound."
+  ],
+  "related": []
+ },
+ {
+  "title": "Take Vision Guidelines",
+  "heading": "Take Vision Guidelines",
+  "line": 3675,
+  "endLine": 3691,
+  "category": "magic",
+  "topic": "Gruagach spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Guideline table for Take Vision spells that use senses at a distance via the fetch, detect vis, discern or dispel illusions, and destroy an object's effect on hearing or sight.",
+  "quotes": [
+   "Level 1: Detect the presence of vis."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gruagach Botches",
+  "heading": "Botches",
+  "line": 3721,
+  "endLine": 3724,
+  "category": "magic",
+  "topic": "Gruagach magical dangers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Describes botch results for each gruagach Form, which follow the Hermetic botch guidelines, and notes that Vision botches inflict extra Warping Points.",
+  "quotes": [
+   "every Vision botch inflicts double the normal Warping Points"
+  ],
+  "related": [
+   "ArM5 p.167 Warping"
+  ]
+ },
+ {
+  "title": "Gruagach Transformation (the Curse of Gruagach)",
+  "heading": "Transformation",
+  "line": 3725,
+  "endLine": 3734,
+  "category": "magic",
+  "topic": "Gruagach magical dangers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "The gruagach equivalent of Twilight and Warping: when a gruagach gains Warping Points from a botch or other powerful effect he rolls to avoid transformation, slowly becoming troll-like.",
+  "quotes": [
+   "Stamina + Concentration + Vision Magic Defense Bonus + stress die vs. Warping Score + Number of Warping Points Gained + local aura + stress die"
+  ],
+  "related": [
+   "ArM5 p.167 Warping"
+  ]
+ },
+ {
+  "title": "Effects of Transformation",
+  "heading": "Effects of Transforamtion",
+  "line": 3735,
+  "endLine": 3742,
+  "category": "magic",
+  "topic": "Gruagach magical dangers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "After a transformation the Understanding Transformation roll decides whether the experience is good or bad, and at a high enough Warping Score the gruagach becomes a troll controlled by the storyguide.",
+  "quotes": [
+   "Intelligence + stress die vs. Warping Score + stress die",
+   "When a character reaches a Warping Score of 10, the transformation to a troll is complete."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gruagach Good Transformation Experiences",
+  "heading": "Good Experiences",
+  "line": 3743,
+  "endLine": 3750,
+  "category": "magic",
+  "topic": "Gruagach magical dangers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Options for a good transformation: a gruagach magic Virtue, a troll Virtue, or bonus experience in an Art.",
+  "quotes": [
+   "The gruagach acquires Experience Points in a pre-existing Art equivalent to the character's Warping Score + simple die."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gruagach Bad Transformation Experiences",
+  "heading": "Bad Experiences",
+  "line": 3751,
+  "endLine": 3759,
+  "category": "magic",
+  "topic": "Gruagach magical dangers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Options for a bad transformation: a gruagach magic Flaw, a troll Flaw such as Repellent, or lost experience in an Art.",
+  "quotes": [
+   "The gruagach loses Experience Points in a pre-existing Art equivalent to the character's Warping Score + simple die."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.89 Repellent"
+  ]
+ },
+ {
+  "title": "Gruagachan in Play (covenant involvement)",
+  "heading": "Gruagachan in Play",
+  "line": 3831,
+  "endLine": 3834,
+  "category": "covenant",
+  "topic": "Gruagach",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan",
+  "summary": "Explains how gruagachan appear as allies or adversaries to a covenant, how non-Order gruagachan are generated, and that they can supply covenant Boons and Hooks.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Major Covenant Boon: Friendly Gruagach Collective",
+  "heading": "Major Covenant Boon: Friendly Gruagach Collective",
+  "line": 3835,
+  "endLine": 3840,
+  "category": "covenant",
+  "topic": "Covenant boons and hooks",
+  "audience": [
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant Boon option (gruagach)",
+  "summary": "A Major covenant Boon giving the covenant control over a nearby gruagach collective that supplies information, trade and aid.",
+  "quotes": [
+   "This is a variant of the Hedge Tradition Covenant Boon (see Covenants page 21)."
+  ],
+  "related": [
+   "Covenants p.21 Hedge Tradition Covenant Boon"
+  ]
+ },
+ {
+  "title": "Major Covenant Hook: Hostile Gruagach Collective",
+  "heading": "Major Covenant Hook: Hostile Gruagach Collective",
+  "line": 3841,
+  "endLine": 3846,
+  "category": "covenant",
+  "topic": "Covenant boons and hooks",
+  "audience": [
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant Hook option (gruagach)",
+  "summary": "A Major covenant Hook where a nearby gruagach collective is hostile, spreading rumors and harvesting the covenant's vis sources.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Minor Covenant Boon: Gruagach Ally",
+  "heading": "Minor Covenant Boon: Gruagach Ally",
+  "line": 3847,
+  "endLine": 3852,
+  "category": "covenant",
+  "topic": "Covenant boons and hooks",
+  "audience": [
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant Boon option (gruagach)",
+  "summary": "A Minor covenant Boon in which a single gruagach lives nearby and assists the magi.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Minor Covenant Hook: Gruagach Resident",
+  "heading": "Minor Covenant Hook: Gruagach Resident",
+  "line": 3853,
+  "endLine": 3858,
+  "category": "covenant",
+  "topic": "Covenant boons and hooks",
+  "audience": [
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant Hook option (gruagach)",
+  "summary": "A Minor covenant Hook in which gruagachan live in the covenant, risking visits from a Quaesitor, curious magi and suspicious fellow gruagachan.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hermetic Gruagachan",
+  "heading": "Hermetic Gruagachan",
+  "line": 3859,
+  "endLine": 3862,
+  "category": "creation",
+  "topic": "Gruagach",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Gruagachan (member of the Order)",
+  "summary": "How to build a gruagach who is nominally a member of the Order of Hermes: the required Flaw and Virtue, and the minimum Code of Hermes and Parma Magica scores.",
+  "quotes": [
+   "A nominal Hermetic gruagach character should take the Flaw Hedge Wizard and the Virtue Arcane Lore."
+  ],
+  "related": []
+ },
+ {
+  "title": "Trollsynir Tradition",
+  "heading": "Trollsynir",
+  "line": 3980,
+  "endLine": 3989,
+  "category": "traditions",
+  "topic": "Trollsynir",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Trollsynir (Virtue: Giant Blood, Flaw: No Tattoo Magic)",
+  "summary": "Overview of the Norse trollsynir, an alternate tradition using the gruagach Arts, with their required Virtues and Flaws.",
+  "quotes": [
+   "Required Virtues and Flaws:** Giant Blood, No Tattoo Magic"
+  ],
+  "related": []
+ },
+ {
+  "title": "Trollsynir Magic",
+  "heading": "Magic",
+  "line": 4002,
+  "endLine": 4009,
+  "category": "traditions",
+  "topic": "Trollsynir",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Trollsynir",
+  "summary": "Trollskap works like gruagach magic with the Jotnar language replacing Pictish and no tattoo magic; overuse turns the trollson into a troll via Warping, and Initiation Scripts favor heroic deeds.",
+  "quotes": [
+   "Any requirement for a score in the Pictish language is replaced with the Jotnar language"
+  ],
+  "related": []
+ },
+ {
+  "title": "Trollsynir Characters",
+  "heading": "Characterss",
+  "line": 4010,
+  "endLine": 4017,
+  "category": "creation",
+  "topic": "Trollsynir",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Trollsynir",
+  "summary": "Character creation notes for trollsynir: no formal apprenticeship or training requirements, universally taught Abilities, and typical or inappropriate Virtues and Flaws.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Kolduni Tradition",
+  "heading": "Kolduni",
+  "line": 4018,
+  "endLine": 4024,
+  "category": "traditions",
+  "topic": "Kolduni",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Kolduni (Flaw: No Tattoo Magic)",
+  "summary": "Overview of the pagan wizards of the Novgorod Tribunal who use the gruagach Arts, with the required Flaw and favored Abilities.",
+  "quotes": [
+   "Required Flaws:** No Tattoo Magic"
+  ],
+  "related": []
+ },
+ {
+  "title": "Koldun Magic",
+  "heading": "Magic",
+  "line": 4031,
+  "endLine": 4046,
+  "category": "traditions",
+  "topic": "Kolduni",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Kolduni",
+  "summary": "Koldun magic uses the gruagach mechanics with Koldovali Theory in place of Pictish, a wholly oral tradition, an Arcane Connection Range needing water, a Durable External Soul variant, and a faerie-based Warping progression.",
+  "quotes": [
+   "except the Ability Koldovali Theory replaces Pictish Language in the relevant formulae",
+   "The kolduni have access to the Arcane Connection Range, which adds +4 Magnitudes to a spell's level."
+  ],
+  "related": []
+ },
+ {
+  "title": "Koldun Characters",
+  "heading": "Characters",
+  "line": 4047,
+  "endLine": 4050,
+  "category": "creation",
+  "topic": "Kolduni",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Kolduni",
+  "summary": "Character creation notes for kolduni: use the gruagach generation rules, typical Abilities, available Social Statuses and appropriate Virtues and Flaws.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Integration of Gruagach Magic",
+  "heading": "Integration of Gruagach Magic",
+  "line": 4051,
+  "endLine": 4054,
+  "category": "magic",
+  "topic": "Integration of hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Breakthrough: Integration of gruagach magic",
+  "summary": "Introduces three possible Integration paths by which Hermetic magi can research gruagach magic.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Integration: Cailleach Magic",
+  "heading": "Cailleach Magic",
+  "line": 4055,
+  "endLine": 4072,
+  "category": "magic",
+  "topic": "Integration of hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Breakthrough: Integration of Cailleach Magic",
+  "summary": "Integration of the gruagach Cailleach Magic spontaneous casting ability into Hermetic theory: obstacles, suggested Breakthrough points, the resulting Virtue and its consequences.",
+  "quotes": [
+   "Suggested Breakthrough Points:** 45",
+   "The Virtue Cailleach Magic is identical to Diedne Magic, except that the character does not receive the Dark Secret Flaw, but suffers from the Hedge Wizard Flaw instead."
+  ],
+  "related": []
+ },
+ {
+  "title": "Integration: Flexible Formulaic Magic",
+  "heading": "Flexible Formulaic Magic",
+  "line": 4073,
+  "endLine": 4090,
+  "category": "magic",
+  "topic": "Integration of hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Breakthrough: Integration of Flexible Formulaic Magic",
+  "summary": "Integration of gruagach flexible Formulaic casting into Hermetic theory as a new Spell Mastery Ability, with suggested Breakthrough points, optional related Breakthroughs and consequences.",
+  "quotes": [
+   "Suggested Breakthrough Points:** 30",
+   "A magus with Spell Mastery in Flexible Formulaic Magic is able to vary one parameter of a Formulaic spell (Range, Duration, Target, or size) as long as the final level of the spell is within one magnitude for every full five points of the magus' Mastery Score."
+  ],
+  "related": [
+   "ArM5 Flexible Formulaic Magic"
+  ]
+ },
+ {
+  "title": "Integration: Improved Voice Range",
+  "heading": "Improved Voice Range",
+  "line": 4091,
+  "endLine": 4108,
+  "category": "magic",
+  "topic": "Integration of hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Breakthrough: Integration of Improved Voice Range",
+  "summary": "Integration of the gruagach ability to affect unsensed targets within hearing, with suggested Breakthrough points, the resulting rule and a suggested extra magnitude.",
+  "quotes": [
+   "Suggested Breakthrough Points:** 60",
+   "It is suggested that the magnitude for Improved Voice spells be +3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Learned Magician Character Generation",
+  "heading": "Character Generation",
+  "line": 4115,
+  "endLine": 4128,
+  "category": "creation",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Learned Magicians (Mathematici of Bologna)",
+  "summary": "How Gifted and unGifted learned magicians are built: starting age, the Opening of the Gift, yearly experience points and charms, and the lack of a formal apprenticeship.",
+  "quotes": [
+   "Each year that the learned magician trains under a master he gains 30 experience points.",
+   "The player may also spend experience points on charms, at a rate of 5 levels of charms per experience point."
+  ],
+  "related": [
+   "ArM5 Opening of the Gift"
+  ]
+ },
+ {
+  "title": "Learned Magician Training",
+  "heading": "Training",
+  "line": 4129,
+  "endLine": 4132,
+  "category": "traditions",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Learned magicians learn from a master then study from texts written under the normal text rules.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.165 texts"
+  ]
+ },
+ {
+  "title": "Typical Learned Magician Abilities",
+  "heading": "Typical Learned Magician Abilities",
+  "line": 4133,
+  "endLine": 4140,
+  "category": "creation",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Abilities typical of learned magicians, minimum Latin and Artes Liberales scores needed for charms and amulets, and Virtues and Flaws that suit the tradition.",
+  "quotes": [
+   "All magicians must possess minimum scores of 1 in Latin to learn charms and 1 in Artes Liberales to create amulets and chartae or cast charms from text."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lore of the Mathematici",
+  "heading": "Lore of the Mathematici",
+  "line": 4141,
+  "endLine": 4143,
+  "category": "traditions",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Describes the Organization Lore of the Mathematici of Bologna and what a character with it knows.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Mythic Alchemy and Mythic Herbalism (Learned Magician Virtues)",
+  "heading": "Virtues of the Learned Magicians",
+  "line": 4149,
+  "endLine": 4268,
+  "category": "traditions",
+  "topic": "Mythic Alchemy and Herbalism",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Mythic Alchemy or Mythic Herbalism",
+  "summary": "The opening of the learned-magician Virtues, including the extended rules behind Mythic Alchemy (formulae, reagents, alterations, vis limits, craft preparation) and Mythic Herbalism (concoction Ease Factor table for healing, poisons and potions).",
+  "quotes": [
+   "Briefly, a formula is invented in a season by acquiring 5 experience points.",
+   "At the end of the process, the player must roll the character's Intelligence + Mythic Herbalism against the target Ease Factor."
+  ],
+  "related": [
+   "Art & Academe Chapter 5: Experimental Philosophy",
+   "City & Guild p.63-73 Superior items"
+  ]
+ },
+ {
+  "title": "New Reagent Guidelines",
+  "heading": "New Reagent Guidelines",
+  "line": 4180,
+  "endLine": 4188,
+  "category": "lab",
+  "topic": "Mythic Alchemy and Herbalism",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Mythic Alchemy",
+  "summary": "Guideline levels for new alchemical reagents transmuting complex or simple matter or preparing raw materials for craftsmen.",
+  "quotes": [
+   "Level 2: Prepare raw materials for a craftsman to produce superior goods."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Virtues and Flaws for Learned Magicians",
+  "heading": "Hermetic Virtues and Flaws for Learned Magicians",
+  "line": 4380,
+  "endLine": 4391,
+  "category": "creation",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Lists the Hermetic Virtues and Flaws available to learned magicians, noting that some suit only those with The Gift.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Magic of the Learned Magicians (charms, amulets and chartae)",
+  "heading": "Magic of the Learned Magicians",
+  "line": 4392,
+  "endLine": 4397,
+  "category": "traditions",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Overview of verbal charms, chartae and amulets, and how charm magic bypasses the Arcane Connection requirement but must still overcome Magic Resistance.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Learned Magician Arts",
+  "heading": "The Arts",
+  "line": 4398,
+  "endLine": 4401,
+  "category": "traditions",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Learned magicians have three Techniques and three Forms; every charm or amulet needs one of each, and unGifted characters need the matching Virtue for each Art.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Learned Magician Techniques (Tueor, Succurro, Vulnero)",
+  "heading": "Techniques",
+  "line": 4402,
+  "endLine": 4426,
+  "category": "traditions",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Describes the Tueor, Succurro and Vulnero Techniques, what each can and cannot do, and how they relate to Hermetic Rego, Creo and Perdo.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Learned Magician Forms (Fortunam, Magicam, Salutem)",
+  "heading": "Forms",
+  "line": 4427,
+  "endLine": 4445,
+  "category": "traditions",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Describes the Fortunam, Magicam and Salutem Forms and their limits compared with Hermetic Arts.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Charms Overview",
+  "heading": "Charms",
+  "line": 4446,
+  "endLine": 4449,
+  "category": "magic",
+  "topic": "Learned Magicians charms",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Charms are cast and learned like Formulaic spells; there are no spontaneous charms, but a magician can cast unlearned charms from a text.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Charm Design and Casting Totals",
+  "heading": "Charm Design",
+  "line": 4450,
+  "endLine": 4461,
+  "category": "magic",
+  "topic": "Learned Magicians charms",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Gives the learned magician casting score and the charm totals for known and text-read charms, with success, Fatigue and failure thresholds and which die applies.",
+  "quotes": [
+   "Hedge Technique + Hedge Form + Communication + Aura Modifier",
+   "(Casting Score + Die) / 2",
+   "(Casting Score + Stress Die) / 5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ranges, Durations, & Targets for Charms",
+  "heading": "Ranges, Ourations, & Targets for Charms",
+  "line": 4462,
+  "endLine": 4468,
+  "category": "magic",
+  "topic": "Learned Magicians charms",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Table of the Range, Duration and Target parameters available to charms, with their magnitude modifiers.",
+  "quotes": [
+   "Range: Personal, Eye/Touch (+1), and Voice (+2)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Reading Charms from Text",
+  "heading": "Reading Charms from Text",
+  "line": 4470,
+  "endLine": 4479,
+  "category": "magic",
+  "topic": "Learned Magicians charms",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "How a learned magician finds and casts charms from a formulary: the search roll, reading time per magnitude, Language penalties, and how the storyguide decides what a formulary contains.",
+  "quotes": [
+   "The player must make an Intelligence + Language roll against an Ease Factor of 9"
+  ],
+  "related": []
+ },
+ {
+  "title": "Charm Ranges, Durations, and Targets",
+  "heading": "Ranges, Durations, and Targets",
+  "line": 4480,
+  "endLine": 4483,
+  "category": "magic",
+  "topic": "Learned Magicians charms",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Charms use the Hermetic parameters from a restricted list, are fixed once known and cannot be altered during casting, and a related charm still gives the Lab Total bonus.",
+  "quotes": [
+   "The base parameters for a charm are Personal, Momentary, and Individual."
+  ],
+  "related": [
+   "ArM5 p.111-113 Ranges, Durations, Targets",
+   "ArM5 p.101 related spells"
+  ]
+ },
+ {
+  "title": "Learned Magician Vis Use",
+  "heading": "Vis Use",
+  "line": 4484,
+  "endLine": 4489,
+  "category": "magic",
+  "topic": "Learned Magicians charms",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Learned magicians use raw vis in charm casting under the Hermetic rules and a table of which kinds of vis suit each Art, but they cannot study from vis.",
+  "quotes": [
+   "Learned magicians may not study from vis."
+  ],
+  "related": [
+   "ArM5 p.82-83 vis in casting"
+  ]
+ },
+ {
+  "title": "Learned Magician Laboratory Activities",
+  "heading": "Laboratory Activities",
+  "line": 4490,
+  "endLine": 4493,
+  "category": "lab",
+  "topic": "Amulets and chartae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Introduces amulets (season-long, multi-charge) and chartae (quick, single-use) as the devices learned magicians create.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Amulet and Charta Design",
+  "heading": "Amulet and Charta Design",
+  "line": 4494,
+  "endLine": 4515,
+  "category": "lab",
+  "topic": "Amulets and chartae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Gives the learned magician Lab Total, how many charges an amulet holds, the Charta Total, creation time, and rules for incomplete chartae prepared for an unknown recipient.",
+  "quotes": [
+   "Hedge Technique + Hedge Form + Intelligence + Artes Liberales + Aura Modifier",
+   "(Lab Total \u2013 Amulet Level of Effect) / 5 (rounded up)",
+   "Lab Total/2"
+  ],
+  "related": [
+   "ArM5 p.101 related spells"
+  ]
+ },
+ {
+  "title": "Ranges, Durations, and Targets for Amulets and Chartae",
+  "heading": "Ranges, Durations, and Targets for Amulets and Chartae",
+  "line": 4516,
+  "endLine": 4521,
+  "category": "lab",
+  "topic": "Amulets and chartae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Table of Range, Duration and Target parameters and magnitudes available to amulets and chartae.",
+  "quotes": [
+   "Duration: Momentary, Sun (+1), Moon (+2), and Season (+3)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Astronomical Requirements",
+  "heading": "Astronomial Requirements",
+  "line": 4523,
+  "endLine": 4528,
+  "category": "lab",
+  "topic": "Amulets and chartae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Amulets and chartae need a horoscope of the recipient: daily and nativity horoscopes give Lab Total bonuses, with the Intelligence plus Artes Liberales rolls, time needed and a failure result.",
+  "quotes": [
+   "A simple daily horoscope is sufficient for writing a charta, and adds +5 to the character's Lab Total, but if a nativity horoscope is created instead, the astronomer adds +10 to his Lab Total."
+  ],
+  "related": []
+ },
+ {
+  "title": "Amulet and Chartae Ranges, Durations, and Targets",
+  "heading": "Ranges, Durations, and Targets",
+  "line": 4529,
+  "endLine": 4536,
+  "category": "lab",
+  "topic": "Amulets and chartae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Rules on the Range, Duration and Target of amulets and chartae: touch only, how Group, Bloodline, Structure and Boundary targets work, and the Season Duration.",
+  "quotes": [
+   "The base parameters for amulets and chartae are Touch, Momentary, and Individual."
+  ],
+  "related": [
+   "ArM5 p.93 Bloodline Target"
+  ]
+ },
+ {
+  "title": "Amulet and Charta Effects",
+  "heading": "Amulet and Charta Effects",
+  "line": 4537,
+  "endLine": 4542,
+  "category": "lab",
+  "topic": "Amulets and chartae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "How charges are expended when an amulet is worn or a charta is made, and what effects are not allowed for these devices.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.99 magical device effects"
+  ]
+ },
+ {
+  "title": "Learned Magician Laboratory Requirements",
+  "heading": "Laboratory Requirements",
+  "line": 4543,
+  "endLine": 4546,
+  "category": "lab",
+  "topic": "Amulets and chartae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "A learned magician's laboratory needs only the basic equipment for casting a horoscope and writing.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Learned Magician Laboratory Texts",
+  "heading": "Laboratory Texts",
+  "line": 4547,
+  "endLine": 4554,
+  "category": "lab",
+  "topic": "Amulets and chartae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Lab Texts follow the Hermetic rules but charms are shorter, so many more charm levels can be written or copied per season than device levels.",
+  "quotes": [
+   "Language x 100 charm levels per season Language x 20 device levels per season"
+  ],
+  "related": [
+   "ArM5 p.102 Laboratory Texts"
+  ]
+ },
+ {
+  "title": "Inventing and Learning New Charms",
+  "heading": "Inventing and Learning New Charms",
+  "line": 4555,
+  "endLine": 4560,
+  "category": "lab",
+  "topic": "Amulets and chartae",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Charms are learned from a teacher and invented by the Hermetic rules, but the totals are multiplied because charms are simpler.",
+  "quotes": [
+   "the maximum total levels of charms learned in a season is the teacher's Lab Total in the applicable Art combination multiplied by five"
+  ],
+  "related": [
+   "ArM5 p.95"
+  ]
+ },
+ {
+  "title": "Mitigation of Realm Interaction Effects (Entreat the Powers)",
+  "heading": "Mitigation of Realm Interaction Effects",
+  "line": 4561,
+  "endLine": 4576,
+  "category": "realms",
+  "topic": "Entreat the Powers",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Entreat the Powers or Entreat the (Realm) Powers",
+  "summary": "How learned magicians call on realm powers to reduce negative realm interaction in hostile auras: the Entreat the Powers Total, its cap, entreating multiple realms and the botch penalty, with examples.",
+  "quotes": [
+   "Stress Die + Presence + (Realm) Lore"
+  ],
+  "related": [
+   "ArM5 p.183 realm interaction"
+  ]
+ },
+ {
+  "title": "UnGifted Mathematicus Initiations",
+  "heading": "UnGifted Mathematicus Initiations",
+  "line": 4577,
+  "endLine": 4580,
+  "category": "mysteries",
+  "topic": "Learned magician initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Learned Magicians (unGifted)",
+  "summary": "Explains that an unGifted mathematicus takes both the Flaw and Virtue for each Initiation, that the examples given are only examples, and that Ordeal Flaws relate to the ability to practice magic.",
+  "quotes": [
+   "A player who wishes to play a companion mathematicus must take both the Flaw and Virtue for each Initiation listed."
+  ],
+  "related": [
+   "Hedge Magic introduction: Initiation"
+  ]
+ },
+ {
+  "title": "Initiation into the Tueor Technique",
+  "heading": "Initiation into the Tueor Technique",
+  "line": 4581,
+  "endLine": 4587,
+  "category": "mysteries",
+  "topic": "Learned magician initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Tueor (unGifted mathematicus)",
+  "summary": "Initiation Script for the Tueor Technique: a season of service with a Philosophiae test, then a season of teaching, with the Flaws gained.",
+  "quotes": [
+   "Script Bonus:** +20 (+3 Quest, +9 Major Ordeal, +3 Minor Ordeal, +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation into the Fortunam Form",
+  "heading": "Initiation into the Fortunam Form",
+  "line": 4588,
+  "endLine": 4594,
+  "category": "mysteries",
+  "topic": "Learned magician initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Fortunam (unGifted mathematicus)",
+  "summary": "Initiation Script for the Fortunam Form: a season of service with a Theology test, then a season of teaching, with the Flaws gained.",
+  "quotes": [
+   "Script Bonus:** +14 (+3 Quest, +6 Minor Ordeals (2), +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation into the Magicam Form",
+  "heading": "Initiation into the Magicam Form",
+  "line": 4595,
+  "endLine": 4601,
+  "category": "mysteries",
+  "topic": "Learned magician initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Magicam (unGifted mathematicus)",
+  "summary": "Initiation Script for the Magicam Form: a season of service with a Magic Lore test, then a season of teaching, with the Flaws gained.",
+  "quotes": [
+   "Script Bonus:** +14 (+3 Quest, +6 Minor Ordeals (2), +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation into the Salutem Form",
+  "heading": "Initiation into the Salutem Form",
+  "line": 4602,
+  "endLine": 4608,
+  "category": "mysteries",
+  "topic": "Learned magician initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Salutem (unGifted mathematicus)",
+  "summary": "Initiation Script for the Salutem Form: a season of service with a Medicine test, then a season of teaching, with the Flaws gained.",
+  "quotes": [
+   "Script Bonus:** +14 (+3 Quest, +6 Minor Ordeals (2), +3 Mystagogue's Time, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation into the Entreat the Divine Powers Ability",
+  "heading": "Initiation into the Entreat the Divine Powers Ability",
+  "line": 4609,
+  "endLine": 4615,
+  "category": "mysteries",
+  "topic": "Learned magician initiation",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Entreat the Divine Powers (unGifted mathematicus)",
+  "summary": "Initiation Script granting the Entreat the Divine Powers Minor Virtue after a season of service with a Divine Lore test, with the Flaw gained.",
+  "quotes": [
+   "Script Bonus:** +14 (+3 Quest, +9 Major Ordeal, +1 Initiate's Time, +1 Sympathetic Bonus)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Learned Magician Magical Defenses",
+  "heading": "Magical Defenses",
+  "line": 4616,
+  "endLine": 4644,
+  "category": "magic",
+  "topic": "Hedge magical defenses",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Lists the Form-specific magic defenses each learned magician Art grants against particular Hermetic Forms.",
+  "quotes": [
+   "Defense:** Alacritous Fortune"
+  ],
+  "related": [
+   "Hedge Magic introduction: Magical Defenses"
+  ]
+ },
+ {
+  "title": "Fortunam Charms and Magic Resistance",
+  "heading": "Fortunam",
+  "line": 4649,
+  "endLine": 4654,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Explains what Fortunam charms do for each Technique and the special rules for when a Fortunam charm must penetrate Magic Resistance.",
+  "quotes": [
+   "it does not need to penetrate anyone's Magic Resistance other than his own"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tueor Fortunam Guidelines",
+  "heading": "Tueor Fortunam Guidelines",
+  "line": 4657,
+  "endLine": 4677,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Guideline table for Tueor Fortunam charms that remove botch dice, allow re-rolls of failed Ability rolls up to set Ease Factors and prevent mishaps, with the rule that the charm must penetrate an opposing character's Magic Resistance.",
+  "quotes": [
+   "Level 1: Allow a player to re-roll a failed roll for a single Ability where the Ease Factor is no more than 3 and use the better of the two rolls."
+  ],
+  "related": []
+ },
+ {
+  "title": "Succurro Fortunam Guidelines",
+  "heading": "Succurro Fortunam Guidelines",
+  "line": 4705,
+  "endLine": 4727,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Guideline table for Succurro Fortunam charms that grant luck bonuses, Ability bonuses or Virtues, and which must penetrate the Magic Resistance of the target and anyone the character acts against.",
+  "quotes": [
+   "Level 1: Provide a bonus of +1 to all Luck related rolls."
+  ],
+  "related": [
+   "ArM5 p.45 Luck"
+  ]
+ },
+ {
+  "title": "Vulnero Fortunam Guidelines",
+  "heading": "Vulnero Fortunam Guidelines",
+  "line": 4757,
+  "endLine": 4773,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Guideline table for Vulnero Fortunam curses that add botch dice, penalize Ability rolls or force rerolls, including the Perception plus Magic Lore roll for a victim to notice the curse.",
+  "quotes": [
+   "To discover the curse, the player must roll a Perception + Magic Lore against an Ease Factor of 12, minus the magnitude of the Vulnero Fortunam charm"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magicam Charms Overview",
+  "heading": "Magicam",
+  "line": 4799,
+  "endLine": 4806,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Introduces Magicam charms for each Technique, notes that they cannot control demons directly, and explains that general guidelines must be learned at a specific level.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Tueor Magicam Guidelines",
+  "heading": "Tueor Magicam Guidelines",
+  "line": 4809,
+  "endLine": 4817,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Guidelines for Tueor Magicam charms that protect against a specific type of hostile magical damage or Supernatural Ability, adding to Soak, Defense or Ease Factors.",
+  "quotes": [
+   "General: Add +2 to the Target's Soak Total for damage caused by magical damage of specific type for every level of the base charm effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "Succurro Magicam Guidelines",
+  "heading": "Succurro Magicam Guidelines",
+  "line": 4845,
+  "endLine": 4867,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Guidelines for Succurro Magicam charms that grant Supernatural Ability bonuses or Magic Realm Virtues, or boost existing charms and amulets.",
+  "quotes": [
+   "Level 2: Provide a bonus of +1 to rolls for a single Supernatural Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vulnero Magicam Guidelines",
+  "heading": "Vulnero Magicam Guidelines",
+  "line": 4895,
+  "endLine": 4901,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Guidelines for Vulnero Magicam charms that shorten continuing magic or ward against creatures of a realm below a given Might, with the Target referring to a single spell.",
+  "quotes": [
+   "If the victim of the spell has Magical Resistance, the charm must penetrate to be effective."
+  ],
+  "related": []
+ },
+ {
+  "title": "Salutem Charms Overview",
+  "heading": "Salutem",
+  "line": 4919,
+  "endLine": 4922,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Introduces Salutem charms, which cover the health of humans, animals, crops and structures but cannot improve Characteristics, change shape or control movement.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Tueor Salutem Guidelines",
+  "heading": "Tueor Salutem Guidelines",
+  "line": 4925,
+  "endLine": 4951,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Guidelines for Tueor Salutem protective charms against broad or narrow categories of damage, disease, poison and wards against animals or people, with limits on wards and magical damage.",
+  "quotes": [
+   "Tueor Salutem wards can only be placed on locations with either a Structure or Boundary Target."
+  ],
+  "related": [
+   "ArM5 Greater Immunity and Lesser Immunity"
+  ]
+ },
+ {
+  "title": "Succurro Salutem Guidelines",
+  "heading": "Succurro Salutem Guidelines",
+  "line": 4979,
+  "endLine": 5007,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Guidelines for Succurro Salutem charms, which follow Creo Corpus but cannot heal permanently, covering Recovery bonuses, plant growth, Living Conditions and aging crises, best used as amulets and chartae.",
+  "quotes": [
+   "Level 2: Give a character a +6 bonus to Recovery rolls for a single non-magical disease, poison, or injury."
+  ],
+  "related": [
+   "Art & Academe Medicine chapter"
+  ]
+ },
+ {
+  "title": "Vulnero Salutem Guidelines",
+  "heading": "Vulnero Salutem Guidelines",
+  "line": 5035,
+  "endLine": 5061,
+  "category": "magic",
+  "topic": "Learned Magician spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Guidelines for Vulnero Salutem charms, which follow Perdo Corpus, inflicting wounds, lost Fatigue, crippled limbs, destroyed senses and diseases.",
+  "quotes": [
+   "Level 5: Inflict a Light Wound."
+  ],
+  "related": [
+   "Art & Academe Medicine chapter"
+  ]
+ },
+ {
+  "title": "Learned Magician Botches",
+  "heading": "Botches",
+  "line": 5108,
+  "endLine": 5111,
+  "category": "magic",
+  "topic": "Learned magician magical dangers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Describes botch results for Fortunam, Salutem and Magicam charms, following the Hermetic botch guidelines.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Learned Magician Warping",
+  "heading": "Warping",
+  "line": 5112,
+  "endLine": 5115,
+  "category": "magic",
+  "topic": "Learned magician magical dangers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Magicians gain Warping Points from the usual sources and from zeros on botch dice when casting charms, and may suffer an intervention if a single botch gives two or more points.",
+  "quotes": [
+   "Like Hermetic magi, magicians also gain 1 Warping Point for every 0 that comes up on the botch dice when casting a charm."
+  ],
+  "related": [
+   "ArM5 p.167 Warping"
+  ]
+ },
+ {
+  "title": "Intervention (learned magician Twilight analogue)",
+  "heading": "Intervention",
+  "line": 5116,
+  "endLine": 5131,
+  "category": "magic",
+  "topic": "Learned magician magical dangers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "When Warping from a botch triggers an intervention, a realm entity confronts the magician; an avoidance roll and an appeasement roll decide whether he receives a boon or a punishment such as a Flaw tied to that realm.",
+  "quotes": [
+   "Intelligence + Concentration + (Magicam Score / 5) + stress die vs. Warping Score + Number of Warping Points Gained + (Realm) aura + stress die",
+   "Communication + stress die vs. Warping Score + stress die"
+  ],
+  "related": []
+ },
+ {
+  "title": "Abduction",
+  "heading": "Abduction",
+  "line": 5132,
+  "endLine": 5135,
+  "category": "magic",
+  "topic": "Learned magician magical dangers",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Once the Warping Score is high enough, the offended realm entity abducts the magician for a number of seasons, and at a higher score the effect becomes permanent.",
+  "quotes": [
+   "Once the learned magician's Warping Score reaches 7, the entity takes more-direct action.",
+   "When the character's Warping Score becomes 10, the effect becomes permanent."
+  ],
+  "related": []
+ },
+ {
+  "title": "Epistolary Community (Gifted mathematici and correspondence)",
+  "heading": "Epistolary Community",
+  "line": 5170,
+  "endLine": 5175,
+  "category": "social",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians (Gifted)",
+  "summary": "Gifted mathematici use long correspondence to overcome the social effects of The Gift, and a successful Communication plus Charm roll can let a face-to-face meeting count as an established relationship instead of a first impression.",
+  "quotes": [
+   "successful in a Communication + Charm roll against an Ease Factor set by the storyguide"
+  ],
+  "related": [
+   "ArM5 p.76 First Impression and Established Relationship"
+  ]
+ },
+ {
+  "title": "Learned Magicians in Play (covenant involvement)",
+  "heading": "Learned Magicians in Play",
+  "line": 5192,
+  "endLine": 5195,
+  "category": "covenant",
+  "topic": "Learned Magicians",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Learned Magicians",
+  "summary": "Explains how mathematici appear as allies or adversaries of a covenant, how non-Order mathematici are generated, and that they provide covenant Boons and Hooks.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Minor Covenant Boon: Mathematicus Ally",
+  "heading": "Minor Covenant Boon: Mathematicus Ally",
+  "line": 5196,
+  "endLine": 5201,
+  "category": "covenant",
+  "topic": "Covenant boons and hooks",
+  "audience": [
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant Boon option (learned magician)",
+  "summary": "A Minor covenant Boon in which a university-trained mathematicus lives nearby and helps the magi.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Minor Covenant Hook: Mathematicus Resident",
+  "heading": "Minor Covenant Hook: Mathematicus Resident",
+  "line": 5202,
+  "endLine": 5207,
+  "category": "covenant",
+  "topic": "Covenant boons and hooks",
+  "audience": [
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant Hook option (learned magician)",
+  "summary": "A Minor covenant Hook in which mathematici live in the covenant, drawing Quaesitor visits if any are Gifted and visits from magi seeking Insight.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hermetic Learned Magicians",
+  "heading": "Hermetic Learned Magicains",
+  "line": 5208,
+  "endLine": 5211,
+  "category": "creation",
+  "topic": "Learned Magicians",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Learned Magicians (member of the Order)",
+  "summary": "How to build a nominally Hermetic learned magician: the required Flaw and Virtue and where the Arcane Lore experience goes.",
+  "quotes": [
+   "A nominally Hermetic learned magician character should take the Flaw Hedge Wizard and the Virtue Arcane Lore."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mythic Alchemists Tradition",
+  "heading": "Mythic Alchemists",
+  "line": 5356,
+  "endLine": 5363,
+  "category": "traditions",
+  "topic": "Mythic Alchemists",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Mythic Alchemists",
+  "summary": "Overview of the mythic alchemist alternate tradition and its required Virtues, Flaws, Arts and Abilities.",
+  "quotes": [
+   "Required Virtues and Flaws:** Mythic Alchemy, Laboratory Magician, and No Text Casting"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mythic Alchemist Magic",
+  "heading": "Magic",
+  "line": 5372,
+  "endLine": 5385,
+  "category": "lab",
+  "topic": "Mythic Alchemists",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Mythic Alchemists",
+  "summary": "How mythic alchemists work: powders, potions and pastilles in place of charms, Philosophiae in the Lab Total, experimentation risk, vis cost for doses, lab assistance rules, and a Warping progression leading to paranoia and insanity.",
+  "quotes": [
+   "A Mythic alchemist substitutes his Philosophiae score for Artes Liberales in calculating his Lab Total.",
+   "the alchemist must use 1 pawn of vis for every 5 levels of the base effect of the potion",
+   "When the character's Warping Score reaches 3, he acquires a Minor Personality Flaw making the character more secretive and suspicious."
+  ],
+  "related": [
+   "ArM5 p.107-109 Experimentation",
+   "ArM5 p.103 lab assistance"
+  ]
+ },
+ {
+  "title": "Mythic Alchemist Characters",
+  "heading": "Characters",
+  "line": 5386,
+  "endLine": 5389,
+  "category": "creation",
+  "topic": "Mythic Alchemists",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Mythic Alchemists",
+  "summary": "Character creation notes for mythic alchemists, who follow the learned magician guidelines with idiosyncratic training and typical Abilities.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Cunning-Folk Tradition",
+  "heading": "Cunning-Folk",
+  "line": 5390,
+  "endLine": 5397,
+  "category": "traditions",
+  "topic": "Cunning-Folk",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Cunning-Folk",
+  "summary": "Overview of the cunning-folk alternate tradition and its required Virtues, Arts and Abilities.",
+  "quotes": [
+   "Required Virtues:** Mythic Herbalism and Entreat the Faerie Powers"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cunning-Folk Magic",
+  "heading": "Magic",
+  "line": 5404,
+  "endLine": 5411,
+  "category": "traditions",
+  "topic": "Cunning-Folk",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Cunning-Folk",
+  "summary": "Cunning-folk use the learned magician mechanics with local-language charms, Craft: Charm replacing Artes Liberales in the Lab Total, no horoscope requirement and their own lab assistance rule.",
+  "quotes": [
+   "The cunning-folk substitute the Craft: Charm Ability for Artes Liberales in their Laboratory Total when creating their devices."
+  ],
+  "related": [
+   "ArM5 p.103 lab assistance"
+  ]
+ },
+ {
+  "title": "Cunning-Folk Characters",
+  "heading": "Characters",
+  "line": 5416,
+  "endLine": 5421,
+  "category": "creation",
+  "topic": "Cunning-Folk",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Cunning-Folk",
+  "summary": "Character creation notes for cunning-folk: apprenticeship length, yearly experience and spell levels, and typical Abilities, Social Status, Virtues and Flaws.",
+  "quotes": [
+   "For each year of training, the player may spend 16 experience points in Abilities or Arts and 8 levels of spells."
+  ],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Integrating the Learned Magicians' Magic",
+  "heading": "Integrating the Learned Magicians' Magic",
+  "line": 5422,
+  "endLine": 5425,
+  "category": "magic",
+  "topic": "Integration of hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Breakthrough: Integration of learned magician magic",
+  "summary": "Introduces the possible Breakthrough for a magus who integrates learned magician magic with Hermetic magic.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Integration: Single-Use Charged Items",
+  "heading": "Single-Use Charged Items",
+  "line": 5426,
+  "endLine": 5443,
+  "category": "magic",
+  "topic": "Integration of hedge magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Breakthrough: Integration of Single-Use Charged Items",
+  "summary": "Integration of chartae creation into Hermetic theory so a magus can quickly create single-use charged items: suggested Breakthrough points, sources of Insight, the one-device-per-season limit during Integration and the consequences.",
+  "quotes": [
+   "Suggested Breakthrough Points:** 40",
+   "The magus may only create one device per season until he achieves a Breakthrough."
+  ],
+  "related": []
+ },
+ {
+  "title": "Nightwalker Characters",
+  "heading": "Characters",
+  "line": 5452,
+  "endLine": 5455,
+  "category": "creation",
+  "topic": "Nightwalkers",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Nightwalkers",
+  "summary": "Nightwalkers are built as conventional companions rather than Mythic Companions, and most have a mundane profession.",
+  "quotes": [
+   "Nightwalkers are designed as conventional companions, not Mythic Companions like the most powerful members of the other traditions described in this book."
+  ],
+  "related": []
+ },
+ {
+  "title": "Nightwalker New Virtues (regional traditions)",
+  "heading": "New Virtues",
+  "line": 5456,
+  "endLine": 5459,
+  "category": "creation",
+  "topic": "Nightwalkers",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Nightwalkers",
+  "summary": "The Nightwalker Major Virtue must be localized by choosing a regional tradition (or a similar local group), and membership of a regional tradition is a Free Virtue.",
+  "quotes": [
+   "Membership of each regional tradition is a Free Virtue."
+  ],
+  "related": []
+ },
+ {
+  "title": "Nightwalker (Virtue powers and limitations)",
+  "heading": "Nightwalker<br>",
+  "line": 5460,
+  "endLine": 5487,
+  "category": "traditions",
+  "topic": "Nightwalkers",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Nightwalker",
+  "summary": "The Nightwalker Virtue lets a character stray as a phantasticum, listing the powers it grants (Second Sight, tangible or intangible form, animal shapes, speaking to sleepers) and its duties and limitations such as a vulnerable body and shared injuries.",
+  "quotes": [
+   "The character may make his spiritual form tangible or intangible using a Stamina + Concentration roll."
+  ],
+  "related": []
+ },
+ {
+  "title": "Born With a Caul",
+  "heading": "Born With a Caul",
+  "line": 5548,
+  "endLine": 5566,
+  "category": "creation",
+  "topic": "Nightwalkers",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Nightwalkers (born with a caul)",
+  "summary": "Sidebar explaining the caul that most nightwalkers are born with, the possible Major Story Flaw for losing it, and the Virtues that having a caul can grant or often grants.",
+  "quotes": [
+   "Knowledge of the nightwalkers is an (Organization) Lore"
+  ],
+  "related": [
+   "ArM5 p.43 Immunity to Drowning",
+   "ArM5 p.45 Luck",
+   "ArM5 p.48 Self-Confidence",
+   "ArM5 p.49 Strong-Willed"
+  ]
+ }
+]

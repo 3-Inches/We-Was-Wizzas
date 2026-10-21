@@ -1,0 +1,532 @@
+[
+ {
+  "title": "Fraternity of Samos: Structure and Entry Requirements",
+  "heading": "Structure of the Fraternity of Samos",
+  "line": 5120,
+  "endLine": 5125,
+  "category": "mysteries",
+  "topic": "Fraternity of Samos",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fraternity of Samos",
+  "summary": "Describes the Pythagorean cult's strict degree system and its unusual mundane Ability prerequisites for a first Initiation, which also add a bonus to the Initiation Script.",
+  "quotes": [
+   "it is required that the prospective probationer can pass examinations in philosophiae and artes liberales, which can be represented by having attained a score of 3 in both those abilities",
+   "represented by a score of 1 in Music",
+   "confer a +1 bonus to the Initiation Script employed"
+  ]
+ },
+ {
+  "title": "Sample Initiation Script: Fraternity of Samos",
+  "heading": "Sample Initiation Script for the Fraternity of Samos",
+  "line": 5126,
+  "endLine": 5130,
+  "category": "mysteries",
+  "topic": "Initiation Scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fraternity of Samos",
+  "summary": "Worked example of an Initiation Script for the first Samos degree, showing how a special bonus, a season of teaching and a Minor Ordeal Vow add up to the script bonus.",
+  "quotes": [
+   "Initiation Scripts with a bonus of +7 are very common",
+   "for a total Initiation Script bonus of +7"
+  ],
+  "related": [
+   "ArM5 Mysteries: Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Samos Degree: Mathematicus",
+  "heading": "Mathematicus",
+  "line": 5134,
+  "endLine": 5137,
+  "category": "mysteries",
+  "topic": "Fraternity of Samos",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fraternity of Samos",
+  "summary": "First Akousmatic degree; requires a minimum score in Artes Liberales (Mathematics) and teaches the Virtue Hermetic Numerology.",
+  "quotes": [
+   "possessing at least a score of 3 in Artes Liberales (Mathematics)"
+  ]
+ },
+ {
+  "title": "Samos Degree: Theoreticus",
+  "heading": "Theoreticus",
+  "line": 5138,
+  "endLine": 5141,
+  "category": "mysteries",
+  "topic": "Fraternity of Samos",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fraternity of Samos",
+  "summary": "Second degree; requires a higher Artes Liberales (Geometry) score and a Numerologist's Book, and teaches the Virtue Hermetic Geometry.",
+  "quotes": [
+   "possessing at least a score of 4 in Artes Liberales (Geometry)"
+  ]
+ },
+ {
+  "title": "Samos Degree: Electus",
+  "heading": "Electus",
+  "line": 5142,
+  "endLine": 5147,
+  "category": "mysteries",
+  "topic": "Fraternity of Samos",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fraternity of Samos",
+  "summary": "Third degree; teaches Planetary Magic. The Initiators keep a natal chart and a permanent Arcane Connection to the Initiate, giving casters against the Initiate a Penetration bonus; this counts as an Ordeal.",
+  "quotes": [
+   "a bonus of eight times Penetration score when casting spells against the Initiate",
+   "constitutes an Ordeal for Initiation"
+  ]
+ },
+ {
+  "title": "Samos Inner Order: Mathematikoi",
+  "heading": "The Inner Order: Mathematikoi",
+  "line": 5148,
+  "endLine": 5155,
+  "category": "mysteries",
+  "topic": "Fraternity of Samos",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fraternity of Samos",
+  "summary": "Describes the Inner Order's duties: minimum Teaching, hosting visitors, and training apprentices, which can serve as a Sacrifice in later Initiation Scripts.",
+  "quotes": [
+   "Members of the Mathematikoi must possess the mundane ability Teaching at a score of at least 2",
+   "conferring a +6 bonus for the 15 seasons sacrificed"
+  ]
+ },
+ {
+  "title": "Samos Degree: Tertius, or 3=4",
+  "heading": "Tertius, or 3=4",
+  "line": 5156,
+  "endLine": 5159,
+  "category": "mysteries",
+  "topic": "Fraternity of Samos",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fraternity of Samos",
+  "summary": "Fourth degree; teaches the geometry of the elemental solids and the Virtue Hermetic Architecture, with other Virtues rumored.",
+  "quotes": [
+   "the Virtue Hermetic Architecture is now Initiated"
+  ]
+ },
+ {
+  "title": "Samos Degree: Secundus, or 2=5",
+  "heading": "Secundus, or 2=5",
+  "line": 5160,
+  "endLine": 5163,
+  "category": "mysteries",
+  "topic": "Fraternity of Samos",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fraternity of Samos",
+  "summary": "Fifth degree; rumored to teach Inscription on the Soul, Hermetic Theurgy or Theurgic Spirit Familiar.",
+  "quotes": [
+   "It is rumored that some Initiates learn the mystery of the Virtue Inscription on the Soul"
+  ]
+ },
+ {
+  "title": "Samos Degree: Pythagorean, or True Initiate",
+  "heading": "Pythagorean, or True Initiate",
+  "line": 5164,
+  "endLine": 5168,
+  "category": "mysteries",
+  "topic": "Fraternity of Samos",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Fraternity of Samos",
+  "summary": "Final degree; a five-year vow of silence counts as a Major Ordeal for Initiation Script purposes, and the Virtue taught is uncertain.",
+  "quotes": [
+   "this counts as a Major Ordeal for Initiation Script purposes"
+  ]
+ },
+ {
+  "title": "Sample Initiation Script: Disciples of the Worm",
+  "heading": "Example Initiation Script for the Disciples",
+  "line": 5194,
+  "endLine": 5198,
+  "category": "mysteries",
+  "topic": "Initiation Scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Disciples of the Worm",
+  "summary": "Worked example of the Spell Binding Initiation Script, itemizing season of work, tomb ordeal, teaching, offerings and sympathetic bonus.",
+  "quotes": [
+   "a +9 Script is commonly employed to Initiate second degree disciples into the Mysteries of spell binding",
+   "for a total of +9"
+  ],
+  "related": [
+   "ArM5 Mysteries: Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Disciples of the Worm: Structure and Seven Degrees",
+  "heading": "Structure of The Disciples of the Worm",
+  "line": 5202,
+  "endLine": 5217,
+  "category": "mysteries",
+  "topic": "Disciples of the Worm",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Disciples of the Worm",
+  "summary": "Explains the cell organization of the cult and lists its seven degrees with the Virtue taught at each, from Second Sight to Living Ghost.",
+  "quotes": [
+   "Initiates are divided into seven degrees"
+  ]
+ },
+ {
+  "title": "Sample Initiation Script: Knights of the Green Stone",
+  "heading": "Example Initiation Script for the Green Stone",
+  "line": 5234,
+  "endLine": 5240,
+  "category": "mysteries",
+  "topic": "Initiation Scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Knights of the Green Stone",
+  "summary": "Worked example of the first Initiation of the Knights, with a Minor Ordeal that lowers the target level, a quest to the Castle, and a sacrifice for outfitting as a knight.",
+  "quotes": [
+   "This Initiation Script confers a +7 bonus; it contains a Minor Ordeal that lowers the target level for this Initiation to 12",
+   "which creates the flaw Dutybound (+3)"
+  ],
+  "related": [
+   "ArM5 Mysteries: Initiation Scripts"
+  ]
+ },
+ {
+  "title": "Knights of the Green Stone: Structure and Degrees",
+  "heading": "Structure of the Knights of the Green Stone",
+  "line": 5248,
+  "endLine": 5267,
+  "category": "mysteries",
+  "topic": "Knights of the Green Stone",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Knights of the Green Stone",
+  "summary": "Describes the three degrees of the cult, the free Minor Status Virtue of knight role-playing, and the rules of membership.",
+  "quotes": [
+   "The Knights divides its Initiates into three degrees, each of which offers up to three Initiations"
+  ]
+ },
+ {
+  "title": "Green Stone Degree: Page",
+  "heading": "Page",
+  "line": 5256,
+  "endLine": 5259,
+  "category": "mysteries",
+  "topic": "Knights of the Green Stone",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Knights of the Green Stone",
+  "summary": "First degree; Initiations into Free Expression, Performance Magic: Music and Puissant Art of Memory.",
+  "quotes": [
+   "The third Virtue taught is Puissant Art of Memory"
+  ]
+ },
+ {
+  "title": "Green Stone Degree: Squire",
+  "heading": "Squire",
+  "line": 5260,
+  "endLine": 5263,
+  "category": "mysteries",
+  "topic": "Knights of the Green Stone",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Knights of the Green Stone",
+  "summary": "Second degree; may confer Vulgar Alchemy, Hermetic Numerology and Consummate Talisman.",
+  "quotes": [
+   "The Virtues Vulgar Alchemy, Hermetic Numerology, and Consummate Talisman can be conferred at this degree."
+  ]
+ },
+ {
+  "title": "Green Stone Degree: Knight",
+  "heading": "Knight",
+  "line": 5264,
+  "endLine": 5267,
+  "category": "mysteries",
+  "topic": "Knights of the Green Stone",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Knights of the Green Stone",
+  "summary": "Third degree; Virtues taught are Planetary Magic, a gemstone focus or Potent Magic, and Hermetic Synthemata.",
+  "quotes": [
+   "They learn the Virtues Planetary Magic, Major Magical Focus: Gemstones or Potent Magic: Gemstones, and Hermetic Synthemata"
+  ]
+ },
+ {
+  "title": "Immortal Magi: General Rules",
+  "heading": "Appendix A: Immortal Magi",
+  "line": 5268,
+  "endLine": 5281,
+  "category": "mysteries",
+  "topic": "Immortal magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Becoming an immortal magus (Great Elixir, Living Ghost or Ascendancy to the Hall of Heroes)",
+  "summary": "Common rules for magi who have become immortal beings of the Magic realm: Might, no Aging, Warping or Twilight, and a natural reversion to stasis that must be countered by binding changes into a talisman.",
+  "quotes": [
+   "An immortal ceases to make Aging rolls \u2014 he truly does not age \u2014 and is beyond the effects of Warping and Twilight.",
+   "A being with a Might score is subject to Warding spells, including *Aegis of the Hearth*"
+  ],
+  "related": [
+   "ArM5 p.182 Might"
+  ]
+ },
+ {
+  "title": "Immortals: Permanent Change and the Talisman",
+  "heading": "Immortal Beings and Permanent Change",
+  "line": 5282,
+  "endLine": 5291,
+  "category": "mysteries",
+  "topic": "Immortal magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Becoming an immortal magus (Great Elixir, Living Ghost or Ascendancy to the Hall of Heroes)",
+  "summary": "Explains how an immortal who keeps a talisman can bind learning into it, no longer limited in opening spaces by Technique and Form, and notes that Ordeals cannot be used for Initiation of immortals.",
+  "quotes": [
+   "A maga who becomes immortal in one of these ways is no longer limited by her highest Technique and Form in the number of spaces she can open in her talisman",
+   "Ordeals cannot be used for Initiation of immortal beings"
+  ]
+ },
+ {
+  "title": "Immortals: Learning Arts or Abilities",
+  "heading": "Learning Arts or Abilities",
+  "line": 5292,
+  "endLine": 5323,
+  "category": "mysteries",
+  "topic": "Immortal magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Becoming an immortal magus (Great Elixir, Living Ghost or Ascendancy to the Hall of Heroes)",
+  "summary": "Experience gained by an immortal fades over the next season unless a season is spent enchanting the talisman to bind it; includes a worked example.",
+  "quotes": [
+   "The Effect level needed is 10 x XP to be retained.",
+   "She has a Creo Mentem lab total of 90, and can invest a level 45 effect in one season."
+  ]
+ },
+ {
+  "title": "Binding the Immortal Memory (Enchantment)",
+  "heading": "Binding the Immortal Memory",
+  "line": 5300,
+  "endLine": 5310,
+  "category": "mysteries",
+  "topic": "Immortal magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Becoming an immortal magus (Great Elixir, Living Ghost or Ascendancy to the Hall of Heroes)",
+  "summary": "Mystery enchantment guideline that binds a study period's experience into the talisman; the effect level required is tied to the experience points to retain and must be done in one season.",
+  "quotes": [
+   "The Effect level needed is 10 x XP to be retained.",
+   "The effect must be completed in one season or all new experience points will be lost to the repair effect."
+  ]
+ },
+ {
+  "title": "Immortal Familiars: Extra Vis for Transformation",
+  "heading": "Becoming Immortal with a Familiar",
+  "line": 5312,
+  "endLine": 5320,
+  "category": "mysteries",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Becoming an immortal magus (Great Elixir, Living Ghost or Ascendancy to the Hall of Heroes) with a familiar",
+  "summary": "A familiar can follow its magus into immortality if extra raw vis is added to the transformation rite; spirit familiars need none.",
+  "quotes": [
+   "the magus must add extra raw vis to his transformation rite, equal to their Familiar Bond Score/5 (round up)"
+  ],
+  "related": [
+   "ArM5 p.105 Familiars"
+  ]
+ },
+ {
+  "title": "Immortals: Learning Spells",
+  "heading": "Learning Spells",
+  "line": 5324,
+  "endLine": 5327,
+  "category": "mysteries",
+  "topic": "Immortal magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Becoming an immortal magus (Great Elixir, Living Ghost or Ascendancy to the Hall of Heroes)",
+  "summary": "A spell learned by an immortal fades from memory over the season unless bound into the talisman by enchantment.",
+  "quotes": [
+   "The magus can bind the knowledge of a spell by creating an enchantment in his talisman."
+  ]
+ },
+ {
+  "title": "The Immortal's Grimoire (Enchantment)",
+  "heading": "The Immortal's Grimoire",
+  "line": 5328,
+  "endLine": 5344,
+  "category": "mysteries",
+  "topic": "Immortal magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Becoming an immortal magus (Great Elixir, Living Ghost or Ascendancy to the Hall of Heroes)",
+  "summary": "Mystery enchantment guideline that lets the talisman hold the knowledge of a spell as an always-on memory, so the spell is cast normally with full Casting Total and Penetration.",
+  "quotes": [
+   "The invested effect level must equal the level of spell to be retained.",
+   "by casting the spell normally the magus uses his full Casting Total, gets full Penetration (Casting Total \u2013 Spell level + Penetration Bonus), and has unlimited uses per day"
+  ]
+ },
+ {
+  "title": "Immortals: Binding High-Level Spells over Several Seasons",
+  "heading": "Binding High-Level Spells",
+  "line": 5346,
+  "endLine": 5356,
+  "category": "mysteries",
+  "topic": "Immortal magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Becoming an immortal magus (Great Elixir, Living Ghost or Ascendancy to the Hall of Heroes)",
+  "summary": "Multi-season procedure alternating relearning a spell and investing it, with a Magic Theory roll to ensure the relearned spell matches and a botch table for failures.",
+  "quotes": [
+   "He must succeed in a roll of Intelligence + Magic Theory against an Ease Factor of 6 + the magnitude of the spell.",
+   "To match each partial spell-binding, roll a stress die + Intelligence + Magic Theory vs. (6 + Magnitude of Spell)."
+  ],
+  "related": [
+   "ArM5 p.109 Extraordinary Results"
+  ]
+ },
+ {
+  "title": "Immortals: Unchanging Nature, Healing and Mental Changes",
+  "heading": "Immortal and Unchanging",
+  "line": 5358,
+  "endLine": 5401,
+  "category": "mysteries",
+  "topic": "Immortal magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Becoming an immortal magus (Great Elixir, Living Ghost or Ascendancy to the Hall of Heroes)",
+  "summary": "Sidebar giving how temporary changes, wounds and mental effects fade for immortals, with weekly Recovery rolls, thresholds by wound level, and a table matching spell levels to healing rates.",
+  "quotes": [
+   "Any Temporary, Unbound Change will Fade Completely over a Season.",
+   "Recovery Total: Simple Die + Stamina + Medic's Chirurgy or Medicine Score + Magical Aid",
+   "Improve if Recovery Total is 10+ (Light Wounds), 12+ (Medium Wounds), 15+ (Heavy Wounds)"
+  ],
+  "related": [
+   "ArM5 p.179 Recovery"
+  ]
+ },
+ {
+  "title": "Converting Characters from Fourth Edition The Mysteries",
+  "heading": "Appendix B: Conversion",
+  "line": 5403,
+  "endLine": 5447,
+  "category": "creation",
+  "topic": "Conversion",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "Converting a character from Fourth Edition The Mysteries",
+  "summary": "Notes for converting Fourth Edition Mysteries characters: Abilities, Virtues and Flaws, Mastery, Mystae magics and the new Revised Edition schools.",
+  "quotes": [
+   "Mastery Virtues are replaced by Mastery special abilities; see ArM5, page 87.",
+   "adding one Mastery Level for each Ability added"
+  ],
+  "related": [
+   "ArM5 p.223 Conversion"
+  ]
+ },
+ {
+  "title": "Daimons: General Rules, Aspects and Pacts",
+  "heading": "Appendix C: Daimons",
+  "line": 5449,
+  "endLine": 5466,
+  "category": "beings",
+  "topic": "Daimons",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Theurgy (pacts with Daimons)",
+  "summary": "Explains how Daimons act on Earth through Aspects, how they are Banished rather than killed, and how theurgists conjure them to provide powers and services.",
+  "quotes": [
+   "A Daimon also does not respond in person \u2014 it sends an Aspect of its spirit.",
+   "binding or destroying an Aspect has no effect on the Daimon itself",
+   "Daimons are never killed or incapacitated by physical combat"
+  ]
+ }
+]

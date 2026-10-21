@@ -108,52 +108,54 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
             </div>
             {c.wounds.dead && <span className="badge bad">DEAD</span>}
           </div>
-          <table className="compact">
-            <thead>
-              <tr>
-                <th>Wound</th>
-                <th>Range (damage − soak)</th>
-                <th className="num">Penalty</th>
-                <th>Count</th>
-                <th>Recovery</th>
-              </tr>
-            </thead>
-            <tbody>
-              {WOUND_KEYS.map((w) => {
-                const range = w.key === 'incapacitating' ? d.woundRanges.incap : d.woundRanges[w.key];
-                return (
-                  <tr key={w.key}>
-                    <td>{w.label}</td>
-                    <td>{range.join('–')}</td>
-                    <td className="num">{w.pen || '—'}</td>
-                    <td>
-                      <Stepper value={c.wounds[w.key]} min={0} width={36} onChange={(v) => update((x) => void (x.wounds[w.key] = v))} />
-                    </td>
-                    <td>
-                      {w.key === 'incapacitating' ? (
-                        <button className="small" disabled={!c.wounds.incapacitating} onClick={recoverIncap} title="Twice daily; 0 or less dies, 9+ becomes Heavy">
-                          Roll
-                        </button>
-                      ) : (
-                        <button className="small" disabled={!c.wounds[w.key]} onClick={() => recover(w.key as 'light' | 'medium' | 'heavy')} title={`${RECOVERY[w.key as 'light'].interval}; stable ${RECOVERY[w.key as 'light'].stable}, improve ${RECOVERY[w.key as 'light'].improve}`}>
-                          Roll ({RECOVERY[w.key as 'light'].interval.toLowerCase()})
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-              <tr>
-                <td>Dead</td>
-                <td>{d.woundRanges.dead}+</td>
-                <td />
-                <td>
-                  <input type="checkbox" checked={!!c.wounds.dead} onChange={(e) => update((x) => void (x.wounds.dead = e.target.checked))} />
-                </td>
-                <td />
-              </tr>
-            </tbody>
-          </table>
+          <div className="table-wrap">
+            <table className="compact">
+              <thead>
+                <tr>
+                  <th>Wound</th>
+                  <th>Range (damage − soak)</th>
+                  <th className="num">Penalty</th>
+                  <th>Count</th>
+                  <th>Recovery</th>
+                </tr>
+              </thead>
+              <tbody>
+                {WOUND_KEYS.map((w) => {
+                  const range = w.key === 'incapacitating' ? d.woundRanges.incap : d.woundRanges[w.key];
+                  return (
+                    <tr key={w.key}>
+                      <td>{w.label}</td>
+                      <td>{range.join('–')}</td>
+                      <td className="num">{w.pen || '—'}</td>
+                      <td>
+                        <Stepper value={c.wounds[w.key]} min={0} width={36} onChange={(v) => update((x) => void (x.wounds[w.key] = v))} />
+                      </td>
+                      <td>
+                        {w.key === 'incapacitating' ? (
+                          <button className="small" disabled={!c.wounds.incapacitating} onClick={recoverIncap} title="Twice daily; 0 or less dies, 9+ becomes Heavy">
+                            Roll
+                          </button>
+                        ) : (
+                          <button className="small" disabled={!c.wounds[w.key]} onClick={() => recover(w.key as 'light' | 'medium' | 'heavy')} title={`${RECOVERY[w.key as 'light'].interval}; stable ${RECOVERY[w.key as 'light'].stable}, improve ${RECOVERY[w.key as 'light'].improve}`}>
+                            Roll ({RECOVERY[w.key as 'light'].interval.toLowerCase()})
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+                <tr>
+                  <td>Dead</td>
+                  <td>{d.woundRanges.dead}+</td>
+                  <td />
+                  <td>
+                    <input type="checkbox" checked={!!c.wounds.dead} onChange={(e) => update((x) => void (x.wounds.dead = e.target.checked))} />
+                  </td>
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div className="row" style={{ marginTop: 10 }}>
             <Field label="Damage total taken">
               <Stepper value={damage} min={0} width={50} onChange={setDamage} />

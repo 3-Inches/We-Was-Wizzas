@@ -1,0 +1,1175 @@
+[
+ {
+  "title": "Grog Yearly Experience",
+  "heading": "Abilities",
+  "line": 2421,
+  "endLine": 2425,
+  "category": "seasons",
+  "topic": "Non-magus advancement",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how many experience points a non-magus character gains each year and how those are split between exposure, practice and a vocational season, with adjustments for Poor and Wealthy characters.",
+  "quotes": [
+   "Non-magus characters receive 15 experience points every year."
+  ],
+  "related": []
+ },
+ {
+  "title": "Updating Grogs",
+  "heading": "Updating Grogs",
+  "line": 2427,
+  "endLine": 2433,
+  "category": "seasons",
+  "topic": "Non-magus advancement",
+  "audience": [
+   "grogs",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A bookkeeping shortcut for advancing grogs: update regular grogs once a year in winter, share the work between players, and handle story experience and infrequently used grogs with training packages.",
+  "quotes": [
+   "all grogs gain 7 experience points in that Ability",
+   "The player then applies 4, 2, and 2 experience points to up to three different Abilities"
+  ],
+  "related": []
+ },
+ {
+  "title": "Training Packages",
+  "heading": "Training Packages",
+  "line": 2435,
+  "endLine": 2449,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "A quick way to build a character's Abilities by stacking packages of years and experience points, working like childhood packages, with limits on repeats, Ability scores and age.",
+  "quotes": [
+   "A starting character should not be built with more than 15 years in a single package"
+  ],
+  "related": [
+   "ArM5 p.31"
+  ]
+ },
+ {
+  "title": "Wealthy and Poor Characters (Training Packages)",
+  "heading": "Wealthy and Poor Characters",
+  "line": 2441,
+  "endLine": 2445,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Wealthy or Flaw: Poor",
+  "summary": "Adjusts the age gained from training packages for Wealthy characters (younger) and Poor characters (older).",
+  "quotes": [
+   "reduce the character's post-childhood age by one quarter",
+   "increase the post-childhood age by one half"
+  ],
+  "related": []
+ },
+ {
+  "title": "Grog Backgrounds",
+  "heading": "Grog Backgrounds",
+  "line": 2451,
+  "endLine": 2453,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Advises giving grogs some years of labor, craft or trade packages before a military package, to generate a simple back story.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Career Training Packages",
+  "heading": "Career Training Packages",
+  "line": 2455,
+  "endLine": 2743,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "A catalogue of trade and profession packages, each giving experience points in the key Abilities for a five-year or three-year option; some are marked Academic, Arcane or Martial and need a Virtue permitting those Abilities.",
+  "quotes": [
+   "**Five Years:** +15 Athletics, +20 Brawl, +40 Single Weapon",
+   "**Three Years:** +5 Athletics, +10 Brawl, +30 Single Weapon"
+  ],
+  "related": [
+   "A&A p.91"
+  ]
+ },
+ {
+  "title": "Craftsman Training Package",
+  "heading": "Craftsman",
+  "line": 2507,
+  "endLine": 2513,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The craft apprenticeship package, with notes on how long an apprenticeship takes and which packages journeymen and masters add.",
+  "quotes": [
+   "**Five Years:** +10 Bargain, +25 Craft: Type A, +15 Craft: Type B, +15 Organization Lore: Guild, +10 Folk Ken"
+  ],
+  "related": [
+   "C&G p.42"
+  ]
+ },
+ {
+  "title": "Failed Apprentice Training Package",
+  "heading": "Failed Apprentice",
+  "line": 2535,
+  "endLine": 2541,
+  "category": "creation",
+  "topic": "Failed apprentices",
+  "audience": [
+   "grogs",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Failed Apprentice",
+  "summary": "A package for characters who were trained as magi but never learned the Arts, giving Hermetic-flavoured Abilities.",
+  "quotes": [
+   "**Five Years:** +5 Artes Liberales, +5 Code of Hermes, +5 Concentration, +5 Finesse, +10 Latin, +25 Magic Theory, +15 Organization Lore: Order of Hermes, +5 Penetration"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magician Training Package",
+  "heading": "Magician (Arcane)",
+  "line": 2597,
+  "endLine": 2603,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue permitting Arcane Abilities",
+  "summary": "A package for characters with Supernatural Abilities, which also lets the character sacrifice experience to buy Enriched Objects of Virtue.",
+  "quotes": [
+   "**Five Years:** +15 Concentration, +30 Magic Lore, +30 Penetration"
+  ],
+  "related": [
+   "RoP:M p.124"
+  ]
+ },
+ {
+  "title": "Natural Philosopher Training Package",
+  "heading": "Natural Philosopher (Academic)",
+  "line": 2619,
+  "endLine": 2625,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue permitting Academic Abilities",
+  "summary": "An academic package that grants Philosophiae experience and a number of natural-philosophy formulae instead of a third Ability.",
+  "quotes": [
+   "**Five Years:** +40 Philosophiae, 7 formulae"
+  ],
+  "related": [
+   "A&A Chapter 5"
+  ]
+ },
+ {
+  "title": "Student Training Package",
+  "heading": "Student (Academic)",
+  "line": 2693,
+  "endLine": 2703,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Academic schooling packages with different variants for cathedral, monastic, parish, tutor or university study; parish school is limited to the three-year option.",
+  "quotes": [
+   "**THREE YEARS (PARISH SCHOOL):** +15 Artes Liberales, +30 Latin"
+  ],
+  "related": [
+   "A&A pp.90-92"
+  ]
+ },
+ {
+  "title": "Combat Statistics (Grogs)",
+  "heading": "Combat Statistics",
+  "line": 2745,
+  "category": "combat",
+  "topic": "Combat statistics",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Pre-calculated combat statistics for common weapons under stated assumptions about Ability, Characteristics and encumbrance, to save time when building grogs.",
+  "quotes": [
+   "It is often tedious to calculate combat statistics for a grog."
+  ],
+  "related": []
+ },
+ {
+  "title": "Non-Career Training Packages",
+  "heading": "Non-Career Training Packages",
+  "line": 2766,
+  "endLine": 2822,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Three-year packages for background skills acquired through life rather than a trade (athlete, brawler, covenfolk, leader, rider and others), usually taken only once or twice.",
+  "quotes": [
+   "**Three Years:** +15 Athletics, +30 Brawl",
+   "**Three Years:** +10 Folk Ken, +5 Charm, +30 Leadership"
+  ],
+  "related": []
+ },
+ {
+  "title": "Covenfolk Training Package",
+  "heading": "Covenfolk",
+  "line": 2784,
+  "endLine": 2788,
+  "category": "covenant",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A package for people raised in a covenant; characters without exposure to Latin must move those points to other Abilities in the package.",
+  "quotes": [
+   "**Three Years:** +5 Area Lore, +20 Area Lore: Covenant, +15 Latin, +5 Organization Lore: Order of Hermes"
+  ],
+  "related": []
+ },
+ {
+  "title": "The System in Action (Training Packages)",
+  "heading": "The System in Action",
+  "line": 2824,
+  "endLine": 2848,
+  "category": "creation",
+  "topic": "Training packages",
+  "audience": [
+   "grogs",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A worked example of building a grog from childhood and training packages, including the effect of the Poor Flaw on age and the 30-or-older Ability cap, followed by sample package combinations for common grog types.",
+  "quotes": [
+   "Since Sir Edwin has taken the Poor Flaw, he is actually 31 years old."
+  ],
+  "related": []
+ },
+ {
+  "title": "Advisor Grog Template",
+  "heading": "The Advisor",
+  "line": 3438,
+  "endLine": 3507,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A character-creation template for a knowledge-specialist covenant retainer, with role notes, suggested Characteristics, Virtues and Flaws, Abilities, training packages and sample Ability scores at three ages.",
+  "quotes": [
+   "By assigning \u20131 to each of the four physical Characteristics, scores of +3, +2, +1, and +1 are available to assign to the mental Characteristics."
+  ],
+  "related": [
+   "TMRE p.25 Art of Memory"
+  ]
+ },
+ {
+  "title": "Almogavar Grog Template",
+  "heading": "The Almogavars",
+  "line": 3542,
+  "endLine": 3617,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for Iberian mercenary-raider units, covering their organisation and tactics, how to build an Almogavar character, standard outfit and protection, suggested Virtues, Flaws, Abilities and packages, and sample Ability scores at three ages.",
+  "quotes": [
+   "The combination of sheepskin leather and the open-faced iron helmet grants a Protection of 1, with a Load of 1."
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Trainer Grog Template",
+  "heading": "Animal Trainer",
+  "line": 3625,
+  "endLine": 3697,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for characters who train animals for a covenant, with suggested Abilities, training packages and three sample characters of different ages and backgrounds.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Training Animals (Training Points)",
+  "heading": "General Background",
+  "line": 3629,
+  "endLine": 3651,
+  "category": "basics",
+  "topic": "Animal training",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Seasonal procedure for taming a mundane animal: a trainer accumulates training points each season until they equal the animal's Might, with a penalty for The Gift; also notes how Might is derived for mundane animals and that training is individual-specific.",
+  "quotes": [
+   "**Intelligence + Animal Handling + Animal Ken \u2013 Creature's Might \u2013 Gift Penalty**",
+   "**Mundane Animal Might = 1 + (2 x Confidence Score)**"
+  ],
+  "related": [
+   "A&A Formulae"
+  ]
+ },
+ {
+  "title": "Bodyguard Maidservant Grog Template",
+  "heading": "The Bodyguard Maidservant",
+  "line": 3723,
+  "endLine": 3781,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for a female grog who serves as a disguised bodyguard and spy, with suggested Virtues, Flaws, Social Status, Abilities, packages and sample Ability scores for a young and a mature character.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Bull Grog Template",
+  "heading": "The Bull",
+  "line": 3797,
+  "endLine": 3866,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for the strong, loyal and none-too-clever fighting grog, with suggested Virtues, Flaws, Social Status, Abilities, packages and sample Ability scores at three ages.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Confessor Grog Template",
+  "heading": "The Confessor",
+  "line": 3880,
+  "endLine": 3978,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for the priest or religious counsellor who hears confession for covenfolk and magi, with variants for Christian, Islamic and Jewish characters, suggested Virtues and Flaws, packages and sample Ability scores.",
+  "quotes": [],
+  "related": [
+   "RoP:D p.75",
+   "The Church"
+  ]
+ },
+ {
+  "title": "The Practice of Confession",
+  "heading": "The Practice of Confession",
+  "line": 3904,
+  "endLine": 3916,
+  "category": "realms",
+  "topic": "Confession and penance",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How confession and penance work for Christian characters, including the temporary Confidence point and holy connection until penance is done, with notes on how confession differs in Judaism and Islam and on secular confession.",
+  "quotes": [
+   "The character gains a temporary Confidence point that can be used to help him complete his penance"
+  ],
+  "related": [
+   "RoP:D p.75",
+   "The Church, Diocese chapter"
+  ]
+ },
+ {
+  "title": "Corpse-Thief Grog Template",
+  "heading": "The Corpse-Thief",
+  "line": 3980,
+  "endLine": 4067,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for a grave-robbing supplier of arcane connections and body parts to witches, covering the Abilities and sympathetic-connection craft that make him useful, suggested Virtues and Flaws, packages and sample Ability scores.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.84",
+   "RoP:M p.124"
+  ]
+ },
+ {
+  "title": "New Arcane Ability: Craft Poppets",
+  "heading": "New Arcane Ability: Craft Poppets",
+  "line": 3988,
+  "endLine": 3990,
+  "category": "basics",
+  "topic": "Poppets and arcane connections",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue permitting Arcane Abilities",
+  "summary": "A new Arcane Ability for making effigies that house an arcane connection and act as a sympathetic connection, with ease factors for simple and permanent poppets.",
+  "quotes": [
+   "A simple effigy is good for one use, takes an hour to make, and requires a Dexterity + Craft Poppets roll against an Ease Factor of 9."
+  ],
+  "related": []
+ },
+ {
+  "title": "Preserving Arcane Connections",
+  "heading": "Preserving Arcane Connections",
+  "line": 3992,
+  "endLine": 4003,
+  "category": "magic",
+  "topic": "Poppets and arcane connections",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Profession: Apothecary",
+  "summary": "An apothecary can lengthen the lifespan of an organic arcane connection once, using a Dexterity plus Profession roll against an ease factor that depends on its original duration.",
+  "quotes": [
+   "Make a Dexterity + Profession: Apothecary roll, and consult the following table:"
+  ],
+  "related": [
+   "A&A p.64"
+  ]
+ },
+ {
+  "title": "The Viaticarus",
+  "heading": "The Viaticarus",
+  "line": 4017,
+  "endLine": 4023,
+  "category": "setting",
+  "topic": "Viaticarus",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Flaw: Viaticarus",
+  "summary": "Explains the legal, social and theological position of a person who survived Extreme Unction: denied the sacraments, unable to do penance, and legally treated as dead.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Craftsman Grog Template",
+  "heading": "The Craftsman",
+  "line": 4075,
+  "endLine": 4174,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for the covenant craftsman who may progress from apprentice to master over a saga, with Virtue and Flaw suggestions for each stage, Finesse, packages, sample Ability scores, workshop and assistants rules.",
+  "quotes": [],
+  "related": [
+   "C&G p.53",
+   "C&G p.65"
+  ]
+ },
+ {
+  "title": "The Workshop (Craftsman Grog)",
+  "heading": "The Workshop",
+  "line": 4137,
+  "endLine": 4143,
+  "category": "seasons",
+  "topic": "Craft workshops",
+  "audience": [
+   "grogs",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes a grog craftsman's workshop through Innovation and Raw Materials, improved by spending excess Labor Points; Innovation passes to the next generation while Raw Materials carries a yearly upkeep cost.",
+  "quotes": [
+   "Each workshop is described through two characteristics, Innovation and Raw Materials"
+  ],
+  "related": [
+   "C&G p.38",
+   "C&G p.65"
+  ]
+ },
+ {
+  "title": "Craftswomen and Default Workshop Statistics",
+  "heading": "Craftswomen",
+  "line": 4145,
+  "endLine": 4160,
+  "category": "seasons",
+  "topic": "Craft workshops",
+  "audience": [
+   "grogs",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Discusses women crafters in the Order's setting and gives a shortcut set of workshop statistics for standard, journeyman and master workshops so grog Labor Points need not be tracked.",
+  "quotes": [
+   "**Innovation 1, Raw Materials 2**",
+   "**Innovation 2, Raw Materials 2**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Craftsman Assistants",
+  "heading": "Assistants",
+  "line": 4164,
+  "endLine": 4168,
+  "category": "seasons",
+  "topic": "Craft workshops",
+  "audience": [
+   "grogs",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Limits the number of assistants a craftsman may employ and explains how their Craft scores contribute to the craftsman's Workshop Total.",
+  "quotes": [
+   "Each assistant adds half his Craft Ability score to the Craftsman's Workshop Total."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Supernatural Craftsman",
+  "heading": "The Supernatural Craftsman",
+  "line": 4208,
+  "endLine": 4210,
+  "category": "magic",
+  "topic": "Wondrous Items",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Touched by (Realm)",
+  "summary": "Notes that a companion craftsman with the Touched by (Realm) Virtue can craft Wondrous Items, which are narrower in scope than Hermetic enchantments.",
+  "quotes": [],
+  "related": [
+   "C&G p.70",
+   "C&G p.71"
+  ]
+ },
+ {
+  "title": "Ex-Prostitute Grog Template",
+  "heading": "Ex-Prostitutes",
+  "line": 4222,
+  "endLine": 4290,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for women who left the sex trade and joined a covenant, covering how they come to covenants and how to build such a character with suggested Virtues, Flaws, packages and sample Ability scores.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Failed Apprentice Grog Template",
+  "heading": "The Failed Apprentice",
+  "line": 4308,
+  "endLine": 4383,
+  "category": "creation",
+  "topic": "Failed apprentices",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Failed Apprentice",
+  "summary": "A template for a former apprentice whose Gift was lost, with Characteristics, Virtue and Flaw suggestions reflecting remnants of the Gift, packages, and sample Ability scores at several ages.",
+  "quotes": [],
+  "related": [
+   "A&A formulae",
+   "RoP:M p.124"
+  ]
+ },
+ {
+  "title": "Farrier Grog Template",
+  "heading": "The Farrier",
+  "line": 4393,
+  "endLine": 4443,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for a horse-care specialist, with suggested Virtues, Flaws, Social Status, Abilities, packages and sample Ability scores for apprentice, journeyman and master.",
+  "quotes": [],
+  "related": [
+   "C&G p.67"
+  ]
+ },
+ {
+  "title": "New Ability: Craft: Farrier (General)",
+  "heading": "New Ability: Craft: Farrier (General)",
+  "line": 4423,
+  "endLine": 4427,
+  "category": "basics",
+  "topic": "Craft Abilities",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the Farrier craft Ability, how it can replace Animal Handling or Medicine for treating equine disease, and what quality of horseshoes high Craft Totals can produce.",
+  "quotes": [
+   "the farrier has a +1 bonus to resolve it, increasing to +3 if it concerns the feet",
+   "A Craft Total of 12 makes Superior items, giving a +1 bonus for a single feature."
+  ],
+  "related": [
+   "C&G p.67"
+  ]
+ },
+ {
+  "title": "Jack-of-All-Trades Grog Template",
+  "heading": "The Jack-of-All-Trades",
+  "line": 4465,
+  "endLine": 4517,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for a wandering generalist who has picked up many skills, with suggested Flaws explaining why he cannot settle, packages and sample Ability scores at three ages.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Misguided Mystic Grog Template",
+  "heading": "Misguided Mystic",
+  "line": 4525,
+  "endLine": 4565,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for a character with genuine or imagined prophetic gifts who misunderstands them, with suggested Supernatural Virtues and Flaws, Abilities, packages and sample Ability scores.",
+  "quotes": [],
+  "related": [
+   "RoP:D p.54",
+   "TMRE p.58"
+  ]
+ },
+ {
+  "title": "Murderer Grog Template",
+  "heading": "The Murderer",
+  "line": 4586,
+  "endLine": 4664,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for an unrepentant killer who has taken sanctuary in a covenant, with suggested Virtues and Flaws, how the Master of None Flaw alters training packages, Reputation notes and sample Ability scores at three ages.",
+  "quotes": [
+   "He also has a Local Reputation as a murderer."
+  ],
+  "related": []
+ },
+ {
+  "title": "Parent of a Gifted Child Grog Template",
+  "heading": "The Parent of a Gifted Child",
+  "line": 4670,
+  "endLine": 4716,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for the mundane parent of a Gifted apprentice who joins the covenant as a general-purpose grog, with suggested Abilities and sample Ability scores at two ages.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Refugee Librarian Grog Template",
+  "heading": "The Refugee Librarian",
+  "line": 4718,
+  "endLine": 4782,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for covenfolk whose covenant has fallen and who seek a new home, including Virtue and Flaw suggestions, packages and sample Ability scores for a trained librarian.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Accepting Refugees: Loyalty Penalty",
+  "heading": "General Background",
+  "line": 4736,
+  "endLine": 4742,
+  "category": "covenant",
+  "topic": "Covenfolk loyalty",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When a covenant takes in refugees from another covenant, its covenfolk suffer a loyalty penalty that is gradually reduced by stories that bring the two communities together.",
+  "quotes": [
+   "the covenant suffers a Loyalty penalty of \u20133, as though suffering a Severe Hardship"
+  ],
+  "related": [
+   "Covenants Chapter 3",
+   "Covenants p.19"
+  ]
+ },
+ {
+  "title": "Role-Bound Ferryman Grog Template",
+  "heading": "The Role-Bound Ferryman",
+  "line": 4818,
+  "endLine": 4888,
+  "category": "creation",
+  "topic": "Role-bound grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Flaw: Bound to (Role) Role",
+  "summary": "A template for grogs who are bound to a single role or device and cannot serve any other purpose, with creation notes, a training-package set for the example ferryman and sample Ability scores at three ages.",
+  "quotes": [
+   "In addition, role-bound grogs must have a Profession or Craft Ability that defines them."
+  ],
+  "related": [
+   "RoP:M Chapter 4",
+   "Covenants p.11"
+  ]
+ },
+ {
+  "title": "Street Thug Grog Template",
+  "heading": "The Street Thug",
+  "line": 4906,
+  "endLine": 4988,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A template for a city gang member who serves as the covenant's contact with the underworld, including how a harsh urban life affects aging, suggested Virtues, Flaws, Abilities, packages and sample Ability scores at three ages.",
+  "quotes": [
+   "the Street Thug can expect to have a Decrepitude Score of 2 and Characteristics totaling \u20135, rather than the starting 7, by the age of 50"
+  ],
+  "related": [
+   "ArM5 p.170",
+   "Covenants p.59"
+  ]
+ },
+ {
+  "title": "Time-Lost Witness Grog Template",
+  "heading": "Time-Lost Witnesses",
+  "line": 5002,
+  "endLine": 5078,
+  "category": "creation",
+  "topic": "Time-lost characters",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Flaw: Worthless Abilities",
+  "summary": "Rules and advice for characters displaced in time by faeries, including why time-lost magi are not supported, the difficulties such characters face, and an example set of Roman legionaries with sample Ability scores.",
+  "quotes": [
+   "These grogs require the Warrior Virtue, and must take the Worthless Abilities Flaw."
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Grogs",
+  "heading": "Horses & Hounds",
+  "line": 5084,
+  "endLine": 5090,
+  "category": "beings",
+  "topic": "Animal grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing an animal character",
+  "summary": "Introduces animals as grog characters, with guidance on which Sizes and kinds of animal make the best player characters.",
+  "quotes": [
+   "creatures between the Sizes of \u20133 and +2"
+  ],
+  "related": [
+   "LoM Chapter 5",
+   "A&A p.29"
+  ]
+ },
+ {
+  "title": "Animal Physical Form",
+  "heading": "Physical Form",
+  "line": 5096,
+  "endLine": 5100,
+  "category": "beings",
+  "topic": "Animal grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing an animal character",
+  "summary": "Explains what an animal body prevents (grasping and using tools) and grants (natural protection, natural weapons and abilities like flight or swimming), and that listed Quality modifiers are not applied.",
+  "quotes": [
+   "which grant an intrinsic Protection of at least 1"
+  ],
+  "related": [
+   "HoH:MC p.40"
+  ]
+ },
+ {
+  "title": "Animal Cunning Instead of Intelligence",
+  "heading": "Cunning Rather than Intelligence",
+  "line": 5114,
+  "endLine": 5118,
+  "category": "beings",
+  "topic": "Animal grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing an animal character",
+  "summary": "Animals have Cunning rather than Intelligence, act by instinct and Personality Traits, cannot reason logically, and must take the Restricted Learning Flaw.",
+  "quotes": [
+   "The Cunning characteristic possessed by beasts means that they act largely through estimation (also called instinct), and are ruled by their Personality Traits."
+  ],
+  "related": [
+   "A&A p.31"
+  ]
+ },
+ {
+  "title": "Animal Language Abilities",
+  "heading": "Lack of Language Abilities",
+  "line": 5120,
+  "endLine": 5124,
+  "category": "beings",
+  "topic": "Animal grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing an animal character",
+  "summary": "Animals cannot speak, have no automatic Native Language, learn human languages slowly depending on Cunning, and have a species Language Ability that cannot be raised with experience.",
+  "quotes": [
+   "an animal always has a Source Quality of (4 + Cunning)"
+  ],
+  "related": [
+   "ArM5 p.66"
+  ]
+ },
+ {
+  "title": "Animal Aging Table",
+  "heading": "Animal Aging",
+  "line": 5126,
+  "endLine": 5134,
+  "category": "aging",
+  "topic": "Animal grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing an animal character",
+  "summary": "A table giving lifespan, starting age, the age aging begins, the modifier to aging rolls and the number of aging rolls per year for humans and several kinds of animal.",
+  "quotes": [
+   "| Hoofed Beasts     | 27               | 3            | 20           | +1 per 5 years         | 2 per year    |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Aging Rate",
+  "heading": "Aging Rate",
+  "line": 5136,
+  "endLine": 5142,
+  "category": "aging",
+  "topic": "Animal grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Playing an animal character",
+  "summary": "Shows how to scale the human aging figures to any creature's average lifespan, covering the age aging begins, the aging-roll modifier and the number of aging rolls per year, spread across the seasons.",
+  "quotes": [
+   "Thus, a creature with an average lifespan of 10 years has a modifier of (50/10), or 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Grog Characteristics and Size",
+  "heading": "Characteristics and Size",
+  "line": 5154,
+  "endLine": 5167,
+  "category": "beings",
+  "topic": "Animal grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing an animal character",
+  "summary": "Gives how Size, the Large Virtue and Small Frame Flaw affect an animal grog, the penalties to Presence and Communication when dealing with humans by animal type, and how Size adjusts Strength and Quickness.",
+  "quotes": [
+   "After Characteristic points have been decided, add twice the character's Size to her Strength, and subtract the character's Size from her Quickness."
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Grog Virtues and Flaws",
+  "heading": "Suggested Virtues and Flaws",
+  "line": 5169,
+  "endLine": 5181,
+  "category": "beings",
+  "topic": "Animal grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing an animal character",
+  "summary": "Lists the intrinsic Flaws every animal grog has without gaining points, the required Restricted Learning Flaw, suitable Social Status options, and how Animal Ken substitutes for a Language Ability.",
+  "quotes": [
+   "Animal grogs suffer from the effects of the No Hands and Mute Flaws"
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Grog Abilities and Experience",
+  "heading": "Suggested Abilities",
+  "line": 5183,
+  "endLine": 5189,
+  "category": "beings",
+  "topic": "Animal grogs",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Playing an animal character",
+  "summary": "Describes the starting experience animal grogs receive for their pre-adult life, their free animal Language Ability, yearly experience, early aging and typical Abilities.",
+  "quotes": [
+   "An animal grog receives 120 experience points for his pre-adult life"
+  ],
+  "related": [
+   "ArM5 p.31"
+  ]
+ },
+ {
+  "title": "Brief Grog Concepts",
+  "heading": "Brief Grog Concepts",
+  "line": 5211,
+  "endLine": 5345,
+  "category": "creation",
+  "topic": "Grog templates",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Short character concepts such as the Accursed, Barbarian, Coward, Hero and Survivor, each with notes on key Abilities, suitable Virtues and Flaws, and which training packages to use.",
+  "quotes": [],
+  "related": [
+   "RoP:M Chapter 3",
+   "RoP:M Chapter 4"
+  ]
+ }
+]

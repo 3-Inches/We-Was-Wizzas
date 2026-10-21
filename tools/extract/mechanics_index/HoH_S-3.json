@@ -1,0 +1,859 @@
+[
+ {
+  "title": "Warding (Columbae)",
+  "heading": "Major Supernatural Virtue: Warding",
+  "line": 4624,
+  "endLine": 4639,
+  "category": "traditions",
+  "topic": "Warding",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Warding (Columbae tradition)",
+  "summary": "The Columbae's Accelerated Ability for drawing chalk circles that ward away a subset of one Form. The Warding Total acts as a Casting Total for natural targets and as Penetration against beings with Might, but is useless against Magic Resistance without Might.",
+  "quotes": [
+   "Warding Total: stress die + Stamina + Warding + aura",
+   "a ward against objects made of wood requires a Warding Total of at least 30"
+  ],
+  "related": [
+   "Accelerated Abilities",
+   "ArM5 p.114 Ring Duration / Circle Target"
+  ]
+ },
+ {
+  "title": "Wards and Penetration",
+  "heading": "Wards and Penetration",
+  "line": 4646,
+  "endLine": 4652,
+  "category": "magic",
+  "topic": "Warding",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that Hermetic warding spells must penetrate Magic Resistance, why high-level wards are impractical, and why Arcane Connections generally cannot boost Penetration for ward spells.",
+  "quotes": [
+   "these wards must penetrate Magic Resistance to have their effect"
+  ],
+  "related": [
+   "Circular Ward Against Demons",
+   "Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "Ward Guidelines",
+  "heading": "Ward Guidelines",
+  "line": 4678,
+  "endLine": 4756,
+  "category": "magic",
+  "topic": "Spell guidelines (wards)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guidelines for wards in each Form, all at Touch range, Ring duration and Circle target. Used to set levels for Hermetic ward spells and for the Warding Ability.",
+  "quotes": [
+   "All of them are presented at Range Touch, Duration Ring, and Target: Circle",
+   "Ward against human beings. (Touch, Ring, Circle)"
+  ],
+  "related": [
+   "Major Supernatural Virtue: Warding"
+  ]
+ },
+ {
+  "title": "Banishing (Donatores)",
+  "heading": "New Virtue: Banishing",
+  "line": 4851,
+  "endLine": 4881,
+  "category": "traditions",
+  "topic": "Banishing",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Banishing (Donatores Requietis Aeternae; Divine-aligned)",
+  "summary": "A Supernatural Accelerated Ability that expels creatures of one realm from a designated area for a Sun duration, with an Ease Factor depending on area size and a re-entry roll for the banished creature that reduces its Might. Includes a worked example.",
+  "quotes": [
+   "Banishing Total: stress die + Presence + Banishing + aura",
+   "the default Ease Factor is Near Range, which is defined as the area within 10 paces of the character",
+   "Stamina + (Realm) Lore roll against an Ease Factor of 12"
+  ],
+  "related": [
+   "ArM5 p.183 Realm Interaction Table",
+   "ArM5 p.148 Weight of a Thousand Hells",
+   "RoP: The Infernal p.34 True Names"
+  ]
+ },
+ {
+  "title": "Laying Ghosts and Revenants the Mundane Way",
+  "heading": "Doing it the Hard Way",
+  "line": 4905,
+  "endLine": 4909,
+  "category": "beings",
+  "topic": "Ghosts and restless dead",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Non-magical methods of putting restless ghosts and vengeful revenants to rest, such as completing unfinished tasks, giving a proper burial, or exhuming, beheading and blessing the grave of a revenant.",
+  "quotes": [],
+  "related": [
+   "RoP: Magic ghosts",
+   "The Mysteries Revised Edition ghosts"
+  ]
+ },
+ {
+  "title": "The Path of Orpheus",
+  "heading": "The Path of Orpheus",
+  "line": 4963,
+  "endLine": 4969,
+  "category": "mysteries",
+  "topic": "Cult of Orpheus",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cult of Orpheus leaders (rumored ritual)",
+  "summary": "Describes a rumored great ritual that follows Orpheus into the Underworld to restore a dead loved one to life, modelled on the rituals of Fenicil. Gives its parameters, requirements and the limits and risks of its success.",
+  "quotes": [
+   "with an Ease Factor of 78, Range *Adelphixis*, Duration Momentary, and Target Individual"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.76 (Fenicil)",
+   "Wizard's Communion"
+  ]
+ },
+ {
+  "title": "Mythic Herbalism Ease Factor Table",
+  "heading": "Mythic Herbalism Ease Factor Table",
+  "line": 5100,
+  "endLine": 5111,
+  "category": "traditions",
+  "topic": "Mythic Herbalism",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Mythic Herbalism",
+  "summary": "Table of Ease Factors for the healing effects, poisons and physical-bonus potions that a Mythic Herbalism user can brew.",
+  "quotes": [],
+  "related": [
+   "Major Supernatural Virtue: Mythic Herbalism"
+  ]
+ },
+ {
+  "title": "Profession Apothecary",
+  "heading": "Profession Apothecary",
+  "line": 5113,
+  "endLine": 5119,
+  "category": "basics",
+  "topic": "Medicine and healing",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Ability for identifying and preparing medicinal ingredients. Lack of proper medicinal supplies penalizes Medicine rolls and the patient's Recovery bonus, and a skilled apothecary reduces that penalty.",
+  "quotes": [
+   "makes all Medicine rolls at a penalty of \u20133"
+  ],
+  "related": [
+   "Art and Academe (forthcoming)"
+  ]
+ },
+ {
+  "title": "Mythic Herbalism",
+  "heading": "Major Supernatural Virtue: Mythic Herbalism",
+  "line": 5127,
+  "endLine": 5143,
+  "category": "traditions",
+  "topic": "Mythic Herbalism",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Mythic Herbalism (Pharmacopoeians)",
+  "summary": "A Supernatural Ability for brewing healing poultices, poisons and potions of physical bonuses: preparation time scales with the Ease Factor, extra doses raise the Ease Factor, and an Intelligence + Mythic Herbalism roll decides success. Describes expiry, duration and stacking limits.",
+  "quotes": [
+   "a number of days equal to one-third the Ease Factor of the intended effect",
+   "the Ease Factor is increased by one for each additional dose",
+   "roll the character's Intelligence + Mythic Herbalism against the target Ease Factor"
+  ],
+  "related": [
+   "Mythic Herbalism Ease Factor Table",
+   "Art and Academe (forthcoming)"
+  ]
+ },
+ {
+  "title": "Induction of Hedge Wizards into the Order",
+  "heading": "Induction of Hedge Wizards into the Order",
+  "line": 5190,
+  "endLine": 5198,
+  "category": "houses",
+  "topic": "Hedge wizards joining the Order",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea: Lineage of Pralix (inducting maga)",
+  "summary": "Procedure for bringing a Gifted hedge wizard into the Order: a short apprenticeship in Hermetic basics, an attempt to open the Arts that may destroy non-Hermetic powers, a season teaching the Parma Magica, then the Oath. Explains the Flaws and Gifted Companion status that can result.",
+  "quotes": [
+   "typically lasting less than five years",
+   "The Pralician maga need not have all Arts above 5 for this process"
+  ],
+  "related": [
+   "ArM5 p.106-107 Opening the Arts",
+   "Gifted Companion"
+  ]
+ },
+ {
+  "title": "Joint Training of Apprentices",
+  "heading": "Joint Training of Apprentices",
+  "line": 5200,
+  "endLine": 5202,
+  "category": "houses",
+  "topic": "Hedge wizards joining the Order",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea: Lineage of Pralix",
+  "summary": "Describes the arrangement in which a Pralician teaches Hermetic magic to a hedge wizard's apprentice in exchange for laboratory assistance, producing an apprentice trained in both traditions.",
+  "quotes": [
+   "for every season the Pralican spends teaching Hermetic magic to her colleague's apprentice, she gets two seasons of the apprentice's assistance in the laboratory"
+  ],
+  "related": []
+ },
+ {
+  "title": "Opening the Arts of a Hedge Wizard",
+  "heading": "Opening the Arts of a Hedge Wizard",
+  "line": 5208,
+  "endLine": 5224,
+  "category": "lab",
+  "topic": "Opening the Arts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Summary of the rules for opening the Arts of a character with Supernatural Abilities: compare an Intellego Vim Lab Total to a level based on the Supernatural Ability scores, and the margin decides whether the Abilities are lost or converted into Hermetic Virtues.",
+  "quotes": [
+   "Level Required for Opening the Arts: 5 x (the sum of all Supernatural Ability scores)",
+   "Minimum Level per Ability: 10 if the Ability derives from a Minor Virtue, or 30 if it derives from a Major Virtue"
+  ],
+  "related": [
+   "ArM5 pp.106-107 Opening the Arts"
+  ]
+ },
+ {
+  "title": "Comprehend Magic (Ability)",
+  "heading": "New Supernatural Ability: Comprehend Magic\\*",
+  "line": 5230,
+  "endLine": 5257,
+  "category": "traditions",
+  "topic": "Comprehend Magic",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Comprehend Magic (Lineage of Pralix)",
+  "summary": "Supernatural Ability for analysing the magic in an object, person, aura or vis. A Comprehension Total is compared to an Ease Factor by source of magic, with more rounds of study revealing more, and the insight boosts the user's spells and lab work against the studied target.",
+  "quotes": [
+   "Comprehension Total: Perception + Comprehend Magic + stress die",
+   "The observer may add twice his Comprehend Magic score to the Casting Total of any spontaneous Muto, Perdo, or Rego Vim spell used against the object or creature studied"
+  ],
+  "related": [
+   "ArM5 p.82 Concentration",
+   "ArM5 p.100 Investigating enchantments"
+  ]
+ },
+ {
+  "title": "Pralicians and Scrying",
+  "heading": "Pralicians and Scrying",
+  "line": 5259,
+  "endLine": 5262,
+  "category": "order",
+  "topic": "Comprehend Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Comprehend Magic",
+  "summary": "Explains how using Comprehend Magic on another magus counts as scrying under the Code of Hermes, and when a Tribunal is likely to convict.",
+  "quotes": [
+   "Using Comprehend Magic against another magus is scrying, and forbidden by the Code of Hermes"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Spell Guideline: Rego Vim",
+  "heading": "New Spell Guideline",
+  "line": 5292,
+  "endLine": 5296,
+  "category": "magic",
+  "topic": "Spell guidelines (Vim)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A Rego Vim guideline for sustaining or suppressing spells of a specific type cast by another, limited by the level of the Vim spell.",
+  "quotes": [
+   "Sustain or suppress a spell or spells of a specific type cast by another with level less than or equal to the level + 2 magnitudes of the Vim spell"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mastery Ability: Unraveling",
+  "heading": "New Mastery Special Ability: Unraveling",
+  "line": 5298,
+  "endLine": 5300,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A mastery special ability for Perdo Vim spells that destroy magic, adding a multiple of the Mastery score to the spell's effective level when determining whether it can destroy the targeted spell.",
+  "quotes": [
+   "The magus may add three times his Mastery score to the effective level of the Perdo Vim spell when determining whether it can destroy the targeted spell"
+  ],
+  "related": [
+   "ArM5 p.87 Spell Mastery"
+  ]
+ },
+ {
+  "title": "Mastery Ability: Rebuttal",
+  "heading": "New Mastery Special Ability: Rebuttal",
+  "line": 5302,
+  "endLine": 5304,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A mastery special ability for Muto or Rego Vim spells that affect another being's spell or power, adding a multiple of the Mastery score to the spell's effective level when changing or controlling foreign magic.",
+  "quotes": [
+   "The magus may add three times his Mastery score to the effective level of the Vim spell when determining whether or not it can change or control the foreign magic"
+  ],
+  "related": [
+   "ArM5 p.87 Spell Mastery"
+  ]
+ },
+ {
+  "title": "Craft Magic (Rusticani)",
+  "heading": "Major Supernatural Virtue: Craft Magic",
+  "line": 5342,
+  "endLine": 5362,
+  "category": "traditions",
+  "topic": "Craft Magic",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Craft Magic (Rustic magi / Rusticani)",
+  "summary": "Lets a character craft an object in place of casting an effect, with shape and material bonuses capped by his Craft score, and also to make charged items and lesser enchantments of vis-containing objects without spending a season. Four applications, each with its own time and level rules and worked examples.",
+  "quotes": [
+   "though this bonus cannot exceed his Craft score",
+   "Use the character's Casting Total or the result of the Supernatural Ability roll as if it were a Lab Total to determine the effect's level and the number of charges",
+   "the level of the invested effect cannot exceed five times the number of pawns of vis in the object"
+  ],
+  "related": [
+   "City and Guild, Crafts",
+   "ArM5 pp.96-97 Charged Items",
+   "ArM5 p.96 Lesser Enchantments",
+   "RoP: The Divine pp.137-138 Craft Amulets"
+  ]
+ },
+ {
+  "title": "Design and Inscription Bonuses",
+  "heading": "Design and Inscription Bonuses",
+  "line": 5364,
+  "endLine": 5374,
+  "category": "lab",
+  "topic": "Craft Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Craft Magic",
+  "summary": "Enchantment bonuses from portraits, writing, seals or symbols and images that Craft Magic users can add to crafted effects and some lab work, in addition to shape and material bonuses.",
+  "quotes": [
+   "Note that the total bonus gained from shape, material, design, and inscription is still limited to the magus's Magic Theory score (or an applicable Craft score)"
+  ],
+  "related": [
+   "Shape and Material Bonuses table"
+  ]
+ },
+ {
+  "title": "The Jinn",
+  "heading": "The Jinn",
+  "line": 5431,
+  "endLine": 5435,
+  "category": "beings",
+  "topic": "Jinn",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic Sahirs / Sihr",
+  "summary": "Describes jinn as spirits of place with a spiritual and a material form, the three kinds of jinn by realm, their typical Might, and their regeneration and Virtues.",
+  "quotes": [
+   "typically Mights range from 5\u201340"
+  ],
+  "related": [
+   "Realms of Power: The Divine ch.5 Mythic Islam"
+  ]
+ },
+ {
+  "title": "Sihr (Summoning and Bargaining with Jinn)",
+  "heading": "Major Supernatural Virtue: Sihr",
+  "line": 5437,
+  "endLine": 5516,
+  "category": "traditions",
+  "topic": "Sihr and jinn",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Sihr (Hermetic Sahirs)",
+  "summary": "A Supernatural Accelerated Ability for summoning a jinni and bargaining it into service. Covers discerning a jinni's Might, the vis cost and Summoning Total, extra summoning time, the Bargain Total against an Ease Factor, botches, and how many jinn may be kept in service.",
+  "quotes": [
+   "Summoning Total: Presence + Sihr + Aura + stress die",
+   "Bargain Total: Communication + Bargain + Summoning Strength + stress die",
+   "Ease Factor: 18 + Bargain Modifiers"
+  ],
+  "related": [
+   "Bargain Modifiers",
+   "Typical Duties for Sahirs",
+   "Realms of Power: The Divine ch.5 Mythic Islam"
+  ]
+ },
+ {
+  "title": "Bargain Modifiers (Sahirs)",
+  "heading": "Bargain Modifiers",
+  "line": 5518,
+  "endLine": 5535,
+  "category": "traditions",
+  "topic": "Sihr and jinn",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Sihr",
+  "summary": "Table of modifiers to the Ease Factor of a sahir's bargain with a jinni, depending on the scope of the terms, length of service, any duty accepted and vis spent above or below the standard cost.",
+  "quotes": [],
+  "related": [
+   "Major Supernatural Virtue: Sihr"
+  ]
+ },
+ {
+  "title": "Typical Duties for Sahirs",
+  "heading": "Typical Duties for Sahirs",
+  "line": 5537,
+  "endLine": 5541,
+  "category": "traditions",
+  "topic": "Sihr and jinn",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Sihr",
+  "summary": "Examples of simple and onerous duties a sahir may accept to modify a bargain with a jinni.",
+  "quotes": [],
+  "related": [
+   "Bargain Modifiers"
+  ]
+ },
+ {
+  "title": "Siren Song (Seirenes)",
+  "heading": "Siren Song",
+  "line": 5627,
+  "endLine": 5645,
+  "category": "traditions",
+  "topic": "Siren Song",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Siren Song (Seirenes)",
+  "summary": "A Major Virtue letting the character command those who hear her music, resolved as a Communication + Music roll against the target's Stamina roll with a bonus table by command severity. Limits help from other musicians and explains how it combines with Enchanting Music.",
+  "quotes": [
+   "A successful roll of Communication + Music versus the target's Stamina roll allows the character to issue a command to any individual or group who hears the music",
+   "No more than two musicians' scores can assist the singer in performing a song"
+  ],
+  "related": [
+   "Entrancement Ability",
+   "Enchanting Music"
+  ]
+ },
+ {
+  "title": "Agencies Overview",
+  "heading": "Appendix: Agencies",
+  "line": 5647,
+  "endLine": 5653,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces agencies, networks of mundane contacts through which a principal pursues goals without being implicated in meddling, and defines principals and agents.",
+  "quotes": [
+   "A character controlling an agency is called its **principal**, in this chapter.",
+   "An **agent** is a person bound to offer assistance to a principal."
+  ],
+  "related": [
+   "Covenants (hirelings)"
+  ]
+ },
+ {
+  "title": "Agents are Directly Controlled",
+  "heading": "Agents are Directly Controlled",
+  "line": 5655,
+  "endLine": 5661,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the formula for the maximum number of agents a principal can directly control, based on Presence, Intrigue or Leadership and the Gift's social penalty, and what happens if it is exceeded.",
+  "quotes": [
+   "Maximum Number of Agents: [2 x (Presence + Intrigue",
+   "A character can always control one agent, no matter how poor his social skills or what the penalty of his Gift."
+  ],
+  "related": [
+   "Maintaining Agents"
+  ]
+ },
+ {
+  "title": "Agents Act as Intermediaries (Factors)",
+  "heading": "Agents Act as Intermediaries",
+  "line": 5663,
+  "endLine": 5669,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that most people commanded through an agency are resources controlled by an agent rather than extra agents, and introduces the factor, a single agent who runs the whole agency using his own statistics.",
+  "quotes": [
+   "An agent employed to control an entire agency on behalf of a magus is called a **factor**."
+  ],
+  "related": []
+ },
+ {
+  "title": "Designing Agents",
+  "heading": "Designing Agents",
+  "line": 5671,
+  "endLine": 5686,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the few statistics needed for each agent (name, Social Status, Bond, resources) and the Difficult Underlings problem when a principal controls an agent of higher social standing, with magi exempt.",
+  "quotes": [
+   "A Bond , which is a Personality Trait that expresses the reason that the agent is subordinate to the principal"
+  ],
+  "related": [
+   "Difficult Underlings Story Flaw"
+  ]
+ },
+ {
+  "title": "Partial Adoption (Agencies)",
+  "heading": "Partial Adoption",
+  "line": 5688,
+  "endLine": 5690,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Optional approach in which troupes do not convert Virtues and Flaws such as Social Contacts or Close Family Ties into fully described agencies, tracking only agents gained during play.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Recruiting Agents at Character Creation",
+  "heading": "Recruiting Agents at Character Creation",
+  "line": 5692,
+  "endLine": 5694,
+  "category": "creation",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the Virtues and Flaws that grant an agency at the start of play and explains how to buy agents with agency points from the Resistance of Agents Table.",
+  "quotes": [
+   "The player has 12 agency points to spend."
+  ],
+  "related": [
+   "Resistance of Agents Table"
+  ]
+ },
+ {
+  "title": "Recruited Agents as Story Rewards",
+  "heading": "Recruited Agents as Story Rewards",
+  "line": 5696,
+  "endLine": 5710,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How to recruit an agent during play: impress the prospect with a roll, earn agency experience points from stories to wear down his Resistance Strength to zero, and build a Bond. Also covers inheriting an agency and why agents cannot be bought.",
+  "quotes": [
+   "Impressing a Potential Agent: Presence + Leadership \u2013 social penalty of The Gift + stress die vs. Ease Factor 6",
+   "It takes the current value of a given Resistance Strength in agency experience points to decrease that strength by one"
+  ],
+  "related": [
+   "Covenants (hirelings)"
+  ]
+ },
+ {
+  "title": "Using Agents",
+  "heading": "Using Agents",
+  "line": 5712,
+  "endLine": 5728,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a principal sets agents tasks: a Persuasion Roll against an Ease Factor from the Tasks for Agents table, then a roll or side story for the task itself. Covers using agents for information or assistance and limits on how often they can be asked.",
+  "quotes": [
+   "Persuasion Roll: Communication + Charm, Intrigue, or Leadership + Bond Strength \u2013 social penalty of The Gift + stress die vs. Ease Factor (see table under Tasks for Agents)"
+  ],
+  "related": [
+   "Tasks for Agents",
+   "Modifiers to Persuasion Roll Ease Factors"
+  ]
+ },
+ {
+  "title": "Resistance of Agents (rules)",
+  "heading": "Resistance of Agents",
+  "line": 5730,
+  "endLine": 5736,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains Resistance Strength, an agent's reluctance to serve, how it is reduced to zero and how the Bond Strength then grows, with a cap, and notes that Hermetic magi are never agents.",
+  "quotes": [
+   "to a maximum of +6, representing a fanatically dedicated agent"
+  ],
+  "related": [
+   "Resistance of Agents Table"
+  ]
+ },
+ {
+  "title": "Confounding Situations",
+  "heading": "Confounding Situations",
+  "line": 5738,
+  "endLine": 5742,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on how often an agent's Flaws make him unavailable to the principal, and how the Difficult Underlings Story Flaw applies to a whole agency.",
+  "quotes": [
+   "an agent with a Minor Flaw might be unable to help his principal once out of every four requests"
+  ],
+  "related": [
+   "Difficult Underlings Story Flaw"
+  ]
+ },
+ {
+  "title": "Maintaining Agents",
+  "heading": "Maintaining Agents",
+  "line": 5744,
+  "endLine": 5757,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Agencies need upkeep: stories can lower an agent's Bond Strength, and it is raised through favors, which convert Adventure experience into agency experience, or money, which can only raise it up to a limit.",
+  "quotes": [
+   "One Mythic Pound's worth of material goods can take the place of 5 agency experience points (or 4 shillings per point) without need for a story",
+   "Bond Strength can never rise above +3 by the application of money"
+  ],
+  "related": [
+   "ArM5 p.31 Advancement Table",
+   "Covenants ch.5 Wealth and Poverty"
+  ]
+ },
+ {
+  "title": "Resistance of Agents Table",
+  "heading": "Resistance of Agents Table",
+  "line": 5763,
+  "endLine": 5810,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Tables of base Resistance by Social Status and the modifiers for Flaws, coercion and useful resources, used to cost agents at creation and to set the difficulty of recruiting them. A minimum applies.",
+  "quotes": [
+   "A potential agent's Resistance cannot be less than 1."
+  ],
+  "related": [
+   "Recruiting Agents at Character Creation"
+  ]
+ },
+ {
+  "title": "Tasks for Agents",
+  "heading": "Tasks for Agents",
+  "line": 5812,
+  "endLine": 5821,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of Ease Factors for the Persuasion Roll to get an agent to supply information or perform an easy, hard or impressive task.",
+  "quotes": [],
+  "related": [
+   "Using Agents"
+  ]
+ },
+ {
+  "title": "Modifiers to Persuasion Roll Ease Factors",
+  "heading": "Modifiers to Persuasion Roll Ease Factors",
+  "line": 5823,
+  "endLine": 5836,
+  "category": "social",
+  "topic": "Agencies",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Modifiers to a Persuasion Roll Ease Factor for how soon the task must be done and the personal risk to the agent, including the number of botch dice.",
+  "quotes": [],
+  "related": [
+   "Tasks for Agents"
+  ]
+ }
+]

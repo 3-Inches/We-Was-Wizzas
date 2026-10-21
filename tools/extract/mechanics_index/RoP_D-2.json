@@ -1,0 +1,1544 @@
+[
+ {
+  "title": "True Faith (overview)",
+  "heading": "True Faith",
+  "line": 3077,
+  "endLine": 3090,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "Explains what True Faith is, who can hold it, and that it is represented by a Major Virtue, a True Faith Score and Faith Points. A character with it can pray for miracles and gains magical resistance, and on death is invested with Divine Might.",
+  "quotes": [
+   "invested with Divine Might (equal to his True Faith Score multiplied by 10)",
+   "Only living people may have True Faith."
+  ],
+  "related": []
+ },
+ {
+  "title": "Who Can Have True Faith?",
+  "heading": "Who Can Have True Faith?",
+  "line": 3091,
+  "endLine": 3103,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "Sidebar ruling on who is eligible for True Faith: infernalists, devotees of pagan gods, Criamon followers of the Enigma and animals cannot have it, though some monotheistic pagan philosophers might.",
+  "quotes": [
+   "Since infernalists and those aligned with the Infernal Realm are in a deep state of sin, they may not have True Faith."
+  ],
+  "related": []
+ },
+ {
+  "title": "Taking the True Faith Virtue (Faith Score and Points)",
+  "heading": "Taking the True Faith Virtue",
+  "line": 3113,
+  "endLine": 3125,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: True Faith",
+  "summary": "Revised True Faith mechanics: the Virtue grants a True Faith Score and Faith Points, Faith Points are spent like Confidence Points or to pray for miracles, True Faith Score gives Magic Resistance, and Faith Points are regained at dawn up to the Score.",
+  "quotes": [
+   "Taking the True Faith Major Virtue grants you a True Faith Score of 1, and a single Faith Point.",
+   "A character with a True Faith Score gains Magic Resistance equal to this score multiplied by ten.",
+   "**TRUE FAITH MAGIC RESISTANCE:** True Faith Score x 10"
+  ],
+  "related": []
+ },
+ {
+  "title": "Increased Faith (higher True Faith Scores)",
+  "heading": "Increased Faith",
+  "line": 3127,
+  "endLine": 3129,
+  "category": "creation",
+  "topic": "True Faith",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: True Faith",
+  "summary": "Sidebar on creating characters with a True Faith Score above the basic one; each extra point of Score costs a further Major Virtue and such characters should be Mythic Companions.",
+  "quotes": [
+   "Each additional increase to the character's True Faith Score above that granted by the True Faith Virtue is considered a Major Virtue."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining True Faith During Play",
+  "heading": "Gaining True Faith During Play",
+  "line": 3139,
+  "endLine": 3145,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "True Faith cannot be taught, learned or gained by initiation; it may be gained in play through a quest or the climax of a major story, never with a guaranteed outcome.",
+  "quotes": [
+   "True Faith does not have a corresponding ability, it may not be taught or learned"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining Faith Points",
+  "heading": "GAINING FAITH POINTS",
+  "line": 3165,
+  "endLine": 3169,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Any character can acquire Faith Points through devout acts such as pilgrimage, sacraments, tests of faith or particularly pious activities.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Playing a Character With True Faith",
+  "heading": "Playing a Character With True Faith",
+  "line": 3171,
+  "endLine": 3179,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "Describes how True Faith protects the character: it cannot be targeted, detected, suppressed or altered by magic or supernatural powers, has no ceiling on its Score, and does not require being a Mythic Companion.",
+  "quotes": [
+   "True Faith may not be targeted by magic or by the powers of supernatural creatures, and may not be detected, suppressed, or altered through Intellego, Perdo, or Rego spells."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tests of Faith and Crises of Faith",
+  "heading": "TESTS OF FAITH",
+  "line": 3189,
+  "endLine": 3213,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "God tests those with True Faith through trials; during a test the character may not spend Faith Points or use Holy Virtues. Sidebars advise on using tests as story hooks, and the text describes the crisis of faith when True Faith is lost.",
+  "quotes": [
+   "In game terms, the character may no longer spend Faith Points or use Holy Virtues for the duration of the test."
+  ],
+  "related": []
+ },
+ {
+  "title": "Crisis of Faith (story uses)",
+  "heading": "Story Uses: Crisis of Faith",
+  "line": 3215,
+  "endLine": 3219,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "During a crisis of faith the character loses Faith Points and holy powers fail, with no set duration or recovery task; used as a story device to regain or lose True Faith.",
+  "quotes": [
+   "During a crisis of faith, the character loses his Faith Points, prayers remain unanswered, and none of his holy powers work."
+  ],
+  "related": []
+ },
+ {
+  "title": "True Faith and Personality",
+  "heading": "PERSONALITY",
+  "line": 3221,
+  "endLine": 3229,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "Spending Faith Points like Confidence is how purification shows in game terms, and saintly characters should have complementary Personality Traits; gaining a sinful trait may trigger a crisis of faith.",
+  "quotes": [
+   "gaining a sinful Personality Trait may result in a crisis of faith"
+  ],
+  "related": []
+ },
+ {
+  "title": "Saintly Reputation",
+  "heading": "SAINTLY REPUTATION",
+  "line": 3231,
+  "endLine": 3235,
+  "category": "social",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "Miracles raise a saintly character's Reputation quickly, and a character with a True Faith Score cannot gain a negative Reputation.",
+  "quotes": [
+   "Each miracle he successfully prays for counts as one noteworthy action per Faith Point he possesses, so long as there was a witness."
+  ],
+  "related": []
+ },
+ {
+  "title": "Miracles (overview)",
+  "heading": "Miracles",
+  "line": 3237,
+  "endLine": 3245,
+  "category": "realms",
+  "topic": "Miracles",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faith Points",
+  "summary": "Introduces the optional miracle rules: miracles come directly from God, cannot be overcome by magic or other powers, and differ from saints' miracles and from learned holy powers.",
+  "quotes": [
+   "The following mechanics for miracles are optional."
+  ],
+  "related": []
+ },
+ {
+  "title": "Praying for Miracles",
+  "heading": "PRAYING FOR MIRACLES",
+  "line": 3247,
+  "endLine": 3265,
+  "category": "realms",
+  "topic": "Miracles",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faith Points",
+  "summary": "To pray for a miracle, a character with a Faith Point picks an effect, spends the point and rolls against the power's level; Faith Points can boost the roll, groups may pray together, and miracles have infinite Penetration.",
+  "quotes": [
+   "**PRAYING FOR A MIRACLE:** True Faith Score + Concentration + Aura + Stress Die",
+   "Faith Points may be spent to increase this roll, adding +3 for each point spent",
+   "Miracles have an infinite Penetration: a successful miracle transcends *all* other powers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Miraculous Special Effects",
+  "heading": "MIRACULOUS SPECIAL EFFECTS",
+  "line": 3267,
+  "endLine": 3272,
+  "category": "realms",
+  "topic": "Miracles",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faith Points",
+  "summary": "Miracles are usually slow and subtle; asking for faster or more trivial results raises the miracle's level by a modifier.",
+  "quotes": [
+   "Add the modifier to the miracle's level."
+  ],
+  "related": []
+ },
+ {
+  "title": "Miracle Timeliness modifiers",
+  "heading": "Timeliness",
+  "line": 3273,
+  "endLine": 3283,
+  "category": "realms",
+  "topic": "Miracles",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faith Points",
+  "summary": "Table of level modifiers for how quickly a miracle manifests after the prayer, from immediate to a generation.",
+  "quotes": [
+   "**Immediate** (instantly to a few hours): +10 <br>",
+   "**Generation** (not longer than fifteen years): \u201320 <br>"
+  ],
+  "related": []
+ },
+ {
+  "title": "Miracle Need modifiers",
+  "heading": "Need",
+  "line": 3284,
+  "endLine": 3299,
+  "category": "realms",
+  "topic": "Miracles",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faith Points",
+  "summary": "Level modifiers reflecting how desperate, deserving or righteous the prayer is, from calamitous need to impious requests.",
+  "quotes": [
+   "**Calamitous** (supplicant or the subjects of the prayer are in desperate personal need, such assault from supernatural forces): \u201315",
+   "**Impious** (supplicant is a pagan, infidel, or unbeliever, or the request is motivated by sin, such as pride or greed): +20"
+  ],
+  "related": []
+ },
+ {
+  "title": "Botching a Prayer",
+  "heading": "BOTCHING",
+  "line": 3300,
+  "endLine": 3303,
+  "category": "realms",
+  "topic": "Miracles",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faith Points",
+  "summary": "A botched prayer costs the character their Faith Points for a time, or blocks all prayers and saint invocations if they had none; it may also provoke a tragedy of hubris.",
+  "quotes": [
+   "Botching a prayer roll results in the temporary loss of all Faith Points for a number of weeks equal to botches scored."
+  ],
+  "related": []
+ },
+ {
+  "title": "Storyguiding Miracles",
+  "heading": "STORYGUIDING MIRACLES",
+  "line": 3304,
+  "endLine": 3315,
+  "category": "realms",
+  "topic": "Miracles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faith Points",
+  "summary": "Advice that miracles are negotiated between player and storyguide before the roll, with the storyguide having final say, to avoid overshadowing magi; failed rolls may bring lesser aid.",
+  "quotes": [
+   "God's hand cannot be forced, even by a lucky roll."
+  ],
+  "related": []
+ },
+ {
+  "title": "Embodying the Light",
+  "heading": "Embodying the Light",
+  "line": 3316,
+  "endLine": 3322,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Faith",
+  "summary": "Introduces the cumulative holy-light powers (Devotion, Hope, Charity) a character gains as their True Faith Score rises.",
+  "quotes": [
+   "These powers are cumulative and are gained when the character gains the appropriate True Faith score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Devotion (True Faith 2)",
+  "heading": "DEVOTION: TRUE FAITH 2",
+  "line": 3324,
+  "endLine": 3327,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "True Faith Score 2",
+  "summary": "At the stated Score the character gains Premonitions and can dispel any supernatural illusion or Faerie glamour by spending a Faith Point.",
+  "quotes": [
+   "the character may dispel any supernatural (magical and Infernal) illusion or Faerie glamour, no matter its level, by spending a Faith Point"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hope (True Faith 3)",
+  "heading": "HOPE: TRUE FAITH 3",
+  "line": 3329,
+  "endLine": 3333,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "True Faith Score 3",
+  "summary": "At the stated Score Faith Points spent like Confidence add more, and Magic Resistance against Mentem spells and similar powers is doubled.",
+  "quotes": [
+   "adds 6 instead of 3 when spending Faith Points like Confidence",
+   "His Magic Resistance against Mentem spells (and similar supernatural powers) is doubled."
+  ],
+  "related": []
+ },
+ {
+  "title": "Charity (True Faith 5)",
+  "heading": "CHARITY: TRUE FAITH 5",
+  "line": 3334,
+  "endLine": 3338,
+  "category": "realms",
+  "topic": "True Faith",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "True Faith Score 5",
+  "summary": "At the stated Score the character radiates a Divine Empyreal aura of Voice range whose rating depends on the True Faith Score.",
+  "quotes": [
+   "radiates a tangible Divine Empyreal aura (see Heaven and Earth, Divine Auras) with a rating equal to his True Faith Score minus 4"
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Warping (overview)",
+  "heading": "Divine Warping",
+  "line": 3339,
+  "endLine": 3347,
+  "category": "realms",
+  "topic": "Warping",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces Divine Warping, the Dominion-flavoured form of Warping, and the Divine Ascent peculiar to holy mystics.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Causes of Divine Warping",
+  "heading": "Causes of Divine Warping",
+  "line": 3349,
+  "endLine": 3364,
+  "category": "realms",
+  "topic": "Warping",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Divine Warping comes from Divine auras, powerful Divine effects and Divine botches; it uses normal Warping mechanics with different flavour, and those with Faith Points or holy powers avoid aura Warping.",
+  "quotes": [
+   "There is no mechanical difference between types of Warping."
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Auras and Warping",
+  "heading": "DIVINE AURAS",
+  "line": 3365,
+  "endLine": 3368,
+  "category": "realms",
+  "topic": "Warping",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Strong Divine auras in large churches are a common source of Divine Warping, though many residents are protected by Faith Points or abilities.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Miracles and Warping",
+  "heading": "MIRACLES",
+  "line": 3369,
+  "endLine": 3372,
+  "category": "realms",
+  "topic": "Warping",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Witnessing a sufficiently high-level miracle gives a Warping Point, except for those it was meant to benefit.",
+  "quotes": [
+   "A character in the presence of a miracle whose level is thirty or greater gains one Warping Point."
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine and Holy Powers and Warping",
+  "heading": "DIVINE AND HOLY POWERS",
+  "line": 3373,
+  "endLine": 3376,
+  "category": "realms",
+  "topic": "Warping",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Powers of Divine beings and holy powers also cause Warping once their level is high enough.",
+  "quotes": [
+   "will also cause Warping if the level of the power is thirty or higher"
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Warping from Botches",
+  "heading": "BOTCHES",
+  "line": 3377,
+  "endLine": 3379,
+  "category": "realms",
+  "topic": "Warping",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Using a holy power or divine supernatural ability gives Warping Points based on zeros rolled on a botch die.",
+  "quotes": [
+   "One Warping Point is gained for each zero on a botch die when using a holy power or divine supernatural ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Divine Ascent (overview)",
+  "heading": "The Divine Ascent",
+  "line": 3381,
+  "endLine": 3387,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy tradition or Miraculous Abilities",
+  "summary": "Holy mystics undergo a unique form of Warping, the Divine Ascent, in one of three forms (Gloom, Form, Unity) that replace the normal Effects of Warping; there is no final Ascent, and characters with only True Faith get generic Warping.",
+  "quotes": [
+   "which replace the normal \"Effects of Warping\" rules"
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Ascension roll",
+  "heading": "Ascension",
+  "line": 3389,
+  "endLine": 3399,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy tradition or Miraculous Abilities",
+  "summary": "When a holy character gains two or more Warping Points from one event they roll to resist being lifted into the Divine; failure triggers a form of the Ascent and extra Warping Points equal to the margin of failure.",
+  "quotes": [
+   "**DIVINE ASCENSION:** Presence + Concentration (or Meditation) + stress die vs. Warping Score + Number of Warping Points Gained + True Faith Score + local aura + stress die (no botch)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Experiencing the Ascent (duration)",
+  "heading": "EXPERIENCING THE ASCENT",
+  "line": 3401,
+  "endLine": 3415,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy tradition or Miraculous Abilities",
+  "summary": "Describes the visionary experience of the Ascent, how long it lasts (in days, later months), True Faith shortening it, and what happens to the character's body meanwhile.",
+  "quotes": [
+   "**BASE ASCENT TIME:** (Warping Score + Warping Points gained) in days",
+   "A character with True Faith subtracts his Faith Score from the total (although the minimum remains 1 day)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Gloom",
+  "heading": "Divine Gloom",
+  "line": 3417,
+  "endLine": 3436,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Divine Ascent (Divine Gloom form)",
+  "summary": "The Gloom form trades mundane knowledge for holy understanding: Warping Points convert into experience in holy Abilities while an equal amount is lost from mundane Abilities, and the character attracts Invisible World beings.",
+  "quotes": [
+   "The character must lose the same number of Experience Points that he gained from Warping from Abilities with a mundane focus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Form",
+  "heading": "Divine Form",
+  "line": 3438,
+  "endLine": 3459,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Divine Ascent (Divine Form form)",
+  "summary": "The Form variant makes the character a commanding, near-angelic presence with Magic Resistance and Penetration from Warping Score and Faith, but sinful acts bring extra botch dice and wounds.",
+  "quotes": [
+   "The character's Penetration is equal to his Warping Score, and gains an additional bonus equal to his Faith Score multiplied by 5.",
+   "a number of additional botch dice equal to the character's Warping Score multiplied by three"
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Unity",
+  "heading": "Divine Unity",
+  "line": 3461,
+  "endLine": 3474,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Divine Ascent (Divine Unity form)",
+  "summary": "The Unity variant makes the character personify one virtue, boosting a matching Personality Trait by Warping Score and exerting Holy Influence on those nearby and on the aura's Temper.",
+  "quotes": [
+   "The Warped character adds his Warping Score to a Personality Trait determined by the virtue he is personifying"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Virtues (for Divine Unity)",
+  "heading": "The Virtues",
+  "line": 3477,
+  "endLine": 3503,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Divine Ascent (Divine Unity form)",
+  "summary": "Reference list of Christian moral and theological virtues a Divine Unity character may personify.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Islamic Virtues (for Divine Unity)",
+  "heading": "Islamic Virtues",
+  "line": 3506,
+  "endLine": 3510,
+  "category": "realms",
+  "topic": "Divine Ascent",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Divine Ascent (Divine Unity form)",
+  "summary": "Additional Islamic virtues suitable for a character experiencing Divine Unity.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Mythic Companions (creation rules)",
+  "heading": "Mythic Companions",
+  "line": 3513,
+  "endLine": 3523,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "Mythic Companion Virtue",
+  "summary": "Rules for building a Mythic Companion, a non-Hermetic character of near-magus power: a status Free Virtue, a free Minor Virtue, extra Flaws allowed, and a minimum Ability set.",
+  "quotes": [
+   "In addition, you may take up to ten points of Flaws, and each point of Flaws is worth two points of Virtues.",
+   "This produces a maximum of 21 points of Virtues and 10 points of Flaws."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages - Blood of Heroes"
+  ]
+ },
+ {
+  "title": "Mythic Companion: Nephilim",
+  "heading": "MYTHIC COMPANIONS: NEPHILIM",
+  "line": 3525,
+  "endLine": 3549,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Mythic Companion Virtue: Nephilim",
+  "summary": "Template for creating a Nephilim Mythic Companion with required Virtues, Flaw budget and minimum Ability scores.",
+  "quotes": [
+   "Nephilim must take five points of Flaws to pay for these virtues and may take an additional five points of Flaws, which grant a further ten points of Virtues."
+  ],
+  "related": [
+   "Heaven and Earth, Divine Beings"
+  ]
+ },
+ {
+  "title": "Holy Magic (overview)",
+  "heading": "Holy Magic",
+  "line": 3551,
+  "endLine": 3567,
+  "category": "traditions",
+  "topic": "Holy Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Holy Magic",
+  "summary": "Introduces holy magic, a form of Hermetic-derived magic aligned wholly with God, which requires a magus to relearn much of their craft.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Holy Magic Summary",
+  "heading": "Holy Magic Summary",
+  "line": 3569,
+  "endLine": 3585,
+  "category": "traditions",
+  "topic": "Holy Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Holy Magic",
+  "summary": "Quick summary list of the restrictions and benefits of practicing holy magic.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Holy Magic: Restrictions",
+  "heading": "Restrictions",
+  "line": 3587,
+  "endLine": 3609,
+  "category": "traditions",
+  "topic": "Holy Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Holy Magic",
+  "summary": "Holy magi must relearn spells via the Holy Magic Ability, halve lab totals from Hermetic sources, forgo Hermetic words and gestures (offset by prayer), cannot use magic to sin, and draw Infernal and Faerie attention.",
+  "quotes": [
+   "This is usually a \u201315 penalty",
+   "This requires that they roll a simple die + Presence + Theology of 15+",
+   "their lab totals must always be halved when learning magic from a Hermetic source"
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Magic: Benefits",
+  "heading": "Benefits",
+  "line": 3611,
+  "endLine": 3623,
+  "category": "traditions",
+  "topic": "Holy Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Holy Magic",
+  "summary": "Holy magi are attuned to Divine and Magic auras, may cast spells using miracle guidelines, substitute long-term fatigue for vis in rituals, do lab work in the Dominion, and use new Ranges, Durations and Targets.",
+  "quotes": [
+   "Each Fatigue level spent during a ritual is equivalent to as many as three pawns of vis of an appropriate Art"
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Ranges, Durations, and Targets",
+  "heading": "Holy Ranges, Durations, and Targets",
+  "line": 3625,
+  "endLine": 3659,
+  "category": "traditions",
+  "topic": "Holy Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Holy Magic",
+  "summary": "New spell Range, Duration and Target categories for holy magic (such as Presence, Communion, Recitation, Office, Sabbath, Grace, Sin, Faith, Dominion), each equated to an existing Hermetic parameter for spell level.",
+  "quotes": [
+   "For the purposes of calculating spell levels, this range is the same as Voice.",
+   "**Dominion (Target):** This is the same level as Boundary"
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Societates",
+  "heading": "Holy Societates",
+  "line": 3661,
+  "endLine": 3664,
+  "category": "traditions",
+  "topic": "Holy Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Holy Magic",
+  "summary": "Holy Societates are traditions that teach Holy Magic as a favored Ability and can train both Gifted and unGifted characters.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Holy Societas: Sol Invictus",
+  "heading": "HOLY SOCIETAS: SOL INVICTUS",
+  "line": 3665,
+  "endLine": 3687,
+  "category": "traditions",
+  "topic": "Holy Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy Societas: Sol Invictus",
+  "summary": "Sample holy societas listing favored Abilities, history and beliefs of the Invicti, a Hermetic society practicing holy magic.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Church Calendar (holy days and the Dominion)",
+  "heading": "Church Calendar",
+  "line": 3719,
+  "endLine": 3727,
+  "category": "setting",
+  "topic": "Christian Church",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar listing Christian holy days and seasons, noting the Dominion dips on the eve of major holidays and that Faerie and Magical powers may ignore Dominion penalties during the Christmas season.",
+  "quotes": [
+   "The Dominion tends to lower significantly on the eve preceding a major holiday",
+   "storyguides may wish to allow appropriate Faerie and Magical powers to ignore penalties from the Dominion during these days"
+  ],
+  "related": []
+ },
+ {
+  "title": "Excommunication",
+  "heading": "Excommunication",
+  "line": 3761,
+  "endLine": 3765,
+  "category": "setting",
+  "topic": "Christian Church",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes excommunication and its game effects: loss of sacramental benefits, treatment as unbaptized, loss of Confidence or Faith Point increases, and restoration through the sacrament of penance.",
+  "quotes": [
+   "Any increase of Confidence or Faith Points the character has received are immediately lost."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Sacraments",
+  "heading": "The Sacraments",
+  "line": 3767,
+  "endLine": 3817,
+  "category": "realms",
+  "topic": "Christian Sacraments",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Ordained clergy to perform",
+  "summary": "Sacraments are holy ceremonies with automatic supernatural effects on willing participants, most granting a Faith Point (at most one per sacrament) and some other benefits, covering baptism, confirmation, marriage, penance, the Eucharist, ordination and extreme unction, plus excommunication and interdict.",
+  "quotes": [
+   "Sacraments only affect willing participants, and for this reason they do not have effect levels.",
+   "A character may have no more than one Faith Point from a given sacrament"
+  ],
+  "related": [
+   "Instruments of God, Holy Powers",
+   "Blessed by God, True Faith"
+  ]
+ },
+ {
+  "title": "Interdiction",
+  "heading": "Interdiction",
+  "line": 3823,
+  "endLine": 3827,
+  "category": "setting",
+  "topic": "Christian Church",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Interdict punishes a whole region and weakens the Dominion there over time while the sacraments are withheld.",
+  "quotes": [
+   "An interdiction reduces the level of the Dominion throughout the realm by 1 each year until it is lifted."
+  ],
+  "related": []
+ },
+ {
+  "title": "Trial by Ordeal",
+  "heading": "Trial by Ordeal",
+  "line": 3911,
+  "endLine": 3931,
+  "category": "social",
+  "topic": "Christian Church",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the types of judicial ordeal in Mythic Europe and notes a Just temper may arise around trials, favoring the innocent.",
+  "quotes": [
+   "Their confidence could bring about a Just temper before the trial"
+  ],
+  "related": []
+ },
+ {
+  "title": "Exorcism (Christian rite)",
+  "heading": "Exorcism",
+  "line": 4011,
+  "endLine": 4015,
+  "category": "realms",
+  "topic": "Christian Rites",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Christian exorcist",
+  "summary": "Describes how the Christian exorcism rite works mechanically: it either lets the possessed roll to shake off a resistible power or is a prayer for a miracle, costs a Confidence or Faith point, and gains bonuses from holy items and extra Faith points.",
+  "quotes": [
+   "The rite costs the exorcist a Confidence (or Faith) point to perform properly.",
+   "each gives a +1 to the possessed character's total"
+  ],
+  "related": [
+   "Holy Powers, Adjuration"
+  ]
+ },
+ {
+  "title": "Invoking a Saint",
+  "heading": "Invoking a Saint",
+  "line": 4203,
+  "endLine": 4215,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Any Christian may once a day ask a saint for a miracle by rolling Communication + Charm against a hidden Ease Factor; success means the saint uses one of his powers, failure allows another try the next day.",
+  "quotes": [
+   "Once a day you may ask a saint for aid, hoping the saint will respond with a miracle.",
+   "**INVOKING A SAINT:** Communication + Charm + modifiers + a simple die vs. 15 + a simple die"
+  ],
+  "related": []
+ },
+ {
+  "title": "Invocation Modifiers",
+  "heading": "Invocation Modifiers",
+  "line": 4217,
+  "endLine": 4232,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of situational modifiers to the roll to invoke a saint, such as being at the tomb, the feast day, donations, True Faith, recent miracles and invoking a non-patron saint.",
+  "quotes": [
+   "| Invoking a saint other than a patron saint   |    \u201315             |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Threatening a Saint",
+  "heading": "Threatening a Saint",
+  "line": 4234,
+  "endLine": 4241,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "After failing to invoke a saint, a petitioner may threaten him with a Presence + Leadership roll against an Ease Factor based on the saint's Divine Might; Confidence but not Faith Points may be spent.",
+  "quotes": [
+   "You make a Presence + Leadership + modifiers + stress die roll against an Ease Factor of 9 + one fifth of the saint's Divine Might.",
+   "**THREATENING A SAINT:** Presence + Leadership + modifiers + stress die vs. 9 + Saint's Divine Might/5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Threat Modifiers and Outcomes",
+  "heading": "Threat Modifiers",
+  "line": 4242,
+  "endLine": 4256,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of modifiers for threatening a saint and the results: success grants the miracle, failure bars aid for a month, a big failure brings a minor curse and a season without aid, and a botch brings the curse.",
+  "quotes": [
+   "If your roll is ten or more points beneath the Ease Factor the saint punishes you by inflicting a minor curse"
+  ],
+  "related": []
+ },
+ {
+  "title": "Saints' Miracles",
+  "heading": "Saints' Miracles",
+  "line": 4258,
+  "endLine": 4263,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Saints' miracles are represented as powers with Might point costs; greater saints know most of them and lesser saints only the cheapest.",
+  "quotes": [
+   "Greater saints have most of the powers, area saints have many of the powers, and lesser saints have only the lowest-costing powers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Saints' Powers list",
+  "heading": "POWERS",
+  "line": 4264,
+  "endLine": 4301,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "List of miracle powers saints can use, each with a Might point cost, initiative modifier and Form, from Acknowledgment of Evil to Tomorrow's Bounty.",
+  "quotes": [
+   "The Penetration of this miracle (Divine Might \u2013 (5 x Might Point cost of power))"
+  ],
+  "related": []
+ },
+ {
+  "title": "Saints' Curses list",
+  "heading": "CURSES",
+  "line": 4302,
+  "endLine": 4329,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "List of curses saints can inflict on those who threaten their followers, each with Might cost, initiative and effect.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Designing Saints",
+  "heading": "Designing Saints",
+  "line": 4330,
+  "endLine": 4344,
+  "category": "beings",
+  "topic": "Saints",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for creating a saint: Divine Might by rank (Blessed Virgin, greater, area, local) and a rule of thumb that the saint's powers should cost at most a fifth of its Divine Might.",
+  "quotes": [
+   "**GREATER SAINT:** Divine Might 75",
+   "**AREA SAINT:** Divine Might 50",
+   "**LOCAL SAINT:** Divine Might 25",
+   "Generally, a saint should be given powers whose total point cost to use is less than or equal to one fifth of their Divine Might."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sample Saint (stat template)",
+  "heading": "Sample Saint",
+  "line": 4346,
+  "endLine": 4384,
+  "category": "beings",
+  "topic": "Saints",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Basic statistics template for a saint as a bodiless Divine creature, to which Divine Might and powers are added.",
+  "quotes": [
+   "**Characteristics:** Int +5, Per +5, Pre +5, Com +5, Str n/a, Stm n/a, Dex n/a, Qik n/a"
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Music (Ability)",
+  "heading": "HOLY MUSIC\\*",
+  "line": 4654,
+  "endLine": 4658,
+  "category": "traditions",
+  "topic": "Holy Methods",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Holy Music",
+  "summary": "Supernatural Ability tied to the Holy Method of Meditation: the character sings a devotional song, rolling Presence + Music against an ease factor, and uses Presence to determine the effect; distractions require a Concentration roll.",
+  "quotes": [
+   "You must sing a devotional song, rolling your Presence + Music vs. an ease factor based on the circumstances."
+  ],
+  "related": [
+   "Instruments of God, Holy Methods and Traditions"
+  ]
+ },
+ {
+  "title": "Holy Tradition: The Cantores",
+  "heading": "HOLY TRADITION: THE CANTORES",
+  "line": 4662,
+  "endLine": 4670,
+  "category": "traditions",
+  "topic": "Holy Traditions",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: The Cantores",
+  "summary": "Christian holy tradition of musician-worshippers with Blessing, Enchanting Music, Holy Music and Intervention as favored Abilities.",
+  "quotes": [
+   "**Favored Abilities:** Blessing, Enchanting Music, Holy Music, Intervention"
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Societas: The Priory of Saint Nerius",
+  "heading": "HOLY SOCIETAS: THE PRIORY OF SAINT NERIUS",
+  "line": 4672,
+  "endLine": 4680,
+  "category": "traditions",
+  "topic": "Holy Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy Societas: Priory of Saint Nerius",
+  "summary": "A secret monastic Hermetic holy societas with Holy Magic, Intervention, Premonitions and Purity as favored Abilities; all members take the Monastic Vows (Hermetic) Flaw.",
+  "quotes": [
+   "**Favored Abilities:** Holy Magic, Intervention, Premonitions, Purity",
+   "All Nerusians take the Monastic Vows (Hermetic) Flaw."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mythic Companion: Perfecti",
+  "heading": "Mythic Companions: Perfecti",
+  "line": 4690,
+  "endLine": 4713,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Mythic Companion Virtue: Perfectus",
+  "summary": "Template for creating a Cathar Perfectus Mythic Companion with required Virtues and Flaws, a remaining Flaw budget, and minimum Ability scores.",
+  "quotes": [
+   "characters must spend 50 of their starting experience points to achieve these scores in the following Abilities"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ars Notoria (overview)",
+  "heading": "Ars Notoria",
+  "line": 4967,
+  "endLine": 4979,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Introduces the Notory Art of King Solomon, a Christian system of orations and figures (notae) combined into rings that grant divinely given knowledge and abilities; only Gifted Christians can use it.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Finding a Text of the Ars Notoria",
+  "heading": "Finding a Text",
+  "line": 4981,
+  "endLine": 4989,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "A character can seek a copy of the Ars Notoria through a story or, less entertainingly, spend a season rolling Intelligence + Divine Lore against a high Ease Factor; a botch turns up some other book.",
+  "quotes": [
+   "**FINDING A COPY OF ARS NOTORIA:** Intelligence + Divine Lore + stress die vs. an Ease Factor of 21"
+  ],
+  "related": []
+ },
+ {
+  "title": "Studying the Ars Notoria",
+  "heading": "Studying the Text",
+  "line": 4991,
+  "endLine": 5001,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Learning the Ability from the text requires reading four languages and Artes Liberales, a Gifted reader and the normal rules for learning a Supernatural Ability; starting characters must take it as a Major Supernatural Virtue.",
+  "quotes": [
+   "The reader needs a 4 in each Language to accurately read the book.",
+   "The Ars Notoria text is treated as a tractatus with a Quality of 20."
+  ],
+  "related": [
+   "Ars Magica 5th Edition p.166"
+  ]
+ },
+ {
+  "title": "Ars Notoria: Future Study",
+  "heading": "FUTURE STUDY",
+  "line": 5003,
+  "endLine": 5005,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Ars Notoria is increased by study like other Abilities; glosses help with understanding but cannot teach the Ability initially.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Rings of Solomon (recitation rules)",
+  "heading": "The Rings of Solomon",
+  "line": 5007,
+  "endLine": 5062,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Explains how rings are recited: a recitation score plus a stress die against an Ease Factor depending on ring level and duration, season-long first recitations, learning rings in order, no stacking of benefits, and tracking temporary experience.",
+  "quotes": [
+   "**RECITATION SCORE:** Intelligence + Ars Notoria + Modifier",
+   "**FIRST RECITATION OF AN ARS NOTORIA RING:** Ease Factor = 6 + 3 times level of ring + 1 per season of desired duration",
+   "**SUBSEQUENT RECITATIONS OF A KNOWN ARS NOTORIA RING:** Ease Factor = 3 + 3 times level of ring + 1 per season of desired duration"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ars Notoria Modifiers",
+  "heading": "Ars Notoria Modifiers",
+  "line": 5025,
+  "endLine": 5051,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Table of modifiers to the recitation score for behavior such as fasting, chastity, personality Flaws, sins and conflicting Supernatural Abilities, with explanations including the fasting roll.",
+  "quotes": [
+   "Characters wishing to fast for a season must make a Stamina + stress die roll against an Ease Factor of 6 to succeed.",
+   "| Performing a Mortal Sin| \u20139 |"
+  ],
+  "related": []
+ },
+ {
+  "title": "First Ring of Solomon",
+  "heading": "THE FIRST RING OF SOLOMON",
+  "line": 5063,
+  "endLine": 5068,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "First ring, recited in spring or autumn, grants temporary experience in Philosophiae and raises Communication.",
+  "quotes": [
+   "Successfully reciting this oration gives you 100 experience points in the Academic Ability: Philosophiae."
+  ],
+  "related": []
+ },
+ {
+  "title": "Second Ring of Solomon",
+  "heading": "THE SECOND RING OF SOLOMON",
+  "line": 5069,
+  "endLine": 5076,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Second ring, recited in winter, grants temporary experience in Theology and raises Intelligence.",
+  "quotes": [
+   "With a successful recitation of the second ring, you gain 100 experience points in the Academic Ability: Theology."
+  ],
+  "related": []
+ },
+ {
+  "title": "Third Ring of Solomon",
+  "heading": "THE THIRD RING OF SOLOMON",
+  "line": 5077,
+  "endLine": 5084,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Third ring, recitable in any season, grants temporary experience in Medicine and the Greater Purifying Touch Virtue for a chosen disease.",
+  "quotes": [
+   "A person gains 100 experience points in the Academic Ability: Medicine, and also receives for free the Supernatural Major Virtue: Greater Purifying Touch."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fourth Ring of Solomon",
+  "heading": "THE FOURTH RING OF SOLOMON",
+  "line": 5085,
+  "endLine": 5092,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Fourth ring summons a personal patron angel who acts as a guardian and teacher of academic Abilities, and may end the ring or cancel other rings if the character acts impiously.",
+  "quotes": [
+   "Successfully reciting the fourth ring grants you the Major General Virtue: Patron Angel."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fifth Ring of Solomon",
+  "heading": "THE FIFTH RING OF SOLOMON",
+  "line": 5093,
+  "endLine": 5106,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Fifth ring, recited in summer, lets the character determine which realm a being is affiliated with and possibly learn its powers, with no need to Penetrate.",
+  "quotes": [
+   "**SENSE REALM AFFILIATION:** Perception + Ars Notoria vs. 6 + Target's Magic Resistance/5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sixth Ring of Solomon",
+  "heading": "THE SIXTH RING OF SOLOMON",
+  "line": 5107,
+  "endLine": 5128,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Sixth ring, recited in spring, provides holy divination about the results of actions via a Perception + Ars Notoria roll against difficulties listed in a table.",
+  "quotes": [
+   "**DIVINATION:** Perception + Ars Notoria vs. variable Ease Factor"
+  ],
+  "related": []
+ },
+ {
+  "title": "Seventh Ring of Solomon",
+  "heading": "THE SEVENTH RING OF SOLOMON",
+  "line": 5129,
+  "endLine": 5136,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Seventh ring gives perfect understanding of known skills: simple die rolls become stress dice and stress dice cannot botch, though the patron angel may end it for Pride.",
+  "quotes": [
+   "In game terms, you replace all your simple die rolls with stress die rolls."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ars Notoria: Beneficial Side-Effects",
+  "heading": "BENEFICIAL SIDE-EFFECTS",
+  "line": 5137,
+  "endLine": 5146,
+  "category": "traditions",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Ars Notoria score reduces the Divine-aura penalty to other magic and an active ring prevents Warping Points from Divine auras.",
+  "quotes": [
+   "For each point of Ars Notoria you have, you may reduce the Divine penalty received from the Realm Interaction Chart by 3."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ars Notoria: Writing Books",
+  "heading": "WRITING BOOKS",
+  "line": 5147,
+  "endLine": 5150,
+  "category": "seasons",
+  "topic": "Ars Notoria",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ars Notoria",
+  "summary": "Rules caveats for writing books while a ring's benefits are active: the effect must cover the writing period, authors cannot stop to extend it, and cannot learn from their own texts.",
+  "quotes": [
+   "Remember too that no author may learn from his own texts."
+  ],
+  "related": []
+ }
+]

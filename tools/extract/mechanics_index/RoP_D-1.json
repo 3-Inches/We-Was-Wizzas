@@ -1,0 +1,1521 @@
+[
+ {
+  "title": "Divine Auras in Play",
+  "heading": "Divine Auras in Play",
+  "line": 407,
+  "endLine": 443,
+  "category": "realms",
+  "topic": "Divine auras",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how mundane people, magi, faeries and infernal beings experience a Divine aura. Useful for adjudicating the reactions of characters who enter the Dominion or an Empyreal aura.",
+  "quotes": [
+   "The Dominion auras of different faiths, such as Christianity, Islam, or Judaism, or others such as Zoroastrianism, Catharism or Gnosticism, have no different game effects."
+  ],
+  "related": []
+ },
+ {
+  "title": "Who Has the Dominion?",
+  "heading": "Who Has the Dominion?",
+  "line": 453,
+  "endLine": 455,
+  "category": "realms",
+  "topic": "Dominion",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains which groups of worshippers are protected by a Dominion, regardless of creed, and notes that heresy may cause schism.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Dominion Power",
+  "heading": "DOMINION POWER",
+  "line": 457,
+  "endLine": 465,
+  "category": "realms",
+  "topic": "Dominion",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules of thumb for how strong the Dominion is and how far it extends from a place of worship, in a church, a city and the surrounding land.",
+  "quotes": [
+   "the Dominion is typically strongest where people gather to worship in a consecrated place (aura 4)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Dominion Power Examples",
+  "heading": "Dominion Power Examples",
+  "line": 467,
+  "endLine": 480,
+  "category": "realms",
+  "topic": "Dominion",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A quick table of Dominion aura ratings by kind of area, with adjustments for night and holy days.",
+  "quotes": [
+   "At night, subtract one from the rating, and add one on holy days (Sundays for example)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy of Holies (the Eucharist)",
+  "heading": "Holy of Holies",
+  "line": 482,
+  "endLine": 490,
+  "category": "realms",
+  "topic": "Dominion",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the Dominion radiated by the consecrated Eucharist in Christian churches, how it fades with distance, and what destroys it.",
+  "quotes": [
+   "The Eucharist radiates a Dominion (not Empyreal aura) of five until the next Good Friday; this aura decreases by one every five paces"
+  ],
+  "related": []
+ },
+ {
+  "title": "Conflicting Auras",
+  "heading": "CONFLICTING AURAS",
+  "line": 492,
+  "endLine": 496,
+  "category": "realms",
+  "topic": "Divine auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Says how the Dominion fares against another realm's aura of equal or greater strength, with an example of a church built on a faerie site.",
+  "quotes": [
+   "the Dominion will trump the opposing aura; a more-powerful aura will still overwhelm the Dominion"
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating a Dominion Aura",
+  "heading": "CREATING A DOMINION AURA",
+  "line": 498,
+  "endLine": 520,
+  "category": "realms",
+  "topic": "Dominion",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Procedure for founding a Dominion: a celebrant, a consecrated site and a congregation, two successful Dominion rites, and then how the aura grows, fades and exceeds the usual maximum.",
+  "quotes": [
+   "**DOMINION RITE:** Communication + Theology (or Dominion Lore) + stress die vs. Ease Factor 6",
+   "Dominion ratings higher than five are achieved through extremely holy objects, or the relics of particularly exemplary saints"
+  ],
+  "related": []
+ },
+ {
+  "title": "Empyreal Auras",
+  "heading": "Empyreal Auras",
+  "line": 530,
+  "endLine": 538,
+  "category": "realms",
+  "topic": "Divine auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains Empyreal auras as Divine auras that arise without a congregation, from relics, saints or divine creatures, and states that they work the same as the Dominion in game terms.",
+  "quotes": [
+   "There is no difference, system wise, between Empyreal auras and the Dominion."
+  ],
+  "related": []
+ },
+ {
+  "title": "Empyreal Aura Power",
+  "heading": "EMPYREAL AURA POWER",
+  "line": 540,
+  "endLine": 546,
+  "category": "realms",
+  "topic": "Divine auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How to rate an Empyreal aura from Faith Points, miracles or the lair of a divine creature.",
+  "quotes": [
+   "Empyreal auras from miracles have a rating of one point for every five levels of miracle above 50.",
+   "up to a maximum rating of his Divine Might divided by 10"
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Regiones",
+  "heading": "Divine Regiones",
+  "line": 558,
+  "endLine": 570,
+  "category": "realms",
+  "topic": "Divine regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces Divine regiones as holy pocket realms, how they come into being, and the two kinds, terrestrial and celestial.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.189-90 Regiones"
+  ]
+ },
+ {
+  "title": "Terrestrial Regiones",
+  "heading": "Terrestrial Regiones",
+  "line": 572,
+  "endLine": 578,
+  "category": "realms",
+  "topic": "Divine regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes terrestrial Divine regiones, which are holy versions of a real place and typify a virtue.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Inside Terrestrial Regiones",
+  "heading": "INSIDE TERRESTRIAL REGIONES",
+  "line": 580,
+  "endLine": 588,
+  "category": "realms",
+  "topic": "Divine regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What visitors find inside a terrestrial regio, including how potent levels can yield vis from ordinary things.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Celestial Regiones",
+  "heading": "Celestial Regiones",
+  "line": 604,
+  "endLine": 610,
+  "category": "realms",
+  "topic": "Divine regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes celestial regiones as unfixed spiritual realms of angels, entered mainly by invitation.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Inside Celestial Regiones (Celestial Disorientation)",
+  "heading": "INSIDE CELESTIAL REGIONES",
+  "line": 612,
+  "endLine": 639,
+  "category": "realms",
+  "topic": "Divine regiones",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rolls and penalties for mortals who enter a celestial regio, and the limits on prolonged exposure that lead to Fatigue loss and Warping.",
+  "quotes": [
+   "**OVERCOME CELESTIAL DISORIENTATION:** Stamina + Dominion Lore + stress dice",
+   "**CELESTIAL DISORIENTATION EASE FACTOR:** Regio Rating x3",
+   "**PROLONGED EXPOSURE LIMIT:** Stamina + Parma Magica (or similar Ability) + 3"
+  ],
+  "related": [
+   "Blessed by God, Divine Warping"
+  ]
+ },
+ {
+  "title": "Creating Divine Regiones",
+  "heading": "Creating Divine Regiones",
+  "line": 655,
+  "endLine": 663,
+  "category": "realms",
+  "topic": "Divine regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Divine creature with sufficient Divine Might",
+  "summary": "Rules for divine beings with enough Divine Might creating temporary Divine regiones, and the Might cost of sustaining them.",
+  "quotes": [
+   "Divine beings with a Divine Might score of 20 or greater have the ability to create temporary Divine regiones of either kind.",
+   "The creature must spend at least 10 Divine Might points, which creates a single-level regio with a rating of 1."
+  ],
+  "related": []
+ },
+ {
+  "title": "Spontaneous Regiones",
+  "heading": "SPONTANEOUS REGIONES",
+  "line": 720,
+  "endLine": 722,
+  "category": "realms",
+  "topic": "Divine regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A miracle, holy power or expenditure of Divine Might",
+  "summary": "Notes that powerful divine acts may create a temporary Divine regio, with no precise system beyond story needs.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Divine Beings",
+  "heading": "Divine Beings",
+  "line": 724,
+  "endLine": 730,
+  "category": "beings",
+  "topic": "Divine beings",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines a divine being as any creature with Divine Might and describes where such beings live and how they interact with humans.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Nephilim",
+  "heading": "Nephilim",
+  "line": 778,
+  "endLine": 788,
+  "category": "beings",
+  "topic": "Nephilim",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Nephilim",
+  "summary": "Describes the Nephilim, half-angelic giants, including their longevity, immunity to disease and need to eat prodigiously.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "What Are Angels?",
+  "heading": "What Are Angels?",
+  "line": 802,
+  "endLine": 816,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines angels as the spiritual inhabitants of Heaven with Divine Might, their membership of a single Choir, and where each Choir tends to be found.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Angelic Choirs",
+  "heading": "Angelic Choirs",
+  "line": 819,
+  "endLine": 823,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the three Hierarchies and nine Choirs of angels, from most to least exalted.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Angelic Traits (overview)",
+  "heading": "Angelic Traits",
+  "line": 849,
+  "endLine": 857,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the shared traits all angels have and the extra traits each Hierarchy grants, and how Seferiel from the core book fits.",
+  "quotes": [],
+  "related": [
+   "ArM5 Chapter 13 Bestiary: Seferiel"
+  ]
+ },
+ {
+  "title": "Angelic Traits",
+  "heading": "ANGELIC TRAITS",
+  "line": 859,
+  "endLine": 867,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The baseline statistics every angel shares: minimum Divine Might, a fixed Personality Trait, the ability to be a conduit for a miracle and obedience to divine law.",
+  "quotes": [
+   "All angels possess the Personality Trait \"Love of God\" +5."
+  ],
+  "related": []
+ },
+ {
+  "title": "Angelic Powers",
+  "heading": "ANGELIC POWERS",
+  "line": 869,
+  "endLine": 877,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The three powers all angels have: Angelic Mantle, Enfolding and Envisioning.",
+  "quotes": [
+   "*Angelic Mantle*, 2 points, +12, Corpus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Angelic Characteristics",
+  "heading": "ANGELIC CHARACTERISTICS",
+  "line": 879,
+  "endLine": 883,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How to set an angel's Characteristics: non-physical ones derive from Divine Might, physical ones from a point-buy for its Mantle.",
+  "quotes": [
+   "Angels with 1-10 Divine Might have a +1 in all non-physical Characteristics; angels with 11-20 Divine Might have +2 in all non-physical Characteristics, and so on."
+  ],
+  "related": []
+ },
+ {
+  "title": "Angelic Free Will",
+  "heading": "ANGELIC FREE WILL",
+  "line": 885,
+  "endLine": 893,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on how angels act freely but always in accord with God's will, and notes that they can be wounded or destroyed.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Angelic Senses",
+  "heading": "ANGELIC SENSES",
+  "line": 895,
+  "endLine": 901,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Angels perceive directly rather than through senses, so their perception cannot be targeted by spells.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Angelic Movement",
+  "heading": "ANGELIC MOVEMENT",
+  "line": 903,
+  "endLine": 907,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Angels move instantaneously, though in a Mantle they usually move naturally.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Angelic Language",
+  "heading": "ANGELIC LANGUAGE",
+  "line": 909,
+  "endLine": 911,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Angels communicate by illumination, which has a Penetration of zero, so they often speak human languages to magi.",
+  "quotes": [
+   "This speech has a Penetration of zero (modified by any Penetration Ability the angel may have)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Angelic True Names",
+  "heading": "ANGELIC TRUE NAMES",
+  "line": 913,
+  "endLine": 917,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "True Names of angels act as arcane connections and aid Penetration for anyone who learns them.",
+  "quotes": [
+   "True Names act as indefinite Arcane Connections, and grant a +5 multiplier bonus to a caster's Penetration multiplier."
+  ],
+  "related": []
+ },
+ {
+  "title": "Angels and Magic",
+  "heading": "ANGELS AND MAGIC",
+  "line": 919,
+  "endLine": 925,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Hermetic magic can affect angels in Mantle or in spiritual form, their immunities, and how they can be destroyed.",
+  "quotes": [
+   "angels can be destroyed permanently by reducing their Divine Might to a negative value."
+  ],
+  "related": []
+ },
+ {
+  "title": "Angels, Auras, and Regiones",
+  "heading": "ANGELS, AURAS, AND REGIONES",
+  "line": 927,
+  "endLine": 931,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What angels automatically know about auras, how they enter regiones, and the Second Sight rating they use to find non-Divine regiones.",
+  "quotes": [
+   "All angels are considered to have a Second Sight Ability score equal to their Divine Might \u00f7 5 for the purposes of finding non-Divine regiones."
+  ],
+  "related": []
+ },
+ {
+  "title": "Seraphim (Choir traits)",
+  "heading": "Seraphim",
+  "line": 945,
+  "endLine": 955,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minimum Divine Might, Personality Traits and Powers shared by all Seraphim.",
+  "quotes": [
+   "**Divine Might:** No less than 35",
+   "with the level of the effect determined by the number of Might Points spent multiplied by 10"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cherubim (Choir traits)",
+  "heading": "Cherubim",
+  "line": 967,
+  "endLine": 977,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minimum Divine Might, Personality Traits and Powers shared by all Cherubim.",
+  "quotes": [
+   "**Divine Might:** No less than 25"
+  ],
+  "related": []
+ },
+ {
+  "title": "Thrones (Choir traits)",
+  "heading": "Thrones",
+  "line": 989,
+  "endLine": 1001,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minimum Divine Might, Personality Traits and Powers shared by all Thrones.",
+  "quotes": [
+   "The Holy Influence Total of a Throne using this power is equal to his Divine Might \u00f7 2"
+  ],
+  "related": []
+ },
+ {
+  "title": "Dominations (Choir traits)",
+  "heading": "Dominations",
+  "line": 1013,
+  "endLine": 1023,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minimum Divine Might, Personality Traits and Powers shared by all Dominations.",
+  "quotes": [
+   "**Divine Might:** No less than 10"
+  ],
+  "related": []
+ },
+ {
+  "title": "Authorities (Choir traits)",
+  "heading": "Authorities",
+  "line": 1035,
+  "endLine": 1045,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minimum Divine Might, Personality Traits and Powers shared by all Authorities, including how Might reflects an Authority's office.",
+  "quotes": [
+   "An Authority responsible for a flower may have Divine Might 5, while an Authority responsible for a thunder storm or a mountain has a Might of 15 or 20."
+  ],
+  "related": []
+ },
+ {
+  "title": "Potentates (Choir traits)",
+  "heading": "Potentates",
+  "line": 1057,
+  "endLine": 1067,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minimum Divine Might, Personality Traits and Powers shared by all Potentates.",
+  "quotes": [
+   "The cost of the power is equal to the cost of the diabolical power it is opposing."
+  ],
+  "related": []
+ },
+ {
+  "title": "Principalities (Choir traits)",
+  "heading": "Principalities",
+  "line": 1079,
+  "endLine": 1089,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minimum Divine Might, Personality Traits and Powers shared by all Principalities, including the Might cost scaled to the size of the area protected.",
+  "quotes": [
+   "A family costs 5 Might points, a hamlet or village costs 10, a town or city costs 15, a duchy costs 20, a kingdom or nation costs 30, and an empire, such as Byzantium or the Islamic Caliphate, costs 40 points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Archangels (Choir traits)",
+  "heading": "Archangels",
+  "line": 1101,
+  "endLine": 1111,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minimum Divine Might, Personality Traits and Powers shared by all Archangels.",
+  "quotes": [
+   "**Divine Might:** No less than 50",
+   "doing +40 damage to all non-Divine beings (doubled against creatures with Infernal Might), and stripping non-Divine beings of 10 points of Might"
+  ],
+  "related": []
+ },
+ {
+  "title": "Angels (Choir traits)",
+  "heading": "Angels",
+  "line": 1137,
+  "endLine": 1147,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Minimum Divine Might, Personality Traits and Powers shared by the lowest Choir of angels.",
+  "quotes": [
+   "the angel may modify by 3 (plus or minus) any Personality Trait roll that could result in the target acting virtuously or piously"
+  ],
+  "related": []
+ },
+ {
+  "title": "Grigori, the Watchers",
+  "heading": "Grigori, the Watchers",
+  "line": 1153,
+  "endLine": 1161,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Grigori",
+  "summary": "Describes the Watchers, a tenth Choir cast to Earth and trapped in their Mantle, and how they can be permanently slain.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Portraying Angels",
+  "heading": "Portraying Angels",
+  "line": 1210,
+  "endLine": 1218,
+  "category": "beings",
+  "topic": "Angels",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advice on playing angels as near-perfect but fallible beings, and on how they appear in an Envisioning or in a disguised Mantle.",
+  "quotes": [
+   "Angels can make mistakes, over- or under-estimate someone, and be outwitted or fooled."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ceremony (group prayer)",
+  "heading": "CEREMONY\\*",
+  "line": 2075,
+  "endLine": 2089,
+  "category": "realms",
+  "topic": "Ceremony",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Ceremony (Minor Supernatural Ability)",
+  "summary": "Lets a group pray together to boost a focus character's holy effect, with a group modifier based on participants' Ceremony scores, with or without a leader.",
+  "quotes": [
+   "**GROUP MODIFIER:** total Ceremony scores \u2013 number of participants"
+  ],
+  "related": [
+   "Blessed by God, Miraculous Effects"
+  ]
+ },
+ {
+  "title": "Invocation (Holy Method)",
+  "heading": "INVOCATION\\*",
+  "line": 2103,
+  "endLine": 2109,
+  "category": "realms",
+  "topic": "Holy Methods",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Invocation (Supernatural Method)",
+  "summary": "The Holy Method of calling on God's power with spoken or written prayer, costing Confidence or Faith and optionally using a stress die.",
+  "quotes": [
+   "This adds Communication to your roll, and requires that you spend a point of Confidence (or Faith) to bring the effect into being."
+  ],
+  "related": []
+ },
+ {
+  "title": "Meditation (Holy Method)",
+  "heading": "MEDITATION\\*",
+  "line": 2111,
+  "endLine": 2117,
+  "category": "realms",
+  "topic": "Holy Methods",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Meditation (Supernatural Method)",
+  "summary": "The Holy Method of achieving ecstasy through chanting or performance, with periodic Stamina rolls and a defence against Divine Ascent.",
+  "quotes": [
+   "you must make a Stamina roll every ten minutes against an Ease Factor of 6",
+   "You may subtract your score in Meditation from your roll to avoid Divine Ascent"
+  ],
+  "related": []
+ },
+ {
+  "title": "Purity (Holy Method)",
+  "heading": "PURITY\\*",
+  "line": 2119,
+  "endLine": 2125,
+  "category": "realms",
+  "topic": "Holy Methods",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Purity (Supernatural Method)",
+  "summary": "The Holy Method of working miracles through strenuous effort, and the rule for extending any holy ritual over hours, days or weeks to spend more Confidence or Faith.",
+  "quotes": [
+   "You must engage in an activity that is strenuous enough to cause you to lose a long-term Fatigue level or suffer a Light Wound, and you use your Stamina for your effect roll."
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Influence",
+  "heading": "Holy Influence",
+  "line": 2139,
+  "endLine": 2164,
+  "category": "social",
+  "topic": "Holy influence",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How holy characters with spiritual authority inspire temporary Personality Traits in followers, by personal influence over a season or by a short ceremony, with a roll that sets the strength of the trait.",
+  "quotes": [
+   "**HOLY INFLUENCE:** simple die + Presence + Leadership"
+  ],
+  "related": []
+ },
+ {
+  "title": "Personality Flaws (treating as traits)",
+  "heading": "Personality Flaws",
+  "line": 2166,
+  "endLine": 2168,
+  "category": "basics",
+  "topic": "Personality Traits",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "States how Personality Flaws are treated as traits when rules involve Personality Traits, so holy influence can oppose them.",
+  "quotes": [
+   "treat a Minor Personality Flaw as a +3 trait, and a Major Personality Flaw as a +6 trait"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tempers",
+  "heading": "Tempers",
+  "line": 2170,
+  "endLine": 2222,
+  "category": "realms",
+  "topic": "Holy influence",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for holy characters invoking a temper in a Dominion aura, giving bonuses or penalties to compatible or opposed actions, with descriptions of the seven tempers.",
+  "quotes": [
+   "**TEMPERING AN AURA:** stress die + Presence + Leadership"
+  ],
+  "related": []
+ },
+ {
+  "title": "Personality Traits (tempers, virtues and vices)",
+  "heading": "Personality Traits",
+  "line": 2225,
+  "endLine": 2243,
+  "category": "basics",
+  "topic": "Holy influence",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table linking each temper to related positive Personality Traits, the vice it opposes and the negative traits, with advice on noting a trait's temper.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Schism",
+  "heading": "Schism",
+  "line": 2245,
+  "endLine": 2251,
+  "category": "realms",
+  "topic": "Holy influence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how rival holy leaders invoking different tempers in the same aura can cancel each other out, which is called schism.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Invoking God's Aid",
+  "heading": "Invoking God's Aid",
+  "line": 2253,
+  "endLine": 2263,
+  "category": "realms",
+  "topic": "Invoking God's aid",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Any character who can spend Confidence or a Faith Point may pray for divine help in an endeavor, with a roll and botch rule for presumption.",
+  "quotes": [
+   "**INVOKING GOD'S AID:** stress die + Communication + Dominion Lore"
+  ],
+  "related": []
+ },
+ {
+  "title": "Divine Aid Bonus Table",
+  "heading": "Divine Aid Bonus Table",
+  "line": 2265,
+  "endLine": 2280,
+  "category": "realms",
+  "topic": "Invoking God's aid",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Converts the invocation total into a bonus to rolls in the scene, and describes how long it lasts and how group invocations work.",
+  "quotes": [
+   "the bonus will cease to operate as soon as the player fails a roll or at the end of the scene"
+  ],
+  "related": []
+ },
+ {
+  "title": "Invoking God's Aid in Warfare",
+  "heading": "Invoking God's Aid in Warfare",
+  "line": 2283,
+  "endLine": 2291,
+  "category": "combat",
+  "topic": "Invoking God's aid",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Limits on invoking God's aid in military conflict and how it combines with a Trained Group's combat bonus.",
+  "quotes": [
+   "only the highest Divine Aid Bonus applies to the group's combat bonus"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Commanding Aura",
+  "heading": "The Commanding Aura",
+  "line": 2296,
+  "endLine": 2319,
+  "category": "social",
+  "topic": "Commanding aura",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Divinely appointed rulers and religious leaders gain Magic Resistance, a Soak bonus and an authority aura, with scores by rank and faith, and how relics and sanctions interact.",
+  "quotes": [
+   "They receive a Magic Resistance score with the value listed below and a bonus to their Soak equal to their Magic Resistance score divided by 5.",
+   "In the Latin Christian world, the supreme religious leader is the Pope, with a Magic Resistance of 25."
+  ],
+  "related": []
+ },
+ {
+  "title": "Player Characters and the Commanding Aura",
+  "heading": "Player Characters and the Commanding Aura",
+  "line": 2321,
+  "endLine": 2327,
+  "category": "social",
+  "topic": "Commanding aura",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Rank in an ecclesiastical or secular hierarchy",
+  "summary": "Rules for player characters conferring a commanding aura on others through an investiture ceremony.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Powers of Relics",
+  "heading": "The Powers of Relics",
+  "line": 2375,
+  "endLine": 2389,
+  "category": "realms",
+  "topic": "Relics",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Common powers every relic has: a Faith score, a Divine Might derived from it, and an aura that harms Infernal creatures, plus how specific powers work and when they fail.",
+  "quotes": [
+   "A relic's Divine Might is equal to the relic's Faith score (or highest Faith score, if more than one applies) multiplied by 10, and is refreshed with every sunrise."
+  ],
+  "related": []
+ },
+ {
+  "title": "Miraculous Effects",
+  "heading": "Miraculous Effects",
+  "line": 2391,
+  "endLine": 2403,
+  "category": "realms",
+  "topic": "Miraculous effects",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy Methods and Powers (Supernatural Virtues)",
+  "summary": "The core system for holy characters: combine a Method with a Power to design an effect, roll against its level, and risk a tragedy of hubris on failure.",
+  "quotes": [
+   "**EFFECT TOTAL:** simple die + (Characteristic) + (Method) + (Power) + Aura Bonus",
+   "They may substitute their (Faith score x 10) for their effect total when determining if they would suffer a tragedy of hubris."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tragedies of Hubris",
+  "heading": "Tragedies of Hubris",
+  "line": 2405,
+  "endLine": 2429,
+  "category": "realms",
+  "topic": "Miraculous effects",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy Methods and Powers (Supernatural Virtues)",
+  "summary": "Table of minor, major and ultimate tragedies that can befall a holy character who fails an effect roll, by how far the total fell short.",
+  "quotes": [
+   "**MINOR TRAGEDY (\u20131 TO \u201310)**",
+   "**MAJOR TRAGEDY (\u201311 TO \u201320)**",
+   "**ULTIMATE TRAGEDY (\u201321 OR MORE)**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Methods and Traditions",
+  "heading": "Methods and Traditions",
+  "line": 2431,
+  "endLine": 2439,
+  "category": "realms",
+  "topic": "Miraculous effects",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy Method (Supernatural Virtue)",
+  "summary": "Describes the three Holy Methods, Invocation, Meditation and Purity, and the Characteristic each typically relies on.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Learning Methods and Powers",
+  "heading": "Learning Methods and Powers",
+  "line": 2441,
+  "endLine": 2453,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "True Faith or an appropriate Virtue",
+  "summary": "Explains how holy Methods and Powers are learned as Supernatural Abilities within a tradition, with favored Abilities that avoid the usual study penalty.",
+  "quotes": [
+   "they do not have to subtract the total of their Supernatural Ability scores from their Advancement Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating New Traditions",
+  "heading": "Creating New Traditions",
+  "line": 2455,
+  "endLine": 2457,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide design",
+  "summary": "Guidance for designing a new holy tradition, including how to add Methods or Powers and a limit on favored Abilities.",
+  "quotes": [
+   "you should assign your new tradition a maximum of four favored Abilities"
+  ],
+  "related": []
+ },
+ {
+  "title": "Holy Tradition: Ascetics",
+  "heading": "HOLY TRADITION: ASCETICS",
+  "line": 2459,
+  "endLine": 2465,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Ascetics",
+  "summary": "A sample generic holy tradition of ascetics, with its favored Abilities and ethos.",
+  "quotes": [
+   "**Favored Abilities:** Adjuration, Cursing, Purity, Second Sight"
+  ],
+  "related": []
+ },
+ {
+  "title": "Powers and Effects",
+  "heading": "Powers and Effects",
+  "line": 2467,
+  "endLine": 2477,
+  "category": "realms",
+  "topic": "Miraculous effects",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy Powers (Supernatural Virtues)",
+  "summary": "How a Power's effects are designed: compute range, duration and target like Hermetic magic, replace Arcane Connections with holy connections, and add levels instead of rituals.",
+  "quotes": [
+   "Instead, the Level is increased by 20.",
+   "holy effects generally add four magnitudes for a Boundary target, Year duration, or permanent duration"
+  ],
+  "related": []
+ },
+ {
+  "title": "Effect Combinations by Method",
+  "heading": "Effect Combinations by Method",
+  "line": 2479,
+  "endLine": 2511,
+  "category": "realms",
+  "topic": "Miraculous effects",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy Methods and Powers",
+  "summary": "Lists which holy Powers can be activated by each of the three Methods.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Effect Combinations by Power",
+  "heading": "Effect Combinations by Power",
+  "line": 2513,
+  "endLine": 2551,
+  "category": "realms",
+  "topic": "Miraculous effects",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy Methods and Powers",
+  "summary": "Lists which holy Methods can activate each of the seven Powers.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Creating New Powers and Effects",
+  "heading": "Creating New Powers and Effects",
+  "line": 2553,
+  "endLine": 2555,
+  "category": "realms",
+  "topic": "Miraculous effects",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Storyguide design",
+  "summary": "Advice for designing new holy effects from Hermetic guidelines or inventing a new Power.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Adjuration (Holy Power)",
+  "heading": "ADJURATION",
+  "line": 2581,
+  "endLine": 2585,
+  "category": "realms",
+  "topic": "Holy Powers",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Adjuration",
+  "summary": "The Power of summoning, controlling and banishing supernatural creatures, and how Invocation and Purity apply to it.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Adjuration Guidelines",
+  "heading": "Adjuration Guidelines",
+  "line": 2587,
+  "endLine": 2613,
+  "category": "magic",
+  "topic": "Holy Power guidelines",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Adjuration",
+  "summary": "Effect-level guidelines for Adjuration effects such as dispelling, warding, binding and compelling supernatural creatures.",
+  "quotes": [
+   "Dispel magic, infernal, or faerie effects of level less than (this effect level + 10)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Blessing (Holy Power)",
+  "heading": "BLESSING",
+  "line": 2639,
+  "endLine": 2643,
+  "category": "realms",
+  "topic": "Holy Powers",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Blessing",
+  "summary": "The Power of protecting and aiding a target by dedicating it to God, and how Invocation and Meditation apply to it.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Blessing Guidelines",
+  "heading": "Blessing Guidelines",
+  "line": 2653,
+  "endLine": 2679,
+  "category": "magic",
+  "topic": "Holy Power guidelines",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Blessing",
+  "summary": "Effect-level guidelines for Blessing effects such as Magic Resistance, bonuses to virtuous tasks, recovery and aging bonuses.",
+  "quotes": [
+   "Give a person, object, or area Magic Resistance equal to (the level of the effect + 15), which is not cumulative with other forms of resistance."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cursing (Holy Power)",
+  "heading": "CURSING",
+  "line": 2704,
+  "endLine": 2708,
+  "category": "realms",
+  "topic": "Holy Powers",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Cursing",
+  "summary": "The Power of bringing ruin on God's enemies, and how Invocation and Purity differ in the curses they produce.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Cursing Guidelines",
+  "heading": "Cursing Guidelines",
+  "line": 2724,
+  "endLine": 2754,
+  "category": "magic",
+  "topic": "Holy Power guidelines",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Cursing",
+  "summary": "Effect-level guidelines for Cursing effects such as reducing Might, imposing penalties, wounding, disease and instant death.",
+  "quotes": [
+   "Reduce a supernatural creature's Might by (the level of the effect + 10), assuming you overcome its resistance."
+  ],
+  "related": []
+ },
+ {
+  "title": "Intervention (Holy Power)",
+  "heading": "INTERVENTION",
+  "line": 2778,
+  "endLine": 2784,
+  "category": "realms",
+  "topic": "Holy Powers",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Intervention",
+  "summary": "The Power of making God's will visible in the physical world through signs, transformations and healing, and how Meditation and Purity apply to it.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Intervention Guidelines",
+  "heading": "Intervention Guidelines",
+  "line": 2786,
+  "endLine": 2832,
+  "category": "magic",
+  "topic": "Holy Power guidelines",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Intervention",
+  "summary": "Effect-level guidelines for Intervention effects such as perceiving supernatural effects, transforming or mending things, healing wounds, creating regiones and raising the dead.",
+  "quotes": [
+   "Create a terrestrial regio at level 1. Adding five levels increases the level by one, or adds an extra layer."
+  ],
+  "related": []
+ },
+ {
+  "title": "Transcendence (Holy Power)",
+  "heading": "TRANSCENDENCE",
+  "line": 2865,
+  "endLine": 2869,
+  "category": "realms",
+  "topic": "Holy Powers",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Transcendence",
+  "summary": "The Power of overcoming the limits of body and mind, including spiritual travel, and how Meditation and Purity apply to it.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Transcendence Guidelines",
+  "heading": "Transcendence Guidelines",
+  "line": 2871,
+  "endLine": 2919,
+  "category": "magic",
+  "topic": "Holy Power guidelines",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Transcendence",
+  "summary": "Effect-level guidelines for Transcendence effects such as protection from spells, extra Soak, ignoring penalties and postponing or resolving aging crises.",
+  "quotes": [
+   "You cannot be targeted by spells or powers less than (the level of this effect + 5).",
+   "increasing Soak by (the magnitude of the effect + 3)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Understanding (Holy Power)",
+  "heading": "UNDERSTANDING",
+  "line": 2961,
+  "endLine": 2965,
+  "category": "realms",
+  "topic": "Holy Powers",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Understanding",
+  "summary": "The Power of receiving holy visions and hidden knowledge, including the risk of confusion on repeated questions.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Understanding Guidelines",
+  "heading": "Understanding Guidelines",
+  "line": 2967,
+  "endLine": 2987,
+  "category": "magic",
+  "topic": "Holy Power guidelines",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Understanding",
+  "summary": "Effect-level guidelines for Understanding effects such as visions, advice, enhanced memory and prophecy.",
+  "quotes": [
+   "Reduce the number of botch dice you must roll by the magnitude of this effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Wonders (Holy Power)",
+  "heading": "WONDERS",
+  "line": 3019,
+  "endLine": 3023,
+  "category": "realms",
+  "topic": "Holy Powers",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Wonders",
+  "summary": "The Power of conjuring items, creatures and forces of nature through Invocation, and what happens on a tragedy of hubris.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Wonders Guidelines",
+  "heading": "Wonders Guidelines",
+  "line": 3026,
+  "endLine": 3050,
+  "category": "magic",
+  "topic": "Holy Power guidelines",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Wonders",
+  "summary": "Effect-level guidelines for Wonders effects such as creating plants, forces of nature, food, objects and animals.",
+  "quotes": [
+   "Create a dangerous substance, like fire or poison, that does +(base level of the spell) damage upon contact."
+  ],
+  "related": []
+ }
+]

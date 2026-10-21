@@ -1,0 +1,4391 @@
+[
+ {
+  "title": "Aegis of the Hearth",
+  "heading": "Aegis of the Hearth",
+  "line": 7871,
+  "endLine": 7873,
+  "category": "covenant",
+  "topic": "Aegis of the Hearth",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains that the Aegis is the covenant-wide counterpart of Parma Magica and advises including it in a new covenant's library as a Lab Text and casting tablet.",
+  "quotes": [
+   "*Aegis of the Hearth* (often just 'the Aegis') gives it to a whole covenant"
+  ],
+  "related": [
+   "ArM5 p.370 Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "Covenant Seasons",
+  "heading": "Covenant Seasons",
+  "line": 7875,
+  "endLine": 7877,
+  "category": "covenant",
+  "topic": "Covenant seasons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The Order classes covenants as Spring, Summer, Autumn or Winter according to their life stage, and many covenant features depend on that season.",
+  "quotes": [
+   "The Order of Hermes traditionally classifies covenants into four seasons: Spring, Summer, Autumn, and Winter."
+  ],
+  "related": []
+ },
+ {
+  "title": "Spring Covenants",
+  "heading": "Spring",
+  "line": 7879,
+  "endLine": 7891,
+  "category": "covenant",
+  "topic": "Covenant seasons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes new, resource-poor Spring covenants, the ways a saga can start in one (from nothing, in ruins, or as a rebirth of a Winter covenant), and the style of play they give.",
+  "quotes": [
+   "Spring covenants are just getting started."
+  ],
+  "related": []
+ },
+ {
+  "title": "Summer Covenants",
+  "heading": "Summer",
+  "line": 7903,
+  "endLine": 7909,
+  "category": "covenant",
+  "topic": "Covenant seasons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes established, still-growing Summer covenants, which suit mixed groups of experienced players and newcomers and give player characters freedom to follow their own plots.",
+  "quotes": [
+   "Summer covenants are firmly established, and still growing."
+  ],
+  "related": []
+ },
+ {
+  "title": "Autumn Covenants",
+  "heading": "Autumn",
+  "line": 7921,
+  "endLine": 7931,
+  "category": "covenant",
+  "topic": "Covenant seasons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes powerful Autumn covenants living on past glories and the two ways to play them: as junior magi under elders, or as the elder magi themselves.",
+  "quotes": [
+   "An Autumn covenant is living off past glories, but has yet to go seriously into decline."
+  ],
+  "related": [
+   "ArM5 p.523 Sagas chapter"
+  ]
+ },
+ {
+  "title": "Winter Covenants",
+  "heading": "Winter",
+  "line": 7943,
+  "endLine": 7949,
+  "category": "covenant",
+  "topic": "Covenant seasons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes declining Winter covenants full of old, peculiar magi, and how a saga can pull one back to Spring or play the old magi.",
+  "quotes": [
+   "Winter covenants are in decline, and on their way to oblivion."
+  ],
+  "related": []
+ },
+ {
+  "title": "Covenant Situations",
+  "heading": "Covenant Situations",
+  "line": 7961,
+  "endLine": 7965,
+  "category": "covenant",
+  "topic": "Covenant situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains that a covenant's situation is independent of its season and power, and that situations are built from Boons and Hooks which a troupe can combine to design its own.",
+  "quotes": [
+   "The situation of a covenant is largely independent of its season and power."
+  ],
+  "related": [
+   "ArM5 p.181 Hooks and Boons"
+  ]
+ },
+ {
+  "title": "Autumn Power Situation",
+  "heading": "Autumn Power",
+  "line": 7967,
+  "endLine": 7973,
+  "category": "covenant",
+  "topic": "Covenant situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A ready-made covenant situation for a strong Autumn covenant, listing the Hooks and Boons that represent rivals, politics and hierarchy.",
+  "quotes": [
+   "**Hooks**: Hermetic Politics (Minor), Protector (Minor), Castle (Major), Rival (Major), Superiors (Major)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mundane Lord Situation",
+  "heading": "Mundane Lord",
+  "line": 7975,
+  "endLine": 7981,
+  "category": "covenant",
+  "topic": "Covenant situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A covenant situation for a covenant that has become lord of mundanes, with its Hooks and Boons.",
+  "quotes": [
+   "**Hooks**: Castle (Major), Mundane Politics (Major)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Powerful Location Situation",
+  "heading": "Powerful Location",
+  "line": 7983,
+  "endLine": 7989,
+  "category": "covenant",
+  "topic": "Covenant situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A covenant situation for a site of great magical power, noting that the covenfolk living in the multiple auras suffer Warping.",
+  "quotes": [
+   "**Hooks:** Monster (Minor) x2, Regio (Major)"
+  ],
+  "related": [
+   "ArM5 p.389 Warping"
+  ]
+ },
+ {
+  "title": "Struggling Situation",
+  "heading": "Struggling",
+  "line": 7991,
+  "endLine": 7997,
+  "category": "covenant",
+  "topic": "Covenant situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A covenant situation for a poor covenant with enemies, whose stories centre on mundane survival.",
+  "quotes": [
+   "**Hooks:** Contested Resource (Minor), Poverty (Major)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Urban Situation",
+  "heading": "Urban",
+  "line": 7999,
+  "endLine": 8005,
+  "category": "covenant",
+  "topic": "Covenant situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A covenant situation for a covenant hidden in a regio inside a city, with its Hooks and Boons.",
+  "quotes": [
+   "**Hooks:** Urban (Major)"
+  ],
+  "related": [
+   "Faith & Flame p.38 Tolosa Paratge"
+  ]
+ },
+ {
+  "title": "Winter Ruins Situation",
+  "heading": "Winter Ruins",
+  "line": 8007,
+  "endLine": 8013,
+  "category": "covenant",
+  "topic": "Covenant situations",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A covenant situation for a covenant occupying the remains of a Winter covenant, whose contents matter greatly to the characters.",
+  "quotes": [
+   "**Hooks:** Contested Resource (Minor) (x3), Monster (Major), Poverty (Minor)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Base Covenant Resources",
+  "heading": "Base Covenant Resources",
+  "line": 8015,
+  "endLine": 8059,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Three pre-built resource packages (weak, medium, powerful) that save time at covenant creation instead of using the full Customized Covenant Creation rules.",
+  "quotes": [
+   "If you want to save time, just pick one for your covenant."
+  ],
+  "related": [
+   "ArM5 p.179 Customized Covenant Creation"
+  ]
+ },
+ {
+  "title": "Weak Covenant Resources",
+  "heading": "Weak Covenant",
+  "line": 8021,
+  "endLine": 8031,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The library, Lab Texts and vis income of a weak covenant, suited to a Spring covenant or what is accessible in a Winter one.",
+  "quotes": [
+   "**Lab Texts:** 200 levels of spells, none over level 25.",
+   "**Build Points Spent:** 200"
+  ],
+  "related": []
+ },
+ {
+  "title": "Medium Covenant Resources",
+  "heading": "Medium Covenant",
+  "line": 8033,
+  "endLine": 8045,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The library, Lab Texts, vis and enchanted items of a medium covenant, suited to early Summer or young magi in an Autumn covenant.",
+  "quotes": [
+   "**Lab Texts:** 1,000 levels of spells, none over level 40",
+   "**Build Points Spent:** 800"
+  ],
+  "related": []
+ },
+ {
+  "title": "Powerful Covenant Resources",
+  "heading": "Powerful Covenant",
+  "line": 8047,
+  "endLine": 8059,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "The library, Lab Texts, vis and enchanted items of a powerful covenant, suited to high Summer or young magi in a very powerful Autumn covenant.",
+  "quotes": [
+   "**Build Points spent:** 2000"
+  ],
+  "related": []
+ },
+ {
+  "title": "Customized Covenant Creation",
+  "heading": "Customized Covenant Creation",
+  "line": 8061,
+  "endLine": 8063,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces the build-point method in which the whole troupe designs the covenant together, starting from a concept and then choosing how powerful it is.",
+  "quotes": [
+   "The covenant should be created by the whole troupe, working together."
+  ],
+  "related": []
+ },
+ {
+  "title": "Covenant Baseline",
+  "heading": "Baseline",
+  "line": 8065,
+  "endLine": 8069,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines the default covenant that Build Points modify: a stone building in a level 3 Magic aura with no magical resources, about one grog and two other covenfolk per magus, and Aging Modifier 0.",
+  "quotes": [
+   "located in a level 3 Magic aura",
+   "The Aging Modifier for a basic covenant is 0."
+  ],
+  "related": []
+ },
+ {
+  "title": "Accessible Power Level",
+  "heading": "Accessible Power Level",
+  "line": 8071,
+  "endLine": 8086,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A table of Low, Medium, High and Legendary power levels giving the Build Points available, the maximum level of a single Lab Text or enchanted effect, and the minimum covenant age.",
+  "quotes": [
+   "*Maximum Level:* The highest level of a single Lab Text or a single effect in an enchanted device.",
+   "*Minimum Age:* The minimum number of years that have passed since the foundation of the covenant."
+  ],
+  "related": [
+   "ArM5 p.252 Magical Enchantments"
+  ]
+ },
+ {
+  "title": "Library (Covenant Creation)",
+  "heading": "Library",
+  "line": 8092,
+  "endLine": 8116,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How to buy Art summae, Ability summae and tractatus with Build Points, including cost formulas and level and quality limits.",
+  "quotes": [
+   "**ART SUMMA COST: Level + Quality**",
+   "**ABILITY SUMMA COST: Quality + 3 x Level**",
+   "**TRACTATUS COST: Quality**"
+  ],
+  "related": [
+   "ArM5 p.379 Books"
+  ]
+ },
+ {
+  "title": "Lab Texts (Covenant Creation)",
+  "heading": "Lab Texts",
+  "line": 8118,
+  "endLine": 8124,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How covenant Lab Texts are bought with Build Points, limited by the maximum level for the power level.",
+  "quotes": [
+   "**LAB TEXT COST: 1 Build Point per five levels**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Casting Tablets (Covenant Creation)",
+  "heading": "Casting Tablets",
+  "line": 8126,
+  "endLine": 8132,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How Casting Tablets, which let magi cast Formulaic or Ritual spells they do not know, are bought with Build Points.",
+  "quotes": [
+   "Casting Tablet Cost: 2 Build Points per five levels"
+  ],
+  "related": [
+   "ArM5 p.263 Casting Tablets"
+  ]
+ },
+ {
+  "title": "Vis (Covenant Creation)",
+  "heading": "Vis",
+  "line": 8134,
+  "endLine": 8144,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How vis sources and one-off vis stocks are bought with Build Points.",
+  "quotes": [
+   "**VIS SUPPLIES COST: 5 Build Points per pawn of vis per year**",
+   "**VIS STOCKS COST: 1 Build Point per 5 pawns of vis**"
+  ],
+  "related": [
+   "ArM5 p.212 Raw Vis",
+   "ArM5 p.422 Vis sources"
+  ]
+ },
+ {
+  "title": "Enchanted Items (Covenant Creation)",
+  "heading": "Enchanted Items",
+  "line": 8146,
+  "endLine": 8150,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How covenant enchanted items are bought with Build Points, with the level cap from the power level table.",
+  "quotes": [
+   "Enchanted Item Cost: 2 Build Points per five levels of effect, including modifications"
+  ],
+  "related": [
+   "ArM5 p.274 Enchanted items"
+  ]
+ },
+ {
+  "title": "Specialists (Covenant Creation)",
+  "heading": "Specialists",
+  "line": 8152,
+  "endLine": 8166,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How teachers and other non-magus specialists are bought for the covenant with Build Points, with costs based on their Ability scores and score limits set by age.",
+  "quotes": [
+   "**TEACHER COST: Communication + Teaching + Highest Ability Score**",
+   "**SPECIALIST COST: Highest Ability Score**"
+  ],
+  "related": [
+   "ArM5 p.48 Starting Ability limits by age"
+  ]
+ },
+ {
+  "title": "Covenant Hooks",
+  "heading": "Hooks",
+  "line": 8168,
+  "endLine": 8172,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Hooks are story-generating features of a covenant, Major or Minor; they give no Build Points but earn the points used to buy Boons.",
+  "quotes": [
+   "A Major Hook provides three points that can be spent on Boons, while a Minor Hook provides one point."
+  ],
+  "related": [
+   "Covenants (supplement)"
+  ]
+ },
+ {
+  "title": "Minor Hooks",
+  "heading": "Minor Hooks",
+  "line": 8174,
+  "endLine": 8202,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "List of Minor covenant Hooks (Contested Resource, Favors, Hermetic Politics, Monster, Poverty, Protector, Regio, Rival, Road, Superiors, Urban), each worth one Boon point.",
+  "quotes": [
+   "Contested Resource: Access to one of the covenant's accessible resources is contested with someone, or something, else."
+  ],
+  "related": []
+ },
+ {
+  "title": "Major Hooks",
+  "heading": "Major Hooks",
+  "line": 8204,
+  "endLine": 8232,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "List of Major covenant Hooks (Beholden, Castle, Monster, Mundane Politics, Poverty, Regio, Rival, Road, Superiors, Unknown, Urban), each worth three Boon points, including how an Unknown Hook is run by a player.",
+  "quotes": [
+   "**Unknown:** An Unknown Hook is taken on by one of the players, who will act as storyguide for that aspect of the saga."
+  ],
+  "related": []
+ },
+ {
+  "title": "Covenant Boons",
+  "heading": "Boons",
+  "line": 8234,
+  "endLine": 8236,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Boons are covenant advantages paid for only with points from Hooks, not with Build Points.",
+  "quotes": [
+   "Each Minor Boon costs one point, while a Major Boon costs three points, and they must be paid for with Hooks."
+  ],
+  "related": []
+ },
+ {
+  "title": "Minor Boons",
+  "heading": "Minor Boons",
+  "line": 8238,
+  "endLine": 8270,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "List of Minor Boons (Aura, Edifice, Hidden Resources, Important Building, Prestige, Regio, Seclusion, Shell Keep, Tower Keep, Wealth), each costing one Hook point.",
+  "quotes": [
+   "The players may take this Boon up to seven times, for a covenant in any Magic aura up to ten.",
+   "The covenant has a Reputation score of 3 (see page 28)."
+  ],
+  "related": [
+   "ArM5 p.28 Reputation"
+  ]
+ },
+ {
+  "title": "Major Boons",
+  "heading": "Major Boons",
+  "line": 8272,
+  "endLine": 8296,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "List of Major Boons (Aura, Curtain Walls and Mural Towers, Prestige, Regio, Wealth), each costing three Hook points.",
+  "quotes": [
+   "The covenant has a Reputation score of 9 (see page 28)."
+  ],
+  "related": [
+   "ArM5 p.28 Reputation"
+  ]
+ },
+ {
+  "title": "Covenant Loyalty",
+  "heading": "Covenant Loyalty",
+  "line": 8298,
+  "endLine": 8302,
+  "category": "covenant",
+  "topic": "Covenant loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Prevailing Loyalty is the average 'Loyal to Covenant' Personality Trait of the covenant's servants, specialists and soldiers, reflecting the covenant's morale; individuals can vary a few points either way.",
+  "quotes": [
+   "can vary by up to three points either way from the average Prevailing Loyalty of the covenant"
+  ],
+  "related": [
+   "Covenants (supplement) pp.36-41"
+  ]
+ },
+ {
+  "title": "Sample Prevailing Loyalty Scores",
+  "heading": "Sample Prevailing Loyalty Scores",
+  "line": 8304,
+  "endLine": 8314,
+  "category": "covenant",
+  "topic": "Covenant loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table describing the attitude of covenfolk at each Prevailing Loyalty score from -6 to +6, including productivity effects at the extremes.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Calculating Prevailing Loyalty",
+  "heading": "Calculating Prevailing Loyalty",
+  "line": 8316,
+  "endLine": 8329,
+  "category": "covenant",
+  "topic": "Covenant loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Base Loyalty is the average of the magi's Gift modifiers; loyalty points from situation and events are added and converted to a Prevailing Loyalty score via the Ability advancement table.",
+  "quotes": [
+   "**BASE LOYALTY = total of Gift modifiers / number of magi**"
+  ],
+  "related": [
+   "ArM5 Ability advancement table"
+  ]
+ },
+ {
+  "title": "Modifying Loyalty Due to Covenant Situation",
+  "heading": "Modifying Loyalty Due to Covenant Situation",
+  "line": 8330,
+  "endLine": 8333,
+  "category": "covenant",
+  "topic": "Covenant loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Wages, equipment, living conditions and competent specialists (turb captain, steward, chamberlain, or an autocrat doing two roles) all add or remove loyalty points.",
+  "quotes": [
+   "The covenant can employ up to three specialists who deal with the covenfolk on their behalf"
+  ],
+  "related": []
+ },
+ {
+  "title": "Situational Modifiers to Loyalty",
+  "heading": "Situational Modifiers to Loyalty",
+  "line": 8334,
+  "endLine": 8365,
+  "category": "covenant",
+  "topic": "Covenant loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Tables of loyalty point modifiers for living conditions, equipment quality, salary and pension, and the loyalty bonus provided by turb captain, steward and chamberlain.",
+  "quotes": [
+   "Covenant grants a standard salary (standard Wages)",
+   "Covenant provides a pension upon retirement (half Wages until death)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Familiarity",
+  "heading": "Familiarity",
+  "line": 8366,
+  "endLine": 8369,
+  "category": "covenant",
+  "topic": "Covenant loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covenfolk grow used to their own magi over time, gaining loyalty points each year up to a cap equal to the covenant's Gift-based base loyalty points.",
+  "quotes": [
+   "For every year that a covenant exists it gains two loyalty points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Changing Loyalty Due to Actions & Events",
+  "heading": "Changing Loyalty Due to Actions & Events",
+  "line": 8370,
+  "endLine": 8379,
+  "category": "covenant",
+  "topic": "Covenant loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magi's actions, and local events they are blamed for, reduce loyalty more easily than they raise it; penalties apply only to events that happen in play or that the players agree happened offstage.",
+  "quotes": [
+   "Unfortunately, it is easier for magi to reduce the loyalty of the covenfolk than to increase it."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Loyalty Point Penalties",
+  "heading": "Example Loyalty Point Penalties",
+  "line": 8380,
+  "endLine": 8389,
+  "category": "covenant",
+  "topic": "Covenant loyalty",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of loyalty point penalties (1 to 15) by severity of attitude, punishment, wound or local event.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Covenant Finances",
+  "heading": "Covenant Finances",
+  "line": 8391,
+  "endLine": 8393,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the optional detailed covenant finance rules for troupes who want stories about increasing wealth or threats to income.",
+  "quotes": [
+   "Covenants almost always need some source of mundane wealth to obtain things like food and clothing."
+  ],
+  "related": [
+   "Covenants (supplement)",
+   "City & Guild"
+  ]
+ },
+ {
+  "title": "The Mythic Pound",
+  "heading": "The Mythic Pound",
+  "line": 8395,
+  "endLine": 8399,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the Mythic Pound, the standard currency used in the covenant finance rules.",
+  "quotes": [
+   "One Mythic Pound is equivalent to a pound of silver, the annual income of a typical peasant, or enough money to maintain an average Hermetic laboratory for a year."
+  ],
+  "related": [
+   "City & Guild"
+  ]
+ },
+ {
+  "title": "Covenant Income",
+  "heading": "Income",
+  "line": 8401,
+  "endLine": 8403,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "A covenant's income comes from one or more sources of income, each ranked in one of four categories by how much it yields.",
+  "quotes": [
+   "Each source of income comes in one of four categories, specifying broadly how much income it provides (see insert)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Source of Income Categories",
+  "heading": "Source of Income Categories",
+  "line": 8405,
+  "endLine": 8413,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of the none, Lesser, Typical, Greater and Legendary income categories with the Hook or Boon tied to each and its typical annual income in pounds.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Baseline Income",
+  "heading": "Baseline",
+  "line": 8415,
+  "endLine": 8419,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "A standard covenant has one Typical source of income (or two Lesser), and the income is adjusted per magus above or below a six-magus covenant.",
+  "quotes": [
+   "you may wish to adjust the income upwards by 15 pounds per additional magus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sources of Income",
+  "heading": "Sources of Income",
+  "line": 8421,
+  "endLine": 8451,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A list of kinds of income source (agriculture, charity, crime, fishing, trade, wizardry and so on) that can inspire a covenant, any of which can supply any level of income.",
+  "quotes": [
+   "any source can supply any level of income"
+  ],
+  "related": [
+   "Covenants (supplement)"
+  ]
+ },
+ {
+  "title": "Covenant Expenditure",
+  "heading": "Expenditure",
+  "line": 8453,
+  "endLine": 8459,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how to work out normal yearly expenditure from covenfolk, weapons and armor and laboratory points, add sundry expenses, and apply the surplus or shortfall to the covenant's stores.",
+  "quotes": [
+   "To start with, you should determine the normal yearly expenditure of the covenant"
+  ],
+  "related": [
+   "Covenants (supplement)",
+   "City & Guild"
+  ]
+ },
+ {
+  "title": "Covenfolk Categories",
+  "heading": "Covenfolk Categories",
+  "line": 8461,
+  "endLine": 8485,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Sorts covenfolk into craftsmen, dependents, grogs, laborers, servants, specialists and teamsters for accounting, and gives the procedure for the minimum number of servants and teamsters.",
+  "quotes": [
+   "Number of Servants required: 2 for every 10 points of (all inhabitants, excluding laborers, servants, and teamsters)",
+   "Number of Teamsters required: 1 for every 10 points of"
+  ],
+  "related": []
+ },
+ {
+  "title": "Points for Inhabitants of a Typical Covenant",
+  "heading": "Points for Inhabitants of a Typical Covenant",
+  "line": 8487,
+  "endLine": 8497,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of expenditure points per inhabitant type (magus, companion, specialist, other covenfolk, horse) with the Living Conditions modifier by covenant season, and how impoverished magi can reduce their point cost.",
+  "quotes": [
+   "impoverished magi may reduce their point cost to 3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Points of Laboratories",
+  "heading": "Points of Laboratories",
+  "line": 8499,
+  "endLine": 8521,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Converts each laboratory's Upkeep score into expenditure points, with a usage multiplier for maintenance, and a rule for Upkeep scores above +5.",
+  "quotes": [
+   "For example, a standard laboratory (Upkeep 0) equates to 10 points.",
+   "the number of extra points gained per level of Upkeep increase is equal to the new Upkeep score times ten"
+  ],
+  "related": [
+   "ArM5 p.375 Advancement Table",
+   "ArM5 Chapter 8 Laboratory Upkeep"
+  ]
+ },
+ {
+  "title": "Points of Weapons and Armor",
+  "heading": "Points of Weapons and Armor",
+  "line": 8523,
+  "endLine": 8533,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table giving expenditure points for weapons, armor and siege engines at Inexpensive, Standard and Expensive quality, totalled across the covenant.",
+  "quotes": [
+   "Add up the points of the weapons and armor possessed by all the characters at the covenant"
+  ],
+  "related": []
+ },
+ {
+  "title": "Yearly Expenditure Categories",
+  "heading": "Yearly Expenditure Categories",
+  "line": 8535,
+  "endLine": 8537,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the categories of regular yearly expenditure and a rule of thumb relating a covenant's affordable inhabitant points to its income.",
+  "quotes": [
+   "a covenant can afford a number of points of inhabitants equal to its income in pounds"
+  ],
+  "related": []
+ },
+ {
+  "title": "Buildings Expenditure",
+  "heading": "Buildings",
+  "line": 8539,
+  "endLine": 8545,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Yearly cost of maintaining the covenant's buildings, plus extra for Boons that add to its buildings or fortifications.",
+  "quotes": [
+   "Buildings cost: 1 pound for every 10 points of inhabitants."
+  ],
+  "related": []
+ },
+ {
+  "title": "Consumables Expenditure",
+  "heading": "Consumables",
+  "line": 8547,
+  "endLine": 8551,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Yearly cost of tools, candles, fuel and other consumables for the covenant.",
+  "quotes": [
+   "CONSUMABLES COST: 2 pounds for every 10 points of inhabitants."
+  ],
+  "related": []
+ },
+ {
+  "title": "Inflation",
+  "heading": "Inflation",
+  "line": 8553,
+  "endLine": 8557,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A flat yearly cost added to expenditure to model the covenant's corrosive effect on local prices; it starts at zero and rises each year.",
+  "quotes": [
+   "it is suggested that it increase by one pound per hundred pounds of expenditure every year"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratories Expenditure",
+  "heading": "Laboratories",
+  "line": 8559,
+  "endLine": 8563,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Yearly cost of maintaining the covenant's laboratories, based on their points from Upkeep scores.",
+  "quotes": [
+   "**LABORATORIES COST: 1 pound per 10 points of laboratories.**"
+  ],
+  "related": [
+   "ArM5 Chapter 8 Laboratory"
+  ]
+ },
+ {
+  "title": "Provisions Expenditure",
+  "heading": "Provisions",
+  "line": 8565,
+  "endLine": 8569,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Yearly cost of food and fodder, usually the largest item of covenant expenditure.",
+  "quotes": [
+   "**PROVISIONS COST: 5 pounds for every 10 points of inhabitants.**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tithes",
+  "heading": "Tithes",
+  "line": 8571,
+  "endLine": 8573,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Yearly payments to another covenant, a feudal overlord, the Church or creditors, set by the covenant's situation and the saga.",
+  "quotes": [
+   "The amount of these obligations is determined by the situation of the covenant, and development of the saga."
+  ],
+  "related": []
+ },
+ {
+  "title": "Wages",
+  "heading": "Wages",
+  "line": 8575,
+  "endLine": 8583,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Yearly cost of covenfolk stipends and magi allowances; changing the standard wages changes covenfolk Loyalty.",
+  "quotes": [
+   "**WAGES COST: 2 pounds for every 10 points of inhabitants.**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Weapons and Armor Expenditure",
+  "heading": "Weapons and Armor",
+  "line": 8585,
+  "endLine": 8589,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Yearly cost of cleaning, repairing and replacing the covenant's weapons and armor.",
+  "quotes": [
+   "**WEAPONS AND ARMOR COST: 1 pound for every 320 points of weapons and armor.**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Writing Materials Expenditure",
+  "heading": "Writing Materials",
+  "line": 8591,
+  "endLine": 8595,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Yearly cost of parchment and ink, assuming one pound writes four books without embellishment.",
+  "quotes": [
+   "**WRITING MATERIALS COST: 1 pound for every magus, scribe, bookbinder, or illuminator.**"
+  ],
+  "related": [
+   "Covenants (supplement)"
+  ]
+ },
+ {
+  "title": "Cost Saving",
+  "heading": "Cost Saving",
+  "line": 8597,
+  "endLine": 8599,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A covenant can cut expenditure by employing laborers, employing craftsmen, or using magical items and Ritual spells that substitute for human work.",
+  "quotes": [
+   "by employing laborers, by employing craftsmen, and by utilizing magical items (or Ritual spells) which substitute for the work of one or more humans"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cost Saving by Laborers",
+  "heading": "Laborers",
+  "line": 8601,
+  "endLine": 8603,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each laborer reduces Provisions expenditure, up to a cap of half of the Provisions total.",
+  "quotes": [
+   "Each laborer working for the covenant reduces expenditure on Provisions by one pound."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cost Saving by Craftsmen",
+  "heading": "Craftsmen",
+  "line": 8605,
+  "endLine": 8607,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Common and rare craftsmen reduce expenditure according to their Craft Ability, subject to a per-craft limit in each expenditure category.",
+  "quotes": [
+   "A common craftsman reduces expenditure by a number of pounds equal to one plus half of his Craft Ability, rounded down.",
+   "A rare craftsman reduces expenditure by a number of pounds equal to his Craft Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cost Saving Limits by Craft",
+  "heading": "Cost Saving Limits by Craft",
+  "line": 8609,
+  "endLine": 8618,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of example craftsmen and the maximum percentage of each expenditure category that any one craft can save.",
+  "quotes": [
+   "stonemason, carpenter, furniture maker, thatcher"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cost Saving by Magic",
+  "heading": "Magic",
+  "line": 8620,
+  "endLine": 8622,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magic items and Ritual spells can substitute for covenfolk or supplies, saving money per magnitude of effect at the storyguide's discretion.",
+  "quotes": [
+   "each magnitude of effect in such items can save one pound per year",
+   "Each casting of a Ritual spell may save approximately five pounds per magnitude"
+  ],
+  "related": []
+ },
+ {
+  "title": "Emergency Savings",
+  "heading": "Emergency Savings",
+  "line": 8624,
+  "endLine": 8630,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Options when expenditure exceeds income: privileged members give up perks, wages are cut, covenfolk are laid off, or categories are neglected, each with Loyalty and story consequences.",
+  "quotes": [
+   "If you have fewer than these minimums, it will adversely affect the functioning of the covenant"
+  ],
+  "related": []
+ },
+ {
+  "title": "Yearly Expenditure Summary",
+  "heading": "Yearly Expenditure Summary",
+  "line": 8632,
+  "endLine": 8648,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "One-page summary of every yearly expenditure formula.",
+  "quotes": [
+   "**Inhabitants**: 1 pound per point of inhabitants",
+   "INFLATION: Starts at 0; increases by an average of 1 pound per 100 pounds of expenditure per year"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cost Saving Summary",
+  "heading": "Cost Saving",
+  "line": 8650,
+  "endLine": 8664,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Summary of the per-unit cost saving formulas for laborers, craftsmen, magic items and Ritual spells, and of the cost saving limits.",
+  "quotes": [
+   "**Craftsmen (common):** For each, subtract 1 + (Ability / 2) pounds (rounding down)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Expenditure - A Simple Example",
+  "heading": "Expenditure - A Simple Example",
+  "line": 8666,
+  "endLine": 8704,
+  "category": "covenant",
+  "topic": "Covenant finances",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of computing inhabitant points, servants, teamsters and yearly expenditure for a starting covenant and again after ten years of expansion with cost savings.",
+  "quotes": [
+   "It thus needs 12 servants (12 points), taking the total to 70 points."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Organization of Covenfolk",
+  "heading": "The Organization of Covenfolk",
+  "line": 8706,
+  "endLine": 8708,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces the models (hierarchy, nations, guilds, no structure) around which a covenant's grogs and covenfolk can be organized, which may be mixed.",
+  "quotes": [
+   "Naturally it is possible to mix-and-match"
+  ],
+  "related": [
+   "Grogs Chapter Two"
+  ]
+ },
+ {
+  "title": "Hierarchy",
+  "heading": "Hierarchy",
+  "line": 8710,
+  "endLine": 8712,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A hierarchy is the most common organization and least work for the magi; the two main models are the noble household and the military.",
+  "quotes": [
+   "The two most significant hierarchical models adopted are those of the noble household and the military."
+  ],
+  "related": []
+ },
+ {
+  "title": "A Noble Household",
+  "heading": "A Noble Household",
+  "line": 8714,
+  "endLine": 8726,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Covenfolk organized like a noble household under a steward, chamberlain and marshal, and what each official controls.",
+  "quotes": [
+   "the three chief officials in a noble household are the **steward**, the **chamberlain**, and the **marshal**"
+  ],
+  "related": [
+   "Lords of Men"
+  ]
+ },
+ {
+  "title": "Military Hierarchy",
+  "heading": "Military Hierarchy",
+  "line": 8728,
+  "endLine": 8734,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Covenfolk divided into squads of soldiers and auxiliary staff, suited to military covenants or covenants split over several sites.",
+  "quotes": [
+   "the covenfolk are divided into squads, each of which consists of soldiers and their auxiliary staff"
+  ],
+  "related": []
+ },
+ {
+  "title": "Nations",
+  "heading": "Nations",
+  "line": 8736,
+  "endLine": 8746,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Covenfolk organized into cross-role nations by lot, sponsor, contest or birth; members may have a Loyalty Trait to their nation as well as the covenant.",
+  "quotes": [
+   "Members of nations often have a Loyalty Personality Trait specific to the nation as well as to the covenant."
+  ],
+  "related": [
+   "Art & Academe p.94 University nations"
+  ]
+ },
+ {
+  "title": "Guilds",
+  "heading": "Guilds",
+  "line": 8748,
+  "endLine": 8754,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Covenfolk organized by function into guilds, from the basic servant/specialist/soldier split to many finer groups, often self-organizing.",
+  "quotes": [
+   "An alternative to nations is guilds; that is, organizing the grogs by their function."
+  ],
+  "related": []
+ },
+ {
+  "title": "Professional Guilds",
+  "heading": "Professional Guilds",
+  "line": 8756,
+  "endLine": 8762,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A covenant organization modeled on craft and merchant guilds with a dean, aldermen, masters, journeymen and apprentices.",
+  "quotes": [
+   "At the head of a guild is the **dean**, elected by the guild members from among their number."
+  ],
+  "related": [
+   "City & Guild Chapter 3"
+  ]
+ },
+ {
+  "title": "Monastery",
+  "heading": "Monastery",
+  "line": 8764,
+  "endLine": 8768,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A guild-like model in which an abbot designates officials who manage each department and can call on others for help; good for small covenants.",
+  "quotes": [
+   "the abbot of a monastery designates officials to manage each aspect of the daily life of the monastery"
+  ],
+  "related": [
+   "The Church Chapter 4"
+  ]
+ },
+ {
+  "title": "No Formal Structure",
+  "heading": "No Formal Structure",
+  "line": 8770,
+  "endLine": 8774,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A small covenant with no formal organization, which risks neglected tasks unless the covenfolk form a cohesive group.",
+  "quotes": [
+   "This is usually only possible for very small numbers of covenfolk"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rivalries and Tension",
+  "heading": "Rivalries and Tension",
+  "line": 8776,
+  "endLine": 8782,
+  "category": "covenant",
+  "topic": "Covenfolk organization",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Any social structure can breed rivalry between nations, guilds, families, or officials such as the steward, chamberlain and turb captain.",
+  "quotes": [
+   "A common rivalry occurs between the steward and the chamberlain over precedence"
+  ],
+  "related": [
+   "Faith & Flame p.38 Tolosa Paratge"
+  ]
+ },
+ {
+  "title": "The Covenant in Play",
+  "heading": "The Covenant in Play",
+  "line": 8784,
+  "endLine": 8798,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Covenants gain no Build Points in play; Boons and Hooks are gained and lost through events, a gained Boon brings a matching Hook, and resolving a Hook takes many stories.",
+  "quotes": [
+   "Covenants do not gain Build Points while they are being played.",
+   "it should take at least half a dozen stories for a minor Hook, and around twenty for a major Hook"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Gift",
+  "heading": "The Gift",
+  "line": 8812,
+  "endLine": 8838,
+  "category": "social",
+  "topic": "The Gift",
+  "audience": [
+   "all",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the social penalty of The Gift on mundane people and animals, how Gentle and Blatant Gifts differ, how familiarity and Parma Magica change it, and its effect on supernatural creatures.",
+  "quotes": [
+   "she suffers a -3 penalty to any die rolls she must make",
+   "she suffers a \u20136 penalty to any die rolls she must make",
+   "The Parma Magica blocks these effects of The Gift entirely."
+  ],
+  "related": [
+   "ArM5 p.82 Gentle Gift",
+   "ArM5 p.120 Blatant Gift",
+   "ArM5 p.186 Covenant Loyalty"
+  ]
+ },
+ {
+  "title": "The Gift: First Impressions",
+  "heading": "First Impressions",
+  "line": 8840,
+  "endLine": 8876,
+  "category": "social",
+  "topic": "The Gift",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Examples of how villagers, innkeepers, monks and covenant guards react to strangers with no Gift or a Gentle Gift, a Gift, or a Blatant Gift.",
+  "quotes": [
+   "*Blatant Gift:* The villagers tell the characters to get out of the village"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Gift: Established Relationships",
+  "heading": "Established Relationships",
+  "line": 8878,
+  "endLine": 8900,
+  "category": "social",
+  "topic": "The Gift",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Examples of how innkeepers and monks treat a magus they already know well, depending on whether the magus has a Gentle Gift, a Gift or a Blatant Gift.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Hermetic Arts",
+  "heading": "The Hermetic Arts",
+  "line": 8902,
+  "endLine": 8912,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains that magi have a score in each Technique and Form, that a spell combines one of each, and that a Form score gives a Form Bonus to resist related hazards (bonuses do not stack).",
+  "quotes": [
+   "**FORM BONUS: Form score/5 (rounded up)**",
+   "These bonuses do not stack."
+  ],
+  "related": [
+   "ArM5 p.313 Spells chapter"
+  ]
+ },
+ {
+  "title": "Creo",
+  "heading": "Creo (Cr) \"I Create\"",
+  "line": 8916,
+  "endLine": 8932,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "What the Technique Creo can create, heal or improve, why artificial items need an Int + Finesse roll, and how long created things and their effects last.",
+  "quotes": [
+   "An Int + Finesse roll is made to determine how good the created thing is."
+  ],
+  "related": [
+   "ArM5 p.306 Craft Magic"
+  ]
+ },
+ {
+  "title": "Intellego",
+  "heading": "Intellego (In) \"I Perceive\"",
+  "line": 8934,
+  "endLine": 8938,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "What the Technique Intellego reveals: the true nature of a thing rather than its appearance, so it is not fooled by mundane disguises.",
+  "quotes": [
+   "Thus, Intellego magic is not deceived by mundane disguises."
+  ],
+  "related": []
+ },
+ {
+  "title": "Muto",
+  "heading": "Muto (Mu) \"I Transform\"",
+  "line": 8940,
+  "endLine": 8948,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "What the Technique Muto can change: it grants or removes properties but cannot give a target an unnatural property that other things cannot confer, nor directly injure or kill.",
+  "quotes": [
+   "Muto magic cannot affect the properties that something has naturally"
+  ],
+  "related": []
+ },
+ {
+  "title": "Perdo",
+  "heading": "Perdo (Pe) \"I Destroy\"",
+  "line": 8950,
+  "endLine": 8958,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "What the Technique Perdo can destroy: it makes things worse examples of their kind, destroys whole properties, and is easier when the thing can naturally lose the property.",
+  "quotes": [
+   "destroying properties that a thing cannot naturally lose falls under the Limit of Essential Nature (see page 210)"
+  ],
+  "related": [
+   "ArM5 p.311 Requisites",
+   "ArM5 p.210 Limit of Essential Nature"
+  ]
+ },
+ {
+  "title": "Rego",
+  "heading": "Rego (Re) \"I Control\"",
+  "line": 8960,
+  "endLine": 8966,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "What the Technique Rego can do: change a thing to another state it can naturally have, such as moving it, with a Finesse roll to set the quality of crafted outcomes.",
+  "quotes": [
+   "Rego magic allows a maga to move things around"
+  ],
+  "related": [
+   "ArM5 p.306 Craft Magic"
+  ]
+ },
+ {
+  "title": "Animal",
+  "heading": "Animal (An) \"animal\"",
+  "line": 8970,
+  "endLine": 8976,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Animal covers animals but not people, and its Form Bonus applies to soak against animal attacks and to resisting animal poisons.",
+  "quotes": [
+   "Animal spells cannot affect people",
+   "*Form Bonus:* Soak against animal attacks (claws, bites, etc.), rolls to resist animal poisons."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aquam",
+  "heading": "Aquam (Aq) \"water\"",
+  "line": 8978,
+  "endLine": 8984,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Aquam covers water and liquids, and its Form Bonus helps resist drowning, thirst and water jets.",
+  "quotes": [
+   "*Form Bonus:* Rolls to resist drowning and thirst, soak against water jets and the like."
+  ],
+  "related": []
+ },
+ {
+  "title": "Auram",
+  "heading": "Auram (Au) \"air\"",
+  "line": 8986,
+  "endLine": 8992,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Auram covers air, wind, weather and gases, and its Form Bonus helps resist suffocation and weather damage.",
+  "quotes": [
+   "*Form bonus:* Rolls to resist suffocation, including drowning, soak against weather phenomena such as lightning."
+  ],
+  "related": []
+ },
+ {
+  "title": "Corpus",
+  "heading": "Corpus (Co) \"body\"",
+  "line": 8994,
+  "endLine": 9000,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Corpus covers human bodies, living or dead, and its Form Bonus helps against human unarmed attacks and disease but not aging rolls.",
+  "quotes": [
+   "*Form bonus:* Soak against human unarmed attacks, rolls to resist disease. It does not apply to aging rolls."
+  ],
+  "related": []
+ },
+ {
+  "title": "Herbam",
+  "heading": "Herbam (He) \"plant\"",
+  "line": 9002,
+  "endLine": 9008,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Herbam covers plants and plant matter, and its Form Bonus helps against wooden weapons, herbal poisons and starvation.",
+  "quotes": [
+   "*Form bonus:* Soak against wooden weapons, rolls to resist herbal poisons, rolls to resist starvation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ignem",
+  "heading": "Ignem (Ig) \"fire\"",
+  "line": 9010,
+  "endLine": 9014,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Ignem covers fire, heat and light, and its Form Bonus helps soak fire and cold.",
+  "quotes": [
+   "*Form bonus:* Soak against fire and cold."
+  ],
+  "related": []
+ },
+ {
+  "title": "Imaginem",
+  "heading": "Imaginem (Im) \"image\"",
+  "line": 9016,
+  "endLine": 9028,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Imaginem covers sensory species; it normally affects how species are produced, can affect species directly (which then must Penetrate), and only changes appearance, not real effects.",
+  "quotes": [
+   "*Form bonus:* Rolls to resist confusion, deafening, or nausea caused by sights, sounds, smells, or tastes."
+  ],
+  "related": [
+   "Houses of Hermes: Societates, Jerbiton chapter"
+  ]
+ },
+ {
+  "title": "Mentem",
+  "heading": "Mentem (Me) \"mind\"",
+  "line": 9030,
+  "endLine": 9036,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Mentem covers minds, thoughts, spirits and the bodies of noncorporeal beings, and its Form Bonus helps resist mundane persuasion, deception and temptation.",
+  "quotes": [
+   "*Form bonus:* Rolls to resist mundane persuasion, deception, or temptation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Terram",
+  "heading": "Terram (Te) \"earth\"",
+  "line": 9038,
+  "endLine": 9044,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Terram covers solids, especially earth and stone, and its Form Bonus helps soak metal or stone weapons and resist mineral poisons.",
+  "quotes": [
+   "*Form bonus:* Soak against metal or stone weapons, rolls to resist mineral poisons."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vim",
+  "heading": "Vim (Vi) \"power\"",
+  "line": 9046,
+  "endLine": 9052,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The Form Vim covers raw magical power and magical, infernal, divine and faerie creatures, and its Form Bonus helps resist Twilight and soak damage from the caster's own spellcasting.",
+  "quotes": [
+   "*Form bonus:* Rolls to resist Twilight (see page 228), but not rolls to comprehend it"
+  ],
+  "related": [
+   "ArM5 p.228 Wizard's Twilight"
+  ]
+ },
+ {
+  "title": "The Elemental Forms",
+  "heading": "The Elemental Forms",
+  "line": 9054,
+  "endLine": 9058,
+  "category": "magic",
+  "topic": "Hermetic Arts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how Aquam, Auram, Ignem and Terram overlap on one substance (lava, ice, mist, hail) and when requisites are needed.",
+  "quotes": [
+   "As a rule, simple creation or destruction of a non-living thing needs only the basic Art, without requisites (see page 311)."
+  ],
+  "related": [
+   "ArM5 p.311 Requisites"
+  ]
+ },
+ {
+  "title": "Limits of Magic",
+  "heading": "Limits of Magic",
+  "line": 9060,
+  "endLine": 9064,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the limits Hermetic magic can never exceed: two fundamental limits (the Divine and Essential Nature) and several lesser ones.",
+  "quotes": [
+   "Most Hermetic theorists believe that there are only two fundamental limits"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of the Divine",
+  "heading": "The Limit of the Divine",
+  "line": 9066,
+  "endLine": 9070,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot affect the Divine, though beings with a will separate from God's can in principle be affected.",
+  "quotes": [
+   "Hermetic magic cannot affect the Divine."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of Essential Nature",
+  "heading": "The Limit of Essential Nature",
+  "line": 9072,
+  "endLine": 9076,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Magic that violates a thing's essential nature must be maintained, and a thing's essential nature cannot be changed; physical features count as either injuries or essential nature, and Flaw-bought disabilities are essential.",
+  "quotes": [
+   "Any magic which violates a thing's essential nature must be maintained"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Lesser Limits",
+  "heading": "The Lesser Limits",
+  "line": 9078,
+  "endLine": 9080,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the list of lesser limits of Hermetic magic that follow.",
+  "quotes": [
+   "The Lesser Limits are as follows."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of Aging",
+  "heading": "The Limit of Aging",
+  "line": 9082,
+  "endLine": 9084,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot halt or reverse natural aging or remove Decrepitude, only slow it or mitigate its effects.",
+  "quotes": [
+   "Hermetic magic cannot halt or reverse natural aging, although it can slow it down and mitigate its effects."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of Arcane Connections",
+  "heading": "The Limit of Arcane Connections",
+  "line": 9086,
+  "endLine": 9088,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot affect an unsensed target without an Arcane Connection, though Intellego is less tightly bound.",
+  "quotes": [
+   "Hermetic magic cannot affect an unsensed target without an Arcane Connection."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of Creation",
+  "heading": "The Limit of Creation",
+  "line": 9090,
+  "endLine": 9092,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Creo cannot create anything permanently without raw vis, and a Creo effect with a Muto requisite cannot be made permanent with vis.",
+  "quotes": [
+   "Hermetic magic is incapable of creating anything permanently without raw vis."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of Energy",
+  "heading": "The Limit of Energy",
+  "line": 9094,
+  "endLine": 9096,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot restore Fatigue levels or Confidence.",
+  "quotes": [
+   "Hermetic magic cannot restore one's physical energy (Fatigue levels), nor can it restore Confidence"
+  ],
+  "related": [
+   "ArM5 p.29 Confidence"
+  ]
+ },
+ {
+  "title": "The Limit of Experience",
+  "heading": "The Limit of Experience",
+  "line": 9098,
+  "endLine": 9100,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot create or transfer skills or knowledge (Abilities) by manipulating minds.",
+  "quotes": [
+   "Hermetic magic cannot create skills or knowledge in a person by manipulating their mind"
+  ],
+  "related": [
+   "Houses of Hermes: Societates pp.68-69"
+  ]
+ },
+ {
+  "title": "The Limit of the Infernal",
+  "heading": "The Limit of the Infernal",
+  "line": 9102,
+  "endLine": 9106,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Intellego magic is almost useless against the Infernal because it reveals only what demons want believed.",
+  "quotes": [
+   "Intellego magic is almost completely useless against the Infernal"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of the Lunar Sphere",
+  "heading": "The Limit of the Lunar Sphere",
+  "line": 9108,
+  "endLine": 9110,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot affect the lunar sphere or anything above it.",
+  "quotes": [
+   "Hermetic magic cannot affect the lunar sphere, nor anything above it."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of the Soul",
+  "heading": "The Limit of the Soul",
+  "line": 9112,
+  "endLine": 9116,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot create an immortal soul, so it cannot create true human life or raise the dead; animals can be created.",
+  "quotes": [
+   "Hermetic magic cannot create an immortal soul"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of Time",
+  "heading": "The Limit of Time",
+  "line": 9118,
+  "endLine": 9120,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot alter the passage of time, affect the past, or scry on the past or future.",
+  "quotes": [
+   "Hermetic magic is incapable of altering the passage of time."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of True Feeling",
+  "heading": "The Limit of True Feeling",
+  "line": 9122,
+  "endLine": 9124,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A few humans have a love, friendship or faith Hermetic magic cannot affect, represented by a Virtue or Flaw.",
+  "quotes": [
+   "A few humans have a love, friendship, or faith that Hermetic magic cannot affect in any way."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of Vis",
+  "heading": "The Limit of Vis",
+  "line": 9126,
+  "endLine": 9128,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot change the Art to which raw vis is attuned.",
+  "quotes": [
+   "Hermetic magic cannot change the Art to which raw vis is attuned."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Limit of Warping",
+  "heading": "The Limit of Warping",
+  "line": 9130,
+  "endLine": 9136,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic magic cannot undo warping caused by prolonged exposure to active magic or high auras, including Wizard's Twilight.",
+  "quotes": [
+   "Hermetic magic is completely unable to affect these changes once they have happened."
+  ],
+  "related": [
+   "ArM5 p.228 Wizard's Twilight"
+  ]
+ },
+ {
+  "title": "The Limit of Magic Resistance",
+  "heading": "The Limit of Magic Resistance",
+  "line": 9138,
+  "endLine": 9142,
+  "category": "magic",
+  "topic": "Limits of Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Non-Hermetic magic (and Faerie powers) cannot grant general Magic Resistance, though Divine and Infernal can; some non-Hermetic traditions break other Lesser Limits.",
+  "quotes": [
+   "Non-Hermetic magic is incapable of granting general Magic Resistance"
+  ],
+  "related": [
+   "Ancient Magic",
+   "Rival Magic",
+   "Hedge Magic Revised Edition"
+  ]
+ },
+ {
+  "title": "Raw Vis",
+  "heading": "Raw Vis",
+  "line": 9144,
+  "endLine": 9152,
+  "category": "magic",
+  "topic": "Vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains raw vis as magical power stored in matter associated with one Art, measured in pawns, rooks and queens, and its uses in spells, rituals, enchantment and study.",
+  "quotes": [
+   "Ten pawns are said to make a rook, while ten rooks make a queen."
+  ],
+  "related": [
+   "ArM5 p.250 Vis transfer"
+  ]
+ },
+ {
+  "title": "Casting Spells",
+  "heading": "Casting Spells",
+  "line": 9154,
+  "endLine": 9162,
+  "category": "magic",
+  "topic": "Spellcasting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the Casting Score used for all spellcasting and notes that the Casting Total is computed differently per spell type and a botch makes it zero.",
+  "quotes": [
+   "**CASTING SCORE: Technique + Form + Stamina - Encumbrance + Aura Modifier**",
+   "If the casting roll botches, the casting total is treated as zero, in addition to any other effects."
+  ],
+  "related": []
+ },
+ {
+  "title": "Spell Basics",
+  "heading": "Spell Basics",
+  "line": 9164,
+  "endLine": 9166,
+  "category": "magic",
+  "topic": "Spellcasting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Every Hermetic spell has a Technique, Form and Level, and a magnitude derived from the level.",
+  "quotes": [
+   "Spells also have a magnitude, which is equal to the level divided by five, rounded up."
+  ],
+  "related": [
+   "ArM5 p.301 Spells chapter introduction"
+  ]
+ },
+ {
+  "title": "Formulaic Magic",
+  "heading": "Formulaic Magic",
+  "line": 9168,
+  "endLine": 9184,
+  "category": "magic",
+  "topic": "Spellcasting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Casting a known spell: add a die to the Casting Score and compare to the spell level, with Fatigue lost if the total falls short and failure if it falls short by more than ten; mastered spells always use a stress die with no botch dice when calm.",
+  "quotes": [
+   "**FORMULAIC CASTING TOTAL: Casting Score + Die Roll**",
+   "If the casting total falls short of the spell level by ten or less, the spell takes effect and the maga loses a Fatigue level."
+  ],
+  "related": [
+   "ArM5 p.225 Spell Mastery"
+  ]
+ },
+ {
+  "title": "Ritual Magic",
+  "heading": "Ritual Magic",
+  "line": 9186,
+  "endLine": 9206,
+  "category": "magic",
+  "topic": "Spellcasting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Ritual spells take fifteen minutes and one pawn of vis per magnitude, add Artes Liberales and Philosophiae to the total, always use a stress die, and cost long-term Fatigue levels (with wounds if she runs out).",
+  "quotes": [
+   "**RITUAL CASTING TOTAL: Casting Score + Artes Liberales + Philosophiae + Stress Die**",
+   "It takes fifteen minutes per magnitude to cast a Ritual spell, and the maga must expend one pawn of vis per magnitude of the spell."
+  ],
+  "related": [
+   "ArM5 p.404 Long-term Fatigue recovery"
+  ]
+ },
+ {
+  "title": "Spontaneous Magic",
+  "heading": "Spontaneous Magic",
+  "line": 9208,
+  "endLine": 9220,
+  "category": "magic",
+  "topic": "Spellcasting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Casting an effect not already known as a spell, either fatiguing or non-fatiguing, with the casting total divided accordingly; the maga may devote surplus total to Range, Duration, Target or Penetration.",
+  "quotes": [
+   "**FATIGUING SPONTANEOUS MAGIC CASTING TOTAL: (Casting Score + Stress Die)/2**",
+   "**NON-FATIGUING SPONTANEOUS MAGIC CASTING TOTAL: Casting Score/5**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Penetration Total",
+  "heading": "Penetration Total",
+  "line": 9222,
+  "endLine": 9236,
+  "category": "magic",
+  "topic": "Penetration",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Excess casting total over spell level, plus Penetration Bonus, is used to overcome Magic Resistance; a zero or negative total cannot affect any target with Magic Resistance.",
+  "quotes": [
+   "**PENETRATION TOTAL: Casting Total + Penetration Bonus - Spell Level**"
+  ],
+  "related": [
+   "ArM5 p.219 Penetration",
+   "ArM5 p.426 Bestiary Penetration",
+   "ArM5 p.412"
+  ]
+ },
+ {
+  "title": "Concentration",
+  "heading": "Concentration",
+  "line": 9238,
+  "endLine": 9271,
+  "category": "magic",
+  "topic": "Spellcasting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A maga distracted while casting or maintaining a spell must pass a concentration roll against an Ease Factor set by the distraction, which is reduced by three for maintained spells and has its own table for actions possible only while maintaining.",
+  "quotes": [
+   "**CONCENTRATION ROLL: Stamina + Concentration + Stress Die**",
+   "you must make a concentration roll every two minutes (Diameter duration)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Using Raw Vis",
+  "heading": "Using Raw Vis",
+  "line": 9281,
+  "endLine": 9297,
+  "category": "magic",
+  "topic": "Vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Pawns of vis matching the Technique or Form add to the Casting Score for any spell, up to the maga's score in that Art, at the cost of extra botch dice.",
+  "quotes": [
+   "**VIS BOOST TO CASTING SCORE: +2 Casting Score Per Pawn**",
+   "**VIS BOTCH DICE: +1 botch die per pawn of vis used**",
+   "**LIMIT ON VIS USE IN SPELL CASTING: The Maga's Score in the Art of the Vis**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Words and Gestures",
+  "heading": "Words and Gestures",
+  "line": 9303,
+  "endLine": 9318,
+  "category": "magic",
+  "topic": "Spellcasting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Option to cast more subtly or more loudly, trading a penalty or bonus to the Casting Score for voice and gesture levels, which also change the range of Voice-range spells.",
+  "quotes": [
+   "using exaggerated gestures but making no noise gives a total penalty of \u20139 to the casting score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fast Casting",
+  "heading": "Fast Casting",
+  "line": 9324,
+  "endLine": 9352,
+  "category": "magic",
+  "topic": "Spellcasting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Casting a Spontaneous spell as an instant response: roll Fast Casting Speed against the opponent's Initiative Total, with a casting penalty and extra botch dice, and work out the attacker's Form to defend.",
+  "quotes": [
+   "**FAST CASTING SPEED: Quickness + Finesse + Stress Die**",
+   "**FAST CAST PENALTY: -10 to Casting Score**",
+   "**DETERMINING FORM OF MAGICAL EFFECT: Perception + Awareness vs. 15"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ceremonial Casting",
+  "heading": "Ceremonial Casting",
+  "line": 9354,
+  "endLine": 9382,
+  "category": "magic",
+  "topic": "Spellcasting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A spontaneous casting option that spends time per magnitude to add Artes Liberales and Philosophiae, limiting the spell level to the time spent, with further bonuses for ceremonial props and faster casting in prepared spaces.",
+  "quotes": [
+   "**CEREMONIAL CASTING BONUS: Add Artes Liberales and Philosophiae to Casting Score**",
+   "to one magnitude per fifteen minutes"
+  ],
+  "related": []
+ },
+ {
+  "title": "Arcane Connections",
+  "heading": "Arcane Connections",
+  "line": 9384,
+  "endLine": 9400,
+  "category": "magic",
+  "topic": "Arcane Connections",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "An Arcane Connection lets a maga target something she is not sensing, if the spell has Arcane Connection range; connections fade over a time that depends on the item, as listed in the table.",
+  "quotes": [
+   "Arcane Connections allow a maga to cast a spell on something she is not currently sensing, as long as she is currently aware of the Arcane Connection."
+  ],
+  "related": [
+   "ArM5 p.250 Fixing Arcane Connections"
+  ]
+ },
+ {
+  "title": "Penetration",
+  "heading": "Penetration",
+  "line": 9402,
+  "endLine": 9417,
+  "category": "magic",
+  "topic": "Penetration",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Penetration lets a spell affect targets with Magic Resistance; characters with the Penetration Ability can multiply it using an Arcane Connection and other sympathetic connections.",
+  "quotes": [
+   "The Penetration Bonus starts at one times the character's Penetration Ability, and the multiplier can be increased."
+  ],
+  "related": []
+ },
+ {
+  "title": "Forceless Casting",
+  "heading": "Forceless Casting",
+  "line": 9419,
+  "endLine": 9423,
+  "category": "magic",
+  "topic": "Penetration",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A maga may deliberately cast so that her Penetration Total is 0, avoiding affecting magi with Magic Resistance 0, useful in tournaments and area spells.",
+  "quotes": [
+   "A maga can deliberately ensure the Penetration Total of a spell does not exceed 0."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sympathetic Connections",
+  "heading": "Sympathetic Connections",
+  "line": 9425,
+  "endLine": 9443,
+  "category": "magic",
+  "topic": "Penetration",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of sympathetic connections (blood relative, signature, names, horoscopes, symbolic representations) and the bonus each gives to the Penetration multiplier, with the rolls needed to cast horoscopes or make representations.",
+  "quotes": [
+   "succeed in an Int + Artes Liberales (Astronomy) roll against an Ease Factor of 9",
+   "a Dexterity + Craft roll of 9+ to create"
+  ],
+  "related": []
+ },
+ {
+  "title": "Penetration Example",
+  "heading": "Penetration Example",
+  "line": 9445,
+  "endLine": 9453,
+  "category": "magic",
+  "topic": "Penetration",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of building a high Penetration with an Arcane Connection, a daily horoscope and Penetration Mastery.",
+  "quotes": [
+   "This gives her a bonus of +4 to the Penetration multiplier"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Resistance",
+  "heading": "Magic Resistance",
+  "line": 9455,
+  "endLine": 9461,
+  "category": "magic",
+  "topic": "Magic Resistance",
+  "audience": [
+   "all",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Most humans have no Magic Resistance; Hermetic magi have a base resistance equal to the most applicable Form score, and creatures with Might resist with their Might. A target with Magic Resistance 0 is affected only by a Penetration total of 1 or more.",
+  "quotes": [
+   "Hermetic magi have a base Magic Resistance equal to their score in the Form most applicable to the spell cast.",
+   "If the target of a spell has Magic Resistance of 0, she is only affected if the Penetration total is 1 or greater."
+  ],
+  "related": [
+   "ArM5 p.427 Might"
+  ]
+ },
+ {
+  "title": "Parma Magica",
+  "heading": "Parma Magica",
+  "line": 9463,
+  "endLine": 9473,
+  "category": "magic",
+  "topic": "Magic Resistance",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "The Parma Magica Ability adds to Form-based Magic Resistance, takes two minutes to perform and lasts until sunrise or sunset, can be suppressed by concentration, and can protect other people at a cost in effective score.",
+  "quotes": [
+   "Parma Magica adds Magic Resistance equal to five times the maga's score in the Ability to the resistance based on her Forms.",
+   "While a magus is protecting others, his effective Parma Magica score is reduced by 3 points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Awareness of Attack",
+  "heading": "Awareness of Attack",
+  "line": 9475,
+  "endLine": 9477,
+  "category": "magic",
+  "topic": "Magic Resistance",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A target whose Magic Resistance stops a spell knows an effect was stopped but nothing about it; a penetrating spell gives no warning beyond its obvious effects.",
+  "quotes": [
+   "If a spell is stopped by Magic Resistance, the target knows that some effect has been stopped, but knows nothing about it."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Functioning of Magic Resistance",
+  "heading": "The Functioning of Magic Resistance",
+  "line": 9479,
+  "endLine": 9531,
+  "category": "magic",
+  "topic": "Magic Resistance",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "How Magic Resistance applies to the caster's own spells, groups, magical and magically moved things, with a long list of worked examples (water jets, rocks, bridges, invisibility, illusions).",
+  "quotes": [
+   "Magic Resistance keeps magic away from the maga, her clothing, and other items that are very close to her. It does not dispel magic.",
+   "Spells cast with Personal Range do not have to overcome the caster's own Magic Resistance."
+  ],
+  "related": [
+   "ArM5 p.209 Imaginem"
+  ]
+ },
+ {
+  "title": "Aiming",
+  "heading": "Aiming",
+  "line": 9533,
+  "endLine": 9543,
+  "category": "magic",
+  "topic": "Magic Resistance",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Indirect spell effects that bypass the victim's Magic Resistance must be aimed with a roll treated as an attack total, with bonuses for larger targets.",
+  "quotes": [
+   "**AIMING ROLL: Perception + Finesse + Die**",
+   "For every step larger, and thus for every magnitude added to the spell, the aiming roll gets a +6 bonus."
+  ],
+  "related": [
+   "ArM5 p.393 Combat",
+   "ArM5 p.310 Basic Individual"
+  ]
+ },
+ {
+  "title": "Bypassing Magic Resistance",
+  "heading": "Bypassing Magic Resistance",
+  "line": 9545,
+  "endLine": 9553,
+  "category": "magic",
+  "topic": "Magic Resistance",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Examples of spells that harm the victim indirectly and so bypass Magic Resistance but must be aimed.",
+  "quotes": [
+   "The following are examples of spells that bypass the ultimate victim's Magic Resistance, and thus need to be aimed."
+  ],
+  "related": []
+ },
+ {
+  "title": "Projectiles and Rego Magic",
+  "heading": "Projectiles and Rego Magic",
+  "line": 9555,
+  "endLine": 9565,
+  "category": "magic",
+  "topic": "Magic Resistance",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Three ways Rego magic can be used offensively with projectiles: propelled entirely by magic (resisted, no aiming), natural motion such as dropping a rock (aimed, bypasses resistance), and a jolt of force that launches a projectile (aimed, bypasses resistance, range increment 20 paces).",
+  "quotes": [
+   "Spells that throw a projectile release control of it immediately after launching it.",
+   "Most projectiles thrown by spells have a range increment of 20 paces."
+  ],
+  "related": [
+   "Art & Academe natural philosophy",
+   "ArM5 p.395 Missile range"
+  ]
+ },
+ {
+  "title": "Sigils",
+  "heading": "Sigils",
+  "line": 9567,
+  "endLine": 9581,
+  "category": "magic",
+  "topic": "Sigils",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Every maga has a wizard's sigil that appears in her spells and enchantments, never needing requisites and never useful or crippling, and a separate voting sigil for Tribunal.",
+  "quotes": [
+   "Whatever the form of the sigil, it never requires requisites, as it is part of the maga's magic."
+  ],
+  "related": []
+ },
+ {
+  "title": "Spell Mastery",
+  "heading": "Spell Mastery",
+  "line": 9583,
+  "endLine": 9591,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Each Formulaic or Ritual spell has a mastery Ability that adds to casting score and subtracts botch dice, and mastered spells are always cast with a stress die but with no botch dice when relaxed.",
+  "quotes": [
+   "**MASTERY ABILITY: Adds to casting score and subtracts from number of botch dice**",
+   "If a maga has a score of one or greater in a mastery ability, she is said to have mastered that spell."
+  ],
+  "related": [
+   "ArM5 p.378 Study rules"
+  ]
+ },
+ {
+  "title": "Mastered Spell Special Abilities",
+  "heading": "Mastered Spell Special Abilities",
+  "line": 9593,
+  "endLine": 9595,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Each level of a mastery Ability grants one special ability that applies only to that mastered spell.",
+  "quotes": [
+   "For every level in the Mastery Ability, the maga may also choose one special ability, which applies only to that mastered spell."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mastery: Adaptive Casting",
+  "heading": "Adaptive Casting",
+  "line": 9597,
+  "endLine": 9599,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A mastery score and its special abilities may be applied to similar spells, using only one mastery Ability's score and abilities per casting.",
+  "quotes": [
+   "You may use your mastery score and all the special abilities associated with it whenever you cast a similar spell"
+  ],
+  "related": [
+   "ArM5 p.260 Similar spells"
+  ]
+ },
+ {
+  "title": "Mastery: Ceremonial Casting",
+  "heading": "Ceremonial Casting",
+  "line": 9601,
+  "endLine": 9605,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Allows ceremonial casting rules for a mastered spell, but not for Ritual spells.",
+  "quotes": [
+   "This special ability may not be taken for Ritual spells, as they effectively use ceremonial casting to start with."
+  ],
+  "related": [
+   "ArM5 p.217 Ceremonial Casting",
+   "The Mysteries Revised Edition p.117"
+  ]
+ },
+ {
+  "title": "Mastery: Fast Casting",
+  "heading": "Fast Casting",
+  "line": 9607,
+  "endLine": 9609,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Allows a mastered Formulaic spell to be fast-cast by the Spontaneous fast-casting rules, with mastery offsetting the botch dice; not available for Rituals.",
+  "quotes": [
+   "The maga may Fast Cast the mastered spell according to the rules for Fast Casting Spontaneous spells"
+  ],
+  "related": [
+   "ArM5 p.217 Fast Casting"
+  ]
+ },
+ {
+  "title": "Mastery: Imperturbable Casting",
+  "heading": "Imperturbable Casting",
+  "line": 9611,
+  "endLine": 9613,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Adds the Mastery score to Concentration rolls related to the spell.",
+  "quotes": [
+   "Add the caster's Mastery score to all Concentration rolls related to the spell."
+  ],
+  "related": [
+   "ArM5 p.215 Concentration"
+  ]
+ },
+ {
+  "title": "Mastery: Magic Resistance",
+  "heading": "Magic Resistance",
+  "line": 9615,
+  "endLine": 9617,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Doubles the caster's Magic Resistance against the mastered spell and similar spells or powers.",
+  "quotes": [
+   "Your Magic Resistance is doubled against the mastered spell"
+  ],
+  "related": [
+   "ArM5 p.260 Similar Spells"
+  ]
+ },
+ {
+  "title": "Mastery: Multiple Casting",
+  "heading": "Multiple Casting",
+  "line": 9619,
+  "endLine": 9629,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Allows casting several copies of a mastered spell at once, up to the Mastery score in extra copies, each rolled separately with aiming penalties; usable for Rituals at extra vis cost.",
+  "quotes": [
+   "You may cast a number of additional copies of the spell equal to or less than your Mastery Score.",
+   "**AIMING: Penalty of one for every separate target, including the first**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mastery: Obfuscated Casting",
+  "heading": "Obfuscated Casting",
+  "line": 9631,
+  "endLine": 9633,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Others cannot automatically identify the spell's Form and must add the caster's Mastery score to the Ease Factor to work it out.",
+  "quotes": [
+   "must add the caster's Mastery score to the Ease Factor"
+  ],
+  "related": [
+   "ArM5 p.217 Determining Form"
+  ]
+ },
+ {
+  "title": "Mastery: Penetration",
+  "heading": "Penetration",
+  "line": 9635,
+  "endLine": 9637,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Adds the Mastery score to the Penetration Ability score when determining the Penetration Bonus.",
+  "quotes": [
+   "The maga's Mastery Score is added to her Penetration Ability score for determining her Penetration Bonus"
+  ],
+  "related": [
+   "ArM5 p.219 Penetration"
+  ]
+ },
+ {
+  "title": "Mastery: Precise Casting",
+  "heading": "Precise Casting",
+  "line": 9639,
+  "endLine": 9641,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Adds a bonus to Finesse rolls with the spell (including aiming) and removes a botch die; can be taken multiple times.",
+  "quotes": [
+   "Add +1 to all Finesse rolls the caster makes with the spell, including aiming rolls."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mastery: Quick Casting",
+  "heading": "Quick Casting",
+  "line": 9643,
+  "endLine": 9645,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Adds a bonus to Initiative Total (and to Fast Casting Speed) when casting the mastered spell; cannot be taken for Rituals.",
+  "quotes": [
+   "Add +1 to the caster's Initiative Total when he casts the mastered spell."
+  ],
+  "related": [
+   "ArM5 p.217 Fast Casting Speed"
+  ]
+ },
+ {
+  "title": "Mastery: Quiet Casting",
+  "heading": "Quiet Casting",
+  "line": 9647,
+  "endLine": 9649,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Reduces the penalty for casting quietly; taken twice it allows silent casting without penalty.",
+  "quotes": [
+   "The penalty for casting a spell quietly is reduced by five."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mastery: Rebuttal",
+  "heading": "Rebuttal",
+  "line": 9651,
+  "endLine": 9653,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "For Muto or Rego Vim spells that affect another being's magic, adds three times the Mastery score to the effective level.",
+  "quotes": [
+   "The magus may add three times his Mastery score to the effective level of the Vim spell"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mastery: Still Casting",
+  "heading": "Still Casting",
+  "line": 9655,
+  "endLine": 9657,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Allows casting the mastered spell without gestures at no penalty.",
+  "quotes": [
+   "The maga can cast the spell without gestures, at no penalty."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mastery: Unravelling",
+  "heading": "Unravelling",
+  "line": 9659,
+  "endLine": 9661,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "For Perdo Vim spells that weaken or destroy magic, adds three times the Mastery score to the effective level.",
+  "quotes": [
+   "The magus may add three times his Mastery score to the effective level of the Perdo Vim spell"
+  ],
+  "related": []
+ },
+ {
+  "title": "Books on Spell Mastery",
+  "heading": "Books on Spell Mastery",
+  "line": 9663,
+  "endLine": 9667,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A spell Mastery book can be studied by anyone who knows an identical spell, and the reader may learn any special ability, not only those of the author.",
+  "quotes": [
+   "two spells are the same if they have the same Arts, level, Range, Duration, Target, and effect"
+  ],
+  "related": [
+   "ArM5 p.378 Study"
+  ]
+ },
+ {
+  "title": "Botches",
+  "heading": "Botches",
+  "line": 9673,
+  "endLine": 9679,
+  "category": "hazards",
+  "topic": "Botches",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "A botched casting gives a Casting Total of zero but the spell still goes wrong in a harmful way, scaled by the number of zeros on the botch dice, and each zero gives a Warping Point, risking Twilight.",
+  "quotes": [
+   "Magi gain one Warping Point for every zero that comes up on the botch dice when casting a spell."
+  ],
+  "related": [
+   "ArM5 p.213 Casting"
+  ]
+ },
+ {
+  "title": "Sources of Botch Dice",
+  "heading": "Sources of Botch Dice",
+  "line": 9681,
+  "endLine": 9697,
+  "category": "hazards",
+  "topic": "Botches",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists standard modifiers to the number of botch dice when casting (vis, supernatural auras, fast casting, familiar Golden Cord, spell mastery) and when a relaxed Formulaic caster has none.",
+  "quotes": [
+   "**Using vis while casting:** +1 botch die per pawn of vis used",
+   "**Casting in a supernatural aura other than Magic:** +1 botch die per level of the aura, doubled if in a regio",
+   "**Golden Cord to a familiar:** -1 botch die per level"
+  ],
+  "related": []
+ },
+ {
+  "title": "Botch Suggestions",
+  "heading": "Botch Suggestions",
+  "line": 9699,
+  "endLine": 9727,
+  "category": "hazards",
+  "topic": "Botches",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A list of suggested botch results (unwanted attention, caster addled or overwhelmed, reverse effect, wrong target, undying spell and so on) for the storyguide to adapt.",
+  "quotes": [
+   "**Caster overwhelmed:** You are overwhelmed by your own magic. Make a Stamina stress roll of 6+ or be knocked unconscious."
+  ],
+  "related": []
+ },
+ {
+  "title": "Warping (Hermetic Dangers)",
+  "heading": "Warping",
+  "line": 9729,
+  "endLine": 9731,
+  "category": "hazards",
+  "topic": "Warping",
+  "audience": [
+   "all",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Points to the full Warping rules in Long Term Events and notes that magi gain a Warping Point for each zero on botch dice when they botch a spell.",
+  "quotes": [
+   "Note that magi gain one Warping Point for every zero on the botch dice when they botch a spell."
+  ],
+  "related": [
+   "ArM5 p.389 Warping"
+  ]
+ },
+ {
+  "title": "Wizard's Twilight",
+  "heading": "Wizard's Twilight",
+  "line": 9733,
+  "endLine": 9735,
+  "category": "hazards",
+  "topic": "Twilight",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Wizard's Twilight is the Hermetic reaction to Warping, described in the following sections on entering, comprehending, living through and the effects of Twilight.",
+  "quotes": [
+   "Wizard's Twilight is unique to Hermetic magic."
+  ],
+  "related": [
+   "ArM5 p.389 Warping"
+  ]
+ },
+ {
+  "title": "Entering Twilight",
+  "heading": "Entering Twilight",
+  "line": 9737,
+  "endLine": 9745,
+  "category": "hazards",
+  "topic": "Twilight",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "When a maga gains two or more Warping Points from a single event she rolls Twilight Avoidance against her Warping Score; failure or a botch sends her into Twilight, and she may choose not to resist.",
+  "quotes": [
+   "**TWILIGHT AVOIDANCE: Stamina + Concentration + Vim Form Bonus + stress die vs. Warping Score + Number of Warping Points gained",
+   "Whenever a maga gains two or more Warping Points from a single event, rather than from prolonged exposure"
+  ],
+  "related": []
+ },
+ {
+  "title": "Comprehending Twilight",
+  "heading": "Comprehending Twilight",
+  "line": 9747,
+  "endLine": 9782,
+  "category": "hazards",
+  "topic": "Twilight",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A maga in Twilight rolls to comprehend it against her Warping Score; the Warping Score sets the base real-world time in Twilight, which shortens with a good comprehension roll and lengthens on a botch.",
+  "quotes": [
+   "**TWILIGHT COMPREHENSION: Intelligence + Enigmatic Wisdom + stress die vs. Warping Score + stress die**",
+   "**BOTCH DICE: 1 + 1 per Warping Point gained to trigger the Twilight**",
+   "**TWILIGHT TIME: Intelligence + stress die vs. Warping Score + stress die**"
+  ],
+  "related": []
+ },
+ {
+  "title": "During Twilight",
+  "heading": "During Twilight",
+  "line": 9784,
+  "endLine": 9792,
+  "category": "hazards",
+  "topic": "Twilight",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes what a maga experiences in Twilight and how her body behaves in the outside world; if it remains it is immune to magic, damage, aging and hunger but cannot perform magic.",
+  "quotes": [
+   "it is completely immune to magic, mundane damage, aging, and hunger"
+  ],
+  "related": []
+ },
+ {
+  "title": "Effects of Twilight",
+  "heading": "Effects of Twilight",
+  "line": 9794,
+  "endLine": 9820,
+  "category": "hazards",
+  "topic": "Twilight",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Every Twilight gives extra Warping Points from a simple die plus a Twilight Scar and a good effect (increased knowledge, new Virtue, new spell) if comprehended, or a bad effect (lost knowledge, new Flaw, lost spells) if not.",
+  "quotes": [
+   "The maga gains that many Warping Points, in addition to the points that triggered the Twilight.",
+   "**Increased Knowledge:** A number of experience points in an Art, Magic Theory, or Enigmatic Wisdom, equal to twice the number of Warping Points gained.",
+   "**Lost Knowledge:** Lose two experience points for every Warping Point gained in an Art, Magic Theory, or Enigmatic Wisdom."
+  ],
+  "related": []
+ },
+ {
+  "title": "Twilight Example",
+  "heading": "Twilight Example",
+  "line": 9822,
+  "endLine": 9840,
+  "category": "hazards",
+  "topic": "Twilight",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of avoiding, failing to comprehend and recovering from a Twilight caused by a spell botch.",
+  "quotes": [
+   "Darius has a Stamina of 0, Concentration 3, and a Vim bonus of 2."
+  ],
+  "related": []
+ },
+ {
+  "title": "Certamen",
+  "heading": "Certamen",
+  "line": 9842,
+  "endLine": 9901,
+  "category": "order",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for the formal magical duel: choice of Technique and Form, six totals for initiative, attack, defense, weakening and resistance, Fatigue loss per round, use of vis, and the three ways to win.",
+  "quotes": [
+   "**ATTACK TOTAL: Presence + Technique or Form + Stress Die**",
+   "**DEFENSE TOTAL: Perception + Form or Technique + Stress Die**",
+   "**WEAKENING TOTAL: Intelligence + Penetration + Attack Advantage**"
+  ],
+  "related": [
+   "ArM5 p.393 Combat initiative"
+  ]
+ },
+ {
+  "title": "Certamen Example",
+  "heading": "Certamen Example",
+  "line": 9903,
+  "endLine": 9949,
+  "category": "order",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of a certamen duel between two magi, from choosing Arts through rounds of attack, defense and Fatigue loss to a concession.",
+  "quotes": [
+   "Moratamis challenged, so she picks the Technique."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mysteries",
+  "heading": "Mysteries",
+  "line": 9951,
+  "endLine": 9953,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces mysteries as paths to greater power needing sacrifices; characters in the four Mystery Cult Houses are Initiated into the Outer Mystery as apprentices and seek deeper mysteries in play.",
+  "quotes": [
+   "Player characters in the Mystery Cult Houses are Initiated into the Outer Mystery as apprentices, but must seek Initiation into deeper mysteries in play."
+  ],
+  "related": [
+   "ArM5 p.387 Mystery Initiation",
+   "Houses of Hermes: Mystery Cults",
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Bjornaer: The Heartbeast",
+  "heading": "Bjornaer \u2014 The Heartbeast",
+  "line": 9955,
+  "endLine": 9967,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer: Initiation into the Heartbeast mystery",
+  "summary": "Bjornaer magi take the form of one mundane creature using the Heartbeast Ability; the form cannot be changed by Hermetic magic, they can cast in beast form at a penalty, cannot bind familiars, and gain little Warping from changing.",
+  "quotes": [
+   "In that case, a roll of Stamina + Heartbeast against an Ease Factor set by the storyguide allows the character to change anyway.",
+   "As a rule of thumb, 3 + the magnitude of the transforming magic is a reasonable number."
+  ],
+  "related": [
+   "ArM5 p.389 Warping",
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Ringing the Changes",
+  "heading": "Ringing the Changes",
+  "line": 9969,
+  "endLine": 9977,
+  "category": "magic",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Compares three kinds of shapechanger (spell or invested item, innate supernatural power, Heartbeast) and how each responds to Animal, Corpus and Mentem magic, Penetration and Warping.",
+  "quotes": [
+   "The Heartbeast is the most total transformation of the three"
+  ],
+  "related": []
+ },
+ {
+  "title": "Secret Name (Minor House Mystery)",
+  "heading": "Secret Name (Minor House Mystery)",
+  "line": 9979,
+  "endLine": 9985,
+  "category": "mysteries",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer (Clan Ilfetu): Initiation of Secret Name",
+  "summary": "A minor House mystery that severs the sympathetic resonances of a magus's name: old Arcane Connections expire and Sympathetic Connections never work against him, though anyone who knows the secret name ignores spell level in Penetration.",
+  "quotes": [
+   "All Arcane Connections to the magus which date from before the ritual immediately expire upon its completion, and all Sympathetic Connections become invalid."
+  ],
+  "related": [
+   "The Mysteries Revised Edition Synthemata Magic"
+  ]
+ },
+ {
+  "title": "Initiation of Secret Name",
+  "heading": "Initiation of Secret Name",
+  "line": 9987,
+  "endLine": 9993,
+  "category": "mysteries",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer (Clan Ilfetu): Initiation of Secret Name",
+  "summary": "The initiation Ease Factor, script bonus and ritual details for the Secret Name mystery.",
+  "quotes": [
+   "**Ease Factor:** 15 (Minor Virtue known to the Mystagogue)",
+   "**Script Bonus:** +8"
+  ],
+  "related": [
+   "ArM5 p.387 Mystery Initiation"
+  ]
+ },
+ {
+  "title": "Criamon: The Enigma",
+  "heading": "Criamon \u2014 The Enigma",
+  "line": 9996,
+  "endLine": 10000,
+  "category": "houses",
+  "topic": "Enigma",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Criamon: Initiation into the Enigma",
+  "summary": "All Criamon magi have Enigmatic Wisdom 1 and may place experience in it at creation; the Ability helps comprehend Twilight but makes it more likely, and the House mysteries are divided into Paths.",
+  "quotes": [
+   "All Criamon magi have a score of one in the Ability Enigmatic Wisdom, and may place experience points in it at character creation."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Enigmatic Wisdom",
+  "heading": "Enigmatic Wisdom",
+  "line": 10002,
+  "endLine": 10006,
+  "category": "mysteries",
+  "topic": "Enigma",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Criamon: Initiation into the Enigma",
+  "summary": "The Enigmatic Wisdom Ability adds to rolls to interpret dreams, riddles, phantasms and mysterious situations, and affects how often Criamon enter Twilight and how well they survive it.",
+  "quotes": [
+   "Your score in this Ability is added to rolls to interpret dreams and riddles, and to understand phantasms and arcane or mysterious situations."
+  ],
+  "related": [
+   "ArM5 p.228 Wizard's Twilight"
+  ]
+ },
+ {
+  "title": "The Path of the Body",
+  "heading": "The Path of the Body",
+  "line": 10008,
+  "endLine": 10012,
+  "category": "mysteries",
+  "topic": "Enigma",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "Describes the Criamon Path of the Body, which focuses on the human form and treats the universe, like the body, as decaying.",
+  "quotes": [
+   "The Path of the Body focuses on the human form."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "The Avenue of Subduing the Meat and the Station of the Perfect Tool",
+  "heading": "The Avenue of Subduing the Meat and the Station of the Perfect Tool",
+  "line": 10014,
+  "endLine": 10020,
+  "category": "mysteries",
+  "topic": "Enigma",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "The first Station of the Path of the Body grants Minor Potency in an aspect of Corpus and lets the magus use Enigmatic Wisdom in place of Chirurgy and Medicine, at the cost of a Vow and Deleterious Circumstances when ill.",
+  "quotes": [
+   "They may use their Enigmatic Wisdom score in place of Chirurgy and Medicine in rolls."
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation of The Avenue of Subduing the Meat, Which Reaches the Station of the Perfect Tool",
+  "heading": "Initiation of The Avenue of Subduing the Meat, Which Reaches the Station of the Perfect Tool",
+  "line": 10022,
+  "endLine": 10028,
+  "category": "mysteries",
+  "topic": "Enigma",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon: Path of the Body",
+  "summary": "The initiation Ease Factor, script bonus and ordeal details for the first Station of the Path of the Body.",
+  "quotes": [
+   "**Ease Factor:** 21, as Major Virtue",
+   "**Script Bonus:** +15"
+  ],
+  "related": [
+   "ArM5 p.387 Mystery Initiation"
+  ]
+ },
+ {
+  "title": "Merinita: Faerie Magic",
+  "heading": "Merinita \u2014 Faerie Magic",
+  "line": 10030,
+  "endLine": 10054,
+  "category": "houses",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Merinita: Initiation into Faerie Magic (must be touched by the fay)",
+  "summary": "Merinita initiates are attuned to Magic and Faerie auras (no Warping or extra botch dice from either) and gain special Ranges, Durations and Targets (Road, Bargain, Fire, Until (Condition), Year + 1, Bloodline) usable only by Faerie Magic characters.",
+  "quotes": [
+   "A character may not be Initiated into this mystery unless she has been touched by the fay.",
+   "To calculate the level of a Bargain spell, calculate the level of the spell that takes effect when the bargain is broken, and add three magnitudes."
+  ],
+  "related": [
+   "ArM5 p.389 Warping"
+  ]
+ },
+ {
+  "title": "Faerie Magic Ability",
+  "heading": "Faerie Magic",
+  "line": 10056,
+  "endLine": 10072,
+  "category": "houses",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Merinita: Initiation into Faerie Magic",
+  "summary": "The Faerie Magic Ability can stand in for Magic Theory when experimenting or working with faerie vis, raises the vis usable in a season for faerie vis, and adds botch dice that cause Warping Points without forcing Twilight checks.",
+  "quotes": [
+   "The amount of vis you can use in a single season is equal to your (Magic Theory + Faerie Magic) x 2, so long as all of it is faerie vis."
+  ],
+  "related": []
+ },
+ {
+  "title": "Charms",
+  "heading": "Charms",
+  "line": 10074,
+  "endLine": 10082,
+  "category": "houses",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita: Initiation into Faerie Magic",
+  "summary": "Charms are sympathetic casting aids (objects, performances or pronouncements) made with an artistic roll that raise the Penetration Multiplier when the maga has an Arcane Connection; temporary charms are used once, permanent charms need a special object.",
+  "quotes": [
+   "The maga produces an effective charm on a roll of 6+, or 9+ for a permanent charm.",
+   "increasing her Penetration Multiplier by two"
+  ],
+  "related": [
+   "ArM5 p.220 Sympathetic Connections"
+  ]
+ },
+ {
+  "title": "Mystery Cult: The Followers of Pendule",
+  "heading": "Mystery Cult: The Followers of Pendule",
+  "line": 10088,
+  "endLine": 10098,
+  "category": "mysteries",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita: Followers of Pendule lineage",
+  "summary": "A Merinita lineage descended from the wizard Pendule whose followers usually Initiate Spell Timing and Glamour, favor Imaginem, and are weak to iron.",
+  "quotes": [
+   "Followers of Pendule usually Initiate Spell Timing and Glamour"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Sample Followers of Pendule Initiation: Spell Timing",
+  "heading": "Sample Followers of Pendule Initiation: Spell Timing",
+  "line": 10100,
+  "endLine": 10106,
+  "category": "mysteries",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Merinita: Followers of Pendule lineage",
+  "summary": "The Ease Factor, script bonus and ordeal for initiating the Spell Timing mystery, which brings three Minor Flaws.",
+  "quotes": [
+   "**Ease Factor:** 15 (Minor Virtue known to the Mystagogue)",
+   "**Script Bonus:** +12"
+  ],
+  "related": [
+   "ArM5 p.387 Mystery Initiation"
+  ]
+ },
+ {
+  "title": "Spell Timing (Minor Illusion Mystery)",
+  "heading": "Spell Timing (Minor Illusion Mystery)",
+  "line": 10108,
+  "endLine": 10130,
+  "category": "mysteries",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Spell Timing (Minor Illusion Mystery)",
+  "summary": "Gives access to new Durations (Held, Midday/Midnight, Season, While, Not, If) that hold, delay or trigger a spell, and to recurring spells that trigger repeatedly in response to a condition.",
+  "quotes": [
+   "*Held (Duration):* This duration is the same level as Concentration.",
+   "To determine the level, you should add four magnitudes to the level calculated based on the Duration that the spell has when it takes effect"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Recurring Spells",
+  "heading": "Recurring Spells",
+  "line": 10132,
+  "endLine": 10143,
+  "category": "mysteries",
+  "topic": "Faerie Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Spell Timing (Minor Illusion Mystery)",
+  "summary": "Table of magnitudes added to a spell's level according to how often it recurs, from once a minute to once a decade.",
+  "quotes": [
+   "Spells cannot recur more often than once per minute."
+  ],
+  "related": []
+ },
+ {
+  "title": "Verditius: Verditius Magic",
+  "heading": "Verditius \u2014 Verditius Magic",
+  "line": 10145,
+  "endLine": 10159,
+  "category": "houses",
+  "topic": "Verditius Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Verditius: Initiation into Verditius Magic",
+  "summary": "Verditius magi craft the item during its first season of enchanting, add Verditius Runes (their Philosophiae) to Shape and Material bonuses, add their Craft Ability to Lab Totals, reduce the vis needed to open the item, and need casting tools for Formulaic and Ritual spells.",
+  "quotes": [
+   "a magus who does so may add his score in the relevant Craft Ability to all Lab Totals for enchanting that item",
+   "the number of pawns of vis needed to open the item for enchantment is reduced by the magus's Craft score, to a minimum of one pawn"
+  ],
+  "related": [
+   "ArM5 Chapter 8 Enchantments"
+  ]
+ },
+ {
+  "title": "Hubris",
+  "heading": "Hubris",
+  "line": 10161,
+  "endLine": 10192,
+  "category": "mysteries",
+  "topic": "Verditius Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius: Inner Mystery initiation",
+  "summary": "The Hubris Personality Trait gained with a Verditius Inner Mystery, which grows with experience points from selling items, winning contests and vendettas, adds to certain enchanting Lab Totals, and must be resisted with opposed rolls.",
+  "quotes": [
+   "A Verditius magus can add his Hubris score to his Lab Totals for creating a talisman, enchanting casting tools",
+   "you must make an opposed Personality Trait + stress die roll against an Ease Factor of your maga's Hubris score + her challenger's Hubris score"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.116"
+  ]
+ },
+ {
+  "title": "Enchant Casting Tools",
+  "heading": "Enchant Casting Tools \u2014 Minor House Mystery Virtue",
+  "line": 10194,
+  "endLine": 10216,
+  "category": "mysteries",
+  "topic": "Verditius Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Enchant Casting Tools (Verditius Minor House Mystery)",
+  "summary": "A laboratory process to enchant casting tools to mirror mastered spell abilities and add casting bonuses, using a special Lab Total that must be double the effect level and costing Technique or Form vis.",
+  "quotes": [
+   "**ENCHANT CASTING TOOLS LAB TOTAL: Technique + Form + Intelligence + Magic Theory + Aura Modifier + Philosophiae + Hubris + Magnitude of Known Spell + Craft (if applicable)**",
+   "The magus must spend one pawn of Technique or Form specific vis per 10 levels of the final effect level total, rounded up."
+  ],
+  "related": [
+   "ArM5 p.260 Similar Spells"
+  ]
+ },
+ {
+  "title": "Initiation of Enchant Casting Tools",
+  "heading": "Initiation of Enchant Casting Tools",
+  "line": 10218,
+  "endLine": 10224,
+  "category": "mysteries",
+  "topic": "Verditius Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius: Enchant Casting Tools",
+  "summary": "The Ease Factor, script bonus and ordeal for initiating Enchant Casting Tools.",
+  "quotes": [
+   "**Ease Factor:** 15 (Minor Virtue known to the Mystagogue)",
+   "**Script Bonus:** +9"
+  ],
+  "related": [
+   "ArM5 p.387 Mystery Initiation"
+  ]
+ },
+ {
+  "title": "Ex Miscellanea Traditions",
+  "heading": "Ex Miscellanea Traditions",
+  "line": 10226,
+  "endLine": 10228,
+  "category": "traditions",
+  "topic": "Ex Miscellanea",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea",
+  "summary": "Introduces three simple Ex Miscellanea magical traditions that can be chosen for a maga, noting others are in Houses of Hermes: Societates.",
+  "quotes": [
+   "House Ex Miscellanea is not at all unified, consisting of many different magical traditions."
+  ],
+  "related": [
+   "Houses of Hermes: Societates"
+  ]
+ },
+ {
+  "title": "Beast Masters",
+  "heading": "Beast Masters",
+  "line": 10230,
+  "endLine": 10237,
+  "category": "traditions",
+  "topic": "Ex Miscellanea",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea: Beast Masters tradition",
+  "summary": "A tradition of summoning and controlling wild creatures; members get Animal Ken and a Minor Magical Focus with a group of animals, the Incompatible Arts Flaw, and a Virtue and Flaw balance of their own.",
+  "quotes": [
+   "They must take at least one more Flaw to balance their Virtues, and then have only 8 points of Flaws available to them to buy another 8 points of Virtues."
+  ],
+  "related": []
+ },
+ {
+  "title": "Summon Animals",
+  "heading": "Summon Animals",
+  "line": 10239,
+  "endLine": 10253,
+  "category": "traditions",
+  "topic": "Ex Miscellanea",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Ex Miscellanea: Beast Masters tradition",
+  "summary": "A Supernatural Ability to summon mundane animals by an audible call; the Ability score sets the number and size of animals arriving, and a Communication + Summon Animals roll sets arrival time.",
+  "quotes": [
+   "He must then make a Communication + Summon Animals roll against an Ease Factor of 9."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Nemthengacha",
+  "heading": "The Nemthengacha",
+  "line": 10259,
+  "endLine": 10265,
+  "category": "traditions",
+  "topic": "Ex Miscellanea",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea: Nemthengacha tradition",
+  "summary": "Background of the Nemthengacha, an Ex Miscellanea tradition of Celtic and Scandinavian sorcerers who create animosity and dissent in listeners.",
+  "quotes": [
+   "The Nemthengacha (singular: Nemthenga) are a sect of Ex Miscellanea magi who have the ability to create animosity and dissent in their listeners."
+  ],
+  "related": []
+ },
+ {
+  "title": "Nemthengacha Powers",
+  "heading": "Powers",
+  "line": 10267,
+  "endLine": 10275,
+  "category": "traditions",
+  "topic": "Ex Miscellanea",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea: Nemthengacha tradition",
+  "summary": "A Nemthenga receives Embitterment as a free Major Non-Hermetic Virtue, Deficient Technique Rego as a compulsory Major Flaw, and Subtle Magic as a free Minor Hermetic Virtue.",
+  "quotes": [
+   "Each has the Major Hermetic Flaw: Deficient Technique Rego."
+  ],
+  "related": [
+   "ArM5 p.164 Entrancement"
+  ]
+ },
+ {
+  "title": "Embitterment",
+  "heading": "Embitterment",
+  "line": 10277,
+  "endLine": 10299,
+  "category": "traditions",
+  "topic": "Ex Miscellanea",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Ex Miscellanea: Nemthengacha tradition",
+  "summary": "A Major Supernatural Ability that turns a listener against a chosen target by conversation, with an Ease Factor by relationship and increases for hatred, loathing and longer duration; it can be cancelled by Vim, Mentem effects.",
+  "quotes": [
+   "**EMBITTERMENT ROLL: Communication + Embitterment + Stress Die**",
+   "Increasing this animosity to hatred adds +3 to the Ease Factor.",
+   "consider the effective level of the embitterment to be equal to the Nemthenga's score in Embitterment times five"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tempestaria (Weather Witch)",
+  "heading": "Tempestaria (Weather Witch)",
+  "line": 10301,
+  "endLine": 10309,
+  "category": "traditions",
+  "topic": "Ex Miscellanea",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea: Tempestaria tradition",
+  "summary": "A Saxon weather-witch tradition using simple sympathetic tools, with Whistle Up The Wind as its Major Non-Hermetic Virtue, Affinity with Auram, and a Necessary Condition Flaw.",
+  "quotes": [
+   "*Major Hermetic Flaw:* Necessary Condition (tools for their magic to work)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Whistle Up The Wind",
+  "heading": "Whistle Up The Wind",
+  "line": 10311,
+  "endLine": 10323,
+  "category": "traditions",
+  "topic": "Ex Miscellanea",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Ex Miscellanea: Tempestaria tradition",
+  "summary": "A Supernatural Ability to create a wind of a chosen strength by whistling, with an Ease Factor table by strength, changeable with Communication + Music rolls, diminishing each sunset.",
+  "quotes": [
+   "makes a Stamina + Whistle Up The Wind roll, against the Ease Factor listed in the table below"
+  ],
+  "related": [
+   "ArM5 p.215 Maintaining Concentration"
+  ]
+ },
+ {
+  "title": "Basic Laboratory Activities",
+  "heading": "Basic Laboratory Activities",
+  "line": 10341,
+  "endLine": 10347,
+  "category": "lab",
+  "topic": "Lab Total",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the Lab Total, the sum used for most laboratory tasks, built from the Technique and Form relevant to the task; activities based on it require a laboratory.",
+  "quotes": [
+   "**YOUR BASIC LAB TOTAL IS: Technique + Form + Intelligence + Magic Theory + Aura Modifier**"
+  ],
+  "related": [
+   "ArM5 p.286 Laboratory personalization"
+  ]
+ },
+ {
+  "title": "Creating a Laboratory",
+  "heading": "Creating a Laboratory",
+  "line": 10349,
+  "endLine": 10353,
+  "category": "lab",
+  "topic": "Laboratory",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "A laboratory needs a protected room of at least 500 square feet and a ten-foot ceiling and a Magic Theory score of 3; the first season gives a basic laboratory with a Lab Total penalty and the second completes a standard one.",
+  "quotes": [
+   "A character must have a Magic Theory score of at least 3 to set up a laboratory, and overall it takes two seasons of work."
+  ],
+  "related": [
+   "ArM5 p.286 Laboratory personalization"
+  ]
+ },
+ {
+  "title": "Arcane Studies",
+  "heading": "Arcane Studies",
+  "line": 10355,
+  "endLine": 10357,
+  "category": "lab",
+  "topic": "Study",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Points out that Art scores and Magic Theory can be raised in several ways, all described in the Experience and Advancement section.",
+  "quotes": [
+   "Magi may increase their Art scores in several different ways."
+  ],
+  "related": [
+   "ArM5 p.375 Experience and Advancement"
+  ]
+ },
+ {
+  "title": "Fixing Arcane Connections",
+  "heading": "Fixing Arcane Connections",
+  "line": 10359,
+  "endLine": 10361,
+  "category": "lab",
+  "topic": "Arcane Connections",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An active Arcane Connection can be made permanent with a season of laboratory work and one pawn of Vim vis, without using a Lab Total.",
+  "quotes": [
+   "may make it permanent by spending a season of laboratory work and one pawn of Vim vis"
+  ],
+  "related": [
+   "ArM5 p.219 Arcane Connections"
+  ]
+ },
+ {
+  "title": "Vis Extraction",
+  "heading": "Vis Extraction",
+  "line": 10367,
+  "endLine": 10371,
+  "category": "lab",
+  "topic": "Vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A season spent in a Magical aura extracting raw vis yields Vim vis based on the Creo Vim Lab Total.",
+  "quotes": [
+   "**VIS EXTRACTION: One tenth (round up) of Creo Vim Lab Total pawns of Vim vis**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vis Transfer",
+  "heading": "Vis Transfer",
+  "line": 10373,
+  "endLine": 10381,
+  "category": "lab",
+  "topic": "Vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Raw vis can be moved to another physical form in a laboratory in a day, up to the item's capacity from the Material and Size Table, without changing the Art it is attuned to.",
+  "quotes": [
+   "This takes a day (from sunrise to sunrise), and can be done while the magus is engaged in another laboratory activity."
+  ],
+  "related": [
+   "ArM5 p.255 Material and Size Table",
+   "ArM5 p.254 Opening for enchantment"
+  ]
+ },
+ {
+  "title": "Vis Use",
+  "heading": "Vis Use",
+  "line": 10383,
+  "endLine": 10387,
+  "category": "lab",
+  "topic": "Vis",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A magus can use only a limited amount of raw vis in laboratory work per season.",
+  "quotes": [
+   "**VIS LIMIT: Magic Theory x 2 pawns per season**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Learning Spells from a Teacher",
+  "heading": "Learning Spells from a Teacher",
+  "line": 10393,
+  "endLine": 10407,
+  "category": "lab",
+  "topic": "Spell learning",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A season with a teaching magus lets a student learn spell levels up to the teacher's Lab Total (overall and per Technique and Form), with no spell above the student's own Lab Total.",
+  "quotes": [
+   "**MAXIMUM TOTAL LEVELS: Teacher's highest applicable Lab Total**",
+   "**MAXIMUM LEVELS IN ONE TECHNIQUE AND FORM: Teacher's Lab Total in that Technique and Form**",
+   "**HIGHEST LEVEL OF AN INDIVIDUAL SPELL: Student's Lab Total in the Technique and Form of the Spell**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Inventing Spells",
+  "heading": "Inventing Spells",
+  "line": 10409,
+  "endLine": 10421,
+  "category": "lab",
+  "topic": "Spell invention",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "How to invent a spell: set its effect and level, then accumulate a season's points equal to the amount by which the Lab Total (with a bonus for similar spells and requisites) exceeds the spell level until the level is reached; Lab Texts make this much faster.",
+  "quotes": [
+   "You can only invent a spell if your Lab Total exceeds the spell's level.",
+   "For each point that your Lab Total exceeds the spell's level, you accumulate one point per season."
+  ],
+  "related": [
+   "ArM5 p.303 Changing Ranges, Durations and Targets",
+   "ArM5 p.260 Similar Spells",
+   "ArM5 p.262 Laboratory Texts",
+   "ArM5 p.210 Limits of Magic"
+  ]
+ },
+ {
+  "title": "Example: Inventing Spells",
+  "heading": "Example: Inventing Spells",
+  "line": 10423,
+  "endLine": 10431,
+  "category": "lab",
+  "topic": "Spell invention",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of computing a Rego Vim Lab Total and how many seasons it takes to invent a level 20 ward versus a level 12 or 13 ward.",
+  "quotes": [
+   "Tillitus's Lab Total of 25 exceeds the spell level, 20, by 5, so every season Tillitus gains 5 points towards the spell."
+  ],
+  "related": []
+ }
+]

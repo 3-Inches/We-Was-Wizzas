@@ -1,0 +1,2010 @@
+[
+ {
+  "title": "Guernicus Apprenticeship and Gauntlet",
+  "heading": "Apprenticeship",
+  "line": 2118,
+  "endLine": 2126,
+  "category": "houses",
+  "topic": "House Guernicus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Guernicus",
+  "summary": "Describes how Guernicus apprentices are trained (moral philosophy, investigation Abilities such as Folk Ken, Awareness and Intrigue) and how the House gauntlet tests them, including a secret test of honesty that decides whether the apprentice may become a Quaesitor.",
+  "quotes": [
+   "If an apprentice is dishonest three times, he will be allowed to enter House Guernicus, but not as a Quaesitor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Guernicus Politics and Advancement",
+  "heading": "Guernicus Politics and Advancement",
+  "line": 2187,
+  "endLine": 2205,
+  "category": "houses",
+  "topic": "House Guernicus",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Guernicus / Quaesitor",
+  "summary": "Explains how Quaesitors rise in the House and Tribunal through reputation and noteworthy successes, from adviser to Presiding Quaesitor to the inner Magvillus council, and how the House's policy of posting new magi to distant Tribunals affects careers.",
+  "quotes": [
+   "A competent Quaesitor can expect at least one term as Presiding Quaesitor during his career."
+  ],
+  "related": []
+ },
+ {
+  "title": "Letters of Authority and Allies of Quaesitors",
+  "heading": "Allies",
+  "line": 2224,
+  "endLine": 2228,
+  "category": "order",
+  "topic": "Quaesitorial investigation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Non-Quaesitors can investigate on a Quaesitor's behalf if given a letter of authority, which grants investigation immunity and the right to demand cooperation; authority can be granted retroactively for successful investigations.",
+  "quotes": [
+   "authority can be given retroactively, and normally is for successful investigations"
+  ],
+  "related": [
+   "Investigation immunity"
+  ]
+ },
+ {
+  "title": "Sanctum Law (Marked Texts)",
+  "heading": "Sanctum Law",
+  "line": 2256,
+  "endLine": 2260,
+  "category": "order",
+  "topic": "Sanctum law",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Grand Tribunal rulings let magi protect texts with a sanctum mark, even outside the sanctum, and let a House symbol mark a text as secret to the House. Reading such a marked text is a low crime for other magi.",
+  "quotes": [
+   "A magus who reads from such a marked text is committing a low crime."
+  ],
+  "related": [
+   "Code of Hermes"
+  ]
+ },
+ {
+  "title": "Acute Sense (Mastery Ability)",
+  "heading": "Acute Sense",
+  "line": 2262,
+  "endLine": 2274,
+  "category": "magic",
+  "topic": "Mastery abilities",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Quaesitorial training (mastery ability for enhanced sense spells)",
+  "summary": "A new mastery ability for enhanced sense spells that lets a trained Quaesitor notice altered, hidden or destroyed magical traces; the storyguide rolls for the player, and taking it twice adds the Mastery score to the roll.",
+  "quotes": [
+   "Perception + Penetration + Stress die",
+   "6 + the magnitude of the Might of the creature responsible for the effect or 6 + the magnitude of a Hermetic spell"
+  ],
+  "related": [
+   "Spell Mastery"
+  ]
+ },
+ {
+  "title": "Spell Traces and Sigils",
+  "heading": "Spell Traces and Sigils",
+  "line": 2276,
+  "endLine": 2286,
+  "category": "magic",
+  "topic": "Spell traces and sigils",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules of thumb for how the magnitude of a spell trace decays over time, how long traces remain detectable, and how a caster's sigil can be revealed and recognized by Intellego Vim investigation.",
+  "quotes": [
+   "As soon as the magic finishes, the magnitude halves.",
+   "A spell trace is normally detectable until it reaches a magnitude of \u201310, at which point it is completely gone."
+  ],
+  "related": [
+   "Restore the Faded Threads",
+   "By His Works"
+  ]
+ },
+ {
+  "title": "Shroud Magic",
+  "heading": "Shroud Magic",
+  "line": 2288,
+  "endLine": 2308,
+  "category": "magic",
+  "topic": "Spell traces and sigils",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how the Shroud Magic spell replaces a spell trace's sigil with a false one, how a magus can try to mimic another magus's sigil with an embedded Ease Factor, and how observers can test it.",
+  "quotes": [
+   "Intelligence + Finesse + Stress die",
+   "Perception + Awareness + Stress die"
+  ],
+  "related": [
+   "Acute Sense",
+   "By His Works"
+  ]
+ },
+ {
+  "title": "Forceless Casting",
+  "heading": "Forceless Casting",
+  "line": 2310,
+  "endLine": 2316,
+  "category": "magic",
+  "topic": "Forceless casting",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A magus can deliberately cap a wide-area spell's Penetration at zero so that it does not affect other magi with at least Magic Resistance zero, reducing but not eliminating the risk of criminally affecting others.",
+  "quotes": [
+   "a magus can deliberately ensure the Penetration of a spell never exceeds '0'"
+  ],
+  "related": [
+   "Penetration",
+   "Magic Resistance"
+  ]
+ },
+ {
+  "title": "Creo Mentem Guidelines (Restoring Memories)",
+  "heading": "Creo Mentem Guidelines",
+  "line": 2348,
+  "endLine": 2354,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Creo Mentem guidelines for restoring a fragment of a memory to a fresh state, at levels scaled to how much time the memory covers.",
+  "quotes": [
+   "**Level 5:** Restore a memory of an event to a fresh state, as long as a fragment of it remains."
+  ],
+  "related": [
+   "By His Works",
+   "The Good Witness"
+  ]
+ },
+ {
+  "title": "Intellego Terram Guidelines (Commune with Stone and Metal)",
+  "heading": "Intellego Terram Guidelines",
+  "line": 2416,
+  "endLine": 2422,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Intellego Terram guidelines for communing with the spirit of a natural rock, an artificial rock or a metal object, at progressively higher levels.",
+  "quotes": [
+   "**Level 30:** Commune with a natural rock. Speak with a metal object."
+  ],
+  "related": [
+   "Tell of the Forged",
+   "Dream of the Mind That Sits"
+  ]
+ },
+ {
+  "title": "Creo Vim Guidelines (Refreshing Spell Traces)",
+  "heading": "Creo Vim Guidelines",
+  "line": 2458,
+  "endLine": 2460,
+  "category": "magic",
+  "topic": "Spell traces and sigils",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A general Creo Vim guideline for refreshing spell traces within the target back to a fresh state, limited by the guideline's magnitude.",
+  "quotes": [
+   "Refreshes all spell traces within the target that are less then the magnitude of the guideline"
+  ],
+  "related": [
+   "Restore the Faded Threads",
+   "Spell Traces and Sigils"
+  ]
+ },
+ {
+  "title": "Intellego Vim Guidelines (Detecting Magic Traces)",
+  "heading": "Intellego Vim Guidelines",
+  "line": 2474,
+  "endLine": 2480,
+  "category": "magic",
+  "topic": "Spell traces and sigils",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "General guidelines for detecting spell traces of negative magnitude, with a higher magnitude step revealing rough details, the caster's sigil and whether a spell or an invested device produced the effect. Separate spells are needed for each of the four Realms.",
+  "quotes": [
+   "Detect the traces of magic of negative magnitude up to the magnitude of the guideline used"
+  ],
+  "related": [
+   "Spell Traces and Sigils",
+   "Acute Sense"
+  ]
+ },
+ {
+  "title": "Perdo Vim Guidelines (Aging Traces and Dispelling Enchantments)",
+  "heading": "Perdo Vim Guidelines",
+  "line": 2521,
+  "endLine": 2531,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidelines for aging a spell trace to a negative magnitude and for ritual dispelling of Hermetic enchantments, either generally or of one specific type such as Talismans, Familiars or Longevity Rituals.",
+  "quotes": [
+   "**Gen:** Ages a spell trace to a negative magnitude equal to the guideline used."
+  ],
+  "related": [
+   "Shroud Magic",
+   "Circle of Clarity",
+   "Cutting the Cords"
+  ]
+ },
+ {
+  "title": "Fenicil's Rituals (Guernicus Group Rituals)",
+  "heading": "Fenicil's Rituals",
+  "line": 2551,
+  "endLine": 2568,
+  "category": "houses",
+  "topic": "Fenicil's Rituals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Guernicus (rituals taught by Guernicus magi); not available to the Unstructured Caster flaw",
+  "summary": "Rules for the pre-Mercurian group rituals kept by House Guernicus: learned from a teacher in a season without a lab total, cast by a group leader whose Casting Total sums the group's Ability scores, protected by Wizard's Vigil spells, and costing vis equal to the ritual's Ease Factor (partly substitutable with costly materials).",
+  "quotes": [
+   "Sta + [Sum of Ability Scores] + Aura Modifier + Die Roll",
+   "Each ritual requires a number of pawns of vis equal to its Ease Factor."
+  ],
+  "related": [
+   "Wizard's Vigil",
+   "Mercurian Magic virtue",
+   "Unstructured Caster flaw"
+  ]
+ },
+ {
+  "title": "Greater Rituals (Fenicil)",
+  "heading": "Greater Rituals",
+  "line": 2570,
+  "endLine": 2577,
+  "category": "houses",
+  "topic": "Fenicil's Rituals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Guernicus (experienced magi)",
+  "summary": "Greater rituals take a whole season to enact and are treated as a lab activity for time commitment; they require large gatherings at Magvillus and may not work at all.",
+  "quotes": [
+   "These rituals take a whole season to enact. Treat as a lab activity in terms of time commitment."
+  ],
+  "related": [
+   "Fenicil's Rituals"
+  ]
+ },
+ {
+  "title": "Greater Ritual Example (Curse of Thoth)",
+  "heading": "Greater Ritual Example",
+  "line": 2606,
+  "endLine": 2612,
+  "category": "houses",
+  "topic": "Fenicil's Rituals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Guernicus (experienced magi)",
+  "summary": "A worked example of a Greater Ritual Casting Total, showing how the group's summed Abilities, the leader's Stamina, the aura and a die roll combine, how Penetration is found against the Ease Factor, and the vis and silver consumed.",
+  "quotes": [
+   "2 + 130 + 4 + 3 = 139"
+  ],
+  "related": [
+   "Fenicil's Rituals"
+  ]
+ },
+ {
+  "title": "Lesser Rituals (Fenicil)",
+  "heading": "Lesser Rituals",
+  "line": 2614,
+  "endLine": 2618,
+  "category": "houses",
+  "topic": "Fenicil's Rituals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Guernicus",
+  "summary": "Lesser rituals see occasional use and take minutes per point of Ease Factor to cast; the listed examples are only a selection and the storyguide may add more.",
+  "quotes": [
+   "All these rituals take five minutes for each point of Ease Factor to cast."
+  ],
+  "related": [
+   "Fenicil's Rituals"
+  ]
+ },
+ {
+  "title": "Redcaps: Status and Role in the Order",
+  "heading": "Redcaps",
+  "line": 2716,
+  "endLine": 2728,
+  "category": "houses",
+  "topic": "Redcaps",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Mercere (Redcap, unGifted)",
+  "summary": "Explains what a Redcap is: an unGifted member of House Mercere with the rights and privileges of a magus, a sigil, and a tradition of not voting at Tribunal, who acts like a Hermetic companion serving magi and performing duties magi find beneath them.",
+  "quotes": [
+   "Redcaps may not have the Gift, but they do have full rights and privileges"
+  ],
+  "related": [
+   "Mercere magi",
+   "Messengers and Heralds"
+  ]
+ },
+ {
+  "title": "Messengers and Heralds (Mercer Houses, Registration, Redcap Pay)",
+  "heading": "Messengers and Heralds",
+  "line": 2738,
+  "endLine": 2772,
+  "category": "houses",
+  "topic": "Redcaps",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Mercere (Redcap)",
+  "summary": "How the Redcap courier network works: Mercer Houses in each Tribunal, the duty to distribute Tribunal invitations, covenant and vis-source registration, message delivery times, blacklisting, and the customary payment Redcaps receive from each covenant they visit.",
+  "quotes": [
+   "House Mercere's only official obligation to Tribunal is the charge to distribute invitations before the gathering",
+   "Redcaps are traditionally paid in silver by the covenants they visit on their rounds."
+  ],
+  "related": [
+   "Merchants and Bankers",
+   "Mercere's Portals"
+  ]
+ },
+ {
+  "title": "Societas Merceris: Followers of Belin",
+  "heading": "Societas Merceris: Followers of Belin",
+  "line": 2774,
+  "endLine": 2784,
+  "category": "houses",
+  "topic": "Mercere societies",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Redcap society: Followers of Belin (Legacy flaw)",
+  "summary": "A Redcap society of elite messengers descended from or adopted into Belin's line, with character requirements limiting them to humble, diligent Personality traits and the Legacy flaw.",
+  "quotes": [
+   "they must take the Legacy flaw (see the Appendix, Virtues and Flaws)"
+  ],
+  "related": [
+   "Legacy flaw"
+  ]
+ },
+ {
+  "title": "Merchants and Bankers (Vis Exchange, Loans, Liens, Pawning)",
+  "heading": "Merchants and Bankers",
+  "line": 2786,
+  "endLine": 2857,
+  "category": "social",
+  "topic": "Vis trade and Redcap banking",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How Redcaps trade vis between Technique and Form types at fixed exchange rates, and lend, pawn, take liens and speculate on vis and magic items, including interest rates, loan limits, vis accounts, notary letters and Tribunal treasuries.",
+  "quotes": [
+   "Generally, they trade one unit of vis for two.",
+   "Fair practice is to both pay and charge 20% interest annually",
+   "ten pounds of silver might be considered roughly equivalent to a pawn of vis"
+  ],
+  "related": [
+   "Vis Notation",
+   "Usurers",
+   "Magical Silver"
+  ]
+ },
+ {
+  "title": "Vis Notation",
+  "heading": "Vis Notation",
+  "line": 2790,
+  "endLine": 2792,
+  "category": "covenant",
+  "topic": "Vis trade and Redcap banking",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the abbreviations used in vis accounting: pigni (pawns), and the occasional larger units of rooks and queens.",
+  "quotes": [
+   "ten of these pawns made a \"rook,\" and ten rooks made a \"queen.\""
+  ],
+  "related": [
+   "Merchants and Bankers"
+  ]
+ },
+ {
+  "title": "Usurers (High-Interest Lending)",
+  "heading": "Usurers",
+  "line": 2811,
+  "endLine": 2817,
+  "category": "social",
+  "topic": "Vis trade and Redcap banking",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue/Flaw: Usurer",
+  "summary": "Describes higher interest rates charged by lenders who disregard the charge of usury, the social consequences, and advice for building a character who is an Usurer, including recommended Flaws and the Profession: Accountant Ability.",
+  "quotes": [
+   "might ask closer to 50% interest on common loans"
+  ],
+  "related": [
+   "Usurer flaw",
+   "Merchants and Bankers"
+  ]
+ },
+ {
+  "title": "Magical Silver (Tribunal Ruling)",
+  "heading": "Magical Silver",
+  "line": 2829,
+  "endLine": 2837,
+  "category": "order",
+  "topic": "Peripheral Code",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A Stonehenge Tribunal Peripheral Code ruling that caps the magically created silver a covenant may put into circulation each year, with notes on why gold was not covered and how it affects magi elsewhere.",
+  "quotes": [
+   "No covenant may put more than two pounds of magically created silver per resident into circulation each year."
+  ],
+  "related": [
+   "Peripheral Code"
+  ]
+ },
+ {
+  "title": "Societas Merceris: the Pawnbrokers",
+  "heading": "Societas Merceris: the Pawnbrokers",
+  "line": 2859,
+  "endLine": 2871,
+  "category": "houses",
+  "topic": "Mercere societies",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Redcap society: Pawnbrokers",
+  "summary": "A Redcap society that stores vis in distinctively shaped tokens; members may trade starting magic item levels for vis in their signature shape and receive a yearly pawn of vis from the House.",
+  "quotes": [
+   "Pawnbroker Redcaps may trade two levels of their starting magic items for a pawn of vis in their signature shape"
+  ],
+  "related": [
+   "Merchants and Bankers",
+   "Personal Vis Source"
+  ]
+ },
+ {
+  "title": "Mercenaries and Guardians (Custodians, Bounties, Portal Guards, Fine Collection)",
+  "heading": "Mercenaries and Guardians",
+  "line": 2873,
+  "endLine": 2893,
+  "category": "houses",
+  "topic": "Redcaps",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Mercere (custodial Redcap)",
+  "summary": "Describes custodial Redcaps who guard other Redcaps, claim bounties on road threats, guard Mercere's Portals for a share of tolls, investigate and spy, and collect fines and damages for a percentage of the value.",
+  "quotes": [
+   "one pawn of vis per use",
+   "he is given one-tenth its value from House funds"
+  ],
+  "related": [
+   "Mercere's Portals",
+   "Merchants and Bankers"
+  ]
+ },
+ {
+  "title": "Societas Merceris: the Bloodcaps",
+  "heading": "Societas Merceris: the Bloodcaps",
+  "line": 2917,
+  "endLine": 2927,
+  "category": "houses",
+  "topic": "Mercere societies",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Redcap society: Bloodcaps (Faerie Blood or Strong Faerie Blood, plus a Malediction)",
+  "summary": "A Redcap society of faerie-blooded border guards; members must take Faerie Blood and a Greater or Lesser Malediction triggered by the cross or scripture, and tend to carry combat-oriented magic items.",
+  "quotes": [
+   "All Bloodcaps must take Faerie Blood (or Strong Faerie Blood)"
+  ],
+  "related": [
+   "Faerie Blood virtue"
+  ]
+ },
+ {
+  "title": "Errant Redcaps (Duty and Sanctions)",
+  "heading": "Errant Redcaps",
+  "line": 2947,
+  "endLine": 2955,
+  "category": "houses",
+  "topic": "Redcaps",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Mercere (Redcap)",
+  "summary": "Covers how the House handles Redcaps who neglect their service: reporting to the senior Redcap, rewards of magic items and longevity potions for the dutiful, allowances for lost seasons, and the ultimate sanction of being declared an orphan and cast out.",
+  "quotes": [
+   "The ultimate sanction is to declare the Redcap an orphan (\"Orbus\"), throwing him out of the House."
+  ],
+  "related": [
+   "Lone Redcap virtue"
+  ]
+ },
+ {
+  "title": "Societas Merceris: the Goliards",
+  "heading": "Societas Merceris: the Goliards",
+  "line": 2957,
+  "endLine": 2973,
+  "category": "houses",
+  "topic": "Mercere societies",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Redcap society: Goliards (Clerk or Educated, plus a Compulsion)",
+  "summary": "An artistic, hedonistic Redcap society; members must take Clerk or Educated and a Compulsion toward an inspirational vice, and commonly take Free Expression, Inspirational or a Hermetic Patron.",
+  "quotes": [
+   "characters must take either Clerk or Educated"
+  ],
+  "related": [
+   "Hermetic Patron"
+  ]
+ },
+ {
+  "title": "Magical Merceres (Mercere Magi Privileges and Creation)",
+  "heading": "Magical Merceres",
+  "line": 2987,
+  "endLine": 3001,
+  "category": "houses",
+  "topic": "House Mercere magi",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Mercere (Gifted magus)",
+  "summary": "Describes Gifted Mercere magi: their lineage expectations, privileges (contracts for items, interest-free vis loans, free Portal use, support from Mercer Houses), yearly messenger season, casting taboos and the free Virtue they take at creation.",
+  "quotes": [
+   "starting Mercere magi always take either Puissant Art (Creo) or Puissant Art (Muto) as their free Virtue",
+   "They may borrow up to 10p of vis from their House without paying interest"
+  ],
+  "related": [
+   "Illegitimate Lineage flaw",
+   "Mercere's Portals"
+  ]
+ },
+ {
+  "title": "Mercurian Magi (Cult of Mercury Lineage)",
+  "heading": "Mercurian Magi",
+  "line": 3003,
+  "endLine": 3015,
+  "category": "houses",
+  "topic": "House Mercere magi",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Mercere (Mercurian lineage / Cult of Mercury)",
+  "summary": "Describes the Mercurian lineage of Mercere magi, who preserve Cult of Mercury practices and have access to a set of Mercurian spell mastery abilities listed in the Laboratory appendix.",
+  "quotes": [
+   "They include: Adaptive Casting, Ceremonial Casting, Disguised Casting, Lab Mastery, Learn from Mistakes, and Stalwart Casting."
+  ],
+  "related": [
+   "Mastered Spell Special Abilities",
+   "Mercurian Magic virtue"
+  ]
+ },
+ {
+  "title": "Societas Merceris: the Cult of Heroes",
+  "heading": "Societas Merceris: the Cult of Heroes",
+  "line": 3017,
+  "endLine": 3025,
+  "category": "houses",
+  "topic": "Mercere societies",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Redcap society: Cult of Heroes (Blood of Heroes for hero characters; Mythic Blood or Mercurian Magic and Pagan for magi)",
+  "summary": "A society that raises exceptional children as heroes; hero characters take the Blood of Heroes virtue, may trade starting magic item levels for Characteristic increases, and Cult magi may substitute Mastered Spells for Puissant Art.",
+  "quotes": [
+   "Either type may exchange 10 levels of effects in their starting magic items for a +1 increase to any of their negative Characteristics."
+  ],
+  "related": [
+   "Blood of Heroes virtue",
+   "Mythic Blood",
+   "Pagan flaw"
+  ]
+ },
+ {
+  "title": "Mutantes (Lineage and Magic-Taming)",
+  "heading": "Mutantes",
+  "line": 3035,
+  "endLine": 3063,
+  "category": "houses",
+  "topic": "Mutantum Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Mercere (Mutantes lineage) or Mutantum-related Virtues",
+  "summary": "Describes the Mutantes lineage and its magic-taming philosophy, outlining boosting, harnessing and tethering, the Virtues and Flaws that grant these abilities to other magi, and the three matching mastered spell abilities Mutantes can teach.",
+  "quotes": [
+   "By spending a pawn of vis when casting boosted spells or activating a boosted effect in an item, you may increase the Range, Duration, Target, or size of the effect by one magnitude."
+  ],
+  "related": [
+   "Mutantum Magic",
+   "Mastered Spell Special Abilities",
+   "Boosted Magic",
+   "Harnessed Magic",
+   "Tethered Magic"
+  ]
+ },
+ {
+  "title": "Societas Merceris: Milvi Antiquiti",
+  "heading": "Societas Merceris: Milvi Antiquiti",
+  "line": 3066,
+  "endLine": 3076,
+  "category": "houses",
+  "topic": "Mercere societies",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Redcap society: Milvi Antiquiti (Mutantum Magic for magi)",
+  "summary": "A Mutantes society that copies and lends ancient books to magi for a vis fee and carries them by shapeshifting into birds; magi members take Mutantum Magic and Redcap members usually learn Latin, Scribe and Magic Theory.",
+  "quotes": [
+   "usually 1p a season or 3p a year"
+  ],
+  "related": [
+   "Mutantum Magic",
+   "Shape of the Ancient Kite"
+  ]
+ },
+ {
+  "title": "Mastered Spell Special Abilities (Access Rules)",
+  "heading": "Mastered Spell Special Abilities",
+  "line": 3116,
+  "endLine": 3120,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Taught by someone who has the Ability (true lineage magi)",
+  "summary": "New spell mastery special abilities can be chosen when a level in mastery is earned, provided part of the experience was taught by someone with that Ability; characters taking Mastered Spells at creation may spend mastery points on them if they had access during apprenticeship.",
+  "quotes": [
+   "as long as some of the experience points were taught by someone with the Ability"
+  ],
+  "related": [
+   "Spell Mastery (ArM5)"
+  ]
+ },
+ {
+  "title": "Adaptive Casting",
+  "heading": "Adaptive Casting",
+  "line": 3122,
+  "endLine": 3126,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell mastery ability (Cult of Mercury)",
+  "summary": "A mastered spell ability letting the magus apply a mastery score and its abilities to similar spells, with only one applicable mastery Ability usable at a time when several apply.",
+  "quotes": [
+   "You may use your mastery score and all the special abilities associated with it whenever you cast a similar spell."
+  ],
+  "related": [
+   "Mastered Spell Special Abilities"
+  ]
+ },
+ {
+  "title": "Boosted Casting",
+  "heading": "Boosted Casting",
+  "line": 3150,
+  "endLine": 3154,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell mastery ability (Mutantes)",
+  "summary": "A mastered spell ability allowing the caster to spend vis to increase a spell's Range, Duration, Target or size by one magnitude per pawn, adding a botch die for each pawn used.",
+  "quotes": [
+   "you do add one additional botch die for each pawn of vis used"
+  ],
+  "related": [
+   "Mutantum Magic",
+   "Boosted Magic"
+  ]
+ },
+ {
+  "title": "Ceremonial Casting",
+  "heading": "Ceremonial Casting",
+  "line": 3156,
+  "endLine": 3160,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell mastery ability (Cult of Mercury)",
+  "summary": "A mastered spell ability allowing ceremonial casting of a non-ritual spell, taking longer in exchange for adding the caster's Artes Liberales and Philosophiae to the total.",
+  "quotes": [
+   "increasing the casting time and adding your Artes Liberales and Philosophiae to your total"
+  ],
+  "related": [
+   "Mastered Spell Special Abilities"
+  ]
+ },
+ {
+  "title": "Disguised Casting",
+  "heading": "Disguised Casting",
+  "line": 3162,
+  "endLine": 3166,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell mastery ability (Cult of Mercury)",
+  "summary": "A mastered spell ability letting the caster suppress or alter their sigil, or mimic another magus's sigil, with the Spell Mastery score helping against recognition.",
+  "quotes": [
+   "you may add your Spell Mastery score to the roll that determines how difficult it is to recognize"
+  ],
+  "related": [
+   "Shroud Magic",
+   "Spell Traces and Sigils"
+  ]
+ },
+ {
+  "title": "Harnessed Casting",
+  "heading": "Harnessed Casting",
+  "line": 3168,
+  "endLine": 3172,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell mastery ability (Mutantes)",
+  "summary": "A mastered spell ability allowing the caster to end the spell's effects at will by concentrating, with a retry allowed if distracted.",
+  "quotes": [
+   "You may end the effects of this spell at will, simply by concentrating on it."
+  ],
+  "related": [
+   "Mutantum Magic",
+   "Harnessed Magic"
+  ]
+ },
+ {
+  "title": "Lab Mastery",
+  "heading": "Lab Mastery",
+  "line": 3174,
+  "endLine": 3178,
+  "category": "lab",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell mastery ability (Cult of Mercury)",
+  "summary": "A mastered spell ability that adds the spell mastery score to the Lab Total when designing similar effects, in addition to the normal similar-spell bonus.",
+  "quotes": [
+   "you may add your spell mastery score to your Lab Total when designing effects that are similar to it"
+  ],
+  "related": [
+   "Similar Spells (ArM5 p.101)"
+  ]
+ },
+ {
+  "title": "Learn from Mistakes",
+  "heading": "Learn from Mistakes",
+  "line": 3180,
+  "endLine": 3184,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell mastery ability (Cult of Mercury)",
+  "summary": "A mastered spell ability that grants mastery experience the first time per session the caster botches or narrowly fails a roll for the spell.",
+  "quotes": [
+   "you gain five experience points towards mastery of this spell"
+  ],
+  "related": [
+   "Mastered Spell Special Abilities"
+  ]
+ },
+ {
+  "title": "Stalwart Casting",
+  "heading": "Stalwart Casting",
+  "line": 3186,
+  "endLine": 3190,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell mastery ability (Cult of Mercury)",
+  "summary": "A mastered spell ability reducing the Fatigue cost of casting: rituals cost normal rather than long-term Fatigue at half the levels, and formulaic spells never cost Fatigue from a low casting total.",
+  "quotes": [
+   "you never lose Fatigue levels because of a low casting total"
+  ],
+  "related": [
+   "Mastered Spell Special Abilities"
+  ]
+ },
+ {
+  "title": "Tethered Casting",
+  "heading": "TETHERED CASTING",
+  "line": 3192,
+  "endLine": 3196,
+  "category": "magic",
+  "topic": "Spell mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Spell mastery ability (Mutantes)",
+  "summary": "A mastered spell ability allowing control of the spell to be passed to another person or to an object that casts it when a suitable target comes into range; cannot be used for Ritual spells.",
+  "quotes": [
+   "This cannot be taken for Ritual spells."
+  ],
+  "related": [
+   "Mutantum Magic",
+   "Tethered Magic"
+  ]
+ },
+ {
+  "title": "Mercere's Portals (Lab Activity)",
+  "heading": "Mercere's Portals",
+  "line": 3198,
+  "endLine": 3204,
+  "category": "lab",
+  "topic": "Mercere's Portals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Mercere (Mercere magi; season studying an existing Portal)",
+  "summary": "How a Mercere magus builds a Portal: study an existing one for a season, enchant two linked archways with a Rego Terram effect, then perform a connecting ceremony in both locations; completed Portals cannot be moved.",
+  "quotes": [
+   "each with an instilled effect of Rego Terram, level 65 (base level 35, +4 Arc; +10 for Unlimited uses)"
+  ],
+  "related": [
+   "Hermes' Portal"
+  ]
+ },
+ {
+  "title": "Mutantum Magic (Metamagic)",
+  "heading": "Mutantum Magic",
+  "line": 3210,
+  "endLine": 3218,
+  "category": "magic",
+  "topic": "Mutantum Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Mutantum Magic (or Boosted, Harnessed, Tethered Magic)",
+  "summary": "Rules for the three Mutantum metamagic effects: boosting a spell with vis to raise a parameter, harnessing it so it can be ended at will, and tethering it so control passes to another person or object.",
+  "quotes": [
+   "By spending a pawn of vis when casting boosted spells or activating a boosted effect in an item, you may increase the Range, Duration, Target, or size of the effect by one magnitude.",
+   "Ritual spells cannot be tethered."
+  ],
+  "related": [
+   "Boosted Casting",
+   "Harnessed Casting",
+   "Tethered Casting",
+   "Tamed Magic"
+  ]
+ },
+ {
+  "title": "Mutantum Spells (Requirements)",
+  "heading": "Mutantum Spells",
+  "line": 3224,
+  "endLine": 3236,
+  "category": "magic",
+  "topic": "Mutantum Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Boosted, Harnessed or Tethered Magic, or Mutantum Magic virtue",
+  "summary": "Explains that Mutantum spells have Boosted, Harnessed or Tethered qualities, each requiring a matching Virtue, and which Virtues allow formulaic versus spontaneous use.",
+  "quotes": [
+   "**Boosted:** Requires Boosted Magic or Mutantum Magic"
+  ],
+  "related": [
+   "Mutantum Magic",
+   "Tamed Magic"
+  ]
+ },
+ {
+  "title": "Blood of Heroes (Hero Characters)",
+  "heading": "Blood of Heroes",
+  "line": 3357,
+  "endLine": 3367,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Blood of Heroes (free Virtue; House Mercere)",
+  "summary": "Creation rules for hero characters: they have no Gift, count as Mythic Companions, may take Heroic Virtues and Flaws, gain double Virtue points from Flaws, must take Heroic Personality, and are normally Redcaps; the storyguide may veto overpowered heroes.",
+  "quotes": [
+   "each point of Flaws that you take during character creation balances two points of Virtues instead of one"
+  ],
+  "related": [
+   "Mythic Companions",
+   "Heroic",
+   "Mythic Blood (ArM5 p.47)"
+  ]
+ },
+ {
+  "title": "Mythic Companions",
+  "heading": "Mythic Companions",
+  "line": 3369,
+  "endLine": 3375,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Blood of Heroes",
+  "summary": "Introduces Mythic Companions as a character type closer in power to magi than ordinary companions, who can never have the Gift, with advice to the storyguide on how many such characters a saga should hold.",
+  "quotes": [
+   "Characters with Blood of Heroes are Mythic Companions, a new character type."
+  ],
+  "related": [
+   "Blood of Heroes"
+  ]
+ },
+ {
+  "title": "Heroic (Access to Heroic Virtues and Flaws)",
+  "heading": "Heroic",
+  "line": 3377,
+  "endLine": 3379,
+  "category": "creation",
+  "topic": "Mythic Companions",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Blood of Heroes, Legacy flaw, or Mythic Blood",
+  "summary": "Defines which characters count as Heroic and may therefore take Heroic Virtues and Flaws, with room for storyguide discretion in other circumstances.",
+  "quotes": [
+   "Only \"Heroic\" characters can take Heroic Virtues and Flaws."
+  ],
+  "related": [
+   "Blood of Heroes",
+   "Mythic Blood",
+   "Legacy flaw"
+  ]
+ },
+ {
+  "title": "Tremere Block Voting and Tribunal Tactics",
+  "heading": "Block Voting",
+  "line": 3871,
+  "endLine": 3879,
+  "category": "order",
+  "topic": "House Tremere politics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Describes how Tremere magi vote as a bloc by proxying votes to the House Tribune, and the three tactics they use to reform the Peripheral Code: refining existing rulings, requesting reviews, and defining terms favorably.",
+  "quotes": [
+   "The main tactics that Tremere magi use to reform the Peripheral Code are:"
+  ],
+  "related": [
+   "Peripheral Code",
+   "Tribunal"
+  ]
+ },
+ {
+  "title": "House Tremere Structure and Ranks",
+  "heading": "Structure",
+  "line": 3907,
+  "endLine": 3913,
+  "category": "houses",
+  "topic": "House Tremere organization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Outlines the Tremere hierarchy of Primus, exarchs, experienced, skilled and newly Gauntleted magi, the decennial council of sigil-holding magi, and the principle that subordination is repaid with aid in loans of vis, money, books or items.",
+  "quotes": [
+   "Members of the House do not have names for the ranks below exarch, but are aware they exist."
+  ],
+  "related": [
+   "The Role of Young Magi",
+   "Promotion by Force"
+  ]
+ },
+ {
+  "title": "The Role of Young Magi (Tremere Duties and Aid)",
+  "heading": "THE ROLE OF YOUNG MAGI",
+  "line": 3915,
+  "endLine": 3951,
+  "category": "houses",
+  "topic": "House Tremere aid",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Describes the duties of young Tremere magi, including the call to arms, and the system of House aid they may draw on (one form of aid at a time, changing it takes a season in a multi-House covenant), with example loans, services and logistical support.",
+  "quotes": [
+   "Assume a young magus may have one form of aid at a time and that it takes a complete season for a player character in a multi-house covenant to change his form of aid.",
+   "A younger magus generally loses a season per year to the work of the House, less if he completes his duties swiftly."
+  ],
+  "related": [
+   "Material Aid in Your Saga",
+   "The Role of Skilled Magi"
+  ]
+ },
+ {
+  "title": "The Role of Skilled Magi (Tremere Duties and Aid)",
+  "heading": "The Role of Skilled Magi",
+  "line": 3953,
+  "endLine": 3978,
+  "category": "houses",
+  "topic": "House Tremere aid",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Missions and support available to skilled Tremere magi, such as larger loans of vis, widely-admired books, tame animals, hired groups and mercenaries; they may hold two types of support, each tradable for three of the young-magi level.",
+  "quotes": [
+   "A magus at this level of skill can have two types of support from the list above."
+  ],
+  "related": [
+   "The Role of Young Magi",
+   "The Role of Experienced Magi"
+  ]
+ },
+ {
+  "title": "The Role of Experienced Magi (Tremere Duties and Aid)",
+  "heading": "The Role of Experienced Magi",
+  "line": 3980,
+  "endLine": 4013,
+  "category": "houses",
+  "topic": "House Tremere aid",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Duties and resources of experienced Tremere magi, who act with little supervision: gifts of silver and vis, loans of major books and powerful items, warships or grogs; they select three forms of support, tradable for lower-level picks, and must justify spending with consistent success.",
+  "quotes": [
+   "An experienced magus may select three forms of support from the list above."
+  ],
+  "related": [
+   "The Role of Skilled Magi",
+   "The Role of the Exarchs"
+  ]
+ },
+ {
+  "title": "Material Aid in Your Saga",
+  "heading": "Material Aid in Your Saga",
+  "line": 4015,
+  "endLine": 4023,
+  "category": "houses",
+  "topic": "House Tremere aid",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Advice for the troupe on negotiating and adjusting the level of House aid given to Tremere characters, treating aid as compensation for seasons lost to House service and tuning it to the saga's themes.",
+  "quotes": [
+   "The system of aid also compensates Tremere magi for the seasons of study they lose in the service of their House."
+  ],
+  "related": [
+   "The Role of Young Magi"
+  ]
+ },
+ {
+  "title": "The Role of the Exarchs (Tremere Duties and Aid)",
+  "heading": "The Role of the Exarchs",
+  "line": 4025,
+  "endLine": 4054,
+  "category": "houses",
+  "topic": "House Tremere aid",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Lists the six exarchates, an exarch's duties, and the resources an exarch may command (vis, masterpiece books, extraordinary items, armies); three picks from the list, each tradable for three picks on the experienced magi list.",
+  "quotes": [
+   "An exarch may choose three items from this list, each tradable for three picks on the experienced magi list"
+  ],
+  "related": [
+   "The Role of Experienced Magi",
+   "Vexilations"
+  ]
+ },
+ {
+  "title": "Promotion by Force",
+  "heading": "Promotion by Force",
+  "line": 4104,
+  "endLine": 4106,
+  "category": "houses",
+  "topic": "House Tremere promotion",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Introduces the alternative promotion path in House Tremere: instead of being promoted politically, a magus may claim a rank by dueling, with the dishonor of using vis against other Tremere in such duels.",
+  "quotes": [
+   "When dueling with other Tremere magi, it is dishonorable to use vis."
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Claiming the Name (Gauntlet by Certamen)",
+  "heading": "Claiming the Name, to Move to the Role of Magus by Force",
+  "line": 4108,
+  "endLine": 4116,
+  "category": "houses",
+  "topic": "House Tremere promotion",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tremere",
+  "summary": "Explains the Tremere Gauntlet as a certamen challenge from apprentice to master for the title of magus, how it is staged and judged, and the ceremony of the birchwood wand that serves as the new magus's sigil.",
+  "quotes": [
+   "It is all-but unheard of for an apprentice to win the role of magus by force"
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Claiming the Sigil (Experienced Magus by Force)",
+  "heading": "Claiming the Sigil, to Move to the Role of Experienced Magus by Force",
+  "line": 4118,
+  "endLine": 4131,
+  "category": "houses",
+  "topic": "House Tremere promotion",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "How a Tremere magus challenges his parens for his own sigil (once at a chosen time, then at each Decennial), and the privileges of a young magus who holds his own sigil, including how aid is treated and trivial votes at Tribunal.",
+  "quotes": [
+   "The prot\u00e9g\u00e9 may challenge for their sigil, at a time of their choosing, once.",
+   "After this, the magus may challenge at every Decennial meeting of the House."
+  ],
+  "related": [
+   "Certamen",
+   "Block Voting"
+  ]
+ },
+ {
+  "title": "Claiming the Tribunal's Dragon Banner (Exarch by Force)",
+  "heading": "Claiming the Tribunal's Dragon Banner, to Move to the Role of Exarch by Force",
+  "line": 4133,
+  "endLine": 4149,
+  "category": "houses",
+  "topic": "House Tremere promotion",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "How an exarch's heir is chosen by dueling and how any Tremere magus may challenge an exarch to certamen once, with restrictions on timing and the Primus's possible responses; includes the Addled Secutor story seed.",
+  "quotes": [
+   "A magus may only challenge the exarch for his role once, and must not do so while the House faces rivals, at Tribunal for example."
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Dissent (House Tremere)",
+  "heading": "Dissent",
+  "line": 4151,
+  "endLine": 4159,
+  "category": "houses",
+  "topic": "House Tremere promotion",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Describes how the House handles periods of dissent, the mechanisms for healing rifts, and how dissent reduces the support available to player characters from different parts of the House.",
+  "quotes": [
+   "In a time of dissent, most members of the House pretend that the structure is still functioning normally."
+  ],
+  "related": [
+   "Material Aid in Your Saga"
+  ]
+ },
+ {
+  "title": "Claiming the Sigil of Tremere (Primus by Force)",
+  "heading": "Claiming the Sigil of Tremere, to Move to the Pole of Primus by Force",
+  "line": 4161,
+  "endLine": 4167,
+  "category": "houses",
+  "topic": "House Tremere promotion",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "The process by which a Primus is replaced: succession by the legatus on retirement or death, and the Decennial duels among councilors to name a secutor who may challenge the Primus, with limits on repeated challenges.",
+  "quotes": [
+   "The secutor may challenge the Primus as often as he wishes."
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Tremere Arts and Spells (Four-Art Duelists)",
+  "heading": "Arts and Spells",
+  "line": 4173,
+  "endLine": 4175,
+  "category": "creation",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tremere",
+  "summary": "Explains why Tremere magi specialize in four Arts (to cope with a certamen opponent's veto of the first Art chosen) and which Arts they typically favor.",
+  "quotes": [
+   "the other party in a duel can veto their rival's first choice of form or technique"
+  ],
+  "related": [
+   "Certamen",
+   "Dueling"
+  ]
+ },
+ {
+  "title": "Tremere Magical Mounts and Animals (Parma over Mounts)",
+  "heading": "Animals",
+  "line": 4391,
+  "endLine": 4397,
+  "category": "houses",
+  "topic": "House Tremere animals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Describes the House's use of trained and magical animals, and a rule on mounts: a mount only gains Magic Resistance if the Parma is extended over it, leaving either the mount undefended or the magus's own protection halved.",
+  "quotes": [
+   "It's not possible to grant a mount Magic Resistance, except by extending the Parma over it."
+  ],
+  "related": [
+   "Parma Magica"
+  ]
+ },
+ {
+  "title": "Tremere Virtues and Flaws Guidance",
+  "heading": "Virtues and Flaws",
+  "line": 4513,
+  "endLine": 4531,
+  "category": "houses",
+  "topic": "House Tremere creation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tremere",
+  "summary": "House-specific character creation notes: all Tremere magi have a Minor Magical Focus in Certamen, plus which Virtues are common or inappropriate and which Flaws the House would not accept or would see as embarrassing.",
+  "quotes": [
+   "All Tremere magi have a Minor Magical Focus in Certamen."
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Tremere Abilities",
+  "heading": "Abilities",
+  "line": 4533,
+  "endLine": 4535,
+  "category": "houses",
+  "topic": "House Tremere creation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tremere",
+  "summary": "Lists the Abilities Tremere magi value for crisis and peacetime, such as Intrigue, Bargain, Penetration, Concentration, Parma Magica, Survival, Swim and Leadership.",
+  "quotes": [
+   "Younger magi are expected to be able to fend for themselves on the Wizard's March"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tremere Enchanting Materials (Amber, Rhodocrosite, Opal)",
+  "heading": "Materials",
+  "line": 4541,
+  "endLine": 4549,
+  "category": "lab",
+  "topic": "Shape and Material",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere (Transylvanian covenants)",
+  "summary": "Identifies amber, rhodocrosite and opal as the typical materials for minor Tremere items, their classification (semiprecious or precious) for enchantment cost, and the effects each assists.",
+  "quotes": [
+   "Amber and rhodocrosite are semiprecious gems for enchantment cost calculation; opal is precious."
+  ],
+  "related": [
+   "Shape and Material Bonus Table Additions"
+  ]
+ },
+ {
+  "title": "Tremere Specialist Roles",
+  "heading": "Specialist Roles",
+  "line": 4551,
+  "endLine": 4557,
+  "category": "houses",
+  "topic": "House Tremere organization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Tremere",
+  "summary": "Introduces the specialist roles in which Tremere magi are trained to serve the House, noting that they cannot have magical focuses other than certamen and so hire other Houses for specialized research and item construction.",
+  "quotes": [
+   "Tremere magi cannot have magical focuses other than certamen, so they hire magi from other Houses to provide specialized services."
+  ],
+  "related": [
+   "Tremere Virtues and Flaws Guidance"
+  ]
+ },
+ {
+  "title": "Certamen Reputations",
+  "heading": "Certamen reputations",
+  "line": 4611,
+  "endLine": 4633,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table for learning information about a rival duelist by rolling a die plus Reputation, with modifiers when the characters share a school, Tribunal or House, giving results from etiquette scandals up to famous victories.",
+  "quotes": [
+   "A character encountering another duelist may roll on the following table to determine information about their potential foe:",
+   "Both members of House Tremere +3"
+  ],
+  "related": [
+   "Certamen",
+   "Reputation"
+  ]
+ },
+ {
+  "title": "Dueling (Certamen Etiquette and Duels for Love)",
+  "heading": "Dueling",
+  "line": 4635,
+  "endLine": 4649,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the social role of certamen among Tremere, including leaders dueling for their sides, 'for love' duels fought without vis, and the etiquette factors that affect a duelist's reputation.",
+  "quotes": [
+   "Vis is not used when fighting for love, even with non-Tremere magi."
+  ],
+  "related": [
+   "Certamen (ArM5)",
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Styles of Certamen (Schools)",
+  "heading": "Styles of Certamen",
+  "line": 4651,
+  "endLine": 4657,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for certamen schools: a magus follows one school, may study a season with another to imitate its techniques, and chooses at the start of each duel whether to duel as a follower of a school or in a variety of styles.",
+  "quotes": [
+   "At the start of each certamen, each combatant chooses if they are going to duel as a follower of their school or, alternatively, if they will duel in a variety of styles."
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Gladiator (Swordsman)",
+  "heading": "Gladiator",
+  "line": 4659,
+  "endLine": 4661,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Certamen school: Gladiator (default style)",
+  "summary": "The balanced, simple School of the Swordsman, reflected in the basic certamen rules, with rumors of secret vis techniques that the Tremere deny.",
+  "quotes": [
+   "The School of the Swordsman is the style of the Founder Tremere, reflected in the basic rules."
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Andabatus (Blind Fighting)",
+  "heading": "Andabatus",
+  "line": 4663,
+  "endLine": 4665,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Andabatus",
+  "summary": "A reckless style that trades defense for attack: followers add a Finesse-based bonus to their Attack Total and take an equal penalty to Defense, while imitators get a smaller bonus with a larger penalty.",
+  "quotes": [
+   "The andabatus adds a bonus to his Attack Total of up to twice his Finesse score, but also accepts an equal penalty to his Defense Total."
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Bestiarius (Beasts)",
+  "heading": "Bestiarius",
+  "line": 4667,
+  "endLine": 4669,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer; Certamen school: Bestiarius",
+  "summary": "A technique used only by Bjornaer magi, letting them use Heartbeast instead of Finesse in Muto duels or those involving their own bodies and adding to Resistance in Muto Corpus or Animal duels.",
+  "quotes": [
+   "allows them to use their Heartbeast score instead of their Finesse score during duels in the Muto form"
+  ],
+  "related": [
+   "Heartbeast",
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Bone-Biting",
+  "heading": "Bone - Biting",
+  "line": 4671,
+  "endLine": 4675,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Bone-Biting (Diedne-derived)",
+  "summary": "A self-injuring technique where the duelist takes a Light Wound to ignore upcoming Fatigue losses or boost the next Attack Total, with the shared illusion revealing how much damage was self-inflicted.",
+  "quotes": [
+   "Those fighting in this style cause themselves a Light Wound, and either ignore the loss of the next two fatigue levels, or add ten points to their next Attack Total."
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen Trick: Charon",
+  "heading": "Charon",
+  "line": 4677,
+  "endLine": 4679,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen trick: Charon",
+  "summary": "A trick allowing a duelist to cast a spell silently during certamen and maintain it so that it lands on the opponent along with the final spell, using Concentration rolls each round, and probably a breach of the Peripheral Code.",
+  "quotes": [
+   "(Intelligence + Concentration of 15+)",
+   "(Intelligence + Concentration of 12+ each round)"
+  ],
+  "related": [
+   "Peripheral Code",
+   "Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Essedarius (Charioteer)",
+  "heading": "Essedarius",
+  "line": 4681,
+  "endLine": 4683,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Essedarius",
+  "summary": "A psychological style where, after a successful attack, the duelist declines to do damage and instead tries to frighten the foe into surrendering with a Brave check scaled to the Fatigue declined.",
+  "quotes": [
+   "Brave check of 3 + 2 per Fatigue level the essedarius has declined to take during this certamen"
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Gladiatrix (Swordswoman)",
+  "heading": "Gladiatrix",
+  "line": 4685,
+  "endLine": 4693,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Gladiatrix",
+  "summary": "A chessboard-based style where a successful attack may target a concept or value of the opponent instead of doing damage, revealing emotional reactions unless the opponent passes an Intelligence roll; also covers chessboard certamen and a team variant with dancers.",
+  "quotes": [
+   "If the opponent does not make an Intelligence roll of 9+"
+  ],
+  "related": [
+   "Styles of Certamen",
+   "Gladiator"
+  ]
+ },
+ {
+  "title": "Certamen School: Hoplomachus",
+  "heading": "Hoplomachus",
+  "line": 4708,
+  "endLine": 4710,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Hoplomachus",
+  "summary": "A defensive style that trades Attack for Defense each round, cannot win initiative against non-hoplomachi, and gains a large Defense bonus when it declines to attack.",
+  "quotes": [
+   "Each round the hoplomachus reduces their Attack Total by up to their Finesse score, then increases their Defense Total by up to twice that penalty."
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Laquerius (Noose)",
+  "heading": "Laquerius",
+  "line": 4712,
+  "endLine": 4714,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Laquerius",
+  "summary": "A style that takes a Defense penalty and, on landing a blow, may inflict no damage and instead reduce the opponent's Defense for the rest of the duel (one round only for imitators).",
+  "quotes": [
+   "In any round the laquerius can take a Defense Total penalty equal to or less than their Finesse score."
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Provocator (Challengers)",
+  "heading": "Provocator",
+  "line": 4716,
+  "endLine": 4718,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Provocator",
+  "summary": "A style that sacrifices Initiative for protection, converting an Initiative penalty into a lasting Resistance Total bonus, with an alternate approach alternating initiative and Resistance.",
+  "quotes": [
+   "A provocator may accept a penalty on their Initiative Total that is equal or less than their Finesse score, but in all future rounds their Resistance Total attracts a bonus equal to the penalty."
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Pumilius (Amusing Dwarfs)",
+  "heading": "Pumilius",
+  "line": 4720,
+  "endLine": 4724,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Pumilius",
+  "summary": "A style considered offensive by some, where a successful attack projects a humorous image instead of damage, forcing the opponent to pass an Intelligence + Concentration roll or lose their attack or defense next round.",
+  "quotes": [
+   "If their opponent fails an Intelligence + Concentration roll (target 12+ modified by personality traits)"
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Retiarius (Fisherman)",
+  "heading": "RETIARIUS",
+  "line": 4726,
+  "endLine": 4728,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Retiarius",
+  "summary": "A swift, evasive style that adds a Finesse-based bonus to the Initiative roll at the cost of Attack Advantage in later rounds, and can seize or reroll initiative by landing a blow without doing damage.",
+  "quotes": [
+   "may add a bonus of equal to or less than their Finesse score to their Initiative roll"
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Saggitarius (Archer)",
+  "heading": "Saggitarius",
+  "line": 4730,
+  "endLine": 4732,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen technique: Saggitarius (contested legitimacy)",
+  "summary": "A contested technique that boosts Attack Total at an equal cost to Defense but limits damage to a single Fatigue level, useful mainly for first-blow duels.",
+  "quotes": [
+   "the magus may add up to triple their Finesse to their Attack Total, subtracting the same amount from their Defense total."
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Scissor (Carvers)",
+  "heading": "Scissor",
+  "line": 4734,
+  "endLine": 4740,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Scissor",
+  "summary": "A style where the duelist skips an attack in one round and then, on a successful attack, converts the margin into Fatigue levels lost by dividing by a set number.",
+  "quotes": [
+   "(Weaking Total \u2013 Resistance Total) / 3 = Number of fatigue levels lost."
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Certamen School: Velitus (Spear)",
+  "heading": "Velitus",
+  "line": 4742,
+  "endLine": 4744,
+  "category": "magic",
+  "topic": "Certamen",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Certamen school: Velitus",
+  "summary": "A style that wears down the opponent's Resistance Total by declining to do damage after landing a blow, based on the duelist's Finesse score.",
+  "quotes": [
+   "A velitus who lands a blow and declines to do damage reduces their foe's Resistance total by one half of the velitus's Finesse score, rounded down."
+  ],
+  "related": [
+   "Styles of Certamen"
+  ]
+ },
+ {
+  "title": "Shape and Material Bonus Table Additions",
+  "heading": "Shape and Material Bonus Table Additions",
+  "line": 4782,
+  "endLine": 4794,
+  "category": "lab",
+  "topic": "Shape and Material",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Shape and Material bonus entries for amber, human skull, lead, mirror, opal and rhodocrosite, listing the effect types each material supports.",
+  "quotes": [
+   "**Amber:** +3 Controlling movement."
+  ],
+  "related": [
+   "Shape and Material Bonuses (ArM5)"
+  ]
+ },
+ {
+  "title": "Folk Dancer (Communal Dance Magic)",
+  "heading": "Folk Dancer",
+  "line": 4944,
+  "endLine": 4952,
+  "category": "traditions",
+  "topic": "Folk dancing magic",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Folk Dancer (Minor, Supernatural)",
+  "summary": "A vestigial communal magical tradition in which a troupe of folk dancers performs a long dance, each passing a Dexterity + Carouse roll, to create a minor magical effect; troupes know only a few fixed dances negotiated at character creation.",
+  "quotes": [
+   "A troupe of a dozen or more folk dancers, who all make Dexterity + Carouse rolls of 9+ can perform a dance"
+  ],
+  "related": [
+   "Chess (Tremere dance variant)"
+  ]
+ },
+ {
+  "title": "Leadworker (Katadesmoi and Penetration Bonuses)",
+  "heading": "Leadworker",
+  "line": 4986,
+  "endLine": 5000,
+  "category": "magic",
+  "topic": "Penetration",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Leadworker (Minor, Hermetic); House Tremere tradition",
+  "summary": "Explains the leadworker's curse tablets and figurines and gives Penetration bonus table additions for a katadesmos tablet, a kolossos, and a kolossos containing a sympathetic connection, plus a free fixed Arcane Connection created from body material.",
+  "quotes": [
+   "Katadesmos tablet, inscribed with the name of a victim (+2)",
+   "A Kolossos constructed with a sympathetic connection from the body of the victim imbedded in it (+3)"
+  ],
+  "related": [
+   "Penetration",
+   "Arcane Connections"
+  ]
+ }
+]

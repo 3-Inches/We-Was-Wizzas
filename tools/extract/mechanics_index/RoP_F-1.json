@@ -1,0 +1,2480 @@
+[
+ {
+  "title": "Faerie and Other Realms",
+  "heading": "Faerie & Other Realms",
+  "line": 620,
+  "endLine": 638,
+  "category": "realms",
+  "topic": "Faerie realm",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how Faerie relates to the Divine, Infernal and Magic realms, including who is weakened by whose aura and why faeries usually settle in places with no other supernatural presence.",
+  "quotes": [
+   "Faerie powers are more compatible with Magic, in that faeries are not penalized by Magic auras, and in fact derive a small benefit from them."
+  ],
+  "related": [
+   "ArM5 Realms of Power: Magic",
+   "ArM5 Realms of Power: Divine"
+  ]
+ },
+ {
+  "title": "Cognizance: Incognizant, Narrow and High",
+  "heading": "Cognizance: Understanding the Need for Humans",
+  "line": 646,
+  "endLine": 681,
+  "category": "beings",
+  "topic": "Faerie cognizance",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Classifies faeries by how well they understand their own need for human vitality (incognizant, narrowly cognizant, highly cognizant), which governs their memory, pain, planning and ability to change themselves.",
+  "quotes": [
+   "All faeries require human vitality, and seek it instinctively."
+  ],
+  "related": [
+   "Chapter 3: Faerie Characters, Cognizance Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "Glamour: Rules Instead of a Soul",
+  "heading": "Glamour: Rules Instead of a Soul",
+  "line": 682,
+  "endLine": 689,
+  "category": "beings",
+  "topic": "Faerie glamour",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Describes glamour as the set of rules tied to a faerie's role; a faerie cannot break them and fades if it stops fulfilling its role, and it grows stronger by taking part in stories.",
+  "quotes": [
+   "Faeries cannot break their glamour."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Bodies and Spiritual Anchors",
+  "heading": "Bodies: Incidental Matter",
+  "line": 690,
+  "endLine": 703,
+  "category": "beings",
+  "topic": "Faerie glamour",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "A faerie builds its body from incidental matter around a spiritual anchor; the anchor holds the faerie's vis and lets it rebuild after its body is destroyed, and pain depends on cognizance.",
+  "quotes": [
+   "Incognizant faeries feel pain when their bodies are damaged, narrowly cognizant faeries must appear to, and highly cognizant faeries suffer pain only if they wish to.",
+   "The spiritual anchor, filled with glamour, is the vis that magi hunt so earnestly."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Ownership and Stolen Goods",
+  "heading": "Ownership",
+  "line": 704,
+  "endLine": 711,
+  "category": "beings",
+  "topic": "Faerie glamour",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Items a faerie owns are part of its glamour and revert to incidental matter, with any vis vanishing, if taken against its will; its possessions and mortal belongings with Arcane Connections matter to faeries.",
+  "quotes": [
+   "All of a faerie's possessions, if generated from glamour, are Arcane Connections to the faerie until it changes its role."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Taboos",
+  "heading": "Taboos",
+  "line": 718,
+  "endLine": 723,
+  "category": "beings",
+  "topic": "Faerie taboos",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Each faerie has mandatory and forbidden actions; a human who breaks one offends the faerie and owes redress, and may take this as the origin of a Story Flaw.",
+  "quotes": [
+   "A human breaking the taboos of a faerie offends it, and owes it redress."
+  ],
+  "related": [
+   "Chapter 3: Faerie Characters, Taboos"
+  ]
+ },
+ {
+  "title": "Pretenses and Noticing Them",
+  "heading": "Pretenses",
+  "line": 724,
+  "endLine": 738,
+  "category": "beings",
+  "topic": "Faerie Pretenses",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Faeries mimic human Abilities with Pretenses, which cost no Might and need no Concentration; masters of the imitated Ability can notice the deception with a Perception + Awareness check against a stated difficulty.",
+  "quotes": [
+   "Pretenses do not cost Might, and faeries use them without Concentration",
+   "This requires a Perception + Awareness check of 12 \u2013 the Ability score the faerie is pretending to have."
+  ],
+  "related": [
+   "Chapter 3: Faerie Characters, Pretense: Faerie Abilities"
+  ]
+ },
+ {
+  "title": "Open Body: Arcane Connections to Faeries",
+  "heading": "The Open Body is Vulnerable to Glamour",
+  "line": 740,
+  "endLine": 756,
+  "category": "realms",
+  "topic": "Faerie Arcane Connections",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Speaking to, eating the food of, bleeding near, or having sex with a faerie opens a human to its glamour and creates a temporary Arcane Connection with a stated Penetration multiplier; pregnancy by a faerie creates a longer-lasting one.",
+  "quotes": [
+   "Speaking to a faerie creates an Arcane Connection to that faerie with a Penetration multiplier of 2 that endures until the conversation ends.",
+   "A character whose blood is taken or tasted by a faerie has an Arcane Connection to that Faerie with a Penetration multiplier of 3 until the wound heals.",
+   "Intercourse with a faerie creates an Arcane Connection to that faerie with a Penetration multiplier of 4 during the intercourse."
+  ],
+  "related": [
+   "Chapter 3: Faerie Characters, Traditional and Sovereign Wards"
+  ]
+ },
+ {
+  "title": "No Numerical System for Vitality",
+  "heading": "Where Are the Rules for Faeries Feeding on Vitality?",
+  "line": 748,
+  "endLine": 752,
+  "category": "beings",
+  "topic": "Faerie vitality",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Sidebar stating that the game tracks no points of vitality: faeries do not spend it to survive or advance, they simply always want more.",
+  "quotes": [
+   "There is no numerical system for vitality."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vitality: How Faeries Feed",
+  "heading": "Vitality: Energy to Act and Change",
+  "line": 758,
+  "endLine": 802,
+  "category": "beings",
+  "topic": "Faerie vitality",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Describes the ways faeries harvest human vitality (roused emotion, art, offerings, theft, border crossings, blood and flesh, violence), which the storyguide uses to decide what a faerie wants and does.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Faerie Lore and What a Character Knows",
+  "heading": "Does My Character Know This?",
+  "line": 828,
+  "endLine": 830,
+  "category": "basics",
+  "topic": "Faerie Lore",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar ruling that the Faerie Lore Ability covers understanding, bargaining with and predicting faeries regardless of whether a character uses the book's framework, and that no perspective is at a disadvantage in play.",
+  "quotes": [
+   "The Faerie Lore Ability quantifies the character's capacity to understand the motives of, bargain with, and predict the actions of faeries."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Presence: Setting the Aura",
+  "heading": "Faerie Presence",
+  "line": 838,
+  "endLine": 856,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a faerie with Extend Glamour claims a place and sets its Faerie aura from its Might, what happens when two powerful faeries contest an area, and why epic sites, folklore and old monuments often carry faerie auras.",
+  "quotes": [
+   "Any place that such a faerie claims with its glamour has an aura of (Faerie Might / 5).",
+   "it has an aura of 2+(highest Might/5) to a maximum of 9"
+  ],
+  "related": [
+   "Chapter 3: Faerie Characters, Extend Glamour"
+  ]
+ },
+ {
+  "title": "Faerie Auras Rise and Fall (Vis Extraction)",
+  "heading": "Auras Rise and Fall",
+  "line": 858,
+  "endLine": 864,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Foreign auras and local changes alter a faerie's Might and thus its aura; a magus who removes vis from a Faerie aura either has to deal with the faerie or lowers the aura and leaves a local hole, and the faerie may demand recompense.",
+  "quotes": [
+   "the magus has effectively challenged the faerie's ownership of the area and the aura falls by 1",
+   "This hole in the aura is usually only 300 paces across"
+  ],
+  "related": []
+ },
+ {
+  "title": "Traveling Auras",
+  "heading": "Traveling Auras",
+  "line": 866,
+  "endLine": 872,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie with a power permitting travel",
+  "summary": "Some powerful faeries carry their glamour with them, transforming the surrounding land to suit their motif; the changes fade as the faerie leaves, but the consequences of human actions remain.",
+  "quotes": [
+   "The changes made when the glamour of the faerie lays over an area are not permanent"
+  ],
+  "related": []
+ },
+ {
+  "title": "Aura Conflicts: Faeries in Other Realms' Auras",
+  "heading": "Aura Conflicts",
+  "line": 874,
+  "endLine": 878,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "A faerie in an area dominated by another Realm, without admittance, must draw its glamour back into itself, which limits its powers' Range; with admittance it creates a small pocket of Faerie.",
+  "quotes": [
+   "faerie characters cannot use powers with Ranges greater than Touch until they have been given leave to do so, unless they have Arcane Connections to the targets"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining Admittance",
+  "heading": "Gaining Admittance",
+  "line": 880,
+  "endLine": 896,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Lists the traditional ways a faerie gains leave to use its glamour in areas of another Realm: terra nullius, a recognized right, an invitation, agreeing to a code, paying a price, or contesting ownership; covenants require the Aegis of the Hearth token.",
+  "quotes": [
+   "only participation in the Aegis of the Hearth ritual, and possession of one of the tokens this creates, allows a faerie to use its powers without facing the formidable magical resistance common to covenants"
+  ],
+  "related": [
+   "ArM5 Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "Keeping Home Wonderful",
+  "heading": "Keeping Home Wonderful",
+  "line": 898,
+  "endLine": 910,
+  "category": "realms",
+  "topic": "Faerie auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Three ways a faerie protects its demesne while absent (leave a steward, leave its spiritual anchor, or restrict access to set times) and the aura a visitor finds if a steward is left.",
+  "quotes": [
+   "If they enter an area kept by a steward, then its aura will be (steward's Might/5)."
+  ],
+  "related": [
+   "Chapter 3: Faerie Characters, External Vis"
+  ]
+ },
+ {
+  "title": "Faerie Regiones",
+  "heading": "Regiones",
+  "line": 912,
+  "endLine": 914,
+  "category": "realms",
+  "topic": "Faerie regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces regiones in Faerie areas, which arise from an affront or injury to the glamour of the presiding faerie.",
+  "quotes": [
+   "They are caused by an affront or injury to the glamour of the presiding faerie in a regio."
+  ],
+  "related": [
+   "ArM5 p.189 Regiones"
+  ]
+ },
+ {
+  "title": "Finding a Faerie Regio Entrance",
+  "heading": "Finding A Regio Entrance",
+  "line": 916,
+  "endLine": 938,
+  "category": "realms",
+  "topic": "Faerie regiones",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faerie regio entrances are usually opened by performing a symbolic action; lists the ways to find one (Sight Virtues, invitation, learned action, Arcane Connection, True Love, Intellego Vim, Faerie Lore guess) with rolls for reading or guessing the entrance.",
+  "quotes": [
+   "Perception + Awareness roll against an Ease Factor of (5 + twice the difference between the current aura and the next level)",
+   "This requires an Intelligence + Faerie Lore roll against an Ease Factor of 15.",
+   "Entrances to Faerieland from a faerie regio are treated as regio levels with an aura of 10, unless a trod runs through the regio."
+  ],
+  "related": [
+   "ArM5 p.158 Piercing the Faerie Veil",
+   "Chapter 2: Trods"
+  ]
+ },
+ {
+  "title": "Faerie Roads",
+  "heading": "Faerie Roads",
+  "line": 946,
+  "endLine": 960,
+  "category": "realms",
+  "topic": "Faerie regiones",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faeries have a right of way along traditional paths, often corpse roads; travelers on them are generally left alone if they follow custom, the roads have a threshold faerie owner, and time on them flows oddly.",
+  "quotes": [
+   "It is usual to pay a traditional toll for use of the road."
+  ],
+  "related": [
+   "Chapter 2: Trods",
+   "Chapter 2: The Mother Road"
+  ]
+ },
+ {
+  "title": "Regio Levels as Acts",
+  "heading": "Regio Levels As Acts",
+  "line": 962,
+  "endLine": 968,
+  "category": "realms",
+  "topic": "Faerie regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faerie regio levels can be structured like acts of a story, each a discrete series of tests presented by progressively more potent lieutenants of the principal faerie, culminating in a final confrontation.",
+  "quotes": [
+   "Each level of the regio corresponds to a discrete series of tests that the human must face."
+  ],
+  "related": []
+ },
+ {
+  "title": "Time in Faerie Regiones",
+  "heading": "Time in Faerie Regiones",
+  "line": 974,
+  "endLine": 982,
+  "category": "realms",
+  "topic": "Faerie time",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how long characters stay in a faerie regio: willing visitors who complete the story follow the Faerieland time rules, while those who affront the principal faerie are returned at a time fitting its glamour; destroying the principal faerie does not give control of time.",
+  "quotes": [
+   "use the same rules to determine the length of their stay that characters who enter Faerieland do"
+  ],
+  "related": [
+   "Chapter 2: The Faerie Realm, Leaving Faerie"
+  ]
+ },
+ {
+  "title": "Withering Away To Dust",
+  "heading": "Withering Away To Dust",
+  "line": 984,
+  "endLine": 988,
+  "category": "realms",
+  "topic": "Faerie time",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Clarifies that returning from Faerie crumbles a person to dust only when they have lived many subjective years there, not simply because years passed outside.",
+  "quotes": [
+   "Characters determined to flee a Faerie court do not find that they fall away to dust when they leave"
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Vis",
+  "heading": "Vis",
+  "line": 990,
+  "endLine": 992,
+  "category": "realms",
+  "topic": "Faerie vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faerie vis comes in several types that magi do not usually distinguish, though any simple Intellego Vim spell will reveal that vis is of faerie type.",
+  "quotes": [
+   "with any simple Intellego Vim spell"
+  ],
+  "related": [
+   "ArM5 Sense the Nature of Vis"
+  ]
+ },
+ {
+  "title": "Encased Vis",
+  "heading": "Encased Vis",
+  "line": 994,
+  "endLine": 998,
+  "category": "realms",
+  "topic": "Faerie vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The most common faerie-area vis: Magic vis that a faerie has claimed with glamour, which faeries use as food, to make glamorous things real, and to ease role changes, while hiding the source from humans.",
+  "quotes": [
+   "Encased vis is simply Magic vis that a faerie has laid glamour over, to claim possession of it."
+  ],
+  "related": []
+ },
+ {
+  "title": "Anchor Vis",
+  "heading": "Anchors",
+  "line": 1000,
+  "endLine": 1006,
+  "category": "realms",
+  "topic": "Faerie vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The mundane object holding a faerie's glamour is vis that magi prize when the faerie's body is destroyed; the trapped faerie stays conscious but cannot use powers, and a broken taboo on the anchor turns it into accrued vis.",
+  "quotes": [
+   "A faerie remains conscious, and in its current role, while trapped in its anchor.",
+   "Anchors whose faeries break taboo become accrued vis."
+  ],
+  "related": [
+   "Chapter 3: Faerie Characters, External Vis"
+  ]
+ },
+ {
+  "title": "Accrued Vis",
+  "heading": "Accrued Vis",
+  "line": 1008,
+  "endLine": 1012,
+  "category": "realms",
+  "topic": "Faerie vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Vis that builds up from glamour left by faeries who end their roles, including the bodies and accoutrements shed by narrowly cognizant faeries, which may retain Pretenses a human can use.",
+  "quotes": [
+   "Accrued vis forms when faeries end their roles."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sleeping Vis",
+  "heading": "Sleeping Vis",
+  "line": 1014,
+  "endLine": 1022,
+  "category": "realms",
+  "topic": "Faerie vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Vis holding a simple glamour with no vitality, which may awaken into a faerie if given vitality; Merinita magi pay well for it.",
+  "quotes": [
+   "If provided with vitality, some sleeping vis ceases to be dormant and becomes a faerie."
+  ],
+  "related": []
+ },
+ {
+  "title": "Abstract Vis",
+  "heading": "Abstract Vis",
+  "line": 1024,
+  "endLine": 1028,
+  "category": "realms",
+  "topic": "Faerie vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A faerie-made counterfeit that is detected as enchanted but holds no real vis; the creator's servants must honor it, and magi cannot use it for concrete purposes such as making magic items.",
+  "quotes": [
+   "Magi cannot employ abstract vis for concrete uses like crafting magic items."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Three Worlds of Faerie",
+  "heading": "The Three Worlds",
+  "line": 1036,
+  "endLine": 1046,
+  "category": "realms",
+  "topic": "Faerie Realm",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Faerie Realm is experienced as one of three worlds (Arcadia, Elysium, Eudokia) reached by the Path of Chance, Destiny or Choice, depending on how a traveler got there.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Getting to Faerie: Threshold Strength",
+  "heading": "Getting to Faerie",
+  "line": 1048,
+  "endLine": 1058,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "To enter the Faerie Realm characters must accumulate Threshold points equal to a Threshold strength that depends on the local aura (modified by regiones and by Realm Interaction); examples are given for Faerie and Dominion auras.",
+  "quotes": [
+   "Threshold Strength: (13 \u2013 aura modifier) x 3",
+   "must accumulate a number of Threshold points equal to the Threshold strength"
+  ],
+  "related": [
+   "ArM5 p.183 Realm Interaction Table"
+  ]
+ },
+ {
+  "title": "Sources of Threshold Points",
+  "heading": "Sources of Threshold Points",
+  "line": 1060,
+  "endLine": 1064,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Threshold points come from geography, time, personal change, art, Threshold faeries and faerie magic; only one attempt can be made for a given set of circumstances, and success puts characters on one of the Three Paths facing a Guardian.",
+  "quotes": [
+   "Only one attempt can be made to enter Faerie for any given set of circumstances",
+   "their attempt cannot be made sooner than the next moonrise"
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Threshold",
+  "heading": "Example Threshold",
+  "line": 1066,
+  "endLine": 1068,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of totaling Threshold points from a life change and a stream crossing against the Threshold strength of a faerie-aura hill.",
+  "quotes": [
+   "so the Threshold strength is 24"
+  ],
+  "related": []
+ },
+ {
+  "title": "Geographical Thresholds",
+  "heading": "Geographical Thresholds",
+  "line": 1070,
+  "endLine": 1090,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Crossing borders such as roads, crossroads, treelines or regio boundaries grants Threshold points by how significant the border is, with extra points if the travelers are lost.",
+  "quotes": [
+   "add 3 Threshold points for a border crossed when the travelers truly have no idea where they are",
+   "**Border is Crossed While Lost:** +3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Trods",
+  "heading": "Trods",
+  "line": 1092,
+  "endLine": 1098,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A trod is a boundary with its own Faerie aura that counts as at least a Significant Threshold, leads onto the Mother Road, and links the levels of a faerie regio.",
+  "quotes": [
+   "they are also always accounted to be at least a Significant Threshold"
+  ],
+  "related": [
+   "ArM5 p.189 Regiones"
+  ]
+ },
+ {
+  "title": "Temporal Thresholds",
+  "heading": "Temporal Thresholds",
+  "line": 1100,
+  "endLine": 1112,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of Threshold points for times such as moon phases, pagan holidays, solstices and equinoxes; Faerie auras may benefit twice from the time of year.",
+  "quotes": [
+   "At these times, the border between the mundane world and Faerie becomes thinner and more easily traversed."
+  ],
+  "related": []
+ },
+ {
+  "title": "Personal Thresholds",
+  "heading": "Personal Thresholds",
+  "line": 1114,
+  "endLine": 1154,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters undergoing life changes, extreme emotion, or carrying faerie Virtues and Flaws contribute Threshold points (a table lists the amounts); faerie Virtue and Flaw points do not stack, and Personality Flaws count as Traits for emotion.",
+  "quotes": [
+   "Threshold points from Virtues and/or Flaws are not cumulative: choose only the highest.",
+   "consider him to have a Personality Trait of +3 (if it is a Minor Flaw) or +6 (if it is a Major Flaw)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Artistic Endeavor (Threshold)",
+  "heading": "Artistic Endeavor",
+  "line": 1156,
+  "endLine": 1160,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Art that evokes Faerie and is viewed or performed by the travelers adds its Aesthetic Quality to their Threshold points and hints at which world they enter.",
+  "quotes": [
+   "Add the Aesthetic Quality (either Dexterity + Craft Ability or Communication + Profession Ability of the Artist"
+  ],
+  "related": [
+   "Art and Academe, Chapter 8: Artists"
+  ]
+ },
+ {
+  "title": "Assistance of Threshold Faeries",
+  "heading": "Assistance of Threshold Faeries",
+  "line": 1162,
+  "endLine": 1166,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Faeries with the Spirit Away power can add Threshold points, but cannot open the Threshold alone; many also serve as Guardian of the Threshold.",
+  "quotes": [
+   "A Threshold faerie cannot attract the Threshold to the mundane realm on its own even if its Might exceeds the Threshold strength."
+  ],
+  "related": [
+   "Chapter 4: Faerie Bestiary"
+  ]
+ },
+ {
+  "title": "Arcadian Travel (Merinita Mystery) Threshold Charm",
+  "heading": "Arcadian Mysteries",
+  "line": 1172,
+  "endLine": 1178,
+  "category": "mysteries",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Virtue: Arcadian Travel (House Merinita)",
+  "summary": "A magus with Arcadian Travel builds a charm object or performance, rolls against a set Ease Factor, and on success adds his Arcadian Travel Total as Threshold points, bringing along companions.",
+  "quotes": [
+   "against an Ease Factor of 18",
+   "Arcadian Travel Total: stress die + Perception + (Ability used to make the charm) + aura",
+   "equal to his Faerie Magic score"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.92 Arcadian Travel"
+  ]
+ },
+ {
+  "title": "New Power: Spirit Away",
+  "heading": "New Power: Spirit Away",
+  "line": 1180,
+  "endLine": 1184,
+  "category": "beings",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie (Threshold faeries)",
+  "summary": "Faerie power that spends Might to add Threshold points to mortals who already have some, or to send characters out of Faerie.",
+  "quotes": [
+   "at a cost of 1 Might Point per Threshold point",
+   "this costs 3 Might Points per character"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Guardian of the Threshold",
+  "heading": "The Guardian of the Threshold",
+  "line": 1186,
+  "endLine": 1211,
+  "category": "realms",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The first entity met on entering Faerie tests the characters' resolve by offering a choice; describes passive, animal, human and monster Guardians and sets the Guardian's minimum Faerie Might.",
+  "quotes": [
+   "a successful Intelligence + Faerie Lore roll against an Ease Factor of 6 will provide additional hints",
+   "All Guardians of the Threshold have a Faerie Might at least equal to the Threshold total of the group"
+  ],
+  "related": [
+   "Chapter 4: Faerie Bestiary"
+  ]
+ },
+ {
+  "title": "Faerie Adventurers",
+  "heading": "Faerie Adventurers",
+  "line": 1190,
+  "endLine": 1196,
+  "category": "beings",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie (player or non-player faerie characters)",
+  "summary": "Faerie characters enter Faerie by the same procedure as mortals but gain Threshold bonuses by cognizance, know which Guardian choice leads in, gain fable points more easily, act as if they have Common Sense, and are immune to Warping on leaving.",
+  "quotes": [
+   "Highly cognizant faeries automatically have a number of Threshold points equal to the magnitude of their Might.",
+   "Assume that all faerie characters have the Common Sense Virtue while in the Faerie Realm."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Power of God in the Faerie Realm",
+  "heading": "The Power of God in the Faerie Realm",
+  "line": 1206,
+  "endLine": 1208,
+  "category": "realms",
+  "topic": "Faerie Realm",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Divine restrictions still bind faeries in Faerie (wards based on religious symbols), and True Faith, miracles and relics work as potently there as elsewhere.",
+  "quotes": [
+   "so characters with True Faith, miraculous powers, or relics find these things just as potent as they are elsewhere"
+  ],
+  "related": []
+ },
+ {
+  "title": "Environment and the Faerie Aura",
+  "heading": "Environment and the Faerie Aura",
+  "line": 1217,
+  "endLine": 1221,
+  "category": "realms",
+  "topic": "Faerie Realm",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Natural rules bend to the story in Faerie, and the whole realm has a strong Faerie aura that boosts magic but adds extra botch dice, producing strange faerie botches (such as a spell becoming a faerie).",
+  "quotes": [
+   "The Faerie Realm has a pervasive Faerie aura of 10, meaning that most magi receive a +5 bonus but roll an additional ten botch dice in any magical actions."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults pp.92-96 Animae Magic"
+  ]
+ },
+ {
+  "title": "The Mother Road",
+  "heading": "The Mother Road",
+  "line": 1223,
+  "endLine": 1227,
+  "category": "realms",
+  "topic": "Faerie Realm",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Faerie Portage, or House Merinita Wayfarers",
+  "summary": "A traveler stepping onto a trod can bargain with the Guardian to enter Faerie and exit at another trod, covering great distances quickly but without gaining fable points and relying on the Guardian for the way out.",
+  "quotes": [
+   "typically one minute passes for every 24 minutes spent in the Faerie Realm"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.80 Wayfarers",
+   "Chapter 6: Portage"
+  ]
+ },
+ {
+  "title": "Lands of Story and Fable",
+  "heading": "Lands of Story and Fable",
+  "line": 1233,
+  "endLine": 1241,
+  "category": "realms",
+  "topic": "Faerie Realm",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each story in Faerie is its own bounded kingdom, so characters cannot travel outside the story's scope, and travel within it is driven by choices and dramatic needs; changes made in Faerie do not change the mundane world's stories.",
+  "quotes": [
+   "It is impossible to travel between stories, for the kingdom is as big as the story needs it to be."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vitality, Fable Points and Fable Score",
+  "heading": "Vitality and Fable in Faerie",
+  "line": 1243,
+  "endLine": 1255,
+  "category": "realms",
+  "topic": "Fable points",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Mortals in Faerie earn fable points by playing along with its stories; points raise a fable score or can be spent for a bonus to a roll equal to the score, and everything is lost when the character leaves.",
+  "quotes": [
+   "Fable Point Expenditure: +(fable score) to one roll",
+   "Increase Fable Score: fable points equal to 1 + (current fable score)",
+   "To increase one's fable score requires the expenditure of a number of fable points equal to the current score plus one."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining Fable Points",
+  "heading": "Gaining Fable Points",
+  "line": 1257,
+  "endLine": 1271,
+  "category": "realms",
+  "topic": "Fable points",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character gains a one-time fable point each time he chooses to act with a faerie story rather than against it; a list of example triggers is given, with a note on how high fable scores increase time lost and Warping.",
+  "quotes": [
+   "he expends vitality and gains a fable point in return",
+   "players should find it easy to earn their characters 10 or more every session in Faerie"
+  ],
+  "related": []
+ },
+ {
+  "title": "Becoming Faerie Through Fable (Swapping Virtues and Flaws)",
+  "heading": "Becoming Faerie Through Fable",
+  "line": 1273,
+  "endLine": 1285,
+  "category": "realms",
+  "topic": "Fable points",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character's fable score lets the player swap that many Virtues (and matching Flaws) for faerie ones while in Faerie, with rules for Might pool, faerie bodies, Abilities as Pretences and learning powers as Benedictions.",
+  "quotes": [
+   "A player can choose to exchange a number of his character's Virtues equal to the fable score with Virtues listed in Chapter 3: Faerie Characters; Major Virtues count as three Virtues for these purposes.",
+   "He must take one of these Virtues before he can take the Increased Might Virtue."
+  ],
+  "related": [
+   "Chapter 3: Faerie Characters",
+   "Chapter 5: Lesser and Greater Benedictions"
+  ]
+ },
+ {
+  "title": "Creativity in the Faerie Realm",
+  "heading": "Creativity in the Faerie Realm",
+  "line": 1287,
+  "endLine": 1289,
+  "category": "realms",
+  "topic": "Faerie creativity",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters with unspent fable points can bargain with Faerie itself, offering a creative performance and a promise of service in exchange for changing the environment, symbolism or a faerie's attitude.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Crafting an Offer",
+  "heading": "Crafting an Offer",
+  "line": 1291,
+  "endLine": 1321,
+  "category": "realms",
+  "topic": "Faerie creativity",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How to roll an Offer Total, what an offer costs, and the Ease Factor by threat level (set by the obstacle the change overcomes, not by the size of the change).",
+  "quotes": [
+   "Offer Total: Communication + Charm or (Profession) Ability or (Craft) Ability + Offer Modifier + Promise Modifier + Change Modifier + stress die",
+   "Making an offer requires the expenditure of a fable point and a Long Term Fatigue Level"
+  ],
+  "related": []
+ },
+ {
+  "title": "Offer Modifiers",
+  "heading": "Offer Modifiers",
+  "line": 1323,
+  "endLine": 1344,
+  "category": "realms",
+  "topic": "Faerie creativity",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of bonuses to offer rolls for goods, crafts, Virtues and artistic reputation (only the highest applies), plus a penalty for changes in Elysium.",
+  "quotes": [
+   "A character can only gain a single bonus from a Virtue, or for an offer of goods; use the highest bonus that applies.",
+   "offer rolls to cause changes in Elysium have a penalty of 6"
+  ],
+  "related": [
+   "Art & Academe"
+  ]
+ },
+ {
+  "title": "The Promise of Service",
+  "heading": "The Promise of Service",
+  "line": 1346,
+  "endLine": 1364,
+  "category": "realms",
+  "topic": "Faerie creativity",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The offer must include a promise of action that transfers vitality; a table of Promise Modifiers rises or falls with how mundane or cunning the promised task is.",
+  "quotes": [
+   "the human character must make a promise to perform some action that symbolically transfers the vitality to Faerie"
+  ],
+  "related": []
+ },
+ {
+  "title": "Changes in Environment",
+  "heading": "Changes in Environment",
+  "line": 1366,
+  "endLine": 1374,
+  "category": "realms",
+  "topic": "Faerie creativity",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Using artistic Abilities to alter the glamour of the local area; a table gives Change Modifiers for altering a single object versus the whole immediate environment.",
+  "quotes": [
+   "Change a single object in the environment for the characters to use as a tool to overcome the threat."
+  ],
+  "related": []
+ },
+ {
+  "title": "Changes in Attitude",
+  "heading": "Changes in Attitude",
+  "line": 1376,
+  "endLine": 1384,
+  "category": "realms",
+  "topic": "Faerie creativity",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Altering a faerie's role or intentions in a scene for a single transaction and person; Change Modifiers depend on how far the faerie's apparent Personality Traits shift.",
+  "quotes": [
+   "This may be expressed by changing the faerie's apparent Personality Traits by up to 3 points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Changes in Symbolism",
+  "heading": "Changes in Symbolism",
+  "line": 1386,
+  "endLine": 1394,
+  "category": "realms",
+  "topic": "Faerie creativity",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Altering a faerie's motif through an understanding of symbolism; Change Modifiers depend on how closely the new motif relates to the old, and faeries often resent the attempt.",
+  "quotes": [
+   "This may be expressed by changing the motif of the faerie to another, strongly related motif."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example of Using Creativity",
+  "heading": "An Example of Using Creativity",
+  "line": 1396,
+  "endLine": 1404,
+  "category": "realms",
+  "topic": "Faerie creativity",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example in which a minstrel weighs several offers against a blizzard threat, combining Change and Promise modifiers.",
+  "quotes": [
+   "A closing blizzard is a Serious threat (Ease Factor 12)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Consequences of Creativity",
+  "heading": "Consequences of Creativity",
+  "line": 1406,
+  "endLine": 1408,
+  "category": "realms",
+  "topic": "Faerie creativity",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance that creativity should not be settled by a single roll, costs fable points and Fatigue, bypasses only one plot element, and should be as enjoyable as the story it replaces.",
+  "quotes": [
+   "Creativity cannot entirely bypass an entire story, just a single plot element."
+  ],
+  "related": []
+ },
+ {
+  "title": "Leaving Faerie by Merinita Mysteries",
+  "heading": "Leaving by Using Merinita Mysteries",
+  "line": 1410,
+  "endLine": 1412,
+  "category": "mysteries",
+  "topic": "Entering Faerie (Threshold)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Virtue: Arcadian Travel (House Merinita)",
+  "summary": "A Merinita with Arcadian Travel can leave Faerie early to a chosen destination by generating an Arcadian Travel Total against a set Ease Factor, taking companions; time and Warping rules still apply.",
+  "quotes": [
+   "must generate an Arcadian Travel Total equal to (13 \u2013 destination aura modifier) x 3",
+   "she subtracts 6 from the Ease Factor"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.92 Arcadian Travel"
+  ]
+ },
+ {
+  "title": "The Subjective Nature of Time",
+  "heading": "The Subjective Nature of Time",
+  "line": 1416,
+  "endLine": 1425,
+  "category": "realms",
+  "topic": "Faerie time",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Options for the storyguide when characters who spent different times in Faerie return together, such as using the rescuers' rate or aging the rescued person.",
+  "quotes": [
+   "Time passes at the rate determined by the rescuers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Leaving Faerie",
+  "heading": "Leaving Faerie",
+  "line": 1427,
+  "endLine": 1429,
+  "category": "realms",
+  "topic": "Faerie Realm",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A visit ends when the story concludes and the characters meet the Guardian of the Threshold again, which has changed to reflect the story's outcome; passing it returns them to the mundane world.",
+  "quotes": [
+   "passing the Guardian the second time returns the characters to the mundane world"
+  ],
+  "related": []
+ },
+ {
+  "title": "Warping and the Passage of Time in Faerie",
+  "heading": "Warping and the Passage of Time",
+  "line": 1431,
+  "endLine": 1456,
+  "category": "realms",
+  "topic": "Faerie time",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "On leaving Faerie the final fable score sets how much mortal time passes per Faerie day; a character may take Warping points to reduce the effective fable score, groups share the lowest dilation, and aging follows time in Faerie.",
+  "quotes": [
+   "Every Warping point taken reduces the effective fable score by 1.",
+   "Magi do not need to check to see if they enter Twilight for receiving these Warping points.",
+   "characters in the Faerie Realm make aging rolls according to the time spent in Faerie, not the time that has passed in the real world"
+  ],
+  "related": [
+   "ArM5 Warping"
+  ]
+ },
+ {
+  "title": "Living in the Story (Becoming Faerie)",
+  "heading": "Living in the Story",
+  "line": 1458,
+  "endLine": 1460,
+  "category": "realms",
+  "topic": "Fable points",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Long stay in Faerie; Mystery Virtue: Becoming (House Merinita)",
+  "summary": "A character who stays in Faerie may eventually become a faerie; no mechanic is given, but the Becoming Mystery Virtue covers it and the process typically starts after years at a high fable score.",
+  "quotes": [
+   "after several years pass since gaining a fable score of 10"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults pp.93-96 Becoming"
+  ]
+ },
+ {
+  "title": "Audience Participation in Faerie Stories",
+  "heading": "Audience Participation",
+  "line": 1466,
+  "endLine": 1468,
+  "category": "realms",
+  "topic": "Running Faerie stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces two ways to give players control in stories set in the Faerie Realm: player-driven stories, where players describe the scenery, and player-influenced stories, where players use plot devices.",
+  "quotes": [
+   "allow a player to change the events that affect his character without changing the flow of the story too dramatically"
+  ],
+  "related": []
+ },
+ {
+  "title": "Player-Driven Stories",
+  "heading": "Player-Driven Stories",
+  "line": 1470,
+  "endLine": 1476,
+  "category": "realms",
+  "topic": "Running Faerie stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The storyguide asks players to describe the scenery they find in Arcadia, then assigns each described element its role in the story; works best the first time through.",
+  "quotes": [
+   "The scene's contents are described by the players, but their role is determined by the storyguide."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Plot Devices",
+  "heading": "Example Plot Devices",
+  "line": 1478,
+  "endLine": 1486,
+  "category": "realms",
+  "topic": "Running Faerie stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A list of proverb-style plot devices that storyguides can hand to players for player-influenced stories.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Player-Influenced Stories (Plot Devices)",
+  "heading": "Player-Influenced Stories",
+  "line": 1488,
+  "endLine": 1494,
+  "category": "realms",
+  "topic": "Running Faerie stories",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each player secretly receives a proverb-style plot device usable once to alter a situation affecting his own character, subject to storyguide veto; successful use earns a Confidence point reward and a fable point for the affected character.",
+  "quotes": [
+   "a generic plot device that he can use once during the adventure in the Faerie Realm",
+   "Successfully employing a plot device is worth the reward of a bonus Confidence point at the end of the story, and also earns the character to whom it was applied a fable point."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example of Arcadian Story Creation",
+  "heading": "Example of Arcadian Story Creation",
+  "line": 1496,
+  "endLine": 1500,
+  "category": "realms",
+  "topic": "Running Faerie stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of building an Arcadian story by choosing story elements, linking them, and picking a start point.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Pitfalls in Player-Run Stories",
+  "heading": "Pitfalls in Player-Run Stories",
+  "line": 1502,
+  "endLine": 1506,
+  "category": "realms",
+  "topic": "Running Faerie stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Limits on player control: the storyguide may veto input, players describe but do not assign roles, plot devices affect only one scene and the player's own character, and techniques should be varied on repeat visits.",
+  "quotes": [
+   "A player-influenced device is similarly limited in that it can affect only a single scene (and only the player's own character)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Planning Arcadian Stories",
+  "heading": "Planning Arcadian Stories",
+  "line": 1539,
+  "endLine": 1543,
+  "category": "realms",
+  "topic": "Running Faerie stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Procedure for building a free-form Arcadian story: choose story elements, assign each a role or act, link each to one to three others, pick a start point, and let characters move along the links.",
+  "quotes": [
+   "a good guide is to take one per story experience point you intend to hand out"
+  ],
+  "related": [
+   "Story Elements, later in Chapter 2"
+  ]
+ },
+ {
+  "title": "Elysium and Elysian Quests",
+  "heading": "Elysium",
+  "line": 1545,
+  "endLine": 1557,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Elysium holds the told stories of legend; characters can enact a suitable story to gain a boon such as an insight, but the aid is indirect, Faerie in nature, and can reveal only what the tellers of the legend knew.",
+  "quotes": [
+   "it is not possible to uncover secrets unknown to the tellers of the legend",
+   "The aid provided by the successful conclusion of an Elysian quest is rarely direct, and it cannot be of a non-Faerie nature."
+  ],
+  "related": [
+   "Ancient Magic pp.8-9 Insight"
+  ]
+ },
+ {
+  "title": "The Road of Destiny (Reaching Elysium)",
+  "heading": "The Road of Destiny",
+  "line": 1617,
+  "endLine": 1619,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Reaching Elysium requires aligning all Threshold sources toward the target story; sources inappropriate to the story subtract from the Threshold total instead of adding.",
+  "quotes": [
+   "all sources of Threshold points that are inappropriate actually subtract from the total, rather than adding to it"
+  ],
+  "related": []
+ },
+ {
+  "title": "Identification as the Hero",
+  "heading": "Identification as the Hero",
+  "line": 1631,
+  "endLine": 1643,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "To enact an Elysian story a character declares himself the hero after passing the Guardian, at the cost of a Confidence point, gaining a first fable point; several characters can share the role using a token.",
+  "quotes": [
+   "Identification with the hero in this manner costs the character a Confidence point",
+   "Simply identifying with the hero grants the character his first fable point, and thus a fable score of 1",
+   "Each must identify himself as the hero upon entering Elysium through a firm statement and the expenditure of a Confidence point."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Legends in Elysium",
+  "heading": "Hermetic Legends",
+  "line": 1635,
+  "endLine": 1639,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Order of Hermes stories can be witnessed in Elysium but cannot reveal secrets unknown to the tellers, and conflicting versions of an event are equally true there.",
+  "quotes": [
+   "witnessing and participating in such stories cannot reveal secrets"
+  ],
+  "related": []
+ },
+ {
+  "title": "Elysian Stories",
+  "heading": "Elysian Stories",
+  "line": 1645,
+  "endLine": 1649,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how Elysian stories differ from ordinary ones: the characters know the plot and success is measured by how closely they follow the legendary hero's steps; the journey needs careful planning.",
+  "quotes": [
+   "The success of such an adventure is counted by the measure to which the characters have managed to walk the same steps as the legendary hero who is their role model."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example of Elysian Story Creation",
+  "heading": "Example of Elysian Story Creation",
+  "line": 1651,
+  "endLine": 1663,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example breaking the story of Reynard the Fox into scenes with challenges for the characters.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Planning Elysian Stories",
+  "heading": "Planning Elysian Stories",
+  "line": 1665,
+  "endLine": 1669,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Procedure for turning a legend into scenes: players choose the tale, the storyguide splits it into acts and defines success and obstacles for each, with complications that must not interfere with the original tale.",
+  "quotes": [
+   "one element per story experience point you intend to hand out at the culmination of the quest is a good guide"
+  ],
+  "related": []
+ },
+ {
+  "title": "Adding New Scenes",
+  "heading": "Adding New Scenes",
+  "line": 1671,
+  "endLine": 1677,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When a story is too short or lacks background, the storyguide can add scenes that connect to existing acts, like a director's cut.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Running Elysian Stories",
+  "heading": "Running Elysian Stories",
+  "line": 1679,
+  "endLine": 1681,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Each story element must be resolved in the manner of the underlying tale; if characters derail it they must bring it back on track, and actions that do so generate fable points.",
+  "quotes": [
+   "The characters are also more likely to succeed in bringing their story back on track if their actions to rectify it generate fable points"
+  ],
+  "related": []
+ },
+ {
+  "title": "A Twist to the Tale",
+  "heading": "A Twist to the Tale",
+  "line": 1683,
+  "endLine": 1687,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional variant in which the characters take a role other than the hero, usually the villain or princess, and must steer events to the legend's outcome.",
+  "quotes": [
+   "For most stories, the only appropriate dramatis personae other than the hero are the roles of villain and princess"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Measure of Success in Elysium",
+  "heading": "The Measure of Success",
+  "line": 1689,
+  "endLine": 1704,
+  "category": "realms",
+  "topic": "Elysium",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The storyguide scores how faithfully each element was resolved; the hero's total fable points earned (all points, not only converted ones) map to a table of success levels that decide how much of the quest object is gained, including bonuses to an Initiation Script.",
+  "quotes": [
+   "This score simply translates into the total number of fable points earned by the Hero while pursuing the quest.",
+   "Count all points earned, not just those converted into a fable score"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults, Initiation Scripts"
+  ]
+ },
+ {
+  "title": "The Forking Path (Reaching Eudokia)",
+  "heading": "The Forking Path",
+  "line": 1710,
+  "endLine": 1712,
+  "category": "realms",
+  "topic": "Eudokia",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters on the verge of a major life change who stray into a Faerie aura typically take the Forked Path into Eudokia, usually alone or with others undergoing the same change.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Eudokian Stories",
+  "heading": "Eudokian Stories",
+  "line": 1722,
+  "endLine": 1726,
+  "category": "realms",
+  "topic": "Eudokia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Eudokian stories are mediated by a Threshold faerie governing the character's transition and focus on one or a few characters; companions may help but usually only the focal character benefits beyond Story Experience.",
+  "quotes": [
+   "anyone present when the Threshold arrives is taken into Faerie at the same time"
+  ],
+  "related": []
+ },
+ {
+  "title": "Planning Eudokian Stories",
+  "heading": "Planning Eudokian Stories",
+  "line": 1728,
+  "endLine": 1771,
+  "category": "realms",
+  "topic": "Eudokia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Procedure for building a Eudokian story: choose a theme that determines the reward, build story elements that each present a dilemma with one choice matching the theme, and send the characters home once over half of their decisions are right.",
+  "quotes": [
+   "typically one per Story Experience point you intend to hand out",
+   "is to make over half of the right decisions"
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Story Themes, and Virtues & Flaws",
+  "heading": "Example Story Themes, and Virtues & Flaws",
+  "line": 1734,
+  "endLine": 1769,
+  "category": "realms",
+  "topic": "Eudokia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar listing sample Eudokian themes with a situation and the Virtue and Flaw that might be awarded.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Leaving Eudokia",
+  "heading": "Leaving Eudokia",
+  "line": 1773,
+  "endLine": 1775,
+  "category": "realms",
+  "topic": "Eudokia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "After the challenges the mediating Threshold faerie normally reappears and sends the characters home with its Spirit Away power, possibly in a disguised form.",
+  "quotes": [
+   "send them back to the mortal realm with its Spirit Away power"
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Boons (Eudokia Rewards)",
+  "heading": "Faerie Boons",
+  "line": 1777,
+  "endLine": 1783,
+  "category": "realms",
+  "topic": "Eudokia",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Tally correct and incorrect choices on a Eudokian journey; more correct choices give a Virtue balanced by a Charm Flaw, more incorrect ones give a temporary Flaw, with Major or Minor depending on whether all choices went one way, and a Personality Trait shifts by one point.",
+  "quotes": [
+   "If the character made more correct choices than incorrect choices, then he acquires a Virtue.",
+   "If all the choices he made were correct, then the Virtue is Major, else it is Minor.",
+   "the character bears the Flaw for an amount of time equal to the time that passed while the character was in Faerie"
+  ],
+  "related": [
+   "Chapter 5: Touches of Faerie, Charms"
+  ]
+ },
+ {
+  "title": "Example of Eudokian Story Creation",
+  "heading": "Example of Eudokian Story Creation",
+  "line": 1785,
+  "endLine": 1797,
+  "category": "realms",
+  "topic": "Eudokia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked example of assembling a Eudokian story with the theme of Resolve from five story elements.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Story Elements Template",
+  "heading": "Story Elements",
+  "line": 1799,
+  "endLine": 1811,
+  "category": "realms",
+  "topic": "Running Faerie stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that Faerie adventures are built from Actor, Prop and Scenery story elements, each with a Path of Chance, Path of Destiny and Forking Path interpretation, and each able to take a dramatis persona role or join an act.",
+  "quotes": [
+   "Any element in one of these three categories can take one of the roles described later"
+  ],
+  "related": [
+   "Chapter 7: Telling Faerie Stories, Dramatis Personae and Acts"
+  ]
+ },
+ {
+  "title": "Ten Thousand More Story Elements",
+  "heading": "Ten Thousand More Story Elements",
+  "line": 2015,
+  "endLine": 2047,
+  "category": "realms",
+  "topic": "Running Faerie stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Two random tables of descriptors and objects that can be rolled or chosen to generate new story elements.",
+  "quotes": [
+   "Choose a descriptor and an object from the following two lists; or else roll two simple dice, once for each list."
+  ],
+  "related": []
+ },
+ {
+  "title": "Designing Faerie Characters: Sequence of Choices",
+  "heading": "Chapter Three : Faerie Characters",
+  "line": 2049,
+  "endLine": 2060,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Overview of the order of decisions for creating a faerie: player or non-player, power level, Might, physical form, cognizance, role, powers and vulnerabilities.",
+  "quotes": [
+   "Faeries are designed through a series of choices."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Characters: PC or NPC",
+  "heading": "PC or NPC?",
+  "line": 2062,
+  "endLine": 2064,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Non-player faeries may be more powerful than new player characters and need not balance Virtues and Flaws; the bestiary uses these rules as examples but troupes may design more informally.",
+  "quotes": [
+   "Non-player characters do not need to balance their Virtues and Flaws"
+  ],
+  "related": [
+   "Chapter 4: Faerie Bestiary"
+  ]
+ },
+ {
+  "title": "Faerie Level of Power",
+  "heading": "Player Character Faeries Are Designed to Suit Game Play",
+  "line": 2070,
+  "endLine": 2072,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "A player faerie should be about as powerful as a companion or magus, and the troupe should agree on the design so that it does not reduce others' enjoyment.",
+  "quotes": [
+   "approximately as powerful as a companion or magus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Virtues, Flaws and Pretense Points",
+  "heading": "Maximum Number of Virtues and Pretenses",
+  "line": 2074,
+  "endLine": 2091,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "A player faerie replacing a companion or magus gets a limited allotment of Virtues balanced by Flaws, and a pool of Pretense points set by the average magus age; inherent Abilities of the physical form must be bought first.",
+  "quotes": [
+   "1 free, then up to 20 points of Virtues paid for with Flaws at 2 Virtues per Flaw.",
+   "(average age of magus player characters \u2013 5) + 120 points",
+   "which gives 360 points of Pretences"
+  ],
+  "related": []
+ },
+ {
+  "title": "Required Virtues and Flaws for Faeries",
+  "heading": "Required Virtues and Flaws",
+  "line": 2093,
+  "endLine": 2095,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Every faerie character needs a Might score, physical form, level of cognizance, Social Interaction Virtue and a taboo; innate powers can be traded away as Flaws.",
+  "quotes": [
+   "A character must have a Might score, a physical form, a level of cognizance, a Social Interaction Virtue, and a taboo."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Might Score and Might Points",
+  "heading": "Faerie Might Score",
+  "line": 2097,
+  "endLine": 2119,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Sets a starting Might score for player faeries, gives innate Magic Resistance equal to Might, and explains that Might Points are spent on powers and recover steadily over a day; notes that Might varies widely with role.",
+  "quotes": [
+   "Player characters begin with a Faerie Might score of 5",
+   "Faerie Might gives the character innate Magic Resistance equal to its Might Score.",
+   "Faeries have Might Points equal in number to their Might score, which they spend to activate their powers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Quick Start Guideline (Faerie Characters)",
+  "heading": "Quick Start Guideline",
+  "line": 2101,
+  "endLine": 2115,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Sidebar giving a fast recipe for a companion-level faerie: a stated Might, Characteristics and Pretence points, a short list of Virtues, free choices and a Traditional Ward Flaw.",
+  "quotes": [
+   "has a Faerie Might of 10",
+   "**360 Points of Pretences:** Spend them exactly like Ability points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Physical Form: Ageing and Fatigue",
+  "heading": "Physical Form",
+  "line": 2185,
+  "endLine": 2189,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Explains what a faerie body is and its advantages: no ageing or Decrepitude unless a Flaw says otherwise, no Fatigue, and great difficulty in dying.",
+  "quotes": [
+   "Faeries cannot age or suffer Decrepitude unless they have a Flaw."
+  ],
+  "related": []
+ },
+ {
+  "title": "Equipment Without Encumbrance",
+  "heading": "Equipment Without Encumbrance",
+  "line": 2191,
+  "endLine": 2193,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "A faerie carries traditional props of its role without Encumbrance and can reconstitute a lost prop for no Might in a round.",
+  "quotes": [
+   "Reconstituting a prop costs no Might, and requires a single round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Regeneration and Rebuilding a Body",
+  "heading": "Regeneration",
+  "line": 2195,
+  "endLine": 2223,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Faeries heal by cognizance level, and a faerie killed before humans rebuilds a body in a time set by its Might and the local aura; memory and role changes after rebuilding depend on cognizance.",
+  "quotes": [
+   "The time taken to regenerate equals the faster of the Faerie Might Score in months or Faerie Might Score / Aura (as modified by the Realm Interaction Table) in months."
+  ],
+  "related": [
+   "ArM5 p.183 Realm Interaction Table"
+  ]
+ },
+ {
+  "title": "Scale of Typical Might Scores",
+  "heading": "Scale of Typical Might Scores",
+  "line": 2199,
+  "endLine": 2219,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Sidebar table giving descriptive Might bands from ordinary creatures to earth-shaking figures with example bestiary faeries at each level.",
+  "quotes": [
+   "| 1\u201310 | An ordinary creature of a realm. |"
+  ],
+  "related": [
+   "Chapter 4: Faerie Bestiary"
+  ]
+ },
+ {
+  "title": "Permanent Death of Faeries",
+  "heading": "Permanent Death",
+  "line": 2225,
+  "endLine": 2227,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Lists what kills a faerie permanently: destroyed Might Score, miracles, Infernal agents, use of the vis in its anchor, and antithetical things for incognizant faeries with a Sovereign Ward.",
+  "quotes": [
+   "A faerie whose Might Score is destroyed dies permanently."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Resistance Against Faeries",
+  "heading": "Magic Resistance Against Faeries",
+  "line": 2229,
+  "endLine": 2235,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Faerie",
+  "summary": "Faerie bodies and props are not blocked by Parma Magica or other Magic Resistance, though wards targeting the faerie's material or spiritual nature work, and powers with a Might cost and a Range beyond Personal are generally resisted.",
+  "quotes": [
+   "Faerie bodies, and the other props created by the same process, are not, however, blocked by the Parma Magica or other forms of Magic Resistance.",
+   "The powers of faeries that have Might costs and ranges greater than Personal are, in most cases, opposed by Magic Resistance."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Human and Animal Forms",
+  "heading": "Human and Animal Forms",
+  "line": 2241,
+  "endLine": 2245,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "How to build Characteristics for humanoid and animal-form faeries, and how animal-form player faeries swap Cunning for Intelligence as a free Virtue.",
+  "quotes": [
+   "A humanoid faerie has 7 points with which to buy Characteristics",
+   "This is a Free Virtue."
+  ],
+  "related": [
+   "Realms of Power: Magic, Book of Mundane Animals",
+   "Houses of Hermes: Mystery Cults pp.38-43"
+  ]
+ },
+ {
+  "title": "Hybrid Forms and Natural Weapons",
+  "heading": "Hybrid Forms",
+  "line": 2247,
+  "endLine": 2262,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Hybrid forms are human forms with animal elements that are cosmetic or Minor Virtues; faeries' natural weapons use Brawl and a table of Init, Atk, Dfn and Dmg values and need no Virtue.",
+  "quotes": [
+   "This uses the Brawl Ability and the statistics on the following table.",
+   "Having natural weapons does not, in itself, require a Virtue."
+  ],
+  "related": []
+ },
+ {
+  "title": "Glamorous, Immaterial Forms",
+  "heading": "Glamorous, Immaterial Forms",
+  "line": 2264,
+  "endLine": 2270,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Immaterial faeries are invisible and pass through solid objects but must take on matter to move things; design them as the physical body they don, with the Intangible Flesh Flaw.",
+  "quotes": [
+   "Immaterial faeries are invisible to those without magical aid, and can pass through solid objects."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Size",
+  "heading": "Size",
+  "line": 2272,
+  "endLine": 2306,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Humanoid faeries choose a Size with required Strength and Quickness adjustments; extreme sizes need troupe scrutiny, and nonhuman characters adjust Characteristics only if they deviate more than one from their base Size.",
+  "quotes": [
+   "Characters outside the range of Size +2 to \u20133 are difficult to accommodate in sagas, and should be carefully scrutinized by the Troupe.",
+   "Characters deviating from their base size by 1 do not change Characteristics, but those deviating by more than 1 are adjusted as indicated by the table above."
+  ],
+  "related": [
+   "Realms of Power: Magic",
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "What Do Size Scores Represent?",
+  "heading": "What Do Size Scores Represent?",
+  "line": 2308,
+  "endLine": 2333,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Reference table of Size scores from tiny to huge with height, weight, comparison creature and the wound-penalty ranges for each Size.",
+  "quotes": [
+   "| Size | Height | Weight | Comparison | Wound Penalties |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Social Interaction Virtues and Flaws",
+  "heading": "Social Interaction Virtues and Flaws",
+  "line": 2488,
+  "endLine": 2490,
+  "category": "beings",
+  "topic": "Faerie characters",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Faeries take Social Interaction Virtues and Flaws that cover only dealings with humans and replace Social Status Virtues; with other faeries a player faerie is treated as a representative of its human companions.",
+  "quotes": [
+   "govern only their interaction with humans and replace Social Status Virtues"
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Cognizance in Character Design",
+  "heading": "Cognizance",
+  "line": 2522,
+  "endLine": 2524,
+  "category": "beings",
+  "topic": "Faerie cognizance",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "A faerie's cognizance shapes its goals and limits how it can develop new powers: low-cognizance faeries do not consciously improve, middling ones transform predictably, and highly cognizant ones can change roles between scenes.",
+  "quotes": [
+   "Characters of low cognizance do not consciously attempt to improve their statistics during the saga."
+  ],
+  "related": [
+   "Chapter 1: Cognizance"
+  ]
+ },
+ {
+  "title": "Unspecialized Role (Pretenses for Martial, Arcane and Academic Abilities)",
+  "heading": "Unspecialized Role",
+  "line": 2526,
+  "endLine": 2528,
+  "category": "beings",
+  "topic": "Faerie Pretenses",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Sidebar ruling that faeries can have Pretenses for Martial, Arcane and Academic Abilities without the Virtues humans need, though professionals quickly detect the fraud.",
+  "quotes": [
+   "Faeries do not require the Virtues that allow characters to have Martial, Arcane, or Academic Abilities to have Pretenses for them."
+  ],
+  "related": []
+ },
+ {
+  "title": "Faerie Taboos: Traditional and Sovereign Wards",
+  "heading": "Taboos",
+  "line": 2552,
+  "endLine": 2570,
+  "category": "beings",
+  "topic": "Faerie taboos",
+  "audience": [
+   "storyguide",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Faerie taboos are built from Ward Flaws: a Traditional Ward bars touching the ward, stops Might regeneration and burns the faerie as a damage source, while a Sovereign Ward bars harming the protected person and destroys the faerie's body on touch.",
+  "quotes": [
+   "The faerie cannot regenerate Might points in the presence of a traditional ward.",
+   "Assume that the object acts as a source of damage with an intensity of +6.",
+   "the faerie may not harm a person or thing that is defended by the ward"
+  ],
+  "related": [
+   "ArM5 p.181 Heat and Corrosion",
+   "ArM5 pp.178-179 Incapacitating wounds"
+  ]
+ },
+ {
+  "title": "Folk Charms (Faerie Taboo)",
+  "heading": "Folk Charms",
+  "line": 2572,
+  "endLine": 2578,
+  "category": "beings",
+  "topic": "Faerie taboos",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "A faerie with this taboo cannot face folk charms deliberately used against it, whatever the culture; personal charms precious to a human also serve and are Arcane Connections to that human.",
+  "quotes": [
+   "A character with this taboo cannot face folk charms, deliberately used, from any culture"
+  ],
+  "related": []
+ },
+ {
+  "title": "Herbs (Faerie Taboo)",
+  "heading": "Herbs",
+  "line": 2580,
+  "endLine": 2582,
+  "category": "beings",
+  "topic": "Faerie taboos",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "The herbs that repel a faerie depend on its role and the herb's underlying symbolism; identifying the right herb needs Faerie Lore or the ability to read the faerie's glamour.",
+  "quotes": [
+   "The herbs that repel a faerie are based on that faerie's role, so the faerie is unable to vary them, except by changing roles."
+  ],
+  "related": []
+ },
+ {
+  "title": "Iron (Faerie Taboo)",
+  "heading": "Iron",
+  "line": 2584,
+  "endLine": 2586,
+  "category": "beings",
+  "topic": "Faerie taboos",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Iron is a common faerie ward, and some faeries refuse to deal with those carrying it, while miners, crafters and urban faeries are often comfortable with it.",
+  "quotes": [
+   "Some faeries refuse to negotiate with humans who carry iron, even if they will not suffer from contact with it"
+  ],
+  "related": []
+ },
+ {
+  "title": "Names (Faerie Taboo)",
+  "heading": "Names",
+  "line": 2588,
+  "endLine": 2590,
+  "category": "beings",
+  "topic": "Faerie taboos",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "A character who knows the name of a faerie with this taboo can force it to leave him alone, so powerful faeries use titles and roles instead.",
+  "quotes": [
+   "If a faerie has this taboo, and a character knows its name, the character can force the faerie to leave it alone."
+  ],
+  "related": []
+ },
+ {
+  "title": "Payment or Thanks (Faerie Taboo)",
+  "heading": "Payment or Thanks",
+  "line": 2592,
+  "endLine": 2598,
+  "category": "beings",
+  "topic": "Faerie taboos",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Some faeries must leave human service once paid or thanked, either because the relationship is balanced or their story is complete, and a few then turn on their former employers.",
+  "quotes": [
+   "Some faeries must leave human service if paid or thanked."
+  ],
+  "related": []
+ },
+ {
+  "title": "Places (Faerie Taboo)",
+  "heading": "Places",
+  "line": 2600,
+  "endLine": 2602,
+  "category": "beings",
+  "topic": "Faerie taboos",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Place-based taboos must seriously inconvenience the faerie, for example foreign earth acting as a Traditional Ward, and a Sovereign Ward tying a faerie to its home makes it unsuitable for most player characters.",
+  "quotes": [
+   "Flaws based on places must seriously inconvenience the character.",
+   "Characters tied to their home with a Sovereign Ward simply cannot leave, and are unsuitable as player characters in most sagas."
+  ],
+  "related": []
+ },
+ {
+  "title": "Religious Symbols (Faerie Taboo)",
+  "heading": "Religious Symbols",
+  "line": 2604,
+  "endLine": 2608,
+  "category": "beings",
+  "topic": "Faerie taboos",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Faerie",
+  "summary": "Faeries with this taboo flee symbols such as church bells; many powerful faeries also cannot enter the Dominion without God's invitation.",
+  "quotes": [
+   "Many of the most powerful faeries cannot enter the Dominion, because God has not invited them in and they are unable to trespass."
+  ],
+  "related": []
+ }
+]

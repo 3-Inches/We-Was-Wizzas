@@ -1,0 +1,1903 @@
+[
+ {
+  "title": "Magic Character Advancement",
+  "heading": "Advancement",
+  "line": 2765,
+  "endLine": 2776,
+  "category": "beings",
+  "topic": "Magic character advancement",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might (magic character)",
+  "summary": "Magic characters can gain and spend experience points like other characters, but their Might Score is subtracted from the Advancement Total; consuming vis reduces that penalty.",
+  "quotes": [
+   "the character's Might Score is always subtracted from its Advancement Total",
+   "If the character consumes a pawn of magic vis of any type, he may reduce the penalty to his Advancement Total by two"
+  ]
+ },
+ {
+  "title": "Magic Qualities and Initiation Scripts",
+  "heading": "Magic Qualities and Initiation Scripts",
+  "line": 2777,
+  "endLine": 2779,
+  "category": "beings",
+  "topic": "Magic character advancement",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might (magic character)",
+  "summary": "Describes how a rare book could teach a magic being new Magic Qualities, treated like an Initiation Script adapted by a Mystagogue.",
+  "quotes": [],
+  "related": [
+   "The Mysteries, Revised Edition pp.15-18"
+  ]
+ },
+ {
+  "title": "Transformation",
+  "heading": "Transformation",
+  "line": 2781,
+  "endLine": 2808,
+  "category": "beings",
+  "topic": "Magic character advancement",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might (magic character)",
+  "summary": "Experience points can be spent to gain, swap or upgrade Magic Qualities and Inferiorities according to a cost table, or vis can be consumed as a transformational study source.",
+  "quotes": [
+   "Practicing a Quality that you already possess with the intention of improving upon it has a Study Total of 5",
+   "The character must use a number of pawns of vis of any type equal to its Might Score."
+  ]
+ },
+ {
+  "title": "Acclimation",
+  "heading": "Acclimation",
+  "line": 2810,
+  "endLine": 2819,
+  "category": "beings",
+  "topic": "Acclimation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might (magic character)",
+  "summary": "Each year a magic character that stays away from Magic loses a Magic Quality or a point of Might unless it meets one of three protective conditions.",
+  "quotes": [
+   "a magic character either loses a Magic Quality, or else reduces its Might Score by 1"
+  ]
+ },
+ {
+  "title": "Acclimation: Auras",
+  "heading": "Auras",
+  "line": 2820,
+  "endLine": 2843,
+  "category": "beings",
+  "topic": "Acclimation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might (magic character)",
+  "summary": "A table of the minimum Magic aura strength, by Might Score and time spent within it, needed to avoid Acclimation, with a rule for visiting the Magic Realm.",
+  "quotes": [
+   "treat the Magic Realm as an aura of 10 and halve the character's Might Score"
+  ]
+ },
+ {
+  "title": "Acclimation: Effects",
+  "heading": "Effects",
+  "line": 2845,
+  "endLine": 2865,
+  "category": "beings",
+  "topic": "Acclimation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might (magic character)",
+  "summary": "A magic character avoids Acclimation by affecting, or being affected by, a non-Might character with magic for a number of seasons each year, given by a table of Might or effect level.",
+  "quotes": [
+   "a magic character with Might 15 would need to constantly affect a mundane character for three seasons every year"
+  ]
+ },
+ {
+  "title": "Acclimation: Vis",
+  "heading": "Vis",
+  "line": 2867,
+  "endLine": 2872,
+  "category": "beings",
+  "topic": "Acclimation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might (magic character)",
+  "summary": "A magic character avoids Acclimation for a year by consuming a Might-based number of pawns of vis, and then rolls on the Vis Consumption chart.",
+  "quotes": [
+   "A magic character is safe any year in which it consumes (Magic Might Score / 2) pawns of magic vis, of any type."
+  ]
+ },
+ {
+  "title": "Vis Consumption",
+  "heading": "Vis Consumption",
+  "line": 2873,
+  "endLine": 2892,
+  "category": "beings",
+  "topic": "Acclimation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might (magic character)",
+  "summary": "A stress-die chart for the side effects, botches, story events and Transformation that result when a magic character consumes vis to avoid Acclimation.",
+  "quotes": [
+   "roll a stress die and consult the following chart. The number of botch dice is equal to the number of pawns of vis consumed."
+  ]
+ },
+ {
+  "title": "Essential Traits",
+  "heading": "Essential Traits",
+  "line": 2894,
+  "endLine": 2900,
+  "category": "beings",
+  "topic": "Essential Traits",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might (magic character)",
+  "summary": "Personality Traits of magic characters become fixed Essential Traits that protect against effects forcing contrary behaviour, and Characteristic-specialty traits combine with Characteristics by a set method.",
+  "quotes": [
+   "if the Characteristic is positive and the Trait is beneficial, use the greater of the two; if the Characteristic is negative and the Trait is detrimental, use the lesser of the two; otherwise, add the Trait to the Characteristic"
+  ]
+ },
+ {
+  "title": "Suggested Familiars by Art",
+  "heading": "Suggested Familiars by Art",
+  "line": 2914,
+  "endLine": 2946,
+  "category": "magic",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A list of animals suited to bonding as familiars for each Technique and Form.",
+  "quotes": [
+   "The Arts used to bond a familiar must correspond to either the animal itself, or its powers"
+  ],
+  "related": [
+   "ArM5 p.104 Familiars"
+  ]
+ },
+ {
+  "title": "Beasts of Virtue",
+  "heading": "Beasts of Virtue",
+  "line": 2906,
+  "endLine": 2913,
+  "category": "beings",
+  "topic": "Beasts of Virtue",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Beast of Virtue",
+  "summary": "Introduces Beasts of Virtue, rare epitomes of their species that make good familiars, and notes the vis contained in their corpses.",
+  "quotes": [
+   "The corpse of a Beast of Virtue typically contains 1 pawn of vis for each 5 points (or fraction) of Might it possessed"
+  ]
+ },
+ {
+  "title": "Designing Beasts of Virtue",
+  "heading": "Designing Beasts of Virtue",
+  "line": 2949,
+  "endLine": 2956,
+  "category": "beings",
+  "topic": "Beasts of Virtue",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Beast of Virtue",
+  "summary": "Beasts of Virtue use the Chapter 4 magical character rules with set Inherited Virtues and Flaws and no physical-defect Flaws.",
+  "quotes": [
+   "**Inherited Virtues:** Magic Animal; Essential Virtue (Major or Minor)"
+  ]
+ },
+ {
+  "title": "Beast of Virtue: Concept",
+  "heading": "Concept",
+  "line": 2957,
+  "endLine": 2972,
+  "category": "beings",
+  "topic": "Beasts of Virtue",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Beast of Virtue",
+  "summary": "Rules for Characteristics, the required Magic Animal and Essential Virtues, and permitted Virtues and Flaws when creating a Beast of Virtue.",
+  "quotes": [
+   "You have 7 points to spend on Characteristics, just as other characters."
+  ]
+ },
+ {
+  "title": "Beast of Virtue: Season and Abilities",
+  "heading": "Season and Abilities",
+  "line": 2973,
+  "endLine": 2976,
+  "category": "beings",
+  "topic": "Beasts of Virtue",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Beast of Virtue",
+  "summary": "How a Beast of Virtue's season of life sets its age and how its experience points must be spent on species Abilities.",
+  "quotes": []
+ },
+ {
+  "title": "Beast of Virtue: Might and Qualities",
+  "heading": "Might and Qualities",
+  "line": 2977,
+  "endLine": 2982,
+  "category": "beings",
+  "topic": "Beasts of Virtue",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Beast of Virtue",
+  "summary": "Guidance on spending Might on Magical Qualities, with powers restricted to those that express the species' perfection.",
+  "quotes": [
+   "determine its Might and spend these points on Magical Qualities, taking Magical Inferiorities if you want more points to spend"
+  ]
+ },
+ {
+  "title": "Beast of Virtue: Finishing Touches",
+  "heading": "Finishing Touches",
+  "line": 2983,
+  "endLine": 2987,
+  "category": "beings",
+  "topic": "Beasts of Virtue",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Beast of Virtue",
+  "summary": "Natural weapons, Protection and species Qualities for animals, and the reminder to subtract Size from initial Might.",
+  "quotes": [
+   "Remember to subtract the Size of a Beast of Virtue from the initial Might score to get the final Might score."
+  ]
+ },
+ {
+  "title": "Birds of Nephelococcygia",
+  "heading": "Birds of Nephelococcygia",
+  "line": 3946,
+  "endLine": 3960,
+  "category": "beings",
+  "topic": "Birds of Nephelococcygia",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Bird of Nephelococcygia",
+  "summary": "Describes the cloud regio of Nephelococcygia, how to enter it, and the Inherited Virtues and Flaws of the intelligent birds who live there.",
+  "quotes": [
+   "**Inherited Virtues:** Homing Instinct, Keen Vision, Lightning Reflexes.",
+   "an Intelligence + Magic Lore roll against an Ease Factor of 9"
+  ]
+ },
+ {
+  "title": "Powers of the Birds of Nephelococcygia",
+  "heading": "Powers of the Birds of Nephelococcygia",
+  "line": 4006,
+  "endLine": 4039,
+  "category": "beings",
+  "topic": "Birds of Nephelococcygia",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Bird of Nephelococcygia",
+  "summary": "The set of Greater Powers available to Birds of Nephelococcygia, each given with its Hermetic guideline breakdown.",
+  "quotes": []
+ },
+ {
+  "title": "Bird Flight",
+  "heading": "Flight",
+  "line": 4040,
+  "endLine": 4042,
+  "category": "beings",
+  "topic": "Birds of Nephelococcygia",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Bird of Nephelococcygia",
+  "summary": "Flight is natural to these birds and needs no roll under normal conditions; difficult conditions call for a flying roll.",
+  "quotes": [
+   "he has an initiative of Qik + Athletics (flying) for this maneuver",
+   "a roll (Dexterity + Athletics(flying) + stress die) may be required to take to the air"
+  ]
+ },
+ {
+  "title": "The Magical Lineages of Cats",
+  "heading": "The Magical Lineages of Cats",
+  "line": 4044,
+  "endLine": 4047,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magical cat",
+  "summary": "Introduces the three cat lineages descended from familiars of the Founders, whose magical features breed almost true.",
+  "quotes": []
+ },
+ {
+  "title": "Cat Character Template",
+  "heading": "Cat Character Template",
+  "line": 4048,
+  "endLine": 4068,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magical cat",
+  "summary": "A worked template showing how to build a magical cat character from the mundane stats and magical additions.",
+  "quotes": [
+   "Cats may only have 10 points of Qualities",
+   "Might divided by 5, rounded up"
+  ]
+ },
+ {
+  "title": "Cats as Example",
+  "heading": "Cats as Example",
+  "line": 4070,
+  "endLine": 4072,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magical cat",
+  "summary": "Explains that the cat section is a model for building power lists for other species, borrowing powers and following the same guidelines.",
+  "quotes": []
+ },
+ {
+  "title": "Black Lineage of Cats",
+  "heading": "Black Lineage",
+  "line": 4074,
+  "endLine": 4082,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magical cat (Black Lineage)",
+  "summary": "Describes the Black Lineage and lists its common Virtues or Qualities, Flaws or Inferiorities, and powers.",
+  "quotes": []
+ },
+ {
+  "title": "White Lineage of Cats",
+  "heading": "White Lineage",
+  "line": 4084,
+  "endLine": 4092,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magical cat (White Lineage)",
+  "summary": "Describes the White Lineage and lists its common Virtues or Qualities, Flaws or Inferiorities, and powers.",
+  "quotes": []
+ },
+ {
+  "title": "Tortoiseshell Lineage of Cats",
+  "heading": "Tortoiseshell Lineage",
+  "line": 4094,
+  "endLine": 4104,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magical cat (Tortoiseshell Lineage)",
+  "summary": "Describes the Tortoiseshell Lineage, its rare males, and its common Virtues or Qualities, Flaws or Inferiorities, and powers.",
+  "quotes": []
+ },
+ {
+  "title": "Cat Magical Powers",
+  "heading": "Magical Powers",
+  "line": 4106,
+  "endLine": 4109,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magical cat",
+  "summary": "Each purchase of a Greater or Lesser Magical Power Quality gives a cat one power chosen from the lists.",
+  "quotes": [
+   "Players designing cats select one magical power for each purchase of the Greater Magical Power or Lesser Magical Power Qualities."
+  ]
+ },
+ {
+  "title": "Cats' Greater and Lesser Powers",
+  "heading": "Cats' Greater or Lesser Magical Powers",
+  "line": 4110,
+  "endLine": 4120,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magical cat",
+  "summary": "Rules for the spell-level cost, Penetration Score, Might cost and Initiative Bonus of cat powers.",
+  "quotes": [
+   "A Penetration Score = Might of the cat (5 x the cost of the power) + the cat's Penetration Bonus.",
+   "The Initiative Bonus for a Lesser Power is equal to the cat's Quickness – (Magnitude x 2)."
+  ]
+ },
+ {
+  "title": "Warder's Walk",
+  "heading": "Warder's Walk",
+  "line": 4279,
+  "endLine": 4285,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magical cat (Black Lineage)",
+  "summary": "A cat power letting several cats combine their other powers in a ritual to penetrate Magic Resistance, at the risk of a fatal botch as more cats join.",
+  "quotes": [
+   "It is a variant of *Wizard's Communion*."
+  ]
+ },
+ {
+  "title": "Black Cat Wards",
+  "heading": "Black Cat Wards",
+  "line": 4295,
+  "endLine": 4333,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magical cat (Black Lineage)",
+  "summary": "Describes the ward powers Black Lineage cats use, singly or in procession, to protect a home or settlement against minor faeries and demons.",
+  "quotes": []
+ },
+ {
+  "title": "Personal Magical Powers for Cats",
+  "heading": "Personal Magical Powers for Cats",
+  "line": 4335,
+  "endLine": 4342,
+  "category": "beings",
+  "topic": "Magical cats",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magical cat",
+  "summary": "Rules for the Initiative bonus, spell-level cost and Penetration Score of personal powers for cats.",
+  "quotes": [
+   "An Initiative bonus equal to the cat's Quickness – (Magnitude /2)."
+  ]
+ },
+ {
+  "title": "Dragons and Dragon-kind",
+  "heading": "Dragons and Dragon-kind",
+  "line": 4397,
+  "endLine": 4412,
+  "category": "beings",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Dragon or dragon-kind",
+  "summary": "Distinguishes serpents, drakes, worms and true dragons, and advises that the largest dragons exceed what the rules can represent and need innovative plans to defeat.",
+  "quotes": []
+ },
+ {
+  "title": "Dragons as Characters",
+  "heading": "Dragons as Characters",
+  "line": 4414,
+  "endLine": 4417,
+  "category": "beings",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Dragon or dragon-kind",
+  "summary": "Weak dragons can be built with the magical character rules as grogs, companions or magus-equivalents, while non-player dragons need not be strictly balanced.",
+  "quotes": []
+ },
+ {
+  "title": "Dragon Concept",
+  "heading": "Concept",
+  "line": 4470,
+  "endLine": 4483,
+  "category": "beings",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Dragon or dragon-kind",
+  "summary": "Base Characteristics, Size, required Virtues and suggested Virtues and Flaws when designing a dragon or dragon-kin.",
+  "quotes": [
+   "Dragons and their kin have base Characteristics of 0, and 7 points to spend on improving Characteristics (like human characters)."
+  ]
+ },
+ {
+  "title": "Dragon Season and Abilities",
+  "heading": "Season and Abilities",
+  "line": 4484,
+  "endLine": 4489,
+  "category": "beings",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Dragon or dragon-kind",
+  "summary": "Guidance on which seasons suit serpents and dragons and on giving combat opponents a good Brawl.",
+  "quotes": []
+ },
+ {
+  "title": "Dragon Might Score and Qualities",
+  "heading": "Might Score and Qualities",
+  "line": 4490,
+  "endLine": 4509,
+  "category": "beings",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Dragon or dragon-kind",
+  "summary": "A table of typical Might ranges for each kind of dragon-kin, plus advice on Qualities for breath, gaze and combat statistics.",
+  "quotes": [
+   "A dragon's combat statistics may be improved through liberal use of the Improved Attack, Improved Defense, Improved Damage, and Improved Soak Qualities."
+  ]
+ },
+ {
+  "title": "Claw and Fang",
+  "heading": "Claw and Fang",
+  "line": 4568,
+  "endLine": 4577,
+  "category": "combat",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Dragon or dragon-kind",
+  "summary": "A table of weapon statistics for dragon claws and teeth, with large versions for dragons bigger than Size +2.",
+  "quotes": [
+   "Dragons larger than Size +2 usually have large claws and/or large teeth."
+  ]
+ },
+ {
+  "title": "Constriction Attacks (Option)",
+  "heading": "Option: Constriction Attacks",
+  "line": 4579,
+  "endLine": 4587,
+  "category": "combat",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Dragon, worm or large serpent",
+  "summary": "An optional rule for dragons and serpents to constrict smaller victims using the grappling rules, depriving them of air.",
+  "quotes": [
+   "A dragon can only constrict a victim whose Size is less than its own.",
+   "a constriction attack has the following weapon statistics: Init 0, Atk +3, Dfn 0, Dam n/a",
+   "The victim must make a Stamina check every 30 seconds, that is, every five rounds, or suffer the normal effects of deprivation."
+  ],
+  "related": [
+   "ArM5 p.174 Non-Lethal Combat",
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Transformed Animals",
+  "heading": "Transformed Animals",
+  "line": 4805,
+  "endLine": 4808,
+  "category": "beings",
+  "topic": "Transformed animals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Warped animal",
+  "summary": "Distinguishes Transformed Animals, which are Warped by magic and gain no Magic Might, from Beasts of Virtue.",
+  "quotes": []
+ },
+ {
+  "title": "Warping of Animals",
+  "heading": "Warping",
+  "line": 4809,
+  "endLine": 4812,
+  "category": "beings",
+  "topic": "Transformed animals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Warped animal",
+  "summary": "Animals gain Warping points like people and acquire Flaws and then a Virtue at set Warping Scores.",
+  "quotes": [
+   "Once an animal gains a Warping score of 1 it acquires a Minor Flaw, and it gains another Minor Flaw when its Warping score reaches 3."
+  ],
+  "related": [
+   "ArM5 pp.167-168 Warping"
+  ]
+ },
+ {
+  "title": "Warped Livestock (Covenant Hook)",
+  "heading": "Minor Covenant Hook: Warped Livestock",
+  "line": 4813,
+  "endLine": 4815,
+  "category": "covenant",
+  "topic": "Transformed animals",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant with Warped animals",
+  "summary": "A covenant with Warped animals may farm them for Muto vis, represented by a vis source Boon.",
+  "quotes": []
+ },
+ {
+  "title": "Intentionally Warping an Animal",
+  "heading": "Intentionally Warping an Animal",
+  "line": 4817,
+  "endLine": 4827,
+  "category": "beings",
+  "topic": "Transformed animals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cage of change",
+  "summary": "A cage of change is an enchanted device that gives a captive animal Warping points to make it monstrous for harvesting Muto vis.",
+  "quotes": [
+   "the cage gives the captive in the cage 5 Warping Points"
+  ],
+  "related": [
+   "ArM5 p.157 The Enigma's Gift",
+   "ArM5 pp.167-168 Warping"
+  ]
+ },
+ {
+  "title": "Virtues and Flaws from Warping",
+  "heading": "Virtues and Flaws from Warping",
+  "line": 4829,
+  "endLine": 4833,
+  "category": "beings",
+  "topic": "Transformed animals",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Warped animal",
+  "summary": "Lists the Supernatural Virtues and Flaws a magically Warped animal may gain, culminating in a Lesser Power at Warping Score 5.",
+  "quotes": [
+   "eventually acquiring a Lesser Power when it reaches a Warping Score of 5"
+  ]
+ },
+ {
+  "title": "Training Creatures",
+  "heading": "Training Creatures",
+  "line": 4959,
+  "endLine": 4962,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "magi",
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Any magical beast with Cunning may be tamed over seasons by a magus, magical character or mundane trainer, then trained in tricks.",
+  "quotes": []
+ },
+ {
+  "title": "Taming Animals",
+  "heading": "Taming Animals",
+  "line": 4963,
+  "endLine": 4972,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "magi",
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Taming is a seasonal activity accumulating points over consecutive seasons until they exceed the creature's Might.",
+  "quotes": [
+   "Taming is complete when the accumulated total of points exceeds the Might of the creature.",
+   "**Required Points to Tame a Creature: Might of the Creature**"
+  ]
+ },
+ {
+  "title": "Taming Mundane Beasts",
+  "heading": "Taming Mundane Beasts",
+  "line": 4973,
+  "endLine": 4975,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives mundane beasts an effective Might for taming purposes and notes that Gift penalties apply because taming is social.",
+  "quotes": [
+   "mundane beasts have an effective (Animal) Might of 1 + 2 times Confidence Score"
+  ]
+ },
+ {
+  "title": "Hermetic Trainer",
+  "heading": "A Hermetic Trainer",
+  "line": 4977,
+  "endLine": 4992,
+  "category": "lab",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A magus tames a creature as a laboratory activity, accumulating points from his Rego (Form) Lab Total less the creature's Might and producing a Lab Text.",
+  "quotes": [
+   "**Taming Points Accumulated Each Season by an Hermetic Tamer: Re(Fo) Lab Total – Creature's Might**"
+  ],
+  "related": [
+   "ArM5 p.107 Experimentation",
+   "ArM5 p.102 Lab Texts"
+  ]
+ },
+ {
+  "title": "Magical Trainer",
+  "heading": "A Magical Trainer",
+  "line": 4993,
+  "endLine": 5000,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Master of (Form) Creatures",
+  "summary": "A character with Master of (Form) Creatures tames creatures of that Form using his Might and Animal Handling less the creature's Might.",
+  "quotes": [
+   "**Taming Points Accumulated Each Season by a Master of Creatures: Trainer's Might + Trainer's Animal Handling – Creature's Might**"
+  ]
+ },
+ {
+  "title": "Mundane Trainer",
+  "heading": "A Mundane Trainer",
+  "line": 5001,
+  "endLine": 5008,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A mundane trainer accumulates taming points from Intelligence and Animal Handling less the creature's Might, so can only tame weakly magical beasts.",
+  "quotes": [
+   "**Taming Points Accumulated Each Season by a Mundane Trainer: Int + Animal Handling – Creature's Might**"
+  ]
+ },
+ {
+  "title": "Tricks, Stunts, and Tasks",
+  "heading": "Tricks, Stunts, and Tasks",
+  "line": 5009,
+  "endLine": 5012,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A tamed animal can be commanded by characters with Intelligence and Animal Handling or to whom it is loyal, and is not under a continuing mystical effect.",
+  "quotes": []
+ },
+ {
+  "title": "Animal Loyalty",
+  "heading": "Loyalty",
+  "line": 5013,
+  "endLine": 5020,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A tamed creature gains a Loyal Personality Trait toward its tamer, which can be raised or transferred with extra seasons and tested with a Loyalty Test.",
+  "quotes": [
+   "**Loyalty Test: Loyal Personality Trait + stress die vs Ease Factor**",
+   "Each additional season of training increases the Loyal trait by +1, to a maximum of +3."
+  ]
+ },
+ {
+  "title": "Training Animal Abilities",
+  "heading": "Training Abilities",
+  "line": 5021,
+  "endLine": 5027,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters with Animal Handling can train a tamed animal's Abilities with the standard training rules, with a Loyalty test for new Abilities.",
+  "quotes": [
+   "make a Loyalty test for the animal against an Ease Factor of 6"
+  ],
+  "related": [
+   "ArM5 p.164 Training"
+  ]
+ },
+ {
+  "title": "Animal Ken and Taming",
+  "heading": "Animal Ken",
+  "line": 5029,
+  "endLine": 5031,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Animal Ken",
+  "summary": "Describes how Animal Ken lets a character reason with animals, add to taming totals and give more complex commands.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.62 Animal Ken"
+  ]
+ },
+ {
+  "title": "Trained Groups of Animals",
+  "heading": "Trained Groups",
+  "line": 5033,
+  "endLine": 5036,
+  "category": "combat",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A character can lead tamed animals in combat as a trained group, using Animal Handling instead of Leadership to set group size.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.172 Trained groups"
+  ]
+ },
+ {
+  "title": "Commanding a Creature",
+  "heading": "Commanding a Creature",
+  "line": 5037,
+  "endLine": 5056,
+  "category": "seasons",
+  "topic": "Taming and training creatures",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Commanding a tamed creature is a Presence plus Animal Handling roll against an Ease Factor set by how familiar, stressful or frightening the task is.",
+  "quotes": [
+   "**Command Beast: Presence + Animal Handling (or Ride or Magic Lore) + stress die vs Ease Factor**"
+  ]
+ },
+ {
+  "title": "Designing Giants",
+  "heading": "Designing Giants",
+  "line": 5104,
+  "endLine": 5107,
+  "category": "beings",
+  "topic": "Giants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Giant",
+  "summary": "Humanoid beings larger than human size get their Size from the Gigantic Quality.",
+  "quotes": []
+ },
+ {
+  "title": "How Big is a Giant?",
+  "heading": "How Big is a Giant?",
+  "line": 5108,
+  "endLine": 5130,
+  "category": "beings",
+  "topic": "Giants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A table of approximate height and weight for each Size, noting that Size determines height and weight rather than the reverse.",
+  "quotes": [
+   "a character's height and weight are determined by his Size Characteristic, not the other way round"
+  ]
+ },
+ {
+  "title": "Giant Concept",
+  "heading": "Concept",
+  "line": 5132,
+  "endLine": 5147,
+  "category": "beings",
+  "topic": "Giants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Giant",
+  "summary": "Story roles and suggested Virtues and Flaws for giants, which use the Magic Human rules with the Gigantic Quality applied after Characteristics.",
+  "quotes": [
+   "Giants should be designed according to the rules for Magic Humans in Chapter 4."
+  ]
+ },
+ {
+  "title": "Giant Season and Abilities",
+  "heading": "Season and Abilities",
+  "line": 5148,
+  "endLine": 5152,
+  "category": "beings",
+  "topic": "Giants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Giant",
+  "summary": "Spring giants suffer child-like Characteristic penalties and language Abilities must be bought with the giant's season experience.",
+  "quotes": []
+ },
+ {
+  "title": "Giant Might and Qualities",
+  "heading": "Might and Qualities",
+  "line": 5154,
+  "endLine": 5159,
+  "category": "beings",
+  "topic": "Giants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Giant",
+  "summary": "All giants take the Major Quality Gigantic, repeated for larger Sizes, which drives the Might needed.",
+  "quotes": [
+   "All giants must take the Major Quality, Gigantic; giants larger than Size +2 should take it more than once."
+  ]
+ },
+ {
+  "title": "Giant Finishing Touches",
+  "heading": "Finishing Touches",
+  "line": 5160,
+  "endLine": 5164,
+  "category": "beings",
+  "topic": "Giants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Giant",
+  "summary": "Giants use clubs, with combat statistics computed normally allowing for the Gigantic Quality's effects.",
+  "quotes": []
+ },
+ {
+  "title": "Giants in Combat",
+  "heading": "Giants in Combat",
+  "line": 5166,
+  "endLine": 5174,
+  "category": "combat",
+  "topic": "Giants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Giant",
+  "summary": "An optional rule of thumb giving giants a defensive bonus against scuffling, grappling and disarming by smaller opponents, and notes on Corpus spells against giants.",
+  "quotes": [
+   "a giant gains a special defensive bonus equal to double the difference between its Size and a smaller opponent's"
+  ],
+  "related": [
+   "ArM5 p.192 Size"
+  ]
+ },
+ {
+  "title": "Norse Giants and Trolls",
+  "heading": "Norse Giants and Trolls",
+  "line": 5278,
+  "endLine": 5298,
+  "category": "beings",
+  "topic": "Giants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Norse giant or troll",
+  "summary": "Options for building Norse giants and trolls, including elemental Form affiliations, typical powers and a size-changing rule.",
+  "quotes": [
+   "When the giant reduces its size, its Strength diminishes by 2 and its Quickness improves by 1 for each point of Size reduction."
+  ]
+ },
+ {
+  "title": "Non-Human Giants",
+  "heading": "Non-Human Giants",
+  "line": 5382,
+  "endLine": 5384,
+  "category": "beings",
+  "topic": "Giants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Giant",
+  "summary": "To build oversized elementals, spirits or animals, use the rules for that creature type and add the Gigantic Quality.",
+  "quotes": [
+   "simply choose Gigantic as one of the creature's Qualities"
+  ]
+ },
+ {
+  "title": "Spirit Votary (Virtue and Character Type)",
+  "heading": "New Virtue: Spirit Votary",
+  "line": 5390,
+  "endLine": 5397,
+  "category": "beings",
+  "topic": "Spirit votaries",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Spirit Votary",
+  "summary": "A Free Supernatural Virtue making the character a Mythic Companion who must take Spiritual Pact plus further supernatural Virtues and the Pagan Flaw.",
+  "quotes": [
+   "A Spirit Votary is required to take the Spiritual Pact Virtue (see below), along with either three Minor Supernatural Virtues or one Major Supernatural Virtue."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.103 Blood of Heroes"
+  ]
+ },
+ {
+  "title": "Spiritual Pact",
+  "heading": "New Virtue: Spiritual Pact",
+  "line": 5398,
+  "endLine": 5412,
+  "category": "beings",
+  "topic": "Spirit votaries",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Spiritual Pact",
+  "summary": "A character with a pact to a Magical spirit spends a Confidence Point and rolls to draw a Might Pool from the spirit, which then powers the spirit's abilities until exhausted.",
+  "quotes": [
+   "Make a Presence + Magic Lore + stress die roll: this is the amount of Magic Might Pool that the character acquires from his spiritual master."
+  ]
+ },
+ {
+  "title": "Magic Kin",
+  "heading": "Magic Kin",
+  "line": 5473,
+  "endLine": 5478,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin (Magic Human or Magic-aligned)",
+  "summary": "Introduces magic kin lineages that can be used as templates for magic characters, each with Inherited Virtues and Common Flaws to take at character creation.",
+  "quotes": [
+   "that characters designed to belong to that family should strongly consider taking during character creation"
+  ]
+ },
+ {
+  "title": "Atlanteans",
+  "heading": "Atlanteans",
+  "line": 5480,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Atlantean",
+  "summary": "Template for ocean-dwelling Atlantean characters with water-based Inherited Virtues, an exile Flaw and powers working over water-ways.",
+  "quotes": [
+   "Other water creatures will only obey a summons if a Presence + Leadership roll against an Ease Factor of 6 + Creature Size is successfully made."
+  ]
+ },
+ {
+  "title": "Flame Dancers",
+  "heading": "Flame Dancers",
+  "line": 5556,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Flame Dancer",
+  "summary": "Template for people possessed by the power of fire, with fire-related powers and compulsions.",
+  "quotes": [
+   "**Inherited Virtues:** Greater Power: *Let the Bonfire Burn*, Personal Power: *Endurance of the Flame Dancer*"
+  ]
+ },
+ {
+  "title": "Forgotten Gods",
+  "heading": "Forgotten Gods",
+  "line": 5588,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Forgotten God",
+  "summary": "Template for old gods who survive in living form, built around a Focus or Greater Power describing their sphere of influence.",
+  "quotes": [
+   "As characters, they should take a Greater Power or Focus Power that describes this influence."
+  ]
+ },
+ {
+  "title": "Loamwalkers",
+  "heading": "Loamwalkers",
+  "line": 5618,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Loamwalker",
+  "summary": "Template for tree-spirits living in human shape, with powers to travel between trees and change between tree and human form.",
+  "quotes": [
+   "**Common Flaws:** Dark Secret (Loamwalker), Essential Flaw (minor): Antisocial (Presence), Fear (fire), Baneful Circumstances (must be rooted into the earth)"
+  ]
+ },
+ {
+  "title": "Lost Children",
+  "heading": "Lost Children",
+  "line": 5670,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Lost Child",
+  "summary": "Template for abandoned children who became ageless Magical beings, designed with a child's Size and Characteristic penalties.",
+  "quotes": [
+   "so to play one you should design a character with the Size and Characteristics penalties of a child"
+  ]
+ },
+ {
+  "title": "Men of the Lake",
+  "heading": "Men of the Lake",
+  "line": 5694,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Man of the Lake",
+  "summary": "Template for sentient lake beings with water powers, a seasonal society and a network of lake regiones.",
+  "quotes": [
+   "**Inherited Virtues:** Greater Power: *Drown* (see page 137), Personal Power: *Simulacrum Form*, Ritual Power: *Command the Waters*, Focus Power: *Memory of Water*, (Lake) Regio Network."
+  ]
+ },
+ {
+  "title": "Orphan Born",
+  "heading": "Orphan Born",
+  "line": 5736,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Orphan Born",
+  "summary": "Template for humans conceived beyond the veil of the spirit world, who can become incorporeal and see spirits.",
+  "quotes": [
+   "**Inherited Virtues:** Greater Power: *Incorporeal Form*, Personal Power: *Ghostly/Physical Form*, Second Sight"
+  ]
+ },
+ {
+  "title": "People of the Clouds",
+  "heading": "People of the Clouds",
+  "line": 5770,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Person of the Clouds",
+  "summary": "Template for sky-sailors who command the wind and can fly or sail ships through the air.",
+  "quotes": [
+   "**Inherited Virtues:** Greater Power: *Sail the Wind*"
+  ]
+ },
+ {
+  "title": "The Stoneskinned",
+  "heading": "The Stoneskinned",
+  "line": 5796,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Stoneskinned",
+  "summary": "Template for people of living rock whose stone powers scale with age or Might and who turn to stone in daylight.",
+  "quotes": [
+   "These stats are Init +X, Atk +2X, Dfn +X, Dam +2X, where X is either the character's (Might Score / 5) or his (age / 10)."
+  ]
+ },
+ {
+  "title": "Warders of Mystery",
+  "heading": "Warders of Mystery",
+  "line": 5830,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic kin: Warder of Mystery",
+  "summary": "Template for the society of Auditores who keep magic secret, with a power to perceive distant places through Arcane Connections.",
+  "quotes": [
+   "**Inherited Virtues:** Greater Power: *Perceive the Distant Truths*"
+  ]
+ },
+ {
+  "title": "Drowned Men",
+  "heading": "Drowned Men",
+  "line": 5862,
+  "endLine": 5865,
+  "category": "beings",
+  "topic": "Transformed humans",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Transformed (Being)",
+  "summary": "Drowned Men are sailors who passed through a magical regio and returned as creatures of Magic.",
+  "quotes": []
+ },
+ {
+  "title": "Drowned Men Characters",
+  "heading": "Drowned Men Characters",
+  "line": 5866,
+  "endLine": 5869,
+  "category": "beings",
+  "topic": "Transformed humans",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Transformed (Being)",
+  "summary": "Drowned Men must take the Transformed (Being) Virtue and commonly have a sea Flaw, Greater Immunity (drowning) and the Servant of the Ocean Flaw.",
+  "quotes": []
+ },
+ {
+  "title": "Planning for Drowning",
+  "heading": "Planning for Drowning",
+  "line": 5870,
+  "endLine": 5883,
+  "category": "beings",
+  "topic": "Transformed humans",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Transformed (Being)",
+  "summary": "A character can try to become a Drowned Man by contacting and bargaining with a powerful water entity before surrendering to the water, using two rolls.",
+  "quotes": [
+   "**Determine Contact Method: Int + Magic Lore + Stress die vs Ease Factor of 12**",
+   "**Negotiation for Power: Int + Bargain + Stress Die vs Ease Factor of 6 + Might / 5**"
+  ]
+ },
+ {
+  "title": "Burned and Buried Men",
+  "heading": "Burned and Buried Men",
+  "line": 5892,
+  "endLine": 5895,
+  "category": "beings",
+  "topic": "Transformed humans",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Transformed (Being)",
+  "summary": "A person might be saved from fire or burial by a magical creature of Ignem or Terram and gain Virtues like a Drowned Man.",
+  "quotes": []
+ },
+ {
+  "title": "Revenants, the Walking Dead",
+  "heading": "Revenants, the Walking Dead",
+  "line": 5896,
+  "endLine": 5907,
+  "category": "beings",
+  "topic": "Revenants",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Revenant",
+  "summary": "Explains revenants as animate corpses driven by a spirit, and that their physical statistics also serve corpses animated by spells.",
+  "quotes": [
+   "The physical statistics of a revenant are also usable for corpses that have been animated by spells such as *The Walking Corpse*"
+  ],
+  "related": [
+   "ArM5 p.135 The Walking Corpse"
+  ]
+ },
+ {
+  "title": "Designing Revenants",
+  "heading": "Designing Revenants",
+  "line": 5908,
+  "endLine": 5917,
+  "category": "beings",
+  "topic": "Revenants",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Revenant",
+  "summary": "Revenants are usually Spring or Summer Magic Humans with the No Fatigue and Improved Soak Qualities to reflect their resilience.",
+  "quotes": [
+   "They should be designed according to the rules for Magic Humans in Chapter 4: Magic Characters."
+  ]
+ },
+ {
+  "title": "Fighting the Walking Dead",
+  "heading": "Fighting the Walking Dead",
+  "line": 5918,
+  "endLine": 5931,
+  "category": "combat",
+  "topic": "Revenants",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Revenant",
+  "summary": "Describes how spells and weapons affect revenants, including the rule that they cannot be Incapacitated and the legendary methods that destroy their animating spirit.",
+  "quotes": [
+   "they cannot be Incapacitated; treat Incapacitating wounds as Heavy wounds instead",
+   "Learning the method for destroying a revenant may require a story, or if the storyguide prefers she can assign it an Ease Factor of 9 on an Intelligence + Magic Lore roll."
+  ]
+ },
+ {
+  "title": "Resistance to Piercing Weapons (Option)",
+  "heading": "Option: Resistance to Piercing Weapons",
+  "line": 5932,
+  "endLine": 5936,
+  "category": "combat",
+  "topic": "Revenants",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Revenant",
+  "summary": "An optional rule giving revenants extra Soak against piercing weapons, or making such weapons useless.",
+  "quotes": [
+   "The troupe may wish to grant revenants an additional +10 Soak bonus against such weapons, or simply rule them totally ineffective."
+  ]
+ },
+ {
+  "title": "Animating Corpses with Magic",
+  "heading": "Animating Corpses with Magic",
+  "line": 5938,
+  "endLine": 5950,
+  "category": "beings",
+  "topic": "Revenants",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Corpses animated by Rego Corpus spells or possessing spirits use revenant statistics with limited Qualities, and no Might unless a spirit controls them.",
+  "quotes": [
+   "Its Brawl skill is nominally 3"
+  ]
+ },
+ {
+  "title": "Magi in Final Twilight",
+  "heading": "Magi in Final Twilight",
+  "line": 6050,
+  "endLine": 6056,
+  "category": "mysteries",
+  "topic": "Final Twilight",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magus in Final Twilight",
+  "summary": "A magus entering Final Twilight may rarely become a Magical being, with Might set by guideline ranges or formulas tied to an Art or Ability.",
+  "quotes": [
+   "The Might Score of a magus Transformed by Twilight should generally be around 20 to 40."
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.24 Great Beasts"
+  ]
+ },
+ {
+  "title": "Spirits as Characters",
+  "heading": "Spirits as Characters",
+  "line": 6062,
+  "endLine": 6069,
+  "category": "beings",
+  "topic": "Magic spirits",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magic spirit",
+  "summary": "Spirits are incorporeal, immortal beings that cannot affect or be sensed by matter without powers or magic, communicating through Silent Speech, and take the Magic Spirit Virtue.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.75 Sensory species"
+  ]
+ },
+ {
+  "title": "Spirit Concept",
+  "heading": "Concept",
+  "line": 6070,
+  "endLine": 6076,
+  "category": "beings",
+  "topic": "Magic spirits",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magic spirit",
+  "summary": "How to set Characteristics for spirits, that Size is meaningless until a spirit takes physical form, and that all spirits have the Magical Air Flaw.",
+  "quotes": [
+   "For plants and spirits of non-living objects, assume that all Characteristics begin at zero and apply 7 characteristic points in the usual fashion."
+  ]
+ },
+ {
+  "title": "Taxonomy of the Invisible World",
+  "heading": "Taxonomy of the Invisible World",
+  "line": 6078,
+  "endLine": 6082,
+  "category": "beings",
+  "topic": "Magic spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "Defines the terms spirit, genius, animus, Daimon and Airy Spirit used for the rules in this chapter.",
+  "quotes": []
+ },
+ {
+  "title": "Spirit Season and Abilities",
+  "heading": "Season and Abilities",
+  "line": 6084,
+  "endLine": 6088,
+  "category": "beings",
+  "topic": "Magic spirits",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magic spirit",
+  "summary": "Which seasons suit different kinds of spirits and why spirits often take Reduced Abilities.",
+  "quotes": []
+ },
+ {
+  "title": "Spirit Might and Qualities",
+  "heading": "Might and Qualities",
+  "line": 6090,
+  "endLine": 6094,
+  "category": "beings",
+  "topic": "Magic spirits",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magic spirit",
+  "summary": "Spirits need no Quality to be incorporeal or immortal, but need Powers to be seen or to affect the world, so most of their Qualities go to Powers.",
+  "quotes": []
+ },
+ {
+  "title": "Powers of the Spirits",
+  "heading": "Powers of the Spirits",
+  "line": 6096,
+  "endLine": 6099,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magic spirit",
+  "summary": "Introduces common spirit powers, which must penetrate Magic Resistance, with Ritual-like powers permanently reducing the spirit's Might.",
+  "quotes": [
+   "Naturally, any power that affects another being must penetrate its Magic Resistance."
+  ]
+ },
+ {
+  "title": "Spirits as a Source of Vis",
+  "heading": "Spirits as a Source of Vis",
+  "line": 6100,
+  "endLine": 6104,
+  "category": "realms",
+  "topic": "Magic spirits",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "Explains how much raw vis a spirit contains, when it can be distilled after the spirit is slain, and the vis from corporeal bodies and Presence.",
+  "quotes": [
+   "typically 1 pawn of an appropriate Form per magnitude of their Might"
+  ]
+ },
+ {
+  "title": "Spirit Power: Control Human",
+  "heading": "Control Human",
+  "line": 6106,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "A spirit power to direct a human, who may resist with an Intelligence roll against an Ease Factor set by the spirit's Might.",
+  "quotes": [
+   "To break free, the target makes an Intelligence roll against an Ease Factor equal to 9 + magnitude of spirit's Might."
+  ]
+ },
+ {
+  "title": "Spirit Power: Donning the Corporeal Veil",
+  "heading": "Donning the Corporeal Veil",
+  "line": 6114,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "A spirit power to create and animate a physical body that shares the spirit's statistics but is limited in Size.",
+  "quotes": [
+   "The body created with this power has the same physical statistics as the spirit, but can have a maximum Size of +1."
+  ]
+ },
+ {
+  "title": "Spirit Power: Eidolon",
+  "heading": "Eidolon",
+  "line": 6127,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "A spirit power creating an illusory form visible and audible to material beings.",
+  "quotes": [
+   "Creates an illusionary form that is visible and audible to material beings."
+  ]
+ },
+ {
+  "title": "Spirit Power: Ghost Touch",
+  "heading": "Ghost Touch",
+  "line": 6135,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "A spirit power to move or hurl objects, with weight limit and damage determined by the Might points spent.",
+  "quotes": [
+   "For 1 Might point, a maximum of 5 pounds can be moved; every additional Might point doubles this weight limit."
+  ]
+ },
+ {
+  "title": "Spirit Power: Manifestation",
+  "heading": "Manifestation",
+  "line": 6143,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "A spirit power to take control of plants or animals by touch, with the amount controlled set by the Might points spent.",
+  "quotes": [
+   "For an extra 2 Might points, a group of ten standard creatures or plants (or the equivalent mass) can be controlled."
+  ]
+ },
+ {
+  "title": "Spirit Power: Material Anchor",
+  "heading": "Material Anchor",
+  "line": 6151,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "A ritual-like spirit power forming an Arcane Connection to a person or place, or making an object a connection to the spirit, with cost set by duration.",
+  "quotes": [
+   "If the connection is to last for hours or days, then it costs just 1 point; a connection that lasts for weeks or months costs 2 points; years or decades costs 3 points; and indefinite Arcane Connections cost 4 points."
+  ]
+ },
+ {
+  "title": "Spirit Power: Presence",
+  "heading": "Presence",
+  "line": 6159,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "A spirit power giving awareness of a domain whose size depends on its Might, doubling Might for Tether Strength and yielding yearly vis.",
+  "quotes": [
+   "The area controlled by the spirit can produce a yearly harvest of (Might/10) pawns of vis of an appropriate Form"
+  ],
+  "related": [
+   "Formation of Magic Auras (Tether Strength)"
+  ]
+ },
+ {
+  "title": "Spirit Power: Regio",
+  "heading": "Regio",
+  "line": 6167,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "A ritual-like power for a spirit with Presence to form a Magic regio with one or more layers of rising aura strength.",
+  "quotes": [
+   "each additional layer has an aura 2 points stronger than the previous layer, up to a maximum of 10"
+  ]
+ },
+ {
+  "title": "Spirit Power: Stasis",
+  "heading": "Stasis",
+  "line": 6175,
+  "category": "beings",
+  "topic": "Spirit powers",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Magic spirit",
+  "summary": "A ritual-like power making a Magic-aura area timeless, so residents' aging points become Warping points and long-term residents cannot leave the aura.",
+  "quotes": [
+   "However, any aging points are applied to the character as Warping points instead."
+  ]
+ },
+ {
+  "title": "Daimons",
+  "heading": "Daimons",
+  "line": 6183,
+  "endLine": 6192,
+  "category": "beings",
+  "topic": "Magic spirits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Daimon",
+  "summary": "Daimons, the Named Spirits, remain in the Magic Realm and act on Earth only through short-lived Aspects with their own Might, which are constant Arcane Connections to the parent.",
+  "quotes": [
+   "A Daimon is a permanent resident of the Magic Realm and cannot enter the material world; instead, it creates an Aspect as its agent on Earth."
+  ]
+ }
+]

@@ -1,0 +1,956 @@
+[
+ {
+  "title": "What the Order Remembers (recalling legendary magi)",
+  "heading": "What the Order Remembers",
+  "line": 632,
+  "endLine": 653,
+  "category": "order",
+  "topic": "Order lore recall (legendary magi)",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A simple roll of Intelligence + Order of Hermes Lore tells a character how much of a legendary magus's story the Order remembers, graded by Ease Factor tiers from commonly known to lost secrets. House Acclaim or reputation can add bonuses, and some recollections may be false or restricted to a group.",
+  "quotes": [
+   "make an Intelligence + Order of Hermes Lore simple roll and consult the following chart",
+   "The character recalls all relevant facts and rumors about that magus up to and including the Ease Factor they achieve."
+  ],
+  "related": [
+   "ArM5 Covenants p.98 research rules"
+  ]
+ },
+ {
+  "title": "What the Order Remembers of Conciatta",
+  "heading": "What the Order Remembers of Conciatta",
+  "line": 703,
+  "endLine": 732,
+  "category": "order",
+  "topic": "Order lore recall (legendary magi)",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The tiered list of what the Order knows about Conciatta (Known by All through Lost Secrets), with a House Acclaim bonus for Bonisagus characters; some entries are marked as distortions.",
+  "quotes": [
+   "provides Bonisagus characters with a +3 bonus when rolling to remember about her"
+  ],
+  "related": [
+   "HoH:TL p.21 House Acclaim"
+  ]
+ },
+ {
+  "title": "Confluence of the Realms (realm-swapping lab texts, vis extraction)",
+  "heading": "Confluence of the Realms",
+  "line": 742,
+  "endLine": 756,
+  "category": "lab",
+  "topic": "Conciatta's realm breakthroughs",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Confluence of the Realms (Hermetic, researched or integrated)",
+  "summary": "Lets a maga change the realm named in a spell or device laboratory text when she uses it in the laboratory, and extract vis from any of the four realms using the usual extraction rules modified by aura. Explains the extended laboratory and vis rules behind the Virtue and its research-point cost.",
+  "quotes": [
+   "can be changed during any subsequent use of that lab text",
+   "It takes 30 research points to integrate this Virtue."
+  ],
+  "related": [
+   "Ancient Magic p.7 integration",
+   "HoH:TL p.26 original research"
+  ]
+ },
+ {
+  "title": "True Understanding of the Realms (reducing foreign aura levels)",
+  "heading": "True Understanding of the Realms",
+  "line": 768,
+  "endLine": 818,
+  "category": "realms",
+  "topic": "Conciatta's realm breakthroughs",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: True Understanding of the Realms (Hermetic)",
+  "summary": "Her Realm Lore scores reduce the effective level of a foreign supernatural aura, lowering the realm interaction penalty, extra botch dice, and aura side effects, and also help the penetration of enchanted devices. Includes how it interacts with the sigil, talismans, and the cost to integrate, with a worked example.",
+  "quotes": [
+   "the effective level of that aura is reduced by the score in the appropriate Realm Lore Ability to a minimum of 0",
+   "it takes 30 points to integrate or research this virtue, otherwise it takes 45 points."
+  ],
+  "related": [
+   "ArM5 p.183 realm interaction table",
+   "Realms of Power: Magic p.15",
+   "Realms of Power: The Infernal p.16"
+  ]
+ },
+ {
+  "title": "Conciatta's Glossary (aura terminology)",
+  "heading": "Conciatta's Glossary",
+  "line": 782,
+  "endLine": 802,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the Order's standard vocabulary for describing auras: diffuse, tethered, stable, waning, waxing, existential, moral, apparent and subsumed.",
+  "quotes": [
+   "An aura with no fixed sustaining source.",
+   "The strongest aura present at a given location."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Constant Expression (Flaw with extended rules)",
+  "heading": "The Constant Expression",
+  "line": 824,
+  "endLine": 840,
+  "category": "magic",
+  "topic": "Conciatta's realm breakthroughs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Flaw: The Constant Expression (gained when initiating Conciatta's Virtues)",
+  "summary": "A maga who perpetually casts minor non-fatiguing spontaneous effects can suppress them with a Concentration roll, must make further rolls to cast ceremonial or ritual magic with extra botch dice, and makes any laboratory she works in riskier.",
+  "quotes": [
+   "making an initial Stamina + Concentration simple roll against Ease Factor 3 + (Warping Score)"
+  ],
+  "related": [
+   "Covenants p.111 laboratory Safety"
+  ]
+ },
+ {
+  "title": "New Spell Guidelines for Auras",
+  "heading": "New Spell Guidelines for Auras",
+  "line": 846,
+  "endLine": 848,
+  "category": "magic",
+  "topic": "Aura spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces new Intellego Vim and Rego Vim guidelines for detecting tethers and suppressing auras, usable by any maga who has studied at least one of Conciatta's unpublished works.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "New Intellego Vim Guidelines (tether detection)",
+  "heading": "New Intellego Vim Guidelines",
+  "line": 850,
+  "endLine": 864,
+  "category": "magic",
+  "topic": "Aura spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guideline levels for detecting the presence and strength of natural or supernatural tethers (the sources that feed an aura) and for detecting subsumed auras.",
+  "quotes": [
+   "Detect the presence and strength of a supernatural tether of level 5 or higher.",
+   "Detect the presence of a subsumed aura."
+  ],
+  "related": [
+   "Realms of Power: Magic p.10 tethers"
+  ]
+ },
+ {
+  "title": "New Rego Vim Guidelines (suppressing auras)",
+  "heading": "New Rego Vim Guidelines",
+  "line": 866,
+  "endLine": 868,
+  "category": "magic",
+  "topic": "Aura spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A general Ritual guideline for suppressing an aura up to a given strength for the spell's duration, and what happens if the aura later grows beyond the ritual's power.",
+  "quotes": [
+   "Suppress an aura of strength less than or equal to the spell's magnitude."
+  ],
+  "related": []
+ },
+ {
+  "title": "Integration vs. Research",
+  "heading": "Integration vs. Research",
+  "line": 898,
+  "endLine": 904,
+  "category": "lab",
+  "topic": "Hermetic research and integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the two ways to gain Conciatta's lost Virtues, integrating them through sources of insight or doing original research, and notes that research points from both approaches add together.",
+  "quotes": [
+   "research points are cumulative with points gained by studying artifacts and texts"
+  ],
+  "related": [
+   "Ancient Magic p.7",
+   "HoH:TL p.26",
+   "Hedge Magic Revised Edition p.14"
+  ]
+ },
+ {
+  "title": "List of Artifacts (integration points for Conciatta's Virtues)",
+  "heading": "List of Artifacts",
+  "line": 908,
+  "endLine": 921,
+  "category": "lab",
+  "topic": "Hermetic research and integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Studying Conciatta's artifacts and lab texts to integrate her Virtues",
+  "summary": "A table listing each spell or device found in the Four Corners story, which of Conciatta's Virtues it inspires, and how many integration or breakthrough points it provides.",
+  "quotes": [
+   "the integration/breakthrough points that each provides"
+  ],
+  "related": [
+   "Ancient Magic p.7"
+  ]
+ },
+ {
+  "title": "History Unfolding (tempora and temporary Personality Traits)",
+  "heading": "History Unfolding",
+  "line": 970,
+  "endLine": 978,
+  "category": "realms",
+  "topic": "Magic realm tempora",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Realm tempora (story-specific vestiges)",
+  "summary": "Describes the rules for the Magic Realm vestiges, where non-Magical characters gain a temporary Personality Trait, and the Ease Factor for magical travel between them.",
+  "quotes": [
+   "characters gain the specified temporary Personality Trait of +3 while they remain within the tempus",
+   "each vestige has a level of 5, for an Ease Factor of 15 to travel to the next tempus"
+  ],
+  "related": [
+   "Realms of Power: Magic p.15",
+   "Realms of Power: Magic p.23 Magical Travel"
+  ]
+ },
+ {
+  "title": "Traversing the Regiones (seeing across aura and regio boundaries)",
+  "heading": "Traversing the Regiones",
+  "line": 1182,
+  "endLine": 1186,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A worked example of the roll to see into a regio of a different realm from inside another aura, and how subsuming the surrounding aura changes the Ease Factor.",
+  "quotes": [
+   "Perception + Second Sight simple roll against an Ease Factor of 5 + (2 x (2 + 6)) = 21",
+   "Perception + Second Sight simple roll against an Ease Factor of 5 + (2 x (6 \u2013 1)) = 15"
+  ],
+  "related": [
+   "ArM5 p.189 regio boundaries"
+  ]
+ },
+ {
+  "title": "Insight from Conciatta's devices and laboratory texts",
+  "heading": "Conciatta's Spells, Devices, and Laboratory Texts",
+  "line": 1248,
+  "endLine": 1252,
+  "category": "lab",
+  "topic": "Hermetic research and integration",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Conciatta's devices or laboratory texts",
+  "summary": "Explains that each noted laboratory text or device gives a bonus to the insight roll equal to the effect's magnitude, and that only the highest-level effect on a multi-effect device provides insight.",
+  "quotes": [
+   "equal to the magnitude of the effect. Where a device is enchanted with more than one effect, only the highest level effect provides insight."
+  ],
+  "related": [
+   "Ancient Magic p.8 insight rolls"
+  ]
+ },
+ {
+  "title": "Optional Rule: Swarms",
+  "heading": "Optional Rule: Swarms",
+  "line": 2086,
+  "endLine": 2093,
+  "category": "combat",
+  "topic": "Swarms",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An optional rule for treating a mass of tiny creatures as one swarm that ignores defenders, can attack several targets each round, may resist ordinary weapons, and retreats and returns rather than being easily destroyed.",
+  "quotes": [
+   "A swarm is a mass of creatures of Size \u20133 or smaller with a combined Size of +1 or more.",
+   "Swarms ignore defenders and can always reach their intended target.",
+   "Swarms may attack a number of targets equal to the swarm's size each round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aftermath: further Hermetic Breakthroughs from Conciatta's work",
+  "heading": "Aftermath",
+  "line": 2145,
+  "endLine": 2155,
+  "category": "lab",
+  "topic": "Hermetic research and integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Conciatta's Virtues",
+  "summary": "Describes the next possible Hermetic Breakthrough, letting Vim spells affect every realm without re-invention, and how owning Conciatta's Virtues lowers it to a Major Breakthrough, plus a further Major Breakthrough to fully integrate her work for all magi.",
+  "quotes": [
+   "possession of Conciatta's Virtues lays the groundwork and, with troupe approval, reduces this level of integration to a Major Breakthrough"
+  ],
+  "related": []
+ },
+ {
+  "title": "Bonisagus House Acclaim (Conciatta's Virtues)",
+  "heading": "Bonisagus House Acclaim",
+  "line": 2157,
+  "endLine": 2159,
+  "category": "houses",
+  "topic": "House Acclaim",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bonisagus",
+  "summary": "States how many House Acclaim points a Bonisagus magus earns for rediscovering each of Conciatta's Virtues.",
+  "quotes": [
+   "rediscovering Conciatta's Minor Virtues awards 15 acclaim points each"
+  ],
+  "related": [
+   "HoH:TL p.21 House Acclaim"
+  ]
+ },
+ {
+  "title": "What the Order Remembers of Fortunata",
+  "heading": "What the Order Remembers of Fortunata",
+  "line": 2203,
+  "endLine": 2234,
+  "category": "order",
+  "topic": "Order lore recall (legendary magi)",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The tiered list of what the Order knows about Fortunata (Known by All through Uncommon Knowledge), with notes that some items are known only to Redcaps or Jerbiton magi and that some legends are false.",
+  "quotes": [
+   "See the Introduction for details on revealing the legend of Fortunata."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fortunata's Initiations (Initiation Scripts and Quests)",
+  "heading": "Fortunata's Initiations",
+  "line": 2236,
+  "endLine": 2242,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fortunata's Initiation Scripts",
+  "summary": "Explains that Fortunata's written Initiation Scripts each contain Quests the Initiate must lead, how others may help or oppose, and that the Quests are only outlined as story seeds for the saga to refine.",
+  "quotes": [
+   "Each of the Initiation Scripts includes one or more Quests which the Initiate must perform."
+  ],
+  "related": [
+   "The Mysteries: Revised Edition"
+  ]
+ },
+ {
+  "title": "Principles Lore (Fortunata's Organization Lore)",
+  "heading": "Cult Lore: Fortunata's \"Principles Lore\"",
+  "line": 2244,
+  "endLine": 2264,
+  "category": "mysteries",
+  "topic": "Self-initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Study of Fortunata's Principles Lore texts",
+  "summary": "Principles Lore is an invented Organization Lore that serves as the Cult Lore for Fortunata's Initiation Scripts without any actual cult; it imposes no ranks, earlier scripts give higher Script Bonuses, and some scripts are ordered to follow a prior Ordeal.",
+  "quotes": [
+   "Knowledge of this constitutes an \"Organization Lore\" in game terms, and acts as the \"Cult Lore\" for a set of Initiations with no actual cult.",
+   "Fortunata's \"Cult\" imposes no ranks, hierarchy or sequence of Initiations."
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.87 Hermetic Synthemata"
+  ]
+ },
+ {
+  "title": "How To Use A Script With No Cult",
+  "heading": "How To Use A Script With No Cult",
+  "line": 2270,
+  "endLine": 2278,
+  "category": "mysteries",
+  "topic": "Self-initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation Script; no Mystery Cult",
+  "summary": "Explains that a magus can Initiate himself or another using an Organization Lore as the cult lore, using his own Presence, and that troupe approval is needed to repurpose an existing organization for Mysteries.",
+  "quotes": [
+   "A magus can Initiate himself as easily as he can Initiate another into a Virtue he, as Mystagogue, lacks.",
+   "Each (Mystery Cult) Lore is an instance of (Organization) Lore"
+  ],
+  "related": [
+   "ArM5 p.66 Organization Lore",
+   "The Mysteries: Revised Edition p.11"
+  ]
+ },
+ {
+  "title": "Borrowing Cult Lore and Initiation Scripts (Practice Source Quality)",
+  "heading": "Borrowing Cult Lore and Initiation Scripts",
+  "line": 2280,
+  "endLine": 2293,
+  "category": "mysteries",
+  "topic": "Self-initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystagogue with a Cult Lore",
+  "summary": "Gives the Practice Source Quality for a season spent practicing a Cult Lore, and a higher quality when the practice is inspired by another cult's ancient lore text the troupe judges compatible.",
+  "quotes": [
+   "A season dedicated to Practice Cult Lore = Quality 4",
+   "A season of Practice Cult Lore inspired by ancient lore = Practice Source Quality 5"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition"
+  ]
+ },
+ {
+  "title": "Adapting Scripts (understanding and modifying another cult's script)",
+  "heading": "Adapting Scripts",
+  "line": 2294,
+  "endLine": 2304,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult membership and a foreign Initiation Script",
+  "summary": "Describes studying another cult's Initiation Script for about a week, rolling to understand it, and rolling again to modify it as if changing a script component; a botch gives a false script.",
+  "quotes": [
+   "To Understand Another Cult's Script: Intelligence + (other Cult) Lore vs. 9",
+   "To Modify the Script, Change a Script Component: Intelligence + (own Cult) Lore vs. 12"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.17-18"
+  ]
+ },
+ {
+  "title": "Initiation Mechanics (summary)",
+  "heading": "Initiation Mechanics",
+  "line": 2306,
+  "endLine": 2330,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a Mystery Virtue",
+  "summary": "A brief summary of the Initiation process: the Mystagogue's Initiation Total is compared to a Target Level with no die roll, with different Target Levels for Minor or Major Virtues known or unknown, reductions after an Ordeal, and rules for self-initiation.",
+  "quotes": [
+   "Initiation Total: Presence + (Mystery Cult) Lore + Script Bonus",
+   "To Initiate a Minor Virtue known by the Mystagogue: Target Level is 15",
+   "To Initiate a Major Virtue NOT known by the Mystagogue: Target Level is 30"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition ch.2"
+  ]
+ },
+ {
+  "title": "The Need To Vary A Script To Increase The Bonus",
+  "heading": "The Need To Vary A Script To Increase The Bonus",
+  "line": 2332,
+  "endLine": 2334,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystagogue with an existing Initiation Script",
+  "summary": "A Mystagogue can extend an Initiation Script with a further Quest to raise its Script Bonus by passing an Intelligence + Cult Lore test.",
+  "quotes": [
+   "To add a further Quest (+3 Script Bonus) to an existing Initiation Script, the Mystagogue must succeed in a test of Intelligence + (Mystery Cult) Lore against an Ease Factor of 9"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.17"
+  ]
+ },
+ {
+  "title": "Keeping Track Of Ordeals & The Previous-Ordeal Bonus",
+  "heading": "Keeping Track Of Ordeals & The Previous-Ordeal Bonus",
+  "line": 2336,
+  "endLine": 2340,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation Scripts involving Ordeals",
+  "summary": "Reminds the player to record each Ordeal suffered, because it gives a Script Bonus to its own Initiation and lowers the required Initiation Total for the next three Initiations.",
+  "quotes": [
+   "reduce the Initiation Total required for the next three Initiations, no matter what they are"
+  ],
+  "related": []
+ },
+ {
+  "title": "Multiple or Overlapping Scripts",
+  "heading": "Multiple or Overlapping Scripts",
+  "line": 2342,
+  "endLine": 2350,
+  "category": "mysteries",
+  "topic": "Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Self-initiate reusing similar Initiation Scripts",
+  "summary": "When scripts share Quests or Ordeals that a self-initiate has already performed, the new script must be changed, with rolls for modifying or replacing an element; Ordeals are rarely repeatable while sacrifices are easier to repeat.",
+  "quotes": [
+   "Modifying a script requires a roll of Intelligence + Cult Lore against an Ease Factor of 12; replacing a script element by a different one has an Ease factor of 15."
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation of Puissant Principles Lore",
+  "heading": "Initiation of Puissant Principles Lore",
+  "line": 2352,
+  "endLine": 2364,
+  "category": "mysteries",
+  "topic": "Fortunata's Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation Script: Puissant Principles Lore",
+  "summary": "Fortunata's script for gaining Puissant Principles Lore, with its Quests, Vow, vis sacrifice and the Initiation Total and Script Bonus breakdown.",
+  "quotes": [
+   "Initiation Total 18, Script Bonus 16"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition"
+  ]
+ },
+ {
+  "title": "Initiation of Spirit Familiar",
+  "heading": "Initiation of Spirit Familiar",
+  "line": 2366,
+  "endLine": 2378,
+  "category": "mysteries",
+  "topic": "Fortunata's Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation Script: Spirit Familiar",
+  "summary": "Fortunata's adapted Greek script for gaining the Spirit Familiar Virtue, built around Quests to rescue the spirit and defeat its enemy and a place and time of significance.",
+  "quotes": [
+   "Initiation Total 18, Script Bonus 12"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.17-18"
+  ]
+ },
+ {
+  "title": "Virtue: Spirit Familiar (bonding and cords)",
+  "heading": "Virtue: Spirit FamiliaR",
+  "line": 2380,
+  "endLine": 2396,
+  "category": "beings",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spirit Familiar",
+  "summary": "Explains how to bind a spirit familiar, the bonding level formula for an insubstantial spirit, the renamed Hermes, Isis and Hekate cords, and how the spirit's Might-based Magic Resistance interacts with Parma Magica.",
+  "quotes": [
+   "Spirit Familiar Bonding level: Spirit's Might + 25"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.66",
+   "Realms of Power: Magic ch.7 Magic Spirits"
+  ]
+ },
+ {
+  "title": "Initiation of Minor Magical Focus (commanding spirits)",
+  "heading": "Initiation of Minor Magical Focus (commanding spirits)",
+  "line": 2398,
+  "endLine": 2404,
+  "category": "mysteries",
+  "topic": "Fortunata's Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation Script: Minor Magical Focus (commanding spirits)",
+  "summary": "Script for the Minor Magical Focus covering Rego spells that command spirits, which involves an Ordeal imposing the Necessary Condition Flaw of speaking spirit names.",
+  "quotes": [
+   "Initiation Total 18, Script Bonus 12"
+  ],
+  "related": []
+ },
+ {
+  "title": "Speaking the Names of Spirits (Necessary Condition)",
+  "heading": "Speaking the Names of Spirits",
+  "line": 2406,
+  "endLine": 2410,
+  "category": "mysteries",
+  "topic": "Fortunata's Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Necessary Condition from the Minor Magical Focus Ordeal",
+  "summary": "Describes the practical effect of the condition (spells must be cast aloud, with recognizable invocations) and how the Ordeal detail can be varied, with an Intelligence + Principles Lore roll.",
+  "quotes": [
+   "requires an Intelligence + Principles Lore roll against an Ease Factor of 12"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.17"
+  ]
+ },
+ {
+  "title": "Initiation of Major Magical Focus (spirit magic)",
+  "heading": "Initiation of Major Magical Focus (spirit magic)",
+  "line": 2412,
+  "endLine": 2420,
+  "category": "mysteries",
+  "topic": "Fortunata's Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation Script: Major Magical Focus (spirit magic); an existing Minor Magical Focus",
+  "summary": "Script converting a Minor Magical Focus into a Major Focus in spirit magic through defeating two strong spirits, relying on the Ordeal reduction from the earlier script.",
+  "quotes": [
+   "Initiation Total 21 (30 \u2013 9 for previous Ordeal), Script Bonus 13"
+  ],
+  "related": []
+ },
+ {
+  "title": "Splitting Major Virtue Initiations",
+  "heading": "Splitting Major Virtue Initiations",
+  "line": 2422,
+  "endLine": 2426,
+  "category": "mysteries",
+  "topic": "Initiation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation scripts for Major Virtues",
+  "summary": "Explains the technique of gaining a Major Virtue in two stages, with an Ordeal in a preliminary Minor Virtue Initiation that lowers the Initiation Total needed for the second.",
+  "quotes": [
+   "reduces the Initiation Total needed for the Major Virtue, rather than increasing the Script Bonus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation of Spell Binding",
+  "heading": "Initiation of Spell Binding",
+  "line": 2428,
+  "endLine": 2436,
+  "category": "mysteries",
+  "topic": "Fortunata's Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation Script: Spell Binding",
+  "summary": "Fortunata's script for the Spell Binding Virtue, involving forcing a spirit into a glass ball to sustain a light spell in a deep cave.",
+  "quotes": [
+   "Initiation Total 12 (18 \u2013 6 for previous Ordeal), Script Bonus 6"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.27"
+  ]
+ },
+ {
+  "title": "Virtue: Spell Binding (spirit-sustained spells)",
+  "heading": "Virtue: Spell Binding",
+  "line": 2438,
+  "endLine": 2442,
+  "category": "mysteries",
+  "topic": "Spell Binding",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spell Binding",
+  "summary": "A Ritual spell guideline combines a second spell with a bound spirit in a physical container so the second spell is maintained indefinitely while the spirit remains bound.",
+  "quotes": [
+   "the spirit's Might must at least equal the sustained spell's level"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.27"
+  ]
+ },
+ {
+  "title": "Sustain a Spell of (Form)",
+  "heading": "Sustain a Spell of (Form)",
+  "line": 2444,
+  "endLine": 2450,
+  "category": "magic",
+  "topic": "Spell Binding",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spell Binding",
+  "summary": "The General ReVi Ritual guideline that entwines another spell with a container so a bound spirit of sufficient Might sustains it indefinitely.",
+  "quotes": [
+   "The base level of this spell must equal or exceed the level of the spell to be sustained."
+  ],
+  "related": []
+ },
+ {
+  "title": "Temporary Laboratories",
+  "heading": "Temporary Laboratories",
+  "line": 2452,
+  "endLine": 2454,
+  "category": "lab",
+  "topic": "Laboratory",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A reminder of what it takes to build a Basic Laboratory quickly for a single task, with a penalty to Lab Totals, and where to find fuller laboratory rules.",
+  "quotes": [
+   "imposes a -3 penalty to all Lab Totals"
+  ],
+  "related": [
+   "ArM5 p.94 Basic Laboratory",
+   "Covenants ch.9 Laboratories"
+  ]
+ },
+ {
+  "title": "Initiation of Hermetic Empowerment",
+  "heading": "Initiation of Hermetic Empowerment",
+  "line": 2456,
+  "endLine": 2470,
+  "category": "mysteries",
+  "topic": "Fortunata's Initiation scripts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation Script: Hermetic Empowerment",
+  "summary": "Fortunata's script for Hermetic Empowerment, in which a device is enchanted in a graveyard with vis from destroyed ghosts and then burned at a pyre on a quarter-day.",
+  "quotes": [
+   "Initiation Total 18, Script Bonus 9"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.64"
+  ]
+ },
+ {
+  "title": "Virtue: Hermetic Empowerment (spirit-powered Ritual effects)",
+  "heading": "Virtue: Hermetic Empowerment",
+  "line": 2472,
+  "endLine": 2476,
+  "category": "lab",
+  "topic": "Hermetic Empowerment",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Empowerment",
+  "summary": "Lets a magus enchant Ritual effects into a device powered by a bound spirit, whose permanent Might is drained with each use and which limits the effect level.",
+  "quotes": [
+   "The Effect Level cannot exceed twice the spirit's Might Score, so the spirit cannot be completely drained."
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.64"
+  ]
+ },
+ {
+  "title": "Empowering Prison of the Declining Spirit",
+  "heading": "Empowering Prison of the Declining Spirit",
+  "line": 2478,
+  "endLine": 2490,
+  "category": "lab",
+  "topic": "Hermetic Empowerment",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Empowerment",
+  "summary": "The Mystery enchantment guideline that binds a spirit in a device to power Ritual effects, with requisites of the Forms involved and a base level tied to the spirit's Might.",
+  "quotes": [
+   "The base level of the enchantment must equal or exceed twice the Might of the spirit that will be bound"
+  ],
+  "related": []
+ },
+ {
+  "title": "Bound Spirits (command spells made permanent; countermanding bindings)",
+  "heading": "Bound Spirits",
+  "line": 2666,
+  "endLine": 2678,
+  "category": "magic",
+  "topic": "Spell Binding",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spell Binding",
+  "summary": "A worked example of using Spell Binding to make a command spell permanent, which cheaply keeps a spirit bound and lets the container grant command. It also states what is needed to countermand an existing command effect or end a binding by breaking the container.",
+  "quotes": [
+   "a countermanding spell must exceed the level of the original, and also penetrate the Magic Resistance of the spirit"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.27"
+  ]
+ },
+ {
+  "title": "Spells to Summon and Command Spirits (guidelines)",
+  "heading": "Spells to Summon and Command Spirits",
+  "line": 2965,
+  "endLine": 2971,
+  "category": "magic",
+  "topic": "Spirit spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Reprints the Rego Mentem guidelines for controlling and summoning a disembodied spirit of a given Form.",
+  "quotes": [
+   "Control a disembodied spirit of (Form).",
+   "Summon a disembodied spirit of (Form)."
+  ],
+  "related": [
+   "The Mysteries: Revised Edition p.28"
+  ]
+ },
+ {
+  "title": "Insight of the Realms (Realm Lore in ceremonial totals, regio detection)",
+  "heading": "Insight of the Realms",
+  "line": 758,
+  "endLine": 766,
+  "category": "realms",
+  "topic": "Conciatta's realm breakthroughs",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Insight of the Realms (Hermetic, researched or integrated)",
+  "summary": "Lets a maga substitute the matching Realm Lore Ability for Artes Liberales or Philosophiae in ritual and ceremonial casting totals within or related to that realm, and use Realm Lore to detect and see through a regio boundary in place of Second Sight or Sense Holiness & Unholiness.",
+  "quotes": [
+   "may substitute the appropriate Realm Lore Ability for either Artes Liberales or Philosophiae in any ritual or ceremonial spell totals cast within or related to the matching realm"
+  ],
+  "related": [
+   "ArM5 p.189 regio boundaries"
+  ]
+ },
+ {
+  "title": "What the Order Remembers of H\u00e9risson",
+  "heading": "What The Order Remembers of H\u00e9risson",
+  "line": 3244,
+  "endLine": 3269,
+  "category": "order",
+  "topic": "Order lore recall (legendary magi)",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The tiered list of what the Order knows about H\u00e9risson, with a roll bonus for Bjornaer magi and a larger bonus for members of Clan Arelie.",
+  "quotes": [
+   "receive a +1 bonus to their roll; members of Clan Arelie",
+   "receive a +3 bonus instead"
+  ],
+  "related": [
+   "HoH:MC House Bjornaer"
+  ]
+ }
+]

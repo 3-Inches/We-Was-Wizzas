@@ -1,0 +1,1383 @@
+[
+ {
+  "title": "Hermetic Integration of Ancient Magic",
+  "heading": "Hermetic Integration of Ancient Magic",
+  "line": 378,
+  "endLine": 380,
+  "category": "magic",
+  "topic": "Ancient magic integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A source of ancient magic from Ancient Magic",
+  "summary": "Overview of how a magus can fold a pre-Hermetic tradition into Hermetic theory without fully synthesizing it, possibly bending or breaking the limits of magic.",
+  "quotes": [
+   "Hermetic magic is versatile enough to integrate many of the principles of these magics"
+  ],
+  "related": []
+ },
+ {
+  "title": "Historical Settings",
+  "heading": "Historical Settings",
+  "line": 382,
+  "endLine": 384,
+  "category": "setting",
+  "topic": "Ancient magic integration",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional guidance for running a saga set in an earlier era when these traditions still have living practitioners, with the troupe filling in missing hedge-magic details.",
+  "quotes": [
+   "You will need to fill in a few rule details"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Breakthrough",
+  "heading": "The Breakthrough",
+  "line": 386,
+  "endLine": 398,
+  "category": "magic",
+  "topic": "Ancient magic integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A source of ancient magic from Ancient Magic",
+  "summary": "Any magus may try a Breakthrough by accumulating breakthrough points; Minor, Major and Hermetic Breakthroughs differ in scope and in the points they typically need, and each chapter gives its own requirement.",
+  "quotes": [
+   "he must accumulate a number of **breakthrough points** determined by the type of Breakthrough he is attempting",
+   "(Typically requires around 30 breakthrough points.)",
+   "(Typically requires around 60 breakthrough points.)"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Integration Process",
+  "heading": "The Integration Process",
+  "line": 400,
+  "endLine": 406,
+  "category": "magic",
+  "topic": "Ancient magic integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A source of ancient magic from Ancient Magic",
+  "summary": "Five-step outline for integration: find a source, study it for Insight, invent the fixed effect it inspires, keep gaining breakthrough points until the threshold is met, then face the consequences.",
+  "quotes": [
+   "she gains a number of breakthrough points equal to the magnitude of the spell or device"
+  ],
+  "related": []
+ },
+ {
+  "title": "Insight",
+  "heading": "Insight",
+  "line": 408,
+  "endLine": 424,
+  "category": "magic",
+  "topic": "Ancient magic integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A source of ancient magic from Ancient Magic",
+  "summary": "Insight comes from studying texts, relics or teachers of the ancient magic, one stress roll per season; successful Insights are written as Lab Texts others can study, and a botch gives a false Insight.",
+  "quotes": [
+   "make a stress roll of Intelligence + Magic Theory against an Ease Factor of 18",
+   "The Inventive Genius Virtue adds three to this roll"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages (original research)"
+  ]
+ },
+ {
+  "title": "Creating the Effect",
+  "heading": "Creating the Effect",
+  "line": 426,
+  "endLine": 450,
+  "category": "magic",
+  "topic": "Ancient magic integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A source of ancient magic from Ancient Magic",
+  "summary": "Each Insight lets the researcher invent one specific, fixed effect (usually a spell or enchantment) with no variation, earning breakthrough points equal to its magnitude; other magi need the Lab Text to reproduce it.",
+  "quotes": [
+   "the magus gains a number of breakthrough points equal to the magnitude of the effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Integration and Original Research",
+  "heading": "Integration and Original Research",
+  "line": 442,
+  "endLine": 446,
+  "category": "magic",
+  "topic": "Original research",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A source of ancient magic from Ancient Magic",
+  "summary": "Explains how integration compares with original research and that breakthrough points from both approaches can be added together toward a single Breakthrough.",
+  "quotes": [
+   "breakthrough points from integration may be added to breakthrough points from original research"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages (original research)"
+  ]
+ },
+ {
+  "title": "After the Breakthrough",
+  "heading": "After the Breakthrough",
+  "line": 452,
+  "endLine": 460,
+  "category": "magic",
+  "topic": "Ancient magic integration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A completed Breakthrough from Ancient Magic",
+  "summary": "What a finished Breakthrough allows: Minor ones become common Hermetic knowledge, while Major and Hermetic ones must be taught, with breakthrough points converting to Ability experience or to a new Virtue that needs an Initiation Script.",
+  "quotes": [
+   "The discoverer converts his breakthrough points into experience points in the new Ability"
+  ],
+  "related": [
+   "The Mysteries Revised Edition (Initiation Scripts)"
+  ]
+ },
+ {
+  "title": "The Language of Adam",
+  "heading": "The Language of Adam",
+  "line": 464,
+  "endLine": 503,
+  "category": "traditions",
+  "topic": "Adamic",
+  "audience": [
+   "magi",
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Dead Language (Adamic)",
+  "summary": "Fluency in Adamic gives the speaker a lasting Arcane Connection to anything he can name or that is in earshot, and even partial knowledge boosts the Penetration multiplier against targets with Magic Resistance; naming something also shapes its destiny.",
+  "quotes": [
+   "has at least a score of 5 in the Dead Language (Adamic) Ability",
+   "receives a +1 bonus to his Penetration multiplier whenever he uses his magic on a target with Magic Resistance"
+  ],
+  "related": []
+ },
+ {
+  "title": "Story Hook: The Language of Innocence",
+  "heading": "Story Hook: The Language of Innocence",
+  "line": 492,
+  "endLine": 500,
+  "category": "traditions",
+  "topic": "Adamic",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "The Gift; raised in isolation",
+  "summary": "Option for a Gifted child raised without language influences to begin with a limited, undevelopable score in Dead Language (Adamic) that can be taught on to others.",
+  "quotes": [
+   "may begin with a score of 2 in Dead Language (Adamic)"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Tower of Babel",
+  "heading": "The Tower of Babel",
+  "line": 515,
+  "endLine": 545,
+  "category": "traditions",
+  "topic": "Adamic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Dead Language (Adamic)",
+  "summary": "Describes the research route to Adamic: become fluent in two of the four ancient root languages and reconstruct their common ancestor, which also demands a minimum Area Lore for the region.",
+  "quotes": [
+   "the character must first become fluent in two of these four ancient languages via linguistic research",
+   "gain the required Area Lore score of 5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Linguistic Research",
+  "heading": "Linguistic Research",
+  "line": 547,
+  "endLine": 553,
+  "category": "seasons",
+  "topic": "Adamic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fluency in two related languages and Area Lore for their homeland",
+  "summary": "Seasonal study of two related languages grants Exposure experience in their common ancestor, and the character can alternatively experiment as in Breakthrough research with roll modifiers, a Discovery result giving a big experience jump and a botch costing experience.",
+  "quotes": [
+   "This gives the character two points of Exposure experience in the common language Ability",
+   "the player may modify the results of the experimentation roll by +1 or –1, to a maximum of +3 or –3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Seeking Lost Babylon",
+  "heading": "Seeking Lost Babylon",
+  "line": 556,
+  "endLine": 558,
+  "category": "seasons",
+  "topic": "Adamic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Dead Language (Adamic)",
+  "summary": "Gaining the Area Lore needed for linguistic research means exploring ancient Babylonia, which takes many seasons of Practice.",
+  "quotes": [
+   "It takes about 15 seasons of exploring Babylonia to gain a score of 5 in Area Lore (Ancient Mesopotamia) through Practice."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mongolian Bows",
+  "heading": "Mongolian Bows",
+  "line": 677,
+  "endLine": 681,
+  "category": "combat",
+  "topic": "Weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to Mongolian bows",
+  "summary": "Describes Mongol double-recurve composite bows and horse bows and the specialized arrow types, with a key explaining the table markers for two-handed loading, combined bow and arrow modifiers, and non-lethal arrows.",
+  "quotes": [
+   "two (\\*\\*) indicate that you should add the values of the bow and arrow to determine the final modifier"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mongolian Bow, Continued",
+  "heading": "Mongolian Bow, Continued",
+  "line": 683,
+  "endLine": 693,
+  "category": "combat",
+  "topic": "Weapons",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to Mongolian bows",
+  "summary": "Weapon table giving Initiative, Attack, Defense, Damage, range, Strength, Load and cost for the composite bow, horse bow and the special arrow types.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Guardians",
+  "heading": "The Guardians",
+  "line": 778,
+  "endLine": 851,
+  "category": "realms",
+  "topic": "Garden of Eden",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Garden of Eden regio",
+  "summary": "Describes the layered Divine regio of Eden and the angelic guardians who bar humans, reptiles, faeries, demons and ghosts but admit animals, so characters can only pass by fully transforming into an animal shape and keeping it.",
+  "quotes": [
+   "The regio has three levels.",
+   "Characters with Divine Might can enter and leave whenever they wish"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Animals",
+  "heading": "The Animals",
+  "line": 853,
+  "endLine": 879,
+  "category": "realms",
+  "topic": "Garden of Eden",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Garden of Eden regio",
+  "summary": "Rules for life inside Eden: animals speak Adamic, Gifted magi in animal form lose their Gift and cannot cast or experiment, and learning Adamic from the animals is slow by Exposure but faster by Practice.",
+  "quotes": [
+   "Magi who enter in animal form find that they no longer have The Gift while within the garden",
+   "they can begin to learn through Practice, which gives eight experience points per season"
+  ],
+  "related": [
+   "Ability: Dead Language (Adamic)"
+  ]
+ },
+ {
+  "title": "The Fruits",
+  "heading": "The Fruits",
+  "line": 881,
+  "endLine": 928,
+  "category": "realms",
+  "topic": "Garden of Eden",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Garden of Eden regio",
+  "summary": "Eating the fruit of the Tree of Knowledge or the Tree of Life expels the character permanently and transforms them, granting Intelligence or the Gift with Warping, or Magical Might after an Aging roll, and fixing them in animal form while barring their whole species.",
+  "quotes": [
+   "All characters who partake of it gain an Intelligence score if they have Cunning, or gain The Gift if they are already intelligent.",
+   "He must make a successful Aging roll (one which does not cause him to gain an Aging Point) to wake up.",
+   "he has a Magical Might score equal to (10 – Size)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Talking to the Animals",
+  "heading": "Talking to the Animals",
+  "line": 891,
+  "endLine": 895,
+  "category": "realms",
+  "topic": "Garden of Eden",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Garden of Eden regio",
+  "summary": "Clarifies that Eden's animals speak Adamic without having Intelligence scores, so language-comprehension magic needs an Animal requisite to make sense of them.",
+  "quotes": [
+   "effects like the spell *Thoughts Within Babble* (InMe 25) do not make sense of the words the animals speak unless they are designed with an Animal requisite"
+  ],
+  "related": []
+ },
+ {
+  "title": "Adamic Writing",
+  "heading": "Adamic Writing",
+  "line": 978,
+  "endLine": 982,
+  "category": "traditions",
+  "topic": "Adamic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Dead Language (Adamic)",
+  "summary": "A character fluent in Adamic who can also write may name things in writing, creating the same Arcane Connection as speaking the name; inscribing the mark of Cain additionally ties the target to Cain's destiny.",
+  "quotes": [
+   "who have a score of 1 in Artes Liberales"
+  ],
+  "related": []
+ },
+ {
+  "title": "Finding Cain",
+  "heading": "Finding Cain",
+  "line": 1038,
+  "endLine": 1110,
+  "category": "traditions",
+  "topic": "Adamic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Dead Language (Adamic)",
+  "summary": "Ways to learn Adamic from Cain: slow Exposure from his muttering, tutoring him by listening to his confessions, or coercing him with holy things, with the warning that slaying Cain passes his curse to the killer.",
+  "quotes": [
+   "through exposure to Cain's bizarre manner of speaking, they can pick up experience points in the language"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic in Other Languages",
+  "heading": "Magic in Other Languages",
+  "line": 1120,
+  "endLine": 1126,
+  "category": "magic",
+  "topic": "Casting in other languages",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Casting without Latin incurs the penalty for not using the voice; integrating another language into Hermetic magic is done through a research project aiming for Discoveries, at a lower breakthrough cost and without Warping.",
+  "quotes": [
+   "they suffer a penalty to their casting totals, just as if they were not incorporating their voice at all",
+   "requiring only 15 breakthrough points to achieve"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages (original research)"
+  ]
+ },
+ {
+  "title": "Secrets of the Necromancer",
+  "heading": "Secrets of the Necromancer",
+  "line": 1142,
+  "endLine": 1145,
+  "category": "traditions",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Canaanite Necromancy",
+  "summary": "Introduces Canaanite necromancy as a Major Supernatural Virtue and matching Supernatural Ability, noting that learning it from the ghost of Zephaniah is impractical for magi and that integration into Hermetic theory is the realistic route.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.166 learning Supernatural Abilities"
+  ]
+ },
+ {
+  "title": "Major Supernatural Virtue: Canaanite Necromancy",
+  "heading": "Major Supernatural Virtue: Canaanite Necromancy",
+  "line": 1147,
+  "endLine": 1153,
+  "category": "traditions",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Canaanite Necromancy",
+  "summary": "A Canaanite necromancer replicates Hermetic Corpus or Mentem effects dealing with communicating with, commanding or summoning the dead using a stress roll against an Ease Factor scaled to the effect's magnitude, and can use the Veil of Death range.",
+  "quotes": [
+   "A stress roll of Communication + Canaanite Necromancy Ability against an Ease Factor of (3 x the magnitude of the effect)",
+   "Communication + Canaanite Necromancy Ability + stress die vs. Ease Factor (3 x magnitude of effect)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Integration (Canaanite Necromancy)",
+  "heading": "Hermetic Integration",
+  "line": 1161,
+  "endLine": 1169,
+  "category": "traditions",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Insight into Canaanite necromancy",
+  "summary": "A magus working with a Canaanite necromancer assistant gains Insight Lab Texts and invents effects dealing with the dead, accumulating breakthrough points until the Minor Hermetic Virtue Canaanite Magic is gained.",
+  "quotes": [
+   "To Integrate Canaanite Necromancy: Accumulate 45 or more breakthrough points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Canaanite Laboratory Assistants",
+  "heading": "Canaanite Laboratory Assistants",
+  "line": 1171,
+  "endLine": 1175,
+  "category": "lab",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Assistant with Virtue: Canaanite Necromancy",
+  "summary": "A Canaanite necromancer can supply the Insight and assist with experimental effects during integration, adding to the magus's Lab Total, but only for projects integrating Canaanite and Hermetic practice.",
+  "quotes": [
+   "The magus receives a bonus to his Lab Total equal to the necromancer's Intelligence + Canaanite Necromancy Ability score"
+  ],
+  "related": [
+   "ArM5 p.103 lab assistants"
+  ]
+ },
+ {
+  "title": "Minor Hermetic Virtue: Canaanite Magic",
+  "heading": "Minor Hermetic Virtue: Canaanite Magic",
+  "line": 1177,
+  "endLine": 1188,
+  "category": "traditions",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Canaanite Magic (after integration)",
+  "summary": "The integrated Virtue grants the Veil of Death range, a permanent Arcane Connection to all the dead with a Penetration bonus, and in return the dead always sense the magus and hold an Arcane Connection to him.",
+  "quotes": [
+   "exploit this Arcane Connection for a +4 Penetration multiplier bonus",
+   "a simple Perception roll against an Ease Factor of 6"
+  ],
+  "related": [
+   "ArM5 p.84 Arcane Connections"
+  ]
+ },
+ {
+  "title": "New Range: Veil of Death",
+  "heading": "New Range: Veil of Death",
+  "line": 1204,
+  "endLine": 1206,
+  "category": "magic",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Canaanite Magic or Canaanite Necromancy",
+  "summary": "A new spell Range that reaches any dead mortal human regardless of the distance to their remains, provided the caster is connected to the target; it counts as Sight for magnitude purposes.",
+  "quotes": [
+   "For the purposes of spell magnitudes, this range is equivalent to Sight."
+  ],
+  "related": []
+ },
+ {
+  "title": "Who is Dead?",
+  "heading": "Who is Dead?",
+  "line": 1266,
+  "endLine": 1272,
+  "category": "traditions",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Canaanite Magic or Canaanite Necromancy",
+  "summary": "Defines which dead can be reached by Canaanite necromancy (mortals not yet in Heaven, ghosts) and which cannot (animals, faeries, Final Twilight), and doubles botch dice when targeting those given a Divine burial rite.",
+  "quotes": [
+   "if the caster botches double the number of botch dice are rolled"
+  ],
+  "related": [
+   "Realms of Power: The Divine (extreme unction)"
+  ]
+ },
+ {
+  "title": "Speaking to the Dead",
+  "heading": "Speaking to the Dead",
+  "line": 1274,
+  "endLine": 1278,
+  "category": "traditions",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Canaanite Magic or Canaanite Necromancy",
+  "summary": "Advice on the limits of conversing with the long dead: mutual incomprehension, little reason to cooperate, and no information about the afterlife beyond who is in the world of the dead.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Infernal and Necromancy",
+  "heading": "The Infernal and Necromancy",
+  "line": 1280,
+  "endLine": 1282,
+  "category": "traditions",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Necromancy of any kind",
+  "summary": "A botched attempt to summon or speak to the dead usually draws a malevolent spirit that impersonates the target and subtly corrupts what it says; Hermetic magic cannot see through the deception.",
+  "quotes": [
+   "If a character botches when attempting to summon or speak to the dead, a likely result is that a malevolent spirit pretends to be the intended target."
+  ],
+  "related": [
+   "Realms of Power: The Infernal (Infernal ghosts)"
+  ]
+ },
+ {
+  "title": "Finding En-Dor",
+  "heading": "Finding En-Dor",
+  "line": 1288,
+  "endLine": 1302,
+  "category": "traditions",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Area Lore Canaan (or similar)",
+  "summary": "Locating the true site of En-Dor takes a season of searching and a roll that is harder if the searcher is not in the field; teams use the leader's scores with a bonus for similarly skilled helpers, and rival groups are resolved by the higher total.",
+  "quotes": [
+   "To Find En-Dor: Int + Area Lore Canaan + stress die vs. Ease Factor 18 (or 21 if not in the field)",
+   "To search among the various possible locations to find the true location of En-Dor takes one season."
+  ],
+  "related": []
+ },
+ {
+  "title": "Books",
+  "heading": "Books",
+  "line": 1311,
+  "endLine": 1317,
+  "category": "seasons",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Area Lore Canaan",
+  "summary": "Gives study sources for improving Area Lore Canaan: the Bible and Mishna count as tractatus, and several classical works are listed as summae or tractatus with their own Source Quality and level; poor translations lower the Source Quality.",
+  "quotes": [
+   "both the Bible and the Mishna (a Jewish work) may be studied as if they were tractatus of Source Quality 5"
+  ],
+  "related": [
+   "ArM5 p.163 Area Lore"
+  ]
+ },
+ {
+  "title": "The Clay Tablets",
+  "heading": "The Clay Tablets",
+  "line": 1326,
+  "endLine": 1340,
+  "category": "seasons",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Clay tablets; Hebrew",
+  "summary": "Decoding the Canaanite clay tablets takes a season and a roll, after which each full sequence works as a summa for Area Lore Canaan whose Source Quality drops for every missing tablet; each tablet is an Arcane Connection to the others in its sequence.",
+  "quotes": [
+   "A season's worth of decoding work is represented by a roll of Intelligence + Hebrew against an Ease Factor of 18.",
+   "the Source Quality is reduced by 3 for each missing tablet"
+  ],
+  "related": []
+ },
+ {
+  "title": "En-Dor Regio Level One",
+  "heading": "En-Dor Regio Level One",
+  "line": 1356,
+  "endLine": 1366,
+  "category": "realms",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the En-Dor regio",
+  "summary": "First regio level of En-Dor: a Divine aura swamps a lesser Magic aura, and a magical stream gives a Longevity Ritual effect while in the regio, forces an Aging roll on leaving, and yields tainted Aquam vis.",
+  "quotes": [
+   "acts like a +5 Longevity Ritual (ArM5, page 101)"
+  ],
+  "related": [
+   "ArM5 p.101 Longevity Rituals",
+   "ArM5 p.168 Aging",
+   "ArM5 p.189 regiones"
+  ]
+ },
+ {
+  "title": "En-Dor Regio Level Two",
+  "heading": "En-Dor Regio Level Two",
+  "line": 1376,
+  "endLine": 1383,
+  "category": "realms",
+  "topic": "Canaanite necromancy",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the En-Dor regio",
+  "summary": "Second regio level of En-Dor: a strong Magic aura, a valley that cannot be left except through the cave, and a city of the dead that is a suitable covenant site.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Defixio Magic",
+  "heading": "Defixio Magic",
+  "line": 1487,
+  "endLine": 1493,
+  "category": "traditions",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ancient defixio magic source",
+  "summary": "Defixio magic let ancient cultists cast spells on targets they could name without any Arcane Connection, by preparing defixiones; Hermetic integration yields a new Duration and a new Range.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Learning Defixio Magic",
+  "heading": "Learning Defixio Magic",
+  "line": 1495,
+  "endLine": 1501,
+  "category": "traditions",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ancient defixio magic source",
+  "summary": "Sources describing defixiones and a roll that lets a magus realize their effects break the Hermetic limit of needing an Arcane Connection.",
+  "quotes": [
+   "Intelligence + Magic Theory roll against an Ease Factor of 9"
+  ],
+  "related": []
+ },
+ {
+  "title": "Investigating Defixio Magic",
+  "heading": "Investigating Defixio Magic",
+  "line": 1503,
+  "endLine": 1507,
+  "category": "magic",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A defixio or formula",
+  "summary": "Insight requires studying both a defixio and a formula from each of five cult specialties, with a bonus when both come from the same cult; an Intellego Vim spell reveals the details of an active defixio.",
+  "quotes": [
+   "the magus adds +3 to his Insight roll",
+   "An Intellego Vim spell (base level 4) reveals"
+  ],
+  "related": [
+   "Introduction: Insight"
+  ]
+ },
+ {
+  "title": "Integrating Defixio Magic",
+  "heading": "Integrating Defixio Magic",
+  "line": 1509,
+  "endLine": 1517,
+  "category": "magic",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Insight into defixio magic",
+  "summary": "Spells invented while integrating defixio magic must be Rituals, use the cult's Art combination, and are flawed until the Breakthrough; Event Duration and Unlimited Range need different breakthrough totals, with each cult limited to a fifth of the points.",
+  "quotes": [
+   "The magus must make a Minor Breakthrough (30 breakthrough points) for Event Duration and a Hermetic Breakthrough (60 breakthrough points) for Unlimited Range."
+  ],
+  "related": []
+ },
+ {
+  "title": "New Duration: Event",
+  "heading": "New Duration: Event",
+  "line": 1523,
+  "endLine": 1533,
+  "category": "magic",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration of defixio magic",
+  "summary": "A Ritual-only Duration that holds the spell in abeyance until a described condition occurs; it requires an Intellego requisite, interacts with Magic Resistance and Aegis, depends on the casting range for detection, and adds to the spell's magnitude.",
+  "quotes": [
+   "This Duration is only available for Ritual spells.",
+   "Any spell that uses the Event Duration must have an Intellego requisite.",
+   "The Event Duration adds +1 to the magnitude of the spell cast."
+  ],
+  "related": []
+ },
+ {
+  "title": "Defixio Lore",
+  "heading": "Defixio Lore",
+  "line": 1535,
+  "endLine": 1569,
+  "category": "traditions",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Defixio Lore",
+  "summary": "Describes the Major Supernatural Virtue and Ability that let a cultist prepare a defixio, with cult Art limits, a day and vis per magnitude, and a roll against an Ease Factor that depends on how well the target is identified.",
+  "quotes": [
+   "The creator must spend one day and expend one pawn of vis per magnitude of the spell or Ability in preparing the defixio.",
+   "After the defixio is created, the preparer must roll Intelligence + Defixio Lore + a stress die.",
+   "Defixio Lore's Penetration total is equal to the amount that the stress roll exceeds the target Ease Factor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Event Duration Examples",
+  "heading": "Event Duration Examples",
+  "line": 1571,
+  "endLine": 1595,
+  "category": "magic",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration of defixio magic",
+  "summary": "Worked examples of building Event Duration spells, showing how the trigger and aim determine requisites and Range, and noting that such a spell causes no Warping but cannot move.",
+  "quotes": [
+   "thus does not cause Warping"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Range: Unlimited",
+  "heading": "New Range: Unlimited",
+  "line": 1597,
+  "endLine": 1603,
+  "category": "magic",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration of defixio magic",
+  "summary": "A Ritual-only Range that reaches any distance if the caster has sympathetic connections to the target totaling a minimum bonus, but needs no Arcane Connection.",
+  "quotes": [
+   "This range is only available for Ritual spells.",
+   "This Range adds +6 to the magnitude of the spell or, for spell guidelines that require an Arcane Connection, it adds +2 magnitudes to the base."
+  ],
+  "related": [
+   "ArM5 p.84 Sympathetic Connections"
+  ]
+ },
+ {
+  "title": "Unlimited Range Examples",
+  "heading": "Unlimited Range Examples",
+  "line": 1605,
+  "endLine": 1633,
+  "category": "magic",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration of defixio magic",
+  "summary": "Worked examples of Unlimited Range spells, including how a guideline that needed an Arcane Connection is converted by replacing it with a sympathetic connection and adding magnitudes.",
+  "quotes": [
+   "adds +2 magnitudes to the final level of the spell"
+  ],
+  "related": []
+ },
+ {
+  "title": "Naming Conventions",
+  "heading": "Naming Conventions",
+  "line": 1639,
+  "endLine": 1657,
+  "category": "setting",
+  "topic": "Defixio magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration of defixio magic",
+  "summary": "Summarizes how names are given and used among Christians, Muslims and Jews, as background for deciding which names can serve as sympathetic connections in defixio and Unlimited Range magic.",
+  "quotes": [],
+  "related": [
+   "Religious Names in Defixio Magic"
+  ]
+ },
+ {
+  "title": "Religious Names in Defixio Magic",
+  "heading": "Religious Names in Defixio Magic",
+  "line": 1659,
+  "endLine": 1661,
+  "category": "magic",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration of defixio magic",
+  "summary": "Birth names, nicknames and bynames work as sympathetic connections, but baptismal, laqab and rabbinical names do not and can cause the spell to fail or to be treated as if only a pseudonym were known.",
+  "quotes": [
+   "the spell always fails"
+  ],
+  "related": []
+ },
+ {
+  "title": "Using Duration Event",
+  "heading": "Using Duration Event",
+  "line": 1663,
+  "endLine": 1671,
+  "category": "magic",
+  "topic": "Defixio magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration of defixio magic",
+  "summary": "Advice on Event Duration spells as traps and alarms: require the player to write down the exact trigger and totals, beware accidental Code of Hermes violations, and note the side effects of casting without Penetration.",
+  "quotes": [
+   "The storyguide should always require the player to write out a complete description of the triggering event and record the relevant spell totals."
+  ],
+  "related": []
+ },
+ {
+  "title": "Using Range Unlimited",
+  "heading": "Using Range Unlimited",
+  "line": 1673,
+  "endLine": 1681,
+  "category": "magic",
+  "topic": "Defixio magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Integration of defixio magic",
+  "summary": "Advice on Unlimited Range spells: the magus must create the symbolic representation himself, inaccurate maps or pictures fail, locations never visited raise troupe questions, and a storyguide may cap the distance.",
+  "quotes": [
+   "A magus must create any symbolic representation used as a sympathetic connection in an Unlimited Range spell"
+  ],
+  "related": []
+ },
+ {
+  "title": "Finding Defixiones",
+  "heading": "Finding Defixiones",
+  "line": 1683,
+  "endLine": 1687,
+  "category": "seasons",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Knowledge of defixio magic",
+  "summary": "Only defixiones whose magic has not yet been released can be studied, and the storyguide should limit suitable finds per searching season.",
+  "quotes": [
+   "A magus may only study those defixiones whose magic has not yet been released."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ancient Texts",
+  "heading": "Ancient Texts",
+  "line": 1709,
+  "endLine": 1713,
+  "category": "seasons",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Knowledge of defixio magic",
+  "summary": "Collections of ancient defixio formulae are not rated like books, cannot teach Defixio Lore, but a formula from the same cult as a defixio gives a bonus to the Insight roll.",
+  "quotes": [
+   "do not have Source or Quality ratings"
+  ],
+  "related": []
+ },
+ {
+  "title": "Chthonic Sanctuaries",
+  "heading": "Chthonic Sanctuaries",
+  "line": 1792,
+  "endLine": 1800,
+  "category": "seasons",
+  "topic": "Defixio magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Knowledge of defixio magic",
+  "summary": "Magic Lore rolls identify that underground cult temples may hold defixiones and point to a region, while Intellego Vim can detect their auras and vis sources.",
+  "quotes": [
+   "Intelligence + Magic Lore roll against an Ease Factor of 12 reveals",
+   "An Intelligence + Magic Lore roll against an Ease Factor of 15 provides the general region of an appropriate sanctuary."
+  ],
+  "related": []
+ },
+ {
+  "title": "Integrating Fertility Magic into Hermetic Theory",
+  "heading": "Integrating Fertility Magic into Hermetic Theory",
+  "line": 1844,
+  "endLine": 1850,
+  "category": "magic",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ancient fetish figurine or cave painting",
+  "summary": "Insight comes from fetish figurines or cave paintings, effects dealing with birth and fertility earn breakthrough points, and there are two separate Breakthroughs, one for the Arcane Ability Fertility Lore and one for the Minor Hermetic Virtue Fertility Ritual Magic.",
+  "quotes": [
+   "The first allows the magus to learn the Arcane Ability Fertility Lore; this is comparatively simple and requires only 15 breakthrough points.",
+   "requiring 35 breakthrough points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Arcane Ability Fertility Lore",
+  "heading": "Arcane Ability Fertility Lore",
+  "line": 1858,
+  "endLine": 1870,
+  "category": "basics",
+  "topic": "Fertility magic",
+  "audience": [
+   "all",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Fertility Lore (after Breakthrough)",
+  "summary": "A non-supernatural Arcane Ability checked by visual inspection to detect pregnancy, due date, kinship and fertility, using Perception rolls whose Ease Factors depend on what is being determined.",
+  "quotes": [
+   "A roll of Perception + Fertility Lore against an Ease Factor of 3 indicates whether a character is pregnant",
+   "A roll of Perception + Fertility Lore against an Ease Factor of 12 reveals whether a character (male or female) is fertile",
+   "increase the Ease Factors listed here by 3"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Target: Unborn Child",
+  "heading": "New Target: Unborn Child",
+  "line": 1862,
+  "endLine": 1864,
+  "category": "magic",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Fertility Ritual Magic",
+  "summary": "A Target available to those with Fertility Ritual Magic that counts as Individual for spell level and lets a magus affect an unborn child, provided he can sense the mother, whose Magic Resistance also protects the child.",
+  "quotes": [
+   "This Target is equivalent to Individual for the purposes of calculating a spell level"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Magic and Mother and Child",
+  "heading": "Hermetic Magic and Mother and Child",
+  "line": 1872,
+  "endLine": 1874,
+  "category": "magic",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that ordinary Hermetic magic can only target a later-term unborn child as a Part of the mother and cannot separate mother and child earlier, a flaw which fertility magic circumvents.",
+  "quotes": [
+   "Mainstream Hermetic magic can target a baby in the second trimester, and onwards until birth, as a Part of the mother"
+  ],
+  "related": [
+   "ArM5 p.112 Parts of an Individual"
+  ]
+ },
+ {
+  "title": "The Fertility Ritual",
+  "heading": "The Fertility Ritual",
+  "line": 1966,
+  "endLine": 1995,
+  "category": "lab",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Fertility Ritual Magic",
+  "summary": "A Lab activity of one season that produces a Lab Text for a conception ritual: the Creo Corpus Lab Total sets the Trait Points available, each chosen trait has a Trait Point cost, and performing it consumes vis equal to the points spent and takes parents who are both fertile.",
+  "quotes": [
+   "Maximum Trait Points: 1 for every 10 points or fraction of Creo Corpus Lab Total",
+   "developing the ritual is a Laboratory activity that takes one season",
+   "Conducting the Fertility Ritual consumes an amount of vis equal to the total Trait Point cost of the desired traits."
+  ],
+  "related": [
+   "ArM5 p.38 Virtues and Flaws",
+   "ArM5 p.101 Longevity Ritual"
+  ]
+ },
+ {
+  "title": "The Maga's Own Child",
+  "heading": "The Maga's Own Child",
+  "line": 1997,
+  "endLine": 1999,
+  "category": "lab",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Fertility Ritual Magic",
+  "summary": "A maga devising a Fertility Ritual for her own child gets more Trait Points per Creo Corpus Lab Total, but the ritual is then tied to her and cannot be used for another mother.",
+  "quotes": [
+   "the maximum number of Trait Points for the ritual is equal to 1 for every 5 points, or fraction thereof, of Creo Corpus Lab Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Balancing Traits",
+  "heading": "Balancing Traits",
+  "line": 2001,
+  "endLine": 2003,
+  "category": "lab",
+  "topic": "Fertility magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Fertility Ritual Magic",
+  "summary": "Traits given by a Fertility Ritual need not balance, but a troupe is advised to let a player-character child gain balancing Virtues or Flaws as he ages.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Supernatural Traits",
+  "heading": "Supernatural Traits",
+  "line": 2005,
+  "endLine": 2007,
+  "category": "lab",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Fertility Ritual Magic",
+  "summary": "Parents' traits are irrelevant to a Fertility Ritual, but the magus can only grant supernatural traits from realms he has a connection to, and the Gift connects him to the Magic realm.",
+  "quotes": [
+   "the magus can only develop a ritual granting powers that derive from realms he has a connection to"
+  ],
+  "related": []
+ },
+ {
+  "title": "Fertility Fetishes",
+  "heading": "Fertility Fetishes",
+  "line": 2009,
+  "endLine": 2023,
+  "category": "lab",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Fertility Lore (supervisor)",
+  "summary": "A mother-made fetish, built over a season under supervision by someone with Fertility Lore, adds to the Lab Total for a Fertility Ritual limited to her own child, holds a pawn of Creo vis, and is a permanent Arcane Connection to mother and children.",
+  "quotes": [
+   "Fertility Fetish Lab Total Bonus: mother's (Dex + Craft Ability) + supervisor's Fertility Lore Ability",
+   "may supervise a number of mothers, per season, equal to up to his Leadership Ability Score"
+  ],
+  "related": []
+ },
+ {
+  "title": "Breakthrough Points from Fetish Creation",
+  "heading": "Breakthrough Points from Fetish Creation",
+  "line": 2019,
+  "endLine": 2021,
+  "category": "magic",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Fertility Lore",
+  "summary": "A fertile maga who knows Fertility Lore can make her own fetish as an effect earning breakthrough points toward the second fertility Breakthrough, without further Insight; fetishes others make give none.",
+  "quotes": [
+   "as an effect worth 5 breakthrough points towards the second Fertility Magic breakthrough"
+  ],
+  "related": []
+ },
+ {
+  "title": "Repeating a Fertility Ritual",
+  "heading": "Repeating a Fertility Ritual",
+  "line": 2025,
+  "endLine": 2027,
+  "category": "lab",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Fertility Ritual Magic",
+  "summary": "Repeating a ritual is only safe if the original child died; otherwise the magus gains Warping Points that may cause Twilight and the new child bears the Corrupt Fertility Ritual Flaw.",
+  "quotes": [
+   "the magus immediately gains a number of Warping Points equal to half the Trait Point cost of the ritual (round up)"
+  ],
+  "related": [
+   "ArM5 p.88 Twilight"
+  ]
+ },
+ {
+  "title": "Cave Systems",
+  "heading": "Cave Systems",
+  "line": 2034,
+  "endLine": 2042,
+  "category": "seasons",
+  "topic": "Fertility magic",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fertility magic research",
+  "summary": "A Perception plus Area Lore roll finds a cave used by the ancient fertility cult, if the storyguide has placed one in the area, and the section describes typical cave layout and surviving fetish figurines.",
+  "quotes": [
+   "To Find a Suitable Cave System: Per + Area Lore vs. Ease Factor 18"
+  ],
+  "related": []
+ },
+ {
+  "title": "Cave Painting Galleries",
+  "heading": "Cave Painting Galleries",
+  "line": 2044,
+  "endLine": 2050,
+  "category": "lab",
+  "topic": "Fertility magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cave painting gallery",
+  "summary": "Cave galleries depicting fertility rituals can be studied for Insight and give Lab Total bonuses to Creo Corpus work, reduced if the paintings are moved; hunting paintings give an Animal bonus, copies are useless, and removing a painting needs a mason's roll.",
+  "quotes": [
+   "provides a +3 bonus to Creo Corpus Lab Totals (including during the development of a Fertility Ritual)",
+   "A mundane mason can successfully remove a cave painting on a Dexterity + Craft Masonry stress roll against an Ease Factor of 15"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Secrets of the Grigori",
+  "heading": "The Secrets of the Grigori",
+  "line": 2318,
+  "endLine": 2343,
+  "category": "traditions",
+  "topic": "Grigori magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: a Grigori Secret, or integration of Grigori magic",
+  "summary": "Grigori Secrets are Supernatural Virtues letting a user treat vis of three linked Arts as interchangeable and ignore matching requisites, at the cost of doubled botch dice in Divine or Infernal auras; integration offers a Major Breakthrough to a Hermetic Legacy and a Hermetic Breakthrough to break the Limit of Vis.",
+  "quotes": [
+   "Anyone who uses vis through any of the Secrets in either a Divine or Infernal aura must roll double the usual number of botch dice for the vis.",
+   "This qualifies as a Major Breakthrough, requiring 45 breakthrough points.",
+   "If the magus wishes to break the Limit of Vis, it requires a Hermetic Breakthrough with 60 breakthrough points."
+  ],
+  "related": []
+ }
+]

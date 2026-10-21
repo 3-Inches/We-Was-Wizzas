@@ -1,0 +1,2994 @@
+[
+ {
+  "title": "Hermetic Empowerment (Minor Mystery Virtue)",
+  "heading": "Hermetic Empowerment \u2014 Minor Mystery Virtue",
+  "line": 2571,
+  "endLine": 2587,
+  "category": "mysteries",
+  "topic": "Hermetic Empowerment",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Empowerment (prerequisite: Spell Binding)",
+  "summary": "A Mystery Virtue, built on Spell Binding, that lets a magus enchant Ritual effects into a device and power them by draining a bound spirit instead of paying vis. The text lists which Ritual effects can and cannot be empowered this way.",
+  "quotes": [
+   "Invoking a spirit-powered vis-using effect takes no more time or effort on the part of the person triggering the device than any other device invested effect."
+  ],
+  "related": [
+   "ArM5 Spell Binding (Chapter 4)"
+  ]
+ },
+ {
+  "title": "Hermetic Empowerment: Enchanting the Device",
+  "heading": "Enchanting the Device",
+  "line": 2589,
+  "endLine": 2595,
+  "category": "mysteries",
+  "topic": "Hermetic Empowerment",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Empowerment (prerequisite: Spell Binding)",
+  "summary": "How to instill a Ritual effect into a device with Hermetic Empowerment: the process matches normal enchanting, the effect keeps Ritual minimum level, and it stays inert until a spirit powers it.",
+  "quotes": [
+   "Just like a Ritual spell, the minimum level of a Ritual effect is 20"
+  ],
+  "related": [
+   "ArM5 p.114 Ritual Spells"
+  ]
+ },
+ {
+  "title": "Hermetic Empowerment: Powering Ritual Effects",
+  "heading": "Powering Ritual Effects",
+  "line": 2597,
+  "category": "mysteries",
+  "topic": "Hermetic Empowerment",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Empowerment (prerequisite: Spell Binding)",
+  "summary": "A bound spirit powers an empowered Ritual effect by permanently losing Might Score, and it can only power effects up to a limit set by its Might. Also covers what happens when the device is broken and the spirit is released.",
+  "quotes": [
+   "Might Score drained = (Ritual level/5) (round up)",
+   "Might Score x 2 must equal or exceed Ritual level"
+  ],
+  "related": [],
+  "endLine": 2649
+ },
+ {
+  "title": "Suitable Spirits for a Magus' Magic (sidebar)",
+  "heading": "Suitable Spirits for a Magus' Magic",
+  "line": 2615,
+  "endLine": 2619,
+  "category": "mysteries",
+  "topic": "Spirit magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Empowerment or Spirit Familiar",
+  "summary": "Sidebar saying the realm of a spirit must match the magus's own magic before he can take it as a familiar or drain its Might for Ritual power.",
+  "quotes": [
+   "then the realm of the spirit must in some way match the magus's magic"
+  ],
+  "related": []
+ },
+ {
+  "title": "Empowering Prison of the Declining Spirit (sidebar)",
+  "heading": "Empowering Prison of the Declining Spirit",
+  "line": 2625,
+  "endLine": 2643,
+  "category": "mysteries",
+  "topic": "Hermetic Empowerment",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Empowerment (prerequisite: Spell Binding)",
+  "summary": "The special Mystery general enchantment that traps a spirit in a device and lets its Might Score fuel Ritual effects; sets how its level relates to the spirit's Might, its Form requisites and per-day uses.",
+  "quotes": [
+   "The base level of the enchantment must equal or exceed twice the Might of the spirit that will be bound to it.",
+   "the current Might Score of the bound spirit must equal or exceed half the level of the Ritual effect to be powered"
+  ],
+  "related": []
+ },
+ {
+  "title": "Spirit Familiar (Minor Mystery Virtue)",
+  "heading": "Spirit Familiar \u2014 Minor Mystery Virtue",
+  "line": 2651,
+  "endLine": 2657,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spirit Familiar",
+  "summary": "A Mystery Virtue letting a magus ally with a ghost or other incorporeal spirit as a familiar, using rules close to those for animal familiars. A magus may have only one familiar, animal or spirit; the Lab Total for binding uses a suitable Technique and Form.",
+  "quotes": [
+   "A magus may only have one familiar, be it animal or spirit",
+   "The Lab Total for binding a spirit familiar is the same as an animal familiar: any appropriate Technique and any appropriate Form."
+  ],
+  "related": [
+   "ArM5 p.104 Familiars"
+  ]
+ },
+ {
+  "title": "Finding a Suitable Spirit",
+  "heading": "Finding a Suitable Spirit",
+  "line": 2659,
+  "endLine": 2671,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spirit Familiar",
+  "summary": "Guidance on locating and persuading a spirit to become a familiar: visit its haunts, bargain with free-willed spirits, and match its nature to the magus's best Technique and Form.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Bonding the Ally as Spirit Familiar",
+  "heading": "Bonding the Ally as Spirit Familiar",
+  "line": 2673,
+  "endLine": 2689,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spirit Familiar",
+  "summary": "The Lab Total, bonding level and vis cost for bonding a spirit as a familiar, with the aura modifier taken from the worse of magus or spirit.",
+  "quotes": [
+   "Any Technique + Any Form + Intelligence + Magic Theory + Aura Modifier",
+   "Spirit's Might + 25",
+   "1 pawn of vis per 5 levels or fraction; which must match the Technique or Form"
+  ],
+  "related": [
+   "ArM5 p.104 Familiars"
+  ]
+ },
+ {
+  "title": "Becoming Immortal with a Spirit Familiar (sidebar)",
+  "heading": "Becoming Immortal with a Spirit Familiar",
+  "line": 2691,
+  "endLine": 2693,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spirit Familiar",
+  "summary": "Sidebar noting that a spirit familiar, already immortal, accompanies its magus through a transformation into an immortal being without needing extra vis.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Three Cords",
+  "heading": "The Three Cords",
+  "line": 2695,
+  "endLine": 2701,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spirit Familiar",
+  "summary": "Describes the three cords of a spirit familiar bond (Hermes, Isis and Hekate) and the extra benefits each gives, including spending the spirit's Might on Stamina rolls and transferring Might points.",
+  "quotes": [
+   "Up to 5 Might points may be spent on one roll.",
+   "he can give his spirit familiar a number of Temporary Might points equal to his bond score by spending 1 level of Fatigue"
+  ],
+  "related": [
+   "ArM5 p.104 Familiar cords"
+  ]
+ },
+ {
+  "title": "Spirit Familiar Sample Powers (sidebar)",
+  "heading": "Sample Powers",
+  "line": 2703,
+  "endLine": 2741,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spirit Familiar",
+  "summary": "Sidebar of sample bond powers for a spirit familiar (communication, senses, location, speech, apparition, corporeality, incorporeality), with how each is built as a Hermetic effect.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Bonded Spirit Familiar",
+  "heading": "The Bonded Spirit Familiar",
+  "line": 2743,
+  "endLine": 2753,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spirit Familiar",
+  "summary": "What bonding does to the spirit: mutual True Friend and Loyal traits, an Arcane Connection both ways, how Magic Resistance works, languages, and building its Characteristics from pyramid points.",
+  "quotes": [
+   "You have (Might/5) pyramid points to start with, rather than the 7 points of a normal character."
+  ],
+  "related": []
+ },
+ {
+  "title": "Empowering the Bond",
+  "heading": "Empowering the Bond",
+  "line": 2755,
+  "endLine": 2757,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Spirit Familiar",
+  "summary": "States that the normal familiar rules for empowering the bond apply to a spirit familiar, including the limit on who the powers can target.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.104 Familiars"
+  ]
+ },
+ {
+  "title": "Inscription on the Soul (Minor Mystery Virtue)",
+  "heading": "Inscription on the Soul \u2014 Minor Mystery Virtue",
+  "line": 2759,
+  "endLine": 2769,
+  "category": "mysteries",
+  "topic": "Inscription on the Soul",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Inscription on the Soul",
+  "summary": "A Mystery Virtue letting a magus make his own spirit and body his talisman, opened with vis and attuned over a season. A magus may have only one talisman at a time.",
+  "quotes": [
+   "The magus's spirit and body are opened initially with 15 pawns of vis"
+  ],
+  "related": [
+   "ArM5 Talismans"
+  ]
+ },
+ {
+  "title": "Enchantment and Magical Attunements",
+  "heading": "Enchantment and Magical Attunements",
+  "line": 2771,
+  "endLine": 2779,
+  "category": "mysteries",
+  "topic": "Inscription on the Soul",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Inscription on the Soul",
+  "summary": "Benefits of the soul talisman: the usual talisman Lab Total bonus, effect expiry treated as seventy years, and a limited range of Shape and Material Bonuses from the human body.",
+  "quotes": [
+   "A magus gains the usual talisman bonus of +5 to Lab Total for enchantments to his talisman"
+  ],
+  "related": [
+   "ArM5 p.99 effect expiry table",
+   "ArM5 p.110 Shape and Material Bonuses"
+  ]
+ },
+ {
+  "title": "Hermetic Empowerment and Inscription on the Soul (sidebar)",
+  "heading": "Hermetic Empowerment and Inscription on the Soul",
+  "line": 2781,
+  "endLine": 2783,
+  "category": "mysteries",
+  "topic": "Inscription on the Soul",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Inscription on the Soul and Hermetic Empowerment",
+  "summary": "Sidebar on combining the two Virtues: binding a spirit into the magus's own body or spirit, and triggering Ritual effects from it, each inflict a Warping Point.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Spirit vs. Body Enchantments",
+  "heading": "Spirit vs. Body Enchantments",
+  "line": 2785,
+  "endLine": 2791,
+  "category": "mysteries",
+  "topic": "Inscription on the Soul",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Inscription on the Soul",
+  "summary": "Explains when it matters whether an enchantment is placed in the spirit or the body (default is spirit; body if Shape and Material Bonuses from the body or Blending With Substance are used).",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Blending with Substance",
+  "heading": "Blending with Substance",
+  "line": 2793,
+  "endLine": 2815,
+  "category": "mysteries",
+  "topic": "Inscription on the Soul",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Inscription on the Soul",
+  "summary": "How a magus embeds a small item in his flesh to attune its Shape and Material bonuses: an effect level is calculated from the item's bonuses, a Rego Vim effect with requisites is enchanted, and Warping Points are inflicted.",
+  "quotes": [
+   "Total the highest bonus, and half the sum of any other bonuses, and multiply by 5 to get an effect level."
+  ],
+  "related": [
+   "Great Talisman (Chapter 10)"
+  ]
+ },
+ {
+  "title": "The Great or Consummate Talisman (sidebar)",
+  "heading": "The Great or Consummate Talisman",
+  "line": 2797,
+  "endLine": 2801,
+  "category": "mysteries",
+  "topic": "Inscription on the Soul",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Inscription on the Soul",
+  "summary": "Sidebar comparing Blending with Substance to the Great Talisman Virtue and noting it does not allow attuning new bonuses without working on the talisman.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Vulgar Alchemy and Blending With Substance (sidebar)",
+  "heading": "Vulgar Alchemy and Blending With Substance",
+  "line": 2812,
+  "endLine": 2814,
+  "category": "mysteries",
+  "topic": "Inscription on the Soul",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Inscription on the Soul; Initiation: Hermetic Alchemy",
+  "summary": "Sidebar saying Shape and Material items found by Vulgar Alchemy must be fully integrated into Hermetic theory (a tractatus) before they can be used in Blending With Substance.",
+  "quotes": [],
+  "related": [
+   "Chapter 5 Hermetic Alchemy, Vulgar Alchemy"
+  ]
+ },
+ {
+  "title": "Talisman Connection",
+  "heading": "Talisman Connection",
+  "line": 2816,
+  "endLine": 2822,
+  "category": "mysteries",
+  "topic": "Inscription on the Soul",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Inscription on the Soul",
+  "summary": "Describes how the magus's body and spirit remain connected and mutually Arcane Connections if separated, and how enchantments in each can be removed.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Living Ghost (Major Hermetic Mystery Virtue)",
+  "heading": "Living Ghost \u2014 Major Hermetic Mystery Virtue",
+  "line": 2824,
+  "endLine": 2832,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "The Major Mystery in which a magus binds his spirit to an area before a ritual death and becomes a free-willed ghost who keeps his abilities. It is done through invented Mystery Ritual spells; Hermetic legal protection is lost at death.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Preparing for the Transformation",
+  "heading": "Preparing for the Transformation",
+  "line": 2834,
+  "endLine": 2836,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "The magus must invent personal versions of two Mystery Ritual spells, Bind the Living Ghost and Transformation of the Living Ghost, as the lab preparation for the Ordeal.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Bind The Living Ghost (Mystery Ritual)",
+  "heading": "Bind The Living Ghost",
+  "line": 2838,
+  "endLine": 2852,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "The Mystery Ritual that defines the magus's Haunt, the area his ghost is bound to. The design level depends on the area Target chosen, and the levels spent enlarging the area feed into the Transformation spell.",
+  "quotes": [
+   "Cr(Pe/Re)Me(Co) (30 + area Size)",
+   "(Base 30, + magnitudes to increase area from Individual)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Transformation of the Living Ghost (Mystery Ritual)",
+  "heading": "Transformation of the Living Ghost",
+  "line": 2854,
+  "endLine": 2880,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "The unique general-level Mystery Ritual that sets a Living Ghost's Might Score, capped by a transformation limit from his best Technique and Form and reduced by the levels reserved for the size of the Haunt.",
+  "quotes": [
+   "Transformation Limit = Best Technique and Form Combination",
+   "Size Levels = Levels Added to Increase Target of Bind the Living Ghost",
+   "Might Score = Ritual Spell Level \u2013 Size Levels"
+  ],
+  "related": []
+ },
+ {
+  "title": "A Living Ghost",
+  "heading": "A Living Ghost",
+  "line": 2882,
+  "endLine": 2892,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "How the Ordeal is performed (cast Transformation, then Bind), that it can be attempted only once, and what a Living Ghost is like afterwards: self-aware, able to learn with difficulty, tied to its Haunt, and still linked to its talisman.",
+  "quotes": [],
+  "related": [
+   "Appendix A: Immortal Magi"
+  ]
+ },
+ {
+  "title": "Ghosts in Ars Magica (sidebar)",
+  "heading": "Ghosts in Ars Magica",
+  "line": 2894,
+  "endLine": 2912,
+  "category": "beings",
+  "topic": "Ghosts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Ghost",
+  "summary": "Sidebar defining how ghosts work in the game: appearance and invisibility, inability to learn or change, solidity to other ghosts, spellcasting as illusion unless they have powers, returning after being defeated, fetters, and the vis left behind.",
+  "quotes": [],
+  "related": [
+   "Calebais: The Broken Covenant"
+  ]
+ },
+ {
+  "title": "Hazards of Becoming a Living Ghost (sidebar)",
+  "heading": "Hazards of Becoming a Living Ghost",
+  "line": 2914,
+  "endLine": 2920,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost; Virtue: Inscription on the Soul",
+  "summary": "Sidebar on the danger of a body-linked talisman: destroying the body breaks its attunements and gives Warping Points as a single event, and entering Twilight mid-process means the Ritual fails.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Learning and the Immortal Spirit",
+  "heading": "Learning and the Immortal Spirit",
+  "line": 2922,
+  "endLine": 2924,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "An immortal, unaging spirit resists study and learning; a Living Ghost can get round this by enchanting his talisman as described for immortal magi.",
+  "quotes": [],
+  "related": [
+   "Appendix A: Immortal Magi"
+  ]
+ },
+ {
+  "title": "Familiars and the Living Ghost",
+  "heading": "Familiars and the Living Ghost",
+  "line": 2926,
+  "endLine": 2930,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "A spirit familiar stays with its magus automatically; another familiar can join him in living death if the magus spends extra raw vis based on the bond score.",
+  "quotes": [
+   "provided the magus expends additional pawns of raw vis equal to the Familiar Bond Score/5 (round up)"
+  ],
+  "related": [
+   "Appendix A: Immortal Magi, Becoming Immortal with a Familiar"
+  ]
+ },
+ {
+  "title": "The Haunt",
+  "heading": "The Haunt",
+  "line": 2932,
+  "endLine": 2938,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "Explains that a Living Ghost depends on its Haunt continuing to exist, and compares the stability of Circle, Room, Structure and Boundary Targets.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Magic and the Living Ghost",
+  "heading": "Magic and the Living Ghost",
+  "line": 2940,
+  "endLine": 2948,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "The Might powers a Living Ghost uses (Ghostly Body, Ghostly Magic, Ghostly Vis), how Fatigue and unconsciousness still affect it, and what happens when its Might runs out.",
+  "quotes": [
+   "by spending 1 point of Temporary Might per magnitude of the effect",
+   "the Living Ghost can permanently expend points of Might Score, with each point equivalent to one pawn of raw vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Manipulating the World as a Ghost",
+  "heading": "Manipulating the World as a Ghost",
+  "line": 2962,
+  "endLine": 2972,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost",
+  "summary": "How an insubstantial Living Ghost acts on the world: using Rego spells and enchanted devices, possessing bodies, working in a lab, and the penalty of being forced out of a body away from the Haunt.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Re-Enchanting the Spirit",
+  "heading": "Re-Enchanting the Spirit",
+  "line": 2974,
+  "endLine": 2984,
+  "category": "mysteries",
+  "topic": "Living Ghost",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Living Ghost; Virtue: Inscription on the Soul",
+  "summary": "A Living Ghost who spent Might Score as vis can restore or increase it by opening unused talisman spaces and recasting Transformation of the Living Ghost; the Might Score stays capped by the Technique and Form limit.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Daimons (sidebar)",
+  "heading": "Daimons",
+  "line": 3006,
+  "endLine": 3014,
+  "category": "mysteries",
+  "topic": "Hermetic Theurgy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Theurgy",
+  "summary": "Sidebar defining Daimons as ancient named spirits that appear through an Aspect; magi summon only an Aspect and cannot truly threaten the Daimon. A magus must know something of a Daimon, or hold a Lab Text, to create a summoning spell.",
+  "quotes": [],
+  "related": [
+   "Appendix C: Daimons"
+  ]
+ },
+ {
+  "title": "Name of Power Spell (sidebar)",
+  "heading": "Name of Power Spell",
+  "line": 3016,
+  "endLine": 3032,
+  "category": "mysteries",
+  "topic": "Names of Power",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Names of Power",
+  "summary": "Sidebar describing the Name of Power (X) general-level Muto Vim spell, which gives a bonus with a scope agreed with the troupe, built on the Shape and Material Bonus idea.",
+  "quotes": [
+   "The level of spell is five times the desired bonus. Range, Duration, and Target are fixed."
+  ],
+  "related": [
+   "Shape and Material Bonus table"
+  ]
+ },
+ {
+  "title": "Names of Power (Minor Hermetic Mystery Virtue)",
+  "heading": "Names of Power \u2014 Minor Hermetic Mystery Virtue",
+  "line": 3034,
+  "endLine": 3040,
+  "category": "mysteries",
+  "topic": "Names of Power",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Names of Power",
+  "summary": "A Mystery Virtue where a Name of Power is learned as a Muto Vim spell giving a bonus equal to its spell magnitude, usable only with other Mystery Virtues. Names must be spoken aloud, so quiet or silent casting cannot be combined.",
+  "quotes": [
+   "All uses of Names of Power require that the maga speak the names out loud in a firm (or loud) voice"
+  ],
+  "related": []
+ },
+ {
+  "title": "Synthemata (sidebar)",
+  "heading": "Synthemata",
+  "line": 3042,
+  "endLine": 3046,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Synthemata or Synthemata Magia",
+  "summary": "Sidebar explaining that synthemata are signs, symbols or passwords linking a magician to a spirit; most theurgic spells merely include them, but special Virtues let a magus use them as a channel to command spirits.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hermetic Theurgy and Names of Power",
+  "heading": "Hermetic Theurgy and Names of Power",
+  "line": 3048,
+  "endLine": 3068,
+  "category": "mysteries",
+  "topic": "Names of Power",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Names of Power and Hermetic Theurgy",
+  "summary": "How to work a Name of Power into an Invoke spell: its bonus is added to the Lab Total for inventing the spell and to the Casting Score, capped by Magic Theory, and the names must be spoken aloud.",
+  "quotes": [
+   "The total value of all Names of Power combined in a spell cannot exceed her Magic Theory when she invents the spell.",
+   "Theurgic Name Bonus = Total Name of Power Bonuses, Limited by Magic Theory"
+  ],
+  "related": []
+ },
+ {
+  "title": "Spirits and Realms (sidebar)",
+  "heading": "Spirits and Realms",
+  "line": 3052,
+  "endLine": 3054,
+  "category": "mysteries",
+  "topic": "Spirit magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Theurgy or Spirit Familiar",
+  "summary": "Sidebar on which spirits a magus can work with: Magic Might spirits for all magi, Faerie spirits with Faerie Magic, Infernal spirits through diabolic practices, and Divine spirits with Divine magic.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "Invocation Magic and Names of Power",
+  "heading": "Invocation Magic and Names of Power",
+  "line": 3086,
+  "endLine": 3096,
+  "category": "mysteries",
+  "topic": "Names of Power",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Invocation Magic and Names of Power",
+  "summary": "How a magus with Invocation Magic casts Names of Power as meta-magic spells in sequence to raise the Casting Score of a following spell; the bonus is limited by Magic Theory and can combine with theurgic and talisman bonuses.",
+  "quotes": [
+   "Invocation Magic Bonus = Total of Name of Power Spell Bonuses, Limited by Magic Theory"
+  ],
+  "related": []
+ },
+ {
+  "title": "Consummate Talisman and Names of Power",
+  "heading": "Consummate Talisman and Names of Power",
+  "line": 3098,
+  "endLine": 3114,
+  "category": "mysteries",
+  "topic": "Names of Power",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Consummate Talisman and Names of Power",
+  "summary": "A talisman with the Consummate Talisman Virtue can hold Name of Power effects that add to the magus's Casting Score when he speaks the triggering names aloud, limited by Magic Theory.",
+  "quotes": [
+   "Talisman Name of Power Bonus = Total of Name of Power Effect Bonuses, Limited by Magic Theory"
+  ],
+  "related": [
+   "Chapter 10: The Great Talisman, Consummate Talisman"
+  ]
+ },
+ {
+  "title": "Spell Spirits (sidebar)",
+  "heading": "Spell Spirits",
+  "line": 3102,
+  "endLine": 3108,
+  "category": "mysteries",
+  "topic": "Hermetic Theurgy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Theurgy",
+  "summary": "Sidebar on the spirits summoned by Invoke spells: limited intelligence, how others can resist or command them (must exceed the level of the Invoke spell), and that a magus designs the spell first and the spirit follows.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Invocation Magic (Major Mystery Virtue)",
+  "heading": "Invocation Magic \u2014 Major Mystery Virtue",
+  "line": 3116,
+  "endLine": 3130,
+  "category": "mysteries",
+  "topic": "Names of Power",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Invocation Magic (prerequisite: Names of Power)",
+  "summary": "A Major Mystery Virtue that lets a magus cast Names of Power as Muto Vim spells on himself to add to his Casting Score for the next spell. Covers casting time for each name, the voice requirement, and the special botch consequences.",
+  "quotes": [
+   "Invocation Magic Bonus = Total of Name of Power Spell Bonuses, Limited by Magic Theory",
+   "It takes the normal spellcasting time to invoke each Name of Power preceding the main spell"
+  ],
+  "related": [
+   "ArM5 p.159 Botches"
+  ]
+ },
+ {
+  "title": "Hermetic Theurgy (Minor Hermetic Mystery Virtue)",
+  "heading": "Hermetic Theurgy \u2014 Minor Hermetic Mystery Virtue",
+  "line": 3132,
+  "endLine": 3144,
+  "category": "mysteries",
+  "topic": "Hermetic Theurgy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Theurgy",
+  "summary": "A Mystery Virtue for inventing Invoke spells, each of which forms a pact with one specific named spirit; the base level is the spirit's Might and Range, Duration and Target govern only the invocation. Invoke spells cannot be put into devices.",
+  "quotes": [
+   "the base level is usually all that is needed to summon the spirit"
+  ],
+  "related": []
+ },
+ {
+  "title": "Inventing Theurgic Spells in the Laboratory",
+  "heading": "Inventing Theurgic Spells in the Laboratory",
+  "line": 3146,
+  "endLine": 3152,
+  "category": "mysteries",
+  "topic": "Hermetic Theurgy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Theurgy",
+  "summary": "Gives the modified Lab Total used to research theurgic spells, and how Names of Power can be added to it and to the Casting Score.",
+  "quotes": [
+   "Technique + Form + Intelligence + Magic Theory + Aura + (Realm) Lore + Bonuses"
+  ],
+  "related": [
+   "Names of Power"
+  ]
+ },
+ {
+  "title": "Invoke the Spirit of (spell)",
+  "heading": "Invoke the Spirit of (spell)",
+  "line": 3154,
+  "endLine": 3214,
+  "category": "mysteries",
+  "topic": "Hermetic Theurgy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Theurgy",
+  "summary": "Mystery spell pact with a named spirit that casts one Formulaic-style spell as a power, with no die roll and no botch. Covers base level from the spirit's Might, Penetration like a device, the first-summons Magic Resistance check, and the spirit's Casting Score and success threshold.",
+  "quotes": [
+   "Spirit Might must equal or exceed level of spell-like power",
+   "Penetration Bonus = 2 x added levels of",
+   "Spirit's Casting Score = Spirit's Might + Aura Modifier",
+   "Spellcasting Succeeds if Casting Total is at least (adjusted spell level \u201310)"
+  ],
+  "related": [
+   "ArM5 p.84 Sympathetic magic",
+   "Flexible Formulaic Magic"
+  ]
+ },
+ {
+  "title": "Invoke the Spirit of (Form)",
+  "heading": "Invoke the Spirit of (Form)",
+  "line": 3216,
+  "endLine": 3242,
+  "category": "mysteries",
+  "topic": "Hermetic Theurgy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Theurgy",
+  "summary": "Mystery spell pact with a named spirit that produces Spontaneous-style effects of one Technique and Form combination as a power; the spirit's Casting Total is half its Casting Score, with no die roll.",
+  "quotes": [
+   "Casting Total = Casting Score/2 (round up) (no die roll)",
+   "Penetration Total = Spirit's Casting Total \u2013 Spell Level"
+  ],
+  "related": []
+ },
+ {
+  "title": "Invoke the Pact of (Daimon)",
+  "heading": "Invoke the Pact of (Daimon)",
+  "line": 3244,
+  "endLine": 3269,
+  "category": "mysteries",
+  "topic": "Hermetic Theurgy",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Theurgy (limited use without it)",
+  "summary": "Mystery Ritual that repeatedly calls a named Daimon until it sends an Aspect to answer. Each casting that beats its Magic Resistance accumulates Summoning Points, and it can be cast in limited form without Hermetic Theurgy.",
+  "quotes": [
+   "Daimon Summoning Points = Spell Level \u2013 Daimon's Might",
+   "Summoning Success: Accumulated Summoning Points = Daimon's Might"
+  ],
+  "related": [
+   "Appendix C: Daimons",
+   "Wizard's Communion"
+  ]
+ },
+ {
+  "title": "The Daimonic Aspect (sidebar)",
+  "heading": "The Daimonic Aspect",
+  "line": 3271,
+  "endLine": 3285,
+  "category": "beings",
+  "topic": "Daimons",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Theurgy",
+  "summary": "Sidebar explaining Aspects: each is an independent fraction of a Daimon with its own Might pool and no fatigue, which cannot be summoned where another Aspect of the same Daimon is or was within a day, and cannot be permanently changed.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Theurgic Spirit Familiar (Minor Hermetic Mystery Virtue)",
+  "heading": "Theurgic Spirit Familiar \u2014 Minor Hermetic Mystery Virtue",
+  "line": 3287,
+  "endLine": 3291,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Theurgic Spirit Familiar",
+  "summary": "Name-magic version of the Spirit Familiar Virtue that also lets a powerful maga ally with a Daimon, binding only one Aspect of it while the bond is with the whole Daimon.",
+  "quotes": [],
+  "related": [
+   "Spirit Familiar (Chapter 8)"
+  ]
+ },
+ {
+  "title": "Finding and Binding a Daimon",
+  "heading": "Finding and Binding a Daimon",
+  "line": 3293,
+  "endLine": 3307,
+  "category": "mysteries",
+  "topic": "Spirit Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Theurgic Spirit Familiar",
+  "summary": "How a magus researches, summons and wins over a Daimon as a familiar, including a rule of thumb for when it will refuse and the vis sacrifice to the Daimon.",
+  "quotes": [
+   "if the (Technique + Form) proposed for the bond is less than 2 x Might, it is likely to reject the magus as not worthy",
+   "equal to its Might/5 (round up)"
+  ],
+  "related": [
+   "Appendix C: Daimons"
+  ]
+ },
+ {
+  "title": "Ascendancy to the Hall of Heroes (Major Hermetic Mystery Virtue)",
+  "heading": "Ascendancy to the Hall of Heroes \u2014 Major Hermetic Mystery Virtue",
+  "line": 3309,
+  "endLine": 3319,
+  "category": "mysteries",
+  "topic": "Ascendancy to the Hall of Heroes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Ascendancy to the Hall of Heroes (prerequisite: Hermetic Theurgy)",
+  "summary": "A Major Mystery path to apotheosis, requiring Hermetic Theurgy, in which a hierarch devises two non-Hermetic Mystery Rituals that a group of celebrants must cast for him. No Warping is inflicted for the high level since the spells are for one magus.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Ascendant Form of the Intendant Hierarch",
+  "heading": "Ascendant Form of the Intendant Hierarch",
+  "line": 3321,
+  "endLine": 3343,
+  "category": "mysteries",
+  "topic": "Ascendancy to the Hall of Heroes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Ascendancy to the Hall of Heroes",
+  "summary": "The hierarch's own Mystery Ritual that manifests his abilities at their strongest. The level is at least the total of his best Technique and Form, and the resulting Might is half the Ritual level; celebrants must overcome his full Magic Resistance.",
+  "quotes": [
+   "the ascended hierarch will have a Might of (this Ritual's level/2)",
+   "a minimum level of 40"
+  ],
+  "related": []
+ },
+ {
+  "title": "Familiars and the Ascendant Magus (sidebar)",
+  "heading": "Familiars and the Ascendant Magus",
+  "line": 3345,
+  "endLine": 3351,
+  "category": "mysteries",
+  "topic": "Ascendancy to the Hall of Heroes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Ascendancy to the Hall of Heroes",
+  "summary": "Sidebar: a spirit familiar automatically ascends with its magus, while another familiar can join him if extra vis based on the bond score is spent in the Ritual.",
+  "quotes": [
+   "provided additional pawns of raw vis equal to the Familiar Bond Score/5 (round up) are expended in the Ritual"
+  ],
+  "related": [
+   "Appendix A: Immortal Magi, Becoming Immortal with a Familiar"
+  ]
+ },
+ {
+  "title": "Transformation of the Ascendant Hierarch",
+  "heading": "Transformation of the Ascendant Hierarch",
+  "line": 3353,
+  "endLine": 3367,
+  "category": "mysteries",
+  "topic": "Ascendancy to the Hall of Heroes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Ascendancy to the Hall of Heroes",
+  "summary": "The celebrants' Ordeal Ritual cast on the hierarch; it must beat his Magic Resistance and exceed the Ascendant Form level, and the hierarch rolls Stamina against an Ease Factor to avoid passing out.",
+  "quotes": [
+   "The hierarch makes a Stamina roll against an Ease Factor of 9, or passes out"
+  ],
+  "related": [
+   "Wizard's Communion"
+  ]
+ },
+ {
+  "title": "The Cumulative Transformation Process",
+  "heading": "The Cumulative Transformation Process",
+  "line": 3369,
+  "endLine": 3395,
+  "category": "mysteries",
+  "topic": "Ascendancy to the Hall of Heroes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Ascendancy to the Hall of Heroes",
+  "summary": "How transformation points accumulate over repeated rituals and the total needed, which adds the Ascendant Form level and extra points for negative Characteristics, Decrepitude and excess Flaws.",
+  "quotes": [
+   "Count Major Flaws and Virtues as 3 points each, Minor as 1 point each.",
+   "Flaws are Excessive if Flaws Exceed Virtues.",
+   "Level + 3 x cost of Negative Characteristics + 5 x Decrepitude + 5 x Flaw Points if Excessive"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ascension",
+  "heading": "Ascension",
+  "line": 3397,
+  "endLine": 3405,
+  "category": "mysteries",
+  "topic": "Ascendancy to the Hall of Heroes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Ascendancy to the Hall of Heroes",
+  "summary": "What happens at ascension: the magus becomes an immortal spirit that can be summoned, his talisman becomes part of his being, and his body is left as an Arcane Connection.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Invoke the Pact of (Daimon): Daimonic Magus Summoned (sidebar)",
+  "heading": "Invoke the Pact of (Daimon)",
+  "line": 3407,
+  "endLine": 3413,
+  "category": "mysteries",
+  "topic": "Ascendancy to the Hall of Heroes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Ascendancy to the Hall of Heroes",
+  "summary": "Sidebar: a player-character Daimonic magus can be summoned by an Invoke Pact spell devised for him, earning pact benefits in exchange for a service; the Daimon gains a benefit tied to the spell level.",
+  "quotes": [
+   "The spirit gains the benefit when the Invocation points total equals his Might, and he is called to appear."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Daimonic Magus",
+  "heading": "The Daimonic Magus",
+  "line": 3415,
+  "endLine": 3423,
+  "category": "beings",
+  "topic": "Ascendancy to the Hall of Heroes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Ascendancy to the Hall of Heroes",
+  "summary": "Describes the ascended Daimonic magus: Aspects in several places, immunity to aging and Warping, no laboratory use, and no Fatigue levels (Might is spent instead of Fatigue).",
+  "quotes": [
+   "the Daimon expends 5 Might for each Fatigue level normally expended"
+  ],
+  "related": []
+ },
+ {
+  "title": "Learning and Improving as a Daimonic Spirit",
+  "heading": "Learning and Improving as a Daimonic Spirit",
+  "line": 3425,
+  "endLine": 3443,
+  "category": "beings",
+  "topic": "Ascendancy to the Hall of Heroes",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Ascendancy to the Hall of Heroes",
+  "summary": "Daimon Points earned from pact summonings let a Daimonic magus fix study and spell experience, raise Might and Characteristics, and trade for lessons with other spirits.",
+  "quotes": [
+   "Daimon Points = (spell level) / 5",
+   "5 Daimon Points can be used to increase Might Score by 1 point."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Synthemata (Minor Hermetic Mystery Virtue)",
+  "heading": "Hermetic Synthemata \u2014 Minor Hermetic Mystery Virtue",
+  "line": 3445,
+  "endLine": 3451,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Synthemata",
+  "summary": "A Mystery Virtue where a magus learns a being's synthemata, unique to it, as a key to boost Penetration past its Magic Resistance; useful for summoning Daimons but it makes the being ill-disposed.",
+  "quotes": [
+   "Any being with a Might score has synthemata."
+  ],
+  "related": []
+ },
+ {
+  "title": "Synthemata of (X)",
+  "heading": "Synthemata of (X)",
+  "line": 3453,
+  "endLine": 3463,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Synthemata",
+  "summary": "Mystery spell unique to one named being whose level must equal or exceed that being's Might; it adds its level to the Penetration Total of the next spell cast.",
+  "quotes": [
+   "the caster adds the synthemata level to the Penetration Total of any spell cast (or begun) immediately after the synthemata spell"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Lasting Synthemata of (X)",
+  "heading": "The Lasting Synthemata of (X)",
+  "line": 3465,
+  "endLine": 3475,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Synthemata",
+  "summary": "Diameter-duration version of the synthemata spell that gives a Penetration bonus of its level reduced by a fixed amount for multiple castings, and makes the being aware of the threat.",
+  "quotes": [
+   "the (spell level \u2013 5) must equal or exceed its Might"
+  ],
+  "related": []
+ },
+ {
+  "title": "Researching Synthemata (Hermetic)",
+  "heading": "Researching Synthemata",
+  "line": 3477,
+  "endLine": 3499,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Synthemata",
+  "summary": "Lab rules for inventing a synthemata spell: the base level must reach the target's Might, (Realm) Lore replaces Magic Theory, sympathetic connections add bonuses, and name hiding reduces seasonal progress.",
+  "quotes": [
+   "Lab Total = Muto + Vim + Intelligence + (Realm) Lore + Aura + Bonuses",
+   "Spell Points Accumulated = (Lab Total \u2013 Spell Level \u2013 Name Hiding)",
+   "Typical Name Hiding = (Might / 2)"
+  ],
+  "related": [
+   "ArM5 p.84 Sympathetic magic multiplier"
+  ]
+ },
+ {
+  "title": "Revealing Synthemata",
+  "heading": "Revealing Synthemata",
+  "line": 3505,
+  "endLine": 3511,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Synthemata",
+  "summary": "A commanded powerful spirit may reveal the synthemata of spirits it controls, which lets the magus skip name hiding when researching them; includes a guideline for how many a spirit knows.",
+  "quotes": [
+   "assume a powerful spirit may know synthemata of other spirits whose Might Scores add up to no more than its own Might, and no individual higher than its own Might/2"
+  ],
+  "related": []
+ },
+ {
+  "title": "Synthemata Magia (Major Supernatural Mystery Ability)",
+  "heading": "Synthemata Magia \u2014 Major Supernatural Mystery Ability",
+  "line": 3513,
+  "endLine": 3517,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Synthemata Magia",
+  "summary": "A non-Hermetic Major Supernatural Ability, predecessor of Hermetic synthemata research, that uses (Realm) Lore and lets a magus intuit a being's synthemata quickly at the cost of a weaker effect.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Intuit Synthemata",
+  "heading": "Intuit Synthemata",
+  "line": 3519,
+  "endLine": 3537,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Synthemata Magia",
+  "summary": "Roll of Perception plus (Realm) Lore against the being's Might and name hiding, adjusted by auras, to intuit a being's synthemata in its presence; success gives a personal Muto Vim guideline to boost Casting Score against it, and botches alert the spirit.",
+  "quotes": [
+   "Stress Die + Perception + (Realm) Lore + Magus's Aura Modifier vs. Might + Spirit's Aura Modifier + Name Hiding",
+   "Add spell level to the caster's Casting Score for spells cast while this spell lasts."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Hedge Lord's Synthemata of (X)",
+  "heading": "The Hedge Lord's Synthemata of (X)",
+  "line": 3539,
+  "endLine": 3547,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Synthemata Magia",
+  "summary": "Spell template for the Synthemata Magia version of a synthemata spell, adding a reduced level to Casting Score against one named being for a short Diameter.",
+  "quotes": [
+   "The spell adds its (level \u2013 5) to the caster's Casting Score against the named being for two minutes."
+  ],
+  "related": []
+ },
+ {
+  "title": "Researching Synthemata (Synthemata Magia)",
+  "heading": "Researching Synthemata",
+  "line": 3549,
+  "endLine": 3559,
+  "category": "mysteries",
+  "topic": "Synthemata",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Synthemata Magia",
+  "summary": "A season of fasting and invocation lets a Synthemata Magia user learn the synthemata of a being previously met in person, by an Ability roll against its Might plus name hiding; failure does not bar further tries.",
+  "quotes": [
+   "Stress Die + Perception + (Realm) Lore + Aura Modifier + Bonuses vs. Might + Name Hiding"
+  ],
+  "related": [
+   "ArM5 p.84 Sympathetic magic multiplier"
+  ]
+ },
+ {
+  "title": "Great Talisman (Minor Hermetic Mystery Virtue)",
+  "heading": "Great Talisman \u2014 Minor Hermetic Mystery Virtue",
+  "line": 3573,
+  "endLine": 3588,
+  "category": "mysteries",
+  "topic": "Great Talisman",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Great Talisman",
+  "summary": "A Mystery Virtue that lets a magus open a talisman attunement merely by using it in regular magical life, and add new components when reopening it, still one attunement per season.",
+  "quotes": [
+   "He can still only open one attunement per season, even if he reopens or invests an effect in his talisman."
+  ],
+  "related": []
+ },
+ {
+  "title": "Standard Talisman (sidebar)",
+  "heading": "Standard Talisman",
+  "line": 3579,
+  "endLine": 3585,
+  "category": "lab",
+  "topic": "Great Talisman",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar recalling how an ordinary talisman is made: components cannot be added to an existing device, so compound items are built with as many components as Magic Theory allows, and vis handling is limited each season.",
+  "quotes": [
+   "she should create and open a compound item with as many components as her Magic Theory score permits"
+  ],
+  "related": [
+   "ArM5 p.97 Preparing items",
+   "ArM5 p.98 Talisman attunement"
+  ]
+ },
+ {
+  "title": "Consummate Talisman (Major Hermetic Mystery Virtue)",
+  "heading": "Consummate Talisman \u2014 Major Hermetic Mystery Virtue",
+  "line": 3589,
+  "endLine": 3609,
+  "category": "mysteries",
+  "topic": "Great Talisman",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Consummate Talisman (prerequisite: Great Talisman or Inscription on the Soul)",
+  "summary": "A Major Mystery Virtue letting a talisman hold Personal-range Muto Vim effects that affect the magus's own spellcasting, including Name of Power effects, at the cost of a Flaw that counts as an Ordeal.",
+  "quotes": [
+   "The magus may enchant Muto Vim effects, with Personal Range, into his talisman, and may use them on himself when he casts Formulaic spells."
+  ],
+  "related": [
+   "Names of Power (Chapter 9)"
+  ]
+ },
+ {
+  "title": "Inscription on the Soul and Talisman Virtues (sidebar)",
+  "heading": "Inscription on the Soul and Talisman Virtues",
+  "line": 3595,
+  "endLine": 3599,
+  "category": "mysteries",
+  "topic": "Great Talisman",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Inscription on the Soul; Great Talisman or Consummate Talisman",
+  "summary": "Sidebar on combining Inscription on the Soul with the talisman Virtues: body or spirit attunements can be opened with Great Talisman, and Inscription on the Soul can replace Great Talisman as the prerequisite for Consummate Talisman.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hermetic Numerology (Minor Mystery Virtue)",
+  "heading": "Hermetic Numerology \u2014 Minor Mystery Virtue",
+  "line": 3619,
+  "endLine": 3625,
+  "category": "mysteries",
+  "topic": "Hermetic Numerology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Numerology",
+  "summary": "A Mystery Virtue based on Artes Liberales (arithmetic) letting a magus devise small Rote formulae and enchant a Numerologist's Book for a bonus to Numerology, Geometry and Architecture; it is also a prerequisite for Divination (Numerology).",
+  "quotes": [],
+  "related": [
+   "Chapter 7: Divination and Augury"
+  ]
+ },
+ {
+  "title": "The Numerologist's Book",
+  "heading": "The Numerologist's Book",
+  "line": 3627,
+  "endLine": 3657,
+  "category": "mysteries",
+  "topic": "Hermetic Numerology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Numerology",
+  "summary": "How a Numerologist enchants a text as a lesser or greater book that gives a book bonus (capped by Artes Liberales arithmetic) to Divination, lab work and Rote casting, and how it is consulted.",
+  "quotes": [
+   "Lesser Numerologist's Book Opened with 8 Pawns of vis",
+   "Lesser Book Bonus is +4",
+   "Greater Numerologist's Book Opened with 16 Pawns of vis",
+   "Greater Book Bonus is +8"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Books (sidebar)",
+  "heading": "Magical Books",
+  "line": 3659,
+  "endLine": 3669,
+  "category": "lab",
+  "topic": "Hermetic Numerology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Numerology",
+  "summary": "Sidebar on how much vis a medieval book costs to open for enchantment (parchment, covers or both) and the new Book Shape Bonus granted.",
+  "quotes": [
+   "+2 Intellego, +3 Divination, +4 Numerology"
+  ],
+  "related": [
+   "ArM5 p.97 Material and Size"
+  ]
+ },
+ {
+  "title": "Rotes",
+  "heading": "Rotes",
+  "line": 3671,
+  "endLine": 3721,
+  "category": "mysteries",
+  "topic": "Hermetic Numerology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Numerology",
+  "summary": "Rotes are small memorized spell-like formulae invoked with no die roll, as if with Quiet and Still Casting. Gives the Rote Lab Total, maximum level, Casting Score and Total, Penetration, and the cheaper invention cost.",
+  "quotes": [
+   "Rote Lab Total = Technique + Form + Intelligence + Magic Theory + Arithmetic + Book Bonus + Aura Modifier",
+   "Maximum Rote Level = (Rote Lab Total) / 5",
+   "Rote Casting Score = Stamina + Technique + Form + Arithmetic + Book Bonus + Aura Modifier",
+   "Rote Casting Total = Casting Score / 2, rounded up."
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating the Numerologist's Book (sidebar)",
+  "heading": "Creating the Numerologist's Book",
+  "line": 3693,
+  "endLine": 3699,
+  "category": "lab",
+  "topic": "Hermetic Numerology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Numerology",
+  "summary": "Sidebar on attuning a text as a Numerologist's Book while opening it: it adds only a short distraction, only its creator gets the bonus, and the lesser and greater versions cost different vis and Magic Theory.",
+  "quotes": [
+   "The lesser Numerologist's Book is created by opening the parchment pages"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Spell Guidelines: Intellego (Form) counting (sidebar)",
+  "heading": "New Spell Guidelines",
+  "line": 3753,
+  "endLine": 3761,
+  "category": "magic",
+  "topic": "Hermetic Numerology",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar giving new Intellego (Form) guidelines for counting individuals in a Target, with or without sorting them into categories.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Hermetic Geometry (Minor Mystery Virtue)",
+  "heading": "Hermetic Geometry \u2014 Minor Mystery Virtue",
+  "line": 3773,
+  "endLine": 3787,
+  "category": "mysteries",
+  "topic": "Hermetic Geometry",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Geometry",
+  "summary": "A Mystery Virtue built on Euclid's postulates and Artes Liberales (geometry) that provides sympathetic magic through shapes, adding perfect-shape drawing, casting bonuses for figures, and new Line Range and Arcane Circle and Ring Targets.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Drawing a Perfect Shape (sidebar)",
+  "heading": "Drawing a Perfect Shape",
+  "line": 3789,
+  "endLine": 3805,
+  "category": "mysteries",
+  "topic": "Hermetic Geometry",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Geometry",
+  "summary": "Rules for scribing a perfect circle or other shape, needed for Arcane Circle and Arcane Ring: a Scribe roll with a hard Ease Factor freehand or an easier one with posts and string, plus the pace and Concentration limits while tracing.",
+  "quotes": [
+   "Die Roll + Dexterity + Profession: Scribe vs. an Ease Factor of 15 if drawn freehand",
+   "Die Roll + Dexterity + Profession: Scribe vs. an Ease Factor of 6 if drawn with the aid of posts and string."
+  ],
+  "related": [
+   "ArM5 p.112 Ring"
+  ]
+ },
+ {
+  "title": "Bonus for Circles, Rings, and Lines",
+  "heading": "Bonus for Circles, Rings, and Lines",
+  "line": 3807,
+  "endLine": 3809,
+  "category": "mysteries",
+  "topic": "Hermetic Geometry",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Geometry",
+  "summary": "A Casting Score bonus when a spell involves tracing a circle or line, including standard Circle and Ring spells.",
+  "quotes": [
+   "the magus gains a bonus of +3 to his Casting Score"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ceremonial Figures",
+  "heading": "Ceremonial Figures",
+  "line": 3811,
+  "endLine": 3825,
+  "category": "mysteries",
+  "topic": "Hermetic Geometry",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Geometry",
+  "summary": "Ceremonial Casting, even for Formulaic spells, with geometric and numerological figures gives a further Casting Score bonus that stacks with the circle bonus; describes which rooms and structures count as regular and the components needed for higher-magnitude spells.",
+  "quotes": [
+   "may use Ceremonial Casting (even for Formulaic spells) and include complex Geometric and Numerological correspondences to gain a bonus of +3 to the Casting Score"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Range: Line",
+  "heading": "New Range and Targets",
+  "line": 3827,
+  "endLine": 3849,
+  "category": "mysteries",
+  "topic": "Hermetic Geometry",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Geometry",
+  "summary": "New Range: Line, equivalent to Sight but needing only that the target be sensed. The magus must calculate the distant point with a Geometry roll against an Ease Factor from the Distance Level, taking rounds to scribe it; failure shifts the target.",
+  "quotes": [
+   "Ease Factor = Distance Level (minimum 9)",
+   "Die Roll + Intelligence + Artes Liberales (Arithmetic) vs. Ease Factor",
+   "Time Taken = (Ease Factor / 3) Rounds (round up)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Distance Level table (sidebar)",
+  "heading": "Distance Level",
+  "line": 3851,
+  "endLine": 3876,
+  "category": "mysteries",
+  "topic": "Hermetic Geometry",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Geometry",
+  "summary": "Sidebar table converting a distance in paces into a Distance Level, used as the Ease Factor for Line Range calculations.",
+  "quotes": [
+   "Treat the length of the line in paces as if points to purchase a score in an Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "New Spell Guidelines: Rego Terram (Hermetic Geometry) (sidebar)",
+  "heading": "New Spell Guidelines",
+  "line": 3878,
+  "endLine": 3886,
+  "category": "magic",
+  "topic": "Hermetic Geometry",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar with new Rego Terram guidelines for reshaping earth into perfect or imperfect geometric shapes.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "New Target: Arcane Circle and New Duration: Arcane Ring",
+  "heading": "New Target: Arcane Circle",
+  "line": 3888,
+  "endLine": 3920,
+  "category": "mysteries",
+  "topic": "Hermetic Geometry",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Geometry",
+  "summary": "New Target Arcane Circle and new Duration Arcane Ring let a magus cast a circle spell on a remote circle by tracing a perfect circle she can reach; the spell breaks if either circle is broken, and the centre is located like a Line Range.",
+  "quotes": [
+   "The line traced must be a perfect circle (as opposed to the standard Circle Target)."
+  ],
+  "related": [
+   "ArM5 p.112 Circle and Ring"
+  ]
+ },
+ {
+  "title": "Extended Material and Size Table (sidebar)",
+  "heading": "Extended Material and Size Table",
+  "line": 3970,
+  "endLine": 3982,
+  "category": "lab",
+  "topic": "Hermetic Architecture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Table extending the Material and Size multipliers to huge rooms, structures and boundaries, giving the enchantment points needed for wood, soft stone and hard stone.",
+  "quotes": [
+   "small room (3 paces by 3 paces) = Ind x 10"
+  ],
+  "related": [
+   "ArM5 p.97 Material and Size table"
+  ]
+ },
+ {
+  "title": "Hermetic Architecture (Minor Mystery Virtue)",
+  "heading": "Hermetic Architecture \u2014 Minor Mystery Virtue",
+  "line": 3984,
+  "endLine": 3996,
+  "category": "mysteries",
+  "topic": "Hermetic Architecture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "A Mystery Virtue for enchanting very large things, such as rooms, buildings, groves and stone circles, by enchanting a set of smaller devices placed in a pattern. The amount of enchantment is the Material times the Size multiplier.",
+  "quotes": [
+   "Multiply Material cost times the Size multiplier of the structure to be enchanted"
+  ],
+  "related": []
+ },
+ {
+  "title": "Compound Component Devices",
+  "heading": "Compound Component Devices",
+  "line": 3998,
+  "endLine": 4018,
+  "category": "mysteries",
+  "topic": "Hermetic Architecture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "The magus finds a matching component device, makes as many identical copies as the structure's Size multiplier, and places them in a calculated pattern, which needs a Geometry roll; failure takes time to recompute and a botch brings disaster.",
+  "quotes": [
+   "Intelligence + Artes Liberales (Geometry) vs. an Ease Factor of 6 + Size Multiplier"
+  ],
+  "related": [
+   "ArM5 p.97 Compound devices"
+  ]
+ },
+ {
+  "title": "Seasonal Vis Limits and Very Large Structures (sidebar)",
+  "heading": "Seasonal Vis Limits and Very Large Structures",
+  "line": 4006,
+  "endLine": 4012,
+  "category": "lab",
+  "topic": "Hermetic Architecture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Sidebar on getting around the seasonal vis limit for huge structures by having others open the component devices, using Verditius, Celestial Magic or Philosophic Alchemy to reduce the vis needed.",
+  "quotes": [
+   "Since a magus is limited to twice Magic Theory pawns of vis in a single season in the laboratory"
+  ],
+  "related": []
+ },
+ {
+  "title": "Investing the Effects",
+  "heading": "Investing the Effects",
+  "line": 4020,
+  "endLine": 4026,
+  "category": "mysteries",
+  "topic": "Hermetic Architecture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "How lab enchanting works for the component devices of a structure: Material and Shape Bonuses from both components and the intended structure, a choice of structure or device targets, and permission to invest Boundary-target effects.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Completing and Binding the Enchantment",
+  "heading": "Completing and Binding the Enchantment",
+  "line": 4028,
+  "endLine": 4030,
+  "category": "mysteries",
+  "topic": "Hermetic Architecture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "After the devices are placed, the magus casts a Mystery rite, formulated as a spell for calculation and vis cost, to link the finished components.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Bind the Mystical Structure (Mystery Ritual)",
+  "heading": "Bind the Mystical Structure",
+  "line": 4032,
+  "endLine": 4044,
+  "category": "mysteries",
+  "topic": "Hermetic Architecture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "The Mystery Ritual that links the placed component devices into one enchanted structure. Its base level exceeds the highest component effect level by a fixed amount and it needs Arcane Range, with extra levels for larger sizes.",
+  "quotes": [
+   "The base level of the ritual must equal or exceed 5 + level of the highest component device effect levels.",
+   "(Create a conduit for spells up to (level + 5 magnitudes), +4 Arcane, +2 Group)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Breaking the Device",
+  "heading": "Breaking the Device",
+  "line": 4046,
+  "endLine": 4052,
+  "category": "mysteries",
+  "topic": "Hermetic Architecture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Component devices may be removed from their niches without destroying the binding, but the effect stops while any is missing; a Muto requisite on the binding fuses devices and holders so they cannot be separated without breakage.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Investigating the Structure",
+  "heading": "Investigating the Structure",
+  "line": 4092,
+  "endLine": 4096,
+  "category": "lab",
+  "topic": "Hermetic Architecture",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for investigating the component devices in a normal lab, where the investigative Lab Total is halved, and the opacity of Architecture and Geometry enchantments to those without the Mystery.",
+  "quotes": [
+   "the magus's investigative Lab Total is halved"
+  ],
+  "related": []
+ },
+ {
+  "title": "Boosting Magical Auras",
+  "heading": "Boosting Magical Auras",
+  "line": 4098,
+  "endLine": 4100,
+  "category": "realms",
+  "topic": "Aura and regio manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Introduces the ability of Hermetic Architecture to manipulate magical auras and regiones, which is normally beyond Hermetic magic and available only to those initiated in the Virtue.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Increase of the Room's Modest Aura (sample enchantment)",
+  "heading": "Increase of the Room's Modest Aura",
+  "line": 4104,
+  "endLine": 4118,
+  "category": "realms",
+  "topic": "Aura and regio manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Sample Architecture enchantment raising the magical aura of a room by one level up to a cap; shows the procedure for enchanting a room, with the magus's own lab enchanted in place and other rooms needing the full structural method.",
+  "quotes": [
+   "Increases the Magical aura in a room by +1, to a maximum aura level of 5.",
+   "(Base 55, +1 Touch, +2 Room, +14 levels always on)"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Aura Magic Guidelines (sidebar)",
+  "heading": "New Aura Magic Guidelines",
+  "line": 4120,
+  "endLine": 4152,
+  "category": "magic",
+  "topic": "Aura and regio manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Sidebar of new Creo, Muto and Rego Vim guidelines for raising auras, changing the size of auras and regiones, closing regiones and linking regio levels; usable only in structural enchantments of Hermetic Architecture.",
+  "quotes": [
+   "Increase the level of a Magical aura by +1 to a maximum of 9 \u2014 greatest increase possible",
+   "Double or halve the linear size of a Magical aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bountiful Boundary's Splendid Aura (sample enchantment)",
+  "heading": "Bountiful Boundary's Splendid Aura",
+  "line": 4154,
+  "endLine": 4168,
+  "category": "realms",
+  "topic": "Aura and regio manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Sample Architecture enchantment raising the aura of a standard Boundary by one level up to a cap, with its component, Geometry roll and binding level worked out.",
+  "quotes": [
+   "Increases the Magical aura in a standard Boundary by +1, to a maximum aura level of 6."
+  ],
+  "related": []
+ },
+ {
+  "title": "Enchantment of the Magnified Regio (sample enchantment)",
+  "heading": "Enchantment of the Magnified Regio",
+  "line": 4170,
+  "endLine": 4186,
+  "category": "realms",
+  "topic": "Aura and regio manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Sample Architecture enchantment that doubles the size of a magical regio, up to a limit, using a ring of pillars set at the old and new perimeters.",
+  "quotes": [
+   "Increases the size of a Magical regio, doubling its size to a maximum of 200 paces across."
+  ],
+  "related": []
+ },
+ {
+  "title": "Closed Privacy of the Enchanted Regio (sample enchantment)",
+  "heading": "Closed Privacy of the Enchanted Regio",
+  "line": 4188,
+  "endLine": 4204,
+  "category": "realms",
+  "topic": "Aura and regio manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Sample Architecture enchantment that shrinks the interface between regio levels until it pinches off, so the inner level can no longer be walked into or seen from the adjacent one.",
+  "quotes": [
+   "(Base 35, +1 Touch, +4 Boundary, +1 to affect the interface only, +14 levels always on)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Conjunction of the Mystic Veils (sample enchantment)",
+  "heading": "Conjunction of the Mystic Veils",
+  "line": 4206,
+  "endLine": 4224,
+  "category": "realms",
+  "topic": "Aura and regio manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Architecture",
+  "summary": "Sample Architecture enchantment creating a password-opened gateway between two levels of a regio from four devices; each gate is one-way, and bidirectional travel needs two gates.",
+  "quotes": [
+   "A single gateway allows travel in one direction only; to make a gate bidirectional, the caster needs two gates (eight component devices)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dream Magic (Minor Hermetic Mystery Virtue)",
+  "heading": "Dream Magic \u2014 Minor Hermetic Mystery Virtue",
+  "line": 4242,
+  "endLine": 4244,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "A Mystery Virtue, from a Baltic folk tradition systematized by Raisa of Novgorod, whose Mystery spells let a magus's spirit enter and act within dreams.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Spiritual Dream Travel",
+  "heading": "Spiritual Dream Travel",
+  "line": 4246,
+  "endLine": 4260,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "How a spirit traveler enters a dream while the body lies in a trance: dream logic and time apply, disturbances to the body require Concentration rolls to stay, and an Arcane Connection to the body allows waking and use of real-world vis.",
+  "quotes": [
+   "Physical disturbances to a traveler's body, such as being shaken or yelled at, require Concentration rolls"
+  ],
+  "related": [
+   "ArM5 p.82 Concentration"
+  ]
+ },
+ {
+  "title": "The Stuff of Dreams (sidebar)",
+  "heading": "The Stuff of Dreams",
+  "line": 4252,
+  "endLine": 4254,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Sidebar explaining that dreams are Mentem to create, enter or change from outside, but Imaginem for changes made within the dream.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Spiritual Traveler",
+  "heading": "The Spiritual Traveler",
+  "line": 4262,
+  "endLine": 4270,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "What a spirit traveler keeps in a dream: Techniques, Imaginem as the only Form, Parma Magica, Virtues and Flaws, and a dream copy of the talisman, while the body is protected only by Form scores unless Parma is split between body and spirit.",
+  "quotes": [
+   "reducing his effective Parma score by 3"
+  ],
+  "related": [
+   "ArM5 p.66 Parma Magica"
+  ]
+ },
+ {
+  "title": "Dream Magic Spells: Duration and Target Dream",
+  "heading": "Dream Magic Spells",
+  "line": 4272,
+  "endLine": 4322,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Introduces the new Duration: Dream and Target: Dream, which exist only for the length of one sleeper's dream, along with rules for magic and vis within dreams.",
+  "quotes": [
+   "Dream Duration is equivalent to Concentration.",
+   "Dream Target is equivalent to Individual."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic in Dream (sidebar)",
+  "heading": "Magic in Dream",
+  "line": 4286,
+  "endLine": 4310,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Sidebar on casting in dreams: every spell is cast as Imaginem using the magus's Imaginem score, durations run on dream time, rituals can be spontaneous with dream vis, and real-world vis is needed to affect anything beyond the dream.",
+  "quotes": [
+   "A spirit traveler in a dream casts a spell of any Form as an Imaginem spell.",
+   "Real-world vis can only be used for known (non-Spontaneous) Rituals"
+  ],
+  "related": []
+ },
+ {
+  "title": "Dream Vis (sidebar)",
+  "heading": "Dream Vis",
+  "line": 4312,
+  "endLine": 4316,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Sidebar saying dream vis is easily found, is nearly always Imaginem, and has no effect outside dreams; real-world vis must be carried on the body or brought by a physical traveler.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "New Spell Guidelines: Muto Mentem (Dream) (sidebar)",
+  "heading": "New Spell Guidelines",
+  "line": 4336,
+  "endLine": 4348,
+  "category": "magic",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Sidebar of Muto Mentem (Dream, Mystery) guidelines for changing a dream to include the caster's spirit, another's spirit, or a group; Range is the greater of the range to the dreamer or to the bodies involved.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Time and Travel",
+  "heading": "Time and Travel",
+  "line": 4376,
+  "endLine": 4388,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Dream navigation is associative rather than geographical and dream time is flexible, a traveler does not sleep in a dream, and permanent changes are lost on leaving. Advice to the storyguide on running dream-logic travel.",
+  "quotes": [
+   "They cannot have a dream within a dream."
+  ],
+  "related": []
+ },
+ {
+  "title": "Encounters in Dream",
+  "heading": "Encounters in Dream",
+  "line": 4390,
+  "endLine": 4400,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "What can be met in a dream: dream-people know only what the dreamer or caster intends, and a traveler may check pockets to find modest common objects, including a little dream vis, at the storyguide's discretion.",
+  "quotes": [
+   "Dream-people are people as perceived by the dreamer (not the traveler)."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Dreamer in Control (Lucid Dreaming)",
+  "heading": "The Dreamer in Control (Lucid Dreaming)",
+  "line": 4402,
+  "endLine": 4435,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Rolls for a dreamer to notice travelers and to reshape her own dream, with bonuses for magical power; the rolled total acts as the magnitude of a dream spell. The storyguide may also let a dreamer change the dream unconsciously.",
+  "quotes": [
+   "To Become Aware of Travelers: Stress Die + Perception + Awareness vs. an Ease Factor of 9",
+   "To Reshape a Dream: Stress Die + Intelligence + Bonuses vs. an Ease Factor of 9",
+   "Dream Shaping Magnitude = Rolled Total",
+   "+3 if the dreamer has Dream Magic"
+  ],
+  "related": []
+ },
+ {
+  "title": "Time and Experience in Dream",
+  "heading": "Time and Experience in Dream",
+  "line": 4437,
+  "endLine": 4441,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Travelers can learn information in a dream but gain no game experience, and lab work such as inventing spells or enchanting is impossible.",
+  "quotes": [
+   "they do not gain game points for Arts and Abilities"
+  ],
+  "related": []
+ },
+ {
+  "title": "Spell Botches in Dream",
+  "heading": "Spell Botches in Dream",
+  "line": 4443,
+  "endLine": 4451,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "A botch in a dream produces nightmare effects, and gives the magus real Warping Points and Twilight checks; Twilight is measured in real-world time and removes him from the dream meanwhile.",
+  "quotes": [
+   "A magus botching a spell accumulates real Warping points and must check for Twilight as normal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fatigue and Wounds",
+  "heading": "Fatigue and Wounds",
+  "line": 4453,
+  "endLine": 4481,
+  "category": "hazards",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Spirits in dreams ignore Fatigue, and wounds are not real but their shock is: the traveler rolls Stamina against the total Wound Penalty or is thrown out of the dream. Also covers attacks that reduce a traveler's Imaginem 'Might'.",
+  "quotes": [
+   "Stress Die + Stamina + Modifiers vs. an Ease Factor of Total Wound Penalty",
+   "An Incapacitating wound has an Ease Factor of 9"
+  ],
+  "related": []
+ },
+ {
+  "title": "Aging in Dream",
+  "heading": "Aging in Dream",
+  "line": 4483,
+  "endLine": 4489,
+  "category": "aging",
+  "topic": "Dream Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "A spiritual traveler ages only as she chooses in a dream, while her body is subject to normal effects including aging and death; a traveler who never returns may gain a form of immortality.",
+  "quotes": [
+   "While the spirit is in a dream, the body is subject to all normal effects, including aging."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Greater Dream Grimoire (Minor Mystery Virtue)",
+  "heading": "The Greater Dream Grimoire \u2014 Minor Mystery Virtue",
+  "line": 4491,
+  "endLine": 4503,
+  "category": "mysteries",
+  "topic": "Greater Dream Grimoire",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: The Greater Dream Grimoire (prerequisite: Dream Magic)",
+  "summary": "A Mystery Virtue, requiring Dream Magic, for entering a dream physically through a portal and for giving dream objects real substance. Physical travelers suffer real and permanent effects and perceive spiritual travelers as illusion, while they are perceived as real.",
+  "quotes": [
+   "Traveling physically into dreams is like crossing into a Regio, unlike spiritual travel."
+  ],
+  "related": []
+ },
+ {
+  "title": "Time, Travel, and Objects",
+  "heading": "Time, Travel, and Objects",
+  "line": 4505,
+  "endLine": 4519,
+  "category": "mysteries",
+  "topic": "Greater Dream Grimoire",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: The Greater Dream Grimoire (prerequisite: Dream Magic)",
+  "summary": "Physical travelers experience normal time and movement, cannot find objects on their person, resist dream logic applied to themselves, and are expelled if the dreamer wakes; real objects hidden in a dream are easy for them to retrieve.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Life and Limb",
+  "heading": "Life and Limb",
+  "line": 4521,
+  "endLine": 4525,
+  "category": "hazards",
+  "topic": "Greater Dream Grimoire",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: The Greater Dream Grimoire (prerequisite: Dream Magic)",
+  "summary": "Physical travelers suffer Fatigue and Wounds, need food and sleep, and heal and age at normal rates; dream food lacks real nourishment.",
+  "quotes": [
+   "Consuming dream-food is like consuming food created by magic but without vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Spellcasting (Greater Dream Grimoire)",
+  "heading": "Spellcasting",
+  "line": 4527,
+  "endLine": 4533,
+  "category": "mysteries",
+  "topic": "Greater Dream Grimoire",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: The Greater Dream Grimoire (prerequisite: Dream Magic)",
+  "summary": "Physical travelers cast with their normal Hermetic Forms and can cast real-world spells that affect dreams, making them much more powerful than spiritual travelers; dream aura follows the setting.",
+  "quotes": [
+   "Physical travelers cast spells as normal, responding to the Forms of dream as if they had normal Hermetic Forms."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vis and Physical Travelers",
+  "heading": "Vis and Physical Travelers",
+  "line": 4535,
+  "endLine": 4543,
+  "category": "mysteries",
+  "topic": "Greater Dream Grimoire",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: The Greater Dream Grimoire (prerequisite: Dream Magic)",
+  "summary": "Any vis can be used in a dream, but only real-world vis brought by a physical traveler has real effects and is permanently spent. Effects sustained by dream vis vanish on return, though Momentary Creo rituals create real effects.",
+  "quotes": [
+   "If real-world vis is used, it is gone forever, just as if used in the real world."
+  ],
+  "related": []
+ },
+ {
+  "title": "Spells of the Greater Dream Grimoire",
+  "heading": "Spells of the Greater Dream Grimoire",
+  "line": 4545,
+  "endLine": 4547,
+  "category": "mysteries",
+  "topic": "Greater Dream Grimoire",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: The Greater Dream Grimoire (prerequisite: Dream Magic)",
+  "summary": "States that the Range of these spells is the greater of the range to the dream target or to the people or objects affected.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "New Guidelines",
+  "heading": "New Guidelines",
+  "line": 4549,
+  "endLine": 4637,
+  "category": "magic",
+  "topic": "Greater Dream Grimoire",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: The Greater Dream Grimoire (prerequisite: Dream Magic)",
+  "summary": "New Mystery guidelines for the Greater Dream Grimoire: giving dream objects real substance (as a Momentary Ritual using real-world vis, with extra levels for enchantments), moving bodies and objects through a portal into dreams, plus the sample spells that use them.",
+  "quotes": [
+   "Creo Imaginem spells to give substance to an object must be cast in a dream by a spiritual traveler as a Momentary Ritual, using real-world vis",
+   "Give an object encountered in dream substance so that it can exist in the real world."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Dream Landscape",
+  "heading": "The Dream Landscape",
+  "line": 4639,
+  "endLine": 4645,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Dreams have rare natural portals to the dreamer's imagination and memory, and travelers leave portals back to where they entered; any traveler, whether spiritual, physical, demon or faerie, can use dream portals.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Mind's Imagination",
+  "heading": "The Mind's Imagination",
+  "line": 4647,
+  "endLine": 4651,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "The imagination behaves like dream but persists into waking time, so a traveler can stay inside a waking person's mind and may confront possessing spirits that have taken residence there.",
+  "quotes": [
+   "the imagination persists beyond sleep, into waking time"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Mind's Memory",
+  "heading": "The Mind's Memory",
+  "line": 4653,
+  "endLine": 4661,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "Rules for exploring a dreamer's memory: ordinary memories are unstructured, an Art of Memory palace can be entered like a burglar, memories can be moved or strengthened, and a solid memory can be stolen, which removes it from the dreamer.",
+  "quotes": [
+   "A solid memory can be removed (stolen) into the real world."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Dreamscape",
+  "heading": "The Dreamscape",
+  "line": 4663,
+  "endLine": 4677,
+  "category": "mysteries",
+  "topic": "Dream Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dream Magic",
+  "summary": "The rumored shared dreamscape between dreams: only spiritual travelers can enter, there is no direct path back to the waking world so wounds do not expel them, the body cannot be woken, and the spirit can be killed by dream Mentem and Might attacks.",
+  "quotes": [
+   "This is one of the few ways to kill a magus in dreams."
+  ],
+  "related": []
+ },
+ {
+  "title": "Structure of the Volshebnii Mechtateli",
+  "heading": "Structure of the Volshebnii Mechtateli",
+  "line": 4713,
+  "endLine": 4723,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Volshebnii Mechtateli",
+  "summary": "How the dream-magic cult is organised: only two degrees, initiation offered in dream to those with strong Imaginem and Mentem aptitude, and the Virtues a mentor may teach beyond Dream Magic.",
+  "quotes": [
+   "It acknowledges only two degrees"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Death of A Thousand Nightmares (sidebar)",
+  "heading": "The Death of A Thousand Nightmares",
+  "line": 4725,
+  "endLine": 4727,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Volshebnii Mechtateli",
+  "summary": "Sidebar on the cult's penalty for intruders at the Vermilion Temple: an embodied personal nightmare that non-Initiates cannot escape, though Initiates can intervene with Imaginem magic.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Neo-Mercurians",
+  "heading": "The Neo-Mercurians",
+  "line": 4745,
+  "endLine": 4788,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Neo-Mercurians",
+  "summary": "The Neo-Mercurian Mystery Cult: its simple three-fold local ranks (Messengers, Congregation, Priests) and the list of Virtues it teaches by Initiation, which a storyguide may pick from.",
+  "quotes": [
+   "The Neo-Mercurians have no system of degrees or ranks at local level, beyond a very simple three-fold division:"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages"
+  ]
+ },
+ {
+  "title": "Neo-Mercurian Road Magic: New Ranges and Targets",
+  "heading": "Neo-Mercurian Road Magic: New Ranges and Targets",
+  "line": 4790,
+  "endLine": 4814,
+  "category": "mysteries",
+  "topic": "Mercurian Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Mercurian Magic; Road Magic taught or Initiated",
+  "summary": "New Ranges Road and Road Network and Targets Road and Road Network for Formulaic and Ritual spells (not Spontaneous), taught in one season to a maga with Mercurian Magic; each is equated to an existing level for spell design.",
+  "quotes": [
+   "(For purposes of spell level calculation, Road is the same level as Voice.)",
+   "a standard Road size is 100 paces long",
+   "A standard Road Network is 10,000 paces long"
+  ],
+  "related": [
+   "ArM5 p.92 Faerie Magic Roads"
+  ]
+ },
+ {
+  "title": "Cult of Mercury and Neo-Mercurian Spell Mastery Special Abilities (sidebar)",
+  "heading": "Cult of Mercury and Neo-Mercurian Spell Mastery Special Abilities",
+  "line": 4848,
+  "endLine": 4856,
+  "category": "magic",
+  "topic": "Spell Mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mastery ability learned from a Cult of Mercury or True Lineages magus",
+  "summary": "Sidebar introducing the Mercurian Mastery special abilities: how they are learned from a teacher who knows them, chosen instead of the ArM5 abilities when gaining a Mastery level, and available to characters with Mastered Spells at creation.",
+  "quotes": [],
+  "related": [
+   "Houses of Hermes: True Lineages",
+   "ArM5 Spell Mastery"
+  ]
+ },
+ {
+  "title": "Adaptive Casting",
+  "heading": "Adaptive Casting",
+  "line": 4858,
+  "endLine": 4860,
+  "category": "magic",
+  "topic": "Spell Mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mastery ability learned from a Cult of Mercury or True Lineages magus",
+  "summary": "Mastery ability that lets a magus use the mastery score and abilities of one spell when casting a similar spell, but only one mastered Ability's score may be used for a given casting.",
+  "quotes": [
+   "You may use your mastery score and all the special abilities associated with it whenever you cast a similar spell."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ceremonial Casting",
+  "heading": "Ceremonial Casting",
+  "line": 4862,
+  "endLine": 4864,
+  "category": "magic",
+  "topic": "Spell Mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mastery ability learned from a Cult of Mercury or True Lineages magus",
+  "summary": "Mastery ability allowing ceremonial methods for a non-Ritual spell, increasing casting time and adding Artes Liberales and Philosophiae to the total.",
+  "quotes": [
+   "increasing the casting time and adding her Artes Liberales and Philosophiae to her total"
+  ],
+  "related": [
+   "Chapter 4: Curious Common Magics"
+  ]
+ },
+ {
+  "title": "Disguised Casting",
+  "heading": "Disguised Casting",
+  "line": 4866,
+  "endLine": 4868,
+  "category": "magic",
+  "topic": "Spell Mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mastery ability learned from a Cult of Mercury or True Lineages magus",
+  "summary": "Mastery ability allowing a magus to suppress or alter his sigil to hide his identity or mimic another magus's, adding Spell Mastery to the roll that determines how hard it is to recognize.",
+  "quotes": [
+   "he may add his Spell Mastery score to the roll that determines how difficult it is to recognize"
+  ],
+  "related": []
+ },
+ {
+  "title": "Lab Mastery",
+  "heading": "Lab Mastery",
+  "line": 4870,
+  "endLine": 4872,
+  "category": "magic",
+  "topic": "Spell Mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mastery ability learned from a Cult of Mercury or True Lineages magus",
+  "summary": "Mastery ability adding the spell mastery score to the Lab Total when designing effects similar to the mastered spell, on top of the standard similar spell bonus.",
+  "quotes": [
+   "she may add her spell mastery score to her Lab Total when designing effects that are similar to it"
+  ],
+  "related": [
+   "ArM5 p.101 Similar Spells"
+  ]
+ },
+ {
+  "title": "Learn From Mistakes",
+  "heading": "Learn From Mistakes",
+  "line": 4874,
+  "endLine": 4876,
+  "category": "magic",
+  "topic": "Spell Mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mastery ability learned from a Cult of Mercury or True Lineages magus",
+  "summary": "Mastery ability giving experience toward mastery the first time in a session that the magus botches or narrowly fails a roll for the spell.",
+  "quotes": [
+   "he gains 5 experience points toward mastery of this spell"
+  ],
+  "related": []
+ },
+ {
+  "title": "Stalwart Casting",
+  "heading": "Stalwart Casting",
+  "line": 4878,
+  "endLine": 4880,
+  "category": "magic",
+  "topic": "Spell Mastery abilities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mastery ability learned from a Cult of Mercury or True Lineages magus",
+  "summary": "Mastery ability making a spell less tiring: a Ritual costs normal rather than long-term Fatigue and fewer levels, and a Formulaic spell never costs Fatigue for a low casting total.",
+  "quotes": [
+   "she loses normal Fatigue instead of long-term Fatigue when casting it, and half as many Fatigue levels, rounded up (but always at least 1)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Sacrifice (Minor Hermetic Mystery Virtue)",
+  "heading": "Hermetic Sacrifice \u2014 Minor Hermetic Mystery Virtue",
+  "line": 4882,
+  "endLine": 4890,
+  "category": "mysteries",
+  "topic": "Hermetic Sacrifice",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hermetic Sacrifice",
+  "summary": "A Mystery Virtue where an unblemished sacrificial animal on a pagan altar substitutes for some of the vis for a Ritual that summons a deity; magic that forces the spirit spoils the altar.",
+  "quotes": [
+   "A pure and satisfactory sacrifice substitutes for between one and six pawns of vis, depending on the nature of the animal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mystery Cults: Rumors and Using the Examples",
+  "heading": "Chapter 14: Mystery Cults",
+  "line": 4892,
+  "endLine": 4908,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how the example cults are to be used and how a character hears rumor of a cult, and that initiation schedules are examples only: the Mystagogue may substitute alternative Virtues and has several Initiation Scripts for each.",
+  "quotes": [
+   "Communication + Order of Hermes Lore vs. an Ease Factor of 15"
+  ],
+  "related": []
+ },
+ {
+  "title": "Structure of the Legion",
+  "heading": "Structure of the Legion",
+  "line": 4938,
+  "endLine": 4944,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Legion of Mithras",
+  "summary": "How the Legion of Mithras is organised: underground temples in strong Magic auras, disciplined Auxiliary grogs and companions who support members, and ranks equivalent to degrees in other cults.",
+  "quotes": [
+   "The Auxiliary Legion is open to faithful grogs and companions"
+  ],
+  "related": []
+ },
+ {
+  "title": "First Rank: Ravens",
+  "heading": "First Rank: Ravens",
+  "line": 4946,
+  "endLine": 4950,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Legion of Mithras",
+  "summary": "Initiation as a Raven requires an Ordeal oath giving a minor personality Flaw, followed by a season of training in the Virtue Strong-Willed.",
+  "quotes": [
+   "the swearing of a magical oath that sears into the Initiates' being a new minor personality flaw: Dutybound (Legion of Mithras)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Second Rank: Brides",
+  "heading": "Second Rank: Brides",
+  "line": 4952,
+  "endLine": 4956,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Legion of Mithras",
+  "summary": "Initiation as a Bride calls for a Quest to investigate a minor matter, then a season of tuition under the Lions in the Virtue Clear Thinker.",
+  "quotes": [
+   "taught by a season of careful tuition under the Lions (high-ranking Initiates who reside at the temple) the Virtue Clear Thinker"
+  ],
+  "related": []
+ },
+ {
+  "title": "Third Rank: Soldiers",
+  "heading": "Third Rank: Soldiers",
+  "line": 4958,
+  "endLine": 4962,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Legion of Mithras",
+  "summary": "Initiation as a Soldier requires the candidate to lead a heroic Quest against a terrible enemy of the Order, followed by a third season of training in a warrior's Virtue.",
+  "quotes": [
+   "the Virtue Reserves of Strength or Enduring Constitution"
+  ],
+  "related": []
+ },
+ {
+  "title": "Fourth Rank: Lions (Captain)",
+  "heading": "Fourth Rank: Lions (Captain)",
+  "line": 4968,
+  "endLine": 4976,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Legion of Mithras",
+  "summary": "Initiation as a Lion needs repeated Quests including commanding Soldiers and Auxiliaries, teaches Inscription on the Soul, and requires seven years living at the temple, which grants an exceptional bonus to the next Initiation Total.",
+  "quotes": [
+   "gaining a +5 bonus to their next Initiation Total, despite the normal limit on the bonus of +1 for time spent serving a Mystery Cult"
+  ],
+  "related": [
+   "Inscription on the Soul"
+  ]
+ },
+ {
+  "title": "A Typical Raven Initiation Script (sidebar)",
+  "heading": "A Typical Raven Initiation Script",
+  "line": 4978,
+  "endLine": 4986,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Legion of Mithras",
+  "summary": "Worked example of an Initiation Script for the Raven rank: the Mystagogue's qualifications, the target level after a Minor Ordeal reduction, and the Quest and seasonal Sacrifice components with their bonuses.",
+  "quotes": [
+   "the Target Level is 12 and an Initiation Script that grants a bonus of +5 is typically employed"
+  ],
+  "related": [
+   "Chapter 2: Initiation"
+  ]
+ },
+ {
+  "title": "Fifth Rank: Persian",
+  "heading": "Fifth Rank: Persian",
+  "line": 4988,
+  "endLine": 4990,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Legion of Mithras",
+  "summary": "The top rank a player character is likely to reach; initiation calls for sacrificing the magus's talisman for a silver sickle replacement, and teaches the mystery of spirit familiars.",
+  "quotes": [
+   "The Persian is always Initiated into the mystery of spirit familiars"
+  ],
+  "related": []
+ },
+ {
+  "title": "Typical Initiation Script for Philosophers of Rome (sidebar)",
+  "heading": "Typical Initiation Script for Philosophers of Rome",
+  "line": 5022,
+  "endLine": 5026,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Philosophers of Rome",
+  "summary": "Sidebar giving a worked Initiation Script for Hermetic Synthemata among the Philosophers: Mystagogue requirements, and the Script bonus built from sympathetic, wealth and time-sacrifice components.",
+  "quotes": [
+   "The Script bonus is usually about +6 for this Initiation."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Structure of the Philosophers of Rome",
+  "heading": "The Structure of the Philosophers of Rome",
+  "line": 5028,
+  "endLine": 5038,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Philosophers of Rome",
+  "summary": "Loosely organised congregations with no fixed degrees: new Initiates are first taught Hermetic Synthemata and usually Spell Binding, further Virtues of Hermetic theurgy go only to ambitious members, and ascension needs a supporting network of cultists with no known script.",
+  "quotes": [
+   "All Initiates who are tutored by an existing cult Mystagogue are first taught the secret of the Virtue Hermetic Synthemata"
+  ],
+  "related": [
+   "Ascendancy to the Hall of Heroes"
+  ]
+ },
+ {
+  "title": "Structure of the Children of Hermes",
+  "heading": "Structure of the Children of Hermes",
+  "line": 5064,
+  "endLine": 5074,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Children of Hermes",
+  "summary": "The Children of Hermes initiate by a missionary teaching Children of Hermes Lore for a season, then granting a Mystery Virtue and a copy of the Script; members owe yearly vis dues and recruit others in a pyramid. The cult assimilates other cults' Lore into its own Initiation Scripts.",
+  "quotes": [
+   "She then becomes liable for the yearly dues that are paid in two or more pawns of vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sample Initiation Script for the Children of Hermes (sidebar)",
+  "heading": "Sample Initiation Script for the Children of Hermes",
+  "line": 5076,
+  "endLine": 5082,
+  "category": "mysteries",
+  "topic": "Mystery cults",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Mystery Cult: Children of Hermes",
+  "summary": "Sidebar giving a worked Script for the Major Supernatural Virtue Augury and Divination (ophiomancy) with a Quest, a season of study and sacrifice, and an Ordeal that bestows a Major Flaw; shows the large Script bonus needed with a weak Mystagogue.",
+  "quotes": [
+   "the Initiation Script is designed to give a +14 bonus",
+   "The Initiate must be quite advanced in cult lore and possess a score of 6 to be Initiated into a Major Virtue."
+  ],
+  "related": []
+ }
+]

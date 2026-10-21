@@ -1,0 +1,1888 @@
+[
+ {
+  "title": "Mystery Initiation: Initiation Total and Target Levels",
+  "heading": "Introduction: The Mechanics of Initiation",
+  "line": 197,
+  "endLine": 229,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a House Mystery (Bjornaer, Criamon, Merinita or Verditius)",
+  "summary": "Summarises how a Mystagogue's Initiation Total is compared against a Target Level to initiate a Major or Minor mystery Virtue, with no die roll. Gives the Target Levels, the penalty for lacking the Virtue, and reductions after earlier Ordeals.",
+  "quotes": [
+   "Initiation Total = Presence + (House) Lore + Script bonus",
+   "To initiate a Minor Virtue known by the Mystagogue: Target Level 15",
+   "To initiate a Major Virtue known by the Mystagogue: Target Level 21"
+  ],
+  "related": [
+   "The Mysteries Revised Edition, Chapter 2: Entering the Mysteries"
+  ]
+ },
+ {
+  "title": "The Initiation Script",
+  "heading": "The Initiation Script",
+  "line": 231,
+  "endLine": 233,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a House Mystery",
+  "summary": "Explains that an Initiation Script is a written text, like a Lab Text, describing a successful Initiation and the Ordeal, Quest and Sacrifice components that supply bonuses to the Initiation Total.",
+  "quotes": [],
+  "related": [
+   "The Mysteries Revised Edition, Chapter 2: Entering the Mysteries"
+  ]
+ },
+ {
+  "title": "Varying a Script",
+  "heading": "Varying a Script",
+  "line": 235,
+  "endLine": 245,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a House Mystery",
+  "summary": "A Mystagogue whose Script falls short can test to extend it with a new component or change an existing one, but only one change per Initiation; a failed test means that Initiation would fail but can be retried in another season.",
+  "quotes": [
+   "The Ease Factor is 9 to extend the Script with a new component",
+   "The Ease Factor is 12 to change a component"
+  ],
+  "related": []
+ },
+ {
+  "title": "Character Creation and the Mysteries",
+  "heading": "Character Creation & the Mysteries",
+  "line": 247,
+  "endLine": 265,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Starting a magus already Initiated into a Mystery cult (storyguide permission)",
+  "summary": "Rules for starting a magus who already holds House Mystery Virtues: they use ordinary Virtue and Flaw slots, and for older characters an Initiation costs the experience of one lab season. Includes the sidebar of common Script element bonuses.",
+  "quotes": [
+   "subtracts 10 experience points from the character's total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Elements of an Initiation Script",
+  "heading": "Example Elements of an Initiation Script",
+  "line": 252,
+  "endLine": 263,
+  "category": "mysteries",
+  "topic": "Mystery initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation into a House Mystery",
+  "summary": "Sidebar listing the Initiation Total bonuses commonly granted by Script elements such as special places or times, Quests, sacrifices and Ordeals of varying severity.",
+  "quotes": [
+   "+3 Initiate has to complete a specific Quest",
+   "+9 Initiate suffers an Ordeal inflicting a Major Flaw or removing a Major Virtue"
+  ],
+  "related": [
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Potent Magic",
+  "heading": "Potent Magic",
+  "line": 267,
+  "endLine": 281,
+  "category": "magic",
+  "topic": "Potent Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Potent Magic (Minor or Major)",
+  "summary": "Reproduces the Potent Magic Hermetic Virtue, which gives a bonus in a narrow field like a Magical Focus and lets the magus design Potent spells. Several mysteries in this book rely on it.",
+  "quotes": [
+   "grants a +3 bonus to Lab Totals and Casting Scores",
+   "grants a +6 bonus to Lab Totals and Casting Scores"
+  ],
+  "related": [
+   "The Mysteries Revised Edition",
+   "ArM5 p.110 Shape and Material Bonus table"
+  ]
+ },
+ {
+  "title": "Potent Spells",
+  "heading": "Potent Spells",
+  "line": 283,
+  "endLine": 295,
+  "category": "magic",
+  "topic": "Potent Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Potent Magic to design; any magus may learn and cast one",
+  "summary": "A Potent spell has a Potency bonus built from Casting Items that the caster must touch, added to the Casting Score. Potency is part of the spell design and travels with Lab Texts and teaching.",
+  "quotes": [
+   "Potency = Sum of bonus from each Casting Item",
+   "Potency Bonus: Add Potency to Casting Score"
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material Bonus table"
+  ]
+ },
+ {
+  "title": "Potent Magic and Potent Spells (Inventing and Varying)",
+  "heading": "Potent Magic and Potent Spells",
+  "line": 297,
+  "endLine": 305,
+  "category": "magic",
+  "topic": "Potent Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Potent Magic",
+  "summary": "How a Potent Magic magus chooses Casting Items when inventing a spell, caps Potency by Magic Theory, and may invent a variant of a known spell with different Casting Items in a single season.",
+  "quotes": [
+   "The total Potency may not exceed the magus's Magic Theory."
+  ],
+  "related": []
+ },
+ {
+  "title": "Designing Covenant Libraries (Potency)",
+  "heading": "Designing Covenant Libraries",
+  "line": 307,
+  "endLine": 309,
+  "category": "covenant",
+  "topic": "Potent Magic",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Potent spells in a covenant library",
+  "summary": "When building a covenant library, Potency counts towards the spell level for Build Points, and the required Casting Items are recorded.",
+  "quotes": [
+   "add Potency (if any) to spell level when counting Build Points"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Clan Mysteries (Bjornaer)",
+  "heading": "The Clan Mysteries",
+  "line": 433,
+  "endLine": 435,
+  "category": "mysteries",
+  "topic": "Bjornaer clan mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer",
+  "summary": "Sidebar explaining that Bjornaer magi can be initiated into Clan Mysteries and House Mysteries, that each clan lists its own Initiation Scripts, and where the mechanics for those Scripts are found.",
+  "quotes": [],
+  "related": [
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Clan Arelie (Bjornaer clan and initiations)",
+  "heading": "Clan Arelie",
+  "line": 437,
+  "endLine": 467,
+  "category": "houses",
+  "topic": "Bjornaer clan mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer, Clan Arelie",
+  "summary": "Describes the Remember clan, its political stance and roles, and lists its three Clan Initiations (the Trial of the Tree, the Deed of Forgotten Lore and the Oath of the Empty Hand) with the Virtues and Flaws each grants.",
+  "quotes": [
+   "The initiate is hanged by his wrists for four days"
+  ],
+  "related": [
+   "The Mysteries Revised Edition, Chapter 3: Curious Common Magics (Art of Memory)"
+  ]
+ },
+ {
+  "title": "Clan Ilfetu (Bjornaer clan and initiations)",
+  "heading": "Clan Ilfetu",
+  "line": 469,
+  "endLine": 497,
+  "category": "houses",
+  "topic": "Bjornaer clan mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer, Virtue: Clan Ilfetu (Minor)",
+  "summary": "Describes the Teach clan, the only one that initiates the House Mysteries, and lists its Clan Initiations (the Trial and Oath of the Prophet and the Deed of Honor) with the Virtues and Flaws gained.",
+  "quotes": [
+   "To be a member of this clan, you must take the Clan Ilfetu Minor Virtue.",
+   "The Initiate is pinned under a large rock for 9 days and acquires the Visions Flaw"
+  ],
+  "related": []
+ },
+ {
+  "title": "Clan Maruhs (Bjornaer clan and initiations)",
+  "heading": "Clan Maruhs",
+  "line": 505,
+  "endLine": 535,
+  "category": "houses",
+  "topic": "Bjornaer clan mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer, Clan Maruhs",
+  "summary": "Describes the Strive clan and lists its Clan Initiations (the Trial of Chains, the Deed of Emulation and the Oath of the Muse) with the Virtues and Flaws each grants.",
+  "quotes": [
+   "Bound by magical chains and cast into a pit"
+  ],
+  "related": []
+ },
+ {
+  "title": "Clan Midusulf (Bjornaer clan and initiations)",
+  "heading": "Clan Midusulf",
+  "line": 537,
+  "endLine": 567,
+  "category": "houses",
+  "topic": "Bjornaer clan mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer, Clan Midusulf",
+  "summary": "Describes the Lead clan and lists its Clan Initiations (the Trial of the Sacred Marriage, the Deed of Glory and the Oath of Steadfastness) with the Virtues and Flaws each grants.",
+  "quotes": [
+   "The Initiate is ritually wedded to the earth through the letting of blood"
+  ],
+  "related": []
+ },
+ {
+  "title": "Clan Sirnas (Bjornaer clan and initiations)",
+  "heading": "Clan Sirnas",
+  "line": 569,
+  "endLine": 599,
+  "category": "houses",
+  "topic": "Bjornaer clan mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer, Clan Sirnas",
+  "summary": "Describes the Protect clan and lists its Clan Initiations (the Trial of Self Control, the Deed of the Woodland Warden and the Oath of the Helpful Stranger) with the Virtues and Flaws each grants.",
+  "quotes": [
+   "The Initiate must starve himself until he collapses"
+  ],
+  "related": [
+   "House Merinita: Nature Mysteries (Awakening)"
+  ]
+ },
+ {
+  "title": "Clan Wilkis (Bjornaer clan and initiations)",
+  "heading": "Clan Wilkis",
+  "line": 601,
+  "endLine": 631,
+  "category": "houses",
+  "topic": "Bjornaer clan mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer, Clan Wilkis",
+  "summary": "Describes the Nourish clan and lists its Clan Initiations (the Trial of Self-Negation, the Deed of Fealty and the Oath of Completion) with the Virtues and Flaws each grants.",
+  "quotes": [
+   "The Initiate must perform humiliating and degrading acts before many witnesses"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Gathering of Twelve Years",
+  "heading": "The Gathering of Twelve Years",
+  "line": 653,
+  "endLine": 667,
+  "category": "houses",
+  "topic": "Bjornaer House customs",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer",
+  "summary": "Describes the twelve-yearly House gathering at Crintera where the Ritual of Twelve Years is performed and council seats are voted on, with advice for storyguides and an experience award for characters who attend.",
+  "quotes": [
+   "All characters who attend a Gathering of Twelve Years should gain five experience points"
+  ],
+  "related": [
+   "Guardians of the Forests: The Rhine Tribunal"
+  ]
+ },
+ {
+  "title": "The Apprenticeship of a Bjornaer Magus",
+  "heading": "The Apprenticeship of a Bjornaer Magus",
+  "line": 669,
+  "endLine": 681,
+  "category": "houses",
+  "topic": "Bjornaer apprenticeship",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer apprenticeship",
+  "summary": "Explains the two phases of Bjornaer training, the shared sleeping years under the whole sept and the awakened years under a single master after the heartbeast is awakened, and how this fits the Code of Hermes apprenticeship length.",
+  "quotes": [
+   "an apprentice will receive 15 seasons of training over 15 years before joining the Order"
+  ],
+  "related": []
+ },
+ {
+  "title": "Bjornaer Magi and Shapeshifting Apprentices",
+  "heading": "Bjornaer Magi and Shapeshifting Apprentices",
+  "line": 683,
+  "endLine": 689,
+  "category": "houses",
+  "topic": "Bjornaer apprenticeship",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer; character with Skinchanger or Shapeshifter Virtue",
+  "summary": "How each clan treats apprentices who can already shapeshift, and what a known shapeshifter must accept (the Secret Name Mystery first, and loss of the shapechanging Virtue as the Ordeal for the Inner Mystery). Suggests Dark Secret if the ability is hidden.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Experiences of Apprenticeship (Bjornaer)",
+  "heading": "Experiences of Apprenticeship",
+  "line": 691,
+  "endLine": 697,
+  "category": "houses",
+  "topic": "Bjornaer apprenticeship",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer apprenticeship",
+  "summary": "Shows how an apprenticeship differs depending on whether the child is found just before or just after a Gathering of Twelve Years, including how late the heartbeast awakens in the second case.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Joining House Bjornaer",
+  "heading": "Joining House Bjornaer",
+  "line": 703,
+  "endLine": 707,
+  "category": "houses",
+  "topic": "Bjornaer apprenticeship",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Hermetic magus of another House seeking to join House Bjornaer",
+  "summary": "The procedure and restrictions for a magus of another House who wants to join House Bjornaer. Candidates are adopted by a sept, then brought to the Ritual of Twelve Years; spell-free shapechangers, other House Initiates and those who ever bound a familiar are barred.",
+  "quotes": [
+   "A magus cannot successfully complete the Ritual of Twelve Years if he has ever bound a familiar, even if the familiar is now dead."
+  ],
+  "related": [
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "The Heartbeast (concept and Ritual of Twelve Years)",
+  "heading": "The Heartbeast",
+  "line": 715,
+  "endLine": 725,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Heartbeast (Ritual of Twelve Years, House Bjornaer)",
+  "summary": "Explains what the heartbeast is, that only the Ritual of Twelve Years grants the Heartbeast Virtue and Ability, and how it differs from magical shapechanging (a true animal, not a disguise). Also covers pregnancy, cross-species children and the House's bond of kinship.",
+  "quotes": [
+   "Undergoing the Ritual of Twelve Years is the only way to gain the Heartbeast Virtue (and Ability)"
+  ],
+  "related": [
+   "ArM5 pp.91-92 Outer Mystery of House Bjornaer"
+  ]
+ },
+ {
+  "title": "Choosing the Heartbeast",
+  "heading": "Choosing the Heartbeast",
+  "line": 727,
+  "endLine": 735,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Heartbeast",
+  "summary": "Advice for players on choosing a heartbeast that fits the character: expect physical signs, think about other Bjornaer in the troupe, and remember a magus can have only one.",
+  "quotes": [
+   "Naturally, a magus can only have one heartbeast, for he only has a single spirit."
+  ],
+  "related": []
+ },
+ {
+  "title": "Heartbeast Temperaments and Restrictions",
+  "heading": "Heartbeast Temperaments",
+  "line": 737,
+  "endLine": 761,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Heartbeast",
+  "summary": "Sorts heartbeasts into four temperaments, pure or aspected by another, and lists which creatures cannot be heartbeasts (domesticated animals, creatures with Might, those outside the Size limits). Includes the Size option for very small heartbeasts.",
+  "quotes": [
+   "Creatures Smaller than a Weasel** (Size \u20137)",
+   "Creatures Larger than an Aurochs** (Size +3)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Heartbeasts",
+  "heading": "Example Heartbeasts",
+  "line": 763,
+  "endLine": 778,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Heartbeast",
+  "summary": "Sidebar table assigning example animals to each heartbeast temperament and aspect.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Plant Heartbeasts",
+  "heading": "Plant Heartbeasts",
+  "line": 780,
+  "endLine": 782,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Heartbeast (storyguide permission)",
+  "summary": "Optional rule allowing an unusual plant 'heartbeast': the plant form can do only what a plant can do, and the character is likely to have Cyclic Magic.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Ringing the Changes (how magic affects shapechangers)",
+  "heading": "Ringing the Changes",
+  "line": 794,
+  "endLine": 802,
+  "category": "magic",
+  "topic": "Shapechanging",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shapechanger: spell or item, innate Virtue, or Bjornaer heartbeast",
+  "summary": "Compares the three kinds of shapechanger: spell or item users stay human for Corpus and Mentem magic and need Penetration, innate shapechangers only use magic at the moment of change, and a heartbeast is a true animal immune to Mentem and Corpus.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Changing Form (heartbeast)",
+  "heading": "Changing Form",
+  "line": 808,
+  "endLine": 814,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Heartbeast",
+  "summary": "A Bjornaer magus assumes his heartbeast form in a round, usually without a roll. A Stamina + Heartbeast roll is needed to overcome a shapechanging or magic-suppressing spell, and the animal form cannot cast.",
+  "quotes": [
+   "making a Stamina + Heartbeast roll, against an Ease Factor of (3 + magnitude of the spell)"
+  ],
+  "related": [
+   "ArM5 Aegis of the Hearth"
+  ]
+ },
+ {
+  "title": "Statistics of Shapechangers",
+  "heading": "Statistics of Shapechangers",
+  "line": 816,
+  "endLine": 877,
+  "category": "beings",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Shapechanger or Virtue: Heartbeast",
+  "summary": "Seven-step procedure for combining human and animal statistics for a shapechanged magus: Characteristics, Cunning versus Intelligence, Size, Virtues and Flaws, General Abilities, communication, and wounds and experience.",
+  "quotes": [
+   "If the human and the animal Characteristic are both negative, use the lower of the two.",
+   "If the human and the animal Characteristic are both positive, use the higher of the two."
+  ],
+  "related": [
+   "Appendix: Mundane Beasts"
+  ]
+ },
+ {
+  "title": "Magical Items and Changing Form",
+  "heading": "Magical Items and Changing Form",
+  "line": 879,
+  "endLine": 890,
+  "category": "lab",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Heartbeast; enchanted items",
+  "summary": "Sidebar describing the standard item effect, Perceive the Change, that lets an item linked by a Linked Trigger respond when its holder takes animal form.",
+  "quotes": [
+   "If this effect is instilled in a talisman, it can be made with Range Personal for a final level of 9."
+  ],
+  "related": [
+   "ArM5 p.99 Linked Trigger"
+  ]
+ },
+ {
+  "title": "The Hidden Shape",
+  "heading": "The Hidden Shape",
+  "line": 892,
+  "endLine": 894,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Heartbeast",
+  "summary": "Explains that, because of the Limit of Essential Nature, the heartbeast form appears to Hermetic magic as a mundane animal and has no ongoing effect after the transformation, though active magic on the magus can still be detected.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Bjornaer Magi and Familiars",
+  "heading": "Bjornaer Magi and Familiars",
+  "line": 896,
+  "endLine": 898,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Heartbeast",
+  "summary": "Initiation into the Heartbeast mystery makes it impossible to bind a familiar, and a magus who has ever bound one cannot complete the ritual.",
+  "quotes": [
+   "Any magus who has ever bound a familiar, even if it has since died, cannot successfully complete the Ritual of Twelve Years"
+  ],
+  "related": []
+ },
+ {
+  "title": "Heartbeasts and Wizard's Twilight",
+  "heading": "Heartbeasts and Wizard's Twilight",
+  "line": 900,
+  "endLine": 904,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Heartbeast",
+  "summary": "What happens when a Bjornaer magus enters Twilight. Wizard's Twilight usually brings the heartbeast form, and Final Twilight yields a mundane beast or, with an Inner Mystery, a Great Beast with a Magic Might derived from the Heartbeast Ability.",
+  "quotes": [
+   "acquires a Magic Might equal to (5 x Heartbeast Ability)"
+  ],
+  "related": [
+   "Inner Mysteries, below"
+  ]
+ },
+ {
+  "title": "The Mysteries of House Bjornaer (overview)",
+  "heading": "The Mysteries of House Bjornaer",
+  "line": 906,
+  "endLine": 908,
+  "category": "mysteries",
+  "topic": "Bjornaer mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer",
+  "summary": "Overview of the layers of Bjornaer mystery, from the Outer Mystery of the Heartbeast to House, Clan and Inner Mysteries and the atavism that yields the inner heartbeast.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Initiating the Clan Mysteries (Bjornaer)",
+  "heading": "Initiating the Clan Mysteries",
+  "line": 910,
+  "endLine": 924,
+  "category": "mysteries",
+  "topic": "Bjornaer clan mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer, Clan Mystery",
+  "summary": "Standard Initiation Ease Factor, Mystagogue requirement and the three Script templates (Trial, Deed, Oath) with their Script bonuses used by every Bjornaer clan to Initiate Clan Mysteries.",
+  "quotes": [
+   "thus have an Ease Factor of 15",
+   "(Presence + House Bjornaer Lore) of at least 8"
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiating the House Mysteries (Bjornaer)",
+  "heading": "Initiating the House Mysteries",
+  "line": 926,
+  "endLine": 930,
+  "category": "mysteries",
+  "topic": "Bjornaer mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer; Clan Ilfetu Mystagogue",
+  "summary": "House Mysteries (Heartbeast, Secret Name, Sensory Magic, Theriomorphy) are Initiated only by Clan Ilfetu, often at an ancestor site that may be perilous to reach.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Ritual of Twelve Years (Heartbeast initiation)",
+  "heading": "The Ritual of Twelve Years (Minor House Mystery)",
+  "line": 942,
+  "endLine": 958,
+  "category": "mysteries",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer; Initiation: Heartbeast (Minor House Mystery)",
+  "summary": "The Initiation Script that grants the Heartbeast Virtue and Ability at level 1. It can never be repeated, its bonus depends on the temperaments of the witnesses, and it costs the ability to bind a familiar.",
+  "quotes": [
+   "The Participation modifier provides +1 for every witness who has the same temperament as the probationer's heartbeast",
+   "**Ease Factor:** 15 (Minor Virtue known to the Mystagogue)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Secret Name (Minor House Mystery)",
+  "heading": "Secret Name (Minor House Mystery)",
+  "line": 966,
+  "endLine": 980,
+  "category": "mysteries",
+  "topic": "Bjornaer mysteries",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer; Initiation: Secret Name (Minor House Mystery)",
+  "summary": "A mystery that severs all sympathetic connections to the magus and gives a secret name known only to the Mystagogue and Initiate, at the cost of a minor Weak Magic Resistance. Fails if the magus has a talisman or familiar. Includes the Initiation Script.",
+  "quotes": [
+   "**Script Bonus:** +8"
+  ],
+  "related": [
+   "The Mysteries Revised Edition (Synthemata Magic)"
+  ]
+ },
+ {
+  "title": "Theriomorphy (Minor House Mystery)",
+  "heading": "Theriomorphy (Minor House Mystery)",
+  "line": 982,
+  "endLine": 996,
+  "category": "mysteries",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer; Initiation: Theriomorphy (Minor House Mystery)",
+  "summary": "Lets a magus apply Qualities or Virtues of his heartbeast to his human form with a roll, along with partial physical change and Warping consequences. Includes the Initiation Script.",
+  "quotes": [
+   "on a Stamina + Heartbeast roll against an Ease Factor of 9",
+   "**Script Bonus:** +6"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sensory Magic (Minor House Mystery)",
+  "heading": "Sensory Magic (Minor House Mystery)",
+  "line": 998,
+  "endLine": 1014,
+  "category": "magic",
+  "topic": "Sensory Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer; Initiation: Sensory Magic (Minor House Mystery)",
+  "summary": "Special Targets that affect anyone sensing the caster, with the restrictions on these spells (Personal Range, no Intellego, no investing) and a Lab Total bonus from the Heartbeast Ability for inventing them.",
+  "quotes": [
+   "the magus's Heartbeast Ability score is added to the Lab Total"
+  ],
+  "related": [
+   "ArM5 pp.113-114 magical senses"
+  ]
+ },
+ {
+  "title": "Sensory Targets",
+  "heading": "Sensory Targets",
+  "line": 1016,
+  "endLine": 1044,
+  "category": "magic",
+  "topic": "Sensory Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer; Initiation: Sensory Magic",
+  "summary": "Defines the five Sensory Targets (Flavor, Texture, Scent, Sound, Spectacle), how each works and its Hermetic Target size equivalent, and gives the Initiation Script for Sensory Magic.",
+  "quotes": [
+   "The Flavor Target is equivalent to Individual.",
+   "The Texture Target is equivalent to Part.",
+   "The Scent Target is equivalent to Group.",
+   "The Sound Target is equivalent to Structure."
+  ],
+  "related": [
+   "ArM5 p.83 Words and Gestures table"
+  ]
+ },
+ {
+  "title": "Initiating the Mysteries of the Inner Heartbeast",
+  "heading": "Initiating the Mysteries of the Inner Heartbeast",
+  "line": 1114,
+  "endLine": 1148,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer, Virtue: Heartbeast, House Bjornaer Lore 5+",
+  "summary": "The Quest to find an ancestor who became a Great Beast and win Initiation into one of the three Inner Mysteries. It is gated by Adventure experience from the Great Beast's trials and a Major Ordeal, with a full Initiation Script.",
+  "quotes": [
+   "the magus must earn a total of 10 Adventure experience points from these trials",
+   "Ease Factor:** 21 (Major Virtue known to the Great Beast)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Great Beasts as Mystagogues",
+  "heading": "Great Beasts as Mystagogues",
+  "line": 1128,
+  "endLine": 1130,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer Inner Heartbeast Initiation",
+  "summary": "Sidebar giving the Presence and House Bjornaer Lore to use for a Great Beast acting as Mystagogue, and stating that it knows whichever Inner Mystery is sought.",
+  "quotes": [
+   "Great Beasts should be considered to have a Presence of +2 and an House Bjornaer Lore of 8."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Mystery of the Epitome (Major House Mystery)",
+  "heading": "The Mystery of the Epitome (Major House Mystery)",
+  "line": 1154,
+  "endLine": 1167,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer; Initiation: Mystery of the Epitome (Major House Mystery)",
+  "summary": "Perfects the heartbeast into a Beast of Virtue with a boosted Characteristic, a Mythic Feat usable at a Confidence cost, and immunity to shape-affecting Physical Flaws.",
+  "quotes": [
+   "One Characteristic of the inner heartbeast (other than Intelligence) receives a permanent +3 bonus to the value of the base animal",
+   "at a cost of 1 confidence Point"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sample Mythic Feats",
+  "heading": "Sample Mythic Feats",
+  "line": 1169,
+  "endLine": 1183,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer; Mystery of the Epitome",
+  "summary": "Sidebar giving example Mythic Feats by Characteristic for an epitome inner heartbeast.",
+  "quotes": [
+   "Lift something 20 times one's own weight"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Mystery of the Chimera (Major House Mystery)",
+  "heading": "The Mystery of the Chimera (Major House Mystery)",
+  "line": 1185,
+  "endLine": 1199,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer; Initiation: Mystery of the Chimera (Major House Mystery)",
+  "summary": "Transforms the heartbeast into a hybrid of two creatures, with constraints on what can be combined and a Size increase for the chimerical form.",
+  "quotes": [
+   "A chimerical heartbeast is one size category larger than the outer heartbeast"
+  ],
+  "related": [
+   "Appendix: Mundane Beasts"
+  ]
+ },
+ {
+  "title": "Sample Elemental Forms",
+  "heading": "Sample Elemental Forms",
+  "line": 1201,
+  "endLine": 1211,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer; Mystery of the Anima",
+  "summary": "Sidebar giving game effects for stone, air, fire and water elemental inner heartbeasts, as a basis for other elements.",
+  "quotes": [
+   "His Soak receives a +15 bonus, but Quickness is reduced by 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Mystery of the Anima (Major House Mystery)",
+  "heading": "The Mystery of the Anima (Major House Mystery)",
+  "line": 1213,
+  "endLine": 1219,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer; Initiation: Mystery of the Anima (Major House Mystery)",
+  "summary": "Transforms the heartbeast into a spiritual or elemental creature of the same shape and size, affected by the Form associated with its element instead of Animal.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Inner Heartbeast in Play",
+  "heading": "The Inner Heartbeast in Play",
+  "line": 1221,
+  "endLine": 1225,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer; any Inner Heartbeast Mystery",
+  "summary": "How to assume the inner heartbeast: change into the outer form first, then roll, taking a round. Reversing is automatic, and all features of the inner form apply together.",
+  "quotes": [
+   "making a Stamina + Heartbeast roll against an Ease Factor of 9"
+  ],
+  "related": []
+ },
+ {
+  "title": "Refining the Inner Heartbeast",
+  "heading": "Refining the Inner Heartbeast",
+  "line": 1227,
+  "endLine": 1229,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer; any Inner Heartbeast Mystery",
+  "summary": "Introduces the smaller follow-on Initiations that change the Size, Characteristics, Qualities, Virtues or Powers of the inner heartbeast.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Initiation of a Refinement",
+  "heading": "Initiation of a Refinement",
+  "line": 1231,
+  "endLine": 1247,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer; any Inner Heartbeast Mystery",
+  "summary": "The embryonic Initiation Script usable for any Refinement Mystery: a season at an ancestor site, vis consumed and a Resonant Bonus by inner-heartbeast type, with a storyguide sympathetic bonus when the Script is varied.",
+  "quotes": [
+   "Script Bonus:** +7 + Resonant Bonus",
+   "physically consuming one pawn of vis (of an appropriate Art) per three points of the Initiation Ease Factor"
+  ],
+  "related": []
+ },
+ {
+  "title": "Refinements (Inner Heartbeast)",
+  "heading": "Refinements",
+  "line": 1249,
+  "endLine": 1283,
+  "category": "mysteries",
+  "topic": "Inner Heartbeast",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer; any Inner Heartbeast Mystery",
+  "summary": "The available Refinements (Changing Size, Increasing Characteristic Scores, Acquiring Qualities, Virtues and Powers) with their Ease Factors, appropriate vis, and a worked example of Initiating each.",
+  "quotes": [
+   "Ease Factor 18 + (3 per previous Size increase)",
+   "Ease Factor 18 + (3 per previous increase to this Characteristic)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Structure of the Huntress",
+  "heading": "Structure of the Huntress",
+  "line": 1307,
+  "endLine": 1309,
+  "category": "mysteries",
+  "topic": "Huntress in the Wood",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Esoteric cult: Huntress in the Wood",
+  "summary": "Overview of the cult's three ranks (kerykes, eumolpids, hierophants) and the Huntress in the Wood Lore Ability needed for Initiation.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Kerykes (Huntress in the Wood)",
+  "heading": "Kerykes",
+  "line": 1311,
+  "endLine": 1321,
+  "category": "mysteries",
+  "topic": "Huntress in the Wood",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Esoteric cult: Huntress in the Wood",
+  "summary": "The outer rank of the cult, which gives the Mystery of Nature Lore. Includes its Initiation Script (Huntress Lore 1, a gift of lore, and an Oath).",
+  "quotes": [
+   "Script Bonus:** +9"
+  ],
+  "related": [
+   "House Merinita: Nature Mysteries"
+  ]
+ },
+ {
+  "title": "Eumolpids (Huntress in the Wood)",
+  "heading": "Eumolpids",
+  "line": 1323,
+  "endLine": 1333,
+  "category": "mysteries",
+  "topic": "Huntress in the Wood",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Esoteric cult: Huntress in the Wood; Huntress Lore 3",
+  "summary": "The inner rank, which gives Hermetic Theurgy and can lead to Names of Power and Invocation Magic. Includes its Initiation Script with a supernatural mark that alienates the Initiate from the fae.",
+  "quotes": [
+   "Script Bonus:** +12"
+  ],
+  "related": [
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Hierophants (Huntress in the Wood)",
+  "heading": "Hierophants",
+  "line": 1335,
+  "endLine": 1355,
+  "category": "mysteries",
+  "topic": "Huntress in the Wood",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Esoteric cult: Huntress in the Wood",
+  "summary": "The leading rank of three, who gain Hermetic Synthemata and guard the Script for Ascendancy to the Hall of Heroes. Gives both Initiation Scripts.",
+  "quotes": [
+   "Script Bonus:** +24",
+   "Ease Factor:** 30 (Major Virtue unknown to the Mystagogue)"
+  ],
+  "related": [
+   "The Mysteries Revised Edition, Chapter 9: Hermetic Theurgy"
+  ]
+ },
+ {
+  "title": "The Magic of House Bjornaer",
+  "heading": "The Magic of House Bjornaer",
+  "line": 1357,
+  "endLine": 1361,
+  "category": "houses",
+  "topic": "Bjornaer magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Bjornaer",
+  "summary": "Notes on typical Bjornaer spell choices, such as heavy use of magical-sense Targets, and a rule that spells affecting a large heartbeast need a Size modifier.",
+  "quotes": [
+   "Any spell that affects a heartbeast of Size +2 or greater must be invented with a Size modifier"
+  ],
+  "related": [
+   "ArM5 p.113"
+  ]
+ },
+ {
+  "title": "Characters of House Bjornaer (character creation)",
+  "heading": "Characters of House Bjornaer",
+  "line": 1395,
+  "endLine": 1403,
+  "category": "houses",
+  "topic": "Bjornaer characters",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer",
+  "summary": "Character creation guidance for a Bjornaer magus: choose the heartbeast first, then clan, with advice on Virtues and Flaws suited to the heartbeast and on why shapechanging Virtues are a hindrance in this House.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Mythic Blood (Birna and Great Beast bloodlines)",
+  "heading": "Mythic Blood",
+  "line": 1430,
+  "endLine": 1434,
+  "category": "houses",
+  "topic": "Mythic Blood",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Mythic Blood (Bjornaer)",
+  "summary": "Explains how bearers of Birna's or a Great Beast's blood gain a Minor Magical Focus, a magical feat and a hereditary Personality Flaw, always with a bear heartbeast for Birna's line.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Examples of Mythic Blood",
+  "heading": "Examples of Mythic Blood",
+  "line": 1436,
+  "endLine": 1444,
+  "category": "houses",
+  "topic": "Mythic Blood",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Mythic Blood (Bjornaer)",
+  "summary": "Table of example Mythic Blood lines with the magical feat, Minor Magical Focus and Personality Flaw each confers.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Heartbeast (Supernatural Ability)",
+  "heading": "Heartbeast (Supernatural)\\*",
+  "line": 1506,
+  "endLine": 1508,
+  "category": "houses",
+  "topic": "Heartbeast",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Heartbeast",
+  "summary": "The Heartbeast Ability gives knowledge of the animal form, a Personality Trait named for the animal, and the power to change form. It cannot be learned from books and can only be taught by someone with the same temperament.",
+  "quotes": [
+   "at a level equal to half the score in this Ability"
+  ],
+  "related": []
+ },
+ {
+  "title": "House Bjornaer Lore (Arcane Ability)",
+  "heading": "House Bjornaer Lore (Arcane)",
+  "line": 1510,
+  "endLine": 1512,
+  "category": "houses",
+  "topic": "House Lore",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Bjornaer",
+  "summary": "The Organization Lore for House Bjornaer, which also governs its Mystery rites. Each season spent initiating a Mystery gives experience in it.",
+  "quotes": [
+   "every time a magus spends a season initiating a Mystery, he gains experience in House Bjornaer Lore from exposure"
+  ],
+  "related": []
+ },
+ {
+  "title": "Appendix: Mundane Beasts",
+  "heading": "Appendix: Mundane Beasts",
+  "line": 1514,
+  "endLine": 1516,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces a step-by-step system for generating statistics for heartbeasts, familiars and other mundane creatures.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Mundane Beasts 1: Type and Size",
+  "heading": "1. Type & Size",
+  "line": 1518,
+  "endLine": 1522,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Defines the four beast categories (Birds, Fish, Hoofed Beasts, Clawed Beasts) and how Size steps relate to weight, with the bird adjustment.",
+  "quotes": [
+   "A 1-point difference in Size doubles the weight"
+  ],
+  "related": [
+   "ArM5 p.192"
+  ]
+ },
+ {
+  "title": "Size Examples (animals)",
+  "heading": "Size Examples",
+  "line": 1524,
+  "endLine": 1543,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of example animals at each Size value from -15 to +9.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Creatures of Non-Standard Size",
+  "heading": "Creatures of Non-Standard Size",
+  "line": 1545,
+  "endLine": 1549,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "How to adjust Strength, Quickness and wound ranges for creatures bigger or smaller than their type's norm, including the effect of Muto Animal size spells.",
+  "quotes": [
+   "for every point of Size removed, subtract two from Strength (and therefore Damage Total), add one to Quickness (and therefore Initiative and Defense Totals)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mundane Beasts 2: Characteristics",
+  "heading": "2. Characteristics",
+  "line": 1551,
+  "endLine": 1556,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Animals use Cunning instead of Intelligence and spend points on the four physical Characteristics only, with limits on negative values and a minimum tied to Size.",
+  "quotes": [
+   "Like human characters, each has up to seven points to spend on increasing these Characteristics.",
+   "the minimum value is equal to (Size \u2013 5)"
+  ],
+  "related": [
+   "ArM5 p.191"
+  ]
+ },
+ {
+  "title": "Example Physical Characteristics of Creatures",
+  "heading": "Example Physical Characteristics of Creatures",
+  "line": 1557,
+  "endLine": 1575,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of sample physical Characteristics for common creature types, with the rule for applying Size adjustments after spending points.",
+  "quotes": [
+   "add twice the Size to Strength and subtract the Size from Quickness"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mental Characteristics of Creatures",
+  "heading": "Mental Characteristics of Creatures",
+  "line": 1577,
+  "endLine": 1586,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of Cunning, Perception, Presence and Communication by beast type, and how Increased Characteristics applies to beasts.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Mundane Beasts 3: Virtues and Flaws",
+  "heading": "3. Virtues & Flaws",
+  "line": 1588,
+  "endLine": 1596,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Each species has free Virtues and Flaws representing its features; individual exceptional beasts must balance their own. A guideline suggests how many Flaws a species should have.",
+  "quotes": [
+   "It is recommended that a species have at least one point of Flaws for every three points of Virtues."
+  ],
+  "related": []
+ },
+ {
+  "title": "Suitable Virtues and Flaws for Beasts",
+  "heading": "Suitable Virtues & Flaws for Beasts",
+  "line": 1598,
+  "endLine": 1604,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists Virtues and Flaws suited to animals and adjusts how many Characteristic points Increased Characteristics gives to large creatures.",
+  "quotes": [
+   "a creature of Size +2 gets 6 Characteristic points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ferocity (beast Virtue)",
+  "heading": "Ferocity",
+  "line": 1606,
+  "endLine": 1610,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "Beasts only (Minor Virtue)",
+  "summary": "A beast-only Minor Virtue giving confidence points that can be used only in situations that trigger the animal's natural ferocity.",
+  "quotes": [
+   "take 3 confidence Points and a confidence Score of 1"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mundane Beasts 4: Basic Abilities",
+  "heading": "4. Basic Abilities",
+  "line": 1612,
+  "endLine": 1627,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of the basic Abilities every creature has by type, plus rules that animals cannot improve Abilities after adulthood, can be taught through Animal Handling, and have one natural weapon and Protection 0 by default.",
+  "quotes": [
+   "cannot acquire experience points to improve their Abilities once they have reached adulthood"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mundane Beasts 5: Qualities",
+  "heading": "5. Qualities",
+  "line": 1629,
+  "endLine": 1708,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A list of animal Qualities (Aggressive, Camouflage, Fast Runner, Grapple, Venomous and so on) that adjust Characteristics, grant Abilities or modify combat, plus how extra Fatigue levels are handled.",
+  "quotes": [
+   "One extra Fatigue level grants an additional Winded level",
+   "Add +3 to all rolls involving running."
+  ],
+  "related": [
+   "ArM5 p.174 Non-Lethal Combat",
+   "ArM5 p.180 venom"
+  ]
+ },
+ {
+  "title": "Mundane Beasts 6: Combat Statistics",
+  "heading": "6. Combat Statistics",
+  "line": 1710,
+  "endLine": 1712,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Combat statistics for beasts are calculated as normal using the Natural Weapons Table, whose weapons work for creatures of any Size.",
+  "quotes": [],
+  "related": [
+   "ArM5 p.171"
+  ]
+ },
+ {
+  "title": "Natural Weapons Table",
+  "heading": "Natural Weapons Table",
+  "line": 1714,
+  "endLine": 1729,
+  "category": "combat",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of Initiative, Attack, Defense and Damage values for natural weapons such as teeth, claws, horns and hooves, all using Brawl.",
+  "quotes": [
+   "All natural weapons use the Brawl Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aging (animals)",
+  "heading": "Aging",
+  "line": 1731,
+  "endLine": 1735,
+  "category": "aging",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional method for scaling aging to a creature's average lifespan, adjusting the age aging begins, the age modifier and the number of aging rolls per year.",
+  "quotes": [
+   "begins aging at 35, adds one to the aging roll for every ten years, and makes one aging roll each year"
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Creation Example: Bear",
+  "heading": "Animal Creation Example: Bear",
+  "line": 1737,
+  "endLine": 1771,
+  "category": "beings",
+  "topic": "Mundane beasts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Worked example of the mundane beast design procedure, building a bear step by step and ending with a full stat block.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Enigmatic Wisdom for Magi From Other Houses",
+  "heading": "Enigmatic Wisdom For Magi From Other Houses",
+  "line": 1987,
+  "endLine": 1989,
+  "category": "houses",
+  "topic": "Enigmatic Wisdom",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon (or a magus of another House studying with it)",
+  "summary": "Sidebar allowing an outsider to study a year with a Criamon magus or ghost and gain the Enigmatic Wisdom Ability at a score of 1, which may lead to an offer of membership.",
+  "quotes": [
+   "gain the Enigmatic Wisdom Ability, with a score of one"
+  ],
+  "related": []
+ },
+ {
+  "title": "Apt Action",
+  "heading": "Apt Action",
+  "line": 1991,
+  "endLine": 2001,
+  "category": "houses",
+  "topic": "Criamon apt action",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Lists the beliefs that define living aptly for most Criamon magi and notes that their powers are diminished if they fail to do so, with details in the paths section.",
+  "quotes": [
+   "Most Criamon magi find their powers diminished if they fail to live aptly."
+  ],
+  "related": [
+   "The Paths (end of Chapter Two)"
+  ]
+ },
+ {
+  "title": "Riddles (Criamon apprenticeship and Enigmatic Wisdom)",
+  "heading": "Riddles",
+  "line": 2003,
+  "endLine": 2015,
+  "category": "houses",
+  "topic": "Enigmatic Wisdom",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Criamon",
+  "summary": "Explains how each Criamon apprentice receives fifteen riddles to ponder, which builds the Enigmatic Wisdom mindset, the Riddle of the Magus that replaces the Gauntlet, and how apprentices choose a path.",
+  "quotes": [
+   "At the beginning of her apprenticeship, each Criamon apprentice is given fifteen riddles"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rolls for Riddles",
+  "heading": "Rolls for Riddles",
+  "line": 2045,
+  "endLine": 2051,
+  "category": "houses",
+  "topic": "Enigmatic Wisdom",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon; Enigmatic Wisdom Ability",
+  "summary": "Optional Ability roll for composing or answering riddles instead of roleplaying them, when a magus receives a new riddle, and how accumulated answers slowly lower the Ease Factor.",
+  "quotes": [
+   "They roll Intelligence + Enigmatic Wisdom, against an Ease Factor that varies between three and 25"
+  ],
+  "related": []
+ },
+ {
+  "title": "Criamon Stigmata",
+  "heading": "Stigmata",
+  "line": 2057,
+  "endLine": 2069,
+  "category": "houses",
+  "topic": "Criamon stigmata",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Criamon magi bear skin markings that grow and move as their Enigmatic Wisdom rises or as they reach milestones on their path. They have no mechanical cause, cannot be removed, and carry over to other shapes, familiars or apprentices.",
+  "quotes": [
+   "stigmata have no mechanical cause and cannot be removed, even by magic"
+  ],
+  "related": []
+ },
+ {
+  "title": "Body Modification Rules",
+  "heading": "Body Modification Rules",
+  "line": 2077,
+  "endLine": 2079,
+  "category": "houses",
+  "topic": "Body modification",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the body modification techniques that magi of many Houses know and Criamon magi use on themselves and apprentices.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Tattoos",
+  "heading": "Tattoos",
+  "line": 2081,
+  "endLine": 2087,
+  "category": "houses",
+  "topic": "Body modification",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Distinguishes Criamon stigmata from ordinary ink tattoos, which can carry magic, and explains the social reaction to tattoos including the Disfigured Flaw for a visible tattoo.",
+  "quotes": [
+   "A single visible tattoo is sufficient to earn the Disfigured flaw"
+  ],
+  "related": [
+   "The Mysteries Revised Edition (Inscription on the Soul)"
+  ]
+ },
+ {
+  "title": "Enchanting Tattoos",
+  "heading": "Enchanting Tattoos",
+  "line": 2089,
+  "endLine": 2093,
+  "category": "lab",
+  "topic": "Body modification",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for treating a simple tattoo as an enchanted item: a base material score multiplied by the tattoo's size, no Warping because it is personal magic, and bonuses from inks or resonant subjects.",
+  "quotes": [
+   "A tattoo has a base material score of 2, multiplied by a size modifier."
+  ],
+  "related": [
+   "The Mysteries Revised Edition (Inscription on the Soul)"
+  ]
+ },
+ {
+  "title": "Other Modifications (head binding)",
+  "heading": "Other Modifications",
+  "line": 2095,
+  "endLine": 2097,
+  "category": "houses",
+  "topic": "Body modification",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Criamon; infant body modification",
+  "summary": "Head binding and similar rituals done in infancy give an aptitude for a particular path, which is a bonus to the Initiation Script for the first station on that path.",
+  "quotes": [
+   "This acts as a +3 bonus for his Initiation Script for the first station (Mystery Virtue) of that path."
+  ],
+  "related": []
+ },
+ {
+  "title": "Final Transmission",
+  "heading": "Final Transmission",
+  "line": 2121,
+  "endLine": 2125,
+  "category": "houses",
+  "topic": "Criamon transmission",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Describes how a Criamon magus can pass wisdom on through a perfect transmission that turns a place or object into a study source, with a simple rule to treat it as an excellent book.",
+  "quotes": [
+   "treat the place as if it were an excellent book the magus wrote in the instant of entering Twilight"
+  ],
+  "related": [
+   "Covenants, Chapter 7: Libraries"
+  ]
+ },
+ {
+  "title": "Repose: House Criamon's Alternative to Death",
+  "heading": "Repose: House Criamon's Alternative to Death",
+  "line": 2127,
+  "endLine": 2131,
+  "category": "houses",
+  "topic": "Criamon repose",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Sidebar explaining that each Criamon path ends in a repose and that powers are granted to those who stand on its threshold, which are detailed with each path.",
+  "quotes": [],
+  "related": [
+   "The Mysteries Revised Edition"
+  ]
+ },
+ {
+  "title": "Perfect Transmission Site Example",
+  "heading": "Perfect Transission Site Example",
+  "line": 2149,
+  "endLine": 2151,
+  "category": "houses",
+  "topic": "Criamon transmission",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon; Enigmatic Wisdom",
+  "summary": "An example site where a magus with Enigmatic Wisdom can study Arts as if from vis for a season, limited to Arts below the teaching threshold, with a small aura.",
+  "quotes": [
+   "Use the rules for studying a pawn of vis in a standard laboratory."
+  ],
+  "related": [
+   "ArM5 vis study rules"
+  ]
+ },
+ {
+  "title": "Adulterations: Lingering Problems",
+  "heading": "Adulterations: Lingering Problems",
+  "line": 2153,
+  "endLine": 2161,
+  "category": "beings",
+  "topic": "Adulterations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon (any magus may create them)",
+  "summary": "Explains adulterations, supernatural beings and places made from a magus's psychic debris, as an added consequence of bad Twilight experiences. Resolving one can yield a Twilight benefit.",
+  "quotes": [
+   "This potential Twilight consequence should be considered an addition to the list of bad Twilight effects on ArM5, page 89."
+  ],
+  "related": [
+   "ArM5 p.89 Twilight"
+  ]
+ },
+ {
+  "title": "Designing Adulterations",
+  "heading": "Designing Adulterations",
+  "line": 2163,
+  "endLine": 2171,
+  "category": "beings",
+  "topic": "Adulterations",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Criamon",
+  "summary": "Guidelines for designing adulterations as creatures or places, including their Magic Might range, how they bypass their creator's Aegis, and how adulterous regiones behave.",
+  "quotes": [
+   "Each has a Magical Might score that ranges from 10, for minor adulterations, to 45, for the malignancies."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example: Introducing an Adulteration",
+  "heading": "Example: Introducing an Adulteration",
+  "line": 2173,
+  "endLine": 2181,
+  "category": "beings",
+  "topic": "Adulterations",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon",
+  "summary": "Worked example of a storyguide turning a bad Twilight outcome into an adulteration and resolving it, with a small reduction in the related Personality Trait.",
+  "quotes": [
+   "She does lose one point from her Angry Personality Trait"
+  ],
+  "related": []
+ }
+]

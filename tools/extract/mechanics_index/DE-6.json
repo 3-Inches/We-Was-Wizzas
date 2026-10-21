@@ -1,0 +1,1628 @@
+[
+ {
+  "title": "Enchantments: Overview and Limits",
+  "heading": "Enchantments",
+  "line": 10433,
+  "endLine": 10441,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces enchanted devices (invested, lesser, charged items and longevity rituals), notes that enchanting transforms vis permanently, and bars Ritual-equivalent effects from items except those that are Rituals only because of level.",
+  "quotes": [
+   "Effects matching those of Ritual spells may not be placed in any enchantment."
+  ],
+  "related": []
+ },
+ {
+  "title": "Enchantment Summary",
+  "heading": "Enchantment Summary",
+  "line": 10443,
+  "endLine": 10465,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Step-by-step sidebar summarising how to choose an item type, open it, invest effects, and fill an invested item, including the per-season vis limit.",
+  "quotes": [
+   "A magus cannot use more than 2 x Magic Theory pawns of vis in a single season.",
+   "Uses a number of pawns of Vim vis equal to the product of the material base and the size multiplier, from the Size and Material table."
+  ],
+  "related": []
+ },
+ {
+  "title": "Invested Items",
+  "heading": "Invested Items",
+  "line": 10471,
+  "endLine": 10475,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Invested items must be prepared first but can then hold multiple effects, up to the vis capacity used to open them; effects cannot be removed once instilled.",
+  "quotes": [
+   "The total number of pawns of vis expended when instilling effects may not exceed the number of pawns of vis spent to prepare the item for enchantment."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lesser Enchantments",
+  "heading": "Lesser Enchantments",
+  "line": 10477,
+  "endLine": 10483,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Cheaper unopened items that hold a single effect which must be instilled in one season; vis is spent per ten levels of the effect and the item's size/material still caps it.",
+  "quotes": [
+   "his Lab Total must be at least twice the adjusted level of the effect.",
+   "Investing an effect in a lesser enchantment costs one pawn of appropriate vis for every ten levels or fraction of the effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Charged Items",
+  "heading": "Charged Items",
+  "line": 10485,
+  "endLine": 10495,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Charged items cost no vis and are made in a single season, producing a number of single-use charges based on how far the Lab Total exceeds the effect level; charges can be split among identical objects.",
+  "quotes": [
+   "For every 5 points, or fraction thereof, by which you exceed the level, you get one charge",
+   "If your Lab Total is less than the level of the effect you cannot create charged items of this kind."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shape and Material",
+  "heading": "Shape and Material",
+  "line": 10509,
+  "endLine": 10515,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Choosing an item's shape and material grants Lab Total bonuses from the Shape and Material Bonuses Table; bonuses stack but are capped by Magic Theory.",
+  "quotes": [
+   "the highest bonus that you can receive to a single enchantment is equal to your Magic Theory"
+  ],
+  "related": [
+   "Shape and Material Bonuses Table"
+  ]
+ },
+ {
+  "title": "Material and Size Tables",
+  "heading": "Material and Size Tables",
+  "line": 10521,
+  "endLine": 10542,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Tables giving the base points of each material and the multiplier by item size; their product is the pawns of Vim vis needed to open an item.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Preparation for Enchantment",
+  "heading": "Preparation for Enchantment",
+  "line": 10544,
+  "endLine": 10558,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for spending a season and raw Vim vis to open an item, including enchanting part of an item, compound items (sum or highest), limits on components, and items larger than huge.",
+  "quotes": [
+   "The multiplier increases by one for every factor of ten by which the item is larger than a huge item",
+   "A compound item of this sort may not contain more components than your Magic Theory score"
+  ],
+  "related": []
+ },
+ {
+  "title": "Instilling Effects",
+  "heading": "Instilling Effects",
+  "line": 10564,
+  "endLine": 10566,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces designing and instilling effects, which are built like spells but need not be known as spells and cost no extra design time.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Designing the Effect",
+  "heading": "Designing the Effect",
+  "line": 10568,
+  "endLine": 10582,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "How to define an item effect from spell guidelines, track its base and modified level, choose a frequency and trigger, and optionally link triggers to other effects.",
+  "quotes": [
+   "Enchanted device effects may have a level over 50, as long as there is no other reason for the spell to be a ritual"
+  ],
+  "related": []
+ },
+ {
+  "title": "Effect Frequency Table",
+  "heading": "Effect Frequency Table",
+  "line": 10584,
+  "endLine": 10595,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of level modifiers added to an effect for uses per day, up to unlimited.",
+  "quotes": [
+   "| Unlimited | +10 |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Effect Modifications",
+  "heading": "Effect Modifications",
+  "line": 10597,
+  "endLine": 10629,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional modifications to an item effect: Penetration, Concentration, restricted users, expiry (multiplying the excess), environmental, fast and linked triggers, each with its level cost.",
+  "quotes": [
+   "For every level you add to the effect's level, that effect gets +2 Penetration.",
+   "This option adds +5 to the effect's level.",
+   "A linked trigger adds +3 to the level of the triggered effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "Constant Effect Devices",
+  "heading": "Constant Effect Devices",
+  "line": 10631,
+  "endLine": 10633,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How to build an item with a truly continuous effect using Sun duration, a use frequency and an environmental trigger.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Instilling the Effect",
+  "heading": "Instilling the Effect",
+  "line": 10639,
+  "endLine": 10651,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The ritual of joining: compare your Lab Total, with requisite, shape/material, shared-art and similar-spell modifiers, to the modified effect level, accumulating points per season, and spend vis per ten levels of the effect.",
+  "quotes": [
+   "For each effect already in the device that has a Technique and/or Form in common with the effect being invested, add +1 to your Lab Total.",
+   "you must also expend one pawn of raw vis of an Art matching either the Technique or Form of the effect being invested"
+  ],
+  "related": []
+ },
+ {
+  "title": "Using Enchanted Devices",
+  "heading": "Using Enchanted Devices",
+  "line": 10659,
+  "endLine": 10670,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Default rules for using enchanted devices: zero Penetration, range measured from the device, wielder's Finesse for targeting, one trigger action per round and initiative timing.",
+  "quotes": [
+   "Effects produced by enchanted devices have a Penetration of zero.",
+   "You use an enchanted device at an Initiative point equal to Qik + Stress Die."
+  ],
+  "related": []
+ },
+ {
+  "title": "Talisman Attunement",
+  "heading": "Talisman Attunement",
+  "line": 10672,
+  "endLine": 10694,
+  "category": "lab",
+  "topic": "Talismans",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for attuning a self-prepared item as a talisman: only one at a time, treated as part of the magus, Arcane Connection, larger capacity opened gradually, Lab Total bonus when instilling, and shape-and-material attunements giving Casting Score bonuses.",
+  "quotes": [
+   "The maximum number of pawns of Vim vis that may be used to prepare a talisman is equal to the sum of the magus's highest Technique and highest Form.",
+   "he gets a +5 bonus to his Lab Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Investigating Enchantments",
+  "heading": "Investigating Enchantments",
+  "line": 10696,
+  "endLine": 10706,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Procedure for learning the powers of someone else's enchanted item in the lab, rolling Intellego Vim from weakest to strongest power, with botch consequences and Waiting Spell warnings.",
+  "quotes": [
+   "you spend a season, add a stress die to your Intellego Vim Lab Total, and compare the result to the level of the weakest power in the enchantment"
+  ],
+  "related": []
+ },
+ {
+  "title": "Similar Spells",
+  "heading": "Similar Spells",
+  "line": 10708,
+  "endLine": 10719,
+  "category": "lab",
+  "topic": "Lab Total",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Knowing a similar spell adds its magnitude to the Lab Total for inventing or enchanting; only the highest applies, and similarity is defined by effect and parameters.",
+  "quotes": [
+   "SIMILAR SPELL BONUS: Magnitude of highest-level similar spell known"
+  ],
+  "related": []
+ },
+ {
+  "title": "Longevity Rituals",
+  "heading": "Longevity Rituals",
+  "line": 10721,
+  "endLine": 10741,
+  "category": "lab",
+  "topic": "Longevity Rituals",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "A season-long lab ritual that reduces aging rolls, costs vis by the subject's age, makes the subject sterile, and lapses at an aging crisis; it can be improved with extra vis and performed for others, including non-magi at a reduced benefit.",
+  "quotes": [
+   "LONGEVITY RITUAL: +1 bonus for every five points or fraction of Creo Corpus Lab Total",
+   "LONGEVITY RITUAL VIS COST: 1 pawn for every five years of age (rounded up)",
+   "For each additional pawn you add to the ritual, add 1 to your Lab Total."
+  ],
+  "related": [
+   "Aging"
+  ]
+ },
+ {
+  "title": "Laboratory Texts",
+  "heading": "Laboratory Texts",
+  "line": 10743,
+  "endLine": 10749,
+  "category": "lab",
+  "topic": "Laboratory Texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces Laboratory Texts: one text is produced for every effect a magus creates, and they greatly speed reproduction of spells and enchantments.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Using Laboratory Texts",
+  "heading": "Using Laboratory Texts",
+  "line": 10751,
+  "endLine": 10771,
+  "category": "lab",
+  "topic": "Laboratory Texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Working from a Lab Text lets a magus reproduce an effect in a season if the Lab Total reaches its level, with limits on changes, talismans and experimentation, plus rules for rewriting and copying texts for others.",
+  "quotes": [
+   "WRITING LABORATORY TEXTS: Latin x 20 levels per season",
+   "COPYING LABORATORY TEXTS: Profession: Scribe x 60 levels per season",
+   "A magus who has a Laboratory Text for a particular effect may reproduce it in a single season if his Lab Total equals or exceeds the level of the effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "Casting Tablets",
+  "heading": "Casting Tablets",
+  "line": 10779,
+  "endLine": 10801,
+  "category": "lab",
+  "topic": "Laboratory Texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Casting Tablets let a magus cast a spell he has not learned, using a fixed set of parameters from the author, with an inflexible casting total and a table of Fatigue loss and Warping depending on the margin.",
+  "quotes": [
+   "CASTING TOTAL: Stamina + Form + Technique + Aura + stress die (modified by Virtues, Flaws and requisites)",
+   "0 or more | Spell cast, lose one Fatigue level."
+  ],
+  "related": []
+ },
+ {
+  "title": "Translating Laboratory Texts",
+  "heading": "Translating Laboratory Texts",
+  "line": 10803,
+  "endLine": 10809,
+  "category": "lab",
+  "topic": "Laboratory Texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Decoding another magus's shorthand takes seasons of study accumulating Lab Total points up to the effect's level; once decoded, his other texts up to that level can be rewritten.",
+  "quotes": [
+   "you accumulate a number of points equal to your Lab Total in the appropriate Technique and Form"
+  ],
+  "related": []
+ },
+ {
+  "title": "Multiple Laboratory Activities",
+  "heading": "Multiple Laboratory Activities",
+  "line": 10811,
+  "endLine": 10817,
+  "category": "lab",
+  "topic": "Lab Activities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Several easy lab activities of the same type, Technique and Form can be done in one season by summing their levels against the Lab Total, using the lowest total if they differ.",
+  "quotes": [
+   "add up the levels of all activities performed and apply your Lab Total to the total of the levels",
+   "apply the lowest of the Lab Totals to the total of the levels"
+  ],
+  "related": []
+ },
+ {
+  "title": "Help in the Laboratory",
+  "heading": "Help in the Laboratory",
+  "line": 10819,
+  "endLine": 10829,
+  "category": "lab",
+  "topic": "Lab Assistants",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Gifted helpers with Magic Theory add their Intelligence plus Magic Theory (and relevant Virtues/Flaws) to the primary researcher's Lab Total, with a limit on the number of assistants set by Leadership and social implications for helpers.",
+  "quotes": [
+   "you add the helper's Intelligence + Magic Theory to your Lab Total for the season",
+   "is limited to his Leadership score (though he can always have at least one)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Distractions from Lab Work",
+  "heading": "Distractions from Lab Work",
+  "line": 10831,
+  "endLine": 10833,
+  "category": "lab",
+  "topic": "Lab Activities",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Missing days from a lab season carries no penalty up to a limit, then reduces the Lab Total, and prevents lab work entirely if too many days are missed.",
+  "quotes": [
+   "your Lab Total is penalized by 10 points, plus two points for every day over ten that you miss, up to a maximum penalty of 30 when you miss twenty days"
+  ],
+  "related": []
+ },
+ {
+  "title": "Familiars",
+  "heading": "Familiars",
+  "line": 10835,
+  "endLine": 10839,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Overview of familiars: magically bonded animals that become a magus's closest companion while keeping their own will.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Finding and Befriending an Animal",
+  "heading": "Finding and Befriending an Animal",
+  "line": 10841,
+  "endLine": 10845,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The first step to a familiar is finding a magical animal (left to the storyguide) and genuinely befriending it without coercion.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Enchanting the Familiar",
+  "heading": "Enchanting the Familiar",
+  "line": 10847,
+  "endLine": 10849,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Enchanting a familiar differs from ordinary enchantment because the bond changes both parties and the troupe decides how the magus is affected.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Suggested Familiars by Art",
+  "heading": "Suggested Familiars by Art",
+  "line": 10851,
+  "endLine": 10883,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "List of animals suited to bonding with each Technique and Form.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Initial Bond",
+  "heading": "The Initial Bond",
+  "line": 10885,
+  "endLine": 10899,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lab Total, enchantment level (based on Magic Might and Size) and vis cost for binding a familiar in a single season, using Arts appropriate to the animal.",
+  "quotes": [
+   "FAMILIAR BONDING LAB TOTAL: Any Technique + any Form + Intelligence + Magic Theory + Aura Modifier",
+   "FAMILIAR BONDING LEVEL: Familiar's Magic Might + 25 + (5 x Size)",
+   "FAMILIAR BONDING COST: 1 pawn of vis per five levels or fraction of the binding Lab Total. Vis must match Technique or Form"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Three Cords",
+  "heading": "The Three Cords",
+  "line": 10901,
+  "endLine": 10917,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The Lab Total is divided to buy golden, silver and bronze cord scores that give botch-dice reduction, mental protection and bonuses to Personality rolls, and physical resilience bonuses; cords can be strengthened later.",
+  "quotes": [
+   "A cord strength of 0 costs nothing, a strength of +1 requires 5 points, a score of +2 requires 15 points, a score of +3 requires 30 points, a score of +4 requires 50 points, and a score of +5 (the maximum) requires 75 points",
+   "The total cost of the cords you buy cannot exceed the magus's Lab Total."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Bound Familiar",
+  "heading": "The Bound Familiar",
+  "line": 10919,
+  "endLine": 10929,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Effects of the completed bond: True Friend Virtue and Loyalty trait, no natural death while the magus lives, human-level intelligence, shared Arcane Connection and Magic Resistance rules.",
+  "quotes": [
+   "The familiar uses the better of its Magic Resistance or the magus's Form resistance to resist spells, but this resistance does not stack with a Parma Magica."
+  ],
+  "related": []
+ },
+ {
+  "title": "Empowering the Bond",
+  "heading": "Empowering the Bond",
+  "line": 10931,
+  "endLine": 10953,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Investing powers in the familiar bond follows invested-device rules with four exceptions: unlimited powers, matching-Art bonuses to the Lab Total instead of existing effects, targets limited to the pair, and no Verditius bonus; such powers avoid Warping.",
+  "quotes": [
+   "she gets +5 if the effect matches either the Technique or Form used to bind the familiar, and +10 if it matches both",
+   "the power does not cause Warping (page 389) as a constant mystical effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Familiar in Play",
+  "heading": "The Familiar in Play",
+  "line": 10955,
+  "endLine": 10961,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how a familiar learns and ages alongside the magus, the consequences when one dies, and that a magus may have only one familiar.",
+  "quotes": [
+   "You can only have one familiar at a time."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Powers",
+  "heading": "Example Powers",
+  "line": 10963,
+  "endLine": 10977,
+  "category": "lab",
+  "topic": "Familiars",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Worked examples of effects commonly invested in familiar bonds (speech, mental communication, shapechanging, shared senses, location, aura of fire, claws) with their level breakdowns.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Finding Your Apprentice",
+  "heading": "Finding Your Apprentice",
+  "line": 10989,
+  "endLine": 10997,
+  "category": "lab",
+  "topic": "Apprentices",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Apprentices must have The Gift and may be found by story or by a seasonal stress roll; also notes the usual age range and how apprentices are obtained.",
+  "quotes": [
+   "For every season you spend searching for a potential apprentice, make a stress die and add your Perception. If the result is 9+, you find one."
+  ],
+  "related": []
+ },
+ {
+  "title": "Training Your Apprentice",
+  "heading": "Training Your Apprentice",
+  "line": 10999,
+  "endLine": 11013,
+  "category": "lab",
+  "topic": "Apprentices",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules and Order law for teaching an apprentice: claims begin when the Arts are opened, at least one teaching season a year, Parma Magica sharing to counter The Gift, and ownership and transfer rules.",
+  "quotes": [
+   "A magus must personally teach the apprentice for at least one season per year over the course of the apprenticeship"
+  ],
+  "related": []
+ },
+ {
+  "title": "Opening the Arts",
+  "heading": "Opening the Arts",
+  "line": 11015,
+  "endLine": 11025,
+  "category": "lab",
+  "topic": "Apprentices",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The teaching season in which an apprentice receives a score of 0 in every Art; low Art scores in the master cause Deficiencies and existing Supernatural Abilities require an Intellego Vim Lab Total to preserve or convert.",
+  "quotes": [
+   "If you have a score of less than five in any Art when you open them, your apprentice automatically has a Deficiency",
+   "you can only open the Arts if your Intellego Vim Lab Total equals or exceeds five times the apprentice's score in the relevant Ability"
+  ],
+  "related": []
+ },
+ {
+  "title": "Opening the Arts in house Ex Miscellanea",
+  "heading": "Opening the Arts in house Ex Miscellanea",
+  "line": 11027,
+  "endLine": 11029,
+  "category": "lab",
+  "topic": "Apprentices",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Ex Miscellanea tradition whose Major Virtue is an inborn Supernatural Virtue",
+  "summary": "Apprentices of certain Ex Miscellanea traditions need no minimum Intellego Vim Lab Total to keep the tradition's Major Virtue when the Arts are opened.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Teaching Hermetic Virtues",
+  "heading": "Teaching Hermetic Virtues",
+  "line": 11031,
+  "endLine": 11051,
+  "category": "seasons",
+  "topic": "Apprentices",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A parens can teach a Hermetic Virtue he possesses to a Gifted apprentice in a season by generating a Teaching Source Quality against a target level, which rises with the student's existing Hermetic Virtues and can be eased by including a Hermetic Flaw.",
+  "quotes": [
+   "TEACHING SOURCE QUALITY: Communication + Teaching + 3 + bonus",
+   "TEACHING A MINOR HERMETIC VIRTUE: Target level is 15",
+   "TEACHING A MAJOR HERMETIC VIRTUE: Target Level is 21",
+   "Including a Minor Hermetic Flaw adds a +3 bonus. Including a Major Hermetic Flaw adds a +9 bonus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Acquiring House Virtues",
+  "heading": "Acquiring House Virtues",
+  "line": 11053,
+  "endLine": 11065,
+  "category": "houses",
+  "topic": "Apprentices",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How an apprentice gains the free Minor House Virtue: ten seasons of one-to-one interaction with the parens for most Houses, a package for Ex Miscellanea, or an Initiation into the Outer Mystery for Mystery Cult Houses.",
+  "quotes": [
+   "ACQUIRING THE MINOR HERMETIC HOUSE VIRTUE: Requires 10 Seasons of one-to-one Interaction with Parens"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining Hermetic Flaws",
+  "heading": "Gaining Hermetic Flaws",
+  "line": 11067,
+  "endLine": 11071,
+  "category": "magic",
+  "topic": "Apprentices",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how Hermetic Flaws gained after character generation take effect immediately and are permanent, typically gained from learning Virtues, uncontrolled Twilight or opening the Arts with a Deficiency.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Fleshing Out Your Apprentice",
+  "heading": "Fleshing Out Your Apprentice",
+  "line": 11073,
+  "endLine": 11077,
+  "category": "creation",
+  "topic": "Apprentices",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "An apprentice adds Intelligence plus Magic Theory to Lab Totals; to play one as a full character, create a young character with The Gift whose Arts the magus can open.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The End of Apprenticeship",
+  "heading": "The End of Apprenticeship",
+  "line": 11085,
+  "endLine": 11089,
+  "category": "order",
+  "topic": "Apprentices",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Apprenticeship ends with a gauntlet set by the parens after the usual term; after repeated failures the Quaesitores set the gauntlets.",
+  "quotes": [
+   "If an apprentice fails three gauntlets, the Quaesitores set the fourth and subsequent gauntlets"
+  ],
+  "related": []
+ },
+ {
+  "title": "Arcane Experimentation",
+  "heading": "Arcane Experimentation",
+  "line": 11091,
+  "endLine": 11093,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Overview of experimenting when inventing spells, enchanting devices or familiars, or investigating enchantments, trading safety for the chance of exceeding normal capabilities.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Experimental Premise",
+  "heading": "The Experimental Premise",
+  "line": 11095,
+  "endLine": 11097,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Choosing to experiment at the start of a season adds a simple die to the Lab Total but requires a stress roll on the Extraordinary Results Chart each season; cannot be combined with working from a Lab Text.",
+  "quotes": [
+   "add a simple die roll to your Lab Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Exceptional Risk",
+  "heading": "Exceptional Risk",
+  "line": 11099,
+  "endLine": 11101,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optionally adding a risk modifier to the experiment die also adds it to every chart roll and gives extra botch dice equal to the modifier.",
+  "quotes": [
+   "adding from +1 to +3 (your choice) to the die roll; this bonus is called your risk modifier",
+   "you get a number of extra botch dice on your rolls equal to your bonus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Extraordinary Results",
+  "heading": "Extraordinary Results",
+  "line": 11103,
+  "endLine": 11109,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How to roll on and interpret the Extraordinary Results Chart (stress die plus risk modifier, botch dice including aura), and the option to recreate a flawed effect with a bonus of Magic Theory.",
+  "quotes": [
+   "roll a stress die, adding your risk modifier (if any)",
+   "You also get one additional botch die for each point in the supernatural aura of the laboratory",
+   "you gain your Magic Theory score (your score at the time of your experiment) as a bonus to your Lab Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Inventing a Spell by Experimentation",
+  "heading": "Inventing a Spell by Experimentation",
+  "line": 11111,
+  "endLine": 11113,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The experimental die may let a spell be invented sooner or beyond normal capacity; if the total still falls short the spell is not invented but the chart is still rolled.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Enchanted Items Created by Experimentation",
+  "heading": "Enchanted Items Created by Experimentation",
+  "line": 11115,
+  "endLine": 11119,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When experimenting on an enchanted item, falling short loses the vis and still rolls on the chart, and a flawed effect still takes up capacity in the device.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Enchanting a Familiar by Experimentation",
+  "heading": "Enchanting a Familiar by Experimentation",
+  "line": 11121,
+  "endLine": 11123,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "A magus with a familiar being bound or empowered",
+  "summary": "Experimentation on a familiar bond adds the die as normal but risks tainting the bond.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Experimenting on Longevity Rituals",
+  "heading": "Experimenting on Longevity Rituals",
+  "line": 11125,
+  "endLine": 11127,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Experimenting adds the simple die to a Longevity Ritual's Lab Total; a flawed ritual can be overridden by a second ritual in an extra season.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Investigating an Enchanted Item by Experimentation",
+  "heading": "Investigating an Enchanted Item by Experimentation",
+  "line": 11129,
+  "endLine": 11133,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The simple die is added to every discovery roll when investigating an item, but chart results may damage the item unless its protections exceed the Lab Total.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Extraordinary Results Chart",
+  "heading": "Extraordinary Results Chart",
+  "line": 11135,
+  "endLine": 11206,
+  "category": "lab",
+  "topic": "Arcane Experimentation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The chart and sub-tables for experiment outcomes: disaster by number of zeroes, side effects, no benefit, complete failure, special or story event, discovery rewards and modified effects.",
+  "quotes": [
+   "Suffer the effect for the number you roll and for all lower numbers, unless explicitly told otherwise.",
+   "Roll a simple die and add your risk modifier."
+  ],
+  "related": []
+ },
+ {
+  "title": "Arcane Discovery",
+  "heading": "Arcane Discovery",
+  "line": 11208,
+  "endLine": 11210,
+  "category": "lab",
+  "topic": "Arcane Discovery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Overview of how Hermetic magi can expand the Art through original research.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Breakthrough",
+  "heading": "The Breakthrough",
+  "line": 11212,
+  "endLine": 11222,
+  "category": "lab",
+  "topic": "Arcane Discovery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines Minor, Major and Hermetic Breakthroughs and the approximate breakthrough points required for each, and how research may be experimental or based on non-Hermetic magic.",
+  "quotes": [
+   "A Minor Breakthrough typically requires around 30 breakthrough points.",
+   "A Major Breakthrough typically requires around 45 breakthrough points.",
+   "A Hermetic Breakthrough typically requires around 60 breakthrough points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Experimentation (Arcane Discovery)",
+  "heading": "Experimentation",
+  "line": 11224,
+  "endLine": 11244,
+  "category": "lab",
+  "topic": "Arcane Discovery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Original research uses experimentation but the risk modifier (limited by Magic Theory) adjusts the chart roll instead of the Lab Total, hoping for a Discovery result.",
+  "quotes": [
+   "BREAKTHROUGH: Roll Discovery on the Extraordinary Results Chart during a season of Arcane Experimentation",
+   "RISK MODIFIER: +1 per 5 points of Magic Theory or fraction thereof, up to +3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Stabilizing the Unknown",
+  "heading": "Stabilizing the Unknown",
+  "line": 11246,
+  "endLine": 11260,
+  "category": "lab",
+  "topic": "Arcane Discovery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "After a Discovery the experiment is repeated exactly to stabilize it, yielding breakthrough points equal to the magnitude but also Warping Points and possible Twilight.",
+  "quotes": [
+   "SUCCESSFUL STABILIZATION SEASON: Magnitudes of Stabilized Discovery = Breakthrough Points",
+   "WARPING POINTS GAINED: The magnitude of the Stabilized Discovery"
+  ],
+  "related": []
+ },
+ {
+  "title": "Integration",
+  "heading": "Integration",
+  "line": 11262,
+  "endLine": 11278,
+  "category": "lab",
+  "topic": "Arcane Discovery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Insight from non-Hermetic texts, relics or teachers, gained by a season's stress roll, lets a magus create a partially Hermetic effect and accumulate breakthrough points.",
+  "quotes": [
+   "make a stress roll of Intelligence + Magic Theory against an Ease Factor of 18"
+  ],
+  "related": []
+ },
+ {
+  "title": "Creating the Effect",
+  "heading": "Creating the Effect",
+  "line": 11280,
+  "endLine": 11298,
+  "category": "lab",
+  "topic": "Arcane Discovery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A specific insight dictates one exact effect that must be invented with experimentation, giving breakthrough points equal to its magnitude and a reproducible Lab Text.",
+  "quotes": [
+   "the magus gains a number of breakthrough points equal to the magnitude of the effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "After the Breakthrough",
+  "heading": "After the Breakthrough",
+  "line": 11300,
+  "endLine": 11308,
+  "category": "lab",
+  "topic": "Arcane Discovery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes what Minor, Major and Hermetic Breakthroughs allow once achieved, how Abilities and Virtues are taught or Initiated, and the effect of a second Major Breakthrough.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Shape and Material Bonuses Table",
+  "heading": "Shape and Material Bonuses Table",
+  "line": 11313,
+  "endLine": 11557,
+  "category": "lab",
+  "topic": "Enchanted Items",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Alphabetical table of shapes and materials with the Lab Total bonuses they give to matching enchantment effects, used for invested items, charged items and talisman attunements.",
+  "quotes": [
+   "Triple the bonus for the type of wood (oak, ash, etc), but not for wood as such.",
+   "+4 control things at a distance"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Personalization Rules",
+  "heading": "Laboratory Personalization Rules",
+  "line": 11559,
+  "endLine": 11565,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces treating a laboratory as a character with eight Characteristics, Virtues and Flaws (Major, Minor or Free) and Specializations that add to Lab Totals.",
+  "quotes": [
+   "Each laboratory is characterized by a set of eight Characteristics, with a standard (default) lab starting with scores of 0 in each."
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Characteristics",
+  "heading": "Laboratory Characteristics",
+  "line": 11567,
+  "endLine": 11581,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the eight lab Characteristics and the three-step procedure for determining a non-standard lab's scores from Size, Refinement and its Virtues and Flaws.",
+  "quotes": [
+   "Size, Refinement, General Quality, Upkeep, Safety, Warping, Health, Aesthetics",
+   "Set the Safety to be equal to the Refinement."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lab Size",
+  "heading": "Size",
+  "line": 11583,
+  "endLine": 11607,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Size sets floor space and the Virtue points a lab can hold; occupied Size reduces Safety and surplus Size calls for the Empty Flaw; includes the table of Size against square feet.",
+  "quotes": [
+   "each point of Size adds to the maximum permitted number of Virtue points minus Flaw points",
+   "for every full two points by which the Size exceeds the occupied Size, you should take the Empty Flaw",
+   "for each additional 500 square feet beyond 1500, add a further +1 to Size"
+  ],
+  "related": []
+ },
+ {
+  "title": "Size and Refinement Summary",
+  "heading": "Size and Refinement Summary",
+  "line": 11609,
+  "endLine": 11615,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Quick formulas for the limit on Virtue minus Flaw points, occupied Size and base Safety.",
+  "quotes": [
+   "LIMIT OF VIRTUE POINTS MINUS FLAW POINTS: Size + Refinement",
+   "BASE SAFETY OF LAB: Refinement"
+  ],
+  "related": []
+ },
+ {
+  "title": "Lab Refinement",
+  "heading": "Refinement",
+  "line": 11617,
+  "endLine": 11629,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Refinement adds to the Virtue space and Safety; a fresh lab starts at 0 and each point takes a season of work, requiring Magic Theory three above the target, with a roll to gain Highly Organized or Spotless or to spot or gain Hidden Defect.",
+  "quotes": [
+   "need a Magic Theory equal to at least the desired Refinement score, plus 3",
+   "If this meets an Ease Factor of 12, Highly Organized is gained."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lab General Quality",
+  "heading": "General Quality",
+  "line": 11631,
+  "endLine": 11633,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "General Quality is a flat bonus or penalty to every Lab Total, excluding teaching and scribing of texts.",
+  "quotes": [
+   "General Quality adds to all Lab Totals."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lab Upkeep",
+  "heading": "Upkeep",
+  "line": 11635,
+  "endLine": 11641,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Upkeep sets the build and yearly maintenance cost of the lab; unaffordable upkeep leads to gaining Flaws, and raising Upkeep costs the difference in build cost.",
+  "quotes": [
+   "A lab with an Upkeep of 0 costs 5 pounds to build and 1 pound per typical year of use to maintain."
+  ],
+  "related": [
+   "Chapter 6: Covenants"
+  ]
+ },
+ {
+  "title": "Lab Safety",
+  "heading": "Safety",
+  "line": 11643,
+  "endLine": 11649,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Safety subtracts from the botch dice on lab activities, and an unsafe lab requires a seasonal simple-die check for a lab accident even for normally safe work.",
+  "quotes": [
+   "The Safety score subtracts its value from the number of botch dice on all lab activities."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lab Warping",
+  "heading": "Warping",
+  "line": 11651,
+  "endLine": 11655,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A lab with positive Warping may warp each season's product, using the chart for side effects or modified effects, and carries matching Personality Traits.",
+  "quotes": [
+   "If the result is less than or equal to the Warping score, then the product of that season's work (be it an item, spell, or something else) suffers Warping."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lab Health",
+  "heading": "Health",
+  "line": 11657,
+  "endLine": 11661,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Health adds to Wound Recovery rolls for inhabitants and half of it adds to the Living Conditions modifier for aging.",
+  "quotes": [
+   "The Health score adds to any Wound Recovery rolls for inhabitants of the lab."
+  ],
+  "related": []
+ },
+ {
+  "title": "Lab Aesthetics",
+  "heading": "Aesthetics",
+  "line": 11663,
+  "endLine": 11667,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Aesthetics gives its owner experience points in an appropriate Reputation based on the lab's impressiveness.",
+  "quotes": [
+   "For every point of Aesthetics, either positive or negative, the owner gains five experience points in an appropriate Reputation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Specializations",
+  "heading": "Laboratory Specializations",
+  "line": 11669,
+  "endLine": 11693,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Specializations add to Lab Totals for particular activities or Arts; a lab can hold a limited number, and the activity Specializations (experimentation, familiar, items, longevity, spells, teaching, texts, vis extraction) are defined here.",
+  "quotes": [
+   "A lab can have at most two activity Specializations, plus four Art Specializations (at most two of which can be Techniques)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Build Point Cost for Starting Laboratories",
+  "heading": "Build Point Cost for Starting Laboratories",
+  "line": 11743,
+  "endLine": 11753,
+  "category": "covenant",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Build Point costs for labs under Customized Covenant Creation, including costs for extra labs, Size, and Minor and Major Virtues, with guidance for different covenant ages.",
+  "quotes": [
+   "Extra (spare) labs cost 50 Build Points each.",
+   "Each Minor Virtue costs 10 Build Points and each Major Virtue costs 20 Build Points."
+  ],
+  "related": [
+   "Customized Covenant Creation"
+  ]
+ },
+ {
+  "title": "Laboratory Virtues and Flaws",
+  "heading": "Laboratory Virtues and Flaws",
+  "line": 11755,
+  "endLine": 11761,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Lab Virtues and Flaws are balanced so that Virtue points minus Flaw points cannot exceed Size plus Refinement; some can be taken multiple times.",
+  "quotes": [
+   "the number of points spent on Virtues, minus the number of points spent on Flaws, cannot exceed the Size + Refinement of the lab"
+  ],
+  "related": []
+ },
+ {
+  "title": "Adding and Removing Lab Virtues",
+  "heading": "Virtues",
+  "line": 11763,
+  "endLine": 11769,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Adding a lab Virtue needs free space and takes seasons of work by someone with sufficient Magic Theory; removal is only sometimes possible.",
+  "quotes": [
+   "it takes one season of work to gain a Minor Virtue, and two seasons to gain a Major Virtue"
+  ],
+  "related": []
+ },
+ {
+  "title": "Adding and Removing Lab Flaws",
+  "heading": "Flaws",
+  "line": 11771,
+  "endLine": 11775,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Lab Flaws take effect immediately and free up space; removing them needs free points and takes seasons depending on size.",
+  "quotes": [
+   "removing a Minor Flaw also takes one season, and removing a Major Flaw takes two seasons"
+  ],
+  "related": []
+ },
+ {
+  "title": "Structure Virtues and Flaws (Laboratory)",
+  "heading": "Structure Virtues and Flaws",
+  "line": 11777,
+  "endLine": 11826,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lab Virtues and Flaws arising from the lab's physical structure and location (features, environment, stores, gallery, deformities, low ceilings, focus), with their effects on Characteristics and Specializations.",
+  "quotes": [
+   "Greater Feature",
+   "Lesser Focus"
+  ],
+  "related": []
+ },
+ {
+  "title": "Outfittings Virtues and Flaws (Laboratory)",
+  "heading": "Outfittings Virtues and Flaws",
+  "line": 11827,
+  "endLine": 11882,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lab Virtues and Flaws from equipment and occupants (expansions, living quarters, assistants, servants, organization, missing equipment or ingredients, damage, elementary labs).",
+  "quotes": [
+   "Highly Organized",
+   "Missing Ingredients"
+  ],
+  "related": []
+ },
+ {
+  "title": "Supernatural Virtues and Flaws (Laboratory)",
+  "heading": "Supernatural Virtues and Flaws",
+  "line": 11883,
+  "endLine": 11932,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lab Virtues and Flaws from supernatural sources (guardians, vis sources, enchantments, magic items, regios, hauntings, illusions).",
+  "quotes": [
+   "Greater Guardian",
+   "Magic Item"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Features",
+  "heading": "Laboratory Features",
+  "line": 11933,
+  "endLine": 12010,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lesser and Greater Features provide one or three points among listed Specializations; a lab can focus on one Feature, and the section lists example Features with their allowed Specializations.",
+  "quotes": [
+   "The former provides three points on Specialization(s), the latter one point."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Sanctum",
+  "heading": "The Sanctum",
+  "line": 12011,
+  "endLine": 12013,
+  "category": "order",
+  "topic": "Sanctum",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Any magus may declare a sanctum, within which an intruding magus has no legal protection; the Grand Tribunal ruling prescribes how the sanctum is marked.",
+  "quotes": [
+   "A decision of the First Tribunal means that a magus in another's sanctum has no legal protection from the owner of the sanctum"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Items for Laboratories",
+  "heading": "Magic Items for Laboratories",
+  "line": 12015,
+  "endLine": 12022,
+  "category": "lab",
+  "topic": "Laboratory Personalization",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Magic items or enchantments on a lab can grant lab Virtues and Flaws, or add to Characteristics or Specializations in proportion to effect level.",
+  "quotes": [
+   "Every ten levels may grant one point in a Specialization, or every 20 levels may improve a Characteristic by one point."
+  ],
+  "related": []
+ }
+]

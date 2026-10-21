@@ -1,0 +1,1233 @@
+[
+ {
+  "title": "Virtues and Flaws Basics",
+  "heading": "Chapter 4: Virtues and Flaws",
+  "line": 2838,
+  "endLine": 2850,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "How Virtues and Flaws are bought and balanced: Virtues cost points, Flaws grant them, Minor and Major sizes, the cap on Flaws for a central character, and what makes a Flaw acceptable to the troupe.",
+  "quotes": [
+   "Major Virtues cost three points, while Major Flaws grant three points.",
+   "A central character may have up to ten points of Flaws, but no more than five Minor Flaws."
+  ]
+ },
+ {
+  "title": "Social Status Requirement",
+  "heading": "Social Status Virtues and Flaws",
+  "line": 2860,
+  "endLine": 2866,
+  "category": "creation",
+  "topic": "Social Status",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Every character must have a Social Status Virtue or Flaw to show how society sees them, usually limited to the society of the saga; some statuses are restricted by how society perceives the character's gender.",
+  "quotes": [
+   "every character must have one of these, to represent the way that society sees them"
+  ]
+ },
+ {
+  "title": "Virtue and Flaw Limits",
+  "heading": "Virtues and Flaws Rules and Guidelines",
+  "line": 2880,
+  "endLine": 2888,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "General limits on taking Virtues and Flaws: repeats only when allowed, one Social Status, and guidelines for Story and Personality Flaws.",
+  "quotes": [
+   "A Virtue or Flaw may be taken more than once only if the description explicitly allows it.",
+   "A character may not have more than one Major Personality Flaw."
+  ]
+ },
+ {
+  "title": "Virtues and Flaws for Grogs",
+  "heading": "Grogs",
+  "line": 2890,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "grogs"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Character-creation limits on Virtues and Flaws for grogs, including bans on Major Virtues and Flaws, Hermetic Virtues and The Gift.",
+  "quotes": [
+   "You may take up to 3 points of Flaws, and an equal number of points of Virtues",
+   "You may not take Major Virtues or Flaws"
+  ]
+ },
+ {
+  "title": "Virtues and Flaws for Companions",
+  "heading": "Companions",
+  "line": 2900,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Character-creation limits on Virtues and Flaws for companions, including Minor Flaw limits and Social Status requirement.",
+  "quotes": [
+   "You may take up to 10 points of Flaws, and an equal number of points of Virtues",
+   "You may not have more than 5 Minor Flaws"
+  ]
+ },
+ {
+  "title": "Virtues and Flaws for Mythic Companions",
+  "heading": "Mythic Companions",
+  "line": 2910,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Mythic Companion",
+  "summary": "Character-creation limits for Mythic Companions, who get extra Virtue points per Flaw point, a defining Free Virtue and a free Minor Virtue.",
+  "quotes": [
+   "You make take up to 10 points of Flaws, and 2 points of Virtues for every 1 point of Flaws, for a maximum of 20 points of Virtues"
+  ]
+ },
+ {
+  "title": "Virtues and Flaws for Magi",
+  "heading": "Magi",
+  "line": 2921,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Character-creation limits for magi: balanced Virtues and Flaws, at most one Major Hermetic Virtue, required Gift and Hermetic Magus status, and a free House Minor Virtue.",
+  "quotes": [
+   "You must take The Gift and the Hermetic Magus Social Status Virtue",
+   "You may not have more than one Major Hermetic Virtue"
+  ]
+ },
+ {
+  "title": "The Gift (Virtue Type)",
+  "heading": "The Gift",
+  "line": 2936,
+  "endLine": 2944,
+  "category": "creation",
+  "topic": "The Gift",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes The Gift as a cost-free Virtue with its penalties, how it lets a character learn Supernatural Abilities and Hermetic Magic, and who should be allowed to have it.",
+  "quotes": [
+   "The Gift is a special Virtue, because it has no cost."
+  ],
+  "related": [
+   "ArM5 p.203",
+   "ArM5 p.383"
+  ]
+ },
+ {
+  "title": "Hermetic Virtues and Flaws",
+  "heading": "Hermetic",
+  "line": 2946,
+  "endLine": 2950,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "The Gift",
+  "summary": "Only characters with The Gift can take Hermetic Virtues and Flaws; a troupe may let a character with many Supernatural Virtues take Hermetic Flaws as Supernatural Flaws.",
+  "quotes": [
+   "Only characters with The Gift can take these Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "Social Status Types",
+  "heading": "Social Status",
+  "line": 2952,
+  "endLine": 2954,
+  "category": "creation",
+  "topic": "Social Status",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Social Status Virtues and Flaws set a character's place in society, and some are Free and cost no points.",
+  "quotes": [
+   "Some Social Status Virtues are Free, which means that they do not cost any points to buy."
+  ]
+ },
+ {
+  "title": "Social Statuses by Culture",
+  "heading": "Social Statuses by Culture",
+  "line": 2956,
+  "endLine": 3025,
+  "category": "creation",
+  "topic": "Social Status",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains that available Social Statuses depend on culture and lists, per culture, which Free, Minor and Major Virtues and Flaws are available.",
+  "quotes": [
+   "Free Virtues",
+   "Hermetic Magus"
+  ],
+  "related": [
+   "ArM5 p.65"
+  ]
+ },
+ {
+  "title": "Supernatural Virtues and Flaws",
+  "heading": "Supernatural",
+  "line": 3026,
+  "endLine": 3030,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Supernatural Virtues and Flaws are tied to one of the four realms, which governs interaction with auras and grants immunity to Warping from a high aura of the same realm.",
+  "quotes": [
+   "a character with a Supernatural Virtue or Flaw is immune to Warping caused by living in a high aura associated with the same realm"
+  ],
+  "related": [
+   "ArM5 p.410",
+   "ArM5 p.389"
+  ]
+ },
+ {
+  "title": "Personality Flaws",
+  "heading": "Personality",
+  "line": 3032,
+  "endLine": 3046,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Guidance on Major and Minor Personality Flaws, including how they drive stories, how often they may be ignored, and limits on how many a character takes.",
+  "quotes": [
+   "A character may not have more than one Major Personality Flaw",
+   "Most characters should not have more than two Personality Flaws, Major or Minor"
+  ]
+ },
+ {
+  "title": "Story Flaws",
+  "heading": "Story",
+  "line": 3048,
+  "endLine": 3056,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Story Flaws are external hooks that drag a character into stories; limited to one per character and must depend on something outside the character.",
+  "quotes": [
+   "You should not take more than one Story Flaw, Major or Minor"
+  ]
+ },
+ {
+  "title": "Personality and Story Flaw Frequency",
+  "heading": "Personality & Story Flaws",
+  "line": 3058,
+  "endLine": 3060,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Advice for storyguides on limiting Major Personality and Story Flaws so that each has a chance to appear in play.",
+  "quotes": []
+ },
+ {
+  "title": "Tainted Virtues and Flaws",
+  "heading": "Tainted Virtues and Flaws",
+  "line": 3066,
+  "endLine": 3070,
+  "category": "creation",
+  "topic": "Virtues and Flaws",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tainted (Infernal) Virtues and Flaws",
+  "summary": "Tainted Virtues and Flaws are Infernal; sets limits on how many a character can take at creation and notes that granted supernatural abilities are Infernal powers.",
+  "quotes": [
+   "no more than half a character's Virtues should be tainted",
+   "Supernatural abilities granted by Tainted Virtues or Flaws are always Infernal powers."
+  ],
+  "related": [
+   "Realms of Power: The Infernal, chapter 9"
+  ]
+ },
+ {
+  "title": "Abilities Overview and Ability Rolls",
+  "heading": "Chapter 5: Abilities",
+  "line": 7182,
+  "endLine": 7187,
+  "category": "basics",
+  "topic": "Ability rolls",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces Abilities and the basic Ability roll: add a Characteristic and an Ability to a die roll and meet or exceed an Ease Factor, with the Characteristic chosen to fit the situation.",
+  "quotes": [
+   "Abilities are normally used by adding Characteristic + Ability + die roll, and meeting or exceeding an Ease Factor."
+  ],
+  "related": [
+   "ArM5 p.27"
+  ]
+ },
+ {
+  "title": "Specializations",
+  "heading": "Specializations",
+  "line": 7188,
+  "category": "basics",
+  "topic": "Ability rolls",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": true,
+  "requires": "",
+  "summary": "Each Ability except Spell Mastery gets a specialization that raises the effective score when the specialization applies.",
+  "quotes": [
+   "you act as if your score were one level higher than it actually is"
+  ]
+ },
+ {
+  "title": "Abilities With No Score",
+  "heading": "Abilities With No Score",
+  "line": 7194,
+  "category": "basics",
+  "topic": "Ability rolls",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains whether and how a character with no score in an Ability can use it, depending on whether the Ability is asterisked and whether any experience has been put in it.",
+  "quotes": [
+   "she may use it as if it had a score of zero, but rolling three extra botch dice",
+   "Characters cannot use Supernatural Abilities unless they have at least one experience point in the Ability."
+  ]
+ },
+ {
+  "title": "Ability Roll (summary box)",
+  "heading": "Ability Roll:",
+  "line": 7202,
+  "endLine": 7207,
+  "category": "basics",
+  "topic": "Ability rolls",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 1,
+  "creation": false,
+  "requires": "",
+  "summary": "Summary box giving the standard Ability roll, the use of unscored Abilities and the specialization bonus.",
+  "quotes": [
+   "Characteristic + Ability + die roll, meet or exceed the Ease Factor to succeed"
+  ]
+ },
+ {
+  "title": "Ability Types",
+  "heading": "Ability Types",
+  "line": 7209,
+  "endLine": 7211,
+  "category": "basics",
+  "topic": "Ability types",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the six types of Ability and notes that they are used alike, the difference being who may learn them.",
+  "quotes": [
+   "There are six types of Ability"
+  ]
+ },
+ {
+  "title": "General Abilities (type)",
+  "heading": "General Abilities",
+  "line": 7213,
+  "category": "basics",
+  "topic": "Ability types",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "General Abilities can be learned by almost anyone with no game restrictions.",
+  "quotes": [
+   "there are no game restrictions on who may do so"
+  ]
+ },
+ {
+  "title": "Academic Abilities (type)",
+  "heading": "Academic Abilities",
+  "line": 7217,
+  "category": "basics",
+  "topic": "Ability types",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Academic Abilities need formal training, a Virtue or magus status for beginning characters, and usually a minimum score in a learned language.",
+  "quotes": [
+   "Academic Abilities require formal training.",
+   "learning an Academic Knowledge normally requires a Latin, Greek, Hebrew, or Arabic score of at least 3"
+  ]
+ },
+ {
+  "title": "Arcane Abilities (type)",
+  "heading": "Arcane Abilities",
+  "line": 7223,
+  "category": "basics",
+  "topic": "Ability types",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "Virtue granting the Ability, or magus",
+  "summary": "Arcane Abilities may be bought at character generation only with a permitting Virtue or as a magus, and some Virtues also allow Penetration.",
+  "quotes": [
+   "A character may only take these Abilities during character generation if permitted to by a Virtue, or if he is a magus."
+  ]
+ },
+ {
+  "title": "Martial Abilities (type)",
+  "heading": "Martial Abilities",
+  "line": 7227,
+  "category": "basics",
+  "topic": "Ability types",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "Virtue or Flaw granting the Ability, or magus",
+  "summary": "Martial Abilities may be bought at character generation only with a permitting Virtue or Flaw, or as a magus.",
+  "quotes": [
+   "Characters may only gain Martial Abilities during character generation if they are permitted to do so by a particular Virtue or Flaw, or if they are magi."
+  ]
+ },
+ {
+  "title": "Spell Mastery Abilities (type)",
+  "heading": "Spell Mastery Abilities",
+  "line": 7231,
+  "category": "magic",
+  "topic": "Spell Mastery",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Hermetic magus",
+  "summary": "Spell Mastery Abilities belong to magi and concern casting Formulaic and Ritual spells; full rules are in the Hermetic Magic chapter.",
+  "quotes": [
+   "Spell Mastery Abilities can only be taken by magi"
+  ],
+  "related": [
+   "ArM5 p.225"
+  ]
+ },
+ {
+  "title": "Supernatural Abilities (type)",
+  "heading": "Supernatural Abilities",
+  "line": 7235,
+  "endLine": 7241,
+  "category": "basics",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue granting the Ability, or The Gift",
+  "summary": "Rules for obtaining Supernatural Abilities at creation, their realm of origin and the Warping immunity that goes with it, and how The Gift lets Gifted characters learn them in play.",
+  "quotes": [
+   "Characters may only gain Supernatural Abilities during character creation if they have the Virtue granting the Ability.",
+   "If you have no reason to choose otherwise, your Ability is granted by the Magic realm"
+  ],
+  "related": [
+   "ArM5 p.410",
+   "ArM5 p.389",
+   "ArM5 p.383"
+  ]
+ },
+ {
+  "title": "Animal Ken",
+  "heading": "Animal Ken\\*",
+  "line": 7346,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Animal Ken",
+  "summary": "Lets the character communicate with animals, using their score as if it were skill in a language the animal speaks fluently.",
+  "quotes": [
+   "Treat your score in Animal Ken as your score in a language that the animal speaks fluently in order to determine how well you can communicate"
+  ]
+ },
+ {
+  "title": "Art of Memory",
+  "heading": "Art of Memory\\*",
+  "line": 7354,
+  "endLine": 7364,
+  "category": "basics",
+  "topic": "Art of Memory",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Academic training",
+  "summary": "Memory-palace technique: the number of loci depends on the score, and a Complex Memorization roll against an Ease Factor lets the scholar remember a scene or writing in exact detail; those without the Ability can try with extra botch dice.",
+  "quotes": [
+   "The character has a number of loci equal to five times their score in Art of Memory.",
+   "Stress Die + Intelligence + Art of Memory vs. Ease Factor of 9 (or higher)"
+  ]
+ },
+ {
+  "title": "Memorization Ease Factors",
+  "heading": "Memorization Ease Factors",
+  "line": 7366,
+  "endLine": 7374,
+  "category": "basics",
+  "topic": "Art of Memory",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Academic training",
+  "summary": "Table of Ease Factors for memorizing letters, conversations, rooms and buildings, with adjustments for length, technical material and substitute Abilities.",
+  "quotes": [
+   "9 (Average)",
+   "If the subject matter is highly technical add 3 or even 6 to the Ease Factor."
+  ]
+ },
+ {
+  "title": "Artes Liberales and Literacy",
+  "heading": "Artes Liberales\\*",
+  "line": 7376,
+  "endLine": 7388,
+  "category": "basics",
+  "topic": "Literacy",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Academic training",
+  "summary": "Artes Liberales is the foundation of academic study and also determines how many writing systems a character can read and write.",
+  "quotes": [
+   "For every point in the Ability, the character can read and write one writing system"
+  ]
+ },
+ {
+  "title": "Brawl and Dodging",
+  "heading": "Brawl",
+  "line": 7406,
+  "endLine": 7408,
+  "category": "combat",
+  "topic": "Dodge",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Brawl covers unarmed and improvised-weapon fighting and is the Ability used to dodge when a character has no Martial Abilities.",
+  "quotes": [
+   "Brawl is also the Ability used to dodge attacks if you have no Martial Abilities."
+  ]
+ },
+ {
+  "title": "Chirurgy",
+  "heading": "Chirurgy (kie-RUHR-gee)\\*",
+  "line": 7418,
+  "endLine": 7420,
+  "category": "hazards",
+  "topic": "Wound recovery",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Medieval surgery used to help others recover from physical damage; the rules for its use are on the wound recovery page.",
+  "quotes": [
+   "See page 405 for rules."
+  ],
+  "related": [
+   "ArM5 p.405"
+  ]
+ },
+ {
+  "title": "Concentration",
+  "heading": "Concentration",
+  "line": 7434,
+  "endLine": 7436,
+  "category": "basics",
+  "topic": "Concentration",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "The storyguide may call for a Concentration roll before a demanding task or a retry after failure, and it helps magi hold spells through distractions.",
+  "quotes": [
+   "the storyguide can call for a Concentration roll before you can make the attempt"
+  ]
+ },
+ {
+  "title": "Corpse Magic",
+  "heading": "Corpse Magic\\*",
+  "line": 7438,
+  "endLine": 7446,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Corpse Magic",
+  "summary": "Supernatural Ability to temporarily animate or question a suitable corpse, using a Casting Total and a Commanding roll compared against Ease Factors.",
+  "quotes": [
+   "Communication + Corpse Magic + Aura modifier + stress die",
+   "Communication + Leadership + stress die"
+  ]
+ },
+ {
+  "title": "Corpse Magic Ease Factor Outcome",
+  "heading": "Corpse Magic Ease Factor Outcome",
+  "line": 7448,
+  "endLine": 7455,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Corpse Magic",
+  "summary": "Table of what Corpse Magic achieves at each Ease Factor, including speaking to, animating and commanding corpses and the Ease Factors for commands.",
+  "quotes": [
+   "Single word commands have an Ease Factor of 6, simple questions or commands require a 9, and more complex instructions or questions need a 12 or more."
+  ],
+  "related": [
+   "Realms of Power: Magic, chapter 6"
+  ]
+ },
+ {
+  "title": "Crafter's Healing",
+  "heading": "Crafter's Healing\\*",
+  "line": 7461,
+  "endLine": 7463,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Crafter's Healing",
+  "summary": "Supernatural healing of wounds one level at a time at the cost of a Long-Term Fatigue level, using a roll against the Wound Recovery improvement Ease Factor, with Warping for the recipient.",
+  "quotes": [
+   "Make a Presence + Crafter's Healing + stress die roll against an Ease Factor equal to the Improvement Ease Factor determined by the Wound Recovery Table"
+  ],
+  "related": [
+   "ArM5 p.405"
+  ]
+ },
+ {
+  "title": "Curse-Throwing",
+  "heading": "Curse-Throwing\\*",
+  "line": 7465,
+  "endLine": 7494,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Curse-Throwing",
+  "summary": "Supernatural Ability that moves diseases, curses and harmful effects from a sufferer to another recipient through a ritual, with a Casting Total against Ease Factors for the curse and modifiers for the recipient's link.",
+  "quotes": [
+   "Presence + Curse-Throwing + Aura + stress die",
+   "PENETRATION TOTAL: Casting Total \u2013 Ease Factor + Penetration Bonus"
+  ],
+  "related": [
+   "Art & Academe, chapter 4: Medicine"
+  ]
+ },
+ {
+  "title": "Dowsing",
+  "heading": "Dowsing\\*",
+  "line": 7508,
+  "endLine": 7510,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Dowsing",
+  "summary": "Supernatural Ability to locate nearby things with a dowsing rod, with search time depending on area and Ease Factor depending on rarity and distance.",
+  "quotes": [
+   "To find something common, like water, within 25 paces requires a Perception + Dowsing of 9+."
+  ]
+ },
+ {
+  "title": "Enchanting (Ability)",
+  "heading": "Enchanting (Ability)\\*",
+  "line": 7515,
+  "endLine": 7521,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Enchanting Ability",
+  "summary": "Supernatural performance Ability that sways emotions; roll Communication plus the Ability against Ease Factors for different effects, with Magic Resistance and botch rules.",
+  "quotes": [
+   "An Ease Factor of 9 will calm the upset, 12 will win someone's love, 15 will incite a riot, and a 24 might win back a soul from the Prince of Darkness."
+  ],
+  "related": [
+   "ArM5 p.412"
+  ]
+ },
+ {
+  "title": "Entrancement",
+  "heading": "Entrancement\\*",
+  "line": 7526,
+  "endLine": 7537,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Entrancement",
+  "summary": "Supernatural Ability to command a person by eye contact, resolved against the target's Stamina roll with a bonus to the victim depending on how objectionable the command is.",
+  "quotes": [
+   "Roll Presence + Entrancement against the target's Stamina roll."
+  ],
+  "related": [
+   "ArM5 p.303"
+  ]
+ },
+ {
+  "title": "Finesse",
+  "heading": "Finesse",
+  "line": 7550,
+  "endLine": 7552,
+  "category": "magic",
+  "topic": "Finesse",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Arcane Abilities (magus or Virtue)",
+  "summary": "Arcane Ability for manipulating spells and performing special feats with them, such as positioning objects delicately or targeting spells.",
+  "quotes": [
+   "You would use this Ability to position objects delicately or to target spells."
+  ]
+ },
+ {
+  "title": "Folk Ken",
+  "heading": "Folk Ken",
+  "line": 7554,
+  "endLine": 7556,
+  "category": "social",
+  "topic": "Folk Ken",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Folk Ken lets a character read another person's background and motives, with the storyguide often rolling in secret so the player does not know the result.",
+  "quotes": [
+   "Often the storyguide secretly rolls a die when this Ability is used."
+  ]
+ },
+ {
+  "title": "Font of Knowledge",
+  "heading": "Font of Knowledge\\*",
+  "line": 7558,
+  "endLine": 7560,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Font of Knowledge",
+  "summary": "Supernatural Ability letting a creature try a task using an untrained Ability, with an Ease Factor that rises with the number of uses in a day.",
+  "quotes": [
+   "Intelligence + Font of Knowledge + stress die"
+  ]
+ },
+ {
+  "title": "Guile",
+  "heading": "Guile",
+  "line": 7566,
+  "endLine": 7568,
+  "category": "social",
+  "topic": "Guile",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Guile covers lying, feigning and disguise, often as an opposed roll; understanding the target gives a bonus.",
+  "quotes": [
+   "roll 9+ on Perception + Folk Ken",
+   "It is often an opposed roll, against the victim's Perception + Folk Ken or, for disguise, Perception + Awareness."
+  ]
+ },
+ {
+  "title": "Hex",
+  "heading": "Hex\\*",
+  "line": 7573,
+  "endLine": 7579,
+  "category": "magic",
+  "topic": "Hex",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hex",
+  "summary": "Supernatural Ability to bring ruin on enemies by eye contact, occult signs or an Arcane Connection, with the chosen delay affecting potency.",
+  "quotes": [
+   "There are three ways for her to activate this power"
+  ]
+ },
+ {
+  "title": "Hex Delay Modifiers and Roll",
+  "heading": "Hex Delay Modifiers",
+  "line": 7580,
+  "endLine": 7601,
+  "category": "magic",
+  "topic": "Hex",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hex",
+  "summary": "Delay modifiers table and Hex roll, including botch consequences, how hexes are removed, and treating a hex as a spell level when dispelling it.",
+  "quotes": [
+   "Stress Die + Intelligence + Hex + Aura Bonus + Modifiers",
+   "Treat the hex as having a spell level equal to the number of botch dice it approximates, multiplied by 10"
+  ]
+ },
+ {
+  "title": "Hex Effects",
+  "heading": "Hex Effects",
+  "line": 7602,
+  "endLine": 7611,
+  "category": "magic",
+  "topic": "Hex",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Hex",
+  "summary": "Chart of Hex Ease Factors by severity, each comparable to a number of botch dice, with example effects.",
+  "quotes": [
+   "Minor (1 botch)",
+   "Terminal (5 botches)"
+  ]
+ },
+ {
+  "title": "Induction",
+  "heading": "Induction\\*",
+  "line": 7616,
+  "endLine": 7649,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Induction",
+  "summary": "Supernatural Ability to create illusions only the target perceives; Ease Factors rise with the risk the victim takes by believing the illusion, with roll modifiers, repeat attempts and rules for whether the victim realizes magic was used.",
+  "quotes": [
+   "Attempts at induction require a die roll of Communication + Induction.",
+   "A victim of induction realizes afterwards that they have been affected by magic if the roll above does not exceed the Ease Factor by (6-1 per factor from the list below)."
+  ]
+ },
+ {
+  "title": "Entrancement and Induction",
+  "heading": "Entrancement and Induction",
+  "line": 7651,
+  "endLine": 7653,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Entrancement or Induction",
+  "summary": "Explains how Entrancement and Induction differ and how a character with both can use each to support the other.",
+  "quotes": [
+   "Entrancement takes control of a character's will, and dictates their actions, but does not affect what they believe or experience."
+  ]
+ },
+ {
+  "title": "Legerdemain",
+  "heading": "Legerdemain\\*",
+  "line": 7675,
+  "endLine": 7677,
+  "category": "basics",
+  "topic": "Legerdemain",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sleight-of-hand Ability whose use is detected by the target rolling Perception plus Awareness, with a bonus to spot particularly delicate moves.",
+  "quotes": [
+   "The target of an attempt rolls Perception + Awareness to detect your actions."
+  ]
+ },
+ {
+  "title": "Living Languages",
+  "heading": "(Living Language)\\*",
+  "line": 7679,
+  "endLine": 7698,
+  "category": "basics",
+  "topic": "Languages",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": true,
+  "requires": "",
+  "summary": "Language Abilities measure how well a character communicates, with the lower score of two speakers setting the quality of conversation, penalties for related languages or dialects, and a table of fluency levels.",
+  "quotes": [
+   "When two people speak to each other, the lower Ability score determines how well they communicate."
+  ],
+  "related": [
+   "ArM5 p.160"
+  ]
+ },
+ {
+  "title": "Magic Sensitivity",
+  "heading": "Magic Sensitivity\\*",
+  "line": 7704,
+  "endLine": 7713,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Magic Sensitivity",
+  "summary": "Supernatural Ability to sense the magical nature of places, items, spells and creatures, which lowers Magic Resistance and uses a roll against storyguide-set Ease Factors with guidelines for each target.",
+  "quotes": [
+   "simply roll a simple die + Perception + Magic Sensitivity",
+   "Detecting a Magic aura would normally have an Ease Factor equal to 12 \u2013 aura level"
+  ]
+ },
+ {
+  "title": "Magic Theory",
+  "heading": "Magic Theory\\*",
+  "line": 7715,
+  "endLine": 7717,
+  "category": "lab",
+  "topic": "Magic Theory",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "Arcane Abilities (magus or Virtue)",
+  "summary": "Arcane Ability for the technical knowledge of Hermetic magic, used chiefly in the laboratory and of little use without The Gift.",
+  "quotes": [
+   "Knowledge of what magic is and how it works, used primarily in the laboratory."
+  ]
+ },
+ {
+  "title": "(Mystery Cult) Lore",
+  "heading": "(Mystery Cult) Lore\\*",
+  "line": 7727,
+  "endLine": 7740,
+  "category": "mysteries",
+  "topic": "Mystery Cult Lore",
+  "audience": [
+   "all",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Membership or study of a Mystery Cult",
+  "summary": "Cult-specific lore Ability covering rites, symbolism and signs of membership, needed for Initiation rites and some cult books; explains how experience is gained and what happens when it is learned without instruction.",
+  "quotes": [
+   "In game terms, Experience points in Cult Lore are acquired like any other knowledge",
+   "A magus may build the knowledge from 0, even without instruction"
+  ]
+ },
+ {
+  "title": "Parma Magica",
+  "heading": "Parma Magica\\*",
+  "line": 7746,
+  "endLine": 7755,
+  "category": "magic",
+  "topic": "Parma Magica",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "Hermetic magus",
+  "summary": "Hermetic protection ritual that adds to Magic Resistance for a time, can be suppressed, can be extended to other people, and shields from the social penalties of other people's Gifts.",
+  "quotes": [
+   "It lets you add 5 times your Parma Magica score to your Magic Resistance until the next sunrise or sunset, whichever comes first.",
+   "While a magus is protecting others, his effective Parma Magica score is reduced by 3 points"
+  ],
+  "related": [
+   "ArM5 p.215"
+  ]
+ },
+ {
+  "title": "Persona",
+  "heading": "Persona\\*",
+  "line": 7761,
+  "endLine": 7763,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Persona",
+  "summary": "Supernatural Ability to assume different identities, changing appearance fully while keeping Characteristics, with one identity per point and a roll to change.",
+  "quotes": [
+   "a roll of Stamina + Persona against an Ease Factor of 9",
+   "The character gains one identity for every point he has in the Persona Ability."
+  ]
+ },
+ {
+  "title": "Premonitions",
+  "heading": "Premonitions\\*",
+  "line": 7769,
+  "endLine": 7771,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Premonitions",
+  "summary": "Supernatural Ability to sense approaching danger, rolled against an Ease Factor that depends on how imminent and serious the danger is.",
+  "quotes": [
+   "Roll Perception + Premonitions against an Ease Factor depending on the situation."
+  ]
+ },
+ {
+  "title": "Second Sight",
+  "heading": "Second Sight\\*",
+  "line": 7785,
+  "endLine": 7787,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Second Sight",
+  "summary": "Supernatural Ability to see through illusory concealment and naturally invisible things, with Ease Factors based on the magnitude of the concealing effect or fixed for invisible things.",
+  "quotes": [
+   "All Second Sight rolls are Perception + Second Sight, and they are almost always simple rolls.",
+   "The Ease Factor to see through illusionary concealment is normally equal to 6 + the magnitude of the might of the creature responsible for the effect, or 6 + the magnitude of a Hermetic spell."
+  ],
+  "related": [
+   "ArM5 p.420",
+   "ArM5 p.421"
+  ]
+ },
+ {
+  "title": "Sense Holiness and Unholiness",
+  "heading": "Sense Holiness and Unholiness\\*",
+  "line": 7789,
+  "endLine": 7791,
+  "category": "realms",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Sense Holiness and Unholiness",
+  "summary": "Divine Supernatural Ability to feel good and evil, with different Ease Factors for an area, a person or object, a demon and a hidden angel.",
+  "quotes": [
+   "A Perception + Sense Holiness and Unholiness roll against an Ease Factor of 9 lets you sense holiness or unholiness in a general area; against an Ease Factor of 15, in a person or object."
+  ],
+  "related": [
+   "ArM5 p.410"
+  ]
+ },
+ {
+  "title": "Sense Passions",
+  "heading": "Sense Passions\\*",
+  "line": 7793,
+  "endLine": 7807,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Sense Passions",
+  "summary": "Supernatural Ability to sense emotions and Personality Traits in beings and the tarnish or temper of auras, with a limited ability to recognize spirits and holy or unholy presences.",
+  "quotes": [
+   "Stress Die + Perception + Sense Passions + Aura"
+  ],
+  "related": [
+   "Realms of Power: The Infernal, page 13",
+   "Realms of Power: The Divine Revised Edition, page 38"
+  ]
+ },
+ {
+  "title": "Shapeshifter",
+  "heading": "Shapeshifter\\*",
+  "line": 7809,
+  "endLine": 7811,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Shapeshifter",
+  "summary": "Supernatural Ability to take the shape of a mundane animal within a size range, with a Stamina roll to change and one shape known per point.",
+  "quotes": [
+   "a roll of Stamina + Shapeshifter against an Ease Factor of 9",
+   "You have a limited repertoire of shapes, one for every point you have in the Shapeshift ability."
+  ]
+ },
+ {
+  "title": "Stealth",
+  "heading": "Stealth",
+  "line": 7817,
+  "endLine": 7819,
+  "category": "basics",
+  "topic": "Stealth",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Stealth covers sneaking, hiding and following people unnoticed, the latter rolled against the other person's Perception.",
+  "quotes": [
+   "which is rolled against the other person's Perception"
+  ]
+ },
+ {
+  "title": "Wilderness Sense",
+  "heading": "Wilderness Sense\\*",
+  "line": 7855,
+  "endLine": 7857,
+  "category": "magic",
+  "topic": "Supernatural Abilities",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Wilderness Sense",
+  "summary": "Supernatural Ability to determine direction, weather, hazards or resources in the wild with one piece of information per roll.",
+  "quotes": [
+   "A Perception + Wilderness Sense roll against an Ease Factor of 9 lets you determine the direction of north, the upcoming weather, or the presence of natural hazards or resources."
+  ]
+ }
+]

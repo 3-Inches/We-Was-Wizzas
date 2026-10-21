@@ -1,0 +1,651 @@
+[
+ {
+  "title": "Laboratory Personalization Rules",
+  "heading": "Laboratory Personalization Rules",
+  "line": 5662,
+  "endLine": 5668,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces laboratories as objects with their own statistics: eight Characteristics, Virtues and Flaws, Specializations and possibly Personality Traits.",
+  "quotes": [
+   "Each laboratory is characterized by a set of eight Characteristics, with a standard (default) lab starting with scores of 0 in each."
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Characteristics",
+  "heading": "Laboratory Characteristics",
+  "line": 5670,
+  "endLine": 5680,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the eight Laboratory Characteristics and gives the three-step procedure for working out the Characteristics of a non-standard lab.",
+  "quotes": [
+   "The eight Laboratory Characteristics are as follows: **Size, Refinement, General Quality, Upkeep, Safety, Warping, Health,** and **Aesthetics.**",
+   "Set the Safety to be equal to the Refinement."
+  ],
+  "related": []
+ },
+ {
+  "title": "Second Laboratories",
+  "heading": "Second Laboratories",
+  "line": 5682,
+  "endLine": 5686,
+  "category": "order",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar on why few magi keep a second lab, noting that the Peripheral Code allows only one sanctum and that a lab must occupy a single chamber.",
+  "quotes": [
+   "the Peripheral Code only allows a magus to maintain one sanctum"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Size",
+  "heading": "Size",
+  "line": 5688,
+  "endLine": 5712,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Size measures floor space and sets how many Virtue points a lab can hold; occupied Size reduces Safety, and an oversized lab should take the Empty Flaw. Includes the Size to square feet table.",
+  "quotes": [
+   "Thus, each point of Size adds to the maximum permitted sum of Virtue points minus Flaw points",
+   "for every full two points by which the Size exceeds the occupied Size, you should take the Empty Flaw."
+  ],
+  "related": []
+ },
+ {
+  "title": "Size and Refinement Summary",
+  "heading": "Size and Refinement Summary",
+  "line": 5714,
+  "endLine": 5722,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar summarising the limit on Virtue points, occupied Size and base Safety in terms of Size and Refinement.",
+  "quotes": [
+   "Base Safety of lab: Refinement \u2013 occupied Size (if greater than zero)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Refinement",
+  "heading": "Refinement",
+  "line": 5724,
+  "endLine": 5736,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Refinement expresses how well a lab is arranged and also adds to the space for Virtues. Covers the starting score, the Magic Theory and seasonal work needed to raise it, the roll to gain Highly Organized or Spotless or to find a Hidden Defect, and the knock-on effect on Safety.",
+  "quotes": [
+   "Make an Intelligence + Magic Theory stress roll. If this meets an Ease Factor of 12, Highly Organized is gained.",
+   "Increasing the Refinement by one point takes a season of work"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory General Quality",
+  "heading": "General Quality",
+  "line": 5738,
+  "endLine": 5740,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "General Quality is a flat bonus or penalty applied to all Lab Totals, but not to teaching or scribing texts.",
+  "quotes": [
+   "General Quality adds to all Lab Totals."
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Upkeep",
+  "heading": "Upkeep",
+  "line": 5742,
+  "endLine": 5748,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Upkeep sets the money needed to build and maintain a lab, what happens (a new Flaw or lost Virtue) when maintenance is unaffordable, and the cost when a change raises the Upkeep.",
+  "quotes": [
+   "A lab with an Upkeep of zero costs five pounds to build and one pound per typical year of use to maintain."
+  ],
+  "related": [
+   "ArM5 Chapter 5: Wealth and Poverty, Expenditure"
+  ]
+ },
+ {
+  "title": "Laboratory Safety",
+  "heading": "Safety",
+  "line": 5750,
+  "endLine": 5756,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Safety is subtracted from botch dice on lab activities; a negative Safety makes any season of lab work risky, requiring an extra simple die roll that may trigger a botch roll and a lab accident on the Disaster chart.",
+  "quotes": [
+   "The Safety score is subtracted from the number of botch dice on all lab activities.",
+   "Add the absolute value of the Safety score to the risk modifier, but do not let it exceed +3."
+  ],
+  "related": [
+   "ArM5 p.109 Experimentation: Extraordinary Results"
+  ]
+ },
+ {
+  "title": "Laboratory Warping",
+  "heading": "Warping",
+  "line": 5758,
+  "endLine": 5762,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A lab with positive Warping may alter the results of a season's work, determined by a simple die and the Extraordinary Results chart, and carries matching Personality Traits equal to its Warping score.",
+  "quotes": [
+   "If the result is less than or equal to the Warping score, then the product of that season's work (be it an item, spell, or something else) suffers Warping."
+  ],
+  "related": [
+   "ArM5 p.109 Experimentation: Extraordinary Results"
+  ]
+ },
+ {
+  "title": "Laboratory Health",
+  "heading": "Health",
+  "line": 5764,
+  "endLine": 5768,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Health adds to Wound Recovery rolls for inhabitants of the lab and half of it (rounded down) adds to their Living Conditions modifier for Aging rolls.",
+  "quotes": [
+   "The Health score adds to any Wound Recovery rolls for inhabitants of the lab."
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Aesthetics",
+  "heading": "Aesthetics",
+  "line": 5770,
+  "endLine": 5774,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Aesthetics measures a lab's impressiveness and grants experience points in an appropriate Reputation for each point, positive or negative.",
+  "quotes": [
+   "For every point of Aesthetics, either positive or negative, the owner gains five experience points in an appropriate Reputation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Specializations",
+  "heading": "Laboratory Specializations",
+  "line": 5776,
+  "endLine": 5798,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lab Specializations add their value to Lab Totals for particular Arts or activities (Experimentation, Familiar, Items, Longevity Rituals, Spells, Teaching, Texts, Vis Extraction). Gives the limits on how many a lab can hold and how they are chosen or dropped.",
+  "quotes": [
+   "A lab can have at most two activity Specializations, plus four Art Specializations (at most two of which can be Techniques)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Virtues and Flaws",
+  "heading": "Laboratory Virtues and Flaws",
+  "line": 5848,
+  "endLine": 5852,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how lab Virtues and Flaws work: Virtue points minus Flaw points may not exceed Size plus Refinement, free Virtues and Flaws take no space, and a lab smaller or less refined than standard starts with Flaws.",
+  "quotes": [
+   "the number of points spent on Virtues, minus the number of points spent on Flaws, cannot exceed the Size + Refinement of the lab."
+  ],
+  "related": []
+ },
+ {
+  "title": "Installing and Removing Laboratory Virtues",
+  "heading": "Virtues",
+  "line": 5854,
+  "endLine": 5860,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for gaining or removing lab Virtues: free space needed, one season for a Minor Virtue and two for a Major, a Magic Theory requirement, and restrictions on removal.",
+  "quotes": [
+   "As a general rule, it takes one season of work to gain a Minor Virtue, and two seasons to gain a Major Virtue.",
+   "The person doing this work needs to have a Magic Theory score at least three points higher than the lab's Refinement."
+  ],
+  "related": []
+ },
+ {
+  "title": "Taking and Removing Laboratory Flaws",
+  "heading": "Flaws",
+  "line": 5862,
+  "endLine": 5866,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for lab Flaws: they can be chosen, arise from neglect or free up space, and removing them takes a season or two and needs free space.",
+  "quotes": [
+   "removing a Free or Minor Flaw usually takes one season and removing a Major Flaw takes two seasons."
+  ],
+  "related": []
+ },
+ {
+  "title": "Build Point Cost for Starting Laboratories",
+  "heading": "Build Point Cost for Starting Laboratories",
+  "line": 5892,
+  "endLine": 5902,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Sidebar giving the Build Point cost of laboratories, and of their Virtues, when using the customized covenant creation rules, with advice on labs in Spring and established covenants.",
+  "quotes": [
+   "Extra (spare) labs cost 50 Build Points each.",
+   "Each Minor Virtue costs ten Build Points and each Major Virtue costs 20 Build Points."
+  ],
+  "related": [
+   "ArM5 p.71 customized covenant creation"
+  ]
+ },
+ {
+  "title": "Taking Over a Laboratory",
+  "heading": "Taking Over a Laboratory",
+  "line": 6078,
+  "endLine": 6080,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar on moving into a lab previously owned by someone else: when the new owner can start work at once, and when a season of rearrangement is needed, including the secret Perception + Magic Theory roll that may leave the Predecessor or Hidden Defect Flaw.",
+  "quotes": [
+   "Finally, the storyguide should secretly make a Perception + Magic Theory roll against an Ease Factor of three times the lab's original Refinement for the maga.",
+   "the resulting Refinement score of the lab is equal to its old Refinement, or the new owner's Magic Theory \u2013 3, whichever is lower."
+  ],
+  "related": [
+   "Laboratory Refinement"
+  ]
+ },
+ {
+  "title": "Moving a Laboratory",
+  "heading": "Moving a Laboratory",
+  "line": 6174,
+  "endLine": 6176,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar giving the procedure and cost of relocating a lab: a season to pack it, transport that costs as much as years of maintenance, and two seasons to reassemble it.",
+  "quotes": [
+   "the transport counts (and costs) as two entire years of maintenance.",
+   "This takes two seasons, since it is basically the same as building a lab from scratch"
+  ],
+  "related": []
+ },
+ {
+  "title": "Laboratory Features",
+  "heading": "Laboratory Features",
+  "line": 6192,
+  "endLine": 6268,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the Greater Feature and Lesser Feature Virtues, how a Feature can become a lab's Focus, how many Specialization points each gives, and lists example Features with their possible Specializations.",
+  "quotes": [
+   "It takes one season to build or assemble the structure of a Lesser Feature, and two seasons to do the same for a Greater Feature.",
+   "The former provides three points of Specialization(s), the latter one point."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Items for Laboratories",
+  "heading": "Magic Items for Laboratories",
+  "line": 6270,
+  "endLine": 6279,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for enchanted items or enchanted labs that change lab statistics: either an effect duplicates an existing lab Virtue or Flaw, or its final level buys Characteristic or Specialization points.",
+  "quotes": [
+   "Every ten levels may grant one point in a Specialization, or every 20 levels may improve a Characteristic by one point."
+  ],
+  "related": [
+   "ArM5 p.110 Shape and Material bonuses",
+   "ArM5 Laboratory chapter (enchanting)"
+  ]
+ },
+ {
+  "title": "Common Laboratory Items",
+  "heading": "Common Laboratory Items",
+  "line": 6315,
+  "endLine": 6317,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on which lab Virtues, Characteristics or Specializations common enchanted items (lights, heaters, tools, decorations, purifying containers) can reasonably grant.",
+  "quotes": [
+   "Items that provide light may negate the need for candles and lanterns, and grant the Magical Lighting Virtue."
+  ],
+  "related": []
+ },
+ {
+  "title": "Spells for Laboratories",
+  "heading": "Spells for Laboratories",
+  "line": 6361,
+  "endLine": 6368,
+  "category": "lab",
+  "topic": "Laboratory personalization",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for using spells to improve a lab: Ritual spells give permanent effects, regularly used non-Ritual spells cost Warping or Safety, and a magus may not boost a Lab Total with spells of the same Arts as the Lab Total.",
+  "quotes": [
+   "As a rule of thumb, for each such spell that is employed regularly, either add one to the lab's Warping Characteristic or subtract one from its Safety.",
+   "A magus can never gain a bonus to Lab Totals (either from General Quality or a Specialization) by casting spells that use the same Arts as those in the Lab Total."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sample Covenant Charter: Oath of Covenant",
+  "heading": "The Oath of Covenant of ...",
+  "line": 6485,
+  "endLine": 6491,
+  "category": "covenant",
+  "topic": "Covenant charter",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Play aid giving the text of a fill-in-the-blanks covenant oath, taken from the charter of Arae Flaviae, which the Quaesitors will automatically ratify if adopted.",
+  "quotes": [
+   "I pledge my lifelong support and loyalty to the Covenant of ..."
+  ],
+  "related": [
+   "Covenants p.33 (covenant charters)"
+  ]
+ },
+ {
+  "title": "Charter: Membership",
+  "heading": "Membership",
+  "line": 6493,
+  "endLine": 6503,
+  "category": "covenant",
+  "topic": "Covenant charter",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sample charter clauses defining Protected Guests, Probationary Members and Full Members, how each is admitted, and how a member may leave.",
+  "quotes": [
+   "The status of provisional member shall last a period of seven seasons, unless abridged through censure or canceled through expulsion."
+  ],
+  "related": [
+   "Covenants p.33 (covenant charters)"
+  ]
+ },
+ {
+  "title": "Charter: Governance",
+  "heading": "Governance of this Covenant",
+  "line": 6505,
+  "endLine": 6513,
+  "category": "covenant",
+  "topic": "Covenant charter",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sample charter clauses on the Council of Members: quorum, regular meetings, voting majorities, and the rotating office of disceptator.",
+  "quotes": [
+   "The Council of Members shall convene four times each year, one day prior to each equinox and solstice",
+   "All issues shall be passed by a majority vote of the members there present",
+   "Each disceptator serves for a period of seven years, commencing one year following Tribunal."
+  ],
+  "related": [
+   "Covenants p.33 (covenant charters)"
+  ]
+ },
+ {
+  "title": "Charter: Resources",
+  "heading": "Resources Owned by this Covenant",
+  "line": 6515,
+  "endLine": 6529,
+  "category": "covenant",
+  "topic": "Covenant charter",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sample charter clauses on what the covenant claims (vis, books, items, money, buildings) versus what belongs to the finder, and how surplus is determined at the Winter meeting.",
+  "quotes": [
+   "This covenant lays claim to all the vis originating from undisputed and unclaimed sources discovered by members of the council; save for the first harvest of a new vis source, which belongs to the finder or finders."
+  ],
+  "related": [
+   "Covenants p.33 (covenant charters)"
+  ]
+ },
+ {
+  "title": "Charter: Rights of Members",
+  "heading": "Rights of the Members of this Covenant",
+  "line": 6531,
+  "endLine": 6537,
+  "category": "covenant",
+  "topic": "Covenant charter",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sample charter clauses setting out the basic rights of all members and guests, the fuller rights of Full Members, and the half-share rights and half-weight vote of Probationary Members.",
+  "quotes": [
+   "a fractional share of those rights and duties offered to a full member of the covenant, such share being equal to half that offered to full members."
+  ],
+  "related": [
+   "Covenants p.33 (covenant charters)"
+  ]
+ },
+ {
+  "title": "Charter: Responsibilities of Members",
+  "heading": "Responsibilities of the Members of this Covenant",
+  "line": 6539,
+  "endLine": 6549,
+  "category": "covenant",
+  "topic": "Covenant charter",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sample charter clauses on member duties: obeying the Code, minor assigned duties, paid covenant work with a minimum remuneration in vis, and the service required of probationary members.",
+  "quotes": [
+   "two pawns of vis, of the flavor most prevalent in the stores at the time"
+  ],
+  "related": [
+   "Covenants p.33 (covenant charters)"
+  ]
+ },
+ {
+  "title": "Charter: Censure and Expulsion",
+  "heading": "Censure of the Members of this Covenant",
+  "line": 6551,
+  "endLine": 6555,
+  "category": "covenant",
+  "topic": "Covenant charter",
+  "audience": [
+   "covenant",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sample charter clauses on censuring a member by vote and on expulsion, which needs a unanimous vote and is the only way to lose basic rights.",
+  "quotes": [
+   "Expulsion is enacted by a unanimous vote of the remaining Council of Members."
+  ],
+  "related": [
+   "Covenants p.33 (covenant charters)"
+  ]
+ }
+]

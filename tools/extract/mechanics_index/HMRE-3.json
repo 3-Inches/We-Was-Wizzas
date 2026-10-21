@@ -1,0 +1,1451 @@
+[
+ {
+  "title": "Straying (Ekstasis) Overview",
+  "heading": "Powers in Detail",
+  "line": 5572,
+  "endLine": 5575,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Introduces ekstasis or straying, the power that lets a nightwalker send his spirit out of his sleeping body. It arises untrained and has no Ability that improves with practice.",
+  "quotes": [
+   "It is a power that arises without training, and has no corresponding Ability"
+  ],
+  "related": []
+ },
+ {
+  "title": "Preparation for Straying",
+  "heading": "Preparation for Straying",
+  "line": 5580,
+  "endLine": 5584,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "How a nightwalker induces insensibility so the spirit can stray: sleep, illness, asceticism, Hermetic sleep spells or drugs. Drugs take a time that depends on Concentration, and a poisoned victim may resist with a Stamina roll.",
+  "quotes": [
+   "a character using drugs takes (10 \u2013 Concentration) minutes to reach insensibility, with a minimum time of one minute",
+   "Stamina roll against an Ease Factor of 6"
+  ],
+  "related": [
+   "ArM5 p.151 Call to Slumber"
+  ]
+ },
+ {
+  "title": "The Insensate Body and Straying Fatigue",
+  "heading": "The Insensate Body",
+  "line": 5586,
+  "endLine": 5592,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Describes the helpless, death-like body left behind during straying, the danger of it being disturbed, and the Long Term Fatigue cost of straying for an hour or a whole night.",
+  "quotes": [
+   "they have lost a Long Term Fatigue level",
+   "they have lost 2 Long Term Fatigue levels"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Phantasticum",
+  "heading": "The Phantasticum: A Spiritual Yet Corporeal Form",
+  "line": 5594,
+  "endLine": 5600,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Rules for the straying spirit form: it can be corporeal or immaterial, visible or invisible, human or animal, and switching state takes rounds and a roll if attempted in combat.",
+  "quotes": [
+   "Switching between corporeality and immateriality takes three rounds, and cannot be performed during combat without a Stamina + Concentration roll against an Ease Factor of 15."
+  ],
+  "related": []
+ },
+ {
+  "title": "Second Sight and Magical Air in Spirit Form",
+  "heading": "Second Sight and Magical Air",
+  "line": 5602,
+  "endLine": 5606,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "A nightwalker in spirit form may use Second Sight, and the phantasticum unsettles humans and is sensed by domestic animals.",
+  "quotes": [
+   "While in spirit form, the nightwalker may use the Second Sight Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Travel Through Straying",
+  "heading": "Travel Through Straying",
+  "line": 5608,
+  "endLine": 5633,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Spirit travel is almost instant and uses a Stamina + Athletics roll whose result sets how familiar a destination must be. Extra carried objects raise the difficulty and some journeys succeed automatically.",
+  "quotes": [
+   "needs to make a Stamina + Athletics roll",
+   "increases the difficulty of the roll by +3 per object"
+  ],
+  "related": []
+ },
+ {
+  "title": "Combat Statistics for Animal Phantastica",
+  "heading": "Combat Statistics for Animal Phantastica",
+  "line": 5635,
+  "endLine": 5651,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Nightwalker (animal phantasticum)",
+  "summary": "A system for building the animal-shaped phantasticum: combine the species statistics with the character's Characteristics, apply Size and body Virtues and Flaws, and use the animal's General Abilities.",
+  "quotes": [
+   "if both the species and character have a negative score, use the lowest score. If both the species and the character have a positive score, use the highest."
+  ],
+  "related": [
+   "Realms of Power: Magic, Book of Mundane Beasts",
+   "Houses of Hermes: Mystery Cults"
+  ]
+ },
+ {
+  "title": "Communications Through Straying",
+  "heading": "Communications Through Straying",
+  "line": 5653,
+  "endLine": 5657,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "A corporeal phantasticum can talk with people at its destination at the cost of extra fatigue, while speaking to sleepers is remembered as dreams unless an Intelligence + Concentration roll preserves details.",
+  "quotes": [
+   "Intelligence + Concentration roll against an Ease Factor of 12"
+  ],
+  "related": []
+ },
+ {
+  "title": "Leading Others Astray",
+  "heading": "Leading Others Astray",
+  "line": 5659,
+  "endLine": 5665,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "A nightwalker can guide willing people out of their bodies with a Stamina + Leadership roll, and failed guidance leaves the lost spirits to find their way back.",
+  "quotes": [
+   "Stamina + Leadership roll against an Ease Factor 3 points higher than that for personal travel",
+   "requires a Stamina + Leadership roll against an Ease Factor of 3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Combat and the Straying Spirit",
+  "heading": "Combat and the Straying Spirit",
+  "line": 5667,
+  "endLine": 5671,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Corporeal phantastica fight material foes and immaterial ones fight only spirits; damage to the phantasticum is mirrored on the sleeping body, scaled up or down for animal forms.",
+  "quotes": [
+   "Any damage a phantasticum in human form suffers appears, instantly and identically, on the body of the nightwalker."
+  ],
+  "related": []
+ },
+ {
+  "title": "Drowsiness",
+  "heading": "Drowsiness",
+  "line": 5673,
+  "endLine": 5675,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "A hostile phantasticum makes bystanders drowsy; a waking character without Magic Resistance must roll to stay awake and a sleeper is nearly impossible to wake.",
+  "quotes": [
+   "Concentration + Stamina roll against an Ease Factor of 3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Fertility Battles",
+  "heading": "Fertility Battles",
+  "line": 5677,
+  "endLine": 5679,
+  "category": "traditions",
+  "topic": "Fertility battles",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Every nightwalker answers summons to seasonal spirit battles whose outcome decides whether the local harvest, hunting and fishing are normal, poor or bountiful.",
+  "quotes": [
+   "most do battle four times a year"
+  ],
+  "related": []
+ },
+ {
+  "title": "Giving Battle",
+  "heading": "Giving Battle",
+  "line": 5681,
+  "endLine": 5704,
+  "category": "traditions",
+  "topic": "Fertility battles",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "How a night battle is run: either the player rolls for a disciplined militia or the character seeks individual foes in a m\u00eal\u00e9e, using Perception + Awareness to find enemies.",
+  "quotes": [
+   "Perception + Awareness roll of 9 or more"
+  ],
+  "related": []
+ },
+ {
+  "title": "Covenants Supplement Modifiers (Fertility Battle Outcomes)",
+  "heading": "Covenants Supplement Modifiers",
+  "line": 5685,
+  "endLine": 5697,
+  "category": "traditions",
+  "topic": "Fertility battles",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker; Covenants supplement",
+  "summary": "A table that maps the outcome of a fertility battle onto the Income Modification Table of the Covenants supplement in place of the stress die roll.",
+  "quotes": [
+   "This selection replaces the stress die roll."
+  ],
+  "related": [
+   "Covenants p.57 Income Modification Table"
+  ]
+ },
+ {
+  "title": "Night Battle Enemies",
+  "heading": "Enemeis",
+  "line": 5714,
+  "endLine": 5730,
+  "category": "traditions",
+  "topic": "Fertility battles",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Guidance for statting the foes in night battles: enemy nightwalkers like player characters or quick grogs, the dead from ghost statistics, and Infernal servants and demonic captains from the Infernal and Divine books.",
+  "quotes": [
+   "Demonic captains are generally Aerial Powers with a Might score of 20 or less."
+  ],
+  "related": [
+   "Realms of Power: Magic",
+   "Realms of Power: Infernal",
+   "Realms of Power: Divine"
+  ]
+ },
+ {
+  "title": "Musters Out of Season and Recognising Fellow Nightwalkers",
+  "heading": "Musters Out of Season",
+  "line": 5732,
+  "endLine": 5740,
+  "category": "traditions",
+  "topic": "Fertility battles",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Special musters can be called to deal with a local evil, and nightwalkers recognise each other or Infernal witches in waking life with a Perception + Awareness roll reduced by Reputation and frequency of meeting.",
+  "quotes": [
+   "Perception + Awareness roll of (15 - the highest applicable Reputation of the observed)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Returning Home and Spiritual Nourishment",
+  "heading": "Returning Home",
+  "line": 5762,
+  "endLine": 5770,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "After battle nightwalkers drift home invisibly and take spiritual nourishment, whose form varies by tradition, to shorten their Long Term Fatigue.",
+  "quotes": [
+   "Returning nightwalkers often take spiritual nourishment so that they suffer Long Term Fatigue for a briefer time."
+  ],
+  "related": []
+ },
+ {
+  "title": "Processions of the Dead",
+  "heading": "The Processions of the Dead",
+  "line": 5776,
+  "endLine": 5792,
+  "category": "traditions",
+  "topic": "Nightwalker processions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Nightwalkers escort the dead and can fight, intimidate or question ghosts; intimidation and questioning use opposed-style Ease Factors keyed to the ghost's traits and the length of answer wanted.",
+  "quotes": [
+   "Presence + Leadership roll against an Ease factor of 6 + the ghost's Brave score"
+  ],
+  "related": []
+ },
+ {
+  "title": "Celebratory Processions",
+  "heading": "Celebratory Processions",
+  "line": 5808,
+  "endLine": 5810,
+  "category": "traditions",
+  "topic": "Nightwalker processions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Feasts and celebrations are spiritual regeneration that reduce Long Term Fatigue after waking, and the same rituals can help with Long Term Fatigue from other causes.",
+  "quotes": [
+   "Feasting is an act of spiritual regeneration that reduces the level of the nightwalker's Long Term Fatigue after waking"
+  ],
+  "related": []
+ },
+ {
+  "title": "Nightwalker Taboo on Waking Contests",
+  "heading": "Battling Infernal Witches While Awake And Taboos",
+  "line": 5816,
+  "endLine": 5818,
+  "category": "traditions",
+  "topic": "Fertility battles",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Nightwalker",
+  "summary": "Nightwalkers and Infernal witches may duel in waking life, but breaking the taboo against speaking about the night battles brings dream beatings whose injuries show on the waking body.",
+  "quotes": [
+   "If either breaks their taboo they are terribly beaten, in their dreams"
+  ],
+  "related": []
+ },
+ {
+  "title": "Benandanti Tradition",
+  "heading": "Benandanti",
+  "line": 5824,
+  "endLine": 5858,
+  "category": "traditions",
+  "topic": "Nightwalker traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Nightwalker (Benandanti)",
+  "summary": "The north Italian good walkers: how recruits are summoned, the Ember Day Thursday battles against the malandanti, the Lady of the Game who appoints captains and revives eaten animals.",
+  "quotes": [
+   "The benandanti fight in human form and are armed with bunches of fennel"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hounds of God Tradition",
+  "heading": "The Hounds of God",
+  "line": 5872,
+  "endLine": 5892,
+  "category": "traditions",
+  "topic": "Nightwalker traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Nightwalker (Hounds of God)",
+  "summary": "The werewolf nightwalkers who raid Hell in wolf form three times a year; includes the two ways of becoming a Hound, notably the toasting ritual that passes the power on to another person.",
+  "quotes": [
+   "the wolf does not drink to the toast, or give thanks for it"
+  ],
+  "related": [
+   "Virtue: Hamr",
+   "Virtue: Versatile Phantasticum"
+  ]
+ },
+ {
+  "title": "Kresniki and Kudlaki Tradition",
+  "heading": "Kresniki and Kudlaki",
+  "line": 5894,
+  "endLine": 5914,
+  "category": "traditions",
+  "topic": "Nightwalker traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Nightwalker (Kresnik or Kudlak)",
+  "summary": "Slavic nightwalkers pairing a community protector, the kresnik, with a sorcerer rival, the kudlak, who steals fertility and may return as a vampire. Covers birth with a caul, the forced Versatile Phantasticum and the effects of a kudlak winning.",
+  "quotes": [
+   "These characters are required to take the Versatile Phantasticum Virtue"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mazzeru Tradition",
+  "heading": "Mazzeru",
+  "line": 5916,
+  "endLine": 5920,
+  "category": "traditions",
+  "topic": "Nightwalker traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Nightwalker (Mazzeru)",
+  "summary": "Corsican nightwalkers who fight Infernal witches with asphodel and are also compelled to hunt in dreams, killing animals that foretell the death of villagers; accepting this costs no Flaw but resisting it gives a Story Flaw.",
+  "quotes": [
+   "Mazzeri use stalks of asphodel as weapons."
+  ],
+  "related": []
+ },
+ {
+  "title": "Taltos Tradition",
+  "heading": "Talt\u00f3s",
+  "line": 5930,
+  "endLine": 5952,
+  "category": "traditions",
+  "topic": "Nightwalker traditions",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Nightwalker (Talt\u00f3s)",
+  "summary": "Hungarian nightwalkers who fight in the sky as horses, bulls or flames. Covers the childhood coma and initiation, the battle schedule, recovery by eating, and the fact that most talt\u00f3s lose their powers at some age.",
+  "quotes": [
+   "Talt\u00f3s fight in the forms of horses, bulls, or flames"
+  ],
+  "related": [
+   "Houses of Hermes: Societates p.169"
+  ]
+ },
+ {
+  "title": "Statistics and Abilities for Flame Shape",
+  "heading": "Statistics and Abilities for Flame Shape",
+  "line": 5954,
+  "endLine": 5964,
+  "category": "traditions",
+  "topic": "Nightwalker straying",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Nightwalker (Talt\u00f3s, flame form)",
+  "summary": "Rules for a taltos in the form of a ball or wheel of flame, built from the characteristics of an elemental: fixed Characteristics, Abilities that can be used, fire Damage, fire vulnerability immunities and a Hungry Personality trait.",
+  "quotes": [
+   "suffer +5 burn damage for each attack (Penetration 0)",
+   "and does +5 fire Damage"
+  ],
+  "related": [
+   "Realms of Power: Magic, elementals"
+  ]
+ },
+ {
+  "title": "Hermetic Nightwalkers and Certamen Origins",
+  "heading": "Partial Integration in Progress",
+  "line": 5980,
+  "endLine": 5992,
+  "category": "order",
+  "topic": "Hermetic integration of nightwalking",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Major Breakthrough (Nightwalker integrated into Hermetic theory)",
+  "summary": "An optional saga rule: certamen derives from nightwalking, and a Major Breakthrough could let Hermetic magi gain the Nightwalker Virtue with phantastica shaped by their highest Technique and Form pair, with consequences for House Tremere's Focus (Certamen).",
+  "quotes": [
+   "Hermetic magi do not have a certamen score, just as nightwalkers do not have a Nightwalking score."
+  ],
+  "related": [
+   "House Tremere Virtue: Focus (Certamen)"
+  ]
+ },
+ {
+  "title": "Path of Seeming Spirit Travel",
+  "heading": "Path of Seeming",
+  "line": 5994,
+  "endLine": 6002,
+  "category": "mysteries",
+  "topic": "Hermetic integration of nightwalking",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Criamon, Path of Seeming",
+  "summary": "Optional research: a Minor or Major Breakthrough could replace the Station of Passing Through Seeming with a spirit-travel power resembling Nightwalker with a human phantasticum and no required spirit battles.",
+  "quotes": [
+   "This is a Minor Breakthrough for a researcher who has mastered the Station of Passing Through Seeming, or a Major Breakthrough for one who has not done this."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vitkir as Characters",
+  "heading": "Vitkir as Characters",
+  "line": 6142,
+  "endLine": 6146,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Vitkir (The Gift, apprenticed rune master)",
+  "summary": "Character creation for vitkir: designed like magi with The Gift, a long apprenticeship in the 24 runes, set starting experience and rune script levels, minimum Abilities, virtue and flaw limits, and the Vitki Social Status.",
+  "quotes": [
+   "They receive a total of 240 experience points for these years of specialized study",
+   "120 levels of rune scripts",
+   "A score of 10 in a single rune is the practical maximum for a character who has just finished his apprenticeship."
+  ],
+  "related": [
+   "Ancient Magic p.133-136"
+  ]
+ },
+ {
+  "title": "Vitkar Magic Foci",
+  "heading": "Vitkar Magic Foci",
+  "line": 6222,
+  "endLine": 6242,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Vitkir; Virtue: Major or Minor Rune Focus",
+  "summary": "Explains how a vitkar magic focus works: the rune score is doubled for spells of the focus' purpose carved into its proper material. Lists the seven Sigrdrifumal types of rune magic with their materials and typical runes.",
+  "quotes": [
+   "he may double his score in the rune used in the spell formula"
+  ],
+  "related": []
+ },
+ {
+  "title": "Craft: Runes",
+  "heading": "Craft: Runes",
+  "line": 6330,
+  "endLine": 6332,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Vitkir",
+  "summary": "New Ability covering carving or inscribing runes into materials; it affects how long runes last and how well they can be hidden in a script.",
+  "quotes": [
+   "This can be used to determine how long the runes last"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rune Magic Ability",
+  "heading": "Rune Magic",
+  "line": 6334,
+  "endLine": 6336,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Vitkir",
+  "summary": "New Arcane Ability representing knowledge of vitkar magic and how to formulate rune scripts; interchangeable with the Ancient Magic Ability of the same name.",
+  "quotes": [
+   "It deals with the technical details of each rune, how they may be used, and how to formulate a rune script."
+  ],
+  "related": [
+   "Ancient Magic p.140 Rune Magic"
+  ]
+ },
+ {
+  "title": "N\u00e1tt-thel",
+  "heading": "N\u00e1tt-thel",
+  "line": 6342,
+  "endLine": 6370,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "The vitkar equivalent of Twilight: after a sudden burst of Warping Points a vitki rolls to avoid temporarily losing The Gift and his magic, and a duration roll sets how long he is without it. A vitki may sacrifice extra Warping Points to keep some rune effects active.",
+  "quotes": [
+   "Stamina + Concentration + stress die vs. (Warping Score x 3)",
+   "simple die + Warping Score"
+  ],
+  "related": [
+   "ArM5 p.82 Concentration Table"
+  ]
+ },
+ {
+  "title": "Odin's Sacrifice",
+  "heading": "Odin's Sacrifice",
+  "line": 6372,
+  "endLine": 6380,
+  "category": "mysteries",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir (initiation ritual)",
+  "summary": "An initiation ritual copying Odin's ordeal on the tree: surviving nine days and succeeding at a stress roll can grant The Gift, open the runes or give another Major Virtue. A vis-based potion can ease the ordeal at a risk.",
+  "quotes": [
+   "he must make an Intelligence + Concentration stress roll, to which he adds the aura bonus or penalty for Magic",
+   "If he achieves a total of 24 or more"
+  ],
+  "related": []
+ },
+ {
+  "title": "Learning Vitkar Magic",
+  "heading": "Learning Vitkar Magic",
+  "line": 6382,
+  "endLine": 6386,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "How a master opens the runes for a laering, including the Opening Total and possible deficiencies, and how vitkir study runes from books, teachers, adventures, exposure and raw vis brewed into a potion.",
+  "quotes": [
+   "Opening Total is his Intelligence + Rune Magic + lowest rune + aura"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vitkar Magic: How Rune Spells Work",
+  "heading": "Vitkar Magic",
+  "line": 6388,
+  "endLine": 6403,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Overview of rune magic: runes inscribed in a material cause true natural changes that last as long as the inscription, do not trigger Magic Resistance, cause Warping, and make the carved object an Arcane Connection to the vitki.",
+  "quotes": [
+   "the target of the rune spell is not considered a magical thing, and does not trigger Magic Resistance",
+   "The target also experiences Warping from rune spells of Level 30 or greater, unless the vitki casts the effect on himself."
+  ],
+  "related": [
+   "ArM5 p.162 Opening the Intangible Tunnel"
+  ]
+ },
+ {
+  "title": "Vitkar Rune Scripts",
+  "heading": "Vitkar Rune Scripts",
+  "line": 6405,
+  "endLine": 6407,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Vitkir cannot cast spontaneously and must invent rune scripts in advance, each using one of three methods that include the vitki's name and a description of effect and/or target.",
+  "quotes": [
+   "Vitkir typically know many scripts, since they cannot perform their magic spontaneously."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rune Script Method I",
+  "heading": "METHOD I: \"I, [NAME], [EFFECT].\"",
+  "line": 6409,
+  "endLine": 6411,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "A first-person script affecting the vitki or the object the runes are drawn on; it needs only a single rune because the target is implied.",
+  "quotes": [
+   "This formula only requires a single rune, since the target is implied"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rune Script Method II",
+  "heading": "METHOD II: \"[NAME] [EFFECT] [TARGET].\"",
+  "line": 6413,
+  "endLine": 6415,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "A third-person script affecting some other target with an Arcane Connection or within about ten paces of the runes; uses two runes and the lower of the two scores.",
+  "quotes": [
+   "The vitki always uses the lowest of his scores in these runes"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rune Script Method III and Vitkar Lab Total",
+  "heading": "METHOD III: \"[Name], [TARGET].\"",
+  "line": 6417,
+  "endLine": 6427,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Method III creates a substitute Arcane Connection to a target. The section also gives the Vitkar Lab Total used to invent rune scripts in a season, and how scripts can be learned from a teacher.",
+  "quotes": [
+   "(lowest) Rune + Intelligence + Rune Magic + Aura Modifier",
+   "the vitki gains a number of spell levels equal to his Lab Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Casting Rune Spells",
+  "heading": "Casting Rune Spells",
+  "line": 6429,
+  "endLine": 6445,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "The vitkar casting procedure: inscribe the script, roll the Casting Total against the script level for success or fatigue loss, and adjust for hurried, hidden, emphasised or vis-boosted inscriptions.",
+  "quotes": [
+   "stress die + Stamina + (Iowest) Rune + Aura Modifier",
+   "gives him a -5 penalty",
+   "increases the Casting Total of the effect by 2 per pawn"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Runes: Effects and Bonuses",
+  "heading": "The Runes",
+  "line": 6447,
+  "endLine": 6455,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Introduces the 24 runes as Accelerated Abilities, how rune effects grant non-stacking bonuses or penalties to rolls, and how to convert Hermetic guidelines into rune effects by adding magnitudes.",
+  "quotes": [
+   "a good rule of thumb is to add four magnitudes to the effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rune Casting Variations",
+  "heading": "Rune Casting Variations",
+  "line": 6457,
+  "endLine": 6470,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Table of Casting Total modifiers for hiding or omitting the name or description, extra effort, emphasis and vis.",
+  "quotes": [
+   "| Hidden name        | -2       |"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Older Futhark (Rune Table)",
+  "heading": "The Older Futhark",
+  "line": 6472,
+  "endLine": 6513,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Vitkir",
+  "summary": "Lists the 24 runes of the Elder Futhark by aett (Freya, Heimdall, Tyr), with each letter, name, meaning and the effects it governs.",
+  "quotes": [
+   "The three aetts of the Elder Futhark are named after three gods"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ansuz Rune Guidelines",
+  "heading": "A, Ansuz, \"Mouth\"",
+  "line": 6515,
+  "endLine": 6535,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Ansuz governs speech, communication and sound, mostly Imaginem or Mentem as a target. Guidelines give Communication bonuses, recognising audible illusions, speech, perceiving Might and surface thoughts.",
+  "quotes": [
+   "The target receives a bonus or penalty equal to the magnitude of the effect to all Ability rolls associated with Communication."
+  ],
+  "related": []
+ },
+ {
+  "title": "Berkanan Rune Guidelines",
+  "heading": "B, Berkanan, \"Birch\"",
+  "line": 6549,
+  "endLine": 6581,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Berkanan is the rune of healing, fertility and youth. Guidelines scale recovery bonuses, fertility control, and healing or preventing the natural healing of Light through Incapacitating wounds.",
+  "quotes": [
+   "recovery rolls equal to (the magnitude of the effect x 3)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Dagaz Rune Guidelines",
+  "heading": "D, Dagaz, \"Day\"",
+  "line": 6595,
+  "endLine": 6613,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Dagaz governs time, day-long activities and growth. Guidelines cover bonuses to day-long Ability rolls and Aging rolls, size changes with the sun, rapid maturity and aging.",
+  "quotes": [
+   "Aging rolls equal to the magnitude of the effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ehwaz Rune Guidelines",
+  "heading": "E, Ehwaz, \"Horse\"",
+  "line": 6627,
+  "endLine": 6645,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Ehwaz governs horses, mounted combat, speed and trust. Guidelines give bonuses on mounted rolls, Quickness rolls and trust rolls, plus taming, summoning a mount and changing Quickness.",
+  "quotes": [
+   "bonus or penalty equal to the magnitude of the effect on all rolls performed while mounted"
+  ],
+  "related": []
+ },
+ {
+  "title": "Fehu Rune Guidelines",
+  "heading": "F, Fehu, \"Wealth\"",
+  "line": 6659,
+  "endLine": 6675,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Fehu governs common wealth such as cattle, silver and grain. Guidelines give bonuses to wealth-gaining Ability rolls, detect precious metal or domestic animals, and summon wealth.",
+  "quotes": [
+   "Ability rolls that support the target gaining wealth"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gebo Rune Guidelines",
+  "heading": "G, Gebo, \"Gift\"",
+  "line": 6693,
+  "endLine": 6711,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Gebo governs gifts, debt and obligation, and acts as a Mentem influence. Guidelines give social-influence bonuses and escalating levels of deference, simple and complex commands, and domination.",
+  "quotes": [
+   "bonus or penalty equal to the magnitude of this effect on all Ability rolls to influence others"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hagalaz Rune Guidelines",
+  "heading": "H, Hagalaz, \"Hail\"",
+  "line": 6725,
+  "endLine": 6743,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Hagalaz governs destructive weather and hail, mostly Auram or Aquam. Guidelines give Damage bonuses, a general hail attack and summoning or intensifying storms.",
+  "quotes": [
+   "inflicting damage equal to a stress die + (the Level of the effect \u2013 15)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Isa Rune Guidelines",
+  "heading": "I, Isa, \"Ice\"",
+  "line": 6757,
+  "endLine": 6773,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Isa governs ice, cold and cold emotions. Guidelines give bonuses to cold-related rolls, a chilling Damage effect, freezing or melting water, apathy, holding a target motionless and icing a surface.",
+  "quotes": [
+   "Chill a target, doing Damage equal to (the level of the effect \u2013 20)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Jera Rune Guidelines",
+  "heading": "J, Jera, \"Year\"",
+  "line": 6787,
+  "endLine": 6801,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Jera governs harvest and year-long endeavours, mostly Herbam. Guidelines give a bonus to year-long activities paid out at year end, immunity to supernatural disease, lasting health and summoning food and drink.",
+  "quotes": [
+   "year-long activities, so long as the rune lasts for the entire year",
+   "Target is immune to supernatural diseases of up to this effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Kauno Rune Guidelines",
+  "heading": "K, Kauno, \"Pain\"",
+  "line": 6815,
+  "endLine": 6855,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Kauno governs fire, heat, fever and burning pain. Guidelines give disease-related roll bonuses, a scale of burning Damage per round by level and flammability, and illnesses from sores up to terminal that block natural healing.",
+  "quotes": [
+   "recovery rolls due to sickness and disease equal to",
+   "This does +5 Damage to the target or anything touching it each round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Laguz Rune Guidelines",
+  "heading": "L, Laguz, \"Water\"",
+  "line": 6869,
+  "endLine": 6889,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Laguz governs water, especially the ocean, mostly Aquam. Guidelines give bonuses to rolls in or on water, seeing through water, summoning water, breathing water, speeding sea journeys and waves.",
+  "quotes": [
+   "Ability rolls performed while submerged in or floating upon water"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mannaz Rune Guidelines",
+  "heading": "M, Mannaz, \"Man\"",
+  "line": 6903,
+  "endLine": 6919,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Mannaz governs mankind and cooperation, usually Corpus, and is often used to target a person for another rune. Guidelines give Dexterity and group-work bonuses, cooperation, and Dexterity changes.",
+  "quotes": [
+   "Ability rolls that involve Dexterity (but not Attack rolls)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Naudiz Rune Guidelines",
+  "heading": "N, Naudiz, \"Need\"",
+  "line": 6933,
+  "endLine": 6950,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Naudiz governs hardship and need. Guidelines give bonuses when in great need, a bonus or penalty on retried Abilities, delaying another supernatural effect, binding an active rune spell, and despair that blocks Confidence.",
+  "quotes": [
+   "Bind an active rune spell of Level less than or equal to this one"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ingwaz Rune Guidelines",
+  "heading": "Ng, Ingwaz, \"Lord\"",
+  "line": 6964,
+  "endLine": 6978,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Ingwaz governs family, home and security, tied to Herbam, Terram or Corpus. Guidelines give bonuses to family and household rolls, sensing family, easy childbirth and summoning a person.",
+  "quotes": [
+   "Ability rolls that affect his family, household, or home"
+  ],
+  "related": []
+ },
+ {
+  "title": "Othila Rune Guidelines",
+  "heading": "O, Othila, \"Inheritance\"",
+  "line": 6992,
+  "endLine": 7004,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Othila governs inherited property such as lands and heirlooms, tied to Terram. Guidelines give bonuses to rolls using a specific heirloom tool, improving an object to exceptional quality, and summoning small objects.",
+  "quotes": [
+   "The object functions as if it were exceptional quality, and reduces the number of potential botch dice by two when used."
+  ],
+  "related": []
+ },
+ {
+  "title": "Perth Rune Guidelines",
+  "heading": "P, Perth, \"Cup\"",
+  "line": 7018,
+  "endLine": 7038,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Perth governs chance, secrets and the supernatural, tied to Vim. Guidelines give bonuses on chance rolls, adjusting botch dice, dispelling weaker effects, and sensing auras, vis and magic users.",
+  "quotes": [
+   "the number of potential botch dice is reduced or increased by the magnitude of this effect",
+   "less than or equal to half this effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Raido Rune Guidelines",
+  "heading": "R, Raido, \"Riding\"",
+  "line": 7052,
+  "endLine": 7074,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Raido governs travel, carts, ships and planning. Guidelines give bonuses to travel Ability rolls, Stamina-based rolls and Initiative, repairs, sense of direction, doubling travel speed, Stamina changes and summoning large objects.",
+  "quotes": [
+   "all Ability rolls made while traveling, such as Area Lore, Folk Ken, Ride, or Charm"
+  ],
+  "related": []
+ },
+ {
+  "title": "Sowilo Rune Guidelines",
+  "heading": "S, Sowilo, \"Sun\"",
+  "line": 7088,
+  "endLine": 7110,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Sowilo governs light and the sun, tied to Ignem and the Divine. Guidelines give Perception bonuses, seeing through illusions, darkvision, sensing auras, darkness, invisibility, cold resistance and sunlight.",
+  "quotes": [
+   "natural Ability rolls associated with Perception"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tiwaz Rune Guidelines",
+  "heading": "T, Tiwaz, \"Tyr\"",
+  "line": 7124,
+  "endLine": 7142,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Tiwaz governs truth, justice and battle for companions, tied to Mentem. Guidelines give bonuses to positive Personality rolls and Attack or Defense, a Confidence boost, and sensing people, motives, and lies.",
+  "quotes": [
+   "as long as his Confidence Score is no greater than (the magnitude of this effect \u2013 3)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Thurisaz Rune Guidelines",
+  "heading": "Th, Thurisaz, \"Ogre\"",
+  "line": 7156,
+  "endLine": 7180,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Thurisaz governs ogres, thorns, evil and shapeshifting, tied to Vim and Herbam. Guidelines give bonuses to negative Personality rolls, reducing supernatural Might, brambles, destroying plants and transformations between living and nonliving things.",
+  "quotes": [
+   "Might Score is reduced by (the level of this effect \u2013 10)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Uruz Rune Guidelines",
+  "heading": "U, Uruz, \"Auroch\"",
+  "line": 7194,
+  "endLine": 7220,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Uruz governs strength, endurance and wild animals, tied to Animal and Auram. Guidelines give Strength bonuses, Encumbrance changes, immunity to lesser mind effects, Strength changes and summoning wild animals by Size at escalating levels.",
+  "quotes": [
+   "The target's Encumbrance is increased or decreased by the magnitude of this effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Wunjo Rune Guidelines",
+  "heading": "W, Wunjo, \"Joy\"",
+  "line": 7234,
+  "endLine": 7250,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Wunjo governs joy, comfort and glory, a Mentem rune for emotions. Guidelines give Presence-based bonuses, reducing Fatigue or Wound Penalties, powerful emotions, ignoring all such penalties and Presence changes.",
+  "quotes": [
+   "Wound Penalties by (the magnitude of this effect x 3)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ihwaz Rune Guidelines",
+  "heading": "Y, Ihwaz, \"Yew\"",
+  "line": 7264,
+  "endLine": 7290,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Ihwaz governs yew trees, bows, the dead and graves. Guidelines give Intelligence bonuses, sensing and summoning supernatural beings by Might, sensing plants and corpses, animating and summoning corpses, speaking with the dead and summoning a tree.",
+  "quotes": [
+   "Summon a supernatural being with Might Score less than or equal to (the level of this effect \u2013 10)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Algiz Rune Guidelines",
+  "heading": "Z, Algiz, \"Elk\"",
+  "line": 7304,
+  "endLine": 7318,
+  "category": "traditions",
+  "topic": "Vitkir rune guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Vitkir",
+  "summary": "Algiz is the protection rune, used with a secondary rune. Guidelines adjust Soak and ward away supernatural targets or things of the secondary rune.",
+  "quotes": [
+   "Soak is increased or decreased by the effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Modified Runes (Younger Futhark and Futhorc)",
+  "heading": "Modified Runes",
+  "line": 7332,
+  "endLine": 7338,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Vitkir (Younger Futhark or Anglo-Saxon Futhorc)",
+  "summary": "Variant rune alphabets that use the same magic system: the Younger Futhark has fewer runes, so fewer are opened at the start; the Futhorc has more characters, which dilutes experience and power.",
+  "quotes": [
+   "The magic of the Younger Futhark uses only 16 of the 24 runes (as shown in the insert)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Hermetic Integration of Rune Magic",
+  "heading": "Hermetic Integration",
+  "line": 7340,
+  "endLine": 7344,
+  "category": "order",
+  "topic": "Hermetic integration of rune magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Major Breakthrough (Hermetic Rune Magic)",
+  "summary": "Optional rule: investigating vitkir and runes can become a Major Breakthrough giving a Rune Duration and Inscription Target, and Odin's Sacrifice may give an automatic Discovery. Notes the Order's enmity toward the vitkir.",
+  "quotes": [
+   "the magus receives a new Rune Duration and a new Inscription Target"
+  ],
+  "related": [
+   "Ancient Magic p.138-140"
+  ]
+ },
+ {
+  "title": "The Anglo-Saxon Futhorc",
+  "heading": "The Anglo-Saxon Futhorc",
+  "line": 7346,
+  "endLine": 7383,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Vitkir (Anglo-Saxon Futhorc)",
+  "summary": "Reference table of the extended Anglo-Saxon rune alphabet, giving each rune's name, pronunciation, meaning and the Elder Futhark rune it corresponds to, with five runes that have no Elder equivalent.",
+  "quotes": [
+   "Scholars agree that it included the first 28 runes"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Younger Futhark",
+  "heading": "The Younger Futhark",
+  "line": 7385,
+  "endLine": 7406,
+  "category": "traditions",
+  "topic": "Vitkir (rune magic)",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Vitkir (Younger Futhark)",
+  "summary": "Reference table for the 16-rune Younger Futhark, listing the Elder Futhark runes that are missing and how each remaining rune maps to its Elder equivalent.",
+  "quotes": [
+   "the runemasters eventually settled on a set of 16 runes instead of the original 24"
+  ],
+  "related": []
+ }
+]

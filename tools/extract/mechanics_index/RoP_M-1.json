@@ -1,0 +1,1402 @@
+[
+ {
+  "title": "What is Magic?",
+  "heading": "What is Magic?",
+  "line": 343,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that magical things are idealized versions of mundane things and sets out three guiding facts about Magic (objective, ancient, mysterious) to help players and storyguides decide how magical power shows up.",
+  "quotes": [
+   "**Magic is objective.**",
+   "**Magic is ancient.**",
+   "**Magic is mysterious.**"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Auras (chapter introduction)",
+  "heading": "Chapter Two : Magic Auras",
+  "line": 379,
+  "endLine": 383,
+  "category": "realms",
+  "topic": "Magic auras",
+  "audience": [
+   "all",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces Magic auras, pointing to the core rules for aura effects on Hermetic magic and for Warping in strong auras, and the debate among magi about what auras are.",
+  "quotes": [
+   "Auras of level six and above cause Warping according to the rules in **ArM5**, pages 167-168."
+  ],
+  "related": [
+   "ArM5 p.183 Realm Interaction Table",
+   "ArM5 p.184 Magic aura",
+   "ArM5 pp.167-168 Warping"
+  ]
+ },
+ {
+  "title": "Theories Concerning Magic Auras",
+  "heading": "Theories Concerning Magic Auras",
+  "line": 385,
+  "endLine": 395,
+  "category": "realms",
+  "topic": "Magic auras",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic theories about what fluid vis is and how magi's activities strengthen or weaken auras, with advice that reliably manipulating an aura should need a major breakthrough or mystery initiation and that the aura variation numbers can be changed for your saga.",
+  "quotes": [
+   "Any effect that *reliably* manipulates a Magic aura should probably require at least a Major breakthrough or a Mystery Initiation."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tethers",
+  "heading": "Tethers",
+  "line": 397,
+  "category": "realms",
+  "topic": "Magic auras",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A tether is the object or circumstance around which fluid vis pools to form an aura; the base aura score is built by adding the natural and preternatural tether scores.",
+  "quotes": [
+   "**Base Aura Score** = natural aura score + preternatural aura score",
+   "**Natural Aura Score** (maximum 5) = sum of all natural tethers",
+   "**Preternatural Aura Score** (maximum 5) = strongest preternatural tether + 1 per additional tether"
+  ],
+  "related": []
+ },
+ {
+  "title": "Natural Tethers",
+  "heading": "Natural Tethers",
+  "line": 413,
+  "category": "realms",
+  "topic": "Magic auras",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes natural features (caves, forests, ice, volcanic sites, water and wind) that serve as tethers, with example descriptions for each tether score and the Warping effects they have on inhabitants.",
+  "quotes": [
+   "The examples below describe only places with an aura up to a maximum score of 2"
+  ],
+  "related": []
+ },
+ {
+  "title": "Preternatural Tethers",
+  "heading": "Preternatural Tethers",
+  "line": 471,
+  "endLine": 473,
+  "category": "realms",
+  "topic": "Magic auras",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces tethers caused by mortals, magic beings or vis, which come in four types: monuments, residues, beings and vis sources.",
+  "quotes": [
+   "Individual tethers may have a score up to 5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Monuments (tether)",
+  "heading": "Magic Monuments",
+  "line": 475,
+  "category": "realms",
+  "topic": "Magic auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Ancient buildings and constructs strongly associated with Magic act as tethers, scored by how long they have seen active use.",
+  "quotes": [
+   "these places can be given one point of tether score for every full century that they have seen active use"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Residues (tether)",
+  "heading": "Magic Residues",
+  "line": 479,
+  "category": "realms",
+  "topic": "Magic auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sites where extremely powerful magic left a permanent imprint can be tethers, with a score derived from the Ritual level equivalent of the magic.",
+  "quotes": [
+   "(Ritual spell level equivalent of magics - 40) / 10, rounded down"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Beings (tether)",
+  "heading": "Magic Beings",
+  "line": 483,
+  "endLine": 485,
+  "category": "realms",
+  "topic": "Magic auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Places inhabited by magical beings gain a tether from their Might, which fades if the being leaves or dies; death or burial sites leave a permanent tether.",
+  "quotes": [
+   "has a tether score equal to (being's Might / 10), rounded down",
+   "a permanent tether equal to (being's Might / 20), rounded down"
+  ],
+  "related": []
+ },
+ {
+  "title": "Vis Sources (tether)",
+  "heading": "Vis Sources",
+  "line": 487,
+  "endLine": 489,
+  "category": "realms",
+  "topic": "Magic auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A source of raw vis not already in the presence of a tether can itself be treated as a tether, scored by its annual harvest.",
+  "quotes": [
+   "tether score equal to (pawns harvested per year / 3), rounding down"
+  ],
+  "related": []
+ },
+ {
+  "title": "Aura Variation Rules",
+  "heading": "Aura Variation Rules",
+  "line": 509,
+  "endLine": 523,
+  "category": "realms",
+  "topic": "Aura variation",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how magical activity, vis expenditure, vis extraction and impinging foreign auras push an aura's current score above or below its base score, and how the yearly aura modifier decides whether to roll on the Strengthening or Weakening Table, with botch dice that grow with repeated fluctuation.",
+  "quotes": [
+   "If the yearly aura modifier is between \u20133 and +3, then do nothing",
+   "every roll made on either table that results in a 9 or more causes the number of botch dice for subsequent rolls to increase by one"
+  ],
+  "related": [
+   "ArM5 p.183 Realm Interaction Table"
+  ]
+ },
+ {
+  "title": "Yearly Aura Modifier",
+  "heading": "Yearly Aura Modifier",
+  "line": 525,
+  "endLine": 544,
+  "category": "realms",
+  "topic": "Aura variation",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of effects summed at year's end (departures from base score, impinging auras, covenant magical activity, botches, vis expenditure and extraction) to give the yearly aura modifier.",
+  "quotes": [
+   "It cannot exceed +9 or be less than \u20139.",
+   "+3 \u00d7 (base aura score \u2013 current aura score)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Aura Strengthening Table",
+  "heading": "Aura Strengthening Table",
+  "line": 546,
+  "endLine": 581,
+  "category": "realms",
+  "topic": "Aura variation",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Outcome table rolled on a stress die plus the yearly aura modifier when the aura is trending stronger, ranging from no change through temporary effects and vis creation to permanent increases or a new regio level on a botch.",
+  "quotes": [
+   "Roll a stress die and add the yearly aura modifier, or choose a suitable outcome."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aura Weakening Table",
+  "heading": "Aura Weakening Table",
+  "line": 583,
+  "endLine": 618,
+  "category": "realms",
+  "topic": "Aura variation",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Outcome table for a weakening aura, mirroring the Strengthening Table with stifled magic, wasted vis, contraction, permanent loss of aura score or a regio change on a botch.",
+  "quotes": [
+   "Roll a stress die and add the yearly aura modifier (ignoring the minus sign), or choose a suitable outcome."
+  ],
+  "related": []
+ },
+ {
+  "title": "Symptoms of Aura Variation",
+  "heading": "Symptoms of Aura Variation",
+  "line": 620,
+  "endLine": 646,
+  "category": "realms",
+  "topic": "Aura variation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists observable symptoms of a strengthening or weakening aura (inhabitants, flora and fauna, weather, mood, sentience, signs) and a rule of thumb for granting or removing supernatural abilities as the aura score changes.",
+  "quotes": [
+   "one inhabitant can be (unwittingly) given a new Supernatural Virtue",
+   "a character with a Supernatural Ability loses 20 experience points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Regiones",
+  "heading": "Magic Regiones",
+  "line": 678,
+  "endLine": 698,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how Magic regiones arise (mainly from aura fracturing on a botch, or from an impinging foreign aura), how new levels are generated and how Warping is handled, and what happens when levels vanish or return as the aura score changes.",
+  "quotes": [
+   "A regio can never achieve more levels than the aura score plus 1, however.",
+   "all living things in it immediately drop down to the next-lower level and gain 3 Warping Points"
+  ],
+  "related": [
+   "ArM5 p.189 Regiones",
+   "Houses of Hermes: Mystery Cults p.53"
+  ]
+ },
+ {
+  "title": "Spells for Manipulating Auras",
+  "heading": "New Spells and Spell Guidelines for Auras",
+  "line": 700,
+  "endLine": 704,
+  "category": "magic",
+  "topic": "Aura manipulation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Discusses attempts to create or strengthen auras with Ritual magic, and rules that a Creo Vim structural enhancement to raise the aura score counts as creating a new preternatural tether.",
+  "quotes": [
+   "a Creo Vim structural enhancement to increase the aura score by 1 point should be interpreted as creating a new preternatural tether of sufficient strength to increase the preternatural aura score by 1 point"
+  ],
+  "related": [
+   "The Mysteries Revised Edition p.100 Hermetic Architecture"
+  ]
+ },
+ {
+  "title": "New Creo Vim Guideline (aura strengthening)",
+  "heading": "New Creo Vim Guideline",
+  "line": 706,
+  "endLine": 708,
+  "category": "magic",
+  "topic": "Aura manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guideline for Creo Vim effects that potentially strengthen a Magic aura by causing a roll on the Aura Strengthening Table modified by the effect's magnitude.",
+  "quotes": [
+   "roll on the Aura Strengthening Table with a modifier equal to magnitude of the base effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Intellego Vim Guideline (aura alignment)",
+  "heading": "New Intellego Vim Guideline",
+  "line": 729,
+  "endLine": 731,
+  "category": "magic",
+  "topic": "Aura manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guideline for discerning the alignment of an aura.",
+  "quotes": [
+   "**Level 4:** Discern the alignment of an aura."
+  ],
+  "related": []
+ },
+ {
+  "title": "New Perdo Vim Guideline (aura weakening)",
+  "heading": "New Perdo Vim Guideline",
+  "line": 733,
+  "endLine": 735,
+  "category": "magic",
+  "topic": "Aura manipulation",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Spell guideline for Perdo Vim effects that potentially weaken a Magic aura by causing a roll on the Aura Weakening Table modified by the effect's magnitude.",
+  "quotes": [
+   "roll on the Aura Weakening Table with a modifier equal to magnitude of the base effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Aligned Auras",
+  "heading": "Aligned Auras",
+  "line": 748,
+  "endLine": 752,
+  "category": "realms",
+  "topic": "Aligned auras",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces rare Magic auras with a special alignment, noting that an aura has only one alignment, that detecting each alignment needs its own Intellego Vim spell, and that inhabiting higher-level aligned auras causes permanent Warping.",
+  "quotes": [
+   "No aura has more than one special aspect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Auras that Enhance Emotions",
+  "heading": "Auras that Enhance Emotions",
+  "line": 754,
+  "endLine": 776,
+  "category": "realms",
+  "topic": "Aligned auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Emotion-enhancing auras give characters without a Magic supernatural ability a temporary new or modified Personality Trait while in the aura, scaled by aura level, with example emotions.",
+  "quotes": [
+   "a temporary new Personality Trait or a modification to an existing one"
+  ],
+  "related": []
+ },
+ {
+  "title": "Aura Effect Table",
+  "heading": "Aura Effect Table",
+  "line": 760,
+  "endLine": 766,
+  "category": "realms",
+  "topic": "Aligned auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table giving the Personality Trait adjustment from an emotion-enhancing aura according to the aura's level.",
+  "quotes": [
+   "| Aura Level | Personality Trait Adjustment |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Auras Aligned with Arts",
+  "heading": "Auras Aligned with Arts",
+  "line": 788,
+  "endLine": 830,
+  "category": "realms",
+  "topic": "Aligned auras",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Art-aligned auras double the aura bonus to Casting Score and Lab Total for the matching Art, reduce Power costs for matching Might types, and remove opposed-Art penalties, with a list of Warping manifestations for each Technique and Form.",
+  "quotes": [
+   "Thus, the aura modifer counts double when calculating the Casting Score.",
+   "so counts double when calculating the Lab Total"
+  ],
+  "related": []
+ },
+ {
+  "title": "Other Aligned Auras",
+  "heading": "Other Aligned Auras",
+  "line": 832,
+  "endLine": 840,
+  "category": "realms",
+  "topic": "Aligned auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Auras aligned to something other than an Art, such as healing, luck or distraction, which modify rolls for everyone inside according to aura strength.",
+  "quotes": [
+   "**Healing:** Add half the aura strength (round up) to the Recovery Total for wounds or disease."
+  ],
+  "related": []
+ },
+ {
+  "title": "Covenant Boons and Hooks (aligned auras)",
+  "heading": "Covenant Boons and Hooks",
+  "line": 846,
+  "endLine": 860,
+  "category": "covenant",
+  "topic": "Aligned auras",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Additional covenant-creation Boons and Hooks based on an aura alignment: Fine Aura, Favorable Aura and Troublesome Aura.",
+  "quotes": [
+   "**Fine Aura:** The Magic aura of the covenant has an alignment that benefits most of those within it."
+  ],
+  "related": [
+   "ArM5 Chapter 6 covenants",
+   "Covenants Chapter 2"
+  ]
+ },
+ {
+  "title": "Rules of the Realm",
+  "heading": "Rules of the Realm",
+  "line": 968,
+  "endLine": 978,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "General rules for characters inside the Magic Realm: no experience is gained but vis accrues instead, no Aging rolls are made, spell durations are stretched, Arcane Connections behave differently, and the whole Realm has a Magic aura.",
+  "quotes": [
+   "The entire Magic Realm has a Magic aura of 10.",
+   "characters do not receive experience points while they are in the Magic Realm"
+  ],
+  "related": []
+ },
+ {
+  "title": "Into the Magic Realm",
+  "heading": "Into the Magic Realm",
+  "line": 980,
+  "endLine": 982,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the three ways to cross from the mundane realm into the Magic Realm: regiones, magic powers and magical disasters.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Entering via Magic Regiones",
+  "heading": "Magic Regiones",
+  "line": 984,
+  "endLine": 988,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes crossing a Magic regio boundary or stepping past the exterior of a high-level regio as a way into the Magic Realm.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Entering via Magic Powers",
+  "heading": "Magic Powers",
+  "line": 990,
+  "endLine": 994,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters with a Magic Might Score can pass into the Magic Realm through objects connected to the same Form as their Might, and can lead others with them; magic creatures may have powers for this.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Entering via Magical Disasters",
+  "heading": "Magical Disasters",
+  "line": 996,
+  "endLine": 1004,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A magical disaster can throw the wielder or surroundings into the Magic Realm; affected characters try to avoid it with a Twilight Avoidance roll using the disaster's botches.",
+  "quotes": [
+   "substituting the number of botches on the disaster roll for the number of Warping Points gained"
+  ],
+  "related": [
+   "ArM5 p.88 Twilight Avoidance"
+  ]
+ },
+ {
+  "title": "Boundaries and Vestiges",
+  "heading": "Boundaries and Vestiges",
+  "line": 1006,
+  "endLine": 1032,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for realm boundaries (a level that adds to magical activities, doubles for the aligned Form, adds botch dice and produces vis each season) and for vestiges, which are insubstantial Form-aligned images with their own connection level.",
+  "quotes": [
+   "Realm boundaries have a level that ranges from 0 to 10, like regiones, and this is added as a bonus to all magic activities within the area",
+   "add a number of botch dice equal to the level of the boundary to every roll that benefits from the Magic aura",
+   "A number of pawns equal to (the modified level of the aura divided by 10, rounded up) appear somewhere within the boundary every season"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Travel",
+  "heading": "Magical Travel",
+  "line": 1034,
+  "endLine": 1089,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a character with Magic Might or similar powers passes through a boundary or vestige, including the travel rolls, the Familiarity modifier table, the Speed Level journey-length table, attempts to hasten the journey, botches, and how durations and Arcane Connections are affected in the Void.",
+  "quotes": [
+   "Boundary Travel: stress die + Perception + appropriate Ability + Form bonus vs. ((10 \u2013 current realm boundary level) x 3) \u2013 Familiarity modifier",
+   "Vestige Travel: stress die + Perception + appropriate Ability + Form bonus vs. ((10 \u2013level of the vestige) x 3) \u2013 Familiarity modifier",
+   "Twilight Void Travel: stress die + Stamina + Concentration + Form bonus"
+  ],
+  "related": [
+   "ArM5 p.84 Arcane Connection durations"
+  ]
+ },
+ {
+  "title": "The Twilight Void",
+  "heading": "The Twilight Void",
+  "line": 1091,
+  "endLine": 1115,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the Void's provinces (one per Form), what travelers can perceive and do there, that travelers need no food, do not age and gain neither experience nor vis, and the Twilight Comprehension roll for exploring it with its positive and negative outcomes.",
+  "quotes": [
+   "Twilight Comprehension: Intelligence + Enigmatic Wisdom + stress die vs. Warping Score or (Might Score / 5) + stress die"
+  ],
+  "related": [
+   "ArM5 p.88 Twilight Comprehension"
+  ]
+ },
+ {
+  "title": "Advancement in the Magic Realm",
+  "heading": "Advancement",
+  "line": 1145,
+  "endLine": 1174,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters can spend the vis they collect in the Magic Realm to gain or transform Virtues and Flaws before returning, according to a table of vis costs, with limits on one transformation per season and on which Virtues qualify.",
+  "quotes": [
+   "Characters do not experience more than one transformation in a single season"
+  ],
+  "related": [
+   "Transformed (Being) Virtue"
+  ]
+ },
+ {
+  "title": "Positive and Negative Traits",
+  "heading": "Positive and Negative Traits",
+  "line": 1176,
+  "endLine": 1198,
+  "category": "realms",
+  "topic": "Magic Realm",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Suggestions, by Void province, for the Twilight Scars and Essential Traits a character might gain from comprehending or failing to comprehend an experience in the Twilight Void.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Magic Realm Magic",
+  "heading": "Magic Realm Magic",
+  "line": 1200,
+  "endLine": 1216,
+  "category": "magic",
+  "topic": "Magic Realm magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Minor Breakthrough (Magic Realm Magic), researched after visiting the Magic Realm",
+  "summary": "Hermetic magic works in the Magic Realm but cannot normally affect boundaries or vestiges; a Minor Breakthrough opens new guidelines, which a magus can pursue by converting vis gathered in the Realm into an Insight, or learn from a Lab Text.",
+  "quotes": [
+   "For every pawn of vis he converts into an Insight, the associated effect has one magnitude.",
+   "A magus may only gain one Insight per season."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.26",
+   "Ancient Magic p.8"
+  ]
+ },
+ {
+  "title": "New Creo Guidelines (Magic Realm)",
+  "heading": "New Creo Guidelines",
+  "line": 1220,
+  "endLine": 1230,
+  "category": "magic",
+  "topic": "Magic Realm magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Minor Breakthrough (Magic Realm Magic)",
+  "summary": "Creo guidelines for creating boundaries, increasing existing boundaries and creating vestiges in the Magic Realm.",
+  "quotes": [
+   "**General:** Create a boundary in a part of the Magic Realm that has no boundary, with a score equal to (the magnitude of the effect \u2013 4)"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Intellego Guidelines (Magic Realm)",
+  "heading": "New Intellego Guidelines",
+  "line": 1250,
+  "endLine": 1256,
+  "category": "magic",
+  "topic": "Magic Realm magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Minor Breakthrough (Magic Realm Magic)",
+  "summary": "Intellego guidelines for detecting vestiges and boundaries and for perceiving the Twilight Void to ease a Travel roll.",
+  "quotes": [
+   "**Level 4:** Perceive the Twilight Void through a target vestige or boundary. This gives the caster a +3 bonus to his Travel roll"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Muto Guidelines (Magic Realm)",
+  "heading": "New Muto Guidelines",
+  "line": 1276,
+  "endLine": 1284,
+  "category": "magic",
+  "topic": "Magic Realm magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Minor Breakthrough (Magic Realm Magic)",
+  "summary": "Muto guidelines for changing the Form of a boundary or vestige, associating a target with the Magic Realm, and making things perceptible as vestiges.",
+  "quotes": [
+   "**Level 10:** Associate a target with the Magic Realm, as if it had Magic Might of the same Form as this effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "New Perdo Guidelines (Magic Realm)",
+  "heading": "New Perdo Guidelines",
+  "line": 1304,
+  "endLine": 1314,
+  "category": "magic",
+  "topic": "Magic Realm magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Minor Breakthrough (Magic Realm Magic)",
+  "summary": "Perdo guidelines for temporarily destroying vestiges, removing a target to the Twilight Void, and permanently reducing a boundary.",
+  "quotes": [
+   "**Level 10:** Remove a target to the Twilight Void for the duration"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Rego Guidelines (Magic Realm)",
+  "heading": "New Rego Guidelines",
+  "line": 1336,
+  "endLine": 1346,
+  "category": "magic",
+  "topic": "Magic Realm magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Minor Breakthrough (Magic Realm Magic)",
+  "summary": "Rego guidelines for moving a target between provinces, shortening a journey through the Twilight Void, and instantly transporting a target through a vestige or boundary.",
+  "quotes": [
+   "**Level 10:** Reduce the length of a target's journey through the Twilight Void by one step."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Characters: Might and Might Points",
+  "heading": "Chapter Four : Magic Characters",
+  "line": 1366,
+  "endLine": 1380,
+  "category": "beings",
+  "topic": "Magic characters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Overview of what Magic Might gives a magic character: Magic Resistance equal to Might, Might Points spent on powers and recovered over time, destruction when Might is reduced, freedom from deprivation (with penalties if it is ignored), and the ability to consume vis to restore Might Points.",
+  "quotes": [
+   "Magic Might gives the character innate Magic Resistance equal to its Might Score",
+   "A magic character is destroyed if his Might Score is reduced to 0 or less.",
+   "Each pawn of vis from the same Form as the character\u2019s Might Score will immediately replenish 5 Might Points, or 2 Might Points if this vis is associated with any other Art"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Character Creation",
+  "heading": "Magic Character creation",
+  "line": 1382,
+  "endLine": 1384,
+  "category": "beings",
+  "topic": "Magic characters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Introduces the procedure for designing characters that begin play with Magic Might, such as familiars, ghostly warders or magical servants.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Magic Character Creation Summary",
+  "heading": "Magic Character Creation Summary",
+  "line": 1386,
+  "endLine": 1408,
+  "category": "beings",
+  "topic": "Magic characters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Four-step summary of making a magic character: pick a concept (true form, Characteristics, Virtues and Flaws, Size), determine season and Abilities, set Magic Might and choose Qualities and Inferiorities, then add finishing touches.",
+  "quotes": [
+   "Characteristics: 7 points assigned as in standard Detailed Character Creation (see ArM5 page 29), no Characteristic more than +3 or less than -3.",
+   "A spring character receives 120 experience points, a summer character receives 360, an autumn character receives 720, and a winter character receives 1200."
+  ],
+  "related": [
+   "ArM5 p.29 Detailed Character Creation"
+  ]
+ },
+ {
+  "title": "Auras and Might Recovery",
+  "heading": "Auras and Might Recovery",
+  "line": 1410,
+  "endLine": 1435,
+  "category": "beings",
+  "topic": "Magic characters",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Resting in a Magic aura speeds recovery of Might Points; a subtotal from aura and Might Score gives the time to recover the whole pool, divided by Might Score for the per-point rate.",
+  "quotes": [
+   "ENTIRE RECOVERY TIME: Subtotal = Aura - (Might Score / 5), then refer to chart",
+   "RECOVERY RATE: 1 Might Point per (Recovery Time / Might Score)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Character Concept",
+  "heading": "Concept",
+  "line": 1437,
+  "endLine": 1451,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "First step of making a magic character: choose its true form, assign base Characteristics, decide whether it is intelligent, take the Special Virtue for its type plus a Social Status Virtue or Flaw, other Virtues and Flaws, and set Size, which adjusts Strength and Quickness.",
+  "quotes": [
+   "you should begin with all eight scores at 0 and assign 7 points to them",
+   "adding two times Size to Strength, and subtracting Size from Quickness"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Animal Characters",
+  "heading": "Magic Animals",
+  "line": 1453,
+  "endLine": 1459,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Rules for building a magic animal character from a mundane animal's stats: innate No Hands and Mute equivalents, required minimum Abilities, and a Size adjustment to Magic Might.",
+  "quotes": [
+   "you must subtract the character's Size from its Might Score, or add to it if Size is negative"
+  ],
+  "related": [
+   "Book of Mundane Beasts appendix",
+   "Houses of Hermes: Mystery Cults pp.38-43"
+  ]
+ },
+ {
+  "title": "Character Guides",
+  "heading": "Character Guides",
+  "line": 1461,
+  "endLine": 1479,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "A shorthand for storyguides: a character guide lists only the required Might, Characteristics, Virtues and Flaws, Personality Traits, Abilities and Powers for a type of magic character instead of a full sheet.",
+  "quotes": [
+   "The character cannot spend experience points on any other aspect of the character until all of its scores have reached these levels."
+  ],
+  "related": [
+   "ArM5 pp.193-194 Bestiary"
+  ]
+ },
+ {
+  "title": "Magic Human Characters",
+  "heading": "Magic Humans",
+  "line": 1515,
+  "endLine": 1519,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Magic humans are designed like ordinary human characters but always look monstrous, suffering a social penalty with mundane humans and animals; magi are better designed normally and given a transformation Virtue later.",
+  "quotes": [
+   "giving them a \u20136 to all social interactions with mundane humans or animals"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Thing Characters",
+  "heading": "Magic Things",
+  "line": 1521,
+  "endLine": 1545,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Magic things draw their Might from Size according to a minimum-Size table, can grow in Might by joining a larger entity, move slowly, are not blocked by Magic Resistance unless using an active supernatural effect, and always have Temporary Might.",
+  "quotes": [
+   "The following chart shows the minimum Size required for each level of Might Score.",
+   "Magic things always have Temporary Might",
+   "All magic thing characters receive the No Fatigue Quality at no cost."
+  ],
+  "related": [
+   "The Mysteries Revised Edition p.64 Hermetic Empowerment",
+   "The Mysteries Revised Edition p.66 Spirit Familiar",
+   "Houses of Hermes: Mystery Cults p.134 Bind Magical Creatures"
+  ]
+ },
+ {
+  "title": "Cunning Characters",
+  "heading": "Cunning Characters",
+  "line": 1547,
+  "endLine": 1551,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Notes on the limits of playing an unintelligent character, and the option to convert Cunning to Intelligence when the Magic realm significantly changes it.",
+  "quotes": [
+   "They cannot use Confidence Points unless they have the Ferocity Virtue."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Spirit Characters",
+  "heading": "Magic Spirits",
+  "line": 1553,
+  "endLine": 1563,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Magic spirits are designed from a physical form's Characteristics but are insubstantial, can be affected only by beings of the same form, are immortal unless their true form is destroyed, and always have an innate Magical Air.",
+  "quotes": [
+   "Magic spirits always have an innate Magical Air that is very difficult for them to overcome."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Character Season",
+  "heading": "Season",
+  "line": 1575,
+  "endLine": 1598,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Season replaces age for magic characters and determines starting experience points: spring, summer, autumn or winter stages of development, with Abilities bought according to Virtues and Flaws.",
+  "quotes": [
+   "**Season** is a new statistic that replaces age for magic characters",
+   "| Winter | 1200 |"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Might (character creation)",
+  "heading": "Magic Might",
+  "line": 1608,
+  "endLine": 1631,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Choose a Magic Might Score and Form from a table by saga power level and role (grog, companion, magus); the Might Score also gives an equal number of points for Magic Qualities, and is subtracted from all Advancement Totals.",
+  "quotes": [
+   "You must subtract the character's Might Score from all Advancement Totals",
+   "Minor Qualities cost 1 point, and Major Qualities cost 3 points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Character Finishing Touches",
+  "heading": "Finishing Touches",
+  "line": 1686,
+  "endLine": 1692,
+  "category": "beings",
+  "topic": "Magic character creation",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Final steps: at least three Personality Traits, Reputations, starting Confidence for eligible characters, an Essential Trait for its true form, combat scores, equipment and inherent vis.",
+  "quotes": [
+   "(this is typically equal to its Might Score divided by 5, rounded up)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Magic Powers",
+  "heading": "Magic Powers",
+  "line": 1694,
+  "endLine": 1716,
+  "category": "beings",
+  "topic": "Magic powers",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "How Magic Qualities give powers designed like Hermetic effects, with a table of spell levels, effect types, Might costs and Initiative for each Quality, plus rules for constant powers, Penetration, Incapacitating wounds and a zero Might pool.",
+  "quotes": [
+   "Might Score \u2013 (5 x Might Point cost) + Penetration bonus",
+   "Like Ritual spells, Ritual Powers are always at least Level 20, and all powers with effects of Level 50 or more must be designed as Ritual Powers."
+  ],
+  "related": [
+   "ArM5 p.191 Penetration for Magic Powers"
+  ]
+ },
+ {
+  "title": "Qualities and Inferiorities",
+  "heading": "Qualities and Inferiorities",
+  "line": 1718,
+  "endLine": 1728,
+  "category": "beings",
+  "topic": "Magic Qualities and Inferiorities",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "Magic Qualities and Inferiorities are the Virtue and Flaw equivalents for characters with a Might Score; they are bought with points equal to Might, need not balance, and grogs may not take Major ones.",
+  "quotes": [
+   "A character starts with a set number of Quality points equal to its Might Score"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages pp.104-109 Heroic Virtues and Flaws"
+  ]
+ },
+ {
+  "title": "Major Magic Qualities",
+  "heading": "Major Magic Qualities",
+  "line": 1873,
+  "category": "beings",
+  "topic": "Magic Qualities and Inferiorities",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "List of Major Magic Qualities a magic character can buy, including Fatigue Mastery, Focus, Greater and Ritual Powers (with their Might costs and Initiative), Gentle Air, Gifted, Gigantic with its Size table, Improved Characteristic, Natural Appearance, No Fatigue and Vis Mastery.",
+  "quotes": [
+   "The power has a Might Point cost equal to (the magnitude of the effect / 2)",
+   "Initiative for the power is equal to the character's Quickness \u2013 (the magnitude of the effect x 2)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Minor Magic Qualities",
+  "heading": "Minor Magic Qualities",
+  "line": 1927,
+  "category": "beings",
+  "topic": "Magic Qualities and Inferiorities",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "List of Minor Magic Qualities, such as Form Resistance, Gift of Speech, the Improved Abilities, Attack, Damage, Defense, Fatigue, Initiative, Might, Powers, Recovery and Soak options, Lesser Power, Minor Virtue and Personal Power.",
+  "quotes": [
+   "Personal Powers have a Might Point cost equal to (the magnitude of the effect / 2)",
+   "**Improved Abilities:** You gain 50 experience points, which may be spent on any Abilities or Arts that the character can learn."
+  ],
+  "related": []
+ },
+ {
+  "title": "Major Magic Inferiorities",
+  "heading": "Major Magic Inferiorities",
+  "line": 1974,
+  "category": "beings",
+  "topic": "Magic Qualities and Inferiorities",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "List of Major Magic Inferiorities, such as Acclimation Prone, Major Flaw, Miniature with its Size table, Monstrous Appearance, Reduced Characteristic and Temporary Might, which ties wounds to Might Points and vis.",
+  "quotes": [
+   "When the character is injured, it loses Might Points equal to the penalty of the wound"
+  ],
+  "related": []
+ },
+ {
+  "title": "Minor Magic Inferiorities",
+  "heading": "Minor Magic Inferiorities",
+  "line": 2006,
+  "category": "beings",
+  "topic": "Magic Qualities and Inferiorities",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "List of Minor Magic Inferiorities, such as Limited Gestures, Movement and Speech, Minor Flaw, the Reduced Abilities, Attack, Defense, Fatigue, Initiative, Might, Power and Soak options, and Susceptible to Deprivation.",
+  "quotes": [
+   "**Reduced Abilities:** Subtract 50 experience points from the character's existing Abilities"
+  ],
+  "related": []
+ },
+ {
+  "title": "Atlantean Magic (Range, Duration, Target)",
+  "heading": "Atlantean Magic",
+  "line": 2120,
+  "endLine": 2147,
+  "category": "magic",
+  "topic": "Atlantean Magic",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Atlantean Magic",
+  "summary": "Gives a Hermetic magus access to a special Range (Water-way), Duration (Storm) and Target (Body-of-water) usable in spontaneous, formulaic and ritual spells, with notes on how each is treated for spell level and on abuses of Storm duration.",
+  "quotes": [
+   "For determining the spell level, waterway is the same range of effect as Sight.",
+   "For determining the spell level, Storm is the same duration as Concentration.",
+   "For determining the spell level, body-ofwater is the same level of Target as Structure"
+  ],
+  "related": []
+ },
+ {
+  "title": "Environmental Temperatures",
+  "heading": "Environmental Temperatures",
+  "line": 2687,
+  "endLine": 2696,
+  "category": "hazards",
+  "topic": "Environmental temperatures",
+  "audience": [
+   "storyguide",
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Flaw: Warped Senses (Sensitive to Cold / Sensitive to Heat)",
+  "summary": "Chart ranking environmental conditions from unnaturally hot to unnaturally cold, used to judge how far a character with temperature sensitivity is from the conditions it is accustomed to.",
+  "quotes": [
+   "Comfortable for a normal inhabitant of the Normandy, Rhine, Stonehenge, and Hibernia Tribunals"
+  ],
+  "related": [
+   "ArM5 p.181 Heat and Cold"
+  ]
+ },
+ {
+  "title": "Animal Handling (magical beings)",
+  "heading": "Animal Handling",
+  "line": 2704,
+  "endLine": 2708,
+  "category": "beings",
+  "topic": "Abilities for magical beings",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Extends the Animal Handling Ability to managing and training elementals, animate trees, animal spirits and other beings with Cunning instead of Intelligence.",
+  "quotes": [
+   "you can apply the same principles when interacting with other beings that have Cunning instead of Intelligence"
+  ],
+  "related": [
+   "ArM5 p.62 Animal Handling"
+  ]
+ },
+ {
+  "title": "Social Abilities and Magical Beings",
+  "heading": "Social Abilities and Magical Beings",
+  "line": 2710,
+  "endLine": 2740,
+  "category": "beings",
+  "topic": "Abilities for magical beings",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Summarizes which social Abilities apply to magical beings: most work with any intelligent being, Folk Ken only covers humans and human-like beings, and Magic Lore substitutes for it when judging magical beings' motives.",
+  "quotes": [
+   "**Magic Lore:** This may be used like Folk Ken when attempting to understand the motivations and personality of magical beings."
+  ],
+  "related": []
+ },
+ {
+  "title": "(Form) Resistance (Ability)",
+  "heading": "(Form) Resistance",
+  "line": 2742,
+  "endLine": 2750,
+  "category": "beings",
+  "topic": "Abilities for magical beings",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "A Supernatural Ability for characters with Magic Might that adds its score to resistance against damage from things of one Form and raises Magic Resistance against spells of that Form, but does not stack with the Parma Magica.",
+  "quotes": [
+   "You may add the character's score in this Ability as a bonus to attempts to resist damage from things of that Form"
+  ],
+  "related": [
+   "ArM5 pp.78-79 resisting damage"
+  ]
+ },
+ {
+  "title": "Magical Meditation (Ability)",
+  "heading": "Magical Meditation\\*",
+  "line": 2752,
+  "endLine": 2763,
+  "category": "beings",
+  "topic": "Abilities for magical beings",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Magic Might Score (magic character)",
+  "summary": "A Supernatural Ability for characters with Magic Might that lets them recover Might Points faster in a Magic aura while concentrating, and prevent Acclimation at an increased rate.",
+  "quotes": [
+   "it recovers 1 Might Point for each level of the Magic aura over the course of about ten minutes"
+  ],
+  "related": [
+   "ArM5 p.82 Concentration table"
+  ]
+ }
+]

@@ -1,0 +1,2331 @@
+[
+ {
+  "title": "Grex (grog squad)",
+  "heading": "Grex",
+  "line": 672,
+  "endLine": 674,
+  "category": "covenant",
+  "topic": "Covenant grogs",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Defines the grex as the small unit of grogs that accompanies magi on expeditions, and how greges relate to the turb as permanent or newly assembled squads.",
+  "quotes": [
+   "A grex typically numbers up to six individuals"
+  ],
+  "related": []
+ },
+ {
+  "title": "Custos (favored grog)",
+  "heading": "Custos",
+  "line": 676,
+  "endLine": 678,
+  "category": "covenant",
+  "topic": "Covenant grogs",
+  "audience": [
+   "covenant",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the custos, a favored grog set apart by skill, great deeds or loyalty and given better provisions and pay, and that custodes count as specialists when building a covenant and working out its finances.",
+  "quotes": [
+   "Custodes are usually equated to specialists when building a covenant"
+  ],
+  "related": [
+   "ArM5 p.71",
+   "Covenants p.63"
+  ]
+ },
+ {
+  "title": "Servants",
+  "heading": "Servants",
+  "line": 704,
+  "endLine": 710,
+  "category": "covenant",
+  "topic": "Covenant staffing",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes the indoor and outdoor servants who keep a covenant running and how the Covenants book ties the number of servants and teamsters to the covenant's population, with laborers and craftsmen reducing outgoings.",
+  "quotes": [
+   "two servants and one teamster are needed to support two magi, three companions, or ten soldiers"
+  ],
+  "related": [
+   "Covenants p.64",
+   "Covenants p.66"
+  ]
+ },
+ {
+  "title": "Personal Servants",
+  "heading": "Personal Servants",
+  "line": 718,
+  "endLine": 743,
+  "category": "covenant",
+  "topic": "Covenant grogs",
+  "audience": [
+   "covenant",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How a magus's personal servant differs from a specialist, how the role gives status among the covenfolk, and a table of suitable servant types for different kinds of magus.",
+  "quotes": [
+   "Performing all these services for a magus is the mark of the personal servant"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults p.113"
+  ]
+ },
+ {
+  "title": "The Chamberlain",
+  "heading": "The Chamberlain",
+  "line": 745,
+  "endLine": 753,
+  "category": "covenant",
+  "topic": "Covenant officers",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The chamberlain coordinates the servants, is treated as a specialist, uses the Profession: Chamberlain Ability, and can raise or lower the covenfolk's Prevailing Loyalty by mediating the effects of The Gift.",
+  "quotes": [
+   "Governing the servants of a covenant is covered by the Profession: Chamberlain Ability",
+   "boosts the Prevailing Loyalty of the covenfolk"
+  ],
+  "related": [
+   "Covenants p.38"
+  ]
+ },
+ {
+  "title": "The Covenant Rolls",
+  "heading": "The Covenant Rolls",
+  "line": 755,
+  "endLine": 765,
+  "category": "covenant",
+  "topic": "Covenant rolls",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Records of past covenant accounts that serve as a summa for Profession: Chamberlain and a growing encyclopedia of Area Lore: Covenant, can be researched with a roll, act as an Arcane Connection to the covenant if removed, and may be incomplete or damaged.",
+  "quotes": [
+   "The rolls serve as a summa for the Profession: Chamberlain Ability, typically with a Quality of 6.",
+   "make an Intelligence + Area Lore: Covenant roll with an Ease Factor related to the obscurity of the information sought"
+  ],
+  "related": [
+   "Art & Academe p.27",
+   "ArM5 p.84"
+  ]
+ },
+ {
+  "title": "Specialists",
+  "heading": "Specialists",
+  "line": 771,
+  "endLine": 777,
+  "category": "covenant",
+  "topic": "Covenant staffing",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Specialists are the covenfolk with focused skills beyond daily upkeep or defense, bought with covenant build points; the entry also explains when a craftsman counts as a servant rather than a specialist.",
+  "quotes": [
+   "specialists are bought with covenant build points (**ArM5**, page 72)"
+  ],
+  "related": [
+   "ArM5 p.72",
+   "Covenants p.63"
+  ]
+ },
+ {
+  "title": "Agents",
+  "heading": "Agents",
+  "line": 779,
+  "endLine": 783,
+  "category": "covenant",
+  "topic": "Covenant agents",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Agents are specialists placed away from the covenant as sources of information or remote help; they are bought with build points but their wages are folded into the general budget unless there are unusually many.",
+  "quotes": [
+   "they need not be included in the covenfolk roster when it comes to determining finances"
+  ],
+  "related": [
+   "Houses of Hermes: Societates pp.140-144"
+  ]
+ },
+ {
+  "title": "The Steward",
+  "heading": "The Steward",
+  "line": 785,
+  "endLine": 789,
+  "category": "covenant",
+  "topic": "Covenant officers",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The steward sees to the needs of the specialists, uses Profession: Steward (often with Leadership), and like the chamberlain can soften or aggravate the covenfolk's reaction to The Gift.",
+  "quotes": [
+   "The role of steward is governed by the Profession: Steward Ability"
+  ],
+  "related": [
+   "Covenants p.38"
+  ]
+ },
+ {
+  "title": "The Autocrat",
+  "heading": "The Autocrat",
+  "line": 791,
+  "endLine": 795,
+  "category": "covenant",
+  "topic": "Covenant officers",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the autocrat, a single officer who combines the roles of chamberlain and steward and commands all non-military covenfolk.",
+  "quotes": [
+   "he is in command of all the non-military covenfolk"
+  ],
+  "related": []
+ },
+ {
+  "title": "Soldiers",
+  "heading": "Soldiers",
+  "line": 799,
+  "endLine": 803,
+  "category": "covenant",
+  "topic": "Covenant staffing",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Soldiers defend the covenant; they need roughly equal Combat Totals to fight as a trained group, and companions are rarely counted among them. Also notes the Code of Hermes limits on lending soldiers to feudal lords.",
+  "quotes": [
+   "soldiers need to train together and have roughly equal Combat Totals to fight effectively as a trained group"
+  ],
+  "related": [
+   "Lords of Men"
+  ]
+ },
+ {
+  "title": "The Turb Captain",
+  "heading": "The Turb Captain",
+  "line": 835,
+  "endLine": 837,
+  "category": "covenant",
+  "topic": "Covenant officers",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The turb captain leads all of the covenant's soldiers, is provisioned as a specialist at least, and may be treated as a companion character even when designed as a grog.",
+  "quotes": [
+   "A turb captain is provisioned as a specialist at least"
+  ],
+  "related": []
+ },
+ {
+  "title": "Unit Sergeants",
+  "heading": "Unit Sergeants",
+  "line": 839,
+  "endLine": 841,
+  "category": "covenant",
+  "topic": "Covenant officers",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sergeants command smaller units of the turb, are chosen for loyalty and the Leadership Ability, and are treated as specialists for wages, food and lodging.",
+  "quotes": [
+   "Sergeants are rewarded by being treated as specialists with respect to wages, food, and accommodation."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Drill Sergeant",
+  "heading": "The Drill Sergeant",
+  "line": 843,
+  "endLine": 847,
+  "category": "covenant",
+  "topic": "Trained groups",
+  "audience": [
+   "covenant",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The drill sergeant trains the grogs to fight as a trained group by teaching a Martial Ability each year, keeps order and administers punishments, and needs Leadership and Teaching.",
+  "quotes": [
+   "This involves providing a season of teaching in a Martial Ability (usually Single Weapon) over the course of each year."
+  ],
+  "related": []
+ },
+ {
+  "title": "Accelerated Group Training",
+  "heading": "Accelerated Group Training",
+  "line": 849,
+  "endLine": 866,
+  "category": "combat",
+  "topic": "Trained groups",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A leader rolls to shorten the time a group needs to practice together before it counts as a trained group, against an Ease Factor set by how much training time is available; failure delays the group until season's end and a botch wastes the season.",
+  "quotes": [
+   "Stress die + Communication + Leadership",
+   "When the training period is complete, they can function as a trained group (see **ArM5**, page 173)."
+  ],
+  "related": [
+   "ArM5 p.173",
+   "Lords of Men ch.9"
+  ]
+ },
+ {
+  "title": "Other Military Ranks",
+  "heading": "Other Military Ranks",
+  "line": 868,
+  "endLine": 872,
+  "category": "covenant",
+  "topic": "Covenant officers",
+  "audience": [
+   "covenant",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the intermediate corporal-like rank between soldier and sergeant, represented by the Custos Social Status Virtue, and how temporary expedition roles can become semi-permanent.",
+  "quotes": [
+   "This rank is represented by the Custos Social Status Virtue."
+  ],
+  "related": []
+ },
+ {
+  "title": "A Noble Household",
+  "heading": "A Noble Household",
+  "line": 882,
+  "endLine": 910,
+  "category": "covenant",
+  "topic": "Covenant organization",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lays out the household offices (steward, chamberlain, marshal and their subordinates) a large covenant can copy to organize its servants and specialists.",
+  "quotes": [
+   "the three chief officials in a noble household are the steward, the chamberlain, and the marshal"
+  ],
+  "related": [
+   "Lords of Men"
+  ]
+ },
+ {
+  "title": "Military Hierarchy",
+  "heading": "Military Hierarchy",
+  "line": 916,
+  "endLine": 922,
+  "category": "covenant",
+  "topic": "Covenant organization",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Organizes covenfolk into squads of soldiers and auxiliaries, with the Roman manus, decuria and centuria given as an example chain of command.",
+  "quotes": [
+   "the covenfolk are divided into squads, each of which consists of soldiers and their auxiliary staff"
+  ],
+  "related": []
+ },
+ {
+  "title": "Nations (organizing covenfolk)",
+  "heading": "Nations",
+  "line": 924,
+  "endLine": 956,
+  "category": "covenant",
+  "topic": "Covenant organization",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lets a covenant divide its grogs into nations that cut across servant, specialist and soldier roles, formed by family, ethnic group or location, with members often holding a Loyalty Personality Trait specific to their nation.",
+  "quotes": [
+   "The identifying feature of a nation is that it cuts across roles."
+  ],
+  "related": [
+   "Art & Academe p.94"
+  ]
+ },
+ {
+  "title": "Guilds (organizing covenfolk)",
+  "heading": "Guilds",
+  "line": 958,
+  "endLine": 964,
+  "category": "covenant",
+  "topic": "Covenant organization",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes organizing grogs by function into guilds, with larger covenants using more defined guilds, and points to the Guild Covenant Hook if the troupe wants guilds that can withdraw their services.",
+  "quotes": [
+   "the Guild Covenant Hook (*Covenants*, page 19) can be bought if this situation is desirable"
+  ],
+  "related": [
+   "Covenants p.19"
+  ]
+ },
+ {
+  "title": "Professional Guilds",
+  "heading": "Professional Guilds",
+  "line": 970,
+  "endLine": 980,
+  "category": "covenant",
+  "topic": "Covenant organization",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Models covenant guilds on craft, service and merchant guilds, grouping those with the same or allied Craft or Profession Abilities and laying out the guild ranks from dean down to apprentices.",
+  "quotes": [
+   "A guild consists of all craftsmen that use the same or a group of closely allied Craft or Profession Abilities."
+  ],
+  "related": [
+   "City & Guild ch.3"
+  ]
+ },
+ {
+  "title": "Monastery (organizing covenfolk)",
+  "heading": "Monastery",
+  "line": 988,
+  "endLine": 994,
+  "category": "covenant",
+  "topic": "Covenant organization",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A guild-like structure where department officials can requisition manpower and funds as needed instead of having their own permanent staff, suited to small covenants.",
+  "quotes": [
+   "This is a good model for a small covenant"
+  ],
+  "related": [
+   "The Church ch.4"
+  ]
+ },
+ {
+  "title": "Watch Patterns",
+  "heading": "Watch Patterns",
+  "line": 1020,
+  "endLine": 1054,
+  "category": "covenant",
+  "topic": "Watch duty",
+  "audience": [
+   "storyguide",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Charts for single and double duty showing which watch and patrol is on duty, off duty or free at each time of day, so the storyguide can randomly determine which grogs are on watch when an event occurs.",
+  "quotes": [
+   "randomly determine what patrol (night or day) and watch (first to fourth) a character is in"
+  ],
+  "related": []
+ },
+ {
+  "title": "Duties (watch, off duty and free time)",
+  "heading": "Duties",
+  "line": 1056,
+  "endLine": 1062,
+  "category": "covenant",
+  "topic": "Watch duty",
+  "audience": [
+   "covenant",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A soldier's time is split into duty, off-duty and free time, with the turb divided into day and night patrols who periodically swap, and with sub-patrols assigned to areas such as wall, gate and keep.",
+  "quotes": [
+   "A soldier's time is divided into three periods: duty (or watch duty), off-duty, and free time."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Watches",
+  "heading": "The Watches",
+  "line": 1064,
+  "endLine": 1081,
+  "category": "covenant",
+  "topic": "Watch duty",
+  "audience": [
+   "storyguide",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives the named eight watches of the day and night with their start times, and explains how patrols rotate through normal sentry duty and double duty.",
+  "quotes": [
+   "The 24 hours of the day are divided into eight watches of three hours each: four day watches and four night watches."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sentry Duty (staying awake on watch)",
+  "heading": "Sentry Duty",
+  "line": 1083,
+  "endLine": 1103,
+  "category": "hazards",
+  "topic": "Watch duty",
+  "audience": [
+   "storyguide",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for grogs on watch: what they may and may not do, how Fatigue is handled, the Stamina + Concentration roll to stay awake, the Awareness penalty for sleeping sentries, and the penalty after being woken suddenly.",
+  "quotes": [
+   "This involves a Stamina + Concentration roll; failure indicates that the character is dozing or asleep.",
+   "Stamina + Concentration + simple die",
+   "Characters who are asleep have a \u20139 penalty to any Awareness rolls."
+  ],
+  "related": []
+ },
+ {
+  "title": "Double Duty",
+  "heading": "Double Duty",
+  "line": 1105,
+  "endLine": 1112,
+  "category": "hazards",
+  "topic": "Watch duty",
+  "audience": [
+   "storyguide",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When trouble is expected, longer shifts are ordered and each grog makes a dusk Fatigue roll whose Ease Factor rises with each double-duty watch; failure costs a Long-Term Fatigue level, and none are regained until normal shifts or long uninterrupted sleep.",
+  "quotes": [
+   "Stamina + simple die versus Ease Factor 3 + number of double duties"
+  ],
+  "related": []
+ },
+ {
+  "title": "Off Duty",
+  "heading": "Off Duty",
+  "line": 1120,
+  "endLine": 1132,
+  "category": "covenant",
+  "topic": "Watch duty",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "What grogs do when off duty: drill with the drill sergeant, maintain kit, take work crews or errands, and can fit in Practice with an Ability; also covers the meals and daily ration provided.",
+  "quotes": [
+   "If he gets time to himself with all this going on, a grog can put in some Practice with a particular Ability."
+  ],
+  "related": []
+ },
+ {
+  "title": "Free Time",
+  "heading": "Free Time",
+  "line": 1134,
+  "endLine": 1138,
+  "category": "covenant",
+  "topic": "Watch duty",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Free time is when grogs sleep; a grog who does not sleep during it loses a Long-Term Fatigue level until he sleeps long enough, and drinking the ration is only allowed just after coming off duty.",
+  "quotes": [
+   "a grog who does not sleep in his free time suffers a Long-Term Fatigue level until he manages to sleep for at least two continuous watches"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rewards",
+  "heading": "Rewards",
+  "line": 1140,
+  "endLine": 1142,
+  "category": "covenant",
+  "topic": "Rewards and punishments",
+  "audience": [
+   "covenant",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how covenants reward skill, good behavior and bravery, usually through the turb captain, steward or chamberlain, who choose and announce the reward.",
+  "quotes": [
+   "it is good for morale if the covenant is seen to reward skill, good behavior, initiative, and uncommon bravery"
+  ],
+  "related": []
+ },
+ {
+  "title": "Improved Rations",
+  "heading": "Improved Rations",
+  "line": 1144,
+  "endLine": 1146,
+  "category": "aging",
+  "topic": "Rewards and punishments",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Better food as a reward, which if kept for a full year improves the grog's Living Conditions Modifier on aging rolls.",
+  "quotes": [
+   "A grog spending a year on improved rations receives a \u20131 improvement to his Living Conditions Modifier when making aging rolls."
+  ],
+  "related": []
+ },
+ {
+  "title": "Improved Equipment (reward)",
+  "heading": "Improved Equipment",
+  "line": 1152,
+  "endLine": 1154,
+  "category": "covenant",
+  "topic": "Rewards and punishments",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Superior arms, armor or tools given as a reward, which may be of Expensive cost or give actual bonuses, and are lost if the grog is demoted.",
+  "quotes": [
+   "This equipment might be Expensive rather than Standard cost"
+  ],
+  "related": [
+   "City & Guild pp.67-71"
+  ]
+ },
+ {
+  "title": "Promotion In Rank",
+  "heading": "Promotion In Rank",
+  "line": 1156,
+  "endLine": 1158,
+  "category": "covenant",
+  "topic": "Rewards and punishments",
+  "audience": [
+   "covenant",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The highest reward: a grog can rise to custos, then sergeant or equivalent, and perhaps captain, chamberlain or steward, gaining better food, lodging, pay and pension.",
+  "quotes": [
+   "A standard grog can be promoted to custos"
+  ],
+  "related": []
+ },
+ {
+  "title": "Punishments",
+  "heading": "Punishments",
+  "line": 1160,
+  "endLine": 1168,
+  "category": "covenant",
+  "topic": "Rewards and punishments",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How covenants discipline covenfolk in public, how corporal and privilege-withholding punishments differ, and how fair, proportionate punishment avoids losing Prevailing Loyalty while frequent or unjust punishment makes covenfolk hostile to the magi.",
+  "quotes": [
+   "does not usually result in a loss of Prevailing Loyalty"
+  ],
+  "related": [
+   "Covenants p.36"
+  ]
+ },
+ {
+  "title": "Reduction of Rations (punishment)",
+  "heading": "Reduction of Rations",
+  "line": 1178,
+  "endLine": 1180,
+  "category": "aging",
+  "topic": "Rewards and punishments",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Reduced food as a punishment; seasons spent on reduced rations in a year worsen the grog's Living Conditions Modifier for aging.",
+  "quotes": [
+   "A character who spends one or more season a year on reduced rations suffers a +1 penalty to his Living Conditions Modifier"
+  ],
+  "related": []
+ },
+ {
+  "title": "Flogging",
+  "heading": "Flogging",
+  "line": 1182,
+  "endLine": 1184,
+  "category": "hazards",
+  "topic": "Rewards and punishments",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A public punishment with a strap that inflicts Light Wounds and Long-Term Fatigue losses depending on the number of blows.",
+  "quotes": [
+   "1, 2, or 3 Light Wounds are inflicted by this punishment"
+  ],
+  "related": []
+ },
+ {
+  "title": "Whipping",
+  "heading": "Whipping",
+  "line": 1190,
+  "endLine": 1192,
+  "category": "hazards",
+  "topic": "Rewards and punishments",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A harsher punishment of lashes with a long or short whip that inflicts Light, Medium or Heavy Wounds by number of lashes, with a limited recovery time before pay is docked.",
+  "quotes": [
+   "10 lashes inflicts a Light Wound, 30 lashes a Medium Wound, and 50 lashes a Heavy Wound."
+  ],
+  "related": []
+ },
+ {
+  "title": "Retirement",
+  "heading": "Retirement",
+  "line": 1214,
+  "endLine": 1218,
+  "category": "covenant",
+  "topic": "Covenant grogs",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Older grogs may be retired after a serious aging crisis, and a retired grog still counts as a covenant member for finances.",
+  "quotes": [
+   "the grog is still counted as a member of the covenant as far as its finances go"
+  ],
+  "related": []
+ },
+ {
+  "title": "Pensions",
+  "heading": "Pensions",
+  "line": 1220,
+  "endLine": 1224,
+  "category": "covenant",
+  "topic": "Covenant grogs",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the pensions covenants give retired grogs, how rent may substitute for a pension, and the treatment of widows.",
+  "quotes": [
+   "Pensions are usually half to three-quarters of their former pay."
+  ],
+  "related": []
+ },
+ {
+  "title": "Horror stories for grogs",
+  "heading": "Horror",
+  "line": 1407,
+  "endLine": 1409,
+  "category": "social",
+  "topic": "Grog stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Advice for running horror, which leans on Personality Traits such as Brave and can represent madness as temporarily imposed high Personality Traits that govern reactions to certain stimuli.",
+  "quotes": [
+   "Horror stories make extensive use of Personality Traits (particularly the Brave Trait)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Antagonists for grog stories",
+  "heading": "Antagonists",
+  "line": 1465,
+  "endLine": 1475,
+  "category": "beings",
+  "topic": "Grog stories",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on choosing antagonists for grog-only stories, noting that grogs lack Magic Resistance so even weak supernatural powers threaten them, how a Brave roll can decide whether a band stands against a fear power, and how to keep a trained group from defeating the antagonist too early.",
+  "quotes": [
+   "Grogs have no Magic Resistance at all"
+  ],
+  "related": [
+   "ArM5 p.193"
+  ]
+ },
+ {
+  "title": "Rewards for grog stories",
+  "heading": "Rewards",
+  "line": 1505,
+  "endLine": 1509,
+  "category": "social",
+  "topic": "Grog stories",
+  "audience": [
+   "storyguide",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Grogs earn experience like other characters but seldom gain vis or items, so the storyguide can reward success with experience in a Reputation among the covenfolk, favors, mentoring, an agency, or personalized equipment.",
+  "quotes": [
+   "Grogs earn experience points at the same rate as any other character"
+  ],
+  "related": [
+   "ArM5 p.167",
+   "Houses of Hermes: Societates p.140",
+   "City & Guild p.69"
+  ]
+ },
+ {
+  "title": "All-Grog Sagas",
+  "heading": "All-Grog Sagas",
+  "line": 1511,
+  "endLine": 1515,
+  "category": "social",
+  "topic": "Saga types",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces sagas in which players run only grogs while magi are storyguide characters, and suggests running a grog saga in parallel with a standard saga, possibly with an alternative storyguide.",
+  "quotes": [
+   "One saga deals with the actions of the magi, the other the consequences that those actions have on the turb"
+  ],
+  "related": []
+ },
+ {
+  "title": "A Noble Saga",
+  "heading": "A Noble Saga",
+  "line": 1611,
+  "endLine": 1617,
+  "category": "social",
+  "topic": "Saga types",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes a saga built on a noble household where the lord and a few select staff are companions and everyone else, including his sons of age, are grogs because they are not yet powerful enough to attract Story Flaws.",
+  "quotes": [
+   "Even the baron's sons who have reached their majority could be considered grog characters, since they are not yet powerful enough to attract Story Flaws."
+  ],
+  "related": [
+   "Lords of Men"
+  ]
+ },
+ {
+  "title": "A Redcap Saga",
+  "heading": "A Redcap Saga",
+  "line": 1625,
+  "endLine": 1631,
+  "category": "creation",
+  "topic": "Saga types",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains that the Redcap Virtue is normally unavailable to grogs because it is a Major Social Status Virtue, and offers two fixes: make it a free Virtue for all characters or have the player characters work for redcaps instead.",
+  "quotes": [
+   "allow the Redcap Virtue as a free Virtue"
+  ],
+  "related": [
+   "ArM5 p.48",
+   "Houses of Hermes: True Lineages ch.3"
+  ]
+ },
+ {
+  "title": "Putting Together Your Team",
+  "heading": "Putting Together Your Team",
+  "line": 1643,
+  "endLine": 1649,
+  "category": "combat",
+  "topic": "Grog teams",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A grog expedition needs a full complement of five roles, and the size of a trained group is capped by the leader's Leadership, with a limit on how far apart the members' Combat Totals can be.",
+  "quotes": [
+   "An individual can only lead a band of grogs as a trained group equal in size to his score in the Leadership Ability.",
+   "no more than a 5 point difference between any of the Combat Totals"
+  ],
+  "related": [
+   "ArM5 p.172"
+  ]
+ },
+ {
+  "title": "Commanding Larger Groups",
+  "heading": "Commanding Larger Groups",
+  "line": 1651,
+  "endLine": 1653,
+  "category": "combat",
+  "topic": "Trained groups",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A leader can command a group larger than his Leadership score through subordinates who command their own men, at the cost of higher Ease Factors for whole-group Leadership rolls and commands that take his whole action.",
+  "quotes": [
+   "have Ease Factors 3 higher than normal",
+   "A leader can usually only have a number of men under his command equal to his Leadership score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dux, the Leader",
+  "heading": "Dux, the Leader",
+  "line": 1655,
+  "endLine": 1657,
+  "category": "combat",
+  "topic": "Grog teams",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The dux coordinates the band in combat, runs the expedition day to day, and is the liaison for orders from the magi; a good Leadership score is essential.",
+  "quotes": [
+   "an essential feature is a good score in the Leadership Ability"
+  ],
+  "related": []
+ },
+ {
+  "title": "Optio, the Second in Command",
+  "heading": "Optio, the Second in Command",
+  "line": 1663,
+  "endLine": 1665,
+  "category": "combat",
+  "topic": "Grog teams",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The optio ensures the leader's orders are carried out and takes over if the leader falls, so should have the second-best Leadership and complementary skills.",
+  "quotes": [
+   "The optio should have the second-best Leadership score in the unit."
+  ],
+  "related": []
+ },
+ {
+  "title": "Antesignanus, the Vanguard",
+  "heading": "Antesignanus, the Vanguard",
+  "line": 1667,
+  "endLine": 1671,
+  "category": "combat",
+  "topic": "Grog teams",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The vanguard stands at the front of any fight and is the most likely to be wounded, so toughness Virtues matter; combining the vanguard and leader roles risks the whole trained group dissolving if he falls.",
+  "quotes": [
+   "it dissolves into an untrained group immediately"
+  ],
+  "related": []
+ },
+ {
+  "title": "Immune, the Specialist",
+  "heading": "Immune, the Specialist",
+  "line": 1673,
+  "endLine": 1675,
+  "category": "combat",
+  "topic": "Grog teams",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The immune is the team's specialist, chosen to suit the expedition (commonly a chirurgeon); one without basic combat skills cannot be part of the trained group.",
+  "quotes": [
+   "If an immune does not have basic combat skills, he cannot be a member of the trained group."
+  ],
+  "related": []
+ },
+ {
+  "title": "Signifer, the Legate",
+  "heading": "Signifer, the Legate",
+  "line": 1677,
+  "endLine": 1679,
+  "category": "combat",
+  "topic": "Grog teams",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The signifer looks after the troop's internal tensions, pay and morale, speaks for the magi to mundanes, and is chosen for social skills such as Folk Ken and Carouse.",
+  "quotes": [
+   "the signifer takes care of the internal tensions of the troop"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Grog Pack",
+  "heading": "The Grog Pack",
+  "line": 1685,
+  "endLine": 1716,
+  "category": "combat",
+  "topic": "Encumbrance and equipment",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Lists the equipment each grog carries on expeditions according to the liber gregis and states the Load of a pack, noting that it can be dropped without using an action so need not count in combat.",
+  "quotes": [
+   "each grog pack imposes a Load of 4"
+  ],
+  "related": []
+ },
+ {
+  "title": "Encumbrance and Ability Use",
+  "heading": "Encumbrance and Ability Use",
+  "line": 1718,
+  "endLine": 1720,
+  "category": "basics",
+  "topic": "Encumbrance and equipment",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Encumbrance penalizes physical activities and Fatigue rolls, but for climbing, swimming and balancing the storyguide uses Burden instead as the penalty to Ability rolls.",
+  "quotes": [
+   "use Burden rather than Encumbrance as a penalty to Ability rolls"
+  ],
+  "related": []
+ },
+ {
+  "title": "Equipment Bonuses (optional rule)",
+  "heading": "Equipment Bonuses",
+  "line": 1722,
+  "endLine": 1731,
+  "category": "basics",
+  "topic": "Encumbrance and equipment",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rule letting non-essential equipment reduce the Ease Factor of an Ability roll by a minor or major amount, with only one bonus per roll and matching penalties for poor equipment.",
+  "quotes": [
+   "Minor assistance subtracts 1 from the Ease Factor, whereas major assistance subtracts 3."
+  ],
+  "related": []
+ },
+ {
+  "title": "Encumbrance and Load",
+  "heading": "Encumbrance and Load",
+  "line": 1732,
+  "endLine": 1797,
+  "category": "basics",
+  "topic": "Encumbrance and equipment",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Converts Load to weight, gives the maximum weight a character can carry, lift, push or drag by Burden relative to Strength, the help from pulleys and levers, and how four-footed beasts calculate Encumbrance.",
+  "quotes": [
+   "1 Point of Load = 7 pounds",
+   "Burden equal to (Strength + 5)",
+   "Burden equal to (Strength + 12)"
+  ],
+  "related": [
+   "ArM5 p.178"
+  ]
+ },
+ {
+  "title": "Equipment Bonuses table",
+  "heading": "Equipment Bonuses",
+  "line": 1740,
+  "endLine": 1758,
+  "category": "basics",
+  "topic": "Encumbrance and equipment",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Example table of pieces of equipment, the Ability and specialty they assist, and whether the help is minor or major.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Expanded Encumbrance Table",
+  "heading": "Expanded Encumbrance Table",
+  "line": 1760,
+  "endLine": 1775,
+  "category": "basics",
+  "topic": "Encumbrance and equipment",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table converting Total Load to weight in pounds and to Burden for heavy loads.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Sentries (watch on expedition)",
+  "heading": "Sentries",
+  "line": 1803,
+  "endLine": 1805,
+  "category": "covenant",
+  "topic": "Watch duty",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "On expedition each watch is shared by one or two men who stand one watch then rest for the next three, with no day and night patrol distinction.",
+  "quotes": [
+   "There are eight watches in a day, each lasting three hours."
+  ],
+  "related": []
+ },
+ {
+  "title": "Weight of Common Materials",
+  "heading": "Weight of Common Materials",
+  "line": 1807,
+  "endLine": 1842,
+  "category": "basics",
+  "topic": "Encumbrance and equipment",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of weights per cubic foot of common materials with how many cubic feet fit in a Target: Individual, plus a table converting Size to a weight range.",
+  "quotes": [
+   "A +1 increase in Size doubles the weight"
+  ],
+  "related": []
+ },
+ {
+  "title": "Guides and Messengers",
+  "heading": "Guides and Messengers",
+  "line": 1910,
+  "endLine": 1924,
+  "category": "hazards",
+  "topic": "Travel",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Grogs plan journeys by itinerary and local knowledge, use Area Lore for navigation, and a successful Area Lore roll when planning a long journey can cut the travel time.",
+  "quotes": [
+   "The Area Lore Ability is used for all sorts of navigation rolls",
+   "Intelligence + Area Lore roll of Ease Factor 12"
+  ],
+  "related": [
+   "City & Guild pp.82-83"
+  ]
+ },
+ {
+  "title": "Travel Speeds",
+  "heading": "Travel Speeds",
+  "line": 1926,
+  "endLine": 1961,
+  "category": "hazards",
+  "topic": "Travel",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How far characters travel in a day on foot, horseback, by cart, coach or ship, including forced marches that cost Long-Term Fatigue, the effect of Athletics and Ride, changing horses, and how encumbrance and cross-country travel reduce distance.",
+  "quotes": [
+   "15 + (2 x Athletics) on good roads",
+   "30 + (2 x Ride) on good roads"
+  ],
+  "related": []
+ },
+ {
+  "title": "Travel Fatigue",
+  "heading": "Travel Fatigue",
+  "line": 1932,
+  "endLine": 1945,
+  "category": "hazards",
+  "topic": "Travel",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Table of typical miles per day by mode of transport, with and without taking Long-Term Fatigue.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Representatives",
+  "heading": "Representatives",
+  "line": 1973,
+  "endLine": 1977,
+  "category": "social",
+  "topic": "Grogs as representatives",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Grogs often speak for magi because of The Gift; this section covers how bribes work, rough wages for context, and how a bribe of a day's or a week's pay gives a Minor or Major equipment bonus.",
+  "quotes": [
+   "A bribe equivalent to a day's pay grants a Minor equipment bonus (see earlier), whereas a bribe equivalent to a week's pay grants a Major equipment bonus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining Information",
+  "heading": "Gaining Information",
+  "line": 1979,
+  "endLine": 1981,
+  "category": "social",
+  "topic": "Grogs as representatives",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Getting locals to talk uses a Communication + Folk Ken roll, with the Ease Factor raised by the local's Suspicious Personality Trait.",
+  "quotes": [
+   "An average Communication + Folk Ken roll is usually sufficient to get an individual to talk, but increase the Ease Factor by the local's Suspicious Personality Trait."
+  ],
+  "related": []
+ },
+ {
+  "title": "Negotiation (Bargain)",
+  "heading": "Negotiation",
+  "line": 1983,
+  "endLine": 2003,
+  "category": "social",
+  "topic": "Bargaining",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Procedure for haggling over a price: appraise the goods' value, make opposed Bargain rolls for buyer and seller, derive the lowest final price from the difference, and optionally roll to read the seller's willingness.",
+  "quotes": [
+   "The buyer can attempt to determine the value by making a Perception + Bargain roll, with an Ease Factor of 9.",
+   "Communication + Bargain + simple die for the buyer and seller",
+   "Regardless of how good the buyer's Bargain roll is, the sale price is never less than half of the initial value."
+  ],
+  "related": [
+   "City & Guild p.144"
+  ]
+ },
+ {
+  "title": "Purchasing Supplies for Travel",
+  "heading": "Purchasing Supplies for Travel",
+  "line": 2005,
+  "endLine": 2009,
+  "category": "social",
+  "topic": "Travel",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Where and when grogs can buy food while traveling, with example prices and a rule of thumb for what it costs to feed a grog for a day.",
+  "quotes": [
+   "Broadly speaking, it costs a Mythic Penny to feed a grog for a day, if you are buying rather than growing his food."
+  ],
+  "related": []
+ },
+ {
+  "title": "Arranging Accommodation",
+  "heading": "Arranging Accommodation",
+  "line": 2011,
+  "endLine": 2025,
+  "category": "social",
+  "topic": "Travel",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Finding lodging in remote places uses a Communication + Folk Ken roll against an Ease Factor set by the kind of accommodation, with The Gift's social penalty applying if the peasants have talked with the magi.",
+  "quotes": [
+   "make a Communication + Folk Ken roll, using the Ease Factors in the following table"
+  ],
+  "related": [
+   "City & Guild p.81"
+  ]
+ },
+ {
+  "title": "Translation",
+  "heading": "Translation",
+  "line": 2027,
+  "endLine": 2043,
+  "category": "social",
+  "topic": "Languages",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for communicating across languages: rolls needed at low Language scores, how fluency limits use of social Abilities, and penalties to both speakers for dialect differences and related languages.",
+  "quotes": [
+   "A character with a Language Ability of 2 or less needs to make Communication + Language rolls to get his point across",
+   "Unless she is fluent (Language Ability 5 or better), use of a character's social Abilities is limited by her Language score."
+  ],
+  "related": []
+ },
+ {
+  "title": "Personality Traits for grogs",
+  "heading": "Personality Traits",
+  "line": 2053,
+  "endLine": 2059,
+  "category": "basics",
+  "topic": "Personality Traits",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Suggests troupes make greater use of Personality Trait rolls for grogs, gives the usual starting Traits (Brave and Loyal), and says a Personality Flaw can be matched with an extra Trait at a set value.",
+  "quotes": [
+   "Most grogs should have a Brave and a Loyal Personality Trait.",
+   "This trait should have a value of +3 (for a Minor Flaw) or +6 (for a Major Flaw)."
+  ],
+  "related": [
+   "ArM5 p.33",
+   "Realms of Power: The Divine p.40",
+   "Art & Academe p.40"
+  ]
+ },
+ {
+  "title": "Making Personality Trait Rolls",
+  "heading": "Making Personality Trait Rolls",
+  "line": 2061,
+  "endLine": 2067,
+  "category": "basics",
+  "topic": "Personality Traits",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 2,
+  "creation": false,
+  "requires": "",
+  "summary": "How to decide a character's action with a Personality Trait roll, how to treat opposed Traits and Personality Flaws, and how conflicting Traits shift the Ease Factor.",
+  "quotes": [
+   "add the Personality Trait to the result of a stress die"
+  ],
+  "related": [
+   "ArM5 p.19"
+  ]
+ },
+ {
+  "title": "Growing Used to The Gifted",
+  "heading": "Growing Used to The Gifted",
+  "line": 2069,
+  "endLine": 2073,
+  "category": "social",
+  "topic": "The Gift and covenfolk",
+  "audience": [
+   "covenant",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "People can grow used to a Gifted individual over time, so grogs use the covenant's Prevailing Loyalty rather than the magus's Gift penalty for Loyal rolls, with an optional system of separate Loyalty scores per magus.",
+  "quotes": [
+   "An individual grog begins with a Loyal Personality Trait that is up to 3 points different from the turb's Prevailing Loyalty."
+  ],
+  "related": [
+   "Covenants p.40"
+  ]
+ },
+ {
+  "title": "Advanced Group Combat",
+  "heading": "Advanced Group Combat",
+  "line": 2075,
+  "endLine": 2077,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces optional rules that add tactical depth to the core Group Combat rules, first printed in Lords of Men, which troupes may use or skip as drama and preference dictate.",
+  "quotes": [
+   "The rules in this section expand the Group Combat rules in **ArM5** to add a bit more tactical depth."
+  ],
+  "related": [
+   "ArM5 p.173",
+   "Lords of Men ch.9"
+  ]
+ },
+ {
+  "title": "The Leader's Actions",
+  "heading": "The Leader's Actions",
+  "line": 2079,
+  "endLine": 2083,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A group leader gets one command roll per round without spending his action, and a member who stays in the group but does something other than attack is not counted for the group's combat bonus or damage.",
+  "quotes": [
+   "A group leader can make one command-related die roll per round without using his action for that round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Morale and Discipline",
+  "heading": "Morale and Discipline",
+  "line": 2085,
+  "endLine": 2089,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rules that weaken groups somewhat but make the leader important even for untrained groups, by requiring discipline and morale checks in battle.",
+  "quotes": [
+   "Effective group tactics require both discipline and morale."
+  ],
+  "related": []
+ },
+ {
+  "title": "Discipline",
+  "heading": "Discipline",
+  "line": 2091,
+  "endLine": 2109,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A Discipline roll, which takes no action, is needed when a group is tempted to break formation; failure leaves the group Disordered. The roll uses the leader's Presence and Leadership, with example Ease Factors by event.",
+  "quotes": [
+   "stress die + Leader's Presence + Leader's Leadership",
+   "If a Discipline roll fails, the group temporarily becomes Disordered."
+  ],
+  "related": []
+ },
+ {
+  "title": "Morale",
+  "heading": "Morale",
+  "line": 2111,
+  "endLine": 2126,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Groups make Morale rolls, which take no action, when bad things happen on the battlefield; failure makes the group Disordered and a failure while already Disordered routs it. The group may gain a bonus from its members' Brave scores, and example Ease Factors are listed.",
+  "quotes": [
+   "stress die + Leader's Pre + Leader's Leadership",
+   "A group that fails a morale check becomes Disordered."
+  ],
+  "related": []
+ },
+ {
+  "title": "Disordered Groups",
+  "heading": "Disordered Groups",
+  "line": 2128,
+  "endLine": 2134,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Effects of a Disordered group: a trained group functions as an untrained one, an untrained Disordered group can only land part of its attacks, and a further failed Morale check routs it.",
+  "quotes": [
+   "A trained group that is Disordered functions as an untrained group."
+  ],
+  "related": []
+ },
+ {
+  "title": "Routed Groups",
+  "heading": "Routed Groups",
+  "line": 2136,
+  "endLine": 2140,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A routed group has lost its will to fight and tries to Disengage and flee, possibly scattering; a group is routed if already Disordered and it fails a Morale check.",
+  "quotes": [
+   "A group can become Routed if it is already Disordered and then fails a Morale check."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rallying a Group",
+  "heading": "Rallying a Group",
+  "line": 2142,
+  "endLine": 2169,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "The leader spends an action on a Presence + Leadership roll to improve a Routed group to Disordered or a Disordered group to normal, with Ease Factors set by the group's situation and raised by casualties.",
+  "quotes": [
+   "Presence + Leadership + stress Die"
+  ],
+  "related": []
+ },
+ {
+  "title": "Groups With No Leader",
+  "heading": "Groups With No Leader",
+  "line": 2171,
+  "endLine": 2185,
+  "category": "combat",
+  "topic": "Mass combat",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Optional rules for groups that lose their vanguard or leader: a group without a vanguard cannot attack but uses its best member's Defense, replacing a vanguard or taking over command is done by a Presence + Leadership roll, and a leaderless group automatically fails Morale and Discipline checks.",
+  "quotes": [
+   "Leader's Presence + Leadership vs. Ease Factor 9",
+   "Presence + Leadership vs. Ease Factor 9",
+   "A group with no leader automatically fails any future Morale or Discipline checks."
+  ],
+  "related": [
+   "ArM5 p.173"
+  ]
+ },
+ {
+  "title": "Battlefield Injuries (activity while wounded)",
+  "heading": "Battlefield Injuries",
+  "line": 2193,
+  "endLine": 2197,
+  "category": "hazards",
+  "topic": "Injury and healing",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how Wound Penalties restrict travel, strenuous activity, sentry duty and double watches, and why a first-aider's Chirurgy matters for the Wound Recovery roll that prevents a wound from worsening.",
+  "quotes": [
+   "Even a \u20131 Wound Penalty prohibits strenuous activity without risking the wound."
+  ],
+  "related": [
+   "ArM5 p.179"
+  ]
+ },
+ {
+  "title": "First Aid",
+  "heading": "First Aid",
+  "line": 2199,
+  "endLine": 2204,
+  "category": "hazards",
+  "topic": "Injury and healing",
+  "audience": [
+   "grogs",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A chirurgeon can make a First Aid roll against the Improvement Ease Factor of a patient's worst wound to treat him as one category higher for Activity While Injured for a day; a botch provokes an immediate Wound Recovery roll.",
+  "quotes": [
+   "Dexterity + Chirurgy + Recovery Modifiers (see Art & Academe, page 54) + Magical Aid + stress die vs Improvement Ease Factor"
+  ],
+  "related": [
+   "ArM5 p.178",
+   "ArM5 p.179",
+   "Art & Academe p.54",
+   "Art & Academe p.61"
+  ]
+ },
+ {
+  "title": "Magical First Aid",
+  "heading": "Magical First Aid",
+  "line": 2206,
+  "endLine": 2210,
+  "category": "hazards",
+  "topic": "Injury and healing",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Hermetic spells and enchantments that prevent wounds from worsening or help recovery, including Bind Wound, low-level Creo Corpus bonuses to Wound Recovery, Endurance of the Berserkers, and a Sun-duration Chirurgeon's Healing Touch that causes Warping.",
+  "quotes": [
+   "prevents any wound from worsening while in effect"
+  ],
+  "related": [
+   "ArM5 p.129",
+   "ArM5 p.134",
+   "ArM5 p.168"
+  ]
+ },
+ {
+  "title": "The Death of a Grog",
+  "heading": "The Death of a Grog",
+  "line": 2212,
+  "endLine": 2222,
+  "category": "covenant",
+  "topic": "Death and burial",
+  "audience": [
+   "storyguide",
+   "grogs"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "How grogs treat their dead: washing the body, the role of Extreme Unction (which can be performed by any baptized person but protects the spirit for a limited time only when performed by an ordained priest), burial in consecrated ground, and the loss of Prevailing Loyalty if magi insist a body be abandoned.",
+  "quotes": [
+   "can result in the loss of Prevailing Loyalty"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.75",
+   "Covenants p.40"
+  ]
+ },
+ {
+  "title": "Virtues and Flaws (changing them over time)",
+  "heading": "Virtues and Flaws",
+  "line": 2238,
+  "endLine": 2244,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters can change their Virtues and Flaws over time; established characters may swap a Minor for a Minor or a Major for a Major with troupe approval, without touching Characteristics or Abilities or a feature of earlier stories.",
+  "quotes": [
+   "a Minor Flaw can be exchanged for another Minor Flaw, and a Major Flaw for a Major Flaw, and the same applies to Virtues"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining New Flaws",
+  "heading": "Gaining New Flaws",
+  "line": 2246,
+  "endLine": 2254,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Characters can gain Flaws through misfortune or action, but changed circumstances only become a Flaw when they affect the game, and grogs should not gain Story Flaws unless temporary or heading for transformation.",
+  "quotes": [
+   "The storyguide should be careful not to allow a grog character to gain a Story Flaw"
+  ],
+  "related": []
+ },
+ {
+  "title": "Changes in Social Status",
+  "heading": "Changes in Social Status",
+  "line": 2250,
+  "endLine": 2252,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "When a character's standing changes, such as promotion to custos or taking Holy Orders, the old Social Status Virtue or Flaw is simply replaced by the new one except where its description says both are kept.",
+  "quotes": [
+   "simply replace the old Social Status Virtue with the new one"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining Flaws Through Mishaps",
+  "heading": "Gaining Flaws Through Mishaps",
+  "line": 2256,
+  "endLine": 2258,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "General Flaws, especially physical ones, are most often gained through misfortune such as amputations, battlefield injuries and diseases.",
+  "quotes": [
+   "Most often, General Flaws are gained through mishap, particularly those that affect the body."
+  ],
+  "related": [
+   "Art & Academe p.62",
+   "Art & Academe pp.43-44",
+   "Lords of Men p.125"
+  ]
+ },
+ {
+  "title": "Gaining Flaws Through Actions",
+  "heading": "Gaining Flaws Through Actions",
+  "line": 2260,
+  "endLine": 2262,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Actions can change social status or, with the storyguide's approval, bring Story Flaws such as a feud or debt, though grogs are usually barred from Story Flaws during play as in creation; offending a faerie can bring a Malediction or disfigurement.",
+  "quotes": [
+   "although grogs are usually prohibited from gaining Story Flaws during the game"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining Flaws Through Magic",
+  "heading": "Gaining Flaws Through Magic",
+  "line": 2264,
+  "endLine": 2268,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Curses from hedge wizard traditions are usually limited in duration, supernatural creatures can impose permanent Flaws at a cost to their Might, and Warping gives Flaws to characters not aligned to a Realm.",
+  "quotes": [
+   "Warping induces the acquisition of Flaws in those characters who are not aligned to a Supernatural Realm"
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.109",
+   "Realms of Power: Faerie p.127",
+   "ArM5 p.168"
+  ]
+ },
+ {
+  "title": "Gaining New Virtues",
+  "heading": "Gaining New Virtues",
+  "line": 2270,
+  "endLine": 2274,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Virtues are gained through magic, initiation or actions; a newly gained Virtue that affects experience does not retroactively change experience already gained.",
+  "quotes": [
+   "this does not affect any experience points gained thus far"
+  ],
+  "related": []
+ },
+ {
+  "title": "Gaining Virtues Through Magic",
+  "heading": "Gaining Virtues Through Magic",
+  "line": 2276,
+  "endLine": 2282,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Supernatural sources can grant Virtues temporarily or permanently, such as gruagach spells, Objects of Virtue, faerie wizardry, Goetic Arts and creatures who give up Might; severe Warping can also confer Virtues.",
+  "quotes": [
+   "The acquisition of Virtues in this manner should never be frivolous"
+  ],
+  "related": [
+   "Hedge Magic Revised Edition p.65",
+   "Realms of Power: Magic p.124",
+   "Realms of Power: Faerie p.127",
+   "Realms of Power: The Infernal p.114"
+  ]
+ },
+ {
+  "title": "Gaining Virtues Through Initiation",
+  "heading": "Gaining Virtues Through Initiation",
+  "line": 2284,
+  "endLine": 2288,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Initiation into a mystery cult or hedge tradition grants Virtues after the character builds a score in the relevant Organization Lore and pays through ordeals, quests, sacrifice and study; grogs most commonly are initiated into the Ceremony Ability.",
+  "quotes": [
+   "The character must develop a score in the Organization Lore of the cult or tradition in question before even being considered for Initiation."
+  ],
+  "related": [
+   "The Mysteries Revised Edition ch.2",
+   "Hedge Magic Revised Edition p.12"
+  ]
+ },
+ {
+  "title": "Gaining Virtues Through Actions",
+  "heading": "Gaining Virtues Through Actions",
+  "line": 2290,
+  "endLine": 2292,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Actions in stories, usually social interaction with storyguide characters, can give the effects of a Virtue such as Social Contacts or Protection, but a grog should be cautious about gaining a Major Virtue.",
+  "quotes": [
+   "The troupe should be cautious about a grog gaining a Major Virtue"
+  ],
+  "related": []
+ },
+ {
+  "title": "Losing Flaws",
+  "heading": "Losing Flaws",
+  "line": 2294,
+  "endLine": 2296,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Most methods of gaining Virtues can also remove Flaws, though not every method suits every Flaw, and stories can lift curses.",
+  "quotes": [
+   "Most of the methods by which Virtues can be gained (see earlier) can also rid a character of Flaws"
+  ],
+  "related": []
+ },
+ {
+  "title": "Character Transformation (grog to companion)",
+  "heading": "Character Transformation",
+  "line": 2298,
+  "endLine": 2302,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how a grog can be turned into a companion when a story justifies it, with the troupe ensuring the new Virtues and Flaws suit the transformation and not padding Flaws just for more Virtue points.",
+  "quotes": [
+   "The chief game difference between grogs and companions is the number and type of Virtues and Flaws"
+  ],
+  "related": []
+ },
+ {
+  "title": "Inauguration",
+  "heading": "Inauguration",
+  "line": 2304,
+  "endLine": 2310,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A transformation route in which a character is invested with temporal or spiritual authority and changes social status, such as becoming dean of a guild or a landed noble.",
+  "quotes": [
+   "Those events which result in the investiture of a character with temporal or spiritual authority are termed inaugurations."
+  ],
+  "related": []
+ },
+ {
+  "title": "Metamorphosis",
+  "heading": "Metamorphosis",
+  "line": 2312,
+  "endLine": 2316,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A transformation route in which a magical change permanently turns a character into something else, often granting Supernatural Virtues and Flaws of the relevant realm.",
+  "quotes": [
+   "Metamorphosis often results in the acquisition of Supernatural Virtues and Flaws from the appropriate realm."
+  ],
+  "related": []
+ },
+ {
+  "title": "Initiation (as transformation)",
+  "heading": "Initiation",
+  "line": 2318,
+  "endLine": 2322,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Initiation into a mystery cult can transform a grog into a companion, and is the route most likely to produce a Mythic Companion, a magus-equivalent character.",
+  "quotes": [
+   "initiation is perhaps the most likely to produce a Mythic Companion, which is a magus-equivalent character"
+  ],
+  "related": []
+ },
+ {
+  "title": "Pilgrimage (as transformation)",
+  "heading": "Pilgrimage",
+  "line": 2324,
+  "endLine": 2330,
+  "category": "creation",
+  "topic": "Grog maintenance",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Any story or arc that takes a character out of his routine, tests him and changes his life can serve as a pilgrimage and justify transforming a grog into a companion.",
+  "quotes": [
+   "Any story or story arc that takes a character out of his normal routine and location, tests his character, and then transforms his life forever is a pilgrimage."
+  ],
+  "related": [
+   "The Church pp.15-19"
+  ]
+ },
+ {
+  "title": "Starting Characteristics",
+  "heading": "Starting Characteristics",
+  "line": 2332,
+  "endLine": 2342,
+  "category": "creation",
+  "topic": "Grog creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of ready-made arrays of eight Characteristic scores bought with the standard number of points, from which a player can simply pick one for a grog.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Characteristics (grog creation)",
+  "heading": "Characteristics",
+  "line": 2344,
+  "endLine": 2346,
+  "category": "creation",
+  "topic": "Grog creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Grogs buy Characteristics with the standard point pool, optionally taking negative points for more, or choose a pre-made array from the Starting Characteristics table.",
+  "quotes": [
+   "Every character has 7 points to spend on buying positive Characteristics"
+  ],
+  "related": [
+   "ArM5 p.30"
+  ]
+ },
+ {
+  "title": "Aging, the Easy Way",
+  "heading": "Aging, the Easy Way",
+  "line": 2348,
+  "endLine": 2354,
+  "category": "aging",
+  "topic": "Grog creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "A shortcut for aging old or many characters by looking up the Aging Points gained per decade for mild, average or harsh aging at the character's Aging Score, with a simple-die method to find Apparent Age.",
+  "quotes": [
+   "age/10 (round up) \u2013 Living Conditions modifier \u2013 Longevity Ritual modifier"
+  ],
+  "related": [
+   "ArM5 p.31"
+  ]
+ },
+ {
+  "title": "Aging Chart",
+  "heading": "Aging Chart",
+  "line": 2356,
+  "endLine": 2371,
+  "category": "aging",
+  "topic": "Grog creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Table of expected Aging Points and crises per decade by Aging Score for mild, average and harsh aging, excluding points from crises.",
+  "quotes": [
+   "The Aging Points listed exclude those deriving from crises."
+  ],
+  "related": [
+   "ArM5 pp.169-170"
+  ]
+ },
+ {
+  "title": "Applying Crises",
+  "heading": "Applying Crises",
+  "line": 2373,
+  "endLine": 2379,
+  "category": "aging",
+  "topic": "Grog creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Optional use of the crises listed on the Aging Chart: the character gains a Decrepitude score equal to the crises and additional Aging Points that shrink by fraction with each extra crisis, rounded up.",
+  "quotes": [
+   "if he suffers one crisis, then he gets half of the Aging Points listed in the Aging Chart"
+  ],
+  "related": []
+ },
+ {
+  "title": "Effects of Aging on Characteristics",
+  "heading": "Effects of Aging on Characteristics",
+  "line": 2381,
+  "endLine": 2383,
+  "category": "aging",
+  "topic": "Grog creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Gives the approximate distribution of Aging Points among Characteristics so they can be applied in line with the Aging Table.",
+  "quotes": [
+   "The Aging Table (**ArM5**, page 170) is designed to affect certain Characteristics in favor of others."
+  ],
+  "related": [
+   "ArM5 p.170"
+  ]
+ },
+ {
+  "title": "Childhood Training Packages",
+  "heading": "Childhood Training Packages",
+  "line": 2385,
+  "endLine": 2419,
+  "category": "creation",
+  "topic": "Grog creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the core childhood packages in training-package format plus two new ones, Covenant-bred and Feral, each granting experience in Abilities for the first years of life.",
+  "quotes": [
+   "These packages can only be taken for the first five years of life."
+  ],
+  "related": [
+   "ArM5 p.31"
+  ]
+ },
+ {
+  "title": "Covenant-Bred Childhood",
+  "heading": "Covenant-Bred Childhood",
+  "line": 2393,
+  "endLine": 2397,
+  "category": "creation",
+  "topic": "Grog creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Personality Flaw: Covenant Upbringing",
+  "summary": "A childhood package for characters raised in a covenant, giving experience in Area Lore: Covenant, Latin and Organization Lore: Order of Hermes among others.",
+  "quotes": [
+   "This childhood is only available to characters with the Covenant Upbringing Personality Flaw."
+  ],
+  "related": []
+ },
+ {
+  "title": "Feral Childhood",
+  "heading": "Feral Childhood",
+  "line": 2403,
+  "endLine": 2407,
+  "category": "creation",
+  "topic": "Grog creation",
+  "audience": [
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Flaw: Feral Upbringing",
+  "summary": "A childhood package for characters raised wild, giving experience in survival and animal-related Abilities.",
+  "quotes": [
+   "This childhood is only available to characters with the Feral Upbringing Flaw."
+  ],
+  "related": []
+ }
+]
