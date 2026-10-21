@@ -1,0 +1,1069 @@
+[
+ {
+  "title": "A Note on Oppida",
+  "heading": "A Note on Oppida",
+  "line": 670,
+  "endLine": 678,
+  "category": "order",
+  "topic": "Transylvanian oppida and covenants",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Explains that in Transylvania a covenant is a legal membership class while an oppidum is the physical camp where magi of several covenants live together, and that oppida are independent rather than subordinate chapter houses.",
+  "quotes": [
+   "The five covenants of this Tribunal are more like classes of citizenship than the covenants of the West."
+  ],
+  "related": []
+ },
+ {
+  "title": "Languages in the Balkans",
+  "heading": "Languages in the Balkans",
+  "line": 760,
+  "endLine": 793,
+  "category": "setting",
+  "topic": "Languages",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Lists the language families of the Tribunal and gives penalties for a speaker of one language trying to understand a closely related one, with a worked example of how a native speaker's score applies.",
+  "quotes": [
+   "Even without knowing a specific language, a character who knows a language that is closely related to another language can still potentially understand a speaker:",
+   "Penalty is to both speakers."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Praeco",
+  "heading": "The Praeco",
+  "line": 919,
+  "endLine": 923,
+  "category": "order",
+  "topic": "Transylvanian Praeco and Tribunal government",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Describes how the Transylvanian Praeco is chosen and removed, and how that office relates to the Prima of Tremere, who actually sets policy.",
+  "quotes": [
+   "Praecohood in Transylvania is not earned by age; it is assigned by a democratic vote."
+  ],
+  "related": []
+ },
+ {
+  "title": "Oppida and Aediles",
+  "heading": "Oppida and Aediles",
+  "line": 925,
+  "endLine": 931,
+  "category": "order",
+  "topic": "Transylvanian oppida and covenants",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Gives the binding Tribunal rulings on oppida membership (minimum size, mandatory cives, mixed Houses) and explains the aedile, the odd-man-out member with a right of emergency audience.",
+  "quotes": [
+   "No oppidum may have members exclusively from one House.",
+   "In oppida with even numbers of cives and non-cives, there are two aediles."
+  ],
+  "related": []
+ },
+ {
+  "title": "Regulating Magical Settlement & Residency",
+  "heading": "Regulating Magical Settlement & Residency",
+  "line": 938,
+  "endLine": 942,
+  "category": "order",
+  "topic": "Transylvanian privileges",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Explains the written privilege each resident magus agrees with the Praeco, the five broad privilege styles, and the five legally persisting covenants that membership maps onto.",
+  "quotes": [
+   "Each privilege permits membership of at least one of the five covenants."
+  ],
+  "related": []
+ },
+ {
+  "title": "Asclepius and the Privileges of the Coloniae",
+  "heading": "Asclepius and the Privileges of the Coloniae",
+  "line": 944,
+  "endLine": 966,
+  "category": "order",
+  "topic": "Transylvanian privileges",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Privilege: coloniae (Covenant of Asclepius)",
+  "summary": "Lists what coloniae (young settler magi from other Tribunals) may expect and may not do under their privilege, including office, apprentices and visitors.",
+  "quotes": [
+   "The *coloniae*, or settlers, are young magi from other Tribunals permitted to develop underutilized sections of the Tribunal, under tight agreements."
+  ],
+  "related": []
+ },
+ {
+  "title": "Triumph of Asclepius",
+  "heading": "Triumph of Asclepius",
+  "line": 968,
+  "endLine": 974,
+  "category": "order",
+  "topic": "Transylvanian privileges",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Privilege: coloniae (Covenant of Asclepius)",
+  "summary": "Describes the annually elected leadership of the Covenant of Asclepius and the yearly payment and minor duties that go with it.",
+  "quotes": [
+   "This includes 16 pawns of vis, three pounds of pure gold, six requested books copied from a certain library, a fine dinner, and several other minor tokens of esteem."
+  ],
+  "related": []
+ },
+ {
+  "title": "Coeris and the Privileges of the Cives",
+  "heading": "Coeris and the Privileges of the Cives",
+  "line": 976,
+  "endLine": 996,
+  "category": "order",
+  "topic": "Transylvanian privileges",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Privilege: cives (Covenant of Coeris), automatic for House Tremere",
+  "summary": "Lists what citizens (cives) of the Covenant of Coeris are permitted and required to do, including House Tremere's assistance, standing for any office, and selecting the aedile.",
+  "quotes": [
+   "A *cives*, or citizen, is usually a Tremere magus living as a Tremere magus should."
+  ],
+  "related": []
+ },
+ {
+  "title": "Domostron and the Privileges of the Socii",
+  "heading": "Domostron and the Privileges of the Socii",
+  "line": 998,
+  "endLine": 1020,
+  "category": "order",
+  "topic": "Transylvanian privileges",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Privilege: socii (Covenant of Domostron)",
+  "summary": "Lists what socii (allied non-Tremere magi such as Redcaps, Quaesitores and hoplites) may do and must do under their privilege, including office, support and aedile selection.",
+  "quotes": [
+   "All Redcaps, Quaestiores, and dedicated hoplites are automatically socii, if they are not civitates."
+  ],
+  "related": []
+ },
+ {
+  "title": "Diodorus and the Privileges of the Hospites",
+  "heading": "Diodorus and the Privileges of the Hospites",
+  "line": 1022,
+  "endLine": 1049,
+  "category": "order",
+  "topic": "Transylvanian privileges",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Privilege: hospites (Covenant of Diodorus)",
+  "summary": "Lists what hospites (magi hired to practise particular skills for House Tremere) may expect and which actions need permission, such as new apprentices, familiars and talismans.",
+  "quotes": [
+   "Hospites are usually required to seek permission before:",
+   "They have few rights, but are paid well for their services."
+  ],
+  "related": []
+ },
+ {
+  "title": "Pannonia and the Privileges of the Foederati",
+  "heading": "Pannonia and the Privileges of the Foederati",
+  "line": 1051,
+  "endLine": 1081,
+  "category": "order",
+  "topic": "Transylvanian privileges",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Privilege: foederati (Covenant of Pannonia)",
+  "summary": "Describes foederati, magi of foreign covenants admitted to the Tribunal under individually negotiated agreements, and the usual rights and permission requirements in those agreements.",
+  "quotes": [
+   "Foederati have individually negotiated agreements, but usually they include the right to:"
+  ],
+  "related": []
+ },
+ {
+  "title": "Decorations",
+  "heading": "Decorations",
+  "line": 1083,
+  "endLine": 1095,
+  "category": "order",
+  "topic": "Transylvanian decorations",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Describes the decorations worn by Transylvanian magi for service to the Tribunal, what earns each one, and that a decoration is never awarded twice and is replaced by a higher one.",
+  "quotes": [
+   "Decorations are not repeated.",
+   "Parsley: This decoration is awarded for landing the mortal blow upon a magus expelled from the Order by the Tribunal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Legalities of Residency",
+  "heading": "Legalities of Residency",
+  "line": 1101,
+  "endLine": 1115,
+  "category": "order",
+  "topic": "Transylvanian privileges",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Explains why a magus's privilege is rarely challenged as against the Code, that leaving the Tribunal is allowed, and the competing legal views on whether a broken privilege must be repaid.",
+  "quotes": [
+   "A magus can leave the Tribunal at any time."
+  ],
+  "related": []
+ },
+ {
+  "title": "Public Financier",
+  "heading": "Public Financier",
+  "line": 1144,
+  "endLine": 1146,
+  "category": "order",
+  "topic": "Transylvanian finance",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Explains the Praeco's role in collecting and distributing taxes for Tribunal-approved projects, and which privileged groups must give reasonable aid.",
+  "quotes": [
+   "The Praeco collects and distribute taxes for a range of projects that the Tribunal has approved."
+  ],
+  "related": []
+ },
+ {
+  "title": "Stipends",
+  "heading": "Stipends",
+  "line": 1148,
+  "endLine": 1150,
+  "category": "order",
+  "topic": "Transylvanian finance",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Describes how the Praeco collects and delivers the stipends paid to Redcaps and Quaesitores.",
+  "quotes": [
+   "The Praeco also collects the stipends given to the Redcaps and Quaesitores, and distributes them."
+  ],
+  "related": []
+ },
+ {
+  "title": "Promissory Notes",
+  "heading": "Promissory Notes",
+  "line": 1152,
+  "endLine": 1154,
+  "category": "order",
+  "topic": "Transylvanian finance",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Explains the older system of promissory notes the Praeco issues against reserved vis income, which also circulate as a high-value currency.",
+  "quotes": [
+   "Promissory notes are still issued, and some ancient notes are still traded, having never been redeemed, because they act as a high-value currency."
+  ],
+  "related": []
+ },
+ {
+  "title": "Quaesitores in Transylvania",
+  "heading": "Quaesitores",
+  "line": 1160,
+  "endLine": 1162,
+  "category": "order",
+  "topic": "Transylvanian Quaesitores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Describes the extra powers Transylvanian Quaesitores hold compared with other Tribunals and how Tremere block voting shapes their role.",
+  "quotes": [
+   "Powers some Quaesitors have been seeking in other Tribunals, to levy taxes and demand aid against renounced wizards, have been granted them here."
+  ],
+  "related": []
+ },
+ {
+  "title": "Annual Emergency Tribunals",
+  "heading": "Annual Emergency Tribunals",
+  "line": 1188,
+  "endLine": 1192,
+  "category": "order",
+  "topic": "Transylvanian Tribunal procedure",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Explains that Quaesitores here call emergency Tribunals every year, how Tremere proxies decide the vote, and why concessions are made that other Tribunals would not allow.",
+  "quotes": [
+   "Quaesitores are permitted to call emergency Tribunals to deal with legal matters in all Tribunals, but only in Transylvania do they call them annually."
+  ],
+  "related": []
+ },
+ {
+  "title": "Wizard's War in Transylvania",
+  "heading": "Wizard's War",
+  "line": 1194,
+  "endLine": 1198,
+  "category": "order",
+  "topic": "Wizard's War",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Covers local custom on Wizard's War: Wizards' Marches approved by emergency Tribunal are preferred, personal Wars are rare, and mediation then certamen are the usual ways to settle disputes.",
+  "quotes": [
+   "Transylvanian magi retain their right, under the Code of Hermes, to capriciously declare War.",
+   "Those who cannot agree perform certamen."
+  ],
+  "related": []
+ },
+ {
+  "title": "Certamen is a Direct Proxy For War",
+  "heading": "Certamen is a Direct Proxy For War",
+  "line": 1200,
+  "endLine": 1204,
+  "category": "order",
+  "topic": "Certamen",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Describes the Transylvanian convention that a certamen challenge stands in for a Wizard's War, with the loser treated as spared by the victor's mercy and the victor allowed one blow to the face.",
+  "quotes": [
+   "Certamen is used in this Tribunal as a direct proxy for Wizard's War.",
+   "a Transylvanian magus victorious in certamen is permitted to physically strike his opponent in the face once."
+  ],
+  "related": []
+ },
+ {
+  "title": "Certamen for Love",
+  "heading": "Certamen for Love",
+  "line": 1206,
+  "endLine": 1227,
+  "category": "order",
+  "topic": "Certamen",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Lists the declarations duelists must make before witnesses and the prohibitions that apply (no vis, no spells or items to affect the outcome, no striking as a victory mark) for friendly certamen duels fought for love.",
+  "quotes": [
+   "Duelists for love must clearly state, before at least two witnesses whom the Tribunal could question:",
+   "Use vis during the duel."
+  ],
+  "related": []
+ },
+ {
+  "title": "Diplomacy",
+  "heading": "Diplomacy",
+  "line": 1237,
+  "endLine": 1239,
+  "category": "order",
+  "topic": "Transylvanian external relations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Explains that many oppida may not make treaties with foreign covenants or Tribunals and that commercial deals must be entered in the Peripheral Code or approved by the Praeco and witnessed by a Quaesitor.",
+  "quotes": [
+   "Many oppida are forbidden to enter treaties with foreign covenants or Tribunals."
+  ],
+  "related": []
+ },
+ {
+  "title": "Recruitment",
+  "heading": "Recruitment",
+  "line": 1241,
+  "endLine": 1243,
+  "category": "order",
+  "topic": "Transylvanian external relations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Restricts importing Gifted children and inviting settler magi: magi must instead ask the Praeco to invite or buy in a particular person.",
+  "quotes": [
+   "Magi may not import Gifted children into the Tribunal, or invite magi as settlers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vis & Magic Item Sales",
+  "heading": "Vis & Magic Item Sales",
+  "line": 1245,
+  "endLine": 1251,
+  "category": "order",
+  "topic": "Transylvanian external relations",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Explains the ban on most magi selling vis or magic items (and many magical animals) to outsiders, the exceptions, and the Old Histria system of record with notarized letters and the Praeco's right to act as buyer.",
+  "quotes": [
+   "Most Transylvanian magi are forbidden to sell vis or magic items to outsiders."
+  ],
+  "related": []
+ },
+ {
+  "title": "Co-option",
+  "heading": "Co-option",
+  "line": 1308,
+  "endLine": 1334,
+  "category": "houses",
+  "topic": "House Tremere politics",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Describes how House Tremere gets others to want what it wants and lists the key political tools (Advocacy, Aiding Emulants, Always Keeping Deals, Defining Normal, Direct Acculturation, Information, Latin, Non-Hermetic Actors, Prosperity) a character can use to lead on issues.",
+  "quotes": [
+   "House Tremere coopts when it can, acting either as leader on an issue, or supporting those magi who are working toward a co-interest.",
+   "Players trying to use their characters as leaders on issues should familiarize themselves with the key tools used by House Tremere."
+  ],
+  "related": []
+ },
+ {
+  "title": "House Tremere Reputation (Soft Power)",
+  "heading": "Soft Power Story Seeds",
+  "line": 1360,
+  "endLine": 1362,
+  "category": "social",
+  "topic": "House Tremere politics",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Optional rule: the troupe may set a Reputation score for House Tremere for characters acting on its behalf, which rises as soft-power stories succeed and falls through foolish or unjustified acts.",
+  "quotes": [
+   "The troupe may to select a Reputation score for House Tremere which a character acting on the House's behalf may use."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tremere Apprentices",
+  "heading": "Apprentices",
+  "line": 1396,
+  "endLine": 1400,
+  "category": "houses",
+  "topic": "House Tremere culture",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Describes the House Tremere custom of exchanging apprentices between Transylvania and frontier Tribunals so that each spends time in the other setting.",
+  "quotes": [
+   "An apprentice must spend at least some time in Transylvania, to understand the value of what the House is building."
+  ],
+  "related": []
+ },
+ {
+  "title": "Rotations and Decennials",
+  "heading": "Rotations and Decennials",
+  "line": 1402,
+  "endLine": 1408,
+  "category": "houses",
+  "topic": "House Tremere culture",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Tremere",
+  "summary": "Explains the Tremere expectation of regular returns to Transylvania and the Decennial planning meeting at Coeris, with advice on how a troupe can handle a magus's rotation using a reskinned replacement character.",
+  "quotes": [
+   "At minimum, every Tremere magus should spend at least a season every ten years in Transylvania, unless kept abroad by pressing duties.",
+   "The easiest way to do this is just to reskin the primary magus (create a new character who looks and sounds different, but has the same underlying numbers)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Serfs and Free Men",
+  "heading": "Serfs and Free Men",
+  "line": 2031,
+  "endLine": 2057,
+  "category": "social",
+  "topic": "Hungarian social classes",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Hungary",
+  "summary": "Explains the legal status of serfs, bonded free men and the privileged few with golden freedom in Hungary, including what is owed when each is killed, who may attend court, and how castle folk, castle warriors and the half-free fit in.",
+  "quotes": [
+   "Serfs are property and may be bought and sold.",
+   "A blood price of 110 steers is due at the death of a free man: 50 for the kin, 50 for the king, and 10 for the mediators."
+  ],
+  "related": []
+ },
+ {
+  "title": "Nobility: A Clarification",
+  "heading": "Nobility: A Clarification",
+  "line": 2071,
+  "endLine": 2081,
+  "category": "social",
+  "topic": "Hungarian social classes",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Hungary",
+  "summary": "Lists the competing Hungarian beliefs about what makes someone noble in 1220 and rules that a character may claim nobility on any of them, noting that magi can easily become noble without an Oath of Fealty.",
+  "quotes": [
+   "A player character can claim to be noble if she has any of these attributes, but other nobles will not necessarily agree that they share status.",
+   "This does not require an Oath of Fealty, and so does not breach the Code."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hungarian Social Classes as Virtues and Flaws",
+  "heading": "Hungarian Social Classes as Virtues and Flaws",
+  "line": 2109,
+  "endLine": 2129,
+  "category": "creation",
+  "topic": "Hungarian social classes",
+  "audience": [
+   "all",
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "Setting: Hungary",
+  "summary": "Maps each Hungarian social class (serfs, castle folk, hospites, castle warriors, free horsemen, petty and greater nobles, counts, bishops) to the Virtues and Flaws used to build such a character, with the seasons, money and retainers a landed noble gets.",
+  "quotes": [
+   "Serfs, udvornici, most free men, and castle folk use the Peasant Free Virtue.",
+   "A Landed Noble, lacking other Virtues or Flaws, spends two seasons a year on maintaining his lifestyle, with a spare 10 pounds a year for largesse.",
+   "Counts must take the Oath of Fealty Flaw."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Holy Crown of Hungary",
+  "heading": "The Holy Crown of Hungary",
+  "line": 2175,
+  "endLine": 2194,
+  "category": "setting",
+  "topic": "Hungarian law and the Crown",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Hungary",
+  "summary": "Describes the Doctrine of the Holy Crown, the grounds on which a king or noble may be legitimately resisted, and its effect on magi: a moral duty to resist corrupt nobles, occasional miraculous aid, and guaranteed trial under the Code.",
+  "quotes": [
+   "The Holy Crown is a living being, and it connects God to Man.",
+   "In addition, their right to be tried for crimes under the Code of Hermes is guaranteed by the Crown, a Divine being, not the king."
+  ],
+  "related": []
+ },
+ {
+  "title": "Witches Don't Exist (So Magi Are Not Witches)",
+  "heading": "Witches Don't Exist (So Magi Are Not Witches)",
+  "line": 2224,
+  "endLine": 2236,
+  "category": "setting",
+  "topic": "Hungarian law and the Crown",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "Setting: Hungary",
+  "summary": "Explains that witchcraft is not a crime in Hungary, that magi are treated as an ethnic group living by their own custom and judges, how jurisdiction disputes are handled, and how hedge magicians are policed.",
+  "quotes": [
+   "witches do not exist, therefore no trials for witchcraft may be held",
+   "Hedge magicians in desperate trouble with someone else who has the right to dispense justice can claim the right to be tried under the Ancient Custom."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Aggtelek Caves",
+  "heading": "The Aggtelek Caves",
+  "line": 2282,
+  "endLine": 2290,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Aggtelek Caves (Laniena)",
+  "summary": "Gives the auras, vis types and special lesser-enchantment vis of the Aggtelek caves near Laniena, including a ward-granting vis from the iron flowers of Ochtinska Cave.",
+  "quotes": [
+   "Baradla, as the biggest and most spectacular, has the most powerful aura of 5.",
+   "Both Imaginem and Muto vis can be collected in Baradla Cave."
+  ],
+  "related": []
+ },
+ {
+  "title": "Fectores Versus Hermetic Fectores",
+  "heading": "Fectores Versus Hermetic Fectores",
+  "line": 2292,
+  "endLine": 2304,
+  "category": "traditions",
+  "topic": "Fectores",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Fectores (Laniena)",
+  "summary": "Explains how Laniena splits its Gifted recruits between non-Hermetic Fectores (made Gifted Companions of House Ex Miscellanea) and Hermetic Fectores, what the initiation scripts can and cannot do, and the legal justification for the programme.",
+  "quotes": [
+   "Two of every three Gifted individuals sent to or discovered by the oppidum are trained as Fectores before being admitted into the Order as Gifted Companions within House Ex Miscellanea",
+   "Laniena is under strict instructions from House Tremere not to give Hermetic training to any dhampirs"
+  ],
+  "related": []
+ },
+ {
+  "title": "Fector Characters",
+  "heading": "Fector Characters",
+  "line": 2310,
+  "endLine": 2316,
+  "category": "traditions",
+  "topic": "Fectores",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Social Status Virtue: Fector (Tradition: Hunters' Arts)",
+  "summary": "Character-creation rules for a non-Hermetic Fector: the Gift plus the free Fector Social Status Virtue, all three Practice Arts and three Foe Arts, free Second Sight, a five-year apprenticeship with a set pool of experience, and permitted starting Abilities.",
+  "quotes": [
+   "A Fector has all three Practice Arts of Scry, Ban, and Slay, and can choose three Foe Arts.",
+   "During this time, the Fector receives 120 experience points that can be spent on the Hunters' Arts or on Abilities."
+  ],
+  "related": [
+   "Chapter 9: Hedge Traditions (Hunters' Arts)",
+   "Hedge Magic Revised Edition p.7"
+  ]
+ },
+ {
+  "title": "Hermetic Fectores",
+  "heading": "Hermetic Fectores",
+  "line": 2318,
+  "endLine": 2320,
+  "category": "traditions",
+  "topic": "Fectores",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "House Ex Miscellanea (societas of Murat of Terezin)",
+  "summary": "Character-creation rules for a Hermetic Fector, a magus Ex Miscellanea who has one Practice Art as a free Major non-Hermetic Virtue with a Foe Art, a free Minor Magical Focus in harming a creature, and the Weak Spontaneous Magic Flaw.",
+  "quotes": [
+   "Their free Minor Hermetic Virtue is a Minor Magical Focus in harming a particular supernatural creature",
+   "Their Major Hermetic Flaw is Weak Spontaneous Magic; the methodical preparation typical of a hunter comes at the expense of flexibility."
+  ],
+  "related": [
+   "Chapter 9: Hedge Traditions (Hunters' Arts)"
+  ]
+ },
+ {
+  "title": "Ivan Rilski's Cave",
+  "heading": "Ivan Rilski's Cave",
+  "line": 2389,
+  "endLine": 2391,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Stara Planina, Bulgaria",
+  "summary": "Gives the Divine aura of the cave, tree and rock associated with Saint Ivan Rilski, which is separate from the Dominion aura of the nearby monastery.",
+  "quotes": [
+   "The cave, tree, and rock bear a Divine aura of 4, separate from the Dominion aura of 3 possessed by the monastery."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Seven Lakes",
+  "heading": "The Seven Lakes",
+  "line": 2406,
+  "endLine": 2412,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Rila Mountains, Bulgaria",
+  "summary": "Describes the Faerie aura and per-lake regiones of the Seven Lakes and the vila hosts who grant faerie gifts (each equivalent to a Minor Virtue with a Faerie Charm) to guests who accept a deadly year-and-a-day stay.",
+  "quotes": [
+   "The area has a Faerie aura of 3, and each lake has a Faerie regio of aura 6.",
+   "Each gift is equivalent to a Minor Virtue, and is accompanied by a Faerie Charm."
+  ],
+  "related": []
+ },
+ {
+  "title": "Starosel Tomb Temple Aura",
+  "heading": "Story Seed: Starosel",
+  "line": 2432,
+  "endLine": 2434,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Starosel, Bulgaria",
+  "summary": "Gives the Magic aura, vis types and guardian genius loci of the Starosel tomb temple as a potential oppidum site.",
+  "quotes": [
+   "it has a strong Magic aura of 6",
+   "Both Terram and Herbam vis can be collected within a few yards from the tomb temple."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Madara Horseman",
+  "heading": "The Madara Horseman",
+  "line": 2436,
+  "endLine": 2446,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Madara Plateau, Bulgaria",
+  "summary": "Describes the Faerie aura of the Madara plateau and how a faerie rite wakes the Horseman and his opposing Lion, with a guideline for their Faerie Might.",
+  "quotes": [
+   "The whole plateau has a Faerie aura of 3, which rises to 5 in immediate proximity to the Horseman.",
+   "The Madara Horseman should have a Faerie Might of at least 20, although this could be more depending on the needs of the people and the success of the rite which awakens him."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Bogomils",
+  "heading": "The Bogomils",
+  "line": 2478,
+  "endLine": 2486,
+  "category": "realms",
+  "topic": "Bogomils",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Religion: Bogomilism",
+  "summary": "Explains Bogomilism as a non-Christian Divine religion: its structure, the Dominion aura Bogomil gatherings generate and how it conflicts with the Orthodox aura, the Social Status Virtues of its leaders, and a template for Bogomil missionaries.",
+  "quotes": [
+   "Bogomilism is a non-Christian Divine religion.",
+   "Bogomil dedets and starets have the Wise One Social Status Virtue; the former usually have the Temporal Influence Virtue as well.",
+   "but exchange Transcendence for either Intervention or Adjuration."
+  ],
+  "related": [
+   "Realms of Power: The Divine Revised Edition p.11, p.39, p.94"
+  ]
+ },
+ {
+  "title": "The Silivriak",
+  "heading": "The Silivriak",
+  "line": 2506,
+  "endLine": 2508,
+  "category": "magic",
+  "topic": "Enriched plants and enchanted instruments",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Evredika",
+  "summary": "Describes the Orpheus flower as an Imaginem vis source and a Plant of Virtue that can be Enriched by daily poetry, then used to anoint lyre strings that grant a fixed Enchanting Music score useful only on the bereaved.",
+  "quotes": [
+   "by composing a poem every day for 90 days, and reciting those poems to the plant.",
+   "The lyre grants its player the Enchanting Music Ability with a score of 3, although it can only affect those who are bereaved of a loved one."
+  ],
+  "related": [
+   "Realms of Power: Magic p.124"
+  ]
+ },
+ {
+  "title": "Gela",
+  "heading": "Gela",
+  "line": 2514,
+  "endLine": 2516,
+  "category": "covenant",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Evredika",
+  "summary": "Explains the sanctum at Gela where the resident magus receives an annual personal vis source in return for teaching music and performance.",
+  "quotes": [
+   "In return for an annual grant of vis from the oppidum (amounting to a Personal Vis Source), the magus in residence is obliged to teach music and performance to those who ask."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Devil's Throat",
+  "heading": "The Devil's Throat",
+  "line": 2518,
+  "endLine": 2522,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Evredika",
+  "summary": "Gives the Magic aura of the Devil's Throat cave and the Corpus vis found on the shore of its underground lake.",
+  "quotes": [
+   "There is a Magic aura of 4 here.",
+   "Corpus vis that is occasionally washed up on the shores of the underground lake in the form of fragments of ancient skeletons."
+  ],
+  "related": []
+ },
+ {
+  "title": "Perperikon",
+  "heading": "Perperikon",
+  "line": 2524,
+  "endLine": 2530,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Evredika",
+  "summary": "Describes the Magic aura of the ruined oracular city of Perperikon and the seasonal fertility aura of the Rock Womb, including its use as a source of Insight into Fertility Magics.",
+  "quotes": [
+   "Perperikon has a Magic aura of 3.",
+   "the Rock Womb becomes flooded with a powerful Magic aura aligned with fertility."
+  ],
+  "related": [
+   "Ancient Magic p.54"
+  ]
+ },
+ {
+  "title": "Seuthopolis Caverns and Auras",
+  "heading": "Setting and Description",
+  "line": 2586,
+  "endLine": 2592,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Seuthopolis",
+  "summary": "Gives the aura of the Thracian caverns beneath Seuthopolis, which house the magi's laboratories and libraries, and the Divine exception in the crypt.",
+  "quotes": [
+   "These have a Magic aura of 5, with a few exceptions, such as the Crypt of the Martyred Virgin, which is Divine."
+  ],
+  "related": []
+ },
+ {
+  "title": "Shipka Pass Regio and Tribunal Site",
+  "heading": "Shipka Pass Regio and Tribunal Site",
+  "line": 2610,
+  "endLine": 2620,
+  "category": "order",
+  "topic": "Tribunal site",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: Transylvanian Tribunal",
+  "summary": "Describes the regio chosen as the Transylvanian Tribunal meeting site, its custodian, the seven-year schedule of meetings, and how visitors and traders use the Promenades and Hall.",
+  "quotes": [
+   "The Quaestiores selected the Shipka Pass regio as the Tribunal site.",
+   "Transylvanian Tribunals, held every seven years"
+  ],
+  "related": []
+ },
+ {
+  "title": "Lictors",
+  "heading": "Lictors",
+  "line": 2626,
+  "endLine": 2632,
+  "category": "order",
+  "topic": "Hoplites and lictors",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Role: lictor / hoplite in the Transylvanian Tribunal",
+  "summary": "Explains lictors (hoplites serving long term), the aid they may demand from Transylvanian covenants, and their badge of office, whose forgery is a serious crime.",
+  "quotes": [
+   "Lictors have a duty to protect Quaestiores and follow their instructions.",
+   "lictors have a right to expect reasonable aid from any cives, soci, foederatus, or colona.",
+   "Carrying a facsimile of a lictorial badge is a serious crime."
+  ],
+  "related": []
+ },
+ {
+  "title": "Red and Black Libraries",
+  "heading": "Red and Black Libraries",
+  "line": 2634,
+  "endLine": 2644,
+  "category": "order",
+  "topic": "Hermetic law enforcement",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Seuthopolis",
+  "summary": "Describes the Quaesitorial Red Library (sigils of Renounced magi and spells used for Hermetic crimes) and Black Library (books it is a crime to own), and the vault with a Divine aura that houses them.",
+  "quotes": [
+   "The Red and Black Libraries are stored in a vault consecrated by the bones of a virgin martyr, with a Divine Aura of 3.",
+   "these spells can be cast with impunity on hedge magicians, members of the Order of Odin or the Order of Solomon, or Renounced magi."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cult of the False Kabeiros (Initiation Scripts)",
+  "heading": "Story Seeds: The False Kabeiros",
+  "line": 2728,
+  "endLine": 2768,
+  "category": "mysteries",
+  "topic": "Cabeiri mystery cult",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Cult of the False Kabeiros (Cabeiri)",
+  "summary": "Presents a faerie-led Cabeiri mystery cult: its degrees, the faerie mystagogue's contribution to the Initiation total, the shared Minor Ordeal Vow and holy-day bonus, and the Minor cult Virtues (Piercing Gaze, Invasive Eyes, Bright Eyes, Eyes of Theseus) with their initiation breakdowns.",
+  "quotes": [
+   "The degrees of initiation in this cult are called Interrogator, Invader, Observer, and Liberator.",
+   "Each of the cult Virtues is Minor.",
+   "The Initiation Scripts assume that the mystagogue provides combined scores of 9 to the Initiation total",
+   "Invasive Eyes are not blocked by Magic Resistance, since it's an observational, rather than magical, process."
+  ],
+  "related": [
+   "Mysteries: Revised Edition pp.13-14",
+   "Houses of Hermes: Mystery Cults"
+  ]
+ }
+]

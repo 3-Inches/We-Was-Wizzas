@@ -1,0 +1,1045 @@
+[
+ {
+  "title": "Constantine's Visions: wards of Constantinople",
+  "heading": "Constantine's Visions",
+  "line": 872,
+  "endLine": 891,
+  "category": "realms",
+  "topic": "Local wards and auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Constantinople (restorable ward)",
+  "summary": "Describes the two ancient Divine wards (Invocation/Cursing effects) that once protected the walls of Constantinople, now disabled, and what would be needed to restore them.",
+  "quotes": [
+   "The Might of Faerie and Infernal creatures within the walls was reduced by 10, with a penetration of 20.",
+   "Invaders attempting to storm the walls suffered three additional botch dice on all stress rolls."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.70 (Sol Invictus)"
+  ]
+ },
+ {
+  "title": "The Hermetic Polity",
+  "heading": "The Hermetic Polity",
+  "line": 1198,
+  "endLine": 1203,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Explains the split between executive power held by the citizens and administrative power held by the Council of Magistrates, and how prosecution and judgment of Code breaches differ from other Tribunals.",
+  "quotes": [
+   "The citizens of the polity have all the executive power, whereas the Council of Magistrates has all the administrative power."
+  ]
+ },
+ {
+  "title": "Origins of the Polity (archai, archon, logothete, polemarch)",
+  "heading": "The Origins of the Polity",
+  "line": 1204,
+  "endLine": 1209,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Sidebar summarising the Athenian-style polity the Tribunal copies: magistrates chosen at random, serving for limited terms with no executive power, and the offices of archai, archon, logothete and polemarch.",
+  "quotes": [
+   "a council of 16 magistrates who manage the Tribunal's resources, review the law, and investigate cases",
+   "Archai are selected at each Tribunal meeting, and serve for seven years at a time."
+  ]
+ },
+ {
+  "title": "Citizenship: politai and metoikoi",
+  "heading": "Citizenship",
+  "line": 1210,
+  "endLine": 1219,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Defines the two classes of magus in the Tribunal, citizens (politai) and resident foreigners (metoikoi), how civic duty is tracked with tokens, and who may hold office.",
+  "quotes": [
+   "Only politai are entitled to become magistrates.",
+   "A foreign magus can become a polites through a citizenship decree of the Tribunal"
+  ]
+ },
+ {
+  "title": "The Phylai (four tribes)",
+  "heading": "The Phylai",
+  "line": 1220,
+  "endLine": 1233,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Citizens are divided into four phylai by the covenant where they keep their sanctum, each represented by an equal number of archai; lists the four phylai and their covenants.",
+  "quotes": [
+   "all its politai are divided into four phylai"
+  ]
+ },
+ {
+  "title": "The Council of Magistrates",
+  "heading": "The Council of Magistrates",
+  "line": 1234,
+  "endLine": 1241,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Describes the archai as a duty rather than an honor: who serves, how terms are limited, when the Council meets, and how service is compensated with tokens.",
+  "quotes": [
+   "There are 16 archai, four drawn from each of the four phylai",
+   "No citizen can serve two consecutive terms as arche"
+  ]
+ },
+ {
+  "title": "Theban Quaesitores",
+  "heading": "Theban Quaesitores",
+  "line": 1242,
+  "endLine": 1247,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Guernicus in the Theban Tribunal",
+  "summary": "Explains how the Tribunal's polity, not House Guernicus, investigates Code breaches and revises the Peripheral Code, leaving Quaesitores as legal experts and witnesses.",
+  "quotes": [
+   "the polity (in the form of a board of magistrates, see later) conducts investigations into potential breaches of the Code of Hermes, rather than the Quaesitores"
+  ]
+ },
+ {
+  "title": "The Archon",
+  "heading": "The Archon",
+  "line": 1248,
+  "endLine": 1253,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "The archon is chosen by the archai from among themselves, chairs the Council, and holds the Praeco's duties; may serve more than once.",
+  "quotes": [
+   "A magus can serve as archon more than once."
+  ]
+ },
+ {
+  "title": "The Polemarch",
+  "heading": "The Polemarch",
+  "line": 1254,
+  "endLine": 1261,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "The polemarch is elected for ability to execute Wizard's Marches and enforce sentences, can award tokens to helpers, and uses Tribunal enchanted devices that restrain a magus.",
+  "quotes": [
+   "There is no limit to the number of times an individual can serve as polemarch"
+  ]
+ },
+ {
+  "title": "The Logothete",
+  "heading": "The Logothete",
+  "line": 1262,
+  "endLine": 1271,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "The permanent Chief Redcap who records Council business, keeps the token and shard records and assigns Redcaps; sets out when a new logothete is elected and how Redcaps are barred from votes and sortition.",
+  "quotes": [
+   "The logothete is the Chief Redcap of the Theban Tribunal."
+  ]
+ },
+ {
+  "title": "The Boards of Magistrates",
+  "heading": "The Boards of Magistrates",
+  "line": 1272,
+  "endLine": 1287,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Explains how the Judicial, Legislative and Conciliatory Boards are staffed, convened by citizen application, and what each handles, including interim Tribunals and certamen conventions.",
+  "quotes": [
+   "nominally there are three members of each board, and seven members of the treasury council",
+   "The Peripheral Code states that a board must convene within six months of the request",
+   "the Judicial Board can also convene an interim Tribunal if they can gather together at least 12 magi from four different covenants"
+  ],
+  "related": [
+   "Houses of Hermes: Societates pp.90-93 (certamen, debate)"
+  ]
+ },
+ {
+  "title": "The Treasury Council (apodektai)",
+  "heading": "The Treasury Council",
+  "line": 1306,
+  "endLine": 1315,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "The seven archai not on a board manage the Tribunal's vis, vis loans, collection of vis and Gifted children, and the tutoring of prospective apprentices.",
+  "quotes": [
+   "This duty typically results in the discovery of about 15 apprentices in total every seven years.",
+   "The repayment of vis does not include interest, since usury is a sin."
+  ]
+ },
+ {
+  "title": "Tokens and Shards",
+  "heading": "Tokens and Shards",
+  "line": 1316,
+  "endLine": 1359,
+  "category": "order",
+  "topic": "Tokens and shards",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "The Tribunal's social currency: tokens credit service to the polity, shards debit antisocial acts, tokens may neutralize shards for a season of service, and shards expose a citizen to ostracism.",
+  "quotes": [
+   "The principle use of the tokens is neutralization.",
+   "Being found guilty of a High Crime (three per crime in addition to any other penalty);",
+   "Any citizen possessing one or more shards is liable to the vote of ostracism"
+  ]
+ },
+ {
+  "title": "The Language of Magi (Classical Greek)",
+  "heading": "The Language of Magi",
+  "line": 1364,
+  "endLine": 1369,
+  "category": "setting",
+  "topic": "Languages and casting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Theban magi cast in Classical Greek; gives the language scores needed to read and write Greek Hermetic books and the penalties non-Greek speakers suffer to recognise a spell's Form.",
+  "quotes": [
+   "Non-Greek speakers suffer a –10 to attempts to determine the Form of a magical effect",
+   "they need an effective score in that language of 4"
+  ],
+  "related": [
+   "ArM5 p.32, p.83, p.165",
+   "Ancient Magic p.29"
+  ]
+ },
+ {
+  "title": "Common Vis Sources",
+  "heading": "Common Vis Sources",
+  "line": 1370,
+  "endLine": 1375,
+  "category": "order",
+  "topic": "Tribunal vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Vis from shrines and certain mythic sites belongs to the polity, is gathered by volunteers for a token, and funds Longevity Rituals, items and the Ceremony of Propitiation.",
+  "quotes": [
+   "In total, the Tribunal harvests approximately 50 pawns of vis from such sources each year."
+  ]
+ },
+ {
+  "title": "Provision of Longevity Rituals",
+  "heading": "Provision of Longevity Rituals",
+  "line": 1380,
+  "endLine": 1383,
+  "category": "order",
+  "topic": "Tribunal vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Each year the Tribunal sponsors one Longevity Ritual for the eligible citizen with the most tokens, who surrenders them; crafting it earns the maker tokens.",
+  "quotes": [
+   "Every year, the Tribunal sponsors a Longevity Ritual for a single Theban magus.",
+   "The applicant with the most tokens is chosen; she must surrender all these tokens"
+  ]
+ },
+ {
+  "title": "Provision of Healing",
+  "heading": "Provision of Healing",
+  "line": 1384,
+  "endLine": 1387,
+  "category": "order",
+  "topic": "Tribunal vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Customary duty to provide magical healing to a fellow magus, with the healer bearing the vis cost, a customary vis gift in return and a token awarded to the healer.",
+  "quotes": [
+   "by tradition, the gift is usually half the amount that was required for the healing"
+  ]
+ },
+ {
+  "title": "Donation of Apprentices",
+  "heading": "Donation of Apprentices",
+  "line": 1388,
+  "endLine": 1390,
+  "category": "order",
+  "topic": "Apprentices in Thebes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Finders of Gifted children must report them to the Treasury Council so the Apprentice Presentation can assign them rather than claiming them directly.",
+  "quotes": [
+   "If a magus discovers a Gifted individual, he has a duty to notify the Treasury Council."
+  ]
+ },
+ {
+  "title": "The Covenant Patrons",
+  "heading": "The Covenant Patrons",
+  "line": 1391,
+  "endLine": 1397,
+  "category": "covenant",
+  "topic": "Covenant patrons",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Every Theban covenant has a supernatural patron in a pact of mutual protection, represented by a Powerful Ally or Local Ally Boon, and the covenant expires if it lacks a patron.",
+  "quotes": [
+   "expressed as either the Powerful Ally Boon or the Local Ally Boon",
+   "a covenant without a patron is deemed to have itself expired"
+  ],
+  "related": [
+   "Covenants p.21"
+  ]
+ },
+ {
+  "title": "Other Tasks for the Common Good",
+  "heading": "Other Tasks for the Common Good",
+  "line": 1398,
+  "endLine": 1414,
+  "category": "order",
+  "topic": "Tokens and shards",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Sidebar listing the extra tasks the Tribunal may ask volunteers to perform, each earning a token on success.",
+  "quotes": [
+   "Any magus who volunteers and successfully completes the job is awarded a token."
+  ]
+ },
+ {
+  "title": "Gifts of Vis",
+  "heading": "Gifts of Vis",
+  "line": 1416,
+  "endLine": 1419,
+  "category": "order",
+  "topic": "Tribunal vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Describes informal customs of gifting vis for hospitality and healing, the etiquette penalties for stinginess or hoarding, and the ban on trading tokens or shards for vis.",
+  "quotes": [
+   "The exchange of tokens or shards, the true \"currency\" of the Tribunal, for vis is not permitted."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.85"
+  ]
+ },
+ {
+  "title": "The Ceremony of Propitiation",
+  "heading": "The Ceremony of Propitiation",
+  "line": 1420,
+  "endLine": 1429,
+  "category": "covenant",
+  "topic": "Covenant patrons",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Procedure at Delos by which covenants offer vis or treasure to their patrons, which grants the patron experience offset by its Might, with vis offered counting like eaten vis.",
+  "quotes": [
+   "Any patron who is propitiated in the rite gains 25 experience points",
+   "reducing the penalty due to the patron's Might by two points per pawn"
+  ],
+  "related": [
+   "Realms of Power: Magic pp.51-52",
+   "Covenants p.89 (Casting Tablet)"
+  ]
+ },
+ {
+  "title": "The Founding of Covenants",
+  "heading": "The Founding of Covenants",
+  "line": 1430,
+  "endLine": 1433,
+  "category": "covenant",
+  "topic": "Founding covenants",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Requirements for founding a Theban covenant: a declared purpose, a willing patron at the site and a charter reviewed by the Conciliatory Board, then a decree of founding at Tribunal.",
+  "quotes": [
+   "a prospective covenant needs a patron at the proposed site of the new covenant"
+  ]
+ },
+ {
+  "title": "The Tribunal Meeting",
+  "heading": "The Tribunal Meeting",
+  "line": 1434,
+  "endLine": 1439,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Overview of the septennial meeting on Delos: its four phases in fixed order and the rotation of the principal phyle that organises it.",
+  "quotes": [
+   "It is divided into four phases, each of which fulfills a different state function."
+  ]
+ },
+ {
+  "title": "Pre-Tribunal Procedure",
+  "heading": "Pre-Tribunal Procedure",
+  "line": 1440,
+  "endLine": 1443,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "The organising phyle prepares the housing on Delos before the meeting.",
+  "quotes": []
+ },
+ {
+  "title": "Selection of Archai Candidates",
+  "heading": "Selection of Archai Candidates",
+  "line": 1444,
+  "endLine": 1447,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Each phyle compiles its candidate list of eligible citizens; refusing consent when eligible costs a shard.",
+  "quotes": [
+   "a magus who is eligible for selection but refuses consent is given one shard"
+  ]
+ },
+ {
+  "title": "Interviews with Apprentices",
+  "heading": "Interviews with Apprentices",
+  "line": 1448,
+  "endLine": 1451,
+  "category": "order",
+  "topic": "Apprentices in Thebes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Before the Tribunal, masters without shards may question Gifted children and bid for them by gifting tokens; Bonisagus may claim any child.",
+  "quotes": [
+   "Bonisagus magi may immediately claim any of the presented apprentices."
+  ]
+ },
+ {
+  "title": "The Hermetic Assembly",
+  "heading": "The Hermetic Assembly",
+  "line": 1452,
+  "endLine": 1457,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "First phase of the Tribunal: voting by sigils on Conciliatory Board decrees, where all magi present vote and a majority carries a decree.",
+  "quotes": [
+   "All decrees are passed by a majority vote of those magi present."
+  ]
+ },
+ {
+  "title": "Decrees of Citizenship",
+  "heading": "Decrees of Citizenship",
+  "line": 1458,
+  "endLine": 1461,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "How a metoikos petitions the Assembly for citizenship, with required contribution, resident covenant and an arche sponsor.",
+  "quotes": [
+   "have at least one arche as sponsor"
+  ]
+ },
+ {
+  "title": "Decrees of Defamation",
+  "heading": "Decrees of Defamation",
+  "line": 1462,
+  "endLine": 1465,
+  "category": "order",
+  "topic": "Tokens and shards",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "A citizen can accuse another of acting against the polity's unity; success gives the accused a shard, failure gives one to the accuser.",
+  "quotes": [
+   "If the Assembly finds in favor of the decree, then the accused is credited with one shard."
+  ]
+ },
+ {
+  "title": "Decrees of Contrition",
+  "heading": "Decrees of Contrition",
+  "line": 1466,
+  "endLine": 1471,
+  "category": "order",
+  "topic": "Tokens and shards",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "A shard-bearing magus may offer reparation and apology to have the shard removed; the offering's size is the magus's own choice and is kept if the plea fails.",
+  "quotes": [
+   "The magnitude of the reparation is determined by the magus himself."
+  ]
+ },
+ {
+  "title": "The Apprentice Presentation",
+  "heading": "The Apprentice Presentation",
+  "line": 1476,
+  "endLine": 1483,
+  "category": "order",
+  "topic": "Apprentices in Thebes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Formal assignment of Gifted children to masters by tokens gathered in the interviews, complaints against masters, token rewards for training without abuse, and the effect on apprenticeship length.",
+  "quotes": [
+   "magi are awarded tokens for training an apprentice without abuse, one for the first seven years and another at Gauntlet"
+  ],
+  "related": [
+   "Houses of Hermes: Societates p.82"
+  ]
+ },
+ {
+  "title": "Ostrakismos (ostracism)",
+  "heading": "Ostrakismos",
+  "line": 1494,
+  "endLine": 1496,
+  "category": "order",
+  "topic": "Tokens and shards",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Closing business of the Assembly: citizens holding shards may be voted as candidates, the majority name on potsherds is ostracised and exiled from the Tribunal for a time.",
+  "quotes": [
+   "He cannot return to Thebes for seven years"
+  ]
+ },
+ {
+  "title": "The Nature of the Law",
+  "heading": "The Nature of the Law",
+  "line": 1497,
+  "endLine": 1500,
+  "category": "order",
+  "topic": "Theban Tribunal polity",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "The Theban Code contains only deliberate legislation, with no precedent from earlier rulings.",
+  "quotes": [
+   "Each case is judged according to the Code and with no reference to previous rulings."
+  ]
+ },
+ {
+  "title": "The Law Council",
+  "heading": "The Law Council",
+  "line": 1501,
+  "endLine": 1506,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Second phase: review of the Peripheral Code, debate between the two archai, and the option of a pre-emptive review of a law one expects to be convicted under.",
+  "quotes": [
+   "if the alternative is accepted, the change to the Peripheral Code is recorded"
+  ],
+  "related": [
+   "Houses of Hermes: Societates pp.90-93"
+  ]
+ },
+ {
+  "title": "The People's Court",
+  "heading": "The People's Court",
+  "line": 1507,
+  "endLine": 1512,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Third phase: trial of Hermetic crimes with archai as prosecution and defense principals, a vote on guilt only, and the polemarch's power to prevent flight.",
+  "quotes": [
+   "The polemarch is empowered by the Peripheral Code to prevent the flight of a guilty party by any means"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages pp.56-61"
+  ]
+ },
+ {
+  "title": "Execution of Sentences",
+  "heading": "Execution of Sentences",
+  "line": 1517,
+  "endLine": 1522,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Punishments are proposed in decreasing severity and voted on; shards accompany every conviction, tokens reward the prosecuting arche, and Marches never occur on Delos.",
+  "quotes": [
+   "All punishments are accompanied by a penalty of three shards for a High Crime or one for a Low Crime.",
+   "A Wizard's March is never conducted on Delos"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.60"
+  ]
+ },
+ {
+  "title": "Conduct of Archai",
+  "heading": "Conduct of Archai",
+  "line": 1523,
+  "endLine": 1526,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Any citizen can accuse an arche or the polemarch of dereliction and propose a shard fine, decided by two votes.",
+  "quotes": [
+   "a proposed fine of one to seven shards"
+  ]
+ },
+ {
+  "title": "Sortition of Archai",
+  "heading": "Sortition of Archai",
+  "line": 1527,
+  "endLine": 1534,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "How the new archai are drawn by lot from each phyle's candidate list and assigned to boards, and token payment for outgoing officers.",
+  "quotes": [
+   "The logothete then selects four tokens from the jar at random"
+  ]
+ },
+ {
+  "title": "Election of the Archon and Polemarch",
+  "heading": "Election of the Archon and Polemarch",
+  "line": 1535,
+  "endLine": 1540,
+  "category": "order",
+  "topic": "Tribunal meeting",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "The archai elect the archon by show of hands and then vote on nominated polemarch candidates; only a previous polemarch may refuse.",
+  "quotes": [
+   "Only a magus who has already served as polemarch can refuse the role."
+  ]
+ },
+ {
+  "title": "The Dynatoi as Player Characters",
+  "heading": "The Dynatoi as Player Characters",
+  "line": 1575,
+  "endLine": 1578,
+  "category": "creation",
+  "topic": "Byzantine character backgrounds",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Suggests Virtues and Flaws that fit a character from the dispossessed Byzantine nobility.",
+  "quotes": [
+   "Such a character is likely to have the Privileged Upbringing Virtue to represent his former status."
+  ]
+ },
+ {
+  "title": "Languages of the Theban Tribunal",
+  "heading": "Languages",
+  "line": 1709,
+  "endLine": 1749,
+  "category": "setting",
+  "topic": "Languages",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Lists the regional languages and dialect specialties, says Romaic and Classical Greek are separate Abilities, and gives a table of comprehension penalties between related languages.",
+  "quotes": [
+   "Romaic Greek and Classical Greek are mutually intelligible, but they are separate Abilities.",
+   "Romaic Greek vs Classical Greek|-2",
+   "\\* Penalty applies to both speakers."
+  ],
+  "related": [
+   "ArM5 p.66 (standard specialties)"
+  ]
+ },
+ {
+  "title": "Taxation (kommerkion)",
+  "heading": "Taxation",
+  "line": 1824,
+  "endLine": 1827,
+  "category": "social",
+  "topic": "Wealth and trade",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Byzantine lands",
+  "summary": "Describes the Byzantine tax system, including the flat tax on goods sold within the empire.",
+  "quotes": [
+   "All goods sold throughout the empire are taxed at the rate of 10%"
+  ]
+ },
+ {
+  "title": "Coinage",
+  "heading": "Coinage",
+  "line": 1828,
+  "endLine": 1832,
+  "category": "social",
+  "topic": "Wealth and trade",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Byzantine lands",
+  "summary": "Gives the Byzantine and Venetian coin denominations and their values in Mythic pounds and pence.",
+  "quotes": [
+   "One bezant is thus worth 20 grossos."
+  ]
+ },
+ {
+  "title": "Hermetic Correspondence",
+  "heading": "Hermetic Correspondence",
+  "line": 1834,
+  "endLine": 1839,
+  "category": "social",
+  "topic": "Hermetic correspondence",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Theban magi write rhetorical letters hiding their purpose in tales of their patrons; composing and reading such a letter is resolved with Lore-based rolls against an Ease Factor.",
+  "quotes": [
+   "A Com + relevant Lore roll should be made against an Ease Factor of 6 to encapsulate a relatively straightforward message",
+   "An Int + relevant Lore roll against the same Ease Factor should be made to discern the rhetorical purpose of the story."
+  ]
+ },
+ {
+  "title": "The Color Purple (Shape & Material bonuses)",
+  "heading": "The Color Purple",
+  "line": 1864,
+  "endLine": 1866,
+  "category": "lab",
+  "topic": "Shape and Material bonuses",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "True imperial purple (murex dye or porphyry) is reserved for emperors and carries enchanting Shape & Material bonuses for royalty, rulership and control of people.",
+  "quotes": [
+   "True purple, either porphyry or the Byzantine dye, has the following Shape & Material bonuses: +10 royalty, +7 rulership and authority, +5 control people."
+  ],
+  "related": [
+   "Chapter 7: Constantinople, The Porphyry Chamber"
+  ]
+ },
+ {
+  "title": "Greek Fire",
+  "heading": "Greek Fire",
+  "line": 1880,
+  "endLine": 1890,
+  "category": "combat",
+  "topic": "Greek Fire",
+  "audience": [
+   "storyguide",
+   "magi",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Byzantine alchemists; Profession: Naffatun",
+  "summary": "Rules for the Byzantine alchemical weapon: mass production with a workshop and lab text, botch dice per dose, and statistics and use of the hand-held siphon.",
+  "quotes": [
+   "He can supervise a number of subordinates equal to his Leadership score.",
+   "One botch die is rolled for every dose being manufactured",
+   "Init –2, Attack +4, Defense 0, Damage +10, Range 5 paces, Minimum Strength +2, Load 3, Cost Expensive.",
+   "Each dose of Greek Fire is good for 10 sprays of the hand-held siphon."
+  ],
+  "related": [
+   "Art & Academe p.76",
+   "City & Guild pp.65-67",
+   "Covenants p.111 (Safety bonus)"
+  ]
+ },
+ {
+  "title": "The Alaphroiskiotoi",
+  "heading": "The Alaphroiskiotoi",
+  "line": 1900,
+  "endLine": 1905,
+  "category": "setting",
+  "topic": "Folk beliefs and powers",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Born on a Saturday (folklore)",
+  "summary": "Folklore holds that those born on a Saturday have a light shadow, usually represented by Second Sight, Dowsing or Magic Sensitivity, and special power over vrykolakes.",
+  "quotes": [
+   "Most alaphroiskiotoi have the Second Sight Virtue, although others possess Dowsing or Magic Sensitivity instead"
+  ],
+  "related": [
+   "Hedge Magic ch. 6 (nightwalkers)",
+   "Realms of Power: The Infernal"
+  ]
+ },
+ {
+  "title": "Adelphopoiesis (ritual brotherhood)",
+  "heading": "Adelphopoiesis",
+  "line": 1940,
+  "endLine": 1944,
+  "category": "setting",
+  "topic": "Oaths and bonds",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "A ceremony of brotherhood that makes each adelphos a Sympathetic Connection to the other, represented by the True Love/True Friend Virtue or Flaw.",
+  "quotes": [
+   "An adelphos who has undergone this rite becomes a Sympathetic Connection to his adopted brother"
+  ],
+  "related": [
+   "Houses of Hermes: Societates p.120 (Cult of Orpheus)"
+  ]
+ },
+ {
+  "title": "The Power of Oaths",
+  "heading": "The Power of Oaths",
+  "line": 1952,
+  "endLine": 1962,
+  "category": "realms",
+  "topic": "Oaths",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "An oath-breaker may be called out at the place of the oath so a river spirit enforces it, resolved with an Oath Invocation roll against an Ease Factor.",
+  "quotes": [
+   "Oath Invocation Roll: Communication + Charm + simple die (+6 if Styx is invoked)",
+   "Ease Factor: 15 + simple die"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.87 (Invoking a Saint)"
+  ]
+ },
+ {
+  "title": "Punishments for Oath-Breaking",
+  "heading": "Punishments for Oath-Breaking",
+  "line": 1964,
+  "endLine": 1980,
+  "category": "realms",
+  "topic": "Oaths",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga set in the Theban Tribunal",
+  "summary": "Oath-breakers are punished with imposed Flaws or maledictions; sidebar lists sample lesser and greater maledictions.",
+  "quotes": [
+   "Major Flaws are imposed by powerful entities with a Might of 40 or greater, otherwise the punishment is usually a Minor Flaw.",
+   "When the character uses a tool or weapon, roll a simple die; on a 1 or 2 it breaks."
+  ]
+ }
+]

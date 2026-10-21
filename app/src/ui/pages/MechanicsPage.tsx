@@ -259,6 +259,30 @@ function AreaView({ area }: { area: MechanicsAreaSummary }) {
       </div>
     );
   };
+  // topics with one mechanic are listed together after the others, as links
+  const groupList = (gs: MechanicsGroupSummary[]) => {
+    const single = gs.filter((g) => countOf(g, who) === 1);
+    return (
+      <>
+        {gs.filter((g) => countOf(g, who) > 1).map(groupRow)}
+        {single.length > 0 && (
+          <div className="list-row" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: 2 }}>
+            <b>More topics</b>
+            <div className="small">
+              {single.map((g, i) => (
+                <span key={g.id}>
+                  {i > 0 && ' · '}
+                  <Link to={`/mechanics/${area.id}/${g.id}${qs(who)}`} title={g.requires.length ? `Needs: ${g.requires.join('; ')}` : undefined}>
+                    {g.title}
+                  </Link>
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </>
+    );
+  };
   return (
     <div className="stack">
       <Breadcrumb area={area} who={who} />
@@ -271,12 +295,8 @@ function AreaView({ area }: { area: MechanicsAreaSummary }) {
         </p>
       </div>
       <AudienceFilter value={who} onChange={setWho} />
-      {count(area.groups, who) > 0 && (
-        <Card title="Mechanics, from the most used to the most specialised">{area.groups.map(groupRow)}</Card>
-      )}
-      {count(area.gated, who) > 0 && (
-        <Card title="Needs a Virtue, House, initiation, tradition or kind of being">{area.gated.map(groupRow)}</Card>
-      )}
+      {count(area.groups, who) > 0 && <Card title="Mechanics, from the most used to the most specialised">{groupList(area.groups)}</Card>}
+      {count(area.gated, who) > 0 && <Card title="Needs a Virtue, House, initiation, tradition or kind of being">{groupList(area.gated)}</Card>}
       {!count(area.groups, who) && !count(area.gated, who) && <Empty>Nothing in this area for that choice.</Empty>}
     </div>
   );

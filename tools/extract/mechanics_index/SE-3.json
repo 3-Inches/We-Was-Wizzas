@@ -1,0 +1,750 @@
+[
+ {
+  "title": "Vantage Point of Xerxes (bound druj site)",
+  "heading": "The Vantage Point of Xerxes",
+  "line": 3690,
+  "endLine": 3694,
+  "category": "setting",
+  "topic": "Magical sites of Thebes",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Vantage Point of Xerxes, Hellespont",
+  "summary": "An artificial hill above the Hellespont that grants enhanced vision to anyone standing on it, at the price of exposure to the Obsession power of the Infernal druj bound beneath it.",
+  "quotes": [
+   "The hill has an Infernal aura of 3."
+  ],
+  "related": [
+   "Realms of Power: The Infernal, page 31 (Obsession)"
+  ]
+ },
+ {
+  "title": "The Great Altar of Pergamos (free ritual spells)",
+  "heading": "The Great Altar",
+  "line": 3704,
+  "endLine": 3710,
+  "category": "setting",
+  "topic": "Magical sites of Thebes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Great Altar, Pergamos",
+  "summary": "A Faerie-aura altar that powers any Hermetic ritual spell cast from atop it without vis expenditure, at the cost of tainted botches and odd side effects.",
+  "quotes": [
+   "it will supply the supernatural power to empower any ritual spell cast by a Hermetic magus",
+   "Botched spells are tainted, as if the caster used faerie-tainted vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Prison of Klymene (altar bond strength)",
+  "heading": "The Prison of Klymene",
+  "line": 3712,
+  "endLine": 3718,
+  "category": "setting",
+  "topic": "Magical sites of Thebes",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Great Altar, Pergamos",
+  "summary": "Sidebar explaining that the altar is the lock on a bound titan, and that each ritual cast through it wears down the bond's strength until the titan is freed.",
+  "quotes": [
+   "The imprisoning bonds have a strength of 50, which renews itself at the beginning of each year.",
+   "If the bond strength is reduced to zero in a single year, the great altar cracks in half and Klymene is released."
+  ],
+  "related": [
+   "Realms of Power: Magic, page 109 (Kosmokrator Spirit)"
+  ]
+ },
+ {
+  "title": "The Cave of the Seven Sleepers (dilated-time regio)",
+  "heading": "The Cave of the Seven Sleepers",
+  "line": 3766,
+  "endLine": 3770,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Location: Cave of the Seven Sleepers, near Ephesus",
+  "summary": "A Divine-aura pilgrimage cave that still hides a Magic regio with dilated time, tempting vis harvesters who cannot predict how much time will pass outside.",
+  "quotes": [
+   "It has a Magic aura of 6 and has dilated time (*Covenants*, page 7)."
+  ],
+  "related": [
+   "Covenants, page 7"
+  ]
+ },
+ {
+  "title": "Anima damage levels and repair (glass submarine)",
+  "heading": "Anima: The Glass Submarine",
+  "line": 3936,
+  "endLine": 3974,
+  "category": "beings",
+  "topic": "Animae and mechanica",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Awakened simulacrum (anima) / Mechanica",
+  "summary": "Stat block of an awakened iron simulacrum, with the special rule that it tracks Damage Levels like a commercial product rather than Wound Penalties, and can only be repaired by a character with Mechanica or Automata.",
+  "quotes": [
+   "Roll the anima's Stamina (+1) plus a stress die against an Ease Factor equal to the excess damage.",
+   "If a character has one of these Abilities, she can repair a number of Damage Levels equal to her score in a season."
+  ],
+  "related": [
+   "City & Guild, page 77 (Damage Levels)"
+  ]
+ },
+ {
+  "title": "Mythic Blood: Gigantes (Greek giants)",
+  "heading": "Mythic Blood \u2013 Gigantes",
+  "line": 4101,
+  "endLine": 4115,
+  "category": "creation",
+  "topic": "Mythic Blood lineages",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Mythic Blood",
+  "summary": "A Mythic Blood lineage for descendants of the Greek giants with snake tails, listing the typical Magical Focus, Personality Flaw and common Virtues and Flaws, plus two new Flaws (Rebellious and Horrifying Appearance - Snake Legs).",
+  "quotes": [
+   "The Magical Focus that accompanies the Mythic Blood is usually connected with strength or the Form of Terram, and the Personality Flaw is Rebellious."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Sibyllides (children of sibyls)",
+  "heading": "The Sibyllides",
+  "line": 4143,
+  "endLine": 4145,
+  "category": "beings",
+  "topic": "Magic kin",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Parent: a sibyl (magic kin)",
+  "summary": "Describes the children of sibyls as magic kin who always have prophecy- or sight-related powers and who must report back to their mother periodically.",
+  "quotes": [
+   "They are obligated to return to their mother's home every decade to report to her what they have learned about the world"
+  ],
+  "related": [
+   "Realms of Power: Magic, page 89 (magic kin)",
+   "Realms of Power: Magic, page 95 (Warders of Mystery)"
+  ]
+ },
+ {
+  "title": "Character Guide: A Sibyl (magic character template)",
+  "heading": "Character Guide: A Sibyl",
+  "line": 4151,
+  "endLine": 4189,
+  "category": "beings",
+  "topic": "Magic characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Magic Human / Magic character",
+  "summary": "A minimal-statistics template for a sibyl built with the Magic Characters rules, with notes on the five points of Virtues and Flaws, Magic Might, and the Enigmatic Essential Trait that prevents her speaking clearly.",
+  "quotes": [
+   "The sibyl's Enigmatic Personality Trait is an Essential Trait; magical effects to make her speak clearly mysteriously fail."
+  ],
+  "related": [
+   "Realms of Power: Magic, pages 29-54",
+   "The Mysteries Revised Edition, Chapter 7 (Divination & Augury)"
+  ]
+ },
+ {
+  "title": "Diabolai (slander rites)",
+  "heading": "Diabolai",
+  "line": 4209,
+  "endLine": 4219,
+  "category": "traditions",
+  "topic": "Diabolai",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A Greek ritual in which a character with the right (Realm) Lore spends hours slandering a locally patronizing supernatural being to force it to use one of its powers for him, rolled against an Ease Factor based on the being's Might, with consequences for failure or botch.",
+  "quotes": [
+   "Diabolai: Presence + (Realm) Lore + modifiers + stress die",
+   "Ease Factor: 9 + being's (Might / 5)"
+  ],
+  "related": [
+   "Realms of Power: The Divine, pages 87-88 (threatening saints)"
+  ]
+ },
+ {
+  "title": "Modifiers to Diabolai",
+  "heading": "Modifiers to Diabolai",
+  "line": 4221,
+  "endLine": 4223,
+  "category": "traditions",
+  "topic": "Diabolai",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar listing the situational modifiers to a diabolai roll, including bonuses for public performance, synthemata and a known True Name and penalties for recent repeats or unfamiliar targets.",
+  "quotes": [
+   "Performed a diabolai in the last month: \u20139 Threatening an unfamiliar being: \u20136"
+  ],
+  "related": [
+   "The Mysteries Revised Edition, pages 86-88 (Synthemata)",
+   "Realms of Power: The Infernal, pages 34-35 (True Names)"
+  ]
+ },
+ {
+  "title": "Katadesmos Magic (Greek Defixio tradition)",
+  "heading": "Katadesmos Magic",
+  "line": 4239,
+  "endLine": 4243,
+  "category": "traditions",
+  "topic": "Defixio / Katadesmos Magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Katadesmos (Defixio) Magic",
+  "summary": "The Greek form of the lost Defixio tradition, whose curses work at any range without an Arcane Connection and can be conditional triggers, and which lets non-Hermetic wizards take the Leadworker Virtue.",
+  "quotes": [
+   "a wizard could enact a curse on a victim at any range without the need of an Arcane Connection"
+  ],
+  "related": [
+   "Ancient Magic, Chapter 3 (Defixio Magic)",
+   "Houses of Hermes: True Lineages, page 143 (Leadworker)"
+  ]
+ },
+ {
+  "title": "Gruagachan variant for Greece",
+  "heading": "Gruagachan",
+  "line": 4261,
+  "endLine": 4263,
+  "category": "traditions",
+  "topic": "Hedge traditions in Thebes",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Gruagachan (Greek variant)",
+  "summary": "Suggests a Pelasgic Greek variant of the Gruagachan hedge tradition that swaps enchanted tattoos for spirit magic and access to Defixio Lore.",
+  "quotes": [
+   "in exchange for losing the ability to create enchanted tattoos"
+  ],
+  "related": [
+   "Hedge Magic (Revised Edition), Gruagachan",
+   "Realms of Power: The Infernal, pages 114-119 (Goetic Arts)"
+  ]
+ },
+ {
+  "title": "The Makhai (Greek Muspelli variant)",
+  "heading": "The Makhai",
+  "line": 4273,
+  "endLine": 4275,
+  "category": "traditions",
+  "topic": "Hedge traditions in Thebes",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Makhai (variant Muspelli)",
+  "summary": "Notes a Greek variant of the Muspelli wizard tradition whose sorcerers serve the monsters born of Earth to avenge the titans.",
+  "quotes": [
+   "Greek sorcerers who serve the monstrous Ekhidna and Typhon"
+  ],
+  "related": [
+   "Rival Magic (Muspelli)"
+  ]
+ },
+ {
+  "title": "Folk Magic (peasant ceremonial magic)",
+  "heading": "New Virtue: Folk Magic",
+  "line": 4281,
+  "endLine": 4295,
+  "category": "traditions",
+  "topic": "Folk Magic",
+  "audience": [
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Folk Magic",
+  "summary": "Extended Virtue rules for peasants who cast very minor spells in one narrow category (abjuration, divination, healing or evil eye), including fatigue cost, preparation time, the halved Casting Total and the Realm alignment.",
+  "quotes": [
+   "The Casting Total is equal to (Stamina + (Realm) Lore + Aura modifier + stress die) / 2.",
+   "To cast a spell the character must expend a fatigue level, whether the spell succeeds or fails."
+  ],
+  "related": []
+ },
+ {
+  "title": "Heroic descent: Virtues and Flaws of Greek heroes",
+  "heading": "Heroes",
+  "line": 4319,
+  "endLine": 4337,
+  "category": "creation",
+  "topic": "Mythic Blood lineages",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Mythic Blood or Hero's Birthright Power",
+  "summary": "Lists famous Greek heroes and the Virtues and Flaws their descendants are likely to inherit, as guidance for building heroic bloodlines.",
+  "quotes": [
+   "His descendants are highly likely to have a Greater Immunity to Metal and the Fury Flaw."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, page 105 (Hero's Birthright)",
+   "City & Guild, page 71 (Touched by Faerie)"
+  ]
+ },
+ {
+  "title": "The Children of Olympos (league and its Mysteries)",
+  "heading": "The Children of Olympos",
+  "line": 4353,
+  "endLine": 4359,
+  "category": "mysteries",
+  "topic": "Elysian Ecstasy and Olympian Pact",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "League: Children of Olympos",
+  "summary": "Describes the Hermetic league that channels Greek gods and the two Mysteries its leader invented for it, explaining how a channeled god can eventually overcome the recipient.",
+  "quotes": [
+   "Lucian has invented two Mysteries for his followers: Elysian Ecstasy and Olympian Pact."
+  ],
+  "related": [
+   "Chapter 3: The Leagues of Thebes"
+  ]
+ },
+ {
+  "title": "Channeling a Greek god (Elysian Ecstasy and Olympian Pact)",
+  "heading": "New Minor Supernatural Virtue: Elysian Ecstasy and Olympian Pact",
+  "line": 4361,
+  "endLine": 4386,
+  "category": "mysteries",
+  "topic": "Elysian Ecstasy and Olympian Pact",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Initiation: Elysian Ecstasy (Minor) or Olympian Pact (Major)",
+  "summary": "Rules for the roll to channel a Greek god, with a table of Ease Factors giving Personality Trait bonuses, Sympathy Trait points and (for Olympian Pact) access to the god's powers, plus the preparation hours, failure cost and duration.",
+  "quotes": [
+   "Channeling a Greek God: (Characteristic) + Faerie Lore + stress die + aura",
+   "A character may spend additional hours in this frenetic state, with each additional hour adding +1 to his die roll.",
+   "A character gains Sympathy Traits, Personality Traits, and powers (for Olympian Pact) for a number of hours equal to the total rolled."
+  ],
+  "related": [
+   "Realms of Power: Faerie, pages 102-105 (Sympathy Traits)",
+   "Realms of Power: Magic, page 88 (Spiritual Pact)"
+  ]
+ },
+ {
+  "title": "Initiation of Elysian Ecstasy",
+  "heading": "Initiation of Elysian Ecstasy",
+  "line": 4388,
+  "endLine": 4396,
+  "category": "mysteries",
+  "topic": "Elysian Ecstasy and Olympian Pact",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Elysian Ecstasy",
+  "summary": "The Initiation Script for Elysian Ecstasy, with its Ease Factor, Script Bonus and the twelve boons from beings representing the Olympians.",
+  "quotes": [
+   "The initiate must visit 12 powerful beings, each one chosen to represent one of the 12 Olympians, and receive a boon from each."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sympathy Traits of the Olympians",
+  "heading": "Sympathy Traits of the Olympians",
+  "line": 4436,
+  "endLine": 4508,
+  "category": "creation",
+  "topic": "Faerie Blood",
+  "audience": [
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Faerie Blood (Faerie God variant)",
+  "summary": "Table of the positive and negative Sympathy Traits for each Olympian god, for characters taking the Faerie God variant of Faerie Blood.",
+  "quotes": [
+   "Characters taking the Faerie God variant of Faerie Blood"
+  ],
+  "related": [
+   "Realms of Power: Faerie, pages 107-108"
+  ]
+ },
+ {
+  "title": "Stoicheia (place-guardian faeries)",
+  "heading": "Stoicheia",
+  "line": 4526,
+  "endLine": 4536,
+  "category": "beings",
+  "topic": "Stoicheia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Stoicheion (faerie spirit of place)",
+  "summary": "Overview of the Greek spirits of places and the kinds they take (koukouvaounes, basiliskoi, pergalioi, kalotyches), with the powers and wards typical of each.",
+  "quotes": [
+   "Like portunes, the basiliskoi usually have a Focus Power for Domestic Work."
+  ],
+  "related": [
+   "Realms of Power: Magic, page 106 (genii loci)",
+   "Realms of Power: Faerie, page 104"
+  ]
+ },
+ {
+  "title": "Character Guide: Stoicheion (faerie guardian template)",
+  "heading": "Character Guide: Stoicheion",
+  "line": 4538,
+  "endLine": 4563,
+  "category": "beings",
+  "topic": "Stoicheia",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Being type: Stoicheion",
+  "summary": "A faerie character template with its Virtue and Flaw budget and powers, including the Guardian of the Bounds ward power with its Might cost and the Extended Glamour vis yield.",
+  "quotes": [
+   "The power costs 1 Might point per 5 levels (or fraction) of the equivalent spell.",
+   "The area controlled by the faerie can produce a yearly harvest of (Might/10) pawns of Animal vis, which manifests as physical objects within the controlled region."
+  ],
+  "related": [
+   "Realms of Power: Faerie, page 104"
+  ]
+ },
+ {
+  "title": "Magic and the Church in Byzantine cities",
+  "heading": "Magic & The Church",
+  "line": 4635,
+  "endLine": 4639,
+  "category": "setting",
+  "topic": "Magic and mundane reaction",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Guidance on how Byzantine mobs and Church authorities react to visible magic, amulets and sorcery, and which Holy Magic traditions appear in the Tribunal.",
+  "quotes": [
+   "The Gentle Gift is an invaluable attribute in the urban areas of the Theban Tribunal."
+  ],
+  "related": [
+   "Realms of Power: The Divine, pages 38, 70, 140-142"
+  ]
+ },
+ {
+  "title": "Creating and venerating divine icons (eikons)",
+  "heading": "Creating and Venerating Divine Icons",
+  "line": 4641,
+  "endLine": 4661,
+  "category": "realms",
+  "topic": "Icons",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Holy Orders and Theology 3+",
+  "summary": "How a cleric paints an eikon with an Aesthetic Quality, how that quality becomes a bonus to saintly intercession, and the emergency veneration roll.",
+  "quotes": [
+   "Aesthetic Quality: Dexterity + Craft (Painting) + bonuses",
+   "The bonus is equal to the Aesthetic Quality divided by 5 (round up).",
+   "Emergency Veneration Roll: Presence + Concentration vs Ease Factor 15"
+  ],
+  "related": [
+   "Art & Academe, pages 117, 123-126",
+   "Realms of Power: The Divine, pages 41, 87"
+  ]
+ },
+ {
+  "title": "Holy Tradition: Hesychasts",
+  "heading": "Holy Tradition: Hesychasts",
+  "line": 4667,
+  "endLine": 4674,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Hesychasts (Holy Tradition)",
+  "summary": "Gives the favored Abilities of ascetic and monastic hesychasts for the Holy Tradition rules, and notes their proneness to Divine Gloom.",
+  "quotes": [
+   "Meditation, Purity, Transcendence, Understanding",
+   "Ceremony, Meditation, Transcendence, Understanding"
+  ],
+  "related": [
+   "Realms of Power: The Divine, page 63 (Divine Gloom)"
+  ]
+ },
+ {
+  "title": "Society of Cyprian and Justina",
+  "heading": "Society of Cyprian and Justina",
+  "line": 4680,
+  "endLine": 4686,
+  "category": "traditions",
+  "topic": "Holy traditions",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Holy Society of Cyprian and Justina",
+  "summary": "Gives the favored Abilities of this Holy Society of repentant magicians who serve the Divine.",
+  "quotes": [
+   "Favored Abilities:** Holy Magic, Invocation, Sense Holy/Unholy and Wonders"
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "The Relics of Constantinople (Faith Scores)",
+  "heading": "The Relics of Constantinople",
+  "line": 4688,
+  "endLine": 4716,
+  "category": "realms",
+  "topic": "Relics",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar on the great relics of Constantinople, giving each a Faith Score, powers and the guidance that relics should motivate characters rather than start in play.",
+  "quotes": [
+   "A fragment of the True Cross that is as large as a man's leg has a Faith Score of 10, giving it 10 Faith Points and a Divine Might of 100."
+  ],
+  "related": [
+   "Realms of Power: The Divine, page 35 (Powerful Relic)",
+   "ArM5, page 48 (relics)"
+  ]
+ },
+ {
+  "title": "Non-Divine icons and veneration versus worship",
+  "heading": "Non-Divine Icons",
+  "line": 4718,
+  "endLine": 4722,
+  "category": "realms",
+  "topic": "Icons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains false icons aligned with other Realms and how veneration differs from worship, and says to model such icons as supernatural creatures with Might and powers.",
+  "quotes": [
+   "They are therefore best represented as supernatural creatures with a Might score and powers."
+  ],
+  "related": []
+ },
+ {
+  "title": "Three Symbols of Divine Authority (imperial regalia)",
+  "heading": "Three Symbols of Divine Authority",
+  "line": 4724,
+  "endLine": 4744,
+  "category": "realms",
+  "topic": "Imperial regalia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The emperor's battle standard, crown and hagka icon, which together extend his Divine commanding aura, give Discipline and Morale bonuses to friendly soldiers and spread Magic Resistance.",
+  "quotes": [
+   "This effectively grants a +3 bonus to any Discipline and Morale tests friendly soldiers have to make.",
+   "By itself it confers a Magic Resistance of 10 to the bearer."
+  ],
+  "related": [
+   "Realms of Power: The Divine, pages 42-43"
+  ]
+ },
+ {
+  "title": "Byzantine Saints: invoking a saint and common powers",
+  "heading": "Byzantine Saints",
+  "line": 4746,
+  "endLine": 4775,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the Orthodox veneration of saints, the roll for invoking a saint's intercession, and a set of powers commonly used by Greek saints.",
+  "quotes": [
+   "Communication + Charm + modifier + simple die vs. 15 + simple die",
+   "The petitioner does not need to eat or sleep for a number of days equal to the saint's Divine Might"
+  ],
+  "related": [
+   "Realms of Power: The Divine, pages 87-88"
+  ]
+ },
+ {
+  "title": "A Mother's Curse",
+  "heading": "A Mother's Curse",
+  "line": 4777,
+  "endLine": 4783,
+  "category": "social",
+  "topic": "Curses",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: Mediterranean cultures",
+  "summary": "A storyguide tool letting a mother curse her child with an effect like the Lesser Malediction Flaw until he completes a task or receives divine intervention.",
+  "quotes": [
+   "he suffers a \u20133 penalty to all rolls involving that activity"
+  ],
+  "related": [
+   "Lesser Malediction (Minor Supernatural Flaw)"
+  ]
+ },
+ {
+  "title": "The Sibyls (magic humans bound to their auras)",
+  "heading": "The Sibyls",
+  "line": 4117,
+  "endLine": 4121,
+  "category": "beings",
+  "topic": "Magic characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being type: Sibyl (Magic Human)",
+  "summary": "Overview of the sibyls as ancient immortal magic humans who each dwell in a powerful Magic aura or regio and risk losing their powers through Acclimation if they leave it.",
+  "quotes": [
+   "Each sibyl rests in a powerful Magic aura or regio, and cannot leave without risking losing her prophetic powers"
+  ],
+  "related": [
+   "Realms of Power: Magic, page 52 (Acclimation)"
+  ]
+ },
+ {
+  "title": "Greek Saints (saint categories and Divine Might)",
+  "heading": "Greek Saints",
+  "line": 4803,
+  "endLine": 4827,
+  "category": "realms",
+  "topic": "Saints",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar recalling the three categories of saint and their Divine Might, with lists of notable Greater, Area and Local saints of the Greek Church.",
+  "quotes": [
+   "Greater saints have a Divine Might of 75, area saints a Divine Might of 50, and local saints a Divine Might of 25."
+  ],
+  "related": [
+   "Realms of Power: The Divine (saints)"
+  ]
+ },
+ {
+  "title": "Infernal Tradition: Stringla",
+  "heading": "Infernal Tradition: Stringla",
+  "line": 4961,
+  "endLine": 4979,
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Stringla (Infernal witches)",
+  "summary": "Rules for the Byzantine stringla witch tradition: favored Abilities, common Virtues and Flaws, the Infernal Blessing rite and three extra powers granted by a maleficium cast by the coven leader.",
+  "quotes": [
+   "Ceremony, Debauchery, Effusion, Phantasm",
+   "This maleficium is level 25 (base 4, +1 Touch, +4 Forsaken), granting the stringla a supernatural ability."
+  ],
+  "related": [
+   "Realms of Power: The Infernal, pages 85-86, 129 (Strigae)",
+   "Hedge Magic, pages 103-119 (Nightwalkers)"
+  ]
+ },
+ {
+  "title": "Infernal Tradition: The Paulicians",
+  "heading": "Infernal Tradition: The Paulicians",
+  "line": 4980,
+  "endLine": 4986,
+  "category": "traditions",
+  "topic": "Infernal traditions",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Tradition: Paulicians (Infernal heretical sect)",
+  "summary": "Describes the Paulician heretical sect secretly serving the Infernal and lists its favored Abilities.",
+  "quotes": [
+   "Ceremony, Debauchery, Diablerie, Malediction"
+  ],
+  "related": [
+   "Realms of Power: The Infernal"
+  ]
+ }
+]

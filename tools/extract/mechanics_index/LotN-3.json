@@ -1,0 +1,466 @@
+[
+ {
+  "title": "Debterah (Ethiopian holy societas)",
+  "heading": "The Voice of Saint Yared",
+  "line": 5074,
+  "endLine": 5090,
+  "category": "traditions",
+  "topic": "Debterah",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Holy Societas: Debterah (Ethiopian church lay cantors and amulet-makers)",
+  "summary": "Sidebar on Saint Yared and the debterah, an Ethiopian Christian holy societas, giving its favored Abilities and a stand-in Virtue and Ability package for using debterah without Realms of Power: the Divine. Also notes the Yared chant books as a summa on Organization Lore: Ethiopian Church.",
+  "quotes": [
+   "Adjuration, Blessing, Craft Amulets, Invocation.",
+   "These books collectively act as a summa of Organization Lore: Ethiopian Church, Level 5, Quality 8."
+  ],
+  "related": [
+   "Realms of Power: the Divine Revised p.34, 37, 48-50, 137"
+  ]
+ },
+ {
+  "title": "Roha pilgrimage story framework",
+  "heading": "A Framework for Pilgrimage Stories: Roha as Jerusalem",
+  "line": 5222,
+  "endLine": 5226,
+  "category": "setting",
+  "topic": "Pilgrimage stories",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Setting: pilgrimage to Roha, Ethiopia",
+  "summary": "Describes how a season spent navigating and praying at the churches of Roha can count as a pilgrimage story, tying into the pilgrimage rules in The Church. Lists the Holy Land replicas found there.",
+  "quotes": [
+   "an individual can complete a pilgrimage story as described in *The Church*, pages 16\u201319."
+  ],
+  "related": [
+   "The Church pp.16-19"
+  ]
+ },
+ {
+  "title": "Mythic Aithiopians as characters",
+  "heading": "Mythic Aithiopians as Characters",
+  "line": 5328,
+  "endLine": 5332,
+  "category": "creation",
+  "topic": "Mythic Aithiopian characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character option: Mythic Aithiopian tribesman",
+  "summary": "Explains how to build a Mythic Aithiopian character: they carry an Outsider status in Nubia and gain tribe-specific intrinsic Virtues and Flaws on top of the normal allotment, or may be built as Magic Humans instead.",
+  "quotes": [
+   "Aithiopes have intrinsic Virtues and Flaws, which are in addition to the normal allotment for characters.",
+   "They automatically receive the effects of the Outsider Social Status Flaw within Nubia",
+   "Magic Humans are by default immune to aging and deprivation"
+  ],
+  "related": [
+   "Realms of Power: Magic p.32"
+  ]
+ },
+ {
+  "title": "Rhizophagus characters",
+  "heading": "Rhizophagus Characters",
+  "line": 5340,
+  "endLine": 5344,
+  "category": "creation",
+  "topic": "Mythic Aithiopian characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character option: Rhizophagus (Mythic Aithiopian tribe)",
+  "summary": "Character notes for the root-eating Rhizophagi, expert herbalists and poisoners, with their intrinsic Virtue and Flaw and a short explanation of the Herbalism Ability.",
+  "quotes": [
+   "the Herbalism Virtue grants access to a special Ability called Herbalism"
+  ],
+  "related": [
+   "Art & Academe p.55",
+   "Hedge Magic Revised Edition p.81",
+   "Houses of Hermes: Societates p.125"
+  ]
+ },
+ {
+  "title": "Icthyophagus characters",
+  "heading": "Icthyophagus Characters",
+  "line": 5356,
+  "endLine": 5360,
+  "category": "creation",
+  "topic": "Mythic Aithiopian characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character option: Icthyophagus (Mythic Aithiopian tribe)",
+  "summary": "Character notes for the coastal fish-eating Icthyophagi, with their intrinsic Virtue and Flaw and the properties of their preserved fish bricks as travel food.",
+  "quotes": [
+   "A month's worth of this food weighs just one point of Load."
+  ]
+ },
+ {
+  "title": "Hylophagus characters",
+  "heading": "Hylophagus Characters",
+  "line": 5366,
+  "endLine": 5372,
+  "category": "creation",
+  "topic": "Mythic Aithiopian characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character option: Hylophagus (Mythic Aithiopian tribe)",
+  "summary": "Describes the tree-dwelling Hylophagi as intelligent monkeys built from baboon statistics plus extra Virtues and Flaws, and suggests using their village-trees as covenant sites and the Hylophagi as covenfolk.",
+  "quotes": [
+   "Use the statistics for baboons in the Bestiary, but add the Perfect Balance Virtue and the Primitive Equipment Flaw",
+   "A village tree has the approximate interior dimensions of a *Mystic Tower*."
+  ],
+  "related": [
+   "Grogs p.83",
+   "ArM5 p.139 Free the Striding Tree"
+  ]
+ },
+ {
+  "title": "Cynegus characters",
+  "heading": "Cynegus Characters",
+  "line": 5384,
+  "endLine": 5388,
+  "category": "creation",
+  "topic": "Mythic Aithiopian characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character option: Cynegus (Mythic Aithiopian tribe)",
+  "summary": "Character notes for the hunters of the Cynegi, who use kombe-laced arrows; gives the Stamina roll against the poison, the Profession: Prepare Kombe Ability and its application roll, and the tribe's intrinsic Virtue and Flaw.",
+  "quotes": [
+   "must make a Stamina roll against an Ease Factor of 12",
+   "characters should roll Dexterity + Profession: Prepare Komb\u00e8 against an Ease Factor of (usually) 6"
+  ],
+  "related": [
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Kombe arrow poison",
+  "heading": "Cynegus Characters",
+  "line": 5384,
+  "endLine": 5388,
+  "category": "hazards",
+  "topic": "Poisons and venoms",
+  "audience": [
+   "storyguide",
+   "companions",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Cynegi hunters or trade with the Rhizophagi",
+  "summary": "Rules for kombe, a black paralytic arrow venom: the victim's Stamina roll, the onset timings, suffocation via Deprivation rolls, and the poisoner's own application roll with its botch risk.",
+  "quotes": [
+   "Anyone struck with an arrow laced with *komb\u00e8* must make a Stamina roll against an Ease Factor of 12, or be rendered immobile within five minutes."
+  ],
+  "related": [
+   "ArM5 p.180"
+  ]
+ },
+ {
+  "title": "Struthophagus characters",
+  "heading": "Struthophagus Characters",
+  "line": 5394,
+  "endLine": 5398,
+  "category": "creation",
+  "topic": "Mythic Aithiopian characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character option: Struthophagus (Mythic Aithiopian tribe)",
+  "summary": "Character notes for the ostrich-riding Struthophagi, valued as light cavalry, with their intrinsic Virtue and Flaw.",
+  "quotes": [
+   "Puissant Ride; Small Frame"
+  ]
+ },
+ {
+  "title": "Acridophagus characters",
+  "heading": "Acridophagus Characters",
+  "line": 5404,
+  "endLine": 5408,
+  "category": "creation",
+  "topic": "Mythic Aithiopian characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character option: Acridophagus (Mythic Aithiopian tribe)",
+  "summary": "Character notes for the locust-eating Acridophagi, whose intrinsic Flaw is a curse that makes Aging rolls start early when the louse infestation begins.",
+  "quotes": [
+   "The Acridophagus curse causes them to start making Aging rolls at 15"
+  ]
+ },
+ {
+  "title": "Cynamolgus characters",
+  "heading": "Cynamolgus Characters",
+  "line": 5422,
+  "endLine": 5426,
+  "category": "creation",
+  "topic": "Mythic Aithiopian characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character option: Cynamolgus (Mythic Aithiopian tribe)",
+  "summary": "Character notes for the dog-pack herders of the Cynamolgi, who may use Animal Handling in place of Leadership when commanding their dogs, with their intrinsic Virtue and Flaw.",
+  "quotes": [
+   "a Cynamolgus can act as the leader of a trained group of dogs, using his Animal Handling in place of Leadership"
+  ]
+ },
+ {
+  "title": "Megabarus characters",
+  "heading": "Megabarus Characters",
+  "line": 5442,
+  "endLine": 5446,
+  "category": "creation",
+  "topic": "Mythic Aithiopian characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character option: Megabarus (Mythic Aithiopian tribe)",
+  "summary": "Character notes for the Megabari herders, giving separate intrinsic Virtues and Flaws for men and for women.",
+  "quotes": [
+   "Puissant Bows; Prohibition (harming women)"
+  ]
+ },
+ {
+  "title": "Tribunal boundaries and joining a Tribunal",
+  "heading": "To Redraw the Map",
+  "line": 5524,
+  "endLine": 5528,
+  "category": "order",
+  "topic": "Tribunals and the Grand Tribunal",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: expanding or redrawing Tribunal boundaries in the Nile region",
+  "summary": "Explains what a new covenant needs in order to join an existing Tribunal and how inter-Tribunal border disputes are settled at Grand Tribunal.",
+  "quotes": [
+   "Inter-tribunal disputes, such as border definitions, must be settled at Grand Tribunal (**ArM5**, page 14)."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.49",
+   "ArM5 p.14"
+  ]
+ },
+ {
+  "title": "Founding a new Tribunal",
+  "heading": "To Build the Nile Tribunal",
+  "line": 5530,
+  "endLine": 5538,
+  "category": "order",
+  "topic": "Tribunals and the Grand Tribunal",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: creating a Nile Tribunal",
+  "summary": "Sets out the minimum membership needed to found a new Tribunal and the steps and obstacles to getting it ratified at a Grand Tribunal.",
+  "quotes": [
+   "A Tribunal must have at least twelve magi from at least four covenants, and at least one Quaesitor to preside at Tribunal meetings."
+  ]
+ },
+ {
+  "title": "Siwa Oasis Boons and Hooks",
+  "heading": "Boons & Hooks",
+  "line": 5554,
+  "endLine": 5586,
+  "category": "covenant",
+  "topic": "Covenant Boons and Hooks",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant site: Siwa Oasis",
+  "summary": "The Boons and Hooks that define Siwa Oasis as a covenant site, with notes on extra Hooks such as Castle, Natural Disaster and Site Hook: Regio that a troupe could add.",
+  "quotes": [
+   "With seven Boons and seven Hooks, there is room for Siwa to be customized by magi living there by adding a balance of Boons and Hooks."
+  ],
+  "related": [
+   "Covenants"
+  ]
+ },
+ {
+  "title": "New Hook: Multiple Sites",
+  "heading": "New Hook: Multiple Sites",
+  "line": 5634,
+  "endLine": 5640,
+  "category": "covenant",
+  "topic": "Covenant Boons and Hooks",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant with important facilities at several separate sites",
+  "summary": "A new Resources Hook for covenants spread over several sites, covering the trade-offs of protecting each site with the Aegis of the Hearth and the threshold for the major version.",
+  "quotes": [
+   "For the major form of this Hook, there are five or more sites requiring protection."
+  ],
+  "related": [
+   "Covenants"
+  ]
+ },
+ {
+  "title": "New Hook: Fragile Vis Source",
+  "heading": "New Hook: Fragile Vis Source",
+  "line": 5870,
+  "endLine": 5878,
+  "category": "covenant",
+  "topic": "Covenant Boons and Hooks",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant with a vis source of four or more pawns that can be damaged",
+  "summary": "A new Resources Hook describing vis sources that stop producing if a specific feature is damaged, resuming if the damage is repaired, with the threshold and counting rule for the major version.",
+  "quotes": [
+   "For the major form of this Hook, there are three or more vis sites which are fragile."
+  ],
+  "related": [
+   "Covenants"
+  ]
+ },
+ {
+  "title": "Ikhmindi Boons and Hooks",
+  "heading": "Boons & Hooks",
+  "line": 5914,
+  "endLine": 6038,
+  "category": "covenant",
+  "topic": "Covenant Boons and Hooks",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant site: Ikhmindi",
+  "summary": "The Boons and Hooks that define Ikhmindi as a covenant site, including a well that benefits the Aging rolls of those who drink from it, plus suggestions for further Hooks and Boons a troupe could add.",
+  "quotes": [
+   "There are six Boons and eight Hooks selected for Ikhmindi, allowing for some customization by magi establishing a covenant."
+  ],
+  "related": [
+   "Covenants"
+  ]
+ },
+ {
+  "title": "Adulis Boons and Hooks",
+  "heading": "Boons & Hooks",
+  "line": 6264,
+  "endLine": 6336,
+  "category": "covenant",
+  "topic": "Covenant Boons and Hooks",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant site: Adulis",
+  "summary": "The Boons and Hooks that define the Adulis covenant site, including a Regio Hook, a healthy-feature bonus to Aging rolls, and suggestions for further Hooks such as Uncontrolled Portal and Monster.",
+  "quotes": [
+   "There are four Boons and nine Hooks based on the site, allowing for some customization by magi establishing a covenant."
+  ],
+  "related": [
+   "Covenants"
+  ]
+ },
+ {
+  "title": "New Hooks and Boons: Linked Vis Site and Unwitting Defenders",
+  "heading": "New Hooks and Boons",
+  "line": 6338,
+  "endLine": 6352,
+  "category": "covenant",
+  "topic": "Covenant Boons and Hooks",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant creation (optional new Hook and Boon)",
+  "summary": "Rules for two new covenant options: the Linked Vis Site Hook, where linked vis sources fail in stages if an associated condition is not met, and the Unwitting Defenders Boon, where an unaware outside force protects the covenant until the covenant reveals itself.",
+  "quotes": [
+   "Their rates are halved in the first year, then quartered in the second, then stop altogether.",
+   "The vis sites thus linked must be purchased separately during covenant creation."
+  ],
+  "related": [
+   "Covenants"
+  ]
+ },
+ {
+  "title": "Adulis lighthouse laboratories",
+  "heading": "Laboratories",
+  "line": 6390,
+  "endLine": 6392,
+  "category": "lab",
+  "topic": "Laboratory site rules",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant site: Adulis lighthouse",
+  "summary": "Describes using the old Adulis lighthouse as four sanctums and laboratories, and the distraction penalty that applies to laboratory activity if magic is used to keep the lighthouse lit.",
+  "quotes": [
+   "any laboratory activity suffers a \u20135 penalty, unless the magus is Blind"
+  ]
+ }
+]

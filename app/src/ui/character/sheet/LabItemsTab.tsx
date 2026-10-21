@@ -9,6 +9,7 @@ import ItemsEditor, { characterTalismanCapacity } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
 import { uid } from '../../../util/id';
 import { labContextOf } from '../../../engine/lab';
+import { researchRiskLimit, rollExperiment } from '../../../engine/experiment';
 
 const newFamiliar = (): Familiar => ({
   name: '', species: '', might: 5, size: -2, realm: 'Magic', bindingTechnique: 'Re', bindingForm: 'An', bindingLabTotal: 0, golden: 0, silver: 0, bronze: 0, pawnsSpent: 0, powers: [],
@@ -90,6 +91,8 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
           Talisman capacity: up to {characterTalismanCapacity(d)} pawns of Vim vis (highest Technique + highest Form). Instilling effects into your own talisman gives +5 to the Lab Total.
         </p>
       )}
+
+      {magus && <Experimentation ed={ed} magicTheory={mt} />}
 
       <Card title="Longevity Ritual">
         <div className="row">
@@ -249,3 +252,58 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
     </div>
   );
 }
+
+/** Arcane Experimentation (DE): a season's Lab Total bonus and its roll on the Extraordinary Results Chart. */
+function Experimentation({ ed, magicTheory }: { ed: CharEditor; magicTheory: number }) {
+  const { c, update, ctx } = ed;
+  const [risk, setRisk] = useState(0);
+  const [aura, setAura] = useState(ctx.aura.strength);
+  const [research, setResearch] = useState(false);
+  const [enchantment, setEnchantment] = useState(false);
+  const [log, setLog] = useState<string[][]>([]);
+  if (!c) return null;
+  const maxRisk = research ? researchRiskLimit(magicTheory) : 3;
+  const roll = () => {
+    const r = rollExperiment({ risk: Math.min(risk, maxRisk), auraStrength: aura, originalResearch: research, enchantment });
+    const lines = [...r.lines];
+    if (r.warpingPoints) {
+      update((x) => void (x.warpingPoints += r.warpingPoints));
+      lines.push(`${r.warpingPoints} Warping Point${r.warpingPoints > 1 ? 's' : ''} added to this character.${r.warpingPoints >= 2 ? " Roll for Wizard's Twilight on the Advancement tab." : ''}`);
+    }
+    setLog((l) => [lines, ...l].slice(0, 12));
+  };
+  return (
+    <Card title="Experimentation">
+      <p className="small muted" style={{ marginTop: 0 }}>
+        Experimenting adds a simple die (plus the risk modifier) to the season&apos;s Lab Total but rolls on the Extraordinary Results Chart, with a botch die for each point of risk and
+        of the laboratory&apos;s aura. You cannot experiment while working from a Laboratory Text. In original research for a Breakthrough, the risk is limited by Magic Theory and is
+        used to move the chart roll onto a Discovery instead of adding to the Lab Total (DE, Arcane Experimentation and Arcane Discovery).
+      </p>
+      <div className="row">
+        <Field label="Risk modifier" hint={research ? `Up to +${maxRisk} with Magic Theory ${magicTheory}` : '+1 to +3: more Lab Total, more risk'}>
+          <Stepper value={Math.min(risk, maxRisk)} min={0} max={maxRisk} width={36} onChange={setRisk} />
+        </Field>
+        <Field label="Aura strength" hint="Any realm: each point is a botch die">
+          <Stepper value={aura} min={0} max={10} width={36} onChange={setAura} />
+        </Field>
+        <label className="inline small">
+          <input type="checkbox" checked={research} onChange={(e) => setResearch(e.target.checked)} /> Original research (Breakthrough)
+        </label>
+        <label className="inline small">
+          <input type="checkbox" checked={enchantment} onChange={(e) => setEnchantment(e.target.checked)} /> an enchanted item or familiar
+        </label>
+        <button onClick={roll}>Roll a season</button>
+      </div>
+      {log.map((lines, i) => (
+        <div key={log.length - i} className="list-row small" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+          {lines.map((l, k) => (
+            <div key={k} style={{ whiteSpace: 'pre-wrap' }}>
+              {l}
+            </div>
+          ))}
+        </div>
+      ))}
+    </Card>
+  );
+}
+

@@ -22,6 +22,7 @@ import sys
 from collections import defaultdict
 
 from books import BOOK_BY_ID, ROOT, book_path
+from mechanics_topics import broad_topic
 
 INDEX_DIR = os.path.join(os.path.dirname(__file__), 'mechanics_index')
 # a small index (areas, topics, counts) and one file per area, which the app loads when it is opened
@@ -206,6 +207,8 @@ def main():
                     quotes.append(clean_quote(q))
                 else:
                     bad_quotes += 1
+                    if report:
+                        print(f"quote not in {chunk} {e.get('title')!r}: {q[:80]!r}")
             # notes about the book file itself ("follows line 782", "has no heading of its own") are not rules
             summary = ' '.join(x for x in re.split(r'(?<=[.!?])\s+', norm_ws(e.get('summary') or '')) if not META.search(x))
             missing = [n for n in re.findall(r'(?<![\w.])[+−-]?\d+(?:\.\d+)?', summary) if n.lstrip('+−-') not in text]
@@ -225,7 +228,9 @@ def main():
                 **({'quotes': quotes} if quotes else {}),
                 **({'related': [norm_ws(r) for r in e['related'] if r]} if e.get('related') else {}),
                 '_area': CATEGORY_AREA.get(e.get('category'), 'setting'),
-                '_topic': canonical_topic(e.get('topic')),
+                # the agent's own topic picks the kind of character; the broader one groups the mechanic
+                '_raw_topic': canonical_topic(e.get('topic')),
+                '_topic': canonical_topic(broad_topic(canonical_topic(e.get('topic')))),
             })
 
     def sort_entries(es):
@@ -254,13 +259,23 @@ def main():
         out.sort(key=lambda g: (min(x['prevalence'] for x in g['entries']), -len(g['entries']), g['title']))
         return out
 
+    # a topic with a mechanic or two in one area and many in another is read in that other area
+    per_area = defaultdict(lambda: defaultdict(int))
+    for x in entries:
+        per_area[x['_topic']][x['_area']] += 1
+    for x in entries:
+        counts = per_area[x['_topic']]
+        home = max(counts, key=counts.get)
+        if x['_area'] != home and x['_area'] != 'creation' and home != 'creation' and counts[x['_area']] <= 2 and counts[home] >= 3:
+            x['_area'] = home
+
     areas = []
     for aid, title, icon, intro in AREAS:
         mine = [x for x in entries if x['_area'] == aid]
         if aid == 'creation':
             # every rule for making a character, from any area, by the kind of character it makes
             def kind(x):
-                hay = f"{x['_topic']} {x['title']} {x.get('requires', '')}".lower()
+                hay = f"{x['_raw_topic']} {x['title']} {x.get('requires', '')}".lower()
                 for name, pat in CREATION_KINDS:
                     if re.search(pat, hay):
                         return name

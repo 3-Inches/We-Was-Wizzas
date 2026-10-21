@@ -1,0 +1,893 @@
+[
+ {
+  "title": "Regiones at Tablinum (access via Arcane Connections)",
+  "heading": "Exhibition Halls",
+  "line": 2806,
+  "endLine": 2815,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Tablinum",
+  "summary": "Explains that Tablinum's many superimposed regiones cannot be entered by sensing or following a path, but only by targeting Fixed Arcane Connections held by the curator with effects such as Leap of Homecoming.",
+  "quotes": [
+   "The Arcane Connections are used to target *Leap of Homecoming* and similar effects to allow travel to the different regiones."
+  ],
+  "related": [
+   "ArM5 p.189 Regiones"
+  ]
+ },
+ {
+  "title": "Leap of Homecoming and Regiones",
+  "heading": "Leap of Homecoming and Regiones",
+  "line": 2816,
+  "endLine": 2820,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar on how Rego Corpus teleportation effects interact with regio boundaries: usually they can cross, but some regiones cannot be entered or left this way and this cannot be reliably predicted.",
+  "quotes": [
+   "*some* regiones cannot be entered or left via Rego Corpus effects"
+  ],
+  "related": []
+ },
+ {
+  "title": "Studying from Exhibits (realia)",
+  "heading": "Studying from Exhibits",
+  "line": 2830,
+  "endLine": 2837,
+  "category": "mysteries",
+  "topic": "Realia",
+  "audience": [
+   "magi",
+   "companions"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Restates the realia study rules: a realia is a study source that can be used a number of times equal to its Source Quality, and Source Quality drops when several characters study from the same exhibit at once.",
+  "quotes": [
+   "The number of times that a character may study from a particular realia is equal to its Source Quality.",
+   "up to four characters studying reduce the Source Quality by 2; up to eight characters reduce the Source Quality by 3"
+  ],
+  "related": [
+   "Covenants p.102 Realia"
+  ]
+ },
+ {
+  "title": "Exhibit Source Quality",
+  "heading": "Exhibit Source Quality",
+  "line": 2838,
+  "endLine": 2844,
+  "category": "lab",
+  "topic": "Realia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar giving guideline Source Quality bands for exhibits depending on how many items they hold.",
+  "quotes": [
+   "**Unparalleled:** Source Quality 11+",
+   "**Comprehensive:** Source Quality 8-10",
+   "**Cursory:** Source Quality 5-7"
+  ],
+  "related": [
+   "Covenants p.102 Realia"
+  ]
+ },
+ {
+  "title": "Competition for Exhibit Study Access",
+  "heading": "The Open Exhibits",
+  "line": 2970,
+  "endLine": 2975,
+  "category": "seasons",
+  "topic": "Realia",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Access rules for Tablinum's open exhibits and a stress die roll to see how many other characters also want to study from the same exhibit in a season.",
+  "quotes": [
+   "roll a stress die against an Ease Factor of 3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Art Exhibits (realia and local auras)",
+  "heading": "The Art Exhibits",
+  "line": 2991,
+  "endLine": 2998,
+  "category": "realms",
+  "topic": "Realia",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Tablinum",
+  "summary": "Each Art exhibit is a realia for its Art and lets characters with a Study Requirement or Study Bonus study freely up to a set Art Score; each sits in its own regio with a Magic aura.",
+  "quotes": [
+   "up until they reach an Art Score of 15",
+   "The Art Exhibit regiones all have a Magic aura of 5."
+  ],
+  "related": []
+ },
+ {
+  "title": "Arcanum Exhibit (four separate realia)",
+  "heading": "The Arcanum Exhibit",
+  "line": 2999,
+  "endLine": 3006,
+  "category": "realms",
+  "topic": "Realia",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Tablinum",
+  "summary": "A regio holding several independent realia (Finesse, Magic Theory, Parma Magica and Penetration) so studying one does not interfere with others studying another.",
+  "quotes": [
+   "The Arcanum Exhibit has a Magic aura of 6."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hiring Scribes at the Scriptorium",
+  "heading": "The Scriptorium",
+  "line": 3007,
+  "endLine": 3014,
+  "category": "covenant",
+  "topic": "Hiring scribes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Tablinum",
+  "summary": "Visiting magi can hire some of the permanent scribes to copy books, paying vis and materials; Tremere may requisition scribes free. Gives the scribes' Ability scores.",
+  "quotes": [
+   "It costs 2 pawns of vis to hire a scribe for a season",
+   "up to two scribes can be hired by visiting magi to copy books"
+  ],
+  "related": []
+ },
+ {
+  "title": "Copying Lab Texts at the Spell Hall",
+  "heading": "The Spell Hall",
+  "line": 3015,
+  "endLine": 3025,
+  "category": "lab",
+  "topic": "Lab texts",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Tablinum",
+  "summary": "Tremere copy spells freely from the archive; other magi must donate a Lab Text or vis. Texts cannot be removed and cannot be used to invent spells directly.",
+  "quotes": [
+   "Generally, donating a Lab Text allows the character to copy a number of other texts equal to the magnitude of the donated spell.",
+   "Alternatively, a magus may donate a number of pawns of vis equal to the total magnitude of the Lab Texts he wants to copy."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Chronicle (encyclopedia and fact lookup)",
+  "heading": "The Chronicle",
+  "line": 3027,
+  "endLine": 3038,
+  "category": "order",
+  "topic": "Research and lookup",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Tablinum",
+  "summary": "Treats the Chronicle volumes as tractatus in Order of Hermes Lore and Code of Hermes and gives a roll to look up a fact, with a bonus for each block of years of records accessed.",
+  "quotes": [
+   "Intelligence + Order of Hermes Lore (or Code of Hermes) + stress die roll against an Ease Factor",
+   "every complete 50 years of *The Chronicle* to which he has access"
+  ],
+  "related": [
+   "Art and Academe p.26 Encyclopedia"
+  ]
+ },
+ {
+  "title": "The Chapel (Divine aura and relics)",
+  "heading": "The Chapel",
+  "line": 3039,
+  "endLine": 3046,
+  "category": "realms",
+  "topic": "Divine auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Tablinum",
+  "summary": "The Divine exhibit is a realia in Divine Lore, filled with holy relics, with a Divine aura that probably overrides any Magic aura underneath.",
+  "quotes": [
+   "The Chapel has a Divine aura of 6."
+  ],
+  "related": [
+   "ArM5 pp.188-189 Relics",
+   "Realms of Power: The Divine Revised Edition pp.43-46"
+  ]
+ },
+ {
+  "title": "The Mirrored Hall (Faerie Lore realia)",
+  "heading": "The Mirrored Hall",
+  "line": 3061,
+  "endLine": 3066,
+  "category": "realms",
+  "topic": "Realia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Restricted access at Tablinum",
+  "summary": "A restricted exhibit of mirrors each imprisoning a faerie, serving as a realia in Faerie Lore.",
+  "quotes": [
+   "The Mirrored Hall has a Magic aura of 6."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Dungeon (Infernal Lore realia and aura)",
+  "heading": "The Dungeon",
+  "line": 3067,
+  "endLine": 3073,
+  "category": "realms",
+  "topic": "Realia",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Restricted access at Tablinum",
+  "summary": "A restricted exhibit of infernal horrors that serves as a realia in Infernal Lore and has a modest Infernal aura.",
+  "quotes": [
+   "The Dungeon has an Infernal aura of 3."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Empty Halls (empty regiones)",
+  "heading": "The Empty Halls",
+  "line": 3084,
+  "endLine": 3086,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Tablinum",
+  "summary": "Describes the many vacant regio halls where characters can be imprisoned or marooned, and the typical Magic auras found there.",
+  "quotes": [
+   "Most of the Empty Halls have Magic auras of 3 or 4."
+  ],
+  "related": []
+ },
+ {
+  "title": "Studenica Monastery (Divine aura and saint's oil)",
+  "heading": "Studenica Monastery",
+  "line": 3192,
+  "endLine": 3198,
+  "category": "realms",
+  "topic": "Divine auras",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Studenica",
+  "summary": "A holy site with a very high Divine aura and a saint with substantial Divine Might whose daily flow of oil can bestow a saint's miracle on an anointed person.",
+  "quotes": [
+   "The Studenica is the most holy site in Serbia and has a Divine aura of 8.",
+   "With a Divine Might of 50"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.88 Saints' miracles"
+  ]
+ },
+ {
+  "title": "Old Histria (aura and vis sources)",
+  "heading": "Old Histria",
+  "line": 3302,
+  "endLine": 3311,
+  "category": "setting",
+  "topic": "Local auras and vis sources",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Old Histria",
+  "summary": "Describes the strong Magic aura of the old covenant, its mercury pool, and the truffle harvest that provide vis sources and affect research.",
+  "quotes": [
+   "The aura here is strong, a Magic aura of 7.",
+   "A pool of magical mercury provides bountiful Terram vis."
+  ],
+  "related": []
+ },
+ {
+  "title": "Unusual Vis (Strange Vis from roof tar)",
+  "heading": "Unusual Vis",
+  "line": 3312,
+  "endLine": 3316,
+  "category": "realms",
+  "topic": "Local auras and vis sources",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Transylvanian Tribunal",
+  "summary": "Sidebar on an unusual Creo vis source formed once a year in the roof tar of particular houses in villages inside the Dominion, whose collection area grows with the Tribunal's borders.",
+  "quotes": [
+   "becomes infused with a little Creo vis"
+  ],
+  "related": []
+ },
+ {
+  "title": "Pula (Faerie aura, Magic aura and amphorae vis)",
+  "heading": "Pula",
+  "line": 3318,
+  "endLine": 3326,
+  "category": "realms",
+  "topic": "Local auras and vis sources",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Pula",
+  "summary": "A town with a Faerie-aura amphitheater whose aura rises on special nights, a temple with a Magic aura, and hard-to-collect vis amphorae.",
+  "quotes": [
+   "retains a Faerie aura of 6, which rises to 8 on special nights",
+   "has a powerful Magic aura of 5"
+  ],
+  "related": []
+ },
+ {
+  "title": "Shrouded Bay on Cres (vis and auras)",
+  "heading": "Shrouded Bay on Cres",
+  "line": 3335,
+  "endLine": 3339,
+  "category": "setting",
+  "topic": "Local auras and vis sources",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Shrouded Bay",
+  "summary": "Lists the vis sources of the island (a blood well and storm-washed Rego vis) and the Magic auras of the villa and the island at large.",
+  "quotes": [
+   "The villa has a Magic aura of 6, but a Magic aura of 1 is found over much of the island.",
+   "There is a well of blood that provides a major Corpus vis source"
+  ],
+  "related": []
+ },
+ {
+  "title": "Mansiones",
+  "heading": "Mansiones",
+  "line": 3355,
+  "endLine": 3357,
+  "category": "order",
+  "topic": "Mercere House and Redcaps",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains what a mansio is: a Mercere-run rest stop spaced along the main roads between covenants, either secret or semi-public, and why it is not an oppidum.",
+  "quotes": [
+   "These are placed one day apart on the major roads between covenants.",
+   "Mansiones are not oppida, because they lack a cives as a resident."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mercere House in the Transylvanian Tribunal",
+  "heading": "Mercere House",
+  "line": 3359,
+  "endLine": 3369,
+  "category": "houses",
+  "topic": "Mercere House and Redcaps",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Mercere",
+  "summary": "Explains Mercere's special arrangement in this Tribunal: members do not vote unless Gifted, Redcaps are numerous and disputed, spouses may be styled Redcaps, and vampire-blooded children are recruited.",
+  "quotes": [
+   "House Mercere's members in the Tribunal do not vote unless they are Gifted",
+   "Formally speaking there are only fifteen Redcaps in all of Transylvania."
+  ],
+  "related": [
+   "Chapter 8 vampire-blooded Redcaps"
+  ]
+ },
+ {
+  "title": "Teutonic Knight Characters",
+  "heading": "Teutonic Knight Characters",
+  "line": 3599,
+  "endLine": 3625,
+  "category": "creation",
+  "topic": "Teutonic Order characters",
+  "audience": [
+   "companions",
+   "grogs",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Membership of the Teutonic Order",
+  "summary": "Character-creation guidance for Teutonic Order members (priests, knights, graymantles): typical Poor Flaw and relic Virtue choices, favored Abilities, and new Minor Social Status Virtues that set which Abilities may be taken at creation.",
+  "quotes": [
+   "Teutonic Knights very commonly carry relics (the Relic Virtue), often in the hilt of their swords.",
+   "so knowledge of Dominion Lore is highly prized"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.41"
+  ]
+ },
+ {
+  "title": "A More Holy Order (optional Teutonic Order variant)",
+  "heading": "A More Holy Order",
+  "line": 3639,
+  "endLine": 3644,
+  "category": "realms",
+  "topic": "Teutonic Order characters",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Saga option: holy Teutonic Order",
+  "summary": "Optional variant that makes the Teutonic Order truly holy, giving its conquered lands a Dominion aura with a particular temper and an inner circle with a Holy Tradition of Divine wonder-workers.",
+  "quotes": [
+   "the lands conquered by the knights carry a Dominion aura with a Brave temper",
+   "whose favored Methods and Powers are Invocation, Blessing, and Cursing"
+  ],
+  "related": [
+   "Realms of Power: The Divine p.39"
+  ]
+ },
+ {
+  "title": "New Blessing Guideline",
+  "heading": "New Blessing Guideline",
+  "line": 3645,
+  "endLine": 3647,
+  "category": "magic",
+  "topic": "Divine Blessing guidelines",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Divine Blessing (Holy Tradition)",
+  "summary": "A new Blessing guideline that extends the beneficial effects of a relic to a group of men, targeting the relic rather than the men.",
+  "quotes": [
+   "**Level 15:** Extend the beneficial effects of a relic over a standard Group of men."
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "The Scholomance Regio and Auras",
+  "heading": "Setting and Description",
+  "line": 3934,
+  "endLine": 3944,
+  "category": "realms",
+  "topic": "Regiones",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting the Scholomance",
+  "summary": "Describes the Scholomance tower, which sits inside a regio that opens during violent storms and can wander, with a Magic aura in both the valley and the regio and enchantments that garble speech and smear text.",
+  "quotes": [
+   "At such times the regio (which has a Magic aura of 5) lies open and anyone can walk in"
+  ],
+  "related": []
+ },
+ {
+  "title": "Scholomance Schooling (pupils and curriculum)",
+  "heading": "Culture and Traditions",
+  "line": 3950,
+  "endLine": 3962,
+  "category": "creation",
+  "topic": "Scholomance education",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Attended the Scholomance",
+  "summary": "Explains who is admitted to the Scholomance, what pupils are taught, what they must produce, and which background Virtues attendance can justify for companions, Redcaps and apprentices.",
+  "quotes": [
+   "It accepts ten pupils at a time, all at once, and they remain for a total of seven years.",
+   "Pupils are required to make copies of some of the texts that they study at the school, and to write at least one summa or three tractatus during their stay.",
+   "Attending the Scholomance is a good way to explain Virtues such as Educated, Arcane Lore, Privileged Upbringing or (for apprentices) Skilled Parens."
+  ],
+  "related": [
+   "Art and Academe ch.5"
+  ]
+ },
+ {
+  "title": "Teaching Duties at the Scholomance",
+  "heading": "The Masters of the School",
+  "line": 3964,
+  "endLine": 3967,
+  "category": "covenant",
+  "topic": "Scholomance education",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Member of the Scholomance oppidum",
+  "summary": "Sets the teaching obligations of the oppidum's magi, including the requirement that they extend their Parma Magica around pupils so The Gift does not affect them.",
+  "quotes": [
+   "Magi are expected to spend one season a year teaching",
+   "Magi are required to extend their Parma around those they teach to negate the social effects of The Gift."
+  ],
+  "related": []
+ },
+ {
+  "title": "Playing Gifted Children (Scholomance saga option)",
+  "heading": "Playing Gifted Children",
+  "line": 3976,
+  "endLine": 3980,
+  "category": "creation",
+  "topic": "Scholomance education",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Optional saga premise that starts the player characters as pupils in the same Scholomance class, giving a shared backstory for why a group of magi settle together and who their companions might be.",
+  "quotes": [
+   "Having them as members of the Scholomance's class gives an opportunity for characters of different backgrounds to meet and form friendships."
+  ],
+  "related": [
+   "Apprentices sourcebook"
+  ]
+ },
+ {
+  "title": "The Zenodochium (use, vis and Tribunal law)",
+  "heading": "The Zenodochium",
+  "line": 4044,
+  "endLine": 4047,
+  "category": "order",
+  "topic": "Zenodochia",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes what each safehouse hospital holds, what magi must replace after using it, and the Tribunal's legal treatment of stealing vis from or damaging a zenodochium.",
+  "quotes": [
+   "Stealing vis from a zenodochium is a Low Crime.",
+   "Damaging or destroying a zenodochium is a High Crime",
+   "up to two rooks of Corpus vis that can be used by magi in need"
+  ],
+  "related": []
+ },
+ {
+  "title": "Casting Tablets",
+  "heading": "Casting Tablets",
+  "line": 4048,
+  "endLine": 4052,
+  "category": "magic",
+  "topic": "Casting tablets",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar summarizing how any magus casts a spell from a casting tablet: a fixed Casting Total with no variation or vis boost, with Fatigue losses and Warping increasing the more the Spell Level exceeds the total.",
+  "quotes": [
+   "Generate a Casting Total as if the magus knew the formulaic spell or ritual, and remember to include Wound and Aura Penalties.",
+   "If the Spell Level is up to 10 levels greater than the Casting Total, the spell is still cast, but the magus loses two Fatigue levels."
+  ],
+  "related": [
+   "Covenants pp.89-90 Casting tablets"
+  ]
+ },
+ {
+  "title": "Locating a Zenodochium",
+  "heading": "Placement of Zenodochia",
+  "line": 4087,
+  "endLine": 4094,
+  "category": "hazards",
+  "topic": "Zenodochia",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Where zenodochia are found and how to roll to see whether a character knows of a nearby one, with different Ease Factors for residents and visitors and adjustments for Tremere and for rarity.",
+  "quotes": [
+   "make an Intelligence + Order of Hermes Lore roll",
+   "In either case, Tremere characters have a +3 bonus to the roll.",
+   "Increase the Ease Factors by 3 if zenodochia are rare in your saga."
+  ],
+  "related": []
+ },
+ {
+  "title": "Minor Covenant Hook: Zenodochium",
+  "heading": "Minor Covenant Hook: Zenodochium",
+  "line": 4096,
+  "endLine": 4100,
+  "category": "covenant",
+  "topic": "Zenodochia",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Covenant near a zenodochium",
+  "summary": "A covenant creation hook placing a zenodochium within a day's travel, with the covenant's duty to replace what it uses and the consequences of damage or visiting injured magi.",
+  "quotes": [
+   "The covenant may freely make use of the zenodochium, but must replace any vis or other items that are used or removed."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Curantis",
+  "heading": "The Curantis",
+  "line": 4102,
+  "endLine": 4112,
+  "category": "order",
+  "topic": "Zenodochia",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tribunal office: Curantis",
+  "summary": "Describes the Tribunal officer elected to inspect and repair zenodochia, his legal powers, vis salary, term limits and his Notary.",
+  "quotes": [
+   "The Curantis spends about a season each year traveling the zenodochia network.",
+   "A character may not serve two successive terms as Curantis."
+  ],
+  "related": []
+ },
+ {
+  "title": "Zenodochium Items and Warping",
+  "heading": "Zenodochium Items",
+  "line": 4114,
+  "endLine": 4120,
+  "category": "hazards",
+  "topic": "Zenodochia",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that the high-power constant-effect items in a zenodochium give Warping to every human who rests there, and how long recovery from each wound severity takes.",
+  "quotes": [
+   "any human character who remains within a zenodochium for a season accumulates 6 Warping Points"
+  ],
+  "related": []
+ },
+ {
+  "title": "Kezdö Válasz Forts (relocation)",
+  "heading": "Setting and Description",
+  "line": 4231,
+  "endLine": 4239,
+  "category": "covenant",
+  "topic": "Kezdö Válasz",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Member of Kezdö Válasz",
+  "summary": "Describes the oppidum's forts, their staffing, the periodic relocation cycle, and the time and casting tablets used to establish or destroy a fort and move laboratories.",
+  "quotes": [
+   "establishing the fort can take one to two seasons",
+   "Currently there are four active forts in the Tribunal, each home to two magi."
+  ],
+  "related": []
+ },
+ {
+  "title": "Kezdö Válasz Obligations and Methods",
+  "heading": "Culture and Tradition",
+  "line": 4261,
+  "endLine": 4269,
+  "category": "order",
+  "topic": "Kezdö Válasz",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Member of Kezdö Válasz",
+  "summary": "Explains the members' pledge to drop everything and respond to threats, their signalling charms with enough Penetration to pass Parma Magica, their rapid-travel methods, and the annual meeting where vexillations are announced.",
+  "quotes": [
+   "Kezdö Válasz has approximately 55 grogs in total.",
+   "each is constructed with enough Penetration to pass through the magus' Parma Magica"
+  ],
+  "related": []
+ },
+ {
+  "title": "Transylvanian Dragons: Realms, Detection and Might",
+  "heading": "Dragons of the Tribunal",
+  "line": 4345,
+  "endLine": 4358,
+  "category": "beings",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dragon encounters",
+  "summary": "Explains that local dragons belong to the Infernal or Magic realm, how realm-specific Intellego Vim spells tell them apart, and the Might ranges used for weak, typical, powerful and legendary dragons.",
+  "quotes": [
+   "Intellego Vim spells will indicate which realm a creature is associated with, although each Intellego Vim spell must be realm-specific.",
+   "Weak dragons have Infernal or Magic Might Scores between 15 and 30, typical dragons between 30 and 40, and the most powerful dragons have Might scores between 40 and 50."
+  ],
+  "related": [
+   "Realms of Power: Magic p.74 Dragons"
+  ]
+ },
+ {
+  "title": "Infernal Dragons (aždaje)",
+  "heading": "Infernal Dragons",
+  "line": 4359,
+  "endLine": 4368,
+  "category": "beings",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Dragon encounters",
+  "summary": "Describes aždaje as intelligent Infernal beasts rather than demons, their dominance hierarchy, their ability to pose as Magical dragons if they resist Intellego Vim, and their lairs in corrupted Infernal auras.",
+  "quotes": [
+   "Unlike other Infernal beasts, aždaje are intelligent instead of cunning."
+  ],
+  "related": [
+   "Realms of Power: The Infernal p.15 Infernal auras"
+  ]
+ },
+ {
+  "title": "Building a Corrupted Dragon",
+  "heading": "Upokorituma, an Aždaja",
+  "line": 4369,
+  "endLine": 4371,
+  "category": "beings",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Dragon encounters",
+  "summary": "Explains how to create game statistics for a corrupted dragon, either from Infernal and beast Virtues and Flaws or by adding Infernal Virtues and Flaws to a Magic dragon, which then uses Infernal Might.",
+  "quotes": [
+   "In most cases, a corrupted beast is a tainted version of a mundane beast, and game statistics are created by adding Infernal Virtues and Flaws to the mundane beast's existing statistics."
+  ],
+  "related": [
+   "Realms of Power: The Infernal pp.77-79",
+   "Houses of Hermes: Mystery Cults pp.38-43",
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Multiple Attacks by Multi-Headed Dragons",
+  "heading": "Danaslepih, a Zmaj",
+  "line": 4423,
+  "endLine": 4447,
+  "category": "combat",
+  "topic": "Dragons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Large multi-headed creature",
+  "summary": "Sample magical dragon statistics whose bite footnote sets how many attacks a huge creature can make against a single target in one round, scaling with the target's Size.",
+  "quotes": [
+   "he can only attack a specific Size 0 target twice in a single round",
+   "For each Size above 0, the dragon can add an additional attack to that target in the same round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Dragon-Born (Magic Kin)",
+  "heading": "Dragon-Born",
+  "line": 4501,
+  "endLine": 4506,
+  "category": "beings",
+  "topic": "Magic Kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Dragon-born (Magic Kin)",
+  "summary": "Explains dragon-born human offspring of zmajevi as a type of Magic Kin who buy Inherited Virtues and Common Flaws at character generation and can be identified with Second Sight.",
+  "quotes": [
+   "Dragon-born are another type of Magic Kin"
+  ],
+  "related": [
+   "Realms of Power: Magic p.89 Magic Kin"
+  ]
+ },
+ {
+  "title": "Dragon-Born Statistics",
+  "heading": "Dragon-Born Statistics",
+  "line": 4507,
+  "endLine": 4525,
+  "category": "creation",
+  "topic": "Magic Kin",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Dragon-born (Magic Kin)",
+  "summary": "Gives the Inherited Virtues and Common Flaws for dragon-born characters, requires a Personal Power mirroring the dragon parent's powers, and offers example powers.",
+  "quotes": [
+   "Greater Immunity (fire)",
+   "A dragon-born character receives a Personal Power"
+  ],
+  "related": [
+   "Realms of Power: Magic Realm p.41 Personal powers"
+  ]
+ }
+]

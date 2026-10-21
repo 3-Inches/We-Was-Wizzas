@@ -1,0 +1,1179 @@
+[
+ {
+  "title": "Scrofula (the King's Evil)",
+  "heading": "Scrofula",
+  "line": 442,
+  "endLine": 448,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules for catching scrofula in crowded, hot-weather towns: a Stamina roll resisted against an Ease Factor that varies with the season, a Medium wound if caught, the Disfigured Flaw in advanced cases, and cure by Medicine, Creo Corpus magic or the King of France's touch.",
+  "quotes": [
+   "It requires a Stamina roll against an Ease Factor of 6 or 9 (depending upon the time of year) to avoid catching the disease, which inflicts a Medium wound."
+  ],
+  "related": [
+   "ArM5 p.66 Medicine",
+   "ArM5 p.130 Creo Corpus"
+  ]
+ },
+ {
+  "title": "The Holy Oil of Consecration (Anointed King Benefits)",
+  "heading": "The Holy Oil of Consecration",
+  "line": 436,
+  "endLine": 440,
+  "category": "realms",
+  "topic": "Royal Anointing",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Anointed King of France (coronation with the holy oil of Reims)",
+  "summary": "Describes the game effects of anointing a Frankish or French king with the holy oil kept at Reims (Magic Resistance, Soak bonus and a commanding aura), the 3-point relic status of the ampoule, and the speculation about its other powers.",
+  "quotes": [
+   "giving the king a Magic Resistance of 10, a Soak bonus of 2, and a Commanding Aura to Voice range with an effect equivalent to Aura of Rightful Authority with Penetration 0"
+  ],
+  "related": [
+   "Realms of Power: The Divine pp.42-43"
+  ]
+ },
+ {
+  "title": "The Blood of Merovech",
+  "heading": "The Blood of Merovech",
+  "line": 424,
+  "endLine": 430,
+  "category": "setting",
+  "topic": "Royal Bloodlines",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Merovingian descent (Supernatural Virtue such as Greater Immunity: Drowning; Royal Touch)",
+  "summary": "Sidebar on the Merovingian bloodline: which Supernatural Virtues descendants of Merovech commonly carry, the red-cross birthmark, and theories on the origin of the king's Royal Touch.",
+  "quotes": [
+   "most of the descendants of Merovech have a Supernatural Virtue",
+   "Greater Immunity: Drowning"
+  ],
+  "related": [
+   "Chapter 10: Normandy Sagas, The Tradition of Kings"
+  ]
+ },
+ {
+  "title": "The Carolingian Blood",
+  "heading": "The Carolingian Blood",
+  "line": 458,
+  "endLine": 460,
+  "category": "setting",
+  "topic": "Royal Bloodlines",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Carolingian descent",
+  "summary": "Sidebar noting that characters of Carolingian descent may be politically important and often carry a particular Virtue.",
+  "quotes": [
+   "Those of Carolingian blood often have the Virtue Mythic Presence."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Capetian Blood",
+  "heading": "The Capetian Blood",
+  "line": 466,
+  "endLine": 468,
+  "category": "setting",
+  "topic": "Royal Bloodlines",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Capetian descent",
+  "summary": "Sidebar on the pious Capetian bloodline, some of whose members manifest a faith-related Virtue.",
+  "quotes": [
+   "Some members of the bloodline manifest this as the Virtue True Faith"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Angevin Blood",
+  "heading": "The Angevin Blood",
+  "line": 524,
+  "endLine": 526,
+  "category": "setting",
+  "topic": "Royal Bloodlines",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Angevin descent",
+  "summary": "Sidebar on the legend of Melusine and the uncertain, unpredictable supernatural heritage of the Angevin line, left for the troupe to define.",
+  "quotes": [
+   "This tainted blood runs in the Angevin veins till this day, and may manifest in unpredictable ways."
+  ],
+  "related": [
+   "Chapter 6: Anjou and Aquitaine, Lusignan"
+  ]
+ },
+ {
+  "title": "The Hermetic Landscape (Tribunal-Owned Vis and the Tourney)",
+  "heading": "The Hermetic Landscape",
+  "line": 674,
+  "endLine": 676,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Overview of how vis outside covenant grounds belongs to the whole Normandy Tribunal and is leased out through a seven-yearly Tourney that also awards books and other resources.",
+  "quotes": [
+   "all vis that does not originate from within the grounds of a covenant was declared to be the property of the Tribunal as a whole rather than of any specific individual covenant"
+  ],
+  "related": [
+   "The Hermetic Tourney"
+  ]
+ },
+ {
+  "title": "The Perthean Compact",
+  "heading": "The Perthean Compact",
+  "line": 678,
+  "endLine": 683,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Introduces the Peripheral Code rulings that make all Normandy vis sources the property of covenants and sort them into seisins, legacies, tropaea and luctationes.",
+  "quotes": [
+   "The Perthean Compact revolves around the ruling that all vis sources, whether they are exclusive access in perpetuity or a fixed term lease, belong to covenants, not to individuals. It categorizes vis sources into four types: seisins, legacies, tropaea, and luctationes."
+  ],
+  "related": []
+ },
+ {
+  "title": "Seisins (and Cursor Travel Distance)",
+  "heading": "Normandy Tribunal Ruling: Seisins",
+  "line": 684,
+  "endLine": 691,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "covenant",
+   "grogs"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "A vis source within a day's return march of a covenant's council chamber is automatically that covenant's seisin with exclusive harvest rights; includes the test of proving the distance with a cursor and a rule of thumb for miles covered per day.",
+  "quotes": [
+   "A seisin recognized by the Tribunal grants its owners exclusive right of harvest.",
+   "if a man can get from the covenant's council chamber to a vis source and back again, on his own two feet and unaided by magic, between sunrise and sunset on a day which is within a month of an equinox, then the vis source is a seisin of that covenant",
+   "10 + (2 x Athletics) cross country"
+  ],
+  "related": []
+ },
+ {
+  "title": "Legacies",
+  "heading": "Normandy Tribunal Ruling: Legacies",
+  "line": 726,
+  "endLine": 734,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "A newly found vis source too far to be a seisin can be a legacy lease held by its discoverer for seven years, renewable only by Tribunal vote; poaching from a legacy is a High Crime.",
+  "quotes": [
+   "the terms of the lease last only seven years",
+   "the offender is automatically found guilty of the High Crime of depriving a magus of his magical power"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.59"
+  ]
+ },
+ {
+  "title": "Tricks and Cheats (Seisin Manipulation)",
+  "heading": "Tricks and Cheats",
+  "line": 736,
+  "endLine": 744,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Sidebar on how covenants bend seisin rules: remote council chambers, unchallenged assumed distances, and altering terrain to make or unmake a seisin.",
+  "quotes": [
+   "a claim that remains uncontested stays a seisin until challenged."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tropaea",
+  "heading": "Normandy Tribunal Ruling: Tropaeum",
+  "line": 746,
+  "endLine": 750,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Easily harvested vis sources that are neither seisins nor legacies belong to the Tribunal and are leased for seven years to Tourney winners; founding a covenant near one needs Tribunal approval.",
+  "quotes": [
+   "Tropaea are to be distributed among the members of the Tribunal on seven-year leases by being won in the Tourney."
+  ],
+  "related": [
+   "The Hermetic Tourney"
+  ]
+ },
+ {
+  "title": "Luctationes",
+  "heading": "Normandy Tribunal Ruling: Luctatio",
+  "line": 760,
+  "endLine": 764,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Normandy Tribunal",
+  "summary": "Tribunal-owned vis sources that need skill or risk to harvest are open contests for any magus each year, confer no lasting rights, and cost no Build Points unless a covenant has exclusive access.",
+  "quotes": [
+   "If a covenant does have exclusive access to a luctatio for some reason, then it is costed as a vis source with the Contested Resource Hook."
+  ],
+  "related": []
+ },
+ {
+  "title": "Interim Leases and Plundering",
+  "heading": "Normandy Tribunal Ruling: Interim Leases and Plundering",
+  "line": 766,
+  "endLine": 770,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Procedure for claiming a newly found vis source through a Quaesitor's interim lease, and the Low Crime of plundering for harvesting without one.",
+  "quotes": [
+   "A covenant which harvests a hitherto unknown vis source but chooses not to secure an interim lease is guilty of plundering, a Low Crime under the Peripheral Code of the Normandy Tribunal."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Perthean Compact and New Covenants",
+  "heading": "The Perthean Compact and New Covenants",
+  "line": 793,
+  "endLine": 797,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Normandy Tribunal covenant",
+  "summary": "Optional guidance for limiting Build Points spent on vis when creating a Normandy covenant, and for founding a covenant with legacies or tropaea instead of seisins.",
+  "quotes": [
+   "but 3 to 5 Build Points per magus to be spent on vis is reasonable."
+  ],
+  "related": [
+   "Covenants (ArM5) covenant creation"
+  ]
+ },
+ {
+  "title": "Minor Resources Hook: Vis Lease",
+  "heading": "Minor Resources Hook: Vis Lease",
+  "line": 799,
+  "endLine": 801,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Normandy Tribunal covenant",
+  "summary": "A covenant Hook for a vis source that is only leased (legacy or tropaeum), forcing the covenant to campaign or compete at Tribunal to keep it; may be taken multiple times.",
+  "quotes": [
+   "One of the covenant's vis sources is a legacy or a tropaeum rather than a seisin."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Library of the Normandy Tribunal",
+  "heading": "The Library of the Normandy Tribunal",
+  "line": 803,
+  "endLine": 807,
+  "category": "order",
+  "topic": "Tribunal Library",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Magi who donate an original book to the Tribunal library win a guaranteed Tourney prize of a leased book of similar quality, with certamen to settle clashes over the same book.",
+  "quotes": [
+   "Contributing an original book to the Tribunal's library grants a magus an automatic prize at the next Tourney, the lease of a book of similar quality to the one offered.",
+   "a character may chose a book that is worth up to as many Covenant Build Points as the one he contributed"
+  ],
+  "related": [
+   "The Hermetic Tourney"
+  ]
+ },
+ {
+  "title": "The Perthean Compact and Personal Vis Sources",
+  "heading": "The Perthean Compact and Personal Vis Sources",
+  "line": 809,
+  "endLine": 811,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Normandy Tribunal; Hermetic Virtue granting a personal vis source",
+  "summary": "Explains how a magus's own bodily vis is exempt from the Perthean Compact and how a character with an external personal vis source can justify it in a Normandy saga.",
+  "quotes": [
+   "any vis that is generated by the person of a magus (in his hair, blood, and so forth) is the sole possession of that magus, and not subject to the Perthean Compact"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Library of the Tribunal (Book Leases)",
+  "heading": "Normandy Tribunal Ruling: The Library of the Tribunal",
+  "line": 813,
+  "endLine": 815,
+  "category": "order",
+  "topic": "Tribunal Library",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Rules for books won as Tourney prizes: seven-year exclusive lease, the leaseholder's duty to keep and return the book to Confluensis, and the Cow and Calf Oath on copies.",
+  "quotes": [
+   "Winning a book in the tournament grants exclusive access to that tome for a total of seven years",
+   "Books are leased under a Cow and Calf Oath"
+  ],
+  "related": [
+   "Covenants p.95 Cow and Calf Oath"
+  ]
+ },
+ {
+  "title": "Mundane Resources and Covenant Raiding",
+  "heading": "Mundane Resources",
+  "line": 821,
+  "endLine": 829,
+  "category": "order",
+  "topic": "Covenant raiding",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Explains why raiding another covenant's mundane resources is not a Hermetic crime in Normandy and gives storyguide advice on the consequences of raids, including the Poverty Hook and tracking yearly expenditures.",
+  "quotes": [
+   "Raids should be primarily a source of stories, but may result in the gain or loss of supplies."
+  ],
+  "related": [
+   "Covenants Chapter 4 Wealth & Poverty"
+  ]
+ },
+ {
+  "title": "Rulings on Mundane Resources and Raiding",
+  "heading": "Normandy Tribunal Rulings: Mundane Resources And Raiding",
+  "line": 831,
+  "endLine": 835,
+  "category": "order",
+  "topic": "Covenant raiding",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Lists what counts as a magus's magical power (protected) and what does not (raidable), and the conduct rules for a raid: no damage to buildings, no Code breaches, and certamen against accompanying magi.",
+  "quotes": [
+   "food, consumables, building supplies, arms and armor, and luxury goods are not part of a magus's magical power",
+   "The raiding maga must challenge any accompanying magi to certamen; should she lose then she must abandon her raid."
+  ],
+  "related": []
+ },
+ {
+  "title": "Cross-Border Disputes",
+  "heading": "Cross-Border Disputes",
+  "line": 863,
+  "endLine": 865,
+  "category": "order",
+  "topic": "Covenant raiding",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Foreign magi raiding into Normandy fall under the Normandy Peripheral Code, and the Tribunal's only recourse is to judge them harshly if they break the Code.",
+  "quotes": [
+   "when in Normandy they are under the jurisdiction of the Normandy Peripheral Code"
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages p.56"
+  ]
+ },
+ {
+  "title": "Urban Covenants and the Town Sene",
+  "heading": "Urban Covenants and the Town Sene",
+  "line": 867,
+  "endLine": 871,
+  "category": "order",
+  "topic": "Urban covenants",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Background and precedent (Fudarus versus Atramentum, 1200) for how Tribunal law handles covenants interacting with autonomous towns.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Town Senex",
+  "heading": "Normandy Tribunal Ruling: The Town Senex",
+  "line": 873,
+  "endLine": 875,
+  "category": "order",
+  "topic": "Urban covenants",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "The covenant nearest a town, judged by whose church bells sound loudest, is the senex and has superior rights in that town over other covenants' agents.",
+  "quotes": [
+   "The Tribunal of 1200 determined that the agents of the covenant closest to a town, referred to as the senex, have superior rights to those of the agents of other covenants operating in that town.",
+   "The senex is judged to be the covenant in which the town's church bells sound the loudest, as determined by a Quaesitor."
+  ],
+  "related": []
+ },
+ {
+  "title": "Urban Covenants (Town Charters and Fealty)",
+  "heading": "Normandy Tribunal Ruling: Urban Covenants",
+  "line": 881,
+  "endLine": 887,
+  "category": "order",
+  "topic": "Urban covenants",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "A covenant may be sited in a town and hold a mundane town charter and pay collective tax, but magi cannot use charter privileges, vote or hold office because that would amount to swearing fealty.",
+  "quotes": [
+   "However, the magi themselves cannot take advantage of any privileges under the charter, as to do so would be effectively the same as swearing an oath of fealty."
+  ],
+  "related": [
+   "Covenants p.11",
+   "City & Guild p.8",
+   "City & Guild p.13"
+  ]
+ },
+ {
+  "title": "A Covenant Charter",
+  "heading": "A Covenant Charter",
+  "line": 889,
+  "endLine": 891,
+  "category": "covenant",
+  "topic": "Urban covenants",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Why a covenant benefits from a grant of charter: it formally limits what mundane lords can demand of the covenant.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Implications of the Senex and Urban Covenant Rulings",
+  "heading": "Implications of the Rulings on the Town Senex and Urban Covenants",
+  "line": 893,
+  "endLine": 899,
+  "category": "order",
+  "topic": "Urban covenants",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Notes that the senex ruling can decide ownership of unclaimed urban vis sources, that senex rights depend on how far bells carry, and that seeking mundane charters is encouraged.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Mundane Interference (Masks)",
+  "heading": "Mundane Interference",
+  "line": 901,
+  "endLine": 905,
+  "category": "order",
+  "topic": "Mundane interference",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Normandy treats meddling with mundanes as an offense only once mundane reprisals harm Hermetic victims, so covenants act through masks; masks give no protection against depriving other magi of their power.",
+  "quotes": [
+   "Masks provide no protection from charges of depriving other magi of their power, so they cannot legally be used against the senex of a town."
+  ],
+  "related": []
+ },
+ {
+  "title": "Mundane Interference (Tribunal Ruling)",
+  "heading": "Normandy Tribunal Ruling: Mundane Interference",
+  "line": 914,
+  "endLine": 916,
+  "category": "order",
+  "topic": "Mundane interference",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "No specific rulings exist on agencies and masks, but the Tribunal rarely convicts when damage to a Hermetic magus cannot be clearly demonstrated.",
+  "quotes": [
+   "the Tribunal rarely convicts in situations where damage to a Hermetic magus cannot be unequivocally demonstrated."
+  ],
+  "related": []
+ },
+ {
+  "title": "Further Excerpts from the Normandy Peripheral Code",
+  "heading": "Further Excerpts from the Normandy Peripheral Code",
+  "line": 918,
+  "endLine": 954,
+  "category": "order",
+  "topic": "Normandy Peripheral Code",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Dated precedents of the Normandy Tribunal covering court wizardry, borders, raids, deprivation of magical power, covert healing and mundane interference.",
+  "quotes": [
+   "Quaesitor Lothaire ruled that raiding magi are forbidden from damaging the physical structure of a covenant"
+  ],
+  "related": [
+   "Houses of Hermes: Societates, House Ex Miscellanea"
+  ]
+ },
+ {
+  "title": "Founding a New Covenant (Normandy Requirements)",
+  "heading": "Founding a New Covenant",
+  "line": 956,
+  "endLine": 960,
+  "category": "covenant",
+  "topic": "Covenant creation",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Normandy Tribunal",
+  "summary": "The legal requirements for a new Normandy covenant: exclusive vis supply of a set minimum, a recognized council chamber at a safe distance from other covenants, and no use of chapter houses to dodge the Compact; vis from the local aura counts only as stock.",
+  "quotes": [
+   "The only legal requirement is that the nascent covenant has exclusive access to one or more sources of vis that collectively supply a minimum of one pawn of vis per year for every magus in the new covenant (or at least four pawns per year, if there are fewer than four magi).",
+   "Vis extracted from the local aura does not count as a vis supply but as vis stocks"
+  ],
+  "related": [
+   "Guardians of the Forests p.16",
+   "Guardians of the Forests pp.83, 110"
+  ]
+ },
+ {
+  "title": "Typical Duties of Service",
+  "heading": "Typical Duties of Service",
+  "line": 966,
+  "endLine": 972,
+  "category": "covenant",
+  "topic": "Liege and vassal covenants",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Normandy Tribunal vassal covenant",
+  "summary": "Sample duties a vassal covenant may owe its liege: proxy sigils, directed votes, vis tithes, book copying and legacy harvesting.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Typical Duties of Protection (and Oath Boons and Hooks)",
+  "heading": "Typical Duties of Protection",
+  "line": 974,
+  "endLine": 984,
+  "category": "covenant",
+  "topic": "Liege and vassal covenants",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Normandy Tribunal liege covenant",
+  "summary": "Sample duties of protection a liege owes its vassals, and how oath terms translate into covenant Boons and Hooks such as Powerful Ally and Beholden.",
+  "quotes": [
+   "Terms that are favorable to the vassal may give them the Powerful Ally Boon, but most oaths leave the vassal with Hooks such as Beholden."
+  ],
+  "related": [
+   "ArM5 Chapter 6",
+   "Covenants Chapter 2"
+  ]
+ },
+ {
+  "title": "Breaking Free (Escaping an Oath of Fealty)",
+  "heading": "Breaking Free",
+  "line": 986,
+  "endLine": 999,
+  "category": "covenant",
+  "topic": "Liege and vassal covenants",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal vassal covenant",
+  "summary": "How a vassal covenant can end its oath, by defaulting on duties and being convicted or by prosecuting its liege, with a table of suitable Boons and Hooks for liege and vassal.",
+  "quotes": [
+   "To gain independence from a liege, a vassal covenant must either wait for its liege to default on the oath of fealty, or deliberately break it themselves, since either party can cancel the oath following a successful prosecution."
+  ],
+  "related": []
+ },
+ {
+  "title": "Liege & Vassal Covenants",
+  "heading": "Liege & Vassal Covenants",
+  "line": 1001,
+  "endLine": 1005,
+  "category": "covenant",
+  "topic": "Liege and vassal covenants",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Normandy Tribunal",
+  "summary": "Describes the usual way new Normandy covenants form, as vassals of a covenant holding a legacy, and the five great lines of liege covenants.",
+  "quotes": [
+   "The vassal covenant is established within a day's march of the legacy, and ownership of the vis source passes from the liege covenant to the vassal, which may then register it as a seisin at the next Tribunal meeting."
+  ],
+  "related": []
+ },
+ {
+  "title": "Oaths of Fealty",
+  "heading": "Oaths of Fealty",
+  "line": 1079,
+  "endLine": 1083,
+  "category": "order",
+  "topic": "Liege and vassal covenants",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "How covenant-to-covenant oaths of fealty work: duty of support from the vassal, duty of protection from the liege, legal enforceability, and how an oath can be dissolved.",
+  "quotes": [
+   "Oaths of fealty between vassal and liege covenants are part of Normandy's Peripheral Code and legally enforceable, although covenants are still forbidden to take oaths of fealty to a mundane lord."
+  ],
+  "related": [
+   "Chapter 11: Confluensis (example oath)"
+  ]
+ },
+ {
+  "title": "Eremites and Coenobites",
+  "heading": "Eremites and Coenobites",
+  "line": 1093,
+  "endLine": 1097,
+  "category": "order",
+  "topic": "Perthean Compact",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Normandy Tribunal",
+  "summary": "Solitary magi (eremites) and communities that fail the vis requirement (coenobia) cannot hold seisins and must rely on Tourney tropaea and luctationes, competing as individuals.",
+  "quotes": [
+   "An eremite is forbidden by the Peripheral Code from owning a seisin, and he must rely upon tropaeum leases won at the Tourney or attending luctatio for his vis supply."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tribunal Meetings (Hosting)",
+  "heading": "Tribunal Meetings",
+  "line": 1099,
+  "endLine": 1101,
+  "category": "order",
+  "topic": "Tribunal hosting",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "A covenant chosen by lot to host the Tribunal must provide a tournament site, an excellent Aegis of the Hearth and lavish hospitality, and risks financial ruin and Quaesitorial scrutiny.",
+  "quotes": [
+   "The covenant is expected to provide a secluded area for the tournament, an excellent Aegis of the Hearth, and lavish hospitality."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Hermetic Tourney",
+  "heading": "The Hermetic Tourney",
+  "line": 1103,
+  "endLine": 1113,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Overview of the seven-yearly Tourney: who may enter, team size limits, the entry stake for outside teams, and the six traditional events.",
+  "quotes": [
+   "Each team that does not represent one accepted Normandy covenant must stake five pawns of vis per magi to enter",
+   "Teams are limited to a maximum of five members, excluding grogs and companions."
+  ],
+  "related": [
+   "Covenants p.89 casting tablet"
+  ]
+ },
+ {
+  "title": "Winning the Tourney (Scoring)",
+  "heading": "Winning the Tourney",
+  "line": 1119,
+  "endLine": 1147,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Points scoring for each Tourney event, tie-breaking by seniority, the named finishing ranks, and the Hermetic Reputation granted for achieving them.",
+  "quotes": [
+   "A team receives a starting tally equal to the number of members of their covenant",
+   "The team winning the hastiludium receives 20 points, the defeated finalist 10 points, and the other semifinalists five points each.",
+   "Any covenant achieving one of the named ranks in the Tourney has an appropriate Hermetic Reputation of level 2 for the next seven years."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tourney Events (General Rules)",
+  "heading": "Tourney Events",
+  "line": 1149,
+  "endLine": 1151,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Sidebar introducing the events: an even number of registered teams, and the hosting covenant's own event to be declared by the previous summer solstice.",
+  "quotes": [
+   "Tradition and the rules demand there must always be an even number of teams in the tournament."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Hastiludium",
+  "heading": "The Hastiludium",
+  "line": 1153,
+  "endLine": 1159,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Tourney event where teams of three magi on improvised magical mounts use spells to force opponents off and push their mount past the other team's line.",
+  "quotes": [
+   "Each magus may cast a single spell before the contest begins in order to prepare, and may then cast magic freely during the contest.",
+   "Parma Magica may not be extended over the mounts, but both sides may freely cast magic on either mount."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Certamen Tournament",
+  "heading": "The Certamen Tournament",
+  "line": 1161,
+  "endLine": 1163,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Knockout certamen event in which the older magus chooses the Technique and the younger the Form, with a team champion picked each round.",
+  "quotes": [
+   "The older magus chooses the Technique, the younger the Form."
+  ],
+  "related": [
+   "Certamen"
+  ]
+ },
+ {
+  "title": "The Joust",
+  "heading": "The Joust",
+  "line": 1165,
+  "endLine": 1167,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Mounted knockout event between single champions, best of three, where magic may affect only one's own person, mount or weapons; the Tourney's most dangerous event.",
+  "quotes": [
+   "The winner is the magus who prevails in a best of three match"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Melee",
+  "heading": "The Melee",
+  "line": 1169,
+  "endLine": 1171,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "grogs",
+   "companions",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Non-magical team contest for grogs and companions to capture opposing Creo Imaginem circle castles using blunt weapons; seriously injuring an opponent forfeits the contest.",
+  "quotes": [
+   "Three grog or companion champions for each team attempt to charge across the field",
+   "damage is fatigue unless botched"
+  ],
+  "related": [
+   "Normandy Tribunal Ruling: Seisins (cursors)"
+  ]
+ },
+ {
+  "title": "The Dimicatio",
+  "heading": "The Dimicatio",
+  "line": 1173,
+  "endLine": 1177,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "House Flambeau's duel in which champions cast forceless spells at each other and defend with fast-cast defenses; penetrating the opponent's Parma is foul play.",
+  "quotes": [
+   "Each magus uses a fast-cast defense (ArM5, page 83) to try to block the opposing spell. The first magus whose spell reaches his opponent's Parma is the winner."
+  ],
+  "related": [
+   "ArM5 p.83 fast-cast defense"
+  ]
+ },
+ {
+  "title": "The Hosting Covenant's Choice",
+  "heading": "The Hosting Covenant's Choice",
+  "line": 1179,
+  "endLine": 1181,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "The sixth Tourney event is chosen by the host covenant and must be a true test of magical ability.",
+  "quotes": [
+   "It must be a true test of magical ability, but beyond that may take any form."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tourney Prizes",
+  "heading": "Tourney Prizes",
+  "line": 1183,
+  "endLine": 1195,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "How prize pawns are spent in rank order on tropaea, books, items and entrance-fee vis, with conversion rates between prize pawns and Build Points.",
+  "quotes": [
+   "Calculate this as 1 prize pawn per 5 Build Points of the book.",
+   "One prize pawn may be traded for an immediate once-only selection of 5 pawns of Form vis, or three pawns of Technique vis."
+  ],
+  "related": [
+   "ArM5 p.71"
+  ]
+ },
+ {
+  "title": "Tourney Ranks & Prizes (Table)",
+  "heading": "Tourney Ranks & Prizes",
+  "line": 1197,
+  "endLine": 1214,
+  "category": "order",
+  "topic": "Hermetic Tourney",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy Tribunal",
+  "summary": "Table of prize pawns awarded for each finishing rank, with advice on adjusting it for richer or poorer sagas.",
+  "quotes": [
+   "The prizes listed in this table assume at least 200 pawns worth of prizes are available in total, and 24 teams entering."
+  ],
+  "related": []
+ },
+ {
+  "title": "Siting a Covenant in Brittany",
+  "heading": "Siting a Covenant",
+  "line": 1255,
+  "endLine": 1257,
+  "category": "setting",
+  "topic": "Covenant creation",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Brittany setting",
+  "summary": "Guidance on placing a player covenant in sparsely populated Brittany: many unclaimed vis sources and sites, but the covenant must still fit into or evade the feudal and Church structure.",
+  "quotes": [
+   "Brittany is the least-civilized, most sparsely populated part of the Tribunal, with many unclaimed vis resources."
+  ],
+  "related": []
+ },
+ {
+  "title": "St. Broch's Fountain Blessing (Lamballe and St. Brieuc)",
+  "heading": "Lamballe and St. Brieuc",
+  "line": 1285,
+  "endLine": 1287,
+  "category": "realms",
+  "topic": "Divine Blessings",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A once-a-week devotional ritual at St. Broch's fountain after Sunday Mass that grants a temporary one-step shift to a Personality Trait, up to the usual cap, lasting until sunset.",
+  "quotes": [
+   "a character may dip his right hand into the fountain and devoutly make the sign of the cross to gain a Blessing that gives a temporary change to a Personality Trait by one step",
+   "The blessing lasts until sunset."
+  ],
+  "related": [
+   "Realms of Power: The Divine p.51"
+  ]
+ },
+ {
+  "title": "Broc\u00e9liande (Faerie Forest, Auras and Vis Sources)",
+  "heading": "Broc\u00e9liande",
+  "line": 1301,
+  "endLine": 1319,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Brittany setting",
+  "summary": "The Faerie forest of Broc\u00e9liande with its aura levels, the Fountain of Youth, the Stone of Merlin, Lake Comper's Faerie regio and the vis available from its lake, bridge and Barenton fountain.",
+  "quotes": [
+   "Most of the forest has a Faerie aura of level 2 and there are places where it is considerably higher."
+  ],
+  "related": [
+   "Guardians of the Forests: The Rhine Tribunal p.38 Path of Aging"
+  ]
+ },
+ {
+  "title": "Carnac (Magic by Day, Infernal by Night)",
+  "heading": "Carnac",
+  "line": 1776,
+  "endLine": 1846,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Brittany setting",
+  "summary": "The great stone avenues of Carnac, one of the strongest Magic auras known, which turns Infernal at night and is haunted by the Nains, with notes on research there and its many regiones.",
+  "quotes": [
+   "By day, a Magic aura of strength 5 covers the heath",
+   "As the shadows lengthen the Magic aura fades away, and at night an Infernal aura replaces the magic."
+  ],
+  "related": [
+   "Ancient Magic p.54"
+  ]
+ },
+ {
+  "title": "The Fen Ague",
+  "heading": "The Fen Ague",
+  "line": 2091,
+  "endLine": 2093,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Swamp disease contracted by travelers in the Cotentin marshes on a failed Stamina roll, causing a Heavy Wound with fever symptoms and curable by Hermetic magic.",
+  "quotes": [
+   "Travelers foolish enough to risk the Cotentin swamps must make a Stamina roll against an Ease Factor of 3."
+  ],
+  "related": [
+   "ArM5 p.130",
+   "ArM5 p.180"
+  ]
+ },
+ {
+  "title": "Mont St. Michael (Tidal Divine Regio)",
+  "heading": "Mont St. Michael",
+  "line": 2083,
+  "endLine": 2089,
+  "category": "realms",
+  "topic": "Local auras and regiones",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Normandy setting",
+  "summary": "The abbey is a Divine regio at high tide that nobody can enter or leave, with only an ordinary Divine aura at low tide; also covers its history as a former druidic site whose Magic aura was destroyed.",
+  "quotes": [
+   "the monastery has a Divine aura of only 4"
+  ],
+  "related": []
+ }
+]

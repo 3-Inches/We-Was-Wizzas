@@ -1,0 +1,1268 @@
+[
+ {
+  "title": "Summoning Aspects of Fimbulwinter (Utiseta)",
+  "heading": "Calling Winter",
+  "line": 2928,
+  "endLine": 2938,
+  "category": "traditions",
+  "topic": "Muspelli Trolldomur",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Muspelli (Trolldomur)",
+  "summary": "The Muspelli release Aspects of the primal cold by performing a special utiseta at an Irminsul, using Intelligence and Muspelli Lore like the Jotun patron summoning, with extra modifiers from the Irminsul and the patron's elements. Gives the Ease Factor, typical Power Modifier and what happens when an Aspect is reduced to 0 Might.",
+  "quotes": [
+   "with an Ease Factor of 50",
+   "The Irminsul used in the utiseta provides an additional Power Modifier of 1, cumulative with all the standard ones.",
+   "Reducing an Aspect to 0 Might doesn't destroy it, but forces it to return to the Magic Realm, where it could be summoned again."
+  ],
+  "related": [
+   "Rival Magic pp.90-91 utiseta modifiers",
+   "Rival Magic p.9 and p.85 Muspelli Magic Defenses"
+  ]
+ },
+ {
+  "title": "Winter's Bite (Fimbulwinter exposure)",
+  "heading": "Winter's Bite",
+  "line": 3211,
+  "endLine": 3213,
+  "category": "hazards",
+  "topic": "Fimbulwinter",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Sidebar describing how the Fimbulwinter grows harsher after a year or more of Aspects roaming, making Scotland and Scandinavia uninhabitable with Major Exposure hazard checks and driving migrations and travel difficulties.",
+  "quotes": [
+   "Deprivation checks each hour, Ease Factor 9 or +3 frostbite damage"
+  ],
+  "related": []
+ },
+ {
+  "title": "Researching Muspelli Magic as a Hermetic Breakthrough",
+  "heading": "The Source of the Effects",
+  "line": 3271,
+  "endLine": 3273,
+  "category": "traditions",
+  "topic": "Muspelli Trolldomur",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Studying Muspelli Trolldomur and Fimbulwinter",
+  "summary": "Describes how magi can investigate Fimbulwinter and the Muspelli tradition, and notes that integrating utiseta-style casting into Hermetic Theory counts as a Hermetic Breakthrough giving an alternative for ceremonial casting.",
+  "quotes": [
+   "This last option represents a Hermetic Breakthrough, representing the integration of the utiseta-style casting method as an alternative for ceremonial casting."
+  ],
+  "related": []
+ },
+ {
+  "title": "Hunting the Muspelli: Arcane Connections to the Jotnar",
+  "heading": "Chasing the Culprits",
+  "line": 3275,
+  "endLine": 3279,
+  "category": "traditions",
+  "topic": "Muspelli Trolldomur",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Muspelli (opposing them)",
+  "summary": "Explains that the threat ends only when every Muspelli who knows the summoning ritual is dead, that the ritual can be passed on in a season of instruction, and how an Arcane Connection to a Jotun patron can be used against all its Muspelli.",
+  "quotes": [
+   "a process which takes a season of instruction",
+   "Once dead, Muspelli are no longer Arcane Connections to their Jotun patron."
+  ],
+  "related": []
+ },
+ {
+  "title": "Destroying Irminsul and Using Them as Arcane Connections",
+  "heading": "Hunting Irminsul",
+  "line": 3285,
+  "endLine": 3287,
+  "category": "traditions",
+  "topic": "Muspelli Trolldomur",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Muspelli (opposing them)",
+  "summary": "Destroying an Irminsul removes the Arcane Connection the Muspelli need for summoning Aspects, but the surviving Irminsul can also be used by magi as a lasting Arcane Connection to the currently summoned Aspect.",
+  "quotes": [
+   "the Irminsul is considered an indefinite Arcane Connection"
+  ],
+  "related": []
+ },
+ {
+  "title": "Daimon of Fimbulwinter and Perdo Vim",
+  "heading": "Into the Heart of Winter",
+  "line": 3289,
+  "endLine": 3291,
+  "category": "beings",
+  "topic": "Muspelli Trolldomur",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Fimbulwinter saga",
+  "summary": "Rules guidance on striking at the Daimon of Fimbulwinter in the Magic Realm: it is effectively immortal there and immune to Perdo Vim, while summoned Aspects can be destroyed but not eradicated.",
+  "quotes": [
+   "It cannot be damaged by Perdo Vim effects the way other creatures with Might are vulnerable."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magically Created Food and Deprivation (Covenant Survival)",
+  "heading": "Riding the Storm",
+  "line": 3297,
+  "endLine": 3303,
+  "category": "hazards",
+  "topic": "Magical food deprivation",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covenants hiding from Fimbulwinter face attacks if the site is not concealed, and magically created food made without vis builds up a Deprivation debt of Long-Term Fatigue with escalating Stamina Ease Factors and a Living Conditions penalty.",
+  "quotes": [
+   "Each successive month of magical food increases the Ease Factor by 9 with the loss of three Long-Term Fatigue levels.",
+   "anyone living in such an environment suffers a \u20132 Living Conditions modifier"
+  ],
+  "related": [
+   "ArM5 p.180 Deprivation"
+  ]
+ },
+ {
+  "title": "Penetrating Cold (Penetration of Created Weather)",
+  "heading": "Penetrating Cold",
+  "line": 3364,
+  "endLine": 3366,
+  "category": "magic",
+  "topic": "Penetration",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Clarifies which weather and cold effects must Penetrate: magically created media or controlled substances must, while mundane items moved by magic and then released need not.",
+  "quotes": [
+   "Magically created media or magically controlled substances must Penetrate, but mundane items that have been moved by magic and then released need not."
+  ],
+  "related": []
+ },
+ {
+  "title": "Gandar and Utiseta (Storing and Casting Utiseta)",
+  "heading": "Gandar and Utiseta",
+  "line": 3588,
+  "endLine": 3592,
+  "category": "traditions",
+  "topic": "Muspelli Trolldomur",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Muspelli (Trolldomur)",
+  "summary": "Explains how a Muspelli stores an utiseta effect in a gandur for quick use, the limits on storage time and on fixing the target at casting, and when the Casting Total and Penetration are rolled and what failure or botch does.",
+  "quotes": [
+   "a gandur can only store an effect for one year",
+   "A failure on this roll means that nothing happens, and the energy gathered is safely dissipated"
+  ],
+  "related": [
+   "Rival Magic p.90 Penetration of utiseta",
+   "Rival Magic p.91 storing utiseta in a gandur and Warping"
+  ]
+ },
+ {
+  "title": "Geography of the Magic Realm (Boundaries, Vestiges, Twilight Void)",
+  "heading": "The Geography of the Magic Realm",
+  "line": 3716,
+  "endLine": 3718,
+  "category": "realms",
+  "topic": "Magic Realm geography",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Short sidebar describing how the Magic Realm is organised into boundaries aligned to Forms, reached by vestiges or regiones, connected through the Twilight Void and its ten provinces to the Arcana Centrum.",
+  "quotes": [
+   "The ten provinces converge at the **Arcana Centrum**, the center of the Magic Realm and the hub of all arcane power."
+  ],
+  "related": [
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Prognosis Total for Diagnosing Disease",
+  "heading": "Fangs in the Night",
+  "line": 3726,
+  "endLine": 3738,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Shows how a character with Medicine diagnoses a disease by comparing a Prognosis Total (with no die roll) to the disease's severity, using the Diet, Medication and Surgery modifiers, with an example for Saint Anthony's Fire.",
+  "quotes": [
+   "Prognosis Total: Intelligence + Medicine + Diet modifier + Medication modifier + Surgery modifier",
+   "There is no die roll added to the Prognosis Total."
+  ],
+  "related": [
+   "Art & Academe pp.57-58 diagnosing illness"
+  ]
+ },
+ {
+  "title": "The Great Pestilence: Overview and Order of Forms",
+  "heading": "Pr\u00e9cis",
+  "line": 3748,
+  "endLine": 3756,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Overview of the Great Pestilence creature's attack pattern: the order in which Forms are infected, what happens to vis, creatures and auras during each month, and how a ruined Form stops working for Hermetic spellcasting without vis.",
+  "quotes": [
+   "The order of Forms attacked is Herbam, Corpus, Mentem, Vim, Aquam, Auram, Animal, Imaginem, Terram, and finally Ignem.",
+   "It takes four months to destroy a Form."
+  ],
+  "related": [
+   "Realms of Power: Magic",
+   "Art & Academe (diseases)"
+  ]
+ },
+ {
+  "title": "Treating Disease: Aid, Magic and Divine Cures",
+  "heading": "The Plague",
+  "line": 3810,
+  "endLine": 3816,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how mundane care, medicine, Intellego Corpus diagnosis, Perdo Vim and holy power or relics can help victims of a demon-caused disease, including the modifier that better living conditions give to the Disease Recovery roll.",
+  "quotes": [
+   "Better living conditions, healthier food, and fresh and plentiful water add +1 to the Disease Recovery roll."
+  ],
+  "related": [
+   "Realms of Power: the Divine pp.48, 60, 87",
+   "Art & Academe"
+  ]
+ },
+ {
+  "title": "Dealing with Disease (Avoidance, Recovery and Crisis)",
+  "heading": "Dealing with Disease",
+  "line": 3856,
+  "endLine": 3874,
+  "category": "hazards",
+  "topic": "Disease",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "A short summary of the Art & Academe disease system: Disease Avoidance rolls, severities and their penalties, intervals, Disease Recovery rolls against Stable and Improvement Ease Factors, Crisis, and a simpler Stamina-check alternative.",
+  "quotes": [
+   "Disease Avoidance Roll: Stamina + Living Condition Modifier + (Corpus/5) + Wound Penalty + stress die",
+   "Disease Recovery Roll: Stamina + Medicine + (Corpus/5) + Wound Penalty + Recovery Modifiers",
+   "If the roll fails to beat the Stable Ease Factor, the disease worsens in severity."
+  ],
+  "related": [
+   "Art & Academe pp.45-47",
+   "ArM5 p.180 simpler disease method"
+  ]
+ },
+ {
+  "title": "Accidentally Creating the Great Pestilence in the Lab",
+  "heading": "Not Hellix, but One of the Covenant's Magi",
+  "line": 4036,
+  "endLine": 4040,
+  "category": "lab",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Optional rule letting a player magus trigger the Great Pestilence by a botch or a 9 on the Extraordinary Results Chart while experimenting with Rego Herbam lab work, with a Disaster roll deciding whether a vestige forms.",
+  "quotes": [
+   "the player must roll either a botch or a 9 on the Extraordinary Results Chart",
+   "if the roll is anything else (3 or higher) the vestige and the Great Pestilence are created"
+  ],
+  "related": [
+   "ArM5 p.109 Extraordinary Results Chart"
+  ]
+ },
+ {
+  "title": "Plant Diseases in the 13th Century",
+  "heading": "Plant Diseases in the 13th Century",
+  "line": 4042,
+  "endLine": 4080,
+  "category": "hazards",
+  "topic": "Plant diseases",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how plants fall ill naturally from nutritional imbalance or unnaturally from magical, infernal or divine agencies, and gives severity, Stable and Improve numbers and timelines for sun scorch, grubs, kambros, mold and necrosis.",
+  "quotes": [
+   "Critical Disease, Severity 15 Stable 12, Improve 18, Interval: Hour",
+   "Mold is a determined ailment and will destroy an Individual-sized plant in 7 days."
+  ],
+  "related": [
+   "Art & Academe p.36 humors"
+  ]
+ },
+ {
+  "title": "New Spell Guidelines: Rego Herbam (Plant Disease Wards)",
+  "heading": "New Guidelines: Rego Herbam",
+  "line": 4090,
+  "endLine": 4094,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Rego Herbam guidelines for wards that protect plants against mundane or realm-linked magical plant diseases, using a Touch, Ring, Circle format.",
+  "quotes": [
+   "Ward a plant against mundane plant diseases."
+  ],
+  "related": [
+   "ArM5 p.135 The Bountiful Feast"
+  ]
+ },
+ {
+  "title": "New Spell Guidelines: Creo Herbam (Healing Plants)",
+  "heading": "New Guidelines: Creo Herbam",
+  "line": 4096,
+  "endLine": 4110,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Creo Herbam guidelines for healing plant wounds and curing plant diseases by severity, with a note that plant disease severity mirrors the disease in the eater and that non-Momentary healing is suspended like Creo Corpus healing.",
+  "quotes": [
+   "Cure a Critical plant disease",
+   "Heal all damage to a plant, including wounds, disease, and poison."
+  ],
+  "related": []
+ },
+ {
+  "title": "Great Pestilence Penetration vs Magic Resistance",
+  "heading": "What about Magic Resistance?",
+  "line": 4139,
+  "endLine": 4141,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Explains how the Great Pestilence overcomes the Magic Resistance of Magic beings: its powers cost no Might, and its Penetration total is built from its Might and Penetration with bonuses for attacking from the Magic Realm and its current Form province.",
+  "quotes": [
+   "its total Penetration is its Might (50) + its Penetration (10) = 60",
+   "for a Penetration total of 80"
+  ],
+  "related": []
+ },
+ {
+  "title": "Warning Signs: Premonitions and Visions",
+  "heading": "Four Months of Contagion",
+  "line": 4147,
+  "endLine": 4149,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Virtue: Premonitions or Flaw: Visions",
+  "summary": "Characters with Premonitions or Visions get vague warnings of the coming Great Pestilence, with the accuracy of a Premonitions roll set by thresholds on the result.",
+  "quotes": [
+   "A 6 or higher indicates something terrible is coming",
+   "a 15 or higher that a wizard created the malady that will destroy the world"
+  ],
+  "related": []
+ },
+ {
+  "title": "Rotting Vis: The Moon of Herbam Rot",
+  "heading": "The Moon of Herbam Rot",
+  "line": 4155,
+  "endLine": 4165,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "First month of infection: all vis of the targeted Form rots, can be noticed by Awareness rolls, still works but makes casting that Form riskier, and can be saved only by moving it fully outside every Magic aura; infected auras stop producing that vis.",
+  "quotes": [
+   "The average autocrat's Ease Factor is 9, while a lazy autocrat's Ease Factor is 12.",
+   "Herbam spell-casting requires a stress die in situations that normally use a simple die",
+   "It must be outside all Magic auras to retain its potency."
+  ],
+  "related": []
+ },
+ {
+  "title": "Sickness of Magic Creatures: The Moon of Herbam Sickness",
+  "heading": "The Moon of Herbam Sickness",
+  "line": 4167,
+  "endLine": 4177,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Second month of infection: Magic beings of the targeted Form inside Magic auras or regiones must pass weekly Disease Avoidance rolls or die, can be saved by leaving the aura (risking Acclimation), and their deaths weaken the aura and spoil their vis; familiars are affected too.",
+  "quotes": [
+   "must succeed on a Disease Avoidance roll",
+   "add one-fourth of their Might to the area's Magic aura, measured in magnitudes"
+  ],
+  "related": [
+   "Realms of Power: Magic p.52 Acclimation"
+  ]
+ },
+ {
+  "title": "The Great (Form) Pestilence (Disease)",
+  "heading": "The Great (Form) Pestilence",
+  "line": 4179,
+  "endLine": 4182,
+  "category": "hazards",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Disease statistics and symptoms for the Great Pestilence as it afflicts creatures, objects, minerals and plants of the attacked Form.",
+  "quotes": [
+   "Critical Phlegmatic Disease, Severity 21 Stable: 12, Improve: 18, Interval: Day"
+  ],
+  "related": []
+ },
+ {
+  "title": "Miasmas: The Herbam Miasma Moon",
+  "heading": "The Herbam Miasma Moon",
+  "line": 4184,
+  "endLine": 4204,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Third month of infection: every Magic aura and regio spawns a drifting invisible miasma that blights things of the attacked Form, lasts a year, has no Might and Penetration Total 0, and penalises Aging rolls for each circulating cycle.",
+  "quotes": [
+   "A miasma has a life span of 1 year.",
+   "each miasma penalizes Aging rolls by \u20132",
+   "impose a \u20132 penalty for every active cycle of Formtype miasmas circulating through Mythic Europe at that time"
+  ],
+  "related": []
+ },
+ {
+  "title": "Miasma Sizes (Targeting Spells at Miasmas)",
+  "heading": "Miasma Sizes",
+  "line": 4206,
+  "endLine": 4211,
+  "category": "magic",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Rules for sizing a miasma as about an acre per Auram Individual target, with each magnitude of added size covering ten times more area, and how larger covenant-sized miasmas need spells raised.",
+  "quotes": [
+   "one target: Individual is a miasma the size of an acre of land",
+   "need to be increased by two magnitudes to affect the miasma"
+  ],
+  "related": []
+ },
+ {
+  "title": "Miasmas and Regiones",
+  "heading": "Miasmas and Regiones",
+  "line": 4212,
+  "endLine": 4217,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Magic regiones generate miasmas that are not blown away and are replaced by newer ones, while Divine, Faerie and Infernal regiones keep miasmas out and act as havens.",
+  "quotes": [
+   "In regiones, and only in regiones, a new miasma will replace an older one."
+  ],
+  "related": []
+ },
+ {
+  "title": "Detecting Miasmas and Aegis Protection",
+  "heading": "\"We are Doomed!\"",
+  "line": 4218,
+  "endLine": 4227,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Shows how physicians deduce miasmas from bad air with Intelligence + Medicine, how Second Sight spots one, and that an Aegis of the Hearth keeps foreign miasmas out once the initial one is dealt with.",
+  "quotes": [
+   "Spot a Miasma: Perception + Second Sight + stress die vs. 9",
+   "Success is indicated by succeeding on an Intelligence + Medicine roll against an Ease Factor of 9."
+  ],
+  "related": []
+ },
+ {
+  "title": "Handling Multiple Miasmas (Wind and Arrival Tables)",
+  "heading": "Handling Multiple Miasmas",
+  "line": 4228,
+  "endLine": 4251,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Procedure and wind-direction table for deciding whether, from where and how soon later miasmas reach a locale, using a stress die reduced by the number of Forms infected.",
+  "quotes": [
+   "Roll a stress die (no botch) and subtract the number of Forms infected to determine the number of days before the next miasma visits an area."
+  ],
+  "related": []
+ },
+ {
+  "title": "Form Ceases to Work: The Herbam Death Moon",
+  "heading": "The Herbam Death Moon",
+  "line": 4253,
+  "endLine": 4257,
+  "category": "magic",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Fourth month: formulaic and spontaneous spells of the destroyed Form only work if vis is spent, and lab work with that Form also costs extra vis.",
+  "quotes": [
+   "one pawn per magnitude of the spell",
+   "it costs 1 pawn of vis for every two magnitudes (10 levels) of final effect"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tribunal Debate and Hellix's Trial",
+  "heading": "The Tribunal Response",
+  "line": 4259,
+  "endLine": 4271,
+  "category": "order",
+  "topic": "Tribunal debate",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Covers the emergency Tribunal and offers a quick substitute for the Societates debate rules: opposed Communication + Code of Hermes stress rolls where each solicitor must win three points.",
+  "quotes": [
+   "have the debating solicitors make opposed Communication + Code of Hermes stress rolls",
+   "Each solicitor has to make three points in the formal argument, and winning the roll equates to winning a point."
+  ],
+  "related": [
+   "Houses of Hermes: Societates p.90 debate rules"
+  ]
+ },
+ {
+  "title": "Slowing the Rate of Infection (Optional Rule)",
+  "heading": "The Rate of Infection and a Slower World End",
+  "line": 4275,
+  "endLine": 4279,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Optional rule to slow the pace of the Great Pestilence from four months to four seasons per Form for less powerful sagas, stretching the timeline to about ten years.",
+  "quotes": [
+   "Rather than four months to destroy a Form, the Great Pestilence needs four seasons, Spring, Summer, Autumn, and Winter."
+  ],
+  "related": []
+ },
+ {
+  "title": "Twilight Tears",
+  "heading": "The Twilight Tear",
+  "line": 4356,
+  "endLine": 4363,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "After Hellix's accident, every Hermetic Temporary Twilight opens a temporary rent into the Form province the Great Pestilence is currently attacking, which can be seen with a Second Sight or Magical Sensitivity roll and used to enter the Magic Realm.",
+  "quotes": [
+   "Viewing a Twilight Tear: Perception + Second Sight or Magical Sensitivity + stress die vs. 12"
+  ],
+  "related": []
+ },
+ {
+  "title": "Marking Time: New Moons and Seasons",
+  "heading": "Marking Time: New Moons and Seasons",
+  "line": 4372,
+  "endLine": 4378,
+  "category": "setting",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Simplified calendar for placing new moons in the seasons over the four years of the Great Pestilence.",
+  "quotes": [
+   "There are 12 new moons per year for the first two years of the Great Pestilence, 13 new moons in the third year, and 12 new moons in the final year."
+  ],
+  "related": []
+ },
+ {
+  "title": "Effect of Destroyed Forms on Supernatural Abilities and Other Traditions",
+  "heading": "Hedge Wizards, Witches, Elementalists, and Supernatural Abilities",
+  "line": 4380,
+  "endLine": 4386,
+  "category": "traditions",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Describes how the rotting Magic Realm raises the difficulty of Magic-realm Supernatural Abilities for each destroyed Form and how to adapt other Magic-based traditions by mapping their divisions to Forms.",
+  "quotes": [
+   "For every destroyed Form, increase the Ease Factor difficulty of every magical Supernatural Ability by 1."
+  ],
+  "related": []
+ },
+ {
+  "title": "Corpus Infection (Corpus Pestilence and Miasma)",
+  "heading": "The Corpus Infection",
+  "line": 4388,
+  "endLine": 4420,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Second Form attacked: Corpus vis rots, Corpus beings sicken, and the Corpus miasma infects every human it touches with the lethal Great Corpus Pestilence, while magi and others with Magic Resistance are immune. Covers covenant and city responses, healing aid and the end of unaided Corpus casting.",
+  "quotes": [
+   "Luckily magi, and all others with Magic Resistance, are immune to the",
+   "An Intelligence + Medicine roll against an Ease Factor of 6 indicates that relocating and outrunning the miasma are the better options.",
+   "This spell grants a sick person a +15 bonus to Recovery rolls."
+  ],
+  "related": [
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Mentem Infection (Mentem Blight)",
+  "heading": "The Mentem Infection",
+  "line": 4422,
+  "endLine": 4435,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Third Form attacked: Mentem miasmas strip people without Magic Resistance of their intellect, replacing Intelligence with Cunning, and the Aging roll penalty from earlier miasmas accumulates.",
+  "quotes": [
+   "Aging rolls are penalized by a cumulative \u20134",
+   "Substitute Cunning for Intelligence to those affected."
+  ],
+  "related": []
+ },
+ {
+  "title": "Vim Infection (Vim Blight)",
+  "heading": "The Vim Infection",
+  "line": 4437,
+  "endLine": 4448,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Fourth Form attacked: Vim vis rots and can no longer be extracted from Magic auras, and Vim miasmas cancel spells and enchanted effects up to a stated level unless protected by the Parma Magica.",
+  "quotes": [
+   "From this point onwards magi cannot extract vis from Magic auras",
+   "It cancels any spell or spell-like effect of level 30 or less."
+  ],
+  "related": [
+   "ArM5 p.94 extracting vis"
+  ]
+ },
+ {
+  "title": "Divine, Infernal, and Faerie Vis (Tainted Vis Substitutes)",
+  "heading": "Divine, Infernal, and Faerie Vis",
+  "line": 4450,
+  "endLine": 4454,
+  "category": "magic",
+  "topic": "Tainted vis",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Optional rule letting magi replace dwindling Magic vis with Divine, Infernal or Faerie vis, which causes temporary Personality Traits with regular use, extra botch dice per pawn, and realm-flavoured botches.",
+  "quotes": [
+   "Tainted vis adds extra botch dice, 1 per pawn of tainted vis",
+   "Abstaining from using tainted vis for six months removes the temporary Personality Trait."
+  ],
+  "related": []
+ },
+ {
+  "title": "Aquam Infection (Aquam Blight and Rain Clouds)",
+  "heading": "The Aquam Infection",
+  "line": 4456,
+  "endLine": 4469,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Fifth Form attacked: Aquam miasmas poison and destroy water, small springs are lost for good while large rivers refill, and a covenant can get drinking water by pulling rain clouds to the ground.",
+  "quotes": [
+   "A single rain cloud contains enough potable water to sustain 100 people for a fortnight.",
+   "Rain clouds lie 2,000 to 3,000 paces above, well within Range: Sight"
+  ],
+  "related": []
+ },
+ {
+  "title": "Auram Infection (Foul Air)",
+  "heading": "The Auram Infection",
+  "line": 4487,
+  "endLine": 4500,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Sixth Form attacked: Auram miasmas foul the air so that breathers are weakened rather than killed, with a physical-activity penalty, Fatigue loss from exertion and a larger Aging roll penalty from the active miasmas.",
+  "quotes": [
+   "Impose a \u20136 penalty to Aging rolls.",
+   "suffers a \u20133 penalty on all rolls involving physical activity"
+  ],
+  "related": []
+ },
+ {
+  "title": "Animal Infection (Animal Blight)",
+  "heading": "The Animal Infection",
+  "line": 4502,
+  "endLine": 4515,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Seventh Form attacked: Animal miasmas inflict an Incapacitating Wound on every animal they touch, ending the milk and meat supply the survivors rely on, and Animal casting then needs vis.",
+  "quotes": [
+   "This spell-like effect inflicts an Incapacitating Wound on an animal."
+  ],
+  "related": []
+ },
+ {
+  "title": "Imaginem Infection (Imaginem Blight)",
+  "heading": "The Imaginem Infection",
+  "line": 4517,
+  "endLine": 4528,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Eighth Form attacked: Imaginem miasmas stop objects producing visual images so anyone inside seems invisible and sight inside the cloud is lost, though magi still show an image. Describes the effect on sight and navigation.",
+  "quotes": [
+   "things within a miasma are invisible until the miasma moves on"
+  ],
+  "related": []
+ },
+ {
+  "title": "Terram Infection (Terram Blight)",
+  "heading": "The Terram Infection",
+  "line": 4530,
+  "endLine": 4545,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Ninth Form attacked: Terram miasmas strip the topsoil and drop structures into a pit, with simple-roll Ease Factors for collapse by structure size, descent rate of the miasma and a large cumulative Aging roll penalty.",
+  "quotes": [
+   "Wooden buildings and small trees collapse on a simple roll against an Ease Factor of 3.",
+   "Aging rolls made this Winter are penalized by a cumulative \u201310 for 5 active types of miasmas"
+  ],
+  "related": []
+ },
+ {
+  "title": "Ignem Infection (Ignem Blight)",
+  "heading": "The Ignem Infection",
+  "line": 4547,
+  "endLine": 4558,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Final Form attacked: Ignem miasmas coat everything in frost, dealing damage each round to unprotected people and animals and killing small plants.",
+  "quotes": [
+   "Unprotected men and women take +5 damage per round that they are inside an Ignem miasma."
+  ],
+  "related": []
+ },
+ {
+  "title": "After the Great Pestilence (Postmortem)",
+  "heading": "Postmortem: Life after the Great Pestilence",
+  "line": 4560,
+  "endLine": 4564,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Describes the end state after all ten Forms are consumed, including the lingering miasmas and the Living Condition modifier applied to the following Aging rolls.",
+  "quotes": [
+   "The Living Condition penalty is modified by \u20136 for the next set of Aging rolls in the coming Winter."
+  ],
+  "related": []
+ },
+ {
+  "title": "Bookkeeping the Great Pestilence",
+  "heading": "Bookkeeping",
+  "line": 4566,
+  "endLine": 4570,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Advice on tracking only the nearby auras: record vis produced and resident magic beings, stop vis production once its Form is destroyed, and reduce an aura when a powerful resident creature dies.",
+  "quotes": [
+   "the aura diminishes by 1 for every 4 magnitudes of the being's Might"
+  ],
+  "related": []
+ },
+ {
+  "title": "Protective Walls Against Miasmas",
+  "heading": "Building Protective Barriers",
+  "line": 4619,
+  "endLine": 4621,
+  "category": "magic",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Compares the height of a miasma to real walls and towers to show why a barrier must be very tall and must include a portal to expel miasmas generated inside.",
+  "quotes": [
+   "A miasma is approximately 60 paces high"
+  ],
+  "related": []
+ },
+ {
+  "title": "Seeing, Moving and Destroying Miasmas (Spell Design)",
+  "heading": "Affecting the Miasmas",
+  "line": 4623,
+  "endLine": 4654,
+  "category": "magic",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Design guidance for spells that view, move or destroy miasmas: an Intellego Vim base, a Form requisite that adds no magnitude, Rego Auram to move them and Perdo Auram with Vim and Form requisites to destroy them, treating a miasma as a severe weather phenomenon.",
+  "quotes": [
+   "The Intellego Vim base level is 3.",
+   "A necessary condition of viewing a miasma, and affecting it with magic in general, is to include a Form-specific requisite."
+  ],
+  "related": []
+ },
+ {
+  "title": "Changing the Order of Plagues (Optional Rule)",
+  "heading": "Changing the Order of Plagues",
+  "line": 4636,
+  "endLine": 4638,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Optional variant letting the storyguide reorder the Forms attacked to spare civilization, while keeping Herbam first so the characters can link events to Hellix.",
+  "quotes": [
+   "It is important that the first infection be Herbam, to give the characters a clue to Hellix's involvement."
+  ],
+  "related": []
+ },
+ {
+  "title": "Deducing the Order of Forms Attacked",
+  "heading": "Puzzling Out the Order of Forms Attacked",
+  "line": 4656,
+  "endLine": 4660,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "The Pestilence attacks Forms in the order of Hellix's Art strengths, which a researcher can infer from her lab notes with an Intelligence + Magic Theory roll, easier if she helps.",
+  "quotes": [
+   "The observer must succeed with an Intelligence + Magic Theory roll against an Ease Factor of 12.",
+   "adjust the Ease Factor of the Intelligence + Magic Theory roll to 6"
+  ],
+  "related": []
+ },
+ {
+  "title": "Healing Blighted Auras (Creo Vim Guideline)",
+  "heading": "Curing Auras, Regiones, and Magic Beings",
+  "line": 4662,
+  "endLine": 4673,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Healing a blighted aura is a Creo Vim ritual with a requisite for the infected Form, using a base derived from the Creo Corpus disease-healing guideline; it repairs blighted vis but does not restore vis already destroyed.",
+  "quotes": [
+   "Healing the aura is a Creo Vim spell, and needs to include a requisite for the infected Form being healed."
+  ],
+  "related": []
+ },
+ {
+  "title": "Curing Diseased Magic Beings",
+  "heading": "Save the Magic Beings",
+  "line": 4675,
+  "endLine": 4679,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Magic beings sick with the Great Pestilence can be cured with Creo magic of their body type or, through a spell keyed to their Form association, with a stated base level that must be cast as a ritual for permanent healing.",
+  "quotes": [
+   "the base level of the spell is 25"
+  ],
+  "related": []
+ },
+ {
+  "title": "New Spell Guidelines: Creo Animal (Animal Diseases)",
+  "heading": "New Guidelines: Creo Animal",
+  "line": 4688,
+  "endLine": 4700,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "New Creo Animal guidelines for curing animal diseases by severity, with a general base to stop any disease, and the same suspended-healing caveat as Creo Corpus healing.",
+  "quotes": [
+   "Stop the progress of any disease. Cure any disease countering its effects."
+  ],
+  "related": []
+ },
+ {
+  "title": "Researching a Way to Affect the Magic Realm (Breakthrough and Insight)",
+  "heading": "Discovering the Means of Attack",
+  "line": 4702,
+  "endLine": 4711,
+  "category": "lab",
+  "topic": "Hermetic breakthroughs",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Research procedure for a Minor Breakthrough allowing spells that reach the Magic Realm: gain Insight Points from diseased vis and slain Magic creatures, invent Intellego Vim effects to earn Breakthrough Points, and accumulate enough to integrate the new magic, which then acts as an Arcane Connection.",
+  "quotes": [
+   "To integrate spells that affect the Magic Realm the researcher needs 30 Breakthrough points",
+   "Each rotted pawn of vis provides 1 insight point, as does each magnitude of Might of a dead Magic creature."
+  ],
+  "related": [
+   "Ancient Magic pp.7-9 integration",
+   "Houses of Hermes: True Lineages pp.26-30 original research"
+  ]
+ },
+ {
+  "title": "Cutting an Aura's Link to the Magic Realm",
+  "heading": "Seeking the Thread of Power",
+  "line": 4712,
+  "endLine": 4721,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Once the Arcane Connection between an aura and the Magic Realm is found it can be destroyed like any Arcane Connection, protecting that site from the Pestilence; severing it removes the preternatural part of the aura, or halves it if the tether split is unknown.",
+  "quotes": [
+   "simply reduce the strength of the aura to half its original strength when the connection is severed"
+  ],
+  "related": []
+ },
+ {
+  "title": "Inventing the Great Barrier (Ward Against the Great Pestilence)",
+  "heading": "Inventing the Great Barrier",
+  "line": 4730,
+  "endLine": 4741,
+  "category": "magic",
+  "topic": "Great Pestilence",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Explains designing a general ward against the Great Pestilence once Magic Realm magic is integrated, with a Penetration Total that must exceed the creature's effective Magic Resistance.",
+  "quotes": [
+   "The Great Pestilence has a Might of 50 and the Form province adds +10 to its Magic Resistance for a total of 60."
+  ],
+  "related": []
+ },
+ {
+  "title": "Reaching the Arcana Centrum: Lore Rolls and Casting Bonuses",
+  "heading": "Invading the Arcana Centrum",
+  "line": 4769,
+  "endLine": 4777,
+  "category": "realms",
+  "topic": "Magic Realm geography",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Gives the Magic Lore rolls for characters and creatures to have heard of the Arcana Centrum, the Reputation roll to recognise its author, and the casting-total bonuses of the Arcana Centrum and the matching Form province.",
+  "quotes": [
+   "Intelligence + Magic Lore + simple die against an Ease Factor of 18",
+   "the Arcana Centrum adds +10 to spell casting and magic Supernatural Ability totals",
+   "A spell with the same Form cast within the province of that Form receives another +10 bonus."
+  ],
+  "related": []
+ },
+ {
+  "title": "Entering the Magic Realm: Vestiges, Arcane Connections and Twilight Tears",
+  "heading": "Finding the Arcane Doorway",
+  "line": 4779,
+  "endLine": 4796,
+  "category": "realms",
+  "topic": "Magic Realm geography",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "Describes the ways into the Magic Realm: vestiges leading to boundaries, using an Arcane Connection during the short window when the Pestilence targets a Form, and stepping through a Twilight Tear opened by a magus entering Temporary Twilight.",
+  "quotes": [
+   "At that exact moment, and for the next two minutes (20 combat rounds) the magi can target the Great Pestilence with spells.",
+   "Anyone can enter the Magic Realm if they do so at the same time as a magus enters Temporary Twilight."
+  ],
+  "related": []
+ },
+ {
+  "title": "Boundary, Vestige and Twilight Void Travel",
+  "heading": "The Path to the Arcana Centrum",
+  "line": 4798,
+  "endLine": 4838,
+  "category": "realms",
+  "topic": "Magic Realm geography",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Ability: Magic Might, Second Sight or Magic Sensitivity",
+  "summary": "Travel roll to pass a vestige or boundary, a familiarity table, a Speed Level chart converting the result into elapsed mundane time, the Twilight Void Travel roll, and the rule that Magic Realm adventuring yields vis instead of experience.",
+  "quotes": [
+   "Boundary and Vestige Travel: Stress die + Perception + appropriate Ability + Form bonus vs. ((10 \u2013 level of boundary or vestige) x 3) \u2013 Familiarity modifier",
+   "Twilight Void Travel: stress die + Stamina + Concentration + Form bonus",
+   "travelers do not gain experience points while adventuring inside the Realm"
+  ],
+  "related": [
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "New Spell Guideline: Perdo Vim (Destroying Raw Vis) and Leaving the Arcana Centrum",
+  "heading": "New Guideline: Perdo Vim",
+  "line": 4890,
+  "endLine": 4893,
+  "category": "magic",
+  "topic": "Spell guidelines",
+  "audience": [
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "New general Perdo Vim guideline for destroying raw vis equal to the spell level, plus the rule that leaving the Arcana Centrum requires another Twilight Void Travel roll against the same Ease Factor.",
+  "quotes": [
+   "Destroy an amount of raw vis equal to the level of the spell."
+  ],
+  "related": []
+ },
+ {
+  "title": "After the Great Pestilence: Forms, Auras and Vis Recover",
+  "heading": "The Aftermath",
+  "line": 4905,
+  "endLine": 4909,
+  "category": "realms",
+  "topic": "Great Pestilence",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Great Pestilence saga",
+  "summary": "When the Pestilence ends the Forms work normally again without vis, miasmas fade within a year, and auras and regiones gradually resume vis production except those that dropped to zero.",
+  "quotes": [
+   "As soon as the Great Pestilence dies, the ten Hermetic Forms start functioning again normally."
+  ],
+  "related": []
+ }
+]

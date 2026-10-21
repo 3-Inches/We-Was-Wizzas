@@ -1,0 +1,1334 @@
+[
+ {
+  "title": "Reading Hieroglyphs and Tomb Warnings",
+  "heading": "Legible Scripts",
+  "line": 720,
+  "endLine": 724,
+  "category": "setting",
+  "topic": "Egyptian tombs",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the medieval belief that learned Copts can read hieroglyphs, and gives a stress roll with Ease Factors for grasping the gist of tomb warnings and curses as taught by the Seekers' Guild.",
+  "quotes": [
+   "the gist of a text can be understood with an Intelligence + Profession: Seeker stress roll against an Ease Factor related to the age and complexity of the text (common curses are Ease Factor 6, typical texts are Ease Factor 9)"
+  ],
+  "related": [
+   "Chapter 4: Tombs"
+  ]
+ },
+ {
+  "title": "Hazards of the Desert",
+  "heading": "Hazards of the Desert",
+  "line": 823,
+  "endLine": 835,
+  "category": "hazards",
+  "topic": "Desert travel",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Adjusts the Deprivation rules for desert travel (faster water checks, extra sun damage) and gives a stress roll to escape dry quicksand, with notes on brigands, storms and jinn.",
+  "quotes": [
+   "The Deprivation check time for lack of water is reduced in the deserts to 4 hours, while the sunlight does +1 non-combat damage if skin is left exposed",
+   "A character who is caught in an area of dry quicksand may make a Strength or Quickness stress roll against an Ease Factor of 9 in the first round"
+  ],
+  "related": [
+   "ArM5 pp.180-181"
+  ]
+ },
+ {
+  "title": "Languages of the Nile and Dialect Penalties",
+  "heading": "Languages",
+  "line": 800,
+  "endLine": 876,
+  "category": "setting",
+  "topic": "Languages",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Lists the living languages and dialects of Egypt, Nubia and Ethiopia (dialects as specialties), and gives a table of penalties applied to both speakers when related languages or dialects meet.",
+  "quotes": [
+   "Mahasi is on the verge of separating into a separate language, and those who know this dialect have a larger penalty than usual when talking to speakers of the other Nubian dialects."
+  ],
+  "related": [
+   "ArM5 p.66"
+  ]
+ },
+ {
+  "title": "Dead Languages of the Nile",
+  "heading": "Dead Languages",
+  "line": 882,
+  "endLine": 893,
+  "category": "setting",
+  "topic": "Languages",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Describes the dead languages Ancient Egyptian, Demotic, Meroitic and Ge'ez, how they relate to living tongues, and their scripts.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "The Dhimmi Flaw in Egypt",
+  "heading": "Non-Muslim Characters: The Dhimmi Flaw",
+  "line": 953,
+  "endLine": 982,
+  "category": "social",
+  "topic": "Dhimmi",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Flaw: Dhimmi (non-Muslim in Egypt)",
+  "summary": "Explains the legal status of non-Muslims in Egypt and lists what a dhimmi character must not do, which is the extended rule behind the Minor General Flaw Dhimmi; European characters may use Outsider instead.",
+  "quotes": [
+   "Their duties and proscriptions are reflected in the Dhimmi Flaw, which is a Minor General Flaw. Characters from Europe might use Outsider instead."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Future and Hex Rolls",
+  "heading": "The Future",
+  "line": 1038,
+  "endLine": 1040,
+  "category": "social",
+  "topic": "Egyptian customs",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Boasting about future plans without saying 'if God wills it' is believed to invite curses, giving envious characters a bonus on Hex rolls unless the protective phrase is used.",
+  "quotes": [
+   "This is represented as a +6 bonus on Hex rolls, to destroy the circumstance discussed, by any character who envies the speaker."
+  ],
+  "related": []
+ },
+ {
+  "title": "Reputations, Shame and the Haj",
+  "heading": "Reputations and Shame",
+  "line": 1056,
+  "endLine": 1062,
+  "category": "social",
+  "topic": "Reputations",
+  "audience": [
+   "all"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes how characters remove a shameful Local Reputation by building a rival Reputation and buying down the old one, and how the Haj pilgrimage is treated as a series of scenes granting Reputation experience.",
+  "quotes": [
+   "Once the competing Reputation equals the undesired Reputation, new experience gained in the second Reputation can instead be used to buy down the first",
+   "The Haj is, from a game perspective, a series of scenes."
+  ],
+  "related": [
+   "ArM5 p.167",
+   "The Church p.15 Pilgrimages"
+  ]
+ },
+ {
+  "title": "Pretending to Be Male or Married (Dark Secrets)",
+  "heading": "Dark Secrets?",
+  "line": 1064,
+  "endLine": 1068,
+  "category": "creation",
+  "topic": "Egyptian customs",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": true,
+  "requires": "",
+  "summary": "Advice on when a female character's disguise as a man or as a married woman counts as a Dark Secret or Gender Nonconforming Flaw, and when it is only a convenience.",
+  "quotes": [
+   "If it will ruin the character's life, it is a Dark Secret."
+  ],
+  "related": []
+ },
+ {
+  "title": "Overrun (creature Quality)",
+  "heading": "Hippopotamus",
+  "line": 1138,
+  "endLine": 1172,
+  "category": "beings",
+  "topic": "Creature Qualities",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Creature with the Overrun Quality (hippopotamus, elephant)",
+  "summary": "A charging creature that hits with Overrun knocks its opponent down on a failed Dexterity + Athletics stress roll, after which the opponent is prone and cannot parry. The rule appears in the hippopotamus stat block and is reused for the elephant.",
+  "quotes": [
+   "the opponent must make a Dexterity + Athletics stress roll against an Ease Factor equal to (Damage Total (before soak) + hippopotamus's Size \u2013 opponent's Size)"
+  ],
+  "related": []
+ },
+ {
+  "title": "Roll Attack and Drowning (crocodile)",
+  "heading": "Crocodile (Cocodryllus)",
+  "line": 1230,
+  "endLine": 1268,
+  "category": "beings",
+  "topic": "Creature Qualities",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Creature with the Roll Attack Quality (crocodile)",
+  "summary": "A crocodile that has bitten a foe can roll next round to tear flesh or drag the victim underwater to drown, and a victim breaks free only by overcoming a Grapple. The block also gives stealth, ambush and Crushing Jaws notes.",
+  "quotes": [
+   "doing +6 damage without an attack roll",
+   "This requires the character to overcome a successful Grapple attack with a Grapple Strength of 10."
+  ],
+  "related": []
+ },
+ {
+  "title": "Crushing Jaws (creature Quality)",
+  "heading": "New Quality",
+  "line": 1431,
+  "endLine": 1433,
+  "category": "beings",
+  "topic": "Creature Qualities",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Creature with the Crushing Jaws Quality (hyena, crocodile)",
+  "summary": "A new animal Quality for creatures with tremendously powerful biting muscles; the jaws can be held shut with a successful Grapple.",
+  "quotes": [
+   "This Quality adds +3 Damage to any bite attack."
+  ],
+  "related": []
+ },
+ {
+  "title": "Constriction and Swallow Whole (giant serpents)",
+  "heading": "Serpent, Elephant-Eating",
+  "line": 1518,
+  "endLine": 1562,
+  "category": "beings",
+  "topic": "Creature Qualities",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Creature with the Constriction or Swallow Whole Quality",
+  "summary": "Rules for a serpent that constricts a grappled victim (deprivation checks) and can swallow smaller prey whole, where stomach acid does damage each round unless the victim braces against immersion. Includes group-attack tactics against elephants.",
+  "quotes": [
+   "The victim must make a Stamina check every five rounds, or suffer the normal effects of deprivation.",
+   "The powerful acids inflict +9 damage every round, complete immersion quadruples this to +36"
+  ],
+  "related": [
+   "ArM5 p.174 Non-Lethal Combat",
+   "ArM5 p.180 Deprivation",
+   "ArM5 p.181"
+  ]
+ },
+ {
+  "title": "The Seekers' Guild and Profession: Seeker",
+  "heading": "The Seekers' Guild (Al-Matalibeen)",
+  "line": 1570,
+  "endLine": 1578,
+  "category": "setting",
+  "topic": "Seekers' Guild",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the licensed Egyptian guild of tomb-robbers, its membership cost, library and training benefits, and the Profession: Seeker Ability that represents its lore.",
+  "quotes": [
+   "Membership is purchased with an annual fee and a slice of the recovered treasure. This is currently 20% of all valuables found.",
+   "This knowledge is covered by the Profession: Seeker Ability."
+  ],
+  "related": [
+   "Chapter 2 Legible Scripts"
+  ]
+ },
+ {
+  "title": "How Egyptian Tombs Sustain Ghosts",
+  "heading": "The Structure of Tombs",
+  "line": 1639,
+  "endLine": 1643,
+  "category": "realms",
+  "topic": "Egyptian tombs",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains the Egyptian afterlife in the Magic Realm: a ka must return each year to feed from offerings in its tomb or risk becoming a mut, and each tomb has a chapel, serdab and sepulcher with different defenses.",
+  "quotes": [
+   "A ghost that does not do this risks losing its memories and becoming a mut, or else fading away entirely."
+  ],
+  "related": []
+ },
+ {
+  "title": "Serdab and Stele",
+  "heading": "Serdab",
+  "line": 1659,
+  "endLine": 1667,
+  "category": "realms",
+  "topic": "Egyptian tombs",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The serdab is the ghost's home in a tomb; a ghost can manifest any item from its grave goods or tomb paintings, and the stele in the serdab is the doorway to Duat and the Field of Reeds.",
+  "quotes": [
+   "An Egyptian ghost can manifest, as part of its ethereal form, any item found in its grave goods or depicted on its tomb walls, provided they have not been stolen or defaced."
+  ],
+  "related": []
+ },
+ {
+  "title": "Ghosts Animating Statues",
+  "heading": "Statues",
+  "line": 1851,
+  "endLine": 1861,
+  "category": "beings",
+  "topic": "Egyptian ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Egyptian ghosts prefer to be incarnate and animate statues that resemble their bodies, which is why servant statues (ushabtis) and defacing statues matter to tomb robbers.",
+  "quotes": [
+   "Defacement prevents a ghost animating a statue from ambushing the thieves, and deanimates those already possessed"
+  ],
+  "related": []
+ },
+ {
+  "title": "Tomb Auras, the Stele Vestige and Mummies as Arcane Connections",
+  "heading": "Tombs, Temples, and Auras",
+  "line": 1877,
+  "endLine": 1881,
+  "category": "realms",
+  "topic": "Egyptian tombs",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Tombs commonly lie in Magic auras and their stele is a vestige whose level equals the aura; an intact mummy is an Arcane Connection that helps the ka's Vestige Travel Total. Temples tend toward weak Faerie auras.",
+  "quotes": [
+   "The stele within the tomb's serdab is a vestige to the Magic Realm with a level equal to the Magic aura within the tomb.",
+   "granting a Familiarity Bonus to the Vestige Travel Total of 15"
+  ],
+  "related": [
+   "Realms of Power: Magic pp.8-10",
+   "Realms of Power: Magic pp.20-24"
+  ]
+ },
+ {
+  "title": "Ghosts Carving Equipment",
+  "heading": "Carving Equipment",
+  "line": 1897,
+  "endLine": 1905,
+  "category": "beings",
+  "topic": "Egyptian ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "A ghost buried with carving tools can make representations of objects that become real for its purposes, with creation time depending on the age of the tomb, and can feed itself or summon faerie reinforcements.",
+  "quotes": [
+   "so the ghost can create a new object by drawing it in a single round"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Field of Reeds",
+  "heading": "The Field of Reeds",
+  "line": 1913,
+  "endLine": 1919,
+  "category": "realms",
+  "topic": "Egyptian tombs",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the Egyptian afterlife regio in the Magic Realm, an archipelago of paradise islands ruled by the Daimon Wesir, each with a stele linking to a tomb, and its Faerie copy ruled by Osiris.",
+  "quotes": [],
+  "related": []
+ },
+ {
+  "title": "Resolving Tomb Traps",
+  "heading": "Mechanical Traps",
+  "line": 1933,
+  "endLine": 1949,
+  "category": "hazards",
+  "topic": "Tomb traps",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "An optional trap procedure in which each player frames a clever response and rolls only for it against a trap Ease Factor the storyguide adjusts per character, with actions resolved in Quickness order (endangered character first, trap last), Fast-Cast magic and Action Priority Rolls.",
+  "quotes": [
+   "Each trap is assigned a base Ease Factor, indicating the complexity of its construction.",
+   "The actions are resolved in order of Quickness, but with the character actually in danger always being treated as fastest, and the trap always going last."
+  ],
+  "related": [
+   "ArM5 p.7 Ease Factor table"
+  ]
+ },
+ {
+  "title": "Tomb Curses: Condition and Excoriation",
+  "heading": "Curses",
+  "line": 1969,
+  "endLine": 1985,
+  "category": "magic",
+  "topic": "Tomb magic",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Egyptian tomb curses are written enchantments made of a condition that triggers them and one or more excoriations that deliver the penalty; the storyguide decides how literally the condition is read.",
+  "quotes": [
+   "All curses have two parts: a **condition** and one or more **excoriations**."
+  ],
+  "related": [
+   "Designing Tombs and Mortuaries: Curses"
+  ]
+ },
+ {
+  "title": "Egyptian Talismans (tomb magic)",
+  "heading": "Talismans",
+  "line": 2091,
+  "endLine": 2099,
+  "category": "magic",
+  "topic": "Tomb magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes trigger-based Egyptian talismans, which lack Penetration against humans, can be temporarily deactivated by a particular spell, and can be investigated like item triggers or resolved as narrative traps with a base Ease Factor from the effect's magnitude.",
+  "quotes": [
+   "The base Ease Factor for bypassing a magical trap is equal to (6 + the magnitude of its effect)."
+  ],
+  "related": [
+   "ArM5 p.100"
+  ]
+ },
+ {
+  "title": "Possess Statue (Minor Power)",
+  "heading": "Possess Statue (Minor Power)",
+  "line": 2101,
+  "endLine": 2111,
+  "category": "beings",
+  "topic": "Egyptian ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Egyptian ghost with the Possess Statue power",
+  "summary": "A power letting a ghost animate a wooden, stone or metal statue, given with a Hermetic equivalent level for each material; the statue's physical attacks must penetrate opponents' Magic Resistance.",
+  "quotes": [
+   "Note that the physical attacks of an animated statue have to Penetrate the Magic Resistance of any opponents struck."
+  ],
+  "related": []
+ },
+ {
+  "title": "Egyptian Wards (tomb magic)",
+  "heading": "Wards",
+  "line": 2113,
+  "endLine": 2119,
+  "category": "magic",
+  "topic": "Tomb magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Egyptian wards hide tombs or repel intruders, usually with a defined way to deactivate them, may carry Penetration against spirits, and are overcome with the narrative trap rules at a base Ease Factor from the effect's magnitude.",
+  "quotes": [
+   "The base Ease Factor for such actions is (9 + the magnitude of effect)."
+  ],
+  "related": []
+ },
+ {
+  "title": "Quick Ghost Conversion (ka)",
+  "heading": "Quick Ghost Conversion Notes",
+  "line": 2131,
+  "endLine": 2155,
+  "category": "beings",
+  "topic": "Egyptian ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "A step-by-step kit for turning an ordinary character into an Egyptian ghost (ka): choose Magic Might, swap Virtues and Flaws, add Magic Spirit, note intangibility and vulnerability to Mentem, and add powers and vis.",
+  "quotes": [
+   "Give the character a Magic Might score of between 5 and 25",
+   "Add vis, usually Mentem, equal to the Might score divided by 5."
+  ],
+  "related": [
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Quick Animated Statue Conversion",
+  "heading": "Quick Animated Statue Conversion Notes",
+  "line": 2157,
+  "endLine": 2187,
+  "category": "beings",
+  "topic": "Egyptian ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "A kit for building an animated statue from a mortal character, including Soak by statue material, size adjustments to Strength and Quickness, damage penalties for stone or bronze weapons, and how to force a ghost out of a statue.",
+  "quotes": [
+   "Wood grants +9 Soak.",
+   "Hard metal grants +21 Soak.",
+   "Characters lose 2 Strength and gain 1 Quickness per Size lost, or conversely gain 2 Strength and lose 1 Quickness per Size gained."
+  ],
+  "related": []
+ },
+ {
+  "title": "Royal Pharaonic Ghosts",
+  "heading": "Detailed Design for Royal Pharaonic Ghosts",
+  "line": 2189,
+  "endLine": 2211,
+  "category": "beings",
+  "topic": "Egyptian ghosts",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "Guidelines for designing the ghosts of Egyptian royalty: bloodline Virtues from Faerie gods, odd powers drawn from a pharaoh's life, and Transformation after death thanks to long death rituals.",
+  "quotes": [],
+  "related": [
+   "Realms of Power: Magic p.52 Transformation"
+  ]
+ },
+ {
+  "title": "Blood of the Old Gods and Sympathy Traits",
+  "heading": "New Virtue: Blood of the Old Gods",
+  "line": 2197,
+  "endLine": 2203,
+  "category": "creation",
+  "topic": "Sympathy Traits",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Virtue: Blood of the Old Gods (Minor or Major Supernatural)",
+  "summary": "A variety of Faerie Blood that grants a Sympathy Trait which can replace an Ability speciality on applicable rolls (always as a stress roll), is raised with experience, and is capped by the Warping Score.",
+  "quotes": [
+   "A Sympathy Trait can replace the character's speciality on any applicable Ability roll, but doing so always makes the roll a stress roll."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Akh (Egyptian Daimon)",
+  "heading": "The Akh",
+  "line": 2213,
+  "endLine": 2219,
+  "category": "beings",
+  "topic": "Daimons",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "Explains how the ba, ka and khu fuse into an akh, a Daimon, and how to build one as a Magic Spirit with a Magic Might range, as a Winter creature summoned by name or relics.",
+  "quotes": [
+   "Assume a Magic Might Score of 20 for noblemen who have the simplest coffin texts, up to 60 for the greatest pharaohs"
+  ],
+  "related": [
+   "The Mysteries: Revised Edition pp.82-86",
+   "Realms of Power: Magic"
+  ]
+ },
+ {
+  "title": "Designing Tombs and Mortuaries",
+  "heading": "Designing Tombs and Mortuaries",
+  "line": 2315,
+  "endLine": 2317,
+  "category": "covenant",
+  "topic": "Tomb design",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "Introduces a method for designing ancient tombs with Boons, Hooks and Build Points as if they were covenants, needed only if a tomb is an ongoing part of a saga.",
+  "quotes": [
+   "This section presents a method for designing ancient tombs using Boons, Hooks, and Build Points as if it were a covenant."
+  ],
+  "related": [
+   "ArM5 Chapter 6 Covenants"
+  ]
+ },
+ {
+  "title": "Basic Tomb Features: Tether, Aura and Build Points",
+  "heading": "Basic Tomb Features",
+  "line": 2319,
+  "endLine": 2330,
+  "category": "covenant",
+  "topic": "Tomb design",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "Tombs generate preternatural tethers that create Magic auras, and the tomb's rank sets its base aura and Build Points; each tomb has a cap on Hook points to spend on Boons.",
+  "quotes": [
+   "For every century that a grave site (which could be a series of pyramids, or a number of individual tombs) was in use, it generates a tether score of 1, up to a maximum of 5.",
+   "Each tomb can have up to 10 points of Hooks, which can be used to purchase Boons."
+  ],
+  "related": [
+   "Realms of Power: Magic pp.8-10"
+  ]
+ },
+ {
+  "title": "Tomb Curses as Resources",
+  "heading": "Curses",
+  "line": 2364,
+  "endLine": 2374,
+  "category": "covenant",
+  "topic": "Tomb design",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "How to build a tomb curse as a Hermetic-style enchantment: usual Range and Target, triggers, uses per day, Greater or Lesser Malediction for effects Hermetic magic cannot copy, false curses and their Build Point cost.",
+  "quotes": [
+   "Maledictions can be of any appropriate Technique or Form, and have a base level of 10 for a Lesser Malediction, and level 30 for a Greater Malediction.",
+   "A curse costs two Build Points for every five levels of effects."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tomb Enchanted Items: Talismans and Wards",
+  "heading": "Enchanted Items (Talismans and Wards)",
+  "line": 2416,
+  "endLine": 2420,
+  "category": "covenant",
+  "topic": "Tomb design",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "Sets the Build Point cost of tomb talismans and wards and notes that they are not true Hermetic enchantments, so they can be bypassed using the trap Ease Factors, with Magic Resistance beating low Penetration automatically.",
+  "quotes": [
+   "These cost two Build Points for every five levels of effects."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tomb Specialists",
+  "heading": "Specialists",
+  "line": 2428,
+  "endLine": 2430,
+  "category": "covenant",
+  "topic": "Tomb design",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "Tomb inhabitants such as cult priests, walking cadavers and ghostly viziers are bought as specialists, teachers or guardians for Build Points.",
+  "quotes": [
+   "Tomb guardians usually cost Build Points equal to their highest Martial Ability or Brawl, as applicable."
+  ],
+  "related": []
+ },
+ {
+  "title": "Example Traps and Trap Damage",
+  "heading": "Example Traps",
+  "line": 2480,
+  "endLine": 2546,
+  "category": "hazards",
+  "topic": "Tomb traps",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "A catalogue of mechanical traps with Build Costs and Ease Factors, including rules of thumb for rockfall, projectile and pit damage, head wires and poisoned powders.",
+  "quotes": [
+   "For smaller rockfalls, a rule of thumb is +1 damage per 10 pounds of rocks.",
+   "calculate Damage as (Stress die + Weapon Damage Modifier from page 177 of the core rules)"
+  ],
+  "related": [
+   "ArM5 pp.177, 180, 181"
+  ]
+ },
+ {
+  "title": "Tomb Traps: Build Point Costs",
+  "heading": "Traps",
+  "line": 2548,
+  "endLine": 2569,
+  "category": "covenant",
+  "topic": "Tomb design",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "Tables giving the Build Point cost of tomb traps by severity of harm and the modifier for how hard they are to avoid.",
+  "quotes": [
+   "The ease of avoiding a trap modifies the Build Point cost."
+  ],
+  "related": []
+ },
+ {
+  "title": "Tomb Hooks and Boons",
+  "heading": "Hooks and Boons",
+  "line": 2577,
+  "endLine": 2579,
+  "category": "covenant",
+  "topic": "Tomb design",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "",
+  "summary": "Notes how covenant Boons and Hooks apply to tombs: Wealth means intact grave goods, and Nubian tombs should take the Seclusion Boon.",
+  "quotes": [
+   "In Nubia, all tombs should purchase the Seclusion Boon due to the superstitious avoidance of all things to do with the dead."
+  ],
+  "related": [
+   "ArM5 pp.72-74",
+   "Covenants pp.6-27"
+  ]
+ },
+ {
+  "title": "Means of Avoiding Traps",
+  "heading": "Means of Avoiding Traps",
+  "line": 2589,
+  "endLine": 2591,
+  "category": "hazards",
+  "topic": "Tomb traps",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Traps take effect last in the combat round so characters can react, and slower traps such as flooding rooms give extended time to escape.",
+  "quotes": [
+   "Traps, regardless of their type, impose their effects last in the combat round."
+  ],
+  "related": []
+ },
+ {
+  "title": "Perception Checks and Trap Lighting",
+  "heading": "Perception Checks and Traps",
+  "line": 2593,
+  "endLine": 2597,
+  "category": "hazards",
+  "topic": "Tomb traps",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "A Perception + Awareness roll lets a character notice a trap without triggering it, with Ease Factors modified by the quality of lighting.",
+  "quotes": [
+   "Characters able to supply perfect lighting conditions (such as through a spell) decrease the Ease Factor by 3"
+  ],
+  "related": []
+ },
+ {
+  "title": "Evading Traps with Lords of Men Evasion",
+  "heading": "Evading Traps",
+  "line": 2599,
+  "endLine": 2601,
+  "category": "hazards",
+  "topic": "Tomb traps",
+  "audience": [
+   "all",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Optional Combat rules from Lords of Men",
+  "summary": "For troupes using the optional Lords of Men combat rules, a trap's Attack total is based on the trap setter's Intelligence and Profession and tested against the Evasion Combat Statistic.",
+  "quotes": [
+   "assume the trap's Attack total is stress die + Intelligence of the trap setter + Profession of the trap setter"
+  ],
+  "related": [
+   "Lords of Men p.125 Evasion"
+  ]
+ },
+ {
+  "title": "Books of the Lector Priests (Faerie Rite Wizards)",
+  "heading": "Books of The Lector Priests",
+  "line": 2699,
+  "endLine": 2701,
+  "category": "traditions",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Tradition: Faerie Rite Wizards (Realms of Power: Faerie)",
+  "summary": "Lector priests were Faerie Rite Wizards whose books of rites hold closely related effects (Evocation, Grant, Weal, Ware, Woe) performed with the Ceremony Special Ability.",
+  "quotes": [
+   "all priests had the Ceremony Special Ability (page 115)"
+  ],
+  "related": [
+   "Realms of Power: Faerie ch.6"
+  ]
+ },
+ {
+  "title": "Even Ancient Egyptians Thought Monumental Tombs Were Weird",
+  "heading": "Even Ancient Egyptians Thought Monumental Tombs Were Weird",
+  "line": 2703,
+  "endLine": 2709,
+  "category": "traditions",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains that the tomb chapter assumes Magic-aligned practitioners while this chapter describes Faerie-aligned priests served by Magic-aligned artisans, and that artefacts from either system may be used.",
+  "quotes": [
+   "Artefacts designed under either system should be used in a troupe's saga, as suits their stories."
+  ],
+  "related": []
+ },
+ {
+  "title": "Reading the Books of Ritual",
+  "heading": "Reading the Books of Ritual",
+  "line": 2711,
+  "endLine": 2723,
+  "category": "traditions",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "How a character performs an Ancient Egyptian rite from a book: a Communication + Coptic roll against a target based on effect level, ritual preparation and purity, a required Faerie aura, and reasons rites fail.",
+  "quotes": [
+   "This may require a Communication + Leadership roll against a target of 3 + 1 per required follower.",
+   "the character must make a Communication + Coptic roll of 3 + (1 per 5 levels of effect)"
+  ],
+  "related": [
+   "Realms of Power: Faerie p.121"
+  ]
+ },
+ {
+  "title": "Heka and Faerie-Based Egyptian Magic",
+  "heading": "Heka",
+  "line": 2777,
+  "endLine": 2779,
+  "category": "traditions",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains heka, the Egyptian name for vis and written spells, and that Egyptian religious magic is mainly Faerie-based, so flourishes such as dawn casting and animal sacrifice were not optional.",
+  "quotes": [
+   "Egyptian religious magic differed from Hermetic magic in that it is primarily based on the Faerie, not Magical, realm."
+  ],
+  "related": []
+ },
+ {
+  "title": "Egyptian Views of Vis",
+  "heading": "Vis",
+  "line": 2773,
+  "endLine": 2775,
+  "category": "realms",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the materials the Egyptians thought held heka, such as resin, gold, iron and deformed things, which tomb robbers often discard without realizing they are vis.",
+  "quotes": [
+   "Resin, for example, was thought to contain heka that could be used for preservation magic"
+  ],
+  "related": []
+ },
+ {
+  "title": "Egyptian Rites Without Realms of Power: Faerie",
+  "heading": "Troupes Not Using Realms of Power: Faerie",
+  "line": 2781,
+  "endLine": 2809,
+  "category": "traditions",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "A Hermetic substitute for Faerie Rites: after a Communication + Coptic roll, the reader makes a casting total from Stamina, closest Form and Technique, and Aura, with a table of Fatigue loss and Warping by result; Egyptian books are treated as casting tablets.",
+  "quotes": [
+   "the character must make a Communication + Coptic roll against an Ease Factor of 3 + (1 per 5 levels of effect)",
+   "The speaker's casting total is: Stamina + closest Form + closest Technique + Aura + stress dice (modified by Virtues and Flaws)"
+  ],
+  "related": [
+   "Covenants (casting tablets)"
+  ]
+ },
+ {
+  "title": "Transitory Magic Items",
+  "heading": "Transitory Magic Items",
+  "line": 2811,
+  "endLine": 2813,
+  "category": "magic",
+  "topic": "Transitory magic items",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces single-use items made by Faerie-aligned Egyptian magicians that are not enchanted but carry a supernatural property, commonly temporary amulets and potions.",
+  "quotes": [
+   "A transitory magic item is an object which has supernatural properties, but only for a single use"
+  ],
+  "related": []
+ },
+ {
+  "title": "Temporary Amulets (Until Duration)",
+  "heading": "Temporary Amulets",
+  "line": 2815,
+  "endLine": 2821,
+  "category": "magic",
+  "topic": "Transitory magic items",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "A temporary amulet is an object carrying a spell with the Faerie-only Until Duration that ends when the amulet is worn and discarded, and the effect survives its creator's death.",
+  "quotes": [
+   "an object on which a spell with the Until Duration has been cast"
+  ],
+  "related": []
+ },
+ {
+  "title": "The Statues Just Hold Faeries, They Are Not Enchanted",
+  "heading": "The Statues Just Hold Faeries, They Are Not Enchanted",
+  "line": 2823,
+  "endLine": 2829,
+  "category": "traditions",
+  "topic": "Transitory magic items",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Merinita view that holy statues, such as a cippus of Horus, are open offers to faeries who feed on the worshipers' hope, rather than enchanted items.",
+  "quotes": [
+   "it's a clever way of making an open offer to nearby faeries"
+  ],
+  "related": []
+ },
+ {
+  "title": "Egyptian Seals (temporary magic items)",
+  "heading": "Seals",
+  "line": 2831,
+  "endLine": 2835,
+  "category": "magic",
+  "topic": "Transitory magic items",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Seals hold a spell maintained by an Until Duration or act like Watching Wards, triggering when a precondition (usually breaking the seal) is met.",
+  "quotes": [
+   "Egyptian seals of this type are remarkably similar to Watching Wards."
+  ],
+  "related": []
+ },
+ {
+  "title": "Temporary Potions",
+  "heading": "Temporary Potions",
+  "line": 2837,
+  "endLine": 2841,
+  "category": "magic",
+  "topic": "Transitory magic items",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Potions made by pouring water or beer over a statue housing a faerie (such as a cippus of Horus) or over inscribed bowls, each giving a single effect if a nearby faerie accepts the deal.",
+  "quotes": [
+   "Each statue provided a single effect."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Drawing of Maat (tongue magic)",
+  "heading": "The Drawing of Maat",
+  "line": 2847,
+  "endLine": 2851,
+  "category": "mysteries",
+  "topic": "Tongue magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Discovering the Mystery of Maat",
+  "summary": "A lost technique of painting the goddess of Truth on the tongue that prevents lying and, once its Mystery is found, creates a tiny possessing faerie that corrects mispronunciation so botches are less likely.",
+  "quotes": [
+   "The faerie checks his words for mispronunciations and corrects them"
+  ],
+  "related": []
+ },
+ {
+  "title": "Saliva and Breath Ranges",
+  "heading": "Saliva and Breath Ranges",
+  "line": 2853,
+  "endLine": 2855,
+  "category": "magic",
+  "topic": "Tongue magic",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Discovering the tongue-magic texts",
+  "summary": "Spitting or breathing on a target counts as a Range equivalent to Personal, but without bypassing Magic Resistance as Personal spells do, making some Spontaneous spells easier.",
+  "quotes": [
+   "Treat this as equivalent to Personal range, but without circumventing Magic resistance as Personal spells do."
+  ],
+  "related": []
+ },
+ {
+  "title": "Statue Consecration",
+  "heading": "Statue Consecration Mystery",
+  "line": 2861,
+  "endLine": 2877,
+  "category": "mysteries",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Statue Consecration Mystery (lost rite)",
+  "summary": "How chief lectors consecrate a new statue so a faerie inhabits it, by performing a ritual narrative that faeries feed on; the roll is aided by a Faerie aura. Sidebars give examples of animated models and the play of faeries against one another.",
+  "quotes": [
+   "This requires a Communication + Folk Ken roll against a target of 18."
+  ],
+  "related": []
+ },
+ {
+  "title": "Unusual Amulets: Ib Scarab and Royal Names",
+  "heading": "Unusual Amulets",
+  "line": 2889,
+  "endLine": 2903,
+  "category": "magic",
+  "topic": "Egyptian amulets",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "The Ib Scarab replaces the heart and works at Personal Range, and seals with royal names carry a little Magic Resistance that may accidentally protect a wearer from curses.",
+  "quotes": [
+   "it replaces the heart, and so can create effects at Personal Range.",
+   "These royal names have a little Magic Resistance, perhaps as high as 5 points."
+  ],
+  "related": []
+ },
+ {
+  "title": "Temporary Objects From Models",
+  "heading": "Temporary Objects From Models",
+  "line": 2905,
+  "endLine": 2909,
+  "category": "magic",
+  "topic": "Egyptian amulets",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Model objects in tombs can become temporary real objects with a faerie inside; troupes without Realms of Power: Faerie design it as a shapeshifting magic item.",
+  "quotes": [
+   "Groups using only the core rules should design a magic item with a shapeshifting effect."
+  ],
+  "related": [
+   "Realms of Power: Faerie"
+  ]
+ },
+ {
+  "title": "Threatening the Gods",
+  "heading": "Threatening the Gods",
+  "line": 2911,
+  "endLine": 2915,
+  "category": "traditions",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes the alternative Enchantment Faerie Rite Method in which a caster threatens to destroy a faerie and the world unless given what is demanded, and who used it.",
+  "quotes": [
+   "The spell-caster threatened to destroy not only the faerie, but the entire world, unless given what was demanded."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Weakest and Commonest Ancient Magicians",
+  "heading": "The Weakest and Commonest Ancient Magicians",
+  "line": 2917,
+  "endLine": 2923,
+  "category": "traditions",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Describes local-spirit priests like village witches and suggests ways to design them, such as Faerie Friend, Faerie Doctors or Faerie Bargainers, with their grave goods as Mystery quest goals.",
+  "quotes": [
+   "Some of these priests of local gods could be designed as Faerie Doctors"
+  ],
+  "related": [
+   "Realms of Power: Faerie pp.118, 129, 132"
+  ]
+ },
+ {
+  "title": "Writings of Those Who Threatened the Gods",
+  "heading": "The Writings of Those Who Threatened the Gods",
+  "line": 2934,
+  "endLine": 2936,
+  "category": "traditions",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Three kinds of recoverable texts: Enchant-scripts, threat scripts that add a bonus to a Rite's casting total, and Mystery initiation texts granting Virtues such as Puissant Enchantment.",
+  "quotes": [
+   "These grant a bonus to the casting total of a particular Rite."
+  ],
+  "related": []
+ },
+ {
+  "title": "Magical Craftwork",
+  "heading": "Magical Craftwork",
+  "line": 2938,
+  "endLine": 2942,
+  "category": "traditions",
+  "topic": "Egyptian craft magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Introduces the caste of magical crafters who made amulets, talismans and curses, whose writings produced the Learned Magician tradition and remain usable by Coptic speakers.",
+  "quotes": [],
+  "related": [
+   "Hedge Magic: Revised Edition (Learned Magicians)"
+  ]
+ },
+ {
+  "title": "Egyptian Craft Magic and Learned Magic",
+  "heading": "Relationship to Learned Magic",
+  "line": 2944,
+  "endLine": 2948,
+  "category": "traditions",
+  "topic": "Egyptian craft magic",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Learned Magician rules (Hedge Magic: Revised Edition)",
+  "summary": "Shows how to simulate Ancient Egyptian amulets, talismans and curses with Learned Magic Techniques and Forms, noting that Egyptian magic lacks the Range, Target and Duration limits and Difficult Arts, and assumes high casting and lab totals.",
+  "quotes": [
+   "Troupes using the Learned Magician rules to create Egyptian spells should assume that the Egyptians had very high casting and laboratory totals"
+  ],
+  "related": [
+   "Hedge Magic: Revised Edition"
+  ]
+ },
+ {
+  "title": "Contained Spirits",
+  "heading": "Contained Spirits",
+  "line": 2980,
+  "endLine": 2986,
+  "category": "beings",
+  "topic": "Contained spirits",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Rules of thumb for creatures trapped in containers: bargains bind only the words spoken, a spirit can be won as a permanent ally by favors comparable to Mystery Ordeals, and freeing a faerie unconditionally invites a gift in return.",
+  "quotes": [
+   "A bargain struck with these beings is binding, but only the specific words, not the intent, need to be adhered to.",
+   "A rescued spirit may be converted into a permanent ally by performing a series of favors for it."
+  ],
+  "related": [
+   "The Mysteries (Ordeals)"
+  ]
+ },
+ {
+  "title": "A Note on True Names",
+  "heading": "A Note on True Names",
+  "line": 2992,
+  "endLine": 2996,
+  "category": "traditions",
+  "topic": "True Names",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains Egyptian casualness about True Names (ka names, rens) listed in tombs and how shabti servants answer the name and shift the target of curses.",
+  "quotes": [
+   "The owner had shabtis, little statue servants, who answered his True Name for him."
+  ],
+  "related": []
+ },
+ {
+  "title": "The Book of Thoth",
+  "heading": "Those Who Have Read the Book of Thoth",
+  "line": 2998,
+  "endLine": 3000,
+  "category": "mysteries",
+  "topic": "Egyptian priesthood",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Finding the Book of Thoth",
+  "summary": "A character who reads the Book of Thoth can effortlessly cast almost any Hermetic spell but dies or fades into Twilight within a day, after which the Book is hidden again.",
+  "quotes": [
+   "Within one day, however, they either die or fade into Twilight."
+  ],
+  "related": []
+ },
+ {
+  "title": "Auras in Egypt",
+  "heading": "A Note on Auras in Egypt",
+  "line": 3008,
+  "endLine": 3016,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Gives typical Dominion aura strengths for holy sites, graves, workplaces and the call to prayer, how to set Faerie auras from the strongest faerie's Might, where Magic auras come from, and Infernal auras.",
+  "quotes": [
+   "Faerie auras are equal to (Might of the most powerful faerie in the area /5)",
+   "generally places of worship have a Dominion aura of 4, the cemeteries and homes of the People of the Book have an aura of 3, the places of work of monotheists have an aura of 2, and land from which the call to prayer can be heard has an aura of 1"
+  ],
+  "related": [
+   "Chapter 4 Basic Tomb Features"
+  ]
+ }
+]

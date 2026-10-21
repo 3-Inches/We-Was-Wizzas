@@ -1,0 +1,587 @@
+[
+ {
+  "title": "The Cult of Eleusis (Eleusinian Mysteries)",
+  "heading": "The Cult of Eleusis",
+  "line": 2194,
+  "endLine": 2202,
+  "category": "mysteries",
+  "topic": "Eleusinian Mysteries",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Eleusinian Mysteries (sponsor required; Greek, no blood guilt)",
+  "summary": "Describes how a character is sponsored into and initiated in the Eleusinian Mystery cult at Eleusis, with a Lesser Mystery held yearly and a Greater Mystery held less often, and what Virtues each may grant.",
+  "quotes": [
+   "Initiation into the Lesser Mystery occurs once a year in March, and grants the Virtue Self-Confident",
+   "The Greater Mystery is initiated once every five years, at the end of August. It may grant the Death Prophecy Virtue"
+  ],
+  "related": [
+   "ArM5 The Mysteries (Revised Edition)"
+  ]
+ },
+ {
+  "title": "The Temptations of Christ (Tower of the Devil ordeal)",
+  "heading": "The Temptations of Christ",
+  "line": 2136,
+  "endLine": 2138,
+  "category": "mysteries",
+  "topic": "Mystery initiation ordeals",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Attempting an ascent of the Pyrgos Diavolou at Meteora, e.g. as a Mystery initiation ordeal",
+  "summary": "A forty-day ordeal on the Tower of the Devil in which the hermit faces three temptations mirroring Christ's, with fatal or Infernal consequences if he yields; suggested as an initiation ordeal.",
+  "quotes": [
+   "Over the course of forty days and nights, the duration of Christ's time in the desert, he is tormented by the vultures."
+  ],
+  "related": [
+   "Realms of Power: The Infernal, page 85 (Infernal Blessing)"
+  ]
+ },
+ {
+  "title": "Mount Olympos: Immortals' Mushrooms and the Realm above the Clouds",
+  "heading": "Olympos",
+  "line": 2098,
+  "endLine": 2104,
+  "category": "setting",
+  "topic": "Mount Olympos",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Travel to Mount Olympos (Theban Tribunal)",
+  "summary": "Speckled mushrooms on Olympos' slopes can aid an Aging roll, and the mountain's Faerie regio leads to a high-aura realm guarded by the three Horae where magi may study or seek Mystery initiations.",
+  "quotes": [
+   "a character may receive a \u20133 bonus to his Aging roll for that year",
+   "has a Faerie aura of 10"
+  ],
+  "related": [
+   "Realms of Power: Faerie, page 34"
+  ]
+ },
+ {
+  "title": "Mount Athos: Divine auras and the ban on females",
+  "heading": "Mount Athos",
+  "line": 2088,
+  "endLine": 2090,
+  "category": "realms",
+  "topic": "Mount Athos",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Mount Athos (Theban Tribunal)",
+  "summary": "Lists the graded Divine aura levels of the Holy Mountain and the ward that keeps females, human or animal, off the promontory.",
+  "quotes": [
+   "The whole promontory has a Divine aura of 5, with the monasteries and cells often reaching 7, the altars 8, and certain holy spots on Mount Athos itself 9.",
+   "Nothing female, either animal or human, is able to set foot upon this holy land"
+  ]
+ },
+ {
+  "title": "The Bridge of Arta (Infernal aura and Greedy trait)",
+  "heading": "The Bridge of Arta",
+  "line": 2004,
+  "endLine": 2010,
+  "category": "setting",
+  "topic": "Site effects on Personality Traits",
+  "audience": [
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Crossing the Bridge of Arta (Epiros)",
+  "summary": "An Infernal-aura bridge that temporarily raises or grants the Greedy Personality Trait in anyone who crosses it.",
+  "quotes": [
+   "It has a perfidious Infernal aura of 2",
+   "Any who cross the bridge have their Greedy Personality Trait increased by two, or gain it with a score of 2, until the following day."
+  ]
+ },
+ {
+  "title": "Studying with a Lamia (Palace of the Lamia)",
+  "heading": "The Palace of the Lamia",
+  "line": 2182,
+  "endLine": 2184,
+  "category": "mysteries",
+  "topic": "Lamia initiation",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Being taken in by a lamia (Gulf of Corinth)",
+  "summary": "A magus may be taken to a lamia's underwater palace and taught secrets; a dangerous route to learning, and many lamiae can initiate Mystery Virtues.",
+  "quotes": [
+   "Many lamiae are capable of initiating Mystery Virtues, for example."
+  ],
+  "related": [
+   "Chapter 10: Faerie Landscape, Lamiae",
+   "Realms of Power: Faerie, page 68"
+  ]
+ },
+ {
+  "title": "The Blood of Medusa (healing blood, vis, Longevity Ritual bonus)",
+  "heading": "The Blood of Medusa",
+  "line": 2300,
+  "endLine": 2303,
+  "category": "lab",
+  "topic": "Longevity Rituals",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Access to the Blood of Medusa at Epidauros",
+  "summary": "A renewable vis source whose blood heals wounds and diseases when drunk in quantity, and gives a Lab Total bonus when a small dose is used in crafting a Longevity Ritual.",
+  "quotes": [
+   "If copiously drunk, the imbiber's Incapacitating Wounds are immediately reduced to Heavy and all later Recovery rolls for all current wounds succeed automatically.",
+   "If a smaller dose of the blood (4 pawns) is used in the crafting of a Longevity Ritual, +12 is gained to the Lab Total."
+  ],
+  "related": [
+   "Realms of Power: Magic, page 119"
+  ]
+ },
+ {
+  "title": "The Hall of Repose at Epidauros (Longevity Ritual laboratory)",
+  "heading": "Setting and Physical Description",
+  "line": 2313,
+  "endLine": 2315,
+  "category": "lab",
+  "topic": "Longevity Rituals",
+  "audience": [
+   "magi",
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Epidauros",
+  "summary": "Describes the Hall of Repose, a shared laboratory specialized for longevity and healing that is used whenever a Tribunal-funded Longevity Ritual is made.",
+  "quotes": [
+   "It may be used whenever a Tribunal-funded Longevity Ritual is created; the recipient is required to sleep in the hall."
+  ]
+ },
+ {
+  "title": "Asklepios as patron: sleeping in the Hall of Repose",
+  "heading": "Epidauros' Patron: Asklepios",
+  "line": 2319,
+  "endLine": 2321,
+  "category": "setting",
+  "topic": "Longevity Rituals",
+  "audience": [
+   "magi",
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Sleeping in the Hall of Repose at Epidauros",
+  "summary": "Sleepers in the Hall of Repose may receive healing visions and bonuses to Wound Recovery rolls and to the Lab Total of a Longevity Ritual crafted for them there.",
+  "quotes": [
+   "Sleepers here also gain +12 to their next Wound Recovery roll and a +6 bonus to the Lab Total if a Longevity Rituals is crafted for them here."
+  ]
+ },
+ {
+  "title": "The Terrae Cult at Hedyosmos (Cult of the Earth)",
+  "heading": "The Cult of the Earth",
+  "line": 2463,
+  "endLine": 2471,
+  "category": "mysteries",
+  "topic": "Terrae Cult",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Initiation: Terrae Cult (threskeia geine), headed by House Guernicus",
+  "summary": "Describes the Theban chapter of the Terrae Cult, listing the Virtues its Initiation Scripts confer, typical Ordeal Flaws, and a Terram-aligned variant of the Summoning Virtue that is not Infernal.",
+  "quotes": [
+   "The threskeia geine of Hedyosmos has Initiation Scripts for the following Virtues:",
+   "it can instead summon any creature with a Magic Might that is aligned to the Form of Terram",
+   "When summoning elementals, the character must use the scouring mechanic to create the elemental de novo."
+  ],
+  "related": [
+   "Houses of Hermes: True Lineages, pages 36 & 68",
+   "The Mysteries Revised Edition, Chapter 7",
+   "Realms of Power: The Infernal, pages 114-115"
+  ]
+ },
+ {
+  "title": "Lesbos: reversed gender roles and character creation",
+  "heading": "Lesbos",
+  "line": 2630,
+  "endLine": 2638,
+  "category": "setting",
+  "topic": "Theban regional character creation",
+  "audience": [
+   "companions",
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character from Lesbos",
+  "summary": "Natives of Lesbos live in a society where women hold higher status than men, so characters who have not adjusted to other regions' gender roles are advised to take the Social Handicap Flaw, and certain Virtues are very common.",
+  "quotes": [
+   "should take the Social Handicap Flaw",
+   "The Enchanting Music and Free Expression Virtues are very common."
+  ]
+ },
+ {
+  "title": "Delos Today: Restless aura and the ban on births and deaths",
+  "heading": "Delos Today",
+  "line": 2774,
+  "endLine": 2784,
+  "category": "setting",
+  "topic": "Delos",
+  "audience": [
+   "magi",
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Delos (site of the Theban Tribunal)",
+  "summary": "Explains the floating island's Magic aura levels, the Restless Personality Trait it imposes on everyone present, its wandering route, and the prohibitions on births, deaths, pregnant women and predatory animals during Tribunal.",
+  "quotes": [
+   "imposing the Personality Trait of Restless +1 on anyone who sets foot on the island (where the aura is greater than 3, this trait rises to +2)",
+   "The whole island has a Magic aura of 3"
+  ],
+  "related": [
+   "Realms of Power: Magic, page 15",
+   "Chapter 3: The Order of Hermes, The Ceremony of Propitiation"
+  ]
+ },
+ {
+  "title": "The Tribunal Treasury on Delos",
+  "heading": "The Tribunal Treasury",
+  "line": 2798,
+  "endLine": 2802,
+  "category": "order",
+  "topic": "Tribunal Treasury",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Theban Tribunal",
+  "summary": "Describes the Tribunal's vis and artifact treasury, who holds its key, how it is guarded, and the spontaneous magical effects caused by the stored vis.",
+  "quotes": [
+   "may only be opened with a large iron key that is entrusted to the archon"
+  ],
+  "related": [
+   "Realms of Power: Magic, page 123"
+  ]
+ },
+ {
+  "title": "Aegaea's underwater Faerie regio",
+  "heading": "Setting and Physical Description",
+  "line": 2948,
+  "endLine": 2952,
+  "category": "realms",
+  "topic": "Aegaea",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Aegaea (underwater Faerie regio)",
+  "summary": "Describes the underwater Faerie regio where mortals can breathe, work and move as if in air, and the Faerie aura of its top level.",
+  "quotes": [
+   "Inside the regio, the top level has a Faerie aura of 8.",
+   "mortals can breathe unhindered, ink dries on parchment, and fires can even be lit"
+  ]
+ },
+ {
+  "title": "Warping from living in Aegaea's Faerie aura",
+  "heading": "Magi",
+  "line": 2968,
+  "endLine": 2970,
+  "category": "realms",
+  "topic": "Warping",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Living in Aegaea (non-Merinita magi)",
+  "summary": "Notes that magi who stay long in the covenant's potent Faerie aura and eat or use faerie goods, unless of House Merinita, accumulate Warping rapidly.",
+  "quotes": [
+   "is a rapid accumulation of Warping"
+  ]
+ },
+ {
+  "title": "Dryops: a patron that pays Might for regiones",
+  "heading": "Favonius' Patron: Dryops",
+  "line": 3032,
+  "endLine": 3036,
+  "category": "covenant",
+  "topic": "Covenant patrons",
+  "audience": [
+   "storyguide",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Favonius",
+  "summary": "Explains how the covenant's spirit patron created the ships' regiones at a permanent cost to its own Might, and the debt this creates for the covenant.",
+  "quotes": [
+   "Every time the spirit uses its *Regio* power, it permanently loses 15 points from its Might."
+  ],
+  "related": [
+   "Realms of Power: Magic, pages 52 and 103"
+  ]
+ },
+ {
+  "title": "The Enchanted Ships of Favonius (ship statistics and bonuses)",
+  "heading": "The Enchanted Ships",
+  "line": 3044,
+  "endLine": 3046,
+  "category": "covenant",
+  "topic": "Mobile covenants and ships",
+  "audience": [
+   "covenant",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Favonius",
+  "summary": "Gives the Quality, Size, damage levels and navigation and ship-handling bonuses of the covenant's four enchanted ships, and notes they are bought with the Magical Fortress Boon without spending Build Points on enchantments.",
+  "quotes": [
+   "Because of the quality of workmanship, pilots receive a +2 to any navigation rolls, and captains receive a +2 bonus to any ship-handling rolls.",
+   "These ships are bought with the Magical Fortress Boon, and their enchantments do not cost covenant Build Points."
+  ],
+  "related": [
+   "City & Guild, pages 69 and 77"
+  ]
+ },
+ {
+  "title": "Limits on sales of enchanted items to mundanes (Stouritus)",
+  "heading": "Stouritus of House Verditius",
+  "line": 3129,
+  "endLine": 3138,
+  "category": "order",
+  "topic": "Selling enchanted items to mundanes",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "House Verditius; Theban Tribunal",
+  "summary": "Within a magus' description, explains the Order's only rule on selling enchanted items to mundanes and the number allowed per year in the Theban Tribunal, and that Items of Quality do not count against it.",
+  "quotes": [
+   "The Order's only rule concerning the sale of enchanted items is that magi must use intermediaries when selling to mundanes",
+   "Items of Quality (*Houses of Hermes: Mystery Cults*, page 124) are not enchanted items per se"
+  ],
+  "related": [
+   "Houses of Hermes: Mystery Cults, page 124"
+  ]
+ },
+ {
+  "title": "Ingasia's Forge of Hephaistos laboratory bonuses",
+  "heading": "Setting and Physical Description",
+  "line": 3101,
+  "endLine": 3105,
+  "category": "lab",
+  "topic": "Laboratory virtues",
+  "audience": [
+   "magi",
+   "covenant"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Ingasia",
+  "summary": "The covenant's central forge has been converted into a shared Hermetic laboratory specialized for Rego magic and for creating enchanted items, within a Magic aura.",
+  "quotes": [
+   "specialized to provide a +8 bonus to Rego magic and a +5 bonus to creating enchanted items"
+  ]
+ },
+ {
+  "title": "Constantinople's Auras (layered, fluctuating realm auras)",
+  "heading": "Constantinople's Auras",
+  "line": 3238,
+  "endLine": 3246,
+  "category": "realms",
+  "topic": "Auras",
+  "audience": [
+   "storyguide",
+   "magi"
+  ],
+  "prevalence": 3,
+  "creation": false,
+  "requires": "",
+  "summary": "Explains how Divine, Infernal, Faerie and Magic auras overlap in Constantinople, why most Divine auras are Dominion auras tied to worshipers, how auras vary with the calendar and meet at borders, and that Magic auras are no longer maintained.",
+  "quotes": [
+   "Most of the Divine auras are Dominion rather than empyreal auras, meaning that their strength and size are determined by the number of faithful worshipers.",
+   "In places where auras of different realms but equal strength meet, they form a border and rest against each other."
+  ],
+  "related": [
+   "Realms of Power: The Divine"
+  ]
+ },
+ {
+  "title": "The Column of Theodosius: prophetic visions and Premonitions",
+  "heading": "The Forums",
+  "line": 3290,
+  "endLine": 3300,
+  "category": "mysteries",
+  "topic": "Premonitions",
+  "audience": [
+   "storyguide",
+   "magi",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting the Forum of Theodosius; Supernatural Ability: Premonitions to understand or study",
+  "summary": "Anyone gazing at the column for an hour gets a vision, which only a character with Premonitions can interpret with a roll, and those with Premonitions can also study the column as a limited-use Source Quality.",
+  "quotes": [
+   "succeeding with an Intelligence + Premonitions vs. an Ease Factor set by the storyguide (12 is a good start)",
+   "The column may also be studied by those with Premonitions, acting as a Source Quality of 6."
+  ],
+  "related": [
+   "ArM5 page 60 (Visions)"
+  ]
+ },
+ {
+  "title": "Haghia Sophia: auras and the healing Column of St. Gregory",
+  "heading": "Haghia Sophia",
+  "line": 3366,
+  "endLine": 3374,
+  "category": "setting",
+  "topic": "Constantinople sites",
+  "audience": [
+   "storyguide",
+   "companions"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting Haghia Sophia, Constantinople",
+  "summary": "Lists the Dominion and Infernal aura levels inside the Great Church and a surviving relic column that improves Recovery rolls and shortens wound healing.",
+  "quotes": [
+   "providing a +6 bonus to Recovery Rolls and decreasing the healing time of a wound by one level",
+   "The nave has an Infernal aura of 7"
+  ]
+ },
+ {
+  "title": "The Serpent Column: vis procedure, snake ward and regio",
+  "heading": "The Serpent Column",
+  "line": 3336,
+  "endLine": 3342,
+  "category": "setting",
+  "topic": "Constantinople sites",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting the Hippodrome, Constantinople",
+  "summary": "Gives the ritual of sacrifices through which the column yields vis, its ward against ordinary snakes, and how to enter the Faerie regio above it.",
+  "quotes": [
+   "Four times a year, at the solstices and equinoxes, a ram must be sacrificed and its blood poured into the bronze chalice, where it is consumed by the column.",
+   "Snakes with a Might score are unfazed by the ward."
+  ]
+ },
+ {
+  "title": "The Egyptian Obelisk: divination roll and Ease Factor",
+  "heading": "The Egyptian Obelisk",
+  "line": 3350,
+  "endLine": 3354,
+  "category": "magic",
+  "topic": "Divination",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Visiting the Hippodrome, Constantinople",
+  "summary": "A character may read the obelisk's engravings to divine the future with a roll against a fixed Ease Factor, handled as Hermetic Divination, and the Ease Factor falls if missing pieces are recovered.",
+  "quotes": [
+   "A character may divine the future with an Intelligence + Magic Lore + stress die roll against an Ease Factor of 15.",
+   "Finding the other two missing thirds of the obelisk reduces the Ease Factor by 3 for each found piece, so a complete obelisk lowers it to 9."
+  ],
+  "related": [
+   "The Mysteries Revised Edition, pages 59-62 (Hermetic Divination)"
+  ]
+ },
+ {
+  "title": "The Porphyry Chamber: born in the purple (status and succession)",
+  "heading": "The Porphyry Chamber",
+  "line": 3443,
+  "endLine": 3447,
+  "category": "social",
+  "topic": "Imperial status",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Born in the Porphyry Chamber (Byzantine imperial family)",
+  "summary": "Explains the Byzantine custom giving children born in the purple chamber a better claim to the throne than older siblings, and the social consequences and restrictions that follow.",
+  "quotes": [
+   "children born to a reigning emperor and empress outrank older siblings born before the succession to the throne.",
+   "Being porphyrogennetos gives a character a claim to the imperial throne, a good education, and the support of the people."
+  ]
+ },
+ {
+  "title": "Porphyrogenitos: supernatural Virtue table for characters born in the purple",
+  "heading": "Porphyrogenitos",
+  "line": 3457,
+  "endLine": 3469,
+  "category": "creation",
+  "topic": "Porphyrogenitos",
+  "audience": [
+   "companions",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": true,
+  "requires": "Character born in the Porphyry Chamber, Constantinople",
+  "summary": "A character born in the Porphyry Chamber gains a free Minor Supernatural Virtue whose realm is determined by a die roll, with a small chance of a Major Virtue instead.",
+  "quotes": [
+   "If a character is born in the chamber, the storyguide should roll a simple die and consult the following:"
+  ]
+ },
+ {
+  "title": "St. Loukia's icon: study source and Magic aura at Xylinites",
+  "heading": "History",
+  "line": 3514,
+  "endLine": 3534,
+  "category": "setting",
+  "topic": "Study sources",
+  "audience": [
+   "magi",
+   "storyguide"
+  ],
+  "prevalence": 4,
+  "creation": false,
+  "requires": "Covenant of Xylinites (icon of St. Loukia)",
+  "summary": "Within the covenant's history, describes an icon whose meditation can serve as a summa for a Supernatural Ability and which radiates a spherical Magic aura limited by the Dominion aura.",
+  "quotes": [
+   "meditation on her icon can function as a Level 3, Quality 10 summa for learning the Supernatural Ability Animal Ken",
+   "A Magic aura of strength 3 emanates from it in a perfect sphere"
+  ]
+ }
+]

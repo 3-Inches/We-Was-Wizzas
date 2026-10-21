@@ -64,9 +64,10 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 |---|---|
 | Magic | Casting Scores and Lab Totals for every Technique + Form in the current aura, Magic Resistance per Form, Penetration with Arcane Connections. One-click modifiers: Magical Focus, Special Circumstances, Cyclic and Potent Magic, Life Boost, Spell Improvisation's similar spell, and any other modifier |
 | Spellcasting | Formulaic, Ritual and spontaneous casting with the correct die, botch dice, Fatigue and Mastery; a botch adds its Warping Points, and All According to Plan rerolls a botch die once a session |
+| Certamen | The six totals for the chosen Technique and Form (House Tremere's focus doubles the lower Art), vis, and rounds rolled against an opponent's numbers, with the Fatigue they cost |
 | Health | Wounds from damage vs. Soak, Fatigue tracking, recovery rolls |
 | Seasons | Books, teachers, training, practice, exposure, adventure and vis, with gain limits and Magian Lineage's linked Abilities. Pick a teacher from the saga to fill in their Communication, Teaching and score; Apt Student, Good Teacher and a lab's Teaching Specialization (up to +3) are added. Secondary Insight; aging and crises; Warping and Wizard's Twilight (avoid, comprehend, effects and scars, with Twilight Prone and Twilight Mastery; a Twilight Virtue or Flaw is Minor or Major by the Warping Points gained). Write a summa or tractatus: Quality, Level and seasons from the author's scores, with the *Covenants* rules for artisans and resonant materials, and the finished book goes to the covenant library |
-| Lab & items | Enchanted devices, talisman and attunements, familiar cords, Longevity Ritual |
+| Lab & items | Enchanted devices, talisman and attunements, familiar cords, Longevity Ritual. Experimentation: the season's Lab Total bonus and a roll on the Extraordinary Results Chart with its sub-tables and Disasters, and original research for a Breakthrough |
 | Other | Printable stat block, overrides for any number |
 
 **Covenants:**
@@ -93,6 +94,7 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 
 **Reference:**
 
+- **Game mechanics:** the rules players and storyguides use, from the core book and the reviewed supplements (over 5,000), in 14 areas. Each area runs from the rules every session uses to the ones that need a Virtue, House, initiation, tradition or kind of being, and character creation is grouped by the kind of character. Each entry has a summary, the key rules quoted word for word, "see also" links, and the book's own text on demand. Search covers every mechanic, and a filter shows what matters to magi, companions, grogs or the storyguide.
 - Searchable Virtues & Flaws, Abilities, Houses, lab Virtues & Flaws, Hooks & Boons, weapons, and Shape & Material.
 - A built-in reader for every 5th Edition book. Entries across the app link to the exact line of their source.
 
@@ -133,6 +135,7 @@ app/src/ui/           React pages: character wizard & sheet, covenant, tools, re
 - **Mechanics are written by hand** in `src/data/mechanics.ts`, one entry per Virtue or Flaw, as declarative effects: xp pools, bonuses, Lab Total modifiers and so on. Virtues and Flaws without numeric effects appear on the sheet as text for the troupe to adjudicate.
 - **References are followed:** `tools/extract/extract_vf_refs.py` finds the Virtues and Flaws each text names and the pages it cites. It resolves each citation to its section through the Definitive Edition's indexes, the original core book's index mapped by topic, or the heading named in other books, plus a short list checked by hand. What those references mean for the rules (free Virtues, "the same as", requirements and exclusions) is in `src/data/crossRefs.ts`, added to the hand-written mechanics.
 - **Restrictions are curated** in `src/data/restrictions.ts` from the sentences in the books that limit a Virtue or Flaw, each quoted in the rules check. `src/engine/character/restrictions.ts` applies them in both the Virtue picker and the rules check.
+- **The mechanics reference was read, not guessed:** the reviewed books were read section by section into `tools/extract/mechanics_index/` (one file per part of a book). `tools/extract/build_mechanics.py` checks every entry against its book: the heading must be on its line, and each quote must appear word for word in the section. It gathers the topics into broader ones (`mechanics_topics.py`), groups them by area and kind of character, and writes `src/data/generated/mechanics/`: a small index plus one file per area, loaded when the area is opened. The app shows the book's own text by cutting the section out of the book file.
 - **Every total carries its breakdown.** Clicking a number shows how it was calculated.
 - **Books marked WIP** in this repository are still being transcribed. Content from them can contain transcription errors, and each saga can switch them off.
 
