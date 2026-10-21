@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES } from '../../../data';
 import { BookBadge, Card, Field, Stepper, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
+import { EffectsCard } from './EffectsCard';
+import { PurseCard } from './PurseCard';
 import { useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
 import { COMPANION_FLAWS, CompanionSheetLink, CreatureCard } from './Creature';
@@ -15,6 +17,8 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
   if (!c || !d || !saga) return null;
   return (
     <div className="stack">
+      <EffectsCard ed={ed} />
+      {c.creation.finalized && <PurseCard ed={ed} />}
       <div className="grid grid-2">
         <Card title="Characteristics" className="accent">
           <div className="char-grid">

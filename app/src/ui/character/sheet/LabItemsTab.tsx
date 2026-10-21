@@ -9,6 +9,7 @@ import ItemsEditor, { characterTalismanCapacity } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
 import { uid } from '../../../util/id';
 import { labContextOf } from '../../../engine/lab';
+import { LabProjects } from './LabProjects';
 import { describeStress, stressDie } from '../../../engine/dice';
 import { experimentBotchDice, researchRiskLimit, rollExperiment } from '../../../engine/experiment';
 
@@ -93,6 +94,7 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
         </p>
       )}
 
+      {magus && <LabProjects ed={ed} />}
       {magus && <Experimentation ed={ed} magicTheory={mt} />}
 
       <Card title="Longevity Ritual">

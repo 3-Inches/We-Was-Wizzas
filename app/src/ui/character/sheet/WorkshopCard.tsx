@@ -4,10 +4,9 @@
 
 import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../../data';
-import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import type { Workshop } from '../../../engine/types';
 import {
-  INNOVATION_COST, RAW_MATERIALS_COST, WEALTH_STEP, craftQuality, laborPoints, rollExertion, sellGoods, upkeep, wealthOf, wondrousItem, workshopTotal,
+  INNOVATION_COST, RAW_MATERIALS_COST, WEALTH_STEP, craftQuality, sellGoods, upkeep, wondrousItem, workshopFigures, workshopSeason, workshopTotal,
 } from '../../../engine/workshop';
 import { FREQUENCY } from '../../../engine/enchant';
 import { uid } from '../../../util/id';
@@ -58,24 +57,21 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
       </Card>
     );
 
-  const trade = d.abilityByUid.get(w.abilityUid ?? '') ?? trades[0];
-  const craft = trade?.total ?? 0;
+  const situation = situations.reduce((t, id) => t + (SITUATIONS.find((x) => x.id === id)?.value ?? 0), 0);
+  const f = workshopFigures(c, d, situation)!;
+  const trade = f.trade;
+  const craft = f.craft;
   const profession = !!trade?.abilityId.startsWith('profession');
-  const wealth = wealthOf(d);
+  const wealth = f.wealth;
   const primary = d.characteristics[w.primary].value;
-  // Labor Points: (primary + Craft) or (Communication + Profession), times wealth
   const lpChar = profession ? { key: 'Com' as Characteristic, value: d.characteristics.Com.value } : { key: w.primary, value: primary };
-  const leadership = d.abilities.find((a) => a.abilityId === 'leadership')?.total ?? 0;
-  const maxAssistants = Math.max(1, leadership);
-  const missing = w.guildMaster ? Math.max(0, leadership - w.assistants.length) : 0;
-  const lp = laborPoints(lpChar.value, craft, wealth, missing);
-  const baseLevel = 6 + situations.reduce((s, id) => s + (SITUATIONS.find((x) => x.id === id)?.value ?? 0), 0) + w.craftLevelMod;
+  const { leadership, maxAssistants, missing, lp, baseLevel } = f;
   const wtFor = (assistants: number[]) =>
     workshopTotal({
       characteristic: { label: CHAR_NAMES[w.primary], value: primary }, ability: { label: trade?.name ?? 'Craft', value: craft },
       innovation: w.innovation, rawMaterials: w.rawMaterials, assistants, manual: w.manual,
     });
-  const wt = wtFor(w.assistants.slice(0, maxAssistants).map((a) => a.craft));
+  const wt = f.total;
   const q = craftQuality(wt.total, baseLevel, craft);
   const keep = upkeep(w.rawMaterials);
   const bargain = d.abilities.find((a) => a.abilityId === 'bargain')?.total ?? 0;
@@ -83,34 +79,10 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
   const season = saga.currentSeason ?? 'Spring';
 
   const workSeason = () => {
-    const ex = exert ? rollExertion() : null;
-    const total = wt.total + (ex?.bonus ?? 0);
-    const res = craftQuality(total, baseLevel, craft);
-    const lines = [`${season} ${year}: Workshop Total ${total}${ex?.bonus ? ` (with exertion +${ex.bonus})` : ''} vs Craft Level ${baseLevel}: ${res.text} +${lp} Labor Points.`];
-    if (ex) lines.push(...ex.lines);
-    if (res.reputationXp) lines.push('+1 experience in the (Craft) Reputation.');
-    const shoddy = res.quality === 'shoddy';
-    if (shoddy && w.shoddyStreak >= 1) lines.push('Shoddy again: −1 experience in the (Craft) Reputation.');
-    const entry = newSeasonEntry(year, season, 'work', `Worked as ${trade?.name ?? 'a craftsman'}: ${res.quality} goods, +${lp} Labor Points (2 Exposure xp)`, trade ? { [`ability:${trade.uid}`]: 2 } : {});
-    update((x) => {
-      const ws = x.workshop!;
-      ws.laborPoints += lp;
-      ws.seasonsWorked += 1;
-      ws.reputationXp += res.reputationXp - (shoddy && ws.shoddyStreak >= 1 ? 1 : 0);
-      ws.shoddyStreak = shoddy ? ws.shoddyStreak + 1 : 0;
-      applySeason(x, entry, 1);
-      x.seasonLog.push(entry);
-    });
+    let lines: string[] = [];
+    update((x) => void (lines = workshopSeason(x, d, year, season, { exert, situation })));
     setExert(false);
-    push(lines.join(' '));
-  };
-  const closeYear = () => {
-    const over = wealth !== 'poor' && w.seasonsWorked >= 3;
-    set((x) => {
-      x.laborPoints -= keep;
-      x.seasonsWorked = 0;
-    });
-    push(`Year closed: −${keep} Labor Points to keep the business (${w.laborPoints - keep} left).${w.laborPoints - keep < 0 ? ' Not enough: the business slips (the storyguide may lower its wealth).' : ''}${over ? ' Working three or more seasons gains a negative Reputation for impiety or avarice.' : ''}`);
+    push(`${season} ${year}: ${lines.join(' ')}`);
   };
   const improve = (kind: 'innovation' | 'rawMaterials') => {
     const table = kind === 'innovation' ? INNOVATION_COST : RAW_MATERIALS_COST;
@@ -251,9 +223,6 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         <button onClick={workSeason} title={`Logs ${season} ${year} on the season log, with 2 Exposure experience in the craft`}>
           Work a season
         </button>
-        <button className="small" onClick={closeYear} title={`Pays the ${keep} Labor Points that keep the business at its level`}>
-          Close the year (−{keep})
-        </button>
         {(['innovation', 'rawMaterials'] as const).map((k) => {
           const cost = nextCost(k);
           return cost === null ? null : (
@@ -267,7 +236,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         </button>
       </div>
       <p className="small muted" style={{ margin: 0 }}>
-        Rising in wealth: {step.cost} Labor Points to become {step.to}, plus a season (and stories for a Greater or Legendary income). Stories that help the business earn half to two
+        The {keep} Labor Points of upkeep are paid when the saga&apos;s year ends (Seasons page). Rising in wealth: {step.cost} Labor Points to become {step.to}, plus a season (and stories for a Greater or Legendary income). Stories that help the business earn half to two
         and a half seasons of Labor Points; add them to the bank above.
       </p>
       <Field label="Labor Points (adjust by hand)">

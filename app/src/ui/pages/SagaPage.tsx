@@ -50,16 +50,6 @@ export default function SagaPage() {
     nav(`/saga/${saga.id}/character/${c.id}/create`);
   };
 
-  const advanceSeason = () =>
-    updateSaga(saga.id, (s) => {
-      const order = ['Spring', 'Summer', 'Autumn', 'Winter'] as const;
-      const i = order.indexOf(s.currentSeason);
-      if (i === 3) {
-        s.currentSeason = 'Spring';
-        s.currentYear += 1;
-      } else s.currentSeason = order[i + 1];
-    });
-
   const byType = (t: CharType) => chars.filter((c) => c.type === t);
 
   return (
@@ -90,7 +80,8 @@ export default function SagaPage() {
       <div className="grid grid-3">
         <Card title="Saga calendar">
           <div className="row">
-            <Field label="Year">
+            <p className="small muted" style={{ margin: 0 }}>Set the saga&apos;s starting season here; after that, time moves on the Seasons page.</p>
+          <Field label="Year">
               <Stepper value={saga.currentYear} onChange={(v) => updateSaga(saga.id, (s) => void (s.currentYear = v))} min={500} max={2000} width={64} />
             </Field>
             <Field label="Season">
@@ -100,9 +91,9 @@ export default function SagaPage() {
                 ))}
               </select>
             </Field>
-            <button onClick={advanceSeason} title="Move to the next season">
-              Next season ›
-            </button>
+            <Link className="btn" to={`/saga/${saga.id}/seasons`} title="Move time on for the whole saga: seasons, the year's end, aging">
+              Seasons &amp; time ›
+            </Link>
           </div>
           <Field label="Tribunal">
             <SelectOrType value={saga.tribunal} options={TRIBUNALS} placeholder="— Tribunal —" otherLabel="Other (your own Tribunal)…" onChange={(v) => updateSaga(saga.id, (s) => void (s.tribunal = v))} />

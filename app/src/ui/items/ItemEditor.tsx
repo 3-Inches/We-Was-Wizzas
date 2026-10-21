@@ -73,8 +73,9 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
   const isTalisman = props.talismanUid === it.uid;
   const set = (fn: (x: EnchantedItem) => void) => onChange((xs) => { const x = xs.find((y) => y.uid === it.uid); if (x) fn(x); });
   const maxPawns = isTalisman && d ? characterTalismanCapacity(d) : openingCost(it.material, it.size);
-  const used = it.effects.reduce((s, e) => s + e.modifiedLevel, 0);
-  const capacity = it.openedPawns * 10;
+  // each effect takes a pawn of room for every 10 levels or part (DE, Instilling the Effect)
+  const used = it.effects.reduce((s, e) => s + Math.ceil(e.modifiedLevel / 10), 0);
+  const capacity = it.openedPawns;
   const smBonuses = it.shapeMaterialIds.flatMap((id) => data.shapeMaterial.find((s) => s.id === id)?.bonuses.map((b) => ({ ...b, from: data.shapeMaterial.find((s) => s.id === id)!.name })) ?? []);
   const weakMagic = !!d?.effects.some((e) => e.type === 'penetrationMultiplier');
   return (
@@ -86,7 +87,9 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
         <span className="badge">{isTalisman ? 'talisman' : it.kind}</span>
         <span className="small muted">
           {it.material}, {it.size}
-          {it.kind === 'invested' || isTalisman ? ` — ${used}/${capacity} levels, ${it.openedPawns}/${maxPawns} pawns opened` : ''}
+          {it.kind === 'invested' || isTalisman ? ` — effects take ${used} of ${capacity} pawns opened (most ${maxPawns})` : ''}
+          {isTalisman && it.attuned === false ? ' — not yet attuned' : ''}
+          {it.effects.some((e) => e.pending) ? ` — ${it.effects.filter((e) => e.pending).length} still being instilled` : ''}
           {it.kind === 'charged' ? ` — ${it.charges ?? 0} charges` : ''}
         </span>
         {used > capacity && (it.kind === 'invested' || isTalisman) && <span className="badge bad">over capacity</span>}

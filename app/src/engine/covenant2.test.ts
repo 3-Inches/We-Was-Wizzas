@@ -4,7 +4,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
-import { computeFinances, deriveCovenant, newCovenant, optimalLaborers } from './covenant';
+import { computeFinances, deriveCovenant, fitCovenfolk, newCovenant, optimalLaborers } from './covenant';
 import { CRAFTS, canBeUnknown, computeIncome, receivedAfterTithe } from './covenantRules';
 import { deriveLab, labContextOf, newLab } from './lab';
 import { labTotal } from './magic';
@@ -280,5 +280,19 @@ describe('lab notes from the playtest covenant', () => {
     expect(roomy.size).toBe(roomy.occupiedSize);
     expect(roomy.characteristics.Warping).toBe(2);
     expect(roomy.buildPoints).toBe(tight.buildPoints);
+  });
+});
+
+describe('the optimal buttons', () => {
+  it('count the teamsters laborers spare even when teamsters are already set to the number needed', () => {
+    const c = newCovenant('s', 1220);
+    c.covenfolk = { grogs: 20, companions: 4, specialists: 2, craftsmen: 0, laborers: 0, servants: 0, teamsters: 0, dependents: 5, horses: 6 };
+    fitCovenfolk(c, [], []);
+    const before = computeFinances(c, [], [], 5).totalExpenditure;
+    const n = optimalLaborers(c, [], []);
+    expect(n).toBeGreaterThan(0);
+    c.covenfolk.laborers = n;
+    fitCovenfolk(c, [], []);
+    expect(computeFinances(c, [], [], 5).totalExpenditure).toBeLessThan(before);
   });
 });

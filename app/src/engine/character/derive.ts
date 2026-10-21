@@ -223,9 +223,9 @@ export function effectiveXp(alloc: XpAlloc, multiplier: number): number {
   return total;
 }
 
-/** The value bought at creation: the current value plus what aging has taken off. */
+/** The value bought at creation: the current value plus what aging has taken off, less what magic has added. */
 export function purchasedCharacteristic(c: Character, ch: Characteristic): number {
-  return (c.characteristics[ch] ?? 0) + (c.agingLoss?.[ch] ?? 0);
+  return (c.characteristics[ch] ?? 0) + (c.agingLoss?.[ch] ?? 0) - (c.magicGain?.[ch] ?? 0);
 }
 
 /**
@@ -276,6 +276,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     return { cv, def, points, name: vfDisplayName(def, cv, data) };
   });
   const effects = resolveEffects(virtues);
+  // spells, powers and rituals working on the character, and the devices it wears
+  for (const ae of char.activeEffects ?? []) for (const b of ae.bonuses ?? []) effects.push({ ...b, fromUid: ae.uid, fromName: ae.name } as ResolvedEffect);
+  for (const it of char.items) if (it.worn) for (const b of it.bearerBonuses ?? []) effects.push({ ...b, fromUid: it.uid, fromName: it.name } as ResolvedEffect);
   const has = (id: string) => virtues.some((v) => v.cv.defId === id);
   const eff = <T extends Effect['type']>(t: T) => effects.filter((e) => e.type === t) as Extract<ResolvedEffect, { type: T }>[];
 
@@ -613,8 +616,10 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   // Might: the highest of a creature's own and the Might Virtues give (Strong Angelic Heritage: age / 20)
   let might: DerivedCharacter['might'] = null;
   const cr = char.creature;
-  if (cr && magicChar) might = { realm: cr.realm === 'None' ? 'Magic' : cr.realm, score: Math.max(0, magicChar.might), form: magicChar.form, source: 'creature' };
-  else if (cr && cr.realm !== 'None' && cr.might > 0) might = { realm: cr.realm, score: cr.might, form: cr.form, source: 'creature' };
+  // Might Score spent on Ritual Powers comes back only slowly (RoP: Magic, Ritual Power)
+  const mightLost = cr?.mightLost ?? 0;
+  if (cr && magicChar) might = { realm: cr.realm === 'None' ? 'Magic' : cr.realm, score: Math.max(0, magicChar.might - mightLost), form: magicChar.form, source: 'creature' };
+  else if (cr && cr.realm !== 'None' && cr.might > 0) might = { realm: cr.realm, score: Math.max(0, cr.might - mightLost), form: cr.form, source: 'creature' };
   for (const m of eff('mightScore')) {
     const score = m.perYears ? Math.floor(char.age / m.perYears) : m.score;
     if (!might || score > might.score) might = { realm: m.realm, score, form: m.form, source: m.fromName };

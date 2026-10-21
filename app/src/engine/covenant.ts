@@ -1,11 +1,11 @@
 // Covenant creation and management (DE Chapter 6; Covenants).
 
-import type { GameData } from '../data';
+import type { Art, GameData } from '../data';
 import { ARTS, ART_NAMES } from '../data/constants';
 import type { Character, Covenant, LibraryBook, Specialist, VisSource } from './types';
 import {
   CATEGORY_LIMIT, abilityCapAtAge, canBeUnknown, computeIncome, computePools, countOf, craftOf, craftsmanSaving, findCraft, mechanicOf, miracleMultiplierOf,
-  receivedAfterTithe, specialistCost, type BPPool, type CostCategory, type CovResource, type CraftDef, type IncomeLine, type IncomeResult,
+  receivedAfterTithe, specChar, specHighest, specialistCost, type BPPool, type CostCategory, type CovResource, type CraftDef, type IncomeLine, type IncomeResult,
 } from './covenantRules';
 import { deriveLab, type DerivedLab } from './lab';
 import { abilityScoreFromXp } from './xp';
@@ -31,8 +31,16 @@ export interface BPLine {
   paidBy?: string;
 }
 
-/** Build Points for a vis source: 5 a pawn a year, 7.5 for dedicated vis (RoP: Magic), rounded up. */
-export const visSourceCost = (s: VisSource) => Math.ceil((s.dedicated ? 7.5 : 5) * s.pawnsPerYear);
+/**
+ * Build Points for a vis source: 5 a pawn a year. A pawn of dedicated vis (RoP: Magic) works as two
+ * pawns, but only for its own Technique + Form, so the troupe prices it at 7.5 (rounded up).
+ */
+export const visSourceCost = (s: VisSource) => (s.inPlay ? 0 : Math.ceil((s.dedicated ? 7.5 : 5) * s.pawnsPerYear));
+/** Dedicated vis is worth half again as much as plain vis, in Build Points and in trade. */
+export const DEDICATED_WEIGHT = 1.5;
+/** How a vis stock or source is named: an Art, or a dedicated Technique + Form. */
+export const visLabel = (v: { art: Art; pair?: Art }) => (v.pair ? `dedicated ${TECHNIQUE_IDS.has(v.art) ? v.art + v.pair : v.pair + v.art}` : v.art);
+const TECHNIQUE_IDS = new Set<string>(['Cr', 'In', 'Mu', 'Pe', 'Re']);
 
 export function summaCost(b: LibraryBook): { cost: number; issue?: string } {
   if (b.kind === 'summa' && b.subjectType === 'art') {
@@ -203,8 +211,9 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
     }
     lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)})`, cost, ref: b.uid, issue: iss });
   }
-  for (const s of cov.visSources) lines.push({ category: 'Vis', label: `${s.name} (${s.pawnsPerYear} ${s.art}/year${s.dedicated ? ', dedicated' : ''})`, cost: visSourceCost(s), ref: s.uid });
-  const stock = cov.visStocks.reduce((t, v) => t + v.pawns, 0);
+  for (const s of cov.visSources) lines.push({ category: 'Vis', label: `${s.name} (${s.pawnsPerYear} ${visLabel({ art: s.art, pair: s.dedicated ? s.pair : undefined })}/year${s.inPlay ? ', found in play' : ''})`, cost: visSourceCost(s), ref: s.uid });
+  // the stocks the covenant was founded with (a pawn of dedicated vis weighs half again as much); what play adds is free
+  const stock = Math.ceil((cov.startingVisStocks ?? cov.visStocks).reduce((t, v) => t + v.pawns * (v.pair ? DEDICATED_WEIGHT : 1), 0));
   if (stock) lines.push({ category: 'Vis', label: `Vis stocks (${stock} pawns)`, cost: Math.ceil(stock / 5) });
   for (const it of cov.items) {
     const levels = it.effects.reduce((t, e) => t + e.modifiedLevel, 0);
@@ -214,14 +223,26 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   for (const sp of cov.specialists) {
     if (sp.characterId || sp.free) continue;
     const n = countOf(sp);
-    lines.push({ category: 'Specialists', label: `${n > 1 ? `${n} × ` : ''}${sp.name || sp.role} (${sp.ability || craftOf(sp)?.name || '?'} ${sp.score})`, cost: specialistCost(sp), ref: sp.uid });
+    lines.push({ category: 'Specialists', label: `${n > 1 ? `${n} × ` : ''}${sp.name || sp.role} (${sp.ability || craftOf(sp)?.name || '?'} ${specHighest(sp)})`, cost: specialistCost(sp), ref: sp.uid });
     const cap = abilityCapAtAge(sp.age ?? 46);
     const who = sp.name || `Unnamed ${craftOf(sp)?.name.toLowerCase() ?? sp.role.replace('-', ' ')}`;
     const atAge = sp.age ? `age ${sp.age}` : 'any age';
-    if (sp.score > cap) issue(`${who}: a score of ${sp.score} is above the starting limit (${cap} at ${atAge}, DE p.48).`, { kind: 'apply', label: `Set it to ${cap}`, apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.score = cap) }, { kind: 'apply', label: 'Recruited in play: no Build Points or limit', apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.free = true) });
+    const top = specHighest(sp);
+    const capAll = (c: Covenant) => {
+      const x = c.specialists.find((y) => y.uid === sp.uid)!;
+      x.score = Math.min(x.score, cap);
+      for (const a of x.abilities ?? []) a.score = Math.min(a.score, cap);
+    };
+    if (top > cap) issue(`${who}: a score of ${top} is above the starting limit (${cap} at ${atAge}, DE p.48).`, { kind: 'apply', label: `Set it to ${cap}`, apply: capAll }, { kind: 'apply', label: 'Recruited in play: no Build Points or limit', apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.free = true) });
     if (sp.role === 'teacher') {
       if ((sp.teaching ?? 0) > cap) issue(`${who}: Teaching ${sp.teaching} is above the starting limit (${cap} at ${atAge}).`, { kind: 'apply', label: `Set Teaching to ${cap}`, apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.teaching = cap) });
-      if ((sp.com ?? 0) > 3) issue(`${who}: Communication ${sp.com} is above +3 (a starting Characteristic is −3 to +3; +4 or +5 needs Great Communication).`, { kind: 'apply', label: 'Set Communication to +3', apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.com = 3) });
+      const boughtCom = specChar(sp, 'Com') - (sp.magicGain?.Com ?? 0);
+      const setCom = (c: Covenant) => {
+        const x = c.specialists.find((y) => y.uid === sp.uid)!;
+        if (x.chars) x.chars.Com = 3 + (x.magicGain?.Com ?? 0);
+        else x.com = 3;
+      };
+      if (boughtCom > 3) issue(`${who}: Communication ${boughtCom} is above +3 (a starting Characteristic is −3 to +3; +4 or +5 needs Great Communication).`, { kind: 'apply', label: 'Set Communication to +3', apply: setCom });
       if (ARTS_SET.has(sp.ability)) issue(`${who}: teachers can't have The Gift, so can't teach the Hermetic Arts (DE p.180).`);
     }
   }
@@ -293,9 +314,12 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   for (const s of cov.visSources) {
     if (unreal.has(s.uid)) continue;
     const got = receivedAfterTithe(s.pawnsPerYear, !!s.tithed, !!s.miracle && miracles, mult).received;
-    visIncome[s.art] = (visIncome[s.art] ?? 0) + got;
+    const key = s.dedicated && s.pair ? visLabel({ art: s.art, pair: s.pair }) : s.art;
+    visIncome[key] = (visIncome[key] ?? 0) + got;
   }
 
+  for (const s of cov.visSources)
+    if (s.dedicated && !s.pair) issue(`${s.name}: dedicated vis holds a Technique and a Form; choose the other Art (RoP: Magic, Dedicated Vis).`, { kind: 'goto', label: 'Open Library & Vis', tab: 'library' });
   const finances = computeFinances(cov, members, labs, magiCount, unreal);
   for (const i of finances.incomeIssues) issue(i.message, ...(i.fix ? [{ kind: 'apply' as const, label: i.fixLabel ?? 'Fix', apply: i.fix }] : []), { kind: 'goto', label: 'Open Covenfolk & finances', tab: 'folk' });
   const issues = issueList.map((i) => i.message);
@@ -324,7 +348,7 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
   const companions = members.filter((m) => m.type === 'companion' || m.type === 'mythic').length + f.companions;
   const grogPCs = members.filter((m) => m.type === 'grog').length;
   // specialists and craftsmen listed by name (an illusory one is not really there)
-  const listed = cov.specialists.filter((s) => !s.characterId && !unreal.has(s.uid));
+  const listed = cov.specialists.filter((s) => !s.characterId && !s.hired && !unreal.has(s.uid));
   const listedPeople = listed.reduce((t, s) => t + countOf(s), 0);
   const base = magi * pts.magus + companions * pts.companion + (f.specialists + f.craftsmen + listedPeople) * pts.specialist + (f.grogs + grogPCs) * pts.other + f.dependents * pts.other + f.horses;
   // Covenants ch.5: 2 servants per 10 points (rounded up); 1 teamster per 10 points after servants, less twice the laborers
@@ -422,10 +446,25 @@ function findCraftOrCustom(name: string, category: CostCategory): CraftDef {
 }
 
 /** Totals spent a year with `n` of something changed, for the optimal-number buttons. */
+/**
+ * Yearly spending after a change, with servants and teamsters at the numbers that change needs:
+ * otherwise laborers never get to spare the teamsters they replace, and the best looks like none.
+ */
 function expenditureWith(cov: Covenant, members: Character[], labs: DerivedLab[], change: (c: Covenant) => void): number {
   const c = structuredClone(cov);
   change(c);
+  c.covenfolk.servants = 0;
+  c.covenfolk.teamsters = 0;
   return computeFinances(c, members, labs, members.filter((m) => m.type === 'magus').length).totalExpenditure;
+}
+
+/** Set servants and teamsters to the numbers the covenant needs (Covenants ch.5), after laborers or craftsmen change. */
+export function fitCovenfolk(cov: Covenant, members: Character[], labs: DerivedLab[]): void {
+  cov.covenfolk.servants = 0;
+  cov.covenfolk.teamsters = 0;
+  const f = computeFinances(cov, members, labs, members.filter((m) => m.type === 'magus').length);
+  cov.covenfolk.servants = f.servantsRequired;
+  cov.covenfolk.teamsters = f.teamstersRequired;
 }
 
 /**
@@ -474,7 +513,7 @@ export function computeLoyalty(cov: Covenant, members: Character[], data: GameDa
   if (cov.finances.pension) parts.push({ label: 'Pension', value: 10 });
   for (const sp of cov.specialists) {
     if (sp.role === 'turb-captain' || sp.role === 'steward' || sp.role === 'chamberlain') {
-      parts.push({ label: `${sp.name} (${sp.role})`, value: (sp.pre ?? 0) + sp.score });
+      parts.push({ label: `${sp.name} (${sp.role})`, value: specChar(sp, 'Pre') + specHighest(sp) });
     }
   }
   const years = Math.max(0, (cov.loyalty.yearsFounded ?? 0));

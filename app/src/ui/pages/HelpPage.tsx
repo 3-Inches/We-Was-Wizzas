@@ -216,7 +216,25 @@ export default function HelpPage() {
           </li>
           <li>
             <b>Lab &amp; Items:</b> enchanted devices, talisman, Longevity Ritual, experimentation. A familiar&apos;s cords are applied where they belong (golden to botch dice,
-            bronze to Soak, recovery and aging), and its bond can be empowered with the +5 or +10 bonus.
+            bronze to Soak, recovery and aging), and its bond can be empowered with the +5 or +10 bonus. <b>Lab projects</b> carry work over several seasons: inventing a spell,
+            preparing and attuning a talisman, instilling effects, extracting vis, each with its Lab Total, progress and vis.
+          </li>
+          <li>
+            <b>Spells on a character:</b> the Overview lists effects working on the character (a raised Characteristic, a granted Virtue) with when they end; record one by
+            hand, or cast it from the covenant (below). The <b>purse</b> line shows the character&apos;s own pounds and vis.
+          </li>
+          <li>
+            <b>Time:</b> the <b>Seasons</b> page in the sidebar moves the whole saga on: one season, to next Spring, or several years. Each character does what was logged on
+            their sheet, or their standing activity (set on the Seasons page or the sheet). The year&apos;s end closes the covenants&apos; books, pays allowances, rolls aging
+            and adds Warping; wards like the Aegis of the Hearth are recast from the covenant&apos;s vis. Undo is always one click away.
+          </li>
+          <li>
+            <b>Money:</b> the <b>Market &amp; treasury</b> page buys goods, services, labs, vis and Hermetic books at the book prices, brings in covenfolk and outside teachers,
+            and moves pounds and vis between the treasury and the members&apos; purses. The covenant&apos;s yearly allowance to its members is set on its Finances tab.
+          </li>
+          <li>
+            <b>Magic on the whole covenant:</b> on the covenant&apos;s Overview (or the Seasons page), <b>Cast a spell, ritual or power on the covenant</b> raises the
+            Characteristics of every member, teacher, specialist and craftsman at once, or grants a Virtue, and pays for it in vis, Might or Confidence.
           </li>
           <li>
             The <Link to="/dice">Dice</Link> page rolls simple, stress and botch dice for anyone at the table.
@@ -238,6 +256,10 @@ export default function HelpPage() {
         </Question>
         <Question q="My magical companion's Powers need more Penetration.">
           Spend Improved Powers&apos; mastery points on each power under <b>Supernatural powers</b>, or turn them into Penetration experience there.
+        </Question>
+        <Question q="Can a magic character pay for a Ritual Power with vis instead of Might Score?">
+          Only with the <b>Vis Mastery</b> Quality (<i>Realms of Power: Magic</i>): then vis replaces the Confidence Points, no more pawns at once than the Confidence Score.
+          Without it, a Ritual Power costs Might Score or Confidence Points. Eating vis of the Might&apos;s Form refills the Might pool either way.
         </Question>
         <Question q="A book my troupe uses is missing from the pickers.">
           Enable it under <b>House rules &amp; books</b>. Books marked WIP are still being transcribed. Anything else can be added as custom content per saga.

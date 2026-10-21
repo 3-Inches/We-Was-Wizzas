@@ -3,7 +3,7 @@
 
 import { INCOME_MODIFICATIONS, receivedAfterTithe, miracleMultiplierOf, mechanicOf } from './covenantRules';
 import { defaultRng, stressDie, type Rng } from './dice';
-import type { DerivedCovenant } from './covenant';
+import { visLabel, type DerivedCovenant } from './covenant';
 import type { Covenant, IncomeModification, VisStock } from './types';
 import { uid } from '../util/id';
 
@@ -74,11 +74,12 @@ export function planYearEnd(cov: Covenant, dc: DerivedCovenant, o: YearEndOption
       if (o.skipVis.includes(s.uid) || dc.unreal.has(s.uid)) continue;
       const got = receivedAfterTithe(s.pawnsPerYear, !!s.tithed, !!s.miracle && miracles, mult).received;
       if (!got) continue;
-      const v = vis.find((x) => x.art === s.art);
+      const pair = s.dedicated ? s.pair : undefined;
+      const v = vis.find((x) => x.art === s.art && x.pair === pair);
       if (v) v.pawns += got;
-      else vis.push({ art: s.art, pawns: got });
+      else vis.push(pair ? { art: s.art, pawns: got, pair } : { art: s.art, pawns: got });
     }
-    if (vis.length) lines.push(`Vis gathered: ${vis.map((v) => `${v.pawns} ${v.art}`).join(', ')}.`);
+    if (vis.length) lines.push(`Vis gathered: ${vis.map((v) => `${v.pawns} ${visLabel(v)}`).join(', ')}.`);
   }
   lines.push('A year of Familiarity: +2 loyalty points, up to the Gift penalty.');
   return { income, expenditure, balance, treasuryAfter, inflationRise, incomeChanges, vis, familiarity: true, lines };
@@ -96,8 +97,10 @@ export function applyYearEnd(cov: Covenant, plan: YearEndPlan, year: number, o: 
   }
   // the coming year starts at Status Quo
   for (const s of cov.income) if (s.modification) s.modification = 'Status Quo';
+  // the stocks the covenant was founded with keep their Build Points; the year's vis is free
+  if (!cov.startingVisStocks) cov.startingVisStocks = structuredClone(cov.visStocks);
   for (const v of plan.vis) {
-    const st = cov.visStocks.find((x) => x.art === v.art);
+    const st = cov.visStocks.find((x) => x.art === v.art && x.pair === v.pair);
     if (st) st.pawns += v.pawns;
     else cov.visStocks.push({ ...v });
   }

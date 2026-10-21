@@ -102,3 +102,20 @@ describe('loyalty (DE; Covenants ch.4)', () => {
     expect(deriveCovenant(c, data, [m]).loyalty.base).toBe(Math.round(alone / 3));
   });
 });
+
+describe('dedicated vis (RoP: Magic)', () => {
+  it('costs 7.5 Build Points a pawn and gathers into its own Technique + Form stock', () => {
+    const c = newCovenant('s1', 1220);
+    c.visSources.push({ uid: 'd', name: 'Burning bones', art: 'Pe', pair: 'Ig', dedicated: true, pawnsPerYear: 2 });
+    const dc = deriveCovenant(c, data, []);
+    expect(dc.bpLines.find((l) => l.ref === 'd')?.cost).toBe(15);
+    expect(dc.visIncome['dedicated PeIg']).toBe(2);
+    applyYearEnd(c, planYearEnd(c, dc), 1220);
+    expect(c.visStocks).toEqual([{ art: 'Pe', pair: 'Ig', pawns: 2 }]);
+    // vis gathered in play costs nothing; a founding stock of dedicated vis weighs half again
+    expect(deriveCovenant(c, data, []).bpLines.find((l) => l.label.startsWith('Vis stocks'))).toBeUndefined();
+    const founded = newCovenant('s1', 1220);
+    founded.visStocks.push({ art: 'Pe', pair: 'Ig', pawns: 2 });
+    expect(deriveCovenant(founded, data, []).bpLines.find((l) => l.label.startsWith('Vis stocks'))?.cost).toBe(1); // 3 pawns' worth
+  });
+});

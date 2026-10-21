@@ -37,6 +37,8 @@ interface Store extends PersistedState {
   setTheme: (t: 'light' | 'dark' | 'auto') => void;
   setStreamMode: (b: boolean) => void;
   importBundle: (b: ExportBundle, opts?: { intoSagaId?: string }) => { sagaId?: string; characters: number; covenants: number };
+  /** put a saga with its characters and covenants in place at once (the saga's clock moves them together) */
+  putSagaState: (st: { saga: Saga; characters: Character[]; covenants: Covenant[] }) => void;
 }
 
 export interface ExportBundle {
@@ -192,6 +194,15 @@ export const useStore = create<Store>()((set, get) => ({
       const characters = Object.fromEntries(Object.entries(st.characters).map(([k, c]) => [k, c.covenantId === id ? { ...c, covenantId: undefined } : c]));
       return { covenants, characters };
     });
+    scheduleSave(get);
+  },
+  putSagaState: ({ saga, characters, covenants }) => {
+    const now = new Date().toISOString();
+    set((st) => ({
+      sagas: { ...st.sagas, [saga.id]: { ...saga, updatedAt: now } },
+      characters: { ...st.characters, ...Object.fromEntries(characters.map((c) => [c.id, c])) },
+      covenants: { ...st.covenants, ...Object.fromEntries(covenants.map((c) => [c.id, c])) },
+    }));
     scheduleSave(get);
   },
   setTheme: (t) => {

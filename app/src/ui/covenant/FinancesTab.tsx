@@ -1,15 +1,20 @@
 import { useState } from 'react';
-import { optimalCraftsmen, optimalLaborers, type CraftLine } from '../../engine/covenant';
+import { fitCovenfolk, optimalCraftsmen, optimalLaborers, type CraftLine } from '../../engine/covenant';
 import {
   CATEGORY_LIMIT, CRAFTS, INCOME_LEVELS, INCOME_LEVEL_POUNDS, INCOME_MODIFICATIONS, INCOME_TYPES, abilityCapAtAge, countOf, craftOf, craftsmanSaving,
-  mechanicOf, miracleMultiplierOf, specialistCost, type CostCategory,
+  mechanicOf, miracleMultiplierOf, specAbilities, specChar, specHighest, specialistCost, teacherQuality, type CostCategory,
 } from '../../engine/covenantRules';
+import { CHARACTERISTICS, type Characteristic } from '../../data';
+import { abilityDisplayName } from '../../engine/character/derive';
+import { craftQuality } from '../../engine/workshop';
 import type { Covenant, CovenfolkCounts, IncomeModification, IncomeSource, Specialist } from '../../engine/types';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
-import { DEFAULT_YEAR_END, LOYALTY_EVENTS, SUNDRY_PRESETS, labOutfitCost, applyYearEnd, loyaltyAttitude, loyaltyEventPoints, planYearEnd, rollIncomeModification, type YearEndOptions } from '../../engine/covenantYear';
+import { DEFAULT_YEAR_END, LOYALTY_EVENTS, SUNDRY_PRESETS, labOutfitCost, loyaltyAttitude, loyaltyEventPoints, planYearEnd, rollIncomeModification } from '../../engine/covenantYear';
+import { NO_ALLOWANCE, allowanceRecipients } from '../../engine/economy';
+import { Link } from 'react-router-dom';
 import { useStore } from '../../store/store';
 
 const FOLK: { key: keyof CovenfolkCounts; label: string; hint?: string }[] = [
@@ -59,6 +64,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
         s.count = optimalCraftsmen(x, dc.members, dc.labs, s.uid);
       }
       x.specialists = x.specialists.filter((s) => !(s.role === 'craftsman' && s.count === 0));
+      fitCovenfolk(x, dc.members, dc.labs);
     });
 
   return (
@@ -81,7 +87,14 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
                     </button>
                   )}
                   {key === 'laborers' && (
-                    <button className="small" title="The number that keeps yearly spending lowest" onClick={() => { const n = optimalLab(); update((x) => void (x.covenfolk.laborers = n)); }}>
+                    <button
+                      className="small"
+                      title="The number that keeps yearly spending lowest; servants and teamsters are set to what it needs"
+                      onClick={() => {
+                        const n = optimalLab();
+                        update((x) => void ((x.covenfolk.laborers = n), fitCovenfolk(x, dc.members, dc.labs)));
+                      }}
+                    >
                       optimal
                     </button>
                   )}
@@ -120,7 +133,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
         <LaterNote topic="covenfolk" />
         {people.length === 0 && <div className="small muted">None listed. Use Quick add above.</div>}
         {people.map((s) => (
-          <PersonRow key={s.uid} s={s} update={update} />
+          <PersonRow key={s.uid} s={s} update={update} data={data} />
         ))}
         <p className="small muted">
           Bought with Build Points (DE p.180): teachers cost Communication + Teaching + their highest taught score and teach two seasons a year; other specialists cost their highest score.
@@ -145,7 +158,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
       >
         {craftsmen.length === 0 && <div className="small muted">None listed.</div>}
         {craftsmen.map((s) => (
-          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} />
+          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} fit={(x) => fitCovenfolk(x, dc.members, dc.labs)} />
         ))}
         <table className="compact" style={{ marginTop: 8 }}>
           <thead>
@@ -348,8 +361,90 @@ function AgeSelect({ s, set }: { s: Specialist; set: (fn: (x: Specialist) => voi
   );
 }
 
-function PersonRow({ s, update }: { s: Specialist; update: CovTabProps['update'] }) {
+/** Keep an older file's `ability` and `score` in step with the highest of the Abilities. */
+function syncAbilities(x: Specialist, data: CovTabProps['data']) {
+  const list = x.abilities ?? [];
+  const top = [...list].sort((a, b) => b.score - a.score)[0];
+  if (top) {
+    x.score = top.score;
+    x.ability = abilityDisplayName({ abilityId: top.id, param: top.param }, data);
+  }
+}
+
+/** A specialist's Abilities, each picked from the Ability list (the highest sets the cost). */
+export function SpecAbilities({ s, set, data }: { s: Specialist; set: (fn: (x: Specialist) => void) => void; data: CovTabProps['data'] }) {
+  const list = specAbilities(s);
+  const top = specHighest(s);
+  const toList = (x: Specialist) => {
+    if (!x.abilities?.length) x.abilities = x.ability || x.score ? [{ id: data.abilities.find((a) => a.name.toLowerCase() === (x.ability ?? '').toLowerCase())?.id ?? '', param: undefined, score: x.score }] : [];
+    return x.abilities;
+  };
+  const byType = new Map<string, typeof data.abilities>();
+  for (const a of data.abilities) byType.set(a.type, [...(byType.get(a.type) ?? []), a]);
+  return (
+    <div className="row small" style={{ flexBasis: '100%' }}>
+      <span className="muted">Abilities:</span>
+      {list.map((a, i) => {
+        const def = data.abilityById.get(a.id);
+        return (
+          <span key={i} className="row tight" title={a.score === top ? 'The highest: it sets the cost' : undefined}>
+            <select
+              value={a.id}
+              onChange={(e) => set((x) => void ((toList(x)[i].id = e.target.value), syncAbilities(x, data)))}
+              style={{ maxWidth: 170 }}
+            >
+              <option value="">{a.label && !a.id ? a.label : '— Ability —'}</option>
+              {[...byType.entries()].map(([t, abs]) => (
+                <optgroup key={t} label={t}>
+                  {abs.map((ab) => (
+                    <option key={ab.id} value={ab.id}>
+                      {ab.name}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+            {(def?.parameterized || /\(/.test(def?.name ?? '')) && (
+              <input value={a.param ?? ''} placeholder="which" style={{ width: 80 }} onChange={(e) => set((x) => void ((toList(x)[i].param = e.target.value || undefined), syncAbilities(x, data)))} />
+            )}
+            <Stepper value={a.score} min={0} max={20} width={30} onChange={(v) => set((x) => void ((toList(x)[i].score = v), syncAbilities(x, data)))} />
+            {a.score === top && list.length > 1 && <span className="badge">top</span>}
+            <span className="clickable muted" title="Remove" onClick={() => set((x) => void (toList(x).splice(i, 1), syncAbilities(x, data)))}>
+              ✕
+            </span>
+          </span>
+        );
+      })}
+      <button className="small ghost" onClick={() => set((x) => void toList(x).push({ id: '', score: Math.max(1, specHighest(x)) }))} title="Teachers often know several Abilities: only the highest counts toward the cost">
+        + Ability
+      </button>
+    </div>
+  );
+}
+
+/** The Characteristics a specialist's job uses (and what magic has raised). */
+export function SpecChars({ s, set, show }: { s: Specialist; set: (fn: (x: Specialist) => void) => void; show: Characteristic[] }) {
+  const [all, setAll] = useState(false);
+  const chars = all ? CHARACTERISTICS : show;
+  return (
+    <span className="row tight small">
+      {chars.map((ch) => (
+        <span key={ch} className="row tight" title={s.magicGain?.[ch] ? `${s.magicGain[ch]} of it from magic (not paid for)` : undefined}>
+          {ch}
+          <Stepper value={specChar(s, ch)} min={-5} max={5} width={28} onChange={(v) => set((x) => void (x.chars = { Com: x.com, Pre: x.pre, ...(x.chars ?? {}), [ch]: v }))} />
+          {s.magicGain?.[ch] ? <span className="badge good">+{s.magicGain[ch]} magic</span> : null}
+        </span>
+      ))}
+      <span className="clickable muted" onClick={() => setAll((v) => !v)}>
+        {all ? 'fewer' : 'all…'}
+      </span>
+    </span>
+  );
+}
+
+function PersonRow({ s, update, data }: { s: Specialist; update: CovTabProps['update']; data: CovTabProps['data'] }) {
   const set = useSet(update, s.uid);
+  const leader = s.role === 'turb-captain' || s.role === 'steward' || s.role === 'chamberlain';
   return (
     <div className="list-row" style={{ flexWrap: 'wrap' }}>
       <input value={s.name} placeholder="Name" style={{ width: 110 }} onChange={(e) => set((x) => void (x.name = e.target.value))} />
@@ -360,37 +455,36 @@ function PersonRow({ s, update }: { s: Specialist; update: CovTabProps['update']
           </option>
         ))}
       </select>
-      <input value={s.ability} placeholder="Ability" style={{ width: 120 }} onChange={(e) => set((x) => void (x.ability = e.target.value))} />
-      <Stepper value={s.score} min={0} width={40} title="Highest score" onChange={(v) => set((x) => void (x.score = v))} />
       <AgeSelect s={s} set={set} />
       {s.role === 'teacher' && (
         <>
-          <span className="small">Com</span>
-          <Stepper value={s.com ?? 0} min={-3} max={5} width={30} onChange={(v) => set((x) => void (x.com = v))} />
           <span className="small">Teaching</span>
           <Stepper value={s.teaching ?? 0} min={0} width={40} onChange={(v) => set((x) => void (x.teaching = v))} />
+          <label className="inline small" title="Good Teacher: +5 to the Source Quality of their teaching">
+            <input type="checkbox" checked={!!s.goodTeacher} onChange={(e) => set((x) => void (x.goodTeacher = e.target.checked || undefined))} /> Good Teacher
+          </label>
         </>
       )}
-      {(s.role === 'turb-captain' || s.role === 'steward' || s.role === 'chamberlain') && (
-        <>
-          <span className="small">Pre</span>
-          <Stepper value={s.pre ?? 0} min={-3} max={5} width={30} onChange={(v) => set((x) => void (x.pre = v))} />
-        </>
-      )}
+      <SpecChars s={s} set={set} show={s.role === 'teacher' ? ['Com'] : leader ? ['Pre'] : ['Com', 'Pre']} />
       <span className="small">×</span>
       <Stepper value={countOf(s)} min={0} width={40} title="How many" onChange={(v) => set((x) => void (x.count = v))} />
       <label className="inline small" title="Part of the base covenant or recruited in play: no Build Points">
         <input type="checkbox" checked={!!s.free} onChange={(e) => set((x) => void (x.free = e.target.checked))} /> no BP
       </label>
       <span className="badge">{specialistCost(s)} BP</span>
+      {s.role === 'teacher' && <span className="badge" title="Communication + Teaching + 3, +6 for one student, +5 Good Teacher (DE p.164)">teaches at Quality {teacherQuality(s)}</span>}
+      {(s.warpingPoints ?? 0) > 0 && <span className="badge warn">{s.warpingPoints} Warping</span>}
+      {s.hired && <span className="badge" title={`Hired from outside for ${s.hired.fee} £ a year: not an inhabitant`}>hired to the end of {s.hired.until}</span>}
       <button className="small ghost" onClick={() => update((c) => void (c.specialists = c.specialists.filter((y) => y.uid !== s.uid)))}>
         ✕
       </button>
+      <SpecAbilities s={s} set={set} data={data} />
+      {(s.history ?? []).length > 0 && <div className="small muted" style={{ flexBasis: '100%' }}>{s.history!.map((h) => `${h.season} ${h.year}: ${h.text}`).join(' · ')}</div>}
     </div>
   );
 }
 
-function CraftRow({ s, update, line: l, optimal }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number }) {
+function CraftRow({ s, update, line: l, optimal, fit }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number; fit: (c: Covenant) => void }) {
   const set = useSet(update, s.uid);
   const craft = craftOf(s);
   const rare = s.rare ?? craft?.rare ?? false;
@@ -433,13 +527,37 @@ function CraftRow({ s, update, line: l, optimal }: { s: Specialist; update: CovT
       </label>
       <span className="small">×</span>
       <Stepper value={countOf(s)} min={0} width={40} title="How many" onChange={(v) => set((x) => void (x.count = v))} />
-      <button className="small" title="The number of this craftsman that keeps yearly spending lowest" onClick={() => { const n = optimal(); set((x) => void (x.count = n)); }}>
+      <button
+        className="small"
+        title="The number of this craftsman that keeps yearly spending lowest; servants and teamsters are set to what it needs"
+        onClick={() => {
+          const n = optimal();
+          update((c) => {
+            const y = c.specialists.find((z) => z.uid === s.uid);
+            if (y) y.count = n;
+            fit(c);
+          });
+        }}
+      >
         optimal
       </button>
       <label className="inline small" title="Part of the base covenant or recruited in play: no Build Points">
         <input type="checkbox" checked={!!s.free} onChange={(e) => set((x) => void (x.free = e.target.checked))} /> no BP
       </label>
       <span className="badge">{specialistCost(s)} BP</span>
+      <SpecChars s={s} set={set} show={['Dex']} />
+      {(() => {
+        // City & Guild: Dexterity + Craft makes the Workshop Total; the quality of what they make for a magus moves the enchanting Lab Total
+        const wt = specChar(s, 'Dex') + s.score;
+        const q = craftQuality(wt, 6, s.score);
+        const lab = q.quality === 'shoddy' ? -3 : q.quality === 'standard' ? -1 : q.quality === 'superior' ? 0 : q.bonus;
+        return (
+          <span className="badge" title={`City & Guild: Workshop Total Dexterity + Craft = ${wt} against Craft Level 6. Items they make for enchanting: ${lab >= 0 ? '+' : ''}${lab} to the Lab Total.`}>
+            makes {q.quality}
+            {q.bonus ? ` (+${q.bonus})` : ''} goods
+          </span>
+        );
+      })()}
       <button className="small ghost" onClick={() => update((c) => void (c.specialists = c.specialists.filter((y) => y.uid !== s.uid)))}>
         ✕
       </button>
@@ -461,6 +579,7 @@ function QuickAdd({ update, data }: { update: CovTabProps['update']; data: CovTa
   const [age, setAge] = useState(36);
   const [craft, setCraft] = useState('carpenter');
   const [ability, setAbility] = useState('');
+  const [param, setParam] = useState('');
   const cap = abilityCapAtAge(age);
   const [score, setScore] = useState(cap);
   const [com, setCom] = useState(2);
@@ -471,16 +590,19 @@ function QuickAdd({ update, data }: { update: CovTabProps['update']; data: CovTa
   const sc = Math.min(score, cap);
   const te = Math.min(teaching, cap);
   const def = ROLES.find((r) => r.id === role)!;
-  const ab = role === 'craftsman' ? `Craft (${CRAFTS.find((c) => c.id === craft)?.name})` : ability || def.ability;
-  const teachable = data.abilities.filter((a) => !a.parameterized && a.type !== 'Supernatural').sort((a, b) => a.name.localeCompare(b.name));
+  const abDef = data.abilityById.get(ability);
+  const ab = role === 'craftsman' ? `Craft (${CRAFTS.find((c) => c.id === craft)?.name})` : abDef ? abilityDisplayName({ abilityId: abDef.id, param: param || undefined }, data) : def.ability;
+  const byType = new Map<string, typeof data.abilities>();
+  for (const a of data.abilities) if (a.type !== 'Supernatural' || role !== 'teacher') byType.set(a.type, [...(byType.get(a.type) ?? []), a]);
   const cost = bought ? (role === 'teacher' ? com + te + sc : sc) * count : 0;
   const add = () =>
     update((x) => {
       const c = CRAFTS.find((k) => k.id === craft);
       x.specialists.push({
         uid: uid(), name: name || (role === 'craftsman' ? c?.name ?? 'Craftsman' : def.label), role, ability: ab, score: sc, age, count, free: !bought,
-        ...(role === 'craftsman' ? { craft, rare: c?.rare } : {}),
-        ...(role === 'teacher' ? { com, teaching: te } : {}),
+        ...(role === 'craftsman' ? { craft, rare: c?.rare, abilities: [{ id: 'craft-type', param: c?.name, score: sc }], chars: { Dex: 0 } } : {}),
+        ...(role !== 'craftsman' && abDef ? { abilities: [{ id: abDef.id, param: param || undefined, score: sc }] } : {}),
+        ...(role === 'teacher' ? { chars: { Com: com }, teaching: te } : {}),
       });
     });
   return (
@@ -519,13 +641,22 @@ function QuickAdd({ update, data }: { update: CovTabProps['update']; data: CovTa
             </select>
           </Field>
         ) : (
-          <Field label={role === 'teacher' ? 'Ability taught' : 'Ability'}>
-            <input list="quick-abilities" value={ability} placeholder={def.ability || 'Ability'} onChange={(e) => setAbility(e.target.value)} />
-            <datalist id="quick-abilities">
-              {teachable.map((a) => (
-                <option key={a.id} value={a.name} />
-              ))}
-            </datalist>
+          <Field label={role === 'teacher' ? 'Ability taught (add more on the row: only the highest counts toward the cost)' : 'Ability'}>
+            <span className="row tight">
+              <select value={ability} onChange={(e) => setAbility(e.target.value)}>
+                <option value="">{def.ability || '— Ability —'}</option>
+                {[...byType.entries()].map(([t, abs]) => (
+                  <optgroup key={t} label={t}>
+                    {abs.map((a) => (
+                      <option key={a.id} value={a.id}>
+                        {a.name}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+              {(abDef?.parameterized || /\(/.test(abDef?.name ?? '')) && <input value={param} placeholder="which" style={{ width: 90 }} onChange={(e) => setParam(e.target.value)} />}
+            </span>
           </Field>
         )}
         <Field label={`Score (max ${cap})`}>
@@ -762,61 +893,52 @@ function LoyaltyEvent({ cov, update }: { cov: Covenant; update: CovTabProps['upd
 
 /** Close the year (Covenants ch.5): what it does, then do it, with Undo. */
 function CloseYear({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
-  const [o, setO] = useState<YearEndOptions>(DEFAULT_YEAR_END);
-  const [open, setOpen] = useState(false);
-  const putCovenant = useStore((s) => s.putCovenant);
-  const setNotice = useStore((s) => s.setNotice);
-  const year = cov.foundedYear + (cov.loyalty.yearsFounded ?? 0);
-  const plan = planYearEnd(cov, dc, o);
-  const close = () => {
-    const snapshot = structuredClone(cov);
-    update((x) => applyYearEnd(x, plan, year, o));
-    setNotice(`Year ${year} closed: treasury ${plan.treasuryAfter} £.`, () => putCovenant(snapshot));
-    setOpen(false);
-  };
-  const flag = (k: keyof YearEndOptions, label: string, title?: string) => (
-    <label className="inline small" title={title}>
-      <input type="checkbox" checked={!!o[k]} onChange={(e) => setO({ ...o, [k]: e.target.checked })} /> {label}
-    </label>
-  );
+  const saga = useStore((s) => s.sagas[cov.sagaId]);
+  const plan = planYearEnd(cov, dc, { ...DEFAULT_YEAR_END, skipVis: cov.yearEnd?.skipVis ?? [] });
+  const a = cov.allowance ?? NO_ALLOWANCE;
+  const who = allowanceRecipients(cov, dc.members);
+  const each = a.mode === 'flat' ? a.amount : a.mode === 'percent' && plan.balance > 0 ? Math.floor(((plan.balance * a.amount) / 100 / Math.max(1, who.length)) * 10) / 10 : 0;
+  const setA = (fn: (x: NonNullable<typeof cov.allowance>) => void) => update((x) => void fn((x.allowance ??= { ...NO_ALLOWANCE })));
   return (
-    <Card title={`The year ${year}`} actions={<button onClick={() => setOpen((v) => !v)}>{open ? 'Cancel' : 'Close the year…'}</button>}>
+    <Card title={`The year ${saga?.currentYear ?? ''}`}>
       <div className="row small">
         <span className={`badge ${dc.finances.balance < 0 ? 'bad' : 'good'}`}>
           {dc.finances.balance >= 0 ? '+' : ''}
           {dc.finances.balance} £ this year
         </span>
-        <span>Treasury {cov.finances.treasury} £ → {plan.treasuryAfter} £</span>
-        <span className="muted">Set each income source&apos;s change for the year below (or roll it), and record one-off spending in Sundry.</span>
+        <span>Treasury {cov.finances.treasury} £ → {plan.treasuryAfter} £ at the year&apos;s end</span>
+        <Link to={`/saga/${cov.sagaId}/seasons`}>The year ends on the Seasons page ›</Link>
       </div>
-      {open && (
-        <div style={{ marginTop: 8 }}>
-          <div className="row">
-            {flag('permanentIncome', "this year's income changes last", 'The book: such changes are usually permanent; untick for a one-year bumper harvest or plague of locusts')}
-            {flag('inflation', 'inflation rises', '1 £ per 100 £ of expenditure, not in a year expenditure fell')}
-            {flag('harvestVis', 'gather the vis')}
-            {flag('clearSundry', 'clear one-off sundry spending')}
-          </div>
-          {o.harvestVis && cov.visSources.length > 0 && (
-            <div className="row small">
-              Not gathered this year:
-              {cov.visSources.map((s) => (
-                <label key={s.uid} className="inline">
-                  <input type="checkbox" checked={o.skipVis.includes(s.uid)} onChange={(e) => setO({ ...o, skipVis: e.target.checked ? [...o.skipVis, s.uid] : o.skipVis.filter((x) => x !== s.uid) })} /> {s.name}
-                </label>
-              ))}
-            </div>
-          )}
-          <ul className="small">
-            {plan.lines.map((l) => (
-              <li key={l}>{l}</li>
-            ))}
-          </ul>
-          <button className="primary" onClick={close}>
-            Close {year}
-          </button>
-        </div>
-      )}
+      <div className="row" style={{ marginTop: 8 }}>
+        <Field label="Allowance to members each year" hint="Paid from the treasury at the year's end, into each one's purse">
+          <span className="row tight">
+            <select value={a.mode} onChange={(e) => setA((x) => void (x.mode = e.target.value as typeof a.mode))}>
+              <option value="none">none</option>
+              <option value="flat">a flat sum each (£)</option>
+              <option value="percent">a share of the surplus (%)</option>
+            </select>
+            {a.mode !== 'none' && <Stepper value={a.amount} min={0} max={a.mode === 'percent' ? 100 : 9999} width={48} onChange={(v) => setA((x) => void (x.amount = v))} />}
+          </span>
+        </Field>
+        <Field label="To">
+          <select value={a.to} onChange={(e) => setA((x) => void (x.to = e.target.value as typeof a.to))}>
+            <option value="magi">the magi</option>
+            <option value="members">every member with a sheet</option>
+          </select>
+        </Field>
+        <Field label="Share of the vis gathered (%)" hint="split evenly among them, Art by Art">
+          <Stepper value={a.visShare} min={0} max={100} step={5} width={40} onChange={(v) => setA((x) => void (x.visShare = v))} />
+        </Field>
+        {(a.mode !== 'none' || a.visShare > 0) && (
+          <span className="small">
+            {who.length} receive{who.length === 1 ? 's' : ''}
+            {a.mode !== 'none' ? `: about ${each} £ each this year` : ''}.
+          </span>
+        )}
+      </div>
+      <p className="small muted" style={{ margin: 0 }}>
+        A covenant&apos;s charter decides what it shares with its members (Covenants ch.3). What they receive goes to their purse, to spend on the Market page or their own projects.
+      </p>
     </Card>
   );
 }

@@ -1,7 +1,7 @@
 // Persisted domain model: sagas, characters, covenants, laboratories.
 // Everything here is plain JSON (it is saved to IndexedDB and exported to files).
 
-import type { Art, Characteristic, CharType, Form, Technique, VFSize, SpellDef, LabCharacteristic, AbilityType, PowerKind } from '../data/types';
+import type { Art, Characteristic, CharType, Effect, Form, Technique, VFSize, SpellDef, LabCharacteristic, AbilityType, PowerKind } from '../data/types';
 import type { CustomContent } from '../data';
 import type { Mechanics } from '../data/mechanics';
 
@@ -89,6 +89,96 @@ export interface Saga {
   journal: JournalEntry[];
   /** the storyguide's settings for the guided build */
   guided?: SagaGuidedSettings;
+  /** what happened as time passed, newest first (the Seasons page) */
+  timeLog?: TimeReport[];
+  /** prices the saga uses for trade */
+  economy?: { visPrice: number };
+}
+
+export type Season = 'Spring' | 'Summer' | 'Autumn' | 'Winter';
+
+/** One season's passing: what the time system did, line by line. */
+export interface TimeReport {
+  id: string;
+  year: number;
+  season: Season;
+  lines: { who?: string; text: string; kind?: 'season' | 'year' | 'aging' | 'crisis' | 'warping' | 'covenant' | 'lab' | 'effect' | 'reminder' | 'money' }[];
+}
+
+/**
+ * A supernatural effect on a character or a covenant: a spell, power or ritual still working on
+ * them, or one that changed them for good (DE: Ritual Creo with Momentary Duration is permanent).
+ */
+export interface ActiveEffect {
+  uid: string;
+  name: string;
+  /** who or what it came from ("Bingus, Ritual Power") */
+  source?: string;
+  year: number;
+  season: Season;
+  /** permanent: done and kept for the record; moon: ends with the season; year: ends four seasons on; indefinite: until ended by hand */
+  duration: 'permanent' | 'moon' | 'year' | 'indefinite';
+  /** bonuses while it lasts (Characteristic bonuses, Soak, an Ability…) */
+  bonuses?: Effect[];
+  /** the Virtue it gave (a CharVirtue uid): taken away when the effect ends unless permanent */
+  virtueUid?: string;
+  /** Characteristics it raised for good */
+  raised?: Partial<Record<Characteristic, number>>;
+  /** a constant effect: a Warping Point a year while it lasts (DE, Constant Supernatural Effects) */
+  constant?: boolean;
+  /** Warping Points it gave when it began */
+  warping?: number;
+  /** a covenant ward to cast again when it ends (the Aegis of the Hearth): who casts it and at what level */
+  renew?: { casterId?: string; level: number; art?: Art };
+  notes?: string;
+}
+
+/** Money and vis a character holds (an allowance from the covenant, earnings, purchases). */
+export interface Purse {
+  pounds: number;
+  vis: VisStock[];
+  log?: { year: number; season: Season; text: string; pounds?: number; vis?: VisStock[] }[];
+}
+
+/** What a character does in a season nobody planned (and while time is fast-forwarded). */
+export interface StandingActivity {
+  kind: 'auto' | 'exposure' | 'practice' | 'vis' | 'lab' | 'work' | 'taught' | 'none';
+  /** taught: one of the covenant's teachers ('spec:<uid>') */
+  teacher?: string;
+  /** 'art:Cr' or 'ability:<uid>' */
+  target?: string;
+  /** a lab project to work on */
+  projectUid?: string;
+}
+
+/** A laboratory project that runs over one or more seasons (DE, The Laboratory). */
+export interface LabProject {
+  uid: string;
+  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'other';
+  name: string;
+  /** invent: the spell; instill: the effect's Technique, Form and level */
+  technique?: Technique;
+  form?: Form;
+  requisites?: Art[];
+  level?: number;
+  spell?: SpellDef;
+  /** open, attune, instill: the item (a uid among the character's items) */
+  itemUid?: string;
+  effectUid?: string;
+  /** open: pawns of Vim to put in this season (a talisman may be opened a little at a time) */
+  pawns?: number;
+  /** add a talisman attunement this season (one a season, while preparing or instilling) */
+  attunement?: { label: string; bonus: number };
+  /** points gathered toward the level */
+  progress: number;
+  seasons: number;
+  /** the vis has been paid (it is spent in the first season) */
+  visPaid?: boolean;
+  /** where its vis comes from: the magus's own, or the covenant's stocks */
+  visFrom?: 'purse' | 'covenant';
+  /** anything else on the Lab Total (a similar spell, a Shape and Material bonus…) */
+  bonus?: number;
+  done?: boolean;
 }
 
 export interface JournalEntry {
@@ -225,6 +315,8 @@ export interface EnchantedEffectRecord {
   modifiedLevel: number;
   description?: string;
   investedPawns?: number;
+  /** still being instilled (a lab project): it does not work yet */
+  pending?: boolean;
 }
 
 export interface EnchantedItem {
@@ -240,6 +332,11 @@ export interface EnchantedItem {
   attunements: { label: string; bonus: number }[];
   creatorId?: string;
   notes?: string;
+  /** a talisman is attuned only after a season's work (DE, Talisman Attunement); older files count as attuned */
+  attuned?: boolean;
+  /** bonuses the device gives whoever bears it while it is worn (a constant effect) */
+  bearerBonuses?: Effect[];
+  worn?: boolean;
 }
 
 export interface Familiar {
@@ -390,6 +487,10 @@ export interface CreatureInfo {
   form?: Art;
   /** built with the Magic Character Creation rules of Realms of Power: Magic */
   magicCharacter?: MagicCharacterInfo;
+  /** Might Points spent from the pool (it refreshes over a day; with Temporary Might, only slowly) */
+  poolSpent?: number;
+  /** Might Score lost to Ritual Powers, returning only slowly (RoP: Magic, Ritual Power) */
+  mightLost?: number;
 }
 
 export type MagicSeason = 'spring' | 'summer' | 'autumn' | 'winter';
@@ -472,6 +573,16 @@ export interface Character {
   familiar?: Familiar;
   workshop?: Workshop;
   longevity?: LongevityRitual;
+  /** spells, powers and rituals working on the character, or that changed it for good */
+  activeEffects?: ActiveEffect[];
+  /** Characteristic points raised by magic (the purchased value is this much lower) */
+  magicGain?: Partial<Record<Characteristic, number>>;
+  purse?: Purse;
+  projects?: LabProject[];
+  /** what the character does in a season nobody planned */
+  standing?: StandingActivity;
+  /** the last year whose aging roll was made */
+  lastAgedYear?: number;
   wounds: WoundState;
   fatigueLost: number;
   longTermFatigueLost: number;
@@ -530,6 +641,8 @@ export interface LibraryBook {
   collectionMax?: number;
   /** the Exceptional Book Boon that provides this book (no Build Points) */
   boonUid?: string;
+  /** bought by a member for their own use (kept in the covenant's library) */
+  ownerId?: string;
 }
 
 export interface VisSource {
@@ -544,13 +657,30 @@ export interface VisSource {
   tithed?: boolean;
   /** the Tithing Miracles Boon increases it */
   miracle?: boolean;
-  /** dedicated vis (RoP: Magic): 7.5 Build Points a pawn a year instead of 5 */
+  /** dedicated vis (RoP: Magic): each pawn holds a Technique and a Form and works as two pawns for them; 7.5 Build Points a pawn a year */
   dedicated?: boolean;
+  /** the other Art of a dedicated source's Technique + Form */
+  pair?: Art;
+  /** found or won in play: no Build Points */
+  inPlay?: boolean;
+}
+
+/** The covenant's yearly gift to its members (the charter's division of resources). */
+export interface Allowance {
+  /** pounds: a flat sum each, or a share of the year's surplus split evenly */
+  mode: 'none' | 'flat' | 'percent';
+  amount: number;
+  /** who receives it */
+  to: 'magi' | 'members';
+  /** a share of the year's vis harvest (percent), split evenly among the magi */
+  visShare: number;
 }
 
 export interface VisStock {
   art: Art;
   pawns: number;
+  /** dedicated vis: the other Art of its Technique + Form (each pawn works as two for that combination) */
+  pair?: Art;
 }
 
 export interface Specialist {
@@ -573,6 +703,21 @@ export interface Specialist {
   age?: number;
   /** part of the base covenant or recruited in play: no Build Points */
   free?: boolean;
+  /** the Abilities this person uses or teaches (the highest sets the cost); `ability` and `score` follow the highest */
+  abilities?: { id: string; param?: string; score: number }[];
+  /** Characteristics as far as the job uses them (Com to teach, Dex for most crafts, Pre to lead); older files keep Com and Pre in `com` and `pre` */
+  chars?: Partial<Record<Characteristic, number>>;
+  /** Characteristic points raised by magic: not paid for with Build Points */
+  magicGain?: Partial<Record<Characteristic, number>>;
+  /** Good Teacher (+5 to the Source Quality of their teaching) */
+  goodTeacher?: boolean;
+  warpingPoints?: number;
+  /** seasons spent teaching this year: a covenant teacher teaches two a year (DE p.180) */
+  taught?: { year: number; seasons: number };
+  /** spells and rituals that changed them, for the record */
+  history?: { year: number; season: string; text: string }[];
+  /** an outside teacher paid to teach (Covenants ch.5): not an inhabitant, leaves at the end of `until` */
+  hired?: { until: number; fee: number };
 }
 
 /** A Virtue or Flaw taken by a lab, with the player's choices for it. */
@@ -692,6 +837,16 @@ export interface Covenant {
   /** unGiftedCouncil: council members without The Gift whose votes count equally (they add 0 to Base Loyalty) */
   loyalty: { actionPoints: number; yearsFounded?: number; unGiftedCouncil?: number };
   log: { uid: string; year: number; season?: string; text: string; treasuryDelta?: number; visDelta?: VisStock[] }[];
+  /** the vis stocks the covenant was founded with (Build Points count these; later gains are free) */
+  startingVisStocks?: VisStock[];
+  /** wards and other effects on the covenant (the Aegis of the Hearth) */
+  effects?: ActiveEffect[];
+  /** what the covenant gives its members each year */
+  allowance?: Allowance;
+  /** the last year a Hook's story was played (Indiscreet Resource: one every five years) */
+  hookStories?: Record<string, number>;
+  /** year-end choices that stay from year to year */
+  yearEnd?: { skipVis?: string[] };
   notes: string;
   createdAt: string;
   updatedAt: string;
