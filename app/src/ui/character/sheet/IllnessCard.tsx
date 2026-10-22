@@ -6,16 +6,20 @@ import { DISEASES, STAGES, STAGE_PENALTY, avoidanceRoll, currentSeverity, illnes
 import { livingConditions } from '../../../engine/time';
 import type { Illness } from '../../../engine/types';
 import { uid } from '../../../util/id';
-import { BookBadge, Card, Field, Stepper } from '../../kit';
+import { Card, Field, Stepper } from '../../kit';
+import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
+import { optionOn } from '../../../engine/optional';
 
 export function IllnessCard({ ed }: { ed: CharEditor }) {
-  const { c, d, update, ctx } = ed;
+  const { c, d, update, ctx, saga } = ed;
   const [pick, setPick] = useState(DISEASES[0]?.id ?? '');
   const [log, setLog] = useState<string[]>([]);
   const [doc, setDoc] = useState({ int: 2, medicine: 4, apothecary: 0, chirurgy: 0 });
   const [other, setOther] = useState(0);
   if (!c || !d) return null;
+  // turned off for the saga: still shown while the character is ill, so an illness can be cured
+  if (!optionOn(saga, 'illness') && !(c.illnesses ?? []).length) return null;
   const living = livingConditions(d, ctx);
   const def = DISEASES.find((x) => x.id === pick);
   const ills = c.illnesses ?? [];
@@ -44,11 +48,10 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
   };
 
   return (
-    <Card title={<h3>Illness <BookBadge book="AA" line={1700} /></h3>}>
-      <p className="small muted" style={{ marginTop: 0 }}>
-        A disease&apos;s penalty counts like a Wound Penalty on every total (a Critical disease allows no action). At the end of each interval, roll Disease Recovery: below the
-        Stable Ease Factor it worsens, at the Improvement Ease Factor it improves, and in between the next roll gets +3. At a crisis, roll twice a day.
-      </p>
+    <Card title="Illness">
+      <RulesNote book="AA" line={1700} endLine={1800}>
+        A disease&apos;s penalty counts like a Wound Penalty; roll for recovery at the end of each interval.
+      </RulesNote>
       {ills.map((ill) => (
         <div key={ill.uid} className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
           <div className="row">
@@ -100,25 +103,32 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
           + Another disease
         </button>
       </div>
-      {def && <div className="small muted">{def.cause}</div>}
-      <div className="row" style={{ marginTop: 8 }}>
-        <Field label="Physician: Int + Medicine" hint="Their Prognosis Total must beat the Severity for their Medicine to count">
-          <span className="row tight">
-            <Stepper value={doc.int} min={-5} max={10} width={32} onChange={(v) => setDoc({ ...doc, int: v })} />
-            <Stepper value={doc.medicine} min={0} max={20} width={32} onChange={(v) => setDoc({ ...doc, medicine: v })} />
-          </span>
-        </Field>
-        <Field label="Apothecary / Chirurgy" hint="Help of each, at most +3">
-          <span className="row tight">
-            <Stepper value={doc.apothecary} min={0} max={10} width={32} onChange={(v) => setDoc({ ...doc, apothecary: v })} />
-            <Stepper value={doc.chirurgy} min={0} max={10} width={32} onChange={(v) => setDoc({ ...doc, chirurgy: v })} />
-          </span>
-        </Field>
-        <Field label="Magical aid, other">
-          <Stepper value={other} min={-10} max={20} width={36} onChange={setOther} />
-        </Field>
-        <span className="small muted">Prognosis Total {prognosisTotal({ ...doc, living })} (with Living Conditions {living}).</span>
-      </div>
+      {def && ills.length === 0 && <div className="small muted">{def.cause}</div>}
+      {ills.length > 0 && (
+        <details style={{ marginTop: 8 }}>
+          <summary className="small" style={{ cursor: 'pointer' }}>
+            Physician and aid (Prognosis Total {prognosisTotal({ ...doc, living })}){other ? `, other ${other > 0 ? '+' : ''}${other}` : ''}
+          </summary>
+        <div className="row" style={{ marginTop: 8 }}>
+          <Field label="Physician: Int + Medicine" hint="Their Prognosis Total must beat the Severity for their Medicine to count">
+            <span className="row tight">
+              <Stepper value={doc.int} min={-5} max={10} width={32} onChange={(v) => setDoc({ ...doc, int: v })} />
+              <Stepper value={doc.medicine} min={0} max={20} width={32} onChange={(v) => setDoc({ ...doc, medicine: v })} />
+            </span>
+          </Field>
+          <Field label="Apothecary / Chirurgy" hint="Help of each, at most +3">
+            <span className="row tight">
+              <Stepper value={doc.apothecary} min={0} max={10} width={32} onChange={(v) => setDoc({ ...doc, apothecary: v })} />
+              <Stepper value={doc.chirurgy} min={0} max={10} width={32} onChange={(v) => setDoc({ ...doc, chirurgy: v })} />
+            </span>
+          </Field>
+          <Field label="Magical aid, other">
+            <Stepper value={other} min={-10} max={20} width={36} onChange={setOther} />
+          </Field>
+          <span className="small muted">Prognosis Total {prognosisTotal({ ...doc, living })} (with Living Conditions {living}).</span>
+        </div>
+        </details>
+      )}
       {log.map((l, i) => (
         <div key={i} className="small list-row">
           {l}

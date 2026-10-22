@@ -459,6 +459,8 @@ export function buildRecord(def: VirtueFlawDef, data: GameData): VFRecord {
   if (def.param?.kind === 'art' || def.param?.kind === 'technique' || def.param?.kind === 'form') drafts.push({ tag: '$param', dir: 1, strength: 1, why: 'about the chosen Art' });
   for (const [tag, strength] of MANUAL_TAGS[def.id] ?? []) drafts.push({ tag, dir: 1, strength, why: 'from the text' });
   if (def.param?.kind === 'characteristic') drafts.push({ tag: '$param', dir: 1, strength: 2, why: 'about the chosen Characteristic' });
+  // every Mystery Virtue comes by Initiation, so it belongs to those who want a Mystery
+  if (def.categories.includes('Mystery')) drafts.push({ tag: 'mystery', dir: 1, strength: 1, why: 'a Mystery Virtue, gained by Initiation' });
   for (let i = drafts.length - 1; i >= 0; i--) if (!drafts[i].tag) drafts.splice(i, 1);
 
   const isFlaw = def.kind === 'flaw';

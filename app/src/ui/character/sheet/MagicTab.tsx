@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type Technique } from '../../../data';
-import { castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm } from '../../../engine/magic';
+import { castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
 import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
 import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
 import type { CharSpell } from '../../../engine/types';
@@ -17,7 +17,11 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [aura, setAura] = useState<AuraState>(ctx.aura);
   const [useLab, setUseLab] = useState(true);
   const [pen, setPen] = useState<PenetrationOptions>({ arcaneConnection: 'none', sympathetic: 0 });
-  const [words, setWords] = useState(0);
+  // words and gestures, each with its modifier (DE); a Bjornaer in heartbeast form has neither
+  const [voice, setVoice] = useState<Voice>('firm');
+  const [gestures, setGestures] = useState<Gestures>('bold');
+  const wg = d ? wordsGesturesModifier(d, voice, gestures) : { value: 0, notes: [] };
+  const words = wg.value;
   // the talisman attunement that matches what is being cast (DE: only when touching it, and only the highest that applies)
   const [attunement, setAttunement] = useState(-1);
   const talisman = attunement >= 0;
@@ -252,14 +256,26 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
               </label>
             </div>
           </Field>
-          <Field label="Words & gestures">
-            <select value={words} onChange={(e) => setWords(Number(e.target.value))}>
-              <option value={-10}>silent & motionless (−10)</option>
-              <option value={-5}>quiet or motionless (−5)</option>
-              <option value={0}>firm voice & bold gestures (0)</option>
-              <option value={1}>loud voice or exaggerated gestures (+1)</option>
-              <option value={2}>loud & exaggerated (+2)</option>
-            </select>
+          <Field label="Words & gestures" hint={`${words >= 0 ? '+' : ''}${words}${wg.notes.length ? ` (${wg.notes.join(', ')})` : ''}`}>
+            <div className="row" style={{ gap: 4 }}>
+              <select value={voice} onChange={(e) => setVoice(e.target.value as Voice)} aria-label="Voice">
+                <option value="loud">loud voice (+1)</option>
+                <option value="firm">firm voice (0)</option>
+                <option value="quiet">quiet voice (−5)</option>
+                <option value="none">no words (−10)</option>
+              </select>
+              <select value={gestures} onChange={(e) => setGestures(e.target.value as Gestures)} aria-label="Gestures">
+                <option value="exaggerated">exaggerated gestures (+1)</option>
+                <option value="bold">bold gestures (0)</option>
+                <option value="subtle">subtle gestures (−2)</option>
+                <option value="none">no gestures (−5)</option>
+              </select>
+              {c?.house === 'bjornaer' && (
+                <button className="small ghost" title="A Bjornaer in heartbeast form cannot speak or gesture (DE, The Heartbeast)" onClick={() => { setVoice('none'); setGestures('none'); }}>
+                  heartbeast form
+                </button>
+              )}
+            </div>
           </Field>
           {talismanItem && talismanItem.attunements.length > 0 && (
             <Field label="Talisman attunement" hint="Touching the talisman, for a spell the attunement fits">

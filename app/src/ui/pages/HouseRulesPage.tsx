@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { BOOKS, SEASONS, type AbilityType, type VFCategory, type VFKind, type VFSize, type VirtueFlawDef, type WeaponDef } from '../../data';
 import type { Mechanics } from '../../data/mechanics';
 import { DEFAULT_HOUSE_RULES, DEFAULT_SAGA_SETTINGS, type HouseRules, type Saga, type SagaGuidedSettings } from '../../engine/types';
@@ -9,8 +9,9 @@ import { downloadJson, safeFilename } from '../../util/files';
 import { uid } from '../../util/id';
 import { Card, Empty, Field, SelectOrType, Stepper, Tabs } from '../kit';
 import { TRIBUNALS } from '../../data/lists';
+import { OptionalRulesPanel } from '../OptionalRules';
 
-type TabId = 'saga' | 'books' | 'rules' | 'custom' | 'mechanics';
+type TabId = 'saga' | 'books' | 'optional' | 'rules' | 'custom' | 'mechanics';
 
 const NUMERIC: { key: keyof HouseRules; label: string; group: string }[] = [
   { key: 'characteristicPoints', label: 'Characteristic points', group: 'Characters' },
@@ -43,7 +44,8 @@ export default function HouseRulesPage() {
   const { sagaId } = useParams();
   const saga = useSaga(sagaId);
   const updateSaga = useStore((s) => s.updateSaga);
-  const [tab, setTab] = useState<TabId>('saga');
+  const [params] = useSearchParams();
+  const [tab, setTab] = useState<TabId>((params.get('tab') as TabId) || 'saga');
   if (!saga) return <Empty>Saga not found.</Empty>;
   const update = (fn: (s: Saga) => void) => updateSaga(saga.id, fn);
   return (
@@ -56,6 +58,7 @@ export default function HouseRulesPage() {
         tabs={[
           { id: 'saga', label: 'Saga' },
           { id: 'books', label: `Books (${saga.enabledBooks.length ? saga.enabledBooks.length : 'all'})` },
+          { id: 'optional', label: 'Optional rules' },
           { id: 'rules', label: 'Creation rules & rulings' },
           { id: 'custom', label: 'Custom content' },
           { id: 'mechanics', label: 'Virtue/Flaw mechanics' },
@@ -65,6 +68,14 @@ export default function HouseRulesPage() {
       />
       {tab === 'saga' && <SagaTab saga={saga} update={update} />}
       {tab === 'books' && <BooksTab saga={saga} update={update} />}
+      {tab === 'optional' && (
+        <Card title="Optional rules">
+          <p className="small muted" style={{ marginTop: 0 }}>
+            Rules from the supplements that add detail. Turn off what your troupe does not want and it disappears from the sheets and pages.
+          </p>
+          <OptionalRulesPanel saga={saga} />
+        </Card>
+      )}
       {tab === 'rules' && <RulesTab saga={saga} update={update} />}
       {tab === 'custom' && <CustomTab saga={saga} update={update} />}
       {tab === 'mechanics' && <MechanicsTab saga={saga} update={update} />}

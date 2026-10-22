@@ -233,6 +233,19 @@ export default function HelpPage() {
             recruits new ones and asks them for help. Lab projects include taming a creature, and each can be worked under a non-standard lab routine for a bonus at a cost.
           </li>
           <li>
+            <b>Mysteries &amp; Initiation</b> (Seasons &amp; Aging, for Bjornaer, Criamon, Merinita and Verditius magi or anyone with a cult Lore): choose a Mystery and a
+            Mystagogue from the saga, pick the book&apos;s Script or build one, add an Ordeal, and the card shows the Initiation Total against the target. <b>Initiate</b> adds the
+            Virtue, the Ordeal&apos;s Flaw and the season; later targets drop by the Ordeal. Criamon magi choose their Path and prepare its next station.
+          </li>
+          <li>
+            <b>Society:</b> the Overview&apos;s <b>Society</b> card holds a debate (against a saga character or a storyguide opponent, with the votes it sways) and a petition to the
+            Church. Craftsmen in a guild get a <b>Guild</b> card beside the workshop: apprentice piece, journeyman contract, promotion, dues.
+          </li>
+          <li>
+            <b>Tribunal customs:</b> a saga set in the Rhine, Normandy, Thebes or Transylvania is offered that Tribunal&apos;s own rules on the Saga page (off until ticked): the
+            Rhine&apos;s ranks, gilds and forest pacts, Theban tokens and shards and covenant patrons, the Perthean Compact and the Hermetic Tourney, Transylvanian privileges.
+          </li>
+          <li>
             <b>Undo:</b> every change can be undone with <b>↶ Undo</b> in the sidebar (on a phone, in the bar at the top) or Ctrl+Z, and redone with <b>↷ Redo</b> or Ctrl+Y. A
             ritual cast for the whole covenant is listed under <b>Recent casts</b> in <b>Magic on the covenant</b> (the covenant&apos;s Overview, or the Seasons page), where <b>Undo and give back</b> takes it off everyone and
             returns the vis, Might, Confidence and Fatigue it cost.
@@ -297,6 +310,10 @@ export default function HelpPage() {
               <b>House rules &amp; books → Virtue/Flaw mechanics</b> lets you change what any Virtue or Flaw does for your saga.
             </li>
             <li>Custom Virtues, Flaws, Abilities, weapons and spells can be added per saga.</li>
+            <li>
+              <b>House rules &amp; books → Optional rules</b> turns each supplement subsystem on or off (illness, lab routines, agents, Mysteries, guilds, debate…). What is off
+              disappears from the sheets; each rule has a summary and the book&apos;s text a click away.
+            </li>
           </ul>
         </Card>
       </div>

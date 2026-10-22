@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { LAB_ROUTINES, ROUTINE_IDS, toggleRoutine } from '../../../engine/labRoutines';
+import { optionOn } from '../../../engine/optional';
 import { PROJECT_KINDS, itemOf, newProject, pawnsUsed, planProject, seasonVisLimit, workProject } from '../../../engine/projects';
 import { loggedThisSeason } from '../../../engine/time';
 import type { LabProject } from '../../../engine/types';
@@ -251,7 +252,7 @@ function ProjectRow({ p, ed, set, onWork, busy }: { p: LabProject; ed: CharEdito
               </select>
             </Field>
           )}
-          {plan.total && (
+          {plan.total && (optionOn(ed.saga, 'labRoutines') || !!p.routines?.length) && (
             <Field label="Lab routine (optional)" hint="Covenants: odd hours or overtime for a bonus to this season's Lab Total, at a cost">
               <span className="row tight" style={{ flexWrap: 'wrap' }}>
                 {ROUTINE_IDS.map((r) => (

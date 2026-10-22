@@ -171,7 +171,7 @@ export function workshopFigures(c: Character, d: DerivedCharacter, situation = 0
     innovation: w.innovation, rawMaterials: w.rawMaterials, assistants: w.assistants.slice(0, maxAssistants).map((a) => a.craft), manual: w.manual,
   });
   return {
-    trade: trade ? { uid: trade.uid, name: trade.name, total: trade.total, abilityId: trade.abilityId } : undefined, craft, wealth, lp: laborPoints(lpChar, craft, wealth, missing),
+    trade: trade ? { uid: trade.uid, name: trade.name, total: trade.total, abilityId: trade.abilityId } : undefined, craft, wealth, lp: laborPoints(lpChar, craft, wealth, missing) + (w.contractLp ?? 0),
     total, baseLevel: 6 + situation + w.craftLevelMod, leadership, maxAssistants, missing,
   };
 }

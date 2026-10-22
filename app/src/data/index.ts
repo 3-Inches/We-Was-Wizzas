@@ -17,6 +17,8 @@ import { MECHANICS, type Mechanics } from './mechanics';
 import { CROSS_REF_MECHANICS } from './crossRefs';
 import { LAB_ONLY_VF, NOT_REAL_VF, RESTRICTIONS } from './restrictions';
 import { buildVfTags, vfHouses } from './vfTags';
+import { mysteryVirtueDefs } from './mysteries';
+import { tribunalAbilityDefs, tribunalVirtueDefs } from './tribunals';
 import type {
   AbilityDef, ArmorDef, GuidelineDef, HookBoonDef, LabFeatureDef, LabVFDef, ShapeMaterialDef,
   SpellDef, VirtueFlawDef, WeaponDef, Effect, AbilityType, RuleSection, VFRef,
@@ -25,7 +27,10 @@ import type {
 export * from './types';
 export * from './constants';
 
-const RAW_VF = (vfJson as unknown as VirtueFlawDef[]).filter((v) => !NOT_REAL_VF.has(v.id) && !LAB_ONLY_VF[v.id]);
+const BOOK_VF = (vfJson as unknown as VirtueFlawDef[]).filter((v) => !NOT_REAL_VF.has(v.id) && !LAB_ONLY_VF[v.id]);
+/** with the House Mysteries and Criamon stations (Houses of Hermes: Mystery Cults) and the Tribunal books' Virtues the Virtue list lacks */
+const BOOK_VF_IDS = new Set(BOOK_VF.map((v) => v.id));
+const RAW_VF = [...BOOK_VF, ...mysteryVirtueDefs(BOOK_VF_IDS), ...tribunalVirtueDefs(BOOK_VF_IDS)];
 /** Laboratory Virtues and Flaws that were extracted with the character ones. */
 const LAB_FROM_VF: LabVFDef[] = (vfJson as unknown as VirtueFlawDef[])
   .filter((v) => LAB_ONLY_VF[v.id])
@@ -41,7 +46,8 @@ const LAB_FROM_VF: LabVFDef[] = (vfJson as unknown as VirtueFlawDef[])
     mods: { ...LAB_ONLY_VF[v.id].mods, choicePoints: null, choice: null } as LabVFDef['mods'],
     source: v.source,
   }));
-const RAW_ABILITIES = abilitiesJson as unknown as AbilityDef[];
+const BOOK_ABILITIES = abilitiesJson as unknown as AbilityDef[];
+const RAW_ABILITIES = [...BOOK_ABILITIES, ...tribunalAbilityDefs(new Set(BOOK_ABILITIES.map((a) => a.id)))];
 const RAW_SPELLS = spellsJson as unknown as SpellDef[];
 
 // --------------------------------------------------------------------------------------

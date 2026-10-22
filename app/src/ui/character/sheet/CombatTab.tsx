@@ -64,9 +64,11 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
     push(`${label}: ${signed(bonus)} + ${describeStress(r)} = ${r.botches ? 'BOTCH' : bonus + r.value}`);
   };
 
+  // a disease's penalty hinders the healing of wounds (Art & Academe: "and vice versa")
+  const sick = d.currentDiseasePenalty;
   const recover = (key: 'light' | 'medium' | 'heavy') => {
     const r = stressDie(1);
-    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + r.value;
+    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + sick + r.value;
     const rec = RECOVERY[key];
     let text: string;
     if (total >= rec.improve) {
@@ -86,12 +88,12 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
         if (key === 'heavy') x.wounds.incapacitating += 1;
       });
     }
-    push(`Recovery (${key}, ${rec.interval}): Sta ${d.characteristics.Sta.value} + medic ${medic} + aid ${aid}${bronze ? ` + bronze cord ${bronze}` : ''} + ${describeStress(r)} = ${total} vs ${rec.stable}/${rec.improve}: ${text}.`);
+    push(`Recovery (${key}, ${rec.interval}): Sta ${d.characteristics.Sta.value} + medic ${medic} + aid ${aid}${bronze ? ` + bronze cord ${bronze}` : ''}${sick ? ` − disease ${-sick}` : ''} + ${describeStress(r)} = ${total} vs ${rec.stable}/${rec.improve}: ${text}.`);
   };
 
   const recoverIncap = () => {
     const r = stressDie(1);
-    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + r.value;
+    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + sick + r.value;
     let text: string;
     if (total <= 0) {
       text = 'the character dies';
@@ -129,6 +131,7 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
                 <span className="l">Disease penalty</span>
               </div>
             )}
+            {(c.illnesses ?? []).some((i) => i.stage === 'Critical') && <span className="badge bad" title="A Critical disease: no action until the crisis passes">disease crisis</span>}
             {c.wounds.dead && <span className="badge bad">DEAD</span>}
           </div>
           <div className="table-wrap">
@@ -191,7 +194,7 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
               <Stepper value={aid} min={0} width={36} onChange={setAid} />
             </Field>
           </div>
-          <p className="small muted">Recovery Total = Stamina + medic's Ability + magical aid{bronze ? ` + bronze cord ${bronze}` : ''} + stress die. Wound penalties do not apply (DE p.405).</p>
+          <p className="small muted">Recovery Total = Stamina + medic's Ability + magical aid{bronze ? ` + bronze cord ${bronze}` : ''}{sick ? ` − the Disease Penalty ${-sick}` : ''} + stress die. Wound penalties do not apply (DE p.405).</p>
         </Card>
 
         <Card title="Fatigue">

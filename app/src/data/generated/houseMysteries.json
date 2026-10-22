@@ -1,0 +1,1094 @@
+{
+ "virtues": [
+  {
+   "id": "secret-name",
+   "name": "Secret Name",
+   "house": "bjornaer",
+   "size": "Minor",
+   "kind": "House",
+   "summary": "This Mystery permanently severs the sympathetic resonances of the magus's name and forges them anew with a name known only to the Mystagogue and the Initiate.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 966
+   }
+  },
+  {
+   "id": "theriomorphy",
+   "name": "Theriomorphy",
+   "house": "bjornaer",
+   "size": "Minor",
+   "kind": "House",
+   "summary": "Using this Mystery, a magus may apply any Quality (see the appendix to this chapter, below) or Virtue possessed by his Heartbeast to his human form on a Stamina + Heartbeast roll against an Ease Factor of 9. This process takes a whole round.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 982
+   }
+  },
+  {
+   "id": "sensory-magic",
+   "name": "Sensory Magic",
+   "house": "bjornaer",
+   "size": "Minor",
+   "kind": "House",
+   "summary": "House Bjornaer know spells which affect all those who hear a lion's roar, get caught in the gaze of a wolf, or smell the musk of a stag. They can attach a magical scent to an area to create a ward and coopt a target's hearing to spread Mentem effects.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 998
+   }
+  },
+  {
+   "id": "the-mystery-of-the-epitome",
+   "name": "The Mystery of the Epitome",
+   "house": "bjornaer",
+   "size": "Major",
+   "kind": "House",
+   "summary": "The Gifted man is a more Perfect Man, the Virtuous Beast is a more Perfect Beast.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1154
+   }
+  },
+  {
+   "id": "the-mystery-of-the-chimera",
+   "name": "The Mystery of the Chimera",
+   "house": "bjornaer",
+   "size": "Major",
+   "kind": "House",
+   "summary": "The Beasts of Legend are our Ancestors, not our Foes.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1185
+   }
+  },
+  {
+   "id": "the-mystery-of-the-anima",
+   "name": "The Mystery of the Anima",
+   "house": "bjornaer",
+   "size": "Major",
+   "kind": "House",
+   "summary": "Open Your Heart to the Realm of Magic.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1213
+   }
+  },
+  {
+   "id": "binding-the-gift",
+   "name": "Binding the Gift",
+   "house": "merinita",
+   "size": "Minor",
+   "kind": "House",
+   "summary": "Merinita knew how to unlock an additional property of the cords that bind a maga to her familiar: she learned how to share the supernatural quality of her Gift that affects social relations with others, and in so doing could moderate some of the penalties.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3407
+   }
+  },
+  {
+   "id": "arcadian-travel",
+   "name": "Arcadian Travel",
+   "house": "merinita",
+   "size": "Minor",
+   "kind": "Arcadian",
+   "summary": "This Mystery allows the maga to travel between Faerie and the mortal world with relative ease, via special pathways called trods.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3434
+   }
+  },
+  {
+   "id": "animae-magic",
+   "name": "Animae Magic",
+   "house": "merinita",
+   "size": "Major",
+   "kind": "Arcadian",
+   "summary": "This Mystery allows the maga to bring out faerie properties of everyday things, transforming inanimate objects into living beings and producing faerie creatures at will.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3455
+   }
+  },
+  {
+   "id": "becoming",
+   "name": "Becoming",
+   "house": "merinita",
+   "size": "Major",
+   "kind": "Arcadian",
+   "summary": "This Mystery teaches the maga how to become a faerie, as Quendalon was reputed to have done (though some secretly think it actually destroys the maga and summons a faerie to take her place).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3623
+   }
+  },
+  {
+   "id": "charm-magic",
+   "name": "Charm Magic",
+   "house": "merinita",
+   "size": "Minor",
+   "kind": "Folk",
+   "summary": "This Inner Mystery allows a Merinita to incorporate charms into her spells, making them more potent through sympathetic magic.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3687
+   }
+  },
+  {
+   "id": "story-magic",
+   "name": "Story Magic",
+   "house": "merinita",
+   "size": "Major",
+   "kind": "Folk",
+   "summary": "Folk magicians know that things must always happen a certain way in a medieval story, and believe that they themselves are taking part in an unfolding story.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3727
+   }
+  },
+  {
+   "id": "symbolic-magic",
+   "name": "Symbolic Magic",
+   "house": "merinita",
+   "size": "Major",
+   "kind": "Folk",
+   "summary": "Symbolic Magic encompasses several laboratory activities associated with charms and the symbols used in sympathetic magic.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3743
+   }
+  },
+  {
+   "id": "spell-timing",
+   "name": "Spell Timing",
+   "house": "merinita",
+   "size": "Minor",
+   "kind": "Illusion",
+   "summary": "This Mystery gives a maga access to several new Durations for her spells. Only those who have Initiated this Mystery may cast or invent spells and effects that use them.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3795
+   }
+  },
+  {
+   "id": "glamour",
+   "name": "Glamour",
+   "house": "merinita",
+   "size": "Major",
+   "kind": "Illusion",
+   "summary": "Glamours are illusions with a significant amount of reality. They are Muto or Creo Imaginem spells that only magi with this Virtue may invent or cast.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3827
+   }
+  },
+  {
+   "id": "perpetuity",
+   "name": "Perpetuity",
+   "house": "merinita",
+   "size": "Major",
+   "kind": "Illusion",
+   "summary": "This Mystery gives access to three spell durations that can potentially last forever. All three are the same level as Year, and always require a ritual to cast.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3864
+   }
+  },
+  {
+   "id": "nature-lore",
+   "name": "Nature Lore",
+   "house": "merinita",
+   "size": "Minor",
+   "kind": "Outer",
+   "summary": "As an initial step into the nature Mysteries, a maga must choose a type of nature with which she is associated. This represents her supernatural connection to the natural world.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3898
+   }
+  },
+  {
+   "id": "awakening",
+   "name": "Awakening",
+   "house": "merinita",
+   "size": "Minor",
+   "kind": "Nature",
+   "summary": "Nature magi may learn to bring forth a natural intelligence within subjects associated with their Nature Lore Ability.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3936
+   }
+  },
+  {
+   "id": "wilding",
+   "name": "Wilding",
+   "house": "merinita",
+   "size": "Major",
+   "kind": "Nature",
+   "summary": "Through this Inner Mystery, the maga learns to bring forth the power of nature in physical things.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3976
+   }
+  },
+  {
+   "id": "guardian-of-nature",
+   "name": "Guardian of Nature",
+   "house": "merinita",
+   "size": "Major",
+   "kind": "Nature",
+   "summary": "A nature maga may learn to join her spirit with nature and herself become a guardian spirit.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3986
+   }
+  },
+  {
+   "id": "enchant-casting-tools",
+   "name": "Enchant Casting Tools",
+   "house": "verditius",
+   "size": "Minor",
+   "kind": "House",
+   "summary": "Soon after Fenistour invented casting tools, allowing Verditius magi to cast formulaic spells, her filii sought to develop a method of enchanting them, hoping to further compensate their brethren for their clumsiness at spell casting.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4485
+   }
+  },
+  {
+   "id": "items-of-quality",
+   "name": "Items of Quality",
+   "house": "verditius",
+   "size": "Minor",
+   "kind": "House",
+   "summary": "Many of the magic items first created by House Verditius to sell to mundanes were not enchanted devices, but were rather items and tools whose inherent magical properties had been drawn to their surface through sympathetic magic and the inscription of runes.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4519
+   }
+  },
+  {
+   "id": "reforging-enchanted-items",
+   "name": "Reforging Enchanted Items",
+   "house": "verditius",
+   "size": "Minor",
+   "kind": "House",
+   "summary": "Either through mishap or malice, magic devices break. Verditius developed a method of repairing broken magic items while studying with Wayland Smith.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4539
+   }
+  },
+  {
+   "id": "verditius-elder-runes",
+   "name": "Verditius Elder Runes",
+   "house": "verditius",
+   "size": "Minor",
+   "kind": "House",
+   "summary": "The rune magic that Wayland Smith taught Verditius was descended in part from the \"elder runes\" of the early Germanic people, which were called the *futhark* in the Scandinavian tongue.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4593
+   }
+  },
+  {
+   "id": "automata",
+   "name": "Automata",
+   "house": "verditius",
+   "size": "Major",
+   "kind": "House",
+   "summary": "For three centuries, the making of automata — mechanized beasts, birds, women, and men, creations designed for emperors and Caesars — was regarded as the greatest Mystery of the House.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4648
+   }
+  },
+  {
+   "id": "bind-curse",
+   "name": "Bind Curse",
+   "house": "verditius",
+   "size": "Major",
+   "kind": "House",
+   "summary": "Developed by the infamous Verditius magus Himinis the Mad, this Mystery allows the magus to instill dire Curses into enchanted items. While these follow certain spell-like guidelines, they are not spells and can only be housed in created devices.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4754
+   }
+  },
+  {
+   "id": "bind-magical-creatures",
+   "name": "Bind Magical Creatures",
+   "house": "verditius",
+   "size": "Major",
+   "kind": "House",
+   "summary": "Knowledge of this Mystery allows the magus to bind the intrinsic essence of a magical beast to an enchanted device, drawing the necessary pawns of vis needed for the enchantment from the magical nature of the bound creature.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4830
+   }
+  },
+  {
+   "id": "item-attunement",
+   "name": "Item Attunement",
+   "house": "verditius",
+   "size": "Major",
+   "kind": "House",
+   "summary": "This Mystery lets a magus attune a greater enchanted item in the same manner that one attunes a talisman, after which he can sever the connection it has to him without damaging the item or its effects.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4860
+   }
+  }
+ ],
+ "scripts": [
+  {
+   "virtue": "Heartbeast",
+   "title": "Initiation of Heartbeast (The Ritual of Twelve Years)",
+   "house": "bjornaer",
+   "cult": "The Ritual of Twelve Years (Minor House Mystery)",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 6,
+   "bonusText": "+6 + Participation modifier (see below)",
+   "details": "At a place and time resonant with the House ancestors (+3), the Initiate forever loses the ability to bind a familiar (+3). The Participation modifier provides +1 for every witness who has the same temperament as the probationer's heartbeast and –1 for every witness who has an opposing temperament (sanguine opposes melancholic and choleric opposes phlegmatic). The Mystagogue is included in this modifier.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 952
+   }
+  },
+  {
+   "virtue": "Secret Name",
+   "title": "Initiation of Secret Name",
+   "house": "bjornaer",
+   "cult": "Secret Name (Minor House Mystery)",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 8,
+   "bonusText": "+8",
+   "details": "On the anniversary of the Initiate's birth, the Mystagogue and the Initiate enter a round tent that has been set up on an ancestor site (+3) and perform a ritual cleansing together which must end at the hour of the Initiate's birth (+2); the Initiate acquires a minor version of the Weak Magic Resistance Flaw, a Minor Ordeal (+3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 976
+   }
+  },
+  {
+   "virtue": "Theriomorphy",
+   "title": "Initiation of Theriomorphy",
+   "house": "bjornaer",
+   "cult": "Theriomorphy (Minor House Mystery)",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 6,
+   "bonusText": "+6",
+   "details": "The Initiate must spend a whole year as his heartbeast, acting entirely in accordance with the abilities of a mundane animal, eschewing both magic and his Parma Magica (+3). This is followed by a ritual that awakens this power and taints the human form permanently with an animal feature, a Minor Ordeal reflected in either Feral Scent or Disfigured (animal feature) (+3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 992
+   }
+  },
+  {
+   "virtue": "Sensory Magic",
+   "title": "Initiation of Sensory Magic",
+   "house": "bjornaer",
+   "cult": "Sensory Targets",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 9,
+   "bonusText": "+9",
+   "details": "The Initiate must craft an object in the shape of his heartbeast and enchant it with the ability to see, hear, taste, touch, and smell. He must then locate an ancestor site with a deep pool in which no man has swum, and, at the dark of the moon (+3), cast the enchanted item into it (a major sacrifice of time and vis, +6).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1040
+   }
+  },
+  {
+   "virtue": "Inner Heartbeast (Epitome, Chimera or Anima)",
+   "title": "Initiation to the Mystery of the Inner Heartbeast",
+   "house": "bjornaer",
+   "cult": "Great Beasts as Mystagogues",
+   "ease": 21,
+   "easeText": "21 (Major Virtue known to the Great Beast)",
+   "bonus": 13,
+   "bonusText": "+13",
+   "details": "The Initiate must Sacrifice time to discover a suitable ancestor (+1), Quest to achieve the approval of the Great Beast (+3), and undergo a Major Ordeal (+9).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1144
+   }
+  },
+  {
+   "virtue": "Inner Heartbeast Refinement",
+   "title": "Embryonic Initiation of a Refinement Mystery",
+   "house": "bjornaer",
+   "cult": "Initiation of a Refinement",
+   "ease": null,
+   "easeText": "Varies, see Refinements, below",
+   "bonus": 7,
+   "bonusText": "+7 + Resonant Bonus",
+   "details": "The magus must spend at least one season at an ancestor site (+3), physically consuming one pawn of vis (of an appropriate Art) per three points of the Initiation Ease Factor, and acquiring 1 Warping Point because of this (+1). The Virtue acquired can only be used in the form of the inner heartbeast (special bonus of +3). The type of inner heartbeast offers a Resonant Bonus to the Initiation of certain Refinements:",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1237
+   }
+  },
+  {
+   "virtue": "Nature Lore",
+   "title": "Initiation to the Rank of Kerykis and the Mystery of Nature Lore",
+   "house": "bjornaer",
+   "cult": "Kerykes",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 9,
+   "bonusText": "+9",
+   "details": "The Initiate must acquire Huntress Lore 1 through at least one season's tutelage under the Mystagogue (+3); discover and give to the hierophants a piece of magical lore related to the study or worship of nature hitherto unknown to them, such as a new (or old) spell, an ancient book, or an invested item made by House Diedne (+3); and take an Oath of obedience to the hierophants of the cult (Vow Flaw, +3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1317
+   }
+  },
+  {
+   "virtue": "Hermetic Theurgy",
+   "title": "Initiation to the rank of Eumolpid and tHe Mystery of Hermetic Theurgy",
+   "house": "bjornaer",
+   "cult": "Eumolpids",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 12,
+   "bonusText": "+12",
+   "details": "On the Ides of August, the Initiate must either bathe in the waters of Lake Nemi (in the Roman Tribunal) or anoint the statue of Diana at Epheseus (in the Theban Tribunal) with sacred oil (+3), and must receive a mystical mark that forever alienates him from the fae (Supernatural Nuisance Flaw, +9).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1329
+   }
+  },
+  {
+   "virtue": "Hermetic Synthemata",
+   "title": "Initiation to the Rank of Hierophant and the Mystery of Hermetic Synthemata",
+   "house": "bjornaer",
+   "cult": "Hierophants",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 7,
+   "bonusText": "+7",
+   "details": "The Initiate is stripped naked (Sacrifice of anonymity, +1). The Initiate must then track, chase, and bring down one of Diana's sacred white stags in a single day (+3); cloaked in the skin of the stag she must discover her secret name, which she gives to the other hierophants (a Minor Ordeal as described under the Secret Name Mystery, +3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1343
+   }
+  },
+  {
+   "virtue": "Ascendancy to the Hall of Heroes",
+   "title": "Initiation to the Rank of Chosen of Diana and the Mystery of Ascendancy to the Hall of Heroes",
+   "house": "bjornaer",
+   "cult": "Hierophants",
+   "ease": 30,
+   "easeText": "30 (Major Virtue unknown to the Mystagogue)",
+   "bonus": 24,
+   "bonusText": "+24",
+   "details": "The Initiate must undergo a unique Quest to find Quendalon in Arcadia and slay him (+6). This is followed by the Sacrifice of everything that he owns or has made or written in his life as a magus (+6), and a ritual blinding by the hierophants (Major Ordeal, +9) in the presence of Diana herself (+3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 1351
+   }
+  },
+  {
+   "virtue": "Arcadian Travel",
+   "title": "Sample Wayfarers Initiation: Arcadian Travel",
+   "house": "merinita",
+   "cult": "The Wayfarers",
+   "ease": 18,
+   "easeText": "18 (Minor Virtue unknown to the Mystagogue)",
+   "bonus": 14,
+   "bonusText": "+14",
+   "details": "Working on her own, the Initiate must discover all the entrances at every level to a faerie regio with an uppermost level of at least 5 (+3). Then, on the eve of the last full moon of the season (+1), she must travel to the center of the regio, beginning at a landmark outside that will mark her route. She must travel alone, without aid or comfort, and may not cast any Hermetic spells or use any magical devices to find her way, relying only on her Faerie Lore and other mundane skills to guide her. She may not eat or drink on her journey, or interact with any of the inhabitants (+3). She gains the Minor Personality Flaw Fear (+3), as she begins to dread something that she encounters on her path, and arriving at the center, she must retrace her steps and exit at the same place she entered, completing her journey before dawn (+1). Because of its mystical association with her Ordeal, the landmark becomes a permanent Arcane Connection to her (+3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3067
+   }
+  },
+  {
+   "virtue": "Story Magic",
+   "title": "Sample Keepers Initiation: Story Magic",
+   "house": "merinita",
+   "cult": "Keepers of the Thousand Tales",
+   "ease": 21,
+   "easeText": "21 (Major Virtue known to the Mystagogue)",
+   "bonus": 14,
+   "bonusText": "+14",
+   "details": "The Initiate must learn a new poem or story from a culture that she isn't familiar with. It must be over 5,000 lines in length and memorized in the original language (+3). She must then seek out a similar work from a different culture and memorize it (+3). Combining the overlapping elements of both, the Initiate must create an original piece, one that both cultures would recognize, but that changes the ending or overall meaning (+3). (These tasks could be tested with two Intelligence + Language rolls and a Communication + Language roll against Ease Factors of 12, though the storyguide might prefer to roleplay the process instead.) With this new tale, the Initiate must visit a powerful faerie in a Faerie regio on the longest day of summer, and perform her work. This must please the faerie enough that it rewards the Initiate with a treasure (+3). The Initiate must take this prize to her Mystagogue, and at an auspicious time based on their horoscopes (+1), they must sit upon a hilltop with a Faerie aura, taking some sort of intoxicating substance with them. The Initiate and the Mystagogue partake of this while telling each other stories until they fall unconscious. When they awake, the treasure will have vanished (+1).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3103
+   }
+  },
+  {
+   "virtue": "Glamour",
+   "title": "Sample Shadow - Masters Initiation: Glamour",
+   "house": "merinita",
+   "cult": "The Shadow-Masters",
+   "ease": 21,
+   "easeText": "21 (Major Virtue known to the Mystagogue)",
+   "bonus": 15,
+   "bonusText": "+15",
+   "details": "The Initiate must pursue a faerie that is skilled in powers of illusion, staying in close pursuit with it until she receives a Warping Point (+3) through magical mischance. From this point on, until the completion of the Initiation, the Initiate feels slightly odd, as if drunk, and suffers a –3 on all of her Perception and Intelligence rolls (+1). Then, on the date of the manifestation of her Gift, which she must discover if not known (+1), she and her Mystagogue must fight a Creo or Muto Imaginem certamen, reciting ritual insults at each attack, until one of them falls unconscious from loss of Fatigue (+1). She also acquires the Major Flaw Vulnerable Magic (+9), which is often associated with the circumstances that caused her Gift to manifest. Participation in the Great Play may be substituted for the duel, though she still gains the Flaw.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3141
+   }
+  },
+  {
+   "virtue": "Nature Lore",
+   "title": "Sample Vestals Initiation: Nature Lore",
+   "house": "merinita",
+   "cult": "The Cult of Vesta",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 10,
+   "bonusText": "+10",
+   "details": "The Initiate must prepare a cake using ritual ingredients. The grain must be from ears of wheat gathered on the three days of Lemuralia, which are the 7th, 9th, and 11th of May (+1). She must pound and heat brine in a jar within the hearth until it forms a salt rock that she cuts with a saw; she carries water from a sacred spring in specially crafted jugs whose bottoms taper to a point and whose water must not touch the ground (+1). She bakes the cake on Vestalia, June 9th, and places it on her hearth to attract the faeries (+1). On the Ides of June (June 15th), the Initiate must then thoroughly clean her dwelling, burning the refuse in the fire and scattering the ashes into the nearest river (+1). She must then meet the Mystagogue in her clean home. There, she swears to honor the faeries and takes a Vow of chastity (+3), which the faeries covertly witness (+3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3183
+   }
+  },
+  {
+   "virtue": "Animae Magic",
+   "title": "Sample Line of Quendalon Initiation: Animae Magic",
+   "house": "merinita",
+   "cult": "The Line of Quendalon",
+   "ease": 21,
+   "easeText": "21 (Major Virtue known to the Mystagogue)",
+   "bonus": 16,
+   "bonusText": "+16",
+   "details": "The Initiate must spend a season visiting a Faerie aura, studying its inhabitants, and taking detailed notes on their behavior and relationships (+3). Then she must find and befriend the faerie that is most appropriate to her highest Technique and Form (+1), taking the Faerie Friend Flaw (+3). To secure its lasting friendship, she must make a bargain with it, giving up a uniquely human quality that cannot be replaced, such as the color of her eyes, all memory of her parents, or her firstborn child (+6). She also receives a Prohibition never to break her word, or she will suffer a faerie wasting sickness (+3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3677
+   }
+  },
+  {
+   "virtue": "Charm Magic",
+   "title": "Sample Heirs to Merlin Initiation: Charm Magic",
+   "house": "merinita",
+   "cult": "Heirs to Merlin",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 8,
+   "bonusText": "+8",
+   "details": "The Initiate must choose a particular kind of charm Ability and spend a year as an apprentice to a master of the art (+1). She must then design a charm for a faerie noble using very expensive materials (high quality wood, an exceptional instrument, a rich costume, or gold ink) (+1) that depicts a special symbolic quality of her patron (+3), first seeking out and obtaining a unique object of myth or legend to associate with the charm (+3), such as an artifact that once belonged to a famous magus or historical figure of old.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3785
+   }
+  },
+  {
+   "virtue": "Spell Timing",
+   "title": "Sample Followers of Pendule Initiation: Spell Timing",
+   "house": "merinita",
+   "cult": "Mystery Cult: the Followers of Pendule",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 12,
+   "bonusText": "+12",
+   "details": "The Initiate undergoes a ceremony wherein she must go an entire day and night without sleeping, casting a non-Fatiguing Imaginem spell every round to count how many individual moments pass (+3). After this rite she gains three Minor Flaws to represent how her magic becomes more illusionary, and her way of thinking about time becomes more rigid: Harmless Magic (+3), Poor Memory (faces) (+3), and Social Handicap (+3). Because of this Ordeal, the Initiate is said to begin to more closely resemble Pendule, and many of his followers adopt wild, multicolored clothing, dye their hair, or radically alter their physical appearance soon after their Initiation.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 3888
+   }
+  },
+  {
+   "virtue": "Wilding",
+   "title": "Sample True Merinitae Initiation: Wilding",
+   "house": "merinita",
+   "cult": "Mystery Cult: True Merinitae",
+   "ease": 21,
+   "easeText": "21 (Major Virtue known to the Mystagogue)",
+   "bonus": 19,
+   "bonusText": "+19",
+   "details": "This Initiation Script supposedly comes to the True Merinitae from the *galli*, a sect of nature worshippers once associated with the wild lands beyond the Roman Empire, by way of integration into the Cult of Diana. The magus must host a festival honoring Cybelle, a goddess of the wilderness, from the 15th to the 27th of March (+1). On March 24th, The Day of Blood, while revelers dance and play cymbals, drums, and flutes, he is ritually castrated (+6) beneath a pine sacred to Cybelle (+1), and enough of his blood collected to fill a bowl (+1). Through this Ordeal, he gains the Short-Ranged Magic Flaw (+9), and his Wizard's Sigil changes slightly to become associated with violets (+1).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4016
+   }
+  },
+  {
+   "virtue": "Minor Magical Focus (Swords)",
+   "title": "Initiation of Minor Magical Focus (Swords)",
+   "house": "verditius",
+   "cult": "The Confraternity of Roland",
+   "ease": 15,
+   "easeText": "15",
+   "bonus": 12,
+   "bonusText": "+12",
+   "details": "The Initiate must steal Durendal from the confraternity member who currently has it, secretly penetrating his studio in the dead of the night and making off with the sword (+3). The confraternity member expects the sword to be stolen, and keeps it under minimal safeguards. The Initiate must then enter an Infernal regio and recite the Christian Creed one hundred times without failing, despite whatever distractions the Enemy may provide (+3). Afterward, he must engage in a bout of mortal combat while bearing the sword, although he does not have to fight alone, and slay an enemy in the field (+3). He and the Mystagogue then travel to site of the Battle of Roncesvals and, on the anniversary of Roland's death, the Initiate enters a catatonic state during which his soul is in peril from the devils he has offended (+3). He then keeps Durendal in his studio, waiting for the next Initiate to steal it from him.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4421
+   }
+  },
+  {
+   "virtue": "Bind Magical Creature",
+   "title": "Initiation of Bind Magical Creature",
+   "house": "verditius",
+   "cult": "The Confraternity of Balento",
+   "ease": 21,
+   "easeText": "21",
+   "bonus": 15,
+   "bonusText": "+15",
+   "details": "The Initiate must travel to the Tiber River, in the city of Rome, and on the festival of Vulcanalia (23 August), sacrifice ten fish on a fire that he has constructed to float on the river (+3). He must have personally retrieved five of the fish from a Magic aura and the other five from a Faerie aura (two Quests for +6). Following the offering of fish, the Initiate sacrifices her talisman and a pint of her own blood to the fire (+6). During the ceremony, the Initiate drinks a mixture of arsenic and wine while the Mystagogue recites the ancient prayers to Vulcan.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4439
+   }
+  },
+  {
+   "virtue": "Puissant Imaginem or Mentem",
+   "title": "Initiation of Puissant Imaginem or Mentem",
+   "house": "verditius",
+   "cult": "The Confraternity of Irene the Younger",
+   "ease": 15,
+   "easeText": "15",
+   "bonus": 9,
+   "bonusText": "+9",
+   "details": "Sculptors must acquire a piece of basalt from a fresh eruption and cool the stone with holy water. Painters must prepare pigments from soil found only in the peaks of the Carpathian mountains, and then prepare brushes with the tail feathers of a dove and canvas made from the belly of a newborn calf (+3). The Initiate must travel to a desert island off the coast of Tunisia, to a hidden cave that is filled with intoxicating fumes rising from the bowels of the earth (+3). Enshrouded in inky darkness, he must craft a portrait of his patron saint in his chosen medium, without the aid of light, beginning on the night of the new moon. The Mystagogue recites the Psalms during the Initiation. The Initiate must emerge with a flawless piece by the next full moon. If the Initiation is successful, the Initiate gains the Minor Virtue Puissant Imaginem or Mentem (player's choice) and the Minor Flaw Slow Caster (+3). If not, the piece turns to dust and the Initiate must try again later.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4457
+   }
+  },
+  {
+   "virtue": "Bind Curse",
+   "title": "Initiation of Bind Curse",
+   "house": "verditius",
+   "cult": "The Confraternity of Himinis the Mad",
+   "ease": 21,
+   "easeText": "21",
+   "bonus": 13,
+   "bonusText": "+13",
+   "details": "The Initiate must remove the left hand from a corpse of thief. This must be done under a full moon and the Initiate must perform this task alone (+3). The corpse must not have had a proper Christian burial. Returning to his sanctum, the Initiate sends away his forge-companions and apprentice. The hand is placed in a jar full of vinegar and mixed herbs. As the hand soaks, the Initiate serves the Mystagogue, performing solitary tasks for him for a season (+1). On the fifth full moon after acquiring the thief's hand, the Initiate removes the pickled hand and dries it. On the seventh full moon, the Mystagogue visits the Initiate. Together they burn the hand, and the Initiate inhales the fumes as the fire consumes it. The Initiate gains the Major Inner Mystery Bind Curse as well as the Major Flaw Severe the Ties that Bind (+9).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4475
+   }
+  },
+  {
+   "virtue": "Enchant Casting Tools",
+   "title": "Initiation of Enchant Casting Tools",
+   "house": "verditius",
+   "cult": "Enchanting Casting Tools Example",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 9,
+   "bonusText": "+9",
+   "details": "The Mystagogue spends a season with the Initiate, creating casting tools one after another (+3). The Initiate must know the exact time and date that she was Initiated into the House's Outer Mystery. On an anniversary of that date, she ritualistically buries all her casting tools in a Magic regio (+3). If the Initiation is successful, the Initiate learns the Inner House Minor Mystery Enchant Casting Tools. The buried casting tools are destroyed and the Initiate receives the Minor Flaw Limited Magic Resistance to Vim (Ordeal +3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4513
+   }
+  },
+  {
+   "virtue": "Items of Quality",
+   "title": "Initiation of Items of Quality",
+   "house": "verditius",
+   "cult": "Items of Quality (Minor House Mystery)",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 9,
+   "bonusText": "+9",
+   "details": "The Initiate spends a season enchanting a magic item, as well as making a mundane item similar in appearance. As the season nears its end, she journeys to a Forge of Hephaestus (+3). She and the Mystagogue sacrifice both items on the forge (+3). The Initiate gains the Minor Ordeal Flaw Increased Hubris (+3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4533
+   }
+  },
+  {
+   "virtue": "Reforging Enchanted Items",
+   "title": "Initiation of Reforging Enchanted Items",
+   "house": "verditius",
+   "cult": "Smelting Enchanted Devices",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 7,
+   "bonusText": "+7",
+   "details": "The Initiate must make an item, usually something that he knows how to make with his Craft Ability. He must make as many of these as he can in the season, each as nearly identical to the others as the craft allows (+1). The Mystagogue sacrifices a season of her time assisting the Initiate (+3). As the season ends, the Initiate displays the items to the Mystagogue, who ritually burns them in a fire made of sulfur, cedar wood, and fish oil. Due to the repetitive process of the Initiation, the Initiate gains the Minor Flaw Averse to Risk (+3 Minor Ordeal).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4587
+   }
+  },
+  {
+   "virtue": "Verditius Elder Runes",
+   "title": "Initiation of Verditius Elder Runes",
+   "house": "verditius",
+   "cult": "Elder Runes Example",
+   "ease": 15,
+   "easeText": "15 (Minor Virtue known to the Mystagogue)",
+   "bonus": 9,
+   "bonusText": "+9",
+   "details": "The Initiate and Mystagogue must travel to Durenmar in the Black Forest, typically sacrificing a season for the journey (+3). On the shortest day of the year (the winter solstice), the Initiate must sacrifice a greater enchanted item, burning it in the forge created by Verditius (+6). As the Mystagogue recites Germanic poems about the old gods, the Initiate eats the flesh of a crow roasted over the burning item. As the sun rises, knowledge that allows him to harness the power of the Verditius Elder Runes enters the Initiate's head.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4642
+   }
+  },
+  {
+   "virtue": "Automata",
+   "title": "Initiation of Automata",
+   "house": "verditius",
+   "cult": "Automaton Example",
+   "ease": 21,
+   "easeText": "21 (Major Virtue known to the Mystagogue)",
+   "bonus": 13,
+   "bonusText": "+13",
+   "details": "The Initiate must spend a season studying one of the ancient automata of Hephaestus, either in Verdi or another Verditius location that possesses one (+1). She must then travel to the lighthouse in Alexandria, Egypt, where she must steal a brand of fire from the lighthouse's source. The brand must remain lit while she journeys to the Mystagogue (+3). During the Initiation, she undergoes a Major Ordeal that imposes the Major Flaw Necessary Condition (must be near an open flame to work magic) (+9).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4748
+   }
+  },
+  {
+   "virtue": "Bind Curse",
+   "title": "Initiation of Bind Curses",
+   "house": "verditius",
+   "cult": "Removing Curses",
+   "ease": 21,
+   "easeText": "21 (Major Virtue known to the Mystagogue)",
+   "bonus": 12,
+   "bonusText": "+12",
+   "details": "The Initiate must discover a unique item, a device made by the god Hephaestus or his counterpart from another pagan mythos (+6). He must take this item to his Mystagogue, and together they must investigate the item (+3). When it is understood, the Mystagogue Initiates the Initiate, who develops a burning loathing for other magi not of the House who seek such items (Minor Ordeal Flaw Hatred for Seekers) (+3).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4824
+   }
+  },
+  {
+   "virtue": "Bind Magical Creatures",
+   "title": "Initiation of Bind Magical Creatures",
+   "house": "verditius",
+   "cult": "Bind Magical Creatures (Major House Mystery)",
+   "ease": 21,
+   "easeText": "21 (Major Virtue known to the Mystagogue)",
+   "bonus": 8,
+   "bonusText": "+8",
+   "details": "The Initiate must find the body of a dead magical creature, one whose death she did not engineer in any fashion (+3). She must return the corpse to a magic aura and ceremonially prepare if for burial. For a season, she must perform the ancient Greek funeral rites for the beast, eventually burning it on a pyre (+1). With the ashes of the creature's bones, she must create a magical urn with powers that resemble those of the creature. During the Initiation, she and the Mystagogue sacrifice the item (+3) along with copious amounts of wealth in another mock funeral (+1).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4854
+   }
+  },
+  {
+   "virtue": "Item Attunement",
+   "title": "Initiation of Item Attunement",
+   "house": "verditius",
+   "cult": "Item Attunement (Major House Mystery)",
+   "ease": 21,
+   "easeText": "21 (Major Virtue known to the Mystagogue)",
+   "bonus": 10,
+   "bonusText": "+10",
+   "details": "The Initiate must make a talisman. Immediately following, he must Initiate another Verditius magus into a Minor Inner Mystery that he knows (+3). The following season, he must serve the Mystagogue who will Initiate him, using the powers of his talisman in the task (+1). On one of the solstices, he sacrifices his talisman while the Mystagogue leads him through the Initiation (+6).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 4874
+   }
+  }
+ ],
+ "stations": [
+  {
+   "id": "criamon-station-of-the-perfect-tool",
+   "name": "Station of the Perfect Tool",
+   "path": "Path of the Body",
+   "order": 1,
+   "avenue": "The Avenue of Subduing the Meat and the Station of the Perfect Tool",
+   "target": 21,
+   "targetText": "Target level 21, as Major Virtue (Minor Potency in an aspect of Corpus, may use Enigmatic Wisdom in lieu of Medicine and Chirurgy)",
+   "bonus": 15,
+   "bonusText": "Major Ordeal comprising three minor Flaws (Vow to not pollute the body and to use it aptly, Deleterious Circumstances while ill, Disfigured by stigmata) +9, sympathetic bonus (a complete year cycle as a plant, or similar) +3, special time and place (symbolic rebirth) +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2371
+   }
+  },
+  {
+   "id": "criamon-station-of-spiritual-nourishment",
+   "name": "Station of Spiritual Nourishment",
+   "path": "Path of the Body",
+   "order": 2,
+   "avenue": "The Avenue of Drinking the Winds of Inspiration and the Station of Spiritual Nourishment",
+   "target": 12,
+   "targetText": "Target level 12, as Major Virtue 21 (allows characters in high auras to not eat, drink, or sleep and replaces the longevity ritual), first Initiation after Major Ordeal –9",
+   "bonus": 6,
+   "bonusText": "Psychodramatic visions or conflict to secure a site (Quest) +3, special time and place +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2377
+   }
+  },
+  {
+   "id": "criamon-station-of-perfect-economy-of-movement",
+   "name": "Station of Perfect Economy of Movement",
+   "path": "Path of the Body",
+   "order": 3,
+   "avenue": "The Avenue of the Tiniest Seed and the Station of Perfect Economy of Movement",
+   "target": 15,
+   "targetText": "Target level 15, as Major Virtue 21 (perfectly precise movement), second Initiation after Major Ordeal –6",
+   "bonus": 9,
+   "bonusText": "Major Flaw (Pious) replaces Minor Flaw (Vow) +6, Mystagogue's time +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2385
+   }
+  },
+  {
+   "id": "criamon-station-of-the-microcosm",
+   "name": "Station of the Microcosm",
+   "path": "Path of the Body",
+   "order": 4,
+   "avenue": "The Avenue of the Spherical Mirror and the Station of the Microcosm",
+   "target": 15,
+   "targetText": "Target level 15, Major Virtue 21 (Arcane Connections to most things), first Initiation after Intermediate Ordeal –6",
+   "bonus": 9,
+   "bonusText": "Psychodramatic Quest +3, Mystagogue's time +3, special time and place +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2391
+   }
+  },
+  {
+   "id": "criamon-threshold-of-corporeal-repose",
+   "name": "Threshold of Corporeal Repose",
+   "path": "Path of the Body",
+   "order": 5,
+   "avenue": "The Avenue of Repose in the Body and the Threshold of Corporeal Repose",
+   "target": 17,
+   "targetText": "Target level 17, Major Virtue 21 (purified of mortal frailties), second Initiation after Intermediate Ordeal –4",
+   "bonus": 12,
+   "bonusText": "Three Quests to legendary places +9, special time and place +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2397
+   }
+  },
+  {
+   "id": "criamon-station-of-differentiation-of-seeming",
+   "name": "Station of Differentiation of Seeming",
+   "path": "Path of Seeming",
+   "order": 1,
+   "avenue": "Avenue of Gruel, Water, and Starlight and the Station of Differentiation of Seeming",
+   "target": 21,
+   "targetText": "Target level 21: Package treated as a Major Virtue (Clear Thinker, Common Sense, and Keen Vision)",
+   "bonus": 15,
+   "bonusText": "Minor Ordeal: Disfigurement +3, Mystagogue's time +3, psychodramatic Quest representing subduing the senses +3, special site and time (a certain cave complex during the dark of the moon) +3, sympathetic bonus (deprivation) +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2487
+   }
+  },
+  {
+   "id": "criamon-station-of-true-sight",
+   "name": "Station of True Sight",
+   "path": "Path of Seeming",
+   "order": 2,
+   "avenue": "Avenue That Assaults the Modesty of the Universe and the Station of True Sight",
+   "target": 18,
+   "targetText": "Target level 18, as Major Virtue 21 (may use Enigmatic Wisdom as if it were Magic Sensitivity and Second Sight), first Initiation since Minor Ordeal –3",
+   "bonus": 12,
+   "bonusText": "Ordeal (Vow) +3, Quest of insane wanderings +3, special time and place +3, Mystagogue's time +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2493
+   }
+  },
+  {
+   "id": "criamon-station-of-vivid-memories-from-objects",
+   "name": "Station of Vivid Memories from Objects",
+   "path": "Path of Seeming",
+   "order": 3,
+   "avenue": "The Aventue of the Unexpected Pages and the Station of Vivid Memories from Objects",
+   "target": 18,
+   "targetText": "Target level 18, as Major Virtue 21 (may read the memories of objects), first Initiation since Minor Ordeal –3",
+   "bonus": 12,
+   "bonusText": "Ordeal (Major Flaw Pious replaces Minor Flaw Vow) +6, special time and place +3 (or possibly Loss of Talisman +3), psychodramatic Quest +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2499
+   }
+  },
+  {
+   "id": "criamon-station-of-passing-through-seeming",
+   "name": "Station of Passing Through Seeming",
+   "path": "Path of Seeming",
+   "order": 4,
+   "avenue": "The Avenue That Is a Crossroad and the Station of Passing Through Seeming",
+   "target": 15,
+   "targetText": "Target level 15, as Major Virtue 21 (spirit traveling), first Initiation since Intermediate Ordeal -6",
+   "bonus": 12,
+   "bonusText": "Mystagogue's time +3, special time and place +3, sympathetic bonus +3, Quest +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2505
+   }
+  },
+  {
+   "id": "criamon-station-from-which-to-ignore-the-real",
+   "name": "Station from Which to Ignore the Real",
+   "path": "Path of Seeming",
+   "order": 5,
+   "avenue": "The Avenue That Leads to Transcendence and the Station from Which to Ignore the Real",
+   "target": 17,
+   "targetText": "Target level 17, as Major Virtue 21 (may briefly ignore mundane objects), second Initiation since Intermediate Ordeal –4",
+   "bonus": 12,
+   "bonusText": "Ordeal (Major Flaw Twilight prone) +9, Mystagogue's time +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2511
+   }
+  },
+  {
+   "id": "criamon-station-of-the-eater-of-sin",
+   "name": "Station of the Eater of Sin",
+   "path": "Path of Strife",
+   "order": 1,
+   "avenue": "The Avenue of Faith in Strife and the Station of the Eater of Sin",
+   "target": 21,
+   "targetText": "Target level 21: Treated as a Major Virtue (may sense magic and use a weapon with Enigmatic Wisdom score)",
+   "bonus": 15,
+   "bonusText": "Ordeal (Blatant Gift) +9, special Ppace and time +3, sympathetic bonus (commit transgression by eating meat, having sex, and engaging in other profanities) +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2607
+   }
+  },
+  {
+   "id": "criamon-station-of-blood-and-bronze",
+   "name": "Station of Blood and Bronze",
+   "path": "Path of Strife",
+   "order": 2,
+   "avenue": "The Avenue That Splinters and the Station of Blood and Bronze",
+   "target": 12,
+   "targetText": "Target level 12, as Major Virtue 21 (can destroy things by meditating around them and do extra damage with weapons), first Initiation since Major Ordeal –9",
+   "bonus": 6,
+   "bonusText": "Minor Ordeal (Higher Purpose to eat sin on behalf of the House) +3, special time and place +3. Characters who slew a Primus on the first avenue suffer an additional Ordeal on this avenue, which gives them the Blatant Gift +9 (offsets loss of –9 modifier in target level for first Initiation since Major Ordeal).",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2617
+   }
+  },
+  {
+   "id": "criamon-station-that-repels-and-attracts-elements",
+   "name": "Station That Repels and Attracts Elements",
+   "path": "Path of Strife",
+   "order": 3,
+   "avenue": "Avenue of Charm and Scorn, and the Station That Repels and Attracts Elements",
+   "target": 15,
+   "targetText": "Target level 15, as Major Virtue 21 (may attract or repel a single element at a time), second Initiation since Major Ordeal –6. (The latter is –9 for those who slew a Primus, but the House doesn't take advantage of this. Characters on the path might discover that the special time and place isn't required for Primus-slayers.)",
+   "bonus": 9,
+   "bonusText": "Quest (seek lover) +3, special time and place +3, sympathetic bonus (marriage as metaphor for love and strife) +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2623
+   }
+  },
+  {
+   "id": "criamon-station-that-charms-the-elements",
+   "name": "Station That Charms the Elements",
+   "path": "Path of Strife",
+   "order": 4,
+   "avenue": "The Avenue of Befriending the Silent and the Station That Charms the Elements",
+   "target": 18,
+   "targetText": "Target level 18, as Major Virtue 21 (speak to elementally-pure objects), third Initiation since Major Ordeal –3",
+   "bonus": 15,
+   "bonusText": "Ordeal (Major Flaw Pious replaces Minor Flaw Higher Purpose) +6, Ordeal (equivalent of Supernatural Nuisance) +3, Ordeal (Disfigured) +3, Mystagogue's time +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2629
+   }
+  },
+  {
+   "id": "criamon-station-of-golden-cider",
+   "name": "Station of Golden Cider",
+   "path": "Path of Strife",
+   "order": 5,
+   "avenue": "Avenue of Death and the Station of Golden Cider",
+   "target": 15,
+   "targetText": "Target level 15, as Major Virtue 21 (make some mystical things mundane), first Initiation since Intermediate Ordeal –6",
+   "bonus": 12,
+   "bonusText": "Ordeal (four pairs of Incompatible Arts) +12",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2635
+   }
+  },
+  {
+   "id": "criamon-station-of-service-to-harmony",
+   "name": "Station of Service to Harmony",
+   "path": "Path of Walking Backwards",
+   "order": 1,
+   "avenue": "The Avenue of Surrender and the Station of Service to Harmony",
+   "target": 21,
+   "targetText": "Target level 21, Major Virtue (Gentle Gift) or elimination of Flaw (Blatant Gift)",
+   "bonus": 15,
+   "bonusText": "Major Ordeal (Pious) +9, special time and place +3, Mystagogue's time +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2721
+   }
+  },
+  {
+   "id": "criamon-station-of-rice-and-honey",
+   "name": "Station of Rice and Honey",
+   "path": "Path of Walking Backwards",
+   "order": 2,
+   "avenue": "The Avenue of Healing and the Station of Rice and Honey",
+   "target": 12,
+   "targetText": "Target level 12, as Major Virtue 21 (may meditate around mundane objects and restore them to wholeness), first Initiation since Major Ordeal –9",
+   "bonus": 6,
+   "bonusText": "Ordeal (Noncombatant) +3, Ordeal (equivalent to a Vow to help the injured) +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2727
+   }
+  },
+  {
+   "id": "criamon-station-of-expression",
+   "name": "Station of Expression",
+   "path": "Path of Walking Backwards",
+   "order": 3,
+   "avenue": "The Avenue of Adulation and Station of Expression",
+   "target": 15,
+   "targetText": "Target level 15, as Major Virtue 21 (Free Expression, Inspirational, may use Enigmatic Wisdom in lieu of one artistic skill), second Initiation since Major Ordeal 6",
+   "bonus": 9,
+   "bonusText": "Mystagogue's time +3, Quest to a place of unspeakable beauty +3, special time and place +3",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2733
+   }
+  },
+  {
+   "id": "criamon-station-of-exaltation",
+   "name": "Station of Exaltation",
+   "path": "Path of Walking Backwards",
+   "order": 4,
+   "avenue": "The Avenue of a Thousand Beautiful Faces and the Station of Exaliation",
+   "target": 18,
+   "targetText": "Target level 18, as Major Virtue 21 (may meditate around objects to give them a single, positive property), third Initiation since Major Ordeal –3",
+   "bonus": 12,
+   "bonusText": "Ordeal (4 × Incompatible Arts) +12",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2739
+   }
+  },
+  {
+   "id": "criamon-immortal-ascension-as-repose",
+   "name": "Immortal Ascension as Repose",
+   "path": "Path of Walking Backwards",
+   "order": 5,
+   "avenue": "Immortal Ascension as Repose",
+   "target": 15,
+   "targetText": "Target level 15, Major Virtue 21 (may choose apparent age and gender), second Initiation since Major Ordeal –6",
+   "bonus": 9,
+   "bonusText": "Mystagogue's time +3, Quests to deal with psychic residue +3, special time and place +3.",
+   "source": {
+    "book": "HoH_MC",
+    "line": 2745
+   }
+  }
+ ]
+}

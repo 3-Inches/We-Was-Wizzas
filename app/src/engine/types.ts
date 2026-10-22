@@ -93,6 +93,8 @@ export interface Saga {
   timeLog?: TimeReport[];
   /** prices the saga uses for trade */
   economy?: { visPrice: number };
+  /** optional rules turned on or off by the troupe (see engine/optional.ts); missing ones use their default */
+  options?: Record<string, boolean>;
 }
 
 export type Season = 'Spring' | 'Summer' | 'Autumn' | 'Winter';
@@ -449,6 +451,8 @@ export interface Workshop {
   laborPoints: number;
   /** a guild master loses 3 Labor Points a season for each worker short of his Leadership */
   guildMaster?: boolean;
+  /** a journeyman's contract: Labor Points a season above or below the usual (City & Guild) */
+  contractLp?: number;
   assistants: { uid: string; name: string; craft: number }[];
   manual: number;
   /** raises the base Craft Level of 6 (war, famine, scarce materials, interruptions, auras…) */
@@ -497,6 +501,38 @@ export type SeasonActivityKind =
   | 'lab-improvement'
   | 'work'
   | 'other';
+
+/** An Initiation into a Mystery: the Virtue gained, the totals, and any Ordeal (which lowers later targets). */
+export interface InitiationRecord {
+  uid: string;
+  year: number;
+  season: Season;
+  virtueId: string;
+  virtueName: string;
+  size: VFSize;
+  mystagogue: string;
+  total: number;
+  target: number;
+  /** the Ordeal suffered: Minor (a Minor Flaw or loss of a Minor Virtue), Medium (a Minor Flaw made Major), Major */
+  ordeal?: 'Minor' | 'Medium' | 'Major';
+  ordealText?: string;
+  /** a Criamon station, by id */
+  station?: string;
+}
+
+/** A pact with a forest spirit: the Sacrifice taken at communion, the Quest, and the Fruit it earns. */
+export interface ForestPact {
+  uid: string;
+  path: string;
+  spirit: string;
+  size: VFSize;
+  quest: string;
+  /** the Flaw taken as the Sacrifice (its uid on the character) */
+  sacrificeUid?: string;
+  /** the Virtue the Quest earns */
+  fruit?: string;
+  done: boolean;
+}
 
 export interface SeasonLogEntry {
   uid: string;
@@ -662,6 +698,22 @@ export interface Character {
   projects?: LabProject[];
   /** the agents the character controls or is recruiting (HoH: Societates) */
   agents?: Agent[];
+  /** Mystery Initiations the character has undergone (DE and Houses of Hermes: Mystery Cults) */
+  initiations?: InitiationRecord[];
+  /** the Criamon Path the magus follows (Houses of Hermes: Mystery Cults) */
+  criamonPath?: string;
+  /** a Bjornaer's heartbeast: the one creature the magus is as well as human */
+  heartbeast?: string;
+  /** the Rhine's rank and gild (Guardians of the Forests) */
+  rhine?: { rank: 'apprentice' | 'journeyman' | 'master' | 'archmage'; gild?: string; sponsors?: string[]; guestAt?: string };
+  /** pacts with forest spirits along the Paths through the Forest (Guardians of the Forests) */
+  forestPacts?: ForestPact[];
+  /** Theban citizenship, tokens and shards (The Sundered Eagle) */
+  theban?: { citizen: boolean; phyle?: string; tokens: number; shards: number; log: { year: number; text: string }[] };
+  /** a Transylvanian resident's privilege (Against the Dark) */
+  privilege?: string;
+  /** guild membership (City & Guild): the guild, a rank earned in play, dues and the master's vote */
+  guild?: { name: string; rank?: 'apprentice' | 'journeyman' | 'master' | 'senior' | 'dean'; dues?: number; paidYear?: number; masterVote?: boolean; fined?: boolean };
   /** diseases the character suffers (Art & Academe) */
   illnesses?: Illness[];
   /** original research toward a Breakthrough (Houses of Hermes: True Lineages): its goal and the stabilized discoveries so far */
@@ -758,6 +810,9 @@ export interface VisSource {
   pair?: Art;
   /** found or won in play: no Build Points */
   inPlay?: boolean;
+  /** Normandy's Perthean Compact: how the covenant holds it, and the year its lease began */
+  perthean?: 'seisin' | 'legacy' | 'tropaeum' | 'luctatio' | 'interim' | 'undeclared';
+  leaseYear?: number;
 }
 
 /** The covenant's yearly gift to its members (the charter's division of resources). */
@@ -900,6 +955,10 @@ export interface Covenant {
   visStocks: VisStock[];
   items: EnchantedItem[];
   specialists: Specialist[];
+  /** a Theban covenant's patron spirit and its Ceremonies of Propitiation (The Sundered Eagle) */
+  patron?: { name: string; might: number; xp: number; offerings: { year: number; pawns: number; xp: number }[] };
+  /** the covenant's team at Normandy's Hermetic Tourney (The Lion and the Lily) */
+  tourney?: { year: number; results: Record<string, number>; rank?: number };
   labs: Laboratory[];
   spareLabs: number;
   covenfolk: CovenfolkCounts;

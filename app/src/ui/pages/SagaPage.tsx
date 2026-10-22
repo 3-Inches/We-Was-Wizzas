@@ -12,6 +12,7 @@ import { downloadJson, isBundle, pickJsonFile, safeFilename } from '../../util/f
 import { HOUSE_BY_ID } from '../../data/houses';
 import type { CharType } from '../../data';
 import { uid } from '../../util/id';
+import { SagaOptionsCard } from '../OptionalRules';
 
 const TYPE_INFO: Record<CharType, { label: string; blurb: string }> = {
   magus: { label: 'Magus', blurb: 'A Hermetic wizard of one of the twelve Houses.' },
@@ -101,6 +102,7 @@ export default function SagaPage() {
           <Field label="Saga name">
             <input value={saga.name} onChange={(e) => updateSaga(saga.id, (s) => void (s.name = e.target.value))} />
           </Field>
+          <SagaOptionsCard saga={saga} />
         </Card>
         <Card title="Create a character">
           <div className="stack">

@@ -14,6 +14,7 @@ import LibraryTab from './LibraryTab';
 import LabsTab from './LabsTab';
 import FinancesTab from './FinancesTab';
 import { CovenantEffects } from './CovenantEffects';
+import { CovenantTribunalCard } from './CovenantTribunal';
 import type { CovTabProps } from './shared';
 
 type TabId = 'overview' | 'hooks' | 'library' | 'labs' | 'folk' | 'items' | 'log';
@@ -118,6 +119,7 @@ type TabProps = Omit<CovTabProps, 'data'>;
 
 function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: string; setTab: (t: TabId) => void }) {
   const chars = useSagaCharacters(sagaId);
+  const saga = useSaga(sagaId);
   const updateCharacter = useStore((s) => s.updateCharacter);
   const byCat = new Map<string, number>();
   for (const l of dc.bpLines) byCat.set(l.category, (byCat.get(l.category) ?? 0) + l.cost);
@@ -281,6 +283,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
           })}
         </div>
       </Card>
+      <CovenantTribunalCard cov={cov} update={update} saga={saga} />
     </div>
   );
 }

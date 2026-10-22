@@ -6,11 +6,13 @@ import { AGENT_RISKS, AGENT_TASKS, AGENT_TIMEFRAMES, STATUS_RESISTANCE, addAgenc
 import type { Agent } from '../../../engine/types';
 import { purseOf } from '../../../engine/vis';
 import { uid } from '../../../util/id';
-import { BookBadge, Card, Field, Stepper } from '../../kit';
+import { Card, Field, Stepper } from '../../kit';
+import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
+import { optionOn } from '../../../engine/optional';
 
 export function AgencyCard({ ed }: { ed: CharEditor }) {
-  const { c, d, update } = ed;
+  const { c, d, update, saga } = ed;
   const [log, setLog] = useState<string[]>([]);
   const [task, setTask] = useState(0);
   const [timeframe, setTimeframe] = useState(0);
@@ -18,6 +20,7 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
   const [xp, setXp] = useState(3);
   const [pounds, setPounds] = useState(1);
   if (!c || !d) return null;
+  if (!optionOn(saga, 'agents') && !(c.agents ?? []).length) return null;
   const agents = c.agents ?? [];
   const recruited = agents.filter((a) => a.resistance <= 0);
   const max = maxAgents(d);
@@ -27,13 +30,10 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
     update((x) => void (x.agents = [...(x.agents ?? []), { uid: uid(), name: '', status: '', resources: '', bondTrait: 'Loyal', bond: resistance > 0 ? 0 : 1, resistance: Math.max(0, resistance) }]));
 
   return (
-    <Card title={<h3>Agents <BookBadge book="HoH_S" line={5647} /></h3>}>
-      <p className="small muted" style={{ marginTop: 0 }}>
-        People bound to help: by loyalty, fear, gratitude, contract or blackmail. A character directly controls up to 2 × (Presence + Intrigue or Leadership − the Gift&apos;s
-        penalty), at least one: <b>{max}</b> for {c.name || 'this character'} ({recruited.length} now{recruited.length > max ? ': too many, which brings stories' : ''}). Hermetic magi are
-        never agents. Agency experience from a story wears down a would-be agent&apos;s Resistance (its value in points for each step) and then raises the Bond like an Art; a pound
-        of gifts counts as 5 points, but money alone never raises a Bond above +3.
-      </p>
+    <Card title={`Agents (${recruited.length} of ${max})`}>
+      <RulesNote book="HoH_S" line={5647} endLine={5836}>
+        People bound to help by loyalty, fear, gratitude or blackmail.{recruited.length > max ? ' More than this character can manage: expect stories.' : ''}
+      </RulesNote>
       {agents.map((a) => (
         <div key={a.uid} className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
           <div className="row">
