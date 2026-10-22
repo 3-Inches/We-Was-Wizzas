@@ -2,12 +2,12 @@
 // Church, Petitioning the Church), quick court decisions (City & Guild, Court Decisions), etiquette
 // (Houses of Hermes: Societates, Etiquette), and debate (Societates, The Fine Art of Debate).
 
-import type { DerivedCharacter } from './character/derive';
+import { abilityTotal, type DerivedCharacter } from './character/derive';
 import { certamenFatigue } from './magic';
 import { defaultRng, describeStress, stressDie, type Rng } from './dice';
 import type { Character } from './types';
 
-const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
+const score = abilityTotal;
 const roll = (botch = 1, rng: Rng = defaultRng) => stressDie(botch, rng);
 
 // ================================================================ guilds

@@ -4,7 +4,7 @@
 // one points back at its source and never replaces it.
 
 import { ARCHETYPES, CHOICE_LINKS, MAGNITUDES, RANKED_TOTALS } from './magnitudes';
-import { ARTS, CHARACTERISTICS, type AbilityType, type Effect, type GameData, type VirtueFlawDef } from '../../data';
+import { type AbilityType, type Effect, type GameData, type VirtueFlawDef } from '../../data';
 import { TAG_BY_ID, isThemeTag } from './tags';
 
 /** How a Virtue or Flaw relates to a tag. */
@@ -605,6 +605,3 @@ export function inventory(data: GameData) {
   for (const r of recs) if (r.pile) piles[r.pile]++;
   return { total: recs.length, computed: recs.filter((r) => r.computed).length, piles, untagged: recs.filter((r) => !r.links.length).map((r) => r.id) };
 }
-
-export const ALL_ART_TAGS = ARTS.map((a) => `art:${a}`);
-export const ALL_CHAR_TAGS = CHARACTERISTICS.map((c) => `char:${c}`);

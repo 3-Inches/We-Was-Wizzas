@@ -33,22 +33,8 @@ export function abilityXpRemainder(xp: number): number {
 
 /** Warping score from points: like an Ability (5 × triangular). Decrepitude is the same. */
 export const warpingScoreFromPoints = abilityScoreFromXp;
-export const warpingPointsForScore = abilityXpForScore;
 
 /** Affinity: "increased by one half, rounded up". */
 export function withAffinity(xp: number, multiplier = 1.5): number {
   return Math.ceil(xp * multiplier);
-}
-
-/** Inverse of withAffinity: minimum raw xp needed to reach `effective` xp. */
-export function rawXpForEffective(effective: number, multiplier = 1.5): number {
-  let raw = Math.floor(effective / multiplier);
-  while (withAffinity(raw, multiplier) < effective) raw++;
-  return raw;
-}
-
-/** Prevailing Loyalty / Reputation: points → score using the Ability table. */
-export function scoreFromPointsSigned(points: number): number {
-  const s = abilityScoreFromXp(Math.abs(points));
-  return points < 0 ? -s : s;
 }

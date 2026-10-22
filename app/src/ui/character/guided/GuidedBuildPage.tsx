@@ -96,7 +96,7 @@ export default function GuidedBuildPage() {
         value={tab}
         onChange={setTab}
       />
-      <div className="grid" style={{ gridTemplateColumns: tab === 'browse' ? '1fr' : 'minmax(0, 1fr) 340px', marginTop: 10 }}>
+      <div className={`grid${tab === 'browse' ? '' : ' with-side wide-side'}`} style={{ marginTop: 10 }}>
         <div className="stack">
           {tab === 'questions' && <QuestionList vis={vis} ev={ev} st={st} ctx={ctx} setAnswer={setAnswer} setHouse={(h) => setState((s) => void (h ? (s.house = h) : delete s.house))} />}
           {tab === 'results' && <Results ev={ev} st={st} ctx={ctx} ed={ed} setState={setState} setAnswer={setAnswer} />}

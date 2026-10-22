@@ -15,8 +15,32 @@ export interface PersistedState {
   characters: Record<string, Character>;
   covenants: Record<string, Covenant>;
   activeSagaId?: string;
-  ui: { theme: 'light' | 'dark' | 'auto'; streamMode: boolean };
+  ui: UiPrefs;
 }
+
+/** Display preferences (not part of undo): theme, stream mode, hints, and the tutorial in progress. */
+export interface UiPrefs {
+  theme: 'light' | 'dark' | 'auto';
+  streamMode: boolean;
+  /** show short hints at the places new players get stuck */
+  hints: boolean;
+  /** hints dismissed with "Got it" */
+  dismissedHints: string[];
+  /** the tutorial under way: which, at what step, and what it has made or found so far */
+  tour?: TourState;
+}
+
+export interface TourState {
+  id: string;
+  step: number;
+  sagaId?: string;
+  charId?: string;
+  covId?: string;
+  startedAt: string;
+  minimized?: boolean;
+}
+
+export const DEFAULT_UI: UiPrefs = { theme: 'auto', streamMode: false, hints: true, dismissedHints: [] };
 
 type Slot = 'sagas' | 'characters' | 'covenants';
 const SLOTS: Slot[] = ['sagas', 'characters', 'covenants'];
@@ -54,6 +78,10 @@ interface Store extends PersistedState {
   deleteCovenant: (id: string) => void;
   setTheme: (t: 'light' | 'dark' | 'auto') => void;
   setStreamMode: (b: boolean) => void;
+  setHints: (b: boolean) => void;
+  dismissHint: (id: string) => void;
+  resetHints: () => void;
+  setTour: (t?: UiPrefs['tour']) => void;
   importBundle: (b: ExportBundle, opts?: { intoSagaId?: string }) => { sagaId?: string; characters: number; covenants: number };
   /** put a saga with its characters and covenants in place at once (the saga's clock moves them together) */
   putSagaState: (st: { saga: Saga; characters: Character[]; covenants: Covenant[] }) => void;
@@ -155,7 +183,7 @@ export const useStore = create<Store>()((set, get) => {
   characters: {},
   covenants: {},
   activeSagaId: undefined,
-  ui: { theme: 'auto', streamMode: false },
+  ui: { ...DEFAULT_UI },
   loaded: false,
   history: { past: [], future: [] },
   undo: () => {
@@ -194,7 +222,7 @@ export const useStore = create<Store>()((set, get) => {
       const sagas = Object.fromEntries(Object.entries(data.sagas ?? {}).map(([k, v]) => [k, migrateSaga(v)]));
       const characters = Object.fromEntries(Object.entries(data.characters ?? {}).map(([k, v]) => [k, migrateCharacter(v)]));
       const covenants = Object.fromEntries(Object.entries(data.covenants ?? {}).map(([k, v]) => [k, migrateCovenant(v)]));
-      set({ sagas, characters, covenants, activeSagaId: data.activeSagaId, ui: { ...{ theme: 'auto' as const, streamMode: false }, ...((data.ui ?? {}) as object) } as PersistedState['ui'], loaded: true });
+      set({ sagas, characters, covenants, activeSagaId: data.activeSagaId, ui: { ...DEFAULT_UI, ...((data.ui ?? {}) as object) } as UiPrefs, loaded: true });
     } else set({ loaded: true });
   },
 
@@ -305,6 +333,22 @@ export const useStore = create<Store>()((set, get) => {
   },
   setStreamMode: (b) => {
     set((st) => ({ ui: { ...st.ui, streamMode: b } }));
+    scheduleSave(get);
+  },
+  setHints: (b) => {
+    set((st) => ({ ui: { ...st.ui, hints: b } }));
+    scheduleSave(get);
+  },
+  dismissHint: (id) => {
+    set((st) => ({ ui: { ...st.ui, dismissedHints: [...new Set([...st.ui.dismissedHints, id])] } }));
+    scheduleSave(get);
+  },
+  resetHints: () => {
+    set((st) => ({ ui: { ...st.ui, dismissedHints: [], hints: true } }));
+    scheduleSave(get);
+  },
+  setTour: (t) => {
+    set((st) => ({ ui: { ...st.ui, tour: t } }));
     scheduleSave(get);
   },
   importBundle: (b, opts = {}) => {

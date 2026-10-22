@@ -285,30 +285,6 @@ export function applyMythicType(c: Character, data: GameData, typeId: string) {
   for (const f of t.requiredFlaws) if (!c.virtues.some((x) => x.defId === f)) addVirtue(c, data, f, data.vfById.get(f)?.sizes[0]);
 }
 
-export function totalCharCost(values: Record<Characteristic, number>): number {
-  const cost: Record<number, number> = { 3: 6, 2: 3, 1: 1, 0: 0, [-1]: -1, [-2]: -3, [-3]: -6 };
-  return CHARACTERISTICS.reduce((s, c) => s + (cost[values[c]] ?? 0), 0);
-}
-
-export function setAllocation(c: Character, target: { kind: 'ability'; uid: string } | { kind: 'art'; art: Art } | { kind: 'mastery'; uid: string }, source: XpSource, xp: number) {
-  const v = Math.max(0, Math.round(xp));
-  if (target.kind === 'ability') {
-    const ab = c.abilities.find((a) => a.uid === target.uid);
-    if (!ab) return;
-    if (v === 0) delete ab.xp[source];
-    else ab.xp[source] = v;
-  } else if (target.kind === 'art') {
-    const alloc = c.arts[target.art] ?? (c.arts[target.art] = {});
-    if (v === 0) delete alloc[source];
-    else alloc[source] = v;
-  } else {
-    const s = c.spells.find((x) => x.uid === target.uid);
-    if (!s) return;
-    if (v === 0) delete s.masteryXp[source];
-    else s.masteryXp[source] = v;
-  }
-}
-
 export function recomputeAge(c: Character, currentYear: number) {
   if (c.type === 'magus') {
     c.age = c.creation.apprenticeshipStartAge + 15 + c.creation.yearsPostGauntlet;

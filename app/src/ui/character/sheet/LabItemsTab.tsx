@@ -4,7 +4,7 @@ import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../.
 import { CORD_COST, cordPointsCost, familiarBindingLevel, familiarBindingVis, investEffect, longevityBonus, longevityVisCost, visLimit } from '../../../engine/enchant';
 import { labTotal } from '../../../engine/magic';
 import type { Familiar } from '../../../engine/types';
-import { Card, Field, Stepper, Total, signed } from '../../kit';
+import { Card, Field, Stepper, Total, signed, HowItWorks } from '../../kit';
 import ItemsEditor, { characterTalismanCapacity } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
 import { uid } from '../../../util/id';
@@ -39,7 +39,7 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
   return (
     <div className="stack">
       {magus && (
-        <Card title="Laboratory" className="accent">
+        <Card title="Laboratory" className="accent" tour="sheet-lab">
           {lab ? (
             <div>
               <div className="row">
@@ -88,12 +88,8 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
         talismanUid={c.talismanUid}
         onSetTalisman={magus ? (id) => update((x) => void (x.talismanUid = id)) : undefined}
         title={magus ? `Enchanted items${c.talismanUid ? '' : ' (no talisman yet)'}` : 'Magic items & charms'}
+        note={magus ? `Talisman capacity: up to ${characterTalismanCapacity(d)} pawns of Vim vis (highest Technique + highest Form). Instilling effects into your own talisman gives +5 to the Lab Total.` : undefined}
       />
-      {magus && (
-        <p className="small muted" style={{ marginTop: -8 }}>
-          Talisman capacity: up to {characterTalismanCapacity(d)} pawns of Vim vis (highest Technique + highest Form). Instilling effects into your own talisman gives +5 to the Lab Total.
-        </p>
-      )}
 
       {magus && <LabProjects ed={ed} />}
       {magus && <Experimentation ed={ed} magicTheory={mt} />}
@@ -368,11 +364,11 @@ function Experimentation({ ed, magicTheory }: { ed: CharEditor; magicTheory: num
   };
   return (
     <Card title="Experimentation">
-      <p className="small muted" style={{ marginTop: 0 }}>
+      <HowItWorks summary="A simple die and the risk on the season’s Lab Total, and a roll on the Extraordinary Results Chart.">
         Experimenting adds a simple die (plus the risk modifier) to the season&apos;s Lab Total but rolls on the Extraordinary Results Chart, with a botch die for each point of risk and
         of the laboratory&apos;s aura. You cannot experiment while working from a Laboratory Text. In original research for a Breakthrough, the risk is limited by Magic Theory and is
         used to move the chart roll onto a Discovery instead of adding to the Lab Total (DE, Arcane Experimentation and Arcane Discovery).
-      </p>
+      </HowItWorks>
       <div className="row">
         <Field label="Risk modifier" hint={research ? `Up to +${maxRisk} with Magic Theory ${magicTheory}` : '+1 to +3: more Lab Total, more risk'}>
           <Stepper value={Math.min(risk, maxRisk)} min={0} max={maxRisk} width={36} onChange={setRisk} />

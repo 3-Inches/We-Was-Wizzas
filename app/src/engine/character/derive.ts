@@ -2,8 +2,8 @@
 // Pure functions: (character, game data, house rules) -> DerivedCharacter.
 
 import {
-  ARTS, CHARACTERISTICS, CHILDHOOD_ABILITIES, abilityCapForAge, childModifier, charCost, isForm, isTechnique,
-  PARAMETERIZED_ABILITIES, abilityMatches, abilityTypeOf, isLanguageAbility,
+  ARTS, CHARACTERISTICS, CHILDHOOD_ABILITIES, abilityCapForAge, childModifier, charCost,
+  abilityMatches, abilityTypeOf, isLanguageAbility,
   type Art, type Characteristic, type Effect, type GameData, type VirtueFlawDef, type AbilityType, type AbilityDef, type PowerKind,
 } from '../../data';
 import type { Character, CharAbility, CharVirtue, HouseRules, XpAlloc, XpSource } from '../types';
@@ -183,6 +183,11 @@ export function vfDisplayName(def: VirtueFlawDef | undefined, cv: CharVirtue, da
   if (/ Art$/.test(base)) return base.replace(/Art$/, label);
   if (/Technique$|Form$/.test(base)) return base.replace(/(Technique|Form)$/, label);
   return `${base} (${label})`;
+}
+
+/** The character's best total in an Ability (0 without it): the highest when several specialities or parameters share it. */
+export function abilityTotal(d: Pick<DerivedCharacter, 'abilities'>, id: string): number {
+  return d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
 }
 
 export function abilityDisplayName(ab: { abilityId: string; param?: string }, data: GameData): string {
@@ -755,15 +760,4 @@ export function canSpend(
   if (d.abilityAccess.types.has(type)) return { ok: true };
   // languages: dead languages are Academic, living are General
   return { ok: false, reason: `${type} Abilities require a Virtue (e.g. ${type === 'Academic' ? 'Educated' : type === 'Martial' ? 'Warrior' : 'Arcane Lore'})` };
-}
-
-export function isParameterized(abilityId: string): boolean {
-  return abilityId in PARAMETERIZED_ABILITIES;
-}
-
-export function artIsTechnique(a: Art) {
-  return isTechnique(a);
-}
-export function artIsForm(a: Art) {
-  return isForm(a);
 }

@@ -53,9 +53,6 @@ const RAW_SPELLS = spellsJson as unknown as SpellDef[];
 // --------------------------------------------------------------------------------------
 // Language & parameterized abilities
 
-export const LANGUAGE_NAMES = [
-  'Latin', 'Greek', 'Hebrew', 'Aramaic', 'Arabic', 'Persian', 'Gothic', 'Avestan', 'Old Norse', 'Coptic',
-];
 export const DEAD_LANGUAGES = ['Latin', 'Classical Greek', 'Hebrew', 'Aramaic', 'Gothic', 'Avestan', 'Coptic', 'Syriac', 'Old Irish'];
 export const LIVING_LANGUAGES = [
   'French', 'Occitan', 'German', 'English', 'Norse', 'Italian', 'Castilian', 'Catalan', 'Portuguese', 'Irish Gaelic',

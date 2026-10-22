@@ -40,21 +40,38 @@ export default function RecommendationsPanel({ ed, step }: { ed: CharEditor; ste
         <p className="small muted">Pick concept themes on the Concept step for more tailored suggestions.</p>
       )}
       {recs.length === 0 && <div className="small muted">Nothing to suggest here.</div>}
-      {recs.map((r, i) => (
-        <div key={i} className="list-row" style={{ alignItems: 'flex-start' }}>
-          <div style={{ flex: 1 }}>
-            <div>
-              <b>{r.title}</b> <span className="badge">{r.group}</span>
+      {groupByReason(recs).map((g, gi) => (
+        <div key={gi}>
+          {/* options that share a reason state it once, above them */}
+          {g.items.length > 1 && <div className="small soft" style={{ marginTop: 6 }}>{g.reason}</div>}
+          {g.items.map((r, i) => (
+            <div key={i} className="list-row" style={{ alignItems: 'flex-start' }}>
+              <div style={{ flex: 1 }}>
+                <div>
+                  <b>{r.title}</b> <span className="badge">{r.group}</span>
+                </div>
+                {g.items.length === 1 && <div className="small soft">{r.reason}</div>}
+              </div>
+              {(r.kind === 'virtue' || r.kind === 'flaw' || r.kind === 'ability' || r.kind === 'spell') && r.id && (
+                <button className="small" onClick={() => act(r)}>
+                  + Add
+                </button>
+              )}
             </div>
-            <div className="small soft">{r.reason}</div>
-          </div>
-          {(r.kind === 'virtue' || r.kind === 'flaw' || r.kind === 'ability' || r.kind === 'spell') && r.id && (
-            <button className="small" onClick={() => act(r)}>
-              + Add
-            </button>
-          )}
+          ))}
         </div>
       ))}
     </Card>
   );
+}
+
+/** Consecutive suggestions with the same reason, kept in order. */
+function groupByReason(recs: Suggestion[]): { reason: string; items: Suggestion[] }[] {
+  const out: { reason: string; items: Suggestion[] }[] = [];
+  for (const r of recs) {
+    const last = out[out.length - 1];
+    if (last && last.reason === r.reason) last.items.push(r);
+    else out.push({ reason: r.reason, items: [r] });
+  }
+  return out;
 }

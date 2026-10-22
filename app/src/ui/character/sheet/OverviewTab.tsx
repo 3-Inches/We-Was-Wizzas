@@ -18,9 +18,11 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
   const covs = useSagaCovenants(saga?.id);
   const updateCovenant = useStore((s) => s.updateCovenant);
   if (!c || !d || !saga) return null;
+  const hasEffects = (c.activeEffects ?? []).length > 0;
   return (
     <div className="stack">
-      <EffectsCard ed={ed} />
+      {/* magic on the character leads when something is recorded; otherwise it waits below */}
+      {hasEffects && <EffectsCard ed={ed} />}
       {c.creation.finalized && <PurseCard ed={ed} />}
       <div className="grid grid-2">
         <Card title="Characteristics" className="accent">
@@ -194,6 +196,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
         </div>
       </Card>
       {c.creature && <CreatureCard ed={ed} />}
+      {!hasEffects && <EffectsCard ed={ed} />}
       <AgencyCard ed={ed} />
       <TribunalCard ed={ed} />
       <SocietyCard ed={ed} />

@@ -10,6 +10,7 @@ import { Card, Empty, Field, SearchInput, Stepper, Tabs, Total } from '../kit';
 import ItemsEditor from '../items/ItemEditor';
 import { ConditionsBar, useConditions } from '../character/Conditions';
 import { labContextOf } from '../../engine/lab';
+import { useTabParam } from '../useTabParam';
 
 type TabId = 'items' | 'longevity' | 'vis' | 'writing' | 'tables';
 
@@ -20,7 +21,7 @@ export default function EnchantPage() {
   const chars = useSagaCharacters(sagaId);
   const magi = chars.filter((c) => c.type === 'magus');
   const [charId, setCharId] = useState(magi[0]?.id ?? '');
-  const [tab, setTab] = useState<TabId>('items');
+  const [tab, setTab] = useTabParam<TabId>('items');
   const c = useStore((s) => (charId ? s.characters[charId] : undefined));
   const updateCharacter = useStore((s) => s.updateCharacter);
   const ctx = useCharacterContext(c, data);

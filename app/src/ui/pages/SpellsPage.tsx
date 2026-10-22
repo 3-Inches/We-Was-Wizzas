@@ -11,6 +11,8 @@ import { BookBadge, Card, Empty, Field, Markdown, SearchInput, Stepper, Tabs, To
 import { FragmentRow, makeCharSpell } from '../character/steps/SpellsStep';
 import { ConditionsBar, useConditions } from '../character/Conditions';
 import { labContextOf } from '../../engine/lab';
+import { Hint } from '../Hint';
+import { useTabParam } from '../useTabParam';
 
 type TabId = 'browse' | 'design' | 'guidelines';
 
@@ -19,7 +21,7 @@ export default function SpellsPage() {
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
   const chars = useSagaCharacters(sagaId).filter((c) => c.type === 'magus' || c.virtues.some((v) => /gift/.test(v.defId)));
-  const [tab, setTab] = useState<TabId>('browse');
+  const [tab, setTab] = useTabParam<TabId>('browse');
   const [charId, setCharId] = useState<string>(chars[0]?.id ?? '');
   const [msg, setMsg] = useState('');
   if (!saga) return <Empty>Saga not found.</Empty>;
@@ -28,7 +30,7 @@ export default function SpellsPage() {
     <div>
       <div className="topbar">
         <h1>Spells & spell design</h1>
-        <div className="row">
+        <div className="row" data-tour="spells-magus">
           <Field label="For magus">
             <select value={charId} onChange={(e) => setCharId(e.target.value)}>
               <option value="">— none —</option>
@@ -50,6 +52,7 @@ export default function SpellsPage() {
           </button>
         </div>
       )}
+      <Hint id="spells-how"><b>Browse spells</b> to find and learn them; <b>Design a spell</b> works one out from a guideline, Range, Duration and Target. Pick a magus above to see their Casting Scores.</Hint>
       <Tabs
         tabs={[
           { id: 'browse', label: `Browse spells (${data.spells.filter((s) => data.isBookEnabled(s.source.book)).length})` },
@@ -233,7 +236,7 @@ function Designer({ charId, onMsg }: { charId: string; onMsg: (s: string) => voi
   return (
     <div className="grid grid-2">
       <div className="stack">
-        <Card title="Design" className="accent">
+        <Card title="Design" className="accent" tour="spell-design">
           <div className="row">
             <Field label="Technique">
               <select value={te} onChange={(e) => setTe(e.target.value as Technique)}>
@@ -324,7 +327,7 @@ function Designer({ charId, onMsg }: { charId: string; onMsg: (s: string) => voi
             </div>
           </Field>
         </Card>
-        <Card title="Result">
+        <Card title="Result" tour="spell-result">
           <div className="row">
             <div className="stat">
               <span className="v">

@@ -208,7 +208,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
 
   return (
     <div className="stack">
-      <Card title="Plan a season" className="accent">
+      <Card title="Plan a season" className="accent" tour="plan-season">
         <div className="row">
           <Field label="Season" hint={<Link to={`/saga/${saga.id}/seasons`}>the saga&apos;s; move time on the Seasons page</Link>}>
             <b>
@@ -423,7 +423,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         </p>
       </Card>
 
-      <Card title="When nothing is planned">
+      <Card title="When nothing is planned" tour="standing">
         <div className="row small">
           <span>Standing activity:</span>
           <StandingEditor

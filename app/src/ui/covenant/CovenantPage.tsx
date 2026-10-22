@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useTabParam } from '../useTabParam';
 import { BASE_COVENANTS, POWER_LEVELS, type CovFix } from '../../engine/covenant';
 import type { Covenant } from '../../engine/types';
 import { exportCovenant, useStore } from '../../store/store';
 import { useDerivedCovenant, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
 import { bundleToShareLink, downloadJson, safeFilename } from '../../util/files';
 import { uid } from '../../util/id';
-import { Card, Empty, Field, Meter, SelectOrType, Stepper, Tabs } from '../kit';
+import { Card, Empty, Field, Meter, SelectOrType, Stepper, Tabs, HowItWorks } from '../kit';
 import { TRIBUNALS } from '../../data/lists';
 import ItemsEditor from '../items/ItemEditor';
 import HooksTab from './HooksTab';
@@ -16,14 +17,13 @@ import FinancesTab from './FinancesTab';
 import { CovenantEffects } from './CovenantEffects';
 import { CovenantTribunalCard } from './CovenantTribunal';
 import type { CovTabProps } from './shared';
+import { Hint } from '../Hint';
 
 type TabId = 'overview' | 'hooks' | 'library' | 'labs' | 'folk' | 'items' | 'log';
 
 export default function CovenantPage() {
   const { sagaId, covId } = useParams();
-  const [params, setParams] = useSearchParams();
-  const tab = (params.get('tab') as TabId) || 'overview';
-  const setTab = (t: TabId) => setParams({ tab: t }, { replace: true });
+  const [tab, setTab] = useTabParam<TabId>('overview');
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
   const cov = useStore((s) => (covId ? s.covenants[covId] : undefined));
@@ -96,6 +96,7 @@ export default function CovenantPage() {
         {dc.issues.length > 0 && <span className="badge warn">{dc.issues.length} issue(s)</span>}
       </div>
       <Tabs tabs={tabs} value={tab} onChange={setTab} />
+      <Hint id="covenant-start">Start from a base package (Weak, Medium or Powerful) or set the Build Points by hand. Hooks pay for Boons; every tab spends Build Points and the bar at the top keeps count.</Hint>
       {tab === 'overview' && <OverviewTab cov={cov} update={update} dc={dc} sagaId={saga.id} setTab={setTab} />}
       {tab === 'hooks' && <HooksTab cov={cov} update={update} dc={dc} data={data} />}
       {tab === 'library' && <LibraryTab cov={cov} update={update} dc={dc} data={data} />}
@@ -121,6 +122,13 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
   const chars = useSagaCharacters(sagaId);
   const saga = useSaga(sagaId);
   const updateCharacter = useStore((s) => s.updateCharacter);
+  // magic on the covenant leads when something is recorded; otherwise it waits below the members
+  const hasMagic = (cov.effects ?? []).length > 0 || (cov.casts ?? []).some((r) => !r.undone);
+  const magicCard = (
+    <Card title="Magic on the covenant">
+      <CovenantEffects cov={cov} chars={chars} />
+    </Card>
+  );
   const byCat = new Map<string, number>();
   for (const l of dc.bpLines) byCat.set(l.category, (byCat.get(l.category) ?? 0) + l.cost);
   const toggleMember = (id: string, on: boolean) => {
@@ -147,11 +155,9 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
   };
   return (
     <div className="stack">
-      <Card title="Magic on the covenant">
-        <CovenantEffects cov={cov} chars={chars} />
-      </Card>
+      {hasMagic && magicCard}
       <div className="grid grid-2">
-        <Card title="The covenant" className="accent">
+        <Card title="The covenant" className="accent" tour="covenant-basics">
           <div className="grid grid-2">
             <Field label="Name">
               <input value={cov.name} onChange={(e) => update((x) => void (x.name = e.target.value))} />
@@ -195,7 +201,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
           <Field label="Description">
             <textarea rows={4} value={cov.description} onChange={(e) => update((x) => void (x.description = e.target.value))} />
           </Field>
-          <div className="row small" style={{ marginTop: 8 }}>
+          <div className="row small" style={{ marginTop: 8 }} data-tour="covenant-base">
             Quick start with a DE base package:
             {(Object.keys(BASE_COVENANTS) as (keyof typeof BASE_COVENANTS)[]).map((k) => (
               <button key={k} className="small" onClick={() => applyBase(k)}>
@@ -204,7 +210,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
             ))}
           </div>
         </Card>
-        <Card title="Build Points">
+        <Card title="Build Points" tour="covenant-bp">
           <table className="compact">
             <tbody>
               {[...byCat.entries()].map(([k, v]) => (
@@ -262,13 +268,13 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
               );
             })
           )}
-          <p className="small muted">
-            Costs (DE p.178–180): Art summa level + quality; Ability summa quality + 3 × level; tractatus = quality; lab texts 1 BP / 5 levels; casting tablets 2 BP / 5 levels; vis
+          <HowItWorks label="Build Point costs (DE p.178–180)">
+            Art summa level + quality; Ability summa quality + 3 × level; tractatus = quality; lab texts 1 BP / 5 levels; casting tablets 2 BP / 5 levels; vis
             sources 5 BP per pawn per year; vis stocks 1 BP per 5 pawns; items 2 BP / 5 levels; specialists = score (teachers: + Com + Teaching); labs 20 × Size, Virtues 10/20.
-          </p>
+          </HowItWorks>
         </Card>
       </div>
-      <Card title="Members">
+      <Card title="Members" tour="covenant-members">
         {chars.length === 0 && <div className="small muted">No characters in this saga yet.</div>}
         <div className="grid grid-3">
           {chars.map((c) => {
@@ -283,6 +289,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
           })}
         </div>
       </Card>
+      {!hasMagic && magicCard}
       <CovenantTribunalCard cov={cov} update={update} saga={saga} />
     </div>
   );

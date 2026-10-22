@@ -2,11 +2,11 @@
 // many they can manage, recruiting them by wearing down their Resistance, strengthening their Bond,
 // and the persuasion roll that sets one to a task.
 
-import type { DerivedCharacter } from './character/derive';
+import { abilityTotal, type DerivedCharacter } from './character/derive';
 import { defaultRng, describeStress, simpleDie, stressDie, type Rng } from './dice';
 import type { Agent } from './types';
 
-const ability = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
+const ability = abilityTotal;
 
 /** Agents a character can control directly: 2 × (Presence + Intrigue or Leadership − the Gift's social penalty), at least one. */
 export function maxAgents(d: DerivedCharacter): number {

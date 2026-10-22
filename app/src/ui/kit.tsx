@@ -3,14 +3,13 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
-import type { Issue } from '../engine/character/validate';
 import type { Part } from '../engine/magic';
 import { BOOK_BY_ID } from '../data';
 import { dropEmptyHeads, tidyTables } from './tables';
 
-export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string }) {
+export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string; tour?: string }) {
   return (
-    <section className={`card ${props.className ?? ''}`} id={props.id}>
+    <section className={`card ${props.className ?? ''}`} id={props.id} data-tour={props.tour}>
       {(props.title || props.actions) && (
         <div className="card-head">
           {typeof props.title === 'string' ? <h3>{props.title}</h3> : props.title}
@@ -26,10 +25,28 @@ export function Tabs<T extends string>(props: { tabs: { id: T; label: ReactNode 
   return (
     <div className="tabs" role="tablist">
       {props.tabs.map((t) => (
-        <button key={t.id} role="tab" aria-selected={props.value === t.id} className={props.value === t.id ? 'active' : ''} onClick={() => props.onChange(t.id)}>
+        <button key={t.id} role="tab" aria-selected={props.value === t.id} className={props.value === t.id ? 'active' : ''} onClick={() => props.onChange(t.id)} data-tour={`tab-${t.id}`}>
           {t.label}
         </button>
       ))}
+    </div>
+  );
+}
+
+/**
+ * A line of explanation with the rest a click away: how the app works something out. (RulesNote
+ * does the same for the book's own text.)
+ */
+export function HowItWorks(props: { summary?: ReactNode; children: ReactNode; label?: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="small muted" style={{ margin: '6px 0' }}>
+      {props.summary}
+      {props.summary ? ' ' : ''}
+      <button className="small ghost" onClick={() => setOpen((o) => !o)} aria-expanded={open} style={{ padding: '0 6px' }}>
+        {open ? 'Hide' : props.label ?? 'How it works'}
+      </button>
+      {open && <div style={{ marginTop: 4 }}>{props.children}</div>}
     </div>
   );
 }
@@ -105,29 +122,6 @@ export function BookBadge(props: { book: string; anchor?: string; line?: number 
     <a className="badge book" href={href} title={b ? `${b.title} — open in the rules reader` : props.book} onClick={(e) => e.stopPropagation()}>
       {b?.abbr ?? props.book}
     </a>
-  );
-}
-
-export function IssueList(props: { issues: Issue[]; onAcknowledge?: (id: string) => void; compact?: boolean; empty?: ReactNode }) {
-  if (!props.issues.length) return <div className="muted small">{props.empty ?? 'No problems found.'}</div>;
-  return (
-    <div>
-      {props.issues.map((i) => (
-        <div key={i.id} className={`issue ${i.severity}`}>
-          <span className={`badge ${i.severity === 'error' ? 'bad' : i.severity === 'warning' ? 'warn' : 'info'}`}>{i.severity}</span>
-          <div className="msg">
-            {i.message}
-            {i.fix && <div className="small soft">Suggestion: {i.fix}</div>}
-            {i.ref && <div className="ref">{i.ref}</div>}
-          </div>
-          {props.onAcknowledge && i.severity !== 'info' && (
-            <button className="small ghost" title="Acknowledge as a troupe ruling / house rule; hides this issue for this character" onClick={() => props.onAcknowledge!(i.id)}>
-              Allow
-            </button>
-          )}
-        </div>
-      ))}
-    </div>
   );
 }
 

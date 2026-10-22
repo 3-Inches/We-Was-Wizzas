@@ -7,6 +7,7 @@ import { labTotal } from '../../../engine/magic';
 import { Card, Meter, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { LaterNote } from '../../LaterNote';
+import { Hint } from '../../Hint';
 
 function rawNeededArt(c: Character, d: DerivedCharacter, art: Art, src: XpSource, targetScore: number): number {
   const da = d.arts[art];
@@ -34,7 +35,8 @@ export default function ArtsStep({ ed }: { ed: CharEditor }) {
   const limitBonus = saga.houseRules.spellLevelLimitBonus;
   return (
     <>
-      <Card title="Hermetic Arts" className="accent">
+      <Hint id="wizard-arts">An Art costs as many experience points as its score&apos;s triangle: 5 costs 15, 10 costs 55. A Technique and a Form together make every Casting Score and Lab Total.</Hint>
+      <Card title="Hermetic Arts" className="accent" tour="arts">
         <LaterNote topic="arts" />
         <div className="grid grid-2">
           {pools.map((b) => (

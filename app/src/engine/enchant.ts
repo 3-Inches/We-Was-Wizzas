@@ -122,10 +122,6 @@ export function cordPointsCost(golden: number, silver: number, bronze: number): 
   return CORD_COST[golden] + CORD_COST[silver] + CORD_COST[bronze];
 }
 
-export function familiarPowerBonus(matches: 'none' | 'one' | 'both'): number {
-  return matches === 'both' ? 10 : matches === 'one' ? 5 : 0;
-}
-
 // ------------------------------------------------------------------ Lab texts, books
 
 export function labTextWritingLevels(latin: number): number {

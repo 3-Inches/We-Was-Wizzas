@@ -1,10 +1,13 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '../kit';
+import { useStore } from '../../store/store';
+import { TOURS, startTour, type TourGroup } from '../tour/tours';
 
 // The sections of this page, for the contents list at the top. The app routes by the URL's hash,
 // so the links scroll instead of changing it.
 const SECTIONS: [string, string][] = [
+  ['tutorials', 'Tutorials'],
   ['start', 'Quick start'],
   ['learn', 'Learning the rules'],
   ['covenant', 'The covenant'],
@@ -74,6 +77,62 @@ const LEARN: { to: string; title: string; text: string }[] = [
   { to: '/mechanics/order', title: 'The Order of Hermes', text: 'The Code, Tribunals, Wizards’ War and the rules of each House.' },
 ];
 
+const GROUPS: TourGroup[] = ['Start here', 'The saga and covenant', 'Characters', 'Magic', 'In play'];
+
+/** The guided tutorials, and the hints setting for those who want less help or more. */
+function Tutorials() {
+  const ui = useStore((s) => s.ui);
+  const setHints = useStore((s) => s.setHints);
+  const resetHints = useStore((s) => s.resetHints);
+  const running = ui.tour ? TOURS.find((t) => t.id === ui.tour!.id) : undefined;
+  return (
+    <Card title="Tutorials" id="tutorials" tour="tutorials" className="accent">
+      <p className="small" style={{ marginTop: 0 }}>
+        A tutorial walks you through the real app one step at a time: a small panel explains each step and points at the control, and <b>Next</b> takes you to the right
+        page. You do the clicking, so you learn where things are. Any tutorial that makes something can use a practice saga, leaving your own sagas alone.
+      </p>
+      {running && (
+        <p className="small">
+          <b>{running.title}</b> is under way (step {Math.min(ui.tour!.step, running.steps.length - 1) + 1} of {running.steps.length}); its panel is open.
+        </p>
+      )}
+      <div className="stack" style={{ gap: 10 }}>
+        {GROUPS.map((g) => (
+          <div key={g}>
+            <div className="small muted" style={{ marginBottom: 4 }}>
+              {g}
+            </div>
+            <div className="grid grid-2" style={{ gap: 8 }}>
+              {TOURS.filter((t) => t.group === g).map((t) => (
+                <div key={t.id} className="list-row" style={{ alignItems: 'flex-start', gap: 10, margin: 0 }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <b>{t.title}</b> <span className="small muted">{t.steps.length} steps</span>
+                    <div className="small muted">{t.blurb}</div>
+                  </div>
+                  <button className={`small${t.id === 'toolkit' ? ' primary' : ''}`} onClick={() => startTour(t.id)}>
+                    {running?.id === t.id ? 'Restart' : 'Start'}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="row small" style={{ marginTop: 12 }}>
+        <label className="inline">
+          <input type="checkbox" checked={ui.hints} onChange={(e) => setHints(e.target.checked)} /> Show hints for new players
+        </label>
+        <span className="muted">Short tips at the places people tend to get stuck, each with a <b>Got it</b> to hide it.</span>
+        {ui.dismissedHints.length > 0 && (
+          <button className="small ghost" onClick={resetHints}>
+            Show the {ui.dismissedHints.length} hidden hint{ui.dismissedHints.length > 1 ? 's' : ''} again
+          </button>
+        )}
+      </div>
+    </Card>
+  );
+}
+
 export default function HelpPage() {
   return (
     <div className="stack" style={{ maxWidth: 960 }}>
@@ -93,7 +152,9 @@ export default function HelpPage() {
         </nav>
       </div>
 
-      <Card title="Quick start" id="start" className="accent">
+      <Tutorials />
+
+      <Card title="Quick start" id="start">
         <Step n={1} title="Create a saga" to="/" action="Sagas">
           Everything lives in a saga: its characters, its covenant and the troupe&apos;s house rules.
         </Step>

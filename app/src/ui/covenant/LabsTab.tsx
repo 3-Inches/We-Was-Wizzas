@@ -5,9 +5,10 @@ import { FREE_FORM_CHARS, LAB_OPTIONS } from '../../data/labOptions';
 import type { LabVirtueEntry, Laboratory } from '../../engine/types';
 import { useSagaCharacters } from '../../store/hooks';
 import { uid } from '../../util/id';
-import { BookBadge, Card, Field, Markdown, SearchInput, Stepper, Total } from '../kit';
+import { BookBadge, Card, Field, Markdown, SearchInput, Stepper, Total, HowItWorks } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
+import { Hint } from '../Hint';
 
 const CHAR_KEYS: LabCharacteristic[] = ['Size', 'Refinement', 'General Quality', 'Upkeep', 'Safety', 'Warping', 'Health', 'Aesthetics'];
 
@@ -17,19 +18,26 @@ export default function LabsTab({ cov, update, dc, data }: CovTabProps) {
   const [open, setOpen] = useState<string | null>(cov.labs[0]?.uid ?? null);
   const labBP = dc.bpLines.filter((l) => l.category === 'Laboratories').reduce((s, l) => s + l.cost, 0);
   const withoutLab = magi.filter((m) => !cov.labs.some((l) => l.ownerId === m.id));
+  // new labs are added and the first of them opened, ready to personalize
+  const add = (labs: Laboratory[]) => {
+    update((x) => void x.labs.push(...labs));
+    setOpen(labs[0]?.uid ?? open);
+  };
   return (
     <div className="stack">
+      <Hint id="labs-how">Each magus gets a standard lab; add Virtues and Flaws to make it theirs. The magus&apos;s sheet uses it for Lab Totals.</Hint>
       <Card
         title={`Laboratories (${labBP} BP)`}
         className="accent"
+        tour="labs"
         actions={
           <>
             {withoutLab.length > 0 && (
-              <button className="small" onClick={() => update((x) => void withoutLab.forEach((m) => x.labs.push(newLab(`${m.name || 'Magus'}'s laboratory`, m.id))))}>
+              <button className="small" data-tour="labs-standard" onClick={() => add(withoutLab.map((m) => newLab(`${m.name || 'Magus'}'s laboratory`, m.id)))}>
                 + Standard lab for each magus ({withoutLab.length})
               </button>
             )}
-            <button className="small" onClick={() => update((x) => void x.labs.push(newLab('New laboratory')))}>
+            <button className="small" onClick={() => add([newLab('New laboratory')])}>
               + Laboratory
             </button>
           </>
@@ -91,6 +99,7 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
       <div className="stack">
         <Card
           title={lab.name}
+          tour="lab-open"
           actions={
             <button className="small ghost danger" onClick={() => window.confirm('Delete this lab?') && update((x) => void (x.labs = x.labs.filter((y) => y.uid !== lab.uid)))}>
               Delete lab
@@ -145,11 +154,11 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
               <span className="badge bad">Missing Equipment</span> This lab cannot be used for {dl.impossible.join(', ')}.
             </div>
           )}
-          <p className="small muted">
-            Click a number to see how it is worked out. Base Safety is Refinement − occupied Size, and the occupied Size (Virtue points − Flaw points − Refinement) only counts once it is
+          <HowItWorks summary="Click a number to see how it is worked out." label="Why Safety drops">
+            Base Safety is Refinement − occupied Size, and the occupied Size (Virtue points − Flaw points − Refinement) only counts once it is
             above 0. So every Minor or Major Virtue that fills space lowers Safety by 1 or 3 once the lab's free room is used up, even ones that list no Safety change (such as the
             Expansions). Raising Refinement gives that Safety back (DE Laboratory chapter).
-          </p>
+          </HowItWorks>
           <h4>Specializations</h4>
           <div className="row">
             {Object.entries(dl.specializations).map(([k, v]) => (
@@ -206,7 +215,7 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
           </Field>
         </Card>
       </div>
-      <Card title="Add Laboratory Virtues & Flaws">
+      <Card title="Add Laboratory Virtues & Flaws" tour="lab-virtues">
         <div className="row" style={{ marginBottom: 8 }}>
           <SearchInput value={q} onChange={setQ} />
           <select value={group} onChange={(e) => setGroup(e.target.value as typeof group)}>

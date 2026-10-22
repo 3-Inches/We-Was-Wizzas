@@ -19,6 +19,9 @@ import {
 } from '../../data/mechanicsTypes';
 import { BookBadge, Card, Empty, Markdown, SearchInput } from '../kit';
 import { useBookSection } from '../bookText';
+import { APP_PLACES, type AppPlace } from '../../data/appPlaces';
+import { useStore } from '../../store/store';
+import { Hint } from '../Hint';
 
 // The index comes first; an area's mechanics load when it is opened, and all of them for a search.
 const areaFiles = import.meta.glob<{ default: unknown }>(['../../data/generated/mechanics/*.json', '!../../data/generated/mechanics/index.json']);
@@ -97,7 +100,7 @@ function count(groups: MechanicsGroupSummary[], who: string): number {
 
 function AudienceFilter({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   return (
-    <div className="chip-row" role="group" aria-label="Show mechanics for">
+    <div className="chip-row" role="group" aria-label="Show mechanics for" data-tour="mechanics-filter">
       {FILTERS.map((f) => (
         <button key={f.id} type="button" className={`chip ${value === f.id ? 'on' : ''}`} onClick={() => onChange(f.id)}>
           {f.label}
@@ -177,6 +180,7 @@ function IndexView({ data }: { data: MechanicsIndex }) {
           A rule several books print is listed once, under the Definitive Edition if it has it, otherwise under the newest book; the other books are named with it. Where another
           book says it differently, its version sits under the entry: the Definitive Edition rules, then the newer book, unless your troupe prefers the older one.
         </p>
+          <Hint id="mechanics-how">Start with <b>The basics</b>. Each rule has a summary, the key text, and the book&apos;s own words a click away; <b>In the app</b> says where the toolkit does it.</Hint>
       </div>
       <div className="row">
         <SearchInput value={q} onChange={setQ} placeholder="Search every mechanic: certamen, longevity, familiar, mass combat…" />
@@ -309,6 +313,7 @@ function GroupView({ area, summary, gated }: { area: MechanicsAreaSummary; summa
         <h1 style={{ marginBottom: 4 }}>{summary.title}</h1>
         {summary.intro && <p className="muted" style={{ marginTop: 0 }}>{summary.intro}</p>}
         {gated && <p className="small muted">These mechanics need a specific Virtue, House, initiation, tradition or kind of being.</p>}
+        <InTheApp topic={summary.id} />
       </div>
       <AudienceFilter value={who} onChange={setWho} />
       {split && (
@@ -469,3 +474,24 @@ function VersionCard({ version: v }: { version: MechanicsVersion }) {
   );
 }
 
+/** Where the app does this topic's rules: pages are linked for the saga last opened. */
+function InTheApp({ topic }: { topic: string }) {
+  const sagaId = useStore((s) => s.activeSagaId);
+  const places = APP_PLACES[topic];
+  if (!places?.length) return null;
+  const href = (p: AppPlace) => (p.page === 'dice' ? '/dice' : p.page && sagaId ? `/saga/${sagaId}${p.page === 'saga' ? '' : `/${p.page}`}` : undefined);
+  return (
+    <p className="small" style={{ margin: '4px 0 0' }}>
+      <b>In the app:</b>{' '}
+      {places.map((p, i) => {
+        const to = href(p);
+        return (
+          <span key={i}>
+            {i > 0 && ' · '}
+            {to ? <Link to={to}>{p.text}</Link> : p.text}
+          </span>
+        );
+      })}
+    </p>
+  );
+}

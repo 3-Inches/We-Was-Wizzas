@@ -13,12 +13,13 @@ import { HOUSE_BY_ID } from '../../data/houses';
 import type { CharType } from '../../data';
 import { uid } from '../../util/id';
 import { SagaOptionsCard } from '../OptionalRules';
+import { Hint } from '../Hint';
 
-const TYPE_INFO: Record<CharType, { label: string; blurb: string }> = {
-  magus: { label: 'Magus', blurb: 'A Hermetic wizard of one of the twelve Houses.' },
-  companion: { label: 'Companion', blurb: 'A central non-magus character: knight, scholar, priest, rogue…' },
-  mythic: { label: 'Mythic Companion', blurb: 'A companion of magus-level power: Nephilim, Devil Child, Faerie Doctor, Spirit Votary.' },
-  grog: { label: 'Grog', blurb: 'A minor character: soldier, servant, craftsman of the covenant.' },
+const TYPE_INFO: Record<CharType, { label: string; plural: string; blurb: string }> = {
+  magus: { label: 'Magus', plural: 'Magi', blurb: 'A Hermetic wizard of one of the twelve Houses.' },
+  companion: { label: 'Companion', plural: 'Companions', blurb: 'A central non-magus character: knight, scholar, priest, rogue…' },
+  mythic: { label: 'Mythic Companion', plural: 'Mythic Companions', blurb: 'A companion of magus-level power: Nephilim, Devil Child, Faerie Doctor, Spirit Votary.' },
+  grog: { label: 'Grog', plural: 'Grogs', blurb: 'A minor character: soldier, servant, craftsman of the covenant.' },
 };
 
 export default function SagaPage() {
@@ -60,7 +61,9 @@ export default function SagaPage() {
       </div>
       <div className="topbar">
         <h1>{saga.name}</h1>
-        <button onClick={() => downloadJson(`${safeFilename(saga.name)}.arm5saga.json`, exportSaga(saga.id))}>Export saga</button>
+        <button onClick={() => downloadJson(`${safeFilename(saga.name)}.arm5saga.json`, exportSaga(saga.id))} data-tour="saga-export">
+          Export saga
+        </button>
         <button
           onClick={async () => {
             try {
@@ -77,12 +80,18 @@ export default function SagaPage() {
         </button>
       </div>
       {msg && <p className="small">{msg}</p>}
+      <Hint id="saga-next">A saga holds everything else. Set its Tribunal here and its books under <b>House rules &amp; books</b>, found the covenant, then create the characters.</Hint>
 
       <div className="grid grid-3">
-        <Card title="Saga calendar">
+        <Card title="The saga" tour="saga-card">
+          <Field label="Saga name">
+            <input value={saga.name} onChange={(e) => updateSaga(saga.id, (s) => void (s.name = e.target.value))} />
+          </Field>
+          <Field label="Tribunal">
+            <SelectOrType value={saga.tribunal} options={TRIBUNALS} placeholder="— Tribunal —" otherLabel="Other (your own Tribunal)…" onChange={(v) => updateSaga(saga.id, (s) => void (s.tribunal = v))} />
+          </Field>
           <div className="row">
-            <p className="small muted" style={{ margin: 0 }}>Set the saga&apos;s starting season here; after that, time moves on the Seasons page.</p>
-          <Field label="Year">
+            <Field label="Year">
               <Stepper value={saga.currentYear} onChange={(v) => updateSaga(saga.id, (s) => void (s.currentYear = v))} min={500} max={2000} width={64} />
             </Field>
             <Field label="Season">
@@ -96,19 +105,14 @@ export default function SagaPage() {
               Seasons &amp; time ›
             </Link>
           </div>
-          <Field label="Tribunal">
-            <SelectOrType value={saga.tribunal} options={TRIBUNALS} placeholder="— Tribunal —" otherLabel="Other (your own Tribunal)…" onChange={(v) => updateSaga(saga.id, (s) => void (s.tribunal = v))} />
-          </Field>
-          <Field label="Saga name">
-            <input value={saga.name} onChange={(e) => updateSaga(saga.id, (s) => void (s.name = e.target.value))} />
-          </Field>
+          <p className="small muted" style={{ margin: 0 }}>Set the starting season here; after that, time moves on the Seasons page.</p>
           <SagaOptionsCard saga={saga} />
         </Card>
         <Card title="Create a character">
           <div className="stack">
             {(Object.keys(TYPE_INFO) as CharType[]).map((t) => (
-              <button key={t} onClick={() => create(t)} style={{ justifyContent: 'flex-start', textAlign: 'left' }}>
-                <b style={{ minWidth: 140 }}>{TYPE_INFO[t].label}</b>
+              <button key={t} onClick={() => create(t)} data-tour={`create-${t}`} style={{ flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', gap: 2 }}>
+                <b>{TYPE_INFO[t].label}</b>
                 <span className="small soft">{TYPE_INFO[t].blurb}</span>
               </button>
             ))}
@@ -119,6 +123,7 @@ export default function SagaPage() {
           actions={
             <button
               className="small primary"
+              data-tour="found-covenant"
               onClick={() => {
                 const c = newCovenant(saga.id, saga.currentYear);
                 c.name = 'New Covenant';
@@ -147,7 +152,7 @@ export default function SagaPage() {
 
       <div className="grid grid-2" style={{ marginTop: 14 }}>
         {(['magus', 'companion', 'mythic', 'grog'] as CharType[]).map((t) => (
-          <Card key={t} title={`${TYPE_INFO[t].label}${t === 'magus' ? 'i' : t === 'grog' ? 's' : 's'}`}>
+          <Card key={t} title={TYPE_INFO[t].plural}>
             {byType(t).length === 0 && <Empty>None yet.</Empty>}
             {byType(t).map((c) => {
               const d = deriveCharacter(c, data, saga.houseRules);

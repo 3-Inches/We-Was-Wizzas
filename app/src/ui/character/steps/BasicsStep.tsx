@@ -132,7 +132,7 @@ export default function BasicsStep({ ed }: { ed: CharEditor }) {
         </Field>
       </Card>
 
-      <Card title="Guided build" className="accent">
+      <Card title="Guided build" className="accent" tour="guided-build">
         <p className="small" style={{ marginTop: 0 }}>
           Not sure what to take? Rate statements about what you want to play (0–10; skipping counts as 5) and get Virtues, Flaws{c.type === 'magus' ? ', a House, Arts' : ''} and
           Abilities recommended from every enabled book, each with the reason and the page. It can then build a complete draft that passes the rules check. The themes
