@@ -13,6 +13,7 @@ import { HOUSE_BY_ID } from '../../data/houses';
 import type { CharType } from '../../data';
 import { uid } from '../../util/id';
 import { SagaOptionsCard } from '../OptionalRules';
+import { Hint } from '../Hint';
 
 const TYPE_INFO: Record<CharType, { label: string; plural: string; blurb: string }> = {
   magus: { label: 'Magus', plural: 'Magi', blurb: 'A Hermetic wizard of one of the twelve Houses.' },
@@ -60,7 +61,9 @@ export default function SagaPage() {
       </div>
       <div className="topbar">
         <h1>{saga.name}</h1>
-        <button onClick={() => downloadJson(`${safeFilename(saga.name)}.arm5saga.json`, exportSaga(saga.id))}>Export saga</button>
+        <button onClick={() => downloadJson(`${safeFilename(saga.name)}.arm5saga.json`, exportSaga(saga.id))} data-tour="saga-export">
+          Export saga
+        </button>
         <button
           onClick={async () => {
             try {
@@ -77,9 +80,10 @@ export default function SagaPage() {
         </button>
       </div>
       {msg && <p className="small">{msg}</p>}
+      <Hint id="saga-next">A saga holds everything else. Set its Tribunal here and its books under <b>House rules &amp; books</b>, found the covenant, then create the characters.</Hint>
 
       <div className="grid grid-3">
-        <Card title="The saga">
+        <Card title="The saga" tour="saga-card">
           <Field label="Saga name">
             <input value={saga.name} onChange={(e) => updateSaga(saga.id, (s) => void (s.name = e.target.value))} />
           </Field>
@@ -107,7 +111,7 @@ export default function SagaPage() {
         <Card title="Create a character">
           <div className="stack">
             {(Object.keys(TYPE_INFO) as CharType[]).map((t) => (
-              <button key={t} onClick={() => create(t)} style={{ flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', gap: 2 }}>
+              <button key={t} onClick={() => create(t)} data-tour={`create-${t}`} style={{ flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', gap: 2 }}>
                 <b>{TYPE_INFO[t].label}</b>
                 <span className="small soft">{TYPE_INFO[t].blurb}</span>
               </button>
@@ -119,6 +123,7 @@ export default function SagaPage() {
           actions={
             <button
               className="small primary"
+              data-tour="found-covenant"
               onClick={() => {
                 const c = newCovenant(saga.id, saga.currentYear);
                 c.name = 'New Covenant';

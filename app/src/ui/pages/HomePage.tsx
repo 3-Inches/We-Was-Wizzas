@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useStore, exportSaga } from '../../store/store';
 import { Card, Confirm, Empty } from '../kit';
 import { downloadJson, isBundle, pickJsonFile, safeFilename } from '../../util/files';
+import { Hint } from '../Hint';
 
 export default function HomePage() {
   const sagas = useStore((s) => s.sagas);
@@ -20,7 +21,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <div className="hero">
+      <div className="hero" data-tour="new-saga">
         <h1>Ars Magica Saga Toolkit</h1>
         <p className="soft" style={{ maxWidth: 780 }}>
           Build magi, companions, grogs and Mythic Companions step by step with every Definitive Edition rule checked as you go. Found covenants with Build
@@ -56,6 +57,7 @@ export default function HomePage() {
           </button>
         </div>
         {msg && <p className="small">{msg}</p>}
+        <Hint id="home-start">New here? Name a saga and press <b>Begin a new saga</b>, or follow a guided tutorial on the <Link to="/help">Guide</Link> page. Everything stays in this browser: export now and then to keep a backup.</Hint>
       </div>
 
       <Card title="Your sagas">

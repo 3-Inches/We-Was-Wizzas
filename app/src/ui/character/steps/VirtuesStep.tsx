@@ -12,6 +12,7 @@ import { CreatureCard } from '../sheet/Creature';
 import type { CharEditor } from '../useChar';
 import { LaterNote } from '../../LaterNote';
 import { VFText } from '../../VFText';
+import { Hint } from '../../Hint';
 
 const CATS: VFCategory[] = ['General', 'Hermetic', 'Supernatural', 'Social Status', 'Personality', 'Story', 'Mythic Companion', 'Heroic', 'Mystery', 'Special'];
 
@@ -22,7 +23,8 @@ export default function VirtuesStep({ ed }: { ed: CharEditor }) {
   const maxFlaws = c.type === 'grog' ? ed.saga!.houseRules.grogMaxFlawPoints : ed.saga!.houseRules.maxFlawPoints;
   return (
     <>
-      <Card title="Point balance" className="accent">
+      <Hint id="wizard-virtues">Flaws pay for Virtues point for point (Minor 1, Major 3). The list shows only what this character may take; click a tag to filter it.</Hint>
+      <Card title="Point balance" className="accent" tour="virtue-balance">
         <LaterNote topic="virtues" />
         <div className="grid grid-4">
           <Meter label="Flaw points" value={t.flawPoints} max={maxFlaws} />
@@ -225,7 +227,7 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
     });
   const toggleTag = (t: { id: string; label: string }) => setTagFilter((ts) => (ts.some((x) => x.id === t.id) ? ts.filter((x) => x.id !== t.id) : [...ts, t]));
   return (
-    <Card title="Browse Virtues & Flaws">
+    <Card title="Browse Virtues & Flaws" tour="virtue-browser">
       <div className="row" style={{ marginBottom: 8 }}>
         <SearchInput value={q} onChange={(v) => { setQ(v); setLimit(60); }} placeholder="Search names, text and tags (e.g. 'Puissant', 'Merinita', 'Needs The Gift')" />
         <select value={kind} onChange={(e) => setKind(e.target.value as typeof kind)}>

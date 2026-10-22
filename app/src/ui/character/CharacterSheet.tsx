@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useTabParam } from '../useTabParam';
 import { useCharEditor } from './useChar';
 import { Card, Empty, Tabs } from '../kit';
 import { CharIssueList } from './CharIssues';
@@ -14,15 +15,14 @@ import AdvancementTab from './sheet/AdvancementTab';
 import LabItemsTab from './sheet/LabItemsTab';
 import SheetSummary from './SheetSummary';
 import { summarize } from '../../engine/character/validate';
+import { Hint } from '../Hint';
 
 type TabId = 'overview' | 'abilities' | 'magic' | 'combat' | 'advancement' | 'lab' | 'summary' | 'rules';
 
 export default function CharacterSheet() {
   const ed = useCharEditor();
   const nav = useNavigate();
-  const [params, setParams] = useSearchParams();
-  const tab = (params.get('tab') as TabId) || 'overview';
-  const setTab = (t: TabId) => setParams({ tab: t }, { replace: true });
+  const [tab, setTab] = useTabParam<TabId>('overview');
   const [share, setShare] = useState('');
   const deleteCharacter = useStore((s) => s.deleteCharacter);
   const { c, d, saga, issues } = ed;
@@ -79,6 +79,7 @@ export default function CharacterSheet() {
         </Card>
       )}
       <Tabs tabs={tabs} value={tab} onChange={setTab} />
+      <Hint id="sheet-tabs">Click a total to see how it is worked out. The tabs follow play: <b>Magic</b> for casting, <b>Combat &amp; Health</b> for fights, <b>Seasons &amp; Aging</b> between stories.</Hint>
       {tab === 'overview' && <OverviewTab ed={ed} />}
       {tab === 'abilities' && <AbilitiesTab ed={ed} />}
       {tab === 'magic' && <MagicTab ed={ed} />}

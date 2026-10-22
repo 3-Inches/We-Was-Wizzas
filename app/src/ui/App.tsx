@@ -20,6 +20,7 @@ const HelpPage = lazy(() => import('./pages/HelpPage'));
 const MechanicsPage = lazy(() => import('./pages/MechanicsPage'));
 const SeasonsPage = lazy(() => import('./pages/SeasonsPage'));
 const MarketPage = lazy(() => import('./pages/MarketPage'));
+const TourPanel = lazy(() => import('./tour/TourPanel'));
 
 function applyTheme(theme: string, stream: boolean) {
   const root = document.documentElement;
@@ -30,6 +31,7 @@ function applyTheme(theme: string, stream: boolean) {
 
 export default function App() {
   const loaded = useStore((s) => s.loaded);
+  const touring = useStore((s) => !!s.ui.tour);
   const load = useStore((s) => s.load);
   const ui = useStore((s) => s.ui);
   const [navOpen, setNavOpen] = useState(false);
@@ -77,7 +79,8 @@ export default function App() {
           <UndoRedo />
         </div>
         <Notice />
-        <main className="main">
+        {/* room below the page while a tutorial runs, so anything can be scrolled clear of its panel */}
+        <main className={`main${touring ? ' touring' : ''}`}>
           <Suspense fallback={<div className="muted">Loading…</div>}>
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -103,6 +106,11 @@ export default function App() {
             </Routes>
           </Suspense>
         </main>
+        {touring && (
+          <Suspense fallback={null}>
+            <TourPanel />
+          </Suspense>
+        )}
       </div>
     </div>
   );
@@ -119,7 +127,7 @@ function UndoRedo() {
   const last = past[past.length - 1];
   const next = future[future.length - 1];
   return (
-    <span className="row tight undo-redo no-print">
+    <span className="row tight undo-redo no-print" data-tour="undo">
       <button
         className="small ghost"
         disabled={!last}
@@ -184,6 +192,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const ui = useStore((s) => s.ui);
   const setTheme = useStore((s) => s.setTheme);
   const setStream = useStore((s) => s.setStreamMode);
+  const setHints = useStore((s) => s.setHints);
   const icon: Record<string, string> = { magus: '✶', companion: '◆', mythic: '✧', grog: '◦' };
   return (
     // on a phone the menu closes on any link, the page already open included
@@ -199,7 +208,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
         </span>
       </Link>
       <UndoRedo />
-      <nav className="nav">
+      <nav className="nav" data-tour="nav">
         <NavLink to="/" end>
           ⌂ Sagas
         </NavLink>
@@ -231,13 +240,13 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
         )}
         <div className="nav-group">Reference</div>
         <NavLink to="/mechanics">⚙ Game mechanics</NavLink>
-        <NavLink to="/reference" end>❦ Rules reference</NavLink>
+        <NavLink to="/reference" end data-tour="nav-reference">❦ Rules reference</NavLink>
         <NavLink to="/reference/book/DE">📖 Definitive Edition</NavLink>
         <NavLink to="/dice">⚄ Dice</NavLink>
         <NavLink to="/help">? Guide</NavLink>
       </nav>
       <div className="nav-group">Display</div>
-      <div className="stack small">
+      <div className="stack small" data-tour="display">
         <select value={ui.theme} onChange={(e) => setTheme(e.target.value as 'light' | 'dark' | 'auto')} aria-label="Theme">
           <option value="auto">Theme: follow system</option>
           <option value="light">Theme: parchment</option>
@@ -245,6 +254,9 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
         </select>
         <label className="inline" title="Larger text for screen sharing on Discord">
           <input type="checkbox" checked={ui.streamMode} onChange={(e) => setStream(e.target.checked)} /> Stream mode (large text)
+        </label>
+        <label className="inline" title="Short tips at the places new players get stuck; tutorials are on the Guide page">
+          <input type="checkbox" checked={ui.hints} onChange={(e) => setHints(e.target.checked)} /> Hints for new players
         </label>
       </div>
       <p className="small muted sidebar-credit">

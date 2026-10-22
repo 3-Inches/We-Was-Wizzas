@@ -6,6 +6,13 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 
 ## What it does
 
+**Learning the toolkit:**
+
+- **Tutorials** (Guide page): ten guided walk-throughs of the real app: a tour of the toolkit, then starting a saga, founding the covenant, making a magus, a companion and a grog, designing a spell and a power, building a laboratory, and playing a season. A small panel explains each step, points at the control with a pulsing outline, and Next goes to the right page (and the right wizard step); the player does the clicking. A tutorial that makes something can run in a practice saga, leaving real sagas alone, and it can be shrunk or ended at any time.
+- **Hints for new players:** short tips at the places people get stuck (the wizard steps, the Point balance, experience pools, the covenant's Build Points, the Seasons page, the Market, spell design and more), each hidden with **Got it**. They can be turned off in the sidebar's Display settings, and the Guide page brings hidden ones back. They step aside while a tutorial runs.
+- **In the app:** each Game mechanics topic says where the toolkit does it, with a link when it is a page of its own.
+- Arithmetic the app does for you (Build Point costs, covenfolk numbers, Certamen, lab Safety, Twilight rolls, prices) is summed up in a line, with the working behind a **How it works** button.
+
 **Characters.** A step-by-step wizard covers grogs, companions, Mythic Companions and magi:
 
 - It tracks the Virtue/Flaw balance, Characteristic points, and every experience pool: native language, childhood, later life, apprenticeship, post-Gauntlet, and pools granted by Virtues.

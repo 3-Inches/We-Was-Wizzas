@@ -9,6 +9,7 @@ import type { Character, XpSource } from '../../../engine/types';
 import { Card, Meter, SelectOrType, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { LaterNote } from '../../LaterNote';
+import { Hint } from '../../Hint';
 
 /** Raw xp to add to one source so the ability reaches `targetScore`. */
 export function rawNeeded(c: Character, d: DerivedCharacter, abUid: string, src: XpSource, targetScore: number): number {
@@ -41,7 +42,8 @@ export default function AbilitiesStep({ ed }: { ed: CharEditor }) {
 
   return (
     <>
-      <Card title="Experience pools" className="accent">
+      <Hint id="wizard-abilities">Choose an experience pool, then add Abilities and raise them with +. Each pool says what it can buy.</Hint>
+      <Card title="Experience pools" className="accent" tour="xp-pools">
         <LaterNote topic="abilities" />
         <p className="small muted" style={{ marginTop: 0 }}>
           Choose a pool, then raise Abilities with the + buttons. Early childhood (age 0–5) gives 75 xp in your native language and 45 xp in childhood Abilities; later life gives xp per year; some Virtues add their own pools.

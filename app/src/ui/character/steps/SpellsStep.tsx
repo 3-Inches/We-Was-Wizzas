@@ -9,6 +9,7 @@ import { uid } from '../../../util/id';
 import { BookBadge, Card, Markdown, Meter, SearchInput, Stepper } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { LaterNote } from '../../LaterNote';
+import { Hint } from '../../Hint';
 
 export function makeCharSpell(s: SpellDef, source: CharSpell['source'], flawless: boolean): CharSpell {
   return { uid: uid(), spellId: s.custom ? undefined : s.id, spell: structuredClone(s), masteryXp: flawless ? { free: 5 } : {}, masteryAbilities: [], source };
@@ -60,7 +61,8 @@ export default function SpellsStep({ ed }: { ed: CharEditor }) {
 
   return (
     <>
-      <Card title="Spells known" className="accent">
+      <Hint id="wizard-spells">Add spells from the list below; the card shows how many levels you have left and the highest level you may learn.</Hint>
+      <Card title="Spells known" className="accent" tour="spells-known">
         <LaterNote topic="spells" />
         <div className="grid grid-3">
           {app?.spellLevels && <Meter label="Apprenticeship spell levels" value={app.spellLevels.spent} max={app.spellLevels.total} />}

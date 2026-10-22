@@ -28,6 +28,7 @@ export default function ReviewStep({ ed }: { ed: CharEditor }) {
         <div className="row" style={{ marginTop: 10 }}>
           <button
             className="primary"
+            data-tour="finalize"
             onClick={() => {
               update((x) => {
                 x.creation.finalized = true;

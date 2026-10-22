@@ -21,6 +21,7 @@ import { BookBadge, Card, Empty, Markdown, SearchInput } from '../kit';
 import { useBookSection } from '../bookText';
 import { APP_PLACES, type AppPlace } from '../../data/appPlaces';
 import { useStore } from '../../store/store';
+import { Hint } from '../Hint';
 
 // The index comes first; an area's mechanics load when it is opened, and all of them for a search.
 const areaFiles = import.meta.glob<{ default: unknown }>(['../../data/generated/mechanics/*.json', '!../../data/generated/mechanics/index.json']);
@@ -99,7 +100,7 @@ function count(groups: MechanicsGroupSummary[], who: string): number {
 
 function AudienceFilter({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   return (
-    <div className="chip-row" role="group" aria-label="Show mechanics for">
+    <div className="chip-row" role="group" aria-label="Show mechanics for" data-tour="mechanics-filter">
       {FILTERS.map((f) => (
         <button key={f.id} type="button" className={`chip ${value === f.id ? 'on' : ''}`} onClick={() => onChange(f.id)}>
           {f.label}
@@ -179,6 +180,7 @@ function IndexView({ data }: { data: MechanicsIndex }) {
           A rule several books print is listed once, under the Definitive Edition if it has it, otherwise under the newest book; the other books are named with it. Where another
           book says it differently, its version sits under the entry: the Definitive Edition rules, then the newer book, unless your troupe prefers the older one.
         </p>
+          <Hint id="mechanics-how">Start with <b>The basics</b>. Each rule has a summary, the key text, and the book&apos;s own words a click away; <b>In the app</b> says where the toolkit does it.</Hint>
       </div>
       <div className="row">
         <SearchInput value={q} onChange={setQ} placeholder="Search every mechanic: certamen, longevity, familiar, mass combat…" />

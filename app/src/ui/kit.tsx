@@ -7,9 +7,9 @@ import type { Part } from '../engine/magic';
 import { BOOK_BY_ID } from '../data';
 import { dropEmptyHeads, tidyTables } from './tables';
 
-export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string }) {
+export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string; tour?: string }) {
   return (
-    <section className={`card ${props.className ?? ''}`} id={props.id}>
+    <section className={`card ${props.className ?? ''}`} id={props.id} data-tour={props.tour}>
       {(props.title || props.actions) && (
         <div className="card-head">
           {typeof props.title === 'string' ? <h3>{props.title}</h3> : props.title}
@@ -25,7 +25,7 @@ export function Tabs<T extends string>(props: { tabs: { id: T; label: ReactNode 
   return (
     <div className="tabs" role="tablist">
       {props.tabs.map((t) => (
-        <button key={t.id} role="tab" aria-selected={props.value === t.id} className={props.value === t.id ? 'active' : ''} onClick={() => props.onChange(t.id)}>
+        <button key={t.id} role="tab" aria-selected={props.value === t.id} className={props.value === t.id ? 'active' : ''} onClick={() => props.onChange(t.id)} data-tour={`tab-${t.id}`}>
           {t.label}
         </button>
       ))}

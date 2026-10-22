@@ -39,7 +39,7 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
   return (
     <div className="stack">
       {magus && (
-        <Card title="Laboratory" className="accent">
+        <Card title="Laboratory" className="accent" tour="sheet-lab">
           {lab ? (
             <div>
               <div className="row">

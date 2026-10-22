@@ -20,6 +20,7 @@ import { useStore } from '../../store/store';
 import { uid } from '../../util/id';
 import { Card, Empty, Field, Stepper, HowItWorks } from '../kit';
 import { SpecAbilities, SpecChars } from '../covenant/FinancesTab';
+import { Hint } from '../Hint';
 
 type Run = (fn: (st: SagaState, buyer: Payer, home: Covenant | undefined) => string | undefined, done: string) => boolean;
 
@@ -93,7 +94,8 @@ export default function MarketPage() {
         <Link to={`/saga/${saga.id}/seasons`}>Seasons</Link> page. It is {saga.currentSeason} {saga.currentYear}.
       </p>
 
-      <Card title="Who is buying" className="accent">
+      <Hint id="market-who">Choose who is buying first: the covenant&apos;s treasury or a character&apos;s purse. Everything bought is recorded and can be undone.</Hint>
+      <Card title="Who is buying" className="accent" tour="market-who">
         {options.length ? (
           <div className="row">
             <select value={key} onChange={(e) => (setBuyerKey(e.target.value), setProblem(''))} aria-label="Buyer">

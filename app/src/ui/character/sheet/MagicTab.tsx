@@ -9,6 +9,7 @@ import { Card, Field, Stepper, Total, HowItWorks } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { masteryScore } from '../steps/SpellsStep';
 import { labContextOf } from '../../../engine/lab';
+import { Hint } from '../../Hint';
 
 const REALMS: Realm[] = ['Magic', 'Faerie', 'Divine', 'Infernal', 'None'];
 
@@ -241,7 +242,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
 
   return (
     <div className="stack">
-      <Card title="Circumstances" className="accent">
+      <Hint id="magic-circumstances">Set the aura and what applies right now first: every total on this tab follows them.</Hint>
+      <Card title="Circumstances" className="accent" tour="magic-circumstances">
         <div className="row">
           <Field label="Aura">
             <div className="row tight">

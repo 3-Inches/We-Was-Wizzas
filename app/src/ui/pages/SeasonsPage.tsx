@@ -15,6 +15,7 @@ import { Card, Empty, Field, Stepper } from '../kit';
 import { StandingEditor } from '../character/StandingEditor';
 import { covenantOf } from '../../engine/context';
 import { CovenantEffects } from '../covenant/CovenantEffects';
+import { Hint } from '../Hint';
 
 const KIND_BADGE: Record<string, string> = { aging: 'aging', crisis: 'bad', warping: 'warn', covenant: '', lab: '', effect: '', reminder: 'warn', money: '', season: '', year: '' };
 
@@ -63,8 +64,9 @@ export default function SeasonsPage() {
         Time passes here for the whole saga at once. Each character&apos;s season is what they logged on their sheet (Seasons &amp; Aging tab) for {season} {year}, or else their standing
         activity. The turn of the year closes every covenant&apos;s books, pays allowances, renews wards, rolls aging and adds the year&apos;s Warping.
       </p>
+      <Hint id="seasons-how">Log each character&apos;s season on their sheet first (Seasons &amp; Aging tab), or leave their standing activity to run; then end the season here for everyone at once.</Hint>
 
-      <Card title="Move time on" className="accent">
+      <Card title="Move time on" className="accent" tour="seasons-advance">
         <div className="row">
           <button className="primary" onClick={() => advance(1)}>
             End {season} {year} ›
@@ -99,7 +101,7 @@ export default function SeasonsPage() {
         {last.length > 0 && <Reports reports={last} />}
       </Card>
 
-      <Card title={`This season: ${season} ${year}`}>
+      <Card title={`This season: ${season} ${year}`} tour="seasons-table">
         {playing.length === 0 && <Empty>No finished characters yet.</Empty>}
         <div className="table-wrap">
           <table className="compact">

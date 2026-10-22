@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useTabParam } from '../useTabParam';
 import { BOOKS, SEASONS, type AbilityType, type VFCategory, type VFKind, type VFSize, type VirtueFlawDef, type WeaponDef } from '../../data';
 import type { Mechanics } from '../../data/mechanics';
 import { DEFAULT_HOUSE_RULES, DEFAULT_SAGA_SETTINGS, type HouseRules, type Saga, type SagaGuidedSettings } from '../../engine/types';
@@ -10,6 +11,7 @@ import { uid } from '../../util/id';
 import { Card, Empty, Field, SelectOrType, Stepper, Tabs } from '../kit';
 import { TRIBUNALS } from '../../data/lists';
 import { OptionalRulesPanel } from '../OptionalRules';
+import { Hint } from '../Hint';
 
 type TabId = 'saga' | 'books' | 'optional' | 'rules' | 'custom' | 'mechanics';
 
@@ -44,8 +46,7 @@ export default function HouseRulesPage() {
   const { sagaId } = useParams();
   const saga = useSaga(sagaId);
   const updateSaga = useStore((s) => s.updateSaga);
-  const [params] = useSearchParams();
-  const [tab, setTab] = useState<TabId>((params.get('tab') as TabId) || 'saga');
+  const [tab, setTab] = useTabParam<TabId>('saga');
   if (!saga) return <Empty>Saga not found.</Empty>;
   const update = (fn: (s: Saga) => void) => updateSaga(saga.id, fn);
   return (
@@ -54,6 +55,7 @@ export default function HouseRulesPage() {
         <h1>{saga.name}: settings & house rules</h1>
         <button onClick={() => downloadJson(`${safeFilename(saga.name)}.arm5saga.json`, exportSaga(saga.id))}>Export whole saga</button>
       </div>
+      <Hint id="rules-tabs"><b>Books</b> sets which books the saga draws on; <b>Optional rules</b> turns supplement systems on or off; <b>Creation rules &amp; rulings</b> holds the troupe&apos;s numbers and exceptions. Changes apply to every character in the saga.</Hint>
       <Tabs
         tabs={[
           { id: 'saga', label: 'Saga' },

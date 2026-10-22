@@ -37,7 +37,7 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
     });
   const xpPoints = (id: string) => (c.abilities.find((a) => a.abilityId === id && !a.param)?.xp['pool:mastery'] ?? 0) / 5;
   return (
-    <Card title="Supernatural powers" className="accent">
+    <Card title="Supernatural powers" className="accent" tour="powers">
       <p className="small muted" style={{ marginTop: 0 }}>
         Each power is designed like a Hermetic spell.{' '}
         {mightBased
