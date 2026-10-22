@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useTabParam } from '../useTabParam';
-import { BASE_COVENANTS, POWER_LEVELS, type CovFix } from '../../engine/covenant';
+import { BASE_COVENANTS, POWER_LEVELS, applyBaseCovenant, type CovFix } from '../../engine/covenant';
 import type { Covenant } from '../../engine/types';
 import { exportCovenant, useStore } from '../../store/store';
 import { useDerivedCovenant, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
@@ -138,20 +138,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
   const applyBase = (k: keyof typeof BASE_COVENANTS) => {
     const b = BASE_COVENANTS[k];
     if (!window.confirm(`Apply the DE "${k}" covenant package? This sets Build Points to ${b.buildPoints} and adds its generic library, lab texts and vis (subjects to be chosen).`)) return;
-    update((x) => {
-      x.buildPoints = b.buildPoints;
-      x.powerLevel = b.power;
-      for (const bk of b.library) {
-        const isAbility = bk.kind === 'abilitySumma';
-        x.library.push({
-          uid: uid(), title: `${isAbility ? 'Ability summa' : bk.kind === 'summa' ? 'Art summa' : 'Tractatus'} (choose subject)`, kind: isAbility ? 'summa' : (bk.kind as 'summa' | 'tractatus'),
-          subjectType: isAbility ? 'ability' : 'art', subject: isAbility ? '' : 'Cr', level: 'level' in bk ? (bk.level as number) : 0, quality: bk.quality, language: 'Latin',
-        });
-      }
-      if (b.labTextLevels) x.library.push({ uid: uid(), title: `Lab texts (${b.labTextLevels} levels, max ${b.maxLabText === Infinity ? 'any' : b.maxLabText})`, kind: 'labText', subjectType: 'other', subject: 'various', level: b.labTextLevels, quality: 0, language: 'Latin', collectionMax: b.maxLabText === Infinity ? undefined : b.maxLabText });
-      if (b.visPerYear) x.visSources.push({ uid: uid(), name: 'Vis sources (to detail)', art: 'Vi', pawnsPerYear: b.visPerYear });
-      if (b.visStock) x.visStocks.push({ art: 'Vi', pawns: b.visStock });
-    });
+    update((x) => applyBaseCovenant(x, k));
   };
   return (
     <div className="stack">
@@ -274,7 +261,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
           </HowItWorks>
         </Card>
       </div>
-      <Card title="Members" tour="covenant-members">
+      <Card title="Members" tour="covenant-members" actions={<Link className="small" to={`/saga/${cov.sagaId}/build?tab=covenant`}>Fill out its people ›</Link>}>
         {chars.length === 0 && <div className="small muted">No characters in this saga yet.</div>}
         <div className="grid grid-3">
           {chars.map((c) => {

@@ -1,7 +1,8 @@
 // The guided tutorials on the Guide page. Each is a list of steps; a step says where it happens
 // (the panel offers to go there, and Next goes there itself), which control to point at (a
 // data-tour name, the first found on the page), and, in the character wizard, which step to open.
-// Steps only show and explain: anything made along the way is made by the player's own clicks.
+// Steps explain, and the player does the clicking; a step can also offer to do the work (build a
+// whole draft, apply a package), or to step into another tutorial and come back.
 
 import type { CharType } from '../../data';
 import { useStore } from '../../store/store';
@@ -24,9 +25,15 @@ export interface TourStep {
   target?: string | string[];
   /** the character wizard step to open */
   wizard?: string;
+  /** what the toolkit can do here for the player (see actions.ts); each can be undone */
+  actions?: { id: TourActionId; label: string }[];
+  /** another tutorial to step into here, coming back to this one when it ends */
+  detour?: { tour: string; label: string };
 }
 
-export type TourGroup = 'Start here' | 'The saga and covenant' | 'Characters' | 'Magic' | 'In play';
+export type TourActionId = 'buildDraft' | 'basePackage' | 'standardLabs';
+
+export type TourGroup = 'Start here' | 'The saga and covenant' | 'Characters' | 'Magic' | 'In play' | 'Storyguide';
 
 export interface Tour {
   id: string;
@@ -41,6 +48,8 @@ export interface Tour {
   makesCharacter?: boolean;
   /** the kind of character to follow when none is open, for a tour about any character */
   prefers?: CharType;
+  /** follows a character still in creation (the newest draft when none is open) */
+  wantsDraft?: boolean;
   steps: TourStep[];
 }
 
@@ -50,6 +59,17 @@ const wizard = (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/charac
 const sheet = (tab: string) => (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}?tab=${tab}` : undefined);
 const covenant = (tab: string) => (c: TourCtx) => (c.sagaId && c.covId ? `/saga/${c.sagaId}/covenant/${c.covId}?tab=${tab}` : undefined);
 const page = (path: string) => () => path;
+const guided = (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}/guided` : undefined);
+const guidedTab = (tab: string) => (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}/guided?tab=${tab}` : undefined);
+
+// the Concept step of every character tour: the guided build to step into, or a whole draft made at once
+const concept = (body: string, target: string[] = ['guided-build', 'step-basics']): TourStep => ({
+  title: 'Concept',
+  body: `${body} Short of time? **Build the whole character for me** makes a complete, legal draft from the themes you picked, and every choice says why.`,
+  at: wizard, needs: 'character', wizard: 'basics', target,
+  actions: [{ id: 'buildDraft', label: 'Build the whole character for me' }],
+  detour: { tour: 'guided', label: 'Walk me through the guided build' },
+});
 
 // the wizard steps every kind of character shares, closing each character tour
 const finishing: TourStep[] = [
@@ -123,7 +143,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'More tutorials',
-        body: 'Each of the big jobs has its own tutorial: starting a saga, founding the covenant, making a magus, companion or grog, designing spells and powers, building a laboratory and playing a season.',
+        body: 'Each of the big jobs has its own tutorial: starting a saga, founding the covenant, making a magus, companion or grog, the guided build, designing spells and powers, building a laboratory, playing a season, and Quick build for whole characters, covenfolk and creatures.',
         at: page('/help'), target: 'tutorials',
       },
     ],
@@ -183,6 +203,7 @@ export const TOURS: Tour[] = [
         title: 'Its season and Build Points',
         body: 'Name it and choose its season (Spring, Summer, Autumn or Winter). A **base package** (Weak, Medium or Powerful) sets the Build Points and fills in a library, lab texts and vis to start from.',
         at: covenant('overview'), needs: 'covenant', target: ['covenant-base', 'covenant-basics'],
+        actions: [{ id: 'basePackage', label: 'Use the Medium package for me' }],
       },
       {
         title: 'Spending Build Points',
@@ -227,14 +248,10 @@ export const TOURS: Tour[] = [
     steps: [
       {
         title: 'Create the magus',
-        body: 'Under **Create a character**, press **Magus**. The wizard opens, and the tutorial follows the new character.',
+        body: 'Under **Create a character**, press **Magus**. The wizard opens, and the tutorial follows the new character. (For an NPC, **Quick build** makes one whole.)',
         at: saga, needs: 'saga', target: 'create-magus',
       },
-      {
-        title: 'Concept',
-        body: 'Name, player, age and the idea of the character. Not sure what to play? The **guided build** asks what you want from the character and suggests a House, Virtues and Abilities, or builds a whole draft to adjust.',
-        at: wizard, needs: 'character', wizard: 'basics', target: ['guided-build', 'step-basics'],
-      },
+      concept('Name, player, age and the idea of the character, and one to three themes (Warrior, Scholar, Healer…). Not sure what to play? The **guided build** asks what you want from the character and suggests a House, Virtues and Abilities.'),
       {
         title: 'House',
         body: 'Choose a House of Hermes. Each brings a Virtue or rule of its own, and the card says what it gives and asks of a magus.',
@@ -287,11 +304,7 @@ export const TOURS: Tour[] = [
         body: 'Under **Create a character**, press **Companion**. The tutorial follows the new character.',
         at: saga, needs: 'saga', target: 'create-companion',
       },
-      {
-        title: 'Concept',
-        body: 'Name, player, age and the idea of the character. The **guided build** can suggest Virtues and Abilities from what you want, or build a draft.',
-        at: wizard, needs: 'character', wizard: 'basics', target: ['guided-build', 'step-basics'],
-      },
+      concept('Name, player, age and the idea of the character, and one to three themes. The **guided build** can suggest Virtues and Abilities from what you want.'),
       {
         title: 'Virtues & Flaws',
         body: 'Every character takes one Social Status (Covenfolk and Wanderer are free). Flaws pay for Virtues point for point; a Story Flaw draws the character into the saga’s stories. Supernatural Virtues bring powers and Abilities of their own.',
@@ -324,11 +337,7 @@ export const TOURS: Tour[] = [
         body: 'Under **Create a character**, press **Grog**. The tutorial follows the new character.',
         at: saga, needs: 'saga', target: 'create-grog',
       },
-      {
-        title: 'Concept',
-        body: 'A name and a job is enough: guard, cook, groom, scout.',
-        at: wizard, needs: 'character', wizard: 'basics', target: 'step-basics',
-      },
+      concept('A name and a job is enough: guard, cook, groom, scout. Pick a theme such as Warrior or Craftsman.', ['concept-themes', 'step-basics']),
       {
         title: 'Virtues & Flaws',
         body: 'Grogs take Minor Virtues and Flaws only, a few points of each (the Rules check shows the troupe’s limit). Covenfolk is the usual Social Status.',
@@ -340,6 +349,57 @@ export const TOURS: Tour[] = [
         at: wizard, needs: 'character', wizard: 'abilities', target: ['xp-pools', 'step-abilities'],
       },
       ...finishing,
+    ],
+  },
+  {
+    id: 'guided',
+    title: 'Use the guided build',
+    blurb: 'Rate what you want from a character and let the toolkit suggest, or build, the rest: themes, questions, recommendations and the finished draft.',
+    group: 'Characters',
+    inSaga: true,
+    wantsDraft: true,
+    steps: [
+      {
+        title: 'Themes first',
+        body: 'On the Concept step, pick one to three themes (Warrior, Scholar, Healer, Faerie-touched…). Each answers some of the guided build’s questions for you, so there are fewer to go through.',
+        at: wizard, needs: 'character', wizard: 'basics', target: ['concept-themes', 'step-basics'],
+      },
+      {
+        title: 'Start it',
+        body: 'Press **Start the guided build**. Nothing on the character changes until you build the draft or take an option, and the normal steps stay open the whole time.',
+        at: wizard, needs: 'character', wizard: 'basics', target: 'guided-build',
+      },
+      {
+        title: 'The questions',
+        body: 'Rate each statement from 0 (not at all) to 10 (very much); one you skip counts as 5. An answer of 7 or more, or 3 or less, opens follow-up questions about it. **?** explains a statement, and the numbers after a question show what its best options give. A magus can name a House here, or leave it to the build.',
+        at: guidedTab('questions'), needs: 'character', target: ['guided-main', 'tab-questions'],
+      },
+      {
+        title: 'The shortlist',
+        body: 'Beside the questions, the shortlist shows the Virtues and Flaws that fit your answers best, and changes as you answer. **Taken so far** lists what the character already has. If several kinds of option score alike, a **Tie-breaker** card asks which matters more.',
+        at: guidedTab('questions'), needs: 'character', target: ['guided-shortlist', 'guided-taken'],
+      },
+      {
+        title: 'Recommendations',
+        body: 'Every option that fits, with why and the page. **Take** one now (Major or Minor where it can be either), or **Not for me** to stop it being suggested.',
+        at: guidedTab('results'), needs: 'character', target: 'tab-results',
+      },
+      {
+        title: 'Browse by tag',
+        body: 'Every Virtue and Flaw grouped by what it does (Penetration, Soak, study, wealth…): a way to find options without the questions.',
+        at: guidedTab('browse'), needs: 'character', target: 'tab-browse',
+      },
+      {
+        title: 'Build the draft',
+        body: '**Build the draft…** makes the whole character from your answers: House, Virtues and Flaws, Characteristics, Abilities, Arts and spells, balanced and checked against the rules. The preview lists each choice with its reason; **Use this draft** applies it, and Undo takes it back.',
+        at: guided, needs: 'character', target: 'guided-draft',
+        actions: [{ id: 'buildDraft', label: 'Build and use the draft for me' }],
+      },
+      {
+        title: 'Why each choice',
+        body: 'Back in the wizard, the Review step lists every choice the draft made and why. Change anything on its own step; the Rules check keeps up with you.',
+        at: wizard, needs: 'character', wizard: 'review', target: ['why-card', 'step-review'],
+      },
     ],
   },
   {
@@ -419,6 +479,7 @@ export const TOURS: Tour[] = [
         title: 'A lab for each magus',
         body: 'Each member magus gets a standard laboratory free. **+ Standard lab for each magus** makes them all at once; **+ Laboratory** adds a spare.',
         at: covenant('labs'), needs: 'covenant', target: ['labs-standard', 'labs'],
+        actions: [{ id: 'standardLabs', label: 'Give each magus a standard lab' }],
       },
       {
         title: 'Size, Refinement and owner',
@@ -439,6 +500,45 @@ export const TOURS: Tour[] = [
         title: 'Enchantments',
         body: 'The Enchantments page designs enchanted devices and talismans, Longevity Rituals and vis extraction, and copies books and lab texts, all from the magus’s Lab Totals.',
         at: sagaPage('enchant'), needs: 'saga', target: 'tab-items',
+      },
+    ],
+  },
+  {
+    id: 'quick',
+    title: 'Quick build: characters, covenfolk and creatures',
+    blurb: 'Let the toolkit make whole characters, fill out the covenant’s people, and roll creatures from the books’ bestiaries.',
+    group: 'Storyguide',
+    inSaga: true,
+    steps: [
+      {
+        title: 'Quick build',
+        body: 'The toolkit can do the heavy lifting: whole characters for players to adjust or as your NPCs, the people a covenant needs, and creatures to meet. Choose what matters and leave the rest to chance.',
+        at: sagaPage('build?tab=characters'), needs: 'saga', target: ['nav-build', 'quick-characters'],
+      },
+      {
+        title: 'Characters',
+        body: 'Pick the kind (grog, companion, magus or Mythic Companion) and a role, or leave the role to chance. **For** decides whether you get a finished NPC or a draft for a player; **Variety** how much is left to chance. A magus in the Rhine, Thebes or Transylvania gets that Tribunal’s rank, citizenship or privilege when its customs are on, and craftsmen a guild rank.',
+        at: sagaPage('build?tab=characters'), needs: 'saga', target: 'quick-characters',
+      },
+      {
+        title: 'Keep the ones you like',
+        body: 'Each result shows its Virtues and Flaws, best Abilities and traits, and **How it was built**. **Keep** adds it to the saga (NPCs are listed apart in the sidebar), **↻** rolls that one again, and Undo takes back anything kept.',
+        at: sagaPage('build?tab=characters'), needs: 'saga', target: 'quick-characters',
+      },
+      {
+        title: 'Fill out the covenant',
+        body: 'Staff (steward, chamberlain, turb captain, scribe), a teacher, the craftsmen who save the covenant money, grogs for the turb as full characters, and the servants, teamsters and laborers it needs. **Show me** previews it all with the Build Points it costs; nothing changes until you add it.',
+        at: sagaPage('build?tab=covenant'), needs: 'saga', target: 'quick-covenant',
+      },
+      {
+        title: 'Creatures and encounters',
+        body: 'Over four hundred creatures from the stat blocks of the core book and the supplements. Narrow by Realm, Might and name, then **Roll one**, or pick from the matches. Each opens with its full stat block and a link to its page.',
+        at: sagaPage('build?tab=creatures'), needs: 'saga', target: 'quick-creatures',
+      },
+      {
+        title: 'The cast',
+        body: 'Creatures you mean to use go in **the storyguide’s cast**, with how many and your notes, ready for the next story.',
+        at: sagaPage('build?tab=creatures'), needs: 'saga', target: 'quick-cast',
       },
     ],
   },
@@ -479,6 +579,9 @@ export const TOURS: Tour[] = [
 ];
 
 export const TOUR_BY_ID = new Map(TOURS.map((t) => [t.id, t]));
+
+/** Pages with a tutorial of their own: a tutorial that reaches one offers to step into it. */
+export const DETOUR_OFFERS: { match: RegExp; tour: string; label: string }[] = [{ match: /^\/saga\/[^/]+\/character\/[^/]+\/guided/, tour: 'guided', label: 'Walk me through the guided build' }];
 
 /** Start a tutorial, in the saga open now if there is one. */
 export function startTour(id: string) {

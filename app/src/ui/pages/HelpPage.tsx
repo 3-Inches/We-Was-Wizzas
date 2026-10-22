@@ -77,7 +77,7 @@ const LEARN: { to: string; title: string; text: string }[] = [
   { to: '/mechanics/order', title: 'The Order of Hermes', text: 'The Code, Tribunals, Wizards’ War and the rules of each House.' },
 ];
 
-const GROUPS: TourGroup[] = ['Start here', 'The saga and covenant', 'Characters', 'Magic', 'In play'];
+const GROUPS: TourGroup[] = ['Start here', 'The saga and covenant', 'Characters', 'Magic', 'In play', 'Storyguide'];
 
 /** The guided tutorials, and the hints setting for those who want less help or more. */
 function Tutorials() {
@@ -167,7 +167,8 @@ export default function HelpPage() {
         </Step>
         <Step n={4} title="Make the characters">
           Pick grog, companion, Mythic Companion or magus. The wizard walks through every step, shows each budget and checks the rules with page references. Not sure what to
-          play? <b>Guided build</b> on the Concept step suggests Virtues and Abilities from what you want, or builds a whole draft.
+          play? <b>Guided build</b> on the Concept step suggests Virtues and Abilities from what you want, or builds a whole draft. For grogs and NPCs in a hurry,{' '}
+          <b>Quick build</b> (under Tools) makes whole characters, fills out the covenant&apos;s people and rolls creatures from the bestiaries.
         </Step>
         <Step n={5} title="Play">
           Finish creation to switch to the in-play sheet: casting, labs, seasons, wounds and aging. Click any underlined number to see how it was worked out.

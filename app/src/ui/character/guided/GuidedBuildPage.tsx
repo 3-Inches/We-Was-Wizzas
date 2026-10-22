@@ -4,7 +4,7 @@ import { HOUSES } from '../../../data/houses';
 import { ART_NAMES, BOOK_BY_ID, type Art, type GameData } from '../../../data';
 import { addVirtue, removeVirtue } from '../../../engine/character/factory';
 import { deriveCharacter } from '../../../engine/character/derive';
-import { autoBuild, type BuildResult } from '../../../engine/guided/autobuild';
+import { autoBuild, resetChoices, type BuildResult } from '../../../engine/guided/autobuild';
 import { CARDS } from '../../../engine/guided/cards';
 import { SECTIONS, type Question } from '../../../engine/guided/questions';
 import {
@@ -17,6 +17,7 @@ import type { Character } from '../../../engine/types';
 import { visibleSteps } from '../wizardSteps';
 import { BookBadge, Card, Empty, Modal, Tabs } from '../../kit';
 import { useCharEditor } from '../useChar';
+import { useTabParam } from '../../useTabParam';
 
 type Tab = 'questions' | 'results' | 'browse';
 
@@ -25,7 +26,7 @@ const EMPTY: GuidedState = { answers: {}, declined: [] };
 export default function GuidedBuildPage() {
   const ed = useCharEditor();
   const nav = useNavigate();
-  const [tab, setTab] = useState<Tab>('questions');
+  const [tab, setTab] = useTabParam<Tab>('questions');
   const [draft, setDraft] = useState<{ c: Character; res: BuildResult; fresh: boolean } | null>(null);
   const [fresh, setFresh] = useState(true);
   const { c, d, data, saga } = ed;
@@ -78,7 +79,7 @@ export default function GuidedBuildPage() {
         <button className="ghost" disabled={!answered} onClick={() => setState((s) => void ((s.answers = {}), (s.declined = []), delete s.house))}>
           Clear answers
         </button>
-        <button className="primary" onClick={preview}>
+        <button className="primary" onClick={preview} data-tour="guided-draft">
           Build the draft…
         </button>
       </div>
@@ -97,7 +98,7 @@ export default function GuidedBuildPage() {
         onChange={setTab}
       />
       <div className={`grid${tab === 'browse' ? '' : ' with-side wide-side'}`} style={{ marginTop: 10 }}>
-        <div className="stack">
+        <div className="stack" data-tour="guided-main">
           {tab === 'questions' && <QuestionList vis={vis} ev={ev} st={st} ctx={ctx} setAnswer={setAnswer} setHouse={(h) => setState((s) => void (h ? (s.house = h) : delete s.house))} />}
           {tab === 'results' && <Results ev={ev} st={st} ctx={ctx} ed={ed} setState={setState} setAnswer={setAnswer} />}
           {tab === 'browse' && <BrowseByTag ev={ev} ctx={ctx} />}
@@ -136,19 +137,6 @@ export default function GuidedBuildPage() {
       )}
     </div>
   );
-}
-
-/** Clear the choices the draft makes, keeping who the character is. */
-function resetChoices(c: Character) {
-  c.virtues = c.virtues.filter((v) => ['the-gift', 'hermetic-magus'].includes(v.defId) || (c.type === 'grog' && v.defId === 'covenfolk'));
-  if (c.type === 'magus') c.house = undefined;
-  c.abilities = c.abilities.filter((a) => a.native);
-  for (const k of Object.keys(c.arts)) c.arts[k as keyof Character['arts']] = {};
-  c.spells = [];
-  for (const k of Object.keys(c.characteristics)) c.characteristics[k as keyof Character['characteristics']] = 0;
-  c.personality = c.personality.filter((p) => c.type === 'grog' && p.trait === 'Loyal');
-  c.creation.childhoodPackage = undefined;
-  c.creation.guidedWhy = {};
 }
 
 // ------------------------------------------------------------------ bubbles
@@ -290,7 +278,7 @@ function TakenCard(props: { d: NonNullable<ReturnType<typeof deriveCharacter>>; 
   const taken = d.virtues.filter((v) => v.def);
   const t = d.tally;
   return (
-    <Card title={`Taken so far (${taken.length})`}>
+    <Card title={`Taken so far (${taken.length})`} tour="guided-taken">
       <div className="small muted" style={{ marginBottom: 4 }}>
         Virtue points {t.virtuePoints} · Flaw points {t.flawPoints}
       </div>
@@ -347,7 +335,7 @@ function Shortlist(props: { ev: Evaluation; ctx: GuidedContext; st: GuidedState 
   );
   return (
     <div className="stack sticky-side">
-      <Card title="Shortlist">
+      <Card title="Shortlist" tour="guided-shortlist">
         {neutral && <p className="small muted">Nothing rated yet: these are broadly useful for this character.</p>}
         {props.st.house && !ctx.c.house && (
           <>

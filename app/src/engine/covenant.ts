@@ -4,11 +4,12 @@ import type { Art, GameData } from '../data';
 import { ARTS, ART_NAMES } from '../data/constants';
 import type { Character, Covenant, LibraryBook, Specialist, VisSource } from './types';
 import {
-  CATEGORY_LIMIT, abilityCapAtAge, canBeUnknown, computeIncome, computePools, countOf, craftOf, craftsmanSaving, findCraft, mechanicOf, miracleMultiplierOf,
+  CATEGORY_LIMIT, CRAFTS, abilityCapAtAge, canBeUnknown, computeIncome, computePools, countOf, craftOf, craftsmanSaving, findCraft, mechanicOf, miracleMultiplierOf,
   receivedAfterTithe, specChar, specHighest, specialistCost, type BPPool, type CostCategory, type CovResource, type CraftDef, type IncomeLine, type IncomeResult,
 } from './covenantRules';
 import { deriveLab, type DerivedLab } from './lab';
 import { abilityScoreFromXp } from './xp';
+import { uid as newUid } from '../util/id';
 
 export const POWER_LEVELS = [
   { level: 'Low', min: 0, max: 300, maxItemLevel: 25, minAge: 0 },
@@ -493,6 +494,26 @@ export function optimalCraftsmen(cov: Covenant, members: Character[], labs: Deri
   return best;
 }
 
+/** The youngest of the age brackets that allows a starting score (DE p.48): 20, 30, 36, 41 or 46. */
+export function ageForScore(score: number): number {
+  return [20, 30, 36, 41, 46].find((a) => abilityCapAtAge(a) >= score) ?? 46;
+}
+
+/** Add each cost-saving craft the covenant lacks (Covenants ch.5), at the number of craftsmen that saves most. */
+export function addCostSavingCraftsmen(x: Covenant, members: Character[], labs: DerivedLab[], score: number, bought: boolean): string[] {
+  const added: string[] = [];
+  for (const craft of CRAFTS) {
+    if (!craft.categories.length || x.specialists.some((s) => craftOf(s)?.id === craft.id)) continue;
+    const s: Specialist = { uid: newUid(), name: craft.name, role: 'craftsman', ability: `Craft (${craft.name})`, craft: craft.id, score, count: 1, rare: craft.rare, free: !bought, age: ageForScore(score) };
+    x.specialists.push(s);
+    s.count = optimalCraftsmen(x, members, labs, s.uid);
+    if (s.count) added.push(`${s.count} ${craft.name.toLowerCase()}${s.count > 1 ? 's' : ''}`);
+  }
+  x.specialists = x.specialists.filter((s) => !(s.role === 'craftsman' && s.count === 0));
+  fitCovenfolk(x, members, labs);
+  return added;
+}
+
 function round1(n: number) {
   return Math.round(n * 10) / 10;
 }
@@ -594,6 +615,23 @@ export const BASE_COVENANTS = {
     labTextLevels: 2500, maxLabText: Infinity, visPerYear: 50, visStock: 250, itemLevels: 500,
   },
 };
+
+/** Apply a DE base package: its Build Points and power level, a generic library, lab texts and vis (subjects to be chosen). */
+export function applyBaseCovenant(x: Covenant, k: keyof typeof BASE_COVENANTS): void {
+  const b = BASE_COVENANTS[k];
+  x.buildPoints = b.buildPoints;
+  x.powerLevel = b.power;
+  for (const bk of b.library) {
+    const isAbility = bk.kind === 'abilitySumma';
+    x.library.push({
+      uid: newUid(), title: `${isAbility ? 'Ability summa' : bk.kind === 'summa' ? 'Art summa' : 'Tractatus'} (choose subject)`, kind: isAbility ? 'summa' : (bk.kind as 'summa' | 'tractatus'),
+      subjectType: isAbility ? 'ability' : 'art', subject: isAbility ? '' : 'Cr', level: 'level' in bk ? (bk.level as number) : 0, quality: bk.quality, language: 'Latin',
+    });
+  }
+  if (b.labTextLevels) x.library.push({ uid: newUid(), title: `Lab texts (${b.labTextLevels} levels, max ${b.maxLabText === Infinity ? 'any' : b.maxLabText})`, kind: 'labText', subjectType: 'other', subject: 'various', level: b.labTextLevels, quality: 0, language: 'Latin', collectionMax: b.maxLabText === Infinity ? undefined : b.maxLabText });
+  if (b.visPerYear) x.visSources.push({ uid: newUid(), name: 'Vis sources (to detail)', art: 'Vi', pawnsPerYear: b.visPerYear });
+  if (b.visStock) x.visStocks.push({ art: 'Vi', pawns: b.visStock });
+}
 
 /** Covenant situations (DE p.177): packages of Hooks and Boons. */
 export const SITUATIONS: Record<string, { hooks: [string, 'Major' | 'Minor', number?][]; boons: [string, 'Major' | 'Minor', number?][] }> = {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fitCovenfolk, optimalCraftsmen, optimalLaborers, type CraftLine } from '../../engine/covenant';
+import { addCostSavingCraftsmen, fitCovenfolk, optimalCraftsmen, optimalLaborers, type CraftLine } from '../../engine/covenant';
 import {
   CATEGORY_LIMIT, CRAFTS, INCOME_LEVELS, INCOME_LEVEL_POUNDS, INCOME_MODIFICATIONS, INCOME_TYPES, abilityCapAtAge, countOf, craftOf, craftsmanSaving,
   mechanicOf, miracleMultiplierOf, specAbilities, specChar, specHighest, specialistCost, teacherQuality, type CostCategory,
@@ -55,17 +55,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
 
   const optimalLab = () => optimalLaborers(cov, dc.members, dc.labs);
   /** every cost-saving craft the covenant lacks, at the number that saves most */
-  const addEveryCraft = () =>
-    update((x) => {
-      for (const craft of CRAFTS) {
-        if (!craft.categories.length || x.specialists.some((s) => craftOf(s)?.id === craft.id)) continue;
-        const s: Specialist = { uid: uid(), name: craft.name, role: 'craftsman', ability: `Craft (${craft.name})`, craft: craft.id, score: newScore, count: 1, rare: craft.rare, free: !newBought, age: ageFor(newScore) };
-        x.specialists.push(s);
-        s.count = optimalCraftsmen(x, dc.members, dc.labs, s.uid);
-      }
-      x.specialists = x.specialists.filter((s) => !(s.role === 'craftsman' && s.count === 0));
-      fitCovenfolk(x, dc.members, dc.labs);
-    });
+  const addEveryCraft = () => update((x) => void addCostSavingCraftsmen(x, dc.members, dc.labs, newScore, newBought));
 
   return (
     <div className="stack">
@@ -337,11 +327,6 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
       </Card>
     </div>
   );
-}
-
-/** The youngest age bracket that allows a score. */
-function ageFor(score: number): number {
-  return AGES.find((a) => abilityCapAtAge(a) >= score) ?? 46;
 }
 
 function useSet(update: CovTabProps['update'], uidOf: string) {

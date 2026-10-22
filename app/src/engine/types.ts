@@ -95,6 +95,19 @@ export interface Saga {
   economy?: { visPrice: number };
   /** optional rules turned on or off by the troupe (see engine/optional.ts); missing ones use their default */
   options?: Record<string, boolean>;
+  /** the storyguide's cast: creatures from the books' bestiaries kept to hand (Quick build → Creatures) */
+  cast?: CastMember[];
+}
+
+/** A creature the storyguide keeps to hand: one from the bestiary (data/bestiary.ts), with their own notes. */
+export interface CastMember {
+  uid: string;
+  /** the bestiary entry */
+  creatureId: string;
+  name: string;
+  /** how many (a pack of wolves) */
+  count: number;
+  notes: string;
 }
 
 export type Season = 'Spring' | 'Summer' | 'Autumn' | 'Winter';
@@ -656,6 +669,8 @@ export interface Character {
   apparentAge?: number;
   /** the guided build's answers (Concept step → Guided build) */
   guided?: GuidedState;
+  /** a storyguide's character (made by the generator as an NPC, or marked so): listed apart from the players' */
+  npc?: boolean;
   /** supernatural powers bought with the levels of Greater/Lesser/Personal/Ritual Power, Heroes' Birthright */
   powers?: CharPower[];
   /** True Faith score and Faith Points, once play changes them (the Virtue starts at 1 and 1) */

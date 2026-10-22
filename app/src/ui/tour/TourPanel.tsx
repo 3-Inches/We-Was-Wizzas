@@ -7,7 +7,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useStore, type TourState } from '../../store/store';
 import { Markdown } from '../kit';
 import { visibleSteps } from '../character/wizardSteps';
-import { TOUR_BY_ID, type Tour, type TourCtx, type TourStep } from './tours';
+import { DETOUR_OFFERS, TOUR_BY_ID, type Tour, type TourCtx, type TourStep } from './tours';
+import { ACTIONS } from './actions';
 
 /** Scroll an element into the room above the panel: centred there, or from its top if too tall. */
 function showAbovePanel(el: HTMLElement) {
@@ -44,7 +45,12 @@ function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: stri
     // finished character (or any) when none is open
     const made = newest(inSaga.filter((c) => c.createdAt >= t.startedAt));
     const finished = inSaga.filter((c) => c.creation.finalized);
-    const fallback = tour.makesCharacter ? made : made ?? newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga);
+    const drafts = inSaga.filter((c) => !c.creation.finalized);
+    const fallback = tour.makesCharacter
+      ? made
+      : tour.wantsDraft
+        ? (made ?? newest(drafts))
+        : (made ?? newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga));
     const charId = fits(t.charId) ? t.charId : m?.[2] === 'character' && fits(m[3]) ? m[3] : fallback?.id;
     const covs = Object.values(covenants).filter((c) => c.sagaId === sagaId);
     const covId = t.covId && covenants[t.covId]?.sagaId === sagaId ? t.covId : m?.[2] === 'covenant' && covenants[m[3]] ? m[3] : newest(covs)?.id;
@@ -124,6 +130,26 @@ export default function TourPanel() {
   const last = i === tour.steps.length - 1;
   const goTo = (n: number) => setTour({ ...t, step: n, minimized: false });
   const end = () => setTour(undefined);
+  // step into another tutorial here, and come back to this step's successor when it ends
+  const detour = (id: string) =>
+    setTour({ id, step: 0, sagaId: ctx.sagaId, charId: ctx.charId, covId: ctx.covId, startedAt: new Date().toISOString(), returnTo: { id: t.id, step: i, startedAt: t.startedAt, charId: ctx.charId, covId: ctx.covId } });
+  const parent = t.returnTo ? TOUR_BY_ID.get(t.returnTo.id) : undefined;
+  const goBack = () => {
+    const r = t.returnTo!;
+    // a character built in the meantime goes straight to the parent's review step
+    const ch = r.charId ? useStore.getState().characters[r.charId] : undefined;
+    const review = parent!.steps.findIndex((x) => x.wizard === 'review');
+    const built = ch && review >= 0 && ch.creation.step === visibleSteps(ch.type).findIndex((x) => x.id === 'review');
+    setTour({ id: r.id, step: built ? review : Math.min(r.step + 1, parent!.steps.length - 1), sagaId: ctx.sagaId, charId: r.charId ?? ctx.charId, covId: r.covId ?? ctx.covId, startedAt: r.startedAt });
+  };
+  const run = (id: keyof typeof ACTIONS) => {
+    const res = ACTIONS[id](ctx);
+    if (!res) return;
+    useStore.getState().setNotice(res.notice);
+    const to = res.goto ? tour.steps.findIndex((x) => x.title === res.goto) : -1;
+    goTo(to >= 0 ? to : Math.min(i + 1, tour.steps.length - 1));
+  };
+  const offer = !step.detour ? DETOUR_OFFERS.find((o) => o.tour !== t.id && o.match.test(loc.pathname)) : undefined;
   const practice = () => {
     const s = createSaga('Practice saga');
     setTour({ ...t, sagaId: s.id, charId: undefined, covId: undefined });
@@ -134,17 +160,37 @@ export default function TourPanel() {
   if (minimized)
     return (
       <button className="tour-pill no-print" onClick={() => setTour({ ...t, minimized: false })} aria-label="Show the tutorial">
-        {tour.title} · {i + 1}/{tour.steps.length} ▴
+        <span className="tour-name">{tour.title} · </span>
+        {i + 1}/{tour.steps.length} ▴
       </button>
     );
 
   const missing = !dest && step.needs;
+  const needsWork = (missing && i > 0) || (dest && !onPage) || step.actions?.length || step.detour || offer;
   return (
     <aside className="tour-panel no-print" aria-label={`Tutorial: ${tour.title}`} aria-live="polite">
+      {/* one row for where you are and the buttons, so the panel stays short on a phone */}
       <div className="tour-head">
-        <span className="small muted" style={{ flex: 1 }}>
-          {tour.title} · {i + 1} of {tour.steps.length}
+        <span className="small muted tour-count">
+          <span className="tour-name">{tour.title} · </span>
+          {i + 1} of {tour.steps.length}
         </span>
+        <button className="small" onClick={() => goTo(i - 1)} disabled={i === 0} aria-label="Back" title="Back">
+          ‹
+        </button>
+        {!last ? (
+          <button className="small primary" onClick={() => goTo(i + 1)}>
+            Next ›
+          </button>
+        ) : parent ? (
+          <button className="small primary" onClick={goBack} title={`Back to ${parent.title}`}>
+            Back to it ›
+          </button>
+        ) : (
+          <button className="small primary" onClick={end}>
+            Finish
+          </button>
+        )}
         <button className="small ghost" onClick={() => setTour({ ...t, minimized: true })} title="Shrink the tutorial" aria-label="Shrink the tutorial">
           ▾
         </button>
@@ -154,7 +200,7 @@ export default function TourPanel() {
       </div>
       <h4>{step.title}</h4>
       <Markdown text={step.body} />
-      {tour.inSaga && i === 0 && (
+      {tour.inSaga && i === 0 && !t.returnTo && (
         <p className="small muted">
           {ctx.sagaId ? (
             <>
@@ -174,33 +220,39 @@ export default function TourPanel() {
           )}
         </p>
       )}
-      {missing && i > 0 && <p className="small warn-text">{MISSING[step.needs!]}</p>}
-      {dest && !onPage && (
-        <button className="small" onClick={() => nav(dest)}>
-          Take me there
-        </button>
+      {parent && last && <p className="small muted">This was a side trip from {parent.title}; the button above goes back to it.</p>}
+      {needsWork && (
+        <div className="row tight" style={{ marginTop: 6 }}>
+          {missing && i > 0 && <span className="small warn-text">{MISSING[step.needs!]}</span>}
+          {dest && !onPage && (
+            <button className="small" onClick={() => nav(dest)}>
+              Take me there
+            </button>
+          )}
+          {step.actions?.map((a) => (
+            <button key={a.id} className="small" onClick={() => run(a.id)} disabled={!dest && !!step.needs} title="The toolkit does this step for you; Undo takes it back">
+              {a.label}
+            </button>
+          ))}
+          {step.detour && (
+            <button className="small ghost" onClick={() => detour(step.detour!.tour)}>
+              {step.detour.label} ›
+            </button>
+          )}
+          {offer && (
+            <button className="small ghost" onClick={() => detour(offer.tour)}>
+              {offer.label} ›
+            </button>
+          )}
+        </div>
       )}
-      <div className="row between" style={{ marginTop: 8 }}>
-        <button className="small" onClick={() => goTo(i - 1)} disabled={i === 0}>
-          ‹ Back
-        </button>
-        {last ? (
-          <button className="small primary" onClick={end}>
-            Finish
-          </button>
-        ) : (
-          <button className="small primary" onClick={() => goTo(i + 1)}>
-            Next ›
-          </button>
-        )}
-      </div>
     </aside>
   );
 }
 
 const MISSING: Record<NonNullable<TourStep['needs']>, string> = {
   saga: 'Open a saga first (or make a practice saga on the first step).',
-  character: 'Make the character first: go Back to the step that creates one.',
+  character: 'Open a character first: the saga page’s Create a character makes one.',
   covenant: 'Found the covenant first: the saga page has the button.',
 };
 
