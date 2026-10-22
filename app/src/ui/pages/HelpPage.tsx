@@ -120,7 +120,7 @@ export default function HelpPage() {
       <Card title="Learning the rules" id="learn">
         <p className="small" style={{ marginTop: 0 }}>
           Three references sit in the sidebar. <Link to="/mechanics">Game mechanics</Link> is the place to start: every rule players and storyguides use, from the core book and every
-          reviewed supplement, grouped by subject and ordered from the rules every session uses to the ones only a Virtue, House or initiation opens. Each has a short summary, the
+          reviewed supplement, grouped by subject and ordered from the rules every session uses to the ones only a Virtue, House or initiation opens. Big topics are split into sections: Abilities by type, each House Mystery, each Path of Criamon. Each has a short summary, the
           key rules quoted, and the book&apos;s own text a click away. Filter it for magi, companions, grogs or the storyguide.
         </p>
         <div className="grid grid-2" style={{ gap: 8 }}>
@@ -227,6 +227,11 @@ export default function HelpPage() {
             <b>Time:</b> the <b>Seasons</b> page in the sidebar moves the whole saga on: one season, to next Spring, or several years. Each character does what was logged on
             their sheet, or their standing activity (set on the Seasons page or the sheet). The year&apos;s end closes the covenants&apos; books, pays allowances, rolls aging
             and adds Warping; wards like the Aegis of the Hearth are recast from the covenant&apos;s vis. Undo is always one click away.
+          </li>
+          <li>
+            <b>Undo:</b> every change can be undone with <b>↶ Undo</b> in the sidebar (on a phone, in the bar at the top) or Ctrl+Z, and redone with <b>↷ Redo</b> or Ctrl+Y. A
+            ritual cast for the whole covenant is listed under <b>Recent casts</b> in <b>Magic on the covenant</b> (the covenant&apos;s Overview, or the Seasons page), where <b>Undo and give back</b> takes it off everyone and
+            returns the vis, Might, Confidence and Fatigue it cost.
           </li>
           <li>
             <b>Money:</b> the <b>Market &amp; treasury</b> page buys goods, services, labs, vis and Hermetic books at the book prices, brings in covenfolk and outside teachers,
