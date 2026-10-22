@@ -20,6 +20,7 @@ const HelpPage = lazy(() => import('./pages/HelpPage'));
 const MechanicsPage = lazy(() => import('./pages/MechanicsPage'));
 const SeasonsPage = lazy(() => import('./pages/SeasonsPage'));
 const MarketPage = lazy(() => import('./pages/MarketPage'));
+const QuickBuildPage = lazy(() => import('./pages/QuickBuildPage'));
 const TourPanel = lazy(() => import('./tour/TourPanel'));
 
 function applyTheme(theme: string, stream: boolean) {
@@ -95,6 +96,7 @@ export default function App() {
               <Route path="/saga/:sagaId/rules" element={<HouseRulesPage />} />
               <Route path="/saga/:sagaId/seasons" element={<SeasonsPage />} />
               <Route path="/saga/:sagaId/market" element={<MarketPage />} />
+              <Route path="/saga/:sagaId/build" element={<QuickBuildPage />} />
               <Route path="/dice" element={<DicePage />} />
               <Route path="/reference" element={<ReferencePage />} />
               <Route path="/reference/book/:bookId" element={<BookReader />} />
@@ -227,12 +229,30 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
                 ⌂ {c.name || 'Unnamed covenant'}
               </NavLink>
             ))}
-            {chars.map((c) => (
-              <NavLink key={c.id} to={`/saga/${saga.id}/character/${c.id}${c.creation.finalized ? '' : '/create'}`}>
-                {icon[c.type]} {c.name || '(unnamed)'} {!c.creation.finalized && <span className="badge">draft</span>}
-              </NavLink>
-            ))}
+            {chars
+              .filter((c) => !c.npc)
+              .map((c) => (
+                <NavLink key={c.id} to={`/saga/${saga.id}/character/${c.id}${c.creation.finalized ? '' : '/create'}`}>
+                  {icon[c.type]} {c.name || '(unnamed)'} {!c.creation.finalized && <span className="badge">draft</span>}
+                </NavLink>
+              ))}
+            {/* the storyguide's characters, folded away from the players' */}
+            {chars.some((c) => c.npc) && (
+              <details className="nav-npcs">
+                <summary>NPCs ({chars.filter((c) => c.npc).length})</summary>
+                {chars
+                  .filter((c) => c.npc)
+                  .map((c) => (
+                    <NavLink key={c.id} to={`/saga/${saga.id}/character/${c.id}${c.creation.finalized ? '' : '/create'}`}>
+                      {icon[c.type]} {c.name || '(unnamed)'}
+                    </NavLink>
+                  ))}
+              </details>
+            )}
             <div className="nav-group">Tools</div>
+            <NavLink to={`/saga/${saga.id}/build`} data-tour="nav-build">
+              ✦ Quick build
+            </NavLink>
             <NavLink to={`/saga/${saga.id}/spells`}>✎ Spells & design</NavLink>
             <NavLink to={`/saga/${saga.id}/enchant`}>⚒ Enchantments</NavLink>
             <NavLink to={`/saga/${saga.id}/rules`}>☰ House rules & books</NavLink>

@@ -62,7 +62,7 @@ function WhyCard({ ed }: { ed: CharEditor }) {
   const other = Object.entries(c.creation.guidedWhy ?? {});
   if (!vfs.length && !abilities.length && !spells.length && !other.length) return null;
   return (
-    <Card title="Why these choices" actions={<button className="small" onClick={() => nav(`/saga/${saga.id}/character/${c.id}/guided`)}>Back to the guided build</button>}>
+    <Card title="Why these choices" tour="why-card" actions={<button className="small" onClick={() => nav(`/saga/${saga.id}/character/${c.id}/guided`)}>Back to the guided build</button>}>
       <p className="small muted" style={{ marginTop: 0 }}>
         From the guided build. Anything here can be changed on its step; the reason stays with it.
       </p>

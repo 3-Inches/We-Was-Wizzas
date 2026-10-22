@@ -38,6 +38,8 @@ export interface TourState {
   covId?: string;
   startedAt: string;
   minimized?: boolean;
+  /** the tutorial this one was entered from, to go back to when it ends */
+  returnTo?: { id: string; step: number; startedAt: string; charId?: string; covId?: string };
 }
 
 export const DEFAULT_UI: UiPrefs = { theme: 'auto', streamMode: false, hints: true, dismissedHints: [] };

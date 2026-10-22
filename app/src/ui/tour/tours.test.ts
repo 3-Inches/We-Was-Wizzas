@@ -2,7 +2,8 @@
 // the app's source, every wizard step exists, and every page a step goes to is a route.
 import { describe, expect, it } from 'vitest';
 import { STEPS } from '../character/wizardSteps';
-import { TOURS } from './tours';
+import { DETOUR_OFFERS, TOUR_BY_ID, TOURS } from './tours';
+import { ACTIONS } from './actions';
 
 const sources = Object.values(import.meta.glob('../**/*.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>).join('\n');
 
@@ -16,7 +17,7 @@ function marked(name: string): boolean {
   return false;
 }
 
-const ROUTES = [/^\/$/, /^\/help$/, /^\/dice$/, /^\/reference$/, /^\/mechanics$/, /^\/saga\/S$/, /^\/saga\/S\/(spells|enchant|rules|seasons|market)$/, /^\/saga\/S\/character\/C(\/create)?$/, /^\/saga\/S\/covenant\/V$/];
+const ROUTES = [/^\/$/, /^\/help$/, /^\/dice$/, /^\/reference$/, /^\/mechanics$/, /^\/saga\/S$/, /^\/saga\/S\/(spells|enchant|rules|seasons|market|build)$/, /^\/saga\/S\/character\/C(\/create|\/guided)?$/, /^\/saga\/S\/covenant\/V$/];
 
 describe('tutorials', () => {
   it('point only at controls the app marks', () => {
@@ -37,6 +38,15 @@ describe('tutorials', () => {
         if (s.needs) expect(s.at?.({}), `${t.id}: ${s.title}`).toBeUndefined();
       }
     }
+  });
+
+  it('offer only real actions and real side trips', () => {
+    for (const t of TOURS)
+      for (const s of t.steps) {
+        for (const a of s.actions ?? []) expect(ACTIONS[a.id], `${t.id}: ${a.id}`).toBeTypeOf('function');
+        if (s.detour) expect(TOUR_BY_ID.has(s.detour.tour), `${t.id}: ${s.detour.tour}`).toBe(true);
+      }
+    for (const o of DETOUR_OFFERS) expect(TOUR_BY_ID.has(o.tour)).toBe(true);
   });
 
   it('are listed once each, the tour of the toolkit first', () => {

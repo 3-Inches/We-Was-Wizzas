@@ -122,6 +122,8 @@ hr { border: none; border-top: 1px solid var(--line); margin: 1em 0; }
 }
 .nav a:hover { background: var(--panel); color: var(--ink); }
 .nav a.active { background: var(--panel); color: var(--accent); font-weight: 600; box-shadow: inset 3px 0 0 var(--accent); }
+.nav-npcs > summary { cursor: pointer; padding: 6px 8px; color: var(--muted); font-size: 0.92em; }
+.nav-npcs > a { padding-left: 22px; }
 .main { padding: 22px 28px 60px; min-width: 0; }
 .topbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
 .topbar h1 { margin: 0; flex: 1 1 auto; }
@@ -437,13 +439,21 @@ button.fix-primary { border-color: var(--accent-2); color: var(--accent-2); font
 
 /* ---------------------------------------------------------------- tutorials */
 /* the tutorial panel sits in a corner over the page, below the phone menu, and never blocks it */
-.tour-panel { position: fixed; right: 16px; bottom: 16px; z-index: 32; width: 360px; max-width: calc(100vw - 32px); max-height: 55vh; overflow-y: auto; padding: 10px 14px 12px; background: var(--panel); border: 1px solid var(--accent); border-radius: var(--radius); box-shadow: var(--shadow); }
-.tour-panel h4 { margin: 2px 0 4px; font-family: var(--font-head); }
+.tour-panel { position: fixed; right: 16px; bottom: 16px; z-index: 32; width: 380px; max-width: calc(100vw - 32px); max-height: 55vh; overflow-y: auto; padding: 8px 12px 10px; background: var(--panel); border: 1px solid var(--accent); border-radius: var(--radius); box-shadow: var(--shadow); }
+.tour-panel h4 { margin: 4px 0 2px; font-family: var(--font-head); }
 .tour-panel .markdown p { margin: 4px 0; }
 .main.touring { padding-bottom: 50vh; }
 .tour-head { display: flex; align-items: center; gap: 4px; }
+.tour-count { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tour-pill { position: fixed; right: 16px; bottom: 16px; z-index: 32; box-shadow: var(--shadow); border-color: var(--accent); }
 [data-tour-on] { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; animation: tour-pulse 1.6s ease-in-out infinite; }
 @keyframes tour-pulse { 50% { outline-color: color-mix(in srgb, var(--accent) 25%, transparent); } }
 @media (prefers-reduced-motion: reduce) { [data-tour-on] { animation: none; } }
-@media (max-width: 700px) { .tour-panel { left: 16px; right: 16px; width: auto; bottom: 12px; max-height: 45vh; } .tour-pill { bottom: 12px; } }
+/* on a phone: the full width, a third of the height, smaller text and no tutorial name */
+@media (max-width: 700px) {
+  .tour-panel { left: 8px; right: 8px; bottom: 8px; width: auto; max-width: none; max-height: 36vh; padding: 6px 10px 8px; font-size: 0.9em; }
+  .tour-panel h4 { margin: 2px 0 0; }
+  .tour-name { display: none; }
+  .tour-pill { right: 8px; bottom: 8px; }
+  .main.touring { padding-bottom: 40vh; }
+}

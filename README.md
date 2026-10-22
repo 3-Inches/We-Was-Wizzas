@@ -17,7 +17,7 @@ The public is welcome to commit fixes, new and better versions of any of these f
 
 #### Saga Toolkit (web app)
 
-The [**/app**](/app/) folder contains a browser-based saga toolkit built from these markdowns. It handles character creation for all four character types, covenant building with Build Points and laboratories, spell design, enchantment, seasonal advancement, and rules checking, and it includes a reader for the books. See [app/README.md](/app/README.md).
+The [**/app**](/app/) folder contains a browser-based saga toolkit built from these markdowns. It handles character creation for all four character types, covenant building with Build Points and laboratories, spell design, enchantment, seasonal advancement, and rules checking. It can also build whole characters, a covenant's people and creature encounters for you, has guided tutorials, and includes a reader for the books. See [app/README.md](/app/README.md).
 <br/>
 <br/>
 

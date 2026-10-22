@@ -65,6 +65,19 @@ function paramFor(s: Scored): string | undefined {
   return spec.optional ? undefined : TO_DECIDE;
 }
 
+/** Clear the choices a draft makes, keeping who the character is (name, type, concept, age and covenant). */
+export function resetChoices(c: Character) {
+  c.virtues = c.virtues.filter((v) => ['the-gift', 'hermetic-magus'].includes(v.defId) || (c.type === 'grog' && v.defId === 'covenfolk'));
+  if (c.type === 'magus') c.house = undefined;
+  c.abilities = c.abilities.filter((a) => a.native);
+  for (const k of Object.keys(c.arts)) c.arts[k as keyof Character['arts']] = {};
+  c.spells = [];
+  for (const k of Object.keys(c.characteristics)) c.characteristics[k as keyof Character['characteristics']] = 0;
+  c.personality = c.personality.filter((p) => c.type === 'grog' && p.trait === 'Loyal');
+  c.creation.childhoodPackage = undefined;
+  c.creation.guidedWhy = {};
+}
+
 /** Build the draft on `c` (mutated). */
 export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): BuildResult {
   const log: string[] = [];
@@ -91,6 +104,18 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
         }
       });
       setHouse(c, inp.data, pick, best);
+      // Jerbiton: the free Minor Virtue from the House's list that fits best (DE, House Jerbiton)
+      if (h.freeChoiceFrom) {
+        const fits = h.freeChoiceFrom
+          .map((id) => ev.scored.find((x) => x.def.id === id))
+          .filter((x): x is Scored => !!x && x.def.sizes.includes('Minor') && !c.virtues.some((v) => v.defId === x.def.id))
+          .sort((a, b) => b.fit - a.fit);
+        const choice = fits[0];
+        if (choice) {
+          setHouse(c, inp.data, pick, best, { defId: choice.def.id, param: paramFor(choice) });
+          log.push(`Jerbiton's free Virtue: ${choice.def.name}.`);
+        }
+      }
       // Ex Miscellanea: the tradition whose Virtues fit best, and whose Flaw hurts least
       if (pick === 'ex-miscellanea') {
         const fitOf = (id: string) => ev.scored.find((x) => x.def.id === id)?.fit ?? 0;

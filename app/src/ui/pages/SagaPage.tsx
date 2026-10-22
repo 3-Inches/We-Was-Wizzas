@@ -117,6 +117,9 @@ export default function SagaPage() {
               </button>
             ))}
           </div>
+          <p className="small muted" style={{ marginBottom: 0 }}>
+            Or let the toolkit make them: <Link to={`/saga/${saga.id}/build`}>Quick build ›</Link>
+          </p>
         </Card>
         <Card
           title="Covenants"
@@ -168,6 +171,7 @@ export default function SagaPage() {
                       {c.player ? ` · played by ${c.player}` : ''}
                     </div>
                   </div>
+                  {c.npc && <span className="badge">NPC</span>}
                   {!c.creation.finalized && <span className="badge warn">in creation</span>}
                   {s.errors > 0 && <span className="badge bad">{s.errors} errors</span>}
                   {s.errors === 0 && s.warnings > 0 && <span className="badge warn">{s.warnings} warnings</span>}

@@ -10,6 +10,7 @@ import extract_vf
 import extract_vf_refs
 import extract_magic_qualities
 import extract_mysteries
+import extract_bestiary
 
 if __name__ == "__main__":
     extract_vf.main()
@@ -23,3 +24,4 @@ if __name__ == "__main__":
     extract_covlab.weapons()
     extract_diseases.main()
     extract_mysteries.main()
+    extract_bestiary.main()

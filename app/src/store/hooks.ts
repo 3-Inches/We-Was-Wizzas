@@ -11,14 +11,17 @@ export function useSaga(id?: string): Saga | undefined {
   return useStore((s) => (id ? s.sagas[id] : undefined));
 }
 
+/** The rules data a saga uses: its books, mechanics overrides and custom content. */
+export function gameDataFor(saga?: { enabledBooks?: string[]; mechanicsOverrides?: Saga['mechanicsOverrides']; custom?: Saga['custom'] }): GameData {
+  const enabled = saga?.enabledBooks;
+  return buildGameData({ enabledBooks: enabled && enabled.length ? enabled : undefined, mechanicsOverrides: saga?.mechanicsOverrides, custom: saga?.custom });
+}
+
 export function useGameData(saga?: Saga): GameData {
   const enabled = saga?.enabledBooks;
   const overrides = saga?.mechanicsOverrides;
   const custom = saga?.custom;
-  return useMemo(
-    () => buildGameData({ enabledBooks: enabled && enabled.length ? enabled : undefined, mechanicsOverrides: overrides, custom }),
-    [enabled, overrides, custom],
-  );
+  return useMemo(() => gameDataFor({ enabledBooks: enabled, mechanicsOverrides: overrides, custom }), [enabled, overrides, custom]);
 }
 
 export function useCharacter(id?: string): Character | undefined {

@@ -110,7 +110,7 @@ export default function BasicsStep({ ed }: { ed: CharEditor }) {
         <div className="small" style={{ margin: '8px 0 4px' }}>
           Pick one to three themes — recommendations will follow them:
         </div>
-        <div className="chip-row">
+        <div className="chip-row" data-tour="concept-themes">
           {ARCHETYPES.filter((a) => !a.forTypes || a.forTypes.includes(c.type)).map((a) => (
             <span
               key={a.id}
