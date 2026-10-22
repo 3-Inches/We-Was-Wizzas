@@ -6,10 +6,11 @@ import { newCovenant } from './covenant';
 import { ensureAbility, newCharacter } from './character/factory';
 import { advanceSeason, advanceSeasons, auraWarping, loggedThisSeason } from './time';
 import { applyEffect, expireEffects } from './effects';
-import { applyRitual } from './rituals';
+import { applyRitual, castCost, casterTally, legacyCasts, undoCast } from './rituals';
+import { takeVis } from './vis';
 import { deriveCharacter } from './character/derive';
 import { characterContext } from './context';
-import { DEFAULT_HOUSE_RULES } from './types';
+import { DEFAULT_HOUSE_RULES, type CastRecord } from './types';
 
 const data = buildGameData();
 const faces = (...f: number[]) => {
@@ -110,7 +111,7 @@ describe('effects on characters', () => {
     const st = saga();
     const cov = st.covenants[0];
     cov.specialists.push({ uid: 't', name: 'Teacher', role: 'teacher', ability: 'Latin', score: 5, com: 2, teaching: 4 });
-    const lines = applyRitual(
+    const { lines } = applyRitual(
       { name: 'Honing the Mind', level: 60, effect: { kind: 'raise', chars: ['Com'], max: 3 }, duration: 'permanent', targets: { characterIds: st.characters.map((c) => c.id), specialistUids: ['t'], covenfolk: true } },
       cov, st.characters, st.characters[1].id, 'Magus, ritual', 1220, 'Spring', data,
     );
@@ -121,6 +122,50 @@ describe('effects on characters', () => {
     expect(st.characters[1].warpingPoints).toBe(0); // the caster
     expect(lines.some((l) => /covenfolk/.test(l.text))).toBe(true);
   });
+  it('undoes a cast: takes back what it did to everyone and gives back what it cost', () => {
+    const st = saga();
+    const cov = st.covenants[0];
+    cov.visStocks = [{ art: 'Cr', pawns: 5 }];
+    cov.specialists.push({ uid: 't', name: 'Teacher', role: 'teacher', ability: 'Latin', score: 5, com: 2, teaching: 4 });
+    const m = st.characters[1];
+    const tally = casterTally(m, cov.visStocks);
+    takeVis(cov.visStocks, ['Cr'], 3);
+    m.fatigueLost = 1;
+    const paid = castCost(tally, casterTally(m, cov.visStocks), 'covenant');
+    expect(paid.vis).toEqual([{ art: 'Cr', pawns: 3 }]);
+    const plan = { name: 'Honing the Mind', level: 60, effect: { kind: 'raise' as const, chars: ['Com' as const], max: 3 }, duration: 'permanent' as const, targets: { characterIds: st.characters.map((c) => c.id), specialistUids: ['t'], covenfolk: true } };
+    const { done } = applyRitual(plan, cov, st.characters, m.id, 'Magus, ritual', 1220, 'Spring', data);
+    expect(st.characters[0].characteristics.Com).toBe(1);
+    const rec: CastRecord = { uid: 'c1', name: plan.name, source: 'Magus, ritual', casterId: m.id, year: 1220, season: 'Spring', lines: [], paid, done };
+    undoCast(rec, cov, st.characters, 1220, 'Spring');
+    expect(cov.visStocks).toEqual([{ art: 'Cr', pawns: 5 }]);
+    expect(m.fatigueLost).toBe(0);
+    expect(st.characters[0].characteristics.Com).toBe(0);
+    expect(st.characters[0].warpingPoints).toBe(0);
+    expect(st.characters[0].activeEffects).toEqual([]);
+    expect(cov.specialists[0].chars?.Com).toBe(2);
+    expect(cov.specialists[0].history).toEqual([]);
+    expect(cov.effects).toEqual([]);
+    expect(rec.undone).toEqual({ year: 1220, season: 'Spring' });
+  });
+  it('pieces together a cast made before casts were recorded, and undoes it without refunds', () => {
+    const st = saga();
+    const cov = st.covenants[0];
+    cov.specialists.push({ uid: 't', name: 'Teacher', role: 'teacher', ability: 'Latin', score: 5, com: 2, teaching: 4 });
+    applyRitual(
+      { name: 'Honing the Mind', level: 60, effect: { kind: 'raise', chars: ['Com'], max: 3 }, duration: 'permanent', targets: { characterIds: st.characters.map((c) => c.id), specialistUids: ['t'], covenfolk: true } },
+      cov, st.characters, st.characters[1].id, 'Magus, ritual', 1220, 'Spring', data,
+    );
+    const [old] = legacyCasts(cov, st.characters);
+    expect(old.done.effects).toHaveLength(2);
+    expect(old.done.specialists).toEqual([{ uid: 't', raised: { Com: 1 }, warping: 1 }]);
+    expect(old.casterId).toBe(st.characters[1].id);
+    undoCast(old, cov, st.characters, 1220, 'Spring');
+    expect(cov.specialists[0].chars?.Com).toBe(2);
+    expect(cov.specialists[0].warpingPoints).toBe(0);
+    expect(st.characters[0].characteristics.Com).toBe(0);
+    expect(legacyCasts(cov, st.characters)).toEqual([]);
+  });
   it('measures a ritual’s limit against the Characteristic as it stands, Virtues and Qualities included', () => {
     const st = saga();
     const m = st.characters[1];
@@ -129,7 +174,7 @@ describe('effects on characters', () => {
     const now = (c: typeof m) => Object.fromEntries(Object.entries(deriveCharacter(c, data, DEFAULT_HOUSE_RULES).characteristics).map(([k, v]) => [k, v.value]));
     expect(now(m).Int).toBe(5);
     const plan = { name: 'Honing the Mind', level: 60, effect: { kind: 'raise' as const, chars: ['Int' as const, 'Per' as const], max: 5 }, duration: 'permanent' as const, targets: { characterIds: [m.id], specialistUids: [], covenfolk: false } };
-    const lines = applyRitual(plan, st.covenants[0], st.characters, m.id, 'Magus, ritual', 1220, 'Spring', data, now);
+    const { lines } = applyRitual(plan, st.covenants[0], st.characters, m.id, 'Magus, ritual', 1220, 'Spring', data, now);
     expect(m.characteristics.Int).toBe(3); // already +5: no higher
     expect(m.characteristics.Per).toBe(1);
     expect(lines[0].text).toMatch(/Intelligence is already \+5/);

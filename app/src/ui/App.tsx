@@ -40,6 +40,21 @@ export default function App() {
   }, [load]);
   useEffect(() => applyTheme(ui.theme, ui.streamMode), [ui]);
   useEffect(() => setNavOpen(false), [loc.pathname, loc.search]);
+  // Ctrl+Z / Ctrl+Shift+Z (or Ctrl+Y) undo and redo the last change, except while typing in a field
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!(e.ctrlKey || e.metaKey) || e.altKey) return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      const k = e.key.toLowerCase();
+      const st = useStore.getState();
+      const label = k === 'z' && !e.shiftKey ? st.undo() : (k === 'z' && e.shiftKey) || k === 'y' ? st.redo() : undefined;
+      if (k === 'z' || k === 'y') e.preventDefault();
+      if (label) st.setNotice(`${k === 'z' && !e.shiftKey ? 'Undone' : 'Redone'}: ${label}.`);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
   useEffect(() => {
     if (!navOpen) return;
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setNavOpen(false);
@@ -58,7 +73,8 @@ export default function App() {
           <button className="ghost" onClick={() => setNavOpen((o) => !o)} aria-label="Menu" aria-expanded={navOpen}>
             ☰
           </button>
-          <b style={{ fontFamily: 'var(--font-head)' }}>Ars Magica Toolkit</b>
+          <b style={{ fontFamily: 'var(--font-head)', flex: 1 }}>Ars Magica Toolkit</b>
+          <UndoRedo />
         </div>
         <Notice />
         <main className="main">
@@ -93,6 +109,43 @@ export default function App() {
 }
 
 /** Tells the user when the app changed something for them (e.g. xp rebalanced for an Affinity). */
+/** Undo and redo the last changes, whatever page made them. */
+function UndoRedo() {
+  const past = useStore((s) => s.history.past);
+  const future = useStore((s) => s.history.future);
+  const undo = useStore((s) => s.undo);
+  const redo = useStore((s) => s.redo);
+  const setNotice = useStore((s) => s.setNotice);
+  const last = past[past.length - 1];
+  const next = future[future.length - 1];
+  return (
+    <span className="row tight undo-redo no-print">
+      <button
+        className="small ghost"
+        disabled={!last}
+        title={last ? `Undo ${last.label} (Ctrl+Z)` : 'Nothing to undo'}
+        onClick={() => {
+          const l = undo();
+          if (l) setNotice(`Undone: ${l}.`);
+        }}
+      >
+        ↶ Undo
+      </button>
+      <button
+        className="small ghost"
+        disabled={!next}
+        title={next ? `Redo ${next.label} (Ctrl+Shift+Z)` : 'Nothing to redo'}
+        onClick={() => {
+          const l = redo();
+          if (l) setNotice(`Redone: ${l}.`);
+        }}
+      >
+        ↷ Redo
+      </button>
+    </span>
+  );
+}
+
 function Notice() {
   const notice = useStore((s) => s.notice);
   const setNotice = useStore((s) => s.setNotice);
@@ -145,6 +198,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
           <small>Saga Toolkit · Definitive Edition</small>
         </span>
       </Link>
+      <UndoRedo />
       <nav className="nav">
         <NavLink to="/" end>
           ⌂ Sagas

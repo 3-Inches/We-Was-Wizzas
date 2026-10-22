@@ -18,8 +18,26 @@ export interface PersistedState {
   ui: { theme: 'light' | 'dark' | 'auto'; streamMode: boolean };
 }
 
+type Slot = 'sagas' | 'characters' | 'covenants';
+const SLOTS: Slot[] = ['sagas', 'characters', 'covenants'];
+type Records = { sagas: Record<string, Saga | null>; characters: Record<string, Character | null>; covenants: Record<string, Covenant | null> };
+
+/** One change that can be undone: the records it touched as they were before (null: it did not exist). */
+export interface HistoryStep {
+  at: number;
+  label: string;
+  before: Records;
+  /** quick edits to the same record merge into one step */
+  merge?: boolean;
+}
+
 interface Store extends PersistedState {
   loaded: boolean;
+  /** changes that can be undone and redone (not persisted) */
+  history: { past: HistoryStep[]; future: HistoryStep[] };
+  /** undo the last change; returns what it was */
+  undo: () => string | undefined;
+  redo: () => string | undefined;
   /** a short message about something the app did on the user's behalf (not persisted) */
   notice?: { text: string; at: number; undo?: () => void };
   setNotice: (text?: string, undo?: () => void) => void;
@@ -88,14 +106,74 @@ function scheduleSave(getState: () => Store) {
 }
 
 const clone = <T,>(x: T): T => structuredClone(x);
+const HISTORY_LIMIT = 60;
+const MERGE_MS = 1500;
+const keyOf = (r: Records) => SLOTS.map((k) => Object.keys(r[k]).sort().join(',')).join('|');
 
-export const useStore = create<Store>()((set, get) => ({
+export const useStore = create<Store>()((set, get) => {
+  /** what these records are now (null: they do not exist) */
+  const snapshot = (touched: Partial<Record<Slot, string[]>>): Records => {
+    const st = get();
+    const r: Records = { sagas: {}, characters: {}, covenants: {} };
+    for (const k of SLOTS) for (const id of touched[k] ?? []) (r[k] as Record<string, unknown>)[id] = (st[k] as Record<string, unknown>)[id] ?? null;
+    return r;
+  };
+  /** note a change about to be made, so that it can be undone; quick edits of one record merge */
+  const remember = (touched: Partial<Record<Slot, string[]>>, label: string, merge = false) => {
+    const before = snapshot(touched);
+    const { past } = get().history;
+    const last = past[past.length - 1];
+    const now = Date.now();
+    if (merge && last?.merge && now - last.at < MERGE_MS && keyOf(last.before) === keyOf(before)) {
+      set({ history: { past: [...past.slice(0, -1), { ...last, at: now }], future: [] } });
+      return;
+    }
+    set({ history: { past: [...past, { at: now, label, before, merge }].slice(-HISTORY_LIMIT), future: [] } });
+  };
+  /** put records back as a step had them; returns the step that reverses it */
+  const restore = (step: HistoryStep): HistoryStep => {
+    const touched = Object.fromEntries(SLOTS.map((k) => [k, Object.keys(step.before[k])])) as Record<Slot, string[]>;
+    const now = snapshot(touched);
+    set((st) => {
+      const next: Partial<Store> = {};
+      for (const k of SLOTS) {
+        const recs = { ...(st[k] as Record<string, unknown>) };
+        for (const [id, v] of Object.entries(step.before[k])) {
+          if (v === null) delete recs[id];
+          else recs[id] = v;
+        }
+        (next as Record<string, unknown>)[k] = recs;
+      }
+      return next;
+    });
+    scheduleSave(get);
+    return { at: Date.now(), label: step.label, before: now };
+  };
+  const nameOf = (x?: { name?: string }) => x?.name || 'unnamed';
+  return {
   sagas: {},
   characters: {},
   covenants: {},
   activeSagaId: undefined,
   ui: { theme: 'auto', streamMode: false },
   loaded: false,
+  history: { past: [], future: [] },
+  undo: () => {
+    const { past, future } = get().history;
+    const step = past[past.length - 1];
+    if (!step) return undefined;
+    const back = restore(step);
+    set({ history: { past: past.slice(0, -1), future: [...future, back] } });
+    return step.label;
+  },
+  redo: () => {
+    const { past, future } = get().history;
+    const step = future[future.length - 1];
+    if (!step) return undefined;
+    const back = restore(step);
+    set({ history: { past: [...past, back], future: future.slice(0, -1) } });
+    return step.label;
+  },
 
   load: async () => {
     let data: PersistedState | undefined;
@@ -122,6 +200,7 @@ export const useStore = create<Store>()((set, get) => ({
 
   createSaga: (name) => {
     const s = newSaga(name);
+    remember({ sagas: [s.id] }, `new saga ${s.name}`);
     set((st) => ({ sagas: { ...st.sagas, [s.id]: s }, activeSagaId: s.id }));
     scheduleSave(get);
     return s;
@@ -132,10 +211,16 @@ export const useStore = create<Store>()((set, get) => ({
     const next = clone(cur);
     fn(next);
     next.updatedAt = new Date().toISOString();
+    remember({ sagas: [id] }, `change to ${nameOf(cur)}`, true);
     set((st) => ({ sagas: { ...st.sagas, [id]: next } }));
     scheduleSave(get);
   },
   deleteSaga: (id) => {
+    const st0 = get();
+    remember(
+      { sagas: [id], characters: Object.values(st0.characters).filter((c) => c.sagaId === id).map((c) => c.id), covenants: Object.values(st0.covenants).filter((c) => c.sagaId === id).map((c) => c.id) },
+      `deleting the saga ${nameOf(st0.sagas[id])}`,
+    );
     set((st) => {
       const sagas = { ...st.sagas };
       delete sagas[id];
@@ -151,6 +236,7 @@ export const useStore = create<Store>()((set, get) => ({
     scheduleSave(get);
   },
   putCharacter: (c) => {
+    remember({ characters: [c.id] }, get().characters[c.id] ? `change to ${nameOf(c)}` : `new character ${nameOf(c)}`);
     set((st) => ({ characters: { ...st.characters, [c.id]: c } }));
     scheduleSave(get);
   },
@@ -160,10 +246,13 @@ export const useStore = create<Store>()((set, get) => ({
     const next = clone(cur);
     fn(next);
     next.updatedAt = new Date().toISOString();
+    remember({ characters: [id] }, `change to ${nameOf(cur)}`, true);
     set((st) => ({ characters: { ...st.characters, [id]: next } }));
     scheduleSave(get);
   },
   deleteCharacter: (id) => {
+    const st0 = get();
+    remember({ characters: [id], covenants: Object.values(st0.covenants).filter((c) => c.memberIds.includes(id)).map((c) => c.id) }, `deleting ${nameOf(st0.characters[id])}`);
     set((st) => {
       const characters = { ...st.characters };
       delete characters[id];
@@ -175,6 +264,7 @@ export const useStore = create<Store>()((set, get) => ({
     scheduleSave(get);
   },
   putCovenant: (c) => {
+    remember({ covenants: [c.id] }, get().covenants[c.id] ? `change to ${nameOf(c)}` : `new covenant ${nameOf(c)}`);
     set((st) => ({ covenants: { ...st.covenants, [c.id]: c } }));
     scheduleSave(get);
   },
@@ -184,10 +274,13 @@ export const useStore = create<Store>()((set, get) => ({
     const next = clone(cur);
     fn(next);
     next.updatedAt = new Date().toISOString();
+    remember({ covenants: [id] }, `change to ${nameOf(cur)}`, true);
     set((st) => ({ covenants: { ...st.covenants, [id]: next } }));
     scheduleSave(get);
   },
   deleteCovenant: (id) => {
+    const st0 = get();
+    remember({ covenants: [id], characters: Object.values(st0.characters).filter((c) => c.covenantId === id).map((c) => c.id) }, `deleting ${nameOf(st0.covenants[id])}`);
     set((st) => {
       const covenants = { ...st.covenants };
       delete covenants[id];
@@ -197,6 +290,7 @@ export const useStore = create<Store>()((set, get) => ({
     scheduleSave(get);
   },
   putSagaState: ({ saga, characters, covenants }) => {
+    remember({ sagas: [saga.id], characters: characters.map((c) => c.id), covenants: covenants.map((c) => c.id) }, `change to ${nameOf(saga)}`);
     const now = new Date().toISOString();
     set((st) => ({
       sagas: { ...st.sagas, [saga.id]: { ...saga, updatedAt: now } },
@@ -247,11 +341,14 @@ export const useStore = create<Store>()((set, get) => ({
       c.memberIds = c.memberIds.map((m) => idMap.get(m) ?? m);
       covenants[c.id] = c;
     }
+    const touched = (a: Record<string, unknown>, b: Record<string, unknown>) => Object.keys(a).filter((k) => a[k] !== b[k]);
+    remember({ sagas: touched(sagas, st.sagas), characters: touched(characters, st.characters), covenants: touched(covenants, st.covenants) }, 'the import');
     set({ sagas, characters, covenants, activeSagaId: sagaId });
     scheduleSave(get);
     return { sagaId, characters: b.characters?.length ?? 0, covenants: b.covenants?.length ?? 0 };
   },
-}));
+  };
+});
 
 export function exportSaga(sagaId: string): ExportBundle {
   const st = useStore.getState();

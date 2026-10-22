@@ -129,6 +129,8 @@ hr { border: none; border-top: 1px solid var(--line); margin: 1em 0; }
 .breadcrumbs a { color: var(--muted); }
 .mobile-bar { display: none; }
 .nav-close, .nav-backdrop { display: none; }
+.sidebar > .undo-redo { margin: -6px 0 6px; }
+.mobile-bar .undo-redo button { padding: 3px 6px; }
 
 @media (max-width: 860px) {
   .app { grid-template-columns: 1fr; }

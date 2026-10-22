@@ -133,6 +133,42 @@ export interface ActiveEffect {
   notes?: string;
 }
 
+/**
+ * A spell, ritual or power cast on the covenant, kept so that it can be undone: what the caster
+ * paid (given back on undo) and what it did to each target (taken back).
+ */
+export interface CastRecord {
+  uid: string;
+  name: string;
+  source: string;
+  casterId: string;
+  year: number;
+  season: Season;
+  /** what happened, as shown when it was cast */
+  lines: string[];
+  paid: {
+    /** where the vis came from: the covenant's stocks or the caster's purse */
+    visFrom: 'covenant' | 'purse';
+    vis: VisStock[];
+    /** Might Points from the pool (net of vis eaten to refill it) */
+    pool: number;
+    confidence: number;
+    mightScore: number;
+    fatigue: number;
+    longTermFatigue: number;
+    /** Warping Points from a botch */
+    warping: number;
+  };
+  done: {
+    effects: { characterId: string; effectUid: string }[];
+    specialists: { uid: string; raised: Partial<Record<Characteristic, number>>; warping: number }[];
+    covenfolkEffectUid?: string;
+  };
+  /** cast before casts were recorded: what it did was pieced together, and its cost is unknown */
+  legacy?: boolean;
+  undone?: { year: number; season: Season };
+}
+
 /** Money and vis a character holds (an allowance from the covenant, earnings, purchases). */
 export interface Purse {
   pounds: number;
@@ -841,6 +877,8 @@ export interface Covenant {
   startingVisStocks?: VisStock[];
   /** wards and other effects on the covenant (the Aegis of the Hearth) */
   effects?: ActiveEffect[];
+  /** spells and powers cast on the covenant, newest last, for undoing */
+  casts?: CastRecord[];
   /** what the covenant gives its members each year */
   allowance?: Allowance;
   /** the last year a Hook's story was played (Indiscreet Resource: one every five years) */
