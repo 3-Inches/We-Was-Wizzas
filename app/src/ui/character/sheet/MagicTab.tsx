@@ -5,7 +5,7 @@ import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
 import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
 import type { CharSpell } from '../../../engine/types';
 import type { CertamenArt } from '../../../engine/magic';
-import { Card, Field, Stepper, Total } from '../../kit';
+import { Card, Field, Stepper, Total, HowItWorks } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { masteryScore } from '../steps/SpellsStep';
 import { labContextOf } from '../../../engine/lab';
@@ -788,11 +788,11 @@ function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
           Roll defense
         </button>
       </div>
-      <p className="small muted" style={{ marginBottom: 0 }}>
+      <HowItWorks summary="Attack with one Art and defend with the other; Weakening past Resistance costs Fatigue.">
         Each round, use one Art to attack and the other to defend; you may swap them between rounds. Every 5 points (or fraction) of Weakening over Resistance costs a Fatigue level,
         and Fatigue penalties count against Attack and Defense. Certamen causes no wounds. Win by knocking the opponent unconscious (you may then cast one spell of the duel&apos;s
         Arts through their Parma), by their surrender, or by their failed Concentration roll (DE, Certamen).
-      </p>
+      </HowItWorks>
     </Card>
   );
 }

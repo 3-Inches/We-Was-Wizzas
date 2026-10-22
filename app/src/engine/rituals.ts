@@ -20,10 +20,6 @@ export function guidelineLevel(max: number): number {
   return 30 + 5 * Math.max(0, Math.min(5, max));
 }
 
-export function capForGuideline(level: number): number {
-  return Math.max(0, Math.min(5, Math.floor((level - 30) / 5)));
-}
-
 export interface RitualPlan {
   name: string;
   /** the effect's level: a Warping Point for each target if 30 or more and not designed for them (DE) */

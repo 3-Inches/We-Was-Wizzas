@@ -428,8 +428,4 @@ export function twilightEffects(comprehended: boolean, totalWarping: number): { 
       ];
 }
 
-export function formBonus(score: number): number {
-  return Math.ceil(score / 5);
-}
-
 export type { XpSource, GameData };

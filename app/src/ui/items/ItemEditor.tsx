@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type GameData, type Technique } from '../../data';
 import type { DerivedCharacter } from '../../engine/character/derive';
 import { FREQUENCY, MATERIAL_BASE, SIZE_MULT, chargedItemCharges, investEffect, modifiedEffectLevel, openingCost, talismanCapacity } from '../../engine/enchant';
@@ -38,6 +38,8 @@ interface Props {
   talismanUid?: string;
   onSetTalisman?: (uid: string | undefined) => void;
   title?: string;
+  /** a closing note under the items */
+  note?: ReactNode;
 }
 
 export default function ItemsEditor(props: Props) {
@@ -64,6 +66,7 @@ export default function ItemsEditor(props: Props) {
       {items.map((it) => (
         <ItemRow key={it.uid} {...props} item={it} open={open === it.uid} onToggle={() => setOpen(open === it.uid ? null : it.uid)} />
       ))}
+      {props.note && <div className="small muted" style={{ marginTop: 6 }}>{props.note}</div>}
     </Card>
   );
 }

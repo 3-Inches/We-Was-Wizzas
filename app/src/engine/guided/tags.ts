@@ -143,12 +143,6 @@ export function tagLabel(id: string): string {
   return TAG_BY_ID.get(id)?.label ?? id;
 }
 
-/** Tags a Flaw can only hurt (a number or a resource) as opposed to themes it pulls stories into. */
-export function isMechanicalTag(id: string): boolean {
-  const f = TAG_BY_ID.get(id)?.family;
-  return f === 'total' || f === 'char' || f === 'art' || f === 'currency' || f === 'casting';
-}
-
 export function isThemeTag(id: string): boolean {
   return TAG_BY_ID.get(id)?.family === 'theme';
 }

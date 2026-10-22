@@ -52,7 +52,7 @@ export default function CharacterWizard() {
           </button>
         ))}
       </div>
-      <div className="grid" style={{ gridTemplateColumns: showRecs ? 'minmax(0, 1fr) 320px' : '1fr' }}>
+      <div className={`grid${showRecs ? ' with-side' : ''}`}>
         <div className="stack">
           {step.id === 'basics' && <BasicsStep ed={ed} />}
           {step.id === 'house' && <HouseStep ed={ed} />}
@@ -76,9 +76,13 @@ export default function CharacterWizard() {
         </div>
         {showRecs && (
           <div className="stack">
-            <Card title="Rules check" className="accent">
-              <CharIssueList ed={ed} issues={stepIssues} resolveAll empty="Everything on this step follows the rules." />
-            </Card>
+            {/* the Review step lists every issue in its own card; elsewhere, this step's issues, and the
+                Resolve-all offer only once this step has errors of its own */}
+            {step.id !== 'review' && (
+              <Card title="Rules check" className="accent">
+                <CharIssueList ed={ed} issues={stepIssues} resolveAll={stepIssues.some((i) => i.severity === 'error')} empty="Everything on this step follows the rules." />
+              </Card>
+            )}
             <RecommendationsPanel ed={ed} step={step.id} />
           </div>
         )}

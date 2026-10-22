@@ -18,7 +18,7 @@ import { visText } from '../../engine/vis';
 import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { uid } from '../../util/id';
-import { Card, Empty, Field, Stepper } from '../kit';
+import { Card, Empty, Field, Stepper, HowItWorks } from '../kit';
 import { SpecAbilities, SpecChars } from '../covenant/FinancesTab';
 
 type Run = (fn: (st: SagaState, buyer: Payer, home: Covenant | undefined) => string | undefined, done: string) => boolean;
@@ -255,12 +255,14 @@ function VisTrade({ saga, buyer, run, onSundry, setVisPrice }: { saga: SagaState
           Covenants ch.5: about {VIS_PRICE.typical} £ a pawn as a rule of thumb, from {VIS_PRICE.low} £ where vis is plentiful to {VIS_PRICE.high} £ or more from a wealthy seller.
         </span>
       </div>
-      <ul className="small muted" style={{ margin: '4px 0 8px', paddingLeft: 18 }}>
-        {VIS_PRICE.reasons.map((r) => (
-          <li key={r}>{r}</li>
-        ))}
-        <li>{VIS_PRICE.dedicated}</li>
-      </ul>
+      <HowItWorks label="What moves the price">
+        <ul style={{ margin: '4px 0 8px', paddingLeft: 18 }}>
+          {VIS_PRICE.reasons.map((r) => (
+            <li key={r}>{r}</li>
+          ))}
+          <li>{VIS_PRICE.dedicated}</li>
+        </ul>
+      </HowItWorks>
       <div className="row small">
         <Stepper value={pawns} min={1} max={99} width={36} onChange={setPawns} />
         <select value={art} onChange={(e) => (setArt(e.target.value as Art), setPair(''), setEach(undefined))} aria-label="Art">
@@ -406,11 +408,11 @@ function Books({ buyer, home, run, data, visPrice, onSundry }: { buyer: Payer; h
           Buy into {home?.name ?? 'the library'}
         </button>
       </div>
-      <p className="small muted" style={{ margin: '4px 0 0' }}>
+      <HowItWorks label="How books are traded">
         Hermetic books are traded for vis, under the Cow and Calf Oath: the buyer may not copy it to sell. A vain book bought from anyone but its author usually costs as much as a sound one; the
         best books are rarely sold, but given for service. Lab texts have no book price: agree one with the seller (they are often traded one for one).
         {buyer.kind === 'character' && ' A member’s own copy goes in the covenant library under their name.'}
-      </p>
+      </HowItWorks>
     </Card>
   );
 }
@@ -516,10 +518,10 @@ function HireTeacher({ home, data, run, onSundry }: { home: Covenant; data: Game
           Hire for {lsd(fee * years)}
         </button>
       </div>
-      <p className="small muted" style={{ margin: 0 }}>
+      <HowItWorks label="About hiring teachers">
         Covenants ch.5: an outsider costs half as much to recruit for teaching as to employ for work. A teacher teaches two seasons a year, never the Arts (DE p.180): choose them as a
         student&apos;s standing activity (&quot;Taught by a covenant teacher&quot;) or on the student&apos;s Seasons &amp; Aging tab. They are not inhabitants, and leave at the end of the last year paid for.
-      </p>
+      </HowItWorks>
     </div>
   );
 }

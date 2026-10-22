@@ -4,7 +4,7 @@ import { POWER_KINDS, POWER_KIND_ORDER, masteryPools, powerCost, powerSpending, 
 import type { CharPower } from '../../engine/types';
 import { MASTERY_XP_ABILITIES, setMasteryXp } from '../../engine/character/factory';
 import { uid } from '../../util/id';
-import { Card, Markdown, Meter, SearchInput, Stepper, signed } from '../kit';
+import { Card, Markdown, Meter, SearchInput, Stepper, signed, HowItWorks } from '../kit';
 import type { CharEditor } from './useChar';
 
 /**
@@ -57,11 +57,11 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
             value={mp.spent}
             max={Math.max(0, mp.available)}
           />
-          <p className="small muted" style={{ margin: '4px 0' }}>
+          <HowItWorks summary="Mastery points lower a power’s Might cost, raise its Initiative, or become experience.">
             Each point lowers one power&apos;s Might cost by 1 (Personal, Lesser and Greater down to 0; Ritual to half its magnitude; never a Focus Power&apos;s), and so raises its
             Penetration by 5; or adds 1 to its Initiative; or lets a Focus Power reach 5 levels beyond Might. Points can also become 5 experience points each in Penetration,
             which helps every power. Unused levels count only for powers of their own kind (Greater also for Lesser).
-          </p>
+          </HowItWorks>
           <div className="row small">
             <span>As experience (5 xp a point):</span>
             {MASTERY_XP_ABILITIES.map((id) => (
@@ -84,7 +84,10 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
           <div key={kind} style={{ marginBottom: 14 }}>
             <div className="row">
               <h4 style={{ margin: 0 }}>{info.label}</h4>
-              <span className="small muted">{info.rule}</span>
+              <span className="small muted">
+                {/* a magic character's powers of level 50 or more must be Ritual Powers (RoP: Magic), so the core book's 51–100 band does not apply */}
+                {mightBased && (kind === 'greater' || kind === 'personal') ? info.rule.replace('1 Fatigue up to level 50, 2 up to 100.', '1 Fatigue; under level 50 (a magic character’s power of 50 or more must be a Ritual Power).') : info.rule}
+              </span>
             </div>
             <Meter label={`${used} of ${budget} levels`} value={used} max={budget} />
             {powers.map((p) => {

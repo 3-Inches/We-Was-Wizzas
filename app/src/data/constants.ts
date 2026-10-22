@@ -10,10 +10,6 @@ export const ART_NAMES: Record<Art, string> = {
   Ig: 'Ignem', Im: 'Imaginem', Me: 'Mentem', Te: 'Terram', Vi: 'Vim',
 };
 
-export const ART_BY_NAME: Record<string, Art> = Object.fromEntries(
-  Object.entries(ART_NAMES).map(([k, v]) => [v.toLowerCase(), k as Art]),
-);
-
 export const isTechnique = (a: string): a is Technique => (TECHNIQUES as string[]).includes(a);
 export const isForm = (a: string): a is Form => (FORMS as string[]).includes(a);
 

@@ -9,7 +9,7 @@ import { abilityDisplayName } from '../../engine/character/derive';
 import { craftQuality } from '../../engine/workshop';
 import type { Covenant, CovenfolkCounts, IncomeModification, IncomeSource, Specialist } from '../../engine/types';
 import { uid } from '../../util/id';
-import { Card, Field, Stepper, Total } from '../kit';
+import { Card, Field, Stepper, Total, HowItWorks } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
 import { DEFAULT_YEAR_END, LOYALTY_EVENTS, SUNDRY_PRESETS, labOutfitCost, loyaltyAttitude, loyaltyEventPoints, planYearEnd, rollIncomeModification } from '../../engine/covenantYear';
@@ -120,11 +120,11 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
               <span className="l">Listed specialists & craftsmen</span>
             </div>
           </div>
-          <p className="small muted">
+          <HowItWorks label="How the numbers are worked out">
             Player characters who are members count automatically ({dc.members.length}). Inhabitant points: {cov.season === 'Summer' || cov.season === 'Autumn' ? 'magi 10, companions 5, specialists and craftsmen 3, others 2' : 'magi 5, companions 3, specialists and craftsmen 2, others 1'} (
             {cov.season} covenant). Two servants per 10 points, then one teamster per 10 points less twice the laborers, rounded up (Covenants ch.5). Each laborer saves a pound of
             Provisions (up to half of them) but also costs about a pound as an inhabitant; "optimal" finds the number that keeps spending lowest.
-          </p>
+          </HowItWorks>
         </Card>
         <QuickAdd update={update} data={data} />
       </div>
@@ -135,11 +135,11 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
         {people.map((s) => (
           <PersonRow key={s.uid} s={s} update={update} data={data} />
         ))}
-        <p className="small muted">
+        <HowItWorks summary={`Specialists cost ${specBP} BP in all.`} label="What they cost">
           Bought with Build Points (DE p.180): teachers cost Communication + Teaching + their highest taught score and teach two seasons a year; other specialists cost their highest score.
           Scores start limited by age (DE p.48: 5 under 30, up to 9 at 46+). Teachers can't have The Gift, so can't teach Arts. Tick "no BP" for people from the base covenant or recruited in
-          play. Specialists cost {specBP} BP in all.
-        </p>
+          play.
+        </HowItWorks>
       </Card>
 
       <Card
@@ -182,11 +182,11 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
             ))}
           </tbody>
         </table>
-        <p className="small muted">
-          A common craftsman saves 1 + half his Craft score (rounded down) a year, a rare one his Craft score. Each craft saves at most its share of a category (Covenants ch.5); more of the same
-          craft past that saves nothing, so "optimal" finds the number worth employing. A carpenter works for both Buildings and Consumables: his savings fill the Buildings limit first and the
+        <HowItWorks label="How craftsmen save money">
+          A common craftsman saves 1 + half the Craft score (rounded down) a year, a rare one the full Craft score. Each craft saves at most its share of a category (Covenants ch.5); more of the same
+          craft past that saves nothing, so "optimal" finds the number worth employing. A carpenter works for both Buildings and Consumables: the savings fill the Buildings limit first and the
           rest goes to Consumables. Bookbinders and illuminators save nothing but let the covenant make fine books (they and scribes add 1 £ of Writing Materials each).
-        </p>
+        </HowItWorks>
       </Card>
 
       <CloseYear cov={cov} update={update} dc={dc} />
@@ -825,11 +825,11 @@ function IncomeCard({ cov, update, dc, hasMiracles }: Omit<CovTabProps, 'data'> 
           )}
         </div>
       ))}
-      <p className="small muted">
+      <HowItWorks label="How the sources follow the Boons and Hooks">
         Sources and their levels follow the Boons and Hooks (Covenants ch.5): one Typical source (100 £) to start; Secondary Income adds a Typical source; Wealth raises a Typical source to Greater
         (250 £, Minor) or Legendary (1000 £, Major); Poverty leaves one Lesser source (40 £, Minor) or none (Major). Right protects a source but adds nothing. A * marks a Boon or Hook placed on a
         source for you. What the covenant receives is rounded up.
-      </p>
+      </HowItWorks>
     </Card>
   );
 }

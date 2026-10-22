@@ -37,17 +37,6 @@ export function currentSeverity(ill: Illness): number {
   return ill.severity + 3 * (STAGES.indexOf(ill.stage) - STAGES.indexOf(start));
 }
 
-/** The Disease Penalty of all a character's illnesses (those that give a Flaw instead have none), and whether one is at a crisis. */
-export function diseasePenalty(c: Character): { penalty: number; crisis: boolean } {
-  let penalty = 0;
-  let crisis = false;
-  for (const ill of c.illnesses ?? []) {
-    if (ill.stage === 'Critical') crisis = true;
-    else if (!ill.flawInstead) penalty += STAGE_PENALTY[ill.stage] ?? 0;
-  }
-  return { penalty, crisis };
-}
-
 const corpusBonus = (d: DerivedCharacter) => (d.isMagus ? Math.floor((d.arts.Co?.score ?? 0) / 5) : 0);
 
 /** Disease Avoidance: Stamina + Living Conditions + Corpus/5 + Wound Penalty + stress die against the Stable Ease Factor; a botch catches it a stage worse. */

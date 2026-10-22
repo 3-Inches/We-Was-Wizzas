@@ -28,7 +28,8 @@ export default function VirtuesStep({ ed }: { ed: CharEditor }) {
           <Meter label="Flaw points" value={t.flawPoints} max={maxFlaws} />
           <Meter label={c.type === 'mythic' ? 'Virtue points (2 per Flaw point)' : 'Virtue points'} value={t.virtuePoints} max={t.allowedVirtuePoints} />
           {c.type !== 'grog' && <Meter label="Minor Flaws" value={t.minorFlaws} max={ed.saga!.houseRules.maxMinorFlaws} />}
-          <div className="small">
+        </div>
+        <div className="small" style={{ marginTop: 6 }}>
             Story Flaws: <b>{t.storyFlaws}</b> · Personality Flaws: <b>{t.personalityFlaws}</b>
             {c.type === 'magus' && (
               <>
@@ -36,7 +37,6 @@ export default function VirtuesStep({ ed }: { ed: CharEditor }) {
                 · Major Hermetic Virtues: <b>{t.majorHermeticVirtues}</b> · Hermetic Flaws: <b>{t.hermeticFlaws}</b>
               </>
             )}
-          </div>
         </div>
         <p className="small muted" style={{ marginBottom: 0 }}>
           {c.type === 'grog'

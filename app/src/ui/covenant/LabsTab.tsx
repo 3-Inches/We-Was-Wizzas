@@ -5,7 +5,7 @@ import { FREE_FORM_CHARS, LAB_OPTIONS } from '../../data/labOptions';
 import type { LabVirtueEntry, Laboratory } from '../../engine/types';
 import { useSagaCharacters } from '../../store/hooks';
 import { uid } from '../../util/id';
-import { BookBadge, Card, Field, Markdown, SearchInput, Stepper, Total } from '../kit';
+import { BookBadge, Card, Field, Markdown, SearchInput, Stepper, Total, HowItWorks } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
 
@@ -145,11 +145,11 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
               <span className="badge bad">Missing Equipment</span> This lab cannot be used for {dl.impossible.join(', ')}.
             </div>
           )}
-          <p className="small muted">
-            Click a number to see how it is worked out. Base Safety is Refinement − occupied Size, and the occupied Size (Virtue points − Flaw points − Refinement) only counts once it is
+          <HowItWorks summary="Click a number to see how it is worked out." label="Why Safety drops">
+            Base Safety is Refinement − occupied Size, and the occupied Size (Virtue points − Flaw points − Refinement) only counts once it is
             above 0. So every Minor or Major Virtue that fills space lowers Safety by 1 or 3 once the lab's free room is used up, even ones that list no Safety change (such as the
             Expansions). Raising Refinement gives that Safety back (DE Laboratory chapter).
-          </p>
+          </HowItWorks>
           <h4>Specializations</h4>
           <div className="row">
             {Object.entries(dl.specializations).map(([k, v]) => (

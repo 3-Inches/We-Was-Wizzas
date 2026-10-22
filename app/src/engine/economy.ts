@@ -69,26 +69,6 @@ function takeVisExact(stocks: VisStock[], v: VisStock, pawns: number): boolean {
   return true;
 }
 
-/** Move pounds between purses and the treasury. Returns an error, or nothing when done. */
-export function movePounds(from: { kind: 'covenant'; cov: Covenant } | { kind: 'character'; c: Character }, to: typeof from, pounds: number, why: string, year: number, season: Season): string | undefined {
-  if (pounds <= 0) return 'Nothing to move.';
-  const have = from.kind === 'covenant' ? from.cov.finances.treasury : purseOf(from.c).pounds;
-  if (have < pounds) return `Only ${have} £ to give.`;
-  if (from.kind === 'covenant') from.cov.finances.treasury = round1(from.cov.finances.treasury - pounds);
-  else {
-    const p = purseOf(from.c);
-    p.pounds = round1(p.pounds - pounds);
-    (p.log ??= []).push({ year, season, text: why, pounds: -pounds });
-  }
-  if (to.kind === 'covenant') to.cov.finances.treasury = round1(to.cov.finances.treasury + pounds);
-  else {
-    const p = purseOf(to.c);
-    p.pounds = round1(p.pounds + pounds);
-    (p.log ??= []).push({ year, season, text: why, pounds });
-  }
-  return undefined;
-}
-
 /** Move pawns of vis between stocks. */
 export function moveVis(from: VisStock[], to: VisStock[], art: Art, pawns: number, pair?: Art): string | undefined {
   if (pawns <= 0) return 'Nothing to move.';
@@ -99,19 +79,6 @@ export function moveVis(from: VisStock[], to: VisStock[], art: Art, pawns: numbe
   addVis(to, art, pawns, pair);
   return undefined;
 }
-
-const round1 = (n: number) => Math.round(n * 10) / 10;
-
-/** Prices in Mythic Pounds (a pound is 20 shillings or 240 pennies), City & Guild's list at standard quality. */
-export const GOODS: { name: string; pounds: number }[] = [
-  ['Chainmail, full', 2], ['Chainmail, partial', 1], ['Leather scale, full', 10 / 20], ['Leather scale, partial', 5 / 20], ['Heavy leather, full', 2.5 / 20], ['Heavy leather, partial', 15 / 240],
-  ['Long sword', 10 / 20], ['Great sword', 13 / 20], ['Short sword', 3 / 20], ['Dagger', 6 / 240], ['Longbow', 15 / 20], ['Shield, heater', 8 / 20], ['Shield, round', 8 / 240], ['Shield, buckler', 3 / 20],
-  ['Chest with lock', 2.5], ['House, peasant', 2], ['House, urban', 5], ['House, luxurious', 50], ['Non-Hermetic book', 11 / 20], ['Tunic, wool', 5 / 20], ['Tunic, dyed', 8 / 20],
-  ['Tunic, fur lined', 13 / 20], ['Pair of shoes', 11 / 240], ['Wagon', 20 / 240], ['Cart', 10 / 240], ['Chair', 8 / 240], ['Shovel', 4 / 240],
-].map(([name, pounds]) => ({ name: name as string, pounds: Math.round((pounds as number) * 1000) / 1000 }));
-
-/** City & Guild: shoddy ×0.5, standard ×1, superior ×2, excellent ×5. */
-export const QUALITY_MULT = { shoddy: 0.5, standard: 1, superior: 2, excellent: 5 } as const;
 
 /** A price in pounds as the period would say it: pounds, shillings and pennies. */
 export function lsd(pounds: number): string {

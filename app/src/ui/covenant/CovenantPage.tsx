@@ -6,7 +6,7 @@ import { exportCovenant, useStore } from '../../store/store';
 import { useDerivedCovenant, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
 import { bundleToShareLink, downloadJson, safeFilename } from '../../util/files';
 import { uid } from '../../util/id';
-import { Card, Empty, Field, Meter, SelectOrType, Stepper, Tabs } from '../kit';
+import { Card, Empty, Field, Meter, SelectOrType, Stepper, Tabs, HowItWorks } from '../kit';
 import { TRIBUNALS } from '../../data/lists';
 import ItemsEditor from '../items/ItemEditor';
 import HooksTab from './HooksTab';
@@ -121,6 +121,13 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
   const chars = useSagaCharacters(sagaId);
   const saga = useSaga(sagaId);
   const updateCharacter = useStore((s) => s.updateCharacter);
+  // magic on the covenant leads when something is recorded; otherwise it waits below the members
+  const hasMagic = (cov.effects ?? []).length > 0 || (cov.casts ?? []).some((r) => !r.undone);
+  const magicCard = (
+    <Card title="Magic on the covenant">
+      <CovenantEffects cov={cov} chars={chars} />
+    </Card>
+  );
   const byCat = new Map<string, number>();
   for (const l of dc.bpLines) byCat.set(l.category, (byCat.get(l.category) ?? 0) + l.cost);
   const toggleMember = (id: string, on: boolean) => {
@@ -147,9 +154,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
   };
   return (
     <div className="stack">
-      <Card title="Magic on the covenant">
-        <CovenantEffects cov={cov} chars={chars} />
-      </Card>
+      {hasMagic && magicCard}
       <div className="grid grid-2">
         <Card title="The covenant" className="accent">
           <div className="grid grid-2">
@@ -262,10 +267,10 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
               );
             })
           )}
-          <p className="small muted">
-            Costs (DE p.178–180): Art summa level + quality; Ability summa quality + 3 × level; tractatus = quality; lab texts 1 BP / 5 levels; casting tablets 2 BP / 5 levels; vis
+          <HowItWorks label="Build Point costs (DE p.178–180)">
+            Art summa level + quality; Ability summa quality + 3 × level; tractatus = quality; lab texts 1 BP / 5 levels; casting tablets 2 BP / 5 levels; vis
             sources 5 BP per pawn per year; vis stocks 1 BP per 5 pawns; items 2 BP / 5 levels; specialists = score (teachers: + Com + Teaching); labs 20 × Size, Virtues 10/20.
-          </p>
+          </HowItWorks>
         </Card>
       </div>
       <Card title="Members">
@@ -283,6 +288,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
           })}
         </div>
       </Card>
+      {!hasMagic && magicCard}
       <CovenantTribunalCard cov={cov} update={update} saga={saga} />
     </div>
   );

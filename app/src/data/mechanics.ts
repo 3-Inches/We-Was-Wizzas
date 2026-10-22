@@ -513,6 +513,3 @@ export const MECHANICS: Record<string, Mechanics> = {
   'servant-of-the-land-flaw': { param: P.text('Land') },
   'imagined-folk-tradition-vulnerability-flaw': {},
 };
-
-/** Personality Flaws may be Major or Minor; Story Flaws etc. are covered by the data. */
-export const PERSONALITY_TRAIT_FOR_FLAW = { Major: 6, Minor: 3 } as const;

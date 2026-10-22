@@ -19,6 +19,8 @@ import {
 } from '../../data/mechanicsTypes';
 import { BookBadge, Card, Empty, Markdown, SearchInput } from '../kit';
 import { useBookSection } from '../bookText';
+import { APP_PLACES, type AppPlace } from '../../data/appPlaces';
+import { useStore } from '../../store/store';
 
 // The index comes first; an area's mechanics load when it is opened, and all of them for a search.
 const areaFiles = import.meta.glob<{ default: unknown }>(['../../data/generated/mechanics/*.json', '!../../data/generated/mechanics/index.json']);
@@ -309,6 +311,7 @@ function GroupView({ area, summary, gated }: { area: MechanicsAreaSummary; summa
         <h1 style={{ marginBottom: 4 }}>{summary.title}</h1>
         {summary.intro && <p className="muted" style={{ marginTop: 0 }}>{summary.intro}</p>}
         {gated && <p className="small muted">These mechanics need a specific Virtue, House, initiation, tradition or kind of being.</p>}
+        <InTheApp topic={summary.id} />
       </div>
       <AudienceFilter value={who} onChange={setWho} />
       {split && (
@@ -469,3 +472,24 @@ function VersionCard({ version: v }: { version: MechanicsVersion }) {
   );
 }
 
+/** Where the app does this topic's rules: pages are linked for the saga last opened. */
+function InTheApp({ topic }: { topic: string }) {
+  const sagaId = useStore((s) => s.activeSagaId);
+  const places = APP_PLACES[topic];
+  if (!places?.length) return null;
+  const href = (p: AppPlace) => (p.page === 'dice' ? '/dice' : p.page && sagaId ? `/saga/${sagaId}${p.page === 'saga' ? '' : `/${p.page}`}` : undefined);
+  return (
+    <p className="small" style={{ margin: '4px 0 0' }}>
+      <b>In the app:</b>{' '}
+      {places.map((p, i) => {
+        const to = href(p);
+        return (
+          <span key={i}>
+            {i > 0 && ' · '}
+            {to ? <Link to={to}>{p.text}</Link> : p.text}
+          </span>
+        );
+      })}
+    </p>
+  );
+}

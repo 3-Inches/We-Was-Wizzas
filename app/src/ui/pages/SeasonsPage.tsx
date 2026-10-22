@@ -200,7 +200,7 @@ export default function SeasonsPage() {
                   })
                 }
               />{' '}
-              {s.name}
+              {s.name} <span className="muted">({s.pawnsPerYear} {s.art})</span>
               {s.contested ? ' (contested)' : ''}
             </label>
           ))}

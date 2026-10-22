@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { ARTS, ART_NAMES, type Art } from '../../../data';
 import { addVirtue } from '../../../engine/character/factory';
 import { twilightAvoidance, twilightComprehension, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith, type TwilightEffect } from '../../../engine/longterm';
-import { Card, Field, Stepper } from '../../kit';
+import { Card, Field, Stepper, HowItWorks } from '../../kit';
 import type { CharEditor } from '../useChar';
 
 /** Adds (or takes away) play experience, never below none at all. */
@@ -185,11 +185,11 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
               </div>
             </div>
           )}
-          <p className="small muted">
+          <HowItWorks label="The rolls">
             Avoiding: Stamina + Concentration + Vim/5 + stress die vs Warping Score + points gained + Enigmatic Wisdom + aura + stress die. Comprehending: Intelligence + Enigmatic Wisdom +
             stress die vs Warping Score + stress die, with 1 + points gained botch dice (DE Wizard&apos;s Twilight).
             {d.twilightMastery ? ' Twilight Mastery: once a day your touch gives a being 2 Warping Points (Penetration +5); a magus touched must check for Twilight.' : ''}
-          </p>
+          </HowItWorks>
         </>
       )}
       {text.map((t, i) => (
