@@ -6,6 +6,7 @@ import DOMPurify from 'dompurify';
 import type { Issue } from '../engine/character/validate';
 import type { Part } from '../engine/magic';
 import { BOOK_BY_ID } from '../data';
+import { dropEmptyHeads, tidyTables } from './tables';
 
 export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string }) {
   return (
@@ -91,8 +92,8 @@ export function Modal(props: { title: ReactNode; onClose: () => void; children: 
 
 export function Markdown(props: { text: string; className?: string }) {
   const html = useMemo(() => {
-    const raw = marked.parse(props.text ?? '', { async: false, gfm: true, breaks: false }) as string;
-    return DOMPurify.sanitize(raw);
+    const raw = marked.parse(tidyTables(props.text ?? ''), { async: false, gfm: true, breaks: false }) as string;
+    return DOMPurify.sanitize(dropEmptyHeads(raw));
   }, [props.text]);
   return <div className={`markdown ${props.className ?? ''}`} dangerouslySetInnerHTML={{ __html: html }} />;
 }

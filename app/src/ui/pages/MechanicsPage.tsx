@@ -265,30 +265,8 @@ function AreaView({ area }: { area: MechanicsAreaSummary }) {
       </div>
     );
   };
-  // topics with one mechanic are listed together after the others, as links
-  const groupList = (gs: MechanicsGroupSummary[]) => {
-    const single = gs.filter((g) => countOf(g, who) === 1);
-    return (
-      <>
-        {gs.filter((g) => countOf(g, who) > 1).map(groupRow)}
-        {single.length > 0 && (
-          <div className="list-row" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: 2 }}>
-            <b>More topics</b>
-            <div className="small">
-              {single.map((g, i) => (
-                <span key={g.id}>
-                  {i > 0 && ' · '}
-                  <Link to={`/mechanics/${area.id}/${g.id}${qs(who)}`} title={g.requires.length ? `Needs: ${g.requires.join('; ')}` : undefined}>
-                    {g.title}
-                  </Link>
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-      </>
-    );
-  };
+  // every topic in the area's own order, however few mechanics it has
+  const groupList = (gs: MechanicsGroupSummary[]) => <>{gs.map(groupRow)}</>;
   return (
     <div className="stack">
       <Breadcrumb area={area} who={who} />

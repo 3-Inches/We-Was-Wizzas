@@ -9,17 +9,22 @@ import { BOOK_BY_ID } from '../data';
 export const bookCache = new Map<string, string[]>();
 const pending = new Map<string, Promise<string[]>>();
 
+/** A book file's address. "&" is left as it is: some static servers do not decode "%26" in a path. */
+export const bookUrl = (file: string) => `books/${encodeURIComponent(file).replace(/%26/g, '&')}`;
+
 export function loadBookLines(file: string): Promise<string[]> {
   const hit = bookCache.get(file);
   if (hit) return Promise.resolve(hit);
   let p = pending.get(file);
   if (!p) {
-    p = fetch(`books/${encodeURIComponent(file)}`)
+    p = fetch(bookUrl(file))
       .then((r) => {
         if (!r.ok) throw new Error(`${r.status}`);
         return r.text();
       })
       .then((t) => {
+        // a server that does not have the file may answer with the app's own page
+        if (/^\s*<!doctype html/i.test(t)) throw new Error('not found');
         const ls = t.split(/\r?\n/);
         bookCache.set(file, ls);
         return ls;
