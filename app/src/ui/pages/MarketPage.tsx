@@ -105,7 +105,7 @@ export default function MarketPage() {
             </select>
             {buyer && <b>{fundsText(buyer)}</b>}
             {buyer?.kind === 'covenant' && (
-              <label className="row tight small" title="Covenants ch.5: Sundry spending is part of the year's expenditure">
+              <label className="row tight small" style={{ flexWrap: 'nowrap' }} title="Covenants ch.5: Sundry spending is part of the year's expenditure">
                 <input type="checkbox" checked={onSundry} onChange={(e) => setOnSundry(e.target.checked)} /> put it on this year&apos;s Sundry (now {lsd(buyer.cov.finances.sundry)}) instead of paying now
               </label>
             )}
@@ -377,7 +377,7 @@ function Books({ buyer, home, run, data, visPrice, onSundry }: { buyer: Payer; h
             {kind === 'summa' && <option value="damaged">damaged surplus</option>}
           </select>
           {tier === 'sound' && (
-            <label className="row tight">
+            <label className="row tight" style={{ flexWrap: 'nowrap' }}>
               <input type="checkbox" checked={now} onChange={(e) => (setNow(e.target.checked), setAgreed(undefined))} /> a spare copy now (not ordered and copied over a season)
             </label>
           )}
@@ -498,7 +498,7 @@ function HireTeacher({ home, data, run, onSundry }: { home: Covenant; data: Game
           Teaching <Stepper value={t.teaching ?? 0} min={0} max={10} width={30} onChange={(v) => set((x) => void (x.teaching = v))} />
         </span>
         <SpecChars s={t} set={set} show={['Com']} />
-        <label className="row tight">
+        <label className="row tight" style={{ flexWrap: 'nowrap' }}>
           <input type="checkbox" checked={!!t.goodTeacher} onChange={(e) => set((x) => void (x.goodTeacher = e.target.checked))} /> Good Teacher
         </label>
       </div>
@@ -540,13 +540,11 @@ function PriceList({ run, home, onSundry }: { run: Run; home: Covenant | undefin
         </select>
         {g.note && <span className="muted">{g.note}</span>}
       </div>
-      <table className="compact small" style={{ marginTop: 6 }}>
-        <tbody>
-          {g.wares.map((w) => (
-            <WareRow key={w.id} w={w} run={run} home={home} onSundry={onSundry} />
-          ))}
-        </tbody>
-      </table>
+      <div className="small" style={{ marginTop: 6 }}>
+        {g.wares.map((w) => (
+          <WareRow key={w.id} w={w} run={run} home={home} onSundry={onSundry} />
+        ))}
+      </div>
       <p className="small muted" style={{ margin: '4px 0 0' }}>
         Quality and size: shoddy or small ×½, superior or large ×2, excellent or huge ×5, flawless or stupendous ×10 (Covenants ch.5). A pound is 20 shillings or 240 pennies. Lab Virtues are
         installed on the covenant&apos;s Laboratories tab; buy the Upkeep they add here.
@@ -560,22 +558,23 @@ function WareRow({ w, run, home, onSundry }: { w: Ware; run: Run; home: Covenant
   const [qty, setQty] = useState(1);
   const pounds = w.pounds * (w.scales ? mult : 1) * qty;
   return (
-    <tr>
-      <td>
+    <div className="ware">
+      <div className="ware-name">
         {w.name}
         {w.per && <span className="muted"> ({w.per})</span>}
+        <b className="ware-price">
+          {' '}
+          {lsd(w.pounds)}
+          {w.yearly ? ' a year' : ''}
+        </b>
         {(w.note || w.source) && (
           <div className="muted" style={{ fontSize: '0.9em' }}>
             {w.note ? `${w.note} ` : ''}
             {w.source}
           </div>
         )}
-      </td>
-      <td style={{ whiteSpace: 'nowrap' }}>
-        {lsd(w.pounds)}
-        {w.yearly ? ' a year' : ''}
-      </td>
-      <td>
+      </div>
+      <div className="row tight ware-buy">
         {w.scales && (
           <select value={mult} onChange={(e) => setMult(Number(e.target.value))} aria-label="Quality">
             {QUALITY.map((q) => (
@@ -585,16 +584,12 @@ function WareRow({ w, run, home, onSundry }: { w: Ware; run: Run; home: Covenant
             ))}
           </select>
         )}
-      </td>
-      <td>
         <Stepper value={qty} min={1} max={99} width={30} onChange={setQty} />
-      </td>
-      <td>
         <button className="small" disabled={w.id === 'lab-outfit' && !home} onClick={() => run((st, p, h) => buyWare(p, h, w, mult, qty, { year: st.saga.currentYear, season: st.saga.currentSeason }, onSundry), `Bought ${w.name}${qty > 1 ? ` ×${qty}` : ''}.`)}>
           Buy {lsd(pounds)}
         </button>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }
 

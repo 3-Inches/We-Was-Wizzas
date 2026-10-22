@@ -39,7 +39,7 @@ export interface EffectSpec {
   source?: string;
   duration: ActiveEffect['duration'];
   /** raise these Characteristics by `amount`, to no more than `max` (a permanent effect changes them for good; otherwise a bonus while it lasts) */
-  raise?: { chars: Characteristic[]; amount: number; max: number };
+  raise?: { chars: Characteristic[]; amount: number; max: number; current?: Partial<Record<Characteristic, number>> };
   bonuses?: Effect[];
   /** give this Virtue */
   virtue?: { defId: string; size: VFSize; param?: string };
@@ -48,6 +48,8 @@ export interface EffectSpec {
   warping?: number;
   notes?: string;
 }
+
+const signedN = (n: number) => `${n >= 0 ? '+' : ''}${n}`;
 
 export const PHYSICAL: Characteristic[] = ['Str', 'Sta', 'Dex', 'Qik'];
 export const MENTAL: Characteristic[] = ['Int', 'Per', 'Pre', 'Com'];
@@ -58,20 +60,22 @@ export function applyEffect(c: Character, spec: EffectSpec, year: number, season
   const effect: ActiveEffect = { uid: uid(), name: spec.name, source: spec.source, year, season, duration: spec.duration, constant: spec.constant || undefined, notes: spec.notes };
   if (spec.bonuses?.length) effect.bonuses = [...spec.bonuses];
   if (spec.raise) {
-    const { chars, amount, max } = spec.raise;
+    const { chars, amount, max, current } = spec.raise;
     if (spec.duration === 'permanent') {
       const raised: Partial<Record<Characteristic, number>> = {};
       for (const ch of chars) {
         const cur = c.characteristics[ch] ?? 0;
-        const delta = Math.max(0, Math.min(amount, max - cur));
+        // the limit is on what the character has now, with Virtues, Qualities and Size
+        const now = current?.[ch] ?? cur;
+        const delta = Math.max(0, Math.min(amount, max - now));
         if (!delta) {
-          lines.push(`${CHAR_NAMES[ch]} is already ${cur >= 0 ? '+' : ''}${cur}: no higher than ${max >= 0 ? '+' : ''}${max}.`);
+          lines.push(`${CHAR_NAMES[ch]} is already ${signedN(now)}: no higher than ${signedN(max)}.`);
           continue;
         }
         c.characteristics[ch] = cur + delta;
         c.magicGain = { ...(c.magicGain ?? {}), [ch]: (c.magicGain?.[ch] ?? 0) + delta };
         raised[ch] = delta;
-        lines.push(`${CHAR_NAMES[ch]} ${cur >= 0 ? '+' : ''}${cur} → ${cur + delta >= 0 ? '+' : ''}${cur + delta}.`);
+        lines.push(`${CHAR_NAMES[ch]} ${signedN(now)} → ${signedN(now + delta)}.`);
       }
       if (Object.keys(raised).length) effect.raised = raised;
     } else {

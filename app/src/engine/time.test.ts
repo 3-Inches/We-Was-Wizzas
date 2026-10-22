@@ -121,6 +121,24 @@ describe('effects on characters', () => {
     expect(st.characters[1].warpingPoints).toBe(0); // the caster
     expect(lines.some((l) => /covenfolk/.test(l.text))).toBe(true);
   });
+  it('measures a ritual’s limit against the Characteristic as it stands, Virtues and Qualities included', () => {
+    const st = saga();
+    const m = st.characters[1];
+    m.characteristics.Int = 3;
+    m.virtues.push({ uid: 'g1', defId: 'great-characteristic', size: 'Minor', param: 'Int' }, { uid: 'g2', defId: 'great-characteristic', size: 'Minor', param: 'Int' });
+    const now = (c: typeof m) => Object.fromEntries(Object.entries(deriveCharacter(c, data, DEFAULT_HOUSE_RULES).characteristics).map(([k, v]) => [k, v.value]));
+    expect(now(m).Int).toBe(5);
+    const plan = { name: 'Honing the Mind', level: 60, effect: { kind: 'raise' as const, chars: ['Int' as const, 'Per' as const], max: 5 }, duration: 'permanent' as const, targets: { characterIds: [m.id], specialistUids: [], covenfolk: false } };
+    const lines = applyRitual(plan, st.covenants[0], st.characters, m.id, 'Magus, ritual', 1220, 'Spring', data, now);
+    expect(m.characteristics.Int).toBe(3); // already +5: no higher
+    expect(m.characteristics.Per).toBe(1);
+    expect(lines[0].text).toMatch(/Intelligence is already \+5/);
+    // a spell lasting a year adds to the score as it stands, and never takes it down to its limit
+    applyEffect(m, { name: 'Mind for a year', duration: 'year', raise: { chars: ['Int', 'Per'], amount: 1, max: 3 } }, 1220, 'Spring', data);
+    const d = deriveCharacter(m, data, DEFAULT_HOUSE_RULES);
+    expect(d.characteristics.Int.value).toBe(5);
+    expect(d.characteristics.Per.value).toBe(2);
+  });
 });
 
 describe('covenant teachers', () => {

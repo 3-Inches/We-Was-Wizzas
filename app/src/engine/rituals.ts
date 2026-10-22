@@ -34,8 +34,15 @@ export interface RitualPlan {
   targets: { characterIds: string[]; specialistUids: string[]; covenfolk: boolean };
 }
 
-/** Put a ritual's effect on everyone it reaches. Changes the characters and the covenant; returns what happened. */
-export function applyRitual(plan: RitualPlan, cov: Covenant, chars: Character[], casterId: string | undefined, source: string, year: number, season: Season, data: GameData): Line[] {
+/**
+ * Put a ritual's effect on everyone it reaches. Changes the characters and the covenant; returns what
+ * happened. `current` gives a character's Characteristics as they stand (Virtues, Qualities and Size
+ * included), which the ritual's limit is measured against.
+ */
+export function applyRitual(
+  plan: RitualPlan, cov: Covenant, chars: Character[], casterId: string | undefined, source: string, year: number, season: Season, data: GameData,
+  current?: (c: Character) => Partial<Record<Characteristic, number>>,
+): Line[] {
   const lines: Line[] = [];
   for (const c of chars.filter((x) => plan.targets.characterIds.includes(x.id))) {
     const warping = powerfulEffectWarping(plan.level, c.id === casterId, !!plan.designedFor);
@@ -43,7 +50,7 @@ export function applyRitual(plan: RitualPlan, cov: Covenant, chars: Character[],
       c,
       {
         name: plan.name, source, duration: plan.duration, warping,
-        raise: plan.effect.kind === 'raise' ? { chars: plan.effect.chars, amount: 1, max: plan.effect.max } : undefined,
+        raise: plan.effect.kind === 'raise' ? { chars: plan.effect.chars, amount: 1, max: plan.effect.max, current: current?.(c) } : undefined,
         virtue: plan.effect.kind === 'virtue' ? { defId: plan.effect.defId, size: plan.effect.size, param: plan.effect.param } : undefined,
       },
       year, season, data,
