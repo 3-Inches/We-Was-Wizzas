@@ -12,6 +12,8 @@ import { Card, Field, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
 import { TwilightCard } from './Twilight';
+import { MysteriesCard } from './MysteriesCard';
+import { GuildCard } from './GuildCard';
 import { WritingCard } from './Writing';
 import { WorkshopCard } from './WorkshopCard';
 import { useSagaCharacters } from '../../../store/hooks';
@@ -553,8 +555,10 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         </Card>
 
         <TwilightCard ed={ed} />
+        <MysteriesCard ed={ed} />
         <WritingCard ed={ed} />
         <WorkshopCard ed={ed} />
+        <GuildCard ed={ed} />
       </div>
     </div>
   );

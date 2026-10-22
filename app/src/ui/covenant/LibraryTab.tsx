@@ -10,6 +10,10 @@ import { useStore } from '../../store/store';
 import { Card, Field, Stepper } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
+import { RulesNote } from '../RulesNote';
+import { CursorNote, PertheanFields } from './CovenantTribunal';
+import { optionOn } from '../../engine/optional';
+import { useSaga } from '../../store/hooks';
 import { describeStress, stressDie } from '../../engine/dice';
 
 const KIND_LABEL: Record<LibraryBook['kind'], string> = {
@@ -28,6 +32,7 @@ function newBook(kind: LibraryBook['kind']): LibraryBook {
 }
 
 export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
+  const saga = useSaga(cov.sagaId);
   const [filter, setFilter] = useState<'all' | LibraryBook['kind']>('all');
   const setBook = (id: string, fn: (b: LibraryBook) => void) => update((x) => { const b = x.library.find((y) => y.uid === id); if (b) fn(b); });
   const books = cov.library.filter((b) => filter === 'all' || b.kind === filter);
@@ -241,6 +246,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                   {dc.unreal.has(s.uid) ? 'not real: gives nothing' : `receives ${receivedAfterTithe(s.pawnsPerYear, true, !!s.miracle && miracles, miracleMultiplierOf(cov)).received}/yr`}
                 </span>
               )}
+              <PertheanFields s={s} saga={saga} onChange={(fn) => update((x) => void fn(x.visSources.find((y) => y.uid === s.uid)!))} />
               <PaidBy cost={visSourceCost(s)} line={dc.bpLines.find((l) => l.ref === s.uid)} dc={dc} onlyPool />
               <button className="small ghost" onClick={() => update((x) => void (x.visSources = x.visSources.filter((y) => y.uid !== s.uid)))}>
                 ✕
@@ -255,6 +261,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
               + Source found in play
             </button>
           </div>
+          <CursorNote saga={saga} />
           <VisYieldGuide />
           <h4>Stocks</h4>
           <div className="grid grid-3">
@@ -325,7 +332,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
           <p className="small muted">Lab texts: {cov.library.filter((b) => b.kind === 'labText').reduce((s, b) => s + b.level, 0)} levels. Casting tablets: {cov.library.filter((b) => b.kind === 'castingTablet').length}.</p>
           <BookTrade />
         </Card>
-        <LibraryResearch />
+        {optionOn(saga, 'libraryResearch') && <LibraryResearch />}
       </div>
     </div>
   );
@@ -355,10 +362,9 @@ function LibraryResearch() {
   };
   return (
     <Card title="Research in the library">
-      <p className="small muted" style={{ marginTop: 0 }}>
-        To find a fact in the books: Intelligence + an Ability that fits the question + the library&apos;s bonus for the subject + a stress die, against an Ease Factor the
-        storyguide sets (<i>Covenants</i>).
-      </p>
+      <RulesNote book="Cov" line={5252} endLine={5263}>
+        Intelligence + a fitting Ability + the library&apos;s bonus + a stress die, against the storyguide&apos;s Ease Factor.
+      </RulesNote>
       <div className="row">
         <Field label="Intelligence + Ability">
           <Stepper value={skill} min={-10} max={30} width={40} onChange={setSkill} />

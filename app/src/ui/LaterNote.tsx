@@ -18,7 +18,7 @@ const NOTES: Record<LaterTopic, { title: string; items: string[] }> = {
     title: 'Gaining Virtues (and Flaws) after creation',
     items: [
       'Hermetic Virtues can be taught by a magus who has them, one-on-one in a season: Teaching Source Quality (Communication + Teaching + 3, +6 for one student) against 15 for a Minor Virtue or 21 for a Major one, +3 for each Minor and +9 for each Major Hermetic Virtue the student already has. A teacher who passes on one of his Hermetic Flaws with it adds +3 (Minor) or +9 (Major) (DE Teaching Hermetic Virtues).',
-      'Mystery Virtues come by Initiation: the Mystagogue’s Initiation Total against 15 (Minor) or 21 (Major), 18 or 30 if the Mystagogue does not have it. An Ordeal (taking a Flaw) lowers the target of later Initiations (DE Mystery Cults).',
+      'Mystery Virtues come by Initiation: the Mystagogue’s Initiation Total against 15 (Minor) or 21 (Major), 18 or 30 if the Mystagogue does not have it. An Ordeal (taking a Flaw) lowers the target of later Initiations (DE Mystery Cults). The Mysteries & Initiation card on the Seasons & Aging tab works it out.',
       'A comprehended Wizard’s Twilight can grant a Minor Hermetic or Supernatural Virtue (7–10 Warping Points gained) or a Major one (11 or more). A failed one can bring Flaws.',
       'Original Research and Integration of non-Hermetic magic can add new Hermetic Virtues through Breakthroughs.',
       'Story, Social and Personality Virtues and Flaws change through play at the storyguide’s ruling. Hermetic Flaws, once gained, cannot be removed.',

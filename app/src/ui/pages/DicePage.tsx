@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
-import { BookBadge, Card, Field, Stepper, signed } from '../kit';
+import { Card, Field, Stepper, signed } from '../kit';
+import { RulesNote } from '../RulesNote';
 
 // Grogs' optional equipment bonuses: the right tool for a task lowers its Ease Factor.
 const EQUIPMENT = { none: 0, minor: 1, major: 3 } as const;
@@ -132,10 +133,10 @@ export default function DicePage() {
           ))}
         </Card>
       </div>
-      <Card title={<h3>Equipment bonuses <BookBadge book="Grogs" line={1722} /></h3>}>
-        <p className="small muted" style={{ marginTop: 0 }}>
-          An optional rule: equipment that suits the task and the specialty lowers the Ease Factor, by 1 for a minor bonus and by 3 for a major one. Some examples:
-        </p>
+      <Card title="Equipment bonuses">
+        <RulesNote book="Grogs" line={1722} endLine={1731}>
+          Equipment that suits the task lowers its Ease Factor: by 1 for a minor bonus, by 3 for a major one. Some examples:
+        </RulesNote>
         <table className="compact">
           <tbody>
             {EQUIPMENT_EXAMPLES.map(([item, use, size]) => (

@@ -218,7 +218,7 @@ describe('guided build: auto-build', () => {
     // the battle mage spends on the Arts they rated
     const d = deriveCharacter(drafts[0].c, data, rules);
     expect(d.arts.Pe.score).toBeGreaterThan(d.arts.Cr.score);
-  });
+  }, 20000); // six full builds: about 4 seconds alone, more while the other test files run
 });
 
 describe('guided build: outputs first, Totals ranked, ranges in the questions', () => {

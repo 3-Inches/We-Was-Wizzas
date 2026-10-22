@@ -4,8 +4,10 @@
 import { useState } from 'react';
 import { BREAKTHROUGH_GUIDE, researchRiskLimit, rollStabilization } from '../../../engine/experiment';
 import { uid } from '../../../util/id';
-import { BookBadge, Card, Field, Stepper } from '../../kit';
+import { Card, Field, Stepper } from '../../kit';
+import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
+import { optionOn } from '../../../engine/optional';
 
 export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicTheory: number }) {
   const { c, update, ctx, saga } = ed;
@@ -15,6 +17,7 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
   const [adjust, setAdjust] = useState(0);
   const [log, setLog] = useState<string[][]>([]);
   if (!c) return null;
+  if (!optionOn(saga, 'originalResearch') && !c.research) return null;
   const r = c.research;
   const maxRisk = researchRiskLimit(magicTheory);
   const points = (r?.discoveries ?? []).reduce((t, x) => t + x.magnitude, 0);
@@ -42,12 +45,10 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
   };
 
   return (
-    <Card title={<h3>Original research <BookBadge book="HoH_TL" line={849} /></h3>}>
-      <p className="small muted" style={{ marginTop: 0 }}>
-        A Breakthrough is reached by stabilizing Discoveries. Experiment with original research (above) until the chart gives a Discovery, then spend the next season repeating
-        the experiment: unless it gives a Disaster, No Benefit or Complete Failure, the Discovery is stable and adds its magnitude to your points. You gain the magnitude less a
-        simple die in Warping Points either way. Another magus&apos;s research Lab Text on the same Breakthrough adds its magnitude without Warping once you have worked through it.
-      </p>
+    <Card title="Original research">
+      <RulesNote book="HoH_TL" line={849} endLine={943}>
+        Experiment until a Discovery, then stabilize it the next season: its magnitude counts toward the Breakthrough, at a cost in Warping.
+      </RulesNote>
       <div className="row">
         <Field label="The Breakthrough sought">
           <input value={r?.goal ?? ''} placeholder="e.g. break the Limit of Vis" onChange={(e) => update((x) => void ((x.research ??= { goal: '', kind: 'minor', discoveries: [] }).goal = e.target.value))} />

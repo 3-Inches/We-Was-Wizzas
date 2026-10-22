@@ -9,6 +9,7 @@ import extract_spells
 import extract_vf
 import extract_vf_refs
 import extract_magic_qualities
+import extract_mysteries
 
 if __name__ == "__main__":
     extract_vf.main()
@@ -21,3 +22,4 @@ if __name__ == "__main__":
     extract_covlab.shape_material()
     extract_covlab.weapons()
     extract_diseases.main()
+    extract_mysteries.main()

@@ -119,6 +119,32 @@ export interface CastingOptions {
   notTouching?: boolean; // Short-Ranged Magic
 }
 
+export type Voice = 'loud' | 'firm' | 'quiet' | 'none';
+export type Gestures = 'exaggerated' | 'bold' | 'subtle' | 'none';
+export const VOICE: Record<Voice, number> = { loud: 1, firm: 0, quiet: -5, none: -10 };
+export const GESTURES: Record<Gestures, number> = { exaggerated: 1, bold: 0, subtle: -2, none: -5 };
+
+/**
+ * Words and gestures (DE): the two modifiers added. Quiet Magic takes the penalty off a quiet voice
+ * and leaves −5 for none (twice: no penalty at all); Subtle Magic takes it off casting without gestures.
+ */
+export function wordsGesturesModifier(d: DerivedCharacter, voice: Voice, gestures: Gestures): { value: number; notes: string[] } {
+  const notes: string[] = [];
+  const quiet = d.virtues.filter((v) => v.cv.defId === 'quiet-magic').length;
+  const subtle = d.virtues.some((v) => v.cv.defId === 'subtle-magic');
+  let w = VOICE[voice];
+  if (w < 0 && quiet) {
+    w = quiet >= 2 || voice === 'quiet' ? 0 : -5;
+    notes.push(`Quiet Magic${quiet >= 2 ? ' (twice)' : ''}`);
+  }
+  let g = GESTURES[gestures];
+  if (g < 0 && subtle) {
+    g = 0;
+    notes.push('Subtle Magic');
+  }
+  return { value: w + g, notes };
+}
+
 /** Casting Score (no die). Formulaic Casting Total = Casting Score + die. */
 export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOptions): TotalResult {
   const parts: Part[] = [];
