@@ -4,7 +4,7 @@ import { DEFAULT_HOUSE_RULES } from './types';
 import { addVirtue, ensureAbility, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { castingFatigue, castingRules, castingScore, certamenFatigue, certamenTotals, lifeLinkedFatigue, magicBotchDice, ritualVis, visWithWaste } from './magic';
-import { experimentBotchDice, researchRiskLimit, rollExperiment } from './experiment';
+import { experimentBotchDice, researchRiskLimit, rollExperiment, rollStabilization } from './experiment';
 import { agingRoll, computeStudy } from './longterm';
 
 const data = buildGameData();
@@ -161,5 +161,17 @@ describe('study distractions (DE, Distractions)', () => {
     const d = deriveCharacter(newCharacter('magus', 's1'), data, DEFAULT_HOUSE_RULES);
     const xp = (m: number) => computeStudy(d, { kind: 'tractatus', quality: 15, isArt: true, subject: 'Vim' }, { art: 'Vi', monthsLost: m }).advancementTotal;
     expect([0, 1, 2, 3].map(xp)).toEqual([15, 10, 5, 0]);
+  });
+
+  it('stabilizes a Discovery unless the chart, moved as before, gives No Benefit, Complete Failure or Disaster; Warping is magnitude less a simple die', () => {
+    // faces in order: chart 8 (+ risk 1 − 1 moved = 8: Complete Failure), then simple die 2
+    const seq = (faces: number[]) => { let i = 0; return () => (faces[i++ % faces.length] + 0.5) / 10; };
+    const fail = rollStabilization({ risk: 1, adjust: -1, magnitude: 3, auraStrength: 0, originalResearch: true }, seq([8, 2]));
+    expect(fail.stable).toBe(false);
+    expect(fail.warpingPoints).toBe(1);
+    // chart 8, moved up by the risk as at the Discovery: 8 + 1 + 1 = 10, stable; simple die 5 against magnitude 3: no Warping
+    const ok = rollStabilization({ risk: 1, adjust: 1, magnitude: 3, auraStrength: 0, originalResearch: true }, seq([8, 5]));
+    expect(ok.stable).toBe(true);
+    expect(ok.warpingPoints).toBe(0);
   });
 });

@@ -1,4 +1,4 @@
-// Lab projects season by season (DE): inventing, preparing and attuning a talisman, instilling, extracting vis.
+// Lab projects season by season (DE): inventing, preparing and attuning a talisman, instilling, extracting vis, taming.
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { newCharacter, ensureAbility } from './character/factory';
@@ -67,5 +67,26 @@ describe('lab projects', () => {
     c.projects = [p];
     workProject(c, d(c), ctx, undefined, p.uid, data);
     expect(c.purse!.vis.find((v) => v.art === 'Vi')?.pawns).toBe(20 + 4); // Lab Total 33 → 4 pawns
+  });
+  it('tames a creature over consecutive seasons: Rego (Form) + Animal Handling + Animal Ken − its Might', () => {
+    const c = magus();
+    c.arts.An = { apprenticeship: 55 }; // 10
+    ensureAbility(c, 'animal-handling', { apprenticeship: 15 }); // 2
+    const p = { ...newProject('tame'), form: 'An' as const, level: 20, name: 'Tame the white hart' };
+    c.projects = [p];
+    const plan = planProject(p, c, d(c), ctx);
+    expect(plan.total!.total).toBe(10 + 10 + 3 + 5 + 5 + 2); // Re + An + Int + Magic Theory + aura + Animal Handling
+    expect(plan.gain).toBe(15);
+    const season = () => c.seasonLog.push({ id: `s${c.seasonLog.length}`, year: 1220, season: 'Spring', kind: 'other', label: 'x', gains: {} } as never);
+    workProject(c, d(c), ctx, undefined, p.uid, data);
+    season();
+    // a season of something else: the points are lost
+    season();
+    const lines = workProject(c, d(c), ctx, undefined, p.uid, data);
+    expect(lines.join(' ')).toMatch(/lost/);
+    expect(c.projects[0].progress).toBe(15);
+    season();
+    workProject(c, d(c), ctx, undefined, p.uid, data);
+    expect(c.projects[0].done).toBe(true);
   });
 });

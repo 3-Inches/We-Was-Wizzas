@@ -6,6 +6,7 @@ import { describeStress, stressDie } from '../../../engine/dice';
 import type { WoundState } from '../../../engine/types';
 import { Card, Field, Stepper, signed } from '../../kit';
 import EquipmentEditor from '../EquipmentEditor';
+import { IllnessCard } from './IllnessCard';
 import type { CharEditor } from '../useChar';
 
 const WOUND_KEYS: { key: keyof Omit<WoundState, 'dead'>; label: string; pen: number }[] = [
@@ -122,6 +123,12 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
               <span className="v">{d.currentFatiguePenalty}</span>
               <span className="l">Fatigue penalty</span>
             </div>
+            {d.currentDiseasePenalty !== 0 && (
+              <div className="stat">
+                <span className="v">{d.currentDiseasePenalty}</span>
+                <span className="l">Disease penalty</span>
+              </div>
+            )}
             {c.wounds.dead && <span className="badge bad">DEAD</span>}
           </div>
           <div className="table-wrap">
@@ -217,6 +224,8 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
           <p className="small muted">Short-term Fatigue recovers with rest (times above, doubled if active). Long-term Fatigue (Ritual spells, forced march) needs a good night's sleep.</p>
         </Card>
       </div>
+
+      <IllnessCard ed={ed} />
 
       <Card title="Combat rolls">
         {lines.length > 0 && line && (

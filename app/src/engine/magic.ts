@@ -160,6 +160,7 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
   }
   if (d.currentWoundPenalty) parts.push({ label: 'Wounds', value: d.currentWoundPenalty });
   if (d.currentFatiguePenalty) parts.push({ label: 'Fatigue', value: d.currentFatiguePenalty });
+  if (d.currentDiseasePenalty) parts.push({ label: 'Disease', value: d.currentDiseasePenalty });
   for (const x of o.extra ?? []) parts.push(x);
   let total = parts.reduce((s, p) => s + p.value, 0);
   let halved = false;
@@ -312,6 +313,7 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
   if (o.other) parts.push({ label: 'Other modifier', value: o.other });
   if (d.currentWoundPenalty) parts.push({ label: 'Wounds', value: d.currentWoundPenalty });
   if (d.currentFatiguePenalty) parts.push({ label: 'Fatigue', value: d.currentFatiguePenalty });
+  if (d.currentDiseasePenalty) parts.push({ label: 'Disease', value: d.currentDiseasePenalty });
   for (const x of o.extra ?? []) parts.push(x);
   let total = parts.reduce((s, p) => s + p.value, 0);
   let halved = false;
@@ -400,6 +402,7 @@ export function certamenTotals(d: DerivedCharacter, technique: Technique, form: 
   const penalties: Part[] = [];
   if (d.currentWoundPenalty) penalties.push({ label: 'Wounds', value: d.currentWoundPenalty });
   if (d.currentFatiguePenalty) penalties.push({ label: 'Fatigue', value: d.currentFatiguePenalty });
+  if (d.currentDiseasePenalty) penalties.push({ label: 'Disease', value: d.currentDiseasePenalty });
   const value = { technique: d.arts[technique].value, form: d.arts[form].value };
   const focus = d.virtues.some((v) => v.cv.defId === 'minor-magical-focus' && /certamen/i.test(`${v.cv.param ?? ''} ${v.cv.note ?? ''}`)) || /certamen/i.test(d.focusText ?? '');
   const lower: CertamenArt = value.technique <= value.form ? 'technique' : 'form';

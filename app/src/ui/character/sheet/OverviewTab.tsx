@@ -8,6 +8,7 @@ import { useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
 import { COMPANION_FLAWS, CompanionSheetLink, CreatureCard } from './Creature';
 import { VFText } from '../../VFText';
+import { AgencyCard } from './AgencyCard';
 
 export default function OverviewTab({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, saga } = ed;
@@ -191,6 +192,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
         </div>
       </Card>
       {c.creature && <CreatureCard ed={ed} />}
+      <AgencyCard ed={ed} />
       <Card title="Notes">
         <textarea value={c.notes} rows={6} onChange={(e) => update((x) => void (x.notes = e.target.value))} placeholder="Session notes, goals, secrets…" />
       </Card>

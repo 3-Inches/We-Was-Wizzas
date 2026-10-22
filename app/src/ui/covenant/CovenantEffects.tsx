@@ -10,8 +10,8 @@ import { characterContext } from '../../engine/context';
 import { describeStress, stressDie } from '../../engine/dice';
 import { MENTAL, PHYSICAL, checkPowerUse, payPower } from '../../engine/effects';
 import { castingFatigue, castingOutcome, castingRules, castingScore, magicBotchDice, ritualVis } from '../../engine/magic';
-import { applyRitual, guidelineLevel, type RitualPlan } from '../../engine/rituals';
-import type { ActiveEffect, Character, Covenant } from '../../engine/types';
+import { applyRitual, castCost, casterTally, costText, guidelineLevel, legacyCasts, undoCast, type RitualPlan } from '../../engine/rituals';
+import type { ActiveEffect, CastRecord, Character, Covenant } from '../../engine/types';
 import { purseOf, takeVis, visAvailable, visText } from '../../engine/vis';
 import { useGameData, useSaga, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
@@ -153,20 +153,23 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
     const cv = state.covenants.find((x) => x.id === cov.id)!;
     const lines: string[] = [];
     let ok = true;
+    // what the caster has before paying: the difference afterwards is what undoing gives back
+    const stocks = visFrom === 'covenant' ? cv.visStocks : purseOf(c).vis;
+    const tally = casterTally(c, stocks);
     if (power) {
       if (refillPay && mightForm) {
-        const ate = takeVis(visFrom === 'covenant' ? cv.visStocks : purseOf(c).vis, [mightForm], refillPay.pawns);
+        const ate = takeVis(stocks, [mightForm], refillPay.pawns);
         if (!ate.ok) return setResult([`Not ${refillPay.pawns} pawns of ${ART_NAMES[mightForm]} vis to eat.`]);
       }
       lines.push(...payPower(c, power, mightCost, { pool: mightCost, ritual, payWith, refill: refillPay }));
       if (ritual && payWith === 'vis') {
-        const paid = takeVis(visFrom === 'covenant' ? cv.visStocks : purseOf(c).vis, [form, tech], mightCost);
+        const paid = takeVis(stocks, [form, tech], mightCost);
         if (!paid.ok) return setResult([`Not enough vis for Vis Mastery (${mightCost} pawns).`]);
         lines.push(`Vis: ${visText(paid.taken)}.`);
       }
     } else {
       if (vis.pawns) {
-        const paid = takeVis(visFrom === 'covenant' ? cv.visStocks : purseOf(c).vis, [tech, form], vis.pawns);
+        const paid = takeVis(stocks, [tech, form], vis.pawns);
         if (!paid.ok) return setResult([`Not enough vis (${vis.pawns} pawns).`]);
         lines.push(`Vis: ${visText(paid.taken)}${vis.wasted ? ` (${vis.wasted} wasted)` : ''}.`);
       }
@@ -184,6 +187,8 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
       }
       ok = out.cast && !r.botches;
     }
+    const paid = castCost(tally, casterTally(c, stocks), visFrom);
+    let done: CastRecord['done'] = { effects: [], specialists: [] };
     if (ok) {
       const plan: RitualPlan = {
         name: spell?.spell.name ?? power?.name ?? (kind === 'raise' ? `Raise ${chs.map((x) => CHAR_NAMES[x]).join(', ')}` : 'Grant a Virtue'),
@@ -197,8 +202,14 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
         return Object.fromEntries(CHARACTERISTICS.map((k) => [k, dch.characteristics[k].value])) as Record<Characteristic, number>;
       };
       const applied = applyRitual(plan, cv, state.characters, c.id, `${c.name}, ${power ? 'Ritual Power' : 'ritual'}`, saga.currentYear, saga.currentSeason, data, now);
-      lines.push(...applied.map((l) => `${l.who}: ${l.text}`));
+      lines.push(...applied.lines.map((l) => `${l.who}: ${l.text}`));
+      done = applied.done;
     }
+    const name = spell?.spell.name ?? power?.name ?? (kind === 'raise' ? `Raise ${chs.map((x) => CHAR_NAMES[x]).join(', ')}` : 'Grant a Virtue');
+    cv.casts = [
+      ...(cv.casts ?? []),
+      { uid: uid(), name, source: `${c.name}, ${power ? 'Ritual Power' : 'ritual'}`, casterId: c.id, year: saga.currentYear, season: saga.currentSeason, lines, paid, done },
+    ].slice(-30);
     putSagaState(state);
     setResult(lines);
     setNotice(`${caster.name} cast on ${cov.name}.`, () => putSagaState(before));
@@ -209,6 +220,7 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
       <button className="small" onClick={() => setShow((v) => !v)} style={{ alignSelf: 'flex-start' }}>
         {show ? 'Close' : '✦ Cast a spell, ritual or power on the covenant or chosen characters…'}
       </button>
+      <CastHistory cov={cov} chars={chars} />
       {show && (
         <div className="card inset stack" style={{ padding: 10 }}>
           <div className="row">
@@ -224,7 +236,18 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
             </Field>
             {caster && (
               <Field label="Spell or power">
-                <select value={source} onChange={(e) => setSource(e.target.value)}>
+                <select
+                  value={source}
+                  onChange={(e) => {
+                    setSource(e.target.value);
+                    // aim it at the mind or the body as the spell's Form (or the power's name) says
+                    const sp = caster.spells.find((x) => x.uid === e.target.value)?.spell;
+                    const pw = caster.powers?.find((x) => x.uid === e.target.value);
+                    const hint = sp ? sp.form : pw ? (/mind|mental|wit|intellect|thought/i.test(pw.name) ? 'Me' : /body|form|physical|strength|flesh/i.test(pw.name) ? 'Co' : '') : '';
+                    if (hint === 'Me') setTarget('mental');
+                    else if (hint === 'Co') setTarget('physical');
+                  }}
+                >
                   <option value="">— an effect of the level below —</option>
                   {caster.spells.length > 0 && (
                     <optgroup label="Spells">
@@ -427,3 +450,57 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
     </div>
   );
 }
+
+/** Casts on the covenant, newest first, each with an undo that takes back what it did and gives back what it cost. */
+function CastHistory({ cov, chars }: { cov: Covenant; chars: Character[] }) {
+  const saga = useSaga(cov.sagaId);
+  const covs = useSagaCovenants(cov.sagaId);
+  const putSagaState = useStore((s) => s.putSagaState);
+  const setNotice = useStore((s) => s.setNotice);
+  const [all, setAll] = useState(false);
+  if (!saga) return null;
+  const list = [...(cov.casts ?? []), ...legacyCasts(cov, chars)].filter((r) => !r.undone).sort((a, b) => b.year - a.year || seasonRank(b.season) - seasonRank(a.season));
+  if (!list.length) return null;
+  const undo = (r: CastRecord) => {
+    const before = { saga: structuredClone(saga), characters: structuredClone(chars), covenants: structuredClone(covs) };
+    const state = structuredClone(before);
+    const cv = state.covenants.find((x) => x.id === cov.id)!;
+    const rec = (cv.casts ?? []).find((x) => x.uid === r.uid) ?? structuredClone(r);
+    const lines = undoCast(rec, cv, state.characters, saga.currentYear, saga.currentSeason);
+    putSagaState(state);
+    setNotice(`${r.name} undone. ${lines.join(' ')}`, () => putSagaState(before));
+  };
+  const shown = all ? list : list.slice(0, 3);
+  return (
+    <div className="small stack" style={{ gap: 4 }}>
+      <b>Recent casts</b>
+      {shown.map((r) => (
+        <div key={r.uid} className="list-row">
+          <span className="muted">
+            {r.season} {r.year}
+          </span>
+          <b>{r.name}</b>
+          <span className="muted">({r.source})</span>
+          <span>
+            {r.done.effects.length + r.done.specialists.length} reached{r.done.covenfolkEffectUid ? ' and the covenfolk' : ''}
+            {r.legacy ? '; cost not recorded' : `; cost ${costText(r.paid)}`}
+          </span>
+          <button
+            className="small"
+            onClick={() => undo(r)}
+            title={r.legacy ? 'Takes back what it did to everyone; cast before costs were recorded, so nothing is given back' : 'Takes back what it did to everyone and gives back what it cost'}
+          >
+            {r.legacy ? 'Undo' : 'Undo and give back'}
+          </button>
+        </div>
+      ))}
+      {list.length > 3 && (
+        <span className="clickable muted" onClick={() => setAll((v) => !v)}>
+          {all ? 'fewer' : `all ${list.length}…`}
+        </span>
+      )}
+    </div>
+  );
+}
+
+const seasonRank = (s: string) => ['Spring', 'Summer', 'Autumn', 'Winter'].indexOf(s);

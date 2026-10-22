@@ -1,12 +1,14 @@
 // Laboratory projects that run season by season (DE, The Laboratory and Enchantments): inventing a
 // spell, preparing an item (a talisman a little at a time), attuning a talisman, instilling an effect,
-// and extracting vis. Each season of work gathers (Lab Total − level) points until they reach the level.
+// extracting vis, and taming a creature (DE, Training Creatures). Each season of work gathers
+// (Lab Total − level) points until they reach the level.
 
 import { ART_NAMES, FORMS, TECHNIQUES, type Art, type GameData } from '../data';
 import type { DerivedCharacter } from './character/derive';
 import type { CharacterContext } from './context';
 import { investEffect, openingCost, talismanCapacity, visLimit } from './enchant';
 import { labContextOf } from './lab';
+import { recordRoutines, routineClash, routineParts } from './labRoutines';
 import { labTotal, type TotalResult } from './magic';
 import type { Character, Covenant, EnchantedItem, LabProject } from './types';
 import { addVis, purseOf, takeVis, visText } from './vis';
@@ -18,6 +20,7 @@ export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: stri
   { id: 'attune', label: 'Attune a talisman', blurb: 'A season, whatever the Lab Total, on an item you prepared yourself.' },
   { id: 'instill', label: 'Instill an effect', blurb: 'Lab Total over the effect level (double for a lesser device); a pawn per 10 levels, paid in the first season; +5 in your own talisman.' },
   { id: 'extract', label: 'Extract vis', blurb: 'A pawn of Vim for every 10 points (or part) of the Creo Vim Lab Total.' },
+  { id: 'tame', label: 'Tame a creature', blurb: "Rego (Form) Lab Total with Animal Handling and Animal Ken, less the creature's Might, each season in a row, until the points reach its Might. A mundane beast counts as Might 1 + twice its Confidence." },
   { id: 'other', label: 'Other lab work', blurb: 'Anything else: the season is recorded with its exposure experience.' },
 ];
 
@@ -63,11 +66,13 @@ export function planProject(p: LabProject, c: Character, d: DerivedCharacter, ct
   const lab = ctx.lab ? labContextOf(ctx.lab) : undefined;
   const lt = (activity: 'spells' | 'items' | 'visExtraction' | 'other', te: string, fo: string, extra?: { talisman?: boolean; requisites?: Art[] }) =>
     labTotal(d, { technique: te as never, form: fo as never, requisites: extra?.requisites }, {
-      activity, aura: ctx.aura, lab, talisman: extra?.talisman, extra: p.bonus ? [{ label: 'Other bonus', value: p.bonus }] : undefined,
+      activity, aura: ctx.aura, lab, talisman: extra?.talisman, extra: [...(p.bonus ? [{ label: 'Other bonus', value: p.bonus }] : []), ...routineParts(p.routines)],
     });
   const limit = seasonVisLimit(d);
   const it = itemOf(c, p);
   if (p.done) return { target: 0, gain: 0, seasonsLeft: 0, problems: ['Finished.'], summary: 'Finished.' };
+  const clash = routineClash(p.routines ?? []);
+  if (clash) problems.push(clash);
   switch (p.kind) {
     case 'invent': {
       if (!p.technique || !p.form || !p.level) return { target: 0, gain: 0, seasonsLeft: 0, problems: ['Choose the spell, its Arts and level.'], summary: '' };
@@ -113,6 +118,21 @@ export function planProject(p: LabProject, c: Character, d: DerivedCharacter, ct
         summary: gain ? `+${gain} points toward level ${level} (${p.progress}/${level}).` : '',
       };
     }
+    case 'tame': {
+      if (!p.form) return { target: 0, gain: 0, seasonsLeft: 0, problems: ["Choose the creature's Form."], summary: '' };
+      const might = Math.max(1, p.level ?? 1);
+      const base = lt('other', 'Re', p.form);
+      // Animal Handling and Animal Ken add to a Hermetic tamer's Lab Total (DE, Hermetic Bonuses to Taming)
+      const skills = (['animal-handling', 'animal-ken'] as const)
+        .map((id) => d.abilities.filter((a) => a.abilityId === id).sort((a, b) => b.total - a.total)[0])
+        .filter((a): a is NonNullable<typeof a> => !!a && a.total > 0)
+        .map((a) => ({ label: a.name, value: a.total }));
+      const total = { ...base, total: base.total + skills.reduce((t, x) => t + x.value, 0), parts: [...base.parts, ...skills] };
+      const gain = Math.max(0, total.total - might);
+      if (!gain) problems.push(`The Rego ${ART_NAMES[p.form]} Lab Total (${total.total}) must exceed the creature's Might (${might}).`);
+      const left = might - p.progress;
+      return { total, target: might, gain, seasonsLeft: gain ? Math.ceil(left / gain) : Infinity, problems, summary: gain ? `+${gain} taming points toward ${might} (${p.progress}/${might}).` : '' };
+    }
     case 'extract': {
       const total = lt('visExtraction', 'Cr', 'Vi');
       const pawns = Math.ceil(Math.max(0, total.total) / 10);
@@ -137,7 +157,7 @@ function payVis(c: Character, cov: Covenant | undefined, p: LabProject, need: { 
  * learned, the item opened or attuned, the effect working, or the vis made. Changes the character
  * (and the covenant's stocks, when its vis comes from there). Returns what happened.
  */
-export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, projectUid: string, data: GameData): string[] {
+export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, projectUid: string, data: GameData, year?: number): string[] {
   const p = c.projects?.find((x) => x.uid === projectUid);
   if (!p || p.done) return [];
   const plan = planProject(p, c, d, ctx);
@@ -151,6 +171,7 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
     if (p.kind === 'instill') p.visPaid = true;
   }
   p.seasons += 1;
+  const routineLines = recordRoutines(c, p.routines, year);
   const it = itemOf(c, p);
   const attune = () => {
     if (p.attunement && it && c.talismanUid === it.uid) {
@@ -205,6 +226,20 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
       attune();
       break;
     }
+    case 'tame': {
+      // the points add up only over consecutive seasons; anything else in between loses them
+      if (p.progress && p.logMark !== undefined && c.seasonLog.length !== p.logMark + 1) {
+        lines.push(`${head} the earlier taming points are lost (other seasons came between).`);
+        p.progress = 0;
+      }
+      p.logMark = c.seasonLog.length;
+      p.progress = Math.min(plan.target, p.progress + plan.gain);
+      if (p.progress >= plan.target) {
+        p.done = true;
+        lines.push(`${head} tamed. It is Loyal +0 to you, and your notes make a Lab Text of level ${plan.target} for taming creatures of ${ART_NAMES[p.form!]}.`);
+      } else lines.push(`${head} ${plan.summary}`);
+      break;
+    }
     case 'extract': {
       const to = cov && p.visFrom === 'covenant' ? cov.visStocks : purseOf(c).vis;
       addVis(to, 'Vi', plan.gain);
@@ -215,5 +250,5 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
       lines.push(`${head} a season's work.`);
   }
   void data;
-  return lines;
+  return [...lines, ...routineLines];
 }

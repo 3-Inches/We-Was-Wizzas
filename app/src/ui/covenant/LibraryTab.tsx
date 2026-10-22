@@ -10,6 +10,7 @@ import { useStore } from '../../store/store';
 import { Card, Field, Stepper } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
+import { describeStress, stressDie } from '../../engine/dice';
 
 const KIND_LABEL: Record<LibraryBook['kind'], string> = {
   summa: 'Summa',
@@ -324,8 +325,65 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
           <p className="small muted">Lab texts: {cov.library.filter((b) => b.kind === 'labText').reduce((s, b) => s + b.level, 0)} levels. Casting tablets: {cov.library.filter((b) => b.kind === 'castingTablet').length}.</p>
           <BookTrade />
         </Card>
+        <LibraryResearch />
       </div>
     </div>
+  );
+}
+
+// Covenants, Research: Intelligence + Ability + the library's bonus for the subject + a stress die.
+const COLLECTION_BONUS: [number, string][] = [
+  [0, 'No books on the subject'],
+  [1, 'Only a few books on it'],
+  [2, 'An average Summer covenant’s, with no interest in it'],
+  [3, 'A powerful Autumn covenant’s, with no interest in it'],
+  [4, 'Specialized in the subject, but not unique'],
+  [5, 'A peerless collection on the subject'],
+];
+
+/** Looking up a fact in the library (Covenants, Hermetic libraries: Research). */
+function LibraryResearch() {
+  const [skill, setSkill] = useState(3);
+  const [collection, setCollection] = useState(2);
+  const [extra, setExtra] = useState(0);
+  const [ease, setEase] = useState(9);
+  const [result, setResult] = useState<string | null>(null);
+  const roll = () => {
+    const r = stressDie(1);
+    const total = r.botches ? 0 : r.value + skill + collection + extra;
+    setResult(r.botches ? `Botch (${describeStress(r)}): the research goes badly wrong.` : `${total} (${describeStress(r)} + ${skill + collection + extra}) against ${ease}: ${total >= ease ? 'found it' : 'not found'}.`);
+  };
+  return (
+    <Card title="Research in the library">
+      <p className="small muted" style={{ marginTop: 0 }}>
+        To find a fact in the books: Intelligence + an Ability that fits the question + the library&apos;s bonus for the subject + a stress die, against an Ease Factor the
+        storyguide sets (<i>Covenants</i>).
+      </p>
+      <div className="row">
+        <Field label="Intelligence + Ability">
+          <Stepper value={skill} min={-10} max={30} width={40} onChange={setSkill} />
+        </Field>
+        <Field label="The library on this subject">
+          <select value={collection} onChange={(e) => setCollection(Number(e.target.value))}>
+            {COLLECTION_BONUS.map(([n, t]) => (
+              <option key={n} value={n}>
+                +{n} {t}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Other bonus" hint="A significant magic item in the library (up to +3), realia (+1), pictorial works">
+          <Stepper value={extra} min={0} max={10} width={36} onChange={setExtra} />
+        </Field>
+        <Field label="Ease Factor">
+          <Stepper value={ease} min={0} max={30} width={36} onChange={setEase} />
+        </Field>
+        <button className="primary" onClick={roll}>
+          Roll
+        </button>
+      </div>
+      {result && <div className="small" style={{ marginTop: 6 }}>{result}</div>}
+    </Card>
   );
 }
 

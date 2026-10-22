@@ -60,8 +60,16 @@ export function EffectsCard({ ed }: { ed: CharEditor }) {
                 End
               </button>
             )}
-            <button className="small ghost" title="Take it back as if it never happened (a mistake): its Characteristics, Virtue and Warping go" onClick={() => window.confirm(`Undo ${e.name} entirely?`) && update((x) => undoEffect(x, e.uid))}>
-              Undo
+            <button
+              className="small ghost"
+              title={
+                e.source
+                  ? `Takes it back on this character only. To undo the whole cast on everyone and give back what it cost, use Recent casts on the covenant page.`
+                  : 'Take it back as if it never happened (a mistake): its Characteristics, Virtue and Warping go'
+              }
+              onClick={() => window.confirm(`Undo ${e.name} on ${c.name || 'this character'}${e.source ? ' only (the rest of the cast stays; Recent casts on the covenant page undoes all of it, with refunds)' : ''}?`) && update((x) => undoEffect(x, e.uid))}
+            >
+              Undo here
             </button>
           </div>
         );

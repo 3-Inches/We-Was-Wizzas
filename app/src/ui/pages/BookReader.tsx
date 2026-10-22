@@ -4,7 +4,8 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import { BOOKS, BOOK_BY_ID } from '../../data';
 import { Card, Empty, SearchInput } from '../kit';
-import { bookCache } from '../bookText';
+import { bookCache, loadBookLines } from '../bookText';
+import { dropEmptyHeads, tidyTables } from '../tables';
 
 interface Heading {
   line: number; // 0-based
@@ -20,7 +21,6 @@ interface Section {
 }
 
 // shared with the mechanics reference, so a book is fetched once
-const cache = bookCache;
 
 /** GitHub-style heading slug (what the books' internal links use), with -1, -2 for duplicates. */
 function githubSlug(text: string): string {
@@ -68,7 +68,7 @@ export default function BookReader() {
   const [params] = useSearchParams();
   const nav = useNavigate();
   const book = BOOK_BY_ID[bookId ?? ''];
-  const [lines, setLines] = useState<string[] | null>(book ? cache.get(book.file) ?? null : null);
+  const [lines, setLines] = useState<string[] | null>(book ? bookCache.get(book.file) ?? null : null);
   const [error, setError] = useState('');
   const [q, setQ] = useState('');
   const [tocFilter, setTocFilter] = useState('');
@@ -79,23 +79,15 @@ export default function BookReader() {
 
   useEffect(() => {
     if (!book) return;
-    const hit = cache.get(book.file);
+    const hit = bookCache.get(book.file);
     if (hit) {
       setLines(hit);
       return;
     }
     setLines(null);
     setError('');
-    fetch(`books/${encodeURIComponent(book.file)}`)
-      .then((r) => {
-        if (!r.ok) throw new Error(`${r.status}`);
-        return r.text();
-      })
-      .then((t) => {
-        const ls = t.split(/\r?\n/);
-        cache.set(book.file, ls);
-        setLines(ls);
-      })
+    loadBookLines(book.file)
+      .then(setLines)
       .catch((e) => setError(`Could not load ${book.file} (${e.message}). Run "npm run build" (or "node scripts/copy-books.mjs") so the books are copied into public/books.`));
   }, [book]);
 
@@ -126,8 +118,8 @@ export default function BookReader() {
       while (at > 0 && slice[at - 1].trim() !== '' && !/^#/.test(slice[at])) at--;
       slice.splice(at, 0, '<div id="reader-target" class="reader-target"></div>', '');
     }
-    const raw = marked.parse(slice.join('\n'), { async: false, gfm: true }) as string;
-    return DOMPurify.sanitize(raw, { ADD_ATTR: ['id'] });
+    const raw = marked.parse(tidyTables(slice.join('\n')), { async: false, gfm: true }) as string;
+    return DOMPurify.sanitize(dropEmptyHeads(raw), { ADD_ATTR: ['id'] });
   }, [parsed, lines, target]);
 
   // Give headings ids and scroll to the target.

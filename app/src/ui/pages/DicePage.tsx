@@ -1,6 +1,28 @@
 import { useState } from 'react';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
-import { Card, Field, Stepper, signed } from '../kit';
+import { BookBadge, Card, Field, Stepper, signed } from '../kit';
+
+// Grogs' optional equipment bonuses: the right tool for a task lowers its Ease Factor.
+const EQUIPMENT = { none: 0, minor: 1, major: 3 } as const;
+type Equipment = keyof typeof EQUIPMENT;
+const EQUIPMENT_EXAMPLES: [string, string, 'minor' | 'major'][] = [
+  ['Whip or crop', 'Animal Handling (obedience)', 'major'],
+  ['Map', 'Area Lore (planning route)', 'major'],
+  ['Astronomical tables', 'Artes Liberales (astronomy)', 'minor'],
+  ['Rope', 'Athletics (climbing)', 'major'],
+  ['Pole (at least 10 foot)', 'Athletics (distance jumping)', 'major'],
+  ['Fine wine', 'Folk Ken (getting information)', 'minor'],
+  ['Flickering light', 'Concentration (meditation)', 'minor'],
+  ['Good clothing', 'Charm (making a good impression)', 'minor'],
+  ['Guild badge', 'Guild Lore (gaining favors)', 'minor'],
+  ['Makeup', 'Guile (disguise)', 'minor'],
+  ['Bird lime', 'Hunt (birds)', 'major'],
+  ['Concealed blade', 'Legerdemain (slitting pouches)', 'major'],
+  ['Watchglass', 'Medicine (diagnosis)', 'minor'],
+  ['Cantled saddle', 'Ride (resisting a charge)', 'major'],
+  ['Flawless crystal', 'Second Sight (seeing regio boundaries)', 'minor'],
+  ['Lampblack', 'Stealth (hiding)', 'minor'],
+];
 
 interface Roll {
   id: number;
@@ -8,6 +30,7 @@ interface Roll {
   kind: 'simple' | 'stress';
   mod: number;
   ease: number | null;
+  equipment: Equipment;
   total: number;
   text: string;
   botch: boolean;
@@ -21,6 +44,8 @@ export default function DicePage() {
   const [botchDice, setBotchDice] = useState(1);
   const [ease, setEase] = useState(6);
   const [useEase, setUseEase] = useState(true);
+  const [equipment, setEquipment] = useState<Equipment>('none');
+  const target = Math.max(0, ease - EQUIPMENT[equipment]);
   const [log, setLog] = useState<Roll[]>([]);
   const last = log[0];
 
@@ -38,7 +63,7 @@ export default function DicePage() {
       total = r.zero ? mod : r.value + mod;
       text = describeStress(r);
     }
-    setLog((l) => [{ id: ++seq, label: label || (kind === 'simple' ? 'Simple die' : 'Stress die'), kind, mod, ease: useEase ? ease : null, total, text, botch }, ...l].slice(0, 50));
+    setLog((l) => [{ id: ++seq, label: label || (kind === 'simple' ? 'Simple die' : 'Stress die'), kind, mod, ease: useEase ? target : null, equipment, total, text, botch }, ...l].slice(0, 50));
   };
 
   const outcome = (r: Roll) => (r.botch ? 'BOTCH' : r.ease === null ? '' : r.total >= r.ease ? 'success' : 'failure');
@@ -62,6 +87,16 @@ export default function DicePage() {
               <Stepper value={ease} min={0} width={36} onChange={setEase} />
             </Field>
           </div>
+          <div className="row" style={{ marginTop: 8 }}>
+            <Field label="Equipment that helps (optional rule)">
+              <select value={equipment} onChange={(e) => setEquipment(e.target.value as Equipment)}>
+                <option value="none">None</option>
+                <option value="minor">Minor bonus: Ease Factor −1</option>
+                <option value="major">Major bonus: Ease Factor −3</option>
+              </select>
+            </Field>
+            {useEase && equipment !== 'none' && <span className="small muted">Ease Factor {ease} → {target}</span>}
+          </div>
           <div className="row" style={{ marginTop: 10 }}>
             <button className="primary big" onClick={() => roll('stress')}>
               Stress die
@@ -75,7 +110,7 @@ export default function DicePage() {
               <div className="dice-total">{last.botch ? 'BOTCH' : last.total}</div>
               <div className="small">
                 {last.label}: {last.text} {signed(last.mod)}
-                {last.ease !== null && ` vs ${last.ease} — ${outcome(last)}`}
+                {last.ease !== null && ` vs ${last.ease}${last.equipment !== 'none' ? ` (${last.equipment} equipment)` : ''} — ${outcome(last)}`}
               </div>
             </div>
           )}
@@ -97,6 +132,22 @@ export default function DicePage() {
           ))}
         </Card>
       </div>
+      <Card title={<h3>Equipment bonuses <BookBadge book="Grogs" line={1722} /></h3>}>
+        <p className="small muted" style={{ marginTop: 0 }}>
+          An optional rule: equipment that suits the task and the specialty lowers the Ease Factor, by 1 for a minor bonus and by 3 for a major one. Some examples:
+        </p>
+        <table className="compact">
+          <tbody>
+            {EQUIPMENT_EXAMPLES.map(([item, use, size]) => (
+              <tr key={item}>
+                <td>{item}</td>
+                <td>{use}</td>
+                <td>{size === 'major' ? 'Major (−3)' : 'Minor (−1)'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Card>
       <Card title="Ease Factors (DE)">
         <table className="compact">
           <tbody>

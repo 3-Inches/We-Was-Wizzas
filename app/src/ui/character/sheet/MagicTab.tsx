@@ -316,7 +316,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           </button>
         </div>
         <p className="small muted" style={{ marginBottom: 0 }}>
-          Current penalties: wounds {d.currentWoundPenalty}, fatigue {d.currentFatiguePenalty}, encumbrance {-d.encumbrance}. These are included in every total below.
+          Current penalties: wounds {d.currentWoundPenalty}, fatigue {d.currentFatiguePenalty}{d.currentDiseasePenalty ? `, disease ${d.currentDiseasePenalty}` : ''}, encumbrance {-d.encumbrance}. These are included in every total below.
         </p>
       </Card>
 

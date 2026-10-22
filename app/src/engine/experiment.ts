@@ -137,3 +137,46 @@ export function rollExperiment(o: ExperimentOptions, rng: Rng = defaultRng): Exp
   chart(0);
   return { labBonus, lines, disaster, warpingPoints, discovery };
 }
+
+/**
+ * Stabilizing a Discovery in original research (Houses of Hermes: True Lineages, Stabilizing the
+ * Unknown): the experiment is repeated with the same Lab Total and risk, and the chart roll moved the
+ * same way as for the Discovery. Any result but Disaster, No Benefit or Complete Failure stabilizes
+ * it. Either way the magus gains the effect's magnitude less a simple die in Warping Points.
+ */
+export function rollStabilization(o: ExperimentOptions & { adjust: number; magnitude: number }, rng: Rng = defaultRng): { stable: boolean; warpingPoints: number; lines: string[] } {
+  const risk = Math.max(0, Math.min(3, o.risk));
+  const adjust = Math.max(-risk, Math.min(risk, o.adjust));
+  const lines: string[] = [];
+  let stable = true;
+  const chart = (depth: number) => {
+    const r = stressDie(experimentBotchDice(o), rng);
+    if (r.botches) {
+      stable = false;
+      lines.push(`Chart: ${describeStress(r)}. Disaster: the Discovery cannot be stabilized.`);
+      return;
+    }
+    const v = r.value + risk + adjust;
+    const head = `Chart: ${describeStress(r)}${risk ? ` + risk ${risk}` : ''}${adjust ? ` ${adjust > 0 ? '+' : '−'} ${Math.abs(adjust)} as at the Discovery` : ''} = ${v}.`;
+    if (v === 7 || v === 8) {
+      stable = false;
+      lines.push(`${head} ${v === 7 ? 'No Benefit' : 'Complete Failure'}: the Discovery is not stabilized this season.`);
+    } else if (v >= 12 && depth < 4) {
+      lines.push(`${head} Roll twice more.`);
+      chart(depth + 1);
+      chart(depth + 1);
+    } else lines.push(`${head} No harm done.`);
+  };
+  chart(0);
+  const die = simpleDie(rng).value;
+  const warpingPoints = Math.max(0, o.magnitude - die);
+  lines.push(`Warping: magnitude ${o.magnitude} − simple die ${die} = ${warpingPoints}.`);
+  return { stable, warpingPoints, lines };
+}
+
+/** Points a researcher has toward a Breakthrough, and the book's rough guide to how many it takes. */
+export const BREAKTHROUGH_GUIDE: Record<'minor' | 'major' | 'hermetic', { label: string; points: number }> = {
+  minor: { label: 'Minor Breakthrough', points: 30 },
+  major: { label: 'Major Breakthrough', points: 45 },
+  hermetic: { label: 'Hermetic Breakthrough', points: 60 },
+};

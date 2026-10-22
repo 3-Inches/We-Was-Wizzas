@@ -133,6 +133,42 @@ export interface ActiveEffect {
   notes?: string;
 }
 
+/**
+ * A spell, ritual or power cast on the covenant, kept so that it can be undone: what the caster
+ * paid (given back on undo) and what it did to each target (taken back).
+ */
+export interface CastRecord {
+  uid: string;
+  name: string;
+  source: string;
+  casterId: string;
+  year: number;
+  season: Season;
+  /** what happened, as shown when it was cast */
+  lines: string[];
+  paid: {
+    /** where the vis came from: the covenant's stocks or the caster's purse */
+    visFrom: 'covenant' | 'purse';
+    vis: VisStock[];
+    /** Might Points from the pool (net of vis eaten to refill it) */
+    pool: number;
+    confidence: number;
+    mightScore: number;
+    fatigue: number;
+    longTermFatigue: number;
+    /** Warping Points from a botch */
+    warping: number;
+  };
+  done: {
+    effects: { characterId: string; effectUid: string }[];
+    specialists: { uid: string; raised: Partial<Record<Characteristic, number>>; warping: number }[];
+    covenfolkEffectUid?: string;
+  };
+  /** cast before casts were recorded: what it did was pieced together, and its cost is unknown */
+  legacy?: boolean;
+  undone?: { year: number; season: Season };
+}
+
 /** Money and vis a character holds (an allowance from the covenant, earnings, purchases). */
 export interface Purse {
   pounds: number;
@@ -151,12 +187,53 @@ export interface StandingActivity {
   projectUid?: string;
 }
 
+/** Someone bound to help a character (Houses of Hermes: Societates, Agencies). */
+export interface Agent {
+  uid: string;
+  name: string;
+  /** their Social Status, and what they can do or give: Abilities, wealth, influence, underlings */
+  status: string;
+  resources: string;
+  /** what binds them, as a Personality Trait (Loyal, Fear of, Gratitude to…) */
+  bondTrait: string;
+  bond: number;
+  /** left while they are being recruited; 0 once they are */
+  resistance: number;
+  /** agency experience points carried toward the next step */
+  xp?: number;
+}
+
+/** A disease a character suffers (Art & Academe, Disease). */
+export type IllnessStage = 'Minor' | 'Serious' | 'Major' | 'Critical';
+export interface Illness {
+  uid: string;
+  name: string;
+  /** the disease from the book's list, when it is one */
+  diseaseId?: string;
+  stage: IllnessStage;
+  /** the stage a disease of one's own began at (its Severity is for that stage) */
+  startStage?: IllnessStage;
+  severity: number;
+  stable: number;
+  /** null for a lifelong disease */
+  improve: number | null;
+  interval: 'Day' | 'Week' | 'Month' | 'Season' | 'Lifelong';
+  /** +3 for each stable roll in a row, or −1 for each roll a crisis goes on */
+  bonus: number;
+  /** it gives a Flaw (named in the notes) instead of a Disease Penalty */
+  flawInstead?: boolean;
+  notes?: string;
+}
+
+/** Non-standard laboratory routines (Covenants): early rising, night work, drugged or overtime work. */
+export type LabRoutine = 'early' | 'nocturnal' | 'addled' | 'overtime' | 'double' | 'triple';
+
 /** A laboratory project that runs over one or more seasons (DE, The Laboratory). */
 export interface LabProject {
   uid: string;
-  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'other';
+  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'other';
   name: string;
-  /** invent: the spell; instill: the effect's Technique, Form and level */
+  /** invent: the spell; instill: the effect's Technique, Form and level; tame: the creature's Form and Might */
   technique?: Technique;
   form?: Form;
   requisites?: Art[];
@@ -178,6 +255,10 @@ export interface LabProject {
   visFrom?: 'purse' | 'covenant';
   /** anything else on the Lab Total (a similar spell, a Shape and Material bonus…) */
   bonus?: number;
+  /** tame: how many seasons the character had logged when it was last worked (points only add up over consecutive seasons) */
+  logMark?: number;
+  /** the non-standard lab routines it is worked under (Covenants) */
+  routines?: LabRoutine[];
   done?: boolean;
 }
 
@@ -579,6 +660,20 @@ export interface Character {
   magicGain?: Partial<Record<Characteristic, number>>;
   purse?: Purse;
   projects?: LabProject[];
+  /** the agents the character controls or is recruiting (HoH: Societates) */
+  agents?: Agent[];
+  /** diseases the character suffers (Art & Academe) */
+  illnesses?: Illness[];
+  /** original research toward a Breakthrough (Houses of Hermes: True Lineages): its goal and the stabilized discoveries so far */
+  research?: {
+    goal: string;
+    kind: 'minor' | 'major' | 'hermetic';
+    /** the number of points the storyguide set (the player should not know it) */
+    target?: number;
+    discoveries: { uid: string; name: string; magnitude: number; year?: number; season?: Season; fromText?: boolean }[];
+  };
+  /** seasons worked under each non-standard lab routine, in all and by year (for Warping and the year's Living Conditions) */
+  labRoutines?: { seasons: Partial<Record<LabRoutine, number>>; years: Record<number, Partial<Record<LabRoutine, number>>> };
   /** what the character does in a season nobody planned */
   standing?: StandingActivity;
   /** the last year whose aging roll was made */
@@ -841,6 +936,8 @@ export interface Covenant {
   startingVisStocks?: VisStock[];
   /** wards and other effects on the covenant (the Aegis of the Hearth) */
   effects?: ActiveEffect[];
+  /** spells and powers cast on the covenant, newest last, for undoing */
+  casts?: CastRecord[];
   /** what the covenant gives its members each year */
   allowance?: Allowance;
   /** the last year a Hook's story was played (Indiscreet Resource: one every five years) */

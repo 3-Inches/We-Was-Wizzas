@@ -129,6 +129,8 @@ hr { border: none; border-top: 1px solid var(--line); margin: 1em 0; }
 .breadcrumbs a { color: var(--muted); }
 .mobile-bar { display: none; }
 .nav-close, .nav-backdrop { display: none; }
+.sidebar > .undo-redo { margin: -6px 0 6px; }
+.mobile-bar .undo-redo button { padding: 3px 6px; }
 
 @media (max-width: 860px) {
   .app { grid-template-columns: 1fr; }
@@ -260,7 +262,8 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .clickable { cursor: pointer; }
 .clickable:hover { background: var(--panel-2); }
 .markdown { font-size: 0.95em; }
-.markdown table { font-size: 0.9em; margin: 8px 0; }
+.markdown table { font-size: 0.9em; margin: 8px 0; display: block; overflow-x: auto; max-width: 100%; }
+.markdown th { position: static; }
 .markdown blockquote { margin: 8px 0; padding: 4px 12px; border-left: 3px solid var(--line-strong); background: var(--panel-2); }
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5 { margin-top: 1em; }
 .markdown img { display: none; }

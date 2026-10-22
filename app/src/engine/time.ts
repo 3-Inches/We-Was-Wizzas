@@ -14,6 +14,7 @@ import { payAllowance } from './economy';
 import { constantWarping, effectExpiry, expireEffects, nextSeason, seasonIndex } from './effects';
 import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, newSeasonEntry, visForStudy } from './longterm';
 import { workProject } from './projects';
+import { routineYear } from './labRoutines';
 import type { ActiveEffect, Character, Covenant, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
 import { purseOf, takeVis, visText } from './vis';
 import { workshopSeason, workshopYearEnd } from './workshop';
@@ -176,7 +177,7 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
     case 'lab': {
       const lines: string[] = [];
       const p = c.projects?.find((x) => x.uid === s.projectUid && !x.done);
-      if (p) lines.push(...workProject(c, d, ctx, cov, p.uid, data));
+      if (p) lines.push(...workProject(c, d, ctx, cov, p.uid, data, year));
       const gains: Record<string, number> = theory ? { [`ability:${theory.uid}`]: 2 } : {};
       log('other', p ? `Lab: ${p.name}` : 'Lab work', gains);
       lines.push(theory ? `Lab work: +2 xp Exposure in ${theory.name}.` : 'Lab work.');
@@ -198,34 +199,14 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
   const lines: Line[] = [];
   if (!c.creature?.magicCharacter) c.age += 1;
   // a magic character does not age (RoP: Magic); others roll from 35, or earlier with a Longevity Ritual
-  const ages = !c.creature?.magicCharacter && (c.age >= d.agingStartAge || !!c.longevity);
-  if (roll && ages && c.lastAgedYear !== year) {
-    const lr = c.longevity?.bonus ?? 0;
-    const r = agingRoll(c.age, livingConditions(d, ctx), lr, d.agingRollParts, rng, !!c.longevity && c.age < 35);
-    const notes: string[] = [];
-    if (r.apparentAging) c.apparentAge = (c.apparentAge ?? c.age - 1) + 1;
-    for (const p of r.agingPoints) notes.push(applyAgingPoint(c, p.char as Characteristic, p.points));
-    if (r.anyChar) {
-      const ch = sparestCharacteristic(c);
-      notes.push(applyAgingPoint(c, ch, r.anyChar));
-    }
-    lines.push({ who, kind: 'aging', text: `Aging roll ${r.roll}: ${r.text}${notes.length ? ' ' + notes.join(' ') : ''}` });
-    if (r.crisis) {
-      const need = Math.max(1, abilityXpForScore(decrepitudeScore(c.decrepitudePoints) + 1) - c.decrepitudePoints);
-      for (let i = 0; i < need; i++) applyAgingPoint(c, sparestCharacteristic(c), 1);
-      const crisis = crisisRoll(c.age, decrepitudeScore(c.decrepitudePoints), rng);
-      let text = `Crisis ${crisis.roll}: ${crisis.text}`;
-      if (crisis.ease !== undefined) {
-        const save = stressDie(0, rng).value + (c.characteristics.Sta ?? 0);
-        text += save >= crisis.ease ? ` Survived (Stamina roll ${save} against ${crisis.ease}).` : ` Stamina roll ${save} against ${crisis.ease}: the character dies unless a Creo Corpus ${crisis.crco} ritual saves them (the storyguide decides).`;
-      } else if (crisis.roll >= 19) text += ' The character dies unless magic saves them (the storyguide decides).';
-      if (c.longevity) {
-        c.longevity = undefined;
-        text += ' The crisis ends the Longevity Ritual.';
-      }
-      lines.push({ who, kind: 'crisis', text });
-    }
-    if (decrepitudeScore(c.decrepitudePoints) >= 5) lines.push({ who, kind: 'crisis', text: 'Decrepitude 5: the character dies of old age.' });
+  // lab routines (Covenants) worsen the year's Living Conditions, and overtime can add Aging rolls; a
+  // character under 35 then rolls too
+  const routine = routineYear(c, year);
+  const ages = !c.creature?.magicCharacter && (c.age >= d.agingStartAge || !!c.longevity || routine.living < 0 || routine.extraRolls > 0);
+  const due = roll && ages && c.lastAgedYear !== year;
+  if (due) {
+    if (routine.from.length) lines.push({ who, kind: 'aging', text: `Lab routines this year (${routine.from.join(', ')}): Living Conditions ${routine.living}${routine.extraRolls ? `, ${routine.extraRolls} extra Aging roll${routine.extraRolls > 1 ? 's' : ''}` : ''}.` });
+    for (let i = 0; i < 1 + routine.extraRolls; i++) ageOnce(c, d, ctx, rng, routine.living, who, lines);
     c.lastAgedYear = year;
   }
   // Warping: constant effects (and a Longevity Ritual), and living in a strong aura not of one's own realm
@@ -237,6 +218,36 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
     lines.push({ who, kind: 'warping', text: `+${wp} Warping Point${wp > 1 ? 's' : ''} for the year (${[...cw.from, ...(aura ? [`living in a ${ctx.aura.realm} aura of ${ctx.aura.strength}`] : [])].join(', ')}).` });
   }
   return lines;
+}
+
+/** One Aging roll and what it brings (DE, Aging). */
+function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: Rng, livingMod: number, who: string, lines: Line[]): void {
+  const lr = c.longevity?.bonus ?? 0;
+  const r = agingRoll(c.age, livingConditions(d, ctx) + livingMod, lr, d.agingRollParts, rng, !!c.longevity && c.age < 35);
+  const notes: string[] = [];
+  if (r.apparentAging) c.apparentAge = (c.apparentAge ?? c.age - 1) + 1;
+  for (const p of r.agingPoints) notes.push(applyAgingPoint(c, p.char as Characteristic, p.points));
+  if (r.anyChar) {
+    const ch = sparestCharacteristic(c);
+    notes.push(applyAgingPoint(c, ch, r.anyChar));
+  }
+  lines.push({ who, kind: 'aging', text: `Aging roll ${r.roll}: ${r.text}${notes.length ? ' ' + notes.join(' ') : ''}` });
+  if (r.crisis) {
+    const need = Math.max(1, abilityXpForScore(decrepitudeScore(c.decrepitudePoints) + 1) - c.decrepitudePoints);
+    for (let i = 0; i < need; i++) applyAgingPoint(c, sparestCharacteristic(c), 1);
+    const crisis = crisisRoll(c.age, decrepitudeScore(c.decrepitudePoints), rng);
+    let text = `Crisis ${crisis.roll}: ${crisis.text}`;
+    if (crisis.ease !== undefined) {
+      const save = stressDie(0, rng).value + (c.characteristics.Sta ?? 0);
+      text += save >= crisis.ease ? ` Survived (Stamina roll ${save} against ${crisis.ease}).` : ` Stamina roll ${save} against ${crisis.ease}: the character dies unless a Creo Corpus ${crisis.crco} ritual saves them (the storyguide decides).`;
+    } else if (crisis.roll >= 19) text += ' The character dies unless magic saves them (the storyguide decides).';
+    if (c.longevity) {
+      c.longevity = undefined;
+      text += ' The crisis ends the Longevity Ritual.';
+    }
+    lines.push({ who, kind: 'crisis', text });
+  }
+  if (decrepitudeScore(c.decrepitudePoints) >= 5) lines.push({ who, kind: 'crisis', text: 'Decrepitude 5: the character dies of old age.' });
 }
 
 /** DE, Living in Strong Auras: living always within an aura over 5; magi in a Magic aura (and beings of its realm) are spared. */

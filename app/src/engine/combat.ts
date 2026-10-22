@@ -31,7 +31,7 @@ export function combatLine(d: DerivedCharacter, w: WeaponDef, shield?: WeaponDef
   const ab = abilityTotal(d, w.ability);
   const spec = !!ab.specialty && (ab.specialty.toLowerCase().includes(w.name.toLowerCase().split(',')[0]) || w.name.toLowerCase().includes(ab.specialty.toLowerCase()));
   const score = ab.total + (spec ? 1 : 0);
-  const pen = d.currentWoundPenalty + d.currentFatiguePenalty;
+  const pen = d.currentWoundPenalty + d.currentFatiguePenalty + d.currentDiseasePenalty;
   const notes: string[] = [];
   let dfn = qik + score + (w.dfn ?? 0) + pen;
   if (shield) {
