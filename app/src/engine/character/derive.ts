@@ -224,6 +224,16 @@ export function effectiveXp(alloc: XpAlloc, multiplier: number): number {
 }
 
 /** The value bought at creation: the current value plus what aging has taken off, less what magic has added. */
+/** A bonus to a Characteristic that stops at its limit; a score already past the limit keeps what it has. */
+function charBonus(value: number, b: { amount: number; max?: number; min?: number; fromName: string }, notes: string[]): number {
+  let v = value + b.amount;
+  if (b.max !== undefined) v = Math.min(v, Math.max(b.max, value));
+  if (b.min !== undefined) v = Math.max(v, Math.min(b.min, value));
+  if (v !== value) notes.push(`${b.fromName} ${v > value ? '+' : ''}${v - value}`);
+  else notes.push(`${b.fromName}: no change (limit ${b.max ?? b.min})`);
+  return v;
+}
+
 export function purchasedCharacteristic(c: Character, ch: Characteristic): number {
   return (c.characteristics[ch] ?? 0) + (c.agingLoss?.[ch] ?? 0) - (c.magicGain?.[ch] ?? 0);
 }
@@ -277,6 +287,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   });
   const effects = resolveEffects(virtues);
   // spells, powers and rituals working on the character, and the devices it wears
+  const spellUids = new Set((char.activeEffects ?? []).map((ae) => ae.uid));
   for (const ae of char.activeEffects ?? []) for (const b of ae.bonuses ?? []) effects.push({ ...b, fromUid: ae.uid, fromName: ae.name } as ResolvedEffect);
   for (const it of char.items) if (it.worn) for (const b of it.bearerBonuses ?? []) effects.push({ ...b, fromUid: it.uid, fromName: it.name } as ResolvedEffect);
   const has = (id: string) => virtues.some((v) => v.cv.defId === id);
@@ -342,12 +353,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
       }
     }
     for (const b of eff('charBonus')) {
-      if (b.char === c) {
-        value += b.amount;
-        if (b.max !== undefined) value = Math.min(value, Math.max(b.max, base));
-        if (b.min !== undefined) value = Math.max(value, Math.min(b.min, base));
-        cn.push(`${b.fromName} ${b.amount > 0 ? '+' : ''}${b.amount}`);
-      }
+      if (b.char === c && !spellUids.has(b.fromUid)) value = charBonus(value, b, cn);
     }
     core[c] = { base, value, notes: cn };
   }
@@ -379,6 +385,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
       value += fromQualities;
       cn.push(`${fromQualities > 0 ? 'Improved' : 'Reduced'} (${c}) ${fromQualities > 0 ? '+' : ''}${fromQualities}`);
     }
+    // spells and powers raise what the character has now, Qualities and Size included, never past their limit
+    for (const b of eff('charBonus')) if (b.char === c && spellUids.has(b.fromUid)) value = charBonus(value, b, cn);
     const ov = char.overrides[`char:${c}`];
     if (ov !== undefined) {
       value = ov;

@@ -128,11 +128,14 @@ hr { border: none; border-top: 1px solid var(--line); margin: 1em 0; }
 .breadcrumbs { font-size: 0.85em; color: var(--muted); margin-bottom: 4px; }
 .breadcrumbs a { color: var(--muted); }
 .mobile-bar { display: none; }
+.nav-close, .nav-backdrop { display: none; }
 
 @media (max-width: 860px) {
   .app { grid-template-columns: 1fr; }
   .sidebar { position: fixed; z-index: 40; left: 0; top: 0; width: 260px; transform: translateX(-100%); transition: transform 0.2s; box-shadow: var(--shadow); }
   .sidebar.open { transform: translateX(0); }
+  .nav-close { display: block; position: absolute; top: 8px; right: 8px; font-size: 18px; padding: 2px 8px; }
+  .nav-backdrop { display: block; position: fixed; inset: 0; z-index: 35; background: rgba(0, 0, 0, 0.35); }
   .mobile-bar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--panel-2); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 30; }
   .main { padding: 14px 16px 60px; }
 }
@@ -223,6 +226,12 @@ tr:hover td { background: color-mix(in srgb, var(--panel-2) 60%, transparent); }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .table-wrap { overflow-x: auto; max-width: 100%; }
 .compact td, .compact th { padding: 3px 6px; }
+/* a price list entry: what it is, then how many and the price; the controls wrap under it on a phone */
+.ware { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.ware-name { flex: 1 1 280px; min-width: 0; }
+.ware-price { white-space: nowrap; }
+.ware-buy { flex: 0 1 auto; flex-wrap: wrap; margin-left: auto; }
+.ware-buy select { width: 170px; max-width: 100%; }
 
 /* casting grid */
 .art-grid { display: grid; grid-template-columns: 70px repeat(10, minmax(34px, 1fr)); font-size: 0.85em; }

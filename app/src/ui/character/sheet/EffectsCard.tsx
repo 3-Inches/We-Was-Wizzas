@@ -8,7 +8,7 @@ import { Card, Field, Stepper } from '../../kit';
 import type { CharEditor } from '../useChar';
 
 export function EffectsCard({ ed }: { ed: CharEditor }) {
-  const { c, data, update, saga } = ed;
+  const { c, d, data, update, saga } = ed;
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [duration, setDuration] = useState<ActiveEffect['duration']>('year');
@@ -35,7 +35,7 @@ export function EffectsCard({ ed }: { ed: CharEditor }) {
         {
           name: name || 'A spell', duration, constant,
           warping: warping || undefined,
-          raise: ch ? { chars: [ch], amount, max: duration === 'permanent' ? 5 : 99 } : undefined,
+          raise: ch ? { chars: [ch], amount, max: duration === 'permanent' ? 5 : 99, current: d ? { [ch]: d.characteristics[ch].value } : undefined } : undefined,
           bonuses: soak ? [{ type: 'soak', amount: soak }] : undefined,
         },
         saga.currentYear, saga.currentSeason, data,

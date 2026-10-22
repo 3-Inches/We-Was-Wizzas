@@ -192,7 +192,11 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
         duration, designedFor: designed,
         targets: { characterIds: targetsChars.map((x) => x.id), specialistUids: targetsSpecs.map((x) => x.uid), covenfolk: toFolk },
       };
-      const applied = applyRitual(plan, cv, state.characters, c.id, `${c.name}, ${power ? 'Ritual Power' : 'ritual'}`, saga.currentYear, saga.currentSeason, data);
+      const now = (ch: Character) => {
+        const dch = deriveCharacter(ch, data, saga.houseRules);
+        return Object.fromEntries(CHARACTERISTICS.map((k) => [k, dch.characteristics[k].value])) as Record<Characteristic, number>;
+      };
+      const applied = applyRitual(plan, cv, state.characters, c.id, `${c.name}, ${power ? 'Ritual Power' : 'ritual'}`, saga.currentYear, saga.currentSeason, data, now);
       lines.push(...applied.map((l) => `${l.who}: ${l.text}`));
     }
     putSagaState(state);

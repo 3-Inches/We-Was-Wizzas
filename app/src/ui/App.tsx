@@ -39,16 +39,23 @@ export default function App() {
     load();
   }, [load]);
   useEffect(() => applyTheme(ui.theme, ui.streamMode), [ui]);
-  useEffect(() => setNavOpen(false), [loc.pathname]);
+  useEffect(() => setNavOpen(false), [loc.pathname, loc.search]);
+  useEffect(() => {
+    if (!navOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setNavOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [navOpen]);
 
   if (!loaded) return <div className="main">Opening the covenant library…</div>;
 
   return (
     <div className="app">
-      <Sidebar open={navOpen} />
+      <Sidebar open={navOpen} onClose={() => setNavOpen(false)} />
+      {navOpen && <div className="nav-backdrop no-print" onClick={() => setNavOpen(false)} aria-hidden="true" />}
       <div style={{ minWidth: 0 }}>
         <div className="mobile-bar no-print">
-          <button className="ghost" onClick={() => setNavOpen((o) => !o)} aria-label="Menu">
+          <button className="ghost" onClick={() => setNavOpen((o) => !o)} aria-label="Menu" aria-expanded={navOpen}>
             ☰
           </button>
           <b style={{ fontFamily: 'var(--font-head)' }}>Ars Magica Toolkit</b>
@@ -116,7 +123,7 @@ function Notice() {
   );
 }
 
-function Sidebar({ open }: { open: boolean }) {
+function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const activeSagaId = useStore((s) => s.activeSagaId);
   const saga = useStore((s) => (activeSagaId ? s.sagas[activeSagaId] : undefined));
   const chars = useSagaCharacters(saga?.id);
@@ -126,7 +133,11 @@ function Sidebar({ open }: { open: boolean }) {
   const setStream = useStore((s) => s.setStreamMode);
   const icon: Record<string, string> = { magus: '✶', companion: '◆', mythic: '✧', grog: '◦' };
   return (
-    <aside className={`sidebar no-print ${open ? 'open' : ''}`}>
+    // on a phone the menu closes on any link, the page already open included
+    <aside className={`sidebar no-print ${open ? 'open' : ''}`} onClick={(e) => (e.target as HTMLElement).closest('a') && onClose()}>
+      <button className="ghost nav-close" onClick={onClose} aria-label="Close the menu">
+        ✕
+      </button>
       <Link to="/" className="brand">
         <span className="brand-mark">A</span>
         <span className="brand-name">
