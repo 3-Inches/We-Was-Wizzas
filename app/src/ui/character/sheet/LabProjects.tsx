@@ -1,10 +1,11 @@
 // Laboratory projects worked season by season: inventing a spell, preparing an item (a talisman a
-// little at a time), attuning a talisman, instilling an effect, extracting vis. A season's work is
+// little at a time), attuning a talisman, instilling an effect, extracting vis, taming a creature. A season's work is
 // logged for the saga's current season; the Seasons page carries on with the standing project.
 
 import { useState } from 'react';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
+import { LAB_ROUTINES, ROUTINE_IDS, toggleRoutine } from '../../../engine/labRoutines';
 import { PROJECT_KINDS, itemOf, newProject, pawnsUsed, planProject, seasonVisLimit, workProject } from '../../../engine/projects';
 import { loggedThisSeason } from '../../../engine/time';
 import type { LabProject } from '../../../engine/types';
@@ -31,7 +32,7 @@ export function LabProjects({ ed }: { ed: CharEditor }) {
     const cov = ctx.covenant ? structuredClone(ctx.covenant) : undefined;
     let lines: string[] = [];
     update((x) => {
-      lines = workProject(x, d, ctx, cov, p.uid, data);
+      lines = workProject(x, d, ctx, cov, p.uid, data, year);
       const theory = d.abilities.find((a) => a.abilityId === d.theoryAbility);
       const e = newSeasonEntry(year, season, 'other', `Lab: ${p.name}`, theory ? { [`ability:${theory.uid}`]: 2 } : {});
       e.notes = lines.join(' ');
@@ -212,6 +213,26 @@ function ProjectRow({ p, ed, set, onWork, busy }: { p: LabProject; ed: CharEdito
               </select>
             </Field>
           )}
+          {p.kind === 'tame' && (
+            <>
+              <Field label="The creature's Form">
+                <select value={p.form ?? ''} onChange={(e) => set((x) => void (x.form = (e.target.value || undefined) as Form | undefined))}>
+                  <option value="">— choose —</option>
+                  {FORMS.map((f) => (
+                    <option key={f} value={f}>
+                      {ART_NAMES[f]}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+              <Field label="Its Might" hint="A mundane beast: 1 + twice its Confidence">
+                <Stepper value={p.level ?? 1} min={1} max={100} width={40} onChange={(v) => set((x) => void (x.level = v))} />
+              </Field>
+              <Field label="Taming Lab Text or other bonus" hint="+1 for every 5 levels of a taming Lab Text of this Form; the Experimentation bonus">
+                <Stepper value={p.bonus ?? 0} min={-20} max={30} width={36} onChange={(v) => set((x) => void (x.bonus = v || undefined))} />
+              </Field>
+            </>
+          )}
           {isTalisman && (p.kind === 'open' || p.kind === 'instill') && (
             <Field label="Add an attunement this season" hint="One a season, while preparing or instilling (DE)">
               <select
@@ -228,6 +249,18 @@ function ProjectRow({ p, ed, set, onWork, busy }: { p: LabProject; ed: CharEdito
                   </option>
                 ))}
               </select>
+            </Field>
+          )}
+          {plan.total && (
+            <Field label="Lab routine (optional)" hint="Covenants: odd hours or overtime for a bonus to this season's Lab Total, at a cost">
+              <span className="row tight" style={{ flexWrap: 'wrap' }}>
+                {ROUTINE_IDS.map((r) => (
+                  <label key={r} className="inline" title={LAB_ROUTINES[r].cost} style={{ flexWrap: 'nowrap' }}>
+                    <input type="checkbox" checked={!!p.routines?.includes(r)} onChange={() => set((x) => void (x.routines = toggleRoutine(x.routines ?? [], r)))} />
+                    {LAB_ROUTINES[r].label} (+{LAB_ROUTINES[r].bonus})
+                  </label>
+                ))}
+              </span>
             </Field>
           )}
           {(plan.vis?.pawns ?? 0) > 0 || p.kind === 'extract' ? (

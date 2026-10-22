@@ -146,6 +146,8 @@ export interface DerivedCharacter {
   fatigueLevels: { name: string; penalty: number | null }[];
   currentWoundPenalty: number;
   currentFatiguePenalty: number;
+  /** the Disease Penalty of the character's illnesses (Art & Academe), counted like a Wound Penalty */
+  currentDiseasePenalty: number;
   apprenticeshipSpellLevelBudget: number;
   masteryPools: { uid: string; label: string; total: number }[];
   flawless: boolean;
@@ -679,6 +681,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const currentWoundPenalty = rawWound === 0 ? 0 : Math.min(0, rawWound - woundPenaltyAdj);
   const lost = Math.min(5, char.fatigueLost + char.longTermFatigueLost);
   const currentFatiguePenalty = fatigueLevels[lost]?.penalty ?? 0;
+  const STAGE_PENALTY = { Minor: -1, Serious: -3, Major: -5, Critical: -5 } as const;
+  const currentDiseasePenalty = (char.illnesses ?? []).reduce((t, i) => t + (i.flawInstead ? 0 : STAGE_PENALTY[i.stage]), 0);
 
   // ---------------------------------------------------------------- magic flags
   const focus = eff('magicalFocus')[0];
@@ -689,7 +693,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     char, virtues, effects, hasGift, giftType, isMagus, tally, size, characteristics, charPointsBudget, charPointsSpent,
     abilities, abilityByUid, arts, budgets, abilityAccess: access, laterLifeYears, ageCap, confidence, reputations,
     warpingScore, warpingPoints, decrepitude, livingConditionsMod, agingRollMod, agingRollParts, agingStartAge, theoryAbility, trueFaith, faithPoints, relicFaith, might, personalityMax, powerBudgets, soak, woundPenaltyAdj, fatiguePenaltyAdj,
-    load, burden, encumbrance, woundRanges, fatigueLevels, currentWoundPenalty, currentFatiguePenalty,
+    load, burden, encumbrance, woundRanges, fatigueLevels, currentWoundPenalty, currentFatiguePenalty, currentDiseasePenalty,
     apprenticeshipSpellLevelBudget, masteryPools, flawless: eff('flawlessMagic').length > 0,
     magicalFocus: focus ? focus.scope : 'none', focusText: focusVirtue?.cv.param, socialPenalty, notes,
     socialPenalties: [

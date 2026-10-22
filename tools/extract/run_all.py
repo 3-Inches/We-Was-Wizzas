@@ -4,6 +4,7 @@ Usage:  python3 tools/extract/run_all.py
 """
 import extract_abilities
 import extract_covlab
+import extract_diseases
 import extract_spells
 import extract_vf
 import extract_vf_refs
@@ -19,3 +20,4 @@ if __name__ == "__main__":
     extract_covlab.hooks_boons()
     extract_covlab.shape_material()
     extract_covlab.weapons()
+    extract_diseases.main()

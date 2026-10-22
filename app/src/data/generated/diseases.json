@@ -1,0 +1,418 @@
+[
+ {
+  "id": "aa-the-ague",
+  "name": "The Ague",
+  "stage": "Major",
+  "humor": "Phlegmatic",
+  "severity": 14,
+  "stable": 9,
+  "improve": 15,
+  "interval": "Week",
+  "cause": "Caused by bad air, particularly around sewage and tanneries (Non-Natural). This is the most severe type of this disease.",
+  "symptoms": "Continuous fever with chills. Other types of the ague corrupt different humors, and are either Minor or Serious Diseases. As a choleric disease, the ague induces fever every fourth day; as a melancholic disease the fevers occur every third day; and as a sanguine disease the fever occurs every day.",
+  "source": {
+   "book": "AA",
+   "line": 1805
+  }
+ },
+ {
+  "id": "aa-anal-fistula",
+  "name": "Anal Fistula",
+  "stage": "Minor",
+  "humor": "Melancholic",
+  "severity": 5,
+  "stable": 4,
+  "improve": 10,
+  "interval": "Month",
+  "cause": "This unpleasant condition is caused by excessive retention of melancholy on the fundament; commonly resulting from sitting for long periods on horseback while wearing heavy armor (Non-Natural).",
+  "symptoms": "Hemorrhoids, mild pain and distraction, aposteme of melancholy and blood called a fistula that requires surgical removal (see Surgery).",
+  "source": {
+   "book": "AA",
+   "line": 1813
+  }
+ },
+ {
+  "id": "aa-apoplexy",
+  "name": "Apoplexy",
+  "stage": "Critical",
+  "humor": "Sanguine",
+  "severity": 16,
+  "stable": 6,
+  "improve": 15,
+  "interval": "Week",
+  "cause": "This disease causes massive and immediate damage to the heart, which disrupts the vital faculty and causes immediate collapse. Apoplexy is caused by a malicious faerie and is sometimes called \"elfshot.\" Some other supernatural beings may also be capable of causing it (Contra-Natural).",
+  "symptoms": "Crushing pain to chest followed by immediate collapse and disease Crisis.",
+  "source": {
+   "book": "AA",
+   "line": 1821
+  }
+ },
+ {
+  "id": "aa-bloody-flux",
+  "name": "Bloody Flux",
+  "stage": "Serious",
+  "humor": "Phlegmatic",
+  "severity": 9,
+  "stable": 6,
+  "improve": 12,
+  "interval": "Week",
+  "cause": "The bloody flux is an excess of phlegm caused by living in cold, wet conditions (Non-Natural). It is common in towns and campaigning armies. This complaint can cause weakness or wasting if it continues for too long, as the body evacuates nourishment before it can be used.",
+  "symptoms": "Diarrhea, chills, cramps, a running nose, and bloody stools.",
+  "source": {
+   "book": "AA",
+   "line": 1829
+  }
+ },
+ {
+  "id": "aa-chaudepysse",
+  "name": "Chaudepysse",
+  "stage": "Minor",
+  "humor": "Choleric",
+  "severity": 9,
+  "stable": 6,
+  "improve": 12,
+  "interval": "Season",
+  "cause": "This disease is contracted by men who have commerce with unclean women (i.e. during their monthly flow), and is often called \"the burning\" due the pain of urination (Contra-Natural). It is notoriously difficult to cure and is most often treated by direct injection into the urethra of parsley, oil of roses and violets, and the milk of a mother nursing a manchild.",
+  "symptoms": "Pain, a discharge of blood from the male organs, excessive itching, rash. Continuous fever may follow, and if the disease becomes Major, sterility and impotence.",
+  "source": {
+   "book": "AA",
+   "line": 1847
+  }
+ },
+ {
+  "id": "aa-childbed-fever",
+  "name": "Childbed Fever",
+  "stage": "Major",
+  "humor": "Sanguine",
+  "severity": 11,
+  "stable": 6,
+  "improve": 10,
+  "interval": "Week",
+  "cause": "The act of giving birth causes swings in a woman's balance of humors that make her vulnerable to the childbed fever demon (Contra-Natural). This demon attempts to enter the woman's body as the baby leaves, so this disease can only be contracted by women who have just given birth.",
+  "symptoms": "Chills, fever, abdominal pain, nausea, and in terminal cases a rotting of the reproductive organs that can spread to the rest of the body. If there were birthing complications (prolonged labor, placenta retention, conception during menstruation, or a still-birth, for example) this is a Critical Disease rather than a Major one.",
+  "source": {
+   "book": "AA",
+   "line": 1855
+  }
+ },
+ {
+  "id": "aa-coryza",
+  "name": "Coryza",
+  "stage": "Minor",
+  "humor": "Phlegmatic",
+  "severity": 4,
+  "stable": 4,
+  "improve": 10,
+  "interval": "Week",
+  "cause": "Coryza, or the common cold, is caused by a cold, damp environment such as that found in late autumn and winter (Non-Natural). The cold and wet conditions cause an excess of phlegm in the head.",
+  "symptoms": "Catarrh, unpleasant cough. If it worsens, a quotidian fever, inflammation of the lungs, extreme weariness (make Fatigue rolls for even light exercise).",
+  "source": {
+   "book": "AA",
+   "line": 1863
+  }
+ },
+ {
+  "id": "aa-diabetes",
+  "name": "Diabetes",
+  "stage": "Minor",
+  "humor": "Sanguine",
+  "severity": 14,
+  "stable": 4,
+  "improve": null,
+  "interval": "Lifelong",
+  "cause": "Rich food and a gluttonous appetite can result in this disease, a result of the disruption of the digestion and thus a surfeit of nutrition (Non-Natural). The children of gluttonous parents occasionally suffer from this disease. It was named by Aretaeus the Cappadocian after the Greek word for a siphon, due to the excessive discharge of urine.",
+  "symptoms": "Instead of a Disease Penalty, causes fainting for a few minutes whenever a Fatigue roll (ArM5, page 178) is failed.",
+  "source": {
+   "book": "AA",
+   "line": 1871
+  }
+ },
+ {
+  "id": "aa-erysipelas",
+  "name": "Erysipelas",
+  "stage": "Minor",
+  "humor": "Choleric",
+  "severity": 6,
+  "stable": 6,
+  "improve": 10,
+  "interval": "Month",
+  "cause": "Erysipelas is a disease of morbid choler due to excessive heat and dryness derived from inappropriate food for the character's complexion (Non-Natural). It migrates to the skin to cause a maddening rash. People tend to avoid a sufferer of erysipelas because of his obvious symptoms of disease",
+  "symptoms": "Severe itching rash, most prominent on the extremities, but also on the face and arms. Can poison the blood if the disease worsens.",
+  "source": {
+   "book": "AA",
+   "line": 1877
+  }
+ },
+ {
+  "id": "aa-the-falling-evil",
+  "name": "The Falling Evil",
+  "stage": "Major",
+  "humor": "Phlegmatic",
+  "severity": 16,
+  "stable": 6,
+  "improve": 15,
+  "interval": "Season",
+  "cause": "Known by a large number of names (e.g. epilepsy, morbus caducus, morbus lunaticus), the \"sacred disease\" of Hippocrates is now known to be caused by demonic possession (Contra-Natural). The most common cure is to induce a quartan fever with medicinals that will dry up the moistness polluting the sensitive faculty. Trepanation (see Surgery) is occasionally recommended, but this is a dangerous proce",
+  "symptoms": "Rather than a Disease Penalty, this disease manifests as convulsions. Convulsions occur randomly and infrequently. For any given event, the storyguide should secretly roll a stress die; if the result is 9 or more then a convulsion will occur at some point during that event, as chosen by the storyguide. This spasm perturbs both sensation and movement, causing both to occur at random, leaving the ch",
+  "source": {
+   "book": "AA",
+   "line": 1885
+  }
+ },
+ {
+  "id": "aa-febris-semitertiana",
+  "name": "Febris Semitertiana",
+  "stage": "Major",
+  "humor": "Choleric",
+  "severity": 18,
+  "stable": 12,
+  "improve": 18,
+  "interval": "Week",
+  "cause": "This disease is truly fearful. It derives from water corrupted by the malign influence of Saturn and Mars (Contra-Natural). In the heat of summer, this disease can kill thousands.",
+  "symptoms": "Discharge of watery stools, crippling abdominal pain, raging fever, red rash all over the body.",
+  "source": {
+   "book": "AA",
+   "line": 1893
+  }
+ },
+ {
+  "id": "aa-gangrene",
+  "name": "Gangrene",
+  "stage": "Minor",
+  "humor": "Sanguine",
+  "severity": 8,
+  "stable": 9,
+  "improve": 15,
+  "interval": "Week",
+  "cause": "Evil spirits in an improperly cleaned wound cause putrefaction of the blood (Contra-Natural). Gangrene is the most common result of a botched Wound Recovery roll. The wound becomes a festering ulcer as the flesh is consumed by the morbid blood.",
+  "symptoms": "Continuous fever. The infected wound cannot improve until the gangrene is gone, but it can worsen. Surgical intervention (deep cautery or amputation; see Practice of Chirurgy, below) to prevent the gangrenous wound worsening is often the best option, because Wound Penalties affect Disease Recovery rolls and vice versa.",
+  "source": {
+   "book": "AA",
+   "line": 1901
+  }
+ },
+ {
+  "id": "aa-garotillo",
+  "name": "Garotillo",
+  "stage": "Serious",
+  "humor": "Choleric",
+  "severity": 9,
+  "stable": 6,
+  "improve": 12,
+  "interval": "Week",
+  "cause": "This disease is contracted through excessive exercise that dries the body and inflames the choler (Non-Natural). The disease is also known as *morbus suffocans* for its distinctive second stage, in which the disease spreads to the windpipe and causes death by gradual suffocation.",
+  "symptoms": "Tertian fever, mild pain in the throat, drowsiness, a white, livid, or black concretion of morbid humors at the back of the mouth. If this disease worsens to a Major Disease, the sufferer is in danger of suffocation if he ever fails a roll involving Stamina. Follow the rules for Deprivation (ArM5, page 180–181). For each Deprivation roll he also gets a Stamina + Concentration roll against an Ease ",
+  "source": {
+   "book": "AA",
+   "line": 1909
+  }
+ },
+ {
+  "id": "aa-leprosy-hermetic",
+  "name": "Leprosy, Hermetic",
+  "stage": "Critical",
+  "humor": "Melancholic",
+  "severity": 16,
+  "stable": 6,
+  "improve": 12,
+  "interval": "Month",
+  "cause": "Hermetic leprosy is caused by the Hermetic spells *Curse of the Leprous Flesh* and *Curse of the Unportended Plague* (ArM5, page 133; Contra-Natural). It conforms to everyone's worst fears about true leprosy, manifesting as a rapid and hideous wasting disease accompanied by a pungent rotting smell.",
+  "symptoms": "Victim's flesh rots off in a matter of weeks. If the victim survives the Disease Crisis, he will find it impossible to develop a positive reputation.",
+  "source": {
+   "book": "AA",
+   "line": 1925
+  }
+ },
+ {
+  "id": "aa-phimosis",
+  "name": "Phimosis",
+  "stage": "Minor",
+  "humor": "Choleric",
+  "severity": 6,
+  "stable": 6,
+  "improve": 10,
+  "interval": "Month",
+  "cause": "A particular affliction of promiscuous men (but can be suffered by both sexes) caused by excess lust (Non-Natural). It is a painful and embarrassing disease, but usually clears up on its own with no lasting aftereffects.",
+  "symptoms": "Soft sores on the coital organs, which may become poisoned. A man who suffers a disease Crisis induced by phimosis is left impotent.",
+  "source": {
+   "book": "AA",
+   "line": 1937
+  }
+ },
+ {
+  "id": "aa-phthisis",
+  "name": "Phthisis",
+  "stage": "Major",
+  "humor": "Phlegmatic",
+  "severity": 17,
+  "stable": 9,
+  "improve": 18,
+  "interval": "Month",
+  "cause": "Phthisis pollutes the vital faculty with excessive phlegm. It is an epidemic disease, caught initially from foul air deriving from marsh water, and subsequently spreading from person to person through putrid breath (Contra-Natural). It is also known as consumption because it eats away at the flesh of its victims. Physicians recommend climatic therapy of sea voyages and high altitudes to rid the lu",
+  "symptoms": "Hacking cough, shortness of breath, blood in the sputum, quotidian fever, and wasting; all of which amount to the Enfeebled Flaw.",
+  "source": {
+   "book": "AA",
+   "line": 1945
+  }
+ },
+ {
+  "id": "aa-pneumonia",
+  "name": "Pneumonia",
+  "stage": "Serious",
+  "humor": "Phlegmatic",
+  "severity": 9,
+  "stable": 6,
+  "improve": 12,
+  "interval": "Week",
+  "cause": "This inflammation of the lungs is diagnosed by the presence of blood or choler in the sputum. It is caused by polluted air (Contra-Natural). Pneumonia has a tendency to exhibit a Crisis on the seventh day. Treatment is typically bleeding to reduce the excess fluid, and drying compresses applied to the chest.",
+  "symptoms": "Acute pain in the chest, quotidian fever. The afflicted character is also reduced to the Winded Fatigue level until he improves. At the Major stage of the disease, the victim suffers from the Enfeebled Flaw in place of the Disease Penalty.",
+  "source": {
+   "book": "AA",
+   "line": 1953
+  }
+ },
+ {
+  "id": "aa-quinsy",
+  "name": "Quinsy",
+  "stage": "Serious",
+  "humor": "Phlegmatic",
+  "severity": 9,
+  "stable": 6,
+  "improve": 10,
+  "interval": "Month",
+  "cause": "Quinsy is contracted from swallowing worms in one's food, which live in the tonsils and cause them to swell (Contra-Natural). If the swelling gets so great that it threatens breathing, it is recommended that the tonsils should be surgically opened with a curved knife on a long stick, although some chirurgeons attempt to remove the tonsils entirely.",
+  "symptoms": "Pain localized in the back of the throat. Should it worsen to a Serious Disease, the Disease Penalty remains –1, but the character suffers from an Afflicted Tongue, and at the Major stage he becomes Mute.",
+  "source": {
+   "book": "AA",
+   "line": 1961
+  }
+ },
+ {
+  "id": "aa-rabies",
+  "name": "Rabies",
+  "stage": "Serious",
+  "humor": "Choleric",
+  "severity": 13,
+  "stable": 9,
+  "improve": 18,
+  "interval": "Week",
+  "cause": "This dreadful disease is caused by the bite of a mad dog (Contra-Natural), which inflames the choler and dries the body. It is swift to affect its victim and difficult to treat due to the extreme mental disturbance of its sufferers. A physician must forcibly apply medicinals to the patient, and the involuntary convulsions mean that bed rest is impossible, even if tied down.",
+  "symptoms": "Raging thirst, extreme fear of water, violent convulsions. The mind of the sufferer is also affected, reduced to that of a furious beast. The sufferer foams at the mouth and attempts to bite all who come near, and he can transmit the disease in this fashion if the skin is broken.",
+  "source": {
+   "book": "AA",
+   "line": 1969
+  }
+ },
+ {
+  "id": "aa-saint-anthonys-fire",
+  "name": "Saint Anthony's Fire",
+  "stage": "Minor",
+  "humor": "Sanguine",
+  "severity": 12,
+  "stable": 6,
+  "improve": 18,
+  "interval": "Season",
+  "cause": "Caused by an excess of blood due to possession by a minor demon in the victim's intestines (Contra-Natural). Exorcizing the demon ends the disease, and the Order of the Hospitalers of St. Anthony specialize in such exorcisms.",
+  "symptoms": "Red rash, intestinal pain, visions, muscular spasms, and a burning sensation in the extremities. Eventually the limbs begin to rot. This disease is exceptionally hard to recover from due to the tenacity of the demon, and it typically worsens each season until the victim dies.",
+  "source": {
+   "book": "AA",
+   "line": 1977
+  }
+ },
+ {
+  "id": "aa-scrofula",
+  "name": "Scrofula",
+  "stage": "Serious",
+  "humor": "Melancholic",
+  "severity": 10,
+  "stable": 6,
+  "improve": 12,
+  "interval": "Month",
+  "cause": "An unpleasant disease caused by the cold dry winds of cities in Northern Europe, particularly those situated far from the sea (Non-Natural). The excess of melancholy congests glands forming hideous lumps over the body. Also called struma and *morbus regius* (the King's Evil) because the touch of the Kings of England or France is known to cure it.",
+  "symptoms": "Swelling of the glands all over the body, dull pain. If it progresses to a Major Disease, as well as worsening the Disease Penalty the glands — particularly those in the neck — swell to immense size, imposing the Disfigured Flaw. The swellings can be surgically removed once the disease is cured.",
+  "source": {
+   "book": "AA",
+   "line": 1985
+  }
+ },
+ {
+  "id": "aa-suffusio",
+  "name": "Suffusio",
+  "stage": "Serious",
+  "humor": "Melancholic",
+  "severity": 11,
+  "stable": 9,
+  "improve": 12,
+  "interval": "Month",
+  "cause": "Suffusio is a congregation of humor between the lens and the pupil, obstructing sight, caused by the excessive absorption of harmful visual species (Contra-Natural). A surgical procedure called \"couching\" can expel the humor through the insertion of a thin needle beneath the lens.",
+  "symptoms": "Dimmed vision; rather than a Disease Penalty the sufferer acquires the Poor Eyesight Flaw until the disease is cured. A complication of the disease — called suffusio nigra or glaucosis — occurs if the disease worsens, resulting in the Blind Flaw. Suffusio cannot kill; a failed Disease crisis results in permanent blindness instead.",
+  "source": {
+   "book": "AA",
+   "line": 2001
+  }
+ },
+ {
+  "id": "aa-variola",
+  "name": "Variola",
+  "stage": "Serious",
+  "humor": "Choleric",
+  "severity": 11,
+  "stable": 9,
+  "improve": 15,
+  "interval": "Week",
+  "cause": "Variola, or small pox, is a disease caused by the accumulation of putrid choler in the skin due to inhaling polluted air in hot and dry conditions (Contra-Natural). It is highly contagious and disfiguring. Physicians recommend the eating of red food, and hanging red drapes around the bed of the patient to draw out the putrid choler from the skin.",
+  "symptoms": "Eruption of pus-filled pocks all over the skin, a tertian fever, pains in the back. Victims who suffer a disease Crisis and survive are often left blind, or horribly disfigured.",
+  "source": {
+   "book": "AA",
+   "line": 2019
+  }
+ },
+ {
+  "id": "aa-worms",
+  "name": "Worms",
+  "stage": "Minor",
+  "humor": "Sanguine",
+  "severity": 9,
+  "stable": 6,
+  "improve": 12,
+  "interval": "Season",
+  "cause": "Worms spontaneously generate in congealed blood (see Chapter Three: Philosophiae, Worms). In a healthy person the worms disperse, but in the unhealthy they can overwhelm the body. Children are particularly susceptible as their bodily humors are intermingled with milk.",
+  "symptoms": "Wasting. However, those inflicted with worms are not immediately affected — they take no Disease Penalty. However, if after a season the disease worsens, the patient is afflicted with a Serious Disease.",
+  "source": {
+   "book": "AA",
+   "line": 2029
+  }
+ },
+ {
+  "id": "di-the-great-form-pestilence",
+  "name": "The Great (Form) Pestilence",
+  "stage": "Critical",
+  "humor": "Phlegmatic",
+  "severity": 21,
+  "stable": 12,
+  "improve": 18,
+  "interval": "Day",
+  "cause": "",
+  "symptoms": "Once acquired, the disease advances quickly. Initial signs in humans and animals are fatigue and fever, followed by coughing and sneezing. Within an hour coughing leads to bloody expectoration, and within two hours puss-filled buboes appear on the throat, armpits, and groin. For objects, minerals, and plants, the symptoms are a general encompassing of the surface with a blue-black mold. Firm textu",
+  "source": {
+   "book": "DI",
+   "line": 4181
+  }
+ },
+ {
+  "id": "di-the-great-corpus-pestilence",
+  "name": "The Great Corpus Pestilence",
+  "stage": "Critical",
+  "humor": "Phlegmatic",
+  "severity": 21,
+  "stable": 12,
+  "improve": 18,
+  "interval": "Day",
+  "cause": "As the Autumn season begins, on the new moon in October, Magic auras and regiones produce a Corpus miasma. Like the Herbam miasma, the Corpus miasma carries a lethal blight. Instead of targeting plants, these noxious pockets of poisoned air target people. Each person touched by the Corpus miasma is infected with a dire disease. While it is not instantly fatal, the infected has only a few days to s",
+  "symptoms": "Once acquired the disease progresses quickly. Initial signs are fatigue and fever, followed by coughing and sneezing. Within an hour coughing leads to bloody expectoration, and within two hours puss-filled buboes appear on the throat, armpits, and groin. The Disease Penalty is –5.",
+  "source": {
+   "book": "DI",
+   "line": 4395
+  }
+ }
+]

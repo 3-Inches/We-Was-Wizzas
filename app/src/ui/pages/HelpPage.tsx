@@ -229,6 +229,10 @@ export default function HelpPage() {
             and adds Warping; wards like the Aegis of the Hearth are recast from the covenant&apos;s vis. Undo is always one click away.
           </li>
           <li>
+            <b>Illness and agents:</b> the Combat &amp; Health tab tracks diseases with their Disease Penalty and recovery rolls; the Overview keeps a character&apos;s agents,
+            recruits new ones and asks them for help. Lab projects include taming a creature, and each can be worked under a non-standard lab routine for a bonus at a cost.
+          </li>
+          <li>
             <b>Undo:</b> every change can be undone with <b>↶ Undo</b> in the sidebar (on a phone, in the bar at the top) or Ctrl+Z, and redone with <b>↷ Redo</b> or Ctrl+Y. A
             ritual cast for the whole covenant is listed under <b>Recent casts</b> in <b>Magic on the covenant</b> (the covenant&apos;s Overview, or the Seasons page), where <b>Undo and give back</b> takes it off everyone and
             returns the vis, Might, Confidence and Fatigue it cost.

@@ -10,6 +10,7 @@ import type { CharEditor } from '../useChar';
 import { uid } from '../../../util/id';
 import { labContextOf } from '../../../engine/lab';
 import { LabProjects } from './LabProjects';
+import { OriginalResearch } from './OriginalResearch';
 import { describeStress, stressDie } from '../../../engine/dice';
 import { experimentBotchDice, researchRiskLimit, rollExperiment } from '../../../engine/experiment';
 
@@ -96,6 +97,7 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
 
       {magus && <LabProjects ed={ed} />}
       {magus && <Experimentation ed={ed} magicTheory={mt} />}
+      {magus && <OriginalResearch ed={ed} magicTheory={mt} />}
 
       <Card title="Longevity Ritual">
         <div className="row">
