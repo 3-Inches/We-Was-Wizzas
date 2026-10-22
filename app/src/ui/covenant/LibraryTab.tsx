@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { ARTS, ART_NAMES, type Art } from '../../data';
-import { summaCost, type BPLine, type DerivedCovenant } from '../../engine/covenant';
+import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art } from '../../data';
+import { summaCost, visLabel, visSourceCost, type BPLine, type DerivedCovenant } from '../../engine/covenant';
+import { VIS_YIELDS, bookPrice, type BookTier } from '../../engine/covenantYear';
 import { mechanicOf, miracleMultiplierOf, receivedAfterTithe } from '../../engine/covenantRules';
 import type { LibraryBook } from '../../engine/types';
 import { uid } from '../../util/id';
+import { addVis } from '../../engine/vis';
+import { useStore } from '../../store/store';
 import { Card, Field, Stepper } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
@@ -199,8 +202,28 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                 ))}
               </select>
               <Stepper value={s.pawnsPerYear} min={0} width={36} title="Pawns per year" onChange={(v) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.pawnsPerYear = v))} />
-              <span className="small muted">/yr = {5 * s.pawnsPerYear} BP</span>
+              <span className="small muted">/yr = {visSourceCost(s)} BP</span>
+              <label className="inline small" title="Dedicated vis (RoP: Magic): each pawn holds a Technique and a Form and works as two pawns for that combination; 7.5 Build Points a pawn a year">
+                <input type="checkbox" checked={!!s.dedicated} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.dedicated = e.target.checked || undefined))} /> dedicated
+              </label>
+              {s.dedicated && (
+                <select
+                  value={s.pair ?? ''}
+                  title="The other Art of the dedicated vis's Technique + Form"
+                  onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.pair = (e.target.value || undefined) as Art | undefined))}
+                >
+                  <option value="">+ {(TECHNIQUES as readonly string[]).includes(s.art) ? 'Form' : 'Technique'}…</option>
+                  {((TECHNIQUES as readonly string[]).includes(s.art) ? FORMS : TECHNIQUES).map((a) => (
+                    <option key={a} value={a}>
+                      {ART_NAMES[a]}
+                    </option>
+                  ))}
+                </select>
+              )}
               <input value={s.season ?? ''} placeholder="when" style={{ width: 80 }} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.season = e.target.value))} />
+              <label className="inline small" title="Found, won or granted in play: no Build Points">
+                <input type="checkbox" checked={!!s.inPlay} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.inPlay = e.target.checked || undefined))} /> in play
+              </label>
               <label className="inline small">
                 <input type="checkbox" checked={!!s.contested} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.contested = e.target.checked))} /> contested
               </label>
@@ -217,19 +240,25 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                   {dc.unreal.has(s.uid) ? 'not real: gives nothing' : `receives ${receivedAfterTithe(s.pawnsPerYear, true, !!s.miracle && miracles, miracleMultiplierOf(cov)).received}/yr`}
                 </span>
               )}
-              <PaidBy cost={5 * s.pawnsPerYear} line={dc.bpLines.find((l) => l.ref === s.uid)} dc={dc} onlyPool />
+              <PaidBy cost={visSourceCost(s)} line={dc.bpLines.find((l) => l.ref === s.uid)} dc={dc} onlyPool />
               <button className="small ghost" onClick={() => update((x) => void (x.visSources = x.visSources.filter((y) => y.uid !== s.uid)))}>
                 ✕
               </button>
             </div>
           ))}
-          <button className="small" onClick={() => update((x) => void x.visSources.push({ uid: uid(), name: 'New source', art: 'Vi', pawnsPerYear: 1 }))}>
-            + Vis source
-          </button>
+          <div className="row tight">
+            <button className="small" onClick={() => update((x) => void x.visSources.push({ uid: uid(), name: 'New source', art: 'Vi', pawnsPerYear: 1 }))}>
+              + Vis source
+            </button>
+            <button className="small" title="A source found, won or granted in play: no Build Points" onClick={() => update((x) => void x.visSources.push({ uid: uid(), name: 'New source (found in play)', art: 'Vi', pawnsPerYear: 1, inPlay: true }))}>
+              + Source found in play
+            </button>
+          </div>
+          <VisYieldGuide />
           <h4>Stocks</h4>
           <div className="grid grid-3">
             {ARTS.map((a) => {
-              const st = cov.visStocks.find((v) => v.art === a);
+              const st = cov.visStocks.find((v) => v.art === a && !v.pair);
               return (
                 <Field key={a} label={`${ART_NAMES[a]}${dc.visIncome[a] ? ` (+${dc.visIncome[a]}/yr)` : ''}`}>
                   <Stepper
@@ -238,7 +267,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                     width={40}
                     onChange={(v) =>
                       update((x) => {
-                        const s = x.visStocks.find((y) => y.art === a);
+                        const s = x.visStocks.find((y) => y.art === a && !y.pair);
                         if (s) s.pawns = v;
                         else x.visStocks.push({ art: a, pawns: v });
                         x.visStocks = x.visStocks.filter((y) => y.pawns > 0);
@@ -249,7 +278,29 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
               );
             })}
           </div>
-          <p className="small muted">Vis sources cost 5 BP per pawn per year; stocks 1 BP per 5 pawns.</p>
+          <VisFound cov={cov} update={update} />
+          {cov.visStocks.some((v) => v.pair) && (
+            <div className="row small">
+              Dedicated stocks:
+              {cov.visStocks
+                .filter((v) => v.pair)
+                .map((v) => (
+                  <span key={v.art + v.pair} className="row tight">
+                    {visLabel(v)}
+                    <Stepper
+                      value={v.pawns}
+                      min={0}
+                      width={36}
+                      onChange={(n) => update((x) => { const y = x.visStocks.find((z) => z.art === v.art && z.pair === v.pair); if (y) y.pawns = n; x.visStocks = x.visStocks.filter((z) => z.pawns > 0); })}
+                    />
+                  </span>
+                ))}
+            </div>
+          )}
+          <p className="small muted">
+            Vis sources cost 5 BP per pawn per year, 7.5 for dedicated vis (each pawn works as two pawns, but only for its own Technique + Form). Stocks cost 1 BP per 5
+            pawns, dedicated pawns weighing half again as much.
+          </p>
         </Card>
         <Card title="Library summary">
           <table className="compact">
@@ -271,6 +322,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
             </tbody>
           </table>
           <p className="small muted">Lab texts: {cov.library.filter((b) => b.kind === 'labText').reduce((s, b) => s + b.level, 0)} levels. Casting tablets: {cov.library.filter((b) => b.kind === 'castingTablet').length}.</p>
+          <BookTrade />
         </Card>
       </div>
     </div>
@@ -301,5 +353,101 @@ export function PaidBy({ cost, line, dc, onlyPool }: { cost: number; line?: BPLi
       <s>{cost}</s> {hb.name}
       {lost ? (/illusory/i.test(hb.name) ? ': not real' : ': lost') : ''}
     </span>
+  );
+}
+
+/** Vis Source Yields (Covenants ch.6): how big a source should be, by the saga's vis level. */
+function VisYieldGuide() {
+  const [level, setLevel] = useState<keyof typeof VIS_YIELDS>('Moderate');
+  const y = VIS_YIELDS[level];
+  return (
+    <div className="small muted" style={{ marginTop: 6 }}>
+      Yield guide: in a{' '}
+      <select value={level} onChange={(e) => setLevel(e.target.value as keyof typeof VIS_YIELDS)}>
+        {Object.keys(VIS_YIELDS).map((k) => (
+          <option key={k}>{k}</option>
+        ))}
+      </select>{' '}
+      vis saga a low-, moderate- or high-yield source gives {y.low}, {y.moderate} or {y.high} pawns a year; a high-yield source gives about what one magus receives in a year
+      (Covenants ch.6). Vis trades at roughly 10 £ a pawn when it must be priced in silver.
+    </div>
+  );
+}
+
+/** Buying books and researching in the library (Covenants ch.7). */
+function BookTrade() {
+  const [kind, setKind] = useState<'summa' | 'tractatus'>('summa');
+  const [level, setLevel] = useState(10);
+  const [tier, setTier] = useState<BookTier>('sound');
+  return (
+    <div className="small" style={{ marginTop: 8 }}>
+      <h4 style={{ margin: '6px 0' }}>Buying books</h4>
+      <div className="row tight">
+        <select value={tier} onChange={(e) => setTier(e.target.value as BookTier)}>
+          <option value="damaged">damaged</option>
+          <option value="vain">vain</option>
+          <option value="sound">sound</option>
+          <option value="excellent">excellent</option>
+        </select>
+        <select value={kind} onChange={(e) => setKind(e.target.value as 'summa' | 'tractatus')}>
+          <option value="summa">summa</option>
+          <option value="tractatus">tractatus</option>
+        </select>
+        {kind === 'summa' && (
+          <>
+            level <Stepper value={level} min={1} width={36} onChange={setLevel} />
+          </>
+        )}
+        <span>
+          costs <b>{bookPrice(kind, level, tier)}</b>
+        </span>
+      </div>
+      <p className="muted" style={{ margin: '4px 0 0' }}>
+        Hermetic books trade for vis, usually under the Cow and Calf Oath (no copies without the seller&apos;s leave). Researching a fact: Intelligence + Ability + stress die, +1 for a
+        few books on the subject up to +5 for a peerless collection (Covenants ch.7).
+      </p>
+    </div>
+  );
+}
+
+/** Vis found, won, bought or given in play: added to the stocks without Build Points, and noted in the chronicle. */
+function VisFound({ cov, update }: Pick<CovTabProps, 'cov' | 'update'>) {
+  const saga = useStore((s) => s.sagas[cov.sagaId]);
+  const [art, setArt] = useState<Art>('Vi');
+  const [pair, setPair] = useState<Art | ''>('');
+  const [pawns, setPawns] = useState(1);
+  const [note, setNote] = useState('');
+  const isTech = (TECHNIQUES as readonly string[]).includes(art);
+  const add = () =>
+    update((x) => {
+      if (!x.startingVisStocks) x.startingVisStocks = structuredClone(x.visStocks);
+      addVis(x.visStocks, art, pawns, pair || undefined);
+      x.log.push({ uid: uid(), year: saga?.currentYear ?? x.foundedYear, season: saga?.currentSeason, text: `Vis found in play: ${pawns} ${visLabel({ art, pair: pair || undefined })}${note ? ` (${note})` : ''}.`, visDelta: [{ art, pawns, ...(pair ? { pair } : {}) }] });
+      setNote('');
+    });
+  return (
+    <div className="row small" style={{ marginTop: 6 }}>
+      <b>Vis found in play:</b>
+      <Stepper value={pawns} min={1} max={99} width={36} onChange={setPawns} />
+      <select value={art} onChange={(e) => (setArt(e.target.value as Art), setPair(''))}>
+        {ARTS.map((a) => (
+          <option key={a} value={a}>
+            {ART_NAMES[a]}
+          </option>
+        ))}
+      </select>
+      <select value={pair} onChange={(e) => setPair(e.target.value as Art | '')} title="Dedicated vis: the other Art of its Technique + Form">
+        <option value="">plain vis</option>
+        {(isTech ? FORMS : TECHNIQUES).map((a) => (
+          <option key={a} value={a}>
+            dedicated with {ART_NAMES[a]}
+          </option>
+        ))}
+      </select>
+      <input value={note} placeholder="where from (optional)" style={{ width: 160 }} onChange={(e) => setNote(e.target.value)} />
+      <button className="small" onClick={add}>
+        Add to the stocks
+      </button>
+    </div>
   );
 }

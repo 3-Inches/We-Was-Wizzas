@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
-import { CORD_COST, cordPointsCost, familiarBindingLevel, familiarBindingVis, longevityBonus, longevityVisCost, visLimit } from '../../../engine/enchant';
+import { CORD_COST, cordPointsCost, familiarBindingLevel, familiarBindingVis, investEffect, longevityBonus, longevityVisCost, visLimit } from '../../../engine/enchant';
 import { labTotal } from '../../../engine/magic';
 import type { Familiar } from '../../../engine/types';
-import { Card, Field, Stepper, Total } from '../../kit';
+import { Card, Field, Stepper, Total, signed } from '../../kit';
 import ItemsEditor, { characterTalismanCapacity } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
 import { uid } from '../../../util/id';
 import { labContextOf } from '../../../engine/lab';
-import { researchRiskLimit, rollExperiment } from '../../../engine/experiment';
+import { LabProjects } from './LabProjects';
+import { describeStress, stressDie } from '../../../engine/dice';
+import { experimentBotchDice, researchRiskLimit, rollExperiment } from '../../../engine/experiment';
 
 const newFamiliar = (): Familiar => ({
   name: '', species: '', might: 5, size: -2, realm: 'Magic', bindingTechnique: 'Re', bindingForm: 'An', bindingLabTotal: 0, golden: 0, silver: 0, bronze: 0, pawnsSpent: 0, powers: [],
@@ -92,6 +94,7 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
         </p>
       )}
 
+      {magus && <LabProjects ed={ed} />}
       {magus && <Experimentation ed={ed} magicTheory={mt} />}
 
       <Card title="Longevity Ritual">
@@ -238,10 +241,13 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
                 </span>
               </div>
               <p className="small muted" style={{ margin: 0 }}>
-                Golden: −1 botch die per point (never to zero). Silver: bonus to Personality rolls and resisting mental influence. Bronze: bonus to Soak (already added: Soak {d.soak}),
-                healing, deprivation and aging. Cords cost 5/15/30/50/75 points; the total can't exceed the Lab Total. Strengthening costs one pawn per 5 points of the new Lab Total minus
-                pawns already spent ({fam.pawnsSpent}).
+                Golden: one fewer botch die per point when using magic, never down to none (taken off on the Magic tab and in Experimentation). Silver: a bonus to Personality rolls and to
+                resisting mental influence, natural or supernatural. Bronze: a bonus to Soak (added: Soak {signed(d.soak)}), healing (added to recovery rolls), deprivation and aging rolls
+                (added); not Fatigue. Cords cost 5/15/30/50/75 points; the total can&apos;t exceed the Lab Total. Strengthening uses the same Arts and costs one pawn per 5 points of the new
+                Lab Total minus pawns already spent ({fam.pawnsSpent}).
               </p>
+              <SilverRescue silver={fam.silver} name={fam.name || 'The familiar'} />
+              <BondPower ed={ed} fam={fam} />
               <Field label="Powers, bond effects & notes">
                 <textarea rows={3} value={fam.notes ?? ''} onChange={(e) => setFam((f) => void (f.notes = e.target.value))} />
               </Field>
@@ -253,6 +259,87 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
   );
 }
 
+/** When the magus's mind is overcome, the familiar may free it: 9+ on a stress die plus the silver cord, once a day (DE, The Three Cords). */
+function SilverRescue({ silver, name }: { silver: number; name: string }) {
+  const [out, setOut] = useState('');
+  const roll = () => {
+    const r = stressDie(1);
+    const total = r.botches ? 0 : r.value + silver;
+    setOut(`${describeStress(r)}${silver ? ` + silver cord ${silver}` : ''} = ${r.botches ? 'BOTCH' : total}: ${r.botches ? "the familiar's mind is overcome along with yours." : total >= 9 ? 'your mind is freed.' : 'not this time (one attempt a day).'}`);
+  };
+  return (
+    <div className="row small">
+      <button className="small ghost" onClick={roll} title="Stress die + silver cord, 9+ frees you; one attempt a day">
+        {name} tries to free your mind
+      </button>
+      {out && <span>{out}</span>}
+    </div>
+  );
+}
+
+/**
+ * Empowering the bond (DE): investing a power in the familiar bond, as in an invested device, but with
+ * no limit on powers, +5 to the Lab Total for an effect in the binding Technique or Form (+10 for both)
+ * instead of the bonus from other powers, effects only on the magus or the familiar, and no Verditius bonus.
+ */
+function BondPower({ ed, fam }: { ed: CharEditor; fam: Familiar }) {
+  const { d, ctx } = ed;
+  const [te, setTe] = useState<Technique>(fam.bindingTechnique);
+  const [fo, setFo] = useState<Form>(fam.bindingForm);
+  const [level, setLevel] = useState(10);
+  if (!d) return null;
+  const match = Number(te === fam.bindingTechnique) + Number(fo === fam.bindingForm);
+  const lt = labTotal(d, { technique: te, form: fo }, { activity: 'items', aura: ctx.aura, lab: ctx.lab ? labContextOf(ctx.lab) : undefined, familiarBond: match === 2 ? 'both' : match ? 'one' : 'none' });
+  const inv = investEffect(lt.total, level, 'invested');
+  return (
+    <details>
+      <summary className="small">Empower the bond: invest a power</summary>
+      <div className="row" style={{ marginTop: 6 }}>
+        <Field label="Effect">
+          <div className="row tight">
+            <select value={te} onChange={(e) => setTe(e.target.value as Technique)}>
+              {TECHNIQUES.map((t) => (
+                <option key={t} value={t}>
+                  {ART_NAMES[t]}
+                </option>
+              ))}
+            </select>
+            <select value={fo} onChange={(e) => setFo(e.target.value as Form)}>
+              {FORMS.map((f) => (
+                <option key={f} value={f}>
+                  {ART_NAMES[f]}
+                </option>
+              ))}
+            </select>
+          </div>
+        </Field>
+        <Field label="Effect level" hint="With uses a day and other modifications">
+          <Stepper value={level} min={1} width={40} onChange={setLevel} />
+        </Field>
+        <div className="stat">
+          <span className="v">
+            <Total value={lt.total} parts={lt.parts} notes={lt.notes} label="Lab Total to empower the bond" />
+          </span>
+          <span className="l">Lab Total</span>
+        </div>
+        <div className="stat">
+          <span className={`v ${inv.possible ? '' : 'bad-text'}`}>{inv.possible ? inv.seasons : '—'}</span>
+          <span className="l">Seasons</span>
+        </div>
+        <div className="stat">
+          <span className="v">{inv.vis}</span>
+          <span className="l">Pawns</span>
+        </div>
+      </div>
+      <p className="small muted" style={{ margin: 0 }}>
+        {inv.reason ?? `${inv.pointsPerSeason} points a season toward level ${level}.`} The power may affect only you, the familiar or both; one affecting only you is worked by the
+        familiar, one affecting only the familiar by you, and you always count as touching. There is no limit on the number of powers, and their vis does not count toward
+        strengthening the cords. Record the power in the notes below.
+      </p>
+    </details>
+  );
+}
+
 /** Arcane Experimentation (DE): a season's Lab Total bonus and its roll on the Extraordinary Results Chart. */
 function Experimentation({ ed, magicTheory }: { ed: CharEditor; magicTheory: number }) {
   const { c, update, ctx } = ed;
@@ -260,11 +347,16 @@ function Experimentation({ ed, magicTheory }: { ed: CharEditor; magicTheory: num
   const [aura, setAura] = useState(ctx.aura.strength);
   const [research, setResearch] = useState(false);
   const [enchantment, setEnchantment] = useState(false);
+  const [safety, setSafety] = useState(ctx.lab?.characteristics.Safety ?? 0);
   const [log, setLog] = useState<string[][]>([]);
   if (!c) return null;
   const maxRisk = research ? researchRiskLimit(magicTheory) : 3;
+  // the lab's Familiar Virtue already puts the golden cord into Safety (Covenants: "a restatement")
+  const golden = ctx.lab?.parts.Safety.some((p) => p.label === 'Familiar') ? 0 : (c.familiar?.golden ?? 0);
+  const opts = { risk: Math.min(risk, maxRisk), auraStrength: aura, originalResearch: research, enchantment, safety, goldenCord: golden };
+  const dice = experimentBotchDice(opts);
   const roll = () => {
-    const r = rollExperiment({ risk: Math.min(risk, maxRisk), auraStrength: aura, originalResearch: research, enchantment });
+    const r = rollExperiment(opts);
     const lines = [...r.lines];
     if (r.warpingPoints) {
       update((x) => void (x.warpingPoints += r.warpingPoints));
@@ -286,6 +378,9 @@ function Experimentation({ ed, magicTheory }: { ed: CharEditor; magicTheory: num
         <Field label="Aura strength" hint="Any realm: each point is a botch die">
           <Stepper value={aura} min={0} max={10} width={36} onChange={setAura} />
         </Field>
+        <Field label="Lab Safety" hint={ctx.lab ? `This lab: ${signed(ctx.lab.characteristics.Safety)}` : 'Takes botch dice off; negative adds them'}>
+          <Stepper value={safety} min={-10} max={10} width={36} onChange={setSafety} />
+        </Field>
         <label className="inline small">
           <input type="checkbox" checked={research} onChange={(e) => setResearch(e.target.checked)} /> Original research (Breakthrough)
         </label>
@@ -293,6 +388,10 @@ function Experimentation({ ed, magicTheory }: { ed: CharEditor; magicTheory: num
           <input type="checkbox" checked={enchantment} onChange={(e) => setEnchantment(e.target.checked)} /> an enchanted item or familiar
         </label>
         <button onClick={roll}>Roll a season</button>
+      </div>
+      <div className="small muted">
+        Botch dice on the chart: <b>{dice}</b> (1 + risk {opts.risk} + aura {aura}{safety ? ` ${safety > 0 ? '−' : '+'} Safety ${Math.abs(safety)}` : ''}
+        {golden ? ` − golden cord ${golden}, never down to none` : ''}).
       </div>
       {log.map((lines, i) => (
         <div key={log.length - i} className="list-row small" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>

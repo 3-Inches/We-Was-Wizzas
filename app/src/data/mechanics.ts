@@ -295,6 +295,9 @@ export const MECHANICS: Record<string, Mechanics> = {
   'cyclic-magic-positive': { requiresGift: true, param: P.text('Cycle'), effects: [{ type: 'castingScore', amount: 3, when: 'circumstance' }, { type: 'labTotal', amount: 3, when: 'circumstance' }] },
   'cyclic-magic-negative-flaw': { requiresGift: true, param: P.text('Cycle'), effects: [{ type: 'castingScore', amount: -3, when: 'circumstance' }, { type: 'labTotal', amount: -3, when: 'circumstance' }] },
   'life-boost': { requiresGift: true, tags: ['casting', 'penetration'] },
+  // the Magic tab's roller applies these (engine/magic.ts castingRules); both may be taken more than once
+  'withstand-casting': { requiresGift: true, repeatable: true, tags: ['casting'] },
+  'vulnerable-casting-flaw': { requiresGift: true, repeatable: true },
   'mercurian-magic': { requiresGift: true, effects: [{ type: 'ritualVisMultiplier', multiplier: 0.5 }], tags: ['ritual'] },
   'weak-magic-flaw': { requiresGift: true, effects: [{ type: 'penetrationMultiplier', multiplier: 0.5 }] },
   'mythic-blood': { requiresGift: true, effects: [{ type: 'implies', virtue: 'minor-magical-focus', note: 'Includes a Minor Magical Focus' }], tags: ['casting'] },

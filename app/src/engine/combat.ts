@@ -89,3 +89,66 @@ export const RECOVERY = {
   medium: { interval: 'One month', stable: 6, improve: 12 },
   heavy: { interval: 'One season', stable: 9, improve: 15 },
 } as const;
+
+export interface GroupMember {
+  name: string;
+  line: CombatLine;
+  leadership: number;
+}
+
+export interface GroupResult {
+  /** trained in name and small enough for the leader to coordinate */
+  trained: boolean;
+  /** the others' Combat Abilities, capped at 3 × the leader's Leadership (trained groups) */
+  bonus: number;
+  cap: number;
+  /** Combat Totals more than five points apart when the group forms */
+  outOfRange: string[];
+  notes: string[];
+}
+
+/**
+ * A group fights with its vanguard's statistics (DE, Groups). A trained group led by someone whose
+ * Leadership covers its size adds the other members' Combat Abilities, up to three times that
+ * Leadership, to Attack or to Defense; a group has at most six members.
+ */
+export function groupCombat(members: GroupMember[], vanguard: number, leader: number, trainedTogether: boolean): GroupResult {
+  const notes: string[] = [];
+  const lead = members[leader]?.leadership ?? 0;
+  if (members.length > 6) notes.push('A group has at most six members.');
+  let trained = trainedTogether;
+  if (trained && members.length > lead) {
+    trained = false;
+    notes.push(`The leader's Leadership ${lead} coordinates at most ${lead}; the group fights untrained.`);
+  }
+  const cap = 3 * lead;
+  const others = members.filter((_, i) => i !== vanguard).reduce((s, m) => s + m.line.abilityScore, 0);
+  const bonus = trained ? Math.min(others, cap) : 0;
+  if (trained && others > cap) notes.push(`The bonus is held to three times the leader's Leadership (${cap}).`);
+  const outOfRange: string[] = [];
+  const spread = (label: string, xs: (number | null)[]) => {
+    const v = xs.filter((x): x is number => x !== null);
+    if (v.length > 1 && Math.max(...v) - Math.min(...v) > 5) outOfRange.push(`${label} ${Math.min(...v)}–${Math.max(...v)}`);
+  };
+  spread('Initiative', members.map((m) => m.line.init));
+  spread('Attack', members.map((m) => m.line.atk));
+  spread('Defense', members.map((m) => m.line.dfn));
+  return { trained, bonus, cap, outOfRange, notes };
+}
+
+/** A group's blows spread as evenly as can be, the vanguard (first) taking at least as many as anyone. */
+export function distributeBlows(blows: number, members: number): number[] {
+  const n = Math.max(1, members);
+  const base = Math.floor(blows / n);
+  const extra = blows % n;
+  return Array.from({ length: n }, (_, i) => base + (i < extra ? 1 : 0));
+}
+
+/** Scuffling (DE, Non-Lethal Combat): the wound a blow would have done becomes Fatigue. */
+export const SCUFFLE_EFFECTS: Record<'light' | 'medium' | 'heavy' | 'incapacitating' | 'dead', string> = {
+  light: '1 Fatigue level',
+  medium: '2 Fatigue levels',
+  heavy: '2 Fatigue levels and a Light Wound',
+  incapacitating: '3 Fatigue levels and a Light Wound',
+  dead: '5 Fatigue levels and a Medium Wound',
+};

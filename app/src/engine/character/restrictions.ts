@@ -328,6 +328,7 @@ export function vfSizeProblems(d: DerivedCharacter, data: GameData, def: VirtueF
 }
 
 const MYSTERY_HOUSES = ['bjornaer', 'criamon', 'merinita', 'verditius'];
+const POWER_ABILITIES = new Set(['penetration', 'finesse', 'concentration']);
 
 /**
  * Arcane Abilities only a House's magi can learn, even with access to Arcane Abilities (DE,
@@ -362,6 +363,10 @@ export function abilityAvailability(d: DerivedCharacter, data: GameData, ability
     const initiate = (d.isMagus && MYSTERY_HOUSES.includes(d.char.house ?? '')) || d.char.virtues.some((v) => v.defId === 'cabal-legacy-flaw');
     return initiate ? { ok: true } : { ok: false, reason: 'For initiates of a Mystery Cult (a Mystery House, or the Cabal Legacy Flaw)' };
   }
+  // a being with Might or supernatural powers can learn the Abilities its powers use: Improved
+  // Powers buys experience in Concentration, Finesse or Penetration, and the bestiaries give
+  // magic creatures Penetration (RoP: Magic, Improved Powers)
+  if (POWER_ABILITIES.has(abilityId) && (d.might || Object.values(d.powerBudgets).some((n) => (n ?? 0) > 0))) return { ok: true };
   switch (type) {
     case 'General':
       return { ok: true };

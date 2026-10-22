@@ -18,6 +18,8 @@ const ReferencePage = lazy(() => import('./pages/ReferencePage'));
 const BookReader = lazy(() => import('./pages/BookReader'));
 const HelpPage = lazy(() => import('./pages/HelpPage'));
 const MechanicsPage = lazy(() => import('./pages/MechanicsPage'));
+const SeasonsPage = lazy(() => import('./pages/SeasonsPage'));
+const MarketPage = lazy(() => import('./pages/MarketPage'));
 
 function applyTheme(theme: string, stream: boolean) {
   const root = document.documentElement;
@@ -65,6 +67,8 @@ export default function App() {
               <Route path="/saga/:sagaId/spells" element={<SpellsPage />} />
               <Route path="/saga/:sagaId/enchant" element={<EnchantPage />} />
               <Route path="/saga/:sagaId/rules" element={<HouseRulesPage />} />
+              <Route path="/saga/:sagaId/seasons" element={<SeasonsPage />} />
+              <Route path="/saga/:sagaId/market" element={<MarketPage />} />
               <Route path="/dice" element={<DicePage />} />
               <Route path="/reference" element={<ReferencePage />} />
               <Route path="/reference/book/:bookId" element={<BookReader />} />
@@ -140,6 +144,10 @@ function Sidebar({ open }: { open: boolean }) {
             <NavLink to={`/saga/${saga.id}`} end>
               ▤ Saga overview
             </NavLink>
+            <NavLink to={`/saga/${saga.id}/seasons`}>
+              ⏳ Seasons · {saga.currentSeason} {saga.currentYear}
+            </NavLink>
+            <NavLink to={`/saga/${saga.id}/market`}>⚖ Market & treasury</NavLink>
             {covs.map((c) => (
               <NavLink key={c.id} to={`/saga/${saga.id}/covenant/${c.id}`}>
                 ⌂ {c.name || 'Unnamed covenant'}
@@ -153,7 +161,7 @@ function Sidebar({ open }: { open: boolean }) {
             <div className="nav-group">Tools</div>
             <NavLink to={`/saga/${saga.id}/spells`}>✎ Spells & design</NavLink>
             <NavLink to={`/saga/${saga.id}/enchant`}>⚒ Enchantments</NavLink>
-            <NavLink to={`/saga/${saga.id}/rules`}>⚖ House rules & books</NavLink>
+            <NavLink to={`/saga/${saga.id}/rules`}>☰ House rules & books</NavLink>
           </>
         )}
         <div className="nav-group">Reference</div>

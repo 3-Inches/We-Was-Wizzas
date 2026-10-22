@@ -15,6 +15,7 @@ import { HOUSE_BY_ID } from '../../data/houses';
 import { abilityAvailability, statusesCompatible, vfProblems } from './restrictions';
 import { hasFaerieVirtue } from './factory';
 import { POWER_KINDS, POWER_KIND_ORDER, masteryPools, powerSpending, powerStats } from './powers';
+import type { PowerKind } from '../../data';
 
 export type Severity = 'error' | 'warning' | 'info';
 export type Step = 'basics' | 'house' | 'virtues' | 'characteristics' | 'abilities' | 'arts' | 'spells' | 'personality' | 'equipment' | 'sheet';
@@ -335,7 +336,13 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
         id: 'mastery-over', severity: 'error', step: 'virtues', ref: 'RoP: Magic, Improved Powers',
         message: mp.general < 0 && mp.spent <= 0
           ? `Reduced Power takes ${-mp.general} mastery points: give its powers a higher Might cost or lower Initiative.`
-          : `The powers use ${mp.spent} mastery points; Improved Powers${Object.keys(mp.leftover).length ? ' and unused power levels' : ''} give ${mp.available}${mp.over < mp.spent ? ` (${mp.over} too many for the pools they may come from)` : ''}.`,
+          : mp.spent <= mp.available && Object.keys(mp.unused).length
+            ? `Improved Powers gives ${mp.general} mastery points, and ${mp.fromGeneral} are used on powers and experience (${mp.over} too many). ` +
+              Object.entries(mp.unused)
+                .map(([k, n]) => `${n} point${n === 1 ? '' : 's'} from unused ${POWER_KINDS[k as PowerKind].label} levels can only go to ${POWER_KINDS[k as PowerKind].label}s (${k === 'focus' ? 'a higher level or Initiative' : k === 'ritual' ? 'Might cost, down to half the magnitude' : 'Initiative or Might cost'})`)
+                .join('; ') +
+              ', not to experience: spend it there, or take a point off elsewhere.'
+            : `The powers use ${mp.spent} mastery points; Improved Powers${Object.keys(mp.leftover).length ? ' and unused power levels' : ''} give ${mp.available}${mp.over < mp.spent ? ` (${mp.over} too many for the pools they may come from)` : ''}.`,
       });
     }
     const might = d.magicChar.might;

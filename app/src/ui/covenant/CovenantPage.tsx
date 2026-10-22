@@ -13,6 +13,7 @@ import HooksTab from './HooksTab';
 import LibraryTab from './LibraryTab';
 import LabsTab from './LabsTab';
 import FinancesTab from './FinancesTab';
+import { CovenantEffects } from './CovenantEffects';
 import type { CovTabProps } from './shared';
 
 type TabId = 'overview' | 'hooks' | 'library' | 'labs' | 'folk' | 'items' | 'log';
@@ -144,6 +145,9 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
   };
   return (
     <div className="stack">
+      <Card title="Magic on the covenant">
+        <CovenantEffects cov={cov} chars={chars} />
+      </Card>
       <div className="grid grid-2">
         <Card title="The covenant" className="accent">
           <div className="grid grid-2">

@@ -73,7 +73,8 @@ export interface VFNeed {
   /** the book's wording of this requirement */
   quote?: string;
   /** added automatically when this V&F is taken; counts normally unless noPoints */
-  auto?: { id: string; size?: VFSize; noPoints?: boolean };
+  /** added along with the Virtue: its size, whether it gives points, and its choice if the text fixes it */
+  auto?: { id: string; size?: VFSize; noPoints?: boolean; param?: string };
   severity?: 'error' | 'warning';
 }
 

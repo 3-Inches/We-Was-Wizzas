@@ -114,7 +114,7 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
     case 'need': {
       const n = def?.needs?.[issue.needIndex ?? -1];
       if (!n) return removeThis();
-      if (n.auto) return list(add(n.auto.id, { size: n.auto.size, noPoints: n.auto.noPoints, auto: true }), ...removeThis(false));
+      if (n.auto) return list(add(n.auto.id, { size: n.auto.size, noPoints: n.auto.noPoints, param: n.auto.param, auto: true }), ...removeThis(false));
       const ids = (n.anyOf ?? []).filter((x) => !x.startsWith('$') && data.vfById.has(x));
       const fixes: Fix[] = [];
       if (n.anyOf?.includes('$gift') && c.type === 'companion') fixes.push(add('the-gift', { size: 'Free' }));
@@ -134,10 +134,16 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
       return list(goto('basics', 'Change age'), ...removeThis());
     case 'arcane-parma':
       return [add('enemies-flaw', { size: 'Major', param: 'the Order of Hermes', auto: true })];
-    case 'param': case 'magian-three':
-      return def?.param && cv
-        ? [{ kind: 'param', label: `Choose the ${def.param.label}`, spec: def.param, apply: (x, val) => void (x.virtues.find((v) => v.uid === cv.uid)!.param = val || undefined) }]
-        : [];
+    case 'param': case 'magian-three': {
+      if (!def?.param || !cv) return [];
+      // a Flaw another Virtue brings may have its choice set by that Virtue's text (Diedne Magic: the lineage is the secret)
+      const by = cv.requiredBy ? c.virtues.find((v) => v.uid === cv.requiredBy) : undefined;
+      const given = by ? data.vfById.get(by.defId)?.needs?.find((n) => n.auto?.id === cv.defId)?.auto?.param : undefined;
+      return list(
+        !!given && { kind: 'apply', label: `${def.param.label}: ${given}`, auto: true, apply: (x) => void (x.virtues.find((v) => v.uid === cv.uid)!.param = given) },
+        { kind: 'param', label: `Choose the ${def.param.label}`, spec: def.param, apply: (x, val) => void (x.virtues.find((v) => v.uid === cv.uid)!.param = val || undefined) },
+      );
+    }
     case 'size':
       return def && cv ? [{ kind: 'apply', label: `Take it as ${def.sizes[0]}`, auto: true, apply: (x) => void (x.virtues.find((v) => v.uid === cv.uid)!.size = def.sizes[0]) }] : [];
     case 'dup': {

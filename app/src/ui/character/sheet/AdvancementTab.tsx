@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { StandingEditor } from '../StandingEditor';
+import { specAbilities, specChar, specHighest } from '../../../engine/covenantRules';
 import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, SEASONS, TECHNIQUES, type Art, type Characteristic } from '../../../data';
 import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, magianLinkedGains, newSeasonEntry, visForStudy, type AgingResult, type StudySource } from '../../../engine/longterm';
 import { stressDie, describeStress } from '../../../engine/dice';
@@ -10,6 +13,7 @@ import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
 import { TwilightCard } from './Twilight';
 import { WritingCard } from './Writing';
+import { WorkshopCard } from './WorkshopCard';
 import { useSagaCharacters } from '../../../store/hooks';
 import { deriveCharacter } from '../../../engine/character/derive';
 
@@ -49,9 +53,11 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [visDie, setVisDie] = useState<number | null>(null);
   const [visBotch, setVisBotch] = useState(0);
   const [summary, setSummary] = useState('');
+  const [monthsLost, setMonthsLost] = useState(0);
   const [bookUid, setBookUid] = useState('');
-  const [year, setYear] = useState(saga?.currentYear ?? 1220);
-  const [season, setSeason] = useState<SeasonLogEntry['season']>(saga?.currentSeason ?? 'Spring');
+  // a season is always the saga's current one: time moves for everyone on the Seasons page
+  const year = saga?.currentYear ?? 1220;
+  const season: SeasonLogEntry['season'] = saga?.currentSeason ?? 'Spring';
   const [aging, setAging] = useState<AgingResult | null>(null);
   const [lcOverride, setLcOverride] = useState<number | null>(null);
   const [agingText, setAgingText] = useState<string[]>([]);
@@ -68,6 +74,18 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   // another character of the saga as teacher or master: their Communication, Teaching, Good Teacher and score in the subject
   const pickTeacher = (id: string) => {
     setTeacherId(id);
+    // one of the covenant's teachers or specialists (DE p.180): their Communication, Teaching, Good Teacher and score in the subject
+    if (id.startsWith('spec:')) {
+      const sp = ctx.covenant?.specialists.find((x) => x.uid === id.slice(5));
+      if (!sp) return;
+      setCom(specChar(sp, 'Com'));
+      setTeaching(sp.teaching ?? 0);
+      setGoodTeacher(!!sp.goodTeacher);
+      const mine = abilityUid ? c.abilities.find((a) => a.uid === abilityUid) : undefined;
+      const theirs = mine ? specAbilities(sp).find((a) => a.id === mine.abilityId && (a.param ?? '') === (mine.param ?? '')) : undefined;
+      setTeacherScore(theirs?.score ?? (mine ? 0 : specHighest(sp)));
+      return;
+    }
     const t = sagaChars.find((x) => x.id === id);
     if (!t) return;
     const td = deriveCharacter(t, data, saga.houseRules);
@@ -94,7 +112,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     default: src = null;
   }
   const cov = ctx.covenant;
-  const res = src ? computeStudy(d, src, { art, abilityUid }) : null;
+  const res = src ? computeStudy(d, src, { art, abilityUid, monthsLost }) : null;
   const linked = src && res && res.xp > 0 ? magianLinkedGains(d, data, src, abilityUid, res.advancementTotal) : [];
   // Secondary Insight: a season studying a Technique (book, teacher or vis) gives 1 xp in up to four Forms;
   // a Form gives 1 xp in up to two Techniques (DE Secondary Insight)
@@ -128,11 +146,6 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     setSummary('');
     setVisDie(null);
     setVisBotch(0);
-    const idx = SEASONS.indexOf(season);
-    if (idx === 3) {
-      setSeason('Spring');
-      setYear(year + 1);
-    } else setSeason(SEASONS[idx + 1]);
   };
 
   const pickBook = (uid: string) => {
@@ -158,15 +171,17 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const lr = c.longevity?.bonus ?? 0;
 
   const rollAging = () => {
-    const r = agingRoll(c.age, lc, lr, d.agingRollMod, undefined, !!c.longevity && c.age < 35);
+    const r = agingRoll(c.age, lc, lr, d.agingRollParts, undefined, !!c.longevity && c.age < 35);
     setAging(r);
     setAgingText([]);
   };
+  const agedThisYear = c.lastAgedYear === year;
 
   const applyAging = () => {
     if (!aging) return;
     const out: string[] = [];
     update((x) => {
+      x.lastAgedYear = year;
       if (aging.apparentAging) x.apparentAge = (x.apparentAge ?? x.age) + 1;
       for (const p of aging.agingPoints) out.push(applyAgingPoint(x, p.char as Characteristic, p.points));
       if (aging.anyChar) out.push(applyAgingPoint(x, anyChar, aging.anyChar));
@@ -193,15 +208,13 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     <div className="stack">
       <Card title="Plan a season" className="accent">
         <div className="row">
-          <Field label="Season">
-            <div className="row tight">
-              <select value={season} onChange={(e) => setSeason(e.target.value as SeasonLogEntry['season'])}>
-                {SEASONS.map((s) => (
-                  <option key={s}>{s}</option>
-                ))}
-              </select>
-              <Stepper value={year} width={56} onChange={setYear} />
-            </div>
+          <Field label="Season" hint={<Link to={`/saga/${saga.id}/seasons`}>the saga&apos;s; move time on the Seasons page</Link>}>
+            <b>
+              {season} {year}
+            </b>
+          </Field>
+          <Field label="Months lost" hint="DE Distractions: each full month away takes a third of the total">
+            <Stepper value={monthsLost} min={0} max={3} width={30} onChange={setMonthsLost} />
           </Field>
           <Field label="Activity">
             <select value={kind} onChange={(e) => setKind(e.target.value as Kind)}>
@@ -284,6 +297,17 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                         {x.name || 'unnamed'}
                       </option>
                     ))}
+                  {(ctx.covenant?.specialists ?? []).filter((x) => !x.characterId && (kind === 'training' || x.role === 'teacher')).length > 0 && (
+                    <optgroup label={`${ctx.covenant!.name}'s ${kind === 'training' ? 'specialists' : 'teachers'}`}>
+                      {ctx.covenant!.specialists
+                        .filter((x) => !x.characterId && (kind === 'training' || x.role === 'teacher'))
+                        .map((x) => (
+                          <option key={x.uid} value={`spec:${x.uid}`}>
+                            {x.name || x.role} ({specAbilities(x).map((a) => `${a.id ? data.abilityById.get(a.id)?.name ?? a.label : a.label}${a.param ? ` ${a.param}` : ''} ${a.score}`).join(', ')})
+                          </option>
+                        ))}
+                    </optgroup>
+                  )}
                 </select>
               </Field>
               <Field label="Lab Teaching Specialization" hint="when the lessons are given in a lab with a Teaching Specialization (at most +3)">
@@ -397,6 +421,22 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         </p>
       </Card>
 
+      <Card title="When nothing is planned">
+        <div className="row small">
+          <span>Standing activity:</span>
+          <StandingEditor
+            c={c}
+            d={d}
+            season={season}
+            teachers={ctx.covenant?.specialists.filter((x) => x.role === 'teacher' && !x.characterId) ?? []}
+            onChange={(st) => update((x) => void (x.standing = st))}
+          />
+        </div>
+        <p className="small muted" style={{ margin: 0 }}>
+          Followed in any season this character has nothing logged when the saga moves on (and while years are passed at once on the Seasons page).
+        </p>
+      </Card>
+
       <Card title="Season log">
         {c.seasonLog.length === 0 && <div className="small muted">No seasons logged yet.</div>}
         {c.seasonLog
@@ -464,16 +504,16 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             </Field>
             <div className="small">
               Longevity Ritual: <b>{lr ? `−${lr}` : 'none'}</b>
-              {d.agingRollMod ? (
-                <>
+              {d.agingRollParts.map((m) => (
+                <span key={m.label}>
                   <br />
-                  Virtues: {signed(d.agingRollMod)}
-                </>
-              ) : null}
+                  {m.label}: {signed(m.value)}
+                </span>
+              ))}
             </div>
             {d.magicChar && <p className="small muted">A magic character does not age (RoP: Magic), so it makes no aging rolls.</p>}
-            <button onClick={rollAging} disabled={!!d.magicChar || (c.age < 35 && !c.longevity)}>
-              Roll aging
+            <button onClick={rollAging} disabled={!!d.magicChar || (c.age < 35 && !c.longevity) || agedThisYear} title="Aging is rolled for everyone when the saga's year ends (Seasons page); roll here only out of turn">
+              {agedThisYear ? `Aged for ${year}` : 'Roll aging now'}
             </button>
           </div>
           {c.age < 35 && !c.longevity && <p className="small muted">Aging rolls start at age 35 (or earlier with a Longevity Ritual).</p>}
@@ -514,6 +554,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
 
         <TwilightCard ed={ed} />
         <WritingCard ed={ed} />
+        <WorkshopCard ed={ed} />
       </div>
     </div>
   );

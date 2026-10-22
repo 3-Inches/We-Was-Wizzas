@@ -1,7 +1,7 @@
 // Covenant rules tables and Boon/Hook mechanics (Covenants ch.2 Boons & Hooks, ch.5 Wealth & Poverty;
 // DE covenant creation).
 
-import type { HookBoonDef } from '../data';
+import type { Characteristic, HookBoonDef } from '../data';
 import type { Covenant, CovenantHookBoon, IncomeModification, IncomeSource, Specialist } from './types';
 
 // ------------------------------------------------------------------------------ Income
@@ -125,11 +125,32 @@ export function abilityCapAtAge(age: number): number {
 
 export const countOf = (s: Specialist) => Math.max(0, s.count ?? 1);
 
-/** Build Points for a specialist entry (DE p.180): teachers Com + Teaching + score, others the score. */
+/** A specialist's Characteristic (older files keep Communication and Presence apart). */
+export function specChar(s: Specialist, ch: Characteristic): number {
+  return s.chars?.[ch] ?? (ch === 'Com' ? s.com : ch === 'Pre' ? s.pre : undefined) ?? 0;
+}
+
+/** A specialist's Abilities: the list, or the one an older file names. */
+export function specAbilities(s: Specialist): { id: string; param?: string; score: number; label?: string }[] {
+  return s.abilities?.length ? s.abilities : s.ability || s.score ? [{ id: '', label: s.ability, score: s.score }] : [];
+}
+
+/** The highest of a specialist's Abilities: it sets the cost (DE p.180), so several tied at the top cost no more than one. */
+export function specHighest(s: Specialist): number {
+  return Math.max(0, ...specAbilities(s).map((a) => a.score));
+}
+
+/** Build Points for a specialist entry (DE p.180): teachers Communication + Teaching + their highest score, others their highest score. What magic added is not paid for. */
 export function specialistCost(s: Specialist): number {
   if (s.characterId || s.free) return 0;
-  const each = s.role === 'teacher' ? (s.com ?? 0) + (s.teaching ?? 0) + s.score : s.score;
+  const com = specChar(s, 'Com') - (s.magicGain?.Com ?? 0);
+  const each = s.role === 'teacher' ? com + (s.teaching ?? 0) + specHighest(s) : specHighest(s);
   return each * countOf(s);
+}
+
+/** A teacher's Source Quality for one student (DE p.164): Communication + Teaching + 3, +6 for one student (+3 for two), +5 Good Teacher. */
+export function teacherQuality(s: Specialist, students = 1): number {
+  return specChar(s, 'Com') + (s.teaching ?? 0) + 3 + (students <= 1 ? 6 : students === 2 ? 3 : 0) + (s.goodTeacher ? 5 : 0);
 }
 
 // ------------------------------------------------------------------------------ Boons and Hooks
@@ -267,6 +288,10 @@ export function computeIncome(cov: Covenant, magi: number): IncomeResult {
       const per = level === 'Lesser' ? 6 : 15;
       base = Math.max(0, base + per * (magi - 6));
       notes.push(`${magi > 6 ? '+' : '−'}${per * Math.abs(magi - 6)} £ for ${magi} magi`);
+    }
+    if (s.factor && s.factor !== 1) {
+      base = Math.round(base * s.factor * 10) / 10;
+      notes.push(`×${Math.round(s.factor * 100) / 100} from past years`);
     }
     let gross = base * (INCOME_MODIFICATIONS.find((m) => m.id === (s.modification ?? 'Status Quo'))?.mult ?? 1);
     for (const a of applied) {

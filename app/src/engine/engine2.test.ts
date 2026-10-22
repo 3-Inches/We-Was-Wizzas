@@ -87,7 +87,9 @@ describe('covenant', () => {
     const c = newCovenant('s', 1220);
     c.season = 'Spring';
     c.covenfolk = { grogs: 10, companions: 4, specialists: 3, craftsmen: 0, laborers: 0, servants: 0, teamsters: 0, dependents: 0, horses: 0 };
+    // the book's example lists no sundry and no Pound of Enumerus
     c.finances.sundry = 0;
+    c.finances.enumerus = false;
     c.finances.weaponArmorPoints = 320;
     const labs = Array.from({ length: 6 }, (_, i) => deriveLab(newLab(`Lab ${i}`), data));
     const f = computeFinances(c, [], labs, 6);

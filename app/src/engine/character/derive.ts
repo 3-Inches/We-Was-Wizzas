@@ -117,6 +117,8 @@ export interface DerivedCharacter {
   decrepitude: number;
   livingConditionsMod: number;
   agingRollMod: number;
+  /** every modifier to the aging roll besides age, Living Conditions and longevity */
+  agingRollParts: { label: string; value: number }[];
   /** aging rolls start at this age (35, or later with e.g. Strong Faerie Blood) */
   agingStartAge: number;
   /** the Ability used where Hermetic magic uses Magic Theory (Holy Magic replaces it) */
@@ -221,9 +223,9 @@ export function effectiveXp(alloc: XpAlloc, multiplier: number): number {
   return total;
 }
 
-/** The value bought at creation: the current value plus what aging has taken off. */
+/** The value bought at creation: the current value plus what aging has taken off, less what magic has added. */
 export function purchasedCharacteristic(c: Character, ch: Characteristic): number {
-  return (c.characteristics[ch] ?? 0) + (c.agingLoss?.[ch] ?? 0);
+  return (c.characteristics[ch] ?? 0) + (c.agingLoss?.[ch] ?? 0) - (c.magicGain?.[ch] ?? 0);
 }
 
 /**
@@ -274,6 +276,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     return { cv, def, points, name: vfDisplayName(def, cv, data) };
   });
   const effects = resolveEffects(virtues);
+  // spells, powers and rituals working on the character, and the devices it wears
+  for (const ae of char.activeEffects ?? []) for (const b of ae.bonuses ?? []) effects.push({ ...b, fromUid: ae.uid, fromName: ae.name } as ResolvedEffect);
+  for (const it of char.items) if (it.worn) for (const b of it.bearerBonuses ?? []) effects.push({ ...b, fromUid: it.uid, fromName: it.name } as ResolvedEffect);
   const has = (id: string) => virtues.some((v) => v.cv.defId === id);
   const eff = <T extends Effect['type']>(t: T) => effects.filter((e) => e.type === t) as Extract<ResolvedEffect, { type: T }>[];
 
@@ -307,8 +312,11 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
         if (v.cv.size === 'Minor') tally.minorFlaws++;
         if (v.cv.size === 'Major') tally.majorFlaws++;
       }
-      if (d.categories.includes('Story')) tally.storyFlaws++;
-      if (d.categories.includes('Personality')) {
+      // a Flaw another Virtue brings without points (Diedne Magic's Story Flaw) is "in addition to
+      // your normal allowance of Flaws": it does not count toward the Story and Personality limits
+      const extra = !!(v.cv.noPoints && v.cv.requiredBy);
+      if (d.categories.includes('Story') && !extra) tally.storyFlaws++;
+      if (d.categories.includes('Personality') && !extra) {
         tally.personalityFlaws++;
         if (v.cv.size === 'Major') tally.majorPersonalityFlaws++;
       }
@@ -593,6 +601,11 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const decrepitude = warpingScoreFromPoints(char.decrepitudePoints);
   const livingConditionsMod = eff('livingConditions').reduce((s, e) => s + e.amount, 0);
   const agingRollMod = eff('agingRoll').reduce((s, e) => s + e.amount, 0);
+  // the aging roll beyond age, Living Conditions and longevity: Virtues and Flaws, and a familiar's bronze cord (DE, The Three Cords)
+  const agingRollParts = [
+    ...(agingRollMod ? [{ label: 'Virtues and Flaws', value: agingRollMod }] : []),
+    ...(char.familiar?.bronze ? [{ label: "Familiar's bronze cord", value: -char.familiar.bronze }] : []),
+  ];
   const agingStartAge = eff('agingStartAge').reduce((m, e) => Math.max(m, e.age), 35);
   const theoryAbility = eff('labTheory')[0]?.ability ?? 'magic-theory';
   const faithEff = eff('trueFaith')[0];
@@ -603,8 +616,10 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   // Might: the highest of a creature's own and the Might Virtues give (Strong Angelic Heritage: age / 20)
   let might: DerivedCharacter['might'] = null;
   const cr = char.creature;
-  if (cr && magicChar) might = { realm: cr.realm === 'None' ? 'Magic' : cr.realm, score: Math.max(0, magicChar.might), form: magicChar.form, source: 'creature' };
-  else if (cr && cr.realm !== 'None' && cr.might > 0) might = { realm: cr.realm, score: cr.might, form: cr.form, source: 'creature' };
+  // Might Score spent on Ritual Powers comes back only slowly (RoP: Magic, Ritual Power)
+  const mightLost = cr?.mightLost ?? 0;
+  if (cr && magicChar) might = { realm: cr.realm === 'None' ? 'Magic' : cr.realm, score: Math.max(0, magicChar.might - mightLost), form: magicChar.form, source: 'creature' };
+  else if (cr && cr.realm !== 'None' && cr.might > 0) might = { realm: cr.realm, score: Math.max(0, cr.might - mightLost), form: cr.form, source: 'creature' };
   for (const m of eff('mightScore')) {
     const score = m.perYears ? Math.floor(char.age / m.perYears) : m.score;
     if (!might || score > might.score) might = { realm: m.realm, score, form: m.form, source: m.fromName };
@@ -665,7 +680,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   return {
     char, virtues, effects, hasGift, giftType, isMagus, tally, size, characteristics, charPointsBudget, charPointsSpent,
     abilities, abilityByUid, arts, budgets, abilityAccess: access, laterLifeYears, ageCap, confidence, reputations,
-    warpingScore, warpingPoints, decrepitude, livingConditionsMod, agingRollMod, agingStartAge, theoryAbility, trueFaith, faithPoints, relicFaith, might, personalityMax, powerBudgets, soak, woundPenaltyAdj, fatiguePenaltyAdj,
+    warpingScore, warpingPoints, decrepitude, livingConditionsMod, agingRollMod, agingRollParts, agingStartAge, theoryAbility, trueFaith, faithPoints, relicFaith, might, personalityMax, powerBudgets, soak, woundPenaltyAdj, fatiguePenaltyAdj,
     load, burden, encumbrance, woundRanges, fatigueLevels, currentWoundPenalty, currentFatiguePenalty,
     apprenticeshipSpellLevelBudget, masteryPools, flawless: eff('flawlessMagic').length > 0,
     magicalFocus: focus ? focus.scope : 'none', focusText: focusVirtue?.cv.param, socialPenalty, notes,
