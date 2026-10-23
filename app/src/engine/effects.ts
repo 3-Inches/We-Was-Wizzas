@@ -123,7 +123,11 @@ export function undoEffect(c: Character, effectUid: string): void {
   if (!e) return;
   for (const [ch, n] of Object.entries(e.raised ?? {}) as [Characteristic, number][]) {
     c.characteristics[ch] -= n;
-    if (c.magicGain) c.magicGain[ch] = Math.max(0, (c.magicGain[ch] ?? 0) - n);
+    if (c.magicGain) {
+      const left = Math.max(0, (c.magicGain[ch] ?? 0) - n);
+      if (left) c.magicGain[ch] = left;
+      else delete c.magicGain[ch];
+    }
   }
   if (e.virtueUid) c.virtues = c.virtues.filter((x) => x.uid !== e.virtueUid);
   if (e.warping) c.warpingPoints = Math.max(0, c.warpingPoints - e.warping);

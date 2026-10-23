@@ -137,6 +137,7 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
   const score = d && !power ? castingScore(d, { technique: tech, form }, { kind: ritual ? 'ritual' : 'formulaic', aura: ctx?.aura }) : undefined;
   const targetsChars = toChars ? members.filter((m) => !only || only.includes(m.id)) : [];
   const targetsSpecs = toSpecs ? cov.specialists.filter((s) => !s.characterId) : [];
+  const care = show ? targetCare(targetsChars, caster?.id, { kind, form, chs, max, duration, powerful: lvl >= 30 && !designed }, (m) => deriveCharacter(m, data, saga.houseRules)) : { notes: [], atLimit: [] };
   const problems: string[] = [...problems0];
   if (!caster) problems.push('Choose who casts it.');
   if (duration === 'permanent' && !ritual) problems.push('Only a Ritual (Momentary Duration) changes Characteristics for good; choose a Duration, or a Ritual.');
@@ -201,7 +202,8 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
         const dch = deriveCharacter(ch, data, saga.houseRules);
         return Object.fromEntries(CHARACTERISTICS.map((k) => [k, dch.characteristics[k].value])) as Record<Characteristic, number>;
       };
-      const applied = applyRitual(plan, cv, state.characters, c.id, `${c.name}, ${power ? 'Ritual Power' : 'ritual'}`, saga.currentYear, saga.currentSeason, data, now);
+      const mightOf = (ch: Character) => deriveCharacter(ch, data, saga.houseRules).might?.score ?? 0;
+      const applied = applyRitual(plan, cv, state.characters, c.id, `${c.name}, ${power ? 'Ritual Power' : 'ritual'}`, saga.currentYear, saga.currentSeason, data, now, mightOf);
       lines.push(...applied.lines.map((l) => `${l.who}: ${l.text}`));
       done = applied.done;
     }
@@ -425,6 +427,20 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
               </select>
             )}
           </div>
+          {care.notes.map((n) => (
+            <div key={n} className="small warn-text">
+              {n}
+            </div>
+          ))}
+          {care.atLimit.length > 0 && (
+            <div className="small warn-text">
+              Already at {max >= 0 ? '+' : ''}
+              {max} in all it raises, so they would gain only the Warping Point: {care.atLimit.map((m) => m.name || 'Unnamed').join(', ')}.{' '}
+              <button className="small" onClick={() => setOnly(targetsChars.filter((m) => !care.atLimit.includes(m)).map((m) => m.id))}>
+                Leave them out
+              </button>
+            </div>
+          )}
           {kind === 'raise' && (
             <p className="small muted" style={{ margin: 0 }}>
               Each target gains a point in {chs.map((c) => CHAR_NAMES[c]).join(', ')} up to {max >= 0 ? '+' : ''}
@@ -449,6 +465,29 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
       )}
     </div>
   );
+}
+
+/**
+ * Targets to think twice about: Might resists the ritual unless it penetrates (and spares the Warping,
+ * DE), Corpus and Mentem do not reach a magic animal, and one already at the limit gains nothing but
+ * the Warping.
+ */
+function targetCare(
+  targets: Character[], casterId: string | undefined,
+  r: { kind: 'raise' | 'virtue'; form: Form; chs: Characteristic[]; max: number; duration: ActiveEffect['duration']; powerful: boolean },
+  derive: (c: Character) => ReturnType<typeof deriveCharacter>,
+): { notes: string[]; atLimit: Character[] } {
+  const notes: string[] = [];
+  const atLimit: Character[] = [];
+  for (const m of targets) {
+    const md = derive(m);
+    const name = m.name || 'Unnamed';
+    if (md.might?.score)
+      notes.push(`${name} has ${md.might.realm} Might ${md.might.score}: its Magic Resistance stops the ritual unless the Penetration beats ${md.might.score}${r.powerful ? '. Its Might spares it the Warping' : ''}.`);
+    if (m.creature?.kind === 'animal' && (r.form === 'Co' || r.form === 'Me')) notes.push(`${name} is an animal: ${ART_NAMES[r.form]} does not reach it, an Animal ritual does.`);
+    if (r.kind === 'raise' && r.duration === 'permanent' && r.powerful && m.id !== casterId && !md.might?.score && r.chs.every((k) => md.characteristics[k].value >= r.max)) atLimit.push(m);
+  }
+  return { notes, atLimit };
 }
 
 /** Casts on the covenant, newest first, each with an undo that takes back what it did and gives back what it cost. */
@@ -482,6 +521,7 @@ function CastHistory({ cov, chars }: { cov: Covenant; chars: Character[] }) {
           <b>{r.name}</b>
           <span className="muted">({r.source})</span>
           <span>
+            {r.lines.some((l) => /fails;|^Botch/.test(l)) ? <span className="warn-text">the casting failed: </span> : null}
             {r.done.effects.length + r.done.specialists.length} reached{r.done.covenfolkEffectUid ? ' and the covenfolk' : ''}
             {r.legacy ? '; cost not recorded' : `; cost ${costText(r.paid)}`}
           </span>

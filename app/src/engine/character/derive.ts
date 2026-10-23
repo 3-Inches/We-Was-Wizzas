@@ -365,7 +365,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     core[c] = { base, value, notes: cn };
   }
   const poorChars = new Set(eff('greatChar').filter((g) => g.amount < 0).map((g) => g.char as Characteristic));
-  const preSize = Object.fromEntries(CHARACTERISTICS.map((c) => [c, core[c].value])) as Record<Characteristic, number>;
+  // as built: a point a ritual gave later does not unmake an Improved or Reduced (Characteristic) taken then
+  const preSize = Object.fromEntries(CHARACTERISTICS.map((c) => [c, core[c].value - (char.magicGain?.[c] ?? 0)])) as Record<Characteristic, number>;
   const magicChar = char.creature && mc ? deriveMagicCharacter(char.creature, mc, { preSize, poor: poorChars }) : null;
   const child = magicChar ? { size: 0, char: 0 } : childModifier(char.age);
   let size = eff('size').reduce((s, e) => s + e.amount, 0) + child.size + (magicChar ? magicChar.size : char.creature?.size ?? 0);

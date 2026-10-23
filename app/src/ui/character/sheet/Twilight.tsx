@@ -6,6 +6,7 @@ import { ARTS, ART_NAMES, type Art } from '../../../data';
 import { addVirtue } from '../../../engine/character/factory';
 import { twilightAvoidance, twilightComprehension, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith, type TwilightEffect } from '../../../engine/longterm';
 import { Card, Field, Stepper, HowItWorks } from '../../kit';
+import { AURA_TIME, auraWarping } from '../../../engine/time';
 import type { CharEditor } from '../useChar';
 
 /** Adds (or takes away) play experience, never below none at all. */
@@ -17,7 +18,7 @@ function shiftXp(alloc: Partial<Record<string, number>>, xp: number) {
 type Stage = { kind: 'idle' } | { kind: 'entered'; gained: number } | { kind: 'outcome'; gained: number; comprehended: boolean; extra: number; duration: string };
 
 export function TwilightCard({ ed }: { ed: CharEditor }) {
-  const { c, d, data, update, ctx } = ed;
+  const { c, d, data, update, ctx, saga } = ed;
   const [gain, setGain] = useState(2);
   const [added, setAdded] = useState(false);
   const [text, setText] = useState<string[]>([]);
@@ -92,6 +93,17 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
         <Field label="Warping points">
           <Stepper value={c.warpingPoints} min={0} width={46} onChange={(v) => update((x) => void (x.warpingPoints = v))} />
         </Field>
+        {ctx.covenant && auraWarping({ ...c, auraTime: 'always' }, d, ctx) > 0 && (
+          <Field label={`Time in ${ctx.covenant.name}'s aura`} hint={`${ctx.aura.realm} ${ctx.aura.strength}: +${auraWarping(c, d, ctx, (saga?.currentYear ?? 0) + 1)} Warping at the year's end (DE, Living in Strong Auras)`}>
+            <select value={c.auraTime ?? 'always'} onChange={(e) => update((x) => void (x.auraTime = e.target.value === 'always' ? undefined : (e.target.value as typeof x.auraTime)))}>
+              {Object.entries(AURA_TIME).map(([k, v]) => (
+                <option key={k} value={k}>
+                  {v}
+                </option>
+              ))}
+            </select>
+          </Field>
+        )}
         {d.twilightProne && <span className="badge bad">Twilight Prone: checks on a single Warping Point</span>}
         {d.twilightMastery && <span className="badge good">Twilight Mastery: you choose the effects</span>}
       </div>

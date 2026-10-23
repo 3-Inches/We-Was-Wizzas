@@ -90,7 +90,7 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
   // ---------------------------------------------------------------- House
   if (c.type === 'magus' && !c.house) {
     const ev = evaluate(st, ctx);
-    const pick = st.house ?? recommendHouses(ev, ctx)[0]?.id;
+    const pick = (st.house && HOUSE_BY_ID[st.house] ? st.house : undefined) ?? recommendHouses(ev, ctx)[0]?.id;
     if (pick) {
       const h = HOUSE_BY_ID[pick];
       // the House benefit that fits best
@@ -630,6 +630,9 @@ function cleanUp(c: Character, inp: BuildInput, log: string[]): Issue[] {
   for (let round = 0; round < 6; round++) {
     const res = resolveAll(c, data, rules);
     for (const a of res.applied) log.push(`Fixed: ${a}`);
+    // an Ability a fix emptied (one the character turned out unable to learn) goes, rather than stay at 0
+    const before = deriveCharacter(c, data, rules);
+    c.abilities = c.abilities.filter((a) => a.native || sumAlloc(a.xp) > 0 || before.abilityByUid.get(a.uid)?.granted);
     const d = deriveCharacter(c, data, rules);
     const issues = validateCharacter(d, data, rules).filter((i) => i.severity !== 'info' && !IGNORED.has(i.code ?? i.id));
     if (!issues.length) return [];

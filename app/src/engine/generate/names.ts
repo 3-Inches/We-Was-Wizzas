@@ -90,3 +90,11 @@ export function givenName(rng: Rng, region: string, female: boolean): string {
   const n = NAMES[region] ?? NAMES.english;
   return pick(rng, female ? n.female : n.male);
 }
+
+/** A given name not already in use (when the region has one left), so a covenant has no two Idas. */
+export function freshName(rng: Rng, region: string, female: boolean, used: Iterable<string> = []): string {
+  const taken = new Set([...used].map((n) => n.toLowerCase()));
+  const n = NAMES[region] ?? NAMES.english;
+  const free = (female ? n.female : n.male).filter((x) => !taken.has(x.toLowerCase()));
+  return free.length ? pick(rng, free) : givenName(rng, region, female);
+}

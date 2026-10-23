@@ -37,7 +37,7 @@ function sqMods(d: DerivedCharacter, when: string): { label: string; value: numb
 }
 
 /** Compute xp from a season of study for a given target (art code or ability uid). */
-export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string; monthsLost?: number }): StudyResult {
+export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string; monthsLost?: number; visEaten?: number }): StudyResult {
   const parts: { label: string; value: number }[] = [];
   const notes: string[] = [];
   let gainLimit: number | undefined;
@@ -97,11 +97,14 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
     // Poor Student: -3, but never below 1 (already in sqMods as negative)
     total = Math.max(1, total);
   }
-  // a magic character subtracts its Might Score from all Advancement Totals (RoP: Magic, Magic Might)
+  // a magic character subtracts its Might Score from all Advancement Totals; each pawn of vis it eats
+  // (any Art) lessens that by two, without raising the total (RoP: Magic, Advancement)
   if (d.magicChar && d.magicChar.might > 0) {
-    parts.push({ label: `Magic Might ${d.magicChar.might} (a magic character's Might is subtracted)`, value: -d.magicChar.might });
-    total = Math.max(0, total - d.magicChar.might);
-    if (!total) notes.push('A magic character with this much Might learns nothing from this source (RoP: Magic, Advancement).');
+    const eaten = Math.max(0, Math.floor(target.visEaten ?? 0));
+    const penalty = Math.max(0, d.magicChar.might - 2 * eaten);
+    parts.push({ label: `Magic Might ${d.magicChar.might} (a magic character's Might is subtracted)${eaten ? `, less ${Math.min(d.magicChar.might, 2 * eaten)} for ${eaten} pawn${eaten > 1 ? 's' : ''} of vis eaten` : ''}`, value: -penalty });
+    total = Math.max(0, total - penalty);
+    if (!total) notes.push(`A magic character with this much Might learns nothing from this source unless it eats vis: each pawn, of any Art, takes 2 off the penalty (RoP: Magic, Advancement).`);
   }
   // DE Distractions: each full month of the season lost takes a third of the original total (fractions rounded up)
   const months = Math.min(3, Math.max(0, Math.floor(target.monthsLost ?? 0)));

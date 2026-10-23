@@ -54,8 +54,8 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
   const [newBought, setNewBought] = useState(true);
 
   const optimalLab = () => optimalLaborers(cov, dc.members, dc.labs);
-  /** every cost-saving craft the covenant lacks, at the number that saves most */
-  const addEveryCraft = () => update((x) => void addCostSavingCraftsmen(x, dc.members, dc.labs, newScore, newBought));
+  /** craftsmen where they save most, while they save money and (when bought) the Build Points last */
+  const addEveryCraft = () => update((x) => void addCostSavingCraftsmen(x, dc.members, dc.labs, newScore, newBought ? Math.max(0, cov.buildPoints - dc.bpSpent) : Infinity));
 
   return (
     <div className="stack">
@@ -140,8 +140,8 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
             <label className="inline">
               <input type="checkbox" checked={newBought} onChange={(e) => setNewBought(e.target.checked)} /> bought with BP
             </label>
-            <button className="small" onClick={addEveryCraft} title="Adds each cost-saving craft the covenant lacks, at the number that saves most">
-              + Every cost-saving craft (optimal numbers)
+            <button className="small" onClick={addEveryCraft} title="Adds craftsmen one at a time, each where it saves most, while one more still saves money and (when bought) the Build Points last (Covenants ch.5)">
+              + Cost-saving craftsmen
             </button>
           </span>
         }

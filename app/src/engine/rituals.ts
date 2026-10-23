@@ -34,16 +34,21 @@ export interface RitualPlan {
 /**
  * Put a ritual's effect on everyone it reaches. Changes the characters and the covenant; returns what
  * happened. `current` gives a character's Characteristics as they stand (Virtues, Qualities and Size
- * included), which the ritual's limit is measured against.
+ * included), which the ritual's limit is measured against; `mightOf` its Might Score, which spares it
+ * the Warping.
  */
 export function applyRitual(
   plan: RitualPlan, cov: Covenant, chars: Character[], casterId: string | undefined, source: string, year: number, season: Season, data: GameData,
   current?: (c: Character) => Partial<Record<Characteristic, number>>,
+  mightOf?: (c: Character) => number,
 ): { lines: Line[]; done: CastRecord['done'] } {
   const lines: Line[] = [];
   const done: CastRecord['done'] = { effects: [], specialists: [] };
   for (const c of chars.filter((x) => plan.targets.characterIds.includes(x.id))) {
-    const warping = powerfulEffectWarping(plan.level, c.id === casterId, !!plan.designedFor);
+    // "Creatures with a Might score are absolutely immune to warping" (DE, Warping and Non-Humans)
+    const would = powerfulEffectWarping(plan.level, c.id === casterId, !!plan.designedFor);
+    const spared = would > 0 && (mightOf?.(c) ?? 0) > 0;
+    const warping = spared ? 0 : would;
     const r = applyEffect(
       c,
       {
@@ -54,7 +59,7 @@ export function applyRitual(
       year, season, data,
     );
     done.effects.push({ characterId: c.id, effectUid: r.effect.uid });
-    lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: r.lines.join(' ') || 'No change.' });
+    lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: [...r.lines, ...(spared ? ['No Warping: its Might makes it immune.'] : [])].join(' ') || 'No change.' });
   }
   for (const s of cov.specialists.filter((x) => plan.targets.specialistUids.includes(x.uid))) {
     const out: string[] = [];

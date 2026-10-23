@@ -693,6 +693,12 @@ export interface Character {
   reputations: Reputation[];
   confidence: { score: number; points: number };
   warpingPoints: number;
+  /** how much of the year it spends in the covenant's aura, for the Warping a strong one gives (DE, Living in Strong Auras); always, unless set */
+  auraTime?: 'always' | 'half' | 'visits' | 'away';
+  /** the highest Warping Score whose effects on a non-magus the year's end has reported (DE, Effects of Warping) */
+  warpingNoted?: number;
+  /** the realm a non-magus's Warping Score 5 Virtue is attuned to: an aura of that realm no longer warps it */
+  warpingAttuned?: 'Magic' | 'Faerie' | 'Divine' | 'Infernal';
   decrepitudePoints: number;
   equipment: {
     weapons: WeaponLoadout[];
