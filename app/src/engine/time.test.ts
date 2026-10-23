@@ -85,6 +85,27 @@ describe('the saga clock', () => {
     const ctx = characterContext(grog, st.covenants, data);
     expect(auraWarping(grog, deriveCharacter(grog, data, DEFAULT_HOUSE_RULES), ctx)).toBe(2);
     expect(auraWarping(magus, deriveCharacter(magus, data, DEFAULT_HOUSE_RULES), characterContext(magus, st.covenants, data))).toBe(0);
+    // by time spent there: an aura of 10 is a point a month always within, a season half the time
+    st.covenants[0].aura = 10;
+    const d = deriveCharacter(grog, data, DEFAULT_HOUSE_RULES);
+    const at = (t: typeof grog.auraTime, year = 1220) => auraWarping({ ...grog, auraTime: t }, d, characterContext(grog, st.covenants, data), year);
+    expect([at(undefined), at('half'), at('visits'), at('away')]).toEqual([12, 4, 2, 0]);
+    st.covenants[0].aura = 7;
+    expect([at('half', 1220), at('half', 1221), at('visits')]).toEqual([1, 0, 0]); // one every other year
+  });
+  it('tells the storyguide what a non-magus gains as its Warping Score rises, and attunes it at 5', () => {
+    const st = saga();
+    st.covenants[0].aura = 10;
+    const grog = st.characters[0];
+    grog.warpingPoints = 70; // Warping Score 4
+    st.characters[1].warpingPoints = 70;
+    const { state, report } = advanceSeason(st, data, { fillUnplanned: true, rollAging: false, yearEnd: { permanentIncome: true, inflation: true, harvestVis: true, skipVis: [], clearSundry: true }, rng: faces(5) });
+    const g = state.characters[0];
+    expect(g.warpingPoints).toBe(82);
+    expect(report.lines.filter((l) => l.who === 'Grog' && /Warping Score 5/.test(l.text))).toHaveLength(1);
+    expect(report.lines.some((l) => l.who === 'Magus' && /Warping Score/.test(l.text))).toBe(false); // magi have Twilight instead
+    expect(g.warpingAttuned).toBe('Magic');
+    expect(auraWarping(g, deriveCharacter(g, data, DEFAULT_HOUSE_RULES), characterContext(g, state.covenants, data))).toBe(0);
   });
 });
 
@@ -166,6 +187,22 @@ describe('effects on characters', () => {
     expect(st.characters[0].characteristics.Com).toBe(0);
     expect(legacyCasts(cov, st.characters)).toEqual([]);
   });
+  it('spares a creature with Might the Warping, and its Qualities stay as built after a raise', () => {
+    const st = saga();
+    const m = st.characters[1];
+    const beast = newCharacter('companion', st.saga.id);
+    beast.name = 'Beast';
+    beast.creation.finalized = true;
+    beast.creature = { realm: 'Magic', kind: 'animal', size: 0, might: 10, intelligence: 'companion', powers: '' };
+    st.characters.push(beast);
+    const mightOf = (c: typeof m) => deriveCharacter(c, data, DEFAULT_HOUSE_RULES).might?.score ?? 0;
+    const plan = { name: 'Strength', level: 35, effect: { kind: 'raise' as const, chars: ['Str' as const], max: 1 }, duration: 'permanent' as const, targets: { characterIds: [beast.id, st.characters[0].id], specialistUids: [], covenfolk: false } };
+    const { lines } = applyRitual(plan, st.covenants[0], st.characters, m.id, 'Magus, ritual', 1220, 'Spring', data, undefined, mightOf);
+    expect(beast.characteristics.Str).toBe(1);
+    expect(beast.warpingPoints).toBe(0);
+    expect(lines.find((l) => l.who === 'Beast')?.text).toMatch(/Might makes it immune/);
+    expect(st.characters[0].warpingPoints).toBe(1); // the grog has no Might
+  });
   it('measures a ritual’s limit against the Characteristic as it stands, Virtues and Qualities included', () => {
     const st = saga();
     const m = st.characters[1];
@@ -199,7 +236,7 @@ describe('covenant teachers', () => {
     const { state, reports } = advanceSeasons(st, data, 3);
     const lines = reports.flatMap((r) => r.lines).filter((l) => l.who === 'Grog');
     expect(lines[0].text).toMatch(/Quality 20/); // Com 2 + Teaching 4 + 3 + 6 one student + 5 Good Teacher
-    expect(lines[2].text).toMatch(/two seasons this year/);
+    expect(lines[2].text).toMatch(/two seasons this year.*Instead: Practiced Latin: \+4 xp/); // the free season it would have had
     expect(state.covenants[0].specialists[0].taught).toEqual({ year: 1220, seasons: 2 });
   });
 });

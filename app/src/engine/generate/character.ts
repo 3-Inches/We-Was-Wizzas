@@ -26,7 +26,7 @@ import { abilityXpForScore } from '../xp';
 import { CRAFTS as COVENANT_CRAFTS } from '../covenantRules';
 import { uid } from '../../util/id';
 import { visibleSteps } from '../../ui/character/wizardSteps';
-import { givenName, homelandGroupFor, regionOf } from './names';
+import { freshName, homelandGroupFor, regionOf } from './names';
 import { COMMON_TRAITS, ROLE_BY_ID, rolesFor, type Role } from './roles';
 import { between, chance, pick, sample, seeded } from './random';
 
@@ -48,6 +48,8 @@ export interface GenOptions {
   yearsPostGauntlet?: number;
   /** a craftsman's craft */
   craft?: string;
+  /** names already in use in the saga, not to be given again */
+  avoidNames?: string[];
   variety: Variety;
   /** a storyguide's NPC, finished and ready to play; else a player's draft at the Review step */
   npc: boolean;
@@ -75,15 +77,18 @@ export interface Generated {
 const TYPE_AGES: Record<CharType, [number, number]> = { grog: [17, 40], companion: [20, 45], mythic: [20, 40], magus: [25, 25] };
 
 /**
- * Generate a character. The seed makes it repeatable; if a roll still breaks a rule after the
- * clean-up, the next seeds are tried, so the result is the first clean one of a few.
+ * Generate a character. The seed makes it repeatable; if a roll still has anything for the rules
+ * check to flag after the clean-up, the next seeds are tried, so the result is the first clean one of
+ * a few.
  */
 export function generateCharacter(o: GenOptions, g: GenContext): Generated {
   let best: Generated | undefined;
+  const weight = (r: Generated) => r.issues.reduce((t, i) => t + (i.severity === 'error' ? 10 : 1), 0);
   for (let k = 0; k < 4; k++) {
     const r = attempt({ ...o, seed: o.seed + k * 7919 }, g);
-    if (!r.issues.some((i) => i.severity === 'error')) return r;
-    if (!best || r.issues.length < best.issues.length) best = r;
+    // a clean roll is taken at once; else the one with the fewest errors, then warnings
+    if (!r.issues.length) return r;
+    if (!best || weight(r) < weight(best)) best = r;
   }
   return best!;
 }
@@ -108,7 +113,7 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   const group = HOMELANDS.find((h) => h.label === o.homeland) ?? homelandGroupFor(saga.tribunal) ?? pick(rng, HOMELANDS);
   c.nationality = pick(rng, group.options);
   c.society = group.culture;
-  c.name = givenName(rng, o.type === 'magus' ? 'latin' : regionOf(group), female);
+  c.name = freshName(rng, o.type === 'magus' ? 'latin' : regionOf(group), female, o.avoidNames);
   c.creation.concept = role.label;
   c.creation.archetypes = [...new Set([...role.themes, ...(o.themes ?? [])])];
   if (o.variety === 'wild') {
@@ -134,7 +139,9 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     log.push(`Mythic Companion type: ${role.label}.`);
   }
   // a magus's House: chosen, random, or (keeping to the role) the best fit, set in the build
-  const house = o.type !== 'magus' ? undefined : (o.house ?? (o.variety === 'focused' ? undefined : pick(rng, HOUSES).id));
+  // a House given by id or by name
+  const given = o.house ? HOUSES.find((h) => h.id === o.house || h.name.toLowerCase() === o.house!.toLowerCase())?.id : undefined;
+  const house = o.type !== 'magus' ? undefined : (given ?? (o.variety === 'focused' ? undefined : pick(rng, HOUSES).id));
   if (role.status && takeStatus(c, data, rules, role.status)) log.push(`Social Status: ${data.vfById.get(role.status)?.name}.`);
   if (role.craft) setUpCraft(c, o, g, role, rng, log);
   // choices on what the role brought (a Mythic type's Virtues) are made before the build spends around them

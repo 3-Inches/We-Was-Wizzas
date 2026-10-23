@@ -18,7 +18,7 @@ import { routineYear } from './labRoutines';
 import type { ActiveEffect, Character, Covenant, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
 import { purseOf, takeVis, visText } from './vis';
 import { workshopSeason, workshopYearEnd } from './workshop';
-import { abilityXpForScore } from './xp';
+import { abilityXpForScore, warpingScoreFromPoints } from './xp';
 import { uid } from '../util/id';
 
 export interface SagaState {
@@ -104,6 +104,12 @@ export function describeStanding(c: Character, d: DerivedCharacter, s: StandingA
   }
 }
 
+/** Why a magic character learned nothing: its Might comes off every Advancement Total (RoP: Magic). */
+function mightNote(d: DerivedCharacter, xp: number): string {
+  if (xp || !d.magicChar || d.magicChar.might <= 0) return '';
+  return ` Its Might ${d.magicChar.might} comes off the Advancement Total; eating vis (2 off for each pawn) lets it learn: plan the season on its sheet.`;
+}
+
 /** Log and apply a season of a character's standing activity. Returns what happened. */
 export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng): string[] {
   const s = resolveStanding(c, d, season);
@@ -125,15 +131,16 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
     case 'exposure': {
       const t = target(s.target);
       if (!t) return [];
-      log('exposure', `Exposure: ${t.label} (+2 xp)`, { [s.target!]: 2 });
-      return [`Exposure in ${t.label}: +2 xp.`];
+      const r = computeStudy(d, { kind: 'exposure', subject: t.label }, 'art' in t ? { art: t.art } : { abilityUid: t.abilityUid });
+      log('exposure', `Exposure: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
+      return [`Exposure in ${t.label}: +${r.xp} xp.${mightNote(d, r.xp)}`];
     }
     case 'practice': {
       const t = target(s.target);
       if (!t || 'art' in t) return t ? [`Arts cannot be practiced; set another standing activity.`] : [];
       const r = computeStudy(d, { kind: 'practice', quality: 4, subject: t.label }, { abilityUid: t.abilityUid });
-      log('practice', `Practice: ${t.label} (+${r.xp} xp)`, { [s.target!]: r.xp });
-      return [`Practiced ${t.label}: +${r.xp} xp.`];
+      log('practice', `Practice: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
+      return [`Practiced ${t.label}: +${r.xp} xp.${mightNote(d, r.xp)}`];
     }
     case 'vis': {
       const t = target(s.target);
@@ -159,16 +166,25 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
     case 'taught': {
       const t = target(s.target);
       const sp = s.teacher?.startsWith('spec:') ? cov?.specialists.find((x) => x.uid === s.teacher!.slice(5)) : undefined;
-      if (!t || !sp) return ['Taught: choose the teacher and the subject.'];
-      if ('art' in t) return [`${sp.name || 'The teacher'} cannot teach a Hermetic Art (teachers have no Gift).`];
-      if (sp.taught?.year === year && sp.taught.seasons >= 2) return [`${sp.name || 'The teacher'} has taught two seasons this year already (DE p.180).`];
+      // no lesson this season: the character does what it would have done unplanned, rather than nothing
+      const instead = (why: string) => {
+        const was = c.standing;
+        c.standing = { kind: 'auto', target: t && !('art' in t) ? s.target : undefined };
+        const out = runStanding(c, d, ctx, cov, data, year, season, rng);
+        c.standing = was;
+        return out.length ? [`${why} Instead: ${out[0]}`, ...out.slice(1)] : [why];
+      };
+      if (!t || !sp) return instead('Taught: choose the teacher and the subject.');
+      if ('art' in t) return instead(`${sp.name || 'The teacher'} cannot teach a Hermetic Art (teachers have no Gift).`);
+      if (sp.taught?.year === year && sp.taught.seasons >= 2) return instead(`${sp.name || 'The teacher'} has taught two seasons this year already (DE p.180).`);
       const mine = c.abilities.find((a) => a.uid === t.abilityUid);
       const theirs = specAbilities(sp).find((a) => a.id === mine?.abilityId && (a.param ?? '') === (mine?.param ?? ''));
-      if (!theirs) return [`${sp.name || 'The teacher'} does not know ${t.label}.`];
+      if (!theirs) return instead(`${sp.name || 'The teacher'} does not know ${t.label}.`);
       const r = computeStudy(d, { kind: 'teacher', com: specChar(sp, 'Com'), teaching: sp.teaching ?? 0, teacherScore: theirs.score, students: 1, goodTeacher: !!sp.goodTeacher, isArt: false, subject: t.label }, { abilityUid: t.abilityUid });
+      if (!r.xp && r.capped) return instead(`${sp.name || 'The teacher'} knows no more ${t.label} than ${c.name || 'the student'} does.`);
       sp.taught = { year, seasons: (sp.taught?.year === year ? sp.taught.seasons : 0) + 1 };
       log('taught', `Taught by ${sp.name || 'a teacher'}: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
-      return [`Taught ${t.label} by ${sp.name || 'a teacher'}: Quality ${r.sourceQuality}, +${r.xp} xp${r.capped ? ' (as far as the teacher knows)' : ''}.`];
+      return [`Taught ${t.label} by ${sp.name || 'a teacher'}: Quality ${r.sourceQuality}, +${r.xp} xp${r.capped ? ' (as far as the teacher knows)' : ''}.${mightNote(d, r.xp)}`];
     }
     case 'work': {
       if (!c.workshop) return runStanding({ ...c, standing: { kind: 'exposure', target: workAbility(d) } } as Character, d, ctx, cov, data, year, season, rng);
@@ -211,11 +227,28 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
   }
   // Warping: constant effects (and a Longevity Ritual), and living in a strong aura not of one's own realm
   const cw = constantWarping(c);
-  const aura = auraWarping(c, d, ctx);
+  const aura = auraWarping(c, d, ctx, year);
   const wp = cw.points + aura;
   if (wp) {
     c.warpingPoints += wp;
-    lines.push({ who, kind: 'warping', text: `+${wp} Warping Point${wp > 1 ? 's' : ''} for the year (${[...cw.from, ...(aura ? [`living in a ${ctx.aura.realm} aura of ${ctx.aura.strength}`] : [])].join(', ')}).` });
+    const where = `${{ always: 'living in', half: 'half the time in', visits: 'frequent visits to', away: '' }[c.auraTime ?? 'always']} a ${ctx.aura.realm} aura of ${ctx.aura.strength}`;
+    lines.push({ who, kind: 'warping', text: `+${wp} Warping Point${wp > 1 ? 's' : ''} for the year (${[...cw.from, ...(aura ? [where] : [])].join(', ')}).` });
+  }
+  // a non-magus changes as its Warping Score rises; Hermetic magi are drawn to Twilight instead (DE, Effects of Warping)
+  if (!d.isMagus && !d.might) {
+    const now = warpingScoreFromPoints(c.warpingPoints);
+    const noted = c.warpingNoted ?? warpingScoreFromPoints(c.warpingPoints - wp);
+    const from = aura ? `the ${ctx.aura.realm} aura` : cw.from.length ? cw.from.join(', ') : 'the magic that warped it';
+    for (let n = noted + 1; n <= now; n++) {
+      const what =
+        n === 1 ? `a Minor Flaw that reflects ${from}` :
+        n === 3 ? `a second Minor Flaw, again from ${from}` :
+        n === 5 ? `a supernatural Minor Virtue attuned to ${from}${aura ? `; an aura of ${ctx.aura.realm} no longer warps it` : ''}` :
+        n >= 6 ? `a Major Flaw fitting ${from}` : '';
+      if (what) lines.push({ who, kind: 'warping', text: `Warping Score ${n}: the character gains ${what}. Add it on the sheet; the storyguide picks it (DE, Effects of Warping).` });
+      if (n === 5 && aura && ctx.aura.realm !== 'None') c.warpingAttuned = ctx.aura.realm;
+    }
+    c.warpingNoted = Math.max(noted, now);
   }
   return lines;
 }
@@ -250,15 +283,31 @@ function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: 
   if (decrepitudeScore(c.decrepitudePoints) >= 5) lines.push({ who, kind: 'crisis', text: 'Decrepitude 5: the character dies of old age.' });
 }
 
-/** DE, Living in Strong Auras: living always within an aura over 5; magi in a Magic aura (and beings of its realm) are spared. */
-export function auraWarping(c: Character, d: DerivedCharacter, ctx: CharacterContext): number {
+/** Warping Points a year from an aura of 6 to 10 by time spent in it: always within, half time, frequent visits (DE table). */
+const AURA_WARPING: Record<number, [number, number, number]> = { 6: [1, 0, 0], 7: [1, 0.5, 0], 8: [2, 1, 0], 9: [4, 2, 1], 10: [12, 4, 2] };
+
+/**
+ * DE, Living in Strong Auras: an aura over 5 warps those who live in it, by its strength and the time
+ * spent there (half a point a year is one every other year); magi in a Magic aura (and beings of its
+ * realm) are spared.
+ */
+export function auraWarping(c: Character, d: DerivedCharacter, ctx: CharacterContext, year = 0): number {
   if (!ctx.covenant) return 0;
   const { realm, strength } = ctx.aura;
-  if (strength < 6) return 0;
+  const time = c.auraTime ?? 'always';
+  if (strength < 6 || time === 'away' || c.warpingAttuned === realm) return 0;
   const sameRealm = (d.isMagus && realm === 'Magic') || d.might?.realm === realm || (c.creature && c.creature.realm === realm);
   if (sameRealm) return 0;
-  return strength >= 10 ? 12 : strength === 9 ? 4 : strength === 8 ? 2 : 1;
+  const n = AURA_WARPING[Math.min(10, strength)][time === 'always' ? 0 : time === 'half' ? 1 : 2];
+  return n === 0.5 ? (year % 2 === 0 ? 1 : 0) : n;
 }
+
+export const AURA_TIME: Record<NonNullable<Character['auraTime']>, string> = {
+  always: 'lives, works and sleeps there',
+  half: 'half the time (sleeps there, works elsewhere)',
+  visits: 'frequent visits (a quarter of the time)',
+  away: 'rarely there',
+};
 
 /** Hooks whose stories come round with the years (Covenants ch.2). */
 const HOOK_REMINDERS: { match: RegExp; every: number; text: string }[] = [

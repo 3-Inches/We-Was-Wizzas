@@ -8,6 +8,7 @@ import { stressDie, describeStress } from '../../../engine/dice';
 import { abilityXpForScore } from '../../../engine/xp';
 import type { SeasonLogEntry } from '../../../engine/types';
 import { ensureAbility } from '../../../engine/character/factory';
+import { purseOf, takeVis, visAvailable } from '../../../engine/vis';
 import { Card, Field, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
@@ -41,7 +42,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, saga, ctx } = ed;
   const updateCovenant = useStore((s) => s.updateCovenant);
   const [kind, setKind] = useState<Kind>('summa');
-  const [target, setTarget] = useState<string>('art:Cr');
+  const [target0, setTarget] = useState<string>('art:Cr');
   const [quality, setQuality] = useState(10);
   const [level, setLevel] = useState(10);
   const [com, setCom] = useState(1);
@@ -56,6 +57,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [visBotch, setVisBotch] = useState(0);
   const [summary, setSummary] = useState('');
   const [monthsLost, setMonthsLost] = useState(0);
+  const [eat, setEat] = useState(0);
   const [bookUid, setBookUid] = useState('');
   // a season is always the saga's current one: time moves for everyone on the Seasons page
   const year = saga?.currentYear ?? 1220;
@@ -67,6 +69,11 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [insightArts, setInsightArts] = useState<string[]>([]);
   if (!c || !d || !saga) return null;
 
+  // raw vis teaches a Hermetic Art, and only to those who can learn Arts (DE, Studying from Vis)
+  const canStudyArts = d.isMagus || d.hasGift;
+  // without Arts, the subject is an Ability: the first in the list, until one is chosen
+  const firstAbility = d.abilities.slice().sort((a, b) => a.name.localeCompare(b.name))[0];
+  const target = target0.startsWith('art:') && !canStudyArts && firstAbility ? `ability:${firstAbility.uid}` : target0;
   const isArt = target.startsWith('art:');
   const art = isArt ? (target.slice(4) as Art) : undefined;
   const abilityUid = target.startsWith('ability:') ? target.slice(8) : undefined;
@@ -114,7 +121,11 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     default: src = null;
   }
   const cov = ctx.covenant;
-  const res = src ? computeStudy(d, src, { art, abilityUid, monthsLost }) : null;
+  // a magic character's Might comes off its Advancement Totals; vis it eats lessens that (RoP: Magic)
+  const might = d.magicChar && d.magicChar.might > 0 ? d.magicChar.might : 0;
+  const eaten = might ? Math.min(eat, Math.ceil(might / 2)) : 0;
+  const purseVis = visAvailable(c.purse?.vis ?? [], [...ARTS]);
+  const res = src ? computeStudy(d, src, { art, abilityUid, monthsLost, visEaten: eaten }) : null;
   const linked = src && res && res.xp > 0 ? magianLinkedGains(d, data, src, abilityUid, res.advancementTotal) : [];
   // Secondary Insight: a season studying a Technique (book, teacher or vis) gives 1 xp in up to four Forms;
   // a Form gives 1 xp in up to two Techniques (DE Secondary Insight)
@@ -123,6 +134,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const insightPool: string[] = art ? ((TECHNIQUES as readonly string[]).includes(art) ? [...FORMS] : [...TECHNIQUES]).filter((a) => a !== art) : [];
   const insightPicked = insightArts.filter((a) => insightPool.includes(a)).slice(0, insightMax);
   const trainingNotAllowed = kind === 'training' && isArt;
+  const visNotAllowed = kind === 'vis' && !isArt;
   const visPawns = art ? visForStudy(d.arts[art].score) : 0;
   const tractatusRead = kind === 'tractatus' && bookUid && library.find((b) => b.uid === bookUid)?.readBy?.includes(c.id);
 
@@ -135,9 +147,22 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     const entry = newSeasonEntry(year, season, ACTIVITY[kind], text, gains);
     if (res) entry.sourceQuality = res.advancementTotal;
     if (kind === 'vis' && art) entry.visUsed = [{ art, pawns: visPawns }];
+    // the vis eaten: from the purse if it is there, else from the covenant's stocks
+    let ate: { art: Art; pawns: number }[] = [];
+    if (eaten && purseVis >= eaten) ate = takeVis(purseOf(structuredClone(c)).vis, [...ARTS], eaten).taken;
+    else if (eaten && cov && visAvailable(cov.visStocks, [...ARTS]) >= eaten) {
+      ate = takeVis(structuredClone(cov.visStocks), [...ARTS], eaten).taken;
+      updateCovenant(cov.id, (x) => void takeVis(x.visStocks, [...ARTS], eaten));
+    }
+    if (eaten) {
+      entry.visUsed = [...(entry.visUsed ?? []), ...(ate.length ? ate : [{ art: 'Vi' as Art, pawns: eaten }])];
+      entry.summary += `; ate ${eaten} pawn${eaten > 1 ? 's' : ''} of vis${ate.length ? '' : ' (from elsewhere)'}`;
+    }
+    const fromPurse = eaten > 0 && purseVis >= eaten;
     if (kind === 'vis' && visBotch) entry.warpingPoints = visBotch;
     if (bookUid) entry.bookId = bookUid;
     update((x) => {
+      if (fromPurse) takeVis(purseOf(x).vis, [...ARTS], eaten);
       // Magian Lineage: the connected Abilities gain too (added to the character if new)
       for (const l of linked) if (l.xp > 0) entry.gains[`ability:${l.uid ?? ensureAbility(x, l.abilityId).uid}`] = l.xp;
       if (insight) for (const a of insightPicked) entry.gains[`art:${a}`] = (entry.gains[`art:${a}`] ?? 0) + 1;
@@ -146,6 +171,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     });
     if (kind === 'tractatus' && bookUid && cov) updateCovenant(cov.id, (x) => { const b = x.library.find((y) => y.uid === bookUid); if (b && !b.readBy?.includes(c.id)) b.readBy = [...(b.readBy ?? []), c.id]; });
     setSummary('');
+    setEat(0);
     setVisDie(null);
     setVisBotch(0);
   };
@@ -218,9 +244,26 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           <Field label="Months lost" hint="DE Distractions: each full month away takes a third of the total">
             <Stepper value={monthsLost} min={0} max={3} width={30} onChange={setMonthsLost} />
           </Field>
+          {might > 0 && (
+            <Field
+              label="Vis eaten"
+              hint={`RoP: Magic: its Might ${might} comes off the Advancement Total; each pawn of vis, of any Art, takes 2 off that. ${purseVis} in the purse${cov ? `, ${visAvailable(cov.visStocks, [...ARTS])} in the covenant's stocks` : ''}`}
+            >
+              <Stepper value={eaten} min={0} max={Math.ceil(might / 2)} width={30} onChange={setEat} />
+            </Field>
+          )}
           <Field label="Activity">
-            <select value={kind} onChange={(e) => setKind(e.target.value as Kind)}>
-              {(Object.keys(KIND_LABEL) as Kind[]).map((k) => (
+            <select
+              value={kind}
+              onChange={(e) => {
+                const k = e.target.value as Kind;
+                setKind(k);
+                // practice starts from its usual Quality, adventure from no more than 5
+                if (k === 'practice') setQuality(4);
+                if (k === 'adventure') setQuality((q) => Math.min(q, 5));
+              }}
+            >
+              {(Object.keys(KIND_LABEL) as Kind[]).filter((k) => k !== 'vis' || canStudyArts || kind === 'vis').map((k) => (
                 <option key={k} value={k}>
                   {KIND_LABEL[k]}
                 </option>
@@ -369,6 +412,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           )}
         </div>
         {trainingNotAllowed && <p className="small bad-text">Arts cannot be learned by training (DE p.377); use teaching instead.</p>}
+        {visNotAllowed && <p className="small bad-text">Raw vis teaches a Hermetic Art; choose an Art as the subject.</p>}
         {tractatusRead && <p className="small warn-text">This character has already read this tractatus; a tractatus gives experience only once.</p>}
         {res && (
           <div className="row" style={{ marginTop: 8 }}>
@@ -413,7 +457,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         )}
         <div className="row" style={{ marginTop: 8 }}>
           <input style={{ flex: 1 }} value={summary} placeholder="Summary for the log (optional)" onChange={(e) => setSummary(e.target.value)} />
-          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || (kind === 'vis' && visDie === null)}>
+          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || visNotAllowed || (kind === 'vis' && visDie === null)}>
             Log season{res?.xp ? ` & add ${res.xp} xp` : ''}
           </button>
         </div>

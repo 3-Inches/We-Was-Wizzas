@@ -499,19 +499,38 @@ export function ageForScore(score: number): number {
   return [20, 30, 36, 41, 46].find((a) => abilityCapAtAge(a) >= score) ?? 46;
 }
 
-/** Add each cost-saving craft the covenant lacks (Covenants ch.5), at the number of craftsmen that saves most. */
-export function addCostSavingCraftsmen(x: Covenant, members: Character[], labs: DerivedLab[], score: number, bought: boolean): string[] {
-  const added: string[] = [];
-  for (const craft of CRAFTS) {
-    if (!craft.categories.length || x.specialists.some((s) => craftOf(s)?.id === craft.id)) continue;
-    const s: Specialist = { uid: newUid(), name: craft.name, role: 'craftsman', ability: `Craft (${craft.name})`, craft: craft.id, score, count: 1, rare: craft.rare, free: !bought, age: ageForScore(score) };
-    x.specialists.push(s);
-    s.count = optimalCraftsmen(x, members, labs, s.uid);
-    if (s.count) added.push(`${s.count} ${craft.name.toLowerCase()}${s.count > 1 ? 's' : ''}`);
+/**
+ * Add craftsmen one at a time, each to the craft that saves the most a year (Covenants ch.5), while one
+ * more still saves money and the Build Points last (`bp`: those left to spend, or Infinity for
+ * craftsmen recruited in play, who cost none). A craftsman is also an inhabitant who must be fed,
+ * housed and paid, so savings run out on their own.
+ */
+export function addCostSavingCraftsmen(x: Covenant, members: Character[], labs: DerivedLab[], score: number, bp: number): string[] {
+  const crafts = CRAFTS.filter((k) => k.categories.length);
+  const bought = bp !== Infinity;
+  const counts = new Map<string, number>();
+  let budget = bp;
+  for (let n = 0; n < 200 && budget >= score; n++) {
+    const now = expenditureWith(x, members, labs, () => undefined);
+    let best: { craft: CraftDef; saving: number } | undefined;
+    for (const craft of crafts) {
+      const saving = now - expenditureWith(x, members, labs, (y) => addCraftsman(y, craft, score, bought));
+      if (saving > 0.5 && (!best || saving > best.saving)) best = { craft, saving };
+    }
+    if (!best) break;
+    addCraftsman(x, best.craft, score, bought);
+    counts.set(best.craft.name, (counts.get(best.craft.name) ?? 0) + 1);
+    budget -= score;
   }
-  x.specialists = x.specialists.filter((s) => !(s.role === 'craftsman' && s.count === 0));
   fitCovenfolk(x, members, labs);
-  return added;
+  return [...counts].map(([craft, k]) => `${k} ${craft.toLowerCase()}${k > 1 ? 's' : ''}`);
+}
+
+/** One more craftsman of a craft: another in an entry the covenant has at that score, or a new entry. */
+function addCraftsman(x: Covenant, craft: CraftDef, score: number, bought: boolean): void {
+  const have = x.specialists.find((s) => craftOf(s)?.id === craft.id && s.score === score && !!s.free === !bought);
+  if (have) have.count = (have.count ?? 1) + 1;
+  else x.specialists.push({ uid: newUid(), name: craft.name, role: 'craftsman', ability: `Craft (${craft.name})`, craft: craft.id, score, count: 1, rare: craft.rare, free: !bought, age: ageForScore(score) });
 }
 
 function round1(n: number) {

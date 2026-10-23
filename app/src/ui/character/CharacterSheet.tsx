@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTabParam } from '../useTabParam';
 import { useCharEditor } from './useChar';
@@ -80,13 +80,16 @@ export default function CharacterSheet() {
       )}
       <Tabs tabs={tabs} value={tab} onChange={setTab} />
       <Hint id="sheet-tabs">Click a total to see how it is worked out. The tabs follow play: <b>Magic</b> for casting, <b>Combat &amp; Health</b> for fights, <b>Seasons &amp; Aging</b> between stories.</Hint>
-      {tab === 'overview' && <OverviewTab ed={ed} />}
-      {tab === 'abilities' && <AbilitiesTab ed={ed} />}
-      {tab === 'magic' && <MagicTab ed={ed} />}
-      {tab === 'combat' && <CombatTab ed={ed} />}
-      {tab === 'advancement' && <AdvancementTab ed={ed} />}
-      {tab === 'lab' && <LabItemsTab ed={ed} />}
-      {tab === 'summary' && <SheetSummary ed={ed} />}
+      {/* keyed by character: a tab's half-filled forms do not carry over to the next sheet opened */}
+      <Fragment key={c.id}>
+        {tab === 'overview' && <OverviewTab ed={ed} />}
+        {tab === 'abilities' && <AbilitiesTab ed={ed} />}
+        {tab === 'magic' && <MagicTab ed={ed} />}
+        {tab === 'combat' && <CombatTab ed={ed} />}
+        {tab === 'advancement' && <AdvancementTab ed={ed} />}
+        {tab === 'lab' && <LabItemsTab ed={ed} />}
+        {tab === 'summary' && <SheetSummary ed={ed} />}
+      </Fragment>
       {tab === 'rules' && (
         <Card title="Rules check">
           <CharIssueList ed={ed} issues={issues} resolveAll />

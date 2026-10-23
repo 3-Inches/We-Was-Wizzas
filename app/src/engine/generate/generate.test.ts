@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../../data';
 import bestiary from '../../data/generated/bestiary.json';
 import { DEFAULT_HOUSE_RULES, type Saga } from '../types';
-import { newCovenant } from '../covenant';
+import { deriveCovenant, newCovenant } from '../covenant';
 import { generateCharacter, type GenOptions, type Variety } from './character';
 import { fillCovenant } from './covenant';
 import { homelandGroupFor } from './names';
@@ -103,6 +103,16 @@ describe('filling out a covenant', () => {
     expect(r.cov.covenfolk.servants).toBeGreaterThan(0);
     // the covenant passed in is left as it was
     expect(cov.specialists).toEqual([]);
+  }, 120_000);
+  it('buys no more than the Build Points cover, and gives no name twice', () => {
+    const cov = newCovenant('s', 1220);
+    cov.name = 'Poor';
+    cov.buildPoints = 20;
+    const r = fillCovenant(cov, [], { data, saga: saga('Rhine'), rules }, { staff: true, teacher: true, craftsmen: true, grogs: 8, counts: true, bought: true, seed: 4 });
+    expect(deriveCovenant(r.cov, data, r.grogs.map((g) => g.c)).bpSpent).toBeLessThanOrEqual(20);
+    expect(r.log.join(' ')).toMatch(/Not enough Build Points/);
+    const names = [...r.cov.specialists.filter((s) => s.role !== 'craftsman').map((s) => s.name), ...r.grogs.map((g) => g.c.name)];
+    expect(new Set(names).size).toBe(names.length);
   }, 120_000);
 });
 

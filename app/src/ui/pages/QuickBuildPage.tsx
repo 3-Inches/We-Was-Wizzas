@@ -97,10 +97,12 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
   const cov = covs.find((c) => c.id === covId);
   const guilds = optionOn(saga, 'guilds') && roles.some((r) => r.craft);
 
-  const build = (seed: number): Result => ({
+  const sagaChars = useSagaCharacters(saga.id);
+  // a new character takes a name nobody in the saga, or in this set, has yet
+  const build = (seed: number, taken: string[]): Result => ({
     seed,
     g: generateCharacter(
-      { type, role: role || undefined, house: house || undefined, gender: (gender || undefined) as 'Male' | 'Female' | undefined, homeland: homeland || undefined, variety, npc, seed },
+      { type, role: role || undefined, house: house || undefined, gender: (gender || undefined) as 'Male' | 'Female' | undefined, homeland: homeland || undefined, variety, npc, seed, avoidNames: [...sagaChars.map((c) => c.name), ...taken] },
       { data, saga, rules: saga.houseRules, covenant: cov },
     ),
   });
@@ -109,7 +111,7 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
     for (let i = 0; i < count; i++) {
       setBusy(`Building ${i + 1} of ${count}…`);
       await tick();
-      out.push(build(newSeed()));
+      out.push(build(newSeed(), out.map((r) => r.g.c.name)));
       setResults([...out]);
     }
     setBusy('');
@@ -117,7 +119,7 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
   const reroll = async (i: number) => {
     setBusy('Rolling again…');
     await tick();
-    setResults((rs) => rs.map((r, j) => (j === i ? build(newSeed()) : r)));
+    setResults((rs) => rs.map((r, j) => (j === i ? build(newSeed(), rs.filter((x) => x !== r).map((x) => x.g.c.name)) : r)));
     setBusy('');
   };
   const keep = (rs: Result[]) => {
@@ -400,7 +402,7 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
         <div className="row small" style={{ marginTop: 6 }}>
           {check('staff', 'Steward, chamberlain, turb captain and scribe', 'Each one the covenant lacks')}
           {check('teacher', 'A teacher', 'Latin and the liberal arts, if the covenant has no teacher')}
-          {check('craftsmen', 'Craftsmen who save money', 'Every cost-saving craft the covenant lacks, at the number that saves most (Covenants ch.5)')}
+          {check('craftsmen', 'Craftsmen who save money', 'One at a time, each where it saves most, while it still saves money and Build Points last (Covenants ch.5)')}
           {check('counts', 'Servants, teamsters and laborers', 'The numbers the covenant needs, and the laborers that save most')}
         </div>
         <div className="row" style={{ marginTop: 8 }}>
@@ -428,7 +430,20 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
             Build Points spent: {preview.bpBefore} → <b>{preview.bpAfter}</b> of {cov.buildPoints}
             {preview.bpAfter > cov.buildPoints && <span className="warn-text"> (over the covenant&apos;s Build Points: recruit them in play, or raise the Build Points)</span>}.
           </p>
-          {preview.grogs.some((g) => g.issues.length) && <p className="small warn-text">Some grogs still have something to settle; their sheets say what.</p>}
+          {preview.grogs.some((g) => g.issues.length) && (
+            <div className="small">
+              <span className="warn-text">The rules check would still flag, on adding (fix it on the grog&apos;s sheet, or roll again):</span>
+              <ul style={{ margin: '2px 0', paddingLeft: 18 }}>
+                {preview.grogs
+                  .filter((g) => g.issues.length)
+                  .map((g) => (
+                    <li key={g.c.id}>
+                      <b>{g.c.name}</b>: {g.issues.map((i) => i.message).join(' ')}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          )}
         </Card>
       )}
     </div>

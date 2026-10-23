@@ -526,6 +526,23 @@ describe('fourth playtest: a magic character\'s Qualities and powers (RoP: Magic
     expect(c.creature!.magicCharacter!.qualities.filter((q) => q.id === 'reduced-characteristic-inferiority')).toHaveLength(3);
     removeQualities(c, data, 'improved-characteristic', 'Int', 2);
     expect(c.creature!.magicCharacter!.qualities.filter((q) => q.id === 'improved-characteristic')).toHaveLength(1);
+    // a ritual's point later does not unmake the Reduced (Characteristic) taken when it was −5
+    const pts = derive(c).magicChar!.points.fromInferiorities;
+    const was = issuesOf(c, 'magic-quality').map((i) => i.message);
+    c.characteristics.Dex += 1;
+    c.magicGain = { Dex: 1 };
+    expect(derive(c).magicChar!.points.fromInferiorities).toBe(pts);
+    expect(issuesOf(c, 'magic-quality').map((i) => i.message)).toEqual(was);
+  });
+  it('takes its Might off Advancement Totals, less 2 for each pawn of vis it eats', () => {
+    const c = bingus();
+    const d = derive(c);
+    const might = d.magicChar!.might;
+    const xp = (visEaten: number) => computeStudy(d, { kind: 'adventure', quality: 5, subject: 'Brawl' }, { visEaten }).xp;
+    expect(xp(0)).toBe(Math.max(0, 5 - might));
+    expect(xp(2)).toBe(Math.max(0, 5 - might + 4));
+    expect(xp(Math.ceil(might / 2))).toBe(5); // never more than the total itself
+    expect(xp(50)).toBe(5);
   });
   it('takes the Inferiority with the Flaw it brought, so its points go too', () => {
     const c = bingus();
