@@ -111,7 +111,7 @@ function mightNote(d: DerivedCharacter, xp: number): string {
 }
 
 /** Log and apply a season of a character's standing activity. Returns what happened. */
-export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng): string[] {
+export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, chars?: Character[]): string[] {
   const s = resolveStanding(c, d, season);
   const log = (activity: SeasonLogEntry['activity'], summary: string, gains: Record<string, number>, warping = 0) => {
     const e = newSeasonEntry(year, season, activity, summary, gains);
@@ -170,7 +170,7 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
       const instead = (why: string) => {
         const was = c.standing;
         c.standing = { kind: 'auto', target: t && !('art' in t) ? s.target : undefined };
-        const out = runStanding(c, d, ctx, cov, data, year, season, rng);
+        const out = runStanding(c, d, ctx, cov, data, year, season, rng, chars);
         c.standing = was;
         return out.length ? [`${why} Instead: ${out[0]}`, ...out.slice(1)] : [why];
       };
@@ -187,13 +187,13 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
       return [`Taught ${t.label} by ${sp.name || 'a teacher'}: Quality ${r.sourceQuality}, +${r.xp} xp${r.capped ? ' (as far as the teacher knows)' : ''}.${mightNote(d, r.xp)}`];
     }
     case 'work': {
-      if (!c.workshop) return runStanding({ ...c, standing: { kind: 'exposure', target: workAbility(d) } } as Character, d, ctx, cov, data, year, season, rng);
+      if (!c.workshop) return runStanding({ ...c, standing: { kind: 'exposure', target: workAbility(d) } } as Character, d, ctx, cov, data, year, season, rng, chars);
       return workshopSeason(c, d, year, season, { rng });
     }
     case 'lab': {
       const lines: string[] = [];
       const p = c.projects?.find((x) => x.uid === s.projectUid && !x.done);
-      if (p) lines.push(...workProject(c, d, ctx, cov, p.uid, data, year));
+      if (p) lines.push(...workProject(c, d, ctx, cov, p.uid, data, year, { rng, chars, season }));
       const gains: Record<string, number> = theory ? { [`ability:${theory.uid}`]: 2 } : {};
       log('other', p ? `Lab: ${p.name}` : 'Lab work', gains);
       lines.push(theory ? `Lab work: +2 xp Exposure in ${theory.name}.` : 'Lab work.');
@@ -392,7 +392,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     const d = derive(c);
     const ctx = ctxOf(c);
     const cov = covenantOf(c, state.covenants);
-    for (const t of runStanding(c, d, ctx, cov, data, year, season, rng)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });
+    for (const t of runStanding(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });
   }
 
   // the turn of the year (after Winter): covenants, then each character's year

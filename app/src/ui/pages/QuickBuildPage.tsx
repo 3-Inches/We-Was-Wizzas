@@ -1,17 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ART_NAMES, ARTS, type CharType, type GameData } from '../../data';
+import { ART_NAMES, ARTS, type Art, type CharType, type GameData } from '../../data';
 import { HOMELANDS } from '../../data/lists';
 import { HOUSES } from '../../data/houses';
 import { deriveCharacter, vfDisplayName } from '../../engine/character/derive';
-import { deriveCovenant } from '../../engine/covenant';
+import { BUDGET_KINDS, budgetLeft, deriveCovenant } from '../../engine/covenant';
 import { generateCharacter, type Generated, type Variety } from '../../engine/generate/character';
 import { fillCovenant, type FillOptions, type FillResult } from '../../engine/generate/covenant';
 import { newSeed, seeded } from '../../engine/generate/random';
 import { rolesFor } from '../../engine/generate/roles';
 import { homelandGroupFor } from '../../engine/generate/names';
 import { optionOn } from '../../engine/optional';
-import type { Saga } from '../../engine/types';
+import type { Character, Covenant, Saga } from '../../engine/types';
 import { loadBestiary, matchCreatures, rollCreature, type Creature, type CreatureRealm } from '../../data/bestiary';
 import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
@@ -89,6 +89,12 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
   const [gender, setGender] = useState('');
   const [homeland, setHomeland] = useState('');
   const [covChoice, setCovChoice] = useState<string | undefined>();
+  // a magus: the spells asked for, and a familiar
+  const [spellArts, setSpellArts] = useState<Art[]>([]);
+  const [spellMax, setSpellMax] = useState(0);
+  const [rituals, setRituals] = useState(false);
+  const [askSpells, setAskSpells] = useState(false);
+  const [familiar, setFamiliar] = useState(false);
   const [results, setResults] = useState<Result[]>([]);
   const [busy, setBusy] = useState('');
   const roles = rolesFor(type);
@@ -102,7 +108,11 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
   const build = (seed: number, taken: string[]): Result => ({
     seed,
     g: generateCharacter(
-      { type, role: role || undefined, house: house || undefined, gender: (gender || undefined) as 'Male' | 'Female' | undefined, homeland: homeland || undefined, variety, npc, seed, avoidNames: [...sagaChars.map((c) => c.name), ...taken] },
+      {
+        type, role: role || undefined, house: house || undefined, gender: (gender || undefined) as 'Male' | 'Female' | undefined, homeland: homeland || undefined, variety, npc, seed, avoidNames: [...sagaChars.map((c) => c.name), ...taken],
+        spells: type === 'magus' && askSpells ? { arts: spellArts, maxLevel: spellMax || undefined, rituals } : undefined,
+        familiar: type === 'magus' && familiar,
+      },
       { data, saga, rules: saga.houseRules, covenant: cov },
     ),
   });
@@ -179,6 +189,35 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
             </Field>
           </div>
           {role && <p className="small muted">{roles.find((r) => r.id === role)?.blurb}</p>}
+          {type === 'magus' && (
+            <div className="row small" style={{ marginTop: 6 }}>
+              <label className="inline" title="Spend the apprenticeship's spell levels on spells of the Arts chosen here, within the creation limits">
+                <input type="checkbox" checked={askSpells} onChange={(e) => setAskSpells(e.target.checked)} /> Spells of
+              </label>
+              {askSpells && (
+                <>
+                  <span className="row tight" style={{ flexWrap: 'wrap' }}>
+                    {ARTS.map((a) => (
+                      <label key={a} className="inline" title={ART_NAMES[a]}>
+                        <input type="checkbox" checked={spellArts.includes(a)} onChange={(e) => setSpellArts(e.target.checked ? [...spellArts, a] : spellArts.filter((x) => x !== a))} />
+                        {a}
+                      </label>
+                    ))}
+                  </span>
+                  <span className="muted">{spellArts.length ? '' : '(none ticked: their best Arts)'}</span>
+                  <Field label="Up to level" hint="0: as high as they can">
+                    <Stepper value={spellMax} min={0} max={50} step={5} width={36} onChange={setSpellMax} />
+                  </Field>
+                  <label className="inline">
+                    <input type="checkbox" checked={rituals} onChange={(e) => setRituals(e.target.checked)} /> rituals too
+                  </label>
+                </>
+              )}
+              <label className="inline" title="A creature suited to their best Technique and Form, bound before play if their Lab Total reaches it (DE, Familiars)">
+                <input type="checkbox" checked={familiar} onChange={(e) => setFamiliar(e.target.checked)} /> with a familiar
+              </label>
+            </div>
+          )}
           <div className="row" style={{ marginTop: 6 }}>
             <Field label="For">
               <select value={npc ? 'npc' : 'player'} onChange={(e) => setNpc(e.target.value === 'npc')}>
@@ -318,6 +357,12 @@ function ResultRow({ r, data, saga, onKeep, onReroll, onDrop, busy }: { r: Resul
         {arts.length > 0 && ` · ${arts.join(', ')}`}
         {c.personality.length > 0 && ` · ${c.personality.map((p) => `${p.trait} ${p.score > 0 ? '+' : ''}${p.score}`).join(', ')}`}
       </div>
+      {c.type === 'magus' && (c.spells.length > 0 || c.familiar) && (
+        <div className="small muted">
+          {c.spells.length > 0 && `${c.spells.length} spell${c.spells.length > 1 ? 's' : ''}: ${c.spells.slice(0, 4).map((s) => `${s.spell.name} (${s.spell.technique}${s.spell.form} ${s.spell.level})`).join(', ')}${c.spells.length > 4 ? '…' : ''}`}
+          {c.familiar && ` · Familiar: ${c.familiar.name ? `${c.familiar.name}, ` : ''}a ${c.familiar.species}${c.familiar.bindingLabTotal ? ` (bound; golden ${c.familiar.golden}, silver ${c.familiar.silver}, bronze ${c.familiar.bronze})` : ' (not yet bound)'}`}
+        </div>
+      )}
       <details className="small">
         <summary className="muted" style={{ cursor: 'pointer' }}>
           How it was built (seed {r.seed})
@@ -405,6 +450,27 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
           {check('craftsmen', 'Craftsmen who save money', 'One at a time, each where it saves most, while it still saves money and Build Points last (Covenants ch.5)')}
           {check('counts', 'Servants, teamsters and laborers', 'The numbers the covenant needs, and the laborers that save most')}
         </div>
+        <div className="row small" style={{ marginTop: 6 }}>
+          <span>Library:</span>
+          {(
+            [
+              ['arts', 'Art summae and tractatus', "For the Arts the covenant's magi work in most, and those it lacks"],
+              ['abilities', 'Ability summae', 'Magic Theory and Parma Magica first, then others magi study'],
+              ['labTexts', 'Lab Texts', "Spells in the magi's Arts, a Build Point per 5 levels"],
+              ['mundane', 'mundane books', 'A few that cost nothing'],
+            ] as const
+          ).map(([k, label, title]) => (
+            <label key={k} className="inline" title={title}>
+              <input
+                type="checkbox"
+                checked={!!o.library?.[k]}
+                onChange={(e) => set('library', { arts: false, abilities: false, labTexts: false, mundane: false, ...o.library, [k]: e.target.checked })}
+              />{' '}
+              {label}
+            </label>
+          ))}
+        </div>
+        <BudgetEditor cov={cov} chars={chars} data={data} onChange={() => setPreview(null)} />
         <div className="row" style={{ marginTop: 8 }}>
           <button className="primary" onClick={build} disabled={busy}>
             {preview ? 'Roll again' : 'Show me'}
@@ -447,6 +513,71 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
         </Card>
       )}
     </div>
+  );
+}
+
+/**
+ * The covenant's Build Points set aside by kind of purchase, and the Hidden, Flawed and Illusory
+ * Resources earmarked for each: what Quick build may spend on it.
+ */
+function BudgetEditor({ cov, chars, data, onChange }: { cov: Covenant; chars: Character[]; data: GameData; onChange: () => void }) {
+  const updateCovenant = useStore((s) => s.updateCovenant);
+  const dc = deriveCovenant(cov, data, chars);
+  const free = cov.buildPoints - dc.bpSpent;
+  return (
+    <details style={{ marginTop: 6 }}>
+      <summary className="small">
+        Build Point budget: {free} of {cov.buildPoints} left{cov.budget && Object.keys(cov.budget).length ? ', some set aside' : ''}
+      </summary>
+      <div className="table-wrap">
+        <table className="compact small">
+          <thead>
+            <tr>
+              <th>For</th>
+              <th>Set aside</th>
+              <th>Spent</th>
+              <th>Quick build may spend</th>
+            </tr>
+          </thead>
+          <tbody>
+            {BUDGET_KINDS.map((k) => {
+              const b = budgetLeft(cov, dc, k.id);
+              return (
+                <tr key={k.id}>
+                  <td>{k.label}</td>
+                  <td>
+                    <span className="row tight">
+                      <Stepper
+                        value={cov.budget?.[k.id] ?? 0}
+                        min={0}
+                        step={5}
+                        width={44}
+                        onChange={(v) => (updateCovenant(cov.id, (x) => void (x.budget = { ...(x.budget ?? {}), [k.id]: v || undefined })), onChange())}
+                      />
+                      {cov.budget?.[k.id] === undefined && <span className="muted">no limit</span>}
+                    </span>
+                  </td>
+                  <td>{b.spent}</td>
+                  <td>
+                    {b.own}
+                    {b.pools.map((p) => (
+                      <span key={p.hbUid} className="muted">
+                        {' '}
+                        + {p.left} from {p.name}
+                      </span>
+                    ))}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p className="small muted" style={{ margin: 0 }}>
+        A kind with nothing set aside may take whatever the covenant has left. Set a Hidden, Flawed or Illusory Resource aside for a kind on the covenant&apos;s Hooks &amp; Boons tab, and
+        Quick build spends it there first and ties what it buys to it.
+      </p>
+    </details>
   );
 }
 

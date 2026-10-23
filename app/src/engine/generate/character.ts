@@ -27,6 +27,7 @@ import { CRAFTS as COVENANT_CRAFTS } from '../covenantRules';
 import { uid } from '../../util/id';
 import { visibleSteps } from '../../ui/character/wizardSteps';
 import { freshName, homelandGroupFor, regionOf } from './names';
+import { generateFamiliar, pickSpells, type SpellPick } from './spellsAndFamiliars';
 import { COMMON_TRAITS, ROLE_BY_ID, rolesFor, type Role } from './roles';
 import { between, chance, pick, sample, seeded } from './random';
 
@@ -50,6 +51,10 @@ export interface GenOptions {
   craft?: string;
   /** names already in use in the saga, not to be given again */
   avoidNames?: string[];
+  /** a magus: the kind of spells to spend the apprenticeship's spell levels on */
+  spells?: SpellPick;
+  /** a magus: a familiar, bound before play if the Lab Total reaches it */
+  familiar?: boolean;
   variety: Variety;
   /** a storyguide's NPC, finished and ready to play; else a player's draft at the Review step */
   npc: boolean;
@@ -174,6 +179,15 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   addGear(c, d, role, rng, data);
   tribunalCustoms(c, saga, rng, log);
   fillChoices(c, data, rng);
+  if (c.type === 'magus' && o.spells) {
+    const picked = pickSpells(c, data, rules, o.spells, rng);
+    log.push(picked.length ? `Spells as asked: ${picked.join(', ')}.` : 'No spells of the kind asked for fit the creation limits.');
+  }
+  if (c.type === 'magus' && o.familiar) {
+    const r = generateFamiliar(derive(), rng, { bind: true, aura: g.covenant ? { realm: g.covenant.auraRealm ?? 'Magic', strength: g.covenant.aura } : undefined });
+    c.familiar = { ...r.familiar, name: freshName(rng, 'latin', chance(rng, 0.5), [c.name]) };
+    log.push(r.log.replace('Familiar:', `Familiar ${c.familiar.name}:`));
+  }
   c.description = `${role.label} from ${c.nationality}${c.house ? `, of House ${HOUSES.find((h) => h.id === c.house)?.name}` : ''}. ${role.blurb}`;
   if (g.covenant) c.covenantId = g.covenant.id;
 

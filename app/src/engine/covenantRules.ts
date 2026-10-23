@@ -2,7 +2,7 @@
 // DE covenant creation).
 
 import type { Characteristic, HookBoonDef } from '../data';
-import type { Covenant, CovenantHookBoon, IncomeModification, IncomeSource, Specialist } from './types';
+import type { BudgetKind, Covenant, CovenantHookBoon, IncomeModification, IncomeSource, Specialist } from './types';
 
 // ------------------------------------------------------------------------------ Income
 
@@ -347,7 +347,7 @@ export function computeIncome(cov: Covenant, magi: number): IncomeResult {
 /** One covenant resource bought with Build Points. */
 export interface CovResource {
   uid: string;
-  kind: 'book' | 'vis' | 'item' | 'specialist' | 'lab';
+  kind: BudgetKind;
   label: string;
   cost: number;
 }

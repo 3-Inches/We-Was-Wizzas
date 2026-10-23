@@ -122,6 +122,16 @@ export function cordPointsCost(golden: number, silver: number, bronze: number): 
   return CORD_COST[golden] + CORD_COST[silver] + CORD_COST[bronze];
 }
 
+/** The strongest cords a Lab Total buys, raised in turn (golden, bronze, silver) from those the bond has. */
+export function bestCords(points: number, from: { golden: number; silver: number; bronze: number } = { golden: 0, silver: 0, bronze: 0 }): { golden: number; silver: number; bronze: number } {
+  const c = { ...from };
+  for (let round = 0; round < 15; round++) {
+    const k = (['golden', 'bronze', 'silver'] as const)[round % 3];
+    if (c[k] < 5 && cordPointsCost(c.golden, c.silver, c.bronze) - CORD_COST[c[k]] + CORD_COST[c[k] + 1] <= points) c[k] += 1;
+  }
+  return c;
+}
+
 // ------------------------------------------------------------------ Lab texts, books
 
 export function labTextWritingLevels(latin: number): number {

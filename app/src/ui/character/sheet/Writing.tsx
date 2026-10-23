@@ -34,7 +34,7 @@ export function WritingCard({ ed }: { ed: CharEditor }) {
   const name = art ? ART_NAMES[art] : ability?.name ?? '';
   const res = subject
     ? planBook(d, {
-        kind, isArt, score, level: level ?? undefined, com: d.characteristics.Com.value, language: lang?.score ?? 0,
+        kind, isArt, score, level: level ?? undefined, com: d.characteristics.Com.value, language: lang?.score ?? 0, labTexts: ctx.lab?.specializations.Texts,
         extended: extended ? { scribe, binder, illuminator, resonance } : undefined,
       })
     : null;
@@ -148,7 +148,7 @@ export function WritingCard({ ed }: { ed: CharEditor }) {
       ))}
       {msg && <div className="small">{msg}</div>}
       <p className="small muted">
-        Quality: Communication + 6 + Virtues (Good Teacher +3). Lab Specializations do not help with books (Texts is for laboratory texts). Readers add their own bonuses
+        Quality: Communication + 6 + Virtues (Good Teacher +3). A lab's Texts Specialization adds 1 to the language for every 3 points when the book is written there. Readers add their own bonuses
         (Book Learner).
       </p>
     </Card>

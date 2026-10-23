@@ -246,7 +246,7 @@ export type LabRoutine = 'early' | 'nocturnal' | 'addled' | 'overtime' | 'double
 /** A laboratory project that runs over one or more seasons (DE, The Laboratory). */
 export interface LabProject {
   uid: string;
-  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'other';
+  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'longevity' | 'bind' | 'strengthen' | 'empower' | 'other';
   name: string;
   /** invent: the spell; instill: the effect's Technique, Form and level; tame: the creature's Form and Might */
   technique?: Technique;
@@ -274,7 +274,24 @@ export interface LabProject {
   logMark?: number;
   /** the non-standard lab routines it is worked under (Covenants) */
   routines?: LabRoutine[];
+  /** the work falls within the magus's Magical Focus */
+  inFocus?: boolean;
+  /** conditional Lab Total bonuses that apply to this work (their sources' uids) */
+  circumstances?: string[];
+  /** experiment each season (DE, Arcane Experimentation), with this risk modifier (0 to 3) */
+  experiment?: { risk: number };
+  /** invent: from a Laboratory Text, done in one season once the Lab Total reaches the level; no experimenting */
+  fromText?: boolean;
+  /** longevity: the character it is for (the magus, if unset), and extra vis for a stronger ritual */
+  subjectId?: string;
+  extraVis?: number;
+  /** bind, strengthen: the cords bought with the season's Lab Total */
+  cords?: { golden: number; silver: number; bronze: number };
+  /** what the Extraordinary Results Chart and the lab's own Safety and Warping did, season by season */
+  results?: string[];
   done?: boolean;
+  /** it came to nothing: the creation was destroyed, or the project abandoned */
+  failed?: boolean;
 }
 
 export interface JournalEntry {
@@ -433,6 +450,8 @@ export interface EnchantedItem {
   /** bonuses the device gives whoever bears it while it is worn (a constant effect) */
   bearerBonuses?: Effect[];
   worn?: boolean;
+  /** it does the covenant's work (Covenants, Cost Saving): in place of a servant, or a pound a year, for each magnitude of its effects */
+  serves?: 'servants' | 'pounds';
 }
 
 export interface Familiar {
@@ -782,6 +801,8 @@ export interface CovenantHookBoon {
   target?: string;
   /** Hidden, Flawed and Illusory Resources: the resources (by uid) paid from its 250 Build Points */
   resources?: string[];
+  /** Hidden, Flawed and Illusory Resources: what its Build Points are set aside for, so Quick build spends them there */
+  earmark?: BudgetKind[];
   /** Flawed Resource: how its story went */
   outcome?: 'pending' | 'saved' | 'lost' | 'botched';
   /** Flawed Resource saved: the resources kept (up to half) */
@@ -789,6 +810,9 @@ export interface CovenantHookBoon {
   /** Natural Disaster: it has struck. Indebted: the debt is still owed (default yes). */
   active?: boolean;
 }
+
+/** What a covenant buys with Build Points (Covenants ch.2): its people (specialists and craftsmen), books, vis, items, labs and money. */
+export type BudgetKind = 'specialist' | 'book' | 'vis' | 'item' | 'lab' | 'money';
 
 export interface LibraryBook {
   uid: string;
@@ -904,6 +928,8 @@ export interface LabVirtueEntry {
   alt?: string;
   /** conditions switched on or off */
   toggles?: Record<string, boolean>;
+  /** given by an enchanted item installed in the lab: it takes no space (Covenants, Magic Items for Laboratories) */
+  fromItem?: string;
 }
 
 export interface Laboratory {
@@ -982,6 +1008,8 @@ export interface Covenant {
   tourney?: { year: number; results: Record<string, number>; rank?: number };
   labs: Laboratory[];
   spareLabs: number;
+  /** Build Points set aside for each kind of purchase, so Quick build has a budget to fill (the rest is free to spend) */
+  budget?: Partial<Record<BudgetKind, number>>;
   covenfolk: CovenfolkCounts;
   income: IncomeSource[];
   finances: {

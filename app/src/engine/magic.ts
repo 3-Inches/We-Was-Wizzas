@@ -242,9 +242,14 @@ export const LAB_ACTIVITY_SPEC: Record<LabActivity, string | null> = {
 export interface LabContext {
   generalQuality: number;
   specializations: Record<string, number>;
-  /** activities that cannot be done in this lab (Missing Equipment) */
+  /** activities that cannot be done in this lab (Missing Equipment, Restriction) */
   impossible?: string[];
+  /** Arts whose Lab Totals the lab halves (Missing Ingredients) */
+  halved?: string[];
   safety?: number;
+  /** the lab's Warping, rolled against each season (Covenants) */
+  warping?: number;
+  name?: string;
   auraOverride?: AuraState;
 }
 
@@ -348,6 +353,12 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
     halved = true;
     notes.push('Deficient Art: Lab Total halved.');
   }
+  const short = o.lab?.halved?.filter((a) => [arts.technique, arts.form].includes(a as Art));
+  if (short?.length) {
+    total = Math.ceil(total / 2);
+    halved = true;
+    notes.push(`Missing Ingredients (${short.map((a) => artName(a as Art)).join(', ')}): Lab Total halved.`);
+  }
   for (const e of effectsOf(d, 'labTotalMultiplier')) {
     const w = e.when;
     const ok = (w === 'items' && o.activity === 'items') || (w === 'longevityForSelf' && o.forSelfLongevity) || (w === 'rangeBeyondTouch' && o.rangeBeyondTouch);
@@ -359,7 +370,7 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
   }
   if (aura.note) notes.push(`${aura.note}: extra botch dice ${aura.botch}`);
   const ruledOut = o.lab?.impossible?.find((a) => a === LAB_ACTIVITY_SPEC[o.activity] || (a === 'Experimentation' && o.experimenting) || (a === 'Texts' && o.fromText));
-  if (ruledOut) notes.unshift(`This lab cannot be used for ${ruledOut} (Missing Equipment).`);
+  if (ruledOut) notes.unshift(`This lab cannot be used for ${ruledOut}.`);
   const away = labDistraction(o.daysAway ?? 0);
   if (away.penalty) {
     parts.push({ label: `${o.daysAway} days away from the lab`, value: away.penalty });

@@ -1,13 +1,15 @@
 // Filling out a covenant's people: the staff a covenant runs on (steward, chamberlain, turb captain,
 // scribe, a teacher), the craftsmen whose work saves it money, the servants, teamsters and laborers
-// it needs, and grogs for its turb as full characters. Everything is starting covenfolk bought with
-// Build Points, within the Build Points the covenant has left, or (for a covenant already in play)
-// recruited at no Build Point cost. Seeded, like the character generator.
+// it needs, grogs for its turb as full characters, and books for its library. Everything is bought
+// with Build Points (the resource pools set aside for it first, then its own budget for that kind of
+// purchase, never past what the covenant has left), or, for a covenant already in play, recruited at
+// no Build Point cost. Seeded, like the character generator.
 
 import type { GameData } from '../../data';
-import type { Character, Covenant, HouseRules, Saga, Specialist } from '../types';
+import type { BudgetKind, Character, Covenant, HouseRules, Saga, Specialist } from '../types';
 import { abilityCapAtAge } from '../covenantRules';
-import { addCostSavingCraftsmen, deriveCovenant, fitCovenfolk, optimalLaborers } from '../covenant';
+import { addCostSavingCraftsmen, budgetLeft, deriveCovenant, fitCovenfolk, optimalLaborers, payFromPools, summaCost } from '../covenant';
+import { stockLibrary, type LibraryOptions } from './library';
 import { uid } from '../../util/id';
 import { generateCharacter, type Generated } from './character';
 import { freshName, homelandGroupFor, regionOf } from './names';
@@ -26,6 +28,8 @@ export interface FillOptions {
   counts: boolean;
   /** starting covenfolk, bought with Build Points; else recruited in play at no cost */
   bought: boolean;
+  /** books for the library, within its budget */
+  library?: LibraryOptions;
   seed: number;
 }
 
@@ -56,8 +60,20 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
   };
   const members = () => characters.filter((c) => cov.memberIds.includes(c.id));
   const labs = () => deriveCovenant(cov, g.data, characters).labs;
-  // Build Points left to spend on bought covenfolk
-  const bpLeft = () => (o.bought ? cov.buildPoints - deriveCovenant(cov, g.data, characters).bpSpent : Infinity);
+  // what a kind of purchase may still take: the pools set aside for it, then its own budget
+  const room = (kind: BudgetKind) => {
+    if (!o.bought) return Infinity;
+    const b = budgetLeft(cov, deriveCovenant(cov, g.data, characters), kind);
+    return b.own + b.pools.reduce((t, p) => t + p.left, 0);
+  };
+  const pay = (kind: BudgetKind, uids: string[]) => o.bought && payFromPools(cov, g.data, characters, kind, uids);
+  // what a pool could not take and the kind's own budget cannot cover comes off again
+  const over = (kind: BudgetKind) => {
+    if (!o.bought) return false;
+    const dc = deriveCovenant(cov, g.data, characters);
+    const limit = cov.budget?.[kind];
+    return dc.bpSpent > cov.buildPoints || (limit !== undefined && budgetLeft(cov, dc, kind).spent > limit);
+  };
   const short: string[] = [];
 
   if (o.staff) {
@@ -65,11 +81,17 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
       if (cov.specialists.some((x) => x.role === s.role)) continue;
       const age = between(rng, 30, 50);
       const score = Math.min(abilityCapAtAge(age), between(rng, 4, 6));
-      if (score > bpLeft()) {
+      if (score > room('specialist')) {
         short.push(s.label.toLowerCase());
         continue;
       }
       cov.specialists.push({ uid: uid(), name: name(), role: s.role, ability: s.ability.name, score, age, free: !o.bought, abilities: [{ id: s.ability.id, param: s.ability.param, score }], chars: s.chars });
+      pay('specialist', [cov.specialists.at(-1)!.uid]);
+      if (over('specialist')) {
+        cov.specialists.pop();
+        short.push(s.label.toLowerCase());
+        continue;
+      }
       log.push(`${s.label}: ${cov.specialists.at(-1)!.name}, ${s.ability.name} ${score}.`);
     }
   }
@@ -81,18 +103,41 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
     const teaching = Math.min(cap, between(rng, 2, 4));
     const com = between(rng, 1, 2);
     // a teacher costs Communication + Teaching + the best Ability (DE p.180)
-    if (com + teaching + latin > bpLeft()) short.push('teacher');
-    else cov.specialists.push({
-      uid: uid(), name: name(), role: 'teacher', ability: 'Latin', score: latin, age, free: !o.bought, teaching,
-      abilities: [{ id: 'dead-language', param: 'Latin', score: latin }, { id: 'artes-liberales', score: artes }], chars: { Com: com },
-    });
+    if (com + teaching + latin > room('specialist')) short.push('teacher');
+    else {
+      cov.specialists.push({
+        uid: uid(), name: name(), role: 'teacher', ability: 'Latin', score: latin, age, free: !o.bought, teaching,
+        abilities: [{ id: 'dead-language', param: 'Latin', score: latin }, { id: 'artes-liberales', score: artes }], chars: { Com: com },
+      });
+      pay('specialist', [cov.specialists.at(-1)!.uid]);
+      if (over('specialist')) (cov.specialists.pop(), short.push('teacher'));
+    }
     if (!short.includes('teacher')) log.push(`Teacher: ${cov.specialists.at(-1)!.name}, Latin ${latin} and Artes Liberales ${artes}, Teaching ${teaching}.`);
   }
   if (o.craftsmen) {
-    const added = addCostSavingCraftsmen(cov, members(), labs(), between(rng, 4, 6), bpLeft());
-    log.push(added.length ? `Craftsmen: ${added.join(', ')}.` : `Craftsmen: ${bpLeft() < 4 ? 'no Build Points left for any' : 'none would save the covenant money'}.`);
+    const had = new Set(cov.specialists.map((s) => s.uid));
+    const added = addCostSavingCraftsmen(cov, members(), labs(), between(rng, 4, 6), room('specialist'));
+    pay('specialist', cov.specialists.filter((s) => !had.has(s.uid)).map((s) => s.uid));
+    log.push(added.length ? `Craftsmen: ${added.join(', ')}.` : `Craftsmen: ${room('specialist') < 4 ? 'no Build Points left for any' : 'none would save the covenant money'}.`);
   }
   if (short.length) log.push(`Not enough Build Points for the ${short.join(', ')}: recruit them in play instead.`);
+  if (o.library) {
+    const bp = room('book');
+    const r = stockLibrary(cov, members(), g, bp === Infinity ? (cov.budget?.book ?? 100) : bp, o.library, rng);
+    cov.library.push(...r.books);
+    pay('book', r.books.map((b) => b.uid));
+    // books no pool took that the library's budget cannot cover go back, the dearest first
+    const pooled = () => new Set(cov.hooksBoons.flatMap((h) => h.resources ?? []));
+    const dropped: string[] = [];
+    for (const b of [...r.books].reverse().sort((x, y) => summaCost(y).cost - summaCost(x).cost)) {
+      if (!over('book')) break;
+      if (pooled().has(b.uid) || !summaCost(b).cost) continue;
+      cov.library = cov.library.filter((x) => x.uid !== b.uid);
+      dropped.push(b.title);
+    }
+    log.push(...r.log.filter((l) => !dropped.some((t) => l.startsWith(t))));
+    if (dropped.length) log.push(`Over the library's budget, so not bought: ${dropped.join(', ')}.`);
+  }
 
   // grogs: a sergeant to lead a turb of three or more that has none, then archers for about a third
   // and shield grogs for the rest; finished and ready to play, by whoever in the troupe takes them
