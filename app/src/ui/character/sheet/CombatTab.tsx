@@ -19,13 +19,15 @@ const WOUND_KEYS: { key: keyof Omit<WoundState, 'dead'>; label: string; pen: num
 const FATIGUE_RECOVERY = ['—', '2 minutes', '10 minutes', '30 minutes', '1 hour', '2 hours'];
 
 export default function CombatTab({ ed }: { ed: CharEditor }) {
-  const { c, d, data, update } = ed;
+  const { c, d, data, update, ctx } = ed;
   const [damage, setDamage] = useState(0);
   const [msg, setMsg] = useState<string[]>([]);
   const [medic, setMedic] = useState(0);
   const [aid, setAid] = useState(0);
   // a familiar's bronze cord adds to healing rolls (DE, The Three Cords)
   const bronze = c?.familiar?.bronze ?? 0;
+  // the lab's Health adds to the wound recovery rolls of those who live in it (Covenants)
+  const labHealth = ctx.lab?.characteristics.Health ?? 0;
   const [lineIdx, setLineIdx] = useState(0);
   // DE Combat Options: mounted (+Ride, up to 3, to Attack and Defense), exertion (a Fatigue level for
   // +Combat Ability to one attack or the round's defense), scuffling (−3 to attack with a real weapon, no weapon damage)
@@ -68,7 +70,7 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
   const sick = d.currentDiseasePenalty;
   const recover = (key: 'light' | 'medium' | 'heavy') => {
     const r = stressDie(1);
-    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + sick + r.value;
+    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + labHealth + sick + r.value;
     const rec = RECOVERY[key];
     let text: string;
     if (total >= rec.improve) {
@@ -88,12 +90,12 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
         if (key === 'heavy') x.wounds.incapacitating += 1;
       });
     }
-    push(`Recovery (${key}, ${rec.interval}): Sta ${d.characteristics.Sta.value} + medic ${medic} + aid ${aid}${bronze ? ` + bronze cord ${bronze}` : ''}${sick ? ` − disease ${-sick}` : ''} + ${describeStress(r)} = ${total} vs ${rec.stable}/${rec.improve}: ${text}.`);
+    push(`Recovery (${key}, ${rec.interval}): Sta ${d.characteristics.Sta.value} + medic ${medic} + aid ${aid}${bronze ? ` + bronze cord ${bronze}` : ''}${labHealth ? ` ${labHealth > 0 ? '+' : '−'} lab Health ${Math.abs(labHealth)}` : ''}${sick ? ` − disease ${-sick}` : ''} + ${describeStress(r)} = ${total} vs ${rec.stable}/${rec.improve}: ${text}.`);
   };
 
   const recoverIncap = () => {
     const r = stressDie(1);
-    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + sick + r.value;
+    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + labHealth + sick + r.value;
     let text: string;
     if (total <= 0) {
       text = 'the character dies';

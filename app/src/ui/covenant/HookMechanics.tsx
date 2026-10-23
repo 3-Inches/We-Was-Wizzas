@@ -1,5 +1,6 @@
 import { ARTS, ART_NAMES } from '../../data';
 import { POOL_SIZE, TARGETS_INCOME, mechanicOf, miracleMultiplierOf } from '../../engine/covenantRules';
+import { BUDGET_KINDS, SPARE_LABS, STARTING_RESERVE, VIS_STOCKS } from '../../engine/covenant';
 import type { Covenant, CovenantHookBoon } from '../../engine/types';
 import { uid } from '../../util/id';
 import { Field, Meter, Stepper } from '../kit';
@@ -12,6 +13,9 @@ export function removeResources(c: Covenant, uids: Set<string>) {
   c.items = c.items.filter((x) => !uids.has(x.uid));
   c.specialists = c.specialists.filter((x) => !uids.has(x.uid));
   c.labs = c.labs.filter((x) => !uids.has(x.uid));
+  if (uids.has(VIS_STOCKS)) (c.visStocks = []), (c.startingVisStocks = []);
+  if (uids.has(STARTING_RESERVE)) c.finances.startingReserve = 0;
+  if (uids.has(SPARE_LABS)) c.spareLabs = 0;
   for (const h of c.hooksBoons) if (h.resources) h.resources = h.resources.filter((u) => !uids.has(u));
 }
 
@@ -150,6 +154,19 @@ export function HookMechanics({ hb, cov, update, dc }: Omit<CovTabProps, 'data'>
         {POOL_SIZE} Build Points of the covenant's resources, paid from this {hb.kind} rather than the covenant's own Build Points. {what[m]}
       </span>
       <Meter value={pool?.spent ?? 0} max={POOL_SIZE} label="Build Points used" />
+      <div className="row">
+        <span>Set aside for:</span>
+        {BUDGET_KINDS.map((k) => (
+          <label key={k.id} className="inline" title="Quick build's fill-out spends this pool on these first, and ties what it buys to it">
+            <input
+              type="checkbox"
+              checked={!!hb.earmark?.includes(k.id)}
+              onChange={(e) => edit((h) => void (h.earmark = e.target.checked ? [...(h.earmark ?? []), k.id] : (h.earmark ?? []).filter((x) => x !== k.id)))}
+            />{' '}
+            {k.label}
+          </label>
+        ))}
+      </div>
       <details>
         <summary>Choose the resources ({mine.size})</summary>
         <div className="scroll-y" style={{ maxHeight: 240 }}>
@@ -158,7 +175,8 @@ export function HookMechanics({ hb, cov, update, dc }: Omit<CovTabProps, 'data'>
               <input type="checkbox" checked={mine.has(l.ref!)} onChange={(e) => toggle(l.ref!, e.target.checked)} /> {l.category}: {l.label} ({l.fullCost ?? l.cost} BP)
             </label>
           ))}
-          {choices.length === 0 && <div className="muted">Buy books, vis sources, items, specialists or labs first.</div>}
+          {choices.length === 0 && <div className="muted">Buy books, vis, items, specialists and craftsmen, labs or a money reserve first, or set it aside above and let Quick build fill it.</div>}
+          <div className="muted">Grogs, servants and the other covenfolk at large cost no Build Points, so a pool cannot pay for them; specialists, teachers and craftsmen it can.</div>
         </div>
       </details>
       {m === 'flawed-resource' && (

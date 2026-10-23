@@ -3,6 +3,7 @@ import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type GameData,
 import type { DerivedCharacter } from '../../engine/character/derive';
 import { FREQUENCY, MATERIAL_BASE, SIZE_MULT, chargedItemCharges, investEffect, modifiedEffectLevel, openingCost, talismanCapacity } from '../../engine/enchant';
 import { labTotal, type AuraState, type LabContext } from '../../engine/magic';
+import { itemMagnitudes } from '../../engine/covenant';
 import type { EnchantedEffectRecord, EnchantedItem } from '../../engine/types';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
@@ -40,6 +41,12 @@ interface Props {
   title?: string;
   /** a closing note under the items */
   note?: ReactNode;
+  /** plan the season's work on an item as a lab project (a magus's own items) */
+  onPlan?: (kind: 'open' | 'instill', itemUid: string, effectUid?: string) => void;
+  /** install an item in the magus's lab, as a lab Virtue it gives (Covenants, Magic Items for Laboratories) */
+  onInstall?: (item: EnchantedItem) => void;
+  /** the lab the item is installed in, if it is */
+  installedIn?: (item: EnchantedItem) => string | undefined;
 }
 
 export default function ItemsEditor(props: Props) {
@@ -148,6 +155,28 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
                 <Stepper value={it.charges ?? 0} min={0} width={40} onChange={(v) => set((x) => void (x.charges = v))} />
               </Field>
             )}
+            {props.onPlan && (it.kind === 'invested' || isTalisman) && it.openedPawns < maxPawns && (
+              <button className="small" onClick={() => props.onPlan!('open', it.uid)} title="A season of lab work and the Vim vis of its material and size">
+                Plan preparing it ›
+              </button>
+            )}
+          </div>
+          <div className="row small">
+            <Field label="At work for the covenant" hint={`Covenants, Cost Saving: for each magnitude of its working effects (${itemMagnitudes(it)})`}>
+              <select value={it.serves ?? ''} onChange={(e) => set((x) => void (x.serves = (e.target.value || undefined) as EnchantedItem['serves']))}>
+                <option value="">— no —</option>
+                <option value="servants">in place of a servant</option>
+                <option value="pounds">a pound saved a year (a laborer's or craftsman's work)</option>
+              </select>
+            </Field>
+            {props.onInstall &&
+              (props.installedIn?.(it) ? (
+                <span className="muted">Installed in {props.installedIn(it)}: set what it gives on the covenant&apos;s Labs tab.</span>
+              ) : (
+                <button className="small" onClick={() => props.onInstall!(it)} title="Covenants: an item for the lab gives a lab Virtue it duplicates, or a Specialization point per 10 levels or a Characteristic point per 20">
+                  Install in my lab ›
+                </button>
+              ))}
           </div>
           <Field label="Shape & Material bonuses">
             <div className="row">
@@ -209,10 +238,14 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
           )}
           <h4>Effects</h4>
           {it.effects.map((e) => (
-            <EffectEditor key={e.uid} item={it} effect={e} set={set} d={d} aura={props.aura} lab={props.lab} talisman={isTalisman} weakMagic={weakMagic} smBonuses={smBonuses} />
+            <EffectEditor key={e.uid} item={it} effect={e} set={set} d={d} aura={props.aura} lab={props.lab} talisman={isTalisman} weakMagic={weakMagic} smBonuses={smBonuses} onPlan={props.onPlan} />
           ))}
           {(it.kind !== 'lesser' || it.effects.length === 0) && (
-            <button className="small" onClick={() => set((x) => void x.effects.push(newEffect()))}>
+            <button
+              className="small"
+              onClick={() => set((x) => void x.effects.push({ ...newEffect(), pending: props.onPlan ? true : undefined }))}
+              title={props.onPlan ? 'A new effect is designed here and works once a lab project instills it' : undefined}
+            >
               + Effect
             </button>
           )}
@@ -228,6 +261,7 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
 function EffectEditor(props: {
   item: EnchantedItem;
   effect: EnchantedEffectRecord;
+  onPlan?: Props['onPlan'];
   set: (fn: (x: EnchantedItem) => void) => void;
   d?: DerivedCharacter;
   aura?: AuraState;
@@ -285,6 +319,19 @@ function EffectEditor(props: {
             {r} ✕
           </span>
         ))}
+        <select
+          value={e.pending ? 'pending' : 'working'}
+          onChange={(ev) => upd((x) => void (x.pending = ev.target.value === 'pending' || undefined))}
+          title="An effect works once it is instilled; one made before play, or bought, can simply be working"
+        >
+          <option value="working">working</option>
+          <option value="pending">not yet instilled</option>
+        </select>
+        {props.onPlan && e.pending && (
+          <button className="small" onClick={() => props.onPlan!('instill', item.uid, e.uid)}>
+            Plan instilling ›
+          </button>
+        )}
         <button className="small ghost" onClick={() => props.set((it) => void (it.effects = it.effects.filter((y) => y.uid !== e.uid)))}>
           ✕
         </button>

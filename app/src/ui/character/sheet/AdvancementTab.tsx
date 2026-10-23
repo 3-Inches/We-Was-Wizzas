@@ -13,14 +13,17 @@ import { Card, Field, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
 import { TwilightCard } from './Twilight';
+import { useWorkProject } from './LabProjects';
+import { planProject, visShort } from '../../../engine/projects';
 import { MysteriesCard } from './MysteriesCard';
 import { GuildCard } from './GuildCard';
 import { WritingCard } from './Writing';
 import { WorkshopCard } from './WorkshopCard';
-import { useSagaCharacters } from '../../../store/hooks';
+import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
+import { characterContext } from '../../../engine/context';
 import { deriveCharacter } from '../../../engine/character/derive';
 
-type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'other';
+type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'lab' | 'other';
 
 const KIND_LABEL: Record<Kind, string> = {
   summa: 'Read a summa',
@@ -31,16 +34,20 @@ const KIND_LABEL: Record<Kind, string> = {
   exposure: 'Exposure (while working)',
   adventure: 'Adventure experience',
   vis: 'Study raw vis',
+  lab: 'Lab work on a project',
   other: 'Other activity (no xp)',
 };
 
 const ACTIVITY: Record<Kind, SeasonLogEntry['activity']> = {
-  summa: 'study-book', tractatus: 'study-book', teacher: 'taught', training: 'trained', practice: 'practice', exposure: 'exposure', adventure: 'adventure', vis: 'study-vis', other: 'other',
+  summa: 'study-book', tractatus: 'study-book', teacher: 'taught', training: 'trained', practice: 'practice', exposure: 'exposure', adventure: 'adventure', vis: 'study-vis', lab: 'other', other: 'other',
 };
 
 export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, saga, ctx } = ed;
   const updateCovenant = useStore((s) => s.updateCovenant);
+  const workSeason = useWorkProject(ed);
+  const [projectUid, setProjectUid] = useState('');
+  const [labLines, setLabLines] = useState<string[]>([]);
   const [kind, setKind] = useState<Kind>('summa');
   const [target0, setTarget] = useState<string>('art:Cr');
   const [quality, setQuality] = useState(10);
@@ -53,6 +60,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [teacherId, setTeacherId] = useState('');
   const [labTeaching, setLabTeaching] = useState(0);
   const sagaChars = useSagaCharacters(c?.sagaId);
+  const sagaCovs = useSagaCovenants(c?.sagaId);
+  // the teacher's own lab, for its Teaching Specialization (Covenants: teaching done in the lab)
+  const [teacherLab, setTeacherLab] = useState<{ name: string; teaching: number } | null>(null);
   const [visDie, setVisDie] = useState<number | null>(null);
   const [visBotch, setVisBotch] = useState(0);
   const [summary, setSummary] = useState('');
@@ -96,7 +106,10 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
       return;
     }
     const t = sagaChars.find((x) => x.id === id);
+    setTeacherLab(null);
     if (!t) return;
+    const tLab = characterContext(t, sagaCovs, data).lab;
+    if (tLab?.specializations.Teaching) setTeacherLab({ name: tLab.lab.name, teaching: Math.min(3, tLab.specializations.Teaching) });
     const td = deriveCharacter(t, data, saga.houseRules);
     setCom(td.characteristics.Com.value);
     setTeaching(td.abilities.find((a) => a.abilityId === 'teaching')?.score ?? 0);
@@ -138,7 +151,16 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const visPawns = art ? visForStudy(d.arts[art].score) : 0;
   const tractatusRead = kind === 'tractatus' && bookUid && library.find((b) => b.uid === bookUid)?.readBy?.includes(c.id);
 
+  const openProjects = (c.projects ?? []).filter((p) => !p.done);
+  const project = openProjects.find((p) => p.uid === projectUid) ?? openProjects[0];
+  const plan0 = kind === 'lab' && project ? planProject(project, c, d, ctx, { subject: sagaChars.find((x) => x.id === project.subjectId), data }) : undefined;
+  const short = plan0 && project ? visShort(project, c, ctx, plan0) : undefined;
+  const projectPlan = plan0 && short ? { ...plan0, problems: [...plan0.problems, short] } : plan0;
   const logSeason = () => {
+    if (kind === 'lab') {
+      if (project) setLabLines(workSeason(project));
+      return;
+    }
     const gains: Record<string, number> = {};
     if (res && res.xp > 0) gains[target] = res.xp;
     const linkedText = linked.filter((l) => l.xp > 0).map((l) => `${l.name} +${l.xp}`).join(', ');
@@ -263,14 +285,26 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 if (k === 'adventure') setQuality((q) => Math.min(q, 5));
               }}
             >
-              {(Object.keys(KIND_LABEL) as Kind[]).filter((k) => k !== 'vis' || canStudyArts || kind === 'vis').map((k) => (
+              {(Object.keys(KIND_LABEL) as Kind[]).filter((k) => (k !== 'vis' || canStudyArts || kind === 'vis') && (k !== 'lab' || d.isMagus)).map((k) => (
                 <option key={k} value={k}>
                   {KIND_LABEL[k]}
                 </option>
               ))}
             </select>
           </Field>
-          {kind !== 'other' && (
+          {kind === 'lab' && (
+            <Field label="Project" hint="Plan projects on the Lab, Items & Familiar tab">
+              <select value={project?.uid ?? ''} onChange={(e) => setProjectUid(e.target.value)}>
+                {openProjects.length === 0 && <option value="">— no project planned yet —</option>}
+                {openProjects.map((p) => (
+                  <option key={p.uid} value={p.uid}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          )}
+          {kind !== 'other' && kind !== 'lab' && (
             <Field label="Subject">
               <select value={target} onChange={(e) => setTarget(e.target.value)}>
                 {(d.isMagus || d.hasGift) && (
@@ -361,6 +395,11 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               {myLabTeaching > 0 && labTeaching !== Math.min(3, myLabTeaching) && (
                 <button className="small" onClick={() => setLabTeaching(Math.min(3, myLabTeaching))}>
                   In my lab (+{Math.min(3, myLabTeaching)})
+                </button>
+              )}
+              {teacherLab && labTeaching !== teacherLab.teaching && (
+                <button className="small" onClick={() => setLabTeaching(teacherLab.teaching)}>
+                  In {teacherLab.name} (+{teacherLab.teaching})
                 </button>
               )}
             </>
@@ -457,10 +496,25 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         )}
         <div className="row" style={{ marginTop: 8 }}>
           <input style={{ flex: 1 }} value={summary} placeholder="Summary for the log (optional)" onChange={(e) => setSummary(e.target.value)} />
-          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || visNotAllowed || (kind === 'vis' && visDie === null)}>
+          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || visNotAllowed || (kind === 'vis' && visDie === null) || (kind === 'lab' && (!project || !!projectPlan?.problems.length))}>
             Log season{res?.xp ? ` & add ${res.xp} xp` : ''}
           </button>
         </div>
+        {kind === 'lab' && projectPlan && (
+          <div className="small" style={{ marginTop: 4 }}>
+            <span className="muted">{projectPlan.summary}</span>{' '}
+            {projectPlan.problems.map((x) => (
+              <span key={x} className={/cannot be used for/.test(x) ? 'bad-text' : 'warn-text'}>
+                {x}{' '}
+              </span>
+            ))}
+          </div>
+        )}
+        {kind === 'lab' && labLines.length > 0 && (
+          <div className="small list-row" style={{ whiteSpace: 'pre-wrap', marginTop: 4 }}>
+            {labLines.join('\n')}
+          </div>
+        )}
         <p className="small muted" style={{ marginBottom: 0 }}>
           Summae raise a score only up to their level; teachers only up to their own score. Tractatus quality is Com + 6; a character can read each tractatus once. Books, vis and
           teachers can be linked from your covenant (Covenant → Library).

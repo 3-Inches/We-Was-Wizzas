@@ -21,8 +21,10 @@ export interface LabAltDef {
   label: string;
   characteristics: CharMods;
   specializations?: Record<string, number>;
-  /** lab activities that cannot be done in the lab with this version (Missing Equipment) */
+  /** lab activities that cannot be done in the lab with this version (Missing Equipment, Restriction) */
   rulesOut?: string[];
+  /** Arts whose Lab Totals are halved (Missing Ingredients) */
+  halves?: string[];
 }
 
 /** A condition the player switches on or off; its effects apply only while it is on. */
@@ -70,6 +72,24 @@ const PAIRED_GAPS = ['Experimentation', 'Familiar', 'Longevity Rituals', 'Teachi
 const MISSING_EQUIPMENT_ALTS: LabAltDef[] = [
   ...SINGLE_GAPS.map((a) => ({ id: a, label: `no ${a}`, characteristics: { Upkeep: -1 }, rulesOut: [a] })),
   ...PAIRED_GAPS.flatMap((a, i) => PAIRED_GAPS.slice(i + 1).map((b) => ({ id: `${a}+${b}`, label: `no ${a} and no ${b}`, characteristics: { Upkeep: -1 }, rulesOut: [a, b] }))),
+];
+
+// Restriction: "the lab either forbids certain activities (one category of lab activity cannot be
+// performed), or otherwise tiresome or expensive rituals or practices are required" (Covenants).
+const ACTIVITIES = [...SINGLE_GAPS, ...PAIRED_GAPS];
+const RESTRICTION_ALTS: LabAltDef[] = [
+  { id: 'gq', label: 'tiresome practices: −1 General Quality', characteristics: { 'General Quality': -1 } },
+  { id: 'upkeep', label: 'expensive practices: +2 Upkeep', characteristics: { Upkeep: 2 } },
+  ...ACTIVITIES.map((a) => ({ id: `forbids ${a}`, label: `forbids ${a}: −1 General Quality`, characteristics: { 'General Quality': -1 }, rulesOut: [a] })),
+];
+
+// Missing Ingredients: "lab work involving either one specific Technique or two specific Forms is
+// severely hampered — relevant Lab Totals are halved" (Covenants).
+const TECHNIQUE_IDS = ['Cr', 'In', 'Mu', 'Pe', 'Re'];
+const FORM_IDS = ['An', 'Aq', 'Au', 'Co', 'He', 'Ig', 'Im', 'Me', 'Te', 'Vi'];
+const MISSING_INGREDIENT_ALTS: LabAltDef[] = [
+  ...TECHNIQUE_IDS.map((t) => ({ id: t, label: `no ingredients for ${t}`, characteristics: { Upkeep: -1 }, halves: [t] })),
+  ...FORM_IDS.flatMap((a, i) => FORM_IDS.slice(i + 1).map((b) => ({ id: `${a}+${b}`, label: `no ingredients for ${a} and ${b}`, characteristics: { Upkeep: -1 }, halves: [a, b] }))),
 ];
 
 const INT = (label: string): LabInputDef => ({ key: 'int', label, min: -5, max: 10, def: 0 });
@@ -125,10 +145,13 @@ export const LAB_OPTIONS: Record<string, LabOptionDef> = {
     ],
   },
   'restriction-flaw': {
-    alts: [
-      { id: 'gq', label: '−1 General Quality', characteristics: { 'General Quality': -1 } },
-      { id: 'upkeep', label: '+2 Upkeep', characteristics: { Upkeep: 2 } },
-    ],
+    alts: RESTRICTION_ALTS,
+    note: 'Choose what it restricts: a kind of lab work it forbids, or the tiresome or expensive practices it demands.',
+  },
+  'missing-ingredients-flaw': {
+    alts: MISSING_INGREDIENT_ALTS,
+    altRequired: true,
+    note: 'Lab Totals with the chosen Technique, or with either of the two chosen Forms, are halved.',
   },
 
   'missing-equipment-flaw': {

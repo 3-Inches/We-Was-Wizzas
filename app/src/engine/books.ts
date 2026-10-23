@@ -2,8 +2,8 @@
 // of Books). Core rules: a summa's Quality is the author's Communication + 6 + Virtue bonuses, plus
 // a bonus for writing it below half her score (+1 per Level for an Art, +3 for an Ability, never
 // more than the base Quality); a tractatus is Communication + 6 + Virtues. The extended rules replace
-// the 6 with 3 plus skilled artisans and resonant materials. Lab Specializations do not apply:
-// Texts helps with laboratory texts, not books.
+// the 6 with 3 plus skilled artisans and resonant materials. A lab's Texts Specialization adds 1 to
+// the author's language for every full 3 points when the book is written in the lab (Covenants).
 
 import type { DerivedCharacter } from './character/derive';
 
@@ -17,6 +17,8 @@ export interface BookPlan {
   com: number;
   /** the author's score in the language the book is written in */
   language: number;
+  /** the Texts Specialization of the lab it is written in */
+  labTexts?: number;
   /** Covenants' extended rules: skilled scribe, binder and illuminator (Profession 6+), resonant materials (0–3) */
   extended?: { scribe: boolean; binder: boolean; illuminator: boolean; resonance: number };
 }
@@ -66,7 +68,9 @@ export function planBook(d: DerivedCharacter, p: BookPlan): BookResult {
   parts.push(...virtues);
   const base = parts.reduce((s, x) => s + x.value, 0);
   const maxLevel = Math.floor(p.score / 2);
-  const perSeason = p.com + p.language;
+  const textsBonus = Math.floor(Math.max(0, p.labTexts ?? 0) / 3);
+  const perSeason = p.com + p.language + textsBonus;
+  if (textsBonus) notes.push(`Written in a lab with Texts +${p.labTexts}: +${textsBonus} to the language for writing (Covenants).`);
   if (p.kind === 'tractatus') {
     return {
       quality: base, parts, maxLevel, level: 0, perSeason, needed: 0, seasons: 1,
@@ -89,6 +93,6 @@ export function planBook(d: DerivedCharacter, p: BookPlan): BookResult {
   const needed = p.isArt ? level : 5 * level;
   const seasons = perSeason > 0 ? Math.ceil(needed / perSeason) : Infinity;
   if (perSeason <= 0) problems.push('Communication + Language is 0 or less: the book can never be finished.');
-  notes.push(`Each season of writing adds Communication + Language = ${perSeason} points; the book needs ${needed} (${p.isArt ? 'its Level' : 'five times its Level'}).`);
+  notes.push(`Each season of writing adds Communication + Language${textsBonus ? ' (with the lab)' : ''} = ${perSeason} points; the book needs ${needed} (${p.isArt ? 'its Level' : 'five times its Level'}).`);
   return { quality, parts, maxLevel, level, perSeason, needed, seasons, tractatusLimit: Math.ceil(p.score / (p.isArt ? 5 : 2)), problems, notes };
 }

@@ -314,10 +314,16 @@ function LabEntryRow({ lab, entry: v, idx, set, data }: { lab: Laboratory; entry
           <BookBadge book={def.source.book} line={def.source.line} />
         </div>
       )}
+      {v.fromItem && (
+        <div className="small muted">
+          Given by the enchanted item {v.note ? <b>{v.note}</b> : ''}: it takes no space. An item that duplicates a lab Virtue gives that Virtue; otherwise each 10 levels of its effects give a
+          Specialization point, or each 20 levels a Characteristic point (Covenants, Magic Items for Laboratories).
+        </div>
+      )}
       {opt?.note && <div className="small muted">{opt.note}</div>}
       {opt?.alts && (
         <div className="row small">
-          {opt.altRequired ? 'Rules out:' : 'Version:'}
+          {opt.altRequired ? (opt.alts.some((a) => a.halves) ? 'Lacks:' : 'Rules out:') : 'Version:'}
           <select value={v.alt ?? (opt.altRequired ? '' : opt.alts[0].id)} onChange={(e) => edit((x) => void (x.alt = e.target.value || undefined))}>
             {opt.altRequired && <option value="">— choose —</option>}
             {opt.alts.map((a) => (

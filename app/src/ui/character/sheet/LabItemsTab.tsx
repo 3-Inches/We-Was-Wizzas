@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
-import { CORD_COST, cordPointsCost, familiarBindingLevel, familiarBindingVis, investEffect, longevityBonus, longevityVisCost, visLimit } from '../../../engine/enchant';
+import { bestCords, cordPointsCost, familiarBindingLevel, longevityBonus, longevityVisCost, visLimit } from '../../../engine/enchant';
 import { labTotal } from '../../../engine/magic';
-import type { Familiar } from '../../../engine/types';
-import { Card, Field, Stepper, Total, signed, HowItWorks } from '../../kit';
-import ItemsEditor, { characterTalismanCapacity } from '../../items/ItemEditor';
+import { newProject } from '../../../engine/projects';
+import { generateFamiliar } from '../../../engine/generate/spellsAndFamiliars';
+import { newSeed, seeded } from '../../../engine/generate/random';
+import type { Familiar, LabProject } from '../../../engine/types';
+import { Card, Field, Stepper, Total, signed } from '../../kit';
+import ItemsEditor, { characterTalismanCapacity, newEffect } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
-import { uid } from '../../../util/id';
 import { labContextOf } from '../../../engine/lab';
 import { LabProjects } from './LabProjects';
 import { OriginalResearch } from './OriginalResearch';
 import { describeStress, stressDie } from '../../../engine/dice';
-import { experimentBotchDice, researchRiskLimit, rollExperiment } from '../../../engine/experiment';
+import { useStore } from '../../../store/store';
+import { uid } from '../../../util/id';
 
 const newFamiliar = (): Familiar => ({
   name: '', species: '', might: 5, size: -2, realm: 'Magic', bindingTechnique: 'Re', bindingForm: 'An', bindingLabTotal: 0, golden: 0, silver: 0, bronze: 0, pawnsSpent: 0, powers: [],
@@ -20,21 +23,12 @@ const newFamiliar = (): Familiar => ({
 
 export default function LabItemsTab({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, ctx, saga } = ed;
-  const [extraVis, setExtraVis] = useState(0);
-  const [ltOverride, setLtOverride] = useState<number | null>(null);
+  const updateCovenant = useStore((s) => s.updateCovenant);
   if (!c || !d || !saga) return null;
   const magus = d.isMagus;
   const lab = ctx.lab;
   const labCtx = lab ? labContextOf(lab) : undefined;
   const mt = d.abilities.find((a) => a.abilityId === d.theoryAbility)?.total ?? 0;
-
-  const lr = labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'longevity', aura: ctx.aura, lab: labCtx, forSelfLongevity: true });
-  const lrTotal = (ltOverride ?? lr.total) + extraVis;
-  const fam = c.familiar;
-  const famLT = fam ? labTotal(d, { technique: fam.bindingTechnique, form: fam.bindingForm }, { activity: 'familiar', aura: ctx.aura, lab: labCtx }) : null;
-  const bindLevel = fam ? familiarBindingLevel(fam.might, fam.size) : 0;
-  const cordCost = fam ? cordPointsCost(fam.golden, fam.silver, fam.bronze) : 0;
-  const setFam = (fn: (f: Familiar) => void) => update((x) => { if (x.familiar) fn(x.familiar); });
 
   return (
     <div className="stack">
@@ -62,10 +56,24 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
                 </div>
               )}
               {lab.impossible.length > 0 && (
-                <div className="small" style={{ marginTop: 6 }}>
-                  <span className="badge bad">Missing Equipment</span> No {lab.impossible.join(', ')} in this lab.
+                <div className="small bad-text" style={{ marginTop: 6 }}>
+                  This lab cannot be used for {lab.impossible.join(', ')} (its Flaws rule {lab.impossible.length > 1 ? 'them' : 'it'} out).
                 </div>
               )}
+              {lab.halved.length > 0 && <div className="small bad-text">Missing Ingredients: Lab Totals with {lab.halved.map((a) => ART_NAMES[a as Technique]).join(' or ')} are halved.</div>}
+              <ul className="small muted" style={{ margin: '6px 0 0', paddingLeft: 18 }}>
+                <li>General Quality {signed(lab.characteristics['General Quality'])} and the Specializations go on every Lab Total they fit (not teaching or copying).</li>
+                <li>
+                  Safety {signed(lab.characteristics.Safety)}: {lab.characteristics.Safety >= 0 ? `takes ${lab.characteristics.Safety} off the botch dice of experiments and vis study` : `an unsafe lab: each season of work may bring an accident (rolled when the season is worked), and ${-lab.characteristics.Safety} more botch dice`}.
+                </li>
+                {lab.characteristics.Warping > 0 && <li>Warping {lab.characteristics.Warping}: each season&apos;s work may come out warped (rolled when the season is worked).</li>}
+                {lab.characteristics.Health !== 0 && (
+                  <li>
+                    Health {signed(lab.characteristics.Health)}: added to wound recovery rolls, and {signed(Math.floor(lab.characteristics.Health / 2))} to Living Conditions for aging.
+                  </li>
+                )}
+                {lab.characteristics.Aesthetics !== 0 && <li>Aesthetics {signed(lab.characteristics.Aesthetics)}: {5 * Math.abs(lab.characteristics.Aesthetics)} experience points toward a Reputation for the lab.</li>}
+              </ul>
             </div>
           ) : (
             <p className="small muted" style={{ margin: 0 }}>
@@ -88,172 +96,241 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
         talismanUid={c.talismanUid}
         onSetTalisman={magus ? (id) => update((x) => void (x.talismanUid = id)) : undefined}
         title={magus ? `Enchanted items${c.talismanUid ? '' : ' (no talisman yet)'}` : 'Magic items & charms'}
+        onPlan={magus ? (kind, itemUid, effectUid) => update((x) => void (x.projects = [...(x.projects ?? []), { ...newProject(kind), itemUid, effectUid, name: kind === 'open' ? `Prepare ${x.items.find((i) => i.uid === itemUid)?.name ?? 'the item'}` : `Instill ${x.items.find((i) => i.uid === itemUid)?.effects.find((e) => e.uid === effectUid)?.name ?? 'an effect'} in ${x.items.find((i) => i.uid === itemUid)?.name ?? 'the item'}` }])) : undefined}
+        onInstall={magus && lab && ctx.covenant ? (item) => updateCovenant(ctx.covenant!.id, (x) => void x.labs.find((l) => l.uid === lab.lab.uid)?.virtues.push({ uid: uid(), defId: 'magic-item', note: item.name, fromItem: item.uid })) : undefined}
+        installedIn={(item) => (lab?.lab.virtues.some((v) => v.fromItem === item.uid) ? lab.lab.name : undefined)}
         note={magus ? `Talisman capacity: up to ${characterTalismanCapacity(d)} pawns of Vim vis (highest Technique + highest Form). Instilling effects into your own talisman gives +5 to the Lab Total.` : undefined}
       />
 
       {magus && <LabProjects ed={ed} />}
-      {magus && <Experimentation ed={ed} magicTheory={mt} />}
       {magus && <OriginalResearch ed={ed} magicTheory={mt} />}
 
-      <Card title="Longevity Ritual">
-        <div className="row">
-          <Field label="Current ritual bonus">
-            <Stepper
-              value={c.longevity?.bonus ?? 0}
-              min={0}
-              width={40}
-              onChange={(v) => update((x) => { if (!v) x.longevity = undefined; else x.longevity = { ...(x.longevity ?? { labTotal: 0, extraVis: 0 }), bonus: v }; })}
-            />
-          </Field>
-          {c.longevity && (
-            <span className="small muted">
-              {c.longevity.createdBy ? `by ${c.longevity.createdBy}` : ''} {c.longevity.createdYear ? `in ${c.longevity.createdYear}` : ''} (Lab Total {c.longevity.labTotal}
-              {c.longevity.extraVis ? ` incl. ${c.longevity.extraVis} extra vis` : ''})
+      <LongevityCard ed={ed} />
+
+      {magus && <FamiliarCard ed={ed} />}
+    </div>
+  );
+}
+
+/** Add a lab project of this kind (or open the one already planned), so the season's work is planned on the Lab projects card. */
+function usePlan(ed: CharEditor) {
+  return (kind: LabProject['kind'], fill?: (p: LabProject) => void) =>
+    ed.update((x) => {
+      const p = newProject(kind);
+      fill?.(p);
+      x.projects = [...(x.projects ?? []), p];
+    });
+}
+
+/** The ritual working on the character, and planning a new one as a season's lab work (DE, Longevity Rituals). */
+function LongevityCard({ ed }: { ed: CharEditor }) {
+  const { c, d, ctx, update } = ed;
+  const plan = usePlan(ed);
+  if (!c || !d) return null;
+  const magus = d.isMagus;
+  const lab = ctx.lab;
+  const forbidden = !!lab?.impossible.includes('Longevity Rituals');
+  const lr = labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'longevity', aura: ctx.aura, lab: lab ? labContextOf(lab) : undefined, forSelfLongevity: true });
+  const planned = (c.projects ?? []).find((p) => p.kind === 'longevity' && !p.done);
+  return (
+    <Card title="Longevity Ritual">
+      <div className="row">
+        <Field label="Ritual bonus now" hint="A ritual made before play, or by another magus, can be entered here">
+          <Stepper
+            value={c.longevity?.bonus ?? 0}
+            min={0}
+            width={40}
+            onChange={(v) => update((x) => { if (!v) x.longevity = undefined; else x.longevity = { ...(x.longevity ?? { labTotal: 0, extraVis: 0 }), bonus: v }; })}
+          />
+        </Field>
+        {c.longevity && (
+          <span className="small muted">
+            {c.longevity.createdBy ? `by ${c.longevity.createdBy}` : ''} {c.longevity.createdYear ? `in ${c.longevity.createdYear}` : ''} (Lab Total {c.longevity.labTotal}
+            {c.longevity.extraVis ? ` incl. ${c.longevity.extraVis} extra vis` : ''}). It ends when the subject suffers an aging crisis.
+          </span>
+        )}
+      </div>
+      {magus && (
+        <div className="row" style={{ marginTop: 6 }}>
+          <div className="stat">
+            <span className="v">
+              <Total value={lr.total} parts={lr.parts} notes={lr.notes} label="Creo Corpus Lab Total (longevity)" />
             </span>
+            <span className="l">CrCo Lab Total</span>
+          </div>
+          <div className="stat">
+            <span className="v">−{longevityBonus(lr.total, 0, false)}</span>
+            <span className="l">For yourself</span>
+          </div>
+          <div className="stat">
+            <span className="v">{longevityVisCost(c.age, 0)}</span>
+            <span className="l">Pawns (Cr/Co/Vi)</span>
+          </div>
+          {forbidden ? (
+            <span className="bad-text small">{lab!.lab.name} cannot be used for Longevity Rituals: its Flaws rule them out.</span>
+          ) : planned ? (
+            <span className="small">Planned on the Lab projects card: {planned.name}.</span>
+          ) : (
+            <button onClick={() => plan('longevity', (p) => void (p.name = 'Longevity Ritual for yourself'))} title="A season of lab work: plan it on the Lab projects card, for yourself or someone else">
+              Plan a Longevity Ritual ›
+            </button>
           )}
         </div>
-        {magus && (
-          <>
-            <h4>Create your own</h4>
-            <div className="row">
-              <div className="stat">
-                <span className="v">
-                  <Total value={lr.total} parts={lr.parts} notes={lr.notes} label="Creo Corpus Lab Total (longevity)" />
-                </span>
-                <span className="l">CrCo Lab Total</span>
-              </div>
-              <Field label="Override Lab Total (e.g. with assistants)">
-                <div className="row tight">
-                  <Stepper value={ltOverride ?? lr.total} min={0} width={46} onChange={setLtOverride} />
-                  {ltOverride !== null && (
-                    <button className="small ghost" onClick={() => setLtOverride(null)}>
-                      auto
-                    </button>
-                  )}
-                </div>
-              </Field>
-              <Field label="Extra vis (+1 Lab Total each)">
-                <Stepper value={extraVis} min={0} width={40} onChange={setExtraVis} />
-              </Field>
-              <div className="stat">
-                <span className="v">−{longevityBonus(lrTotal - extraVis, extraVis, false)}</span>
-                <span className="l">Aging roll bonus</span>
-              </div>
-              <div className="stat">
-                <span className="v">{longevityVisCost(c.age, extraVis)}</span>
-                <span className="l">Pawns (Cr/Co/Vi)</span>
-              </div>
-              <button
-                className="primary"
-                disabled={longevityVisCost(c.age, extraVis) > visLimit(mt)}
-                title={longevityVisCost(c.age, extraVis) > visLimit(mt) ? 'Needs more vis than your Magic Theory × 2 allows in one season' : ''}
-                onClick={() =>
-                  update((x) => {
-                    x.longevity = { labTotal: lrTotal, bonus: longevityBonus(lrTotal - extraVis, extraVis, false), extraVis, createdYear: saga.currentYear, createdBy: x.name };
-                    x.seasonLog.push({ uid: uid(), year: saga.currentYear, season: saga.currentSeason, activity: 'longevity-ritual', summary: `Longevity Ritual (Lab Total ${lrTotal}, −${longevityBonus(lrTotal - extraVis, extraVis, false)})`, gains: {}, applied: true });
-                  })
-                }
-              >
-                Perform ritual (one season)
-              </button>
-            </div>
-            <p className="small muted">
-              +1 per 5 points (or fraction) of Lab Total; 1 pawn per 5 years of age. For a mundane subject: +1 per 10 points and a Lab Total of at least 30 (DE p.261). The ritual ends when
-              the subject suffers an aging crisis.
-            </p>
-          </>
-        )}
-      </Card>
-
-      {magus && (
-        <Card title="Familiar" actions={!fam ? <button className="small" onClick={() => update((x) => void (x.familiar = newFamiliar()))}>+ Familiar</button> : <button className="small ghost danger" onClick={() => window.confirm('Remove the familiar?') && update((x) => void (x.familiar = undefined))}>Remove</button>}>
-          {!fam && <div className="small muted">No familiar. A magus binds a familiar with any appropriate Technique + Form (DE p.265–267).</div>}
-          {fam && famLT && (
-            <div className="stack">
-              <div className="row">
-                <Field label="Name">
-                  <input value={fam.name} onChange={(e) => setFam((f) => void (f.name = e.target.value))} />
-                </Field>
-                <Field label="Species">
-                  <input value={fam.species} onChange={(e) => setFam((f) => void (f.species = e.target.value))} />
-                </Field>
-                <Field label="Magic Might">
-                  <Stepper value={fam.might} min={0} width={40} onChange={(v) => setFam((f) => void (f.might = v))} />
-                </Field>
-                <Field label="Size">
-                  <Stepper value={fam.size} min={-10} max={10} width={36} onChange={(v) => setFam((f) => void (f.size = v))} />
-                </Field>
-              </div>
-              <div className="row">
-                <Field label="Binding Arts">
-                  <div className="row tight">
-                    <select value={fam.bindingTechnique} onChange={(e) => setFam((f) => void (f.bindingTechnique = e.target.value as Technique))}>
-                      {TECHNIQUES.map((t) => (
-                        <option key={t} value={t}>
-                          {ART_NAMES[t]}
-                        </option>
-                      ))}
-                    </select>
-                    <select value={fam.bindingForm} onChange={(e) => setFam((f) => void (f.bindingForm = e.target.value as Form))}>
-                      {FORMS.map((f) => (
-                        <option key={f} value={f}>
-                          {ART_NAMES[f]}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </Field>
-                <div className="stat">
-                  <span className="v">
-                    <Total value={famLT.total} parts={famLT.parts} notes={famLT.notes} label="Familiar Lab Total" />
-                  </span>
-                  <span className="l">Lab Total now</span>
-                </div>
-                <div className="stat">
-                  <span className={`v ${famLT.total >= bindLevel ? 'good-text' : 'bad-text'}`}>{bindLevel}</span>
-                  <span className="l">Binding level</span>
-                </div>
-                <div className="stat">
-                  <span className="v">{familiarBindingVis(famLT.total)}</span>
-                  <span className="l">Pawns to bind</span>
-                </div>
-                <button
-                  disabled={famLT.total < bindLevel}
-                  onClick={() => setFam((f) => { f.bindingLabTotal = Math.max(f.bindingLabTotal, famLT.total); f.pawnsSpent = Math.max(f.pawnsSpent, familiarBindingVis(famLT.total)); })}
-                  title="Record the binding (or strengthening) with the current Lab Total"
-                >
-                  {fam.bindingLabTotal ? 'Strengthen bond' : 'Bind'} (one season)
-                </button>
-              </div>
-              <div className="row">
-                <Field label="Bond Lab Total (cord points)">
-                  <Stepper value={fam.bindingLabTotal} min={0} width={46} onChange={(v) => setFam((f) => void (f.bindingLabTotal = v))} />
-                </Field>
-                {(['golden', 'silver', 'bronze'] as const).map((k) => (
-                  <Field key={k} label={`${k[0].toUpperCase() + k.slice(1)} cord (${CORD_COST[fam[k]]} pts)`}>
-                    <Stepper value={fam[k]} min={0} max={5} width={30} onChange={(v) => setFam((f) => void (f[k] = v))} />
-                  </Field>
-                ))}
-                <span className={cordCost > fam.bindingLabTotal ? 'bad-text' : 'small'}>
-                  Cords cost {cordCost} / {fam.bindingLabTotal}
-                </span>
-              </div>
-              <p className="small muted" style={{ margin: 0 }}>
-                Golden: one fewer botch die per point when using magic, never down to none (taken off on the Magic tab and in Experimentation). Silver: a bonus to Personality rolls and to
-                resisting mental influence, natural or supernatural. Bronze: a bonus to Soak (added: Soak {signed(d.soak)}), healing (added to recovery rolls), deprivation and aging rolls
-                (added); not Fatigue. Cords cost 5/15/30/50/75 points; the total can&apos;t exceed the Lab Total. Strengthening uses the same Arts and costs one pawn per 5 points of the new
-                Lab Total minus pawns already spent ({fam.pawnsSpent}).
-              </p>
-              <SilverRescue silver={fam.silver} name={fam.name || 'The familiar'} />
-              <BondPower ed={ed} fam={fam} />
-              <Field label="Powers, bond effects & notes">
-                <textarea rows={3} value={fam.notes ?? ''} onChange={(e) => setFam((f) => void (f.notes = e.target.value))} />
-              </Field>
-            </div>
-          )}
-        </Card>
       )}
-    </div>
+      <p className="small muted" style={{ marginBottom: 0 }}>
+        −1 on aging rolls per 5 points (or part) of the Creo Corpus Lab Total, a pawn of Creo, Corpus or Vim vis for every 5 years of age, a season&apos;s work; extra pawns add to
+        the Lab Total. For a mundane, a point per 10, and the Lab Total must be 30 (DE p.261).
+      </p>
+    </Card>
+  );
+}
+
+/** The familiar: who it is, its bond and cords once bound, and the binding, strengthening and powers planned as lab work (DE, Familiars). */
+function FamiliarCard({ ed }: { ed: CharEditor }) {
+  const { c, d, ctx, update } = ed;
+  const plan = usePlan(ed);
+  const [manual, setManual] = useState(false);
+  if (!c || !d) return null;
+  const fam = c.familiar;
+  const lab = ctx.lab;
+  const forbidden = !!lab?.impossible.includes('Familiar');
+  const famLT = fam ? labTotal(d, { technique: fam.bindingTechnique, form: fam.bindingForm }, { activity: 'familiar', aura: ctx.aura, lab: lab ? labContextOf(lab) : undefined }) : null;
+  const bindLevel = fam ? familiarBindingLevel(fam.might, fam.size) : 0;
+  const bound = !!fam && fam.bindingLabTotal > 0;
+  const setFam = (fn: (f: Familiar) => void) => update((x) => { if (x.familiar) fn(x.familiar); });
+  const open = (kind: LabProject['kind']) => (c.projects ?? []).find((p) => p.kind === kind && !p.done);
+  return (
+    <Card
+      title="Familiar"
+      actions={
+        !fam ? (
+          <span className="row tight">
+            <button className="small" onClick={() => update((x) => void (x.familiar = newFamiliar()))}>
+              + Familiar
+            </button>
+            <button
+              className="small"
+              title="A creature suited to your best Technique and Form, with its Might and Size (DE, Suggested Familiars by Art); bind it as a lab project"
+              onClick={() => update((x) => void (x.familiar = generateFamiliar(d, seeded(newSeed()), { bind: false, aura: ctx.aura, lab: lab ? labContextOf(lab) : undefined }).familiar))}
+            >
+              Suggest one
+            </button>
+          </span>
+        ) : (
+          <button className="small ghost danger" onClick={() => window.confirm('Remove the familiar?') && update((x) => void (x.familiar = undefined))}>
+            Remove
+          </button>
+        )
+      }
+    >
+      {!fam && <div className="small muted">No familiar. Befriend a creature with Magic Might, then bind it in the lab with any appropriate Technique + Form (DE p.265–267).</div>}
+      {fam && famLT && (
+        <div className="stack">
+          <div className="row">
+            <Field label="Name">
+              <input value={fam.name} onChange={(e) => setFam((f) => void (f.name = e.target.value))} />
+            </Field>
+            <Field label="Species">
+              <input value={fam.species} onChange={(e) => setFam((f) => void (f.species = e.target.value))} />
+            </Field>
+            <Field label="Magic Might">
+              <Stepper value={fam.might} min={0} width={40} onChange={(v) => setFam((f) => void (f.might = v))} />
+            </Field>
+            <Field label="Size">
+              <Stepper value={fam.size} min={-10} max={10} width={36} onChange={(v) => setFam((f) => void (f.size = v))} />
+            </Field>
+            <Field label="Binding Arts" hint={bound ? 'Strengthening uses the same Arts' : 'Any that suit the creature or its powers'}>
+              <div className="row tight">
+                <select value={fam.bindingTechnique} disabled={bound} onChange={(e) => setFam((f) => void (f.bindingTechnique = e.target.value as Technique))}>
+                  {TECHNIQUES.map((t) => (
+                    <option key={t} value={t}>
+                      {ART_NAMES[t]}
+                    </option>
+                  ))}
+                </select>
+                <select value={fam.bindingForm} disabled={bound} onChange={(e) => setFam((f) => void (f.bindingForm = e.target.value as Form))}>
+                  {FORMS.map((f) => (
+                    <option key={f} value={f}>
+                      {ART_NAMES[f]}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </Field>
+          </div>
+          <div className="row">
+            <div className="stat">
+              <span className="v">
+                <Total value={famLT.total} parts={famLT.parts} notes={famLT.notes} label="Familiar Lab Total" />
+              </span>
+              <span className="l">Lab Total now</span>
+            </div>
+            {!bound && (
+              <div className="stat">
+                <span className={`v ${famLT.total >= bindLevel ? 'good-text' : 'bad-text'}`}>{bindLevel}</span>
+                <span className="l">Binding level</span>
+              </div>
+            )}
+            {bound ? (
+              <>
+                <span className="badge good">bound</span>
+                <span className="small">
+                  Bond Lab Total {fam.bindingLabTotal}; golden {fam.golden}, silver {fam.silver}, bronze {fam.bronze} ({cordPointsCost(fam.golden, fam.silver, fam.bronze)} points); {fam.pawnsSpent} pawns spent.
+                </span>
+              </>
+            ) : (
+              <span className="small muted">Not yet bound: no cords, and none of the bond&apos;s benefits.</span>
+            )}
+            {forbidden ? (
+              <span className="bad-text small">{lab!.lab.name} cannot be used for familiar work: its Flaws rule it out.</span>
+            ) : !bound ? (
+              open('bind') ? (
+                <span className="small">Binding planned on the Lab projects card.</span>
+              ) : (
+                <button onClick={() => plan('bind', (p) => void ((p.name = `Bind ${fam.name || 'the familiar'}`), (p.cords = bestCords(famLT.total))))} title="A season's lab work; the cords start at the best the Lab Total buys">
+                  Plan the binding ›
+                </button>
+              )
+            ) : open('strengthen') ? (
+              <span className="small">Strengthening planned on the Lab projects card.</span>
+            ) : (
+              <button onClick={() => plan('strengthen', (p) => void ((p.name = 'Strengthen the familiar bond'), (p.cords = bestCords(famLT.total, fam))))} title="A season with the binding Arts: buy stronger cords with the new Lab Total">
+                Plan strengthening the bond ›
+              </button>
+            )}
+          </div>
+          <p className="small muted" style={{ margin: 0 }}>
+            Binding: a Lab Total of at least 25 + Might + 5 × Size, in one season, for a pawn of the binding Technique or Form per 5 points of the Lab Total; the cords (5/15/30/50/75
+            points for +1 to +5) are bought with the Lab Total. Strengthening: the same Arts, the new Lab Total, and a pawn per 5 points of it less the pawns already spent. Golden: one
+            fewer botch die when using magic (never none). Silver: Personality rolls and resisting mental influence. Bronze: Soak (now {signed(d.soak)}), healing, deprivation and aging.
+          </p>
+          <details open={manual} onToggle={(e) => setManual((e.target as HTMLDetailsElement).open)}>
+            <summary className="small">A bond made before play: enter it as it stands</summary>
+            <div className="row" style={{ marginTop: 6 }}>
+              <Field label="Bond Lab Total">
+                <Stepper value={fam.bindingLabTotal} min={0} width={46} onChange={(v) => setFam((f) => void (f.bindingLabTotal = v))} />
+              </Field>
+              <Field label="Pawns spent">
+                <Stepper value={fam.pawnsSpent} min={0} width={40} onChange={(v) => setFam((f) => void (f.pawnsSpent = v))} />
+              </Field>
+              {(['golden', 'silver', 'bronze'] as const).map((k) => (
+                <Field key={k} label={`${k[0].toUpperCase() + k.slice(1)} cord`}>
+                  <Stepper value={fam[k]} min={0} max={5} width={30} onChange={(v) => setFam((f) => void (f[k] = v))} />
+                </Field>
+              ))}
+              {cordPointsCost(fam.golden, fam.silver, fam.bronze) > fam.bindingLabTotal && (
+                <span className="bad-text small">The cords cost {cordPointsCost(fam.golden, fam.silver, fam.bronze)} points, more than the bond&apos;s Lab Total.</span>
+              )}
+            </div>
+          </details>
+          {bound && <SilverRescue silver={fam.silver} name={fam.name || 'The familiar'} />}
+          {bound && <BondPowers ed={ed} fam={fam} plan={plan} forbidden={forbidden} />}
+          <Field label="Notes">
+            <textarea rows={3} value={fam.notes ?? ''} onChange={(e) => setFam((f) => void (f.notes = e.target.value))} />
+          </Field>
+        </div>
+      )}
+    </Card>
   );
 }
 
@@ -276,131 +353,58 @@ function SilverRescue({ silver, name }: { silver: number; name: string }) {
 }
 
 /**
- * Empowering the bond (DE): investing a power in the familiar bond, as in an invested device, but with
- * no limit on powers, +5 to the Lab Total for an effect in the binding Technique or Form (+10 for both)
- * instead of the bonus from other powers, effects only on the magus or the familiar, and no Verditius bonus.
+ * Powers invested in the familiar bond (DE, Empowering the Bond): designed here, invested as a lab
+ * project. +5 to the Lab Total for an effect in the binding Technique or Form, +10 for both, instead
+ * of the bonus for other effects; effects only on the magus or the familiar; no Verditius bonus; no
+ * limit on their number, and their vis does not count toward the cords.
  */
-function BondPower({ ed, fam }: { ed: CharEditor; fam: Familiar }) {
-  const { d, ctx } = ed;
-  const [te, setTe] = useState<Technique>(fam.bindingTechnique);
-  const [fo, setFo] = useState<Form>(fam.bindingForm);
-  const [level, setLevel] = useState(10);
-  if (!d) return null;
-  const match = Number(te === fam.bindingTechnique) + Number(fo === fam.bindingForm);
-  const lt = labTotal(d, { technique: te, form: fo }, { activity: 'items', aura: ctx.aura, lab: ctx.lab ? labContextOf(ctx.lab) : undefined, familiarBond: match === 2 ? 'both' : match ? 'one' : 'none' });
-  const inv = investEffect(lt.total, level, 'invested');
-  return (
-    <details>
-      <summary className="small">Empower the bond: invest a power</summary>
-      <div className="row" style={{ marginTop: 6 }}>
-        <Field label="Effect">
-          <div className="row tight">
-            <select value={te} onChange={(e) => setTe(e.target.value as Technique)}>
-              {TECHNIQUES.map((t) => (
-                <option key={t} value={t}>
-                  {ART_NAMES[t]}
-                </option>
-              ))}
-            </select>
-            <select value={fo} onChange={(e) => setFo(e.target.value as Form)}>
-              {FORMS.map((f) => (
-                <option key={f} value={f}>
-                  {ART_NAMES[f]}
-                </option>
-              ))}
-            </select>
-          </div>
-        </Field>
-        <Field label="Effect level" hint="With uses a day and other modifications">
-          <Stepper value={level} min={1} width={40} onChange={setLevel} />
-        </Field>
-        <div className="stat">
-          <span className="v">
-            <Total value={lt.total} parts={lt.parts} notes={lt.notes} label="Lab Total to empower the bond" />
-          </span>
-          <span className="l">Lab Total</span>
-        </div>
-        <div className="stat">
-          <span className={`v ${inv.possible ? '' : 'bad-text'}`}>{inv.possible ? inv.seasons : '—'}</span>
-          <span className="l">Seasons</span>
-        </div>
-        <div className="stat">
-          <span className="v">{inv.vis}</span>
-          <span className="l">Pawns</span>
-        </div>
-      </div>
-      <p className="small muted" style={{ margin: 0 }}>
-        {inv.reason ?? `${inv.pointsPerSeason} points a season toward level ${level}.`} The power may affect only you, the familiar or both; one affecting only you is worked by the
-        familiar, one affecting only the familiar by you, and you always count as touching. There is no limit on the number of powers, and their vis does not count toward
-        strengthening the cords. Record the power in the notes below.
-      </p>
-    </details>
-  );
-}
-
-/** Arcane Experimentation (DE): a season's Lab Total bonus and its roll on the Extraordinary Results Chart. */
-function Experimentation({ ed, magicTheory }: { ed: CharEditor; magicTheory: number }) {
-  const { c, update, ctx } = ed;
-  const [risk, setRisk] = useState(0);
-  const [aura, setAura] = useState(ctx.aura.strength);
-  const [research, setResearch] = useState(false);
-  const [enchantment, setEnchantment] = useState(false);
-  const [safety, setSafety] = useState(ctx.lab?.characteristics.Safety ?? 0);
-  const [log, setLog] = useState<string[][]>([]);
+function BondPowers({ ed, fam, plan, forbidden }: { ed: CharEditor; fam: Familiar; plan: ReturnType<typeof usePlan>; forbidden: boolean }) {
+  const { c, update } = ed;
+  const setFam = (fn: (f: Familiar) => void) => update((x) => { if (x.familiar) fn(x.familiar); });
   if (!c) return null;
-  const maxRisk = research ? researchRiskLimit(magicTheory) : 3;
-  // the lab's Familiar Virtue already puts the golden cord into Safety (Covenants: "a restatement")
-  const golden = ctx.lab?.parts.Safety.some((p) => p.label === 'Familiar') ? 0 : (c.familiar?.golden ?? 0);
-  const opts = { risk: Math.min(risk, maxRisk), auraStrength: aura, originalResearch: research, enchantment, safety, goldenCord: golden };
-  const dice = experimentBotchDice(opts);
-  const roll = () => {
-    const r = rollExperiment(opts);
-    const lines = [...r.lines];
-    if (r.warpingPoints) {
-      update((x) => void (x.warpingPoints += r.warpingPoints));
-      lines.push(`${r.warpingPoints} Warping Point${r.warpingPoints > 1 ? 's' : ''} added to this character.${r.warpingPoints >= 2 ? " Roll for Wizard's Twilight on the Advancement tab." : ''}`);
-    }
-    setLog((l) => [lines, ...l].slice(0, 12));
-  };
+  const planned = (uid: string) => (c.projects ?? []).some((p) => p.kind === 'empower' && p.effectUid === uid && !p.done);
   return (
-    <Card title="Experimentation">
-      <HowItWorks summary="A simple die and the risk on the season’s Lab Total, and a roll on the Extraordinary Results Chart.">
-        Experimenting adds a simple die (plus the risk modifier) to the season&apos;s Lab Total but rolls on the Extraordinary Results Chart, with a botch die for each point of risk and
-        of the laboratory&apos;s aura. You cannot experiment while working from a Laboratory Text. In original research for a Breakthrough, the risk is limited by Magic Theory and is
-        used to move the chart roll onto a Discovery instead of adding to the Lab Total (DE, Arcane Experimentation and Arcane Discovery).
-      </HowItWorks>
-      <div className="row">
-        <Field label="Risk modifier" hint={research ? `Up to +${maxRisk} with Magic Theory ${magicTheory}` : '+1 to +3: more Lab Total, more risk'}>
-          <Stepper value={Math.min(risk, maxRisk)} min={0} max={maxRisk} width={36} onChange={setRisk} />
-        </Field>
-        <Field label="Aura strength" hint="Any realm: each point is a botch die">
-          <Stepper value={aura} min={0} max={10} width={36} onChange={setAura} />
-        </Field>
-        <Field label="Lab Safety" hint={ctx.lab ? `This lab: ${signed(ctx.lab.characteristics.Safety)}` : 'Takes botch dice off; negative adds them'}>
-          <Stepper value={safety} min={-10} max={10} width={36} onChange={setSafety} />
-        </Field>
-        <label className="inline small">
-          <input type="checkbox" checked={research} onChange={(e) => setResearch(e.target.checked)} /> Original research (Breakthrough)
-        </label>
-        <label className="inline small">
-          <input type="checkbox" checked={enchantment} onChange={(e) => setEnchantment(e.target.checked)} /> an enchanted item or familiar
-        </label>
-        <button onClick={roll}>Roll a season</button>
+    <div className="stack" style={{ gap: 4 }}>
+      <div className="row small">
+        <b>Powers of the bond</b>
+        <button className="small" onClick={() => setFam((f) => void f.powers.push({ ...newEffect(), technique: f.bindingTechnique, form: f.bindingForm, name: 'New power', pending: true }))}>
+          + Power
+        </button>
       </div>
-      <div className="small muted">
-        Botch dice on the chart: <b>{dice}</b> (1 + risk {opts.risk} + aura {aura}{safety ? ` ${safety > 0 ? '−' : '+'} Safety ${Math.abs(safety)}` : ''}
-        {golden ? ` − golden cord ${golden}, never down to none` : ''}).
-      </div>
-      {log.map((lines, i) => (
-        <div key={log.length - i} className="list-row small" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
-          {lines.map((l, k) => (
-            <div key={k} style={{ whiteSpace: 'pre-wrap' }}>
-              {l}
-            </div>
-          ))}
+      {fam.powers.map((e) => (
+        <div key={e.uid} className="row small">
+          <input value={e.name} onChange={(v) => setFam((f) => void (f.powers.find((x) => x.uid === e.uid)!.name = v.target.value))} style={{ width: 160 }} aria-label="Power name" />
+          <select value={e.technique} onChange={(v) => setFam((f) => void (f.powers.find((x) => x.uid === e.uid)!.technique = v.target.value as Technique))} aria-label="Technique">
+            {TECHNIQUES.map((t) => (
+              <option key={t} value={t}>
+                {ART_NAMES[t]}
+              </option>
+            ))}
+          </select>
+          <select value={e.form} onChange={(v) => setFam((f) => void (f.powers.find((x) => x.uid === e.uid)!.form = v.target.value as Form))} aria-label="Form">
+            {FORMS.map((f) => (
+              <option key={f} value={f}>
+                {ART_NAMES[f]}
+              </option>
+            ))}
+          </select>
+          <span>level</span>
+          <Stepper value={e.modifiedLevel} min={1} width={40} onChange={(v) => setFam((f) => void ((f.powers.find((x) => x.uid === e.uid)!.modifiedLevel = v), (f.powers.find((x) => x.uid === e.uid)!.baseLevel = v)))} />
+          {e.pending === false ? (
+            <span className="badge good">working</span>
+          ) : forbidden ? null : planned(e.uid) ? (
+            <span className="muted">planned on the Lab projects card</span>
+          ) : (
+            <button className="small" onClick={() => plan('empower', (p) => void ((p.effectUid = e.uid), (p.name = `Empower the bond: ${e.name}`)))}>
+              Plan investing it ›
+            </button>
+          )}
+          <button className="small ghost" onClick={() => setFam((f) => void (f.powers = f.powers.filter((x) => x.uid !== e.uid)))} aria-label="Remove the power">
+            ✕
+          </button>
         </div>
       ))}
-    </Card>
+      {fam.powers.length > 0 && <span className="small muted">Level with uses a day and other modifications, as for an invested device. A power for you is worked by the familiar, one for the familiar by you.</span>}
+    </div>
   );
 }
-

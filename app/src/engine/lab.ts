@@ -24,8 +24,10 @@ export interface DerivedLab {
   buildPoints: number; // cost in covenant build points
   issues: string[];
   emptyFlawsNeeded: number;
-  /** activities the lab cannot be used for (Missing Equipment) */
+  /** activities the lab cannot be used for (Missing Equipment, Restriction) */
   impossible: string[];
+  /** Arts whose Lab Totals are halved (Missing Ingredients) */
+  halved: string[];
   /** Boundless: Size grows to hold the Virtues */
   boundless: boolean;
 }
@@ -115,15 +117,17 @@ export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
   let reduceHighSpecs = false;
   let boundless = false;
   const impossible: string[] = [];
+  const halved: string[] = [];
   const counts: Record<string, number> = {};
   for (const v of lab.virtues) {
     const def = data.labVFById.get(v.defId);
     if (!def) continue;
     const opt = LAB_OPTIONS[v.defId];
-    const pts = def.size === 'Major' ? 3 : def.size === 'Minor' ? 1 : 0;
+    // a Virtue an installed item gives is gained at once and takes no space (Covenants)
+    const pts = v.fromItem ? 0 : def.size === 'Major' ? 3 : def.size === 'Minor' ? 1 : 0;
     if (def.kind === 'virtue') {
       vp += pts;
-      bp += def.size === 'Major' ? 20 : def.size === 'Minor' ? 10 : 0;
+      bp += v.fromItem ? 0 : def.size === 'Major' ? 20 : def.size === 'Minor' ? 10 : 0;
     } else fp += pts;
     const eff = labEntryEffects(v, def);
     for (const [k, val] of Object.entries(eff.characteristics)) {
@@ -141,13 +145,14 @@ export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
     if (opt?.reduceHighSpecs) reduceHighSpecs = true;
     if (opt?.boundless) boundless = true;
     counts[v.defId] = (counts[v.defId] ?? 0) + 1;
-    if (opt?.alts && opt.altRequired) {
-      const chosen = opt.alts.find((a) => a.id === v.alt);
-      if (!chosen) issues.push(`${def.name}: choose which lab work it rules out.`);
+    if (opt?.alts) {
+      const chosen = opt.alts.find((a) => a.id === v.alt) ?? (opt.altRequired ? undefined : opt.alts[0]);
+      if (!chosen) issues.push(`${def.name}: choose ${opt.alts.some((a) => a.halves) ? 'the ingredients it lacks' : 'which lab work it rules out'}.`);
       for (const a of chosen?.rulesOut ?? []) {
         if (impossible.includes(a)) issues.push(`${def.name}: ${a} is already ruled out; choose another activity.`);
         else impossible.push(a);
       }
+      for (const a of chosen?.halves ?? []) if (!halved.includes(a)) halved.push(a);
     }
   }
   for (const [id, n] of Object.entries(counts)) {
@@ -213,7 +218,7 @@ export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
   return {
     lab, size, refinement: lab.refinement, virtuePoints: vp, flawPoints: fp, freeSpace, occupiedSize,
     characteristics: chars, parts, specializations: finalSpecs, droppedSpecs: [...dropped], specWarnings,
-    upkeepPoints: up, yearlyCost: (up / 10) * mult, buildPoints: bp, issues, emptyFlawsNeeded, impossible, boundless,
+    upkeepPoints: up, yearlyCost: (up / 10) * mult, buildPoints: bp, issues, emptyFlawsNeeded, impossible, halved, boundless,
   };
 }
 
@@ -224,7 +229,24 @@ export function newLab(name: string, ownerId?: string): Laboratory {
   };
 }
 
-/** What a character's Lab Totals take from the lab: General Quality, Specializations, and the work it cannot do. */
-export function labContextOf(dl: DerivedLab): { generalQuality: number; specializations: Record<string, number>; impossible: string[] } {
-  return { generalQuality: dl.characteristics['General Quality'], specializations: dl.specializations, impossible: dl.impossible };
+/**
+ * What a character's lab work takes from the lab: General Quality and Specializations for Lab Totals,
+ * the work it cannot do, the Arts it halves, and the Safety and Warping each season's work is rolled
+ * against (Covenants, Laboratory Characteristics).
+ */
+export function labContextOf(dl: DerivedLab): LabContextOf {
+  return {
+    generalQuality: dl.characteristics['General Quality'], specializations: dl.specializations, impossible: dl.impossible, halved: dl.halved,
+    safety: dl.characteristics.Safety, warping: dl.characteristics.Warping, name: dl.lab.name,
+  };
+}
+
+export interface LabContextOf {
+  generalQuality: number;
+  specializations: Record<string, number>;
+  impossible: string[];
+  halved: string[];
+  safety: number;
+  warping: number;
+  name: string;
 }

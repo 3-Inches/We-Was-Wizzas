@@ -6,10 +6,14 @@ import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../../data';
 import bestiary from '../../data/generated/bestiary.json';
 import { DEFAULT_HOUSE_RULES, type Saga } from '../types';
-import { deriveCovenant, newCovenant } from '../covenant';
+import { budgetLeft, deriveCovenant, newCovenant } from '../covenant';
 import { generateCharacter, type GenOptions, type Variety } from './character';
 import { fillCovenant } from './covenant';
 import { homelandGroupFor } from './names';
+import { seeded } from './random';
+import { generateFamiliar } from './spellsAndFamiliars';
+import { deriveCharacter } from '../character/derive';
+import type { LabContext } from '../magic';
 import { ROLES } from './roles';
 
 const data = buildGameData();
@@ -113,6 +117,52 @@ describe('filling out a covenant', () => {
     expect(r.log.join(' ')).toMatch(/Not enough Build Points/);
     const names = [...r.cov.specialists.filter((s) => s.role !== 'craftsman').map((s) => s.name), ...r.grogs.map((g) => g.c.name)];
     expect(new Set(names).size).toBe(names.length);
+  }, 120_000);
+});
+
+describe('spells and familiars for magi', () => {
+  it('spends the spell levels on the Arts asked for, and binds a familiar the Lab Total reaches', () => {
+    const g = gen({ type: 'magus', role: undefined, seed: 21, spells: { arts: ['Ig'], maxLevel: 20 }, familiar: true });
+    const apprentice = g.c.spells.filter((s) => s.source === 'apprenticeship');
+    expect(apprentice.length).toBeGreaterThan(0);
+    expect(apprentice.every((s) => s.spell.form === 'Ig' && (s.spell.level ?? 0) <= 20)).toBe(true);
+    const f = g.c.familiar!;
+    expect(f.name).toBeTruthy();
+    if (f.bindingLabTotal) {
+      expect(f.bindingLabTotal).toBeGreaterThanOrEqual(25 + f.might + 5 * f.size);
+      expect([0, 5, 15, 30, 50, 75][f.golden] + [0, 5, 15, 30, 50, 75][f.silver] + [0, 5, 15, 30, 50, 75][f.bronze]).toBeLessThanOrEqual(f.bindingLabTotal);
+    }
+    expect(errors(g)).toEqual([]);
+    // asked to bind one, it picks a creature this magus can bind, whatever the roll: with a Lab Total
+    // of 25, a stag or a wolf is beyond them, a hound or a fox is not
+    const d = deriveCharacter(g.c, data, rules);
+    const fam = (seed: number, lab?: LabContext) => generateFamiliar(d, seeded(seed), { bind: true, aura: { realm: 'Magic', strength: 3 }, lab });
+    const lab = { generalQuality: 25 - fam(1).familiar.bindingLabTotal, specializations: {} };
+    for (let seed = 1; seed <= 30; seed++) {
+      const f = fam(seed, lab).familiar;
+      expect(f.bindingLabTotal, `seed ${seed}: ${f.species}`).toBe(25);
+      expect(25 + f.might + 5 * f.size).toBeLessThanOrEqual(25);
+    }
+  }, 120_000);
+});
+
+describe('budgets and resource pools', () => {
+  it('spends a Flawed Resource set aside for covenfolk and books before the covenant’s own budget', () => {
+    const cov = newCovenant('s', 1220);
+    cov.name = 'Pooled';
+    cov.buildPoints = 40;
+    cov.budget = { book: 20 };
+    cov.hooksBoons.push({ uid: 'fr', name: 'Flawed Resource', kind: 'hook', size: 'Minor', earmark: ['specialist', 'book'] });
+    const r = fillCovenant(cov, [], { data, saga: saga('Rhine'), rules }, { staff: true, teacher: true, craftsmen: false, grogs: 0, counts: false, bought: true, library: { arts: true, abilities: true, labTexts: false, mundane: true }, seed: 3 });
+    const dc = deriveCovenant(r.cov, data, []);
+    const pool = dc.pools.find((p) => p.hb.uid === 'fr')!;
+    // the staff, the teacher and the books went into the pool, up to its 250 Build Points
+    expect(pool.resources.some((x) => x.kind === 'specialist')).toBe(true);
+    expect(pool.resources.some((x) => x.kind === 'book')).toBe(true);
+    expect(pool.spent).toBeLessThanOrEqual(250);
+    expect(dc.bpSpent).toBeLessThanOrEqual(40);
+    expect(r.cov.library.some((b) => b.kind === 'mundane')).toBe(true);
+    expect(budgetLeft(r.cov, dc, 'book').spent).toBeLessThanOrEqual(20);
   }, 120_000);
 });
 

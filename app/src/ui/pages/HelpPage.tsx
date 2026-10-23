@@ -277,9 +277,11 @@ export default function HelpPage() {
             each season makes.
           </li>
           <li>
-            <b>Lab &amp; Items:</b> enchanted devices, talisman, Longevity Ritual, experimentation. A familiar&apos;s cords are applied where they belong (golden to botch dice,
-            bronze to Soak, recovery and aging), and its bond can be empowered with the +5 or +10 bonus. <b>Lab projects</b> carry work over several seasons: inventing a spell,
-            preparing and attuning a talisman, instilling effects, extracting vis, each with its Lab Total, progress and vis.
+            <b>Lab &amp; Items:</b> the lab, the enchanted items made, the Longevity Ritual and the familiar. Everything that takes a season is a <b>Lab project</b>, planned on
+            its card and worked as a season&apos;s activity: inventing a spell (or learning one from a Laboratory Text), preparing and attuning a talisman, instilling effects,
+            charged items, extracting vis, taming, a Longevity Ritual (for the magus or someone else), binding a familiar, strengthening and empowering the bond. Each has its
+            Lab Total with all the lab gives, its vis, a box to experiment, and the lab&apos;s own rolls for Safety and Warping; what the lab&apos;s Flaws rule out is shown in
+            red and cannot be worked. A familiar&apos;s cords are applied where they belong (golden to botch dice, bronze to Soak, recovery and aging).
           </li>
           <li>
             <b>Spells on a character:</b> the Overview lists effects working on the character (a raised Characteristic, a granted Virtue) with when they end; record one by

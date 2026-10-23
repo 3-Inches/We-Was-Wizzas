@@ -28,6 +28,12 @@ export interface ExperimentResult {
   warpingPoints: number;
   /** a Discovery came up (for original research, the season yields breakthrough points) */
   discovery: boolean;
+  /** No Benefit: the season's Lab Total is worked out again without the simple die and risk */
+  noBenefit: boolean;
+  /** Complete Failure, or a Disaster: the season is wasted */
+  wasted: boolean;
+  /** the item or familiar is destroyed (a 0 after a Complete Failure, or two zeroes in a Disaster) */
+  destroyed: boolean;
 }
 
 /** The most risk an original researcher may take: +1 per 5 points (or fraction) of Magic Theory, up to +3. */
@@ -85,12 +91,17 @@ export function rollExperiment(o: ExperimentOptions, rng: Rng = defaultRng): Exp
   ];
   let disaster = false;
   let discovery = false;
+  let noBenefit = false;
+  let wasted = false;
+  let destroyed = false;
   let warpingPoints = 0;
 
   const chart = (depth: number) => {
     const r = stressDie(experimentBotchDice(o), rng);
     if (r.botches) {
       disaster = true;
+      wasted = true;
+      if (r.botches >= 2 && o.enchantment) destroyed = true;
       warpingPoints += r.botches;
       lines.push(`Chart: ${describeStress(r)}. Disaster, with ${r.botches} zero${r.botches > 1 ? 'es' : ''}:`);
       for (let i = 0; i < Math.min(r.botches, DISASTER.length); i++) lines.push(`  ${i + 1}. ${DISASTER[i]}`);
@@ -106,9 +117,13 @@ export function rollExperiment(o: ExperimentOptions, rng: Rng = defaultRng): Exp
     else if (v <= 6) {
       const s = simpleDie(rng).value;
       lines.push(`${head} Side effect (simple die ${s}): ${sideEffect(s)} Work out the specifics with the storyguide.`);
-    } else if (v === 7) lines.push(`${head} No benefit: recalculate the Lab Total without the experimentation bonus; if it is now too low, the project is abandoned.`);
-    else if (v === 8) {
+    } else if (v === 7) {
+      noBenefit = true;
+      lines.push(`${head} No benefit: recalculate the Lab Total without the experimentation bonus; if it is now too low, the project is abandoned.`);
+    } else if (v === 8) {
       const s = simpleDie(rng);
+      wasted = true;
+      if (o.enchantment && s.face === 0) destroyed = true;
       lines.push(`${head} Complete failure: the season is wasted.${o.enchantment ? ` Simple die for the item or familiar: ${s.face}${s.face === 0 ? ', a 0: it is destroyed.' : ', it survives.'}` : ''}`);
     } else if (v === 9) lines.push(`${head} Special or story event: extra vis, a bonus spell, a strange modification or a story, as the storyguide picks.`);
     else if (v === 10) {
@@ -135,7 +150,49 @@ export function rollExperiment(o: ExperimentOptions, rng: Rng = defaultRng): Exp
     }
   };
   chart(0);
-  return { labBonus, lines, disaster, warpingPoints, discovery };
+  return { labBonus, lines, disaster, warpingPoints, discovery, noBenefit, wasted, destroyed };
+}
+
+/**
+ * What a season of work in the lab risks from the lab itself (Covenants, Laboratory Characteristics).
+ * An unsafe lab (negative Safety): a simple die of no more than the Safety (ignoring its sign) calls
+ * for botch dice, as many as the Safety and never none, and a zero is a lab accident on the Disaster
+ * table. A lab with Warping: a simple die of no more than its Warping warps the season's product, a
+ * side effect on an odd roll and a modified effect on an even one.
+ */
+export function labSeasonHazards(o: { safety: number; warping: number; enchantment?: boolean }, rng: Rng = defaultRng): { lines: string[]; warpingPoints: number; wasted: boolean; destroyed: boolean } {
+  const lines: string[] = [];
+  let warpingPoints = 0;
+  let wasted = false;
+  let destroyed = false;
+  if (o.safety < 0) {
+    const die = simpleDie(rng).value;
+    const unsafe = -o.safety;
+    if (die <= unsafe) {
+      const n = Math.max(1, unsafe);
+      let zeros = 0;
+      for (let i = 0; i < n; i++) if (simpleDie(rng).face === 0) zeros++;
+      if (zeros) {
+        warpingPoints += zeros;
+        wasted = true;
+        if (zeros >= 2 && o.enchantment) destroyed = true;
+        lines.push(`Unsafe lab (Safety ${o.safety}): simple die ${die}, then ${n} botch ${n > 1 ? 'dice' : 'die'}: ${zeros} zero${zeros > 1 ? 'es' : ''}, a lab accident:`);
+        for (let i = 0; i < Math.min(zeros, DISASTER.length); i++) lines.push(`  ${i + 1}. ${DISASTER[i]}`);
+      } else lines.push(`Unsafe lab (Safety ${o.safety}): simple die ${die}, a near miss (no zero on ${n} botch ${n > 1 ? 'dice' : 'die'}).`);
+    }
+  }
+  if (o.warping > 0) {
+    const die = simpleDie(rng).value;
+    if (die <= o.warping) {
+      const s = simpleDie(rng).value;
+      lines.push(
+        die % 2
+          ? `Lab Warping ${o.warping} (simple die ${die}, odd): the season's work has a side effect (${s}): ${sideEffect(s)} The storyguide fits it to what warps the lab.`
+          : `Lab Warping ${o.warping} (simple die ${die}, even): the season's work is modified (${s}): ${modified(s)} The storyguide fits it to what warps the lab.`,
+      );
+    }
+  }
+  return { lines, warpingPoints, wasted, destroyed };
 }
 
 /**
