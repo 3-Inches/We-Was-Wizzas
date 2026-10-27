@@ -6,7 +6,8 @@ import { buildGameData } from '../data';
 import { newCharacter, ensureAbility } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { deriveLab, newLab } from './lab';
-import { newProject, planProject, workProject } from './projects';
+import { newProject, planProject, renewLongevity, renewLongevityCost, workProject } from './projects';
+import { lapseLongevity } from './longterm';
 import { DEFAULT_HOUSE_RULES, type Character, type LabVirtueEntry } from './types';
 import { newEffect, newItem } from '../ui/items/ItemEditor';
 import type { CharacterContext } from './context';
@@ -193,5 +194,113 @@ describe('Longevity Rituals and familiars as lab projects', () => {
     workProject(c, d(c), ctx, undefined, ch.uid, data);
     expect(c.items[0].charges).toBe(Math.ceil((cp.total!.total - 15) / 5));
     expect(c.projects[0].done).toBe(true);
+  });
+});
+
+describe('what the book says about each result (a second pass)', () => {
+  it('makes charged items for no vis, and holds a lesser enchantment to what its material and size could take', () => {
+    const c = magus();
+    const ctx = ctxWith();
+    const wand = newItem('charged');
+    const e = { ...newEffect(), technique: 'Cr' as const, form: 'Te' as const, modifiedLevel: 15, baseLevel: 15, pending: true };
+    wand.effects.push(e);
+    c.items.push(wand);
+    const p = { ...newProject('instill'), itemUid: wand.uid, effectUid: e.uid };
+    c.projects = [p];
+    expect(planProject(p, c, d(c), ctx).vis).toBeUndefined();
+    const before = structuredClone(c.purse);
+    workProject(c, d(c), ctx, undefined, p.uid, data);
+    expect(c.purse).toEqual(before);
+    expect(c.items[0].charges).toBeGreaterThan(0);
+    // a tiny wooden lesser device takes 2 pawns: a level 25 effect needs 3
+    const ring = { ...newItem('lesser'), size: 'tiny' as const };
+    const big = { ...newEffect(), technique: 'Re' as const, form: 'An' as const, modifiedLevel: 25, baseLevel: 25, pending: true };
+    ring.effects.push(big);
+    c.items.push(ring);
+    const q = { ...newProject('instill'), itemUid: ring.uid, effectUid: big.uid };
+    expect(planProject(q, c, d(c), ctx).problems.join(' ')).toMatch(/more than New item can take as a lesser enchantment \(2/);
+  });
+  it('holds a Longevity Ritual’s vis to twice Magic Theory, and halves the Lab Total for a subject with Difficult Longevity Ritual', () => {
+    const c = magus(); // Magic Theory 5: 10 pawns a season
+    c.age = 60;
+    const ctx = ctxWith();
+    const p = newProject('longevity');
+    c.projects = [p];
+    expect(planProject(p, c, d(c), ctx).problems.join(' ')).toMatch(/12 pawns is more than you can handle in a season \(twice Magic Theory: 10\)/);
+    c.age = 45;
+    expect(planProject(p, c, d(c), ctx).problems).toEqual([]);
+    const friend = magus();
+    friend.name = 'Friend';
+    const q = { ...newProject('longevity'), subjectId: friend.id };
+    const plain = planProject(q, c, d(c), ctx, { subject: friend }).total!.total;
+    friend.virtues.push({ uid: 'dl', defId: 'difficult-longevity-ritual-flaw', size: 'Minor', kind: 'flaw' } as never);
+    const hard = planProject(q, c, d(c), ctx, { subject: friend }).total!;
+    expect(hard.total).toBe(Math.ceil(plain / 2));
+    expect(hard.notes.join(' ')).toMatch(/Friend has Difficult Longevity Ritual/);
+  });
+  it('abandons a project when the experiment brings No Benefit and the Lab Total without it falls short', () => {
+    const c = magus();
+    const ctx = ctxWith();
+    // Lab Total 31 against level 40: only the die could carry it; a 7 on the chart is No Benefit
+    const p = { ...newProject('invent'), technique: 'Re' as const, form: 'An' as const, level: 40, experiment: { risk: 0 } };
+    c.projects = [p];
+    const lines = workProject(c, d(c), ctx, undefined, p.uid, data, 1220, { rng: seq(9, 7) });
+    expect(lines.join(' ')).toMatch(/No benefit/);
+    expect(lines.join(' ')).toMatch(/abandoned/);
+    expect(c.projects[0]).toMatchObject({ done: true, failed: true, progress: 0 });
+    // within reach without the die, the season still counts at the plain Lab Total
+    const q = { ...newProject('invent'), technique: 'Re' as const, form: 'An' as const, level: 20, experiment: { risk: 0 } };
+    c.projects = [q];
+    const gain = planProject({ ...q, experiment: undefined }, c, d(c), ctx).gain;
+    workProject(c, d(c), ctx, undefined, q.uid, data, 1220, { rng: seq(9, 7) });
+    expect(c.projects[0].done).toBeFalsy();
+    expect(c.projects[0].progress).toBe(gain);
+  });
+  it('loses a long project’s points to a Disaster’s second zero, and treats a one-season project as a Complete Failure', () => {
+    const c = magus();
+    const ctx = ctxWith();
+    // level 30 against a Lab Total of about 31: many seasons; ten points gathered already
+    const p = { ...newProject('invent'), technique: 'Re' as const, form: 'An' as const, level: 30, progress: 10, experiment: { risk: 0 } };
+    c.projects = [p];
+    // simple die 2, chart 0, then 4 botch dice (1 + aura 3): two zeroes
+    const lines = workProject(c, d(c), ctx, undefined, p.uid, data, 1220, { rng: seq(2, 0, 0, 0, 5) });
+    expect(lines.join(' ')).toMatch(/points start again from nothing/);
+    expect(c.projects[0].progress).toBe(0);
+    expect(c.projects[0].done).toBeFalsy();
+    expect(c.warpingPoints).toBe(2);
+    // binding a familiar is one season: two zeroes are a Complete Failure, and the familiar survives unless a simple die shows 0
+    c.familiar = { name: 'Corvus', species: 'raven', might: 5, size: -2, realm: 'Magic', bindingTechnique: 'Re', bindingForm: 'An', bindingLabTotal: 0, golden: 0, silver: 0, bronze: 0, pawnsSpent: 0, powers: [] };
+    const bind = { ...newProject('bind'), cords: { golden: 1, silver: 0, bronze: 0 }, experiment: { risk: 0 } };
+    c.projects = [bind];
+    const out = workProject(c, d(c), ctx, undefined, bind.uid, data, 1220, { rng: seq(2, 0, 0, 0, 5, 5, 5, 5, 3) });
+    expect(out.join(' ')).toMatch(/count as a Complete Failure: simple die 5, no harm/);
+    expect(out.join(' ')).toMatch(/season is wasted/);
+    expect(c.familiar.bindingLabTotal).toBe(0);
+    expect(c.projects[0].done).toBeFalsy();
+  });
+  it('keeps a ritual an aging crisis ended, to be performed again for the vis of the age now, no more of each kind than the Art', () => {
+    const c = magus();
+    c.age = 70;
+    c.longevity = { labTotal: 40, bonus: 8, extraVis: 2 };
+    lapseLongevity(c, 1230);
+    expect(c.longevity).toBeUndefined();
+    expect(c.longevityLapsed).toMatchObject({ bonus: 8, lapsedYear: 1230 });
+    expect(renewLongevityCost(c)).toBe(14 + 2);
+    // Creo 10 and Vim 10 can take 20, but the purse has only 10 Creo and 30 Vim: Vim 10 + Creo 6
+    const said = renewLongevity(c, d(c), c.purse!.vis);
+    expect(said).toMatch(/−8 on aging rolls/);
+    expect(c.longevity).toMatchObject({ bonus: 8, labTotal: 40, extraVis: 2 });
+    expect(c.longevity!.lapsedYear).toBeUndefined();
+    expect(c.purse!.vis.find((v) => v.art === 'Vi')!.pawns).toBe(20);
+    expect(c.purse!.vis.find((v) => v.art === 'Cr')!.pawns).toBe(4);
+    // a magus whose Arts cannot take the vis cannot do it
+    const weak = magus();
+    weak.age = 70;
+    weak.arts.Cr = {};
+    weak.arts.Vi = {};
+    weak.longevity = { labTotal: 40, bonus: 8, extraVis: 0 };
+    lapseLongevity(weak);
+    expect(renewLongevity(weak, d(weak), weak.purse!.vis)).toBeNull();
+    expect(weak.longevityLapsed).toBeTruthy();
   });
 });

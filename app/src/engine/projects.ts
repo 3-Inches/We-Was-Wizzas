@@ -7,12 +7,12 @@ import { ART_NAMES, FORMS, TECHNIQUES, type Art, type GameData } from '../data';
 import type { DerivedCharacter } from './character/derive';
 import type { CharacterContext } from './context';
 import { chargedItemCharges, cordPointsCost, familiarBindingLevel, familiarBindingVis, investEffect, longevityBonus, longevityVisCost, openingCost, talismanCapacity, visLimit } from './enchant';
-import { labSeasonHazards, rollExperiment } from './experiment';
-import { defaultRng, type Rng } from './dice';
+import { experimentBotchDice, labSeasonHazards, rollExperiment } from './experiment';
+import { defaultRng, simpleDie, type Rng } from './dice';
 import { labContextOf } from './lab';
 import { recordRoutines, routineClash, routineParts } from './labRoutines';
 import { labTotal, type LabActivity, type TotalResult } from './magic';
-import type { Character, Covenant, EnchantedItem, LabProject } from './types';
+import type { Character, Covenant, EnchantedItem, LabProject, VisStock } from './types';
 import { addVis, purseOf, takeVis, visAvailable, visText } from './vis';
 import { uid } from '../util/id';
 
@@ -20,7 +20,7 @@ export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: stri
   { id: 'invent', label: 'Invent a spell', blurb: 'Lab Total over the level; each season gathers the difference until it reaches the level. From a Laboratory Text, one season once the Lab Total reaches the level.', experiment: true, activity: 'Spells' },
   { id: 'open', label: 'Prepare an item for enchantment', blurb: 'A season and the Vim vis of its material and size; a talisman can be opened a little at a time.', activity: 'Items' },
   { id: 'attune', label: 'Attune a talisman', blurb: 'A season, whatever the Lab Total, on an item you prepared yourself.', activity: 'Items' },
-  { id: 'instill', label: 'Instill an effect', blurb: 'Lab Total over the effect level (double for a lesser device); a pawn per 10 levels, paid in the first season; +5 in your own talisman.', experiment: true, activity: 'Items' },
+  { id: 'instill', label: 'Instill an effect', blurb: 'Lab Total over the effect level (double for a lesser device); a pawn per 10 levels, paid in the first season; +5 in your own talisman. A charged item takes a season and no vis, a charge per 5 points over the level.', experiment: true, activity: 'Items' },
   { id: 'extract', label: 'Extract vis', blurb: 'A pawn of Vim for every 10 points (or part) of the Creo Vim Lab Total.', activity: 'Vis Extraction' },
   { id: 'tame', label: 'Tame a creature', blurb: "Rego (Form) Lab Total with Animal Handling and Animal Ken, less the creature's Might, each season in a row, until the points reach its Might. A mundane beast counts as Might 1 + twice its Confidence.", experiment: true },
   { id: 'longevity', label: 'Longevity Ritual', blurb: 'A season: −1 on aging rolls for every 5 points (or part) of the Creo Corpus Lab Total (every 10 for a mundane), a pawn of Creo, Corpus or Vim vis for every 5 years of the subject’s age; for someone else, a Lab Total of 30 or more.', experiment: true, activity: 'Longevity Rituals' },
@@ -72,6 +72,8 @@ export interface PlanOptions {
   /** the character a Longevity Ritual is for, when not the magus */
   subject?: Character;
   data?: GameData;
+  /** count a Lab Total that falls short even when experimenting (the experiment brought No Benefit) */
+  strict?: boolean;
 }
 
 /** May this project be worked by experimentation (DE, Arcane Experimentation)? Not from a Laboratory Text. */
@@ -119,7 +121,7 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
   const limit = seasonVisLimit(d);
   const visCheck = (pawns: number) => pawns > limit && problems.push(`${pawns} pawns is more than you can handle in a season (twice Magic Theory: ${limit}).`);
   // experimenting, the simple die may carry a Lab Total that falls short now (DE): the season can still be worked
-  const short = (text: string) => (experimenting && !o.bonus ? undefined : problems.push(text));
+  const short = (text: string) => (experimenting && !o.bonus && !o.strict ? undefined : problems.push(text));
   const it = itemOf(c, p);
   if (p.done) return { target: 0, gain: 0, seasonsLeft: 0, problems: [p.failed ? 'Came to nothing.' : 'Finished.'], summary: p.failed ? 'Came to nothing.' : 'Finished.' };
   const clash = routineClash(p.routines ?? []);
@@ -166,15 +168,17 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       const lesser = it.kind === 'lesser';
       const pawns = Math.ceil(level / 10);
       if (it.kind === 'charged') {
-        // charged items: one season, Lab Total at least the level, a charge per 5 points (or part) over it (DE)
+        // charged items: one season and no vis, Lab Total at least the level, a charge per 5 points (or part) over it (DE)
         const charges = chargedItemCharges(total.total, level);
         if (!charges) short(`The Lab Total (${total.total}) must reach the level (${level}).`);
-        visCheck(pawns);
-        return { total, target: level, gain: charges ? level : 0, vis: { arts: [e.technique, e.form], pawns }, seasonsLeft: 1, problems, summary: charges ? `${charges} charge${charges > 1 ? 's' : ''} of ${e.name} in one season.` : '' };
+        return { total, target: level, gain: charges ? level : 0, seasonsLeft: 1, problems, summary: charges ? `${charges} charge${charges > 1 ? 's' : ''} of ${e.name} in one season.` : '' };
       }
       const inv = investEffect(total.total, level, lesser ? 'lesser' : talisman ? 'talisman' : 'invested', e.expiry);
       if (!inv.possible) short(inv.reason ?? 'The Lab Total is too low.');
       if (!lesser && pawnsUsed(it, e.uid) + pawns > it.openedPawns) problems.push(`It needs ${pawns} pawns of room; ${it.openedPawns - pawnsUsed(it, e.uid)} of ${it.openedPawns} are free.`);
+      // a lesser enchantment's vis is held to what its material and size could take (DE)
+      const holds = lesser ? openingCost(it.material, it.size) : Infinity;
+      if (pawns > holds) problems.push(`${pawns} pawns of vis is more than ${it.name} can take as a lesser enchantment (${holds}, by its material and size).`);
       if (!p.visPaid) visCheck(pawns);
       const gain = lesser ? (inv.possible ? level : 0) : inv.possible ? inv.pointsPerSeason : 0;
       const left = level - p.progress;
@@ -208,7 +212,10 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       const subject = p.subjectId && p.subjectId !== c.id ? o.subject : c;
       if (!subject) return { target: 0, gain: 0, seasonsLeft: 0, problems: ['The character it is for is not in this saga.'], summary: '' };
       const self = subject === c;
-      const total = lt('longevity', 'Cr', 'Co', { forSelfLongevity: self });
+      let total = lt('longevity', 'Cr', 'Co', { forSelfLongevity: self });
+      // anyone making a ritual for a subject with Difficult Longevity Ritual halves the Lab Total (DE)
+      if (!self && subject.virtues.some((v) => v.defId === 'difficult-longevity-ritual-flaw'))
+        total = { ...total, total: Math.ceil(total.total / 2), halved: true, notes: [...total.notes, `${subject.name || 'The subject'} has Difficult Longevity Ritual: Lab Total halved.`] };
       const extraVis = Math.max(0, p.extraVis ?? 0);
       const t = total.total + extraVis;
       const mundane = !self && isMundane(subject, o.data);
@@ -216,9 +223,8 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       if (!self && t < 30) short(`A Longevity Ritual for someone else needs a Creo Corpus Lab Total of at least 30 (${t}).`);
       const bonus = longevityBonus(total.total, extraVis, mundane);
       const pawns = longevityVisCost(subject.age, extraVis);
-      // vis use is limited by the magus's Arts, as for a spell, not by Magic Theory (DE)
-      const artLimit = d.arts.Cr.score + d.arts.Co.score + d.arts.Vi.score;
-      if (pawns > artLimit) problems.push(`${pawns} pawns of vis: no more than your Creo, Corpus and Vim scores allow (${artLimit}).`);
+      // made in the lab, the ritual's vis counts against twice Magic Theory like any other (DE, Vis Limit)
+      visCheck(pawns);
       return {
         total, target: 1, gain: 1, vis: { arts: ['Cr', 'Co', 'Vi'], pawns }, seasonsLeft: 1, problems,
         summary: `−${bonus} on ${self ? 'your' : `${subject.name || 'their'}`} aging rolls (Lab Total ${t}${extraVis ? ` with ${extraVis} extra pawns` : ''}${mundane ? ', a point for every 10 for a mundane' : ''}).`,
@@ -278,6 +284,22 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
   }
 }
 
+/** A familiar's golden cord on the chart's botch dice, unless the lab's Safety already counts it (a lab Virtue for the familiar). */
+function goldenCordFor(c: Character, ctx: CharacterContext): number {
+  return ctx.lab?.parts.Safety.some((x) => x.label === 'Familiar') ? 0 : (c.familiar?.golden ?? 0);
+}
+
+/** Botch dice on the Extraordinary Results Chart for experimenting on a project in this lab. */
+export function projectBotchDice(c: Character, ctx: CharacterContext, risk: number): number {
+  return experimentBotchDice({ risk, auraStrength: ctx.aura.strength, safety: ctx.lab?.characteristics.Safety ?? 0, goldenCord: goldenCordFor(c, ctx) });
+}
+
+/** A project that takes more than a season: a Disaster's second zero destroys what it has made so far (DE). */
+function multiSeason(p: LabProject, it: EnchantedItem | undefined, plan: ProjectPlan): boolean {
+  const long = (p.kind === 'invent' && !p.fromText) || p.kind === 'tame' || p.kind === 'empower' || (p.kind === 'instill' && it?.kind !== 'charged' && it?.kind !== 'lesser');
+  return long && (p.progress > 0 || plan.seasonsLeft > 1);
+}
+
 /** Pay a project's vis from the magus's purse or the covenant's stocks. */
 function payVis(c: Character, cov: Covenant | undefined, p: LabProject, need: { arts: Art[]; pawns: number }): string | null {
   if (!need.pawns) return '';
@@ -327,11 +349,10 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
   const enchantment = p.kind === 'instill' || p.kind === 'open' || p.kind === 'bind' || p.kind === 'strengthen' || p.kind === 'empower';
   // the lab itself: an unsafe lab may have an accident, a warped one warps what is made (Covenants)
   const lab = ctx.lab;
-  const hz = lab ? labSeasonHazards({ safety: lab.characteristics.Safety, warping: lab.characteristics.Warping, enchantment }, rng) : undefined;
+  const hz = lab ? labSeasonHazards({ safety: lab.characteristics.Safety, warping: lab.characteristics.Warping }, rng) : undefined;
   // experimentation: a simple die (+ risk) on the Lab Total and a roll on the Extraordinary Results Chart (DE)
-  const goldenCord = lab?.parts.Safety.some((x) => x.label === 'Familiar') ? 0 : (c.familiar?.golden ?? 0);
   const risk = Math.max(0, Math.min(3, p.experiment?.risk ?? 0));
-  const xr = p.experiment && canExperiment(p) ? rollExperiment({ risk, auraStrength: ctx.aura.strength, enchantment, safety: lab?.characteristics.Safety ?? 0, goldenCord }, rng) : undefined;
+  const xr = p.experiment && canExperiment(p) ? rollExperiment({ risk, auraStrength: ctx.aura.strength, enchantment, safety: lab?.characteristics.Safety ?? 0, goldenCord: goldenCordFor(c, ctx) }, rng) : undefined;
   if (hz?.lines.length) lines.push(...hz.lines);
   if (xr) lines.push(`Experimenting${risk ? ` (risk +${risk})` : ''}:`, ...xr.lines.map((l) => `  ${l}`));
   record([...(hz?.lines ?? []), ...(xr?.lines ?? [])]);
@@ -341,6 +362,13 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
     lines.push(`${wp} Warping Point${wp > 1 ? 's' : ''} for ${c.name || 'the magus'}.${wp >= 2 ? " Roll for Wizard's Twilight." : ''}`);
   }
   const bonus = xr && !xr.noBenefit ? xr.labBonus : 0;
+  // No Benefit: the Lab Total without the die and risk; if that falls short, the project is abandoned (DE)
+  if (xr?.noBenefit && planProject(p, c, d, ctx, { subject, data, strict: true }).problems.length) {
+    p.seasons += 1;
+    p.done = true;
+    p.failed = true;
+    return [...lines, `${head} the experiment brought no benefit, and without it the Lab Total falls short: the project is abandoned.`, ...recordRoutines(c, p.routines, year)];
+  }
   let plan = bonus ? planProject(p, c, d, ctx, { subject, data, bonus }) : base;
   // the vis is spent whatever comes of the season (an item's is lost on a failure, DE)
   const need = plan.vis;
@@ -359,10 +387,24 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
   p.seasons += 1;
   const routineLines = recordRoutines(c, p.routines, year);
   const it = itemOf(c, p);
-  if (hz?.destroyed || xr?.destroyed) {
-    p.done = true;
-    p.failed = true;
-    lines.push(`${head} ${destroy(c, p, it)}`);
+  // a Complete Failure's 0 destroys an item or familiar; a Disaster's second zero destroys the creation, and on a
+  // one-season project counts as a Complete Failure (DE)
+  let destroyed = !!xr?.destroyed;
+  if (Math.max(hz?.zeroes ?? 0, xr?.zeroes ?? 0) >= 2) {
+    if (multiSeason(p, it, base)) destroyed = true;
+    else if (enchantment) {
+      const s = simpleDie(rng);
+      lines.push(`Two zeroes on a one-season project count as a Complete Failure: simple die ${s.face}${s.face === 0 ? ', a 0' : ', no harm to it'}.`);
+      if (s.face === 0) destroyed = true;
+    }
+  }
+  if (destroyed) {
+    const r = destroy(c, p, it);
+    if (r.ended) {
+      p.done = true;
+      p.failed = true;
+    }
+    lines.push(`${head} ${r.text}`);
     return [...lines, ...routineLines];
   }
   if (hz?.wasted || xr?.wasted) {
@@ -498,23 +540,58 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
   return [...lines, ...routineLines];
 }
 
-/** A Complete Failure's 0, or a Disaster's second zero: the creation is destroyed (DE). */
-function destroy(c: Character, p: LabProject, it: EnchantedItem | undefined): string {
+/** A Complete Failure's 0, or a Disaster's second zero: the creation is destroyed (DE). Says whether the project ends. */
+function destroy(c: Character, p: LabProject, it: EnchantedItem | undefined): { text: string; ended: boolean } {
   switch (p.kind) {
     case 'instill':
     case 'open':
       if (it) c.items = c.items.filter((x) => x.uid !== it.uid);
       if (it && c.talismanUid === it.uid) c.talismanUid = undefined;
-      return `${it?.name ?? 'the item'} is destroyed.`;
+      return { text: `${it?.name ?? 'the item'} is destroyed.`, ended: true };
     case 'empower': {
       const f = c.familiar;
       if (f) f.powers = f.powers.filter((x) => x.uid !== p.effectUid);
-      return 'the power is lost, and the bond shaken: the storyguide says what more.';
+      return { text: 'the power is lost, and the bond shaken: the storyguide says what more.', ended: true };
     }
     case 'bind':
     case 'strengthen':
-      return `${c.familiar?.name || 'the familiar'} is destroyed: the storyguide says how, and whether the bond survives.`;
+      return { text: `${c.familiar?.name || 'the familiar'} is destroyed: the storyguide says how, and whether the bond survives.`, ended: true };
+    case 'invent':
+    case 'tame':
+      // the research so far is lost; it may be begun again
+      p.progress = 0;
+      return { text: 'everything gathered so far is destroyed: the points start again from nothing.', ended: false };
     default:
-      return 'the work is destroyed.';
+      return { text: 'the work is destroyed.', ended: true };
   }
+}
+
+/** Vis to perform a lapsed ritual again: a pawn per 5 years of the subject's age now, and the same extra vis as before (DE). */
+export function renewLongevityCost(c: Character): number {
+  return c.longevityLapsed ? longevityVisCost(c.age, c.longevityLapsed.extraVis) : 0;
+}
+
+/**
+ * A magus performs their lapsed ritual again from its Laboratory Text: no season, the vis of their
+ * age now, and no more vis of Creo, Corpus or Vim than their score in that Art (as for a spell). Takes
+ * the vis from these stocks; returns what was spent, or null if the stocks or the Arts fall short.
+ */
+export function renewLongevity(c: Character, d: DerivedCharacter, from: VisStock[]): string | null {
+  const old = c.longevityLapsed;
+  const need = renewLongevityCost(c);
+  if (!old) return null;
+  // the most plentiful first, as from any purse, each held to the Art's score
+  const arts = (['Cr', 'Co', 'Vi'] as const).map((a) => ({ a, have: visAvailable(from, [a]), n: Math.min(d.arts[a].score, visAvailable(from, [a])) })).sort((x, y) => y.have - x.have);
+  if (arts.reduce((t, x) => t + x.n, 0) < need) return null;
+  const taken: VisStock[] = [];
+  let left = need;
+  for (const { a, n } of arts) {
+    const k = Math.min(left, n);
+    if (k) taken.push(...takeVis(from, [a], k).taken);
+    left -= k;
+  }
+  const { lapsedYear: _, ...ritual } = old;
+  c.longevity = ritual;
+  c.longevityLapsed = undefined;
+  return `Longevity Ritual performed again: −${ritual.bonus} on aging rolls, for ${visText(taken)} vis.`;
 }

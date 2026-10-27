@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
 import { bestCords, cordPointsCost, familiarBindingLevel, longevityBonus, longevityVisCost, visLimit } from '../../../engine/enchant';
 import { labTotal } from '../../../engine/magic';
-import { newProject } from '../../../engine/projects';
+import { newProject, renewLongevity, renewLongevityCost } from '../../../engine/projects';
+import { purseOf, visAvailable } from '../../../engine/vis';
 import { generateFamiliar } from '../../../engine/generate/spellsAndFamiliars';
 import { newSeed, seeded } from '../../../engine/generate/random';
 import type { Familiar, LabProject } from '../../../engine/types';
@@ -112,7 +113,7 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
   );
 }
 
-/** Add a lab project of this kind (or open the one already planned), so the season's work is planned on the Lab projects card. */
+/** Add a lab project of this kind, so the season's work is planned on the Lab projects card (callers show the one already planned instead). */
 function usePlan(ed: CharEditor) {
   return (kind: LabProject['kind'], fill?: (p: LabProject) => void) =>
     ed.update((x) => {
@@ -126,6 +127,7 @@ function usePlan(ed: CharEditor) {
 function LongevityCard({ ed }: { ed: CharEditor }) {
   const { c, d, ctx, update } = ed;
   const plan = usePlan(ed);
+  const [said, setSaid] = useState('');
   if (!c || !d) return null;
   const magus = d.isMagus;
   const lab = ctx.lab;
@@ -150,6 +152,8 @@ function LongevityCard({ ed }: { ed: CharEditor }) {
           </span>
         )}
       </div>
+      {c.longevityLapsed && !c.longevity && <LapsedRitual ed={ed} onSaid={setSaid} />}
+      {said && <div className="small good-text">{said}</div>}
       {magus && (
         <div className="row" style={{ marginTop: 6 }}>
           <div className="stat">
@@ -179,9 +183,69 @@ function LongevityCard({ ed }: { ed: CharEditor }) {
       )}
       <p className="small muted" style={{ marginBottom: 0 }}>
         −1 on aging rolls per 5 points (or part) of the Creo Corpus Lab Total, a pawn of Creo, Corpus or Vim vis for every 5 years of age, a season&apos;s work; extra pawns add to
-        the Lab Total. For a mundane, a point per 10, and the Lab Total must be 30 (DE p.261).
+        the Lab Total. For someone else the Lab Total must be 30, and a mundane gains a point per 10 rather than 5. An aging crisis ends the ritual; it can then be performed
+        again from its Laboratory Text in no time, for the vis of the age then (DE p.261).
       </p>
     </Card>
+  );
+}
+
+/** A ritual an aging crisis ended: a magus performs it again from its Laboratory Text, for the vis of their age now (DE, Longevity Rituals). */
+function LapsedRitual({ ed, onSaid }: { ed: CharEditor; onSaid: (s: string) => void }) {
+  const { c, d, ctx, saga, update } = ed;
+  const putSagaState = useStore((s) => s.putSagaState);
+  if (!c || !d || !saga || !c.longevityLapsed) return null;
+  const old = c.longevityLapsed;
+  const need = renewLongevityCost(c);
+  const cov = ctx.covenant;
+  // no more of each kind than the magus's score in that Art, as for a spell
+  const reach = (stocks: { art: string; pawns: number; pair?: string }[]) => (['Cr', 'Co', 'Vi'] as const).reduce((t, a) => t + Math.min(d.arts[a].score, visAvailable(stocks as never, [a])), 0);
+  const fromPurse = reach(purseOf(structuredClone(c)).vis);
+  const fromCov = cov ? reach(cov.visStocks) : 0;
+  const renew = (where: 'purse' | 'covenant') => {
+    if (where === 'purse') {
+      let said: string | null = null;
+      update((x) => void (said = renewLongevity(x, d, purseOf(x).vis)));
+      onSaid(said ?? 'Not enough vis in the purse.');
+    } else if (cov) {
+      // the character and the covenant's stocks change together, as one step to undo
+      const x = structuredClone(c);
+      const y = structuredClone(cov);
+      const said = renewLongevity(x, d, y.visStocks);
+      if (!said) return onSaid('Not enough vis in the covenant’s stocks.');
+      putSagaState({ saga, characters: [x], covenants: [y] });
+      onSaid(`${said} (from the covenant)`);
+    }
+  };
+  return (
+    <div className="row small" style={{ marginTop: 6 }}>
+      <span className="warn-text">
+        The ritual (−{old.bonus}, Lab Total {old.labTotal}) ended with an aging crisis{old.lapsedYear ? ` in ${old.lapsedYear}` : ''}.
+      </span>
+      {d.isMagus ? (
+        <>
+          <span className="muted">
+            Performed again from its Laboratory Text: {need} pawns of Creo, Corpus or Vim vis (a pawn per 5 years of age{old.extraVis ? `, and the ${old.extraVis} extra` : ''}), no more of each than
+            your score in that Art ({d.arts.Cr.score}/{d.arts.Co.score}/{d.arts.Vi.score}).
+          </span>
+          <button className="small" disabled={fromPurse < need} onClick={() => renew('purse')} title={fromPurse < need ? `The purse and your Arts allow ${fromPurse}` : undefined}>
+            Perform it again from the purse
+          </button>
+          {cov && (
+            <button className="small" disabled={fromCov < need} onClick={() => renew('covenant')} title={fromCov < need ? `The covenant’s stocks and your Arts allow ${fromCov}` : undefined}>
+              from the covenant&apos;s stocks
+            </button>
+          )}
+        </>
+      ) : (
+        <>
+          <span className="muted">A magus with its Laboratory Text can perform it again for {need} pawns of vis; only a Hermetic magus may repeat it.</span>
+          <button className="small" onClick={() => update((x) => void ((x.longevity = { ...old, lapsedYear: undefined }), (x.longevityLapsed = undefined)))}>
+            A magus performed it again
+          </button>
+        </>
+      )}
+    </div>
   );
 }
 

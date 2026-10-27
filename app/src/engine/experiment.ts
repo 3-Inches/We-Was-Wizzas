@@ -32,8 +32,10 @@ export interface ExperimentResult {
   noBenefit: boolean;
   /** Complete Failure, or a Disaster: the season is wasted */
   wasted: boolean;
-  /** the item or familiar is destroyed (a 0 after a Complete Failure, or two zeroes in a Disaster) */
+  /** a Complete Failure's simple die came up 0 on an item or familiar: it is destroyed */
   destroyed: boolean;
+  /** zeroes on a Disaster's botch dice: two or more destroy the creation (a one-season project counts it a Complete Failure) */
+  zeroes: number;
 }
 
 /** The most risk an original researcher may take: +1 per 5 points (or fraction) of Magic Theory, up to +3. */
@@ -95,13 +97,14 @@ export function rollExperiment(o: ExperimentOptions, rng: Rng = defaultRng): Exp
   let wasted = false;
   let destroyed = false;
   let warpingPoints = 0;
+  let zeroes = 0;
 
   const chart = (depth: number) => {
     const r = stressDie(experimentBotchDice(o), rng);
     if (r.botches) {
       disaster = true;
       wasted = true;
-      if (r.botches >= 2 && o.enchantment) destroyed = true;
+      zeroes = Math.max(zeroes, r.botches);
       warpingPoints += r.botches;
       lines.push(`Chart: ${describeStress(r)}. Disaster, with ${r.botches} zero${r.botches > 1 ? 'es' : ''}:`);
       for (let i = 0; i < Math.min(r.botches, DISASTER.length); i++) lines.push(`  ${i + 1}. ${DISASTER[i]}`);
@@ -150,7 +153,7 @@ export function rollExperiment(o: ExperimentOptions, rng: Rng = defaultRng): Exp
     }
   };
   chart(0);
-  return { labBonus, lines, disaster, warpingPoints, discovery, noBenefit, wasted, destroyed };
+  return { labBonus, lines, disaster, warpingPoints, discovery, noBenefit, wasted, destroyed, zeroes };
 }
 
 /**
@@ -160,11 +163,11 @@ export function rollExperiment(o: ExperimentOptions, rng: Rng = defaultRng): Exp
  * table. A lab with Warping: a simple die of no more than its Warping warps the season's product, a
  * side effect on an odd roll and a modified effect on an even one.
  */
-export function labSeasonHazards(o: { safety: number; warping: number; enchantment?: boolean }, rng: Rng = defaultRng): { lines: string[]; warpingPoints: number; wasted: boolean; destroyed: boolean } {
+export function labSeasonHazards(o: { safety: number; warping: number }, rng: Rng = defaultRng): { lines: string[]; warpingPoints: number; wasted: boolean; zeroes: number } {
   const lines: string[] = [];
   let warpingPoints = 0;
   let wasted = false;
-  let destroyed = false;
+  let zeroes = 0;
   if (o.safety < 0) {
     const die = simpleDie(rng).value;
     const unsafe = -o.safety;
@@ -175,7 +178,7 @@ export function labSeasonHazards(o: { safety: number; warping: number; enchantme
       if (zeros) {
         warpingPoints += zeros;
         wasted = true;
-        if (zeros >= 2 && o.enchantment) destroyed = true;
+        zeroes = zeros;
         lines.push(`Unsafe lab (Safety ${o.safety}): simple die ${die}, then ${n} botch ${n > 1 ? 'dice' : 'die'}: ${zeros} zero${zeros > 1 ? 'es' : ''}, a lab accident:`);
         for (let i = 0; i < Math.min(zeros, DISASTER.length); i++) lines.push(`  ${i + 1}. ${DISASTER[i]}`);
       } else lines.push(`Unsafe lab (Safety ${o.safety}): simple die ${die}, a near miss (no zero on ${n} botch ${n > 1 ? 'dice' : 'die'}).`);
@@ -192,7 +195,7 @@ export function labSeasonHazards(o: { safety: number; warping: number; enchantme
       );
     }
   }
-  return { lines, warpingPoints, wasted, destroyed };
+  return { lines, warpingPoints, wasted, zeroes };
 }
 
 /**

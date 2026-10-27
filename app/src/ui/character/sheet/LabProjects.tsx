@@ -9,13 +9,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
 import { CORD_COST, cordPointsCost } from '../../../engine/enchant';
-import { experimentBotchDice } from '../../../engine/experiment';
 import { conditionalBonuses } from '../../../engine/magic';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { LAB_ROUTINES, ROUTINE_IDS, toggleRoutine } from '../../../engine/labRoutines';
 import { optionOn } from '../../../engine/optional';
-import { PROJECT_KINDS, canExperiment, itemOf, newProject, pawnsUsed, planProject, seasonVisLimit, visShort, workProject } from '../../../engine/projects';
-import { loggedThisSeason } from '../../../engine/time';
+import { PROJECT_KINDS, canExperiment, itemOf, newProject, pawnsUsed, planProject, projectBotchDice, seasonVisLimit, visShort, workProject } from '../../../engine/projects';
+import { seasonTaken } from '../../../engine/time';
 import type { Character, LabProject } from '../../../engine/types';
 import { purseOf } from '../../../engine/vis';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
@@ -62,7 +61,9 @@ export function LabProjects({ ed }: { ed: CharEditor }) {
   const projects = c.projects ?? [];
   const year = saga.currentYear;
   const season = saga.currentSeason;
-  const busy = loggedThisSeason(c, year, season).length > 0;
+  // a season holds one lab project's work (an adventure aside)
+  const taken = seasonTaken(c, year, season);
+  const busy = taken.length > 0;
   const ruled = ctx.lab?.impossible ?? [];
   const add = () => update((x) => void (x.projects = [...(x.projects ?? []), newProject(kind)]));
   const set = (u: string, fn: (p: LabProject) => void) => update((x) => { const p = x.projects?.find((y) => y.uid === u); if (p) fn(p); });
@@ -92,9 +93,9 @@ export function LabProjects({ ed }: { ed: CharEditor }) {
       }
     >
       <p className="small muted" style={{ marginTop: 0 }}>
-        Plan the work here, then spend a season on it: <b>Work a season</b> logs it for {season} {year}
-        {busy ? ' (this character already has this season logged)' : ''}, and <b>Work it each season</b> makes it the season activity the Seasons page carries on with
-        until it is done. Vis comes from the purse ({(purseOf(structuredClone(c)).vis ?? []).map((v) => `${v.pawns} ${v.art}`).join(', ') || 'empty'}) or the covenant&apos;s stocks;
+        Plan the work here, then spend a season on it: <b>Work a season</b> logs it for {season} {year}, and <b>Work it each season</b> makes it the season activity the
+        Seasons page carries on with until it is done.
+        {busy && <span className="warn-text"> {season} {year} is already spent ({taken.map((e) => e.summary).join('; ')}): move to the next season on the Seasons page to work again.</span>} Vis comes from the purse ({(purseOf(structuredClone(c)).vis ?? []).map((v) => `${v.pawns} ${v.art}`).join(', ') || 'empty'}) or the covenant&apos;s stocks;
         at most {seasonVisLimit(d)} pawns a season (twice Magic Theory).
         {ruled.length > 0 && <span className="bad-text"> {ctx.lab?.lab.name} cannot be used for {ruled.join(', ')}.</span>}
       </p>
@@ -155,14 +156,14 @@ function ProjectRow({ p, ed, chars, set, onWork, busy }: { p: LabProject; ed: Ch
                 {p.progress}/{plan.target} points{plan.gain ? `, +${plan.gain} a season, ${plan.seasonsLeft} season${plan.seasonsLeft === 1 ? '' : 's'} to go` : ''}
               </span>
             )}
-            <button className="small primary" disabled={plan.problems.length > 0} onClick={onWork} title={busy ? 'This season is already logged for the character; this adds another entry' : `Spend ${saga.currentSeason} ${saga.currentYear} on it`}>
+            <button className="small primary" disabled={plan.problems.length > 0 || busy} onClick={onWork} title={busy ? `${saga.currentSeason} ${saga.currentYear} is already spent on something else` : `Spend ${saga.currentSeason} ${saga.currentYear} on it`}>
               Work a season
             </button>
             <button
               className="small ghost"
-              disabled={standing}
+              disabled={standing || plan.problems.some(restricted)}
               onClick={() => update((x) => void (x.standing = { kind: 'lab', projectUid: p.uid }))}
-              title="Make it the character's season activity: the Seasons page works it every season nothing else is logged, until it is done"
+              title={plan.problems.some(restricted) ? 'This lab cannot be used for it' : "Make it the character's season activity: the Seasons page works it every season nothing else is logged, until it is done"}
             >
               {standing ? '✓ worked each season' : 'Work it each season'}
             </button>
@@ -252,7 +253,7 @@ function ProjectRow({ p, ed, chars, set, onWork, busy }: { p: LabProject; ed: Ch
             </Field>
           )}
           {p.kind === 'instill' && it && (
-            <Field label="Effect" hint={it.kind === 'charged' ? 'A charged item is made in one season' : `${it.openedPawns - pawnsUsed(it)} of ${it.openedPawns} pawns of room left`}>
+            <Field label="Effect" hint={it.kind === 'charged' ? 'A charged item is made in one season, for no vis' : `${Math.max(0, it.openedPawns - pawnsUsed(it, p.effectUid))} of ${it.openedPawns} pawns of room left`}>
               <select
                 value={p.effectUid ?? ''}
                 onChange={(e) =>
@@ -398,7 +399,7 @@ function ProjectRow({ p, ed, chars, set, onWork, busy }: { p: LabProject; ed: Ch
             </Field>
           )}
           {experimentable && (
-            <Field label="Experiment" hint={`A simple die${p.experiment?.risk ? ` + ${p.experiment.risk}` : ''} on the Lab Total${labSpec ? ` and the lab's Experimentation +${labSpec}` : ''}; a roll on the Extraordinary Results Chart with ${experimentBotchDice({ risk: p.experiment?.risk ?? 0, auraStrength: ctx.aura.strength, safety: ctx.lab?.characteristics.Safety ?? 0, goldenCord: c.familiar?.golden ?? 0 })} botch dice`}>
+            <Field label="Experiment" hint={`A simple die${p.experiment?.risk ? ` + ${p.experiment.risk}` : ''} on the Lab Total${labSpec ? ` and the lab's Experimentation +${labSpec}` : ''}; a roll on the Extraordinary Results Chart with ${projectBotchDice(c, ctx, p.experiment?.risk ?? 0)} botch dice`}>
               <span className="row tight">
                 <label className="inline">
                   <input type="checkbox" checked={!!p.experiment} onChange={(e) => set((x) => void (x.experiment = e.target.checked ? { risk: 0 } : undefined))} /> experiment

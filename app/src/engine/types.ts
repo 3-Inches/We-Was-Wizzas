@@ -502,6 +502,8 @@ export interface LongevityRitual {
   createdYear?: number;
   createdBy?: string;
   forMundane?: boolean;
+  /** the year an aging crisis ended it (kept while it can be performed again) */
+  lapsedYear?: number;
 }
 
 export interface WoundState {
@@ -730,6 +732,8 @@ export interface Character {
   familiar?: Familiar;
   workshop?: Workshop;
   longevity?: LongevityRitual;
+  /** a ritual an aging crisis ended, which can be performed again from its Laboratory Text */
+  longevityLapsed?: LongevityRitual;
   /** spells, powers and rituals working on the character, or that changed it for good */
   activeEffects?: ActiveEffect[];
   /** Characteristic points raised by magic (the purchased value is this much lower) */

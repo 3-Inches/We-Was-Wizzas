@@ -12,10 +12,10 @@ import { DEFAULT_YEAR_END, applyYearEnd, planYearEnd, type YearEndOptions } from
 import { defaultRng, describeStress, stressDie, type Rng } from './dice';
 import { payAllowance } from './economy';
 import { constantWarping, effectExpiry, expireEffects, nextSeason, seasonIndex } from './effects';
-import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, newSeasonEntry, visForStudy } from './longterm';
-import { workProject } from './projects';
+import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, visForStudy } from './longterm';
+import { planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
-import type { ActiveEffect, Character, Covenant, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
+import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
 import { purseOf, takeVis, visText } from './vis';
 import { workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
@@ -46,6 +46,11 @@ export function inPlay(c: Character): boolean {
 
 export function loggedThisSeason(c: Character, year: number, season: Season): SeasonLogEntry[] {
   return c.seasonLog.filter((e) => e.year === year && e.season === season);
+}
+
+/** What already fills the season: anything logged but an adventure, which can share a season with other work (DE). */
+export function seasonTaken(c: Character, year: number, season: Season): SeasonLogEntry[] {
+  return loggedThisSeason(c, year, season).filter((e) => e.activity !== 'adventure');
 }
 
 /** Living Conditions for the aging roll (DE p.391 with the covenant's finances, Virtues and half the lab's Health). */
@@ -192,7 +197,16 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
     }
     case 'lab': {
       const lines: string[] = [];
-      const p = c.projects?.find((x) => x.uid === s.projectUid && !x.done);
+      const open = (c.projects ?? []).filter((x) => !x.done);
+      let p = open.find((x) => x.uid === s.projectUid);
+      // left to the clock, a magus works the first project the lab and the vis allow
+      if (c.standing?.kind !== 'lab') {
+        const workable = (x: LabProject) => {
+          const plan = planProject(x, c, d, ctx, { subject: chars?.find((y) => y.id === x.subjectId), data });
+          return !plan.problems.length && !visShort(x, c, ctx, plan);
+        };
+        p = open.find(workable) ?? p;
+      }
       if (p) lines.push(...workProject(c, d, ctx, cov, p.uid, data, year, { rng, chars, season }));
       const gains: Record<string, number> = theory ? { [`ability:${theory.uid}`]: 2 } : {};
       log('other', p ? `Lab: ${p.name}` : 'Lab work', gains);
@@ -209,8 +223,29 @@ function sparestCharacteristic(c: Character): Characteristic {
   return [...CHARACTERISTICS].sort((a, b) => Math.abs(c.characteristics[b]) - (c.agingPoints[b] ?? 0) - (Math.abs(c.characteristics[a]) - (c.agingPoints[a] ?? 0)))[0];
 }
 
+/** Someone who can tend a character through an aging crisis (DE, Aging: Int + Medicine against 6 adds their Medicine to the survival roll). */
+export interface Attendant {
+  id?: string;
+  name: string;
+  int: number;
+  medicine: number;
+}
+
+/** The covenant's specialists and living members with Medicine, the best first. */
+export function covenantAttendants(cov: Covenant, chars: Character[], derive: (c: Character) => DerivedCharacter): Attendant[] {
+  const fromSpecs = cov.specialists.map((sp) => ({
+    name: sp.name || 'the covenant’s physician',
+    int: specChar(sp, 'Int'),
+    medicine: Math.max(0, ...specAbilities(sp).filter((a) => a.id === 'medicine' || /medicine/i.test(a.label ?? '')).map((a) => a.score)),
+  }));
+  const fromMembers = chars
+    .filter((m) => inPlay(m) && cov.memberIds.includes(m.id) && m.abilities.some((a) => a.abilityId === 'medicine'))
+    .map((m) => ({ id: m.id, name: m.name || 'a companion', int: m.characteristics.Int, medicine: Math.max(0, ...derive(m).abilities.filter((a) => a.abilityId === 'medicine').map((a) => a.total)) }));
+  return [...fromSpecs, ...fromMembers].filter((a) => a.medicine > 0).sort((a, b) => b.medicine - a.medicine || b.int - a.int);
+}
+
 /** A character's year: a year older, the aging roll, and the year's Warping. */
-export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterContext, year: number, rng: Rng, roll: boolean): Line[] {
+export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterContext, year: number, rng: Rng, roll: boolean, attendant?: Attendant): Line[] {
   const who = c.name || 'Unnamed';
   const lines: Line[] = [];
   if (!c.creature?.magicCharacter) c.age += 1;
@@ -222,7 +257,7 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
   const due = roll && ages && c.lastAgedYear !== year;
   if (due) {
     if (routine.from.length) lines.push({ who, kind: 'aging', text: `Lab routines this year (${routine.from.join(', ')}): Living Conditions ${routine.living}${routine.extraRolls ? `, ${routine.extraRolls} extra Aging roll${routine.extraRolls > 1 ? 's' : ''}` : ''}.` });
-    for (let i = 0; i < 1 + routine.extraRolls; i++) ageOnce(c, d, ctx, rng, routine.living, who, lines);
+    for (let i = 0; i < 1 + routine.extraRolls && !c.wounds.dead; i++) ageOnce(c, d, ctx, rng, routine.living, who, lines, year, attendant);
     c.lastAgedYear = year;
   }
   // Warping: constant effects (and a Longevity Ritual), and living in a strong aura not of one's own realm
@@ -254,7 +289,7 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
 }
 
 /** One Aging roll and what it brings (DE, Aging). */
-function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: Rng, livingMod: number, who: string, lines: Line[]): void {
+function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: Rng, livingMod: number, who: string, lines: Line[], year: number, attendant?: Attendant): void {
   const lr = c.longevity?.bonus ?? 0;
   const r = agingRoll(c.age, livingConditions(d, ctx) + livingMod, lr, d.agingRollParts, rng, !!c.longevity && c.age < 35);
   const notes: string[] = [];
@@ -270,17 +305,38 @@ function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: 
     for (let i = 0; i < need; i++) applyAgingPoint(c, sparestCharacteristic(c), 1);
     const crisis = crisisRoll(c.age, decrepitudeScore(c.decrepitudePoints), rng);
     let text = `Crisis ${crisis.roll}: ${crisis.text}`;
+    // a failed roll, or a terminal illness, kills unless magic saves them: marked dead, to be brought back if it does (DE, Aging)
+    const saved = ' Marked dead: if magic saves them, untick Dead on their Combat & Health tab.';
     if (crisis.ease !== undefined) {
-      const save = stressDie(0, rng).value + (c.characteristics.Sta ?? 0);
-      text += save >= crisis.ease ? ` Survived (Stamina roll ${save} against ${crisis.ease}).` : ` Stamina roll ${save} against ${crisis.ease}: the character dies unless a Creo Corpus ${crisis.crco} ritual saves them (the storyguide decides).`;
-    } else if (crisis.roll >= 19) text += ' The character dies unless magic saves them (the storyguide decides).';
+      // one attendant's care: Int + Medicine against 6 adds their Medicine; a botch takes 3 off (DE, Aging)
+      let care = 0;
+      if (attendant) {
+        const r = stressDie(1, rng);
+        const t = r.value + attendant.int + attendant.medicine;
+        care = r.botches ? -3 : t >= 6 ? attendant.medicine : 0;
+        text += r.botches ? ` ${attendant.name} botches the care (−3).` : t >= 6 ? ` ${attendant.name} tends them (Int + Medicine ${t}): +${care}.` : ` ${attendant.name}'s care does not help (Int + Medicine ${t}).`;
+      }
+      const save = stressDie(0, rng).value + (c.characteristics.Sta ?? 0) + care;
+      if (save >= crisis.ease) text += ` Survived (Stamina roll ${save} against ${crisis.ease}).`;
+      else {
+        text += ` Stamina roll ${save} against ${crisis.ease}: the character dies unless a Creo Corpus ${crisis.crco} ritual saves them.${saved}`;
+        c.wounds.dead = true;
+      }
+    } else if (crisis.roll >= 19) {
+      text += ` The character dies unless magic saves them.${saved}`;
+      c.wounds.dead = true;
+    }
     if (c.longevity) {
-      c.longevity = undefined;
-      text += ' The crisis ends the Longevity Ritual.';
+      lapseLongevity(c, year);
+      text += ' The crisis ends the Longevity Ritual; it can be performed again from its Laboratory Text (Lab & items).';
     }
     lines.push({ who, kind: 'crisis', text });
   }
-  if (decrepitudeScore(c.decrepitudePoints) >= 5) lines.push({ who, kind: 'crisis', text: 'Decrepitude 5: the character dies of old age.' });
+  // Decrepitude 5: bedridden, and dead within a few months; no mortal help saves them (DE, Aging)
+  if (decrepitudeScore(c.decrepitudePoints) >= 5 && !c.wounds.dead) {
+    c.wounds.dead = true;
+    lines.push({ who, kind: 'crisis', text: 'Decrepitude 5: bedridden, the character dies of old age within a few months. Marked dead.' });
+  }
 }
 
 /** Warping Points a year from an aura of 6 to 10 by time spent in it: always within, half time, frequent visits (DE table). */
@@ -408,9 +464,13 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       for (const s of cov.specialists.filter((x) => x.hired && x.hired.until <= year)) lines.push({ who: cov.name, kind: 'covenant', text: `${s.name || 'The hired teacher'} has taught the time paid for, and leaves.` });
       cov.specialists = cov.specialists.filter((x) => !x.hired || x.hired.until > year);
     }
+    // each covenant's best hand at Medicine tends its people through a crisis
+    const attendants = new Map(state.covenants.map((cov) => [cov.id, covenantAttendants(cov, state.characters, derive)]));
     for (const c of state.characters.filter(inPlay)) {
       const d = derive(c);
-      lines.push(...ageCharacter(c, d, ctxOf(c), year, rng, o.rollAging));
+      const home = covenantOf(c, state.covenants);
+      const doc = home ? attendants.get(home.id)?.find((a) => a.id !== c.id) : undefined;
+      lines.push(...ageCharacter(c, d, ctxOf(c), year, rng, o.rollAging, doc));
       for (const t of workshopYearEnd(c, d)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: t });
     }
   }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { StandingEditor } from '../StandingEditor';
 import { specAbilities, specChar, specHighest } from '../../../engine/covenantRules';
 import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, SEASONS, TECHNIQUES, type Art, type Characteristic } from '../../../data';
-import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, magianLinkedGains, newSeasonEntry, visForStudy, type AgingResult, type StudySource } from '../../../engine/longterm';
+import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, lapseLongevity, magianLinkedGains, newSeasonEntry, visForStudy, type AgingResult, type StudySource } from '../../../engine/longterm';
 import { stressDie, describeStress } from '../../../engine/dice';
 import { abilityXpForScore } from '../../../engine/xp';
 import type { SeasonLogEntry } from '../../../engine/types';
@@ -15,6 +15,7 @@ import { useStore } from '../../../store/store';
 import { TwilightCard } from './Twilight';
 import { useWorkProject } from './LabProjects';
 import { planProject, visShort } from '../../../engine/projects';
+import { seasonTaken } from '../../../engine/time';
 import { MysteriesCard } from './MysteriesCard';
 import { GuildCard } from './GuildCard';
 import { WritingCard } from './Writing';
@@ -153,6 +154,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
 
   const openProjects = (c.projects ?? []).filter((p) => !p.done);
   const project = openProjects.find((p) => p.uid === projectUid) ?? openProjects[0];
+  // a season holds one activity, an adventure aside (DE)
+  const taken = seasonTaken(c, year, season);
+  const doubled = taken.length > 0 && kind !== 'adventure';
   const plan0 = kind === 'lab' && project ? planProject(project, c, d, ctx, { subject: sagaChars.find((x) => x.id === project.subjectId), data }) : undefined;
   const short = plan0 && project ? visShort(project, c, ctx, plan0) : undefined;
   const projectPlan = plan0 && short ? { ...plan0, problems: [...plan0.problems, short] } : plan0;
@@ -240,8 +244,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         const need = Math.max(1, nextLevel - x.decrepitudePoints);
         for (let i = 0; i < need; i++) out.push(applyAgingPoint(x, anyChar, 1));
         if (x.longevity) {
-          out.push('Longevity Ritual spent by the crisis — it must be renewed.');
-          x.longevity = undefined;
+          out.push('The crisis ends the Longevity Ritual; it can be performed again from its Laboratory Text (Lab & items).');
+          lapseLongevity(x, year);
         }
       }
     });
@@ -494,9 +498,14 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             )}
           </div>
         )}
+        {doubled && (
+          <p className="small warn-text" style={{ margin: '8px 0 0' }}>
+            {season} {year} already holds {taken.map((e) => e.summary).join('; ')}. A season holds one activity, besides an adventure{kind === 'lab' ? ': lab work waits for the next season' : '; log another only to split a season the storyguide allows'}.
+          </p>
+        )}
         <div className="row" style={{ marginTop: 8 }}>
           <input style={{ flex: 1 }} value={summary} placeholder="Summary for the log (optional)" onChange={(e) => setSummary(e.target.value)} />
-          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || visNotAllowed || (kind === 'vis' && visDie === null) || (kind === 'lab' && (!project || !!projectPlan?.problems.length))}>
+          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || visNotAllowed || (kind === 'vis' && visDie === null) || (kind === 'lab' && (!project || !!projectPlan?.problems.length || doubled))}>
             Log season{res?.xp ? ` & add ${res.xp} xp` : ''}
           </button>
         </div>
