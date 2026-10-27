@@ -330,7 +330,7 @@ export function ageYears(c: Character, from: number, to: number, plan: AgingPlan
       if (c.longevity && !dead) {
         if (plan.renewLongevity) notes.push('Longevity Ritual renewed after the crisis.');
         else {
-          c.longevity = undefined;
+          lapseLongevity(c);
           notes.push('The crisis ended the Longevity Ritual.');
         }
       }
@@ -432,3 +432,10 @@ export function twilightEffects(comprehended: boolean, totalWarping: number): { 
 }
 
 export type { XpSource, GameData };
+
+/** Keep a ritual an aging crisis has ended, so it can be performed again from its Laboratory Text (DE, Longevity Rituals). */
+export function lapseLongevity(c: Character, year?: number): void {
+  if (!c.longevity) return;
+  c.longevityLapsed = { ...c.longevity, lapsedYear: year };
+  c.longevity = undefined;
+}

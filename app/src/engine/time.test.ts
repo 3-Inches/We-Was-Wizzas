@@ -4,7 +4,9 @@ import { buildGameData } from '../data';
 import { newSaga } from '../store/store';
 import { newCovenant } from './covenant';
 import { ensureAbility, newCharacter } from './character/factory';
-import { advanceSeason, advanceSeasons, auraWarping, loggedThisSeason } from './time';
+import { advanceSeason, advanceSeasons, ageCharacter, auraWarping, loggedThisSeason } from './time';
+import { newLab } from './lab';
+import { newProject } from './projects';
 import { applyEffect, expireEffects } from './effects';
 import { applyRitual, castCost, casterTally, legacyCasts, undoCast } from './rituals';
 import { takeVis } from './vis';
@@ -238,5 +240,67 @@ describe('covenant teachers', () => {
     expect(lines[0].text).toMatch(/Quality 20/); // Com 2 + Teaching 4 + 3 + 6 one student + 5 Good Teacher
     expect(lines[2].text).toMatch(/two seasons this year.*Instead: Practiced Latin: \+4 xp/); // the free season it would have had
     expect(state.covenants[0].specialists[0].taught).toEqual({ year: 1220, seasons: 2 });
+  });
+});
+
+describe('death, crises and the care of a physician (DE, Aging)', () => {
+  /** dice that show these faces in turn, then the last one */
+  const seq = (...f: number[]) => {
+    let i = 0;
+    return () => (f[Math.min(i++, f.length - 1)] + 0.5) / 10;
+  };
+  const grogAt40 = () => {
+    const g = newCharacter('grog', 's');
+    g.name = 'Hans';
+    g.creation.finalized = true;
+    g.age = 40;
+    return g;
+  };
+  it('marks a character dead at Decrepitude 5, and the clock leaves them be', () => {
+    const st = saga();
+    st.characters[0].decrepitudePoints = 75; // Decrepitude 5
+    const { state, report } = advanceSeason(st, data, { fillUnplanned: true, rollAging: true, yearEnd: { permanentIncome: true, inflation: true, harvestVis: true, skipVis: [], clearSundry: true }, rng: faces(5) });
+    expect(state.characters[0].wounds.dead).toBe(true);
+    expect(report.lines.some((l) => l.who === 'Grog' && /Decrepitude 5: bedridden.*Marked dead/.test(l.text))).toBe(true);
+    const next = advanceSeasons(state, data, 4, { fillUnplanned: true, rollAging: true, yearEnd: { permanentIncome: true, inflation: true, harvestVis: true, skipVis: [], clearSundry: true }, rng: faces(5) });
+    expect(next.state.characters[0].age).toBe(41); // no more years for the dead
+    expect(next.reports.flatMap((r) => r.lines).some((l) => l.who === 'Grog')).toBe(false);
+  });
+  it('marks a character dead who fails a crisis roll, unless a physician’s care carries them through', () => {
+    // aging: a 1 then a 9 (18, + 5 for age 41 = a crisis); crisis 9 + 5 + Decrepitude 1 = 15, a minor illness (3); survival roll 0
+    const alone = grogAt40();
+    const lines = ageCharacter(alone, deriveCharacter(alone, data, DEFAULT_HOUSE_RULES), { aura: { realm: 'Magic', strength: 3 } }, 1220, seq(1, 9, 9, 0), true);
+    expect(alone.wounds.dead).toBe(true);
+    expect(lines.map((l) => l.text).join(' ')).toMatch(/Minor illness.*Stamina roll 0 against 3.*Marked dead/);
+    // a physician with Int 2 and Medicine 4 rolls 5 + 6 = 11 against 6: +4 to survive
+    const tended = grogAt40();
+    const out = ageCharacter(tended, deriveCharacter(tended, data, DEFAULT_HOUSE_RULES), { aura: { realm: 'Magic', strength: 3 } }, 1220, seq(1, 9, 9, 5, 0), true, { name: 'Brother Anselm', int: 2, medicine: 4 });
+    expect(tended.wounds.dead).toBeFalsy();
+    expect(out.map((l) => l.text).join(' ')).toMatch(/Brother Anselm tends them \(Int \+ Medicine 11\): \+4\. Survived \(Stamina roll 4 against 3\)/);
+  });
+  it('finds the covenant’s physician among its specialists for the year’s crises', () => {
+    const st = saga();
+    st.covenants[0].specialists.push({ uid: 'doc', name: 'Brother Anselm', role: 'specialist', abilities: [{ id: 'medicine', score: 5 }], chars: { Int: 1 } } as never);
+    st.characters[0].age = 80;
+    st.characters[0].decrepitudePoints = 30; // Decrepitude 3: a crisis is likely
+    // aging 1 then 9 (a crisis at 81); Decrepitude up to 4; crisis 2 + 9 + 4 = 15, a minor illness; care 5 + 1 + 5 = 11; survival 9
+    const { report } = advanceSeason(st, data, { fillUnplanned: true, rollAging: true, yearEnd: { permanentIncome: true, inflation: true, harvestVis: true, skipVis: [], clearSundry: true }, rng: seq(1, 9, 2, 5, 9) });
+    expect(report.lines.find((l) => l.who === 'Grog' && /^Crisis/.test(l.text))?.text).toMatch(/Minor illness.*Brother Anselm tends them \(Int \+ Medicine 11\): \+5\. Survived/);
+  });
+  it('lets a magus left to the clock work a project the lab allows, past one it rules out', () => {
+    const st = saga();
+    st.saga.currentSeason = 'Spring';
+    const magus = st.characters[1];
+    const lab = newLab('Cramped', magus.id);
+    lab.virtues = [{ uid: 'mx', defId: 'missing-equipment-flaw', alt: 'Longevity Rituals+Vis Extraction' }];
+    st.covenants[0].labs.push(lab);
+    const extract = newProject('extract');
+    const invent = { ...newProject('invent'), technique: 'Cr' as const, form: 'An' as const, level: 1 };
+    magus.projects = [extract, invent];
+    const { state, report } = advanceSeason(st, data);
+    const m = state.characters[1];
+    expect(m.projects![1].done).toBe(true);
+    expect(m.projects![0].seasons).toBe(0);
+    expect(report.lines.some((l) => l.who === 'Magus' && /invented/.test(l.text))).toBe(true);
   });
 });
