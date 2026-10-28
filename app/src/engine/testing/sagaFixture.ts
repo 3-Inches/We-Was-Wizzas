@@ -9,6 +9,8 @@
 import type { GameData } from '../../data';
 import { newSaga } from '../../store/store';
 import { newEffect, newItem } from '../../ui/items/ItemEditor';
+import { planBook } from '../books';
+import { deriveCharacter } from '../character/derive';
 import { addVirtue } from '../character/factory';
 import { newCovenant } from '../covenant';
 import { generateCharacter } from '../generate/character';
@@ -127,6 +129,24 @@ export function buildTestSaga(data: GameData, o: TestSagaOptions): SagaState {
   m3.projects = [refine, { ...newProject('install'), labVirtue: { defId: 'superior-lighting' }, name: 'Install Superior Lighting' }, newProject('extract')];
   m3.standing = { kind: 'lab', projectUid: refine.uid };
   m3.purse = { pounds: 2, vis: [{ art: 'Cr', pawns: 8 }, { art: 'Co', pawns: 4 }, { art: 'Vi', pawns: 6 }] };
+
+  // writing in hand: the physician writes a tractatus in free seasons; the scriptorium copies the library's first summa
+  const doc = chars.find((c) => c.type === 'companion' && c !== monk && c !== owl);
+  if (doc) {
+    const d = deriveCharacter(doc, data, rules);
+    const best = d.abilities.filter((a) => a.abilityId !== 'living-language' && a.abilityId !== 'dead-language').sort((a, b) => b.score - a.score)[0];
+    const lang = doc.abilities.filter((a) => a.abilityId === 'living-language').map((a) => ({ a, score: d.abilityByUid.get(a.uid)?.total ?? 0 })).sort((x, y) => y.score - x.score)[0];
+    if (best && best.score >= 2 && lang && lang.score >= 5) {
+      const r = planBook(d, { kind: 'tractatus', isArt: false, score: best.score, com: d.characteristics.Com.value, language: lang.score, extended: { scribe: true }, resonant: false });
+      doc.writing = [{
+        uid: 'w1', kind: 'tractatus', title: `On ${best.name}`, subjectType: 'ability', subject: best.abilityId, exposure: `ability:${best.uid}`, language: lang.a.param ?? 'Latin', level: 0,
+        quality: r.quality, textQuality: r.textQuality, make: { scribe: true }, points: 0, needed: 1, rate: 1, authorScore: best.score, started: { year: 1220, season: 'Spring' },
+      }];
+      doc.standing = { kind: 'write', projectUid: 'w1' };
+    }
+  }
+  const summa = cov.library.find((b) => b.kind === 'summa');
+  if (summa) cov.scriptorium = [{ uid: 'sc1', sourceUid: summa.uid, points: 0 }];
 
   const state: SagaState = { saga, characters: chars, covenants: [cov, abbey] };
   return o.seasons ? advanceSeasons(state, data, o.seasons, { ...DEFAULT_ADVANCE, rng: seeded(o.seed) }).state : state;

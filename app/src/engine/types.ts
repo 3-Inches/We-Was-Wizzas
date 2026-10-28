@@ -233,12 +233,12 @@ export interface Purse {
 
 /** What a character does in a season nobody planned (and while time is fast-forwarded). */
 export interface StandingActivity {
-  kind: 'auto' | 'exposure' | 'practice' | 'vis' | 'lab' | 'work' | 'taught' | 'worship' | 'none';
+  kind: 'auto' | 'exposure' | 'practice' | 'vis' | 'lab' | 'work' | 'taught' | 'worship' | 'write' | 'none';
   /** taught: one of the covenant's teachers ('spec:<uid>') */
   teacher?: string;
   /** 'art:Cr' or 'ability:<uid>' */
   target?: string;
-  /** a lab project to work on */
+  /** a lab project, or a writing project, to work on */
   projectUid?: string;
 }
 
@@ -539,6 +539,16 @@ export interface Workshop {
   seasonsWorked: number;
   reputationXp: number;
   shoddyStreak: number;
+  /** Labor Points stored in goods for a rise in price: a point a year for every ten (City & Guild, Commodity Speculation) */
+  speculation?: number;
+  /** returns owed later: an introduction's three seasons' worth after two years */
+  pending?: { year: number; lp: number; note: string }[];
+  /** experience toward a Reputation for charity (a point per season's worth given) */
+  charityXp?: number;
+  /** a Wealthy character living as an average or Poor one: an extra season's Labor Points every three years or every year, and a name for miserliness */
+  miserly?: 'average' | 'poor';
+  /** the last year the miser's extra season was counted */
+  miserMark?: number;
 }
 
 export interface LongevityRitual {
@@ -821,12 +831,18 @@ export interface Character {
   };
   /** seasons worked under each non-standard lab routine, in all and by year (for Warping and the year's Living Conditions) */
   labRoutines?: { seasons: Partial<Record<LabRoutine, number>>; years: Record<number, Partial<Record<LabRoutine, number>>> };
+  /** books, copies and lab texts being written (DE, Writing Books) */
+  writing?: WritingProject[];
   /** what the character does in a season nobody planned */
   standing?: StandingActivity;
   /** the seasons a year are spent: a free-season count set by hand, needing no sleep, and what the extra seasons go to */
   seasons?: { free?: number; sleepless?: boolean; extra?: StandingActivity };
   /** the last year whose aging roll was made */
   lastAgedYear?: number;
+  /** improved or reduced rations given as a reward or punishment: the year, and its change to the aging roll (Grogs) */
+  rations?: { year: number; living: number };
+  /** a grog retired from the covenant's service (still counted among its people), or dismissed from it (Grogs) */
+  retired?: { year: number; how: 'retired' | 'dismissed' };
   wounds: WoundState;
   fatigueLost: number;
   longTermFatigueLost: number;
@@ -894,6 +910,107 @@ export interface LibraryBook {
   ownerId?: string;
   /** the covenant rolls (Grogs): its own accounts and records, which cost no Build Points */
   rolls?: boolean;
+  /** written, copied or bought in play: no Build Points */
+  inPlay?: boolean;
+  /** how the book was made, under Covenants' extended rules for Quality: artisans, resonant materials, format */
+  make?: BookMake;
+  /** the Quality of the text alone (author, Virtues, the Level given up), which a copy keeps: the rest comes from how each copy is made */
+  textQuality?: number;
+  /** the author's character, Communication and score in the subject when writing (for glosses and annotation) */
+  authorId?: string;
+  authorCom?: number;
+  authorScore?: number;
+  /** the Ability's parameter (Profession: Scribe), for books on one */
+  param?: string;
+  /** a commentary: the summa (by uid) it is about; a reader must have studied that for a season */
+  commentaryOf?: string;
+  /** a copy: the book (by uid) it was copied from */
+  copyOf?: string;
+  /** copied by someone without the skills to copy it truly (DE, Corrupted Copies): useless */
+  corrupt?: boolean;
+  /** glossed by a reader more eloquent than the author, +1 Quality once (Covenants ch.7) */
+  glossed?: { by: string; year: number };
+  /** bound into a florilegium: its name and the Quality it added */
+  florilegium?: { name: string; bonus: number };
+  /** an annotated summa (inspeximus): Levels added */
+  annotated?: number;
+  /** being clarified: opened as an invested device and left in a Magic aura for 12 / aura years (Covenants ch.7) */
+  clarifying?: { since: number; aura: number; by?: string };
+}
+
+/** A copy the covenant's scribes make in their working seasons (Covenants ch.7, Scriptoria). */
+export interface ScriptoriumCopy {
+  uid: string;
+  sourceUid: string;
+  quick?: boolean;
+  points: number;
+  /** the scribe (specialist uid) who copies it; anyone free if unset */
+  scribeUid?: string;
+}
+
+/** The format of a book, beyond a plain bound codex (Covenants ch.7, Secondary Functions). */
+export type BookFormat = 'codex' | 'flap' | 'exemplar' | 'unbound' | 'holograph' | 'deluxe' | 'juvenilia' | 'ex-libris';
+
+/** How a book is made under the extended rules: skilled artisans (+1 each), resonant materials (+1 bought, +2 from a story), clarification (+1). */
+export interface BookMake {
+  scribe?: boolean;
+  binder?: boolean;
+  illuminator?: boolean;
+  /** 1 bought materials, 2 rare materials won in a story */
+  resonance?: number;
+  /** clarified with resonant materials: +1 more */
+  clarified?: boolean;
+  format?: BookFormat;
+  /** an edition de luxe gives up this much Quality, up to (Scribe + Binder + Illuminator) / 2 */
+  deluxe?: number;
+  /** the artisans by name, for the record */
+  by?: { scribe?: string; binder?: string; illuminator?: string };
+}
+
+/** A book, a copy or lab texts being written over seasons (DE, Writing Books and Copying Books; Covenants ch.7). */
+export interface WritingProject {
+  uid: string;
+  kind: 'summa' | 'tractatus' | 'commentary' | 'copy' | 'labTexts' | 'copyLabTexts' | 'florilegium' | 'annotate';
+  title: string;
+  subjectType: 'art' | 'ability' | 'spell' | 'other';
+  subject: string;
+  param?: string;
+  /** the author's or copier's Ability (by uid) the season's Exposure goes to */
+  exposure?: string;
+  language: string;
+  /** a summa's Level (fixed when begun), or the levels of lab texts */
+  level: number;
+  /** the Quality planned when begun (summae, tractatus, commentaries) */
+  quality?: number;
+  textQuality?: number;
+  make?: BookMake;
+  /** points toward the book so far, and how many it needs */
+  points: number;
+  needed: number;
+  /** a season's points: Communication + Language (the lower of author and notary when dictating), or a copyist's rate */
+  rate: number;
+  notary?: string;
+  /** the library the book goes to */
+  covenantId?: string;
+  /** copies and annotations: the library book (by uid) worked from */
+  sourceUid?: string;
+  /** a quick copy: three times as fast, 1 Quality lower */
+  quick?: boolean;
+  /** copying several tractatus or lab texts in one season: their uids */
+  sources?: string[];
+  /** a commentary's summa */
+  commentaryOf?: string;
+  /** what will go wrong: corruption, a missing skill */
+  corrupt?: string;
+  /** a florilegium: its bonus */
+  bonus?: number;
+  /** the spells (by character spell uid) whose lab texts are written up */
+  spells?: string[];
+  authorScore?: number;
+  started: { year: number; season: Season };
+  done?: { year: number; season: Season };
+  /** the covenant whose library the finished work went to */
+  inLibrary?: string;
 }
 
 export interface VisSource {
@@ -1167,6 +1284,8 @@ export interface Covenant {
     ownUpkeep?: string[];
     /** magi giving up their privileges: impoverished (a companion's points) or living as covenfolk (a specialist's) (Covenants ch.5) */
     magiLiving?: 'impoverished' | 'pauper';
+    /** hire only the crafts the Cost Saving Limits table names as examples, not those from other books */
+    exampleCraftsOnly?: boolean;
   };
   /** how the covenfolk are organized (DE, The Organization of Covenfolk) */
   organization?: 'household' | 'military' | 'nations' | 'guilds' | 'professional-guilds' | 'monastery' | 'none';
@@ -1174,6 +1293,10 @@ export interface Covenant {
   folkAdvance?: boolean;
   /** spells cast to do the covenant's craft work (Covenants ch.4) */
   craftMagic?: CraftMagicUse[];
+  /** copies the covenant's scribes are making (Covenants ch.7, Scriptoria) */
+  scriptorium?: ScriptoriumCopy[];
+  /** the turb's watches (Grogs): each grog character's patrol and watch, double duty, and double duties stood since the last normal one */
+  turb?: { watches: Record<string, { patrol: 'day' | 'night'; watch: number }>; double?: boolean; doubleDuties?: number };
   /** unGiftedCouncil: council members without The Gift whose votes count equally (they add 0 to Base Loyalty) */
   loyalty: { actionPoints: number; yearsFounded?: number; unGiftedCouncil?: number };
   log: { uid: string; year: number; season?: string; text: string; treasuryDelta?: number; visDelta?: VisStock[] }[];

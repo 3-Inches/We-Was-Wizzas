@@ -58,51 +58,78 @@ export interface CraftDef {
   rare: boolean;
   /** buys materials for books: 1 pound of Writing Materials each */
   writer?: boolean;
+  /** named in the Cost Saving Limits by Craft table (Covenants, DE); the rest come from other books */
+  example?: boolean;
+  /** where a craft beyond the table's examples comes from */
+  source?: string;
+  /** other names for it, for finding a craftsman by name */
+  aliases?: string[];
 }
 
 /**
- * The crafts named in the Cost Saving Limits by Craft table. A carpenter appears under both Buildings and
- * Consumables: what one saves fills the Buildings limit first and the rest goes to Consumables.
+ * The crafts that save a covenant money. The Cost Saving Limits by Craft table (Covenants ch.5, DE)
+ * names examples only: a carpenter appears under both Buildings and Consumables (what one saves fills
+ * the Buildings limit first and the rest goes to Consumables), and "craftsmen producing foodstuffs"
+ * can save Provisions up to the whole bill. The others are the trades City & Guild, Grogs and
+ * Transforming Mythic Europe give covenants, each in the category its wares fall under.
  */
 export const CRAFTS: CraftDef[] = [
-  { id: 'stonemason', name: 'Stonemason', categories: ['Buildings'], rare: false },
-  { id: 'carpenter', name: 'Carpenter', categories: ['Buildings', 'Consumables'], rare: false },
-  { id: 'furniture-maker', name: 'Furniture maker', categories: ['Buildings'], rare: false },
-  { id: 'thatcher', name: 'Thatcher', categories: ['Buildings'], rare: false },
-  { id: 'blacksmith', name: 'Blacksmith', categories: ['Consumables'], rare: false },
-  { id: 'candlemaker', name: 'Candlemaker', categories: ['Consumables'], rare: false },
-  { id: 'tinker', name: 'Tinker', categories: ['Consumables'], rare: false },
-  { id: 'weaver', name: 'Weaver', categories: ['Consumables'], rare: false },
-  { id: 'leatherworker', name: 'Leatherworker', categories: ['Consumables'], rare: false },
-  { id: 'cooper', name: 'Cooper', categories: ['Consumables'], rare: false },
-  { id: 'cobbler', name: 'Cobbler', categories: ['Consumables'], rare: false },
-  { id: 'glassblower', name: 'Glassblower', categories: ['Laboratories'], rare: true },
-  { id: 'goldsmith', name: 'Goldsmith', categories: ['Laboratories'], rare: true },
-  { id: 'silversmith', name: 'Silversmith', categories: ['Laboratories'], rare: true },
-  { id: 'lapidary', name: 'Lapidary', categories: ['Laboratories'], rare: true },
-  { id: 'mechanic', name: 'Mechanic', categories: ['Laboratories'], rare: true },
-  { id: 'toolmaker', name: 'Toolmaker', categories: ['Laboratories'], rare: false },
-  { id: 'brewer', name: 'Brewer', categories: ['Provisions'], rare: false },
-  { id: 'vintner', name: 'Vintner', categories: ['Provisions'], rare: false },
-  { id: 'swordsmith', name: 'Swordsmith', categories: ['Weapons and Armor'], rare: false },
-  { id: 'armorer', name: 'Armorer', categories: ['Weapons and Armor'], rare: false },
-  { id: 'bowyer', name: 'Bowyer', categories: ['Weapons and Armor'], rare: false },
-  { id: 'percamenarius', name: 'Percamenarius (parchment maker)', categories: ['Writing Materials'], rare: true },
-  { id: 'ink-maker', name: 'Ink-maker', categories: ['Writing Materials'], rare: false },
-  { id: 'bookbinder', name: 'Bookbinder', categories: [], rare: true, writer: true },
-  { id: 'illuminator', name: 'Illuminator', categories: [], rare: true, writer: true },
+  { id: 'stonemason', name: 'Stonemason', categories: ['Buildings'], rare: false, example: true, aliases: ['mason'] },
+  { id: 'carpenter', name: 'Carpenter', categories: ['Buildings', 'Consumables'], rare: false, example: true, aliases: ['joiner', 'woodworker'] },
+  { id: 'furniture-maker', name: 'Furniture maker', categories: ['Buildings'], rare: false, example: true, aliases: ['chestmaker'] },
+  { id: 'thatcher', name: 'Thatcher', categories: ['Buildings'], rare: false, example: true },
+  { id: 'roofer', name: 'Roofer', categories: ['Buildings'], rare: false, source: 'City & Guild: roofers in lead for churches and the rich' },
+  { id: 'glazier', name: 'Glazier', categories: ['Buildings'], rare: true, source: 'City & Guild: glass makers, for windows' },
+  { id: 'blacksmith', name: 'Blacksmith', categories: ['Consumables'], rare: false, example: true, aliases: ['smith'] },
+  { id: 'candlemaker', name: 'Candlemaker', categories: ['Consumables'], rare: false, example: true, aliases: ['chandler'] },
+  { id: 'tinker', name: 'Tinker', categories: ['Consumables'], rare: false, example: true },
+  { id: 'weaver', name: 'Weaver', categories: ['Consumables'], rare: false, example: true },
+  { id: 'leatherworker', name: 'Leatherworker', categories: ['Consumables'], rare: false, example: true },
+  { id: 'cooper', name: 'Cooper', categories: ['Consumables'], rare: false, example: true },
+  { id: 'cobbler', name: 'Cobbler', categories: ['Consumables'], rare: false, example: true, aliases: ['shoemaker'] },
+  { id: 'tailor', name: 'Tailor', categories: ['Consumables'], rare: false, source: 'City & Guild: clothing is among the Consumables (Covenants)', aliases: ['clothier', 'seamstress'] },
+  { id: 'tanner', name: 'Tanner', categories: ['Consumables'], rare: false, source: 'City & Guild: hides into leather, saddles' },
+  { id: 'cartwright', name: 'Cartwright', categories: ['Consumables'], rare: false, source: 'City & Guild: carters make wagons; carts are among the Consumables', aliases: ['carter', 'wheelwright'] },
+  { id: 'dyer', name: 'Dyer', categories: ['Consumables'], rare: false, source: 'City & Guild: dyers’ guilds' },
+  { id: 'saddler', name: 'Saddler', categories: ['Consumables'], rare: false, source: 'City & Guild: saddlers’ guilds' },
+  { id: 'farrier', name: 'Farrier', categories: ['Consumables'], rare: false, source: 'City & Guild and Grogs: shoeing the covenant’s horses' },
+  { id: 'glassblower', name: 'Glassblower', categories: ['Laboratories'], rare: true, example: true, aliases: ['glass maker', 'glassworker'] },
+  { id: 'goldsmith', name: 'Goldsmith', categories: ['Laboratories'], rare: true, example: true },
+  { id: 'silversmith', name: 'Silversmith', categories: ['Laboratories'], rare: true, example: true },
+  { id: 'lapidary', name: 'Lapidary', categories: ['Laboratories'], rare: true, example: true, aliases: ['jeweler', 'jeweller'] },
+  { id: 'mechanic', name: 'Mechanic', categories: ['Laboratories'], rare: true, example: true },
+  { id: 'toolmaker', name: 'Toolmaker', categories: ['Laboratories'], rare: false, example: true },
+  { id: 'potter', name: 'Potter', categories: ['Laboratories'], rare: false, source: 'Grogs: potters support the laboratories' },
+  { id: 'pewterer', name: 'Pewterer', categories: ['Laboratories'], rare: false, source: 'City & Guild: pewter and lead vessels are common in Hermetic laboratories' },
+  { id: 'brewer', name: 'Brewer', categories: ['Provisions'], rare: false, example: true, aliases: ['alewife'] },
+  { id: 'vintner', name: 'Vintner', categories: ['Provisions'], rare: false, example: true },
+  { id: 'baker', name: 'Baker', categories: ['Provisions'], rare: false, source: 'Transforming Mythic Europe: a baker saves at least four pounds; City & Guild: bakers’ guilds' },
+  { id: 'butcher', name: 'Butcher', categories: ['Provisions'], rare: false, source: 'City & Guild: meat butchers’ guilds' },
+  { id: 'miller', name: 'Miller', categories: ['Provisions'], rare: false, source: 'Transforming Mythic Europe: grain into flour, most of a covenant’s bread' },
+  { id: 'swordsmith', name: 'Swordsmith', categories: ['Weapons and Armor'], rare: false, example: true, aliases: ['weaponsmith'] },
+  { id: 'armorer', name: 'Armorer', categories: ['Weapons and Armor'], rare: false, example: true },
+  { id: 'bowyer', name: 'Bowyer', categories: ['Weapons and Armor'], rare: false, example: true, aliases: ['fletcher'] },
+  { id: 'shield-maker', name: 'Shield maker', categories: ['Weapons and Armor'], rare: false, source: 'City & Guild: heater and round shields' },
+  { id: 'percamenarius', name: 'Percamenarius (parchment maker)', categories: ['Writing Materials'], rare: true, example: true },
+  { id: 'ink-maker', name: 'Ink-maker', categories: ['Writing Materials'], rare: false, example: true },
+  { id: 'bookbinder', name: 'Bookbinder', categories: [], rare: true, writer: true, example: true, aliases: ['binder'] },
+  { id: 'illuminator', name: 'Illuminator', categories: [], rare: true, writer: true, example: true },
 ];
 export const CRAFT_BY_ID = new Map(CRAFTS.map((c) => [c.id, c]));
 
-/** Matches a typed craft name ("Carpenters", "Glass-blower") to a craft. */
+/** Matches a typed craft name ("Carpenters", "Glass-blower", "Chandler") to a craft. */
 export function findCraft(name: string | undefined): CraftDef | undefined {
   if (!name) return undefined;
   const n = name.toLowerCase().replace(/^craft\s*[:(]?\s*/, '').replace(/[^a-z]/g, '');
-  return CRAFTS.find((c) => {
-    const k = c.name.toLowerCase().replace(/\(.*\)/, '').replace(/[^a-z]/g, '');
-    return n === k || n === `${k}s` || n.startsWith(k) || (c.id === 'percamenarius' && /parchment/.test(n));
-  });
+  const key = (x: string) => x.toLowerCase().replace(/\(.*\)/, '').replace(/[^a-z]/g, '');
+  return (
+    CRAFTS.find((c) => [c.name, ...(c.aliases ?? [])].some((x) => n === key(x) || n === `${key(x)}s`)) ??
+    CRAFTS.find((c) => [c.name, ...(c.aliases ?? [])].some((x) => n.startsWith(key(x))) || (c.id === 'percamenarius' && /parchment/.test(n)))
+  );
 }
+
+/** The crafts a covenant may hire to save money: all of them, or only the book's examples. */
+export const craftsFor = (cov: Pick<Covenant, 'finances'>) => CRAFTS.filter((k) => k.categories.length && (!cov.finances.exampleCraftsOnly || k.example));
 
 /** The craft of a craftsman entry. */
 export const craftOf = (s: Specialist): CraftDef | undefined => (s.role === 'craftsman' ? CRAFT_BY_ID.get(s.craft ?? '') ?? findCraft(s.craft ?? s.ability ?? s.name) : undefined);

@@ -293,7 +293,7 @@ export function buyBook(p: Payer, library: Covenant, book: LibraryBook, price: B
     const err = pay(p, price.pounds, `Bought ${what}`, when, price.onSundry);
     if (err) return err;
   }
-  library.library.push({ ...book, ...(p.kind === 'character' ? { ownerId: p.c.id } : {}) });
+  library.library.push({ ...book, inPlay: true, ...(p.kind === 'character' ? { ownerId: p.c.id } : {}) });
   return undefined;
 }
 

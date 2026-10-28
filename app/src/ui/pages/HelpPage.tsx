@@ -227,8 +227,10 @@ export default function HelpPage() {
             agents and craftsmen within the starting limits, pick each craftsman&apos;s craft, and press <b>optimal</b> for the number of laborers or craftsmen that keeps spending
             lowest. List the soldiers a Boon brings on the <b>Soldiers</b> card, the Redcap visits and feast days on <b>Each year</b>, and work the weapons and armor points out
             from the turb. <b>How the covenfolk live</b> sets their organization, the magi&apos;s standard of living and who pays their own way, and holds the <b>Guild</b>{' '}
-            Hook&apos;s demands and strike. <b>Craft magic</b> reckons a Rego craft spell&apos;s Finesse roll, its chance and what it saves. Tick <b>tithed</b> and{' '}
-            <b>Tithing Miracle</b> per source.
+            Hook&apos;s demands and strike. <b>Craft magic</b> reckons a Rego craft spell&apos;s Finesse roll, its chance and what it saves. <b>The turb&apos;s day</b> shares the
+            grogs between the watches and shows who is on duty at any hour, rolls for sentries and double duty, drills a group faster, and marks rewards and punishments on a
+            grog&apos;s sheet. Crafts the other books name (bakers, butchers, tailors…) are offered beside <i>Covenants</i>&apos; examples. Tick <b>tithed</b> and{' '}
+            <b>Tithing Miracle</b> per source. On the Library tab, the <b>Scriptorium</b> queues copies for the covenant&apos;s scribes.
           </li>
           <li>
             Or let <b>Quick build → Fill out the covenant</b> do it: choose the covenant, tick what to fill, and see each purchase with its Build Points, what each Hidden,
@@ -292,9 +294,11 @@ export default function HelpPage() {
           </li>
           <li>
             <b>Seasons &amp; Aging:</b> plan a season (books, teachers, training, practice, vis, adventure) and log it; experience is added with Affinities, gain limits and Virtues.
-            Roll aging, crises and Wizard&apos;s Twilight. Choose a teacher from the saga to fill in their scores. <b>Write a book</b> works out a summa or tractatus and adds it to
-            the covenant library. With <i>City &amp; Guild</i> enabled, a craftsman or laborer can track a <b>livelihood</b>: Labor Points, the Workshop Total and the quality
-            each season makes.
+            Roll aging, crises and Wizard&apos;s Twilight. Choose a teacher from the saga to fill in their scores. <b>Writing and copying</b> begins a summa, tractatus,
+            commentary, copy, lab texts or florilegium and works it a season at a time (or in free seasons), with the covenant&apos;s scribe, binder and illuminator and resonant
+            materials under <i>Covenants</i>&apos; rules; the finished work goes to the covenant library. Glossing and clarifying a book are there too. With <i>City &amp; Guild</i>{' '}
+            enabled, a craftsman or laborer can track a <b>livelihood</b>: Labor Points, the Workshop Total, the quality each season makes, and the Labor Points stories and
+            investments bring.
           </li>
           <li>
             <b>Lab &amp; Items:</b> the lab, the enchanted items made, the Longevity Ritual and the familiar. Everything that takes a season is a <b>Lab project</b>, planned on
@@ -346,14 +350,15 @@ export default function HelpPage() {
           </li>
           <li>
             <b>Money:</b> the <b>Market &amp; treasury</b> page buys goods, services, labs, vis and Hermetic books at the book prices, brings in covenfolk and outside teachers,
-            and moves pounds and vis between the treasury and the members&apos; purses. The covenant&apos;s yearly allowance to its members is set on its Finances tab.
+            and moves pounds and vis between the treasury and the members&apos; purses; a grog can haggle there, and bribes are paid. The covenant&apos;s yearly allowance to its
+            members is set on its Finances tab.
           </li>
           <li>
             <b>Magic on the whole covenant:</b> on the covenant&apos;s Overview (or the Seasons page), <b>Cast a spell, ritual or power on the covenant</b> raises the
             Characteristics of every member, teacher, specialist and craftsman at once, or grants a Virtue, and pays for it in vis, Might or Confidence.
           </li>
           <li>
-            The <Link to="/dice">Dice</Link> page rolls simple, stress and botch dice for anyone at the table.
+            The <Link to="/dice">Dice</Link> page rolls simple, stress and botch dice for anyone at the table, and the stress check for an item put at risk.
           </li>
         </ul>
       </Card>

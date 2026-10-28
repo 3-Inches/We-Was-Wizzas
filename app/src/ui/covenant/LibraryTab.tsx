@@ -3,6 +3,7 @@ import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art } from '../../data';
 import { summaCost, visLabel, visSourceCost, type BPLine, type DerivedCovenant } from '../../engine/covenant';
 import { VIS_YIELDS, bookPrice, type BookTier } from '../../engine/covenantYear';
 import { mechanicOf, miracleMultiplierOf, receivedAfterTithe } from '../../engine/covenantRules';
+import type { Covenant } from '../../engine/types';
 import type { LibraryBook } from '../../engine/types';
 import { uid } from '../../util/id';
 import { addVis } from '../../engine/vis';
@@ -16,6 +17,8 @@ import { optionOn } from '../../engine/optional';
 import { useSaga } from '../../store/hooks';
 import { describeStress, stressDie } from '../../engine/dice';
 import { covenantRollsLevel } from '../../engine/covenfolk';
+import { BOOK_FORMATS, SCRIBE, clarifyYears, copyNeeded, specialistCopy } from '../../engine/books';
+import { countOf, specAbilities } from '../../engine/covenantRules';
 
 const KIND_LABEL: Record<LibraryBook['kind'], string> = {
   summa: 'Summa',
@@ -102,6 +105,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                       <input value={b.title} placeholder="Title" style={{ width: 170 }} onChange={(e) => setBook(b.uid, (x) => void (x.title = e.target.value))} />
                       {issue && <div className="small bad-text">{issue}</div>}
                       {b.readBy?.length ? <div className="small muted">read by {b.readBy.length}</div> : null}
+                      {bookNotes(b).length > 0 && <div className={`small ${b.corrupt ? 'bad-text' : 'muted'}`}>{bookNotes(b).join(' · ')}</div>}
                     </td>
                     <td>
                       <select value={b.kind} onChange={(e) => setBook(b.uid, (x) => void (x.kind = e.target.value as LibraryBook['kind']))}>
@@ -168,7 +172,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                     </td>
                     <td className="num">
                       {(b.kind === 'summa' || b.kind === 'tractatus' || b.kind === 'mundane') && (
-                        <Stepper value={b.quality} min={0} width={36} onChange={(v) => setBook(b.uid, (x) => void (x.quality = v))} />
+                        <Stepper value={b.quality} min={0} width={36} onChange={(v) => setBook(b.uid, (x) => void (x.textQuality !== undefined && (x.textQuality += v - x.quality), (x.quality = v)))} />
                       )}
                     </td>
                     <td>
@@ -196,6 +200,8 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
           {dc.hiddenResourcesBP > 0 && ` Hidden Resources hold ${dc.hiddenResourcesBP} BP of resources.`}
         </p>
       </Card>
+
+      <Scriptorium cov={cov} update={update} data={data} />
 
       <div className="grid grid-2">
         <Card title={`Vis sources & stocks (${visBP} BP)`}>
@@ -549,5 +555,98 @@ function CovenantRolls({ cov, update }: Pick<CovTabProps, 'cov' | 'update'>) {
         <span className="muted">The covenant rolls: Profession: Chamberlain Level {summa.level}, Quality 6 (one more Level every two decades).</span>
       )}
     </div>
+  );
+}
+
+/** What a book's making and history add to its line: artisans, materials, format, copies, glosses, clarification. */
+function bookNotes(b: LibraryBook): string[] {
+  const out: string[] = [];
+  if (b.corrupt) out.push('corrupt: useless for study');
+  if (b.inPlay) out.push('made or bought in play');
+  if (b.copyOf) out.push('a copy');
+  if (b.commentaryOf) out.push('a commentary');
+  const m = b.make;
+  if (m) {
+    const who = [m.scribe && 'scribe', m.binder && 'binder', m.illuminator && 'illuminator'].filter(Boolean);
+    if (who.length) out.push(`skilled ${who.join(', ')}`);
+    if (m.resonance) out.push(m.resonance === 2 ? 'resonant materials from a story' : 'bought resonant materials');
+    if (m.clarified) out.push('clarified');
+    if (m.format && m.format !== 'codex') out.push(BOOK_FORMATS.find((f) => f.id === m.format)?.label.toLowerCase() ?? m.format);
+  }
+  if (b.clarifying) out.push(`being clarified since ${b.clarifying.since} (done ${b.clarifying.since + clarifyYears(b.clarifying.aura)})`);
+  if (b.glossed) out.push(`glossed by ${b.glossed.by}`);
+  if (b.florilegium) out.push(`in ${b.florilegium.name} (+${b.florilegium.bonus})`);
+  if (b.annotated) out.push(`annotated (+${b.annotated} Levels)`);
+  return out;
+}
+
+/** Copies the covenant's scribes make in their working seasons (Covenants ch.7, Scriptoria). */
+function Scriptorium({ cov, update, data }: Pick<CovTabProps, 'cov' | 'update' | 'data'>) {
+  const scribes = cov.specialists.filter((s) => !s.characterId && !s.hired && countOf(s) > 0 && (s.role === 'scribe' || specAbilities(s).some((a) => a.id === 'profession-type' && SCRIBE.test(a.param ?? ''))));
+  const books = cov.library.filter((b) => !b.corrupt && b.kind !== 'mundane');
+  const [pick, setPick] = useState('');
+  const [quick, setQuick] = useState(false);
+  const [who, setWho] = useState('');
+  const queue = cov.scriptorium ?? [];
+  if (!scribes.length && !queue.length) return null;
+  const book = books.find((b) => b.uid === pick) ?? books[0];
+  const scribe = scribes.find((s) => s.uid === who);
+  const check = book && (scribe ?? scribes[0]) ? specialistCopy(scribe ?? scribes[0], book, data) : undefined;
+  return (
+    <Card title={`Scriptorium${queue.length ? ` (${queue.length})` : ''}`}>
+      <RulesNote book="Cov" line={4842} endLine={4848}>
+        Covenants that trade books keep a copyist to make copies for the exchange: they copy in their working seasons at 6 + Profession: Scribe points a season toward a summa (a tractatus a season;
+        three times as fast, 1 Quality lower, when quick), and Profession: Scribe × 60 levels of lab texts. Without Magic Theory their copies of the Arts are corrupt (DE).
+      </RulesNote>
+      {queue.map((j) => {
+        const b = cov.library.find((x) => x.uid === j.sourceUid);
+        const s = cov.specialists.find((x) => x.uid === j.scribeUid);
+        return (
+          <div key={j.uid} className="list-row">
+            <span>
+              {b?.title ?? 'a book no longer in the library'}
+              {j.quick ? ' (quick)' : ''}
+            </span>
+            {b && (
+              <span className="badge">
+                {j.points} / {copyNeeded(b)}
+              </span>
+            )}
+            <span className="small muted">{s ? s.name || 'a scribe' : j.scribeUid ? 'any scribe (theirs has left)' : 'any scribe'}</span>
+            <button className="small ghost" onClick={() => update((x: Covenant) => void (x.scriptorium = (x.scriptorium ?? []).filter((y) => y.uid !== j.uid)))}>
+              ✕
+            </button>
+          </div>
+        );
+      })}
+      {scribes.length > 0 && books.length > 0 && (
+        <div className="row small" style={{ marginTop: 6 }}>
+          <select value={book?.uid ?? ''} onChange={(e) => setPick(e.target.value)} style={{ maxWidth: 240 }}>
+            {books.map((b) => (
+              <option key={b.uid} value={b.uid}>
+                {b.title || 'Untitled'}
+              </option>
+            ))}
+          </select>
+          <select value={who} onChange={(e) => setWho(e.target.value)}>
+            <option value="">any scribe</option>
+            {scribes.map((s) => (
+              <option key={s.uid} value={s.uid}>
+                {s.name || 'Scribe'}
+              </option>
+            ))}
+          </select>
+          <label className="inline">
+            <input type="checkbox" checked={quick} onChange={(e) => setQuick(e.target.checked)} /> quickly
+          </label>
+          <button className="small" disabled={!book} onClick={() => book && update((x: Covenant) => void (x.scriptorium ??= []).push({ uid: uid(), sourceUid: book.uid, quick: quick || undefined, points: 0, scribeUid: who || undefined }))}>
+            + Copy it
+          </button>
+          {check && <span className="muted">{check.rate} points a season</span>}
+        </div>
+      )}
+      {check && check.problems.length > 0 && <div className="small bad-text">Their copy would be corrupt: lacking {check.problems.join(', ')}.</div>}
+      {!scribes.length && <div className="small muted">No scribe to copy: add one on the Covenfolk page.</div>}
+    </Card>
   );
 }

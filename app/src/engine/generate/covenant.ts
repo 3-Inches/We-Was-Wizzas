@@ -74,6 +74,14 @@ const STAFF: { role: Specialist['role']; label: string; ability: { id: string; p
   { role: 'scribe', label: 'Scribe', ability: { id: 'profession-type', param: 'Scribe', name: 'Profession: Scribe' }, chars: { Dex: 1, Int: 1 } },
 ];
 
+/** A Hermetic scribe also reads Latin and has Magic Theory and Magic Lore, or the copies they make of the Arts are corrupt (DE, Corrupted Copies; Covenants ch.7, Scriptoria); below their Profession, these cost nothing more. */
+const SCRIBE_EXTRAS = (sc: number) => [
+  { id: 'dead-language', param: 'Latin', score: Math.min(5, sc) },
+  { id: 'artes-liberales', score: Math.min(2, sc) },
+  { id: 'magic-theory', score: 1 },
+  { id: 'magic-lore', score: 1 },
+];
+
 /** Abilities a covenant teacher (who has no Gift) may teach, and how much they matter to magi, companions and grogs. */
 const TEACHABLE: { id: string; param?: string; name: string; magus: number; other: number }[] = [
   { id: 'concentration', name: 'Concentration', magus: 1.2, other: 0.3 },
@@ -139,7 +147,7 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
       const score = s.role === 'scribe' ? 6 : between(rng, 5, 7);
       const age = Math.max(ageForScore(score), between(rng, 30, 50));
       const sc = Math.min(score, abilityCapAtAge(age));
-      const sp: Specialist = { uid: uid(), name: name(), role: s.role, ability: s.ability.name, score: sc, age, free: !o.bought, abilities: [{ id: s.ability.id, param: s.ability.param, score: sc }], chars: s.chars };
+      const sp: Specialist = { uid: uid(), name: name(), role: s.role, ability: s.ability.name, score: sc, age, free: !o.bought, abilities: [{ id: s.ability.id, param: s.ability.param, score: sc }, ...(s.role === 'scribe' ? SCRIBE_EXTRAS(sc) : [])], chars: s.chars };
       hire(sp, s.label.toLowerCase(), `${s.label}: ${sp.name}, ${s.ability.name} ${sc}`);
     }
     if (autocrat) {

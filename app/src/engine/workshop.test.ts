@@ -1,6 +1,10 @@
 // City & Guild's craftsman rules, against the book's example of Klaus's Workshop.
 import { describe, expect, it } from 'vitest';
-import { craftQuality, laborPoints, rollExertion, seasonalOutput, sellGoods, upkeep, wondrousItem, workshopTotal } from './workshop';
+import { buildGameData } from '../data';
+import { deriveCharacter } from './character/derive';
+import { ensureAbility, newCharacter } from './character/factory';
+import { DEFAULT_HOUSE_RULES } from './types';
+import { craftQuality, laborPoints, rollExertion, seasonalOutput, sellGoods, upkeep, wondrousItem, workshopTotal, workshopYearEnd } from './workshop';
 
 const faces = (...f: number[]) => {
   let i = 0;
@@ -42,5 +46,19 @@ describe("Klaus's Workshop (City & Guild)", () => {
     expect(ex.bonus).toBe(0); // 6–7 on the chart: no benefit
     expect(ex.lines[0]).toMatch(/No benefit/);
     expect(sellGoods(2, 3, faces(7)).premium).toBe(40); // 12: 10% at 9, +10% a point
+  });
+});
+
+describe('investments at the year’s end (City & Guild ch.7)', () => {
+  it('pays speculation’s point in ten, and returns falling due, then the upkeep', () => {
+    const data = buildGameData();
+    const c = newCharacter('companion', 's1');
+    const ab = ensureAbility(c, 'craft-type', { play: 75 }, 'Smith');
+    c.workshop = { abilityUid: ab.uid, primary: 'Dex', innovation: 0, rawMaterials: 0, laborPoints: 100, assistants: [], manual: 0, craftLevelMod: 0, seasonsWorked: 0, reputationXp: 0, shoddyStreak: 0, speculation: 45, pending: [{ year: 1222, lp: 30, note: 'An introduction repaid' }, { year: 1224, lp: 30, note: 'Later' }] };
+    const d = deriveCharacter(c, data, DEFAULT_HOUSE_RULES);
+    const lines = workshopYearEnd(c, d, 1222);
+    expect(c.workshop.laborPoints).toBe(100 + 4 + 30 - 36);
+    expect(c.workshop.pending).toHaveLength(1);
+    expect(lines.join(' ')).toMatch(/Speculation returns 4/);
   });
 });

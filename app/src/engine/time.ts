@@ -22,6 +22,8 @@ import { optionOn } from './optional';
 import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
 import { ensureAbility } from './character/factory';
 import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
+import { rationsModifier } from './turb';
+import { libraryYearEnd, scriptoriumYear, workWriting, writingFor } from './books';
 import { purseOf, takeVis, visText } from './vis';
 import { workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
@@ -118,6 +120,10 @@ export function describeStanding(c: Character, d: DerivedCharacter, s: StandingA
     case 'lab': {
       const p = c.projects?.find((x) => x.uid === s.projectUid && !x.done);
       return p ? `Lab: ${p.name}` : 'Lab work (Exposure in Magic Theory)';
+    }
+    case 'write': {
+      const p = writingFor(c, s.projectUid);
+      return p ? `Write: ${p.title} (${p.points}/${p.needed})` : 'Write (nothing left to write)';
     }
     case 'none': return 'Nothing';
     default: return 'Automatic';
@@ -246,6 +252,18 @@ function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, c
       if (!c.workshop) return runActivity(c, d, ctx, cov, data, year, season, rng, { kind: 'exposure', target: workAbility(d) }, chars);
       return workshopSeason(c, d, year, season, { rng });
     }
+    case 'write': {
+      const p = writingFor(c, s.projectUid);
+      if (!p) {
+        // nothing left to write: the season goes to what it would have been unplanned
+        const was = c.standing;
+        c.standing = { kind: 'auto' };
+        const out = runStanding(c, d, ctx, cov, data, year, season, rng, chars);
+        c.standing = was;
+        return ['No writing to work on.', ...out];
+      }
+      return workWriting(c, d, cov, p, year, season, data);
+    }
     case 'lab': {
       const lines: string[] = [];
       const open = (c.projects ?? []).filter((x) => !x.done);
@@ -343,7 +361,7 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
 /** One Aging roll and what it brings (DE, Aging). */
 function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: Rng, livingMod: number, who: string, lines: Line[], year: number, attendant?: Attendant): void {
   const lr = c.longevity?.bonus ?? 0;
-  const r = agingRoll(c.age, livingConditions(d, ctx) + livingMod, lr, d.agingRollParts, rng, !!c.longevity && c.age < 35);
+  const r = agingRoll(c.age, livingConditions(d, ctx) + livingMod + rationsModifier(c, year), lr, d.agingRollParts, rng, !!c.longevity && c.age < 35);
   const notes: string[] = [];
   if (r.apparentAging) c.apparentAge = (c.apparentAge ?? c.age - 1) + 1;
   for (const p of r.agingPoints) notes.push(applyAgingPoint(c, p.char as Characteristic, p.points));
@@ -548,6 +566,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       for (const t of payAllowance(cov, members, plan.balance, plan.vis, year, season)) lines.push({ who: cov.name, kind: 'money', text: t });
       lines.push(...hookReminders(cov, year));
       for (const t of covenfolkYearEnd(cov, year)) lines.push({ who: cov.name, kind: 'covenant', text: t });
+      for (const t of [...scriptoriumYear(cov, data), ...libraryYearEnd(cov, year, data)]) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const s of cov.specialists.filter((x) => x.hired && x.hired.until <= year)) lines.push({ who: cov.name, kind: 'covenant', text: `${s.name || 'The hired teacher'} has taught the time paid for, and leaves.` });
       cov.specialists = cov.specialists.filter((x) => !x.hired || x.hired.until > year);
       lines.push(...auraYearEnd(cov, members, saga, year, rng));
@@ -559,7 +578,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       const home = covenantOf(c, state.covenants);
       const doc = home ? attendants.get(home.id)?.find((a) => a.id !== c.id) : undefined;
       lines.push(...ageCharacter(c, d, ctxOf(c), year, rng, o.rollAging, doc));
-      for (const t of workshopYearEnd(c, d)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: t });
+      for (const t of workshopYearEnd(c, d, year)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: t });
     }
   }
 

@@ -6,8 +6,10 @@ import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../../data';
 import type { Workshop } from '../../../engine/types';
 import {
-  INNOVATION_COST, RAW_MATERIALS_COST, WEALTH_STEP, craftQuality, sellGoods, upkeep, wondrousItem, workshopFigures, workshopSeason, workshopTotal,
+  INNOVATION_COST, INVESTMENTS, RAW_MATERIALS_COST, STORY_AWARDS, WEALTH_MULT, WEALTH_STEP, boomRoll, craftQuality, seasonWorth, sellGoods, smugglingLp, upkeep, wondrousItem, workshopFigures,
+  workshopSeason, workshopTotal,
 } from '../../../engine/workshop';
+import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { FREQUENCY } from '../../../engine/enchant';
 import { uid } from '../../../util/id';
 import { Card, Field, Stepper, Total } from '../../kit';
@@ -99,6 +101,33 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
     return w[kind] >= 3 ? null : table[w[kind] + 1] - table[w[kind]];
   };
   const step = WEALTH_STEP[wealth];
+  const worth = seasonWorth(c, d);
+  const areaLore = d.abilities.filter((a) => a.abilityId === 'area-lore').reduce((m, a) => Math.max(m, a.total), 0);
+  const intrigue = d.abilities.find((a) => a.abilityId === 'intrigue')?.total ?? 0;
+  const smuggle = smugglingLp(d.characteristics.Int.value, intrigue, wealth);
+  const gain = (lp: number, why: string) => {
+    set((x) => void (x.laborPoints += lp));
+    push(`${why}: ${lp >= 0 ? '+' : ''}${lp} Labor Points.`);
+  };
+  const invest = (id: string, cost: number) => {
+    const inv = INVESTMENTS.find((i) => i.id === id)!;
+    set((x) => {
+      x.laborPoints -= cost;
+      if (id === 'charity') x.charityXp = (x.charityXp ?? 0) + 1;
+      if (id === 'introduction') x.pending = [...(x.pending ?? []), { year: year + 2, lp: Math.round(3 * worth), note: 'An introduction pays back' }];
+    });
+    push(`${inv.label}: −${cost} Labor Points. ${inv.hint}`);
+  };
+  const smuggleSeason = () => {
+    update((x) => {
+      if (!x.workshop) return;
+      x.workshop.laborPoints += smuggle;
+      const e = newSeasonEntry(year, season, 'other', `Smuggling: +${smuggle} Labor Points`, {});
+      applySeason(x, e, 1);
+      x.seasonLog.push(e);
+    });
+    push(`${season} ${year}: smuggling, +${smuggle} Labor Points (the season logged).`);
+  };
   // a wondrous item takes one helper at most
   const wondrous = wondrousItem(wtFor(w.assistants.slice(0, 1).map((a) => a.craft)).total, magnitude, FREQUENCY.find((f) => f.value === freq)?.mod ?? 0, baseLevel - 6);
 
@@ -236,12 +265,79 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         </button>
       </div>
       <p className="small muted" style={{ margin: 0 }}>
-        The {keep} Labor Points of upkeep are paid when the saga&apos;s year ends (Seasons page). Rising in wealth: {step.cost} Labor Points to become {step.to}, plus a season (and stories for a Greater or Legendary income). Stories that help the business earn half to two
-        and a half seasons of Labor Points; add them to the bank above.
+        The {keep} Labor Points of upkeep are paid when the saga&apos;s year ends (Seasons page). Rising in wealth: {step.cost} Labor Points to become {step.to}, plus a season (and stories for a Greater or Legendary income). A season&apos;s worth of Labor Points here is {worth}.
       </p>
       <Field label="Labor Points (adjust by hand)">
         <Stepper value={w.laborPoints} min={-999} max={99999} width={60} onChange={(v) => set((x) => void (x.laborPoints = v))} />
       </Field>
+
+      <details>
+        <summary className="small">Stories and investments (City &amp; Guild ch.2 and ch.7)</summary>
+        <div className="small" style={{ marginTop: 6 }}>Labor Points from a story the character took part in:</div>
+        <div className="row tight small">
+          {STORY_AWARDS.map((a) => (
+            <button key={a.seasons} className="small ghost" title={a.label} onClick={() => gain(Math.round(a.seasons * worth), `Story: ${a.label.toLowerCase()}`)}>
+              +{a.seasons} season{a.seasons === 1 ? '' : 's'} ({Math.round(a.seasons * worth)})
+            </button>
+          ))}
+        </div>
+        <div className="small" style={{ marginTop: 6 }}>Investing surplus Labor Points:</div>
+        <div className="row tight small">
+          {INVESTMENTS.map((i) => {
+            const cost = Math.round(i.seasons * worth);
+            return (
+              <button key={i.id} className="small ghost" title={i.hint} disabled={w.laborPoints < cost} onClick={() => invest(i.id, cost)}>
+                {i.label} (−{cost})
+              </button>
+            );
+          })}
+          <button className="small ghost" title="Drawings: a sumptuous item of hand-tool size or smaller for a wealth multiple of Labor Points" disabled={w.laborPoints < WEALTH_MULT[wealth]} onClick={() => gain(-WEALTH_MULT[wealth], 'A sumptuous item (Drawings)')}>
+            A fine thing (−{WEALTH_MULT[wealth]})
+          </button>
+          <button className="small ghost" title="Intelligence + Area Lore + stress die: whether the character sees a boom coming" onClick={() => push(boomRoll(d.characteristics.Int.value, areaLore))}>
+            Read the market for a boom
+          </button>
+          <button className="small ghost" title={`Smuggling as an investment of time: (Intelligence + Intrigue) × ${WEALTH_MULT[wealth]} = ${smuggle} Labor Points for the season`} onClick={smuggleSeason}>
+            Smuggle a season (+{smuggle})
+          </button>
+        </div>
+        <div className="row small" style={{ marginTop: 6 }}>
+          <Field label="Goods held for a rise in price" hint="A Labor Point a year for every ten, the stake kept (Commodity Speculation)">
+            <span className="row tight">
+              <Stepper
+                value={w.speculation ?? 0}
+                min={0}
+                step={10}
+                width={50}
+                onChange={(v) =>
+                  set((x) => {
+                    const delta = v - (x.speculation ?? 0);
+                    if (delta > x.laborPoints) return;
+                    x.laborPoints -= delta;
+                    x.speculation = v || undefined;
+                  })
+                }
+              />
+              <span className="muted">+{Math.floor((w.speculation ?? 0) / 10)} a year</span>
+            </span>
+          </Field>
+          {wealth === 'wealthy' && (
+            <Field label="Living as" hint="A miser: an extra season's Labor Points every three years (average) or every year (Poor), and a Reputation for miserliness">
+              <select value={w.miserly ?? ''} onChange={(e) => set((x) => void (x.miserly = (e.target.value || undefined) as typeof x.miserly))}>
+                <option value="">befits the Wealthy</option>
+                <option value="average">an average merchant</option>
+                <option value="poor">a Poor one</option>
+              </select>
+            </Field>
+          )}
+          {(w.charityXp ?? 0) > 0 && <span className="badge">charity: {w.charityXp} Reputation xp</span>}
+          {(w.pending ?? []).map((p, i) => (
+            <span key={i} className="badge info">
+              {p.note}: +{p.lp} in {p.year}
+            </span>
+          ))}
+        </div>
+      </details>
 
       <details>
         <summary className="small">Wondrous item (Touched by a Realm)</summary>

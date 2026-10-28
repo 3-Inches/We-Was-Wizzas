@@ -10,10 +10,12 @@ import { teacherQuality } from '../../engine/covenantRules';
 import { covenantOf } from '../../engine/context';
 import { lsd, visPriceOf } from '../../engine/economy';
 import {
-  MARKET, QUALITY, TEACHER_FEE, VIS_PRICE, bookVisPrice, buyBook, buyVis, buyWare, fundsOf, hireFolk, hireTeacher, payerName, sellVis, stocksOf, transfer, type Payer, type Ware,
+  MARKET, QUALITY, TEACHER_FEE, VIS_PRICE, bookVisPrice, buyBook, buyVis, buyWare, fundsOf, hireFolk, hireTeacher, pay, payerName, sellVis, stocksOf, transfer, type Payer, type Ware,
 } from '../../engine/market';
+import { abilityTotal, deriveCharacter } from '../../engine/character/derive';
+import { BRIBES, LODGING_EASE, appraiseEase, rollAppraise, rollBargain } from '../../engine/turb';
 import { inPlay, type SagaState } from '../../engine/time';
-import type { Character, Covenant, CovenfolkCounts, LibraryBook, Specialist } from '../../engine/types';
+import type { Character, Covenant, CovenfolkCounts, HouseRules, LibraryBook, Specialist } from '../../engine/types';
 import { visText } from '../../engine/vis';
 import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
@@ -126,6 +128,7 @@ export default function MarketPage() {
           <Books buyer={buyer} home={home} run={run} data={data} visPrice={visPriceOf(saga)} onSundry={sundry} />
           {home && <People home={home} chars={chars} data={data} run={run} onSundry={sundry} />}
           <PriceList run={run} home={home} onSundry={sundry} />
+          <Haggle people={people} data={data} run={run} onSundry={sundry} rules={saga.houseRules} />
           <History buyer={buyer} />
         </>
       )}
@@ -613,6 +616,105 @@ function History({ buyer }: { buyer: Payer }) {
           </li>
         ))}
       </ul>
+    </Card>
+  );
+}
+
+/** Sending a grog to haggle, and what a bribe buys (Grogs ch.4, Representatives). */
+function Haggle({ people, data, run, onSundry, rules }: { people: Character[]; data: GameData; run: Run; onSundry: boolean; rules: HouseRules }) {
+  const folk = people.filter((c) => !c.creature);
+  const [who, setWho] = useState('');
+  const [value, setValue] = useState(1);
+  const [seller, setSeller] = useState(3);
+  const [common, setCommon] = useState(false);
+  const [rare, setRare] = useState(false);
+  const [daily, setDaily] = useState(1);
+  const [out, setOut] = useState<{ text: string; price?: number }[]>([]);
+  const c = folk.find((x) => x.id === who) ?? folk.find((x) => x.type !== 'magus') ?? folk[0];
+  const s = useMemo(() => {
+    if (!c) return undefined;
+    const d = deriveCharacter(c, data, rules);
+    const bargain = abilityTotal(d, 'bargain');
+    return { per: d.characteristics.Per.value + bargain, com: d.characteristics.Com.value + bargain, gift: d.giftType === 'normal' || d.giftType === 'blatant' };
+  }, [c, data, rules]);
+  const ease = appraiseEase(common, rare);
+  const price = out.find((o) => o.price !== undefined)?.price;
+  return (
+    <Card title="Haggling and bribes">
+      <p className="small muted" style={{ marginTop: 0 }}>
+        Grogs often buy for their masters, since The Gift sets vendors&apos; prices soaring (Grogs ch.4). Artisans haggle; food sellers rarely do, unless a lot is bought at once.
+      </p>
+      {folk.length === 0 ? (
+        <Empty>No characters in play.</Empty>
+      ) : (
+        <>
+          <div className="row small">
+            <Field label="Who haggles">
+              <select value={c?.id ?? ''} onChange={(e) => setWho(e.target.value)}>
+                {folk.map((x) => (
+                  <option key={x.id} value={x.id}>
+                    {x.name || 'Unnamed'}
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <Field label="Value (£)" hint="Usually twice what it cost the seller; more in a city or a crisis">
+              <Stepper value={value} min={0} step={0.5} width={46} onChange={setValue} />
+            </Field>
+            <Field label="Seller's Com + Bargain">
+              <Stepper value={seller} min={-3} max={15} width={34} onChange={setSeller} />
+            </Field>
+            <label className="inline" title="−3 to the appraisal for common goods, or a Craft or Profession that makes them">
+              <input type="checkbox" checked={common} onChange={(e) => setCommon(e.target.checked)} /> common, or their trade
+            </label>
+            <label className="inline" title="+3 or more to the appraisal">
+              <input type="checkbox" checked={rare} onChange={(e) => setRare(e.target.checked)} /> rare
+            </label>
+          </div>
+          {s && (
+            <div className="row small" style={{ marginTop: 4 }}>
+              <button className="small" onClick={() => setOut([{ text: rollAppraise(s.per, ease).text }])}>
+                Appraise (Ease {ease})
+              </button>
+              <button
+                className="small"
+                onClick={() => {
+                  const r = rollBargain(s.com, seller, value);
+                  setOut([{ ...r, text: `${r.text} The lowest the seller will take: ${lsd(r.price)} (of ${lsd(value)}).` }]);
+                }}
+                title="Communication + Bargain + a simple die for each side; 10% off for each 3 points (or part) the buyer wins by, never below half"
+              >
+                Bargain
+              </button>
+              {price !== undefined && (
+                <button className="small" onClick={() => run((st, p) => pay(p, price, `Bought goods worth ${lsd(value)} for ${lsd(price)} after haggling`, { year: st.saga.currentYear, season: st.saga.currentSeason }, onSundry), `Paid ${lsd(price)}.`)}>
+                  Pay {lsd(price)}
+                </button>
+              )}
+              {s.gift && <span className="warn-text">The Gift: sellers hike their prices; send a grog.</span>}
+            </div>
+          )}
+          <div className="row small" style={{ marginTop: 6 }}>
+            <Field label="Their daily pay (pennies)" hint="A laborer earns about a penny a day; a professional two to five">
+              <Stepper value={daily} min={1} max={10} width={30} onChange={setDaily} />
+            </Field>
+            {BRIBES.map((b) => (
+              <button key={b.label} className="small" onClick={() => run((st, p) => pay(p, b.pennies(daily) / 240, `A bribe (${b.label.toLowerCase()})`, { year: st.saga.currentYear, season: st.saga.currentSeason }, onSundry), `Bribe paid: −${b.ease} to the Ease Factor.`)}>
+                {b.label}: {b.pennies(daily)}d, −{b.ease} Ease
+              </button>
+            ))}
+          </div>
+          <p className="small muted" style={{ margin: '4px 0 0' }}>
+            A bribe is a Minor (−1) or Major (−3) equipment bonus to the roll it helps: getting a local to talk (Communication + Folk Ken, Ease about 6 plus their Suspicious trait) or finding a
+            bed ({LODGING_EASE.map((l) => `${l.label.toLowerCase()} ${l.ease}`).join(', ')}). Too little offends; too much marks the giver as a rube. Coin matters only in towns; villages barter.
+          </p>
+          {out.map((o, i) => (
+            <div key={i} className="small" style={{ marginTop: 4 }}>
+              {o.text}
+            </div>
+          ))}
+        </>
+      )}
     </Card>
   );
 }
