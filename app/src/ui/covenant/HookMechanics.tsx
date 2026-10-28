@@ -3,6 +3,7 @@ import { POOL_SIZE, TARGETS_INCOME, mechanicOf, miracleMultiplierOf } from '../.
 import { BUDGET_KINDS, SPARE_LABS, STARTING_RESERVE, VIS_STOCKS } from '../../engine/covenant';
 import type { Covenant, CovenantHookBoon } from '../../engine/types';
 import { uid } from '../../util/id';
+import { guildDemands, newSoldierGroup, soldierKindOf } from '../../engine/covenfolk';
 import { Field, Meter, Stepper } from '../kit';
 import type { CovTabProps } from './shared';
 
@@ -22,8 +23,46 @@ export function removeResources(c: Covenant, uids: Set<string>) {
 /** The controls a chosen Boon or Hook needs to take effect on the sheet. */
 export function HookMechanics({ hb, cov, update, dc }: Omit<CovTabProps, 'data'> & { hb: CovenantHookBoon }) {
   const m = mechanicOf(hb);
-  if (!m) return null;
   const edit = (fn: (h: CovenantHookBoon) => void) => update((x) => void fn(x.hooksBoons.find((y) => y.uid === hb.uid)!));
+  // soldier Boons bring soldiers, paid and kitted (Covenants ch.2 and ch.5)
+  const soldier = hb.kind === 'boon' ? soldierKindOf(hb.name) : undefined;
+  if (soldier) {
+    const g = (cov.finances.soldiers ?? []).find((x) => x.hbUid === hb.uid);
+    const n = hb.size === 'Major' ? 20 : 10;
+    return (
+      <div className="row small">
+        <span className="muted">{soldier.hint}</span>
+        {g ? (
+          <>
+            <Field label="How many">
+              <Stepper value={g.count} min={0} width={40} onChange={(v) => update((x) => void ((x.finances.soldiers ?? []).find((y) => y.uid === g.uid)!.count = v))} />
+            </Field>
+            <span>
+              {g.count * g.pennies} £ a year in pay{g.horses ? `, ${g.count * g.horses} horses` : ''}; pay and kit on Covenfolk &amp; finances.
+            </span>
+          </>
+        ) : (
+          <button className="small" onClick={() => update((x) => void (x.finances.soldiers ??= []).push(newSoldierGroup(soldier.id, n, hb.uid)))}>
+            Add {n} {soldier.label.toLowerCase()}
+          </button>
+        )}
+      </div>
+    );
+  }
+  // the Guild Hook: the covenfolk can strike (Covenants ch.2)
+  if (hb.kind === 'hook' && /^guild$/i.test(hb.name.trim())) {
+    const demands = guildDemands(cov);
+    return (
+      <div className="row small">
+        <span className="muted">The guild agitates for better wages, shorter hours and safer work, and keeps funds for the sick, the old and funerals; its craftsmen hold guild ranks.</span>
+        {demands.length ? <span className="warn-text">It wants: {demands.join('; ')}.</span> : <span className="good-text">Its demands are met.</span>}
+        <label className="inline">
+          <input type="checkbox" checked={!!hb.active} onChange={(e) => edit((h) => void (h.active = e.target.checked))} /> on strike (laborers and craftsmen save nothing)
+        </label>
+      </div>
+    );
+  }
+  if (!m) return null;
 
   if (TARGETS_INCOME.includes(m)) {
     const current = dc.finances.incomeLines.find((l) => l.applied.some((a) => a.hb.uid === hb.uid));

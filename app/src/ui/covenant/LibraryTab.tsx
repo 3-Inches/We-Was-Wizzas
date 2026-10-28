@@ -15,6 +15,7 @@ import { CursorNote, PertheanFields } from './CovenantTribunal';
 import { optionOn } from '../../engine/optional';
 import { useSaga } from '../../store/hooks';
 import { describeStress, stressDie } from '../../engine/dice';
+import { covenantRollsLevel } from '../../engine/covenfolk';
 
 const KIND_LABEL: Record<LibraryBook['kind'], string> = {
   summa: 'Summa',
@@ -57,6 +58,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
         }
       >
         <LaterNote topic="library" />
+        <CovenantRolls cov={cov} update={update} />
         <div className="row" style={{ marginBottom: 6 }}>
           <select value={filter} onChange={(e) => setFilter(e.target.value as typeof filter)}>
             <option value="all">All books ({cov.library.length})</option>
@@ -512,6 +514,40 @@ function VisFound({ cov, update }: Pick<CovTabProps, 'cov' | 'update'>) {
       <button className="small" onClick={add}>
         Add to the stocks
       </button>
+    </div>
+  );
+}
+
+/**
+ * The covenant rolls (Grogs, The Chamberlain): the accounts of past years, a summa on Profession:
+ * Chamberlain (Quality 6, Level 2 and one more for every two decades) and a tractatus of Area Lore on
+ * the covenant (Quality 6). They are the covenant's own records, and cost no Build Points.
+ */
+function CovenantRolls({ cov, update }: Pick<CovTabProps, 'cov' | 'update'>) {
+  const saga = useSaga(cov.sagaId);
+  const year = saga?.currentYear ?? cov.foundedYear;
+  const level = covenantRollsLevel(cov, year);
+  const summa = cov.library.find((b) => b.rolls && b.kind === 'summa');
+  const add = () =>
+    update((x) => {
+      x.library.push(
+        { uid: uid(), title: 'The covenant rolls (Profession: Chamberlain)', kind: 'summa', subjectType: 'ability', subject: 'profession-type', level, quality: 6, language: 'Latin', rolls: true, notes: 'Grogs: the covenant rolls serve as a summa for Profession: Chamberlain; a chamberlain cannot learn from what they wrote themselves.' },
+        { uid: uid(), title: 'The covenant rolls (Area Lore: the covenant)', kind: 'tractatus', subjectType: 'ability', subject: 'area-lore', level: 0, quality: 6, language: 'Latin', rolls: true, notes: 'Grogs: kept as a diary, every five decades of volumes make another tractatus; removed from the covenant, an Arcane Connection lasting weeks.' },
+      );
+    });
+  return (
+    <div className="row small" style={{ marginBottom: 6 }}>
+      {!summa ? (
+        <button className="small" onClick={add} title="Grogs, The Covenant Rolls: no Build Points">
+          + The covenant rolls
+        </button>
+      ) : summa.level < level ? (
+        <button className="small" onClick={() => update((x) => void (x.library.find((b) => b.uid === summa.uid)!.level = level))}>
+          The rolls have grown: Level {summa.level} → {level}
+        </button>
+      ) : (
+        <span className="muted">The covenant rolls: Profession: Chamberlain Level {summa.level}, Quality 6 (one more Level every two decades).</span>
+      )}
     </div>
   );
 }

@@ -4,6 +4,7 @@
 import { INCOME_MODIFICATIONS, receivedAfterTithe, miracleMultiplierOf, mechanicOf } from './covenantRules';
 import { defaultRng, stressDie, type Rng } from './dice';
 import { visLabel, type DerivedCovenant } from './covenant';
+import { keepsFeastCycle } from './covenfolk';
 import type { Covenant, IncomeModification, VisStock } from './types';
 import { uid } from '../util/id';
 
@@ -45,6 +46,8 @@ export interface YearEndPlan {
   incomeChanges: { uid: string; name: string; modification: IncomeModification; mult: number }[];
   vis: VisStock[];
   familiarity: boolean;
+  /** a regular cycle of four or more feast days: a loyalty point a year */
+  feasts: boolean;
   lines: string[];
 }
 
@@ -82,7 +85,9 @@ export function planYearEnd(cov: Covenant, dc: DerivedCovenant, o: YearEndOption
     if (vis.length) lines.push(`Vis gathered: ${vis.map((v) => `${v.pawns} ${visLabel(v)}`).join(', ')}.`);
   }
   lines.push('A year of Familiarity: +2 loyalty points, up to the Gift penalty.');
-  return { income, expenditure, balance, treasuryAfter, inflationRise, incomeChanges, vis, familiarity: true, lines };
+  const feasts = keepsFeastCycle(cov);
+  if (feasts) lines.push('A year of feast days kept: +1 loyalty point (Covenants ch.4).');
+  return { income, expenditure, balance, treasuryAfter, inflationRise, incomeChanges, vis, familiarity: true, feasts, lines };
 }
 
 /** Close the year: apply the plan to the covenant and record it in the chronicle. */
@@ -105,6 +110,7 @@ export function applyYearEnd(cov: Covenant, plan: YearEndPlan, year: number, o: 
     else cov.visStocks.push({ ...v });
   }
   cov.loyalty.yearsFounded = (cov.loyalty.yearsFounded ?? 0) + 1;
+  if (plan.feasts) cov.loyalty.actionPoints += 1;
   if (o.clearSundry) {
     // older covenants kept the Pound of Enumerus in sundry: it becomes its own line
     if (f.enumerus === undefined) f.enumerus = true;

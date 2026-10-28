@@ -7,6 +7,8 @@ import { ART_NAMES, CHARACTERISTICS, type Art, type Characteristic, type GameDat
 import { deriveCharacter, type DerivedCharacter } from './character/derive';
 import { characterContext, covenantAura, covenantOf, type CharacterContext } from './context';
 import { deriveCovenant } from './covenant';
+import { covenfolkYearEnd } from './covenfolk';
+import { deriveLab } from './lab';
 import { specAbilities, specChar } from './covenantRules';
 import { DEFAULT_YEAR_END, applyYearEnd, planYearEnd, type YearEndOptions } from './covenantYear';
 import { defaultRng, describeStress, stressDie, type Rng } from './dice';
@@ -214,13 +216,20 @@ function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, c
       };
       if (!t || !sp) return instead('Taught: choose the teacher and the subject.');
       if ('art' in t) return instead(`${sp.name || 'The teacher'} cannot teach a Hermetic Art (teachers have no Gift).`);
-      if (sp.taught?.year === year && sp.taught.seasons >= 2) return instead(`${sp.name || 'The teacher'} has taught two seasons this year already (DE p.180).`);
+      // the drill sergeant drills the whole turb together, one season a year (Grogs); a teacher teaches two seasons a year (DE p.180)
+      const drill = sp.role === 'drill-sergeant';
+      const sameLesson = drill && sp.taught?.year === year && sp.taught.season === season;
+      const limit = drill ? 1 : 2;
+      if (!sameLesson && sp.taught?.year === year && sp.taught.seasons >= limit) return instead(`${sp.name || 'The teacher'} has taught ${drill ? 'the turb one season' : 'two seasons'} this year already (${drill ? 'Grogs' : 'DE p.180'}).`);
       const mine = c.abilities.find((a) => a.uid === t.abilityUid);
       const theirs = specAbilities(sp).find((a) => a.id === mine?.abilityId && (a.param ?? '') === (mine?.param ?? ''));
       if (!theirs) return instead(`${sp.name || 'The teacher'} does not know ${t.label}.`);
-      const r = computeStudy(d, { kind: 'teacher', com: specChar(sp, 'Com'), teaching: sp.teaching ?? 0, teacherScore: theirs.score, students: 1, goodTeacher: !!sp.goodTeacher, isArt: false, subject: t.label }, { abilityUid: t.abilityUid });
+      // a lab's Teaching Specialization adds to teaching done there, at most +3 (Covenants ch.9)
+      const lab = sp.teachIn ? cov?.labs.find((l) => l.uid === sp.teachIn) : undefined;
+      const labTeaching = lab ? Math.min(3, deriveLab(lab, data).specializations.Teaching ?? 0) : 0;
+      const r = computeStudy(d, { kind: 'teacher', com: specChar(sp, 'Com'), teaching: sp.teaching ?? 0, teacherScore: theirs.score, students: drill ? 3 : 1, goodTeacher: !!sp.goodTeacher, isArt: false, subject: t.label, labTeaching }, { abilityUid: t.abilityUid });
       if (!r.xp && r.capped) return instead(`${sp.name || 'The teacher'} knows no more ${t.label} than ${c.name || 'the student'} does.`);
-      sp.taught = { year, seasons: (sp.taught?.year === year ? sp.taught.seasons : 0) + 1 };
+      if (!sameLesson) sp.taught = { year, seasons: (sp.taught?.year === year ? sp.taught.seasons : 0) + 1, season };
       log('taught', `Taught by ${sp.name || 'a teacher'}: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
       return [`Taught ${t.label} by ${sp.name || 'a teacher'}: Quality ${r.sourceQuality}, +${r.xp} xp${r.capped ? ' (as far as the teacher knows)' : ''}.${mightNote(d, r.xp)}`];
     }
@@ -538,6 +547,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       lines.push({ who: cov.name, kind: 'covenant', text: plan.lines.join(' ') });
       for (const t of payAllowance(cov, members, plan.balance, plan.vis, year, season)) lines.push({ who: cov.name, kind: 'money', text: t });
       lines.push(...hookReminders(cov, year));
+      for (const t of covenfolkYearEnd(cov, year)) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const s of cov.specialists.filter((x) => x.hired && x.hired.until <= year)) lines.push({ who: cov.name, kind: 'covenant', text: `${s.name || 'The hired teacher'} has taught the time paid for, and leaves.` });
       cov.specialists = cov.specialists.filter((x) => !x.hired || x.hired.until > year);
       lines.push(...auraYearEnd(cov, members, saga, year, rng));

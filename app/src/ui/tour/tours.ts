@@ -239,8 +239,28 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Covenfolk, Finances & Loyalty',
-        body: 'The covenfolk the covenant needs, its specialists and teachers, the year’s income and expenses, and the loyalty of its people. The Market buys more in play.',
+        body: 'The covenfolk the covenant needs, its specialists and teachers, the year’s income and expenses, and the loyalty of its people. Specialists and craftsmen gain experience each year (their Build Points stay as bought). The Market buys more in play.',
         at: covenant('folk'), needs: 'covenant', target: 'tab-folk',
+      },
+      {
+        title: 'How the covenfolk live',
+        body: 'How they are organized (a noble household, nations, professional guilds…), whether the magi live poorer for fewer points, and who pays their own upkeep. With the **Guild** Hook, its demands and a strike are here, and every craftsman holds a guild rank.',
+        at: covenant('folk'), needs: 'covenant', target: 'covenfolk-organization',
+      },
+      {
+        title: 'Soldiers',
+        body: 'Soldiers from the Residents Boons and Free Choices: how many, their pay (a pound a year for each penny a day), their horses and kit. Those who live at the covenant count among its inhabitants.',
+        at: covenant('folk'), needs: 'covenant', target: 'soldiers',
+      },
+      {
+        title: 'Each year',
+        body: 'What the covenant spends every year besides upkeep: Redcap visits, feast days (four or more earn a Loyalty point a year), guests, hired hands. Weapons and armor points can be worked out from the turb.',
+        at: covenant('folk'), needs: 'covenant', target: 'yearly',
+      },
+      {
+        title: 'Craft magic',
+        body: 'Rego (or Creo) magic in place of craftsmen: design a spell from the craft guidelines or take one a magus knows, then see the Finesse roll, its chance, how many rolls a year, and what it saves.',
+        at: covenant('folk'), needs: 'covenant', target: 'craft-magic',
       },
       {
         title: 'Members',
@@ -594,7 +614,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Fill out the covenant',
-        body: 'Staff (steward, chamberlain, turb captain, scribe), a teacher, the craftsmen who save the covenant money, grogs for the turb as full characters, and the servants, teamsters and laborers it needs. **Show me** previews it all with the Build Points it costs; nothing changes until you add it.',
+        body: 'Choose the covenant, then what to fill: staff, a teacher of several Abilities the covenant’s people lack, a bookbinder and illuminator, sergeants, craftsmen (carpenters first), grogs, soldiers for its Boons, servants, teamsters, laborers and horses, its weapons and armor and yearly feasts, a library chosen for what it gives the magi, and where the Build Points left go. **Show me** previews it all with the Build Points each costs and what each resource pool pays for; nothing changes until you add it.',
         at: sagaPage('build?tab=covenant'), needs: 'saga', target: 'quick-covenant',
       },
       {

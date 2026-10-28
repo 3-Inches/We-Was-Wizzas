@@ -864,7 +864,7 @@ export interface CovenantHookBoon {
   outcome?: 'pending' | 'saved' | 'lost' | 'botched';
   /** Flawed Resource saved: the resources kept (up to half) */
   kept?: string[];
-  /** Natural Disaster: it has struck. Indebted: the debt is still owed (default yes). */
+  /** Natural Disaster: it has struck. Indebted: the debt is still owed (default yes). Guild: the covenfolk are on strike. */
   active?: boolean;
 }
 
@@ -892,6 +892,8 @@ export interface LibraryBook {
   boonUid?: string;
   /** bought by a member for their own use (kept in the covenant's library) */
   ownerId?: string;
+  /** the covenant rolls (Grogs): its own accounts and records, which cost no Build Points */
+  rolls?: boolean;
 }
 
 export interface VisSource {
@@ -938,7 +940,7 @@ export interface VisStock {
 export interface Specialist {
   uid: string;
   name: string;
-  role: 'teacher' | 'specialist' | 'turb-captain' | 'steward' | 'chamberlain' | 'scribe' | 'craftsman' | 'other';
+  role: SpecialistRole;
   ability: string;
   score: number;
   com?: number;
@@ -956,7 +958,7 @@ export interface Specialist {
   /** part of the base covenant or recruited in play: no Build Points */
   free?: boolean;
   /** the Abilities this person uses or teaches (the highest sets the cost); `ability` and `score` follow the highest */
-  abilities?: { id: string; param?: string; score: number }[];
+  abilities?: { id: string; param?: string; score: number; /** experience toward the next point */ xp?: number }[];
   /** Characteristics as far as the job uses them (Com to teach, Dex for most crafts, Pre to lead); older files keep Com and Pre in `com` and `pre` */
   chars?: Partial<Record<Characteristic, number>>;
   /** Characteristic points raised by magic: not paid for with Build Points */
@@ -965,11 +967,73 @@ export interface Specialist {
   goodTeacher?: boolean;
   warpingPoints?: number;
   /** seasons spent teaching this year: a covenant teacher teaches two a year (DE p.180) */
-  taught?: { year: number; seasons: number };
+  taught?: { year: number; seasons: number; /** the last season taught: the drill sergeant drills the turb together in one */ season?: string };
   /** spells and rituals that changed them, for the record */
   history?: { year: number; season: string; text: string }[];
   /** an outside teacher paid to teach (Covenants ch.5): not an inhabitant, leaves at the end of `until` */
   hired?: { until: number; fee: number };
+  /** the Wealthy Virtue or Poor Flaw: how many seasons a year they have free (City & Guild: it sets free time, not pay) */
+  wealth?: 'poor' | 'wealthy';
+  /** experience toward the next point of Teaching (teachers) */
+  teachingXp?: number;
+  /** the Build Points paid when they were bought, kept once their scores start to rise in play */
+  boughtFor?: number;
+  /** a teacher's lab: its Teaching Specialization (at most +3) adds to the Source Quality of teaching done there (Covenants ch.9) */
+  teachIn?: string;
+  /** craftsmen under the guild rules: their rank (City & Guild ch.3) */
+  guildRank?: 'apprentice' | 'journeyman' | 'master' | 'senior' | 'dean';
+  /** craftsmen: the workshop they run for the covenant and its Labor Points (City & Guild ch.2 and ch.4) */
+  workshop?: { innovation: number; rawMaterials: number; laborPoints: number };
+}
+
+/** What a specialist does at the covenant (DE, Covenants ch.5; Grogs ch.2). */
+export type SpecialistRole =
+  | 'teacher' | 'specialist' | 'turb-captain' | 'steward' | 'chamberlain' | 'autocrat' | 'scribe' | 'craftsman' | 'drill-sergeant' | 'sergeant'
+  | 'personal-servant' | 'agent' | 'other';
+
+/** Soldiers from a Residents Boon or Free Choice (Covenants ch.2): how many, their pay and kit. */
+export interface SoldierGroup {
+  uid: string;
+  kind: string;
+  /** the Boon this group comes from */
+  hbUid?: string;
+  count: number;
+  /** pennies a day each: 1 pound a year per penny (Covenants ch.5) */
+  pennies: number;
+  /** they live at the covenant, so count as inhabitants (tenants who serve as part of their rent do not) */
+  inhabitants: boolean;
+  /** horses each: a point of inhabitants and a pound a year apiece */
+  horses: number;
+  /** points of weapons and armor each */
+  gear: number;
+  note?: string;
+}
+
+/** A recurring yearly expense or custom: Redcap visits, a cycle of feast days, guests (Covenants ch.5 price list). */
+export interface YearlyEvent {
+  id: string;
+  count: number;
+}
+
+/** A use of craft magic in place of craftsmen (Covenants ch.4, Rego Craft Magic): who casts it, how often, and what it saves. */
+export interface CraftMagicUse {
+  uid: string;
+  name: string;
+  technique: Technique;
+  form: Form;
+  level: number;
+  /** the caster, a member magus */
+  casterId?: string;
+  /** the mundane craft task's Ease Factor (Trivial 0 … Remarkable 21) */
+  taskEase: number;
+  /** how much work one casting does: a day's work is normal magic; a month +3, a season +6, a year +9 to the Finesse Ease Factor */
+  span: 'day' | 'month' | 'season' | 'year';
+  castsPerYear: number;
+  ritual?: boolean;
+  /** Creo needs no Finesse roll (its results are always at least roughly right) */
+  noFinesse?: boolean;
+  /** it saves money this year: a pound per magnitude for repeated casting, five per magnitude for each Ritual (Covenants ch.5) */
+  active: boolean;
 }
 
 /** A Virtue or Flaw taken by a lab, with the player's choices for it. */
@@ -1093,7 +1157,23 @@ export interface Covenant {
     enumerus?: boolean;
     /** last closed year's expenditure: inflation does not rise in a year expenditure falls */
     lastExpenditure?: number;
+    /** soldiers from Residents Boons and Free Choices: their pay, horses and kit */
+    soldiers?: SoldierGroup[];
+    /** what the covenant spends on every year besides upkeep: Redcap visits, feast days, guests */
+    yearly?: YearlyEvent[];
+    /** weapons and armor the covenant keeps in store, and siege engines (ballista 16, trebuchet 32) */
+    arsenalPoints?: number;
+    /** members who pay their own upkeep, or work for one of the income sources: not counted as inhabitants (Covenants ch.5) */
+    ownUpkeep?: string[];
+    /** magi giving up their privileges: impoverished (a companion's points) or living as covenfolk (a specialist's) (Covenants ch.5) */
+    magiLiving?: 'impoverished' | 'pauper';
   };
+  /** how the covenfolk are organized (DE, The Organization of Covenfolk) */
+  organization?: 'household' | 'military' | 'nations' | 'guilds' | 'professional-guilds' | 'monastery' | 'none';
+  /** specialists and craftsmen gain experience each year (on unless switched off) */
+  folkAdvance?: boolean;
+  /** spells cast to do the covenant's craft work (Covenants ch.4) */
+  craftMagic?: CraftMagicUse[];
   /** unGiftedCouncil: council members without The Gift whose votes count equally (they add 0 to Base Loyalty) */
   loyalty: { actionPoints: number; yearsFounded?: number; unGiftedCouncil?: number };
   log: { uid: string; year: number; season?: string; text: string; treasuryDelta?: number; visDelta?: VisStock[] }[];

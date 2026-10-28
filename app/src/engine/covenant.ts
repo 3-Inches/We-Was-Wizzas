@@ -9,6 +9,10 @@ import {
   receivedAfterTithe, specChar, specHighest, specialistCost, type BPPool, type CostCategory, type CovResource, type CraftDef, type IncomeLine, type IncomeResult,
 } from './covenantRules';
 import { deriveLab, type DerivedLab } from './lab';
+import {
+  CRAFT_GUILD_RANKS, YEARLY_BY_ID, craftMagicFigures, guildAbilities, guildDemands, guildRanksApply, guildShortfalls, officerLoyalty, onStrike, soldierBoonsWithoutGroups,
+  soldierTotals, suggestedGuildRank, yearlyEventPounds, newSoldierGroup, soldierKindOf, type SoldierTotals,
+} from './covenfolk';
 import { abilityScoreFromXp } from './xp';
 import { uid as newUid } from '../util/id';
 
@@ -179,6 +183,14 @@ export interface FinanceResult {
   balance: number;
   writersCount: number;
   laborerSaving: number;
+  /** the people at the covenant (not points): what feasts are reckoned on */
+  people: number;
+  /** soldiers from the Residents Boons */
+  soldiers: SoldierTotals;
+  /** the yearly events and customs, each costed */
+  yearly: { id: string; label: string; count: number; pounds: number }[];
+  /** the covenfolk's guild is on strike: laborers and craftsmen save nothing */
+  strike: boolean;
 }
 
 export interface LoyaltyResult {
@@ -264,6 +276,10 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
     const bundle = b.kind === 'labText' && (b.collectionMax !== undefined || b.subject === 'various');
     const itemLevel = bundle ? b.collectionMax ?? 0 : b.level;
     if ((b.kind === 'labText' || b.kind === 'castingTablet') && itemLevel > pl.maxItemLevel) iss = `Level ${itemLevel} exceeds the ${pl.level} power level maximum of ${pl.maxItemLevel}.`;
+    if (b.rolls) {
+      lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)}) — the covenant's own records`, cost: 0, fullCost: 0 });
+      continue;
+    }
     if (b.boonUid && exceptional.has(b.boonUid)) {
       // Exceptional Book: no Build Points; (level + quality) = 35, quality at most 25, level at most 20
       const bad = b.kind !== 'summa' || b.subjectType !== 'art' ? 'it must be a summa on an Art' : b.level + b.quality !== 35 ? `level + quality must be 35 (is ${b.level + b.quality})` : b.quality > 25 ? 'quality may not exceed 25' : b.level > 20 ? 'level may not exceed 20' : undefined;
@@ -282,7 +298,8 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
     lines.push({ category: 'Enchanted items', label: it.name, cost: Math.ceil(levels / 5) * 2, ref: it.uid, issue: over ? `${over.name} (level ${over.modifiedLevel}) exceeds the power level maximum ${pl.maxItemLevel}.` : undefined });
   }
   for (const sp of cov.specialists) {
-    if (sp.characterId || sp.free) continue;
+    // personal servants are servants, not bought (Grogs)
+    if (sp.characterId || sp.free || sp.role === 'personal-servant') continue;
     const n = countOf(sp);
     lines.push({ category: 'Specialists', label: `${n > 1 ? `${n} × ` : ''}${sp.name || sp.role} (${sp.ability || craftOf(sp)?.name || '?'} ${specHighest(sp)})`, cost: specialistCost(sp), ref: sp.uid });
     const cap = abilityCapAtAge(sp.age ?? 46);
@@ -294,9 +311,11 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
       x.score = Math.min(x.score, cap);
       for (const a of x.abilities ?? []) a.score = Math.min(a.score, cap);
     };
-    if (top > cap) issue(`${who}: a score of ${top} is above the starting limit (${cap} at ${atAge}, DE p.48).`, { kind: 'apply', label: `Set it to ${cap}`, apply: capAll }, { kind: 'apply', label: 'Recruited in play: no Build Points or limit', apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.free = true) });
-    if (sp.role === 'teacher') {
-      if ((sp.teaching ?? 0) > cap) issue(`${who}: Teaching ${sp.teaching} is above the starting limit (${cap} at ${atAge}).`, { kind: 'apply', label: `Set Teaching to ${cap}`, apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.teaching = cap) });
+    // scores that have risen in play since the covenant bought them are no longer held to the starting limit
+    const inPlay = sp.boughtFor !== undefined;
+    if (!inPlay && top > cap) issue(`${who}: a score of ${top} is above the starting limit (${cap} at ${atAge}, DE p.48).`, { kind: 'apply', label: `Set it to ${cap}`, apply: capAll }, { kind: 'apply', label: 'Recruited in play: no Build Points or limit', apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.free = true) });
+    if (sp.role === 'teacher' || sp.role === 'drill-sergeant') {
+      if (!inPlay && (sp.teaching ?? 0) > cap) issue(`${who}: Teaching ${sp.teaching} is above the starting limit (${cap} at ${atAge}).`, { kind: 'apply', label: `Set Teaching to ${cap}`, apply: (c) => void (c.specialists.find((x) => x.uid === sp.uid)!.teaching = cap) });
       const boughtCom = specChar(sp, 'Com') - (sp.magicGain?.Com ?? 0);
       const setCom = (c: Covenant) => {
         const x = c.specialists.find((y) => y.uid === sp.uid)!;
@@ -307,6 +326,7 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
       if (ARTS_SET.has(sp.ability)) issue(`${who}: teachers can't have The Gift, so can't teach the Hermetic Arts (DE p.180).`);
     }
   }
+  covenfolkIssues(cov, issue);
   if (cov.finances.startingReserve) lines.push({ category: 'Money', label: `Starting reserve (${cov.finances.startingReserve} £)`, cost: Math.ceil(cov.finances.startingReserve / 10), ref: STARTING_RESERVE });
   const labs = cov.labs.map((l) => deriveLab(l, data));
   const magiCount = members.filter((m) => m.type === 'magus').length;
@@ -393,6 +413,49 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
 
 const ARTS_SET = new Set<string>([...ARTS, ...Object.values(ART_NAMES)]);
 
+/** Give a craftsman the Abilities their guild rank needs, at no less than they have. */
+export function addGuildAbilities(x: Specialist): void {
+  if (!x.guildRank) return;
+  x.abilities = x.abilities?.length ? x.abilities : [{ id: 'craft-type', param: craftOf(x)?.name, score: x.score }];
+  for (const need of guildAbilities(x.guildRank, x.score)) {
+    const have = x.abilities.find((a) => a.id === need.id);
+    if (!have) x.abilities.push({ ...need });
+    else if (have.score < need.score) have.score = need.score;
+  }
+}
+
+type IssueFn = (message: string, ...fixes: CovFix[]) => void;
+
+/** The covenfolk's guild and its demands, craftsmen's guild ranks, and soldier Boons with no soldiers yet. */
+function covenfolkIssues(cov: Covenant, issue: IssueFn): void {
+  const demands = guildDemands(cov);
+  const folk: CovFix = { kind: 'goto', label: 'Open Covenfolk & finances', tab: 'folk' };
+  if (demands.length)
+    issue(
+      `The covenfolk's guild (Guild Hook): ${demands.join('; ')}. Left unmet, it may call a strike.`,
+      ...(cov.finances.wages === 'none' || cov.finances.wages === 'miserly' ? [{ kind: 'apply' as const, label: 'Pay standard wages', apply: (c: Covenant) => void (c.finances.wages = 'standard') }] : []),
+      ...(!cov.finances.pension ? [{ kind: 'apply' as const, label: 'Pay a pension', apply: (c: Covenant) => void (c.finances.pension = true) }] : []),
+      folk,
+    );
+  if (guildRanksApply(cov, false) === 'enforced') {
+    for (const sp of cov.specialists.filter((x) => x.role === 'craftsman' && !x.characterId)) {
+      const who = sp.name || craftOf(sp)?.name || 'A craftsman';
+      const set = (fn: (x: Specialist) => void) => (c: Covenant) => void fn(c.specialists.find((y) => y.uid === sp.uid)!);
+      if (!sp.guildRank) {
+        const r = suggestedGuildRank(sp.age, sp.score);
+        issue(`${who}: the covenfolk's guild (Guild Hook) gives every craftsman a rank (City & Guild ch.3).`, { kind: 'apply', label: `Make them a ${CRAFT_GUILD_RANKS[r].label.toLowerCase()}`, apply: set((x) => void ((x.guildRank = r), addGuildAbilities(x))) }, folk);
+        continue;
+      }
+      const short = guildShortfalls(sp);
+      if (short.length) issue(`${who}: a guild ${CRAFT_GUILD_RANKS[sp.guildRank].label.toLowerCase()} needs ${short.join(', ')} (City & Guild ch.3).`, { kind: 'apply', label: 'Add what the rank needs', apply: set(addGuildAbilities) }, folk);
+    }
+  }
+  for (const hb of soldierBoonsWithoutGroups(cov)) {
+    const kind = soldierKindOf(hb.name)!;
+    issue(`${hb.name}: say how many soldiers it brings, so their pay, horses and kit are counted (Covenants ch.5).`, { kind: 'apply', label: 'Add ten of them', apply: (c) => void (c.finances.soldiers ??= []).push(newSoldierGroup(kind.id, 10, hb.uid)) }, folk);
+  }
+}
+
 function bookKindLabel(b: LibraryBook): string {
   if (b.kind === 'summa') return `Summa ${b.subject} L${b.level} Q${b.quality}`;
   if (b.kind === 'tractatus') return `Tractatus ${b.subject} Q${b.quality}`;
@@ -405,13 +468,26 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
   const summerAutumn = cov.season === 'Summer' || cov.season === 'Autumn';
   const pts = summerAutumn ? { magus: 10, companion: 5, specialist: 3, other: 2 } : { magus: 5, companion: 3, specialist: 2, other: 1 };
   const f = cov.covenfolk;
-  const magi = Math.max(magiCount, members.filter((m) => m.type === 'magus').length);
-  const companions = members.filter((m) => m.type === 'companion' || m.type === 'mythic').length + f.companions;
-  const grogPCs = members.filter((m) => m.type === 'grog').length;
-  // specialists and craftsmen listed by name (an illusory one is not really there)
+  // members of independent means, or who work for an income source, are not counted (Covenants ch.5)
+  const own = new Set(cov.finances.ownUpkeep ?? []);
+  const counted = members.filter((m) => !own.has(m.id));
+  const ownMagi = members.filter((m) => m.type === 'magus' && own.has(m.id)).length;
+  const magi = Math.max(0, Math.max(magiCount, members.filter((m) => m.type === 'magus').length) - ownMagi);
+  const companions = counted.filter((m) => m.type === 'companion' || m.type === 'mythic').length + f.companions;
+  // a custos is a favored grog, reckoned as a specialist (Grogs)
+  const custodes = counted.filter((m) => m.type === 'grog' && m.virtues.some((v) => v.defId === 'custos')).length;
+  const grogPCs = counted.filter((m) => m.type === 'grog').length - custodes;
+  // magi giving up their privileges: impoverished at a companion's points, living as covenfolk at a specialist's (and companions too)
+  const living = cov.finances.magiLiving;
+  const magusPts = living === 'impoverished' ? pts.companion : living === 'pauper' ? pts.specialist : pts.magus;
+  const companionPts = living === 'pauper' ? pts.specialist : pts.companion;
+  // specialists and craftsmen listed by name (an illusory one is not really there; agents live away)
   const listed = cov.specialists.filter((s) => !s.characterId && !s.hired && !unreal.has(s.uid));
-  const listedPeople = listed.reduce((t, s) => t + countOf(s), 0);
-  const base = magi * pts.magus + companions * pts.companion + (f.specialists + f.craftsmen + listedPeople) * pts.specialist + (f.grogs + grogPCs) * pts.other + f.dependents * pts.other + f.horses;
+  const present = listed.filter((s) => s.role !== 'agent');
+  const listedPeople = present.reduce((t, s) => t + countOf(s), 0);
+  const soldiers = soldierTotals(cov);
+  const base =
+    magi * magusPts + companions * companionPts + (f.specialists + f.craftsmen + listedPeople + custodes) * pts.specialist + (f.grogs + grogPCs + soldiers.inhabitants) * pts.other + f.dependents * pts.other + f.horses + soldiers.horses;
   // Covenants ch.5: 2 servants per 10 points (rounded up); 1 teamster per 10 points after servants, less twice the laborers
   // enchanted devices doing the covenant's work, the covenant's own and its members' (Covenants, Cost Saving)
   const working = [...cov.items, ...members.flatMap((m) => m.items)].filter((it) => it.serves);
@@ -429,11 +505,18 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
   const consumables = (2 * inhabitantPoints) / 10;
   const provisions = (5 * inhabitantPoints) / 10;
   const wageMult = { none: 0, miserly: 0.5, standard: 1, generous: 1.5, lavish: 2 }[cov.finances.wages];
-  const wages = ((2 * inhabitantPoints) / 10) * wageMult + cov.finances.paidSoldierPennies;
-  const writerPeople = listed.filter((s) => s.role === 'scribe' || craftOf(s)?.writer || /bookbind|illuminat|scribe/i.test(s.ability)).reduce((t, s) => t + countOf(s), 0);
+  // paid soldiers: a pound a year for each penny a day (Covenants ch.5)
+  const wages = ((2 * inhabitantPoints) / 10) * wageMult + cov.finances.paidSoldierPennies + soldiers.pennies;
+  const writerPeople = present.filter((s) => s.role === 'scribe' || craftOf(s)?.writer || /bookbind|illuminat|scribe/i.test(s.ability)).reduce((t, s) => t + countOf(s), 0);
   const writers = magi + writerPeople;
   const weapons = cov.finances.weaponArmorPoints / 320;
   const income = computeIncome(cov, magi);
+  // the people fed at a feast: everyone at the covenant, not points
+  const people =
+    magi + companions + custodes + grogPCs + listedPeople + f.specialists + f.craftsmen + f.grogs + soldiers.inhabitants + f.dependents + Math.max(f.servants, servantsRequired) + Math.max(f.teamsters, teamstersRequired) + f.laborers;
+  const yearly = (cov.finances.yearly ?? []).filter((e) => e.count > 0).map((e) => ({ id: e.id, label: YEARLY_BY_ID.get(e.id)?.label ?? e.id, count: e.count, pounds: yearlyEventPounds(e, people) }));
+  const yearlyTotal = round1(yearly.reduce((t, e) => t + e.pounds, 0));
+  const strike = onStrike(cov);
   const expenditures = [
     { label: 'Buildings', pounds: round1(buildings) },
     { label: 'Consumables', pounds: round1(consumables) },
@@ -445,20 +528,21 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
     { label: 'Inflation', pounds: cov.finances.inflation },
     { label: 'Other tithes & taxes', pounds: cov.finances.tithes },
     ...(income.debt ? [{ label: 'Debt interest (Indebted)', pounds: income.debt }] : []),
+    ...(yearlyTotal ? [{ label: 'Yearly events and guests', pounds: yearlyTotal }] : []),
     { label: 'Sundry', pounds: cov.finances.sundry },
     ...(cov.finances.enumerus ? [{ label: 'The Pound of Enumerus', pounds: 1 }] : []),
   ];
   const savings: { label: string; pounds: number }[] = [];
   const catTotals: Record<CostCategory, number> = { Buildings: buildings, Consumables: consumables, Laboratories: labPoints / 10, Provisions: provisions, 'Weapons and Armor': weapons, 'Writing Materials': writers };
   const catSaved: Record<CostCategory, number> = { Buildings: 0, Consumables: 0, Laboratories: 0, Provisions: 0, 'Weapons and Armor': 0, 'Writing Materials': 0 };
-  // laborers: 1 pound each, at most half the Provisions
-  const laborerSaving = Math.min(f.laborers, provisions / 2);
-  if (f.laborers) savings.push({ label: `Laborers (${f.laborers})`, pounds: -round1(laborerSaving) });
+  // laborers: 1 pound each, at most half the Provisions; nothing while the covenfolk are on strike
+  const laborerSaving = strike ? 0 : Math.min(f.laborers, provisions / 2);
+  if (f.laborers && !strike) savings.push({ label: `Laborers (${f.laborers})`, pounds: -round1(laborerSaving) });
   catSaved.Provisions += laborerSaving;
   // craftsmen: each craft saves up to its limit in each category it serves, never more than the category costs
   const byCraft = new Map<string, { craft: CraftDef; people: number; potential: number }>();
   const noCraft: Specialist[] = [];
-  for (const s of listed) {
+  for (const s of strike ? [] : present) {
     if (s.role !== 'craftsman') continue;
     const craft = craftOf(s);
     if (!craft || !craft.categories.length) {
@@ -495,6 +579,11 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
     if (saved) savings.push({ label: `${craft.name}${people > 1 ? ` ×${people}` : ''} (${applied.filter((a) => a.pounds).map((a) => a.category).join(' + ')})`, pounds: -saved });
   }
   if (cov.finances.magicSavings) savings.push({ label: 'Magic items / rituals', pounds: -cov.finances.magicSavings });
+  // craft magic cast in place of craftsmen, at the storyguide's discretion (Covenants ch.5)
+  for (const u of cov.craftMagic ?? []) {
+    const fig = craftMagicFigures(u, 0);
+    if (fig.saving) savings.push({ label: `Craft magic: ${u.name || 'a craft spell'}${u.ritual ? ` (Ritual ×${u.castsPerYear})` : ''}`, pounds: -fig.saving });
+  }
   const poundItems = servingAs('pounds');
   if (poundItems) savings.push({ label: `Enchanted devices at work (${working.filter((it) => it.serves === 'pounds').map((it) => it.name).join(', ')}: a pound per magnitude)`, pounds: -poundItems });
   const categories = (Object.keys(catTotals) as CostCategory[]).map((c) => ({ category: c, total: round1(catTotals[c]), perCraft: round1(catTotals[c] * CATEGORY_LIMIT[c]), saved: round1(catSaved[c]) }));
@@ -502,7 +591,7 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
   return {
     inhabitantPoints: round1(inhabitantPoints), servantsRequired, teamstersRequired, labPoints, expenditures, savings, categories, crafts, noCraft, totalExpenditure,
     income: income.income, incomeLines: income.lines, incomeIssues: income.issues, debt: income.debt, balance: round1(income.income - totalExpenditure), writersCount: writers,
-    laborerSaving: round1(laborerSaving),
+    laborerSaving: round1(laborerSaving), people, soldiers, yearly, strike,
   };
 }
 
@@ -512,13 +601,14 @@ function findCraftOrCustom(name: string, category: CostCategory): CraftDef {
   return { id: `custom:${name.toLowerCase()}|${category}`, name: name || 'Craft', categories: [category], rare: false };
 }
 
-/** Totals spent a year with `n` of something changed, for the optimal-number buttons. */
 /**
  * Yearly spending after a change, with servants and teamsters at the numbers that change needs:
  * otherwise laborers never get to spare the teamsters they replace, and the best looks like none.
+ * Works on a light copy (the change may add specialists or alter their counts), so the optimizers can
+ * try many changes quickly.
  */
 function expenditureWith(cov: Covenant, members: Character[], labs: DerivedLab[], change: (c: Covenant) => void): number {
-  const c = structuredClone(cov);
+  const c: Covenant = { ...cov, covenfolk: { ...cov.covenfolk }, specialists: cov.specialists.map((s) => ({ ...s })), finances: { ...cov.finances } };
   change(c);
   c.covenfolk.servants = 0;
   c.covenfolk.teamsters = 0;
@@ -536,7 +626,9 @@ export function fitCovenfolk(cov: Covenant, members: Character[], labs: DerivedL
 
 /**
  * The number of laborers that keeps yearly spending lowest: each saves a pound of Provisions (up to
- * half) and every five spare a teamster, but each also counts as an inhabitant (Covenants ch.5).
+ * half) and every five spare a teamster, but each also counts as an inhabitant (Covenants ch.5). Past
+ * the half-of-Provisions limit a laborer costs about a pound and spares only a fifth of a teamster, so
+ * a covenant keeps some teamsters however many laborers it has.
  */
 export function optimalLaborers(cov: Covenant, members: Character[], labs: DerivedLab[]): number {
   let best = 0;
@@ -565,30 +657,72 @@ export function ageForScore(score: number): number {
   return [20, 30, 36, 41, 46].find((a) => abilityCapAtAge(a) >= score) ?? 46;
 }
 
+/** What a Build Point spent on a craftsman is reckoned to be worth a year, against the pounds they save. */
+const BP_WORTH = 0.05;
+
 /**
- * Add craftsmen one at a time, each to the craft that saves the most a year (Covenants ch.5), while one
- * more still saves money and the Build Points last (`bp`: those left to spend, or Infinity for
- * craftsmen recruited in play, who cost none). A craftsman is also an inhabitant who must be fed,
- * housed and paid, so savings run out on their own.
+ * Add craftsmen while one more saves money and the Build Points last (`bp`: those left to spend, or
+ * Infinity for craftsmen recruited in play, who cost none). Carpenters come first, since what they
+ * save fills Buildings and then Consumables; then each craft in turn where it saves most; then a
+ * pass that lets a craftsman go, or puts another in their place, while that saves more. `score` is
+ * the Craft score for every new craftsman, or 'best' to try several (a higher score saves more for
+ * the same mouths to feed, but costs more Build Points); `maxEach` is the most one may cost. A
+ * craftsman is also an inhabitant who must be fed, housed and paid, so savings run out on their own
+ * (Covenants ch.5).
  */
-export function addCostSavingCraftsmen(x: Covenant, members: Character[], labs: DerivedLab[], score: number, bp: number): string[] {
+export function addCostSavingCraftsmen(x: Covenant, members: Character[], labs: DerivedLab[], score: number | 'best', bp: number, maxEach = bp): string[] {
   const crafts = CRAFTS.filter((k) => k.categories.length);
   const bought = bp !== Infinity;
-  const counts = new Map<string, number>();
-  let budget = bp;
-  for (let n = 0; n < 200 && budget >= score; n++) {
-    const now = expenditureWith(x, members, labs, () => undefined);
-    let best: { craft: CraftDef; saving: number } | undefined;
-    for (const craft of crafts) {
-      const saving = now - expenditureWith(x, members, labs, (y) => addCraftsman(y, craft, score, bought));
-      if (saving > 0.5 && (!best || saving > best.saving)) best = { craft, saving };
+  const worth = bought ? BP_WORTH : 0;
+  const scoresFor = (c: CraftDef) => (score === 'best' ? (c.rare ? [6, 9] : [4, 6, 8]) : [score]);
+  const before = new Map(x.specialists.map((s) => [s.uid, countOf(s)]));
+  const added = () => x.specialists.filter((s) => s.role === 'craftsman' && countOf(s) > (before.get(s.uid) ?? 0));
+  const bpUsed = () => added().reduce((t, s) => t + (countOf(s) - (before.get(s.uid) ?? 0)) * (bought ? s.score : 0), 0);
+  const objective = (y: Covenant) => expenditureWith(y, members, labs, () => undefined);
+  const removeOne = (y: Covenant, uid: string) => {
+    const s = y.specialists.find((z) => z.uid === uid)!;
+    if (countOf(s) > 1) s.count = countOf(s) - 1;
+    else y.specialists = y.specialists.filter((z) => z.uid !== uid);
+  };
+  for (const pool of [crafts.filter((c) => c.id === 'carpenter'), crafts]) {
+    for (let n = 0; n < 200; n++) {
+      const now = objective(x);
+      let best: { craft: CraftDef; score: number; gain: number } | undefined;
+      for (const craft of pool)
+        for (const sc of scoresFor(craft)) {
+          // no dearer than one purse can pay: the covenant's own Build Points or a single pool's (pools take a craftsman only whole)
+          if (bought && (bpUsed() + sc > bp || sc > maxEach)) continue;
+          const saving = now - expenditureWith(x, members, labs, (y) => addCraftsman(y, craft, sc, bought));
+          const gain = saving - worth * (bought ? sc : 0);
+          if (saving > 0.5 && gain > 0 && (!best || gain > best.gain)) best = { craft, score: sc, gain };
+        }
+      if (!best) break;
+      addCraftsman(x, best.craft, best.score, bought);
     }
-    if (!best) break;
-    addCraftsman(x, best.craft, score, bought);
-    counts.set(best.craft.name, (counts.get(best.craft.name) ?? 0) + 1);
-    budget -= score;
+  }
+  // improve: one fewer, or another in their place, while spending (and the Build Points' worth) falls
+  for (let pass = 0; pass < 30; pass++) {
+    const now = objective(x) + worth * bpUsed();
+    let change: ((y: Covenant) => void) | undefined;
+    let bestDrop = 0.05;
+    for (const s of added()) {
+      const drop = now - (expenditureWith(x, members, labs, (y) => removeOne(y, s.uid)) + worth * (bpUsed() - (bought ? s.score : 0)));
+      if (drop > bestDrop) ((bestDrop = drop), (change = (y) => removeOne(y, s.uid)));
+      for (const craft of crafts)
+        for (const sc of scoresFor(craft)) {
+          if (craft.id === craftOf(s)?.id && sc === s.score) continue;
+          const used = bpUsed() - (bought ? s.score : 0) + (bought ? sc : 0);
+          if (bought && (used > bp || sc > maxEach)) continue;
+          const d = now - (expenditureWith(x, members, labs, (y) => (removeOne(y, s.uid), addCraftsman(y, craft, sc, bought))) + worth * used);
+          if (d > bestDrop) ((bestDrop = d), (change = (y) => (removeOne(y, s.uid), addCraftsman(y, craft, sc, bought))));
+        }
+    }
+    if (!change) break;
+    change(x);
   }
   fitCovenfolk(x, members, labs);
+  const counts = new Map<string, number>();
+  for (const s of added()) counts.set(craftOf(s)?.name ?? s.name, (counts.get(craftOf(s)?.name ?? s.name) ?? 0) + countOf(s) - (before.get(s.uid) ?? 0));
   return [...counts].map(([craft, k]) => `${k} ${craft.toLowerCase()}${k > 1 ? 's' : ''}`);
 }
 
@@ -596,7 +730,20 @@ export function addCostSavingCraftsmen(x: Covenant, members: Character[], labs: 
 function addCraftsman(x: Covenant, craft: CraftDef, score: number, bought: boolean): void {
   const have = x.specialists.find((s) => craftOf(s)?.id === craft.id && s.score === score && !!s.free === !bought);
   if (have) have.count = (have.count ?? 1) + 1;
-  else x.specialists.push({ uid: newUid(), name: craft.name, role: 'craftsman', ability: `Craft (${craft.name})`, craft: craft.id, score, count: 1, rare: craft.rare, free: !bought, age: ageForScore(score) });
+  else
+    x.specialists.push({
+      uid: newUid(), name: craft.name, role: 'craftsman', ability: `Craft (${craft.name})`, craft: craft.id, score, count: 1, rare: craft.rare, free: !bought, age: ageForScore(score),
+      abilities: [{ id: 'craft-type', param: craft.name, score }], chars: { Dex: 0 },
+    });
+}
+
+/** The covenant most of a saga's play happens at: the most magi among its members, then the most members, then the last changed. */
+export function homeCovenant(covs: Covenant[], chars: Character[]): Covenant | undefined {
+  const count = (c: Covenant) => {
+    const m = chars.filter((x) => c.memberIds.includes(x.id));
+    return { magi: m.filter((x) => x.type === 'magus').length, all: m.length };
+  };
+  return [...covs].sort((a, b) => count(b).magi - count(a).magi || count(b).all - count(a).all || (b.updatedAt ?? '').localeCompare(a.updatedAt ?? ''))[0];
 }
 
 /** Magnitudes of an item's working effects: what it saves the covenant (Covenants, Cost Saving). */
@@ -622,11 +769,7 @@ export function computeLoyalty(cov: Covenant, members: Character[], data: GameDa
   const wages = { none: -20, miserly: -10, standard: 0, generous: 10, lavish: 20 }[cov.finances.wages];
   if (wages) parts.push({ label: 'Wages', value: wages });
   if (cov.finances.pension) parts.push({ label: 'Pension', value: 10 });
-  for (const sp of cov.specialists) {
-    if (sp.role === 'turb-captain' || sp.role === 'steward' || sp.role === 'chamberlain') {
-      parts.push({ label: `${sp.name} (${sp.role})`, value: specChar(sp, 'Pre') + specHighest(sp) });
-    }
-  }
+  for (const sp of cov.specialists) parts.push(...officerLoyalty(sp));
   const years = Math.max(0, (cov.loyalty.yearsFounded ?? 0));
   const familiarity = Math.min(years * 2, Math.abs(base));
   if (familiarity) parts.push({ label: `Familiarity (${years} years)`, value: familiarity });

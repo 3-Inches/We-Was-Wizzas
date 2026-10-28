@@ -175,7 +175,7 @@ describe('budgets and resource pools', () => {
       cov.buildPoints = deriveCovenant(cov, data, []).bpSpent + 4;
       const r = fillCovenant(cov, [], { data, saga: saga('Rhine'), rules }, { staff: false, teacher: false, craftsmen: true, grogs: 0, counts: false, bought: true, seed });
       const dc = deriveCovenant(r.cov, data, []);
-      expect(r.log.join(' ')).toMatch(/Craftsmen: \d/); // some would save money
+      expect(r.log.join(' ')).toMatch(/Craftsmen \([^)]*\): \d/); // some would save money
       expect(dc.bpSpent, `seed ${seed}: ${r.log.join(' ')}`).toBeLessThanOrEqual(r.cov.buildPoints);
       expect(dc.pools.find((p) => p.hb.uid === 'fr')!.spent).toBeLessThanOrEqual(250);
     }

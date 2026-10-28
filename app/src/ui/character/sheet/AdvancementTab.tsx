@@ -25,6 +25,7 @@ import { WorkshopCard } from './WorkshopCard';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { characterContext } from '../../../engine/context';
 import { deriveCharacter } from '../../../engine/character/derive';
+import { teaches } from '../../../engine/covenfolk';
 
 type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'worship' | 'lab' | 'other';
 
@@ -421,10 +422,10 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                         {x.name || 'unnamed'}
                       </option>
                     ))}
-                  {(ctx.covenant?.specialists ?? []).filter((x) => !x.characterId && (kind === 'training' || x.role === 'teacher')).length > 0 && (
+                  {(ctx.covenant?.specialists ?? []).filter((x) => !x.characterId && (kind === 'training' || teaches(x))).length > 0 && (
                     <optgroup label={`${ctx.covenant!.name}'s ${kind === 'training' ? 'specialists' : 'teachers'}`}>
                       {ctx.covenant!.specialists
-                        .filter((x) => !x.characterId && (kind === 'training' || x.role === 'teacher'))
+                        .filter((x) => !x.characterId && (kind === 'training' || teaches(x)))
                         .map((x) => (
                           <option key={x.uid} value={`spec:${x.uid}`}>
                             {x.name || x.role} ({specAbilities(x).map((a) => `${a.id ? data.abilityById.get(a.id)?.name ?? a.label : a.label}${a.param ? ` ${a.param}` : ''} ${a.score}`).join(', ')})
@@ -588,7 +589,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             c={c}
             d={d}
             year={year}
-            teachers={ctx.covenant?.specialists.filter((x) => x.role === 'teacher' && !x.characterId) ?? []}
+            teachers={ctx.covenant?.specialists.filter((x) => teaches(x)) ?? []}
             onChange={(st) => update((x) => void (x.standing = st))}
           />
         </div>
@@ -596,7 +597,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           Followed in any free season this character has nothing logged when the saga moves on (and while years are passed at once on the Seasons page); once the year&apos;s free
           seasons are spent, the rest are work (Exposure) or Worship.
         </p>
-        <SeasonPlan c={c} d={d} year={year} update={update} teachers={ctx.covenant?.specialists.filter((x) => x.role === 'teacher' && !x.characterId) ?? []} />
+        <SeasonPlan c={c} d={d} year={year} update={update} teachers={ctx.covenant?.specialists.filter((x) => teaches(x)) ?? []} />
       </Card>
 
       <Card title="Season log">
