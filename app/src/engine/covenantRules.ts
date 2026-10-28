@@ -140,17 +140,26 @@ export function specHighest(s: Specialist): number {
   return Math.max(0, ...specAbilities(s).map((a) => a.score));
 }
 
-/** Build Points for a specialist entry (DE p.180): teachers Communication + Teaching + their highest score, others their highest score. What magic added is not paid for. */
-export function specialistCost(s: Specialist): number {
-  if (s.characterId || s.free) return 0;
+/** Roles that teach, and so are bought as teachers; and servants, who cost no Build Points (Grogs, Personal Servants). */
+const TEACHING_ROLES = new Set<Specialist['role']>(['teacher', 'drill-sergeant']);
+const NO_BP_ROLES = new Set<Specialist['role']>(['personal-servant']);
+
+/** Build Points for one person of an entry as they are now (DE p.180): teachers Communication + Teaching + their highest score, others their highest score. */
+export function specialistUnitCost(s: Specialist): number {
+  if (NO_BP_ROLES.has(s.role)) return 0;
   const com = specChar(s, 'Com') - (s.magicGain?.Com ?? 0);
-  const each = s.role === 'teacher' ? com + (s.teaching ?? 0) + specHighest(s) : specHighest(s);
-  return each * countOf(s);
+  return TEACHING_ROLES.has(s.role) ? com + (s.teaching ?? 0) + specHighest(s) : specHighest(s);
 }
 
-/** A teacher's Source Quality for one student (DE p.164): Communication + Teaching + 3, +6 for one student (+3 for two), +5 Good Teacher. */
-export function teacherQuality(s: Specialist, students = 1): number {
-  return specChar(s, 'Com') + (s.teaching ?? 0) + 3 + (students <= 1 ? 6 : students === 2 ? 3 : 0) + (s.goodTeacher ? 5 : 0);
+/** Build Points for a specialist entry: what they were bought for, if their scores have risen in play since. What magic added is not paid for. */
+export function specialistCost(s: Specialist): number {
+  if (s.characterId || s.free || NO_BP_ROLES.has(s.role)) return 0;
+  return (s.boughtFor ?? specialistUnitCost(s)) * countOf(s);
+}
+
+/** A teacher's Source Quality (DE p.164): Communication + Teaching + 3, +6 for one student (+3 for two), +5 Good Teacher, + a lab's Teaching Specialization (at most +3, Covenants ch.9). */
+export function teacherQuality(s: Specialist, students = 1, labTeaching = 0): number {
+  return specChar(s, 'Com') + (s.teaching ?? 0) + 3 + (students <= 1 ? 6 : students === 2 ? 3 : 0) + (s.goodTeacher ? 5 : 0) + Math.min(3, Math.max(0, labTeaching));
 }
 
 // ------------------------------------------------------------------------------ Boons and Hooks

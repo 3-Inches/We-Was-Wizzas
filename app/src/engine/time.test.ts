@@ -4,7 +4,7 @@ import { buildGameData } from '../data';
 import { newSaga } from '../store/store';
 import { newCovenant } from './covenant';
 import { ensureAbility, newCharacter } from './character/factory';
-import { advanceSeason, advanceSeasons, ageCharacter, auraWarping, loggedThisSeason } from './time';
+import { DEFAULT_ADVANCE, advanceSeason, advanceSeasons, ageCharacter, auraWarping, loggedThisSeason } from './time';
 import { newLab } from './lab';
 import { newProject } from './projects';
 import { applyEffect, expireEffects } from './effects';
@@ -66,7 +66,8 @@ describe('the saga clock', () => {
   it('passes years at once', () => {
     const st = saga();
     st.saga.currentSeason = 'Spring';
-    const { state, reports } = advanceSeasons(st, data, 8);
+    // no aging rolls: a crisis now and then would end the character before the second birthday
+    const { state, reports } = advanceSeasons(st, data, 8, { ...DEFAULT_ADVANCE, rollAging: false });
     expect(reports).toHaveLength(8);
     expect(state.saga.currentYear).toBe(1222);
     expect(state.characters[0].age).toBe(42);
@@ -239,7 +240,7 @@ describe('covenant teachers', () => {
     const lines = reports.flatMap((r) => r.lines).filter((l) => l.who === 'Grog');
     expect(lines[0].text).toMatch(/Quality 20/); // Com 2 + Teaching 4 + 3 + 6 one student + 5 Good Teacher
     expect(lines[2].text).toMatch(/Exposure in Craft/); // a grog's two free seasons are spent: the rest of the year is work
-    expect(state.covenants[0].specialists[0].taught).toEqual({ year: 1220, seasons: 2 });
+    expect(state.covenants[0].specialists[0].taught).toMatchObject({ year: 1220, seasons: 2 });
   });
   it('fall back to the season the student would have had once they have taught two seasons this year', () => {
     const st = saga();

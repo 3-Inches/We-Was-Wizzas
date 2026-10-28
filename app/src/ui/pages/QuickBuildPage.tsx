@@ -4,7 +4,7 @@ import { ART_NAMES, ARTS, type Art, type CharType, type GameData } from '../../d
 import { HOMELANDS } from '../../data/lists';
 import { HOUSES } from '../../data/houses';
 import { deriveCharacter, vfDisplayName } from '../../engine/character/derive';
-import { BUDGET_KINDS, budgetLeft, deriveCovenant } from '../../engine/covenant';
+import { BUDGET_KINDS, budgetLeft, deriveCovenant, homeCovenant } from '../../engine/covenant';
 import { generateCharacter, type Generated, type Variety } from '../../engine/generate/character';
 import { fillCovenant, type FillOptions, type FillResult } from '../../engine/generate/covenant';
 import { newSeed, seeded } from '../../engine/generate/random';
@@ -99,11 +99,12 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
   const [busy, setBusy] = useState('');
   const roles = rolesFor(type);
   // grogs and players' characters join the covenant; the storyguide's companions and magi need not
-  const covId = covChoice ?? (covs.length && (type === 'grog' || !npc) ? covs[0].id : '');
+  const sagaChars = useSagaCharacters(saga.id);
+  const home = homeCovenant(covs, sagaChars);
+  const covId = covChoice ?? (home && (type === 'grog' || !npc) ? home.id : '');
   const cov = covs.find((c) => c.id === covId);
   const guilds = optionOn(saga, 'guilds') && roles.some((r) => r.craft);
 
-  const sagaChars = useSagaCharacters(saga.id);
   // a new character takes a name nobody in the saga, or in this set, has yet
   const build = (seed: number, taken: string[]): Result => ({
     seed,
@@ -379,33 +380,54 @@ function ResultRow({ r, data, saga, onKeep, onReroll, onDrop, busy }: { r: Resul
 
 // ------------------------------------------------------------------ the covenant's people
 
+type Preview = FillResult & {
+  bpBefore: number;
+  bpAfter: number;
+  /** Build Points by kind of purchase, before and after */
+  kinds: { label: string; before: number; after: number }[];
+  /** what each Hidden, Flawed or Illusory Resource now pays for that it did not before */
+  pools: { name: string; spent: number; capacity: number; items: { label: string; cost: number }[] }[];
+};
+
+const FILL_DEFAULTS: Omit<FillOptions, 'seed'> = {
+  staff: true, autocrat: false, teacher: true, goodTeacher: true, craftsmen: true, bookmakers: true, drill: true, grogs: 4, counts: true, soldiers: true, horses: true, gear: true, yearly: true,
+  bought: true, library: { arts: true, abilities: true, labTexts: true, mundane: true, share: 0.5 }, rest: 'split',
+};
+
 function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
   const covs = useSagaCovenants(saga.id);
   const chars = useSagaCharacters(saga.id);
   const putSagaState = useStore((s) => s.putSagaState);
   const setNotice = useStore((s) => s.setNotice);
-  const [covId, setCovId] = useState(covs[0]?.id ?? '');
-  const [o, setO] = useState<Omit<FillOptions, 'seed'>>({ staff: true, teacher: true, craftsmen: true, grogs: 4, counts: true, bought: true });
-  const [preview, setPreview] = useState<(FillResult & { bpBefore: number; bpAfter: number }) | null>(null);
+  const [covId, setCovId] = useState<string | undefined>();
+  const [o, setO] = useState<Omit<FillOptions, 'seed'>>(FILL_DEFAULTS);
+  const [preview, setPreview] = useState<Preview | null>(null);
   const [busy, setBusy] = useState(false);
-  const cov = covs.find((c) => c.id === covId) ?? covs[0];
+  // the covenant chosen, else the one with the most magi: only this saga's covenants and characters
+  const cov = covs.find((c) => c.id === covId) ?? homeCovenant(covs, chars);
   if (!cov)
     return (
       <Empty>
         No covenant yet. <Link to={`/saga/${saga.id}`}>Found one on the saga page</Link>, then come back to fill it out.
       </Empty>
     );
+  const membersOf = (c: Covenant) => chars.filter((x) => c.memberIds.includes(x.id));
   const set = <K extends keyof typeof o>(k: K, v: (typeof o)[K]) => {
     setO({ ...o, [k]: v });
     setPreview(null);
   };
+  const lib = o.library ?? { arts: false, abilities: false, labTexts: false, mundane: false };
   const build = async () => {
     setBusy(true);
     await tick();
     const res = fillCovenant(cov, chars, { data, saga, rules: saga.houseRules }, { ...o, seed: newSeed() });
-    const bpBefore = deriveCovenant(cov, data, chars).bpSpent;
-    const bpAfter = deriveCovenant(res.cov, data, [...chars, ...res.grogs.map((g) => g.c)]).bpSpent;
-    setPreview({ ...res, bpBefore, bpAfter });
+    const before = deriveCovenant(cov, data, chars);
+    const after = deriveCovenant(res.cov, data, [...chars, ...res.grogs.map((g) => g.c)]);
+    const byKind = (dc: typeof before, category: string) => dc.bpLines.filter((l) => l.category === category).reduce((t, l) => t + (l.fullCost ?? l.cost), 0);
+    const kinds = BUDGET_KINDS.map((k) => ({ label: k.label, before: byKind(before, k.category), after: byKind(after, k.category) })).filter((k) => k.before || k.after);
+    const had = new Set(before.pools.flatMap((p) => p.resources.map((r) => r.uid)));
+    const pools = after.pools.map((p) => ({ name: `${p.hb.name}${p.hb.note ? ` (${p.hb.note})` : ''}`, spent: p.spent, capacity: p.capacity, items: p.resources.filter((r) => !had.has(r.uid)).map((r) => ({ label: r.label, cost: r.cost })) }));
+    setPreview({ ...res, bpBefore: before.bpSpent, bpAfter: after.bpSpent, kinds, pools });
     setBusy(false);
   };
   const apply = () => {
@@ -414,26 +436,28 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
     setNotice(`${cov.name || 'The covenant'} filled out: ${preview.log.length} changes. Undo takes them all back.`);
     setPreview(null);
   };
-  const check = (k: 'staff' | 'teacher' | 'craftsmen' | 'counts', label: string, title: string) => (
+  type Flag = 'staff' | 'autocrat' | 'teacher' | 'goodTeacher' | 'craftsmen' | 'bookmakers' | 'drill' | 'counts' | 'soldiers' | 'horses' | 'gear' | 'yearly';
+  const check = (k: Flag, label: string, title: string) => (
     <label className="inline" title={title}>
-      <input type="checkbox" checked={o[k]} onChange={(e) => set(k, e.target.checked)} /> {label}
+      <input type="checkbox" checked={!!o[k]} onChange={(e) => set(k, e.target.checked)} /> {label}
     </label>
   );
   return (
     <div className="stack">
       <Card title="Fill out the covenant" className="accent" tour="quick-covenant">
         <div className="row">
-          {covs.length > 1 && (
-            <Field label="Covenant">
-              <select value={cov.id} onChange={(e) => (setCovId(e.target.value), setPreview(null))}>
-                {covs.map((c) => (
+          <Field label="Covenant" hint={covs.length > 1 ? `${covs.length} in this saga` : 'The only one in this saga'}>
+            <select value={cov.id} onChange={(e) => (setCovId(e.target.value), setPreview(null))}>
+              {covs.map((c) => {
+                const m = membersOf(c);
+                return (
                   <option key={c.id} value={c.id}>
-                    {c.name || 'Unnamed covenant'}
+                    {c.name || 'Unnamed covenant'} — {m.filter((x) => x.type === 'magus').length} magi, {m.length} members, {c.buildPoints} BP
                   </option>
-                ))}
-              </select>
-            </Field>
-          )}
+                );
+              })}
+            </select>
+          </Field>
           <Field label="Grogs for the turb" hint="Full characters: a sergeant first, then shield grogs and archers">
             <Stepper value={o.grogs} min={0} max={12} width={36} onChange={(v) => set('grogs', v)} />
           </Field>
@@ -445,30 +469,57 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
           </Field>
         </div>
         <div className="row small" style={{ marginTop: 6 }}>
-          {check('staff', 'Steward, chamberlain, turb captain and scribe', 'Each one the covenant lacks')}
-          {check('teacher', 'A teacher', 'Latin and the liberal arts, if the covenant has no teacher')}
-          {check('craftsmen', 'Craftsmen who save money', 'One at a time, each where it saves most, while it still saves money and Build Points last (Covenants ch.5)')}
+          <span>People:</span>
+          {check('staff', 'Steward, chamberlain, turb captain and scribe', 'Each one the covenant lacks; officers add Presence + their Ability to Loyalty, and a scribe of 6 is skilled (+1 book Quality)')}
+          {check('autocrat', 'one autocrat for steward and chamberlain', 'One officer in both roles: the Loyalty from both (Covenants ch.4)')}
+          {check('teacher', 'A teacher', 'An older teacher with Communication +3, Teaching and three or four Abilities at the same score, the ones the covenant’s people lack most (only the highest counts toward the cost, DE p.180)')}
+          {check('goodTeacher', 'with Good Teacher', '+5 to the Source Quality of their teaching')}
+          {check('bookmakers', 'A bookbinder and an illuminator', 'Skilled at 6: +1 Quality each to the books the covenant makes (Covenants ch.7); a pound of Writing Materials each')}
+          {check('drill', 'A drill sergeant and unit sergeants', 'The drill sergeant teaches the turb a Martial Ability one season a year; a sergeant for each body of five soldiers or more (Grogs)')}
+          {check('craftsmen', 'Craftsmen who save money', 'Carpenters first (they save in Buildings and Consumables), then each craft where it saves most, then swaps while that saves more (Covenants ch.5)')}
+          {check('soldiers', 'Soldiers for the soldier Boons', 'Ten for each Minor Boon, twenty for a Major one, at the Boon’s pay, horses and kit')}
           {check('counts', 'Servants, teamsters and laborers', 'The numbers the covenant needs, and the laborers that save most')}
+          {check('horses', 'Horses', 'A riding horse for each magus and companion, a draught horse for each teamster: a point of inhabitants each')}
+        </div>
+        <div className="row small" style={{ marginTop: 6 }}>
+          <span>Each year:</span>
+          {check('gear', 'Weapons and armor points from the turb', 'Members’ sheets, an outfit for each grog without one at the covenant’s equipment, and the soldiers’ kit (Covenants ch.5)')}
+          {check('yearly', 'Redcap visits and feast days', 'Four Redcap visits and a cycle of four feast days, which earns a Loyalty point each year')}
         </div>
         <div className="row small" style={{ marginTop: 6 }}>
           <span>Library:</span>
           {(
             [
-              ['arts', 'Art summae and tractatus', "For the Arts the covenant's magi work in most, and those it lacks"],
-              ['abilities', 'Ability summae', 'Magic Theory and Parma Magica first, then others magi study'],
-              ['labTexts', 'Lab Texts', "Spells in the magi's Arts, a Build Point per 5 levels"],
+              ['arts', 'Art summae and tractatus', "Every Art, Techniques and Forms, for what it gives the covenant's magi above what they know and what the shelf has: primers where they are weak, deeper books where they can read them"],
+              ['abilities', 'Ability summae', 'Magic Theory, Parma Magica and others magi study, above what the covenant teacher teaches'],
+              ['labTexts', 'Lab Texts', 'One for each Technique and Form pair the magi are best at, no Art more than twice, a Build Point per 5 levels'],
               ['mundane', 'mundane books', 'A few that cost nothing'],
             ] as const
           ).map(([k, label, title]) => (
             <label key={k} className="inline" title={title}>
-              <input
-                type="checkbox"
-                checked={!!o.library?.[k]}
-                onChange={(e) => set('library', { arts: false, abilities: false, labTexts: false, mundane: false, ...o.library, [k]: e.target.checked })}
-              />{' '}
-              {label}
+              <input type="checkbox" checked={!!lib[k]} onChange={(e) => set('library', { ...lib, [k]: e.target.checked })} /> {label}
             </label>
           ))}
+          <Field label="taking at most" hint="of the Build Points left, without a library budget">
+            <select value={lib.share ?? 0.5} onChange={(e) => set('library', { ...lib, share: Number(e.target.value) })}>
+              {[0.25, 0.5, 0.75, 1].map((v) => (
+                <option key={v} value={v}>
+                  {v === 1 ? 'all' : `${v * 100}%`}
+                </option>
+              ))}
+            </select>
+          </Field>
+        </div>
+        <div className="row small" style={{ marginTop: 6 }}>
+          <Field label="The Build Points left at the end" hint="So nothing is left unspent">
+            <select value={o.rest ?? 'none'} onChange={(e) => set('rest', e.target.value as FillOptions['rest'])}>
+              <option value="split">a third each: vis sources, vis in store, money</option>
+              <option value="vis-sources">vis sources to detail (5 BP a pawn a year)</option>
+              <option value="vis">vis in store (5 pawns a BP)</option>
+              <option value="money">a money reserve (10 £ a BP)</option>
+              <option value="none">leave them</option>
+            </select>
+          </Field>
         </div>
         <BudgetEditor cov={cov} chars={chars} data={data} onChange={() => setPreview(null)} />
         <div className="row" style={{ marginTop: 8 }}>
@@ -496,6 +547,45 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
             Build Points spent: {preview.bpBefore} → <b>{preview.bpAfter}</b> of {cov.buildPoints}
             {preview.bpAfter > cov.buildPoints && <span className="warn-text"> (over the covenant&apos;s Build Points: recruit them in play, or raise the Build Points)</span>}.
           </p>
+          {preview.kinds.length > 0 && (
+            <table className="compact small">
+              <thead>
+                <tr>
+                  <th>Build Points on</th>
+                  <th className="num">Before</th>
+                  <th className="num">After</th>
+                </tr>
+              </thead>
+              <tbody>
+                {preview.kinds.map((k) => (
+                  <tr key={k.label}>
+                    <td>{k.label}</td>
+                    <td className="num">{k.before}</td>
+                    <td className="num">{k.after}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {preview.pools.map((p) => (
+            <div key={p.name} className="small" style={{ marginTop: 6 }}>
+              <b>{p.name}</b> pays for {p.spent} of its {p.capacity} Build Points
+              {p.items.length ? (
+                <>
+                  ; new from this fill-out:
+                  <ul style={{ margin: '2px 0', paddingLeft: 18 }}>
+                    {p.items.map((it, i) => (
+                      <li key={i}>
+                        {it.label} ({it.cost} BP)
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                '; nothing new from this fill-out (set it aside for a kind of purchase on the Hooks & Boons tab).'
+              )}
+            </div>
+          ))}
           {preview.grogs.some((g) => g.issues.length) && (
             <div className="small">
               <span className="warn-text">The rules check would still flag, on adding (fix it on the grog&apos;s sheet, or roll again):</span>

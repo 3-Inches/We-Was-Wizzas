@@ -17,6 +17,7 @@ import { StandingEditor } from '../character/StandingEditor';
 import { covenantOf } from '../../engine/context';
 import { CovenantEffects } from '../covenant/CovenantEffects';
 import { Hint } from '../Hint';
+import { teaches } from '../../engine/covenfolk';
 
 const KIND_BADGE: Record<string, string> = { aging: 'aging', crisis: 'bad', warping: 'warn', covenant: '', lab: '', effect: '', reminder: 'warn', money: '', season: '', year: '' };
 
@@ -156,7 +157,7 @@ export default function SeasonsPage() {
                         c={c}
                         d={d}
                         year={year}
-                        teachers={covenantOf(c, covs)?.specialists.filter((s) => s.role === 'teacher' && !s.characterId) ?? []}
+                        teachers={covenantOf(c, covs)?.specialists.filter((s) => teaches(s)) ?? []}
                         onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))}
                       />
                     </td>

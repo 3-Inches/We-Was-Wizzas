@@ -223,14 +223,22 @@ export default function HelpPage() {
             improves their own lab as a lab project (raising the Refinement, installing a Virtue, putting a Flaw right), and the rise in Upkeep is paid from the treasury.
           </li>
           <li>
-            Set covenfolk, income and spending to see the yearly balance and Loyalty. Use <b>Quick add</b> for specialists, teachers and craftsmen within the starting limits, pick
-            each craftsman&apos;s craft, and press <b>optimal</b> for the number of laborers or craftsmen that keeps spending lowest. Tick <b>tithed</b> and <b>Tithing Miracle</b>{' '}
-            per source.
+            Set covenfolk, income and spending to see the yearly balance and Loyalty. Use <b>Quick add</b> for specialists, teachers, sergeants, an autocrat, personal servants,
+            agents and craftsmen within the starting limits, pick each craftsman&apos;s craft, and press <b>optimal</b> for the number of laborers or craftsmen that keeps spending
+            lowest. List the soldiers a Boon brings on the <b>Soldiers</b> card, the Redcap visits and feast days on <b>Each year</b>, and work the weapons and armor points out
+            from the turb. <b>How the covenfolk live</b> sets their organization, the magi&apos;s standard of living and who pays their own way, and holds the <b>Guild</b>{' '}
+            Hook&apos;s demands and strike. <b>Craft magic</b> reckons a Rego craft spell&apos;s Finesse roll, its chance and what it saves. Tick <b>tithed</b> and{' '}
+            <b>Tithing Miracle</b> per source.
+          </li>
+          <li>
+            Or let <b>Quick build → Fill out the covenant</b> do it: choose the covenant, tick what to fill, and see each purchase with its Build Points, what each Hidden,
+            Flawed or Illusory Resource pays for, and where the Build Points left go, before adding any of it.
           </li>
           <li>
             At the end of each year press <b>Close the year</b> on the Finances tab: it shows the treasury after the year&apos;s balance, the rise in inflation, the vis gathered
-            and the year of familiarity, then applies them (with Undo). Roll the <b>Income Modification</b> with 🎲, record <b>Loyalty events</b> as they happen, and use the one-off
-            spending presets for sundry costs.
+            and the year of familiarity, then applies them (with Undo). A cycle of four or more feast days adds a Loyalty point, and specialists and craftsmen gain the year&apos;s
+            experience (Exposure at work, Practice in their free seasons; craftsmen earn Labor Points). Roll the <b>Income Modification</b> with 🎲, record <b>Loyalty events</b> as
+            they happen, and use the one-off spending presets for sundry costs.
           </li>
         </ul>
       </Card>

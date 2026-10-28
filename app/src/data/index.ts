@@ -55,7 +55,13 @@ const LAB_FROM_VF: LabVFDef[] = (vfJson as unknown as VirtueFlawDef[])
   }));
 const BOOK_ABILITIES = abilitiesJson as unknown as AbilityDef[];
 const RAW_ABILITIES = [...BOOK_ABILITIES, ...tribunalAbilityDefs(new Set(BOOK_ABILITIES.map((a) => a.id)))];
-const RAW_SPELLS = spellsJson as unknown as SpellDef[];
+// the extractor took a few enchanted-item headings for spells ("Invested 2 Herbam vis, took 1 season to enchant");
+// some books set spell names in capitals, shown here in title case
+const NOT_SPELLS = /^(enchanted item\b|invested \d)/i;
+const smallWords = new Set(['of', 'the', 'a', 'an', 'and', 'to', 'in', 'on', 'for', 'from', 'by', 'with', 'at', 'or']);
+const titleCase = (name: string) =>
+  /[a-z]/.test(name) ? name : name.toLowerCase().replace(/[a-z][a-z']*/g, (w, i: number) => (i > 0 && smallWords.has(w) ? w : w.charAt(0).toUpperCase() + w.slice(1)));
+const RAW_SPELLS = (spellsJson as unknown as SpellDef[]).filter((s) => !NOT_SPELLS.test(s.name)).map((s) => ({ ...s, name: titleCase(s.name) }));
 
 // --------------------------------------------------------------------------------------
 // Language & parameterized abilities

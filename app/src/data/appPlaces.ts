@@ -113,11 +113,14 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   // covenants
   'founding-a-covenant': [{ text: 'Saga page → Found a covenant', page: 'saga' }],
   'boons-and-hooks': [{ text: `${COV} → Hooks & Boons` }],
-  finances: [{ text: `${COV} → Covenfolk, Finances & Loyalty` }, { text: 'Market & treasury', page: 'market' }],
-  covenfolk: [{ text: `${COV} → Covenfolk, Finances & Loyalty` }],
+  finances: [{ text: `${COV} → Covenfolk, Finances & Loyalty (and Each year: Redcap visits, feast days, guests)` }, { text: 'Market & treasury', page: 'market' }],
+  covenfolk: [
+    { text: `${COV} → Covenfolk, Finances & Loyalty: specialists and craftsmen (guild ranks, Labor Points), soldiers, how the covenfolk live, craft magic` },
+    { text: 'Quick build → Fill out the covenant', page: 'build', tab: 'covenant' },
+  ],
   loyalty: [{ text: `${COV} → Covenfolk, Finances & Loyalty → Loyalty` }],
   'vis-sources-and-stocks': [{ text: `${COV} → Library & Vis` }],
-  libraries: [{ text: `${COV} → Library & Vis` }],
+  libraries: [{ text: `${COV} → Library & Vis (and the covenant rolls)` }, { text: 'Quick build → Fill out the covenant (books for the magi)', page: 'build', tab: 'covenant' }],
   'the-aegis-of-the-hearth': [{ text: `${COV} → Overview → Magic on the covenant` }],
   // the Order and the Tribunals
   tribunals: [{ text: 'Saga page → Tribunal, and its customs', page: 'saga' }],
@@ -126,7 +129,7 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'the-theban-tribunal': [{ text: 'Saga page → Tribunal: Theban → its customs', page: 'saga' }],
   'the-transylvanian-tribunal': [{ text: 'Saga page → Tribunal: Transylvanian → its customs', page: 'saga' }],
   // society
-  'towns-and-guilds': [{ text: `${SHEET} → Seasons & Aging → Guild` }],
+  'towns-and-guilds': [{ text: `${SHEET} → Seasons & Aging → Guild` }, { text: `${COV} → Covenfolk, Finances & Loyalty → Craftsmen (guild ranks and Labor Points)` }],
   'crafts-and-workshops': [{ text: `${SHEET} → Seasons & Aging → Workshop` }],
   'trade-money-and-wealth': [{ text: 'Market & treasury', page: 'market' }],
   'intrigue-and-agents': [{ text: `${SHEET} → Overview → Agents` }],
