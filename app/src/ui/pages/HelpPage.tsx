@@ -203,7 +203,7 @@ export default function HelpPage() {
         <ul className="small">
           <li>Choose the covenant&apos;s season, aura and power level (Build Points).</li>
           <li>
-            Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1. Click a Hook or Boon to read it. Resources Boons and Hooks (Wealth, Secondary Income, Poverty,
+            Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1, Weak Aura lowers it, and the Overview&apos;s Aura card shows it as it stands and keeps its changes. Click a Hook or Boon to read it. Resources Boons and Hooks (Wealth, Secondary Income, Poverty,
             Indebted…) take an income source; Hidden, Flawed and Illusory Resources take the resources they pay for; Exceptional Book adds its summa free.
           </li>
           <li>Buy the library, lab texts, vis sources, enchanted items and specialists; the toolkit prices everything and enforces the creation limits.</li>
@@ -289,8 +289,9 @@ export default function HelpPage() {
           </li>
           <li>
             <b>Time:</b> the <b>Seasons</b> page in the sidebar moves the whole saga on: one season, to next Spring, or several years. Each character does what was logged on
-            their sheet, or their standing activity (set on the Seasons page or the sheet). The year&apos;s end closes the covenants&apos; books, pays allowances, rolls aging
-            and adds Warping; wards like the Aegis of the Hearth are recast from the covenant&apos;s vis. Undo is always one click away.
+            their sheet, or their standing activity (set on the Seasons page or the sheet) in their free seasons: a working character has two (Wealthy three, Poor one) and works
+            the rest, a magus has four, and one who needs no sleep two more for study. The year&apos;s end closes the covenants&apos; books, pays allowances, rolls aging
+            and adds Warping (and, with aura variation on, may move a Magic aura); wards like the Aegis of the Hearth are recast from the covenant&apos;s vis. Undo is always one click away.
           </li>
           <li>
             <b>Illness and agents:</b> the Combat &amp; Health tab tracks diseases with their Disease Penalty and recovery rolls; the Overview keeps a character&apos;s agents,

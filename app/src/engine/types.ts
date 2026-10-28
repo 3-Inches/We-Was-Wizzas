@@ -152,6 +152,28 @@ export interface ActiveEffect {
  * A spell, ritual or power cast on the covenant, kept so that it can be undone: what the caster
  * paid (given back on undo) and what it did to each target (taken back).
  */
+/** A Magic aura from year to year (Realms of Power: Magic, Aura Variation Rules), and what changes it for a while. */
+export interface AuraTrack {
+  /** the base aura score its tethers give, which the aura drifts back toward; the aura when first tracked, unless set */
+  base?: number;
+  /** botch dice for the next roll on the Aura Strengthening or Weakening Table */
+  botchDice: number;
+  /** added to next year's aura modifier (a latent strengthening or weakening) */
+  latent: number;
+  /** stronger foreign auras that impinge on it */
+  impinging: ('Magic' | 'Faerie' | 'Divine' | 'Infernal')[];
+  /** other things this year that push the aura: a magical botch, vis spent, a spell cast at it */
+  notes: { uid: string; year: number; label: string; value: number }[];
+  /** a change that lasts one season */
+  temp?: { delta: number; year: number; season: Season };
+  /** Flickering Aura: the year its task was missed, when the aura is one lower */
+  flickerYear?: number;
+  /** spontaneous magic eased or stifled for a year (up to ±3 on spontaneous Casting Totals) */
+  spontaneous?: { year: number; bonus: number };
+  /** rituals of three or more pawns cast in the aura this year (wards renewed and the like) */
+  visRituals?: { year: number; n: number };
+}
+
 export interface CastRecord {
   uid: string;
   name: string;
@@ -193,7 +215,7 @@ export interface Purse {
 
 /** What a character does in a season nobody planned (and while time is fast-forwarded). */
 export interface StandingActivity {
-  kind: 'auto' | 'exposure' | 'practice' | 'vis' | 'lab' | 'work' | 'taught' | 'none';
+  kind: 'auto' | 'exposure' | 'practice' | 'vis' | 'lab' | 'work' | 'taught' | 'worship' | 'none';
   /** taught: one of the covenant's teachers ('spec:<uid>') */
   teacher?: string;
   /** 'art:Cr' or 'ability:<uid>' */
@@ -534,6 +556,7 @@ export type SeasonActivityKind =
   | 'copy-book'
   | 'lab-improvement'
   | 'work'
+  | 'worship'
   | 'other';
 
 /** An Initiation into a Mystery: the Virtue gained, the totals, and any Ordeal (which lowers later targets). */
@@ -581,6 +604,10 @@ export interface SeasonLogEntry {
   visUsed?: { art: Art; pawns: number }[];
   warpingPoints?: number;
   notes?: string;
+  /** the kind of lab project worked in the season (vis extraction weakens a Magic aura) */
+  labKind?: LabProject['kind'];
+  /** one of the extra seasons a character who needs no sleep has each year */
+  extra?: boolean;
   /** applied to the character already (so it can be reverted) */
   applied: boolean;
 }
@@ -772,6 +799,8 @@ export interface Character {
   labRoutines?: { seasons: Partial<Record<LabRoutine, number>>; years: Record<number, Partial<Record<LabRoutine, number>>> };
   /** what the character does in a season nobody planned */
   standing?: StandingActivity;
+  /** the seasons a year are spent: a free-season count set by hand, needing no sleep, and what the extra seasons go to */
+  seasons?: { free?: number; sleepless?: boolean; extra?: StandingActivity };
   /** the last year whose aging roll was made */
   lastAgedYear?: number;
   wounds: WoundState;
@@ -1056,6 +1085,10 @@ export interface Covenant {
   hookStories?: Record<string, number>;
   /** year-end choices that stay from year to year */
   yearEnd?: { skipVis?: string[] };
+  /** what has changed the aura, oldest first */
+  auraLog?: { uid: string; year: number; season?: Season; delta: number; text: string }[];
+  /** the aura from year to year (Realms of Power: Magic, Aura Variation) */
+  auraTrack?: AuraTrack;
   notes: string;
   createdAt: string;
   updatedAt: string;

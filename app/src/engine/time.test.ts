@@ -49,7 +49,7 @@ describe('the saga clock', () => {
     const { state, report } = advanceSeason(st, data);
     expect(state.saga.currentSeason).toBe('Summer');
     expect(loggedThisSeason(state.characters[0], 1220, 'Spring')).toHaveLength(1);
-    expect(report.lines.some((l) => l.who === 'Grog' && /Exposure/.test(l.text))).toBe(true);
+    expect(report.lines.some((l) => l.who === 'Grog' && /Practiced Craft/.test(l.text))).toBe(true); // a free season first (DE: two free, two working)
     expect(st.saga.currentSeason).toBe('Spring'); // the input is untouched
   });
   it('ends the year: the covenant closes its books, everyone is a year older, aging is rolled from 35', () => {
@@ -238,8 +238,20 @@ describe('covenant teachers', () => {
     const { state, reports } = advanceSeasons(st, data, 3);
     const lines = reports.flatMap((r) => r.lines).filter((l) => l.who === 'Grog');
     expect(lines[0].text).toMatch(/Quality 20/); // Com 2 + Teaching 4 + 3 + 6 one student + 5 Good Teacher
-    expect(lines[2].text).toMatch(/two seasons this year.*Instead: Practiced Latin: \+4 xp/); // the free season it would have had
+    expect(lines[2].text).toMatch(/Exposure in Craft/); // a grog's two free seasons are spent: the rest of the year is work
     expect(state.covenants[0].specialists[0].taught).toEqual({ year: 1220, seasons: 2 });
+  });
+  it('fall back to the season the student would have had once they have taught two seasons this year', () => {
+    const st = saga();
+    st.saga.currentSeason = 'Spring';
+    const magus = st.characters[1]; // four free seasons
+    const latin = ensureAbility(magus, 'dead-language', {});
+    latin.param = 'Latin';
+    st.covenants[0].specialists.push({ uid: 't', name: 'Brother Anselm', role: 'teacher', ability: 'Latin', score: 5, teaching: 4, chars: { Com: 2 }, abilities: [{ id: 'dead-language', param: 'Latin', score: 5 }] });
+    magus.standing = { kind: 'taught', target: `ability:${latin.uid}`, teacher: 'spec:t' };
+    const { reports } = advanceSeasons(st, data, 3);
+    const lines = reports.flatMap((r) => r.lines).filter((l) => l.who === 'Magus');
+    expect(lines.find((l) => /two seasons this year/.test(l.text))?.text).toMatch(/Instead: Lab work/);
   });
 });
 

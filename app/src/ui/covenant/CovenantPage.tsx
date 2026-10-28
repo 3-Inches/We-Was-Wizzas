@@ -18,6 +18,8 @@ import { CovenantEffects } from './CovenantEffects';
 import { CovenantTribunalCard } from './CovenantTribunal';
 import type { CovTabProps } from './shared';
 import { Hint } from '../Hint';
+import { AuraCard } from './AuraCard';
+import { auraOf } from '../../engine/aura';
 
 type TabId = 'overview' | 'hooks' | 'library' | 'labs' | 'folk' | 'items' | 'log';
 
@@ -87,7 +89,9 @@ export default function CovenantPage() {
         <div style={{ flex: '1 1 200px' }}>
           <Meter label="Boon points vs Hook points" value={dc.boonPoints} max={dc.hookPoints} />
         </div>
-        <span className="badge">Aura {dc.aura} ({cov.auraRealm})</span>
+        <span className="badge">
+          Aura {dc.aura} ({auraOf(cov).realm})
+        </span>
         <span className={`badge ${dc.finances.balance < 0 ? 'bad' : 'good'}`}>
           {dc.finances.balance >= 0 ? '+' : ''}
           {dc.finances.balance} £/year
@@ -162,7 +166,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
             <Field label="Founded (year)">
               <Stepper value={cov.foundedYear} width={60} onChange={(v) => update((x) => void (x.foundedYear = v))} />
             </Field>
-            <Field label="Base aura" hint="DE default 3; each Minor Aura Boon adds +1">
+            <Field label="Aura" hint="Before its Boons and Hooks (DE default 3); the Aura card below shows it as it stands">
               <div className="row tight">
                 <Stepper value={cov.aura} min={0} max={10} width={36} onChange={(v) => update((x) => void (x.aura = v))} />
                 <select value={cov.auraRealm} onChange={(e) => update((x) => void (x.auraRealm = e.target.value as Covenant['auraRealm']))}>
@@ -197,6 +201,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
             ))}
           </div>
         </Card>
+        {saga && <AuraCard cov={cov} update={update} saga={saga} chars={chars} />}
         <Card title="Build Points" tour="covenant-bp">
           <table className="compact">
             <tbody>

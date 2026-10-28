@@ -92,7 +92,8 @@ export type Effect =
   | { type: 'abilityAccess'; abilityTypes?: AbilityType[]; abilities?: string[]; note?: string }
   | { type: 'xpPool'; amount: number; label: string; abilityTypes?: AbilityType[]; abilities?: string[]; arts?: boolean; spellLevels?: boolean; note?: string }
   | { type: 'laterLifeXpPerYear'; amount: number }
-  | { type: 'freeSeasons'; amount: number }
+  /** free seasons a year: set to the amount (Wealthy 3, Poor 1), or added to it (License of Absence) */
+  | { type: 'freeSeasons'; amount: number; add?: boolean }
   | { type: 'abilityBonus'; ability: string | ParamRef; amount: number }
   | { type: 'artBonus'; art: Art | ParamRef; amount: number }
   | { type: 'abilityAffinity'; ability: string | ParamRef; multiplier?: number }

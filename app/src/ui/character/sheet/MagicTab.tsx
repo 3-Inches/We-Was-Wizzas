@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { auraAtTime, type AuraTime } from '../../../engine/aura';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type Technique } from '../../../data';
 import { castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
 import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
@@ -15,7 +16,10 @@ const REALMS: Realm[] = ['Magic', 'Faerie', 'Divine', 'Infernal', 'None'];
 
 export default function MagicTab({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, ctx } = ed;
-  const [aura, setAura] = useState<AuraState>(ctx.aura);
+  const [auraSet, setAura] = useState<AuraState>(ctx.aura);
+  // the Dominion and Infernal auras change with the hour and the day (DE; RoP: The Divine, The Infernal)
+  const [when, setWhen] = useState<AuraTime>('day');
+  const aura = auraAtTime(auraSet, when);
   const [useLab, setUseLab] = useState(true);
   const [pen, setPen] = useState<PenetrationOptions>({ arcaneConnection: 'none', sympathetic: 0 });
   // words and gestures, each with its modifier (DE); a Bjornaer in heartbeast form has neither
@@ -247,15 +251,23 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         <div className="row">
           <Field label="Aura">
             <div className="row tight">
-              <select value={aura.realm} onChange={(e) => setAura({ ...aura, realm: e.target.value as Realm })}>
+              <select value={auraSet.realm} onChange={(e) => setAura({ ...auraSet, realm: e.target.value as Realm })}>
                 {REALMS.map((r) => (
                   <option key={r}>{r}</option>
                 ))}
               </select>
-              <Stepper value={aura.strength} min={0} max={10} width={40} onChange={(v) => setAura({ ...aura, strength: v })} />
+              <Stepper value={auraSet.strength} min={0} max={10} width={40} onChange={(v) => setAura({ ...auraSet, strength: v })} />
               <label className="inline small">
-                <input type="checkbox" checked={!!aura.regio} onChange={(e) => setAura({ ...aura, regio: e.target.checked })} /> regio
+                <input type="checkbox" checked={!!auraSet.regio} onChange={(e) => setAura({ ...auraSet, regio: e.target.checked })} /> regio
               </label>
+              {(auraSet.realm === 'Divine' || auraSet.realm === 'Infernal') && (
+                <select value={when} onChange={(e) => setWhen(e.target.value as AuraTime)} aria-label="When" title={aura.timeNote ?? 'The Dominion is one weaker at night and one stronger on Sundays and holy days; an Infernal aura is one stronger at night'}>
+                  <option value="day">by day</option>
+                  <option value="night">at night</option>
+                  {auraSet.realm === 'Divine' && <option value="holy">a Sunday or holy day</option>}
+                </select>
+              )}
+              {aura.timeNote && <span className="small muted">now {aura.strength}</span>}
             </div>
           </Field>
           <Field label="Words & gestures" hint={`${words >= 0 ? '+' : ''}${words}${wg.notes.length ? ` (${wg.notes.join(', ')})` : ''}`}>

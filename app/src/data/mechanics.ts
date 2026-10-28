@@ -210,7 +210,7 @@ export const MECHANICS: Record<string, Mechanics> = {
   // ------------------------------------------------------------------ Later-life XP
   wealthy: { forTypes: ['companion', 'mythic'], effects: [{ type: 'laterLifeXpPerYear', amount: 20 }, { type: 'freeSeasons', amount: 3 }, { type: 'livingConditions', amount: 2 }], tags: ['wealth'], excludes: ['poor-flaw'] },
   'poor-flaw': { forTypes: ['companion', 'mythic'], effects: [{ type: 'laterLifeXpPerYear', amount: 10 }, { type: 'freeSeasons', amount: 1 }, { type: 'livingConditions', amount: -2 }], excludes: ['wealthy'] },
-  'license-of-absence': { effects: [{ type: 'freeSeasons', amount: 1 }] },
+  'license-of-absence': { effects: [{ type: 'freeSeasons', amount: 1, add: true }] },
   'regular-flaw': { effects: [note('One free season per year must be spent in Worship.')] },
   savantism: {},
   'savantism-flaw': { effects: [{ type: 'advancementMultiplier', multiplier: 0.5, when: 'all' }, note('Half standard experience at creation; no Ability above 3 except the favored Ability (max 6, +3 to rolls).')] },

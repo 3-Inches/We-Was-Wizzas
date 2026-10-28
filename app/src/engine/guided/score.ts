@@ -3,6 +3,7 @@
 // it matches what the player said) and a strength (what it is worth in this saga, in seasons
 // over the first years of play). Saga context moves strength, never fit.
 
+import { auraOf } from '../aura';
 import { ARTS, CHARACTERISTICS, STATUS_CULTURES, type Art, type Characteristic, type CharType, type GameData, type VFSize, type VirtueFlawDef } from '../../data';
 import { HOUSES } from '../../data/houses';
 import { DEFAULT_SAGA_SETTINGS, type Character, type Covenant, type GuidedState, type HouseRules, type Saga, type SagaGuidedSettings } from '../types';
@@ -53,7 +54,7 @@ export function covenantAnswer(q: Question, cov?: Covenant): number | undefined 
       const q2 = summae.length ? summae.reduce((s, b) => s + b.quality, 0) / summae.length : 6;
       return clamp((q2 - 6) + Math.min(5, summae.length / 3));
     }
-    case 'aura': return clamp(cov.aura + cov.hooksBoons.filter((h) => h.kind === 'boon' && /aura/i.test(h.name)).length);
+    case 'aura': return clamp(auraOf(cov).strength);
   }
 }
 
@@ -363,7 +364,7 @@ function effectSeasons(def: VirtueFlawDef, ctx: GuidedContext, f: SagaFactors, p
       case 'languageAffinity': add(2 * H, 'faster languages'); break;
       case 'xpPool': add(e.amount / (e.arts ? f.artSQ : f.abilitySQ) * (e.abilityTypes || e.abilities ? 0.8 : 1), `${e.amount} xp`); break;
       case 'laterLifeXpPerYear': { const years = Math.max(0, ctx.c.type === 'magus' ? ctx.c.creation.apprenticeshipStartAge - 5 : ctx.c.age - 5); add(((e.amount - 15) * years) / f.abilitySQ, `${e.amount - 15 > 0 ? 'more' : 'less'} xp for ${years} years`); break; }
-      case 'freeSeasons': add((e.amount - 2) * 5 * H * 0.5, 'free seasons each year'); break;
+      case 'freeSeasons': add((e.add ? e.amount : e.amount - 2) * 5 * H * 0.5, 'free seasons each year'); break;
       case 'apprenticeXp': add(e.amount / f.artSQ, 'apprenticeship xp'); break;
       case 'apprenticeshipTotalXp': add((e.amount - 240) / f.artSQ, 'apprenticeship xp'); break;
       case 'apprenticeSpellLevels': add(e.amount / 15, 'spell levels at creation'); break;
