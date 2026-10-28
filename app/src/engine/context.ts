@@ -3,6 +3,7 @@
 import type { GameData } from '../data';
 import { deriveLab, type DerivedLab } from './lab';
 import type { AuraState } from './magic';
+import { auraOf } from './aura';
 import type { Character, Covenant } from './types';
 
 export interface CharacterContext {
@@ -11,10 +12,10 @@ export interface CharacterContext {
   aura: AuraState;
 }
 
-/** The covenant aura with its Minor Aura Boons. */
+/** The covenant's aura as it stands: its Aura Boons, aura Hooks and any change that lasts a while (aura.ts). */
 export function covenantAura(cov: Covenant): AuraState {
-  const auraBoons = cov.hooksBoons.filter((h) => h.kind === 'boon' && h.size === 'Minor' && /^aura$/i.test(h.name)).length;
-  return { realm: cov.auraRealm, strength: cov.aura + auraBoons };
+  const a = auraOf(cov);
+  return { realm: a.realm, strength: a.strength };
 }
 
 export function covenantOf(c: Character, covenants: Covenant[]): Covenant | undefined {

@@ -115,10 +115,20 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
     if (!short.includes('teacher')) log.push(`Teacher: ${cov.specialists.at(-1)!.name}, Latin ${latin} and Artes Liberales ${artes}, Teaching ${teaching}.`);
   }
   if (o.craftsmen) {
-    const had = new Set(cov.specialists.map((s) => s.uid));
+    const had = new Map(cov.specialists.map((s) => [s.uid, s.count ?? 1]));
     const added = addCostSavingCraftsmen(cov, members(), labs(), between(rng, 4, 6), room('specialist'));
     pay('specialist', cov.specialists.filter((s) => !had.has(s.uid)).map((s) => s.uid));
-    log.push(added.length ? `Craftsmen: ${added.join(', ')}.` : `Craftsmen: ${room('specialist') < 4 ? 'no Build Points left for any' : 'none would save the covenant money'}.`);
+    // a pool takes a craftsman only whole: those it could not, and the budget cannot cover, are not hired
+    const pooled = () => new Set(cov.hooksBoons.flatMap((h) => h.resources ?? []));
+    let dropped = 0;
+    while (over('specialist')) {
+      const s = [...cov.specialists].reverse().find((x) => x.role === 'craftsman' && !pooled().has(x.uid) && (x.count ?? 1) > (had.get(x.uid) ?? 0));
+      if (!s) break;
+      if ((s.count ?? 1) > 1) s.count = (s.count ?? 1) - 1;
+      else cov.specialists = cov.specialists.filter((x) => x !== s);
+      dropped++;
+    }
+    log.push(added.length ? `Craftsmen: ${added.join(', ')}${dropped ? `; ${dropped} of them would go past the Build Points, so ${dropped > 1 ? 'are' : 'is'} left to recruit in play` : ''}.` : `Craftsmen: ${room('specialist') < 4 ? 'no Build Points left for any' : 'none would save the covenant money'}.`);
   }
   if (short.length) log.push(`Not enough Build Points for the ${short.join(', ')}: recruit them in play instead.`);
   if (o.library) {

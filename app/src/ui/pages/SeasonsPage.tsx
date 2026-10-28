@@ -1,6 +1,7 @@
 // The saga's clock: every character's season, the covenants' year, aging and Warping, all moved on
 // together from one page.
 
+import { extraSeasonHere, seasonsOf, seasonsUsed } from '../../engine/seasons';
 import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useStore } from '../../store/store';
@@ -117,6 +118,9 @@ export default function SeasonsPage() {
                 const d = derived.get(c.id);
                 if (!d) return null;
                 const logged = loggedThisSeason(c, year, season);
+                const main = logged.filter((e) => !e.extra);
+                const plan = seasonsOf(c, d);
+                const used = seasonsUsed(c, year);
                 return (
                   <tr key={c.id}>
                     <td>
@@ -125,24 +129,33 @@ export default function SeasonsPage() {
                       </Link>
                       <div className="small muted">
                         {c.type}, age {c.age}
+                        {plan.work > 0 && ` · ${used.free + used.worship} of ${plan.free} free seasons used`}
                       </div>
                     </td>
                     <td className="small">
-                      {logged.length ? (
-                        logged.map((e) => (
+                      {main.length ? (
+                        main.map((e) => (
                           <div key={e.uid}>
                             <span className="badge good">logged</span> {e.summary}
                           </div>
                         ))
                       ) : (
-                        <span className="muted">{fill ? `→ ${describeStanding(c, d, resolveStanding(c, d, season))}` : 'nothing'}</span>
+                        <span className="muted">{fill ? `→ ${describeStanding(c, d, resolveStanding(c, d, year))}` : 'nothing'}</span>
                       )}
+                      {logged
+                        .filter((e) => e.extra)
+                        .map((e) => (
+                          <div key={e.uid}>
+                            <span className="badge">extra</span> {e.summary}
+                          </div>
+                        ))}
+                      {fill && plan.extra > used.extra && extraSeasonHere(plan, season) && !logged.some((e) => e.extra) && <div className="muted">+ an extra season of study (needs no sleep)</div>}
                     </td>
                     <td>
                       <StandingEditor
                         c={c}
                         d={d}
-                        season={season}
+                        year={year}
                         teachers={covenantOf(c, covs)?.specialists.filter((s) => s.role === 'teacher' && !s.characterId) ?? []}
                         onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))}
                       />

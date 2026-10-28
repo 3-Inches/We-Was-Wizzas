@@ -43,6 +43,7 @@ export function useWorkProject(ed: CharEditor): (p: LabProject) => string[] {
     const theory = d.abilities.find((a) => a.abilityId === d.theoryAbility);
     const e = newSeasonEntry(year, season, 'other', `Lab: ${p.name}`, theory ? { [`ability:${theory.uid}`]: 2 } : {});
     e.notes = lines.join(' ');
+    e.labKind = p.kind;
     applySeason(x, e, 1);
     x.seasonLog.push(e);
     const touched = state.characters.filter((y) => y.id === x.id || y.id === p.subjectId);

@@ -1,5 +1,6 @@
 // Covenant creation and management (DE Chapter 6; Covenants).
 
+import { auraOf } from './aura';
 import type { Art, GameData } from '../data';
 import { ARTS, ART_NAMES } from '../data/constants';
 import type { BudgetKind, Character, Covenant, EnchantedItem, LibraryBook, Specialist, VisSource } from './types';
@@ -249,7 +250,7 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
     const clash = cov.hooksBoons.filter((h) => h.kind === 'hook' && /road|urban/i.test(h.name));
     issue('Seclusion cannot be taken with the Road or Urban Hooks.', removeHB(secl.uid, secl.name), ...clash.map((h) => removeHB(h.uid, h.name)));
   }
-  const aura = cov.aura + auraBoons;
+  const aura = auraOf(cov).strength;
 
   // Build points
   const lines: BPLine[] = [];

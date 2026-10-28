@@ -15,6 +15,10 @@ import { constantWarping, effectExpiry, expireEffects, nextSeason, seasonIndex }
 import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, visForStudy } from './longterm';
 import { planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
+import { auraOf, changeAura, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
+import { optionOn } from './optional';
+import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
+import { ensureAbility } from './character/factory';
 import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
 import { purseOf, takeVis, visText } from './vis';
 import { workshopSeason, workshopYearEnd } from './workshop';
@@ -48,9 +52,9 @@ export function loggedThisSeason(c: Character, year: number, season: Season): Se
   return c.seasonLog.filter((e) => e.year === year && e.season === season);
 }
 
-/** What already fills the season: anything logged but an adventure, which can share a season with other work (DE). */
+/** What already fills the season: anything logged but an adventure, which can share a season with other work (DE), and an extra season of one who needs no sleep. */
 export function seasonTaken(c: Character, year: number, season: Season): SeasonLogEntry[] {
-  return loggedThisSeason(c, year, season).filter((e) => e.activity !== 'adventure');
+  return loggedThisSeason(c, year, season).filter((e) => e.activity !== 'adventure' && !e.extra);
 }
 
 /** Living Conditions for the aging roll (DE p.391 with the covenant's finances, Virtues and half the lab's Health). */
@@ -61,11 +65,14 @@ export function livingConditions(d: DerivedCharacter, ctx: CharacterContext): nu
   return base + (cov?.finances.livingConditions ?? 0) + d.livingConditionsMod + labHealth;
 }
 
-/** Seasons a character spends working for a living in a year: four less its free seasons (DE p.163). */
-function workSeason(d: DerivedCharacter, season: Season): boolean {
-  const free = d.effects.filter((e) => e.type === 'freeSeasons').reduce((m, e) => Math.max(m, (e as { amount: number }).amount), 2);
-  return ['Spring', 'Summer', 'Autumn', 'Winter'].indexOf(season) < Math.max(0, 4 - free);
+/** The Ability Worship teaches: Church Lore, Concentration or Music (the one the character knows best), else Church Lore (The Church). */
+function worshipAbility(c: Character, d: DerivedCharacter): string {
+  const known = d.abilities.filter((a) => (a.abilityId === 'organization-lore' && /church/i.test(a.name)) || a.abilityId === 'concentration' || a.abilityId === 'music').sort((a, b) => b.total - a.total)[0];
+  return `ability:${known?.uid ?? ensureAbility(c, 'organization-lore', {}, 'Church').uid}`;
 }
+
+/** The Divine aura a character worships in (Worship's Source Quality): a small church's 4, unless the covenant's own aura is Divine. */
+const WORSHIP_AURA = 4;
 
 /** The Ability a character works with: its Craft or Profession, else its best Ability. */
 function workAbility(d: DerivedCharacter): string | undefined {
@@ -76,15 +83,20 @@ function workAbility(d: DerivedCharacter): string | undefined {
 }
 
 /** What a character does when nobody planned the season: its standing activity, with 'auto' worked out. */
-export function resolveStanding(c: Character, d: DerivedCharacter, season: Season): StandingActivity {
+export function resolveStanding(c: Character, d: DerivedCharacter, year: number): StandingActivity {
   const s = c.standing ?? { kind: 'auto' };
+  // a creature left to the clock does nothing it was not set to do
+  if (c.creature && s.kind === 'auto') return { kind: 'none' };
+  // once the year's free seasons are spent, a season is work, or a Regular's Worship, whatever else was chosen (DE, Assigning Seasons)
+  const role = seasonRole(seasonsOf(c, d), seasonsUsed(c, year));
+  if (role === 'worship') return { kind: 'worship' };
+  if (role === 'work' && s.kind !== 'none') return c.workshop ? { kind: 'work' } : { kind: 'exposure', target: s.kind === 'exposure' && s.target ? s.target : workAbility(d) };
   if (s.kind !== 'auto') return s;
   if (c.creature) return { kind: 'none' };
   if (d.isMagus) {
     const p = c.projects?.find((x) => !x.done);
     return { kind: 'lab', projectUid: p?.uid };
   }
-  if (workSeason(d, season)) return c.workshop ? { kind: 'work' } : { kind: 'exposure', target: workAbility(d) };
   return { kind: 'practice', target: s.target ?? workAbility(d) };
 }
 
@@ -100,6 +112,7 @@ export function describeStanding(c: Character, d: DerivedCharacter, s: StandingA
     case 'vis': return `Study ${name(s.target)} from vis`;
     case 'work': return 'Work in the workshop';
     case 'taught': return `Taught ${name(s.target)}`;
+    case 'worship': return `Worship (Quality ${WORSHIP_AURA}, a church's Dominion)`;
     case 'lab': {
       const p = c.projects?.find((x) => x.uid === s.projectUid && !x.done);
       return p ? `Lab: ${p.name}` : 'Lab work (Exposure in Magic Theory)';
@@ -117,7 +130,27 @@ function mightNote(d: DerivedCharacter, xp: number): string {
 
 /** Log and apply a season of a character's standing activity. Returns what happened. */
 export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, chars?: Character[]): string[] {
-  const s = resolveStanding(c, d, season);
+  return runActivity(c, d, ctx, cov, data, year, season, rng, resolveStanding(c, d, year), chars);
+}
+
+/**
+ * One of the extra seasons a character who needs no sleep has: what was chosen for them (practice
+ * of the work Ability unless set), never lab work. Logged as an extra season.
+ */
+export function runExtraSeason(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, chars?: Character[]): string[] {
+  const want = c.seasons?.extra;
+  const s: StandingActivity = !want || want.kind === 'auto' || want.kind === 'lab' || want.kind === 'work' ? { kind: 'practice', target: want?.target ?? workAbility(d) } : want;
+  if (s.kind === 'none') return [];
+  const before = c.seasonLog.length;
+  const out = runActivity(c, d, ctx, cov, data, year, season, rng, s, chars);
+  for (const e of c.seasonLog.slice(before)) {
+    e.extra = true;
+    e.summary = `Extra season (needs no sleep): ${e.summary}`;
+  }
+  return out.map((l) => `Extra season: ${l}`);
+}
+
+function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, s: StandingActivity, chars?: Character[]): string[] {
   const log = (activity: SeasonLogEntry['activity'], summary: string, gains: Record<string, number>, warping = 0) => {
     const e = newSeasonEntry(year, season, activity, summary, gains);
     if (warping) e.warpingPoints = warping;
@@ -191,8 +224,17 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
       log('taught', `Taught by ${sp.name || 'a teacher'}: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
       return [`Taught ${t.label} by ${sp.name || 'a teacher'}: Quality ${r.sourceQuality}, +${r.xp} xp${r.capped ? ' (as far as the teacher knows)' : ''}.${mightNote(d, r.xp)}`];
     }
+    case 'worship': {
+      const key = worshipAbility(c, d);
+      const uidOf = key.split(':')[1];
+      const label = d.abilityByUid.get(uidOf)?.name ?? 'Church Lore';
+      const dominion = ctx.aura.realm === 'Divine' ? ctx.aura.strength : WORSHIP_AURA;
+      const r = computeStudy(d, { kind: 'worship', quality: dominion, subject: label }, { abilityUid: uidOf });
+      log('worship', `Worship: ${label} (+${r.xp} xp)`, r.xp ? { [key]: r.xp } : {});
+      return [`A season of Worship: ${label} +${r.xp} xp (a Dominion of ${dominion}).${mightNote(d, r.xp)}`];
+    }
     case 'work': {
-      if (!c.workshop) return runStanding({ ...c, standing: { kind: 'exposure', target: workAbility(d) } } as Character, d, ctx, cov, data, year, season, rng, chars);
+      if (!c.workshop) return runActivity(c, d, ctx, cov, data, year, season, rng, { kind: 'exposure', target: workAbility(d) }, chars);
       return workshopSeason(c, d, year, season, { rng });
     }
     case 'lab': {
@@ -210,6 +252,7 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
       if (p) lines.push(...workProject(c, d, ctx, cov, p.uid, data, year, { rng, chars, season }));
       const gains: Record<string, number> = theory ? { [`ability:${theory.uid}`]: 2 } : {};
       log('other', p ? `Lab: ${p.name}` : 'Lab work', gains);
+      if (p) c.seasonLog[c.seasonLog.length - 1].labKind = p.kind;
       lines.push(theory ? `Lab work: +2 xp Exposure in ${theory.name}.` : 'Lab work.');
       return lines;
     }
@@ -426,8 +469,36 @@ function renewCovenantEffects(cov: Covenant, chars: Character[], year: number, s
     }
     const next: ActiveEffect = { ...e, uid: uid(), year, season };
     cov.effects = [...(cov.effects ?? []), next];
+    noteVisRitual(cov, year, pawns);
     lines.push({ who: cov.name, kind: 'effect', text: `${e.name} cast again${caster ? ` by ${caster.name}` : ''} (${visText(paid.taken)} vis).` });
   }
+  return lines;
+}
+
+/**
+ * The aura at the year's end: a Flickering Aura's missed year is over, and with aura variation on
+ * (RoP: Magic) a Magic aura's yearly modifier, and its roll if one is called for, with the Warping a
+ * fracturing regio gives everyone living in it.
+ */
+function auraYearEnd(cov: Covenant, members: Character[], saga: Saga, year: number, rng: Rng): Line[] {
+  const lines: Line[] = [];
+  const t = cov.auraTrack;
+  if (t?.flickerYear !== undefined && t.flickerYear <= year) {
+    t.flickerYear = undefined;
+    lines.push({ who: cov.name, kind: 'covenant', text: 'Flickering Aura: the year is over, and the aura is back to its strength.' });
+  }
+  if (!optionOn(saga, 'auraVariation') || auraOf(cov).realm !== 'Magic') return lines;
+  cov.auraTrack ??= newAuraTrack(cov);
+  const mod = yearlyAuraModifier(cov, members, year);
+  const r = rollAuraYear(cov, mod.total, year, rng);
+  const why = mod.parts.map((p) => `${p.label} ${p.value >= 0 ? '+' : ''}${p.value}`).join(', ');
+  lines.push({ who: cov.name, kind: 'covenant', text: `Aura: the year's modifier is ${mod.total >= 0 ? '+' : ''}${mod.total} (${why}). ${r.lines.join(' ')}` });
+  if (Math.abs(mod.total) >= 4) changeAura(cov, r.delta, r.lines.join(' '), year, 'Winter');
+  if (r.warping) {
+    for (const m of members.filter((x) => inPlay(x) && x.auraTime !== 'away')) m.warpingPoints += r.warping;
+    lines.push({ who: cov.name, kind: 'covenant', text: `${r.warping} Warping Points for everyone living in the aura; magi roll for Twilight.` });
+  }
+  cov.auraTrack.notes = cov.auraTrack.notes.filter((n) => n.year > year);
   return lines;
 }
 
@@ -442,13 +513,17 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   const derive = (c: Character) => deriveCharacter(c, data, saga.houseRules);
   const ctxOf = (c: Character) => characterContext(c, state.covenants, data);
 
-  // the season's work: what each character logged, or its standing activity
+  // the season's work: what each character logged, or its standing activity; and an extra season for one who needs no sleep
   for (const c of state.characters.filter(inPlay)) {
-    if (loggedThisSeason(c, year, season).length || !o.fillUnplanned) continue;
+    if (!o.fillUnplanned) continue;
+    const logged = loggedThisSeason(c, year, season);
     const d = derive(c);
     const ctx = ctxOf(c);
     const cov = covenantOf(c, state.covenants);
-    for (const t of runStanding(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });
+    if (!logged.some((e) => !e.extra)) for (const t of runStanding(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });
+    const plan = seasonsOf(c, d);
+    if (plan.extra && extraSeasonHere(plan, season) && !logged.some((e) => e.extra) && seasonsUsed(c, year).extra < plan.extra)
+      for (const t of runExtraSeason(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });
   }
 
   // the turn of the year (after Winter): covenants, then each character's year
@@ -463,6 +538,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       lines.push(...hookReminders(cov, year));
       for (const s of cov.specialists.filter((x) => x.hired && x.hired.until <= year)) lines.push({ who: cov.name, kind: 'covenant', text: `${s.name || 'The hired teacher'} has taught the time paid for, and leaves.` });
       cov.specialists = cov.specialists.filter((x) => !x.hired || x.hired.until > year);
+      lines.push(...auraYearEnd(cov, members, saga, year, rng));
     }
     // each covenant's best hand at Medicine tends its people through a crisis
     const attendants = new Map(state.covenants.map((cov) => [cov.id, covenantAttendants(cov, state.characters, derive)]));
@@ -477,7 +553,12 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
 
   // into the next season: effects run out, wards are renewed, the Might pool and Fatigue recover
   const next = nextSeason(year, season);
-  for (const cov of state.covenants) lines.push(...renewCovenantEffects(cov, state.characters, next.year, next.season));
+  for (const cov of state.covenants) {
+    lines.push(...renewCovenantEffects(cov, state.characters, next.year, next.season));
+    // a change to the aura for one season lasts only that season
+    const temp = cov.auraTrack?.temp;
+    if (temp && seasonIndex(temp.year, temp.season) < seasonIndex(next.year, next.season)) cov.auraTrack!.temp = undefined;
+  }
   for (const c of state.characters.filter(inPlay)) {
     for (const t of expireEffects(c, next.year, next.season)) lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: t });
     c.fatigueLost = 0;

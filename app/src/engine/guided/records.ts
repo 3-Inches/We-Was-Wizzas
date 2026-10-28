@@ -146,7 +146,7 @@ function effectLinks(e: Effect, data: GameData): Draft[] {
     }
     case 'xpPool': return [L('xp', 1, `${e.amount} xp (${e.label})`)];
     case 'laterLifeXpPerYear': return [L('xp', sgn(e.amount - 15), `${e.amount} xp per year of later life`), L('wealth', sgn(e.amount - 15), 'Wealth', 2)];
-    case 'freeSeasons': return [L('seasons', sgn(e.amount - 2), `${e.amount} free seasons a year`)];
+    case 'freeSeasons': return [L('seasons', sgn(e.add ? e.amount : e.amount - 2), e.add ? `${e.amount} more free season${e.amount > 1 ? 's' : ''} a year` : `${e.amount} free seasons a year`)];
     case 'abilityBonus': return [L('$param', 1, `+${e.amount} to an Ability`), L('specialist', 1, 'Concentrates on one Ability', 1)];
     case 'artBonus': return [L('$param', 1, `+${e.amount} to an Art`), L('specialist', 1, 'Concentrates on one Art', 1)];
     case 'abilityAffinity': return [L('$param', 1, 'Learns one Ability 1½ times as fast'), L('specialist', 1, 'Concentrates on one Ability', 1)];

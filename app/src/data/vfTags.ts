@@ -74,7 +74,7 @@ export function buildVfTags(def: VirtueFlawDef, nameOf: (id: string) => string):
     if (e.type === 'sourceQuality') t('xp:quality', `+${e.amount} Source Quality (${(e.when as string[]).join(', ')}) ≈ ${seasons(e.amount)} more for every season of it`, 'adds', XP_TITLE);
     if (e.type === 'secondaryInsight') t('xp:insight', '+4 xp (Technique) or +2 xp (Form) in other Arts per study season', 'adds');
     if (e.type === 'artAffinity' || e.type === 'abilityAffinity') t('xp:affinity', 'Experience ×1.5 in one: two seasons count as three', 'adds');
-    if (e.type === 'freeSeasons') t('xp:seasons', `${e.amount} free seasons a year`, 'adds');
+    if (e.type === 'freeSeasons') t('xp:seasons', e.add ? `${e.amount} more free season${e.amount > 1 ? 's' : ''} a year` : `${e.amount} free seasons a year`, 'adds');
   }
   if (def.categories.includes('Mystery')) t('needs:initiation', 'Needs Initiation (or Cabal Legacy)', 'needs', 'Mystery Virtues come by Initiation; Cabal Legacy lets a magus start with them (TMRE)');
   if (def.id === 'cabal-legacy-flaw') t('adds:mystery', 'Lets you take Mystery Virtues at creation', 'adds');

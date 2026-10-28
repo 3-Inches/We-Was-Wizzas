@@ -15,7 +15,9 @@ import { useStore } from '../../../store/store';
 import { TwilightCard } from './Twilight';
 import { useWorkProject } from './LabProjects';
 import { planProject, visShort } from '../../../engine/projects';
-import { seasonTaken } from '../../../engine/time';
+import { loggedThisSeason, seasonTaken } from '../../../engine/time';
+import { SeasonPlan } from '../SeasonPlan';
+import { seasonsOf, seasonsUsed } from '../../../engine/seasons';
 import { MysteriesCard } from './MysteriesCard';
 import { GuildCard } from './GuildCard';
 import { WritingCard } from './Writing';
@@ -24,7 +26,7 @@ import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { characterContext } from '../../../engine/context';
 import { deriveCharacter } from '../../../engine/character/derive';
 
-type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'lab' | 'other';
+type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'worship' | 'lab' | 'other';
 
 const KIND_LABEL: Record<Kind, string> = {
   summa: 'Read a summa',
@@ -35,12 +37,13 @@ const KIND_LABEL: Record<Kind, string> = {
   exposure: 'Exposure (while working)',
   adventure: 'Adventure experience',
   vis: 'Study raw vis',
+  worship: 'Worship (a church’s Dominion)',
   lab: 'Lab work on a project',
   other: 'Other activity (no xp)',
 };
 
 const ACTIVITY: Record<Kind, SeasonLogEntry['activity']> = {
-  summa: 'study-book', tractatus: 'study-book', teacher: 'taught', training: 'trained', practice: 'practice', exposure: 'exposure', adventure: 'adventure', vis: 'study-vis', lab: 'other', other: 'other',
+  summa: 'study-book', tractatus: 'study-book', teacher: 'taught', training: 'trained', practice: 'practice', exposure: 'exposure', adventure: 'adventure', vis: 'study-vis', worship: 'worship', lab: 'other', other: 'other',
 };
 
 export default function AdvancementTab({ ed }: { ed: CharEditor }) {
@@ -84,12 +87,24 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const canStudyArts = d.isMagus || d.hasGift;
   // without Arts, the subject is an Ability: the first in the list, until one is chosen
   const firstAbility = d.abilities.slice().sort((a, b) => a.name.localeCompare(b.name))[0];
-  const target = target0.startsWith('art:') && !canStudyArts && firstAbility ? `ability:${firstAbility.uid}` : target0;
+  // Worship teaches Church Lore, Concentration or Music (The Church): one the character knows, or Church Lore begun
+  const worshipAbilities = d.abilities.filter((a) => (a.abilityId === 'organization-lore' && /church/i.test(a.name)) || a.abilityId === 'concentration' || a.abilityId === 'music');
+  const newChurchLore = !worshipAbilities.some((a) => a.abilityId === 'organization-lore');
+  const target =
+    kind === 'worship'
+      ? worshipAbilities.some((a) => `ability:${a.uid}` === target0) || (newChurchLore && target0 === 'new:church-lore')
+        ? target0
+        : worshipAbilities[0]
+          ? `ability:${worshipAbilities[0].uid}`
+          : 'new:church-lore'
+      : target0.startsWith('art:') && !canStudyArts && firstAbility
+        ? `ability:${firstAbility.uid}`
+        : target0;
   const isArt = target.startsWith('art:');
   const art = isArt ? (target.slice(4) as Art) : undefined;
   const abilityUid = target.startsWith('ability:') ? target.slice(8) : undefined;
   const masterySpell = target.startsWith('mastery:') ? c.spells.find((s) => s.uid === target.slice(8)) : undefined;
-  const subject = art ? ART_NAMES[art] : masterySpell ? `Mastery of ${masterySpell.spell.name}` : d.abilityByUid.get(abilityUid ?? '')?.name ?? '';
+  const subject = art ? ART_NAMES[art] : masterySpell ? `Mastery of ${masterySpell.spell.name}` : target === 'new:church-lore' ? 'Church Lore' : (d.abilityByUid.get(abilityUid ?? '')?.name ?? '');
   const library = ctx.covenant?.library ?? [];
   // another character of the saga as teacher or master: their Communication, Teaching, Good Teacher and score in the subject
   const pickTeacher = (id: string) => {
@@ -131,6 +146,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     case 'practice': src = { kind, quality, subject }; break;
     case 'exposure': src = { kind, subject }; break;
     case 'adventure': src = { kind, quality: Math.min(quality, 5), subject }; break;
+    case 'worship': src = { kind, quality, subject }; break;
     case 'vis': src = visDie === null ? null : { kind, art: art ?? 'Vi', dieRoll: visDie, aura: ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0 }; break;
     default: src = null;
   }
@@ -154,9 +170,15 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
 
   const openProjects = (c.projects ?? []).filter((p) => !p.done);
   const project = openProjects.find((p) => p.uid === projectUid) ?? openProjects[0];
-  // a season holds one activity, an adventure aside (DE)
+  // a season holds one activity, an adventure aside (DE); one who needs no sleep has extra seasons for study, not lab work
   const taken = seasonTaken(c, year, season);
-  const doubled = taken.length > 0 && kind !== 'adventure';
+  const plan = seasonsOf(c, d);
+  const used = seasonsUsed(c, year);
+  const asExtra = taken.length > 0 && kind !== 'adventure' && kind !== 'lab' && plan.extra > used.extra && !loggedThisSeason(c, year, season).some((e) => e.extra);
+  const doubled = taken.length > 0 && kind !== 'adventure' && !asExtra;
+  // a working character's free seasons, once spent, leave only work (Exposure) and Worship for the year
+  const freeKind = !['exposure', 'worship', 'other'].includes(kind);
+  const overFree = !taken.length && freeKind && used.free >= plan.free - plan.worship;
   const plan0 = kind === 'lab' && project ? planProject(project, c, d, ctx, { subject: sagaChars.find((x) => x.id === project.subjectId), data }) : undefined;
   const short = plan0 && project ? visShort(project, c, ctx, plan0) : undefined;
   const projectPlan = plan0 && short ? { ...plan0, problems: [...plan0.problems, short] } : plan0;
@@ -170,7 +192,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     const linkedText = linked.filter((l) => l.xp > 0).map((l) => `${l.name} +${l.xp}`).join(', ');
     const insightText = insight && insightPicked.length ? `; Secondary Insight: +1 ${insightPicked.join(', ')}` : '';
     const text = summary || (kind === 'other' ? 'Other activity' : `${KIND_LABEL[kind]}: ${subject}${res ? ` (+${res.xp} xp)` : ''}${linkedText ? `; Magian Lineage: ${linkedText}` : ''}${insightText}`);
-    const entry = newSeasonEntry(year, season, ACTIVITY[kind], text, gains);
+    const entry = newSeasonEntry(year, season, ACTIVITY[kind], asExtra ? `Extra season (needs no sleep): ${text}` : text, gains);
+    if (asExtra) entry.extra = true;
     if (res) entry.sourceQuality = res.advancementTotal;
     if (kind === 'vis' && art) entry.visUsed = [{ art, pawns: visPawns }];
     // the vis eaten: from the purse if it is there, else from the covenant's stocks
@@ -191,6 +214,11 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
       if (fromPurse) takeVis(purseOf(x).vis, [...ARTS], eaten);
       // Magian Lineage: the connected Abilities gain too (added to the character if new)
       for (const l of linked) if (l.xp > 0) entry.gains[`ability:${l.uid ?? ensureAbility(x, l.abilityId).uid}`] = l.xp;
+      // Worship begun in Church Lore: the Ability is added
+      if (entry.gains['new:church-lore'] !== undefined) {
+        entry.gains[`ability:${ensureAbility(x, 'organization-lore', {}, 'Church').uid}`] = entry.gains['new:church-lore'];
+        delete entry.gains['new:church-lore'];
+      }
       if (insight) for (const a of insightPicked) entry.gains[`art:${a}`] = (entry.gains[`art:${a}`] ?? 0) + 1;
       applySeason(x, entry, 1);
       x.seasonLog.push(entry);
@@ -287,6 +315,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 // practice starts from its usual Quality, adventure from no more than 5
                 if (k === 'practice') setQuality(4);
                 if (k === 'adventure') setQuality((q) => Math.min(q, 5));
+                if (k === 'worship') setQuality(4);
               }}
             >
               {(Object.keys(KIND_LABEL) as Kind[]).filter((k) => (k !== 'vis' || canStudyArts || kind === 'vis') && (k !== 'lab' || d.isMagus)).map((k) => (
@@ -311,7 +340,17 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           {kind !== 'other' && kind !== 'lab' && (
             <Field label="Subject">
               <select value={target} onChange={(e) => setTarget(e.target.value)}>
-                {(d.isMagus || d.hasGift) && (
+                {kind === 'worship' ? (
+                  <>
+                    {worshipAbilities.map((a) => (
+                      <option key={a.uid} value={`ability:${a.uid}`}>
+                        {a.name} ({a.score})
+                      </option>
+                    ))}
+                    {newChurchLore && <option value="new:church-lore">Church Lore (new)</option>}
+                  </>
+                ) : null}
+                {kind !== 'worship' && (d.isMagus || d.hasGift) && (
                   <optgroup label="Arts">
                     {ARTS.map((a) => (
                       <option key={a} value={`art:${a}`}>
@@ -320,6 +359,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                     ))}
                   </optgroup>
                 )}
+                {kind !== 'worship' && (
                 <optgroup label="Abilities">
                   {d.abilities
                     .slice()
@@ -330,7 +370,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                       </option>
                     ))}
                 </optgroup>
-                {c.spells.length > 0 && (
+                )}
+                {kind !== 'worship' && c.spells.length > 0 && (
                   <optgroup label="Spell Mastery">
                     {c.spells.map((sp) => (
                       <option key={sp.uid} value={`mastery:${sp.uid}`}>
@@ -358,8 +399,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           )}
         </div>
         <div className="row" style={{ marginTop: 8 }}>
-          {(kind === 'summa' || kind === 'tractatus' || kind === 'practice' || kind === 'adventure') && (
-            <Field label={kind === 'practice' ? 'Practice quality (4; language immersion 8; spell mastery 5)' : kind === 'adventure' ? 'Adventure xp for this subject (≤5)' : 'Quality'}>
+          {(kind === 'summa' || kind === 'tractatus' || kind === 'practice' || kind === 'adventure' || kind === 'worship') && (
+            <Field label={kind === 'practice' ? 'Practice quality (4; language immersion 8; spell mastery 5)' : kind === 'adventure' ? 'Adventure xp for this subject (≤5)' : kind === 'worship' ? 'The church’s Divine aura (a small church 4, a cathedral 5)' : 'Quality'}>
               <Stepper value={quality} min={0} width={40} onChange={setQuality} />
             </Field>
           )}
@@ -498,6 +539,16 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             )}
           </div>
         )}
+        {asExtra && (
+          <p className="small muted" style={{ margin: '8px 0 0' }}>
+            {season} {year} already holds {taken.map((e) => e.summary).join('; ')}: this is one of {c.name || 'the character'}&apos;s {plan.extra} extra seasons this year (needs no sleep), {used.extra} used.
+          </p>
+        )}
+        {overFree && (
+          <p className="small warn-text" style={{ margin: '8px 0 0' }}>
+            {c.name || 'The character'} has used all {plan.free - plan.worship} free season{plan.free - plan.worship === 1 ? '' : 's'} of {year}; the rest of the year is {plan.worship && used.worship < plan.worship ? 'Worship and ' : ''}work (Exposure). Log it anyway only if the storyguide allows.
+          </p>
+        )}
         {doubled && (
           <p className="small warn-text" style={{ margin: '8px 0 0' }}>
             {season} {year} already holds {taken.map((e) => e.summary).join('; ')}. A season holds one activity, besides an adventure{kind === 'lab' ? ': lab work waits for the next season' : '; log another only to split a season the storyguide allows'}.
@@ -536,14 +587,16 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           <StandingEditor
             c={c}
             d={d}
-            season={season}
+            year={year}
             teachers={ctx.covenant?.specialists.filter((x) => x.role === 'teacher' && !x.characterId) ?? []}
             onChange={(st) => update((x) => void (x.standing = st))}
           />
         </div>
         <p className="small muted" style={{ margin: 0 }}>
-          Followed in any season this character has nothing logged when the saga moves on (and while years are passed at once on the Seasons page).
+          Followed in any free season this character has nothing logged when the saga moves on (and while years are passed at once on the Seasons page); once the year&apos;s free
+          seasons are spent, the rest are work (Exposure) or Worship.
         </p>
+        <SeasonPlan c={c} d={d} year={year} update={update} teachers={ctx.covenant?.specialists.filter((x) => x.role === 'teacher' && !x.characterId) ?? []} />
       </Card>
 
       <Card title="Season log">

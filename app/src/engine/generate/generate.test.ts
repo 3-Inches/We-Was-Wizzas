@@ -164,6 +164,22 @@ describe('budgets and resource pools', () => {
     expect(r.cov.library.some((b) => b.kind === 'mundane')).toBe(true);
     expect(budgetLeft(r.cov, dc, 'book').spent).toBeLessThanOrEqual(20);
   }, 120_000);
+  it('never overspends on craftsmen when a pool has too little left to take one', () => {
+    for (let seed = 1; seed <= 12; seed++) {
+      const cov = newCovenant('s', 1220);
+      cov.name = 'Thin';
+      cov.covenfolk = { ...cov.covenfolk, grogs: 20, servants: 15, teamsters: 4, dependents: 10, horses: 6 };
+      // a pool with 2 Build Points left (248 taken by a starting reserve), and 4 of the covenant's own
+      cov.finances.startingReserve = 2480;
+      cov.hooksBoons.push({ uid: 'fr', name: 'Flawed Resource', kind: 'hook', size: 'Minor', earmark: ['specialist'], resources: ['starting-reserve'] });
+      cov.buildPoints = deriveCovenant(cov, data, []).bpSpent + 4;
+      const r = fillCovenant(cov, [], { data, saga: saga('Rhine'), rules }, { staff: false, teacher: false, craftsmen: true, grogs: 0, counts: false, bought: true, seed });
+      const dc = deriveCovenant(r.cov, data, []);
+      expect(r.log.join(' ')).toMatch(/Craftsmen: \d/); // some would save money
+      expect(dc.bpSpent, `seed ${seed}: ${r.log.join(' ')}`).toBeLessThanOrEqual(r.cov.buildPoints);
+      expect(dc.pools.find((p) => p.hb.uid === 'fr')!.spent).toBeLessThanOrEqual(250);
+    }
+  }, 120_000);
 });
 
 describe('the bestiary', () => {

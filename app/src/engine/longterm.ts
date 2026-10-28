@@ -16,7 +16,8 @@ export type StudySource =
   | { kind: 'practice'; quality: number; subject: string }
   | { kind: 'exposure'; subject: string }
   | { kind: 'adventure'; quality: number; subject: string }
-  | { kind: 'vis'; art: Art; dieRoll: number; aura: number };
+  | { kind: 'vis'; art: Art; dieRoll: number; aura: number }
+  | { kind: 'worship'; quality: number; subject: string };
 
 export interface StudyResult {
   sourceQuality: number;
@@ -86,6 +87,11 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
       parts.push({ label: 'Stress die', value: src.dieRoll });
       if (src.aura) parts.push({ label: 'Aura', value: src.aura });
       kindKey = 'vis';
+      break;
+    case 'worship':
+      // the Divine aura of the church worshipped in (The Church, Worship)
+      parts.push({ label: 'Worship: the church’s Divine aura', value: src.quality });
+      kindKey = 'worship';
       break;
   }
   // a lab's Teaching Specialization adds to teaching and training done in it, at most +3 (DE Laboratory)
