@@ -1,21 +1,22 @@
 // Laboratory projects worked season by season: inventing a spell (or learning one from a Laboratory
-// Text), preparing an item (a talisman a little at a time), attuning a talisman, instilling an effect,
-// extracting vis, taming a creature, a Longevity Ritual, binding a familiar, strengthening and
-// empowering the bond. Each is planned here and worked as a season's activity: from this card for
+// Text, several of the same Technique and Form at once), preparing an item (a talisman a little at a
+// time), attuning a talisman, instilling an effect, extracting vis, taming a creature, a Longevity
+// Ritual, binding a familiar, strengthening and empowering the bond, and improving the lab: its
+// Refinement, a Virtue installed, a Flaw put right. Each is planned here and worked as a season's activity: from this card for
 // the saga's current season, or as the character's season activity on the Seasons page. The lab's
 // restrictions, its Specializations and the choice to experiment apply to every one.
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
+import { ART_NAMES, FORMS, TECHNIQUES, type Form, type LabVFDef, type Technique } from '../../../data';
 import { CORD_COST, cordPointsCost } from '../../../engine/enchant';
 import { conditionalBonuses } from '../../../engine/magic';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { LAB_ROUTINES, ROUTINE_IDS, toggleRoutine } from '../../../engine/labRoutines';
 import { optionOn } from '../../../engine/optional';
-import { PROJECT_KINDS, canExperiment, itemOf, newProject, pawnsUsed, planProject, projectBotchDice, seasonVisLimit, visShort, workProject } from '../../../engine/projects';
+import { LAB_IMPROVEMENTS, PROJECT_KINDS, alongsideCandidates, canExperiment, inventedWith, itemOf, newProject, pawnsUsed, planProject, projectBotchDice, seasonVisLimit, visShort, workProject } from '../../../engine/projects';
 import { seasonTaken } from '../../../engine/time';
-import type { Character, LabProject } from '../../../engine/types';
+import type { Character, LabProject, LabVirtueEntry } from '../../../engine/types';
 import { purseOf } from '../../../engine/vis';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
@@ -162,7 +163,7 @@ function ProjectRow({ p, ed, chars, set, onWork, busy }: { p: LabProject; ed: Ch
             </button>
             <button
               className="small ghost"
-              disabled={standing || plan.problems.some(restricted)}
+              disabled={standing || plan.problems.some(restricted) || !!inventedWith(p, c)}
               onClick={() => update((x) => void (x.standing = { kind: 'lab', projectUid: p.uid }))}
               title={plan.problems.some(restricted) ? 'This lab cannot be used for it' : "Make it the character's season activity: the Seasons page works it every season nothing else is logged, until it is done"}
             >
@@ -233,8 +234,10 @@ function ProjectRow({ p, ed, chars, set, onWork, busy }: { p: LabProject; ed: Ch
                   <Stepper value={p.bonus ?? 0} min={-20} max={30} width={36} onChange={(v) => set((x) => void (x.bonus = v || undefined))} />
                 </Field>
               )}
+              <Alongside p={p} c={c} set={set} />
             </>
           )}
+          {LAB_IMPROVEMENTS.includes(p.kind) && <LabWorkFields p={p} ed={ed} set={set} />}
           {(p.kind === 'open' || p.kind === 'attune' || p.kind === 'instill') && (
             <Field label="Item">
               <select value={p.itemUid ?? ''} onChange={(e) => set((x) => void ((x.itemUid = e.target.value || undefined), (x.effectUid = undefined)))}>
@@ -425,6 +428,14 @@ function ProjectRow({ p, ed, chars, set, onWork, busy }: { p: LabProject; ed: Ch
               </span>
             </Field>
           )}
+          {plan.pounds ? (
+            <Field label="Pounds from">
+              <select value={p.visFrom ?? 'covenant'} onChange={(e) => set((x) => void (x.visFrom = e.target.value as 'purse' | 'covenant'))}>
+                <option value="covenant">the covenant&apos;s treasury</option>
+                <option value="purse">the purse</option>
+              </select>
+            </Field>
+          ) : null}
           {(plan.vis?.pawns ?? 0) > 0 || p.kind === 'extract' ? (
             <Field label={p.kind === 'extract' ? 'The vis goes to' : 'Vis from'}>
               <select value={p.visFrom ?? 'purse'} onChange={(e) => set((x) => void (x.visFrom = e.target.value as 'purse' | 'covenant'))}>
@@ -462,6 +473,105 @@ function ProjectRow({ p, ed, chars, set, onWork, busy }: { p: LabProject; ed: Ch
         </div>
       )}
     </div>
+  );
+}
+
+/** Other spells of the same Technique and Form to invent in the same seasons: their levels added, against the lowest Lab Total (DE). */
+function Alongside({ p, c, set }: { p: LabProject; c: Character; set: (fn: (p: LabProject) => void) => void }) {
+  if (inventedWith(p, c)) return null;
+  const chosen = (p.alongside ?? []).map((u) => c.projects?.find((x) => x.uid === u)).filter((x): x is LabProject => !!x);
+  const options = [...chosen, ...alongsideCandidates(p, c).filter((x) => !chosen.includes(x))];
+  if (!options.length) return null;
+  return (
+    <Field label="Alongside it" hint="Other spells of the same Technique and Form, worked in the same seasons: their levels are added together (DE)">
+      <span className="row tight" style={{ flexWrap: 'wrap' }}>
+        {options.map((x) => (
+          <label key={x.uid} className="inline" title={p.progress ? 'The work has begun: the spells it is done with are settled' : undefined}>
+            <input
+              type="checkbox"
+              disabled={p.progress > 0}
+              checked={chosen.includes(x)}
+              onChange={(e) => set((y) => void (y.alongside = e.target.checked ? [...(y.alongside ?? []), x.uid] : (y.alongside ?? []).filter((u) => u !== x.uid)))}
+            />
+            {x.name} ({x.level})
+          </label>
+        ))}
+      </span>
+    </Field>
+  );
+}
+
+/** What a season improving the lab works on: the Virtue to install, a Virtue to take out, a Flaw to put right. */
+function LabWorkFields({ p, ed, set }: { p: LabProject; ed: CharEditor; set: (fn: (p: LabProject) => void) => void }) {
+  const { data, ctx } = ed;
+  const lab = ctx.lab?.lab;
+  if (!lab) return null;
+  const entries = lab.virtues
+    .filter((v) => !v.fromItem)
+    .map((v) => ({ v, def: data.labVFById.get(v.defId) }))
+    .filter((x): x is { v: LabVirtueEntry; def: LabVFDef } => !!x.def);
+  const label = (x: { v: LabVirtueEntry; def: LabVFDef }) => `${x.def.name}${x.v.note ? ` (${x.v.note})` : ''}, ${x.def.size}`;
+  const virtues = entries.filter((x) => x.def.kind === 'virtue' && x.def.size !== 'Free');
+  const flaws = entries.filter((x) => x.def.kind === 'flaw' && (p.kind === 'repair' || x.def.size !== 'Major'));
+  const installable = data.labVirtuesFlaws.filter((v) => v.kind === 'virtue' && (v.size !== 'Free' || v.id === 'spotless') && (v.repeatable || !lab.virtues.some((x) => x.defId === v.id)));
+  const groups = [...new Set(installable.map((v) => v.group))];
+  const remove = (title: string, list: typeof entries, none: string) => (
+    <Field label={title}>
+      <select
+        value={p.removeUid ?? ''}
+        onChange={(e) =>
+          set((x) => {
+            x.removeUid = e.target.value || undefined;
+            const def = entries.find((y) => y.v.uid === e.target.value)?.def;
+            if (x.kind === 'repair' && def) x.name = `Put ${def.name} right`;
+          })
+        }
+        style={{ maxWidth: 260 }}
+      >
+        <option value="">{none}</option>
+        {list.map((x) => (
+          <option key={x.v.uid} value={x.v.uid}>
+            {p.kind === 'refine' ? (x.def.kind === 'flaw' ? 'put right: ' : 'take out: ') : ''}
+            {label(x)}
+          </option>
+        ))}
+      </select>
+    </Field>
+  );
+  return (
+    <>
+      <span className="muted">
+        {lab.name}: Size {ctx.lab!.size}, Refinement {lab.refinement}, {ctx.lab!.boundless ? 'Boundless' : `${ctx.lab!.freeSpace} free space`}
+      </span>
+      {p.kind === 'install' && (
+        <Field label="Virtue" hint="Free Virtues take a day or so: add them on the lab’s card (Spotless takes a season)">
+          <select
+            value={p.labVirtue?.defId ?? ''}
+            onChange={(e) => {
+              const def = data.labVFById.get(e.target.value);
+              set((x) => void ((x.labVirtue = def ? { defId: def.id } : undefined), def && (x.name = `Install ${def.name}`)));
+            }}
+            style={{ maxWidth: 260 }}
+          >
+            <option value="">— choose —</option>
+            {groups.map((g) => (
+              <optgroup key={g} label={g}>
+                {installable
+                  .filter((v) => v.group === g)
+                  .map((v) => (
+                    <option key={v.id} value={v.id}>
+                      {v.name} ({v.size})
+                    </option>
+                  ))}
+              </optgroup>
+            ))}
+          </select>
+        </Field>
+      )}
+      {p.kind === 'refine' && remove('With it', [...flaws, ...virtues], '— the Refinement only —')}
+      {p.kind === 'install' && virtues.length > 0 && remove('Taking out', virtues, '— nothing —')}
+      {p.kind === 'repair' && remove('Flaw', flaws, '— choose —')}
+    </>
   );
 }
 

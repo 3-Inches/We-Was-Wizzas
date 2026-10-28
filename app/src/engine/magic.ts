@@ -10,6 +10,17 @@ export interface AuraState {
   strength: number;
   realm: Realm;
   regio?: boolean;
+  /** a Magic aura aligned with an Art counts double for magic that uses it (RoP: Magic) */
+  aligned?: Art;
+  /** a Magic aura's other aspect: Healing adds half its strength to Recovery Totals (RoP: Magic) */
+  aspect?: 'healing' | 'luck' | 'distracting' | 'emotion';
+}
+
+/** An aura aligned with an Art the magic uses counts double: its strength again (RoP: Magic, Auras Aligned with Arts). */
+function alignedPart(aura: AuraState | undefined, mod: number, arts: ArtsUsed): Part | undefined {
+  const a = aura?.aligned;
+  if (!a || aura.realm !== 'Magic' || mod <= 0 || ![arts.technique, arts.form, ...(arts.requisites ?? [])].includes(a)) return undefined;
+  return { label: `Aura aligned with ${ART_NAMES[a]}: counts double`, value: aura.strength };
 }
 
 export interface Part {
@@ -84,7 +95,8 @@ export function conditionalBonuses(d: DerivedCharacter): { uid: string; label: s
   for (const e of d.effects) {
     const r = e as unknown as { type: string; when?: string; amount?: number; fromUid: string; fromName: string; param?: string };
     if (r.when !== 'circumstance' || (r.type !== 'castingScore' && r.type !== 'labTotal')) continue;
-    const x = out.get(r.fromUid) ?? { uid: r.fromUid, label: `${r.fromName}${r.param ? ` (${r.param})` : ''}` };
+    // a Virtue's name already carries its choice ("Cyclic Magic (by night)"); a bare one gets it here
+    const x = out.get(r.fromUid) ?? { uid: r.fromUid, label: `${r.fromName}${r.param && !r.fromName.includes(r.param) ? ` (${r.param})` : ''}` };
     if (r.type === 'castingScore') x.casting = (x.casting ?? 0) + (r.amount ?? 0);
     else x.lab = (x.lab ?? 0) + (r.amount ?? 0);
     out.set(r.fromUid, x);
@@ -157,6 +169,8 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
   if (o.inFocus && d.magicalFocus !== 'none') parts.push({ label: `Magical Focus (${d.focusText ?? d.magicalFocus})`, value: Math.min(tech, form) });
   const aura = auraModifier('Magic', o.aura, { faerieMagic: hasFM });
   if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})`, value: aura.mod });
+  const aligned = alignedPart(o.aura, aura.mod, arts);
+  if (aligned) parts.push(aligned);
   if (d.encumbrance) parts.push({ label: 'Encumbrance', value: -d.encumbrance });
   if (o.wordsGestures) {
     // Deft Form: no penalty for non-standard voice or gestures in that Form (DE)
@@ -310,6 +324,8 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
   if (o.inFocus && d.magicalFocus !== 'none') parts.push({ label: 'Magical Focus', value: Math.min(tech, form) });
   const aura = auraModifier('Magic', o.aura, { faerieMagic: hasFM });
   if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})`, value: aura.mod });
+  const aligned = alignedPart(o.aura, aura.mod, arts);
+  if (aligned) parts.push(aligned);
   if (o.lab) {
     if (o.lab.generalQuality) parts.push({ label: 'Lab General Quality', value: o.lab.generalQuality });
     const ak = LAB_ACTIVITY_SPEC[o.activity];

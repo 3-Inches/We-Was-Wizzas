@@ -268,6 +268,11 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                 </select>
               )}
               {aura.timeNote && <span className="small muted">now {aura.strength}</span>}
+              {(ctx.aura.aligned || auraSet.aligned) && auraSet.realm === 'Magic' && (
+                <label className="inline small" title="An aura aligned with an Art counts double for magic that uses it (Realms of Power: Magic)">
+                  <input type="checkbox" checked={!!auraSet.aligned} onChange={(e) => setAura({ ...auraSet, aligned: e.target.checked ? ctx.aura.aligned : undefined })} /> aligned with {ART_NAMES[(auraSet.aligned ?? ctx.aura.aligned)!]}
+                </label>
+              )}
             </div>
           </Field>
           <Field label="Words & gestures" hint={`${words >= 0 ? '+' : ''}${words}${wg.notes.length ? ` (${wg.notes.join(', ')})` : ''}`}>

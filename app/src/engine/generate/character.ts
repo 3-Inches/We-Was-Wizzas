@@ -290,6 +290,25 @@ const TEXT_CHOICES: Record<string, string[]> = {
   Beloved: ['a childhood sweetheart', 'someone far away'],
   Terrain: ['Forest', 'Mountain', 'Marsh', 'Town', 'Steppe'],
   'Terrain (Forest, Mountain, Steppe, Town...)': ['Forest', 'Mountain', 'Marsh', 'Town', 'Steppe'],
+  // Hermetic Virtues and Flaws (DE, Hermetic Virtues and Flaws)
+  Cycle: ['by day', 'by night', 'under a waxing moon', 'under a waning moon', 'in spring and summer', 'in autumn and winter', 'on Sundays and holy days'],
+  Circumstance: ['in a storm', 'at night', 'at dawn and dusk', 'under the full moon', 'near running water', 'in a forest', 'when angry', 'while singing'],
+  'Focus (e.g. weather, necromancy, birds)': ['animals', 'plants', 'weather', 'the human body', 'necromancy', 'the mind', 'illusions', 'fire', 'water', 'stone and metal', 'wards'],
+  'Focus (e.g. healing, self-transformation)': ['healing', 'self-transformation', 'wolves', 'horses', 'birds', 'trees', 'metals', 'lightning', 'light and darkness', 'doors and locks'],
+  'Field of Potent Magic': ['healing', 'wards', 'fire', 'storms', 'beasts', 'illusions', 'the dead', 'travel'],
+  'Two Te+Fo combinations (e.g. InHe & InAn)': ['CrIg & PeIg', 'InAn & ReAn', 'MuCo & MuAn', 'CrAq & PeAq', 'ReTe & PeTe', 'InMe & ReMe', 'CrHe & PeHe'],
+  Restriction: ['while touching iron', 'in sunlight', 'on consecrated ground', 'while bound', 'standing in running water'],
+  Condition: ['touching the target', 'singing', 'dancing', 'holding a staff', 'drawing a sigil in the air'],
+  // other Virtues and Flaws
+  Sin: ['Pride', 'Envy', 'Wrath', 'Sloth', 'Greed', 'Gluttony', 'Lust'],
+  Hazard: ['cold', 'heat', 'poison', 'disease', 'fire', 'drowning'],
+  Animal: ['wolf', 'bear', 'raven', 'boar', 'fox', 'hare', 'otter', 'seal', 'cat'],
+  Companion: ['a talking raven', 'a faerie hound', 'a restless ghost', 'a cat that is more than it seems'],
+  Commodity: ['wine', 'horses', 'gems', 'cloth', 'spices', 'books', 'furs'],
+  Environment: ['the forest', 'the mountains', 'the marshes', 'the sea coast', 'the river valley', 'the moors'],
+  Land: ['the old forest', 'the hills of home', 'the river valley', 'the moorland'],
+  Prohibition: ['never to eat meat', 'never to refuse hospitality', 'never to sleep under a roof', 'never to tell a lie', 'never to cross running water by a bridge'],
+  'Artistic ability (e.g. Music)': ['Music', 'Carving', 'Dance', 'Painting', 'Poetry'],
 };
 
 /** Ability Block: a class of Abilities the character has none of, as the Flaw requires (DE, Ability Block). */
@@ -303,6 +322,23 @@ function blockedClasses(c: Character, data: GameData): string[] {
   ];
 }
 
+/** Choices that depend on the character: Vulnerable Magic's undoing, the aura a power needs, the Virtue a charm holds. */
+function choicesFor(c: Character, data: GameData, defId: string): string[] | undefined {
+  const supernatural = c.abilities.filter((a) => data.abilityById.get(a.abilityId)?.type === 'Supernatural').map((a) => data.abilityById.get(a.abilityId)!.name);
+  switch (defId) {
+    case 'vulnerable-magic-flaw':
+      return ['crossing running water', 'touching iron', 'the touch of a priest', 'salt scattered on its path'];
+    case 'necessary-realm-aura-for-ability-flaw':
+      return supernatural.length ? supernatural.map((n) => `a Magic aura for ${n}`) : ['a Magic aura for its powers'];
+    case 'greater-charm-flaw': {
+      const own = c.virtues.filter((v) => v.defId !== defId && data.vfById.get(v.defId)?.kind === 'virtue' && data.vfById.get(v.defId)?.categories.includes('Supernatural'));
+      return own.length ? own.map((v) => data.vfById.get(v.defId)!.name) : undefined;
+    }
+    default:
+      return undefined;
+  }
+}
+
 /** A choice each Virtue and Flaw still needs (a Characteristic, an Art, an Ability, a heritage), chosen at random. */
 function fillChoices(c: Character, data: GameData, rng: () => number) {
   for (const v of c.virtues) {
@@ -313,7 +349,7 @@ function fillChoices(c: Character, data: GameData, rng: () => number) {
       spec.groups?.flatMap((gr) => gr.options) ??
       (spec.kind === 'characteristic' ? [...CHARACTERISTICS] : spec.kind === 'art' ? [...ARTS] : spec.kind === 'technique' ? [...TECHNIQUES] : spec.kind === 'form' ? [...FORMS] : undefined) ??
       (spec.kind === 'ability' ? c.abilities.filter((a) => !spec.abilityTypes || spec.abilityTypes.includes(data.abilityById.get(a.abilityId)?.type as never)).map((a) => a.abilityId) : undefined) ??
-      (v.defId === 'ability-block-flaw' ? blockedClasses(c, data) : TEXT_CHOICES[spec.label]);
+      (v.defId === 'ability-block-flaw' ? blockedClasses(c, data) : (choicesFor(c, data, v.defId) ?? TEXT_CHOICES[spec.label]));
     // a repeatable Virtue's copies each take a different choice
     const taken = new Set(c.virtues.filter((x) => x.defId === v.defId && x !== v).map((x) => x.param));
     const free = choices?.filter((x) => !taken.has(x));

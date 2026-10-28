@@ -1,12 +1,14 @@
-// The covenant's aura: what makes it up now, changes recorded with their reasons, a Flickering
-// Aura's missed task, and with aura variation on (Realms of Power: Magic) its base score, the
-// stronger auras pressing on it, this year's influences and the modifier the year's end will roll.
+// The covenant's aura: what makes it up now, what a Magic aura is aligned with, changes recorded with
+// their reasons, a Flickering Aura's missed task, and with aura variation on (Realms of Power: Magic)
+// its base score, the stronger auras pressing on it, this year's influences and the modifier the
+// year's end will roll.
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { auraOf, changeAura, newAuraTrack, yearlyAuraModifier } from '../../engine/aura';
+import { ARTS, ART_NAMES, type Art } from '../../data';
+import { alignmentText, auraOf, changeAura, dominionOutlook, dominionStrength, newAuraTrack, yearlyAuraModifier } from '../../engine/aura';
 import { optionOn } from '../../engine/optional';
-import type { AuraTrack, Character, Covenant, Saga } from '../../engine/types';
+import type { AuraAlignment, AuraTrack, Character, Covenant, Saga } from '../../engine/types';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
 
@@ -42,6 +44,8 @@ export function AuraCard({ cov, update, saga, chars }: { cov: Covenant; update: 
           {t?.spontaneous?.year === year && ` This year spontaneous magic in it is ${t.spontaneous.bonus > 0 ? 'eased (up to +3)' : 'stifled (up to −3)'} by the aura.`}
         </span>
       </div>
+      {a.realm === 'Magic' && <Alignment cov={cov} update={update} strength={a.strength} />}
+      {a.realm === 'Divine' && <Congregation cov={cov} update={update} year={year} />}
       {flickering && (
         <label className="inline small" style={{ marginTop: 6 }}>
           <input type="checkbox" checked={t?.flickerYear === year} onChange={(e) => track((x) => void (x.flickerYear = e.target.checked ? year : undefined))} /> Flickering Aura: the task was missed in{' '}
@@ -161,5 +165,112 @@ export function AuraCard({ cov, update, saga, chars }: { cov: Covenant; update: 
         </div>
       )}
     </Card>
+  );
+}
+
+const ASPECTS: { kind: AuraAlignment['kind'] | ''; label: string }[] = [
+  { kind: '', label: 'not aligned' },
+  { kind: 'art', label: 'with an Art' },
+  { kind: 'healing', label: 'Healing' },
+  { kind: 'luck', label: 'Luck' },
+  { kind: 'distracting', label: 'Distracting' },
+  { kind: 'emotion', label: 'an emotion' },
+  { kind: 'other', label: 'something else' },
+];
+
+/** What a Magic aura is aligned with (RoP: Magic, Aligned Auras): one aspect at most, found with an Intellego Vim spell. */
+function Alignment({ cov, update, strength }: { cov: Covenant; update: (fn: (c: Covenant) => void) => void; strength: number }) {
+  const al = cov.auraAlignment;
+  const boon = cov.hooksBoons.find((h) => /^(fine|favorable|troublesome) aura$/i.test(h.name));
+  const set = (fn: (x: AuraAlignment) => void) => update((c) => void (c.auraAlignment && fn(c.auraAlignment)));
+  return (
+    <div className="row small" style={{ marginTop: 6 }}>
+      <Field label="Aligned" hint="Most Magic auras are not; an Intellego Vim spell can tell (RoP: Magic)">
+        <select
+          value={al?.kind ?? ''}
+          onChange={(e) => update((c) => void (c.auraAlignment = e.target.value ? { kind: e.target.value as AuraAlignment['kind'], ...(e.target.value === 'art' ? { art: 'Vi' as Art } : {}) } : undefined))}
+          aria-label="What the aura is aligned with"
+        >
+          {ASPECTS.map((x) => (
+            <option key={x.kind} value={x.kind}>
+              {x.label}
+            </option>
+          ))}
+        </select>
+      </Field>
+      {al?.kind === 'art' && (
+        <select value={al.art ?? ''} onChange={(e) => set((x) => void (x.art = e.target.value as Art))} aria-label="The Art it is aligned with">
+          {ARTS.map((art) => (
+            <option key={art} value={art}>
+              {ART_NAMES[art]}
+            </option>
+          ))}
+        </select>
+      )}
+      {(al?.kind === 'emotion' || al?.kind === 'other') && (
+        <input value={al.text ?? ''} onChange={(e) => set((x) => void (x.text = e.target.value || undefined))} placeholder={al.kind === 'emotion' ? 'Fearful, Aggressive, Carefree, Respectful…' : 'what it is aligned with'} style={{ width: 180 }} aria-label="What it is aligned with" />
+      )}
+      <span className="muted" style={{ flex: '1 1 240px' }}>
+        {al ? alignmentText(al, strength) : boon ? <span className="warn-text">The covenant has the {boon.name} {boon.kind === 'boon' ? 'Boon' : 'Hook'}: say what the aura is aligned with.</span> : null}
+      </span>
+    </div>
+  );
+}
+
+/**
+ * A Dominion kept by a congregation (RoP: The Divine): 3 from the rite, 4 after a year of regular
+ * worship, 5 after a decade for a large congregation in a significant church; it fades as slowly as it
+ * grew once worship stops. Set here, the aura follows it at once and at every year's end.
+ */
+function Congregation({ cov, update, year }: { cov: Covenant; update: (fn: (c: Covenant) => void) => void; year: number }) {
+  const w = cov.auraTrack?.dominion;
+  const edit = (fn: (x: NonNullable<AuraTrack['dominion']>) => void) =>
+    update((c) => {
+      const t = (c.auraTrack ??= newAuraTrack(c));
+      if (!t.dominion) return;
+      fn(t.dominion);
+      c.aura = dominionStrength(t.dominion, year);
+    });
+  return (
+    <div className="row small" style={{ marginTop: 6 }}>
+      <label className="inline" title="The Dominion follows the congregation's worship: it grows with the years, and fades when worship stops (Realms of Power: The Divine)">
+        <input
+          type="checkbox"
+          checked={!!w}
+          onChange={(e) =>
+            update((c) => {
+              const t = (c.auraTrack ??= newAuraTrack(c));
+              t.dominion = e.target.checked ? { since: year } : undefined;
+              if (t.dominion) c.aura = dominionStrength(t.dominion, year);
+            })
+          }
+        />{' '}
+        A congregation keeps it
+      </label>
+      {w && (
+        <>
+          <Field label="Worship since">
+            <Stepper value={w.since} min={500} max={year} width={52} onChange={(v) => edit((x) => void (x.since = v))} />
+          </Field>
+          <label className="inline">
+            <input type="checkbox" checked={!!w.significant} onChange={(e) => edit((x) => void (x.significant = e.target.checked || undefined))} /> a large congregation, a significant church
+          </label>
+          <Field label="Relics" hint="+1 for each Faith Point over five">
+            <Stepper value={w.relics ?? 0} min={0} max={5} width={30} onChange={(v) => edit((x) => void (x.relics = v || undefined))} />
+          </Field>
+          <label className="inline">
+            <input type="checkbox" checked={w.until !== undefined} onChange={(e) => edit((x) => void (x.until = e.target.checked ? year : undefined))} /> worship stopped
+          </label>
+          {w.until !== undefined && (
+            <Field label="in">
+              <Stepper value={w.until} min={w.since} max={year} width={52} onChange={(v) => edit((x) => void (x.until = v))} />
+            </Field>
+          )}
+          <span className="muted" style={{ flex: '1 1 240px' }}>
+            Dominion {dominionStrength(w, year)} now. {dominionOutlook(w, year)}
+          </span>
+        </>
+      )}
+    </div>
   );
 }

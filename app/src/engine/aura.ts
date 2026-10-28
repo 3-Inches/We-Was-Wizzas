@@ -5,19 +5,22 @@
 // spent in it, vis extracted from it, and neighbouring auras give a yearly aura modifier, and one
 // of 4 or more either way calls for a roll on the Aura Strengthening or Weakening Table. Repeated
 // rolls of 9 or more build up botch dice, and a botch fractures the aura into a regio (or loses a
-// level of one).
+// level of one). A Dominion grows with its congregation's years of worship and fades when it stops
+// (Realms of Power: The Divine); an aligned Magic aura counts double for its Art or heals, and an
+// Infernal one hinders recovery (Realms of Power: Magic, The Infernal).
 
-import type { Realm } from './magic';
+import { ART_NAMES, type Art } from '../data';
+import type { AuraState, Realm } from './magic';
 import type { Part } from './magic';
 import { defaultRng, describeStress, simpleDie, stressDie, type Rng } from './dice';
-import type { AuraTrack, Character, Covenant, Season } from './types';
+import type { AuraAlignment, AuraTrack, Character, Covenant, Season } from './types';
 import { addVis, takeVis, visText } from './vis';
 import { uid } from '../util/id';
 
 const hasHook = (cov: Covenant, re: RegExp) => cov.hooksBoons.some((h) => h.kind === 'hook' && re.test(h.name));
 
 /** The aura as it stands, and how it is made up. */
-export function auraOf(cov: Covenant): { realm: Exclude<Realm, 'None'>; strength: number; parts: Part[]; notes: string[] } {
+export function auraOf(cov: Covenant): { realm: Exclude<Realm, 'None'>; strength: number; parts: Part[]; notes: string[]; aligned?: Art; aspect?: AuraState['aspect'] } {
   const parts: Part[] = [{ label: 'Aura', value: cov.aura }];
   const notes: string[] = [];
   const boons = cov.hooksBoons.filter((h) => h.kind === 'boon' && h.size === 'Minor' && /^aura$/i.test(h.name)).length;
@@ -33,7 +36,93 @@ export function auraOf(cov: Covenant): { realm: Exclude<Realm, 'None'>; strength
   }
   const realm = hasHook(cov, /^faerie aura$/i) ? 'Faerie' : cov.auraRealm;
   if (realm !== cov.auraRealm) notes.push('Faerie Aura: the covenant’s aura is Faerie, not Magic.');
-  return { realm, strength, parts, notes };
+  // only a Magic aura is aligned (RoP: Magic)
+  const al = realm === 'Magic' && strength > 0 ? cov.auraAlignment : undefined;
+  if (al) notes.push(alignmentText(al, strength));
+  const aligned = al?.kind === 'art' ? al.art : undefined;
+  const aspect = al && al.kind !== 'art' && al.kind !== 'other' ? al.kind : undefined;
+  return { realm, strength, parts, notes, ...(aligned ? { aligned } : {}), ...(aspect ? { aspect } : {}) };
+}
+
+/** What an aligned aura does at this strength (RoP: Magic, Aligned Auras). */
+export function alignmentText(al: AuraAlignment, strength: number): string {
+  switch (al.kind) {
+    case 'art':
+      return al.art
+        ? `Aligned with ${ART_NAMES[al.art]}: the aura counts double for Casting Scores and Lab Totals that use ${ART_NAMES[al.art]} (+${strength} more), and a creature of that Form spends a Might Point less on a Power; no penalty to the opposed Art.`
+        : 'Aligned with an Art: choose which.';
+    case 'healing':
+      return `Healing: +${Math.ceil(strength / 2)} to Recovery Totals for wounds and disease (half the aura, rounded up).`;
+    case 'luck':
+      return `Luck: at the storyguide’s discretion +${strength >= 9 ? 3 : strength >= 5 ? 2 : 1} to rolls where luck plays a part, for everyone in it.`;
+    case 'distracting':
+      return `Distracting: concentration rolls come more often${strength >= 5 ? ', at Ease Factors 3 higher' : ''}.`;
+    case 'emotion':
+      return `${al.text?.trim() || 'An emotion'}: +${emotionBonus(strength)} to that Personality Trait (or a new one) for the unGifted in it, while they stay.`;
+    default:
+      return al.text?.trim() ? `Aligned: ${al.text.trim()}.` : 'Aligned with something the troupe describes.';
+  }
+}
+
+/** An emotion-enhancing aura's Personality Trait adjustment (RoP: Magic, Aura Effect Table). */
+export function emotionBonus(strength: number): number {
+  return strength >= 7 ? 3 : strength >= 4 ? 2 : 1;
+}
+
+/**
+ * What the aura does to Recovery Totals: a Healing aura adds half its strength (rounded up); a
+ * dominant Infernal aura takes its strength off wounds, disease and deprivation, and no disease
+ * tended there improves: Improvement counts as Stable (RoP: Magic; RoP: The Infernal).
+ */
+export function auraRecovery(aura: AuraState | undefined): { parts: Part[]; noImprovement: boolean } {
+  if (!aura || aura.strength <= 0) return { parts: [], noImprovement: false };
+  if (aura.realm === 'Magic' && aura.aspect === 'healing') return { parts: [{ label: `Healing aura ${aura.strength}`, value: Math.ceil(aura.strength / 2) }], noImprovement: false };
+  if (aura.realm === 'Infernal') return { parts: [{ label: `Infernal aura ${aura.strength}: wounds fester`, value: -aura.strength }], noImprovement: true };
+  return { parts: [], noImprovement: false };
+}
+
+type Dominion = NonNullable<AuraTrack['dominion']>;
+
+/**
+ * The Dominion a congregation keeps (RoP: The Divine, Dominion Auras): 3 from the rite, 4 after a
+ * year of regular worship, 5 after a decade for a large congregation in a significant church, and a
+ * point for each Faith Point a relic has over five. When worship stops it fades steadily, to nothing
+ * over as long as the place was worshipped in.
+ */
+export function dominionStrength(w: Dominion, year: number): number {
+  const level = (years: number) => Math.min(10, (years >= 10 && w.significant ? 5 : years >= 1 ? 4 : 3) + (w.relics ?? 0));
+  if (w.until === undefined || year <= w.until) return level(Math.max(0, year - w.since));
+  const kept = w.until - w.since;
+  if (kept <= 0) return 0;
+  const peak = level(kept);
+  return Math.max(0, peak - Math.floor(((year - w.until) * peak) / kept));
+}
+
+/** What the Dominion does next, in a line: when it next grows, or how it fades. */
+export function dominionOutlook(w: Dominion, year: number): string {
+  const now = dominionStrength(w, year);
+  if (w.until !== undefined) {
+    const kept = w.until - w.since;
+    return now ? `Worship stopped in ${w.until} after ${kept} year${kept === 1 ? '' : 's'}: the Dominion fades steadily, to nothing by ${w.until + kept}.` : 'The Dominion has faded.';
+  }
+  const years = year - w.since;
+  if (years < 1) return `A year of regular worship makes it 4 (in ${w.since + 1}).`;
+  if (years < 10 && w.significant) return `A decade of worship makes it 5 (in ${w.since + 10}), the congregation large and the church significant.`;
+  return w.significant || years >= 10 ? 'It stays while the congregation worships regularly.' : 'It grows to 5 only for a large congregation in a significant church, after a decade.';
+}
+
+/** At the year's end a Dominion follows its congregation: grown with years of worship, or fading when it stopped. */
+export function dominionYearEnd(cov: Covenant, year: number): string | undefined {
+  const w = cov.auraTrack?.dominion;
+  if (!w || auraOf(cov).realm !== 'Divine') return undefined;
+  const next = dominionStrength(w, year + 1);
+  if (next === cov.aura) return undefined;
+  const text =
+    next > cov.aura
+      ? `The Dominion grows to ${next}: ${next - (w.relics ?? 0) >= 5 ? 'a decade of worship by a large congregation in a significant church' : 'a year of regular worship'}.`
+      : `The Dominion fades to ${next}: worship stopped in ${w.until}.`;
+  changeAura(cov, next - cov.aura, text, year, 'Winter');
+  return text;
 }
 
 /** A change to the aura from the story, a ritual or the table, kept in its history. */

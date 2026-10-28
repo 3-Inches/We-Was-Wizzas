@@ -32,6 +32,13 @@ const BOOK_VF = (vfJson as unknown as VirtueFlawDef[]).filter((v) => !NOT_REAL_V
 const BOOK_VF_IDS = new Set(BOOK_VF.map((v) => v.id));
 const RAW_VF = [...BOOK_VF, ...mysteryVirtueDefs(BOOK_VF_IDS), ...tribunalVirtueDefs(BOOK_VF_IDS)];
 /** Laboratory Virtues and Flaws that were extracted with the character ones. */
+/** An aligned Magic aura as a Site Boon or Hook (Realms of Power: Magic, Covenant Boons and Hooks): set its alignment on the covenant's Aura card. */
+const ALIGNED_AURA_HOOKS: HookBoonDef[] = [
+  { id: 'boon-Major-fine-aura', name: 'Fine Aura', kind: 'boon', size: 'Major', category: 'Site', requires: null, text: 'The Magic aura of the covenant has an alignment that benefits most of those within it. For example, it has the characteristic "lucky" or is favorable for healing.', source: { book: 'RoP_M', line: 852 } },
+  { id: 'boon-Minor-favorable-aura', name: 'Favorable Aura', kind: 'boon', size: 'Minor', category: 'Site', requires: null, text: 'The Magic aura of the covenant has an alignment that favors one particular activity. For example, it is aligned with one of the Arts, or with a characteristic that is often beneficial, such as "attentive" or "respectful."', source: { book: 'RoP_M', line: 856 } },
+  { id: 'hook-Minor-troublesome-aura', name: 'Troublesome Aura', kind: 'hook', size: 'Minor', category: 'Site', requires: null, text: 'The Magic aura of the covenant has an alignment that sometimes makes activities that should have been simple much harder, and thus provokes stories. An aura aligned to Perdo is an example, as would be one aligned to "rashness," or "discourtesy."', source: { book: 'RoP_M', line: 860 } },
+];
+
 const LAB_FROM_VF: LabVFDef[] = (vfJson as unknown as VirtueFlawDef[])
   .filter((v) => LAB_ONLY_VF[v.id])
   .map((v) => ({
@@ -289,7 +296,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
 
   const spells = [...RAW_SPELLS, ...custom.spells];
   const labVF = [...(labVFJson as unknown as LabVFDef[]), ...LAB_FROM_VF, ...custom.labVirtuesFlaws];
-  const hb = [...(hooksBoonsJson as unknown as HookBoonDef[]), ...custom.hooksBoons].map((h) => ({
+  const hb = [...(hooksBoonsJson as unknown as HookBoonDef[]), ...ALIGNED_AURA_HOOKS, ...custom.hooksBoons].map((h) => ({
     ...h,
     requires: h.requires ?? (/shell keep|tower keep|curtain walls/i.test(h.name) ? 'Castle' : null),
   }));

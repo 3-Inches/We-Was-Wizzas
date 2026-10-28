@@ -15,7 +15,7 @@ import { constantWarping, effectExpiry, expireEffects, nextSeason, seasonIndex }
 import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, visForStudy } from './longterm';
 import { planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
-import { auraOf, changeAura, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
+import { auraOf, changeAura, dominionYearEnd, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
 import { optionOn } from './optional';
 import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
 import { ensureAbility } from './character/factory';
@@ -241,8 +241,8 @@ function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, c
       const lines: string[] = [];
       const open = (c.projects ?? []).filter((x) => !x.done);
       let p = open.find((x) => x.uid === s.projectUid);
-      // left to the clock, a magus works the first project the lab and the vis allow
-      if (c.standing?.kind !== 'lab') {
+      // left to the clock, or once the project set for every season is done, a magus works the first project the lab and the vis allow
+      if (c.standing?.kind !== 'lab' || !p) {
         const workable = (x: LabProject) => {
           const plan = planProject(x, c, d, ctx, { subject: chars?.find((y) => y.id === x.subjectId), data });
           return !plan.problems.length && !visShort(x, c, ctx, plan);
@@ -487,6 +487,8 @@ function auraYearEnd(cov: Covenant, members: Character[], saga: Saga, year: numb
     t.flickerYear = undefined;
     lines.push({ who: cov.name, kind: 'covenant', text: 'Flickering Aura: the year is over, and the aura is back to its strength.' });
   }
+  const dominion = dominionYearEnd(cov, year);
+  if (dominion) lines.push({ who: cov.name, kind: 'covenant', text: dominion });
   if (!optionOn(saga, 'auraVariation') || auraOf(cov).realm !== 'Magic') return lines;
   cov.auraTrack ??= newAuraTrack(cov);
   const mod = yearlyAuraModifier(cov, members, year);

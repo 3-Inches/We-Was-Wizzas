@@ -12,10 +12,10 @@ export interface CharacterContext {
   aura: AuraState;
 }
 
-/** The covenant's aura as it stands: its Aura Boons, aura Hooks and any change that lasts a while (aura.ts). */
+/** The covenant's aura as it stands: its Aura Boons, aura Hooks, any change that lasts a while, and its alignment (aura.ts). */
 export function covenantAura(cov: Covenant): AuraState {
   const a = auraOf(cov);
-  return { realm: a.realm, strength: a.strength };
+  return { realm: a.realm, strength: a.strength, ...(a.aligned ? { aligned: a.aligned } : {}), ...(a.aspect ? { aspect: a.aspect } : {}) };
 }
 
 export function covenantOf(c: Character, covenants: Covenant[]): Covenant | undefined {

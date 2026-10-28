@@ -2,8 +2,10 @@
 // Disease Penalty, the Disease Recovery roll at each interval, crises, and a physician's Prognosis.
 
 import diseasesJson from '../data/generated/diseases.json';
+import { auraRecovery } from './aura';
 import type { DerivedCharacter } from './character/derive';
 import { defaultRng, describeStress, stressDie, type Rng } from './dice';
+import type { AuraState } from './magic';
 import type { Character, Illness, IllnessStage } from './types';
 import { uid } from '../util/id';
 
@@ -63,6 +65,8 @@ export interface RecoveryOptions {
   medicine?: number;
   /** magical aid and any other modifier */
   other?: number;
+  /** the aura the patient is tended in: a Healing aura helps, an Infernal one hinders and stops any improvement */
+  aura?: AuraState;
 }
 
 /**
@@ -77,6 +81,7 @@ export function recoveryRoll(c: Character, d: DerivedCharacter, illUid: string, 
   if (!ill) return { outcome: 'same', text: '' };
   if (ill.interval === 'Lifelong') return { outcome: 'lifelong', text: `${ill.name} is lifelong: it neither improves nor worsens without supernatural aid.` };
   const r = stressDie(0, rng, true);
+  const rec = auraRecovery(o.aura);
   const parts = [
     { label: 'Stamina', value: d.characteristics.Sta.value },
     ...(o.medicine ? [{ label: 'Medicine', value: o.medicine }] : []),
@@ -84,6 +89,7 @@ export function recoveryRoll(c: Character, d: DerivedCharacter, illUid: string, 
     ...(d.currentWoundPenalty ? [{ label: 'Wounds', value: d.currentWoundPenalty }] : []),
     ...(ill.bonus ? [{ label: ill.stage === 'Critical' ? 'Worsening crisis' : 'Earlier stable rolls', value: ill.bonus }] : []),
     ...(o.other ? [{ label: 'Other', value: o.other }] : []),
+    ...rec.parts,
   ];
   const total = r.value + parts.reduce((t, p) => t + p.value, 0);
   const roll = `${describeStress(r)} + ${parts.map((p) => `${p.label} ${p.value}`).join(', ')} = ${total}`;
@@ -102,6 +108,10 @@ export function recoveryRoll(c: Character, d: DerivedCharacter, illUid: string, 
     ill.stage = STAGES[i + 1];
     ill.bonus = 0;
     return { outcome: 'worse', text: `${roll}, under the Stable Ease Factor ${ill.stable}: ${ill.name} worsens to ${ill.stage}${ill.stage === 'Critical' ? ': a crisis, with two rolls a day' : ''}.` };
+  }
+  if (ill.improve !== null && total >= ill.improve && rec.noImprovement) {
+    ill.bonus += 3;
+    return { outcome: 'same', text: `${roll}, at the Improvement Ease Factor ${ill.improve}, but no disease improves in an Infernal aura: stable, and +3 to the next roll (now +${ill.bonus}).` };
   }
   if (ill.improve !== null && total >= ill.improve) {
     if (i === 0) {
