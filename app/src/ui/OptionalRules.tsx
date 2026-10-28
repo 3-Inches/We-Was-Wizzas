@@ -55,7 +55,7 @@ export function SagaOptionsCard({ saga }: { saga: Saga }) {
   const trib = tribunalOptions(saga);
   const on = OPTIONAL_RULES.filter((r) => (!r.tribunal || tribunalMatches(saga, r)) && optionOn(saga, r.id)).length;
   return (
-    <div className="stack">
+    <div className="stack" data-tour="saga-options">
       {trib.length > 0 && (
         <div>
           <div className="small">

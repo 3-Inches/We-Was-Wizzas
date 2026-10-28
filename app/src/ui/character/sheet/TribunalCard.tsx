@@ -24,7 +24,7 @@ export function TribunalCard({ ed }: { ed: CharEditor }) {
   const transylvania = magus && (optionOn(saga, 'transylvaniaPrivileges') || !!c.privilege);
   if (!rhine && !forest && !theban && !transylvania) return null;
   return (
-    <Card title={`${saga.tribunal ? `${saga.tribunal} ` : ''}Tribunal customs`}>
+    <Card title={`${saga.tribunal ? `${saga.tribunal} ` : ''}Tribunal customs`} tour="tribunal-customs">
       <div className="stack">
         {rhine && <RhineSection ed={ed} />}
         {forest && <ForestSection ed={ed} />}

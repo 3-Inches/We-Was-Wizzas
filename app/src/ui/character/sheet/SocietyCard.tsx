@@ -20,7 +20,7 @@ export function SocietyCard({ ed }: { ed: CharEditor }) {
   const tools = { petitions: optionOn(saga, 'petitions'), courts: optionOn(saga, 'courts'), etiquette: optionOn(saga, 'etiquette'), debate: optionOn(saga, 'debate') };
   if (!Object.values(tools).some(Boolean)) return null;
   return (
-    <Card title="Society">
+    <Card title="Society" tour="society">
       <div className="stack" style={{ gap: 4 }}>
         {tools.debate && <DebateTool ed={ed} />}
         {tools.petitions && <PetitionTool ed={ed} />}

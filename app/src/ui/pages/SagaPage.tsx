@@ -80,7 +80,7 @@ export default function SagaPage() {
         </button>
       </div>
       {msg && <p className="small">{msg}</p>}
-      <Hint id="saga-next">A saga holds everything else. Set its Tribunal here and its books under <b>House rules &amp; books</b>, found the covenant, then create the characters.</Hint>
+      <Hint id="saga-next">A saga holds everything else. Set its Tribunal here and its books and optional rules under <b>House rules &amp; books</b>, found the covenant, then create the characters.</Hint>
 
       <div className="grid grid-3">
         <Card title="The saga" tour="saga-card">

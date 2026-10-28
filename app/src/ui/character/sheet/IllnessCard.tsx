@@ -50,7 +50,7 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
   };
 
   return (
-    <Card title="Illness">
+    <Card title="Illness" tour="illness">
       <RulesNote book="AA" line={1700} endLine={1800}>
         A disease&apos;s penalty counts like a Wound Penalty; roll for recovery at the end of each interval.
       </RulesNote>

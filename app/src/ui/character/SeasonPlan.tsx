@@ -19,7 +19,7 @@ export function SeasonPlan({ c, d, year, update, teachers }: { c: Character; d: 
       x.seasons = Object.values(s).some((v) => v !== undefined) ? s : undefined;
     });
   return (
-    <div className="stack" style={{ gap: 4 }}>
+    <div className="stack" style={{ gap: 4 }} data-tour="season-plan">
       <div className="row small">
         <b>Seasons a year:</b>
         <span title={plan.parts.join('; ')}>

@@ -20,6 +20,7 @@ import {
 import { BookBadge, Card, Empty, Markdown, SearchInput } from '../kit';
 import { useBookSection } from '../bookText';
 import { APP_PLACES, type AppPlace } from '../../data/appPlaces';
+import { OPTIONAL_RULES, optionOn, tribunalMatches, tribunalName } from '../../engine/optional';
 import { useStore } from '../../store/store';
 import { Hint } from '../Hint';
 
@@ -314,6 +315,7 @@ function GroupView({ area, summary, gated }: { area: MechanicsAreaSummary; summa
         {summary.intro && <p className="muted" style={{ marginTop: 0 }}>{summary.intro}</p>}
         {gated && <p className="small muted">These mechanics need a specific Virtue, House, initiation, tradition or kind of being.</p>}
         <InTheApp topic={summary.id} />
+        <OptionalIn topic={summary.id} />
       </div>
       <AudienceFilter value={who} onChange={setWho} />
       {split && (
@@ -479,7 +481,8 @@ function InTheApp({ topic }: { topic: string }) {
   const sagaId = useStore((s) => s.activeSagaId);
   const places = APP_PLACES[topic];
   if (!places?.length) return null;
-  const href = (p: AppPlace) => (p.page === 'dice' ? '/dice' : p.page && sagaId ? `/saga/${sagaId}${p.page === 'saga' ? '' : `/${p.page}`}` : undefined);
+  const href = (p: AppPlace) =>
+    p.page === 'dice' ? '/dice' : p.page && sagaId ? `/saga/${sagaId}${p.page === 'saga' ? '' : `/${p.page}`}${p.tab ? `?tab=${p.tab}` : ''}` : undefined;
   return (
     <p className="small" style={{ margin: '4px 0 0' }}>
       <b>In the app:</b>{' '}
@@ -492,6 +495,38 @@ function InTheApp({ topic }: { topic: string }) {
           </span>
         );
       })}
+    </p>
+  );
+}
+
+/** The optional rules that switch this topic's rules on in the app, and whether the saga last opened uses them. */
+function OptionalIn({ topic }: { topic: string }) {
+  const saga = useStore((s) => (s.activeSagaId ? s.sagas[s.activeSagaId] : undefined));
+  const rules = OPTIONAL_RULES.filter((r) => r.topics.includes(topic) && (!r.tribunal || !saga || tribunalMatches(saga, r)));
+  if (!rules.length) return null;
+  return (
+    <p className="small" style={{ margin: '4px 0 0' }}>
+      <b>Optional rule{rules.length > 1 ? 's' : ''}:</b>{' '}
+      {rules.map((r, i) => (
+        <span key={r.id}>
+          {i > 0 && ' · '}
+          {r.label}
+          {r.tribunal ? ` (the ${tribunalName(r)} Tribunal)` : ''}
+          {saga ? (
+            <span className={optionOn(saga, r.id) ? 'good-text' : 'muted'}>: {optionOn(saga, r.id) ? `on in ${saga.name}` : `off in ${saga.name}`}</span>
+          ) : (
+            <span className="muted">: {r.defaultOn ? 'on unless a saga turns it off' : 'off until a saga turns it on'}</span>
+          )}
+        </span>
+      ))}
+      {saga ? (
+        <>
+          {' · '}
+          <Link to={`/saga/${saga.id}/rules?tab=optional`}>Optional rules ›</Link>
+        </>
+      ) : (
+        <span className="muted"> (House rules → Optional rules)</span>
+      )}
     </p>
   );
 }
