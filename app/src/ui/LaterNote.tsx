@@ -57,8 +57,9 @@ const NOTES: Record<LaterTopic, { title: string; items: string[] }> = {
   lab: {
     title: 'Improving the lab in play',
     items: [
-      'Refinement rises by one with a season of work, if you have worked in the lab about as many years as its current Refinement and your Magic Theory is at least the new score. Each point frees space and adds Safety (DE Laboratory).',
-      'A Minor lab Virtue takes about a season to add and a Major one two, with money or vis as fits; some come by chance during Refinement work (Highly Organized, Spotless).',
+      'Refinement rises by one with a season of work, if you have worked in the lab about as many years as its current Refinement and your Magic Theory is at least the new Refinement + 3. Each point frees space and adds Safety. The same season may bring Highly Organized, Spotless or a Hidden Defect (Covenants, Refinement).',
+      'A Minor lab Virtue takes a season to install and a Major one two, with Magic Theory at least the Refinement + 3 and free space for it (or a Flaw taken to balance it). A Minor or Free Flaw takes a season to put right, a Major one two. If the Upkeep rises, the difference in build cost is paid (Covenants, Virtues and Flaws).',
+      'In play these are lab projects on the magus’s Lab, Items & Familiar tab: Raise the lab’s Refinement, Install a lab Virtue, Put a lab Flaw right.',
       'More floor space (Size) means building: more room for Virtues, but occupied Size lowers Safety.',
     ],
   },

@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { BOOK_BY_ID } from '../../data';
+import { OPTIONAL_RULES, OPTION_GROUPS, optionOn, tribunalMatches, tribunalName } from '../../engine/optional';
 import { Card } from '../kit';
 import { useStore } from '../../store/store';
 import { TOURS, startTour, type TourGroup } from '../tour/tours';
@@ -13,6 +15,7 @@ const SECTIONS: [string, string][] = [
   ['covenant', 'The covenant'],
   ['characters', 'Characters'],
   ['play', 'In play'],
+  ['optional', 'Optional rules'],
   ['questions', 'Common questions'],
   ['discord', 'Playing over Discord'],
   ['house', 'House rules'],
@@ -75,6 +78,12 @@ const LEARN: { to: string; title: string; text: string }[] = [
   { to: '/mechanics/combat', title: 'Combat & hazards', text: 'Fighting, wounds, Fatigue and recovery, poison, disease and the elements.' },
   { to: '/mechanics/covenant', title: 'Covenants', text: 'Boons and Hooks, Build Points, finances, covenfolk, vis sources and libraries.' },
   { to: '/mechanics/order', title: 'The Order of Hermes', text: 'The Code, Tribunals, Wizards’ War and the rules of each House.' },
+  { to: '/mechanics/social', title: 'Society & influence', text: 'Social standing, wealth and trade, guilds, the Church, courts, agents and debate.' },
+  { to: '/mechanics/realms', title: 'The Realms', text: 'Auras and regiones, the four realms, the Dominion, True Faith and miracles.' },
+  { to: '/mechanics/beings', title: 'Creatures', text: 'Beings with Might: magic creatures, faeries, angels, demons, spirits and beasts.' },
+  { to: '/mechanics/mysteries', title: 'Mysteries & initiation', text: 'Mystery Cults, Initiation, and the Hermetic Mysteries of the Houses and cults.' },
+  { to: '/mechanics/traditions', title: 'Other traditions', text: 'Hedge magic, faerie wizards, holy and infernal magic, ancient traditions.' },
+  { to: '/mechanics/setting', title: 'Sagas & setting', text: 'Troupe play, saga styles, and rules tied to the Tribunals and other places.' },
 ];
 
 const GROUPS: TourGroup[] = ['Start here', 'The saga and covenant', 'Characters', 'Magic', 'In play', 'Storyguide'];
@@ -158,9 +167,9 @@ export default function HelpPage() {
         <Step n={1} title="Create a saga" to="/" action="Sagas">
           Everything lives in a saga: its characters, its covenant and the troupe&apos;s house rules.
         </Step>
-        <Step n={2} title="Choose your books and house rules">
-          On the saga page, open <b>House rules &amp; books</b> to pick the supplements your troupe uses (only their content appears in the pickers) and change any creation
-          numbers.
+        <Step n={2} title="Choose your books, optional rules and house rules">
+          On the saga page, open <b>House rules &amp; books</b> to pick the supplements your troupe uses (only their content appears in the pickers), turn the{' '}
+          <Jump to="optional">optional rules</Jump> on or off, and change any creation numbers.
         </Step>
         <Step n={3} title="Found the covenant">
           <b>Found a covenant</b> on the saga page: its aura and Build Points, Hooks and Boons, library, laboratories and covenfolk.
@@ -210,7 +219,8 @@ export default function HelpPage() {
           <li>Buy the library, lab texts, vis sources, enchanted items and specialists; the toolkit prices everything and enforces the creation limits.</li>
           <li>
             Build one laboratory per magus (Size, Virtues and Flaws, Specializations). Labs feed straight into each magus&apos;s Lab Totals. Click a lab Characteristic to see how
-            it is worked out, and a lab Virtue to read it; enter the numbers some need (a Guardian&apos;s Intelligence, an Assistant&apos;s Magic Theory).
+            it is worked out, and a lab Virtue to read it; enter the numbers some need (a Guardian&apos;s Intelligence, an Assistant&apos;s Magic Theory). In play, a magus
+            improves their own lab as a lab project (raising the Refinement, installing a Virtue, putting a Flaw right), and the rise in Upkeep is paid from the treasury.
           </li>
           <li>
             Set covenfolk, income and spending to see the yearly balance and Loyalty. Use <b>Quick add</b> for specialists, teachers and craftsmen within the starting limits, pick
@@ -268,8 +278,9 @@ export default function HelpPage() {
             Spontaneous Magic, Vulnerable Casting…) are applied when you cast; the card lists which, and reminds you of the ones you apply yourself.
           </li>
           <li>
-            <b>Combat &amp; Health:</b> apply damage against Soak to get the wound, track Fatigue, roll recovery. Tick mounted, exertion or scuffling for a round. <b>Fighting as a
-            group</b> picks the saga&apos;s grogs to fight beside this character and works out the group&apos;s totals and how its blows are spread.
+            <b>Combat &amp; Health:</b> apply damage against Soak to get the wound, track Fatigue, roll recovery (the covenant&apos;s aura adds to it if it heals, and takes from it
+            if it is Infernal). Tick mounted, exertion or scuffling for a round. <b>Fighting as a group</b> picks the saga&apos;s grogs to fight beside this character and works out
+            the group&apos;s totals and how its blows are spread.
           </li>
           <li>
             <b>Seasons &amp; Aging:</b> plan a season (books, teachers, training, practice, vis, adventure) and log it; experience is added with Affinities, gain limits and Virtues.
@@ -292,12 +303,20 @@ export default function HelpPage() {
           <li>
             <b>Time:</b> the <b>Seasons</b> page in the sidebar moves the whole saga on: one season, to next Spring, or several years. Each character does what was logged on
             their sheet, or their standing activity (set on the Seasons page or the sheet) in their free seasons: a working character has two (Wealthy three, Poor one) and works
-            the rest, a magus has four, and one who needs no sleep two more for study. The year&apos;s end closes the covenants&apos; books, pays allowances, rolls aging
-            and adds Warping (and, with aura variation on, may move a Magic aura); wards like the Aegis of the Hearth are recast from the covenant&apos;s vis. Undo is always one click away.
+            the rest, a magus has four, a Regular gives one to Worship, and one who needs no sleep has two more for study. A magus whose lab project is done moves on to the
+            next one the lab allows. The year&apos;s end closes the covenants&apos; books, pays allowances, rolls aging and adds Warping, and moves a Dominion with its
+            congregation (and, with aura variation on, may move a Magic aura); wards like the Aegis of the Hearth are recast from the covenant&apos;s vis. Undo is always one
+            click away.
           </li>
           <li>
-            <b>Illness and agents:</b> the Combat &amp; Health tab tracks diseases with their Disease Penalty and recovery rolls; the Overview keeps a character&apos;s agents,
-            recruits new ones and asks them for help. Lab projects include taming a creature, and each can be worked under a non-standard lab routine for a bonus at a cost.
+            <b>Auras:</b> the covenant&apos;s <b>Aura</b> card (Overview) shows the aura as it stands and keeps its changes with their reasons. A Magic aura can be aligned: with an
+            Art it counts double for, or with Healing, Luck, Distracting or an emotion. A Dominion can follow the congregation that keeps it, growing with its years of worship and
+            fading when worship stops. On the Magic tab, the aura&apos;s realm, a regio and the hour (a Dominion is weaker at night, an Infernal aura stronger) change every total.
+          </li>
+          <li>
+            <b>Optional systems:</b> illness on Combat &amp; Health, agents and the Society tools on the Overview, Mysteries and guilds on Seasons &amp; Aging, lab routines and
+            original research in the lab, aura variation on the covenant: each shows only while its <Jump to="optional">optional rule</Jump> is on. Lab projects also include
+            taming a creature.
           </li>
           <li>
             <b>Mysteries &amp; Initiation</b> (Seasons &amp; Aging, for Bjornaer, Criamon, Merinita and Verditius magi or anyone with a cult Lore): choose a Mystery and a
@@ -331,6 +350,8 @@ export default function HelpPage() {
         </ul>
       </Card>
 
+      <OptionalRules />
+
       <Card title="Common questions" id="questions">
         <Question q="Where do I find a rule I only half remember?">
           Search <Link to="/mechanics">Game mechanics</Link>: it covers the core book and every reviewed supplement, and each result opens the book&apos;s own text.
@@ -349,6 +370,21 @@ export default function HelpPage() {
         <Question q="Can a magic character pay for a Ritual Power with vis instead of Might Score?">
           Only with the <b>Vis Mastery</b> Quality (<i>Realms of Power: Magic</i>): then vis replaces the Confidence Points, no more pawns at once than the Confidence Score.
           Without it, a Ritual Power costs Might Score or Confidence Points. Eating vis of the Might&apos;s Form refills the Might pool either way.
+        </Question>
+        <Question q="A card or rule I read about is not on my sheet.">
+          It may be an <Jump to="optional">optional rule</Jump> the saga has turned off, or one whose book the saga does not use: see <b>House rules &amp; books → Optional
+          rules</b>. A Tribunal&apos;s customs appear only while the saga is set in that Tribunal. In <Link to="/mechanics">Game mechanics</Link>, a topic an optional rule
+          governs says whether the saga you last opened uses it.
+        </Question>
+        <Question q="How do I improve a laboratory once play has begun?">
+          As a lab project on the magus&apos;s <b>Lab, Items &amp; Familiar</b> tab: <b>Raise the lab&apos;s Refinement</b>, <b>Install a lab Virtue</b> or <b>Put a lab Flaw
+          right</b>. Each says what it needs (Magic Theory, free space) and takes its seasons; a rise in Upkeep is paid from the treasury or the purse. A Free Virtue is simply
+          added on the covenant&apos;s Laboratories tab.
+        </Question>
+        <Question q="How does the covenant's aura change?">
+          Record a change on the covenant&apos;s <b>Aura</b> card with its reason (a creature settling, a battle, a church nearby). A Dominion kept by a congregation grows and
+          fades by itself at the year&apos;s end. With the optional <b>Aura variation</b> rule, a Magic aura also drifts from year to year with the covenant&apos;s magic, its vis
+          and its neighbours.
         </Question>
         <Question q="A book my troupe uses is missing from the pickers.">
           Enable it under <b>House rules &amp; books</b>. Books marked WIP are still being transcribed. Anything else can be added as custom content per saga.
@@ -378,8 +414,7 @@ export default function HelpPage() {
             </li>
             <li>Custom Virtues, Flaws, Abilities, weapons and spells can be added per saga.</li>
             <li>
-              <b>House rules &amp; books → Optional rules</b> turns each supplement subsystem on or off (illness, lab routines, agents, Mysteries, guilds, debate…). What is off
-              disappears from the sheets; each rule has a summary and the book&apos;s text a click away.
+              <b>House rules &amp; books → Optional rules</b> turns each supplement subsystem on or off: see <Jump to="optional">Optional rules</Jump> above.
             </li>
           </ul>
         </Card>
@@ -388,8 +423,8 @@ export default function HelpPage() {
       <Card title="About the rules data" id="data">
         <p className="small">
           The rules come from the markdown books in this repository: 1,042 Virtues and Flaws, 48 Magic Qualities and Inferiorities, 122 Abilities, 1,205 spells, 610 guideline
-          entries, 130 laboratory Virtues and Flaws, 198 Hooks and Boons and 240 Shape &amp; Material entries, all extracted automatically, with hand-written mechanics for the
-          Virtues and Flaws that change numbers. The Game mechanics reference was made by reading every reviewed book section by section; each entry is checked against the
+          entries, 130 laboratory Virtues and Flaws, 198 Hooks and Boons and 240 Shape &amp; Material entries, all extracted automatically (a few more, such as the aligned-aura
+          Boons of <i>Realms of Power: Magic</i>, are added by hand), with hand-written mechanics for the Virtues and Flaws that change numbers. The Game mechanics reference was made by reading every reviewed book section by section; each entry is checked against the
           book, and its quotes are the book&apos;s exact words. Books marked WIP are still being transcribed and may have errors. If something looks wrong, use an override and
           check the source text in the reader.
         </p>
@@ -419,5 +454,42 @@ export default function HelpPage() {
         </p>
       </Card>
     </div>
+  );
+}
+
+/** Every optional rule, from the rules list itself: what it adds, its book, where it shows, and whether it starts on. */
+function OptionalRules() {
+  const saga = useStore((s) => (s.activeSagaId ? s.sagas[s.activeSagaId] : undefined));
+  return (
+    <Card title="Optional rules" id="optional">
+      <p className="small" style={{ marginTop: 0 }}>
+        The supplements add systems a troupe may not want. Each is turned on or off for the saga under <b>House rules &amp; books → Optional rules</b>
+        {saga && (
+          <>
+            {' '}
+            (<Link to={`/saga/${saga.id}/rules?tab=optional`}>for {saga.name}</Link>)
+          </>
+        )}
+        . One that is off leaves the sheets and pages, though anything a character already has recorded stays in sight, and nothing is deleted. A rule whose book the saga does
+        not use starts off; a Tribunal&apos;s own rules are offered only in a saga set there, off until ticked.{' '}
+        <button className="small" onClick={() => startTour('optional')}>
+          Show me where each one appears
+        </button>
+      </p>
+      {OPTION_GROUPS.map((g) => (
+        <div key={g} style={{ marginTop: 8 }}>
+          <div className="small muted">{g === 'Tribunal' ? 'Tribunal customs' : g}</div>
+          {OPTIONAL_RULES.filter((r) => r.group === g).map((r) => (
+            <div key={r.id} className="small list-row" style={{ display: 'block' }}>
+              <b>{r.label}</b> <span className="muted">({BOOK_BY_ID[r.book]?.abbr ?? r.book}{r.tribunal ? `, the ${tribunalName(r)} Tribunal` : ''})</span>: {r.summary}{' '}
+              <span className="muted">
+                Shows on: {r.where}. {r.tribunal ? 'Off until chosen.' : r.defaultOn ? 'Starts on.' : 'Starts off.'}
+                {saga && (!r.tribunal || tribunalMatches(saga, r)) ? ` ${optionOn(saga, r.id) ? 'On' : 'Off'} in ${saga.name}.` : ''}
+              </span>
+            </div>
+          ))}
+        </div>
+      ))}
+    </Card>
   );
 }

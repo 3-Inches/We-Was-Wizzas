@@ -30,7 +30,7 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
     update((x) => void (x.agents = [...(x.agents ?? []), { uid: uid(), name: '', status: '', resources: '', bondTrait: 'Loyal', bond: resistance > 0 ? 0 : 1, resistance: Math.max(0, resistance) }]));
 
   return (
-    <Card title={`Agents (${recruited.length} of ${max})`}>
+    <Card title={`Agents (${recruited.length} of ${max})`} tour="agents">
       <RulesNote book="HoH_S" line={5647} endLine={5836}>
         People bound to help by loyalty, fear, gratitude or blackmail.{recruited.length > max ? ' More than this character can manage: expect stories.' : ''}
       </RulesNote>

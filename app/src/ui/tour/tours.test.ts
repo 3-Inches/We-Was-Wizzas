@@ -1,6 +1,8 @@
 // The tutorials point at real controls and real pages: every target named in a step is marked in
-// the app's source, every wizard step exists, and every page a step goes to is a route.
+// the app's source, every wizard step exists, and every page a step goes to is a route. The Guide
+// links every area of Game mechanics.
 import { describe, expect, it } from 'vitest';
+import mechanics from '../../data/generated/mechanics/index.json';
 import { STEPS } from '../character/wizardSteps';
 import { DETOUR_OFFERS, TOUR_BY_ID, TOURS } from './tours';
 import { ACTIONS } from './actions';
@@ -47,6 +49,12 @@ describe('tutorials', () => {
         if (s.detour) expect(TOUR_BY_ID.has(s.detour.tour), `${t.id}: ${s.detour.tour}`).toBe(true);
       }
     for (const o of DETOUR_OFFERS) expect(TOUR_BY_ID.has(o.tour)).toBe(true);
+  });
+
+  it('are joined by a Guide that links every area of Game mechanics', () => {
+    const guide = Object.values(import.meta.glob('../pages/HelpPage.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>)[0];
+    const areas = (mechanics as { areas: { id: string }[] }).areas.map((a) => a.id);
+    expect(areas.filter((a) => !guide.includes(`'/mechanics/${a}'`))).toEqual([]);
   });
 
   it('are listed once each, the tour of the toolkit first', () => {

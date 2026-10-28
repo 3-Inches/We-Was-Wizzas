@@ -25,7 +25,7 @@ export default function LabsTab({ cov, update, dc, data }: CovTabProps) {
   };
   return (
     <div className="stack">
-      <Hint id="labs-how">Each magus gets a standard lab; add Virtues and Flaws to make it theirs. The magus&apos;s sheet uses it for Lab Totals.</Hint>
+      <Hint id="labs-how">Each magus gets a standard lab; add Virtues and Flaws to make it theirs. The magus&apos;s sheet uses it for Lab Totals, and in play the magus improves it there as a lab project.</Hint>
       <Card
         title={`Laboratories (${labBP} BP)`}
         className="accent"

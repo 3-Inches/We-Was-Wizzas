@@ -5,6 +5,7 @@
 // whole draft, apply a package), or to step into another tutorial and come back.
 
 import type { CharType } from '../../data';
+import { OPTIONAL_RULES } from '../../engine/optional';
 import { useStore } from '../../store/store';
 
 export interface TourCtx {
@@ -71,6 +72,11 @@ const concept = (body: string, target: string[] = ['guided-build', 'step-basics'
   detour: { tour: 'guided', label: 'Walk me through the guided build' },
 });
 
+// the optional rules that start off, and the Tribunals with customs of their own, as the rules list has them
+const startOff = OPTIONAL_RULES.filter((r) => !r.defaultOn && !r.tribunal).map((r) => r.label.toLowerCase());
+const tribunals = [...new Set(OPTIONAL_RULES.flatMap((r) => (r.tribunal ? [r.tribunal] : [])))];
+const list = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')} and ${xs.at(-1)}` : (xs[0] ?? ''));
+
 // the wizard steps every kind of character shares, closing each character tour
 const finishing: TourStep[] = [
   {
@@ -123,7 +129,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Game mechanics',
-        body: 'Every rule from the core book and the supplements, grouped by subject and ordered from the rules every session uses to the rare ones. Filter it for magi, companions, grogs or the storyguide; **In the app** says where the toolkit does each one.',
+        body: 'Every rule from the core book and the supplements, grouped by subject and ordered from the rules every session uses to the rare ones. Filter it for magi, companions, grogs or the storyguide; **In the app** says where the toolkit does each one, and a topic an optional rule governs says whether your saga uses it.',
         at: page('/mechanics'), target: 'mechanics-filter',
       },
       {
@@ -143,7 +149,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'More tutorials',
-        body: 'Each of the big jobs has its own tutorial: starting a saga, founding the covenant, making a magus, companion or grog, the guided build, designing spells and powers, building a laboratory, playing a season, and Quick build for whole characters, covenfolk and creatures.',
+        body: 'Each of the big jobs has its own tutorial: starting a saga and choosing its optional rules, founding the covenant (its aura too), making a magus, companion or grog, the guided build, designing spells and powers, building a laboratory and improving it in play, playing a season, and Quick build for whole characters, covenfolk and creatures.',
         at: page('/help'), target: 'tutorials',
       },
     ],
@@ -167,8 +173,9 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Optional rules',
-        body: 'Supplement systems the troupe can turn on or off: Tribunal customs, House Mysteries, guilds, Society & Influence and more. Each says what it adds and where it shows.',
-        at: sagaPage('rules?tab=optional'), needs: 'saga', target: 'tab-optional',
+        body: 'Supplement systems the troupe can turn on or off: illness, lab routines, aura variation, agents and the Society tools, House Mysteries, guilds, and the customs of the saga’s Tribunal. Each says what it adds, its book, and where it shows; turn one off and its cards leave the sheets.',
+        at: sagaPage('rules?tab=optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
+        detour: { tour: 'optional', label: 'Show me where each one appears' },
       },
       {
         title: 'Creation rules & rulings',
@@ -216,6 +223,11 @@ export const TOURS: Tour[] = [
         at: covenant('hooks'), needs: 'covenant', target: 'tab-hooks',
       },
       {
+        title: 'The aura',
+        body: 'The **Aura** card shows the aura as it stands: the Aura Boons and Hooks, and each change recorded with its reason (a creature settling, a battle, a church built nearby). A Magic aura can be **aligned**, with an Art it counts double for or with Healing, Luck and the like; a Dominion can follow the **congregation** that keeps it, growing with its years of worship. With the optional **Aura variation** rule a Magic aura also drifts from year to year.',
+        at: covenant('overview'), needs: 'covenant', target: 'aura',
+      },
+      {
         title: 'Library & Vis',
         body: 'Summae, tractatus and lab texts, and the vis sources and stocks. The magi study from these books in their seasons.',
         at: covenant('library'), needs: 'covenant', target: 'tab-library',
@@ -234,6 +246,56 @@ export const TOURS: Tour[] = [
         title: 'Members',
         body: 'Who lives here. The magi’s laboratories, the library they read from and the covenant’s aura all reach their sheets from here.',
         at: covenant('overview'), needs: 'covenant', target: 'covenant-members',
+      },
+    ],
+  },
+  {
+    id: 'optional',
+    title: 'Choose the optional rules',
+    blurb: 'The supplement systems a troupe can turn on or off, and where each one shows when it is on: on the sheets, in the laboratory, on the covenant.',
+    group: 'The saga and covenant',
+    inSaga: true,
+    prefers: 'magus',
+    steps: [
+      {
+        title: 'The optional rules',
+        body: `Rules from the supplements that add detail, by area: health, the laboratory, the covenant, society and influence, Houses and Mysteries, and the saga’s Tribunal. Each row names its book and where it shows, with the book’s text a click away. Most start on (unless the saga does not use their book); ${list(startOff)} start off. A tick changes the saga for everyone.`,
+        at: sagaPage('rules?tab=optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
+      },
+      {
+        title: 'The Tribunal’s customs',
+        body: `A saga set in ${list(tribunals.map((t) => (t === 'Transylvan' ? 'Transylvania' : t === 'Theban' ? 'Thebes' : t === 'Rhine' ? 'the Rhine' : t)))} is offered that Tribunal’s own rules here on the saga page, off until ticked. They apply only while the saga is set there.`,
+        at: saga, needs: 'saga', target: ['saga-options', 'saga-card'],
+      },
+      {
+        title: 'Health',
+        body: 'Each rule shows where it applies. **Disease and illness** is the Illness card on Combat & Health: catching a disease, its penalty, a physician’s Prognosis and the recovery rolls.',
+        at: sheet('combat'), needs: 'character', target: ['illness', 'tab-combat'],
+      },
+      {
+        title: 'The laboratory',
+        body: '**Non-standard lab routines** add choices to every lab project with a Lab Total (Early Riser, Nocturnal, overtime), for a bonus and a cost in health and Warping. **Original research** has a card of its own, for Discoveries toward a Breakthrough.',
+        at: sheet('lab'), needs: 'character', target: ['lab-projects', 'original-research', 'tab-lab'],
+      },
+      {
+        title: 'Society and the Tribunal',
+        body: 'The Overview holds **Agents**, the **Society** card (a debate, a petition to the Church, a quick trial, an etiquette performance) and the Tribunal’s customs (ranks and gilds, tokens and shards, privileges), each while its rule is on.',
+        at: sheet('overview'), needs: 'character', target: ['society', 'agents', 'tribunal-customs', 'tab-overview'],
+      },
+      {
+        title: 'Seasons, Mysteries and guilds',
+        body: '**Mystery Initiation** is planned on Seasons & Aging, for Bjornaer, Criamon, Merinita and Verditius magi and anyone with a cult Lore. A craftsman in a guild has a **Guild** card beside the workshop.',
+        at: sheet('advancement'), needs: 'character', target: ['mysteries', 'guild', 'plan-season'],
+      },
+      {
+        title: 'The covenant',
+        body: '**Aura variation** adds to the Aura card the base aura, the stronger auras pressing on it and this year’s modifier, and the year’s end rolls for it. **Library research** is a roll on the Library tab; the Theban patrons, the Perthean Compact and the Hermetic Tourney show on the covenant too.',
+        at: covenant('overview'), needs: 'covenant', target: ['aura', 'covenant-members'],
+      },
+      {
+        title: 'Turning one off',
+        body: 'A rule turned off takes its cards away, unless a character already has something recorded there (an illness, an agent, an Initiation), which stays in sight. Nothing is deleted: turn the rule back on and it is all there. In **Game mechanics**, each topic an optional rule governs says so, and whether this saga uses it.',
+        at: sagaPage('rules?tab=optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
       },
     ],
   },
@@ -285,7 +347,7 @@ export const TOURS: Tour[] = [
       ...finishing,
       {
         title: 'Magic in play',
-        body: 'The **Magic** tab has Casting Scores, Lab Totals, Penetration and Magic Resistance. Set the aura and circumstances at the top and every total follows; **Lab, Items & Familiar** runs lab projects season by season.',
+        body: 'The **Magic** tab has Casting Scores, Lab Totals, Penetration and Magic Resistance. Set the aura (its realm, a regio, the hour for a Dominion or an Infernal aura; one aligned with an Art counts double for it) and the circumstances at the top, and every total follows. **Lab, Items & Familiar** runs lab projects season by season.',
         at: sheet('magic'), needs: 'character', target: ['magic-circumstances', 'tab-magic'],
       },
     ],
@@ -497,6 +559,11 @@ export const TOURS: Tour[] = [
         at: sheet('lab'), needs: 'character', target: ['sheet-lab', 'tab-lab'],
       },
       {
+        title: 'Improving it in play',
+        body: 'Once play begins, the magus improves their own lab as a **Lab project**: raise its Refinement (Magic Theory at least the new Refinement + 3, with a chance of Highly Organized or a Hidden Defect), install a Virtue (a season for a Minor one, two for a Major one), or put a Flaw right. A rise in Upkeep is paid from the treasury. With the optional lab routines, odd hours and overtime add to a season’s Lab Total, at a price.',
+        at: sheet('lab'), needs: 'character', target: ['lab-projects', 'tab-lab'],
+      },
+      {
         title: 'Enchantments',
         body: 'The Enchantments page designs enchanted devices and talismans, Longevity Rituals and vis extraction, and copies books and lab texts, all from the magus’s Lab Totals.',
         at: sagaPage('enchant'), needs: 'saga', target: 'tab-items',
@@ -556,8 +623,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'When nothing is planned',
-        body: 'A standing activity (practice an Ability, read from the library, work in the lab) runs in any season nobody plans, so a fast-forward still advances everyone sensibly.',
-        at: sheet('advancement'), needs: 'character', target: 'standing',
+        body: 'A standing activity (practice an Ability, read from the library, work in the lab) runs in any season nobody plans, so a fast-forward still advances everyone sensibly. Free seasons come first: a magus has four, a working character two (Wealthy three, Poor one) and works the rest, a Regular gives one to Worship, and one who needs no sleep has two more for study. **Seasons a year** shows them, and can be set by hand.',
+        at: sheet('advancement'), needs: 'character', target: ['season-plan', 'standing'],
       },
       {
         title: 'Move time on',
@@ -566,7 +633,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'The year’s end',
-        body: 'Winter’s end closes each covenant’s books, gathers the year’s vis, pays allowances, renews wards, rolls aging and adds the year’s Warping. The checkboxes choose what runs.',
+        body: 'Winter’s end closes each covenant’s books, gathers the year’s vis, pays allowances, renews wards, rolls aging (the covenant’s best physician tends anyone in a crisis) and adds the year’s Warping. A Dominion grows or fades with its congregation, and with the optional aura variation a Magic aura may move. The checkboxes choose what runs.',
         at: sagaPage('seasons'), needs: 'saga', target: 'seasons-table',
       },
       {

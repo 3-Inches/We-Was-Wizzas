@@ -71,7 +71,7 @@ export default function HouseRulesPage() {
       {tab === 'saga' && <SagaTab saga={saga} update={update} />}
       {tab === 'books' && <BooksTab saga={saga} update={update} />}
       {tab === 'optional' && (
-        <Card title="Optional rules">
+        <Card title="Optional rules" tour="optional-rules">
           <p className="small muted" style={{ marginTop: 0 }}>
             Rules from the supplements that add detail. Turn off what your troupe does not want and it disappears from the sheets and pages.
           </p>

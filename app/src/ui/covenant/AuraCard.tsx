@@ -30,7 +30,7 @@ export function AuraCard({ cov, update, saga, chars }: { cov: Covenant; update: 
   const mod = variation && a.realm === 'Magic' ? yearlyAuraModifier(cov, members, year) : undefined;
   const log = [...(cov.auraLog ?? [])].reverse();
   return (
-    <Card title="Aura">
+    <Card title="Aura" tour="aura">
       <div className="row">
         <div className="stat">
           <span className="v">

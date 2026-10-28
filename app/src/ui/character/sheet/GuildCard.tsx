@@ -49,7 +49,7 @@ export function GuildCard({ ed }: { ed: CharEditor }) {
   const next = rank ? ORDER[ORDER.indexOf(rank) + 1] : undefined;
 
   return (
-    <Card title={`Guild${g.name ? `: ${g.name}` : ''}${r ? ` (${r.label})` : ''}`}>
+    <Card title={`Guild${g.name ? `: ${g.name}` : ''}${r ? ` (${r.label})` : ''}`} tour="guild">
       <RulesNote book="CG" line={1147} endLine={1503}>
         {r ? r.note : 'Not a guild member: a craftsman may join through stories, starting as an apprentice or, with a passed apprentice piece, a journeyman.'}
       </RulesNote>

@@ -140,7 +140,7 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
   const dormant = CRIAMON_STATIONS.filter((s) => s.path !== path && held.has(s.id));
 
   return (
-    <Card title="Mysteries & Initiation" actions={<button className="small" onClick={() => setOpen((o) => !o)}>{open ? 'Close' : 'Plan an Initiation'}</button>}>
+    <Card title="Mysteries & Initiation" tour="mysteries" actions={<button className="small" onClick={() => setOpen((o) => !o)}>{open ? 'Close' : 'Plan an Initiation'}</button>}>
       <RulesNote book="DE" line={16467} endLine={16535}>
         The Mystagogue’s Presence + (House) Lore + the Script’s bonus against 15 for a Minor Virtue or 21 for a Major one (18 and 30 for one the Mystagogue lacks). No die.
       </RulesNote>
