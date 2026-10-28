@@ -9,6 +9,7 @@ import { abilityXpForScore } from './xp';
 import { countOf, craftOf, specAbilities, specChar, specHighest, specialistUnitCost } from './covenantRules';
 import type { Character, Covenant, CraftMagicUse, SoldierGroup, Specialist, SpecialistRole, YearlyEvent } from './types';
 import { uid } from '../util/id';
+import { INNOVATION_COST, RAW_MATERIALS_COST, laborPoints, upkeep } from './workshop';
 
 // ------------------------------------------------------------------------------ Roles
 
@@ -290,23 +291,25 @@ export function guildAbilities(rank: CraftGuildRank, craft: number): { id: strin
 export function workSeasons(s: Specialist): { work: number; free: number } {
   return s.wealth === 'poor' ? { work: 3, free: 1 } : s.wealth === 'wealthy' ? { work: 1, free: 3 } : { work: 2, free: 2 };
 }
-const LABOR_MULT = { poor: 2, average: 3, wealthy: 6 } as const;
-/** Keeping a business at its level costs 36 Labor Points a year (City & Guild ch.2). */
-export const LABOR_UPKEEP = 36;
 
-/** A craftsman's Labor Points a season: (primary Characteristic + Craft) × 2 Poor, 3 average, 6 Wealthy (City & Guild ch.2). */
+/** A covenant craftsman's Labor Points a season: (primary Characteristic + Craft) × 2 Poor, 3 average, 6 Wealthy (City & Guild ch.2), as for any craftsman. */
 export function laborPointsPerSeason(s: Specialist): number {
-  return Math.max(0, specChar(s, 'Dex') + s.score) * LABOR_MULT[s.wealth ?? 'average'];
+  return laborPoints(specChar(s, 'Dex'), s.score, s.wealth ?? 'average');
 }
+
+/** Keeping a workshop at its level: 36 Labor Points a year, and 5 more for each point of Raw Materials (City & Guild ch.2 and ch.4). */
+export const craftsmanUpkeep = (s: Specialist) => upkeep(s.workshop?.rawMaterials ?? 0);
 
 /** Workshop Total: primary Characteristic + Craft + Innovation + Raw Materials (City & Guild ch.4). */
 export function craftsmanWorkshopTotal(s: Specialist): number {
   return specChar(s, 'Dex') + s.score + (s.workshop?.innovation ?? 0) + (s.workshop?.rawMaterials ?? 0);
 }
 
-/** Labor Points to raise Innovation or Raw Materials to the next point (City & Guild ch.4); Innovation stays with the workshop. */
-export const INNOVATION_STEP = [100, 200, 300];
-export const RAW_MATERIALS_STEP = [50, 100, 150];
+/** Labor Points to raise Innovation or Raw Materials one point from where it is (City & Guild ch.4), or undefined at +3. */
+export const nextImprovementCost = (kind: 'innovation' | 'rawMaterials', current: number): number | undefined => {
+  const table = kind === 'innovation' ? INNOVATION_COST : RAW_MATERIALS_COST;
+  return current + 1 < table.length ? table[current + 1] - table[current] : undefined;
+};
 
 // ------------------------------------------------------------------------------ Craft magic
 
@@ -440,7 +443,7 @@ export function covenfolkYearEnd(cov: Covenant, year: number): string[] {
     s.score = t.score;
     if (s.role === 'craftsman') {
       const craft = craftOf(s);
-      const lp = laborPointsPerSeason(s) * work - LABOR_UPKEEP;
+      const lp = laborPointsPerSeason(s) * work - craftsmanUpkeep(s);
       s.workshop = { innovation: s.workshop?.innovation ?? 0, rawMaterials: s.workshop?.rawMaterials ?? 0, laborPoints: Math.max(0, (s.workshop?.laborPoints ?? 0) + lp) };
       if (lp > 0 && craft) notes.push(`+${lp} Labor Points`);
     }

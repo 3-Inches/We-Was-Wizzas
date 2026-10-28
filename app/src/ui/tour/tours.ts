@@ -263,6 +263,11 @@ export const TOURS: Tour[] = [
         at: covenant('folk'), needs: 'covenant', target: 'craft-magic',
       },
       {
+        title: 'The turb’s day',
+        body: 'Who stands which watch (day or night patrol, four watches, single or double duty) and who is on duty, off duty or asleep at any hour; the rolls to stay awake on sentry and against double duty’s Fatigue; drilling a group faster; and rewards and punishments marked on a grog’s sheet, with the Loyalty Points one a magus orders costs.',
+        at: covenant('folk'), needs: 'covenant', target: 'turb',
+      },
+      {
         title: 'Members',
         body: 'Who lives here. The magi’s laboratories, the library they read from and the covenant’s aura all reach their sheets from here.',
         at: covenant('overview'), needs: 'covenant', target: 'covenant-members',
@@ -304,8 +309,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Seasons, Mysteries and guilds',
-        body: '**Mystery Initiation** is planned on Seasons & Aging, for Bjornaer, Criamon, Merinita and Verditius magi and anyone with a cult Lore. A craftsman in a guild has a **Guild** card beside the workshop.',
-        at: sheet('advancement'), needs: 'character', target: ['mysteries', 'guild', 'plan-season'],
+        body: '**Mystery Initiation** is planned on Seasons & Aging, for Bjornaer, Criamon, Merinita and Verditius magi and anyone with a cult Lore. A craftsman in a guild has a **Guild** card beside the workshop. **Extended book Quality** makes the Writing and copying card count skilled artisans and resonant materials by default.',
+        at: sheet('advancement'), needs: 'character', target: ['mysteries', 'guild', 'writing', 'plan-season'],
       },
       {
         title: 'The covenant',
@@ -647,18 +652,23 @@ export const TOURS: Tour[] = [
         at: sheet('advancement'), needs: 'character', target: ['season-plan', 'standing'],
       },
       {
+        title: 'Writing and copying',
+        body: 'A book, a copy, lab texts or a florilegium is begun here and worked a season at a time, from this card or as the standing activity in free seasons; the finished work goes to the covenant library. Glossing a book read this season and clarifying one are here too.',
+        at: sheet('advancement'), needs: 'character', target: 'writing',
+      },
+      {
         title: 'Move time on',
         body: '**End** the season for the whole saga at once. Each character does what they planned or their standing activity; the report says what happened.',
         at: sagaPage('seasons'), needs: 'saga', target: 'seasons-advance',
       },
       {
         title: 'The year’s end',
-        body: 'Winter’s end closes each covenant’s books, gathers the year’s vis, pays allowances, renews wards, rolls aging (the covenant’s best physician tends anyone in a crisis) and adds the year’s Warping. A Dominion grows or fades with its congregation, and with the optional aura variation a Magic aura may move. The checkboxes choose what runs.',
+        body: 'Winter’s end closes each covenant’s books, gathers the year’s vis, pays allowances, renews wards, rolls aging (the covenant’s best physician tends anyone in a crisis) and adds the year’s Warping. The covenant’s scribes make the copies queued in the scriptorium, and a book being clarified is done once its years in the aura are up. A Dominion grows or fades with its congregation, and with the optional aura variation a Magic aura may move. The checkboxes choose what runs.',
         at: sagaPage('seasons'), needs: 'saga', target: 'seasons-table',
       },
       {
         title: 'The Market',
-        body: 'Buy books, teachers, covenfolk, services and vis in play, at the books’ prices, from the covenant’s treasury or a character’s purse.',
+        body: 'Buy books, teachers, covenfolk, services and vis in play, at the books’ prices, from the covenant’s treasury or a character’s purse. A grog can haggle the price down, and bribes are paid here.',
         at: sagaPage('market'), needs: 'saga', target: 'market-who',
       },
     ],

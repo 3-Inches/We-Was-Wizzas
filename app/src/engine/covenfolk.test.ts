@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { addGuildAbilities, deriveCovenant, homeCovenant, newCovenant } from './covenant';
 import { DEFAULT_YEAR_END, applyYearEnd, planYearEnd } from './covenantYear';
-import { specialistCost } from './covenantRules';
+import { CRAFTS, craftsFor, findCraft, specialistCost } from './covenantRules';
 import {
   covenfolkYearEnd, craftMagicFigures, guildShortfalls, newSoldierGroup, officerLoyalty, stressChance, suggestedGuildRank, weaponArmorEstimate, yearlyEventPounds,
 } from './covenfolk';
@@ -266,5 +266,18 @@ describe('the spell list', () => {
   it('leaves out enchanted-item headings the extractor took for spells, and title-cases capitals', () => {
     expect(data.spells.some((s) => /^(Invested \d|Enchanted Item\b)/.test(s.name))).toBe(false);
     expect(data.spells.find((s) => /regio skin/i.test(s.name))?.name).toBe('Penetrate the Regio Skin');
+  });
+});
+
+describe('cost-saving crafts beyond the book’s examples', () => {
+  it('lists bakers, butchers and others from the other books, unless the covenant keeps to the examples', () => {
+    expect(findCraft('baker')?.categories).toEqual(['Provisions']);
+    expect(findCraft('Shoemaker')?.id).toBe('cobbler');
+    expect(CRAFTS.filter((k) => k.example).length).toBeGreaterThan(20);
+    const all = craftsFor({ finances: {} as never });
+    const examples = craftsFor({ finances: { exampleCraftsOnly: true } as never });
+    expect(all.some((k) => k.id === 'butcher')).toBe(true);
+    expect(examples.some((k) => k.id === 'butcher')).toBe(false);
+    expect(examples.every((k) => k.example)).toBe(true);
   });
 });

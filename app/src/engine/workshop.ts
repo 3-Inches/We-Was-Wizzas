@@ -199,15 +199,110 @@ export function workshopSeason(c: Character, d: DerivedCharacter, year: number, 
   return lines;
 }
 
-/** Close a workshop's year: the upkeep in Labor Points, and a word on overwork. */
-export function workshopYearEnd(c: Character, d: DerivedCharacter): string[] {
+/** Close a workshop's year: the upkeep in Labor Points, a word on overwork, speculation's return, returns falling due, and a miser's extra season. */
+export function workshopYearEnd(c: Character, d: DerivedCharacter, year?: number): string[] {
   const w = c.workshop;
   if (!w) return [];
   const keep = upkeep(w.rawMaterials);
   const over = wealthOf(d) !== 'poor' && w.seasonsWorked >= 3;
+  const lines: string[] = [];
+  // commodity speculation: a Labor Point a year for every ten stored, the stake kept (City & Guild ch.7)
+  const spec = Math.floor((w.speculation ?? 0) / 10);
+  if (spec) ((w.laborPoints += spec), lines.push(`Speculation returns ${spec} Labor Points (${w.speculation} stored).`));
+  for (const p of (w.pending ?? []).filter((x) => year !== undefined && x.year <= year)) ((w.laborPoints += p.lp), lines.push(`${p.note}: +${p.lp} Labor Points.`));
+  if (year !== undefined) w.pending = (w.pending ?? []).filter((x) => x.year > year);
+  // a Wealthy character living as an average one gains a season every three years, as a Poor one every year (City & Guild ch.2)
+  if (w.miserly && wealthOf(d) === 'wealthy' && year !== undefined) {
+    const every = w.miserly === 'poor' ? 1 : 3;
+    if (w.miserMark === undefined || year - w.miserMark >= every) {
+      const season = seasonWorth(c, d);
+      w.laborPoints += season;
+      w.miserMark = year;
+      lines.push(`Living as ${w.miserly === 'poor' ? 'a Poor' : 'an average'} merchant: +${season} Labor Points, and ${w.miserly === 'poor' ? 3 : 1} experience in a Reputation for miserliness.`);
+    }
+  }
   w.laborPoints -= keep;
   w.seasonsWorked = 0;
-  return [
+  lines.unshift(
     `Workshop: −${keep} Labor Points to keep the business (${w.laborPoints} left).${w.laborPoints < 0 ? ' Not enough: the business slips (the storyguide may lower its wealth).' : ''}${over ? ' Working three or more seasons gains a negative Reputation for impiety or avarice.' : ''}`,
-  ];
+  );
+  return lines;
+}
+
+/** A season's worth of Labor Points: what stories and investments are reckoned in (City & Guild ch.2). */
+export function seasonWorth(c: Character, d: DerivedCharacter): number {
+  const f = workshopFigures(c, d);
+  return f ? Math.max(1, f.lp) : 0;
+}
+
+/** Labor Points from stories (City & Guild ch.2): by the part the character played. */
+export const STORY_AWARDS: { seasons: number; label: string }[] = [
+  { seasons: 0.5, label: 'A subplot of a story the magi deal with' },
+  { seasons: 1, label: 'Severe danger or hardship to finish the subplot' },
+  { seasons: 1.5, label: 'The subplot was pivotal to the story' },
+  { seasons: 2, label: 'The central character of the story' },
+  { seasons: 2.5, label: 'Failure would have hurt the city or covenant badly' },
+];
+
+/** What surplus Labor Points can be invested in (City & Guild ch.7, Investments Suited to all Merchants), in seasons' worth. */
+export const INVESTMENTS: { id: string; label: string; seasons: number; hint: string }[] = [
+  { id: 'charity', label: 'Charity', seasons: 1, hint: 'A season’s worth given: 1 experience in a Reputation for charity. Having given a wealth multiple of Labor Points this year, the character can summon a crowd of those it helps.' },
+  { id: 'legal', label: 'A lawsuit', seasons: 0.5, hint: 'Half a season’s worth a suit; it takes a season, without the merchant present.' },
+  { id: 'introduction', label: 'Introduction agent', seasons: 2, hint: 'Two seasons’ worth now, three seasons’ worth back after two years; the junior merchant owes a Favor, to be collected within the two years.' },
+  { id: 'marriage', label: 'Marriage broker', seasons: 2, hint: 'Two seasons’ worth, lost: a point in a Reputation, Social Contacts for three years, and Favors owed by the couple.' },
+];
+
+/** Detecting a boom (City & Guild ch.7): Intelligence + Area Lore + a stress die. */
+export function boomRoll(int: number, areaLore: number, rng: Rng = defaultRng): string {
+  const r = stressDie(1, rng);
+  const t = r.value + int + areaLore;
+  if (r.botches) return `Boom roll: botch — the business is destroyed.`;
+  const what =
+    t >= 18 ? 'prepared for years: two seasons’ Labor Points back for every season’s worth set aside, once the boom comes'
+    : t >= 15 ? 'everything put in as the boom starts: a season and a half back for every season’s worth, that year'
+    : t >= 7 ? 'no advantage'
+    : '2 of every 10 Labor Points invested are lost';
+  return `Boom roll (Int + Area Lore ${int + areaLore} + ${describeStress(r)} = ${t}): ${what}.`;
+}
+
+/** Smuggling as an investment of time (City & Guild ch.7): (Intelligence + Intrigue) × the wealth multiplier a season. */
+export const smugglingLp = (int: number, intrigue: number, wealth: Wealth) => Math.max(0, (int + intrigue) * WEALTH_MULT[wealth]);
+
+// ------------------------------------------------------------------------------ Damaged goods (C&G ch.4)
+
+export type ItemQuality = 'shoddy' | 'standard' | 'superior' | 'excellent' | 'supernatural';
+
+/** Damage levels an item takes before it breaks: by quality, multiplied by Size; a lock has twice as many. */
+export function itemDamageLevels(quality: ItemQuality, size: number, lock = false): number {
+  const base = { shoddy: 1, standard: 2, superior: 3, excellent: 4, supernatural: 5 }[quality];
+  const mult = size <= 1 ? 1 : size <= 5 ? 2 : size <= 8 ? 3 : 4;
+  return base * mult * (lock ? 2 : 1);
+}
+
+/** The modifiers to an item's stress check, from the table (C&G, Damaged Goods). */
+export const ITEM_CHECK_MODS: { id: string; label: string; value: number }[] = [
+  { id: 'repaired', label: 'Previously repaired', value: -1 },
+  { id: 'poorLight', label: 'Poor lighting or weather', value: -1 },
+  { id: 'noLight', label: 'Severe weather or no light', value: -3 },
+  { id: 'prolonged', label: 'Prolonged use', value: -3 },
+];
+export const ITEM_QUALITY_MOD: Record<ItemQuality, number> = { shoddy: -1, standard: 0, superior: 1, excellent: 3, supernatural: 5 };
+
+/** A stress check when a botch or unnatural use puts an item at risk: stress die + modifiers against 15; a failure costs a damage level, a botch one more per botch. */
+export function itemStressCheck(modifiers: number, rng: Rng = defaultRng, ease = 15): { lost: number; text: string } {
+  const r = stressDie(1, rng);
+  if (r.botches) return { lost: 1 + r.botches, text: `${describeStress(r)}: ${1 + r.botches} damage levels lost, and it could break.` };
+  const total = r.value + modifiers;
+  return total >= ease ? { lost: 0, text: `${describeStress(r)} ${signedNum(modifiers)} = ${total} vs ${ease}: it survives intact.` } : { lost: 1, text: `${describeStress(r)} ${signedNum(modifiers)} = ${total} vs ${ease}: one damage level lost.` };
+}
+const signedNum = (n: number) => (n < 0 ? `− ${-n}` : `+ ${n}`);
+
+/** Picking a lock: Dexterity + Legerdemain + a stress die against these, by the lock's quality (C&G, Locks and Keys). */
+export const LOCK_PICK_EASE: Partial<Record<ItemQuality, number>> = { shoddy: 9, standard: 12, superior: 15, excellent: 18 };
+
+/** Repairing: a season, no roll; superior and excellent items need Craft of twice their bonus; a Labor Point per damage level. */
+export function repairNeeds(quality: ItemQuality): { craft: number; text: string } {
+  const bonus = ITEM_QUALITY_MOD[quality];
+  if (quality === 'supernatural') return { craft: 0, text: 'Wondrous items stop working once damaged; Hermetic items cannot be repaired by Hermetic magic (only some Verditius can).' };
+  return bonus > 0 ? { craft: 2 * bonus, text: `A season's work by a craftsman who can make it, with Craft ${2 * bonus} or more, and a Labor Point per damage level.` } : { craft: 0, text: 'A season’s work by a craftsman who can make it, and a Labor Point per damage level. A broken item cannot be repaired.' };
 }

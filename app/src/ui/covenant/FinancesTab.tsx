@@ -12,9 +12,9 @@ import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total, HowItWorks } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
-import { CraftMagicCard, GearHelper, OrganizationCard, SoldiersCard, YearlyCard } from './CovenfolkCards';
+import { CraftMagicCard, GearHelper, OrganizationCard, SoldiersCard, TurbCard, YearlyCard } from './CovenfolkCards';
 import {
-  CRAFT_GUILD_ORDER, CRAFT_GUILD_RANKS, INNOVATION_STEP, LABOR_UPKEEP, RAW_MATERIALS_STEP, ROLE_BY_ID, ROLE_DEFS, craftsmanWorkshopTotal, guildRanksApply, guildShortfalls, laborPointsPerSeason,
+  CRAFT_GUILD_ORDER, CRAFT_GUILD_RANKS, ROLE_BY_ID, ROLE_DEFS, craftsmanUpkeep, craftsmanWorkshopTotal, nextImprovementCost, guildRanksApply, guildShortfalls, laborPointsPerSeason,
   suggestedGuildRank, workSeasons,
 } from '../../engine/covenfolk';
 import { optionOn } from '../../engine/optional';
@@ -116,13 +116,15 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
             Provisions (up to half of them) but also costs about a pound as an inhabitant; "optimal" finds the number that keeps spending lowest.
           </HowItWorks>
         </Card>
-        <QuickAdd update={update} data={data} />
+        <QuickAdd update={update} data={data} examplesOnly={cov.finances.exampleCraftsOnly} />
       </div>
 
       <div className="grid grid-2">
         <OrganizationCard cov={cov} update={update} dc={dc} />
         <SoldiersCard cov={cov} update={update} dc={dc} />
       </div>
+
+      <TurbCard cov={cov} update={update} dc={dc} data={data} />
 
       <Card
         title={`Specialists & teachers (${people.reduce((s, x) => s + specialistCost(x), 0)} BP)`}
@@ -162,6 +164,9 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
             <label className="inline">
               <input type="checkbox" checked={newBought} onChange={(e) => setNewBought(e.target.checked)} /> bought with BP
             </label>
+            <label className="inline" title="Covenants' table lists example crafts only; the others (marked *) come from City & Guild, Grogs and Transforming Mythic Europe">
+              <input type="checkbox" checked={!!cov.finances.exampleCraftsOnly} onChange={(e) => update((x) => void (x.finances.exampleCraftsOnly = e.target.checked || undefined))} /> only the book&apos;s examples
+            </label>
             <button className="small" onClick={addEveryCraft} title="Carpenters first (Buildings and Consumables), then each craft where it saves most, then swaps while that saves more, while the Build Points last (Covenants ch.5)">
               + Cost-saving craftsmen
             </button>
@@ -170,7 +175,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
       >
         {craftsmen.length === 0 && <div className="small muted">None listed.</div>}
         {craftsmen.map((s) => (
-          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} fit={(x) => fitCovenfolk(x, dc.members, dc.labs)} guild={guildCtx} />
+          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} fit={(x) => fitCovenfolk(x, dc.members, dc.labs)} guild={guildCtx} examplesOnly={cov.finances.exampleCraftsOnly} />
         ))}
         <table className="compact" style={{ marginTop: 8 }}>
           <thead>
@@ -201,6 +206,11 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
           category&apos;s limit (a fifth of what the labs cost, which is often small). Bookbinders and illuminators save nothing but let the covenant make fine books (they and scribes add 1 £ of
           Writing Materials each; at Profession or Craft 6 each is skilled, +1 Quality). A higher score saves more for the same mouths to feed. Craftsmen work three seasons a year (City &amp;
           Guild); under the guild rules each holds a rank and earns Labor Points for the workshop.
+          <br />
+          Covenants lists example crafts for each category, not every one. Crafts marked * are ones the other books name: tailors, tanners, dyers, saddlers, farriers and cartwrights
+          (Consumables), roofers and glaziers (Buildings), potters and pewterers (Laboratories), bakers, butchers and millers (Provisions), shield makers. Food crafts can save Provisions past the
+          half that laborers can, so laborers and food crafts work side by side; Transforming Mythic Europe reckons a baker saves at least four pounds a year, as a common craftsman with Craft 6 does. Tick &quot;only the book&apos;s examples&quot;
+          to keep to Covenants&apos; own list.
         </HowItWorks>
       </Card>
 
@@ -530,7 +540,7 @@ function PersonRow({ s, update, data, labs }: { s: Specialist; update: CovTabPro
   );
 }
 
-function CraftRow({ s, update, line: l, optimal, fit, guild }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number; fit: (c: Covenant) => void; guild?: 'enforced' | 'shown' }) {
+function CraftRow({ s, update, line: l, optimal, fit, guild, examplesOnly }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number; fit: (c: Covenant) => void; guild?: 'enforced' | 'shown'; examplesOnly?: boolean }) {
   const set = useSet(update, s.uid);
   const craft = craftOf(s);
   const rare = s.rare ?? craft?.rare ?? false;
@@ -548,11 +558,12 @@ function CraftRow({ s, update, line: l, optimal, fit, guild }: { s: Specialist; 
         <option value="">— craft —</option>
         {CATEGORIES.map((cat) => (
           <optgroup key={cat} label={cat}>
-            {CRAFTS.filter((c) => c.categories[0] === cat).map((c) => (
-              <option key={c.id} value={c.id}>
+            {CRAFTS.filter((c) => c.categories[0] === cat && (!examplesOnly || c.example || c.id === craft?.id)).map((c) => (
+              <option key={c.id} value={c.id} title={c.source}>
                 {c.name}
                 {c.categories.length > 1 ? ` (${c.categories.join(' + ')})` : ''}
                 {c.rare ? ' — rare' : ''}
+                {c.example ? '' : ' *'}
               </option>
             ))}
           </optgroup>
@@ -627,8 +638,9 @@ function GuildLine({ s, set, enforced }: { s: Specialist; set: (fn: (x: Speciali
   const lp = laborPointsPerSeason(s);
   const w = workSeasons(s);
   const ws = s.workshop ?? { innovation: 0, rawMaterials: 0, laborPoints: 0 };
-  const nextInnov = INNOVATION_STEP[ws.innovation];
-  const nextRaw = RAW_MATERIALS_STEP[ws.rawMaterials];
+  const nextInnov = nextImprovementCost('innovation', ws.innovation);
+  const nextRaw = nextImprovementCost('rawMaterials', ws.rawMaterials);
+  const keep = craftsmanUpkeep(s);
   const spend = (k: 'innovation' | 'rawMaterials', cost: number) =>
     set((x) => {
       const y = (x.workshop ??= { innovation: 0, rawMaterials: 0, laborPoints: 0 });
@@ -653,9 +665,9 @@ function GuildLine({ s, set, enforced }: { s: Specialist; set: (fn: (x: Speciali
       )}
       {s.guildRank && <span className="muted" title={CRAFT_GUILD_RANKS[s.guildRank].note}>{CRAFT_GUILD_RANKS[s.guildRank].note}</span>}
       {short.length > 0 && <span className={enforced ? 'bad-text' : 'warn-text'}>needs {short.join(', ')}</span>}
-      <span title={`(Dexterity + Craft) × ${s.wealth === 'poor' ? 2 : s.wealth === 'wealthy' ? 6 : 3} a season worked; ${LABOR_UPKEEP} a year keeps the workshop as it is`}>
-        Labor Points: {lp} a season × {w.work} = {lp * w.work} a year ({lp * w.work - LABOR_UPKEEP >= 0 ? '+' : ''}
-        {lp * w.work - LABOR_UPKEEP} after upkeep); {ws.laborPoints} banked
+      <span title={`(Dexterity + Craft) × ${s.wealth === 'poor' ? 2 : s.wealth === 'wealthy' ? 6 : 3} a season worked; ${keep} a year keeps the workshop as it is (36, and 5 for each point of Raw Materials)`}>
+        Labor Points: {lp} a season × {w.work} = {lp * w.work} a year ({lp * w.work - keep >= 0 ? '+' : ''}
+        {lp * w.work - keep} after upkeep); {ws.laborPoints} banked
       </span>
       {nextInnov !== undefined && (
         <button className="small" disabled={ws.laborPoints < nextInnov} title="A season to install; Innovation stays with the workshop" onClick={() => spend('innovation', nextInnov)}>
@@ -672,7 +684,7 @@ function GuildLine({ s, set, enforced }: { s: Specialist; set: (fn: (x: Speciali
 }
 
 /** Make a specialist, teacher or craftsman within the starting limits. */
-function QuickAdd({ update, data }: { update: CovTabProps['update']; data: CovTabProps['data'] }) {
+function QuickAdd({ update, data, examplesOnly }: { update: CovTabProps['update']; data: CovTabProps['data']; examplesOnly?: boolean }) {
   const [role, setRole] = useState<Specialist['role']>('craftsman');
   const [age, setAge] = useState(36);
   const [craft, setCraft] = useState('carpenter');
@@ -734,10 +746,11 @@ function QuickAdd({ update, data }: { update: CovTabProps['update']; data: CovTa
         {role === 'craftsman' ? (
           <Field label="Craft">
             <select value={craft} onChange={(e) => setCraft(e.target.value)}>
-              {CRAFTS.map((c) => (
-                <option key={c.id} value={c.id}>
+              {CRAFTS.filter((c) => !examplesOnly || c.example || !c.categories.length || c.id === craft).map((c) => (
+                <option key={c.id} value={c.id} title={c.source}>
                   {c.name} — {c.categories.length ? c.categories.join(' + ') : 'books'}
                   {c.rare ? ' (rare)' : ''}
+                  {c.example || !c.categories.length ? '' : ' *'}
                 </option>
               ))}
             </select>

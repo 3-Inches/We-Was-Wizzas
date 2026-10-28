@@ -15,6 +15,7 @@ const KINDS: { id: StandingActivity['kind']; label: string }[] = [
   { id: 'work', label: 'Work in the workshop' },
   { id: 'taught', label: 'Taught by a covenant teacher' },
   { id: 'worship', label: 'Worship (a church’s Dominion)' },
+  { id: 'write', label: 'Write or copy a book' },
   { id: 'none', label: 'Nothing' },
 ];
 
@@ -23,10 +24,11 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
   const resolved = resolveStanding(c, d, year);
   const needsTarget = s.kind === 'exposure' || s.kind === 'practice' || s.kind === 'vis' || s.kind === 'taught';
   const open = (c.projects ?? []).filter((p) => !p.done);
+  const writing = (c.writing ?? []).filter((p) => !p.done);
   return (
     <span className="row tight" style={{ flexWrap: 'wrap' }}>
       <select value={s.kind} onChange={(e) => onChange({ ...s, kind: e.target.value as StandingActivity['kind'] })} aria-label="Standing activity">
-        {KINDS.filter((k) => (k.id !== 'work' || (c.workshop && !extra)) && (k.id !== 'lab' || (d.isMagus && !extra)) && (k.id !== 'vis' || d.isMagus) && (k.id !== 'taught' || teachers.length > 0)).map((k) => (
+        {KINDS.filter((k) => (k.id !== 'work' || (c.workshop && !extra)) && (k.id !== 'lab' || (d.isMagus && !extra)) && (k.id !== 'vis' || d.isMagus) && (k.id !== 'taught' || teachers.length > 0) && (k.id !== 'write' || writing.length > 0 || s.kind === 'write')).map((k) => (
           <option key={k.id} value={k.id}>
             {k.label}
           </option>
@@ -71,6 +73,16 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
           {open.map((p) => (
             <option key={p.uid} value={p.uid}>
               {p.name}
+            </option>
+          ))}
+        </select>
+      )}
+      {s.kind === 'write' && (
+        <select value={s.projectUid ?? ''} onChange={(e) => onChange({ ...s, projectUid: e.target.value || undefined })} aria-label="Writing project">
+          <option value="">— the first unfinished —</option>
+          {writing.map((p) => (
+            <option key={p.uid} value={p.uid}>
+              {p.title} ({p.points}/{p.needed})
             </option>
           ))}
         </select>

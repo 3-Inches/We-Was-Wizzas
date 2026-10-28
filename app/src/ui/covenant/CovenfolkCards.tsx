@@ -3,15 +3,18 @@
 // covenfolk are organized and who counts among its inhabitants, the Guild Hook, and craft magic
 // cast in place of craftsmen (Covenants ch.2, ch.4, ch.5; DE; Grogs; City & Guild).
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ART_NAMES, type Form, type Technique } from '../../data';
-import { deriveCharacter } from '../../engine/character/derive';
+import { abilityTotal, deriveCharacter } from '../../engine/character/derive';
 import {
   CRAFT_GUIDELINES, CRAFT_TASKS, FEAST_CYCLE, ORGANIZATIONS, SOLDIER_KINDS, SOLDIER_KIND_BY_ID, SPAN_CASTS, SPAN_LABEL, YEARLY_EVENTS, craftMagicFigures, guildDemands, guildHookOf,
   newSoldierGroup, soldierBoonsWithoutGroups, soldierKindOf, weaponArmorEstimate, yearlyEventPounds,
 } from '../../engine/covenfolk';
 import { DURATIONS, RANGES, TARGETS, addMagnitudes, findOpt } from '../../engine/spellDesign';
-import type { CraftMagicUse, SoldierGroup } from '../../engine/types';
+import {
+  DISCIPLINE, GROUP_TRAINING, WATCHES, WATCH_SHARES, applyDiscipline, assignWatches, disciplineLoyalty, dutyAt, retire, rollDoubleDuty, rollGroupTraining, rollStayAwake, stayAwakeEase, type Patrol,
+} from '../../engine/turb';
+import type { Character, CraftMagicUse, SoldierGroup } from '../../engine/types';
 import { useStore } from '../../store/store';
 import { uid } from '../../util/id';
 import { Card, Field, HowItWorks, Stepper } from '../kit';
@@ -385,6 +388,242 @@ export function CraftMagicCard({ cov, update, dc, data }: CovTabProps) {
           </div>
         );
       })}
+    </Card>
+  );
+}
+
+// ------------------------------------------------------------------------------ The turb's day
+
+export function TurbCard({ cov, update, dc, data }: CovTabProps) {
+  const saga = useStore((s) => s.sagas[cov.sagaId]);
+  const updateCharacter = useStore((s) => s.updateCharacter);
+  const folk = dc.members.filter((m) => m.type !== 'magus' && !m.creature);
+  const active = folk.filter((m) => !m.retired);
+  const grogs = active.filter((m) => m.type === 'grog');
+  const [at, setAt] = useState(0);
+  const [msg, setMsg] = useState<string[]>([]);
+  const [who, setWho] = useState('');
+  const [what, setWhat] = useState(DISCIPLINE[0].id);
+  const [byMagus, setByMagus] = useState(false);
+  const [unjust, setUnjust] = useState(false);
+  const [note, setNote] = useState('');
+  const [leader, setLeader] = useState('');
+  const [time, setTime] = useState(GROUP_TRAINING[0].ease);
+  const turb = cov.turb ?? { watches: {} };
+  const double = !!turb.double;
+  const year = saga?.currentYear ?? 1220;
+  const scores = useMemo(
+    () =>
+      new Map(
+        folk.map((m) => {
+          const d = deriveCharacter(m, data, saga?.houseRules ?? {});
+          return [m.id, { sta: d.characteristics.Sta.value, com: d.characteristics.Com.value, conc: abilityTotal(d, 'concentration'), lead: abilityTotal(d, 'leadership') }];
+        }),
+      ),
+    [dc.members, data, saga?.houseRules],
+  );
+  const score = (m: Character) => scores.get(m.id) ?? { sta: 0, com: 0, conc: 0, lead: 0 };
+  const setTurb = (fn: (t: NonNullable<typeof cov.turb>) => void) => update((x) => void fn((x.turb ??= { watches: {} })));
+  const watchOf = (id: string) => turb.watches[id];
+  const soldiers = dc.finances.soldiers.people + cov.covenfolk.grogs;
+  const shares = WATCH_SHARES[double ? 'double' : 'single'];
+  const w = WATCHES[at];
+  const target = folk.find((m) => m.id === who) ?? folk[0];
+  const disc = DISCIPLINE.find((x) => x.id === what)!;
+  const lead = active.find((m) => m.id === leader) ?? [...active].sort((a, b) => score(b).lead - score(a).lead)[0];
+  const ls = lead && score(lead);
+  const say = (lines: string[]) => setMsg(lines);
+  const awake = (m: Character) => {
+    const s = score(m);
+    say([`${m.name}: ${rollStayAwake(s.sta, s.conc, double, w.night).text}`]);
+  };
+  const dusk = () => {
+    const n = turb.doubleDuties ?? 0;
+    const out = grogs.map((m) => {
+      const r = rollDoubleDuty(score(m).sta, n);
+      if (!r.ok) updateCharacter(m.id, (c) => void (c.longTermFatigueLost += 1));
+      return `${m.name}: ${r.text}`;
+    });
+    setTurb((t) => void (t.doubleDuties = n + 2));
+    say(out.length ? out : ['No grog characters to roll for.']);
+  };
+  const apply = () => {
+    if (!target) return;
+    let text = '';
+    updateCharacter(target.id, (c) => void (text = applyDiscipline(c, what, year, note.trim() || undefined)));
+    const lp = disciplineLoyalty(what, byMagus, unjust, dc.loyalty.score);
+    if (lp) update((x) => void ((x.loyalty.actionPoints += lp), x.log.push({ uid: uid(), year, text: `${target.name}: ${disc.label}, ordered by a magus${unjust ? ' (unjustly)' : ''}: ${lp} Loyalty Points.` })));
+    say([`${target.name}: ${text || disc.label}${lp ? ` ${lp} Loyalty Points (Covenants ch.4).` : ''}`]);
+    setNote('');
+  };
+  return (
+    <Card title="The turb's day" tour="turb">
+      <RulesNote book="Grogs" line={1020} endLine={1230}>
+        The day is eight watches of three hours. Each patrol (day and night) has four watches; on single duty a quarter of the soldiers are ready and three-eighths can turn out quickly, on double
+        duty (when trouble is expected) half are ready. Staying awake on sentry is Stamina + Concentration + a simple die against 3, or 6 on double duty, +3 at night; double duty also costs a
+        Fatigue roll at dusk. Rewards and punishments come from the turb captain, steward or chamberlain; one a magus orders costs Loyalty Points (Covenants ch.4).
+      </RulesNote>
+      <b className="small">Watches</b>
+      <div className="row small">
+        <Field label="Time of day">
+          <select value={at} onChange={(e) => setAt(Number(e.target.value))}>
+            {WATCHES.map((x, i) => (
+              <option key={x.id} value={i}>
+                {x.label} ({x.starts})
+              </option>
+            ))}
+          </select>
+        </Field>
+        <label className="inline">
+          <input type="checkbox" checked={double} onChange={(e) => setTurb((t) => void ((t.double = e.target.checked || undefined), (t.doubleDuties = e.target.checked ? t.doubleDuties ?? 0 : undefined)))} /> double duty
+        </label>
+        {grogs.length > 0 && (
+          <button className="small" onClick={() => setTurb((t) => void (t.watches = assignWatches(grogs.map((g) => g.id))))} title="Shares the grog characters evenly between the day and night patrols and their four watches">
+            Share out the watches
+          </button>
+        )}
+        {double && (
+          <>
+            <Field label="Double-duty watches since a normal one">
+              <Stepper value={turb.doubleDuties ?? 0} min={0} width={34} onChange={(v) => setTurb((t) => void (t.doubleDuties = v))} />
+            </Field>
+            <button className="small" onClick={dusk} title="Stamina + a simple die against 3 + the double-duty watches stood; a failure costs a Long-Term Fatigue level, marked on the sheet">
+              Dusk Fatigue rolls
+            </button>
+          </>
+        )}
+      </div>
+      {soldiers > 0 && (
+        <p className="small muted" style={{ margin: '4px 0' }}>
+          Of about {soldiers} soldiers: {Math.round(soldiers * shares.ready)} on duty, {Math.round(soldiers * shares.mobile)} who can turn out quickly, {Math.round(soldiers * shares.asleep)} asleep.
+        </p>
+      )}
+      {grogs.length === 0 && <div className="small muted">No grog characters are members. Their watches show here once they are.</div>}
+      {grogs.map((m) => {
+        const wt = watchOf(m.id);
+        const duty = wt && dutyAt(wt.patrol, wt.watch, at, double);
+        return (
+          <div key={m.id} className="list-row" style={{ flexWrap: 'wrap' }}>
+            <span style={{ minWidth: 110 }}>{m.name}</span>
+            <select value={wt?.patrol ?? ''} onChange={(e) => setTurb((t) => void (e.target.value ? (t.watches[m.id] = { patrol: e.target.value as Patrol, watch: wt?.watch ?? 1 }) : delete t.watches[m.id]))}>
+              <option value="">no watch</option>
+              <option value="day">day patrol</option>
+              <option value="night">night patrol</option>
+            </select>
+            {wt && (
+              <select value={wt.watch} onChange={(e) => setTurb((t) => void (t.watches[m.id] = { ...wt, watch: Number(e.target.value) }))}>
+                {[1, 2, 3, 4].map((n) => (
+                  <option key={n} value={n}>
+                    watch {n}
+                  </option>
+                ))}
+              </select>
+            )}
+            {duty && <span className={`badge ${duty === 'duty' ? 'good' : duty === 'free' ? '' : 'info'}`}>{duty === 'duty' ? 'on duty' : duty === 'off' ? 'off duty' : 'asleep'}</span>}
+            {(!wt || duty === 'duty') && (
+              <button className="small ghost" onClick={() => awake(m)} title={`Stamina + Concentration + a simple die against ${stayAwakeEase(double, w.night)}`}>
+                Awake?
+              </button>
+            )}
+          </div>
+        );
+      })}
+      <b className="small" style={{ marginTop: 8 }}>
+        Drill
+      </b>
+      <div className="row small">
+        <Field label="Leader">
+          <select value={lead?.id ?? ''} onChange={(e) => setLeader(e.target.value)}>
+            {active.map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.name}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Training time">
+          <select value={time} onChange={(e) => setTime(Number(e.target.value))}>
+            {GROUP_TRAINING.map((g) => (
+              <option key={g.ease} value={g.ease}>
+                {g.label} (Ease {g.ease})
+              </option>
+            ))}
+          </select>
+        </Field>
+        {ls && (
+          <button className="small" onClick={() => say([`${lead.name}: ${rollGroupTraining(ls.com, ls.lead, time).text}`])} title="A season together makes any group a trained group; a good leader can shorten it (Lords of Men ch.9)">
+            Roll to shorten the training
+          </button>
+        )}
+        {ls && <span className="muted">{ls.lead > 0 ? `Leads a trained group of up to ${ls.lead} (Leadership).` : 'Without Leadership, they can lead no trained group.'}</span>}
+      </div>
+      <b className="small" style={{ marginTop: 8 }}>
+        Rewards and punishments
+      </b>
+      {folk.length === 0 ? (
+        <div className="small muted">No grog or companion characters are members.</div>
+      ) : (
+        <>
+          <div className="row small">
+            <select value={target?.id ?? ''} onChange={(e) => setWho(e.target.value)}>
+              {folk.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name}
+                  {m.retired ? ` (${m.retired.how})` : ''}
+                </option>
+              ))}
+            </select>
+            <select value={what} onChange={(e) => setWhat(e.target.value)} style={{ maxWidth: 260 }}>
+              {(['reward', 'punishment'] as const).map((k) => (
+                <optgroup key={k} label={k === 'reward' ? 'Rewards' : 'Punishments'}>
+                  {DISCIPLINE.filter((x) => x.kind === k).map((x) => (
+                    <option key={x.id} value={x.id}>
+                      {x.label}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+            <input placeholder="For what (optional)" value={note} onChange={(e) => setNote(e.target.value)} style={{ width: 160 }} />
+            {disc.kind === 'punishment' && (
+              <>
+                <label className="inline" title="Punishment by the turb captain, steward or chamberlain costs no Loyalty if fair">
+                  <input type="checkbox" checked={byMagus} onChange={(e) => setByMagus(e.target.checked)} /> ordered by a magus
+                </label>
+                {byMagus && (
+                  <label className="inline" title="While Prevailing Loyalty is positive, only unjust punishment costs Loyalty Points">
+                    <input type="checkbox" checked={unjust} onChange={(e) => setUnjust(e.target.checked)} /> unjust
+                  </label>
+                )}
+              </>
+            )}
+            <button className="small" onClick={apply}>
+              Apply
+            </button>
+          </div>
+          <div className="small muted">{disc.hint}</div>
+          <div className="row small" style={{ marginTop: 4 }}>
+            {target && !target.retired && (
+              <button className="small ghost" onClick={() => updateCharacter(target.id, (c) => retire(c, year))} title="Still a member for the covenant's finances; lighter duties or none">
+                Retire {target.name}
+              </button>
+            )}
+            {target?.retired && (
+              <button className="small ghost" onClick={() => updateCharacter(target.id, (c) => void delete c.retired)}>
+                Back into service
+              </button>
+            )}
+            <span className="muted">
+              {cov.finances.pension ? 'The covenant pays a pension: usually half to three-quarters of former pay, passed on to a widow.' : 'No pension: retired covenfolk get food and a bed, and may pay rent.'}
+            </span>
+          </div>
+        </>
+      )}
+      {msg.map((l, i) => (
+        <div key={i} className="small" style={{ marginTop: 4 }}>
+          {l}
+        </div>
+      ))}
     </Card>
   );
 }

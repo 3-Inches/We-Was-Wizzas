@@ -5,7 +5,7 @@ import type { Art, GameData } from '../data';
 import { ARTS, ART_NAMES } from '../data/constants';
 import type { BudgetKind, Character, Covenant, EnchantedItem, LibraryBook, Specialist, VisSource } from './types';
 import {
-  CATEGORY_LIMIT, CRAFTS, abilityCapAtAge, canBeUnknown, computeIncome, computePools, countOf, craftOf, craftsmanSaving, findCraft, mechanicOf, miracleMultiplierOf,
+  CATEGORY_LIMIT, abilityCapAtAge, canBeUnknown, computeIncome, computePools, countOf, craftOf, craftsFor, craftsmanSaving, findCraft, mechanicOf, miracleMultiplierOf,
   receivedAfterTithe, specChar, specHighest, specialistCost, type BPPool, type CostCategory, type CovResource, type CraftDef, type IncomeLine, type IncomeResult,
 } from './covenantRules';
 import { deriveLab, type DerivedLab } from './lab';
@@ -278,6 +278,10 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
     if ((b.kind === 'labText' || b.kind === 'castingTablet') && itemLevel > pl.maxItemLevel) iss = `Level ${itemLevel} exceeds the ${pl.level} power level maximum of ${pl.maxItemLevel}.`;
     if (b.rolls) {
       lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)}) — the covenant's own records`, cost: 0, fullCost: 0 });
+      continue;
+    }
+    if (b.inPlay) {
+      lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)}) — made or bought in play`, cost: 0, fullCost: 0, ref: b.uid });
       continue;
     }
     if (b.boonUid && exceptional.has(b.boonUid)) {
@@ -671,7 +675,7 @@ const BP_WORTH = 0.05;
  * (Covenants ch.5).
  */
 export function addCostSavingCraftsmen(x: Covenant, members: Character[], labs: DerivedLab[], score: number | 'best', bp: number, maxEach = bp): string[] {
-  const crafts = CRAFTS.filter((k) => k.categories.length);
+  const crafts = craftsFor(x);
   const bought = bp !== Infinity;
   const worth = bought ? BP_WORTH : 0;
   const scoresFor = (c: CraftDef) => (score === 'best' ? (c.rare ? [6, 9] : [4, 6, 8]) : [score]);

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
+import { ITEM_CHECK_MODS, ITEM_QUALITY_MOD, LOCK_PICK_EASE, itemDamageLevels, itemStressCheck, repairNeeds, type ItemQuality } from '../../engine/workshop';
 import { Card, Field, Stepper, signed } from '../kit';
 import { RulesNote } from '../RulesNote';
 
@@ -149,6 +150,7 @@ export default function DicePage() {
           </tbody>
         </table>
       </Card>
+      <ItemCheck />
       <Card title="Ease Factors (DE)">
         <table className="compact">
           <tbody>
@@ -172,5 +174,83 @@ export default function DicePage() {
         </table>
       </Card>
     </div>
+  );
+}
+
+/** Damaged goods (City & Guild ch.4): an item's damage levels and the stress check when a botch or misuse puts it at risk. */
+function ItemCheck() {
+  const [quality, setQuality] = useState<ItemQuality>('standard');
+  const [size, setSize] = useState(-1);
+  const [lock, setLock] = useState(false);
+  const [ability, setAbility] = useState(0);
+  const [magnitudes, setMagnitudes] = useState(0);
+  const [mods, setMods] = useState<string[]>([]);
+  const [left, setLeft] = useState<number | undefined>();
+  const [result, setResult] = useState('');
+  const levels = itemDamageLevels(quality, size, lock);
+  const total = ability + ITEM_QUALITY_MOD[quality] + magnitudes + ITEM_CHECK_MODS.filter((m) => mods.includes(m.id)).reduce((t, m) => t + m.value, 0);
+  const now = Math.min(left ?? levels, levels);
+  const roll = () => {
+    const r = itemStressCheck(total);
+    const after = Math.max(0, now - r.lost);
+    setLeft(after);
+    setResult(`${r.text}${r.lost ? ` ${after ? `${after} of ${levels} damage levels left.` : 'It is broken.'}` : ''}`);
+  };
+  return (
+    <Card title="Item stress check (City & Guild)">
+      <RulesNote book="CG" line={2140} endLine={2225}>
+        When a botch or an unnatural use puts a valued item at risk: a stress die + modifiers against 15. A failure costs a damage level, a botch one more per botch; it works as normal until the
+        last is gone. Superior and excellent items keep their bonuses while damaged; a craftsman&apos;s wondrous item stops working at the first damage.
+      </RulesNote>
+      <div className="row small">
+        <Field label="Quality">
+          <select value={quality} onChange={(e) => (setQuality(e.target.value as ItemQuality), setLeft(undefined))}>
+            {(Object.keys(ITEM_QUALITY_MOD) as ItemQuality[]).map((q) => (
+              <option key={q} value={q}>
+                {q === 'supernatural' ? 'wondrous or magical' : q} ({signed(ITEM_QUALITY_MOD[q])})
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Size" hint="Most items −1, great weapons 0, a house +5, a ship up to +8, a castle +10">
+          <Stepper value={size} min={-5} max={12} width={34} onChange={(v) => (setSize(v), setLeft(undefined))} />
+        </Field>
+        <label className="inline" title="Locks have twice the damage levels of other items their Size">
+          <input type="checkbox" checked={lock} onChange={(e) => (setLock(e.target.checked), setLeft(undefined))} /> a lock
+        </label>
+        <Field label="Ability of the user" hint="Trained to use it: + the Ability score">
+          <Stepper value={ability} min={0} max={15} width={30} onChange={setAbility} />
+        </Field>
+        <Field label="Enchantment magnitudes" hint="A Hermetic item: + the magnitudes of its instilled effects">
+          <Stepper value={magnitudes} min={0} max={30} width={30} onChange={setMagnitudes} />
+        </Field>
+      </div>
+      <div className="row small" style={{ marginTop: 4 }}>
+        {ITEM_CHECK_MODS.map((m) => (
+          <label key={m.id} className="inline">
+            <input type="checkbox" checked={mods.includes(m.id)} onChange={(e) => setMods((xs) => (e.target.checked ? [...xs, m.id] : xs.filter((x) => x !== m.id)))} /> {m.label} ({signed(m.value)})
+          </label>
+        ))}
+      </div>
+      <div className="row small" style={{ marginTop: 6 }}>
+        <span className="badge">
+          {now} of {levels} damage levels
+        </span>
+        <span>Modifiers {signed(total)}</span>
+        <button className="small" disabled={now === 0} onClick={roll}>
+          Roll the check
+        </button>
+        {left !== undefined && (
+          <button className="small ghost" onClick={() => (setLeft(undefined), setResult(''))}>
+            Repaired
+          </button>
+        )}
+      </div>
+      {result && <div className="small" style={{ marginTop: 4 }}>{result}</div>}
+      <p className="small muted" style={{ margin: '4px 0 0' }}>
+        Repair: {repairNeeds(quality).text}
+        {lock && LOCK_PICK_EASE[quality] !== undefined ? ` Picking it: Dexterity + Legerdemain + a stress die against ${LOCK_PICK_EASE[quality]}, with tools.` : ''}
+      </p>
+    </Card>
   );
 }
