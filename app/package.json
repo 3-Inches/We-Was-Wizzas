@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc -b --noEmit",
-    "extract": "cd .. && python3 tools/extract/run_all.py"
+    "extract": "cd .. && python3 tools/extract/run_all.py",
+    "qa:saga": "vitest run --config scripts/qa/vitest.config.ts",
+    "qa:sweep": "node scripts/qa/sweep.cjs"
   },
   "dependencies": {
     "dompurify": "^3.4.16",

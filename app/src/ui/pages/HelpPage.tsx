@@ -203,7 +203,8 @@ export default function HelpPage() {
         <ul className="small">
           <li>Choose the covenant&apos;s season, aura and power level (Build Points).</li>
           <li>
-            Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1, Weak Aura lowers it, and the Overview&apos;s Aura card shows it as it stands and keeps its changes. Click a Hook or Boon to read it. Resources Boons and Hooks (Wealth, Secondary Income, Poverty,
+            Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1, Weak Aura lowers it, and the Overview&apos;s Aura card shows it as it stands and keeps its changes. There
+            a Magic aura can be aligned (with an Art it counts double for, or Healing, Luck…), and a Dominion follow its congregation&apos;s years of worship. Click a Hook or Boon to read it. Resources Boons and Hooks (Wealth, Secondary Income, Poverty,
             Indebted…) take an income source; Hidden, Flawed and Illusory Resources take the resources they pay for; Exceptional Book adds its summa free.
           </li>
           <li>Buy the library, lab texts, vis sources, enchanted items and specialists; the toolkit prices everything and enforces the creation limits.</li>
@@ -279,7 +280,8 @@ export default function HelpPage() {
           <li>
             <b>Lab &amp; Items:</b> the lab, the enchanted items made, the Longevity Ritual and the familiar. Everything that takes a season is a <b>Lab project</b>, planned on
             its card and worked as a season&apos;s activity: inventing a spell (or learning one from a Laboratory Text), preparing and attuning a talisman, instilling effects,
-            charged items, extracting vis, taming, a Longevity Ritual (for the magus or someone else), binding a familiar, strengthening and empowering the bond. Each has its
+            charged items, extracting vis, taming, a Longevity Ritual (for the magus or someone else), binding a familiar, strengthening and empowering the bond, and improving the
+            lab itself: its Refinement, a Virtue installed, a Flaw put right. Spells of the same Technique and Form can be invented alongside each other. Each has its
             Lab Total with all the lab gives, its vis, a box to experiment, and the lab&apos;s own rolls for Safety and Warping; what the lab&apos;s Flaws rule out is shown in
             red and cannot be worked. A familiar&apos;s cords are applied where they belong (golden to botch dice, bronze to Soak, recovery and aging).
           </li>

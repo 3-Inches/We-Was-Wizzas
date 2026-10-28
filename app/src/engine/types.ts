@@ -153,6 +153,18 @@ export interface ActiveEffect {
  * paid (given back on undo) and what it did to each target (taken back).
  */
 /** A Magic aura from year to year (Realms of Power: Magic, Aura Variation Rules), and what changes it for a while. */
+/**
+ * A Magic aura's one special aspect (Realms of Power: Magic, Aligned Auras): an Art, which the aura
+ * counts double for; Healing, half the aura on Recovery Totals; Luck; Distracting; an emotion it
+ * strengthens in the unGifted; or something else the troupe describes.
+ */
+export interface AuraAlignment {
+  kind: 'art' | 'healing' | 'luck' | 'distracting' | 'emotion' | 'other';
+  art?: Art;
+  /** emotion: the Personality Trait it brings out; other: what it is */
+  text?: string;
+}
+
 export interface AuraTrack {
   /** the base aura score its tethers give, which the aura drifts back toward; the aura when first tracked, unless set */
   base?: number;
@@ -172,6 +184,12 @@ export interface AuraTrack {
   spontaneous?: { year: number; bonus: number };
   /** rituals of three or more pawns cast in the aura this year (wards renewed and the like) */
   visRituals?: { year: number; n: number };
+  /**
+   * a Dominion kept by a congregation (RoP: The Divine): the year regular worship began and the year
+   * it stopped; a large congregation and a significant church; points more from relics of over five
+   * Faith Points
+   */
+  dominion?: { since: number; until?: number; significant?: boolean; relics?: number };
 }
 
 export interface CastRecord {
@@ -268,7 +286,7 @@ export type LabRoutine = 'early' | 'nocturnal' | 'addled' | 'overtime' | 'double
 /** A laboratory project that runs over one or more seasons (DE, The Laboratory). */
 export interface LabProject {
   uid: string;
-  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'longevity' | 'bind' | 'strengthen' | 'empower' | 'other';
+  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'longevity' | 'bind' | 'strengthen' | 'empower' | 'refine' | 'install' | 'repair' | 'other';
   name: string;
   /** invent: the spell; instill: the effect's Technique, Form and level; tame: the creature's Form and Might */
   technique?: Technique;
@@ -307,6 +325,12 @@ export interface LabProject {
   /** longevity: the character it is for (the magus, if unset), and extra vis for a stronger ritual */
   subjectId?: string;
   extraVis?: number;
+  /** invent: other spells of the same Technique and Form worked in the same seasons (DE, Multiple Laboratory Activities) */
+  alongside?: string[];
+  /** install: the lab Virtue to build into the lab (Covenants, Laboratory Virtues and Flaws) */
+  labVirtue?: { defId: string; note?: string };
+  /** refine, install: a Virtue taken out in the same season's work; refine, repair: a Flaw put right (the lab entry's uid) */
+  removeUid?: string;
   /** bind, strengthen: the cords bought with the season's Lab Total */
   cords?: { golden: number; silver: number; bronze: number };
   /** what the Extraordinary Results Chart and the lab's own Safety and Warping did, season by season */
@@ -1089,6 +1113,8 @@ export interface Covenant {
   auraLog?: { uid: string; year: number; season?: Season; delta: number; text: string }[];
   /** the aura from year to year (Realms of Power: Magic, Aura Variation) */
   auraTrack?: AuraTrack;
+  /** what a Magic aura is aligned with, if anything (Realms of Power: Magic, Aligned Auras) */
+  auraAlignment?: AuraAlignment;
   notes: string;
   createdAt: string;
   updatedAt: string;

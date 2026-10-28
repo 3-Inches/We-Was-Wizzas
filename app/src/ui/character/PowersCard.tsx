@@ -29,6 +29,9 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
   const mp = d.magicChar ? masteryPools(c.powers, d.powerBudgets, d.magicChar.mastery, masteryXp) : null;
   // only Reduced Power makes a power cost more or act slower
   const reduced = !!c.creature?.magicCharacter?.qualities.some((q) => q.id === 'reduced-power-inferiority');
+  // a creature whose Might is of the Form the covenant's aura is aligned with spends a point less on a Power there (RoP: Magic)
+  const al = ed.ctx.aura.realm === 'Magic' ? ed.ctx.aura.aligned : undefined;
+  const alignedHere = !!al && !!d.might?.form && (d.might.form === al || d.might.form === ART_NAMES[al]);
   const edit = (uidOf: string, fn: (p: CharPower) => void) => update((x) => void fn((x.powers ?? []).find((p) => p.uid === uidOf)!));
   const setMastery = (uidOf: string, key: 'cost' | 'init' | 'level', v: number) =>
     edit(uidOf, (x) => {
@@ -120,7 +123,12 @@ export default function PowersCard({ ed }: { ed: CharEditor }) {
                       ))}
                     {stat('Mag.', st.magnitude)}
                     {kind !== 'birthright' && stat('Init', signed(st.init))}
-                    {kind !== 'birthright' && stat(mightBased || kind === 'holy' ? 'Might' : 'Fatigue', st.mightCost ?? st.fatigue)}
+                    {kind !== 'birthright' &&
+                      stat(
+                        mightBased || kind === 'holy' ? 'Might' : 'Fatigue',
+                        alignedHere && (st.mightCost ?? 0) > 0 ? `${st.mightCost} (${st.mightCost! - 1} at the covenant)` : (st.mightCost ?? st.fatigue),
+                        alignedHere && (st.mightCost ?? 0) > 0 ? `The covenant's aura is aligned with ${ART_NAMES[al!]}: a point of Might less there` : undefined,
+                      )}
                     {kind === 'ritual' &&
                       stat(
                         mightBased ? 'Might Score or Conf.' : 'Conf.',

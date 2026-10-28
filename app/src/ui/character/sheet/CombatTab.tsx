@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { auraRecovery } from '../../../engine/aura';
 import { RECOVERY, SCUFFLE_EFFECTS, allCombatLines, distributeBlows, groupCombat, woundFromDamage, type GroupMember } from '../../../engine/combat';
 import { deriveCharacter } from '../../../engine/character/derive';
 import { useSagaCharacters } from '../../../store/hooks';
@@ -28,6 +29,10 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
   const bronze = c?.familiar?.bronze ?? 0;
   // the lab's Health adds to the wound recovery rolls of those who live in it (Covenants)
   const labHealth = ctx.lab?.characteristics.Health ?? 0;
+  // a Healing aura helps, an Infernal one makes wounds fester (RoP: Magic; RoP: The Infernal)
+  const [atHome, setAtHome] = useState(true);
+  const auraRec = auraRecovery(ctx.aura).parts[0];
+  const auraHeal = atHome ? (auraRec?.value ?? 0) : 0;
   const [lineIdx, setLineIdx] = useState(0);
   // DE Combat Options: mounted (+Ride, up to 3, to Attack and Defense), exertion (a Fatigue level for
   // +Combat Ability to one attack or the round's defense), scuffling (−3 to attack with a real weapon, no weapon damage)
@@ -70,7 +75,7 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
   const sick = d.currentDiseasePenalty;
   const recover = (key: 'light' | 'medium' | 'heavy') => {
     const r = stressDie(1);
-    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + labHealth + sick + r.value;
+    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + labHealth + auraHeal + sick + r.value;
     const rec = RECOVERY[key];
     let text: string;
     if (total >= rec.improve) {
@@ -90,12 +95,12 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
         if (key === 'heavy') x.wounds.incapacitating += 1;
       });
     }
-    push(`Recovery (${key}, ${rec.interval}): Sta ${d.characteristics.Sta.value} + medic ${medic} + aid ${aid}${bronze ? ` + bronze cord ${bronze}` : ''}${labHealth ? ` ${labHealth > 0 ? '+' : '−'} lab Health ${Math.abs(labHealth)}` : ''}${sick ? ` − disease ${-sick}` : ''} + ${describeStress(r)} = ${total} vs ${rec.stable}/${rec.improve}: ${text}.`);
+    push(`Recovery (${key}, ${rec.interval}): Sta ${d.characteristics.Sta.value} + medic ${medic} + aid ${aid}${bronze ? ` + bronze cord ${bronze}` : ''}${labHealth ? ` ${labHealth > 0 ? '+' : '−'} lab Health ${Math.abs(labHealth)}` : ''}${auraHeal ? ` ${auraHeal > 0 ? '+' : '−'} ${auraRec!.label} ${Math.abs(auraHeal)}` : ''}${sick ? ` − disease ${-sick}` : ''} + ${describeStress(r)} = ${total} vs ${rec.stable}/${rec.improve}: ${text}.`);
   };
 
   const recoverIncap = () => {
     const r = stressDie(1);
-    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + labHealth + sick + r.value;
+    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + labHealth + auraHeal + sick + r.value;
     let text: string;
     if (total <= 0) {
       text = 'the character dies';
@@ -195,6 +200,12 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
             <Field label="Magical aid">
               <Stepper value={aid} min={0} width={36} onChange={setAid} />
             </Field>
+            {auraRec && (
+              <label className="inline small">
+                <input type="checkbox" checked={atHome} onChange={(e) => setAtHome(e.target.checked)} /> recovering at the covenant: {auraRec.label} ({auraRec.value > 0 ? '+' : ''}
+                {auraRec.value})
+              </label>
+            )}
           </div>
           <p className="small muted">Recovery Total = Stamina + medic's Ability + magical aid{bronze ? ` + bronze cord ${bronze}` : ''}{sick ? ` − the Disease Penalty ${-sick}` : ''} + stress die. Wound penalties do not apply (DE p.405).</p>
         </Card>

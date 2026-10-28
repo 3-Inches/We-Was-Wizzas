@@ -1,7 +1,8 @@
 // Laboratory projects that run season by season (DE, The Laboratory and Enchantments): inventing a
-// spell, preparing an item (a talisman a little at a time), attuning a talisman, instilling an effect,
-// extracting vis, and taming a creature (DE, Training Creatures). Each season of work gathers
-// (Lab Total − level) points until they reach the level.
+// spell (several of the same Technique and Form at once), preparing an item (a talisman a little at a
+// time), attuning a talisman, instilling an effect, extracting vis, taming a creature (DE, Training
+// Creatures), and improving the lab itself (Covenants). Each season of work gathers (Lab Total −
+// level) points until they reach the level.
 
 import { ART_NAMES, FORMS, TECHNIQUES, type Art, type GameData } from '../data';
 import type { DerivedCharacter } from './character/derive';
@@ -10,6 +11,7 @@ import { chargedItemCharges, cordPointsCost, familiarBindingLevel, familiarBindi
 import { experimentBotchDice, labSeasonHazards, rollExperiment } from './experiment';
 import { defaultRng, simpleDie, type Rng } from './dice';
 import { labContextOf } from './lab';
+import { planLabImprovement, workLabImprovement } from './labImprove';
 import { recordRoutines, routineClash, routineParts } from './labRoutines';
 import { labTotal, type LabActivity, type TotalResult } from './magic';
 import type { Character, Covenant, EnchantedItem, LabProject, VisStock } from './types';
@@ -27,11 +29,27 @@ export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: stri
   { id: 'bind', label: 'Bind a familiar', blurb: 'A season: a Lab Total of at least 25 + its Might + 5 × its Size, a pawn of vis of the binding Technique or Form per 5 points of the Lab Total, and the three cords bought with the Lab Total.', experiment: true, activity: 'Familiar' },
   { id: 'strengthen', label: 'Strengthen the familiar bond', blurb: 'A season with the binding Arts: stronger cords bought with the new Lab Total, for a pawn per 5 points of it less the pawns already spent on the binding.', experiment: true, activity: 'Familiar' },
   { id: 'empower', label: 'Empower the familiar bond', blurb: 'Invest a power in the bond as in an invested device: +5 for the binding Technique or Form, +10 for both; a pawn per 10 levels.', experiment: true, activity: 'Familiar' },
+  { id: 'refine', label: 'Raise the lab’s Refinement', blurb: 'A season: Refinement +1 with Magic Theory at least the new Refinement + 3 (and, as a rule of thumb, years working in the lab equal to its Refinement). An Intelligence + Magic Theory roll may gain Highly Organized or find a Hidden Defect; a Free or Minor Flaw can be put right in the same season.' },
+  { id: 'install', label: 'Install a lab Virtue', blurb: 'A season for a Minor Virtue, two for a Major, with Magic Theory at least the Refinement + 3 and free space in the lab (or a Flaw taken to balance it). Another Virtue can come out in the same work.' },
+  { id: 'repair', label: 'Put a lab Flaw right', blurb: 'A season for a Free or Minor Flaw, two for a Major, with free space for the occupied Size it adds. Some Flaws come of where the lab is, and cannot be.' },
   { id: 'other', label: 'Other lab work', blurb: 'Anything else: the season is recorded with its exposure experience.' },
 ];
 
+/** Lab improvements: the lab is the covenant's, so what a rise in its Upkeep costs comes from the treasury unless said otherwise. */
+export const LAB_IMPROVEMENTS: readonly LabProject['kind'][] = ['refine', 'install', 'repair'];
+
 export function newProject(kind: LabProject['kind']): LabProject {
-  return { uid: uid(), kind, name: PROJECT_KINDS.find((k) => k.id === kind)?.label ?? 'Lab work', progress: 0, seasons: 0, visFrom: 'purse' };
+  return { uid: uid(), kind, name: PROJECT_KINDS.find((k) => k.id === kind)?.label ?? 'Lab work', progress: 0, seasons: 0, visFrom: LAB_IMPROVEMENTS.includes(kind) ? 'covenant' : 'purse' };
+}
+
+/** The project another spell is being invented alongside, if any. */
+export function inventedWith(p: LabProject, c: Character): LabProject | undefined {
+  return (c.projects ?? []).find((x) => x.uid !== p.uid && !x.done && x.kind === 'invent' && x.alongside?.includes(p.uid));
+}
+
+/** Spells that may be invented alongside this one: not begun, not already in another's season, of the same Technique and Form (DE). */
+export function alongsideCandidates(p: LabProject, c: Character): LabProject[] {
+  return (c.projects ?? []).filter((x) => x.uid !== p.uid && !x.done && x.kind === 'invent' && !x.alongside?.length && x.technique === p.technique && x.form === p.form && !!x.level && !x.progress && (!inventedWith(x, c) || inventedWith(x, c)!.uid === p.uid));
 }
 
 const highest = (d: DerivedCharacter, arts: readonly Art[]) => Math.max(...arts.map((a) => d.arts[a].score));
@@ -64,6 +82,8 @@ export interface ProjectPlan {
   problems: string[];
   /** what this season would do, in a line */
   summary: string;
+  /** lab improvements: pounds the change costs when it is done (a rise in Upkeep) */
+  pounds?: number;
 }
 
 export interface PlanOptions {
@@ -129,17 +149,30 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
   switch (p.kind) {
     case 'invent': {
       if (!p.technique || !p.form || !p.level) return { target: 0, gain: 0, seasonsLeft: 0, problems: ['Choose the spell, its Arts and level.'], summary: '' };
-      const total = lt('spells', p.technique, p.form, { requisites: p.requisites, fromText: p.fromText });
-      if (p.fromText) {
+      const host = inventedWith(p, c);
+      if (host) return { target: 0, gain: 0, seasonsLeft: 0, problems: [`Invented alongside ${host.name}: its seasons are this one's too.`], summary: '' };
+      // several spells of the same Technique and Form at once: their levels added, against the lowest of their Lab Totals (DE, Multiple Laboratory Activities)
+      const group = [p, ...(p.alongside ?? []).map((u) => c.projects?.find((x) => x.uid === u)).filter((x): x is LabProject => !!x && !x.done)];
+      for (const x of group.slice(1)) if (x.kind !== 'invent' || x.technique !== p.technique || x.form !== p.form || !x.level) problems.push(`${x.name} is not a spell of ${ART_NAMES[p.technique]} ${ART_NAMES[p.form]}: take it off.`);
+      const total = group.map((x) => lt('spells', p.technique!, p.form!, { requisites: x.requisites, fromText: x.fromText })).reduce((lo, t) => (t.total < lo.total ? t : lo));
+      const level = group.reduce((t, x) => t + (x.level ?? 0), 0);
+      const several = group.length > 1 ? ` (${group.length} spells, levels ${group.map((x) => x.level).join(' + ')})` : '';
+      if (group.every((x) => x.fromText)) {
         // from a Laboratory Text: one season once the Lab Total equals or exceeds the level (DE)
-        const ok = total.total >= p.level;
-        if (!ok) problems.push(`From a Laboratory Text the Lab Total (${total.total}) must reach the level (${p.level}).`);
-        return { total, target: p.level, gain: ok ? p.level - p.progress : 0, seasonsLeft: 1, problems, summary: ok ? `Learned from the Laboratory Text in one season (level ${p.level}).` : '' };
+        const ok = total.total >= level;
+        if (!ok) problems.push(`From ${group.length > 1 ? 'Laboratory Texts' : 'a Laboratory Text'} the Lab Total (${total.total}) must reach the level${group.length > 1 ? 's added together' : ''} (${level}).`);
+        return { total, target: level, gain: ok ? level - p.progress : 0, seasonsLeft: 1, problems, summary: ok ? `Learned from the Laboratory Text${group.length > 1 ? 's' : ''} in one season (level ${level}${several}).` : '' };
       }
-      const gain = Math.max(0, total.total - p.level);
-      if (!gain) short(`The Lab Total (${total.total}) must exceed the level (${p.level}).`);
-      const left = p.level - p.progress;
-      return { total, target: p.level, gain, seasonsLeft: gain ? Math.ceil(left / gain) : Infinity, problems, summary: gain ? `+${gain} points toward level ${p.level} (${p.progress}/${p.level}).` : experimenting ? `Only the experiment's simple die can carry the Lab Total (${total.total}) past the level (${p.level}).` : '' };
+      const gain = Math.max(0, total.total - level);
+      if (!gain) short(`The Lab Total (${total.total}) must exceed the level${several ? 's added together' : ''} (${level}).`);
+      const left = level - p.progress;
+      return { total, target: level, gain, seasonsLeft: gain ? Math.ceil(left / gain) : Infinity, problems, summary: gain ? `+${gain} points toward level ${level}${several} (${p.progress}/${level}).` : experimenting ? `Only the experiment's simple die can carry the Lab Total (${total.total}) past the level (${level}).` : '' };
+    }
+    case 'refine':
+    case 'install':
+    case 'repair': {
+      const plan = planLabImprovement(p, c, d, ctx, o.data);
+      return { ...plan, problems: [...problems, ...plan.problems] };
     }
     case 'open': {
       if (!it) return { target: 0, gain: 0, seasonsLeft: 0, problems: ['Choose the item.'], summary: '' };
@@ -426,18 +459,29 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
   const flaw = xr && !xr.noBenefit && xr.lines.some((l) => /Side effect|Modified effect|Special or story/.test(l)) ? ' (with what the experiment did to it: see the project’s record)' : '';
   switch (p.kind) {
     case 'invent': {
-      p.progress = Math.min(p.level!, p.progress + plan.gain);
-      if (p.progress >= p.level!) {
-        p.done = true;
-        const spell = p.spell ?? {
-          id: `custom-${p.uid}`, name: p.name, technique: p.technique!, form: p.form!, level: p.level!, general: false, range: '', duration: '', target: '', ritual: p.level! > 50,
-          requisites: p.requisites ?? [], text: '', design: null, base: null, source: { book: 'custom', line: 0 }, custom: true,
-        };
-        c.spells.push({ uid: uid(), spellId: p.spell?.id, spell: { ...spell, level: p.level! }, masteryXp: {}, masteryAbilities: [], source: 'play' });
-        lines.push(`${head} invented (level ${p.level})${flaw}.`);
+      p.progress = Math.min(plan.target, p.progress + plan.gain);
+      if (p.progress >= plan.target) {
+        // every spell of the season's work is learned, those invented alongside it too
+        const group = [p, ...(p.alongside ?? []).map((u) => c.projects?.find((x) => x.uid === u)).filter((x): x is LabProject => !!x && !x.done)];
+        for (const x of group) {
+          x.done = true;
+          x.progress = x.level!;
+          const spell = x.spell ?? {
+            id: `custom-${x.uid}`, name: x.name, technique: x.technique!, form: x.form!, level: x.level!, general: false, range: '', duration: '', target: '', ritual: x.level! > 50,
+            requisites: x.requisites ?? [], text: '', design: null, base: null, source: { book: 'custom', line: 0 }, custom: true,
+          };
+          c.spells.push({ uid: uid(), spellId: x.spell?.id, spell: { ...spell, level: x.level! }, masteryXp: {}, masteryAbilities: [], source: 'play' });
+          if (x !== p) x.results = [...(x.results ?? []), `${[o.season, year].filter(Boolean).join(' ')}: invented alongside ${p.name}.`.trim()];
+        }
+        lines.push(group.length > 1 ? `${head} invented, with ${group.slice(1).map((x) => x.name).join(', ')} (levels ${group.map((x) => x.level).join(' + ')})${flaw}.` : `${head} invented (level ${p.level})${flaw}.`);
       } else lines.push(`${head} ${plan.summary}`);
       break;
     }
+    case 'refine':
+    case 'install':
+    case 'repair':
+      lines.push(...workLabImprovement(p, c, d, ctx, cov, data, plan, rng, { year, season: o.season }));
+      break;
     case 'open': {
       if (it && plan.vis) {
         it.openedPawns += plan.vis.pawns;

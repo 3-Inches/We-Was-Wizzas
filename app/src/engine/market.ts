@@ -65,10 +65,10 @@ export const MARKET: WareGroup[] = [
   {
     id: 'lab',
     label: 'Laboratories',
-    note: 'Covenants ch.5: 1 £ per 2 points to outfit, and the same for each point of Upkeep a new lab Virtue adds; 1 £ per 10 points a year to maintain.',
+    note: 'Covenants ch.5 and 9: a pound for every two Upkeep points to outfit (10 points at Upkeep 0), and when a change raises the Upkeep, a pound for every two points it adds; a pound per 10 points a year to maintain. A lab project that installs a Virtue or puts a Flaw right pays its rise itself.',
     wares: [
       { id: 'lab-outfit', name: 'Outfit a standard laboratory from bare walls', pounds: 5, source: COV },
-      { id: 'lab-upkeep', name: 'Raise a laboratory’s Upkeep by a point (installing a Virtue)', pounds: 0.5, per: 'point', source: 'Covenants ch.9' },
+      { id: 'lab-upkeep', name: 'An Upkeep point more for a laboratory (a new Virtue)', pounds: 0.5, per: 'Upkeep point', source: 'Covenants ch.9', note: 'Upkeep points: 7 at −1, 10 at 0, 15 at +1, 30 at +2, 60 at +3, 100 at +4, 150 at +5. Raising a lab from Upkeep +2 to +4 adds 70 points: 35 pounds.' },
       { id: 'lab-year', name: 'A year’s upkeep of a standard laboratory (average use)', pounds: 1, yearly: true, source: COV },
       { id: 'parchment', name: 'Parchment and inks for four books', pounds: 1, source: COV },
       { id: 'resonant', name: 'Resonant materials for a book (a precious material)', pounds: 1, source: COV, note: 'One pound typically buys enough to add a resonant bonus to one book.' },

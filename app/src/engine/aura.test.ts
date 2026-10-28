@@ -1,14 +1,18 @@
 // A covenant's aura and how it changes: its Boons and Hooks (Covenants), changes recorded with
-// their reasons, and the yearly drift of a Magic aura (Realms of Power: Magic, Aura Variation).
+// their reasons, the yearly drift of a Magic aura (Realms of Power: Magic, Aura Variation), what an
+// aligned aura does (RoP: Magic, Aligned Auras), and the aura on recovery (RoP: The Infernal).
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { newSaga } from '../store/store';
 import { newCovenant } from './covenant';
-import { newCharacter } from './character/factory';
-import { auraAtTime, auraOf, changeAura, newAuraTrack, rollAuraYear, yearlyAuraModifier } from './aura';
+import { ensureAbility, newCharacter } from './character/factory';
+import { deriveCharacter } from './character/derive';
+import { auraAtTime, auraOf, auraRecovery, changeAura, dominionOutlook, dominionStrength, newAuraTrack, rollAuraYear, yearlyAuraModifier } from './aura';
+import { recoveryRoll } from './disease';
+import { castingScore, labTotal } from './magic';
 import { covenantAura } from './context';
 import { advanceSeason, DEFAULT_ADVANCE } from './time';
-import type { Covenant } from './types';
+import { DEFAULT_HOUSE_RULES, type Covenant } from './types';
 
 const data = buildGameData();
 /** dice that show these faces in turn, then the last one */
@@ -124,5 +128,73 @@ describe('a Magic aura from year to year (RoP: Magic)', () => {
     // the rule off: nothing is rolled
     const off = advanceSeason({ saga: { ...s, options: {} }, characters: [magus], covenants: [cov] }, data, { ...DEFAULT_ADVANCE, rng: seq(9) });
     expect(off.report.lines.some((l) => /modifier/.test(l.text))).toBe(false);
+  });
+});
+
+describe('an aligned aura (RoP: Magic)', () => {
+  const magus = () => {
+    const c = newCharacter('magus', 's');
+    c.arts.Cr = { apprenticeship: 55 };
+    c.arts.Co = { apprenticeship: 55 };
+    ensureAbility(c, 'magic-theory', { apprenticeship: 75 });
+    return deriveCharacter(c, data, DEFAULT_HOUSE_RULES);
+  };
+  it('counts double for magic that uses its Art, and not for other magic', () => {
+    const cov = newCovenant('s', 1220);
+    cov.aura = 4;
+    cov.auraAlignment = { kind: 'art', art: 'Co' };
+    const aura = covenantAura(cov);
+    expect(aura).toMatchObject({ realm: 'Magic', strength: 4, aligned: 'Co' });
+    const d = magus();
+    const plain = castingScore(d, { technique: 'Cr', form: 'Co' }, { kind: 'formulaic', aura: { realm: 'Magic', strength: 4 } }).total;
+    expect(castingScore(d, { technique: 'Cr', form: 'Co' }, { kind: 'formulaic', aura }).total).toBe(plain + 4);
+    expect(castingScore(d, { technique: 'Cr', form: 'An' }, { kind: 'formulaic', aura }).total).toBe(castingScore(d, { technique: 'Cr', form: 'An' }, { kind: 'formulaic', aura: { realm: 'Magic', strength: 4 } }).total);
+    expect(labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'spells', aura }).parts.map((p) => p.label)).toContain('Aura aligned with Corpus: counts double');
+    // only a Magic aura is aligned
+    cov.auraRealm = 'Faerie';
+    expect(covenantAura(cov).aligned).toBeUndefined();
+  });
+  it('adds half a Healing aura to Recovery Totals; an Infernal aura takes its strength off, and no disease improves there', () => {
+    expect(auraRecovery({ realm: 'Magic', strength: 5, aspect: 'healing' }).parts[0].value).toBe(3);
+    expect(auraRecovery({ realm: 'Magic', strength: 5 }).parts).toEqual([]);
+    expect(auraRecovery({ realm: 'Infernal', strength: 3 })).toMatchObject({ parts: [{ value: -3 }], noImprovement: true });
+    const c = newCharacter('companion', 's');
+    c.characteristics.Sta = 3;
+    c.illnesses = [{ uid: 'i', name: 'Ague', stage: 'Minor', stable: 3, improve: 6, interval: 'Week', bonus: 0 } as never];
+    const d = deriveCharacter(c, data, DEFAULT_HOUSE_RULES);
+    // Stamina 3 + 9 − 2 = 10: enough to improve, but in an Infernal aura it only holds
+    const r = recoveryRoll(c, d, 'i', { aura: { realm: 'Infernal', strength: 2 } }, seq(9));
+    expect(r.outcome).toBe('same');
+    expect(r.text).toMatch(/no disease improves in an Infernal aura/);
+    expect(recoveryRoll(c, d, 'i', { aura: { realm: 'Magic', strength: 6, aspect: 'healing' } }, seq(0)).outcome).toBe('cured'); // 3 + 3 + 3 (the bonus from the stable roll before) = 9
+  });
+  it('is a Site Boon or Hook a covenant can take', () => {
+    expect(['Fine Aura', 'Favorable Aura', 'Troublesome Aura'].map((n) => data.hooksBoons.find((h) => h.name === n)?.size)).toEqual(['Major', 'Minor', 'Minor']);
+  });
+});
+
+describe('a Dominion and its congregation (RoP: The Divine)', () => {
+  it('is 3 from the rite, 4 after a year, 5 after a decade only for a significant church, and more for relics', () => {
+    expect([1220, 1221, 1235].map((y) => dominionStrength({ since: 1220 }, y))).toEqual([3, 4, 4]);
+    expect(dominionStrength({ since: 1220, significant: true }, 1230)).toBe(5);
+    expect(dominionStrength({ since: 1220, significant: true, relics: 2 }, 1230)).toBe(7);
+  });
+  it('fades steadily once worship stops, to nothing over as long as it was worshipped', () => {
+    const w = { since: 1200, until: 1220, significant: true };
+    expect([1220, 1225, 1230, 1235, 1240, 1250].map((y) => dominionStrength(w, y))).toEqual([5, 4, 3, 2, 0, 0]);
+    expect(dominionOutlook(w, 1220)).toMatch(/Worship stopped in 1220 after 20 years: the Dominion fades steadily, to nothing by 1240/);
+  });
+  it('follows the congregation at the year’s end', () => {
+    const s = newSaga('T');
+    s.currentYear = 1220;
+    s.currentSeason = 'Winter';
+    const cov = newCovenant(s.id, 1220);
+    cov.name = 'Abbey';
+    cov.auraRealm = 'Divine';
+    cov.aura = 3;
+    cov.auraTrack = { ...newAuraTrack(cov), dominion: { since: 1220 } };
+    const { state, report } = advanceSeason({ saga: s, characters: [], covenants: [cov] }, data, DEFAULT_ADVANCE);
+    expect(state.covenants[0].aura).toBe(4);
+    expect(report.lines.some((l) => /The Dominion grows to 4: a year of regular worship/.test(l.text))).toBe(true);
   });
 });

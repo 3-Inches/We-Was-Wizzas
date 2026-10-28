@@ -550,8 +550,8 @@ function PriceList({ run, home, onSundry }: { run: Run; home: Covenant | undefin
         ))}
       </div>
       <p className="small muted" style={{ margin: '4px 0 0' }}>
-        Quality and size: shoddy or small ×½, superior or large ×2, excellent or huge ×5, flawless or stupendous ×10 (Covenants ch.5). A pound is 20 shillings or 240 pennies. Lab Virtues are
-        installed on the covenant&apos;s Laboratories tab; buy the Upkeep they add here.
+        Quality and size: shoddy or small ×½, superior or large ×2, excellent or huge ×5, flawless or stupendous ×10 (Covenants ch.5). A pound is 20 shillings or 240 pennies. A lab Virtue taken
+        on the covenant&apos;s Laboratories tab is paid for here; one installed as a lab project (a character&apos;s Lab tab) pays its own Upkeep.
       </p>
     </Card>
   );

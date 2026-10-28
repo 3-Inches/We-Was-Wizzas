@@ -315,4 +315,16 @@ describe('death, crises and the care of a physician (DE, Aging)', () => {
     expect(m.projects![0].seasons).toBe(0);
     expect(report.lines.some((l) => l.who === 'Magus' && /invented/.test(l.text))).toBe(true);
   });
+  it('moves on to the next project the lab allows once the one set for every season is done', () => {
+    const st = saga();
+    st.saga.currentSeason = 'Spring';
+    const magus = st.characters[1];
+    st.covenants[0].labs.push(newLab('Tower', magus.id));
+    const done = { ...newProject('invent'), technique: 'Cr' as const, form: 'An' as const, level: 1, done: true };
+    const next = { ...newProject('invent'), technique: 'Cr' as const, form: 'An' as const, level: 1 };
+    magus.projects = [done, next];
+    magus.standing = { kind: 'lab', projectUid: done.uid };
+    const { state } = advanceSeason(st, data);
+    expect(state.characters[1].projects![1].done).toBe(true);
+  });
 });

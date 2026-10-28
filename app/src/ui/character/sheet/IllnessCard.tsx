@@ -2,6 +2,7 @@
 // physician's Prognosis, and the Disease Recovery roll at the end of each interval.
 
 import { useState } from 'react';
+import { auraRecovery } from '../../../engine/aura';
 import { DISEASES, STAGES, STAGE_PENALTY, avoidanceRoll, currentSeverity, illnessFrom, prognosisTotal, recoveryRoll } from '../../../engine/disease';
 import { livingConditions } from '../../../engine/time';
 import type { Illness } from '../../../engine/types';
@@ -17,6 +18,7 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
   const [log, setLog] = useState<string[]>([]);
   const [doc, setDoc] = useState({ int: 2, medicine: 4, apothecary: 0, chirurgy: 0 });
   const [other, setOther] = useState(0);
+  const [atHome, setAtHome] = useState(true);
   if (!c || !d) return null;
   // turned off for the saga: still shown while the character is ill, so an illness can be cured
   if (!optionOn(saga, 'illness') && !(c.illnesses ?? []).length) return null;
@@ -42,7 +44,7 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
     const medicine = progTotal > currentSeverity(ill) ? doc.medicine : 0;
     let text = '';
     update((x) => {
-      text = recoveryRoll(x, d, ill.uid, { medicine, other }).text;
+      text = recoveryRoll(x, d, ill.uid, { medicine, other, aura: atHome ? ctx.aura : undefined }).text;
     });
     note(`${ill.name}: ${text}${medicine ? '' : doc.medicine ? ` (the physician's Prognosis Total ${progTotal} does not beat Severity ${currentSeverity(ill)}, so no Medicine)` : ''}`);
   };
@@ -125,6 +127,13 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
           <Field label="Magical aid, other">
             <Stepper value={other} min={-10} max={20} width={36} onChange={setOther} />
           </Field>
+          {auraRecovery(ctx.aura).parts.map((p) => (
+            <label key={p.label} className="inline small" title={auraRecovery(ctx.aura).noImprovement ? 'No disease tended in an Infernal aura improves: an Improvement counts as Stable (Realms of Power: The Infernal)' : undefined}>
+              <input type="checkbox" checked={atHome} onChange={(e) => setAtHome(e.target.checked)} /> tended at the covenant: {p.label} ({p.value > 0 ? '+' : ''}
+              {p.value}
+              {auraRecovery(ctx.aura).noImprovement ? ', and no improvement' : ''})
+            </label>
+          ))}
           <span className="small muted">Prognosis Total {prognosisTotal({ ...doc, living })} (with Living Conditions {living}).</span>
         </div>
         </details>
