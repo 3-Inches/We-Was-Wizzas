@@ -16,7 +16,7 @@ import { stressDie, type Rng } from './dice';
 import { foundingAtGathering } from './founding';
 import { freshName } from './generate/names';
 import { newLab } from './lab';
-import { magiTarget, otherMagus, type LivingContext } from './living';
+import { magiTarget, otherMagus, takenNames, type LivingContext } from './living';
 import { certamenFatigue, certamenTotals } from './magic';
 import { optionOn } from './optional';
 import { RHINE_RANKS } from './tribunal';
@@ -394,7 +394,7 @@ export function apprenticesYearEnd(state: State, g: LivingContext, year: number,
   const lines: Line[] = [];
   const out: TribunalNews[] = [];
   const living = state.covenants.filter((c) => c.living && !c.living.paused);
-  const names = () => state.characters.map((c) => c.name);
+  const names = () => takenNames(state.characters);
   const magiAt = (cov: Covenant) => state.characters.filter((c) => cov.memberIds.includes(c.id) && c.type === 'magus' && alive(c)).length;
   const customs = rhineCustoms(state.saga);
   for (const cov of living) {

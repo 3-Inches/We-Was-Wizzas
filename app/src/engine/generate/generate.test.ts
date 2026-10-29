@@ -9,7 +9,7 @@ import { DEFAULT_HOUSE_RULES, type Saga } from '../types';
 import { budgetLeft, deriveCovenant, newCovenant } from '../covenant';
 import { generateCharacter, type GenOptions, type Variety } from './character';
 import { fillCovenant } from './covenant';
-import { homelandGroupFor } from './names';
+import { freshName, homelandGroupFor } from './names';
 import { seeded } from './random';
 import { generateFamiliar } from './spellsAndFamiliars';
 import { deriveCharacter } from '../character/derive';
@@ -240,5 +240,17 @@ describe('the bestiary', () => {
       expect(c.line, c.id).toBeGreaterThan(0);
     }
     expect(new Set(all.map((c) => c.realm)).size).toBe(4);
+  });
+});
+
+describe('fresh names', () => {
+  it('never repeat a name, past the end of a region’s list', () => {
+    const rng = seeded(4);
+    for (const [region, female] of [['latin', false], ['latin', true], ['german', false]] as const) {
+      const used: string[] = [];
+      for (let i = 0; i < 400; i++) used.push(freshName(rng, region, female, used));
+      expect(new Set(used.map((n) => n.toLowerCase())).size, region).toBe(used.length);
+    }
+    expect(freshName(seeded(1), 'latin', true, [])).not.toMatch(/ /);
   });
 });

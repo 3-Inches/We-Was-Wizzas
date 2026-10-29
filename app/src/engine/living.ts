@@ -493,6 +493,11 @@ export function nextGatherings(saga: Saga, year: number): { name: string; year: 
 
 const news = (year: number, season: Season, x: Omit<TribunalNews, 'uid' | 'year' | 'season'>): TribunalNews => ({ uid: uid(), year, season, ...x });
 
+/** The names taken in a saga: its characters', and those of their apprentices still in training. */
+export function takenNames(characters: Character[]): string[] {
+  return characters.flatMap((c) => (c.apprentice ? [c.name, c.apprentice.name] : [c.name]));
+}
+
 /** How a covenant's attitude to the players changes the chance of an approach: trouble from those who dislike them, offers and invitations from those who like them. */
 export function approachChance(chance: number, kind: BookApproach['kind'], attitude: NonNullable<Covenant['living']>['attitude'] = 'neutral'): number {
   const warm = attitude === 'ally' ? 2 : attitude === 'friendly' ? 1.5 : attitude === 'wary' ? 0.75 : attitude === 'hostile' ? 0.5 : attitude === 'enemy' ? 0.25 : 1;
@@ -530,7 +535,7 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
     if (magi < target && rng() < 0.25) {
       const houses = found.cov.domusMagna ? [found.cov.domusMagna] : found.cov.magi.map((m) => m.house).filter((h) => h !== 'mercere');
       const house = houses[Math.floor(rng() * houses.length)] ?? 'ex-miscellanea';
-      const c = otherMagus(house, 'journeyman', found.book, found.cov, cov, { ...g, saga: state.saga }, rng, Math.floor(rng() * 1e9), state.characters.map((x) => x.name), `the magi who join ${cov.name} in play`);
+      const c = otherMagus(house, 'journeyman', found.book, found.cov, cov, { ...g, saga: state.saga }, rng, Math.floor(rng() * 1e9), takenNames(state.characters), `the magi who join ${cov.name} in play`);
       c.notes = `Joined ${cov.name} in ${year + 1}, a journeyman the toolkit made to fill a place left empty.`;
       state.characters.push(c);
       cov.memberIds.push(c.id);
