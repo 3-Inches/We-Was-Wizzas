@@ -22,9 +22,9 @@ function nonFinite(o: unknown, path: string, out: string[]): string[] {
 }
 
 describe('long play on a generated saga', () => {
-  for (const [seed, tribunal, years] of [[1, 'Rhine', 12], [2, 'Theban', 12]] as const) {
-    it(`runs ${years} years in the ${tribunal} Tribunal (seed ${seed}) without breaking`, () => {
-      let state = buildTestSaga(data, { seed, tribunal });
+  for (const [seed, tribunal, years, living] of [[1, 'Rhine', 12, []], [2, 'Theban', 12, []], [3, 'Rhine', 10, ['heorot', 'triamore', 'dankmar']]] as const) {
+    it(`runs ${years} years in the ${tribunal} Tribunal (seed ${seed})${living.length ? ' with living covenants' : ''} without breaking`, () => {
+      let state = buildTestSaga(data, { seed, tribunal, living: [...living] });
       const rng = seeded(seed);
       const problems: string[] = [];
       const firstAge = new Map(state.characters.map((c) => [c.id, c.age]));
@@ -57,6 +57,8 @@ describe('long play on a generated saga', () => {
         }
       }
       for (const c of state.characters) {
+        // a magus who joined a living covenant in play is younger in the saga
+        if (!firstAge.has(c.id)) continue;
         const aged = c.age - (firstAge.get(c.id) ?? c.age);
         if (!c.wounds.dead && !c.creature?.magicCharacter && aged !== years) problems.push(`${c.name} aged ${aged} in ${years} years`);
       }

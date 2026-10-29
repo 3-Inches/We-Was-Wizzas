@@ -40,7 +40,10 @@ function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: stri
       return !!c && c.sagaId === sagaId && (!tour.charType || c.type === tour.charType);
     };
     const newest = <T extends { createdAt: string }>(xs: T[]) => [...xs].sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
-    const inSaga = Object.values(characters).filter((c) => c.sagaId === sagaId && (!tour.charType || c.type === tour.charType));
+    // the players' characters and covenants, not the Tribunal's living ones
+    const livingCovs = new Set(Object.values(covenants).filter((c) => c.sagaId === sagaId && c.living).map((c) => c.id));
+    const npcs = new Set(Object.values(covenants).filter((c) => livingCovs.has(c.id)).flatMap((c) => c.memberIds));
+    const inSaga = Object.values(characters).filter((c) => c.sagaId === sagaId && (!tour.charType || c.type === tour.charType) && !npcs.has(c.id) && !(c.covenantId && livingCovs.has(c.covenantId)));
     // a tour that makes a character follows the one made since it began; the others use the newest
     // finished character (or any) when none is open
     const made = newest(inSaga.filter((c) => c.createdAt >= t.startedAt));
@@ -56,7 +59,7 @@ function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: stri
           newest(finished) ??
           newest(inSaga));
     const charId = fits(t.charId) ? t.charId : m?.[2] === 'character' && fits(m[3]) ? m[3] : fallback?.id;
-    const covs = Object.values(covenants).filter((c) => c.sagaId === sagaId);
+    const covs = Object.values(covenants).filter((c) => c.sagaId === sagaId && !c.living);
     const covId = t.covId && covenants[t.covId]?.sagaId === sagaId ? t.covId : m?.[2] === 'covenant' && covenants[m[3]] ? m[3] : newest(covs)?.id;
     return { sagaId, charId, covId };
   }, [tour, t, path, characters, covenants, sagas]);

@@ -2,7 +2,7 @@
 // Keyed by the topic ids of the mechanics reference; a `page` is linked (for the active saga), the
 // rest name a tab or card of a character or covenant sheet.
 
-export type AppPage = 'saga' | 'seasons' | 'market' | 'spells' | 'enchant' | 'rules' | 'build' | 'dice' | 'table';
+export type AppPage = 'saga' | 'seasons' | 'market' | 'spells' | 'enchant' | 'rules' | 'build' | 'dice' | 'table' | 'tribunal';
 
 export interface AppPlace {
   text: string;
@@ -123,8 +123,8 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   libraries: [{ text: `${COV} → Library & Vis (the covenant rolls and the scriptorium)` }, { text: `${SHEET} → Seasons & Aging → Writing and copying` }, { text: 'Quick build → Fill out the covenant (books for the magi)', page: 'build', tab: 'covenant' }],
   'the-aegis-of-the-hearth': [{ text: `${COV} → Overview → Magic on the covenant` }],
   // the Order and the Tribunals
-  tribunals: [{ text: 'Saga page → Tribunal, and its customs', page: 'saga' }],
-  'the-rhine-tribunal': [{ text: 'Saga page → Tribunal: Rhine → its customs', page: 'saga' }],
+  tribunals: [{ text: 'Saga page → Tribunal, and its customs', page: 'saga' }, { text: 'The Tribunal: its other covenants as living covenants, and its gatherings', page: 'tribunal' }],
+  'the-rhine-tribunal': [{ text: 'Saga page → Tribunal: Rhine → its customs', page: 'saga' }, { text: 'The Tribunal: the Rhine’s covenants from Guardians of the Forests, living; the gatherings at Durenmar; the Great Library', page: 'tribunal' }],
   'the-normandy-tribunal': [{ text: 'Saga page → Tribunal: Normandy → its customs', page: 'saga' }],
   'the-theban-tribunal': [{ text: 'Saga page → Tribunal: Theban → its customs', page: 'saga' }],
   'the-transylvanian-tribunal': [{ text: 'Saga page → Tribunal: Transylvanian → its customs', page: 'saga' }],
@@ -137,7 +137,7 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'the-church': [{ text: `${SHEET} → Overview → Society → Petition the Church` }, { text: `${SHEET} → Seasons & Aging → Plan a season (Worship)` }],
   'social-standing': [{ text: 'Character wizard → Virtues & Flaws (Social Status)' }, { text: `${SHEET} → Seasons & Aging → When nothing is planned (free and working seasons)` }],
   'courtly-life-and-leisure': [{ text: `${SHEET} → Overview → Society → Etiquette` }],
-  'hermetic-politics': [{ text: `${SHEET} → Overview → Society → Debate (at Tribunal)` }],
+  'hermetic-politics': [{ text: `${SHEET} → Overview → Society → Debate (at Tribunal)` }, { text: 'The Tribunal: the living covenants, their gilds and neighbors, and the gatherings', page: 'tribunal' }],
   'courts-law-and-crime': [{ text: `${SHEET} → Overview → Society → A quick trial` }, { text: 'Game table → Travel, trade and intrigue: bribes, hired criminals, sabotage', page: 'table' }],
   // realms and mysteries
   auras: [

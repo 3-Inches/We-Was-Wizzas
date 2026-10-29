@@ -15,7 +15,9 @@ import { lsd } from '../../engine/economy';
 import { DEFAULT_ADVANCE, advanceSeasons, describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
 import type { Character, Covenant, TimeReport } from '../../engine/types';
 import { visText } from '../../engine/vis';
-import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
+import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
+import { tribunalBook } from '../../data/livingCovenants';
+import { NewsCard } from './TribunalPage';
 import { useStore } from '../../store/store';
 import { StandingEditor } from '../character/StandingEditor';
 import { LoyaltyEvent } from '../covenant/FinancesTab';
@@ -37,8 +39,11 @@ export default function DashboardPage() {
   const { sagaId } = useParams();
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
-  const chars = useSagaCharacters(sagaId);
-  const covs = useSagaCovenants(sagaId);
+  // the players' characters and covenants; the Tribunal's living covenants move with the clock but are shown on their own
+  const allChars = useSagaCharacters(sagaId);
+  const allCovs = useSagaCovenants(sagaId);
+  const chars = usePlayerCharacters(sagaId);
+  const covs = usePlayerCovenants(sagaId);
   const putSagaState = useStore((s) => s.putSagaState);
   const updateCharacter = useStore((s) => s.updateCharacter);
   const setNotice = useStore((s) => s.setNotice);
@@ -89,16 +94,25 @@ export default function DashboardPage() {
     }
   }
 
+  // the Tribunal's approaches waiting for an answer
+  const approaches = (saga.tribunalNews ?? []).filter((n) => n.kind === 'approach' && !n.done);
+  for (const n of approaches.slice(0, 3)) attention.push({ level: 'warn', text: `${allCovs.find((c) => c.id === n.covenantId)?.name ?? 'The Tribunal'}: ${n.text}`, to: `${S}/tribunal`, go: 'Tribunal' });
+  if (approaches.length > 3) attention.push({ level: 'info', text: `${approaches.length - 3} more from the Tribunal.`, to: `${S}/tribunal`, go: 'Tribunal' });
+
   // ---------------------------------------------------------------- moving time on
   const advance = () => {
-    const before = { saga: structuredClone(saga), characters: structuredClone(chars), covenants: structuredClone(covs) };
+    const before = { saga: structuredClone(saga), characters: structuredClone(allChars), covenants: structuredClone(allCovs) };
     const { state, reports } = advanceSeasons(before, data, 1, DEFAULT_ADVANCE);
     putSagaState(state);
     setReport(reports);
     setNotice(`${season} ${year} is over: it is now ${state.saga.currentSeason} ${state.saga.currentYear}.`, () => putSagaState(before));
   };
-  const lines = report.flatMap((r) => r.lines);
+  // the living covenants' lines are folded apart from the players'
+  const all = report.flatMap((r) => r.lines);
+  const lines = all.filter((l) => !l.tribunal);
+  const tribunalLines = all.filter((l) => l.tribunal);
   const urgent = lines.filter((l) => l.kind === 'crisis' || l.kind === 'warping' || l.kind === 'reminder');
+  const living = allCovs.some((c) => c.living);
 
   return (
     <div className="stack">
@@ -118,7 +132,7 @@ export default function DashboardPage() {
           </Link>
         </span>
       </div>
-      {lines.length > 0 && (
+      {all.length > 0 && (
         <Card title={`What happened in ${report[0]?.season ?? ''} ${report[0]?.year ?? ''}`.trim()}>
           {urgent.map((l, i) => (
             <div key={i} className="small warn-text">
@@ -133,6 +147,16 @@ export default function DashboardPage() {
               </div>
             ))}
           </details>
+          {tribunalLines.length > 0 && (
+            <details>
+              <summary className="small">The Tribunal’s living covenants: {tribunalLines.length} lines</summary>
+              {tribunalLines.map((l, i) => (
+                <div key={i} className="small">
+                  <b>{l.who}:</b> {l.text}
+                </div>
+              ))}
+            </details>
+          )}
         </Card>
       )}
 
@@ -188,7 +212,7 @@ export default function DashboardPage() {
               {logged.length ? (
                 <span className="small">{logged.map((e) => e.summary).join('; ')}</span>
               ) : (
-                <StandingEditor c={c} d={d} year={year} teachers={cov?.specialists.filter((s) => teaches(s)) ?? []} onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))} />
+                <StandingEditor c={c} d={d} year={year} teachers={cov?.specialists.filter((s) => teaches(s)) ?? []} library={cov?.library} onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))} />
               )}
               <span className="row tight small" style={{ marginLeft: 'auto' }}>
                 <Link to={sheet(c, 'advancement')}>Plan</Link>
@@ -205,6 +229,8 @@ export default function DashboardPage() {
       {[...covs].sort((a, b) => weight(b) - weight(a)).map((cov) => (
         <CovenantGlance key={cov.id} cov={cov} dc={dcs.get(cov.id) as DerivedCovenant} covLink={covLink} S={S} />
       ))}
+
+      {(living || tribunalBook(saga.tribunal)) && <NewsCard saga={saga} covs={allCovs} chars={allChars} compact />}
 
       {covs.length > 0 && <QuickChanges covs={covs} home={home} year={year} season={season} />}
 
@@ -290,6 +316,7 @@ function PlayIndex({ S, home, first, sheet, covLink }: { S: string; home?: Coven
     { label: 'A journey, a bribe, a crime, a rumor about a noble', hint: 'Travel, trade and intrigue, below on this page: days and cost of a journey, Area Lore, ships in a fight, bribes, hired criminals, sabotage, intrigue, largesse, a dowry.', to: '#travel-trade' },
     { label: 'An item may break', hint: 'Dice → Item stress check (City & Guild): damage levels, the check against 15, repair.', to: '/dice' },
     { label: 'Experience after a story', hint: 'After a story, below on this page: Adventure experience for everyone, and Labor Points for craftsmen and merchants. Reputations and Confidence are on the sheet.', to: '#after-story' },
+    { label: 'Another covenant, a Redcap, the next Tribunal', hint: 'The Tribunal: its living covenants and their magi, what they have brought to your covenant, the coming gatherings, and the Great Library.', to: `${S}/tribunal` },
     { label: 'A rule is in question', hint: 'Game mechanics: every rule in the reviewed books, with the book’s text a click away.', to: '/mechanics' },
   ];
   return (

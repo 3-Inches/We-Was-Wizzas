@@ -7,7 +7,7 @@ import { exportCovenant, useStore } from '../../store/store';
 import { useDerivedCovenant, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
 import { bundleToShareLink, downloadJson, safeFilename } from '../../util/files';
 import { uid } from '../../util/id';
-import { Card, Empty, Field, Meter, SelectOrType, Stepper, Tabs, HowItWorks } from '../kit';
+import { BookBadge, Card, Empty, Field, Meter, SelectOrType, Stepper, Tabs, HowItWorks } from '../kit';
 import { TRIBUNALS } from '../../data/lists';
 import ItemsEditor from '../items/ItemEditor';
 import HooksTab from './HooksTab';
@@ -73,6 +73,13 @@ export default function CovenantPage() {
           </button>
         </div>
       </div>
+      {cov.living && (
+        <div className="card small no-print" data-tour="living-banner">
+          A living covenant of the {cov.living.tribunal} Tribunal, built from <BookBadge book={cov.living.book} />: its people follow their season priority lists as the seasons pass, and it
+          closes its books each year by itself{cov.living.paused ? ' (paused: it makes no approaches and takes in no new magi)' : ''}. Its magi, neighbors and news are on{' '}
+          <Link to={`/saga/${saga.id}/tribunal`}>the Tribunal page</Link>.
+        </div>
+      )}
       {share && (
         <Card title="Share this covenant" actions={<button className="small ghost" onClick={() => setShare('')}>✕</button>}>
           <div className="row">

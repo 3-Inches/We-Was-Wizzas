@@ -63,8 +63,12 @@ export default function HomePage() {
       <Card title="Your sagas">
         {list.length === 0 && <Empty>No sagas yet. Name one above to begin — or open the Rules reference to browse.</Empty>}
         {list.map((s) => {
-          const nChar = Object.values(characters).filter((c) => c.sagaId === s.id).length;
-          const nCov = Object.values(covenants).filter((c) => c.sagaId === s.id).length;
+          // the players' side; the Tribunal's living covenants are counted apart
+          const covs = Object.values(covenants).filter((c) => c.sagaId === s.id);
+          const living = covs.filter((c) => c.living);
+          const npc = new Set(living.flatMap((c) => c.memberIds));
+          const nChar = Object.values(characters).filter((c) => c.sagaId === s.id && !npc.has(c.id)).length;
+          const nCov = covs.length - living.length;
           return (
             <div key={s.id} className="list-row">
               <div style={{ flex: 1 }}>
@@ -77,6 +81,7 @@ export default function HomePage() {
                 </a>
                 <div className="small muted">
                   {s.tribunal} Tribunal · {s.currentSeason} {s.currentYear} · {nChar} characters · {nCov} covenants
+                  {living.length > 0 && ` · ${living.length} living covenant${living.length > 1 ? 's' : ''} of the Tribunal`}
                 </div>
               </div>
               <button className="small" onClick={() => downloadJson(`${safeFilename(s.name)}.arm5saga.json`, exportSaga(s.id))}>

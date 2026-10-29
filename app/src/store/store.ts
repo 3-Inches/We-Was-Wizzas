@@ -87,6 +87,10 @@ interface Store extends PersistedState {
   importBundle: (b: ExportBundle, opts?: { intoSagaId?: string }) => { sagaId?: string; characters: number; covenants: number };
   /** put a saga with its characters and covenants in place at once (the saga's clock moves them together) */
   putSagaState: (st: { saga: Saga; characters: Character[]; covenants: Covenant[] }) => void;
+  /** add characters and covenants together, as one change to undo (a living covenant and its people) */
+  putRecords: (r: { characters: Character[]; covenants: Covenant[] }, label: string) => void;
+  /** remove a covenant and everyone who belongs to it, as one change to undo */
+  deleteCovenantWithMembers: (id: string) => void;
 }
 
 export interface ExportBundle {
@@ -327,6 +331,29 @@ export const useStore = create<Store>()((set, get) => {
       characters: { ...st.characters, ...Object.fromEntries(characters.map((c) => [c.id, c])) },
       covenants: { ...st.covenants, ...Object.fromEntries(covenants.map((c) => [c.id, c])) },
     }));
+    scheduleSave(get);
+  },
+  putRecords: ({ characters, covenants }, label) => {
+    remember({ characters: characters.map((c) => c.id), covenants: covenants.map((c) => c.id) }, label);
+    set((st) => ({
+      characters: { ...st.characters, ...Object.fromEntries(characters.map((c) => [c.id, c])) },
+      covenants: { ...st.covenants, ...Object.fromEntries(covenants.map((c) => [c.id, c])) },
+    }));
+    scheduleSave(get);
+  },
+  deleteCovenantWithMembers: (id) => {
+    const st0 = get();
+    const cov = st0.covenants[id];
+    if (!cov) return;
+    const members = Object.values(st0.characters).filter((c) => c.covenantId === id || cov.memberIds.includes(c.id)).map((c) => c.id);
+    remember({ covenants: [id], characters: members }, `removing ${nameOf(cov)} and its people`);
+    set((st) => {
+      const covenants = { ...st.covenants };
+      delete covenants[id];
+      const characters = { ...st.characters };
+      for (const m of members) delete characters[m];
+      return { covenants, characters };
+    });
     scheduleSave(get);
   },
   setTheme: (t) => {

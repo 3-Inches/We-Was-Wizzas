@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import { NavLink, Route, Routes, useLocation, Link } from 'react-router-dom';
 import { useStore } from '../store/store';
-import { useSagaCharacters, useSagaCovenants } from '../store/hooks';
+import { usePlayerCharacters, usePlayerCovenants } from '../store/hooks';
 import HomePage from './pages/HomePage';
 import SagaPage from './pages/SagaPage';
 import ImportPage from './pages/ImportPage';
@@ -21,6 +21,7 @@ const MechanicsPage = lazy(() => import('./pages/MechanicsPage'));
 const SeasonsPage = lazy(() => import('./pages/SeasonsPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const MarketPage = lazy(() => import('./pages/MarketPage'));
+const TribunalPage = lazy(() => import('./pages/TribunalPage'));
 const QuickBuildPage = lazy(() => import('./pages/QuickBuildPage'));
 const TourPanel = lazy(() => import('./tour/TourPanel'));
 
@@ -98,6 +99,7 @@ export default function App() {
               <Route path="/saga/:sagaId/seasons" element={<SeasonsPage />} />
               <Route path="/saga/:sagaId/table" element={<DashboardPage />} />
               <Route path="/saga/:sagaId/market" element={<MarketPage />} />
+              <Route path="/saga/:sagaId/tribunal" element={<TribunalPage />} />
               <Route path="/saga/:sagaId/build" element={<QuickBuildPage />} />
               <Route path="/dice" element={<DicePage />} />
               <Route path="/reference" element={<ReferencePage />} />
@@ -191,8 +193,10 @@ function Notice() {
 function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const activeSagaId = useStore((s) => s.activeSagaId);
   const saga = useStore((s) => (activeSagaId ? s.sagas[activeSagaId] : undefined));
-  const chars = useSagaCharacters(saga?.id);
-  const covs = useSagaCovenants(saga?.id);
+  // the Tribunal's living covenants and their people have their own page
+  const chars = usePlayerCharacters(saga?.id);
+  const covs = usePlayerCovenants(saga?.id);
+  const openNews = (saga?.tribunalNews ?? []).filter((n) => n.kind === 'approach' && !n.done).length;
   const ui = useStore((s) => s.ui);
   const setTheme = useStore((s) => s.setTheme);
   const setStream = useStore((s) => s.setStreamMode);
@@ -229,6 +233,9 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
               ⏳ Seasons · {saga.currentSeason} {saga.currentYear}
             </NavLink>
             <NavLink to={`/saga/${saga.id}/market`}>⚖ Market & treasury</NavLink>
+            <NavLink to={`/saga/${saga.id}/tribunal`} data-tour="nav-tribunal">
+              ⚜ The Tribunal {openNews > 0 && <span className="badge warn" title="Approaches from the Tribunal's covenants waiting for an answer">{openNews}</span>}
+            </NavLink>
             {covs.map((c) => (
               <NavLink key={c.id} to={`/saga/${saga.id}/covenant/${c.id}`}>
                 ⌂ {c.name || 'Unnamed covenant'}

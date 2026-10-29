@@ -238,7 +238,7 @@ function linkWeight(l: TagLink, w: Record<string, number>, paramTag?: string): {
   return { tag: l.tag, weight: w[l.tag] ?? 0 };
 }
 
-export function scoreOption(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, w: Record<string, number>, ctx: GuidedContext, fixedParam?: string): Scored {
+export function scoreOption(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, w: Record<string, number>, ctx: GuidedContext, fixedParam?: string, f?: SagaFactors): Scored {
   const pc = paramChoice(def, rec, w, ctx, fixedParam);
   const isFlaw = def.kind === 'flaw';
   const matches: Match[] = [];
@@ -276,7 +276,7 @@ export function scoreOption(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, 
     else fit += (still - 5) * 2;
   }
   const size = pickSize(def, ctx);
-  const strength = strengthOf(def, rec, ctx, pc.value, w, st);
+  const strength = strengthOf(def, rec, ctx, pc.value, w, st, f);
   matches.sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
   return { def, rec, size, param: pc.value, fit: Math.round(fit * 10) / 10, strength, matches, excluded };
 }
@@ -416,8 +416,7 @@ function effectSeasons(def: VirtueFlawDef, ctx: GuidedContext, f: SagaFactors, p
   return parts.length ? { seasons: total, parts } : null;
 }
 
-export function strengthOf(def: VirtueFlawDef, rec: VFRecord, ctx: GuidedContext, param: string | undefined, w: Record<string, number>, st: GuidedState = { answers: {}, declined: [] }): Strength {
-  const f = sagaFactors(st, ctx);
+export function strengthOf(def: VirtueFlawDef, rec: VFRecord, ctx: GuidedContext, param: string | undefined, w: Record<string, number>, st: GuidedState = { answers: {}, declined: [] }, f = sagaFactors(st, ctx)): Strength {
   const res = effectSeasons(def, ctx, f, param, w);
   if (!res) {
     if (rec.kind === 'story') return { seasons: null, lane: 'story', text: 'No fixed numbers: a story hook.' };
@@ -452,6 +451,8 @@ export function evaluate(st: GuidedState, ctx: GuidedContext): Evaluation {
   const complexityOk = complexity > FOLLOW_UP_LOW;
   const scored: Scored[] = [];
   const gated = new Map<string, string>();
+  // the saga's factors are the same for every option
+  const f = sagaFactors(st, ctx);
   for (const def of ctx.data.virtuesFlaws) {
     const rec = recs.get(def.id);
     if (!rec) continue;
@@ -460,7 +461,7 @@ export function evaluate(st: GuidedState, ctx: GuidedContext): Evaluation {
       gated.set(def.id, why);
       continue;
     }
-    scored.push(scoreOption(def, rec, st, w, ctx));
+    scored.push(scoreOption(def, rec, st, w, ctx, undefined, f));
   }
   rankTotals(scored);
   return { weights: w, scored, gated, complexityOk, type: ctx.c.type };

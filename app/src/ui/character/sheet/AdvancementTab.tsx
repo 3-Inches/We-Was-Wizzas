@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { StandingEditor } from '../StandingEditor';
+import { PrioritiesCard } from './PrioritiesCard';
 import { specAbilities, specChar, specHighest } from '../../../engine/covenantRules';
 import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, SEASONS, TECHNIQUES, type Art, type Characteristic } from '../../../data';
 import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, lapseLongevity, magianLinkedGains, newSeasonEntry, visForStudy, type AgingResult, type StudySource } from '../../../engine/longterm';
@@ -591,6 +592,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             d={d}
             year={year}
             teachers={ctx.covenant?.specialists.filter((x) => teaches(x)) ?? []}
+            library={ctx.covenant?.library}
             onChange={(st) => update((x) => void (x.standing = st))}
           />
         </div>
@@ -600,6 +602,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         </p>
         <SeasonPlan c={c} d={d} year={year} update={update} teachers={ctx.covenant?.specialists.filter((x) => teaches(x)) ?? []} />
       </Card>
+
+      {saga && <PrioritiesCard c={c} d={d} ctx={ctx} saga={saga} data={data} chars={sagaChars} update={update} />}
 
       <Card title="Season log">
         {c.seasonLog.length === 0 && <div className="small muted">No seasons logged yet.</div>}

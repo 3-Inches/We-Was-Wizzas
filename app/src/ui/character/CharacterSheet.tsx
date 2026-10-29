@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTabParam } from '../useTabParam';
 import { useCharEditor } from './useChar';
-import { Card, Empty, Tabs } from '../kit';
+import { BookBadge, Card, Empty, Tabs } from '../kit';
 import { CharIssueList } from './CharIssues';
 import { HOUSE_BY_ID } from '../../data/houses';
 import { exportCharacter, useStore } from '../../store/store';
@@ -68,6 +68,13 @@ export default function CharacterSheet() {
           </button>
         </div>
       </div>
+      {c.fromBook && (
+        <div className="card small no-print">
+          {c.fromBook.title ? `${c.fromBook.title}. ` : ''}From <BookBadge book={c.fromBook.book} line={c.fromBook.line} />, built into the saga by the toolkit
+          {c.standing?.kind === 'priorities' ? '; follows a season priority list when the seasons pass (Advancement tab)' : ''}.{' '}
+          <Link to={`/saga/${saga.id}/tribunal`}>The Tribunal page</Link>
+        </div>
+      )}
       {share && (
         <Card title="Share this character" actions={<button className="small ghost" onClick={() => setShare('')}>✕</button>}>
           <p className="small">Send this link (e.g. on Discord). Opening it imports a copy of the character into the recipient's browser.</p>

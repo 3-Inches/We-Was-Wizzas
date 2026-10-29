@@ -26,6 +26,8 @@ import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, Seaso
 import { rationsModifier } from './turb';
 import { libraryYearEnd, scriptoriumYear, workWriting, writingFor } from './books';
 import { purseOf, takeVis, visText } from './vis';
+import { choosePriority, priorityLabel } from './priorities';
+import { gatheringIn, gatheringNews, livingIds, livingYearEnd } from './living';
 import { workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
 import { uid } from '../util/id';
@@ -112,6 +114,10 @@ export function describeStanding(c: Character, d: DerivedCharacter, s: StandingA
     return k === 'art' ? ART_NAMES[id as Art] : d.abilityByUid.get(id)?.name ?? 'an Ability';
   };
   switch (s.kind) {
+    case 'priorities': return 'Follows the priority list';
+    case 'read': {
+      return `Read ${name(s.target)}${s.bookUid ? ' from the library' : ''}`;
+    }
     case 'exposure': return `Exposure in ${name(s.target)} (2 xp)`;
     case 'practice': return `Practice ${name(s.target)} (Quality 4)`;
     case 'vis': return `Study ${name(s.target)} from vis`;
@@ -169,7 +175,11 @@ function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, c
   const target = (t?: string) => {
     if (!t) return null;
     const [k, id] = t.split(':');
-    return k === 'art' ? { art: id as Art, label: ART_NAMES[id as Art] } : { abilityUid: id, label: d.abilityByUid.get(id)?.name ?? 'an Ability' };
+    if (k === 'art') return { art: id as Art, label: ART_NAMES[id as Art] };
+    // an Ability added this season (Intrigue for politics) is not in the derived character yet
+    const own = c.abilities.find((x) => x.uid === id);
+    const fallback = own ? [data.abilityById.get(own.abilityId)?.name, own.param].filter(Boolean).join(': ') : '';
+    return { abilityUid: id, label: d.abilityByUid.get(id)?.name ?? (fallback || 'an Ability') };
   };
   const theory = d.abilities.find((a) => a.abilityId === d.theoryAbility);
   switch (s.kind) {
@@ -182,7 +192,35 @@ function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, c
       log('exposure', `Exposure: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
       return [`Exposure in ${t.label}: +${r.xp} xp.${mightNote(d, r.xp)}`];
     }
+    case 'priorities': {
+      const { choice, tried } = choosePriority(c, d, ctx, cov, data, year, season, rng, chars);
+      if (!choice) return [`Priorities: nothing on the list can be done (${tried.map((t) => `${priorityLabel(t.kind)}: ${t.why}`).join('; ') || 'the list is empty'}).`];
+      const before = c.seasonLog.length;
+      // lab work is done on the project chosen, as if it were the standing activity
+      const was = c.standing;
+      if (choice.standing.kind === 'lab') c.standing = choice.standing;
+      const out = runActivity(c, d, ctx, cov, data, year, season, rng, choice.standing, chars);
+      c.standing = was;
+      for (const e of c.seasonLog.slice(before)) e.priority = choice.kind;
+      return [`${priorityLabel(choice.kind)}: ${choice.what}.`, ...out];
+    }
+    case 'read': {
+      const b = cov?.library.find((x) => x.uid === s.bookUid);
+      const t = target(s.target);
+      if (!b || !t || (b.kind !== 'summa' && b.kind !== 'tractatus')) return ['Read: the book is not in the covenant’s library.'];
+      if (b.kind === 'tractatus' && b.readBy?.includes(c.id)) return [`${b.title} has been read already: a tractatus teaches once.`];
+      const src = b.kind === 'summa' ? { kind: 'summa' as const, quality: b.quality, level: b.level, isArt: 'art' in t, subject: b.title } : { kind: 'tractatus' as const, quality: b.quality, isArt: 'art' in t, subject: b.title };
+      const r = computeStudy(d, src, 'art' in t ? { art: t.art } : { abilityUid: t.abilityUid });
+      const e = newSeasonEntry(year, season, 'study-book', `Read ${b.title}: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
+      e.bookId = b.uid;
+      e.sourceQuality = r.advancementTotal;
+      applySeason(c, e, 1);
+      c.seasonLog.push(e);
+      if (b.kind === 'tractatus') b.readBy = [...(b.readBy ?? []), c.id];
+      return [`Read ${b.title} (${b.kind === 'summa' ? `summa, Level ${b.level}` : 'tractatus'}, Quality ${b.quality}): ${t.label} +${r.xp} xp.${mightNote(d, r.xp)}`];
+    }
     case 'practice': {
+      if (!s.target) return runActivity(c, d, ctx, cov, data, year, season, rng, { kind: 'practice', target: workAbility(d) }, chars);
       const t = target(s.target);
       if (!t || 'art' in t) return t ? [`Arts cannot be practiced; set another standing activity.`] : [];
       const r = computeStudy(d, { kind: 'practice', quality: 4, subject: t.label }, { abilityUid: t.abilityUid });
@@ -194,9 +232,10 @@ function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, c
       if (!t || !('art' in t)) return ['Study from vis needs an Art.'];
       const art = t.art as Art;
       const pawns = visForStudy(d.arts[art].score);
-      const from = purseOf(c).vis;
+      const fromCov = s.visFrom === 'covenant' && !!cov;
+      const from = fromCov ? cov!.visStocks : purseOf(c).vis;
       const paid = takeVis(from, [art], pawns);
-      if (!paid.ok) return [`No ${pawns} pawn${pawns > 1 ? 's' : ''} of ${ART_NAMES[art]} vis in the purse to study.`];
+      if (!paid.ok) return [`No ${pawns} pawn${pawns > 1 ? 's' : ''} of ${ART_NAMES[art]} vis in ${fromCov ? 'the covenant’s stores' : 'the purse'} to study.`];
       const r = stressDie(pawns, rng);
       const aura = ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0;
       if (r.botches) {
@@ -534,6 +573,18 @@ function auraYearEnd(cov: Covenant, members: Character[], saga: Saga, year: numb
   return lines;
 }
 
+/** A living covenant's magus at a Tribunal gathering: the season goes to it (Exposure in Intrigue), as politics. */
+function attendGathering(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, g: { name: string; at: string }): string[] {
+  const a = ensureAbility(c, 'intrigue', {});
+  const before = c.seasonLog.length;
+  const out = runActivity(c, d, ctx, cov, data, year, season, rng, { kind: 'exposure', target: `ability:${a.uid}` });
+  for (const e of c.seasonLog.slice(before)) {
+    e.priority = 'politics';
+    e.summary = `Attended ${g.name} at ${g.at}: ${e.summary}`;
+  }
+  return [`Attended ${g.name} at ${g.at}.`, ...out];
+}
+
 /** Move the saga on by one season. Returns the new state (the input is left as it was) and what happened. */
 export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOptions = DEFAULT_ADVANCE): { state: SagaState; report: TimeReport } {
   const state: SagaState = structuredClone(input);
@@ -545,6 +596,11 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   const derive = (c: Character) => deriveCharacter(c, data, saga.houseRules);
   const ctxOf = (c: Character) => characterContext(c, state.covenants, data);
 
+  // the living covenants of the Tribunal (built from its book): their lines are kept apart in the report
+  const living = livingIds(state.covenants);
+  const tribunalOf = (c: Character) => (living.members.has(c.id) ? covenantOf(c, state.covenants)?.id ?? state.covenants.find((x) => x.memberIds.includes(c.id))?.id : undefined);
+  const gathering = gatheringIn(saga, year, season);
+
   // the season's work: what each character logged, or its standing activity; and an extra season for one who needs no sleep
   for (const c of state.characters.filter(inPlay)) {
     if (!o.fillUnplanned) continue;
@@ -552,15 +608,24 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     const d = derive(c);
     const ctx = ctxOf(c);
     const cov = covenantOf(c, state.covenants);
+    const tribunal = tribunalOf(c);
     // an adventure shares the season with other work (DE): only other logged activities fill it
-    if (!logged.some((e) => !e.extra && e.activity !== 'adventure')) for (const t of runStanding(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });
+    if (!logged.some((e) => !e.extra && e.activity !== 'adventure')) {
+      // a living covenant's magi spend a gathering's season at the Tribunal
+      const out = gathering && tribunal && d.isMagus && c.standing?.kind !== 'none' ? attendGathering(c, d, ctx, cov, data, year, season, rng, gathering) : runStanding(c, d, ctx, cov, data, year, season, rng, state.characters);
+      for (const t of out) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t, tribunal });
+    }
     const plan = seasonsOf(c, d);
     if (plan.extra && extraSeasonHere(plan, season) && !logged.some((e) => e.extra) && seasonsUsed(c, year).extra < plan.extra)
-      for (const t of runExtraSeason(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });
+      for (const t of runExtraSeason(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t, tribunal });
   }
+  const gatheringItem = gatheringNews(saga, year, season);
+  if (gatheringItem && living.covenants.size) saga.tribunalNews = [gatheringItem, ...(saga.tribunalNews ?? [])];
 
   // the turn of the year (after Winter): covenants, then each character's year
   if (season === 'Winter') {
+    const wasAlive = new Set(state.characters.filter(inPlay).map((c) => c.id));
+    const yearStart = lines.length;
     for (const cov of state.covenants) {
       const members = state.characters.filter((c) => cov.memberIds.includes(c.id));
       const dc = deriveCovenant(cov, data, state.characters);
@@ -581,9 +646,18 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       const d = derive(c);
       const home = covenantOf(c, state.covenants);
       const doc = home ? attendants.get(home.id)?.find((a) => a.id !== c.id) : undefined;
-      lines.push(...ageCharacter(c, d, ctxOf(c), year, rng, o.rollAging, doc));
-      for (const t of workshopYearEnd(c, d, year)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: t });
+      const tribunal = tribunalOf(c);
+      lines.push(...ageCharacter(c, d, ctxOf(c), year, rng, o.rollAging, doc).map((l) => ({ ...l, tribunal })));
+      for (const t of workshopYearEnd(c, d, year)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: t, tribunal });
     }
+    // a living covenant's year-end lines go with the Tribunal's
+    for (const l of lines.slice(yearStart)) if (!l.tribunal && state.covenants.some((x) => x.living && x.name === l.who)) l.tribunal = state.covenants.find((x) => x.living && x.name === l.who)!.id;
+    if (living.covenants.size) {
+      const r = livingYearEnd(state, { data, saga, rules: saga.houseRules }, year, rng, wasAlive);
+      for (const l of r.lines) lines.push({ ...l, kind: 'covenant' });
+      if (r.news.length) saga.tribunalNews = [...r.news, ...(saga.tribunalNews ?? [])];
+    }
+    if (saga.tribunalNews && saga.tribunalNews.length > 150) saga.tribunalNews = saga.tribunalNews.slice(0, 150);
   }
 
   // into the next season: effects run out, wards are renewed, the Might pool and Fatigue recover

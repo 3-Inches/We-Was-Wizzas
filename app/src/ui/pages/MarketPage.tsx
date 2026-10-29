@@ -17,7 +17,7 @@ import { BRIBES, LODGING_EASE, appraiseEase, rollAppraise, rollBargain } from '.
 import { inPlay, type SagaState } from '../../engine/time';
 import type { Character, Covenant, CovenfolkCounts, HouseRules, LibraryBook, Specialist } from '../../engine/types';
 import { visText } from '../../engine/vis';
-import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
+import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { uid } from '../../util/id';
 import { Card, Empty, Field, Stepper, HowItWorks } from '../kit';
@@ -45,8 +45,8 @@ export default function MarketPage() {
   const { sagaId } = useParams();
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
-  const chars = useSagaCharacters(sagaId);
-  const covs = useSagaCovenants(sagaId);
+  const chars = usePlayerCharacters(sagaId);
+  const covs = usePlayerCovenants(sagaId);
   const putSagaState = useStore((s) => s.putSagaState);
   const updateSaga = useStore((s) => s.updateSaga);
   const setNotice = useStore((s) => s.setNotice);

@@ -19,6 +19,8 @@ import { seeded } from '../generate/random';
 import { newLab } from '../lab';
 import { newProject } from '../projects';
 import { advanceSeasons, DEFAULT_ADVANCE, type SagaState } from '../time';
+import { tribunalBook } from '../../data/livingCovenants';
+import { buildLivingCovenant } from '../living';
 import { DEFAULT_HOUSE_RULES, type Character, type Covenant, type LabProject } from '../types';
 
 export interface TestSagaOptions {
@@ -27,6 +29,8 @@ export interface TestSagaOptions {
   name?: string;
   /** seasons to play before handing it over */
   seasons?: number;
+  /** living covenants of the Tribunal's book to build in too (their ids: 'heorot', 'triamore'…) */
+  living?: string[];
 }
 
 const ALIGNMENTS: NonNullable<Covenant['auraAlignment']>[] = [{ kind: 'art', art: 'Co' }, { kind: 'healing' }, { kind: 'art', art: 'Ig' }, { kind: 'emotion', text: 'Fearful' }];
@@ -149,5 +153,14 @@ export function buildTestSaga(data: GameData, o: TestSagaOptions): SagaState {
   if (summa) cov.scriptorium = [{ uid: 'sc1', sourceUid: summa.uid, points: 0 }];
 
   const state: SagaState = { saga, characters: chars, covenants: [cov, abbey] };
+  // the Tribunal's living covenants, from its book
+  const book = tribunalBook(saga.tribunal);
+  for (const id of o.living ?? []) {
+    const def = book?.covenants.find((x) => x.id === id);
+    if (!book || !def) continue;
+    const b = buildLivingCovenant(book, def, g, { seed: o.seed, avoidNames: state.characters.map((c) => c.name) });
+    state.characters.push(...b.chars);
+    state.covenants.push(b.cov);
+  }
   return o.seasons ? advanceSeasons(state, data, o.seasons, { ...DEFAULT_ADVANCE, rng: seeded(o.seed) }).state : state;
 }

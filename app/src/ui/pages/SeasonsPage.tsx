@@ -5,7 +5,7 @@ import { extraSeasonHere, seasonsOf, seasonsUsed } from '../../engine/seasons';
 import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useStore } from '../../store/store';
-import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
+import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { deriveCharacter } from '../../engine/character/derive';
 import { deriveCovenant } from '../../engine/covenant';
 import { DEFAULT_YEAR_END, planYearEnd, type YearEndOptions } from '../../engine/covenantYear';
@@ -25,8 +25,11 @@ export default function SeasonsPage() {
   const { sagaId } = useParams();
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
-  const chars = useSagaCharacters(sagaId);
-  const covs = useSagaCovenants(sagaId);
+  // time moves for the whole saga, the Tribunal's living covenants with it; the page shows the players'
+  const allChars = useSagaCharacters(sagaId);
+  const allCovs = useSagaCovenants(sagaId);
+  const chars = usePlayerCharacters(sagaId);
+  const covs = usePlayerCovenants(sagaId);
   const putSagaState = useStore((s) => s.putSagaState);
   const updateCharacter = useStore((s) => s.updateCharacter);
   const updateCovenant = useStore((s) => s.updateCovenant);
@@ -44,7 +47,7 @@ export default function SeasonsPage() {
   const toNextYear = ['Spring', 'Summer', 'Autumn', 'Winter'].length - ['Spring', 'Summer', 'Autumn', 'Winter'].indexOf(season);
 
   const advance = (n: number) => {
-    const before = { saga: structuredClone(saga), characters: structuredClone(chars), covenants: structuredClone(covs) };
+    const before = { saga: structuredClone(saga), characters: structuredClone(allChars), covenants: structuredClone(allCovs) };
     const { state, reports } = advanceSeasons(before, data, n, { ...DEFAULT_ADVANCE, fillUnplanned: fill, rollAging: aging, yearEnd: ye });
     putSagaState(state);
     setLast(reports);
@@ -158,6 +161,7 @@ export default function SeasonsPage() {
                         d={d}
                         year={year}
                         teachers={covenantOf(c, covs)?.specialists.filter((s) => teaches(s)) ?? []}
+                        library={covenantOf(c, covs)?.library}
                         onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))}
                       />
                     </td>
@@ -250,26 +254,39 @@ export default function SeasonsPage() {
 function Reports({ reports, collapsed }: { reports: TimeReport[]; collapsed?: boolean }) {
   return (
     <div className="stack" style={{ marginTop: 8 }}>
-      {reports.map((r) => (
-        <details key={r.id} open={!collapsed}>
-          <summary>
-            <b>
-              {r.season} {r.year}
-            </b>{' '}
-            <span className="small muted">
-              {r.lines.length} line{r.lines.length === 1 ? '' : 's'}
-              {r.lines.some((l) => l.kind === 'crisis') ? ' · crisis!' : ''}
-            </span>
-          </summary>
-          {r.lines.map((l, i) => (
-            <div key={i} className="small list-row">
-              {l.who && <b style={{ minWidth: 120 }}>{l.who}</b>}
-              {l.kind && KIND_BADGE[l.kind] !== undefined && KIND_BADGE[l.kind] !== '' && <span className={`badge ${KIND_BADGE[l.kind]}`}>{l.kind}</span>}
-              <span>{l.text}</span>
-            </div>
-          ))}
-        </details>
-      ))}
+      {reports.map((r) => {
+        // the living covenants' lines are folded apart from the players'
+        const own = r.lines.filter((l) => !l.tribunal);
+        const tribunal = r.lines.filter((l) => l.tribunal);
+        const line = (l: TimeReport['lines'][number], i: number) => (
+          <div key={i} className="small list-row">
+            {l.who && <b style={{ minWidth: 120 }}>{l.who}</b>}
+            {l.kind && KIND_BADGE[l.kind] !== undefined && KIND_BADGE[l.kind] !== '' && <span className={`badge ${KIND_BADGE[l.kind]}`}>{l.kind}</span>}
+            <span>{l.text}</span>
+          </div>
+        );
+        return (
+          <details key={r.id} open={!collapsed}>
+            <summary>
+              <b>
+                {r.season} {r.year}
+              </b>{' '}
+              <span className="small muted">
+                {own.length} line{own.length === 1 ? '' : 's'}
+                {own.some((l) => l.kind === 'crisis') ? ' · crisis!' : ''}
+                {tribunal.length ? ` · the Tribunal: ${tribunal.length}` : ''}
+              </span>
+            </summary>
+            {own.map(line)}
+            {tribunal.length > 0 && (
+              <details style={{ marginLeft: 12 }}>
+                <summary className="small">The Tribunal’s living covenants ({tribunal.length} lines)</summary>
+                {tribunal.map(line)}
+              </details>
+            )}
+          </details>
+        );
+      })}
     </div>
   );
 }

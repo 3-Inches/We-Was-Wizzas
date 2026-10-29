@@ -4,7 +4,7 @@ import { ARTS, ART_NAMES, type Art } from '../../data';
 import { deriveCharacter } from '../../engine/character/derive';
 import { FREQUENCY, MATERIAL_BASE, SIZE_MULT, labTextCopyLevels, labTextWritingLevels, longevityBonus, longevityVisCost, maxTractatus, planSumma, tractatusQuality, visLimit } from '../../engine/enchant';
 import { labTotal, type LabContext } from '../../engine/magic';
-import { useCharacterContext, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
+import { useCharacterContext, useGameData, usePlayerCharacters, useSaga } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { Card, Empty, Field, SearchInput, Stepper, Tabs, Total } from '../kit';
 import ItemsEditor from '../items/ItemEditor';
@@ -18,7 +18,7 @@ export default function EnchantPage() {
   const { sagaId } = useParams();
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
-  const chars = useSagaCharacters(sagaId);
+  const chars = usePlayerCharacters(sagaId);
   const magi = chars.filter((c) => c.type === 'magus');
   const [charId, setCharId] = useState(magi[0]?.id ?? '');
   const [tab, setTab] = useTabParam<TabId>('items');
@@ -89,7 +89,7 @@ type Props = { d: NonNullable<ReturnType<typeof deriveCharacter>>; aura: ReturnT
 
 function LongevityForOthers({ d, aura, lab }: Props) {
   const { sagaId } = useParams();
-  const chars = useSagaCharacters(sagaId);
+  const chars = usePlayerCharacters(sagaId);
   const updateCharacter = useStore((s) => s.updateCharacter);
   const saga = useSaga(sagaId);
   const [subjectId, setSubjectId] = useState('');

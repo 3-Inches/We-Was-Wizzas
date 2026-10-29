@@ -15,6 +15,7 @@ const SECTIONS: [string, string][] = [
   ['covenant', 'The covenant'],
   ['characters', 'Characters'],
   ['play', 'In play'],
+  ['tribunal', 'The Tribunal'],
   ['optional', 'Optional rules'],
   ['questions', 'Common questions'],
   ['discord', 'Playing over Discord'],
@@ -288,6 +289,10 @@ export default function HelpPage() {
             link to where it is done. When unsure what to do next, go back to it.
           </li>
           <li>
+            <b>The Tribunal</b> (⚜ in the saga&apos;s menu): the other covenants of the saga&apos;s Tribunal, built from its book as living covenants that carry on by themselves.
+            What they bring to your covenant shows on the Game table. See <Jump to="tribunal">The Tribunal</Jump> below.
+          </li>
+          <li>
             <b>Magic:</b> every Casting Score and Lab Total for the current aura, Magic Resistance per Form, Penetration with Arcane Connections, spell casting with the right die,
             botch dice, fatigue and ritual costs, spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, raw vis,
             days away from the lab, any other modifier) and it is added to the totals. A botch adds its Warping Points. Casting Virtues and Flaws (Diedne Magic, Weak
@@ -417,6 +422,50 @@ export default function HelpPage() {
           <li>
             <b>Reference only</b> (Game mechanics has the rules): fairs and markets, towns and charters, citizenship, trading companies&apos; organization, the sea trade
             tables, and novelties.
+          </li>
+        </ul>
+      </Card>
+
+      <Card title="The Tribunal: living covenants" id="tribunal">
+        <p className="small" style={{ marginTop: 0 }}>
+          The <b>Tribunal</b> page builds the other covenants of the saga&apos;s Tribunal into the saga from their book, so that the players&apos; covenant has neighbors who live
+          their own lives. For now the toolkit has the <b>Rhine</b> (<i>Guardians of the Forests</i>): Durenmar, Fengheld, Crintera, Irencillia, Oculus Septentrionalis, Dankmar,
+          Waddenzee, Roznov, Triamore and Heorot. Set the saga&apos;s Tribunal to Rhine on the saga page, then press <b>Add</b> for one covenant or <b>Add all</b>.
+        </p>
+        <ul className="small">
+          <li>
+            <b>What is built:</b> each magus the book names, as a full character with the book&apos;s House, age, rank, gild, title and Personality Traits, strongest in the Arts the
+            book gives (and the whole statistics block where the book prints one); the magi it only counts, generated to its numbers; a laboratory each; the covenant&apos;s
+            season, aura, covenfolk (as numbers, with its steward, chamberlain, turb captain and craftsmen), library, vis sources and accounts that hold. Ages are the book&apos;s for
+            1220, moved on to the saga&apos;s year. Where the book is silent (an age, a season, an aura), the toolkit makes a likely guess and says so in the notes.
+          </li>
+          <li>
+            <b>Kept apart:</b> their covenants and people stay off the players&apos; lists (the menu, the saga page, the Game table, Seasons, the Market). They are on the
+            Tribunal page and their own pages, and their lines in a season&apos;s report are folded under <b>The Tribunal</b>.
+          </li>
+          <li>
+            <b>Season priorities:</b> each of their magi follows a priority list (Advancement tab → Season priorities): service to the covenant, politics, travel, writing for the
+            library, reading its best book, study from vis, inventing a spell, improving the lab. Each entry is a season a year, and the first that can be done is taken. A
+            Longevity Ritual is made whenever a magus of 35 or more has none, and lab work fills any season the list leaves. Any character can follow a list: choose{' '}
+            <b>Follow the priority list</b> as the standing activity.
+          </li>
+          <li>
+            <b>The years:</b> every seven years the Tribunal meets at Durenmar (from 1221; the toolkit takes the Summer), and every living magus spends that season there. At each
+            year&apos;s end a living covenant closes its books like yours, makes good a shortfall from its holdings, may take in a new journeyman when its numbers fall, and may come
+            to your covenant with one of the book&apos;s offers, requests or troubles (Boris of Novgorod with vis to sell, Heorot seeking support, Waddenzee&apos;s pirates).
+          </li>
+          <li>
+            <b>Answering them:</b> what they bring shows under <b>Needs attention</b> and <b>From the Tribunal</b> on the Game table, with a link to where it is dealt with. Press
+            <b>Dealt with</b> once it is played. On the Tribunal page, <b>Deal with</b> a covenant to trade vis or silver, or buy a copy of one of its books, and set its
+            <b> attitude</b> to your covenant as play makes it: troubles come more often from those who dislike you, offers and invitations from those who like you.
+          </li>
+          <li>
+            <b>The Great Library</b> (Tribunal page): the book&apos;s rolls for what a visiting magus finds in Durenmar&apos;s library (a summa of the Level wanted, a tractatus&apos;s
+            Quality, a spell&apos;s or an enchantment&apos;s Lab Text) and the seasons of study earned by contributing to it.
+          </li>
+          <li>
+            <b>Pause or remove:</b> a paused covenant still ages and closes its books but makes no approaches; removing one takes its people with it (undo is at the top of the
+            menu).
           </li>
         </ul>
       </Card>

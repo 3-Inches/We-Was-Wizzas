@@ -97,6 +97,27 @@ export interface Saga {
   options?: Record<string, boolean>;
   /** the storyguide's cast: creatures from the books' bestiaries kept to hand (Quick build → Creatures) */
   cast?: CastMember[];
+  /** what the Tribunal's living covenants did that touches the players: approaches, deaths, new members, gatherings (newest first) */
+  tribunalNews?: TribunalNews[];
+}
+
+/** Something from the Tribunal for the storyguide: a living covenant's approach to the players, a death, a gathering. */
+export interface TribunalNews {
+  uid: string;
+  year: number;
+  season: Season;
+  /** the living covenant it is about */
+  covenantId?: string;
+  kind: 'approach' | 'death' | 'member' | 'gathering' | 'event';
+  text: string;
+  /** an approach: which one (BookApproach id), its kind, and where it is dealt with */
+  approach?: string;
+  approachKind?: 'trade' | 'request' | 'offer' | 'visit' | 'trouble' | 'invitation';
+  page?: 'market' | 'covenant' | 'seasons' | 'tribunal' | 'dice';
+  /** the character it is about */
+  characterId?: string;
+  /** dealt with, or set aside, by the storyguide */
+  done?: boolean;
 }
 
 /** A creature the storyguide keeps to hand: one from the bestiary (data/bestiary.ts), with their own notes. */
@@ -117,7 +138,7 @@ export interface TimeReport {
   id: string;
   year: number;
   season: Season;
-  lines: { who?: string; text: string; kind?: 'season' | 'year' | 'aging' | 'crisis' | 'warping' | 'covenant' | 'lab' | 'effect' | 'reminder' | 'money' }[];
+  lines: { who?: string; text: string; kind?: 'season' | 'year' | 'aging' | 'crisis' | 'warping' | 'covenant' | 'lab' | 'effect' | 'reminder' | 'money'; tribunal?: string }[];
 }
 
 /**
@@ -233,13 +254,27 @@ export interface Purse {
 
 /** What a character does in a season nobody planned (and while time is fast-forwarded). */
 export interface StandingActivity {
-  kind: 'auto' | 'exposure' | 'practice' | 'vis' | 'lab' | 'work' | 'taught' | 'worship' | 'write' | 'none';
+  kind: 'auto' | 'priorities' | 'exposure' | 'practice' | 'vis' | 'read' | 'lab' | 'work' | 'taught' | 'worship' | 'write' | 'none';
+  /** read: the library book (by uid) */
+  bookUid?: string;
+  /** vis: study from the covenant's stocks rather than the purse */
+  visFrom?: 'covenant';
   /** taught: one of the covenant's teachers ('spec:<uid>') */
   teacher?: string;
   /** 'art:Cr' or 'ability:<uid>' */
   target?: string;
   /** a lab project, or a writing project, to work on */
   projectUid?: string;
+}
+
+/** What a season can go to on a priority list (engine/priorities.ts). */
+export type PriorityKind = 'longevity' | 'service' | 'politics' | 'travel' | 'read' | 'vis' | 'invent' | 'write' | 'lab' | 'practice';
+
+/** One entry of a priority list: the kind, whether it is on, and the Arts it favors (else the character's best). */
+export interface SeasonPriority {
+  kind: PriorityKind;
+  off?: boolean;
+  arts?: Art[];
 }
 
 /** Someone bound to help a character (Houses of Hermes: Societates, Agencies). */
@@ -642,6 +677,8 @@ export interface SeasonLogEntry {
   labKind?: LabProject['kind'];
   /** one of the extra seasons a character who needs no sleep has each year */
   extra?: boolean;
+  /** the season priority it was spent on */
+  priority?: PriorityKind;
   /** applied to the character already (so it can be reverted) */
   applied: boolean;
 }
@@ -835,6 +872,10 @@ export interface Character {
   writing?: WritingProject[];
   /** what the character does in a season nobody planned */
   standing?: StandingActivity;
+  /** what the character does with a season, in order of preference, when its standing activity is to follow them (engine/priorities.ts) */
+  priorities?: SeasonPriority[];
+  /** a character the toolkit built from a book: where it is described */
+  fromBook?: { book: string; line: number; title?: string };
   /** the seasons a year are spent: a free-season count set by hand, needing no sleep, and what the extra seasons go to */
   seasons?: { free?: number; sleepless?: boolean; extra?: StandingActivity };
   /** the last year whose aging roll was made */
@@ -1314,6 +1355,8 @@ export interface Covenant {
   hookStories?: Record<string, number>;
   /** year-end choices that stay from year to year */
   yearEnd?: { skipVis?: string[] };
+  /** a covenant of the saga's Tribunal built from its book, which lives on its own as the seasons pass (not the players') */
+  living?: LivingCovenant;
   /** what has changed the aura, oldest first */
   auraLog?: { uid: string; year: number; season?: Season; delta: number; text: string }[];
   /** the aura from year to year (Realms of Power: Magic, Aura Variation) */
@@ -1323,6 +1366,21 @@ export interface Covenant {
   notes: string;
   createdAt: string;
   updatedAt: string;
+}
+
+/** A living covenant's link to its book, and what it remembers from year to year. */
+export interface LivingCovenant {
+  /** the Tribunal book (BOOKS id) and the covenant's id in it */
+  book: string;
+  key: string;
+  tribunal: string;
+  addedYear: number;
+  /** each approach (BookApproach id) and the last year it came up */
+  approached?: Record<string, number>;
+  /** how it stands with the players' covenant, as play has made it */
+  attitude?: 'ally' | 'friendly' | 'neutral' | 'wary' | 'hostile' | 'enemy';
+  /** the storyguide stopped it acting (it still ages and keeps its books) */
+  paused?: boolean;
 }
 
 /** What a player has told the guided build (design spec: Guided Build). */
