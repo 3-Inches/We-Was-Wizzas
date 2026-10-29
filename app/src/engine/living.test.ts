@@ -126,12 +126,19 @@ describe('the covenants’ Boons, Hooks and auras', () => {
 describe('building a covenant from its book', () => {
   it('makes Heorot’s three magi as the book gives them, with labs, a library, vis and accounts that hold', () => {
     const saga = sagaAt(1222);
-    const { cov, chars } = buildLivingCovenant(RHINE, def('heorot'), { data, saga, rules }, { seed: 3 });
+    const built = buildLivingCovenant(RHINE, def('heorot'), { data, saga, rules }, { seed: 3 });
+    const { cov } = built;
+    // its members; and a peregrinator staying as its guest (about one for every five members)
+    const chars = built.chars.filter((c) => !c.wanderer);
+    const guests = built.chars.filter((c) => c.wanderer);
+    expect(guests).toHaveLength(1);
+    expect(guests[0]).toMatchObject({ covenantId: cov.id, wanderer: { wanders: 'peregrinator' } });
+    expect(cov.memberIds).not.toContain(guests[0].id);
     expect(chars.map((c) => c.name)).toEqual(['Signum Irruptus', 'Theoderich of Augsburg', 'Pancrestis filius Occultes']);
     expect(chars.map((c) => [c.house, c.rhine?.rank, c.age])).toEqual([['criamon', 'master', 55], ['jerbiton', 'journeyman', 39], ['bonisagus', 'journeyman', 30]]);
     expect(cov.living).toMatchObject({ book: 'GotF', key: 'heorot', tribunal: 'Rhine' });
     expect(cov.memberIds).toEqual(chars.map((c) => c.id));
-    expect(cov.labs.map((l) => l.ownerId)).toEqual(chars.map((c) => c.id));
+    expect(cov.labs.map((l) => l.ownerId)).toEqual([...chars, ...guests].map((c) => c.id));
     expect(cov.library.length).toBeGreaterThan(0);
     expect(cov.visSources.reduce((t, s) => t + s.pawnsPerYear, 0)).toBe(10);
     expect(planYearEnd(cov, deriveCovenant(cov, data, chars), DEFAULT_YEAR_END).balance).toBeGreaterThanOrEqual(0);
@@ -243,7 +250,7 @@ describe('the Tribunal through the years', () => {
       expect(e?.priority).toBe('politics');
     }
     expect(reports[0].lines.filter((l) => chars.some((c) => c.name === l.who)).every((l) => l.tribunal === cov.id)).toBe(true);
-    expect(state.saga.tribunalNews?.[0]).toMatchObject({ kind: 'gathering' });
+    expect(state.saga.tribunalNews?.some((n) => n.kind === 'gathering')).toBe(true);
   });
 
   it('brings the book’s approaches to the players’ covenant at the year’s end, not the same one two years running', () => {
@@ -253,11 +260,12 @@ describe('the Tribunal through the years', () => {
     // every chance comes up
     const r1 = advanceSeasons({ saga, characters: chars, covenants: [ours, cov] }, data, 1, { ...DEFAULT_ADVANCE, rollAging: false, rng: () => 0 });
     const news = r1.state.saga.tribunalNews!.filter((n) => n.kind === 'approach');
-    // Triamore's, and Tabanus's (its guest) asking to be taken in
-    expect(news.map((n) => n.approach).sort()).toEqual(['library', 'lotharingia', 'members', 'tabanus']);
+    // Triamore's, and Tabanus's (its guest) asking to be taken in; and its other peregrinatores', under the guest-laws
+    expect(news.map((n) => n.approach).filter((a) => !a?.startsWith('guest:')).sort()).toEqual(['library', 'lotharingia', 'members', 'tabanus']);
+    const guests = news.filter((n) => n.approach?.startsWith('guest:')).length;
     expect(news.find((n) => n.approach === 'members')).toMatchObject({ covenantId: cov.id, year: 1221, season: 'Spring', approachKind: 'invitation' });
     const r2 = advanceSeasons(r1.state, data, 4, { ...DEFAULT_ADVANCE, rollAging: false, rng: () => 0 });
-    expect(r2.state.saga.tribunalNews!.filter((n) => n.kind === 'approach')).toHaveLength(4);
+    expect(r2.state.saga.tribunalNews!.filter((n) => n.kind === 'approach')).toHaveLength(4 + guests);
   });
 });
 

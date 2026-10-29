@@ -139,7 +139,12 @@ export function MotionsCard({ book, saga, chars, covs }: { book: TribunalBook; s
 export function WanderersCard({ book, saga, chars, covs }: { book: TribunalBook; saga: Saga; chars: Character[]; covs: Covenant[] }) {
   const takeIn = useTakeIn(covs);
   const S = `/saga/${saga.id}`;
-  const wanderers = chars.filter((c) => c.wanderer && !c.wounds.dead);
+  // the book's wanderers first, then the peregrinatores by where they stay
+  const fromBook = new Set((book.wanderers ?? []).map((w) => w.name));
+  const where = (c: Character) => covs.find((x) => x.id === c.covenantId)?.name ?? '~';
+  const wanderers = chars
+    .filter((c) => c.wanderer && !c.wounds.dead)
+    .sort((a, b) => Number(fromBook.has(b.name)) - Number(fromBook.has(a.name)) || where(a).localeCompare(where(b)) || a.name.localeCompare(b.name));
   const missing = (book.wanderers ?? []).filter((w) => !chars.some((c) => c.name === w.name));
   const ours = playersCovenant(covs, chars);
   if (!wanderers.length && !missing.length) return null;
@@ -148,7 +153,7 @@ export function WanderersCard({ book, saga, chars, covs }: { book: TribunalBook;
     <Card title="Wanderers" tour="tribunal-wanderers">
       <p className="small muted" style={{ marginTop: 0 }}>
         Magi who belong to no covenant. A peregrinator stays a few years at each covenant as its guest and moves on; a seasonal wanderer winters at one and spends the summer on the
-        road. Each keeps a laboratory of their own wherever they stay{customs ? ', and pays the host three pawns of vis a year or a season’s service, under the Rhine’s guest-laws' : ''}.
+        road. Each keeps a laboratory of their own wherever they stay{customs ? ', and pays the host three pawns of vis a year or a season’s service, under the Rhine’s guest-laws. Around a sixth of the Rhine’s magi live so: each covenant added brings its guests' : ''}.
       </p>
       {wanderers.map((c) => {
         const w = c.wanderer!;

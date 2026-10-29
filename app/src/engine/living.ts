@@ -129,6 +129,9 @@ function bookMagus(m: BookMagus, book: TribunalBook, def: BookCovenant, cov: Cov
   return c;
 }
 
+/** The Houses peregrinatores come from (a Gifted Mercere is rare, and has the Mercer Houses to stay at). */
+const PEREGRINE_HOUSES = ['bonisagus', 'tremere', 'flambeau', 'jerbiton', 'merinita', 'ex-miscellanea', 'verditius', 'criamon', 'tytalus', 'guernicus', 'bjornaer'];
+
 /** Common heartbeasts for a Bjornaer the book does not give one (HoH:MC lists many more). */
 const HEARTBEASTS = ['wolf', 'bear', 'boar', 'stag', 'raven', 'owl', 'fox', 'badger', 'hawk', 'otter', 'lynx', 'eagle', 'horse', 'hare', 'wildcat', 'beaver'];
 
@@ -408,6 +411,22 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
   if (need > 0) cov.income.push({ uid: uid(), name: 'Holdings and dealings', type: 'Other', level: 'Typical', pounds: need, customPounds: true, inPlay: true });
   cov.finances.treasury = Math.round(plan.expenditure * (0.5 + MARGIN[def.wealth] * 2));
   log.push(`Accounts: about ${Math.round(plan.expenditure)} £ a year spent, ${cov.finances.treasury} £ in the treasury.`);
+
+  // peregrinatores: around a sixth of the Rhine's magi live as guests under its guest-laws, mostly
+  // journeymen (GotF, Laws of Hospitality): about one for every five members, Bjornaer at Crintera
+  if (o.others !== false && book.tribunal === 'Rhine' && optionOn(g.saga, 'rhineGilds')) {
+    const guests = Math.round(chars.filter((c) => c.type === 'magus').length / 5);
+    for (let i = 0; i < guests; i++) {
+      yield 'a peregrinator, a guest';
+      const house = def.domusMagna === 'bjornaer' ? 'bjornaer' : PEREGRINE_HOUSES[Math.floor(rng() * PEREGRINE_HOUSES.length)];
+      const c = otherMagus(house, 'journeyman', book, def, cov, g, rng, o.seed * 1000 + k++, avoid, 'the peregrinatores who stay as guests', { pg: 1 + Math.floor(rng() * 12) });
+      avoid.push(c.name);
+      c.notes = `A peregrinator the toolkit made, a guest of ${cov.name}: around a sixth of the Rhine’s magi are peregrinatores, living from covenant to covenant under its guest-laws (${book.title}, line 568).`;
+      c.wanderer = { wanders: 'peregrinator', since: year, stay: 3 + Math.floor(rng() * 3), favors: 'any', book: book.book, key: c.name, visited: [cov.id] };
+      cov.labs.push(newLab(`${c.name}’s laboratory`, c.id));
+      chars.push(c);
+    }
+  }
 
   // the book's wanderers who start here, as its guests (not members)
   for (const w of (book.wanderers ?? []).filter((x) => x.startsAt === def.id && !(o.avoidNames ?? []).includes(x.name))) {

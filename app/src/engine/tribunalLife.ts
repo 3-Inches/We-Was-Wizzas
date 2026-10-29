@@ -550,13 +550,15 @@ export function wanderersYearEnd(state: State, year: number, rng: Rng): { lines:
           if (welcome) w.welcome = undefined;
           const text = `${c.name} leaves ${host.name} after ${years} year${years === 1 ? '' : 's'} as its guest, for ${to.name}.`;
           lines.push({ who: c.name, text, tribunal: 'wanderers' });
-          out.push(news(year, 'Winter', { kind: 'event', covenantId: to.living ? to.id : undefined, characterId: c.id, text }));
+          // news of the book's wanderers, and of any coming to or leaving the players; the other peregrinatores' moves stay in the report
+          const known = !!tribunalBook(state.saga.tribunal)?.wanderers?.some((x) => x.name === w.key);
+          if (known || !to.living || !host.living) out.push(news(year, 'Winter', { kind: 'event', covenantId: to.living ? to.id : undefined, characterId: c.id, text }));
         }
       }
     }
-    // asking the players' covenant to take them in
+    // asking the players' covenant to take them in: the book's own request, or any peregrinator's under the guest-laws
     const book = tribunalBook(state.saga.tribunal);
-    const a = book?.wanderers?.find((x) => x.name === w.key)?.approach;
+    const a = book?.wanderers?.find((x) => x.name === w.key)?.approach ?? (w.wanders === 'peregrinator' && customs ? guestRequest(c) : undefined);
     if (!a || !ours || c.covenantId === ours.id || w.welcome) continue;
     if (state.saga.tribunalNews?.some((n) => n.approach === a.id && n.year >= year - 1)) continue;
     if (rng() * 100 >= a.chance) continue;
@@ -569,6 +571,14 @@ export function wanderersYearEnd(state: State, year: number, rng: Rng): { lines:
 export function playersCovenant(covenants: Covenant[], characters: Character[]): Covenant | undefined {
   const magi = (cov: Covenant) => characters.filter((c) => cov.memberIds.includes(c.id) && c.type === 'magus').length;
   return covenants.filter((x) => !x.living).sort((a, b) => magi(b) - magi(a))[0];
+}
+
+/** A peregrinator's request for hospitality at the players' covenant (GotF, Laws of Hospitality). */
+function guestRequest(c: Character): { id: string; kind: 'request'; text: string; chance: number; page?: undefined } {
+  return {
+    id: `guest:${c.id}`, kind: 'request', chance: 6,
+    text: `${c.name}, a peregrinator of House ${(c.house ?? '').replace(/(^|-)\w/g, (x) => x.toUpperCase()).replace('-', ' ')}, asks for hospitality at the covenant under the Rhine’s guest-laws: three to seven years, three pawns of vis a year or a season’s service, and a laboratory of their own.`,
+  };
 }
 
 /**
