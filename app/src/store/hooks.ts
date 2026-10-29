@@ -5,6 +5,7 @@ import { validateCharacter, type Issue } from '../engine/character/validate';
 import { deriveCovenant, type DerivedCovenant } from '../engine/covenant';
 import type { Character, Covenant, Saga } from '../engine/types';
 import { characterContext, type CharacterContext } from '../engine/context';
+import { livingIds } from '../engine/living';
 import { useStore } from './store';
 
 export function useSaga(id?: string): Saga | undefined {
@@ -45,6 +46,23 @@ export function useSagaCharacters(sagaId?: string): Character[] {
 export function useSagaCovenants(sagaId?: string): Covenant[] {
   const all = useStore((s) => s.covenants);
   return useMemo(() => Object.values(all).filter((c) => c.sagaId === sagaId).sort((a, b) => a.name.localeCompare(b.name)), [all, sagaId]);
+}
+
+/** The players' side of the saga: its characters without the Tribunal's living covenants and their people. */
+export function usePlayerCharacters(sagaId?: string): Character[] {
+  const chars = useSagaCharacters(sagaId);
+  const covs = useSagaCovenants(sagaId);
+  return useMemo(() => {
+    const npc = livingIds(covs).members;
+    const living = new Set(covs.filter((c) => c.living).map((c) => c.id));
+    return chars.filter((c) => !npc.has(c.id) && !(c.covenantId && living.has(c.covenantId)));
+  }, [chars, covs]);
+}
+
+/** The players' covenants: all but the Tribunal's living covenants. */
+export function usePlayerCovenants(sagaId?: string): Covenant[] {
+  const covs = useSagaCovenants(sagaId);
+  return useMemo(() => covs.filter((c) => !c.living), [covs]);
 }
 
 export function useDerivedCovenant(cov: Covenant | undefined, data: GameData): DerivedCovenant | undefined {

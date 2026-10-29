@@ -4,7 +4,7 @@ import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type SpellDef,
 import { deriveCharacter } from '../../engine/character/derive';
 import { castingScore, labTotal } from '../../engine/magic';
 import { DURATIONS, RANGES, TARGETS, designSpell, inventionSeasons, type RDTOption } from '../../engine/spellDesign';
-import { useCharacterContext, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
+import { useCharacterContext, useGameData, usePlayerCharacters, useSaga } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { uid } from '../../util/id';
 import { BookBadge, Card, Empty, Field, Markdown, SearchInput, Stepper, Tabs, Total } from '../kit';
@@ -20,7 +20,7 @@ export default function SpellsPage() {
   const { sagaId } = useParams();
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
-  const chars = useSagaCharacters(sagaId).filter((c) => c.type === 'magus' || c.virtues.some((v) => /gift/.test(v.defId)));
+  const chars = usePlayerCharacters(sagaId).filter((c) => c.type === 'magus' || c.virtues.some((v) => /gift/.test(v.defId)));
   const [tab, setTab] = useTabParam<TabId>('browse');
   const [charId, setCharId] = useState<string>(chars[0]?.id ?? '');
   const [msg, setMsg] = useState('');

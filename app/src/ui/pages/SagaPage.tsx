@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useStore, exportSaga } from '../../store/store';
-import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
+import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCovenants } from '../../store/hooks';
 import { newCharacter } from '../../engine/character/factory';
 import { newCovenant } from '../../engine/covenant';
 import { deriveCharacter } from '../../engine/character/derive';
@@ -26,8 +26,11 @@ export default function SagaPage() {
   const { sagaId } = useParams();
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
-  const chars = useSagaCharacters(sagaId);
-  const covs = useSagaCovenants(sagaId);
+  // the players' side; the Tribunal's living covenants and their people are counted apart
+  const chars = usePlayerCharacters(sagaId);
+  const covs = usePlayerCovenants(sagaId);
+  const allCovs = useSagaCovenants(sagaId);
+  const living = allCovs.filter((c) => c.living);
   const putCharacter = useStore((s) => s.putCharacter);
   const putCovenant = useStore((s) => s.putCovenant);
   const updateSaga = useStore((s) => s.updateSaga);
@@ -153,6 +156,14 @@ export default function SagaPage() {
               <span className="badge">{c.memberIds.length} members</span>
             </div>
           ))}
+          <div className="list-row small">
+            <span style={{ flex: 1 }}>
+              {living.length
+                ? `The ${saga.tribunal} Tribunal: ${living.length} living covenant${living.length > 1 ? 's' : ''} (${living.reduce((t, c) => t + c.memberIds.length, 0)} people), kept apart from the players’.`
+                : `The other covenants of the ${saga.tribunal || 'saga’s'} Tribunal can be brought into the saga as living covenants.`}
+            </span>
+            <Link to={`/saga/${saga.id}/tribunal`}>The Tribunal →</Link>
+          </div>
         </Card>
       </div>
 

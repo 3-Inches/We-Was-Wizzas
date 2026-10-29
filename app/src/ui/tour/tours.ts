@@ -144,6 +144,10 @@ export const TOURS: Tour[] = [
         body: 'Inside a saga, **Game table** is first in the menu: what needs attention, what everyone does this season, the covenants at a glance, ending the season, and a list of what comes up in play with a link to where it is done. Its own tutorial is under In play.',
       },
       {
+        title: 'The Tribunal',
+        body: '**The Tribunal**, also in the saga’s menu, builds the other covenants of the saga’s Tribunal from its book (the Rhine’s, for now) as living covenants whose magi carry on by themselves as the seasons pass. Its own tutorial is under Storyguide.',
+      },
+      {
         title: 'Dice',
         body: 'Simple and stress dice with botch dice, rolled and explained. The character sheets roll their own totals too.',
         at: page('/dice'),
@@ -742,6 +746,55 @@ export const TOURS: Tour[] = [
         title: 'Travel, trade and intrigue',
         body: 'On the Game table: journeys by road, river and sea, bribes and hired criminals, sabotage, intrigue against nobles, a merchant house’s Reputation and largesse, and dowries. A merchant’s story seeds and investments of time (convoys, sponsors, blockades, young talent, a change of government) are in the workshop card’s Stories and investments.',
         at: sagaPage('table'), needs: 'saga', target: 'table-trade',
+      },
+    ],
+  },
+  {
+    id: 'tribunal',
+    title: 'The Tribunal: living covenants',
+    blurb: 'Bring the other covenants of the Rhine Tribunal into the saga from Guardians of the Forests, and keep up with them as the seasons pass: their magi and priorities, what they bring to your covenant, the gatherings and the Great Library.',
+    group: 'Storyguide',
+    inSaga: true,
+    steps: [
+      {
+        title: 'The Tribunal page',
+        body: '**The Tribunal** in the saga’s menu holds the other covenants of the saga’s Tribunal. For now the toolkit has the Rhine’s, from *Guardians of the Forests*; a saga set elsewhere is offered the switch.',
+        at: sagaPage('tribunal'), needs: 'saga', target: ['nav-tribunal', 'tribunal-covenants'],
+      },
+      {
+        title: 'Bringing the covenants in',
+        body: 'Press **Add** for one covenant or **Add all**. Each magus the book names is made as a full character with the book’s House, age, rank, gild and traits, strongest in the Arts it gives; the magi it only counts are generated too. Each gets a laboratory, and the covenant its covenfolk, library, vis and accounts. A covenant takes a few seconds; the whole Tribunal some twenty.',
+        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-covenants',
+      },
+      {
+        title: 'Kept apart',
+        body: 'Their covenants and people stay off the players’ lists: the menu, the saga page, the Game table and Seasons show only yours. Each living covenant has a card here (its magi and what they did last season, its neighbors, how it may come to you) and a page of its own.',
+        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-living', 'tribunal-covenants'],
+      },
+      {
+        title: 'Season priorities',
+        body: 'Their magi follow a **priority list** when the seasons pass: service to the covenant, politics, travel, writing, reading the best book, vis study, a new spell, the lab. Each entry is a season a year; the first that can be done is taken, and a Longevity Ritual comes when it is needed. Any character can have one: this card is on every Advancement tab.',
+        at: sheet('advancement'), needs: 'character', target: 'priorities',
+      },
+      {
+        title: 'Gatherings',
+        body: 'The Rhine Tribunal meets at Durenmar every seven years, from 1221; the Bjornaer gather at Crintera every twelve. Every living magus spends a gathering’s season there; your magi are expected too.',
+        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-gatherings',
+      },
+      {
+        title: 'What they bring to you',
+        body: 'At each year’s end a living covenant may come to yours with one of the book’s offers, requests or troubles. They show here and on the Game table, under **Needs attention**, with a link to where each is dealt with; press **Dealt with** once it is played.',
+        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-news',
+      },
+      {
+        title: 'Dealing with them',
+        body: 'Open a living covenant’s card and **Deal with** it: trade vis or silver either way, or buy a copy of one of its books for vis or silver. Both covenants’ stores and chronicles change; the storyguide decides the terms.',
+        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-living', 'tribunal-covenants'],
+      },
+      {
+        title: 'The Great Library',
+        body: 'For a magus who goes to study at Durenmar: the book’s rolls for a summa of the Level wanted, a tractatus’s Quality, a spell’s or an enchantment’s Lab Text, and the seasons of study a contribution earns.',
+        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-library',
       },
     ],
   },

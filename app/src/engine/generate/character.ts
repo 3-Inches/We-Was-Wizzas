@@ -47,6 +47,10 @@ export interface GenOptions {
   age?: number;
   /** a magus's years since Gauntlet */
   yearsPostGauntlet?: number;
+  /** a magus's age when apprenticeship began (10 if unset): a magus younger than 25 began earlier */
+  startAge?: number;
+  /** guided-build answers that steer the build, ahead of the role's (a book's magus strong in Rego and Imaginem) */
+  answers?: Record<string, number>;
   /** a craftsman's craft */
   craft?: string;
   /** names already in use in the saga, not to be given again */
@@ -105,6 +109,7 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   const roles = rolesFor(o.type);
   const role = (o.role && ROLE_BY_ID.get(o.role)) || pick(rng, roles);
   const c = newCharacter(o.type, saga.id, saga.currentYear);
+  if (o.startAge !== undefined && o.type === 'magus') c.creation.apprenticeshipStartAge = o.startAge;
   const derive = () => deriveCharacter(c, data, rules);
 
   // ------------------------------------------------------------ who
@@ -157,6 +162,7 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     {
       name: role.id,
       answer: (q) => {
+        if (o.answers && q.id in o.answers) return o.answers[q.id];
         if (role.answers && q.id in role.answers) return role.answers[q.id];
         if (q.chip) return undefined;
         const p = o.variety === 'focused' ? 0.08 : o.variety === 'varied' ? 0.3 : 0.55;

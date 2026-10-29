@@ -374,7 +374,8 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
 
   const bpSpent = lines.reduce((t, l) => t + l.cost, 0);
   for (const l of lines) if (l.issue) issue(`${l.label}: ${l.issue}`, { kind: 'goto', label: `Open ${l.category}`, tab: LINE_TAB[l.category] ?? 'overview' });
-  if (bpSpent > cov.buildPoints) {
+  // a living covenant built from its Tribunal book is not bought with Build Points
+  if (bpSpent > cov.buildPoints && !cov.living) {
     const fits = POWER_LEVELS.find((p) => bpSpent >= p.min && bpSpent <= p.max);
     issue(
       `Spent ${bpSpent} Build Points of ${cov.buildPoints}.`,
@@ -383,7 +384,7 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
       { kind: 'goto', label: 'Review what is bought', tab: 'overview' },
     );
   }
-  if (cov.buildPoints < pl.min || cov.buildPoints > pl.max) {
+  if ((cov.buildPoints < pl.min || cov.buildPoints > pl.max) && !cov.living) {
     const fits = POWER_LEVELS.find((p) => cov.buildPoints >= p.min && cov.buildPoints <= p.max);
     issue(
       `${cov.buildPoints} Build Points is outside the ${pl.level} power range (${pl.min}–${pl.max === Infinity ? '∞' : pl.max}).`,

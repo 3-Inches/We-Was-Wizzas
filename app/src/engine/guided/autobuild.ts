@@ -17,7 +17,7 @@ import { abilityScoreFromXp, abilityXpForScore, artScoreFromXp, artXpForScore } 
 import { uid } from '../../util/id';
 import { abilityTag } from './records';
 import { QUESTION_BY_ID } from './questions';
-import { answerOf, evaluate, recommendHouses, shortlist, statusShortlist, traceOf, type GuidedContext, type Scored } from './score';
+import { answerOf, evaluate, recommendHouses, shortlist, statusShortlist, tagWeights, traceOf, type GuidedContext, type Scored } from './score';
 import { tagLabel } from './tags';
 
 export interface BuildInput {
@@ -390,7 +390,7 @@ function abilityParam(id: string, c: Character, inp: BuildInput): string | undef
 
 /** Abilities in order of how much the player wants them, with the tag that put them there. */
 function rankedAbilities(c: Character, st: GuidedState, ctx: GuidedContext): { id: string; w: number; tag: string }[] {
-  const w = evaluate(st, ctx).weights;
+  const w = tagWeights(st, ctx);
   const score = new Map<string, { w: number; tag: string }>();
   const bump = (id: string, v: number, tag: string) => {
     const cur = score.get(id);
@@ -452,7 +452,7 @@ function spendPoolOnAbilities(c: Character, budget: XpBudget, xp: number, ranked
 }
 
 function artRanking(st: GuidedState, ctx: GuidedContext): { art: Art; w: number }[] {
-  const w = evaluate(st, ctx).weights;
+  const w = tagWeights(st, ctx);
   const prior: Partial<Record<Art, number>> = { Cr: 1, Re: 1, In: 0.8, Co: 0.6, Vi: 0.6, Mu: 0.5, Pe: 0.5, Ig: 0.4, Te: 0.4, Me: 0.4 };
   return ARTS.map((a) => ({ art: a, w: (w[`art:${a}`] ?? 0) + (prior[a] ?? 0) })).sort((a, b) => b.w - a.w);
 }
@@ -481,7 +481,7 @@ function spendExperience(c: Character, st: GuidedState, inp: BuildInput, get: ()
   // childhood: the sample childhood that fits best
   const child = get().d.budgets.find((b) => b.id === 'childhood');
   if (child && child.spent === 0) {
-    const w = evaluate(st, get()).weights;
+    const w = tagWeights(st, get());
     const fitOf = (abilities: Record<string, number>) => Object.keys(abilities).reduce((s, id) => s + Math.max(0, w[abilityTag(id)] ?? 0) + 0.1, 0);
     const pick = [...SAMPLE_CHILDHOODS].sort((a, b) => fitOf(b.abilities) - fitOf(a.abilities))[0];
     for (const [id, score] of Object.entries(pick.abilities)) {
@@ -571,7 +571,7 @@ function spendArts(c: Character, st: GuidedState, get: () => GuidedContext, refr
     const alloc = (c.arts[best.art] ??= {});
     alloc[pool] = (alloc[pool] ?? 0) + best.cost;
     left -= best.cost;
-    const w = evaluate(st, get()).weights[`art:${best.art}`] ?? 0;
+    const w = tagWeights(st, get())[`art:${best.art}`] ?? 0;
     why[`art:${best.art}`] = w > 0 ? `from: your rating of ${tagLabel(`art:${best.art}`)}` : 'from: a broadly useful Art';
   }
   refresh();
@@ -584,7 +584,7 @@ function chooseSpells(c: Character, st: GuidedState, inp: BuildInput, get: () =>
   const budget = () => get().d.budgets.find((b) => b.id === 'apprenticeship')?.spellLevels;
   if (!budget() || c.spells.some((s) => s.source === 'apprenticeship')) return;
   const d: DerivedCharacter = get().d;
-  const w = evaluate(st, get()).weights;
+  const w = tagWeights(st, get());
   const ritualOk = (w.ritual ?? 0) > 0;
   const flawless = c.virtues.some((v) => v.defId === 'flawless-magic');
   const arts = [...ARTS].sort((a, b) => d.arts[b].score - d.arts[a].score);
