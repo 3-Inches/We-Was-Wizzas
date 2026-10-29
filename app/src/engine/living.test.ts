@@ -92,7 +92,7 @@ describe('the covenants’ Boons, Hooks and auras', () => {
     for (const d of RHINE.covenants) {
       const b = buildLivingCovenant(RHINE, d, { data, saga: s, rules }, { seed: 2, others: false });
       expect(b.cov.hooksBoons.length, d.name).toBeGreaterThan(0);
-      for (const h of b.cov.hooksBoons) expect(h.defId && data.hookBoonById.has(h.defId), `${d.name}: ${h.name}`).toBe(true);
+      for (const h of b.cov.hooksBoons) expect(data.hookBoonById.has(h.defId ?? ''), `${d.name}: ${h.name}`).toBe(true);
       const a = auraOf(b.cov);
       expect(a.strength, d.name).toBe(d.aura);
       expect(a.realm, d.name).toBe(d.realm);
