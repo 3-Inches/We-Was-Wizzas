@@ -13,6 +13,7 @@ import { bookCovenant, tribunalBook, type BookMotion, type TribunalBook } from '
 import { deriveCharacter, type DerivedCharacter } from './character/derive';
 import { covenantOf } from './context';
 import { stressDie, type Rng } from './dice';
+import { foundingAtGathering } from './founding';
 import { freshName } from './generate/names';
 import { newLab } from './lab';
 import { magiTarget, otherMagus, type LivingContext } from './living';
@@ -352,6 +353,13 @@ export function tribunalGathering(state: State, g: LivingContext, year: number, 
     const p = promotions(voters, state, g, year, season, rng);
     lines.push(...p.lines);
     out.push(...p.news);
+  }
+  // the players' bid for a new covenant's recognition, with a sponsor from every other covenant, as
+  // the covenants stand when the gathering opens (one admitted at it, as Heorot may be, is not asked)
+  const founded = foundingAtGathering(book, state.saga, state.covenants, year);
+  if (founded) {
+    lines.push({ who: `The ${book.tribunal} Tribunal`, text: founded, tribunal: 'gathering' });
+    out.push(news(year, season, { kind: 'vote', text: founded }));
   }
   for (const m of motionsDue(book, votes, year, rng)) {
     const v = voteOn(m, voters, state.saga, year, rng, customs);

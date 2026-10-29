@@ -445,6 +445,7 @@ export const RHINE: TribunalBook = {
     { name: 'The Grand Tribunal', every: 33, from: 1228, at: 'durenmar', grand: true, line: 4328 },
   ],
   covenants: [DURENMAR, FENGHELD, CRINTERA, IRENCILLIA, OCULUS, DANKMAR, WADDENZEE, ROZNOV, TRIAMORE, HEOROT],
+  lore: true,
   sheets: RHINE_SHEETS,
   texts: RHINE_TEXT,
   extras: RHINE_EXTRAS,

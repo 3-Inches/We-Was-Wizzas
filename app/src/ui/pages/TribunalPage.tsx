@@ -1,9 +1,10 @@
 // The Tribunal: the covenants of the saga's Tribunal book, built into the saga as living covenants
 // whose people carry on by themselves as the seasons pass. What they have brought to the players'
 // covenant (offers, requests, trouble) and other news, the coming gatherings, each covenant with its
-// magi and what they did last season, and the Great Library's rules for a visiting magus.
+// magi and what they did last season, and the Great Library's rules for a visiting magus. A book with
+// more (the Rhine's forests, places, timeline and saga ideas) has it on tabs of its own.
 
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ARTS, ART_NAMES, type Art } from '../../data';
 import { TRIBUNAL_BOOKS, tribunalBook, type BookCovenant, type TribunalBook } from '../../data/livingCovenants';
@@ -16,7 +17,9 @@ import { RHINE_GILDS } from '../../engine/tribunal';
 import type { Character, Covenant, Saga, TribunalNews } from '../../engine/types';
 import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
-import { BookBadge, Card, Confirm, Empty, Stepper } from '../kit';
+import { BookBadge, Card, Confirm, Empty, Stepper, Tabs } from '../kit';
+import { useTabParam } from '../useTabParam';
+import type { LoreTab } from './TribunalLore';
 import { HOUSES } from '../../data/houses';
 import { MotionsCard, WanderersCard, useTakeIn } from './TribunalVotes';
 
@@ -25,6 +28,15 @@ const gildName = (id?: string) => RHINE_GILDS.find((g) => g.id === id)?.tree;
 /** A seed from a text, so that a covenant comes out the same for the same saga. */
 const seedOf = (s: string) => [...s].reduce((h, ch) => (h * 33 + ch.charCodeAt(0)) % 1_000_003, 5381);
 const ATTITUDE: Record<string, string> = { ally: 'good', friendly: 'good', neutral: '', wary: 'warn', hostile: 'bad', enemy: 'bad' };
+const TribunalLore = lazy(() => import('./TribunalLore'));
+type TabId = 'covenants' | LoreTab;
+const TABS: { id: TabId; label: string }[] = [
+  { id: 'covenants', label: 'Covenants & news' },
+  { id: 'forest', label: 'Forests & Courts' },
+  { id: 'places', label: 'Places & seeds' },
+  { id: 'history', label: 'Timeline' },
+  { id: 'sagas', label: 'Sagas & founding' },
+];
 
 export default function TribunalPage() {
   const { sagaId } = useParams();
@@ -37,6 +49,7 @@ export default function TribunalPage() {
   const setNotice = useStore((s) => s.setNotice);
   const [busy, setBusy] = useState<{ name: string; step: string; done: number; of: number } | null>(null);
   const [others, setOthers] = useState(true);
+  const [tab, setTab] = useTabParam<TabId>('covenants');
   if (!saga) return <Empty>Saga not found.</Empty>;
   const S = `/saga/${saga.id}`;
   const book = tribunalBook(saga.tribunal);
@@ -111,82 +124,91 @@ export default function TribunalPage() {
         year, and now and then one comes to your covenant with an offer, a request or trouble. They are kept out of the players’ lists; they live here and on their covenant pages.
       </p>
 
-      <NewsCard saga={saga} covs={covs} chars={chars} />
+      {book.lore && <Tabs tabs={TABS} value={tab} onChange={setTab} />}
+      {book.lore && tab !== 'covenants' ? (
+        <Suspense fallback={<Empty>Opening the book…</Empty>}>
+          <TribunalLore tab={tab} saga={saga} book={book} data={data} covs={covs} chars={chars} players={players} />
+        </Suspense>
+      ) : (
+        <>
+          <NewsCard saga={saga} covs={covs} chars={chars} />
 
-      <div className="grid grid-2">
-        <Card title="The covenants" tour="tribunal-covenants">
-          {busy && (
-            <div className="small" style={{ marginBottom: 6 }} role="status">
-              Building {busy.name}: {busy.step}… {busy.of > 1 && `(${busy.done + 1} of ${busy.of})`}
+          <div className="grid grid-2">
+            <Card title="The covenants" tour="tribunal-covenants">
+              {busy && (
+                <div className="small" style={{ marginBottom: 6 }} role="status">
+                  Building {busy.name}: {busy.step}… {busy.of > 1 && `(${busy.done + 1} of ${busy.of})`}
+                </div>
+              )}
+              {book.covenants.map((def) => {
+                const cov = byKey.get(def.id);
+                const named = def.magi.length;
+                const more = (def.others ?? []).reduce((t, o) => t + o.count, 0);
+                return (
+                  <div key={def.id} className="list-row" style={{ flexWrap: 'wrap' }}>
+                    {cov ? <Link to={`${S}/covenant/${cov.id}`}>
+                      <b>{def.name}</b>
+                    </Link> : <b>{def.name}</b>}
+                    <span className="badge">{def.season}{def.seasonGuess ? '?' : ''}</span>
+                    <span className="small muted">
+                      {def.place}; founded {def.founded}; {def.realm} aura {def.aura}; {named} named{more ? `, ${more} more` : ''}
+                    </span>
+                    <span style={{ marginLeft: 'auto' }}>
+                      {cov ? <span className="badge good">{cov.living?.paused ? 'paused' : 'living'}</span> : (
+                        <button className="small" disabled={!!busy} onClick={() => add([def])}>
+                          Add
+                        </button>
+                      )}
+                    </span>
+                  </div>
+                );
+              })}
+              <div className="row tight" style={{ marginTop: 8, flexWrap: 'wrap' }}>
+                <button className="primary" disabled={!!busy || !missing.length} onClick={() => add(missing)}>
+                  {missing.length ? `Add all ${missing.length}${missing.length < book.covenants.length ? ' still missing' : ''}` : 'All are in the saga'}
+                </button>
+                <label className="inline small" title="Generate the magi the book counts without naming (Durenmar's other Bonisagi, Fengheld's journeymen…)">
+                  <input type="checkbox" checked={others} onChange={(e) => setOthers(e.target.checked)} /> Also the magi the book counts without naming
+                </label>
+              </div>
+              <p className="small muted" style={{ marginBottom: 0 }}>
+                Building takes a few seconds a covenant (the whole Tribunal, some twenty). Ages are the book’s for {book.present}, moved on to {saga.currentYear}.
+              </p>
+            </Card>
+            <Card title="Gatherings" tour="tribunal-gatherings">
+              {nextGatherings(saga, saga.currentYear).map((g) => (
+                <div key={g.name} className="list-row">
+                  <b>{g.name}</b>
+                  <span>
+                    {g.house ? 'Summer' : gatheringSeason(book)} {g.year} at {g.at}
+                    {g.house ? ` (House ${houseName(g.house)})` : ''}
+                  </span>
+                  {g.year === saga.currentYear && <span className="badge warn">this year</span>}
+                </div>
+              ))}
+              <p className="small muted" style={{ marginBottom: 0 }}>
+                The {book.tribunal} Tribunal meets every {book.gathering.every} years <BookBadge book={book.book} line={book.gathering.line} />
+                {book.gathering.season ? `, its proceedings opening on the eve of the 1st of May (Walpurgis Night): the ${book.gathering.season} season` : ' (the book gives no season: the toolkit takes Summer)'}. Every living
+                covenant’s magi spend the season there (Exposure in Intrigue), and the players’ magi are expected too. New masters and archmagi are made, the motions below are voted on, and magi of
+                covenants at odds may settle a quarrel by certamen. A House’s gathering is shown in Summer: the toolkit does not take a season for it.
+              </p>
+            </Card>
+          </div>
+
+          {living.length > 0 && (
+            <div className="grid grid-2">
+              <MotionsCard book={book} saga={saga} chars={chars} covs={covs} />
+              <WanderersCard book={book} saga={saga} chars={chars} covs={covs} />
             </div>
           )}
-          {book.covenants.map((def) => {
-            const cov = byKey.get(def.id);
-            const named = def.magi.length;
-            const more = (def.others ?? []).reduce((t, o) => t + o.count, 0);
-            return (
-              <div key={def.id} className="list-row" style={{ flexWrap: 'wrap' }}>
-                {cov ? <Link to={`${S}/covenant/${cov.id}`}>
-                  <b>{def.name}</b>
-                </Link> : <b>{def.name}</b>}
-                <span className="badge">{def.season}{def.seasonGuess ? '?' : ''}</span>
-                <span className="small muted">
-                  {def.place}; founded {def.founded}; {def.realm} aura {def.aura}; {named} named{more ? `, ${more} more` : ''}
-                </span>
-                <span style={{ marginLeft: 'auto' }}>
-                  {cov ? <span className="badge good">{cov.living?.paused ? 'paused' : 'living'}</span> : (
-                    <button className="small" disabled={!!busy} onClick={() => add([def])}>
-                      Add
-                    </button>
-                  )}
-                </span>
-              </div>
-            );
-          })}
-          <div className="row tight" style={{ marginTop: 8, flexWrap: 'wrap' }}>
-            <button className="primary" disabled={!!busy || !missing.length} onClick={() => add(missing)}>
-              {missing.length ? `Add all ${missing.length}${missing.length < book.covenants.length ? ' still missing' : ''}` : 'All are in the saga'}
-            </button>
-            <label className="inline small" title="Generate the magi the book counts without naming (Durenmar's other Bonisagi, Fengheld's journeymen…)">
-              <input type="checkbox" checked={others} onChange={(e) => setOthers(e.target.checked)} /> Also the magi the book counts without naming
-            </label>
-          </div>
-          <p className="small muted" style={{ marginBottom: 0 }}>
-            Building takes a few seconds a covenant (the whole Tribunal, some twenty). Ages are the book’s for {book.present}, moved on to {saga.currentYear}.
-          </p>
-        </Card>
-        <Card title="Gatherings" tour="tribunal-gatherings">
-          {nextGatherings(saga, saga.currentYear).map((g) => (
-            <div key={g.name} className="list-row">
-              <b>{g.name}</b>
-              <span>
-                {g.house ? 'Summer' : gatheringSeason(book)} {g.year} at {g.at}
-                {g.house ? ` (House ${houseName(g.house)})` : ''}
-              </span>
-              {g.year === saga.currentYear && <span className="badge warn">this year</span>}
-            </div>
+
+          {living.map((cov) => (
+            <LivingCovenantCard key={cov.id} cov={cov} book={book} chars={chars} saga={saga} players={players} />
           ))}
-          <p className="small muted" style={{ marginBottom: 0 }}>
-            The {book.tribunal} Tribunal meets every {book.gathering.every} years <BookBadge book={book.book} line={book.gathering.line} />
-            {book.gathering.season ? `, its proceedings opening on the eve of the 1st of May (Walpurgis Night): the ${book.gathering.season} season` : ' (the book gives no season: the toolkit takes Summer)'}. Every living
-            covenant’s magi spend the season there (Exposure in Intrigue), and the players’ magi are expected too. New masters and archmagi are made, the motions below are voted on, and magi of
-            covenants at odds may settle a quarrel by certamen. A House’s gathering is shown in Summer: the toolkit does not take a season for it.
-          </p>
-        </Card>
-      </div>
 
-      {living.length > 0 && (
-        <div className="grid grid-2">
-          <MotionsCard book={book} saga={saga} chars={chars} covs={covs} />
-          <WanderersCard book={book} saga={saga} chars={chars} covs={covs} />
-        </div>
+          {book.covenants.some((c) => c.id === 'durenmar') && <GreatLibraryCard book={book} />}
+        </>
       )}
-
-      {living.map((cov) => (
-        <LivingCovenantCard key={cov.id} cov={cov} book={book} chars={chars} saga={saga} players={players} />
-      ))}
-
-      {book.covenants.some((c) => c.id === 'durenmar') && <GreatLibraryCard book={book} />}
     </div>
   );
 }

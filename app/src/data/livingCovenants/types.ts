@@ -306,6 +306,8 @@ export interface TribunalBook {
   /** other gatherings: a House's (Bjornaer's Gathering of Twelve Years), the Grand Tribunal's */
   otherGatherings?: { name: string; every: number; from: number; at: string; house?: string; grand?: boolean; line: number }[];
   covenants: BookCovenant[];
+  /** the book's places, story seeds, timeline, forests and saga ideas are on the Tribunal page */
+  lore?: boolean;
   /** each named magus's stat block, by name: the book's own, or one written to what it says of them */
   sheets?: Record<string, StatBlock>;
   /** what the book says of each named magus, in its own words, by name */

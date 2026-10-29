@@ -806,6 +806,21 @@ export const TOURS: Tour[] = [
         body: 'For a magus who goes to study at Durenmar: the book’s rolls for a summa of the Level wanted, a tractatus’s Quality, a spell’s or an enchantment’s Lab Text, and the seasons of study a contribution earns.',
         at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-library',
       },
+      {
+        title: 'Forests and the Courts of the Seasons',
+        body: 'The **Forests & Courts** tab has the rest of the book’s fourth chapter: the four faerie courts of the seasons with their Might Pools and auras for the saga’s current months, which of Bright Winter and Dark Summer holds the Rhine Gorge now, what forest spirits become and what they can do, and the trees of Germany with their Shape and Material bonuses.',
+        at: sagaPage('tribunal?tab=forest'), needs: 'saga', target: 'tribunal-courts',
+      },
+      {
+        title: 'Places, seeds and the years to come',
+        body: '**Places & seeds** searches the book’s regions and places (auras, what it says of vis, its asides) and its story seeds. **Timeline** shows what the book has coming from the saga’s year on, for the storyguide to bring about or prevent, and its history of the Rhine.',
+        at: sagaPage('tribunal?tab=places'), needs: 'saga', target: 'tribunal-places',
+      },
+      {
+        title: 'Founding a covenant',
+        body: 'The Rhine recognizes a new covenant only with a sponsor from every other covenant. **Sagas & founding** tracks your bid: each covenant’s likely terms from how it stands with you, the sponsoring magus, what you promised and the gift. When every covenant has promised, the next gathering recognizes the covenant; a bid still lacking one is refused until the next. The book’s saga ideas follow.',
+        at: sagaPage('tribunal?tab=sagas'), needs: 'saga', target: 'tribunal-founding',
+      },
     ],
   },
   {

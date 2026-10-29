@@ -103,6 +103,30 @@ export interface Saga {
   tribunalVotes?: TribunalVote[];
   /** the players' magi's votes on a motion before the gathering, by motion id and character id (unset: the magus votes as the storyguide decides on the day, counted as abstaining) */
   playerVotes?: Record<string, Record<string, 'for' | 'against' | 'abstain'>>;
+  /** the players' bid for the Tribunal's recognition of their covenant (the Rhine's sponsors from every other covenant) */
+  founding?: CovenantFounding;
+}
+
+/** A sponsor for the players' new covenant from one covenant of the Tribunal (GotF, On the Founding of Covenants). */
+export interface FoundingSponsor {
+  status: 'unasked' | 'sought' | 'promised' | 'refused';
+  /** the sponsoring magus: one of the covenant's living magi, or a name */
+  magusId?: string;
+  name?: string;
+  /** what the players promised in return */
+  terms?: string;
+  /** the sponsor's gift to the new covenant, and whether it has come */
+  gift?: string;
+  delivered?: boolean;
+}
+
+export interface CovenantFounding {
+  /** the players' covenant seeking recognition */
+  covenantId?: string;
+  /** a sponsor from each covenant, by its id in the Tribunal book */
+  sponsors: Record<string, FoundingSponsor>;
+  /** the gathering that recognized it */
+  recognizedYear?: number;
 }
 
 /** Something from the Tribunal for the storyguide: a living covenant's approach to the players, a death, a gathering. */
