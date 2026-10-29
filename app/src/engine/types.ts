@@ -439,7 +439,14 @@ export interface CharPower {
   notes?: string;
   /** a magic character's mastery points on it (RoP: Magic, Improved Powers): lower Might cost, more Initiative, a Focus Power's level beyond Might (5 each) */
   mastery?: { cost?: number; init?: number; level?: number };
+  /** Variable Power: the Virtue (its uid) that makes it grow, and with what */
+  variable?: { virtueUid: string; by: VarianceBy };
+  /** Deteriorating Power: the Flaw (its uid) that wears it down, and with what */
+  deteriorating?: { virtueUid: string; by: VarianceBy };
 }
+
+/** What a Variable or Deteriorating Power changes with (RoP: Magic): age / 10, Might Score / 5 (Deteriorating: Might spent / 5), Warping Score, or an Ability's score ('ability:<id>'). */
+export type VarianceBy = 'age' | 'might' | 'warping' | `ability:${string}`;
 
 export interface CharAbility {
   uid: string;

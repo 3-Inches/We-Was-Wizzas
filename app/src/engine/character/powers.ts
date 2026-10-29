@@ -2,7 +2,7 @@
 // (DE, Supernatural Virtues) and Heroes' Birthright (HoH:TL, Blood of Heroes).
 
 import type { PowerKind } from '../../data';
-import type { CharPower } from '../types';
+import type { CharPower, VarianceBy } from '../types';
 
 export interface PowerKindInfo {
   label: string;
@@ -156,4 +156,46 @@ export function masteryPools(powers: CharPower[] = [], budgets: Partial<Record<P
   const available = general + Object.values(leftover).reduce((s, n) => s + (n ?? 0), 0);
   const unused = Object.fromEntries(Object.entries(pool).filter(([, n]) => (n ?? 0) > 0)) as Partial<Record<PowerKind, number>>;
   return { general, leftover, unused, fromGeneral, spent, available, over: Math.max(0, fromGeneral - general) };
+}
+
+// ---------------------------------------------------------------- Variable and Deteriorating Power
+
+/** The powers a Variable Power may apply to (Greater, Lesser, Personal or Ritual), and a Deteriorating Power (Greater, Lesser or Ritual). */
+export const VARIABLE_KINDS: PowerKind[] = ['greater', 'lesser', 'personal', 'ritual'];
+export const DETERIORATING_KINDS: PowerKind[] = ['greater', 'lesser', 'ritual'];
+
+export interface VarianceInputs {
+  age: number;
+  /** Might Score */
+  might: number;
+  /** Might points spent from the pool (Might Score − Might Pool) */
+  mightSpent: number;
+  warping: number;
+  /** an Ability's score, by id */
+  ability: (id: string) => number;
+}
+
+/** What a variance grows or wears with, in words. */
+export function varianceLabel(by: VarianceBy, deteriorating: boolean, abilityName?: string): string {
+  if (by === 'age') return 'age / 10';
+  if (by === 'might') return deteriorating ? '(Might Score − Might Pool) / 5' : 'Might Score / 5';
+  if (by === 'warping') return 'Warping Score';
+  return abilityName ?? by.slice('ability:'.length);
+}
+
+/** The levels of variance (RoP: Magic): age / 10, Might Score / 5 (Might spent / 5 for a Deteriorating Power), the Warping Score, or the Ability's score; halves round to the nearest, as the book's age-25 example gives 3. */
+export function varianceLevels(by: VarianceBy, deteriorating: boolean, x: VarianceInputs): number {
+  const n = by === 'age' ? x.age / 10 : by === 'might' ? (deteriorating ? x.mightSpent : x.might) / 5 : by === 'warping' ? x.warping : x.ability(by.slice('ability:'.length));
+  return Math.max(0, Math.round(n));
+}
+
+/**
+ * A power's effect level after Variable and Deteriorating Power: five levels more for each level of
+ * variance (or that many more similar effects of the same level), five fewer for each magnitude it
+ * has deteriorated. Its Might cost and Initiative stay those of the power as designed.
+ */
+export function variedLevel(p: CharPower, x: VarianceInputs): { level: number; up: number; down: number } {
+  const up = p.variable ? varianceLevels(p.variable.by, false, x) : 0;
+  const down = p.deteriorating ? varianceLevels(p.deteriorating.by, true, x) : 0;
+  return { level: Math.max(0, p.level + 5 * up - 5 * down), up, down };
 }
