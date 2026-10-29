@@ -74,10 +74,10 @@ describe('sigils and votes at a gathering', () => {
 
   it('brings the book’s motions to their gatherings, and a defeated one back now and then', () => {
     expect(motionsDue(RHINE, [], 1221, () => 0.99).map((m) => m.id)).toEqual(['heorot', 'praeco']);
-    expect(motionsDue(RHINE, [], 1228, () => 0.99).map((m) => m.id)).toEqual(['ruegen', 'lotharingia']);
+    expect(motionsDue(RHINE, [], 1227, () => 0.99).map((m) => m.id)).toEqual(['ruegen', 'lotharingia']);
     const lost = { uid: 'v', motionId: 'heorot', year: 1221, title: '', for: 2, against: 30, abstain: 0, passed: false, byCovenant: {} };
-    expect(motionsDue(RHINE, [lost], 1228, () => 0).map((m) => m.id)).toContain('heorot');
-    expect(motionsDue(RHINE, [{ ...lost, passed: true }], 1228, () => 0).map((m) => m.id)).not.toContain('heorot');
+    expect(motionsDue(RHINE, [lost], 1227, () => 0).map((m) => m.id)).toContain('heorot');
+    expect(motionsDue(RHINE, [{ ...lost, passed: true }], 1227, () => 0).map((m) => m.id)).not.toContain('heorot');
   });
 
   it('counts each covenant’s and gild’s stand, a held sigil with its holder, and the players’ magi as the troupe sets them', () => {

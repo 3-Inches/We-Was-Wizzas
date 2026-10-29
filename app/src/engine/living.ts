@@ -448,13 +448,25 @@ export function gatheringSeason(book: TribunalBook | undefined): Season {
   return book?.gathering.season ?? 'Summer';
 }
 
+/**
+ * Does the Tribunal meet this year? Every so many years from its first, but a gathering that would
+ * fall in a Grand Tribunal's year is held a year earlier (GotF timeline: the Rhine's of 1227, "a year
+ * earlier than usual to accommodate the Grand Tribunal next year").
+ */
+export function isGatheringYear(book: TribunalBook, year: number): boolean {
+  const g = book.gathering;
+  const grand = book.otherGatherings?.find((o) => o.grand);
+  const meets = (y: number) => y >= g.from && (y - g.from) % g.every === 0;
+  const isGrand = (y: number) => !!grand && y >= grand.from && (y - grand.from) % grand.every === 0;
+  if (!g.beforeGrand) return meets(year);
+  return (meets(year) && !isGrand(year)) || (meets(year + 1) && isGrand(year + 1));
+}
+
 /** The Tribunal gathering that takes this season, if any. */
 export function gatheringIn(saga: Saga, year: number, season: Season): { name: string; at: string } | undefined {
   const book = tribunalBook(saga.tribunal);
-  if (!book || season !== gatheringSeason(book)) return undefined;
-  const g = book.gathering;
-  if (year >= g.from && (year - g.from) % g.every === 0) return { name: `the ${book.tribunal} Tribunal`, at: book.covenants.find((c) => c.id === g.at)?.name ?? g.at };
-  return undefined;
+  if (!book || season !== gatheringSeason(book) || !isGatheringYear(book, year)) return undefined;
+  return { name: `the ${book.tribunal} Tribunal`, at: book.covenants.find((c) => c.id === book.gathering.at)?.name ?? book.gathering.at };
 }
 
 /** A House's own gathering that takes this season (the Bjornaer's Gathering of Twelve Years at Crintera): the book gives no season, so the toolkit takes Summer. */
@@ -471,8 +483,10 @@ export function nextGatherings(saga: Saga, year: number): { name: string; year: 
   if (!book) return [];
   const next = (from: number, every: number) => (year <= from ? from : from + Math.ceil((year - from) / every) * every);
   const at = (id: string) => book.covenants.find((c) => c.id === id)?.name ?? id;
+  let tribunal = Math.max(year, book.gathering.from - 1);
+  while (!isGatheringYear(book, tribunal)) tribunal++;
   return [
-    { name: `The ${book.tribunal} Tribunal`, year: next(book.gathering.from, book.gathering.every), at: at(book.gathering.at) },
+    { name: `The ${book.tribunal} Tribunal`, year: tribunal, at: at(book.gathering.at) },
     ...(book.otherGatherings ?? []).map((o) => ({ name: o.name, year: next(o.from, o.every), at: at(o.at), house: o.house })),
   ];
 }

@@ -294,9 +294,17 @@ export interface TribunalBook {
   /** the year the book describes */
   present: number;
   /** Tribunal gatherings: every so many years, from this year, at this covenant */
-  gathering: { every: number; from: number; at: string; line: number; season?: 'Spring' | 'Summer' | 'Autumn' | 'Winter' };
-  /** other gatherings a House holds (Bjornaer's Gathering of Twelve Years) */
-  otherGatherings?: { name: string; every: number; from: number; at: string; house?: string; line: number }[];
+  gathering: {
+    every: number;
+    from: number;
+    at: string;
+    line: number;
+    season?: 'Spring' | 'Summer' | 'Autumn' | 'Winter';
+    /** held a year earlier when it would fall in a Grand Tribunal's year */
+    beforeGrand?: boolean;
+  };
+  /** other gatherings: a House's (Bjornaer's Gathering of Twelve Years), the Grand Tribunal's */
+  otherGatherings?: { name: string; every: number; from: number; at: string; house?: string; grand?: boolean; line: number }[];
   covenants: BookCovenant[];
   /** each named magus's stat block, by name: the book's own, or one written to what it says of them */
   sheets?: Record<string, StatBlock>;

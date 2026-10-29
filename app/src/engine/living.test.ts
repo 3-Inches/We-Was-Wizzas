@@ -236,7 +236,12 @@ describe('the Tribunal through the years', () => {
     expect(gatheringIn(sagaAt(), 1221, 'Spring')).toEqual({ name: 'the Rhine Tribunal', at: 'Durenmar' });
     expect(gatheringIn(sagaAt(), 1221, 'Summer')).toBeUndefined();
     expect(gatheringIn(sagaAt(), 1225, 'Spring')).toBeUndefined();
-    expect(nextGatherings(sagaAt(), 1222).map((g) => [g.name, g.year])).toEqual([['The Rhine Tribunal', 1228], ['The Gathering of Twelve Years', 1227], ['The Grand Tribunal', 1228]]);
+    // the gathering due in 1228 is held a year early, the Grand Tribunal meeting that year (the book's timeline)
+    expect(nextGatherings(sagaAt(), 1222).map((g) => [g.name, g.year])).toEqual([['The Rhine Tribunal', 1227], ['The Gathering of Twelve Years', 1227], ['The Grand Tribunal', 1228]]);
+    expect(gatheringIn(sagaAt(), 1227, 'Spring')).toBeDefined();
+    expect(gatheringIn(sagaAt(), 1228, 'Spring')).toBeUndefined();
+    expect(gatheringIn(sagaAt(), 1235, 'Spring')).toBeDefined();
+    expect(nextGatherings(sagaAt(), 1228)[0].year).toBe(1235);
   });
 
   it('sends a living covenant’s magi to the gathering, and its lines to the Tribunal’s part of the report', () => {
