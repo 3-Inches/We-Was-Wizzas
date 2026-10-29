@@ -129,6 +129,22 @@ export function sellGoods(presence: number, bargain: number, rng: Rng = defaultR
   return { roll, premium, text: `Presence ${presence} + Bargain ${bargain} + die ${die} = ${roll} vs 9: ${premium ? `sold for ${premium}% over the standard price` : 'the standard price'}.` };
 }
 
+/**
+ * Selling to an important customer or another player (City & Guild ch.4): Presence + Bargain + stress die against their
+ * Communication + Bargain + stress die. 10% more a point the seller wins by, 10% less a point the buyer wins by, either way
+ * at most 50%; a botch sells it for next to nothing.
+ */
+export function sellOpposed(presence: number, bargain: number, buyer: number, rng: Rng = defaultRng): { change: number; text: string } {
+  const a = stressDie(1, rng);
+  const b = stressDie(1, rng);
+  if (a.botches) return { change: -100, text: `Seller ${describeStress(a)}: botch — sold for next to nothing.` };
+  const mine = presence + bargain + a.value;
+  const theirs = buyer + (b.botches ? 0 : b.value);
+  const by = mine - theirs;
+  const change = by > 0 ? Math.min(50, 10 * by) : by < 0 ? -Math.min(50, 10 * -by) : 0;
+  return { change, text: `Presence + Bargain ${presence + bargain} + ${describeStress(a)} = ${mine} against the customer's ${theirs}: ${change > 0 ? `${change}% over` : change < 0 ? `${-change}% under` : 'exactly'} the standard price.` };
+}
+
 /** A wondrous item (Touched by (Realm)): Craft Level 12 + magnitude + uses a day; it gathers (Workshop Total − Craft Level) a season until it reaches the Craft Level. */
 export function wondrousItem(total: number, magnitude: number, frequency: number, situation = 0): { craftLevel: number; perSeason: number; seasons: number } {
   const craftLevel = 12 + magnitude + frequency + situation;

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../../data';
 import type { Workshop } from '../../../engine/types';
 import {
-  INNOVATION_COST, INVESTMENTS, LP_WORTH, RAW_MATERIALS_COST, STORY_AWARDS, WEALTH_MULT, WEALTH_STEP, boomRoll, craftQuality, lpForPounds, seasonWorth, sellGoods, smugglingLp, upkeep, wondrousItem, workshopFigures,
+  INNOVATION_COST, INVESTMENTS, LP_WORTH, RAW_MATERIALS_COST, STORY_AWARDS, WEALTH_MULT, WEALTH_STEP, boomRoll, craftQuality, lpForPounds, seasonWorth, sellGoods, sellOpposed, smugglingLp, upkeep, wondrousItem, workshopFigures,
   workshopSeason, workshopTotal,
 } from '../../../engine/workshop';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
@@ -38,6 +38,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
   const [exert, setExert] = useState(false);
   const [money, setMoney] = useState(10);
   const [band, setBand] = useState('Trivial');
+  const [buyer, setBuyer] = useState(4);
   const [log, setLog] = useState<string[]>([]);
   const [magnitude, setMagnitude] = useState(1);
   const [freq, setFreq] = useState(FREQUENCY[0]?.value ?? '');
@@ -281,9 +282,15 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
             </button>
           );
         })}
-        <button className="small ghost" onClick={() => push(sellGoods(d.characteristics.Pre.value, bargain).text)}>
+        <button className="small ghost" onClick={() => push(sellGoods(d.characteristics.Pre.value, bargain).text)} title="A typical customer: Presence + Bargain + simple die against 9">
           Haggle a sale
         </button>
+        <span className="row tight small" title="An important storyguide character or another player: opposed stress dice; they can push the price down too">
+          <Stepper value={buyer} min={-3} max={20} width={30} onChange={setBuyer} />
+          <button className="small ghost" onClick={() => push(sellOpposed(d.characteristics.Pre.value, bargain, buyer).text)}>
+            Sell to an important customer (their Com + Bargain)
+          </button>
+        </span>
       </div>
       <p className="small muted" style={{ margin: 0 }}>
         The {keep} Labor Points of upkeep are paid when the saga&apos;s year ends (Seasons page). Rising in wealth: {step.cost} Labor Points to become {step.to}, plus a season (and stories for a Greater or Legendary income). A season&apos;s worth of Labor Points here is {worth}.

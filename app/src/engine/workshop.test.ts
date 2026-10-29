@@ -4,7 +4,7 @@ import { buildGameData } from '../data';
 import { deriveCharacter } from './character/derive';
 import { ensureAbility, newCharacter } from './character/factory';
 import { DEFAULT_HOUSE_RULES } from './types';
-import { craftQuality, laborPoints, rollExertion, seasonalOutput, sellGoods, upkeep, wondrousItem, workshopTotal, workshopYearEnd } from './workshop';
+import { LP_WORTH, craftQuality, laborPoints, lpForPounds, rollExertion, seasonalOutput, sellGoods, sellOpposed, upkeep, wondrousItem, workshopTotal, workshopYearEnd } from './workshop';
 
 const faces = (...f: number[]) => {
   let i = 0;
@@ -60,5 +60,21 @@ describe('investments at the year’s end (City & Guild ch.7)', () => {
     expect(c.workshop.laborPoints).toBe(100 + 4 + 30 - 36);
     expect(c.workshop.pending).toHaveLength(1);
     expect(lines.join(' ')).toMatch(/Speculation returns 4/);
+  });
+});
+
+describe('selling and money in a business (City & Guild ch.2 and ch.4)', () => {
+  it('sells against an important customer both ways, at most 50%', () => {
+    // seller 2 + 3 + 9 = 14 against 4 + 5: 50% over (capped); the other way 50% under
+    expect(sellOpposed(2, 3, 4, faces(9, 5)).change).toBe(50);
+    expect(sellOpposed(2, 3, 12, faces(5, 9)).change).toBe(-50);
+    expect(sellOpposed(2, 3, 7, faces(5, 2)).change).toBe(10);
+    expect(sellOpposed(2, 3, 9, faces(5, 2)).change).toBe(-10);
+    expect(sellOpposed(2, 3, 4, faces(0, 0)).change).toBe(-100);
+  });
+  it('buys Labor Points with pounds at the income band’s rate', () => {
+    expect(LP_WORTH.map((b) => b.pounds)).toEqual([2.5, 5, 10, 25, 63, 250]);
+    expect(lpForPounds(5, 'Trivial')).toBe(18);
+    expect(lpForPounds(10, 'Lesser')).toBe(9);
   });
 });
