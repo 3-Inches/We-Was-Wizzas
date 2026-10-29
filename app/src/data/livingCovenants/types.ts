@@ -82,6 +82,8 @@ export interface BookApproach {
   page?: 'market' | 'covenant' | 'seasons' | 'tribunal' | 'dice';
   /** the chance a year (in a hundred) that it comes up */
   chance: number;
+  /** it no longer comes up from this year (Heorot's admission is decided at the gathering of 1221) */
+  until?: number;
   /** the book line it comes from */
   line?: number;
 }

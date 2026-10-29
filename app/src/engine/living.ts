@@ -394,6 +394,7 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
     for (const a of found.cov.approaches) {
       const last = cov.living!.approached[a.id];
       if (last !== undefined && year - last < 2) continue;
+      if (a.until !== undefined && year >= a.until) continue;
       if (rng() * 100 >= approachChance(a.chance, a.kind, cov.living!.attitude)) continue;
       cov.living!.approached[a.id] = year;
       out.push(news(year + 1, 'Spring', { kind: 'approach', covenantId: cov.id, approach: a.id, approachKind: a.kind, page: a.page, text: a.text }));

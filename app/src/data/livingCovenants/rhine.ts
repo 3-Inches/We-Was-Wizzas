@@ -188,7 +188,7 @@ const HEOROT: BookCovenant = {
     { with: 'crintera', attitude: 'hostile', note: 'Crintera fears clashes over vis sources: Zealand is close to Rügen.' },
   ],
   approaches: [
-    { id: 'support', kind: 'request', text: 'Heorot asks the covenant to speak for its admission to the Rhine Tribunal at the next gathering.', chance: 12, line: 2733 },
+    { id: 'support', kind: 'request', text: 'Heorot asks the covenant to speak for its admission to the Rhine Tribunal at the gathering of 1221.', chance: 30, until: 1221, line: 2733 },
     { id: 'trolls', kind: 'request', text: 'Signum Irruptus seeks grogs and magi for an expedition against the trolls of Zealand.', chance: 5, line: 2748 },
   ],
 };
