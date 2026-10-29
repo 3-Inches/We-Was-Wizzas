@@ -778,7 +778,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Gatherings',
-        body: 'The Rhine Tribunal meets at Durenmar every seven years from 1221, opening on Walpurgis Night (Spring); the Bjornaer gather at Crintera every twelve, and the Grand Tribunal meets at Durenmar in 1228. Every living magus spends a gathering’s season there; your magi are expected too. New masters and archmagi are made there, and magi of covenants at odds may settle a quarrel by certamen.',
+        body: 'The Rhine Tribunal meets at Durenmar every seven years from 1221, opening on Walpurgis Night (Spring), in 1227 a year early for the Grand Tribunal; the Bjornaer gather at Crintera every twelve, and the Grand Tribunal meets at Durenmar in 1228. Every living magus spends a gathering’s season there; your magi are expected too. New masters and archmagi are made there, and magi of covenants at odds may settle a quarrel by certamen.',
         at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-gatherings',
       },
       {
@@ -803,7 +803,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'The Great Library',
-        body: 'For a magus who goes to study at Durenmar: the book’s rolls for a summa of the Level wanted, a tractatus’s Quality, a spell’s or an enchantment’s Lab Text, and the seasons of study a contribution earns.',
+        body: 'Durenmar’s library is stocked as the greatest of the Order (six summae on each Art, three copies of Principia Magica, Lab Texts for the standard spells). For a magus who goes to study there: the book’s rolls for a summa of the Level wanted, a tractatus’s Quality, a spell’s or an enchantment’s Lab Text, and the seasons of study a contribution earns.',
         at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-library',
       },
       {
