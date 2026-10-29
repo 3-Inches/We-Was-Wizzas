@@ -7,6 +7,7 @@ import { newSaga } from '../store/store';
 import { deriveCharacter } from './character/derive';
 import { validateCharacter } from './character/validate';
 import { characterContext } from './context';
+import { auraOf } from './aura';
 import { deriveCovenant, newCovenant } from './covenant';
 import { DEFAULT_YEAR_END, planYearEnd } from './covenantYear';
 import { ensureAbility, newCharacter } from './character/factory';
@@ -83,6 +84,43 @@ describe('the named magi, from their stat blocks', () => {
     for (const odd of ['horrifying-appearance-snake-legs-flaw', 'gender-nonconforming-flaw', 'homunculus-wizard-flaw']) expect(ids).not.toContain(odd);
     expect(handri.description).toContain('Handri, the Primus of House Merinita, is a secretive man');
   });
+});
+
+describe('the covenants’ Boons, Hooks and auras', () => {
+  it('gives each covenant Boons and Hooks from the book, keeping its aura at the book’s figure', () => {
+    const s = sagaAt();
+    for (const d of RHINE.covenants) {
+      const b = buildLivingCovenant(RHINE, d, { data, saga: s, rules }, { seed: 2, others: false });
+      expect(b.cov.hooksBoons.length, d.name).toBeGreaterThan(0);
+      for (const h of b.cov.hooksBoons) expect(h.defId && data.hookBoonById.has(h.defId), `${d.name}: ${h.name}`).toBe(true);
+      const a = auraOf(b.cov);
+      expect(a.strength, d.name).toBe(d.aura);
+      expect(a.realm, d.name).toBe(d.realm);
+    }
+    const crintera = buildLivingCovenant(RHINE, def('crintera'), { data, saga: s, rules }, { seed: 2, others: false }).cov;
+    expect(crintera.hooksBoons.some((h) => h.name === 'Regio')).toBe(true);
+    expect(crintera.notes).toMatch(/auras of 1, 3, 5 and 8/);
+    expect(def('triamore').season).toBe('Summer');
+  });
+
+  it('lets Oculus Septentrionalis’s magi work under the magestones two seasons a year each, three at a time', () => {
+    const s = sagaAt(1220, 'Spring');
+    const b = buildLivingCovenant(RHINE, def('oculus-septentrionalis'), { data, saga: s, rules }, { seed: 6 });
+    expect(auraOf(b.cov)).toMatchObject({ realm: 'Divine', strength: 3 });
+    expect(b.cov.labAura?.count).toBe(3);
+    const r = advanceSeasons({ saga: s, characters: b.chars, covenants: [b.cov] }, data, 8, { ...DEFAULT_ADVANCE, rng: seeded(9) });
+    const stoneLines = r.reports.map((rep) => ({ rep, lines: rep.lines.filter((l) => /Under the magestones/.test(l.text)) }));
+    expect(stoneLines.some((x) => x.lines.length > 0)).toBe(true);
+    for (const x of stoneLines) expect(new Set(x.lines.map((l) => l.who)).size, `${x.rep.season} ${x.rep.year}`).toBeLessThanOrEqual(3);
+    for (const year of [1220, 1221]) {
+      const byMagus = new Map<string, number>();
+      for (const x of stoneLines.filter((y) => y.rep.year === year)) for (const who of new Set(x.lines.map((l) => l.who))) byMagus.set(who, (byMagus.get(who) ?? 0) + 1);
+      for (const [who, n] of byMagus) expect(n, `${who} in ${year}`).toBeLessThanOrEqual(2);
+    }
+    // no lab work in the Divine aura itself
+    const labInDivine = r.reports.flatMap((rep) => rep.lines).filter((l) => /^(Invent|Extract|Refine) [^:]+: (\+|\d)/.test(l.text) && !/Under the magestones/.test(l.text));
+    expect(labInDivine.map((l) => l.text)).toEqual([]);
+  }, 120_000);
 });
 
 describe('building a covenant from its book', () => {

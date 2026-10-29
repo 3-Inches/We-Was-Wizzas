@@ -219,13 +219,24 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
   cov.name = def.name;
   cov.tribunal = book.tribunal;
   cov.season = def.season;
-  cov.aura = def.aura;
   cov.auraRealm = def.realm;
+  // its Boons and Hooks, read from the book; the Aura Boons and a Weak Aura Hook are part of the book's aura
+  cov.hooksBoons = (def.hooksBoons ?? []).flatMap((e) => {
+    const [id, note] = typeof e === 'string' ? [e, undefined] : e;
+    const hb = g.data.hookBoonById.get(id);
+    return hb ? [{ uid: uid(), defId: hb.id, name: hb.name, kind: hb.kind, size: hb.size, note }] : [];
+  });
+  const auraBoons = cov.hooksBoons.filter((h) => h.kind === 'boon' && h.size === 'Minor' && /^aura$/i.test(h.name)).length;
+  const weak = cov.hooksBoons.some((h) => h.kind === 'hook' && /^weak aura$/i.test(h.name)) ? 1 : 0;
+  cov.aura = Math.max(0, def.aura - auraBoons + weak);
+  if (def.labAura) cov.labAura = { name: def.labAura.name, realm: def.labAura.realm, strength: def.labAura.strength, count: def.labAura.count, seasonsEach: def.labAura.seasonsEach, text: def.labAura.text };
   cov.description = def.summary;
   cov.notes = [
     `${def.place}. From ${book.title} (line ${def.line}).`,
-    def.seasonGuess ? 'The book does not give its season: this is a likely one.' : '',
+    def.seasonGuess ? 'The book does not give its season: this is a likely one from what it says.' : '',
     def.auraGuess ? 'The book does not give its aura: this is a likely one.' : '',
+    def.auraNote ?? '',
+    def.hooksBoons?.length ? 'The book gives no Boons and Hooks: these are read from what it says of the covenant (a non-player covenant’s need not balance).' : '',
     'A living covenant: its people follow their season priorities as the seasons pass.',
   ].filter(Boolean).join(' ');
   cov.living = { book: book.book, key: def.id, tribunal: book.tribunal, addedYear: year };

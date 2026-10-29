@@ -152,8 +152,31 @@ export interface BookCovenant {
   relations: BookRelation[];
   approaches: BookApproach[];
   services?: BookService[];
+  /**
+   * Its Boons and Hooks (Covenants ch.2), by id, with what each stands for here. The book gives none:
+   * these are read from what it says of the covenant, as a non-player covenant's need not balance.
+   * Minor Aura Boons and a Weak Aura Hook are counted in the book's aura, not added to it.
+   */
+  hooksBoons?: (string | [string, string])[];
+  /** what the book says of its aura beyond its strength (a regio's levels, a patchy faerie aura) */
+  auraNote?: string;
+  /** something that gives its magi a better aura in the laboratory than the covenant's (the magestones of Verditius) */
+  labAura?: LabAuraSource;
   /** chapter houses: name and place */
   chapters?: { name: string; place: string }[];
+  line: number;
+}
+
+/** A Magic aura a covenant's magi can work in for a few seasons a year, shared among them (GotF, The Magestones of Verditius). */
+export interface LabAuraSource {
+  name: string;
+  realm: 'Magic' | 'Faerie';
+  strength: number;
+  /** how many there are: as many magi may use one in the same season */
+  count: number;
+  /** the seasons a year each magus may have one */
+  seasonsEach: number;
+  text: string;
   line: number;
 }
 

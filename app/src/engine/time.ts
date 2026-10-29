@@ -5,7 +5,7 @@
 
 import { ART_NAMES, type Art, type Characteristic, type GameData } from '../data';
 import { deriveCharacter, type DerivedCharacter } from './character/derive';
-import { characterContext, covenantAura, covenantOf, type CharacterContext } from './context';
+import { characterContext, covenantAura, covenantOf, labAuraFor, type CharacterContext } from './context';
 import { deriveCovenant } from './covenant';
 import { covenfolkYearEnd } from './covenfolk';
 import { deriveLab } from './lab';
@@ -165,7 +165,19 @@ export function runExtraSeason(c: Character, d: DerivedCharacter, ctx: Character
   return out.map((l) => `Extra season: ${l}`);
 }
 
-function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, s: StandingActivity, chars?: Character[]): string[] {
+function runActivity(c: Character, d: DerivedCharacter, ctx0: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, s: StandingActivity, chars?: Character[]): string[] {
+  // lab work and study from vis under the covenant's laboratory aura (the magestones), when one is free
+  const labWork = (s.kind === 'lab' && (!!s.projectUid || !!c.projects?.some((p) => !p.done))) || s.kind === 'vis';
+  const stone = labWork ? labAuraFor(c, cov, ctx0, year, season, { take: true, faerieMagic: d.virtues.some((v) => v.cv.defId === 'faerie-magic') }) : undefined;
+  const ctx = stone ?? ctx0;
+  if (stone && cov?.labAura) {
+    const out = runActivityIn(c, d, ctx, cov, data, year, season, rng, s, chars);
+    return out.map((l, i) => (i === 0 ? `${l} (Under ${cov.labAura!.name}: a ${cov.labAura!.realm} aura of ${cov.labAura!.strength}.)` : l));
+  }
+  return runActivityIn(c, d, ctx, cov, data, year, season, rng, s, chars);
+}
+
+function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, s: StandingActivity, chars?: Character[]): string[] {
   const log = (activity: SeasonLogEntry['activity'], summary: string, gains: Record<string, number>, warping = 0) => {
     const e = newSeasonEntry(year, season, activity, summary, gains);
     if (warping) e.warpingPoints = warping;

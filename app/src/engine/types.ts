@@ -874,6 +874,8 @@ export interface Character {
   standing?: StandingActivity;
   /** what the character does with a season, in order of preference, when its standing activity is to follow them (engine/priorities.ts) */
   priorities?: SeasonPriority[];
+  /** the seasons this year the character has worked under the covenant's laboratory aura (its magestones) */
+  labAuraUse?: { year: number; seasons: number };
   /** a character the toolkit built from a book: where it is described */
   fromBook?: { book: string; line: number; title?: string };
   /** the seasons a year are spent: a free-season count set by hand, needing no sleep, and what the extra seasons go to */
@@ -1357,6 +1359,8 @@ export interface Covenant {
   yearEnd?: { skipVis?: string[] };
   /** a covenant of the saga's Tribunal built from its book, which lives on its own as the seasons pass (not the players') */
   living?: LivingCovenant;
+  /** something that gives its magi a better aura in the laboratory for a few seasons a year (the magestones of Verditius) */
+  labAura?: LabAura;
   /** what has changed the aura, oldest first */
   auraLog?: { uid: string; year: number; season?: Season; delta: number; text: string }[];
   /** the aura from year to year (Realms of Power: Magic, Aura Variation) */
@@ -1369,6 +1373,24 @@ export interface Covenant {
 }
 
 /** A living covenant's link to its book, and what it remembers from year to year. */
+/**
+ * A Magic aura a covenant's magi can carry into their laboratories, so many at once and so many
+ * seasons a year each (Guardians of the Forests: the three magestones of Verditius let the magi of
+ * Oculus Septentrionalis, in Lübeck's Divine aura, work two seasons a year in a Magic aura of 3).
+ */
+export interface LabAura {
+  name: string;
+  realm: 'Magic' | 'Faerie';
+  strength: number;
+  /** how many magi may use it in the same season */
+  count: number;
+  /** the seasons a year each magus may use it */
+  seasonsEach: number;
+  text?: string;
+  /** who has it this season */
+  inUse?: { year: number; season: Season; ids: string[] };
+}
+
 export interface LivingCovenant {
   /** the Tribunal book (BOOKS id) and the covenant's id in it */
   book: string;

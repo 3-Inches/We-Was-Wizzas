@@ -10,7 +10,8 @@
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type GameData } from '../data';
 import type { DerivedCharacter } from './character/derive';
 import { ensureAbility } from './character/factory';
-import type { CharacterContext } from './context';
+import { labAuraFor, type CharacterContext } from './context';
+import { auraModifier } from './magic';
 import type { Rng } from './dice';
 import { computeStudy, visForStudy } from './longterm';
 import { newProject, planProject, visShort } from './projects';
@@ -78,6 +79,8 @@ interface Ctx {
   season: Season;
   rng: Rng;
   chars: Character[];
+  /** the aura would cost lab work dearly this season (Lübeck's Divine aura, with no magestone free) */
+  hostile?: string;
 }
 
 /** The Arts an entry favors: its own, else the character's two best. */
@@ -91,7 +94,13 @@ export function focusArts(d: DerivedCharacter, p?: SeasonPriority): Art[] {
  * one before it was passed over. Makes the project or book to work on when it needs one.
  */
 export function choosePriority(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, chars: Character[] = []): { choice?: PriorityChoice; tried: PriorityTry[] } {
-  const x: Ctx = { c, d, ctx, cov, data, year, season, rng, chars };
+  // lab work is planned in the aura it would be done in: under a magestone when one is free; in an
+  // aura that costs the Lab Total dearly with none, it waits for a season that has one
+  const faerieMagic = d.virtues.some((v) => v.cv.defId === 'faerie-magic');
+  const labCtx = labAuraFor(c, cov, ctx, year, season, { faerieMagic }) ?? ctx;
+  const mod = auraModifier('Magic', labCtx.aura, { faerieMagic }).mod;
+  const hostile = d.isMagus && mod < 0 ? `the ${labCtx.aura.realm} aura of ${labCtx.aura.strength} would take ${-mod} from its Lab Totals${cov?.labAura ? `, and ${cov.labAura.name} are taken this season` : ''}` : undefined;
+  const x: Ctx = { c, d, ctx: labCtx, cov, data, year, season, rng, chars, hostile };
   const list = (c.priorities ?? []).filter((p) => !p.off);
   const tried: PriorityTry[] = [];
   const listed = (k: PriorityKind) => list.filter((p) => p.kind === k).length;
@@ -127,6 +136,7 @@ const TRY: Record<PriorityKind, Try> = {
     if (c.longevity) return 'has one';
     if (c.age < 35 && !c.longevityLapsed) return 'not yet 35';
     if (!x.ctx.lab) return 'no laboratory';
+    if (x.hostile) return x.hostile;
     let p = c.projects?.find((q) => q.kind === 'longevity' && !q.done && (!q.subjectId || q.subjectId === c.id));
     if (!p) {
       p = { ...newProject('longevity'), name: 'Longevity Ritual', visFrom: x.cov ? 'covenant' : undefined };
@@ -139,7 +149,7 @@ const TRY: Record<PriorityKind, Try> = {
     const { c, d, cov } = x;
     // vis for the covenant when its stores run low (under five pawns a member), else its duties
     const low = cov && cov.visStocks.reduce((t, v) => t + v.pawns, 0) < 5 * Math.max(1, cov.memberIds.length);
-    if (low && d.isMagus && x.ctx.lab && cov && x.ctx.aura.realm === 'Magic' && x.ctx.aura.strength > 0) {
+    if (low && d.isMagus && x.ctx.lab && cov && !x.hostile && x.ctx.aura.realm === 'Magic' && x.ctx.aura.strength > 0) {
       let p = c.projects?.find((q) => q.kind === 'extract' && !q.done && q.visFrom === 'covenant');
       if (!p) {
         p = { ...newProject('extract'), name: `Extract vis for ${cov.name || 'the covenant'}`, visFrom: 'covenant' };
@@ -177,8 +187,12 @@ const TRY: Record<PriorityKind, Try> = {
     for (const s of subjects) {
       const r = planBook(d, { kind: 'tractatus', isArt: s.isArt, score: s.score, com: d.characteristics.Com.value, language: lang.total, written: written(s.subject) });
       if (r.problems.length) continue;
+      // a title the library does not have yet
+      const taken = new Set([...cov.library.map((b) => b.title), ...(c.writing ?? []).map((w) => w.title)]);
+      const titles = TITLES.map((t) => `${t} ${s.label}`).filter((t) => !taken.has(t));
+      const title = titles.length ? titles[Math.floor(x.rng() * titles.length)] : `${pickTitle(x.rng)} ${s.label}, ${written(s.subject) + 1}`;
       const w: WritingProject = {
-        uid: uid(), kind: 'tractatus', title: `${pickTitle(x.rng)} ${s.label}`, subjectType: s.isArt ? 'art' : 'ability', subject: s.subject, exposure: s.exposure, language: c.abilities.find((a) => a.uid === lang.uid)?.param || 'Latin',
+        uid: uid(), kind: 'tractatus', title, subjectType: s.isArt ? 'art' : 'ability', subject: s.subject, exposure: s.exposure, language: c.abilities.find((a) => a.uid === lang.uid)?.param || 'Latin',
         level: 0, quality: r.quality, textQuality: r.textQuality, points: 0, needed: r.needed || 1, rate: Math.max(1, r.perSeason), authorScore: s.score, covenantId: cov.id, started: { year: x.year, season: x.season },
       };
       c.writing = [...(c.writing ?? []), w];
@@ -230,6 +244,7 @@ const TRY: Record<PriorityKind, Try> = {
     const { c, d, data } = x;
     if (!d.isMagus) return 'only a magus invents spells';
     if (!x.ctx.lab) return 'no laboratory';
+    if (x.hostile) return x.hostile;
     const open = c.projects?.find((q) => q.kind === 'invent' && !q.done && !q.fromText);
     if (open) {
       const problem = workable(x, open);
@@ -261,6 +276,7 @@ const TRY: Record<PriorityKind, Try> = {
   lab: (x) => {
     const { c, d } = x;
     if (!d.isMagus || !x.ctx.lab) return 'no laboratory';
+    if (x.hostile) return x.hostile;
     let p = c.projects?.find((q) => q.kind === 'refine' && !q.done);
     if (!p) {
       p = { ...newProject('refine'), name: 'Refine the laboratory' };
@@ -272,6 +288,11 @@ const TRY: Record<PriorityKind, Try> = {
     return problem ?? labSeason(p, 'refining the laboratory');
   },
   practice: (x) => {
+    // in an aura that costs it dearly, a magus reads up on Magic Theory instead of working a project
+    if (x.d.isMagus && x.hostile) {
+      const mt = x.c.abilities.find((a) => a.abilityId === x.d.theoryAbility);
+      if (mt) return { standing: { kind: 'exposure', target: `ability:${mt.uid}` }, what: 'study of Magic Theory, away from the lab' };
+    }
     if (x.d.isMagus) return { standing: { kind: 'lab' }, what: 'lab work' };
     return { standing: { kind: 'practice' }, what: 'practice' };
   },
