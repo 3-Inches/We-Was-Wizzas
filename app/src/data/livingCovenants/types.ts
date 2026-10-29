@@ -4,7 +4,7 @@
 // the magi it counts without naming, how it stands with its neighbors, and the ways it may come to
 // the players' covenant. Ages are those the book gives for its present (1220).
 
-import type { Art, Characteristic } from '../types';
+import type { Art } from '../types';
 
 export type Wealth = 'poor' | 'modest' | 'comfortable' | 'rich' | 'very rich';
 export type Holdings = 'poor' | 'modest' | 'good' | 'great';
@@ -43,17 +43,43 @@ export interface BookMagus {
   guest?: boolean;
   /** inactive: in Final Twilight in all but name, and does nothing with the seasons */
   inactive?: string;
-  /** Decrepitude score the book gives (2 if it gives none) */
-  decrepitude?: number;
-  /** the Arts of the book's statistics block, raised to at the least */
-  statArts?: Partial<Record<Art, number>>;
-  statChars?: Partial<Record<Characteristic, number>>;
-  /** Virtues named in the book's statistics block, by id, added where the rules allow */
-  statVirtues?: string[];
   /** the season's priorities, in order, where the book says what the magus spends time on */
   priorities?: string[];
   /** book line of the entry */
   line: number;
+}
+
+/**
+ * A character as a book's stat block gives it (engine/character/statBlock reads it): every field in
+ * the book's own words and layout, so a block can be copied straight from the page.
+ */
+export interface StatBlock {
+  /** 'Int +2, Per +3, Pre –1 (2), …': the Aging Points in brackets */
+  characteristics: string;
+  /** as the book lists them: 'The Gift; Journeyman; Affinity with Folk Ken, Clear Thinker, …; Meddler; …' */
+  virtues: string;
+  /** 'Artes Liberales 2 (logic), Athletics 1 (stamina), …' */
+  abilities: string;
+  /** 'Cr 4, In 10+3, Mu 2, …' (the +3 is Puissant, not part of the score) */
+  arts?: string;
+  /** one a line, as in the book: 'Image of the Beast (InAn 5) +16, Mastery 1 (Quiet Casting)' */
+  spells?: string[];
+  /** levels of spells beyond those named, from the strongest Arts, for an entry that names few or none */
+  moreSpells?: number;
+  /** '2 (15)': the score, and the points toward the next */
+  warping?: string;
+  decrepitude?: string;
+  confidence?: string;
+  /** 'Meddlesome Upstart 4 (Hermetic), Quaesitor 3 (Hermetic)' */
+  reputations?: string;
+  /** the Longevity Ritual's bonus, where the book gives one or the magus would have one */
+  longevity?: number;
+  equipment?: string;
+  twilightScars?: string;
+  /** the age at Gauntlet, where the book gives it (25 if not) */
+  gauntlet?: number;
+  /** the age the character looks, where the book gives it */
+  apparentAge?: number;
 }
 
 /** Unnamed magi the book counts, generated to fill the covenant out. */
@@ -144,4 +170,8 @@ export interface TribunalBook {
   /** other gatherings a House holds (Bjornaer's Gathering of Twelve Years) */
   otherGatherings?: { name: string; every: number; from: number; at: string; house?: string; line: number }[];
   covenants: BookCovenant[];
+  /** each named magus's stat block, by name: the book's own, or one written to what it says of them */
+  sheets?: Record<string, StatBlock>;
+  /** what the book says of each named magus, in its own words, by name */
+  texts?: Record<string, string>;
 }

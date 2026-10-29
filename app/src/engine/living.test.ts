@@ -9,7 +9,8 @@ import { validateCharacter } from './character/validate';
 import { characterContext } from './context';
 import { deriveCovenant, newCovenant } from './covenant';
 import { DEFAULT_YEAR_END, planYearEnd } from './covenantYear';
-import { ensureAbility } from './character/factory';
+import { ensureAbility, newCharacter } from './character/factory';
+import { applyStatBlock } from './character/statBlock';
 import { generateCharacter } from './generate/character';
 import { seeded } from './generate/random';
 import { findLabText, findSumma, tractatusQuality } from './greatLibrary';
@@ -36,6 +37,53 @@ const faces = (...f: number[]) => {
   let i = 0;
   return () => (f[i++ % f.length] + 0.5) / 10;
 };
+
+describe('the named magi, from their stat blocks', () => {
+  const sheets = RHINE.sheets ?? {};
+  const named = RHINE.covenants.flatMap((c) => c.magi);
+
+  it('has a stat block for every named magus, and every name in it is one the toolkit knows', () => {
+    for (const m of named) expect(sheets[m.name], m.name).toBeTruthy();
+    for (const [name, sb] of Object.entries(sheets)) {
+      const c = newCharacter(named.find((m) => m.name === name)?.ungifted ? 'companion' : 'magus', 's', 1220);
+      c.house = named.find((m) => m.name === name)?.house ?? 'guernicus';
+      expect(applyStatBlock(c, sb, data, rules).problems, name).toEqual([]);
+    }
+  });
+
+  it('keeps the written ones within the creation rules: balanced Virtues and Flaws, Characteristics within their points', () => {
+    // the book's own blocks are as printed (Felicia's and Ioannes Acer's are not quite balanced)
+    const printed = new Set(['Tabanus', 'Felicia', 'Philippus Niger', 'Imanitos Mendax', 'Falke', 'Ioannes Acer']);
+    for (const m of named.filter((x) => !printed.has(x.name))) {
+      const c = newCharacter(m.ungifted ? 'companion' : 'magus', 's', 1220);
+      c.house = m.ungifted ? undefined : m.house;
+      applyStatBlock(c, sheets[m.name], data, rules);
+      const d = deriveCharacter(c, data, rules);
+      expect(d.tally.virtuePoints, m.name).toBe(d.tally.flawPoints);
+      const errors = validateCharacter(d, data, rules).filter((i) => i.severity === 'error' && !/age-based maximum/.test(i.message));
+      expect(errors.map((i) => i.message), m.name).toEqual([]);
+    }
+  });
+
+  it('builds them as the book has them: Philippus’s Perdo and Intelligence, Handri as the secretive Primus, the book’s own words', () => {
+    const s = sagaAt();
+    const durenmar = buildLivingCovenant(RHINE, def('durenmar'), { data, saga: s, rules }, { seed: 4, others: false });
+    const ph = durenmar.chars.find((c) => c.name === 'Philippus Niger')!;
+    const d = deriveCharacter(ph, data, rules);
+    expect(d.arts.Pe.score).toBe(35);
+    expect(d.characteristics.Int.value).toBe(5);
+    expect(ph.familiar?.name).toBe('Sordus');
+    expect(ph.spells.some((x) => x.spell.name === "Demon's Eternal Oblivion" && x.spell.level === 25)).toBe(true);
+    expect(ph.description).toMatch(/Protector of Durenmar[\s\S]*\n\nAppearance: Philippus is a smallish/);
+    const iren = buildLivingCovenant(RHINE, def('irencillia'), { data, saga: s, rules }, { seed: 4, others: false });
+    const handri = iren.chars.find((c) => c.name === 'Handri')!;
+    const ids = handri.virtues.map((v) => v.defId);
+    expect(ids).toContain('faerie-magic');
+    expect(ids).toContain('dark-secret-flaw');
+    for (const odd of ['horrifying-appearance-snake-legs-flaw', 'gender-nonconforming-flaw', 'homunculus-wizard-flaw']) expect(ids).not.toContain(odd);
+    expect(handri.description).toContain('Handri, the Primus of House Merinita, is a secretive man');
+  });
+});
 
 describe('building a covenant from its book', () => {
   it('makes Heorot’s three magi as the book gives them, with labs, a library, vis and accounts that hold', () => {

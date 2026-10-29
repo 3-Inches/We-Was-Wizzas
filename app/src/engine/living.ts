@@ -10,7 +10,12 @@ import { ARTS, ART_NAMES, type Art, type GameData } from '../data';
 import { bookCovenant, tribunalBook, type BookApproach, type BookCovenant, type BookMagus, type TribunalBook } from '../data/livingCovenants';
 import { deriveCharacter } from './character/derive';
 import { validateCharacter } from './character/validate';
-import { addVirtue, ensureAbility } from './character/factory';
+import { newCharacter } from './character/factory';
+import { applyStatBlock, type StatBlock } from './character/statBlock';
+import { longevityBonus } from './enchant';
+import { labTotal } from './magic';
+import { generateFamiliar } from './generate/spellsAndFamiliars';
+import { freshName } from './generate/names';
 import { deriveCovenant, newCovenant } from './covenant';
 import { DEFAULT_YEAR_END, planYearEnd } from './covenantYear';
 import type { Rng } from './dice';
@@ -23,7 +28,6 @@ import { defaultPriorities } from './priorities';
 import type { Character, Covenant, HouseRules, PriorityKind, Saga, Season, TribunalNews, VisSource } from './types';
 import { addVis, takeVis, visAvailable, visText } from './vis';
 import { transfer } from './market';
-import { abilityXpForScore, artXpForScore } from './xp';
 import { uid } from '../util/id';
 
 export interface LivingContext {
@@ -66,91 +70,33 @@ const HOUSE_ROLES: Record<string, string[]> = {
 };
 const VIS_PLACES = ['a spring', 'an ancient oak', 'a standing stone', 'a pool in the forest', 'a hollow in the hills', 'a cave', 'a ruined shrine', 'a grove', 'a barrow', 'a waterfall'];
 
-/** What an older magus knows besides the Arts, by years since the Gauntlet (the generator spends most of those years on two or three Arts). */
-const ELDER: { id: string; param?: string; score: (pg: number) => number }[] = [
-  { id: 'magic-theory', score: (pg) => Math.min(9, 5 + Math.floor(pg / 10)) },
-  { id: 'parma-magica', score: (pg) => Math.min(7, 3 + Math.floor(pg / 15)) },
-  { id: 'concentration', score: (pg) => Math.min(5, 2 + Math.floor(pg / 20)) },
-  { id: 'penetration', score: (pg) => Math.min(6, 1 + Math.floor(pg / 15)) },
-  { id: 'dead-language', param: 'Latin', score: () => 5 },
-  { id: 'organization-lore', param: 'Order of Hermes', score: (pg) => Math.min(5, 1 + Math.floor(pg / 15)) },
-  { id: 'code-of-hermes', score: (pg) => Math.min(4, 1 + Math.floor(pg / 20)) },
-];
-
-/** Move post-Gauntlet experience from the magus' strongest Arts into what a magus of those years would know, so the totals stay within the creation budget. */
-function balanceElder(c: Character, g: LivingContext) {
-  const pg = c.creation.yearsPostGauntlet;
-  if (c.type !== 'magus' || pg < 5) return;
-  const sum = (x: Partial<Record<string, number>>) => Object.values(x).reduce((t: number, n) => t + (n ?? 0), 0);
-  for (const e of ELDER) {
-    if (!g.data.abilityById.has(e.id)) continue;
-    const ab = ensureAbility(c, e.id, {}, e.param);
-    let need = abilityXpForScore(e.score(pg)) - sum(ab.xp);
-    // from the Arts with the most post-Gauntlet experience, a little at a time so they come down together
-    for (let guard = 0; need > 0 && guard < 400; guard++) {
-      const top = [...ARTS].filter((a) => (c.arts[a].postGauntlet ?? 0) > 0).sort((a, b) => sum(c.arts[b]) - sum(c.arts[a]))[0];
-      if (!top) break;
-      const take = Math.min(need, 10, c.arts[top].postGauntlet ?? 0);
-      c.arts[top] = { ...c.arts[top], postGauntlet: (c.arts[top].postGauntlet ?? 0) - take };
-      ab.xp.postGauntlet = (ab.xp.postGauntlet ?? 0) + take;
-      need -= take;
-    }
-  }
-}
-
-/** The Arts a book's magus gets, raised to at the least, with the experience put in as a correction (the book's own scores). */
-function raiseArts(c: Character, g: LivingContext, arts: Partial<Record<Art, number>>) {
-  for (let pass = 0; pass < 3; pass++) {
-    const d = deriveCharacter(c, g.data, g.rules);
-    let changed = false;
-    for (const art of ARTS) {
-      const want = arts[art];
-      if (want === undefined || d.arts[art].score >= want) continue;
-      const need = artXpForScore(want) - d.arts[art].effectiveXp;
-      const mult = d.arts[art].multiplier || 1;
-      c.arts[art] = { ...c.arts[art], adjust: (c.arts[art].adjust ?? 0) + Math.ceil(need / mult) };
-      changed = true;
-    }
-    if (!changed) return;
-  }
-}
-
-function addBookVirtues(c: Character, g: LivingContext, ids: string[]) {
-  for (const s of ids) {
-    const [id, param] = s.split(':');
-    if (!g.data.vfById.has(id) || c.virtues.some((v) => v.defId === id && (!param || v.param === param))) continue;
-    addVirtue(c, g.data, id, undefined, param);
-  }
-}
-
-/** One of the book's magi (or Redcaps), made by the generator and set to what the book says. */
+/**
+ * One of the book's named magi (or Redcaps), built from their stat block: the book's own where it
+ * prints one, else the one written to what it says of them (data/livingCovenants). Seeded, so their
+ * familiar comes out the same each time.
+ */
 function bookMagus(m: BookMagus, book: TribunalBook, def: BookCovenant, cov: Covenant, g: LivingContext, seed: number, avoid: string[], log: string[]): Character | undefined {
-  const age = m.age + (g.saga.currentYear - book.present);
+  const years = g.saga.currentYear - book.present;
+  const age = m.age + years;
   if (age < 20) {
     log.push(`${m.name} is still an apprentice in ${g.saga.currentYear}; left out.`);
     return undefined;
   }
   const magus = !m.ungifted;
-  const startAge = age >= 25 ? 10 : Math.max(5, age - 15);
-  // the Arts the book names come first, with two Techniques and three Forms raised rather than one and two
-  const answers: Record<string, number> = magus && m.arts?.length ? { 'b-arts': 10, 'a-focus': 5, ...Object.fromEntries(m.arts.map((a) => [`b-art-${a}`, 10])) } : {};
-  const r = generateCharacter(
-    {
-      type: magus ? 'magus' : 'companion', role: magus ? `magus-${m.role}` : 'redcap', house: magus ? m.house : undefined, gender: m.gender, age: magus ? undefined : age,
-      yearsPostGauntlet: magus ? Math.max(0, age - startAge - 15) : undefined, startAge: magus ? startAge : undefined, answers,
-      spells: magus ? { maxLevel: SPELL_CAP[m.rank], arts: m.arts } : undefined, familiar: magus && !!m.familiar, variety: 'focused', npc: true, seed, avoidNames: avoid,
-    },
-    { ...g, covenant: cov },
-  );
-  const c = r.c;
+  const sheet = book.sheets?.[m.name];
+  const c = sheet ? sheetCharacter(m, sheet, g, age, seed, log) : generatedMagus(m, cov, g, age, seed, avoid);
   c.name = m.name;
+  c.gender = m.gender;
   c.age = age;
   c.birthYear = g.saga.currentYear - age;
   if (!magus) c.house = 'mercere';
   c.personality = m.traits.map(([trait, score]) => ({ uid: uid(), trait, score }));
-  c.description = [m.title, m.note].filter(Boolean).join('. ');
+  // the toolkit's summary, then what the book says, in its words
+  const text = book.texts?.[m.name];
+  c.description = [[m.title, m.note].filter(Boolean).join('. '), text].filter(Boolean).join('\n\n');
   const notes = [
     `From ${book.title} (line ${m.line}).`,
+    sheet ? '' : 'Made by the generator: the book gives no stat block and none has been written.',
     m.ageGuess ? 'The book gives no age: this one is a likely one for the rank.' : '',
     m.chapter ? `Lives at the chapter house ${m.chapter}.` : '',
     m.guest ? `A guest at ${def.name}, not a member.` : '',
@@ -161,16 +107,6 @@ function bookMagus(m: BookMagus, book: TribunalBook, def: BookCovenant, cov: Cov
   c.notes = notes.filter(Boolean).join(' ');
   c.fromBook = { book: book.book, line: m.line, title: m.title };
   if (m.heartbeast) c.heartbeast = m.heartbeast;
-  if (c.familiar && m.familiar && /^[A-Z][^,]*,/.test(m.familiar)) c.familiar.name = m.familiar.split(',')[0];
-  balanceElder(c, g);
-  // the book's magi are alive and active in its present: Decrepitude no worse than it gives (2 if it gives none),
-  // and an old magus whose own ritual is weak has a stronger one, made for them by another magus
-  const decrepitude = abilityXpForScore(m.decrepitude ?? 2);
-  if (c.decrepitudePoints > decrepitude) c.decrepitudePoints = decrepitude;
-  if (magus && age >= 80 && (c.longevity?.bonus ?? 0) < 8) c.longevity = { labTotal: 40, bonus: 8 + Math.floor((age - 80) / 20), extraVis: 0, createdYear: g.saga.currentYear - 5, createdBy: 'another magus' };
-  if (m.statChars) for (const [k, v] of Object.entries(m.statChars)) c.characteristics[k as keyof typeof c.characteristics] = v!;
-  if (m.statVirtues) addBookVirtues(c, g, m.statVirtues);
-  if (m.statArts) raiseArts(c, g, m.statArts);
   if (book.tribunal === 'Rhine') c.rhine = { rank: m.rank, gild: m.gild ?? def.gild };
   c.priorities = m.priorities
     ? m.priorities.map((kind) => (m.arts && ['read', 'vis', 'invent'].includes(kind) ? { kind: kind as PriorityKind, arts: m.arts } : { kind: kind as PriorityKind }))
@@ -182,6 +118,60 @@ function bookMagus(m: BookMagus, book: TribunalBook, def: BookCovenant, cov: Cov
   return c;
 }
 
+/** A named magus from their stat block, with what a magus of their years has that a block leaves out. */
+function sheetCharacter(m: BookMagus, sheet: StatBlock, g: LivingContext, age: number, seed: number, log: string[]): Character {
+  const rng = seeded(seed);
+  const magus = !m.ungifted;
+  const c = newCharacter(magus ? 'magus' : 'companion', g.saga.id, g.saga.currentYear);
+  c.name = m.name;
+  c.gender = m.gender;
+  c.age = age;
+  c.birthYear = g.saga.currentYear - age;
+  c.house = magus ? m.house : undefined;
+  if (magus) {
+    // the years the stat block stands for: from the Gauntlet to the book's present
+    const gauntlet = sheet.gauntlet ?? Math.min(25, m.age);
+    c.creation.apprenticeshipStartAge = Math.max(5, gauntlet - 15);
+    c.creation.yearsPostGauntlet = Math.max(0, m.age - gauntlet);
+  }
+  const r = applyStatBlock(c, sheet, g.data, g.rules);
+  for (const p of r.problems) log.push(`${m.name}: the toolkit does not know ${p}; left out.`);
+  if (sheet.apparentAge) c.apparentAge = sheet.apparentAge + (age - m.age);
+  if (magus) {
+    const d = deriveCharacter(c, g.data, g.rules);
+    // a Longevity Ritual from 35, as strong as their own Lab Total makes it, where the block gives none
+    if (!c.longevity && m.age >= 35) {
+      const lt = labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'longevity', aura: { strength: 3, realm: 'Magic' }, forSelfLongevity: true }).total;
+      const bonus = longevityBonus(lt, 0, false);
+      if (bonus > 0) c.longevity = { labTotal: lt, bonus, extraVis: 0, createdYear: c.birthYear + 35 };
+    }
+    if (c.longevity) c.longevity.createdYear ??= c.birthYear + 35;
+    if (m.familiar) {
+      const f = generateFamiliar(d, rng, { bind: true }).familiar;
+      const [name, rest] = m.familiar.includes(',') ? m.familiar.split(/,\s*/, 2) : ['', m.familiar];
+      // the book's name for it, or one of the toolkit's
+      c.familiar = { ...f, name: name || freshName(rng, 'latin', rng() < 0.5, [m.name]), species: rest.replace(/^(an?|her|his)\s+/i, '').replace(/\s+(she|he|who|that)\b.*$/, '') || f.species };
+    }
+  }
+  c.creation.finalized = true;
+  return c;
+}
+
+/** A named magus a book gives no stat block for and none has been written: made by the generator, keeping to the book's Arts and role. */
+function generatedMagus(m: BookMagus, cov: Covenant, g: LivingContext, age: number, seed: number, avoid: string[]): Character {
+  const magus = !m.ungifted;
+  const startAge = age >= 25 ? 10 : Math.max(5, age - 15);
+  const answers: Record<string, number> = magus && m.arts?.length ? { 'b-arts': 10, 'a-focus': 5, ...Object.fromEntries(m.arts.map((a) => [`b-art-${a}`, 10])) } : {};
+  return generateCharacter(
+    {
+      type: magus ? 'magus' : 'companion', role: magus ? `magus-${m.role}` : 'redcap', house: magus ? m.house : undefined, gender: m.gender, age: magus ? undefined : age,
+      yearsPostGauntlet: magus ? Math.max(0, age - startAge - 15) : undefined, startAge: magus ? startAge : undefined, answers,
+      spells: magus ? { maxLevel: SPELL_CAP[m.rank], arts: m.arts } : undefined, familiar: magus && !!m.familiar, variety: 'focused', npc: true, seed, avoidNames: avoid,
+    },
+    { ...g, covenant: cov },
+  ).c;
+}
+
 /** One of the magi a book counts without naming. */
 function otherMagus(house: string, rank: BookMagus['rank'] | 'mixed', book: TribunalBook, def: BookCovenant, cov: Covenant, g: LivingContext, rng: Rng, seed: number, avoid: string[], note: string): Character {
   const roles = HOUSE_ROLES[house] ?? ['scholar'];
@@ -190,7 +180,6 @@ function otherMagus(house: string, rank: BookMagus['rank'] | 'mixed', book: Trib
   const pg = r === 'journeyman' ? 2 + Math.floor(rng() * 20) : r === 'master' ? 26 + Math.floor(rng() * 35) : 60 + Math.floor(rng() * 30);
   const gen = generateCharacter({ type: 'magus', role: `magus-${role}`, house, yearsPostGauntlet: pg, spells: { maxLevel: SPELL_CAP[r] }, familiar: rng() < 0.4, variety: 'varied', npc: true, seed, avoidNames: avoid }, { ...g, covenant: cov });
   const c = gen.c;
-  balanceElder(c, g);
   c.notes = `One of ${note} (${book.title}, line ${def.line}); the book does not name them, so the toolkit made them.`;
   if (book.tribunal === 'Rhine') c.rhine = { rank: r, gild: def.gild };
   c.priorities = defaultPriorities(c, { role });
