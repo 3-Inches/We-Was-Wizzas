@@ -40,7 +40,7 @@ export const PRIORITY_BY_ID = new Map(PRIORITY_KINDS.map((k) => [k.id, k]));
 /** A sensible list by what the character is: a magus’ by its archetype (role), a Redcap’s, anyone else’s. */
 export function defaultPriorities(c: Character, o: { role?: string; arts?: Art[]; ungifted?: boolean } = {}): SeasonPriority[] {
   const arts = o.arts?.length ? o.arts : undefined;
-  const list = (...kinds: PriorityKind[]): SeasonPriority[] => kinds.map((kind) => (arts && ['read', 'vis', 'invent'].includes(kind) ? { kind, arts } : { kind }));
+  const list = (...kinds: PriorityKind[]): SeasonPriority[] => kinds.map((kind) => (arts && ['read', 'vis', 'invent', 'enchant'].includes(kind) ? { kind, arts } : { kind }));
   // a Redcap is on the road; anyone else without the Gift reads when there is a book for them, and practices
   if (o.ungifted) return list('travel', 'travel', 'travel', 'read', 'practice');
   if (c.type !== 'magus') return list('read', 'practice');

@@ -773,13 +773,23 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Season priorities',
-        body: 'Their magi follow a **priority list** when the seasons pass: service to the covenant, politics, travel, writing, reading the best book, vis study, a new spell, the lab. Each entry is a season a year; the first that can be done is taken, and a Longevity Ritual comes when it is needed. Any character can have one: this card is on every Advancement tab.',
+        body: 'Their magi follow a **priority list** when the seasons pass: service to the covenant, politics, travel, writing, reading the best book, vis study, a new spell, an enchanted item, the lab, and a season a year for an apprentice. Each entry is a season a year; the first that can be done is taken, and a Longevity Ritual comes when it is needed. Any character can have one: this card is on every Advancement tab.',
         at: sheet('advancement'), needs: 'character', target: 'priorities',
       },
       {
         title: 'Gatherings',
-        body: 'The Rhine Tribunal meets at Durenmar every seven years, from 1221; the Bjornaer gather at Crintera every twelve. Every living magus spends a gathering’s season there; your magi are expected too.',
+        body: 'The Rhine Tribunal meets at Durenmar every seven years from 1221, opening on Walpurgis Night (Spring); the Bjornaer gather at Crintera every twelve, and the Grand Tribunal meets at Durenmar in 1228. Every living magus spends a gathering’s season there; your magi are expected too. New masters and archmagi are made there, and magi of covenants at odds may settle a quarrel by certamen.',
         at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-gatherings',
+      },
+      {
+        title: 'Motions and votes',
+        body: 'The motions the book has coming before the Tribunal (Heorot’s admission, the Praeco, Rügen, a Lotharingian Tribunal, war on the Norse wizards), each gild’s and covenant’s stand, and how the sigils would fall as things stand. Set how your magi vote here; the gathering counts every sigil (a master holds a retired magus’s by proxy, an archmage two, and House Tremere’s exarchs cast the rest of their House’s).',
+        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-votes', 'tribunal-gatherings'],
+      },
+      {
+        title: 'Wanderers',
+        body: 'Tabanus the Quaesitor stays a few years at each covenant as its guest; Felicia winters at Fengheld and summers on the road. They come with the covenant they start at, keep a laboratory of their own, and may ask to stay with you: **Take them in** here or on their request.',
+        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-wanderers', 'tribunal-gatherings'],
       },
       {
         title: 'What they bring to you',

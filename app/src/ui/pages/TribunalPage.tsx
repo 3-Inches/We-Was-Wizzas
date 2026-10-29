@@ -8,7 +8,8 @@ import { Link, useParams } from 'react-router-dom';
 import { ARTS, ART_NAMES, type Art } from '../../data';
 import { TRIBUNAL_BOOKS, tribunalBook, type BookCovenant, type TribunalBook } from '../../data/livingCovenants';
 import { findEnchantment, findLabText, findSumma, libraryCredit, tractatusQuality, LAB_TEXT_EASE, type LibraryRank, type SpellKind } from '../../engine/greatLibrary';
-import { approachChance, buyCopyFrom, livingCovenantSteps, nextGatherings, tradeWith, type Offer } from '../../engine/living';
+import { approachChance, buyCopyFrom, gatheringSeason, livingCovenantSteps, nextGatherings, tradeWith, type Offer } from '../../engine/living';
+import { playersCovenant, rhineCustoms } from '../../engine/tribunalLife';
 import { bookVisPrice } from '../../engine/market';
 import { visPriceOf } from '../../engine/economy';
 import { RHINE_GILDS } from '../../engine/tribunal';
@@ -17,6 +18,7 @@ import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../..
 import { useStore } from '../../store/store';
 import { BookBadge, Card, Confirm, Empty, Stepper } from '../kit';
 import { HOUSES } from '../../data/houses';
+import { MotionsCard, WanderersCard, useTakeIn } from './TribunalVotes';
 
 const houseName = (id?: string) => HOUSES.find((h) => h.id === id)?.name ?? id ?? '';
 const gildName = (id?: string) => RHINE_GILDS.find((g) => g.id === id)?.tree;
@@ -158,18 +160,27 @@ export default function TribunalPage() {
             <div key={g.name} className="list-row">
               <b>{g.name}</b>
               <span>
-                Summer {g.year} at {g.at}
+                {g.house ? 'Summer' : gatheringSeason(book)} {g.year} at {g.at}
                 {g.house ? ` (House ${houseName(g.house)})` : ''}
               </span>
               {g.year === saga.currentYear && <span className="badge warn">this year</span>}
             </div>
           ))}
           <p className="small muted" style={{ marginBottom: 0 }}>
-            The {book.tribunal} Tribunal meets every {book.gathering.every} years <BookBadge book={book.book} line={book.gathering.line} />. Every living covenant’s magi spend the season of
-            the gathering there (Exposure in Intrigue); the players’ magi are expected too. The book does not give a season: the toolkit takes Summer.
+            The {book.tribunal} Tribunal meets every {book.gathering.every} years <BookBadge book={book.book} line={book.gathering.line} />
+            {book.gathering.season ? `, its proceedings opening on the eve of the 1st of May (Walpurgis Night): the ${book.gathering.season} season` : ' (the book gives no season: the toolkit takes Summer)'}. Every living
+            covenant’s magi spend the season there (Exposure in Intrigue), and the players’ magi are expected too. New masters and archmagi are made, the motions below are voted on, and magi of
+            covenants at odds may settle a quarrel by certamen. A House’s gathering is shown in Summer: the toolkit does not take a season for it.
           </p>
         </Card>
       </div>
+
+      {living.length > 0 && (
+        <div className="grid grid-2">
+          <MotionsCard book={book} saga={saga} chars={chars} covs={covs} />
+          <WanderersCard book={book} saga={saga} chars={chars} covs={covs} />
+        </div>
+      )}
 
       {living.map((cov) => (
         <LivingCovenantCard key={cov.id} cov={cov} book={book} chars={chars} saga={saga} players={players} />
@@ -198,9 +209,11 @@ export function NewsCard({ saga, covs, chars, compact }: { saga: Saga; covs: Cov
   const covName = (id?: string) => covs.find((c) => c.id === id)?.name ?? '';
   const done = (uid: string) => updateSaga(saga.id, (x) => void (x.tribunalNews = (x.tribunalNews ?? []).map((n) => (n.uid === uid ? { ...n, done: true } : n))));
   const players = covs.filter((c) => !c.living);
-  const home = players[0];
+  const home = playersCovenant(covs, chars);
+  const takeIn = useTakeIn(covs);
   const row = (n: TribunalNews) => {
     const who = n.characterId ? chars.find((c) => c.id === n.characterId) : undefined;
+    const guest = n.kind === 'approach' && !n.done && who?.wanderer && home && who.covenantId !== home.id ? who : undefined;
     const page = n.page ? PAGE_LINK[n.page] : undefined;
     return (
       <div key={n.uid} className="list-row" style={{ flexWrap: 'wrap' }}>
@@ -227,6 +240,11 @@ export function NewsCard({ saga, covs, chars, compact }: { saga: Saga; covs: Cov
             {page.label}
           </Link>
         )}
+        {guest && (
+          <button className="small" onClick={() => takeIn(guest, home!, saga, () => done(n.uid))} title={`${guest.name} comes to ${home!.name} as a guest`}>
+            Take them in
+          </button>
+        )}
         {n.kind === 'approach' && !n.done && (
           <button className="small" onClick={() => done(n.uid)} title="Mark it dealt with (played, answered, or set aside)">
             Dealt with
@@ -242,7 +260,7 @@ export function NewsCard({ saga, covs, chars, compact }: { saga: Saga; covs: Cov
       {!players.length && covs.some((c) => c.living) && <div className="small muted">The Tribunal’s covenants come to the players only once the saga has a covenant of its own.</div>}
       {rest.length > 0 && (
         <details style={{ marginTop: 6 }} open={!compact && !open.length}>
-          <summary className="small">News: deaths, new members, gatherings, answered approaches ({rest.length})</summary>
+          <summary className="small">News: votes, certamen, apprentices, deaths, new members, gatherings, answered approaches ({rest.length})</summary>
           {rest.slice(0, 40).map(row)}
         </details>
       )}
@@ -263,6 +281,8 @@ function LivingCovenantCard({ cov, book, chars, saga, players }: { cov: Covenant
   // in the covenant's own order: the book's magi first
   const people = cov.memberIds.map((id) => chars.find((c) => c.id === id)).filter((c): c is Character => !!c);
   const alive = people.filter((c) => !c.wounds.dead);
+  const guests = chars.filter((c) => c.wanderer && c.covenantId === cov.id && !c.wounds.dead);
+  const customs = rhineCustoms(saga);
   const vis = cov.visStocks.reduce((t, v) => t + v.pawns, 0);
   const last = (c: Character) => [...c.seasonLog].sort((a, b) => b.year - a.year || 'Spring Summer Autumn Winter'.indexOf(b.season) - 'Spring Summer Autumn Winter'.indexOf(a.season))[0];
   return (
@@ -282,7 +302,7 @@ function LivingCovenantCard({ cov, book, chars, saga, players }: { cov: Covenant
             <tr>
               <th>Magus</th>
               <th>House</th>
-              <th>Rank</th>
+              {customs && <th>Rank</th>}
               <th>Age</th>
               <th>Last season</th>
             </tr>
@@ -295,12 +315,15 @@ function LivingCovenantCard({ cov, book, chars, saga, players }: { cov: Covenant
                   <td>
                     <Link to={`${S}/character/${c.id}`}>{c.name}</Link>
                     {c.fromBook?.title && <div className="muted">{c.fromBook.title}</div>}
+                    {c.apprentice && !c.wounds.dead && <div className="muted">apprentice: {c.apprentice.name}, {c.apprentice.age + saga.currentYear - c.apprentice.since}</div>}
                   </td>
                   <td>{houseName(c.house)}</td>
-                  <td>
-                    {c.rhine?.rank ?? ''}
-                    {c.rhine?.gild ? ` · ${gildName(c.rhine.gild)}` : ''}
-                  </td>
+                  {customs && (
+                    <td>
+                      {c.rhine?.rank ?? ''}
+                      {c.rhine?.gild ? ` · ${gildName(c.rhine.gild)}` : ''}
+                    </td>
+                  )}
                   <td>{c.age}</td>
                   <td>{c.wounds.dead ? 'died' : c.standing?.kind === 'none' ? 'does nothing' : e ? `${e.season} ${e.year}: ${e.summary}` : '—'}</td>
                 </tr>
@@ -309,6 +332,17 @@ function LivingCovenantCard({ cov, book, chars, saga, players }: { cov: Covenant
           </tbody>
         </table>
         </div>
+        {guests.length > 0 && (
+          <div className="small" style={{ marginTop: 4 }}>
+            <b>Guests</b>:{' '}
+            {guests.map((c, i) => (
+              <span key={c.id}>
+                {i ? ', ' : ''}
+                <Link to={`${S}/character/${c.id}`}>{c.name}</Link> (since {c.wanderer!.since})
+              </span>
+            ))}
+          </div>
+        )}
         {def && def.relations.length > 0 && (
           <div style={{ marginTop: 6 }}>
             <b className="small">Neighbors</b>

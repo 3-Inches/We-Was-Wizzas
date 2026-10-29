@@ -11,7 +11,7 @@ import { PRIORITY_BY_ID, PRIORITY_KINDS, choosePriority, defaultPriorities, focu
 import type { Character, PriorityKind, Saga, SeasonPriority } from '../../../engine/types';
 import { Card } from '../../kit';
 
-const ARTS_KINDS: PriorityKind[] = ['read', 'vis', 'invent'];
+const ARTS_KINDS: PriorityKind[] = ['read', 'vis', 'invent', 'enchant'];
 
 export function PrioritiesCard({ c, d, ctx, saga, data, chars, update }: { c: Character; d: DerivedCharacter; ctx: CharacterContext; saga: Saga; data: GameData; chars: Character[]; update: (fn: (x: Character) => void) => void }) {
   const list = c.priorities ?? [];

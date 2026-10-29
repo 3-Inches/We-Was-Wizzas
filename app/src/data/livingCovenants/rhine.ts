@@ -417,7 +417,7 @@ const WANDERERS: BookWanderer[] = [
     note: 'A Quaesitor sent to the Rhine by House Guernicus a decade ago, already unpopular: a peregrinator who stays a few years at each covenant, favoring those of young magi, and insists on a rigid adherence to the Code wherever he is',
     wanders: 'peregrinator', startsAt: 'triamore', stay: 3, favors: 'young',
     priorities: ['longevity', 'politics', 'read', 'invent', 'read', 'vis', 'practice'],
-    approach: { id: 'tabanus', kind: 'request', page: 'tribunal', chance: 25, line: 641, text: 'Tabanus the Quaesitor asks for hospitality at the covenant under the Rhine’s guest-laws (three to seven years, three pawns of vis a year, or a season’s service), and hopes to become a member. Once in, he will insist on a rigid adherence to the Code.' },
+    approach: { id: 'tabanus', kind: 'request', chance: 25, line: 641, text: 'Tabanus the Quaesitor asks for hospitality at the covenant under the Rhine’s guest-laws (three to seven years, three pawns of vis a year, or a season’s service), and hopes to become a member. Once in, he will insist on a rigid adherence to the Code.' },
     line: 582,
   },
   {
@@ -426,7 +426,7 @@ const WANDERERS: BookWanderer[] = [
     note: 'Filia of Dorana of Fengheld, freshly Gauntleted: her magic waxes in winter, which she spends in a covenant’s laboratory (Fengheld has promised her one, for favors as yet unspecified), and wanes in summer, when she takes to the road after the natural phenomena her studies need',
     wanders: 'seasonal', startsAt: 'fengheld', winters: 'fengheld',
     priorities: ['invent', 'invent', 'travel', 'vis', 'read', 'practice'],
-    approach: { id: 'felicia', kind: 'visit', page: 'tribunal', chance: 15, line: 727, text: 'Felicia asks to winter at the covenant, where her magic is strongest. She may come with the aim of making peace between the covenant and one that dislikes it, having just stayed there herself.' },
+    approach: { id: 'felicia', kind: 'visit', chance: 15, line: 727, text: 'Felicia asks to winter at the covenant, where her magic is strongest. She may come with the aim of making peace between the covenant and one that dislikes it, having just stayed there herself.' },
     line: 685,
   },
 ];

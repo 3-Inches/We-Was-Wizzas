@@ -519,7 +519,7 @@ export function wanderersYearEnd(state: State, year: number, rng: Rng): { lines:
   const lines: Line[] = [];
   const out: TribunalNews[] = [];
   const living = state.covenants.filter((x) => x.living && !x.living.paused);
-  const players = state.covenants.filter((x) => !x.living);
+  const ours = playersCovenant(state.covenants, state.characters);
   const customs = rhineCustoms(state.saga);
   for (const c of state.characters.filter((x) => x.wanderer && alive(x))) {
     const w = c.wanderer!;
@@ -557,13 +557,18 @@ export function wanderersYearEnd(state: State, year: number, rng: Rng): { lines:
     // asking the players' covenant to take them in
     const book = tribunalBook(state.saga.tribunal);
     const a = book?.wanderers?.find((x) => x.name === w.key)?.approach;
-    const ours = players[0];
     if (!a || !ours || c.covenantId === ours.id || w.welcome) continue;
     if (state.saga.tribunalNews?.some((n) => n.approach === a.id && n.year >= year - 1)) continue;
     if (rng() * 100 >= a.chance) continue;
     out.push(news(year + 1, 'Spring', { kind: 'approach', approach: a.id, approachKind: a.kind, page: a.page, characterId: c.id, text: a.text }));
   }
   return { lines, news: out };
+}
+
+/** The players' covenant: of those not living, the one with the most magi. */
+export function playersCovenant(covenants: Covenant[], characters: Character[]): Covenant | undefined {
+  const magi = (cov: Covenant) => characters.filter((c) => cov.memberIds.includes(c.id) && c.type === 'magus').length;
+  return covenants.filter((x) => !x.living).sort((a, b) => magi(b) - magi(a))[0];
 }
 
 /**

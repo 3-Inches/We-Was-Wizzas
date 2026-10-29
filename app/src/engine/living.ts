@@ -116,7 +116,7 @@ function bookMagus(m: BookMagus, book: TribunalBook, def: BookCovenant, cov: Cov
   if (m.heartbeast) c.heartbeast = m.heartbeast;
   if (book.tribunal === 'Rhine') c.rhine = { rank: m.rank, gild: m.gild ?? def.gild };
   c.priorities = m.priorities
-    ? m.priorities.map((kind) => (m.arts && ['read', 'vis', 'invent'].includes(kind) ? { kind: kind as PriorityKind, arts: m.arts } : { kind: kind as PriorityKind }))
+    ? m.priorities.map((kind) => (m.arts && ['read', 'vis', 'invent', 'enchant'].includes(kind) ? { kind: kind as PriorityKind, arts: m.arts } : { kind: kind as PriorityKind }))
     : defaultPriorities(c, { role: m.role, arts: m.arts, ungifted: m.ungifted });
   c.standing = m.inactive ? { kind: 'none' } : { kind: 'priorities' };
   if (m.chapter) c.auraTime = 'away';

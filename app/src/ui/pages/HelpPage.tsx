@@ -434,10 +434,12 @@ export default function HelpPage() {
         </p>
         <ul className="small">
           <li>
-            <b>What is built:</b> each magus the book names, as a full character with the book&apos;s House, age, rank, gild, title and Personality Traits, strongest in the Arts the
-            book gives (and the whole statistics block where the book prints one); the magi it only counts, generated to its numbers; a laboratory each; the covenant&apos;s
-            season, aura, covenfolk (as numbers, with its steward, chamberlain, turb captain and craftsmen), library, vis sources and accounts that hold. Ages are the book&apos;s for
-            1220, moved on to the saga&apos;s year. Where the book is silent (an age, a season, an aura), the toolkit makes a likely guess and says so in the notes.
+            <b>What is built:</b> each magus the book names, as a full character from a statistics block (the book&apos;s own where it prints one, else one written to what it
+            says of them, balanced to the creation rules), with the book&apos;s House, age, rank, gild, title and Personality Traits, and its own words in their description after
+            the toolkit&apos;s summary; the magi it only counts, generated to its numbers; a laboratory each; the covenant&apos;s season, aura, Boons and Hooks (read from what the
+            book says), covenfolk (as numbers, with its steward, chamberlain, turb captain and craftsmen), library, vis sources and accounts that hold. Oculus Septentrionalis, in
+            Lübeck&apos;s Divine aura, has the magestones of Verditius: three Magic auras of 3 its magi take into their laboratories two seasons a year each. Ages are the book&apos;s
+            for 1220, moved on to the saga&apos;s year. Where the book is silent (an age, a season, an aura), the toolkit makes a likely guess and says so in the notes.
           </li>
           <li>
             <b>Kept apart:</b> their covenants and people stay off the players&apos; lists (the menu, the saga page, the Game table, Seasons, the Market). They are on the
@@ -445,14 +447,35 @@ export default function HelpPage() {
           </li>
           <li>
             <b>Season priorities:</b> each of their magi follows a priority list (Advancement tab → Season priorities): service to the covenant, politics, travel, writing for the
-            library, reading its best book, study from vis, inventing a spell, improving the lab. Each entry is a season a year, and the first that can be done is taken. A
+            library, reading its best book, study from vis, inventing a spell, enchanting an item (a lesser device of one of their spells, or charms), improving the lab, and a
+            season a year for an apprentice. Each entry is a season a year, and the first that can be done is taken. A
             Longevity Ritual is made whenever a magus of 35 or more has none, and lab work fills any season the list leaves. Any character can follow a list: choose{' '}
             <b>Follow the priority list</b> as the standing activity.
           </li>
           <li>
-            <b>The years:</b> every seven years the Tribunal meets at Durenmar (from 1221; the toolkit takes the Summer), and every living magus spends that season there. At each
-            year&apos;s end a living covenant closes its books like yours, makes good a shortfall from its holdings, may take in a new journeyman when its numbers fall, and may come
-            to your covenant with one of the book&apos;s offers, requests or troubles (Boris of Novgorod with vis to sell, Heorot seeking support, Waddenzee&apos;s pirates).
+            <b>The years:</b> every seven years the Tribunal meets at Durenmar (from 1221, opening on Walpurgis Night: the Spring season), and every living magus spends that season
+            there. At each year&apos;s end a living covenant closes its books like yours, makes good a shortfall from its holdings, may take in a new journeyman when its numbers fall,
+            and may come to your covenant with one of the book&apos;s offers, requests or troubles (Boris of Novgorod with vis to sell, Heorot seeking support, Waddenzee&apos;s pirates).
+          </li>
+          <li>
+            <b>At a gathering:</b> new masters (with the marks of three masters of other covenants, Houses and gilds) and, rarely, archmagi are made; then the motions the book has
+            coming are voted on (<b>Motions and votes</b> on the Tribunal page: each gild&apos;s and covenant&apos;s stand, how the sigils would fall, and your magi&apos;s votes,
+            which you set there). A master holds a retired magus&apos;s sigil by proxy, an archmage two; House Tremere&apos;s exarchs, Stentorius and Severicus, cast the sigils of the
+            rest of their House; Heorot has no sigils until it is admitted. Magi of covenants the book sets against each other may settle a quarrel by certamen, played out from
+            their totals; a covenant that dislikes yours may challenge one of your magi.
+          </li>
+          <li>
+            <b>Apprentices:</b> a living master now and then takes an apprentice, teaches them a season a year, and after fifteen years brings them to the Gauntlet: a new
+            journeyman who joins the covenant, one short of magi, or the road. Any magus&apos;s sheet has an <b>Apprentice</b> card (Overview) to keep yours.
+          </li>
+          <li>
+            <b>Wanderers:</b> Tabanus the Quaesitor, a peregrinator who stays about three years at each covenant (young ones first), comes with Triamore; Felicia, who winters at
+            Fengheld and summers on the road, with Fengheld. They are guests, not members, with a laboratory of their own, and pay the guest&apos;s fee. When one asks to stay with
+            you, <b>Take them in</b> (on the request, or the Tribunal page&apos;s <b>Wanderers</b> card).
+          </li>
+          <li>
+            <b>The Rhine&apos;s customs</b> follow its optional rule <i>Ranks, gilds and voting sigils</i> (saga page): with it off, every magus has one sigil and votes their
+            covenant&apos;s way or their own, nobody is promoted, any magus fifteen years from the Gauntlet may take an apprentice, and guests pay no fee.
           </li>
           <li>
             <b>Answering them:</b> what they bring shows under <b>Needs attention</b> and <b>From the Tribunal</b> on the Game table, with a link to where it is dealt with. Press
