@@ -282,6 +282,11 @@ export default function HelpPage() {
       <Card title="In play" id="play">
         <ul className="small">
           <li>
+            <b>The Game table</b> (first in the saga&apos;s menu) is the place to run a session from: what needs attention (money, Loyalty, wounds, a strike, rules
+            problems, idle characters), what everyone does this season (changed in place), the covenants at a glance, <b>End the season</b>, quick dice, and a list of
+            what comes up in play with a link to where it is done. When unsure what to do next, go back to it.
+          </li>
+          <li>
             <b>Magic:</b> every Casting Score and Lab Total for the current aura, Magic Resistance per Form, Penetration with Arcane Connections, spell casting with the right die,
             botch dice, fatigue and ritual costs, spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, raw vis,
             days away from the lab, any other modifier) and it is added to the totals. A botch adds its Warping Points. Casting Virtues and Flaws (Diedne Magic, Weak
@@ -364,6 +369,41 @@ export default function HelpPage() {
       </Card>
 
       <OptionalRules />
+
+      <Card title="City & Guild: craftsmen, merchants and guilds" id="city-guild">
+        <p className="small" style={{ marginTop: 0 }}>
+          <i>City &amp; Guild</i> keeps a craftsman&apos;s or merchant&apos;s business in <b>Labor Points</b> rather than pennies. Each season tending the business earns
+          (Characteristic + Craft, or Communication + Profession) × 2, 3 or 6 for a Poor, average or Wealthy character; keeping the business going costs 36 a year (and 5
+          more for each point of Raw Materials). What is left over is saved and spent to grow the business. Labor Points are time and effort, not money: pounds can be put
+          into a business, but Labor Points do not turn back into pounds.
+        </p>
+        <ul className="small">
+          <li>
+            <b>A character&apos;s livelihood</b> (Seasons &amp; Aging → Livelihood &amp; workshop, for anyone with a Craft or Profession): a season&apos;s work and the goods
+            it makes (Workshop Total against the Craft Level: shoddy, standard, superior at +6, excellent at +9), exertion, selling, wondrous items, assistants and a manual;
+            Innovation and Raw Materials bought with Labor Points (a season each); rising in wealth and Social Status; and, folded under <b>Stories and investments</b>,
+            Labor Points from stories (half a season&apos;s worth to two and a half), charity, lawsuits, introductions, marriages, a fine thing, money put into the business
+            by income band, speculation, the boom roll, smuggling, and a Wealthy merchant living poorer. Work in the workshop can be the standing activity, so the clock
+            does it.
+          </li>
+          <li>
+            <b>Guilds</b> (the Guild card beside it): rank, the Guild Lore each rank needs, the apprentice piece, a journeyman&apos;s contract, a master&apos;s fee and vote,
+            dues and the dean&apos;s stipend.
+          </li>
+          <li>
+            <b>The covenant&apos;s craftsmen</b> (Covenfolk, Finances &amp; Loyalty): each craft&apos;s savings, the craftsmen&apos;s yearly Labor Points and workshop
+            improvements, guild ranks under the Guild Hook or professional guilds, and a strike.
+          </li>
+          <li>
+            <b>At the table:</b> haggling and bribes on the Market page; the item stress check for damaged goods (damage levels, locks, repair) on the Dice page; a quick
+            court decision on a character&apos;s Overview (optional rule).
+          </li>
+          <li>
+            <b>Reference only</b> (Game mechanics has the rules): trade ventures, caravans and trading companies, factors and capos, skullduggery, fairs, towns and
+            charters, citizenship, travel and ships, and dowries.
+          </li>
+        </ul>
+      </Card>
 
       <Card title="Common questions" id="questions">
         <Question q="Where do I find a rule I only half remember?">

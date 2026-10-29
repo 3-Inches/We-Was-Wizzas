@@ -6,10 +6,11 @@ import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../../data';
 import type { Workshop } from '../../../engine/types';
 import {
-  INNOVATION_COST, INVESTMENTS, RAW_MATERIALS_COST, STORY_AWARDS, WEALTH_MULT, WEALTH_STEP, boomRoll, craftQuality, seasonWorth, sellGoods, smugglingLp, upkeep, wondrousItem, workshopFigures,
+  INNOVATION_COST, INVESTMENTS, LP_WORTH, RAW_MATERIALS_COST, STORY_AWARDS, WEALTH_MULT, WEALTH_STEP, boomRoll, craftQuality, lpForPounds, seasonWorth, sellGoods, smugglingLp, upkeep, wondrousItem, workshopFigures,
   workshopSeason, workshopTotal,
 } from '../../../engine/workshop';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
+import { purseOf } from '../../../engine/vis';
 import { FREQUENCY } from '../../../engine/enchant';
 import { uid } from '../../../util/id';
 import { Card, Field, Stepper, Total } from '../../kit';
@@ -35,6 +36,8 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
   const { c, d, update, saga } = ed;
   const [situations, setSituations] = useState<string[]>([]);
   const [exert, setExert] = useState(false);
+  const [money, setMoney] = useState(10);
+  const [band, setBand] = useState('Trivial');
   const [log, setLog] = useState<string[]>([]);
   const [magnitude, setMagnitude] = useState(1);
   const [freq, setFreq] = useState(FREQUENCY[0]?.value ?? '');
@@ -48,7 +51,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
 
   if (!w)
     return (
-      <Card title="Livelihood & workshop (City & Guild)">
+      <Card title="Livelihood & workshop (City & Guild)" tour="workshop">
         <p className="small muted" style={{ marginTop: 0 }}>
           Optional: for a craftsman or laborer who works for a living. Tracks Labor Points, the Workshop Total and the quality of each season&apos;s goods, and what the points buy
           (City &amp; Guild, ch.2).
@@ -90,11 +93,16 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
     const table = kind === 'innovation' ? INNOVATION_COST : RAW_MATERIALS_COST;
     const cur = w[kind];
     const cost = table[cur + 1] - table[cur];
-    set((x) => {
-      x.laborPoints -= cost;
-      x[kind] = cur + 1;
+    const what = `${kind === 'innovation' ? 'Innovation' : 'Raw Materials'} +${cur + 1}`;
+    // the season goes to it: no workshop work, Practice or Adventure experience instead (City & Guild ch.4)
+    const logged = c.seasonLog.some((e) => e.year === year && e.season === season && !e.extra);
+    update((x) => {
+      if (!x.workshop) return;
+      x.workshop.laborPoints -= cost;
+      x.workshop[kind] = cur + 1;
+      if (!logged) x.seasonLog.push(newSeasonEntry(year, season, 'other', `Improving the workshop: ${what} (${cost} Labor Points)`));
     });
-    push(`${kind === 'innovation' ? 'Innovation' : 'Raw Materials'} +${cur + 1} for ${cost} Labor Points; it takes a season out of the workshop (Practice or Adventure experience instead).`);
+    push(`${what} for ${cost} Labor Points. It takes a season out of the workshop${logged ? `: ${season} ${year} is logged already, so log the next one` : ` (${season} ${year}, logged)`}; Practice or Adventure experience instead.`);
   };
   const nextCost = (kind: 'innovation' | 'rawMaterials') => {
     const table = kind === 'innovation' ? INNOVATION_COST : RAW_MATERIALS_COST;
@@ -118,6 +126,18 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
     });
     push(`${inv.label}: −${cost} Labor Points. ${inv.hint}`);
   };
+  const putIn = () => {
+    const lp = lpForPounds(money, band);
+    if (!lp) return;
+    update((x) => {
+      if (!x.workshop) return;
+      const p = purseOf(x);
+      p.pounds = Math.round((p.pounds - money) * 1000) / 1000;
+      (p.log ??= []).push({ year, season, text: `Put into the business: +${lp} Labor Points`, pounds: -money });
+      x.workshop.laborPoints += lp;
+    });
+    push(`${money} £ put into the business (${band} income): +${lp} Labor Points.`);
+  };
   const smuggleSeason = () => {
     update((x) => {
       if (!x.workshop) return;
@@ -134,6 +154,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
   return (
     <Card
       title="Livelihood & workshop (City & Guild)"
+      tour="workshop"
       actions={
         <button className="small ghost danger" onClick={() => window.confirm('Stop tracking this livelihood?') && update((x) => void (x.workshop = undefined))}>
           Remove
@@ -280,6 +301,20 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
               +{a.seasons} season{a.seasons === 1 ? '' : 's'} ({Math.round(a.seasons * worth)})
             </button>
           ))}
+        </div>
+        <div className="row tight small" style={{ marginTop: 6 }}>
+          Put money into the business:
+          <Stepper value={money} min={0} step={1} width={44} onChange={setMoney} /> £ at
+          <select value={band} onChange={(e) => setBand(e.target.value)} title="The business's income band: what 9 Labor Points are worth (City & Guild ch.2)">
+            {LP_WORTH.map((b) => (
+              <option key={b.band} value={b.band} title={b.who}>
+                {b.band} (9 LP = {b.pounds} £)
+              </option>
+            ))}
+          </select>
+          <button className="small ghost" disabled={!lpForPounds(money, band) || (c.purse?.pounds ?? 0) < money} onClick={putIn} title="Paid from the purse; Labor Points cannot be turned back into money">
+            +{lpForPounds(money, band)} Labor Points
+          </button>
         </div>
         <div className="small" style={{ marginTop: 6 }}>Investing surplus Labor Points:</div>
         <div className="row tight small">

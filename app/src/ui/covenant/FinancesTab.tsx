@@ -150,6 +150,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
 
       <Card
         title={`Craftsmen (${craftsmen.reduce((s, x) => s + specialistCost(x), 0)} BP)`}
+        tour="craftsmen"
         actions={
           <span className="row tight small">
             Score for new ones

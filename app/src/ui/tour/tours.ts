@@ -51,6 +51,8 @@ export interface Tour {
   prefers?: CharType;
   /** follows a character still in creation (the newest draft when none is open) */
   wantsDraft?: boolean;
+  /** when none is open, follows a character with a Craft or Profession (a livelihood to show) */
+  prefersTrade?: boolean;
   steps: TourStep[];
 }
 
@@ -136,6 +138,10 @@ export const TOURS: Tour[] = [
         title: 'Rules reference',
         body: 'The pieces you choose from, each with its rules text: Virtues and Flaws, Abilities, Houses, laboratory Virtues, Hooks and Boons, weapons and books. The **book reader** below it has the full text of every book, searchable.',
         at: page('/reference'), target: 'nav-reference',
+      },
+      {
+        title: 'The Game table',
+        body: 'Inside a saga, **Game table** is first in the menu: what needs attention, what everyone does this season, the covenants at a glance, ending the season, and a list of what comes up in play with a link to where it is done. Its own tutorial is under In play.',
       },
       {
         title: 'Dice',
@@ -631,6 +637,91 @@ export const TOURS: Tour[] = [
         title: 'The cast',
         body: 'Creatures you mean to use go in **the storyguide’s cast**, with how many and your notes, ready for the next story.',
         at: sagaPage('build?tab=creatures'), needs: 'saga', target: 'quick-cast',
+      },
+    ],
+  },
+  {
+    id: 'table',
+    title: 'Run a session from the Game table',
+    blurb: 'One page for the table: what needs attention, what everyone does this season, the covenants at a glance, ending the season, and where to go when something comes up.',
+    group: 'In play',
+    inSaga: true,
+    steps: [
+      {
+        title: 'The Game table',
+        body: 'First in the saga’s menu. Come back here whenever you are unsure what to do next: everything on it either changes in place or links straight to the page that does it.',
+        at: sagaPage('table'), needs: 'saga', target: 'nav-table',
+      },
+      {
+        title: 'Needs attention',
+        body: 'Money running short by the year’s end, low Loyalty, a guild strike, covenant problems, wounds and Fatigue to recover, illness, a workshop short of Labor Points, rules problems on a sheet, and anyone idle this season. Each line links to where it is fixed.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-attention',
+      },
+      {
+        title: 'At the table',
+        body: 'Quick dice, and **When something comes up in play**: a fight, a spell, a purchase, vis found, a grog punished, a book read, a craftsman’s story, an item at risk, a rule in question. Each opens the page where it is done.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-quick',
+      },
+      {
+        title: 'This season',
+        body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here. Plan, Health, Cast and Lab open their sheet at that tab.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-season',
+      },
+      {
+        title: 'End the season',
+        body: 'Moves the whole saga on a season, with Undo. The report shows aging crises, Warping and reminders first; the rest is folded. The Seasons page has the options and several years at once.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-advance',
+      },
+      {
+        title: 'The covenants',
+        body: 'Treasury, the year’s balance, Loyalty, vis and people for each covenant, with the year’s accounts folded underneath and links to each of its tabs.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-covenant',
+      },
+    ],
+  },
+  {
+    id: 'city-guild',
+    title: 'Craftsmen, guilds and Labor Points (City & Guild)',
+    blurb: 'How a craftsman or merchant earns a living, improves the workshop and rises in the world; guild ranks; the covenant’s own craftsmen; haggling; and items that break.',
+    group: 'In play',
+    inSaga: true,
+    prefers: 'companion',
+    prefersTrade: true,
+    steps: [
+      {
+        title: 'Labor Points',
+        body: 'A craftsman or merchant does not count pennies: each season tending the business earns **Labor Points**, (Characteristic + Craft or Profession) × 2, 3 or 6 for Poor, average or Wealthy. Keeping the business going costs 36 a year (more with better Raw Materials); the rest is saved up. The **Livelihood & workshop** card appears on Seasons & Aging for anyone with a Craft or Profession.',
+        at: sheet('advancement'), needs: 'character', target: ['workshop', 'plan-season'],
+      },
+      {
+        title: 'Making goods',
+        body: 'The **Workshop Total** (Characteristic + Craft + Innovation + Raw Materials, plus assistants) against the **Craft Level** (6, raised by war, scarce materials, interruptions or an aura) sets the season’s goods: shoddy, standard, superior at +6, excellent at +9, with the number made scaled by Craft. Exertion adds a die at a risk; wondrous items take Craft Level 12 + magnitude.',
+        at: sheet('advancement'), needs: 'character', target: 'workshop',
+      },
+      {
+        title: 'Spending Labor Points',
+        body: 'Saved points buy Innovation (100, 300, 600) or Raw Materials (50, 150, 300), each taking a season out of the workshop, or a rise in wealth (120 to average, 360 to Wealthy, 1,080 to the next Social Status). **Stories and investments** add or spend them: half a season’s worth to two and a half for a story, charity, lawsuits, introductions, marriages, speculation, smuggling, and money put into the business.',
+        at: sheet('advancement'), needs: 'character', target: 'workshop',
+      },
+      {
+        title: 'The guild',
+        body: 'Apprentice, journeyman, master, senior master or dean: the Guild Lore and other Abilities each rank needs, the apprentice piece, journeymen’s contracts, a master’s fee and vote, dues and the dean’s stipend.',
+        at: sheet('advancement'), needs: 'character', target: ['guild', 'workshop'],
+      },
+      {
+        title: 'The covenant’s craftsmen',
+        body: 'Craftsmen working for the covenant save money in their category and earn Labor Points for its workshop each year; under the Guild Hook (or professional guilds) each holds a rank. The crafts the other books name, such as bakers and butchers, are offered beside Covenants’ examples.',
+        at: covenant('folk'), needs: 'covenant', target: 'craftsmen',
+      },
+      {
+        title: 'Haggling and bribes',
+        body: 'A grog sent to buy for the magi appraises the goods and bargains the price down (10% for every 3 points, never below half); a bribe of a day’s or a week’s pay eases a roll.',
+        at: sagaPage('market'), needs: 'saga', target: 'haggle',
+      },
+      {
+        title: 'Damaged goods',
+        body: 'When a botch or misuse puts a valued item at risk: a stress die + modifiers against 15. Damage levels come from quality and Size (twice for a lock); repair takes a craftsman’s season and a Labor Point a level.',
+        at: page('/dice'), target: 'item-check',
       },
     ],
   },

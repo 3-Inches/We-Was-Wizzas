@@ -265,6 +265,18 @@ export function boomRoll(int: number, areaLore: number, rng: Rng = defaultRng): 
   return `Boom roll (Int + Area Lore ${int + areaLore} + ${describeStress(r)} = ${t}): ${what}.`;
 }
 
+/** What 9 Labor Points are worth in pounds, by the business's income band (City & Guild ch.2, Money and Investment): money can be put into a business at this rate, not taken out. */
+export const LP_WORTH: { band: string; pounds: number; who: string }[] = [
+  { band: 'Trivial', pounds: 2.5, who: 'a craftsman, journeyman or laborer' },
+  { band: 'Minor', pounds: 5, who: 'a merchant with a city store, a guild master' },
+  { band: 'Lesser', pounds: 10, who: 'a merchant with carts or a small ship, a senior master' },
+  { band: 'Typical', pounds: 25, who: 'a factor, merchant venturer or guild dean' },
+  { band: 'Greater', pounds: 63, who: 'a merchant house in two cities, a capo' },
+  { band: 'Legendary', pounds: 250, who: 'an annual fleet to Acre or Egypt' },
+];
+/** Labor Points bought by putting pounds into a business of an income band. */
+export const lpForPounds = (pounds: number, band: string) => Math.floor((9 * Math.max(0, pounds)) / (LP_WORTH.find((b) => b.band === band)?.pounds ?? 2.5));
+
 /** Smuggling as an investment of time (City & Guild ch.7): (Intelligence + Intrigue) × the wealth multiplier a season. */
 export const smugglingLp = (int: number, intrigue: number, wealth: Wealth) => Math.max(0, (int + intrigue) * WEALTH_MULT[wealth]);
 
