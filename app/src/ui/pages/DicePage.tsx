@@ -197,7 +197,7 @@ function ItemCheck() {
     setResult(`${r.text}${r.lost ? ` ${after ? `${after} of ${levels} damage levels left.` : 'It is broken.'}` : ''}`);
   };
   return (
-    <Card title="Item stress check (City & Guild)">
+    <Card title="Item stress check (City & Guild)" tour="item-check">
       <RulesNote book="CG" line={2140} endLine={2225}>
         When a botch or an unnatural use puts a valued item at risk: a stress die + modifiers against 15. A failure costs a damage level, a botch one more per botch; it works as normal until the
         last is gone. Superior and excellent items keep their bonuses while damaged; a craftsman&apos;s wondrous item stops working at the first damage.

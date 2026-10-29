@@ -19,7 +19,7 @@ function marked(name: string): boolean {
   return false;
 }
 
-const ROUTES = [/^\/$/, /^\/help$/, /^\/dice$/, /^\/reference$/, /^\/mechanics$/, /^\/saga\/S$/, /^\/saga\/S\/(spells|enchant|rules|seasons|market|build)$/, /^\/saga\/S\/character\/C(\/create|\/guided)?$/, /^\/saga\/S\/covenant\/V$/];
+const ROUTES = [/^\/$/, /^\/help$/, /^\/dice$/, /^\/reference$/, /^\/mechanics$/, /^\/saga\/S$/, /^\/saga\/S\/(spells|enchant|rules|seasons|market|build|table)$/, /^\/saga\/S\/character\/C(\/create|\/guided)?$/, /^\/saga\/S\/covenant\/V$/];
 
 describe('tutorials', () => {
   it('point only at controls the app marks', () => {

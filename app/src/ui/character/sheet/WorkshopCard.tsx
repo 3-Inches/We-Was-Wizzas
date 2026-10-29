@@ -6,10 +6,21 @@ import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../../data';
 import type { Workshop } from '../../../engine/types';
 import {
-  INNOVATION_COST, INVESTMENTS, RAW_MATERIALS_COST, STORY_AWARDS, WEALTH_MULT, WEALTH_STEP, boomRoll, craftQuality, seasonWorth, sellGoods, smugglingLp, upkeep, wondrousItem, workshopFigures,
+  INNOVATION_COST, INVESTMENTS, LP_WORTH, RAW_MATERIALS_COST, STORY_AWARDS, WEALTH_MULT, WEALTH_STEP, boomRoll, craftQuality, lpForPounds, seasonWorth, sellGoods, sellOpposed, smugglingLp, upkeep, wondrousItem, workshopFigures,
   workshopSeason, workshopTotal,
 } from '../../../engine/workshop';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
+import { purseOf } from '../../../engine/vis';
+import { abilityTotal } from '../../../engine/character/derive';
+import { MERCHANT_KINDS, STORY_SEEDS, TIME_INVESTMENTS, blockadeRoll, entertain, investmentLp, type MerchantKind } from '../../../engine/trade';
+
+/** A capo's party themes: the Characteristic and Ability it shows off (City & Guild ch.7). */
+const THEMES = {
+  carouse: { label: 'Carousing', char: 'Sta', ability: 'carouse' },
+  hunt: { label: 'Hunting', char: 'Per', ability: 'hunt' },
+  athletics: { label: 'Athletics', char: 'Dex', ability: 'athletics' },
+  music: { label: 'Music', char: 'Com', ability: 'music' },
+} as const;
 import { FREQUENCY } from '../../../engine/enchant';
 import { uid } from '../../../util/id';
 import { Card, Field, Stepper, Total } from '../../kit';
@@ -35,6 +46,14 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
   const { c, d, update, saga } = ed;
   const [situations, setSituations] = useState<string[]>([]);
   const [exert, setExert] = useState(false);
+  const [money, setMoney] = useState(10);
+  const [band, setBand] = useState('Trivial');
+  const [buyer, setBuyer] = useState(4);
+  const [mkind, setMkind] = useState<MerchantKind>('all');
+  const [seedId, setSeedId] = useState('');
+  const [timeId, setTimeId] = useState('');
+  const [theme, setTheme] = useState<keyof typeof THEMES>('carouse');
+  const [partyPounds, setPartyPounds] = useState(0);
   const [log, setLog] = useState<string[]>([]);
   const [magnitude, setMagnitude] = useState(1);
   const [freq, setFreq] = useState(FREQUENCY[0]?.value ?? '');
@@ -48,7 +67,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
 
   if (!w)
     return (
-      <Card title="Livelihood & workshop (City & Guild)">
+      <Card title="Livelihood & workshop (City & Guild)" tour="workshop">
         <p className="small muted" style={{ marginTop: 0 }}>
           Optional: for a craftsman or laborer who works for a living. Tracks Labor Points, the Workshop Total and the quality of each season&apos;s goods, and what the points buy
           (City &amp; Guild, ch.2).
@@ -90,11 +109,16 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
     const table = kind === 'innovation' ? INNOVATION_COST : RAW_MATERIALS_COST;
     const cur = w[kind];
     const cost = table[cur + 1] - table[cur];
-    set((x) => {
-      x.laborPoints -= cost;
-      x[kind] = cur + 1;
+    const what = `${kind === 'innovation' ? 'Innovation' : 'Raw Materials'} +${cur + 1}`;
+    // the season goes to it: no workshop work, Practice or Adventure experience instead (City & Guild ch.4)
+    const logged = c.seasonLog.some((e) => e.year === year && e.season === season && !e.extra);
+    update((x) => {
+      if (!x.workshop) return;
+      x.workshop.laborPoints -= cost;
+      x.workshop[kind] = cur + 1;
+      if (!logged) x.seasonLog.push(newSeasonEntry(year, season, 'other', `Improving the workshop: ${what} (${cost} Labor Points)`));
     });
-    push(`${kind === 'innovation' ? 'Innovation' : 'Raw Materials'} +${cur + 1} for ${cost} Labor Points; it takes a season out of the workshop (Practice or Adventure experience instead).`);
+    push(`${what} for ${cost} Labor Points. It takes a season out of the workshop${logged ? `: ${season} ${year} is logged already, so log the next one` : ` (${season} ${year}, logged)`}; Practice or Adventure experience instead.`);
   };
   const nextCost = (kind: 'innovation' | 'rawMaterials') => {
     const table = kind === 'innovation' ? INNOVATION_COST : RAW_MATERIALS_COST;
@@ -118,15 +142,58 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
     });
     push(`${inv.label}: −${cost} Labor Points. ${inv.hint}`);
   };
-  const smuggleSeason = () => {
+  const putIn = () => {
+    const lp = lpForPounds(money, band);
+    if (!lp) return;
     update((x) => {
       if (!x.workshop) return;
-      x.workshop.laborPoints += smuggle;
-      const e = newSeasonEntry(year, season, 'other', `Smuggling: +${smuggle} Labor Points`, {});
+      const p = purseOf(x);
+      p.pounds = Math.round((p.pounds - money) * 1000) / 1000;
+      (p.log ??= []).push({ year, season, text: `Put into the business: +${lp} Labor Points`, pounds: -money });
+      x.workshop.laborPoints += lp;
+    });
+    push(`${money} £ put into the business (${band} income): +${lp} Labor Points.`);
+  };
+  /** A season spent on an investment of time: logged, and its Labor Points added. */
+  const timeSeason = (lp: number, what: string, extra = '') => {
+    update((x) => {
+      if (!x.workshop) return;
+      x.workshop.laborPoints += lp;
+      const e = newSeasonEntry(year, season, 'other', `${what}: +${lp} Labor Points${extra ? `; ${extra}` : ''}`, {});
       applySeason(x, e, 1);
       x.seasonLog.push(e);
     });
-    push(`${season} ${year}: smuggling, +${smuggle} Labor Points (the season logged).`);
+    push(`${season} ${year}: ${what.toLowerCase()}, +${lp} Labor Points${extra ? `; ${extra}` : ''} (the season logged).`);
+  };
+  const smuggleSeason = () => timeSeason(smuggle, 'Smuggling');
+  const score = (id: string) => abilityTotal(d, id);
+  const professionScore = d.abilities.filter((a) => a.abilityId === 'profession-type').reduce((m, a) => Math.max(m, a.total), 0);
+  const seeds = STORY_SEEDS.filter((x) => mkind === 'all' || x.kind === mkind || x.kind === 'all');
+  const seed = seeds.find((x) => x.id === seedId) ?? seeds[0];
+  const times = TIME_INVESTMENTS.filter((x) => mkind === 'all' || x.kind === mkind);
+  const time = times.find((x) => x.id === timeId) ?? times[0];
+  const spendTime = () => {
+    if (!time) return;
+    if (time.id === 'blockade') {
+      const r = blockadeRoll(d.characteristics.Dex.value, professionScore);
+      if (!r.ok) {
+        timeSeason(0, 'Running a blockade', r.text);
+        return;
+      }
+      push(r.text);
+    }
+    const { lp, favors } = investmentLp(time.id, worth, wealth, { Com: d.characteristics.Com.value, intrigue, leadership: score('leadership') });
+    timeSeason(lp, time.label, favors ? `${favors} Favor${favors === 1 ? '' : 's'} owed` : '');
+  };
+  const party = () => {
+    const r = entertain(d.characteristics[THEMES[theme].char].value, score(THEMES[theme].ability), partyPounds, intrigue);
+    if (partyPounds)
+      update((x) => {
+        const p = purseOf(x);
+        p.pounds = Math.round((p.pounds - partyPounds) * 1000) / 1000;
+        (p.log ??= []).push({ year, season, text: `Lavish entertainment: ${r.favors} Favors owed`, pounds: -partyPounds });
+      });
+    timeSeason(0, `Entertaining (${THEMES[theme].label})`, r.text);
   };
   // a wondrous item takes one helper at most
   const wondrous = wondrousItem(wtFor(w.assistants.slice(0, 1).map((a) => a.craft)).total, magnitude, FREQUENCY.find((f) => f.value === freq)?.mod ?? 0, baseLevel - 6);
@@ -134,6 +201,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
   return (
     <Card
       title="Livelihood & workshop (City & Guild)"
+      tour="workshop"
       actions={
         <button className="small ghost danger" onClick={() => window.confirm('Stop tracking this livelihood?') && update((x) => void (x.workshop = undefined))}>
           Remove
@@ -260,9 +328,15 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
             </button>
           );
         })}
-        <button className="small ghost" onClick={() => push(sellGoods(d.characteristics.Pre.value, bargain).text)}>
+        <button className="small ghost" onClick={() => push(sellGoods(d.characteristics.Pre.value, bargain).text)} title="A typical customer: Presence + Bargain + simple die against 9">
           Haggle a sale
         </button>
+        <span className="row tight small" title="An important storyguide character or another player: opposed stress dice; they can push the price down too">
+          <Stepper value={buyer} min={-3} max={20} width={30} onChange={setBuyer} />
+          <button className="small ghost" onClick={() => push(sellOpposed(d.characteristics.Pre.value, bargain, buyer).text)}>
+            Sell to an important customer (their Com + Bargain)
+          </button>
+        </span>
       </div>
       <p className="small muted" style={{ margin: 0 }}>
         The {keep} Labor Points of upkeep are paid when the saga&apos;s year ends (Seasons page). Rising in wealth: {step.cost} Labor Points to become {step.to}, plus a season (and stories for a Greater or Legendary income). A season&apos;s worth of Labor Points here is {worth}.
@@ -280,6 +354,20 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
               +{a.seasons} season{a.seasons === 1 ? '' : 's'} ({Math.round(a.seasons * worth)})
             </button>
           ))}
+        </div>
+        <div className="row tight small" style={{ marginTop: 6 }}>
+          Put money into the business:
+          <Stepper value={money} min={0} step={1} width={44} onChange={setMoney} /> £ at
+          <select value={band} onChange={(e) => setBand(e.target.value)} title="The business's income band: what 9 Labor Points are worth (City & Guild ch.2)">
+            {LP_WORTH.map((b) => (
+              <option key={b.band} value={b.band} title={b.who}>
+                {b.band} (9 LP = {b.pounds} £)
+              </option>
+            ))}
+          </select>
+          <button className="small ghost" disabled={!lpForPounds(money, band) || (c.purse?.pounds ?? 0) < money} onClick={putIn} title="Paid from the purse; Labor Points cannot be turned back into money">
+            +{lpForPounds(money, band)} Labor Points
+          </button>
         </div>
         <div className="small" style={{ marginTop: 6 }}>Investing surplus Labor Points:</div>
         <div className="row tight small">
@@ -337,6 +425,62 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
             </span>
           ))}
         </div>
+        <div className="small" style={{ marginTop: 8 }}>
+          <b>Merchants (City &amp; Guild ch.7):</b>{' '}
+          <select value={mkind} onChange={(e) => setMkind(e.target.value as MerchantKind)} aria-label="Kind of merchant">
+            {(Object.keys(MERCHANT_KINDS) as MerchantKind[]).map((k) => (
+              <option key={k} value={k}>
+                {MERCHANT_KINDS[k]}
+              </option>
+            ))}
+          </select>
+        </div>
+        {seed && (
+          <div className="row tight small" style={{ marginTop: 4 }}>
+            Story seed:
+            <select value={seed.id} onChange={(e) => setSeedId(e.target.value)} style={{ maxWidth: 260 }} title={seed.hint}>
+              {seeds.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.label} ({x.seasons} season{x.seasons === 1 ? '' : 's'})
+                </option>
+              ))}
+            </select>
+            <button className="small ghost" onClick={() => gain(Math.round(seed.seasons * worth), `Story: ${seed.label}`)} title={seed.hint || 'Awarded when the story’s central issue is resolved'}>
+              Resolved: +{Math.round(seed.seasons * worth)}
+            </button>
+          </div>
+        )}
+        {time && (
+          <div className="row tight small" style={{ marginTop: 4 }}>
+            A season&apos;s investment of time:
+            <select value={time.id} onChange={(e) => setTimeId(e.target.value)} style={{ maxWidth: 260 }} title={time.hint}>
+              {times.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.label}
+                </option>
+              ))}
+            </select>
+            <button className="small ghost" onClick={spendTime} title={time.hint}>
+              Spend the season (+{investmentLp(time.id, worth, wealth, { Com: d.characteristics.Com.value, intrigue, leadership: score('leadership') }).lp})
+            </button>
+          </div>
+        )}
+        {(mkind === 'capo' || mkind === 'all') && (
+          <div className="row tight small" style={{ marginTop: 4 }} title="A die + Characteristic + the theme Ability + a point a pound (up to Intrigue): a Favor for every 5, rounded up; the pounds come from the purse">
+            A lavish entertainment:
+            <select value={theme} onChange={(e) => setTheme(e.target.value as keyof typeof THEMES)}>
+              {(Object.keys(THEMES) as (keyof typeof THEMES)[]).map((k) => (
+                <option key={k} value={k}>
+                  {THEMES[k].label}
+                </option>
+              ))}
+            </select>
+            <Stepper value={partyPounds} min={0} max={Math.max(0, intrigue)} width={30} onChange={setPartyPounds} /> £
+            <button className="small ghost" disabled={(c.purse?.pounds ?? 0) < partyPounds} onClick={party}>
+              Throw it (a season)
+            </button>
+          </div>
+        )}
       </details>
 
       <details>

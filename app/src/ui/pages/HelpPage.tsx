@@ -282,6 +282,12 @@ export default function HelpPage() {
       <Card title="In play" id="play">
         <ul className="small">
           <li>
+            <b>The Game table</b> (first in the saga&apos;s menu) is the place to run a session from: what needs attention (money, Loyalty, wounds, a strike, rules
+            problems, idle characters), what everyone does this season (changed in place), the covenants at a glance, <b>End the season</b>, quick dice, quick changes
+            (a Loyalty event, the treasury, vis found), experience and Labor Points after a story, travel, trade and intrigue, and a list of what comes up in play with a
+            link to where it is done. When unsure what to do next, go back to it.
+          </li>
+          <li>
             <b>Magic:</b> every Casting Score and Lab Total for the current aura, Magic Resistance per Form, Penetration with Arcane Connections, spell casting with the right die,
             botch dice, fatigue and ritual costs, spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, raw vis,
             days away from the lab, any other modifier) and it is added to the totals. A botch adds its Warping Points. Casting Virtues and Flaws (Diedne Magic, Weak
@@ -364,6 +370,56 @@ export default function HelpPage() {
       </Card>
 
       <OptionalRules />
+
+      <Card title="City & Guild: craftsmen, merchants and guilds" id="city-guild">
+        <p className="small" style={{ marginTop: 0 }}>
+          <i>City &amp; Guild</i> keeps a craftsman&apos;s or merchant&apos;s business in <b>Labor Points</b> rather than pennies. Each season tending the business earns
+          (Characteristic + Craft, or Communication + Profession) × 2, 3 or 6 for a Poor, average or Wealthy character; keeping the business going costs 36 a year (and 5
+          more for each point of Raw Materials). What is left over is saved and spent to grow the business. Labor Points are time and effort, not money: pounds can be put
+          into a business, but Labor Points do not turn back into pounds.
+        </p>
+        <ul className="small">
+          <li>
+            <b>A character&apos;s livelihood</b> (Seasons &amp; Aging → Livelihood &amp; workshop, for anyone with a Craft or Profession): a season&apos;s work and the goods
+            it makes (Workshop Total against the Craft Level: shoddy, standard, superior at +6, excellent at +9), exertion, selling, wondrous items, assistants and a manual;
+            Innovation and Raw Materials bought with Labor Points (a season each); rising in wealth and Social Status; and, folded under <b>Stories and investments</b>,
+            Labor Points from stories (half a season&apos;s worth to two and a half), charity, lawsuits, introductions, marriages, a fine thing, money put into the business
+            by income band, speculation, the boom roll, smuggling, and a Wealthy merchant living poorer. Work in the workshop can be the standing activity, so the clock
+            does it.
+          </li>
+          <li>
+            <b>Guilds</b> (the Guild card beside it): rank, the Guild Lore each rank needs, the apprentice piece, a journeyman&apos;s contract, a master&apos;s fee and vote,
+            dues and the dean&apos;s stipend.
+          </li>
+          <li>
+            <b>The covenant&apos;s craftsmen</b> (Covenfolk, Finances &amp; Loyalty): each craft&apos;s savings, the craftsmen&apos;s yearly Labor Points and workshop
+            improvements, guild ranks under the Guild Hook or professional guilds, and a strike.
+          </li>
+          <li>
+            <b>At the table:</b> haggling and bribes on the Market page; the item stress check for damaged goods (damage levels, locks, repair) on the Dice page; a quick
+            court decision on a character&apos;s Overview (optional rule).
+          </li>
+          <li>
+            <b>Merchants</b> (in the workshop card&apos;s Stories and investments): the book&apos;s story seeds with their Labor Points, by the kind of merchant (local
+            carrier, merchant adventurer, factor, capo), and investments of time: leading a convoy, finding a sponsor, running a blockade, a customs office, a change of
+            government, young talent, repossession, and a capo&apos;s lavish entertainment for Favors.
+          </li>
+          <li>
+            <b>Travel, trade and intrigue</b> (Game table): a journey&apos;s days and cost by road, river or sea, cargo and its carriers, Area Lore to find things, ships
+            chasing, boarding and ramming; bribes, hired criminals and sabotage; intrigue against the powerful; a house&apos;s Reputation, largesse and warehouses; a
+            dowry. Costs can be paid from a purse or the treasury.
+          </li>
+          <li>
+            <b>Disease in a town</b> (Combat &amp; Health → Illness): the ague, the bloody flux, worms, St. Anthony&apos;s fire, tarantism and childbed fever on a Stamina
+            roll, with the wound marked; and on Seasons &amp; Aging, a bad-air trade, a mine or a leper colony worsening the aging roll. A leper takes a Heavy Wound in
+            every aging crisis.
+          </li>
+          <li>
+            <b>Reference only</b> (Game mechanics has the rules): fairs and markets, towns and charters, citizenship, trading companies&apos; organization, the sea trade
+            tables, and novelties.
+          </li>
+        </ul>
+      </Card>
 
       <Card title="Common questions" id="questions">
         <Question q="Where do I find a rule I only half remember?">

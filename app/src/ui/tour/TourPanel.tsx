@@ -50,7 +50,11 @@ function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: stri
       ? made
       : tour.wantsDraft
         ? (made ?? newest(drafts))
-        : (made ?? newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga));
+        : (made ??
+          (tour.prefersTrade ? newest(finished.filter((c) => !!c.workshop || c.abilities.some((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type'))) : undefined) ??
+          newest(finished.filter((c) => c.type === tour.prefers)) ??
+          newest(finished) ??
+          newest(inSaga));
     const charId = fits(t.charId) ? t.charId : m?.[2] === 'character' && fits(m[3]) ? m[3] : fallback?.id;
     const covs = Object.values(covenants).filter((c) => c.sagaId === sagaId);
     const covId = t.covId && covenants[t.covId]?.sagaId === sagaId ? t.covId : m?.[2] === 'covenant' && covenants[m[3]] ? m[3] : newest(covs)?.id;

@@ -41,7 +41,7 @@ export default function CharacterSheet() {
   return (
     <div>
       <div className="breadcrumbs no-print">
-        <Link to="/">Sagas</Link> › <Link to={`/saga/${saga.id}`}>{saga.name}</Link> ›
+        <Link to="/">Sagas</Link> › <Link to={`/saga/${saga.id}`}>{saga.name}</Link> › <span className="muted">·</span> <Link to={`/saga/${saga.id}/table`}>★ Game table</Link>
       </div>
       <div className="topbar">
         <h1>

@@ -150,6 +150,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
 
       <Card
         title={`Craftsmen (${craftsmen.reduce((s, x) => s + specialistCost(x), 0)} BP)`}
+        tour="craftsmen"
         actions={
           <span className="row tight small">
             Score for new ones
@@ -951,7 +952,7 @@ function IncomeCard({ cov, update, dc, hasMiracles }: Omit<CovTabProps, 'data'> 
 }
 
 /** Record something that changes the covenfolk's loyalty, from the book's table (DE; Covenants ch.4). */
-function LoyaltyEvent({ cov, update }: { cov: Covenant; update: CovTabProps['update'] }) {
+export function LoyaltyEvent({ cov, update }: { cov: Covenant; update: CovTabProps['update'] }) {
   const [id, setId] = useState('attitude');
   const [level, setLevel] = useState(0);
   const [magic, setMagic] = useState(false);
@@ -1023,7 +1024,9 @@ function CloseYear({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
           {dc.finances.balance} £ this year
         </span>
         <span>Treasury {cov.finances.treasury} £ → {plan.treasuryAfter} £ at the year&apos;s end</span>
-        <Link to={`/saga/${cov.sagaId}/seasons`}>The year ends on the Seasons page ›</Link>
+        <span>
+          The year ends with Winter: <Link to={`/saga/${cov.sagaId}/table`}>Game table</Link> or <Link to={`/saga/${cov.sagaId}/seasons`}>Seasons page</Link> ›
+        </span>
       </div>
       <div className="row" style={{ marginTop: 8 }}>
         <Field label="Allowance to members each year" hint="Paid from the treasury at the year's end, into each one's purse">

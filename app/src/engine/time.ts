@@ -14,6 +14,7 @@ import { DEFAULT_YEAR_END, applyYearEnd, planYearEnd, type YearEndOptions } from
 import { defaultRng, describeStress, stressDie, type Rng } from './dice';
 import { payAllowance } from './economy';
 import { constantWarping, effectExpiry, expireEffects, nextSeason, seasonIndex } from './effects';
+import { hazardPenalty } from './disease';
 import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, visForStudy } from './longterm';
 import { planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
@@ -66,7 +67,7 @@ export function livingConditions(d: DerivedCharacter, ctx: CharacterContext): nu
   const cov = ctx.covenant;
   const base = cov ? (cov.season === 'Summer' || cov.season === 'Autumn' ? (d.isMagus ? 2 : 1) : d.isMagus ? 1 : 0) : 0;
   const labHealth = ctx.lab ? Math.floor(ctx.lab.characteristics.Health / 2) : 0;
-  return base + (cov?.finances.livingConditions ?? 0) + d.livingConditionsMod + labHealth;
+  return base + (cov?.finances.livingConditions ?? 0) + d.livingConditionsMod + labHealth - hazardPenalty(d.char);
 }
 
 /** The Ability Worship teaches: Church Lore, Concentration or Music (the one the character knows best), else Church Lore (The Church). */
@@ -375,6 +376,8 @@ function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: 
     for (let i = 0; i < need; i++) applyAgingPoint(c, sparestCharacteristic(c), 1);
     const crisis = crisisRoll(c.age, decrepitudeScore(c.decrepitudePoints), rng);
     let text = `Crisis ${crisis.roll}: ${crisis.text}`;
+    // a leper takes a Heavy Wound in every aging crisis (Leprosy Flaw)
+    if (c.virtues.some((v) => v.defId === 'leprosy-flaw')) ((c.wounds.heavy += 1), (text += ' Leprosy: a Heavy Wound as well.'));
     // a failed roll, or a terminal illness, kills unless magic saves them: marked dead, to be brought back if it does (DE, Aging)
     const saved = ' Marked dead: if magic saves them, untick Dead on their Combat & Health tab.';
     if (crisis.ease !== undefined) {
@@ -549,7 +552,8 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     const d = derive(c);
     const ctx = ctxOf(c);
     const cov = covenantOf(c, state.covenants);
-    if (!logged.some((e) => !e.extra)) for (const t of runStanding(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });
+    // an adventure shares the season with other work (DE): only other logged activities fill it
+    if (!logged.some((e) => !e.extra && e.activity !== 'adventure')) for (const t of runStanding(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });
     const plan = seasonsOf(c, d);
     if (plan.extra && extraSeasonHere(plan, season) && !logged.some((e) => e.extra) && seasonsUsed(c, year).extra < plan.extra)
       for (const t of runExtraSeason(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t });

@@ -26,6 +26,7 @@ import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { characterContext } from '../../../engine/context';
 import { deriveCharacter } from '../../../engine/character/derive';
 import { teaches } from '../../../engine/covenfolk';
+import { HAZARDS, hazardPenalty } from '../../../engine/disease';
 
 type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'worship' | 'lab' | 'other';
 
@@ -249,7 +250,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   // Living conditions: DE p.391 table (covenant magus +1/+2, mundane +1/0) + covenant finances + Virtues + half lab Health.
   const baseLc = cov ? (cov.season === 'Summer' || cov.season === 'Autumn' ? (d.isMagus ? 2 : 1) : d.isMagus ? 1 : 0) : 0;
   const labHealth = ctx.lab ? Math.floor(ctx.lab.characteristics.Health / 2) : 0;
-  const autoLc = baseLc + (cov?.finances.livingConditions ?? 0) + d.livingConditionsMod + labHealth;
+  const autoLc = baseLc + (cov?.finances.livingConditions ?? 0) + d.livingConditionsMod + labHealth - hazardPenalty(c);
   const lc = lcOverride ?? autoLc;
   const lr = c.longevity?.bonus ?? 0;
 
@@ -665,6 +666,18 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 )}
               </div>
             </Field>
+            <div className="small stack" style={{ gap: 2 }}>
+              {HAZARDS.map((h) => (
+                <label key={h.id} className="inline" title="−1 to Living Conditions on the aging roll (City & Guild)">
+                  <input
+                    type="checkbox"
+                    checked={!!c.hazards?.includes(h.id)}
+                    onChange={(e) => update((x) => void (x.hazards = e.target.checked ? [...(x.hazards ?? []), h.id] : (x.hazards ?? []).filter((y) => y !== h.id)))}
+                  />{' '}
+                  {h.label}
+                </label>
+              ))}
+            </div>
             <div className="small">
               Longevity Ritual: <b>{lr ? `−${lr}` : 'none'}</b>
               {d.agingRollParts.map((m) => (

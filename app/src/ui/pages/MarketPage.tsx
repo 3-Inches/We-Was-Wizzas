@@ -85,7 +85,7 @@ export default function MarketPage() {
   return (
     <div className="stack">
       <div className="breadcrumbs">
-        <Link to={`/saga/${saga.id}`}>{saga.name}</Link> ›
+        <Link to={`/saga/${saga.id}`}>{saga.name}</Link> › <span className="muted">·</span> <Link to={`/saga/${saga.id}/table`}>★ Game table</Link>
       </div>
       <div className="topbar">
         <h1>Market &amp; treasury</h1>
@@ -640,7 +640,7 @@ function Haggle({ people, data, run, onSundry, rules }: { people: Character[]; d
   const ease = appraiseEase(common, rare);
   const price = out.find((o) => o.price !== undefined)?.price;
   return (
-    <Card title="Haggling and bribes">
+    <Card title="Haggling and bribes" tour="haggle">
       <p className="small muted" style={{ marginTop: 0 }}>
         Grogs often buy for their masters, since The Gift sets vendors&apos; prices soaring (Grogs ch.4). Artisans haggle; food sellers rarely do, unless a lot is bought at once.
       </p>

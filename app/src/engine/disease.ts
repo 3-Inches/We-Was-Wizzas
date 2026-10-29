@@ -125,3 +125,39 @@ export function recoveryRoll(c: Character, d: DerivedCharacter, illUid: string, 
   ill.bonus += 3;
   return { outcome: 'same', text: `${roll}: no change, and +3 to the next roll (now +${ill.bonus}).` };
 }
+
+// ------------------------------------------------------------------------------ Disease in towns (City & Guild ch.1)
+
+/** Where a character lives and works that worsens the aging roll (City & Guild, Living Condition Modifier): −1 each. */
+export const HAZARDS: { id: 'colony' | 'bad-air' | 'mine'; label: string }[] = [
+  { id: 'bad-air', label: 'works in a bad-air trade (tanner, dyer, butcher…)' },
+  { id: 'mine', label: 'works in a mine' },
+  { id: 'colony', label: 'lives in a leper colony' },
+];
+export const hazardPenalty = (c: Pick<Character, 'hazards'>) => (c.hazards ?? []).length;
+
+/**
+ * Catching a disease from a town's sources of humoral imbalance (City & Guild): a Stamina roll against the Ease
+ * Factor, and on failure the wound it does. A newcomer is tested once or twice in the first season.
+ */
+export type WoundKind = 'light' | 'medium' | 'heavy' | 'incapacitating';
+export const TOWN_DISEASES: { id: string; label: string; eases: number[]; wounds: WoundKind[]; resisted?: boolean; hint: string }[] = [
+  { id: 'ague', label: 'The ague (bad air: sewage, tanneries)', eases: [3, 6, 9], wounds: ['light', 'medium', 'heavy'], hint: 'Chills and fever; a continual fever (phlegm) always a Heavy Wound, the quotidian, tertian and quartan fevers a Light or Medium one.' },
+  { id: 'flux', label: 'The bloody flux (cold, wet conditions)', eases: [3, 6, 9], wounds: ['medium', 'heavy', 'incapacitating'], hint: 'A Medium, Heavy or Incapacitating Wound by the excess of phlegm.' },
+  { id: 'worms', label: 'Worms (an excess of blood)', eases: [6], wounds: [], hint: 'Nothing at once, but a Stamina roll against 6 every season after, or a Medium Wound.' },
+  { id: 'anthony', label: 'St. Anthony’s fire (a disease demon)', eases: [9], wounds: ['light'], resisted: true, hint: 'A demon of Might 10 (Corpus) in the intestines: a Light Wound this season, worse each season to a Fatal Wound in the fifth, unless exorcised (the Hospitalers of St. Anthony).' },
+  { id: 'tarantism', label: 'Tarantism (a faerie tarantula’s bite)', eases: [9], wounds: [], hint: 'Each season after, a Stamina roll against 3 (6 in summer), or the whole season is spent dancing to exhaustion; the tarantella cures it.' },
+  { id: 'childbed', label: 'Childbed fever (at a birth)', eases: [6], wounds: ['heavy'], resisted: true, hint: 'A demon of Might 10 (Corpus): a Heavy Wound, or Incapacitating after complications.' },
+];
+
+export function townExposure(stamina: number, id: string, level: number, rng: Rng = defaultRng): { caught: boolean; wound?: WoundKind; text: string } {
+  const t = TOWN_DISEASES.find((x) => x.id === id);
+  if (!t) return { caught: false, text: '' };
+  const i = Math.max(0, Math.min(t.eases.length - 1, level));
+  const ease = t.eases[i];
+  const r = stressDie(1, rng);
+  const total = r.botches ? 0 : r.value + stamina;
+  const caught = r.botches > 0 || total < ease;
+  const wound = caught ? t.wounds[Math.min(i, t.wounds.length - 1)] : undefined;
+  return { caught, wound, text: `Stamina ${stamina} + ${describeStress(r)} = ${r.botches ? 'botch' : total} vs ${ease}: ${caught ? `caught${wound ? `, a${wound === 'incapacitating' ? 'n' : ''} ${wound[0].toUpperCase()}${wound.slice(1)} Wound` : ''}. ${t.hint}` : 'it passes them by.'}` };
+}

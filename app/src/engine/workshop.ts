@@ -129,6 +129,22 @@ export function sellGoods(presence: number, bargain: number, rng: Rng = defaultR
   return { roll, premium, text: `Presence ${presence} + Bargain ${bargain} + die ${die} = ${roll} vs 9: ${premium ? `sold for ${premium}% over the standard price` : 'the standard price'}.` };
 }
 
+/**
+ * Selling to an important customer or another player (City & Guild ch.4): Presence + Bargain + stress die against their
+ * Communication + Bargain + stress die. 10% more a point the seller wins by, 10% less a point the buyer wins by, either way
+ * at most 50%; a botch sells it for next to nothing.
+ */
+export function sellOpposed(presence: number, bargain: number, buyer: number, rng: Rng = defaultRng): { change: number; text: string } {
+  const a = stressDie(1, rng);
+  const b = stressDie(1, rng);
+  if (a.botches) return { change: -100, text: `Seller ${describeStress(a)}: botch — sold for next to nothing.` };
+  const mine = presence + bargain + a.value;
+  const theirs = buyer + (b.botches ? 0 : b.value);
+  const by = mine - theirs;
+  const change = by > 0 ? Math.min(50, 10 * by) : by < 0 ? -Math.min(50, 10 * -by) : 0;
+  return { change, text: `Presence + Bargain ${presence + bargain} + ${describeStress(a)} = ${mine} against the customer's ${theirs}: ${change > 0 ? `${change}% over` : change < 0 ? `${-change}% under` : 'exactly'} the standard price.` };
+}
+
 /** A wondrous item (Touched by (Realm)): Craft Level 12 + magnitude + uses a day; it gathers (Workshop Total − Craft Level) a season until it reaches the Craft Level. */
 export function wondrousItem(total: number, magnitude: number, frequency: number, situation = 0): { craftLevel: number; perSeason: number; seasons: number } {
   const craftLevel = 12 + magnitude + frequency + situation;
@@ -264,6 +280,18 @@ export function boomRoll(int: number, areaLore: number, rng: Rng = defaultRng): 
     : '2 of every 10 Labor Points invested are lost';
   return `Boom roll (Int + Area Lore ${int + areaLore} + ${describeStress(r)} = ${t}): ${what}.`;
 }
+
+/** What 9 Labor Points are worth in pounds, by the business's income band (City & Guild ch.2, Money and Investment): money can be put into a business at this rate, not taken out. */
+export const LP_WORTH: { band: string; pounds: number; who: string }[] = [
+  { band: 'Trivial', pounds: 2.5, who: 'a craftsman, journeyman or laborer' },
+  { band: 'Minor', pounds: 5, who: 'a merchant with a city store, a guild master' },
+  { band: 'Lesser', pounds: 10, who: 'a merchant with carts or a small ship, a senior master' },
+  { band: 'Typical', pounds: 25, who: 'a factor, merchant venturer or guild dean' },
+  { band: 'Greater', pounds: 63, who: 'a merchant house in two cities, a capo' },
+  { band: 'Legendary', pounds: 250, who: 'an annual fleet to Acre or Egypt' },
+];
+/** Labor Points bought by putting pounds into a business of an income band. */
+export const lpForPounds = (pounds: number, band: string) => Math.floor((9 * Math.max(0, pounds)) / (LP_WORTH.find((b) => b.band === band)?.pounds ?? 2.5));
 
 /** Smuggling as an investment of time (City & Guild ch.7): (Intelligence + Intrigue) × the wealth multiplier a season. */
 export const smugglingLp = (int: number, intrigue: number, wealth: Wealth) => Math.max(0, (int + intrigue) * WEALTH_MULT[wealth]);

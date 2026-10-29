@@ -19,6 +19,7 @@ const BookReader = lazy(() => import('./pages/BookReader'));
 const HelpPage = lazy(() => import('./pages/HelpPage'));
 const MechanicsPage = lazy(() => import('./pages/MechanicsPage'));
 const SeasonsPage = lazy(() => import('./pages/SeasonsPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const MarketPage = lazy(() => import('./pages/MarketPage'));
 const QuickBuildPage = lazy(() => import('./pages/QuickBuildPage'));
 const TourPanel = lazy(() => import('./tour/TourPanel'));
@@ -95,6 +96,7 @@ export default function App() {
               <Route path="/saga/:sagaId/enchant" element={<EnchantPage />} />
               <Route path="/saga/:sagaId/rules" element={<HouseRulesPage />} />
               <Route path="/saga/:sagaId/seasons" element={<SeasonsPage />} />
+              <Route path="/saga/:sagaId/table" element={<DashboardPage />} />
               <Route path="/saga/:sagaId/market" element={<MarketPage />} />
               <Route path="/saga/:sagaId/build" element={<QuickBuildPage />} />
               <Route path="/dice" element={<DicePage />} />
@@ -217,6 +219,9 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
         {saga && (
           <>
             <div className="nav-group">{saga.name}</div>
+            <NavLink to={`/saga/${saga.id}/table`} data-tour="nav-table">
+              ★ Game table
+            </NavLink>
             <NavLink to={`/saga/${saga.id}`} end>
               ▤ Saga overview
             </NavLink>

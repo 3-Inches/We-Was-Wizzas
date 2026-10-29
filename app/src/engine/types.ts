@@ -841,6 +841,8 @@ export interface Character {
   lastAgedYear?: number;
   /** improved or reduced rations given as a reward or punishment: the year, and its change to the aging roll (Grogs) */
   rations?: { year: number; living: number };
+  /** where the character lives and works that worsens aging (City & Guild): a leper colony, a bad-air trade, a mine */
+  hazards?: ('colony' | 'bad-air' | 'mine')[];
   /** a grog retired from the covenant's service (still counted among its people), or dismissed from it (Grogs) */
   retired?: { year: number; how: 'retired' | 'dismissed' };
   wounds: WoundState;
