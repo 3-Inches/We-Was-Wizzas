@@ -99,6 +99,10 @@ export interface Saga {
   cast?: CastMember[];
   /** what the Tribunal's living covenants did that touches the players: approaches, deaths, new members, gatherings (newest first) */
   tribunalNews?: TribunalNews[];
+  /** the motions the Tribunal's gatherings have voted on, newest first */
+  tribunalVotes?: TribunalVote[];
+  /** the players' magi's votes on a motion before the gathering, by motion id and character id (unset: the magus votes as the storyguide decides on the day, counted as abstaining) */
+  playerVotes?: Record<string, Record<string, 'for' | 'against' | 'abstain'>>;
 }
 
 /** Something from the Tribunal for the storyguide: a living covenant's approach to the players, a death, a gathering. */
@@ -108,7 +112,7 @@ export interface TribunalNews {
   season: Season;
   /** the living covenant it is about */
   covenantId?: string;
-  kind: 'approach' | 'death' | 'member' | 'gathering' | 'event';
+  kind: 'approach' | 'death' | 'member' | 'gathering' | 'event' | 'vote' | 'certamen' | 'apprentice';
   text: string;
   /** an approach: which one (BookApproach id), its kind, and where it is dealt with */
   approach?: string;
@@ -268,7 +272,7 @@ export interface StandingActivity {
 }
 
 /** What a season can go to on a priority list (engine/priorities.ts). */
-export type PriorityKind = 'longevity' | 'service' | 'politics' | 'travel' | 'read' | 'vis' | 'invent' | 'write' | 'lab' | 'practice';
+export type PriorityKind = 'longevity' | 'apprentice' | 'service' | 'politics' | 'travel' | 'read' | 'vis' | 'invent' | 'enchant' | 'write' | 'lab' | 'practice';
 
 /** One entry of a priority list: the kind, whether it is on, and the Arts it favors (else the character's best). */
 export interface SeasonPriority {
@@ -874,6 +878,12 @@ export interface Character {
   standing?: StandingActivity;
   /** what the character does with a season, in order of preference, when its standing activity is to follow them (engine/priorities.ts) */
   priorities?: SeasonPriority[];
+  /** a magus's apprentice: a light record until the Gauntlet, when they become a magus of their own */
+  apprentice?: Apprentice;
+  /** a magus of the Tribunal who belongs to no covenant, and how they wander (living covenants) */
+  wanderer?: Wanderer;
+  /** the seasons this year the character has worked under the covenant's laboratory aura (its magestones) */
+  labAuraUse?: { year: number; seasons: number };
   /** a character the toolkit built from a book: where it is described */
   fromBook?: { book: string; line: number; title?: string };
   /** the seasons a year are spent: a free-season count set by hand, needing no sleep, and what the extra seasons go to */
@@ -1357,6 +1367,8 @@ export interface Covenant {
   yearEnd?: { skipVis?: string[] };
   /** a covenant of the saga's Tribunal built from its book, which lives on its own as the seasons pass (not the players') */
   living?: LivingCovenant;
+  /** something that gives its magi a better aura in the laboratory for a few seasons a year (the magestones of Verditius) */
+  labAura?: LabAura;
   /** what has changed the aura, oldest first */
   auraLog?: { uid: string; year: number; season?: Season; delta: number; text: string }[];
   /** the aura from year to year (Realms of Power: Magic, Aura Variation) */
@@ -1366,6 +1378,76 @@ export interface Covenant {
   notes: string;
   createdAt: string;
   updatedAt: string;
+}
+
+/** An apprentice in training (DE, Apprentices): fifteen years, a season a year of the master's teaching, then the Gauntlet. */
+export interface Apprentice {
+  name: string;
+  gender: 'Male' | 'Female';
+  /** the year the apprenticeship began, and the apprentice's age then */
+  since: number;
+  age: number;
+  /** the seasons the master has spent teaching them */
+  seasons: number;
+  note?: string;
+}
+
+/**
+ * A magus who belongs to no covenant (living covenants): a peregrinator stays a few years at each
+ * covenant under the Rhine's guest-laws; a seasonal wanderer winters at one and summers on the road.
+ * They stay as a guest (covenantId is the host, they are not among its members) with their own
+ * laboratory, which goes with them.
+ */
+export interface Wanderer {
+  wanders: 'peregrinator' | 'seasonal';
+  /** the year they came to where they are now */
+  since: number;
+  /** a peregrinator's stay at each covenant, in years (three to seven by the guest-laws) */
+  stay?: number;
+  /** the covenant a seasonal wanderer winters at (a BookCovenant id) */
+  winters?: string;
+  favors?: 'young' | 'any';
+  /** the book (BOOKS id) and their name in it, or the master's name for one who left apprenticeship to wander */
+  book: string;
+  key: string;
+  /** their laboratory while on the road */
+  lab?: Laboratory;
+  /** a players' covenant that has welcomed them as a guest: a seasonal wanderer winters there, a peregrinator moves there */
+  welcome?: string;
+  /** the covenants they have stayed at (ids), oldest first */
+  visited?: string[];
+}
+
+/** A motion put to a Tribunal gathering, and how its sigils fell. */
+export interface TribunalVote {
+  uid: string;
+  motionId: string;
+  year: number;
+  title: string;
+  for: number;
+  against: number;
+  abstain: number;
+  passed: boolean;
+  /** each covenant's sigils for and against, by covenant id (the players' too) */
+  byCovenant: Record<string, { for: number; against: number }>;
+}
+
+/**
+ * A Magic aura a covenant's magi can carry into their laboratories, so many at once and so many
+ * seasons a year each (Guardians of the Forests: the three magestones of Verditius let the magi of
+ * Oculus Septentrionalis, in Lübeck's Divine aura, work two seasons a year in a Magic aura of 3).
+ */
+export interface LabAura {
+  name: string;
+  realm: 'Magic' | 'Faerie';
+  strength: number;
+  /** how many magi may use it in the same season */
+  count: number;
+  /** the seasons a year each magus may use it */
+  seasonsEach: number;
+  text?: string;
+  /** who has it this season */
+  inUse?: { year: number; season: Season; ids: string[] };
 }
 
 /** A living covenant's link to its book, and what it remembers from year to year. */

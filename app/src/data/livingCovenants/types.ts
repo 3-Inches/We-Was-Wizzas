@@ -4,7 +4,7 @@
 // the magi it counts without naming, how it stands with its neighbors, and the ways it may come to
 // the players' covenant. Ages are those the book gives for its present (1220).
 
-import type { Art, Characteristic } from '../types';
+import type { Art } from '../types';
 
 export type Wealth = 'poor' | 'modest' | 'comfortable' | 'rich' | 'very rich';
 export type Holdings = 'poor' | 'modest' | 'good' | 'great';
@@ -43,17 +43,43 @@ export interface BookMagus {
   guest?: boolean;
   /** inactive: in Final Twilight in all but name, and does nothing with the seasons */
   inactive?: string;
-  /** Decrepitude score the book gives (2 if it gives none) */
-  decrepitude?: number;
-  /** the Arts of the book's statistics block, raised to at the least */
-  statArts?: Partial<Record<Art, number>>;
-  statChars?: Partial<Record<Characteristic, number>>;
-  /** Virtues named in the book's statistics block, by id, added where the rules allow */
-  statVirtues?: string[];
   /** the season's priorities, in order, where the book says what the magus spends time on */
   priorities?: string[];
   /** book line of the entry */
   line: number;
+}
+
+/**
+ * A character as a book's stat block gives it (engine/character/statBlock reads it): every field in
+ * the book's own words and layout, so a block can be copied straight from the page.
+ */
+export interface StatBlock {
+  /** 'Int +2, Per +3, Pre –1 (2), …': the Aging Points in brackets */
+  characteristics: string;
+  /** as the book lists them: 'The Gift; Journeyman; Affinity with Folk Ken, Clear Thinker, …; Meddler; …' */
+  virtues: string;
+  /** 'Artes Liberales 2 (logic), Athletics 1 (stamina), …' */
+  abilities: string;
+  /** 'Cr 4, In 10+3, Mu 2, …' (the +3 is Puissant, not part of the score) */
+  arts?: string;
+  /** one a line, as in the book: 'Image of the Beast (InAn 5) +16, Mastery 1 (Quiet Casting)' */
+  spells?: string[];
+  /** levels of spells beyond those named, from the strongest Arts, for an entry that names few or none */
+  moreSpells?: number;
+  /** '2 (15)': the score, and the points toward the next */
+  warping?: string;
+  decrepitude?: string;
+  confidence?: string;
+  /** 'Meddlesome Upstart 4 (Hermetic), Quaesitor 3 (Hermetic)' */
+  reputations?: string;
+  /** the Longevity Ritual's bonus, where the book gives one or the magus would have one */
+  longevity?: number;
+  equipment?: string;
+  twilightScars?: string;
+  /** the age at Gauntlet, where the book gives it (25 if not) */
+  gauntlet?: number;
+  /** the age the character looks, where the book gives it */
+  apparentAge?: number;
 }
 
 /** Unnamed magi the book counts, generated to fill the covenant out. */
@@ -126,9 +152,69 @@ export interface BookCovenant {
   relations: BookRelation[];
   approaches: BookApproach[];
   services?: BookService[];
+  /**
+   * Its Boons and Hooks (Covenants ch.2), by id, with what each stands for here. The book gives none:
+   * these are read from what it says of the covenant, as a non-player covenant's need not balance.
+   * Minor Aura Boons and a Weak Aura Hook are counted in the book's aura, not added to it.
+   */
+  hooksBoons?: (string | [string, string])[];
+  /** what the book says of its aura beyond its strength (a regio's levels, a patchy faerie aura) */
+  auraNote?: string;
+  /** something that gives its magi a better aura in the laboratory than the covenant's (the magestones of Verditius) */
+  labAura?: LabAuraSource;
+  /** not yet a member of the Tribunal: the motion (BookMotion id) that would admit it; its magi have no sigils until it passes */
+  joins?: string;
   /** chapter houses: name and place */
   chapters?: { name: string; place: string }[];
   line: number;
+}
+
+/** A Magic aura a covenant's magi can work in for a few seasons a year, shared among them (GotF, The Magestones of Verditius). */
+export interface LabAuraSource {
+  name: string;
+  realm: 'Magic' | 'Faerie';
+  strength: number;
+  /** how many there are: as many magi may use one in the same season */
+  count: number;
+  /** the seasons a year each magus may have one */
+  seasonsEach: number;
+  text: string;
+  line: number;
+}
+
+/** A motion the book has the Tribunal debate, and how each gild and covenant stands on it. */
+export interface BookMotion {
+  id: string;
+  /** the first gathering it comes before */
+  year: number;
+  /** after failing, its chance (in a hundred) of coming up again at each later gathering */
+  again?: number;
+  title: string;
+  /** who brings it, and why */
+  text: string;
+  /** each gild's stand (RHINE_GILDS ids): for, against, or divided */
+  gilds: Partial<Record<string, 'for' | 'against' | 'split'>>;
+  /** covenants that vote together whatever their gilds (by BookCovenant id), or divide whatever their gilds */
+  covenants?: Partial<Record<string, 'for' | 'against' | 'split'>>;
+  /** the news when it passes, and when it fails */
+  passed: string;
+  failed: string;
+  line: number;
+}
+
+/** A magus of the book who belongs to no covenant: a peregrinator who stays a few years at each, or one who winters at one and summers on the road. */
+export interface BookWanderer extends BookMagus {
+  wanders: 'peregrinator' | 'seasonal';
+  /** where the book has them in its present */
+  startsAt?: string;
+  /** a peregrinator's stay at each covenant, in years */
+  stay?: number;
+  /** the covenant a seasonal wanderer winters at when it can */
+  winters?: string;
+  /** the covenants they favor */
+  favors?: 'young' | 'any';
+  /** how they come to the players' covenant */
+  approach: BookApproach;
 }
 
 /** A Tribunal's book: its covenants and the gatherings that bring them together. */
@@ -140,8 +226,18 @@ export interface TribunalBook {
   /** the year the book describes */
   present: number;
   /** Tribunal gatherings: every so many years, from this year, at this covenant */
-  gathering: { every: number; from: number; at: string; line: number };
+  gathering: { every: number; from: number; at: string; line: number; season?: 'Spring' | 'Summer' | 'Autumn' | 'Winter' };
   /** other gatherings a House holds (Bjornaer's Gathering of Twelve Years) */
   otherGatherings?: { name: string; every: number; from: number; at: string; house?: string; line: number }[];
   covenants: BookCovenant[];
+  /** each named magus's stat block, by name: the book's own, or one written to what it says of them */
+  sheets?: Record<string, StatBlock>;
+  /** what the book says of each named magus, in its own words, by name */
+  texts?: Record<string, string>;
+  /** the motions its gatherings debate */
+  motions?: BookMotion[];
+  /** its magi who belong to no covenant */
+  wanderers?: BookWanderer[];
+  /** sigils one magus casts for others of their House (House Tremere's exarchs): of those at these covenants, or of all the rest; the first that applies */
+  heldSigils?: { house: string; holder: string; covenants?: string[]; line: number }[];
 }

@@ -78,6 +78,12 @@ export default function CovenantPage() {
           A living covenant of the {cov.living.tribunal} Tribunal, built from <BookBadge book={cov.living.book} />: its people follow their season priority lists as the seasons pass, and it
           closes its books each year by itself{cov.living.paused ? ' (paused: it makes no approaches and takes in no new magi)' : ''}. Its magi, neighbors and news are on{' '}
           <Link to={`/saga/${saga.id}/tribunal`}>the Tribunal page</Link>.
+          {cov.labAura && (
+            <div style={{ marginTop: 4 }}>
+              <b>{cov.labAura.name.replace(/^./, (x) => x.toUpperCase())}:</b> a {cov.labAura.realm} aura of {cov.labAura.strength} in the laboratory, for {cov.labAura.count} magi at a time and {cov.labAura.seasonsEach} seasons a year each.{' '}
+              {cov.labAura.text}
+            </div>
+          )}
         </div>
       )}
       {share && (

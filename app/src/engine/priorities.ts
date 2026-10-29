@@ -7,20 +7,23 @@
 // and lab work or practice fills any season the list leaves. The living covenants built from a
 // Tribunal book run on these; any character can be set to follow one.
 
-import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type GameData } from '../data';
+import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type GameData, type SpellDef } from '../data';
 import type { DerivedCharacter } from './character/derive';
 import { ensureAbility } from './character/factory';
-import type { CharacterContext } from './context';
+import { labAuraFor, type CharacterContext } from './context';
+import { auraModifier } from './magic';
 import type { Rng } from './dice';
 import { computeStudy, visForStudy } from './longterm';
 import { newProject, planProject, visShort } from './projects';
 import { planBook } from './books';
+import { FREQUENCY, chargedItemCharges, investEffect, openingCost } from './enchant';
 import { purseOf, visAvailable } from './vis';
-import type { Character, Covenant, LabProject, LibraryBook, PriorityKind, Season, SeasonPriority, StandingActivity, WritingProject } from './types';
+import type { Character, Covenant, EnchantedItem, LabProject, LibraryBook, PriorityKind, Season, SeasonPriority, StandingActivity, WritingProject } from './types';
 import { uid } from '../util/id';
 
 export const PRIORITY_KINDS: { id: PriorityKind; label: string; yearly: boolean; text: string }[] = [
   { id: 'longevity', label: 'Longevity Ritual', yearly: false, text: 'Whenever it is needed: from 35, or when an aging crisis ends one, a season in the lab to make a Longevity Ritual with the covenant’s vis.' },
+  { id: 'apprentice', label: 'Teach the apprentice', yearly: true, text: 'A season a year with the apprentice, while there is one (Exposure in Teaching).' },
   { id: 'service', label: 'Service to the covenant', yearly: true, text: 'The covenant’s business: vis extracted from its aura when its stores run low, else its duties (Exposure in Order of Hermes Lore).' },
   { id: 'politics', label: 'Hermetic politics', yearly: true, text: 'Letters, visits and gild business: Exposure in Intrigue.' },
   { id: 'travel', label: 'Travel', yearly: true, text: 'On the road or at sea: Exposure in Area Lore.' },
@@ -28,6 +31,7 @@ export const PRIORITY_KINDS: { id: PriorityKind; label: string; yearly: boolean;
   { id: 'read', label: 'Read the best book', yearly: true, text: 'The covenant library’s best summa or unread tractatus for the character’s Arts (or Abilities), if it teaches 5 xp or more.' },
   { id: 'vis', label: 'Study from vis', yearly: true, text: 'An Art studied from vis: the purse’s, or the covenant’s if it has twice what the season needs.' },
   { id: 'invent', label: 'Invent a spell', yearly: true, text: 'A new spell in the character’s Arts, as high as the Lab Total allows five points a season; or the one in hand.' },
+  { id: 'enchant', label: 'Enchant an item', yearly: true, text: 'A lesser enchanted device with one of the character’s spells, in a season, when the Lab Total is twice the effect’s level (vis from the covenant); else a charged item, as many charges as the Lab Total gives. Or the one in hand.' },
   { id: 'lab', label: 'Improve the laboratory', yearly: true, text: 'Refine the laboratory, when its Refinement can rise.' },
   { id: 'practice', label: 'Lab work or practice', yearly: false, text: 'Any season the list leaves: a magus works in the lab (Exposure in Magic Theory, or the first project that can be worked); anyone else practices their work.' },
 ];
@@ -36,7 +40,7 @@ export const PRIORITY_BY_ID = new Map(PRIORITY_KINDS.map((k) => [k.id, k]));
 /** A sensible list by what the character is: a magus’ by its archetype (role), a Redcap’s, anyone else’s. */
 export function defaultPriorities(c: Character, o: { role?: string; arts?: Art[]; ungifted?: boolean } = {}): SeasonPriority[] {
   const arts = o.arts?.length ? o.arts : undefined;
-  const list = (...kinds: PriorityKind[]): SeasonPriority[] => kinds.map((kind) => (arts && ['read', 'vis', 'invent'].includes(kind) ? { kind, arts } : { kind }));
+  const list = (...kinds: PriorityKind[]): SeasonPriority[] => kinds.map((kind) => (arts && ['read', 'vis', 'invent', 'enchant'].includes(kind) ? { kind, arts } : { kind }));
   // a Redcap is on the road; anyone else without the Gift reads when there is a book for them, and practices
   if (o.ungifted) return list('travel', 'travel', 'travel', 'read', 'practice');
   if (c.type !== 'magus') return list('read', 'practice');
@@ -49,8 +53,9 @@ export function defaultPriorities(c: Character, o: { role?: string; arts?: Art[]
     case 'explorer':
       return list('longevity', 'service', 'travel', 'read', 'vis', 'invent', 'practice');
     case 'lab':
+      return list('longevity', 'service', 'invent', 'read', 'enchant', 'vis', 'lab', 'practice');
     case 'enchanter':
-      return list('longevity', 'service', 'invent', 'read', 'invent', 'vis', 'lab', 'practice');
+      return list('longevity', 'service', 'enchant', 'invent', 'read', 'vis', 'lab', 'practice');
     default:
       return list('longevity', 'service', 'read', 'vis', 'invent', 'read', 'practice');
   }
@@ -78,6 +83,8 @@ interface Ctx {
   season: Season;
   rng: Rng;
   chars: Character[];
+  /** the aura would cost lab work dearly this season (Lübeck's Divine aura, with no magestone free) */
+  hostile?: string;
 }
 
 /** The Arts an entry favors: its own, else the character's two best. */
@@ -91,7 +98,13 @@ export function focusArts(d: DerivedCharacter, p?: SeasonPriority): Art[] {
  * one before it was passed over. Makes the project or book to work on when it needs one.
  */
 export function choosePriority(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, chars: Character[] = []): { choice?: PriorityChoice; tried: PriorityTry[] } {
-  const x: Ctx = { c, d, ctx, cov, data, year, season, rng, chars };
+  // lab work is planned in the aura it would be done in: under a magestone when one is free; in an
+  // aura that costs the Lab Total dearly with none, it waits for a season that has one
+  const faerieMagic = d.virtues.some((v) => v.cv.defId === 'faerie-magic');
+  const labCtx = labAuraFor(c, cov, ctx, year, season, { faerieMagic }) ?? ctx;
+  const mod = auraModifier('Magic', labCtx.aura, { faerieMagic }).mod;
+  const hostile = d.isMagus && mod < 0 ? `the ${labCtx.aura.realm} aura of ${labCtx.aura.strength} would take ${-mod} from its Lab Totals${cov?.labAura ? `, and ${cov.labAura.name} are taken this season` : ''}` : undefined;
+  const x: Ctx = { c, d, ctx: labCtx, cov, data, year, season, rng, chars, hostile };
   const list = (c.priorities ?? []).filter((p) => !p.off);
   const tried: PriorityTry[] = [];
   const listed = (k: PriorityKind) => list.filter((p) => p.kind === k).length;
@@ -127,6 +140,7 @@ const TRY: Record<PriorityKind, Try> = {
     if (c.longevity) return 'has one';
     if (c.age < 35 && !c.longevityLapsed) return 'not yet 35';
     if (!x.ctx.lab) return 'no laboratory';
+    if (x.hostile) return x.hostile;
     let p = c.projects?.find((q) => q.kind === 'longevity' && !q.done && (!q.subjectId || q.subjectId === c.id));
     if (!p) {
       p = { ...newProject('longevity'), name: 'Longevity Ritual', visFrom: x.cov ? 'covenant' : undefined };
@@ -135,11 +149,17 @@ const TRY: Record<PriorityKind, Try> = {
     const problem = workable(x, p);
     return problem ? `the ritual cannot be made yet: ${problem}` : labSeason(p, 'a Longevity Ritual');
   },
+  apprentice: (x) => {
+    const ap = x.c.apprentice;
+    if (!ap) return 'no apprentice';
+    const a = ensureAbility(x.c, 'teaching', {});
+    return { standing: { kind: 'exposure', target: `ability:${a.uid}` }, what: `teaching ${ap.name}, the apprentice` };
+  },
   service: (x) => {
     const { c, d, cov } = x;
     // vis for the covenant when its stores run low (under five pawns a member), else its duties
     const low = cov && cov.visStocks.reduce((t, v) => t + v.pawns, 0) < 5 * Math.max(1, cov.memberIds.length);
-    if (low && d.isMagus && x.ctx.lab && cov && x.ctx.aura.realm === 'Magic' && x.ctx.aura.strength > 0) {
+    if (low && d.isMagus && x.ctx.lab && cov && !x.hostile && x.ctx.aura.realm === 'Magic' && x.ctx.aura.strength > 0) {
       let p = c.projects?.find((q) => q.kind === 'extract' && !q.done && q.visFrom === 'covenant');
       if (!p) {
         p = { ...newProject('extract'), name: `Extract vis for ${cov.name || 'the covenant'}`, visFrom: 'covenant' };
@@ -177,8 +197,12 @@ const TRY: Record<PriorityKind, Try> = {
     for (const s of subjects) {
       const r = planBook(d, { kind: 'tractatus', isArt: s.isArt, score: s.score, com: d.characteristics.Com.value, language: lang.total, written: written(s.subject) });
       if (r.problems.length) continue;
+      // a title the library does not have yet
+      const taken = new Set([...cov.library.map((b) => b.title), ...(c.writing ?? []).map((w) => w.title)]);
+      const titles = TITLES.map((t) => `${t} ${s.label}`).filter((t) => !taken.has(t));
+      const title = titles.length ? titles[Math.floor(x.rng() * titles.length)] : `${pickTitle(x.rng)} ${s.label}, ${written(s.subject) + 1}`;
       const w: WritingProject = {
-        uid: uid(), kind: 'tractatus', title: `${pickTitle(x.rng)} ${s.label}`, subjectType: s.isArt ? 'art' : 'ability', subject: s.subject, exposure: s.exposure, language: c.abilities.find((a) => a.uid === lang.uid)?.param || 'Latin',
+        uid: uid(), kind: 'tractatus', title, subjectType: s.isArt ? 'art' : 'ability', subject: s.subject, exposure: s.exposure, language: c.abilities.find((a) => a.uid === lang.uid)?.param || 'Latin',
         level: 0, quality: r.quality, textQuality: r.textQuality, points: 0, needed: r.needed || 1, rate: Math.max(1, r.perSeason), authorScore: s.score, covenantId: cov.id, started: { year: x.year, season: x.season },
       };
       c.writing = [...(c.writing ?? []), w];
@@ -230,6 +254,7 @@ const TRY: Record<PriorityKind, Try> = {
     const { c, d, data } = x;
     if (!d.isMagus) return 'only a magus invents spells';
     if (!x.ctx.lab) return 'no laboratory';
+    if (x.hostile) return x.hostile;
     const open = c.projects?.find((q) => q.kind === 'invent' && !q.done && !q.fromText);
     if (open) {
       const problem = workable(x, open);
@@ -258,9 +283,36 @@ const TRY: Record<PriorityKind, Try> = {
     const problem = workable(x, proj);
     return problem ? `${sp.name}: ${problem}` : labSeason(proj, `inventing ${sp.name}`);
   },
+  enchant: (x, p) => {
+    const { c, d } = x;
+    if (!d.isMagus) return 'only a magus enchants items';
+    if (!x.ctx.lab) return 'no laboratory';
+    if (x.hostile) return x.hostile;
+    const open = c.projects?.find((q) => q.kind === 'instill' && !q.done && !q.failed);
+    if (open) {
+      const problem = workable(x, open);
+      if (!problem) return labSeason(open, open.name.replace(/^./, (ch) => ch.toLowerCase()));
+    }
+    if (c.items.filter((i) => i.creatorId === c.id).length >= MAX_ITEMS) return `has made ${MAX_ITEMS} enchanted items already`;
+    // one of its own spells in its Arts, the strongest it can put in an item this season
+    const focus = focusArts(d, p);
+    const spells = c.spells.map((s) => s.spell).filter((s) => s.level && !s.ritual && !s.general && (focus.includes(s.technique) || focus.includes(s.form)));
+    const made = new Set(c.items.flatMap((i) => i.effects.map((e) => e.name)));
+    const tried: string[] = [];
+    const top = [...spells].sort((a, b) => (b.level ?? 0) - (a.level ?? 0)).filter((s) => !made.has(s.name)).slice(0, 4);
+    // a lasting device first, the strongest it can make; charms only when none can be
+    for (const charged of [false, true])
+      for (const sp of top) {
+        const r = enchantProject(x, sp, charged);
+        if (typeof r !== 'string') return labSeason(r.p, r.what);
+        if (charged) tried.push(`${sp.name}: ${r}`);
+      }
+    return tried.length ? tried[0] : `no spell of its own in ${focus.map((a) => ART_NAMES[a]).join(' or ')} to put in an item`;
+  },
   lab: (x) => {
     const { c, d } = x;
     if (!d.isMagus || !x.ctx.lab) return 'no laboratory';
+    if (x.hostile) return x.hostile;
     let p = c.projects?.find((q) => q.kind === 'refine' && !q.done);
     if (!p) {
       p = { ...newProject('refine'), name: 'Refine the laboratory' };
@@ -272,10 +324,75 @@ const TRY: Record<PriorityKind, Try> = {
     return problem ?? labSeason(p, 'refining the laboratory');
   },
   practice: (x) => {
+    // in an aura that costs it dearly, a magus reads up on Magic Theory instead of working a project
+    if (x.d.isMagus && x.hostile) {
+      const mt = x.c.abilities.find((a) => a.abilityId === x.d.theoryAbility);
+      if (mt) return { standing: { kind: 'exposure', target: `ability:${mt.uid}` }, what: 'study of Magic Theory, away from the lab' };
+    }
     if (x.d.isMagus) return { standing: { kind: 'lab' }, what: 'lab work' };
     return { standing: { kind: 'practice' }, what: 'practice' };
   },
 };
+
+const MAX_ITEMS = 8;
+/** What a lesser enchantment can be made in, by the pawns of vis it takes (DE, Opening the Enchantment: material × size). */
+const VESSELS: { material: string; size: EnchantedItem['size']; noun: string }[] = [
+  { material: 'wood', size: 'small', noun: 'Wand' },
+  { material: 'silver', size: 'tiny', noun: 'Ring' },
+  { material: 'hard stone', size: 'small', noun: 'Amulet' },
+  { material: 'base metal', size: 'small', noun: 'Rod' },
+  { material: 'semi-precious gem', size: 'tiny', noun: 'Stone' },
+  { material: 'base metal', size: 'medium', noun: 'Bell' },
+  { material: 'silver', size: 'medium', noun: 'Cup' },
+  { material: 'gold', size: 'small', noun: 'Circlet' },
+];
+
+/**
+ * An item for a spell: a lesser enchanted device when the Lab Total reaches twice the effect's level
+ * (as many uses a day as that allows), else a charged item when it reaches the level (DE, Lesser
+ * Enchanted Items, Charged Items). The item and the project are added when the season can be worked.
+ */
+function enchantProject(x: Ctx, sp: SpellDef, charged: boolean): { p: LabProject; what: string } | string {
+  const { c, d } = x;
+  const level = sp.level ?? 0;
+  const effect = {
+    uid: uid(), name: sp.name, technique: sp.technique, form: sp.form, requisites: sp.requisites ?? [], baseLevel: level, range: sp.range, duration: sp.duration, target: sp.target,
+    usesPerDay: '1', penetration: 0, concentration: false, effectUse: false, environmentalTrigger: false, fastTrigger: false, linkedTrigger: false, expiry: 'none' as const, modifiedLevel: level, pending: true,
+  };
+  const item: EnchantedItem = { uid: uid(), name: sp.name, kind: 'lesser', material: 'wood', size: 'small', shapeMaterialIds: [], openedPawns: 0, effects: [effect], attunements: [], creatorId: c.id };
+  const p: LabProject = { ...newProject('instill'), itemUid: item.uid, effectUid: effect.uid, technique: sp.technique, form: sp.form, level, name: '', visFrom: x.cov ? 'covenant' : 'purse' };
+  c.items.push(item);
+  const total = planProject(p, c, d, x.ctx, { data: x.data }).total?.total ?? 0;
+  // as many uses a day as still leave the Lab Total twice the level
+  const uses = charged ? undefined : [...FREQUENCY].reverse().find((f) => f.value !== 'unlimited' && investEffect(total, level + f.mod, 'lesser').possible);
+  if (!charged && !uses) {
+    c.items.pop();
+    return `the Lab Total (${total}) is not twice its level (${level})`;
+  }
+  if (uses) {
+    effect.usesPerDay = uses.value;
+    effect.modifiedLevel = level + uses.mod;
+    const pawns = Math.ceil(effect.modifiedLevel / 10);
+    // one of the smaller things that can take the vis
+    const fit = VESSELS.filter((v) => openingCost(v.material, v.size) >= pawns).slice(0, 4);
+    const vessel = fit.length ? fit[Math.floor(x.rng() * fit.length)] : VESSELS[VESSELS.length - 1];
+    Object.assign(item, { material: vessel.material, size: vessel.size, name: `${vessel.noun} of ${sp.name}` });
+    p.name = `Enchant the ${item.name.replace(/^./, (ch) => ch.toLowerCase())}`;
+  } else if (chargedItemCharges(total, level)) {
+    Object.assign(item, { kind: 'charged', material: 'cloth', size: 'tiny', name: `Charm of ${sp.name}`, charges: 0 });
+    p.name = `Make charms of ${sp.name}`;
+  } else {
+    c.items.pop();
+    return `the Lab Total (${total}) does not reach its level (${level})`;
+  }
+  const problem = workable(x, p);
+  if (problem) {
+    c.items.pop();
+    return problem;
+  }
+  c.projects = [...(c.projects ?? []), p];
+  return { p, what: item.kind === 'charged' ? `charms of ${sp.name}` : `enchanting the ${item.name.replace(/^./, (ch) => ch.toLowerCase())} (${effect.usesPerDay} use${effect.usesPerDay === '1' ? '' : 's'} a day)` };
+}
 
 /** Spells by name: the books' lists also hold item effects and powers ("Pen +30, 6/day") that are not spells to invent. */
 const SPELL_NAME = /^[A-Z][^+/0-9]{2,46}$/;

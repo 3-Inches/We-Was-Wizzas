@@ -1,6 +1,6 @@
 // Long-term events (DE Chapter 10): seasonal advancement, aging, Twilight.
 
-import type { Art, GameData } from '../data';
+import { CHARACTERISTICS, type Art, type Characteristic, type GameData } from '../data';
 import type { Character, SeasonLogEntry, XpSource } from './types';
 import { paramValues, type DerivedCharacter } from './character/derive';
 import { abilityAvailability } from './character/restrictions';
@@ -282,6 +282,26 @@ export function applyAgingPoint(c: Character, char: keyof Character['characteris
   return `${char} aging points: ${c.agingPoints[char]}.`;
 }
 
+/** The Characteristics each kind of character can best spare, least needed first. */
+const SPARE_ORDER: Record<Character['type'], Characteristic[]> = {
+  magus: ['Str', 'Dex', 'Qik', 'Pre', 'Com', 'Per', 'Sta', 'Int'],
+  grog: ['Int', 'Com', 'Pre', 'Per', 'Qik', 'Dex', 'Str', 'Sta'],
+  companion: ['Str', 'Qik', 'Dex', 'Sta', 'Int', 'Per', 'Com', 'Pre'],
+  mythic: ['Com', 'Int', 'Pre', 'Dex', 'Qik', 'Per', 'Str', 'Sta'],
+};
+
+/**
+ * Where a player puts an Aging Point "in any Characteristic": where it lowers nothing yet (fewer
+ * points than the Characteristic's size), the one the character needs least first; when every one
+ * would drop, the least needed that is not already low, so no single Characteristic tumbles.
+ */
+export function sparestCharacteristic(c: Character): Characteristic {
+  const order = SPARE_ORDER[c.type] ?? CHARACTERISTICS;
+  const safe = order.find((k) => (c.agingPoints[k] ?? 0) + 1 <= Math.abs(c.characteristics[k]));
+  if (safe) return safe;
+  return order.find((k) => c.characteristics[k] > -2) ?? [...order].sort((a, b) => c.characteristics[b] - c.characteristics[a])[0];
+}
+
 export function decrepitudeScore(points: number): number {
   return abilityScoreFromXp(points);
 }
@@ -293,8 +313,8 @@ export interface AgingPlan {
   longevity: number;
   /** other modifiers to the roll (Virtues and Flaws, a bronze cord) */
   extra: number | { label: string; value: number }[];
-  /** where Aging Points "in any Characteristic" go */
-  anyChar: keyof Character['characteristics'];
+  /** where Aging Points "in any Characteristic" go: one Characteristic, or each where it can best be spared */
+  anyChar: keyof Character['characteristics'] | 'sparest';
   /** re-perform the Longevity Ritual after a crisis (magi re-invest vis before play) */
   renewLongevity: boolean;
 }
@@ -320,11 +340,12 @@ export function ageYears(c: Character, from: number, to: number, plan: AgingPlan
     const notes: string[] = [];
     if (r.apparentAging) c.apparentAge = (c.apparentAge ?? age) + 1;
     for (const p of r.agingPoints) notes.push(applyAgingPoint(c, p.char as keyof Character['characteristics'], p.points));
-    if (r.anyChar) notes.push(applyAgingPoint(c, plan.anyChar, r.anyChar));
+    const any = () => (plan.anyChar === 'sparest' ? sparestCharacteristic(c) : plan.anyChar);
+    if (r.anyChar) notes.push(applyAgingPoint(c, any(), r.anyChar));
     let dead = '';
     if (r.crisis) {
       const need = Math.max(1, abilityXpForScore(decrepitudeScore(c.decrepitudePoints) + 1) - c.decrepitudePoints);
-      for (let i = 0; i < need; i++) notes.push(applyAgingPoint(c, plan.anyChar, 1));
+      for (let i = 0; i < need; i++) notes.push(applyAgingPoint(c, any(), 1));
       const crisis = crisisRoll(age, decrepitudeScore(c.decrepitudePoints), rng);
       notes.push(`Crisis ${crisis.roll}: ${crisis.text}`);
       if (crisis.roll >= 19) dead = 'a terminal illness';

@@ -98,6 +98,8 @@ const MAGICAL_BLOOD_EFFECTS: Record<string, Effect[]> = {
 };
 
 const ACADEMIC: Effect = { type: 'abilityAccess', abilityTypes: ['Academic'] };
+/** Social Statuses of the Church: its clergy, friars and the military orders' brothers. */
+const CHURCH_STATUSES = ['priest', 'clerk', 'mendicant-friar', 'brother-chaplain', 'brother-knight', 'brother-sergeant', 'brother-priest', 'eastern-priest', 'templar-administrator', 'templar-commander', 'templar-office-holder', 'templar-servant', 'templar-specialist'];
 const MARTIAL: Effect = { type: 'abilityAccess', abilityTypes: ['Martial'] };
 const ARCANE: Effect = { type: 'abilityAccess', abilityTypes: ['Arcane'] };
 const note = (text: string): Effect => ({ type: 'note', text });
@@ -322,6 +324,9 @@ export const MECHANICS: Record<string, Mechanics> = {
   'templar-prestige': { effects: [rep(4, 'Templar Prestige', 'good', 'Templars')] },
   'templar-office-holder': { effects: [rep(2, 'Templar Officer', 'good', 'Regional')] },
   'apostate-flaw': { effects: [rep(4, 'Apostate', 'bad', 'Former faith')] },
+  // one who never took baptism holds no office of the Church and no vows to it (DE, Pagan; Unbaptized)
+  'pagan-flaw': { excludes: [...CHURCH_STATUSES, 'monastic-vows-flaw', 'monastic-vows-hermetic-flaw', 'true-faith'] },
+  'unbaptized-flaw': { excludes: [...CHURCH_STATUSES, 'monastic-vows-flaw', 'monastic-vows-hermetic-flaw'] },
   'failed-student-flaw': { effects: [rep(2, 'Failed Student', 'bad', 'Academic')] },
   'failed-journeyman-flaw': { effects: [rep(2, 'Failed Journeyman', 'bad', 'Town')] },
   'failed-master-flaw': { effects: [rep(4, 'Failed Master', 'bad', 'Town')] },

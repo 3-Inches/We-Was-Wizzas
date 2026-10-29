@@ -3,13 +3,23 @@
 // Where the book leaves something out (an age, a season, the aura), a likely value is marked as a
 // guess so the storyguide knows to change it if they wish.
 
-import type { BookCovenant, TribunalBook } from './types';
+import type { BookCovenant, BookMotion, BookWanderer, TribunalBook } from './types';
+import { RHINE_SHEETS } from './rhineMagi';
+import { RHINE_TEXT } from './rhineText';
 
 const DURENMAR: BookCovenant = {
   id: 'durenmar', name: 'Durenmar', season: 'Autumn', founded: 767, place: 'the northern Black Forest, Swabia', aura: 7, realm: 'Magic', line: 1477,
   summary: 'The domus magna of House Bonisagus and the oldest covenant of the Order: home of the Great Library, the meeting place of the Rhine Tribunal and of Grand Tribunals. A perennial Autumn covenant on the verge of Winter, short of vis and of breakthroughs.',
   domusMagna: 'bonisagus', wealth: 'comfortable', library: 'great', vis: 'some', gild: 'oak',
   folk: { grogs: 12, servants: 40, craftsmen: 8, laborers: 12, text: 'Peculiar, quiet covenfolk, most born in the strong aura: every one has a Minor Flaw from Warping, those over thirty two. A band of expert huntsmen hunts the forest for vis and game.' },
+  hooksBoons: [
+    ['boon-Minor-aura', 'the aura of 7'], ['boon-Minor-aura', 'the aura of 7'], ['boon-Minor-aura', 'the aura of 7'], ['boon-Minor-aura', 'the aura of 7'],
+    ['boon-Major-exceptional-book', 'the Great Library'], ['boon-Major-prestige', 'the birthplace of the Order and seat of Grand Tribunals'], ['boon-Minor-famous-resident', 'Murion, Prima of House Bonisagus'],
+    ['boon-Minor-mystical-portal', 'the Mercere Portals of the Forum'], ['boon-Minor-hidden-resources', 'the originals in the basement of the Great Library, and the magestones'], ['boon-Minor-edifices', 'the tower of the Great Library'],
+    ['hook-Major-ceremonies', 'the Rhine Tribunal meets here every seven years, and Grand Tribunals every 33'], ['hook-Major-mercer-house', 'one of the Tribunal’s two Mercer Houses'],
+    ['hook-Minor-house-covenant', 'the domus magna of House Bonisagus'], ['hook-Minor-distorted-covenfolk', 'every covenfolk has a Minor Flaw from Warping, those over thirty two'],
+    ['hook-Major-rival', 'Dankmar, founded to oppose it at every turn'], ['hook-Minor-dwindling-resource', 'short of vis'], ['hook-Minor-hermetic-politics', 'the Oak Gild and the Primacy of House Bonisagus'],
+  ],
   magi: [
     { name: 'Murion', house: 'bonisagus', gender: 'Female', age: 98, rank: 'archmage', role: 'politician', arts: ['Re', 'Im'], title: 'Prima of House Bonisagus, Praeco of the Tribunal', gild: 'oak', traits: [['Loyal to Personal Agenda', 3], ['Judgmental', 2], ['Loyal to House Bonisagus', 2]], note: 'Haughty and overbearing; wants Durenmar and the Rhine restored to dominance. Brilliant with Rego and Imaginem; wears a cloak of white feathers enchanted with illusions. Leads the Oak Gild.', familiar: 'Kolkrabus, a raven she sends to spy', line: 1624 },
     { name: 'Andrus', house: 'bonisagus', gender: 'Male', age: 61, rank: 'master', role: 'scholar', arts: ['In', 'Vi'], title: 'Librarian of the Great Library', gild: 'oak', traits: [['Busy', 3], ['Modest', 1], ['Strong-Willed', -1]], note: 'Murion’s first filius, a Colens Arcanorum; his duties as librarian keep him always at the covenant and away from his research. He controls access to the Great Library.', priorities: ['longevity', 'service', 'read', 'vis', 'invent', 'write'], line: 1631 },
@@ -20,8 +30,7 @@ const DURENMAR: BookCovenant = {
     { name: 'Petrus Virilis', house: 'bonisagus', gender: 'Male', age: 32, rank: 'journeyman', role: 'lab', arts: ['Cr', 'Co'], traits: [['Shy', 3], ['Rebellious', 1], ['Trusting', -2]], note: 'A mediocre magus whose seed is Vim vis; on Murion’s orders he has fathered five Gifted children. Secretly plans to invent a Longevity Ritual, which would likely leave him infertile.', priorities: ['longevity', 'read', 'invent', 'vis', 'invent'], line: 1666 },
     { name: 'Winfrida', house: 'guernicus', gender: 'Female', age: 27, rank: 'journeyman', role: 'politician', arts: ['In', 'Me'], traits: [['Yearning for a Better Life', 2], ['Self-Confident', -1], ['Forceful', -2]], note: 'A young, timid Quaesitor who would rather live the research life of a Bonisagus; Murion is grooming her.', line: 1678 },
     {
-      name: 'Philippus Niger', house: 'flambeau', gender: 'Male', age: 125, rank: 'archmage', role: 'battle-mage', arts: ['Pe', 'Vi'], title: 'Protector of Durenmar, leader of the Ash Gild', gild: 'ash', traits: [['Alarmist', 3], ['Condescending', 3], ['Obsessive', 2], ['Cool-Tempered', -1], ['Cheerful', -3]], note: 'Has devoted his life to defending the Order against non-Hermetic wizards; the eldest of the direct line from Apromor, master of destructive magic. Lives in the Watchtower so his basilisk familiar harms no one.', familiar: 'Sordus, a basilisk',
-      statArts: { Cr: 10, In: 15, Mu: 10, Pe: 35, Re: 12, An: 7, Aq: 7, Au: 7, Co: 15, He: 7, Ig: 8, Im: 5, Me: 15, Te: 7, Vi: 20 }, statChars: { Int: 5, Per: -2, Pre: -1, Com: 1, Str: -1, Sta: 2, Dex: -2, Qik: -1 }, statVirtues: ['mythic-blood', 'affinity-with-art:Pe', 'puissant-art:Pe'], line: 1685,
+      name: 'Philippus Niger', house: 'flambeau', gender: 'Male', age: 125, rank: 'archmage', role: 'battle-mage', arts: ['Pe', 'Vi'], title: 'Protector of Durenmar, leader of the Ash Gild', gild: 'ash', traits: [['Alarmist', 3], ['Condescending', 3], ['Obsessive', 2], ['Cool-Tempered', -1], ['Cheerful', -3]], note: 'Has devoted his life to defending the Order against non-Hermetic wizards; the eldest of the direct line from Apromor, master of destructive magic. Lives in the Watchtower so his basilisk familiar harms no one.', familiar: 'Sordus, a basilisk', line: 1685,
     },
     { name: 'Gudrun Tigurina', house: 'verditius', gender: 'Female', age: 70, ageGuess: true, rank: 'master', role: 'enchanter', arts: ['Re', 'Te'], title: 'Artificer of Durenmar', traits: [['Inventive', 2], ['Proud', 1]], note: 'Holds the title of Artificer, whose duty is to craft items for the covenant’s greatness; known as the inventor of the Crystal Custodian.', line: 1848 },
     { name: 'Xavier', house: 'mercere', gender: 'Male', age: 60, ageGuess: true, rank: 'master', role: 'scholar', arts: ['Re', 'Co'], title: 'Archivist of the Tribunal', traits: [['Meticulous', 2], ['Discreet', 1]], note: 'The Tribunal’s only Gifted member of House Mercere and its archivist; oversees Durenmar’s Mercer House.', line: 1848 },
@@ -56,6 +65,13 @@ const DANKMAR: BookCovenant = {
   summary: 'A small covenant founded by an exile from Durenmar to oppose it at every turn. Ancient Schadrit squats at its center with brooding malice; it keeps close, careful contacts with the dark fae, and its grogs are bewitched.',
   wealth: 'modest', library: 'modest', vis: 'some',
   folk: { grogs: 12, servants: 4, craftsmen: 1, laborers: 2, text: 'Every grog and the few servants are bewitched by Jiphella: slack-witted, with no thought of their own.' },
+  hooksBoons: [
+    ['boon-Minor-aura', 'the aura of 5'], ['boon-Minor-aura', 'the aura of 5'], ['boon-Minor-difficult-access', 'Orphedra’s Shrouded Glen leads the unwary away and fills them with dread'],
+    ['boon-Minor-loyal-covenfolk', 'every grog bewitched by Jiphella'], ['boon-Minor-seclusion', 'the darkest, dampest part of the Black Forest'],
+    ['hook-Minor-faerie-aura', 'the aura is Faerie: Schadrit and Orphedra, with Faerie Magic, work in it as in a Magic aura of 5; Jiphella and Larinda as in one of 2, with extra botch dice'],
+    ['hook-Major-rival', 'Durenmar, which it was founded to oppose'], ['hook-Minor-incompetent-covenfolk', 'slack-witted, with no thought of their own'], ['hook-Minor-infamous', 'Schadrit’s malice'],
+    ['hook-Minor-dark-secret', 'its working relationship with the dark fae'],
+  ],
   magi: [
     { name: 'Schadrit', house: 'ex-miscellanea', gender: 'Female', age: 160, rank: 'master', role: 'lab', arts: ['Cr', 'Co'], traits: [['Malicious', 5], ['Vengeful', 4], ['Callous', 3]], note: 'Trained at Durenmar and cast out with her mistress a year before her Gauntlet; nearly two centuries old, kept alive by a longevity potion that is failing.', priorities: ['longevity', 'read', 'vis', 'invent', 'read'], line: 1885 },
     { name: 'Orphedra', house: 'merinita', gender: 'Female', age: 139, rank: 'master', role: 'faerie', arts: ['Im', 'Me'], traits: [['Cruel', 3], ['Frightening', 3], ['Optimistic', -2]], note: 'The covenant’s link to the dark fae; apprenticed at Irencillia but found it stifling. Her Shrouded Glen cloaks the covenant for a mile around.', line: 1892 },
@@ -78,9 +94,14 @@ const WADDENZEE: BookCovenant = {
   summary: 'A covenant of pirates who prowl the North Sea, skirting the Code (no witnesses) and breaking mundane law daily. Rich in vis, most of it not its own; its library is poor.',
   wealth: 'rich', library: 'poor', vis: 'rich', gild: 'ash',
   folk: { grogs: 80, servants: 30, craftsmen: 10, laborers: 40, text: 'Nearly two hundred pirates and their followers from every nation of Europe, with three powerful ships.' },
+  hooksBoons: [
+    ['boon-Minor-criminals', 'nearly two hundred pirates'], ['boon-Minor-veteran-fighters', 'pirate crews'], ['boon-Minor-wealth', 'rich in plunder and vis'], ['boon-Minor-difficult-access', 'the island of Terschelling'],
+    ['hook-Major-rival', 'Oculus Septentrionalis, whose ships it plunders'], ['hook-Minor-infamous', 'pirates who skirt the Code'], ['hook-Minor-dark-secret', 'Imanitos tells it when Oculus’s ships sail'],
+    ['hook-Minor-unhealthy-environment', 'a deserted, storm-beaten island'],
+  ],
   magi: [
     { name: 'Hygwald Veritas', house: 'tremere', gender: 'Male', age: 48, rank: 'journeyman', role: 'politician', arts: ['Re', 'Me'], traits: [['Arrogant', 3], ['Honest to Quaesitors', 3], ['Respect for Authority', -3]], note: 'A devious co-founder who dresses to show his great wealth; a specialist in Rego Mentem who makes heavy use of Aura of Rightful Authority.', line: 2020 },
-    { name: 'Eric Ribecus', house: 'tytalus', gender: 'Male', age: 52, rank: 'journeyman', role: 'elemental', arts: ['Aq', 'Au'], traits: [['Reckless', 6], ['Wry Humor', 4], ['Passive', -4]], note: 'The other founder; a generalist who favors Aquam and Auram. Bitter enemy of his cousin Estrid of Oculus Septentrionalis.', line: 2027 },
+    { name: 'Eric Ribecus', house: 'tytalus', gender: 'Male', age: 52, rank: 'journeyman', role: 'elemental', arts: ['Aq', 'Au'], traits: [['Reckless', 6], ['Wry Humor', 4], ['Passive', -4]], note: 'The other founder; a generalist who favors Aquam and Auram. Bitter enemy of his cousin Estrid of Oculus Septentrionalis.', familiar: 'Aegir, a long-tailed skua', line: 2027 },
     { name: 'Lucas von Beck', house: 'flambeau', gender: 'Male', age: 45, rank: 'journeyman', role: 'battle-mage', arts: ['Pe', 'Co'], traits: [['Aggressive', 3], ['Morbid', 2], ['Blunt', 1]], note: 'Son of a German altgraf who will not give up his noble life; harvests vis and bodies from the Pirates’ Graveyards for his necromancy.', line: 2034 },
     { name: 'Hachim al’Khalejj', house: 'criamon', gender: 'Male', age: 36, rank: 'journeyman', role: 'mystic', arts: ['In', 'Vi'], traits: [['Secretive', 3], ['Devout Muslim', 2], ['Introverted', 2]], note: 'A quiet, naïve Muslim magus, filius of Hassan of Fengheld; his astrology plans the raids.', line: 2041 },
   ],
@@ -99,17 +120,24 @@ const OCULUS: BookCovenant = {
   id: 'oculus-septentrionalis', name: 'Oculus Septentrionalis', season: 'Summer', founded: 1144, place: 'the city of Lübeck', aura: 3, realm: 'Divine', line: 2093,
   summary: 'A Summer covenant of Gentle-Gifted magi, mostly Jerbiton, woven into the life of Lübeck: little Hermetic power but great mundane wealth and influence. Three secret magestones let its magi work two seasons a year in a Magic aura. Short of vis, it trades a shipment of silver and luxuries to Fengheld for a rook of vis a year.',
   wealth: 'very rich', library: 'modest', vis: 'scarce', gild: 'apple',
+  auraNote: 'Lübeck has a typical Divine aura of 3, which takes three times its strength from Hermetic magic: the magi work in their laboratories under the magestones instead, two seasons a year each.',
+  labAura: { name: 'the magestones of Verditius', realm: 'Magic', strength: 3, count: 3, seasonsEach: 2, line: 2107, text: 'Three fist-sized onyx pebbles carved with the runes of Creo and Vim, each making a Magic aura of 3 over a laboratory: a gift of Durenmar at the founding, and the covenant’s greatest secret. The magi share them, two seasons a year each.' },
   folk: { grogs: 0, servants: 20, craftsmen: 6, laborers: 4, text: 'No turb: the city defends itself. Numerous servants and two scribes; Henri’s unGifted daughter Matilda is autocrat.' },
+  hooksBoons: [
+    ['boon-Major-wealth', 'probably the wealthiest merchants of Lübeck'], ['boon-Minor-secondary-income', 'its ships and warehouses'], ['boon-Minor-local-ally', 'the burghers of Lübeck'],
+    ['boon-Minor-informants', 'Brunhilda’s divination and the city’s merchants'], ['boon-Minor-hidden-resources', 'the three magestones of Verditius'],
+    ['hook-Major-urban', 'the city of Lübeck, and its Divine aura of 3'], ['hook-Major-mundane-politics', 'woven into the city’s trade and government'],
+    ['hook-Minor-dark-secret', 'Imanitos’s dealings with the pirates of Waddenzee'], ['hook-Major-rival', 'Waddenzee, which preys on its ships'], ['hook-Minor-rival', 'Crintera, which blames it for the Danish invasion'],
+  ],
   magi: [
-    { name: 'Henri de Tours', house: 'jerbiton', gender: 'Male', age: 66, rank: 'master', role: 'social', arts: ['Cr', 'Me'], title: 'Disceptator; co-leader of the Apple Gild', gild: 'apple', traits: [['Ambitious', 3], ['Diplomatic', 3], ['Scheming', 2]], note: 'Probably the wealthiest merchant in Lübeck; apprenticed in Normandy, the oldest member, and the covenant’s disceptator. Invented My New Best Friend.', statVirtues: ['gentle-gift'], line: 2134 },
-    { name: 'Gunhilda Henrasdottir', house: 'jerbiton', gender: 'Female', age: 31, rank: 'journeyman', role: 'craftsman', arts: ['Re', 'He'], gild: 'apple', traits: [['Loyal to Family', 3], ['Compassionate', 1], ['Independent', -2]], note: 'Henri’s daughter and filia, a specialist in housecraft; sheltered by her parents and married to Estrid.', statVirtues: ['gentle-gift'], line: 2152 },
-    { name: 'Estrid Danesson', house: 'ex-miscellanea', gender: 'Male', age: 36, rank: 'journeyman', role: 'explorer', arts: ['Au', 'Aq'], gild: 'apple', traits: [['Extroverted', 2], ['Energetic', 1], ['Conciliatory', -3]], note: 'A Danish hedge wizard of sailing and weather magic, later of the Order; keeps his laboratory on his ship and gathers the covenant’s vis around the Baltic. Bitter enemy of his cousin Eric of Waddenzee.', statVirtues: ['gentle-gift'], priorities: ['longevity', 'service', 'travel', 'vis', 'invent'], line: 2159 },
-    { name: 'Marcus Navicularius', house: 'verditius', gender: 'Male', age: 58, rank: 'master', role: 'enchanter', arts: ['Re', 'He'], gild: 'apple', traits: [['Proud of his Abilities', 3], ['Skillful', 1], ['Friendly', -2]], note: 'The foremost shipwright of Lübeck; his shipyard is his laboratory, and he sells magical vessels to other covenants for vis.', statVirtues: ['gentle-gift'], line: 2166 },
+    { name: 'Henri de Tours', house: 'jerbiton', gender: 'Male', age: 66, rank: 'master', role: 'social', arts: ['Cr', 'Me'], title: 'Disceptator; co-leader of the Apple Gild', gild: 'apple', traits: [['Ambitious', 3], ['Diplomatic', 3], ['Scheming', 2]], note: 'Probably the wealthiest merchant in Lübeck; apprenticed in Normandy, the oldest member, and the covenant’s disceptator. Invented My New Best Friend.', line: 2134 },
+    { name: 'Gunhilda Henrasdottir', house: 'jerbiton', gender: 'Female', age: 31, rank: 'journeyman', role: 'craftsman', arts: ['Re', 'He'], gild: 'apple', traits: [['Loyal to Family', 3], ['Compassionate', 1], ['Independent', -2]], note: 'Henri’s daughter and filia, a specialist in housecraft; sheltered by her parents and married to Estrid.', line: 2152 },
+    { name: 'Estrid Danesson', house: 'ex-miscellanea', gender: 'Male', age: 36, rank: 'journeyman', role: 'explorer', arts: ['Au', 'Aq'], gild: 'apple', traits: [['Extroverted', 2], ['Energetic', 1], ['Conciliatory', -3]], note: 'A Danish hedge wizard of sailing and weather magic, later of the Order; keeps his laboratory on his ship and gathers the covenant’s vis around the Baltic. Bitter enemy of his cousin Eric of Waddenzee.', priorities: ['longevity', 'service', 'travel', 'vis', 'invent'], line: 2159 },
+    { name: 'Marcus Navicularius', house: 'verditius', gender: 'Male', age: 58, rank: 'master', role: 'enchanter', arts: ['Re', 'He'], gild: 'apple', traits: [['Proud of his Abilities', 3], ['Skillful', 1], ['Friendly', -2]], note: 'The foremost shipwright of Lübeck; his shipyard is his laboratory, and he sells magical vessels to other covenants for vis.', line: 2166 },
     {
-      name: 'Imanitos Mendax', house: 'jerbiton', gender: 'Male', age: 55, rank: 'master', role: 'rogue', arts: ['Me', 'Vi'], gild: 'apple', traits: [['Lustful', 3], ['Scheming', 2], ['Brave', -1]], note: 'A charming liar with a forked tongue under his smile; perhaps of a secret lineage of dark Jerbiton, and a servant of the demon Radegast in some sagas.',
-      statArts: { Cr: 6, In: 9, Mu: 7, Pe: 8, Re: 9, An: 3, Aq: 5, Au: 5, Co: 5, He: 3, Ig: 4, Im: 9, Me: 17, Te: 5, Vi: 11 }, statChars: { Int: 2, Per: 1, Pre: 2, Com: 2, Str: -1, Sta: 1, Dex: -1, Qik: -2 }, statVirtues: ['gentle-gift', 'affinity-with-art:Me'], line: 2178,
+      name: 'Imanitos Mendax', house: 'jerbiton', gender: 'Male', age: 55, rank: 'master', role: 'rogue', arts: ['Me', 'Vi'], gild: 'apple', traits: [['Lustful', 3], ['Scheming', 2], ['Brave', -1]], note: 'A charming liar with a forked tongue under his smile; perhaps of a secret lineage of dark Jerbiton, and a servant of the demon Radegast in some sagas.', line: 2178,
     },
-    { name: 'Carolus', house: 'jerbiton', gender: 'Male', age: 35, rank: 'journeyman', role: 'scholar', arts: ['In', 'Me'], gild: 'apple', traits: [['Analytical', 2], ['Idealistic', 1], ['Organized', -3]], note: 'A well-meaning, scatterbrained magus who poses as an eccentric scholar; his raven familiar was blinded at Crintera, mistaken for Murion’s spy.', familiar: 'a blinded raven', statVirtues: ['gentle-gift'], line: 2260 },
+    { name: 'Carolus', house: 'jerbiton', gender: 'Male', age: 35, rank: 'journeyman', role: 'scholar', arts: ['In', 'Me'], gild: 'apple', traits: [['Analytical', 2], ['Idealistic', 1], ['Organized', -3]], note: 'A well-meaning, scatterbrained magus who poses as an eccentric scholar; his raven familiar was blinded at Crintera, mistaken for Murion’s spy.', familiar: 'a blinded raven', line: 2260 },
     { name: 'Boris of Novgorod', house: 'mercere', gender: 'Male', age: 37, rank: 'journeyman', role: 'explorer', ungifted: true, traits: [['Indolent', 2], ['Avaricious', 1], ['Talkative', 1]], note: 'A well-traveled Russian Redcap who poses as a merchant and keeps the Novgorod Inn; sells all kinds of things to magi, and gets vis from the Novgorod covenants cheaply.', priorities: ['travel', 'travel', 'travel', 'practice'], line: 2267 },
   ],
   others: [{ count: 1, houses: ['jerbiton'], rank: 'journeyman', note: 'room for one or two more magi, likely Jerbiton of the Apple Gild' }],
@@ -132,6 +160,13 @@ const FENGHELD: BookCovenant = {
   summary: 'The largest covenant of the Tribunal, in size and in magi (23, a dozen at the main site and the rest in six chapter houses), and seemingly its most neutral: it settles others’ disputes while its own power grows. Rich in minor items and raw vis from two dozen sites; its vast library is mostly of lower levels.',
   wealth: 'rich', library: 'good', vis: 'very rich',
   folk: { grogs: 50, servants: 60, craftsmen: 25, laborers: 35, companions: 15, text: 'About fifty soldiers, fifteen companions and nearly ten dozen other covenfolk, from smiths and glassblowers to scribes, huntsmen, herders and serfs, in hierarchies each ending in a magus.' },
+  hooksBoons: [
+    ['boon-Minor-aura', 'the aura of 5'], ['boon-Minor-aura', 'the aura of 5'], ['boon-Major-curtain-walls-and-mural-towers', 'a hilltop fortress'], ['boon-Major-wealth', 'rich in minor items and vis'],
+    ['boon-Minor-veteran-fighters', 'about fifty soldiers'], ['boon-Minor-informants', 'the news its Redcaps bring'], ['boon-Major-favors-owed', 'the covenants whose disputes it settles'],
+    ['boon-Minor-secondary-income', 'Peter von Würzburg’s wines'],
+    ['hook-Major-chapter-house', 'six chapter houses, from Cologne to Cherbourg'], ['hook-Major-mercer-house', 'the largest Mercer House of the Tribunal'], ['hook-Minor-hermetic-politics', 'Stentorius’s rivalry with Durenmar for the Oak Gild'],
+    ['hook-Minor-rival', 'Durenmar, which refused it a house on the Tribunal Field'],
+  ],
   chapters: [
     { name: 'Fengheld House', place: 'Cherbourg, Normandy' },
     { name: 'Rheingasse', place: 'Cologne' },
@@ -150,8 +185,8 @@ const FENGHELD: BookCovenant = {
     { name: 'Günther Lupus', house: 'bjornaer', gender: 'Male', age: 45, ageGuess: true, rank: 'journeyman', role: 'beast', arts: ['An', 'Co'], heartbeast: 'wolf', traits: [['Protective', 2], ['Secretive', 2]], note: 'Eule’s filius, who hides her Final Twilight with a magic item; hunts oath-breakers with Indulius.', line: 2576 },
     { name: 'Clemens', house: 'tremere', gender: 'Male', age: 65, ageGuess: true, rank: 'master', role: 'politician', arts: ['Re', 'Vi'], chapter: 'Lusatia', traits: [['Calculating', 2]], note: 'One of Fengheld’s three masters at its chapter houses.', line: 2511 },
     { name: 'Hassan El-Megrayhi', house: 'criamon', gender: 'Male', age: 70, ageGuess: true, rank: 'master', role: 'mystic', arts: ['In', 'Im'], chapter: 'Turris Acontiarum', traits: [['Contemplative', 3]], note: 'Studies the stars from a lone tower in the Kyffhäuser Mountains with a single mute companion; master of Hachim of Waddenzee.', line: 2503 },
-    { name: 'Wilhelm Weiss', house: 'jerbiton', gender: 'Male', age: 55, ageGuess: true, rank: 'master', role: 'social', arts: ['Mu', 'Me'], chapter: 'Rheingasse', gild: 'apple', title: 'Co-leader of the Apple Gild', traits: [['Shrewd', 2], ['Affable', 2]], note: 'Gentle-Gifted; poses as a wealthy merchant in Cologne and runs Fengheld’s supplies and mundane contacts.', statVirtues: ['gentle-gift'], line: 2501 },
-    { name: 'Garrinchus', house: 'ex-miscellanea', gender: 'Male', age: 26, ageGuess: true, rank: 'journeyman', role: 'healer', arts: ['Cr', 'Co'], chapter: 'Rheingasse', gild: 'apple', traits: [['Earnest', 2]], note: 'Gentle-Gifted, newly out of apprenticeship; his master was an acknowledged expert in physick.', statVirtues: ['gentle-gift'], line: 2501 },
+    { name: 'Wilhelm Weiss', house: 'jerbiton', gender: 'Male', age: 55, ageGuess: true, rank: 'master', role: 'social', arts: ['Mu', 'Me'], chapter: 'Rheingasse', gild: 'apple', title: 'Co-leader of the Apple Gild', traits: [['Shrewd', 2], ['Affable', 2]], note: 'Gentle-Gifted; poses as a wealthy merchant in Cologne and runs Fengheld’s supplies and mundane contacts.', line: 2501 },
+    { name: 'Garrinchus', house: 'ex-miscellanea', gender: 'Male', age: 26, ageGuess: true, rank: 'journeyman', role: 'healer', arts: ['Cr', 'Co'], chapter: 'Rheingasse', gild: 'apple', traits: [['Earnest', 2]], note: 'Gentle-Gifted, newly out of apprenticeship; his master was an acknowledged expert in physick.', line: 2501 },
     { name: 'Marguerite', house: 'flambeau', gender: 'Female', age: 35, ageGuess: true, rank: 'journeyman', role: 'battle-mage', arts: ['Cr', 'Ig'], chapter: 'Fengheld House', traits: [['Rude', 3], ['Proud', 2]], note: 'Lives alone at the chapter in Cherbourg, a woman of stunning beauty who thinks mundanes beneath her; the chapter runs a small trading business.', line: 2499 },
     { name: 'Odorpes', house: 'bjornaer', gender: 'Female', age: 45, ageGuess: true, rank: 'journeyman', role: 'beast', arts: ['Mu', 'An'], heartbeast: 'bear', chapter: 'Lusatia', gild: 'hawthorn', traits: [['Solitary', 2]], note: 'Urgen’s filia, of the ancient bear lineage; spends most of her time as a bear and hibernates all winter.', line: 2505 },
   ],
@@ -174,10 +209,15 @@ const FENGHELD: BookCovenant = {
 };
 
 const HEOROT: BookCovenant = {
-  id: 'heorot', name: 'Heorot', season: 'Spring', founded: 1215, place: 'Zealand, Denmark', aura: 3, auraGuess: true, realm: 'Magic', line: 2731,
+  id: 'heorot', name: 'Heorot', season: 'Spring', seasonGuess: true, founded: 1215, place: 'Zealand, Denmark', aura: 3, auraGuess: true, realm: 'Magic', line: 2731, joins: 'heorot',
   summary: 'A young covenant of three Rhine magi on Zealand, in lands that belong to the Novgorod Tribunal, seeking admission to the Rhine at the gathering of 1221. Its aim is the one Oculus Septentrionalis abandoned: to learn what it can of the Order of Odin.',
   wealth: 'poor', library: 'poor', vis: 'some', gild: 'ash',
   folk: { grogs: 8, servants: 6, craftsmen: 2, laborers: 4, text: 'A small turb, much reduced: Signum’s studies of the trolls have cost fourteen grogs’ lives.' },
+  hooksBoons: [
+    ['boon-Minor-promised-favors', 'Oculus Septentrionalis sponsors its admission'],
+    ['hook-Major-monster', 'Grendel’s kin, who still haunt the bogs of Zealand'], ['hook-Major-tribunal-border', 'on Zealand, in lands of the Novgorod Tribunal'], ['hook-Minor-rival', 'Crintera, which fears for its vis sources'],
+    ['hook-Major-poverty', 'a young covenant with little'],
+  ],
   magi: [
     { name: 'Signum Irruptus', house: 'criamon', gender: 'Male', age: 53, rank: 'master', role: 'mystic', arts: ['In', 'Vi'], title: 'Leader of the covenant', traits: [['Brave', 3], ['Obsessed', 3], ['Mindful of Danger', -2]], note: 'Fascinated with the trolls, whom he believes descended from degenerate gods; the obsession has cost fourteen grogs and his own left arm.', priorities: ['longevity', 'travel', 'read', 'vis', 'invent'], line: 2743 },
     { name: 'Theoderich of Augsburg', house: 'jerbiton', gender: 'Male', age: 37, rank: 'journeyman', role: 'scholar', arts: ['In', 'Me'], traits: [['Morbid', 3], ['Inquisitive', 2], ['Laconic', 1]], note: 'A necromancer and historian, formerly of Oculus Septentrionalis, who raises ghosts to question them about the past.', line: 2750 },
@@ -197,12 +237,18 @@ const CRINTERA: BookCovenant = {
   id: 'crintera', name: 'Crintera', season: 'Winter', founded: 773, place: 'a regio in the Stubnitz Forest, on the isle of Rügen', aura: 8, realm: 'Magic', line: 2797,
   summary: 'The domus magna of House Bjornaer: the six Elders of its council, split between Harmonists and Wilderists, run the House from a four-level regio (auras 1, 3, 5 and 8). In Winter these fifty years, since the Danish invasion spread the Dominion over Rügen; a powderkeg waiting for a spark.',
   domusMagna: 'bjornaer', wealth: 'modest', library: 'good', vis: 'some', gild: 'hawthorn',
+  auraNote: 'The aura of 8 is the book’s: Crintera stands on the fourth and highest level of a regio whose levels have auras of 1, 3, 5 and 8, higher than Durenmar’s 7. The magi live and work on the fourth level; the clans live hidden at the lower levels, out of the strongest aura, and visiting Bjornaer magi may make a sanctum on the third.',
   folk: { grogs: 40, servants: 40, craftsmen: 8, laborers: 20, text: 'Six clans named for the Elders’ seats (Wolf, Bear, Horse, Stag, Eagle and Swan), all trained in wood-craft as well as fighting, living hidden in the forest at the regio’s lower levels.' },
+  hooksBoons: [
+    ['boon-Major-regio', 'a four-level regio in the Stubnitz Forest'], ['boon-Minor-aura', 'the aura of 8 on the fourth level'], ['boon-Minor-aura', 'the aura of 8 on the fourth level'], ['boon-Minor-aura', 'the aura of 8 on the fourth level'], ['boon-Minor-aura', 'the aura of 8 on the fourth level'], ['boon-Minor-aura', 'the aura of 8 on the fourth level'],
+    ['boon-Minor-seclusion', 'hidden in the forest of Rügen'], ['boon-Minor-strong-community', 'six clans named for the Elders’ seats'], ['boon-Minor-veteran-fighters', 'clansfolk trained in wood-craft and fighting'],
+    ['hook-Minor-house-covenant', 'the domus magna of House Bjornaer'], ['hook-Major-fractured-council', 'the Elders split between Harmonists and Wilderists'],
+    ['hook-Minor-centralized-kingdom', 'Rügen under the Danish king since 1168'], ['hook-Minor-church-territories', 'the Dominion spreading over Rügen'], ['hook-Minor-rival', 'Oculus Septentrionalis, suspected of aiding the Danes'],
+  ],
   magi: [
     { name: 'Urgen', house: 'bjornaer', gender: 'Male', age: 114, rank: 'archmage', role: 'beast', arts: ['Mu', 'An'], heartbeast: 'bear', title: 'Seat of the Bear; leader of the Hawthorn Gild', gild: 'hawthorn', traits: [['Quick-Tempered', 5], ['Authoritarian', 4], ['Peaceful', -4]], note: 'Primus during the Danish invasion and the most influential Wilderist; would have the Order hold back the mundanes to protect the wild. Some say he harries settlers with “animal attacks.”', line: 2847 },
     {
-      name: 'Falke', house: 'bjornaer', gender: 'Female', age: 49, rank: 'master', role: 'politician', arts: ['Aq', 'Mu'], title: 'Prima of House Bjornaer, Seat of the Wolf', gild: 'linden', traits: [['Optimistic', 2], ['Inspirational', 2]], note: 'The young Prima who pleaded at Tribunal for Crintera to resist the occupiers; a Harmonist with a Major Magical Focus in bodies of water.',
-      statArts: { Cr: 7, In: 8, Mu: 9, Pe: 5, Re: 7, An: 5, Aq: 16, Au: 6, Co: 7, He: 5, Ig: 4, Im: 6, Me: 6, Te: 5, Vi: 6 }, statChars: { Int: 2, Per: 2, Pre: 4, Com: 2, Str: -2, Sta: -1, Dex: 0, Qik: -1 }, statVirtues: ['affinity-with-art:Aq'], line: 2854,
+      name: 'Falke', house: 'bjornaer', gender: 'Female', age: 49, rank: 'master', role: 'politician', arts: ['Aq', 'Mu'], title: 'Prima of House Bjornaer, Seat of the Wolf', gild: 'linden', traits: [['Optimistic', 2], ['Inspirational', 2]], note: 'The young Prima who pleaded at Tribunal for Crintera to resist the occupiers; a Harmonist with a Major Magical Focus in bodies of water.', line: 2854,
     },
     { name: 'Jon Arnsson', house: 'bjornaer', gender: 'Male', age: 98, rank: 'master', role: 'beast', arts: ['Re', 'An'], heartbeast: 'lion', title: 'Seat of the Stag, protector of the covenant', traits: [['Pious', 3], ['Conflicted', 2]], note: 'A devout Christian who believes the Danish invasion righteous, and is fiercely loyal to Crintera: his loyalties are torn.', line: 2929 },
     { name: 'Phyllia', house: 'bjornaer', gender: 'Female', age: 58, rank: 'master', role: 'explorer', arts: ['In', 'An'], heartbeast: 'polecat', title: 'Seat of the Eagle', traits: [['Curious', 3], ['Restless', 1], ['Discreet', -3]], note: 'Keeps the council informed of the Order’s doings; travels widely, a notorious gossip. A Harmonist.', priorities: ['longevity', 'travel', 'read', 'vis', 'invent'], line: 2936 },
@@ -225,12 +271,18 @@ const IRENCILLIA: BookCovenant = {
   id: 'irencillia', name: 'Irencillia', season: 'Autumn', founded: 792, place: 'the northern Bohemian Forest', aura: 5, realm: 'Faerie', line: 3121,
   summary: 'The domus magna of House Merinita, hidden in faerie woods and seen differently by every visitor: a castle of living wood, a tumulus, a hall. Its faerie aura is patchy (1 to 6, sancta in the strongest); each magus’ caricature lives among the fae covenfolk. Larger now than ever, and secluded from Tribunal politics.',
   domusMagna: 'merinita', wealth: 'comfortable', library: 'good', vis: 'some', gild: 'elder',
+  auraNote: 'Its faerie aura is patchy, from 1 to 6, with the sancta in the strongest places; 5 is the toolkit’s figure for the whole.',
   folk: { grogs: 10, servants: 30, craftsmen: 6, laborers: 6, text: 'Fae covenfolk of Faerie Might about 10, each with a little magic for their work; no one forms the same picture of them.' },
+  hooksBoons: [
+    ['boon-Minor-aura', 'the aura of 5'], ['boon-Minor-aura', 'the aura of 5'], ['boon-Minor-inhuman-residents', 'fae covenfolk, each with a little magic for their work'], ['boon-Minor-seclusion', 'hidden deep in faerie woods'],
+    ['boon-Minor-vivid-environment', 'a castle of living wood, a tumulus, a hall: each visitor sees it differently'], ['boon-Major-powerful-ally', 'the faerie court of Irencillia'],
+    ['hook-Minor-faerie-aura', 'the aura is Faerie: Merinita magi with Faerie Magic work in it as in a Magic aura of 5, others as in one of 2 with extra botch dice'],
+    ['hook-Minor-house-covenant', 'the domus magna of House Merinita'], ['hook-Minor-inhuman-covenfolk', 'fae covenfolk'], ['hook-Minor-mutable', 'no one sees it, or its people, the same way twice'],
+  ],
   magi: [
     { name: 'Handri', house: 'merinita', gender: 'Male', age: 81, rank: 'master', role: 'faerie', arts: ['Mu', 'Im'], title: 'Primus of House Merinita', traits: [['Obsessively Secretive', 6], ['Indecisive', 1], ['Secure in Position', -2]], note: 'Turned his attention wholly to the faeries, on long private missions; rumor says he has met survivors of House Diedne. No one has seen him use magic but his signature spell.', priorities: ['longevity', 'travel', 'read', 'vis', 'invent'], line: 3168 },
     {
-      name: 'Ioannes Acer', house: 'merinita', gender: 'Male', age: 23, rank: 'journeyman', role: 'faerie', arts: ['He', 'Re'], gild: 'elder', traits: [['Reckless', 2], ['Chivalrous', 2]], note: 'A young knight of House Merinita, Deft in Herbam, under a vow of chivalry; his magic is strongest on horseback.',
-      statArts: { Cr: 6, In: 1, Mu: 7, Pe: 0, Re: 10, An: 3, Aq: 0, Au: 0, Co: 3, He: 10, Ig: 0, Im: 1, Me: 0, Te: 6, Vi: 3 }, statChars: { Int: 2, Per: 0, Pre: 1, Com: 0, Str: 1, Sta: 1, Dex: 1, Qik: 0 }, statVirtues: ['flawless-magic', 'knight'], line: 3175,
+      name: 'Ioannes Acer', house: 'merinita', gender: 'Male', age: 23, rank: 'journeyman', role: 'faerie', arts: ['He', 'Re'], gild: 'elder', traits: [['Reckless', 2], ['Chivalrous', 2]], note: 'A young knight of House Merinita, Deft in Herbam, under a vow of chivalry; his magic is strongest on horseback.', line: 3175,
     },
     { name: 'Vinaria', house: 'merinita', gender: 'Female', age: 97, rank: 'archmage', role: 'politician', arts: ['Mu', 'Me'], traits: [['Enigmatic', 3], ['Self-Assured', 3], ['Hostile', -3]], note: 'The former Prima, outmaneuvered by Handri; said to have entered Faerie Twilight, she came back seven years later unchanged, and Handri fears her.', line: 3221 },
     { name: 'Glesig', house: 'merinita', gender: 'Female', age: 62, rank: 'master', role: 'faerie', arts: ['Mu', 'Te'], traits: [['Impatient', 2], ['Friendly', 1], ['Tolerant of Fools', -2]], note: 'The House’s expert on the subterranean fae, a specialist in Terram; her caricature Humnel, an immense troll, is her faerie familiar.', familiar: 'Humnel, her troll caricature', line: 3228 },
@@ -254,6 +306,11 @@ const ROZNOV: BookCovenant = {
   summary: 'Two halves that barely know each other: the pagan priesthood of the Slavic god Radegast, led by Archmage Igor Rastvan, whose summer solstice festival on Mount Radhost (aura 6) yields dozens of pawns of vis fed with human blood; and an archconservative stronghold of House Tremere with ties to Transylvania. Few in the Rhine trust it.',
   wealth: 'modest', library: 'modest', vis: 'rich', gild: 'oak',
   folk: { grogs: 30, servants: 20, craftsmen: 6, laborers: 50, companions: 3, text: 'A score of servants and soldiers at the castle and four times as many in the village below, rotating between them; three young companions each think himself heir to a Kingdom of the Slavs.' },
+  hooksBoons: [
+    ['boon-Minor-aura', 'the aura of 4'], ['boon-Major-hedge-tradition', 'the priesthood of Radegast'], ['boon-Minor-veteran-fighters', 'the castle’s soldiers'], ['boon-Minor-strong-community', 'Radegast’s worshippers'],
+    ['hook-Major-fractured-council', 'two halves that barely know each other'], ['hook-Minor-evil-custom', 'the solstice festival on Mount Radhost, fed with human blood'], ['hook-Minor-infamous', 'few in the Rhine trust it'],
+    ['hook-Major-tribunal-border', 'the eastern edge of the Rhine, with ties to Transylvania'], ['hook-Minor-dark-secret', 'the blood of the festival'],
+  ],
   magi: [
     { name: 'Igor Rastvan', house: 'ex-miscellanea', gender: 'Male', age: 101, rank: 'archmage', role: 'mystic', arts: ['Pe', 'Co'], title: 'High priest of Radegast', traits: [['Devoted to Radegast', 6], ['Overconfident', 2], ['Peaceful', -2]], note: 'Hale eighty years from his Gauntlet; perhaps the only archmage of his House. His Slavic cursing magic slays from afar, drawing power from pagan ceremony.', line: 3311 },
     { name: 'Severicus', house: 'tremere', gender: 'Male', age: 77, rank: 'master', role: 'politician', arts: ['Re', 'Te'], traits: [['Unyielding', 3], ['Obsessive', 2], ['Sympathetic', -2]], note: 'A noted master of Terram who detests change of any kind; holds his own sigil and about two-fifths of the other Tremere sigils, his two filii’s and Hygwald Veritas’ among them.', priorities: ['longevity', 'politics', 'read', 'vis', 'invent'], line: 3318 },
@@ -274,10 +331,15 @@ const ROZNOV: BookCovenant = {
 };
 
 const TRIAMORE: BookCovenant = {
-  id: 'triamore', name: 'Triamore', season: 'Autumn', seasonGuess: true, founded: 1151, place: 'a castle and manor on the Meuse at the edge of the Ardennes', aura: 2, realm: 'Magic', line: 1395,
+  id: 'triamore', name: 'Triamore', season: 'Summer', seasonGuess: true, founded: 1151, place: 'a castle and manor on the Meuse at the edge of the Ardennes', aura: 2, realm: 'Magic', line: 1395,
   summary: 'A castle and manorial estate long embroiled in mundane politics, kept from censure by its shrewd princeps Daria la Gris. Weakened by recent deaths and Twilight, it seeks new members and guests; its library is famed, and guests are expected to contribute to it.',
   wealth: 'comfortable', library: 'good', vis: 'some', gild: 'apple',
   folk: { grogs: 12, servants: 20, craftsmen: 5, laborers: 15, text: 'The household of a castle and manor.' },
+  hooksBoons: [
+    ['boon-Major-exceptional-book', 'its famed library'], ['boon-Minor-wealth', 'a comfortable manorial estate'], ['boon-Minor-tower-keep', 'its castle on the Meuse'],
+    ['hook-Minor-weak-aura', 'a Magic aura of only 2'], ['hook-Major-mundane-politics', 'long embroiled in the politics of Lower Lorraine'], ['hook-Major-tribunal-border', 'the western fringe of the Rhine, by the Normandy Tribunal'],
+    ['hook-Minor-hermetic-politics', 'the Quaesitores have long sought its censure'], ['hook-Minor-unsafe', 'stories of recent troubles and deaths keep guests away'],
+  ],
   magi: [
     { name: 'Daria la Gris', house: 'tremere', gender: 'Female', age: 67, rank: 'master', role: 'politician', arts: ['Re', 'Vi'], title: 'Princeps; co-leader of the Apple Gild', gild: 'apple', traits: [['Sophisticated', 2], ['Studious', 1], ['Frivolous', -3]], note: 'Stern and uncompromising; works for a new Lotharingian Tribunal with Triamore at its heart, and fosters friendships in Normandy. Has trained two apprentices.', priorities: ['longevity', 'politics', 'read', 'vis', 'invent'], line: 1399 },
     { name: 'Remi of Museau', house: 'jerbiton', gender: 'Male', age: 48, rank: 'master', role: 'social', arts: ['Cr', 'Re'], traits: [['Unpretentious', 3], ['Worldly', 3], ['Cheerful', 2]], note: 'A friendly polymath who can debate scholars, fight, hunt, make music and poetry, much of it without magic, and knows many useful spells.', line: 1406 },
@@ -294,12 +356,100 @@ const TRIAMORE: BookCovenant = {
   ],
 };
 
+/**
+ * The motions the book has coming before the Rhine's gatherings, and how each gild stands on them
+ * (Tribunal Politics: the Oak can count on the Ash or the Hawthorn but rarely both, all three unite
+ * against the Apple's agenda, the Linden often backs the Apple, and nobody much minds the Elder).
+ */
+const MOTIONS: BookMotion[] = [
+  {
+    id: 'heorot', year: 1221, again: 40, title: 'The admission of Heorot',
+    text: 'Oculus Septentrionalis sponsors Heorot, on Zealand in lands of the Novgorod Tribunal, for membership of the Rhine. Many greet the move with glee (taking territory from Novgorod is the ultimate one-upmanship); Crintera opposes it, fearing for its vis sources near Rügen; Waddenzee does not protest.',
+    gilds: { oak: 'for', ash: 'for', apple: 'for', hawthorn: 'against', elder: 'split', linden: 'split' },
+    covenants: { 'oculus-septentrionalis': 'for', crintera: 'against' },
+    passed: 'Heorot is admitted to the Rhine Tribunal: its magi hold their sigils from now on. Novgorod is not yet aware of it.',
+    failed: 'Heorot is refused, and stays outside the Tribunal in the lands of Novgorod: it may ask again at a later gathering.',
+    line: 2733,
+  },
+  {
+    id: 'praeco', year: 1221, again: 40, title: 'An inquiry into the Rhine’s oldest magus',
+    text: 'Fengheld proposes an investigation into which magus of the Rhine is the oldest: a first step to making the Praeco the eldest magus, as elsewhere in the Order, rather than the Primus of Bonisagus. Eule of Fengheld may be the eldest; Caecilius of Durenmar and Schadrit of Dankmar may be older, and the records are in doubt.',
+    gilds: { oak: 'against', apple: 'for', linden: 'split', ash: 'split', hawthorn: 'split', elder: 'split' },
+    covenants: { fengheld: 'for', durenmar: 'against', dankmar: 'for' },
+    passed: 'The Tribunal orders an inquiry into its oldest magus. Eule, Caecilius and Schadrit are each said to be the eldest; whoever it proves to be, Durenmar’s hold on the Praeco is shaken.',
+    failed: 'The Praeco stays the Primus of Bonisagus, as the Rhine has always had it; Fengheld will try again.',
+    line: 792,
+  },
+  {
+    id: 'ruegen', year: 1228, again: 30, title: 'Crintera against the Danes on Rügen',
+    text: 'Crintera asks once more for leave, under the Guardians of the Forests ruling, to drive the Danish settlers from Rügen. The Tribunal refused in 1186 and 1194 (Caecilius held that no wilderness had been destroyed); the Hawthorn and the Ash backed it then, and the Elder, surprisingly. Crintera itself is divided between Harmonists and Wilderists.',
+    gilds: { hawthorn: 'for', ash: 'for', elder: 'split', oak: 'against', linden: 'against', apple: 'against' },
+    covenants: { crintera: 'split' },
+    passed: 'The Tribunal allows Crintera to resist the occupiers of Rügen: the Wilderists of House Bjornaer are vindicated, and the Danes will feel it.',
+    failed: 'The Tribunal again refuses Crintera leave to act against the Danes: the Wilderists blame the Bjornaer council, and the House grows more divided.',
+    line: 2805,
+  },
+  {
+    id: 'lotharingia', year: 1228, title: 'A Lotharingian Tribunal',
+    text: 'Before the Grand Tribunal of 1228, which meets at Durenmar, the Apple Gild asks the Rhine not to stand against a new Lotharingian Tribunal of the Low Countries, with two covenants of Normandy. Oculus Septentrionalis, Triamore and about half of Fengheld are committed to it, and Waddenzee is keen to escape the Rhine. (The book has the gild bring it to the Grand Tribunal itself; here the Rhine decides its stand first.)',
+    gilds: { apple: 'for', oak: 'against', ash: 'against', hawthorn: 'against', linden: 'split', elder: 'split' },
+    covenants: { 'oculus-septentrionalis': 'for', triamore: 'for', waddenzee: 'for', fengheld: 'split' },
+    passed: 'The Rhine will not stand in the way: at the Grand Tribunal the Apple Gild proposes a Lotharingian Tribunal with the Rhine’s leave.',
+    failed: 'The Rhine sets itself against a Lotharingian Tribunal: the Apple Gild must take its case to the Grand Tribunal without it.',
+    line: 838,
+  },
+  {
+    id: 'norse-war', year: 1235, again: 25, title: 'War on the Order of Odin',
+    text: 'The Ash Gild asks the Tribunal to move against the Norse wizards it calls the Order of Odin, as Oculus Septentrionalis was founded to do. Murion’s ambition for the Rhine favors it; Oculus Septentrionalis, quietly trading with the Norse, does not.',
+    gilds: { ash: 'for', oak: 'split', hawthorn: 'split', elder: 'split', linden: 'against', apple: 'against' },
+    covenants: { 'oculus-septentrionalis': 'against', waddenzee: 'for', heorot: 'for' },
+    passed: 'The Tribunal sanctions action against the Order of Odin: the Ash Gild’s magi make ready to go north, with Oculus Septentrionalis as their staging post whether it likes it or not.',
+    failed: 'The Tribunal will not make war on the Norse wizards; the Ash Gild bides its time.',
+    line: 1629,
+  },
+];
+
+/** The two magi the book describes who belong to no covenant: a Quaesitor peregrinator, and a maga who winters at Fengheld. */
+const WANDERERS: BookWanderer[] = [
+  {
+    name: 'Tabanus', house: 'guernicus', gender: 'Male', age: 38, rank: 'journeyman', role: 'politician', arts: ['In', 'Me'], title: 'Quaesitor; the Gadfly of the Rhine',
+    traits: [['Law Abiding', 3], ['Tenacious', 3], ['Honorable', 2]],
+    note: 'A Quaesitor sent to the Rhine by House Guernicus a decade ago, already unpopular: a peregrinator who stays a few years at each covenant, favoring those of young magi, and insists on a rigid adherence to the Code wherever he is',
+    wanders: 'peregrinator', startsAt: 'triamore', stay: 3, favors: 'young',
+    priorities: ['longevity', 'politics', 'read', 'invent', 'read', 'vis', 'practice'],
+    approach: { id: 'tabanus', kind: 'request', chance: 25, line: 641, text: 'Tabanus the Quaesitor asks for hospitality at the covenant under the Rhine’s guest-laws (three to seven years, three pawns of vis a year, or a season’s service), and hopes to become a member. Once in, he will insist on a rigid adherence to the Code.' },
+    line: 582,
+  },
+  {
+    name: 'Felicia', house: 'bonisagus', gender: 'Female', age: 24, rank: 'journeyman', role: 'explorer', arts: ['Cr', 'Au'], gild: 'linden',
+    traits: [['Loner', 2], ['Self-Reliant', 1], ['Suspicious', -2]],
+    note: 'Filia of Dorana of Fengheld, freshly Gauntleted: her magic waxes in winter, which she spends in a covenant’s laboratory (Fengheld has promised her one, for favors as yet unspecified), and wanes in summer, when she takes to the road after the natural phenomena her studies need',
+    wanders: 'seasonal', startsAt: 'fengheld', winters: 'fengheld',
+    priorities: ['invent', 'invent', 'travel', 'vis', 'read', 'practice'],
+    approach: { id: 'felicia', kind: 'visit', chance: 15, line: 727, text: 'Felicia asks to winter at the covenant, where her magic is strongest. She may come with the aim of making peace between the covenant and one that dislikes it, having just stayed there herself.' },
+    line: 685,
+  },
+];
+
 export const RHINE: TribunalBook = {
   tribunal: 'Rhine',
   book: 'GotF',
   title: 'Guardians of the Forests: The Rhine Tribunal',
   present: 1220,
-  gathering: { every: 7, from: 1221, at: 'durenmar', line: 741 },
-  otherGatherings: [{ name: 'The Gathering of Twelve Years', every: 12, from: 1227, at: 'crintera', house: 'bjornaer', line: 2819 }],
+  // the formal proceedings begin on the eve of the 1st of May (Walpurgis Night)
+  gathering: { every: 7, from: 1221, at: 'durenmar', line: 741, season: 'Spring' },
+  otherGatherings: [
+    { name: 'The Gathering of Twelve Years', every: 12, from: 1227, at: 'crintera', house: 'bjornaer', line: 2819 },
+    { name: 'The Grand Tribunal', every: 33, from: 1228, at: 'durenmar', line: 4328 },
+  ],
   covenants: [DURENMAR, FENGHELD, CRINTERA, IRENCILLIA, OCULUS, DANKMAR, WADDENZEE, ROZNOV, TRIAMORE, HEOROT],
+  sheets: RHINE_SHEETS,
+  texts: RHINE_TEXT,
+  motions: MOTIONS,
+  wanderers: WANDERERS,
+  // the Tremere exarchs: Severicus those of his two filii and Hygwald Veritas of Waddenzee, Stentorius the rest
+  heldSigils: [
+    { house: 'tremere', holder: 'Severicus', covenants: ['roznov', 'waddenzee'], line: 3323 },
+    { house: 'tremere', holder: 'Stentorius', line: 2524 },
+  ],
 };

@@ -3,9 +3,9 @@
 // passing; the turn of the year closes each covenant's books, pays allowances, renews wards, ages
 // everyone, and adds the year's Warping.
 
-import { ART_NAMES, CHARACTERISTICS, type Art, type Characteristic, type GameData } from '../data';
+import { ART_NAMES, type Art, type Characteristic, type GameData } from '../data';
 import { deriveCharacter, type DerivedCharacter } from './character/derive';
-import { characterContext, covenantAura, covenantOf, type CharacterContext } from './context';
+import { characterContext, covenantAura, covenantOf, labAuraFor, type CharacterContext } from './context';
 import { deriveCovenant } from './covenant';
 import { covenfolkYearEnd } from './covenfolk';
 import { deriveLab } from './lab';
@@ -15,7 +15,7 @@ import { defaultRng, describeStress, stressDie, type Rng } from './dice';
 import { payAllowance } from './economy';
 import { constantWarping, effectExpiry, expireEffects, nextSeason, seasonIndex } from './effects';
 import { hazardPenalty } from './disease';
-import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, visForStudy } from './longterm';
+import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, sparestCharacteristic, visForStudy } from './longterm';
 import { planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
 import { auraOf, changeAura, dominionYearEnd, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
@@ -28,6 +28,7 @@ import { libraryYearEnd, scriptoriumYear, workWriting, writingFor } from './book
 import { purseOf, takeVis, visText } from './vis';
 import { choosePriority, priorityLabel } from './priorities';
 import { gatheringIn, gatheringNews, livingIds, livingYearEnd } from './living';
+import { apprenticesYearEnd, tribunalGathering, wanderersSeasonStart, wanderersYearEnd } from './tribunalLife';
 import { workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
 import { uid } from '../util/id';
@@ -165,7 +166,19 @@ export function runExtraSeason(c: Character, d: DerivedCharacter, ctx: Character
   return out.map((l) => `Extra season: ${l}`);
 }
 
-function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, s: StandingActivity, chars?: Character[]): string[] {
+function runActivity(c: Character, d: DerivedCharacter, ctx0: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, s: StandingActivity, chars?: Character[]): string[] {
+  // lab work and study from vis under the covenant's laboratory aura (the magestones), when one is free
+  const labWork = (s.kind === 'lab' && (!!s.projectUid || !!c.projects?.some((p) => !p.done))) || s.kind === 'vis';
+  const stone = labWork ? labAuraFor(c, cov, ctx0, year, season, { take: true, faerieMagic: d.virtues.some((v) => v.cv.defId === 'faerie-magic') }) : undefined;
+  const ctx = stone ?? ctx0;
+  if (stone && cov?.labAura) {
+    const out = runActivityIn(c, d, ctx, cov, data, year, season, rng, s, chars);
+    return out.map((l, i) => (i === 0 ? `${l} (Under ${cov.labAura!.name}: a ${cov.labAura!.realm} aura of ${cov.labAura!.strength}.)` : l));
+  }
+  return runActivityIn(c, d, ctx, cov, data, year, season, rng, s, chars);
+}
+
+function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, s: StandingActivity, chars?: Character[]): string[] {
   const log = (activity: SeasonLogEntry['activity'], summary: string, gains: Record<string, number>, warping = 0) => {
     const e = newSeasonEntry(year, season, activity, summary, gains);
     if (warping) e.warpingPoints = warping;
@@ -329,10 +342,6 @@ function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, c
 }
 
 /** The Characteristic that takes an Aging Point "in any Characteristic" with the least harm: the one furthest from dropping. */
-function sparestCharacteristic(c: Character): Characteristic {
-  return [...CHARACTERISTICS].sort((a, b) => Math.abs(c.characteristics[b]) - (c.agingPoints[b] ?? 0) - (Math.abs(c.characteristics[a]) - (c.agingPoints[a] ?? 0)))[0];
-}
-
 /** Someone who can tend a character through an aging crisis (DE, Aging: Int + Medicine against 6 adds their Medicine to the survival roll). */
 export interface Attendant {
   id?: string;
@@ -597,9 +606,12 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   const ctxOf = (c: Character) => characterContext(c, state.covenants, data);
 
   // the living covenants of the Tribunal (built from its book): their lines are kept apart in the report
-  const living = livingIds(state.covenants);
-  const tribunalOf = (c: Character) => (living.members.has(c.id) ? covenantOf(c, state.covenants)?.id ?? state.covenants.find((x) => x.memberIds.includes(c.id))?.id : undefined);
+  const living = livingIds(state.covenants, state.characters);
+  const tribunalOf = (c: Character) => (living.members.has(c.id) ? covenantOf(c, state.covenants)?.id ?? state.covenants.find((x) => x.memberIds.includes(c.id))?.id ?? 'wanderers' : undefined);
   const gathering = gatheringIn(saga, year, season);
+  const g = { data, saga, rules: saga.houseRules };
+  // the wanderers who winter at a covenant and summer on the road move first
+  for (const l of wanderersSeasonStart(state, year, season, rng)) lines.push({ ...l, kind: 'season' });
 
   // the season's work: what each character logged, or its standing activity; and an extra season for one who needs no sleep
   for (const c of state.characters.filter(inPlay)) {
@@ -620,7 +632,13 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       for (const t of runExtraSeason(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t, tribunal });
   }
   const gatheringItem = gatheringNews(saga, year, season);
-  if (gatheringItem && living.covenants.size) saga.tribunalNews = [gatheringItem, ...(saga.tribunalNews ?? [])];
+  if (gatheringItem && living.covenants.size) {
+    saga.tribunalNews = [gatheringItem, ...(saga.tribunalNews ?? [])];
+    // the gathering's business: promotions, the motions due, certamen between magi at odds
+    const r = tribunalGathering(state, g, year, season, rng);
+    for (const l of r.lines) lines.push({ ...l, kind: 'covenant' });
+    if (r.news.length) saga.tribunalNews = [...r.news, ...saga.tribunalNews];
+  }
 
   // the turn of the year (after Winter): covenants, then each character's year
   if (season === 'Winter') {
@@ -653,9 +671,12 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     // a living covenant's year-end lines go with the Tribunal's
     for (const l of lines.slice(yearStart)) if (!l.tribunal && state.covenants.some((x) => x.living && x.name === l.who)) l.tribunal = state.covenants.find((x) => x.living && x.name === l.who)!.id;
     if (living.covenants.size) {
-      const r = livingYearEnd(state, { data, saga, rules: saga.houseRules }, year, rng, wasAlive);
-      for (const l of r.lines) lines.push({ ...l, kind: 'covenant' });
-      if (r.news.length) saga.tribunalNews = [...r.news, ...(saga.tribunalNews ?? [])];
+      const r = livingYearEnd(state, g, year, rng, wasAlive);
+      const a = apprenticesYearEnd(state, g, year, rng);
+      const w = wanderersYearEnd(state, year, rng);
+      for (const l of [...r.lines, ...a.lines, ...w.lines]) lines.push({ ...l, kind: 'covenant' });
+      const items = [...r.news, ...a.news, ...w.news];
+      if (items.length) saga.tribunalNews = [...items, ...(saga.tribunalNews ?? [])];
     }
     if (saga.tribunalNews && saga.tribunalNews.length > 150) saga.tribunalNews = saga.tribunalNews.slice(0, 150);
   }

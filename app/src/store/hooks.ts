@@ -53,7 +53,7 @@ export function usePlayerCharacters(sagaId?: string): Character[] {
   const chars = useSagaCharacters(sagaId);
   const covs = useSagaCovenants(sagaId);
   return useMemo(() => {
-    const npc = livingIds(covs).members;
+    const npc = livingIds(covs, chars).members;
     const living = new Set(covs.filter((c) => c.living).map((c) => c.id));
     return chars.filter((c) => !npc.has(c.id) && !(c.covenantId && living.has(c.covenantId)));
   }, [chars, covs]);

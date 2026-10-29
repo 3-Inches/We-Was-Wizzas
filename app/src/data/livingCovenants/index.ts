@@ -3,7 +3,7 @@
 import { RHINE } from './rhine';
 import type { BookCovenant, TribunalBook } from './types';
 
-export type { BookApproach, BookCovenant, BookMagus, BookOthers, BookRelation, BookService, TribunalBook } from './types';
+export type { BookApproach, BookCovenant, BookMagus, BookMotion, BookOthers, BookRelation, BookService, BookWanderer, TribunalBook } from './types';
 
 export const TRIBUNAL_BOOKS: TribunalBook[] = [RHINE];
 

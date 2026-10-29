@@ -30,6 +30,7 @@ import { freshName, homelandGroupFor, regionOf } from './names';
 import { generateFamiliar, pickSpells, type SpellPick } from './spellsAndFamiliars';
 import { COMMON_TRAITS, ROLE_BY_ID, rolesFor, type Role } from './roles';
 import { between, chance, pick, sample, seeded } from './random';
+import { favoriteArts } from './variety';
 
 /** How far the build strays from the role: keep to it, vary it, or anything goes. */
 export type Variety = 'focused' | 'varied' | 'wild';
@@ -136,6 +137,8 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     const pg = o.yearsPostGauntlet ?? (o.npc ? Math.floor(rng() * rng() * 40) : between(rng, 0, 3));
     c.creation.yearsPostGauntlet = pg;
     c.age = c.creation.apprenticeshipStartAge + 15 + pg;
+    // a magus past 35 spent a season devising a Longevity Ritual, which costs that year 10 points (DE p.50)
+    if (c.age > 35 && pg > 0) c.creation.postGauntletLabSeasons = Math.max(c.creation.postGauntletLabSeasons ?? 0, 1);
   } else {
     const [lo, hi] = role.ages ?? TYPE_AGES[o.type];
     c.age = o.age ?? between(rng, lo, hi);
@@ -158,12 +161,18 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   fillChoices(c, data, rng);
 
   // ------------------------------------------------------------ the build
+  // a magus's favorite Arts, unless the answers name them: a Technique and a Form or two, mostly what
+  // the House is known for, so magi of one role are not all alike
+  const namesArts = Object.keys({ ...o.answers, ...role.answers }).some((k) => k.startsWith('b-art-'));
+  const favorites = o.type === 'magus' && !namesArts ? favoriteArts(rng, house ?? o.house, o.variety) : [];
   const st = simulate(
     {
       name: role.id,
       answer: (q) => {
         if (o.answers && q.id in o.answers) return o.answers[q.id];
         if (role.answers && q.id in role.answers) return role.answers[q.id];
+        if (favorites.length && q.id === 'b-arts') return 8;
+        if (favorites.length && q.id.startsWith('b-art-')) return favorites.includes(q.id.slice(6) as never) ? between(rng, 8, 10) : undefined;
         if (q.chip) return undefined;
         const p = o.variety === 'focused' ? 0.08 : o.variety === 'varied' ? 0.3 : 0.55;
         if (!chance(rng, p)) return undefined;
@@ -174,12 +183,14 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     { c, d: derive(), data, rules, saga, covenant: g.covenant, archetypes: c.creation.archetypes },
   ).state;
   if (house) st.house = house;
-  const res = autoBuild(c, st, { data, rules, saga, covenant: g.covenant, archetypes: c.creation.archetypes });
+  const res = autoBuild(c, st, { data, rules, saga, covenant: g.covenant, archetypes: c.creation.archetypes, rng });
+  if (favorites.length) log.unshift(`Favorite Arts: ${favorites.join(', ')}.`);
   log.push(...res.log);
 
   // ------------------------------------------------------------ after the build
   let d = derive();
   ageBeforePlay(c, d, rng, log);
+  warpBeforePlay(c, rng, log);
   d = derive();
   addTraits(c, role, rng);
   addGear(c, d, role, rng, data);
@@ -251,12 +262,28 @@ function ageBeforePlay(c: Character, d: DerivedCharacter, rng: () => number, log
     const bonus = longevityBonus(lt, 0, false);
     if (bonus > 0) c.longevity = { labTotal: lt, bonus, extraVis: 0, createdYear: c.birthYear + 35 };
   }
-  const plan = { livingConditions: c.type === 'magus' ? 1 : 0, longevity: c.longevity?.bonus ?? 0, extra: d.agingRollParts, anyChar: pick(rng, CHARACTERISTICS), renewLongevity: true };
+  const plan = { livingConditions: c.type === 'magus' ? 1 : 0, longevity: c.longevity?.bonus ?? 0, extra: d.agingRollParts, anyChar: 'sparest' as const, renewLongevity: true };
   // a year that would kill is rolled again, as a player may; one that keeps killing is left for the
   // storyguide (the rules check then says which years are still to roll)
   const done = () => c.creation.agedThrough ?? d.agingStartAge - 1;
   for (let tries = 0; done() < c.age - 1 && tries < 10; tries++) ageYears(c, Math.max(d.agingStartAge, done() + 1), c.age - 1, plan, rng);
   log.push(`Aged from ${d.agingStartAge} to ${done() + 1}${c.longevity ? ` with a Longevity Ritual (+${c.longevity.bonus})` : ''}: ${c.decrepitudePoints} Decrepitude points.`);
+}
+
+/**
+ * The Warping a magus has gathered since Gauntlet: a point a year under a Longevity Ritual (a
+ * constant mystical effect, DE p.168) and a point every two or three years from powerful magic and
+ * botches (DE's own example, Darius, is a botching sort, and has twice that).
+ */
+function warpBeforePlay(c: Character, rng: () => number, log: string[]) {
+  if (c.type !== 'magus') return;
+  const pg = c.creation.yearsPostGauntlet;
+  const ritual = c.longevity ? Math.max(0, c.age - ((c.longevity.createdYear ?? c.birthYear + 35) - c.birthYear)) : 0;
+  const other = Math.round(pg * (0.2 + rng() * 0.5));
+  const points = ritual + other;
+  if (!points) return;
+  c.warpingPoints += points;
+  log.push(`Warping: ${points} point${points > 1 ? 's' : ''} (${ritual ? `${ritual} from the Longevity Ritual, ` : ''}${other} from ${pg} years of magic).`);
 }
 
 /**

@@ -7,9 +7,11 @@ import { newSaga } from '../store/store';
 import { deriveCharacter } from './character/derive';
 import { validateCharacter } from './character/validate';
 import { characterContext } from './context';
+import { auraOf } from './aura';
 import { deriveCovenant, newCovenant } from './covenant';
 import { DEFAULT_YEAR_END, planYearEnd } from './covenantYear';
-import { ensureAbility } from './character/factory';
+import { ensureAbility, newCharacter } from './character/factory';
+import { applyStatBlock } from './character/statBlock';
 import { generateCharacter } from './generate/character';
 import { seeded } from './generate/random';
 import { findLabText, findSumma, tractatusQuality } from './greatLibrary';
@@ -36,6 +38,90 @@ const faces = (...f: number[]) => {
   let i = 0;
   return () => (f[i++ % f.length] + 0.5) / 10;
 };
+
+describe('the named magi, from their stat blocks', () => {
+  const sheets = RHINE.sheets ?? {};
+  const named = RHINE.covenants.flatMap((c) => c.magi);
+
+  it('has a stat block for every named magus, and every name in it is one the toolkit knows', () => {
+    for (const m of named) expect(sheets[m.name], m.name).toBeTruthy();
+    for (const [name, sb] of Object.entries(sheets)) {
+      const c = newCharacter(named.find((m) => m.name === name)?.ungifted ? 'companion' : 'magus', 's', 1220);
+      c.house = named.find((m) => m.name === name)?.house ?? 'guernicus';
+      expect(applyStatBlock(c, sb, data, rules).problems, name).toEqual([]);
+    }
+  });
+
+  it('keeps the written ones within the creation rules: balanced Virtues and Flaws, Characteristics within their points', () => {
+    // the book's own blocks are as printed (Felicia's and Ioannes Acer's are not quite balanced)
+    const printed = new Set(['Tabanus', 'Felicia', 'Philippus Niger', 'Imanitos Mendax', 'Falke', 'Ioannes Acer']);
+    for (const m of named.filter((x) => !printed.has(x.name))) {
+      const c = newCharacter(m.ungifted ? 'companion' : 'magus', 's', 1220);
+      c.house = m.ungifted ? undefined : m.house;
+      applyStatBlock(c, sheets[m.name], data, rules);
+      const d = deriveCharacter(c, data, rules);
+      expect(d.tally.virtuePoints, m.name).toBe(d.tally.flawPoints);
+      const errors = validateCharacter(d, data, rules).filter((i) => i.severity === 'error' && !/age-based maximum/.test(i.message));
+      expect(errors.map((i) => i.message), m.name).toEqual([]);
+    }
+  });
+
+  it('builds them as the book has them: Philippus’s Perdo and Intelligence, Handri as the secretive Primus, the book’s own words', () => {
+    const s = sagaAt();
+    const durenmar = buildLivingCovenant(RHINE, def('durenmar'), { data, saga: s, rules }, { seed: 4, others: false });
+    const ph = durenmar.chars.find((c) => c.name === 'Philippus Niger')!;
+    const d = deriveCharacter(ph, data, rules);
+    expect(d.arts.Pe.score).toBe(35);
+    expect(d.characteristics.Int.value).toBe(5);
+    expect(ph.familiar?.name).toBe('Sordus');
+    expect(ph.spells.some((x) => x.spell.name === "Demon's Eternal Oblivion" && x.spell.level === 25)).toBe(true);
+    expect(ph.description).toMatch(/Protector of Durenmar[\s\S]*\n\nAppearance: Philippus is a smallish/);
+    const iren = buildLivingCovenant(RHINE, def('irencillia'), { data, saga: s, rules }, { seed: 4, others: false });
+    const handri = iren.chars.find((c) => c.name === 'Handri')!;
+    const ids = handri.virtues.map((v) => v.defId);
+    expect(ids).toContain('faerie-magic');
+    expect(ids).toContain('dark-secret-flaw');
+    for (const odd of ['horrifying-appearance-snake-legs-flaw', 'gender-nonconforming-flaw', 'homunculus-wizard-flaw']) expect(ids).not.toContain(odd);
+    expect(handri.description).toContain('Handri, the Primus of House Merinita, is a secretive man');
+  });
+});
+
+describe('the covenants’ Boons, Hooks and auras', () => {
+  it('gives each covenant Boons and Hooks from the book, keeping its aura at the book’s figure', () => {
+    const s = sagaAt();
+    for (const d of RHINE.covenants) {
+      const b = buildLivingCovenant(RHINE, d, { data, saga: s, rules }, { seed: 2, others: false });
+      expect(b.cov.hooksBoons.length, d.name).toBeGreaterThan(0);
+      for (const h of b.cov.hooksBoons) expect(data.hookBoonById.has(h.defId ?? ''), `${d.name}: ${h.name}`).toBe(true);
+      const a = auraOf(b.cov);
+      expect(a.strength, d.name).toBe(d.aura);
+      expect(a.realm, d.name).toBe(d.realm);
+    }
+    const crintera = buildLivingCovenant(RHINE, def('crintera'), { data, saga: s, rules }, { seed: 2, others: false }).cov;
+    expect(crintera.hooksBoons.some((h) => h.name === 'Regio')).toBe(true);
+    expect(crintera.notes).toMatch(/auras of 1, 3, 5 and 8/);
+    expect(def('triamore').season).toBe('Summer');
+  });
+
+  it('lets Oculus Septentrionalis’s magi work under the magestones two seasons a year each, three at a time', () => {
+    const s = sagaAt(1220, 'Spring');
+    const b = buildLivingCovenant(RHINE, def('oculus-septentrionalis'), { data, saga: s, rules }, { seed: 6 });
+    expect(auraOf(b.cov)).toMatchObject({ realm: 'Divine', strength: 3 });
+    expect(b.cov.labAura?.count).toBe(3);
+    const r = advanceSeasons({ saga: s, characters: b.chars, covenants: [b.cov] }, data, 8, { ...DEFAULT_ADVANCE, rng: seeded(9) });
+    const stoneLines = r.reports.map((rep) => ({ rep, lines: rep.lines.filter((l) => /Under the magestones/.test(l.text)) }));
+    expect(stoneLines.some((x) => x.lines.length > 0)).toBe(true);
+    for (const x of stoneLines) expect(new Set(x.lines.map((l) => l.who)).size, `${x.rep.season} ${x.rep.year}`).toBeLessThanOrEqual(3);
+    for (const year of [1220, 1221]) {
+      const byMagus = new Map<string, number>();
+      for (const x of stoneLines.filter((y) => y.rep.year === year)) for (const who of new Set(x.lines.map((l) => l.who ?? ''))) byMagus.set(who, (byMagus.get(who) ?? 0) + 1);
+      for (const [who, n] of byMagus) expect(n, `${who} in ${year}`).toBeLessThanOrEqual(2);
+    }
+    // no lab work in the Divine aura itself
+    const labInDivine = r.reports.flatMap((rep) => rep.lines).filter((l) => /^(Invent|Extract|Refine) [^:]+: (\+|\d)/.test(l.text) && !/Under the magestones/.test(l.text));
+    expect(labInDivine.map((l) => l.text)).toEqual([]);
+  }, 120_000);
+});
 
 describe('building a covenant from its book', () => {
   it('makes Heorot’s three magi as the book gives them, with labs, a library, vis and accounts that hold', () => {
@@ -71,9 +157,15 @@ describe('building a covenant from its book', () => {
     const saga = sagaAt();
     const { cov, chars } = buildLivingCovenant(RHINE, def('triamore'), { data, saga, rules }, { seed: 5 });
     const ours = newCovenant(saga.id, 1220);
-    const ids = livingIds([ours, cov]);
+    const ids = livingIds([ours, cov], chars);
     expect([...ids.covenants]).toEqual([cov.id]);
     expect(chars.every((c) => ids.members.has(c.id))).toBe(true);
+    // Tabanus starts here, as a guest: one of the Tribunal's, not a member
+    const tabanus = chars.find((c) => c.name === 'Tabanus')!;
+    expect(tabanus.wanderer).toMatchObject({ wanders: 'peregrinator', stay: 3 });
+    expect(cov.memberIds).not.toContain(tabanus.id);
+    expect(tabanus.covenantId).toBe(cov.id);
+    expect(cov.labs.some((l) => l.ownerId === tabanus.id)).toBe(true);
   });
 });
 
@@ -133,20 +225,20 @@ describe('season priorities', () => {
 });
 
 describe('the Tribunal through the years', () => {
-  it('meets at Durenmar every seven years from 1221, in Summer, and the Bjornaer gather at Crintera in 1227', () => {
-    expect(gatheringIn(sagaAt(), 1221, 'Summer')).toEqual({ name: 'the Rhine Tribunal', at: 'Durenmar' });
-    expect(gatheringIn(sagaAt(), 1221, 'Spring')).toBeUndefined();
-    expect(gatheringIn(sagaAt(), 1225, 'Summer')).toBeUndefined();
-    expect(nextGatherings(sagaAt(), 1222).map((g) => [g.name, g.year])).toEqual([['The Rhine Tribunal', 1228], ['The Gathering of Twelve Years', 1227]]);
+  it('meets at Durenmar every seven years from 1221, from Walpurgis Night (Spring), and the Bjornaer gather at Crintera in 1227', () => {
+    expect(gatheringIn(sagaAt(), 1221, 'Spring')).toEqual({ name: 'the Rhine Tribunal', at: 'Durenmar' });
+    expect(gatheringIn(sagaAt(), 1221, 'Summer')).toBeUndefined();
+    expect(gatheringIn(sagaAt(), 1225, 'Spring')).toBeUndefined();
+    expect(nextGatherings(sagaAt(), 1222).map((g) => [g.name, g.year])).toEqual([['The Rhine Tribunal', 1228], ['The Gathering of Twelve Years', 1227], ['The Grand Tribunal', 1228]]);
   });
 
   it('sends a living covenant’s magi to the gathering, and its lines to the Tribunal’s part of the report', () => {
-    const saga = sagaAt(1221, 'Summer');
+    const saga = sagaAt(1221, 'Spring');
     const { cov, chars } = buildLivingCovenant(RHINE, def('heorot'), { data, saga, rules }, { seed: 6 });
     const ours = newCovenant(saga.id, 1220);
     const { state, reports } = advanceSeasons({ saga, characters: chars, covenants: [ours, cov] }, data, 1, { ...DEFAULT_ADVANCE, rng: seeded(2) });
     for (const c of state.characters) {
-      const e = c.seasonLog.find((x) => x.year === 1221 && x.season === 'Summer');
+      const e = c.seasonLog.find((x) => x.year === 1221 && x.season === 'Spring');
       expect(e?.summary).toMatch(/^Attended the Rhine Tribunal at Durenmar/);
       expect(e?.priority).toBe('politics');
     }
@@ -161,10 +253,11 @@ describe('the Tribunal through the years', () => {
     // every chance comes up
     const r1 = advanceSeasons({ saga, characters: chars, covenants: [ours, cov] }, data, 1, { ...DEFAULT_ADVANCE, rollAging: false, rng: () => 0 });
     const news = r1.state.saga.tribunalNews!.filter((n) => n.kind === 'approach');
-    expect(news.map((n) => n.approach)).toEqual(['members', 'library', 'lotharingia']);
-    expect(news[0]).toMatchObject({ covenantId: cov.id, year: 1221, season: 'Spring', approachKind: 'invitation' });
+    // Triamore's, and Tabanus's (its guest) asking to be taken in
+    expect(news.map((n) => n.approach).sort()).toEqual(['library', 'lotharingia', 'members', 'tabanus']);
+    expect(news.find((n) => n.approach === 'members')).toMatchObject({ covenantId: cov.id, year: 1221, season: 'Spring', approachKind: 'invitation' });
     const r2 = advanceSeasons(r1.state, data, 4, { ...DEFAULT_ADVANCE, rollAging: false, rng: () => 0 });
-    expect(r2.state.saga.tribunalNews!.filter((n) => n.kind === 'approach')).toHaveLength(3);
+    expect(r2.state.saga.tribunalNews!.filter((n) => n.kind === 'approach')).toHaveLength(4);
   });
 });
 

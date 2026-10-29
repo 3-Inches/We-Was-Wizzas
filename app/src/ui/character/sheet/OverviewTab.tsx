@@ -9,6 +9,7 @@ import { useStore } from '../../../store/store';
 import { COMPANION_FLAWS, CompanionSheetLink, CreatureCard } from './Creature';
 import { VFText } from '../../VFText';
 import { AgencyCard } from './AgencyCard';
+import { ApprenticeCard } from './ApprenticeCard';
 import { TribunalCard } from './TribunalCard';
 import { SocietyCard } from './SocietyCard';
 
@@ -199,6 +200,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
       {!hasEffects && <EffectsCard ed={ed} />}
       <AgencyCard ed={ed} />
       <TribunalCard ed={ed} />
+      <ApprenticeCard ed={ed} />
       <SocietyCard ed={ed} />
       <Card title="Notes">
         <textarea value={c.notes} rows={6} onChange={(e) => update((x) => void (x.notes = e.target.value))} placeholder="Session notes, goals, secrets…" />
