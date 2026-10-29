@@ -283,8 +283,9 @@ export default function HelpPage() {
         <ul className="small">
           <li>
             <b>The Game table</b> (first in the saga&apos;s menu) is the place to run a session from: what needs attention (money, Loyalty, wounds, a strike, rules
-            problems, idle characters), what everyone does this season (changed in place), the covenants at a glance, <b>End the season</b>, quick dice, and a list of
-            what comes up in play with a link to where it is done. When unsure what to do next, go back to it.
+            problems, idle characters), what everyone does this season (changed in place), the covenants at a glance, <b>End the season</b>, quick dice, quick changes
+            (a Loyalty event, the treasury, vis found), experience and Labor Points after a story, travel, trade and intrigue, and a list of what comes up in play with a
+            link to where it is done. When unsure what to do next, go back to it.
           </li>
           <li>
             <b>Magic:</b> every Casting Score and Lab Total for the current aura, Magic Resistance per Form, Penetration with Arcane Connections, spell casting with the right die,
@@ -399,8 +400,23 @@ export default function HelpPage() {
             court decision on a character&apos;s Overview (optional rule).
           </li>
           <li>
-            <b>Reference only</b> (Game mechanics has the rules): trade ventures, caravans and trading companies, factors and capos, skullduggery, fairs, towns and
-            charters, citizenship, travel and ships, and dowries.
+            <b>Merchants</b> (in the workshop card&apos;s Stories and investments): the book&apos;s story seeds with their Labor Points, by the kind of merchant (local
+            carrier, merchant adventurer, factor, capo), and investments of time: leading a convoy, finding a sponsor, running a blockade, a customs office, a change of
+            government, young talent, repossession, and a capo&apos;s lavish entertainment for Favors.
+          </li>
+          <li>
+            <b>Travel, trade and intrigue</b> (Game table): a journey&apos;s days and cost by road, river or sea, cargo and its carriers, Area Lore to find things, ships
+            chasing, boarding and ramming; bribes, hired criminals and sabotage; intrigue against the powerful; a house&apos;s Reputation, largesse and warehouses; a
+            dowry. Costs can be paid from a purse or the treasury.
+          </li>
+          <li>
+            <b>Disease in a town</b> (Combat &amp; Health → Illness): the ague, the bloody flux, worms, St. Anthony&apos;s fire, tarantism and childbed fever on a Stamina
+            roll, with the wound marked; and on Seasons &amp; Aging, a bad-air trade, a mine or a leper colony worsening the aging roll. A leper takes a Heavy Wound in
+            every aging crisis.
+          </li>
+          <li>
+            <b>Reference only</b> (Game mechanics has the rules): fairs and markets, towns and charters, citizenship, trading companies&apos; organization, the sea trade
+            tables, and novelties.
           </li>
         </ul>
       </Card>

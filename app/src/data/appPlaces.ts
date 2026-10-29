@@ -2,7 +2,7 @@
 // Keyed by the topic ids of the mechanics reference; a `page` is linked (for the active saga), the
 // rest name a tab or card of a character or covenant sheet.
 
-export type AppPage = 'saga' | 'seasons' | 'market' | 'spells' | 'enchant' | 'rules' | 'build' | 'dice';
+export type AppPage = 'saga' | 'seasons' | 'market' | 'spells' | 'enchant' | 'rules' | 'build' | 'dice' | 'table';
 
 export interface AppPlace {
   text: string;
@@ -62,8 +62,8 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'wounds-and-recovery': [{ text: `${SHEET} → Combat & Health → Wounds (and the covenant's aura, if it heals or festers)` }],
   fatigue: [{ text: `${SHEET} → Combat & Health → Fatigue` }],
   'encumbrance-and-carrying': [{ text: 'Character wizard → Personality & Gear' }, { text: `${SHEET} → Combat & Health → Weapons, armor & combat` }],
-  travel: [{ text: 'Market & treasury → Services and hospitality (travel and lodging)', page: 'market' }],
-  'disease-and-poison': [{ text: `${SHEET} → Combat & Health → Illness` }],
+  travel: [{ text: 'Game table → Travel, trade and intrigue: a journey’s days and cost, cargo, Area Lore, ships in a fight', page: 'table' }, { text: 'Market & treasury → Services and hospitality (travel and lodging)', page: 'market' }],
+  'disease-and-poison': [{ text: `${SHEET} → Combat & Health → Illness (and disease in a town)` }, { text: `${SHEET} → Seasons & Aging → aging: bad-air trades, mines, leper colonies` }],
   'medicine-and-healing': [{ text: `${SHEET} → Combat & Health → Illness and Wounds` }],
   // seasons
   'experience-and-advancement': [
@@ -131,14 +131,14 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   // society
   'towns-and-guilds': [{ text: `${SHEET} → Seasons & Aging → Guild` }, { text: `${COV} → Covenfolk, Finances & Loyalty → Craftsmen (guild ranks and Labor Points)` }],
   'crafts-and-workshops': [{ text: `${SHEET} → Seasons & Aging → Workshop` }, { text: 'Dice roller → Item stress check', page: 'dice' }, { text: `${COV} → Covenfolk, Finances & Loyalty → Craftsmen` }],
-  'trade-money-and-wealth': [{ text: 'Market & treasury (haggling and bribes)', page: 'market' }, { text: `${SHEET} → Seasons & Aging → Workshop → Stories and investments` }],
-  'intrigue-and-agents': [{ text: `${SHEET} → Overview → Agents` }],
+  'trade-money-and-wealth': [{ text: 'Market & treasury (haggling and bribes)', page: 'market' }, { text: `${SHEET} → Seasons & Aging → Workshop → Stories and investments (merchants’ story seeds and investments of time)` }, { text: 'Game table → Travel, trade and intrigue: a house’s Reputation, largesse, warehouses, dowries', page: 'table' }],
+  'intrigue-and-agents': [{ text: `${SHEET} → Overview → Agents` }, { text: 'Game table → Travel, trade and intrigue: bribes, hired criminals, sabotage, intrigue against the powerful', page: 'table' }],
   'debate-and-influence': [{ text: `${SHEET} → Overview → Society → Debate` }],
   'the-church': [{ text: `${SHEET} → Overview → Society → Petition the Church` }, { text: `${SHEET} → Seasons & Aging → Plan a season (Worship)` }],
   'social-standing': [{ text: 'Character wizard → Virtues & Flaws (Social Status)' }, { text: `${SHEET} → Seasons & Aging → When nothing is planned (free and working seasons)` }],
   'courtly-life-and-leisure': [{ text: `${SHEET} → Overview → Society → Etiquette` }],
   'hermetic-politics': [{ text: `${SHEET} → Overview → Society → Debate (at Tribunal)` }],
-  'courts-law-and-crime': [{ text: `${SHEET} → Overview → Society → A quick trial` }],
+  'courts-law-and-crime': [{ text: `${SHEET} → Overview → Society → A quick trial` }, { text: 'Game table → Travel, trade and intrigue: bribes, hired criminals, sabotage', page: 'table' }],
   // realms and mysteries
   auras: [
     { text: `${SHEET} → Magic → Circumstances (aura, time of day, alignment)` },

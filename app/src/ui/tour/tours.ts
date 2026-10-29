@@ -682,6 +682,16 @@ export const TOURS: Tour[] = [
         body: 'Treasury, the year’s balance, Loyalty, vis and people for each covenant, with the year’s accounts folded underneath and links to each of its tabs.',
         at: sagaPage('table'), needs: 'saga', target: 'table-covenant',
       },
+      {
+        title: 'After a story',
+        body: 'Adventure experience for each character (at most 5 in any one Art or Ability), logged in the season of the story and sharing it with their other work; Labor Points for a craftsman or merchant whose business the story touched.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-story',
+      },
+      {
+        title: 'Travel, trade and intrigue',
+        body: 'Folded sections for what City & Guild adds at the table: a journey’s days and cost, cargo and Area Lore, ships in a fight; bribes, hired criminals and sabotage; intrigue against the powerful; a house’s Reputation, largesse and warehouses; a dowry. Costs can be paid from a purse or the treasury.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-trade',
+      },
     ],
   },
   {
@@ -727,6 +737,11 @@ export const TOURS: Tour[] = [
         title: 'Damaged goods',
         body: 'When a botch or misuse puts a valued item at risk: a stress die + modifiers against 15. Damage levels come from quality and Size (twice for a lock); repair takes a craftsman’s season and a Labor Point a level.',
         at: page('/dice'), target: 'item-check',
+      },
+      {
+        title: 'Travel, trade and intrigue',
+        body: 'On the Game table: journeys by road, river and sea, bribes and hired criminals, sabotage, intrigue against nobles, a merchant house’s Reputation and largesse, and dowries. A merchant’s story seeds and investments of time (convoys, sponsors, blockades, young talent, a change of government) are in the workshop card’s Stories and investments.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-trade',
       },
     ],
   },

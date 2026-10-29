@@ -1024,7 +1024,9 @@ function CloseYear({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
           {dc.finances.balance} £ this year
         </span>
         <span>Treasury {cov.finances.treasury} £ → {plan.treasuryAfter} £ at the year&apos;s end</span>
-        <Link to={`/saga/${cov.sagaId}/seasons`}>The year ends on the Seasons page ›</Link>
+        <span>
+          The year ends with Winter: <Link to={`/saga/${cov.sagaId}/table`}>Game table</Link> or <Link to={`/saga/${cov.sagaId}/seasons`}>Seasons page</Link> ›
+        </span>
       </div>
       <div className="row" style={{ marginTop: 8 }}>
         <Field label="Allowance to members each year" hint="Paid from the treasury at the year's end, into each one's purse">

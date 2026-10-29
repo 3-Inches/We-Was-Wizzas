@@ -67,7 +67,8 @@ export function seasonsOf(c: Character, d: DerivedCharacter): SeasonPlan {
 /** What a character's season log has spent this year: free seasons, working seasons, worship and extra seasons. */
 export function seasonsUsed(c: Character, year: number): { free: number; work: number; worship: number; extra: number } {
   const used = { free: 0, work: 0, worship: 0, extra: 0 };
-  for (const e of c.seasonLog.filter((x) => x.year === year)) used[seasonUse(e)] += 1;
+  // an adventure shares a season with other work (DE), so it uses none of the year's seasons
+  for (const e of c.seasonLog.filter((x) => x.year === year && x.activity !== 'adventure')) used[seasonUse(e)] += 1;
   return used;
 }
 

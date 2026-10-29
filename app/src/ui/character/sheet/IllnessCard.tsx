@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { auraRecovery } from '../../../engine/aura';
-import { DISEASES, STAGES, STAGE_PENALTY, avoidanceRoll, currentSeverity, illnessFrom, prognosisTotal, recoveryRoll } from '../../../engine/disease';
+import { DISEASES, STAGES, STAGE_PENALTY, TOWN_DISEASES, avoidanceRoll, currentSeverity, illnessFrom, prognosisTotal, recoveryRoll, townExposure } from '../../../engine/disease';
 import { livingConditions } from '../../../engine/time';
 import type { Illness } from '../../../engine/types';
 import { uid } from '../../../util/id';
@@ -19,6 +19,9 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
   const [doc, setDoc] = useState({ int: 2, medicine: 4, apothecary: 0, chirurgy: 0 });
   const [other, setOther] = useState(0);
   const [atHome, setAtHome] = useState(true);
+  const [town, setTown] = useState(TOWN_DISEASES[0].id);
+  const [level, setLevel] = useState(0);
+  const [resisted, setResisted] = useState(false);
   if (!c || !d) return null;
   // turned off for the saga: still shown while the character is ill, so an illness can be cured
   if (!optionOn(saga, 'illness') && !(c.illnesses ?? []).length) return null;
@@ -106,6 +109,49 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
         </button>
       </div>
       {def && ills.length === 0 && <div className="small muted">{def.cause}</div>}
+      <details style={{ marginTop: 8 }}>
+        <summary className="small" style={{ cursor: 'pointer' }}>
+          Disease in a town (City &amp; Guild)
+        </summary>
+        <RulesNote book="CG" line={805} endLine={895}>
+          Towns are full of humoral imbalance: smoke, dyes, dung, sewage, tanneries and butcheries. A newcomer is tested once or twice in the first season; long-time residents fall ill
+          through aging crises instead. A failed Stamina roll means the disease and its wound.
+        </RulesNote>
+        <div className="row small">
+          <select value={town} onChange={(e) => (setTown(e.target.value), setLevel(0))}>
+            {TOWN_DISEASES.map((t) => (
+              <option key={t.id} value={t.id}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+          {(TOWN_DISEASES.find((t) => t.id === town)?.eases.length ?? 0) > 1 && (
+            <select value={level} onChange={(e) => setLevel(Number(e.target.value))} aria-label="How strong the source">
+              {TOWN_DISEASES.find((t) => t.id === town)!.eases.map((e, i) => (
+                <option key={e} value={i}>
+                  {['mild', 'strong', 'overwhelming'][i]} source (Ease {e})
+                </option>
+              ))}
+            </select>
+          )}
+          {TOWN_DISEASES.find((t) => t.id === town)?.resisted && (
+            <label className="inline" title="A demon of Might 10 (Corpus): Magic Resistance stops it">
+              <input type="checkbox" checked={resisted} onChange={(e) => setResisted(e.target.checked)} /> Magic Resistance stops it
+            </label>
+          )}
+          <button
+            className="small"
+            onClick={() => {
+              if (resisted && TOWN_DISEASES.find((t) => t.id === town)?.resisted) return note('Magic Resistance turns the demon aside.');
+              const r = townExposure(d.characteristics.Sta.value, town, level);
+              if (r.wound) update((x) => void (x.wounds[r.wound!] += 1));
+              note(r.text + (r.wound ? ' The wound is marked on Combat & Health.' : ''));
+            }}
+          >
+            Roll Stamina
+          </button>
+        </div>
+      </details>
       {ills.length > 0 && (
         <details style={{ marginTop: 8 }}>
           <summary className="small" style={{ cursor: 'pointer' }}>

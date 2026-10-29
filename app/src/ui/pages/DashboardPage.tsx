@@ -19,6 +19,8 @@ import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../..
 import { useStore } from '../../store/store';
 import { StandingEditor } from '../character/StandingEditor';
 import { LoyaltyEvent } from '../covenant/FinancesTab';
+import { TravelTradeCard } from './TravelTradeCard';
+import { AfterStoryCard } from './AfterStoryCard';
 import { ARTS, ART_NAMES, type Art } from '../../data';
 import { addVis } from '../../engine/vis';
 import { uid } from '../../util/id';
@@ -200,11 +202,15 @@ export default function DashboardPage() {
         })}
       </Card>
 
-      {covs.length > 0 && <QuickChanges covs={covs} home={home} year={year} season={season} />}
-
       {[...covs].sort((a, b) => weight(b) - weight(a)).map((cov) => (
         <CovenantGlance key={cov.id} cov={cov} dc={dcs.get(cov.id) as DerivedCovenant} covLink={covLink} S={S} />
       ))}
+
+      {covs.length > 0 && <QuickChanges covs={covs} home={home} year={year} season={season} />}
+
+      {playing.length > 0 && <AfterStoryCard people={playing} derived={derived} year={year} season={season} />}
+
+      {playing.length > 0 && <TravelTradeCard people={playing} derived={derived} home={home} year={year} season={season} />}
     </div>
   );
 }
@@ -281,8 +287,9 @@ function PlayIndex({ S, home, first, sheet, covLink }: { S: string; home?: Coven
     { label: 'A spell is cast on the whole covenant', hint: 'The covenant’s Overview: cast a spell, ritual or power on everyone at once.', to: covLink(home, 'overview') },
     { label: 'A book is read, written or copied', hint: 'Seasons & Aging on the sheet: plan a season of study; Writing and copying for books, copies and lab texts.', to: charTab('advancement') },
     { label: 'A craftsman earns from a story, invests, or works', hint: 'Seasons & Aging → Workshop (City & Guild): Labor Points, stories and investments, the guild.', to: charTab('advancement') },
+    { label: 'A journey, a bribe, a crime, a rumor about a noble', hint: 'Travel, trade and intrigue, below on this page: days and cost of a journey, Area Lore, ships in a fight, bribes, hired criminals, sabotage, intrigue, largesse, a dowry.', to: '#travel-trade' },
     { label: 'An item may break', hint: 'Dice → Item stress check (City & Guild): damage levels, the check against 15, repair.', to: '/dice' },
-    { label: 'Experience after a story', hint: 'Seasons & Aging: log an adventure season, Reputations and Confidence.', to: charTab('advancement') },
+    { label: 'Experience after a story', hint: 'After a story, below on this page: Adventure experience for everyone, and Labor Points for craftsmen and merchants. Reputations and Confidence are on the sheet.', to: '#after-story' },
     { label: 'A rule is in question', hint: 'Game mechanics: every rule in the reviewed books, with the book’s text a click away.', to: '/mechanics' },
   ];
   return (
@@ -293,7 +300,13 @@ function PlayIndex({ S, home, first, sheet, covLink }: { S: string; home?: Coven
             {r.label}
             <div className="muted">{r.hint}</div>
           </span>
-          <Link to={r.to}>Go →</Link>
+          {r.to.startsWith('#') ? (
+            <button className="small ghost" onClick={() => document.getElementById(r.to.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+              Go ↓
+            </button>
+          ) : (
+            <Link to={r.to}>Go →</Link>
+          )}
         </div>
       ))}
     </div>
