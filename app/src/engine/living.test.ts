@@ -114,7 +114,7 @@ describe('the covenants’ Boons, Hooks and auras', () => {
     for (const x of stoneLines) expect(new Set(x.lines.map((l) => l.who)).size, `${x.rep.season} ${x.rep.year}`).toBeLessThanOrEqual(3);
     for (const year of [1220, 1221]) {
       const byMagus = new Map<string, number>();
-      for (const x of stoneLines.filter((y) => y.rep.year === year)) for (const who of new Set(x.lines.map((l) => l.who))) byMagus.set(who, (byMagus.get(who) ?? 0) + 1);
+      for (const x of stoneLines.filter((y) => y.rep.year === year)) for (const who of new Set(x.lines.map((l) => l.who ?? ''))) byMagus.set(who, (byMagus.get(who) ?? 0) + 1);
       for (const [who, n] of byMagus) expect(n, `${who} in ${year}`).toBeLessThanOrEqual(2);
     }
     // no lab work in the Divine aura itself
