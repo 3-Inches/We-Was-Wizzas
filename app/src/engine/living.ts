@@ -4,10 +4,12 @@
 // priority lists (priorities.ts); the turn of the year closes their books like any covenant's, keeps
 // their treasuries whole, brings new magi to fill places left empty, and now and then has one of
 // them come to the players' covenant with an offer, a request or trouble from the book. Tribunal
-// gatherings (every seven years at Durenmar, in the Rhine) take the season of every living magus.
+// gatherings (every seven years at Durenmar, in the Rhine, from Walpurgis Night) take the season of
+// every living magus. The magi the book describes who belong to no covenant (the wanderers) are built
+// with the covenant they start at, as its guests.
 
 import { ARTS, ART_NAMES, type Art, type GameData } from '../data';
-import { bookCovenant, tribunalBook, type BookApproach, type BookCovenant, type BookMagus, type TribunalBook } from '../data/livingCovenants';
+import { bookCovenant, tribunalBook, type BookApproach, type BookCovenant, type BookMagus, type BookWanderer, type TribunalBook } from '../data/livingCovenants';
 import { deriveCharacter } from './character/derive';
 import { validateCharacter } from './character/validate';
 import { newCharacter } from './character/factory';
@@ -47,15 +49,20 @@ export function isLiving(cov: Covenant | undefined): boolean {
   return !!cov?.living;
 }
 
-/** The ids of a saga's living covenants and of everyone who belongs to one. */
-export function livingIds(covenants: Covenant[]): { covenants: Set<string>; members: Set<string> } {
+/** The ids of a saga's living covenants and of everyone who belongs to one, or wanders among them. */
+export function livingIds(covenants: Covenant[], characters: Character[] = []): { covenants: Set<string>; members: Set<string> } {
   const covs = covenants.filter((c) => c.living);
-  return { covenants: new Set(covs.map((c) => c.id)), members: new Set(covs.flatMap((c) => c.memberIds)) };
+  return { covenants: new Set(covs.map((c) => c.id)), members: new Set([...covs.flatMap((c) => c.memberIds), ...characters.filter((c) => c.wanderer).map((c) => c.id)]) };
 }
 
-/** A character of a living covenant (by membership, or by its home covenant). */
+/** A character of a living covenant (by membership, or by its home covenant), or one of the Tribunal's wanderers. */
 export function isLivingMember(c: Character, covenants: Covenant[]): boolean {
-  return covenants.some((cov) => cov.living && (cov.memberIds.includes(c.id) || c.covenantId === cov.id));
+  return !!c.wanderer || covenants.some((cov) => cov.living && (cov.memberIds.includes(c.id) || c.covenantId === cov.id));
+}
+
+/** The magi a book's covenant has: those it names (not the Redcaps) and those it counts. */
+export function magiTarget(def: BookCovenant): number {
+  return def.magi.filter((m) => !m.ungifted).length + (def.others ?? []).reduce((t, o) => t + o.count, 0);
 }
 
 const SPELL_CAP: Record<BookMagus['rank'], number> = { journeyman: 20, master: 30, archmage: 40 };
@@ -118,6 +125,18 @@ function bookMagus(m: BookMagus, book: TribunalBook, def: BookCovenant, cov: Cov
   return c;
 }
 
+/** One of the book's wanderers, as a guest of the covenant they start at, with a laboratory of their own there. */
+function buildWanderer(w: BookWanderer, book: TribunalBook, def: BookCovenant, cov: Covenant, g: LivingContext, seed: number, avoid: string[], log: string[]): Character | undefined {
+  const c = bookMagus({ ...w, guest: false }, book, def, cov, g, seed, avoid, log);
+  if (!c) return undefined;
+  c.wanderer = { wanders: w.wanders, since: g.saga.currentYear, stay: w.stay, winters: w.winters, favors: w.favors, book: book.book, key: w.name, visited: [cov.id] };
+  if (c.rhine) c.rhine.gild = w.gild;
+  c.acknowledgedIssues = [...new Set([...c.acknowledgedIssues, ...validateCharacter(deriveCharacter(c, g.data, g.rules), g.data, g.rules).filter((i) => i.severity === 'error').map((i) => i.id)])];
+  c.notes = [c.notes, w.wanders === 'peregrinator' ? `A peregrinator: stays ${w.stay ?? 3} years or so at a covenant as its guest, then moves on.` : `Winters at a covenant (${bookCovenant(w.winters)?.cov.name ?? 'any that will have them'}) and spends the summer on the road.`, `A guest of ${cov.name}, not a member.`].join(' ');
+  cov.labs.push(newLab(`${c.name}’s laboratory`, c.id));
+  return c;
+}
+
 /** A named magus from their stat block, with what a magus of their years has that a block leaves out. */
 function sheetCharacter(m: BookMagus, sheet: StatBlock, g: LivingContext, age: number, seed: number, log: string[]): Character {
   const rng = seeded(seed);
@@ -172,12 +191,12 @@ function generatedMagus(m: BookMagus, cov: Covenant, g: LivingContext, age: numb
   ).c;
 }
 
-/** One of the magi a book counts without naming. */
-function otherMagus(house: string, rank: BookMagus['rank'] | 'mixed', book: TribunalBook, def: BookCovenant, cov: Covenant, g: LivingContext, rng: Rng, seed: number, avoid: string[], note: string): Character {
+/** One of the magi a book counts without naming (or a new one: a journeyman just out of apprenticeship, with pg 0). */
+export function otherMagus(house: string, rank: BookMagus['rank'] | 'mixed', book: TribunalBook, def: BookCovenant, cov: Covenant, g: LivingContext, rng: Rng, seed: number, avoid: string[], note: string, o: { pg?: number } = {}): Character {
   const roles = HOUSE_ROLES[house] ?? ['scholar'];
   const role = roles[Math.floor(rng() * roles.length)];
   const r = rank === 'mixed' ? (rng() < 0.6 ? 'journeyman' : 'master') : rank;
-  const pg = r === 'journeyman' ? 2 + Math.floor(rng() * 20) : r === 'master' ? 26 + Math.floor(rng() * 35) : 60 + Math.floor(rng() * 30);
+  const pg = o.pg ?? (r === 'journeyman' ? 2 + Math.floor(rng() * 20) : r === 'master' ? 26 + Math.floor(rng() * 35) : 60 + Math.floor(rng() * 30));
   const gen = generateCharacter({ type: 'magus', role: `magus-${role}`, house, yearsPostGauntlet: pg, spells: { maxLevel: SPELL_CAP[r] }, familiar: rng() < 0.4, variety: 'varied', npc: true, seed, avoidNames: avoid }, { ...g, covenant: cov });
   const c = gen.c;
   c.notes = `One of ${note} (${book.title}, line ${def.line}); the book does not name them, so the toolkit made them.`;
@@ -312,18 +331,27 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
   if (need > 0) cov.income.push({ uid: uid(), name: 'Holdings and dealings', type: 'Other', level: 'Typical', pounds: need, customPounds: true, inPlay: true });
   cov.finances.treasury = Math.round(plan.expenditure * (0.5 + MARGIN[def.wealth] * 2));
   log.push(`Accounts: about ${Math.round(plan.expenditure)} £ a year spent, ${cov.finances.treasury} £ in the treasury.`);
+
+  // the book's wanderers who start here, as its guests (not members)
+  for (const w of (book.wanderers ?? []).filter((x) => x.startsAt === def.id && !(o.avoidNames ?? []).includes(x.name))) {
+    yield `${w.name}, a guest`;
+    const c = buildWanderer(w, book, def, cov, g, o.seed * 1000 + k++, avoid, log);
+    if (c) chars.push(c);
+  }
   return { cov, chars, log };
 }
 
 // ================================================================ the Tribunal through the years
 
-/** The Tribunal gathering (or a House's gathering) that takes this season, if any: in the Summer of a gathering year. */
-export const GATHERING_SEASON: Season = 'Summer';
+/** The season a Tribunal's gatherings take: the book's (the Rhine's open on Walpurgis Night, the eve of the 1st of May), else Summer. */
+export function gatheringSeason(book: TribunalBook | undefined): Season {
+  return book?.gathering.season ?? 'Summer';
+}
 
+/** The Tribunal gathering that takes this season, if any. */
 export function gatheringIn(saga: Saga, year: number, season: Season): { name: string; at: string } | undefined {
-  if (season !== GATHERING_SEASON) return undefined;
   const book = tribunalBook(saga.tribunal);
-  if (!book) return undefined;
+  if (!book || season !== gatheringSeason(book)) return undefined;
   const g = book.gathering;
   if (year >= g.from && (year - g.from) % g.every === 0) return { name: `the ${book.tribunal} Tribunal`, at: book.covenants.find((c) => c.id === g.at)?.name ?? g.at };
   return undefined;
@@ -376,7 +404,7 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
     if (!found) continue;
     // a covenant short of the magi its book gives it takes in a new journeyman now and then
     const magi = members.filter((c) => c.type === 'magus' && !c.wounds.dead && !c.retired).length;
-    const target = found.cov.magi.filter((m) => !m.ungifted).length + (found.cov.others ?? []).reduce((t, o) => t + o.count, 0);
+    const target = magiTarget(found.cov);
     if (magi < target && rng() < 0.25) {
       const houses = found.cov.domusMagna ? [found.cov.domusMagna] : found.cov.magi.map((m) => m.house).filter((h) => h !== 'mercere');
       const house = houses[Math.floor(rng() * houses.length)] ?? 'ex-miscellanea';

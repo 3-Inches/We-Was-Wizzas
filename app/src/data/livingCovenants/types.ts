@@ -162,6 +162,8 @@ export interface BookCovenant {
   auraNote?: string;
   /** something that gives its magi a better aura in the laboratory than the covenant's (the magestones of Verditius) */
   labAura?: LabAuraSource;
+  /** not yet a member of the Tribunal: the motion (BookMotion id) that would admit it; its magi have no sigils until it passes */
+  joins?: string;
   /** chapter houses: name and place */
   chapters?: { name: string; place: string }[];
   line: number;
@@ -180,6 +182,41 @@ export interface LabAuraSource {
   line: number;
 }
 
+/** A motion the book has the Tribunal debate, and how each gild and covenant stands on it. */
+export interface BookMotion {
+  id: string;
+  /** the first gathering it comes before */
+  year: number;
+  /** after failing, its chance (in a hundred) of coming up again at each later gathering */
+  again?: number;
+  title: string;
+  /** who brings it, and why */
+  text: string;
+  /** each gild's stand (RHINE_GILDS ids): for, against, or divided */
+  gilds: Partial<Record<string, 'for' | 'against' | 'split'>>;
+  /** covenants that vote together whatever their gilds (by BookCovenant id), or divide whatever their gilds */
+  covenants?: Partial<Record<string, 'for' | 'against' | 'split'>>;
+  /** the news when it passes, and when it fails */
+  passed: string;
+  failed: string;
+  line: number;
+}
+
+/** A magus of the book who belongs to no covenant: a peregrinator who stays a few years at each, or one who winters at one and summers on the road. */
+export interface BookWanderer extends BookMagus {
+  wanders: 'peregrinator' | 'seasonal';
+  /** where the book has them in its present */
+  startsAt?: string;
+  /** a peregrinator's stay at each covenant, in years */
+  stay?: number;
+  /** the covenant a seasonal wanderer winters at when it can */
+  winters?: string;
+  /** the covenants they favor */
+  favors?: 'young' | 'any';
+  /** how they come to the players' covenant */
+  approach: BookApproach;
+}
+
 /** A Tribunal's book: its covenants and the gatherings that bring them together. */
 export interface TribunalBook {
   tribunal: string;
@@ -189,7 +226,7 @@ export interface TribunalBook {
   /** the year the book describes */
   present: number;
   /** Tribunal gatherings: every so many years, from this year, at this covenant */
-  gathering: { every: number; from: number; at: string; line: number };
+  gathering: { every: number; from: number; at: string; line: number; season?: 'Spring' | 'Summer' | 'Autumn' | 'Winter' };
   /** other gatherings a House holds (Bjornaer's Gathering of Twelve Years) */
   otherGatherings?: { name: string; every: number; from: number; at: string; house?: string; line: number }[];
   covenants: BookCovenant[];
@@ -197,4 +234,10 @@ export interface TribunalBook {
   sheets?: Record<string, StatBlock>;
   /** what the book says of each named magus, in its own words, by name */
   texts?: Record<string, string>;
+  /** the motions its gatherings debate */
+  motions?: BookMotion[];
+  /** its magi who belong to no covenant */
+  wanderers?: BookWanderer[];
+  /** sigils one magus casts for others of their House (House Tremere's exarchs): of those at these covenants, or of all the rest; the first that applies */
+  heldSigils?: { house: string; holder: string; covenants?: string[]; line: number }[];
 }

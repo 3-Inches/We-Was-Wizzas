@@ -3,7 +3,7 @@
 // Where the book leaves something out (an age, a season, the aura), a likely value is marked as a
 // guess so the storyguide knows to change it if they wish.
 
-import type { BookCovenant, TribunalBook } from './types';
+import type { BookCovenant, BookMotion, BookWanderer, TribunalBook } from './types';
 import { RHINE_SHEETS } from './rhineMagi';
 import { RHINE_TEXT } from './rhineText';
 
@@ -209,7 +209,7 @@ const FENGHELD: BookCovenant = {
 };
 
 const HEOROT: BookCovenant = {
-  id: 'heorot', name: 'Heorot', season: 'Spring', seasonGuess: true, founded: 1215, place: 'Zealand, Denmark', aura: 3, auraGuess: true, realm: 'Magic', line: 2731,
+  id: 'heorot', name: 'Heorot', season: 'Spring', seasonGuess: true, founded: 1215, place: 'Zealand, Denmark', aura: 3, auraGuess: true, realm: 'Magic', line: 2731, joins: 'heorot',
   summary: 'A young covenant of three Rhine magi on Zealand, in lands that belong to the Novgorod Tribunal, seeking admission to the Rhine at the gathering of 1221. Its aim is the one Oculus Septentrionalis abandoned: to learn what it can of the Order of Odin.',
   wealth: 'poor', library: 'poor', vis: 'some', gild: 'ash',
   folk: { grogs: 8, servants: 6, craftsmen: 2, laborers: 4, text: 'A small turb, much reduced: Signum’s studies of the trolls have cost fourteen grogs’ lives.' },
@@ -356,14 +356,100 @@ const TRIAMORE: BookCovenant = {
   ],
 };
 
+/**
+ * The motions the book has coming before the Rhine's gatherings, and how each gild stands on them
+ * (Tribunal Politics: the Oak can count on the Ash or the Hawthorn but rarely both, all three unite
+ * against the Apple's agenda, the Linden often backs the Apple, and nobody much minds the Elder).
+ */
+const MOTIONS: BookMotion[] = [
+  {
+    id: 'heorot', year: 1221, again: 40, title: 'The admission of Heorot',
+    text: 'Oculus Septentrionalis sponsors Heorot, on Zealand in lands of the Novgorod Tribunal, for membership of the Rhine. Many greet the move with glee (taking territory from Novgorod is the ultimate one-upmanship); Crintera opposes it, fearing for its vis sources near Rügen; Waddenzee does not protest.',
+    gilds: { oak: 'for', ash: 'for', apple: 'for', hawthorn: 'against', elder: 'split', linden: 'split' },
+    covenants: { 'oculus-septentrionalis': 'for', crintera: 'against' },
+    passed: 'Heorot is admitted to the Rhine Tribunal: its magi hold their sigils from now on. Novgorod is not yet aware of it.',
+    failed: 'Heorot is refused, and stays outside the Tribunal in the lands of Novgorod: it may ask again at a later gathering.',
+    line: 2733,
+  },
+  {
+    id: 'praeco', year: 1221, again: 40, title: 'An inquiry into the Rhine’s oldest magus',
+    text: 'Fengheld proposes an investigation into which magus of the Rhine is the oldest: a first step to making the Praeco the eldest magus, as elsewhere in the Order, rather than the Primus of Bonisagus. Eule of Fengheld may be the eldest; Caecilius of Durenmar and Schadrit of Dankmar may be older, and the records are in doubt.',
+    gilds: { oak: 'against', apple: 'for', linden: 'split', ash: 'split', hawthorn: 'split', elder: 'split' },
+    covenants: { fengheld: 'for', durenmar: 'against', dankmar: 'for' },
+    passed: 'The Tribunal orders an inquiry into its oldest magus. Eule, Caecilius and Schadrit are each said to be the eldest; whoever it proves to be, Durenmar’s hold on the Praeco is shaken.',
+    failed: 'The Praeco stays the Primus of Bonisagus, as the Rhine has always had it; Fengheld will try again.',
+    line: 792,
+  },
+  {
+    id: 'ruegen', year: 1228, again: 30, title: 'Crintera against the Danes on Rügen',
+    text: 'Crintera asks once more for leave, under the Guardians of the Forests ruling, to drive the Danish settlers from Rügen. The Tribunal refused in 1186 and 1194 (Caecilius held that no wilderness had been destroyed); the Hawthorn and the Ash backed it then, and the Elder, surprisingly. Crintera itself is divided between Harmonists and Wilderists.',
+    gilds: { hawthorn: 'for', ash: 'for', elder: 'split', oak: 'against', linden: 'against', apple: 'against' },
+    covenants: { crintera: 'split' },
+    passed: 'The Tribunal allows Crintera to resist the occupiers of Rügen: the Wilderists of House Bjornaer are vindicated, and the Danes will feel it.',
+    failed: 'The Tribunal again refuses Crintera leave to act against the Danes: the Wilderists blame the Bjornaer council, and the House grows more divided.',
+    line: 2805,
+  },
+  {
+    id: 'lotharingia', year: 1228, title: 'A Lotharingian Tribunal',
+    text: 'Before the Grand Tribunal of 1228, which meets at Durenmar, the Apple Gild asks the Rhine not to stand against a new Lotharingian Tribunal of the Low Countries, with two covenants of Normandy. Oculus Septentrionalis, Triamore and about half of Fengheld are committed to it, and Waddenzee is keen to escape the Rhine. (The book has the gild bring it to the Grand Tribunal itself; here the Rhine decides its stand first.)',
+    gilds: { apple: 'for', oak: 'against', ash: 'against', hawthorn: 'against', linden: 'split', elder: 'split' },
+    covenants: { 'oculus-septentrionalis': 'for', triamore: 'for', waddenzee: 'for', fengheld: 'split' },
+    passed: 'The Rhine will not stand in the way: at the Grand Tribunal the Apple Gild proposes a Lotharingian Tribunal with the Rhine’s leave.',
+    failed: 'The Rhine sets itself against a Lotharingian Tribunal: the Apple Gild must take its case to the Grand Tribunal without it.',
+    line: 838,
+  },
+  {
+    id: 'norse-war', year: 1235, again: 25, title: 'War on the Order of Odin',
+    text: 'The Ash Gild asks the Tribunal to move against the Norse wizards it calls the Order of Odin, as Oculus Septentrionalis was founded to do. Murion’s ambition for the Rhine favors it; Oculus Septentrionalis, quietly trading with the Norse, does not.',
+    gilds: { ash: 'for', oak: 'split', hawthorn: 'split', elder: 'split', linden: 'against', apple: 'against' },
+    covenants: { 'oculus-septentrionalis': 'against', waddenzee: 'for', heorot: 'for' },
+    passed: 'The Tribunal sanctions action against the Order of Odin: the Ash Gild’s magi make ready to go north, with Oculus Septentrionalis as their staging post whether it likes it or not.',
+    failed: 'The Tribunal will not make war on the Norse wizards; the Ash Gild bides its time.',
+    line: 1629,
+  },
+];
+
+/** The two magi the book describes who belong to no covenant: a Quaesitor peregrinator, and a maga who winters at Fengheld. */
+const WANDERERS: BookWanderer[] = [
+  {
+    name: 'Tabanus', house: 'guernicus', gender: 'Male', age: 38, rank: 'journeyman', role: 'politician', arts: ['In', 'Me'], title: 'Quaesitor; the Gadfly of the Rhine',
+    traits: [['Law Abiding', 3], ['Tenacious', 3], ['Honorable', 2]],
+    note: 'A Quaesitor sent to the Rhine by House Guernicus a decade ago, already unpopular: a peregrinator who stays a few years at each covenant, favoring those of young magi, and insists on a rigid adherence to the Code wherever he is',
+    wanders: 'peregrinator', startsAt: 'triamore', stay: 3, favors: 'young',
+    priorities: ['longevity', 'politics', 'read', 'invent', 'read', 'vis', 'practice'],
+    approach: { id: 'tabanus', kind: 'request', page: 'tribunal', chance: 25, line: 641, text: 'Tabanus the Quaesitor asks for hospitality at the covenant under the Rhine’s guest-laws (three to seven years, three pawns of vis a year, or a season’s service), and hopes to become a member. Once in, he will insist on a rigid adherence to the Code.' },
+    line: 582,
+  },
+  {
+    name: 'Felicia', house: 'bonisagus', gender: 'Female', age: 24, rank: 'journeyman', role: 'explorer', arts: ['Cr', 'Au'], gild: 'linden',
+    traits: [['Loner', 2], ['Self-Reliant', 1], ['Suspicious', -2]],
+    note: 'Filia of Dorana of Fengheld, freshly Gauntleted: her magic waxes in winter, which she spends in a covenant’s laboratory (Fengheld has promised her one, for favors as yet unspecified), and wanes in summer, when she takes to the road after the natural phenomena her studies need',
+    wanders: 'seasonal', startsAt: 'fengheld', winters: 'fengheld',
+    priorities: ['invent', 'invent', 'travel', 'vis', 'read', 'practice'],
+    approach: { id: 'felicia', kind: 'visit', page: 'tribunal', chance: 15, line: 727, text: 'Felicia asks to winter at the covenant, where her magic is strongest. She may come with the aim of making peace between the covenant and one that dislikes it, having just stayed there herself.' },
+    line: 685,
+  },
+];
+
 export const RHINE: TribunalBook = {
   tribunal: 'Rhine',
   book: 'GotF',
   title: 'Guardians of the Forests: The Rhine Tribunal',
   present: 1220,
-  gathering: { every: 7, from: 1221, at: 'durenmar', line: 741 },
-  otherGatherings: [{ name: 'The Gathering of Twelve Years', every: 12, from: 1227, at: 'crintera', house: 'bjornaer', line: 2819 }],
+  // the formal proceedings begin on the eve of the 1st of May (Walpurgis Night)
+  gathering: { every: 7, from: 1221, at: 'durenmar', line: 741, season: 'Spring' },
+  otherGatherings: [
+    { name: 'The Gathering of Twelve Years', every: 12, from: 1227, at: 'crintera', house: 'bjornaer', line: 2819 },
+    { name: 'The Grand Tribunal', every: 33, from: 1228, at: 'durenmar', line: 4328 },
+  ],
   covenants: [DURENMAR, FENGHELD, CRINTERA, IRENCILLIA, OCULUS, DANKMAR, WADDENZEE, ROZNOV, TRIAMORE, HEOROT],
   sheets: RHINE_SHEETS,
   texts: RHINE_TEXT,
+  motions: MOTIONS,
+  wanderers: WANDERERS,
+  // the Tremere exarchs: Severicus those of his two filii and Hygwald Veritas of Waddenzee, Stentorius the rest
+  heldSigils: [
+    { house: 'tremere', holder: 'Severicus', covenants: ['roznov', 'waddenzee'], line: 3323 },
+    { house: 'tremere', holder: 'Stentorius', line: 2524 },
+  ],
 };

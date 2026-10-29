@@ -28,6 +28,7 @@ import { libraryYearEnd, scriptoriumYear, workWriting, writingFor } from './book
 import { purseOf, takeVis, visText } from './vis';
 import { choosePriority, priorityLabel } from './priorities';
 import { gatheringIn, gatheringNews, livingIds, livingYearEnd } from './living';
+import { apprenticesYearEnd, tribunalGathering, wanderersSeasonStart, wanderersYearEnd } from './tribunalLife';
 import { workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
 import { uid } from '../util/id';
@@ -605,9 +606,12 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   const ctxOf = (c: Character) => characterContext(c, state.covenants, data);
 
   // the living covenants of the Tribunal (built from its book): their lines are kept apart in the report
-  const living = livingIds(state.covenants);
-  const tribunalOf = (c: Character) => (living.members.has(c.id) ? covenantOf(c, state.covenants)?.id ?? state.covenants.find((x) => x.memberIds.includes(c.id))?.id : undefined);
+  const living = livingIds(state.covenants, state.characters);
+  const tribunalOf = (c: Character) => (living.members.has(c.id) ? covenantOf(c, state.covenants)?.id ?? state.covenants.find((x) => x.memberIds.includes(c.id))?.id ?? 'wanderers' : undefined);
   const gathering = gatheringIn(saga, year, season);
+  const g = { data, saga, rules: saga.houseRules };
+  // the wanderers who winter at a covenant and summer on the road move first
+  for (const l of wanderersSeasonStart(state, year, season, rng)) lines.push({ ...l, kind: 'season' });
 
   // the season's work: what each character logged, or its standing activity; and an extra season for one who needs no sleep
   for (const c of state.characters.filter(inPlay)) {
@@ -628,7 +632,13 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       for (const t of runExtraSeason(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t, tribunal });
   }
   const gatheringItem = gatheringNews(saga, year, season);
-  if (gatheringItem && living.covenants.size) saga.tribunalNews = [gatheringItem, ...(saga.tribunalNews ?? [])];
+  if (gatheringItem && living.covenants.size) {
+    saga.tribunalNews = [gatheringItem, ...(saga.tribunalNews ?? [])];
+    // the gathering's business: promotions, the motions due, certamen between magi at odds
+    const r = tribunalGathering(state, g, year, season, rng);
+    for (const l of r.lines) lines.push({ ...l, kind: 'covenant' });
+    if (r.news.length) saga.tribunalNews = [...r.news, ...saga.tribunalNews];
+  }
 
   // the turn of the year (after Winter): covenants, then each character's year
   if (season === 'Winter') {
@@ -661,9 +671,12 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     // a living covenant's year-end lines go with the Tribunal's
     for (const l of lines.slice(yearStart)) if (!l.tribunal && state.covenants.some((x) => x.living && x.name === l.who)) l.tribunal = state.covenants.find((x) => x.living && x.name === l.who)!.id;
     if (living.covenants.size) {
-      const r = livingYearEnd(state, { data, saga, rules: saga.houseRules }, year, rng, wasAlive);
-      for (const l of r.lines) lines.push({ ...l, kind: 'covenant' });
-      if (r.news.length) saga.tribunalNews = [...r.news, ...(saga.tribunalNews ?? [])];
+      const r = livingYearEnd(state, g, year, rng, wasAlive);
+      const a = apprenticesYearEnd(state, g, year, rng);
+      const w = wanderersYearEnd(state, year, rng);
+      for (const l of [...r.lines, ...a.lines, ...w.lines]) lines.push({ ...l, kind: 'covenant' });
+      const items = [...r.news, ...a.news, ...w.news];
+      if (items.length) saga.tribunalNews = [...items, ...(saga.tribunalNews ?? [])];
     }
     if (saga.tribunalNews && saga.tribunalNews.length > 150) saga.tribunalNews = saga.tribunalNews.slice(0, 150);
   }

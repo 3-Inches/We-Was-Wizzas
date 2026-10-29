@@ -157,9 +157,15 @@ describe('building a covenant from its book', () => {
     const saga = sagaAt();
     const { cov, chars } = buildLivingCovenant(RHINE, def('triamore'), { data, saga, rules }, { seed: 5 });
     const ours = newCovenant(saga.id, 1220);
-    const ids = livingIds([ours, cov]);
+    const ids = livingIds([ours, cov], chars);
     expect([...ids.covenants]).toEqual([cov.id]);
     expect(chars.every((c) => ids.members.has(c.id))).toBe(true);
+    // Tabanus starts here, as a guest: one of the Tribunal's, not a member
+    const tabanus = chars.find((c) => c.name === 'Tabanus')!;
+    expect(tabanus.wanderer).toMatchObject({ wanders: 'peregrinator', stay: 3 });
+    expect(cov.memberIds).not.toContain(tabanus.id);
+    expect(tabanus.covenantId).toBe(cov.id);
+    expect(cov.labs.some((l) => l.ownerId === tabanus.id)).toBe(true);
   });
 });
 
@@ -219,20 +225,20 @@ describe('season priorities', () => {
 });
 
 describe('the Tribunal through the years', () => {
-  it('meets at Durenmar every seven years from 1221, in Summer, and the Bjornaer gather at Crintera in 1227', () => {
-    expect(gatheringIn(sagaAt(), 1221, 'Summer')).toEqual({ name: 'the Rhine Tribunal', at: 'Durenmar' });
-    expect(gatheringIn(sagaAt(), 1221, 'Spring')).toBeUndefined();
-    expect(gatheringIn(sagaAt(), 1225, 'Summer')).toBeUndefined();
-    expect(nextGatherings(sagaAt(), 1222).map((g) => [g.name, g.year])).toEqual([['The Rhine Tribunal', 1228], ['The Gathering of Twelve Years', 1227]]);
+  it('meets at Durenmar every seven years from 1221, from Walpurgis Night (Spring), and the Bjornaer gather at Crintera in 1227', () => {
+    expect(gatheringIn(sagaAt(), 1221, 'Spring')).toEqual({ name: 'the Rhine Tribunal', at: 'Durenmar' });
+    expect(gatheringIn(sagaAt(), 1221, 'Summer')).toBeUndefined();
+    expect(gatheringIn(sagaAt(), 1225, 'Spring')).toBeUndefined();
+    expect(nextGatherings(sagaAt(), 1222).map((g) => [g.name, g.year])).toEqual([['The Rhine Tribunal', 1228], ['The Gathering of Twelve Years', 1227], ['The Grand Tribunal', 1228]]);
   });
 
   it('sends a living covenant’s magi to the gathering, and its lines to the Tribunal’s part of the report', () => {
-    const saga = sagaAt(1221, 'Summer');
+    const saga = sagaAt(1221, 'Spring');
     const { cov, chars } = buildLivingCovenant(RHINE, def('heorot'), { data, saga, rules }, { seed: 6 });
     const ours = newCovenant(saga.id, 1220);
     const { state, reports } = advanceSeasons({ saga, characters: chars, covenants: [ours, cov] }, data, 1, { ...DEFAULT_ADVANCE, rng: seeded(2) });
     for (const c of state.characters) {
-      const e = c.seasonLog.find((x) => x.year === 1221 && x.season === 'Summer');
+      const e = c.seasonLog.find((x) => x.year === 1221 && x.season === 'Spring');
       expect(e?.summary).toMatch(/^Attended the Rhine Tribunal at Durenmar/);
       expect(e?.priority).toBe('politics');
     }
@@ -247,10 +253,11 @@ describe('the Tribunal through the years', () => {
     // every chance comes up
     const r1 = advanceSeasons({ saga, characters: chars, covenants: [ours, cov] }, data, 1, { ...DEFAULT_ADVANCE, rollAging: false, rng: () => 0 });
     const news = r1.state.saga.tribunalNews!.filter((n) => n.kind === 'approach');
-    expect(news.map((n) => n.approach)).toEqual(['members', 'library', 'lotharingia']);
-    expect(news[0]).toMatchObject({ covenantId: cov.id, year: 1221, season: 'Spring', approachKind: 'invitation' });
+    // Triamore's, and Tabanus's (its guest) asking to be taken in
+    expect(news.map((n) => n.approach).sort()).toEqual(['library', 'lotharingia', 'members', 'tabanus']);
+    expect(news.find((n) => n.approach === 'members')).toMatchObject({ covenantId: cov.id, year: 1221, season: 'Spring', approachKind: 'invitation' });
     const r2 = advanceSeasons(r1.state, data, 4, { ...DEFAULT_ADVANCE, rollAging: false, rng: () => 0 });
-    expect(r2.state.saga.tribunalNews!.filter((n) => n.kind === 'approach')).toHaveLength(3);
+    expect(r2.state.saga.tribunalNews!.filter((n) => n.kind === 'approach')).toHaveLength(4);
   });
 });
 
