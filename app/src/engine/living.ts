@@ -27,6 +27,7 @@ import type { Rng } from './dice';
 import { generateCharacter } from './generate/character';
 import { fillCovenant } from './generate/covenant';
 import { stockLibrary } from './generate/library';
+import { greatLibraryBooks } from './generate/greatLibraryStock';
 import { seeded } from './generate/random';
 import { newLab } from './lab';
 import { defaultPriorities, houseDuty } from './priorities';
@@ -400,8 +401,11 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
 
   // the library, bought as if with Build Points to the book's measure
   yield 'its library';
-  const lib = stockLibrary(cov, chars, g, LIBRARY_BP[def.library], { arts: true, abilities: true, labTexts: true, mundane: true }, rng);
-  cov.library.push(...lib.books.map((b) => ({ ...b, inPlay: true })));
+  if (def.greatLibrary) cov.library.push(...greatLibraryBooks(g.data, rng).map((b) => ({ ...b, inPlay: true })));
+  else {
+    const lib = stockLibrary(cov, chars, g, LIBRARY_BP[def.library], { arts: true, abilities: true, labTexts: true, mundane: true }, rng);
+    cov.library.push(...lib.books.map((b) => ({ ...b, inPlay: true })));
+  }
   log.push(`Library: ${cov.library.length} books.`);
 
   // accounts that hold: income enough for the year's costs, with a margin by its wealth, and a year in the treasury

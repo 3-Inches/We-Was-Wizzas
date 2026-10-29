@@ -228,6 +228,8 @@ export interface BookCovenant {
   auraNote?: string;
   /** something that gives its magi a better aura in the laboratory than the covenant's (the magestones of Verditius) */
   labAura?: LabAuraSource;
+  /** its library is the Great Library (Durenmar): stocked to the book's outline, not bought with Build Points */
+  greatLibrary?: boolean;
   /** not yet a member of the Tribunal: the motion (BookMotion id) that would admit it; its magi have no sigils until it passes */
   joins?: string;
   /** chapter houses: name and place */

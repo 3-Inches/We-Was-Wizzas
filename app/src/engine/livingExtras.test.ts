@@ -116,3 +116,22 @@ describe('the Gathering of Twelve Years', () => {
     for (const c of r.state.characters.filter((x) => x.house !== 'bjornaer' && x.type === 'magus' && x.standing?.kind !== 'none')) expect(summer(c), c.name).not.toMatch(/Gathering of Twelve Years/);
   });
 });
+
+describe('the Great Library', () => {
+  it('stocks Durenmar as the greatest library of the Order', () => {
+    const { cov } = buildLivingCovenant(RHINE, def('durenmar'), { data, saga: sagaAt(), rules }, { seed: 3, others: false });
+    const summae = cov.library.filter((b) => b.kind === 'summa');
+    const arcane = summae.filter((b) => b.subjectType === 'art' || ['magic-theory', 'parma-magica', 'penetration', 'finesse', 'concentration', 'code-of-hermes', 'organization-lore', 'magic-lore', 'faerie-lore', 'infernal-lore', 'dominion-lore', 'area-lore'].includes(b.subject));
+    expect(arcane.length).toBeGreaterThan(100);
+    // at least one outstanding summa in each Art, of level 17 or more, and none above 20
+    for (const a of ['Cr', 'In', 'Mu', 'Pe', 'Re', 'An', 'Aq', 'Au', 'Co', 'He', 'Ig', 'Im', 'Me', 'Te', 'Vi']) {
+      const top = Math.max(...summae.filter((b) => b.subject === a).map((b) => b.level));
+      expect(top, a).toBeGreaterThanOrEqual(17);
+      expect(top, a).toBeLessThanOrEqual(20);
+    }
+    expect(summae.filter((b) => b.title.startsWith('Principia Magica'))).toHaveLength(3);
+    expect(cov.library.filter((b) => b.kind === 'tractatus').length).toBeGreaterThan(100);
+    expect(Math.max(...cov.library.filter((b) => b.kind === 'tractatus').map((b) => b.quality))).toBeLessThanOrEqual(12);
+    expect(cov.library.filter((b) => b.kind === 'labText').reduce((t, b) => t + b.level, 0)).toBeGreaterThan(5000);
+  });
+});

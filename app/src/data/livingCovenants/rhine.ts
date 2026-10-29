@@ -9,7 +9,7 @@ import { RHINE_TEXT } from './rhineText';
 import { RHINE_EXTRAS } from './rhineExtras';
 
 const DURENMAR: BookCovenant = {
-  id: 'durenmar', name: 'Durenmar', season: 'Autumn', founded: 767, place: 'the northern Black Forest, Swabia', aura: 7, realm: 'Magic', line: 1477,
+  id: 'durenmar', name: 'Durenmar', season: 'Autumn', founded: 767, place: 'the northern Black Forest, Swabia', aura: 7, realm: 'Magic', line: 1477, greatLibrary: true,
   summary: 'The domus magna of House Bonisagus and the oldest covenant of the Order: home of the Great Library, the meeting place of the Rhine Tribunal and of Grand Tribunals. A perennial Autumn covenant on the verge of Winter, short of vis and of breakthroughs.',
   domusMagna: 'bonisagus', wealth: 'comfortable', library: 'great', vis: 'some', gild: 'oak',
   folk: { grogs: 12, servants: 40, craftsmen: 8, laborers: 12, text: 'Peculiar, quiet covenfolk, most born in the strong aura: every one has a Minor Flaw from Warping, those over thirty two. A band of expert huntsmen hunts the forest for vis and game.' },
