@@ -55,7 +55,7 @@ export default function SeasonsPage() {
   return (
     <div className="stack">
       <div className="breadcrumbs">
-        <Link to={`/saga/${saga.id}`}>{saga.name}</Link> ›
+        <Link to={`/saga/${saga.id}`}>{saga.name}</Link> › <span className="muted">·</span> <Link to={`/saga/${saga.id}/table`}>★ Game table</Link>
       </div>
       <div className="topbar">
         <h1>

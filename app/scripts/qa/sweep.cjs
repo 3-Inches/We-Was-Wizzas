@@ -80,6 +80,7 @@ async function sweep(width) {
   const s = `/saga/${sid}`;
   await visit('saga', s);
   for (const t of ['', '?tab=covenant', '?tab=creatures']) await visit(`build${t}`, `${s}/build${t}`);
+  await visit('table', `${s}/table`);
   await visit('seasons', `${s}/seasons`);
   await visit('market', `${s}/market`);
   for (const t of ['browse', 'design', 'guidelines']) await visit(`spells ${t}`, `${s}/spells?tab=${t}`);
