@@ -61,6 +61,9 @@ export default function SagaPage() {
       </div>
       <div className="topbar">
         <h1>{saga.name}</h1>
+        <Link className="btn primary" to={`/saga/${saga.id}/table`} title="Run a session from one page: what needs attention, everyone's season, the covenants, ending the season">
+          ★ Game table
+        </Link>
         <button onClick={() => downloadJson(`${safeFilename(saga.name)}.arm5saga.json`, exportSaga(saga.id))} data-tour="saga-export">
           Export saga
         </button>

@@ -673,6 +673,11 @@ export const TOURS: Tour[] = [
         at: sagaPage('table'), needs: 'saga', target: 'table-advance',
       },
       {
+        title: 'Quick changes',
+        body: 'What happens at the table, recorded on the spot: a Loyalty event from the book’s table, money into or out of the treasury, vis found. Everything can be undone.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-changes',
+      },
+      {
         title: 'The covenants',
         body: 'Treasury, the year’s balance, Loyalty, vis and people for each covenant, with the year’s accounts folded underneath and links to each of its tabs.',
         at: sagaPage('table'), needs: 'saga', target: 'table-covenant',

@@ -18,7 +18,11 @@ import { visText } from '../../engine/vis';
 import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { StandingEditor } from '../character/StandingEditor';
-import { Card, Empty } from '../kit';
+import { LoyaltyEvent } from '../covenant/FinancesTab';
+import { ARTS, ART_NAMES, type Art } from '../../data';
+import { addVis } from '../../engine/vis';
+import { uid } from '../../util/id';
+import { Card, Empty, Field, Stepper } from '../kit';
 
 interface Attention {
   level: 'bad' | 'warn' | 'info';
@@ -44,7 +48,9 @@ export default function DashboardPage() {
   const S = `/saga/${saga.id}`;
   const { currentYear: year, currentSeason: season } = saga;
   const playing = chars.filter(inPlay);
-  const home = covs.find((c) => playing.some((p) => c.memberIds.includes(p.id))) ?? covs[0];
+  // the players' covenant: the one with the most magi, then the most characters in play
+  const weight = (c: Covenant) => playing.filter((p) => c.memberIds.includes(p.id)).reduce((t, p) => t + (p.type === 'magus' ? 100 : 1), 0);
+  const home = [...covs].sort((a, b) => weight(b) - weight(a))[0];
   const sheet = (c: Character, tab?: string) => `${S}/character/${c.id}${c.creation.finalized ? '' : '/create'}${tab ? `?tab=${tab}` : ''}`;
   const covLink = (cov: Covenant | undefined, tab?: string) => (cov ? `${S}/covenant/${cov.id}${tab ? `?tab=${tab}` : ''}` : S);
 
@@ -194,7 +200,9 @@ export default function DashboardPage() {
         })}
       </Card>
 
-      {covs.map((cov) => (
+      {covs.length > 0 && <QuickChanges covs={covs} home={home} year={year} season={season} />}
+
+      {[...covs].sort((a, b) => weight(b) - weight(a)).map((cov) => (
         <CovenantGlance key={cov.id} cov={cov} dc={dcs.get(cov.id) as DerivedCovenant} covLink={covLink} S={S} />
       ))}
     </div>
@@ -289,5 +297,77 @@ function PlayIndex({ S, home, first, sheet, covLink }: { S: string; home?: Coven
         </div>
       ))}
     </div>
+  );
+}
+
+/** Changes that come up at the table, made here: a Loyalty event, money in or out of the treasury, vis found. */
+function QuickChanges({ covs, home, year, season }: { covs: Covenant[]; home?: Covenant; year: number; season: Covenant['log'][number]['season'] }) {
+  const updateCovenant = useStore((s) => s.updateCovenant);
+  const [covId, setCovId] = useState(home?.id ?? covs[0].id);
+  const [pounds, setPounds] = useState(0);
+  const [why, setWhy] = useState('');
+  const [art, setArt] = useState<Art>('Vi');
+  const [pawns, setPawns] = useState(1);
+  const cov = covs.find((c) => c.id === covId) ?? covs[0];
+  const update = (fn: (c: Covenant) => void) => updateCovenant(cov.id, fn);
+  const money = (sign: 1 | -1) =>
+    update((x) => {
+      const d = sign * Math.abs(pounds);
+      x.finances.treasury = Math.round((x.finances.treasury + d) * 1000) / 1000;
+      x.log.push({ uid: uid(), year, season, text: `${d > 0 ? 'Received' : 'Spent'} ${lsd(Math.abs(d))}${why ? `: ${why}` : ''}.`, treasuryDelta: d });
+    });
+  const vis = () =>
+    update((x) => {
+      addVis(x.visStocks, art, pawns);
+      x.log.push({ uid: uid(), year, season, text: `Vis found: ${pawns} pawn${pawns > 1 ? 's' : ''} of ${ART_NAMES[art]}${why ? ` (${why})` : ''}.`, visDelta: [{ art, pawns }] });
+    });
+  return (
+    <Card title="Quick changes" tour="table-changes">
+      {covs.length > 1 && (
+        <div className="row small">
+          <Field label="Covenant">
+            <select value={cov.id} onChange={(e) => setCovId(e.target.value)}>
+              {covs.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name || 'Covenant'}
+                </option>
+              ))}
+            </select>
+          </Field>
+        </div>
+      )}
+      <LoyaltyEvent cov={cov} update={update} />
+      <div className="row small" style={{ marginTop: 6, alignItems: 'flex-end' }}>
+        <Field label="Pounds">
+          <Stepper value={pounds} min={0} step={1} width={50} onChange={setPounds} />
+        </Field>
+        <Field label="What for (optional)">
+          <input value={why} onChange={(e) => setWhy(e.target.value)} style={{ width: 160 }} />
+        </Field>
+        <button className="small" disabled={!pounds} onClick={() => money(1)}>
+          Into the treasury
+        </button>
+        <button className="small" disabled={!pounds} onClick={() => money(-1)}>
+          Out of the treasury
+        </button>
+        <span className="muted">now {lsd(cov.finances.treasury)}</span>
+      </div>
+      <div className="row small" style={{ marginTop: 6, alignItems: 'flex-end' }}>
+        <Field label="Vis found">
+          <select value={art} onChange={(e) => setArt(e.target.value as Art)}>
+            {ARTS.map((a) => (
+              <option key={a} value={a}>
+                {ART_NAMES[a]}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Stepper value={pawns} min={1} max={99} width={34} onChange={setPawns} />
+        <button className="small" onClick={vis}>
+          Add to the stocks
+        </button>
+        <span className="muted">Found, won or given in play: no Build Points. A vis source is added on the Library &amp; Vis tab.</span>
+      </div>
+    </Card>
   );
 }

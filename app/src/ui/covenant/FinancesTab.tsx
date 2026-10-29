@@ -952,7 +952,7 @@ function IncomeCard({ cov, update, dc, hasMiracles }: Omit<CovTabProps, 'data'> 
 }
 
 /** Record something that changes the covenfolk's loyalty, from the book's table (DE; Covenants ch.4). */
-function LoyaltyEvent({ cov, update }: { cov: Covenant; update: CovTabProps['update'] }) {
+export function LoyaltyEvent({ cov, update }: { cov: Covenant; update: CovTabProps['update'] }) {
   const [id, setId] = useState('attitude');
   const [level, setLevel] = useState(0);
   const [magic, setMagic] = useState(false);
