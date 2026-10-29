@@ -515,7 +515,12 @@ export function magicResistance(d: DerivedCharacter, form: Form, o: { aura?: Aur
   // from a Virtue (Strong Angelic Heritage: Divine Might = age / 20)
   if (d.might && d.might.score > 0) {
     const auraMod = o.aura ? auraModifier(d.might.realm, o.aura).mod : 0;
-    others.push({ label: `${d.might.realm} Might ${d.might.score}${d.might.source !== 'creature' ? ` (${d.might.source})` : ''}${auraMod ? ` + aura ${auraMod}` : ''}`, value: d.might.score + auraMod });
+    // (Form) Resistance adds to a Magic being's resistance against its Form, as a Form does for a magus (RoP: Magic)
+    const formRes = d.might.realm === 'Magic' ? Math.max(0, ...d.abilities.filter((a) => a.abilityId === 'form-resistance' && d.char.abilities.find((x) => x.uid === a.uid)?.param === artName(form)).map((a) => a.total)) : 0;
+    others.push({
+      label: `${d.might.realm} Might ${d.might.score}${d.might.source !== 'creature' ? ` (${d.might.source})` : ''}${auraMod ? ` + aura ${auraMod}` : ''}${formRes ? ` + ${artName(form)} Resistance ${formRes}` : ''}`,
+      value: d.might.score + auraMod + formRes,
+    });
   }
   const parmaTotal = parts.reduce((s, p) => s + p.value, 0);
   const best = others.reduce<Part | undefined>((b, p) => (!b || p.value > b.value ? p : b), undefined);

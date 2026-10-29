@@ -83,7 +83,7 @@ async function sweep(width) {
   await visit('table', `${s}/table`);
   await visit('seasons', `${s}/seasons`);
   await visit('market', `${s}/market`);
-  await visit('tribunal', `${s}/tribunal`);
+  for (const t of ['covenants', 'forest', 'places', 'history', 'sagas']) await visit(`tribunal ${t}`, `${s}/tribunal?tab=${t}`);
   for (const t of ['browse', 'design', 'guidelines']) await visit(`spells ${t}`, `${s}/spells?tab=${t}`);
   for (const t of ['items', 'longevity', 'vis', 'writing', 'tables']) await visit(`enchant ${t}`, `${s}/enchant?tab=${t}`);
   for (const t of ['saga', 'books', 'optional', 'rules', 'custom', 'mechanics']) await visit(`rules ${t}`, `${s}/rules?tab=${t}`);

@@ -13,9 +13,10 @@ import { bookCovenant, tribunalBook, type BookMotion, type TribunalBook } from '
 import { deriveCharacter, type DerivedCharacter } from './character/derive';
 import { covenantOf } from './context';
 import { stressDie, type Rng } from './dice';
+import { foundingAtGathering } from './founding';
 import { freshName } from './generate/names';
 import { newLab } from './lab';
-import { magiTarget, otherMagus, type LivingContext } from './living';
+import { magiTarget, otherMagus, takenNames, type LivingContext } from './living';
 import { certamenFatigue, certamenTotals } from './magic';
 import { optionOn } from './optional';
 import { RHINE_RANKS } from './tribunal';
@@ -353,6 +354,13 @@ export function tribunalGathering(state: State, g: LivingContext, year: number, 
     lines.push(...p.lines);
     out.push(...p.news);
   }
+  // the players' bid for a new covenant's recognition, with a sponsor from every other covenant, as
+  // the covenants stand when the gathering opens (one admitted at it, as Heorot may be, is not asked)
+  const founded = foundingAtGathering(book, state.saga, state.covenants, year);
+  if (founded) {
+    lines.push({ who: `The ${book.tribunal} Tribunal`, text: founded, tribunal: 'gathering' });
+    out.push(news(year, season, { kind: 'vote', text: founded }));
+  }
   for (const m of motionsDue(book, votes, year, rng)) {
     const v = voteOn(m, voters, state.saga, year, rng, customs);
     state.saga.tribunalVotes = [v, ...(state.saga.tribunalVotes ?? [])].slice(0, 60);
@@ -386,7 +394,7 @@ export function apprenticesYearEnd(state: State, g: LivingContext, year: number,
   const lines: Line[] = [];
   const out: TribunalNews[] = [];
   const living = state.covenants.filter((c) => c.living && !c.living.paused);
-  const names = () => state.characters.map((c) => c.name);
+  const names = () => takenNames(state.characters);
   const magiAt = (cov: Covenant) => state.characters.filter((c) => cov.memberIds.includes(c.id) && c.type === 'magus' && alive(c)).length;
   const customs = rhineCustoms(state.saga);
   for (const cov of living) {
@@ -550,13 +558,15 @@ export function wanderersYearEnd(state: State, year: number, rng: Rng): { lines:
           if (welcome) w.welcome = undefined;
           const text = `${c.name} leaves ${host.name} after ${years} year${years === 1 ? '' : 's'} as its guest, for ${to.name}.`;
           lines.push({ who: c.name, text, tribunal: 'wanderers' });
-          out.push(news(year, 'Winter', { kind: 'event', covenantId: to.living ? to.id : undefined, characterId: c.id, text }));
+          // news of the book's wanderers, and of any coming to or leaving the players; the other peregrinatores' moves stay in the report
+          const known = !!tribunalBook(state.saga.tribunal)?.wanderers?.some((x) => x.name === w.key);
+          if (known || !to.living || !host.living) out.push(news(year, 'Winter', { kind: 'event', covenantId: to.living ? to.id : undefined, characterId: c.id, text }));
         }
       }
     }
-    // asking the players' covenant to take them in
+    // asking the players' covenant to take them in: the book's own request, or any peregrinator's under the guest-laws
     const book = tribunalBook(state.saga.tribunal);
-    const a = book?.wanderers?.find((x) => x.name === w.key)?.approach;
+    const a = book?.wanderers?.find((x) => x.name === w.key)?.approach ?? (w.wanders === 'peregrinator' && customs ? guestRequest(c) : undefined);
     if (!a || !ours || c.covenantId === ours.id || w.welcome) continue;
     if (state.saga.tribunalNews?.some((n) => n.approach === a.id && n.year >= year - 1)) continue;
     if (rng() * 100 >= a.chance) continue;
@@ -569,6 +579,14 @@ export function wanderersYearEnd(state: State, year: number, rng: Rng): { lines:
 export function playersCovenant(covenants: Covenant[], characters: Character[]): Covenant | undefined {
   const magi = (cov: Covenant) => characters.filter((c) => cov.memberIds.includes(c.id) && c.type === 'magus').length;
   return covenants.filter((x) => !x.living).sort((a, b) => magi(b) - magi(a))[0];
+}
+
+/** A peregrinator's request for hospitality at the players' covenant (GotF, Laws of Hospitality). */
+function guestRequest(c: Character): { id: string; kind: 'request'; text: string; chance: number; page?: undefined } {
+  return {
+    id: `guest:${c.id}`, kind: 'request', chance: 6,
+    text: `${c.name}, a peregrinator of House ${(c.house ?? '').replace(/(^|-)\w/g, (x) => x.toUpperCase()).replace('-', ' ')}, asks for hospitality at the covenant under the Rhine’s guest-laws: three to seven years, three pawns of vis a year or a season’s service, and a laboratory of their own.`,
+  };
 }
 
 /**

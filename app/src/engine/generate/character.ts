@@ -5,6 +5,7 @@
 // and fills in what the saga's Tribunal customs and guild rules ask of the character. The seed makes
 // it repeatable.
 
+import { issueRedcapDevices, redcapLevels, servedByMercerHouse } from './items';
 import { ARTS, CHARACTERISTICS, FORMS, TECHNIQUES, type CharType, type GameData } from '../../data';
 import { CRAFTS as LIST_CRAFTS, HOMELANDS } from '../../data/lists';
 import { HOUSES } from '../../data/houses';
@@ -204,6 +205,12 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     const r = generateFamiliar(derive(), rng, { bind: true, aura: g.covenant ? { realm: g.covenant.auraRealm ?? 'Magic', strength: g.covenant.aura } : undefined });
     c.familiar = { ...r.familiar, name: freshName(rng, 'latin', chance(rng, 0.5), [c.name]) };
     log.push(r.log.replace('Familiar:', `Familiar ${c.familiar.name}:`));
+  }
+  // a Redcap's devices from the Mercer House: fifty levels at the Gauntlet, two a year since (DE, Redcap)
+  if (servedByMercerHouse(c)) {
+    c.redcap = { levels: redcapLevels(c, Math.max(0, c.age - 25)), spent: 0 };
+    const got = issueRedcapDevices(c, data, rng);
+    if (got.length) log.push(`Redcap’s devices from the Mercer House: ${got.join(', ')}.`);
   }
   c.description = `${role.label} from ${c.nationality}${c.house ? `, of House ${HOUSES.find((h) => h.id === c.house)?.name}` : ''}. ${role.blurb}`;
   if (g.covenant) c.covenantId = g.covenant.id;

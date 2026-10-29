@@ -4,7 +4,7 @@
 // the magi it counts without naming, how it stands with its neighbors, and the ways it may come to
 // the players' covenant. Ages are those the book gives for its present (1220).
 
-import type { Art } from '../types';
+import type { Art, Form, Technique } from '../types';
 
 export type Wealth = 'poor' | 'modest' | 'comfortable' | 'rich' | 'very rich';
 export type Holdings = 'poor' | 'modest' | 'good' | 'great';
@@ -80,6 +80,72 @@ export interface StatBlock {
   gauntlet?: number;
   /** the age the character looks, where the book gives it */
   apparentAge?: number;
+}
+
+/** What a magus has beyond the stat block: the book's items and familiar, and the Mysteries they have been initiated into. */
+export interface MagusExtras {
+  /** enchanted items the book gives, each effect as it designs it (a talisman is the magus's own) */
+  items?: BookItem[];
+  /** the familiar, where the book gives its statistics */
+  familiar?: BookFamiliar;
+  /** House Mysteries the magus has been initiated into (Mystery Virtue ids), each with why: the book's, or a reading of what fits them */
+  mysteries?: [string, string][];
+}
+
+/** An enchanted item as a book gives it. */
+export interface BookItem {
+  name: string;
+  kind: 'talisman' | 'invested' | 'lesser' | 'charged';
+  material: string;
+  size: 'tiny' | 'small' | 'medium' | 'large' | 'huge';
+  text: string;
+  /** a talisman's attunements: what each helps, and by how much */
+  attunements?: [string, number][];
+  effects: BookEffect[];
+  /** who has it, if not its maker (a familiar's pendant) */
+  carriedBy?: string;
+  line: number;
+}
+
+export interface BookEffect {
+  name: string;
+  technique: Technique;
+  form: Form;
+  requisites?: Art[];
+  /** the effect's level as designed, before the item's modifiers */
+  level: number;
+  range: string;
+  duration: string;
+  target: string;
+  /** uses a day ('1', '2', '3', '6', '12', '24', '50', 'unlimited') */
+  uses?: string;
+  penetration?: number;
+  environmental?: boolean;
+  linked?: boolean;
+  concentration?: boolean;
+  /** the book's final level */
+  final: number;
+  text: string;
+}
+
+/** A familiar as a book gives it. */
+export interface BookFamiliar {
+  name: string;
+  species: string;
+  might: number;
+  size: number;
+  realm: 'Magic' | 'Faerie';
+  /** the Arts and Lab Total it was bound with */
+  technique: Technique;
+  form: Form;
+  labTotal: number;
+  golden: number;
+  silver: number;
+  bronze: number;
+  /** powers the bond gives (familiar powers) */
+  powers: { name: string; technique: Technique; form: Form; level: number; text: string }[];
+  notes: string;
+  line: number;
 }
 
 /** Unnamed magi the book counts, generated to fill the covenant out. */
@@ -162,6 +228,8 @@ export interface BookCovenant {
   auraNote?: string;
   /** something that gives its magi a better aura in the laboratory than the covenant's (the magestones of Verditius) */
   labAura?: LabAuraSource;
+  /** its library is the Great Library (Durenmar): stocked to the book's outline, not bought with Build Points */
+  greatLibrary?: boolean;
   /** not yet a member of the Tribunal: the motion (BookMotion id) that would admit it; its magi have no sigils until it passes */
   joins?: string;
   /** chapter houses: name and place */
@@ -226,14 +294,26 @@ export interface TribunalBook {
   /** the year the book describes */
   present: number;
   /** Tribunal gatherings: every so many years, from this year, at this covenant */
-  gathering: { every: number; from: number; at: string; line: number; season?: 'Spring' | 'Summer' | 'Autumn' | 'Winter' };
-  /** other gatherings a House holds (Bjornaer's Gathering of Twelve Years) */
-  otherGatherings?: { name: string; every: number; from: number; at: string; house?: string; line: number }[];
+  gathering: {
+    every: number;
+    from: number;
+    at: string;
+    line: number;
+    season?: 'Spring' | 'Summer' | 'Autumn' | 'Winter';
+    /** held a year earlier when it would fall in a Grand Tribunal's year */
+    beforeGrand?: boolean;
+  };
+  /** other gatherings: a House's (Bjornaer's Gathering of Twelve Years), the Grand Tribunal's */
+  otherGatherings?: { name: string; every: number; from: number; at: string; house?: string; grand?: boolean; line: number }[];
   covenants: BookCovenant[];
+  /** the book's places, story seeds, timeline, forests and saga ideas are on the Tribunal page */
+  lore?: boolean;
   /** each named magus's stat block, by name: the book's own, or one written to what it says of them */
   sheets?: Record<string, StatBlock>;
   /** what the book says of each named magus, in its own words, by name */
   texts?: Record<string, string>;
+  /** each named magus's items, familiar and Mysteries, by name */
+  extras?: Record<string, MagusExtras>;
   /** the motions its gatherings debate */
   motions?: BookMotion[];
   /** its magi who belong to no covenant */

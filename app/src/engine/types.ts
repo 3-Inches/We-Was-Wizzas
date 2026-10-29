@@ -103,6 +103,30 @@ export interface Saga {
   tribunalVotes?: TribunalVote[];
   /** the players' magi's votes on a motion before the gathering, by motion id and character id (unset: the magus votes as the storyguide decides on the day, counted as abstaining) */
   playerVotes?: Record<string, Record<string, 'for' | 'against' | 'abstain'>>;
+  /** the players' bid for the Tribunal's recognition of their covenant (the Rhine's sponsors from every other covenant) */
+  founding?: CovenantFounding;
+}
+
+/** A sponsor for the players' new covenant from one covenant of the Tribunal (GotF, On the Founding of Covenants). */
+export interface FoundingSponsor {
+  status: 'unasked' | 'sought' | 'promised' | 'refused';
+  /** the sponsoring magus: one of the covenant's living magi, or a name */
+  magusId?: string;
+  name?: string;
+  /** what the players promised in return */
+  terms?: string;
+  /** the sponsor's gift to the new covenant, and whether it has come */
+  gift?: string;
+  delivered?: boolean;
+}
+
+export interface CovenantFounding {
+  /** the players' covenant seeking recognition */
+  covenantId?: string;
+  /** a sponsor from each covenant, by its id in the Tribunal book */
+  sponsors: Record<string, FoundingSponsor>;
+  /** the gathering that recognized it */
+  recognizedYear?: number;
 }
 
 /** Something from the Tribunal for the storyguide: a living covenant's approach to the players, a death, a gathering. */
@@ -272,7 +296,7 @@ export interface StandingActivity {
 }
 
 /** What a season can go to on a priority list (engine/priorities.ts). */
-export type PriorityKind = 'longevity' | 'apprentice' | 'service' | 'politics' | 'travel' | 'read' | 'vis' | 'invent' | 'enchant' | 'write' | 'lab' | 'practice';
+export type PriorityKind = 'longevity' | 'apprentice' | 'house' | 'service' | 'politics' | 'travel' | 'read' | 'vis' | 'invent' | 'enchant' | 'write' | 'lab' | 'practice';
 
 /** One entry of a priority list: the kind, whether it is on, and the Arts it favors (else the character's best). */
 export interface SeasonPriority {
@@ -439,7 +463,14 @@ export interface CharPower {
   notes?: string;
   /** a magic character's mastery points on it (RoP: Magic, Improved Powers): lower Might cost, more Initiative, a Focus Power's level beyond Might (5 each) */
   mastery?: { cost?: number; init?: number; level?: number };
+  /** Variable Power: the Virtue (its uid) that makes it grow, and with what */
+  variable?: { virtueUid: string; by: VarianceBy };
+  /** Deteriorating Power: the Flaw (its uid) that wears it down, and with what */
+  deteriorating?: { virtueUid: string; by: VarianceBy };
 }
+
+/** What a Variable or Deteriorating Power changes with (RoP: Magic): age / 10, Might Score / 5 (Deteriorating: Might spent / 5), Warping Score, or an Ability's score ('ability:<id>'). */
+export type VarianceBy = 'age' | 'might' | 'warping' | `ability:${string}`;
 
 export interface CharAbility {
   uid: string;
@@ -882,6 +913,8 @@ export interface Character {
   apprentice?: Apprentice;
   /** a magus of the Tribunal who belongs to no covenant, and how they wander (living covenants) */
   wanderer?: Wanderer;
+  /** a Redcap's devices from the Mercer House: the levels given so far (50 at the Gauntlet, 2 a year since) and those spent on devices */
+  redcap?: { levels: number; spent: number };
   /** the seasons this year the character has worked under the covenant's laboratory aura (its magestones) */
   labAuraUse?: { year: number; seasons: number };
   /** a character the toolkit built from a book: where it is described */

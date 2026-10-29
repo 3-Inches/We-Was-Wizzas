@@ -269,7 +269,9 @@ export default function HelpPage() {
           <li>
             A companion Flaw (Magical Animal, Realm Spirit, Animal Companion) can create the companion&apos;s own sheet. A magical companion is built as a <i>Realms of Power:
             Magic</i> magic character: experience from its Season, Might from the saga&apos;s power level, Magic Qualities bought with Might, and the Magical Friend status. Its
-            Creature card lists the creation steps in the book&apos;s order.
+            Creature card lists the creation steps in the book&apos;s order. The Powers card&apos;s list starts with the book&apos;s sixteen <b>Common Magic Powers</b>, each with
+            its level and Quality; the Qualities menu also offers the realm&apos;s own Virtues and Flaws. <b>Variable Power</b> and <b>Deteriorating Power</b> are set on the
+            power they change, with what they go by (age, Might, Warping or an Ability), and the card shows the effect level that gives.
           </li>
           <li>Tribunal, homeland, Characteristic descriptions and Ability types are dropdowns; choose <b>Other (type your own)</b> for anything not listed.</li>
           <li>A character older than 35 rolls aging before play on the Concept step. A year that would kill the character is not applied, so you can roll it again.</li>
@@ -442,19 +444,27 @@ export default function HelpPage() {
             for 1220, moved on to the saga&apos;s year. Where the book is silent (an age, a season, an aura), the toolkit makes a likely guess and says so in the notes.
           </li>
           <li>
+            <b>What they carry:</b> the items and familiars the book gives (Philippus Niger&apos;s Knife of Human Bone, Wizard&apos;s Bridle and Subtle Chain, and Sordus the
+            basilisk; Falke&apos;s anklet-ring), a talisman for every archmage, most masters and some long-standing journeymen, attuned to their best Arts, and a heartbeast for
+            every Bjornaer. A Redcap carries the Mercer House&apos;s devices for the road (fifty levels at the Gauntlet and two more a year, renewed each year, with a Longevity
+            Ritual from 35). With <i>Mystery Initiation</i> on, the senior Merinita, Bjornaer and Verditius are initiated into a fitting Mystery of their House, marked as not
+            in the book.
+          </li>
+          <li>
             <b>Kept apart:</b> their covenants and people stay off the players&apos; lists (the menu, the saga page, the Game table, Seasons, the Market). They are on the
             Tribunal page and their own pages, and their lines in a season&apos;s report are folded under <b>The Tribunal</b>.
           </li>
           <li>
             <b>Season priorities:</b> each of their magi follows a priority list (Advancement tab → Season priorities): service to the covenant, politics, travel, writing for the
             library, reading its best book, study from vis, inventing a spell, enchanting an item (a lesser device of one of their spells, or charms), improving the lab, and a
-            season a year for an apprentice. Each entry is a season a year, and the first that can be done is taken. A
+            season a year for an apprentice, and House duties (a Quaesitor&apos;s investigations a season a year, a Gifted Mercere&apos;s season on the road one year in seven).
+            Each entry is a season a year, and the first that can be done is taken. A
             Longevity Ritual is made whenever a magus of 35 or more has none, and lab work fills any season the list leaves. Any character can follow a list: choose{' '}
             <b>Follow the priority list</b> as the standing activity.
           </li>
           <li>
-            <b>The years:</b> every seven years the Tribunal meets at Durenmar (from 1221, opening on Walpurgis Night: the Spring season), and every living magus spends that season
-            there. At each year&apos;s end a living covenant closes its books like yours, makes good a shortfall from its holdings, may take in a new journeyman when its numbers fall,
+            <b>The years:</b> every seven years the Tribunal meets at Durenmar (from 1221, opening on Walpurgis Night: the Spring season; in 1227, a year early for the Grand
+            Tribunal of 1228), and every living magus spends that season there. The Bjornaer spend a Summer at Crintera every twelve years, for their Gathering of Twelve Years. At each year&apos;s end a living covenant closes its books like yours, makes good a shortfall from its holdings, may take in a new journeyman when its numbers fall,
             and may come to your covenant with one of the book&apos;s offers, requests or troubles (Boris of Novgorod with vis to sell, Heorot seeking support, Waddenzee&apos;s pirates).
           </li>
           <li>
@@ -470,7 +480,9 @@ export default function HelpPage() {
           </li>
           <li>
             <b>Wanderers:</b> Tabanus the Quaesitor, a peregrinator who stays about three years at each covenant (young ones first), comes with Triamore; Felicia, who winters at
-            Fengheld and summers on the road, with Fengheld. They are guests, not members, with a laboratory of their own, and pay the guest&apos;s fee. When one asks to stay with
+            Fengheld and summers on the road, with Fengheld. Each covenant also brings peregrinatores staying as its guests, about one for every five members, as the book has
+            around a sixth of the Rhine&apos;s magi living under its guest-laws; they move on after three to seven years. They are guests, not members, with a laboratory of their
+            own, and pay the guest&apos;s fee. When one asks to stay with
             you, <b>Take them in</b> (on the request, or the Tribunal page&apos;s <b>Wanderers</b> card).
           </li>
           <li>
@@ -483,8 +495,22 @@ export default function HelpPage() {
             <b> attitude</b> to your covenant as play makes it: troubles come more often from those who dislike you, offers and invitations from those who like you.
           </li>
           <li>
-            <b>The Great Library</b> (Tribunal page): the book&apos;s rolls for what a visiting magus finds in Durenmar&apos;s library (a summa of the Level wanted, a tractatus&apos;s
-            Quality, a spell&apos;s or an enchantment&apos;s Lab Text) and the seasons of study earned by contributing to it.
+            <b>The Great Library:</b> Durenmar&apos;s library is stocked to the book&apos;s outline, the greatest of the Order: six summae on each Art (an outstanding one of Level 18
+            to 20), three copies of Principia Magica, summae and tractatus on the Arcane Abilities, Lab Texts for the standard spells, the Tribunal&apos;s records and an ancient
+            mundane collection. The Tribunal page has the book&apos;s rolls for what a visiting magus finds there (a summa of the Level wanted, a tractatus&apos;s Quality, a
+            spell&apos;s or an enchantment&apos;s Lab Text) and the seasons of study earned by contributing to it.
+          </li>
+          <li>
+            <b>The rest of the book</b> is on the Tribunal page&apos;s other tabs. <b>Forests &amp; Courts:</b> the Courts of the Seasons with each court&apos;s Might Pool and
+            aura for the saga&apos;s months, which of Bright Winter and Dark Summer holds the Rhine Gorge now, what becomes of forest spirits and what they can do, and the
+            trees of Germany with their Shape and Material bonuses. <b>Places &amp; seeds:</b> the book&apos;s regions and places, searchable, with their auras, what it says of
+            vis and its asides, and its story seeds. <b>Timeline:</b> what the book has coming from the saga&apos;s year on (the toolkit does not make it happen) and its history.
+            <b>Sagas &amp; founding:</b> its saga ideas, and your bid for a new covenant.
+          </li>
+          <li>
+            <b>Founding a covenant:</b> the Rhine recognizes a new covenant only with a sponsor from every other covenant (one magus suffices, never a founder, and none of a
+            gild the founders angered). Track each covenant&apos;s sponsor, its likely terms from how it stands with you, what you promised and its gift. The next gathering
+            recognizes the covenant once every covenant has promised; a bid that still lacks one is refused until the next.
           </li>
           <li>
             <b>Pause or remove:</b> a paused covenant still ages and closes its books but makes no approaches; removing one takes its people with it (undo is at the top of the

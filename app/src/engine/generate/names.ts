@@ -62,8 +62,16 @@ const NAMES: Record<string, Names> = {
   },
   // magi go by Latin names in the Order
   latin: {
-    male: ['Aurelius', 'Bartholomaeus', 'Cassius', 'Decimus', 'Fabricius', 'Gaius', 'Hieronymus', 'Ignatius', 'Julianus', 'Lucanus', 'Marcellus', 'Octavian', 'Quintus', 'Severus', 'Tiberius', 'Valerian'],
-    female: ['Aemilia', 'Aurelia', 'Cassia', 'Claudia', 'Domitia', 'Fabia', 'Flavia', 'Julia', 'Livia', 'Lucretia', 'Marcella', 'Octavia', 'Prisca', 'Sabina', 'Valeria', 'Vibia'],
+    male: [
+      'Aurelius', 'Bartholomaeus', 'Cassius', 'Decimus', 'Fabricius', 'Gaius', 'Hieronymus', 'Ignatius', 'Julianus', 'Lucanus', 'Marcellus', 'Octavian', 'Quintus', 'Severus', 'Tiberius', 'Valerian',
+      'Aelius', 'Albinus', 'Antonius', 'Appius', 'Atticus', 'Augustinus', 'Benedictus', 'Caelius', 'Camillus', 'Clemens', 'Cornelius', 'Crispinus', 'Drusus', 'Faustus', 'Florianus', 'Gallus',
+      'Gratianus', 'Hadrianus', 'Honorius', 'Laurentius', 'Lucius', 'Maximus', 'Paulinus', 'Petronius', 'Placidus', 'Postumus', 'Rufinus', 'Sabinus', 'Septimus', 'Servius', 'Silvanus', 'Titus', 'Urbanus', 'Vitalis',
+    ],
+    female: [
+      'Aemilia', 'Aurelia', 'Cassia', 'Claudia', 'Domitia', 'Fabia', 'Flavia', 'Julia', 'Livia', 'Lucretia', 'Marcella', 'Octavia', 'Prisca', 'Sabina', 'Valeria', 'Vibia',
+      'Agrippina', 'Albina', 'Antonia', 'Aquilina', 'Caecilia', 'Calpurnia', 'Camilla', 'Cornelia', 'Drusilla', 'Faustina', 'Flaminia', 'Fulvia', 'Hortensia', 'Junia', 'Laelia', 'Lavinia',
+      'Licinia', 'Lucilla', 'Marcia', 'Paulina', 'Petronia', 'Placidia', 'Pompeia', 'Porcia', 'Quintilla', 'Rufina', 'Septima', 'Serena', 'Severina', 'Silvia', 'Tertia', 'Tullia', 'Ursula', 'Valentina',
+    ],
   },
 };
 
@@ -91,10 +99,22 @@ export function givenName(rng: Rng, region: string, female: boolean): string {
   return pick(rng, female ? n.female : n.male);
 }
 
-/** A given name not already in use (when the region has one left), so a covenant has no two Idas. */
+/** What sets a second bearer of a name apart: a cognomen for a magus's Latin name, an epithet for others. */
+const COGNOMINA = ['Rufus', 'Niger', 'Magnus', 'Minor', 'Felix', 'Longus', 'Pius', 'Calvus', 'Crassus', 'Silvanus', 'Peregrinus', 'Germanicus'];
+const EPITHETS = ['the Younger', 'the Elder', 'the Red', 'the Tall', 'the Fair', 'the Quiet', 'the Bold', 'the Lame', 'the Black', 'the Stranger'];
+
+/** A name not already in use, so a covenant (or a Tribunal) has no two Idas: a given name while the region has one left, then one with a cognomen or epithet. */
 export function freshName(rng: Rng, region: string, female: boolean, used: Iterable<string> = []): string {
   const taken = new Set([...used].map((n) => n.toLowerCase()));
   const n = NAMES[region] ?? NAMES.english;
-  const free = (female ? n.female : n.male).filter((x) => !taken.has(x.toLowerCase()));
-  return free.length ? pick(rng, free) : givenName(rng, region, female);
+  const names = female ? n.female : n.male;
+  const free = names.filter((x) => !taken.has(x.toLowerCase()));
+  if (free.length) return pick(rng, free);
+  const extra = region === 'latin' ? COGNOMINA.map((c) => (female ? c.replace(/us$/, 'a').replace(/er$/, 'ra') : c)) : EPITHETS;
+  const more = names.flatMap((x) => extra.map((e) => `${x} ${e}`)).filter((x) => !taken.has(x.toLowerCase()));
+  if (more.length) return pick(rng, more);
+  let i = 2;
+  const base = pick(rng, names);
+  while (taken.has(`${base} ${i}`.toLowerCase())) i++;
+  return `${base} ${i}`;
 }

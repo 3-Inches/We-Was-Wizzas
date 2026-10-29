@@ -198,7 +198,26 @@ function MagicCharacterSection({ ed, mcInfo }: { ed: CharEditor; mcInfo: MagicCh
   const addDef = adding ? MAGIC_QUALITY_BY_ID.get(adding) : undefined;
   const addRule = adding ? QUALITY_RULES[adding] ?? {} : {};
   const groups = groupQualities(mcInfo.qualities);
+  // the realm's own Virtues and Flaws (RoP: Magic), taken through a Virtue or Flaw Quality in one step
+  const realmVf = data.virtuesFlaws
+    .filter((v) => (v.source.book === 'RoP_M' || v.alsoIn?.some((a) => a.book === 'RoP_M')) && !MAGIC_QUALITY_BY_ID.has(v.id) && (v.categories.includes('General') || v.categories.includes('Supernatural')))
+    .filter((v) => (v.sizes.includes('Minor') || (!grog && v.sizes.includes('Major'))) && (v.repeatable || !mcInfo.qualities.some((q) => q.param === v.id)))
+    .sort((a, b) => a.name.localeCompare(b.name));
   const add = () => {
+    if (adding.startsWith('vf:')) {
+      const v = data.vfById.get(adding.slice(3))!;
+      const size = v.sizes.includes('Minor') ? 'Minor' : 'Major';
+      const qid = `${size.toLowerCase()}-${v.kind === 'virtue' ? 'virtue' : 'flaw-inferiority'}`;
+      update((y) => {
+        addQualities(y, data, qid, 1);
+        const qq = [...y.creature!.magicCharacter!.qualities].reverse().find((x) => x.id === qid && !x.virtueUid)!;
+        qq.param = v.id;
+        const extra = v.kind === 'virtue' ? { free: true, freeReason: MAGIC_QUALITY_BY_ID.get(qid)?.name } : { noPoints: true, freeReason: MAGIC_QUALITY_BY_ID.get(qid)?.name };
+        qq.virtueUid = addVirtue(y, data, v.id, size, undefined, extra).uid;
+      });
+      setAdding('');
+      return;
+    }
     update((y) => void addQualities(y, data, adding, addRule.repeatable ? addCount : 1, addParam || undefined));
     setAdding('');
     setAddParam('');
@@ -281,6 +300,20 @@ function MagicCharacterSection({ ed, mcInfo }: { ed: CharEditor; mcInfo: MagicCh
                     {q.name} ({q.size}, {POINTS[q.size]})
                   </option>
                 ))}
+            </optgroup>
+          ))}
+          {(['virtue', 'flaw'] as const).map((k) => (
+            <optgroup key={k} label={k === 'virtue' ? 'The realm’s Virtues (as a Virtue Quality)' : 'The realm’s Flaws (as a Flaw Inferiority)'}>
+              {realmVf
+                .filter((v) => v.kind === k)
+                .map((v) => {
+                  const size = v.sizes.includes('Minor') ? 'Minor' : 'Major';
+                  return (
+                    <option key={v.id} value={`vf:${v.id}`}>
+                      {v.name} ({size} {k === 'virtue' ? 'Virtue' : 'Flaw'}, {POINTS[size]})
+                    </option>
+                  );
+                })}
             </optgroup>
           ))}
         </select>

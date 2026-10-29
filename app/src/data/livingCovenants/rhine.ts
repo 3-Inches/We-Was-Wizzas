@@ -6,9 +6,10 @@
 import type { BookCovenant, BookMotion, BookWanderer, TribunalBook } from './types';
 import { RHINE_SHEETS } from './rhineMagi';
 import { RHINE_TEXT } from './rhineText';
+import { RHINE_EXTRAS } from './rhineExtras';
 
 const DURENMAR: BookCovenant = {
-  id: 'durenmar', name: 'Durenmar', season: 'Autumn', founded: 767, place: 'the northern Black Forest, Swabia', aura: 7, realm: 'Magic', line: 1477,
+  id: 'durenmar', name: 'Durenmar', season: 'Autumn', founded: 767, place: 'the northern Black Forest, Swabia', aura: 7, realm: 'Magic', line: 1477, greatLibrary: true,
   summary: 'The domus magna of House Bonisagus and the oldest covenant of the Order: home of the Great Library, the meeting place of the Rhine Tribunal and of Grand Tribunals. A perennial Autumn covenant on the verge of Winter, short of vis and of breakthroughs.',
   domusMagna: 'bonisagus', wealth: 'comfortable', library: 'great', vis: 'some', gild: 'oak',
   folk: { grogs: 12, servants: 40, craftsmen: 8, laborers: 12, text: 'Peculiar, quiet covenfolk, most born in the strong aura: every one has a Minor Flaw from Warping, those over thirty two. A band of expert huntsmen hunts the forest for vis and game.' },
@@ -381,7 +382,7 @@ const MOTIONS: BookMotion[] = [
     line: 792,
   },
   {
-    id: 'ruegen', year: 1228, again: 30, title: 'Crintera against the Danes on Rügen',
+    id: 'ruegen', year: 1227, again: 30, title: 'Crintera against the Danes on Rügen',
     text: 'Crintera asks once more for leave, under the Guardians of the Forests ruling, to drive the Danish settlers from Rügen. The Tribunal refused in 1186 and 1194 (Caecilius held that no wilderness had been destroyed); the Hawthorn and the Ash backed it then, and the Elder, surprisingly. Crintera itself is divided between Harmonists and Wilderists.',
     gilds: { hawthorn: 'for', ash: 'for', elder: 'split', oak: 'against', linden: 'against', apple: 'against' },
     covenants: { crintera: 'split' },
@@ -390,8 +391,8 @@ const MOTIONS: BookMotion[] = [
     line: 2805,
   },
   {
-    id: 'lotharingia', year: 1228, title: 'A Lotharingian Tribunal',
-    text: 'Before the Grand Tribunal of 1228, which meets at Durenmar, the Apple Gild asks the Rhine not to stand against a new Lotharingian Tribunal of the Low Countries, with two covenants of Normandy. Oculus Septentrionalis, Triamore and about half of Fengheld are committed to it, and Waddenzee is keen to escape the Rhine. (The book has the gild bring it to the Grand Tribunal itself; here the Rhine decides its stand first.)',
+    id: 'lotharingia', year: 1227, title: 'A Lotharingian Tribunal',
+    text: 'At the gathering of 1227, the year before the Grand Tribunal meets at Durenmar, the Apple Gild asks the Rhine not to stand against a new Lotharingian Tribunal of the Low Countries, with two covenants of Normandy. Oculus Septentrionalis, Triamore and about half of Fengheld are committed to it, and Waddenzee is keen to escape the Rhine. (The book has the gild bring it to the Grand Tribunal itself; here the Rhine decides its stand first.)',
     gilds: { apple: 'for', oak: 'against', ash: 'against', hawthorn: 'against', linden: 'split', elder: 'split' },
     covenants: { 'oculus-septentrionalis': 'for', triamore: 'for', waddenzee: 'for', fengheld: 'split' },
     passed: 'The Rhine will not stand in the way: at the Grand Tribunal the Apple Gild proposes a Lotharingian Tribunal with the Rhine’s leave.',
@@ -437,14 +438,17 @@ export const RHINE: TribunalBook = {
   title: 'Guardians of the Forests: The Rhine Tribunal',
   present: 1220,
   // the formal proceedings begin on the eve of the 1st of May (Walpurgis Night)
-  gathering: { every: 7, from: 1221, at: 'durenmar', line: 741, season: 'Spring' },
+  // and the one that would fall in a Grand Tribunal's year is held a year earlier (the timeline: 1227, line 4548)
+  gathering: { every: 7, from: 1221, at: 'durenmar', line: 741, season: 'Spring', beforeGrand: true },
   otherGatherings: [
     { name: 'The Gathering of Twelve Years', every: 12, from: 1227, at: 'crintera', house: 'bjornaer', line: 2819 },
-    { name: 'The Grand Tribunal', every: 33, from: 1228, at: 'durenmar', line: 4328 },
+    { name: 'The Grand Tribunal', every: 33, from: 1228, at: 'durenmar', grand: true, line: 4328 },
   ],
   covenants: [DURENMAR, FENGHELD, CRINTERA, IRENCILLIA, OCULUS, DANKMAR, WADDENZEE, ROZNOV, TRIAMORE, HEOROT],
+  lore: true,
   sheets: RHINE_SHEETS,
   texts: RHINE_TEXT,
+  extras: RHINE_EXTRAS,
   motions: MOTIONS,
   wanderers: WANDERERS,
   // the Tremere exarchs: Severicus those of his two filii and Hygwald Veritas of Waddenzee, Stentorius the rest
