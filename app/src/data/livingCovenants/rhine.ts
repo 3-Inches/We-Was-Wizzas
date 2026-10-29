@@ -6,6 +6,7 @@
 import type { BookCovenant, BookMotion, BookWanderer, TribunalBook } from './types';
 import { RHINE_SHEETS } from './rhineMagi';
 import { RHINE_TEXT } from './rhineText';
+import { RHINE_EXTRAS } from './rhineExtras';
 
 const DURENMAR: BookCovenant = {
   id: 'durenmar', name: 'Durenmar', season: 'Autumn', founded: 767, place: 'the northern Black Forest, Swabia', aura: 7, realm: 'Magic', line: 1477,
@@ -445,6 +446,7 @@ export const RHINE: TribunalBook = {
   covenants: [DURENMAR, FENGHELD, CRINTERA, IRENCILLIA, OCULUS, DANKMAR, WADDENZEE, ROZNOV, TRIAMORE, HEOROT],
   sheets: RHINE_SHEETS,
   texts: RHINE_TEXT,
+  extras: RHINE_EXTRAS,
   motions: MOTIONS,
   wanderers: WANDERERS,
   // the Tremere exarchs: Severicus those of his two filii and Hygwald Veritas of Waddenzee, Stentorius the rest

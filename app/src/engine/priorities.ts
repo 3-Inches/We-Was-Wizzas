@@ -24,6 +24,7 @@ import { uid } from '../util/id';
 export const PRIORITY_KINDS: { id: PriorityKind; label: string; yearly: boolean; text: string }[] = [
   { id: 'longevity', label: 'Longevity Ritual', yearly: false, text: 'Whenever it is needed: from 35, or when an aging crisis ends one, a season in the lab to make a Longevity Ritual with the covenant’s vis.' },
   { id: 'apprentice', label: 'Teach the apprentice', yearly: true, text: 'A season a year with the apprentice, while there is one (Exposure in Teaching).' },
+  { id: 'house', label: 'House duties', yearly: true, text: 'What the magus’s House or office asks of a season: a Quaesitor’s investigations, a season a year (Exposure in Code of Hermes); a Gifted Mercere’s season carrying messages as the Redcaps do, one in seven years (Exposure in Area Lore).' },
   { id: 'service', label: 'Service to the covenant', yearly: true, text: 'The covenant’s business: vis extracted from its aura when its stores run low, else its duties (Exposure in Order of Hermes Lore).' },
   { id: 'politics', label: 'Hermetic politics', yearly: true, text: 'Letters, visits and gild business: Exposure in Intrigue.' },
   { id: 'travel', label: 'Travel', yearly: true, text: 'On the road or at sea: Exposure in Area Lore.' },
@@ -37,29 +38,41 @@ export const PRIORITY_KINDS: { id: PriorityKind; label: string; yearly: boolean;
 ];
 export const PRIORITY_BY_ID = new Map(PRIORITY_KINDS.map((k) => [k.id, k]));
 
+/**
+ * The duty a magus's House or office lays on a season, if any: a Quaesitor investigates the
+ * complaints brought to him, keeping three seasons a year his own (HoH:TL, Guernicus); a Gifted
+ * Mercere spends a season every seven years carrying messages as the Redcaps do (HoH:TL, Mercere).
+ */
+export function houseDuty(c: Character): { what: string; ability: string; param?: string; everyYears: number } | undefined {
+  if (c.type !== 'magus') return undefined;
+  const quaesitor = c.house === 'guernicus' || c.reputations.some((r) => /^(senior |honorary )?quaesitor\b/i.test(r.text.trim()));
+  if (quaesitor) return { what: 'investigations for the Order, as a Quaesitor', ability: 'code-of-hermes', everyYears: 1 };
+  if (c.house === 'mercere') return { what: 'a season carrying messages, as the Redcaps do', ability: 'area-lore', everyYears: 7 };
+  return undefined;
+}
+
 /** A sensible list by what the character is: a magus’ by its archetype (role), a Redcap’s, anyone else’s. */
 export function defaultPriorities(c: Character, o: { role?: string; arts?: Art[]; ungifted?: boolean } = {}): SeasonPriority[] {
   const arts = o.arts?.length ? o.arts : undefined;
-  const list = (...kinds: PriorityKind[]): SeasonPriority[] => kinds.map((kind) => (arts && ['read', 'vis', 'invent', 'enchant'].includes(kind) ? { kind, arts } : { kind }));
+  const list = (kinds: PriorityKind[]): SeasonPriority[] => kinds.map((kind) => (arts && ['read', 'vis', 'invent', 'enchant'].includes(kind) ? { kind, arts } : { kind }));
   // a Redcap is on the road; anyone else without the Gift reads when there is a book for them, and practices
-  if (o.ungifted) return list('travel', 'travel', 'travel', 'read', 'practice');
-  if (c.type !== 'magus') return list('read', 'practice');
-  switch (o.role) {
-    case 'politician':
-    case 'social':
-      return list('longevity', 'service', 'politics', 'read', 'invent', 'vis', 'read', 'practice');
-    case 'scholar':
-      return list('longevity', 'service', 'read', 'write', 'read', 'vis', 'invent', 'practice');
-    case 'explorer':
-      return list('longevity', 'service', 'travel', 'read', 'vis', 'invent', 'practice');
-    case 'lab':
-      return list('longevity', 'service', 'invent', 'read', 'enchant', 'vis', 'lab', 'practice');
-    case 'enchanter':
-      return list('longevity', 'service', 'enchant', 'invent', 'read', 'vis', 'lab', 'practice');
-    default:
-      return list('longevity', 'service', 'read', 'vis', 'invent', 'read', 'practice');
-  }
+  if (o.ungifted) return list(['travel', 'travel', 'travel', 'read', 'practice']);
+  if (c.type !== 'magus') return list(['read', 'practice']);
+  const kinds = ROLE_PRIORITIES[o.role ?? ''] ?? ROLE_PRIORITIES.default;
+  // a House duty comes after the Longevity Ritual
+  return list(houseDuty(c) ? [kinds[0], 'house', ...kinds.slice(1)] : kinds);
 }
+
+/** A magus's list by archetype (role), from the Longevity Ritual on. */
+const ROLE_PRIORITIES: Record<string, PriorityKind[]> = {
+  politician: ['longevity', 'service', 'politics', 'read', 'invent', 'vis', 'read', 'practice'],
+  social: ['longevity', 'service', 'politics', 'read', 'invent', 'vis', 'read', 'practice'],
+  scholar: ['longevity', 'service', 'read', 'write', 'read', 'vis', 'invent', 'practice'],
+  explorer: ['longevity', 'service', 'travel', 'read', 'vis', 'invent', 'practice'],
+  lab: ['longevity', 'service', 'invent', 'read', 'enchant', 'vis', 'lab', 'practice'],
+  enchanter: ['longevity', 'service', 'enchant', 'invent', 'read', 'vis', 'lab', 'practice'],
+  default: ['longevity', 'service', 'read', 'vis', 'invent', 'read', 'practice'],
+};
 
 export interface PriorityChoice {
   kind: PriorityKind;
@@ -154,6 +167,15 @@ const TRY: Record<PriorityKind, Try> = {
     if (!ap) return 'no apprentice';
     const a = ensureAbility(x.c, 'teaching', {});
     return { standing: { kind: 'exposure', target: `ability:${a.uid}` }, what: `teaching ${ap.name}, the apprentice` };
+  },
+  house: (x) => {
+    const duty = houseDuty(x.c);
+    if (!duty) return 'no House duty';
+    const last = Math.max(-Infinity, ...x.c.seasonLog.filter((e) => e.priority === 'house').map((e) => e.year));
+    if (duty.everyYears > 1 && x.year - last < duty.everyYears) return `done within ${duty.everyYears} years (${last})`;
+    const where = duty.ability === 'area-lore' ? `${x.cov?.tribunal || 'Rhine'} Tribunal` : undefined;
+    const a = ensureAbility(x.c, duty.ability, {}, where);
+    return { standing: { kind: 'exposure', target: `ability:${a.uid}` }, what: duty.what };
   },
   service: (x) => {
     const { c, d, cov } = x;

@@ -27,7 +27,8 @@ import { rationsModifier } from './turb';
 import { libraryYearEnd, scriptoriumYear, workWriting, writingFor } from './books';
 import { purseOf, takeVis, visText } from './vis';
 import { choosePriority, priorityLabel } from './priorities';
-import { gatheringIn, gatheringNews, livingIds, livingYearEnd } from './living';
+import { gatheringIn, gatheringNews, houseGatheringIn, livingIds, livingYearEnd } from './living';
+import { redcapYearEnd } from './generate/items';
 import { apprenticesYearEnd, tribunalGathering, wanderersSeasonStart, wanderersYearEnd } from './tribunalLife';
 import { workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
@@ -609,6 +610,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   const living = livingIds(state.covenants, state.characters);
   const tribunalOf = (c: Character) => (living.members.has(c.id) ? covenantOf(c, state.covenants)?.id ?? state.covenants.find((x) => x.memberIds.includes(c.id))?.id ?? 'wanderers' : undefined);
   const gathering = gatheringIn(saga, year, season);
+  const houseGathering = houseGatheringIn(saga, year, season);
   const g = { data, saga, rules: saga.houseRules };
   // the wanderers who winter at a covenant and summer on the road move first
   for (const l of wanderersSeasonStart(state, year, season, rng)) lines.push({ ...l, kind: 'season' });
@@ -624,13 +626,20 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     // an adventure shares the season with other work (DE): only other logged activities fill it
     if (!logged.some((e) => !e.extra && e.activity !== 'adventure')) {
       // a living covenant's magi spend a gathering's season at the Tribunal
-      const out = gathering && tribunal && d.isMagus && c.standing?.kind !== 'none' ? attendGathering(c, d, ctx, cov, data, year, season, rng, gathering) : runStanding(c, d, ctx, cov, data, year, season, rng, state.characters);
+      // and its magi of a House at their House's own gathering
+      const meets = gathering ?? (houseGathering && c.house === houseGathering.house ? houseGathering : undefined);
+      const out = meets && tribunal && d.isMagus && c.standing?.kind !== 'none' ? attendGathering(c, d, ctx, cov, data, year, season, rng, meets) : runStanding(c, d, ctx, cov, data, year, season, rng, state.characters);
       for (const t of out) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t, tribunal });
     }
     const plan = seasonsOf(c, d);
     if (plan.extra && extraSeasonHere(plan, season) && !logged.some((e) => e.extra) && seasonsUsed(c, year).extra < plan.extra)
       for (const t of runExtraSeason(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t, tribunal });
   }
+  if (houseGathering && living.covenants.size)
+    saga.tribunalNews = [
+      { uid: uid(), year, season, kind: 'gathering', text: `${houseGathering.name} meets at ${houseGathering.at} this ${season}: the followers of ${houseGathering.house.replace(/^./, (x) => x.toUpperCase())} gather there, and its living magi spend the season at it.` },
+      ...(saga.tribunalNews ?? []),
+    ];
   const gatheringItem = gatheringNews(saga, year, season);
   if (gatheringItem && living.covenants.size) {
     saga.tribunalNews = [gatheringItem, ...(saga.tribunalNews ?? [])];
@@ -667,6 +676,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       const tribunal = tribunalOf(c);
       lines.push(...ageCharacter(c, d, ctxOf(c), year, rng, o.rollAging, doc).map((l) => ({ ...l, tribunal })));
       for (const t of workshopYearEnd(c, d, year)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: t, tribunal });
+      for (const t of redcapYearEnd(c, data, rng)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: t, tribunal });
     }
     // a living covenant's year-end lines go with the Tribunal's
     for (const l of lines.slice(yearStart)) if (!l.tribunal && state.covenants.some((x) => x.living && x.name === l.who)) l.tribunal = state.covenants.find((x) => x.living && x.name === l.who)!.id;

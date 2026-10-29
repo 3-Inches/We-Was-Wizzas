@@ -8,13 +8,16 @@
 // every living magus. The magi the book describes who belong to no covenant (the wanderers) are built
 // with the covenant they start at, as its guests.
 
-import { ARTS, ART_NAMES, type Art, type GameData } from '../data';
+import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type GameData } from '../data';
 import { bookCovenant, tribunalBook, type BookApproach, type BookCovenant, type BookMagus, type BookWanderer, type TribunalBook } from '../data/livingCovenants';
+import type { BookItem, MagusExtras } from '../data/livingCovenants/types';
 import { deriveCharacter } from './character/derive';
 import { validateCharacter } from './character/validate';
-import { newCharacter } from './character/factory';
+import { addVirtue, newCharacter } from './character/factory';
 import { applyStatBlock, type StatBlock } from './character/statBlock';
-import { longevityBonus } from './enchant';
+import { familiarBindingVis, longevityBonus, talismanCapacity } from './enchant';
+import { issueRedcapDevices, makeTalisman, redcapLevels, servedByMercerHouse } from './generate/items';
+import { optionOn } from './optional';
 import { labTotal } from './magic';
 import { generateFamiliar } from './generate/spellsAndFamiliars';
 import { freshName } from './generate/names';
@@ -26,8 +29,8 @@ import { fillCovenant } from './generate/covenant';
 import { stockLibrary } from './generate/library';
 import { seeded } from './generate/random';
 import { newLab } from './lab';
-import { defaultPriorities } from './priorities';
-import type { Character, Covenant, HouseRules, PriorityKind, Saga, Season, TribunalNews, VisSource } from './types';
+import { defaultPriorities, houseDuty } from './priorities';
+import type { Character, Covenant, EnchantedEffectRecord, EnchantedItem, HouseRules, PriorityKind, Saga, Season, TribunalNews, VisSource } from './types';
 import { addVis, takeVis, visAvailable, visText } from './vis';
 import { transfer } from './market';
 import { uid } from '../util/id';
@@ -122,8 +125,81 @@ function bookMagus(m: BookMagus, book: TribunalBook, def: BookCovenant, cov: Cov
   if (m.chapter) c.auraTime = 'away';
   c.npc = true;
   c.covenantId = cov.id;
+  finishMagus(c, g, seeded(seed + 7), log, book.extras?.[m.name]);
   return c;
 }
+
+/** Common heartbeasts for a Bjornaer the book does not give one (HoH:MC lists many more). */
+const HEARTBEASTS = ['wolf', 'bear', 'boar', 'stag', 'raven', 'owl', 'fox', 'badger', 'hawk', 'otter', 'lynx', 'eagle', 'horse', 'hare', 'wildcat', 'beaver'];
+
+/**
+ * What a living magus has beyond their sheet: the book's items and familiar, the House Mysteries
+ * they have been initiated into (when the saga uses Mystery Initiation), a talisman for most magi
+ * of some standing, a heartbeast for a Bjornaer, and a Redcap's devices from the Mercer House.
+ */
+function finishMagus(c: Character, g: LivingContext, rng: Rng, log: string[], extras?: MagusExtras): void {
+  const d = c.type === 'magus' ? deriveCharacter(c, g.data, g.rules) : undefined;
+  // a talisman holds as many pawns as the highest Technique and Form (DE, Talisman)
+  const capacity = d ? talismanCapacity(Math.max(...TECHNIQUES.map((a) => d.arts[a].score)), Math.max(...FORMS.map((a) => d.arts[a].score))) : 0;
+  for (const it of extras?.items ?? []) {
+    const item = bookItem(it, c, capacity);
+    c.items.push(item);
+    if (it.kind === 'talisman') c.talismanUid = item.uid;
+  }
+  const bf = extras?.familiar;
+  if (bf) {
+    c.familiar = {
+      name: bf.name, species: bf.species, might: bf.might, size: bf.size, realm: bf.realm, bindingTechnique: bf.technique, bindingForm: bf.form, bindingLabTotal: bf.labTotal,
+      golden: bf.golden, silver: bf.silver, bronze: bf.bronze, pawnsSpent: familiarBindingVis(bf.labTotal), notes: bf.notes,
+      powers: bf.powers.map((p) => effectRecord({ name: p.name, technique: p.technique, form: p.form, level: p.level, range: 'Personal', duration: 'Sun', target: 'Individual', final: p.level, text: p.text })),
+    };
+  }
+  if (extras?.mysteries?.length && optionOn(g.saga, 'mysteries'))
+    for (const [id, why] of extras.mysteries) {
+      const def = g.data.vfById.get(id);
+      if (!def || c.virtues.some((v) => v.defId === id)) continue;
+      addVirtue(c, g.data, id, def.sizes[0], undefined, { free: true, freeReason: 'Initiated before play', note: `Not in the book: ${why}` });
+    }
+  if (c.type === 'magus') {
+    // a House duty (a Quaesitor's investigations, a Gifted Mercere's season as a Redcap) on a list the book gave
+    if (houseDuty(c) && c.priorities && !c.priorities.some((p) => p.kind === 'house')) c.priorities.splice(c.priorities[0]?.kind === 'longevity' ? 1 : 0, 0, { kind: 'house' });
+    if (c.house === 'bjornaer' && !c.heartbeast) c.heartbeast = HEARTBEASTS[Math.floor(rng() * HEARTBEASTS.length)];
+    // a talisman: every archmage, most masters, some journeymen of long standing
+    const rank = c.rhine?.rank;
+    const pg = Math.max(0, c.age - c.creation.apprenticeshipStartAge - 15);
+    const chance = rank === 'archmage' ? 1 : rank === 'master' || pg >= 30 ? 0.7 : pg >= 15 ? 0.3 : 0;
+    if (!c.talismanUid && d && rng() < chance) {
+      const t = makeTalisman(c, d, g.data, rng);
+      c.items.push(t);
+      c.talismanUid = t.uid;
+    }
+  } else if (servedByMercerHouse(c)) {
+    // the Mercer House's devices for carrying messages: fifty levels at the Gauntlet and two a year since
+    c.redcap = { levels: redcapLevels(c, Math.max(0, c.age - 25)), spent: 0 };
+    const got = issueRedcapDevices(c, g.data, rng);
+    if (got.length) log.push(`${c.name}: a Redcap’s devices from the Mercer House (${got.join(', ')}).`);
+  }
+}
+
+function effectRecord(e: { name: string; technique: EnchantedEffectRecord['technique']; form: EnchantedEffectRecord['form']; requisites?: EnchantedEffectRecord['requisites']; level: number; range: string; duration: string; target: string; uses?: string; penetration?: number; environmental?: boolean; linked?: boolean; concentration?: boolean; final: number; text: string }): EnchantedEffectRecord {
+  return {
+    uid: uid(), name: e.name, technique: e.technique, form: e.form, requisites: e.requisites ?? [], baseLevel: e.level, range: e.range, duration: e.duration, target: e.target, usesPerDay: e.uses ?? '1',
+    penetration: e.penetration ?? 0, concentration: !!e.concentration, effectUse: false, environmentalTrigger: !!e.environmental, fastTrigger: false, linkedTrigger: !!e.linked, expiry: 'none',
+    modifiedLevel: e.final, description: e.text, investedPawns: Math.ceil(e.final / 10),
+  };
+}
+
+/** An item as the book gives it: its effects at the book's final levels, a talisman opened to the magus's capacity. */
+function bookItem(it: BookItem, c: Character, capacity: number): EnchantedItem {
+  const effects = it.effects.map(effectRecord);
+  const pawns = effects.reduce((t, e) => t + (e.investedPawns ?? 0), 0);
+  return {
+    uid: uid(), name: it.name, kind: it.kind, material: it.material, size: it.size, shapeMaterialIds: [], openedPawns: it.kind === 'talisman' ? Math.max(pawns, capacity) : it.kind === 'invested' ? pawns : 0,
+    effects, attunements: (it.attunements ?? []).map(([label, bonus]) => ({ label, bonus })), creatorId: c.id, attuned: it.kind === 'talisman' ? true : undefined,
+    notes: [it.text, it.carriedBy ? `Carried by ${it.carriedBy}.` : ''].filter(Boolean).join(' '),
+  };
+}
+
 
 /** One of the book's wanderers, as a guest of the covenant they start at, with a laboratory of their own there. */
 function buildWanderer(w: BookWanderer, book: TribunalBook, def: BookCovenant, cov: Covenant, g: LivingContext, seed: number, avoid: string[], log: string[]): Character | undefined {
@@ -205,6 +281,7 @@ export function otherMagus(house: string, rank: BookMagus['rank'] | 'mixed', boo
   c.standing = { kind: 'priorities' };
   c.npc = true;
   c.covenantId = cov.id;
+  finishMagus(c, g, rng, []);
   return c;
 }
 
@@ -355,6 +432,14 @@ export function gatheringIn(saga: Saga, year: number, season: Season): { name: s
   const g = book.gathering;
   if (year >= g.from && (year - g.from) % g.every === 0) return { name: `the ${book.tribunal} Tribunal`, at: book.covenants.find((c) => c.id === g.at)?.name ?? g.at };
   return undefined;
+}
+
+/** A House's own gathering that takes this season (the Bjornaer's Gathering of Twelve Years at Crintera): the book gives no season, so the toolkit takes Summer. */
+export function houseGatheringIn(saga: Saga, year: number, season: Season): { name: string; at: string; house: string } | undefined {
+  if (season !== 'Summer') return undefined;
+  const book = tribunalBook(saga.tribunal);
+  const o = book?.otherGatherings?.find((x) => x.house && year >= x.from && (year - x.from) % x.every === 0);
+  return o && book ? { name: o.name, at: book.covenants.find((c) => c.id === o.at)?.name ?? o.at, house: o.house! } : undefined;
 }
 
 /** The next gatherings after a year: the Tribunal's and any House's. */

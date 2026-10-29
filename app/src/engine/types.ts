@@ -272,7 +272,7 @@ export interface StandingActivity {
 }
 
 /** What a season can go to on a priority list (engine/priorities.ts). */
-export type PriorityKind = 'longevity' | 'apprentice' | 'service' | 'politics' | 'travel' | 'read' | 'vis' | 'invent' | 'enchant' | 'write' | 'lab' | 'practice';
+export type PriorityKind = 'longevity' | 'apprentice' | 'house' | 'service' | 'politics' | 'travel' | 'read' | 'vis' | 'invent' | 'enchant' | 'write' | 'lab' | 'practice';
 
 /** One entry of a priority list: the kind, whether it is on, and the Arts it favors (else the character's best). */
 export interface SeasonPriority {
@@ -889,6 +889,8 @@ export interface Character {
   apprentice?: Apprentice;
   /** a magus of the Tribunal who belongs to no covenant, and how they wander (living covenants) */
   wanderer?: Wanderer;
+  /** a Redcap's devices from the Mercer House: the levels given so far (50 at the Gauntlet, 2 a year since) and those spent on devices */
+  redcap?: { levels: number; spent: number };
   /** the seasons this year the character has worked under the covenant's laboratory aura (its magestones) */
   labAuraUse?: { year: number; seasons: number };
   /** a character the toolkit built from a book: where it is described */
