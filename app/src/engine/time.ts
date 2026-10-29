@@ -3,7 +3,7 @@
 // passing; the turn of the year closes each covenant's books, pays allowances, renews wards, ages
 // everyone, and adds the year's Warping.
 
-import { ART_NAMES, CHARACTERISTICS, type Art, type Characteristic, type GameData } from '../data';
+import { ART_NAMES, type Art, type Characteristic, type GameData } from '../data';
 import { deriveCharacter, type DerivedCharacter } from './character/derive';
 import { characterContext, covenantAura, covenantOf, type CharacterContext } from './context';
 import { deriveCovenant } from './covenant';
@@ -15,7 +15,7 @@ import { defaultRng, describeStress, stressDie, type Rng } from './dice';
 import { payAllowance } from './economy';
 import { constantWarping, effectExpiry, expireEffects, nextSeason, seasonIndex } from './effects';
 import { hazardPenalty } from './disease';
-import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, visForStudy } from './longterm';
+import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, sparestCharacteristic, visForStudy } from './longterm';
 import { planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
 import { auraOf, changeAura, dominionYearEnd, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
@@ -329,10 +329,6 @@ function runActivity(c: Character, d: DerivedCharacter, ctx: CharacterContext, c
 }
 
 /** The Characteristic that takes an Aging Point "in any Characteristic" with the least harm: the one furthest from dropping. */
-function sparestCharacteristic(c: Character): Characteristic {
-  return [...CHARACTERISTICS].sort((a, b) => Math.abs(c.characteristics[b]) - (c.agingPoints[b] ?? 0) - (Math.abs(c.characteristics[a]) - (c.agingPoints[a] ?? 0)))[0];
-}
-
 /** Someone who can tend a character through an aging crisis (DE, Aging: Int + Medicine against 6 adds their Medicine to the survival roll). */
 export interface Attendant {
   id?: string;

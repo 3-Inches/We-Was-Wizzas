@@ -15,6 +15,8 @@ import { fixesFor, resolveAll } from '../character/fixes';
 import { creationSpellLimit } from '../magic';
 import { abilityScoreFromXp, abilityXpForScore, artScoreFromXp, artXpForScore } from '../xp';
 import { uid } from '../../util/id';
+import type { Rng } from '../dice';
+import { markGroup, rarity, weightedPick } from '../generate/variety';
 import { abilityTag } from './records';
 import { QUESTION_BY_ID } from './questions';
 import { answerOf, evaluate, recommendHouses, shortlist, statusShortlist, tagWeights, traceOf, type GuidedContext, type Scored } from './score';
@@ -26,6 +28,12 @@ export interface BuildInput {
   saga?: Saga;
   covenant?: Covenant;
   archetypes: string[];
+  /**
+   * Quick build's randomness: with it, the build draws among the options that fit (the rare ones
+   * rarely) and makes the choices a player would, at random; without it (the guided build), it
+   * takes the best fit every time.
+   */
+  rng?: Rng;
 }
 
 export interface BuildResult {
@@ -56,13 +64,63 @@ function answer(id: string, st: GuidedState, ctx: GuidedContext): number {
 /** A generic value for a text sub-choice the player still has to decide. */
 const TO_DECIDE = 'to be decided';
 
-function paramFor(s: Scored): string | undefined {
+function paramFor(s: Scored, rng?: Rng, w?: Record<string, number>, c?: Character): string | undefined {
   const spec = s.def.param;
   if (!spec) return undefined;
-  if (s.param) return s.param;
-  if (spec.options?.length) return spec.options[0];
-  if (spec.groups?.length) return spec.groups[0].options[0];
+  if (s.param) {
+    // a Flaw's Art or Characteristic the player did not care about either way: any such, not the first
+    const kind = s.rec.paramKind;
+    if (rng && w && s.def.kind === 'flaw' && (kind === 'art' || kind === 'char')) {
+      const all: string[] = spec.options?.length ? spec.options : kind === 'char' ? [...CHARACTERISTICS] : spec.kind === 'technique' ? [...TECHNIQUES] : spec.kind === 'form' ? ARTS.filter((a) => !(TECHNIQUES as readonly string[]).includes(a)) : [...ARTS];
+      const tag = (x: string) => `${kind}:${x}`;
+      const needed = kind === 'char' ? neededCharacteristics(w, s.def, c) : new Set<string>();
+      if ((w[tag(s.param)] ?? 0) === 0 || needed.has(s.param)) {
+        const free = all.filter((x) => (w[tag(x)] ?? 0) <= 0 && !needed.has(x));
+        if (free.length) return free[Math.floor(rng() * free.length)];
+      }
+    }
+    return s.param;
+  }
+  const options = spec.options?.length ? spec.options : spec.groups?.flatMap((g) => g.options);
+  if (options?.length) return rng ? options[Math.floor(rng() * options.length)] : options[0];
   return spec.optional ? undefined : TO_DECIDE;
+}
+
+/** What a character's work leans on, which a Flaw that lowers a Characteristic should spare (a scribe's Intelligence). */
+const TAG_CHARS: Record<string, Characteristic[]> = {
+  scholarship: ['Int'], lore: ['Int'], lab: ['Int'], teaching: ['Int', 'Com'], healing: ['Int', 'Per'], crafts: ['Dex', 'Int'],
+  social: ['Pre', 'Com'], leadership: ['Pre', 'Com'], performance: ['Pre', 'Com'], politics: ['Com', 'Int'],
+  combat: ['Str', 'Sta', 'Dex', 'Qik'], stealth: ['Dex', 'Qik'], perception: ['Per'], outdoors: ['Per', 'Sta'],
+};
+const TYPE_CHARS: Record<Character['type'], Characteristic[]> = { magus: ['Int', 'Sta'], companion: [], mythic: [], grog: ['Sta'] };
+
+function neededCharacteristics(w: Record<string, number>, def: VirtueFlawDef, c?: Character): Set<string> {
+  if (def.kind !== 'flaw') return new Set();
+  const out = new Set<string>(c ? TYPE_CHARS[c.type] : []);
+  for (const [tag, chars] of Object.entries(TAG_CHARS)) if ((w[tag] ?? 0) >= 2) chars.forEach((k) => out.add(k));
+  return out;
+}
+
+/**
+ * The option to take next: the best fit for the guided build; for Quick build, one of the best few
+ * drawn at random, weighted by fit and by how rare it should be, and never a second of a kind that
+ * marks a character out (two disfigurements, two faerie bloodlines).
+ */
+function choose(inp: BuildInput, c: Character, xs: Scored[], sizeOf: (s: Scored) => VFSize | undefined, top = 8): Scored | undefined {
+  if (!inp.rng) return xs[0];
+  const marked = new Set(c.virtues.map((v) => inp.data.vfById.get(v.defId)).map((d) => d && markGroup(d)).filter(Boolean));
+  const pool = xs.filter((s) => !marked.has(markGroup(s.def))).slice(0, top);
+  return weightedPick(inp.rng, pool, (s) => rarity(s.def, c.type, sizeOf(s)) * Math.sqrt(Math.max(1, s.fit)));
+}
+
+/** The first few options that pass a check, without checking every one (the check derives the character). */
+function firstPassing(xs: Scored[], ok: (s: Scored) => boolean, n: number): Scored[] {
+  const out: Scored[] = [];
+  for (const x of xs) {
+    if (out.length >= n) break;
+    if (ok(x)) out.push(x);
+  }
+  return out;
 }
 
 /** Clear the choices a draft makes, keeping who the character is (name, type, concept, age and covenant). */
@@ -243,7 +301,7 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   const taken: string[] = [];
   const complexityOk = answer('a-complexity', st, get()) >= 7;
   const add = (s: Scored, size: VFSize) => {
-    const cv = addVirtue(c, data, s.def.id, size, paramFor(s));
+    const cv = addVirtue(c, data, s.def.id, size, paramFor(s, inp.rng, tagWeights(st, get()), c));
     cv.why = s.fit > 0 ? traceOf(s, st, get()) : s.def.kind === 'flaw' ? 'from: a Flaw that costs little given your answers' : 'from: broadly useful for this character';
     taken.push(cv.uid);
     if (cv.param === TO_DECIDE) toDecide.push(`${s.def.name}: ${s.def.param?.label ?? 'choice'}`);
@@ -276,7 +334,10 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   const tried = new Set<string>();
   for (let guard = 0; guard < 40; guard++) {
     // re-rank after each choice: a new Virtue can change the best sub-choice (Warrior opens weapons)
-    const s = guard === 0 ? virtues.find((x) => !tried.has(x.def.id)) : [...virtues.filter(accessWanted), ...shortlist(evaluate(st, get()), 'virtue').filter((x) => simpleEnough(x))].find((x) => !tried.has(x.def.id));
+    const list = guard === 0 ? virtues : [...virtues.filter(accessWanted), ...shortlist(evaluate(st, get()), 'virtue').filter((x) => simpleEnough(x))];
+    const open = list.filter((x) => !tried.has(x.def.id));
+    // a Virtue that opens wanted Abilities still comes first; the rest by fit (Quick build: drawn among the best)
+    const s = open[0] && accessWanted(open[0]) ? open[0] : choose(inp, c, anyFit ? open.filter((x) => x.fit > 0) : open, (x) => sizeFor(x, cap - get().d.tally.virtuePoints));
     if (!s) break;
     tried.add(s.def.id);
     const t = get().d.tally;
@@ -293,13 +354,13 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   }
 
   // Flaws: enough points to pay for the Virtues, by the direction rules
-  addFlaws(c, st, get, log, add, clean, dup, simpleEnough, ratio);
+  addFlaws(c, st, inp, get, log, add, clean, dup, simpleEnough, ratio);
   balance(c, inp, get, refresh, log, taken);
 }
 
 /** Flaws until the Virtues are paid for: the best fits first, then the ones that cost least. */
 function addFlaws(
-  c: Character, st: GuidedState, get: () => GuidedContext, log: string[],
+  c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, log: string[],
   add: (s: Scored, size: VFSize) => unknown, clean: (def: VirtueFlawDef, size: VFSize) => boolean, dup: (s: Scored) => boolean, simpleEnough: (s: Scored) => boolean, ratio: number,
 ) {
   const hermetic = () => get().d.virtues.some((v) => v.def?.kind === 'flaw' && v.def.categories.includes('Hermetic') && !v.cv.free);
@@ -315,7 +376,8 @@ function addFlaws(
   const sizeOf = (f: Scored, need: number): VFSize => (need >= 3 && f.def.sizes.includes('Major') && c.type !== 'grog' ? 'Major' : f.def.sizes.includes('Minor') ? 'Minor' : f.def.sizes[0]);
   // magi: at least one Hermetic Flaw (DE p.63)
   if (c.type === 'magus' && !hermetic()) {
-    const f = candidates().find((x) => x.def.categories.includes('Hermetic') && clean(x.def, x.def.sizes.includes('Minor') ? 'Minor' : x.def.sizes[0]));
+    const minor = (x: Scored): VFSize => (x.def.sizes.includes('Minor') ? 'Minor' : x.def.sizes[0]);
+    const f = choose(inp, c, firstPassing(candidates(), (x) => x.def.categories.includes('Hermetic') && clean(x.def, minor(x)), inp.rng ? 10 : 1), minor, 10);
     if (f) {
       const size: VFSize = f.def.sizes.includes('Minor') ? 'Minor' : f.def.sizes[0];
       add(f, size);
@@ -326,7 +388,7 @@ function addFlaws(
     const t = get().d.tally;
     const need = Math.ceil(t.virtuePoints / ratio) - t.flawPoints;
     if (need <= 0) break;
-    const f = candidates().find((x) => clean(x.def, sizeOf(x, need)) && !(c.type === 'grog' && sizeOf(x, need) === 'Major'));
+    const f = choose(inp, c, firstPassing(candidates(), (x) => clean(x.def, sizeOf(x, need)) && !(c.type === 'grog' && sizeOf(x, need) === 'Major'), inp.rng ? 12 : 1), (x) => sizeOf(x, need), 12);
     if (!f) break;
     const size = sizeOf(f, need);
     add(f, size);
@@ -502,7 +564,9 @@ function spendExperience(c: Character, st: GuidedState, inp: BuildInput, get: ()
     // the Hermetic essentials first
     const app = get().d.budgets.find((b) => b.id === 'apprenticeship');
     if (app) {
-      const need: [string, number, string?][] = [['dead-language', 4, 'Latin'], ['artes-liberales', 1], [get().d.theoryAbility, 3], ['parma-magica', 1]];
+      // a short apprenticeship (Weak Parens, Savantism) still leaves the Arts something: Latin 3, not 4
+      const latin = app.total - app.spent >= 160 ? 4 : 3;
+      const need: [string, number, string?][] = [['dead-language', latin, 'Latin'], ['artes-liberales', 1], [get().d.theoryAbility, 3], ['parma-magica', 1]];
       for (const [id, score, param] of need) {
         const ab = ensureAbility(c, id, {}, param);
         const cur = sumAlloc(ab.xp);
@@ -524,12 +588,27 @@ function spendExperience(c: Character, st: GuidedState, inp: BuildInput, get: ()
       const rest = left();
       if (rest > 0) spendArts(c, st, get, refresh, 'apprenticeship', rest, 10, why);
       log.push(`Apprenticeship: ${Math.round(artShare * 100)}% of the free experience on Arts (your answer on Abilities vs Arts: ${abilitiesSide}).`);
+      // the apprenticeship's spells, from the Arts at Gauntlet
+      chooseSpells(c, st, inp, get, refresh, log);
     }
     const pg = get().d.budgets.find((b) => b.id === 'postGauntlet');
     if (pg && pg.total > pg.spent) {
-      spendArts(c, st, get, refresh, 'postGauntlet', Math.floor((pg.total - pg.spent) * 0.7), focus, why);
-      const b = get().d.budgets.find((x) => x.id === 'postGauntlet')!;
-      spendPoolOnAbilities(c, b, b.total - b.spent, ranked, width, inp, get, refresh, st, log);
+      // the years after Gauntlet as a magus spends them (DE p.50): the Hermetic Abilities a career
+      // raises, the Abilities the player wants, the Arts, and spells learned along the way
+      const total = pg.total - pg.spent;
+      const pool = () => get().d.budgets.find((x) => x.id === 'postGauntlet')!;
+      const pgLeft = () => pool().total - pool().spent;
+      const abilitiesSide = answer('a-abilities', st, get());
+      const careerShare = Math.max(0.25, Math.min(0.55, 0.42 + (abilitiesSide - 5) * 0.03));
+      spendCareer(c, c.creation.yearsPostGauntlet, Math.floor(total * careerShare), st, inp, get, refresh);
+      spendPoolOnAbilities(c, pool(), Math.floor(total * 0.08), ranked, width, inp, get, refresh, st, log);
+      const spellShare = Math.floor(total * 0.15);
+      spendArts(c, st, get, refresh, 'postGauntlet', Math.max(0, pgLeft() - spellShare), focus, why);
+      chooseSpells(c, st, inp, get, refresh, log, 'postGauntlet');
+      // what the spells left goes to the Arts, then to Abilities
+      if (pgLeft() > 0) spendArts(c, st, get, refresh, 'postGauntlet', pgLeft(), focus, why);
+      if (pgLeft() > 0) spendPoolOnAbilities(c, pool(), pgLeft(), ranked, width, inp, get, refresh, st, log);
+      log.push(`After Gauntlet: ${c.creation.yearsPostGauntlet} years, ${Math.round(careerShare * 100)}% of the points on the Hermetic Abilities a career raises.`);
     }
   }
 
@@ -547,6 +626,61 @@ function spendExperience(c: Character, st: GuidedState, inp: BuildInput, get: ()
     }
   }
   refresh();
+}
+
+/**
+ * What a magus's years after Gauntlet usually give each Hermetic Ability, in experience a year: Magic
+ * Theory for every lab season, Parma Magica for safety, Penetration, Concentration and Finesse for
+ * casting, Latin to read the Order's books, and its law and lore for its politics. DE p.50 leaves the
+ * split to the player; this is the pattern of the Tribunal books' magi, leaning toward what the player
+ * rated (a lab magus raises Magic Theory faster, a battle magus Penetration).
+ */
+const CAREER: { id: string; perYear: number; tag?: string; param?: string; max?: number; least?: number }[] = [
+  { id: 'magic-theory', perYear: 5, tag: 'lab', least: 0.8 },
+  { id: 'parma-magica', perYear: 3, tag: 'magic-resistance', least: 0.8 },
+  { id: 'penetration', perYear: 1.5, tag: 'penetration' },
+  { id: 'concentration', perYear: 1.2, tag: 'concentration' },
+  { id: 'finesse', perYear: 0.8, tag: 'casting' },
+  { id: 'dead-language', perYear: 3, param: 'Latin', max: 5 },
+  { id: 'code-of-hermes', perYear: 0.6, tag: 'politics' },
+  { id: 'organization-lore', perYear: 0.5, param: 'Order of Hermes', tag: 'politics' },
+  { id: 'magic-lore', perYear: 0.5, tag: 'lore' },
+];
+
+function spendCareer(c: Character, years: number, xp: number, st: GuidedState, inp: BuildInput, get: () => GuidedContext, refresh: () => void) {
+  if (years <= 0 || xp <= 0) return;
+  const w = tagWeights(st, get());
+  let left = xp;
+  for (const k of CAREER) {
+    const id = k.id === 'magic-theory' ? get().d.theoryAbility : k.id;
+    const pool = get().d.budgets.find((b) => b.id === 'postGauntlet');
+    if (!pool || !canSpend(get().d, inp.data, pool, { abilityId: id, param: k.param }).ok) continue;
+    if (!c.abilities.some((a) => a.abilityId === id) && !abilityAvailability(get().d, inp.data, id).ok) continue;
+    // Magic Theory and Parma Magica no magus neglects for long, whatever else they care about
+    const lean = Math.max(k.least ?? 0.5, 1 + Math.min(1, (k.tag ? (w[k.tag] ?? 0) : 0) / 8));
+    const jitter = inp.rng ? 0.8 + inp.rng() * 0.45 : 1;
+    const ab = ensureAbility(c, id, {}, k.param);
+    const have = sumAlloc(ab.xp);
+    const scholar = id === 'dead-language' && (w.scholarship ?? 0) >= 2;
+    const max = Math.min(k.max ? k.max + (scholar ? 1 : 0) : 99, get().d.abilityByUid.get(ab.uid)?.cap ?? get().d.ageCap);
+    const target = have + Math.round(k.perYear * years * lean * jitter);
+    let score = abilityScoreFromXp(have);
+    let spent = 0;
+    while (score < max) {
+      const step = abilityXpForScore(score + 1) - abilityXpForScore(score);
+      const cur = have + spent;
+      if (abilityXpForScore(score + 1) > target || step > left) break;
+      const add = abilityXpForScore(score + 1) - cur;
+      spent += add;
+      left -= add;
+      score++;
+    }
+    if (spent) {
+      ab.xp.postGauntlet = (ab.xp.postGauntlet ?? 0) + spent;
+      ab.why ??= 'from: the years after Gauntlet (what a magus’s career raises)';
+    } else if (!have) c.abilities = c.abilities.filter((a) => a !== ab);
+    refresh();
+  }
 }
 
 function spendArts(c: Character, st: GuidedState, get: () => GuidedContext, refresh: () => void, pool: XpSource, xp: number, focus: number, why: Record<string, string>) {
@@ -580,9 +714,17 @@ function spendArts(c: Character, st: GuidedState, get: () => GuidedContext, refr
 
 // ------------------------------------------------------------------ spells
 
-function chooseSpells(c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, refresh: () => void, log: string[]) {
-  const budget = () => get().d.budgets.find((b) => b.id === 'apprenticeship')?.spellLevels;
-  if (!budget() || c.spells.some((s) => s.source === 'apprenticeship')) return;
+/**
+ * Spells from the strongest Arts, the highest each allows first. The apprenticeship's spell levels
+ * are a pool of their own; after Gauntlet a spell's levels come out of the year's points (DE p.50),
+ * so it takes what is left of them.
+ */
+function chooseSpells(c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, refresh: () => void, log: string[], source: 'apprenticeship' | 'postGauntlet' = 'apprenticeship') {
+  const budget = () => {
+    const b = get().d.budgets.find((x) => x.id === source);
+    return source === 'apprenticeship' ? b?.spellLevels : b && { total: b.total, spent: b.spent };
+  };
+  if (!budget() || c.spells.some((s) => s.source === source)) return;
   const d: DerivedCharacter = get().d;
   const w = tagWeights(st, get());
   const ritualOk = (w.ritual ?? 0) > 0;
@@ -592,6 +734,8 @@ function chooseSpells(c: Character, st: GuidedState, inp: BuildInput, get: () =>
   const forms = arts.filter((a) => !(TECHNIQUES as readonly string[]).includes(a)).slice(0, 4);
   const combos = techs.flatMap((t) => forms.map((f) => ({ t, f, s: d.arts[t].score + d.arts[f].score }))).sort((a, b) => b.s - a.s);
   const perCombo = new Map<string, number>();
+  for (const s of c.spells) perCombo.set(s.spell.technique + s.spell.form, (perCombo.get(s.spell.technique + s.spell.form) ?? 0) + 1);
+  const most = source === 'apprenticeship' ? 2 : 4;
   const picked: string[] = [];
   for (let guard = 0; guard < 40; guard++) {
     const b = budget()!;
@@ -599,15 +743,16 @@ function chooseSpells(c: Character, st: GuidedState, inp: BuildInput, get: () =>
     if (left < 3) break;
     let added = false;
     for (const cb of combos) {
-      if ((perCombo.get(cb.t + cb.f) ?? 0) >= 2) continue;
+      if ((perCombo.get(cb.t + cb.f) ?? 0) >= most) continue;
       const limit = creationSpellLimit(get().d, { technique: cb.t as Technique, form: cb.f as Form }, inp.rules.spellLevelLimitBonus).total;
       const cands = inp.data.spells
         .filter((s) => s.technique === cb.t && s.form === cb.f && s.level !== null && !s.general && s.level <= Math.min(limit, left) && (ritualOk || !s.ritual) && !s.requisites.length && inp.data.isBookEnabled(s.source.book))
         .filter((s) => !c.spells.some((x) => x.spell.name === s.name))
         .sort((a, b) => (b.source.book === 'DE' ? 1 : 0) - (a.source.book === 'DE' ? 1 : 0) || (b.level ?? 0) - (a.level ?? 0));
-      const s = cands[0];
+      // Quick build: one of the few highest, not always the same one
+      const s = inp.rng && cands.length > 1 ? cands[Math.floor(inp.rng() * Math.min(3, cands.length))] : cands[0];
       if (!s) continue;
-      const cs: CharSpell = { uid: uid(), spellId: s.id, spell: structuredClone(s), masteryXp: flawless ? { free: 5 } : {}, masteryAbilities: [], source: 'apprenticeship', why: `from: your strongest Arts (${cb.t}${cb.f})` };
+      const cs: CharSpell = { uid: uid(), spellId: s.id, spell: structuredClone(s), masteryXp: flawless ? { free: 5 } : {}, masteryAbilities: [], source, why: `from: your strongest Arts (${cb.t}${cb.f})` };
       c.spells.push(cs);
       perCombo.set(cb.t + cb.f, (perCombo.get(cb.t + cb.f) ?? 0) + 1);
       picked.push(`${s.name} (${s.technique}${s.form} ${s.level})`);
@@ -617,7 +762,7 @@ function chooseSpells(c: Character, st: GuidedState, inp: BuildInput, get: () =>
     }
     if (!added) break;
   }
-  if (picked.length) log.push(`Spells: ${picked.join(', ')}.`);
+  if (picked.length) log.push(`${source === 'apprenticeship' ? 'Spells' : 'Spells learned since Gauntlet'}: ${picked.join(', ')}.`);
 }
 
 // ------------------------------------------------------------------ the rules check

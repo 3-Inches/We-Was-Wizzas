@@ -94,6 +94,52 @@ describe('the character generator', () => {
   }, 60_000);
 });
 
+describe('Quick build’s variety and older magi', () => {
+  it('draws Virtues and Flaws among those that fit, keeps the dramatic ones rare, and never stacks two marks', () => {
+    const magi = Array.from({ length: 24 }, (_, i) => gen({ type: 'magus', seed: 500 + i * 13 }));
+    const count = new Map<string, number>();
+    for (const g of magi) for (const v of new Set(g.c.virtues.map((x) => `${x.defId}:${x.param ?? ''}`))) count.set(v, (count.get(v) ?? 0) + 1);
+    for (const [id, n] of count) if (!/^(the-gift|hermetic-magus):/.test(id)) expect(n, id).toBeLessThanOrEqual(8);
+    const marks = ['horrifying-appearance-snake-legs-flaw', 'leprosy-flaw', 'blind-flaw', 'deaf-flaw', 'strong-faerie-blood', 'faerie-blood', 'true-faith'];
+    for (const g of magi) expect(g.c.virtues.filter((v) => marks.includes(v.defId)).length, g.c.name).toBeLessThanOrEqual(1);
+    // a choice with options is not always the first (Strong Faerie Blood was always the Bee King)
+    const params = Array.from({ length: 40 }, (_, i) => gen({ type: 'companion', seed: 900 + i, variety: 'wild' })).flatMap((g) => g.c.virtues.filter((v) => v.defId === 'monastic-vows-flaw' || v.defId === 'strong-faerie-blood' || v.defId === 'limited-magic-resistance-flaw').map((v) => v.param));
+    if (params.length >= 3) expect(new Set(params).size).toBeGreaterThan(1);
+  }, 300_000);
+
+  it('gives each magus favorite Arts of their own, so magi of one role differ', () => {
+    const tops = Array.from({ length: 12 }, (_, i) => {
+      const d = deriveCharacter(gen({ type: 'magus', role: 'magus-scholar', seed: 300 + i }).c, data, rules);
+      return Object.entries(d.arts).sort((a, b) => b[1].score - a[1].score)[0][0];
+    });
+    expect(new Set(tops).size).toBeGreaterThanOrEqual(4);
+  }, 120_000);
+
+  it('spreads aging over the Characteristics a character can spare, rather than wrecking one', () => {
+    for (let i = 0; i < 8; i++) {
+      const g = gen({ type: 'companion', role: 'physician', seed: 70 + i, age: 55 });
+      // the table's own points (Stamina on 15 and 18) may still lower one a good deal; before, a single
+      // Characteristic took every point "in any" and fell to −7
+      const lows = Object.entries(g.c.characteristics).filter(([, v]) => v < -4);
+      expect(lows, `${g.c.name}, Decrepitude points ${g.c.decrepitudePoints}`).toEqual([]);
+    }
+  }, 120_000);
+
+  it('raises an older magus’s Magic Theory, Parma and Penetration, teaches them spells and adds their Warping', () => {
+    for (const seed of [11, 12, 13]) {
+      const g = gen({ type: 'magus', seed, yearsPostGauntlet: 30 });
+      const d = deriveCharacter(g.c, data, rules);
+      const ab = (id: string) => d.abilities.find((a) => a.abilityId === id)?.total ?? 0;
+      expect(ab(d.theoryAbility), g.c.name).toBeGreaterThanOrEqual(6);
+      expect(ab('parma-magica'), g.c.name).toBeGreaterThanOrEqual(4);
+      expect(ab('penetration'), g.c.name).toBeGreaterThanOrEqual(2);
+      expect(g.c.spells.some((s) => s.source === 'postGauntlet'), g.c.name).toBe(true);
+      expect(g.c.warpingPoints, g.c.name).toBeGreaterThan(5);
+      expect(errors(g)).toEqual([]);
+    }
+  }, 120_000);
+});
+
 describe('filling out a covenant', () => {
   it('adds the staff, a teacher, craftsmen, the numbers needed and grogs for the turb', () => {
     const cov = newCovenant('s', 1220);
