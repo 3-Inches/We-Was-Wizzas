@@ -10,7 +10,7 @@ import { abilityXpForScore } from '../../../engine/xp';
 import type { SeasonLogEntry } from '../../../engine/types';
 import { ensureAbility } from '../../../engine/character/factory';
 import { purseOf, takeVis, visAvailable } from '../../../engine/vis';
-import { Card, Field, Stepper, Total, signed } from '../../kit';
+import { Card, Field, HowItWorks, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
 import { TwilightCard } from './Twilight';
@@ -293,12 +293,12 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     <div className="stack">
       <Card title="Plan a season" className="accent" tour="plan-season">
         <div className="row">
-          <Field label="Season" hint={<Link to={`/saga/${saga.id}/seasons`}>the saga&apos;s; move time on the Seasons page</Link>}>
+          <Field label="Season" hint={<Link to={`/saga/${saga.id}/seasons`}>the saga&apos;s current season; time moves on, for everyone, on the Seasons page</Link>}>
             <b>
               {season} {year}
             </b>
           </Field>
-          <Field label="Months lost" hint="DE Distractions: each full month away takes a third of the total">
+          <Field label="Months lost" hint="Each full month of the season spent away from study takes a third off what is gained (DE, Distractions)">
             <Stepper value={monthsLost} min={0} max={3} width={30} onChange={setMonthsLost} />
           </Field>
           {might > 0 && (
@@ -578,10 +578,10 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             {labLines.join('\n')}
           </div>
         )}
-        <p className="small muted" style={{ marginBottom: 0 }}>
+        <HowItWorks summary="Choose what to study; the toolkit works out the experience it gives.">
           Summae raise a score only up to their level; teachers only up to their own score. Tractatus quality is Com + 6; a character can read each tractatus once. Books, vis and
           teachers can be linked from your covenant (Covenant → Library).
-        </p>
+        </HowItWorks>
       </Card>
 
       <Card title="When nothing is planned" tour="standing">
@@ -597,8 +597,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           />
         </div>
         <p className="small muted" style={{ margin: 0 }}>
-          Followed in any free season this character has nothing logged when the saga moves on (and while years are passed at once on the Seasons page); once the year&apos;s free
-          seasons are spent, the rest are work (Exposure) or Worship.
+          What this character does with a free season when nobody planned one. Once the year&apos;s free seasons are used up, the rest go to work (Exposure) or Worship.
         </p>
         <SeasonPlan c={c} d={d} year={year} update={update} teachers={ctx.covenant?.specialists.filter((x) => teaches(x)) ?? []} />
       </Card>

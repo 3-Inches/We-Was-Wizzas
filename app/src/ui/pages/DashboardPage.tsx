@@ -194,8 +194,8 @@ export default function DashboardPage() {
 
       <Card title={`This season: ${season} ${year}`} tour="table-season">
         <p className="small muted" style={{ marginTop: 0 }}>
-          What each character does when the season ends: what was logged on their sheet, or else their standing activity, changed here. Study from a particular book or teacher, or a lab
-          project, is planned on their sheet.
+          What each character will do this season: what is planned on their sheet, or else their usual activity, which you can change here. A particular book, teacher or lab
+          project is planned on their sheet.
         </p>
         {playing.length === 0 && <Empty>No finished characters yet.</Empty>}
         {playing.map((c) => {

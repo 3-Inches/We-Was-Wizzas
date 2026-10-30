@@ -244,7 +244,8 @@ export default function HelpPage() {
           </li>
           <li>
             At the end of each year press <b>Close the year</b> on the Finances tab: it shows the treasury after the year&apos;s balance, the rise in inflation, the vis gathered
-            and the year of familiarity, then applies them (with Undo). A cycle of four or more feast days adds a Loyalty point, and specialists and craftsmen gain the year&apos;s
+            and the year of familiarity, then applies them (with Undo). With inflation it also says in about how many years spending will overtake income, and when the treasury
+            would run out at that rate. A cycle of four or more feast days adds a Loyalty point, and specialists and craftsmen gain the year&apos;s
             experience (Exposure at work, Practice in their free seasons; craftsmen earn Labor Points). Roll the <b>Income Modification</b> with 🎲, record <b>Loyalty events</b> as
             they happen, and use the one-off spending presets for sundry costs.
           </li>
@@ -277,6 +278,11 @@ export default function HelpPage() {
             Creature card lists the creation steps in the book&apos;s order. The Powers card&apos;s list starts with the book&apos;s sixteen <b>Common Magic Powers</b>, each with
             its level and Quality; the Qualities menu also offers the realm&apos;s own Virtues and Flaws. <b>Variable Power</b> and <b>Deteriorating Power</b> are set on the
             power they change, with what they go by (age, Might, Warping or an Ability), and the card shows the effect level that gives.
+          </li>
+          <li>
+            <b>Essential Traits:</b> a being of Magic Might has one for its true form, typically +3 (Raven*, Person*, Tree*), and every Personality Trait it has is Essential too;
+            Essential Virtue and Essential Flaw add more, for anyone. The <b>Essential Traits</b> card (Personality &amp; Gear step, and the Overview) lists them, adds the true form
+            with one button, and shows what a trait naming a Characteristic makes of it.
           </li>
           <li>Tribunal, homeland, Characteristic descriptions and Ability types are dropdowns; choose <b>Other (type your own)</b> for anything not listed.</li>
           <li>A character older than 35 rolls aging before play on the Concept step. A year that would kill the character is not applied, so you can roll it again.</li>
@@ -470,7 +476,7 @@ export default function HelpPage() {
           </li>
           <li>
             <b>The years:</b> every seven years the Tribunal meets at Durenmar (from 1221, opening on Walpurgis Night: the Spring season; in 1227, a year early for the Grand
-            Tribunal of 1228), and every living magus spends that season there. The Bjornaer spend a Summer at Crintera every twelve years, for their Gathering of Twelve Years. At each year&apos;s end a living covenant closes its books like yours, makes good a shortfall from its holdings, may take in a new journeyman when its numbers fall,
+            Tribunal of 1228), and every living magus spends that season there. The Bjornaer spend a Summer at Crintera every twelve years, for their Gathering of Twelve Years. At each year&apos;s end a living covenant closes its books like yours, makes good a shortfall from its holdings, meets a year that spends more than it earns by improving its income (as a troupe would, by magic or a story), puts money beyond five years&apos; spending into its lands and holdings, may take in a new journeyman when its numbers fall,
             and may come to your covenant with one of the book&apos;s offers, requests or troubles (Boris of Novgorod with vis to sell, Heorot seeking support, Waddenzee&apos;s pirates).
           </li>
           <li>

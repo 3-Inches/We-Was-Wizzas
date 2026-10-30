@@ -1,6 +1,7 @@
 // Realms of Power: Magic: the Common Magic Powers as the book builds them, Variable and
 // Deteriorating Power, and (Form) Resistance against a Magic being's Form.
 import { describe, expect, it } from 'vitest';
+import { essentialTraits, hasMagicMight, trueFormName, trueFormTrait, withCharacterTrait } from './magicCharacter';
 import { buildGameData } from '../../data';
 import { COMMON_MAGIC_POWERS } from '../../data/commonPowers';
 import { DEFAULT_HOUSE_RULES } from '../types';
@@ -66,5 +67,29 @@ describe('(Form) Resistance', () => {
     const might = d.might?.score ?? 0;
     expect(magicResistance(d, 'Ig').total).toBe(might + 2);
     expect(magicResistance(d, 'Aq').total).toBe(might);
+  });
+});
+
+describe('Essential Traits (RoP: Magic)', () => {
+  it('names a true form, and reads a Characteristic with a trait tied to it', () => {
+    expect(trueFormName('a raven')).toBe('Raven');
+    expect(trueFormName('the Old Oak*')).toBe('Old Oak');
+    expect(withCharacterTrait(1, 3)).toBe(3);
+    expect(withCharacterTrait(4, 3)).toBe(4);
+    expect(withCharacterTrait(-1, -3)).toBe(-3);
+    expect(withCharacterTrait(-1, 3)).toBe(2);
+    expect(withCharacterTrait(2, -3)).toBe(-1);
+  });
+  it('makes every Personality Trait of a being of Magic Might Essential, and adds the Essential Virtue’s and Flaw’s', () => {
+    const c = newCharacter('companion', 's');
+    c.personality = [{ uid: 'a', trait: 'Raven*', score: 3 }, { uid: 'b', trait: 'Curious', score: 2 }];
+    c.virtues.push({ uid: 'v', defId: 'essential-virtue', size: 'Minor', param: 'Keen-eyed (Per)' }, { uid: 'f', defId: 'essential-flaw-flaw', size: 'Major', param: 'Stutter' });
+    // without Might, only the asterisked trait and the Virtue's and Flaw's
+    expect(essentialTraits(c).map((t) => `${t.trait} ${t.score}`)).toEqual(['Raven* 3', 'Keen-eyed (Per)* 3', 'Stutter* -6']);
+    expect(hasMagicMight(c)).toBe(false);
+    c.creature = { realm: 'Magic', kind: 'animal', size: -3, might: 10, intelligence: 'companion' };
+    expect(hasMagicMight(c)).toBe(true);
+    expect(trueFormTrait(c)?.trait).toBe('Raven*');
+    expect(essentialTraits(c).map((t) => t.trait)).toEqual(['Raven*', 'Curious*', 'Keen-eyed (Per)*', 'Stutter*']);
   });
 });

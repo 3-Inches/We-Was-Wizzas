@@ -9,7 +9,7 @@ import { generateFamiliar } from '../../../engine/generate/spellsAndFamiliars';
 import { issueRedcapDevices, redcapLevels, servedByMercerHouse } from '../../../engine/generate/items';
 import { newSeed, seeded } from '../../../engine/generate/random';
 import type { Character, Familiar, LabProject } from '../../../engine/types';
-import { BookBadge, Card, Field, Stepper, Total, signed } from '../../kit';
+import { BookBadge, Card, Field, HowItWorks, Stepper, Total, signed } from '../../kit';
 import ItemsEditor, { characterTalismanCapacity, newEffect } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
 import { labContextOf } from '../../../engine/lab';
@@ -253,11 +253,11 @@ function LongevityCard({ ed }: { ed: CharEditor }) {
           )}
         </div>
       )}
-      <p className="small muted" style={{ marginBottom: 0 }}>
+      <HowItWorks summary="Makes aging rolls lower, from age 35 on, until an aging crisis ends it.">
         −1 on aging rolls per 5 points (or part) of the Creo Corpus Lab Total, a pawn of Creo, Corpus or Vim vis for every 5 years of age, a season&apos;s work; extra pawns add to
         the Lab Total. For someone else the Lab Total must be 30, and a mundane gains a point per 10 rather than 5. An aging crisis ends the ritual; it can then be performed
         again from its Laboratory Text in no time, for the vis of the age then (DE p.261).
-      </p>
+      </HowItWorks>
     </Card>
   );
 }
@@ -435,11 +435,11 @@ function FamiliarCard({ ed }: { ed: CharEditor }) {
               </button>
             )}
           </div>
-          <p className="small muted" style={{ margin: 0 }}>
+          <HowItWorks summary="Binding takes one season in the lab; what is left of the Lab Total buys the three cords, each a bonus for you both.">
             Binding: a Lab Total of at least 25 + Might + 5 × Size, in one season, for a pawn of the binding Technique or Form per 5 points of the Lab Total; the cords (5/15/30/50/75
             points for +1 to +5) are bought with the Lab Total. Strengthening: the same Arts, the new Lab Total, and a pawn per 5 points of it less the pawns already spent. Golden: one
             fewer botch die when using magic (never none). Silver: Personality rolls and resisting mental influence. Bronze: Soak (now {signed(d.soak)}), healing, deprivation and aging.
-          </p>
+          </HowItWorks>
           <details open={manual} onToggle={(e) => setManual((e.target as HTMLDetailsElement).open)}>
             <summary className="small">A bond made before play: enter it as it stands</summary>
             <div className="row" style={{ marginTop: 6 }}>

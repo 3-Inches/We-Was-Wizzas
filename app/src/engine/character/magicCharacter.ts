@@ -6,7 +6,7 @@
 
 import qualitiesJson from '../../data/generated/magicQualities.json';
 import type { Art, Characteristic, PowerKind } from '../../data/types';
-import type { CreatureInfo, CreatureQuality, MagicCharacterInfo, MagicSeason, PowerLevel } from '../types';
+import type { Character, CreatureInfo, CreatureQuality, MagicCharacterInfo, MagicSeason, PersonalityTrait, PowerLevel } from '../types';
 
 export interface MagicQualityDef {
   id: string;
@@ -343,3 +343,57 @@ export function newMagicCharacter(cr: CreatureInfo, powerLevel: PowerLevel = 'Me
 }
 
 const DEFAULT_FORM: Record<CreatureInfo['kind'], Art> = { animal: 'An', human: 'Co', spirit: 'Me', thing: 'Te' };
+
+// ---------------------------------------------------------------- Essential Traits (RoP: Magic)
+
+/** An Essential Trait: part of a being's nature, which it cannot act against and magic cannot overcome. */
+export interface EssentialTrait {
+  trait: string;
+  score: number;
+  /** where it comes from: a Personality Trait, or the Essential Virtue or Flaw */
+  source: string;
+}
+
+/** Is this a being of Magic Might, whose Personality Traits are all Essential (RoP: Magic, Essential Traits)? */
+export function hasMagicMight(c: Character): boolean {
+  return c.creature?.realm === 'Magic' && (c.creature.might > 0 || !!c.creature.magicCharacter);
+}
+
+/** The trait marked with an asterisk that names its true form (“Raven*”), if it has one. */
+export function trueFormTrait(c: Character): PersonalityTrait | undefined {
+  return c.personality.find((p) => p.trait.trim().endsWith('*'));
+}
+
+/** A true form's name from words such as “a raven” or “the Old Oak”: “Raven”, “Old Oak”. */
+export function trueFormName(text?: string): string {
+  const t = (text ?? '').trim().replace(/^(an?|the)\s+/i, '').replace(/\*+$/, '').trim();
+  return t ? t[0].toUpperCase() + t.slice(1) : '';
+}
+
+/**
+ * Its Essential Traits: the true form (typically +3), every Personality Trait of a being of Magic
+ * Might, and those its Essential Virtues (+3 Minor, +6 Major) and Essential Flaws (−3, −6) give.
+ */
+export function essentialTraits(c: Character, vfName: (id: string) => string = (id) => id): EssentialTrait[] {
+  const out: EssentialTrait[] = [];
+  const might = hasMagicMight(c);
+  for (const p of c.personality)
+    if (p.trait.trim() && (might || p.trait.trim().endsWith('*'))) out.push({ trait: p.trait.trim().replace(/\*?$/, '*'), score: p.score, source: p.trait.trim().endsWith('*') ? 'its true form' : 'a Personality Trait of a being of Magic Might' });
+  for (const v of c.virtues) {
+    if (v.defId !== 'essential-virtue' && v.defId !== 'essential-flaw-flaw') continue;
+    const sign = v.defId === 'essential-virtue' ? 1 : -1;
+    out.push({ trait: `${trueFormName(v.param) || 'Essential Trait'}*`, score: sign * (v.size === 'Major' ? 6 : 3), source: `${vfName(v.defId)} (${v.size})` });
+  }
+  return out;
+}
+
+/**
+ * A Characteristic in a situation an Essential Trait tied to it covers (a Character Trait, such as
+ * Sure-footed for Dexterity): a good Trait on a good Characteristic gives the greater of the two, a bad
+ * Trait on a bad one the lesser, and anything else adds them (RoP: Magic, Essential Traits).
+ */
+export function withCharacterTrait(characteristic: number, trait: number): number {
+  if (characteristic > 0 && trait > 0) return Math.max(characteristic, trait);
+  if (characteristic < 0 && trait < 0) return Math.min(characteristic, trait);
+  return characteristic + trait;
+}

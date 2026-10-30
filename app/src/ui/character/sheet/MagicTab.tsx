@@ -780,7 +780,7 @@ function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
             <option value="form">{ART_NAMES[form]} (defend with {ART_NAMES[tech]})</option>
           </select>
         </Field>
-        <Field label="Raw vis this round (+2 a pawn)" hint={`Attuned to the Art it adds to; at most your score in it (${visMax('technique')} ${tech}, ${visMax('form')} ${form})`}>
+        <Field label="Raw vis this round (+2 a pawn)" hint={`Vis of the Art it boosts, no more pawns than your score in that Art (${visMax('technique')} ${tech}, ${visMax('form')} ${form})`}>
           <Stepper value={vis} min={0} max={Math.max(visMax('technique'), visMax('form'))} width={36} onChange={setVis} />
         </Field>
         <Field label="Opponent's Defense Total">

@@ -95,8 +95,8 @@ export function LabProjects({ ed }: { ed: CharEditor }) {
       }
     >
       <p className="small muted" style={{ marginTop: 0 }}>
-        Plan the work here, then spend a season on it: <b>Work a season</b> logs it for {season} {year}, and <b>Work it each season</b> makes it the season activity the
-        Seasons page carries on with until it is done.
+        Plan the work here. <b>Work a season</b> spends {season} {year} on it; <b>Work it each season</b> keeps working it every season, when time moves on, until it is
+        done.
         {busy && <span className="warn-text"> {season} {year} is already spent ({taken.map((e) => e.summary).join('; ')}): move to the next season on the Seasons page to work again.</span>} Vis comes from the purse ({(purseOf(structuredClone(c)).vis ?? []).map((v) => `${v.pawns} ${v.art}`).join(', ') || 'empty'}) or the covenant&apos;s stocks;
         at most {seasonVisLimit(d)} pawns a season (twice Magic Theory).
         {ruled.length > 0 && <span className="bad-text"> {ctx.lab?.lab.name} cannot be used for {ruled.join(', ')}.</span>}

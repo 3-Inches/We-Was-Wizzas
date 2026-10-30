@@ -31,9 +31,18 @@ export function SoldiersCard({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
   const setG = (u: string, fn: (g: SoldierGroup) => void) => update((x) => void fn((x.finances.soldiers ?? []).find((g) => g.uid === u)!));
   return (
     <Card title={`Soldiers (${t.people})`} tour="soldiers">
-      <RulesNote book="Cov" line={640} endLine={728}>
-        Soldiers from the Residents Boons and Free Choices: paid soldiers cost a pound a year for each penny a day (Covenants ch.5); those who live at the covenant count as grogs among the
-        inhabitants, their horses a point each. List them here rather than under Grogs.
+      <RulesNote
+        book="Cov"
+        line={640}
+        endLine={728}
+        detail={
+          <>
+            Soldiers from the Residents Boons and Free Choices: paid soldiers cost a pound a year for each penny a day (Covenants ch.5); those who live at the covenant count as grogs among the
+            inhabitants, their horses a point each. List them here rather than under Grogs.
+          </>
+        }
+      >
+        Soldiers your Boons bring, and their pay.
       </RulesNote>
       {groups.length === 0 && missing.length === 0 && <div className="small muted">None. A soldier Boon (Veteran Fighters, Crossbowmen, Cavalry…) or a Free Choice brings them.</div>}
       {groups.map((g) => {
@@ -140,9 +149,13 @@ export function YearlyCard({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
   const total = dc.finances.yearly.reduce((t, e) => t + e.pounds, 0);
   return (
     <Card title={`Each year (${Math.round(total * 10) / 10} £)`} tour="yearly">
-      <RulesNote book="Cov" line={3926} endLine={4060}>
-        What the covenant spends every year besides its upkeep, from the price list (Covenants ch.5). Unlike Sundry, these stay from year to year. A regular cycle of four or more feast days earns a
-        Loyalty point every year (Covenants ch.4). The covenant feeds about {dc.finances.people} people.
+      <RulesNote
+        book="Cov"
+        line={3926}
+        endLine={4060}
+        detail="From the price list (Covenants ch.5). Unlike Sundry, these stay from year to year. A regular cycle of four or more feast days earns a Loyalty point every year (Covenants ch.4)."
+      >
+        What the covenant spends each year besides its upkeep: feasts, guests, festivals. It feeds about {dc.finances.people} people.
       </RulesNote>
       <div className="grid grid-2">
         {YEARLY_EVENTS.map((e) => (
@@ -260,10 +273,19 @@ export function CraftMagicCard({ cov, update, dc, data }: CovTabProps) {
   };
   return (
     <Card title={`Craft magic${uses.length ? ` (${uses.length})` : ''}`} tour="craft-magic">
-      <RulesNote book="Cov" line={2697} endLine={2860}>
-        Rego can do any craftsman’s work from materials at hand, with a Perception + Finesse roll at least 3 above the craft’s Ease Factor: +3 for a month’s work in one casting, +6 a season’s,
-        +9 a year’s. Failure makes a mess; a botch hides a flaw. Creo needs no Finesse roll. At the storyguide’s discretion, a spell cast over and over saves a pound a year per magnitude, like a
-        device; each casting of a Ritual about five pounds per magnitude (Covenants ch.5).
+      <RulesNote
+        book="Cov"
+        line={2697}
+        endLine={2860}
+        detail={
+          <>
+            Rego can do any craftsman’s work from materials at hand, with a Perception + Finesse roll at least 3 above the craft’s Ease Factor: +3 for a month’s work in one casting, +6 a season’s,
+            +9 a year’s. Failure makes a mess; a botch hides a flaw. Creo needs no Finesse roll. At the storyguide’s discretion, a spell cast over and over saves a pound a year per magnitude, like a
+            device; each casting of a Ritual about five pounds per magnitude (Covenants ch.5).
+          </>
+        }
+      >
+        Spells that do a craftsman’s work save the covenant money.
       </RulesNote>
       <div className="row small">
         <Field label="Guideline">
@@ -458,10 +480,19 @@ export function TurbCard({ cov, update, dc, data }: CovTabProps) {
   };
   return (
     <Card title="The turb's day" tour="turb">
-      <RulesNote book="Grogs" line={1020} endLine={1230}>
-        The day is eight watches of three hours. Each patrol (day and night) has four watches; on single duty a quarter of the soldiers are ready and three-eighths can turn out quickly, on double
-        duty (when trouble is expected) half are ready. Staying awake on sentry is Stamina + Concentration + a simple die against 3, or 6 on double duty, +3 at night; double duty also costs a
-        Fatigue roll at dusk. Rewards and punishments come from the turb captain, steward or chamberlain; one a magus orders costs Loyalty Points (Covenants ch.4).
+      <RulesNote
+        book="Grogs"
+        line={1020}
+        endLine={1230}
+        detail={
+          <>
+            The day is eight watches of three hours. Each patrol (day and night) has four watches; on single duty a quarter of the soldiers are ready and three-eighths can turn out quickly, on double
+            duty (when trouble is expected) half are ready. Staying awake on sentry is Stamina + Concentration + a simple die against 3, or 6 on double duty, +3 at night; double duty also costs a
+            Fatigue roll at dusk. Rewards and punishments come from the turb captain, steward or chamberlain; one a magus orders costs Loyalty Points (Covenants ch.4).
+          </>
+        }
+      >
+        Who stands watch, how many are ready when trouble comes, and staying awake on sentry.
       </RulesNote>
       <b className="small">Watches</b>
       <div className="row small">

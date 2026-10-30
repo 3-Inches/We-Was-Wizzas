@@ -9,7 +9,9 @@ import { newCharacter } from './character/factory';
 import { newCovenant } from './covenant';
 import { issueRedcapDevices, redcapYearEnd } from './generate/items';
 import { seeded } from './generate/random';
-import { buildLivingCovenant, houseGatheringIn, livingYearEnd } from './living';
+import { IMPROVED_INCOME, buildLivingCovenant, houseGatheringIn, livingAccounts, livingYearEnd } from './living';
+import { accountsForecast } from './covenantYear';
+import { deriveCovenant } from './covenant';
 import { houseDuty } from './priorities';
 import { advanceSeasons, DEFAULT_ADVANCE } from './time';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
@@ -169,5 +171,30 @@ describe('approaches to the players', () => {
     livingYearEnd(state, { data, saga, rules }, 1222, seeded(1), new Set());
     expect(saga.tribunalNews[0]).toMatchObject({ done: true, lapsed: true });
     expect(saga.tribunalNews[1].lapsed).toBeUndefined();
+  });
+});
+
+describe('a living covenant’s accounts in a long saga', () => {
+  it('raises its income by magic when inflation outgrows it, and puts a hoard into its holdings', () => {
+    const { cov, chars } = buildLivingCovenant(RHINE, def('roznov'), { data, saga: sagaAt(), rules }, { seed: 3, others: false });
+    const members = chars.filter((c) => cov.memberIds.includes(c.id));
+    // forty years of inflation
+    cov.finances.inflation = 160;
+    expect(deriveCovenant(cov, data, members).finances.balance).toBeLessThan(0);
+    const lines = livingAccounts(cov, members, data);
+    expect(lines[0].text).toMatch(/raise its income by \d+ £ a year/);
+    expect(cov.income.find((s) => s.name === IMPROVED_INCOME)?.pounds).toBeGreaterThan(0);
+    expect(deriveCovenant(cov, data, members).finances.balance).toBeGreaterThanOrEqual(0);
+    // a hoard of twenty years' spending
+    const spend = deriveCovenant(cov, data, members).finances.totalExpenditure;
+    cov.finances.treasury = 20 * spend;
+    expect(livingAccounts(cov, members, data).map((l) => l.text).join(' ')).toMatch(/into its lands and holdings/);
+    expect(cov.finances.treasury).toBe(Math.round(5 * spend));
+  });
+  it('forecasts when a covenant will spend more than it earns, and run out', () => {
+    // 100 £ income, 90 £ spent, rising a pound a year
+    expect(accountsForecast(50, 100, 90)).toEqual({ lossIn: 11, emptyIn: 25 });
+    expect(accountsForecast(0, 100, 120).lossIn).toBe(0);
+    expect(accountsForecast(0, 1000, 100)).toEqual({ lossIn: undefined, emptyIn: undefined });
   });
 });

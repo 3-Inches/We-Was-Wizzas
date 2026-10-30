@@ -78,10 +78,18 @@ export function WritingCard({ ed }: { ed: CharEditor }) {
   const e = { ...ed, c, d, saga } as Ed;
   return (
     <Card title="Writing and copying" tour="writing">
-      <RulesNote book="DE" line={16232} endLine={16290}>
-        An author needs 5 in an Art or 2 in an Ability, and 5 in the language. A summa gains Communication + Language points a season toward its Level (five times the Level for an Ability); a
-        tractatus takes one season. Careful copying gains 6 + Profession: Scribe a season (a tractatus a season); quick copying is three times as fast and 1 Quality lower. Every season of it is
-        Exposure (2 xp).
+      <RulesNote
+        book="DE"
+        line={16232}
+        endLine={16290}
+        detail={
+          <>
+            An author needs 5 in an Art or 2 in an Ability, and 5 in the language. A summa gains Communication + Language points a season toward its Level (five times the Level for an
+            Ability); a tractatus takes one season. Careful copying gains 6 + Profession: Scribe a season (a tractatus a season); quick copying is three times as fast and 1 Quality lower.
+          </>
+        }
+      >
+        Write a summa or tractatus, or copy a book, as a season&apos;s work (and 2 xp of Exposure).
       </RulesNote>
       {open.map((p) => (
         <div key={p.uid} className="list-row" style={{ flexWrap: 'wrap' }}>
@@ -492,9 +500,18 @@ function LabTextForm({ e, begin, logged, copy }: { e: Ed; begin: Begin; logged: 
     );
   return (
     <>
-      <RulesNote book="DE" line={10763} endLine={10770}>
-        One&apos;s own lab texts are full of private shorthand: a season rewrites Latin × 20 levels of them for others to use. Copying lab texts already written plainly goes at Profession: Scribe × 60 levels a
-        season. A lab&apos;s Texts Specialization adds 1 to Latin or Scribe for every 3 points.
+      <RulesNote
+        book="DE"
+        line={10763}
+        endLine={10770}
+        detail={
+          <>
+            One&apos;s own lab texts are full of private shorthand: a season rewrites Latin × 20 levels of them for others to use. Copying lab texts already written plainly goes at Profession: Scribe × 60 levels a
+            season. A lab&apos;s Texts Specialization adds 1 to Latin or Scribe for every 3 points.
+          </>
+        }
+      >
+        Rewrite your own lab texts so others can use them, or copy texts already written plainly.
       </RulesNote>
       {items.length === 0 && <div className="small muted">{copy ? 'The library has no lab texts.' : 'No spells to write up.'}</div>}
       <div className="small" style={{ maxHeight: 160, overflowY: 'auto' }}>
@@ -537,9 +554,18 @@ function FlorilegiumForm({ e, begin, logged }: { e: Ed; begin: Begin; logged: bo
   if (!subjects.length) return <div className="small muted">The library has no tractatus to bind together.</div>;
   return (
     <>
-      <RulesNote book="Cov" line={4858} endLine={4862}>
-        A season binding tractatus on one subject into an anthology: each gains +1 Quality (+2 from an authority, 10 in the Ability or 35 in the Art, with a peerless collection). The editor needs 6 in
-        the Ability or 20 in the Art, may collect as many as they could write, and needs a library with twice as many. Florilegia take no resonant materials or clarification.
+      <RulesNote
+        book="Cov"
+        line={4858}
+        endLine={4862}
+        detail={
+          <>
+            A season binding tractatus on one subject into an anthology: each gains +1 Quality (+2 from an authority, 10 in the Ability or 35 in the Art, with a peerless collection). The editor needs 6 in
+            the Ability or 20 in the Art, may collect as many as they could write, and needs a library with twice as many. Florilegia take no resonant materials or clarification.
+          </>
+        }
+      >
+        Bind tractatus on one subject into an anthology: each gains Quality.
       </RulesNote>
       <div className="row small">
         <select value={key} onChange={(ev) => (setSubject(ev.target.value), setPicked([]))}>
@@ -622,9 +648,18 @@ function GlossForm({ e, run }: { e: Ed; run: Run }) {
   const problems = glossProblems(readerScore, d.characteristics.Com.value, b, data);
   return (
     <>
-      <RulesNote book="Cov" line={4864} endLine={4866}>
-        A reader at least half as skilled as the book&apos;s Level, with a higher Communication than its author, glosses it during their season of reading: +1 Quality, once. Glosses cannot be combined with
-        resonant materials or clarification.
+      <RulesNote
+        book="Cov"
+        line={4864}
+        endLine={4866}
+        detail={
+          <>
+            A reader at least half as skilled as the book&apos;s Level, with a higher Communication than its author, glosses it during their season of reading: +1 Quality, once. Glosses cannot be combined with
+            resonant materials or clarification.
+          </>
+        }
+      >
+        Annotate a book while reading it: +1 Quality, once.
       </RulesNote>
       <div className="row small">
         <select value={b.uid} onChange={(ev) => setPick(ev.target.value)}>
@@ -666,9 +701,18 @@ function ClarifyForm({ e, run, logged }: { e: Ed; run: Run; logged: boolean }) {
   const problems = clarifyProblems(d, b, ctx.aura, data);
   return (
     <>
-      <RulesNote book="Cov" line={4776} endLine={4778}>
-        A magus with 15 in the book&apos;s Art opens it to enchantment as an invested device (a season and 8 pawns of Vim: material 2 × size 4). Left in a Magic aura for 12 / aura years, it sheds its mundane
-        matter for purer stuff from the aura: +1 Quality. It crumbles to dust if taken out of a Magic aura.
+      <RulesNote
+        book="Cov"
+        line={4776}
+        endLine={4778}
+        detail={
+          <>
+            A magus with 15 in the book&apos;s Art opens it to enchantment as an invested device (a season and 8 pawns of Vim: material 2 × size 4). Left in a Magic aura for 12 / aura years, it sheds its mundane
+            matter for purer stuff from the aura: +1 Quality. It crumbles to dust if taken out of a Magic aura.
+          </>
+        }
+      >
+        Enchant a book so that it slowly improves in a Magic aura.
       </RulesNote>
       <div className="row small">
         <select value={b.uid} onChange={(ev) => setPick(ev.target.value)}>
