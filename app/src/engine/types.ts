@@ -97,6 +97,8 @@ export interface Saga {
   options?: Record<string, boolean>;
   /** the storyguide's cast: creatures from the books' bestiaries kept to hand (Quick build → Creatures) */
   cast?: CastMember[];
+  /** the troupe's own dates: a fair, a wedding, a faerie court that meets every Midsummer (the Game table's calendar) */
+  calendar?: SagaEvent[];
   /** what the Tribunal's living covenants did that touches the players: approaches, deaths, new members, gatherings (newest first) */
   tribunalNews?: TribunalNews[];
   /** the motions the Tribunal's gatherings have voted on, newest first */
@@ -148,6 +150,16 @@ export interface TribunalNews {
   done?: boolean;
   /** an approach left unanswered for two years, set aside by the toolkit (it may come again) */
   lapsed?: boolean;
+}
+
+/** A date the troupe puts on the saga's calendar, once or every so many years. */
+export interface SagaEvent {
+  uid: string;
+  year: number;
+  season: Season;
+  text: string;
+  /** comes round again every so many years (1: every year) */
+  every?: number;
 }
 
 /** A creature the storyguide keeps to hand: one from the bestiary (data/bestiary.ts), with their own notes. */
@@ -820,6 +832,8 @@ export interface Character {
   creature?: CreatureInfo;
   /** things used up once per game session (All According to Plan) */
   session?: { aatpUsed?: boolean };
+  /** the year each of its Story and Personality Flaws last came up in play (by the Virtue's uid): the Game table's stories waiting */
+  storiesTold?: Record<string, number>;
   name: string;
   player: string;
   gender: string;

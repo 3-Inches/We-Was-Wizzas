@@ -506,7 +506,7 @@ export const AURA_TIME: Record<NonNullable<Character['auraTime']>, string> = {
 };
 
 /** Hooks whose stories come round with the years (Covenants ch.2). */
-const HOOK_REMINDERS: { match: RegExp; every: number; text: string }[] = [
+export const HOOK_REMINDERS: { match: RegExp; every: number; text: string }[] = [
   { match: /indiscreet resource/i, every: 5, text: 'a story to keep the resource quiet (one every five years or so), or it is lost' },
   { match: /dark secret/i, every: 3, text: 'the secret crops up again as a potential problem' },
   { match: /itinerants/i, every: 1, text: 'the mobile community visits this year' },

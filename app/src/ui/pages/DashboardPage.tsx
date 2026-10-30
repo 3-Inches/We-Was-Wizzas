@@ -12,6 +12,7 @@ import { onStrike, teaches } from '../../engine/covenfolk';
 import { covenantOf } from '../../engine/context';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import { isDue } from '../../engine/hookEvents';
+import { ComingUpCard, StoriesCard } from './CalendarCards';
 import { lsd } from '../../engine/economy';
 import { DEFAULT_ADVANCE, advanceSeasons, describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
 import type { Character, Covenant, TimeReport } from '../../engine/types';
@@ -193,6 +194,11 @@ export default function DashboardPage() {
             <PlayIndex S={S} home={home} first={playing[0]} sheet={sheet} covLink={covLink} />
           </details>
         </Card>
+      </div>
+
+      <div className="grid grid-2">
+        <ComingUpCard saga={saga} characters={allChars} covenants={allCovs} />
+        <StoriesCard saga={saga} characters={allChars} covenants={allCovs} data={data} />
       </div>
 
       <Card title={`This season: ${season} ${year}`} tour="table-season">
