@@ -8,7 +8,7 @@ import type { LibraryBook } from '../../engine/types';
 import { uid } from '../../util/id';
 import { addVis } from '../../engine/vis';
 import { useStore } from '../../store/store';
-import { Card, Field, Stepper } from '../kit';
+import { Card, Field, SearchInput, Stepper } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
 import { RulesNote } from '../RulesNote';
@@ -19,6 +19,9 @@ import { describeStress, stressDie } from '../../engine/dice';
 import { covenantRollsLevel } from '../../engine/covenfolk';
 import { BOOK_FORMATS, SCRIBE, clarifyYears, copyNeeded, specialistCopy } from '../../engine/books';
 import { countOf, specAbilities } from '../../engine/covenantRules';
+
+/** How many books the library table shows before “Show all”. */
+const LIBRARY_PAGE = 60;
 
 const KIND_LABEL: Record<LibraryBook['kind'], string> = {
   summa: 'Summa',
@@ -38,8 +41,14 @@ function newBook(kind: LibraryBook['kind']): LibraryBook {
 export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
   const saga = useSaga(cov.sagaId);
   const [filter, setFilter] = useState<'all' | LibraryBook['kind']>('all');
+  const [q, setQ] = useState('');
+  const [showAll, setShowAll] = useState(false);
   const setBook = (id: string, fn: (b: LibraryBook) => void) => update((x) => { const b = x.library.find((y) => y.uid === id); if (b) fn(b); });
-  const books = cov.library.filter((b) => filter === 'all' || b.kind === filter);
+  // a large library (Durenmar's) is searched, and shown sixty books at a time
+  const subjectName = (b: LibraryBook) => (b.subjectType === 'art' ? ART_NAMES[b.subject as Art] : data.abilityById.get(b.subject)?.name) ?? b.subject;
+  const needle = q.trim().toLowerCase();
+  const books = cov.library.filter((b) => (filter === 'all' || b.kind === filter) && (!needle || `${b.title} ${subjectName(b)} ${b.param ?? ''} ${b.author ?? ''}`.toLowerCase().includes(needle)));
+  const shown = showAll ? books : books.slice(0, LIBRARY_PAGE);
   const libraryBP = dc.bpLines.filter((l) => l.category === 'Library').reduce((s, l) => s + l.cost, 0);
   const visBP = dc.bpLines.filter((l) => l.category === 'Vis').reduce((s, l) => s + l.cost, 0);
   const abilities = data.abilities.slice().sort((a, b) => a.name.localeCompare(b.name));
@@ -62,7 +71,8 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
       >
         <LaterNote topic="library" />
         <CovenantRolls cov={cov} update={update} />
-        <div className="row" style={{ marginBottom: 6 }}>
+        <div className="row" style={{ marginBottom: 6, flexWrap: 'wrap' }}>
+          {cov.library.length > LIBRARY_PAGE / 2 && <SearchInput value={q} onChange={setQ} placeholder="Search the titles and subjects…" />}
           <select value={filter} onChange={(e) => setFilter(e.target.value as typeof filter)}>
             <option value="all">All books ({cov.library.length})</option>
             {(Object.keys(KIND_LABEL) as LibraryBook['kind'][]).map((k) => (
@@ -96,8 +106,10 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
               </tr>
             </thead>
             <tbody>
-              {books.map((b) => {
-                const { cost, issue } = summaCost(b);
+              {shown.map((b) => {
+                const { cost } = summaCost(b);
+                // the limits on books bought at the covenant's founding; a book made or found in play may pass them
+                const issue = b.inPlay || b.rolls ? undefined : summaCost(b).issue;
                 const isText = b.kind === 'labText' || b.kind === 'castingTablet';
                 return (
                   <tr key={b.uid}>
@@ -195,6 +207,17 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
             </tbody>
           </table>
         </div>
+        {books.length > shown.length && (
+          <div className="row small" style={{ marginTop: 6 }}>
+            <span className="muted">
+              Showing {shown.length} of {books.length} books{needle ? ' that match' : ''}.
+            </span>
+            <button className="small" onClick={() => setShowAll(true)}>
+              Show all {books.length}
+            </button>
+          </div>
+        )}
+        {needle && !books.length && <div className="small muted">No book matches “{q.trim()}”.</div>}
         <p className="small muted">
           The hidden box puts a book in the covenant's Hidden Resources. To pay for resources from Hidden, Flawed or Illusory Resources, pick them on that Boon or Hook (Hooks & Boons tab).
           {dc.hiddenResourcesBP > 0 && ` Hidden Resources hold ${dc.hiddenResourcesBP} BP of resources.`}
