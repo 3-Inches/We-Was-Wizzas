@@ -1294,6 +1294,17 @@ export interface CovenfolkCounts {
   horses: number;
 }
 
+/** Spending a covenant can leave unpaid when the money runs out (Covenants ch.5, Emergency Savings). */
+export type NeglectCategory = 'Buildings' | 'Provisions' | 'Laboratories' | 'Weapons and Armor';
+
+/** Money a covenant owes, and to whom. */
+export interface Loan {
+  uid: string;
+  from: string;
+  pounds: number;
+  year: number;
+}
+
 export type IncomeModification = 'Slump' | 'Contraction' | 'Stagnation' | 'Status Quo' | 'Growth' | 'Expansion' | 'Boom';
 
 export interface IncomeSource {
@@ -1383,6 +1394,10 @@ export interface Covenant {
     magiLiving?: 'impoverished' | 'pauper';
     /** hire only the crafts the Cost Saving Limits table names as examples, not those from other books */
     exampleCraftsOnly?: boolean;
+    /** spending left unpaid in hard times (Covenants ch.5, Emergency Savings), with what it brings at each year's end */
+    neglect?: NeglectCategory[];
+    /** money owed: borrowed, or bills left unpaid at a year's end; a tenth a year in interest until repaid */
+    loans?: Loan[];
   };
   /** how the covenfolk are organized (DE, The Organization of Covenfolk) */
   organization?: 'household' | 'military' | 'nations' | 'guilds' | 'professional-guilds' | 'monastery' | 'none';

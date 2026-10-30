@@ -21,6 +21,7 @@ import { routineYear } from './labRoutines';
 import { auraOf, changeAura, dominionYearEnd, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
 import { optionOn } from './optional';
 import { hooksComeDue } from './hookEvents';
+import { hardshipYearEnd } from './hardship';
 import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
 import { ensureAbility } from './character/factory';
 import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
@@ -556,7 +557,7 @@ function renewCovenantEffects(cov: Covenant, chars: Character[], year: number, s
     const arts: Art[] = e.renew.art ? [e.renew.art] : ['Re', 'Vi'];
     const paid = takeVis(cov.visStocks, arts, pawns);
     if (!paid.ok || (e.renew.casterId && !caster)) {
-      lines.push({ who: cov.name, kind: 'reminder', text: `${e.name} ends and could not be cast again: ${!paid.ok ? `it needs ${pawns} pawns of ${arts.map((a) => ART_NAMES[a]).join(' or ')} vis` : 'its caster is gone'}.` });
+      lines.push({ who: cov.name, kind: 'reminder', text: `${e.name} ends and could not be cast again: ${!paid.ok ? `it needs ${pawns} pawns of ${arts.map((a) => ART_NAMES[a]).join(' or ')} vis` : 'its caster is gone'}.${/aegis/i.test(e.name) ? ' Until it is cast, spirits, faeries and others’ magic come and go freely, and the magi’s sanctums lie open to scrying.' : ''}` });
       continue;
     }
     const next: ActiveEffect = { ...e, uid: uid(), year, season };
@@ -675,6 +676,8 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       lines.push({ who: cov.name, kind: 'covenant', text: plan.lines.join(' ') });
       for (const t of payAllowance(cov, members, plan.balance, plan.vis, year, season)) lines.push({ who: cov.name, kind: 'money', text: t });
       lines.push(...hookReminders(cov, year));
+      // hard times: bills left unpaid, and the spending left unpaid brings its trouble
+      lines.push(...hardshipYearEnd(cov, data, year, members));
       for (const t of covenfolkYearEnd(cov, year)) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const t of [...scriptoriumYear(cov, data), ...libraryYearEnd(cov, year, data)]) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const s of cov.specialists.filter((x) => x.hired && x.hired.until <= year)) lines.push({ who: cov.name, kind: 'covenant', text: `${s.name || 'The hired teacher'} has taught the time paid for, and leaves.` });

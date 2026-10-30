@@ -12,6 +12,7 @@ import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total, HowItWorks } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
+import { HardTimesCard } from './HardTimesCard';
 import { CraftMagicCard, GearHelper, OrganizationCard, SoldiersCard, TurbCard, YearlyCard } from './CovenfolkCards';
 import {
   CRAFT_GUILD_ORDER, CRAFT_GUILD_RANKS, ROLE_BY_ID, ROLE_DEFS, craftsmanUpkeep, craftsmanWorkshopTotal, nextImprovementCost, guildRanksApply, guildShortfalls, laborPointsPerSeason,
@@ -332,6 +333,8 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
           </div>
         </Card>
       </div>
+
+      <HardTimesCard cov={cov} update={update} dc={dc} data={data} />
 
       <Card title="Loyalty (Covenants ch.4)">
         <div className="row">
