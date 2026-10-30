@@ -34,7 +34,7 @@ export function ComingUpCard({ saga, characters, covenants }: { saga: Saga; char
   const shown = all ? events : events.slice(0, 6);
   let lastYear = 0;
   return (
-    <Card title="Coming up" tour="table-calendar">
+    <Card title="Coming up" tour="table-calendar" fold="table-calendar" summary={events[0] ? `Next, ${events[0].season} ${events[0].year}: ${events[0].text}${events.length > 1 ? ` (and ${events.length - 1} more in three years)` : ''}` : 'Nothing in the next three years.'}>
       <p className="small muted" style={{ marginTop: 0 }}>
         The dates the toolkit keeps, so the table can stay on the story. Add your own: a fair, a wedding, a faerie court that meets every Midsummer.
       </p>
@@ -123,7 +123,7 @@ export function StoriesCard({ saga, characters, covenants, data }: { saga: Saga;
     else updateCovenant(owner, (c) => void (c.hookStories = { ...(c.hookStories ?? {}), [id]: saga.currentYear }));
   };
   return (
-    <Card title="Stories waiting" tour="table-stories">
+    <Card title="Stories waiting" tour="table-stories" fold="table-stories" summary={seeds[0] ? `${seeds.length} waiting; the longest untold: ${seeds[0].who}’s ${seeds[0].title}.` : 'None yet.'}>
       <p className="small muted" style={{ marginTop: 0 }}>
         What the characters’ Story and Personality Flaws and the covenant’s Hooks promise, the longest untold first. Mark one told when it has come up in play.
       </p>

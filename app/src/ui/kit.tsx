@@ -6,17 +6,50 @@ import DOMPurify from 'dompurify';
 import type { Part } from '../engine/magic';
 import { BOOK_BY_ID } from '../data';
 import { dropEmptyHeads, tidyTables } from './tables';
+import { useStore } from '../store/store';
 
-export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string; tour?: string }) {
+/** Which foldable cards a viewer has opened or closed, by key (kept in this browser). */
+const FOLDS_KEY = 'arm.folds';
+function readFolds(): Record<string, boolean> {
+  try {
+    return JSON.parse(localStorage.getItem(FOLDS_KEY) ?? '{}') as Record<string, boolean>;
+  } catch {
+    return {};
+  }
+}
+const narrowScreen = () => typeof window !== 'undefined' && !!window.matchMedia?.('(max-width: 700px)').matches;
+
+/**
+ * A card. With `fold` (a key) it can be folded to its title and a one-line `summary`: folded at
+ * first on a phone, open on a wider screen, and remembered either way. It opens while a tutorial runs.
+ */
+export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string; tour?: string; fold?: string; summary?: ReactNode }) {
+  const touring = useStore((s) => !!s.ui.tour);
+  const [open, setOpenState] = useState(() => (props.fold ? (readFolds()[props.fold] ?? !narrowScreen()) : true));
+  const setOpen = (v: boolean) => {
+    setOpenState(v);
+    if (!props.fold) return;
+    try {
+      localStorage.setItem(FOLDS_KEY, JSON.stringify({ ...readFolds(), [props.fold]: v }));
+    } catch {
+      // private window or blocked storage: it still folds, just not remembered
+    }
+  };
+  const folded = !!props.fold && !open && !touring;
   return (
-    <section className={`card ${props.className ?? ''}`} id={props.id} data-tour={props.tour}>
-      {(props.title || props.actions) && (
+    <section className={`card ${props.className ?? ''}${folded ? ' folded' : ''}`} id={props.id} data-tour={props.tour}>
+      {(props.title || props.actions || props.fold) && (
         <div className="card-head">
           {typeof props.title === 'string' ? <h3>{props.title}</h3> : props.title}
-          {props.actions && <div className="row tight">{props.actions}</div>}
+          {props.actions && !folded && <div className="row tight">{props.actions}</div>}
+          {props.fold && !touring && (
+            <button className="small ghost fold-toggle" aria-expanded={!folded} onClick={() => setOpen(folded)} title={folded ? 'Show this card' : 'Fold it to a line'}>
+              {folded ? '▸ Show' : '▾ Fold'}
+            </button>
+          )}
         </div>
       )}
-      {props.children}
+      {folded ? props.summary && <div className="small muted card-summary">{props.summary}</div> : props.children}
     </section>
   );
 }

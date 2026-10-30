@@ -86,7 +86,7 @@ function SideFields({ x, side, set, title }: { x: Ctx; side: Side; set: (s: Side
                     {a.name} ({abilityTotal(got.d, a.abilityId)})
                   </option>
                 ))}
-                {side.ability && !got.d.abilities.some((a) => a.abilityId === side.ability) && <option value={side.ability}>{side.ability.replace(/-/g, ' ')} (0)</option>}
+                {side.ability && !got.d.abilities.some((a) => a.abilityId === side.ability) && <option value={side.ability}>{x.data.abilityById.get(side.ability)?.name ?? side.ability} (0)</option>}
               </select>
             </Field>
           </>
@@ -140,7 +140,7 @@ export function OpposedCard({ x }: { x: Ctx }) {
         <SideFields x={x} side={a} set={setA} title="Who acts" />
         <SideFields x={x} side={b} set={setB} title="Who resists" />
       </div>
-      <button className="primary" style={{ marginTop: 6 }} onClick={() => setOut([`${nameOf(a, 'The first')} against ${nameOf(b, 'the second')}: ${opposedRoll({ mod: totalOf(a), botch: a.botch }, { mod: totalOf(b), botch: b.botch }).text}`, ...out].slice(0, 8))}>
+      <button className="primary" style={{ marginTop: 6 }} onClick={() => setOut([`${nameOf(a, 'The one acting')} against ${nameOf(b, 'the one resisting')}: ${opposedRoll({ mod: totalOf(a), botch: a.botch }, { mod: totalOf(b), botch: b.botch }).text}`, ...out].slice(0, 8))}>
         Roll both
       </button>
       {out.map((t, i) => (

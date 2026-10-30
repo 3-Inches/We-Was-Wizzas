@@ -14,6 +14,7 @@ import { AgencyCard } from './AgencyCard';
 import { ApprenticeCard } from './ApprenticeCard';
 import { TribunalCard } from './TribunalCard';
 import { SocietyCard } from './SocietyCard';
+import { NeedsYouCard } from './NeedsYouCard';
 
 export default function OverviewTab({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, saga } = ed;
@@ -24,6 +25,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
   const hasEffects = (c.activeEffects ?? []).length > 0;
   return (
     <div className="stack">
+      <NeedsYouCard ed={ed} />
       {/* magic on the character leads when something is recorded; otherwise it waits below */}
       {hasEffects && <EffectsCard ed={ed} />}
       {c.creation.finalized && <PurseCard ed={ed} />}

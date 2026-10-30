@@ -170,6 +170,9 @@ hr { border: none; border-top: 1px solid var(--line); margin: 1em 0; }
 }
 .card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
 .card-head h2, .card-head h3 { margin: 0; flex: 1 1 auto; }
+.card.folded .card-head { margin-bottom: 2px; }
+.card-summary { margin: 0; }
+.fold-toggle { flex: 0 0 auto; }
 .card.flat { box-shadow: none; }
 .card.accent { border-top: 3px solid var(--accent); }
 .illum::first-letter { font-family: var(--font-head); color: var(--accent); font-size: 1.6em; }

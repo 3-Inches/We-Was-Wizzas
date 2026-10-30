@@ -30,7 +30,7 @@ export function SoldiersCard({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
   const t = dc.finances.soldiers;
   const setG = (u: string, fn: (g: SoldierGroup) => void) => update((x) => void fn((x.finances.soldiers ?? []).find((g) => g.uid === u)!));
   return (
-    <Card title={`Soldiers (${t.people})`} tour="soldiers">
+    <Card title={`Soldiers (${t.people})`} tour="soldiers" fold="cov-soldiers" summary={t.people ? `${t.people} soldiers.` : 'None: a soldier Boon or a Free Choice brings them.'}>
       <RulesNote
         book="Cov"
         line={640}
@@ -148,7 +148,7 @@ export function YearlyCard({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
     });
   const total = dc.finances.yearly.reduce((t, e) => t + e.pounds, 0);
   return (
-    <Card title={`Each year (${Math.round(total * 10) / 10} £)`} tour="yearly">
+    <Card title={`Each year (${Math.round(total * 10) / 10} £)`} tour="yearly" fold="cov-yearly" summary={`Feasts, guests, festivals and Redcap visits: ${Math.round(total * 10) / 10} £ a year.`}>
       <RulesNote
         book="Cov"
         line={3926}
@@ -181,7 +181,7 @@ export function OrganizationCard({ cov, update, dc }: Omit<CovTabProps, 'data'>)
   const demands = guildDemands(cov);
   const own = new Set(cov.finances.ownUpkeep ?? []);
   return (
-    <Card title="How the covenfolk live" tour="covenfolk-organization">
+    <Card title="How the covenfolk live" tour="covenfolk-organization" fold="cov-organization" summary={`${org ? org.label : 'No set organization'}${cov.finances.magiLiving ? `; the magi live ${cov.finances.magiLiving === 'pauper' ? 'as covenfolk' : 'as companions'}` : ''}${own.size ? `; ${own.size} pay their own way` : ''}.`}>
       <div className="row">
         <Field label="Organization" hint="DE, The Organization of Covenfolk">
           <select value={cov.organization ?? ''} onChange={(e) => update((x) => void (x.organization = (e.target.value || undefined) as typeof x.organization))}>
@@ -272,7 +272,7 @@ export function CraftMagicCard({ cov, update, dc, data }: CovTabProps) {
     return { d, perFinesse: d.characteristics.Per.value + fin, cast: (t: Technique, f: Form) => d.arts[t].score + d.arts[f].score + d.characteristics.Sta.value + dc.aura };
   };
   return (
-    <Card title={`Craft magic${uses.length ? ` (${uses.length})` : ''}`} tour="craft-magic">
+    <Card title={`Craft magic${uses.length ? ` (${uses.length})` : ''}`} tour="craft-magic" fold="cov-craft-magic" summary={uses.length ? `${uses.length} craft spell${uses.length > 1 ? 's' : ''} at work.` : 'Spells that do the covenant’s craft work, in place of craftsmen.'}>
       <RulesNote
         book="Cov"
         line={2697}
@@ -479,7 +479,7 @@ export function TurbCard({ cov, update, dc, data }: CovTabProps) {
     setNote('');
   };
   return (
-    <Card title="The turb's day" tour="turb">
+    <Card title="The turb's day" tour="turb" fold="cov-turb" summary="Who stands watch, how many are ready when trouble comes, and discipline.">
       <RulesNote
         book="Grogs"
         line={1020}

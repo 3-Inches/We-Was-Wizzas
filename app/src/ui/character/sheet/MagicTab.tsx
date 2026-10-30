@@ -448,7 +448,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         </div>
       </Card>
 
-      <Card title="Penetration">
+      <Card title="Penetration" fold="magic-penetration" summary="Whether a spell gets through a target’s Magic Resistance, with Arcane Connections and sympathies.">
         <div className="row">
           <Field label="Arcane connection">
             <select value={pen.arcaneConnection} onChange={(e) => setPen({ ...pen, arcaneConnection: e.target.value as PenetrationOptions['arcaneConnection'] })}>
@@ -570,7 +570,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         <CastingRulesNote rules={rules} />
       </Card>
 
-      <Card title="Spontaneous magic">
+      <Card title="Spontaneous magic" fold="magic-spontaneous" summary="Casting without a formulaic spell: fatiguing or not, and the level it reaches.">
         <div className="row">
           <select value={tech} onChange={(e) => setTech(e.target.value as Technique)}>
             {TECHNIQUES.map((t) => (
@@ -744,7 +744,7 @@ function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
     </div>
   );
   return (
-    <Card title="Certamen">
+    <Card title="Certamen" fold="magic-certamen" summary="A duel of magic between magi: the Arts chosen, attack and defense, Fatigue.">
       <div className="row">
         <Field label="Technique (the challenger picks)">
           <select value={tech} onChange={(e) => setTech(e.target.value as Technique)}>
