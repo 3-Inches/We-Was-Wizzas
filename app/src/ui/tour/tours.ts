@@ -793,7 +793,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'What they bring to you',
-        body: 'At each year’s end a living covenant may come to yours with one of the book’s offers, requests or troubles. They show here and on the Game table, under **Needs attention**, with a link to where each is dealt with; press **Dealt with** once it is played.',
+        body: 'At each year’s end a living covenant may come to yours with one of the book’s offers, requests or troubles. They show here and on the Game table, under **Needs attention**, with a link to where each is dealt with; press **Dealt with** once it is played. One left unanswered for two years lapses.',
         at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-news',
       },
       {

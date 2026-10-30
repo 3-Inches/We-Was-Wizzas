@@ -93,12 +93,6 @@ export function regionOf(group?: { label: string }): string {
   return REGION_BY_GROUP.find(([g]) => group?.label.startsWith(g))?.[1] ?? 'english';
 }
 
-/** A given name for the region (or Latin, for a magus). */
-export function givenName(rng: Rng, region: string, female: boolean): string {
-  const n = NAMES[region] ?? NAMES.english;
-  return pick(rng, female ? n.female : n.male);
-}
-
 /** What sets a second bearer of a name apart: a cognomen for a magus's Latin name, an epithet for others. */
 const COGNOMINA = ['Rufus', 'Niger', 'Magnus', 'Minor', 'Felix', 'Longus', 'Pius', 'Calvus', 'Crassus', 'Silvanus', 'Peregrinus', 'Germanicus'];
 const EPITHETS = ['the Younger', 'the Elder', 'the Red', 'the Tall', 'the Fair', 'the Quiet', 'the Bold', 'the Lame', 'the Black', 'the Stranger'];

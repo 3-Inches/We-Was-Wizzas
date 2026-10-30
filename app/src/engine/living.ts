@@ -49,20 +49,10 @@ export interface LivingBuild {
   log: string[];
 }
 
-/** Living covenants (and their people) are the storyguide's, not the players'. */
-export function isLiving(cov: Covenant | undefined): boolean {
-  return !!cov?.living;
-}
-
 /** The ids of a saga's living covenants and of everyone who belongs to one, or wanders among them. */
 export function livingIds(covenants: Covenant[], characters: Character[] = []): { covenants: Set<string>; members: Set<string> } {
   const covs = covenants.filter((c) => c.living);
   return { covenants: new Set(covs.map((c) => c.id)), members: new Set([...covs.flatMap((c) => c.memberIds), ...characters.filter((c) => c.wanderer).map((c) => c.id)]) };
-}
-
-/** A character of a living covenant (by membership, or by its home covenant), or one of the Tribunal's wanderers. */
-export function isLivingMember(c: Character, covenants: Covenant[]): boolean {
-  return !!c.wanderer || covenants.some((cov) => cov.living && (cov.memberIds.includes(c.id) || c.covenantId === cov.id));
 }
 
 /** The magi a book's covenant has: those it names (not the Redcaps) and those it counts. */
