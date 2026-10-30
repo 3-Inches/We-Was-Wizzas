@@ -296,17 +296,21 @@ export interface Purse {
 
 /** What a character does in a season nobody planned (and while time is fast-forwarded). */
 export interface StandingActivity {
-  kind: 'auto' | 'priorities' | 'exposure' | 'practice' | 'vis' | 'read' | 'lab' | 'work' | 'taught' | 'worship' | 'write' | 'none';
+  kind: 'auto' | 'priorities' | 'exposure' | 'practice' | 'vis' | 'read' | 'lab' | 'work' | 'taught' | 'teach' | 'assist' | 'worship' | 'write' | 'none';
   /** read: the library book (by uid) */
   bookUid?: string;
   /** vis: study from the covenant's stocks rather than the purse */
   visFrom?: 'covenant';
-  /** taught: one of the covenant's teachers ('spec:<uid>') */
+  /** taught: one of the covenant's teachers ('spec:<uid>') or another character ('char:<id>') */
   teacher?: string;
-  /** 'art:Cr' or 'ability:<uid>' */
+  /** 'art:Cr', 'ability:<uid>' or 'mastery:<spellUid>'; for teach, the subject (else the one that teaches the most) */
   target?: string;
   /** a lab project, or a writing project, to work on */
   projectUid?: string;
+  /** teach: the students (character ids) */
+  students?: string[];
+  /** assist: the magus whose lab work is helped (a character id) */
+  helps?: string;
 }
 
 /** What a season can go to on a priority list (engine/priorities.ts). */
@@ -794,6 +798,8 @@ export interface CreatureInfo {
   poolSpent?: number;
   /** Might Score lost to Ritual Powers, returning only slowly (RoP: Magic, Ritual Power) */
   mightLost?: number;
+  /** the magus it is bound to as a familiar: it learns as a human does (DE, Familiars; RoP: Magic, Advancement) */
+  familiarOf?: string;
 }
 
 export type MagicSeason = 'spring' | 'summer' | 'autumn' | 'winter';
