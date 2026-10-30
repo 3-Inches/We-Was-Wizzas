@@ -1398,6 +1398,8 @@ export interface Covenant {
     neglect?: NeglectCategory[];
     /** money owed: borrowed, or bills left unpaid at a year's end; a tenth a year in interest until repaid */
     loans?: Loan[];
+    /** wealth put into land and goods (a living covenant's hoard beyond five years' spending): sold for four-fifths of its worth in hard times */
+    holdings?: number;
   };
   /** how the covenfolk are organized (DE, The Organization of Covenfolk) */
   organization?: 'household' | 'military' | 'nations' | 'guilds' | 'professional-guilds' | 'monastery' | 'none';
@@ -1522,6 +1524,11 @@ export interface LivingCovenant {
   attitude?: 'ally' | 'friendly' | 'neutral' | 'wary' | 'hostile' | 'enemy';
   /** the storyguide stopped it acting (it still ages and keeps its books) */
   paused?: boolean;
+  /** what it found short at the last year's end: money (its magi raise income by magic), and pawns of vis its reserve lacks */
+  needs?: { money: boolean; vis: number };
+  /** how many times magic has raised its income in play (Magical Improvement), and the last year it did */
+  improved?: number;
+  improvedYear?: number;
 }
 
 /** What a player has told the guided build (design spec: Guided Build). */

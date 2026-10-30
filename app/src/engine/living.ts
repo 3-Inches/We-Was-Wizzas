@@ -18,6 +18,7 @@ import { applyStatBlock, type StatBlock } from './character/statBlock';
 import { familiarBindingVis, longevityBonus, talismanCapacity } from './enchant';
 import { issueRedcapDevices, makeTalisman, redcapLevels, servedByMercerHouse } from './generate/items';
 import { optionOn } from './optional';
+import { ensureAegis, livingStewardship, livingVisMarket } from './livingEconomy';
 import { labTotal } from './magic';
 import { generateFamiliar } from './generate/spellsAndFamiliars';
 import { freshName } from './generate/names';
@@ -509,8 +510,8 @@ export function approachChance(chance: number, kind: BookApproach['kind'], attit
 }
 
 /**
- * The living covenants' turn of the year, after the books are closed and everyone has aged: a
- * treasury that ran short is made whole from its holdings; a death is news; a covenant short of
+ * The living covenants' turn of the year, after the books are closed and everyone has aged: each
+ * keeps its Aegis and its means (see livingEconomy); vis changes hands; a death is news; a covenant short of
  * the magi its book gives it may take in a new one; and an approach or two from the book's list
  * may come to the players. Returns the year's lines and the news for the storyguide.
  */
@@ -524,14 +525,9 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
   for (const cov of living) {
     const found = bookCovenant(cov.living!.key);
     const members = state.characters.filter((c) => cov.memberIds.includes(c.id));
-    // a treasury that went below nothing is made good from the covenant's holdings
-    if (cov.finances.treasury < 0) {
-      lines.push({ who: cov.name, tribunal: cov.id, text: `${cov.name} makes good its shortfall of ${Math.abs(Math.round(cov.finances.treasury))} £ from its holdings.` });
-      cov.finances.treasury = 0;
-    }
-    // its accounts as costs and inflation rise: a covenant that ran at a loss improves its income by magic,
-    // and one that has piled up more than five years' spending puts the rest into its lands and holdings
-    lines.push(...livingAccounts(cov, members, g.data));
+    // its Aegis, and its money and vis kept as its magi would keep them (nothing from nowhere)
+    lines.push(...ensureAegis(cov, members, year));
+    lines.push(...livingStewardship(cov, members, g.data, optionOn(state.saga, 'inflation')));
     // deaths
     for (const c of members) {
       if (c.wounds.dead && wasAlive.has(c.id)) out.push(news(year, 'Winter', { kind: 'death', covenantId: cov.id, characterId: c.id, text: `${c.name} of ${cov.name} has died (aged ${c.age}).` }));
@@ -563,36 +559,10 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
       out.push(news(year + 1, 'Spring', { kind: 'approach', covenantId: cov.id, approach: a.id, approachKind: a.kind, page: a.page, text: a.text }));
     }
   }
+  // vis changes hands: a covenant short of what it must hold back buys from those that can spare it
+  lines.push(...livingVisMarket(living, state.characters, g.data));
   lines.push(...peregrinatoresArrive(state, { ...g, saga: state.saga }, living, year, rng));
   return { lines, news: out };
-}
-
-/** The income a living covenant's magi have raised by enchantments and rituals in play. */
-export const IMPROVED_INCOME = 'Improved by magic in play';
-
-/**
- * A living covenant keeping its accounts in a long saga, as its magi would: inflation rises every year
- * (Covenants ch.5), so a covenant that ran at a loss raises its income by Magical Improvement (enchanted
- * devices and rituals) by the shortfall and a little more; and a treasury beyond five years' spending
- * goes into its lands and holdings, which make good a shortfall in a bad year.
- */
-export function livingAccounts(cov: Covenant, members: Character[], data: GameData): { who: string; text: string; tribunal: string }[] {
-  const out: { who: string; text: string; tribunal: string }[] = [];
-  const f = deriveCovenant(cov, data, members).finances;
-  if (f.balance < 0) {
-    const add = Math.ceil(-f.balance + f.totalExpenditure * 0.02);
-    let src = cov.income.find((s) => s.inPlay && s.name === IMPROVED_INCOME);
-    if (!src) cov.income.push((src = { uid: uid(), name: IMPROVED_INCOME, type: 'Magical improvement', level: 'Typical', pounds: 0, customPounds: true, inPlay: true }));
-    src.pounds += add;
-    out.push({ who: cov.name, tribunal: cov.id, text: `${cov.name}’s magi raise its income by ${add} £ a year with enchantments and rituals, as its costs and inflation outgrow it (Covenants, Magical Improvement).` });
-  }
-  const cap = Math.round(5 * f.totalExpenditure);
-  if (cap > 0 && cov.finances.treasury > cap) {
-    const extra = Math.round(cov.finances.treasury - cap);
-    cov.finances.treasury = cap;
-    out.push({ who: cov.name, tribunal: cov.id, text: `${cov.name} puts ${extra} £ beyond five years’ spending into its lands and holdings.` });
-  }
-  return out;
 }
 
 /**

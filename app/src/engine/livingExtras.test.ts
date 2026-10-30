@@ -9,7 +9,9 @@ import { newCharacter } from './character/factory';
 import { newCovenant } from './covenant';
 import { issueRedcapDevices, redcapYearEnd } from './generate/items';
 import { seeded } from './generate/random';
-import { IMPROVED_INCOME, buildLivingCovenant, houseGatheringIn, livingAccounts, livingYearEnd } from './living';
+import { buildLivingCovenant, houseGatheringIn, livingYearEnd } from './living';
+import { ensureAegis, livingStewardship, livingVisMarket, magicalImprovement, spareVis, visReserve, visShortfall } from './livingEconomy';
+import { owed } from './hardship';
 import { accountsForecast } from './covenantYear';
 import { deriveCovenant } from './covenant';
 import { houseDuty } from './priorities';
@@ -174,22 +176,89 @@ describe('approaches to the players', () => {
   });
 });
 
-describe('a living covenant’s accounts in a long saga', () => {
-  it('raises its income by magic when inflation outgrows it, and puts a hoard into its holdings', () => {
-    const { cov, chars } = buildLivingCovenant(RHINE, def('roznov'), { data, saga: sagaAt(), rules }, { seed: 3, others: false });
-    const members = chars.filter((c) => cov.memberIds.includes(c.id));
-    // forty years of inflation
-    cov.finances.inflation = 160;
-    expect(deriveCovenant(cov, data, members).finances.balance).toBeLessThan(0);
-    const lines = livingAccounts(cov, members, data);
-    expect(lines[0].text).toMatch(/raise its income by \d+ £ a year/);
-    expect(cov.income.find((s) => s.name === IMPROVED_INCOME)?.pounds).toBeGreaterThan(0);
-    expect(deriveCovenant(cov, data, members).finances.balance).toBeGreaterThanOrEqual(0);
-    // a hoard of twenty years' spending
+describe('a living covenant’s means, with nothing from nowhere', () => {
+  const build = (id: string) => {
+    const { cov, chars } = buildLivingCovenant(RHINE, def(id), { data, saga: sagaAt(), rules }, { seed: 3, others: false });
+    return { cov, members: chars.filter((c) => cov.memberIds.includes(c.id)) };
+  };
+  const incomeTotal = (cov: ReturnType<typeof build>['cov'], members: Character[]) => deriveCovenant(cov, data, members).finances.income;
+
+  it('meets a loss by selling spare vis and spending less, never by income from nowhere', () => {
+    const { cov, members } = build('roznov');
+    cov.finances.sundry = 400; // a ruinous year
+    cov.finances.treasury = 10;
+    const income = incomeTotal(cov, members);
+    const spareBefore = spareVis(cov, members).reduce((t, v) => t + v.pawns, 0);
+    const lines = livingStewardship(cov, members, data, false).map((l) => l.text).join(' ');
+    expect(incomeTotal(cov, members)).toBe(income);
+    if (spareBefore) expect(lines).toMatch(/sells .* vis for \d+ £/);
+    expect(lines).toMatch(/Hard times at Roznov/);
+    expect(cov.living!.needs!.money).toBe(true);
+    // the reserve for its Aegis and Longevity Rituals is never sold
+    const r = visReserve(cov, members);
+    expect(spareVis(cov, members).length === 0 || r.aegis + r.longevity >= 0).toBe(true);
+  });
+
+  it('pays what it owes and undoes its cuts when money comes back, and keeps a hoard as land and goods', () => {
+    const { cov, members } = build('roznov');
+    cov.finances.wages = 'miserly';
+    cov.finances.neglect = ['Buildings'];
+    cov.finances.loans = [{ uid: 'l', from: 'a merchant', pounds: 40, year: 1220 }];
     const spend = deriveCovenant(cov, data, members).finances.totalExpenditure;
     cov.finances.treasury = 20 * spend;
-    expect(livingAccounts(cov, members, data).map((l) => l.text).join(' ')).toMatch(/into its lands and holdings/);
-    expect(cov.finances.treasury).toBe(Math.round(5 * spend));
+    const lines = livingStewardship(cov, members, data, false).map((l) => l.text).join(' ');
+    expect(owed(cov)).toBe(0);
+    expect(cov.finances.wages).toBe('standard');
+    expect(cov.finances.neglect ?? []).toEqual([]);
+    expect(lines).toMatch(/into land and goods/);
+    expect(cov.finances.treasury).toBe(Math.round(5 * deriveCovenant(cov, data, members).finances.totalExpenditure));
+    expect(cov.finances.holdings).toBeGreaterThan(0);
+    // nothing it did not cut is said to recover
+    const again = livingStewardship(cov, members, data, false).map((l) => l.text).join(' ');
+    expect(again).not.toMatch(/fortunes recover/);
+    // and its holdings carry it through a ruinous year before any cut
+    cov.finances.treasury = 0;
+    cov.finances.sundry = 300;
+    cov.visStocks = []; // spare vis would go first
+    expect(livingStewardship(cov, members, data, false).map((l) => l.text).join(' ')).toMatch(/sells land and goods worth/);
+  });
+
+  it('raises an Aegis from its vis, and holds that vis back after', () => {
+    const { cov, members } = build('roznov');
+    cov.effects = [];
+    cov.visStocks = [{ art: 'Re', pawns: 10 }, { art: 'He', pawns: 4 }];
+    expect(ensureAegis(cov, members, 1220)[0].text).toMatch(/raises its Aegis/);
+    expect(cov.effects!.some((e) => e.name === 'Aegis of the Hearth' && e.renew)).toBe(true);
+    expect(visReserve(cov, members).aegis).toBeGreaterThan(0);
+    // a second call does nothing
+    expect(ensureAegis(cov, members, 1221)).toEqual([]);
+  });
+
+  it('buys the vis its reserve lacks from a covenant that can spare it', () => {
+    const a = build('roznov');
+    const b = build('triamore');
+    a.cov.effects = [{ uid: 'ae', name: 'Aegis of the Hearth', year: 1220, season: 'Winter', duration: 'year', renew: { level: 20 } }];
+    a.cov.visStocks = [];
+    a.cov.finances.treasury = 1000;
+    b.cov.effects = [];
+    b.cov.visStocks = [{ art: 'Vi', pawns: 30 }];
+    expect(visShortfall(a.cov, a.members)[0]).toMatchObject({ pawns: 4 });
+    const lines = livingVisMarket([a.cov, b.cov], [...a.members, ...b.members], data);
+    expect(lines[0].text).toMatch(/buys 4 pawns of Vi vis from Triamore for 40 £/);
+    expect(visShortfall(a.cov, a.members).filter((s) => s.arts.includes('Re'))).toEqual([]);
+    expect(b.cov.visStocks[0].pawns).toBe(26);
+  });
+
+  it('raises its income by magic in a season, for vis, a twentieth at a time', () => {
+    const { cov, members } = build('roznov');
+    cov.visStocks = [{ art: 'Te', pawns: 6 }];
+    const factor = Math.max(...cov.income.map((s) => s.factor ?? 1));
+    const out = magicalImprovement(cov, members[0], members, 1221);
+    expect(magicalImprovement(cov, members[0], members, 1221)).toEqual([]); // once a year
+    expect(out[0]).toMatch(/Magical Improvement/);
+    expect(Math.max(...cov.income.map((s) => s.factor ?? 1))).toBeCloseTo(factor * 1.05, 3);
+    expect(cov.visStocks[0].pawns).toBe(4);
+    expect(cov.living!.improved).toBe(1);
   });
   it('forecasts when a covenant will spend more than it earns, and run out', () => {
     // 100 £ income, 90 £ spent, rising a pound a year

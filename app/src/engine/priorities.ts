@@ -14,10 +14,13 @@ import { labAuraFor, type CharacterContext } from './context';
 import { auraModifier } from './magic';
 import type { Rng } from './dice';
 import { computeStudy, visForStudy } from './longterm';
+import { abilityScoreFromXp } from './xp';
+import { longevityVisCost } from './enchant';
 import { newProject, planProject, visShort } from './projects';
 import { planBook } from './books';
 import { FREQUENCY, chargedItemCharges, investEffect, openingCost } from './enchant';
 import { purseOf, visAvailable } from './vis';
+import { MAX_IMPROVEMENTS, spareVis } from './livingEconomy';
 import type { Character, Covenant, EnchantedItem, LabProject, LibraryBook, PriorityKind, Season, SeasonPriority, StandingActivity, WritingProject } from './types';
 import { uid } from '../util/id';
 
@@ -81,6 +84,8 @@ export interface PriorityChoice {
   standing: StandingActivity;
   /** what it is, in a few words (“Read Principles of Rego”) */
   what: string;
+  /** done for the covenant once the season is run: an enchantment that raises its income (Magical Improvement) */
+  after?: 'improve-income';
 }
 
 export interface PriorityTry {
@@ -140,7 +145,7 @@ export function choosePriority(c: Character, d: DerivedCharacter, ctx: Character
   return typeof fallback === 'string' ? { tried } : { choice: { kind: 'practice', ...fallback }, tried };
 }
 
-type Try = (x: Ctx, p: SeasonPriority) => { standing: StandingActivity; what: string } | string;
+type Try = (x: Ctx, p: SeasonPriority) => { standing: StandingActivity; what: string; after?: PriorityChoice['after'] } | string;
 
 const workable = (x: Ctx, p: LabProject): string | undefined => {
   const plan = planProject(p, x.c, x.d, x.ctx, { subject: x.c, data: x.data });
@@ -148,21 +153,76 @@ const workable = (x: Ctx, p: LabProject): string | undefined => {
 };
 const labSeason = (p: LabProject, what: string) => ({ standing: { kind: 'lab' as const, projectUid: p.uid }, what });
 
+/** A magus's Magic Theory score, from the sheet (no derivation needed). */
+function theoryScore(c: Character): number {
+  const a = c.abilities.find((x) => x.abilityId === 'magic-theory');
+  return a ? abilityScoreFromXp(Object.values(a.xp).reduce((t: number, v) => t + (v ?? 0), 0)) : 0;
+}
+
+/** The library's best Magic Theory book for a magus who cannot yet handle a ritual's vis. */
+function theoryBook(x: Ctx): { standing: StandingActivity; what: string } | undefined {
+  const { c, d, cov } = x;
+  const mt = c.abilities.find((a) => a.abilityId === d.theoryAbility);
+  if (!cov || !mt) return undefined;
+  let best: { uid: string; title: string; xp: number } | undefined;
+  for (const b of cov.library) {
+    if ((b.kind !== 'summa' && b.kind !== 'tractatus') || b.corrupt || b.subjectType !== 'ability' || b.subject !== mt.abilityId) continue;
+    if (b.kind === 'tractatus' && b.readBy?.includes(c.id)) continue;
+    const src = b.kind === 'summa' ? { kind: 'summa' as const, quality: b.quality, level: b.level, isArt: false, subject: b.title } : { kind: 'tractatus' as const, quality: b.quality, isArt: false, subject: b.title };
+    const xp = computeStudy(d, src, { abilityUid: mt.uid }).xp;
+    if (xp >= 5 && (!best || xp > best.xp)) best = { uid: b.uid, title: b.title, xp };
+  }
+  return best && { standing: { kind: 'read', bookUid: best.uid, target: `ability:${mt.uid}` }, what: `reading ${best.title}, to handle the vis of a Longevity Ritual` };
+}
+
+/** A Longevity Ritual for a covenant-mate who cannot make their own (too little Magic Theory for its vis), if this magus can. */
+function ritualForMate(x: Ctx): { standing: StandingActivity; what: string } | undefined {
+  const { c, d, cov } = x;
+  if (!cov) return undefined;
+  const taken = (id: string) => x.chars.some((z) => z.projects?.some((q) => q.kind === 'longevity' && !q.done && q.subjectId === id && z.id !== c.id));
+  const mates = x.chars
+    .filter((y) => y.id !== c.id && cov.memberIds.includes(y.id) && y.type === 'magus' && !y.wounds.dead && !y.retired && !y.longevity && y.age >= 35 && !taken(y.id))
+    .filter((y) => longevityVisCost(y.age, y.longevityLapsed?.extraVis ?? 0) > 2 * theoryScore(y))
+    .sort((a, b) => b.age - a.age);
+  for (const y of mates) {
+    let p = c.projects?.find((q) => q.kind === 'longevity' && !q.done && q.subjectId === y.id);
+    const fresh = !p;
+    p ??= { ...newProject('longevity'), name: `Longevity Ritual for ${y.name}`, subjectId: y.id, visFrom: 'covenant' };
+    const plan = planProject(p, c, d, x.ctx, { subject: y, data: x.data });
+    if (plan.problems.length || visShort(p, c, x.ctx, plan)) continue;
+    if (fresh) c.projects = [...(c.projects ?? []), p];
+    return labSeason(p, `a Longevity Ritual for ${y.name}`);
+  }
+  return undefined;
+}
+
 const TRY: Record<PriorityKind, Try> = {
   longevity: (x) => {
     const { c, d } = x;
     if (!d.isMagus) return 'only a magus makes a Longevity Ritual in the lab';
-    if (c.longevity) return 'has one';
-    if (c.age < 35 && !c.longevityLapsed) return 'not yet 35';
     if (!x.ctx.lab) return 'no laboratory';
     if (x.hostile) return x.hostile;
-    let p = c.projects?.find((q) => q.kind === 'longevity' && !q.done && (!q.subjectId || q.subjectId === c.id));
-    if (!p) {
-      p = { ...newProject('longevity'), name: 'Longevity Ritual', visFrom: x.cov ? 'covenant' : undefined };
-      c.projects = [...(c.projects ?? []), p];
+    const needs = !c.longevity && (c.age >= 35 || !!c.longevityLapsed);
+    let own: string | undefined;
+    if (needs) {
+      let p = c.projects?.find((q) => q.kind === 'longevity' && !q.done && (!q.subjectId || q.subjectId === c.id));
+      if (!p) {
+        p = { ...newProject('longevity'), name: 'Longevity Ritual', visFrom: x.cov ? 'covenant' : undefined };
+        c.projects = [...(c.projects ?? []), p];
+      }
+      const problem = workable(x, p);
+      if (!problem) return labSeason(p, 'a Longevity Ritual');
+      own = `the ritual cannot be made yet: ${problem}`;
+      // more vis than Magic Theory lets the magus handle: a Magic Theory book in the library helps
+      if (/more than you can handle/.test(problem)) {
+        const book = theoryBook(x);
+        if (book) return book;
+      }
     }
-    const problem = workable(x, p);
-    return problem ? `the ritual cannot be made yet: ${problem}` : labSeason(p, 'a Longevity Ritual');
+    // a covenant-mate whose Magic Theory cannot handle the vis of their own ritual: make it for them
+    const mate = ritualForMate(x);
+    if (mate) return mate;
+    return own ?? (c.longevity ? 'has one' : 'not yet 35');
   },
   apprentice: (x) => {
     const ap = x.c.apprentice;
@@ -181,8 +241,14 @@ const TRY: Record<PriorityKind, Try> = {
   },
   service: (x) => {
     const { c, d, cov } = x;
-    // vis for the covenant when its stores run low (under five pawns a member), else its duties
-    const low = cov && cov.visStocks.reduce((t, v) => t + v.pawns, 0) < 5 * Math.max(1, cov.memberIds.length);
+    // a living covenant short of money: an enchantment or ritual to raise its income (Covenants ch.5, Magical Improvement)
+    if (cov?.living?.needs?.money && d.isMagus && x.ctx.lab && !x.hostile && (cov.living.improved ?? 0) < MAX_IMPROVEMENTS && cov.living.improvedYear !== x.year) {
+      const mt = c.abilities.find((a) => a.abilityId === d.theoryAbility);
+      if (mt && cov.visStocks.some((v) => !v.pair && v.pawns >= 2))
+        return { standing: { kind: 'exposure', target: `ability:${mt.uid}` }, what: `an enchantment to raise ${cov.name}’s income (Magical Improvement)`, after: 'improve-income' };
+    }
+    // vis for the covenant when its stores run low (under five pawns a member, or short of what it must hold back), else its duties
+    const low = cov && (cov.visStocks.reduce((t, v) => t + v.pawns, 0) < 5 * Math.max(1, cov.memberIds.length) || (cov.living?.needs?.vis ?? 0) > 0);
     if (low && d.isMagus && x.ctx.lab && cov && !x.hostile && x.ctx.aura.realm === 'Magic' && x.ctx.aura.strength > 0) {
       let p = c.projects?.find((q) => q.kind === 'extract' && !q.done && q.visFrom === 'covenant');
       if (!p) {
@@ -270,7 +336,8 @@ const TRY: Record<PriorityKind, Try> = {
     for (const art of focusArts(d, p)) {
       const pawns = visForStudy(d.arts[art].score);
       if (visAvailable(purseOf(c).vis, [art]) >= pawns) return { standing: { kind: 'vis', target: `art:${art}` }, what: `studying ${ART_NAMES[art]} vis` };
-      if (cov && visAvailable(cov.visStocks, [art]) >= 2 * pawns) return { standing: { kind: 'vis', target: `art:${art}`, visFrom: 'covenant' }, what: `studying ${ART_NAMES[art]} vis from the covenant’s stores` };
+      // the covenant's vis beyond what it holds back for its Aegis and its magi's Longevity Rituals
+      if (cov && visAvailable(spareVis(cov, x.chars.filter((m) => cov.memberIds.includes(m.id))), [art]) >= 2 * pawns) return { standing: { kind: 'vis', target: `art:${art}`, visFrom: 'covenant' }, what: `studying ${ART_NAMES[art]} vis from the covenant’s stores` };
     }
     return `no ${focusArts(d, p).map((a) => ART_NAMES[a]).join(' or ')} vis to spare`;
   },
