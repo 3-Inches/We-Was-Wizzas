@@ -6,6 +6,7 @@ import { uid } from '../../util/id';
 import { guildDemands, newSoldierGroup, soldierKindOf } from '../../engine/covenfolk';
 import { Field, Meter, Stepper } from '../kit';
 import type { CovTabProps } from './shared';
+import { FlawedStoryRoll, HookDue } from './HookDue';
 
 /** Removes the resources with these uids from the covenant. */
 export function removeResources(c: Covenant, uids: Set<string>) {
@@ -96,6 +97,7 @@ export function HookMechanics({ hb, cov, update, dc }: Omit<CovTabProps, 'data'>
             <input type="checkbox" checked={!!hb.active} onChange={(e) => edit((h) => void (h.active = e.target.checked))} /> it has struck (within the first five years)
           </label>
         )}
+        {m === 'natural-disaster' && <HookDue hb={hb} cov={cov} edit={edit} />}
       </div>
     );
   }
@@ -218,6 +220,8 @@ export function HookMechanics({ hb, cov, update, dc }: Omit<CovTabProps, 'data'>
           <div className="muted">Grogs, servants and the other covenfolk at large cost no Build Points, so a pool cannot pay for them; specialists, teachers and craftsmen it can.</div>
         </div>
       </details>
+      {m === 'flawed-resource' && <HookDue hb={hb} cov={cov} edit={edit} />}
+      {m === 'flawed-resource' && pool && pool.resources.length > 0 && <FlawedStoryRoll hb={hb} cov={cov} edit={edit} resources={pool.resources} />}
       {m === 'flawed-resource' && (
         <div className="row">
           <Field label="Its story">

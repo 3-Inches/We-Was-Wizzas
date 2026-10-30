@@ -301,9 +301,18 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
             <Field label="Other tithes & taxes (£)" hint="Church tithes on income are set per source">
               <Stepper value={cov.finances.tithes} min={0} width={40} onChange={(v) => setFin('tithes', v)} />
             </Field>
-            <Field label="Inflation (£)">
-              <Stepper value={cov.finances.inflation} min={0} width={40} onChange={(v) => setFin('inflation', v)} />
-            </Field>
+            {(optionOn(saga, 'inflation') || cov.finances.inflation > 0) && (
+              <Field label="Inflation (£)" hint={optionOn(saga, 'inflation') ? undefined : 'Inflation is off in this saga (House rules): this is left from before.'}>
+                <span className="row">
+                  <Stepper value={cov.finances.inflation} min={0} width={40} onChange={(v) => setFin('inflation', v)} />
+                  {!optionOn(saga, 'inflation') && (
+                    <button className="small" onClick={() => setFin('inflation', 0)}>
+                      Clear it
+                    </button>
+                  )}
+                </span>
+              </Field>
+            )}
             <OneOffSpending cov={cov} update={update} dc={dc} />
             <Field label="Sundry (£)">
               <Stepper value={cov.finances.sundry} min={0} width={40} onChange={(v) => setFin('sundry', v)} />

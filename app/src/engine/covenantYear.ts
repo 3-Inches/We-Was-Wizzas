@@ -63,6 +63,7 @@ export function planYearEnd(cov: Covenant, dc: DerivedCovenant, o: YearEndOption
   const fell = cov.finances.lastExpenditure !== undefined && expenditure < cov.finances.lastExpenditure;
   const inflationRise = o.inflation && !fell ? Math.round(expenditure / 100) : 0;
   if (o.inflation) lines.push(fell ? 'Expenditure fell this year, so inflation does not rise.' : `Inflation rises by ${inflationRise} £ (1 £ per 100 £ of expenditure).`);
+  else if (cov.finances.inflation > 0) lines.push(`Inflation is off in this saga: the ${cov.finances.inflation} £ a year already counted stays in the spending until it is cleared (Covenfolk & Finances).`);
   const incomeChanges = o.permanentIncome
     ? cov.income
         .filter((s) => s.modification && s.modification !== 'Status Quo')

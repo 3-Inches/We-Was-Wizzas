@@ -20,6 +20,7 @@ import { planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
 import { auraOf, changeAura, dominionYearEnd, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
 import { optionOn } from './optional';
+import { hooksComeDue } from './hookEvents';
 import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
 import { ensureAbility } from './character/factory';
 import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
@@ -668,8 +669,9 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     for (const cov of state.covenants) {
       const members = state.characters.filter((c) => cov.memberIds.includes(c.id));
       const dc = deriveCovenant(cov, data, state.characters);
-      const plan = planYearEnd(cov, dc, { ...o.yearEnd, skipVis: [...(o.yearEnd.skipVis ?? []), ...(cov.yearEnd?.skipVis ?? [])] });
-      applyYearEnd(cov, plan, year, o.yearEnd);
+      const ye = { ...o.yearEnd, inflation: o.yearEnd.inflation && optionOn(saga, 'inflation') };
+      const plan = planYearEnd(cov, dc, { ...ye, skipVis: [...(o.yearEnd.skipVis ?? []), ...(cov.yearEnd?.skipVis ?? [])] });
+      applyYearEnd(cov, plan, year, ye);
       lines.push({ who: cov.name, kind: 'covenant', text: plan.lines.join(' ') });
       for (const t of payAllowance(cov, members, plan.balance, plan.vis, year, season)) lines.push({ who: cov.name, kind: 'money', text: t });
       lines.push(...hookReminders(cov, year));
@@ -707,6 +709,8 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   const next = nextSeason(year, season);
   for (const cov of state.covenants) {
     lines.push(...renewCovenantEffects(cov, state.characters, next.year, next.season));
+    // a Natural Disaster or a Flawed Resource whose time has come
+    lines.push(...hooksComeDue(cov, next.year, next.season));
     // a change to the aura for one season lasts only that season
     const temp = cov.auraTrack?.temp;
     if (temp && seasonIndex(temp.year, temp.season) < seasonIndex(next.year, next.season)) cov.auraTrack!.temp = undefined;

@@ -975,6 +975,10 @@ export interface CovenantHookBoon {
   kept?: string[];
   /** Natural Disaster: it has struck. Indebted: the debt is still owed (default yes). Guild: the covenfolk are on strike. */
   active?: boolean;
+  /** Flawed Resource, Natural Disaster: when it comes (the storyguide's choice, or one at random within the saga's first five years) */
+  due?: { year: number; season: Season };
+  /** Flawed Resource: its story's roll, as it went */
+  rolled?: string;
 }
 
 /** What a covenant buys with Build Points (Covenants ch.2): its people (specialists and craftsmen), books, vis, items, labs and money. */

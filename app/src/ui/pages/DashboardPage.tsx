@@ -11,6 +11,7 @@ import { DEFAULT_YEAR_END, loyaltyAttitude, planYearEnd } from '../../engine/cov
 import { onStrike, teaches } from '../../engine/covenfolk';
 import { covenantOf } from '../../engine/context';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
+import { isDue } from '../../engine/hookEvents';
 import { lsd } from '../../engine/economy';
 import { DEFAULT_ADVANCE, advanceSeasons, describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
 import type { Character, Covenant, TimeReport } from '../../engine/types';
@@ -69,6 +70,8 @@ export default function DashboardPage() {
     const name = cov.name || 'The covenant';
     if (cov.finances.treasury + plan.balance < 0) attention.push({ level: 'bad', text: `${name} runs short by the year's end: ${lsd(cov.finances.treasury)} in the treasury, ${lsd(plan.balance)} for the year.`, to: covLink(cov, 'folk'), go: 'Finances' });
     if (dc.loyalty.score <= -3) attention.push({ level: 'bad', text: `${name}: Prevailing Loyalty ${dc.loyalty.score}, crises of faithfulness come like a Hook.`, to: covLink(cov, 'folk'), go: 'Loyalty' });
+    for (const hb of cov.hooksBoons.filter((h) => isDue(h, year, season)))
+      attention.push({ level: 'bad', text: `${name}: ${hb.name} has come due${/disaster/i.test(hb.name) ? '' : ': play its story and roll it'}.`, to: covLink(cov, 'hooks'), go: 'Hooks' });
     if (onStrike(cov)) attention.push({ level: 'warn', text: `${name}: the covenfolk's guild is on strike; laborers and craftsmen save nothing.`, to: covLink(cov, 'hooks'), go: 'Guild Hook' });
     for (const i of dc.issueList.slice(0, 3)) attention.push({ level: 'warn', text: `${name}: ${i.message}`, to: covLink(cov, 'overview'), go: 'Covenant' });
     if (dc.issueList.length > 3) attention.push({ level: 'info', text: `${name}: ${dc.issueList.length - 3} more to look at.`, to: covLink(cov, 'overview'), go: 'Covenant' });
