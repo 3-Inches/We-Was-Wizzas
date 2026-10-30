@@ -7,6 +7,8 @@ import { PurseCard } from './PurseCard';
 import { useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
 import { COMPANION_FLAWS, CompanionSheetLink, CreatureCard } from './Creature';
+import { EssentialTraitsCard } from '../EssentialTraits';
+import { essentialTraits } from '../../../engine/character/magicCharacter';
 import { VFText } from '../../VFText';
 import { AgencyCard } from './AgencyCard';
 import { ApprenticeCard } from './ApprenticeCard';
@@ -130,7 +132,8 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
             </div>
           )}
           <div className="small" style={{ marginTop: 8 }}>
-            <b>Personality:</b> {c.personality.map((p) => `${p.trait} ${signed(p.score)}`).join(', ') || '—'}
+            <b>Personality:</b>{' '}
+            {[...c.personality.map((p) => `${p.trait} ${signed(p.score)}`), ...essentialTraits(c).filter((x) => x.source !== 'its true form' && !x.source.startsWith('a Personality')).map((x) => `${x.trait} ${signed(x.score)}`)].join(', ') || '—'}
             {c.familiar?.silver ? <span className="muted"> (silver cord: {signed(c.familiar.silver)} to Personality rolls and to resisting mental influence)</span> : null}
           </div>
           <div className="small">
@@ -197,6 +200,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
         </div>
       </Card>
       {c.creature && <CreatureCard ed={ed} />}
+      <EssentialTraitsCard ed={ed} />
       {!hasEffects && <EffectsCard ed={ed} />}
       <AgencyCard ed={ed} />
       <TribunalCard ed={ed} />

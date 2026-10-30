@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, type Art, type Characteristic } from '../../../data';
 import { addQualities, addVirtue, newCharacter, removeQualities, removeQualityUid, removeVirtue, syncQualityAbilities } from '../../../engine/character/factory';
 import {
-  COMPANION_FLAWS, MAGIC_QUALITIES, MAGIC_QUALITY_BY_ID, MIGHT_BY_POWER, POINTS, QUALITY_RULES, SEASON_XP, groupQualities, newMagicCharacter,
+  COMPANION_FLAWS, MAGIC_QUALITIES, MAGIC_QUALITY_BY_ID, MIGHT_BY_POWER, POINTS, QUALITY_RULES, SEASON_XP, groupQualities, newMagicCharacter, trueFormName, trueFormTrait,
   type MagicCharacterDerived, type MagicQualityDef,
 } from '../../../engine/character/magicCharacter';
 import { powerSpending } from '../../../engine/character/powers';
@@ -17,6 +17,7 @@ import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
 import { Card, Field, Markdown, Meter, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
+import { uid } from '../../../util/id';
 
 export { COMPANION_FLAWS };
 
@@ -66,6 +67,9 @@ export function CompanionSheetLink({ ed, uid: cvUid }: { ed: CharEditor; uid: st
       // the Realms of Power version takes the Might for the saga's power level and the companion's role
       const pl = (covenants.find((k) => k.memberIds.includes(c.id))?.powerLevel ?? 'Medium') as PowerLevel;
       cr.magicCharacter = newMagicCharacter(cr, pl, cv.defId === 'magical-being-companion-flaw' ? 10 : undefined);
+      // its true form, an Essential Trait typically +3 (RoP: Magic, Finishing Touches)
+      const form = trueFormName(cv.param);
+      if (form) x.personality.unshift({ uid: uid(), trait: `${form}*`, score: 3 });
       x.virtues = x.virtues.filter((v) => !data.vfById.get(v.defId)?.categories.includes('Social Status'));
       addVirtue(x, data, 'magical-friend-flaw', 'Minor');
     }
@@ -425,7 +429,7 @@ function MagicSteps({ ed }: { ed: CharEditor }) {
         </li>
         <li>
           <b>Finishing touches:</b> Confidence (1 and 3 points if not a grog, plus Improved Confidence), Personality Traits with an Essential Trait for its true form (such as
-          &ldquo;Cat* +3&rdquo;), equipment and inherent vis.{' '}
+          &ldquo;Cat* +3&rdquo;), equipment and inherent vis. {status(!!trueFormTrait(c), trueFormTrait(c) ? `${trueFormTrait(c)!.trait} ${trueFormTrait(c)!.score >= 0 ? '+' : ''}${trueFormTrait(c)!.score}` : 'no true form yet')}{' '}
           <button className="small ghost" onClick={() => goto('personality')}>
             Personality
           </button>

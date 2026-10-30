@@ -2,6 +2,7 @@ import { uid } from '../../../util/id';
 import { Card, Field, Stepper } from '../../kit';
 import type { CharEditor } from '../useChar';
 import EquipmentEditor from '../EquipmentEditor';
+import { EssentialTraitsCard } from '../EssentialTraits';
 
 export default function DetailsStep({ ed }: { ed: CharEditor }) {
   const { c, d, update } = ed;
@@ -32,6 +33,8 @@ export default function DetailsStep({ ed }: { ed: CharEditor }) {
           ))}
         </div>
       </Card>
+
+      <EssentialTraitsCard ed={ed} />
 
       <div className="grid grid-2">
         <Card title="Reputations">
