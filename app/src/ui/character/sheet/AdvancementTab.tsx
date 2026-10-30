@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { StandingEditor, teamOf } from '../StandingEditor';
 import { bestLesson, teachableSubjects } from '../../../engine/teaching';
@@ -89,6 +89,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [agingText, setAgingText] = useState<string[]>([]);
   const [anyChar, setAnyChar] = useState<Characteristic>('Sta');
   const [insightArts, setInsightArts] = useState<string[]>([]);
+  // covenant-mates, for teaching and help in the lab
+  const rules = saga?.houseRules;
+  const team = useMemo(() => (c && rules ? teamOf(c, sagaChars.filter((x) => !x.wanderer), sagaCovs, data, (x) => deriveCharacter(x, data, rules)) : undefined), [c, sagaChars, sagaCovs, data, rules]);
   if (!c || !d || !saga) return null;
 
   // raw vis teaches a Hermetic Art, and only to those who can learn Arts (DE, Studying from Vis)
@@ -208,8 +211,6 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const plan0 = kind === 'lab' && project ? planProject(project, c, d, ctx, { subject: sagaChars.find((x) => x.id === project.subjectId), data, helpers: previewHelpers(helperIds, sagaChars, c, data, saga.houseRules) }) : undefined;
   const short = plan0 && project ? visShort(project, c, ctx, plan0) : undefined;
   const projectPlan = plan0 && short ? { ...plan0, problems: [...plan0.problems, short] } : plan0;
-  // covenant-mates, for teaching and help in the lab
-  const team = teamOf(c, sagaChars.filter((x) => !x.wanderer), sagaCovs, data, (x) => deriveCharacter(x, data, saga.houseRules));
   const logSeason = () => {
     if (kind === 'lab') {
       if (project) setLabLines(workSeason(project, helperIds));

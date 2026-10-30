@@ -682,43 +682,46 @@ function seasonLessons(chars: Character[], x: Passes): Line[] {
   const { year, season, data } = x;
   const lines: Line[] = [];
   const playing = chars.filter(inPlay);
-  const ds = new Map(playing.map((c) => [c.id, x.derive(c)]));
-  const D = (c: Character) => ds.get(c.id)!;
+  const ds = new Map<string, DerivedCharacter>();
+  const D = (c: Character) => ds.get(c.id) ?? ds.set(c.id, x.derive(c)).get(c.id)!;
   const free = (c: Character) => !seasonBusy(c, year, season);
-  for (const t of playing) {
-    const td = D(t);
-    const own = free(t) ? resolveStanding(t, td, year) : undefined;
-    const extra = extraFree(t, td, year, season) ? t.seasons?.extra ?? { kind: 'auto' as const } : undefined;
-    const asked = playing.filter((s) => s.id !== t.id && free(s) && ((st) => st.kind === 'taught' && st.teacher === `char:${t.id}`)(resolveStanding(s, D(s), year)));
-    let slot: 'main' | 'extra' | undefined;
-    let st: StandingActivity | undefined;
-    if (extra?.kind === 'teach') [slot, st] = ['extra', extra];
-    else if (own?.kind === 'teach') [slot, st] = ['main', own];
-    else if (asked.length && extra && FREE_FOR_LESSON.includes(extra.kind)) slot = 'extra';
-    else if (asked.length && own && FREE_FOR_LESSON.includes(own.kind)) slot = 'main';
-    if (!slot) {
-      for (const s of asked) NO_LESSON.set(s, `${t.name || 'the teacher'} has ${free(t) ? 'other work set for' : 'spent'} the season`);
-      continue;
+  // only those set to teach, to be taught by a character, or asked by one, need a look (the Tribunal's magi follow their lists)
+  const askers = playing.filter((s) => s.standing?.kind === 'taught' && s.standing.teacher?.startsWith('char:'));
+  const askedOf = new Set(askers.map((s) => s.standing!.teacher!.slice(5)));
+  for (const t of playing.filter((y) => y.standing?.kind === 'teach' || y.seasons?.extra?.kind === 'teach' || askedOf.has(y.id))) {
+    // one who needs no sleep may teach in an extra season and in its own
+    for (const slot of ['extra', 'main'] as const) {
+      const td = D(t);
+      const own = free(t) ? resolveStanding(t, td, year) : undefined;
+      const extra = extraFree(t, td, year, season) ? t.seasons?.extra ?? { kind: 'auto' as const } : undefined;
+      const asked = askers.filter((s) => s.id !== t.id && free(s) && ((st) => st.kind === 'taught' && st.teacher === `char:${t.id}`)(resolveStanding(s, D(s), year)));
+      const here = slot === 'extra' ? extra : own;
+      // set to teach in this season, or asked by students with nothing else set for it
+      const st = here?.kind === 'teach' ? here : undefined;
+      if (!here || (!st && (!asked.length || !FREE_FOR_LESSON.includes(here.kind)))) {
+        if (slot === 'main') for (const s of asked) NO_LESSON.set(s, `${t.name || 'the teacher'} has ${free(t) ? 'other work set for' : 'spent'} the season`);
+        continue;
+      }
+      const named = (st?.students ?? []).map((id) => playing.find((y) => y.id === id)).filter((y): y is Character => !!y && y.id !== t.id && free(y));
+      const pool = [...new Map([...named, ...asked].map((y) => [y.id, y])).values()];
+      if (!pool.length) {
+        NO_LESSON.set(t, st?.students?.length ? 'none of the students chosen has the season free' : 'choose the students');
+        continue;
+      }
+      const wants = new Map(asked.map((s) => [s.id, resolveStanding(s, D(s), year).target]));
+      const labTeaching = Math.min(3, x.ctxOf(t).lab?.specializations.Teaching ?? 0);
+      const r = bestLesson({ c: t, d: td }, pool.map((y) => ({ c: y, d: D(y) })), data, { subject: st?.target, wants, labTeaching });
+      for (const [id, why] of r.why) {
+        const s = playing.find((y) => y.id === id);
+        if (s) NO_LESSON.set(s, why.replace(/\.$/, ''));
+      }
+      if (!r.plan) {
+        NO_LESSON.set(t, [...r.why.values()].join(' ').replace(/\.$/, '') || 'no student would gain from it');
+        continue;
+      }
+      for (const l of giveLesson({ c: t, d: td }, r.plan, year, season, { extra: slot === 'extra', asked: !st })) lines.push({ who: l.who.name || 'Unnamed', kind: 'season', text: l.text, tribunal: x.tribunalOf(l.who) });
+      for (const c of [t, ...r.plan.students.map((w) => w.s.c)]) ds.set(c.id, x.derive(c));
     }
-    const named = (st?.students ?? []).map((id) => playing.find((y) => y.id === id)).filter((y): y is Character => !!y && y.id !== t.id && free(y));
-    const pool = [...new Map([...named, ...asked].map((y) => [y.id, y])).values()];
-    if (!pool.length) {
-      NO_LESSON.set(t, st?.students?.length ? 'none of the students chosen has the season free' : 'choose the students');
-      continue;
-    }
-    const wants = new Map(asked.map((s) => [s.id, resolveStanding(s, D(s), year).target]));
-    const labTeaching = Math.min(3, x.ctxOf(t).lab?.specializations.Teaching ?? 0);
-    const r = bestLesson({ c: t, d: td }, pool.map((y) => ({ c: y, d: D(y) })), data, { subject: st?.target, wants, labTeaching });
-    for (const [id, why] of r.why) {
-      const s = playing.find((y) => y.id === id);
-      if (s) NO_LESSON.set(s, why.replace(/\.$/, ''));
-    }
-    if (!r.plan) {
-      NO_LESSON.set(t, [...r.why.values()].join(' ').replace(/\.$/, '') || 'no student would gain from it');
-      continue;
-    }
-    for (const l of giveLesson({ c: t, d: td }, r.plan, year, season, { extra: slot === 'extra', asked: !st })) lines.push({ who: l.who.name || 'Unnamed', kind: 'season', text: l.text, tribunal: x.tribunalOf(l.who) });
-    for (const c of [t, ...r.plan.students.map((w) => w.s.c)]) ds.set(c.id, x.derive(c));
   }
   return lines;
 }
@@ -733,7 +736,8 @@ function seasonHelpers(chars: Character[], x: Passes): Map<Character, LabHelper>
   const { year, season } = x;
   const playing = chars.filter(inPlay);
   const byMagus = new Map<Character, LabHelper[]>();
-  for (const h of playing) {
+  // only those set to help, and familiars with extra seasons, need a look
+  for (const h of playing.filter((y) => y.standing?.kind === 'assist' || y.seasons?.extra?.kind === 'assist' || y.creature?.familiarOf)) {
     const hd = x.derive(h);
     const own = seasonBusy(h, year, season) ? undefined : resolveStanding(h, hd, year);
     const extra = extraFree(h, hd, year, season) ? h.seasons?.extra ?? { kind: 'auto' as const } : undefined;

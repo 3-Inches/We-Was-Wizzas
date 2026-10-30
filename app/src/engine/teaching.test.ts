@@ -109,6 +109,17 @@ describe('teaching between characters (DE, Teaching)', () => {
     expect(report.lines.find((l) => l.who === 'Bingus' && /Taught Animal Handling to Billy/.test(l.text))?.text).toMatch(/Might 10/);
   });
 
+  it('one who needs no sleep teaches in an extra season and in its own, to different students', () => {
+    const st = saga();
+    st.bingus.seasons = { sleepless: true, extra: { kind: 'teach', students: [st.bob.id] } };
+    st.bingus.standing = { kind: 'teach', students: [st.billy.id] };
+    const { state } = advanceSeason(st, data, quiet);
+    const [billy, bob, bingus] = state.characters;
+    expect(loggedThisSeason(bingus, 1220, 'Spring').map((e) => [e.activity, !!e.extra])).toEqual([['teach', true], ['teach', false]]);
+    expect(loggedThisSeason(bob, 1220, 'Spring')[0].activity).toBe('taught');
+    expect(loggedThisSeason(billy, 1220, 'Spring')[0].activity).toBe('taught');
+  });
+
   it('a teacher set to teach chosen students teaches those free, and says why when none can learn', () => {
     const st = saga();
     st.bingus.standing = { kind: 'teach', students: [st.bob.id, st.billy.id] };

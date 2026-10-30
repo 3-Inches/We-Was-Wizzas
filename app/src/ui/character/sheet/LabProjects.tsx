@@ -6,7 +6,7 @@
 // the saga's current season, or as the character's season activity on the Seasons page. The lab's
 // restrictions, its Specializations and the choice to experiment apply to every one.
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type LabVFDef, type Technique } from '../../../data';
 import { CORD_COST, cordPointsCost } from '../../../engine/enchant';
@@ -652,9 +652,9 @@ function ArtPair({ te, fo, onChange }: { te: Technique; fo: Form; onChange: (te:
  */
 export function HelpersRow({ c, d, chars, ed, helperIds, setHelperIds }: { c: Character; d: DerivedCharacter; chars: Character[]; ed: CharEditor; helperIds: string[]; setHelperIds: (ids: string[]) => void }) {
   const { saga, data, ctx } = ed;
+  const mates = useMemo(() => chars.filter((y) => ctx.covenant?.memberIds.includes(y.id) || (!!c.covenantId && y.covenantId === c.covenantId)), [chars, ctx.covenant, c.covenantId]);
+  const all = useMemo(() => (saga ? labHelpers(c, mates, data, saga.houseRules, saga.currentYear, saga.currentSeason) : []), [c, mates, data, saga]);
   if (!saga) return null;
-  const mates = chars.filter((y) => ctx.covenant?.memberIds.includes(y.id) || (!!c.covenantId && y.covenantId === c.covenantId));
-  const all = labHelpers(c, mates, data, saga.houseRules, saga.currentYear, saga.currentSeason);
   const able = all.filter((h) => !h.why);
   // those who cannot help are named only when they might have been meant to: the familiar, a companion of the magus, one set to help
   const meant = all.filter((h) => h.why && (h.c.id === c.familiar?.characterId || h.c.creature?.ownerId === c.id || (h.c.standing?.kind === 'assist' && h.c.standing.helps === c.id)));
