@@ -36,6 +36,10 @@ import type { Character, Covenant, EnchantedEffectRecord, EnchantedItem, HouseRu
 import { addVis, takeVis, visAvailable, visText } from './vis';
 import { transfer } from './market';
 import { uid } from '../util/id';
+import { HOUSE_BY_ID } from '../data/houses';
+
+/** A House's name, from its id ("Ex Miscellanea" for ex-miscellanea). */
+export const houseName = (id?: string) => HOUSE_BY_ID[id ?? '']?.name ?? id ?? '';
 
 export interface LivingContext {
   data: GameData;
@@ -542,7 +546,7 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
       cov.memberIds.push(c.id);
       const lab = newLab(`${c.name}’s laboratory`, c.id);
       cov.labs.push(lab);
-      out.push(news(year, 'Winter', { kind: 'member', covenantId: cov.id, characterId: c.id, text: `${c.name}, a young magus of House ${house.replace(/(^|-)\w/g, (x) => x.toUpperCase()).replace('-', ' ')}, joins ${cov.name}.` }));
+      out.push(news(year, 'Winter', { kind: 'member', covenantId: cov.id, characterId: c.id, text: `${c.name}, a young magus of House ${houseName(house)}, joins ${cov.name}.` }));
     }
     // approaches to the players' covenant: each by its chance a year, not the same one two years running
     if (!players.length) continue;
@@ -579,7 +583,7 @@ function peregrinatoresArrive(state: { saga: Saga; characters: Character[]; cove
     if (!found) continue;
     const c = newPeregrinator(found.book, found.cov, host, g, rng, Math.floor(rng() * 1e9), takenNames(state.characters), year + 1);
     state.characters.push(c);
-    out.push({ who: host.name, tribunal: host.id, text: `${c.name}, a peregrinator of House ${(c.house ?? '').replace(/(^|-)\w/g, (x) => x.toUpperCase()).replace('-', ' ')} from another Tribunal, comes to ${host.name} as its guest.` });
+    out.push({ who: host.name, tribunal: host.id, text: `${c.name}, a peregrinator of House ${houseName(c.house)} from another Tribunal, comes to ${host.name} as its guest.` });
   }
   return out;
 }
