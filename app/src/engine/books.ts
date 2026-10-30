@@ -366,12 +366,31 @@ export function workWriting(
   const [k, id] = (p.exposure ?? '').split(':');
   const where = k === 'art' ? ART_NAMES[id as Art] : d.abilityByUid.get(id)?.name ?? 'the subject';
   lines.push(`${label} ${p.title}: ${Math.min(p.points, p.needed)} of ${p.needed}${p.exposure ? `; Exposure +${EXPOSURE_XP} xp in ${where}` : ''}.`);
-  if (p.points < p.needed) return lines;
-  p.done = { year, season };
-  if (!cov) return [...lines, `${p.title} is finished, but ${c.name || 'the writer'} has no covenant library to keep it in.`];
-  lines.push(...finishWriting(c, cov, p, year, data));
+  // a book finished with points to spare: what is left of the season goes on to the next one written by points
+  let cur = p;
+  while (cur.points >= cur.needed) {
+    const share = cur.rate > 0 ? (cur.points - cur.needed) / cur.rate : 0;
+    cur.done = { year, season };
+    lines.push(...(cov ? finishWriting(c, cov, cur, year, data) : [`${cur.title} is finished, but ${c.name || 'the writer'} has no covenant library to keep it in.`]));
+    const open = (c.writing ?? []).filter((w) => !w.done && BY_POINTS.includes(w.kind));
+    const next = BY_POINTS.includes(cur.kind) && share > 0 ? open.find((w) => w.kind === cur.kind) ?? open[0] : undefined;
+    const pts = next ? Math.floor(share * next.rate) : 0;
+    if (!next || pts < 1) break;
+    cur.points = cur.needed;
+    next.points += pts;
+    e.summary += `; then ${next.title} (${Math.min(next.points, next.needed)}/${next.needed})`;
+    lines.push(`The rest of the season goes on to ${next.title}: +${pts}, ${Math.min(next.points, next.needed)} of ${next.needed}.`);
+    cur = next;
+  }
   return lines;
 }
+
+/**
+ * The work written or copied by points, so that one finished early leaves the rest of the season for
+ * the next: a summa (Communication + Language a season), a copy, lab texts. A tractatus or a
+ * commentary takes its whole season (DE, Writing Books).
+ */
+const BY_POINTS: WritingProject['kind'][] = ['summa', 'copy', 'labTexts', 'copyLabTexts'];
 
 /** A finished project's books go to the covenant's library; bought resonant materials go on the year's Sundry. */
 export function finishWriting(c: Character, cov: Covenant, p: WritingProject, year: number, data?: GameData): string[] {

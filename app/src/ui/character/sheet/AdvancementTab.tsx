@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { StandingEditor } from '../StandingEditor';
+import { StandingEditor, teamOf } from '../StandingEditor';
+import { bestLesson, teachableSubjects } from '../../../engine/teaching';
 import { PrioritiesCard } from './PrioritiesCard';
 import { specAbilities, specChar, specHighest } from '../../../engine/covenantRules';
 import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, SEASONS, TECHNIQUES, type Art, type Characteristic } from '../../../data';
@@ -14,9 +15,9 @@ import { Card, Field, HowItWorks, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
 import { TwilightCard } from './Twilight';
-import { useWorkProject } from './LabProjects';
+import { HelpersRow, previewHelpers, useWorkProject } from './LabProjects';
 import { planProject, visShort } from '../../../engine/projects';
-import { loggedThisSeason, seasonTaken } from '../../../engine/time';
+import { extraFree, loggedThisSeason, seasonBusy, seasonTaken } from '../../../engine/time';
 import { SeasonPlan } from '../SeasonPlan';
 import { seasonsOf, seasonsUsed } from '../../../engine/seasons';
 import { MysteriesCard } from './MysteriesCard';
@@ -55,6 +56,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const workSeason = useWorkProject(ed);
   const [projectUid, setProjectUid] = useState('');
   const [labLines, setLabLines] = useState<string[]>([]);
+  const [helperIds, setHelperIds] = useState<string[]>([]);
   const [kind, setKind] = useState<Kind>('summa');
   const [target0, setTarget] = useState<string>('art:Cr');
   const [quality, setQuality] = useState(10);
@@ -65,6 +67,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [students, setStudents] = useState(1);
   const [goodTeacher, setGoodTeacher] = useState(false);
   const [teacherId, setTeacherId] = useState('');
+  // a covenant-mate teaching: log their season too (Exposure in Teaching)
+  const [logTeacher, setLogTeacher] = useState(true);
+  const updateCharacter = useStore((s) => s.updateCharacter);
   const [labTeaching, setLabTeaching] = useState(0);
   const sagaChars = useSagaCharacters(c?.sagaId);
   const sagaCovs = useSagaCovenants(c?.sagaId);
@@ -84,6 +89,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [agingText, setAgingText] = useState<string[]>([]);
   const [anyChar, setAnyChar] = useState<Characteristic>('Sta');
   const [insightArts, setInsightArts] = useState<string[]>([]);
+  // covenant-mates, for teaching and help in the lab
+  const rules = saga?.houseRules;
+  const team = useMemo(() => (c && rules ? teamOf(c, sagaChars.filter((x) => !x.wanderer), sagaCovs, data, (x) => deriveCharacter(x, data, rules)) : undefined), [c, sagaChars, sagaCovs, data, rules]);
   if (!c || !d || !saga) return null;
 
   // raw vis teaches a Hermetic Art, and only to those who can learn Arts (DE, Studying from Vis)
@@ -103,11 +111,17 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
       : target0.startsWith('art:') && !canStudyArts && firstAbility
         ? `ability:${firstAbility.uid}`
         : target0;
+  // another character of the saga teaching: only what they can teach this character (DE, Teaching)
+  const mate = kind === 'teacher' && teacherId && !teacherId.startsWith('spec:') ? sagaChars.find((x) => x.id === teacherId) : undefined;
+  const mateD = mate ? deriveCharacter(mate, data, saga.houseRules) : undefined;
+  const lessons = mate && mateD ? teachableSubjects({ c: mate, d: mateD }, { c, d }, data) : undefined;
+  const lessonKey = (x: { key: string; studentKey?: string }) => x.studentKey ?? `new:${x.key}`;
+  const lesson = lessons?.subjects.find((x) => lessonKey(x) === target);
   const isArt = target.startsWith('art:');
   const art = isArt ? (target.slice(4) as Art) : undefined;
   const abilityUid = target.startsWith('ability:') ? target.slice(8) : undefined;
   const masterySpell = target.startsWith('mastery:') ? c.spells.find((s) => s.uid === target.slice(8)) : undefined;
-  const subject = art ? ART_NAMES[art] : masterySpell ? `Mastery of ${masterySpell.spell.name}` : target === 'new:church-lore' ? 'Church Lore' : (d.abilityByUid.get(abilityUid ?? '')?.name ?? '');
+  const subject = lesson?.newAbility ? lesson.label : art ? ART_NAMES[art] : masterySpell ? `Mastery of ${masterySpell.spell.name}` : target === 'new:church-lore' ? 'Church Lore' : (d.abilityByUid.get(abilityUid ?? '')?.name ?? '');
   const library = ctx.covenant?.library ?? [];
   // another character of the saga as teacher or master: their Communication, Teaching, Good Teacher and score in the subject
   const pickTeacher = (id: string) => {
@@ -127,6 +141,15 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     const t = sagaChars.find((x) => x.id === id);
     setTeacherLab(null);
     if (!t) return;
+    // the subject: one this teacher can teach, the one chosen if it is
+    const td0 = deriveCharacter(t, data, saga.houseRules);
+    const can = teachableSubjects({ c: t, d: td0 }, { c, d }, data).subjects;
+    // the subject chosen if they can teach it, else the one that teaches the most
+    const keep = can.find((x) => lessonKey(x) === target) ?? bestLesson({ c: t, d: td0 }, [{ c, d }], data).plan?.students[0].sub ?? can[0];
+    if (keep) {
+      setTarget(lessonKey(keep));
+      setTeacherScore(keep.teacherScore);
+    }
     const tLab = characterContext(t, sagaCovs, data).lab;
     if (tLab?.specializations.Teaching) setTeacherLab({ name: tLab.lab.name, teaching: Math.min(3, tLab.specializations.Teaching) });
     const td = deriveCharacter(t, data, saga.houseRules);
@@ -136,7 +159,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     const mine = abilityUid ? c.abilities.find((a) => a.uid === abilityUid) : undefined;
     const theirs = mine ? t.abilities.find((a) => a.abilityId === mine.abilityId && (a.param ?? '') === (mine.param ?? '')) : undefined;
     const score = art ? td.arts[art].score : theirs ? td.abilityByUid.get(theirs.uid)?.score ?? 0 : 0;
-    setTeacherScore(score);
+    if (!keep) setTeacherScore(score);
   };
   const myLabTeaching = ctx.lab?.specializations.Teaching ?? 0;
 
@@ -158,7 +181,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const might = d.magicChar && d.magicChar.might > 0 ? d.magicChar.might : 0;
   const eaten = might ? Math.min(eat, Math.ceil(might / 2)) : 0;
   const purseVis = visAvailable(c.purse?.vis ?? [], [...ARTS]);
-  const res = src ? computeStudy(d, src, { art, abilityUid, monthsLost, visEaten: eaten }) : null;
+  const masteryXp = masterySpell ? Object.values(masterySpell.masteryXp).reduce<number>((t, v) => t + (v ?? 0), 0) : undefined;
+  const res = src ? computeStudy(d, src, { art, abilityUid, monthsLost, visEaten: eaten, currentXp: masteryXp }) : null;
   const linked = src && res && res.xp > 0 ? magianLinkedGains(d, data, src, abilityUid, res.advancementTotal) : [];
   // Secondary Insight: a season studying a Technique (book, teacher or vis) gives 1 xp in up to four Forms;
   // a Form gives 1 xp in up to two Techniques (DE Secondary Insight)
@@ -173,6 +197,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
 
   const openProjects = (c.projects ?? []).filter((p) => !p.done);
   const project = openProjects.find((p) => p.uid === projectUid) ?? openProjects[0];
+  // the season a covenant-mate teaching gives: their own if free, else an extra one (needs no sleep)
+  const teacherSlot = mate && mateD ? (!seasonBusy(mate, year, season) ? 'main' : extraFree(mate, mateD, year, season) ? 'extra' : undefined) : undefined;
   // a season holds one activity, an adventure aside (DE); one who needs no sleep has extra seasons for study, not lab work
   const taken = seasonTaken(c, year, season);
   const plan = seasonsOf(c, d);
@@ -182,12 +208,13 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   // a working character's free seasons, once spent, leave only work (Exposure) and Worship for the year
   const freeKind = !['exposure', 'worship', 'other'].includes(kind);
   const overFree = !taken.length && freeKind && used.free >= plan.free - plan.worship;
-  const plan0 = kind === 'lab' && project ? planProject(project, c, d, ctx, { subject: sagaChars.find((x) => x.id === project.subjectId), data }) : undefined;
+  const plan0 = kind === 'lab' && project ? planProject(project, c, d, ctx, { subject: sagaChars.find((x) => x.id === project.subjectId), data, helpers: previewHelpers(helperIds, sagaChars, c, data, saga.houseRules) }) : undefined;
   const short = plan0 && project ? visShort(project, c, ctx, plan0) : undefined;
   const projectPlan = plan0 && short ? { ...plan0, problems: [...plan0.problems, short] } : plan0;
   const logSeason = () => {
     if (kind === 'lab') {
-      if (project) setLabLines(workSeason(project));
+      if (project) setLabLines(workSeason(project, helperIds));
+      setHelperIds([]);
       return;
     }
     const gains: Record<string, number> = {};
@@ -222,10 +249,26 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         entry.gains[`ability:${ensureAbility(x, 'organization-lore', {}, 'Church').uid}`] = entry.gains['new:church-lore'];
         delete entry.gains['new:church-lore'];
       }
+      // an Ability new to the character, taught by a covenant-mate: added to the sheet
+      if (lesson?.newAbility && entry.gains[target] !== undefined) {
+        entry.gains[`ability:${ensureAbility(x, lesson.newAbility.abilityId, {}, lesson.newAbility.param).uid}`] = entry.gains[target];
+        delete entry.gains[target];
+      }
       if (insight) for (const a of insightPicked) entry.gains[`art:${a}`] = (entry.gains[`art:${a}`] ?? 0) + 1;
       applySeason(x, entry, 1);
       x.seasonLog.push(entry);
     });
+    // the teacher's season: Exposure in Teaching, in their own season or an extra one
+    if (mate && mateD && logTeacher && teacherSlot) {
+      updateCharacter(mate.id, (t) => {
+        const tch = ensureAbility(t, 'teaching', {});
+        const ex = computeStudy(mateD, { kind: 'exposure', subject: 'Teaching' }, { abilityUid: tch.uid });
+        const e = newSeasonEntry(year, season, 'teach', `${teacherSlot === 'extra' ? 'Extra season (needs no sleep): ' : ''}Taught ${subject} to ${c.name || 'a student'} (Exposure: Teaching +${ex.xp} xp)`, ex.xp ? { [`ability:${tch.uid}`]: ex.xp } : {});
+        if (teacherSlot === 'extra') e.extra = true;
+        applySeason(t, e, 1);
+        t.seasonLog.push(e);
+      });
+    }
     if (kind === 'tractatus' && bookUid && cov) updateCovenant(cov.id, (x) => { const b = x.library.find((y) => y.uid === bookUid); if (b && !b.readBy?.includes(c.id)) b.readBy = [...(b.readBy ?? []), c.id]; });
     setSummary('');
     setEat(0);
@@ -342,6 +385,23 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           )}
           {kind !== 'other' && kind !== 'lab' && (
             <Field label="Subject">
+              {lessons ? (
+                <select
+                  value={lesson ? target : ''}
+                  onChange={(e) => {
+                    setTarget(e.target.value);
+                    const x = lessons.subjects.find((y) => lessonKey(y) === e.target.value);
+                    if (x) setTeacherScore(x.teacherScore);
+                  }}
+                >
+                  {!lesson && <option value="">— {lessons.subjects.length ? 'choose' : 'nothing they can teach'} —</option>}
+                  {lessons.subjects.map((x) => (
+                    <option key={x.key} value={lessonKey(x)}>
+                      {x.label} ({x.studentScore} → up to {x.teacherScore}){x.newAbility ? ', new' : ''}
+                    </option>
+                  ))}
+                </select>
+              ) : (
               <select value={target} onChange={(e) => setTarget(e.target.value)}>
                 {kind === 'worship' ? (
                   <>
@@ -384,6 +444,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                   </optgroup>
                 )}
               </select>
+              )}
             </Field>
           )}
           {(kind === 'summa' || kind === 'tractatus') && library.length > 0 && (
@@ -469,6 +530,23 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               <label className="inline small">
                 <input type="checkbox" checked={goodTeacher} onChange={(e) => setGoodTeacher(e.target.checked)} /> Good Teacher
               </label>
+              {mate && (
+                <div className="small muted" style={{ flexBasis: '100%' }}>
+                  {lessons?.why ??
+                    (lessons?.subjects.length
+                      ? `What ${mate.name || 'they'} can teach ${c.name || 'this character'}: a score of 2 in an Ability or 5 in an Art, higher than the student’s${lessons.language ? `, in ${lessons.language}` : ''}.`
+                      : `${mate.name || 'They'} know nothing more that could be taught.`)}
+                  {lessons && lessons.blocked.length > 0 && ` Not ${c.name || 'this character'}’s to learn: ${lessons.blocked.map((b) => `${b.label} (${b.why})`).join('; ')}.`}{' '}
+                  {teacherSlot ? (
+                    <label className="inline">
+                      <input type="checkbox" checked={logTeacher} onChange={(e) => setLogTeacher(e.target.checked)} /> log {mate.name || 'the teacher'}’s {teacherSlot === 'extra' ? 'extra ' : ''}season too (Exposure in Teaching)
+                    </label>
+                  ) : (
+                    `${mate.name || 'The teacher'} has no season free this ${season} to teach in.`
+                  )}{' '}
+                  To have it happen when time moves on, set {c.name || 'this character'} to be taught by {mate.name || 'them'} on the Game table, or {mate.name || 'them'} to teach.
+                </div>
+              )}
             </>
           )}
           {kind === 'training' && (
@@ -563,6 +641,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             Log season{res?.xp ? ` & add ${res.xp} xp` : ''}
           </button>
         </div>
+        {kind === 'lab' && project && !doubled && <HelpersRow c={c} d={d} chars={sagaChars} ed={ed} helperIds={helperIds} setHelperIds={setHelperIds} />}
         {kind === 'lab' && projectPlan && (
           <div className="small" style={{ marginTop: 4 }}>
             <span className="muted">{projectPlan.summary}</span>{' '}
@@ -593,13 +672,14 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             year={year}
             teachers={ctx.covenant?.specialists.filter((x) => teaches(x)) ?? []}
             library={ctx.covenant?.library}
+            team={team}
             onChange={(st) => update((x) => void (x.standing = st))}
           />
         </div>
         <p className="small muted" style={{ margin: 0 }}>
           What this character does with a free season when nobody planned one. Once the year&apos;s free seasons are used up, the rest go to work (Exposure) or Worship.
         </p>
-        <SeasonPlan c={c} d={d} year={year} update={update} teachers={ctx.covenant?.specialists.filter((x) => teaches(x)) ?? []} />
+        <SeasonPlan c={c} d={d} year={year} update={update} teachers={ctx.covenant?.specialists.filter((x) => teaches(x)) ?? []} team={team} />
       </Card>
 
       {saga && <PrioritiesCard c={c} d={d} ctx={ctx} saga={saga} data={data} chars={sagaChars} update={update} />}

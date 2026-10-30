@@ -75,6 +75,10 @@ export function WritingCard({ ed }: { ed: CharEditor }) {
     });
   const open = (c.writing ?? []).filter((p) => !p.done);
   const waiting = (c.writing ?? []).filter((p) => p.done && !p.inLibrary);
+  const exposureName = (key?: string) => {
+    const [k, id] = (key ?? '').split(':');
+    return k === 'art' ? ART_NAMES[id as Art] : d.abilityByUid.get(id)?.name ?? 'nothing chosen';
+  };
   const e = { ...ed, c, d, saga } as Ed;
   return (
     <Card title="Writing and copying" tour="writing">
@@ -86,10 +90,11 @@ export function WritingCard({ ed }: { ed: CharEditor }) {
           <>
             An author needs 5 in an Art or 2 in an Ability, and 5 in the language. A summa gains Communication + Language points a season toward its Level (five times the Level for an
             Ability); a tractatus takes one season. Careful copying gains 6 + Profession: Scribe a season (a tractatus a season); quick copying is three times as fast and 1 Quality lower.
+            A summa, copy or lab text finished with points to spare leaves the rest of the season for the next one begun here (the rules leave this open; the toolkit carries what is left over at the next book&apos;s own rate). The season gives 2 xp of Exposure, in the subject or the language, once however many books it finishes; it is not practice.
           </>
         }
       >
-        Write a summa or tractatus, or copy a book, as a season&apos;s work (and 2 xp of Exposure).
+        Write a summa or tractatus, or copy a book, as a season&apos;s work: 2 xp of Exposure for the writer.
       </RulesNote>
       {open.map((p) => (
         <div key={p.uid} className="list-row" style={{ flexWrap: 'wrap' }}>
@@ -99,7 +104,7 @@ export function WritingCard({ ed }: { ed: CharEditor }) {
           </span>
           {p.quality !== undefined && <span className="badge info">Quality {p.quality}</span>}
           <span className="small muted">
-            {p.rate} a season{p.notary ? ` (dictated to ${p.notary})` : ''}, about {Math.max(1, Math.ceil((p.needed - p.points) / Math.max(1, p.rate)))} more
+            {p.rate} a season{p.notary ? ` (dictated to ${p.notary})` : ''}, {p.rate > p.needed - p.points && ['summa', 'copy', 'labTexts', 'copyLabTexts'].includes(p.kind) ? `finished this season${open.some((o) => o.uid !== p.uid && ['summa', 'copy', 'labTexts', 'copyLabTexts'].includes(o.kind)) ? ', the rest of it going on to the next' : ' (begin another to use the rest of it)'}` : `about ${Math.max(1, Math.ceil((p.needed - p.points) / Math.max(1, p.rate)))} more`}; Exposure +2 xp in {exposureName(p.exposure)} a season
           </span>
           {p.corrupt && <span className="badge bad" title={`Lacking ${p.corrupt}`}>will be corrupt</span>}
           <button className="small" disabled={logged} title={logged ? `A season is logged for ${season} ${year} already` : undefined} onClick={() => run((x, k) => workWriting(x, d, k, x.writing!.find((y) => y.uid === p.uid)!, year, season, data))}>

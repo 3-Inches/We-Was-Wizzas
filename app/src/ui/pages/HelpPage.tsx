@@ -330,9 +330,12 @@ export default function HelpPage() {
           </li>
           <li>
             <b>Seasons &amp; Aging:</b> plan a season (books, teachers, training, practice, vis, adventure) and log it; experience is added with Affinities, gain limits and Virtues.
-            Roll aging, crises and Wizard&apos;s Twilight. Choose a teacher from the saga to fill in their scores. <b>Writing and copying</b> begins a summa, tractatus,
+            Roll aging, crises and Wizard&apos;s Twilight. Choose a teacher from the saga and the subjects are what they can teach this character (2 in an Ability or 5 in an Art,
+            more than the student, a language in common, Arts only to a magus, an Ability the student may learn); logging the lesson logs the teacher&apos;s season too (Exposure
+            in Teaching). <b>Writing and copying</b> begins a summa, tractatus,
             commentary, copy, lab texts or florilegium and works it a season at a time (or in free seasons), with the covenant&apos;s scribe, binder and illuminator and resonant
-            materials under <i>Covenants</i>&apos; rules; the finished work goes to the covenant library. Glossing and clarifying a book are there too. With <i>City &amp; Guild</i>{' '}
+            materials under <i>Covenants</i>&apos; rules; the finished work goes to the covenant library. A summa, copy or lab text finished with points to spare leaves the rest of
+            the season for the next one begun (a tractatus takes its season), and the season gives the writer 2 xp of Exposure, once. Glossing and clarifying a book are there too. With <i>City &amp; Guild</i>{' '}
             enabled, a craftsman or laborer can track a <b>livelihood</b>: Labor Points, the Workshop Total, the quality each season makes, and the Labor Points stories and
             investments bring.
           </li>
@@ -342,7 +345,10 @@ export default function HelpPage() {
             charged items, extracting vis, taming, a Longevity Ritual (for the magus or someone else), binding a familiar, strengthening and empowering the bond, and improving the
             lab itself: its Refinement, a Virtue installed, a Flaw put right. Spells of the same Technique and Form can be invented alongside each other. Each has its
             Lab Total with all the lab gives, its vis, a box to experiment, and the lab&apos;s own rolls for Safety and Warping; what the lab&apos;s Flaws rule out is shown in
-            red and cannot be worked. A familiar&apos;s cords are applied where they belong (golden to botch dice, bronze to Soak, recovery and aging).
+            red and cannot be worked. A familiar&apos;s cords are applied where they belong (golden to botch dice, bronze to Soak, recovery and aging). <b>Helpers this season</b>{' '}
+            adds a covenant-mate&apos;s Intelligence + Magic Theory to the Lab Total: one with The Gift and Magic Theory 1, or the magus&apos;s bound familiar, as many as the
+            magus&apos;s Leadership (a familiar and one more); they gain Exposure in Magic Theory. The Familiar card links the familiar&apos;s own sheet: bound, it learns as a human
+            does, its Might not taken off (<i>Realms of Power: Magic</i>).
           </li>
           <li>
             <b>Spells on a character:</b> the Overview lists effects working on the character (a raised Characteristic, a granted Virtue) with when they end; record one by
@@ -351,8 +357,11 @@ export default function HelpPage() {
           <li>
             <b>Time:</b> the <b>Seasons</b> page in the sidebar moves the whole saga on: one season, to next Spring, or several years. Each character does what was logged on
             their sheet, or their standing activity (set on the Seasons page or the sheet) in their free seasons: a working character has two (Wealthy three, Poor one) and works
-            the rest, a magus has four, a Regular gives one to Worship, and one who needs no sleep has two more for study. A magus whose lab project is done moves on to the
-            next one the lab allows. The year&apos;s end closes the covenants&apos; books, pays allowances, rolls aging and adds Warping, and moves a Dominion with its
+            the rest, a magus has four, a Regular gives one to Worship, and one who needs no sleep has two more for study (set on the Game table). A standing activity can be to{' '}
+            <b>teach covenant-mates</b> (the lesson that teaches the most in all to the students chosen and those who asked: one student adds 6, two add 3), to be{' '}
+            <b>taught by a covenant-mate</b>, or to <b>help in a covenant-mate&apos;s lab</b>; the season of each side is logged. Left to the clock, a character studies the
+            covenant&apos;s best book or teacher when it teaches more than practice; a magus works its own projects and extracts vis only when told to. A magic character&apos;s
+            extra seasons are not spent on practice its Might cancels. A magus whose lab project is done moves on to the next one the lab allows. The year&apos;s end closes the covenants&apos; books, pays allowances, rolls aging and adds Warping, and moves a Dominion with its
             congregation (and, with aura variation on, may move a Magic aura); wards like the Aegis of the Hearth are recast from the covenant&apos;s vis. Undo is always one
             click away.
           </li>
@@ -480,8 +489,8 @@ export default function HelpPage() {
             Tribunal page and their own pages, and their lines in a season&apos;s report are folded under <b>The Tribunal</b>.
           </li>
           <li>
-            <b>Season priorities:</b> each of their magi follows a priority list (Advancement tab → Season priorities): service to the covenant, politics, travel, writing for the
-            library, reading its best book, study from vis, inventing a spell, enchanting an item (a lesser device of one of their spells, or charms), improving the lab, and a
+            <b>Season priorities:</b> each of their magi follows a priority list (Advancement tab → Season priorities): service to the covenant (vis extracted when the covenant lacks
+            what its Aegis and Longevity Rituals need), politics, travel, writing for the library, the best book or covenant teacher, study from vis, inventing a spell, enchanting an item (a lesser device of one of their spells, or charms), improving the lab, and a
             season a year for an apprentice, and House duties (a Quaesitor&apos;s investigations a season a year, a Gifted Mercere&apos;s season on the road one year in seven).
             Each entry is a season a year, and the first that can be done is taken. A
             Longevity Ritual is made whenever a magus of 35 or more has none, and lab work fills any season the list leaves. Any character can follow a list: choose{' '}

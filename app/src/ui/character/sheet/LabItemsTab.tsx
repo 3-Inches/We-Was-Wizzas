@@ -17,6 +17,7 @@ import { LabProjects } from './LabProjects';
 import { OriginalResearch } from './OriginalResearch';
 import { describeStress, stressDie } from '../../../engine/dice';
 import { useStore } from '../../../store/store';
+import { useSagaCharacters } from '../../../store/hooks';
 import { uid } from '../../../util/id';
 
 const newFamiliar = (): Familiar => ({
@@ -326,7 +327,17 @@ function FamiliarCard({ ed }: { ed: CharEditor }) {
   const { c, d, ctx, update } = ed;
   const plan = usePlan(ed);
   const [manual, setManual] = useState(false);
+  const chars = useSagaCharacters(c?.sagaId);
+  const updateCharacter = useStore((s) => s.updateCharacter);
   if (!c || !d) return null;
+  // the familiar's own sheet: a creature of the saga, which learns as a human does once bound (DE, Familiars)
+  const beasts = chars.filter((x) => x.id !== c.id && x.creature && (!x.creature.familiarOf || x.creature.familiarOf === c.id));
+  const linkSheet = (id: string) => {
+    const was = c.familiar?.characterId;
+    update((x) => void (x.familiar && (x.familiar.characterId = id || undefined)));
+    if (was && was !== id) updateCharacter(was, (x) => void (x.creature && (x.creature.familiarOf = undefined)));
+    if (id && (c.familiar?.bindingLabTotal ?? 0) > 0) updateCharacter(id, (x) => void (x.creature && (x.creature.familiarOf = c.id)));
+  };
   const fam = c.familiar;
   const lab = ctx.lab;
   const forbidden = !!lab?.impossible.includes('Familiar');
@@ -374,6 +385,16 @@ function FamiliarCard({ ed }: { ed: CharEditor }) {
             </Field>
             <Field label="Size">
               <Stepper value={fam.size} min={-10} max={10} width={36} onChange={(v) => setFam((f) => void (f.size = v))} />
+            </Field>
+            <Field label="Its own sheet" hint={bound ? 'Bound, it learns as a human does: its Might is not taken off what it learns' : 'Once bound, it learns as a human does'}>
+              <select value={fam.characterId ?? ''} onChange={(e) => linkSheet(e.target.value)} aria-label="The familiar's character sheet">
+                <option value="">— none —</option>
+                {beasts.map((x) => (
+                  <option key={x.id} value={x.id}>
+                    {x.name || 'Unnamed'}
+                  </option>
+                ))}
+              </select>
             </Field>
             <Field label="Binding Arts" hint={bound ? 'Strengthening uses the same Arts' : 'Any that suit the creature or its powers'}>
               <div className="row tight">

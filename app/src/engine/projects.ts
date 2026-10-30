@@ -17,6 +17,7 @@ import { labTotal, type LabActivity, type TotalResult } from './magic';
 import type { Character, Covenant, EnchantedItem, LabProject, VisStock } from './types';
 import { addVis, purseOf, takeVis, visAvailable, visText } from './vis';
 import { uid } from '../util/id';
+import { helperParts, type LabHelper } from './labHelp';
 
 export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: string; /** DE: may be done by experimentation */ experiment?: boolean; /** the lab work it is, for a lab's restrictions */ activity?: string }[] = [
   { id: 'invent', label: 'Invent a spell', blurb: 'Each season the Lab Total beats the spell’s level by some points; they add up until they reach the level, and the spell is learned. From a Laboratory Text it takes one season, once the Lab Total reaches the level.', experiment: true, activity: 'Spells' },
@@ -94,6 +95,8 @@ export interface PlanOptions {
   data?: GameData;
   /** count a Lab Total that falls short even when experimenting (the experiment brought No Benefit) */
   strict?: boolean;
+  /** those helping in the lab this season (labHelp.ts) */
+  helpers?: LabHelper[];
 }
 
 /** May this project be worked by experimentation (DE, Arcane Experimentation)? Not from a Laboratory Text. */
@@ -132,6 +135,7 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
     ...(p.bonus ? [{ label: 'Other bonus', value: p.bonus }] : []),
     ...routineParts(p.routines),
     ...(o.bonus ? [{ label: 'Experimentation (simple die + risk)', value: o.bonus }] : []),
+    ...helperParts(o.helpers),
   ];
   const lt = (activity: LabActivity, te: string, fo: string, x?: { talisman?: boolean; requisites?: Art[]; familiarBond?: 'none' | 'one' | 'both'; fromText?: boolean; forSelfLongevity?: boolean }) =>
     labTotal(d, { technique: te as never, form: fo as never, requisites: x?.requisites }, {
@@ -354,6 +358,8 @@ export interface WorkOptions {
   chars?: Character[];
   /** when, for the record of the season's rolls */
   season?: string;
+  /** those helping in the lab this season: marked used once the project's Lab Total is worked */
+  helpers?: LabHelper[];
 }
 
 /**
@@ -369,8 +375,11 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
   if (!p || p.done) return [];
   const rng = o.rng ?? defaultRng;
   const subject = p.subjectId && p.subjectId !== c.id ? o.chars?.find((x) => x.id === p.subjectId) : undefined;
-  const base = planProject(p, c, d, ctx, { subject, data });
+  const helpers = o.helpers;
+  const base = planProject(p, c, d, ctx, { subject, data, helpers });
   const head = `${p.name}:`;
+  // the helpers spent the season at a Lab Total, whatever came of it
+  if (base.total) for (const h of helpers ?? []) h.used = p.name;
   if (base.problems.length) return [`${head} no progress. ${base.problems.join(' ')}`];
   // nothing is rolled for a season the vis cannot pay for
   const stocks = p.visFrom === 'covenant' && cov ? cov.visStocks : (c.purse?.vis ?? []);
@@ -396,13 +405,13 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
   }
   const bonus = xr && !xr.noBenefit ? xr.labBonus : 0;
   // No Benefit: the Lab Total without the die and risk; if that falls short, the project is abandoned (DE)
-  if (xr?.noBenefit && planProject(p, c, d, ctx, { subject, data, strict: true }).problems.length) {
+  if (xr?.noBenefit && planProject(p, c, d, ctx, { subject, data, helpers, strict: true }).problems.length) {
     p.seasons += 1;
     p.done = true;
     p.failed = true;
     return [...lines, `${head} the experiment brought no benefit, and without it the Lab Total falls short: the project is abandoned.`, ...recordRoutines(c, p.routines, year)];
   }
-  let plan = bonus ? planProject(p, c, d, ctx, { subject, data, bonus }) : base;
+  let plan = bonus ? planProject(p, c, d, ctx, { subject, data, helpers, bonus }) : base;
   // the vis is spent whatever comes of the season (an item's is lost on a failure, DE)
   const need = plan.vis;
   if (need && need.pawns) {

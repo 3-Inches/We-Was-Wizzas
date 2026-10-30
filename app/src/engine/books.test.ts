@@ -109,6 +109,38 @@ describe('writing season by season', () => {
     expect(c.seasonLog.filter((e) => e.activity === 'write-book')).toHaveLength(3);
     expect(c.arts.Ig.play).toBe(210 + 6);
   });
+  it('goes on to the next summa with what is left of a season, but a tractatus takes its whole season', () => {
+    const c = author();
+    const cov = newCovenant('s1', 1220);
+    // 12 a season: a Level 5 summa on an Art finishes with 7 to spare, which go on to the next (another language, 8 a season: 4 points)
+    const short = project({ uid: 'a', title: 'Summa Brevis', level: 5, needed: 5, rate: 12, quality: 5, exposure: 'art:Ig' });
+    const tract = project({ uid: 't', kind: 'tractatus', title: 'On Flames', level: 0, needed: 1, rate: 1, quality: 7 });
+    const next = project({ uid: 'b', title: 'Summa Altera', language: 'Greek', level: 10, needed: 10, rate: 8, quality: 4 });
+    c.writing = [short, tract, next];
+    const out = workWriting(c, derive(c), cov, short, 1220, 'Spring', data);
+    expect(short.done).toBeTruthy();
+    expect(next.points).toBe(4);
+    expect(tract.points).toBe(0);
+    expect(out.join(' ')).toMatch(/The rest of the season goes on to Summa Altera: \+4, 4 of 10/);
+    // one season logged, one Exposure
+    expect(c.seasonLog).toHaveLength(1);
+    expect(c.seasonLog[0].summary).toMatch(/then Summa Altera \(4\/10\)/);
+    // enough for a second one: both finish in the season
+    const c2 = author();
+    const a = project({ uid: 'a', title: 'One', level: 3, needed: 3, rate: 12, quality: 5 });
+    const b = project({ uid: 'b', title: 'Two', level: 4, needed: 4, rate: 12, quality: 5 });
+    c2.writing = [a, b];
+    workWriting(c2, derive(c2), cov, a, 1220, 'Spring', data);
+    expect([!!a.done, !!b.done]).toEqual([true, true]);
+    expect(cov.library.map((x) => x.title)).toEqual(['Summa Brevis', 'One', 'Two']);
+    // a tractatus finished leaves nothing over
+    const c3 = author();
+    const t1 = project({ uid: 't1', kind: 'tractatus', title: 'T1', level: 0, needed: 1, rate: 1, quality: 7 });
+    const s3 = project({ uid: 's3', title: 'S3' });
+    c3.writing = [t1, s3];
+    workWriting(c3, derive(c3), cov, t1, 1220, 'Spring', data);
+    expect(s3.points).toBe(0);
+  });
   it('puts bought resonant materials on the Sundry', () => {
     const c = author();
     const cov = newCovenant('s1', 1220);

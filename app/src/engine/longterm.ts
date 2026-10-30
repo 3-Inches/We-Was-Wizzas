@@ -38,7 +38,7 @@ function sqMods(d: DerivedCharacter, when: string): { label: string; value: numb
 }
 
 /** Compute xp from a season of study for a given target (art code or ability uid). */
-export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string; monthsLost?: number; visEaten?: number }): StudyResult {
+export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string; monthsLost?: number; visEaten?: number; currentXp?: number }): StudyResult {
   const parts: { label: string; value: number }[] = [];
   const notes: string[] = [];
   let gainLimit: number | undefined;
@@ -105,7 +105,9 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
   }
   // a magic character subtracts its Might Score from all Advancement Totals; each pawn of vis it eats
   // (any Art) lessens that by two, without raising the total (RoP: Magic, Advancement)
-  if (d.magicChar && d.magicChar.might > 0) {
+  // a familiar bound to a Hermetic magus learns as a human does (DE, Familiars; RoP: Magic, Advancement)
+  if (d.magicChar && d.magicChar.might > 0 && d.char.creature?.familiarOf) notes.push('A bound familiar learns as a human does: its Might is not subtracted (RoP: Magic).');
+  else if (d.magicChar && d.magicChar.might > 0) {
     const eaten = Math.max(0, Math.floor(target.visEaten ?? 0));
     const penalty = Math.max(0, d.magicChar.might - 2 * eaten);
     parts.push({ label: `Magic Might ${d.magicChar.might} (a magic character's Might is subtracted)${eaten ? `, less ${Math.min(d.magicChar.might, 2 * eaten)} for ${eaten} pawn${eaten > 1 ? 's' : ''} of vis eaten` : ''}`, value: -penalty });
@@ -136,7 +138,8 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
   }
   let capped = false;
   if (gainLimit !== undefined) {
-    const current = isArt ? d.arts[target.art!].effectiveXp : d.abilityByUid.get(target.abilityUid!)?.effectiveXp ?? 0;
+    // a Spell Mastery, kept on the spell, gives its own experience
+    const current = target.currentXp ?? (isArt ? d.arts[target.art!].effectiveXp : d.abilityByUid.get(target.abilityUid!)?.effectiveXp ?? 0);
     const maxXp = isArt ? (gainLimit * (gainLimit + 1)) / 2 : (5 * gainLimit * (gainLimit + 1)) / 2;
     const room = Math.max(0, maxXp - current);
     if (xp > room) {

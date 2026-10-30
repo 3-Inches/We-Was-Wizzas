@@ -20,20 +20,22 @@ import { newProject, planProject, visShort } from './projects';
 import { planBook } from './books';
 import { FREQUENCY, chargedItemCharges, investEffect, openingCost } from './enchant';
 import { purseOf, visAvailable } from './vis';
-import { MAX_IMPROVEMENTS, spareVis } from './livingEconomy';
+import { MAX_IMPROVEMENTS, spareVis, visShortfall } from './livingEconomy';
+import { specAbilities, specChar } from './covenantRules';
+import { teaches } from './covenfolk';
 import { CALAMITY_BY_ID, worstTrouble } from './calamity';
-import type { Character, Covenant, EnchantedItem, LabProject, LibraryBook, PriorityKind, Season, SeasonPriority, StandingActivity, WritingProject } from './types';
+import type { Character, Covenant, EnchantedItem, LabProject, PriorityKind, Season, SeasonPriority, StandingActivity, WritingProject } from './types';
 import { uid } from '../util/id';
 
 export const PRIORITY_KINDS: { id: PriorityKind; label: string; yearly: boolean; text: string }[] = [
   { id: 'longevity', label: 'Longevity Ritual', yearly: false, text: 'Whenever it is needed: from 35, or when an aging crisis ends one, a season in the lab to make a Longevity Ritual with the covenant’s vis.' },
   { id: 'apprentice', label: 'Teach the apprentice', yearly: true, text: 'A season a year with the apprentice, while there is one (Exposure in Teaching).' },
   { id: 'house', label: 'House duties', yearly: true, text: 'What the magus’s House or office asks of a season: a Quaesitor’s investigations, a season a year (Exposure in Code of Hermes); a Gifted Mercere’s season carrying messages as the Redcaps do, one in seven years (Exposure in Area Lore).' },
-  { id: 'service', label: 'Service to the covenant', yearly: true, text: 'The covenant’s business: vis extracted from its aura when its stores run low, else its duties (Exposure in Order of Hermes Lore).' },
+  { id: 'service', label: 'Service to the covenant', yearly: true, text: 'The covenant’s business: vis extracted from its aura when it lacks what its Aegis and Longevity Rituals need, else its duties (Exposure in Order of Hermes Lore).' },
   { id: 'politics', label: 'Hermetic politics', yearly: true, text: 'Letters, visits and gild business: Exposure in Intrigue.' },
   { id: 'travel', label: 'Travel', yearly: true, text: 'On the road or at sea: Exposure in Area Lore.' },
   { id: 'write', label: 'Write a book', yearly: true, text: 'A tractatus on the character’s best subject, for the covenant’s library.' },
-  { id: 'read', label: 'Read the best book', yearly: true, text: 'The covenant library’s best summa or unread tractatus for the character’s Arts (or Abilities), if it teaches 5 xp or more.' },
+  { id: 'read', label: 'Study the best book or teacher', yearly: true, text: 'The covenant library’s best summa or unread tractatus for the character’s Arts (or Abilities), or a season with one of the covenant’s teachers, whichever teaches more, if it is 5 xp or more.' },
   { id: 'vis', label: 'Study from vis', yearly: true, text: 'An Art studied from vis: the purse’s, or the covenant’s if it has twice what the season needs.' },
   { id: 'invent', label: 'Invent a spell', yearly: true, text: 'A new spell in the character’s Arts, as high as the Lab Total allows five points a season; or the one in hand.' },
   { id: 'enchant', label: 'Enchant an item', yearly: true, text: 'A lesser enchanted device with one of the character’s spells, in a season, when the Lab Total is twice the effect’s level (vis from the covenant); else a charged item, as many charges as the Lab Total gives. Or the one in hand.' },
@@ -256,7 +258,8 @@ const TRY: Record<PriorityKind, Try> = {
         return { standing: { kind: 'exposure', target: `ability:${mt.uid}` }, what: `an enchantment to raise ${cov.name}’s income (Magical Improvement)`, after: 'improve-income' };
     }
     // vis for the covenant when its stores run low (under five pawns a member, or short of what it must hold back), else its duties
-    const low = cov && (cov.visStocks.reduce((t, v) => t + v.pawns, 0) < 5 * Math.max(1, cov.memberIds.length) || (cov.living?.needs?.vis ?? 0) > 0);
+    // (a living covenant keeps five pawns a member as well; the players' covenant only what its Aegis and Longevity Rituals need)
+    const low = cov && (cov.living ? cov.visStocks.reduce((t, v) => t + v.pawns, 0) < 5 * Math.max(1, cov.memberIds.length) || (cov.living.needs?.vis ?? 0) > 0 : visShortfall(cov, x.chars.filter((m) => cov.memberIds.includes(m.id))).length > 0);
     if (low && d.isMagus && x.ctx.lab && cov && !x.hostile && x.ctx.aura.realm === 'Magic' && x.ctx.aura.strength > 0) {
       let p = c.projects?.find((q) => q.kind === 'extract' && !q.done && q.visFrom === 'covenant');
       if (!p) {
@@ -309,34 +312,9 @@ const TRY: Record<PriorityKind, Try> = {
     return 'nothing more to write a tractatus on';
   },
   read: (x, p) => {
-    const { c, d, cov } = x;
-    if (!cov?.library.length) return 'no library';
-    const inUse = new Set(x.chars.filter((o) => o.id !== c.id).flatMap((o) => o.seasonLog.filter((e) => e.year === x.year && e.season === x.season && e.bookId).map((e) => e.bookId!)));
-    const focus = d.isMagus ? focusArts(d, p) : [];
-    let best: { b: LibraryBook; target: string; xp: number; value: number } | undefined;
-    for (const b of cov.library) {
-      if ((b.kind !== 'summa' && b.kind !== 'tractatus') || b.corrupt || inUse.has(b.uid)) continue;
-      if (b.kind === 'tractatus' && b.readBy?.includes(c.id)) continue;
-      if (b.ownerId && b.ownerId !== c.id) continue;
-      const src = b.kind === 'summa'
-        ? { kind: 'summa' as const, quality: b.quality, level: b.level, isArt: b.subjectType === 'art', subject: b.title }
-        : { kind: 'tractatus' as const, quality: b.quality, isArt: b.subjectType === 'art', subject: b.title };
-      if (b.subjectType === 'art') {
-        if (!d.isMagus || !(ARTS as readonly string[]).includes(b.subject)) continue;
-        const art = b.subject as Art;
-        const r = computeStudy(d, src, { art });
-        const value = r.xp * (focus.includes(art) ? 1.5 : 1);
-        if (!best || value > best.value) best = { b, target: `art:${art}`, xp: r.xp, value };
-      } else if (b.subjectType === 'ability') {
-        const mine = c.abilities.find((a) => a.abilityId === b.subject && (!b.param || a.param === b.param));
-        if (!mine) continue;
-        const r = computeStudy(d, src, { abilityUid: mine.uid });
-        const value = r.xp * (d.isMagus ? 0.8 : 1.2);
-        if (!best || value > best.value) best = { b, target: `ability:${mine.uid}`, xp: r.xp, value };
-      }
-    }
-    if (!best || best.xp < 5) return best ? `the best book teaches only ${best.xp} xp` : 'no book it can learn from';
-    return { standing: { kind: 'read', bookUid: best.b.uid, target: best.target }, what: `reading ${best.b.title}` };
+    const best = bestStudy(x.c, x.d, x.cov, x.year, x.season, x.chars, focusArts(x.d, p));
+    if (!best || best.xp < 5) return best ? `the best book or teacher teaches only ${best.xp} xp` : x.cov?.library.length ? 'no book or teacher it can learn from' : 'no library or teacher';
+    return { standing: best.standing, what: best.what };
   },
   vis: (x, p) => {
     const { c, d, cov } = x;
@@ -432,6 +410,51 @@ const TRY: Record<PriorityKind, Try> = {
     return { standing: { kind: 'practice' }, what: 'practice' };
   },
 };
+
+/**
+ * The best a season of study can do for a character from what its covenant has: the library's books
+ * (a summa below its Level, a tractatus not yet read, not one another member reads this season) and
+ * the covenant's teachers with a season left this year (an Ability the character has, which the
+ * teacher knows better). A magus weighs its favored Arts above its Abilities.
+ */
+export function bestStudy(c: Character, d: DerivedCharacter, cov: Covenant | undefined, year: number, season: Season, chars: Character[], focus: Art[] = []): { standing: StandingActivity; what: string; xp: number } | undefined {
+  if (!cov) return undefined;
+  const inUse = new Set(chars.filter((o) => o.id !== c.id).flatMap((o) => o.seasonLog.filter((e) => e.year === year && e.season === season && e.bookId).map((e) => e.bookId!)));
+  let best: { standing: StandingActivity; what: string; xp: number; value: number } | undefined;
+  const weigh = (xp: number, isArt: boolean, art?: Art) => xp * (isArt ? (art && focus.includes(art) ? 1.5 : 1) : d.isMagus ? 0.8 : 1.2);
+  const consider = (standing: StandingActivity, what: string, xp: number, value: number) => {
+    if (xp > 0 && (!best || value > best.value)) best = { standing, what, xp, value };
+  };
+  for (const b of cov.library) {
+    if ((b.kind !== 'summa' && b.kind !== 'tractatus') || b.corrupt || inUse.has(b.uid)) continue;
+    if (b.kind === 'tractatus' && b.readBy?.includes(c.id)) continue;
+    if (b.ownerId && b.ownerId !== c.id) continue;
+    const src = b.kind === 'summa'
+      ? { kind: 'summa' as const, quality: b.quality, level: b.level, isArt: b.subjectType === 'art', subject: b.title }
+      : { kind: 'tractatus' as const, quality: b.quality, isArt: b.subjectType === 'art', subject: b.title };
+    if (b.subjectType === 'art') {
+      if (!d.isMagus || !(ARTS as readonly string[]).includes(b.subject)) continue;
+      const art = b.subject as Art;
+      const xp = computeStudy(d, src, { art }).xp;
+      consider({ kind: 'read', bookUid: b.uid, target: `art:${art}` }, `reading ${b.title}`, xp, weigh(xp, true, art));
+    } else if (b.subjectType === 'ability') {
+      const mine = c.abilities.find((a) => a.abilityId === b.subject && (!b.param || a.param === b.param));
+      if (!mine) continue;
+      const xp = computeStudy(d, src, { abilityUid: mine.uid }).xp;
+      consider({ kind: 'read', bookUid: b.uid, target: `ability:${mine.uid}` }, `reading ${b.title}`, xp, weigh(xp, false));
+    }
+  }
+  // the covenant's teachers: two seasons a year each (DE), the drill sergeant's one for the turb aside
+  for (const sp of cov.specialists.filter((x) => teaches(x) && x.role !== 'drill-sergeant' && !(x.taught?.year === year && x.taught.seasons >= 2))) {
+    for (const t of specAbilities(sp)) {
+      const mine = c.abilities.find((a) => a.abilityId === t.id && (a.param ?? '') === (t.param ?? ''));
+      if (!mine || (d.abilityByUid.get(mine.uid)?.score ?? 0) >= t.score) continue;
+      const xp = computeStudy(d, { kind: 'teacher', com: specChar(sp, 'Com'), teaching: sp.teaching ?? 0, teacherScore: t.score, students: 1, goodTeacher: !!sp.goodTeacher, isArt: false, subject: t.label ?? '' }, { abilityUid: mine.uid }).xp;
+      consider({ kind: 'taught', teacher: `spec:${sp.uid}`, target: `ability:${mine.uid}` }, `taught ${d.abilityByUid.get(mine.uid)?.name ?? t.label} by ${sp.name || 'the covenant’s teacher'}`, xp, weigh(xp, false));
+    }
+  }
+  return best && { standing: best.standing, what: best.what, xp: best.xp };
+}
 
 const MAX_ITEMS = 8;
 /** What a lesser enchantment can be made in, by the pawns of vis it takes (DE, Opening the Enchantment: material × size). */

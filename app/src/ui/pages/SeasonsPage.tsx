@@ -14,7 +14,7 @@ import { DEFAULT_ADVANCE, REPORTS_IN_FULL, advanceSeasons, describeStanding, inP
 import { allowanceRecipients } from '../../engine/economy';
 import type { Character, Covenant, TimeReport } from '../../engine/types';
 import { Card, Empty, Field, Stepper } from '../kit';
-import { StandingEditor } from '../character/StandingEditor';
+import { StandingEditor, teamOf } from '../character/StandingEditor';
 import { covenantOf } from '../../engine/context';
 import { CovenantEffects } from '../covenant/CovenantEffects';
 import { Hint } from '../Hint';
@@ -165,6 +165,7 @@ export default function SeasonsPage() {
                         year={year}
                         teachers={covenantOf(c, covs)?.specialists.filter((s) => teaches(s)) ?? []}
                         library={covenantOf(c, covs)?.library}
+                        team={teamOf(c, chars, covs, data, (x) => derived.get(x.id) ?? deriveCharacter(x, data, saga.houseRules))}
                         onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))}
                       />
                     </td>

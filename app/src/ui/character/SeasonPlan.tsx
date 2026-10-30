@@ -6,9 +6,9 @@ import type { DerivedCharacter } from '../../engine/character/derive';
 import { seasonsOf, seasonsUsed } from '../../engine/seasons';
 import type { Character, Specialist } from '../../engine/types';
 import { Stepper } from '../kit';
-import { StandingEditor } from './StandingEditor';
+import { StandingEditor, type Team } from './StandingEditor';
 
-export function SeasonPlan({ c, d, year, update, teachers }: { c: Character; d: DerivedCharacter; year: number; update: (fn: (c: Character) => void) => void; teachers: Specialist[] }) {
+export function SeasonPlan({ c, d, year, update, teachers, team }: { c: Character; d: DerivedCharacter; year: number; update: (fn: (c: Character) => void) => void; teachers: Specialist[]; team?: Team }) {
   const plan = seasonsOf(c, d);
   const used = seasonsUsed(c, year);
   const noFatigue = !!c.creature?.magicCharacter?.qualities.some((q) => q.id === 'no-fatigue');
@@ -46,7 +46,7 @@ export function SeasonPlan({ c, d, year, update, teachers }: { c: Character; d: 
         {plan.extra > 0 && (
           <span className="row tight">
             Extra seasons (Spring and Autumn):
-            <StandingEditor c={c} d={d} year={year} teachers={teachers} extra value={c.seasons?.extra ?? { kind: 'auto' }} onChange={(st) => set((s) => void (s.extra = st.kind === 'auto' && !st.target ? undefined : st))} />
+            <StandingEditor c={c} d={d} year={year} teachers={teachers} team={team} extra value={c.seasons?.extra ?? { kind: 'auto' }} onChange={(st) => set((s) => void (s.extra = st.kind === 'auto' && !st.target ? undefined : st))} />
           </span>
         )}
       </div>

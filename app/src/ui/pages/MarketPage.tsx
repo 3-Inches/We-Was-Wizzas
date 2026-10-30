@@ -525,7 +525,7 @@ function HireTeacher({ home, data, run, onSundry }: { home: Covenant; data: Game
       </div>
       <HowItWorks label="About hiring teachers">
         Covenants ch.5: an outsider costs half as much to recruit for teaching as to employ for work. A teacher teaches two seasons a year, never the Arts (DE p.180): choose them as a
-        student&apos;s standing activity (&quot;Taught by a covenant teacher&quot;) or on the student&apos;s Seasons &amp; Aging tab. They are not inhabitants, and leave at the end of the last year paid for.
+        student&apos;s standing activity (&quot;Be taught&quot;, then the teacher) or on the student&apos;s Seasons &amp; Aging tab. They are not inhabitants, and leave at the end of the last year paid for.
       </HowItWorks>
     </div>
   );

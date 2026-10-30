@@ -21,7 +21,8 @@ import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaC
 import { tribunalBook } from '../../data/livingCovenants';
 import { NewsCard } from './TribunalPage';
 import { useStore } from '../../store/store';
-import { StandingEditor } from '../character/StandingEditor';
+import { StandingEditor, teamOf } from '../character/StandingEditor';
+import { extraSeasonHere, seasonsOf } from '../../engine/seasons';
 import { LoyaltyEvent } from '../covenant/FinancesTab';
 import { TravelTradeCard } from './TravelTradeCard';
 import { AfterStoryCard } from './AfterStoryCard';
@@ -212,16 +213,21 @@ export default function DashboardPage() {
           if (!d) return null;
           const logged = loggedThisSeason(c, year, season);
           const cov = covenantOf(c, covs);
+          const team = teamOf(c, chars, covs, data, (x) => derived.get(x.id) ?? deriveCharacter(x, data, saga.houseRules));
+          const teachers = cov?.specialists.filter((s) => teaches(s)) ?? [];
+          // a character who needs no sleep has an extra season of study in Spring and Autumn
+          const plan = seasonsOf(c, d);
+          const extraHere = plan.extra > 0 && extraSeasonHere(plan, season) && !logged.some((e) => e.extra);
           return (
             <div key={c.id} className="list-row" style={{ flexWrap: 'wrap' }}>
               <Link to={sheet(c)} style={{ minWidth: 120 }}>
                 <b>{c.name || 'Unnamed'}</b>
               </Link>
               <span className="badge">{c.type}</span>
-              {logged.length ? (
+              {logged.some((e) => !e.extra) ? (
                 <span className="small">{logged.map((e) => e.summary).join('; ')}</span>
               ) : (
-                <StandingEditor c={c} d={d} year={year} teachers={cov?.specialists.filter((s) => teaches(s)) ?? []} library={cov?.library} onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))} />
+                <StandingEditor c={c} d={d} year={year} teachers={teachers} library={cov?.library} team={team} onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))} />
               )}
               <span className="row tight small" style={{ marginLeft: 'auto' }}>
                 <Link to={sheet(c, 'advancement')}>Plan</Link>
@@ -229,7 +235,23 @@ export default function DashboardPage() {
                 {d.isMagus && <Link to={sheet(c, 'magic')}>Cast</Link>}
                 {d.isMagus && <Link to={sheet(c, 'lab')}>Lab</Link>}
               </span>
-              {!logged.length && (c.standing?.kind ?? 'auto') !== 'auto' && <div className="small muted" style={{ flexBasis: '100%' }}>→ {describeStanding(c, d, resolveStanding(c, d, year))}</div>}
+              {!logged.length && !['auto', 'teach', 'assist'].includes(c.standing?.kind ?? 'auto') && !c.standing?.teacher?.startsWith('char:') && <div className="small muted" style={{ flexBasis: '100%' }}>→ {describeStanding(c, d, resolveStanding(c, d, year))}</div>}
+              {extraHere && (
+                <div className="row tight small" style={{ flexBasis: '100%' }}>
+                  <span className="badge">extra season</span>
+                  <StandingEditor
+                    c={c}
+                    d={d}
+                    year={year}
+                    teachers={teachers}
+                    library={cov?.library}
+                    team={team}
+                    extra
+                    value={c.seasons?.extra ?? { kind: 'auto' }}
+                    onChange={(st) => updateCharacter(c.id, (x) => void (x.seasons = { ...(x.seasons ?? {}), extra: st.kind === 'auto' && !st.target ? undefined : st }))}
+                  />
+                </div>
+              )}
             </div>
           );
         })}

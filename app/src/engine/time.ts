@@ -30,13 +30,15 @@ import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, Seaso
 import { rationsModifier } from './turb';
 import { libraryYearEnd, scriptoriumYear, workWriting, writingFor } from './books';
 import { purseOf, takeVis, visText } from './vis';
-import { choosePriority, priorityLabel } from './priorities';
+import { bestStudy, choosePriority, focusArts, priorityLabel } from './priorities';
 import { gatheringIn, gatheringNews, houseGatheringIn, livingIds, livingYearEnd } from './living';
 import { redcapYearEnd } from './generate/items';
 import { apprenticesYearEnd, tribunalGathering, wanderersSeasonStart, wanderersYearEnd } from './tribunalLife';
 import { workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
 import { uid } from '../util/id';
+import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
+import { cannotHelp, helpValue, maxHelpers, type LabHelper } from './labHelp';
 
 export interface SagaState {
   saga: Saga;
@@ -119,7 +121,8 @@ export function resolveStanding(c: Character, d: DerivedCharacter, year: number)
   if (s.kind !== 'auto') return s;
   if (c.creature) return { kind: 'none' };
   if (d.isMagus) {
-    const p = c.projects?.find((x) => !x.done);
+    // vis extraction goes on only by choice: left to the clock, the magus works its own projects
+    const p = c.projects?.find((x) => !x.done && x.kind !== 'extract');
     return { kind: 'lab', projectUid: p?.uid };
   }
   return { kind: 'practice', target: s.target ?? workAbility(d) };
@@ -129,6 +132,7 @@ export function describeStanding(c: Character, d: DerivedCharacter, s: StandingA
   const name = (t?: string) => {
     if (!t) return 'nothing chosen';
     const [k, id] = t.split(':');
+    if (k === 'mastery') return `${c.spells.find((x) => x.uid === id)?.spell.name ?? 'a spell'} (Mastery)`;
     return k === 'art' ? ART_NAMES[id as Art] : d.abilityByUid.get(id)?.name ?? 'an Ability';
   };
   switch (s.kind) {
@@ -140,7 +144,9 @@ export function describeStanding(c: Character, d: DerivedCharacter, s: StandingA
     case 'practice': return `Practice ${name(s.target)} (Quality 4)`;
     case 'vis': return `Study ${name(s.target)} from vis`;
     case 'work': return 'Work in the workshop';
-    case 'taught': return `Taught ${name(s.target)}`;
+    case 'taught': return s.teacher?.startsWith('char:') ? `Taught by a covenant-mate${s.target ? '' : ' (what teaches the most)'}` : `Taught ${name(s.target)}`;
+    case 'teach': return `Teach ${s.students?.length ? `${s.students.length} student${s.students.length > 1 ? 's' : ''}` : 'whoever asks'}${s.target ? ` ${name(s.target)}` : ' (what teaches the most)'}`;
+    case 'assist': return 'Help in a covenant-mate’s lab';
     case 'worship': return `Worship (Quality ${WORSHIP_AURA}, a church's Dominion)`;
     case 'lab': {
       const p = c.projects?.find((x) => x.uid === s.projectUid && !x.done);
@@ -155,6 +161,23 @@ export function describeStanding(c: Character, d: DerivedCharacter, s: StandingA
   }
 }
 
+// Worked out for the season before its work is done (advanceSeason): those helping each magus in the
+// lab, and why a lesson or help planned did not happen.
+const LAB_HELP = new WeakMap<Character, LabHelper[]>();
+const NO_LESSON = new WeakMap<Character, string>();
+const NO_HELP = new WeakMap<Character, string>();
+
+/** The season is taken already: logged by hand, or by a lesson given before the season's other work. An adventure shares a season (DE). */
+export function seasonBusy(c: Character, year: number, season: Season): boolean {
+  return loggedThisSeason(c, year, season).some((e) => !e.extra && e.activity !== 'adventure');
+}
+
+/** One of the year's extra seasons (a character who needs no sleep) falls in this season and is not yet used. */
+export function extraFree(c: Character, d: DerivedCharacter, year: number, season: Season): boolean {
+  const plan = seasonsOf(c, d);
+  return !!plan.extra && extraSeasonHere(plan, season) && !loggedThisSeason(c, year, season).some((e) => e.extra) && seasonsUsed(c, year).extra < plan.extra;
+}
+
 /** Why a magic character learned nothing: its Might comes off every Advancement Total (RoP: Magic). */
 function mightNote(d: DerivedCharacter, xp: number): string {
   if (xp || !d.magicChar || d.magicChar.might <= 0) return '';
@@ -163,7 +186,13 @@ function mightNote(d: DerivedCharacter, xp: number): string {
 
 /** Log and apply a season of a character's standing activity. Returns what happened. */
 export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, chars?: Character[]): string[] {
-  return runActivity(c, d, ctx, cov, data, year, season, rng, resolveStanding(c, d, year), chars);
+  const s = resolveStanding(c, d, year);
+  // left to the clock, a free season goes to the covenant's best book or teacher when it teaches more than the usual practice, or a magus's lab Exposure with no project
+  if ((c.standing?.kind ?? 'auto') === 'auto' && !c.creature && (s.kind === 'practice' || (s.kind === 'lab' && !s.projectUid))) {
+    const best = bestStudy(c, d, cov, year, season, chars ?? [], d.isMagus ? focusArts(d) : []);
+    if (best && best.xp >= 5 && best.xp > (s.kind === 'practice' ? 4 : 2)) return runActivity(c, d, ctx, cov, data, year, season, rng, best.standing, chars);
+  }
+  return runActivity(c, d, ctx, cov, data, year, season, rng, s, chars);
 }
 
 /**
@@ -172,10 +201,19 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
  */
 export function runExtraSeason(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, chars?: Character[]): string[] {
   const want = c.seasons?.extra;
-  const s: StandingActivity = !want || want.kind === 'auto' || want.kind === 'lab' || want.kind === 'work' ? { kind: 'practice', target: want?.target ?? workAbility(d) } : want;
-  if (s.kind === 'none') return [];
+  // a lesson or lab help is worked out before the season's other work; here it did not happen
+  const missed = want?.kind === 'teach' ? `No lesson: ${NO_LESSON.get(c) ?? 'no student had the season free'}` : want?.kind === 'assist' ? `No lab help: ${NO_HELP.get(c) ?? 'the magus did no lab work'}` : '';
+  const s: StandingActivity = missed || !want || want.kind === 'auto' || want.kind === 'lab' || want.kind === 'work' ? { kind: 'practice', target: (!missed && want?.target) || workAbility(d) } : want;
+  // a magic character learns nothing by practice while its Might comes off the total (RoP: Magic): the season is not wasted on it
+  if (s.kind === 'practice' && d.magicChar && d.magicChar.might > 0 && !c.creature?.familiarOf) {
+    const t = s.target?.split(':')[1];
+    if (!t || !computeStudy(d, { kind: 'practice', quality: 4, subject: '' }, { abilityUid: t }).xp)
+      return [`Extra season: ${missed ? `${missed}. ` : ''}nothing it could learn by practice (its Might ${d.magicChar.might} comes off every Advancement Total). Set its extra seasons to teach or to help in a lab, or plan one that eats vis.`];
+  }
+  if (s.kind === 'none') return missed ? [`Extra season: ${missed}.`] : [];
   const before = c.seasonLog.length;
   const out = runActivity(c, d, ctx, cov, data, year, season, rng, s, chars);
+  if (missed) out.unshift(`${missed}.`);
   for (const e of c.seasonLog.slice(before)) {
     e.extra = true;
     e.summary = `Extra season (needs no sleep): ${e.summary}`;
@@ -212,9 +250,24 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
     return { abilityUid: id, label: d.abilityByUid.get(id)?.name ?? (fallback || 'an Ability') };
   };
   const theory = d.abilities.find((a) => a.abilityId === d.theoryAbility);
+  // nothing as planned this season: it goes to what it would have been unplanned, rather than nothing
+  const instead = (why: string, target?: string) => {
+    const was = c.standing;
+    c.standing = { kind: 'auto', target };
+    const out = runStanding(c, d, ctx, cov, data, year, season, rng, chars);
+    c.standing = was;
+    return out.length ? [`${why} Instead: ${out[0]}`, ...out.slice(1)] : [why];
+  };
   switch (s.kind) {
     case 'none':
       return [];
+    case 'teach':
+      // a lesson is given before the season's other work (advanceSeason): here there was none
+      return instead(`No lesson this season: ${NO_LESSON.get(c) ?? 'no student had the season free'}.`);
+    case 'assist': {
+      const m = chars?.find((x) => x.id === s.helps);
+      return instead(`No help in the lab this season: ${NO_HELP.get(c) ?? cannotHelp(c, d, m) ?? `${m?.name || 'the magus'} did no lab work`}.`);
+    }
     case 'exposure': {
       const t = target(s.target);
       if (!t) return [];
@@ -282,31 +335,29 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       return [`Studied ${ART_NAMES[art]} from ${pawns} pawn${pawns > 1 ? 's' : ''} of vis: ${describeStress(r)} + aura ${aura}, +${res.xp} xp.`];
     }
     case 'taught': {
+      // a lesson from another character is given before the season's other work (advanceSeason): here there was none
+      if (s.teacher?.startsWith('char:')) {
+        const who = chars?.find((x) => x.id === s.teacher!.slice(5));
+        return instead(`Not taught this season: ${NO_LESSON.get(c) ?? `${who?.name || 'the teacher'} had no season free to teach`}.`);
+      }
       const t = target(s.target);
       const sp = s.teacher?.startsWith('spec:') ? cov?.specialists.find((x) => x.uid === s.teacher!.slice(5)) : undefined;
-      // no lesson this season: the character does what it would have done unplanned, rather than nothing
-      const instead = (why: string) => {
-        const was = c.standing;
-        c.standing = { kind: 'auto', target: t && !('art' in t) ? s.target : undefined };
-        const out = runStanding(c, d, ctx, cov, data, year, season, rng, chars);
-        c.standing = was;
-        return out.length ? [`${why} Instead: ${out[0]}`, ...out.slice(1)] : [why];
-      };
-      if (!t || !sp) return instead('Taught: choose the teacher and the subject.');
-      if ('art' in t) return instead(`${sp.name || 'The teacher'} cannot teach a Hermetic Art (teachers have no Gift).`);
+      const keep = t && !('art' in t) ? s.target : undefined;
+      if (!t || !sp) return instead('Taught: choose the teacher and the subject.', keep);
+      if ('art' in t) return instead(`${sp.name || 'The teacher'} cannot teach a Hermetic Art (teachers have no Gift).`, keep);
       // the drill sergeant drills the whole turb together, one season a year (Grogs); a teacher teaches two seasons a year (DE p.180)
       const drill = sp.role === 'drill-sergeant';
       const sameLesson = drill && sp.taught?.year === year && sp.taught.season === season;
       const limit = drill ? 1 : 2;
-      if (!sameLesson && sp.taught?.year === year && sp.taught.seasons >= limit) return instead(`${sp.name || 'The teacher'} has taught ${drill ? 'the turb one season' : 'two seasons'} this year already (${drill ? 'Grogs' : 'DE p.180'}).`);
+      if (!sameLesson && sp.taught?.year === year && sp.taught.seasons >= limit) return instead(`${sp.name || 'The teacher'} has taught ${drill ? 'the turb one season' : 'two seasons'} this year already (${drill ? 'Grogs' : 'DE p.180'}).`, keep);
       const mine = c.abilities.find((a) => a.uid === t.abilityUid);
       const theirs = specAbilities(sp).find((a) => a.id === mine?.abilityId && (a.param ?? '') === (mine?.param ?? ''));
-      if (!theirs) return instead(`${sp.name || 'The teacher'} does not know ${t.label}.`);
+      if (!theirs) return instead(`${sp.name || 'The teacher'} does not know ${t.label}.`, keep);
       // a lab's Teaching Specialization adds to teaching done there, at most +3 (Covenants ch.9)
       const lab = sp.teachIn ? cov?.labs.find((l) => l.uid === sp.teachIn) : undefined;
       const labTeaching = lab ? Math.min(3, deriveLab(lab, data).specializations.Teaching ?? 0) : 0;
       const r = computeStudy(d, { kind: 'teacher', com: specChar(sp, 'Com'), teaching: sp.teaching ?? 0, teacherScore: theirs.score, students: drill ? 3 : 1, goodTeacher: !!sp.goodTeacher, isArt: false, subject: t.label, labTeaching }, { abilityUid: t.abilityUid });
-      if (!r.xp && r.capped) return instead(`${sp.name || 'The teacher'} knows no more ${t.label} than ${c.name || 'the student'} does.`);
+      if (!r.xp && r.capped) return instead(`${sp.name || 'The teacher'} knows no more ${t.label} than ${c.name || 'the student'} does.`, keep);
       if (!sameLesson) sp.taught = { year, seasons: (sp.taught?.year === year ? sp.taught.seasons : 0) + 1, season };
       log('taught', `Taught by ${sp.name || 'a teacher'}: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
       return [`Taught ${t.label} by ${sp.name || 'a teacher'}: Quality ${r.sourceQuality}, +${r.xp} xp${r.capped ? ' (as far as the teacher knows)' : ''}.${mightNote(d, r.xp)}`];
@@ -346,9 +397,13 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
           const plan = planProject(x, c, d, ctx, { subject: chars?.find((y) => y.id === x.subjectId), data });
           return !plan.problems.length && !visShort(x, c, ctx, plan);
         };
-        p = open.find(workable) ?? p;
+        // vis extraction only by choice (a priority, or the project set): never left to the clock
+        p = open.find((x) => x.kind !== 'extract' && workable(x)) ?? p;
       }
-      if (p) lines.push(...workProject(c, d, ctx, cov, p.uid, data, year, { rng, chars, season }));
+      const helpers = LAB_HELP.get(c);
+      if (p) lines.push(...workProject(c, d, ctx, cov, p.uid, data, year, { rng, chars, season, helpers }));
+      const helped = (helpers ?? []).filter((h) => h.used);
+      if (helped.length) lines.push(`Helped by ${helped.map((h) => `${h.c.name || 'an assistant'} (+${h.value})`).join(' and ')}.`);
       const gains: Record<string, number> = theory ? { [`ability:${theory.uid}`]: 2 } : {};
       log('other', p ? `Lab: ${p.name}` : 'Lab work', gains);
       if (p) c.seasonLog[c.seasonLog.length - 1].labKind = p.kind;
@@ -613,6 +668,106 @@ function attendGathering(c: Character, d: DerivedCharacter, ctx: CharacterContex
   return [`Attended ${g.name} at ${g.at}.`, ...out];
 }
 
+type Passes = { derive: (c: Character) => DerivedCharacter; ctxOf: (c: Character) => CharacterContext; tribunalOf: (c: Character) => string | undefined; data: GameData; year: number; season: Season };
+
+/** Standing activities a student's request may take a teacher's season from: nothing set that matters more. */
+const FREE_FOR_LESSON: StandingActivity['kind'][] = ['auto', 'practice', 'exposure', 'none'];
+
+/**
+ * Lessons between characters, before the season's other work: a teacher set to teach (in its season,
+ * or an extra one when it needs no sleep), or asked by students set to be taught by it, teaches the
+ * lesson that teaches the most to those free this season. Those taught have spent their season.
+ */
+function seasonLessons(chars: Character[], x: Passes): Line[] {
+  const { year, season, data } = x;
+  const lines: Line[] = [];
+  const playing = chars.filter(inPlay);
+  const ds = new Map<string, DerivedCharacter>();
+  const D = (c: Character) => ds.get(c.id) ?? ds.set(c.id, x.derive(c)).get(c.id)!;
+  const free = (c: Character) => !seasonBusy(c, year, season);
+  // only those set to teach, to be taught by a character, or asked by one, need a look (the Tribunal's magi follow their lists)
+  const askers = playing.filter((s) => s.standing?.kind === 'taught' && s.standing.teacher?.startsWith('char:'));
+  const askedOf = new Set(askers.map((s) => s.standing!.teacher!.slice(5)));
+  for (const t of playing.filter((y) => y.standing?.kind === 'teach' || y.seasons?.extra?.kind === 'teach' || askedOf.has(y.id))) {
+    // one who needs no sleep may teach in an extra season and in its own
+    for (const slot of ['extra', 'main'] as const) {
+      const td = D(t);
+      const own = free(t) ? resolveStanding(t, td, year) : undefined;
+      const extra = extraFree(t, td, year, season) ? t.seasons?.extra ?? { kind: 'auto' as const } : undefined;
+      const asked = askers.filter((s) => s.id !== t.id && free(s) && ((st) => st.kind === 'taught' && st.teacher === `char:${t.id}`)(resolveStanding(s, D(s), year)));
+      const here = slot === 'extra' ? extra : own;
+      // set to teach in this season, or asked by students with nothing else set for it
+      const st = here?.kind === 'teach' ? here : undefined;
+      if (!here || (!st && (!asked.length || !FREE_FOR_LESSON.includes(here.kind)))) {
+        if (slot === 'main') for (const s of asked) NO_LESSON.set(s, `${t.name || 'the teacher'} has ${free(t) ? 'other work set for' : 'spent'} the season`);
+        continue;
+      }
+      const named = (st?.students ?? []).map((id) => playing.find((y) => y.id === id)).filter((y): y is Character => !!y && y.id !== t.id && free(y));
+      const pool = [...new Map([...named, ...asked].map((y) => [y.id, y])).values()];
+      if (!pool.length) {
+        NO_LESSON.set(t, st?.students?.length ? 'none of the students chosen has the season free' : 'choose the students');
+        continue;
+      }
+      const wants = new Map(asked.map((s) => [s.id, resolveStanding(s, D(s), year).target]));
+      const labTeaching = Math.min(3, x.ctxOf(t).lab?.specializations.Teaching ?? 0);
+      const r = bestLesson({ c: t, d: td }, pool.map((y) => ({ c: y, d: D(y) })), data, { subject: st?.target, wants, labTeaching });
+      for (const [id, why] of r.why) {
+        const s = playing.find((y) => y.id === id);
+        if (s) NO_LESSON.set(s, why.replace(/\.$/, ''));
+      }
+      if (!r.plan) {
+        NO_LESSON.set(t, [...r.why.values()].join(' ').replace(/\.$/, '') || 'no student would gain from it');
+        continue;
+      }
+      for (const l of giveLesson({ c: t, d: td }, r.plan, year, season, { extra: slot === 'extra', asked: !st })) lines.push({ who: l.who.name || 'Unnamed', kind: 'season', text: l.text, tribunal: x.tribunalOf(l.who) });
+      for (const c of [t, ...r.plan.students.map((w) => w.s.c)]) ds.set(c.id, x.derive(c));
+    }
+  }
+  return lines;
+}
+
+/**
+ * Who helps whom in the lab this season, worked out before the season's work: those set to help (in
+ * their season or an extra one), and a familiar's extra seasons left to the clock, which go to its
+ * magus. A magus takes as many as Leadership allows. Returns the helpers whose seasons wait on the
+ * magus's lab work.
+ */
+function seasonHelpers(chars: Character[], x: Passes): Map<Character, LabHelper> {
+  const { year, season } = x;
+  const playing = chars.filter(inPlay);
+  const byMagus = new Map<Character, LabHelper[]>();
+  // only those set to help, and familiars with extra seasons, need a look
+  for (const h of playing.filter((y) => y.standing?.kind === 'assist' || y.seasons?.extra?.kind === 'assist' || y.creature?.familiarOf)) {
+    const hd = x.derive(h);
+    const own = seasonBusy(h, year, season) ? undefined : resolveStanding(h, hd, year);
+    const extra = extraFree(h, hd, year, season) ? h.seasons?.extra ?? { kind: 'auto' as const } : undefined;
+    let slot: 'main' | 'extra' | undefined;
+    let helps: string | undefined;
+    if (own?.kind === 'assist') [slot, helps] = ['main', own.helps];
+    else if (extra?.kind === 'assist') [slot, helps] = ['extra', extra.helps];
+    else if (extra?.kind === 'auto' && h.creature?.familiarOf) [slot, helps] = ['extra', h.creature.familiarOf];
+    if (!slot) continue;
+    const m = playing.find((y) => y.id === helps);
+    const spent = m && seasonBusy(m, year, season) ? loggedThisSeason(m, year, season).find((e) => !e.extra && e.activity !== 'adventure') : undefined;
+    const why = cannotHelp(h, hd, m) ?? (spent ? `${m!.name || 'the magus'}’s season is spent otherwise (${spent.summary})` : undefined);
+    if (why || !m) {
+      if (own?.kind === 'assist' || extra?.kind === 'assist') NO_HELP.set(h, why ?? 'choose the magus to help');
+      continue;
+    }
+    byMagus.set(m, [...(byMagus.get(m) ?? []), { c: h, d: hd, value: helpValue(hd), familiar: h.creature?.familiarOf === m.id, extra: slot === 'extra' }]);
+  }
+  const waiting = new Map<Character, LabHelper>();
+  for (const [m, all] of byMagus) {
+    const ranked = [...all].sort((a, b) => Number(b.familiar) - Number(a.familiar) || b.value - a.value);
+    const cap = maxHelpers(x.derive(m), ranked.some((h) => h.familiar));
+    const kept = ranked.slice(0, cap);
+    for (const h of ranked.slice(cap)) NO_HELP.set(h.c, `${m.name || 'the magus'} can use ${cap} helper${cap > 1 ? 's' : ''} a season (Leadership)`);
+    LAB_HELP.set(m, kept);
+    for (const h of kept) waiting.set(h.c, h);
+  }
+  return waiting;
+}
+
 /** Move the saga on by one season. Returns the new state (the input is left as it was) and what happened. */
 export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOptions = DEFAULT_ADVANCE): { state: SagaState; report: TimeReport } {
   const state: SagaState = structuredClone(input);
@@ -632,26 +787,52 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   const g = { data, saga, rules: saga.houseRules };
   // the wanderers who winter at a covenant and summer on the road move first
   for (const l of wanderersSeasonStart(state, year, season, rng)) lines.push({ ...l, kind: 'season' });
+  // a familiar's own sheet learns as a human does while it is bound
+  bindFamiliarSheets(state.characters);
+
+  // lessons between characters, and who helps whom in the lab, are settled before the season's work
+  const passes: Passes = { derive, ctxOf, tribunalOf, data, year, season };
+  if (o.fillUnplanned) lines.push(...seasonLessons(state.characters, passes));
+  const helping = o.fillUnplanned ? seasonHelpers(state.characters, passes) : new Map<Character, LabHelper>();
 
   // the season's work: what each character logged, or its standing activity; and an extra season for one who needs no sleep
   for (const c of state.characters.filter(inPlay)) {
     if (!o.fillUnplanned) continue;
-    const logged = loggedThisSeason(c, year, season);
     const d = derive(c);
     const ctx = ctxOf(c);
     const cov = covenantOf(c, state.covenants);
     const tribunal = tribunalOf(c);
+    const helper = helping.get(c);
     // an adventure shares the season with other work (DE): only other logged activities fill it
-    if (!logged.some((e) => !e.extra && e.activity !== 'adventure')) {
+    if (!seasonBusy(c, year, season) && !(helper && !helper.extra)) {
       // a living covenant's magi spend a gathering's season at the Tribunal
       // and its magi of a House at their House's own gathering
       const meets = gathering ?? (houseGathering && c.house === houseGathering.house ? houseGathering : undefined);
       const out = meets && tribunal && d.isMagus && c.standing?.kind !== 'none' ? attendGathering(c, d, ctx, cov, data, year, season, rng, meets) : runStanding(c, d, ctx, cov, data, year, season, rng, state.characters);
       for (const t of out) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t, tribunal });
     }
-    const plan = seasonsOf(c, d);
-    if (plan.extra && extraSeasonHere(plan, season) && !logged.some((e) => e.extra) && seasonsUsed(c, year).extra < plan.extra)
+    if (extraFree(c, d, year, season) && !helper?.extra)
       for (const t of runExtraSeason(c, d, ctx, cov, data, year, season, rng, state.characters)) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t, tribunal });
+  }
+  // the helpers' seasons, once the magi's lab work is done: Exposure in Magic Theory, or their own work if there was none to help with
+  for (const [c, h] of helping) {
+    const d = derive(c);
+    const tribunal = tribunalOf(c);
+    const out: string[] = [];
+    const magus = [...state.characters].find((m) => LAB_HELP.get(m)?.includes(h));
+    if (h.used) {
+      const mt = ensureAbility(c, 'magic-theory', {});
+      const r = computeStudy(d, { kind: 'exposure', subject: 'Magic Theory' }, { abilityUid: mt.uid });
+      const e = newSeasonEntry(year, season, 'other', `${h.extra ? 'Extra season (needs no sleep): ' : ''}Helped ${magus?.name || 'a magus'} in the lab: ${h.used} (+${r.xp} xp Exposure in Magic Theory)`, r.xp ? { [`ability:${mt.uid}`]: r.xp } : {});
+      if (h.extra) e.extra = true;
+      applySeason(c, e, 1);
+      c.seasonLog.push(e);
+      out.push(`${h.extra ? 'Extra season: ' : ''}Helped ${magus?.name || 'a magus'} in the lab (${h.used}): +${h.value} to the Lab Total; Exposure in Magic Theory +${r.xp} xp.${mightNote(d, r.xp)}`);
+    } else {
+      NO_HELP.set(c, `${magus?.name || 'the magus'} did no lab work this season`);
+      out.push(...(h.extra ? runExtraSeason(c, d, ctxOf(c), covenantOf(c, state.covenants), data, year, season, rng, state.characters) : runStanding(c, d, ctxOf(c), covenantOf(c, state.covenants), data, year, season, rng, state.characters)));
+    }
+    for (const t of out) lines.push({ who: c.name || 'Unnamed', kind: 'season', text: t, tribunal });
   }
   if (houseGathering && living.covenants.size)
     saga.tribunalNews = [
