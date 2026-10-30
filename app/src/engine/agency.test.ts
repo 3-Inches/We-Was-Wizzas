@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { ensureAbility, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
-import { addAgencyXp, giftToAgent, maxAgents, persuasionRoll } from './agency';
+import { addAgencyXp, agencyCost, giftToAgent, impressRoll, maxAgents, persuasionRoll } from './agency';
 import { DEFAULT_HOUSE_RULES, type Agent, type Character } from './types';
 
 const data = buildGameData();
@@ -43,5 +43,23 @@ describe('agencies', () => {
     expect(r.ease).toBe(9);
     expect(r.total).toBe(13);
     expect(r.ok).toBe(true);
+  });
+  it('prices the starting agency at Bond + Resistance Strength, at least 1 each', () => {
+    expect(agencyCost(agent({ bond: 2, strength: 1, fromCreation: true }))).toBe(3);
+    // Aelfric, an Outlaw Leader with underlings: Resistance 0, Bond +1
+    expect(agencyCost(agent({ bond: 1, strength: 0, fromCreation: true }))).toBe(1);
+    expect(agencyCost(agent({ bond: 1, strength: -3, fromCreation: true }))).toBe(1);
+  });
+  it('impresses a would-be agent with Presence + Leadership − the Gift + a stress die against 6', () => {
+    const c = newCharacter('magus', 's');
+    c.characteristics.Pre = 1;
+    ensureAbility(c, 'leadership', { apprenticeship: 5 }); // 1
+    // a die of 7, no botch: 7 + 1 + 1 − 3 (the Gift) = 6
+    const r = impressRoll(d(c), 0, () => 0.75);
+    expect(r.ease).toBe(6);
+    expect(r.total).toBe(6);
+    expect(r.ok).toBe(true);
+    // an inherited agent's former Bond adds to the Ease Factor
+    expect(impressRoll(d(c), 2, () => 0.75).ok).toBe(false);
   });
 });

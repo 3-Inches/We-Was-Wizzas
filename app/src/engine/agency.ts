@@ -24,6 +24,53 @@ export const STATUS_RESISTANCE: { label: string; value: number }[] = [
   { label: 'Major Social Flaw (Outlaw, Outsider)', value: -3 },
 ];
 
+/** What changes a would-be agent's Resistance (Resistance of Agents: Modifiers and Resources); it is never below 1. */
+export const RESISTANCE_MODIFIERS: { label: string; value: number }[] = [
+  { label: 'Major Flaws likely to inconvenience the principal (Enemies, Feud, Lycanthrope…)', value: -3 },
+  { label: 'Minor Flaws likely to inconvenience the principal (Black Sheep, Dark Secret, Dependant…)', value: -1 },
+  { label: 'A Minor Flaw the principal uses to dominate them (a hostage, blackmail): they hate the principal', value: -6 },
+  { label: 'Extraordinary skill: main Ability 6 or more', value: 1 },
+  { label: 'Exceptional skill: main Ability 8 or more', value: 3 },
+  { label: 'A Minor General or Supernatural Virtue (Gossip, Social Contacts, Temporal Influence…)', value: 1 },
+  { label: 'A Major General or Supernatural Virtue (Entrancement, True Faith, Wealthy…)', value: 3 },
+  { label: 'Serves a rival covenant', value: 9 },
+  { label: 'Underlings: up to half a dozen people', value: 1 },
+  { label: 'Many underlings: up to two dozen', value: 3 },
+  { label: 'A useful Minor Flaw (Busybody, Faerie Friend, Mentor…)', value: 1 },
+  { label: 'More than three of these resources', value: 6 },
+  { label: 'More than six of these resources', value: 9 },
+];
+
+/** The Virtues and Flaws that bring an agency at creation, bought with twelve agency points. */
+export const AGENCY_VIRTUES = ['social-contacts', 'mercenary-captain', 'outlaw-leader-flaw', 'close-family-ties-flaw', 'landed-noble'];
+export const AGENCY_POINTS = 12;
+
+/** What an agent of the starting agency costs: their Bond + their Resistance Strength from the table, at least 1. */
+export function agencyCost(a: Agent): number {
+  return Math.max(1, a.bond + (a.strength ?? 0));
+}
+
+/**
+ * Impressing a would-be agent, before they can be recruited: Presence + Leadership − the Gift's social
+ * penalty + a stress die against 6 (more by the Bond they had with a former principal, for an agency
+ * inherited). On a failure the principal may not try again until another story brings them together.
+ */
+export function impressRoll(d: DerivedCharacter, formerBond = 0, rng: Rng = defaultRng) {
+  const parts = [
+    { label: 'Presence', value: d.characteristics.Pre.value },
+    { label: 'Leadership', value: ability(d, 'leadership') },
+    ...(d.socialPenalty ? [{ label: 'The Gift', value: d.socialPenalty }] : []),
+  ];
+  const ease = 6 + formerBond;
+  const r = stressDie(1, rng);
+  const total = r.botches ? 0 : r.value + parts.reduce((s, p) => s + p.value, 0);
+  const ok = !r.botches && total >= ease;
+  return {
+    ok, total, ease,
+    text: `stress die ${describeStress(r)} + ${parts.map((p) => `${p.label} ${p.value}`).join(', ')} = ${r.botches ? 'botch' : total} against ${ease}: ${ok ? 'a favorable impression: recruiting may begin' : 'no impression: try again after another story brings them together'}.`,
+  };
+}
+
 /** What an agent may be asked (Tasks for Agents): the persuasion roll's Ease Factor. */
 export const AGENT_TASKS: { label: string; ease: number }[] = [
   { label: 'Common information, easily obtained', ease: 3 },

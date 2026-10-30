@@ -321,6 +321,11 @@ export interface Agent {
   resistance: number;
   /** agency experience points carried toward the next step */
   xp?: number;
+  /** one of the agency a Virtue or Flaw gives at creation, bought with agency points: Bond + this Resistance Strength from the table */
+  fromCreation?: boolean;
+  strength?: number;
+  /** when the principal last asked them for sensitive or secret information (no more than once a season) */
+  askedFor?: { year: number; season: Season };
 }
 
 /** A disease a character suffers (Art & Academe, Disease). */
