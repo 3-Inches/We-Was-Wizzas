@@ -40,8 +40,10 @@ export const PRIORITY_BY_ID = new Map(PRIORITY_KINDS.map((k) => [k.id, k]));
 
 /**
  * The duty a magus's House or office lays on a season, if any: a Quaesitor investigates the
- * complaints brought to him, keeping three seasons a year his own (HoH:TL, Guernicus); a Gifted
+ * complaints brought to them, keeping three seasons a year their own (HoH:TL, Guernicus); a Gifted
  * Mercere spends a season every seven years carrying messages as the Redcaps do (HoH:TL, Mercere).
+ * Most magi of House Guernicus hold the office, so the toolkit takes any of them for a Quaesitor;
+ * one of another House is one by a Quaesitor Reputation.
  */
 export function houseDuty(c: Character): { what: string; ability: string; param?: string; everyYears: number } | undefined {
   if (c.type !== 'magus') return undefined;

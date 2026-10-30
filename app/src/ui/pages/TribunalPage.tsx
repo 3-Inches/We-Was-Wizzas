@@ -14,7 +14,7 @@ import { playersCovenant, rhineCustoms } from '../../engine/tribunalLife';
 import { bookVisPrice } from '../../engine/market';
 import { visPriceOf } from '../../engine/economy';
 import { RHINE_GILDS } from '../../engine/tribunal';
-import type { Character, Covenant, Saga, TribunalNews } from '../../engine/types';
+import type { Character, Covenant, LibraryBook, Saga, TribunalNews } from '../../engine/types';
 import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { BookBadge, Card, Confirm, Empty, Stepper, Tabs } from '../kit';
@@ -174,6 +174,12 @@ export default function TribunalPage() {
               <p className="small muted" style={{ marginBottom: 0 }}>
                 Building takes a few seconds a covenant (the whole Tribunal, some twenty). Ages are the book’s for {book.present}, moved on to {saga.currentYear}.
               </p>
+              {book.tribunal === 'Rhine' && !rhineCustoms(saga) && (
+                <p className="small" style={{ marginBottom: 0 }}>
+                  The Rhine’s own customs are off: its magi have no rank or gild and a sigil each, and no peregrinatores stay as guests. Turn on{' '}
+                  <Link to={`${S}/rules?tab=optional`}>Ranks, gilds and voting sigils</Link> to have them; peregrinatores then come to the covenants a few a year.
+                </p>
+              )}
             </Card>
             <Card title="Gatherings" tour="tribunal-gatherings">
               {nextGatherings(saga, saga.currentYear).map((g) => (
@@ -248,6 +254,11 @@ export function NewsCard({ saga, covs, chars, compact }: { saga: Saga; covs: Cov
           </Link>
         )}
         {n.approachKind && <span className="badge">{n.approachKind}</span>}
+        {n.lapsed && (
+          <span className="badge" title="Left unanswered for two years: the toolkit set it aside, and it may come again">
+            lapsed
+          </span>
+        )}
         <span className="small" style={{ flex: '1 1 260px' }}>
           {n.text}
           {who && (
@@ -437,8 +448,14 @@ function DealWith({ cov, players, saga }: { cov: Covenant; players: Covenant[]; 
   const [msg, setMsg] = useState('');
   const ours = players.find((c) => c.id === oursId) ?? players[0];
   const when = { year: saga.currentYear, season: saga.currentSeason };
+  const data = useGameData(saga);
   const books = cov.library.filter((b) => b.kind !== 'mundane' && !b.corrupt);
   const book = books.find((b) => b.uid === bookUid);
+  // grouped by subject (the Arts in their order, then the Abilities, then Lab Texts), the best of each first
+  const subjectOf = (b: LibraryBook) => (b.kind === 'labText' || b.kind === 'castingTablet' ? 'Lab Texts' : b.subjectType === 'art' ? ART_NAMES[b.subject as Art] : data.abilityById.get(b.subject)?.name ?? b.subject);
+  const rankOf = (s: string) => (s === 'Lab Texts' ? 99 : ARTS.findIndex((a) => ART_NAMES[a] === s) >= 0 ? ARTS.findIndex((a) => ART_NAMES[a] === s) : 50);
+  const groups = [...new Set(books.map(subjectOf))].sort((a, b) => rankOf(a) - rankOf(b) || a.localeCompare(b));
+  const best = (a: LibraryBook, b: LibraryBook) => Number(b.kind === 'summa') - Number(a.kind === 'summa') || b.level - a.level || b.quality - a.quality || a.title.localeCompare(b.title);
   // Covenants' book prices in pawns (a sound book to order), a lab text a pawn for every five levels; silver at the saga's vis price
   const pawns = book ? (book.kind === 'summa' || book.kind === 'tractatus' ? bookVisPrice(book.kind, book.level, 'sound', false) : Math.max(1, Math.ceil(book.level / 5))) : 0;
   const pounds = pawns * visPriceOf(saga);
@@ -481,10 +498,17 @@ function DealWith({ cov, players, saga }: { cov: Covenant; players: Covenant[]; 
         <span className="small">A copy of</span>
         <select value={bookUid} onChange={(e) => setBookUid(e.target.value)} aria-label="Book" style={{ maxWidth: 260 }}>
           <option value="">— one of its {books.length} books —</option>
-          {books.map((b) => (
-            <option key={b.uid} value={b.uid}>
-              {b.title} ({b.kind === 'summa' ? `summa L${b.level} Q${b.quality}` : b.kind === 'tractatus' ? `tractatus Q${b.quality}` : `lab text, level ${b.level}`})
-            </option>
+          {groups.map((g) => (
+            <optgroup key={g} label={g}>
+              {books
+                .filter((b) => subjectOf(b) === g)
+                .sort(best)
+                .map((b) => (
+                  <option key={b.uid} value={b.uid}>
+                    {b.title} ({b.kind === 'summa' ? `summa L${b.level} Q${b.quality}` : b.kind === 'tractatus' ? `tractatus Q${b.quality}` : `lab text, level ${b.level}`})
+                  </option>
+                ))}
+            </optgroup>
           ))}
         </select>
         {book && (

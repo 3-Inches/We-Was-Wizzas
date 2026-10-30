@@ -9,7 +9,7 @@ import { newCharacter } from './character/factory';
 import { newCovenant } from './covenant';
 import { issueRedcapDevices, redcapYearEnd } from './generate/items';
 import { seeded } from './generate/random';
-import { buildLivingCovenant, houseGatheringIn } from './living';
+import { buildLivingCovenant, houseGatheringIn, livingYearEnd } from './living';
 import { houseDuty } from './priorities';
 import { advanceSeasons, DEFAULT_ADVANCE } from './time';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
@@ -133,5 +133,41 @@ describe('the Great Library', () => {
     expect(cov.library.filter((b) => b.kind === 'tractatus').length).toBeGreaterThan(100);
     expect(Math.max(...cov.library.filter((b) => b.kind === 'tractatus').map((b) => b.quality))).toBeLessThanOrEqual(12);
     expect(cov.library.filter((b) => b.kind === 'labText').reduce((t, b) => t + b.level, 0)).toBeGreaterThan(5000);
+  });
+});
+
+describe('peregrinatores', () => {
+  it('come from other Tribunals when the customs are turned on after the covenants were added', () => {
+    const saga = sagaAt(1220, 'Winter', { rhineGilds: false });
+    const a = buildLivingCovenant(RHINE, def('durenmar'), { data, saga, rules }, { seed: 3 });
+    const b = buildLivingCovenant(RHINE, def('crintera'), { data, saga, rules }, { seed: 4, avoidNames: a.chars.map((c) => c.name) });
+    const state = { saga, characters: [...a.chars, ...b.chars], covenants: [a.cov, b.cov] };
+    const guests = () => state.characters.filter((c) => c.wanderer?.wanders === 'peregrinator' && !c.wounds.dead);
+    expect(guests().filter((c) => c.notes?.startsWith('A peregrinator the toolkit made'))).toHaveLength(0);
+    const rng = seeded(9);
+    for (let y = 1220; y < 1224; y++) livingYearEnd(state, { data, saga, rules }, y, rng, new Set());
+    expect(guests()).toHaveLength(0);
+    saga.options = { rhineGilds: true };
+    for (let y = 1224; y < 1232; y++) livingYearEnd(state, { data, saga, rules }, y, rng, new Set());
+    const magi = state.characters.filter((c) => c.type === 'magus' && !c.wounds.dead);
+    expect(guests().length).toBeGreaterThanOrEqual(Math.round(magi.length / 6) - 2);
+    for (const c of guests()) expect(state.covenants.some((v) => v.id === c.covenantId && v.labs.some((l) => l.ownerId === c.id)), c.name).toBe(true);
+    expect(new Set(state.characters.map((c) => c.name)).size).toBe(state.characters.length);
+  });
+});
+
+describe('approaches to the players', () => {
+  it('lapse when left unanswered for two years', () => {
+    const saga = sagaAt(1220, 'Winter');
+    saga.tribunalNews = [
+      { uid: 'old', year: 1221, season: 'Spring', kind: 'approach', approach: 'x', text: 'An offer' },
+      { uid: 'met', year: 1221, season: 'Spring', kind: 'approach', approach: 'y', text: 'A request', done: true },
+    ];
+    const state = { saga, characters: [], covenants: [] };
+    livingYearEnd(state, { data, saga, rules }, 1221, seeded(1), new Set());
+    expect(saga.tribunalNews[0].done).toBeUndefined();
+    livingYearEnd(state, { data, saga, rules }, 1222, seeded(1), new Set());
+    expect(saga.tribunalNews[0]).toMatchObject({ done: true, lapsed: true });
+    expect(saga.tribunalNews[1].lapsed).toBeUndefined();
   });
 });
