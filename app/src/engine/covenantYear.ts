@@ -196,3 +196,23 @@ export function bookPrice(kind: 'summa' | 'tractatus', level: number, tier: Book
     ? `${level} pawns (the level) to wait a season for a copy; up to ${Math.ceil(level * 1.2)} for a spare copy now`
     : '2 pawns to order, 3 for a spare copy now';
 }
+
+/**
+ * Where a covenant's accounts are heading if nothing changes: its spending grows each year by the
+ * inflation it brings (1 £ per 100 £ spent), its income stays. The years until it runs at a loss and
+ * until its treasury is spent, within fifty (0: already).
+ */
+export function accountsForecast(treasury: number, income: number, expenditure: number): { lossIn?: number; emptyIn?: number } {
+  let t = treasury;
+  let exp = expenditure;
+  let lossIn: number | undefined;
+  let emptyIn: number | undefined;
+  for (let y = 0; y <= 50 && (lossIn === undefined || emptyIn === undefined); y++) {
+    const balance = income - exp;
+    if (lossIn === undefined && balance < 0) lossIn = y;
+    t += balance;
+    if (emptyIn === undefined && t < 0) emptyIn = y;
+    exp += Math.round(exp / 100);
+  }
+  return { lossIn, emptyIn };
+}

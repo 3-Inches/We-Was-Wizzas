@@ -8,7 +8,7 @@ import { useStore } from '../../store/store';
 import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { deriveCharacter } from '../../engine/character/derive';
 import { deriveCovenant } from '../../engine/covenant';
-import { DEFAULT_YEAR_END, planYearEnd, type YearEndOptions } from '../../engine/covenantYear';
+import { DEFAULT_YEAR_END, accountsForecast, planYearEnd, type YearEndOptions } from '../../engine/covenantYear';
 import { DEFAULT_ADVANCE, REPORTS_IN_FULL, advanceSeasons, describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
 import { allowanceRecipients } from '../../engine/economy';
 import type { Character, Covenant, TimeReport } from '../../engine/types';
@@ -197,6 +197,7 @@ export default function SeasonsPage() {
           {plan.lines.map((l) => (
             <li key={l}>{l}</li>
           ))}
+          {ye.inflation && <ForecastLine treasury={cov.finances.treasury} income={plan.income} expenditure={plan.expenditure} />}
           {a && a.mode !== 'none' && (
             <li>
               Allowance: {a.mode === 'flat' ? `${a.amount} £ each` : `${a.amount}% of the surplus, split`}
@@ -229,6 +230,20 @@ export default function SeasonsPage() {
         <HookStories cov={cov} />
         <CovenantEffects cov={cov} chars={chars} />
       </Card>
+    );
+  }
+
+  /** Where the accounts are heading as inflation rises, in a line (nothing when that is more than fifty years off). */
+  function ForecastLine({ treasury, income, expenditure }: { treasury: number; income: number; expenditure: number }) {
+    const f = accountsForecast(treasury, income, expenditure);
+    if (f.lossIn === undefined) return null;
+    const years = (n: number) => `${n} year${n === 1 ? '' : 's'}`;
+    return (
+      <li className={f.emptyIn !== undefined && f.emptyIn <= 5 ? 'warn-text' : undefined}>
+        {f.lossIn === 0 ? 'It already spends more than it earns' : `As inflation rises, it will spend more than it earns in about ${years(f.lossIn)}`}
+        {f.emptyIn !== undefined ? `, and the treasury runs out in about ${years(f.emptyIn)}` : ''}. More income (Magical Improvement), cost savings (craftsmen, laborers,
+        magic) or a good year without inflation put that off.
+      </li>
     );
   }
 
