@@ -16,7 +16,7 @@ import { stressDie, type Rng } from './dice';
 import { foundingAtGathering } from './founding';
 import { freshName } from './generate/names';
 import { newLab } from './lab';
-import { magiTarget, otherMagus, takenNames, type LivingContext } from './living';
+import { houseName, magiTarget, otherMagus, takenNames, type LivingContext } from './living';
 import { certamenFatigue, certamenTotals } from './magic';
 import { optionOn } from './optional';
 import { RHINE_RANKS } from './tribunal';
@@ -585,7 +585,7 @@ export function playersCovenant(covenants: Covenant[], characters: Character[]):
 function guestRequest(c: Character): { id: string; kind: 'request'; text: string; chance: number; page?: undefined } {
   return {
     id: `guest:${c.id}`, kind: 'request', chance: 6,
-    text: `${c.name}, a peregrinator of House ${(c.house ?? '').replace(/(^|-)\w/g, (x) => x.toUpperCase()).replace('-', ' ')}, asks for hospitality at the covenant under the Rhine’s guest-laws: three to seven years, three pawns of vis a year or a season’s service, and a laboratory of their own.`,
+    text: `${c.name}, a peregrinator of House ${houseName(c.house)}, asks for hospitality at the covenant under the Rhine’s guest-laws: three to seven years, three pawns of vis a year or a season’s service, and a laboratory of their own.`,
   };
 }
 

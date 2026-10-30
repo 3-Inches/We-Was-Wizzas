@@ -29,12 +29,17 @@ import { fillCovenant } from './generate/covenant';
 import { stockLibrary } from './generate/library';
 import { greatLibraryBooks } from './generate/greatLibraryStock';
 import { seeded } from './generate/random';
+import { newSoldierGroup, soldierBoonsWithoutGroups, soldierKindOf } from './covenfolk';
 import { newLab } from './lab';
 import { defaultPriorities, houseDuty } from './priorities';
 import type { Character, Covenant, EnchantedEffectRecord, EnchantedItem, HouseRules, PriorityKind, Saga, Season, TribunalNews, VisSource } from './types';
 import { addVis, takeVis, visAvailable, visText } from './vis';
 import { transfer } from './market';
 import { uid } from '../util/id';
+import { HOUSE_BY_ID } from '../data/houses';
+
+/** A House's name, from its id ("Ex Miscellanea" for ex-miscellanea). */
+export const houseName = (id?: string) => HOUSE_BY_ID[id ?? '']?.name ?? id ?? '';
 
 export interface LivingContext {
   data: GameData;
@@ -48,20 +53,10 @@ export interface LivingBuild {
   log: string[];
 }
 
-/** Living covenants (and their people) are the storyguide's, not the players'. */
-export function isLiving(cov: Covenant | undefined): boolean {
-  return !!cov?.living;
-}
-
 /** The ids of a saga's living covenants and of everyone who belongs to one, or wanders among them. */
 export function livingIds(covenants: Covenant[], characters: Character[] = []): { covenants: Set<string>; members: Set<string> } {
   const covs = covenants.filter((c) => c.living);
   return { covenants: new Set(covs.map((c) => c.id)), members: new Set([...covs.flatMap((c) => c.memberIds), ...characters.filter((c) => c.wanderer).map((c) => c.id)]) };
-}
-
-/** A character of a living covenant (by membership, or by its home covenant), or one of the Tribunal's wanderers. */
-export function isLivingMember(c: Character, covenants: Covenant[]): boolean {
-  return !!c.wanderer || covenants.some((cov) => cov.living && (cov.memberIds.includes(c.id) || c.covenantId === cov.id));
 }
 
 /** The magi a book's covenant has: those it names (not the Redcaps) and those it counts. */
@@ -326,6 +321,8 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
     const hb = g.data.hookBoonById.get(id);
     return hb ? [{ uid: uid(), defId: hb.id, name: hb.name, kind: hb.kind, size: hb.size, note }] : [];
   });
+  // the soldiers its soldier Boons bring, as the book counts them (else ten), so their pay is in its accounts
+  for (const hb of soldierBoonsWithoutGroups(cov)) (cov.finances.soldiers ??= []).push(newSoldierGroup(soldierKindOf(hb.name)!.id, def.soldiers?.[hb.defId ?? ''] ?? 10, hb.uid));
   const auraBoons = cov.hooksBoons.filter((h) => h.kind === 'boon' && h.size === 'Minor' && /^aura$/i.test(h.name)).length;
   const weak = cov.hooksBoons.some((h) => h.kind === 'hook' && /^weak aura$/i.test(h.name)) ? 1 : 0;
   cov.aura = Math.max(0, def.aura - auraBoons + weak);
@@ -422,12 +419,8 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
     const guests = Math.round(chars.filter((c) => c.type === 'magus').length / 5);
     for (let i = 0; i < guests; i++) {
       yield 'a peregrinator, a guest';
-      const house = def.domusMagna === 'bjornaer' ? 'bjornaer' : PEREGRINE_HOUSES[Math.floor(rng() * PEREGRINE_HOUSES.length)];
-      const c = otherMagus(house, 'journeyman', book, def, cov, g, rng, o.seed * 1000 + k++, avoid, 'the peregrinatores who stay as guests', { pg: 1 + Math.floor(rng() * 12) });
+      const c = newPeregrinator(book, def, cov, g, rng, o.seed * 1000 + k++, avoid, year);
       avoid.push(c.name);
-      c.notes = `A peregrinator the toolkit made, a guest of ${cov.name}: around a sixth of the Rhine’s magi are peregrinatores, living from covenant to covenant under its guest-laws (${book.title}, line 568).`;
-      c.wanderer = { wanders: 'peregrinator', since: year, stay: 3 + Math.floor(rng() * 3), favors: 'any', book: book.book, key: c.name, visited: [cov.id] };
-      cov.labs.push(newLab(`${c.name}’s laboratory`, c.id));
       chars.push(c);
     }
   }
@@ -444,6 +437,16 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
 // ================================================================ the Tribunal through the years
 
 /** The season a Tribunal's gatherings take: the book's (the Rhine's open on Walpurgis Night, the eve of the 1st of May), else Summer. */
+/** A peregrinator staying at a covenant as its guest, with a laboratory of their own there: mostly journeymen, Bjornaer at Crintera (GotF, Laws of Hospitality). */
+function newPeregrinator(book: TribunalBook, def: BookCovenant, cov: Covenant, g: LivingContext, rng: Rng, seed: number, avoid: string[], since: number): Character {
+  const house = def.domusMagna === 'bjornaer' ? 'bjornaer' : PEREGRINE_HOUSES[Math.floor(rng() * PEREGRINE_HOUSES.length)];
+  const c = otherMagus(house, 'journeyman', book, def, cov, g, rng, seed, avoid, 'the peregrinatores who stay as guests', { pg: 1 + Math.floor(rng() * 12) });
+  c.notes = `A peregrinator the toolkit made, a guest of ${cov.name}: around a sixth of the Rhine’s magi are peregrinatores, living from covenant to covenant under its guest-laws (${book.title}, line 568).`;
+  c.wanderer = { wanders: 'peregrinator', since, stay: 3 + Math.floor(rng() * 3), favors: 'any', book: book.book, key: c.name, visited: [cov.id] };
+  cov.labs.push(newLab(`${c.name}’s laboratory`, c.id));
+  return c;
+}
+
 export function gatheringSeason(book: TribunalBook | undefined): Season {
   return book?.gathering.season ?? 'Summer';
 }
@@ -516,6 +519,8 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
   const out: TribunalNews[] = [];
   const living = state.covenants.filter((c) => c.living && !c.living.paused);
   const players = state.covenants.filter((c) => !c.living);
+  // an approach left unanswered for two years lapses: the covenant may come again with it
+  for (const n of state.saga.tribunalNews ?? []) if (n.kind === 'approach' && !n.done && n.year < year) Object.assign(n, { done: true, lapsed: true });
   for (const cov of living) {
     const found = bookCovenant(cov.living!.key);
     const members = state.characters.filter((c) => cov.memberIds.includes(c.id));
@@ -541,7 +546,7 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
       cov.memberIds.push(c.id);
       const lab = newLab(`${c.name}’s laboratory`, c.id);
       cov.labs.push(lab);
-      out.push(news(year, 'Winter', { kind: 'member', covenantId: cov.id, characterId: c.id, text: `${c.name}, a young magus of House ${house.replace(/(^|-)\w/g, (x) => x.toUpperCase()).replace('-', ' ')}, joins ${cov.name}.` }));
+      out.push(news(year, 'Winter', { kind: 'member', covenantId: cov.id, characterId: c.id, text: `${c.name}, a young magus of House ${houseName(house)}, joins ${cov.name}.` }));
     }
     // approaches to the players' covenant: each by its chance a year, not the same one two years running
     if (!players.length) continue;
@@ -555,7 +560,32 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
       out.push(news(year + 1, 'Spring', { kind: 'approach', covenantId: cov.id, approach: a.id, approachKind: a.kind, page: a.page, text: a.text }));
     }
   }
+  lines.push(...peregrinatoresArrive(state, { ...g, saga: state.saga }, living, year, rng));
   return { lines, news: out };
+}
+
+/**
+ * Under the Rhine's guest-laws about a sixth of its magi live as peregrinatores. When fewer do (some
+ * have died, or the covenants were added before the Tribunal's customs were turned on), new ones come
+ * from other Tribunals, a few a year, each the guest of a living covenant.
+ */
+function peregrinatoresArrive(state: { saga: Saga; characters: Character[]; covenants: Covenant[] }, g: LivingContext, living: Covenant[], year: number, rng: Rng): { who: string; text: string; tribunal: string }[] {
+  const book = tribunalBook(state.saga.tribunal);
+  if (book?.tribunal !== 'Rhine' || !optionOn(state.saga, 'rhineGilds') || !living.length) return [];
+  const magi = state.characters.filter((c) => c.type === 'magus' && !c.wounds.dead && !c.retired && (!!c.wanderer || living.some((v) => v.memberIds.includes(c.id))));
+  const guests = magi.filter((c) => c.wanderer?.wanders === 'peregrinator').length;
+  const short = Math.round(magi.length / 6) - guests;
+  const out: { who: string; text: string; tribunal: string }[] = [];
+  for (let i = 0; i < Math.ceil(short / 4); i++) {
+    if (short <= 2 && rng() >= 0.5) break;
+    const host = living[Math.floor(rng() * living.length)];
+    const found = bookCovenant(host.living!.key);
+    if (!found) continue;
+    const c = newPeregrinator(found.book, found.cov, host, g, rng, Math.floor(rng() * 1e9), takenNames(state.characters), year + 1);
+    state.characters.push(c);
+    out.push({ who: host.name, tribunal: host.id, text: `${c.name}, a peregrinator of House ${houseName(c.house)} from another Tribunal, comes to ${host.name} as its guest.` });
+  }
+  return out;
 }
 
 /** News of a gathering, for the storyguide (the players' magi are expected there too). */

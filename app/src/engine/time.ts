@@ -50,6 +50,18 @@ export interface AdvanceOptions {
 
 export const DEFAULT_ADVANCE: AdvanceOptions = { fillUnplanned: true, rollAging: true, yearEnd: DEFAULT_YEAR_END };
 
+/** The season reports the Seasons page shows in full; older ones keep only the players' own lines. */
+export const REPORTS_IN_FULL = 12;
+
+/**
+ * The saga's season reports, newest first: twenty years of them, the latest in full and the older
+ * ones without the Tribunal's lines (a whole Tribunal writes some two hundred lines a season, which
+ * the page no longer shows).
+ */
+export function keepReports(reports: TimeReport[]): TimeReport[] {
+  return reports.slice(0, 80).map((r, i) => (i < REPORTS_IN_FULL || !r.lines.some((l) => l.tribunal) ? r : { ...r, lines: r.lines.filter((l) => !l.tribunal) }));
+}
+
 type Line = TimeReport['lines'][number];
 
 /** Characters the clock moves: finished, alive. */
@@ -720,7 +732,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   saga.currentYear = next.year;
   saga.currentSeason = next.season;
   const report: TimeReport = { id: uid(), year, season, lines };
-  saga.timeLog = [report, ...(saga.timeLog ?? [])].slice(0, 80);
+  saga.timeLog = keepReports([report, ...(saga.timeLog ?? [])]);
   return { state, report };
 }
 

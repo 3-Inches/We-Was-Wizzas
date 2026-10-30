@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { BOOK_BY_ID } from '../../data';
 import { OPTIONAL_RULES, OPTION_GROUPS, optionOn, tribunalMatches, tribunalName } from '../../engine/optional';
 import { Card } from '../kit';
+import { useGameData } from '../../store/hooks';
+import { MAGIC_QUALITIES } from '../../engine/character/magicCharacter';
 import { useStore } from '../../store/store';
 import { TOURS, startTour, type TourGroup } from '../tour/tours';
 
@@ -144,6 +146,9 @@ function Tutorials() {
 }
 
 export default function HelpPage() {
+  // the rules data the toolkit holds, with every book (the counts in "About the rules data")
+  const data = useGameData();
+  const n = (xs: readonly unknown[]) => xs.length.toLocaleString('en');
   return (
     <div className="stack" style={{ maxWidth: 960 }}>
       <div>
@@ -357,7 +362,8 @@ export default function HelpPage() {
             Rhine&apos;s ranks, gilds and forest pacts, Theban tokens and shards and covenant patrons, the Perthean Compact and the Hermetic Tourney, Transylvanian privileges.
           </li>
           <li>
-            <b>Undo:</b> every change can be undone with <b>↶ Undo</b> in the sidebar (on a phone, in the bar at the top) or Ctrl+Z, and redone with <b>↷ Redo</b> or Ctrl+Y. A
+            <b>Undo:</b> every change can be undone with <b>↶ Undo</b> in the sidebar (on a phone, in the bar at the top) or Ctrl+Z, and redone with <b>↷ Redo</b> or Ctrl+Y (the last
+            sixty steps, fewer when big: only the last few seasons passed with a whole Tribunal). A
             ritual cast for the whole covenant is listed under <b>Recent casts</b> in <b>Magic on the covenant</b> (the covenant&apos;s Overview, or the Seasons page), where <b>Undo and give back</b> takes it off everyone and
             returns the vis, Might, Confidence and Fatigue it cost.
           </li>
@@ -447,7 +453,7 @@ export default function HelpPage() {
             <b>What they carry:</b> the items and familiars the book gives (Philippus Niger&apos;s Knife of Human Bone, Wizard&apos;s Bridle and Subtle Chain, and Sordus the
             basilisk; Falke&apos;s anklet-ring), a talisman for every archmage, most masters and some long-standing journeymen, attuned to their best Arts, and a heartbeast for
             every Bjornaer. A Redcap carries the Mercer House&apos;s devices for the road (fifty levels at the Gauntlet and two more a year, renewed each year, with a Longevity
-            Ritual from 35). With <i>Mystery Initiation</i> on, the senior Merinita, Bjornaer and Verditius are initiated into a fitting Mystery of their House, marked as not
+            Ritual from 35); a Redcap the players make takes the same on the Lab &amp; items tab. With <i>Mystery Initiation</i> on, the senior Merinita, Bjornaer and Verditius are initiated into a fitting Mystery of their House, marked as not
             in the book.
           </li>
           <li>
@@ -481,7 +487,7 @@ export default function HelpPage() {
           <li>
             <b>Wanderers:</b> Tabanus the Quaesitor, a peregrinator who stays about three years at each covenant (young ones first), comes with Triamore; Felicia, who winters at
             Fengheld and summers on the road, with Fengheld. Each covenant also brings peregrinatores staying as its guests, about one for every five members, as the book has
-            around a sixth of the Rhine&apos;s magi living under its guest-laws; they move on after three to seven years. They are guests, not members, with a laboratory of their
+            around a sixth of the Rhine&apos;s magi living under its guest-laws, and more come from other Tribunals while fewer do; they move on after three to seven years. They are guests, not members, with a laboratory of their
             own, and pay the guest&apos;s fee. When one asks to stay with
             you, <b>Take them in</b> (on the request, or the Tribunal page&apos;s <b>Wanderers</b> card).
           </li>
@@ -491,7 +497,7 @@ export default function HelpPage() {
           </li>
           <li>
             <b>Answering them:</b> what they bring shows under <b>Needs attention</b> and <b>From the Tribunal</b> on the Game table, with a link to where it is dealt with. Press
-            <b>Dealt with</b> once it is played. On the Tribunal page, <b>Deal with</b> a covenant to trade vis or silver, or buy a copy of one of its books, and set its
+            <b>Dealt with</b> once it is played; one left unanswered for two years lapses (the covenant may come again with it). On the Tribunal page, <b>Deal with</b> a covenant to trade vis or silver, or buy a copy of one of its books, and set its
             <b> attitude</b> to your covenant as play makes it: troubles come more often from those who dislike you, offers and invitations from those who like you.
           </li>
           <li>
@@ -589,9 +595,10 @@ export default function HelpPage() {
 
       <Card title="About the rules data" id="data">
         <p className="small">
-          The rules come from the markdown books in this repository: 1,042 Virtues and Flaws, 48 Magic Qualities and Inferiorities, 122 Abilities, 1,205 spells, 610 guideline
-          entries, 130 laboratory Virtues and Flaws, 198 Hooks and Boons and 240 Shape &amp; Material entries, all extracted automatically (a few more, such as the aligned-aura
-          Boons of <i>Realms of Power: Magic</i>, are added by hand), with hand-written mechanics for the Virtues and Flaws that change numbers. The Game mechanics reference was made by reading every reviewed book section by section; each entry is checked against the
+          The rules come from the markdown books in this repository: {n(data.virtuesFlaws)} Virtues and Flaws, {n(MAGIC_QUALITIES)} Magic Qualities and Inferiorities,{' '}
+          {n(data.abilities)} Abilities, {n(data.spells)} spells, {n(data.guidelines)} guideline entries, {n(data.labVirtuesFlaws)} laboratory Virtues and Flaws, {n(data.hooksBoons)} Hooks
+          and Boons and {n(data.shapeMaterial)} Shape &amp; Material entries, extracted automatically (a few more, such as the aligned-aura Boons of <i>Realms of Power: Magic</i> and
+          the Rhine&apos;s Tribunal Virtues, are added by hand), with hand-written mechanics for the Virtues and Flaws that change numbers. The Game mechanics reference was made by reading every reviewed book section by section; each entry is checked against the
           book, and its quotes are the book&apos;s exact words. Books marked WIP are still being transcribed and may have errors. If something looks wrong, use an override and
           check the source text in the reader.
         </p>

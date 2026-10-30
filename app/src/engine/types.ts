@@ -146,6 +146,8 @@ export interface TribunalNews {
   characterId?: string;
   /** dealt with, or set aside, by the storyguide */
   done?: boolean;
+  /** an approach left unanswered for two years, set aside by the toolkit (it may come again) */
+  lapsed?: boolean;
 }
 
 /** A creature the storyguide keeps to hand: one from the bestiary (data/bestiary.ts), with their own notes. */

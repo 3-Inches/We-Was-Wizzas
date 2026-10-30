@@ -96,12 +96,17 @@ export default function CovenantPage() {
         </Card>
       )}
       <div className="row" style={{ marginBottom: 10 }}>
-        <div style={{ flex: '1 1 300px' }}>
-          <Meter label="Build Points spent" value={dc.bpSpent} max={cov.buildPoints} />
-        </div>
-        <div style={{ flex: '1 1 200px' }}>
-          <Meter label="Boon points vs Hook points" value={dc.boonPoints} max={dc.hookPoints} />
-        </div>
+        {/* a living covenant is built from its book, not bought with Build Points, and its Boons and Hooks need not balance */}
+        {!cov.living && (
+          <>
+            <div style={{ flex: '1 1 300px' }}>
+              <Meter label="Build Points spent" value={dc.bpSpent} max={cov.buildPoints} />
+            </div>
+            <div style={{ flex: '1 1 200px' }}>
+              <Meter label="Boon points vs Hook points" value={dc.boonPoints} max={dc.hookPoints} />
+            </div>
+          </>
+        )}
         <span className="badge">
           Aura {dc.aura} ({auraOf(cov).realm})
         </span>
@@ -113,7 +118,7 @@ export default function CovenantPage() {
         {dc.issues.length > 0 && <span className="badge warn">{dc.issues.length} issue(s)</span>}
       </div>
       <Tabs tabs={tabs} value={tab} onChange={setTab} />
-      <Hint id="covenant-start">Start from a base package (Weak, Medium or Powerful) or set the Build Points by hand. Hooks pay for Boons; every tab spends Build Points and the bar at the top keeps count.</Hint>
+      {!cov.living && <Hint id="covenant-start">Start from a base package (Weak, Medium or Powerful) or set the Build Points by hand. Hooks pay for Boons; every tab spends Build Points and the bar at the top keeps count.</Hint>}
       {tab === 'overview' && <OverviewTab cov={cov} update={update} dc={dc} sagaId={saga.id} setTab={setTab} />}
       {tab === 'hooks' && <HooksTab cov={cov} update={update} dc={dc} data={data} />}
       {tab === 'library' && <LibraryTab cov={cov} update={update} dc={dc} data={data} />}

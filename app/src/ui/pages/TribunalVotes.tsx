@@ -153,7 +153,7 @@ export function WanderersCard({ book, saga, chars, covs }: { book: TribunalBook;
     <Card title="Wanderers" tour="tribunal-wanderers">
       <p className="small muted" style={{ marginTop: 0 }}>
         Magi who belong to no covenant. A peregrinator stays a few years at each covenant as its guest and moves on; a seasonal wanderer winters at one and spends the summer on the
-        road. Each keeps a laboratory of their own wherever they stay{customs ? ', and pays the host three pawns of vis a year or a season’s service, under the Rhine’s guest-laws. Around a sixth of the Rhine’s magi live so: each covenant added brings its guests' : ''}.
+        road. Each keeps a laboratory of their own wherever they stay{customs ? ', and pays the host three pawns of vis a year or a season’s service, under the Rhine’s guest-laws. Around a sixth of the Rhine’s magi live so: each covenant added brings its guests, and more come from other Tribunals while fewer do' : ''}.
       </p>
       {wanderers.map((c) => {
         const w = c.wanderer!;

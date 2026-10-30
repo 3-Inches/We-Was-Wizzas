@@ -92,6 +92,8 @@ const DANKMAR: BookCovenant = {
 
 const WADDENZEE: BookCovenant = {
   id: 'waddenzee', name: 'Waddenzee', season: 'Spring', founded: 1165, place: 'the Friesian island of Terschelling', aura: 3, realm: 'Magic', line: 1998,
+  // nearly 200 men, two ships of them (80) at sea at a time (line 2050)
+  soldiers: { 'boon-Minor-criminals': 80, 'boon-Minor-veteran-fighters': 20 },
   summary: 'A covenant of pirates who prowl the North Sea, skirting the Code (no witnesses) and breaking mundane law daily. Rich in vis, most of it not its own; its library is poor.',
   wealth: 'rich', library: 'poor', vis: 'rich', gild: 'ash',
   folk: { grogs: 80, servants: 30, craftsmen: 10, laborers: 40, text: 'Nearly two hundred pirates and their followers from every nation of Europe, with three powerful ships.' },
@@ -158,13 +160,15 @@ const OCULUS: BookCovenant = {
 
 const FENGHELD: BookCovenant = {
   id: 'fengheld', name: 'Fengheld', season: 'Autumn', founded: 1039, place: 'a hilltop fortress in the eastern Harz, Saxony', aura: 5, realm: 'Magic', line: 2475,
+  // about fifty soldiers (line 2582)
+  soldiers: { 'boon-Minor-veteran-fighters': 50 },
   summary: 'The largest covenant of the Tribunal, in size and in magi (23, a dozen at the main site and the rest in six chapter houses), and seemingly its most neutral: it settles others’ disputes while its own power grows. Rich in minor items and raw vis from two dozen sites; its vast library is mostly of lower levels.',
   wealth: 'rich', library: 'good', vis: 'very rich',
   folk: { grogs: 50, servants: 60, craftsmen: 25, laborers: 35, companions: 15, text: 'About fifty soldiers, fifteen companions and nearly ten dozen other covenfolk, from smiths and glassblowers to scribes, huntsmen, herders and serfs, in hierarchies each ending in a magus.' },
   hooksBoons: [
     ['boon-Minor-aura', 'the aura of 5'], ['boon-Minor-aura', 'the aura of 5'], ['boon-Major-curtain-walls-and-mural-towers', 'a hilltop fortress'], ['boon-Major-wealth', 'rich in minor items and vis'],
     ['boon-Minor-veteran-fighters', 'about fifty soldiers'], ['boon-Minor-informants', 'the news its Redcaps bring'], ['boon-Major-favors-owed', 'the covenants whose disputes it settles'],
-    ['boon-Minor-secondary-income', 'Peter von Würzburg’s wines'],
+    ['boon-Minor-secondary-income', 'Peter von Würzburg’s wines'], ['hook-Major-castle', 'a hilltop fortress in the Harz'],
     ['hook-Major-chapter-house', 'six chapter houses, from Cologne to Cherbourg'], ['hook-Major-mercer-house', 'the largest Mercer House of the Tribunal'], ['hook-Minor-hermetic-politics', 'Stentorius’s rivalry with Durenmar for the Oak Gild'],
     ['hook-Minor-rival', 'Durenmar, which refused it a house on the Tribunal Field'],
   ],
@@ -337,7 +341,7 @@ const TRIAMORE: BookCovenant = {
   wealth: 'comfortable', library: 'good', vis: 'some', gild: 'apple',
   folk: { grogs: 12, servants: 20, craftsmen: 5, laborers: 15, text: 'The household of a castle and manor.' },
   hooksBoons: [
-    ['boon-Major-exceptional-book', 'its famed library'], ['boon-Minor-wealth', 'a comfortable manorial estate'], ['boon-Minor-tower-keep', 'its castle on the Meuse'],
+    ['boon-Major-exceptional-book', 'its famed library'], ['boon-Minor-wealth', 'a comfortable manorial estate'], ['boon-Minor-tower-keep', 'its castle on the Meuse'], ['hook-Major-castle', 'a castle on the Meuse'],
     ['hook-Minor-weak-aura', 'a Magic aura of only 2'], ['hook-Major-mundane-politics', 'long embroiled in the politics of Lower Lorraine'], ['hook-Major-tribunal-border', 'the western fringe of the Rhine, by the Normandy Tribunal'],
     ['hook-Minor-hermetic-politics', 'the Quaesitores have long sought its censure'], ['hook-Minor-unsafe', 'stories of recent troubles and deaths keep guests away'],
   ],

@@ -96,7 +96,11 @@ describe('the covenants’ Boons, Hooks and auras', () => {
       const a = auraOf(b.cov);
       expect(a.strength, d.name).toBe(d.aura);
       expect(a.realm, d.name).toBe(d.realm);
+      // nothing on its page for the storyguide to put right: its soldiers counted, a castle's Boons with the Castle Hook
+      expect(deriveCovenant(b.cov, data, b.chars).issues, d.name).toEqual([]);
     }
+    const fengheld = buildLivingCovenant(RHINE, def('fengheld'), { data, saga: s, rules }, { seed: 2, others: false }).cov;
+    expect(fengheld.finances.soldiers?.map((g) => g.count)).toEqual([50]);
     const crintera = buildLivingCovenant(RHINE, def('crintera'), { data, saga: s, rules }, { seed: 2, others: false }).cov;
     expect(crintera.hooksBoons.some((h) => h.name === 'Regio')).toBe(true);
     expect(crintera.notes).toMatch(/auras of 1, 3, 5 and 8/);
