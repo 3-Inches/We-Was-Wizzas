@@ -9,7 +9,7 @@ import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaC
 import { deriveCharacter } from '../../engine/character/derive';
 import { deriveCovenant } from '../../engine/covenant';
 import { DEFAULT_YEAR_END, planYearEnd, type YearEndOptions } from '../../engine/covenantYear';
-import { DEFAULT_ADVANCE, advanceSeasons, describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
+import { DEFAULT_ADVANCE, REPORTS_IN_FULL, advanceSeasons, describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
 import { allowanceRecipients } from '../../engine/economy';
 import type { Character, Covenant, TimeReport } from '../../engine/types';
 import { Card, Empty, Field, Stepper } from '../kit';
@@ -180,7 +180,7 @@ export default function SeasonsPage() {
 
       {(saga.timeLog ?? []).length > 0 && (
         <Card title="Chronicle of time">
-          <Reports reports={(saga.timeLog ?? []).slice(0, 12)} collapsed />
+          <Reports reports={(saga.timeLog ?? []).slice(0, REPORTS_IN_FULL)} collapsed />
         </Card>
       )}
     </div>

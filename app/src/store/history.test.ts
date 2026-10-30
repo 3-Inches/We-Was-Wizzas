@@ -2,7 +2,7 @@
 // to one record are one step.
 import { describe, expect, it } from 'vitest';
 import { newCharacter } from '../engine/character/factory';
-import { useStore } from './store';
+import { HISTORY_RECORDS, useStore } from './store';
 
 describe('undo and redo', () => {
   it('takes back changes one step at a time, merging quick edits to one record', () => {
@@ -36,5 +36,17 @@ describe('undo and redo', () => {
     expect(useStore.getState().characters[c.id]).toBeDefined();
     useStore.getState().updateSaga(saga.id, (s) => void (s.name = 'Renamed'));
     expect(useStore.getState().history.future).toEqual([]);
+  });
+  it('keeps only the newest big changes (a season passed with a whole Tribunal), and always the last', () => {
+    const st = useStore.getState();
+    const saga = st.createSaga('Big');
+    const people = Array.from({ length: 400 }, () => newCharacter('grog', saga.id));
+    for (let i = 0; i < 6; i++) useStore.getState().putRecords({ characters: people.map((c) => ({ ...c, name: `Grog ${i}` })), covenants: [] }, `bulk ${i}`);
+    const { past } = useStore.getState().history;
+    const held = past.reduce((t, s) => t + Object.values(s.before).reduce((n, r) => n + Object.keys(r).length, 0), 0);
+    expect(held).toBeLessThanOrEqual(HISTORY_RECORDS);
+    expect(past[past.length - 1].label).toMatch(/bulk 5/);
+    expect(useStore.getState().undo()).toMatch(/bulk 5/);
+    expect(useStore.getState().characters[people[0].id].name).toBe('Grog 4');
   });
 });

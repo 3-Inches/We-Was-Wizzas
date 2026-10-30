@@ -4,7 +4,7 @@ import { buildGameData } from '../data';
 import { newSaga } from '../store/store';
 import { newCovenant } from './covenant';
 import { ensureAbility, newCharacter } from './character/factory';
-import { DEFAULT_ADVANCE, advanceSeason, advanceSeasons, ageCharacter, auraWarping, loggedThisSeason } from './time';
+import { DEFAULT_ADVANCE, REPORTS_IN_FULL, advanceSeason, advanceSeasons, ageCharacter, auraWarping, keepReports, loggedThisSeason } from './time';
 import { newLab } from './lab';
 import { newProject } from './projects';
 import { applyEffect, expireEffects } from './effects';
@@ -327,5 +327,19 @@ describe('death, crises and the care of a physician (DE, Aging)', () => {
     magus.standing = { kind: 'lab', projectUid: done.uid };
     const { state } = advanceSeason(st, data);
     expect(state.characters[1].projects![1].done).toBe(true);
+  });
+});
+
+describe('the season reports kept', () => {
+  it('keeps twenty years, the latest in full and the older without the Tribunal’s lines', () => {
+    const reports = Array.from({ length: 90 }, (_, i) => ({
+      id: String(i), year: 1300 - Math.floor(i / 4), season: 'Spring' as const,
+      lines: [{ who: 'Ours', kind: 'season' as const, text: 'studies' }, { who: 'Theirs', kind: 'season' as const, text: 'enchants', tribunal: 'durenmar' }],
+    }));
+    const kept = keepReports(reports);
+    expect(kept).toHaveLength(80);
+    expect(kept.slice(0, REPORTS_IN_FULL).every((r) => r.lines.length === 2)).toBe(true);
+    expect(kept.slice(REPORTS_IN_FULL).every((r) => r.lines.length === 1 && r.lines[0].who === 'Ours')).toBe(true);
+    expect(keepReports(kept)).toEqual(kept);
   });
 });

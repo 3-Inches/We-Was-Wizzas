@@ -141,6 +141,19 @@ function scheduleSave(getState: () => Store) {
 
 const clone = <T,>(x: T): T => structuredClone(x);
 const HISTORY_LIMIT = 60;
+/**
+ * The records the undo history may hold in all: a season passed in a saga with a whole Tribunal keeps
+ * every character's former self, so a few such steps, not sixty, are kept (memory, not disk).
+ */
+export const HISTORY_RECORDS = 1500;
+const recordsIn = (s: HistoryStep) => SLOTS.reduce((t, k) => t + Object.keys(s.before[k]).length, 0);
+/** The steps to keep: at most HISTORY_LIMIT, and the newest that hold no more than HISTORY_RECORDS records (always the last). */
+export function trimHistory(steps: HistoryStep[]): HistoryStep[] {
+  const out = steps.slice(-HISTORY_LIMIT);
+  let total = out.reduce((t, s) => t + recordsIn(s), 0);
+  while (out.length > 1 && total > HISTORY_RECORDS) total -= recordsIn(out.shift()!);
+  return out;
+}
 const MERGE_MS = 1500;
 const keyOf = (r: Records) => SLOTS.map((k) => Object.keys(r[k]).sort().join(',')).join('|');
 
@@ -162,7 +175,7 @@ export const useStore = create<Store>()((set, get) => {
       set({ history: { past: [...past.slice(0, -1), { ...last, at: now }], future: [] } });
       return;
     }
-    set({ history: { past: [...past, { at: now, label, before, merge }].slice(-HISTORY_LIMIT), future: [] } });
+    set({ history: { past: trimHistory([...past, { at: now, label, before, merge }]), future: [] } });
   };
   /** put records back as a step had them; returns the step that reverses it */
   const restore = (step: HistoryStep): HistoryStep => {
