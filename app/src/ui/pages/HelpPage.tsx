@@ -243,11 +243,21 @@ export default function HelpPage() {
             Flawed or Illusory Resource pays for, and where the Build Points left go, before adding any of it.
           </li>
           <li>
-            At the end of each year press <b>Close the year</b> on the Finances tab: it shows the treasury after the year&apos;s balance, the rise in inflation, the vis gathered
-            and the year of familiarity, then applies them (with Undo). With inflation it also says in about how many years spending will overtake income, and when the treasury
-            would run out at that rate. A cycle of four or more feast days adds a Loyalty point, and specialists and craftsmen gain the year&apos;s
+            At the end of each year press <b>Close the year</b> on the Money part of Covenfolk &amp; Finances: it shows the treasury after the year&apos;s balance, the vis gathered
+            and the year of familiarity, then applies them (with Undo). Inflation is an <Jump to="optional">optional rule</Jump>, off unless ticked; with it on, the year&apos;s end
+            also says in about how many years spending will overtake income. A cycle of four or more feast days adds a Loyalty point, and specialists and craftsmen gain the year&apos;s
             experience (Exposure at work, Practice in their free seasons; craftsmen earn Labor Points). Roll the <b>Income Modification</b> with 🎲, record <b>Loyalty events</b> as
             they happen, and use the one-off spending presets for sundry costs.
+          </li>
+          <li>
+            <b>Hard times:</b> when the money runs short, the <b>Hard times</b> card (Money) lists the book&apos;s Emergency Savings, each with what it saves and what it costs in
+            Loyalty: the magi giving up their privileges, lower wages, letting covenfolk go, leaving the buildings, arms, laboratories or provisions unpaid. Money can be borrowed
+            (a tenth a year in interest) and vis sold. A year that ends below nothing leaves bills owed and wages late; what is left unpaid brings its trouble every year.
+          </li>
+          <li>
+            <b>Troubles:</b> the <b>Troubles</b> card (Overview, and each covenant on the Tribunal page) strikes a covenant with plague, fire, a monster, faeries, the Church,
+            politics and more, by nature or by someone&apos;s hand. It lands at once and weighs on the covenant for a few years; one magus a season can deal with it. A
+            Natural Disaster and a Flawed Resource take a date on the Hooks tab and come due on it; the Flawed Resource&apos;s story is rolled there.
           </li>
         </ul>
       </Card>
@@ -299,7 +309,9 @@ export default function HelpPage() {
             <b>The Game table</b> (first in the saga&apos;s menu) is the place to run a session from: what needs attention (money, Loyalty, wounds, a strike, rules
             problems, idle characters), what everyone does this season (changed in place), the covenants at a glance, <b>End the season</b>, quick dice, quick changes
             (a Loyalty event, the treasury, vis found), experience and Labor Points after a story, travel, trade and intrigue, and a list of what comes up in play with a
-            link to where it is done. When unsure what to do next, go back to it.
+            link to where it is done. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
+            dates), and <b>Stories waiting</b> lists the characters&apos; Story and Personality Flaws and the covenant&apos;s Hooks, the longest untold first, so the toolkit keeps
+            the mechanics and the table can play the story. When unsure what to do next, go back to it.
           </li>
           <li>
             <b>The Tribunal</b> (⚜ in the saga&apos;s menu): the other covenants of the saga&apos;s Tribunal, built from its book as living covenants that carry on by themselves.
@@ -383,7 +395,8 @@ export default function HelpPage() {
             Characteristics of every member, teacher, specialist and craftsman at once, or grants a Virtue, and pays for it in vis, Might or Confidence.
           </li>
           <li>
-            The <Link to="/dice">Dice</Link> page rolls simple, stress and botch dice for anyone at the table, and the stress check for an item put at risk.
+            The <Link to="/dice">Dice</Link> page rolls simple, stress and botch dice for anyone at the table; an opposed roll between two characters of the saga; a blow in
+            combat from Attack to wound, put on the defender&apos;s sheet; the perils of falls, fire, poison, disease and going without; and the stress check for an item put at risk.
           </li>
         </ul>
       </Card>
@@ -476,7 +489,7 @@ export default function HelpPage() {
           </li>
           <li>
             <b>The years:</b> every seven years the Tribunal meets at Durenmar (from 1221, opening on Walpurgis Night: the Spring season; in 1227, a year early for the Grand
-            Tribunal of 1228), and every living magus spends that season there. The Bjornaer spend a Summer at Crintera every twelve years, for their Gathering of Twelve Years. At each year&apos;s end a living covenant closes its books like yours, makes good a shortfall from its holdings, meets a year that spends more than it earns by improving its income (as a troupe would, by magic or a story), puts money beyond five years&apos; spending into its lands and holdings, may take in a new journeyman when its numbers fall,
+            Tribunal of 1228), and every living magus spends that season there. The Bjornaer spend a Summer at Crintera every twelve years, for their Gathering of Twelve Years. At each year&apos;s end a living covenant closes its books like yours and keeps its own means, with nothing from nowhere: it keeps an Aegis and holds back the vis it and its magi&apos;s Longevity Rituals need; short of money it sells spare vis and land, cuts its spending and sets its magi to raising its income by magic; with money back it pays its debts and undoes its cuts; and covenants buy vis from one another. It may take in a new journeyman when its numbers fall,
             and may come to your covenant with one of the book&apos;s offers, requests or troubles (Boris of Novgorod with vis to sell, Heorot seeking support, Waddenzee&apos;s pirates).
           </li>
           <li>
