@@ -66,8 +66,8 @@ export default function SeasonsPage() {
         </h1>
       </div>
       <p className="small muted" style={{ marginTop: 0 }}>
-        Time passes here for the whole saga at once. Each character&apos;s season is what they logged on their sheet (Seasons &amp; Aging tab) for {season} {year}, or else their standing
-        activity. The turn of the year closes every covenant&apos;s books, pays allowances, renews wards, rolls aging and adds the year&apos;s Warping.
+        Time moves on here, for everyone at once. Each character spends {season} {year} as planned on their sheet, or else on their usual activity. At the end of a year the
+        toolkit also does the covenants&apos; accounts, allowances, wards, aging and Warping.
       </p>
       <Hint id="seasons-how">Log each character&apos;s season on their sheet first (Seasons &amp; Aging tab), or leave their standing activity to run; then end the season here for everyone at once.</Hint>
 

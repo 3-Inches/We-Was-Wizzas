@@ -226,8 +226,17 @@ function DebateTool({ ed }: { ed: CharEditor }) {
       <summary>
         <b>Debate</b> <span className="small muted">{round ? `· round ${round}: ${me.name} −${lost[0]}, ${them.name} −${lost[1]}` : '· argue a case like certamen'}</span>
       </summary>
-      <RulesNote book="HoH_S" line={3711} endLine={3850}>
-        Attack: Com + Folk Ken, Intrigue or Artes Liberales; defense: Int + Charm, Guile or Leadership. Beating the defense by the Advantage, Presence + Advantage against Reputation + Confidence costs debate Fatigue; five levels ends it.
+      <RulesNote
+        book="HoH_S"
+        line={3711}
+        endLine={3850}
+        detail={
+          <>
+            Attack: Com + Folk Ken, Intrigue or Artes Liberales; defense: Int + Charm, Guile or Leadership. Beating the defense by the Advantage, Presence + Advantage against Reputation + Confidence costs debate Fatigue; five levels ends it.
+          </>
+        }
+      >
+        A debate is fought like certamen, with words instead of magic.
       </RulesNote>
       <div className="row">
         <Field label="Against">

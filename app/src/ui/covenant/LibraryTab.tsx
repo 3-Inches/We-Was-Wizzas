@@ -617,9 +617,18 @@ function Scriptorium({ cov, update, data }: Pick<CovTabProps, 'cov' | 'update' |
   const check = book && (scribe ?? scribes[0]) ? specialistCopy(scribe ?? scribes[0], book, data) : undefined;
   return (
     <Card title={`Scriptorium${queue.length ? ` (${queue.length})` : ''}`}>
-      <RulesNote book="Cov" line={4842} endLine={4848}>
-        Covenants that trade books keep a copyist to make copies for the exchange: they copy in their working seasons at 6 + Profession: Scribe points a season toward a summa (a tractatus a season;
-        three times as fast, 1 Quality lower, when quick), and Profession: Scribe × 60 levels of lab texts. Without Magic Theory their copies of the Arts are corrupt (DE).
+      <RulesNote
+        book="Cov"
+        line={4842}
+        endLine={4848}
+        detail={
+          <>
+            Covenants that trade books keep a copyist to make copies for the exchange: they copy in their working seasons at 6 + Profession: Scribe points a season toward a summa (a tractatus a season;
+            three times as fast, 1 Quality lower, when quick), and Profession: Scribe × 60 levels of lab texts. Without Magic Theory their copies of the Arts are corrupt (DE).
+          </>
+        }
+      >
+        A copyist makes copies of your books to trade.
       </RulesNote>
       {queue.map((j) => {
         const b = cov.library.find((x) => x.uid === j.sourceUid);

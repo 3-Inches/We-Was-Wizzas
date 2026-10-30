@@ -105,9 +105,18 @@ export function TravelTradeCard({ people, derived, home, year, season }: { peopl
 
       <details>
         <summary className="small">A journey: days, cost, cargo, finding things on the way</summary>
-        <RulesNote book="CG" line={2225} endLine={2392}>
-          Sea is cheapest and fastest over distance; river travel costs twice as much, road eight to twenty times. A couple of magi and half a dozen grogs travel with a merchant for a pound a
-          fortnight; known magi pay double, and few captains want them.
+        <RulesNote
+          book="CG"
+          line={2225}
+          endLine={2392}
+          detail={
+            <>
+              Sea is cheapest and fastest over distance; river travel costs twice as much, road eight to twenty times. A couple of magi and half a dozen grogs travel with a merchant for a pound a
+              fortnight; known magi pay double, and few captains want them.
+            </>
+          }
+        >
+          What a journey costs by sea, river or road.
         </RulesNote>
         <div className="row small">
           <Field label="Miles">
@@ -179,9 +188,18 @@ export function TravelTradeCard({ people, derived, home, year, season }: { peopl
 
       <details>
         <summary className="small">Bribes, hired criminals and sabotage</summary>
-        <RulesNote book="CG" line={3375} endLine={3428}>
-          Criminals are hired with Intrigue; for a crime not played out, the hirer&apos;s Communication + Intrigue + stress die stands in for theirs. Bribes run from a week&apos;s wages for an easy
-          favor to a year&apos;s for one that could cost the official the job, or 10% of the gain for regular favors.
+        <RulesNote
+          book="CG"
+          line={3375}
+          endLine={3428}
+          detail={
+            <>
+              Criminals are hired with Intrigue; for a crime not played out, the hirer&apos;s Communication + Intrigue + stress die stands in for theirs. Bribes run from a week&apos;s wages for an easy
+              favor to a year&apos;s for one that could cost the official the job, or 10% of the gain for regular favors.
+            </>
+          }
+        >
+          Hiring criminals, and paying bribes.
         </RulesNote>
         <div className="row tight small">
           <Field label="The official's daily pay (pennies)">
@@ -237,9 +255,18 @@ export function TravelTradeCard({ people, derived, home, year, season }: { peopl
 
       <details>
         <summary className="small">Intrigue against the powerful</summary>
-        <RulesNote book="CG" line={3457} endLine={3489}>
-          Intelligence + Intrigue to learn about a noble, or harm them through gossip, forgeries and their enemies. Above Ease 6 it takes three times the Ease Factor in days and at least a third of
-          it in pounds. A blameless life is armor against it.
+        <RulesNote
+          book="CG"
+          line={3457}
+          endLine={3489}
+          detail={
+            <>
+              Intelligence + Intrigue to learn about a noble, or harm them through gossip, forgeries and their enemies. Above Ease 6 it takes three times the Ease Factor in days and at least a third of
+              it in pounds. A blameless life is armor against it.
+            </>
+          }
+        >
+          Learning about a noble, or harming them, by intrigue.
         </RulesNote>
         <div className="row tight small">
           <select value={ease} onChange={(e) => setEase(Number(e.target.value))}>
@@ -263,9 +290,18 @@ export function TravelTradeCard({ people, derived, home, year, season }: { peopl
 
       <details>
         <summary className="small">A house&apos;s Reputation, largesse and warehouses</summary>
-        <RulesNote book="CG" line={3361} endLine={3440}>
-          A house&apos;s servants carry its Reputation and add to it. Advocates cost 5% of their usual wage and shift a Reputation by 1 among those they meet (three at most for anyone). A festival
-          gives a point of Reputation experience per pound for every thousand people; a marvelous public building acts as an advocate while it stands.
+        <RulesNote
+          book="CG"
+          line={3361}
+          endLine={3440}
+          detail={
+            <>
+              A house&apos;s servants carry its Reputation and add to it. Advocates cost 5% of their usual wage and shift a Reputation by 1 among those they meet (three at most for anyone). A festival
+              gives a point of Reputation experience per pound for every thousand people; a marvelous public building acts as an advocate while it stands.
+            </>
+          }
+        >
+          Raising a house’s Reputation: servants, advocates, festivals.
         </RulesNote>
         <div className="row tight small">
           Festival

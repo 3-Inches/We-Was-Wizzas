@@ -113,9 +113,18 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
         <summary className="small" style={{ cursor: 'pointer' }}>
           Disease in a town (City &amp; Guild)
         </summary>
-        <RulesNote book="CG" line={805} endLine={895}>
-          Towns are full of humoral imbalance: smoke, dyes, dung, sewage, tanneries and butcheries. A newcomer is tested once or twice in the first season; long-time residents fall ill
-          through aging crises instead. A failed Stamina roll means the disease and its wound.
+        <RulesNote
+          book="CG"
+          line={805}
+          endLine={895}
+          detail={
+            <>
+              Towns are full of humoral imbalance: smoke, dyes, dung, sewage, tanneries and butcheries. A newcomer is tested once or twice in the first season; long-time residents fall ill
+              through aging crises instead. A failed Stamina roll means the disease and its wound.
+            </>
+          }
+        >
+          A newcomer to a town may fall ill there.
         </RulesNote>
         <div className="row small">
           <select value={town} onChange={(e) => (setTown(e.target.value), setLevel(0))}>

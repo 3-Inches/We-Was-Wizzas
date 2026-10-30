@@ -19,7 +19,7 @@ import { addVis, purseOf, takeVis, visAvailable, visText } from './vis';
 import { uid } from '../util/id';
 
 export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: string; /** DE: may be done by experimentation */ experiment?: boolean; /** the lab work it is, for a lab's restrictions */ activity?: string }[] = [
-  { id: 'invent', label: 'Invent a spell', blurb: 'Lab Total over the level; each season gathers the difference until it reaches the level. From a Laboratory Text, one season once the Lab Total reaches the level.', experiment: true, activity: 'Spells' },
+  { id: 'invent', label: 'Invent a spell', blurb: 'Each season the Lab Total beats the spell’s level by some points; they add up until they reach the level, and the spell is learned. From a Laboratory Text it takes one season, once the Lab Total reaches the level.', experiment: true, activity: 'Spells' },
   { id: 'open', label: 'Prepare an item for enchantment', blurb: 'A season and the Vim vis of its material and size; a talisman can be opened a little at a time.', activity: 'Items' },
   { id: 'attune', label: 'Attune a talisman', blurb: 'A season, whatever the Lab Total, on an item you prepared yourself.', activity: 'Items' },
   { id: 'instill', label: 'Instill an effect', blurb: 'Lab Total over the effect level (double for a lesser device); a pawn per 10 levels, paid in the first season; +5 in your own talisman. A charged item takes a season and no vis, a charge per 5 points over the level.', experiment: true, activity: 'Items' },
