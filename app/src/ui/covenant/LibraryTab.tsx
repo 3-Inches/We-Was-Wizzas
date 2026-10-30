@@ -45,7 +45,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
   const [showAll, setShowAll] = useState(false);
   const setBook = (id: string, fn: (b: LibraryBook) => void) => update((x) => { const b = x.library.find((y) => y.uid === id); if (b) fn(b); });
   // a large library (Durenmar's) is searched, and shown sixty books at a time
-  const subjectName = (b: LibraryBook) => (b.subjectType === 'art' ? ART_NAMES[b.subject as Art] : data.abilityById.get(b.subject)?.name) ?? b.subject;
+  const subjectName = (b: LibraryBook) => (b.subjectType === 'art' ? ART_NAMES[b.subject as Art] : data.abilityById.get(b.subject)?.name?.replace(/\([^)]*\)/, b.param ?? '$&')) ?? b.subject;
   const needle = q.trim().toLowerCase();
   const books = cov.library.filter((b) => (filter === 'all' || b.kind === filter) && (!needle || `${b.title} ${subjectName(b)} ${b.param ?? ''} ${b.author ?? ''}`.toLowerCase().includes(needle)));
   const shown = showAll ? books : books.slice(0, LIBRARY_PAGE);

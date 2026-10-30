@@ -452,7 +452,8 @@ function DealWith({ cov, players, saga }: { cov: Covenant; players: Covenant[]; 
   const books = cov.library.filter((b) => b.kind !== 'mundane' && !b.corrupt);
   const book = books.find((b) => b.uid === bookUid);
   // grouped by subject (the Arts in their order, then the Abilities, then Lab Texts), the best of each first
-  const subjectOf = (b: LibraryBook) => (b.kind === 'labText' || b.kind === 'castingTablet' ? 'Lab Texts' : b.subjectType === 'art' ? ART_NAMES[b.subject as Art] : data.abilityById.get(b.subject)?.name ?? b.subject);
+  const ability = (b: LibraryBook) => { const n = data.abilityById.get(b.subject)?.name ?? b.subject; return b.param ? n.replace(/\([^)]*\)/, b.param) : n; };
+  const subjectOf = (b: LibraryBook) => (b.kind === 'labText' || b.kind === 'castingTablet' ? 'Lab Texts' : b.subjectType === 'art' ? ART_NAMES[b.subject as Art] : ability(b));
   const rankOf = (s: string) => (s === 'Lab Texts' ? 99 : ARTS.findIndex((a) => ART_NAMES[a] === s) >= 0 ? ARTS.findIndex((a) => ART_NAMES[a] === s) : 50);
   const groups = [...new Set(books.map(subjectOf))].sort((a, b) => rankOf(a) - rankOf(b) || a.localeCompare(b));
   const best = (a: LibraryBook, b: LibraryBook) => Number(b.kind === 'summa') - Number(a.kind === 'summa') || b.level - a.level || b.quality - a.quality || a.title.localeCompare(b.title);

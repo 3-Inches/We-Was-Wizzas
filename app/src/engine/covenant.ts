@@ -245,7 +245,8 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
       }
     }
   }
-  if (boonPoints > hookPoints) issue(`Boons cost ${boonPoints} points but Hooks only provide ${hookPoints}.`, { kind: 'goto', label: 'Add Hooks or drop Boons', tab: 'hooks' });
+  // a living covenant's Boons and Hooks are read from its book, and need not balance
+  if (boonPoints > hookPoints && !cov.living) issue(`Boons cost ${boonPoints} points but Hooks only provide ${hookPoints}.`, { kind: 'goto', label: 'Add Hooks or drop Boons', tab: 'hooks' });
   if (auraBoons > 7) {
     issue('The Minor Aura Boon may be taken at most seven times (aura 10).', {
       kind: 'apply', label: `Drop ${auraBoons - 7} Aura Boon(s)`,
@@ -407,7 +408,8 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   for (const s of cov.visSources)
     if (s.dedicated && !s.pair) issue(`${s.name}: dedicated vis holds a Technique and a Form; choose the other Art (RoP: Magic, Dedicated Vis).`, { kind: 'goto', label: 'Open Library & Vis', tab: 'library' });
   const finances = computeFinances(cov, members, labs, magiCount, unreal);
-  for (const i of finances.incomeIssues) issue(i.message, ...(i.fix ? [{ kind: 'apply' as const, label: i.fixLabel ?? 'Fix', apply: i.fix }] : []), { kind: 'goto', label: 'Open Covenfolk & finances', tab: 'folk' });
+  // a living covenant's income is set at building so that its accounts hold, not from the sources its Boons and Hooks allow
+  if (!cov.living) for (const i of finances.incomeIssues) issue(i.message, ...(i.fix ? [{ kind: 'apply' as const, label: i.fixLabel ?? 'Fix', apply: i.fix }] : []), { kind: 'goto', label: 'Open Covenfolk & finances', tab: 'folk' });
   const issues = issueList.map((i) => i.message);
   const loyalty = computeLoyalty(cov, members, data);
   return {

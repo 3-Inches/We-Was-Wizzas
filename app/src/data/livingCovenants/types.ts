@@ -230,6 +230,8 @@ export interface BookCovenant {
   labAura?: LabAuraSource;
   /** its library is the Great Library (Durenmar): stocked to the book's outline, not bought with Build Points */
   greatLibrary?: boolean;
+  /** how many soldiers a soldier Boon (Veteran Fighters, Criminals…) brings, by its id, where the book says (else ten) */
+  soldiers?: Record<string, number>;
   /** not yet a member of the Tribunal: the motion (BookMotion id) that would admit it; its magi have no sigils until it passes */
   joins?: string;
   /** chapter houses: name and place */

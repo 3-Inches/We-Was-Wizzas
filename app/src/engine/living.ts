@@ -29,6 +29,7 @@ import { fillCovenant } from './generate/covenant';
 import { stockLibrary } from './generate/library';
 import { greatLibraryBooks } from './generate/greatLibraryStock';
 import { seeded } from './generate/random';
+import { newSoldierGroup, soldierBoonsWithoutGroups, soldierKindOf } from './covenfolk';
 import { newLab } from './lab';
 import { defaultPriorities, houseDuty } from './priorities';
 import type { Character, Covenant, EnchantedEffectRecord, EnchantedItem, HouseRules, PriorityKind, Saga, Season, TribunalNews, VisSource } from './types';
@@ -326,6 +327,8 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
     const hb = g.data.hookBoonById.get(id);
     return hb ? [{ uid: uid(), defId: hb.id, name: hb.name, kind: hb.kind, size: hb.size, note }] : [];
   });
+  // the soldiers its soldier Boons bring, as the book counts them (else ten), so their pay is in its accounts
+  for (const hb of soldierBoonsWithoutGroups(cov)) (cov.finances.soldiers ??= []).push(newSoldierGroup(soldierKindOf(hb.name)!.id, def.soldiers?.[hb.defId ?? ''] ?? 10, hb.uid));
   const auraBoons = cov.hooksBoons.filter((h) => h.kind === 'boon' && h.size === 'Minor' && /^aura$/i.test(h.name)).length;
   const weak = cov.hooksBoons.some((h) => h.kind === 'hook' && /^weak aura$/i.test(h.name)) ? 1 : 0;
   cov.aura = Math.max(0, def.aura - auraBoons + weak);
