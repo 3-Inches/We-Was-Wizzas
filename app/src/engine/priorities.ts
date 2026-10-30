@@ -21,6 +21,7 @@ import { planBook } from './books';
 import { FREQUENCY, chargedItemCharges, investEffect, openingCost } from './enchant';
 import { purseOf, visAvailable } from './vis';
 import { MAX_IMPROVEMENTS, spareVis } from './livingEconomy';
+import { CALAMITY_BY_ID, worstTrouble } from './calamity';
 import type { Character, Covenant, EnchantedItem, LabProject, LibraryBook, PriorityKind, Season, SeasonPriority, StandingActivity, WritingProject } from './types';
 import { uid } from '../util/id';
 
@@ -84,8 +85,9 @@ export interface PriorityChoice {
   standing: StandingActivity;
   /** what it is, in a few words (“Read Principles of Rego”) */
   what: string;
-  /** done for the covenant once the season is run: an enchantment that raises its income (Magical Improvement) */
-  after?: 'improve-income';
+  /** done for the covenant once the season is run: an enchantment that raises its income (Magical Improvement), or dealing with a calamity */
+  after?: 'improve-income' | 'face-trouble';
+  troubleUid?: string;
 }
 
 export interface PriorityTry {
@@ -145,7 +147,7 @@ export function choosePriority(c: Character, d: DerivedCharacter, ctx: Character
   return typeof fallback === 'string' ? { tried } : { choice: { kind: 'practice', ...fallback }, tried };
 }
 
-type Try = (x: Ctx, p: SeasonPriority) => { standing: StandingActivity; what: string; after?: PriorityChoice['after'] } | string;
+type Try = (x: Ctx, p: SeasonPriority) => { standing: StandingActivity; what: string; after?: PriorityChoice['after']; troubleUid?: string } | string;
 
 const workable = (x: Ctx, p: LabProject): string | undefined => {
   const plan = planProject(p, x.c, x.d, x.ctx, { subject: x.c, data: x.data });
@@ -241,6 +243,12 @@ const TRY: Record<PriorityKind, Try> = {
   },
   service: (x) => {
     const { c, d, cov } = x;
+    // a calamity still weighing on the covenant: one magus a season deals with the worst of it
+    const trouble = cov && d.isMagus ? worstTrouble(cov, x.year, x.season) : undefined;
+    if (trouble) {
+      const lore = ensureAbility(c, 'organization-lore', {}, 'Order of Hermes');
+      return { standing: { kind: 'exposure', target: `ability:${lore.uid}` }, what: `${CALAMITY_BY_ID.get(trouble.kind)?.remedy ?? 'deals with'} (${trouble.label.split(' (')[0].toLowerCase()} at ${cov!.name})`, after: 'face-trouble', troubleUid: trouble.uid };
+    }
     // a living covenant short of money: an enchantment or ritual to raise its income (Covenants ch.5, Magical Improvement)
     if (cov?.living?.needs?.money && d.isMagus && x.ctx.lab && !x.hostile && (cov.living.improved ?? 0) < MAX_IMPROVEMENTS && cov.living.improvedYear !== x.year) {
       const mt = c.abilities.find((a) => a.abilityId === d.theoryAbility);

@@ -23,6 +23,7 @@ import { optionOn } from './optional';
 import { hooksComeDue } from './hookEvents';
 import { hardshipYearEnd } from './hardship';
 import { magicalImprovement } from './livingEconomy';
+import { faceTrouble, troublesYearEnd } from './calamity';
 import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
 import { ensureAbility } from './character/factory';
 import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
@@ -229,6 +230,7 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       const was = c.standing;
       if (choice.standing.kind === 'lab') c.standing = choice.standing;
       const out = runActivity(c, d, ctx, cov, data, year, season, rng, choice.standing, chars);
+      if (choice.after === 'face-trouble' && cov && choice.troubleUid) out.push(...faceTrouble(cov, c, choice.troubleUid, year, season));
       if (choice.after === 'improve-income' && cov) out.push(...magicalImprovement(cov, c, (chars ?? []).filter((m) => cov.memberIds.includes(m.id)), year));
       c.standing = was;
       for (const e of c.seasonLog.slice(before)) e.priority = choice.kind;
@@ -680,6 +682,8 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       lines.push(...hookReminders(cov, year));
       // hard times: bills left unpaid, and the spending left unpaid brings its trouble
       lines.push(...hardshipYearEnd(cov, data, year, members));
+      // calamities' troubles pass a year; a living covenant hires new covenfolk for those lost
+      for (const t of troublesYearEnd(cov, plan.balance >= 0 && cov.finances.treasury > 0)) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const t of covenfolkYearEnd(cov, year)) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const t of [...scriptoriumYear(cov, data), ...libraryYearEnd(cov, year, data)]) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const s of cov.specialists.filter((x) => x.hired && x.hired.until <= year)) lines.push({ who: cov.name, kind: 'covenant', text: `${s.name || 'The hired teacher'} has taught the time paid for, and leaves.` });

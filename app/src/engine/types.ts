@@ -1294,6 +1294,34 @@ export interface CovenfolkCounts {
   horses: number;
 }
 
+/** Something that struck a covenant and still weighs on it (engine/calamity.ts). */
+export interface Trouble {
+  uid: string;
+  /** the calamity (CALAMITIES id) */
+  kind: string;
+  label: string;
+  severity: 1 | 2 | 3;
+  year: number;
+  season: Season;
+  /** years it still weighs on the covenant */
+  yearsLeft: number;
+  /** what the income falls to while it lasts */
+  incomeMult?: number;
+  /** vis sources closed while it lasts */
+  skipVis?: string[];
+  /** covenfolk lost, not yet replaced */
+  lost?: Partial<CovenfolkCounts>;
+  /** who brought it about, if anyone */
+  by?: string;
+  byPlayers?: boolean;
+  /** the covenant knows (or believes) who did it */
+  known?: boolean;
+  /** what it did when it struck */
+  text: string;
+  /** the season a magus last dealt with it ("1225 Summer"): one a season */
+  faced?: string;
+}
+
 /** Spending a covenant can leave unpaid when the money runs out (Covenants ch.5, Emergency Savings). */
 export type NeglectCategory = 'Buildings' | 'Provisions' | 'Laboratories' | 'Weapons and Armor';
 
@@ -1418,6 +1446,8 @@ export interface Covenant {
   startingVisStocks?: VisStock[];
   /** wards and other effects on the covenant (the Aegis of the Hearth) */
   effects?: ActiveEffect[];
+  /** calamities that struck it and still weigh on it */
+  troubles?: Trouble[];
   /** spells and powers cast on the covenant, newest last, for undoing */
   casts?: CastRecord[];
   /** what the covenant gives its members each year */

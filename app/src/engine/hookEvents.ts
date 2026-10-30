@@ -42,7 +42,8 @@ export function isDue(hb: CovenantHookBoon, year: number, season: Season): boole
 
 /**
  * What comes due as a season begins: a Natural Disaster strikes (its principal income is lost or
- * halved, as the Hook says), and a Flawed Resource's story is to be played.
+ * halved, as the Hook says), and a Flawed Resource's story is to be played (said once; the Game
+ * table keeps it in view until its story is rolled).
  */
 export function hooksComeDue(cov: Covenant, year: number, season: Season): Line[] {
   const lines: Line[] = [];
@@ -56,7 +57,8 @@ export function hooksComeDue(cov: Covenant, year: number, season: Season): Line[
         kind: 'reminder',
         text: `The Natural Disaster strikes ${cov.name || 'the covenant'}: its principal source of income is ${hb.size === 'Major' ? 'lost' : 'halved (Slump)'}. Crops, roads or buildings suffer across the region; record a Local Event on the Loyalty card, and new sources of food and income will take stories to find.`,
       });
-    } else if (m === 'flawed-resource') {
+    } else if (m === 'flawed-resource' && hb.due && seasonIndex(hb.due.year, hb.due.season) === seasonIndex(year, season)) {
+      // said once, as its season begins; the Game table keeps it in view until its story is rolled
       lines.push({
         who: cov.name,
         kind: 'reminder',

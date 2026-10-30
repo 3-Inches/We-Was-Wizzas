@@ -19,6 +19,7 @@ import { familiarBindingVis, longevityBonus, talismanCapacity } from './enchant'
 import { issueRedcapDevices, makeTalisman, redcapLevels, servedByMercerHouse } from './generate/items';
 import { optionOn } from './optional';
 import { ensureAegis, livingStewardship, livingVisMarket } from './livingEconomy';
+import { chanceCalamity } from './calamity';
 import { labTotal } from './magic';
 import { generateFamiliar } from './generate/spellsAndFamiliars';
 import { freshName } from './generate/names';
@@ -29,7 +30,7 @@ import { generateCharacter } from './generate/character';
 import { fillCovenant } from './generate/covenant';
 import { stockLibrary } from './generate/library';
 import { greatLibraryBooks } from './generate/greatLibraryStock';
-import { seeded } from './generate/random';
+import { pick, seeded } from './generate/random';
 import { newSoldierGroup, soldierBoonsWithoutGroups, soldierKindOf } from './covenfolk';
 import { newLab } from './lab';
 import { defaultPriorities, houseDuty } from './priorities';
@@ -528,6 +529,24 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
     // its Aegis, and its money and vis kept as its magi would keep them (nothing from nowhere)
     lines.push(...ensureAegis(cov, members, year));
     lines.push(...livingStewardship(cov, members, g.data, optionOn(state.saga, 'inflation')));
+    // a covenant that knows the players struck it may strike back, while the grudge is fresh
+    const grudge = (cov.troubles ?? []).find((t) => t.byPlayers && t.known && year - t.year <= 3);
+    if (grudge && players.length && (cov.living!.attitude === 'hostile' || cov.living!.attitude === 'enemy') && rng() < 0.4) {
+      const how = pick(rng, [
+        'brings charges before the Tribunal under the Code (a Quaesitor will come to investigate)',
+        'sends thieves past your Aegis for your vis',
+        'turns a noble against you: tolls, lawsuits and seizures',
+        'stirs the faeries of the woods against your covenant',
+        'challenges one of your magi to certamen at the next gathering',
+        'whispers to the bishop that your magi traffic with demons',
+      ]);
+      out.push(news(year + 1, 'Spring', { kind: 'approach', approachKind: 'trouble', covenantId: cov.id, text: `${cov.name} strikes back for the ${grudge.label.split(' (')[0].toLowerCase()}: it ${how}. (Strike your covenant from its Troubles card if it lands.)` }));
+    }
+    // now and then a calamity strikes on its own
+    for (const t of chanceCalamity(cov, members, year, rng)) {
+      lines.push({ who: cov.name, tribunal: cov.id, text: t });
+      out.push(news(year, 'Winter', { kind: 'event', covenantId: cov.id, text: t }));
+    }
     // deaths
     for (const c of members) {
       if (c.wounds.dead && wasAlive.has(c.id)) out.push(news(year, 'Winter', { kind: 'death', covenantId: cov.id, characterId: c.id, text: `${c.name} of ${cov.name} has died (aged ${c.age}).` }));

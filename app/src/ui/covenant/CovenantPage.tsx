@@ -20,6 +20,7 @@ import type { CovTabProps } from './shared';
 import { Hint } from '../Hint';
 import { AuraCard } from './AuraCard';
 import { auraOf } from '../../engine/aura';
+import { TroublesCard } from './TroublesCard';
 
 type TabId = 'overview' | 'hooks' | 'library' | 'labs' | 'folk' | 'items' | 'log';
 
@@ -220,6 +221,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
           </div>
         </Card>
         {saga && <AuraCard cov={cov} update={update} saga={saga} chars={chars} />}
+        <TroublesCard cov={cov} />
         <Card title="Build Points" tour="covenant-bp">
           <table className="compact">
             <tbody>

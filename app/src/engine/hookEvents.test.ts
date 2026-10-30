@@ -31,8 +31,8 @@ describe('Hooks that come due', () => {
     expect(disaster.active).toBe(true);
     expect(isDue(disaster, 1222, 'Summer')).toBe(false);
     expect(isDue(flawed, 1222, 'Autumn')).toBe(true);
-    // the next season brings nothing new for the disaster, and the reminder until the story is settled
-    expect(hooksComeDue(cov, 1222, 'Autumn').map((l) => l.text)).toEqual([expect.stringContaining('Flawed Resources')]);
+    // the next season brings nothing new: the disaster has struck, and the Flawed Resource was said once (it stays due)
+    expect(hooksComeDue(cov, 1222, 'Autumn')).toEqual([]);
   });
 
   it('rolls the story: success keeps the most valuable half, a failure loses all, a botch doubles it', () => {

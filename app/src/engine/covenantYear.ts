@@ -7,6 +7,7 @@ import { visLabel, type DerivedCovenant } from './covenant';
 import { keepsFeastCycle } from './covenfolk';
 import type { Covenant, IncomeModification, VisStock } from './types';
 import { uid } from '../util/id';
+import { troubleSkips } from './calamity';
 
 // ------------------------------------------------------------------------------ Income Modification
 
@@ -74,8 +75,10 @@ export function planYearEnd(cov: Covenant, dc: DerivedCovenant, o: YearEndOption
   if (o.harvestVis) {
     const mult = miracleMultiplierOf(cov);
     const miracles = cov.hooksBoons.some((h) => mechanicOf(h) === 'tithing-miracles');
+    // sources a calamity has closed yield nothing while it lasts
+    const closed = troubleSkips(cov);
     for (const s of cov.visSources) {
-      if (o.skipVis.includes(s.uid) || dc.unreal.has(s.uid)) continue;
+      if (o.skipVis.includes(s.uid) || dc.unreal.has(s.uid) || closed.has(s.uid)) continue;
       const got = receivedAfterTithe(s.pawnsPerYear, !!s.tithed, !!s.miracle && miracles, mult).received;
       if (!got) continue;
       const pair = s.dedicated ? s.pair : undefined;

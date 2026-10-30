@@ -22,6 +22,7 @@ import { useTabParam } from '../useTabParam';
 import type { LoreTab } from './TribunalLore';
 import { HOUSES } from '../../data/houses';
 import { MotionsCard, WanderersCard, useTakeIn } from './TribunalVotes';
+import { TroublesCard } from '../covenant/TroublesCard';
 
 const houseName = (id?: string) => HOUSES.find((h) => h.id === id)?.name ?? id ?? '';
 const gildName = (id?: string) => RHINE_GILDS.find((g) => g.id === id)?.tree;
@@ -423,6 +424,12 @@ function LivingCovenantCard({ cov, book, chars, saga, players }: { cov: Covenant
           </div>
         )}
         {players.length > 0 && <DealWith cov={cov} players={players} saga={saga} />}
+        <details style={{ marginTop: 6 }}>
+          <summary className="small">
+            Troubles{(cov.troubles ?? []).some((t) => t.yearsLeft > 0) ? ` (${(cov.troubles ?? []).filter((t) => t.yearsLeft > 0).length})` : ''}: calamities, and striking it
+          </summary>
+          <TroublesCard cov={cov} compact />
+        </details>
         <div className="row tight" style={{ marginTop: 8, flexWrap: 'wrap' }}>
           <Link className="btn small" to={`${S}/covenant/${cov.id}`}>
             Covenant page
