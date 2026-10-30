@@ -11,12 +11,17 @@ import { Link } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type LabVFDef, type Technique } from '../../../data';
 import { CORD_COST, cordPointsCost } from '../../../engine/enchant';
 import { conditionalBonuses } from '../../../engine/magic';
-import { applySeason, newSeasonEntry } from '../../../engine/longterm';
+import { applySeason, computeStudy, newSeasonEntry } from '../../../engine/longterm';
 import { LAB_ROUTINES, ROUTINE_IDS, toggleRoutine } from '../../../engine/labRoutines';
 import { optionOn } from '../../../engine/optional';
 import { LAB_IMPROVEMENTS, PROJECT_KINDS, alongsideCandidates, canExperiment, inventedWith, itemOf, newProject, pawnsUsed, planProject, projectBotchDice, seasonVisLimit, visShort, workProject } from '../../../engine/projects';
-import { seasonTaken } from '../../../engine/time';
-import type { Character, LabProject, LabVirtueEntry } from '../../../engine/types';
+import { extraFree, inPlay, seasonBusy, seasonTaken } from '../../../engine/time';
+import { type Character, type HouseRules, type LabProject, type LabVirtueEntry, type Season } from '../../../engine/types';
+import { cannotHelp, helpValue, maxHelpers, type LabHelper } from '../../../engine/labHelp';
+import { bindFamiliarSheets } from '../../../engine/teaching';
+import { deriveCharacter, type DerivedCharacter } from '../../../engine/character/derive';
+import { ensureAbility } from '../../../engine/character/factory';
+import type { GameData } from '../../../data';
 import { purseOf } from '../../../engine/vis';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
@@ -28,37 +33,78 @@ import type { CharEditor } from '../useChar';
  * its progress, vis and result, and anyone else it changes (the subject of a Longevity Ritual, the
  * covenant's stocks). Returns what happened.
  */
-export function useWorkProject(ed: CharEditor): (p: LabProject) => string[] {
+export function useWorkProject(ed: CharEditor): (p: LabProject, helperIds?: string[]) => string[] {
   const { c, d, data, ctx, saga } = ed;
   const putSagaState = useStore((s) => s.putSagaState);
   const chars = useSagaCharacters(saga?.id);
   const covs = useSagaCovenants(saga?.id);
-  return (p) => {
+  return (p, helperIds = []) => {
     if (!c || !d || !saga) return [];
     const year = saga.currentYear;
     const season = saga.currentSeason;
     const state = structuredClone({ saga, characters: chars, covenants: covs });
     const x = state.characters.find((y) => y.id === c.id)!;
     const cov = ctx.covenant ? state.covenants.find((y) => y.id === ctx.covenant!.id) : undefined;
-    const lines = workProject(x, d, ctx, cov, p.uid, data, year, { chars: state.characters, season });
+    // those helping (DE, Help in the Laboratory): their own season if free, else an extra one
+    const helpers: LabHelper[] = state.characters
+      .filter((y) => helperIds.includes(y.id))
+      .map((y) => {
+        const yd = deriveCharacter(y, data, saga.houseRules);
+        return { c: y, d: yd, value: helpValue(yd), familiar: y.creature?.familiarOf === x.id, extra: seasonBusy(y, year, season) };
+      });
+    const lines = workProject(x, d, ctx, cov, p.uid, data, year, { chars: state.characters, season, helpers });
     const theory = d.abilities.find((a) => a.abilityId === d.theoryAbility);
     const e = newSeasonEntry(year, season, 'other', `Lab: ${p.name}`, theory ? { [`ability:${theory.uid}`]: 2 } : {});
     e.notes = lines.join(' ');
     e.labKind = p.kind;
     applySeason(x, e, 1);
     x.seasonLog.push(e);
-    const touched = state.characters.filter((y) => y.id === x.id || y.id === p.subjectId);
+    for (const h of helpers.filter((y) => y.used)) {
+      const mt = ensureAbility(h.c, 'magic-theory', {});
+      const r = computeStudy(h.d, { kind: 'exposure', subject: 'Magic Theory' }, { abilityUid: mt.uid });
+      const he = newSeasonEntry(year, season, 'other', `${h.extra ? 'Extra season (needs no sleep): ' : ''}Helped ${x.name || 'a magus'} in the lab: ${p.name} (+${r.xp} xp Exposure in Magic Theory)`, r.xp ? { [`ability:${mt.uid}`]: r.xp } : {});
+      if (h.extra) he.extra = true;
+      applySeason(h.c, he, 1);
+      h.c.seasonLog.push(he);
+      lines.push(`${h.c.name || 'The helper'} helped: +${h.value} to the Lab Total, Exposure in Magic Theory +${r.xp} xp.`);
+    }
+    // a familiar just bound: its own sheet learns as a human does from now on
+    bindFamiliarSheets(state.characters);
+    const touched = state.characters.filter((y) => y.id === x.id || y.id === p.subjectId || helperIds.includes(y.id) || y.id === x.familiar?.characterId);
     putSagaState({ saga: state.saga, characters: touched, covenants: cov ? [cov] : [] });
     return [...lines, theory ? `+2 xp Exposure in ${theory.name}.` : ''].filter(Boolean);
   };
 }
 
+/** The helpers chosen, as the Lab Total sees them, to plan with before the season is worked. */
+export function previewHelpers(ids: string[], chars: Character[], magus: Character, data: GameData, rules: HouseRules): LabHelper[] {
+  return chars
+    .filter((y) => ids.includes(y.id))
+    .map((y) => {
+      const yd = deriveCharacter(y, data, rules);
+      return { c: y, d: yd, value: helpValue(yd), familiar: y.creature?.familiarOf === magus.id, extra: false };
+    });
+}
+
+/** Covenant-mates who could help this magus in the lab this season, with why each other cannot. */
+export function labHelpers(c: Character, mates: Character[], data: GameData, rules: HouseRules, year: number, season: Season): { c: Character; value: number; why?: string; extra: boolean }[] {
+  return mates
+    .filter((y) => y.id !== c.id && inPlay(y))
+    .map((y) => {
+      const yd = deriveCharacter(y, data, rules);
+      const busy = seasonBusy(y, year, season);
+      const why = cannotHelp(y, yd, c) ?? (busy && !extraFree(y, yd, year, season) ? 'has no season free' : undefined);
+      return { c: y, value: helpValue(yd), why, extra: busy };
+    });
+}
+
 export function LabProjects({ ed }: { ed: CharEditor }) {
-  const { c, d, ctx, saga, update } = ed;
+  const { c, d, ctx, saga, update, data } = ed;
   const chars = useSagaCharacters(saga?.id);
   const workSeason = useWorkProject(ed);
   const [kind, setKind] = useState<LabProject['kind']>('invent');
   const [log, setLog] = useState<string[]>([]);
+  const [helperIds, setHelperIds] = useState<string[]>([]);
   if (!c || !d || !saga) return null;
   const projects = c.projects ?? [];
   const year = saga.currentYear;
@@ -70,8 +116,9 @@ export function LabProjects({ ed }: { ed: CharEditor }) {
   const add = () => update((x) => void (x.projects = [...(x.projects ?? []), newProject(kind)]));
   const set = (u: string, fn: (p: LabProject) => void) => update((x) => { const p = x.projects?.find((y) => y.uid === u); if (p) fn(p); });
   const work = (p: LabProject) => {
-    const lines = workSeason(p);
+    const lines = workSeason(p, helperIds);
     setLog((l) => [`${season} ${year}: ${lines.join(' ')}`, ...l].slice(0, 10));
+    setHelperIds([]);
   };
 
   return (
@@ -101,10 +148,11 @@ export function LabProjects({ ed }: { ed: CharEditor }) {
         at most {seasonVisLimit(d)} pawns a season (twice Magic Theory).
         {ruled.length > 0 && <span className="bad-text"> {ctx.lab?.lab.name} cannot be used for {ruled.join(', ')}.</span>}
       </p>
+      {!busy && <HelpersRow c={c} d={d} chars={chars} ed={ed} helperIds={helperIds} setHelperIds={setHelperIds} />}
       {kind && <p className="small muted" style={{ margin: '0 0 6px' }}>{PROJECT_KINDS.find((k) => k.id === kind)?.blurb}</p>}
       {projects.length === 0 && <div className="small muted">No projects yet.</div>}
       {projects.map((p) => (
-        <ProjectRow key={p.uid} p={p} ed={ed} chars={chars} set={(fn) => set(p.uid, fn)} onWork={() => work(p)} busy={busy} />
+        <ProjectRow key={p.uid} p={p} ed={ed} chars={chars} set={(fn) => set(p.uid, fn)} onWork={() => work(p)} busy={busy} helpers={previewHelpers(helperIds, chars, c, data, saga.houseRules)} />
       ))}
       {log.map((l, i) => (
         <div key={i} className="small list-row" style={{ whiteSpace: 'pre-wrap' }}>
@@ -115,12 +163,12 @@ export function LabProjects({ ed }: { ed: CharEditor }) {
   );
 }
 
-function ProjectRow({ p, ed, chars, set, onWork, busy }: { p: LabProject; ed: CharEditor; chars: Character[]; set: (fn: (p: LabProject) => void) => void; onWork: () => void; busy: boolean }) {
+function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProject; ed: CharEditor; chars: Character[]; set: (fn: (p: LabProject) => void) => void; onWork: () => void; busy: boolean; helpers?: LabHelper[] }) {
   const { c, d, data, update, ctx, saga } = ed;
   const [history, setHistory] = useState(false);
   if (!c || !d || !saga) return null;
   const subject = p.subjectId ? chars.find((x) => x.id === p.subjectId) : undefined;
-  const plan0 = planProject(p, c, d, ctx, { subject, data });
+  const plan0 = planProject(p, c, d, ctx, { subject, data, helpers });
   // the vis is checked where it comes from before the season is worked
   const short = visShort(p, c, ctx, plan0);
   const plan = short ? { ...plan0, problems: [...plan0.problems, short] } : plan0;
@@ -595,5 +643,41 @@ function ArtPair({ te, fo, onChange }: { te: Technique; fo: Form; onChange: (te:
         </select>
       </span>
     </Field>
+  );
+}
+
+/**
+ * Helpers for the season worked here (DE, Help in the Laboratory): covenant-mates with The Gift and
+ * Magic Theory, or the magus's bound familiar; as many as Leadership allows (a familiar and one more).
+ */
+export function HelpersRow({ c, d, chars, ed, helperIds, setHelperIds }: { c: Character; d: DerivedCharacter; chars: Character[]; ed: CharEditor; helperIds: string[]; setHelperIds: (ids: string[]) => void }) {
+  const { saga, data, ctx } = ed;
+  if (!saga) return null;
+  const mates = chars.filter((y) => ctx.covenant?.memberIds.includes(y.id) || (!!c.covenantId && y.covenantId === c.covenantId));
+  const all = labHelpers(c, mates, data, saga.houseRules, saga.currentYear, saga.currentSeason);
+  const able = all.filter((h) => !h.why);
+  // those who cannot help are named only when they might have been meant to: the familiar, a companion of the magus, one set to help
+  const meant = all.filter((h) => h.why && (h.c.id === c.familiar?.characterId || h.c.creature?.ownerId === c.id || (h.c.standing?.kind === 'assist' && h.c.standing.helps === c.id)));
+  if (!able.length && !meant.length) return null;
+  const cap = maxHelpers(d, able.some((h) => h.c.creature?.familiarOf === c.id && helperIds.includes(h.c.id)));
+  return (
+    <div className="row tight small" style={{ marginBottom: 6 }}>
+      <b>Helpers this season:</b>
+      {able.map((h) => {
+        const on = helperIds.includes(h.c.id);
+        return (
+          <label key={h.c.id} className="inline" title={h.extra ? 'In an extra season: their own is spent' : undefined}>
+            <input type="checkbox" checked={on} disabled={!on && helperIds.length >= cap} onChange={(e) => setHelperIds(e.target.checked ? [...helperIds, h.c.id] : helperIds.filter((x) => x !== h.c.id))} /> {h.c.name || 'Unnamed'} (+{h.value}
+            {h.extra ? ', extra season' : ''})
+          </label>
+        );
+      })}
+      {able.length > 0 && <span className="muted">at most {cap} (Leadership)</span>}
+      {meant.map((h) => (
+        <span key={h.c.id} className="muted">
+          {h.c.name || 'Unnamed'}: {h.why}.
+        </span>
+      ))}
+    </div>
   );
 }
