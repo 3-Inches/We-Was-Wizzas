@@ -20,6 +20,10 @@ import { planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
 import { auraOf, changeAura, dominionYearEnd, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
 import { optionOn } from './optional';
+import { hooksComeDue } from './hookEvents';
+import { hardshipYearEnd } from './hardship';
+import { magicalImprovement } from './livingEconomy';
+import { faceTrouble, troublesYearEnd } from './calamity';
 import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
 import { ensureAbility } from './character/factory';
 import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
@@ -226,6 +230,8 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       const was = c.standing;
       if (choice.standing.kind === 'lab') c.standing = choice.standing;
       const out = runActivity(c, d, ctx, cov, data, year, season, rng, choice.standing, chars);
+      if (choice.after === 'face-trouble' && cov && choice.troubleUid) out.push(...faceTrouble(cov, c, choice.troubleUid, year, season));
+      if (choice.after === 'improve-income' && cov) out.push(...magicalImprovement(cov, c, (chars ?? []).filter((m) => cov.memberIds.includes(m.id)), year));
       c.standing = was;
       for (const e of c.seasonLog.slice(before)) e.priority = choice.kind;
       return [`${priorityLabel(choice.kind)}: ${choice.what}.`, ...out];
@@ -500,7 +506,7 @@ export const AURA_TIME: Record<NonNullable<Character['auraTime']>, string> = {
 };
 
 /** Hooks whose stories come round with the years (Covenants ch.2). */
-const HOOK_REMINDERS: { match: RegExp; every: number; text: string }[] = [
+export const HOOK_REMINDERS: { match: RegExp; every: number; text: string }[] = [
   { match: /indiscreet resource/i, every: 5, text: 'a story to keep the resource quiet (one every five years or so), or it is lost' },
   { match: /dark secret/i, every: 3, text: 'the secret crops up again as a potential problem' },
   { match: /itinerants/i, every: 1, text: 'the mobile community visits this year' },
@@ -555,7 +561,7 @@ function renewCovenantEffects(cov: Covenant, chars: Character[], year: number, s
     const arts: Art[] = e.renew.art ? [e.renew.art] : ['Re', 'Vi'];
     const paid = takeVis(cov.visStocks, arts, pawns);
     if (!paid.ok || (e.renew.casterId && !caster)) {
-      lines.push({ who: cov.name, kind: 'reminder', text: `${e.name} ends and could not be cast again: ${!paid.ok ? `it needs ${pawns} pawns of ${arts.map((a) => ART_NAMES[a]).join(' or ')} vis` : 'its caster is gone'}.` });
+      lines.push({ who: cov.name, kind: 'reminder', text: `${e.name} ends and could not be cast again: ${!paid.ok ? `it needs ${pawns} pawns of ${arts.map((a) => ART_NAMES[a]).join(' or ')} vis` : 'its caster is gone'}.${/aegis/i.test(e.name) ? ' Until it is cast, spirits, faeries and others’ magic come and go freely, and the magi’s sanctums lie open to scrying.' : ''}` });
       continue;
     }
     const next: ActiveEffect = { ...e, uid: uid(), year, season };
@@ -668,11 +674,16 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     for (const cov of state.covenants) {
       const members = state.characters.filter((c) => cov.memberIds.includes(c.id));
       const dc = deriveCovenant(cov, data, state.characters);
-      const plan = planYearEnd(cov, dc, { ...o.yearEnd, skipVis: [...(o.yearEnd.skipVis ?? []), ...(cov.yearEnd?.skipVis ?? [])] });
-      applyYearEnd(cov, plan, year, o.yearEnd);
+      const ye = { ...o.yearEnd, inflation: o.yearEnd.inflation && optionOn(saga, 'inflation') };
+      const plan = planYearEnd(cov, dc, { ...ye, skipVis: [...(o.yearEnd.skipVis ?? []), ...(cov.yearEnd?.skipVis ?? [])] });
+      applyYearEnd(cov, plan, year, ye);
       lines.push({ who: cov.name, kind: 'covenant', text: plan.lines.join(' ') });
       for (const t of payAllowance(cov, members, plan.balance, plan.vis, year, season)) lines.push({ who: cov.name, kind: 'money', text: t });
       lines.push(...hookReminders(cov, year));
+      // hard times: bills left unpaid, and the spending left unpaid brings its trouble
+      lines.push(...hardshipYearEnd(cov, data, year, members));
+      // calamities' troubles pass a year; a living covenant hires new covenfolk for those lost
+      for (const t of troublesYearEnd(cov, plan.balance >= 0 && cov.finances.treasury > 0)) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const t of covenfolkYearEnd(cov, year)) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const t of [...scriptoriumYear(cov, data), ...libraryYearEnd(cov, year, data)]) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const s of cov.specialists.filter((x) => x.hired && x.hired.until <= year)) lines.push({ who: cov.name, kind: 'covenant', text: `${s.name || 'The hired teacher'} has taught the time paid for, and leaves.` });
@@ -707,6 +718,8 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   const next = nextSeason(year, season);
   for (const cov of state.covenants) {
     lines.push(...renewCovenantEffects(cov, state.characters, next.year, next.season));
+    // a Natural Disaster or a Flawed Resource whose time has come
+    lines.push(...hooksComeDue(cov, next.year, next.season));
     // a change to the aura for one season lasts only that season
     const temp = cov.auraTrack?.temp;
     if (temp && seasonIndex(temp.year, temp.season) < seasonIndex(next.year, next.season)) cov.auraTrack!.temp = undefined;

@@ -3,6 +3,7 @@
 
 import type { Characteristic, HookBoonDef } from '../data';
 import type { BudgetKind, Covenant, CovenantHookBoon, IncomeModification, IncomeSource, Specialist } from './types';
+import { troubleIncomeMult } from './calamity';
 
 // ------------------------------------------------------------------------------ Income
 
@@ -330,6 +331,12 @@ export function computeIncome(cov: Covenant, magi: number): IncomeResult {
       notes.push(`×${Math.round(s.factor * 100) / 100} from past years`);
     }
     let gross = base * (INCOME_MODIFICATIONS.find((m) => m.id === (s.modification ?? 'Status Quo'))?.mult ?? 1);
+    // a calamity's trouble still weighing on the covenant
+    const troubled = troubleIncomeMult(cov);
+    if (troubled !== 1) {
+      gross *= troubled;
+      notes.push(`troubles: ×${Math.round(troubled * 100) / 100} while they last`);
+    }
     for (const a of applied) {
       if (a.mechanic === 'natural-disaster' && a.hb.active) {
         if (a.hb.size === 'Major') ((gross = 0), notes.push('lost to a Natural Disaster'));

@@ -3,6 +3,9 @@ import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import { ITEM_CHECK_MODS, ITEM_QUALITY_MOD, LOCK_PICK_EASE, itemDamageLevels, itemStressCheck, repairNeeds, type ItemQuality } from '../../engine/workshop';
 import { Card, Field, Stepper, signed } from '../kit';
 import { RulesNote } from '../RulesNote';
+import { useStore } from '../../store/store';
+import { useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
+import { BlowCard, OpposedCard, PerilsCard } from './TableRolls';
 
 // Grogs' optional equipment bonuses: the right tool for a task lowers its Ease Factor.
 const EQUIPMENT = { none: 0, minor: 1, major: 3 } as const;
@@ -41,6 +44,12 @@ interface Roll {
 let seq = 0;
 
 export default function DicePage() {
+  // the saga last opened: its characters can take part in the rolls below
+  const sagaId = useStore((s) => s.activeSagaId);
+  const saga = useSaga(sagaId);
+  const data = useGameData(saga);
+  const chars = useSagaCharacters(sagaId).filter((c) => !c.wounds.dead && c.creation.finalized);
+  const x = { chars: [...chars.filter((c) => !c.npc), ...chars.filter((c) => c.npc)], data, rules: saga?.houseRules };
   const [label, setLabel] = useState('');
   const [mod, setMod] = useState(0);
   const [botchDice, setBotchDice] = useState(1);
@@ -134,6 +143,13 @@ export default function DicePage() {
           ))}
         </Card>
       </div>
+      <div className="grid grid-2">
+        <OpposedCard x={x} />
+        <BlowCard x={x} />
+      </div>
+      <PerilsCard x={x} />
+      {!saga && <p className="small muted">Open a saga first and its characters can take part in these rolls, their wounds going on their sheets.</p>}
+
       <Card title="Equipment bonuses">
         <RulesNote book="Grogs" line={1722} endLine={1731}>
           Equipment that suits the task lowers its Ease Factor: by 1 for a minor bonus, by 3 for a major one. Some examples:

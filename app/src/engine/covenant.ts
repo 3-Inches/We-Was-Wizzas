@@ -218,6 +218,11 @@ export interface CovIssue {
 
 const LINE_TAB: Record<string, string> = { Library: 'library', Vis: 'library', 'Enchanted items': 'items', Specialists: 'folk', Laboratories: 'labs' };
 
+/** A tenth a year on the money a covenant owes (borrowed, or bills left unpaid at a year's end). */
+export function loanInterest(cov: Covenant): number {
+  return Math.round((cov.finances.loans ?? []).reduce((t, l) => t + l.pounds, 0) / 10 * 10) / 10;
+}
+
 export function deriveCovenant(cov: Covenant, data: GameData, characters: Character[]): DerivedCovenant {
   const issueList: CovIssue[] = [];
   const issue = (message: string, ...fixes: CovFix[]) => issueList.push({ message, fixes });
@@ -535,6 +540,7 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
     { label: 'Inflation', pounds: cov.finances.inflation },
     { label: 'Other tithes & taxes', pounds: cov.finances.tithes },
     ...(income.debt ? [{ label: 'Debt interest (Indebted)', pounds: income.debt }] : []),
+    ...(loanInterest(cov) ? [{ label: 'Interest on money owed', pounds: loanInterest(cov) }] : []),
     ...(yearlyTotal ? [{ label: 'Yearly events and guests', pounds: yearlyTotal }] : []),
     { label: 'Sundry', pounds: cov.finances.sundry },
     ...(cov.finances.enumerus ? [{ label: 'The Pound of Enumerus', pounds: 1 }] : []),
@@ -584,6 +590,13 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
     const saved = round1(applied.reduce((t, a) => t + a.pounds, 0));
     crafts.push({ craft, people, potential, applied, saved });
     if (saved) savings.push({ label: `${craft.name}${people > 1 ? ` ×${people}` : ''} (${applied.filter((a) => a.pounds).map((a) => a.category).join(' + ')})`, pounds: -saved });
+  }
+  // hard times: spending left unpaid costs nothing now, and brings its trouble at the year's end
+  for (const n of cov.finances.neglect ?? []) {
+    const cat: CostCategory = n;
+    const left = catTotals[cat] - catSaved[cat];
+    if (left > 0) savings.push({ label: `Left unpaid: ${n}`, pounds: -round1(left) });
+    catSaved[cat] = catTotals[cat];
   }
   if (cov.finances.magicSavings) savings.push({ label: 'Magic items / rituals', pounds: -cov.finances.magicSavings });
   // craft magic cast in place of craftsmen, at the storyguide's discretion (Covenants ch.5)

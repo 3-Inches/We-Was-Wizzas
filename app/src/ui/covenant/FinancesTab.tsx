@@ -9,9 +9,10 @@ import { abilityDisplayName } from '../../engine/character/derive';
 import { craftQuality } from '../../engine/workshop';
 import type { Covenant, CovenfolkCounts, IncomeModification, IncomeSource, Specialist } from '../../engine/types';
 import { uid } from '../../util/id';
-import { Card, Field, Stepper, Total, HowItWorks } from '../kit';
+import { Card, Field, Stepper, Tabs, Total, HowItWorks } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
+import { HardTimesCard } from './HardTimesCard';
 import { CraftMagicCard, GearHelper, OrganizationCard, SoldiersCard, TurbCard, YearlyCard } from './CovenfolkCards';
 import {
   CRAFT_GUILD_ORDER, CRAFT_GUILD_RANKS, ROLE_BY_ID, ROLE_DEFS, craftsmanUpkeep, craftsmanWorkshopTotal, nextImprovementCost, guildRanksApply, guildShortfalls, laborPointsPerSeason,
@@ -20,7 +21,7 @@ import {
 import { optionOn } from '../../engine/optional';
 import { DEFAULT_YEAR_END, LOYALTY_EVENTS, SUNDRY_PRESETS, labOutfitCost, loyaltyAttitude, loyaltyEventPoints, planYearEnd, rollIncomeModification } from '../../engine/covenantYear';
 import { NO_ALLOWANCE, allowanceRecipients } from '../../engine/economy';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useStore } from '../../store/store';
 
 const FOLK: { key: keyof CovenfolkCounts; label: string; hint?: string }[] = [
@@ -53,14 +54,31 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
   const guildCtx = guildRanksApply(cov, !!saga && optionOn(saga, 'guilds'));
   const labs = dc.labs.map((l) => ({ uid: l.lab.uid, name: l.lab.name || 'a lab', teaching: Math.min(3, l.specializations.Teaching ?? 0) }));
 
+  // three parts, so a phone need not scroll the whole of it: its people, its money, its loyalty (all of it while a tutorial runs)
+  const [params, setParams] = useSearchParams();
+  const sub = (params.get('sub') as 'people' | 'money' | 'loyalty') || 'people';
+  const setSub = (t: 'people' | 'money' | 'loyalty') => setParams({ tab: params.get('tab') ?? 'folk', sub: t }, { replace: true });
+  const touring = useStore((s) => !!s.ui.tour);
+  const show = (t: typeof sub) => touring || sub === t;
+
   const optimalLab = () => optimalLaborers(cov, dc.members, dc.labs);
   /** craftsmen where they save most, while they save money and (when bought) the Build Points last */
   const addEveryCraft = () => update((x) => void addCostSavingCraftsmen(x, dc.members, dc.labs, newScore, newBought ? Math.max(0, cov.buildPoints - dc.bpSpent) : Infinity));
 
   return (
     <div className="stack">
+      <Tabs
+        tabs={[
+          { id: 'people', label: 'People' },
+          { id: 'money', label: `Money (${f.balance >= 0 ? '+' : ''}${f.balance} £ a year)` },
+          { id: 'loyalty', label: `Loyalty (${dc.loyalty.score})` },
+        ]}
+        value={sub}
+        onChange={setSub}
+      />
+      {show('people') && (<>
       <div className="grid grid-2">
-        <Card title="Covenfolk" className="accent">
+        <Card title="Covenfolk" className="accent" fold="cov-covenfolk" summary={`${Object.values(cov.covenfolk).reduce((t, n) => t + n, 0)} covenfolk (${cov.covenfolk.grogs} grogs, ${cov.covenfolk.servants} servants, ${cov.covenfolk.laborers} laborers, ${cov.covenfolk.teamsters} teamsters); ${f.inhabitantPoints} points of inhabitants.`}>
           <div className="grid grid-3">
             {FOLK.map(({ key, label, hint }) => (
               <Field key={key} label={label} hint={hint}>
@@ -128,6 +146,8 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
 
       <Card
         title={`Specialists & teachers (${people.reduce((s, x) => s + specialistCost(x), 0)} BP)`}
+        fold="cov-specialists"
+        summary={`${people.reduce((t, s) => t + countOf(s), 0)} specialists and teachers: ${people.slice(0, 4).map((s) => s.name || s.role).join(', ')}${people.length > 4 ? '…' : ''}.`}
         actions={
           <label className="inline small" title="Each year: Exposure in their job in the seasons they work (Teaching for a teacher's seasons of teaching), Practice in their free seasons, bringing a lesser Ability up to their best; craftsmen also earn Labor Points. What they were bought for stays.">
             <input type="checkbox" checked={cov.folkAdvance !== false} onChange={(e) => update((x) => void (x.folkAdvance = e.target.checked ? undefined : false))} /> they improve each year
@@ -150,6 +170,8 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
 
       <Card
         title={`Craftsmen (${craftsmen.reduce((s, x) => s + specialistCost(x), 0)} BP)`}
+        fold="cov-craftsmen"
+        summary={`${craftsmen.reduce((t, s) => t + countOf(s), 0)} craftsmen, saving ${Math.round(f.crafts.reduce((t, c) => t + c.saved, 0))} £ a year.`}
         tour="craftsmen"
         actions={
           <span className="row tight small">
@@ -214,7 +236,9 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
           to keep to Covenants&apos; own list.
         </HowItWorks>
       </Card>
+      </>)}
 
+      {show('money') && (<>
       <CloseYear cov={cov} update={update} dc={dc} />
 
       <div className="grid grid-2">
@@ -225,7 +249,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
       <div className="grid grid-2">
         <IncomeCard cov={cov} update={update} dc={dc} hasMiracles={hasMiracles} />
 
-        <Card title="Annual expenditure (Covenants ch.5)">
+        <Card title="Annual expenditure (Covenants ch.5)" fold="cov-expenditure" summary={`${f.totalExpenditure} £ a year against ${f.income} £ of income: ${f.balance >= 0 ? 'a surplus' : 'a shortfall'} of ${Math.abs(f.balance)} £.`}>
           <table className="compact">
             <tbody>
               {f.expenditures.map((e) => (
@@ -301,9 +325,18 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
             <Field label="Other tithes & taxes (£)" hint="Church tithes on income are set per source">
               <Stepper value={cov.finances.tithes} min={0} width={40} onChange={(v) => setFin('tithes', v)} />
             </Field>
-            <Field label="Inflation (£)">
-              <Stepper value={cov.finances.inflation} min={0} width={40} onChange={(v) => setFin('inflation', v)} />
-            </Field>
+            {(optionOn(saga, 'inflation') || cov.finances.inflation > 0) && (
+              <Field label="Inflation (£)" hint={optionOn(saga, 'inflation') ? undefined : 'Inflation is off in this saga (House rules): this is left from before.'}>
+                <span className="row">
+                  <Stepper value={cov.finances.inflation} min={0} width={40} onChange={(v) => setFin('inflation', v)} />
+                  {!optionOn(saga, 'inflation') && (
+                    <button className="small" onClick={() => setFin('inflation', 0)}>
+                      Clear it
+                    </button>
+                  )}
+                </span>
+              </Field>
+            )}
             <OneOffSpending cov={cov} update={update} dc={dc} />
             <Field label="Sundry (£)">
               <Stepper value={cov.finances.sundry} min={0} width={40} onChange={(v) => setFin('sundry', v)} />
@@ -324,7 +357,11 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
         </Card>
       </div>
 
-      <Card title="Loyalty (Covenants ch.4)">
+      <HardTimesCard cov={cov} update={update} dc={dc} data={data} />
+      </>)}
+
+      {show('loyalty') && (
+      <Card title="Loyalty (Covenants ch.4)" fold="cov-loyalty" summary={`Prevailing Loyalty ${dc.loyalty.score}: ${loyaltyAttitude(dc.loyalty.score).split(';')[0].split('.')[0]}.`}>
         <div className="row">
           <div className="stat">
             <span className="v">
@@ -366,6 +403,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
           score). Covenfolk roll Loyalty + Personality when tested.
         </p>
       </Card>
+      )}
     </div>
   );
 }
@@ -721,7 +759,7 @@ function QuickAdd({ update, data, examplesOnly }: { update: CovTabProps['update'
       });
     });
   return (
-    <Card title="Quick add (within the starting limits)">
+    <Card title="Quick add (within the starting limits)" fold="cov-quick-add" summary="Add specialists, teachers and craftsmen at the book’s starting limits.">
       <div className="grid grid-2">
         <Field label="Role">
           <select value={role} onChange={(e) => setRole(e.target.value as Specialist['role'])}>
@@ -816,7 +854,7 @@ function IncomeCard({ cov, update, dc, hasMiracles }: Omit<CovTabProps, 'data'> 
   const f = dc.finances;
   const incomeHBs = cov.hooksBoons.filter((h) => ['wealth', 'secondary-income', 'poverty', 'natural-disaster', 'right', 'contested-resource'].includes(mechanicOf(h) ?? ''));
   return (
-    <Card title={`Income (${f.income} £ received)`}>
+    <Card title={`Income (${f.income} £ received)`} fold="cov-income" summary={`${f.income} £ a year from ${f.incomeLines.length} source${f.incomeLines.length === 1 ? '' : 's'}.`}>
       {f.incomeLines.map((l) => {
         const i = l.source;
         const set = (fn: (x: IncomeSource) => void) => update((c) => { const y = c.income.find((z) => z.uid === i.uid); if (y) fn(y); });
@@ -1017,7 +1055,7 @@ function CloseYear({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
   const each = a.mode === 'flat' ? a.amount : a.mode === 'percent' && plan.balance > 0 ? Math.floor(((plan.balance * a.amount) / 100 / Math.max(1, who.length)) * 10) / 10 : 0;
   const setA = (fn: (x: NonNullable<typeof cov.allowance>) => void) => update((x) => void fn((x.allowance ??= { ...NO_ALLOWANCE })));
   return (
-    <Card title={`The year ${saga?.currentYear ?? ''}`}>
+    <Card title={`The year ${saga?.currentYear ?? ''}`} fold="cov-year" summary={`The year should end with ${plan.treasuryAfter} £ in the treasury. Close it here, or let time pass on the Seasons page.`}>
       <div className="row small">
         <span className={`badge ${dc.finances.balance < 0 ? 'bad' : 'good'}`}>
           {dc.finances.balance >= 0 ? '+' : ''}

@@ -20,6 +20,7 @@ import type { CovTabProps } from './shared';
 import { Hint } from '../Hint';
 import { AuraCard } from './AuraCard';
 import { auraOf } from '../../engine/aura';
+import { TroublesCard } from './TroublesCard';
 
 type TabId = 'overview' | 'hooks' | 'library' | 'labs' | 'folk' | 'items' | 'log';
 
@@ -220,6 +221,7 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
           </div>
         </Card>
         {saga && <AuraCard cov={cov} update={update} saga={saga} chars={chars} />}
+        <TroublesCard cov={cov} />
         <Card title="Build Points" tour="covenant-bp">
           <table className="compact">
             <tbody>
@@ -284,7 +286,13 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
           </HowItWorks>
         </Card>
       </div>
-      <Card title="Members" tour="covenant-members" actions={<Link className="small" to={`/saga/${cov.sagaId}/build?tab=covenant`}>Fill out its people ›</Link>}>
+      <Card
+        title="Members"
+        tour="covenant-members"
+        fold="cov-members"
+        summary={`${chars.filter((c) => cov.memberIds.includes(c.id)).map((c) => c.name || 'Unnamed').slice(0, 6).join(', ')}${cov.memberIds.length > 6 ? ` and ${cov.memberIds.length - 6} more` : ''}.`}
+        actions={<Link className="small" to={`/saga/${cov.sagaId}/build?tab=covenant`}>Fill out its people ›</Link>}
+      >
         {chars.length === 0 && <div className="small muted">No characters in this saga yet.</div>}
         <div className="grid grid-3">
           {chars.map((c) => {

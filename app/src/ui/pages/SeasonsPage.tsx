@@ -9,6 +9,7 @@ import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaC
 import { deriveCharacter } from '../../engine/character/derive';
 import { deriveCovenant } from '../../engine/covenant';
 import { DEFAULT_YEAR_END, accountsForecast, planYearEnd, type YearEndOptions } from '../../engine/covenantYear';
+import { optionOn } from '../../engine/optional';
 import { DEFAULT_ADVANCE, REPORTS_IN_FULL, advanceSeasons, describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
 import { allowanceRecipients } from '../../engine/economy';
 import type { Character, Covenant, TimeReport } from '../../engine/types';
@@ -96,9 +97,11 @@ export default function SeasonsPage() {
           <label className="inline">
             <input type="checkbox" checked={ye.harvestVis} onChange={(e) => setYe({ ...ye, harvestVis: e.target.checked })} /> Gather the year&apos;s vis
           </label>
-          <label className="inline">
-            <input type="checkbox" checked={ye.inflation} onChange={(e) => setYe({ ...ye, inflation: e.target.checked })} /> Inflation rises
-          </label>
+          {optionOn(saga, 'inflation') && (
+            <label className="inline">
+              <input type="checkbox" checked={ye.inflation} onChange={(e) => setYe({ ...ye, inflation: e.target.checked })} /> Inflation rises
+            </label>
+          )}
           <label className="inline">
             <input type="checkbox" checked={ye.permanentIncome} onChange={(e) => setYe({ ...ye, permanentIncome: e.target.checked })} /> Income changes last
           </label>
@@ -188,7 +191,7 @@ export default function SeasonsPage() {
 
   function CovenantYear({ cov, chars }: { cov: Covenant; chars: Character[] }) {
     const dc = deriveCovenant(cov, data, chars);
-    const plan = planYearEnd(cov, dc, { ...ye, skipVis: cov.yearEnd?.skipVis ?? [] });
+    const plan = planYearEnd(cov, dc, { ...ye, inflation: ye.inflation && optionOn(saga, 'inflation'), skipVis: cov.yearEnd?.skipVis ?? [] });
     const a = cov.allowance;
     const who = allowanceRecipients(cov, chars);
     return (
@@ -197,7 +200,7 @@ export default function SeasonsPage() {
           {plan.lines.map((l) => (
             <li key={l}>{l}</li>
           ))}
-          {ye.inflation && <ForecastLine treasury={cov.finances.treasury} income={plan.income} expenditure={plan.expenditure} />}
+          {plan.inflationRise > 0 && <ForecastLine treasury={cov.finances.treasury} income={plan.income} expenditure={plan.expenditure} />}
           {a && a.mode !== 'none' && (
             <li>
               Allowance: {a.mode === 'flat' ? `${a.amount} £ each` : `${a.amount}% of the surplus, split`}

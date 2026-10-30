@@ -97,6 +97,8 @@ export interface Saga {
   options?: Record<string, boolean>;
   /** the storyguide's cast: creatures from the books' bestiaries kept to hand (Quick build → Creatures) */
   cast?: CastMember[];
+  /** the troupe's own dates: a fair, a wedding, a faerie court that meets every Midsummer (the Game table's calendar) */
+  calendar?: SagaEvent[];
   /** what the Tribunal's living covenants did that touches the players: approaches, deaths, new members, gatherings (newest first) */
   tribunalNews?: TribunalNews[];
   /** the motions the Tribunal's gatherings have voted on, newest first */
@@ -148,6 +150,16 @@ export interface TribunalNews {
   done?: boolean;
   /** an approach left unanswered for two years, set aside by the toolkit (it may come again) */
   lapsed?: boolean;
+}
+
+/** A date the troupe puts on the saga's calendar, once or every so many years. */
+export interface SagaEvent {
+  uid: string;
+  year: number;
+  season: Season;
+  text: string;
+  /** comes round again every so many years (1: every year) */
+  every?: number;
 }
 
 /** A creature the storyguide keeps to hand: one from the bestiary (data/bestiary.ts), with their own notes. */
@@ -820,6 +832,8 @@ export interface Character {
   creature?: CreatureInfo;
   /** things used up once per game session (All According to Plan) */
   session?: { aatpUsed?: boolean };
+  /** the year each of its Story and Personality Flaws last came up in play (by the Virtue's uid): the Game table's stories waiting */
+  storiesTold?: Record<string, number>;
   name: string;
   player: string;
   gender: string;
@@ -975,6 +989,10 @@ export interface CovenantHookBoon {
   kept?: string[];
   /** Natural Disaster: it has struck. Indebted: the debt is still owed (default yes). Guild: the covenfolk are on strike. */
   active?: boolean;
+  /** Flawed Resource, Natural Disaster: when it comes (the storyguide's choice, or one at random within the saga's first five years) */
+  due?: { year: number; season: Season };
+  /** Flawed Resource: its story's roll, as it went */
+  rolled?: string;
 }
 
 /** What a covenant buys with Build Points (Covenants ch.2): its people (specialists and craftsmen), books, vis, items, labs and money. */
@@ -1290,6 +1308,45 @@ export interface CovenfolkCounts {
   horses: number;
 }
 
+/** Something that struck a covenant and still weighs on it (engine/calamity.ts). */
+export interface Trouble {
+  uid: string;
+  /** the calamity (CALAMITIES id) */
+  kind: string;
+  label: string;
+  severity: 1 | 2 | 3;
+  year: number;
+  season: Season;
+  /** years it still weighs on the covenant */
+  yearsLeft: number;
+  /** what the income falls to while it lasts */
+  incomeMult?: number;
+  /** vis sources closed while it lasts */
+  skipVis?: string[];
+  /** covenfolk lost, not yet replaced */
+  lost?: Partial<CovenfolkCounts>;
+  /** who brought it about, if anyone */
+  by?: string;
+  byPlayers?: boolean;
+  /** the covenant knows (or believes) who did it */
+  known?: boolean;
+  /** what it did when it struck */
+  text: string;
+  /** the season a magus last dealt with it ("1225 Summer"): one a season */
+  faced?: string;
+}
+
+/** Spending a covenant can leave unpaid when the money runs out (Covenants ch.5, Emergency Savings). */
+export type NeglectCategory = 'Buildings' | 'Provisions' | 'Laboratories' | 'Weapons and Armor';
+
+/** Money a covenant owes, and to whom. */
+export interface Loan {
+  uid: string;
+  from: string;
+  pounds: number;
+  year: number;
+}
+
 export type IncomeModification = 'Slump' | 'Contraction' | 'Stagnation' | 'Status Quo' | 'Growth' | 'Expansion' | 'Boom';
 
 export interface IncomeSource {
@@ -1379,6 +1436,12 @@ export interface Covenant {
     magiLiving?: 'impoverished' | 'pauper';
     /** hire only the crafts the Cost Saving Limits table names as examples, not those from other books */
     exampleCraftsOnly?: boolean;
+    /** spending left unpaid in hard times (Covenants ch.5, Emergency Savings), with what it brings at each year's end */
+    neglect?: NeglectCategory[];
+    /** money owed: borrowed, or bills left unpaid at a year's end; a tenth a year in interest until repaid */
+    loans?: Loan[];
+    /** wealth put into land and goods (a living covenant's hoard beyond five years' spending): sold for four-fifths of its worth in hard times */
+    holdings?: number;
   };
   /** how the covenfolk are organized (DE, The Organization of Covenfolk) */
   organization?: 'household' | 'military' | 'nations' | 'guilds' | 'professional-guilds' | 'monastery' | 'none';
@@ -1397,6 +1460,8 @@ export interface Covenant {
   startingVisStocks?: VisStock[];
   /** wards and other effects on the covenant (the Aegis of the Hearth) */
   effects?: ActiveEffect[];
+  /** calamities that struck it and still weigh on it */
+  troubles?: Trouble[];
   /** spells and powers cast on the covenant, newest last, for undoing */
   casts?: CastRecord[];
   /** what the covenant gives its members each year */
@@ -1503,6 +1568,11 @@ export interface LivingCovenant {
   attitude?: 'ally' | 'friendly' | 'neutral' | 'wary' | 'hostile' | 'enemy';
   /** the storyguide stopped it acting (it still ages and keeps its books) */
   paused?: boolean;
+  /** what it found short at the last year's end: money (its magi raise income by magic), and pawns of vis its reserve lacks */
+  needs?: { money: boolean; vis: number };
+  /** how many times magic has raised its income in play (Magical Improvement), and the last year it did */
+  improved?: number;
+  improvedYear?: number;
 }
 
 /** What a player has told the guided build (design spec: Guided Build). */

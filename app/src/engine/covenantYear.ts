@@ -7,6 +7,7 @@ import { visLabel, type DerivedCovenant } from './covenant';
 import { keepsFeastCycle } from './covenfolk';
 import type { Covenant, IncomeModification, VisStock } from './types';
 import { uid } from '../util/id';
+import { troubleSkips } from './calamity';
 
 // ------------------------------------------------------------------------------ Income Modification
 
@@ -63,6 +64,7 @@ export function planYearEnd(cov: Covenant, dc: DerivedCovenant, o: YearEndOption
   const fell = cov.finances.lastExpenditure !== undefined && expenditure < cov.finances.lastExpenditure;
   const inflationRise = o.inflation && !fell ? Math.round(expenditure / 100) : 0;
   if (o.inflation) lines.push(fell ? 'Expenditure fell this year, so inflation does not rise.' : `Inflation rises by ${inflationRise} £ (1 £ per 100 £ of expenditure).`);
+  else if (cov.finances.inflation > 0) lines.push(`Inflation is off in this saga: the ${cov.finances.inflation} £ a year already counted stays in the spending until it is cleared (Covenfolk & Finances).`);
   const incomeChanges = o.permanentIncome
     ? cov.income
         .filter((s) => s.modification && s.modification !== 'Status Quo')
@@ -73,8 +75,10 @@ export function planYearEnd(cov: Covenant, dc: DerivedCovenant, o: YearEndOption
   if (o.harvestVis) {
     const mult = miracleMultiplierOf(cov);
     const miracles = cov.hooksBoons.some((h) => mechanicOf(h) === 'tithing-miracles');
+    // sources a calamity has closed yield nothing while it lasts
+    const closed = troubleSkips(cov);
     for (const s of cov.visSources) {
-      if (o.skipVis.includes(s.uid) || dc.unreal.has(s.uid)) continue;
+      if (o.skipVis.includes(s.uid) || dc.unreal.has(s.uid) || closed.has(s.uid)) continue;
       const got = receivedAfterTithe(s.pawnsPerYear, !!s.tithed, !!s.miracle && miracles, mult).received;
       if (!got) continue;
       const pair = s.dedicated ? s.pair : undefined;
