@@ -668,7 +668,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'This season',
-        body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here. Plan, Health, Cast and Lab open their sheet at that tab.',
+        body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here: teaching covenant-mates, being taught by one, helping in a lab, and the extra seasons of one who needs no sleep. Plan, Health, Cast and Lab open their sheet at that tab.',
         at: sagaPage('table'), needs: 'saga', target: 'table-season',
       },
       {
@@ -837,12 +837,12 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'When nothing is planned',
-        body: 'A standing activity (practice an Ability, read from the library, work in the lab) runs in any season nobody plans, so a fast-forward still advances everyone sensibly. Free seasons come first: a magus has four, a working character two (Wealthy three, Poor one) and works the rest, a Regular gives one to Worship, and one who needs no sleep has two more for study. **Seasons a year** shows them, and can be set by hand.',
+        body: 'A standing activity (practice an Ability, read from the library, work in the lab, teach covenant-mates, be taught by one, help in a covenant-mate’s lab) runs in any season nobody plans, so a fast-forward still advances everyone sensibly. Free seasons come first: a magus has four, a working character two (Wealthy three, Poor one) and works the rest, a Regular gives one to Worship, and one who needs no sleep has two more for study. **Seasons a year** shows them, and can be set by hand.',
         at: sheet('advancement'), needs: 'character', target: ['season-plan', 'standing'],
       },
       {
         title: 'Writing and copying',
-        body: 'A book, a copy, lab texts or a florilegium is begun here and worked a season at a time, from this card or as the standing activity in free seasons; the finished work goes to the covenant library. Glossing a book read this season and clarifying one are here too.',
+        body: 'A book, a copy, lab texts or a florilegium is begun here and worked a season at a time, from this card or as the standing activity in free seasons; the finished work goes to the covenant library, and a season with points to spare goes on to the next one begun. Glossing a book read this season and clarifying one are here too.',
         at: sheet('advancement'), needs: 'character', target: 'writing',
       },
       {
