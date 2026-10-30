@@ -6,9 +6,10 @@ import { labTotal } from '../../../engine/magic';
 import { newProject, renewLongevity, renewLongevityCost } from '../../../engine/projects';
 import { purseOf, visAvailable } from '../../../engine/vis';
 import { generateFamiliar } from '../../../engine/generate/spellsAndFamiliars';
+import { issueRedcapDevices, redcapLevels, servedByMercerHouse } from '../../../engine/generate/items';
 import { newSeed, seeded } from '../../../engine/generate/random';
-import type { Familiar, LabProject } from '../../../engine/types';
-import { Card, Field, Stepper, Total, signed } from '../../kit';
+import type { Character, Familiar, LabProject } from '../../../engine/types';
+import { BookBadge, Card, Field, Stepper, Total, signed } from '../../kit';
 import ItemsEditor, { characterTalismanCapacity, newEffect } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
 import { labContextOf } from '../../../engine/lab';
@@ -87,6 +88,8 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
         </Card>
       )}
 
+      {!magus && <RedcapCard ed={ed} />}
+
       <ItemsEditor
         items={c.items}
         onChange={(fn) => update((x) => fn(x.items))}
@@ -110,6 +113,75 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
 
       {magus && <FamiliarCard ed={ed} />}
     </div>
+  );
+}
+
+/**
+ * A Redcap's devices from the Mercer House (DE, Redcap): fifty levels of effects for carrying messages
+ * at the Gauntlet and two more a year of good service (Magic Items: 25 more and one more a year each,
+ * no effect over 30), upgraded at each year's end; and a Longevity Ritual from a magus of Lab Total 50.
+ */
+function RedcapCard({ ed }: { ed: CharEditor }) {
+  const { c, data, update } = ed;
+  const [years, setYears] = useState<number | undefined>(undefined);
+  const [said, setSaid] = useState('');
+  if (!c || !servedByMercerHouse(c)) return null;
+  const r = c.redcap;
+  const service = years ?? Math.max(0, c.age - 25);
+  const extra = c.virtues.filter((v) => v.defId === 'magic-items').length;
+  const issue = (fn: (x: Character) => void) =>
+    update((x) => {
+      fn(x);
+      const got = issueRedcapDevices(x, data, seeded(newSeed()));
+      setSaid(got.length ? `New from the House: ${got.join(', ')}.` : 'No effect for carrying messages fits in the levels left.');
+    });
+  const ritual = () =>
+    update((x) => void (x.longevity = { labTotal: 50, bonus: longevityBonus(50, 0, true), extraVis: 0, createdBy: 'a magus of the Mercer House', createdYear: x.birthYear + x.age }));
+  return (
+    <Card title={<h3>The Mercer House’s devices <BookBadge book="DE" line={4910} /></h3>}>
+      <p className="small" style={{ marginTop: 0 }}>
+        A Redcap carries enchanted devices for the road: fifty levels of effects at the Gauntlet and two more for each year of good service
+        {extra ? `, with Magic Items ${25 * extra} more and ${extra} more a year (no effect over level 30)` : ''}. They are for carrying messages, never for killing, wounding or
+        ensorcelling many. The toolkit picks such effects, each in a thing of its own; change or replace them in the list below.
+      </p>
+      {r ? (
+        <div className="row" style={{ flexWrap: 'wrap' }}>
+          <Field label="Levels from the House" hint="Two more at each year’s end; the storyguide may grant more">
+            <Stepper value={r.levels} min={0} width={44} onChange={(v) => update((x) => void (x.redcap!.levels = v))} />
+          </Field>
+          <span className="small">
+            {r.spent} in the House’s devices, {Math.max(0, r.levels - r.spent)} left.
+          </span>
+          <button className="small" disabled={r.levels - r.spent < 5} onClick={() => issue(() => {})}>
+            New devices with the levels left
+          </button>
+          <button className="small ghost" title="Stop keeping the House’s levels (the devices stay)" onClick={() => update((x) => void delete x.redcap)}>
+            Stop keeping count
+          </button>
+        </div>
+      ) : (
+        <div className="row" style={{ flexWrap: 'wrap' }}>
+          <Field label="Years since the Gauntlet">
+            <Stepper value={service} min={0} width={40} onChange={setYears} />
+          </Field>
+          <span className="small">{redcapLevels(c, service)} levels</span>
+          <button className="small" onClick={() => issue((x) => void (x.redcap = { levels: redcapLevels(x, service), spent: 0 }))}>
+            Take the House’s devices
+          </button>
+        </div>
+      )}
+      {!c.longevity && (
+        <div className="row small" style={{ marginTop: 6, flexWrap: 'wrap' }}>
+          <span className="muted">
+            When the Redcap starts to age, a magus devises a Longevity Ritual free (Lab Total 50: −{longevityBonus(50, 0, true)} to aging rolls){r ? '; the toolkit gives it at the year’s end from 35' : ''}.
+          </span>
+          <button className="small" onClick={ritual}>
+            Take it now
+          </button>
+        </div>
+      )}
+      {said && <div className="small good-text">{said}</div>}
+    </Card>
   );
 }
 
