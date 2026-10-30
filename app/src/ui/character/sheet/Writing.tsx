@@ -78,7 +78,17 @@ export function WritingCard({ ed }: { ed: CharEditor }) {
   const e = { ...ed, c, d, saga } as Ed;
   return (
     <Card title="Writing and copying" tour="writing">
-      <RulesNote book="DE" line={16232} endLine={16290} detail="An author needs 5 in the Art or 2 in the Ability, and 5 in the language; the totals below say how far a season gets.">
+      <RulesNote
+        book="DE"
+        line={16232}
+        endLine={16290}
+        detail={
+          <>
+            An author needs 5 in an Art or 2 in an Ability, and 5 in the language. A summa gains Communication + Language points a season toward its Level (five times the Level for an
+            Ability); a tractatus takes one season. Careful copying gains 6 + Profession: Scribe a season (a tractatus a season); quick copying is three times as fast and 1 Quality lower.
+          </>
+        }
+      >
         Write a summa or tractatus, or copy a book, as a season&apos;s work (and 2 xp of Exposure).
       </RulesNote>
       {open.map((p) => (
