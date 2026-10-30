@@ -201,9 +201,11 @@ export function livingVisMarket(covenants: Covenant[], characters: Character[], 
   const membersOf = (cov: Covenant) => characters.filter((c) => cov.memberIds.includes(c.id));
   for (const buyer of covenants) {
     const mine = membersOf(buyer);
+    const needs = visShortfall(buyer, mine);
+    if (!needs.length) continue;
     const spend = deriveCovenant(buyer, data, mine).finances.totalExpenditure;
     const canPay = (n: number, price: number) => buyer.finances.treasury - n * price >= spend / 2;
-    for (const need of visShortfall(buyer, mine)) {
+    for (const need of needs) {
       let left = need.pawns;
       for (const seller of covenants) {
         if (seller === buyer || left <= 0) continue;

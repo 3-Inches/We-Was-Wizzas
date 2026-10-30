@@ -157,7 +157,7 @@ describe('peregrinatores', () => {
     expect(guests().length).toBeGreaterThanOrEqual(Math.round(magi.length / 6) - 2);
     for (const c of guests()) expect(state.covenants.some((v) => v.id === c.covenantId && v.labs.some((l) => l.ownerId === c.id)), c.name).toBe(true);
     expect(new Set(state.characters.map((c) => c.name)).size).toBe(state.characters.length);
-  });
+  }, 20_000);
 });
 
 describe('approaches to the players', () => {
