@@ -7,7 +7,7 @@ import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../../data'
 import type { Workshop } from '../../../engine/types';
 import {
   INNOVATION_COST, INVESTMENTS, LP_WORTH, RAW_MATERIALS_COST, STORY_AWARDS, WEALTH_MULT, WEALTH_STEP, boomRoll, craftQuality, lpForPounds, seasonWorth, sellGoods, sellOpposed, smugglingLp, upkeep, wondrousItem, workshopFigures,
-  workshopSeason, workshopTotal,
+  newWorkshop, workshopSeason, workshopTotal,
 } from '../../../engine/workshop';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { purseOf } from '../../../engine/vis';
@@ -36,11 +36,6 @@ const SITUATIONS = [
   { id: 'new', label: 'A new employee (first season)', value: 1 },
   { id: 'aura', label: 'An Infernal, Faerie or Magic aura', value: 1 },
 ];
-
-const newWorkshop = (abilityUid: string | undefined, profession: boolean): Workshop => ({
-  abilityUid, primary: profession ? 'Str' : 'Dex', innovation: 0, rawMaterials: 0, laborPoints: 0, assistants: [], manual: 0, craftLevelMod: 0,
-  seasonsWorked: 0, reputationXp: 0, shoddyStreak: 0,
-});
 
 export function WorkshopCard({ ed }: { ed: CharEditor }) {
   const { c, d, update, saga } = ed;

@@ -6,6 +6,7 @@ import { autoBuild, resetChoices } from '../../engine/guided/autobuild';
 import { applyBaseCovenant, newCovenant } from '../../engine/covenant';
 import { newCharacter } from '../../engine/character/factory';
 import { generateCharacter } from '../../engine/generate/character';
+import { newWorkshop } from '../../engine/workshop';
 import { newSeed } from '../../engine/generate/random';
 import type { Character, Covenant } from '../../engine/types';
 import { newLab } from '../../engine/lab';
@@ -86,6 +87,9 @@ export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean
       ch = generateCharacter({ type: p!.type, role: p!.role, variety: 'focused', npc: false, finished: true, seed: newSeed(), avoidNames: names }, { data: gameDataFor(saga), saga, rules: saga.houseRules, covenant: cov }).c;
     }
     ch.notes = [ch.notes, 'Made for practice by a tutorial.'].filter(Boolean).join('\n');
+    // a craftsman's livelihood tracked from the start, for the tutorial to show
+    const trade = ch.abilities.find((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
+    if (p!.role === 'master-craftsman' && trade && !ch.workshop) ch.workshop = newWorkshop(trade.uid, trade.abilityId === 'profession-type');
     if (cov) {
       ch.covenantId = cov.id;
       cov.memberIds.push(ch.id);

@@ -101,7 +101,8 @@ function Tutorials() {
     <Card title="Tutorials" id="tutorials" tour="tutorials" className="accent">
       <p className="small" style={{ marginTop: 0 }}>
         A tutorial walks you through the real app one step at a time: a small panel explains each step and points at the control, and <b>Next</b> takes you to the right
-        page. You do the clicking, so you learn where things are. Any tutorial that makes something can use a practice saga, leaving your own sagas alone.
+        page. You do the clicking, so you learn where things are; a step that asks for a button goes on by itself once you press it. Any tutorial can use a practice saga, leaving your
+        own sagas alone, and one about a character or covenant lets you choose which, or makes a practice one to work on.
       </p>
       <p className="row small" style={{ alignItems: 'baseline' }}>
         <button className="primary" onClick={() => startTour(COURSE[0], { course: true })}>

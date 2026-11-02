@@ -5,7 +5,8 @@ import { describe, expect, it } from 'vitest';
 import mechanics from '../../data/generated/mechanics/index.json';
 import { STEPS } from '../character/wizardSteps';
 import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, TOURS, nextTour, tourNeeds } from './tours';
-import { ACTIONS } from './actions';
+import { ACTIONS, makePractice } from './actions';
+import { useStore } from '../../store/store';
 
 const sources = Object.values(import.meta.glob('../**/*.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>).join('\n');
 
@@ -71,6 +72,23 @@ describe('tutorials', () => {
     // what is made comes before what uses it: the covenant and characters before magic and play
     expect(COURSE.indexOf('covenant')).toBeLessThan(COURSE.indexOf('lab'));
     expect(COURSE.indexOf('magus')).toBeLessThan(COURSE.indexOf('spell'));
+  });
+
+  it('make practice ones to work on: a master craftsman with a livelihood, a magus with a laboratory, a companion in creation', () => {
+    const st = useStore.getState();
+    const cg = makePractice(TOUR_BY_ID.get('city-guild')!, {});
+    const smith = useStore.getState().characters[cg.charId!];
+    expect(smith).toMatchObject({ type: 'companion', creation: { finalized: true }, covenantId: cg.covId });
+    expect(smith.workshop?.abilityUid).toBeTruthy();
+    const lab = makePractice(TOUR_BY_ID.get('lab')!, { sagaId: cg.sagaId });
+    const magus = useStore.getState().characters[lab.charId!];
+    expect(magus.type).toBe('magus');
+    // the saga's covenant is used, not a second one made
+    expect(lab.covId).toBe(cg.covId);
+    expect(useStore.getState().covenants[cg.covId!].labs.some((l) => l.ownerId === magus.id)).toBe(true);
+    const draft = makePractice(TOUR_BY_ID.get('guided')!, { sagaId: cg.sagaId });
+    expect(useStore.getState().characters[draft.charId!].creation.finalized).toBe(false);
+    expect(st.sagas[cg.sagaId] ?? useStore.getState().sagas[cg.sagaId]).toBeTruthy();
   });
 
   it('go on by themselves only where the step asks for a button press', () => {
