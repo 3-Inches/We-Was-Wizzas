@@ -45,6 +45,16 @@ export default function App() {
   }, [load]);
   useEffect(() => applyTheme(ui.theme, ui.streamMode), [ui]);
   useEffect(() => setNavOpen(false), [loc.pathname, loc.search]);
+  // a new page opens at its top, not where the last one was scrolled to
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [loc.pathname]);
+  // a tutorial step about the menu opens it on a phone, and closes it after
+  useEffect(() => {
+    const onTour = (e: Event) => setNavOpen(!!(e as CustomEvent<boolean>).detail);
+    window.addEventListener('tour-nav', onTour);
+    return () => window.removeEventListener('tour-nav', onTour);
+  }, []);
   // Ctrl+Z / Ctrl+Shift+Z (or Ctrl+Y) undo and redo the last change, except while typing in a field
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

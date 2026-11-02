@@ -4,7 +4,7 @@
 import { describe, expect, it } from 'vitest';
 import mechanics from '../../data/generated/mechanics/index.json';
 import { STEPS } from '../character/wizardSteps';
-import { DETOUR_OFFERS, TOUR_BY_ID, TOURS } from './tours';
+import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, TOURS, nextTour, tourNeeds } from './tours';
 import { ACTIONS } from './actions';
 
 const sources = Object.values(import.meta.glob('../**/*.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>).join('\n');
@@ -60,5 +60,20 @@ describe('tutorials', () => {
   it('are listed once each, the tour of the toolkit first', () => {
     expect(new Set(TOURS.map((t) => t.id)).size).toBe(TOURS.length);
     expect(TOURS[0].id).toBe('toolkit');
+  });
+
+  it('run in one course, each once, the next always offered; one that needs a character it does not make can make a practice one', () => {
+    expect([...COURSE].sort()).toEqual(TOURS.map((t) => t.id).sort());
+    expect(COURSE[0]).toBe('toolkit');
+    for (const id of COURSE.slice(0, -1)) expect(nextTour(id)?.id).toBe(COURSE[COURSE.indexOf(id) + 1]);
+    expect(nextTour(COURSE.at(-1)!)).toBeUndefined();
+    for (const t of TOURS) if (tourNeeds(t).character) expect(t.practice, t.id).toBeTruthy();
+    // what is made comes before what uses it: the covenant and characters before magic and play
+    expect(COURSE.indexOf('covenant')).toBeLessThan(COURSE.indexOf('lab'));
+    expect(COURSE.indexOf('magus')).toBeLessThan(COURSE.indexOf('spell'));
+  });
+
+  it('go on by themselves only where the step asks for a button press', () => {
+    for (const t of TOURS) for (const s of t.steps) if (s.advance) expect(/[Pp]ress \*\*/.test(s.body), `${t.id}: ${s.title}`).toBe(true);
   });
 });

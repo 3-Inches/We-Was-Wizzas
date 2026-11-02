@@ -50,7 +50,7 @@ export default function CharacteristicsStep({ ed }: { ed: CharEditor }) {
                   <td>
                     <Stepper value={v} min={-3} max={3} onChange={(nv) => update((x) => void (x.characteristics[k] = nv))} />
                     {/* a Virtue or Flaw changes it from what was bought: said here, where it is bought (the Final column scrolls off on a phone) */}
-                    {fin.value !== v && (
+                    {(fin.value !== v || fin.notes.length > 0) && (
                       <div className="small">
                         → <b>{signed(fin.value)}</b> <span className="muted">({fin.notes.join(', ')})</span>
                       </div>

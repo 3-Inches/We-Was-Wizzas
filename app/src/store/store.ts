@@ -40,6 +40,8 @@ export interface TourState {
   minimized?: boolean;
   /** the tutorial this one was entered from, to go back to when it ends */
   returnTo?: { id: string; step: number; startedAt: string; charId?: string; covId?: string };
+  /** taking every tutorial in turn (tours.ts COURSE): each one's end goes on to the next */
+  course?: boolean;
 }
 
 export const DEFAULT_UI: UiPrefs = { theme: 'auto', streamMode: false, hints: true, dismissedHints: [] };

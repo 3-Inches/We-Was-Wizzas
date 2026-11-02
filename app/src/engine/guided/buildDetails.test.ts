@@ -44,6 +44,24 @@ describe('a built character', () => {
   });
 });
 
+describe('a Flaw that lowers a Characteristic', () => {
+  it('never lowers one a Virtue raises (Poor Strength beside Giant Blood)', () => {
+    const clashes: string[] = [];
+    for (let seed = 1; seed <= 16; seed++)
+      for (const type of ['companion', 'grog'] as const)
+        for (const random of [true, false]) {
+          const c = newCharacter(type, 's');
+          const themes = [['warrior', 'faerie', 'rogue', 'beast'][seed % 4]];
+          c.creation.archetypes = themes;
+          autoBuild(c, { answers: {}, declined: [] }, { data, rules, saga, archetypes: themes, rng: random ? seeded(seed) : undefined });
+          const d = deriveCharacter(c, data, rules);
+          const up = new Set(d.effects.flatMap((e) => ((e.type === 'charBonus' || e.type === 'greatChar') && e.amount > 0 ? [String(e.char)] : [])));
+          for (const v of c.virtues.filter((x) => x.defId === 'poor-characteristic-flaw')) if (up.has(v.param ?? '')) clashes.push(`${type} ${seed}: Poor ${v.param}`);
+        }
+    expect(clashes).toEqual([]);
+  }, 60000);
+});
+
 describe('Reputations from Virtues and Flaws', () => {
   it('Raised from the Dead brings a Reputation of 4 where the miracle happened (DE)', () => {
     const c = newCharacter('companion', 's');

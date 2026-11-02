@@ -5,26 +5,54 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useStore, type TourState } from '../../store/store';
+import type { Character } from '../../engine/types';
 import { Markdown } from '../kit';
 import { visibleSteps } from '../character/wizardSteps';
-import { DETOUR_OFFERS, TOUR_BY_ID, type Tour, type TourCtx, type TourStep } from './tours';
-import { ACTIONS } from './actions';
+import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, nextTour, startTour, tourNeeds, type Tour, type TourCtx, type TourStep } from './tours';
+import { ACTIONS, makePractice } from './actions';
 
-/** Scroll an element into the room above the panel: centred there, or from its top if too tall. */
+/** Open or close the menu, which a phone keeps behind ☰ (App listens). */
+function sidebarOpen(open: boolean) {
+  window.dispatchEvent(new CustomEvent('tour-nav', { detail: open }));
+}
+
+/** In the menu while a phone keeps it out of sight (by its class: it may be sliding shut). */
+const inClosedSidebar = (el: HTMLElement) => {
+  const sb = el.closest<HTMLElement>('.sidebar');
+  return !!sb && !sb.classList.contains('open') && getComputedStyle(sb).position === 'fixed';
+};
+
+/**
+ * Bring an element into the room above the panel, its top near the top of the screen as a page or
+ * card is read, unless it is already in view there. In the menu, just into view.
+ */
 function showAbovePanel(el: HTMLElement) {
-  if (el.closest('.sidebar')) return el.scrollIntoView({ block: 'nearest' });
+  // in the menu: to the top of it, clear of the panel over its foot on a phone
+  if (el.closest('.sidebar')) {
+    el.scrollIntoView({ block: 'start' });
+    return;
+  }
   const r = el.getBoundingClientRect();
-  const room = (document.querySelector('.tour-panel')?.getBoundingClientRect().top ?? window.innerHeight) - 16;
-  const offset = r.height < room ? (room - r.height) / 2 : 16;
-  window.scrollTo({ top: window.scrollY + r.top - offset, behavior: 'smooth' });
+  const top = (document.querySelector('.mobile-bar')?.getBoundingClientRect().bottom ?? 0) + 12;
+  const room = (document.querySelector('.tour-panel')?.getBoundingClientRect().top ?? window.innerHeight) - 12;
+  if (r.top >= top && r.bottom <= room) return;
+  window.scrollTo({ top: Math.max(0, window.scrollY + r.top - top), behavior: 'smooth' });
 }
 
-/** The first visible element with one of these data-tour names. */
+/** The element a step points at: the first with one of these data-tour names that can be seen, else one in the menu a phone keeps closed. */
 function findTarget(names: string[]): HTMLElement | null {
+  let hidden: HTMLElement | null = null;
   for (const n of names)
-    for (const el of document.querySelectorAll<HTMLElement>(`[data-tour="${n}"]`)) if (el.getClientRects().length) return el;
-  return null;
+    for (const el of document.querySelectorAll<HTMLElement>(`[data-tour="${n}"]`)) {
+      if (!el.getClientRects().length) continue;
+      if (!inClosedSidebar(el)) return el;
+      hidden ??= el;
+    }
+  return hidden;
 }
+
+/** A craftsman's or merchant's livelihood to show. */
+const hasTrade = (c: Character) => !!c.workshop || c.abilities.some((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
 
 /** The saga, character and covenant the tour works on: what it has found so far, else what is open. */
 function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: string): TourCtx {
@@ -54,10 +82,8 @@ function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: stri
       : tour.wantsDraft
         ? (made ?? newest(drafts))
         : (made ??
-          (tour.prefersTrade ? newest(finished.filter((c) => !!c.workshop || c.abilities.some((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type'))) : undefined) ??
-          newest(finished.filter((c) => c.type === tour.prefers)) ??
-          newest(finished) ??
-          newest(inSaga));
+          // a tutorial about a livelihood follows only someone who has one (else it offers a practice craftsman)
+          (tour.prefersTrade ? newest(finished.filter(hasTrade)) : newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga)));
     const charId = fits(t.charId) ? t.charId : m?.[2] === 'character' && fits(m[3]) ? m[3] : fallback?.id;
     const covs = Object.values(covenants).filter((c) => c.sagaId === sagaId && !c.living);
     const covId = t.covId && covenants[t.covId]?.sagaId === sagaId ? t.covId : m?.[2] === 'covenant' && covenants[m[3]] ? m[3] : newest(covs)?.id;
@@ -110,28 +136,55 @@ export default function TourPanel() {
     if (c && idx >= 0 && c.creation.step !== idx) useStore.getState().updateCharacter(c.id, (x) => void (x.creation.step = idx));
   }, [t, i, step, ctx.charId, onPage]);
 
-  // point at the step's control once it is on the page (pages load lazily, so look for a moment)
+  // point at the step's control once it is on the page (pages load lazily, so look for a moment);
+  // in the menu a phone keeps closed, open it. A step that asks for a button goes on once it is pressed.
   const minimized = !!t?.minimized;
   useEffect(() => {
-    if (!step?.target || minimized) return;
+    // looked for on the step's own page: the menu is on every page, and going there closes it
+    if (!step?.target || minimized || !onPage) return;
     const names = Array.isArray(step.target) ? step.target : [step.target];
     let el: HTMLElement | null = null;
+    let opened = false;
     let tries = 0;
+    const onPress = (e: Event) => {
+      const b = (e.target as HTMLElement).closest('button');
+      if (!b || !el?.contains(b) || (step.advance?.press && !step.advance.press.test(b.textContent?.trim() ?? ''))) return;
+      // after the press has done its work (a page opened, a character made)
+      window.setTimeout(() => {
+        const cur = useStore.getState().ui.tour;
+        if (cur && t && cur.id === t.id && cur.startedAt === t.startedAt && cur.step === i) useStore.getState().setTour({ ...cur, step: i + 1 });
+      }, 250);
+    };
     const timer = window.setInterval(() => {
       el = findTarget(names);
       if (el || ++tries > 25) {
         window.clearInterval(timer);
         if (el) {
+          if (inClosedSidebar(el)) {
+            sidebarOpen(true);
+            opened = true;
+          }
           el.setAttribute('data-tour-on', '');
-          showAbovePanel(el);
+          window.setTimeout(() => el && showAbovePanel(el), opened ? 250 : 0);
+          // and again once the page has settled (a card above it folding, a lazy part loading)
+          window.setTimeout(() => el && showAbovePanel(el), 900);
+          if (step.advance) el.addEventListener('click', onPress, true);
         }
       }
     }, 120);
     return () => {
       window.clearInterval(timer);
       el?.removeAttribute('data-tour-on');
+      el?.removeEventListener('click', onPress, true);
+      if (opened) sidebarOpen(false);
     };
-  }, [step, here, minimized]);
+  }, [step, here, minimized, onPage, t, i]);
+
+  // a step with nothing to point at starts at the top of its page
+  useEffect(() => {
+    if (!step || step.target || !onPage) return;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step, onPage]);
 
   if (!t || !tour || !step) return null;
   const last = i === tour.steps.length - 1;
@@ -163,6 +216,13 @@ export default function TourPanel() {
     const to = step.at?.({ sagaId: s.id });
     nav(to ?? `/saga/${s.id}`);
   };
+  const next = nextTour(t.id);
+  const goNext = () => next && startTour(next.id, { course: t.course, sagaId: ctx.sagaId });
+  const toGuide = () => {
+    end();
+    nav('/help');
+    window.setTimeout(() => document.getElementById('tutorials')?.scrollIntoView({ block: 'start' }), 300);
+  };
 
   if (minimized)
     return (
@@ -193,6 +253,10 @@ export default function TourPanel() {
           <button className="small primary" onClick={goBack} title={`Back to ${parent.title}`}>
             Back to it ›
           </button>
+        ) : t.course && next ? (
+          <button className="small primary" onClick={goNext} title={`The next tutorial: ${next.title}`}>
+            Next tutorial ›
+          </button>
         ) : (
           <button className="small primary" onClick={end}>
             Finish
@@ -207,6 +271,28 @@ export default function TourPanel() {
       </div>
       <h4>{step.title}</h4>
       <Markdown text={step.body} />
+      {(i === 0 || (!dest && !!step.needs)) && !t.returnTo && <WorkingOn tour={tour} ctx={ctx} />}
+      {last && !parent && (
+        <p className="small row tight" style={{ marginTop: 6 }}>
+          <span className="muted">{t.course ? `Tutorial ${COURSE.indexOf(t.id) + 1} of ${COURSE.length} done.` : 'That is the whole tutorial.'}</span>
+          {next && (
+            <button className="small" onClick={goNext}>
+              Next: {next.title} ›
+            </button>
+          )}
+          <button className="small ghost" onClick={toGuide}>
+            Back to the Guide
+          </button>
+        </p>
+      )}
+      {t.course && i === 0 && next && (
+        <p className="small muted" style={{ margin: '4px 0 0' }}>
+          Taking every tutorial in turn ({COURSE.indexOf(t.id) + 1} of {COURSE.length}).{' '}
+          <button className="small ghost" onClick={goNext} title={`Go on to ${next.title}`}>
+            Skip this one ›
+          </button>
+        </p>
+      )}
       {tour.inSaga && i === 0 && !t.returnTo && (
         <p className="small muted">
           {ctx.sagaId ? (
@@ -259,9 +345,77 @@ export default function TourPanel() {
 
 const MISSING: Record<NonNullable<TourStep['needs']>, string> = {
   saga: 'Open a saga first (or make a practice saga on the first step).',
-  character: 'Open a character first: the saga page’s Create a character makes one.',
-  covenant: 'Found the covenant first: the saga page has the button.',
+  character: 'Choose the character to work on above, or make a practice one there.',
+  covenant: 'Choose the covenant above, or found one: the saga page has the button.',
 };
+
+/**
+ * What the tutorial works on: the saga's characters and covenants that suit it (the players', not
+ * the Tribunal's), or a practice one made for it on the spot, so a tutorial never has to wait for
+ * the player to go and make something first.
+ */
+function WorkingOn({ tour, ctx }: { tour: Tour; ctx: TourCtx }) {
+  const t = useStore((s) => s.ui.tour);
+  const setTour = useStore((s) => s.setTour);
+  const characters = useStore((s) => s.characters);
+  const covenants = useStore((s) => s.covenants);
+  const nav = useNavigate();
+  const needs = tourNeeds(tour);
+  if (!t || (!needs.character && !needs.covenant)) return null;
+  const living = Object.values(covenants).filter((c) => c.sagaId === ctx.sagaId && c.living);
+  const npcs = new Set(living.flatMap((c) => c.memberIds));
+  const livingIds = new Set(living.map((c) => c.id));
+  const chars = Object.values(characters)
+    .filter((c) => c.sagaId === ctx.sagaId && !npcs.has(c.id) && !(c.covenantId && livingIds.has(c.covenantId)) && !c.wounds.dead)
+    .filter((c) => (!tour.charType || c.type === tour.charType) && (tour.wantsDraft ? !c.creation.finalized : c.creation.finalized) && (!tour.prefersTrade || hasTrade(c)))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const covs = Object.values(covenants).filter((c) => c.sagaId === ctx.sagaId && !c.living);
+  // go on to the step's page with what was chosen
+  const use = (x: TourCtx) => {
+    setTour({ ...t, ...x });
+    const to = tour.steps[Math.min(t.step, tour.steps.length - 1)].at?.({ ...ctx, ...x });
+    if (to) nav(to);
+  };
+  const practice = (what: { character?: boolean; covenant?: boolean }) => {
+    const r = makePractice(tour, ctx, what);
+    useStore.getState().setNotice(r.notice);
+    use({ sagaId: r.sagaId, charId: r.charId ?? ctx.charId, covId: r.covId ?? ctx.covId });
+  };
+  const known = chars.some((c) => c.id === ctx.charId);
+  return (
+    <div className="row tight small" style={{ marginTop: 6 }}>
+      {needs.character && (
+        <label className="inline">
+          Working on{' '}
+          <select value={known ? ctx.charId : ''} onChange={(e) => (e.target.value === '__practice' ? practice({ character: true }) : e.target.value && use({ charId: e.target.value }))} aria-label="The character this tutorial works on">
+            {!known && <option value="">— {chars.length ? 'choose a character' : 'none that suits yet'} —</option>}
+            {chars.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name || 'Unnamed'}
+                {c.creation.finalized ? '' : ' (in creation)'}
+              </option>
+            ))}
+            {tour.practice && <option value="__practice">＋ Make {tour.practice.label}</option>}
+          </select>
+        </label>
+      )}
+      {needs.covenant && (
+        <label className="inline">
+          {needs.character ? 'at' : 'Working on'}{' '}
+          <select value={covs.some((c) => c.id === ctx.covId) ? ctx.covId : ''} onChange={(e) => (e.target.value === '__practice' ? practice({ covenant: true }) : e.target.value && use({ covId: e.target.value }))} aria-label="The covenant this tutorial works on">
+            {!covs.some((c) => c.id === ctx.covId) && <option value="">— {covs.length ? 'choose a covenant' : 'no covenant yet'} —</option>}
+            {covs.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name || 'Unnamed covenant'}
+              </option>
+            ))}
+            <option value="__practice">＋ Make a practice covenant</option>
+          </select>
+        </label>
+      )}
+    </div>
+  );
+}
 
 /** Whether the app is at a step's page: the same path, and the same tab if the step names one. */
 function isAt(here: string, dest: string): boolean {

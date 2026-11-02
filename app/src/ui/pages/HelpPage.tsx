@@ -6,7 +6,7 @@ import { Card } from '../kit';
 import { useGameData } from '../../store/hooks';
 import { MAGIC_QUALITIES } from '../../engine/character/magicCharacter';
 import { useStore } from '../../store/store';
-import { TOURS, startTour, type TourGroup } from '../tour/tours';
+import { COURSE, TOURS, startTour, type TourGroup } from '../tour/tours';
 
 // The sections of this page, for the contents list at the top. The app routes by the URL's hash,
 // so the links scroll instead of changing it.
@@ -103,6 +103,15 @@ function Tutorials() {
         A tutorial walks you through the real app one step at a time: a small panel explains each step and points at the control, and <b>Next</b> takes you to the right
         page. You do the clicking, so you learn where things are. Any tutorial that makes something can use a practice saga, leaving your own sagas alone.
       </p>
+      <p className="row small" style={{ alignItems: 'baseline' }}>
+        <button className="primary" onClick={() => startTour(COURSE[0], { course: true })}>
+          Take every tutorial in turn
+        </button>
+        <span className="muted">
+          All {COURSE.length}, one after another in one saga, each building on the last: the saga, its covenant and characters, magic, play, then the storyguide&apos;s tools.
+          Skip any you know; one that needs a character or covenant you have not made offers a practice one. Every tutorial ends with a button to the next.
+        </span>
+      </p>
       {running && (
         <p className="small">
           <b>{running.title}</b> is under way (step {Math.min(ui.tour!.step, running.steps.length - 1) + 1} of {running.steps.length}); its panel is open.
@@ -121,7 +130,7 @@ function Tutorials() {
                     <b>{t.title}</b> <span className="small muted">{t.steps.length} steps</span>
                     <div className="small muted">{t.blurb}</div>
                   </div>
-                  <button className={`small${t.id === 'toolkit' ? ' primary' : ''}`} onClick={() => startTour(t.id)}>
+                  <button className="small" onClick={() => startTour(t.id)}>
                     {running?.id === t.id ? 'Restart' : 'Start'}
                   </button>
                 </div>

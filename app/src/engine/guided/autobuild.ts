@@ -65,19 +65,20 @@ function answer(id: string, st: GuidedState, ctx: GuidedContext): number {
 /** A generic value for a text sub-choice the player still has to decide. */
 const TO_DECIDE = 'to be decided';
 
-function paramFor(s: Scored, rng?: Rng, w?: Record<string, number>, c?: Character): string | undefined {
+function paramFor(s: Scored, rng?: Rng, w?: Record<string, number>, c?: Character, raised?: Set<string>): string | undefined {
   const spec = s.def.param;
   if (!spec) return undefined;
   if (s.param) {
-    // a Flaw's Art or Characteristic the player did not care about either way: any such, not the first
+    // a Flaw's Art or Characteristic the player did not care about either way: any such, not the
+    // first; never one a Virtue raises (Poor Strength beside Giant Blood undoes it)
     const kind = s.rec.paramKind;
-    if (rng && w && s.def.kind === 'flaw' && (kind === 'art' || kind === 'char')) {
+    if (w && s.def.kind === 'flaw' && (kind === 'art' || kind === 'char') && (rng || (kind === 'char' && raised?.has(s.param)))) {
       const all: string[] = spec.options?.length ? spec.options : kind === 'char' ? [...CHARACTERISTICS] : spec.kind === 'technique' ? [...TECHNIQUES] : spec.kind === 'form' ? ARTS.filter((a) => !(TECHNIQUES as readonly string[]).includes(a)) : [...ARTS];
       const tag = (x: string) => `${kind}:${x}`;
-      const needed = kind === 'char' ? neededCharacteristics(w, s.def, c) : new Set<string>();
+      const needed = kind === 'char' ? new Set([...neededCharacteristics(w, s.def, c), ...(raised ?? [])]) : new Set<string>();
       if ((w[tag(s.param)] ?? 0) === 0 || needed.has(s.param)) {
         const free = all.filter((x) => (w[tag(x)] ?? 0) <= 0 && !needed.has(x));
-        if (free.length) return free[Math.floor(rng() * free.length)];
+        if (free.length) return rng ? free[Math.floor(rng() * free.length)] : free[0];
       }
     }
     return s.param;
@@ -336,8 +337,10 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   const ratio = c.type === 'mythic' ? rules.mythicVirtueRatio : 1;
   const taken: string[] = [];
   const complexityOk = answer('a-complexity', st, get()) >= 7;
+  // the Characteristics the character's Virtues raise, which a Flaw should not lower
+  const raised = () => new Set(get().d.effects.flatMap((e) => ((e.type === 'charBonus' || e.type === 'greatChar') && e.amount > 0 ? [String(e.char)] : [])));
   const add = (s: Scored, size: VFSize) => {
-    const cv = addVirtue(c, data, s.def.id, size, paramFor(s, inp.rng, tagWeights(st, get()), c));
+    const cv = addVirtue(c, data, s.def.id, size, paramFor(s, inp.rng, tagWeights(st, get()), c, raised()));
     cv.why = s.fit > 0 ? traceOf(s, st, get()) : s.def.kind === 'flaw' ? 'from: a Flaw that costs little given your answers' : 'from: broadly useful for this character';
     taken.push(cv.uid);
     if (cv.param === TO_DECIDE) toDecide.push(`${s.def.name}: ${s.def.param?.label ?? 'choice'}`);
