@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { PARAMETERIZED_ABILITIES } from '../../../data';
 import { ensureAbility } from '../../../engine/character/factory';
 import { Card, SelectOrType, Stepper, Total } from '../../kit';
-import { abilityParamChoices } from '../steps/AbilitiesStep';
+import { SpecialtyEdit, abilityParamChoices } from '../steps/AbilitiesStep';
 import PowersCard from '../PowersCard';
 import type { CharEditor } from '../useChar';
 
@@ -46,7 +46,7 @@ export default function AbilitiesTab({ ed }: { ed: CharEditor }) {
                           {a.name} {a.affinity && <span className="badge info">Aff</span>}
                         </td>
                         <td>
-                          <input value={ab.specialty ?? ''} style={{ width: 150 }} onChange={(e) => update((x) => void (x.abilities.find((y) => y.uid === a.uid)!.specialty = e.target.value))} />
+                          <SpecialtyEdit value={ab.specialty ?? ''} options={a.def?.specialties ?? []} onChange={(v) => update((x) => void (x.abilities.find((y) => y.uid === a.uid)!.specialty = v))} />
                         </td>
                         <td className="num">
                           <Total value={`${a.score}${a.remainder ? ` (${a.remainder})` : ''}`} parts={Object.entries(ab.xp).map(([k, v]) => ({ label: k, value: v ?? 0 }))} label={`${a.effectiveXp} effective xp`} />

@@ -49,6 +49,12 @@ export default function CharacteristicsStep({ ed }: { ed: CharEditor }) {
                   </td>
                   <td>
                     <Stepper value={v} min={-3} max={3} onChange={(nv) => update((x) => void (x.characteristics[k] = nv))} />
+                    {/* a Virtue or Flaw changes it from what was bought: said here, where it is bought (the Final column scrolls off on a phone) */}
+                    {(fin.value !== v || fin.notes.length > 0) && (
+                      <div className="small">
+                        → <b>{signed(fin.value)}</b> <span className="muted">({fin.notes.join(', ')})</span>
+                      </div>
+                    )}
                   </td>
                   <td className="num">{charCost(v)}</td>
                   <td className="num">
@@ -75,7 +81,8 @@ export default function CharacteristicsStep({ ed }: { ed: CharEditor }) {
         </table>
       </div>
       <p className="small muted">
-        Great (Characteristic) raises a +3 Characteristic by one (max +5); Poor (Characteristic) lowers a –3 by one. Size: {signed(d.size)}.
+        Great (Characteristic) raises a Characteristic bought at +3 by one (max +5); Poor (Characteristic) lowers one bought at –3 by one (to –4, or –5 taken twice), and the
+        Rules check says so if the score bought is not there. A Characteristic above or below average wants a word for what makes it show. Size: {signed(d.size)}.
       </p>
     </Card>
   );

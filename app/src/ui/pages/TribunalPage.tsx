@@ -85,7 +85,7 @@ export default function TribunalPage() {
           <Link to={S}>{saga.name}</Link> › <Link to={`${S}/table`}>Game table</Link> ›
         </div>
         <h1>The Tribunal</h1>
-        <Card title="No Tribunal book for this saga yet" className="accent">
+        <Card title="No Tribunal book for this saga yet" className="accent" tour="tribunal-switch">
           <p>
             This saga is set in the {saga.tribunal || 'unnamed'} Tribunal. The toolkit can build the covenants of these Tribunals into a saga, from their books, as living covenants whose
             people carry on by themselves as the seasons pass:

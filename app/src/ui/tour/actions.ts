@@ -3,12 +3,17 @@
 // store, so it can be undone like any other change. Loaded with the tutorial panel only.
 
 import { autoBuild, resetChoices } from '../../engine/guided/autobuild';
-import { applyBaseCovenant } from '../../engine/covenant';
+import { applyBaseCovenant, newCovenant } from '../../engine/covenant';
+import { newCharacter } from '../../engine/character/factory';
+import { generateCharacter } from '../../engine/generate/character';
+import { newWorkshop } from '../../engine/workshop';
+import { newSeed } from '../../engine/generate/random';
+import type { Character, Covenant } from '../../engine/types';
 import { newLab } from '../../engine/lab';
 import { gameDataFor } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { visibleSteps } from '../character/wizardSteps';
-import type { TourActionId, TourCtx } from './tours';
+import { tourNeeds, type Tour, type TourActionId, type TourCtx } from './tours';
 
 export interface ActionResult {
   /** what was done, for the notice */
@@ -52,3 +57,46 @@ function standardLabs(c: TourCtx): ActionResult | undefined {
 }
 
 export const ACTIONS: Record<TourActionId, (c: TourCtx) => ActionResult | undefined> = { buildDraft, basePackage, standardLabs };
+
+/**
+ * What a tutorial needs to work on, made for practice: the saga if none is open, the covenant if it
+ * has none (the Medium package), and the tutorial's practice character (a finished one from Quick
+ * build, with a laboratory for a magus, or a blank draft). One Undo takes it all back.
+ */
+export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean; covenant?: boolean } = tourNeeds(tour)): { sagaId: string; charId?: string; covId?: string; notice: string } {
+  const st = useStore.getState();
+  const saga = (c.sagaId ? st.sagas[c.sagaId] : undefined) ?? st.createSaga('Practice saga');
+  const made: string[] = [];
+  const inSaga = Object.values(st.covenants).filter((x) => x.sagaId === saga.id && !x.living);
+  let cov: Covenant | undefined = c.covId && st.covenants[c.covId] ? structuredClone(st.covenants[c.covId]) : inSaga[0] ? structuredClone(inSaga[0]) : undefined;
+  const p = tour.practice;
+  const wantsChar = !!what.character && !!p;
+  if (!cov && (what.covenant || (wantsChar && !p!.draft))) {
+    cov = newCovenant(saga.id, saga.currentYear);
+    cov.name = 'Practice covenant';
+    applyBaseCovenant(cov, 'Medium');
+    made.push('a practice covenant (the Medium package)');
+  }
+  let ch: Character | undefined;
+  if (wantsChar) {
+    const names = Object.values(st.characters).filter((x) => x.sagaId === saga.id).map((x) => x.name);
+    if (p!.draft) {
+      ch = newCharacter(p!.type, saga.id, saga.currentYear);
+      ch.name = `Practice ${p!.type}`;
+    } else {
+      ch = generateCharacter({ type: p!.type, role: p!.role, variety: 'focused', npc: false, finished: true, seed: newSeed(), avoidNames: names }, { data: gameDataFor(saga), saga, rules: saga.houseRules, covenant: cov }).c;
+    }
+    ch.notes = [ch.notes, 'Made for practice by a tutorial.'].filter(Boolean).join('\n');
+    // a craftsman's livelihood tracked from the start, for the tutorial to show
+    const trade = ch.abilities.find((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
+    if (p!.role === 'master-craftsman' && trade && !ch.workshop) ch.workshop = newWorkshop(trade.uid, trade.abilityId === 'profession-type');
+    if (cov) {
+      ch.covenantId = cov.id;
+      cov.memberIds.push(ch.id);
+      if (ch.type === 'magus' && !cov.labs.some((l) => l.ownerId === ch!.id)) cov.labs.push(newLab(`${ch.name || 'Magus'}'s laboratory`, ch.id));
+    }
+    made.unshift(`${p!.label}, ${ch.name}`);
+  }
+  if (ch || cov) st.putRecords({ characters: ch ? [ch] : [], covenants: cov ? [cov] : [] }, `Practice for ${tour.title}`);
+  return { sagaId: saga.id, charId: ch?.id, covId: cov?.id, notice: made.length ? `Made ${made.join(' and ')} in ${saga.name}; Undo takes it back.` : `Working in ${saga.name}.` };
+}

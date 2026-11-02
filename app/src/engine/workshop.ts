@@ -5,7 +5,7 @@ import { CHAR_NAMES } from '../data';
 import { defaultRng, describeStress, simpleDie, stressDie, type Rng } from './dice';
 import type { DerivedCharacter } from './character/derive';
 import { applySeason, newSeasonEntry } from './longterm';
-import type { Character, Season } from './types';
+import type { Character, Season, Workshop } from './types';
 
 export type Wealth = 'poor' | 'average' | 'wealthy';
 /** Labor Points per season are multiplied by this (C&G, Labor and Livelihood) */
@@ -334,3 +334,9 @@ export function repairNeeds(quality: ItemQuality): { craft: number; text: string
   if (quality === 'supernatural') return { craft: 0, text: 'Wondrous items stop working once damaged; Hermetic items cannot be repaired by Hermetic magic (only some Verditius can).' };
   return bonus > 0 ? { craft: 2 * bonus, text: `A season's work by a craftsman who can make it, with Craft ${2 * bonus} or more, and a Labor Point per damage level.` } : { craft: 0, text: 'A season’s work by a craftsman who can make it, and a Labor Point per damage level. A broken item cannot be repaired.' };
 }
+
+/** A livelihood begun: the Craft or Profession worked (a laborer's Strength, else Dexterity), nothing banked yet. */
+export const newWorkshop = (abilityUid: string | undefined, profession: boolean): Workshop => ({
+  abilityUid, primary: profession ? 'Str' : 'Dex', innovation: 0, rawMaterials: 0, laborPoints: 0, assistants: [], manual: 0, craftLevelMod: 0,
+  seasonsWorked: 0, reputationXp: 0, shoddyStreak: 0,
+});

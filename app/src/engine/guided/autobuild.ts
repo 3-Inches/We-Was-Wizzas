@@ -6,6 +6,7 @@
 
 import { ARTS, CHARACTERISTICS, CHILDHOOD_ABILITIES, SAMPLE_CHILDHOODS, TECHNIQUES, type Art, type Characteristic, type Form, type Technique, type GameData, type VFSize, type VirtueFlawDef } from '../../data';
 import { EX_MISC_TRADITIONS, HOUSE_BY_ID } from '../../data/houses';
+import { CHAR_DESCRIPTORS } from '../../data/lists';
 import type { CharSpell, Character, Covenant, GuidedState, HouseRules, Saga, XpSource } from '../types';
 import { canSpend, deriveCharacter, sumAlloc, type DerivedCharacter, type XpBudget } from '../character/derive';
 import { addVirtue, applyExMiscTradition, ensureAbility, removeVirtue, setHouse } from '../character/factory';
@@ -64,19 +65,20 @@ function answer(id: string, st: GuidedState, ctx: GuidedContext): number {
 /** A generic value for a text sub-choice the player still has to decide. */
 const TO_DECIDE = 'to be decided';
 
-function paramFor(s: Scored, rng?: Rng, w?: Record<string, number>, c?: Character): string | undefined {
+function paramFor(s: Scored, rng?: Rng, w?: Record<string, number>, c?: Character, raised?: Set<string>): string | undefined {
   const spec = s.def.param;
   if (!spec) return undefined;
   if (s.param) {
-    // a Flaw's Art or Characteristic the player did not care about either way: any such, not the first
+    // a Flaw's Art or Characteristic the player did not care about either way: any such, not the
+    // first; never one a Virtue raises (Poor Strength beside Giant Blood undoes it)
     const kind = s.rec.paramKind;
-    if (rng && w && s.def.kind === 'flaw' && (kind === 'art' || kind === 'char')) {
+    if (w && s.def.kind === 'flaw' && (kind === 'art' || kind === 'char') && (rng || (kind === 'char' && raised?.has(s.param)))) {
       const all: string[] = spec.options?.length ? spec.options : kind === 'char' ? [...CHARACTERISTICS] : spec.kind === 'technique' ? [...TECHNIQUES] : spec.kind === 'form' ? ARTS.filter((a) => !(TECHNIQUES as readonly string[]).includes(a)) : [...ARTS];
       const tag = (x: string) => `${kind}:${x}`;
-      const needed = kind === 'char' ? neededCharacteristics(w, s.def, c) : new Set<string>();
+      const needed = kind === 'char' ? new Set([...neededCharacteristics(w, s.def, c), ...(raised ?? [])]) : new Set<string>();
       if ((w[tag(s.param)] ?? 0) === 0 || needed.has(s.param)) {
         const free = all.filter((x) => (w[tag(x)] ?? 0) <= 0 && !needed.has(x));
-        if (free.length) return free[Math.floor(rng() * free.length)];
+        if (free.length) return rng ? free[Math.floor(rng() * free.length)] : free[0];
       }
     }
     return s.param;
@@ -225,13 +227,18 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
 
   // ---------------------------------------------------------------- personality
   for (const v of ctx.d.virtues) {
-    if (v.def?.kind !== 'flaw' || !v.def.categories.includes('Personality')) continue;
+    if (!v.def || !ACTS(v.def)) continue;
     const need = v.cv.size === 'Major' ? 6 : 3;
     const trait = v.def.name.replace(/\s*\(.*\)$/, '');
-    if (!c.personality.some((p) => Math.abs(p.score) >= need)) c.personality.push({ uid: uid(), trait, score: need });
+    // each Personality Flaw its own trait, +3 for a Minor and +6 for a Major (DE)
+    if (!c.personality.some((p) => p.trait.toLowerCase() === trait.toLowerCase())) c.personality.push({ uid: uid(), trait, score: need });
   }
   const fighter = c.abilities.some((a) => ['single-weapon', 'great-weapon', 'bows', 'thrown-weapon'].includes(a.abilityId) && sumAlloc(a.xp) > 0);
   if (fighter && !c.personality.some((p) => /brave|cowardly/i.test(p.trait))) c.personality.push({ uid: uid(), trait: 'Brave', score: 2 });
+
+  // ---------------------------------------------------------------- descriptions and specialties
+  describeCharacteristics(c, ctx.d, inp.rng);
+  chooseSpecialties(c, ctx.d, inp.data, inp.rng);
 
   c.creation.guidedWhy = why;
   refresh();
@@ -242,6 +249,36 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
 }
 
 // ------------------------------------------------------------------ Characteristics
+
+/** A word for each Characteristic above or below average, as the book asks (what makes Strength −4 obvious). */
+function describeCharacteristics(c: Character, d: DerivedCharacter, rng?: Rng) {
+  for (const ch of CHARACTERISTICS) {
+    const v = d.characteristics[ch].value;
+    if (!v || c.characteristicNotes?.[ch]) continue;
+    const words = CHAR_DESCRIPTORS[ch][v > 0 ? 'high' : 'low'];
+    // the stronger the score, the stronger the word (the lists run from mild to marked)
+    const at = rng ? Math.floor(rng() * words.length) : Math.min(words.length - 1, Math.abs(v) - 1);
+    c.characteristicNotes = { ...(c.characteristicNotes ?? {}), [ch]: words[at] };
+  }
+}
+
+/**
+ * A specialty for each Ability the character has, from the book's examples: a concrete one where the
+ * book gives one (falconry, not "specific animals"), the one that suits the character's Virtues and
+ * concept best when several do.
+ */
+function chooseSpecialties(c: Character, d: DerivedCharacter, data: GameData, rng?: Rng) {
+  const generic = /^(a |an |one |specific |particular |the |any )|type of|kind of/i;
+  const context = [c.creation.concept ?? '', ...(c.creation.archetypes ?? []), ...d.virtues.map((v) => v.name)].join(' ').toLowerCase();
+  for (const a of c.abilities) {
+    if (a.specialty || !(d.abilityByUid.get(a.uid)?.score ?? 0)) continue;
+    const options = (data.abilityById.get(a.abilityId)?.specialties ?? []).filter((x) => !generic.test(x) && x.length < 40);
+    if (!options.length) continue;
+    const fits = options.filter((x) => context.includes(x.toLowerCase().split(' ')[0]));
+    const pool = fits.length ? fits : options;
+    a.specialty = pool[rng ? Math.floor(rng() * pool.length) : 0];
+  }
+}
 
 const TYPE_CHAR_PRIOR: Record<Character['type'], Partial<Record<Characteristic, number>>> = {
   magus: { Int: 3, Sta: 2, Com: 1, Per: 1 },
@@ -300,8 +337,10 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   const ratio = c.type === 'mythic' ? rules.mythicVirtueRatio : 1;
   const taken: string[] = [];
   const complexityOk = answer('a-complexity', st, get()) >= 7;
+  // the Characteristics the character's Virtues raise, which a Flaw should not lower
+  const raised = () => new Set(get().d.effects.flatMap((e) => ((e.type === 'charBonus' || e.type === 'greatChar') && e.amount > 0 ? [String(e.char)] : [])));
   const add = (s: Scored, size: VFSize) => {
-    const cv = addVirtue(c, data, s.def.id, size, paramFor(s, inp.rng, tagWeights(st, get()), c));
+    const cv = addVirtue(c, data, s.def.id, size, paramFor(s, inp.rng, tagWeights(st, get()), c, raised()));
     cv.why = s.fit > 0 ? traceOf(s, st, get()) : s.def.kind === 'flaw' ? 'from: a Flaw that costs little given your answers' : 'from: broadly useful for this character';
     taken.push(cv.uid);
     if (cv.param === TO_DECIDE) toDecide.push(`${s.def.name}: ${s.def.param?.label ?? 'choice'}`);
@@ -319,6 +358,10 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
     if (c.type === 'grog') return sizes.includes('Minor') ? 'Minor' : undefined;
     return sizes.includes('Major') && s.fit >= 25 && room >= 3 ? 'Major' : sizes.includes('Minor') ? 'Minor' : sizes[0];
   };
+
+  // Personality Flaws first, for as many points as the rules allow: one Major and one Minor (a grog
+  // two Minor). They tell the troupe how the character acts, and pay for Virtues (DE, Personality Flaws)
+  addPersonalityFlaws(c, st, inp, get, log, add, clean, dup, simpleEnough, maxFlaws);
 
   // Virtues: best fit first, while there is room (a Major only when it fits clearly better)
   const ev = evaluate(st, get());
@@ -356,6 +399,54 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   // Flaws: enough points to pay for the Virtues, by the direction rules
   addFlaws(c, st, inp, get, log, add, clean, dup, simpleEnough, ratio);
   balance(c, inp, get, refresh, log, taken);
+  // the Flaws' points not yet spent buy Minor Virtues that suit the character
+  spendVirtuePoints(c, st, inp, get, log, add, clean, dup, simpleEnough);
+}
+
+/** A Personality Flaw that says how the character acts: not an upbringing, nor Weak Personality (which allows no other). */
+const ACTS = (def: VirtueFlawDef) => def.kind === 'flaw' && def.categories.includes('Personality') && !/upbringing|weak-personality/.test(def.id);
+
+function addPersonalityFlaws(
+  c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, log: string[],
+  add: (s: Scored, size: VFSize) => unknown, clean: (def: VirtueFlawDef, size: VFSize) => boolean, dup: (s: Scored) => boolean, simpleEnough: (s: Scored) => boolean, maxFlaws: number,
+) {
+  const personal = () => get().d.virtues.filter((v) => v.def?.kind === 'flaw' && v.def.categories.includes('Personality'));
+  if (personal().some((v) => v.def!.id === 'weak-personality-flaw')) return;
+  for (let slot = personal().length; slot < 2; slot++) {
+    const major = personal().some((v) => v.cv.size === 'Major');
+    const sizes: VFSize[] = c.type === 'grog' || major ? ['Minor'] : ['Major', 'Minor'];
+    for (const size of sizes) {
+      if (get().d.tally.flawPoints + SIZE_POINTS[size] > maxFlaws) continue;
+      const ev = evaluate(st, get());
+      const options = ev.scored.filter((f) => ACTS(f.def) && !f.excluded && f.fit >= 0 && f.def.sizes.includes(size) && simpleEnough(f) && !dup(f)).sort((a, b) => b.fit - a.fit);
+      const f = choose(inp, c, firstPassing(options, (x) => clean(x.def, size), inp.rng ? 10 : 1), () => size, 10);
+      if (!f) continue;
+      add(f, size);
+      log.push(`Personality Flaw: ${f.def.name}, ${size} — ${c.virtues.at(-1)!.why}.`);
+      break;
+    }
+  }
+}
+
+/** Minor Virtues for the Flaw points left over, the best fits first: Flaws earn nothing unless spent. */
+function spendVirtuePoints(
+  c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, log: string[],
+  add: (s: Scored, size: VFSize) => unknown, clean: (def: VirtueFlawDef, size: VFSize) => boolean, dup: (s: Scored) => boolean, simpleEnough: (s: Scored) => boolean,
+) {
+  const tried = new Set<string>();
+  for (let guard = 0; guard < 12; guard++) {
+    const t = get().d.tally;
+    if (t.virtuePoints >= t.allowedVirtuePoints) break;
+    const ev = evaluate(st, get());
+    const options = ev.scored
+      .filter((v) => v.def.kind === 'virtue' && !v.excluded && v.fit >= 0 && v.def.sizes.includes('Minor') && !v.def.categories.includes('Social Status') && !v.def.categories.includes('Mystery') && !tried.has(v.def.id) && simpleEnough(v) && !dup(v))
+      .sort((a, b) => b.fit - a.fit);
+    const v = choose(inp, c, firstPassing(options, (x) => clean(x.def, 'Minor'), inp.rng ? 10 : 1), () => 'Minor', 10);
+    if (!v) break;
+    tried.add(v.def.id);
+    add(v, 'Minor');
+    log.push(`Virtue: ${v.def.name}, Minor — ${c.virtues.at(-1)!.why} (with the Flaws' points left over).`);
+  }
 }
 
 /** Flaws until the Virtues are paid for: the best fits first, then the ones that cost least. */

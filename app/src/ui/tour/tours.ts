@@ -30,6 +30,8 @@ export interface TourStep {
   actions?: { id: TourActionId; label: string }[];
   /** another tutorial to step into here, coming back to this one when it ends */
   detour?: { tour: string; label: string };
+  /** the step goes on by itself when the button it asks for is pressed: a button in the target (one whose label matches) */
+  advance?: { press?: RegExp };
 }
 
 export type TourActionId = 'buildDraft' | 'basePackage' | 'standardLabs';
@@ -53,7 +55,19 @@ export interface Tour {
   wantsDraft?: boolean;
   /** when none is open, follows a character with a Craft or Profession (a livelihood to show) */
   prefersTrade?: boolean;
+  /** the practice character the tutorial can make to work on, when the saga has none that suits */
+  practice?: PracticeSpec;
   steps: TourStep[];
+}
+
+/** A practice character a tutorial makes: a finished one built by Quick build, or a blank draft. */
+export interface PracticeSpec {
+  type: CharType;
+  /** a Quick build role (roles.ts) */
+  role?: string;
+  /** a blank character still in creation, for a tutorial about the wizard */
+  draft?: boolean;
+  label: string;
 }
 
 const saga = (c: TourCtx) => (c.sagaId ? `/saga/${c.sagaId}` : undefined);
@@ -116,8 +130,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Sagas',
-        body: 'Everything belongs to a saga: its characters, its covenant and the troupe’s house rules. Name one here and press **Begin a new saga**, or import a file someone exported.',
-        at: page('/'), target: 'new-saga',
+        body: 'Everything belongs to a saga: its characters, its covenant and the troupe’s house rules. Name one here and press **Begin a new saga**, or import a file someone exported. The tutorials that follow work in it (or in a practice saga, offered on their first step).',
+        at: page('/'), target: 'new-saga', advance: { press: /Begin a new saga/ },
       },
       {
         title: 'The sidebar',
@@ -142,10 +156,12 @@ export const TOURS: Tour[] = [
       {
         title: 'The Game table',
         body: 'Inside a saga, **Game table** is first in the menu: what needs attention, what everyone does this season, the covenants at a glance, ending the season, and a list of what comes up in play with a link to where it is done. Its own tutorial is under In play.',
+        at: sagaPage('table'), needs: 'saga', target: 'nav-table',
       },
       {
         title: 'The Tribunal',
         body: '**The Tribunal**, also in the saga’s menu, builds the other covenants of the saga’s Tribunal from its book (the Rhine’s, for now) as living covenants whose magi carry on by themselves as the seasons pass. Its own tutorial is under Storyguide.',
+        at: sagaPage('tribunal'), needs: 'saga', target: 'nav-tribunal',
       },
       {
         title: 'Dice',
@@ -214,7 +230,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Found it',
         body: 'Press **Found a covenant**. The saga’s characters join it as members; the tutorial follows the new covenant.',
-        at: saga, needs: 'saga', target: 'found-covenant',
+        at: saga, needs: 'saga', target: 'found-covenant', advance: {},
       },
       {
         title: 'Its season and Build Points',
@@ -291,6 +307,7 @@ export const TOURS: Tour[] = [
     group: 'The saga and covenant',
     inSaga: true,
     prefers: 'magus',
+    practice: { type: 'magus', label: 'a practice magus' },
     steps: [
       {
         title: 'The optional rules',
@@ -346,7 +363,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Create the magus',
         body: 'Under **Create a character**, press **Magus**. The wizard opens, and the tutorial follows the new character. (For an NPC, **Quick build** makes one whole.)',
-        at: saga, needs: 'saga', target: 'create-magus',
+        at: saga, needs: 'saga', target: 'create-magus', advance: {},
       },
       concept('Name, player, age and the idea of the character, and one to three themes (Warrior, Scholar, Healer…). Not sure what to play? The **guided build** asks what you want from the character and suggests a House, Virtues and Abilities.'),
       {
@@ -399,7 +416,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Create the companion',
         body: 'Under **Create a character**, press **Companion**. The tutorial follows the new character.',
-        at: saga, needs: 'saga', target: 'create-companion',
+        at: saga, needs: 'saga', target: 'create-companion', advance: {},
       },
       concept('Name, player, age and the idea of the character, and one to three themes. The **guided build** can suggest Virtues and Abilities from what you want.'),
       {
@@ -432,7 +449,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Create the grog',
         body: 'Under **Create a character**, press **Grog**. The tutorial follows the new character.',
-        at: saga, needs: 'saga', target: 'create-grog',
+        at: saga, needs: 'saga', target: 'create-grog', advance: {},
       },
       concept('A name and a job is enough: guard, cook, groom, scout. Pick a theme such as Warrior or Craftsman.', ['concept-themes', 'step-basics']),
       {
@@ -455,6 +472,7 @@ export const TOURS: Tour[] = [
     group: 'Characters',
     inSaga: true,
     wantsDraft: true,
+    practice: { type: 'companion', draft: true, label: 'a practice companion, still in creation' },
     steps: [
       {
         title: 'Themes first',
@@ -464,7 +482,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Start it',
         body: 'Press **Start the guided build**. Nothing on the character changes until you build the draft or take an option, and the normal steps stay open the whole time.',
-        at: wizard, needs: 'character', wizard: 'basics', target: 'guided-build',
+        at: wizard, needs: 'character', wizard: 'basics', target: 'guided-build', advance: { press: /Start the guided build/ },
       },
       {
         title: 'The questions',
@@ -506,6 +524,7 @@ export const TOURS: Tour[] = [
     group: 'Magic',
     charType: 'magus',
     inSaga: true,
+    practice: { type: 'magus', label: 'a practice magus' },
     steps: [
       {
         title: 'Spells & design',
@@ -541,6 +560,8 @@ export const TOURS: Tour[] = [
     group: 'Magic',
     inSaga: true,
     prefers: 'companion',
+    wantsDraft: true,
+    practice: { type: 'companion', draft: true, label: 'a practice companion, still in creation' },
     steps: [
       {
         title: 'Powers come from Virtues',
@@ -571,6 +592,7 @@ export const TOURS: Tour[] = [
     group: 'Magic',
     charType: 'magus',
     inSaga: true,
+    practice: { type: 'magus', label: 'a practice magus' },
     steps: [
       {
         title: 'A lab for each magus',
@@ -673,8 +695,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'End the season',
-        body: 'Moves the whole saga on a season, with Undo. The report shows aging crises, Warping and reminders first; the rest is folded. The Seasons page has the options and several years at once.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-advance',
+        body: 'Press **End** (the button names the season) to move the whole saga on, with Undo. The report shows aging crises, Warping and reminders first; the rest is folded. The Seasons page has the options and several years at once.',
+        at: sagaPage('table'), needs: 'saga', target: 'table-advance', advance: {},
       },
       {
         title: 'The covenants',
@@ -706,6 +728,7 @@ export const TOURS: Tour[] = [
     inSaga: true,
     prefers: 'companion',
     prefersTrade: true,
+    practice: { type: 'companion', role: 'master-craftsman', label: 'a practice master craftsman' },
     steps: [
       {
         title: 'Labor Points',
@@ -752,19 +775,20 @@ export const TOURS: Tour[] = [
   {
     id: 'tribunal',
     title: 'The Tribunal: living covenants',
+    practice: { type: 'magus', label: 'a practice magus' },
     blurb: 'Bring the other covenants of the Rhine Tribunal into the saga from Guardians of the Forests, and keep up with them as the seasons pass: their magi and priorities, what they bring to your covenant, the gatherings and the Great Library.',
     group: 'Storyguide',
     inSaga: true,
     steps: [
       {
         title: 'The Tribunal page',
-        body: '**The Tribunal** in the saga’s menu holds the other covenants of the saga’s Tribunal. For now the toolkit has the Rhine’s, from *Guardians of the Forests*; a saga set elsewhere is offered the switch.',
-        at: sagaPage('tribunal'), needs: 'saga', target: ['nav-tribunal', 'tribunal-covenants'],
+        body: '**The Tribunal** in the saga’s menu holds the other covenants of the saga’s Tribunal. For now the toolkit has the Rhine’s, from *Guardians of the Forests*; a saga set elsewhere is offered the switch: press **Set the saga’s Tribunal to Rhine** to follow along.',
+        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-switch', 'nav-tribunal', 'tribunal-covenants'], advance: { press: /Set the saga’s Tribunal/ },
       },
       {
         title: 'Bringing the covenants in',
         body: 'Press **Add** for one covenant or **Add all**. Each magus the book names is made as a full character with the book’s House, age, rank, gild and traits, strongest in the Arts it gives; the magi it only counts are generated too. Each gets a laboratory, and the covenant its covenfolk, library, vis and accounts. A covenant takes a few seconds; the whole Tribunal some twenty.',
-        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-covenants',
+        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-covenants', advance: { press: /^Add/ },
       },
       {
         title: 'Kept apart',
@@ -826,6 +850,7 @@ export const TOURS: Tour[] = [
   {
     id: 'season',
     title: 'Play a season',
+    practice: { type: 'magus', label: 'a practice magus' },
     blurb: 'Between stories: plan each character’s season, move time on for the whole saga, and see the year’s end.',
     group: 'In play',
     inSaga: true,
@@ -866,11 +891,30 @@ export const TOURS: Tour[] = [
 
 export const TOUR_BY_ID = new Map(TOURS.map((t) => [t.id, t]));
 
+/**
+ * Every tutorial in one run, in the order that builds on what came before: the saga, its covenant
+ * and its characters, then magic, play between stories and at the table, and the storyguide's
+ * tools. Each can be skipped; one that needs something not yet made offers a practice one.
+ */
+export const COURSE = ['toolkit', 'saga', 'covenant', 'magus', 'companion', 'grog', 'guided', 'optional', 'spell', 'power', 'lab', 'season', 'table', 'city-guild', 'quick', 'tribunal'];
+
+/** The tutorial after this one in the run. */
+export function nextTour(id: string): Tour | undefined {
+  const i = COURSE.indexOf(id);
+  return i >= 0 && i < COURSE.length - 1 ? TOUR_BY_ID.get(COURSE[i + 1]) : undefined;
+}
+
+/** What a tutorial works on: a character (not one it makes), a covenant (not one it founds). */
+export function tourNeeds(t: Tour): { character: boolean; covenant: boolean } {
+  return { character: !t.makesCharacter && t.steps.some((s) => s.needs === 'character'), covenant: t.id !== 'covenant' && t.steps.some((s) => s.needs === 'covenant') };
+}
+
 /** Pages with a tutorial of their own: a tutorial that reaches one offers to step into it. */
 export const DETOUR_OFFERS: { match: RegExp; tour: string; label: string }[] = [{ match: /^\/saga\/[^/]+\/character\/[^/]+\/guided/, tour: 'guided', label: 'Walk me through the guided build' }];
 
-/** Start a tutorial, in the saga open now if there is one. */
-export function startTour(id: string) {
+/** Start a tutorial, in the saga open now (or the one the tutorial before it used); `course` runs every tutorial after it in turn. */
+export function startTour(id: string, o: { course?: boolean; sagaId?: string } = {}) {
   const st = useStore.getState();
-  st.setTour({ id, step: 0, sagaId: st.activeSagaId && st.sagas[st.activeSagaId] ? st.activeSagaId : undefined, startedAt: new Date().toISOString() });
+  const sagaId = o.sagaId && st.sagas[o.sagaId] ? o.sagaId : st.activeSagaId && st.sagas[st.activeSagaId] ? st.activeSagaId : undefined;
+  st.setTour({ id, step: 0, sagaId, startedAt: new Date().toISOString(), course: o.course || undefined });
 }

@@ -468,7 +468,7 @@ export const MECHANICS: Record<string, Mechanics> = {
     effects: [{ type: 'abilityAccess', abilities: ['magic-lore'] }, { type: 'agingRoll', amount: -1 }],
     paramEffects: {
       'Magic Animal': [note('An animal feature (wings, scales, gills, claws): −3 to activities it gets in the way of.')],
-      'Magic Human': [note('One Characteristic 1 lower (not below −3), and a bad Reputation 3 among magic beings.')],
+      'Magic Human': [note('One Characteristic 1 lower (not below −3), and a bad Reputation 3 among magic beings.'), rep(3, 'Monstrous blood', 'bad', 'magic beings')],
       'Magic Spirit': [note('−3 to Intelligence and Perception rolls that involve no Supernatural Ability or Art.')],
       'Magic Thing': [note('A constant, mostly harmful Lesser Power, held off for a Confidence Point.')],
     },
@@ -557,3 +557,19 @@ export const MECHANICS: Record<string, Mechanics> = {
   'servant-of-the-land-flaw': { param: P.text('Land') },
   'imagined-folk-tradition-vulnerability-flaw': {},
 };
+
+// Reputations that Virtues and Flaws give in their text, where no other effect carries them
+const BOOK_REPUTATIONS: Record<string, Effect> = {
+  baccalaureus: rep(1, 'Baccalaureus', 'good', 'Academic'),
+  'senior-clergy': rep(4, 'Senior Clergy', 'good', 'Local & Church'),
+  'black-sheep-flaw': rep(2, 'Black Sheep', 'bad', 'those who respect the family'),
+  'excommunicate-flaw': rep(3, 'Excommunicate', 'bad', 'Church'),
+  // 1 to 3 by how easily the character is known for one (DE): the middle
+  'outsider-flaw': rep(2, 'Outsider', 'bad', 'the area’s dominant group'),
+  'raised-from-the-dead-flaw': rep(4, 'Raised from the Dead', 'good', 'where the miracle happened'),
+  'artistic-renown': rep(2, 'Artist'),
+  'office-holder': rep(2, 'Office Holder', 'good', 'Regional'),
+  'illegitimate-lineage-flaw': rep(2, 'Illegitimate', 'bad', 'House Mercere'),
+  vizier: rep(3, 'Vizier', 'good', 'the Suhhar'),
+};
+for (const [id, r] of Object.entries(BOOK_REPUTATIONS)) MECHANICS[id] = { ...(MECHANICS[id] ?? {}), effects: [...(MECHANICS[id]?.effects ?? []), r] };
