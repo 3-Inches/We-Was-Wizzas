@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { ART_NAMES, FORMS, LIVING_LANGUAGES, DEAD_LANGUAGES, PARAMETERIZED_ABILITIES, SAMPLE_CHILDHOODS, abilityTypeOf, type GameData } from '../../../data';
 import { AREAS, CRAFTS, MYSTERY_CULTS, ORGANIZATIONS, PROFESSIONS } from '../../../data/lists';
 import { abilityAvailability } from '../../../engine/character/restrictions';
@@ -260,18 +260,9 @@ function ParamEdit(props: { value: string; abilityId: string; onChange: (v: stri
   );
 }
 
-function SpecialtyEdit(props: { value: string; options: string[]; onChange: (v: string) => void }) {
-  const id = useMemo(() => `spec-${Math.random().toString(36).slice(2)}`, []);
-  return (
-    <>
-      <input value={props.value} onChange={(e) => props.onChange(e.target.value)} list={id} placeholder="specialty" style={{ width: 140 }} />
-      <datalist id={id}>
-        {props.options.map((o) => (
-          <option key={o} value={o} />
-        ))}
-      </datalist>
-    </>
-  );
+/** A specialty: one of the book's examples, or the player's own (DE, Specialties). */
+export function SpecialtyEdit(props: { value: string; options: string[]; onChange: (v: string) => void }) {
+  return <SelectOrType value={props.value} onChange={props.onChange} options={props.options} placeholder="— specialty —" otherLabel="Other (write your own)…" ariaLabel="Specialty" />;
 }
 
 function AddAbility(props: {
