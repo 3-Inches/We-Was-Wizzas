@@ -7,7 +7,7 @@ import { newSaga } from '../store/store';
 import { newCovenant } from './covenant';
 import { ensureAbility, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
-import { auraAtTime, auraOf, auraRecovery, changeAura, dominionOutlook, dominionStrength, newAuraTrack, rollAuraYear, yearlyAuraModifier } from './aura';
+import { auraAtTime, auraOf, auraRecovery, changeAura, dominionOutlook, dominionStrength, dominionYearEnd, newAuraTrack, rollAuraYear, yearlyAuraModifier } from './aura';
 import { recoveryRoll } from './disease';
 import { castingScore, labTotal } from './magic';
 import { covenantAura } from './context';
@@ -196,5 +196,17 @@ describe('a Dominion and its congregation (RoP: The Divine)', () => {
     const { state, report } = advanceSeason({ saga: s, characters: [], covenants: [cov] }, data, DEFAULT_ADVANCE);
     expect(state.covenants[0].aura).toBe(4);
     expect(report.lines.some((l) => /The Dominion grows to 4: a year of regular worship/.test(l.text))).toBe(true);
+  });
+});
+
+describe('a Dominion whose saga year is set back before its worship began', () => {
+  it('falls to what its years of worship give, and says so without a year it does not have', () => {
+    const cov = newCovenant('s', 1205);
+    cov.auraRealm = 'Divine';
+    cov.aura = 5;
+    cov.auraTrack = { ...newAuraTrack(cov), dominion: { since: 1212, significant: true } };
+    const text = dominionYearEnd(cov, 1210);
+    expect(text).toBe('The Dominion falls to 3, what 0 years of worship since 1212 give.');
+    expect(cov.aura).toBe(3);
   });
 });
