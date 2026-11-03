@@ -219,7 +219,7 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
         )}
         {needle && !books.length && <div className="small muted">No book matches “{q.trim()}”.</div>}
         <p className="small muted">
-          The hidden box puts a book in the covenant's Hidden Resources. To pay for resources from Hidden, Flawed or Illusory Resources, pick them on that Boon or Hook (Hooks & Boons tab).
+          The hidden box puts a book in the covenant's Hidden Resources. To pay for resources from Hidden Resources, or mark them as a Flawed or Illusory Resource, pick them on that Boon or Hook (Hooks & Boons tab).
           {dc.hiddenResourcesBP > 0 && ` Hidden Resources hold ${dc.hiddenResourcesBP} BP of resources.`}
         </p>
       </Card>
@@ -438,15 +438,26 @@ function summaryRows(lib: LibraryBook[], data: CovTabProps['data']) {
   return [...m.values()].sort((a, b) => a.label.localeCompare(b.label));
 }
 
-/** A resource's Build Point cost, or the Boon or Hook that pays for it. */
+/** A resource's Build Point cost, and the Boon that pays for it or the Hook that marks it. */
 export function PaidBy({ cost, line, dc, onlyPool }: { cost: number; line?: BPLine; dc: DerivedCovenant; onlyPool?: boolean }) {
-  const hb = line?.paidBy ? dc.cov.hooksBoons.find((h) => h.uid === line.paidBy) : undefined;
+  const by = line?.paidBy ?? line?.markedBy;
+  const hb = by ? dc.cov.hooksBoons.find((h) => h.uid === by) : undefined;
   if (!hb) return onlyPool ? null : line && line.cost === 0 && line.label.includes('Exceptional Book') ? <span className="badge good">free (Exceptional Book)</span> : <>{cost}</>;
   const lost = dc.unreal.has(line!.ref!);
+  const illusory = /illusory/i.test(hb.name);
+  // Hidden Resources pays for it; a Flawed or Illusory Resource only marks it, so the covenant still pays
+  if (line?.markedBy)
+    return (
+      <span className={`badge ${lost ? 'bad' : 'warn'}`} title={`${cost} BP of the covenant's own, marked by ${hb.name}`}>
+        {onlyPool ? '' : `${cost} `}
+        {hb.name}
+        {lost ? (illusory ? ': not real' : ': lost') : ': may be lost'}
+      </span>
+    );
   return (
     <span className={`badge ${lost ? 'bad' : 'info'}`} title={`${cost} BP paid from ${hb.name}`}>
       <s>{cost}</s> {hb.name}
-      {lost ? (/illusory/i.test(hb.name) ? ': not real' : ': lost') : ''}
+      {lost ? (illusory ? ': not real' : ': lost') : ''}
     </span>
   );
 }

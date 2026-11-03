@@ -146,13 +146,40 @@ describe('Build Point pools: Hidden, Flawed and Illusory Resources', () => {
     c.visSources = [{ uid: 'v1', name: 'Pool', art: 'Aq', pawnsPerYear: 10 }];
     return c;
   };
-  it('pays for tied resources from the Hook, not the covenant', () => {
+  it('pays for Hidden Resources from the Boon, on top of the covenant’s own Build Points', () => {
     const c = base();
-    c.hooksBoons = [hb('Flawed Resource', 'hook', 'Minor', { resources: ['b1', 'v1'] })];
+    c.hooksBoons = [hb('Hidden Resources', 'boon', 'Minor', { resources: ['b1', 'v1'] })];
     const d = deriveCovenant(c, data, []);
     expect(d.bpSpent).toBe(0);
     expect(d.pools[0].spent).toBe(80);
     expect(d.visIncome.Aq).toBe(10);
+  });
+  it('has a Flawed Resource mark 250 of the covenant’s own Build Points, adding none (Covenants ch.2)', () => {
+    const c = base();
+    c.hooksBoons = [hb('Flawed Resource', 'hook', 'Minor', { resources: ['b1', 'v1'] })];
+    let d = deriveCovenant(c, data, []);
+    // the covenant still pays for what it marks
+    expect(d.bpSpent).toBe(80);
+    expect(d.pools[0].pays).toBe(false);
+    expect(d.bpLines.find((l) => l.ref === 'b1')?.markedBy).toBe(c.hooksBoons[0].uid);
+    expect(d.visIncome.Aq).toBe(10);
+    // 80 of the 250 it needs
+    expect(d.issues.some((i) => /marks 80 of the 250/.test(i))).toBe(true);
+    c.visSources[0].pawnsPerYear = 34; // 170 BP, and the summa's 30
+    d = deriveCovenant(c, data, []);
+    expect(d.pools[0].spent).toBe(200);
+    c.visSources.push({ uid: 'v2', name: 'Well', art: 'Vi', pawnsPerYear: 10 }, { uid: 'v3', name: 'Stone', art: 'Te', pawnsPerYear: 2 });
+    c.hooksBoons[0].resources = ['b1', 'v1', 'v2', 'v3'];
+    d = deriveCovenant(c, data, []);
+    // 260: the 10 BP stone could come off
+    expect(d.pools[0].spent).toBe(260);
+    expect(d.issues.some((i) => /one could come off/.test(i))).toBe(true);
+    c.hooksBoons[0].resources = ['b1', 'v1', 'v2'];
+    d = deriveCovenant(c, data, []);
+    expect(d.issues.filter((i) => /Flawed Resource/.test(i))).toEqual([]);
+    // over the covenant's Build Points: the check says the Hook adds none
+    c.buildPoints = 100;
+    expect(deriveCovenant(c, data, []).issues.some((i) => /Spent 260 Build Points of 100\. Flawed and Illusory Resources mark/.test(i))).toBe(true);
   });
   it('loses the resources when the story fails, and keeps up to half when it succeeds', () => {
     const c = base();
@@ -164,12 +191,17 @@ describe('Build Point pools: Hidden, Flawed and Illusory Resources', () => {
     expect(d.visIncome.Aq).toBe(10);
     expect(d.issues.some((i) => /saves at most half/.test(i))).toBe(true); // 50 of 80 kept
   });
-  it('gives nothing from Illusory Resources, and flags a pool over 250 BP', () => {
+  it('gives nothing from Illusory Resources though the covenant paid for them, and flags Hidden Resources over 250 BP', () => {
     const c = base();
     c.visSources[0].pawnsPerYear = 60;
     c.hooksBoons = [hb('Illusory Resources', 'hook', 'Minor', { resources: ['v1'] })];
-    const d = deriveCovenant(c, data, []);
+    let d = deriveCovenant(c, data, []);
     expect(d.visIncome.Aq).toBeUndefined();
+    expect(d.bpSpent).toBe(330);
+    // one 300 BP source: past 250, but none it could do without
+    expect(d.issues.filter((i) => /Illusory/.test(i))).toEqual([]);
+    c.hooksBoons = [hb('Hidden Resources', 'boon', 'Minor', { resources: ['v1'] })];
+    d = deriveCovenant(c, data, []);
     expect(d.issues.some((i) => /holds 250/.test(i))).toBe(true);
   });
   it('gives the Exceptional Book free, within its limits', () => {

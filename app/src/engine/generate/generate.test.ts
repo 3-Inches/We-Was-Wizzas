@@ -193,15 +193,15 @@ describe('spells and familiars for magi', () => {
 });
 
 describe('budgets and resource pools', () => {
-  it('spends a Flawed Resource set aside for covenfolk and books before the covenant’s own budget', () => {
+  it('spends Hidden Resources set aside for covenfolk and books before the covenant’s own budget', () => {
     const cov = newCovenant('s', 1220);
     cov.name = 'Pooled';
     cov.buildPoints = 40;
     cov.budget = { book: 20 };
-    cov.hooksBoons.push({ uid: 'fr', name: 'Flawed Resource', kind: 'hook', size: 'Minor', earmark: ['specialist', 'book'] });
+    cov.hooksBoons.push({ uid: 'hr', name: 'Hidden Resources', kind: 'boon', size: 'Minor', earmark: ['specialist', 'book'] });
     const r = fillCovenant(cov, [], { data, saga: saga('Rhine'), rules }, { staff: true, teacher: true, craftsmen: false, grogs: 0, counts: false, bought: true, library: { arts: true, abilities: true, labTexts: false, mundane: true }, seed: 3 });
     const dc = deriveCovenant(r.cov, data, []);
-    const pool = dc.pools.find((p) => p.hb.uid === 'fr')!;
+    const pool = dc.pools.find((p) => p.hb.uid === 'hr')!;
     // the staff, the teacher and the books went into the pool, up to its 250 Build Points
     expect(pool.resources.some((x) => x.kind === 'specialist')).toBe(true);
     expect(pool.resources.some((x) => x.kind === 'book')).toBe(true);
@@ -210,6 +210,24 @@ describe('budgets and resource pools', () => {
     expect(r.cov.library.some((b) => b.kind === 'mundane')).toBe(true);
     expect(budgetLeft(r.cov, dc, 'book').spent).toBeLessThanOrEqual(20);
   }, 120_000);
+  it('has a Flawed Resource add no Build Points, and mark 250 of what the fill-out bought', () => {
+    const cov = newCovenant('s', 1220);
+    cov.name = 'Marked';
+    cov.buildPoints = 400;
+    cov.hooksBoons.push({ uid: 'fr', name: 'Flawed Resource', kind: 'hook', size: 'Minor', earmark: ['specialist', 'book'] });
+    const r = fillCovenant(cov, [], { data, saga: saga('Rhine'), rules }, { staff: true, teacher: true, craftsmen: false, grogs: 0, counts: false, bought: true, library: { arts: true, abilities: true, labTexts: false, mundane: true, share: 1 }, seed: 3 });
+    const dc = deriveCovenant(r.cov, data, []);
+    const pool = dc.pools.find((p) => p.hb.uid === 'fr')!;
+    expect(budgetLeft(r.cov, dc, 'book').pools).toEqual([]);
+    expect(budgetLeft(r.cov, dc, 'book').marks).toHaveLength(1);
+    // within the covenant's own 400
+    expect(dc.bpSpent).toBeLessThanOrEqual(400);
+    expect(pool.resources.every((x) => x.kind === 'specialist' || x.kind === 'book')).toBe(true);
+    expect(pool.spent).toBeGreaterThanOrEqual(250);
+    expect(pool.spent - Math.min(...pool.resources.map((x) => x.cost))).toBeLessThan(250);
+    expect(dc.issues.filter((i) => /Flawed Resource/.test(i))).toEqual([]);
+    expect(r.log.some((l) => /^Flawed Resource marks \d+ of the covenant's own Build Points/.test(l))).toBe(true);
+  }, 120_000);
   it('never overspends on craftsmen when a pool has too little left to take one', () => {
     for (let seed = 1; seed <= 12; seed++) {
       const cov = newCovenant('s', 1220);
@@ -217,7 +235,7 @@ describe('budgets and resource pools', () => {
       cov.covenfolk = { ...cov.covenfolk, grogs: 20, servants: 15, teamsters: 4, dependents: 10, horses: 6 };
       // a pool with 2 Build Points left (248 taken by a starting reserve), and 4 of the covenant's own
       cov.finances.startingReserve = 2480;
-      cov.hooksBoons.push({ uid: 'fr', name: 'Flawed Resource', kind: 'hook', size: 'Minor', earmark: ['specialist'], resources: ['starting-reserve'] });
+      cov.hooksBoons.push({ uid: 'fr', name: 'Hidden Resources', kind: 'boon', size: 'Minor', earmark: ['specialist'], resources: ['starting-reserve'] });
       cov.buildPoints = deriveCovenant(cov, data, []).bpSpent + 4;
       const r = fillCovenant(cov, [], { data, saga: saga('Rhine'), rules }, { staff: false, teacher: false, craftsmen: true, grogs: 0, counts: false, bought: true, seed });
       const dc = deriveCovenant(r.cov, data, []);

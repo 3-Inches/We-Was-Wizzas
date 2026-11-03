@@ -200,15 +200,16 @@ export function Total(props: { value: number | string; parts?: Part[]; notes?: s
   );
 }
 
-export function Meter(props: { value: number; max: number; label?: ReactNode }) {
+/** A bar filling to a limit; `atLeast` makes the limit a floor to reach, so going past it is no fault. */
+export function Meter(props: { value: number; max: number; label?: ReactNode; atLeast?: boolean }) {
   const pct = props.max > 0 ? Math.min(100, (props.value / props.max) * 100) : 0;
-  const over = props.value > props.max;
+  const over = props.value > props.max && !props.atLeast;
   return (
     <div>
       {props.label && (
         <div className="row between small">
           <span>{props.label}</span>
-          <span className={over ? 'bad-text' : props.value === props.max ? 'good-text' : 'muted'}>
+          <span className={over ? 'bad-text' : props.value === props.max || (props.atLeast && props.value > props.max) ? 'good-text' : 'muted'}>
             {props.value} / {props.max}
           </span>
         </div>

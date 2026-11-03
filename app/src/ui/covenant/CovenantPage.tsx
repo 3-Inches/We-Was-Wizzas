@@ -245,9 +245,12 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
                 <tr key={p.hb.uid} className="muted">
                   <td>
                     {p.hb.name}
-                    {p.hb.note ? ` (${p.hb.note})` : ''}: {p.mechanic === 'hidden-resources' ? 'real, not yet at hand' : p.mechanic === 'illusory-resources' ? 'not real' : p.lost.length ? 'lost in its story' : 'may be lost'}
+                    {p.hb.note ? ` (${p.hb.note})` : ''}:{' '}
+                    {p.mechanic === 'hidden-resources'
+                      ? 'extra, real, not yet at hand'
+                      : `marked within the total, ${p.mechanic === 'illusory-resources' ? 'not real' : p.lost.length ? 'lost in its story' : 'may be lost'}`}
                   </td>
-                  <td className={`num ${p.spent > p.capacity ? 'bad-text' : ''}`}>
+                  <td className={`num ${(p.pays ? p.spent > p.capacity : p.spent < p.capacity) ? 'bad-text' : ''}`}>
                     {p.spent} / {p.capacity}
                   </td>
                 </tr>

@@ -83,7 +83,7 @@ export function buildTestSaga(data: GameData, o: TestSagaOptions): SagaState {
   hook('Favorable Aura', 'boon');
   cov.auraAlignment = ALIGNMENTS[o.seed % ALIGNMENTS.length];
   const flawed = data.hooksBoons.find((h) => /flawed resource/i.test(h.name));
-  if (flawed) cov.hooksBoons.push({ uid: 'fr', defId: flawed.id, name: flawed.name, kind: 'boon', size: 'Minor', earmark: ['specialist', 'book'] } as never);
+  if (flawed) cov.hooksBoons.push({ uid: 'fr', defId: flawed.id, name: flawed.name, kind: 'hook', size: 'Minor', earmark: ['specialist', 'book'] } as never);
   const fill = fillCovenant(cov, chars, g, {
     staff: true, teacher: true, goodTeacher: true, craftsmen: true, bookmakers: true, drill: true, soldiers: true, horses: true, gear: true, yearly: true, grogs: 4, counts: true, bought: true,
     library: { arts: true, abilities: true, labTexts: true, mundane: true }, rest: 'split', seed: o.seed,
