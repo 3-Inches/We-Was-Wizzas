@@ -23,8 +23,8 @@ export function pickJsonFile(): Promise<unknown> {
       if (!f) return reject(new Error('No file'));
       try {
         resolve(JSON.parse(await f.text()));
-      } catch (e) {
-        reject(e);
+      } catch {
+        reject(new Error(`${f.name} is not a file the toolkit exported (a saga, character or covenant, saved as .json)`));
       }
     };
     input.click();

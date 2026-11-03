@@ -30,6 +30,7 @@ import { ARTS, ART_NAMES, type Art } from '../../data';
 import { addVis } from '../../engine/vis';
 import { uid } from '../../util/id';
 import { Card, Empty, Field, Stepper } from '../kit';
+import { timeMayMove } from '../advanceGuard';
 
 interface Attention {
   level: 'bad' | 'warn' | 'info';
@@ -106,6 +107,7 @@ export default function DashboardPage() {
 
   // ---------------------------------------------------------------- moving time on
   const advance = () => {
+    if (!timeMayMove()) return;
     const before = { saga: structuredClone(saga), characters: structuredClone(allChars), covenants: structuredClone(allCovs) };
     const { state, reports } = advanceSeasons(before, data, 1, DEFAULT_ADVANCE);
     putSagaState(state);

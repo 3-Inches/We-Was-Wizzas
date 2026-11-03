@@ -86,7 +86,11 @@ export function HowItWorks(props: { summary?: ReactNode; children: ReactNode; la
 
 export function Stepper(props: { value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; width?: number; title?: string }) {
   const { value, onChange, min = -Infinity, max = Infinity, step = 1 } = props;
-  const clamp = (v: number) => Math.max(min, Math.min(max, v));
+  // whole steps take whole numbers (1.5 typed is 2)
+  const clamp = (v: number) => Math.max(min, Math.min(max, Number.isInteger(step) ? Math.round(v) : v));
+  // what is being typed stays as typed until the field is left: a field cleared to type a new number is
+  // not filled with its least value meanwhile (clearing 3 to type 5 gives 5, not 15)
+  const [draft, setDraft] = useState<string | null>(null);
   return (
     <span className="stepper" title={props.title}>
       <button type="button" aria-label="decrease" onClick={() => onChange(clamp(value - step))} disabled={value - step < min}>
@@ -94,12 +98,15 @@ export function Stepper(props: { value: number; onChange: (v: number) => void; m
       </button>
       <input
         type="number"
-        value={Number.isFinite(value) ? value : 0}
+        value={draft ?? (Number.isFinite(value) ? value : 0)}
         style={props.width ? { width: props.width } : undefined}
         onChange={(e) => {
-          const v = Number(e.target.value);
-          if (!Number.isNaN(v)) onChange(clamp(v));
+          const t = e.target.value;
+          setDraft(t);
+          const v = Number(t);
+          if (t.trim() !== '' && Number.isFinite(v)) onChange(clamp(v));
         }}
+        onBlur={() => setDraft(null)}
       />
       <button type="button" aria-label="increase" onClick={() => onChange(clamp(value + step))} disabled={value + step > max}>
         +

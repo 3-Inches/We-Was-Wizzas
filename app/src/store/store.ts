@@ -105,6 +105,42 @@ export interface ExportBundle {
   covenants?: Covenant[];
 }
 
+/** A record with every id in it (as a value or a key) that was given anew changed to its new one. */
+function swapIds<T>(x: T, m: Map<string, string>): T {
+  const walk = (v: unknown): unknown =>
+    typeof v === 'string'
+      ? (m.get(v) ?? v)
+      : Array.isArray(v)
+        ? v.map(walk)
+        : v && typeof v === 'object'
+          ? Object.fromEntries(Object.entries(v as Record<string, unknown>).map(([k, y]) => [m.get(k) ?? k, walk(y)]))
+          : v;
+  return walk(x) as T;
+}
+
+/** The sagas, characters and covenants on disk (IndexedDB, else localStorage), brought up to this version. */
+async function readStored(): Promise<{ records: Pick<PersistedState, 'sagas' | 'characters' | 'covenants'>; activeSagaId?: string; ui?: unknown } | undefined> {
+  let data: PersistedState | undefined;
+  try {
+    data = (await idbGet(DB_KEY)) as PersistedState | undefined;
+  } catch {
+    /* fall through */
+  }
+  if (!data) {
+    try {
+      const raw = localStorage.getItem(DB_KEY);
+      if (raw) data = JSON.parse(raw);
+    } catch {
+      /* ignore */
+    }
+  }
+  if (!data) return undefined;
+  const sagas = Object.fromEntries(Object.entries(data.sagas ?? {}).map(([k, v]) => [k, migrateSaga(v)]));
+  const characters = Object.fromEntries(Object.entries(data.characters ?? {}).map(([k, v]) => [k, migrateCharacter(v)]));
+  const covenants = Object.fromEntries(Object.entries(data.covenants ?? {}).map(([k, v]) => [k, migrateCovenant(v)]));
+  return { records: { sagas, characters, covenants }, activeSagaId: data.activeSagaId, ui: data.ui };
+}
+
 export function newSaga(name: string): Saga {
   const now = new Date().toISOString();
   return {
@@ -126,19 +162,49 @@ export function newSaga(name: string): Saga {
 }
 
 let saveTimer: ReturnType<typeof setTimeout> | undefined;
+let pendingSave: (() => void) | undefined;
+let warnedUnsaved = false;
+/**
+ * Tabs of the toolkit open at once share one store on disk, and each saves all it holds: so a tab tells
+ * the others when it has saved, and they read the store again, rather than one tab's next save wiping
+ * out what was done in another.
+ */
+const TAB = Math.random().toString(36).slice(2);
+const tabs: BroadcastChannel | undefined = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('arm5-toolkit-saves') : undefined;
+const saved = () => {
+  warnedUnsaved = false;
+  tabs?.postMessage({ tab: TAB });
+};
 function scheduleSave(getState: () => Store) {
   if (saveTimer) clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => {
+  pendingSave = () => {
+    saveTimer = undefined;
+    pendingSave = undefined;
     const s = getState();
     const data: PersistedState = { sagas: s.sagas, characters: s.characters, covenants: s.covenants, activeSagaId: s.activeSagaId, ui: s.ui };
-    idbSet(DB_KEY, data).catch(() => {
-      try {
-        localStorage.setItem(DB_KEY, JSON.stringify(data));
-      } catch {
-        /* storage unavailable */
-      }
-    });
-  }, 250);
+    idbSet(DB_KEY, data)
+      .then(saved)
+      .catch(() => {
+        try {
+          localStorage.setItem(DB_KEY, JSON.stringify(data));
+          saved();
+        } catch {
+          // neither store would take it (full, or blocked as in some private windows): say so, once until a save works
+          if (!warnedUnsaved) getState().setNotice('This browser would not save the last changes (its storage is full or blocked). Export the saga from its page to keep a copy.');
+          warnedUnsaved = true;
+        }
+      });
+  };
+  saveTimer = setTimeout(() => pendingSave?.(), 250);
+}
+/** Save now what is waiting to be saved: the page is being closed or hidden. */
+export function flushSave(): void {
+  if (saveTimer) clearTimeout(saveTimer);
+  pendingSave?.();
+}
+if (typeof window !== 'undefined') {
+  window.addEventListener('pagehide', flushSave);
+  document.addEventListener('visibilitychange', () => document.visibilityState === 'hidden' && flushSave());
 }
 
 const clone = <T,>(x: T): T => structuredClone(x);
@@ -225,26 +291,19 @@ export const useStore = create<Store>()((set, get) => {
   },
 
   load: async () => {
-    let data: PersistedState | undefined;
-    try {
-      data = (await idbGet(DB_KEY)) as PersistedState | undefined;
-    } catch {
-      /* fall through */
-    }
-    if (!data) {
-      try {
-        const raw = localStorage.getItem(DB_KEY);
-        if (raw) data = JSON.parse(raw);
-      } catch {
-        /* ignore */
-      }
-    }
-    if (data) {
-      const sagas = Object.fromEntries(Object.entries(data.sagas ?? {}).map(([k, v]) => [k, migrateSaga(v)]));
-      const characters = Object.fromEntries(Object.entries(data.characters ?? {}).map(([k, v]) => [k, migrateCharacter(v)]));
-      const covenants = Object.fromEntries(Object.entries(data.covenants ?? {}).map(([k, v]) => [k, migrateCovenant(v)]));
-      set({ sagas, characters, covenants, activeSagaId: data.activeSagaId, ui: { ...DEFAULT_UI, ...((data.ui ?? {}) as object) } as UiPrefs, loaded: true });
-    } else set({ loaded: true });
+    const data = await readStored();
+    if (data) set({ ...data.records, activeSagaId: data.activeSagaId, ui: { ...DEFAULT_UI, ...((data.ui ?? {}) as object) } as UiPrefs, loaded: true });
+    else set({ loaded: true });
+    // another tab saved: take what it saved (this tab's own display settings and tutorial stay its own);
+    // the undo history here no longer matches the records, so it starts again
+    if (tabs)
+      tabs.onmessage = async (e: MessageEvent<{ tab?: string }>) => {
+        if (e.data?.tab === TAB) return;
+        const next = await readStored();
+        if (!next) return;
+        set({ ...next.records, history: { past: [], future: [] } });
+        if (document.visibilityState === 'visible') get().setNotice('Changes saved in another tab of the toolkit were loaded here.');
+      };
   },
 
   createSaga: (name) => {
@@ -401,12 +460,21 @@ export const useStore = create<Store>()((set, get) => {
     const sagas = { ...st.sagas };
     const characters = { ...st.characters };
     const covenants = { ...st.covenants };
+    // records given new ids (they would clash with ones already here), so that every reference
+    // among the imported records (covenant, lab owner, familiar, teacher, members) follows them
     const idMap = new Map<string, string>();
+    const renew = (old: string | undefined) => {
+      const id = uid();
+      if (old) idMap.set(old, id);
+      return id;
+    };
+    const imported: { sagas: string[]; characters: string[]; covenants: string[] } = { sagas: [], characters: [], covenants: [] };
     if (b.saga && !sagaId) {
       const s = migrateSaga(clone(b.saga));
-      if (sagas[s.id]) s.id = uid();
+      if (!s.id || sagas[s.id]) s.id = renew(s.id);
       sagas[s.id] = s;
       sagaId = s.id;
+      imported.sagas.push(s.id);
     }
     if (!sagaId) sagaId = st.activeSagaId;
     if (!sagaId) {
@@ -416,18 +484,23 @@ export const useStore = create<Store>()((set, get) => {
     }
     for (const raw of b.characters ?? []) {
       const c = migrateCharacter(clone(raw));
-      const old = c.id;
-      if (characters[c.id] && characters[c.id].sagaId !== sagaId) c.id = uid();
-      idMap.set(old, c.id);
+      if (!c.id || (characters[c.id] && characters[c.id].sagaId !== sagaId)) c.id = renew(c.id);
       c.sagaId = sagaId;
       characters[c.id] = c;
+      imported.characters.push(c.id);
     }
     for (const raw of b.covenants ?? []) {
       const c = migrateCovenant(clone(raw));
-      if (covenants[c.id] && covenants[c.id].sagaId !== sagaId) c.id = uid();
+      if (!c.id || (covenants[c.id] && covenants[c.id].sagaId !== sagaId)) c.id = renew(c.id);
       c.sagaId = sagaId;
-      c.memberIds = c.memberIds.map((m) => idMap.get(m) ?? m);
+      c.memberIds = c.memberIds ?? [];
       covenants[c.id] = c;
+      imported.covenants.push(c.id);
+    }
+    if (idMap.size) {
+      for (const id of imported.sagas) sagas[id] = swapIds(sagas[id], idMap);
+      for (const id of imported.characters) characters[id] = swapIds(characters[id], idMap);
+      for (const id of imported.covenants) covenants[id] = swapIds(covenants[id], idMap);
     }
     const touched = (a: Record<string, unknown>, b: Record<string, unknown>) => Object.keys(a).filter((k) => a[k] !== b[k]);
     remember({ sagas: touched(sagas, st.sagas), characters: touched(characters, st.characters), covenants: touched(covenants, st.covenants) }, 'the import');

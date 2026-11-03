@@ -204,7 +204,9 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
         const bn = b.name.toLowerCase().startsWith(qq) ? 0 : 1;
         if (an !== bn) return an - bn;
         if ((a.source.book === 'DE') !== (b.source.book === 'DE')) return a.source.book === 'DE' ? -1 : 1;
-        return a.name.localeCompare(b.name);
+        // "(Form) Monstrosity" under M, not ahead of the alphabet
+        const key = (n: string) => n.replace(/^\([^)]*\)\s*/, '');
+        return key(a.name).localeCompare(key(b.name));
       });
   }, [data, q, kind, cats, size, source, hideUnavailable, showCreature, c, problems, tagFilter, quick]);
 
