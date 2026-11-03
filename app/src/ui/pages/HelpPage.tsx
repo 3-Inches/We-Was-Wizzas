@@ -192,7 +192,8 @@ export default function HelpPage() {
         </Step>
         <Step n={4} title="Make the characters">
           Pick grog, companion, Mythic Companion or magus. The wizard walks through every step, shows each budget and checks the rules with page references. Not sure what to
-          play? <b>Guided build</b> on the Concept step suggests Virtues and Abilities from what you want, or builds a whole draft. For grogs and NPCs in a hurry,{' '}
+          play? <b>Guided build</b> on the Concept step suggests Virtues and Abilities from what you want, or builds a whole draft; short of time,{' '}
+          <b>Build the whole character for me</b> beside it makes one in a single press, from the concept themes, to change as you like. For grogs and NPCs in a hurry,{' '}
           <b>Quick build</b> (under Tools) makes whole characters, fills out the covenant&apos;s people and rolls creatures from the bestiaries.
         </Step>
         <Step n={5} title="Play">
@@ -309,7 +310,9 @@ export default function HelpPage() {
           <li>A character older than 35 rolls aging before play on the Concept step. A year that would kill the character is not applied, so you can roll it again.</li>
           <li>
             <b>Guided build</b> (Concept step): rate statements 0–10 about what you want to play and get recommendations with the reason and the page, or a whole draft that
-            passes the rules check. The storyguide sets the saga&apos;s realms, speed and politics once under <b>House rules &amp; books → Saga</b>.
+            passes the rules check. <b>Build the whole character for me</b> beside it skips the questions: a whole draft from the concept themes (a Mythic Companion&apos;s
+            type from what the concept names), each choice with its reason, opened at Review. The storyguide sets the saga&apos;s realms, speed and politics once under{' '}
+            <b>House rules &amp; books → Saga</b>.
           </li>
         </ul>
       </Card>

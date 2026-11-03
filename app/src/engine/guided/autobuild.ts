@@ -9,7 +9,7 @@ import { EX_MISC_TRADITIONS, HOUSE_BY_ID } from '../../data/houses';
 import { CHAR_DESCRIPTORS } from '../../data/lists';
 import type { CharSpell, Character, Covenant, GuidedState, HouseRules, Saga, XpSource } from '../types';
 import { canSpend, deriveCharacter, sumAlloc, type DerivedCharacter, type XpBudget } from '../character/derive';
-import { addVirtue, applyExMiscTradition, ensureAbility, removeVirtue, setHouse } from '../character/factory';
+import { addVirtue, applyExMiscTradition, applyMythicType, ensureAbility, MYTHIC_TYPES, removeVirtue, setHouse } from '../character/factory';
 import { abilityAvailability, vfProblems } from '../character/restrictions';
 import { validateCharacter, type Issue } from '../character/validate';
 import { fixesFor, resolveAll } from '../character/fixes';
@@ -125,9 +125,20 @@ function firstPassing(xs: Scored[], ok: (s: Scored) => boolean, n: number): Scor
   return out;
 }
 
-/** Clear the choices a draft makes, keeping who the character is (name, type, concept, age and covenant). */
+/** The Mythic Companion type chosen for a character (DE p.63), by the free Virtue that defines it. */
+export const mythicTypeOf = (c: Character) => {
+  const v = c.virtues.find((x) => x.freeReason === 'Mythic Companion');
+  return v ? Object.entries(MYTHIC_TYPES).find(([, t]) => t.virtue === v.defId)?.[0] : undefined;
+};
+
+/**
+ * Clear the choices a draft makes, keeping who the character is (name, type, concept, age and covenant)
+ * and a Mythic Companion's type with the Virtues and Flaws it requires.
+ */
 export function resetChoices(c: Character) {
-  c.virtues = c.virtues.filter((v) => ['the-gift', 'hermetic-magus'].includes(v.defId) || (c.type === 'grog' && v.defId === 'covenfolk'));
+  const mt = c.type === 'mythic' ? MYTHIC_TYPES[mythicTypeOf(c) ?? ''] : undefined;
+  const keep = new Set(mt ? [mt.virtue, mt.freeMinor, ...mt.requiredVirtues, ...mt.requiredFlaws] : []);
+  c.virtues = c.virtues.filter((v) => ['the-gift', 'hermetic-magus'].includes(v.defId) || (c.type === 'grog' && v.defId === 'covenfolk') || keep.has(v.defId));
   if (c.type === 'magus') c.house = undefined;
   c.abilities = c.abilities.filter((a) => a.native);
   for (const k of Object.keys(c.arts)) c.arts[k as keyof Character['arts']] = {};
@@ -191,6 +202,23 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
       log.push(`House ${h.name} (${why.house}).`);
       refresh();
     }
+  }
+
+  // ---------------------------------------------------------------- Mythic Companion type (DE p.63)
+  if (c.type === 'mythic' && !mythicTypeOf(c)) {
+    const ev = evaluate(st, ctx);
+    const fitOf = (id: string) => ev.scored.find((x) => x.def.id === id)?.fit ?? 0;
+    const types = Object.entries(MYTHIC_TYPES);
+    const [id, t] = [...types].sort((a, b) => fitOf(b[1].virtue) + fitOf(b[1].freeMinor) - (fitOf(a[1].virtue) + fitOf(a[1].freeMinor)))[0];
+    const tie = types.every(([, x]) => fitOf(x.virtue) + fitOf(x.freeMinor) === fitOf(t.virtue) + fitOf(t.freeMinor));
+    // with nothing to go on: what the concept names, else one at random
+    const text = `${c.creation.concept ?? ''} ${c.description ?? ''}`.toLowerCase();
+    const named = types.find(([k]) => ({ 'devil-child': /devil|demon|infernal|hell/, 'faerie-doctor': /faerie|fairy|fey|cunning/, nephilim: /angel|nephil|giant|holy/, 'spirit-votary': /spirit|pagan|votary|ancestor/ })[k]?.test(text));
+    const [pid, pt] = !tie ? [id, t] : (named ?? types[Math.floor((inp.rng ?? Math.random)() * types.length)]);
+    applyMythicType(c, inp.data, pid);
+    why.mythicType = !tie ? 'the best fit for your answers' : named ? 'what your concept names' : 'none fits your answers better than another, so one at random';
+    log.push(`Mythic Companion type ${pt.label} (${why.mythicType}).`);
+    refresh();
   }
 
   // ---------------------------------------------------------------- Social Status
