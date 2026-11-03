@@ -213,10 +213,11 @@ describe('the covenant fill-out', () => {
     expect(r.cov.finances.weaponArmorPoints).toBe(weaponArmorEstimate(r.cov, dc.members, data).total);
     expect(r.cov.finances.yearly?.find((e) => e.id === 'feasts')?.count).toBe(4);
     expect(r.cov.visSources.length + r.cov.visStocks.length).toBeGreaterThan(0);
-    // the Flawed Resource paid for some of it, and says what
+    // the Flawed Resource marks 250 Build Points of what was bought, and adds none
     const pool = dc.pools.find((p) => p.hb.uid === 'fr')!;
     expect(pool.resources.length).toBeGreaterThan(0);
-    expect(pool.spent).toBeLessThanOrEqual(250);
+    expect(pool.spent).toBeGreaterThanOrEqual(250);
+    expect(pool.spent - Math.min(...pool.resources.map((x) => x.cost))).toBeLessThan(250);
   }, 300_000);
   it('hires a teacher of several Abilities at one score, and books across Techniques and Forms', () => {
     const { r } = fillAll(4);

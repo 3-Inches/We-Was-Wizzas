@@ -7,6 +7,8 @@ import { Card, Field, SelectOrType, Stepper } from '../../kit';
 import type { CharEditor } from '../useChar';
 import AgingBeforePlay from '../AgingBeforePlay';
 import { useNavigate } from 'react-router-dom';
+import { useStore } from '../../../store/store';
+import { buildWholeCharacter } from '../buildWhole';
 
 export default function BasicsStep({ ed }: { ed: CharEditor }) {
   const { c, update, change, saga, d } = ed;
@@ -142,7 +144,21 @@ export default function BasicsStep({ ed }: { ed: CharEditor }) {
           <button className="primary" onClick={() => nav(`/saga/${saga!.id}/character/${c.id}/guided`)}>
             {c.guided && Object.keys(c.guided.answers).length ? `Continue the guided build (${Object.keys(c.guided.answers).length} answered)` : 'Start the guided build'}
           </button>
+          <button
+            onClick={() => {
+              const chosen = c.virtues.some((v) => !v.freeReason) || c.abilities.length > 0;
+              if (chosen && !window.confirm('Build the whole character? It replaces the Virtues, Flaws, Characteristics, Abilities and the rest chosen so far. Undo takes it back.')) return;
+              const r = buildWholeCharacter(c.id);
+              if (r) useStore.getState().setNotice(r.notice);
+            }}
+          >
+            Build the whole character for me
+          </button>
         </div>
+        <p className="small muted" style={{ marginBottom: 0 }}>
+          Short of time? <b>Build the whole character for me</b> makes a complete character that passes the rules check, from the themes above and any answers, every choice
+          with its reason, and opens its Review: change anything you like after.
+        </p>
       </Card>
     </>
   );

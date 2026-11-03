@@ -5,7 +5,7 @@ import type { Art, GameData } from '../data';
 import { ARTS, ART_NAMES } from '../data/constants';
 import type { BudgetKind, Character, Covenant, EnchantedItem, LibraryBook, Specialist, VisSource } from './types';
 import {
-  CATEGORY_LIMIT, abilityCapAtAge, canBeUnknown, computeIncome, computePools, countOf, craftOf, craftsFor, craftsmanSaving, findCraft, mechanicOf, miracleMultiplierOf,
+  CATEGORY_LIMIT, abilityCapAtAge, canBeUnknown, computeIncome, computePools, poolMechanic, poolPays, countOf, craftOf, craftsFor, craftsmanSaving, findCraft, mechanicOf, miracleMultiplierOf,
   receivedAfterTithe, specChar, specHighest, specialistCost, type BPPool, type CostCategory, type CovResource, type CraftDef, type IncomeLine, type IncomeResult,
 } from './covenantRules';
 import { deriveLab, type DerivedLab } from './lab';
@@ -33,8 +33,10 @@ export interface BPLine {
   ref?: string;
   /** what it costs before any Boon or Hook pays for it */
   fullCost?: number;
-  /** the Boon or Hook whose Build Points pay for it */
+  /** the Boon (Hidden Resources) whose Build Points pay for it */
   paidBy?: string;
+  /** the Hook (a Flawed or Illusory Resource) that marks it: the covenant still pays for it */
+  markedBy?: string;
 }
 
 /**
@@ -62,6 +64,9 @@ export const BUDGET_KINDS: { id: BudgetKind; label: string; category: string }[]
   { id: 'money', label: 'Money', category: 'Money' },
 ];
 
+/** The kind of resource each Build Point line buys. */
+const LINE_KIND: Record<string, CovResource['kind']> = { Library: 'book', Vis: 'vis', 'Enchanted items': 'item', Specialists: 'specialist', Laboratories: 'lab', Money: 'money' };
+
 export interface BudgetLeft {
   kind: BudgetKind;
   /** the covenant's own Build Points this kind may still take: its budget left, and never more than the covenant has left */
@@ -69,11 +74,13 @@ export interface BudgetLeft {
   /** spent on it from the covenant's own Build Points */
   spent: number;
   budget?: number;
-  /** Hidden, Flawed and Illusory Resources set aside for it, and what each has left */
+  /** Hidden Resources set aside for it, and what each has left to pay for */
   pools: { hbUid: string; name: string; left: number }[];
+  /** Flawed and Illusory Resources set aside for it, and what each has still to mark (they add no Build Points) */
+  marks: { hbUid: string; name: string; left: number }[];
 }
 
-/** What Quick build may still spend on a kind of purchase: earmarked resource pools first, then the covenant's own budget. */
+/** What Quick build may still spend on a kind of purchase: earmarked Hidden Resources first, then the covenant's own budget. */
 export function budgetLeft(cov: Covenant, dc: DerivedCovenant, kind: BudgetKind): BudgetLeft {
   const category = BUDGET_KINDS.find((k) => k.id === kind)!.category;
   const spent = dc.bpLines.filter((l) => l.category === category && l.cost > 0).reduce((t, l) => t + l.cost, 0);
@@ -81,14 +88,52 @@ export function budgetLeft(cov: Covenant, dc: DerivedCovenant, kind: BudgetKind)
   const budget = cov.budget?.[kind];
   const own = budget === undefined ? overall : Math.max(0, Math.min(overall, budget - spent));
   // a Flawed Resource whose story has come and gone takes nothing more
-  const pools = dc.pools
-    .filter((p) => p.hb.earmark?.includes(kind) && !(p.mechanic === 'flawed-resource' && p.hb.outcome && p.hb.outcome !== 'pending'))
-    .map((p) => ({ hbUid: p.hb.uid, name: p.hb.name, left: Math.max(0, p.capacity - p.spent) }));
-  return { kind, own, spent, budget, pools };
+  const set = dc.pools.filter((p) => p.hb.earmark?.includes(kind) && !(p.mechanic === 'flawed-resource' && p.hb.outcome && p.hb.outcome !== 'pending'));
+  const left = (p: BPPool) => ({ hbUid: p.hb.uid, name: p.hb.name, left: Math.max(0, p.capacity - p.spent) });
+  return { kind, own, spent, budget, pools: set.filter((p) => p.pays).map(left), marks: set.filter((p) => !p.pays).map(left) };
+}
+
+/** Resources a Boon pays for (Hidden Resources), so they cost the covenant's own Build Points nothing. */
+export const paidFromPools = (cov: Covenant) => new Set(cov.hooksBoons.flatMap((h) => { const m = poolMechanic(h); return m && poolPays(m) ? (h.resources ?? []) : []; }));
+
+/**
+ * Flawed and Illusory Resources set aside for kinds of resource: mark the covenant's resources of those
+ * kinds not yet in a pool, dearest first, until each marks its 250 Build Points (the last may take it a
+ * little past, never by a whole resource it could do without). They add no Build Points: the covenant
+ * still pays for what they mark. What was marked, for the fill-out's log.
+ */
+export function markResources(cov: Covenant, data: GameData, members: Character[]): string[] {
+  const log: string[] = [];
+  for (const hb of cov.hooksBoons) {
+    if (!hb.earmark?.length || (hb.outcome && hb.outcome !== 'pending')) continue;
+    const dc = deriveCovenant(cov, data, members);
+    const pool = dc.pools.find((p) => p.hb.uid === hb.uid);
+    if (!pool || pool.pays || pool.spent >= pool.capacity) continue;
+    const taken = new Set(dc.pools.flatMap((p) => p.resources.map((r) => r.uid)));
+    const kinds = new Set<string>(hb.earmark);
+    const free = dc.bpLines
+      .filter((l) => l.ref && l.cost > 0 && !taken.has(l.ref) && kinds.has(LINE_KIND[l.category]))
+      .sort((a, b) => b.cost - a.cost);
+    let spent = pool.spent;
+    const add: BPLine[] = [];
+    for (const l of free) if (spent + l.cost <= pool.capacity) (add.push(l), (spent += l.cost));
+    if (spent < pool.capacity) {
+      const cross = free.filter((l) => !add.includes(l)).sort((a, b) => a.cost - b.cost).find((l) => spent + l.cost >= pool.capacity);
+      if (cross) (add.push(cross), (spent += cross.cost));
+    }
+    // none it could do without
+    for (const l of [...add].sort((a, b) => a.cost - b.cost)) if (spent - l.cost >= pool.capacity) (add.splice(add.indexOf(l), 1), (spent -= l.cost));
+    if (!add.length) continue;
+    const refs = new Set(dc.bpLines.map((l) => l.ref));
+    hb.resources = [...(hb.resources ?? []).filter((u) => refs.has(u)), ...add.map((l) => l.ref!)];
+    const what = pool.mechanic === 'illusory-resources' ? 'are not really there' : 'will likely be lost in a story';
+    log.push(`${hb.name}${hb.note ? ` (${hb.note})` : ''} marks ${spent} of the covenant's own Build Points of resources, which ${what}: ${add.map((l) => l.label).join(', ')}.`);
+  }
+  return log;
 }
 
 /**
- * Tie what Quick build bought to the resource pools set aside for its kind, dearest first, while
+ * Tie what Quick build bought to the Hidden Resources set aside for its kind, dearest first, while
  * each has room (so what is left for the covenant's own Build Points is the least); the rest is
  * paid from the covenant's own Build Points.
  */
@@ -347,9 +392,8 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   const lacking = members.filter((m) => m.type === 'magus' && !labsForMagi.has(m.id)).length;
   if (lacking && cov.labs.length) lines.push({ category: 'Laboratories', label: `${lacking} magus/magi without a lab`, cost: -50 * lacking });
 
-  // Hidden, Flawed and Illusory Resources pay for the resources tied to them
-  const kindOf: Record<string, CovResource['kind']> = { Library: 'book', Vis: 'vis', 'Enchanted items': 'item', Specialists: 'specialist', Laboratories: 'lab', Money: 'money' };
-  const resources: CovResource[] = lines.filter((l) => l.ref && l.cost > 0).map((l) => ({ uid: l.ref!, kind: kindOf[l.category], label: l.label, cost: l.cost }));
+  // Hidden Resources pay for the resources tied to them; Flawed and Illusory Resources mark them
+  const resources: CovResource[] = lines.filter((l) => l.ref && l.cost > 0).map((l) => ({ uid: l.ref!, kind: LINE_KIND[l.category], label: l.label, cost: l.cost }));
   const pools = computePools(cov, resources);
   const firstHidden = pools.find((p) => p.mechanic === 'hidden-resources');
   for (const b of cov.library) {
@@ -362,12 +406,24 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   for (const p of pools) {
     for (const r of p.resources) {
       const line = lines.find((l) => l.ref === r.uid);
-      if (line) ((line.fullCost = line.cost), (line.cost = 0), (line.paidBy = p.hb.uid));
+      if (line && p.pays) ((line.fullCost = line.cost), (line.cost = 0), (line.paidBy = p.hb.uid));
+      else if (line) line.markedBy = p.hb.uid;
       if (p.mechanic === 'illusory-resources') unreal.add(r.uid);
     }
     for (const r of p.lost) unreal.add(r.uid);
     const name = `${p.hb.name}${p.hb.note ? ` (${p.hb.note})` : ''}`;
-    if (p.spent > p.capacity) issue(`${name} pays for ${p.spent} Build Points of resources but holds ${p.capacity}.`, { kind: 'goto', label: 'Open Hooks & Boons', tab: 'hooks' });
+    const goHooks = { kind: 'goto' as const, label: 'Open Hooks & Boons', tab: 'hooks' };
+    if (p.pays && p.spent > p.capacity) issue(`${name} pays for ${p.spent} Build Points of resources but holds ${p.capacity}.`, goHooks);
+    // a Flawed or Illusory Resource marks 250 of the covenant's own Build Points of resources: no fewer,
+    // and none it could do without (a Flawed Resource's story, once told, has taken what it took)
+    const told = p.mechanic === 'flawed-resource' && !!p.hb.outcome && p.hb.outcome !== 'pending';
+    if (!p.pays && !told && !cov.living) {
+      const what = p.mechanic === 'illusory-resources' ? 'not really there' : 'likely to be lost';
+      const least = Math.min(...p.resources.map((r) => r.cost));
+      if (p.spent < p.capacity)
+        issue(`${name} marks ${p.spent} of the ${p.capacity} Build Points of the covenant's own resources it needs as ${what}. It adds no Build Points: choose what it marks.`, goHooks);
+      else if (p.spent - least >= p.capacity) issue(`${name} marks ${p.spent} Build Points of resources: it needs ${p.capacity}, so one could come off.`, goHooks);
+    }
     if (p.mechanic === 'flawed-resource' && p.hb.outcome === 'saved') {
       const kept = p.resources.filter((r) => !p.lost.includes(r)).reduce((t, r) => t + r.cost, 0);
       if (kept > p.spent / 2) issue(`${name}: a successful story saves at most half (${Math.floor(p.spent / 2)} BP); ${kept} BP are kept.`, { kind: 'goto', label: 'Open Hooks & Boons', tab: 'hooks' });
@@ -383,8 +439,9 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   // a living covenant built from its Tribunal book is not bought with Build Points
   if (bpSpent > cov.buildPoints && !cov.living) {
     const fits = POWER_LEVELS.find((p) => bpSpent >= p.min && bpSpent <= p.max);
+    const marked = pools.some((p) => !p.pays && p.resources.length);
     issue(
-      `Spent ${bpSpent} Build Points of ${cov.buildPoints}.`,
+      `Spent ${bpSpent} Build Points of ${cov.buildPoints}.${marked ? ' Flawed and Illusory Resources mark resources the covenant paid for; they add no Build Points of their own.' : ''}`,
       ...(bpSpent <= pl.max ? [{ kind: 'apply' as const, label: `Raise Build Points to ${bpSpent}`, apply: (c: Covenant) => void (c.buildPoints = bpSpent) }] : []),
       ...(bpSpent > pl.max && fits ? [{ kind: 'apply' as const, label: `Make it a ${fits.level} covenant with ${bpSpent} Build Points`, apply: (c: Covenant) => void ((c.buildPoints = bpSpent), (c.powerLevel = fits.level)) }] : []),
       { kind: 'goto', label: 'Review what is bought', tab: 'overview' },

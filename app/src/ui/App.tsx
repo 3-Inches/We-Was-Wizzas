@@ -5,6 +5,7 @@ import { usePlayerCharacters, usePlayerCovenants } from '../store/hooks';
 import HomePage from './pages/HomePage';
 import SagaPage from './pages/SagaPage';
 import ImportPage from './pages/ImportPage';
+import { PageErrorBoundary } from './ErrorBoundary';
 
 const CharacterWizard = lazy(() => import('./character/CharacterWizard'));
 const CharacterSheet = lazy(() => import('./character/CharacterSheet'));
@@ -94,38 +95,42 @@ export default function App() {
         <Notice />
         {/* room below the page while a tutorial runs, so anything can be scrolled clear of its panel */}
         <main className={`main${touring ? ' touring' : ''}`}>
-          <Suspense fallback={<div className="muted">Loading…</div>}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/import" element={<ImportPage />} />
-              <Route path="/saga/:sagaId" element={<SagaPage />} />
-              <Route path="/saga/:sagaId/character/:charId/create" element={<CharacterWizard />} />
-              <Route path="/saga/:sagaId/character/:charId/guided" element={<GuidedBuildPage />} />
-              <Route path="/saga/:sagaId/character/:charId" element={<CharacterSheet />} />
-              <Route path="/saga/:sagaId/covenant/:covId" element={<CovenantPage />} />
-              <Route path="/saga/:sagaId/spells" element={<SpellsPage />} />
-              <Route path="/saga/:sagaId/enchant" element={<EnchantPage />} />
-              <Route path="/saga/:sagaId/rules" element={<HouseRulesPage />} />
-              <Route path="/saga/:sagaId/seasons" element={<SeasonsPage />} />
-              <Route path="/saga/:sagaId/table" element={<DashboardPage />} />
-              <Route path="/saga/:sagaId/market" element={<MarketPage />} />
-              <Route path="/saga/:sagaId/tribunal" element={<TribunalPage />} />
-              <Route path="/saga/:sagaId/build" element={<QuickBuildPage />} />
-              <Route path="/dice" element={<DicePage />} />
-              <Route path="/reference" element={<ReferencePage />} />
-              <Route path="/reference/book/:bookId" element={<BookReader />} />
-              <Route path="/help" element={<HelpPage />} />
-              <Route path="/mechanics" element={<MechanicsPage />} />
-              <Route path="/mechanics/:areaId" element={<MechanicsPage />} />
-              <Route path="/mechanics/:areaId/:groupId" element={<MechanicsPage />} />
-              <Route path="*" element={<div>Page not found. <Link to="/">Home</Link></div>} />
-            </Routes>
-          </Suspense>
+          <PageErrorBoundary resetKey={loc.pathname + loc.search}>
+            <Suspense fallback={<div className="muted">Loading…</div>}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/import" element={<ImportPage />} />
+                <Route path="/saga/:sagaId" element={<SagaPage />} />
+                <Route path="/saga/:sagaId/character/:charId/create" element={<CharacterWizard />} />
+                <Route path="/saga/:sagaId/character/:charId/guided" element={<GuidedBuildPage />} />
+                <Route path="/saga/:sagaId/character/:charId" element={<CharacterSheet />} />
+                <Route path="/saga/:sagaId/covenant/:covId" element={<CovenantPage />} />
+                <Route path="/saga/:sagaId/spells" element={<SpellsPage />} />
+                <Route path="/saga/:sagaId/enchant" element={<EnchantPage />} />
+                <Route path="/saga/:sagaId/rules" element={<HouseRulesPage />} />
+                <Route path="/saga/:sagaId/seasons" element={<SeasonsPage />} />
+                <Route path="/saga/:sagaId/table" element={<DashboardPage />} />
+                <Route path="/saga/:sagaId/market" element={<MarketPage />} />
+                <Route path="/saga/:sagaId/tribunal" element={<TribunalPage />} />
+                <Route path="/saga/:sagaId/build" element={<QuickBuildPage />} />
+                <Route path="/dice" element={<DicePage />} />
+                <Route path="/reference" element={<ReferencePage />} />
+                <Route path="/reference/book/:bookId" element={<BookReader />} />
+                <Route path="/help" element={<HelpPage />} />
+                <Route path="/mechanics" element={<MechanicsPage />} />
+                <Route path="/mechanics/:areaId" element={<MechanicsPage />} />
+                <Route path="/mechanics/:areaId/:groupId" element={<MechanicsPage />} />
+                <Route path="*" element={<div>Page not found. <Link to="/">Home</Link></div>} />
+              </Routes>
+            </Suspense>
+          </PageErrorBoundary>
         </main>
         {touring && (
-          <Suspense fallback={null}>
-            <TourPanel />
-          </Suspense>
+          <PageErrorBoundary resetKey={loc.pathname + loc.search} quiet>
+            <Suspense fallback={null}>
+              <TourPanel />
+            </Suspense>
+          </PageErrorBoundary>
         )}
       </div>
     </div>

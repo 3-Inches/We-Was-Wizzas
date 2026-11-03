@@ -120,7 +120,9 @@ export function dominionYearEnd(cov: Covenant, year: number): string | undefined
   const text =
     next > cov.aura
       ? `The Dominion grows to ${next}: ${next - (w.relics ?? 0) >= 5 ? 'a decade of worship by a large congregation in a significant church' : 'a year of regular worship'}.`
-      : `The Dominion fades to ${next}: worship stopped in ${w.until}.`;
+      : w.until !== undefined
+        ? `The Dominion fades to ${next}: worship stopped in ${w.until}.`
+        : `The Dominion falls to ${next}, what ${Math.max(0, year + 1 - w.since)} year${year + 1 - w.since === 1 ? '' : 's'} of worship since ${w.since} give.`;
   changeAura(cov, next - cov.aura, text, year, 'Winter');
   return text;
 }

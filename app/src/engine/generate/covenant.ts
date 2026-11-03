@@ -12,7 +12,7 @@ import { ARTS, ART_NAMES, type Art, type GameData } from '../../data';
 import type { BudgetKind, Character, Covenant, HouseRules, Saga, Specialist } from '../types';
 import { abilityCapAtAge, CRAFTS, specialistCost } from '../covenantRules';
 import {
-  STARTING_RESERVE, VIS_STOCKS, addCostSavingCraftsmen, addGuildAbilities, ageForScore, budgetLeft, deriveCovenant, fitCovenfolk, optimalLaborers, payFromPools, summaCost,
+  STARTING_RESERVE, VIS_STOCKS, addCostSavingCraftsmen, addGuildAbilities, ageForScore, budgetLeft, deriveCovenant, fitCovenfolk, markResources, optimalLaborers, paidFromPools, payFromPools, summaCost,
 } from '../covenant';
 import { CRAFT_GUILD_RANKS, FEAST_CYCLE, guildRanksApply, hasGuildHook, newSoldierGroup, soldierBoonsWithoutGroups, soldierKindOf, suggestedGuildRank, weaponArmorEstimate } from '../covenfolk';
 import { optionOn } from '../optional';
@@ -262,7 +262,7 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
     const added = addCostSavingCraftsmen(cov, members(), derived().labs, 'best', room('specialist'), maxEach);
     pay('specialist', cov.specialists.filter((s) => !had.has(s.uid)).map((s) => s.uid));
     // a pool takes a craftsman only whole: those it could not, and the budget cannot cover, are not hired
-    const pooled = () => new Set(cov.hooksBoons.flatMap((h) => h.resources ?? []));
+    const pooled = () => paidFromPools(cov);
     let dropped = 0;
     while (over('specialist')) {
       const s = [...cov.specialists].reverse().find((x) => x.role === 'craftsman' && !pooled().has(x.uid) && (x.count ?? 1) > (had.get(x.uid) ?? 0));
@@ -314,7 +314,7 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
     cov.library.push(...r.books);
     pay('book', r.books.map((b) => b.uid));
     // books no pool took that the library's budget cannot cover go back, the dearest first
-    const pooled = () => new Set(cov.hooksBoons.flatMap((h) => h.resources ?? []));
+    const pooled = () => paidFromPools(cov);
     const dropped: string[] = [];
     for (const b of [...r.books].reverse().sort((x, y) => summaCost(y).cost - summaCost(x).cost)) {
       if (!over('book')) break;
@@ -417,5 +417,7 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
       stocks(Infinity);
     }
   }
+  // Flawed and Illusory Resources set aside for kinds of resource mark 250 Build Points of them
+  if (o.bought) log.push(...markResources(cov, g.data, all()));
   return { cov, grogs, log };
 }

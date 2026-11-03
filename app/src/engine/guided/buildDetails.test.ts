@@ -4,10 +4,11 @@
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../../data';
 import { DEFAULT_HOUSE_RULES, type Saga } from '../types';
-import { addVirtue, newCharacter } from '../character/factory';
+import { addVirtue, applyMythicType, newCharacter } from '../character/factory';
+import { validateCharacter } from '../character/validate';
 import { deriveCharacter } from '../character/derive';
 import { seeded } from '../generate/random';
-import { autoBuild } from './autobuild';
+import { autoBuild, mythicTypeOf, resetChoices } from './autobuild';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -71,4 +72,23 @@ describe('Reputations from Virtues and Flaws', () => {
     expect(reps).toContainEqual(expect.objectContaining({ text: 'Raised from the Dead', score: 4 }));
     expect(reps).toContainEqual(expect.objectContaining({ text: 'Excommunicate (bad)', score: 3, scope: 'Church' }));
   });
+
+  it('gives a Mythic Companion a type, and keeps one already chosen when built again (DE p.63)', () => {
+    const typeIssue = (c: ReturnType<typeof newCharacter>) => validateCharacter(deriveCharacter(c, data, rules), data, rules).some((i) => /defining their type/.test(i.message));
+    for (const seed of [1, 2, 3]) {
+      const c = newCharacter('mythic', 's');
+      c.creation.concept = seed === 1 ? 'A cunning woman who treats with the faeries' : '';
+      autoBuild(c, { answers: {}, declined: [] }, { data, rules, saga, archetypes: [], rng: seeded(seed) });
+      expect(mythicTypeOf(c), `seed ${seed}`).toBeTruthy();
+      if (seed === 1) expect(mythicTypeOf(c)).toBe('faerie-doctor');
+      expect(typeIssue(c)).toBe(false);
+    }
+    const c = newCharacter('mythic', 's');
+    applyMythicType(c, data, 'nephilim');
+    resetChoices(c);
+    autoBuild(c, { answers: {}, declined: [] }, { data, rules, saga, archetypes: [], rng: seeded(4) });
+    expect(mythicTypeOf(c)).toBe('nephilim');
+    expect(c.virtues.some((v) => v.defId === 'blood-of-the-nephilim')).toBe(true);
+    expect(typeIssue(c)).toBe(false);
+  }, 60_000);
 });

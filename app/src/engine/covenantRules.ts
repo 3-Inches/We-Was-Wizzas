@@ -227,9 +227,16 @@ export function mechanicOf(hb: CovenantHookBoon): HBMechanic | undefined {
 
 /** Boons and Hooks that apply to one income source. */
 export const TARGETS_INCOME: HBMechanic[] = ['wealth', 'secondary-income', 'poverty', 'natural-disaster', 'right', 'contested-resource'];
-/** Boons and Hooks that hold 250 Build Points of resources. */
+/**
+ * Boons and Hooks about 250 Build Points of resources (Covenants ch.2). Hidden Resources, a Boon, adds
+ * them: they are real, but not at hand at first. A Flawed or Illusory Resource, a Hook, adds nothing:
+ * it marks 250 of the covenant's own Build Points of resources, as ones that will likely be lost or
+ * that are not really there.
+ */
 export const POOL_MECHANICS: HBMechanic[] = ['hidden-resources', 'flawed-resource', 'illusory-resources'];
 export const POOL_SIZE = 250;
+/** Whether a pool's Build Points come on top of the covenant's own (Hidden Resources) or are part of them. */
+export const poolPays = (m: HBMechanic) => m === 'hidden-resources';
 
 export interface IncomeLine {
   source: IncomeSource;
@@ -398,6 +405,8 @@ export interface CovResource {
 export interface BPPool {
   hb: CovenantHookBoon;
   mechanic: 'hidden-resources' | 'flawed-resource' | 'illusory-resources';
+  /** Hidden Resources pays for its resources; a Flawed or Illusory Resource marks resources the covenant paid for */
+  pays: boolean;
   capacity: number;
   resources: CovResource[];
   spent: number;
@@ -410,7 +419,7 @@ export function poolMechanic(hb: CovenantHookBoon): BPPool['mechanic'] | undefin
   return m && POOL_MECHANICS.includes(m) ? (m as BPPool['mechanic']) : undefined;
 }
 
-/** Hidden, Flawed and Illusory Resources: the 250 Build Points each holds and what is paid from it. */
+/** Hidden, Flawed and Illusory Resources: the 250 Build Points of resources each pays for or marks. */
 export function computePools(cov: Covenant, resources: CovResource[]): BPPool[] {
   const byUid = new Map(resources.map((r) => [r.uid, r]));
   const seen = new Set<string>();
@@ -425,7 +434,7 @@ export function computePools(cov: Covenant, resources: CovResource[]): BPPool[] 
       if (hb.outcome === 'lost' || hb.outcome === 'botched') lost = res;
       else if (hb.outcome === 'saved') lost = res.filter((r) => !(hb.kept ?? []).includes(r.uid));
     }
-    pools.push({ hb, mechanic, capacity: POOL_SIZE, resources: res, spent: res.reduce((s, r) => s + r.cost, 0), lost });
+    pools.push({ hb, mechanic, pays: poolPays(mechanic), capacity: POOL_SIZE, resources: res, spent: res.reduce((s, r) => s + r.cost, 0), lost });
   }
   return pools;
 }

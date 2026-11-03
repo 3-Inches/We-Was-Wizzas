@@ -181,7 +181,9 @@ export function HookMechanics({ hb, cov, update, dc }: Omit<CovTabProps, 'data'>
   // Hidden, Flawed and Illusory Resources
   const pool = dc.pools.find((p) => p.hb.uid === hb.uid);
   const mine = new Set(pool?.resources.map((r) => r.uid));
-  const choices = dc.bpLines.filter((l) => l.ref && (l.fullCost ?? l.cost) > 0 && (!l.paidBy || l.paidBy === hb.uid));
+  const pays = m === 'hidden-resources';
+  const holder = (l: (typeof dc.bpLines)[number]) => l.paidBy ?? l.markedBy;
+  const choices = dc.bpLines.filter((l) => l.ref && (l.fullCost ?? l.cost) > 0 && (!holder(l) || holder(l) === hb.uid));
   const toggle = (ref: string, on: boolean) => edit((h) => void (h.resources = on ? [...(h.resources ?? []), ref] : (h.resources ?? []).filter((u) => u !== ref)));
   const what: Record<string, string> = {
     'hidden-resources': 'These are real but not at hand at first (lost in the covenant, or kept for senior magi).',
@@ -192,13 +194,16 @@ export function HookMechanics({ hb, cov, update, dc }: Omit<CovTabProps, 'data'>
   return (
     <div className="stack small">
       <span className="muted">
-        {POOL_SIZE} Build Points of the covenant's resources, paid from this {hb.kind} rather than the covenant's own Build Points. {what[m]}
+        {pays
+          ? `${POOL_SIZE} Build Points of resources on top of the covenant's own, paid from this Boon. `
+          : `${POOL_SIZE} of the covenant's own Build Points of resources: this Hook adds no Build Points, it marks resources the covenant pays for. `}
+        {what[m]}
       </span>
-      <Meter value={pool?.spent ?? 0} max={POOL_SIZE} label="Build Points used" />
+      <Meter value={pool?.spent ?? 0} max={POOL_SIZE} label={pays ? 'Build Points used' : 'Build Points marked'} atLeast={!pays} />
       <div className="row">
-        <span>Set aside for:</span>
+        <span>{pays ? 'Set aside for:' : 'Mark resources of these kinds:'}</span>
         {BUDGET_KINDS.map((k) => (
-          <label key={k.id} className="inline" title="Quick build's fill-out spends this pool on these first, and ties what it buys to it">
+          <label key={k.id} className="inline" title={pays ? "Quick build's fill-out spends this pool on these first, and ties what it buys to it" : "Quick build's fill-out marks 250 Build Points of these, dearest first, once it has bought them"}>
             <input
               type="checkbox"
               checked={!!hb.earmark?.includes(k.id)}
@@ -216,8 +221,8 @@ export function HookMechanics({ hb, cov, update, dc }: Omit<CovTabProps, 'data'>
               <input type="checkbox" checked={mine.has(l.ref!)} onChange={(e) => toggle(l.ref!, e.target.checked)} /> {l.category}: {l.label} ({l.fullCost ?? l.cost} BP)
             </label>
           ))}
-          {choices.length === 0 && <div className="muted">Buy books, vis, items, specialists and craftsmen, labs or a money reserve first, or set it aside above and let Quick build fill it.</div>}
-          <div className="muted">Grogs, servants and the other covenfolk at large cost no Build Points, so a pool cannot pay for them; specialists, teachers and craftsmen it can.</div>
+          {choices.length === 0 && <div className="muted">Buy books, vis, items, specialists and craftsmen, labs or a money reserve first, or tick kinds above and let Quick build {pays ? 'fill it' : 'mark them'}.</div>}
+          <div className="muted">Grogs, servants and the other covenfolk at large cost no Build Points, so {pays ? 'a pool cannot pay for them' : 'they cannot be marked'}; specialists, teachers and craftsmen can.</div>
         </div>
       </details>
       {m === 'flawed-resource' && <HookDue hb={hb} cov={cov} edit={edit} />}

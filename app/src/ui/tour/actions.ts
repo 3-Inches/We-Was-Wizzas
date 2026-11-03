@@ -2,7 +2,6 @@
 // to do, run on the saga, character or covenant the tutorial is following. Each goes through the
 // store, so it can be undone like any other change. Loaded with the tutorial panel only.
 
-import { autoBuild, resetChoices } from '../../engine/guided/autobuild';
 import { applyBaseCovenant, newCovenant } from '../../engine/covenant';
 import { newCharacter } from '../../engine/character/factory';
 import { generateCharacter } from '../../engine/generate/character';
@@ -12,7 +11,7 @@ import type { Character, Covenant } from '../../engine/types';
 import { newLab } from '../../engine/lab';
 import { gameDataFor } from '../../store/hooks';
 import { useStore } from '../../store/store';
-import { visibleSteps } from '../character/wizardSteps';
+import { buildWholeCharacter } from '../character/buildWhole';
 import { tourNeeds, type Tour, type TourActionId, type TourCtx } from './tours';
 
 export interface ActionResult {
@@ -24,19 +23,8 @@ export interface ActionResult {
 
 /** Build a whole draft of the character from its concept themes and any guided-build answers. */
 function buildDraft(c: TourCtx): ActionResult | undefined {
-  const st = useStore.getState();
-  const ch = c.charId ? st.characters[c.charId] : undefined;
-  const saga = c.sagaId ? st.sagas[c.sagaId] : undefined;
-  if (!ch || !saga) return undefined;
-  const x = structuredClone(ch);
-  resetChoices(x);
-  const covenant = x.covenantId ? st.covenants[x.covenantId] : undefined;
-  const res = autoBuild(x, x.guided ?? { answers: {}, declined: [] }, { data: gameDataFor(saga), rules: saga.houseRules, saga, covenant, archetypes: x.creation.archetypes ?? [] });
-  x.creation.step = visibleSteps(x.type).findIndex((s) => s.id === 'review');
-  x.updatedAt = new Date().toISOString();
-  st.putCharacter(x);
-  const left = res.remaining.length ? ` ${res.remaining.length} issue${res.remaining.length > 1 ? 's' : ''} left for you to settle.` : '';
-  return { notice: `Built a whole draft: ${res.log.length} choices, each with its reason.${left} Undo puts the character back as it was.`, goto: 'Review and finalize' };
+  const r = c.charId ? buildWholeCharacter(c.charId) : undefined;
+  return r && { notice: r.notice, goto: 'Review and finalize' };
 }
 
 function basePackage(c: TourCtx): ActionResult | undefined {

@@ -385,8 +385,8 @@ type Preview = FillResult & {
   bpAfter: number;
   /** Build Points by kind of purchase, before and after */
   kinds: { label: string; before: number; after: number }[];
-  /** what each Hidden, Flawed or Illusory Resource now pays for that it did not before */
-  pools: { name: string; spent: number; capacity: number; items: { label: string; cost: number }[] }[];
+  /** what each Hidden Resources now pays for, or each Flawed or Illusory Resource now marks, that it did not before */
+  pools: { name: string; pays: boolean; spent: number; capacity: number; items: { label: string; cost: number }[] }[];
 };
 
 const FILL_DEFAULTS: Omit<FillOptions, 'seed'> = {
@@ -426,7 +426,7 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
     const byKind = (dc: typeof before, category: string) => dc.bpLines.filter((l) => l.category === category).reduce((t, l) => t + (l.fullCost ?? l.cost), 0);
     const kinds = BUDGET_KINDS.map((k) => ({ label: k.label, before: byKind(before, k.category), after: byKind(after, k.category) })).filter((k) => k.before || k.after);
     const had = new Set(before.pools.flatMap((p) => p.resources.map((r) => r.uid)));
-    const pools = after.pools.map((p) => ({ name: `${p.hb.name}${p.hb.note ? ` (${p.hb.note})` : ''}`, spent: p.spent, capacity: p.capacity, items: p.resources.filter((r) => !had.has(r.uid)).map((r) => ({ label: r.label, cost: r.cost })) }));
+    const pools = after.pools.map((p) => ({ name: `${p.hb.name}${p.hb.note ? ` (${p.hb.note})` : ''}`, pays: p.pays, spent: p.spent, capacity: p.capacity, items: p.resources.filter((r) => !had.has(r.uid)).map((r) => ({ label: r.label, cost: r.cost })) }));
     setPreview({ ...res, bpBefore: before.bpSpent, bpAfter: after.bpSpent, kinds, pools });
     setBusy(false);
   };
@@ -569,7 +569,7 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
           )}
           {preview.pools.map((p) => (
             <div key={p.name} className="small" style={{ marginTop: 6 }}>
-              <b>{p.name}</b> pays for {p.spent} of its {p.capacity} Build Points
+              <b>{p.name}</b> {p.pays ? `pays for ${p.spent} of its ${p.capacity} Build Points` : `marks ${p.spent} of the ${p.capacity} Build Points of the covenant's own resources it needs`}
               {p.items.length ? (
                 <>
                   ; new from this fill-out:
@@ -582,7 +582,7 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
                   </ul>
                 </>
               ) : (
-                '; nothing new from this fill-out (set it aside for a kind of purchase on the Hooks & Boons tab).'
+                `; nothing new from this fill-out (${p.pays ? 'set it aside for a kind of purchase' : 'tick the kinds it marks'} on the Hooks & Boons tab).`
               )}
             </div>
           ))}
@@ -607,8 +607,8 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
 }
 
 /**
- * The covenant's Build Points set aside by kind of purchase, and the Hidden, Flawed and Illusory
- * Resources earmarked for each: what Quick build may spend on it.
+ * The covenant's Build Points set aside by kind of purchase, and the Hidden Resources earmarked for
+ * each: what Quick build may spend on it. Flawed and Illusory Resources add nothing: they mark.
  */
 function BudgetEditor({ cov, chars, data, onChange }: { cov: Covenant; chars: Character[]; data: GameData; onChange: () => void }) {
   const updateCovenant = useStore((s) => s.updateCovenant);
@@ -656,6 +656,12 @@ function BudgetEditor({ cov, chars, data, onChange }: { cov: Covenant; chars: Ch
                         + {p.left} from {p.name}
                       </span>
                     ))}
+                    {b.marks.map((p) => (
+                      <span key={p.hbUid} className="muted">
+                        {' '}
+                        ({p.name} marks {p.left ? `${p.left} more` : 'its 250'})
+                      </span>
+                    ))}
                   </td>
                 </tr>
               );
@@ -664,8 +670,9 @@ function BudgetEditor({ cov, chars, data, onChange }: { cov: Covenant; chars: Ch
         </table>
       </div>
       <p className="small muted" style={{ margin: 0 }}>
-        A kind with nothing set aside may take whatever the covenant has left. Set a Hidden, Flawed or Illusory Resource aside for a kind on the covenant&apos;s Hooks &amp; Boons tab, and
-        Quick build spends it there first and ties what it buys to it.
+        A kind with nothing set aside may take whatever the covenant has left. Set Hidden Resources aside for a kind on the covenant&apos;s Hooks &amp; Boons tab, and Quick build
+        spends it there first and ties what it buys to it. A Flawed or Illusory Resource adds no Build Points: tick the kinds it marks, and Quick build marks 250 Build Points of
+        them once it has bought them.
       </p>
     </details>
   );

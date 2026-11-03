@@ -44,7 +44,7 @@ export default function HomePage() {
             onClick={async () => {
               try {
                 const b = await pickJsonFile();
-                if (!isBundle(b)) throw new Error('Not an Ars Magica Toolkit file');
+                if (!isBundle(b)) throw new Error('that file is not one the toolkit exported (a saga, character or covenant)');
                 const r = importBundle(b);
                 setMsg(`Imported ${r.characters} character(s) and ${r.covenants} covenant(s).`);
                 if (r.sagaId) nav(`/saga/${r.sagaId}`);

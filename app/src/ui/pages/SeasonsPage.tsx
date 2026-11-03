@@ -19,6 +19,7 @@ import { covenantOf } from '../../engine/context';
 import { CovenantEffects } from '../covenant/CovenantEffects';
 import { Hint } from '../Hint';
 import { teaches } from '../../engine/covenfolk';
+import { timeMayMove } from '../advanceGuard';
 
 const KIND_BADGE: Record<string, string> = { aging: 'aging', crisis: 'bad', warping: 'warn', covenant: '', lab: '', effect: '', reminder: 'warn', money: '', season: '', year: '' };
 
@@ -48,6 +49,7 @@ export default function SeasonsPage() {
   const toNextYear = ['Spring', 'Summer', 'Autumn', 'Winter'].length - ['Spring', 'Summer', 'Autumn', 'Winter'].indexOf(season);
 
   const advance = (n: number) => {
+    if (!timeMayMove()) return;
     const before = { saga: structuredClone(saga), characters: structuredClone(allChars), covenants: structuredClone(allCovs) };
     const { state, reports } = advanceSeasons(before, data, n, { ...DEFAULT_ADVANCE, fillUnplanned: fill, rollAging: aging, yearEnd: ye });
     putSagaState(state);

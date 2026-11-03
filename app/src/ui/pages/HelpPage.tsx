@@ -192,7 +192,8 @@ export default function HelpPage() {
         </Step>
         <Step n={4} title="Make the characters">
           Pick grog, companion, Mythic Companion or magus. The wizard walks through every step, shows each budget and checks the rules with page references. Not sure what to
-          play? <b>Guided build</b> on the Concept step suggests Virtues and Abilities from what you want, or builds a whole draft. For grogs and NPCs in a hurry,{' '}
+          play? <b>Guided build</b> on the Concept step suggests Virtues and Abilities from what you want, or builds a whole draft; short of time,{' '}
+          <b>Build the whole character for me</b> beside it makes one in a single press, from the concept themes, to change as you like. For grogs and NPCs in a hurry,{' '}
           <b>Quick build</b> (under Tools) makes whole characters, fills out the covenant&apos;s people and rolls creatures from the bestiaries.
         </Step>
         <Step n={5} title="Play">
@@ -230,7 +231,8 @@ export default function HelpPage() {
           <li>
             Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1, Weak Aura lowers it, and the Overview&apos;s Aura card shows it as it stands and keeps its changes. There
             a Magic aura can be aligned (with an Art it counts double for, or Healing, Luck…), and a Dominion follow its congregation&apos;s years of worship. Click a Hook or Boon to read it. Resources Boons and Hooks (Wealth, Secondary Income, Poverty,
-            Indebted…) take an income source; Hidden, Flawed and Illusory Resources take the resources they pay for; Exceptional Book adds its summa free.
+            Indebted…) take an income source; Hidden Resources pays for 250 Build Points of resources on top of the covenant&apos;s own; a Flawed or Illusory Resource adds none,
+            and marks 250 of the covenant&apos;s own Build Points of resources as likely to be lost or not really there; Exceptional Book adds its summa free.
           </li>
           <li>Buy the library, lab texts, vis sources, enchanted items and specialists; the toolkit prices everything and enforces the creation limits.</li>
           <li>
@@ -249,8 +251,8 @@ export default function HelpPage() {
             <b>Tithing Miracle</b> per source. On the Library tab, the <b>Scriptorium</b> queues copies for the covenant&apos;s scribes.
           </li>
           <li>
-            Or let <b>Quick build → Fill out the covenant</b> do it: choose the covenant, tick what to fill, and see each purchase with its Build Points, what each Hidden,
-            Flawed or Illusory Resource pays for, and where the Build Points left go, before adding any of it.
+            Or let <b>Quick build → Fill out the covenant</b> do it: choose the covenant, tick what to fill, and see each purchase with its Build Points, what Hidden Resources
+            pays for and each Flawed or Illusory Resource marks, and where the Build Points left go, before adding any of it.
           </li>
           <li>
             At the end of each year press <b>Close the year</b> on the Money part of Covenfolk &amp; Finances: it shows the treasury after the year&apos;s balance, the vis gathered
@@ -308,7 +310,9 @@ export default function HelpPage() {
           <li>A character older than 35 rolls aging before play on the Concept step. A year that would kill the character is not applied, so you can roll it again.</li>
           <li>
             <b>Guided build</b> (Concept step): rate statements 0–10 about what you want to play and get recommendations with the reason and the page, or a whole draft that
-            passes the rules check. The storyguide sets the saga&apos;s realms, speed and politics once under <b>House rules &amp; books → Saga</b>.
+            passes the rules check. <b>Build the whole character for me</b> beside it skips the questions: a whole draft from the concept themes (a Mythic Companion&apos;s
+            type from what the concept names), each choice with its reason, opened at Review. The storyguide sets the saga&apos;s realms, speed and politics once under{' '}
+            <b>House rules &amp; books → Saga</b>.
           </li>
         </ul>
       </Card>

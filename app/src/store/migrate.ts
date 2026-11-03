@@ -6,7 +6,13 @@ import { newCovenant } from '../engine/covenant';
 import { INCOME_LEVEL_POUNDS, findCraft } from '../engine/covenantRules';
 
 export function migrateSaga(s: Saga): Saga {
+  const now = new Date().toISOString();
+  // what a saga cannot do without, for a file written by hand or cut short
+  const base: Pick<Saga, 'name' | 'description' | 'currentYear' | 'currentSeason' | 'tribunal' | 'createdAt' | 'updatedAt'> = {
+    name: 'Imported saga', description: '', currentYear: 1220, currentSeason: 'Spring', tribunal: 'Stonehenge', createdAt: now, updatedAt: now,
+  };
   return {
+    ...base,
     ...s,
     enabledBooks: s.enabledBooks ?? [],
     houseRules: { ...DEFAULT_HOUSE_RULES, ...(s.houseRules ?? {}) },
