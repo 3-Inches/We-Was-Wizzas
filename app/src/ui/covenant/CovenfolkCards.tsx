@@ -16,6 +16,8 @@ import {
 } from '../../engine/turb';
 import type { Character, CraftMagicUse, SoldierGroup } from '../../engine/types';
 import { useStore } from '../../store/store';
+import { applyCovenfolkBoons, applyCovenfolkBoonsToSpecialist, covenfolkBoonLines, takeImmunityFlaw } from '../../engine/covenantBoons';
+import { seeded } from '../../engine/generate/random';
 import { uid } from '../../util/id';
 import { Card, Field, HowItWorks, Stepper } from '../kit';
 import { RulesNote } from '../RulesNote';
@@ -655,6 +657,39 @@ export function TurbCard({ cov, update, dc, data }: CovTabProps) {
           {l}
         </div>
       ))}
+    </Card>
+  );
+}
+
+/** What the covenant's Boons and Hooks make of its people (Covenants ch.2), and a way to give it to those already here. */
+export function CovenfolkBoonsCard({ cov, update, dc, data }: CovTabProps) {
+  const lines = covenfolkBoonLines(cov, data);
+  const putCharacter = useStore((s) => s.putCharacter);
+  if (!lines.length) return null;
+  const grogs = dc.members.filter((m) => m.type === 'grog');
+  const giveAll = () => {
+    if (!window.confirm(`Give the covenant's ${cov.specialists.length} specialists and craftsmen and ${grogs.length} grogs what its Boons and Hooks give? Undo takes it back.`)) return;
+    const rng = seeded(cov.specialists.length * 31 + grogs.length);
+    update((x) => void x.specialists.forEach((s) => applyCovenfolkBoonsToSpecialist(s, x, rng, data)));
+    for (const g of grogs) {
+      const c = structuredClone(g);
+      const flaw = takeImmunityFlaw(c, cov, data, rng);
+      if (applyCovenfolkBoons(c, cov, data, rng).length || flaw) putCharacter(c);
+    }
+  };
+  return (
+    <Card title="What the covenant's Boons and Hooks make of its people" fold="cov-folk-boons" summary={`${lines.length} Boon${lines.length > 1 ? 's' : ''} or Hook${lines.length > 1 ? 's' : ''} shape the covenfolk.`}>
+      <ul className="small" style={{ margin: 0, paddingLeft: 18 }}>
+        {lines.map((l, i) => (
+          <li key={i}>{l}</li>
+        ))}
+      </ul>
+      <div className="row" style={{ marginTop: 6 }}>
+        <button className="small" onClick={giveAll}>
+          Give it to the people already here
+        </button>
+        <span className="small muted">Those Quick build makes here get it as they are made; the Residents Boons do not touch the player characters, who buy their own Virtues.</span>
+      </div>
     </Card>
   );
 }

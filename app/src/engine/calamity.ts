@@ -9,6 +9,7 @@
 // sends its magi to deal with it (a service season), rebuilds as its means allow, and hires new
 // covenfolk to replace those lost.
 
+import { immuneToDisease } from './covenantBoons';
 import { changeAura } from './aura';
 import { defaultRng, type Rng } from './dice';
 import { takeVis, visText } from './vis';
@@ -101,9 +102,12 @@ export function strike(cov: Covenant, members: Character[], kind: string, severi
   const at = <T extends By3 | undefined>(x: T) => (x ? x[i] : 0);
   const lines: string[] = [];
   const name = cov.name || 'The covenant';
+  // an Immunity to disease keeps a plague out of the covenant's aura: no one there sickens, though the lands around suffer
+  const spared = kind === 'plague' && immuneToDisease(cov, 'all');
+  if (spared) lines.push(`${name}'s Immunity keeps the sickness out of its aura: no one there sickens, though the lands around suffer.`);
   // covenfolk lost
   const lost: Partial<CovenfolkCounts> = {};
-  const share = at(def.folk);
+  const share = spared ? 0 : at(def.folk);
   if (share > 0) {
     for (const k of FOLK) {
       const n = Math.round((cov.covenfolk[k] ?? 0) * share);
@@ -116,7 +120,7 @@ export function strike(cov: Covenant, members: Character[], kind: string, severi
     if (total) lines.push(`${total} of the covenfolk are lost (${Object.entries(lost).map(([k, n]) => `${n} ${k}`).join(', ')}).`);
   }
   // people of the covenant hurt
-  const hurt = at(def.wounds);
+  const hurt = spared ? 0 : at(def.wounds);
   if (hurt > 0) {
     const living = members.filter((c) => !c.wounds.dead && !c.retired);
     const pool = [...living.filter((c) => c.type !== 'magus').sort(() => rng() - 0.5), ...(severity === 3 ? living.filter((c) => c.type === 'magus').sort(() => rng() - 0.5) : [])];
@@ -126,7 +130,7 @@ export function strike(cov: Covenant, members: Character[], kind: string, severi
     if (who.length) lines.push(`${who.map((c) => c.name).join(', ')} ${who.length > 1 ? 'are' : 'is'} hurt (a ${level[0].toUpperCase()}${level.slice(1)} Wound).`);
   }
   // loyalty
-  const lp = at(def.loyalty);
+  const lp = spared ? 0 : at(def.loyalty);
   if (lp) {
     cov.loyalty.actionPoints -= lp;
     lines.push(`The covenfolk blame the magi: −${lp} loyalty points.`);

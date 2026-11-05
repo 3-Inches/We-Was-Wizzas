@@ -17,6 +17,8 @@ export interface ResolvedVirtue {
   def: VirtueFlawDef | undefined;
   points: number; // signed: + for virtue cost, - for flaw
   name: string;
+  /** a Flaw the covenant's Immunity holds off just now: its points count, its effects do not */
+  held?: boolean;
 }
 
 export interface DerivedAbility {
@@ -292,7 +294,11 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     if (!cv.free) points = def?.kind === 'flaw' ? (cv.noPoints ? 0 : -base) : base;
     return { cv, def, points, name: vfDisplayName(def, cv, data) };
   });
-  const effects = resolveEffects(virtues);
+  // a Flaw paired with the covenant's Immunity keeps its points but does nothing while the character
+  // lives in its aura; away from the covenant it is back (Covenants ch.2, Immunity)
+  for (const v of virtues) if (v.cv.heldBy && !char.awayFromCovenant && char.auraTime !== 'away') v.held = true;
+  const effects = resolveEffects(virtues.filter((v) => !v.held));
+  for (const v of virtues.filter((x) => x.held)) notes.push(`${v.name} is held off by the covenant's Immunity while ${char.name || 'the character'} lives in its aura.`);
   // spells, powers and rituals working on the character, and the devices it wears
   const spellUids = new Set((char.activeEffects ?? []).map((ae) => ae.uid));
   for (const ae of char.activeEffects ?? []) for (const b of ae.bonuses ?? []) effects.push({ ...b, fromUid: ae.uid, fromName: ae.name } as ResolvedEffect);

@@ -127,7 +127,8 @@ export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
     const pts = v.fromItem ? 0 : def.size === 'Major' ? 3 : def.size === 'Minor' ? 1 : 0;
     if (def.kind === 'virtue') {
       vp += pts;
-      bp += v.fromItem ? 0 : def.size === 'Major' ? 20 : def.size === 'Minor' ? 10 : 0;
+      // a Virtue an item gives, or one installed in play by a season's work, costs no Build Points
+      bp += v.fromItem || v.inPlay ? 0 : def.size === 'Major' ? 20 : def.size === 'Minor' ? 10 : 0;
     } else fp += pts;
     const eff = labEntryEffects(v, def);
     for (const [k, val] of Object.entries(eff.characteristics)) {

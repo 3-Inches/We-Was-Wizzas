@@ -65,7 +65,7 @@ export function writingBonuses(d: DerivedCharacter): { label: string; value: num
 // ------------------------------------------------------------------------------ How a book is made
 
 /** Formats and secondary functions (Covenants ch.7): what each does to Quality. */
-export const BOOK_FORMATS: { id: BookFormat; label: string; mod: number; noResonance?: boolean; noBinder?: boolean; noIlluminator?: boolean; noScribe?: boolean; hint: string }[] = [
+export const BOOK_FORMATS: { id: BookFormat; label: string; mod: number; noResonance?: boolean; noBinder?: boolean; noIlluminator?: boolean; noScribe?: boolean; tripleResonance?: boolean; hint: string }[] = [
   { id: 'codex', label: 'A bound codex', mod: 0, hint: 'Pages bound between boards: the usual Hermetic book.' },
   { id: 'flap', label: 'Flap-bound', mod: -1, hint: 'Leather flaps for boards, as Redcaps like: −1, no resonant cover ornaments; buckles with age.' },
   { id: 'exemplar', label: 'Exemplar', mod: -3, hint: 'A miniature template for distant scribes: cheap, easy to carry, −3.' },
@@ -74,6 +74,10 @@ export const BOOK_FORMATS: { id: BookFormat; label: string; mod: number; noReson
   { id: 'deluxe', label: 'Edition de luxe', mod: 0, hint: 'A sumptuous gift for nobles and churchmen: gives up Quality, up to (Scribe + Binder + Illuminator) / 2.' },
   { id: 'ex-libris', label: 'Ex libris', mod: 0, noResonance: true, hint: 'A cheap copy for visitors to read: no resonant materials.' },
   { id: 'juvenilia', label: 'Juvenilia', mod: -3, noScribe: true, noBinder: true, noIlluminator: true, noResonance: true, hint: 'An apprentice’s quick copy: −3, not illuminated or bound, no resonances; 15 levels a season.' },
+  {
+    id: 'great-work', label: 'A Great Work (a structure)', mod: 0, noScribe: true, noBinder: true, noIlluminator: true, tripleResonance: true,
+    hint: 'Learning built as a structure (the Forest of Shining Stone): read as a summa or tractatus; no scribe’s, binder’s or illuminator’s bonus, triple the bonus from resonant materials and clarification; at least 100 £ to build. Bought as a book, or as an Edifice Boon.',
+  },
 ];
 export const formatOf = (m?: BookMake) => BOOK_FORMATS.find((f) => f.id === (m?.format ?? 'codex')) ?? BOOK_FORMATS[0];
 
@@ -92,8 +96,10 @@ export function makeParts(m: BookMake, o: { resonant: boolean; glossed?: boolean
   if (m.illuminator && !f.noIlluminator) parts.push({ label: 'Skilled illuminator', value: 1 });
   // glosses and florilegia express resonance already, so take no resonant materials or clarification
   const res = o.resonant && !f.noResonance && !o.glossed && !o.florilegium ? Math.max(0, Math.min(2, m.resonance ?? 0)) : 0;
-  if (res) parts.push({ label: res === 2 ? 'Resonant materials won in a story' : 'Resonant materials bought', value: res });
-  if (res && m.clarified) parts.push({ label: 'Clarified', value: 1 });
+  // a Great Work gains triple the normal bonus from resonant materials and clarification (Covenants ch.7)
+  const x = f.tripleResonance ? 3 : 1;
+  if (res) parts.push({ label: `${res === 2 ? 'Resonant materials won in a story' : 'Resonant materials bought'}${x > 1 ? ' (×3, a Great Work)' : ''}`, value: res * x });
+  if (res && m.clarified) parts.push({ label: `Clarified${x > 1 ? ' (×3)' : ''}`, value: x });
   if (f.mod) parts.push({ label: f.label, value: f.mod });
   if (f.id === 'deluxe' && m.deluxe) parts.push({ label: 'Splendor given for Quality', value: -Math.abs(m.deluxe) });
   return parts;

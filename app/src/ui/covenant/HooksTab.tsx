@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import { SITUATIONS } from '../../engine/covenant';
 import { canBeUnknown, mechanicOf } from '../../engine/covenantRules';
 import { HookMechanics } from './HookMechanics';
+import { BoonControls, hasBoonControls } from './BoonMechanics';
+import { hookBoonPoints } from '../../engine/covenantBoons';
 import type { HookBoonDef } from '../../data';
 import { uid } from '../../util/id';
 import { BookBadge, Card, Markdown, SearchInput } from '../kit';
@@ -81,6 +83,10 @@ export default function HooksTab({ cov, update, dc, data }: CovTabProps) {
                         </span>
                         <span className="badge">{h.size}</span>
                         {h.unknown && <span className="badge warn">Unknown (counts as Major)</span>}
+                        {(() => {
+                          const p = hookBoonPoints(h, dc.members);
+                          return p.note ? <span className="badge info" title={p.note}>{p.hook ? `${p.hook} Hook points` : `${p.boon} Boon points`}</span> : null;
+                        })()}
                         {def && <BookBadge book={def.source.book} line={def.source.line} />}
                         <span style={{ flex: 1 }} />
                         {k === 'hook' && h.size === 'Minor' && (canBeUnknown(def) || h.unknown) && (
@@ -99,7 +105,7 @@ export default function HooksTab({ cov, update, dc, data }: CovTabProps) {
                         onChange={(e) => update((x) => void (x.hooksBoons.find((y) => y.uid === h.uid)!.note = e.target.value))}
                       />
                       {open === h.uid && def && <Markdown text={def.deText ?? def.text} />}
-                      <HookMechanics hb={h} cov={cov} update={update} dc={dc} />
+                      {hasBoonControls(h) ? <BoonControls hb={h} cov={cov} update={update} dc={dc} data={data} /> : <HookMechanics hb={h} cov={cov} update={update} dc={dc} />}
                     </div>
                   );
                 })}

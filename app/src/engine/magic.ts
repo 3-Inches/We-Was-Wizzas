@@ -208,7 +208,7 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
     halved = true;
     notes.push('Deficient Art: the Casting Total (including the die roll) is halved.');
   }
-  if (o.notTouching && d.virtues.some((v) => v.cv.defId === 'short-ranged-magic-flaw')) {
+  if (o.notTouching && d.virtues.some((v) => v.cv.defId === 'short-ranged-magic-flaw' && !v.held)) {
     halved = true;
     notes.push('Short-Ranged Magic: halved when not touching the target.');
   }
@@ -490,8 +490,8 @@ export function magicResistance(d: DerivedCharacter, form: Form, o: { aura?: Aur
   let parmaScore = parma?.total ?? 0;
   if (parma?.specialty && parma.specialty.toLowerCase().includes(artName(form).toLowerCase())) parmaScore += 1;
   if (o.sharing) parmaScore = Math.max(0, parmaScore - 3);
-  const limited = d.virtues.some((v) => v.cv.defId === 'limited-magic-resistance-flaw' && v.cv.param === form);
-  const flawed = d.virtues.some((v) => v.cv.defId === 'flawed-parma-magica-flaw' && v.cv.param === form);
+  const limited = d.virtues.some((v) => v.cv.defId === 'limited-magic-resistance-flaw' && v.cv.param === form && !v.held);
+  const flawed = d.virtues.some((v) => v.cv.defId === 'flawed-parma-magica-flaw' && v.cv.param === form && !v.held);
   let parmaMR = parmaScore * 5;
   if (flawed) {
     parmaMR = Math.floor(parmaMR / 2);

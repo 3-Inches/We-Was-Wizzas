@@ -14,6 +14,7 @@ import {
   soldierTotals, suggestedGuildRank, yearlyEventPounds, newSoldierGroup, soldierKindOf, type SoldierTotals,
 } from './covenfolk';
 import { abilityScoreFromXp } from './xp';
+import { boonLoyalty, covenantReputations, hookBoonPoints, inhumanUpkeep, isEdifice } from './covenantBoons';
 import { uid as newUid } from '../util/id';
 
 export const POWER_LEVELS = [
@@ -182,6 +183,8 @@ export interface DerivedCovenant {
   aura: number;
   hiddenResourcesBP: number;
   bpLines: BPLine[];
+  /** the covenant's Reputations from Prestige and Infamous (Covenants ch.2) */
+  reputations: ReturnType<typeof covenantReputations>;
   /** Hidden, Flawed and Illusory Resources */
   pools: BPPool[];
   /** resources that are illusory, or lost to a Flawed Resource story */
@@ -278,9 +281,10 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   let boonPoints = 0;
   let auraBoons = 0;
   for (const hb of cov.hooksBoons) {
-    const pts = hb.size === 'Major' || hb.unknown ? 3 : 1;
-    if (hb.kind === 'hook') hookPoints += pts;
-    else boonPoints += hb.size === 'Major' ? 3 : 1;
+    // a regio of another realm is an additional Minor Hook; a Major Immunity paired with a member's Flaw becomes a Major Hook
+    const p = hookBoonPoints(hb, members);
+    hookPoints += p.hook;
+    boonPoints += p.boon;
     if (hb.kind === 'boon' && hb.size === 'Minor' && /^aura$/i.test(hb.name)) auraBoons++;
     if (hb.kind === 'boon') {
       const def = hb.defId ? data.hookBoonById.get(hb.defId) : undefined;
@@ -319,10 +323,12 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   const lines: BPLine[] = [];
   const pl = POWER_LEVELS.find((p) => p.level === cov.powerLevel) ?? POWER_LEVELS[1];
   const exceptional = new Map(cov.hooksBoons.filter((h) => mechanicOf(h) === 'exceptional-book').map((h) => [h.uid, h]));
+  const edifices = new Map(cov.hooksBoons.filter(isEdifice).map((h) => [h.uid, h]));
   for (const b of cov.library) {
     if (b.kind === 'mundane') continue;
     const { cost, issue } = summaCost(b);
-    let iss = issue;
+    // a book its Tribunal book gives an old covenant was written over the centuries: not held to the limits on books bought at founding
+    let iss = b.fromBook ? undefined : issue;
     // a bundle of lab texts (subject "various") is checked by its largest text, not its total
     const bundle = b.kind === 'labText' && (b.collectionMax !== undefined || b.subject === 'various');
     const itemLevel = bundle ? b.collectionMax ?? 0 : b.level;
@@ -341,7 +347,13 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
       lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)}) — Exceptional Book Boon`, cost: 0, fullCost: 0, ref: b.uid, issue: bad ? `Exceptional Book: ${bad}.` : undefined });
       continue;
     }
-    lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)})`, cost, ref: b.uid, issue: iss });
+    // a Great Work is bought as a book of its level and quality, or as an Edifice (Covenants ch.2, Edifices; ch.7, Great Works)
+    if (b.boonUid && edifices.has(b.boonUid)) {
+      const bad = b.kind !== 'summa' && b.kind !== 'tractatus' ? 'a Great Work is made and used as a summa or tractatus' : undefined;
+      lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)}) — a Great Work, the Edifice Boon`, cost: 0, fullCost: 0, ref: b.uid, issue: bad ? `${b.title}: ${bad}.` : iss });
+      continue;
+    }
+    lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)})${b.make?.format === 'great-work' ? ' — a Great Work' : ''}${b.fromBook ? ` — from ${b.fromBook}` : ''}`, cost, ref: b.uid, issue: iss });
   }
   for (const s of cov.visSources) lines.push({ category: 'Vis', label: `${s.name} (${s.pawnsPerYear} ${visLabel({ art: s.art, pair: s.dedicated ? s.pair : undefined })}/year${s.inPlay ? ', found in play' : ''})`, cost: visSourceCost(s), ref: s.uid });
   // the stocks the covenant was founded with (a pawn of dedicated vis weighs half again as much); what play adds is free
@@ -436,22 +448,27 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
 
   const bpSpent = lines.reduce((t, l) => t + l.cost, 0);
   for (const l of lines) if (l.issue) issue(`${l.label}: ${l.issue}`, { kind: 'goto', label: `Open ${l.category}`, tab: LINE_TAB[l.category] ?? 'overview' });
-  // a living covenant built from its Tribunal book is not bought with Build Points
-  if (bpSpent > cov.buildPoints && !cov.living) {
+  // a living covenant is bought with Build Points like any other; one built before it was (none) is left alone
+  const unbought = !!cov.living && !cov.buildPoints;
+  if (bpSpent > cov.buildPoints && !unbought) {
     const fits = POWER_LEVELS.find((p) => bpSpent >= p.min && bpSpent <= p.max);
     const marked = pools.some((p) => !p.pays && p.resources.length);
     issue(
       `Spent ${bpSpent} Build Points of ${cov.buildPoints}.${marked ? ' Flawed and Illusory Resources mark resources the covenant paid for; they add no Build Points of their own.' : ''}`,
-      ...(bpSpent <= pl.max ? [{ kind: 'apply' as const, label: `Raise Build Points to ${bpSpent}`, apply: (c: Covenant) => void (c.buildPoints = bpSpent) }] : []),
-      ...(bpSpent > pl.max && fits ? [{ kind: 'apply' as const, label: `Make it a ${fits.level} covenant with ${bpSpent} Build Points`, apply: (c: Covenant) => void ((c.buildPoints = bpSpent), (c.powerLevel = fits.level)) }] : []),
+      ...(bpSpent <= pl.max || cov.keepPowerLevel ? [{ kind: 'apply' as const, label: `Raise Build Points to ${bpSpent}`, apply: (c: Covenant) => void (c.buildPoints = bpSpent) }] : []),
+      ...(bpSpent > pl.max && fits && !cov.keepPowerLevel ? [{ kind: 'apply' as const, label: `Make it a ${fits.level} covenant with ${bpSpent} Build Points`, apply: (c: Covenant) => void ((c.buildPoints = bpSpent), (c.powerLevel = fits.level)) }] : []),
+      ...(bpSpent > pl.max && !cov.keepPowerLevel ? [{ kind: 'apply' as const, label: `Raise Build Points to ${bpSpent}, keeping the ${pl.level} limits`, apply: (c: Covenant) => void ((c.buildPoints = bpSpent), (c.keepPowerLevel = true)) }] : []),
       { kind: 'goto', label: 'Review what is bought', tab: 'overview' },
     );
   }
-  if ((cov.buildPoints < pl.min || cov.buildPoints > pl.max) && !cov.living) {
+  // the power level sets the limits (the highest lab text and device effect); a troupe may keep them with Build
+  // Points outside its range, for what is lent, given or held in trust
+  if ((cov.buildPoints < pl.min || cov.buildPoints > pl.max) && !unbought && !cov.keepPowerLevel) {
     const fits = POWER_LEVELS.find((p) => cov.buildPoints >= p.min && cov.buildPoints <= p.max);
     issue(
       `${cov.buildPoints} Build Points is outside the ${pl.level} power range (${pl.min}–${pl.max === Infinity ? '∞' : pl.max}).`,
       ...(fits ? [{ kind: 'apply' as const, label: `Call it a ${fits.level} covenant`, apply: (c: Covenant) => void (c.powerLevel = fits.level) }] : []),
+      { kind: 'apply', label: `Keep the ${pl.level} limits (level ${pl.maxItemLevel === Infinity ? 'any' : pl.maxItemLevel}) with ${cov.buildPoints} Build Points`, apply: (c) => void (c.keepPowerLevel = true) },
       { kind: 'apply', label: `Set Build Points to ${cov.buildPoints < pl.min ? pl.min : pl.max}`, apply: (c) => void (c.buildPoints = cov.buildPoints < pl.min ? pl.min : (pl.max as number)) },
     );
   }
@@ -475,7 +492,7 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   const issues = issueList.map((i) => i.message);
   const loyalty = computeLoyalty(cov, members, data);
   return {
-    cov, hookPoints, boonPoints, aura, hiddenResourcesBP: pools.filter((p) => p.mechanic === 'hidden-resources').reduce((t, p) => t + p.spent, 0), bpLines: lines, pools, unreal, bpSpent,
+    cov, hookPoints, boonPoints, aura, reputations: covenantReputations(cov), hiddenResourcesBP: pools.filter((p) => p.mechanic === 'hidden-resources').reduce((t, p) => t + p.spent, 0), bpLines: lines, pools, unreal, bpSpent,
     bpAvailable: cov.buildPoints, powerLevel: pl, labs, issues, issueList, finances, loyalty, visIncome, members,
   };
 }
@@ -570,9 +587,12 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
   const labPoints = labs.reduce((t, l) => t + l.upkeepPoints * (l.lab.use === 'light' ? 0.5 : l.lab.use === 'heavy' ? 1.5 : 1), 0) + cov.spareLabs * 10;
   const minorBuildingBoons = cov.hooksBoons.filter((h) => h.kind === 'boon' && h.size === 'Minor' && /edifice|keep|important building|tower|walls|fortress/i.test(h.name)).length;
   const majorBuildingBoons = cov.hooksBoons.filter((h) => h.kind === 'boon' && h.size === 'Major' && /walls|fortress|engineering/i.test(h.name)).length;
-  const buildings = inhabitantPoints / 10 + 2 * minorBuildingBoons + 5 * majorBuildingBoons;
+  // inhuman covenfolk who need no food or shelter (Inhuman Residents, Inhuman Covenfolk) leave their share out of those bills
+  const folkPoints = Math.max(0, inhabitantPoints - magi * magusPts - companions * companionPts - f.horses - soldiers.horses);
+  const spared = inhumanUpkeep(cov);
+  const buildings = (inhabitantPoints - folkPoints * spared.noShelter) / 10 + 2 * minorBuildingBoons + 5 * majorBuildingBoons;
   const consumables = (2 * inhabitantPoints) / 10;
-  const provisions = (5 * inhabitantPoints) / 10;
+  const provisions = (5 * (inhabitantPoints - folkPoints * spared.noFood)) / 10;
   const wageMult = { none: 0, miserly: 0.5, standard: 1, generous: 1.5, lavish: 2 }[cov.finances.wages];
   // paid soldiers: a pound a year for each penny a day (Covenants ch.5)
   const wages = ((2 * inhabitantPoints) / 10) * wageMult + cov.finances.paidSoldierPennies + soldiers.pennies;
@@ -841,6 +861,8 @@ export function computeLoyalty(cov: Covenant, members: Character[], data: GameDa
   parts.push({ label: cov.loyalty.unGiftedCouncil ? `Base (Gift of the magi, with ${cov.loyalty.unGiftedCouncil} unGifted on the council)` : 'Base (Gift of the magi)', value: base });
   const lc = cov.finances.livingConditions;
   if (lc) parts.push({ label: 'Living conditions', value: lc * 10 });
+  // the Healthy Feature, Unhealthy Environment, Vivid Environment, and Loyal or Rebellious Covenfolk (Covenants ch.2)
+  parts.push(...boonLoyalty(cov, base));
   const eq = { inexpensive: -10, standard: 0, 'standard+expensive': 10, any: 20 }[cov.finances.equipment];
   if (eq) parts.push({ label: 'Equipment', value: eq });
   const wages = { none: -20, miserly: -10, standard: 0, generous: 10, lavish: 20 }[cov.finances.wages];

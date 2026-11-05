@@ -144,7 +144,9 @@ export function vfProblems(d: DerivedCharacter, data: GameData, def: VirtueFlawD
   if (type === 'grog' && !cv?.free) {
     const size = cv?.size ?? opts.size;
     const major = size ? size === 'Major' : !def.sizes.includes('Minor') && !def.sizes.includes('Free');
-    if (major) push('grog-major', 'error', 'Grogs take only Minor Virtues/Flaws', `Grogs may not take Major Virtues or Flaws (${def.name}).`, { ref: 'DE p.63' });
+    // a Major Flaw paired with the covenant's Immunity is the covenant's premise (Covenants ch.2: "home
+    // to a large number of recovering werewolves"): its grogs may have it, within their 3 Flaw points
+    if (major && !cv?.heldBy) push('grog-major', 'error', 'Grogs take only Minor Virtues/Flaws', `Grogs may not take Major Virtues or Flaws (${def.name}).`, { ref: 'DE p.63' });
     if (def.categories.includes('Hermetic')) push('grog-hermetic', 'error', 'Grogs cannot take Hermetic Virtues/Flaws', `Grogs may not take Hermetic Virtues or Flaws (${def.name}).`, { ref: 'DE p.63' });
     if (def.categories.includes('Story') && def.kind === 'flaw') push('grog-story', 'warning', 'Grogs should not take Story Flaws', `Grogs should not take Story Flaws (${def.name}).`, { ref: 'DE p.63' });
   }

@@ -18,6 +18,7 @@ import type { Character, Covenant, EnchantedItem, LabProject, VisStock } from '.
 import { addVis, purseOf, takeVis, visAvailable, visText } from './vis';
 import { uid } from '../util/id';
 import { helperParts, type LabHelper } from './labHelp';
+import { flawHeld } from './covenantBoons';
 
 export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: string; /** DE: may be done by experimentation */ experiment?: boolean; /** the lab work it is, for a lab's restrictions */ activity?: string }[] = [
   { id: 'invent', label: 'Invent a spell', blurb: 'Each season the Lab Total beats the spell’s level by some points; they add up until they reach the level, and the spell is learned. From a Laboratory Text it takes one season, once the Lab Total reaches the level.', experiment: true, activity: 'Spells' },
@@ -251,7 +252,7 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       const self = subject === c;
       let total = lt('longevity', 'Cr', 'Co', { forSelfLongevity: self });
       // anyone making a ritual for a subject with Difficult Longevity Ritual halves the Lab Total (DE)
-      if (!self && subject.virtues.some((v) => v.defId === 'difficult-longevity-ritual-flaw'))
+      if (!self && subject.virtues.some((v) => v.defId === 'difficult-longevity-ritual-flaw' && !flawHeld(subject, v)))
         total = { ...total, total: Math.ceil(total.total / 2), halved: true, notes: [...total.notes, `${subject.name || 'The subject'} has Difficult Longevity Ritual: Lab Total halved.`] };
       const extraVis = Math.max(0, p.extraVis ?? 0);
       const t = total.total + extraVis;

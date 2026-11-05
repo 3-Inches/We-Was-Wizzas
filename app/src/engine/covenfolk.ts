@@ -447,7 +447,8 @@ export function covenfolkYearEnd(cov: Covenant, year: number): string[] {
       s.workshop = { innovation: s.workshop?.innovation ?? 0, rawMaterials: s.workshop?.rawMaterials ?? 0, laborPoints: Math.max(0, (s.workshop?.laborPoints ?? 0) + lp) };
       if (lp > 0 && craft) notes.push(`+${lp} Labor Points`);
     }
-    if (s.age !== undefined) s.age += 1;
+    // one of the inhuman covenfolk does not age (Inhuman Residents, Inhuman Covenfolk)
+    if (s.age !== undefined && !s.nature) s.age += 1;
     if (notes.length) {
       const text = `A year’s work (${taught} season${taught === 1 ? '' : 's'} at the job, ${practice} free): ${notes.join(', ')}.`;
       s.history = [...(s.history ?? []), { year, season: 'Winter', text }];

@@ -24,7 +24,7 @@ export const WEALTH_STEP: Record<Wealth, { to: string; cost: number }> = {
 
 export function wealthOf(d: DerivedCharacter): Wealth {
   if (d.virtues.some((v) => v.cv.defId === 'wealthy')) return 'wealthy';
-  if (d.virtues.some((v) => v.cv.defId === 'poor-flaw')) return 'poor';
+  if (d.virtues.some((v) => v.cv.defId === 'poor-flaw' && !v.held)) return 'poor';
   return 'average';
 }
 

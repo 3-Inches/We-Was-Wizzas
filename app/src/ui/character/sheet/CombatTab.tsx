@@ -8,6 +8,7 @@ import type { WoundState } from '../../../engine/types';
 import { Card, Field, Stepper, signed } from '../../kit';
 import EquipmentEditor from '../EquipmentEditor';
 import { IllnessCard } from './IllnessCard';
+import { immunities, immunityFlaw, immunityFlawState } from '../../../engine/covenantBoons';
 import type { CharEditor } from '../useChar';
 
 const WOUND_KEYS: { key: keyof Omit<WoundState, 'dead'>; label: string; pen: number }[] = [
@@ -241,6 +242,7 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
         </Card>
       </div>
 
+      <CovenantImmunity ed={ed} />
       <IllnessCard ed={ed} />
 
       <Card title="Combat rolls">
@@ -409,3 +411,64 @@ function GroupCombat({ ed }: { ed: CharEditor }) {
     </Card>
   );
 }
+
+/**
+ * What the covenant's Immunity covers for those who live there, and the Flaws it holds off: a Flaw
+ * paired with it keeps its Virtue points and does nothing in the aura, and is back away from the
+ * covenant (Covenants ch.2).
+ */
+function CovenantImmunity({ ed }: { ed: CharEditor }) {
+  const { c, data, ctx, update } = ed;
+  const list = immunities(ctx.covenant);
+  if (!c) return null;
+  const st = immunityFlawState(ctx.covenant, c);
+  if (!list.length && !st.stale.length) return null;
+  const im = immunityFlaw(ctx.covenant);
+  const name = (id: string) => data.vfById.get(id)?.name ?? id;
+  const who = c.name || 'this character';
+  const what = (i: (typeof list)[number]) => (i.kind === 'flaw' ? `the ${name(i.value)} Flaw` : i.kind === 'disease' ? (i.value === 'all' ? 'all disease' : i.value) : i.value);
+  const away = !!c.awayFromCovenant || c.auraTime === 'away';
+  return (
+    <div className="stack small" style={{ gap: 4 }}>
+      {!!list.length && (
+        <p style={{ margin: 0 }}>
+          <b>Within {ctx.covenant?.name || 'the covenant'}&apos;s aura</b>, the Immunity Boon makes everyone immune to {list.map(what).join(', ')}. It is held off, not cured: it returns
+          when they leave.
+        </p>
+      )}
+      {st.paired.map((v) => (
+        <div key={v.uid} className="row">
+          <span>
+            {who}&apos;s {name(v.defId)} is paired with the Immunity: {away ? <b>back while they are away</b> : 'held off here'}; its Virtue points stay theirs.
+          </span>
+          <label className="row" style={{ gap: 4 }}>
+            <input type="checkbox" checked={!!c.awayFromCovenant} disabled={c.auraTime === 'away'} onChange={(e) => update((x) => void (x.awayFromCovenant = e.target.checked || undefined))} />
+            away from the covenant now{c.auraTime === 'away' ? ' (lives away, on the Seasons tab)' : ''}
+          </label>
+        </div>
+      ))}
+      {im &&
+        st.unpaired.map((v) => (
+          <div key={v.uid} className="row">
+            <span>
+              {who} has {name(v.defId)}, the Flaw the Immunity holds off, but not paired with it.
+            </span>
+            <button className="small" onClick={() => update((x) => void (x.virtues.find((y) => y.uid === v.uid)!.heldBy = im.hb.uid))}>
+              Pair it with the Immunity
+            </button>
+          </div>
+        ))}
+      {st.stale.map((v) => (
+        <div key={v.uid} className="row">
+          <span className="warn-text">
+            {name(v.defId)} was paired with an Immunity {ctx.covenant ? `${ctx.covenant.name || 'the covenant'} no longer has` : 'of a covenant they no longer belong to'}: it is held off still.
+          </span>
+          <button className="small" onClick={() => update((x) => void delete x.virtues.find((y) => y.uid === v.uid)!.heldBy)}>
+            Unpair it
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+

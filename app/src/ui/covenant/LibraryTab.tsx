@@ -195,6 +195,16 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                     </td>
                     <td>
                       <input type="checkbox" checked={!!b.hidden} title="Part of Hidden Resources (no BP)" onChange={(e) => setBook(b.uid, (x) => void (x.hidden = e.target.checked))} />
+                      {(b.kind === 'summa' || b.kind === 'tractatus') && (
+                        <label className="inline small" title="A Great Work: learning built as a structure, read as a summa or tractatus; no scribe's, binder's or illuminator's bonus, triple from resonant materials and clarification (Covenants ch.7). Bought as a book, or as an Edifice Boon.">
+                          <input
+                            type="checkbox"
+                            checked={b.make?.format === 'great-work'}
+                            onChange={(e) => setBook(b.uid, (x) => void (x.make = { ...(x.make ?? {}), format: e.target.checked ? 'great-work' : undefined }))}
+                          />{' '}
+                          Great Work
+                        </label>
+                      )}
                     </td>
                     <td>
                       <button className="small ghost" onClick={() => update((x) => void (x.library = x.library.filter((y) => y.uid !== b.uid)))}>

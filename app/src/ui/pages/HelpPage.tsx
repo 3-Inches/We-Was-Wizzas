@@ -227,12 +227,30 @@ export default function HelpPage() {
 
       <Card title="The covenant" id="covenant">
         <ul className="small">
-          <li>Choose the covenant&apos;s season, aura and power level (Build Points).</li>
+          <li>
+            Choose the covenant&apos;s season, aura and power level: its Build Points and its limits, the highest lab text and device effect (25 for Low, 40 for Medium) and the
+            age it should have. Tick <b>keep the limits whatever the Build Points</b> for a young covenant with things lent or given to it: a Low covenant with 800 Build
+            Points keeps level 25.
+          </li>
           <li>
             Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1, Weak Aura lowers it, and the Overview&apos;s Aura card shows it as it stands and keeps its changes. There
             a Magic aura can be aligned (with an Art it counts double for, or Healing, Luck…), and a Dominion follow its congregation&apos;s years of worship. Click a Hook or Boon to read it. Resources Boons and Hooks (Wealth, Secondary Income, Poverty,
             Indebted…) take an income source; Hidden Resources pays for 250 Build Points of resources on top of the covenant&apos;s own; a Flawed or Illusory Resource adds none,
             and marks 250 of the covenant&apos;s own Build Points of resources as likely to be lost or not really there; Exceptional Book adds its summa free.
+          </li>
+          <li>
+            Boons and Hooks that change the covenant&apos;s people take effect. Choose what Inhuman Residents or Inhuman Covenfolk are (faeries, beings of Magic, spirits,
+            awakened animals) and their share: they do not age, are immune to Warping, most need no sleep, and those that eat nothing are left out of the Provisions. Literate
+            Covenfolk read (Artes Liberales 1), the Local Language is spoken, a Useful Curse makes the cursed better at an Ability, and Incompetent and Distorted Covenfolk
+            show on those made there. The Covenfolk tab says what they make of its people and gives it to those already there; Quick build gives it to those it makes.
+          </li>
+          <li>
+            An Immunity covers a hazard, a disease, an influence or (Major) a Flaw within the aura: a disease cannot be caught there and a plague passes it by, Warping
+            does not build up. A Flaw it covers is given, paired with it, to the grogs, companions and magi the toolkit makes for the covenant (at the share you set),
+            who spend the Virtue points it gives; a paired Flaw is held off in the aura and is back when they leave (the Combat &amp; Health tab has the box), and pairing
+            one makes the Boon a Major Hook. A Regio Hook of another realm is one more Minor Hook. Loyal and Rebellious Covenfolk, the Healthy Feature, Unhealthy
+            Environment and Vivid Environment change Prevailing Loyalty, and the Healthy Feature and Unhealthy Environment the Aging rolls too. Prestige and Infamous give the covenant its Reputations. An Edifice may be a Great Work, a summa or tractatus built as a structure, free; or
+            buy one as a book.
           </li>
           <li>Buy the library, lab texts, vis sources, enchanted items and specialists; the toolkit prices everything and enforces the creation limits.</li>
           <li>
@@ -490,6 +508,17 @@ export default function HelpPage() {
             book says), covenfolk (as numbers, with its steward, chamberlain, turb captain and craftsmen), library, vis sources and accounts that hold. Oculus Septentrionalis, in
             Lübeck&apos;s Divine aura, has the magestones of Verditius: three Magic auras of 3 its magi take into their laboratories two seasons a year each. Ages are the book&apos;s
             for 1220, moved on to the saga&apos;s year. Where the book is silent (an age, a season, an aura), the toolkit makes a likely guess and says so in the notes.
+          </li>
+          <li>
+            <b>Built by your rules:</b> each is bought with Build Points as your covenant is. Its power level comes from what the book says it holds, its number of magi and
+            its age, and is no higher than its age allows (Low until 10 years, Medium until 50, High until 100). Its library is bought for its magi and for the apprentices and
+            young magi still to come, with a collection of its own Laboratory Texts. Its vis comes to a share for each magus, by how rich the book says it is: about 2 pawns a
+            year if scarce, 4, 7, and 10 if very rich (the core rules: low vis is up to 5 a magus, moderate about 10). It has enchanted devices of its own (<i>Covenants</i>: the
+            Magical Oven, the Motivated Plow and the like doing its covenfolk&apos;s work, saving servants or a pound a magnitude; items for its laboratories that give them a
+            Virtue; a weapon for its turb), none above its power level&apos;s limit. Its staff, craftsmen and treasury are bought too. Each varies with the covenant. The
+            Great Library is costed book by book, which makes Durenmar Legendary. Its page has the rules check yours has; what it gains in play costs nothing. There are no
+            stipends: the covenant pays the bills, and its magi take vis from their own purse or from its stores (a Longevity Ritual, or study when it has twice what the
+            season needs).
           </li>
           <li>
             <b>What they carry:</b> the items and familiars the book gives (Philippus Niger&apos;s Knife of Human Bone, Wizard&apos;s Bridle and Subtle Chain, and Sordus the

@@ -4,7 +4,8 @@
 
 import type { DerivedCharacter } from '../../engine/character/derive';
 import { seasonsOf, seasonsUsed } from '../../engine/seasons';
-import type { Character, Specialist } from '../../engine/types';
+import type { Character, InhumanNature, Specialist } from '../../engine/types';
+import { INHUMAN, INHUMAN_NATURES, WARP_IMMUNE_NOTE } from '../../engine/covenantBoons';
 import { Stepper } from '../kit';
 import { StandingEditor, type Team } from './StandingEditor';
 
@@ -33,6 +34,11 @@ export function SeasonPlan({ c, d, year, update, teachers, team }: { c: Characte
         </span>
       </div>
       <div className="small muted">{plan.parts.join('. ')}.</div>
+      {c.inhuman && (
+        <div className="small muted">
+          {INHUMAN[c.inhuman].rules} It does not age, and is {WARP_IMMUNE_NOTE} ({INHUMAN[c.inhuman].ref}).
+        </div>
+      )}
       <div className="row small">
         <label className="inline" title="For a character the rules leave open: a servant who works all year, a lord with no time to spare">
           <input type="checkbox" checked={c.seasons?.free !== undefined} onChange={(e) => set((s) => void (s.free = e.target.checked ? plan.free : undefined))} /> set the free seasons by hand
@@ -41,6 +47,28 @@ export function SeasonPlan({ c, d, year, update, teachers, team }: { c: Characte
         {!noFatigue && (
           <label className="inline" title="Two more seasons a year for study or adventure, never lab work (the Becoming enchantment Transforming the Mind, or the like)">
             <input type="checkbox" checked={!!c.seasons?.sleepless} onChange={(e) => set((s) => void (s.sleepless = e.target.checked || undefined))} /> needs no sleep
+          </label>
+        )}
+        {!d.isMagus && !c.creature?.magicCharacter && (
+          <label className="inline" title="One of a covenant's inhuman covenfolk (Inhuman Residents, Inhuman Covenfolk): it does not age, is immune to Warping, and most need no sleep">
+            nature{' '}
+            <select
+              value={c.inhuman ?? ''}
+              onChange={(e) =>
+                update((x) => {
+                  const n = (e.target.value || undefined) as InhumanNature | undefined;
+                  x.inhuman = n;
+                  if (n && INHUMAN[n].sleepless) x.seasons = { ...(x.seasons ?? {}), sleepless: true };
+                })
+              }
+            >
+              <option value="">human</option>
+              {INHUMAN_NATURES.map((n) => (
+                <option key={n} value={n}>
+                  {INHUMAN[n].one}
+                </option>
+              ))}
+            </select>
           </label>
         )}
         {plan.extra > 0 && (
