@@ -254,6 +254,10 @@ const MANUAL_TAGS: Record<string, [string, number][]> = {
   'compulsion-flaw': [['vice', 2]],
   'compulsive-lying-flaw': [['vice', 2]],
   'crippled-flaw': [['combat', 2], ['travel', 1]],
+  // flaws of the hands and joints spoil a craftsman's work (rolls with a held tool, repetitive movement)
+  'palsied-hands-flaw': [['crafts', 2], ['combat', 1]],
+  'clumsy-flaw': [['crafts', 2]],
+  'arthritis-flaw': [['crafts', 2]],
   'strong-willed': [['magic-resistance', 1], ['temperament', 1], ['confidence', 1]],
   'disfigured-flaw': [['social', 2], ['outsider', 1]],
   'overconfident-flaw': [['heroic', 1], ['vice', 1], ['temperament', 1]],

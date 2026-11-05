@@ -42,6 +42,46 @@ export const CRAFTS = [
   'Candlemaker', 'Runes', 'Automata',
 ];
 
+/**
+ * Crafts that go together: the same materials, tools or workshop, so a craftsman who knows one may
+ * well have picked up another (a smith shoes horses, a baker brews). Covers the names in the list
+ * above and in the covenant's crafts (Covenants ch.5).
+ */
+const CRAFT_FAMILIES: string[][] = [
+  ['Blacksmith', 'Farrier', 'Armorer', 'Weaponsmith', 'Swordsmith', 'Toolmaker', 'Tinker'],
+  ['Tinker', 'Pewterer', 'Toolmaker', 'Mechanic'],
+  ['Goldsmith', 'Silversmith', 'Jeweler', 'Lapidary'],
+  ['Carpenter', 'Woodworker', 'Furniture maker', 'Cooper', 'Cartwright', 'Boatbuilder'],
+  ['Bowyer', 'Fletcher', 'Woodworker'],
+  ['Armorer', 'Weaponsmith', 'Swordsmith', 'Shield maker'],
+  ['Mason', 'Stonemason', 'Sculptor'],
+  ['Thatcher', 'Roofer', 'Carpenter'],
+  ['Glassblower', 'Glazier', 'Potter'],
+  ['Leatherworker', 'Tanner', 'Shoemaker', 'Cobbler', 'Saddler'],
+  ['Weaver', 'Tailor', 'Dyer'],
+  ['Baker', 'Cook', 'Brewer', 'Miller'],
+  ['Brewer', 'Vintner', 'Cooper'],
+  ['Cook', 'Butcher'],
+  ['Bookbinder', 'Illuminator', 'Percamenarius (parchment maker)', 'Ink-maker'],
+  ['Painter', 'Illuminator', 'Sculptor'],
+  ['Candlemaker', 'Butcher'],
+];
+
+/** The crafts that go with this one, most closely related first. */
+export function relatedCrafts(craft: string): string[] {
+  const key = (s: string) => s.toLowerCase().replace(/\s*\(.*\)/, '').trim();
+  const k = key(craft);
+  return [...new Set(CRAFT_FAMILIES.filter((f) => f.some((x) => key(x) === k)).flat())].filter((x) => key(x) !== k);
+}
+
+/** The guild of a craft's name: "Bakers’ guild", "Lapidaries’ guild", "Parchment makers’ guild". */
+export function guildOf(craft: string): string {
+  const inner = /\(([^)]+)\)/.exec(craft)?.[1];
+  const base = (inner ?? craft).trim();
+  const plural = /s$/i.test(base) ? base : /[^aeiou]y$/i.test(base) ? `${base.slice(0, -1)}ies` : `${base}s`;
+  return `${plural.charAt(0).toUpperCase()}${plural.slice(1)}’ guild`;
+}
+
 export const PROFESSIONS = [
   'Scribe', 'Apothecary', 'Merchant', 'Farmer', 'Storyteller', 'Steward', 'Sailor', 'Navigator', 'Librarian', 'Servant', 'Laborer', 'Actor', 'Jongleur', 'Minstrel', 'Miner',
   'Ferryman', 'Fisherman', 'Falconer', 'Gardener', 'Chamberlain', 'Reeve', 'Teamster', 'Marshal', 'Soldier', 'Mercenary', 'Animal Trainer', 'Master of Kennels', 'Washerwoman',

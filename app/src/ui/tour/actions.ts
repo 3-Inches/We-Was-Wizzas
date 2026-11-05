@@ -5,9 +5,15 @@
 import { applyBaseCovenant, newCovenant } from '../../engine/covenant';
 import { newCharacter } from '../../engine/character/factory';
 import { generateCharacter } from '../../engine/generate/character';
+import { sumAlloc } from '../../engine/character/derive';
 import { newWorkshop } from '../../engine/workshop';
 import { newSeed } from '../../engine/generate/random';
-import type { Character, Covenant } from '../../engine/types';
+import type { Character, Covenant, Saga } from '../../engine/types';
+import { fillCovenant } from '../../engine/generate/covenant';
+import { CRAFTS, countOf } from '../../engine/covenantRules';
+import { craftsmanUpkeep, laborPointsPerSeason, suggestedGuildRank, workSeasons } from '../../engine/covenfolk';
+import { optionOn } from '../../engine/optional';
+import { uid } from '../../util/id';
 import { newLab } from '../../engine/lab';
 import { gameDataFor } from '../../store/hooks';
 import { useStore } from '../../store/store';
@@ -46,6 +52,39 @@ function standardLabs(c: TourCtx): ActionResult | undefined {
 
 export const ACTIONS: Record<TourActionId, (c: TourCtx) => ActionResult | undefined> = { buildDraft, basePackage, standardLabs };
 
+/**
+ * Covenfolk for a practice covenant (the City & Guild tutorial's): three grogs, servants and laborers
+ * at what it needs, craftsmen where they save money (a carpenter and a smith at the least), each
+ * with a guild rank under the guild rules and a year's Labor Points banked, and 50 £ in the treasury,
+ * bought as a starting reserve. All but the reserve are recruited in play, at no Build Points.
+ */
+function practiceFolk(cov0: Covenant, saga: Saga, inSaga: Character[]): { cov: Covenant; grogs: Character[]; text: string } {
+  const data = gameDataFor(saga);
+  const r = fillCovenant(cov0, inSaga, { data, saga, rules: saga.houseRules }, { staff: false, teacher: false, craftsmen: true, grogs: 3, counts: true, bought: false, seed: newSeed() });
+  const cov = r.cov;
+  const grogs = r.grogs.map((g) => ({ ...g.c, notes: [g.c.notes, PRACTICE_NOTE].filter(Boolean).join('\n') }));
+  for (const g of grogs) if (!cov.memberIds.includes(g.id)) cov.memberIds.push(g.id);
+  // a carpenter and a smith at the least, so the tutorial has craftsmen to show; at Dexterity + Craft 7
+  // an average craftsman's two seasons (42) pay the 36 upkeep with 6 to save each year
+  for (const id of ['carpenter', 'blacksmith']) {
+    if (cov.specialists.some((x) => x.role === 'craftsman' && x.craft === id)) continue;
+    const k = CRAFTS.find((c) => c.id === id)!;
+    cov.specialists.push({ uid: uid(), name: k.name, role: 'craftsman', ability: `Craft (${k.name})`, craft: k.id, rare: k.rare, score: 6, age: 38, count: 1, free: true, abilities: [{ id: 'craft-type', param: k.name, score: 6 }], chars: { Dex: 1 } });
+  }
+  const guilds = optionOn(saga, 'guilds');
+  for (const x of cov.specialists.filter((y) => y.role === 'craftsman')) {
+    if (guilds && !x.guildRank) x.guildRank = suggestedGuildRank(x.age, x.score);
+    // a year's work banked, so the buttons that spend it have something to spend
+    if (!x.workshop?.laborPoints) x.workshop = { innovation: x.workshop?.innovation ?? 0, rawMaterials: x.workshop?.rawMaterials ?? 0, laborPoints: Math.max(60, laborPointsPerSeason(x) * workSeasons(x).work - craftsmanUpkeep(x)) };
+  }
+  if (cov.finances.treasury < 50) {
+    cov.finances.startingReserve = (cov.finances.startingReserve ?? 0) + (50 - cov.finances.treasury);
+    cov.finances.treasury = 50;
+  }
+  const crafts = cov.specialists.filter((y) => y.role === 'craftsman').map((y) => `${countOf(y) > 1 ? `${countOf(y)} ` : ''}${y.name.toLowerCase()}${countOf(y) > 1 ? 's' : ''}`);
+  return { cov, grogs, text: `its people (${grogs.length} grogs, ${crafts.join(', ')}, servants and laborers) and 50 £ in the treasury` };
+}
+
 /** The note that marks what a tutorial made for practice. */
 export const PRACTICE_NOTE = 'Made for practice by a tutorial.';
 const isPractice = (x: { notes?: string } | undefined) => !!x && (x.notes ?? '').includes(PRACTICE_NOTE);
@@ -80,6 +119,15 @@ export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean
     applyBaseCovenant(cov, 'Medium');
     made.push('a practice covenant (the Medium package)');
   } else if (cov && what.covenant) reused.push(`${cov.name || 'the practice covenant'}, made for practice before`);
+  // people for the tutorial to work with: grogs to send to market, covenfolk and craftsmen with Labor
+  // Points to spend, and silver in the treasury, all recruited in play (no Build Points)
+  const extra: Character[] = [];
+  if (cov && p?.folk && !cov.specialists.some((x) => x.role === 'craftsman')) {
+    const folk = practiceFolk(cov, saga, Object.values(st.characters).filter((x) => x.sagaId === saga.id));
+    cov = folk.cov;
+    extra.push(...folk.grogs);
+    made.push(folk.text);
+  }
   let ch: Character | undefined;
   let moved: Covenant | undefined;
   // the practice character this tutorial made before, if it is still about, else a new one
@@ -100,7 +148,8 @@ export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean
     }
     ch.notes = [ch.notes, tag].filter(Boolean).join('\n');
     // a craftsman's livelihood tracked from the start, for the tutorial to show
-    const trade = ch.abilities.find((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
+    // their trade: the Craft (or Profession) they are best at
+    const trade = ch.abilities.filter((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type').sort((a, b) => sumAlloc(b.xp) - sumAlloc(a.xp))[0];
     if (p!.role === 'master-craftsman' && trade && !ch.workshop) {
       ch.workshop = newWorkshop(trade.uid, trade.abilityId === 'profession-type');
       // worked with the better of Dexterity and Strength (Strength for a smith or a mason)
@@ -125,7 +174,7 @@ export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean
     if (!cov.memberIds.includes(ch.id)) cov.memberIds.push(ch.id);
   }
   if (ch && cov && ch.type === 'magus' && !cov.labs.some((l) => l.ownerId === ch!.id)) cov.labs.push(newLab(`${ch.name || 'Magus'}'s laboratory`, ch.id));
-  if (ch || cov) st.putRecords({ characters: ch ? [ch] : [], covenants: [cov, moved].filter((x): x is Covenant => !!x) }, `Practice for ${tour.title}`);
+  if (ch || cov) st.putRecords({ characters: [...(ch ? [ch] : []), ...extra], covenants: [cov, moved].filter((x): x is Covenant => !!x) }, `Practice for ${tour.title}`);
   return {
     sagaId: saga.id, charId: ch?.id, covId: cov?.id,
     notice:

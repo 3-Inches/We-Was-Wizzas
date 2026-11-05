@@ -7,7 +7,7 @@
 
 import { issueRedcapDevices, redcapLevels, servedByMercerHouse } from './items';
 import { ARTS, CHARACTERISTICS, FORMS, TECHNIQUES, type CharType, type GameData } from '../../data';
-import { CRAFTS as LIST_CRAFTS, HOMELANDS } from '../../data/lists';
+import { CRAFTS as LIST_CRAFTS, HOMELANDS, guildOf, relatedCrafts } from '../../data/lists';
 import { HOUSES } from '../../data/houses';
 import type { Character, Covenant, HouseRules, Saga } from '../types';
 import { addVirtue, applyMythicType, ensureAbility, newCharacter } from '../character/factory';
@@ -33,6 +33,11 @@ import { generateFamiliar, pickSpells, type SpellPick } from './spellsAndFamilia
 import { COMMON_TRAITS, ROLE_BY_ID, rolesFor, type Role } from './roles';
 import { between, chance, pick, sample, seeded } from './random';
 import { favoriteArts } from './variety';
+
+/** Concept themes that make a character a mystic of some kind, open to any book's Supernatural Virtues. */
+const MYSTIC_THEMES = ['mystic', 'faerie', 'faith', 'demon-hunter'];
+/** Books whose Supernatural Virtues suit an ordinary character (the core rules, Grogs, City & Guild). */
+const MUNDANE_BOOKS = ['DE', 'Grogs', 'CG'];
 
 /** How far the build strays from the role: keep to it, vary it, or anything goes. */
 export type Variety = 'focused' | 'varied' | 'wild';
@@ -159,6 +164,7 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   const house = o.type !== 'magus' ? undefined : (given ?? (o.variety === 'focused' ? undefined : pick(rng, HOUSES).id));
   if (role.status && takeStatus(c, data, rules, role.status)) log.push(`Social Status: ${data.vfById.get(role.status)?.name}.`);
   if (role.craft) setUpCraft(c, o, g, role, rng, log);
+  else if (role.profession) setUpProfession(c, role.profession, role, log);
   // choices on what the role brought (a Mythic type's Virtues) are made before the build spends around them
   fillChoices(c, data, rng);
   // made for a covenant whose Immunity holds off a Flaw: the Flaw, paired with it, its Virtue points
@@ -189,6 +195,14 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     { c, d: derive(), data, rules, saga, covenant: g.covenant, archetypes: c.creation.archetypes },
   ).state;
   if (house) st.house = house;
+  // a craftsman, knight or merchant is no hedge wizard: the Supernatural Virtues of the hedge
+  // traditions and the Realms books (Craft Amulets, Mythic Alchemy, Type Refining) go to characters
+  // whose concept is mystical; the core book's (Second Sight, Eye of Hephaestus) stay open to anyone
+  if (o.type !== 'magus' && !role.mythic && !c.creation.archetypes.some((t) => MYSTIC_THEMES.includes(t))) {
+    const hedge = data.virtuesFlaws.filter((d) => d.kind === 'virtue' && d.categories.includes('Supernatural') && !MUNDANE_BOOKS.includes(d.source.book)).map((d) => d.id);
+    // unless the player asked for one by name
+    st.declined = [...new Set([...st.declined, ...hedge.filter((id) => o.answers?.[`vf:${id}`] === undefined)])];
+  }
   const res = autoBuild(c, st, { data, rules, saga, covenant: g.covenant, archetypes: c.creation.archetypes, rng });
   if (favorites.length) log.unshift(`Favorite Arts: ${favorites.join(', ')}.`);
   log.push(...res.log);
@@ -253,17 +267,32 @@ function setUpCraft(c: Character, o: GenOptions, g: GenContext, role: Role, rng:
   // covenfolk work at the crafts the covenant saves money with; companions at any
   const craft = o.craft ?? (c.type === 'grog' ? pick(rng, COVENANT_CRAFTS.filter((k) => k.categories.length)).name : pick(rng, LIST_CRAFTS.filter((k) => !['Runes', 'Automata'].includes(k))));
   const cap = c.age < 30 ? 5 : c.age <= 35 ? 6 : 7;
+  // the trade: the Craft the build raises (it raises the character's best Craft, not a new one)
   ensureAbility(c, 'craft-type', { laterLife: abilityXpForScore(Math.min(cap, c.age < 22 ? 3 : 4)) }, craft);
+  // and, with the years, a craft or two that goes with it, picked up in the same workshop: a smith
+  // who shoes horses, a baker who brews; never as good as the trade
+  const related = relatedCrafts(craft);
+  const extra = !related.length || c.age < 25 ? 0 : c.age < 40 ? (chance(rng, 0.5) ? 1 : 0) : chance(rng, 0.5) ? 2 : 1;
+  const side = sample(rng, related, extra);
+  for (const k of side) ensureAbility(c, 'craft-type', { laterLife: abilityXpForScore(c.age < 40 ? 1 : 2) }, k);
   c.creation.concept = `${role.label} (${craft.toLowerCase()})`;
-  if (!optionOn(g.saga, 'guilds')) return void log.push(`Craft: ${craft}.`);
+  const also = side.length ? `, with some ${side.map((k) => k.toLowerCase()).join(' and ')}` : '';
+  if (!optionOn(g.saga, 'guilds')) return void log.push(`Craft: ${craft}${also}.`);
   const rank: GuildRank = c.age < 21 ? 'apprentice' : c.type === 'companion' && c.age >= 30 ? 'master' : 'journeyman';
   const r = GUILD_RANKS[rank];
   if (takeStatus(c, g.data, g.rules, r.virtue)) {
-    const guild = `${craft.replace(/s$/, '')}s’ guild`;
+    // the guild of the trade
+    const guild = guildOf(craft);
     c.guild = { name: guild, rank };
-    if (r.lore) ensureAbility(c, 'organization-lore', { laterLife: abilityXpForScore(r.lore) }, guild.replace(/^./, (x) => x.toUpperCase()));
-    log.push(`Craft: ${craft}; ${r.label.toLowerCase()} of the ${guild} (City & Guild).`);
-  } else log.push(`Craft: ${craft}.`);
+    if (r.lore) ensureAbility(c, 'organization-lore', { laterLife: abilityXpForScore(r.lore) }, guild);
+    log.push(`Craft: ${craft}${also}; ${r.label.toLowerCase()} of the ${guild.toLowerCase()} (City & Guild).`);
+  } else log.push(`Craft: ${craft}${also}.`);
+}
+
+/** A Profession to make a living by (a merchant's is Merchant), which the build raises in place of a Craft. */
+function setUpProfession(c: Character, profession: string, role: Role, log: string[]) {
+  ensureAbility(c, 'profession-type', { laterLife: abilityXpForScore(c.age < 22 ? 3 : 4) }, profession);
+  log.push(`${role.label}: Profession: ${profession}.`);
 }
 
 /** Aging rolls for each year from 35 (DE p.50); a magus has a Longevity Ritual from their own Lab Total. */

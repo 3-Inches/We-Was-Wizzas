@@ -52,6 +52,8 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
   const [newBought, setNewBought] = useState(true);
   const saga = useStore((s) => s.sagas[cov.sagaId]);
   const guildCtx = guildRanksApply(cov, !!saga && optionOn(saga, 'guilds'));
+  // City & Guild's Labor Points for every craftsman when the saga uses the book, guild or no guild
+  const usesCG = !saga || saga.enabledBooks.length === 0 || saga.enabledBooks.includes('CG');
   const labs = dc.labs.map((l) => ({ uid: l.lab.uid, name: l.lab.name || 'a lab', teaching: Math.min(3, l.specializations.Teaching ?? 0) }));
 
   // three parts, so a phone need not scroll the whole of it: its people, its money, its loyalty (all of it while a tutorial runs)
@@ -63,7 +65,24 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
 
   const optimalLab = () => optimalLaborers(cov, dc.members, dc.labs);
   /** craftsmen where they save most, while they save money and (when bought) the Build Points last */
-  const addEveryCraft = () => update((x) => void addCostSavingCraftsmen(x, dc.members, dc.labs, newScore, newBought ? Math.max(0, cov.buildPoints - dc.bpSpent) : Infinity));
+  const [craftNote, setCraftNote] = useState('');
+  const addEveryCraft = () => {
+    const left = Math.max(0, cov.buildPoints - dc.bpSpent);
+    const bp = newBought ? left : Infinity;
+    let added: string[] = [];
+    update((x) => void (added = addCostSavingCraftsmen(x, dc.members, dc.labs, newScore, bp)));
+    // say what was done, or why nothing was
+    const spending = f.categories.reduce((t, c) => t + c.total, 0);
+    setCraftNote(
+      added.length
+        ? `Added ${added.join(', ')}${newBought ? `, bought with Build Points (${left} were left)` : ', at no Build Points'}.`
+        : newBought && left < 3
+          ? `No craftsman added: the covenant has ${left} Build Point${left === 1 ? '' : 's'} left (${dc.bpSpent} of ${cov.buildPoints} spent), and the cheapest costs 3. Untick “bought with BP” to add craftsmen it recruits in play, at no Build Points.`
+          : spending < 5
+            ? `No craftsman added: the covenant spends only ${spending} £ a year in the categories craftsmen save in, too little for one to save anything. Add covenfolk, magi and laboratories first.`
+            : `No craftsman added: none would save the covenant more than ${newBought ? 'the Build Points it costs are worth' : 'they cost to keep'}. Craftsmen already here may be saving all a category allows (the table below).${newBought ? ' Untick “bought with BP” to add those who would save money if recruited in play.' : ''}`,
+    );
+  };
 
   return (
     <div className="stack">
@@ -197,9 +216,17 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
           </span>
         }
       >
-        {craftsmen.length === 0 && <div className="small muted">None listed.</div>}
+        {craftNote && <p className="small" style={{ margin: '0 0 6px' }} role="status">{craftNote}</p>}
+        {craftsmen.length === 0 && <div className="small muted">None listed. Press + Cost-saving craftsmen above, or add one with Quick add.</div>}
+        {usesCG && craftsmen.length > 0 && (
+          <p className="small muted" style={{ margin: '0 0 6px' }}>
+            City &amp; Guild: each craftsman earns Labor Points for the workshop in the seasons they work: (Dexterity + Craft) × 3 a season over two seasons a year if average, × 2 over
+            three if Poor, × 6 over one if Wealthy (set under Wealth). A year&apos;s upkeep is 36 (and 5 for each point of Raw Materials), so an average craftsman needs Dexterity + Craft of 7
+            or more to save anything; what is left is banked when the year closes, and spent here on Innovation and Raw Materials, which make better goods.
+          </p>
+        )}
         {craftsmen.map((s) => (
-          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} fit={(x) => fitCovenfolk(x, dc.members, dc.labs)} guild={guildCtx} examplesOnly={cov.finances.exampleCraftsOnly} />
+          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} fit={(x) => fitCovenfolk(x, dc.members, dc.labs)} guild={guildCtx} labor={usesCG} examplesOnly={cov.finances.exampleCraftsOnly} />
         ))}
         <table className="compact" style={{ marginTop: 8 }}>
           <thead>
@@ -228,8 +255,8 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
           craft past that saves nothing, so "optimal" finds the number worth employing. A carpenter works for both Buildings and Consumables: the savings fill the Buildings limit first and the
           rest goes to Consumables, so they are usually the first worth hiring. Rare crafts cost the same Build Points and points of inhabitants but save their whole Craft score, up to their
           category&apos;s limit (a fifth of what the labs cost, which is often small). Bookbinders and illuminators save nothing but let the covenant make fine books (they and scribes add 1 £ of
-          Writing Materials each; at Profession or Craft 6 each is skilled, +1 Quality). A higher score saves more for the same mouths to feed. Craftsmen work three seasons a year (City &amp;
-          Guild); under the guild rules each holds a rank and earns Labor Points for the workshop.
+          Writing Materials each; at Profession or Craft 6 each is skilled, +1 Quality). A higher score saves more for the same mouths to feed. Craftsmen work two seasons a year, three if Poor and one if Wealthy (City &amp;
+          Guild), and earn Labor Points for the workshop; under the guild rules each holds a rank.
           <br />
           Covenants lists example crafts for each category, not every one. Crafts marked * are ones the other books name: tailors, tanners, dyers, saddlers, farriers and cartwrights
           (Consumables), roofers and glaziers (Buildings), potters and pewterers (Laboratories), bakers, butchers and millers (Provisions), shield makers. Food crafts can save Provisions past the
@@ -580,7 +607,7 @@ function PersonRow({ s, update, data, labs }: { s: Specialist; update: CovTabPro
   );
 }
 
-function CraftRow({ s, update, line: l, optimal, fit, guild, examplesOnly }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number; fit: (c: Covenant) => void; guild?: 'enforced' | 'shown'; examplesOnly?: boolean }) {
+function CraftRow({ s, update, line: l, optimal, fit, guild, labor, examplesOnly }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number; fit: (c: Covenant) => void; guild?: 'enforced' | 'shown'; labor?: boolean; examplesOnly?: boolean }) {
   const set = useSet(update, s.uid);
   const craft = craftOf(s);
   const rare = s.rare ?? craft?.rare ?? false;
@@ -660,6 +687,7 @@ function CraftRow({ s, update, line: l, optimal, fit, guild, examplesOnly }: { s
         ✕
       </button>
       {guild && <GuildLine s={s} set={set} enforced={guild === 'enforced'} />}
+      {(labor || guild) && <LaborLine s={s} set={set} />}
       <span className="small soft" style={{ flexBasis: '100%' }}>
         {!craft
           ? 'Pick a craft to count its savings.'
@@ -672,21 +700,9 @@ function CraftRow({ s, update, line: l, optimal, fit, guild, examplesOnly }: { s
   );
 }
 
-/** A craftsman's guild rank, what it needs, and the Labor Points their workshop earns (City & Guild ch.2-4). */
+/** A craftsman's guild rank and what it needs (City & Guild ch.3). */
 function GuildLine({ s, set, enforced }: { s: Specialist; set: (fn: (x: Specialist) => void) => void; enforced: boolean }) {
   const short = guildShortfalls(s);
-  const lp = laborPointsPerSeason(s);
-  const w = workSeasons(s);
-  const ws = s.workshop ?? { innovation: 0, rawMaterials: 0, laborPoints: 0 };
-  const nextInnov = nextImprovementCost('innovation', ws.innovation);
-  const nextRaw = nextImprovementCost('rawMaterials', ws.rawMaterials);
-  const keep = craftsmanUpkeep(s);
-  const spend = (k: 'innovation' | 'rawMaterials', cost: number) =>
-    set((x) => {
-      const y = (x.workshop ??= { innovation: 0, rawMaterials: 0, laborPoints: 0 });
-      y.laborPoints -= cost;
-      y[k] += 1;
-    });
   return (
     <div className="row small" style={{ flexBasis: '100%' }}>
       <span>Guild rank</span>
@@ -705,6 +721,26 @@ function GuildLine({ s, set, enforced }: { s: Specialist; set: (fn: (x: Speciali
       )}
       {s.guildRank && <span className="muted" title={CRAFT_GUILD_RANKS[s.guildRank].note}>{CRAFT_GUILD_RANKS[s.guildRank].note}</span>}
       {short.length > 0 && <span className={enforced ? 'bad-text' : 'warn-text'}>needs {short.join(', ')}</span>}
+    </div>
+  );
+}
+
+/** The Labor Points a craftsman's workshop earns, banks and spends (City & Guild ch.2). */
+function LaborLine({ s, set }: { s: Specialist; set: (fn: (x: Specialist) => void) => void }) {
+  const lp = laborPointsPerSeason(s);
+  const w = workSeasons(s);
+  const ws = s.workshop ?? { innovation: 0, rawMaterials: 0, laborPoints: 0 };
+  const nextInnov = nextImprovementCost('innovation', ws.innovation);
+  const nextRaw = nextImprovementCost('rawMaterials', ws.rawMaterials);
+  const keep = craftsmanUpkeep(s);
+  const spend = (k: 'innovation' | 'rawMaterials', cost: number) =>
+    set((x) => {
+      const y = (x.workshop ??= { innovation: 0, rawMaterials: 0, laborPoints: 0 });
+      y.laborPoints -= cost;
+      y[k] += 1;
+    });
+  return (
+    <div className="row small" style={{ flexBasis: '100%' }}>
       <span title={`(Dexterity + Craft) × ${s.wealth === 'poor' ? 2 : s.wealth === 'wealthy' ? 6 : 3} a season worked; ${keep} a year keeps the workshop as it is (36, and 5 for each point of Raw Materials)`}>
         Labor Points: {lp} a season × {w.work} = {lp * w.work} a year ({lp * w.work - keep >= 0 ? '+' : ''}
         {lp * w.work - keep} after upkeep); {ws.laborPoints} banked

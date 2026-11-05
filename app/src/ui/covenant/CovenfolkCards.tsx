@@ -4,6 +4,7 @@
 // cast in place of craftsmen (Covenants ch.2, ch.4, ch.5; DE; Grogs; City & Guild).
 
 import { useMemo, useState } from 'react';
+import { pct, stressChance } from '../../engine/dice';
 import { ART_NAMES, type Form, type Technique } from '../../data';
 import { abilityTotal, deriveCharacter } from '../../engine/character/derive';
 import {
@@ -585,7 +586,7 @@ export function TurbCard({ cov, update, dc, data }: CovTabProps) {
         </Field>
         {ls && (
           <button className="small" onClick={() => say([`${lead.name}: ${rollGroupTraining(ls.com, ls.lead, time).text}`])} title="A season together makes any group a trained group; a good leader can shorten it (Lords of Men ch.9)">
-            Roll to shorten the training
+            Roll to shorten it: Com + Leadership {ls.com + ls.lead} + stress die vs {time} ({pct(stressChance(ls.com + ls.lead, time, 1).chance)})
           </button>
         )}
         {ls && <span className="muted">{ls.lead > 0 ? `Leads a trained group of up to ${ls.lead} (Leadership).` : 'Without Leadership, they can lead no trained group.'}</span>}

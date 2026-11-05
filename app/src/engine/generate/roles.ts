@@ -22,6 +22,8 @@ export interface Role {
   status?: string;
   /** a craftsman: a Craft, and with guilds on, a guild rank */
   craft?: boolean;
+  /** the Profession the role makes a living by (a merchant's is Merchant), raised in place of a Craft */
+  profession?: string;
   /** a Mythic Companion type (factory.MYTHIC_TYPES) */
   mythic?: string;
   gear?: Gear;
@@ -47,7 +49,7 @@ const COMPANIONS: Role[] = [
   { id: 'redcap', label: 'Redcap', type: 'companion', blurb: 'A messenger of House Mercere without the Gift, who carries the Order’s letters and news.', themes: ['explorer', 'social'], answers: { 'h-outdoors': 7, 'h-social': 7 }, status: 'redcap', gear: 'light', traits: ['Well-Traveled', 'Talkative', 'Loyal to the Order'], ages: [20, 60] },
   { id: 'scholar', label: 'Scholar', type: 'companion', blurb: 'Learned in the liberal arts, law or theology.', themes: ['scholar'], answers: { 'h-scholar': 10, 'e-study': 7 }, gear: 'light', traits: ['Curious', 'Pedantic'], ages: [22, 50] },
   { id: 'priest', label: 'Priest', type: 'companion', blurb: 'Serves the Church, and perhaps the covenant’s conscience.', themes: ['faith', 'scholar'], answers: { 'g-church': 9, 'f-divine': 7, 'h-scholar': 6 }, status: 'priest', gear: 'light', traits: ['Pious', 'Charitable'], ages: [25, 55] },
-  { id: 'merchant', label: 'Merchant', type: 'companion', blurb: 'Buys, sells and knows the price of everything.', themes: ['craftsman', 'noble'], answers: { 'g-wealth': 8, 'h-social': 7 }, status: 'merchant', gear: 'light', traits: ['Shrewd', 'Greedy', 'Generous'], ages: [22, 50] },
+  { id: 'merchant', label: 'Merchant', type: 'companion', blurb: 'Buys, sells and knows the price of everything.', themes: ['craftsman', 'noble'], answers: { 'g-wealth': 8, 'h-social': 7 }, status: 'merchant', profession: 'Merchant', gear: 'light', traits: ['Shrewd', 'Greedy', 'Generous'], ages: [22, 50] },
   { id: 'master-craftsman', label: 'Master craftsman', type: 'companion', blurb: 'Runs a workshop; perhaps a guild master.', themes: ['craftsman'], answers: { 'h-craft': 10, 'h-lead': 6 }, craft: true, gear: 'light', traits: ['Proud of their work', 'Thrifty'], ages: [30, 55] },
   { id: 'spy', label: 'Spy or thief', type: 'companion', blurb: 'Goes where others cannot, and hears what others miss.', themes: ['rogue'], answers: { 'h-stealth': 10, 'h-social': 6, 'g-secret': 6 }, gear: 'light', traits: ['Sly', 'Cautious'], ages: [18, 40] },
   { id: 'woodsman', label: 'Woodsman', type: 'companion', blurb: 'Hunter, tracker and guide in the wild places.', themes: ['explorer'], answers: { 'h-outdoors': 10, 'f-travel': 6 }, gear: 'missile', traits: ['Self-reliant', 'Taciturn'], ages: [20, 45] },

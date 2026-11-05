@@ -471,12 +471,15 @@ export default function HelpPage() {
             dues and the dean&apos;s stipend.
           </li>
           <li>
-            <b>The covenant&apos;s craftsmen</b> (Covenfolk, Finances &amp; Loyalty): each craft&apos;s savings, the craftsmen&apos;s yearly Labor Points and workshop
-            improvements, guild ranks under the Guild Hook or professional guilds, and a strike.
+            <b>The covenant&apos;s craftsmen</b> (Covenfolk, Finances &amp; Loyalty): each craft&apos;s savings, each craftsman&apos;s Labor Points (a season&apos;s, the year&apos;s
+            after the 36 upkeep, and those banked) with buttons to spend them on Innovation and Raw Materials, guild ranks under the guild rule, the Guild Hook or professional
+            guilds, and a strike. <b>+ Cost-saving craftsmen</b> says what it added, or why it added none.
           </li>
           <li>
-            <b>At the table:</b> haggling and bribes on the Market page; the item stress check for damaged goods (damage levels, locks, repair) on the Dice page; a quick
-            court decision on a character&apos;s Overview (optional rule).
+            <b>At the table:</b> sending someone to market on the Market page: who goes (with their appraise and bargain totals), appraising the goods, bargaining against a
+            kind of seller, paying, and bribes for a word from the locals or a bed. Damaged goods on the Dice page: a character&apos;s weapon, armor or device, or a kind of thing,
+            its damage levels, the check&apos;s modifiers and chance, repair while damaged, and another item once one breaks. A quick court decision on a character&apos;s
+            Overview (optional rule). Each roll says whose it is, what it adds and the chance.
           </li>
           <li>
             <b>Merchants</b> (in the workshop card&apos;s Stories and investments): the book&apos;s story seeds with their Labor Points, by the kind of merchant (local
@@ -486,7 +489,8 @@ export default function HelpPage() {
           <li>
             <b>Travel, trade and intrigue</b> (Game table): a journey&apos;s days and cost by road, river or sea, cargo and its carriers, Area Lore to find things, ships
             chasing, boarding and ramming; bribes, hired criminals and sabotage; intrigue against the powerful; a house&apos;s Reputation, largesse and warehouses; a
-            dowry. Costs can be paid from a purse or the treasury.
+            dowry. Choose who acts at the top; each roll shows what it adds and the chance, and its result appears in that part. Costs can be paid from a purse or the treasury,
+            if it has the money.
           </li>
           <li>
             <b>Disease in a town</b> (Combat &amp; Health → Illness): the ague, the bloody flux, worms, St. Anthony&apos;s fire, tarantism and childbed fever on a Stamina

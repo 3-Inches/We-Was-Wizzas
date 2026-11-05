@@ -556,12 +556,28 @@ const MAGUS_BASE = ['concentration', 'finesse', 'penetration', 'awareness', 'cod
 const COMPANION_BASE = ['awareness', 'charm', 'folk-ken', 'athletics', 'area-lore'];
 const GROG_BASE = ['awareness', 'athletics', 'brawl', 'single-weapon'];
 
+/** The choice of the character's best Ability of this kind (their trade), if they have one. */
+function bestParam(c: Character, id: string): string | undefined {
+  const own = c.abilities.filter((a) => a.abilityId === id && a.param);
+  return own.length ? own.reduce((a, b) => (sumAlloc(b.xp) > sumAlloc(a.xp) ? b : a)).param : undefined;
+}
+
+/**
+ * A craftsman's trade is their Craft and a merchant's their Profession: a build that wants "a craft
+ * or trade" raises the one they have and does not start the other (a baker is not also a steward).
+ */
+function secondTrade(c: Character, id: string): boolean {
+  const other = id === 'craft-type' ? 'profession-type' : id === 'profession-type' ? 'craft-type' : undefined;
+  return !!other && !c.abilities.some((a) => a.abilityId === id) && c.abilities.some((a) => a.abilityId === other && sumAlloc(a.xp) > 0);
+}
+
 function abilityParam(id: string, c: Character, inp: BuildInput): string | undefined {
   const region = (inp.covenant?.tribunal || inp.saga?.tribunal || '').trim();
   switch (id) {
     case 'area-lore': return c.nationality || (region ? `${region} Tribunal` : 'Home');
-    case 'craft-type': return 'Blacksmith';
-    case 'profession-type': return c.type === 'magus' ? 'Scribe' : 'Steward';
+    // the character's own trade, raised rather than a second one begun
+    case 'craft-type': return bestParam(c, 'craft-type') ?? 'Blacksmith';
+    case 'profession-type': return bestParam(c, 'profession-type') ?? (c.type === 'magus' ? 'Scribe' : c.virtues.some((v) => v.defId === 'merchant') ? 'Merchant' : 'Steward');
     case 'living-language': return TRIBUNAL_LANGUAGE[region] ?? 'French';
     case 'dead-language': return 'Latin';
     case 'organization-lore': return 'Order of Hermes';
@@ -589,7 +605,7 @@ function spendPoolOnAbilities(c: Character, budget: XpBudget, xp: number, ranked
   const allowed = (id: string) => {
     const def = inp.data.abilityById.get(id);
     const have = c.abilities.some((a) => a.abilityId === id);
-    return !!def && inp.data.isBookEnabled(def.source.book) && (have || abilityAvailability(get().d, inp.data, id).ok) && canSpend(get().d, inp.data, budget, { abilityId: id, param: abilityParam(id, c, inp) }).ok;
+    return !!def && inp.data.isBookEnabled(def.source.book) && !secondTrade(c, id) && (have || abilityAvailability(get().d, inp.data, id).ok) && canSpend(get().d, inp.data, budget, { abilityId: id, param: abilityParam(id, c, inp) }).ok;
   };
   const usable = ranked.filter((r) => allowed(r.id)).slice(0, width);
   if (!usable.length) return 0;
@@ -597,6 +613,8 @@ function spendPoolOnAbilities(c: Character, budget: XpBudget, xp: number, ranked
     // raise the most wanted Ability that is furthest below its share
     let did = false;
     for (const r of usable) {
+      // once a Craft is begun, no Profession beside it as a second trade (and the other way round)
+      if (secondTrade(c, r.id)) continue;
       const ab = ensureAbility(c, r.id, {}, abilityParam(r.id, c, inp));
       const cur = sumAlloc(ab.xp);
       const score = abilityScoreFromXp(cur);

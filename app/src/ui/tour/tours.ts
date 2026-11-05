@@ -67,6 +67,8 @@ export interface PracticeSpec {
   role?: string;
   /** a blank character still in creation, for a tutorial about the wizard */
   draft?: boolean;
+  /** the practice covenant gets people to work with: a few grogs, servants, craftsmen and money in the treasury */
+  folk?: boolean;
   label: string;
 }
 
@@ -728,7 +730,7 @@ export const TOURS: Tour[] = [
     inSaga: true,
     prefers: 'companion',
     prefersTrade: true,
-    practice: { type: 'companion', role: 'master-craftsman', label: 'a practice master craftsman' },
+    practice: { type: 'companion', role: 'master-craftsman', folk: true, label: 'a practice master craftsman' },
     steps: [
       {
         title: 'What this is about',
@@ -767,22 +769,22 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'The covenant’s craftsmen',
-        body: 'Your covenant’s craftsmen (the Covenfolk tab) save it money in their category, as in *Covenants*. With City & Guild they keep Labor Points the same way, more simply. Each line shows a year’s points after the 36 upkeep and how many are banked, with buttons to spend them on Innovation and Raw Materials. Under the Guild Hook, or with the guild rule, each holds a rank too.',
+        body: 'Your covenant’s craftsmen (the Covenfolk tab, **Craftsmen**) save it money in the category their craft serves, as in *Covenants*: a carpenter on Buildings, a smith on Consumables. With City & Guild each also earns Labor Points, more simply than a player’s craftsman: the line under each one shows **Labor Points**: a season’s points times the seasons they work (two for an average craftsman), what is left after the 36 upkeep, and how many are **banked** (they are banked when the year closes). An average craftsman needs Dexterity + Craft of 7 or more to save anything. The **Innovation** and **Raw Materials** buttons spend them, and are greyed until enough are banked. A practice covenant has a carpenter and a smith with a year’s points banked; **+ Cost-saving craftsmen** adds more where they would save money, and says what it added or why it added none. With the guild rule, each has a guild rank too.',
         at: covenant('folk'), needs: 'covenant', target: 'craftsmen',
       },
       {
         title: 'Haggling and bribes',
-        body: 'When a grog goes to market for the magi, the Market page has the haggle: appraise the goods, then bargain the price down, 10% for every 3 points the roll beats the seller by (never below half). A bribe of a day’s or a week’s pay makes a roll easier.',
+        body: 'Magi send a grog or companion to buy for them, since The Gift sets prices soaring. On the Market page, **Sending someone to market**:\n- **Who goes**: the list shows each person’s appraise (Perception + Bargain) and bargain (Communication + Bargain), from their sheet.\n- **1. What are the goods worth?** Set the value and the kind of goods, then **Appraise**: a roll against 9 (6 for common goods or their own trade, 12 for rare ones). Success means they know the real value, so they cannot be overcharged.\n- **2. How low will the seller go?** Pick the kind of seller (a guide to their Communication + Bargain), then **Bargain**: both roll, and every 3 points the buyer wins by takes 10% off, never below half. **Pay** takes it from the buyer chosen at the top of the page.\n- **Bribes** are for something else: getting a local to talk, or a bed for the night. A day’s pay takes 1 off that roll’s Ease, a week’s 3; it is paid when the roll is made.\n\nEach button shows the total it rolls and the chance.',
         at: sagaPage('market'), needs: 'saga', target: 'haggle',
       },
       {
         title: 'Damaged goods',
-        body: 'When a botch or rough use puts a valued item at risk, roll a stress die plus modifiers against 15 on the Dice page. Each failure costs it a damage level; how many it has comes from its quality and size (a lock has twice as many). Repairing takes a craftsman’s season and a Labor Point for each level.',
+        body: 'When a botch or rough use puts a valued item at risk (a sword in a botched fight, a cloak used as a rope), it makes a check on the Dice page, **Damaged goods**. Choose **whose** it is and **the item**: one of their weapons, their armor or an enchanted device, or a kind of thing (a lock, a cart, a house). The card says how many **damage levels** it has (from its quality, times more for a big thing, twice for a lock), the modifiers (the user’s Ability with it, its quality, the light, prolonged use) and the chance. **Roll the check**: a stress die plus the modifiers against 15; a failure costs a level, a botch more. It works until the last level goes, then it is broken. **Repair it** while it is only damaged (a craftsman’s season, a Labor Point a level); a broken item cannot be repaired, so **check another item**.',
         at: page('/dice'), target: 'item-check',
       },
       {
         title: 'Travel, trade and intrigue',
-        body: 'The rest of the book is on the Game table, under **Travel, trade and intrigue**: how long a journey takes and costs by road, river or sea; bribes and hired criminals; sabotage; intrigue against nobles; a merchant house’s Reputation; and dowries. A merchant’s story seeds and investments of time (a convoy, a sponsor, a blockade) are in the workshop card’s **Stories and investments**. That is the whole of it: a working character’s seasons earn points, the year takes 36, and the rest builds a better business and a better life.',
+        body: 'The rest of the book is on the Game table, under **Travel, trade and intrigue**. Choose **who acts** at the top: the list shows their Area Lore, Intrigue and Stealth totals, and the line below gives their scores and purse. Open a part to use it: a journey’s days and cost by road, river or sea, and finding things on the way (Intelligence + Area Lore); ships in a chase; bribes, hired criminals and sabotage; intrigue against nobles; a house’s Reputation; dowries. Each roll says what it adds and the chance, and its result appears in that part. A merchant’s story seeds and investments (a convoy, a sponsor, a blockade) are in the workshop card’s **Stories and investments**. That is the whole of it: a working character’s seasons earn points, the year takes 36, and the rest builds a better business and a better life.',
         at: sagaPage('table'), needs: 'saga', target: 'table-trade',
       },
     ],
