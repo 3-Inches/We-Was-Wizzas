@@ -23,6 +23,7 @@ import { uid } from '../../util/id';
 import { generateCharacter, type Generated } from './character';
 import { freshName, homelandGroupFor, regionOf } from './names';
 import { between, chance, seeded } from './random';
+import { applyCovenfolkBoons, applyCovenfolkBoonsToSpecialist } from '../covenantBoons';
 
 export interface FillOptions {
   /** steward, chamberlain, turb captain and scribe, each if the covenant has none */
@@ -130,7 +131,11 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
   const bpText = (s: Specialist) => (o.bought ? ` (${specialistCost(s)} BP)` : '');
   const short: string[] = [];
   /** Hire one specialist if the Build Points allow: paid from a pool where one is set aside for it. */
+  // the covenant's covenfolk Boons and Hooks shape those made here (Literate Covenfolk, Local Language, Useful Curse, Inhuman Residents…)
+  const boonNotes: string[] = [];
+  const shape = (who: string, notes: string[]) => notes.length && boonNotes.push(`${who}: ${notes.join(', ')}`);
   const hire = (s: Specialist, label: string, text: string) => {
+    shape(s.name, applyCovenfolkBoonsToSpecialist(s, cov, rng, g.data));
     if (o.bought && specialistCost(s) > room('specialist')) return void short.push(label);
     cov.specialists.push(s);
     pay('specialist', [s.uid]);
@@ -206,6 +211,12 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
     const role = i === 0 && !led && o.grogs >= 3 ? 'sergeant' : chance(rng, 0.33) ? 'archer' : 'shield-grog';
     const gen = generateCharacter({ type: 'grog', role, variety: 'varied', npc: false, finished: true, seed: o.seed + 101 * (i + 1), avoidNames: [...used] }, { ...g, covenant: cov });
     used.add(gen.c.name);
+    // the work it does: its best Martial Ability
+    const work = [...gen.c.abilities]
+      .filter((a) => g.data.abilityById.get(a.abilityId)?.type === 'Martial')
+      .sort((a, b) => Object.values(b.xp).reduce<number>((t, n) => t + (n ?? 0), 0) - Object.values(a.xp).reduce<number>((t, n) => t + (n ?? 0), 0))[0]?.abilityId;
+    const heldFlaw = gen.c.virtues.filter((v) => v.heldBy).map((v) => `${g.data.vfById.get(v.defId)?.name ?? v.defId} (held off by the Immunity)`);
+    shape(gen.c.name, [...heldFlaw, ...applyCovenfolkBoons(gen.c, cov, g.data, rng, work)]);
     grogs.push(gen);
     cov.memberIds.push(gen.c.id);
   }
@@ -260,6 +271,7 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
     const purse = o.bought ? budgetLeft(cov, derived(), 'specialist') : undefined;
     const maxEach = purse ? Math.max(purse.own, ...purse.pools.map((p) => p.left)) : Infinity;
     const added = addCostSavingCraftsmen(cov, members(), derived().labs, 'best', room('specialist'), maxEach);
+    for (const s of cov.specialists.filter((x) => !had.has(x.uid))) shape(s.name, applyCovenfolkBoonsToSpecialist(s, cov, rng, g.data));
     pay('specialist', cov.specialists.filter((s) => !had.has(s.uid)).map((s) => s.uid));
     // a pool takes a craftsman only whole: those it could not, and the budget cannot cover, are not hired
     const pooled = () => paidFromPools(cov);
@@ -417,6 +429,7 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
       stocks(Infinity);
     }
   }
+  if (boonNotes.length) log.push(`The covenant's covenfolk Boons and Hooks on those made here: ${boonNotes.join('; ')}.`);
   // Flawed and Illusory Resources set aside for kinds of resource mark 250 Build Points of them
   if (o.bought) log.push(...markResources(cov, g.data, all()));
   return { cov, grogs, log };

@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import { auraRecovery } from '../../../engine/aura';
+import { immuneToDisease } from '../../../engine/covenantBoons';
 import { DISEASES, STAGES, STAGE_PENALTY, TOWN_DISEASES, avoidanceRoll, currentSeverity, illnessFrom, prognosisTotal, recoveryRoll, townExposure } from '../../../engine/disease';
 import { livingConditions } from '../../../engine/time';
 import type { Illness } from '../../../engine/types';
@@ -32,6 +33,8 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
 
   const catchIt = () => {
     if (!def) return;
+    // an Immunity Boon holds it off within the covenant's aura (Covenants ch.2): not cured, but kept from them while they stay
+    if (atHome && immuneToDisease(ctx.covenant, def.name)) return note(`${def.name}: the covenant's Immunity holds it off within its aura. Not caught, while ${c.name || 'the character'} stays there.`);
     const r = avoidanceRoll(d, living, def);
     if (!r.caught) return note(`Disease Avoidance for ${def.name}: ${r.text}. Avoided.`);
     update((x) => {

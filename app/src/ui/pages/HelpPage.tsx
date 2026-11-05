@@ -227,12 +227,30 @@ export default function HelpPage() {
 
       <Card title="The covenant" id="covenant">
         <ul className="small">
-          <li>Choose the covenant&apos;s season, aura and power level (Build Points).</li>
+          <li>
+            Choose the covenant&apos;s season, aura and power level: its Build Points and its limits, the highest lab text and device effect (25 for Low, 40 for Medium) and the
+            age it should have. Tick <b>keep the limits whatever the Build Points</b> for a young covenant with things lent or given to it: a Low covenant with 800 Build
+            Points keeps level 25.
+          </li>
           <li>
             Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1, Weak Aura lowers it, and the Overview&apos;s Aura card shows it as it stands and keeps its changes. There
             a Magic aura can be aligned (with an Art it counts double for, or Healing, Luck…), and a Dominion follow its congregation&apos;s years of worship. Click a Hook or Boon to read it. Resources Boons and Hooks (Wealth, Secondary Income, Poverty,
             Indebted…) take an income source; Hidden Resources pays for 250 Build Points of resources on top of the covenant&apos;s own; a Flawed or Illusory Resource adds none,
             and marks 250 of the covenant&apos;s own Build Points of resources as likely to be lost or not really there; Exceptional Book adds its summa free.
+          </li>
+          <li>
+            Boons and Hooks that change the covenant&apos;s people take effect. Choose what Inhuman Residents or Inhuman Covenfolk are (faeries, beings of Magic, spirits,
+            awakened animals) and their share: they do not age, are immune to Warping, most need no sleep, and those that eat nothing are left out of the Provisions. Literate
+            Covenfolk read (Artes Liberales 1), the Local Language is spoken, a Useful Curse makes the cursed better at an Ability, and Incompetent and Distorted Covenfolk
+            show on those made there. The Covenfolk tab says what they make of its people and gives it to those already there; Quick build gives it to those it makes.
+          </li>
+          <li>
+            An Immunity covers a hazard, a disease, an influence or (Major) a Flaw within the aura: a disease cannot be caught there and a plague passes it by, Warping
+            does not build up. A Flaw it covers is given, paired with it, to the grogs, companions and magi the toolkit makes for the covenant (at the share you set),
+            who spend the Virtue points it gives; a paired Flaw is held off in the aura and is back when they leave (the Combat &amp; Health tab has the box), and pairing
+            one makes the Boon a Major Hook. A Regio Hook of another realm is one more Minor Hook. Loyal and Rebellious Covenfolk, the Healthy Feature, Unhealthy
+            Environment and Vivid Environment change Prevailing Loyalty, and the Healthy Feature and Unhealthy Environment the Aging rolls too. Prestige and Infamous give the covenant its Reputations. An Edifice may be a Great Work, a summa or tractatus built as a structure, free; or
+            buy one as a book.
           </li>
           <li>Buy the library, lab texts, vis sources, enchanted items and specialists; the toolkit prices everything and enforces the creation limits.</li>
           <li>

@@ -473,6 +473,8 @@ export interface CharVirtue {
   wasTaken?: boolean;
   /** why the guided build chose it ("from: I expect to cast in a fight — 9") */
   why?: string;
+  /** a Flaw paired with the covenant's Immunity (the Boon's uid): held off while the character lives in its aura, back when they leave (Covenants ch.2) */
+  heldBy?: string;
 }
 
 export interface CharPower {
@@ -876,6 +878,8 @@ export interface Character {
   warpingPoints: number;
   /** how much of the year it spends in the covenant's aura, for the Warping a strong one gives (DE, Living in Strong Auras); always, unless set */
   auraTime?: 'always' | 'half' | 'visits' | 'away';
+  /** away from the covenant now (a story, a journey): a Flaw its Immunity holds off is back until they return */
+  awayFromCovenant?: boolean;
   /** the highest Warping Score whose effects on a non-magus the year's end has reported (DE, Effects of Warping) */
   warpingNoted?: number;
   /** the realm a non-magus's Warping Score 5 Virtue is attuned to: an aura of that realm no longer warps it */
@@ -948,6 +952,8 @@ export interface Character {
   fromBook?: { book: string; line: number; title?: string };
   /** the seasons a year are spent: a free-season count set by hand, needing no sleep, and what the extra seasons go to */
   seasons?: { free?: number; sleepless?: boolean; extra?: StandingActivity };
+  /** one of a covenant's inhuman covenfolk (Inhuman Residents Boon, Inhuman Covenfolk Hook): what it is, and so what it is spared */
+  inhuman?: InhumanNature;
   /** the last year whose aging roll was made */
   lastAgedYear?: number;
   /** improved or reduced rations given as a reward or punishment: the year, and its change to the aging roll (Grogs) */
@@ -999,7 +1005,23 @@ export interface CovenantHookBoon {
   due?: { year: number; season: Season };
   /** Flawed Resource: its story's roll, as it went */
   rolled?: string;
+  /** Regio Hook: a regio that is not magical counts as an additional Minor Hook (Covenants ch.2) */
+  regioRealm?: 'Faerie' | 'Divine' | 'Infernal';
+  /** Immunity Boon: what everyone in the covenant's aura is immune to */
+  /** an Immunity's object; for a Flaw, the share (0–1) of those the toolkit makes for the covenant who have it (all, if unset) */
+  immunity?: { kind: ImmunityKind; value: string; share?: number };
+  /** Inhuman Residents Boon, Inhuman Covenfolk Hook: what the covenfolk are, and what share of them */
+  inhuman?: { nature: InhumanNature; share: number };
+  /** Useful Curse Boon: the curse, the Ability it makes the cursed better at and by how much, and what share of the covenfolk */
+  curse?: { what: string; ability?: string; bonus: number; share: number };
+  /** Local Language Boon: the language the covenfolk speak */
+  language?: string;
 }
+
+/** What an inhuman covenfolk is (Covenants ch.2, Inhuman Residents; RoP: Faerie, RoP: Magic). */
+export type InhumanNature = 'faerie' | 'magic' | 'spirit' | 'animal';
+/** What an Immunity Boon covers (Covenants ch.2, as the Greater and Lesser Immunity Virtues): a hazard, a disease, an influence, or a Flaw. */
+export type ImmunityKind = 'hazard' | 'disease' | 'influence' | 'flaw';
 
 /** What a covenant buys with Build Points (Covenants ch.2): its people (specialists and craftsmen), books, vis, items, labs and money. */
 export type BudgetKind = 'specialist' | 'book' | 'vis' | 'item' | 'lab' | 'money';
@@ -1066,7 +1088,7 @@ export interface ScriptoriumCopy {
 }
 
 /** The format of a book, beyond a plain bound codex (Covenants ch.7, Secondary Functions). */
-export type BookFormat = 'codex' | 'flap' | 'exemplar' | 'unbound' | 'holograph' | 'deluxe' | 'juvenilia' | 'ex-libris';
+export type BookFormat = 'codex' | 'flap' | 'exemplar' | 'unbound' | 'holograph' | 'deluxe' | 'juvenilia' | 'ex-libris' | 'great-work';
 
 /** How a book is made under the extended rules: skilled artisans (+1 each), resonant materials (+1 bought, +2 from a story), clarification (+1). */
 export interface BookMake {
@@ -1210,6 +1232,8 @@ export interface Specialist {
   wealth?: 'poor' | 'wealthy';
   /** experience toward the next point of Teaching (teachers) */
   teachingXp?: number;
+  /** one of the covenant's inhuman covenfolk (Inhuman Residents Boon, Inhuman Covenfolk Hook): it does not age */
+  nature?: InhumanNature;
   /** the Build Points paid when they were bought, kept once their scores start to rise in play */
   boughtFor?: number;
   /** a teacher's lab: its Teaching Specialization (at most +3) adds to the Source Quality of teaching done there (Covenants ch.9) */
@@ -1389,6 +1413,8 @@ export interface Covenant {
   auraRealm: 'Magic' | 'Faerie' | 'Divine' | 'Infernal';
   powerLevel: PowerLevel;
   buildPoints: number;
+  /** keep the power level's limits (highest lab text and device effect, DE p.179) with Build Points outside its range: things lent, gifted or held in trust (the troupe's choice) */
+  keepPowerLevel?: boolean;
   memberIds: string[];
   hooksBoons: CovenantHookBoon[];
   library: LibraryBook[];

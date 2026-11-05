@@ -37,6 +37,7 @@ import { apprenticesYearEnd, tribunalGathering, wanderersSeasonStart, wanderersY
 import { workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
 import { uid } from '../util/id';
+import { environmentAging, flawHeld, immuneToWarping } from './covenantBoons';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from './labHelp';
 
@@ -89,7 +90,9 @@ export function livingConditions(d: DerivedCharacter, ctx: CharacterContext): nu
   const cov = ctx.covenant;
   const base = cov ? (cov.season === 'Summer' || cov.season === 'Autumn' ? (d.isMagus ? 2 : 1) : d.isMagus ? 1 : 0) : 0;
   const labHealth = ctx.lab ? Math.floor(ctx.lab.characteristics.Health / 2) : 0;
-  return base + (cov?.finances.livingConditions ?? 0) + d.livingConditionsMod + labHealth - hazardPenalty(d.char);
+  // a Healthy Feature (+1) or Unhealthy Environment (−1, not with a longevity ritual) at the covenant (Covenants ch.2)
+  const site = environmentAging(cov, !!d.char.longevity).reduce((t, p) => t + p.value, 0);
+  return base + (cov?.finances.livingConditions ?? 0) + d.livingConditionsMod + labHealth + site - hazardPenalty(d.char);
 }
 
 /** The Ability Worship teaches: Church Lore, Concentration or Music (the one the character knows best), else Church Lore (The Church). */
@@ -305,7 +308,12 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       return [`Read ${b.title} (${b.kind === 'summa' ? `summa, Level ${b.level}` : 'tractatus'}, Quality ${b.quality}): ${t.label} +${r.xp} xp.${mightNote(d, r.xp)}`];
     }
     case 'practice': {
-      if (!s.target) return runActivity(c, d, ctx, cov, data, year, season, rng, { kind: 'practice', target: workAbility(d) }, chars);
+      if (!s.target) {
+        // one with no Ability yet has nothing to practice (and asking again would never end)
+        const work = workAbility(d);
+        if (!work) return [`${c.name || 'They'} has no Ability to practice yet: give them one, or set another standing activity.`];
+        return runActivity(c, d, ctx, cov, data, year, season, rng, { kind: 'practice', target: work }, chars);
+      }
       const t = target(s.target);
       if (!t || 'art' in t) return t ? [`Arts cannot be practiced; set another standing activity.`] : [];
       const r = computeStudy(d, { kind: 'practice', quality: 4, subject: t.label }, { abilityUid: t.abilityUid });
@@ -441,12 +449,13 @@ export function covenantAttendants(cov: Covenant, chars: Character[], derive: (c
 export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterContext, year: number, rng: Rng, roll: boolean, attendant?: Attendant): Line[] {
   const who = c.name || 'Unnamed';
   const lines: Line[] = [];
-  if (!c.creature?.magicCharacter) c.age += 1;
+  // a magic character, and one of the inhuman covenfolk, does not age (RoP: Magic, RoP: Faerie)
+  if (!c.creature?.magicCharacter && !c.inhuman) c.age += 1;
   // a magic character does not age (RoP: Magic); others roll from 35, or earlier with a Longevity Ritual
   // lab routines (Covenants) worsen the year's Living Conditions, and overtime can add Aging rolls; a
   // character under 35 then rolls too
   const routine = routineYear(c, year);
-  const ages = !c.creature?.magicCharacter && (c.age >= d.agingStartAge || !!c.longevity || routine.living < 0 || routine.extraRolls > 0);
+  const ages = !c.creature?.magicCharacter && !c.inhuman && (c.age >= d.agingStartAge || !!c.longevity || routine.living < 0 || routine.extraRolls > 0);
   const due = roll && ages && c.lastAgedYear !== year;
   if (due) {
     if (routine.from.length) lines.push({ who, kind: 'aging', text: `Lab routines this year (${routine.from.join(', ')}): Living Conditions ${routine.living}${routine.extraRolls ? `, ${routine.extraRolls} extra Aging roll${routine.extraRolls > 1 ? 's' : ''}` : ''}.` });
@@ -454,7 +463,7 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
     c.lastAgedYear = year;
   }
   // Warping: constant effects (and a Longevity Ritual), and living in a strong aura not of one's own realm
-  const cw = constantWarping(c);
+  const cw = c.inhuman ? { points: 0, from: [] as string[] } : constantWarping(c);
   const aura = auraWarping(c, d, ctx, year);
   const wp = cw.points + aura;
   if (wp) {
@@ -499,7 +508,7 @@ function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: 
     const crisis = crisisRoll(c.age, decrepitudeScore(c.decrepitudePoints), rng);
     let text = `Crisis ${crisis.roll}: ${crisis.text}`;
     // a leper takes a Heavy Wound in every aging crisis (Leprosy Flaw)
-    if (c.virtues.some((v) => v.defId === 'leprosy-flaw')) ((c.wounds.heavy += 1), (text += ' Leprosy: a Heavy Wound as well.'));
+    if (c.virtues.some((v) => v.defId === 'leprosy-flaw' && !flawHeld(c, v))) ((c.wounds.heavy += 1), (text += ' Leprosy: a Heavy Wound as well.'));
     // a failed roll, or a terminal illness, kills unless magic saves them: marked dead, to be brought back if it does (DE, Aging)
     const saved = ' Marked dead: if magic saves them, untick Dead on their Combat & Health tab.';
     if (crisis.ease !== undefined) {
@@ -544,6 +553,8 @@ const AURA_WARPING: Record<number, [number, number, number]> = { 6: [1, 0, 0], 7
  */
 export function auraWarping(c: Character, d: DerivedCharacter, ctx: CharacterContext, year = 0): number {
   if (!ctx.covenant) return 0;
+  // one of the inhuman covenfolk has a Might and is "absolutely immune to warping" (DE); an Immunity to Warping covers all in the aura
+  if (c.inhuman || immuneToWarping(ctx.covenant)) return 0;
   const { realm, strength } = ctx.aura;
   const time = c.auraTime ?? 'always';
   if (strength < 6 || time === 'away' || c.warpingAttuned === realm) return 0;

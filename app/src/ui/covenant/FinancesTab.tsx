@@ -13,7 +13,7 @@ import { Card, Field, Stepper, Tabs, Total, HowItWorks } from '../kit';
 import type { CovTabProps } from './shared';
 import { LaterNote } from '../LaterNote';
 import { HardTimesCard } from './HardTimesCard';
-import { CraftMagicCard, GearHelper, OrganizationCard, SoldiersCard, TurbCard, YearlyCard } from './CovenfolkCards';
+import { CovenfolkBoonsCard, CraftMagicCard, GearHelper, OrganizationCard, SoldiersCard, TurbCard, YearlyCard } from './CovenfolkCards';
 import {
   CRAFT_GUILD_ORDER, CRAFT_GUILD_RANKS, ROLE_BY_ID, ROLE_DEFS, craftsmanUpkeep, craftsmanWorkshopTotal, nextImprovementCost, guildRanksApply, guildShortfalls, laborPointsPerSeason,
   suggestedGuildRank, workSeasons,
@@ -77,6 +77,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
         onChange={setSub}
       />
       {show('people') && (<>
+      <CovenfolkBoonsCard cov={cov} update={update} dc={dc} data={data} />
       <div className="grid grid-2">
         <Card title="Covenfolk" className="accent" fold="cov-covenfolk" summary={`${Object.values(cov.covenfolk).reduce((t, n) => t + n, 0)} covenfolk (${cov.covenfolk.grogs} grogs, ${cov.covenfolk.servants} servants, ${cov.covenfolk.laborers} laborers, ${cov.covenfolk.teamsters} teamsters); ${f.inhabitantPoints} points of inhabitants.`}>
           <div className="grid grid-3">

@@ -195,11 +195,11 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
                 </select>
               </div>
             </Field>
-            <Field label="Power level">
+            <Field label="Power level" hint={`Lab texts and device effects up to level ${dc.powerLevel.maxItemLevel === Infinity ? 'any' : dc.powerLevel.maxItemLevel}${dc.powerLevel.minAge ? `; a covenant at least ${dc.powerLevel.minAge} years old` : ''} (DE p.179).`}>
               <select value={cov.powerLevel} onChange={(e) => update((x) => void (x.powerLevel = e.target.value as Covenant['powerLevel']))}>
                 {POWER_LEVELS.map((p) => (
                   <option key={p.level} value={p.level}>
-                    {p.level} ({p.min}–{p.max === Infinity ? '∞' : p.max} BP)
+                    {p.level} ({p.min}–{p.max === Infinity ? '∞' : p.max} BP, level {p.maxItemLevel === Infinity ? 'any' : p.maxItemLevel}{p.minAge ? `, ${p.minAge}+ years` : ''})
                   </option>
                 ))}
               </select>
@@ -208,6 +208,20 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
               <Stepper value={cov.buildPoints} min={0} step={50} width={60} onChange={(v) => update((x) => void (x.buildPoints = v))} />
             </Field>
           </div>
+          <label className="inline small" title="The power level's limits stay, whatever the Build Points: things lent or given to a young covenant, or held in trust (the troupe's choice)">
+            <input type="checkbox" checked={!!cov.keepPowerLevel} onChange={(e) => update((x) => void (x.keepPowerLevel = e.target.checked || undefined))} /> keep the {cov.powerLevel} limits whatever the Build Points (things lent,
+            given or held in trust)
+          </label>
+          {dc.reputations.length > 0 && (
+            <div className="row small" style={{ marginTop: 6 }}>
+              <span>Reputations:</span>
+              {dc.reputations.map((r, i) => (
+                <span key={i} className={`badge ${r.bad ? 'bad' : 'good'}`}>
+                  {r.text} {r.score} ({r.scope})
+                </span>
+              ))}
+            </div>
+          )}
           <Field label="Description">
             <textarea rows={4} value={cov.description} onChange={(e) => update((x) => void (x.description = e.target.value))} />
           </Field>

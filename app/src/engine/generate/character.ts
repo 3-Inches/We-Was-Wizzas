@@ -16,6 +16,7 @@ import { deriveCharacter, type DerivedCharacter } from '../character/derive';
 import { vfProblems } from '../character/restrictions';
 import { validateCharacter, type Issue } from '../character/validate';
 import { autoBuild } from '../guided/autobuild';
+import { takeImmunityFlaw } from '../covenantBoons';
 import { simulate } from '../guided/simulate';
 import { ageYears } from '../longterm';
 import { longevityBonus } from '../enchant';
@@ -160,6 +161,10 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   if (role.craft) setUpCraft(c, o, g, role, rng, log);
   // choices on what the role brought (a Mythic type's Virtues) are made before the build spends around them
   fillChoices(c, data, rng);
+  // made for a covenant whose Immunity holds off a Flaw: the Flaw, paired with it, its Virtue points
+  // to spend (Covenants ch.2: "if players designing characters pair their Flaws to this immunity…")
+  const held = takeImmunityFlaw(c, g.covenant, data, rng);
+  if (held) log.push(`Flaw: ${held}.`);
 
   // ------------------------------------------------------------ the build
   // a magus's favorite Arts, unless the answers name them: a Technique and a Form or two, mostly what
