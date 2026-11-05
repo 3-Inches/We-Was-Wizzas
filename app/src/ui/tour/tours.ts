@@ -723,7 +723,7 @@ export const TOURS: Tour[] = [
   {
     id: 'city-guild',
     title: 'Craftsmen, guilds and Labor Points (City & Guild)',
-    blurb: 'How a craftsman or merchant earns a living, improves the workshop and rises in the world; guild ranks; the covenant’s own craftsmen; haggling; and items that break.',
+    blurb: 'What City & Guild adds: a craftsman’s or merchant’s career, kept in Labor Points. What they are, how a season’s work earns them, what the yearly upkeep takes, and what the rest buys; better goods; guild ranks; the covenant’s own craftsmen; haggling; and items that break.',
     group: 'In play',
     inSaga: true,
     prefers: 'companion',
@@ -731,43 +731,58 @@ export const TOURS: Tour[] = [
     practice: { type: 'companion', role: 'master-craftsman', label: 'a practice master craftsman' },
     steps: [
       {
-        title: 'Labor Points',
-        body: 'A craftsman or merchant does not count pennies: each season tending the business earns **Labor Points**, (Characteristic + Craft or Profession) × 2, 3 or 6 for Poor, average or Wealthy. Keeping the business going costs 36 a year (more with better Raw Materials); the rest is saved up. The **Livelihood & workshop** card appears on Seasons & Aging for anyone with a Craft or Profession.',
-        at: sheet('advancement'), needs: 'character', target: ['workshop', 'plan-season'],
-      },
-      {
-        title: 'Making goods',
-        body: 'The **Workshop Total** (Characteristic + Craft + Innovation + Raw Materials, plus assistants) against the **Craft Level** (6, raised by war, scarce materials, interruptions or an aura) sets the season’s goods: shoddy, standard, superior at +6, excellent at +9, with the number made scaled by Craft. Exertion adds a die at a risk; wondrous items take Craft Level 12 + magnitude.',
+        title: 'What this is about',
+        body: '*City & Guild* is for characters who **work for a living**: a companion or grog who is a smith, a weaver, a baker or a merchant. The core rules have such a character work two seasons a year and leave it there. *City & Guild* keeps track of what that work builds up, in **Labor Points**: not money, but the time and effort put into the business. Saved up, they make the business better and the character richer. If nobody in your troupe plays a craftsman or merchant, you can skip this tutorial: nothing else needs it. This tutorial works on a practice master craftsman, whose **Livelihood & workshop** card is on the Seasons & Aging tab.',
         at: sheet('advancement'), needs: 'character', target: 'workshop',
       },
       {
-        title: 'Spending Labor Points',
-        body: 'Saved points buy Innovation (100, 300, 600) or Raw Materials (50, 150, 300), each taking a season out of the workshop, or a rise in wealth (120 to average, 360 to Wealthy, 1,080 to the next Social Status). **Stories and investments** add or spend them: half a season’s worth to two and a half for a story, charity, lawsuits, introductions, marriages, speculation, smuggling, and money put into the business.',
+        title: 'Earning Labor Points',
+        body: 'Each season the character **works**, they earn (Characteristic + Craft) Labor Points, times 2 if Poor, 3 if average, 6 if Wealthy (the Poor Flaw or Wealthy Virtue). A merchant uses Communication + Profession. The card shows it as **Labor Points a season**. Say Dexterity +2 and Craft 5: 7, times 3 for an average craftsman, is 21 a season. Their working seasons go to the workshop by themselves when the seasons pass (the Plan shows which seasons they work), or press **Work a season** on the card for one now. The points go into **Labor Points banked**.',
+        at: sheet('advancement'), needs: 'character', target: ['workshop', 'plan-season'],
+      },
+      {
+        title: 'The yearly upkeep',
+        body: 'Keeping the business going costs **36 Labor Points a year** (more with better Raw Materials), taken when the saga’s year ends: **Upkeep a year** on the card. Our 21 a season over two seasons is 42: the 36 is paid and 6 are left to save. That is why the rules have an average character work two seasons, a Poor one three and a Wealthy one only one. Their other seasons are their own, to study or adventure. A year that cannot pay the upkeep lets the business slip.',
+        at: sheet('advancement'), needs: 'character', target: 'workshop',
+      },
+      {
+        title: 'What saved points buy',
+        body: 'Saved Labor Points are how a craftsman gets ahead. A **better workshop**: Innovation (100 points for +1, 600 in all for +3) and Raw Materials (50 for +1, 300 for +3) make better goods (next step). **More wealth**: 120 points takes a Poor character to average, 360 an average one to Wealthy, who then earns twice as much a season. 1,080 takes a Wealthy one up a Social Status, from craftsman to guild master, say. Each of these takes a season away from the work. So the career runs: work, pay the upkeep, save the rest, then invest it.',
+        at: sheet('advancement'), needs: 'character', target: 'workshop',
+      },
+      {
+        title: 'The goods they make',
+        body: 'A season’s work also makes goods, and the card shows how good. The **Workshop Total** (Characteristic + Craft + Innovation + Raw Materials, and half the Craft of any assistants) is set against the **Craft Level**: 6 normally, higher in war, famine, an aura or with scarce materials. Below it the goods are shoddy; at it, standard; 6 above, superior; 9 above, excellent. Superior and excellent goods give whoever uses them a bonus: a better sword, a warmer cloak. Selling them is a Presence + Bargain roll (**Haggle a sale**).',
+        at: sheet('advancement'), needs: 'character', target: 'workshop',
+      },
+      {
+        title: 'Points from stories',
+        body: 'Labor Points also come from **stories**. A craftsman who helps the magi earns half a season’s worth for a side part, up to two and a half for a story the town or covenant depended on. They are under **Stories and investments** on the card, or **After a story** on the Game table. The same fold spends points on charity, a lawsuit, a marriage and so on, each with its effect, and turns money put into the business into points. Points never turn back into money.',
         at: sheet('advancement'), needs: 'character', target: 'workshop',
       },
       {
         title: 'The guild',
-        body: 'Apprentice, journeyman, master, senior master or dean: the Guild Lore and other Abilities each rank needs, the apprentice piece, journeymen’s contracts, a master’s fee and vote, dues and the dean’s stipend.',
+        body: 'In a town, each craft is run by its **guild**. With the guild rule on (saga page, optional rules), a craftsman holds a rank:\n- an **apprentice** learns the trade;\n- a **journeyman** works for others by contract;\n- a **master** keeps a workshop and votes in the guild;\n- a **senior master** and the **dean** run it.\n\nEach rank needs Guild Lore and a few other Abilities at a set score; the Guild card says what is missing, and what the next rank costs.',
         at: sheet('advancement'), needs: 'character', target: ['guild', 'workshop'],
       },
       {
         title: 'The covenant’s craftsmen',
-        body: 'Craftsmen working for the covenant save money in their category and earn Labor Points for its workshop each year; under the Guild Hook (or professional guilds) each holds a rank. The crafts the other books name, such as bakers and butchers, are offered beside Covenants’ examples.',
+        body: 'Your covenant’s craftsmen (the Covenfolk tab) save it money in their category, as in *Covenants*. With City & Guild they keep Labor Points the same way, more simply. Each line shows a year’s points after the 36 upkeep and how many are banked, with buttons to spend them on Innovation and Raw Materials. Under the Guild Hook, or with the guild rule, each holds a rank too.',
         at: covenant('folk'), needs: 'covenant', target: 'craftsmen',
       },
       {
         title: 'Haggling and bribes',
-        body: 'A grog sent to buy for the magi appraises the goods and bargains the price down (10% for every 3 points, never below half); a bribe of a day’s or a week’s pay eases a roll.',
+        body: 'When a grog goes to market for the magi, the Market page has the haggle: appraise the goods, then bargain the price down, 10% for every 3 points the roll beats the seller by (never below half). A bribe of a day’s or a week’s pay makes a roll easier.',
         at: sagaPage('market'), needs: 'saga', target: 'haggle',
       },
       {
         title: 'Damaged goods',
-        body: 'When a botch or misuse puts a valued item at risk: a stress die + modifiers against 15. Damage levels come from quality and Size (twice for a lock); repair takes a craftsman’s season and a Labor Point a level.',
+        body: 'When a botch or rough use puts a valued item at risk, roll a stress die plus modifiers against 15 on the Dice page. Each failure costs it a damage level; how many it has comes from its quality and size (a lock has twice as many). Repairing takes a craftsman’s season and a Labor Point for each level.',
         at: page('/dice'), target: 'item-check',
       },
       {
         title: 'Travel, trade and intrigue',
-        body: 'On the Game table: journeys by road, river and sea, bribes and hired criminals, sabotage, intrigue against nobles, a merchant house’s Reputation and largesse, and dowries. A merchant’s story seeds and investments of time (convoys, sponsors, blockades, young talent, a change of government) are in the workshop card’s Stories and investments.',
+        body: 'The rest of the book is on the Game table, under **Travel, trade and intrigue**: how long a journey takes and costs by road, river or sea; bribes and hired criminals; sabotage; intrigue against nobles; a merchant house’s Reputation; and dowries. A merchant’s story seeds and investments of time (a convoy, a sponsor, a blockade) are in the workshop card’s **Stories and investments**. That is the whole of it: a working character’s seasons earn points, the year takes 36, and the rest builds a better business and a better life.',
         at: sagaPage('table'), needs: 'saga', target: 'table-trade',
       },
     ],

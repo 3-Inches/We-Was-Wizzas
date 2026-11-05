@@ -46,27 +46,51 @@ function standardLabs(c: TourCtx): ActionResult | undefined {
 
 export const ACTIONS: Record<TourActionId, (c: TourCtx) => ActionResult | undefined> = { buildDraft, basePackage, standardLabs };
 
+/** The note that marks what a tutorial made for practice. */
+export const PRACTICE_NOTE = 'Made for practice by a tutorial.';
+const isPractice = (x: { notes?: string } | undefined) => !!x && (x.notes ?? '').includes(PRACTICE_NOTE);
+/** A covenant a tutorial made for practice (an older version named it so, without the note). */
+export const isPracticeCovenant = (x: { notes?: string; name?: string } | undefined) => isPractice(x) || x?.name === 'Practice covenant';
+
 /**
- * What a tutorial needs to work on, made for practice: the saga if none is open, the covenant if it
- * has none (the Medium package), and the tutorial's practice character (a finished one from Quick
- * build, with a laboratory for a magus, or a blank draft). One Undo takes it all back.
+ * What a tutorial needs to work on, made for practice: the saga if none is open, a practice covenant
+ * (the Medium package), and the tutorial's practice character (a finished one from Quick build, with
+ * a laboratory for a magus, or a blank draft). Practice things stay apart from the troupe's own: a
+ * practice character joins the practice covenant, never the troupe's, and one already made for this
+ * tutorial is used again rather than made twice. One Undo takes it all back.
  */
 export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean; covenant?: boolean } = tourNeeds(tour)): { sagaId: string; charId?: string; covId?: string; notice: string } {
   const st = useStore.getState();
   const saga = (c.sagaId ? st.sagas[c.sagaId] : undefined) ?? st.createSaga('Practice saga');
   const made: string[] = [];
-  const inSaga = Object.values(st.covenants).filter((x) => x.sagaId === saga.id && !x.living);
-  let cov: Covenant | undefined = c.covId && st.covenants[c.covId] ? structuredClone(st.covenants[c.covId]) : inSaga[0] ? structuredClone(inSaga[0]) : undefined;
+  const reused: string[] = [];
+  let movedFrom = '';
   const p = tour.practice;
   const wantsChar = !!what.character && !!p;
+  const inSaga = Object.values(st.covenants).filter((x) => x.sagaId === saga.id && !x.living);
+  const tag = `${PRACTICE_NOTE} (${tour.title})`;
+  // the practice covenant: the one chosen if it is a practice one, else one made for practice before, else a new one when wanted
+  const chosen = c.covId ? st.covenants[c.covId] : undefined;
+  const earlier = (isPracticeCovenant(chosen) ? chosen : undefined) ?? inSaga.find(isPracticeCovenant);
+  let cov: Covenant | undefined = earlier ? structuredClone(earlier) : undefined;
   if (!cov && (what.covenant || (wantsChar && !p!.draft))) {
     cov = newCovenant(saga.id, saga.currentYear);
     cov.name = 'Practice covenant';
+    cov.notes = PRACTICE_NOTE;
     applyBaseCovenant(cov, 'Medium');
     made.push('a practice covenant (the Medium package)');
-  }
+  } else if (cov && what.covenant) reused.push(`${cov.name || 'the practice covenant'}, made for practice before`);
   let ch: Character | undefined;
-  if (wantsChar) {
+  let moved: Covenant | undefined;
+  // the practice character this tutorial made before, if it is still about, else a new one
+  const before = wantsChar ? Object.values(st.characters).find((x) => x.sagaId === saga.id && (x.notes ?? '').includes(tag) && !x.wounds.dead) : undefined;
+  // with a covenant asked for, the practice character the tutorial is working on comes along to it
+  const current = c.charId ? st.characters[c.charId] : undefined;
+  const bring = before ?? (what.covenant && isPractice(current) ? current : undefined);
+  if (bring) {
+    ch = structuredClone(bring);
+    if (wantsChar) reused.push(`${ch.name}, the ${p!.label.replace(/^an? /, '')} made before`);
+  } else if (wantsChar) {
     const names = Object.values(st.characters).filter((x) => x.sagaId === saga.id).map((x) => x.name);
     if (p!.draft) {
       ch = newCharacter(p!.type, saga.id, saga.currentYear);
@@ -74,17 +98,39 @@ export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean
     } else {
       ch = generateCharacter({ type: p!.type, role: p!.role, variety: 'focused', npc: false, finished: true, seed: newSeed(), avoidNames: names }, { data: gameDataFor(saga), saga, rules: saga.houseRules, covenant: cov }).c;
     }
-    ch.notes = [ch.notes, 'Made for practice by a tutorial.'].filter(Boolean).join('\n');
+    ch.notes = [ch.notes, tag].filter(Boolean).join('\n');
     // a craftsman's livelihood tracked from the start, for the tutorial to show
     const trade = ch.abilities.find((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
-    if (p!.role === 'master-craftsman' && trade && !ch.workshop) ch.workshop = newWorkshop(trade.uid, trade.abilityId === 'profession-type');
-    if (cov) {
-      ch.covenantId = cov.id;
-      cov.memberIds.push(ch.id);
-      if (ch.type === 'magus' && !cov.labs.some((l) => l.ownerId === ch!.id)) cov.labs.push(newLab(`${ch.name || 'Magus'}'s laboratory`, ch.id));
+    if (p!.role === 'master-craftsman' && trade && !ch.workshop) {
+      ch.workshop = newWorkshop(trade.uid, trade.abilityId === 'profession-type');
+      // worked with the better of Dexterity and Strength (Strength for a smith or a mason)
+      if (ch.characteristics.Str > ch.characteristics.Dex) ch.workshop.primary = 'Str';
     }
     made.unshift(`${p!.label}, ${ch.name}`);
   }
-  if (ch || cov) st.putRecords({ characters: ch ? [ch] : [], covenants: cov ? [cov] : [] }, `Practice for ${tour.title}`);
-  return { sagaId: saga.id, charId: ch?.id, covId: cov?.id, notice: made.length ? `Made ${made.join(' and ')} in ${saga.name}; Undo takes it back.` : `Working in ${saga.name}.` };
+  if (ch && cov && ch.covenantId !== cov.id) {
+    // out of any other covenant it was put in (a troupe's own, by an older version), with its laboratory
+    const old = ch.covenantId ? st.covenants[ch.covenantId] : undefined;
+    if (old && old.id !== cov.id) {
+      moved = structuredClone(old);
+      moved.memberIds = moved.memberIds.filter((id) => id !== ch!.id);
+      const lab = moved.labs.find((l) => l.ownerId === ch!.id);
+      if (lab) {
+        moved.labs = moved.labs.filter((l) => l !== lab);
+        cov.labs.push(lab);
+      }
+      movedFrom = `${ch.name} moved to ${cov.name || 'the practice covenant'} from ${old.name || 'the other covenant'}`;
+    }
+    ch.covenantId = cov.id;
+    if (!cov.memberIds.includes(ch.id)) cov.memberIds.push(ch.id);
+  }
+  if (ch && cov && ch.type === 'magus' && !cov.labs.some((l) => l.ownerId === ch!.id)) cov.labs.push(newLab(`${ch.name || 'Magus'}'s laboratory`, ch.id));
+  if (ch || cov) st.putRecords({ characters: ch ? [ch] : [], covenants: [cov, moved].filter((x): x is Covenant => !!x) }, `Practice for ${tour.title}`);
+  return {
+    sagaId: saga.id, charId: ch?.id, covId: cov?.id,
+    notice:
+      made.length || reused.length || movedFrom
+        ? `${[made.length ? `Made ${made.join(' and ')}` : '', reused.length ? `Using ${reused.join(' and ')}` : '', movedFrom].filter(Boolean).join('; ')}, in ${saga.name}. Your own covenant and characters are left as they are; Undo takes this back.`
+        : `Working in ${saga.name}.`,
+  };
 }

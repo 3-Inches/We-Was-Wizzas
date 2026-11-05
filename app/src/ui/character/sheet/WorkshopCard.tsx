@@ -203,6 +203,23 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         </button>
       }
     >
+      <details className="small">
+        <summary>How this works, in short</summary>
+        <ul style={{ margin: '4px 0', paddingLeft: 18 }}>
+          <li>
+            <b>Labor Points</b> are the time and effort put into the business, not money. Each season worked earns <b>{lp}</b> here: ({CHAR_NAMES[lpChar.key]} + {trade?.name ?? 'Craft'}) × {wealth === 'poor' ? 2 : wealth === 'wealthy' ? 6 : 3} for {wealth === 'poor' ? 'a Poor' : wealth === 'wealthy' ? 'a Wealthy' : 'an average'} character.
+          </li>
+          <li>
+            Each year the business costs <b>{keep}</b> to keep going, taken at the year&apos;s end. {wealth === 'poor' ? 'Three' : wealth === 'wealthy' ? 'One' : 'Two'} season{wealth === 'wealthy' ? '' : 's'} of work a year
+            ({lp * (wealth === 'poor' ? 3 : wealth === 'wealthy' ? 1 : 2)}) {lp * (wealth === 'poor' ? 3 : wealth === 'wealthy' ? 1 : 2) >= keep ? `covers it, with ${lp * (wealth === 'poor' ? 3 : wealth === 'wealthy' ? 1 : 2) - keep} to save` : `falls ${keep - lp * (wealth === 'poor' ? 3 : wealth === 'wealthy' ? 1 : 2)} short: ${lp > 0 ? `${Math.ceil(keep / lp)} seasons of work this year would cover it` : 'nothing is earned'}, or the business slips`}. The working seasons go to the workshop by themselves when the seasons pass.
+          </li>
+          <li>
+            What is saved buys a better workshop (Innovation, Raw Materials: better goods) or more wealth ({step.cost} to become {step.to}), a season each. Stories add points;
+            money can be put in, but points never come back out as money.
+          </li>
+          <li>The Workshop Total against the Craft Level says how good this season&apos;s goods are: superior and excellent goods give their user a bonus.</li>
+        </ul>
+      </details>
       <div className="row">
         <Field label="Craft or Profession">
           <select value={trade?.uid ?? ''} onChange={(e) => set((x) => void (x.abilityUid = e.target.value))}>

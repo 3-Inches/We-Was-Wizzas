@@ -13,8 +13,10 @@ import type { BudgetKind, PowerLevel } from './types';
 
 /** Its library's Build Points for six magi of a covenant of a century and a half: the base packages' books and texts, more for a famous library. */
 const LIBRARY: Record<BookCovenant['library'], number> = { poor: 80, modest: 220, good: 450, great: 800 };
-/** Vis sources a magus a year (DE p.218): scarce is low vis, rich moderate, very rich toward high. */
-export const VIS_PER_MAGUS: Record<BookCovenant['vis'], number> = { scarce: 2, some: 4, rich: 7, 'very rich': 10 };
+/** Vis sources a magus a year, the core rules' saga levels (DE p.218): scarce is low vis (5), some moderate (about 10), rich between, very rich high (20). */
+export const VIS_PER_MAGUS: Record<BookCovenant['vis'], number> = { scarce: 5, some: 10, rich: 14, 'very rich': 20 };
+/** No covenant has less than low vis or more than high, whatever its seed. */
+export const VIS_RANGE = { min: 5, max: 20 };
 /** Levels of enchanted devices a magus (the Medium package has 200 for its young magi, the Powerful 500). */
 const ITEM_LEVELS: Record<BookCovenant['wealth'], number> = { poor: 6, modest: 15, comfortable: 25, rich: 35, 'very rich': 45 };
 
@@ -50,7 +52,8 @@ export function livingBudget(def: BookCovenant, magi: number, year: number, rng:
   const size = 0.6 + magi / 10;
   const domus = def.domusMagna ? 1.25 : 1;
   const book = Math.round(LIBRARY[def.library] * size * old * domus * vary());
-  const visPerYear = Math.max(1, Math.round(VIS_PER_MAGUS[def.vis] * magi * vary()));
+  const rate = Math.min(VIS_RANGE.max, Math.max(VIS_RANGE.min, VIS_PER_MAGUS[def.vis] * vary()));
+  const visPerYear = Math.max(1, Math.round(rate * Math.max(1, magi)));
   // sources at 5 Build Points a pawn a year, and a year's worth in store at 5 pawns a point (Covenants ch.2)
   const vis = visPerYear * 5 + Math.ceil(visPerYear / 5);
   const itemLevels = Math.round(ITEM_LEVELS[def.wealth] * magi * old * domus * vary());
@@ -71,7 +74,7 @@ export function livingBudget(def: BookCovenant, magi: number, year: number, rng:
   }
   const level = def.greatLibrary ? 'Legendary' : powerLevelFor(total);
   // what the vis and item Build Points buy, after any scaling
-  const pawns = capped ? Math.max(1, Math.floor(budget.vis / 5.2)) : visPerYear;
+  const pawns = capped ? Math.max(VIS_RANGE.min * Math.max(1, magi), Math.floor(budget.vis / 5.2)) : visPerYear;
   const levels = capped ? Math.floor(budget.item * 2.5) : itemLevels;
   const perMagus = Math.round((pawns / Math.max(1, magi)) * 10) / 10;
   return {

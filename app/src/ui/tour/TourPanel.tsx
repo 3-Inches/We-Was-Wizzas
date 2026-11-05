@@ -9,7 +9,7 @@ import type { Character } from '../../engine/types';
 import { Markdown } from '../kit';
 import { visibleSteps } from '../character/wizardSteps';
 import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, nextTour, startTour, tourNeeds, type Tour, type TourCtx, type TourStep } from './tours';
-import { ACTIONS, makePractice } from './actions';
+import { ACTIONS, PRACTICE_NOTE, isPracticeCovenant, makePractice } from './actions';
 
 /** Open or close the menu, which a phone keeps behind ☰ (App listens). */
 function sidebarOpen(open: boolean) {
@@ -395,7 +395,7 @@ function WorkingOn({ tour, ctx }: { tour: Tour; ctx: TourCtx }) {
                 {c.creation.finalized ? '' : ' (in creation)'}
               </option>
             ))}
-            {tour.practice && <option value="__practice">＋ Make {tour.practice.label}</option>}
+            {tour.practice && !chars.some((c) => (c.notes ?? '').includes(`${PRACTICE_NOTE} (${tour.title})`)) && <option value="__practice">＋ Make {tour.practice.label}</option>}
           </select>
         </label>
       )}
@@ -409,7 +409,7 @@ function WorkingOn({ tour, ctx }: { tour: Tour; ctx: TourCtx }) {
                 {c.name || 'Unnamed covenant'}
               </option>
             ))}
-            <option value="__practice">＋ Make a practice covenant</option>
+            {!covs.some(isPracticeCovenant) && <option value="__practice">＋ Make a practice covenant</option>}
           </select>
         </label>
       )}

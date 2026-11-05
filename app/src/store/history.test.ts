@@ -2,6 +2,7 @@
 // to one record are one step.
 import { describe, expect, it } from 'vitest';
 import { newCharacter } from '../engine/character/factory';
+import { newCovenant } from '../engine/covenant';
 import { HISTORY_RECORDS, useStore } from './store';
 
 describe('undo and redo', () => {
@@ -36,6 +37,31 @@ describe('undo and redo', () => {
     expect(useStore.getState().characters[c.id]).toBeDefined();
     useStore.getState().updateSaga(saga.id, (s) => void (s.name = 'Renamed'));
     expect(useStore.getState().history.future).toEqual([]);
+  });
+  it('removes several covenants and their people as one change, and Undo brings them all back', () => {
+    const st = useStore.getState();
+    const saga = st.createSaga('Tribunal');
+    const covs = [newCovenant(saga.id, 1100), newCovenant(saga.id, 1150), newCovenant(saga.id, 1200)];
+    const people = covs.map((cov) => {
+      const c = newCharacter('magus', saga.id);
+      c.covenantId = cov.id;
+      cov.memberIds = [c.id];
+      return c;
+    });
+    // a guest staying at the first: not a member, but it lives there
+    const guest = newCharacter('magus', saga.id);
+    guest.covenantId = covs[0].id;
+    useStore.getState().putRecords({ characters: [...people, guest], covenants: covs }, 'the Tribunal');
+    useStore.getState().deleteCovenantsWithMembers([covs[0].id, covs[1].id], 'removing two');
+    const after = useStore.getState();
+    expect(after.covenants[covs[0].id]).toBeUndefined();
+    expect(after.covenants[covs[1].id]).toBeUndefined();
+    expect(after.covenants[covs[2].id]).toBeDefined();
+    expect([people[0].id, people[1].id, guest.id].map((id) => after.characters[id])).toEqual([undefined, undefined, undefined]);
+    expect(after.characters[people[2].id]).toBeDefined();
+    expect(useStore.getState().undo()).toBe('removing two');
+    expect(useStore.getState().covenants[covs[1].id]).toBeDefined();
+    expect(useStore.getState().characters[guest.id]).toBeDefined();
   });
   it('keeps only the newest big changes (a season passed with a whole Tribunal), and always the last', () => {
     const st = useStore.getState();

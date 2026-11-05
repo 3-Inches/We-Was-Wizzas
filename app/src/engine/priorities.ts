@@ -151,6 +151,8 @@ export function choosePriority(c: Character, d: DerivedCharacter, ctx: Character
 
 type Try = (x: Ctx, p: SeasonPriority) => { standing: StandingActivity; what: string; after?: PriorityChoice['after']; troubleUid?: string } | string;
 
+/** Minor laboratory Virtues a magus installs to fill the space Refinement opens: none asks for a choice or raises the Upkeep (Covenants ch.3). */
+export const SPACE_FILLERS = ['spacious', 'well-insulated', 'gallery', 'auspicious-shape'];
 const workable = (x: Ctx, p: LabProject): string | undefined => {
   const plan = planProject(p, x.c, x.d, x.ctx, { subject: x.c, data: x.data });
   return plan.problems[0] ?? visShort(p, x.c, x.ctx, plan);
@@ -390,6 +392,18 @@ const TRY: Record<PriorityKind, Try> = {
     const { c, d } = x;
     if (!d.isMagus || !x.ctx.lab) return 'no laboratory';
     if (x.hostile) return x.hostile;
+    // space the Refinement has opened is filled with a Minor Virtue before the next rise, or two
+    // points of it would leave the lab Empty (Covenants ch.3): one that asks for no choice or Upkeep
+    const dl = x.ctx.lab;
+    const filling = c.projects?.find((q) => q.kind === 'install' && !q.done);
+    const filler = !filling && dl.freeSpace >= 1 && !dl.boundless ? SPACE_FILLERS.find((id) => !dl.lab.virtues.some((v) => v.defId === id)) : undefined;
+    if (filling || filler) {
+      const q = filling ?? { ...newProject('install'), name: `Install a Virtue in the laboratory`, labVirtue: { defId: filler! } };
+      if (!workable(x, q)) {
+        if (!filling) c.projects = [...(c.projects ?? []), q];
+        return labSeason(q, 'improving the laboratory');
+      }
+    }
     let p = c.projects?.find((q) => q.kind === 'refine' && !q.done);
     if (!p) {
       p = { ...newProject('refine'), name: 'Refine the laboratory' };

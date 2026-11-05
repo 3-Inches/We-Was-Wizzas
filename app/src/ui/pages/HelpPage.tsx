@@ -446,6 +446,12 @@ export default function HelpPage() {
 
       <Card title="City & Guild: craftsmen, merchants and guilds" id="city-guild">
         <p className="small" style={{ marginTop: 0 }}>
+          <b>In short:</b> <i>City &amp; Guild</i> is for characters who work for a living (a smith, a weaver, a merchant). Each season they work earns Labor Points; each
+          year the business takes 36 of them to keep going; what is left is saved, and buys a better workshop (better goods) or a richer life (from Poor to average to Wealthy,
+          then a higher Social Status). An average craftsman with Dexterity +2 and Craft 5 earns 21 a season: two seasons&apos; work pays the 36 and saves 6. If nobody in
+          the troupe plays a craftsman or merchant, none of this is needed. The details:
+        </p>
+        <p className="small">
           <i>City &amp; Guild</i> keeps a craftsman&apos;s or merchant&apos;s business in <b>Labor Points</b> rather than pennies. Each season tending the business earns
           (Characteristic + Craft, or Communication + Profession) × 2, 3 or 6 for a Poor, average or Wealthy character; keeping the business going costs 36 a year (and 5
           more for each point of Raw Materials). What is left over is saved and spent to grow the business. Labor Points are time and effort, not money: pounds can be put
@@ -499,6 +505,7 @@ export default function HelpPage() {
           The <b>Tribunal</b> page builds the other covenants of the saga&apos;s Tribunal into the saga from their book, so that the players&apos; covenant has neighbors who live
           their own lives. For now the toolkit has the <b>Rhine</b> (<i>Guardians of the Forests</i>): Durenmar, Fengheld, Crintera, Irencillia, Oculus Septentrionalis, Dankmar,
           Waddenzee, Roznov, Triamore and Heorot. Set the saga&apos;s Tribunal to Rhine on the saga page, then press <b>Add</b> for one covenant or <b>Add all</b>.
+          <b>Remove all</b> takes every one of them out again with its people (your own covenant stays; Undo puts them back), to build them afresh.
         </p>
         <ul className="small">
           <li>
@@ -512,8 +519,8 @@ export default function HelpPage() {
           <li>
             <b>Built by your rules:</b> each is bought with Build Points as your covenant is. Its power level comes from what the book says it holds, its number of magi and
             its age, and is no higher than its age allows (Low until 10 years, Medium until 50, High until 100). Its library is bought for its magi and for the apprentices and
-            young magi still to come, with a collection of its own Laboratory Texts. Its vis comes to a share for each magus, by how rich the book says it is: about 2 pawns a
-            year if scarce, 4, 7, and 10 if very rich (the core rules: low vis is up to 5 a magus, moderate about 10). It has enchanted devices of its own (<i>Covenants</i>: the
+            young magi still to come, with a collection of its own Laboratory Texts. Its vis comes to a share for each magus, by how rich the book says it is: 5 pawns a year
+            if scarce, about 10 for most, 14 if rich and 20 if very rich (the core rules&apos; low, moderate and high vis), never below 5 or above 20. It has enchanted devices of its own (<i>Covenants</i>: the
             Magical Oven, the Motivated Plow and the like doing its covenfolk&apos;s work, saving servants or a pound a magnitude; items for its laboratories that give them a
             Virtue; a weapon for its turb), none above its power level&apos;s limit. Its staff, craftsmen and treasury are bought too. Each varies with the covenant. The
             Great Library is costed book by book, which makes Durenmar Legendary. Its page has the rules check yours has; what it gains in play costs nothing. There are no
