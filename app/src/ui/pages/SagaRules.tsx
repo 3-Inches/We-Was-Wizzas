@@ -1,19 +1,14 @@
+// The saga's rules, as the Saga Overview's tabs: its books, the troupe's creation numbers and rulings,
+// its own Virtues, Flaws, Abilities, weapons and spells, overrides of a Virtue's or Flaw's mechanics,
+// and the storyguide's settings for the guided build.
+
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useTabParam } from '../useTabParam';
-import { BOOKS, SEASONS, type AbilityType, type VFCategory, type VFKind, type VFSize, type VirtueFlawDef, type WeaponDef } from '../../data';
+import { BOOKS, type AbilityType, type VFCategory, type VFKind, type VFSize, type VirtueFlawDef, type WeaponDef } from '../../data';
 import type { Mechanics } from '../../data/mechanics';
 import { DEFAULT_HOUSE_RULES, DEFAULT_SAGA_SETTINGS, type HouseRules, type Saga, type SagaGuidedSettings } from '../../engine/types';
-import { useGameData, useSaga } from '../../store/hooks';
-import { exportSaga, useStore } from '../../store/store';
-import { downloadJson, safeFilename } from '../../util/files';
+import { useGameData } from '../../store/hooks';
 import { uid } from '../../util/id';
-import { Card, Empty, Field, SelectOrType, Stepper, Tabs } from '../kit';
-import { TRIBUNALS } from '../../data/lists';
-import { OptionalRulesPanel } from '../OptionalRules';
-import { Hint } from '../Hint';
-
-type TabId = 'saga' | 'books' | 'optional' | 'rules' | 'custom' | 'mechanics';
+import { Card, Field, Stepper } from '../kit';
 
 const NUMERIC: { key: keyof HouseRules; label: string; group: string }[] = [
   { key: 'characteristicPoints', label: 'Characteristic points', group: 'Characters' },
@@ -42,52 +37,10 @@ const NUMERIC: { key: keyof HouseRules; label: string; group: string }[] = [
   { key: 'startingConfidencePoints', label: 'Starting Confidence points', group: 'Characters' },
 ];
 
-export default function HouseRulesPage() {
-  const { sagaId } = useParams();
-  const saga = useSaga(sagaId);
-  const updateSaga = useStore((s) => s.updateSaga);
-  const [tab, setTab] = useTabParam<TabId>('saga');
-  if (!saga) return <Empty>Saga not found.</Empty>;
-  const update = (fn: (s: Saga) => void) => updateSaga(saga.id, fn);
-  return (
-    <div>
-      <div className="topbar">
-        <h1>{saga.name}: settings & house rules</h1>
-        <button onClick={() => downloadJson(`${safeFilename(saga.name)}.arm5saga.json`, exportSaga(saga.id))}>Export whole saga</button>
-      </div>
-      <Hint id="rules-tabs"><b>Books</b> sets which books the saga draws on; <b>Optional rules</b> turns supplement systems on or off; <b>Creation rules &amp; rulings</b> holds the troupe&apos;s numbers and exceptions. Changes apply to every character in the saga.</Hint>
-      <Tabs
-        tabs={[
-          { id: 'saga', label: 'Saga' },
-          { id: 'books', label: `Books (${saga.enabledBooks.length ? saga.enabledBooks.length : 'all'})` },
-          { id: 'optional', label: 'Optional rules' },
-          { id: 'rules', label: 'Creation rules & rulings' },
-          { id: 'custom', label: 'Custom content' },
-          { id: 'mechanics', label: 'Virtue/Flaw mechanics' },
-        ]}
-        value={tab}
-        onChange={setTab}
-      />
-      {tab === 'saga' && <SagaTab saga={saga} update={update} />}
-      {tab === 'books' && <BooksTab saga={saga} update={update} />}
-      {tab === 'optional' && (
-        <Card title="Optional rules" tour="optional-rules">
-          <p className="small muted" style={{ marginTop: 0 }}>
-            Rules from the supplements that add detail. Turn off what your troupe does not want and it disappears from the sheets and pages.
-          </p>
-          <OptionalRulesPanel saga={saga} />
-        </Card>
-      )}
-      {tab === 'rules' && <RulesTab saga={saga} update={update} />}
-      {tab === 'custom' && <CustomTab saga={saga} update={update} />}
-      {tab === 'mechanics' && <MechanicsTab saga={saga} update={update} />}
-    </div>
-  );
-}
+export type P = { saga: Saga; update: (fn: (s: Saga) => void) => void };
 
-type P = { saga: Saga; update: (fn: (s: Saga) => void) => void };
-
-function SagaTab({ saga, update }: P) {
+/** The storyguide's settings for the guided build: how present each realm is, the saga's speed, Hermetic politics. */
+export function GuidedSettingsCard({ saga, update }: P) {
   const g = saga.guided ?? DEFAULT_SAGA_SETTINGS;
   const setG = (fn: (x: SagaGuidedSettings) => void) =>
     update((s) => {
@@ -97,31 +50,7 @@ function SagaTab({ saga, update }: P) {
     });
   const REALM_LABEL: Record<keyof SagaGuidedSettings['realms'], string> = { magic: 'Magic', faerie: 'Faerie', divine: 'the Divine', infernal: 'the Infernal', mundane: 'the mundane world' };
   return (
-    <>
-    <Card className="accent">
-      <div className="grid grid-2">
-        <Field label="Saga name">
-          <input value={saga.name} onChange={(e) => update((s) => void (s.name = e.target.value))} />
-        </Field>
-        <Field label="Tribunal" hint="Region-specific Virtues and Flaws in the guided build follow it.">
-          <SelectOrType value={saga.tribunal} options={TRIBUNALS} placeholder="— Tribunal —" ariaLabel="Tribunal" onChange={(v) => update((s) => void (s.tribunal = v))} />
-        </Field>
-        <Field label="Current year">
-          <Stepper value={saga.currentYear} width={60} onChange={(v) => update((s) => void (s.currentYear = v))} />
-        </Field>
-        <Field label="Current season">
-          <select value={saga.currentSeason} onChange={(e) => update((s) => void (s.currentSeason = e.target.value as Saga['currentSeason']))}>
-            {SEASONS.map((x) => (
-              <option key={x}>{x}</option>
-            ))}
-          </select>
-        </Field>
-      </div>
-      <Field label="Description">
-        <textarea rows={5} value={saga.description} onChange={(e) => update((s) => void (s.description = e.target.value))} />
-      </Field>
-    </Card>
-    <Card title="Guided build (storyguide)">
+    <Card title="Guided build (storyguide)" fold="saga-guided" summary="How present each realm is, the saga's speed and its politics, for the guided build.">
       <p className="small muted" style={{ marginTop: 0 }}>
         Set once for the saga; players are never asked. These move how much each option is worth in play here (its strength), never how well it fits a player&apos;s
         answers. 5 is as the core book describes Mythic Europe.
@@ -140,11 +69,10 @@ function SagaTab({ saga, update }: P) {
         </Field>
       </div>
     </Card>
-    </>
   );
 }
 
-function BooksTab({ saga, update }: P) {
+export function BooksTab({ saga, update }: P) {
   const all = saga.enabledBooks.length === 0;
   const enabled = new Set(all ? BOOKS.map((b) => b.id) : saga.enabledBooks);
   const toggle = (id: string, on: boolean) =>
@@ -187,7 +115,7 @@ function BooksTab({ saga, update }: P) {
   );
 }
 
-function RulesTab({ saga, update }: P) {
+export function RulesTab({ saga, update }: P) {
   const hr = saga.houseRules;
   const groups = [...new Set(NUMERIC.map((n) => n.group))];
   return (
@@ -236,7 +164,7 @@ function RulesTab({ saga, update }: P) {
   );
 }
 
-function CustomTab({ saga, update }: P) {
+export function CustomTab({ saga, update }: P) {
   const [vf, setVf] = useState({ name: '', kind: 'virtue' as VFKind, size: 'Minor' as VFSize, category: 'General' as VFCategory, text: '' });
   const [ab, setAb] = useState({ name: '', type: 'General' as AbilityType, text: '' });
   const [wp, setWp] = useState<WeaponDef>({ id: '', name: '', kind: 'melee', ability: 'Single Weapon', init: 0, atk: 0, dfn: 0, dam: 0, str: null, load: 1, cost: 'Std', custom: true });
@@ -379,7 +307,7 @@ function CustomTab({ saga, update }: P) {
   );
 }
 
-function MechanicsTab({ saga, update }: P) {
+export function MechanicsTab({ saga, update }: P) {
   const data = useGameData(saga);
   const [id, setId] = useState('');
   const [json, setJson] = useState('');

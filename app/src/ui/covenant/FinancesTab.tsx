@@ -23,6 +23,7 @@ import { DEFAULT_YEAR_END, LOYALTY_EVENTS, SUNDRY_PRESETS, labOutfitCost, loyalt
 import { NO_ALLOWANCE, allowanceRecipients } from '../../engine/economy';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useStore } from '../../store/store';
+import { R } from '../routes';
 
 const FOLK: { key: keyof CovenfolkCounts; label: string; hint?: string }[] = [
   { key: 'grogs', label: 'Grogs (non-player)' },
@@ -56,12 +57,12 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
   const usesCG = !saga || saga.enabledBooks.length === 0 || saga.enabledBooks.includes('CG');
   const labs = dc.labs.map((l) => ({ uid: l.lab.uid, name: l.lab.name || 'a lab', teaching: Math.min(3, l.specializations.Teaching ?? 0) }));
 
-  // three parts, so a phone need not scroll the whole of it: its people, its money, its loyalty (all of it while a tutorial runs)
+  // three parts, so a phone need not scroll the whole of it: its people, its money, its loyalty
   const [params, setParams] = useSearchParams();
   const sub = (params.get('sub') as 'people' | 'money' | 'loyalty') || 'people';
   const setSub = (t: 'people' | 'money' | 'loyalty') => setParams({ tab: params.get('tab') ?? 'folk', sub: t }, { replace: true });
-  const touring = useStore((s) => !!s.ui.tour);
-  const show = (t: typeof sub) => touring || sub === t;
+  // one part at a time, tutorial or not: a tutorial step opens the part it is about
+  const show = (t: typeof sub) => sub === t;
 
   const optimalLab = () => optimalLaborers(cov, dc.members, dc.labs);
   /** craftsmen where they save most, while they save money and (when bought) the Build Points last */
@@ -220,13 +221,11 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
         {craftsmen.length === 0 && <div className="small muted">None listed. Press + Cost-saving craftsmen above, or add one with Quick add.</div>}
         {usesCG && craftsmen.length > 0 && (
           <p className="small muted" style={{ margin: '0 0 6px' }}>
-            City &amp; Guild: each craftsman earns Labor Points for the workshop in the seasons they work: (Dexterity + Craft) × 3 a season over two seasons a year if average, × 2 over
-            three if Poor, × 6 over one if Wealthy (set under Wealth). A year&apos;s upkeep is 36 (and 5 for each point of Raw Materials), so an average craftsman needs Dexterity + Craft of 7
-            or more to save anything; what is left is banked when the year closes, and spent here on Innovation and Raw Materials, which make better goods.
+            City &amp; Guild: their Labor Points, workshop improvements and guild ranks are on the Game Table&apos;s <Link to={R.guild(cov.sagaId, { cov: cov.id })}>City &amp; Guild</Link> page.
           </p>
         )}
         {craftsmen.map((s) => (
-          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} fit={(x) => fitCovenfolk(x, dc.members, dc.labs)} guild={guildCtx} labor={usesCG} examplesOnly={cov.finances.exampleCraftsOnly} />
+          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} fit={(x) => fitCovenfolk(x, dc.members, dc.labs)} guild={guildCtx} labor={usesCG} examplesOnly={cov.finances.exampleCraftsOnly} saga={cov.sagaId} />
         ))}
         <table className="compact" style={{ marginTop: 8 }}>
           <thead>
@@ -354,7 +353,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
               <Stepper value={cov.finances.tithes} min={0} width={40} onChange={(v) => setFin('tithes', v)} />
             </Field>
             {(optionOn(saga, 'inflation') || cov.finances.inflation > 0) && (
-              <Field label="Inflation (£)" hint={optionOn(saga, 'inflation') ? undefined : 'Inflation is off in this saga (House rules): this is left from before.'}>
+              <Field label="Inflation (£)" hint={optionOn(saga, 'inflation') ? undefined : 'Inflation is off in this saga (Saga Overview → Optional rules): this is left from before.'}>
                 <span className="row">
                   <Stepper value={cov.finances.inflation} min={0} width={40} onChange={(v) => setFin('inflation', v)} />
                   {!optionOn(saga, 'inflation') && (
@@ -607,7 +606,7 @@ function PersonRow({ s, update, data, labs }: { s: Specialist; update: CovTabPro
   );
 }
 
-function CraftRow({ s, update, line: l, optimal, fit, guild, labor, examplesOnly }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number; fit: (c: Covenant) => void; guild?: 'enforced' | 'shown'; labor?: boolean; examplesOnly?: boolean }) {
+function CraftRow({ s, update, line: l, optimal, fit, guild, labor, examplesOnly, saga }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number; fit: (c: Covenant) => void; guild?: 'enforced' | 'shown'; labor?: boolean; examplesOnly?: boolean; saga: string }) {
   const set = useSet(update, s.uid);
   const craft = craftOf(s);
   const rare = s.rare ?? craft?.rare ?? false;
@@ -686,8 +685,12 @@ function CraftRow({ s, update, line: l, optimal, fit, guild, labor, examplesOnly
       <button className="small ghost" onClick={() => update((c) => void (c.specialists = c.specialists.filter((y) => y.uid !== s.uid)))}>
         ✕
       </button>
-      {guild && <GuildLine s={s} set={set} enforced={guild === 'enforced'} />}
-      {(labor || guild) && <LaborLine s={s} set={set} />}
+      {(labor || guild) && (
+        <span className="small soft" style={{ flexBasis: '100%' }}>
+          {guild && s.guildRank ? `${CRAFT_GUILD_RANKS[s.guildRank].label}. ` : ''}
+          {s.workshop?.laborPoints ? `${s.workshop.laborPoints} Labor Points banked. ` : ''}Their workshop{guild ? ' and guild rank' : ''}: <Link to={R.guild(saga)}>City &amp; Guild ›</Link>
+        </span>
+      )}
       <span className="small soft" style={{ flexBasis: '100%' }}>
         {!craft
           ? 'Pick a craft to count its savings.'
@@ -701,7 +704,7 @@ function CraftRow({ s, update, line: l, optimal, fit, guild, labor, examplesOnly
 }
 
 /** A craftsman's guild rank and what it needs (City & Guild ch.3). */
-function GuildLine({ s, set, enforced }: { s: Specialist; set: (fn: (x: Specialist) => void) => void; enforced: boolean }) {
+export function GuildLine({ s, set, enforced }: { s: Specialist; set: (fn: (x: Specialist) => void) => void; enforced: boolean }) {
   const short = guildShortfalls(s);
   return (
     <div className="row small" style={{ flexBasis: '100%' }}>
@@ -726,7 +729,7 @@ function GuildLine({ s, set, enforced }: { s: Specialist; set: (fn: (x: Speciali
 }
 
 /** The Labor Points a craftsman's workshop earns, banks and spends (City & Guild ch.2). */
-function LaborLine({ s, set }: { s: Specialist; set: (fn: (x: Specialist) => void) => void }) {
+export function LaborLine({ s, set }: { s: Specialist; set: (fn: (x: Specialist) => void) => void }) {
   const lp = laborPointsPerSeason(s);
   const w = workSeasons(s);
   const ws = s.workshop ?? { innovation: 0, rawMaterials: 0, laborPoints: 0 };
@@ -1092,7 +1095,7 @@ function CloseYear({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
   const each = a.mode === 'flat' ? a.amount : a.mode === 'percent' && plan.balance > 0 ? Math.floor(((plan.balance * a.amount) / 100 / Math.max(1, who.length)) * 10) / 10 : 0;
   const setA = (fn: (x: NonNullable<typeof cov.allowance>) => void) => update((x) => void fn((x.allowance ??= { ...NO_ALLOWANCE })));
   return (
-    <Card title={`The year ${saga?.currentYear ?? ''}`} fold="cov-year" summary={`The year should end with ${plan.treasuryAfter} £ in the treasury. Close it here, or let time pass on the Seasons page.`}>
+    <Card title={`The year ${saga?.currentYear ?? ''}`} fold="cov-year" summary={`The year should end with ${plan.treasuryAfter} £ in the treasury. Close it here, or let time pass on the Game Table’s Seasons page.`}>
       <div className="row small">
         <span className={`badge ${dc.finances.balance < 0 ? 'bad' : 'good'}`}>
           {dc.finances.balance >= 0 ? '+' : ''}
@@ -1100,7 +1103,7 @@ function CloseYear({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
         </span>
         <span>Treasury {cov.finances.treasury} £ → {plan.treasuryAfter} £ at the year&apos;s end</span>
         <span>
-          The year ends with Winter: <Link to={`/saga/${cov.sagaId}/table`}>Game table</Link> or <Link to={`/saga/${cov.sagaId}/seasons`}>Seasons page</Link> ›
+          The year ends with Winter, on the Game Table&apos;s <Link to={R.seasons(cov.sagaId)}>Seasons</Link> page ›
         </span>
       </div>
       <div className="row" style={{ marginTop: 8 }}>
@@ -1131,7 +1134,7 @@ function CloseYear({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
         )}
       </div>
       <p className="small muted" style={{ margin: 0 }}>
-        A covenant&apos;s charter decides what it shares with its members (Covenants ch.3). What they receive goes to their purse, to spend on the Market page or their own projects.
+        A covenant&apos;s charter decides what it shares with its members (Covenants ch.3). What they receive goes to their purse, to spend on the Game Table&apos;s Market &amp; Treasury page or their own projects.
       </p>
     </Card>
   );

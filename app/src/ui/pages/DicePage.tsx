@@ -46,7 +46,8 @@ interface Roll {
 
 let seq = 0;
 
-export default function DicePage() {
+/** The Game Table's Dice page; on its own (with a heading) when no saga is open. */
+export default function DicePage({ standalone }: { standalone?: boolean } = {}) {
   // the saga last opened: its characters can take part in the rolls below
   const sagaId = useStore((s) => s.activeSagaId);
   const saga = useSaga(sagaId);
@@ -103,7 +104,7 @@ export default function DicePage() {
 
   return (
     <div className="stack">
-      <h1>Dice</h1>
+      {standalone && <h1>Dice</h1>}
       <div className="grid grid-2">
         <Card title="Roll" className="accent">
           <Field label="What is this roll for?">
@@ -230,7 +231,6 @@ export default function DicePage() {
           </tbody>
         </table>
       </Card>
-      <ItemCheck x={x} />
       <Card title="Ease Factors (DE)">
         <table className="compact">
           <tbody>
@@ -288,7 +288,7 @@ interface ItemPick {
  * enchanted device) or a kind of thing; its levels, the modifiers and the chance are shown, a damaged
  * item can be repaired, and a broken one put aside for another.
  */
-function ItemCheck({ x }: { x: { chars: Character[]; data: GameData; rules?: HouseRules } }) {
+export function ItemCheck({ x }: { x: { chars: Character[]; data: GameData; rules?: HouseRules } }) {
   const [owner, setOwner] = useState('');
   const [pickKey, setPickKey] = useState('kind:weapon');
   const [name, setName] = useState('');

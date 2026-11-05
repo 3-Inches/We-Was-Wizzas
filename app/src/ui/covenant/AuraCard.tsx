@@ -3,6 +3,7 @@
 // its base score, the stronger auras pressing on it, this year's influences and the modifier the
 // year's end will roll.
 
+import { R } from '../routes';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ARTS, ART_NAMES, type Art } from '../../data';
@@ -102,7 +103,7 @@ export function AuraCard({ cov, update, saga, chars }: { cov: Covenant; update: 
       {a.realm === 'Magic' && !variation && (
         <p className="small muted" style={{ marginBottom: 0 }}>
           A Magic aura can also drift from year to year with the covenant&apos;s magic, its vis and its neighbours: turn on <i>Aura variation</i> in{' '}
-          <Link to={`/saga/${saga.id}/rules?tab=optional`}>House rules → Optional rules</Link>.
+          <Link to={R.saga(saga.id, 'optional')}>Saga Overview → Optional rules</Link>.
         </p>
       )}
       {mod && (

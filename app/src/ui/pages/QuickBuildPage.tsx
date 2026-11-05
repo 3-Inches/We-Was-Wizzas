@@ -408,7 +408,7 @@ function CovenantPanel({ saga, data }: { saga: Saga; data: GameData }) {
   if (!cov)
     return (
       <Empty>
-        No covenant yet. <Link to={`/saga/${saga.id}`}>Found one on the saga page</Link>, then come back to fill it out.
+        No covenant yet. <Link to={`/saga/${saga.id}/covenants`}>Found one on the Covenants page</Link>, then come back to fill it out.
       </Empty>
     );
   const membersOf = (c: Covenant) => chars.filter((x) => c.memberIds.includes(x.id));

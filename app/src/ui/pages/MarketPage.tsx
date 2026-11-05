@@ -1,7 +1,7 @@
 // Spending the saga's money: the price lists of Covenants and City & Guild, vis for silver, Hermetic
 // books for vis, people who join or are hired, and gifts between the treasury and members' purses.
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type GameData } from '../../data';
 import { deriveCovenant, visLabel } from '../../engine/covenant';
@@ -24,6 +24,7 @@ import { uid } from '../../util/id';
 import { Card, Empty, Field, Stepper, HowItWorks } from '../kit';
 import { SpecAbilities, SpecChars } from '../covenant/FinancesTab';
 import { Hint } from '../Hint';
+import { R } from '../routes';
 
 type Run = (fn: (st: SagaState, buyer: Payer, home: Covenant | undefined) => string | undefined, done: string) => boolean;
 
@@ -42,35 +43,33 @@ const fundsText = (p: Payer) => {
   return `${lsd(fundsOf(p))}${vis.length ? ` · vis: ${visText(vis)}` : ' · no vis'}`;
 };
 
-export default function MarketPage() {
-  const { sagaId } = useParams();
+/** The saga's money as the Market sees it: who is buying, from what, and a change made with Undo or refused with its reason. */
+function useMarket(sagaId: string | undefined) {
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
   const chars = usePlayerCharacters(sagaId);
   const covs = usePlayerCovenants(sagaId);
   const putSagaState = useStore((s) => s.putSagaState);
-  const updateSaga = useStore((s) => s.updateSaga);
   const setNotice = useStore((s) => s.setNotice);
   const [buyerKey, setBuyerKey] = useState('');
   const [onSundry, setOnSundry] = useState(false);
   const [problem, setProblem] = useState('');
   const tourCovId = useStore((s) => s.ui.tour?.covId);
-  if (!saga) return <Empty>Saga not found.</Empty>;
   const people = chars.filter(inPlay);
   // the covenant a tutorial is working on buys first, else the first covenant, else the first purse
   const tourCov = tourCovId && covs.some((c) => c.id === tourCovId) ? tourCovId : undefined;
   const key = buyerKey || (tourCov ? `cov:${tourCov}` : covs[0] ? `cov:${covs[0].id}` : people[0] ? `char:${people[0].id}` : '');
-  const live: SagaState = { saga, characters: chars, covenants: covs };
-  const buyer = key ? payerIn(live, key) : undefined;
-  const home = buyer && homeOf(live, buyer);
+  const live: SagaState | undefined = saga && { saga, characters: chars, covenants: covs };
+  const buyer = key && live ? payerIn(live, key) : undefined;
+  const home = buyer && live && homeOf(live, buyer);
   const sundry = buyer?.kind === 'covenant' && onSundry;
   const options = [
     ...covs.map((c) => ({ key: `cov:${c.id}`, label: `${c.name || 'Covenant'} (treasury)` })),
     ...people.map((c) => ({ key: `char:${c.id}`, label: `${c.name || 'Unnamed'} (purse)` })),
   ];
-
   /** Make the change on a copy of the saga; keep it, with an undo, only if it worked. */
   const run: Run = (fn, done) => {
+    if (!live) return false;
     const before = structuredClone(live);
     const st = structuredClone(live);
     const p = payerIn(st, key);
@@ -87,32 +86,59 @@ export default function MarketPage() {
     setNotice(done, () => putSagaState(before));
     return true;
   };
+  return { saga, data, chars, covs, people, key, setBuyerKey, buyer, home, sundry, onSundry, setOnSundry, options, run, problem, setProblem, live };
+}
 
+/** Choosing who pays: the covenant's treasury or a character's purse. */
+function BuyerSelect({ m }: { m: ReturnType<typeof useMarket> }) {
+  return (
+    <select value={m.key} onChange={(e) => (m.setBuyerKey(e.target.value), m.setProblem(''))} aria-label="Buyer">
+      {m.options.map((o) => (
+        <option key={o.key} value={o.key}>
+          {o.label}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+/** Sending someone to market, on the Game Table's City & Guild page: the haggle, with its own choice of who pays. */
+export function MarketHaggle({ sagaId }: { sagaId: string }) {
+  const m = useMarket(sagaId);
+  if (!m.saga) return null;
+  if (!m.buyer) return <Empty>Add a covenant or finish a character first.</Empty>;
+  return (
+    <Haggle
+      people={m.people}
+      data={m.data}
+      run={m.run}
+      onSundry={m.sundry}
+      rules={m.saga.houseRules}
+      buyer={m.buyer}
+      payer={<BuyerSelect m={m} />}
+    />
+  );
+}
+
+export default function MarketPage() {
+  const { sagaId } = useParams();
+  const m = useMarket(sagaId);
+  const updateSaga = useStore((s) => s.updateSaga);
+  const { saga, data, chars, key, buyer, home, sundry, onSundry, setOnSundry, options, run, problem, live } = m;
+  if (!saga || !live) return <Empty>Saga not found.</Empty>;
   return (
     <div className="stack">
-      <div className="breadcrumbs">
-        <Link to={`/saga/${saga.id}`}>{saga.name}</Link> › <span className="muted">·</span> <Link to={`/saga/${saga.id}/table`}>★ Game table</Link>
-      </div>
-      <div className="topbar">
-        <h1>Market &amp; treasury</h1>
-      </div>
       <p className="small muted" style={{ marginTop: 0 }}>
         What the covenant&apos;s silver and vis can buy, at the prices of Covenants (ch.5 and 7) and City &amp; Guild. A purchase is paid at once from the buyer&apos;s treasury or purse and noted in
         the covenant&apos;s chronicle or the purse&apos;s record; a covenant can instead put it on this year&apos;s Sundry, paid when the year closes on the{' '}
-        <Link to={`/saga/${saga.id}/seasons`}>Seasons</Link> page. It is {saga.currentSeason} {saga.currentYear}.
+        <Link to={R.seasons(saga.id)}>Seasons</Link> page. It is {saga.currentSeason} {saga.currentYear}. Haggling and bribes are on the <Link to={R.guild(saga.id)}>City &amp; Guild</Link> page.
       </p>
 
       <Hint id="market-who">Choose who is buying first: the covenant&apos;s treasury or a character&apos;s purse. Everything bought is recorded and can be undone.</Hint>
       <Card title="Who is buying" className="accent" tour="market-who">
         {options.length ? (
           <div className="row">
-            <select value={key} onChange={(e) => (setBuyerKey(e.target.value), setProblem(''))} aria-label="Buyer">
-              {options.map((o) => (
-                <option key={o.key} value={o.key}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
+            <BuyerSelect m={m} />
             {buyer && <b>{fundsText(buyer)}</b>}
             {buyer?.kind === 'covenant' && (
               <label className="row tight small" style={{ flexWrap: 'nowrap' }} title="Covenants ch.5: Sundry spending is part of the year's expenditure">
@@ -134,7 +160,6 @@ export default function MarketPage() {
           <Books buyer={buyer} home={home} run={run} data={data} visPrice={visPriceOf(saga)} onSundry={sundry} />
           {home && <People home={home} chars={chars} data={data} run={run} onSundry={sundry} />}
           <PriceList run={run} home={home} onSundry={sundry} />
-          <Haggle people={people} data={data} run={run} onSundry={sundry} rules={saga.houseRules} buyer={buyer} />
           <History buyer={buyer} />
         </>
       )}
@@ -475,7 +500,7 @@ function People({ home, chars, data, run, onSundry }: { home: Covenant; chars: C
       </div>
       <p className="small muted" style={{ margin: '4px 0 8px' }}>
         Covenfolk cost no price to recruit: they cost inhabitant points, so buildings, provisions and wages, every year (Covenants ch.5). Named specialists and craftsmen are added on the covenant&apos;s{' '}
-        <Link to={`/saga/${home.sagaId}/covenant/${home.id}?tab=folk`}>Covenfolk</Link> tab, marked recruited in play so they cost no Build Points.
+        <Link to={`/saga/${home.sagaId}/covenant/${home.id}?tab=folk&sub=people`}>Covenfolk</Link> tab, marked recruited in play so they cost no Build Points.
       </p>
       <HireTeacher home={home} data={data} run={run} onSundry={onSundry} />
     </Card>
@@ -650,7 +675,7 @@ const sign = (n: number) => (n >= 0 ? `+${n}` : String(n));
  * bargaining the price down against the seller; and, apart from the price, what a bribe does for
  * getting a local to talk or finding a bed. Each roll says whose it is, what they add and the chance.
  */
-function Haggle({ people, data, run, onSundry, rules, buyer }: { people: Character[]; data: GameData; run: Run; onSundry: boolean; rules: HouseRules; buyer: Payer }) {
+function Haggle({ people, data, run, onSundry, rules, buyer, payer }: { people: Character[]; data: GameData; run: Run; onSundry: boolean; rules: HouseRules; buyer: Payer; payer?: ReactNode }) {
   const folk = people.filter((c) => !c.creature);
   const [who, setWho] = useState('');
   const [value, setValue] = useState(1);
@@ -701,6 +726,7 @@ function Haggle({ people, data, run, onSundry, rules, buyer }: { people: Charact
         <Empty>No characters in play: make a grog or companion to send.</Empty>
       ) : (
         <>
+<div className="row">
           <Field label="Who goes" hint="Their own scores, from their sheet; a grog or companion is best">
             <select value={c.id} onChange={(e) => (setWho(e.target.value), setOut([]))}>
               {folk.map((x) => {
@@ -714,6 +740,8 @@ function Haggle({ people, data, run, onSundry, rules, buyer }: { people: Charact
               })}
             </select>
           </Field>
+          {payer && <Field label="Who pays" hint="For the goods, and any bribe">{payer}</Field>}
+          </div>
           <p className="small" style={{ margin: '4px 0 0' }}>
             {c.name || 'They'}: Perception {sign(s.per)}, Communication {sign(s.com)}, Bargain {s.bargain}, Folk Ken {s.folkKen}.
             {s.gift && <span className="warn-text"> Has The Gift: {s.social} to bargaining and talking (counted below), and sellers hike their prices. Send someone without it.</span>}

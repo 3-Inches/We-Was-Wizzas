@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { R } from '../../routes';
 import { Link } from 'react-router-dom';
 import { StandingEditor, teamOf } from '../StandingEditor';
 import { bestLesson, teachableSubjects } from '../../../engine/teaching';
@@ -21,9 +22,7 @@ import { extraFree, loggedThisSeason, seasonBusy, seasonTaken } from '../../../e
 import { SeasonPlan } from '../SeasonPlan';
 import { seasonsOf, seasonsUsed } from '../../../engine/seasons';
 import { MysteriesCard } from './MysteriesCard';
-import { GuildCard } from './GuildCard';
 import { WritingCard } from './Writing';
-import { WorkshopCard } from './WorkshopCard';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { characterContext } from '../../../engine/context';
 import { deriveCharacter } from '../../../engine/character/derive';
@@ -336,7 +335,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     <div className="stack">
       <Card title="Plan a season" className="accent" tour="plan-season">
         <div className="row">
-          <Field label="Season" hint={<Link to={`/saga/${saga.id}/seasons`}>the saga&apos;s current season; time moves on, for everyone, on the Seasons page</Link>}>
+          <Field label="Season" hint={<Link to={R.seasons(saga.id)}>the saga&apos;s current season; time moves on, for everyone, on the Seasons page</Link>}>
             <b>
               {season} {year}
             </b>
@@ -544,7 +543,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                   ) : (
                     `${mate.name || 'The teacher'} has no season free this ${season} to teach in.`
                   )}{' '}
-                  To have it happen when time moves on, set {c.name || 'this character'} to be taught by {mate.name || 'them'} on the Game table, or {mate.name || 'them'} to teach.
+                  To have it happen when time moves on, set {c.name || 'this character'} to be taught by {mate.name || 'them'} on the Game Table’s Seasons page, or {mate.name || 'them'} to teach.
                 </div>
               )}
             </>
@@ -814,8 +813,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         <TwilightCard ed={ed} />
         <MysteriesCard ed={ed} />
         <WritingCard ed={ed} />
-        <WorkshopCard ed={ed} />
-        <GuildCard ed={ed} />
+        <LivelihoodLine ed={ed} />
       </div>
     </div>
   );
@@ -827,4 +825,22 @@ function labelFor(key: string, c: NonNullable<CharEditor['c']>, d: NonNullable<C
   if (k === 'ability') return d.abilityByUid.get(id)?.name ?? 'ability';
   if (k === 'mastery') return `Mastery: ${c.spells.find((s) => s.uid === id)?.spell.name ?? 'spell'}`;
   return key;
+}
+
+/** A working character's livelihood, kept on the Game Table's City & Guild page: here, where it stands. */
+function LivelihoodLine({ ed }: { ed: CharEditor }) {
+  const { c, saga } = ed;
+  if (!c || !saga) return null;
+  const trade = c.abilities.some((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
+  if (!c.workshop && !trade && !c.guild) return null;
+  return (
+    <Card title="Livelihood & guild (City & Guild)">
+      <p className="small" style={{ margin: 0 }}>
+        {c.workshop ? `${c.workshop.laborPoints} Labor Points banked; Innovation ${c.workshop.innovation}, Raw Materials ${c.workshop.rawMaterials}. ` : 'Their livelihood is not tracked yet. '}
+        {c.guild ? `${c.guild.rank ? `${c.guild.rank[0].toUpperCase()}${c.guild.rank.slice(1)} of the` : 'Member of the'} ${c.guild.name}. ` : ''}
+        Working a season, assistants, stories and investments, and the guild are on the Game Table&apos;s{' '}
+        <Link to={R.guild(saga.id, { who: c.id })}>City &amp; Guild</Link> page.
+      </p>
+    </Card>
+  );
 }

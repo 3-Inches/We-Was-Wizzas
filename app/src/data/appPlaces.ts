@@ -2,7 +2,7 @@
 // Keyed by the topic ids of the mechanics reference; a `page` is linked (for the active saga), the
 // rest name a tab or card of a character or covenant sheet.
 
-export type AppPage = 'saga' | 'seasons' | 'market' | 'spells' | 'enchant' | 'rules' | 'build' | 'dice' | 'table' | 'tribunal';
+export type AppPage = 'saga' | 'seasons' | 'market' | 'spells' | 'enchant' | 'build' | 'dice' | 'table' | 'guild' | 'people' | 'covenants' | 'tribunal';
 
 export interface AppPlace {
   text: string;
@@ -19,7 +19,7 @@ const MYSTERIES: AppPlace = { text: `${SHEET} → Seasons & Aging → Mysteries 
 
 export const APP_PLACES: Record<string, AppPlace[]> = {
   // the basics and creation
-  'dice-and-rolls': [{ text: 'Dice roller', page: 'dice' }],
+  'dice-and-rolls': [{ text: 'Game Table → Dice', page: 'dice' }],
   characteristics: [{ text: 'Character wizard → Characteristics' }],
   abilities: [{ text: 'Character wizard → Abilities' }, { text: `${SHEET} → Abilities` }],
   'personality-traits': [{ text: 'Character wizard → Personality & Gear' }],
@@ -28,14 +28,14 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'virtues-and-flaws': [{ text: 'Character wizard → Virtues & Flaws' }],
   size: [{ text: 'Character wizard → Characteristics (Size)' }, { text: `${SHEET} → Stat block` }],
   'the-character-sheet': [{ text: `${SHEET}: its tabs, and the Stat block` }],
-  'kinds-of-characters': [{ text: 'Saga page → Create a character', page: 'saga' }],
-  'making-any-character': [{ text: 'Saga page → Create a character', page: 'saga' }],
-  magi: [{ text: 'Saga page → Create a character → Magus', page: 'saga' }],
-  companions: [{ text: 'Saga page → Create a character → Companion', page: 'saga' }],
-  grogs: [{ text: 'Saga page → Create a character → Grog', page: 'saga' }, { text: `${COV} → Covenfolk, Finances & Loyalty → The turb's day` }],
-  'mythic-companions': [{ text: 'Saga page → Create a character → Mythic Companion', page: 'saga' }],
-  'careers-craftsmen-merchants-scholars-physicians': [{ text: `${SHEET} → Seasons & Aging → Workshop` }],
-  'careers-craftsmen-merchants-scholars-physicians-gated': [{ text: `${SHEET} → Seasons & Aging → Workshop and Guild` }],
+  'kinds-of-characters': [{ text: 'People → Create a character', page: 'people' }],
+  'making-any-character': [{ text: 'People → Create a character', page: 'people' }],
+  magi: [{ text: 'People → Create a character → Magus', page: 'people' }],
+  companions: [{ text: 'People → Create a character → Companion', page: 'people' }],
+  grogs: [{ text: 'People → Create a character → Grog', page: 'people' }, { text: `${COV} → Covenfolk, Finances & Loyalty → The turb's day` }],
+  'mythic-companions': [{ text: 'People → Create a character → Mythic Companion', page: 'people' }],
+  'careers-craftsmen-merchants-scholars-physicians': [{ text: 'Game Table → City & Guild → A character’s livelihood', page: 'guild' }],
+  'careers-craftsmen-merchants-scholars-physicians-gated': [{ text: 'Game Table → City & Guild → A character’s livelihood: the workshop and the guild', page: 'guild' }],
   'animals-beasts': [CREATURES],
   'divine-holy-characters': [{ text: `${SHEET} → Overview → True Faith` }],
   'divine-holy-characters-gated': [{ text: `${SHEET} → Overview → True Faith` }, { text: 'Supernatural powers (holy powers)' }],
@@ -62,18 +62,18 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'wounds-and-recovery': [{ text: `${SHEET} → Combat & Health → Wounds (and the covenant's aura, if it heals or festers)` }],
   fatigue: [{ text: `${SHEET} → Combat & Health → Fatigue` }],
   'encumbrance-and-carrying': [{ text: 'Character wizard → Personality & Gear' }, { text: `${SHEET} → Combat & Health → Weapons, armor & combat` }],
-  travel: [{ text: 'Game table → Travel, trade and intrigue: a journey’s days and cost, cargo, Area Lore, ships in a fight', page: 'table' }, { text: 'Market & treasury → Services and hospitality (travel and lodging)', page: 'market' }],
+  travel: [{ text: 'Game Table → City & Guild → Travel, trade and intrigue: a journey’s days and cost, cargo, Area Lore, ships in a fight', page: 'guild' }, { text: 'Game Table → Market & Treasury → Services and hospitality (travel and lodging)', page: 'market' }],
   'disease-and-poison': [{ text: `${SHEET} → Combat & Health → Illness (and disease in a town)` }, { text: `${SHEET} → Seasons & Aging → aging: bad-air trades, mines, leper colonies` }],
   'medicine-and-healing': [{ text: `${SHEET} → Combat & Health → Illness and Wounds` }],
   // seasons
   'experience-and-advancement': [
     { text: `${SHEET} → Seasons & Aging → Plan a season` },
     { text: `${SHEET} → Seasons & Aging → When nothing is planned (free and working seasons)` },
-    { text: 'Seasons page', page: 'seasons' },
+    { text: 'Game Table → Seasons', page: 'seasons' },
   ],
   'books-and-reading': [{ text: `${SHEET} → Seasons & Aging → Plan a season; Writing and copying` }, { text: `${COV} → Library & Vis (the scriptorium)` }],
   'training-animals-and-creatures': [{ text: `${SHEET} → Lab, Items & Familiar → Lab projects (Tame)` }],
-  'aging-and-living-conditions': [{ text: `${SHEET} → Seasons & Aging → Aging` }, { text: 'Seasons page (the year’s end)', page: 'seasons' }],
+  'aging-and-living-conditions': [{ text: `${SHEET} → Seasons & Aging → Aging` }, { text: 'Game Table → Seasons (the year’s end)', page: 'seasons' }],
   warping: [{ text: `${SHEET} → Seasons & Aging → Warping & Twilight` }],
   // magic
   'the-gift-and-the-hermetic-arts': [{ text: `${SHEET} → Magic → Arts` }],
@@ -89,7 +89,7 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   certamen: [{ text: `${SHEET} → Magic → Certamen` }],
   'wizard-s-twilight': [{ text: `${SHEET} → Seasons & Aging → Warping & Twilight` }],
   'supernatural-abilities': [{ text: `${SHEET} → Abilities` }, { text: 'Character wizard → Virtues & Flaws (Supernatural powers)' }],
-  'raw-vis': [{ text: `${SHEET} → Magic → Circumstances (raw vis)` }, { text: 'Market & treasury', page: 'market' }],
+  'raw-vis': [{ text: `${SHEET} → Magic → Circumstances (raw vis)` }, { text: 'Game Table → Market & Treasury', page: 'market' }],
   // the laboratory
   'lab-totals-and-activities': [{ text: `${SHEET} → Magic → Casting Scores and Lab Totals` }, { text: `${SHEET} → Lab, Items & Familiar → Lab projects` }],
   'inventing-and-learning-spells': [{ text: `${SHEET} → Lab, Items & Familiar → Lab projects (Invent a spell; several of one Technique and Form at once)` }],
@@ -111,9 +111,9 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
     { text: `${SHEET} → Lab, Items & Familiar → Lab projects (raise the Refinement, install a Virtue, put a Flaw right; lab routines)` },
   ],
   // covenants
-  'founding-a-covenant': [{ text: 'Saga page → Found a covenant', page: 'saga' }],
+  'founding-a-covenant': [{ text: 'Covenants → Found a covenant', page: 'covenants' }],
   'boons-and-hooks': [{ text: `${COV} → Hooks & Boons` }],
-  finances: [{ text: `${COV} → Covenfolk, Finances & Loyalty (and Each year: Redcap visits, feast days, guests)` }, { text: 'Market & treasury', page: 'market' }],
+  finances: [{ text: `${COV} → Covenfolk, Finances & Loyalty (and Each year: Redcap visits, feast days, guests)` }, { text: 'Game Table → Market & Treasury', page: 'market' }],
   covenfolk: [
     { text: `${COV} → Covenfolk, Finances & Loyalty: specialists and craftsmen (guild ranks, Labor Points), soldiers, the turb's day (watches, sentries, drill, rewards and punishments, retirement), how the covenfolk live, craft magic` },
     { text: 'Quick build → Fill out the covenant', page: 'build', tab: 'covenant' },
@@ -123,22 +123,22 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   libraries: [{ text: `${COV} → Library & Vis (the covenant rolls and the scriptorium)` }, { text: `${SHEET} → Seasons & Aging → Writing and copying` }, { text: 'Quick build → Fill out the covenant (books for the magi)', page: 'build', tab: 'covenant' }],
   'the-aegis-of-the-hearth': [{ text: `${COV} → Overview → Magic on the covenant` }],
   // the Order and the Tribunals
-  tribunals: [{ text: 'Saga page → Tribunal, and its customs', page: 'saga' }, { text: 'The Tribunal: its other covenants as living covenants, and its gatherings', page: 'tribunal' }],
-  'the-rhine-tribunal': [{ text: 'Saga page → Tribunal: Rhine → its customs', page: 'saga' }, { text: 'The Tribunal: the Rhine’s covenants from Guardians of the Forests, living; the gatherings at Durenmar; the Great Library', page: 'tribunal' }],
-  'the-normandy-tribunal': [{ text: 'Saga page → Tribunal: Normandy → its customs', page: 'saga' }],
-  'the-theban-tribunal': [{ text: 'Saga page → Tribunal: Theban → its customs', page: 'saga' }],
-  'the-transylvanian-tribunal': [{ text: 'Saga page → Tribunal: Transylvanian → its customs', page: 'saga' }],
+  tribunals: [{ text: 'Saga Overview → Tribunal, and its customs (Optional rules)', page: 'saga' }, { text: 'The Tribunal: its other covenants as living covenants, and its gatherings', page: 'tribunal' }],
+  'the-rhine-tribunal': [{ text: 'Saga Overview → Tribunal: Rhine → its customs (Optional rules)', page: 'saga' }, { text: 'The Tribunal: the Rhine’s covenants from Guardians of the Forests, living; the gatherings at Durenmar; the Great Library', page: 'tribunal' }],
+  'the-normandy-tribunal': [{ text: 'Saga Overview → Tribunal: Normandy → its customs (Optional rules)', page: 'saga' }],
+  'the-theban-tribunal': [{ text: 'Saga Overview → Tribunal: Theban → its customs (Optional rules)', page: 'saga' }],
+  'the-transylvanian-tribunal': [{ text: 'Saga Overview → Tribunal: Transylvanian → its customs (Optional rules)', page: 'saga' }],
   // society
   'towns-and-guilds': [{ text: `${SHEET} → Seasons & Aging → Guild` }, { text: `${COV} → Covenfolk, Finances & Loyalty → Craftsmen (guild ranks and Labor Points)` }],
-  'crafts-and-workshops': [{ text: `${SHEET} → Seasons & Aging → Workshop` }, { text: 'Dice roller → Item stress check', page: 'dice' }, { text: `${COV} → Covenfolk, Finances & Loyalty → Craftsmen` }],
-  'trade-money-and-wealth': [{ text: 'Market & treasury (haggling and bribes)', page: 'market' }, { text: `${SHEET} → Seasons & Aging → Workshop → Stories and investments (merchants’ story seeds and investments of time)` }, { text: 'Game table → Travel, trade and intrigue: a house’s Reputation, largesse, warehouses, dowries', page: 'table' }],
-  'intrigue-and-agents': [{ text: `${SHEET} → Overview → Agents` }, { text: 'Game table → Travel, trade and intrigue: bribes, hired criminals, sabotage, intrigue against the powerful', page: 'table' }],
+  'crafts-and-workshops': [{ text: 'Game Table → City & Guild: a character’s workshop, the covenant’s craftsmen at work, damaged goods', page: 'guild' }, { text: `${COV} → Covenfolk, Finances & Loyalty → Craftsmen (hiring them, and what they save)` }],
+  'trade-money-and-wealth': [{ text: 'Game Table → City & Guild: haggling and bribes; a character’s workshop → Stories and investments (merchants’ story seeds and investments of time); travel, trade and intrigue: a house’s Reputation, largesse, warehouses, dowries', page: 'guild' }, { text: 'Game Table → Market & Treasury', page: 'market' }],
+  'intrigue-and-agents': [{ text: `${SHEET} → Overview → Agents` }, { text: 'Game Table → City & Guild → Travel, trade and intrigue: bribes, hired criminals, sabotage, intrigue against the powerful', page: 'guild' }],
   'debate-and-influence': [{ text: `${SHEET} → Overview → Society → Debate` }],
   'the-church': [{ text: `${SHEET} → Overview → Society → Petition the Church` }, { text: `${SHEET} → Seasons & Aging → Plan a season (Worship)` }],
   'social-standing': [{ text: 'Character wizard → Virtues & Flaws (Social Status)' }, { text: `${SHEET} → Seasons & Aging → When nothing is planned (free and working seasons)` }],
   'courtly-life-and-leisure': [{ text: `${SHEET} → Overview → Society → Etiquette` }],
   'hermetic-politics': [{ text: `${SHEET} → Overview → Society → Debate (at Tribunal)` }, { text: 'The Tribunal: the living covenants, their gilds and neighbors, and the gatherings', page: 'tribunal' }],
-  'courts-law-and-crime': [{ text: `${SHEET} → Overview → Society → A quick trial` }, { text: 'Game table → Travel, trade and intrigue: bribes, hired criminals, sabotage', page: 'table' }],
+  'courts-law-and-crime': [{ text: `${SHEET} → Overview → Society → A quick trial` }, { text: 'Game Table → City & Guild → Travel, trade and intrigue: bribes, hired criminals, sabotage', page: 'guild' }],
   // realms and mysteries
   auras: [
     { text: `${SHEET} → Magic → Circumstances (aura, time of day, alignment)` },

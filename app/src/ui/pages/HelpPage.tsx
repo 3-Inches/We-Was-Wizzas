@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { R } from '../routes';
 import { Link } from 'react-router-dom';
 import { BOOK_BY_ID } from '../../data';
 import { OPTIONAL_RULES, OPTION_GROUPS, optionOn, tribunalMatches, tribunalName } from '../../engine/optional';
@@ -184,11 +185,11 @@ export default function HelpPage() {
           Everything lives in a saga: its characters, its covenant and the troupe&apos;s house rules.
         </Step>
         <Step n={2} title="Choose your books, optional rules and house rules">
-          On the saga page, open <b>House rules &amp; books</b> to pick the supplements your troupe uses (only their content appears in the pickers), turn the{' '}
-          <Jump to="optional">optional rules</Jump> on or off, and change any creation numbers.
+          On the <b>Saga Overview</b>, its <b>Books</b> tab picks the supplements your troupe uses (only their content appears in the pickers), <b>Optional rules</b> turns the{' '}
+          <Jump to="optional">optional rules</Jump> on or off, and <b>Creation rules &amp; rulings</b> changes any creation numbers.
         </Step>
         <Step n={3} title="Found the covenant">
-          <b>Found a covenant</b> on the saga page: its aura and Build Points, Hooks and Boons, library, laboratories and covenfolk.
+          <b>Found a covenant</b> on the <b>Covenants</b> page: its aura and Build Points, Hooks and Boons, library, laboratories and covenfolk.
         </Step>
         <Step n={4} title="Make the characters">
           Pick grog, companion, Mythic Companion or magus. The wizard walks through every step, shows each budget and checks the rules with page references. Not sure what to
@@ -329,8 +330,8 @@ export default function HelpPage() {
           <li>
             <b>Guided build</b> (Concept step): rate statements 0–10 about what you want to play and get recommendations with the reason and the page, or a whole draft that
             passes the rules check. <b>Build the whole character for me</b> beside it skips the questions: a whole draft from the concept themes (a Mythic Companion&apos;s
-            type from what the concept names), each choice with its reason, opened at Review. The storyguide sets the saga&apos;s realms, speed and politics once under{' '}
-            <b>House rules &amp; books → Saga</b>.
+            type from what the concept names), each choice with its reason, opened at Review. The storyguide sets the saga&apos;s realms, speed and politics once on the{' '}
+            <b>Saga Overview</b> (Guided build).
           </li>
         </ul>
       </Card>
@@ -338,16 +339,16 @@ export default function HelpPage() {
       <Card title="In play" id="play">
         <ul className="small">
           <li>
-            <b>The Game table</b> (first in the saga&apos;s menu) is the place to run a session from: what needs attention (money, Loyalty, wounds, a strike, rules
-            problems, idle characters), what everyone does this season (changed in place), the covenants at a glance, <b>End the season</b>, quick dice, quick changes
-            (a Loyalty event, the treasury, vis found), experience and Labor Points after a story, travel, trade and intrigue, and a list of what comes up in play with a
-            link to where it is done. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
+            <b>The Game Table</b> (in the saga&apos;s menu, under the Saga Overview) is the place to run a session from. Its pages: <b>Overview</b> (what needs attention: money,
+            Loyalty, wounds, a strike, rules problems, idle characters; the covenants at a glance; quick changes such as a Loyalty event, the treasury or vis found; experience
+            and Labor Points after a story; and a list of what comes up in play with a link to where it is done), <b>Seasons</b> (what everyone does this season, changed in
+            place, and <b>End the season</b>), <b>Dice</b>, <b>Market &amp; Treasury</b> and <b>City &amp; Guild</b>. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
             dates), and <b>Stories waiting</b> lists the characters&apos; Story and Personality Flaws and the covenant&apos;s Hooks, the longest untold first, so the toolkit keeps
             the mechanics and the table can play the story. When unsure what to do next, go back to it.
           </li>
           <li>
             <b>The Tribunal</b> (⚜ in the saga&apos;s menu): the other covenants of the saga&apos;s Tribunal, built from its book as living covenants that carry on by themselves.
-            What they bring to your covenant shows on the Game table. See <Jump to="tribunal">The Tribunal</Jump> below.
+            What they bring to your covenant shows on the Game Table&apos;s Overview. See <Jump to="tribunal">The Tribunal</Jump> below.
           </li>
           <li>
             <b>Magic:</b> every Casting Score and Lab Total for the current aura, Magic Resistance per Form, Penetration with Arcane Connections, spell casting with the right die,
@@ -387,9 +388,9 @@ export default function HelpPage() {
             hand, or cast it from the covenant (below). The <b>purse</b> line shows the character&apos;s own pounds and vis.
           </li>
           <li>
-            <b>Time:</b> the <b>Seasons</b> page in the sidebar moves the whole saga on: one season, to next Spring, or several years. Each character does what was logged on
+            <b>Time:</b> the Game Table&apos;s <b>Seasons</b> page moves the whole saga on: one season, to next Spring, or several years. Each character does what was logged on
             their sheet, or their standing activity (set on the Seasons page or the sheet) in their free seasons: a working character has two (Wealthy three, Poor one) and works
-            the rest, a magus has four, a Regular gives one to Worship, and one who needs no sleep has two more for study (set on the Game table). A standing activity can be to{' '}
+            the rest, a magus has four, a Regular gives one to Worship, and one who needs no sleep has two more for study (set on the Seasons page). A standing activity can be to{' '}
             <b>teach covenant-mates</b> (the lesson that teaches the most in all to the students chosen and those who asked: one student adds 6, two add 3), to be{' '}
             <b>taught by a covenant-mate</b>, or to <b>help in a covenant-mate&apos;s lab</b>; the season of each side is logged. Left to the clock, a character studies the
             covenant&apos;s best book or teacher when it teaches more than practice; a magus works its own projects and extracts vis only when told to. A magic character&apos;s
@@ -417,27 +418,27 @@ export default function HelpPage() {
             Church. Craftsmen in a guild get a <b>Guild</b> card beside the workshop: apprentice piece, journeyman contract, promotion, dues.
           </li>
           <li>
-            <b>Tribunal customs:</b> a saga set in the Rhine, Normandy, Thebes or Transylvania is offered that Tribunal&apos;s own rules on the Saga page (off until ticked): the
+            <b>Tribunal customs:</b> a saga set in the Rhine, Normandy, Thebes or Transylvania is offered that Tribunal&apos;s own rules on the Saga Overview&apos;s Optional rules tab (off until ticked): the
             Rhine&apos;s ranks, gilds and forest pacts, Theban tokens and shards and covenant patrons, the Perthean Compact and the Hermetic Tourney, Transylvanian privileges.
           </li>
           <li>
             <b>Undo:</b> every change can be undone with <b>↶ Undo</b> in the sidebar (on a phone, in the bar at the top) or Ctrl+Z, and redone with <b>↷ Redo</b> or Ctrl+Y (the last
             sixty steps, fewer when big: only the last few seasons passed with a whole Tribunal). A
-            ritual cast for the whole covenant is listed under <b>Recent casts</b> in <b>Magic on the covenant</b> (the covenant&apos;s Overview, or the Seasons page), where <b>Undo and give back</b> takes it off everyone and
+            ritual cast for the whole covenant is listed under <b>Recent casts</b> in <b>Magic on the covenant</b> (the covenant&apos;s Overview, or the Game Table&apos;s Seasons page), where <b>Undo and give back</b> takes it off everyone and
             returns the vis, Might, Confidence and Fatigue it cost.
           </li>
           <li>
-            <b>Money:</b> the <b>Market &amp; treasury</b> page buys goods, services, labs, vis and Hermetic books at the book prices, brings in covenfolk and outside teachers,
-            and moves pounds and vis between the treasury and the members&apos; purses; a grog can haggle there, and bribes are paid. The covenant&apos;s yearly allowance to its
+            <b>Money:</b> the Game Table&apos;s <b>Market &amp; Treasury</b> page buys goods, services, labs, vis and Hermetic books at the book prices, brings in covenfolk and outside teachers,
+            and moves pounds and vis between the treasury and the members&apos; purses; a grog sent to haggle for goods, and bribes, are on <b>City &amp; Guild</b>. The covenant&apos;s yearly allowance to its
             members is set on its Finances tab.
           </li>
           <li>
-            <b>Magic on the whole covenant:</b> on the covenant&apos;s Overview (or the Seasons page), <b>Cast a spell, ritual or power on the covenant</b> raises the
+            <b>Magic on the whole covenant:</b> on the covenant&apos;s Overview (or the Game Table&apos;s Seasons page), <b>Cast a spell, ritual or power on the covenant</b> raises the
             Characteristics of every member, teacher, specialist and craftsman at once, or grants a Virtue, and pays for it in vis, Might or Confidence.
           </li>
           <li>
-            The <Link to="/dice">Dice</Link> page rolls simple, stress and botch dice for anyone at the table; an opposed roll between two characters of the saga; a blow in
-            combat from Attack to wound, put on the defender&apos;s sheet; the perils of falls, fire, poison, disease and going without; and the stress check for an item put at risk.
+            The Game Table&apos;s <b>Dice</b> page rolls simple, stress and botch dice for anyone at the table; an opposed roll between two characters of the saga; a blow in
+            combat from Attack to wound, put on the defender&apos;s sheet; and the perils of falls, fire, poison, disease and going without.
           </li>
         </ul>
       </Card>
@@ -459,7 +460,7 @@ export default function HelpPage() {
         </p>
         <ul className="small">
           <li>
-            <b>A character&apos;s livelihood</b> (Seasons &amp; Aging → Livelihood &amp; workshop, for anyone with a Craft or Profession): a season&apos;s work and the goods
+            <b>A character&apos;s livelihood</b> (Game Table → City &amp; Guild, for anyone with a Craft or Profession; the sheet&apos;s Seasons &amp; Aging tab shows a line with a link): a season&apos;s work and the goods
             it makes (Workshop Total against the Craft Level: shoddy, standard, superior at +6, excellent at +9), exertion, selling, wondrous items, assistants and a manual;
             Innovation and Raw Materials bought with Labor Points (a season each); rising in wealth and Social Status; and, folded under <b>Stories and investments</b>,
             Labor Points from stories (half a season&apos;s worth to two and a half), charity, lawsuits, introductions, marriages, a fine thing, money put into the business
@@ -467,17 +468,17 @@ export default function HelpPage() {
             does it.
           </li>
           <li>
-            <b>Guilds</b> (the Guild card beside it): rank, the Guild Lore each rank needs, the apprentice piece, a journeyman&apos;s contract, a master&apos;s fee and vote,
+            <b>Guilds</b> (the Guild card under it): rank, the Guild Lore each rank needs, the apprentice piece, a journeyman&apos;s contract, a master&apos;s fee and vote,
             dues and the dean&apos;s stipend.
           </li>
           <li>
-            <b>The covenant&apos;s craftsmen</b> (Covenfolk, Finances &amp; Loyalty): each craft&apos;s savings, each craftsman&apos;s Labor Points (a season&apos;s, the year&apos;s
+            <b>The covenant&apos;s craftsmen</b>: hired and counted for each craft&apos;s savings on the covenant&apos;s Covenfolk → People tab; at work on City &amp; Guild, each craftsman&apos;s Labor Points (a season&apos;s, the year&apos;s
             after the 36 upkeep, and those banked) with buttons to spend them on Innovation and Raw Materials, guild ranks under the guild rule, the Guild Hook or professional
             guilds, and a strike. <b>+ Cost-saving craftsmen</b> says what it added, or why it added none.
           </li>
           <li>
-            <b>At the table:</b> sending someone to market on the Market page: who goes (with their appraise and bargain totals), appraising the goods, bargaining against a
-            kind of seller, paying, and bribes for a word from the locals or a bed. Damaged goods on the Dice page: a character&apos;s weapon, armor or device, or a kind of thing,
+            <b>At the table</b> (City &amp; Guild): sending someone to market: who goes (with their appraise and bargain totals), appraising the goods, bargaining against a
+            kind of seller, paying, and bribes for a word from the locals or a bed. Damaged goods: a character&apos;s weapon, armor or device, or a kind of thing,
             its damage levels, the check&apos;s modifiers and chance, repair while damaged, and another item once one breaks. A quick court decision on a character&apos;s
             Overview (optional rule). Each roll says whose it is, what it adds and the chance.
           </li>
@@ -487,7 +488,7 @@ export default function HelpPage() {
             government, young talent, repossession, and a capo&apos;s lavish entertainment for Favors.
           </li>
           <li>
-            <b>Travel, trade and intrigue</b> (Game table): a journey&apos;s days and cost by road, river or sea, cargo and its carriers, Area Lore to find things, ships
+            <b>Travel, trade and intrigue</b> (City &amp; Guild): a journey&apos;s days and cost by road, river or sea, cargo and its carriers, Area Lore to find things, ships
             chasing, boarding and ramming; bribes, hired criminals and sabotage; intrigue against the powerful; a house&apos;s Reputation, largesse and warehouses; a
             dowry. Choose who acts at the top; each roll shows what it adds and the chance, and its result appears in that part. Costs can be paid from a purse or the treasury,
             if it has the money.
@@ -508,7 +509,7 @@ export default function HelpPage() {
         <p className="small" style={{ marginTop: 0 }}>
           The <b>Tribunal</b> page builds the other covenants of the saga&apos;s Tribunal into the saga from their book, so that the players&apos; covenant has neighbors who live
           their own lives. For now the toolkit has the <b>Rhine</b> (<i>Guardians of the Forests</i>): Durenmar, Fengheld, Crintera, Irencillia, Oculus Septentrionalis, Dankmar,
-          Waddenzee, Roznov, Triamore and Heorot. Set the saga&apos;s Tribunal to Rhine on the saga page, then press <b>Add</b> for one covenant or <b>Add all</b>.
+          Waddenzee, Roznov, Triamore and Heorot. Set the saga&apos;s Tribunal to Rhine on the Saga Overview, then press <b>Add</b> for one covenant or <b>Add all</b>.
           <b>Remove all</b> takes every one of them out again with its people (your own covenant stays; Undo puts them back), to build them afresh.
         </p>
         <ul className="small">
@@ -539,7 +540,7 @@ export default function HelpPage() {
             in the book.
           </li>
           <li>
-            <b>Kept apart:</b> their covenants and people stay off the players&apos; lists (the menu, the saga page, the Game table, Seasons, the Market). They are on the
+            <b>Kept apart:</b> their covenants and people stay off the players&apos; lists (People, Covenants and the Game Table&apos;s pages). They are on the
             Tribunal page and their own pages, and their lines in a season&apos;s report are folded under <b>The Tribunal</b>.
           </li>
           <li>
@@ -574,11 +575,11 @@ export default function HelpPage() {
             you, <b>Take them in</b> (on the request, or the Tribunal page&apos;s <b>Wanderers</b> card).
           </li>
           <li>
-            <b>The Rhine&apos;s customs</b> follow its optional rule <i>Ranks, gilds and voting sigils</i> (saga page): with it off, every magus has one sigil and votes their
+            <b>The Rhine&apos;s customs</b> follow its optional rule <i>Ranks, gilds and voting sigils</i> (Saga Overview → Optional rules): with it off, every magus has one sigil and votes their
             covenant&apos;s way or their own, nobody is promoted, any magus fifteen years from the Gauntlet may take an apprentice, and guests pay no fee.
           </li>
           <li>
-            <b>Answering them:</b> what they bring shows under <b>Needs attention</b> and <b>From the Tribunal</b> on the Game table, with a link to where it is dealt with. Press
+            <b>Answering them:</b> what they bring shows under <b>Needs attention</b> and <b>From the Tribunal</b> on the Game Table&apos;s Overview, with a link to where it is dealt with. Press
             <b>Dealt with</b> once it is played; one left unanswered for two years lapses (the covenant may come again with it). On the Tribunal page, <b>Deal with</b> a covenant to trade vis or silver, or buy a copy of one of its books, and set its
             <b> attitude</b> to your covenant as play makes it: troubles come more often from those who dislike you, offers and invitations from those who like you.
           </li>
@@ -627,7 +628,7 @@ export default function HelpPage() {
           Without it, a Ritual Power costs Might Score or Confidence Points. Eating vis of the Might&apos;s Form refills the Might pool either way.
         </Question>
         <Question q="A card or rule I read about is not on my sheet.">
-          It may be an <Jump to="optional">optional rule</Jump> the saga has turned off, or one whose book the saga does not use: see <b>House rules &amp; books → Optional
+          It may be an <Jump to="optional">optional rule</Jump> the saga has turned off, or one whose book the saga does not use: see <b>Saga Overview → Optional
           rules</b>. A Tribunal&apos;s customs appear only while the saga is set in that Tribunal. In <Link to="/mechanics">Game mechanics</Link>, a topic an optional rule
           governs says whether the saga you last opened uses it.
         </Question>
@@ -642,7 +643,7 @@ export default function HelpPage() {
           and its neighbours.
         </Question>
         <Question q="A book my troupe uses is missing from the pickers.">
-          Enable it under <b>House rules &amp; books</b>. Books marked WIP are still being transcribed. Anything else can be added as custom content per saga.
+          Enable it on the <b>Saga Overview</b>&apos;s Books tab. Books marked WIP are still being transcribed. Anything else can be added as custom content per saga.
         </Question>
         <Question q="How do I move a saga to another computer?">
           <b>Export</b> it and <Link to="/import">Import</Link> the file on the other computer. <b>Share link</b> on a character or covenant does the same for one sheet.
@@ -665,11 +666,11 @@ export default function HelpPage() {
           <ul className="small">
             <li>Most numbers can be overridden on the sheet (Ability scores, Soak…) for on-the-fly corrections.</li>
             <li>
-              <b>House rules &amp; books → Virtue/Flaw mechanics</b> lets you change what any Virtue or Flaw does for your saga.
+              <b>Saga Overview → Virtue/Flaw mechanics</b> lets you change what any Virtue or Flaw does for your saga.
             </li>
             <li>Custom Virtues, Flaws, Abilities, weapons and spells can be added per saga.</li>
             <li>
-              <b>House rules &amp; books → Optional rules</b> turns each supplement subsystem on or off: see <Jump to="optional">Optional rules</Jump> above.
+              <b>Saga Overview → Optional rules</b> turns each supplement subsystem on or off: see <Jump to="optional">Optional rules</Jump> above.
             </li>
           </ul>
         </Card>
@@ -719,11 +720,11 @@ function OptionalRules() {
   return (
     <Card title="Optional rules" id="optional">
       <p className="small" style={{ marginTop: 0 }}>
-        The supplements add systems a troupe may not want. Each is turned on or off for the saga under <b>House rules &amp; books → Optional rules</b>
+        The supplements add systems a troupe may not want. Each is turned on or off for the saga under <b>Saga Overview → Optional rules</b>
         {saga && (
           <>
             {' '}
-            (<Link to={`/saga/${saga.id}/rules?tab=optional`}>for {saga.name}</Link>)
+            (<Link to={R.saga(saga.id, 'optional')}>for {saga.name}</Link>)
           </>
         )}
         . One that is off leaves the sheets and pages, though anything a character already has recorded stays in sight, and nothing is deleted. A rule whose book the saga does

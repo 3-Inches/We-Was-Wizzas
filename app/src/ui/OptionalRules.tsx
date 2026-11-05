@@ -1,5 +1,5 @@
 // Turning the optional rules of the supplements on and off for a saga, each with its summary and the
-// book's text a click away. The Saga page shows the Tribunal's own rules; House rules lists them all.
+// book's text a click away, on the Saga Overview's Optional rules tab.
 
 import { Link } from 'react-router-dom';
 import { OPTIONAL_RULES, OPTION_GROUPS, bookOn, optionOn, tribunalMatches, tribunalOptions, type OptionalRule } from '../engine/optional';
@@ -7,6 +7,7 @@ import type { Saga } from '../engine/types';
 import { useStore } from '../store/store';
 import { BOOK_BY_ID } from '../data';
 import { RulesNote } from './RulesNote';
+import { R } from './routes';
 
 function RuleRow({ saga, rule }: { saga: Saga; rule: OptionalRule }) {
   const updateSaga = useStore((s) => s.updateSaga);
@@ -29,19 +30,24 @@ function RuleRow({ saga, rule }: { saga: Saga; rule: OptionalRule }) {
   );
 }
 
-/** Every optional rule, by group (House rules → Optional rules). */
+/** Every optional rule, by group, the Tribunal's own first (Saga Overview → Optional rules). */
 export function OptionalRulesPanel({ saga }: { saga: Saga }) {
   return (
     <div className="stack">
-      {OPTION_GROUPS.map((g) => {
+      {/* the Tribunal's own rules first: they matter as soon as the Tribunal is chosen */}
+      {[...OPTION_GROUPS.filter((g) => g === 'Tribunal'), ...OPTION_GROUPS.filter((g) => g !== 'Tribunal')].map((g) => {
         const rules = OPTIONAL_RULES.filter((r) => r.group === g && (g !== 'Tribunal' || tribunalMatches(saga, r)));
         if (!rules.length) return null;
-        return (
+        const body = rules.map((r) => <RuleRow key={r.id} saga={saga} rule={r} />);
+        return g === 'Tribunal' ? (
+          <div key={g} data-tour="optional-tribunal">
+            <h3 style={{ margin: '8px 0 4px' }}>The {saga.tribunal} Tribunal</h3>
+            {body}
+          </div>
+        ) : (
           <div key={g}>
-            <h3 style={{ margin: '8px 0 4px' }}>{g === 'Tribunal' ? `The ${saga.tribunal} Tribunal` : g}</h3>
-            {rules.map((r) => (
-              <RuleRow key={r.id} saga={saga} rule={r} />
-            ))}
+            <h3 style={{ margin: '8px 0 4px' }}>{g}</h3>
+            {body}
           </div>
         );
       })}
@@ -50,25 +56,15 @@ export function OptionalRulesPanel({ saga }: { saga: Saga }) {
   );
 }
 
-/** The Saga page: the Tribunal's own rules to choose, and how many optional rules are in use. */
+/** The Saga Overview's line on its optional rules: how many are in use, the Tribunal's own among them, and where to choose them. */
 export function SagaOptionsCard({ saga }: { saga: Saga }) {
   const trib = tribunalOptions(saga);
   const on = OPTIONAL_RULES.filter((r) => (!r.tribunal || tribunalMatches(saga, r)) && optionOn(saga, r.id)).length;
   return (
-    <div className="stack" data-tour="saga-options">
-      {trib.length > 0 && (
-        <div>
-          <div className="small">
-            <b>Rules of the {saga.tribunal} Tribunal.</b> <span className="muted">Use any of them?</span>
-          </div>
-          {trib.map((r) => (
-            <RuleRow key={r.id} saga={saga} rule={r} />
-          ))}
-        </div>
-      )}
-      <div className="small">
-        {on} optional rules in use. <Link to={`/saga/${saga.id}/rules?tab=optional`}>Choose optional rules ›</Link>
-      </div>
+    <div className="small" data-tour="saga-options">
+      {on} optional rules in use
+      {trib.length ? `; the ${saga.tribunal} Tribunal has ${trib.length} of its own (${trib.filter((r) => optionOn(saga, r.id)).length} on)` : ''}.{' '}
+      <Link to={R.saga(saga.id, 'optional')}>Choose them on the Optional rules tab ›</Link>
     </div>
   );
 }

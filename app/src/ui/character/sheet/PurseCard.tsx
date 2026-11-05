@@ -1,5 +1,6 @@
 // A character's own pounds and vis: the covenant's allowance, gifts, and what they bought.
 
+import { R } from '../../routes';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { lsd } from '../../../engine/economy';
@@ -23,7 +24,7 @@ export function PurseCard({ ed }: { ed: CharEditor }) {
             {open ? 'hide record' : `record (${p.log!.length})`}
           </span>
         )}
-        <Link to={`/saga/${saga.id}/market`}>Market &amp; treasury ›</Link>
+        <Link to={R.market(saga.id)}>Market &amp; Treasury ›</Link>
       </div>
       {open && (
         <ul style={{ margin: '4px 0 0', paddingLeft: 18 }}>

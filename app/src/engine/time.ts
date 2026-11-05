@@ -942,7 +942,23 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
 }
 
 /** Move the saga on by several seasons, one after another. */
+/**
+ * When the saga began, and whether time has moved since: the start set on the Saga Overview, else
+ * (for a saga from before it was kept) the season of the oldest report, else where the clock is now.
+ */
+export function sagaStart(s: Saga): { year: number; season: Season; begun: boolean } {
+  const oldest = (s.timeLog ?? []).at(-1);
+  const year = s.startYear ?? oldest?.year ?? s.currentYear;
+  const season = s.startSeason ?? oldest?.season ?? s.currentSeason;
+  return { year, season, begun: (s.timeLog?.length ?? 0) > 0 || year !== s.currentYear || season !== s.currentSeason };
+}
+
 export function advanceSeasons(input: SagaState, data: GameData, seasons: number, o: AdvanceOptions = DEFAULT_ADVANCE): { state: SagaState; reports: TimeReport[] } {
+  // the first season to pass fixes when the saga began
+  if (input.saga.startYear === undefined && seasons > 0) {
+    const st = sagaStart(input.saga);
+    input = { ...input, saga: { ...input.saga, startYear: st.year, startSeason: st.season } };
+  }
   let state = input;
   const reports: TimeReport[] = [];
   for (let i = 0; i < seasons; i++) {

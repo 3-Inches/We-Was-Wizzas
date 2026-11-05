@@ -1,6 +1,6 @@
-// The game table: one page to run a session from. What needs attention, what everyone does this season
-// (changed here), the covenants' money and loyalty at a glance, ending the season, a quick die, and a
-// list of what comes up in play with a link straight to where it is done.
+// The Game Table's Overview: what needs attention, what is coming, the covenants' money and loyalty at
+// a glance, quick changes, experience after a story, a quick die, and a list of what comes up in play
+// with a link straight to where it is done. Seasons, Dice, the Market and City & Guild are its other pages.
 
 import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -8,29 +8,25 @@ import { deriveCharacter, type DerivedCharacter } from '../../engine/character/d
 import { validateCharacter } from '../../engine/character/validate';
 import { deriveCovenant, type DerivedCovenant } from '../../engine/covenant';
 import { DEFAULT_YEAR_END, loyaltyAttitude, planYearEnd } from '../../engine/covenantYear';
-import { onStrike, teaches } from '../../engine/covenfolk';
-import { covenantOf } from '../../engine/context';
+import { onStrike } from '../../engine/covenfolk';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import { isDue } from '../../engine/hookEvents';
 import { ComingUpCard, StoriesCard } from './CalendarCards';
 import { lsd } from '../../engine/economy';
-import { DEFAULT_ADVANCE, advanceSeasons, describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
-import type { Character, Covenant, TimeReport } from '../../engine/types';
+import { inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
+import type { Character, Covenant } from '../../engine/types';
 import { visText } from '../../engine/vis';
 import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { tribunalBook } from '../../data/livingCovenants';
 import { NewsCard } from './TribunalPage';
 import { useStore } from '../../store/store';
-import { StandingEditor, teamOf } from '../character/StandingEditor';
-import { extraSeasonHere, seasonsOf } from '../../engine/seasons';
+import { R } from '../routes';
 import { LoyaltyEvent } from '../covenant/FinancesTab';
-import { TravelTradeCard } from './TravelTradeCard';
 import { AfterStoryCard } from './AfterStoryCard';
 import { ARTS, ART_NAMES, type Art } from '../../data';
 import { addVis } from '../../engine/vis';
 import { uid } from '../../util/id';
 import { Card, Empty, Field, Stepper } from '../kit';
-import { timeMayMove } from '../advanceGuard';
 
 interface Attention {
   level: 'bad' | 'warn' | 'info';
@@ -48,10 +44,6 @@ export default function DashboardPage() {
   const allCovs = useSagaCovenants(sagaId);
   const chars = usePlayerCharacters(sagaId);
   const covs = usePlayerCovenants(sagaId);
-  const putSagaState = useStore((s) => s.putSagaState);
-  const updateCharacter = useStore((s) => s.updateCharacter);
-  const setNotice = useStore((s) => s.setNotice);
-  const [report, setReport] = useState<TimeReport[]>([]);
   const [roll, setRoll] = useState('');
   const derived = useMemo(() => (saga ? new Map(chars.map((c) => [c.id, deriveCharacter(c, data, saga.houseRules)])) : new Map<string, DerivedCharacter>()), [chars, data, saga]);
   const dcs = useMemo(() => new Map(covs.map((cov) => [cov.id, deriveCovenant(cov, data, chars)])), [covs, data, chars]);
@@ -105,68 +97,10 @@ export default function DashboardPage() {
   for (const n of approaches.slice(0, 3)) attention.push({ level: 'warn', text: `${allCovs.find((c) => c.id === n.covenantId)?.name ?? 'The Tribunal'}: ${n.text}`, to: `${S}/tribunal`, go: 'Tribunal' });
   if (approaches.length > 3) attention.push({ level: 'info', text: `${approaches.length - 3} more from the Tribunal.`, to: `${S}/tribunal`, go: 'Tribunal' });
 
-  // ---------------------------------------------------------------- moving time on
-  const advance = () => {
-    if (!timeMayMove()) return;
-    const before = { saga: structuredClone(saga), characters: structuredClone(allChars), covenants: structuredClone(allCovs) };
-    const { state, reports } = advanceSeasons(before, data, 1, DEFAULT_ADVANCE);
-    putSagaState(state);
-    setReport(reports);
-    setNotice(`${season} ${year} is over: it is now ${state.saga.currentSeason} ${state.saga.currentYear}.`, () => putSagaState(before));
-  };
-  // the living covenants' lines are folded apart from the players'
-  const all = report.flatMap((r) => r.lines);
-  const lines = all.filter((l) => !l.tribunal);
-  const tribunalLines = all.filter((l) => l.tribunal);
-  const urgent = lines.filter((l) => l.kind === 'crisis' || l.kind === 'warping' || l.kind === 'reminder');
   const living = allCovs.some((c) => c.living);
 
   return (
     <div className="stack">
-      <div className="breadcrumbs">
-        <Link to={S}>{saga.name}</Link> ›
-      </div>
-      <div className="topbar">
-        <h1>
-          Game table · {season} {year}
-        </h1>
-        <span className="row tight">
-          <button className="primary" onClick={advance} title={`Everyone does what they planned or their standing activity${season === 'Winter' ? '; the year closes: books, aging, Warping' : ''}`} data-tour="table-advance">
-            End {season} {year}
-          </button>
-          <Link className="btn" to={`${S}/seasons`}>
-            Seasons page (options, several years)
-          </Link>
-        </span>
-      </div>
-      {all.length > 0 && (
-        <Card title={`What happened in ${report[0]?.season ?? ''} ${report[0]?.year ?? ''}`.trim()}>
-          {urgent.map((l, i) => (
-            <div key={i} className="small warn-text">
-              <b>{l.who}:</b> {l.text}
-            </div>
-          ))}
-          <details>
-            <summary className="small">All {lines.length} lines of the report</summary>
-            {lines.map((l, i) => (
-              <div key={i} className="small">
-                <b>{l.who}:</b> {l.text}
-              </div>
-            ))}
-          </details>
-          {tribunalLines.length > 0 && (
-            <details>
-              <summary className="small">The Tribunal’s living covenants: {tribunalLines.length} lines</summary>
-              {tribunalLines.map((l, i) => (
-                <div key={i} className="small">
-                  <b>{l.who}:</b> {l.text}
-                </div>
-              ))}
-            </details>
-          )}
-        </Card>
-      )}
-
       <div className="grid grid-2">
         <Card title={`Needs attention${attention.length ? ` (${attention.length})` : ''}`} className="accent" tour="table-attention">
           {attention.length === 0 && <div className="small muted">Nothing: everyone is well, the treasury holds and the rules check is clean.</div>}
@@ -194,7 +128,7 @@ export default function DashboardPage() {
           </div>
           <details style={{ marginTop: 6 }}>
             <summary className="small">When something comes up in play: where to go</summary>
-            <PlayIndex S={S} home={home} first={playing[0]} sheet={sheet} covLink={covLink} />
+            <PlayIndex S={S} sagaId={saga.id} home={home} first={playing[0]} sheet={sheet} covLink={covLink} />
           </details>
         </Card>
       </div>
@@ -204,63 +138,8 @@ export default function DashboardPage() {
         <StoriesCard saga={saga} characters={allChars} covenants={allCovs} data={data} />
       </div>
 
-      <Card title={`This season: ${season} ${year}`} tour="table-season">
-        <p className="small muted" style={{ marginTop: 0 }}>
-          What each character will do this season: what is planned on their sheet, or else their usual activity, which you can change here. A particular book, teacher or lab
-          project is planned on their sheet.
-        </p>
-        {playing.length === 0 && <Empty>No finished characters yet.</Empty>}
-        {playing.map((c) => {
-          const d = derived.get(c.id);
-          if (!d) return null;
-          const logged = loggedThisSeason(c, year, season);
-          const cov = covenantOf(c, covs);
-          const team = teamOf(c, chars, covs, data, (x) => derived.get(x.id) ?? deriveCharacter(x, data, saga.houseRules));
-          const teachers = cov?.specialists.filter((s) => teaches(s)) ?? [];
-          // a character who needs no sleep has an extra season of study in Spring and Autumn
-          const plan = seasonsOf(c, d);
-          const extraHere = plan.extra > 0 && extraSeasonHere(plan, season) && !logged.some((e) => e.extra);
-          return (
-            <div key={c.id} className="list-row" style={{ flexWrap: 'wrap' }}>
-              <Link to={sheet(c)} style={{ minWidth: 120 }}>
-                <b>{c.name || 'Unnamed'}</b>
-              </Link>
-              <span className="badge">{c.type}</span>
-              {logged.some((e) => !e.extra) ? (
-                <span className="small">{logged.map((e) => e.summary).join('; ')}</span>
-              ) : (
-                <StandingEditor c={c} d={d} year={year} teachers={teachers} library={cov?.library} team={team} onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))} />
-              )}
-              <span className="row tight small" style={{ marginLeft: 'auto' }}>
-                <Link to={sheet(c, 'advancement')}>Plan</Link>
-                <Link to={sheet(c, 'combat')}>Health</Link>
-                {d.isMagus && <Link to={sheet(c, 'magic')}>Cast</Link>}
-                {d.isMagus && <Link to={sheet(c, 'lab')}>Lab</Link>}
-              </span>
-              {!logged.length && !['auto', 'teach', 'assist'].includes(c.standing?.kind ?? 'auto') && !c.standing?.teacher?.startsWith('char:') && <div className="small muted" style={{ flexBasis: '100%' }}>→ {describeStanding(c, d, resolveStanding(c, d, year))}</div>}
-              {extraHere && (
-                <div className="row tight small" style={{ flexBasis: '100%' }}>
-                  <span className="badge">extra season</span>
-                  <StandingEditor
-                    c={c}
-                    d={d}
-                    year={year}
-                    teachers={teachers}
-                    library={cov?.library}
-                    team={team}
-                    extra
-                    value={c.seasons?.extra ?? { kind: 'auto' }}
-                    onChange={(st) => updateCharacter(c.id, (x) => void (x.seasons = { ...(x.seasons ?? {}), extra: st.kind === 'auto' && !st.target ? undefined : st }))}
-                  />
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </Card>
-
       {[...covs].sort((a, b) => weight(b) - weight(a)).map((cov) => (
-        <CovenantGlance key={cov.id} cov={cov} dc={dcs.get(cov.id) as DerivedCovenant} covLink={covLink} S={S} />
+        <CovenantGlance key={cov.id} cov={cov} dc={dcs.get(cov.id) as DerivedCovenant} covLink={covLink} />
       ))}
 
       {(living || tribunalBook(saga.tribunal)) && <NewsCard saga={saga} covs={allCovs} chars={allChars} compact />}
@@ -269,13 +148,12 @@ export default function DashboardPage() {
 
       {playing.length > 0 && <AfterStoryCard people={playing} derived={derived} year={year} season={season} />}
 
-      {playing.length > 0 && <TravelTradeCard people={playing} derived={derived} home={home} year={year} season={season} />}
     </div>
   );
 }
 
 /** A covenant at a glance: money, the year ahead, loyalty, vis, people; the detail a click away. */
-function CovenantGlance({ cov, dc, covLink, S }: { cov: Covenant; dc: DerivedCovenant; covLink: (c: Covenant, tab?: string) => string; S: string }) {
+function CovenantGlance({ cov, dc, covLink }: { cov: Covenant; dc: DerivedCovenant; covLink: (c: Covenant, tab?: string) => string }) {
   const plan = planYearEnd(cov, dc, DEFAULT_YEAR_END);
   const f = dc.finances;
   return (
@@ -308,7 +186,7 @@ function CovenantGlance({ cov, dc, covLink, S }: { cov: Covenant; dc: DerivedCov
         <Link to={covLink(cov, 'library')}>Library & vis</Link>
         <Link to={covLink(cov, 'labs')}>Labs</Link>
         <Link to={covLink(cov, 'items')}>Items</Link>
-        <Link to={`${S}/market`}>Buy something</Link>
+        <Link to={R.market(cov.sagaId)}>Buy something</Link>
       </div>
       <details style={{ marginTop: 6 }}>
         <summary className="small">The year's accounts, loyalty and stocks</summary>
@@ -333,21 +211,22 @@ function CovenantGlance({ cov, dc, covLink, S }: { cov: Covenant; dc: DerivedCov
 }
 
 /** What comes up during a session, and where in the toolkit it is done. */
-function PlayIndex({ S, home, first, sheet, covLink }: { S: string; home?: Covenant; first?: Character; sheet: (c: Character, tab?: string) => string; covLink: (c: Covenant | undefined, tab?: string) => string }) {
+function PlayIndex({ S, sagaId, home, first, sheet, covLink }: { S: string; sagaId: string; home?: Covenant; first?: Character; sheet: (c: Character, tab?: string) => string; covLink: (c: Covenant | undefined, tab?: string) => string }) {
   const charTab = (tab: string) => (first ? sheet(first, tab) : S);
   const rows: { label: string; hint: string; to: string }[] = [
-    { label: 'A fight, a wound, a disease', hint: 'Combat & Health on the character’s sheet: attacks, Soak, wounds, Fatigue, recovery, illness.', to: charTab('combat') },
+    { label: 'A fight, a wound, a peril', hint: 'Dice: an opposed roll, a blow from Attack to wound, falling, fire, drowning and the other perils, for anyone at the table.', to: R.dice(sagaId) },
     { label: 'A spell is cast', hint: 'Magic on the magus’s sheet: Casting Scores, Penetration, botch dice, Fatigue; vis to boost it.', to: charTab('magic') },
     { label: 'A spell is looked up or designed on the spot', hint: 'Spells & design: every spell, and the guidelines to build one.', to: `${S}/spells` },
-    { label: 'Someone buys, sells, hires or haggles', hint: 'Market & treasury: price lists, vis for silver, books, covenfolk, teachers, haggling and bribes.', to: `${S}/market` },
+    { label: 'Someone buys, sells or hires', hint: 'Market & Treasury: price lists, vis for silver, books, covenfolk, teachers, gifts between purses.', to: R.market(sagaId) },
+    { label: 'Someone haggles, or bribes a local', hint: 'City & Guild: sending someone to market, appraising and bargaining, and bribes for a word or a bed.', to: R.guild(sagaId) },
     { label: 'Vis or a vis source is found', hint: 'The covenant’s Library & Vis tab: stocks, sources found in play (no Build Points).', to: covLink(home, 'library') },
     { label: 'The covenfolk are pleased or wronged', hint: 'Loyalty events on Covenfolk & finances: celebrations, punishments, wounds by magic, hardship.', to: covLink(home, 'folk') },
     { label: 'A grog is rewarded or punished, a watch is set', hint: 'The turb’s day, on Covenfolk & finances: watches, sentries, drill, rewards and punishments, retirement.', to: covLink(home, 'folk') },
     { label: 'A spell is cast on the whole covenant', hint: 'The covenant’s Overview: cast a spell, ritual or power on everyone at once.', to: covLink(home, 'overview') },
     { label: 'A book is read, written or copied', hint: 'Seasons & Aging on the sheet: plan a season of study; Writing and copying for books, copies and lab texts.', to: charTab('advancement') },
-    { label: 'A craftsman earns from a story, invests, or works', hint: 'Seasons & Aging → Workshop (City & Guild): Labor Points, stories and investments, the guild.', to: charTab('advancement') },
-    { label: 'A journey, a bribe, a crime, a rumor about a noble', hint: 'Travel, trade and intrigue, below on this page: days and cost of a journey, Area Lore, ships in a fight, bribes, hired criminals, sabotage, intrigue, largesse, a dowry.', to: '#travel-trade' },
-    { label: 'An item may break', hint: 'Dice → Item stress check (City & Guild): damage levels, the check against 15, repair.', to: '/dice' },
+    { label: 'A craftsman works, earns from a story, or invests', hint: 'City & Guild: a character’s workshop and Labor Points, stories and investments, the guild; the covenant’s craftsmen.', to: R.guild(sagaId) },
+    { label: 'A journey, a bribe, a crime, a rumor about a noble', hint: 'City & Guild: travel, trade and intrigue: days and cost of a journey, Area Lore, ships in a fight, bribes, hired criminals, sabotage, intrigue, largesse, a dowry.', to: R.guild(sagaId) },
+    { label: 'An item may break', hint: 'City & Guild: damaged goods: damage levels, the check against 15, repair.', to: R.guild(sagaId) },
     { label: 'Experience after a story', hint: 'After a story, below on this page: Adventure experience for everyone, and Labor Points for craftsmen and merchants. Reputations and Confidence are on the sheet.', to: '#after-story' },
     { label: 'Another covenant, a Redcap, the next Tribunal', hint: 'The Tribunal: its living covenants and their magi, what they have brought to your covenant, the coming gatherings, and the Great Library.', to: `${S}/tribunal` },
     { label: 'A rule is in question', hint: 'Game mechanics: every rule in the reviewed books, with the book’s text a click away.', to: '/mechanics' },

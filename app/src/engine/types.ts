@@ -76,8 +76,12 @@ export interface Saga {
   id: string;
   name: string;
   description: string;
+  /** where the saga's clock is now: it moves only as seasons pass (the Game Table's Seasons page) */
   currentYear: number;
   currentSeason: 'Spring' | 'Summer' | 'Autumn' | 'Winter';
+  /** when the saga began, set on the Saga Overview before play; fixed once the first season passes */
+  startYear?: number;
+  startSeason?: 'Spring' | 'Summer' | 'Autumn' | 'Winter';
   tribunal: string;
   enabledBooks: string[]; // [] means all
   houseRules: HouseRules;

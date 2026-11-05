@@ -8,8 +8,11 @@ import { adjustAfterChange } from '../../engine/character/rebalance';
 import { syncImpliedVirtues } from '../../engine/character/factory';
 import { resolveAll as resolveAllIssues, type Fix } from '../../engine/character/fixes';
 
-export function useCharEditor() {
-  const { sagaId, charId } = useParams();
+/** The character being edited: the sheet's (from the address), or one chosen elsewhere (the Game Table's pages). */
+export function useCharEditor(chosen?: { sagaId?: string; charId?: string }) {
+  const params = useParams();
+  const sagaId = chosen?.sagaId ?? params.sagaId;
+  const charId = chosen ? chosen.charId : params.charId;
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
   const c = useCharacter(charId);

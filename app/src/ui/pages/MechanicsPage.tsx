@@ -3,6 +3,7 @@
 // Each entry has a short summary, the key rules quoted from the book, and the book's own text
 // on demand (loaded from the book file by its heading).
 
+import { R, type SagaTab, type TableTab } from '../routes';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { BOOK_BY_ID } from '../../data';
@@ -482,7 +483,14 @@ function InTheApp({ topic }: { topic: string }) {
   const places = APP_PLACES[topic];
   if (!places?.length) return null;
   const href = (p: AppPlace) =>
-    p.page === 'dice' ? '/dice' : p.page && sagaId ? `/saga/${sagaId}${p.page === 'saga' ? '' : `/${p.page}`}${p.tab ? `?tab=${p.tab}` : ''}` : undefined;
+    !p.page ? undefined
+    : !sagaId ? (p.page === 'dice' ? '/dice' : undefined)
+    : p.page === 'saga' ? R.saga(sagaId, p.tab as SagaTab | undefined)
+    : p.page === 'table' ? R.table(sagaId, p.tab as TableTab | undefined)
+    : p.page === 'dice' || p.page === 'seasons' || p.page === 'market' || p.page === 'guild' ? R.table(sagaId, p.page)
+    : p.page === 'people' ? R.people(sagaId)
+    : p.page === 'covenants' ? R.covenants(sagaId)
+    : `/saga/${sagaId}/${p.page}${p.tab ? `?tab=${p.tab}` : ''}`;
   return (
     <p className="small" style={{ margin: '4px 0 0' }}>
       <b>In the app:</b>{' '}
@@ -522,10 +530,10 @@ function OptionalIn({ topic }: { topic: string }) {
       {saga ? (
         <>
           {' · '}
-          <Link to={`/saga/${saga.id}/rules?tab=optional`}>Optional rules ›</Link>
+          <Link to={R.saga(saga.id, 'optional')}>Optional rules ›</Link>
         </>
       ) : (
-        <span className="muted"> (House rules → Optional rules)</span>
+        <span className="muted"> (Saga Overview → Optional rules)</span>
       )}
     </p>
   );
