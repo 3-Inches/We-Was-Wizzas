@@ -111,8 +111,19 @@ describe('tutorials', () => {
     const again = makePractice(tour, { sagaId: saga.id, charId: a.charId, covId: b.covId }, { character: true });
     expect(again.charId).toBe(a.charId);
     expect(again.notice).toMatch(/made before/);
-    const practiceChars = Object.values(useStore.getState().characters).filter((c) => c.sagaId === saga.id);
+    // one practice master craftsman (the grogs the practice covenant brings are its people, not a second one)
+    const practiceChars = Object.values(useStore.getState().characters).filter((c) => c.sagaId === saga.id && (c.notes ?? '').includes(`(${tour.title})`));
     expect(practiceChars).toHaveLength(1);
+    // the practice covenant has people to work with: grogs to send to market, craftsmen with Labor
+    // Points banked to spend, and silver in the treasury, bought as a starting reserve
+    const pc = useStore.getState().covenants[a.covId!];
+    const grogs = Object.values(useStore.getState().characters).filter((c) => c.covenantId === pc.id && c.type === 'grog');
+    expect(grogs.length).toBeGreaterThanOrEqual(3);
+    const crafts = pc.specialists.filter((x) => x.role === 'craftsman');
+    expect(crafts.map((x) => x.craft)).toEqual(expect.arrayContaining(['carpenter', 'blacksmith']));
+    expect(crafts.every((x) => (x.workshop?.laborPoints ?? 0) >= 50)).toBe(true);
+    expect(pc.finances.treasury).toBeGreaterThanOrEqual(50);
+    expect(pc.finances.startingReserve).toBeGreaterThanOrEqual(50);
     expect(Object.values(useStore.getState().covenants).filter((c) => c.sagaId === saga.id)).toHaveLength(2);
     // one put in the troupe's covenant by an older version moves to the practice covenant when one is asked for
     const stray = structuredClone(useStore.getState().characters[a.charId!]);

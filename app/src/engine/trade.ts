@@ -35,16 +35,16 @@ export function journey(miles: number, mode: string, people: number, knownMagi =
 }
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
-/** Carrying cargo by land and sea (ch.5, Vessels): load in tons, and price. */
+/** Carrying cargo by land and sea (ch.5, Vessels): each carrier's load, with its units, and price. */
 export const CARRIERS: { label: string; tons: string; price: string }[] = [
-  { label: 'A horse', tons: '0.15 (400 pounds)', price: '½ £' },
-  { label: 'A two-wheeled cart (2 or 3 horses)', tons: '½ to ¾', price: '20 d' },
-  { label: 'A four-wheeled cart (6 horses; good roads and bridges)', tons: '1¼', price: '40 d' },
-  { label: 'A great cart on smooth, wide paved roads (6 horses)', tons: '1¾', price: '1 £' },
-  { label: 'A river barge', tons: '1 to 20 (by the river’s depth)', price: '—' },
-  { label: 'A buss (coastal)', tons: '20, 8 crew or fewer', price: '4 £ per 10 tons' },
-  { label: 'A cog or nef', tons: '20 to 100+ (a dozen or 18 crew at 100)', price: '4 £ per 10 tons' },
-  { label: 'A galley', tons: '20 to 30, about 160 crew', price: '25 £ per ton' },
+  { label: 'A horse', tons: '0.15 tons (400 pounds)', price: '½ £' },
+  { label: 'A two-wheeled cart (2 or 3 horses)', tons: '½ to ¾ ton', price: '20 d' },
+  { label: 'A four-wheeled cart (6 horses; good roads and bridges)', tons: '1¼ tons', price: '40 d' },
+  { label: 'A great cart on smooth, wide paved roads (6 horses)', tons: '1¾ tons', price: '1 £' },
+  { label: 'A river barge', tons: '1 to 20 tons, by the river’s depth', price: '—' },
+  { label: 'A buss (coastal)', tons: '20 tons; a crew of 8 or fewer', price: '4 £ per 10 tons' },
+  { label: 'A cog or nef', tons: '20 to 100 tons or more; a crew of a dozen to 18 at 100', price: '4 £ per 10 tons' },
+  { label: 'A galley', tons: '20 to 30 tons; a crew of about 160', price: '25 £ per ton' },
 ];
 
 /** Finding people, places and things with Intelligence + Area Lore (ch.5): −3 to find in the hinterland for a townsman, or in the city for a country dweller. */

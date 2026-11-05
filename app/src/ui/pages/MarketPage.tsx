@@ -14,6 +14,7 @@ import {
 } from '../../engine/market';
 import { abilityTotal, deriveCharacter } from '../../engine/character/derive';
 import { BRIBES, LODGING_EASE, appraiseEase, rollAppraise, rollBargain } from '../../engine/turb';
+import { contestChance, pct, simpleChance, simpleDie } from '../../engine/dice';
 import { inPlay, type SagaState } from '../../engine/time';
 import type { Character, Covenant, CovenfolkCounts, HouseRules, LibraryBook, Specialist } from '../../engine/types';
 import { visText } from '../../engine/vis';
@@ -53,9 +54,12 @@ export default function MarketPage() {
   const [buyerKey, setBuyerKey] = useState('');
   const [onSundry, setOnSundry] = useState(false);
   const [problem, setProblem] = useState('');
+  const tourCovId = useStore((s) => s.ui.tour?.covId);
   if (!saga) return <Empty>Saga not found.</Empty>;
   const people = chars.filter(inPlay);
-  const key = buyerKey || (covs[0] ? `cov:${covs[0].id}` : people[0] ? `char:${people[0].id}` : '');
+  // the covenant a tutorial is working on buys first, else the first covenant, else the first purse
+  const tourCov = tourCovId && covs.some((c) => c.id === tourCovId) ? tourCovId : undefined;
+  const key = buyerKey || (tourCov ? `cov:${tourCov}` : covs[0] ? `cov:${covs[0].id}` : people[0] ? `char:${people[0].id}` : '');
   const live: SagaState = { saga, characters: chars, covenants: covs };
   const buyer = key ? payerIn(live, key) : undefined;
   const home = buyer && homeOf(live, buyer);
@@ -73,7 +77,9 @@ export default function MarketPage() {
     if (!p) return false;
     const err = fn(st, p, homeOf(st, p));
     if (err) {
+      // shown at the top of the page and in the notice bar, which stays in view by the button pressed
       setProblem(err);
+      setNotice(err);
       return false;
     }
     setProblem('');
@@ -128,7 +134,7 @@ export default function MarketPage() {
           <Books buyer={buyer} home={home} run={run} data={data} visPrice={visPriceOf(saga)} onSundry={sundry} />
           {home && <People home={home} chars={chars} data={data} run={run} onSundry={sundry} />}
           <PriceList run={run} home={home} onSundry={sundry} />
-          <Haggle people={people} data={data} run={run} onSundry={sundry} rules={saga.houseRules} />
+          <Haggle people={people} data={data} run={run} onSundry={sundry} rules={saga.houseRules} buyer={buyer} />
           <History buyer={buyer} />
         </>
       )}
@@ -620,99 +626,247 @@ function History({ buyer }: { buyer: Payer }) {
   );
 }
 
-/** Sending a grog to haggle, and what a bribe buys (Grogs ch.4, Representatives). */
-function Haggle({ people, data, run, onSundry, rules }: { people: Character[]; data: GameData; run: Run; onSundry: boolean; rules: HouseRules }) {
+/** A guide to the seller's Communication + Bargain (and Presence + Guile): the book leaves them to the storyguide. */
+const SELLERS: { label: string; bargain: number; guile: number }[] = [
+  { label: 'A peasant or stallholder', bargain: 1, guile: 1 },
+  { label: 'A craftsman selling their own work', bargain: 3, guile: 2 },
+  { label: 'A shopkeeper or skilled artisan', bargain: 5, guile: 3 },
+  { label: 'A merchant', bargain: 7, guile: 5 },
+  { label: 'A great merchant or guild master', bargain: 9, guile: 7 },
+];
+const GOODS: { id: 'common' | 'ordinary' | 'rare'; label: string }[] = [
+  { id: 'ordinary', label: 'Ordinary goods' },
+  { id: 'common', label: 'Common goods, or of their own trade' },
+  { id: 'rare', label: 'Rare or unusual goods' },
+];
+const ASKS: { id: string; label: string; ease: number; suspicious?: boolean }[] = [
+  { id: 'talk', label: 'Get a local to talk', ease: 6, suspicious: true },
+  ...LODGING_EASE.map((l) => ({ id: l.label, label: `A bed for the night: ${l.label.toLowerCase()}`, ease: l.ease })),
+];
+const sign = (n: number) => (n >= 0 ? `+${n}` : String(n));
+
+/**
+ * Sending someone to market for the magi (Grogs ch.4, Representatives): appraising the goods, then
+ * bargaining the price down against the seller; and, apart from the price, what a bribe does for
+ * getting a local to talk or finding a bed. Each roll says whose it is, what they add and the chance.
+ */
+function Haggle({ people, data, run, onSundry, rules, buyer }: { people: Character[]; data: GameData; run: Run; onSundry: boolean; rules: HouseRules; buyer: Payer }) {
   const folk = people.filter((c) => !c.creature);
   const [who, setWho] = useState('');
   const [value, setValue] = useState(1);
-  const [seller, setSeller] = useState(3);
-  const [common, setCommon] = useState(false);
-  const [rare, setRare] = useState(false);
+  const [kind, setKind] = useState<'common' | 'ordinary' | 'rare'>('ordinary');
+  const [sellerIx, setSellerIx] = useState(1);
+  const [seller, setSeller] = useState<{ bargain: number; guile: number } | undefined>(undefined);
+  const [ask, setAsk] = useState('talk');
+  const [suspicious, setSuspicious] = useState(0);
+  const [bribe, setBribe] = useState(-1);
   const [daily, setDaily] = useState(1);
-  const [out, setOut] = useState<{ text: string; price?: number }[]>([]);
-  const c = folk.find((x) => x.id === who) ?? folk.find((x) => x.type !== 'magus') ?? folk[0];
-  const s = useMemo(() => {
-    if (!c) return undefined;
-    const d = deriveCharacter(c, data, rules);
+  const [gifted, setGifted] = useState(false);
+  const [out, setOut] = useState<{ step: 'appraise' | 'bargain' | 'advantage' | 'ask'; text: string; price?: number }[]>([]);
+  const [err, setErr] = useState('');
+  // a grog or companion first: The Gift sets prices soaring for a magus
+  const c = folk.find((x) => x.id === who) ?? folk.find((x) => x.type === 'grog') ?? folk.find((x) => x.type !== 'magus') ?? folk[0];
+  const stats = (x: Character) => {
+    const d = deriveCharacter(x, data, rules);
+    const ch = (k: 'Per' | 'Com') => d.characteristics[k].value;
     const bargain = abilityTotal(d, 'bargain');
-    return { per: d.characteristics.Per.value + bargain, com: d.characteristics.Com.value + bargain, gift: d.giftType === 'normal' || d.giftType === 'blatant' };
-  }, [c, data, rules]);
-  const ease = appraiseEase(common, rare);
+    const folkKen = abilityTotal(d, 'folk-ken');
+    // The Gift's social penalty (−3, −6 for the Blatant Gift; DE) on the rolls that deal with people
+    const social = d.socialPenalty;
+    return { per: ch('Per'), com: ch('Com'), bargain, folkKen, social, appraise: ch('Per') + bargain, haggle: ch('Com') + bargain + social, read: ch('Per') + folkKen, talk: ch('Com') + folkKen + social, gift: social < 0 };
+  };
+  const all = useMemo(() => new Map(folk.map((x) => [x.id, stats(x)])), [folk, data, rules]); // eslint-disable-line react-hooks/exhaustive-deps
+  const s = c ? all.get(c.id) : undefined;
+  const sel = seller ?? SELLERS[sellerIx];
+  const ease = appraiseEase(kind === 'common', kind === 'rare');
+  const a = ASKS.find((x) => x.id === ask) ?? ASKS[0];
+  const b = bribe >= 0 ? BRIBES[bribe] : undefined;
+  const askEase = a.ease + (a.suspicious ? suspicious : 0) - (b?.ease ?? 0);
   const price = out.find((o) => o.price !== undefined)?.price;
+  const funds = fundsOf(buyer);
+  const short = (pounds: number) => (buyer.kind === 'covenant' && onSundry ? false : funds + 1e-9 < pounds);
+  const noMoney = (pounds: number) => `${payerName(buyer)} has ${lsd(funds)}, not ${lsd(pounds)}: give it money under Treasury and purses above, or choose another buyer at the top of the page.`;
+  const note = (o: (typeof out)[number]) => setOut((l) => [o, ...l.filter((x) => x.step !== o.step)]);
+  const when = (st: SagaState) => ({ year: st.saga.currentYear, season: st.saga.currentSeason });
+  const pence = b ? b.pennies(daily) : 0;
+  // talking to locals who have met the magi: The Gift's penalty applies to a grog as well (Grogs ch.4)
+  const talk = s ? s.talk + (gifted && !s.gift ? -3 : 0) : 0;
   return (
-    <Card title="Haggling and bribes" tour="haggle">
+    <Card title="Sending someone to market: haggling and bribes" tour="haggle">
       <p className="small muted" style={{ marginTop: 0 }}>
-        Grogs often buy for their masters, since The Gift sets vendors&apos; prices soaring (Grogs ch.4). Artisans haggle; food sellers rarely do, unless a lot is bought at once.
+        The Gift sets vendors&apos; prices soaring when a magus comes near, so a grog or companion buys for the magi (Grogs ch.4). Artisans haggle over their wares; food sellers rarely do,
+        unless a lot is bought at once. There are two rolls, in order: <b>appraise</b> (do they know what the goods are worth?) and <b>bargain</b> (how far below that will the seller go?).
       </p>
-      {folk.length === 0 ? (
-        <Empty>No characters in play.</Empty>
+      {folk.length === 0 || !c || !s ? (
+        <Empty>No characters in play: make a grog or companion to send.</Empty>
       ) : (
         <>
-          <div className="row small">
-            <Field label="Who haggles">
-              <select value={c?.id ?? ''} onChange={(e) => setWho(e.target.value)}>
-                {folk.map((x) => (
+          <Field label="Who goes" hint="Their own scores, from their sheet; a grog or companion is best">
+            <select value={c.id} onChange={(e) => (setWho(e.target.value), setOut([]))}>
+              {folk.map((x) => {
+                const y = all.get(x.id)!;
+                return (
                   <option key={x.id} value={x.id}>
-                    {x.name || 'Unnamed'}
+                    {x.name || 'Unnamed'} ({x.type}) — appraise {sign(y.appraise)}, bargain {sign(y.haggle)}
+                    {y.gift ? ', has The Gift' : ''}
+                  </option>
+                );
+              })}
+            </select>
+          </Field>
+          <p className="small" style={{ margin: '4px 0 0' }}>
+            {c.name || 'They'}: Perception {sign(s.per)}, Communication {sign(s.com)}, Bargain {s.bargain}, Folk Ken {s.folkKen}.
+            {s.gift && <span className="warn-text"> Has The Gift: {s.social} to bargaining and talking (counted below), and sellers hike their prices. Send someone without it.</span>}
+          </p>
+
+          <h4 style={{ marginBottom: 4 }}>1. What are the goods worth?</h4>
+          <div className="row small">
+            <Field label="Their value (£)" hint="Usually twice what they cost the seller; more in a city or a crisis">
+              <Stepper value={value} min={0} step={0.5} width={46} onChange={(v) => (setValue(v), setOut((l) => l.filter((o) => o.step !== 'bargain')))} />
+            </Field>
+            <Field label="The goods">
+              <select value={kind} onChange={(e) => setKind(e.target.value as typeof kind)}>
+                {GOODS.map((g) => (
+                  <option key={g.id} value={g.id}>
+                    {g.label} (Ease {appraiseEase(g.id === 'common', g.id === 'rare')})
                   </option>
                 ))}
               </select>
             </Field>
-            <Field label="Value (£)" hint="Usually twice what it cost the seller; more in a city or a crisis">
-              <Stepper value={value} min={0} step={0.5} width={46} onChange={setValue} />
-            </Field>
-            <Field label="Seller's Com + Bargain">
-              <Stepper value={seller} min={-3} max={15} width={34} onChange={setSeller} />
-            </Field>
-            <label className="inline" title="−3 to the appraisal for common goods, or a Craft or Profession that makes them">
-              <input type="checkbox" checked={common} onChange={(e) => setCommon(e.target.checked)} /> common, or their trade
-            </label>
-            <label className="inline" title="+3 or more to the appraisal">
-              <input type="checkbox" checked={rare} onChange={(e) => setRare(e.target.checked)} /> rare
-            </label>
+            <button className="small" onClick={() => note({ step: 'appraise', text: rollAppraise(s.appraise, ease).text })} title="Perception + Bargain + a simple die against the Ease Factor">
+              Appraise: Perception + Bargain {sign(s.appraise)} + die vs {ease} ({pct(simpleChance(s.appraise, ease))})
+            </button>
           </div>
-          {s && (
+          <p className="small muted" style={{ margin: '2px 0 0' }}>
+            Success means they know what the goods are really worth, so the seller cannot pass off a higher price as fair. Failing, they cannot tell, and may pay what the seller asks.
+          </p>
+
+          <h4 style={{ marginBottom: 4 }}>2. How low will the seller go?</h4>
+          <div className="row small">
+            <Field label="The seller" hint="A guide only: the book leaves the seller's scores to the storyguide">
+              <select value={seller ? 'own' : String(sellerIx)} onChange={(e) => (e.target.value === 'own' ? setSeller({ ...sel }) : (setSeller(undefined), setSellerIx(Number(e.target.value))), setOut((l) => l.filter((o) => o.step !== 'bargain')))}>
+                {SELLERS.map((x, i) => (
+                  <option key={x.label} value={i}>
+                    {x.label} (Communication + Bargain {x.bargain})
+                  </option>
+                ))}
+                <option value="own">Scores of my own…</option>
+              </select>
+            </Field>
+            {seller && (
+              <>
+                <Field label="Their Com + Bargain">
+                  <Stepper value={seller.bargain} min={-3} max={15} width={34} onChange={(v) => setSeller({ ...seller, bargain: v })} />
+                </Field>
+                <Field label="Their Pre + Guile">
+                  <Stepper value={seller.guile} min={-3} max={15} width={34} onChange={(v) => setSeller({ ...seller, guile: v })} />
+                </Field>
+              </>
+            )}
+          </div>
+          <div className="row small" style={{ marginTop: 4 }}>
+            <button
+              className="small"
+              onClick={() => {
+                const r = rollBargain(s.haggle, sel.bargain, value);
+                note({ step: 'bargain', price: r.price, text: `${r.text} The lowest the seller will take: ${lsd(r.price)} (of ${lsd(value)}).` });
+              }}
+              title="Communication + Bargain + a simple die for each side; 10% off for each 3 points (or part) the buyer wins by, never below half"
+            >
+              Bargain: {sign(s.haggle)} + die against the seller&apos;s {sign(sel.bargain)} + die ({pct(contestChance(s.haggle, sel.bargain))} to get something off)
+            </button>
+            <button className="small ghost" onClick={() => note({ step: 'advantage', text: (() => { const me = simpleDie().value + s.read; const them = simpleDie().value + sel.guile; return me > them ? `Perception + Folk Ken ${me} beats the seller's Presence + Guile ${them}: they can tell when the seller is near the lowest price, and need not settle above it.` : `Perception + Folk Ken ${me} against the seller's Presence + Guile ${them}: they cannot tell how low the seller will go, and may settle for more.`; })() })} title="Gain Bargaining Advantage (Grogs ch.4): Perception + Folk Ken + a simple die against the seller's Presence + Guile + a simple die">
+              Read the seller: Perception + Folk Ken {sign(s.read)} vs {sign(sel.guile)} ({pct(contestChance(s.read, sel.guile))})
+            </button>
+          </div>
+          <p className="small muted" style={{ margin: '2px 0 0' }}>
+            10% off the value for every 3 points (or part of 3) the buyer&apos;s total beats the seller&apos;s, never below half; a tie or worse, nothing off. The book has the storyguide roll for
+            the seller in secret. The seller will first ask for more than the value; reading the seller tells the buyer when to stop.
+          </p>
+          {price !== undefined && price > 0 && (
             <div className="row small" style={{ marginTop: 4 }}>
-              <button className="small" onClick={() => setOut([{ text: rollAppraise(s.per, ease).text }])}>
-                Appraise (Ease {ease})
-              </button>
               <button
                 className="small"
                 onClick={() => {
-                  const r = rollBargain(s.com, seller, value);
-                  setOut([{ ...r, text: `${r.text} The lowest the seller will take: ${lsd(r.price)} (of ${lsd(value)}).` }]);
+                  if (short(price)) return setErr(noMoney(price));
+                  setErr('');
+                  run((st, p) => pay(p, price, `Bought goods worth ${lsd(value)} for ${lsd(price)} after haggling`, when(st), onSundry), `Paid ${lsd(price)}.`);
                 }}
-                title="Communication + Bargain + a simple die for each side; 10% off for each 3 points (or part) the buyer wins by, never below half"
               >
-                Bargain
+                Pay {lsd(price)} from {payerName(buyer)}
               </button>
-              {price !== undefined && (
-                <button className="small" onClick={() => run((st, p) => pay(p, price, `Bought goods worth ${lsd(value)} for ${lsd(price)} after haggling`, { year: st.saga.currentYear, season: st.saga.currentSeason }, onSundry), `Paid ${lsd(price)}.`)}>
-                  Pay {lsd(price)}
-                </button>
-              )}
-              {s.gift && <span className="warn-text">The Gift: sellers hike their prices; send a grog.</span>}
+              <span className="muted">{buyer.kind === 'covenant' && onSundry ? 'put on this year’s Sundry' : `has ${lsd(funds)}`}</span>
             </div>
           )}
-          <div className="row small" style={{ marginTop: 6 }}>
-            <Field label="Their daily pay (pennies)" hint="A laborer earns about a penny a day; a professional two to five">
-              <Stepper value={daily} min={1} max={10} width={30} onChange={setDaily} />
-            </Field>
-            {BRIBES.map((b) => (
-              <button key={b.label} className="small" onClick={() => run((st, p) => pay(p, b.pennies(daily) / 240, `A bribe (${b.label.toLowerCase()})`, { year: st.saga.currentYear, season: st.saga.currentSeason }, onSundry), `Bribe paid: −${b.ease} to the Ease Factor.`)}>
-                {b.label}: {b.pennies(daily)}d, −{b.ease} Ease
-              </button>
-            ))}
-          </div>
-          <p className="small muted" style={{ margin: '4px 0 0' }}>
-            A bribe is a Minor (−1) or Major (−3) equipment bonus to the roll it helps: getting a local to talk (Communication + Folk Ken, Ease about 6 plus their Suspicious trait) or finding a
-            bed ({LODGING_EASE.map((l) => `${l.label.toLowerCase()} ${l.ease}`).join(', ')}). Too little offends; too much marks the giver as a rube. Coin matters only in towns; villages barter.
+
+          <h4 style={{ marginBottom: 4 }}>Bribes: a word from the locals, or a bed</h4>
+          <p className="small muted" style={{ margin: '0 0 4px' }}>
+            A bribe does not lower a price. It helps the Communication + Folk Ken roll to get a local to talk or to find a bed for the night: a day&apos;s pay of the one bribed takes 1 off its Ease
+            Factor, a week&apos;s pay 3. Too little offends; too much marks the giver as a rube. Coin matters only in towns; villages barter.
           </p>
-          {out.map((o, i) => (
-            <div key={i} className="small" style={{ marginTop: 4 }}>
-              {o.text}
-            </div>
-          ))}
+          <div className="row small">
+            <Field label="What they want">
+              <select value={ask} onChange={(e) => setAsk(e.target.value)}>
+                {ASKS.map((x) => (
+                  <option key={x.id} value={x.id}>
+                    {x.label} (Ease {x.ease}
+                    {x.suspicious ? ' + their Suspicious' : ''})
+                  </option>
+                ))}
+              </select>
+            </Field>
+            {a.suspicious && (
+              <Field label="Their Suspicious trait" hint="Higher in the country, lower in a city">
+                <Stepper value={suspicious} min={0} max={6} width={30} onChange={setSuspicious} />
+              </Field>
+            )}
+            <Field label="Bribe">
+              <select value={bribe} onChange={(e) => setBribe(Number(e.target.value))}>
+                <option value={-1}>None</option>
+                {BRIBES.map((x, i) => (
+                  <option key={x.label} value={i}>
+                    {x.label} (−{x.ease} Ease)
+                  </option>
+                ))}
+              </select>
+            </Field>
+            {b && (
+              <Field label="Their daily pay (pennies)" hint="A laborer earns about a penny a day; a professional two to five">
+                <Stepper value={daily} min={1} max={10} width={30} onChange={setDaily} />
+              </Field>
+            )}
+            <label className="inline" title="If the locals have spoken with a magus, The Gift's social penalty applies even to a grog (Grogs ch.4)">
+              <input type="checkbox" checked={gifted} onChange={(e) => setGifted(e.target.checked)} /> they have met the magi
+            </label>
+          </div>
+          <div className="row small" style={{ marginTop: 4 }}>
+            <button
+              className="small"
+              onClick={() => {
+                const total = talk;
+                const roll = () => {
+                  const die = simpleDie().value;
+                  const ok = die + total >= askEase;
+                  note({ step: 'ask', text: `Communication + Folk Ken ${sign(total)} + ${die} = ${die + total} vs ${askEase}: ${ok ? (a.suspicious ? 'they talk.' : 'they have a place to sleep.') : a.suspicious ? 'they will not say.' : 'no bed tonight.'}${b ? ` The bribe, ${pence}d, is paid.` : ''}` });
+                };
+                if (!b) return roll();
+                if (short(pence / 240)) return setErr(noMoney(pence / 240));
+                setErr('');
+                if (run((st, p) => pay(p, pence / 240, `A bribe (${b.label.toLowerCase()}, ${pence}d)`, when(st), onSundry), `Bribe of ${pence}d paid.`)) roll();
+              }}
+            >
+              {b ? `Pay ${pence}d and roll` : 'Roll'}: Communication + Folk Ken {sign(talk)} + die vs {askEase} ({pct(simpleChance(talk, askEase))})
+            </button>
+            {gifted && !s.gift && <span className="warn-text">−3: the magi&apos;s Gift, which the locals have met, counts against the grog too (Grogs ch.4)</span>}
+          </div>
+          {err && <p className="bad small" style={{ margin: '6px 0 0' }}>{err}</p>}
+          {out.length > 0 && (
+            <ul className="small" style={{ margin: '6px 0 0', paddingLeft: 18 }}>
+              {out.map((o) => (
+                <li key={o.step}>{o.text}</li>
+              ))}
+            </ul>
+          )}
         </>
       )}
     </Card>

@@ -15,6 +15,7 @@ import { generateFamiliar } from './spellsAndFamiliars';
 import { deriveCharacter } from '../character/derive';
 import type { LabContext } from '../magic';
 import { ROLES } from './roles';
+import { guildOf } from '../../data/lists';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -31,6 +32,9 @@ describe('the character generator', () => {
       const g = gen({ type: role.type, role: role.id, variety: varieties[i % 3], npc: i % 2 === 0, seed: 1000 + i }, saga(tribunals[i % tribunals.length], customs));
       expect(errors(g), `${role.id} (seed ${1000 + i})`).toEqual([]);
       expect(g.c.name, role.id).toBeTruthy();
+      // one trade at most: a Craft or a Profession to live by, not both begun side by side
+      const has = (id: string) => g.c.abilities.some((a) => a.abilityId === id);
+      expect(has('craft-type') && has('profession-type'), `${role.id}: a Craft and a Profession`).toBe(false);
     });
   }, 300_000);
 
@@ -73,6 +77,36 @@ describe('the character generator', () => {
     const off = gen({ type: 'companion', role: 'master-craftsman', seed: 3 }, saga('Rhine', { guilds: false }));
     expect(off.c.guild).toBeUndefined();
   }, 60_000);
+
+  it('gives a craftsman one trade, best of all their crafts, with its own guild and a related craft or two', () => {
+    const hedge = (id: string) => { const d = data.vfById.get(id)!; return d.kind === 'virtue' && d.categories.includes('Supernatural') && !['DE', 'Grogs', 'CG'].includes(d.source.book); };
+    for (let seed = 1; seed <= 10; seed++)
+      for (const [type, role] of [['companion', 'master-craftsman'], ['grog', 'craftsman']] as const) {
+        const g = gen({ type, role, seed, variety: 'focused' }, saga('Rhine', { guilds: true }));
+        const d = deriveCharacter(g.c, data, rules);
+        const crafts = g.c.abilities.filter((a) => a.abilityId === 'craft-type').map((a) => ({ param: a.param, score: d.abilityByUid.get(a.uid)?.score ?? 0 })).sort((a, b) => b.score - a.score);
+        const trade = crafts[0];
+        const who = `${g.c.name}: ${crafts.map((a) => `${a.param} ${a.score}`).join(', ')}`;
+        // the trade the concept names is the one they are best at, and the guild is that trade's
+        expect((g.c.creation.concept ?? '').toLowerCase(), who).toContain(String(trade.param).toLowerCase());
+        if (g.c.guild) expect(g.c.guild.name, who).toBe(guildOf(String(trade.param)));
+        // at most three crafts, the others well behind the trade; no second trade as a Profession
+        expect(crafts.length, who).toBeLessThanOrEqual(3);
+        for (const a of crafts.slice(1)) expect(a.score, who).toBeLessThanOrEqual(trade.score - 2);
+        expect(d.abilities.some((a) => a.abilityId === 'profession-type'), who).toBe(false);
+        // no hedge wizard's powers for a working man or woman
+        expect(g.c.virtues.filter((v) => hedge(v.defId)).map((v) => v.defId), who).toEqual([]);
+        expect(errors(g), who).toEqual([]);
+      }
+    // a merchant lives by Profession: Merchant, not by a Craft
+    for (let seed = 1; seed <= 5; seed++) {
+      const c = gen({ type: 'companion', role: 'merchant', seed, variety: 'focused' }).c;
+      const d = deriveCharacter(c, data, rules);
+      const best = c.abilities.filter((a) => a.abilityId === 'profession-type').sort((a, b) => (d.abilityByUid.get(b.uid)?.score ?? 0) - (d.abilityByUid.get(a.uid)?.score ?? 0))[0];
+      expect(best?.param).toBe('Merchant');
+      expect(c.abilities.some((a) => a.abilityId === 'craft-type')).toBe(false);
+    }
+  }, 120_000);
 
   it('follows the Tribunal customs the saga has on, and only those', () => {
     const rhine = gen({ type: 'magus', seed: 5 }, saga('Rhine', { rhineGilds: true }));
@@ -119,9 +153,10 @@ describe('Quick build’s variety and older magi', () => {
     for (let i = 0; i < 8; i++) {
       const g = gen({ type: 'companion', role: 'physician', seed: 70 + i, age: 55 });
       // the table's own points (Stamina on 15 and 18) may still lower one a good deal; before, a single
-      // Characteristic took every point "in any" and fell to −7
-      const lows = Object.entries(g.c.characteristics).filter(([, v]) => v < -4);
-      expect(lows, `${g.c.name}, Decrepitude points ${g.c.decrepitudePoints}`).toEqual([]);
+      // Characteristic took every point "in any" and fell to −7. What aging took is counted, not where
+      // the Characteristic ends: one the build set low (a Poor Characteristic at −3) may end lower
+      const wrecked = Object.entries(g.c.agingLoss ?? {}).filter(([, v]) => v > 4);
+      expect(wrecked, `${g.c.name}, Decrepitude points ${g.c.decrepitudePoints}`).toEqual([]);
     }
   }, 120_000);
 

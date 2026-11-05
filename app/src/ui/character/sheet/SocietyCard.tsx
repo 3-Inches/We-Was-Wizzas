@@ -8,9 +8,9 @@ import {
   ARGUMENT_STRENGTH, DEBATE_ATTACK, DEBATE_DEFENSE, DEBATE_NAMES, PETITIONS, PETITION_CLERGY, PETITION_LAY, courtDecision, debateAttack, debateVotes, debaterOf, etiquetteRoll, petitionArgument, petitionTotal,
   type DebateAttack, type DebateDefense, type Debater,
 } from '../../../engine/society';
-import { defaultRng, stressDie } from '../../../engine/dice';
+import { defaultRng, pct, stressChance, stressDie } from '../../../engine/dice';
 import { useSagaCharacters } from '../../../store/hooks';
-import { Card, Field, Stepper } from '../../kit';
+import { Card, Field, Stepper, signed } from '../../kit';
 import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
 
@@ -125,6 +125,7 @@ function CourtTool({ ed }: { ed: CharEditor }) {
   const [log, setLog] = useState<string[]>([]);
   if (!d) return null;
   const law = Math.max(...['civil-and-canon-law', 'common-law'].map((id) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0)));
+  const courtEase = 6 + (o.innocent ? -3 : 0) + (o.badReputation ? 3 : 0) + (o.witnessesAgainst ? 3 : 0);
   return (
     <details>
       <summary><b>A quick trial</b></summary>
@@ -135,7 +136,9 @@ function CourtTool({ ed }: { ed: CharEditor }) {
         <label className="inline small"><input type="checkbox" checked={o.innocent} onChange={(e) => setO({ ...o, innocent: e.target.checked })} /> truly innocent (−3)</label>
         <label className="inline small"><input type="checkbox" checked={o.badReputation} onChange={(e) => setO({ ...o, badReputation: e.target.checked })} /> bad reputation in the court (+3)</label>
         <label className="inline small"><input type="checkbox" checked={o.witnessesAgainst} onChange={(e) => setO({ ...o, witnessesAgainst: e.target.checked })} /> most credible witnesses against (+3)</label>
-        <button className="small" onClick={() => setLog((l) => [courtDecision(d, { ...o, ability: law }).text, ...l].slice(0, 4))}>Roll the verdict</button>
+        <button className="small" onClick={() => setLog((l) => [courtDecision(d, { ...o, ability: law }).text, ...l].slice(0, 4))}>
+          Roll the verdict: Com + Law {signed(d.characteristics.Com.value + law + d.socialPenalty)} + stress die vs {courtEase} ({pct(stressChance(d.characteristics.Com.value + law + d.socialPenalty, courtEase, 1).chance)} innocent)
+        </button>
       </div>
       <Log lines={log} />
     </details>
@@ -151,6 +154,8 @@ function EtiquetteTool({ ed }: { ed: CharEditor }) {
   const [log, setLog] = useState<string[]>([]);
   if (!d) return null;
   const et = d.abilities.find((a) => a.abilityId === 'etiquette')?.total ?? 0;
+  // Com + Etiquette + gifts (up to Etiquette) − the duel's rudeness, as etiquetteRoll adds them
+  const etTotal = d.characteristics.Com.value + et + Math.min(bonus, Math.max(et, 0)) - (mine + theirs);
   return (
     <details>
       <summary><b>Etiquette</b> <span className="small muted">· Com + Etiquette {d.characteristics.Com.value + et}</span></summary>
@@ -162,7 +167,9 @@ function EtiquetteTool({ ed }: { ed: CharEditor }) {
         <Field label="Gifts or money" hint={`up to Etiquette ${et}`}><Stepper value={bonus} min={0} max={10} onChange={setBonus} /></Field>
         <Field label="Duel: my rudeness"><Stepper value={mine} min={0} max={Math.max(0, et)} onChange={setMine} /></Field>
         <Field label="their rudeness"><Stepper value={theirs} min={0} max={10} onChange={setTheirs} /></Field>
-        <button className="small" onClick={() => setLog((l) => [etiquetteRoll(d, ease, bonus, mine + theirs).text, ...l].slice(0, 4))}>Perform</button>
+        <button className="small" onClick={() => setLog((l) => [etiquetteRoll(d, ease, bonus, mine + theirs).text, ...l].slice(0, 4))}>
+          Perform: {signed(etTotal)} + stress die vs {ease} ({pct(stressChance(etTotal, ease, 1).chance)})
+        </button>
       </div>
       <Log lines={log} />
     </details>

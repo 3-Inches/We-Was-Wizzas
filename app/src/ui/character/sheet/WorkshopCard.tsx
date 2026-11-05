@@ -23,7 +23,8 @@ const THEMES = {
 } as const;
 import { FREQUENCY } from '../../../engine/enchant';
 import { uid } from '../../../util/id';
-import { Card, Field, Stepper, Total } from '../../kit';
+import { Card, Field, Stepper, Total, signed } from '../../kit';
+import { pct, simpleChance, stressChance, stressContestChance } from '../../../engine/dice';
 import type { CharEditor } from '../useChar';
 
 /** situations that raise the base Craft Level (C&G, Finished Goods Craft Levels) */
@@ -54,7 +55,8 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
   const [freq, setFreq] = useState(FREQUENCY[0]?.value ?? '');
   if (!c || !d || !saga) return null;
   const usesCG = saga.enabledBooks.length === 0 || saga.enabledBooks.includes('CG');
-  const trades = d.abilities.filter((a) => a.abilityId.startsWith('craft') || a.abilityId.startsWith('profession'));
+  // the Crafts and Professions they could live by, the best first (not Craft Amulets or Crafter's Healing, which are powers)
+  const trades = d.abilities.filter((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type').sort((a, b) => b.score - a.score);
   if (!usesCG || (!c.workshop && !trades.length)) return null;
   const w = c.workshop;
   const push = (s: string) => setLog((l) => [s, ...l].slice(0, 12));
@@ -340,13 +342,14 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
             </button>
           );
         })}
-        <button className="small ghost" onClick={() => push(sellGoods(d.characteristics.Pre.value, bargain).text)} title="A typical customer: Presence + Bargain + simple die against 9">
-          Haggle a sale
+        <button className="small ghost" onClick={() => push(sellGoods(d.characteristics.Pre.value, bargain).text)} title="A typical customer: Presence + Bargain + a simple die against 9; 10% over the standard price for each point above 8, up to 50%">
+          Haggle a sale: Presence + Bargain {signed(d.characteristics.Pre.value + bargain)} + die vs 9 ({pct(simpleChance(d.characteristics.Pre.value + bargain, 9))} to get more)
         </button>
         <span className="row tight small" title="An important storyguide character or another player: opposed stress dice; they can push the price down too">
+          an important customer&apos;s Com + Bargain
           <Stepper value={buyer} min={-3} max={20} width={30} onChange={setBuyer} />
           <button className="small ghost" onClick={() => push(sellOpposed(d.characteristics.Pre.value, bargain, buyer).text)}>
-            Sell to an important customer (their Com + Bargain)
+            Sell to them: {signed(d.characteristics.Pre.value + bargain)} + stress die against {signed(buyer)} + stress die ({pct(stressContestChance(d.characteristics.Pre.value + bargain, buyer, 1, 'zero'))} to get more)
           </button>
         </span>
       </div>
@@ -394,8 +397,8 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
           <button className="small ghost" title="Drawings: a sumptuous item of hand-tool size or smaller for a wealth multiple of Labor Points" disabled={w.laborPoints < WEALTH_MULT[wealth]} onClick={() => gain(-WEALTH_MULT[wealth], 'A sumptuous item (Drawings)')}>
             A fine thing (−{WEALTH_MULT[wealth]})
           </button>
-          <button className="small ghost" title="Intelligence + Area Lore + stress die: whether the character sees a boom coming" onClick={() => push(boomRoll(d.characteristics.Int.value, areaLore))}>
-            Read the market for a boom
+          <button className="small ghost" title="Intelligence + Area Lore + stress die: 15+ puts everything in as the boom starts, 18+ prepared for it for years; below 7 loses 2 of every 10 invested" onClick={() => push(boomRoll(d.characteristics.Int.value, areaLore))}>
+            Read the market for a boom: Int + Area Lore {signed(d.characteristics.Int.value + areaLore)} + stress die ({pct(stressChance(d.characteristics.Int.value + areaLore, 15, 1).chance)} for 15+)
           </button>
           <button className="small ghost" title={`Smuggling as an investment of time: (Intelligence + Intrigue) × ${WEALTH_MULT[wealth]} = ${smuggle} Labor Points for the season`} onClick={smuggleSeason}>
             Smuggle a season (+{smuggle})

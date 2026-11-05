@@ -2,6 +2,7 @@
 // Rhine's ranks, gilds and forest pacts, Theban citizenship, and a Transylvanian privilege.
 
 import { useState } from 'react';
+import { pct, stressChance } from '../../../engine/dice';
 import { addVirtue, ensureAbility } from '../../../engine/character/factory';
 import { optionOn } from '../../../engine/optional';
 import {
@@ -152,7 +153,7 @@ function ForestSection({ ed }: { ed: CharEditor }) {
         </label>
         <button className="small" disabled={score < (foreign ? 4 : 1)} title={score < 1 ? 'Needs Forest Lore 1 (4 in a foreign forest)' : undefined}
           onClick={() => setLog((l) => [communionRoll(d.characteristics.Int.value, score, foreign).text, ...l].slice(0, 5))}>
-          Seek communion (Int + Forest Lore vs {foreign ? 12 : 9})
+          Seek communion: Int + Forest Lore {d.characteristics.Int.value + score} + stress die vs {foreign ? 12 : 9} ({pct(stressChance(d.characteristics.Int.value + score, foreign ? 12 : 9, 1).chance)})
         </button>
       </div>
       {log.map((t, i) => (
