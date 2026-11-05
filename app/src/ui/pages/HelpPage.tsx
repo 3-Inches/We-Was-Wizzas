@@ -510,6 +510,17 @@ export default function HelpPage() {
             for 1220, moved on to the saga&apos;s year. Where the book is silent (an age, a season, an aura), the toolkit makes a likely guess and says so in the notes.
           </li>
           <li>
+            <b>Built by your rules:</b> each is bought with Build Points as your covenant is. Its power level comes from what the book says it holds, its number of magi and
+            its age, and is no higher than its age allows (Low until 10 years, Medium until 50, High until 100). Its library is bought for its magi and for the apprentices and
+            young magi still to come, with a collection of its own Laboratory Texts. Its vis comes to a share for each magus, by how rich the book says it is: about 2 pawns a
+            year if scarce, 4, 7, and 10 if very rich (the core rules: low vis is up to 5 a magus, moderate about 10). It has enchanted devices of its own (<i>Covenants</i>: the
+            Magical Oven, the Motivated Plow and the like doing its covenfolk&apos;s work, saving servants or a pound a magnitude; items for its laboratories that give them a
+            Virtue; a weapon for its turb), none above its power level&apos;s limit. Its staff, craftsmen and treasury are bought too. Each varies with the covenant. The
+            Great Library is costed book by book, which makes Durenmar Legendary. Its page has the rules check yours has; what it gains in play costs nothing. There are no
+            stipends: the covenant pays the bills, and its magi take vis from their own purse or from its stores (a Longevity Ritual, or study when it has twice what the
+            season needs).
+          </li>
+          <li>
             <b>What they carry:</b> the items and familiars the book gives (Philippus Niger&apos;s Knife of Human Bone, Wizard&apos;s Bridle and Subtle Chain, and Sordus the
             basilisk; Falke&apos;s anklet-ring), a talisman for every archmage, most masters and some long-standing journeymen, attuned to their best Arts, and a heartbeast for
             every Bjornaer. A Redcap carries the Mercer House&apos;s devices for the road (fifty levels at the Gauntlet and two more a year, renewed each year, with a Longevity

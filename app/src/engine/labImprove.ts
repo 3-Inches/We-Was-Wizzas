@@ -160,7 +160,7 @@ export function workLabImprovement(p: LabProject, c: Character, d: DerivedCharac
   } else if (finished) {
     if (p.kind === 'install' && p.labVirtue) {
       takeOut();
-      lab.virtues.push({ uid: uid(), defId: p.labVirtue.defId, note: p.labVirtue.note });
+      lab.virtues.push({ uid: uid(), defId: p.labVirtue.defId, note: p.labVirtue.note, inPlay: true });
       const v = data.labVFById.get(p.labVirtue.defId);
       const choose = [(v?.mods.choicePoints ?? 0) > 0 ? 'its Specialization points' : '', /feature/.test(p.labVirtue.defId) && !p.labVirtue.note ? 'which feature it is' : ''].filter(Boolean);
       lines.push(`${v?.name ?? 'The Virtue'} is installed in ${lab.name}.${choose.length ? ` Choose ${choose.join(' and ')} on the lab’s card.` : ''}`);

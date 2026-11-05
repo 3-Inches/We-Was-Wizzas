@@ -327,7 +327,8 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   for (const b of cov.library) {
     if (b.kind === 'mundane') continue;
     const { cost, issue } = summaCost(b);
-    let iss = issue;
+    // a book its Tribunal book gives an old covenant was written over the centuries: not held to the limits on books bought at founding
+    let iss = b.fromBook ? undefined : issue;
     // a bundle of lab texts (subject "various") is checked by its largest text, not its total
     const bundle = b.kind === 'labText' && (b.collectionMax !== undefined || b.subject === 'various');
     const itemLevel = bundle ? b.collectionMax ?? 0 : b.level;
@@ -352,7 +353,7 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
       lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)}) — a Great Work, the Edifice Boon`, cost: 0, fullCost: 0, ref: b.uid, issue: bad ? `${b.title}: ${bad}.` : iss });
       continue;
     }
-    lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)})${b.make?.format === 'great-work' ? ' — a Great Work' : ''}`, cost, ref: b.uid, issue: iss });
+    lines.push({ category: 'Library', label: `${b.title} (${bookKindLabel(b)})${b.make?.format === 'great-work' ? ' — a Great Work' : ''}${b.fromBook ? ` — from ${b.fromBook}` : ''}`, cost, ref: b.uid, issue: iss });
   }
   for (const s of cov.visSources) lines.push({ category: 'Vis', label: `${s.name} (${s.pawnsPerYear} ${visLabel({ art: s.art, pair: s.dedicated ? s.pair : undefined })}/year${s.inPlay ? ', found in play' : ''})`, cost: visSourceCost(s), ref: s.uid });
   // the stocks the covenant was founded with (a pawn of dedicated vis weighs half again as much); what play adds is free
@@ -447,8 +448,9 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
 
   const bpSpent = lines.reduce((t, l) => t + l.cost, 0);
   for (const l of lines) if (l.issue) issue(`${l.label}: ${l.issue}`, { kind: 'goto', label: `Open ${l.category}`, tab: LINE_TAB[l.category] ?? 'overview' });
-  // a living covenant built from its Tribunal book is not bought with Build Points
-  if (bpSpent > cov.buildPoints && !cov.living) {
+  // a living covenant is bought with Build Points like any other; one built before it was (none) is left alone
+  const unbought = !!cov.living && !cov.buildPoints;
+  if (bpSpent > cov.buildPoints && !unbought) {
     const fits = POWER_LEVELS.find((p) => bpSpent >= p.min && bpSpent <= p.max);
     const marked = pools.some((p) => !p.pays && p.resources.length);
     issue(
@@ -461,7 +463,7 @@ export function deriveCovenant(cov: Covenant, data: GameData, characters: Charac
   }
   // the power level sets the limits (the highest lab text and device effect); a troupe may keep them with Build
   // Points outside its range, for what is lent, given or held in trust
-  if ((cov.buildPoints < pl.min || cov.buildPoints > pl.max) && !cov.living && !cov.keepPowerLevel) {
+  if ((cov.buildPoints < pl.min || cov.buildPoints > pl.max) && !unbought && !cov.keepPowerLevel) {
     const fits = POWER_LEVELS.find((p) => cov.buildPoints >= p.min && cov.buildPoints <= p.max);
     issue(
       `${cov.buildPoints} Build Points is outside the ${pl.level} power range (${pl.min}–${pl.max === Infinity ? '∞' : pl.max}).`,

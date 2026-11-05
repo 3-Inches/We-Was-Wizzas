@@ -13,6 +13,7 @@ import { ARTS, ART_NAMES, TECHNIQUES, type Art, type GameData } from '../../data
 import { deriveCharacter, type DerivedCharacter } from '../character/derive';
 import type { Character, Covenant, HouseRules, LibraryBook, Specialist } from '../types';
 import { specAbilities } from '../covenantRules';
+import { POWER_LEVELS } from '../covenant';
 import { uid } from '../../util/id';
 import { abilityXpForScore, artXpForScore } from '../xp';
 import { freshName } from './names';
@@ -26,6 +27,12 @@ export interface LibraryOptions {
   mundane: boolean;
   /** the share of the covenant's own Build Points left that the library may take, when it has no library budget (default a half) */
   share?: number;
+  /** readers to buy for beyond the magi: apprentices and the young magi still to come, each read as a magus newly through the Gauntlet (an old covenant's library serves its future) */
+  newcomers?: number;
+  /** the share of the Build Points for Laboratory Texts (default a tenth) */
+  labShare?: number;
+  /** what the single Laboratory Texts leave of their share, as a collection of the covenant's magi's texts (many levels, none above the power level's limit), as the DE base packages give them */
+  collection?: boolean;
 }
 
 const ART_TITLES = ['Principles of', 'On the Nature of', 'Meditations upon', 'The Lesser Key of', 'Commentaries on', 'The Mysteries of'];
@@ -94,6 +101,9 @@ export function stockLibrary(cov: Covenant, members: Character[], g: { data: Gam
   const readers: Reader[] = members.filter((m) => m.type === 'magus').map((m) => readerOf(deriveCharacter(m, g.data, g.rules)));
   const nobody = !readers.length;
   if (nobody) readers.push(NEW_MAGUS);
+  for (let i = 0; i < (o.newcomers ?? 0); i++) readers.push(NEW_MAGUS);
+  // the power level's highest level of a Laboratory Text (Low 25, Medium 40, none above) — unless the covenant keeps it with more Build Points, the same
+  const maxText = POWER_LEVELS.find((p) => p.level === cov.powerLevel)?.maxItemLevel ?? 40;
   const authors = new Set<string>([...cov.library.map((b) => b.author ?? ''), ...members.map((m) => m.name)]);
   const author = () => {
     const n = freshName(rng, 'latin', chance(rng, 0.4), authors);
@@ -204,7 +214,7 @@ export function stockLibrary(cov: Covenant, members: Character[], g: { data: Gam
     return out;
   };
   // Laboratory Texts get a tenth of the Build Points, the rest goes to study
-  const labShare = o.labTexts ? Math.min(left, Math.max(10, Math.floor(bp / 10))) : 0;
+  const labShare = o.labTexts ? Math.min(left, Math.max(10, Math.floor(bp * (o.labShare ?? 0.1)))) : 0;
   let study = left - labShare;
   for (let guard = 0; guard < 200; guard++) {
     const best = candidates().filter((c) => c.cost <= study).sort((x, y) => y.value / y.cost - x.value / x.cost)[0];
@@ -229,7 +239,7 @@ export function stockLibrary(cov: Covenant, members: Character[], g: { data: Gam
       if (budget < 2) break;
       // spread: no Technique or Form more than twice
       if ((perArt.get(p.t) ?? 0) >= 2 || (perArt.get(p.f) ?? 0) >= 2) continue;
-      const pool = g.data.spells.filter((s) => s.technique === p.t && s.form === p.f && s.level !== null && !s.general && s.level >= 10 && s.level <= Math.min(p.lt, 40) && !known.has(s.id) && g.data.isBookEnabled(s.source.book));
+      const pool = g.data.spells.filter((s) => s.technique === p.t && s.form === p.f && s.level !== null && !s.general && s.level >= 10 && s.level <= Math.min(p.lt, maxText) && !known.has(s.id) && g.data.isBookEnabled(s.source.book));
       const s = pool.sort((a, b) => b.level! - a.level!).slice(0, 4)[between(rng, 0, Math.min(3, pool.length - 1))];
       if (!s) continue;
       const cost = Math.ceil(s.level! / 5);
@@ -243,6 +253,19 @@ export function stockLibrary(cov: Covenant, members: Character[], g: { data: Gam
       perArt.set(p.f, (perArt.get(p.f) ?? 0) + 1);
       log.push(`Laboratory Text of ${s.name} (${s.technique}${s.form} ${s.level}, ${cost} BP).`);
       if (books.filter((x) => x.kind === 'labText').length >= 10) break;
+    }
+    // what the single texts leave of their share: a collection of the covenant's own texts, five levels a Build Point
+    const singles = books.filter((x) => x.kind === 'labText').reduce((t, x) => t + Math.ceil(x.level / 5), 0);
+    const rest = Math.min(budget, Math.max(0, labShare - singles));
+    if (o.collection && rest >= 10) {
+      const levels = rest * 5;
+      const max = maxText === Infinity ? undefined : maxText;
+      books.push({
+        uid: uid(), title: `Laboratory Texts of the covenant's magi (${levels} levels${max ? `, none over ${max}` : ''})`, kind: 'labText', subjectType: 'other', subject: 'various', level: levels, quality: 0, language: 'Latin',
+        collectionMax: max, notes: 'Spells its magi have invented over the years, kept as Laboratory Texts: name them as they come up in play (DE, Laboratory Texts; the base packages give them as so many levels).',
+      });
+      left -= rest;
+      log.push(`A collection of the covenant's Laboratory Texts: ${levels} levels${max ? `, none over level ${max}` : ''} (${rest} BP).`);
     }
   }
   if (o.mundane) {

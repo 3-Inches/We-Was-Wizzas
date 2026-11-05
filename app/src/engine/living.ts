@@ -23,7 +23,9 @@ import { chanceCalamity } from './calamity';
 import { labTotal } from './magic';
 import { generateFamiliar } from './generate/spellsAndFamiliars';
 import { freshName } from './generate/names';
-import { deriveCovenant, newCovenant } from './covenant';
+import { POWER_LEVELS, deriveCovenant, newCovenant } from './covenant';
+import { livingBudget, powerLevelFor } from './livingBudget';
+import { covenantItems } from './generate/covenantItems';
 import { DEFAULT_YEAR_END, planYearEnd } from './covenantYear';
 import type { Rng } from './dice';
 import { generateCharacter } from './generate/character';
@@ -67,8 +69,6 @@ export function magiTarget(def: BookCovenant): number {
 }
 
 const SPELL_CAP: Record<BookMagus['rank'], number> = { journeyman: 20, master: 30, archmage: 40 };
-const LIBRARY_BP: Record<BookCovenant['library'], number> = { poor: 10, modest: 50, good: 140, great: 360 };
-const VIS_YEAR: Record<BookCovenant['vis'], number> = { scarce: 4, some: 10, rich: 22, 'very rich': 40 };
 const LIVING: Record<BookCovenant['wealth'], number> = { poor: -1, modest: 0, comfortable: 0, rich: 1, 'very rich': 2 };
 const MARGIN: Record<BookCovenant['wealth'], number> = { poor: 0.05, modest: 0.1, comfortable: 0.2, rich: 0.35, 'very rich': 0.6 };
 /** Roles for the magi a book counts without naming, by House. */
@@ -76,6 +76,8 @@ const HOUSE_ROLES: Record<string, string[]> = {
   bonisagus: ['lab', 'scholar'], tremere: ['politician', 'battle-mage'], flambeau: ['battle-mage'], jerbiton: ['social', 'scholar'], merinita: ['faerie'],
   'ex-miscellanea': ['mystic', 'explorer', 'healer'], verditius: ['enchanter'], criamon: ['mystic'], bjornaer: ['beast'], guernicus: ['politician'], mercere: ['explorer'], tytalus: ['politician', 'social'],
 };
+/** Minor laboratory Virtues that ask for no choice, as an old laboratory gathers them (Covenants ch.3). */
+const LAB_MINOR = ['extensive-stores', 'gallery', 'spacious', 'well-insulated', 'auspicious-shape', 'opulent', 'superior-decoration'];
 const VIS_PLACES = ['a spring', 'an ancient oak', 'a standing stone', 'a pool in the forest', 'a hollow in the hills', 'a cave', 'a ruined shrine', 'a grove', 'a barrow', 'a waterfall'];
 
 /**
@@ -369,51 +371,95 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
     if (c.type !== 'magus') continue;
     const lab = newLab(`${c.name}’s laboratory`, c.id);
     lab.refinement = c.rhine?.rank === 'archmage' ? 2 : c.rhine?.rank === 'master' ? 1 : 0;
+    // a refined laboratory's space holds Minor Virtues (bought: 10 Build Points each), not the Empty Flaw:
+    // specimens for the magus's best Form, then what an old laboratory gathers
+    const d = deriveCharacter(c, g.data, g.rules);
+    const form = [...FORMS].sort((a, b) => d.arts[b].score - d.arts[a].score)[0];
+    const extra = [...LAB_MINOR].sort(() => rng() - 0.5);
+    for (let i = 0; i < lab.refinement; i++) lab.virtues.push(i === 0 ? { uid: uid(), defId: 'specimens', choice: { [form]: 1 }, note: `of ${ART_NAMES[form]}` } : { uid: uid(), defId: extra[i - 1] });
     cov.labs.push(lab);
   }
   log.push(`${chars.filter((c) => c.type === 'magus').length} magi${chars.some((c) => c.type !== 'magus') ? ` and ${chars.filter((c) => c.type !== 'magus').length} Redcap${chars.filter((c) => c.type !== 'magus').length > 1 ? 's' : ''}` : ''}.`);
 
-  // covenfolk: the staff and craftsmen it runs on, then the book's numbers
+  // its Build Points, by the same rules as the players' covenant: a budget for each kind of purchase
+  // from what the book says of its holdings, its magi and its age, within the power level its age
+  // allows (Covenants ch.2), all of it bought below as a player covenant buys
+  const magi = chars.filter((c) => c.type === 'magus').length;
+  const plan0 = livingBudget(def, magi, year, rng);
+  cov.powerLevel = plan0.level;
+  cov.buildPoints = plan0.total;
+  cov.budget = { ...plan0.budget };
+  log.push(`Build Points: ${plan0.text}`);
+
+  // covenfolk: the staff and craftsmen it runs on, bought with its Build Points, then the book's numbers
   yield 'its covenfolk';
-  const filled = fillCovenant(cov, chars, g, { staff: true, teacher: false, craftsmen: true, grogs: 0, counts: true, bought: false, gear: true, yearly: true, rest: 'none', seed: o.seed });
+  const filled = fillCovenant(cov, chars, g, {
+    staff: true, teacher: false, craftsmen: true, bookmakers: def.library === 'good' || def.library === 'great', grogs: 0, counts: true, bought: true, gear: true, yearly: true, rest: 'none', seed: o.seed,
+  });
   Object.assign(cov, filled.cov);
   cov.covenfolk = { ...cov.covenfolk, grogs: def.folk.grogs, servants: Math.max(cov.covenfolk.servants, def.folk.servants), laborers: Math.max(cov.covenfolk.laborers, def.folk.laborers), companions: def.folk.companions ?? cov.covenfolk.companions };
   log.push(`Covenfolk: ${def.folk.text}`);
 
-  // vis: sources to the book's wealth in vis, across the magi's Arts, and two years' worth in store
-  const want = VIS_YEAR[def.vis];
+  // vis: sources to the book's wealth in vis, a share for each magus (DE p.218), across the magi's
+  // Arts; a year's worth in store, and Creo, Corpus and Vim for the Longevity Rituals its magi need
+  yield 'its vis';
   const arts = [...new Set(chars.flatMap((c) => c.priorities?.flatMap((p) => p.arts ?? []) ?? []))];
   const pool: Art[] = arts.length ? [...arts, 'Vi'] : ['Vi', 'Cr', 'Co'];
   const sources: VisSource[] = [];
-  for (let left = want, i = 0; left > 0; i++) {
-    const pawns = Math.min(left, 2 + Math.floor(rng() * 5));
+  const most = Math.min(9, 3 + Math.floor(plan0.visPerYear / 20));
+  for (let left = plan0.visPerYear, i = 0; left > 0; i++) {
+    const pawns = Math.min(left, 2 + Math.floor(rng() * most));
     const art = pool[i % pool.length];
-    sources.push({ uid: uid(), name: `${VIS_PLACES[i % VIS_PLACES.length].replace(/^./, (x) => x.toUpperCase())} (${art} vis)`, art, pawnsPerYear: pawns, inPlay: true });
+    const place = VIS_PLACES[i % VIS_PLACES.length].replace(/^./, (x) => x.toUpperCase());
+    sources.push({ uid: uid(), name: `${place}${i >= VIS_PLACES.length ? ` ${Math.floor(i / VIS_PLACES.length) + 1}` : ''} (${art} vis)`, art, pawnsPerYear: pawns });
     left -= pawns;
   }
   cov.visSources = sources;
   cov.visStocks = [];
-  for (const s of sources) addVis(cov.visStocks, s.art, s.pawnsPerYear * 2);
-  // a store of Creo, Corpus and Vim for the Longevity Rituals its magi will need
+  for (const s of sources) addVis(cov.visStocks, s.art, s.pawnsPerYear);
   for (const a of ['Cr', 'Co', 'Vi'] as Art[]) addVis(cov.visStocks, a, Math.ceil(chars.length * (def.vis === 'scarce' ? 1 : 3)));
-  log.push(`Vis: ${sources.reduce((t, s) => t + s.pawnsPerYear, 0)} pawns a year from ${sources.length} sources.`);
+  cov.startingVisStocks = structuredClone(cov.visStocks);
+  log.push(`Vis: ${plan0.visPerYear} pawns a year from ${sources.length} sources, about ${plan0.visPerMagus} a magus (DE p.218: low vis up to 5 a magus, moderate about 10, high about 20).`);
 
-  // the library, bought as if with Build Points to the book's measure
+  // the library, bought with its Build Points as a player covenant's is: for its magi, and for the
+  // apprentices and young magi still to come; the Great Library is stocked to the book's outline,
+  // and costs what its books cost
   yield 'its library';
-  if (def.greatLibrary) cov.library.push(...greatLibraryBooks(g.data, rng).map((b) => ({ ...b, inPlay: true })));
+  if (def.greatLibrary) cov.library.push(...greatLibraryBooks(g.data, rng).map((b) => ({ ...b, fromBook: book.title })));
   else {
-    const lib = stockLibrary(cov, chars, g, LIBRARY_BP[def.library], { arts: true, abilities: true, labTexts: true, mundane: true }, rng);
-    cov.library.push(...lib.books.map((b) => ({ ...b, inPlay: true })));
+    const lib = stockLibrary(cov, chars, g, plan0.budget.book, { arts: true, abilities: true, labTexts: true, mundane: true, newcomers: Math.ceil(magi / 3), labShare: 0.35, collection: true }, rng, cov.specialists.filter((s) => s.role === 'teacher'));
+    cov.library.push(...lib.books);
   }
   log.push(`Library: ${cov.library.length} books.`);
 
-  // accounts that hold: income enough for the year's costs, with a margin by its wealth, and a year in the treasury
+  // enchanted devices of its own: those that do its covenfolk's work, items for its laboratories, a weapon for its turb
+  yield 'its enchanted devices';
+  const made = covenantItems(cov, chars, plan0.budget.item, POWER_LEVELS.find((p) => p.level === cov.powerLevel)!.maxItemLevel, rng);
+  cov.items.push(...made.items);
+  for (const ins of made.installs) cov.labs.find((l) => l.uid === ins.labUid)?.virtues.push(ins.entry);
+  log.push(...made.log);
+
+  // accounts that hold: income enough for the year's costs, with a margin by its wealth, and a treasury bought as a starting reserve (10 £ a Build Point)
   cov.finances.treasury = 0;
   const plan = planYearEnd(cov, deriveCovenant(cov, g.data, chars), DEFAULT_YEAR_END);
   const need = Math.ceil(plan.expenditure * (1 + MARGIN[def.wealth]) - plan.income);
   if (need > 0) cov.income.push({ uid: uid(), name: 'Holdings and dealings', type: 'Other', level: 'Typical', pounds: need, customPounds: true, inPlay: true });
-  cov.finances.treasury = Math.round(plan.expenditure * (0.5 + MARGIN[def.wealth] * 2));
-  log.push(`Accounts: about ${Math.round(plan.expenditure)} £ a year spent, ${cov.finances.treasury} £ in the treasury.`);
+  cov.finances.startingReserve = Math.round((plan.expenditure * (0.5 + MARGIN[def.wealth] * 2)) / 10) * 10;
+
+  // the Build Points as spent: the power level its spending reaches (no higher than its age allows), and what is left over in the treasury
+  const order = POWER_LEVELS.map((p) => p.level);
+  const spent = deriveCovenant(cov, g.data, chars).bpSpent;
+  const reach = powerLevelFor(spent);
+  if (order.indexOf(reach) > order.indexOf(cov.powerLevel)) {
+    if (order.indexOf(reach) <= order.indexOf(plan0.ageCap)) cov.powerLevel = reach;
+    else cov.keepPowerLevel = true;
+  }
+  const pl = POWER_LEVELS.find((p) => p.level === cov.powerLevel)!;
+  cov.buildPoints = Math.max(spent, pl.min);
+  if (cov.buildPoints > spent) cov.finances.startingReserve += (cov.buildPoints - spent) * 10;
+  cov.finances.treasury = cov.finances.startingReserve;
+  cov.budget = undefined;
+  log.push(`Accounts: about ${Math.round(plan.expenditure)} £ a year spent, ${cov.finances.treasury} £ in the treasury. Build Points: ${cov.buildPoints}, a ${cov.powerLevel} covenant.`);
 
   // peregrinatores: around a sixth of the Rhine's magi live as guests under its guest-laws, mostly
   // journeymen (GotF, Laws of Hospitality): about one for every five members, Bjornaer at Crintera
@@ -649,7 +695,7 @@ export function buyCopyFrom(ours: Covenant, theirs: Covenant, bookUid: string, p
     const err = transfer(a, b, price.kind === 'silver' ? price.pounds : 0, price.kind === 'vis' ? { art: price.art, pawns: price.pawns } : undefined, `a copy of ${book.title}`, when);
     if (err) return err;
   }
-  const { readBy: _read, ownerId: _owner, boonUid: _boon, ...rest } = book;
+  const { readBy: _read, ownerId: _owner, boonUid: _boon, fromBook: _from, ...rest } = book;
   ours.library.push({ ...rest, uid: uid(), inPlay: true, copyOf: undefined, notes: `A copy bought from ${theirs.name} in ${when.season} ${when.year}.` });
   return undefined;
 }

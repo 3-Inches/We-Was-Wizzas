@@ -1051,6 +1051,8 @@ export interface LibraryBook {
   rolls?: boolean;
   /** written, copied or bought in play: no Build Points */
   inPlay?: boolean;
+  /** a living covenant's book its Tribunal book gives it (the Great Library): bought with its Build Points, but written over the centuries, so not held to the limits on books bought at founding */
+  fromBook?: string;
   /** how the book was made, under Covenants' extended rules for Quality: artisans, resonant materials, format */
   make?: BookMake;
   /** the Quality of the text alone (author, Virtues, the Level given up), which a copy keeps: the rest comes from how each copy is made */
@@ -1309,6 +1311,8 @@ export interface LabVirtueEntry {
   toggles?: Record<string, boolean>;
   /** given by an enchanted item installed in the lab: it takes no space (Covenants, Magic Items for Laboratories) */
   fromItem?: string;
+  /** installed in play by a season's work: it costs no Build Points */
+  inPlay?: boolean;
 }
 
 export interface Laboratory {

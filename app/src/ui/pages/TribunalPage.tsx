@@ -323,13 +323,19 @@ function LivingCovenantCard({ cov, book, chars, saga, players }: { cov: Covenant
     <Card tour="tribunal-living">
       <details>
         <summary>
-          <b>{cov.name}</b> · {cov.season} · {alive.filter((c) => c.type === 'magus').length} magi · {Math.round(cov.finances.treasury)} £ · {vis} pawns of vis · {cov.library.length} books
+          <b>{cov.name}</b> · {cov.season} · {cov.buildPoints ? `${cov.powerLevel}, ${cov.buildPoints.toLocaleString()} Build Points · ` : ''}{alive.filter((c) => c.type === 'magus').length} magi · {Math.round(cov.finances.treasury)} £ · {vis} pawns of vis · {cov.library.length} books{cov.items.length ? ` · ${cov.items.length} enchanted devices` : ''}
           {cov.living?.paused && <span className="badge warn"> paused</span>}
         </summary>
         <p className="small" style={{ marginTop: 6 }}>
           {cov.description} {def && <BookBadge book={book.book} line={def.line} />}
         </p>
         <div className="small muted">{def?.folk.text}</div>
+        {!cov.buildPoints && (
+          <div className="small muted">
+            Built before Tribunal covenants were bought with Build Points: remove it and add it again to have its library, vis, enchanted devices and power level made by
+            your covenant&apos;s rules (its people are made again too).
+          </div>
+        )}
         <div className="table-wrap">
         <table className="table small" style={{ marginTop: 6 }}>
           <thead>
