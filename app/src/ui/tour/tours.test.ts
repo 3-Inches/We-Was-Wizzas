@@ -6,6 +6,7 @@ import mechanics from '../../data/generated/mechanics/index.json';
 import { STEPS } from '../character/wizardSteps';
 import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, TOURS, nextTour, tourNeeds } from './tours';
 import { ACTIONS, makePractice } from './actions';
+import { newCovenant } from '../../engine/covenant';
 import { useStore } from '../../store/store';
 
 const sources = Object.values(import.meta.glob('../**/*.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>).join('\n');
@@ -89,6 +90,43 @@ describe('tutorials', () => {
     const draft = makePractice(TOUR_BY_ID.get('guided')!, { sagaId: cg.sagaId });
     expect(useStore.getState().characters[draft.charId!].creation.finalized).toBe(false);
     expect(st.sagas[cg.sagaId] ?? useStore.getState().sagas[cg.sagaId]).toBeTruthy();
+  });
+
+  it('keep practice ones apart from the troupe’s own, in order whatever is chosen first, and never make one twice', () => {
+    const st = useStore.getState();
+    const saga = st.createSaga('Our saga');
+    const ours = newCovenant(saga.id, 1220);
+    ours.name = 'Our covenant';
+    st.putCovenant(ours);
+    const tour = TOUR_BY_ID.get('city-guild')!;
+    // the practice character first, with the troupe's covenant chosen: it goes to a practice covenant, not ours
+    const a = makePractice(tour, { sagaId: saga.id, covId: ours.id }, { character: true });
+    expect(a.covId).not.toBe(ours.id);
+    expect(useStore.getState().covenants[ours.id].memberIds).toEqual([]);
+    expect(useStore.getState().characters[a.charId!].covenantId).toBe(a.covId);
+    // then a practice covenant: the same one, not another
+    const b = makePractice(tour, { sagaId: saga.id, charId: a.charId, covId: ours.id }, { covenant: true });
+    expect(b.covId).toBe(a.covId);
+    // the practice character again: the same one
+    const again = makePractice(tour, { sagaId: saga.id, charId: a.charId, covId: b.covId }, { character: true });
+    expect(again.charId).toBe(a.charId);
+    expect(again.notice).toMatch(/made before/);
+    const practiceChars = Object.values(useStore.getState().characters).filter((c) => c.sagaId === saga.id);
+    expect(practiceChars).toHaveLength(1);
+    expect(Object.values(useStore.getState().covenants).filter((c) => c.sagaId === saga.id)).toHaveLength(2);
+    // one put in the troupe's covenant by an older version moves to the practice covenant when one is asked for
+    const stray = structuredClone(useStore.getState().characters[a.charId!]);
+    stray.covenantId = ours.id;
+    const o2 = structuredClone(useStore.getState().covenants[ours.id]);
+    o2.memberIds = [stray.id];
+    const p2 = structuredClone(useStore.getState().covenants[a.covId!]);
+    p2.memberIds = [];
+    useStore.getState().putRecords({ characters: [stray], covenants: [o2, p2] }, 'old state');
+    const moved = makePractice(tour, { sagaId: saga.id, charId: stray.id, covId: ours.id }, { covenant: true });
+    expect(moved.covId).toBe(a.covId);
+    expect(useStore.getState().covenants[ours.id].memberIds).toEqual([]);
+    expect(useStore.getState().characters[stray.id].covenantId).toBe(a.covId);
+    expect(moved.notice).toMatch(/moved to/);
   });
 
   it('go on by themselves only where the step asks for a button press', () => {

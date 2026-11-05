@@ -9,11 +9,17 @@ import { newSaga } from '../store/store';
 import { POWER_LEVELS, deriveCovenant, newCovenant } from './covenant';
 import { deriveLab, newLab } from './lab';
 import { buildLivingCovenant } from './living';
-import { VIS_PER_MAGUS, livingBudget, powerLevelForAge } from './livingBudget';
+import { VIS_PER_MAGUS, VIS_RANGE, livingBudget, powerLevelForAge } from './livingBudget';
 import { stockLibrary } from './generate/library';
 import { covenantItems } from './generate/covenantItems';
 import { seeded } from './generate/random';
 import { advanceSeasons, DEFAULT_ADVANCE } from './time';
+import { characterContext } from './context';
+import { choosePriority, SPACE_FILLERS } from './priorities';
+import { generateCharacter } from './generate/character';
+import { deriveCharacter } from './character/derive';
+import { ensureAbility } from './character/factory';
+import { abilityXpForScore } from './xp';
 import { DEFAULT_HOUSE_RULES } from './types';
 
 const data = buildGameData();
@@ -73,7 +79,8 @@ describe('the power level and Build Points of a Tribunal covenant', () => {
 });
 
 describe('what a Tribunal covenant buys', () => {
-  it('has vis by the magus as the core rules reckon it (DE p.218)', () => {
+  it('has vis by the magus as the core rules reckon it (DE p.218): 5 to 20 pawns a magus a year, most about 10', () => {
+    const rates: number[] = [];
     for (const d of RHINE.covenants) {
       const { cov, chars } = build(d.id);
       const magi = chars.filter((c) => c.type === 'magus' && !c.wanderer).length;
@@ -81,7 +88,14 @@ describe('what a Tribunal covenant buys', () => {
       expect(pawns / magi, d.name).toBeGreaterThanOrEqual(VIS_PER_MAGUS[d.vis] * 0.8);
       expect(pawns / magi, d.name).toBeLessThanOrEqual(VIS_PER_MAGUS[d.vis] * 1.2);
       expect(cov.visSources.every((s) => !s.inPlay), d.name).toBe(true);
+      expect(pawns / magi, d.name).toBeGreaterThanOrEqual(VIS_RANGE.min - 0.5);
+      expect(pawns / magi, d.name).toBeLessThanOrEqual(VIS_RANGE.max + 0.5);
+      rates.push(pawns / magi);
     }
+    rates.sort((a, b) => a - b);
+    const median = (rates[4] + rates[5]) / 2;
+    expect(median).toBeGreaterThanOrEqual(8);
+    expect(median).toBeLessThanOrEqual(12);
   }, 120_000);
 
   it('has a library for its magi and those to come, with a collection of its Laboratory Texts', () => {
@@ -140,6 +154,30 @@ describe('play does not count against the Build Points', () => {
     const bought = deriveLab(lab, data).buildPoints;
     lab.virtues[0].inPlay = true;
     expect(deriveLab(lab, data).buildPoints).toBeLessThan(bought);
+  });
+
+  it('fills the space a raised Refinement opens with a Virtue before refining again, so the lab is never Empty', () => {
+    const s = saga();
+    const c = generateCharacter({ type: 'magus', variety: 'focused', npc: true, seed: 5, yearsPostGauntlet: 20, house: 'bonisagus' }, { data, saga: s, rules }).c;
+    ensureAbility(c, deriveCharacter(c, data, rules).theoryAbility).xp.adjust = abilityXpForScore(8);
+    c.longevity = { labTotal: 30, bonus: 6, extraVis: 0, createdYear: 1210 };
+    c.priorities = [{ kind: 'lab' }];
+    c.standing = { kind: 'priorities' };
+    const cov = newCovenant(s.id, 1200);
+    cov.aura = 5;
+    cov.memberIds = [c.id];
+    c.covenantId = cov.id;
+    const lab = newLab('Lab', c.id);
+    lab.refinement = 2;
+    cov.labs = [lab];
+    expect(deriveLab(lab, data).issues.some((i) => /Empty Flaw/.test(i))).toBe(true);
+    const pick = choosePriority(structuredClone(c), deriveCharacter(c, data, rules), characterContext(c, [cov], data), structuredClone(cov), data, 1220, 'Spring', seeded(1), [c]);
+    expect(pick.choice?.kind).toBe('lab');
+    const r = advanceSeasons({ saga: s, characters: [c], covenants: [cov] }, data, 1, { ...DEFAULT_ADVANCE, rng: seeded(1) });
+    const after = r.state.covenants[0].labs[0];
+    expect(after.virtues.some((v) => v.inPlay && SPACE_FILLERS.includes(v.defId))).toBe(true);
+    expect(deriveLab(after, data).issues).toEqual([]);
+    expect(deriveLab(after, data).buildPoints).toBe(0);
   });
 
   it('keeps a Tribunal covenant within its Build Points after a year of play', () => {

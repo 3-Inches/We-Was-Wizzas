@@ -93,6 +93,8 @@ interface Store extends PersistedState {
   putRecords: (r: { characters: Character[]; covenants: Covenant[] }, label: string) => void;
   /** remove a covenant and everyone who belongs to it, as one change to undo */
   deleteCovenantWithMembers: (id: string) => void;
+  /** remove several covenants and everyone belonging to them, as one change Undo takes back */
+  deleteCovenantsWithMembers: (ids: string[], label?: string) => void;
 }
 
 export interface ExportBundle {
@@ -415,15 +417,17 @@ export const useStore = create<Store>()((set, get) => {
     }));
     scheduleSave(get);
   },
-  deleteCovenantWithMembers: (id) => {
+  deleteCovenantWithMembers: (id) => get().deleteCovenantsWithMembers([id]),
+  deleteCovenantsWithMembers: (ids, label) => {
     const st0 = get();
-    const cov = st0.covenants[id];
-    if (!cov) return;
-    const members = Object.values(st0.characters).filter((c) => c.covenantId === id || cov.memberIds.includes(c.id)).map((c) => c.id);
-    remember({ covenants: [id], characters: members }, `removing ${nameOf(cov)} and its people`);
+    const covs = ids.map((id) => st0.covenants[id]).filter(Boolean);
+    if (!covs.length) return;
+    const gone = new Set(covs.map((c) => c.id));
+    const members = Object.values(st0.characters).filter((c) => (c.covenantId && gone.has(c.covenantId)) || covs.some((cov) => cov.memberIds.includes(c.id))).map((c) => c.id);
+    remember({ covenants: [...gone], characters: members }, label ?? (covs.length === 1 ? `removing ${nameOf(covs[0])} and its people` : `removing ${covs.length} covenants and their people`));
     set((st) => {
       const covenants = { ...st.covenants };
-      delete covenants[id];
+      for (const id of gone) delete covenants[id];
       const characters = { ...st.characters };
       for (const m of members) delete characters[m];
       return { covenants, characters };

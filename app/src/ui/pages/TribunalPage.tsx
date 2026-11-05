@@ -48,6 +48,7 @@ export default function TribunalPage() {
   const putRecords = useStore((s) => s.putRecords);
   const updateSaga = useStore((s) => s.updateSaga);
   const setNotice = useStore((s) => s.setNotice);
+  const removeAll = useStore((s) => s.deleteCovenantsWithMembers);
   const [busy, setBusy] = useState<{ name: string; step: string; done: number; of: number } | null>(null);
   const [others, setOthers] = useState(true);
   const [tab, setTab] = useTabParam<TabId>('covenants');
@@ -168,6 +169,15 @@ export default function TribunalPage() {
                 <button className="primary" disabled={!!busy || !missing.length} onClick={() => add(missing)}>
                   {missing.length ? `Add all ${missing.length}${missing.length < book.covenants.length ? ' still missing' : ''}` : 'All are in the saga'}
                 </button>
+                {!!living.length && (
+                  <Confirm
+                    label={`Remove all ${living.length}`}
+                    danger
+                    className="small"
+                    message={`Remove all ${living.length} of the Tribunal's covenants from the saga, with their ${chars.filter((c) => living.some((cov) => c.covenantId === cov.id || cov.memberIds.includes(c.id))).length} people? Your own covenant and characters stay. Undo (top of the menu) puts them back; Add all builds them again.`}
+                    onYes={() => removeAll(living.map((c) => c.id), `removing the Tribunal's ${living.length} covenants`)}
+                  />
+                )}
                 <label className="inline small" title="Generate the magi the book counts without naming (Durenmar's other Bonisagi, Fengheld's journeymen…)">
                   <input type="checkbox" checked={others} onChange={(e) => setOthers(e.target.checked)} /> Also the magi the book counts without naming
                 </label>

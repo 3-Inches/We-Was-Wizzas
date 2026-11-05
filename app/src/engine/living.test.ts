@@ -144,9 +144,9 @@ describe('building a covenant from its book', () => {
     expect(cov.memberIds).toEqual(chars.map((c) => c.id));
     expect(cov.labs.map((l) => l.ownerId)).toEqual([...chars, ...guests].map((c) => c.id));
     expect(cov.library.length).toBeGreaterThan(0);
-    // some vis: about four pawns a magus a year (DE p.218, low vis), for its three magi
-    expect(cov.visSources.reduce((t, s) => t + s.pawnsPerYear, 0)).toBeGreaterThanOrEqual(10);
-    expect(cov.visSources.reduce((t, s) => t + s.pawnsPerYear, 0)).toBeLessThanOrEqual(14);
+    // some vis: about ten pawns a magus a year (DE p.218, moderate vis), for its three magi
+    expect(cov.visSources.reduce((t, s) => t + s.pawnsPerYear, 0)).toBeGreaterThanOrEqual(25);
+    expect(cov.visSources.reduce((t, s) => t + s.pawnsPerYear, 0)).toBeLessThanOrEqual(35);
     expect(planYearEnd(cov, deriveCovenant(cov, data, chars), DEFAULT_YEAR_END).balance).toBeGreaterThanOrEqual(0);
     for (const c of chars) {
       expect(c.npc).toBe(true);
