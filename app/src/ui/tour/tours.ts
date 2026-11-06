@@ -124,7 +124,7 @@ const finishing: TourStep[] = [
   },
   {
     title: 'The character sheet',
-    body: 'The sheet is built, then keeps the score: wounds and Fatigue on **Combat & Health**, the season log and aging on **Seasons & Aging**. The rolls and the seasons are played at the **Game Table** (Dice, Seasons, Health & recovery), and land back here. Click any underlined total to see how it is worked out. **Stat block** gives a printable summary.',
+    body: 'Once finished, the sheet is for reference: where the character stands. Wounds and Fatigue on **Combat & Health**, the season log and aging on **Seasons & Aging**, what they own on **Lab, Items & Familiar**. What happens in play is done at the **Game Table** (Dice, Seasons, Possessions, Health & recovery) and lands back here; each card says where. Click any underlined total to see how it is worked out. **Stat block** gives a printable summary.',
     at: sheet('overview'), needs: 'character', target: ['tab-combat', 'tab-overview'],
   },
 ];
@@ -338,17 +338,17 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'The laboratory',
-        body: '**Non-standard lab routines** add choices to every lab project with a Lab Total (Early Riser, Nocturnal, overtime), for a bonus and a cost in health and Warping. **Original research** has a card of its own, for Discoveries toward a Breakthrough.',
-        at: sheet('lab'), needs: 'character', target: ['lab-projects', 'original-research', 'tab-lab'],
+        body: '**Non-standard lab routines** add choices to every lab project with a Lab Total (Early Riser, Nocturnal, overtime), for a bonus and a cost in health and Warping. **Original research** has a card of its own, for Discoveries toward a Breakthrough. Both are part of a magus’s season in full, on the Game Table’s Seasons page.',
+        at: plan, needs: 'character', target: ['original-research', 'lab-projects', 'table-plan'],
       },
       {
         title: 'Society and the Tribunal',
-        body: 'Played at the Game Table’s **Dice › Society & the Tribunal**, for whoever you pick: **Agents**, the **Society** card (a debate, a petition to the Church, a quick trial, an etiquette performance) and the Tribunal’s customs (ranks and gilds, tokens and shards, privileges), each while its rule is on. The sheet’s Overview keeps the agents and the ranks.',
+        body: 'Played at the Game Table’s **Dice › Society & the Tribunal**, for whoever you pick: **Agents**, the **Society** card (a debate, a petition to the Church, a quick trial, an etiquette performance) and the Tribunal’s customs (ranks and gilds, tokens and shards, privileges), each while its rule is on. The sheet’s Overview shows the agents and the ranks as they stand.',
         at: dice('society'), needs: 'character', target: ['society', 'agents', 'tribunal-customs', 'tab-society'],
       },
       {
         title: 'Seasons, Mysteries and guilds',
-        body: '**Mystery Initiation** is planned with the rest of a character’s season, on the Game Table’s Seasons page, for Bjornaer, Criamon, Merinita and Verditius magi and anyone with a cult Lore. A craftsman in a guild has a **Guild** card beside the workshop. **Extended book Quality** makes the Writing and copying card count skilled artisans and resonant materials by default.',
+        body: '**Mystery Initiation** is planned with the rest of a character’s season, on the Game Table’s Seasons page, for anyone a Mystagogue will Initiate: a magus of a Mystery House, a cult’s member, or someone the storyguide’s Mystagogue takes in. A craftsman in a guild has a **Guild** card beside the workshop. **Extended book Quality** makes the Writing and copying card count skilled artisans and resonant materials by default.',
         at: plan, needs: 'character', target: ['mysteries', 'writing', 'plan-season', 'table-plan'],
       },
       {
@@ -568,6 +568,11 @@ export const TOURS: Tour[] = [
         body: 'A finished magus invents a spell in the laboratory, a season at a time: on the Game Table’s **Seasons** page, plan their season in full, or start it under **Lab projects** there.',
         at: plan, needs: 'character', target: ['lab-projects', 'plan-season', 'table-plan'],
       },
+      {
+        title: 'Master it',
+        body: 'Each spell has a **Mastery** score: it adds to the Casting Total and takes a botch die off, and each level brings a special ability the player chooses (Fast Casting, Penetration, Quiet Casting…). The **Spell Mastery** card, in the same season in full, puts experience on a spell (a season’s practice adds its own) and asks for the ability when a new level comes.',
+        at: plan, needs: 'character', target: ['spell-mastery', 'table-plan'],
+      },
     ],
   },
   {
@@ -692,7 +697,7 @@ export const TOURS: Tour[] = [
     steps: [
       {
         title: 'The Game Table',
-        body: 'In the saga’s menu, under the Saga Overview. The Game Table is where the saga is played, in five pages along its top: the **Overview** (what needs attention, the covenants, after a story), **Seasons** (what everyone does, and moving time on), **Dice** (every roll at the table), the **Market & Treasury**, and **City & Guild**. Come back here whenever you are unsure what to do next.',
+        body: 'In the saga’s menu, under the Saga Overview. The Game Table is where the saga is played, in six pages along its top: the **Overview** (what needs attention, health, Confidence, the covenants, after a story), **Seasons** (what everyone does, and moving time on), **Dice** (every roll at the table), **Possessions** (what each one owns), the **Market & Treasury**, and **City & Guild**. Come back here whenever you are unsure what to do next. The character sheets are for reference: what changes in play changes here.',
         at: table('overview'), needs: 'saga', target: 'nav-table',
       },
       {
@@ -707,8 +712,13 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Health & recovery',
-        body: 'Everyone wounded, tired or ill, the soonest recovery first, with their penalty and how near the edge they are (Fatigue levels from Unconscious, an Incapacitating Wound). Choose who tends them (a chirurgeon tends as many as their Chirurgy, five times that if they give the season to it), add magical aid, and **Pass** to the next recovery or a set time: every Recovery roll is made, and the wounds and Fatigue change on the sheets.',
+        body: 'Everyone wounded, tired or ill, the soonest recovery first, with their penalty and how near the edge they are (Fatigue levels from Unconscious, an Incapacitating Wound). Choose who tends them (a chirurgeon tends as many as their Chirurgy, five times that if they give the season to it), add magical aid, and **Pass** to the next recovery or a set time: every Recovery roll is made, and the wounds and Fatigue change on the sheets. At the foot, **choose someone** to apply damage, take or regain Fatigue, catch or cure a disease, or record a spell working on them.',
         at: table('overview'), needs: 'saga', target: ['table-recovery', 'table-attention'],
+      },
+      {
+        title: 'Confidence & Faith',
+        body: 'Everyone’s Confidence Points (and Faith Points, for True Faith) in one place. **Spend 1** for +3 on a roll; **Give 1** when the storyguide awards one for a story, a great deed or good roleplaying; **Dawn** brings Faith Points back.',
+        at: table('overview'), needs: 'saga', target: ['table-confidence', 'table-recovery'],
       },
       {
         title: 'The covenants',
@@ -727,13 +737,18 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'This season',
-        body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here: teaching covenant-mates, being taught by one, helping in a lab, and the extra seasons of one who needs no sleep. **Plan in full** opens their season below, for a particular book, teacher, lab project, writing or an Initiation.',
+        body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here: teaching anyone in play (a student taught is bound to the lesson), being taught, helping in a lab, and the extra seasons of one who needs no sleep. A season logged by mistake is **Unlogged** here. **Plan in full** opens their season below: a particular book, teacher, lab project, Spell Mastery, writing, an Initiation, a Longevity Ritual or the apprentice.',
         at: table('seasons'), needs: 'saga', target: 'table-season',
       },
       {
         title: 'End the season',
         body: 'Press **End** (the button names the season) to move the whole saga on, with Undo. The report shows aging crises, Warping and reminders first; the rest is folded. Below the button are the options, and passing several seasons or years at once.',
         at: table('seasons'), needs: 'saga', target: 'table-advance', advance: {},
+      },
+      {
+        title: 'Possessions',
+        body: 'What each character owns, changed as it changes in play: things found, bought, given away or thrown out; armor and weapons; enchanted items and the talisman; a familiar; a Redcap’s devices. Work on an item or the familiar in the lab (**Plan preparing it**, **Plan the binding**) opens the Seasons page on the lab project, where the season is worked.',
+        at: table('items'), needs: 'saga', target: ['possessions', 'items-who'],
       },
       {
         title: 'Travel, trade and intrigue',
@@ -834,13 +849,13 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Damaged goods',
-        body: 'When a botch or rough use puts a valued item at risk (a sword in a botched fight, a cloak used as a rope), check it under **Damaged goods**. Choose **whose** it is and **the item**: one of their things, or a kind of thing not kept. The card shows its **damage levels** (from its quality, more for a big thing, twice for a lock) and the chance. The **Ability** is a list: the item’s own by default, or another of theirs. **Previously repaired** is one −1, however many repairs. **Roll the check**: a stress die and the modifiers against 15; a failure costs a level, a botch more. The damage is **kept on the item**, on its owner’s Items tab, so it is still there when you come back to it. **Repair it** while it is only damaged; a broken item cannot be repaired.\n\n**Try it:** choose your craftsman and an item, then press **Roll the check**.',
+        body: 'When a botch or rough use puts a valued item at risk (a sword in a botched fight, a cloak used as a rope), check it under **Damaged goods**. Choose **whose** it is and **the item**: one of their things, or a kind of thing not kept. The card shows its **damage levels** (from its quality, more for a big thing, twice for a lock) and the chance. The **Ability** is a list: the item’s own by default, or another of theirs. **Previously repaired** is one −1, however many repairs. **Roll the check**: a stress die and the modifiers against 15; a failure costs a level, a botch more. The damage is **kept on the item**, among its owner’s Possessions, so it is still there when you come back to it. **Repair it** while it is only damaged; a broken item cannot be repaired.\n\n**Try it:** choose your craftsman and an item, then press **Roll the check**.',
         at: table('guild'), needs: 'saga', target: 'item-check', advance: { press: /^Roll the check/ },
       },
       {
         title: 'What they own',
-        body: 'Everything a character owns is on their sheet’s **Items** tab, under **Possessions**: weapons, shields, armor, enchanted items and other things (tools, a cart, a wondrous item), each with its damage. Add something they own at the bottom; **give** a thing to someone else (its damage goes with it); **Discard** one that is broken. The checks themselves are made at the Game Table.',
-        at: sheet('lab'), needs: 'character', target: 'possessions',
+        body: 'Everything a character owns is kept on the Game Table’s **Possessions** page: weapons, shields, armor, enchanted items and other things (tools, a cart, a wondrous item), each with its damage. Add something they own at the bottom; **give** a thing to someone else (its damage goes with it); **Discard** one that is broken. Their sheet lists it all for reference.',
+        at: table('items'), needs: 'character', target: 'possessions',
       },
       {
         title: 'Travel, trade and intrigue',
@@ -874,7 +889,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Season priorities',
-        body: 'Their magi follow a **priority list** when the seasons pass: service to the covenant, politics, travel, writing, reading the best book, vis study, a new spell, an enchanted item, the lab, and a season a year for an apprentice. Each entry is a season a year; the first that can be done is taken, and a Longevity Ritual comes when it is needed. Any character can have one: this card is on every Advancement tab.',
+        body: 'Their magi follow a **priority list** when the seasons pass: service to the covenant, politics, travel, writing, reading the best book, vis study, a new spell, an enchanted item, the lab, and a season a year for an apprentice. Each entry is a season a year; the first that can be done is taken, and a Longevity Ritual comes when it is needed. Any character can have one: it is part of their season in full, here.',
         at: plan, needs: 'character', target: ['priorities', 'table-plan'],
       },
       {

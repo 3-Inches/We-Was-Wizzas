@@ -1,4 +1,4 @@
-// A character's season priority list, on the Advancement tab: what they do with a season nobody
+// A character's season priority list, planned at the Game Table (Seasons, a season in full): what they do with a season nobody
 // planned when their standing activity is to follow it. Each entry is a season a year; the first
 // that can be done is taken. The living covenants' magi come with one; any character can have one.
 

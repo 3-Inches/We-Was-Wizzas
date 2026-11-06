@@ -12,7 +12,7 @@ import { masteryScore } from '../steps/SpellsStep';
 import { labContextOf } from '../../../engine/lab';
 import { Hint } from '../../Hint';
 import { useStore } from '../../../store/store';
-import { RollAtTable, groupPeople, useAtTable, PeopleOptions } from '../../play';
+import { RollAtTable, fightsCertamen, groupPeople, useAtTable, PeopleOptions } from '../../play';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { deriveCharacter } from '../../../engine/character/derive';
 
@@ -560,14 +560,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                         <td className="num">{penAvg}</td>
                         <td>
                           <span className="badge">{ms}</span>
-                          <Stepper
-                            value={sp.masteryXp.play ?? 0}
-                            min={0}
-                            step={5}
-                            width={38}
-                            title="Mastery xp gained in play"
-                            onChange={(v) => update((x) => { const y = x.spells.find((z) => z.uid === sp.uid)!; if (v) y.masteryXp.play = v; else delete y.masteryXp.play; })}
-                          />
+                          {sp.masteryAbilities.length < ms && <span className="badge warn" title="A level of Mastery with no special ability chosen yet: Game Table › Seasons, Spell Mastery">choose {ms - sp.masteryAbilities.length}</span>}
                           {sp.masteryAbilities.map((m) => (
                             <span key={m} className="badge" title={MASTERY_ABILITIES.find((x) => x.name === m)?.text}>
                               {m}
@@ -592,6 +585,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           </div>
         )}
         <Recent from="spells" />
+        {c.spells.length > 0 && <RollAtTable sagaId={c.sagaId} who={c.id} where="seasons" what="Spell Mastery is raised, and the special ability for each level chosen," />}
         <p className="small muted">
           Formulaic: fail by 1–10 and the spell still works at a cost of one Fatigue level. Ritual: always costs long-term Fatigue and 1 pawn of vis per magnitude, and each pawn is a
           botch die; a Ritual always rolls a stress die. Mastery adds its score to the Casting Total and removes a botch die per point.
@@ -686,7 +680,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         {rules.diedne && <p className="small good-text">Diedne Magic: exerted, your lowest Art counts twice before dividing by two (in the fatiguing total); calm, you may divide by 2 on a stress die instead of by 5.</p>}
       </Card>
 
-      <Certamen ed={ed} push={push} begin={begin} recent={<Recent from="certamen" />} />
+      {fightsCertamen(c) && <Certamen ed={ed} push={push} begin={begin} recent={<Recent from="certamen" />} />}
 
       {atTable && aatp && (
         <div className="issue warning">
@@ -736,7 +730,8 @@ function Certamen({ ed, push, begin, recent }: { ed: CharEditor; push: (s: strin
   const t = certamenTotals(d, tech, form);
   const defendWith: CertamenArt = attackWith === 'technique' ? 'form' : 'technique';
   // the opponent's numbers from their sheet: they defend with the Art you do not attack with... their choice, so it is theirs to set
-  const groups = groupPeople(others.filter((o) => o.id !== c.id && o.creation.finalized && !o.wounds.dead && (o.type === 'magus' || o.arts)), covs);
+  // certamen is between Hermetic magi
+  const groups = groupPeople(others.filter((o) => o.id !== c.id && o.creation.finalized && !o.wounds.dead && fightsCertamen(o)), covs);
   const oppC = others.find((o) => o.id === oppId);
   const oppT = oppC && saga ? certamenTotals(deriveCharacter(oppC, data, saga.houseRules), tech, form) : undefined;
   const oppDefends: CertamenArt = oppAttacks === 'technique' ? 'form' : 'technique';

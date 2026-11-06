@@ -1,7 +1,13 @@
-import { RollAtTable } from '../../play';
+// A character's lab and what they own. On a finished sheet it is for reference: the lab, their
+// possessions, enchanted items, Longevity Ritual and familiar as they stand. What changes in play is
+// changed at the Game Table: things owned, items, the talisman and the familiar on Possessions; lab
+// work (spells, devices, the talisman's preparation, a familiar's binding, a Longevity Ritual) on
+// Seasons, as a season's activity.
+
+import { RollAtTable, useAtTable, useEditable } from '../../play';
 import { PossessionsCard } from './PossessionsCard';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
 import { bestCords, cordPointsCost, familiarBindingLevel, longevityBonus, longevityVisCost, visLimit } from '../../../engine/enchant';
 import { labTotal } from '../../../engine/magic';
@@ -11,7 +17,8 @@ import { generateFamiliar } from '../../../engine/generate/spellsAndFamiliars';
 import { issueRedcapDevices, redcapLevels, servedByMercerHouse } from '../../../engine/generate/items';
 import { newSeed, seeded } from '../../../engine/generate/random';
 import type { Character, Familiar, LabProject } from '../../../engine/types';
-import { BookBadge, Card, Field, HowItWorks, Stepper, Total, signed } from '../../kit';
+import { BookBadge, Card, Field, HowItWorks, Stepper, Total, signed, unfold } from '../../kit';
+import { R } from '../../routes';
 import ItemsEditor, { characterTalismanCapacity, newEffect } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
 import { labContextOf } from '../../../engine/lab';
@@ -26,12 +33,10 @@ const newFamiliar = (): Familiar => ({
 });
 
 export default function LabItemsTab({ ed }: { ed: CharEditor }) {
-  const { c, d, data, update, ctx, saga } = ed;
-  const updateCovenant = useStore((s) => s.updateCovenant);
+  const { c, d, ctx, saga } = ed;
   if (!c || !d || !saga) return null;
   const magus = d.isMagus;
   const lab = ctx.lab;
-  const labCtx = lab ? labContextOf(lab) : undefined;
   const mt = d.abilities.find((a) => a.abilityId === d.theoryAbility)?.total ?? 0;
 
   return (
@@ -94,21 +99,7 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
 
       <PossessionsCard ed={ed} />
 
-      <ItemsEditor
-        items={c.items}
-        onChange={(fn) => update((x) => fn(x.items))}
-        data={data}
-        d={magus ? d : undefined}
-        aura={ctx.aura}
-        lab={labCtx}
-        talismanUid={c.talismanUid}
-        onSetTalisman={magus ? (id) => update((x) => void (x.talismanUid = id)) : undefined}
-        title={magus ? `Enchanted items${c.talismanUid ? '' : ' (no talisman yet)'}` : 'Magic items & charms'}
-        onPlan={magus ? (kind, itemUid, effectUid) => update((x) => void (x.projects = [...(x.projects ?? []), { ...newProject(kind), itemUid, effectUid, name: kind === 'open' ? `Prepare ${x.items.find((i) => i.uid === itemUid)?.name ?? 'the item'}` : `Instill ${x.items.find((i) => i.uid === itemUid)?.effects.find((e) => e.uid === effectUid)?.name ?? 'an effect'} in ${x.items.find((i) => i.uid === itemUid)?.name ?? 'the item'}` }])) : undefined}
-        onInstall={magus && lab && ctx.covenant ? (item) => updateCovenant(ctx.covenant!.id, (x) => void x.labs.find((l) => l.uid === lab.lab.uid)?.virtues.push({ uid: uid(), defId: 'magic-item', note: item.name, fromItem: item.uid })) : undefined}
-        installedIn={(item) => (lab?.lab.virtues.some((v) => v.fromItem === item.uid) ? lab.lab.name : undefined)}
-        note={magus ? `Talisman capacity: up to ${characterTalismanCapacity(d)} pawns of Vim vis (highest Technique + highest Form). Instilling effects into your own talisman gives +5 to the Lab Total.` : undefined}
-      />
+      <CharItems ed={ed} />
 
       {magus && (
         <Card title="Lab projects" tour="lab-projects">
@@ -128,14 +119,67 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
 }
 
 /**
+ * A character's enchanted items: a magus's own (the talisman among them, an item to install in the
+ * lab, work on one planned as a season's lab project) or another's charms and devices. Read-only on a
+ * finished sheet.
+ */
+export function CharItems({ ed }: { ed: CharEditor }) {
+  const { c, d, data, update, ctx } = ed;
+  const updateCovenant = useStore((s) => s.updateCovenant);
+  const edit = useEditable(c);
+  const atTable = useAtTable();
+  const plan = usePlan(ed, true);
+  if (!c || !d) return null;
+  const magus = d.isMagus;
+  const lab = ctx.lab;
+  return (
+    <>
+      <ItemsEditor
+        items={c.items}
+        onChange={(fn) => update((x) => fn(x.items))}
+        data={data}
+        d={magus ? d : undefined}
+        aura={ctx.aura}
+        lab={lab ? labContextOf(lab) : undefined}
+        talismanUid={c.talismanUid}
+        readOnly={!edit}
+        onSetTalisman={magus ? (id) => update((x) => void (x.talismanUid = id)) : undefined}
+        title={magus ? `Enchanted items${c.talismanUid ? '' : ' (no talisman yet)'}` : 'Magic items & charms'}
+        // work on an item is a season in the lab: planned here, it is worked on the Seasons page
+        onPlan={
+          magus && atTable
+            ? (kind, itemUid, effectUid) =>
+                plan(kind, (p) => {
+                  const it = c.items.find((i) => i.uid === itemUid);
+                  p.itemUid = itemUid;
+                  p.effectUid = effectUid;
+                  p.name = kind === 'open' ? `Prepare ${it?.name ?? 'the item'}` : `Instill ${it?.effects.find((e) => e.uid === effectUid)?.name ?? 'an effect'} in ${it?.name ?? 'the item'}`;
+                })
+            : undefined
+        }
+        onInstall={magus && lab && ctx.covenant && edit ? (item) => updateCovenant(ctx.covenant!.id, (x) => void x.labs.find((l) => l.uid === lab.lab.uid)?.virtues.push({ uid: uid(), defId: 'magic-item', note: item.name, fromItem: item.uid })) : undefined}
+        installedIn={(item) => (lab?.lab.virtues.some((v) => v.fromItem === item.uid) ? lab.lab.name : undefined)}
+        note={
+          <>
+            {magus && `Talisman capacity: up to ${characterTalismanCapacity(d)} pawns of Vim vis (highest Technique + highest Form). Instilling effects into your own talisman gives +5 to the Lab Total.`}
+            <RollAtTable sagaId={c.sagaId} who={c.id} where="items" what={magus ? 'Items are added, a talisman chosen, and work on them planned' : 'Items are added and changed'} />
+          </>
+        }
+      />
+    </>
+  );
+}
+
+/**
  * A Redcap's devices from the Mercer House (DE, Redcap): fifty levels of effects for carrying messages
  * at the Gauntlet and two more a year of good service (Magic Items: 25 more and one more a year each,
  * no effect over 30), upgraded at each year's end; and a Longevity Ritual from a magus of Lab Total 50.
  */
-function RedcapCard({ ed }: { ed: CharEditor }) {
+export function RedcapCard({ ed }: { ed: CharEditor }) {
   const { c, data, update } = ed;
   const [years, setYears] = useState<number | undefined>(undefined);
   const [said, setSaid] = useState('');
+  const edit = useEditable(c);
   if (!c || !servedByMercerHouse(c)) return null;
   const r = c.redcap;
   const service = years ?? Math.max(0, c.age - 25);
@@ -155,7 +199,12 @@ function RedcapCard({ ed }: { ed: CharEditor }) {
         {extra ? `, with Magic Items ${25 * extra} more and ${extra} more a year (no effect over level 30)` : ''}. They are for carrying messages, never for killing, wounding or
         ensorcelling many. The toolkit picks such effects, each in a thing of its own; change or replace them in the list below.
       </p>
-      {r ? (
+      {!edit ? (
+        <>
+          <div className="small">{r ? `${r.levels} levels from the House, ${r.spent} in its devices, ${Math.max(0, r.levels - r.spent)} left.` : 'The House’s devices are not kept count of.'}</div>
+          <RollAtTable sagaId={c.sagaId} who={c.id} where="items" what="New devices are taken from the House" />
+        </>
+      ) : r ? (
         <div className="row" style={{ flexWrap: 'wrap' }}>
           <Field label="Levels from the House" hint="Two more at each year’s end; the storyguide may grant more">
             <Stepper value={r.levels} min={0} width={44} onChange={(v) => update((x) => void (x.redcap!.levels = v))} />
@@ -181,7 +230,7 @@ function RedcapCard({ ed }: { ed: CharEditor }) {
           </button>
         </div>
       )}
-      {!c.longevity && (
+      {edit && !c.longevity && (
         <div className="row small" style={{ marginTop: 6, flexWrap: 'wrap' }}>
           <span className="muted">
             When the Redcap starts to age, a magus devises a Longevity Ritual free (Lab Total 50: −{longevityBonus(50, 0, true)} to aging rolls){r ? '; the toolkit gives it at the year’s end from 35' : ''}.
@@ -196,21 +245,45 @@ function RedcapCard({ ed }: { ed: CharEditor }) {
   );
 }
 
-/** Add a lab project of this kind, so the season's work is planned on the Lab projects card (callers show the one already planned instead). */
-function usePlan(ed: CharEditor) {
-  return (kind: LabProject['kind'], fill?: (p: LabProject) => void) =>
+/**
+ * Add a lab project of this kind, so the season's work is planned on the Lab projects card (callers
+ * show the one already planned instead). From another page (`go`), the Seasons page opens on it.
+ */
+function usePlan(ed: CharEditor, go = false) {
+  const nav = useNavigate();
+  return (kind: LabProject['kind'], fill?: (p: LabProject) => void) => {
     ed.update((x) => {
       const p = newProject(kind);
       fill?.(p);
       x.projects = [...(x.projects ?? []), p];
     });
+    if (go && ed.c) {
+      unfold('table-plan');
+      nav(R.seasonsFor(ed.c.sagaId, ed.c.id, 'lab-projects'));
+    }
+  };
 }
 
-/** The ritual working on the character, and planning a new one as a season's lab work (DE, Longevity Rituals). */
-function LongevityCard({ ed }: { ed: CharEditor }) {
+/** Where a project planned elsewhere is worked: the Seasons page, its Lab projects card. */
+function PlannedAt({ c, what }: { c: Character; what: string }) {
+  return (
+    <span className="small">
+      {what} planned: <Link to={R.seasonsFor(c.sagaId, c.id, 'lab-projects')}>Seasons › Lab projects ›</Link>
+    </span>
+  );
+}
+
+/**
+ * The ritual working on the character (DE, Longevity Rituals). On the Seasons page a new one is
+ * planned as a season's lab work and one an aging crisis ended is performed again; a ritual made
+ * before play is entered as the character is built.
+ */
+export function LongevityCard({ ed }: { ed: CharEditor }) {
   const { c, d, ctx, update } = ed;
   const plan = usePlan(ed);
   const [said, setSaid] = useState('');
+  const edit = useEditable(c);
+  const atTable = useAtTable();
   if (!c || !d) return null;
   const magus = d.isMagus;
   const lab = ctx.lab;
@@ -218,16 +291,20 @@ function LongevityCard({ ed }: { ed: CharEditor }) {
   const lr = labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'longevity', aura: ctx.aura, lab: lab ? labContextOf(lab) : undefined, forSelfLongevity: true });
   const planned = (c.projects ?? []).find((p) => p.kind === 'longevity' && !p.done);
   return (
-    <Card title="Longevity Ritual">
+    <Card title="Longevity Ritual" tour="longevity">
       <div className="row">
-        <Field label="Ritual bonus now" hint="A ritual made before play, or by another magus, can be entered here">
+        {!edit ? (
+          <span className="small">
+            Ritual: <b>{c.longevity ? `−${c.longevity.bonus} to aging rolls` : 'none'}</b>
+          </span>
+        ) : <Field label="Ritual bonus now" hint="A ritual made before play, or by another magus, can be entered here">
           <Stepper
             value={c.longevity?.bonus ?? 0}
             min={0}
             width={40}
             onChange={(v) => update((x) => { if (!v) x.longevity = undefined; else x.longevity = { ...(x.longevity ?? { labTotal: 0, extraVis: 0 }), bonus: v }; })}
           />
-        </Field>
+        </Field>}
         {c.longevity && (
           <span className="small muted">
             {c.longevity.createdBy ? `by ${c.longevity.createdBy}` : ''} {c.longevity.createdYear ? `in ${c.longevity.createdYear}` : ''} (Lab Total {c.longevity.labTotal}
@@ -235,7 +312,7 @@ function LongevityCard({ ed }: { ed: CharEditor }) {
           </span>
         )}
       </div>
-      {c.longevityLapsed && !c.longevity && <LapsedRitual ed={ed} onSaid={setSaid} />}
+      {c.longevityLapsed && !c.longevity && (atTable ? <LapsedRitual ed={ed} onSaid={setSaid} /> : <div className="small warn-text">The ritual (−{c.longevityLapsed.bonus}) ended with an aging crisis; it can be performed again from its Laboratory Text.</div>)}
       {said && <div className="small good-text">{said}</div>}
       {magus && (
         <div className="row" style={{ marginTop: 6 }}>
@@ -257,13 +334,14 @@ function LongevityCard({ ed }: { ed: CharEditor }) {
             <span className="bad-text small">{lab!.lab.name} cannot be used for Longevity Rituals: its Flaws rule them out.</span>
           ) : planned ? (
             <span className="small">Planned on the Lab projects card: {planned.name}.</span>
-          ) : (
+          ) : atTable ? (
             <button onClick={() => plan('longevity', (p) => void (p.name = 'Longevity Ritual for yourself'))} title="A season of lab work: plan it on the Lab projects card, for yourself or someone else">
               Plan a Longevity Ritual ›
             </button>
-          )}
+          ) : null}
         </div>
       )}
+      <RollAtTable sagaId={c.sagaId} who={c.id} where="seasons" what="A Longevity Ritual is planned and worked as a season in the lab (or performed again after a crisis)" />
       <HowItWorks summary="Makes aging rolls lower, from age 35 on, until an aging crisis ends it.">
         −1 on aging rolls per 5 points (or part) of the Creo Corpus Lab Total, a pawn of Creo, Corpus or Vim vis for every 5 years of age, a season&apos;s work; extra pawns add to
         the Lab Total. For someone else the Lab Total must be 30, and a mundane gains a point per 10 rather than 5. An aging crisis ends the ritual; it can then be performed
@@ -332,14 +410,22 @@ function LapsedRitual({ ed, onSaid }: { ed: CharEditor; onSaid: (s: string) => v
   );
 }
 
-/** The familiar: who it is, its bond and cords once bound, and the binding, strengthening and powers planned as lab work (DE, Familiars). */
-function FamiliarCard({ ed }: { ed: CharEditor }) {
+/**
+ * The familiar: who it is, its bond and cords once bound, and the binding, strengthening and powers
+ * planned as lab work (DE, Familiars). Kept at the Game Table (Possessions), where its lab work is
+ * planned and then worked on the Seasons page; a bond made before play is entered as the magus is
+ * built. A finished sheet shows it as it stands.
+ */
+export function FamiliarCard({ ed }: { ed: CharEditor }) {
   const { c, d, ctx, update } = ed;
-  const plan = usePlan(ed);
+  const plan = usePlan(ed, true);
   const [manual, setManual] = useState(false);
   const chars = useSagaCharacters(c?.sagaId);
   const updateCharacter = useStore((s) => s.updateCharacter);
+  const edit = useEditable(c);
+  const atTable = useAtTable();
   if (!c || !d) return null;
+  if (!edit) return <FamiliarReference c={c} />;
   // the familiar's own sheet: a creature of the saga, which learns as a human does once bound (DE, Familiars)
   const beasts = chars.filter((x) => x.id !== c.id && x.creature && (!x.creature.familiarOf || x.creature.familiarOf === c.id));
   const linkSheet = (id: string) => {
@@ -359,6 +445,7 @@ function FamiliarCard({ ed }: { ed: CharEditor }) {
   return (
     <Card
       title="Familiar"
+      tour="familiar"
       actions={
         !fam ? (
           <span className="row tight">
@@ -448,18 +535,18 @@ function FamiliarCard({ ed }: { ed: CharEditor }) {
             ) : (
               <span className="small muted">Not yet bound: no cords, and none of the bond&apos;s benefits.</span>
             )}
-            {forbidden ? (
+            {!atTable ? null : forbidden ? (
               <span className="bad-text small">{lab!.lab.name} cannot be used for familiar work: its Flaws rule it out.</span>
             ) : !bound ? (
               open('bind') ? (
-                <span className="small">Binding planned on the Lab projects card.</span>
+                <PlannedAt c={c} what="Binding" />
               ) : (
                 <button onClick={() => plan('bind', (p) => void ((p.name = `Bind ${fam.name || 'the familiar'}`), (p.cords = bestCords(famLT.total))))} title="A season's lab work; the cords start at the best the Lab Total buys">
                   Plan the binding ›
                 </button>
               )
             ) : open('strengthen') ? (
-              <span className="small">Strengthening planned on the Lab projects card.</span>
+              <PlannedAt c={c} what="Strengthening" />
             ) : (
               <button onClick={() => plan('strengthen', (p) => void ((p.name = 'Strengthen the familiar bond'), (p.cords = bestCords(famLT.total, fam))))} title="A season with the binding Arts: buy stronger cords with the new Lab Total">
                 Plan strengthening the bond ›
@@ -491,12 +578,44 @@ function FamiliarCard({ ed }: { ed: CharEditor }) {
             </div>
           </details>
           {bound && fam.silver > 0 && <RollAtTable sagaId={c.sagaId} who={c.id} where="magic" what={`${fam.name || 'The familiar'} trying to free your mind (the silver cord) is rolled`} />}
-          {bound && <BondPowers ed={ed} fam={fam} plan={plan} forbidden={forbidden} />}
+          {bound && <BondPowers ed={ed} fam={fam} plan={atTable ? plan : undefined} forbidden={forbidden} />}
           <Field label="Notes">
             <textarea rows={3} value={fam.notes ?? ''} onChange={(e) => setFam((f) => void (f.notes = e.target.value))} />
           </Field>
         </div>
       )}
+    </Card>
+  );
+}
+
+/** The familiar as it stands, on a finished sheet: who it is, the bond and its cords, its powers. */
+function FamiliarReference({ c }: { c: Character }) {
+  const fam = c.familiar;
+  const bound = !!fam && fam.bindingLabTotal > 0;
+  return (
+    <Card title="Familiar" tour="familiar">
+      {!fam ? (
+        <div className="small muted">No familiar.</div>
+      ) : (
+        <div className="small stack" style={{ gap: 4 }}>
+          <div>
+            <b>{fam.name || 'Unnamed'}</b>
+            {fam.species ? `, ${fam.species}` : ''}: Magic Might {fam.might}, Size {signed(fam.size)}; bound with {ART_NAMES[fam.bindingTechnique]} {ART_NAMES[fam.bindingForm]}.
+          </div>
+          <div>
+            {bound
+              ? `Bound: bond Lab Total ${fam.bindingLabTotal}; golden cord ${fam.golden}, silver ${fam.silver}, bronze ${fam.bronze}.`
+              : 'Not yet bound: no cords, and none of the bond’s benefits.'}
+          </div>
+          {fam.powers.length > 0 && (
+            <div>
+              Powers of the bond: {fam.powers.map((e) => `${e.name} (${e.technique}${e.form} ${e.modifiedLevel}${e.pending === false ? '' : ', not yet invested'})`).join('; ')}.
+            </div>
+          )}
+          {fam.notes && <div className="muted" style={{ whiteSpace: 'pre-wrap' }}>{fam.notes}</div>}
+        </div>
+      )}
+      <RollAtTable sagaId={c.sagaId} who={c.id} where="items" what="A familiar is found, changed, and its binding planned" />
     </Card>
   );
 }
@@ -525,7 +644,7 @@ export function SilverRescue({ silver, name }: { silver: number; name: string })
  * of the bonus for other effects; effects only on the magus or the familiar; no Verditius bonus; no
  * limit on their number, and their vis does not count toward the cords.
  */
-function BondPowers({ ed, fam, plan, forbidden }: { ed: CharEditor; fam: Familiar; plan: ReturnType<typeof usePlan>; forbidden: boolean }) {
+function BondPowers({ ed, fam, plan, forbidden }: { ed: CharEditor; fam: Familiar; plan?: ReturnType<typeof usePlan>; forbidden: boolean }) {
   const { c, update } = ed;
   const setFam = (fn: (f: Familiar) => void) => update((x) => { if (x.familiar) fn(x.familiar); });
   if (!c) return null;
@@ -559,8 +678,8 @@ function BondPowers({ ed, fam, plan, forbidden }: { ed: CharEditor; fam: Familia
           <Stepper value={e.modifiedLevel} min={1} width={40} onChange={(v) => setFam((f) => void ((f.powers.find((x) => x.uid === e.uid)!.modifiedLevel = v), (f.powers.find((x) => x.uid === e.uid)!.baseLevel = v)))} />
           {e.pending === false ? (
             <span className="badge good">working</span>
-          ) : forbidden ? null : planned(e.uid) ? (
-            <span className="muted">planned on the Lab projects card</span>
+          ) : forbidden || !plan ? null : planned(e.uid) ? (
+            <PlannedAt c={c} what="Investing it" />
           ) : (
             <button className="small" onClick={() => plan('empower', (p) => void ((p.effectUid = e.uid), (p.name = `Empower the bond: ${e.name}`)))}>
               Plan investing it ›

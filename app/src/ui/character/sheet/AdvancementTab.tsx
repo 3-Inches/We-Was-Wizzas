@@ -694,8 +694,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
 
       {atTable && saga && <PrioritiesCard c={c} d={d} ctx={ctx} saga={saga} data={data} chars={sagaChars} update={update} />}
 
-      {!atTable && <Card title="Season log">
+      <Card title="Season log" tour="season-log">
         {c.seasonLog.length === 0 && <div className="small muted">No seasons logged yet.</div>}
+        {!atTable && c.seasonLog.length > 0 && <RollAtTable sagaId={saga.id} who={c.id} where="seasons" what="A season logged ahead of time is unlogged (its experience taken off)" />}
         {c.seasonLog
           .slice()
           .sort((a, b) => b.year - a.year || SEASONS.indexOf(b.season) - SEASONS.indexOf(a.season))
@@ -710,22 +711,24 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 {e.warpingPoints ? <span className="small warn-text"> — {e.warpingPoints} Warping</span> : null}
                 {!e.applied && <span className="badge warn">not applied</span>}
               </span>
-              <button
-                className="small ghost"
-                title={e.applied ? 'Remove this entry and subtract its experience' : 'Delete'}
-                onClick={() =>
-                  update((x) => {
-                    const ent = x.seasonLog.find((y) => y.uid === e.uid);
-                    if (ent?.applied) applySeason(x, ent, -1);
-                    x.seasonLog = x.seasonLog.filter((y) => y.uid !== e.uid);
-                  })
-                }
-              >
-                ✕ undo
-              </button>
+              {atTable && (
+                <button
+                  className="small ghost"
+                  title={e.applied ? 'Take this season off the log: its experience comes off, and the season is free again' : 'Delete'}
+                  onClick={() =>
+                    update((x) => {
+                      const ent = x.seasonLog.find((y) => y.uid === e.uid);
+                      if (ent?.applied) applySeason(x, ent, -1);
+                      x.seasonLog = x.seasonLog.filter((y) => y.uid !== e.uid);
+                    })
+                  }
+                >
+                  Unlog
+                </button>
+              )}
             </div>
           ))}
-      </Card>}
+      </Card>
 
       <div className="grid grid-2">
         <Card title="Aging">
@@ -744,11 +747,19 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               </span>
               <span className="l">Decrepitude</span>
             </div>
-            <button className="small" onClick={() => update((x) => void (x.age += 1))}>
-              Age +1 year
-            </button>
+            {atTable && (
+              <button className="small" onClick={() => update((x) => void (x.age += 1))} title="Without an aging roll: the year ends for everyone on the Seasons page">
+                Age +1 year
+              </button>
+            )}
           </div>
           <div className="row" style={{ marginTop: 8 }}>
+            {!atTable ? (
+              <span className="small">
+                Living Conditions {signed(autoLc)}
+                {c.hazards?.length ? `; hazards: ${c.hazards.map((h) => HAZARDS.find((x) => x.id === h)?.label ?? h).join(', ')}` : ''}
+              </span>
+            ) : <>
             <Field label={`Living Conditions (auto ${signed(autoLc)})`}>
               <div className="row tight">
                 <Stepper value={lc} width={36} onChange={(v) => setLcOverride(v)} />
@@ -771,6 +782,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 </label>
               ))}
             </div>
+            </>}
             <div className="small">
               Longevity Ritual: <b>{lr ? `−${lr}` : 'none'}</b>
               {d.agingRollParts.map((m) => (
@@ -790,6 +802,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
             )}
           </div>
           {c.age < 35 && !c.longevity && <p className="small muted">Aging rolls start at age 35 (or earlier with a Longevity Ritual).</p>}
+          <RollAtTable sagaId={saga.id} who={c.id} where="seasons" what="Aging is rolled at the year's end (or out of turn), its hazards and Living Conditions set," />
           {aging && (
             <div className="issue info" style={{ marginTop: 8 }}>
               <div className="msg">

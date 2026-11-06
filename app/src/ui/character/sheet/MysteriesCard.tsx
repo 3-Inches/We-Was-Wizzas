@@ -1,13 +1,14 @@
 // Mysteries & Initiation: the Mystagogue's Initiation Total against the target for a Mystery Virtue,
 // the books' Scripts, Ordeals and their later discount, varying a Script, and the Criamon Paths.
 
-import { RollAtTable, useAtTable } from '../../play';
+import { RollAtTable, useAtTable, useEditable } from '../../play';
 import { useMemo, useState } from 'react';
 import { deriveCharacter } from '../../../engine/character/derive';
 import {
   ORDEALS, SCRIPT_ELEMENTS, applyInitiation, criamonProgress, initiationTarget, initiationTotal, mysteryLores, stationLoreNeeded, varyScript, type OrdealTier,
 } from '../../../engine/initiation';
 import { optionOn } from '../../../engine/optional';
+import { seasonTaken } from '../../../engine/time';
 import { describeStress, stressDie } from '../../../engine/dice';
 import type { VFSize } from '../../../data/types';
 import { CRIAMON_PATHS, CRIAMON_STATIONS, HOUSE_MYSTERIES, scriptsFor, stationPower } from '../../../data/mysteries';
@@ -39,6 +40,7 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
   const [log, setLog] = useState<string[]>([]);
   // an Initiation is a season's work: planned at the Game Table (Seasons)
   const atTable = useAtTable();
+  const edit = useEditable(c);
   const other = useMemo(() => {
     const t = sagaChars.find((x) => x.id === mysta);
     return t && saga ? deriveCharacter(t, data, saga.houseRules) : undefined;
@@ -49,8 +51,13 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
   const myLores = mysteryLores(d, c.house);
   const holdsMystery = d.virtues.some((v) => v.def?.categories.includes('Mystery'));
   if (!optionOn(saga, 'mysteries') && !history.length) return null;
-  if (!MYSTERY_HOUSES.includes(c.house ?? '') && !myLores.length && !history.length && !holdsMystery) return null;
+  // anyone may be Initiated by a Mystagogue (a cult's member, or the storyguide's): at the table the
+  // card is there for everyone; a sheet shows it for those with a Mystery to keep
+  const mine = MYSTERY_HOUSES.includes(c.house ?? '') || myLores.length > 0 || history.length > 0 || holdsMystery;
+  if (!atTable && !mine) return null;
 
+  // an Initiation takes the Initiate's season
+  const taken = seasonTaken(c, saga.currentYear, saga.currentSeason);
   const houseName = (h?: string) => (h ? HOUSE_BY_ID[h]?.name ?? h : '');
   const held = new Set(c.virtues.map((v) => v.defId));
   const st = CRIAMON_STATIONS.find((s) => s.id === station);
@@ -152,7 +159,7 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
         <div className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 4 }}>
           <div className="row">
             <Field label="Heartbeast">
-              <input value={c.heartbeast ?? ''} placeholder="wolf, bear, raven…" onChange={(e) => update((x) => void (x.heartbeast = e.target.value || undefined))} style={{ width: 140 }} />
+              {edit ? <input value={c.heartbeast ?? ''} placeholder="wolf, bear, raven…" onChange={(e) => update((x) => void (x.heartbeast = e.target.value || undefined))} style={{ width: 140 }} /> : <b>{c.heartbeast || '—'}</b>}
             </Field>
           </div>
           <RollAtTable sagaId={c.sagaId} who={c.id} where="magic" what="Changing form against magic is rolled" />
@@ -164,7 +171,7 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
         <div className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 4 }}>
           <div className="row">
             <Field label="Criamon Path">
-              <select value={path} onChange={(e) => update((x) => void (x.criamonPath = e.target.value || undefined))}>
+              <select value={path} disabled={!edit} onChange={(e) => update((x) => void (x.criamonPath = e.target.value || undefined))}>
                 <option value="">— the Winding Path —</option>
                 {CRIAMON_PATHS.map((p) => (
                   <option key={p} value={p}>
@@ -181,7 +188,7 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
           {progress.map(({ station: s, held: h }) => (
             <div key={s.id} className="small" style={{ opacity: h || s === nextStation ? 1 : 0.6 }}>
               {h ? '✓' : `${s.order}.`} <b>{s.name}</b> <span className="muted">{stationPower(s)}</span>
-              {s === nextStation && (
+              {s === nextStation && atTable && (
                 <>
                   {' '}
                   <span className={myHouseLore >= stationLoreNeeded(s) ? 'muted' : 'bad-text'}>needs House Criamon Lore {stationLoreNeeded(s)}</span>{' '}
@@ -379,7 +386,12 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
                     Roll to vary the Script (Int {int} + Lore {lore} + stress die vs 9)
                   </button>
                 )}
-                <button className="primary small" disabled={!enough || !varyOk || (!!ordeal && !ordealPick)} onClick={initiate}>
+                <button
+                  className="primary small"
+                  disabled={!enough || !varyOk || (!!ordeal && !ordealPick) || taken.length > 0}
+                  title={taken.length ? `${saga.currentSeason} ${saga.currentYear} is already spent: ${taken.map((e) => e.summary).join('; ')}` : 'A season’s work, logged'}
+                  onClick={initiate}
+                >
                   Initiate ({saga.currentSeason} {saga.currentYear})
                 </button>
               </div>

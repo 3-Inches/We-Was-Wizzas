@@ -289,7 +289,7 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
           {(p.kind === 'open' || p.kind === 'attune' || p.kind === 'instill') && (
             <Field label="Item">
               <select value={p.itemUid ?? ''} onChange={(e) => set((x) => void ((x.itemUid = e.target.value || undefined), (x.effectUid = undefined)))}>
-                <option value="">— choose (add it under Enchanted items) —</option>
+                <option value="">— choose (add it on the Game Table’s Possessions) —</option>
                 {c.items.map((i) => (
                   <option key={i.uid} value={i.uid}>
                     {i.name}
@@ -398,7 +398,7 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
             </>
           )}
           {p.kind === 'empower' && fam && (
-            <Field label="Power" hint="Add it on the Familiar card first">
+            <Field label="Power" hint="Add it on the Familiar card first (Game Table › Possessions)">
               <select value={p.effectUid ?? ''} onChange={(e) => set((x) => void ((x.effectUid = e.target.value || undefined), (x.name = `Empower the bond: ${fam.powers.find((y) => y.uid === e.target.value)?.name ?? ''}`)))}>
                 <option value="">— a power of the bond —</option>
                 {fam.powers.map((e) => (

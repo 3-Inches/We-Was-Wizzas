@@ -1,6 +1,7 @@
 // The Game Table: where the saga is played. Its pages: the Overview (what needs attention, the
 // covenants, after a story), Seasons (what everyone does, and moving time on), Dice (every roll at the
-// table), the Market & Treasury, and City & Guild.
+// table), Possessions (what each one owns: items, a talisman, a familiar), the Market & Treasury, and
+// City & Guild.
 
 import { lazy, Suspense, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
@@ -12,10 +13,11 @@ import { TABLE_TABS, type TableTab } from '../routes';
 const DashboardPage = lazy(() => import('./DashboardPage'));
 const SeasonsPage = lazy(() => import('./SeasonsPage'));
 const DicePage = lazy(() => import('./DicePage'));
+const PossessionsPage = lazy(() => import('./PossessionsPage'));
 const MarketPage = lazy(() => import('./MarketPage'));
 const CityGuildPage = lazy(() => import('./CityGuildPage'));
 
-const LABELS: Record<TableTab, string> = { overview: 'Overview', seasons: 'Seasons', dice: 'Dice', market: 'Market & Treasury', guild: 'City & Guild' };
+const LABELS: Record<TableTab, string> = { overview: 'Overview', seasons: 'Seasons', dice: 'Dice', items: 'Possessions', market: 'Market & Treasury', guild: 'City & Guild' };
 
 export default function GameTablePage() {
   const { sagaId } = useParams();
@@ -46,6 +48,7 @@ export default function GameTablePage() {
         {tab === 'overview' && <DashboardPage />}
         {tab === 'seasons' && <SeasonsPage />}
         {tab === 'dice' && <DicePage />}
+        {tab === 'items' && <PossessionsPage />}
         {tab === 'market' && <MarketPage />}
         {tab === 'guild' && <CityGuildPage />}
       </Suspense>

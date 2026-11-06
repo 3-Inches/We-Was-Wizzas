@@ -24,6 +24,8 @@ import { R } from '../routes';
 import { LoyaltyEvent } from '../covenant/FinancesTab';
 import { AfterStoryCard } from './AfterStoryCard';
 import { RecoveryCard } from './RecoveryCard';
+import { ConfidenceCard } from './ConfidenceCard';
+import { useLandOn } from '../play';
 import { ARTS, ART_NAMES, type Art } from '../../data';
 import { addVis } from '../../engine/vis';
 import { uid } from '../../util/id';
@@ -38,6 +40,8 @@ interface Attention {
 
 export default function DashboardPage() {
   const { sagaId } = useParams();
+  // a sheet's link lands on the card it names: Health & recovery, Confidence & Faith
+  useLandOn();
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
   // the players' characters and covenants; the Tribunal's living covenants move with the clock but are shown on their own
@@ -141,6 +145,7 @@ export default function DashboardPage() {
       </div>
 
       <RecoveryCard saga={saga} data={data} chars={chars} covs={covs} />
+      <ConfidenceCard saga={saga} data={data} chars={chars} />
 
       <div className="grid grid-2">
         <ComingUpCard saga={saga} characters={allChars} covenants={allCovs} />
@@ -226,7 +231,9 @@ function PlayIndex({ S, sagaId, home, covLink }: { S: string; sagaId: string; ho
     { label: 'A fight, a wound, a peril', hint: 'Dice › Combat & perils: a character’s Initiative, Attack and Defense, a group, a blow from Attack to wound, falling, fire, drowning and the other perils.', to: R.dice(sagaId, 'combat') },
     { label: 'A spell is cast, a certamen fought', hint: 'Dice › Spellcasting: the caster, the spell, the aura and what applies; botch dice, Fatigue, Warping and vis put on the sheet; certamen against anyone; Twilight.', to: R.dice(sagaId, 'magic') },
     { label: 'A debate, a petition, an agent, a forest’s spirit', hint: 'Dice › Society & the Tribunal: debates, petitions to the Church, a court, etiquette, agents, and the Tribunal’s customs.', to: R.dice(sagaId, 'society') },
-    { label: 'Someone is hurt, tired or ill', hint: 'Health & recovery, on this page: what ails everyone, who tends them, and time passed with every Recovery roll made.', to: '#table-recovery' },
+    { label: 'Someone is hurt, tired or ill', hint: 'Health & recovery, on this page: damage taken, Fatigue lost and regained, a disease caught; who tends them, and time passed with every Recovery roll made.', to: '#table-recovery' },
+    { label: 'Confidence or Faith is spent, or given', hint: 'Confidence & Faith, on this page: everyone’s points, +3 a point, one given for a story, Faith back at dawn.', to: '#table-confidence' },
+    { label: 'Something is found, bought, given or lost', hint: 'Possessions: a character’s things, armor and weapons, enchanted items and talisman, a familiar.', to: R.table(sagaId, 'items') },
     { label: 'A spell is looked up or designed on the spot', hint: 'Spells & design: every spell, and the guidelines to build one.', to: `${S}/spells` },
     { label: 'Someone buys, sells or hires', hint: 'Market & Treasury: price lists, vis for silver, books, covenfolk, teachers, gifts between purses.', to: R.market(sagaId) },
     { label: 'Someone haggles, or bribes a local', hint: 'City & Guild: sending someone to market, appraising and bargaining, and bribes for a word or a bed.', to: R.guild(sagaId) },
@@ -235,10 +242,11 @@ function PlayIndex({ S, sagaId, home, covLink }: { S: string; sagaId: string; ho
     { label: 'A grog is rewarded or punished, a watch is set', hint: 'The turb’s day, on Covenfolk & finances: watches, sentries, drill, rewards and punishments, retirement.', to: covLink(home, 'folk') },
     { label: 'A spell is cast on the whole covenant', hint: 'The covenant’s Overview: cast a spell, ritual or power on everyone at once.', to: covLink(home, 'overview') },
     { label: 'A book is read, written or copied', hint: 'Seasons: plan a character’s season of study, writing or copying.', to: R.seasons(sagaId) },
+    { label: 'A spell invented, an item enchanted, a familiar bound', hint: 'Seasons, a season in full: lab projects (spells, devices, the talisman, the familiar, a Longevity Ritual), original research, an Initiation, teaching.', to: R.seasons(sagaId) },
     { label: 'A craftsman works, earns from a story, or invests', hint: 'City & Guild: a character’s workshop and Labor Points, stories and investments, the guild; the covenant’s craftsmen.', to: R.guild(sagaId) },
     { label: 'A journey, a bribe, a crime, a rumor about a noble', hint: 'City & Guild: travel, trade and intrigue: days and cost of a journey, Area Lore, ships in a fight, bribes, hired criminals, sabotage, intrigue, largesse, a dowry.', to: R.guild(sagaId) },
     { label: 'An item may break', hint: 'City & Guild: damaged goods: damage levels, the check against 15, repair.', to: R.guild(sagaId) },
-    { label: 'Experience after a story', hint: 'After a story, below on this page: Adventure experience for everyone, and Labor Points for craftsmen and merchants. Reputations and Confidence are on the sheet.', to: '#after-story' },
+    { label: 'Experience after a story', hint: 'After a story, below on this page: Adventure experience for everyone, and Labor Points for craftsmen and merchants. A Reputation gained is kept on the sheet.', to: '#after-story' },
     { label: 'Another covenant, a Redcap, the next Tribunal', hint: 'The Tribunal: its living covenants and their magi, what they have brought to your covenant, the coming gatherings, and the Great Library.', to: `${S}/tribunal` },
     { label: 'A rule is in question', hint: 'Game mechanics: every rule in the reviewed books, with the book’s text a click away.', to: '/mechanics' },
   ];

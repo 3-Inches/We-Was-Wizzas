@@ -681,7 +681,7 @@ function GreatLibraryCard({ book }: { book: TribunalBook }) {
         </div>
       ))}
       <p className="small muted" style={{ marginBottom: 0 }}>
-        Log a season of study there on the character’s Advancement tab as a summa or tractatus of the Level and Quality found.
+        Log a season of study there at the Game Table (Seasons, a season in full) as a summa or tractatus of the Level and Quality found.
       </p>
     </Card>
   );

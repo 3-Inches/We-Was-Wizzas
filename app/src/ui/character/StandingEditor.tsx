@@ -6,7 +6,7 @@ import { covenantOf } from '../../engine/context';
 import { describeStanding, inPlay, resolveStanding } from '../../engine/time';
 import type { Character, Covenant, LibraryBook, Specialist, StandingActivity } from '../../engine/types';
 import { teacherQuality } from '../../engine/covenantRules';
-import { bestLesson, lessonStudy, teachableSubjects, type Learner } from '../../engine/teaching';
+import { bestLesson, lessonStudy, maxStudents, teachableSubjects, type Learner } from '../../engine/teaching';
 import { cannotHelp, helpValue } from '../../engine/labHelp';
 
 const KINDS: { id: StandingActivity['kind']; label: string }[] = [
@@ -26,17 +26,21 @@ const KINDS: { id: StandingActivity['kind']; label: string }[] = [
   { id: 'none', label: 'Nothing' },
 ];
 
-/** The covenant's other characters, for teaching and help in the lab. */
+/** The covenant's other characters, for help in the lab; and the players' others in play, for lessons. */
 export interface Team {
   data: GameData;
   mates: Learner[];
+  /** the players' characters in play elsewhere (no covenant, or another of theirs): they can still teach and be taught */
+  others: Learner[];
 }
 
-/** A character's covenant-mates in play (with no covenant, the others with none), each derived. */
+/** A character's covenant-mates in play (with no covenant, the others with none), and the players' other characters in play, each derived. */
 export function teamOf(c: Character, chars: Character[], covs: Covenant[], data: GameData, derive: (x: Character) => DerivedCharacter): Team {
   const home = covenantOf(c, covs)?.id;
   const mates = chars.filter((x) => x.id !== c.id && inPlay(x) && covenantOf(x, covs)?.id === home);
-  return { data, mates: mates.map((x) => ({ c: x, d: derive(x) })) };
+  // not the Tribunal's people: they follow their own lists
+  const others = chars.filter((x) => x.id !== c.id && inPlay(x) && !x.wanderer && covenantOf(x, covs)?.id !== home && !covenantOf(x, covs)?.living);
+  return { data, mates: mates.map((x) => ({ c: x, d: derive(x) })), others: others.map((x) => ({ c: x, d: derive(x) })) };
 }
 
 export function StandingEditor({ c, d, year, onChange, teachers = [], value, extra, library = [], team }: { c: Character; d: DerivedCharacter; year: number; onChange: (s: StandingActivity) => void; teachers?: Specialist[]; value?: StandingActivity; extra?: boolean; library?: LibraryBook[]; team?: Team }) {
@@ -47,6 +51,9 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
   const open = (c.projects ?? []).filter((p) => !p.done);
   const writing = (c.writing ?? []).filter((p) => !p.done);
   const mates = (team?.mates ?? []).filter((m) => m.c.id !== c.id);
+  // for lessons: covenant-mates first, then the players' others in play (a companion with no covenant)
+  const others = (team?.others ?? []).filter((m) => m.c.id !== c.id);
+  const reach = [...mates, ...others];
   const me: Learner = { c, d };
   // books the character can read: summae and tractatus on an Art (a magus) or an Ability they have
   const readable = library.filter((b) => (b.kind === 'summa' || b.kind === 'tractatus') && !b.corrupt && (b.subjectType === 'art' ? d.isMagus : b.subjectType === 'ability' && c.abilities.some((a) => a.abilityId === b.subject)));
@@ -56,12 +63,13 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
       (k.id !== 'work' || (c.workshop && !extra)) &&
       (k.id !== 'lab' || (d.isMagus && !extra)) &&
       (k.id !== 'vis' || d.isMagus) &&
-      (k.id !== 'taught' || teachers.length > 0 || mates.length > 0 || s.kind === 'taught') &&
-      ((k.id !== 'teach' && k.id !== 'assist') || mates.length > 0 || s.kind === k.id) &&
+      (k.id !== 'taught' || teachers.length > 0 || reach.length > 0 || s.kind === 'taught') &&
+      (k.id !== 'teach' || reach.length > 0 || s.kind === k.id) &&
+      (k.id !== 'assist' || mates.length > 0 || s.kind === k.id) &&
       (k.id !== 'read' || readable.length > 0 || s.kind === 'read') &&
       (k.id !== 'priorities' || !extra),
   );
-  const mateTeacher = fromMate ? mates.find((m) => m.c.id === s.teacher!.slice(5)) : undefined;
+  const mateTeacher = fromMate ? reach.find((m) => m.c.id === s.teacher!.slice(5)) : undefined;
   const helps = s.kind === 'assist' ? mates.find((m) => m.c.id === s.helps) : undefined;
   return (
     <span className="row tight" style={{ flexWrap: 'wrap' }}>
@@ -107,6 +115,15 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
               ))}
             </optgroup>
           )}
+          {others.length > 0 && (
+            <optgroup label="The saga’s others in play">
+              {others.map((m) => (
+                <option key={m.c.id} value={`char:${m.c.id}`}>
+                  {m.c.name || 'Unnamed'}
+                </option>
+              ))}
+            </optgroup>
+          )}
           {teachers.length > 0 && (
             <optgroup label="The covenant’s teachers">
               {teachers.map((t) => (
@@ -119,7 +136,7 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
         </select>
       )}
       {mateTeacher && team && <MateLesson teacher={mateTeacher} me={me} data={team.data} s={s} onChange={onChange} />}
-      {s.kind === 'teach' && team && <TeachPicker me={me} mates={mates} data={team.data} s={s} onChange={onChange} />}
+      {s.kind === 'teach' && team && <TeachPicker me={me} mates={reach} data={team.data} s={s} onChange={onChange} />}
       {s.kind === 'assist' && (
         <>
           <select value={s.helps ?? ''} onChange={(e) => onChange({ kind: 'assist', helps: e.target.value || undefined })} aria-label="Magus to help">
@@ -156,7 +173,7 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
             ))}
           </select>
         ) : (
-          <span className="small muted">→ begin a book on the sheet’s Advancement tab (Writing and copying) first</span>
+          <span className="small muted">→ begin a book under Writing and copying first</span>
         ))}
       {s.kind === 'read' && (
         <select
@@ -175,7 +192,7 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
           ))}
         </select>
       )}
-      {s.kind === 'priorities' && <span className="small muted">→ the first entry of {c.priorities?.length ? 'its' : 'a'} priority list that can be done (Advancement tab)</span>}
+      {s.kind === 'priorities' && <span className="small muted">→ the first entry of {c.priorities?.length ? 'its' : 'a'} priority list that can be done (Season priorities)</span>}
       {s.kind === 'auto' && <span className="small muted">→ {extra ? (d.magicChar && d.magicChar.might > 0 && !c.creature?.familiarOf ? 'practice, unless its Might cancels it: then nothing' : 'practice of their best Ability') : `${describeStanding(c, d, resolved)}${!c.creature && (resolved.kind === 'practice' || (resolved.kind === 'lab' && !resolved.projectUid)) ? ', or the covenant’s best book or teacher if it teaches more' : ''}`}</span>}
     </span>
   );
@@ -218,7 +235,10 @@ function TeachPicker({ me, mates, data, s, onChange }: { me: Learner; mates: Lea
   const subjects = new Map<string, string>();
   for (const m of chosen.length ? chosen : mates) for (const x of teachableSubjects(me, m, data).subjects) subjects.set(x.key, x.label);
   const wants = new Map(chosen.filter((m) => m.c.standing?.kind === 'taught').map((m) => [m.c.id, m.c.standing!.target]));
-  const r = chosen.length ? bestLesson(me, chosen, data, { subject: s.target, wants }) : undefined;
+  // those chosen by name are all taught, up to what Teaching allows (as when the season ends)
+  const r = chosen.length ? bestLesson(me, chosen, data, { subject: s.target, wants, all: !!s.students?.length }) : undefined;
+  const cap = maxStudents(me);
+  const teaching = me.d.abilities.find((a) => a.abilityId === 'teaching')?.score ?? 0;
   const toggle = (id: string, on: boolean) => {
     const next = on ? [...(s.students ?? []), id] : (s.students ?? []).filter((x) => x !== id);
     onChange({ ...s, students: next.length ? next : undefined });
@@ -236,13 +256,19 @@ function TeachPicker({ me, mates, data, s, onChange }: { me: Learner; mates: Lea
       <span className="row tight small" style={{ flexWrap: 'wrap' }} aria-label="Students">
         {mates.map((m) => {
           const asked = m.c.standing?.kind === 'taught' && m.c.standing.teacher === `char:${me.c.id}`;
+          // what they could be taught, or why nothing: said beside them, not left to guess
+          const t = teachableSubjects(me, m, data);
+          const nothing = t.why ?? (t.subjects.length ? undefined : `${me.c.name || 'The teacher'} knows nothing more than ${m.c.name || 'they'} do that could be taught${t.blocked.length ? ` (${t.blocked[0].label}: ${t.blocked[0].why})` : ''}`);
           return (
-            <label key={m.c.id} className="inline" title={asked ? `${m.c.name || 'They'} asked to be taught by ${me.c.name || 'this character'}` : undefined}>
+            <label key={m.c.id} className="inline" title={nothing ?? (asked ? `${m.c.name || 'They'} asked to be taught by ${me.c.name || 'this character'}` : `Could be taught: ${t.subjects.map((x) => x.label).join(', ')}`)}>
               <input type="checkbox" checked={asked || !!s.students?.includes(m.c.id)} disabled={asked} onChange={(e) => toggle(m.c.id, e.target.checked)} /> {m.c.name || 'Unnamed'}
-              {asked ? ' (asked)' : ''}
+              {asked ? ' (asked)' : nothing ? <span className="muted"> (nothing to learn)</span> : ''}
             </label>
           );
         })}
+      </span>
+      <span className="small muted" style={{ flexBasis: '100%' }}>
+        {me.c.name || 'They'} can teach {cap === 1 ? 'one student at a time (no Teaching Ability; each point of Teaching takes five)' : `up to ${cap} at once (Teaching ${teaching}: five for each point)`}; a Hermetic Art only one-on-one. One student gets +6 Quality, two +3 (DE).
       </span>
       <span className="small muted" style={{ flexBasis: '100%' }}>
         →{' '}

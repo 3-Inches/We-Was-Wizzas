@@ -1,7 +1,7 @@
 // The customs of the saga's Tribunal that the troupe chose to use, as they touch one character: the
 // Rhine's ranks, gilds and forest pacts, Theban citizenship, and a Transylvanian privilege.
 
-import { RollAtTable, useAtTable } from '../../play';
+import { RollAtTable, useAtTable, useEditable } from '../../play';
 import { useState } from 'react';
 import { pct, stressChance } from '../../../engine/dice';
 import { addVirtue, ensureAbility } from '../../../engine/character/factory';
@@ -17,7 +17,8 @@ import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
 
 export function TribunalCard({ ed }: { ed: CharEditor }) {
-  const { c, d, saga } = ed;
+  const { c, d, saga, data } = ed;
+  const edit = useEditable(c);
   if (!c || !d || !saga) return null;
   const magus = c.type === 'magus';
   const rhine = magus && (optionOn(saga, 'rhineGilds') || !!c.rhine);
@@ -25,6 +26,36 @@ export function TribunalCard({ ed }: { ed: CharEditor }) {
   const theban = magus && (optionOn(saga, 'thebanTokens') || !!c.theban);
   const transylvania = magus && (optionOn(saga, 'transylvaniaPrivileges') || !!c.privilege);
   if (!rhine && !forest && !theban && !transylvania) return null;
+  if (!edit) {
+    const r = c.rhine;
+    const vfName = (id?: string) => (id ? data.vfById.get(id)?.name ?? id : '');
+    return (
+      <Card title={`${saga.tribunal ? `${saga.tribunal} ` : ''}Tribunal customs`} tour="tribunal-customs">
+        <div className="small stack" style={{ gap: 4 }}>
+          {rhine && (
+            <div>
+              Rank: <b>{RHINE_RANKS.find((x) => x.id === (r?.rank ?? 'journeyman'))?.label}</b>; gild: <b>{RHINE_GILDS.find((g) => g.id === r?.gild)?.tree ?? 'none'}</b>
+              {r?.guestAt ? `; a guest at ${r.guestAt}` : ''}
+              {r?.sponsors?.filter(Boolean).length ? `; ${r.sponsors.filter(Boolean).length} of ${MASTER_SPONSORS} masters approve` : ''}.
+            </div>
+          )}
+          {(c.forestPacts ?? []).map((p) => (
+            <div key={p.uid}>
+              Pact with <b>{p.spirit || p.path}</b> ({p.size}): Sacrifice {vfName(c.virtues.find((v) => v.uid === p.sacrificeUid)?.defId) || '—'}; {p.done ? `Fruit: ${vfName(p.fruit)}` : `Quest: ${p.quest}`}.
+            </div>
+          ))}
+          {theban && c.theban && (
+            <div>
+              Thebes: <b>{c.theban.citizen ? 'polites' : 'metoikos'}</b>
+              {c.theban.phyle ? ` of the ${c.theban.phyle} phyle` : ''}, {c.theban.tokens} token{c.theban.tokens === 1 ? '' : 's'}, {c.theban.shards} shard{c.theban.shards === 1 ? '' : 's'}.
+            </div>
+          )}
+          {transylvania && <div>Privilege: <b>{PRIVILEGES.find((x) => x.id === c.privilege)?.label ?? 'none'}</b>.</div>}
+        </div>
+        <RollAtTable sagaId={c.sagaId} who={c.id} where="society" what="Rank and gild, forest pacts, tokens and privileges are changed, and communion sought," />
+      </Card>
+    );
+  }
   return (
     <Card title={`${saga.tribunal ? `${saga.tribunal} ` : ''}Tribunal customs`} tour="tribunal-customs">
       <div className="stack">

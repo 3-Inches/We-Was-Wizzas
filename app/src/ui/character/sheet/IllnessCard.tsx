@@ -67,13 +67,17 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
         <div key={ill.uid} className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
           <div className="row">
             <b>{ill.name}</b>
-            <select value={ill.stage} onChange={(e) => update((x) => { const i = x.illnesses?.find((y) => y.uid === ill.uid); if (i) i.stage = e.target.value as Illness['stage']; })}>
-              {STAGES.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
+            {atTable ? (
+              <select value={ill.stage} onChange={(e) => update((x) => { const i = x.illnesses?.find((y) => y.uid === ill.uid); if (i) i.stage = e.target.value as Illness['stage']; })} aria-label="Stage">
+                {STAGES.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <span className="small">{ill.stage}</span>
+            )}
             <span className={`badge ${ill.stage === 'Critical' ? 'bad' : 'warn'}`}>
               {ill.stage === 'Critical' ? 'Crisis: no action' : ill.flawInstead ? 'a Flaw instead of a penalty' : `${STAGE_PENALTY[ill.stage]} Disease Penalty`}
             </span>
@@ -81,22 +85,27 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
               Severity {currentSeverity(ill)} · Stable {ill.stable} · Improve {ill.improve ?? '—'} · every {ill.interval.toLowerCase()}
               {ill.bonus ? ` · next roll ${ill.bonus > 0 ? '+' : ''}${ill.bonus}` : ''}
             </span>
-            <label className="inline small">
-              <input type="checkbox" checked={!!ill.flawInstead} onChange={(e) => update((x) => { const i = x.illnesses?.find((y) => y.uid === ill.uid); if (i) i.flawInstead = e.target.checked || undefined; })} /> a Flaw instead
-            </label>
+            {atTable && (
+              <label className="inline small">
+                <input type="checkbox" checked={!!ill.flawInstead} onChange={(e) => update((x) => { const i = x.illnesses?.find((y) => y.uid === ill.uid); if (i) i.flawInstead = e.target.checked || undefined; })} /> a Flaw instead
+              </label>
+            )}
             {atTable && (
               <button className="small primary" onClick={() => recover(ill)} disabled={ill.interval === 'Lifelong'}>
                 Recovery roll
               </button>
             )}
-            <button className="small ghost" onClick={() => update((x) => void (x.illnesses = (x.illnesses ?? []).filter((y) => y.uid !== ill.uid)))} title="Cured by magic or the storyguide">
-              Cured
-            </button>
+            {atTable && (
+              <button className="small ghost" onClick={() => update((x) => void (x.illnesses = (x.illnesses ?? []).filter((y) => y.uid !== ill.uid)))} title="Cured by magic or the storyguide">
+                Cured
+              </button>
+            )}
           </div>
           {DISEASES.find((x) => x.id === ill.diseaseId)?.symptoms && <div className="small muted">Symptoms: {DISEASES.find((x) => x.id === ill.diseaseId)!.symptoms}</div>}
         </div>
       ))}
-      <div className="row" style={{ marginTop: 8 }}>
+      {!atTable && ills.length === 0 && <div className="small muted">No illness.</div>}
+      {atTable && <div className="row" style={{ marginTop: 8 }}>
         <Field label="A disease from the books">
           <select value={pick} onChange={(e) => setPick(e.target.value)}>
             {DISEASES.map((x) => (
@@ -117,9 +126,9 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
         <button className="small ghost" onClick={() => add({ uid: uid(), name: 'A disease', stage: 'Minor', startStage: 'Minor', severity: 6, stable: 6, improve: 12, interval: 'Week', bonus: 0 })}>
           + Another disease
         </button>
-      </div>
-      {def && ills.length === 0 && <div className="small muted">{def.cause}</div>}
-      <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="Exposure to a disease, and its recovery rolls with a physician, are rolled" />
+      </div>}
+      {atTable && def && ills.length === 0 && <div className="small muted">{def.cause}</div>}
+      <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="A disease caught, its stage, recovery rolls with a physician and a cure are kept" />
       {atTable && (
       <details style={{ marginTop: 8 }}>
         <summary className="small" style={{ cursor: 'pointer' }}>

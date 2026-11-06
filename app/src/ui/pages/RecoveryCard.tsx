@@ -2,22 +2,22 @@
 // near the edge each one is, who tends them, and time passed for them all at once, every roll made
 // and put on their sheets (engine/recovery.ts). The sheets keep the score: wounds, Fatigue, illness.
 
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import type { GameData } from '../../data';
 import { deriveCharacter, type DerivedCharacter } from '../../engine/character/derive';
 import { characterContext } from '../../engine/context';
 import { currentSeverity, prognosisTotal } from '../../engine/disease';
-import { optionOn } from '../../engine/optional';
 import { DAY, HOUR, MONTH, SEASON, WEEK, ailmentsOf, condition, medicCapacity, medicsOf, nextRecovery, passTime, spanText, type Care } from '../../engine/recovery';
 import { livingConditions } from '../../engine/time';
 import type { Character, Covenant, Saga } from '../../engine/types';
 import { useStore } from '../../store/store';
 import { Card, Empty, Field, Stepper } from '../kit';
-import { AtTable } from '../play';
+import { AtTable, PeopleOptions, groupPeople } from '../play';
 import { R } from '../routes';
 import { useCharEditor } from '../character/useChar';
-import { IllnessCard } from '../character/sheet/IllnessCard';
+import { HealthCards } from '../character/sheet/CombatTab';
+import { EffectsCard } from '../character/sheet/EffectsCard';
 
 const SPANS: { id: string; label: string; min: number }[] = [
   { id: 'hour', label: 'an hour', min: HOUR },
@@ -48,7 +48,13 @@ export function RecoveryCard({ saga, data, chars, covs }: { saga: Saga; data: Ga
   const [atHome, setAtHome] = useState(true);
   const [span, setSpan] = useState('next');
   const [log, setLog] = useState<string[]>([]);
-  const [who, setWho] = useState('');
+  // a sheet's link names who (?who=): their wounds, Fatigue and illness open here
+  const [params] = useSearchParams();
+  const asked = params.get('who') ?? '';
+  const [who, setWho] = useState(asked);
+  useEffect(() => {
+    if (asked) setWho(asked);
+  }, [asked]);
   const aa = saga.enabledBooks.length === 0 || saga.enabledBooks.includes('AA');
   // a chirurgeon tends as many as their Chirurgy without giving up the season, five times that by giving it (Art & Academe)
   const capacity = medic ? medicCapacity(Math.max(medic.chirurgy, medic.medicine), season) : 0;
@@ -216,31 +222,29 @@ export function RecoveryCard({ saga, data, chars, covs }: { saga: Saga; data: Ga
           {!aa && <p className="small muted">How many a medic can tend follows Art &amp; Academe, which this saga does not use; the core book sets no limit.</p>}
         </>
       )}
-      {optionOn(saga, 'illness') && (
-        <div style={{ marginTop: 10 }}>
-          <Field label="Someone is exposed to a disease, or falls ill" hint="Their Illness card: catching one, a physician's Prognosis, its own recovery roll">
-            <select value={who} onChange={(e) => setWho(e.target.value)}>
-              <option value="">— choose who —</option>
-              {playing.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name || 'Unnamed'}
-                </option>
-              ))}
-            </select>
-          </Field>
-          {ill && <IllnessAtTable key={ill.id} sagaId={saga.id} charId={ill.id} />}
-        </div>
-      )}
+      <div style={{ marginTop: 10 }} data-tour="health-who">
+        <Field label="Someone is hurt, tired, ill or under a spell" hint="Their wounds, Fatigue and illness: apply damage, take or recover a level, catch or cure a disease; spells and powers working on them">
+          <select value={who} onChange={(e) => setWho(e.target.value)}>
+            <option value="">— choose who —</option>
+            <PeopleOptions groups={groupPeople(playing, covs)} />
+          </select>
+        </Field>
+        {ill && <HealthAtTable key={ill.id} sagaId={saga.id} charId={ill.id} />}
+      </div>
     </Card>
   );
 }
 
-function IllnessAtTable({ sagaId, charId }: { sagaId: string; charId: string }) {
+/** One character's wounds, Fatigue, illness and the magic on them, changed at the table (the same cards their sheet shows). */
+function HealthAtTable({ sagaId, charId }: { sagaId: string; charId: string }) {
   const ed = useCharEditor({ sagaId, charId });
   if (!ed.c || !ed.d) return null;
   return (
     <AtTable>
-      <IllnessCard ed={ed} />
+      <div className="stack" style={{ marginTop: 8 }}>
+        <HealthCards ed={ed} />
+        <EffectsCard ed={ed} />
+      </div>
     </AtTable>
   );
 }

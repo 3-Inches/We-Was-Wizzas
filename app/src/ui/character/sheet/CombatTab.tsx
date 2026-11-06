@@ -27,7 +27,23 @@ const FATIGUE_RECOVERY = ['—', '2 minutes', '10 minutes', '30 minutes', '1 hou
  * Overview, a fight on Dice › Combat & perils.
  */
 export default function CombatTab({ ed }: { ed: CharEditor }) {
+  return (
+    <div className="stack">
+      <HealthCards ed={ed} />
+      <CombatRolls ed={ed} />
+      <EquipmentEditor ed={ed} />
+    </div>
+  );
+}
+
+/**
+ * Wounds, Fatigue and illness. On the sheet they show where the character stands; at the Game Table
+ * (Overview › Health & recovery) damage is applied, wounds and Fatigue taken and recovered, and a
+ * disease caught or cured. One card for both, so the mechanics live in one place.
+ */
+export function HealthCards({ ed }: { ed: CharEditor }) {
   const { c, d, update } = ed;
+  const atTable = useAtTable();
   const [damage, setDamage] = useState(0);
   const [msg, setMsg] = useState('');
   if (!c || !d) return null;
@@ -47,9 +63,9 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
   };
 
   return (
-    <div className="stack">
+    <>
       <div className="grid grid-2">
-        <Card title="Wounds" className="accent">
+        <Card title="Wounds" className="accent" tour="health-wounds">
           <div className="row" style={{ marginBottom: 8 }}>
             <div className="stat">
               <span className="v">{signed(d.soak)}</span>
@@ -94,9 +110,7 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
                       <td>{w.label}</td>
                       <td>{range.join('–')}</td>
                       <td className="num">{w.pen || '—'}</td>
-                      <td>
-                        <Stepper value={c.wounds[w.key]} min={0} width={36} onChange={(v) => update((x) => void (x.wounds[w.key] = v))} />
-                      </td>
+                      <td>{atTable ? <Stepper value={c.wounds[w.key]} min={0} width={36} onChange={(v) => update((x) => void (x.wounds[w.key] = v))} /> : <b>{c.wounds[w.key] || '—'}</b>}</td>
                       <td className="small">
                         {rec ? `${rec.interval}; stable ${rec.stable}, improve ${rec.improve}` : 'Twice a day: 0 or less dies, 9+ becomes Heavy'}
                         {c.wounds[w.key] > 0 && next.has(w.key) && <span className="muted"> · next roll in {spanText(next.get(w.key)!)}</span>}
@@ -110,22 +124,22 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
                   <td>Dead</td>
                   <td>{d.woundRanges.dead}+</td>
                   <td />
-                  <td>
-                    <input type="checkbox" checked={!!c.wounds.dead} onChange={(e) => update((x) => void (x.wounds.dead = e.target.checked))} />
-                  </td>
+                  <td>{atTable ? <input type="checkbox" checked={!!c.wounds.dead} onChange={(e) => update((x) => void (x.wounds.dead = e.target.checked))} aria-label="Dead" /> : c.wounds.dead ? <b className="bad-text">dead</b> : '—'}</td>
                   <td />
                 </tr>
               </tbody>
             </table>
           </div>
-          <div className="row" style={{ marginTop: 10 }}>
-            <Field label="Damage total taken">
-              <Stepper value={damage} min={0} width={50} onChange={setDamage} />
-            </Field>
-            <button onClick={applyDamage}>Apply damage</button>
-            {msg && <span className="small">{msg}</span>}
-          </div>
-          <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="Recovery rolls, with a medic, magical aid and the lab’s Health, are made for everyone" />
+          {atTable && (
+            <div className="row" style={{ marginTop: 10 }}>
+              <Field label="Damage total taken">
+                <Stepper value={damage} min={0} width={50} onChange={setDamage} />
+              </Field>
+              <button onClick={applyDamage}>Apply damage</button>
+              {msg && <span className="small">{msg}</span>}
+            </div>
+          )}
+          <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="Damage is applied, wounds taken and recovered (with a medic, magical aid and the lab’s Health)" />
         </Card>
 
         <Card title="Fatigue">
@@ -141,29 +155,34 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
               ))}
             </tbody>
           </table>
-          <div className="row" style={{ marginTop: 8 }}>
-            <Field label="Short-term levels lost">
-              <Stepper value={c.fatigueLost} min={0} max={5} width={36} onChange={(v) => update((x) => void (x.fatigueLost = v))} />
-            </Field>
-            <Field label="Long-term levels lost">
-              <Stepper value={c.longTermFatigueLost} min={0} max={5} width={36} onChange={(v) => update((x) => void (x.longTermFatigueLost = v))} />
-            </Field>
-            <button className="small" onClick={() => update((x) => void (x.fatigueLost = Math.max(0, x.fatigueLost - 1)))}>
-              Recover one
-            </button>
-            <button className="small" onClick={() => update((x) => { x.fatigueLost = 0; x.longTermFatigueLost = 0; })} title="A good night's sleep restores long-term Fatigue">
-              Night's sleep
-            </button>
-          </div>
+          {atTable ? (
+            <div className="row" style={{ marginTop: 8 }}>
+              <Field label="Short-term levels lost">
+                <Stepper value={c.fatigueLost} min={0} max={5} width={36} onChange={(v) => update((x) => void (x.fatigueLost = v))} />
+              </Field>
+              <Field label="Long-term levels lost">
+                <Stepper value={c.longTermFatigueLost} min={0} max={5} width={36} onChange={(v) => update((x) => void (x.longTermFatigueLost = v))} />
+              </Field>
+              <button className="small" onClick={() => update((x) => void (x.fatigueLost = Math.max(0, x.fatigueLost - 1)))}>
+                Recover one
+              </button>
+              <button className="small" onClick={() => update((x) => { x.fatigueLost = 0; x.longTermFatigueLost = 0; })} title="A good night's sleep restores long-term Fatigue">
+                Night's sleep
+              </button>
+            </div>
+          ) : (
+            <p className="small" style={{ margin: '8px 0 0' }}>
+              Short-term levels lost: <b>{c.fatigueLost}</b>; long-term: <b>{c.longTermFatigueLost}</b>.
+            </p>
+          )}
           <p className="small muted">{st.fatigue}. Short-term Fatigue recovers with rest (times above, doubled if active). Long-term Fatigue (Ritual spells, forced march) needs a good night's sleep.</p>
+          <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="Fatigue is lost and recovered" />
         </Card>
       </div>
 
       <CovenantImmunity ed={ed} />
       <IllnessCard ed={ed} />
-      <CombatRolls ed={ed} />
-      <EquipmentEditor ed={ed} />
-    </div>
+    </>
   );
 }
 

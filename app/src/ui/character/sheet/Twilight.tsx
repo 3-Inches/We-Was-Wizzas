@@ -8,7 +8,7 @@ import { twilightAvoidance, twilightComprehension, twilightEffects, twilightSize
 import { Card, Field, Stepper, HowItWorks } from '../../kit';
 import { AURA_TIME, auraWarping } from '../../../engine/time';
 import type { CharEditor } from '../useChar';
-import { RollAtTable, useAtTable } from '../../play';
+import { RollAtTable, useAtTable, useEditable } from '../../play';
 
 /** Adds (or takes away) play experience, never below none at all. */
 function shiftXp(alloc: Partial<Record<string, number>>, xp: number) {
@@ -31,6 +31,7 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
   const [scar, setScar] = useState('');
   // the sheet keeps the Warping Score and the scars; a Twilight episode is played out at the Game Table
   const atTable = useAtTable();
+  const edit = useEditable(c);
   if (!c || !d) return null;
   const aura = ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0;
   const log = (s: string) => setText((t) => [s, ...t].slice(0, 20));
@@ -93,12 +94,14 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
           </span>
           <span className="l">Warping</span>
         </div>
-        <Field label="Warping points">
-          <Stepper value={c.warpingPoints} min={0} width={46} onChange={(v) => update((x) => void (x.warpingPoints = v))} />
-        </Field>
+        {edit && (
+          <Field label="Warping points">
+            <Stepper value={c.warpingPoints} min={0} width={46} onChange={(v) => update((x) => void (x.warpingPoints = v))} />
+          </Field>
+        )}
         {ctx.covenant && auraWarping({ ...c, auraTime: 'always' }, d, ctx) > 0 && (
           <Field label={`Time in ${ctx.covenant.name}'s aura`} hint={`${ctx.aura.realm} ${ctx.aura.strength}: +${auraWarping(c, d, ctx, (saga?.currentYear ?? 0) + 1)} Warping at the year's end (DE, Living in Strong Auras)`}>
-            <select value={c.auraTime ?? 'always'} onChange={(e) => update((x) => void (x.auraTime = e.target.value === 'always' ? undefined : (e.target.value as typeof x.auraTime)))}>
+            <select value={c.auraTime ?? 'always'} disabled={!edit} onChange={(e) => update((x) => void (x.auraTime = e.target.value === 'always' ? undefined : (e.target.value as typeof x.auraTime)))}>
               {Object.entries(AURA_TIME).map(([k, v]) => (
                 <option key={k} value={k}>
                   {v}
@@ -213,9 +216,13 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
           {t}
         </div>
       ))}
-      <Field label="Twilight scars & effects">
-        <textarea rows={3} value={c.twilightScars.join('\n')} onChange={(e) => update((x) => void (x.twilightScars = e.target.value.split('\n')))} />
-      </Field>
+      {edit ? (
+        <Field label="Twilight scars & effects">
+          <textarea rows={3} value={c.twilightScars.join('\n')} onChange={(e) => update((x) => void (x.twilightScars = e.target.value.split('\n')))} />
+        </Field>
+      ) : (
+        c.twilightScars.filter(Boolean).length > 0 && <div className="small">Twilight scars and effects: {c.twilightScars.filter(Boolean).join('; ')}.</div>
+      )}
     </Card>
   );
 }

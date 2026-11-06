@@ -1,4 +1,5 @@
-// What magic is doing to a character: effects still working, and changes made for good.
+// What magic is doing to a character: effects still working, and changes made for good. Recorded,
+// ended or undone at the Game Table (Overview › Health & recovery); a finished sheet lists them.
 
 import { useState } from 'react';
 import { CHAR_NAMES, CHARACTERISTICS, type Characteristic } from '../../../data';
@@ -6,6 +7,7 @@ import { applyEffect, effectExpiry, endEffect, undoEffect } from '../../../engin
 import type { ActiveEffect } from '../../../engine/types';
 import { Card, Field, Stepper } from '../../kit';
 import type { CharEditor } from '../useChar';
+import { RollAtTable, useEditable } from '../../play';
 
 export function EffectsCard({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, saga } = ed;
@@ -17,15 +19,20 @@ export function EffectsCard({ ed }: { ed: CharEditor }) {
   const [soak, setSoak] = useState(0);
   const [warping, setWarping] = useState(0);
   const [constant, setConstant] = useState(false);
+  const edit = useEditable(c);
   if (!c || !saga) return null;
   const list = c.activeEffects ?? [];
   if (!list.length && !open)
     return (
       <div className="row small">
-        <span className="muted">No spells or powers working on this character.</span>
-        <button className="small ghost" onClick={() => setOpen(true)}>
-          + Record one
-        </button>
+        <span className="muted">No spells or powers working on {c.name || 'this character'}.</span>
+        {edit ? (
+          <button className="small ghost" onClick={() => setOpen(true)}>
+            + Record one
+          </button>
+        ) : (
+          <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="A spell or power on someone is recorded" />
+        )}
       </div>
     );
   const add = () =>
@@ -55,12 +62,12 @@ export function EffectsCard({ ed }: { ed: CharEditor }) {
             {e.virtueUid && <span>gives {data.vfById.get(c.virtues.find((v) => v.uid === e.virtueUid)?.defId ?? '')?.name ?? 'a Virtue'}</span>}
             {e.constant && <span className="badge warn">constant: a Warping Point a year</span>}
             <span style={{ flex: 1 }} />
-            {e.duration !== 'permanent' && (
+            {edit && e.duration !== 'permanent' && (
               <button className="small ghost" onClick={() => update((x) => void endEffect(x, e.uid))}>
                 End
               </button>
             )}
-            <button
+            {edit && <button
               className="small ghost"
               title={
                 e.source
@@ -70,13 +77,17 @@ export function EffectsCard({ ed }: { ed: CharEditor }) {
               onClick={() => window.confirm(`Undo ${e.name} on ${c.name || 'this character'}${e.source ? ' only (the rest of the cast stays; Recent casts on the covenant page undoes all of it, with refunds)' : ''}?`) && update((x) => undoEffect(x, e.uid))}
             >
               Undo here
-            </button>
+            </button>}
           </div>
         );
       })}
-      <button className="small ghost" onClick={() => setOpen((v) => !v)}>
-        {open ? 'Close' : '+ Record a spell or power on this character'}
-      </button>
+      {edit ? (
+        <button className="small ghost" onClick={() => setOpen((v) => !v)}>
+          {open ? 'Close' : '+ Record a spell or power on this character'}
+        </button>
+      ) : (
+        <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="Spells and powers on someone are recorded, ended or undone" />
+      )}
       {open && (
         <div className="row small" style={{ marginTop: 6 }}>
           <input value={name} placeholder="Name of the spell or power" onChange={(e) => setName(e.target.value)} style={{ width: 180 }} />

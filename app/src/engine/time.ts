@@ -721,7 +721,8 @@ function seasonLessons(chars: Character[], x: Passes): Line[] {
       }
       const wants = new Map(asked.map((s) => [s.id, resolveStanding(s, D(s), year).target]));
       const labTeaching = Math.min(3, x.ctxOf(t).lab?.specializations.Teaching ?? 0);
-      const r = bestLesson({ c: t, d: td }, pool.map((y) => ({ c: y, d: D(y) })), data, { subject: st?.target, wants, labTeaching });
+      // students the teacher named are all taught (up to what Teaching allows), not only those who gain most
+      const r = bestLesson({ c: t, d: td }, pool.map((y) => ({ c: y, d: D(y) })), data, { subject: st?.target, wants, labTeaching, all: named.length > 0 });
       for (const [id, why] of r.why) {
         const s = playing.find((y) => y.id === id);
         if (s) NO_LESSON.set(s, why.replace(/\.$/, ''));

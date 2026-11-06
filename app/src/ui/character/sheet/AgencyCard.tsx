@@ -1,7 +1,7 @@
 // A character's agency (Houses of Hermes: Societates, Appendix: Agencies): agents, their Bond and
 // Resistance, recruiting with agency experience, gifts, and asking one to do something.
 
-import { RollAtTable, useAtTable, ResultLog } from '../../play';
+import { RollAtTable, useAtTable, useEditable, ResultLog } from '../../play';
 import { useState } from 'react';
 import { AGENCY_POINTS, AGENCY_VIRTUES, AGENT_RISKS, AGENT_TASKS, AGENT_TIMEFRAMES, RESISTANCE_MODIFIERS, STATUS_RESISTANCE, addAgencyXp, agencyCost, giftToAgent, impressRoll, maxAgents, persuasionRoll } from '../../../engine/agency';
 import type { Agent } from '../../../engine/types';
@@ -22,8 +22,10 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
   const [pounds, setPounds] = useState(1);
   // the sheet keeps the agents, their Bonds and gifts; impressing one and asking them for something are rolled at the Game Table
   const atTable = useAtTable();
+  const edit = useEditable(c);
   if (!c || !d) return null;
   if (!optionOn(saga, 'agents') && !(c.agents ?? []).length) return null;
+  if (!edit) return <AgentsReference c={c} max={maxAgents(d)} />;
   const agents = c.agents ?? [];
   // an agent whose Bond has fallen below zero has left the agency
   const recruited = agents.filter((a) => a.resistance <= 0 && a.bond >= 0);
@@ -203,6 +205,28 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
       )}
       <ResultLog lines={log} />
       {recruited.length + agents.filter((a) => a.resistance > 0).length > 0 && <RollAtTable sagaId={c.sagaId} who={c.id} where="society" what="Impressing a would-be agent, and asking an agent for something, are rolled" />}
+    </Card>
+  );
+}
+
+/** A finished sheet's agents, as they stand: who, what binds them, what they can do. Changed at the Game Table. */
+function AgentsReference({ c, max }: { c: NonNullable<CharEditor['c']>; max: number }) {
+  const agents = c.agents ?? [];
+  const recruited = agents.filter((a) => a.resistance <= 0 && a.bond >= 0);
+  return (
+    <Card title={`Agents (${recruited.length} of ${max})`} tour="agents">
+      {agents.length === 0 && <div className="small muted">No agents.</div>}
+      {agents.map((a) => (
+        <div key={a.uid} className="small list-row" style={{ flexWrap: 'wrap' }}>
+          <b>{a.name || 'Unnamed'}</b>
+          {a.status && <span className="muted">{a.status}</span>}
+          <span>
+            {a.bond < 0 ? 'has left the agency' : a.resistance > 0 ? `being recruited (Resistance ${a.resistance})` : `${a.bondTrait} ${a.bond >= 0 ? '+' : ''}${a.bond}`}
+          </span>
+          {a.resources && <span className="soft" style={{ flexBasis: '100%' }}>{a.resources}</span>}
+        </div>
+      ))}
+      <RollAtTable sagaId={c.sagaId} who={c.id} where="society" what="Agents are recruited, asked for something, given experience and let go" />
     </Card>
   );
 }

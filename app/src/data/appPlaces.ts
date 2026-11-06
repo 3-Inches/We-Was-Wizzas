@@ -85,7 +85,7 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'spell-design': [{ text: 'Spells & design → Design a spell', page: 'spells' }],
   'spells-by-form': [{ text: 'Spells & design → Browse spells', page: 'spells' }],
   'spell-guidelines-from-other-books': [{ text: 'Spells & design → Guidelines', page: 'spells' }],
-  'spell-mastery': [{ text: `${SHEET} → Magic → Spells` }],
+  'spell-mastery': [{ text: 'Game Table → Seasons → a season in full → Spell Mastery', page: 'seasons' }, { text: `${SHEET} → Magic → Spells (the score and abilities)` }],
   certamen: [{ text: `${SHEET} → Magic → Certamen` }],
   'wizard-s-twilight': [{ text: `${SHEET} → Seasons & Aging → Warping & Twilight` }],
   'supernatural-abilities': [{ text: `${SHEET} → Abilities` }, { text: 'Character wizard → Virtues & Flaws (Supernatural powers)' }],
