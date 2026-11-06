@@ -363,10 +363,13 @@ export function workWriting(
   data?: GameData,
 ): string[] {
   const lines: string[] = [];
+  // what Unlog takes back: each project's points as they were
+  const pointsBefore = (c.writing ?? []).map((w) => ({ uid: w.uid, points: w.points }));
   p.points += Math.max(0, p.rate);
   const gains: Record<string, number> = p.exposure ? { [p.exposure]: EXPOSURE_XP } : {};
   const label = { summa: 'Wrote', tractatus: 'Wrote', commentary: 'Wrote', copy: 'Copied', labTexts: 'Wrote up lab texts', copyLabTexts: 'Copied lab texts', florilegium: 'Edited', annotate: 'Annotated' }[p.kind];
   const e = newSeasonEntry(year, season, p.kind === 'copy' || p.kind === 'copyLabTexts' ? 'copy-book' : 'write-book', `${label}: ${p.title} (${Math.min(p.points, p.needed)}/${p.needed})${p.exposure ? `, +${EXPOSURE_XP} xp Exposure` : ''}`, gains);
+  e.undo = { writing: pointsBefore };
   applySeason(c, e, 1);
   c.seasonLog.push(e);
   const [k, id] = (p.exposure ?? '').split(':');
@@ -377,6 +380,7 @@ export function workWriting(
   while (cur.points >= cur.needed) {
     const share = cur.rate > 0 ? (cur.points - cur.needed) / cur.rate : 0;
     cur.done = { year, season };
+    e.undo.final = `This season finished ${cur.title}, now in the library: the season stays logged.`;
     lines.push(...(cov ? finishWriting(c, cov, cur, year, data) : [`${cur.title} is finished, but ${c.name || 'the writer'} has no covenant library to keep it in.`]));
     const open = (c.writing ?? []).filter((w) => !w.done && BY_POINTS.includes(w.kind));
     const next = BY_POINTS.includes(cur.kind) && share > 0 ? open.find((w) => w.kind === cur.kind) ?? open[0] : undefined;
@@ -531,6 +535,7 @@ export function startClarifying(c: Character, cov: Covenant, b: LibraryBook, yea
   b.clarifying = { since: year, aura, by: c.name };
   const e = newSeasonEntry(year, season, 'other', `Opened ${b.title} for enchantment, to clarify it (${OPEN_BOOK_PAWNS} pawns of Vim${fromPurse ? '' : ' from the covenant'})`);
   e.visUsed = [{ art: 'Vi', pawns: OPEN_BOOK_PAWNS }];
+  e.undo = { final: `${b.title} was opened for enchantment, and its vis is spent: the season stays logged.` };
   c.seasonLog.push(e);
   return undefined;
 }

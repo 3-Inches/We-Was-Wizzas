@@ -1,5 +1,6 @@
 // The Game Table: where the saga is played. Its pages: the Overview (what needs attention, the
-// covenants, after a story), Seasons (what everyone does, and moving time on), Dice (every roll at the
+// covenants, after a story), Seasons (what everyone does, and moving time on), the Chronicle (each
+// season told as a story), Dice (every roll at the
 // table), Possessions (what each one owns: items, a talisman, a familiar), the Market & Treasury, and
 // City & Guild.
 
@@ -12,12 +13,14 @@ import { TABLE_TABS, type TableTab } from '../routes';
 
 const DashboardPage = lazy(() => import('./DashboardPage'));
 const SeasonsPage = lazy(() => import('./SeasonsPage'));
+const ChroniclePage = lazy(() => import('./ChroniclePage'));
+const SocietyPage = lazy(() => import('./SocietyPage'));
 const DicePage = lazy(() => import('./DicePage'));
 const PossessionsPage = lazy(() => import('./PossessionsPage'));
 const MarketPage = lazy(() => import('./MarketPage'));
 const CityGuildPage = lazy(() => import('./CityGuildPage'));
 
-const LABELS: Record<TableTab, string> = { overview: 'Overview', seasons: 'Seasons', dice: 'Dice', items: 'Possessions', market: 'Market & Treasury', guild: 'City & Guild' };
+const LABELS: Record<TableTab, string> = { overview: 'Overview', seasons: 'Seasons', chronicle: 'Chronicle', society: 'Society & the Tribunal', dice: 'Dice', items: 'Possessions', market: 'Market & Treasury', guild: 'City & Guild' };
 
 export default function GameTablePage() {
   const { sagaId } = useParams();
@@ -47,6 +50,8 @@ export default function GameTablePage() {
       <Suspense fallback={<div className="muted">Loading…</div>}>
         {tab === 'overview' && <DashboardPage />}
         {tab === 'seasons' && <SeasonsPage />}
+        {tab === 'chronicle' && <ChroniclePage />}
+        {tab === 'society' && <SocietyPage />}
         {tab === 'dice' && <DicePage />}
         {tab === 'items' && <PossessionsPage />}
         {tab === 'market' && <MarketPage />}

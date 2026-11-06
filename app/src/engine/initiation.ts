@@ -126,6 +126,7 @@ export interface InitiationPlan {
 export function applyInitiation(c: Character, data: GameData, p: InitiationPlan): string {
   const def = data.vfById.get(p.virtueId);
   const name = def?.name ?? p.virtueId;
+  const before = new Set(c.virtues.map((v) => v.uid));
   addVirtue(c, data, p.virtueId, p.size, p.param, { free: true, freeReason: 'Initiation' });
   const notes: string[] = [];
   const o = p.ordeal;
@@ -153,6 +154,9 @@ export function applyInitiation(c: Character, data: GameData, p: InitiationPlan)
   };
   c.initiations = [...(c.initiations ?? []), rec];
   const summary = `Initiated into ${name} by ${p.mystagogue} (Initiation Total ${p.total} vs ${p.target})${notes.length ? `. ${notes.join('; ')}` : ''}.`;
-  c.seasonLog.push({ uid: uid(), year: p.year, season: p.season, activity: 'other', summary, gains: {}, applied: true });
+  // Unlog takes the Virtue (and an Ordeal's Flaw) back; an Ordeal that took or worsened a Virtue is for good
+  const gained = c.virtues.filter((v) => !before.has(v.uid)).map((v) => v.uid);
+  const final = o?.loseUid || o?.worsenUid ? `The Ordeal of ${name} took its price from ${c.name || 'the Initiate'}: an Initiation with that Ordeal is not unlogged (remove its Virtue by hand if it must go).` : undefined;
+  c.seasonLog.push({ uid: uid(), year: p.year, season: p.season, activity: 'other', summary, gains: {}, applied: true, undo: { virtueUids: gained, initiationUid: rec.uid, final } });
   return summary;
 }

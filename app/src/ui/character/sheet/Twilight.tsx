@@ -8,6 +8,8 @@ import { twilightAvoidance, twilightComprehension, twilightEffects, twilightSize
 import { Card, Field, Stepper, HowItWorks } from '../../kit';
 import { AURA_TIME, auraWarping } from '../../../engine/time';
 import type { CharEditor } from '../useChar';
+import { settle } from '../../../engine/seasonPlan';
+import type { Character } from '../../../engine/types';
 import { RollAtTable, useAtTable, useEditable } from '../../play';
 
 /** Adds (or takes away) play experience, never below none at all. */
@@ -17,6 +19,12 @@ function shiftXp(alloc: Partial<Record<string, number>>, xp: number) {
 }
 
 type Stage = { kind: 'idle' } | { kind: 'entered'; gained: number } | { kind: 'outcome'; gained: number; comprehended: boolean; extra: number; duration: string };
+
+/** A Twilight episode played out: the oldest check waiting on the Seasons page's Resolve list is settled. */
+function settleTwilight(x: Character): void {
+  const t = x.owed?.find((o) => o.kind === 'twilight');
+  if (t) settle(x, t.uid);
+}
 
 export function TwilightCard({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, ctx, saga } = ed;
@@ -43,6 +51,8 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
     log(`Avoid Twilight: ${r.my} vs ${r.tw}: ${r.success ? 'avoided; two minutes to bring the magic under control' : r.botch ? 'BOTCH: enters Twilight and cannot comprehend it' : 'enters Twilight'}. ${r.detail}`);
     if (!r.success) setStage({ kind: 'entered', gained: gain });
     if (r.botch) setStage({ kind: 'outcome', gained: gain, comprehended: false, extra: 0, duration: '' });
+    // avoided: the Twilight check waiting on the Resolve list is settled
+    if (r.success) update((x) => void settleTwilight(x));
   };
   const comprehend = (gained: number) => {
     const r = twilightComprehension(d, gained, undefined, added);
@@ -69,6 +79,7 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
         if (size) addVirtue(x, data, vfId, size, undefined, { free: true, freeReason: 'Twilight' });
       }
       if (scar.trim()) x.twilightScars = [...x.twilightScars.filter(Boolean), scar.trim()];
+      settleTwilight(x);
     });
     log(`Twilight over: +${(added ? 0 : stage.gained) + stage.extra} Warping Points (${stage.extra} from the simple die). ${effect ? `Effect: ${twilightEffects(stage.comprehended, total).find((e) => e.id === effect)?.label}.` : ''}`);
     setStage({ kind: 'idle' });

@@ -58,8 +58,11 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
     update((x) => {
       if (!x.apprentice) return;
       const t = ensureAbility(x, 'teaching', {});
-      const e = newSeasonEntry(year, saga.currentSeason, 'other', `Taught ${x.apprentice.name || 'the apprentice'}, the apprentice (Exposure in Teaching)`, { [`ability:${t.uid}`]: 2 });
+      // the first season of teaching opens the apprentice's Arts, and teaches nothing else (DE, Opening the Arts)
+      const who = x.apprentice.name || 'the apprentice';
+      const e = newSeasonEntry(year, saga.currentSeason, 'other', x.apprentice.seasons === 0 ? `Opened the Arts of ${who}, the apprentice: a score of 0 in all fifteen Arts, and nothing else this season (Exposure in Teaching)` : `Taught ${who}, the apprentice (Exposure in Teaching)`, { [`ability:${t.uid}`]: 2 });
       e.priority = 'apprentice';
+      e.undo = { apprentice: true };
       applySeason(x, e, 1);
       x.seasonLog.push(e);
       x.apprentice.seasons += 1;
@@ -92,6 +95,9 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
         {ap.name || 'The apprentice'} is {ap.age + year - ap.since}, in year {year - ap.since + 1} of 15 of training;{' '}
         {left > 0 ? `the Gauntlet in ${left} year${left === 1 ? '' : 's'} (${ap.since + 15}).` : 'ready for the Gauntlet.'}
         {taught ? ` Taught ${taught} season${taught === 1 ? '' : 's'} this year.` : ' The Code asks a season a year of teaching: teach them here, or add “Teach the apprentice” to the priority list.'}
+        {ap.seasons === 0 && ' The first season of teaching opens their Arts (a score of 0 in all fifteen), and teaches nothing else.'}
+        {ap.seasons > 0 && ap.seasons < 10 && ` After ${10 - ap.seasons} more season${10 - ap.seasons === 1 ? '' : 's'} together (teaching or lab help), most Houses’ apprentices gain the House’s free Minor Virtue.`}
+        {ap.seasons >= 10 && ' Ten seasons together: the House’s free Minor Virtue is theirs (DE; a Mystery House Initiates it instead).'}
       </div>
       {ap.note && <div className="small muted">{ap.note}</div>}
       <div className="row tight" style={{ marginTop: 6 }}>

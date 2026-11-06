@@ -243,7 +243,9 @@ export default function HelpPage() {
           </li>
           <li>
             Boons and Hooks that change the covenant&apos;s people take effect. Choose what Inhuman Residents or Inhuman Covenfolk are (faeries, beings of Magic, spirits,
-            awakened animals) and their share: they do not age, are immune to Warping, most need no sleep, and those that eat nothing are left out of the Provisions. Literate
+            awakened animals), their share and their Might (the Boon taken again brings another kind beside the first): they do not age, so never retire by age, are immune to
+            Warping, most need no sleep, and those that eat nothing are left out of the Provisions; they learn from their seasons less their Might Score each season (RoP: Magic),
+            so with none, as most mere covenfolk have, they learn as people do. Literate
             Covenfolk read (Artes Liberales 1), the Local Language is spoken, a Useful Curse makes the cursed better at an Ability, and Incompetent and Distorted Covenfolk
             show on those made there. The Covenfolk tab says what they make of its people and gives it to those already there; Quick build gives it to those it makes.
           </li>
@@ -343,10 +345,14 @@ export default function HelpPage() {
           <li>
             <b>The Game Table</b> (in the saga&apos;s menu, under the Saga Overview) is the place to run a session from. Its pages: <b>Overview</b> (what needs attention: money,
             Loyalty, wounds, a strike, rules problems, idle characters; <b>Health &amp; recovery</b> for everyone, and for one character damage, Fatigue, a disease and the
-            spells on them; <b>Confidence &amp; Faith</b>, given and spent; the covenants at a glance; quick changes such as a Loyalty event,
+            spells on them; <b>Confidence &amp; Faith</b>, given, and a new session for All According to Plan; the covenants at a glance; quick changes such as a Loyalty event,
             the treasury or vis found; experience and Labor Points after a story, for however many took part; and a list of what comes up in play with a link to where it is
-            done), <b>Seasons</b> (what everyone does this season, changed in place, one character&apos;s season in full, and <b>End the season</b>), <b>Dice</b> (Roll, Combat
-            &amp; perils, Spellcasting, Society &amp; the Tribunal), <b>Possessions</b> (what each character owns: things, armor and weapons, enchanted items and the
+            done), <b>Seasons</b> (in three steps: <b>Plan</b> the season from the covenant down (its year&apos;s end, the Hooks&apos; stories, its people coming and going: a child
+            turning five or coming of age, a retirement, a newcomer, a noble&apos;s relative left in its care by the Dumping Ground Hook), then each player in turn with their magi
+            before their companions, and the grogs last;
+            <b>End</b> it after reading what to expect; <b>Resolve</b> what it leaves, kept at the top until settled; and <b>Turn back</b> a season or a year), the <b>Chronicle</b> (each
+            season told as a story, its record folded beneath), <b>Dice</b> (Roll, Combat &amp; perils, Spellcasting), <b>Society &amp; the Tribunal</b> (the Tribunal&apos;s news,
+            what the agents heard and the motions; the agents themselves; debates, petitions, courts and customs), <b>Possessions</b> (what each character owns: things, armor and weapons, enchanted items and the
             talisman, a familiar, a Redcap&apos;s devices), <b>Market &amp; Treasury</b> and <b>City &amp; Guild</b>. Once a character is finished their sheet is for reference:
             it shows where they stand, and each card says where at the Game Table it changes. One mechanic, one place. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
             dates), and <b>Stories waiting</b> lists the characters&apos; Story and Personality Flaws and the covenant&apos;s Hooks, the longest untold first, so the toolkit keeps
@@ -376,7 +382,9 @@ export default function HelpPage() {
           <li>
             <b>Seasons:</b> on the Game Table&apos;s Seasons page, <b>Plan in full</b> opens one character&apos;s season (books, teachers, training, practice, vis, adventure, a lab
             project, Spell Mastery, writing, an Initiation, original research, a Longevity Ritual, the apprentice) and logs it on their sheet, whose Seasons &amp; Aging tab
-            keeps the log; experience is added with Affinities, gain limits and Virtues. A season logged by mistake is <b>Unlogged</b> there (its experience taken off).
+            keeps the log; experience is added with Affinities, gain limits and Virtues. A season logged by mistake is <b>Unlogged</b> there, and all it did comes off: experience,
+            Warping, Labor Points and the workshop&apos;s count, vis and pounds spent, a project&apos;s progress, a Virtue from an Initiation. A season that finished something (a spell, an
+            item) stays logged. A craftsman&apos;s season at the bench is spent here too, as every season is.
             Anyone a Mystagogue will take may be Initiated, not only the Mystery Houses. <b>Spell Mastery</b> puts experience on a spell and asks, at each new level, for
             the special ability the player chooses (DE). Lab work on an item or a familiar can also be planned from Possessions, which opens the Lab projects card here.
             Aging out of turn and crises are rolled there; Wizard&apos;s Twilight with Spellcasting. Choose a teacher from the saga and the subjects are what they can teach this character (2 in an Ability or 5 in an Art,
@@ -422,7 +430,7 @@ export default function HelpPage() {
             fading when worship stops. On the Magic tab, the aura&apos;s realm, a regio and the hour (a Dominion is weaker at night, an Infernal aura stronger) change every total.
           </li>
           <li>
-            <b>Optional systems:</b> illness on Combat &amp; Health, agents and the Society tools on the Overview, Mysteries and guilds on Seasons &amp; Aging, lab routines and
+            <b>Optional systems:</b> illness on Combat &amp; Health, agents and the Society tools on the Game Table&apos;s Society &amp; the Tribunal page, Mysteries and guilds on Seasons, lab routines and
             original research in the lab, aura variation on the covenant: each shows only while its <Jump to="optional">optional rule</Jump> is on. Lab projects also include
             taming a creature.
           </li>
@@ -457,8 +465,9 @@ export default function HelpPage() {
           <li>
             The Game Table&apos;s <b>Dice</b> page rolls simple, stress and botch dice for anyone at the table, the Tribunal&apos;s people too, with their wounds, Fatigue and
             disease taken off (and Encumbrance for a physical task); an opposed roll between two of them, penalties counted; a blow in combat from Attack to wound, put on the
-            defender&apos;s sheet; the perils of falls, fire, poison, disease and going without; and, under <b>Society &amp; the Tribunal</b>, debates, petitions, a court,
-            etiquette, agents and the Tribunal&apos;s customs.
+            defender&apos;s sheet; and the perils of falls, fire, poison, disease and going without. Under every roll a character makes, <b>After the roll</b> spends Confidence
+            (+3 a point, up to the Confidence Score on one roll, never on a botch) or Faith Points (up to the True Faith Score, one at a time without one), and offers All According
+            to Plan&apos;s reroll of a botch die once a session; the total, and whether it now succeeds, follows.
           </li>
         </ul>
       </Card>
@@ -678,9 +687,25 @@ export default function HelpPage() {
           governs says whether the saga you last opened uses it.
         </Question>
         <Question q="How do I improve a laboratory once play has begun?">
-          As a lab project, in the magus&apos;s season in full on the Game Table&apos;s Seasons page: <b>Raise the lab&apos;s Refinement</b>, <b>Install a lab Virtue</b> or <b>Put a lab Flaw
-          right</b>. Each says what it needs (Magic Theory, free space) and takes its seasons; a rise in Upkeep is paid from the treasury or the purse. A Free Virtue is simply
-          added on the covenant&apos;s Laboratories tab.
+          As a lab project, in the magus&apos;s season in full on the Game Table&apos;s Seasons page: <b>Raise the lab&apos;s Refinement</b> (a season, and Magic Theory of at least the
+          new Refinement + 3), <b>Install a lab Virtue</b> or <b>Put a lab Flaw right</b> (a season, two for a Major one). The work is the magus&apos;s season in the lab, so it is
+          their lab work that season. In play nothing is bought with Build Points: if the Upkeep rises, the difference in build cost is paid, a pound for every two points
+          (Covenants), from the treasury or the purse, with no refund if it falls. A Free Virtue is simply added on the covenant&apos;s Laboratories tab.
+        </Question>
+        <Question q="Do magic items for a lab, or for the covenant, add up?">
+          In a lab, no: an item&apos;s effect must be new to the lab (Covenants, Magic Items for Laboratories), so a second item giving a Virtue the lab already has gives nothing,
+          and the lab says so. An item that is not a lab Virtue gives a Specialization point per 10 levels of its effects, or a Characteristic point per 20; the lab&apos;s row shows
+          what it has left. For the covenant, yes: each device doing the covenant&apos;s work saves a pound a magnitude (or stands in for a servant), two devices doing two
+          devices&apos; work, though never more than the spending left to save.
+        </Question>
+        <Question q="How many Confidence Points can a character hold?">
+          As many as they earn: &quot;There is no limit to the number of Confidence Points that a character can have&quot; (DE). The Confidence Score limits how many go on one roll.
+          They are spent after the dice show, +3 each, never on a botch (a zero that is not a botch is fine), and never on a roll for a whole season&apos;s work. Faith Points
+          work the same way while acting in God&apos;s will, up to the True Faith Score on a roll (one at a time with no Score), and come back at dawn up to that Score.
+        </Question>
+        <Question q="Can I undo a season or a year?">
+          Yes. A single character&apos;s season is <b>Unlogged</b> on the Seasons page, and everything it did comes off. The whole saga is turned back with <b>Turn back</b> at
+          the top of the Seasons page, to before any of the last eight seasons passed (two years); what was done since, by the clock and by hand, is taken back.
         </Question>
         <Question q="How does the covenant's aura change?">
           Record a change on the covenant&apos;s <b>Aura</b> card with its reason (a creature settling, a battle, a church nearby). A Dominion kept by a congregation grows and

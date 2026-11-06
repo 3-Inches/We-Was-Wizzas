@@ -18,7 +18,7 @@ import { DURATIONS, RANGES, TARGETS, addMagnitudes, findOpt } from '../../engine
 import {
   DISCIPLINE, GROUP_TRAINING, WATCHES, WATCH_SHARES, applyDiscipline, assignWatches, disciplineLoyalty, dutyAt, retire, rollDoubleDuty, rollGroupTraining, rollStayAwake, stayAwakeEase, type Patrol,
 } from '../../engine/turb';
-import type { Character, CraftMagicUse, SoldierGroup } from '../../engine/types';
+import type { Character, Covenant, CraftMagicUse, SoldierGroup } from '../../engine/types';
 import { useStore } from '../../store/store';
 import { applyCovenfolkBoons, applyCovenfolkBoonsToSpecialist, covenfolkBoonLines, takeImmunityFlaw } from '../../engine/covenantBoons';
 import { seeded } from '../../engine/generate/random';
@@ -721,6 +721,99 @@ export function CovenfolkBoonsCard({ cov, update, dc, data }: CovTabProps) {
         </button>
         <span className="small muted">Those Quick build makes here get it as they are made; the Residents Boons do not touch the player characters, who buy their own Virtues.</span>
       </div>
+    </Card>
+  );
+}
+
+const MOVES: { key: 'servants' | 'laborers' | 'teamsters' | 'grogs' | 'craftsmen' | 'specialists'; label: string }[] = [
+  { key: 'servants', label: 'a servant' },
+  { key: 'laborers', label: 'a laborer' },
+  { key: 'teamsters', label: 'a teamster' },
+  { key: 'grogs', label: 'a grog' },
+  { key: 'craftsmen', label: 'a craftsman' },
+  { key: 'specialists', label: 'a specialist' },
+];
+
+/**
+ * The covenant's people coming and going as the years pass (Covenants ch.4: dependents are counted
+ * from five years old, and move to another category once they can work; Grogs: covenfolk marry among
+ * themselves; the Dumping Ground Hook brings nobles' aged or impaired kin, for favors and a stipend).
+ * The counts change, and each change goes on the covenant's log.
+ */
+export function ComingsCard({ cov, update, year }: Pick<CovTabProps, 'cov' | 'update'> & { year: number }) {
+  const [to, setTo] = useState<(typeof MOVES)[number]['key']>('servants');
+  const [from, setFrom] = useState<(typeof MOVES)[number]['key']>('grogs');
+  const [stipend, setStipend] = useState(0);
+  const [msg, setMsg] = useState<string[]>([]);
+  const dumping = cov.hooksBoons.some((h) => /dumping ground/i.test(h.name));
+  const infants = cov.hooksBoons.find((h) => /^infants$/i.test(h.name));
+  const f = cov.covenfolk;
+  const label = (k: string) => MOVES.find((m) => m.key === k)?.label ?? k;
+  const change = (text: string, fn: (c: Covenant['covenfolk']) => void, pounds = 0) => {
+    update((x) => {
+      fn(x.covenfolk);
+      if (pounds) x.finances.treasury = Math.round((x.finances.treasury + pounds) * 1000) / 1000;
+      x.log.push({ uid: uid(), year, text, ...(pounds ? { treasuryDelta: pounds } : {}) });
+    });
+    setMsg((m) => [text, ...m].slice(0, 6));
+  };
+  return (
+    <Card title={`${cov.name}: comings and goings`} tour="folk-comings" fold="folk-comings" summary={`${f.grogs} grogs, ${f.servants} servants, ${f.laborers} laborers, ${f.teamsters} teamsters, ${f.dependents} dependent${f.dependents === 1 ? '' : 's'}.`}>
+      <p className="small muted" style={{ marginTop: 0 }}>
+        Dependents are fed and housed but do no useful work: children from five years old (younger ones eat next to nothing), idle spouses, the infirm and the retired. A child old
+        enough to work moves to another category (Covenants ch.4). Covenfolk are encouraged to marry among themselves (Grogs).
+        {infants ? ` Infants (Hook): ${infants.note || 'the aura touches the covenant’s children'}.` : ''}
+      </p>
+      <div className="row small" style={{ flexWrap: 'wrap' }}>
+        <button className="small" onClick={() => change('A child of the covenfolk turns five, and is counted among the dependents.', (c) => void (c.dependents += 1))}>
+          + A child turns five
+        </button>
+        <span className="row tight">
+          <button className="small" disabled={f.dependents < 1} onClick={() => change(`A child of the covenant comes of age and goes to work as ${label(to)}.`, (c) => void ((c.dependents -= 1), (c[to] += 1)))}>
+            A child comes of age, as
+          </button>
+          <select value={to} onChange={(e) => setTo(e.target.value as typeof to)} aria-label="Goes to work as">
+            {MOVES.map((m) => (
+              <option key={m.key} value={m.key}>
+                {m.label}
+              </option>
+            ))}
+          </select>
+        </span>
+        <span className="row tight">
+          <select value={from} onChange={(e) => setFrom(e.target.value as typeof from)} aria-label="Who retires">
+            {MOVES.map((m) => (
+              <option key={m.key} value={m.key}>
+                {m.label}
+              </option>
+            ))}
+          </select>
+          <button className="small" disabled={f[from] < 1} onClick={() => change(`${label(from).replace(/^a /, 'A ')} retires, and lives on among the dependents${cov.finances.pension ? ', on a pension' : ''}.`, (c) => void ((c[from] -= 1), (c.dependents += 1)))}>
+            retires
+          </button>
+          <button className="small ghost" disabled={f[from] < 1} onClick={() => change(`${label(from).replace(/^a /, 'A ')} dies, or leaves the covenant.`, (c) => void (c[from] -= 1))}>
+            dies or leaves
+          </button>
+          <button className="small ghost" onClick={() => change(`A newcomer joins the covenant as ${label(from)}.`, (c) => void (c[from] += 1))}>
+            + a newcomer
+          </button>
+        </span>
+        <button className="small ghost" disabled={f.dependents < 1} onClick={() => change('A dependent dies, or leaves the covenant.', (c) => void (c.dependents -= 1))}>
+          A dependent dies or leaves
+        </button>
+      </div>
+      {dumping && (
+        <div className="row small" style={{ marginTop: 6, flexWrap: 'wrap' }}>
+          <span>Dumping Ground: a noble sends an aged or impaired relative to be cared for, for favors and a stipend.</span>
+          <Field label="Stipend paid now (£)">
+            <Stepper value={stipend} min={0} max={200} width={44} onChange={setStipend} />
+          </Field>
+          <button className="small" onClick={() => change(`A noble's ${Math.random() < 0.75 ? 'aged' : 'impaired'} relative is sent to the covenant to be cared for${stipend ? `, with a stipend of ${stipend} £` : ''} (Dumping Ground).`, (c) => void (c.dependents += 1), stipend)}>
+            + A noble&apos;s relative arrives
+          </button>
+        </div>
+      )}
+      <ResultLog lines={msg} />
     </Card>
   );
 }

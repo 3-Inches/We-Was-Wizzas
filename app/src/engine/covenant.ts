@@ -693,8 +693,11 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
     const fig = craftMagicFigures(u, 0);
     if (fig.saving) savings.push({ label: `Craft magic: ${u.name || 'a craft spell'}${u.ritual ? ` (Ritual ×${u.castsPerYear})` : ''}`, pounds: -fig.saving });
   }
-  const poundItems = servingAs('pounds');
-  if (poundItems) savings.push({ label: `Enchanted devices at work (${working.filter((it) => it.serves === 'pounds').map((it) => it.name).join(', ')}: a pound per magnitude)`, pounds: -poundItems });
+  // devices doing the work save a pound a magnitude (they add up: two devices do two devices' work), but
+  // never more than the spending left for them to replace
+  const spendingLeft = Math.max(0, expenditures.reduce((t, e) => t + e.pounds, 0) + savings.reduce((t, x) => t + x.pounds, 0));
+  const poundItems = Math.min(servingAs('pounds'), spendingLeft);
+  if (poundItems) savings.push({ label: `Enchanted devices at work (${working.filter((it) => it.serves === 'pounds').map((it) => it.name).join(', ')}: a pound per magnitude${poundItems < servingAs('pounds') ? `, held to the ${round1(spendingLeft)} £ left to save` : ''})`, pounds: -round1(poundItems) });
   const categories = (Object.keys(catTotals) as CostCategory[]).map((c) => ({ category: c, total: round1(catTotals[c]), perCraft: round1(catTotals[c] * CATEGORY_LIMIT[c]), saved: round1(catSaved[c]) }));
   const totalExpenditure = round1(expenditures.reduce((t, e) => t + e.pounds, 0) + savings.reduce((t, s) => t + s.pounds, 0));
   return {

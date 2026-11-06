@@ -7,6 +7,7 @@ import { addVirtue, removeVirtue } from '../../../engine/character/factory';
 import { optionOn } from '../../../engine/optional';
 import { GUILD_RANKS, apprenticePiece, guildLore, guildRank, journeymanContract, type GuildRank } from '../../../engine/society';
 import { purseOf } from '../../../engine/vis';
+import { guildOf } from '../../../data/lists';
 import { Card, Field, Stepper } from '../../kit';
 import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
@@ -18,6 +19,7 @@ export function GuildCard({ ed }: { ed: CharEditor }) {
   const [log, setLog] = useState<string[]>([]);
   const [relationship, setRelationship] = useState<-1 | 0 | 1>(0);
   const [stipend, setStipend] = useState(30);
+  const [other, setOther] = useState(false);
   if (!c || !d || !saga) return null;
   const rank = guildRank(c);
   const hasCraft = d.abilities.some((a) => a.abilityId.startsWith('craft') || a.abilityId.startsWith('profession'));
@@ -48,6 +50,21 @@ export function GuildCard({ ed }: { ed: CharEditor }) {
       return `Now a ${GUILD_RANKS[to].label.toLowerCase()} of the ${x.guild.name || 'guild'}.`;
     });
   const next = rank ? ORDER[ORDER.indexOf(rank) + 1] : undefined;
+  // the guilds of the character's own trades, the one they belong to among them
+  const guilds = [...new Set(trades.map((a) => guildOf(a.name.replace(/^(Craft|Profession):?\s*/, ''))))];
+  const custom = !!g.name && !guilds.includes(g.name);
+  // leaving: the rank's Social Status Virtue goes with the guild (expelled, defrocked, or moving on)
+  const leave = () =>
+    window.confirm(`Leave the ${g.name || 'guild'}? ${r ? `${c.name || 'They'} lose${c.name ? 's' : ''} the rank of ${r.label.toLowerCase()} and its Virtue. ` : ''}Undo takes it back.`) &&
+    change((x) => {
+      const from = guildRank(x);
+      const v = from ? x.virtues.find((y) => y.defId === GUILD_RANKS[from].virtue) : undefined;
+      if (v) removeVirtue(x, data, v.uid);
+      const was = x.guild?.name;
+      x.guild = undefined;
+      if (x.workshop) x.workshop.guildMaster = false;
+      return `Left the ${was || 'guild'}: join another below.`;
+    });
 
   return (
     <Card title={`Guild${g.name ? `: ${g.name}` : ''}${r ? ` (${r.label})` : ''}`} tour="guild">
@@ -55,8 +72,27 @@ export function GuildCard({ ed }: { ed: CharEditor }) {
         {r ? r.note : 'Not a guild member: a craftsman may join through stories, starting as an apprentice or, with a passed apprentice piece, a journeyman.'}
       </RulesNote>
       <div className="row">
-        <Field label="Guild">
-          <input value={g.name} placeholder="Carpenters, Weavers…" onChange={(e) => set((x) => void (x.name = e.target.value))} style={{ width: 150 }} />
+        <Field label="Guild" hint={rank ? 'Changing it keeps the rank (the same trade’s guild in another town, if it will have them); for another trade, leave and join anew' : undefined}>
+          <span className="row tight">
+            <select
+              value={other || custom ? '__other' : g.name}
+              onChange={(e) => {
+                if (e.target.value === '__other') return setOther(true);
+                setOther(false);
+                set((x) => void (x.name = e.target.value));
+              }}
+              aria-label="Guild"
+            >
+              <option value="">— none chosen —</option>
+              {guilds.map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+              <option value="__other">another guild…</option>
+            </select>
+            {(other || custom) && <input value={g.name} placeholder="the guild’s name" onChange={(e) => set((x) => void (x.name = e.target.value))} style={{ width: 150 }} />}
+          </span>
         </Field>
         {rank && (rank === 'journeyman' || rank === 'master' || rank === 'senior') && (
           <Field label="Yearly dues (£)">
@@ -65,9 +101,14 @@ export function GuildCard({ ed }: { ed: CharEditor }) {
         )}
         {!rank && (
           <>
-            <button className="small" onClick={() => promote('apprentice')}>Join as apprentice</button>
-            <button className="small" onClick={() => promote('journeyman')}>Join as journeyman</button>
+            <button className="small" disabled={!g.name} title={g.name ? undefined : 'Choose the guild first'} onClick={() => promote('apprentice')}>Join as apprentice</button>
+            <button className="small" disabled={!g.name} title={g.name ? undefined : 'Choose the guild first'} onClick={() => promote('journeyman')}>Join as journeyman</button>
           </>
+        )}
+        {(rank || c.guild?.name) && (
+          <button className="small ghost" onClick={leave} title="Expelled, defrocked, or moving on: the guild and its rank's Virtue go">
+            Leave the guild
+          </button>
         )}
       </div>
       {r && lore < r.lore && <div className="small bad-text">A {r.label.toLowerCase()} needs Guild Lore {r.lore} (an Organization Lore for the guild); {lore} now.</div>}

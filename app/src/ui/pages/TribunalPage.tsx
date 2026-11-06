@@ -22,7 +22,7 @@ import { BookBadge, Card, Confirm, Empty, Stepper, Tabs } from '../kit';
 import { useTabParam } from '../useTabParam';
 import type { LoreTab } from './TribunalLore';
 import { HOUSES } from '../../data/houses';
-import { MotionsCard, WanderersCard, useTakeIn } from './TribunalVotes';
+import { WanderersCard, useTakeIn } from './TribunalVotes';
 import { TroublesCard } from '../covenant/TroublesCard';
 
 const houseName = (id?: string) => HOUSES.find((h) => h.id === id)?.name ?? id ?? '';
@@ -134,7 +134,10 @@ export default function TribunalPage() {
         </Suspense>
       ) : (
         <>
-          <NewsCard saga={saga} covs={covs} chars={chars} />
+          <p className="small">
+            What the Tribunal’s covenants bring to the players, their news, what the players’ agents heard and the motions to vote on are played at the Game Table:{' '}
+            <Link to={R.table(saga.id, 'society')}>Society &amp; the Tribunal ›</Link>
+          </p>
 
           <div className="grid grid-2">
             <Card title="The covenants" tour="tribunal-covenants">
@@ -215,7 +218,6 @@ export default function TribunalPage() {
 
           {living.length > 0 && (
             <div className="grid grid-2">
-              <MotionsCard book={book} saga={saga} chars={chars} covs={covs} />
               <WanderersCard book={book} saga={saga} chars={chars} covs={covs} />
             </div>
           )}

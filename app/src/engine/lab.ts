@@ -3,7 +3,7 @@
 import { ARTS, ART_NAMES, type GameData, type LabCharacteristic, type LabVFDef } from '../data';
 import { FREE_FORM_CHARS, LAB_OPTIONS } from '../data/labOptions';
 import type { Part } from './magic';
-import type { LabVirtueEntry, Laboratory } from './types';
+import type { EnchantedItem, LabVirtueEntry, Laboratory } from './types';
 
 export interface DerivedLab {
   lab: Laboratory;
@@ -99,6 +99,19 @@ export function labEntryEffects(v: LabVirtueEntry, def: LabVFDef): { characteris
   return { characteristics: chars, specializations: specs };
 }
 
+/**
+ * An enchanted item installed as a lab's Magic Item (Covenants, Magic Items for Laboratories): its
+ * effects' levels, and what the points set on it use of them, ten levels a Specialization point and
+ * twenty a Characteristic point (penalties cost nothing).
+ */
+export function labItemBudget(v: LabVirtueEntry, item: EnchantedItem | undefined): { levels: number; used: number } | undefined {
+  if (!item) return undefined;
+  const levels = item.effects.reduce((t, e) => t + (e.modifiedLevel || e.baseLevel || 0), 0);
+  const specs = Object.values(v.choice ?? {}).reduce((t, n) => t + Math.max(0, n), 0);
+  const chars = FREE_FORM_CHARS.reduce((t, k) => t + Math.max(0, v.inputs?.[k] ?? 0), 0);
+  return { levels, used: specs * 10 + chars * 20 };
+}
+
 export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
   const issues: string[] = [];
   const chars: Record<LabCharacteristic, number> = {
@@ -119,10 +132,20 @@ export function deriveLab(lab: Laboratory, data: GameData): DerivedLab {
   const impossible: string[] = [];
   const halved: string[] = [];
   const counts: Record<string, number> = {};
+  // most lab Virtues and Flaws can only be taken once; an item's effect must be new to the lab, not a
+  // duplicate of one it has (Covenants, Magic Items for Laboratories): a second gives nothing
+  const once = new Set<string>();
   for (const v of lab.virtues) {
     const def = data.labVFById.get(v.defId);
     if (!def) continue;
     const opt = LAB_OPTIONS[v.defId];
+    if (!def.repeatable && !opt?.maxTimes) {
+      if (once.has(v.defId)) {
+        issues.push(`${def.name} is in the lab twice${v.fromItem ? ` (${v.note || 'an item'} gives it again)` : ''}: the second gives nothing, as an item’s effect must be new to the lab.`);
+        continue;
+      }
+      once.add(v.defId);
+    }
     // a Virtue an installed item gives is gained at once and takes no space (Covenants)
     const pts = v.fromItem ? 0 : def.size === 'Major' ? 3 : def.size === 'Minor' ? 1 : 0;
     if (def.kind === 'virtue') {

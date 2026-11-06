@@ -21,28 +21,32 @@ const count = (cov: Covenant, re: RegExp, kind: 'hook' | 'boon') => cov.hooksBoo
 // ------------------------------------------------------------------------------ Inhuman covenfolk
 
 /** What each kind of inhuman covenfolk is spared, and the rules it lives under. */
-export const INHUMAN: Record<InhumanNature, { label: string; one: string; noFood: boolean; noShelter: boolean; sleepless: boolean; ageless: boolean; rules: string; ref: string }> = {
+export const INHUMAN: Record<InhumanNature, { label: string; one: string; noFood: boolean; noShelter: boolean; sleepless: boolean; ageless: boolean; learns: string; rules: string; ref: string }> = {
   faerie: {
     label: 'Faeries', one: 'a faerie',
     noFood: true, noShelter: false, sleepless: true, ageless: true,
+    learns: 'By RoP: Faerie a faerie’s Pretenses grow by copying people rather than by study; the toolkit lets one learn from its seasons as the other kinds do, less its Might Score from each season’s Advancement Total, so a faerie of little or no Might learns nearly as a person does. It never ages, so never retires by age.',
     rules: 'Faeries do not age and need no food or air unless their role demands it; they live by faerie rules: an Aegis keeps out those with Might unless the magi let them in, a Divine aura weakens them, and many fear cold iron.',
     ref: 'RoP: Faerie (Susceptible to Deprivation: the faerie is otherwise "immune to aging")',
   },
   magic: {
     label: 'Beings of Magic', one: 'a being of Magic',
     noFood: true, noShelter: true, sleepless: true, ageless: true,
+    learns: 'A being of Magic takes its Might Score off every Advancement Total (RoP: Magic): with a Might of 0, as most mere covenfolk have, it learns from work and practice as a person does; with a Might of 4 or more a season teaches it nothing. It never ages, so never retires by age.',
     rules: 'Magic characters "do not need to eat, drink, or sleep; they do not age, they have no need for shelter"; deprived of what their nature needs, they cannot recover Might.',
     ref: 'RoP: Magic, Magic Characters',
   },
   spirit: {
     label: 'Spirits and ghosts', one: 'a spirit or ghost',
     noFood: true, noShelter: true, sleepless: true, ageless: true,
+    learns: 'A spirit or ghost takes its Might Score off every Advancement Total as a being of Magic does: one of little or no Might learns from its seasons, a stronger one nothing. It never ages, so never retires by age.',
     rules: 'Spirits and ghosts eat nothing, need no shelter and do not age; most are immaterial, so they watch, warn and carry messages rather than labor.',
     ref: 'RoP: Magic, Spirits; DE, Ghosts',
   },
   animal: {
     label: 'Awakened animals', one: 'an awakened animal',
     noFood: false, noShelter: false, sleepless: false, ageless: true,
+    learns: 'An awakened beast takes its Magic Might off every Advancement Total (RoP: Magic): with little or none it learns from the work as a person does. It never ages, so never retires by age.',
     rules: 'Awakened beasts of Magic Might keep a beast’s keen senses with a person’s wits; as magic creatures they do not age, though most still hunt or forage as their kind does.',
     ref: 'Covenants ch.4, Fantastical Covenfolk; RoP: Magic',
   },
@@ -52,14 +56,57 @@ export const INHUMAN_NATURES = Object.keys(INHUMAN) as InhumanNature[];
 /** Creatures with a Might score are absolutely immune to Warping (DE, Warping and Non-Humans). */
 export const WARP_IMMUNE_NOTE = 'immune to Warping: beings with a Might score "are already fully part of one of the supernatural realms" (DE, Warping)';
 
-/** The inhuman share of the covenant's covenfolk: the larger of its Inhuman Residents Boon (the majority) and Inhuman Covenfolk Hook. */
-export function inhumanCovenfolk(cov: Covenant): { nature: InhumanNature; share: number; from: string } | undefined {
+export interface InhumanGroup {
+  nature: InhumanNature;
+  share: number;
+  /** their usual Might Score (0 unless set: mere covenfolk have little or none) */
+  might: number;
+  from: string;
+  /** the Boon or Hook it comes from */
+  uid: string;
+}
+
+/** The default share of one Inhuman Residents Boon or Inhuman Covenfolk Hook: the majority for the first Boon, a part for each one more. */
+export function inhumanDefaultShare(h: CovenantHookBoon, first: boolean): number {
+  return h.kind === 'boon' ? (first ? 0.6 : 0.2) : 0.25;
+}
+
+/**
+ * The covenant's inhuman covenfolk, a group for each Inhuman Residents Boon or Inhuman Covenfolk Hook
+ * taken: the Boon taken more than once (Calebais is the book's example) brings more than one kind to
+ * live side by side. Their shares add up, never past the whole of the covenfolk.
+ */
+export function inhumanGroups(cov: Covenant): InhumanGroup[] {
   const all = cov.hooksBoons.filter(isInhuman);
-  if (!all.length) return undefined;
-  const best = all
-    .map((h) => ({ nature: h.inhuman?.nature ?? 'faerie', share: Math.max(0, Math.min(1, h.inhuman?.share ?? (h.kind === 'boon' ? 0.6 : 0.25))), from: h.name }))
-    .sort((a, b) => b.share - a.share)[0];
-  return best;
+  let left = 1;
+  let firstBoon = true;
+  const out: InhumanGroup[] = [];
+  for (const h of all) {
+    const want = Math.max(0, Math.min(1, h.inhuman?.share ?? inhumanDefaultShare(h, firstBoon && h.kind === 'boon')));
+    if (h.kind === 'boon') firstBoon = false;
+    const share = Math.min(want, left);
+    left -= share;
+    out.push({ nature: h.inhuman?.nature ?? 'faerie', share, might: Math.max(0, h.inhuman?.might ?? 0), from: h.name, uid: h.uid });
+  }
+  return out;
+}
+
+/** The inhuman covenfolk in all: their share together, the most numerous kind, and where it comes from. */
+export function inhumanCovenfolk(cov: Covenant): { nature: InhumanNature; share: number; from: string; groups: InhumanGroup[] } | undefined {
+  const groups = inhumanGroups(cov);
+  if (!groups.length) return undefined;
+  const top = [...groups].sort((a, b) => b.share - a.share)[0];
+  return { nature: top.nature, share: groups.reduce((t, g) => t + g.share, 0), from: groups.length > 1 ? groups.map((g) => g.from).join(', ') : top.from, groups };
+}
+
+/** A new covenfolk's nature, drawn at the groups' shares (none, most likely, when they are a minority). */
+function drawNature(groups: InhumanGroup[], rng: () => number): InhumanGroup | undefined {
+  let r = rng();
+  for (const g of groups) {
+    if (r < g.share) return g;
+    r -= g.share;
+  }
+  return undefined;
 }
 
 /** A character or specialist's nature, set by hand or by the covenant's Boon when it was made there. */
@@ -98,9 +145,12 @@ export function covenfolkBoonLines(cov: Covenant, data?: GameData): string[] {
   const out: string[] = [];
   const pct = (x: number) => `${Math.round(x * 100)}%`;
   if (b.inhuman) {
-    const n = INHUMAN[b.inhuman.nature];
-    const spared = [n.noFood && 'no food (no Provisions for them)', n.noShelter && 'no shelter (no Buildings for them)', n.sleepless && 'no sleep', n.ageless && 'no aging'].filter(Boolean).join(', ');
-    out.push(`${b.inhuman.from}: about ${pct(b.inhuman.share)} of the covenfolk are ${n.label.toLowerCase()}. They need ${spared}, and are ${WARP_IMMUNE_NOTE.split(':')[0]}. ${n.rules} (${n.ref}).`);
+    for (const g of b.inhuman.groups) {
+      const n = INHUMAN[g.nature];
+      const spared = [n.noFood && 'no food (no Provisions for them)', n.noShelter && 'no shelter (no Buildings for them)', n.sleepless && 'no sleep', n.ageless && 'no aging'].filter(Boolean).join(', ');
+      out.push(`${g.from}: about ${pct(g.share)} of the covenfolk are ${n.label.toLowerCase()}. They need ${spared}, and are ${WARP_IMMUNE_NOTE.split(':')[0]}. ${n.learns} ${n.rules} (${n.ref}).`);
+    }
+    if (b.inhuman.groups.length > 1) out.push(`In all, about ${pct(b.inhuman.share)} of the covenfolk are not human: ${b.inhuman.groups.map((g) => `${pct(g.share)} ${INHUMAN[g.nature].label.toLowerCase()}`).join(', ')}.`);
   }
   if (b.literate) out.push('Literate Covenfolk: they read and write their own language: Artes Liberales 1 on those made here (DE, Artes Liberales: a point for each writing system).');
   if (b.language) out.push(`Local Language: they speak ${b.language}, which those made here are given at 4.`);
@@ -122,10 +172,11 @@ export function covenfolkBoonLines(cov: Covenant, data?: GameData): string[] {
 
 /** The share of the covenfolk that need no food, and that need no shelter (for the Provisions and Buildings bills). */
 export function inhumanUpkeep(cov: Covenant): { noFood: number; noShelter: number } {
-  const h = inhumanCovenfolk(cov);
-  if (!h) return { noFood: 0, noShelter: 0 };
-  const n = INHUMAN[h.nature];
-  return { noFood: n.noFood ? h.share : 0, noShelter: n.noShelter ? h.share : 0 };
+  const groups = inhumanGroups(cov);
+  return {
+    noFood: groups.reduce((t, g) => t + (INHUMAN[g.nature].noFood ? g.share : 0), 0),
+    noShelter: groups.reduce((t, g) => t + (INHUMAN[g.nature].noShelter ? g.share : 0), 0),
+  };
 }
 
 const abilityXp = (score: number) => (5 * score * (score + 1)) / 2;
@@ -178,10 +229,11 @@ export function applyCovenfolkBoons(c: Character, cov: Covenant, data: GameData,
     c.warpingPoints = 5;
     notes.push('Warping Score 1 (Distorted Covenfolk): give it the Minor Flaw the aura suggests');
   }
-  if (b.inhuman && !c.inhuman && rng() < b.inhuman.share) {
-    c.inhuman = b.inhuman.nature;
-    if (INHUMAN[b.inhuman.nature].sleepless) c.seasons = { ...(c.seasons ?? {}), sleepless: true };
-    notes.push(`one of the ${INHUMAN[b.inhuman.nature].label.toLowerCase()} (${b.inhuman.from})`);
+  const g = b.inhuman && !c.inhuman ? drawNature(b.inhuman.groups, rng) : undefined;
+  if (g) {
+    c.inhuman = g.nature;
+    if (INHUMAN[g.nature].sleepless) c.seasons = { ...(c.seasons ?? {}), sleepless: true };
+    notes.push(`one of the ${INHUMAN[g.nature].label.toLowerCase()} (${g.from})`);
   }
   return notes;
 }
@@ -213,9 +265,10 @@ export function applyCovenfolkBoonsToSpecialist(s: Specialist, cov: Covenant, rn
     }
   }
   if (b.distorted && (s.warpingPoints ?? 0) < 5) s.warpingPoints = 5;
-  if (b.inhuman && !s.nature && rng() < b.inhuman.share) {
-    s.nature = b.inhuman.nature;
-    notes.push(INHUMAN[b.inhuman.nature].label.toLowerCase());
+  const g = b.inhuman && !s.nature ? drawNature(b.inhuman.groups, rng) : undefined;
+  if (g) {
+    s.nature = g.nature;
+    notes.push(INHUMAN[g.nature].label.toLowerCase());
   }
   // a specialist has no Virtues and Flaws on the toolkit's sheet: the Immunity's Flaw is noted
   const im = immunityFlaw(cov);

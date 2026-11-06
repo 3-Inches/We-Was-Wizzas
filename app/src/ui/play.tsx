@@ -26,15 +26,16 @@ export function useEditable(c?: Character): boolean {
   return atTable || !c?.creation.finalized;
 }
 
-export const DICE_LABELS: Record<DiceSub, string> = { roll: 'Roll', combat: 'Combat & perils', magic: 'Spellcasting', society: 'Society & the Tribunal' };
+export const DICE_LABELS: Record<DiceSub, string> = { roll: 'Roll', combat: 'Combat & perils', magic: 'Spellcasting' };
 
-type Where = DiceSub | 'recovery' | 'confidence' | 'seasons' | 'guild' | 'items';
+type Where = DiceSub | 'society' | 'agents' | 'recovery' | 'confidence' | 'seasons' | 'guild' | 'items';
 
 const PLACE: Record<Where, string> = {
   roll: 'Dice',
   combat: 'Dice › Combat & perils',
   magic: 'Dice › Spellcasting',
-  society: 'Dice › Society & the Tribunal',
+  society: 'Society & the Tribunal',
+  agents: 'Society & the Tribunal › Agents',
   recovery: 'Overview › Health & recovery',
   confidence: 'Overview › Confidence & Faith',
   seasons: 'Seasons',
@@ -48,6 +49,7 @@ export function tableLink(sagaId: string, where: Where, who?: string): string {
   if (where === 'items') return R.table(sagaId, 'items', undefined, { who });
   if (where === 'seasons') return R.seasonsFor(sagaId, who, who ? 'table-plan' : undefined);
   if (where === 'guild') return R.guild(sagaId, { who });
+  if (where === 'society' || where === 'agents') return R.table(sagaId, 'society', where, { who });
   return R.dice(sagaId, where, who);
 }
 

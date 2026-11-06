@@ -4,11 +4,11 @@
 // a covenant's page and a character's sheet.
 
 /** The Game Table's pages, in order. */
-export const TABLE_TABS = ['overview', 'seasons', 'dice', 'items', 'market', 'guild'] as const;
+export const TABLE_TABS = ['overview', 'seasons', 'chronicle', 'dice', 'society', 'items', 'market', 'guild'] as const;
 export type TableTab = (typeof TABLE_TABS)[number];
 
 /** The Dice page's parts: any roll, combat and perils, spellcasting and certamen, society and the Tribunal's customs. */
-export const DICE_SUBS = ['roll', 'combat', 'magic', 'society'] as const;
+export const DICE_SUBS = ['roll', 'combat', 'magic'] as const;
 export type DiceSub = (typeof DICE_SUBS)[number];
 
 /** The Saga Overview's tabs, in order: the saga's settings, its books, optional rules, the troupe's numbers and rulings, its own content, overrides, and its journal. */
