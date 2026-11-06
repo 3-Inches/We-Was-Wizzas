@@ -1,18 +1,20 @@
 import { uid } from '../../util/id';
 import { allCombatLines } from '../../engine/combat';
 import { Card, Field, signed } from '../kit';
+import { RollAtTable, useEditable } from '../play';
 import type { CharEditor } from './useChar';
 
 export default function EquipmentEditor({ ed }: { ed: CharEditor }) {
   const { c, d, data, update } = ed;
+  const edit = useEditable(c);
   if (!c || !d) return null;
   const weapons = data.weapons.filter((w) => !['dodge', 'fist', 'kick'].includes(w.id));
   const shields = data.weapons.filter((w) => /shield/i.test(w.name));
   const lines = allCombatLines(d, data);
   return (
-    <Card title="Weapons, armor & combat">
+    <Card title="Weapons, armor & combat" tour="equipment">
       <div className="grid grid-2">
-        <div>
+        {edit ? <div>
           <Field label="Armor">
             <div className="row">
               <select value={c.equipment.armorId ?? ''} onChange={(e) => update((x) => { x.equipment.armorId = e.target.value || undefined; if (!e.target.value) x.equipment.armorCoverage = 'none'; else if (x.equipment.armorCoverage === 'none') x.equipment.armorCoverage = 'partial'; })}>
@@ -61,7 +63,23 @@ export default function EquipmentEditor({ ed }: { ed: CharEditor }) {
           <Field label="Other possessions">
             <textarea value={c.equipment.other} onChange={(e) => update((x) => void (x.equipment.other = e.target.value))} rows={3} />
           </Field>
-        </div>
+        </div> : (
+          <div className="small stack" style={{ gap: 4 }}>
+            <div>
+              Armor: <b>{c.equipment.armorId ? `${data.armor.find((a) => a.id === c.equipment.armorId)?.name ?? c.equipment.armorId} (${c.equipment.armorCoverage})` : 'none'}</b>
+            </div>
+            <div>
+              Weapons:{' '}
+              <b>
+                {c.equipment.weapons.length
+                  ? c.equipment.weapons.map((w) => `${data.weapons.find((x) => x.id === w.weaponId)?.name ?? w.weaponId}${w.shieldId ? ` and ${data.weapons.find((x) => x.id === w.shieldId)?.name ?? 'a shield'}` : ''}`).join('; ')
+                  : 'none'}
+              </b>
+            </div>
+            {c.equipment.other && <div style={{ whiteSpace: 'pre-wrap' }}>{c.equipment.other}</div>}
+            <RollAtTable sagaId={c.sagaId} who={c.id} where="items" what="Armor and weapons are changed" />
+          </div>
+        )}
         <div>
           <div className="row" style={{ marginBottom: 8 }}>
             <div className="stat">

@@ -11,7 +11,7 @@ import { RulesNote } from '../RulesNote';
 import { useStore } from '../../store/store';
 import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { BlowCard, OpposedCard, PerilsCard } from './TableRolls';
-import { AtTable, DICE_LABELS, PeopleOptions, canPlay, groupPeople, type PeopleGroup } from '../play';
+import { AtTable, DICE_LABELS, PeopleOptions, canPlay, castsSpells, groupPeople, type PeopleGroup } from '../play';
 import { DICE_SUBS, R, type DiceSub } from '../routes';
 import { useCharEditor, type CharEditor } from '../character/useChar';
 import { CombatRolls, GroupCombat } from '../character/sheet/CombatTab';
@@ -386,7 +386,8 @@ function CombatPart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: str
   );
 }
 
-const casts = (c: Character) => c.type === 'magus' || !!c.spells.length || !!c.arts;
+// a magus, the Gifted, or one who knows a spell: everyone else has no spellcasting to show
+const casts = castsSpells;
 
 /** Magic at the table: a caster's spells and spontaneous magic, certamen, Wizard's Twilight, a heartbeast's change, a familiar's help. */
 function MagicPart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: string; setWho: (id: string) => void }) {

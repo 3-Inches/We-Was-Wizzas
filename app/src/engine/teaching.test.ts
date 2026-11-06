@@ -93,6 +93,26 @@ describe('teaching between characters (DE, Teaching)', () => {
     expect(asked.plan).toMatchObject({ label: 'Brawl', total: 12 });
   });
 
+  it('teaches every student chosen by name, as many as Teaching allows, and says why one is left out', () => {
+    const { bingus, bob, billy, saga: sg } = saga();
+    const will = newCharacter('grog', sg.id);
+    will.name = 'Wilhelm';
+    will.creation.finalized = true;
+    ensureAbility(will, 'living-language', { laterLife: abilityXpForScore(5) }, 'German');
+    // three students at Quality 6 make 18 in all, as two at 9 do: left to choose, the fewer are taught
+    expect(bestLesson(L(bingus), [L(bob), L(billy), L(will)], data).plan?.students).toHaveLength(2);
+    // chosen by name, all three are taught
+    const all = bestLesson(L(bingus), [L(bob), L(billy), L(will)], data, { all: true });
+    expect(all.plan?.students.map((w) => w.s.c.name).sort()).toEqual(['Billy', 'Bob', 'Wilhelm']);
+    // with no Teaching, one student at a time (DE), and the others are told why
+    bingus.abilities = bingus.abilities.filter((a) => a.abilityId !== 'teaching');
+    expect(maxStudents(L(bingus))).toBe(1);
+    const one = bestLesson(L(bingus), [L(bob), L(billy)], data, { all: true });
+    expect(one.plan?.students).toHaveLength(1);
+    const left = [bob, billy].find((x) => !one.plan!.students.some((w) => w.s.c.id === x.id))!;
+    expect(one.why.get(left.id)).toMatch(/can teach 1 at once \(with no Teaching, one student/);
+  });
+
   it('Bingus teaches Billy when Billy asks, in an extra season, and both seasons are logged', () => {
     const st = saga();
     st.billy.standing = { kind: 'taught', teacher: `char:${st.bingus.id}` };

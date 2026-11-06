@@ -4,9 +4,10 @@
 // the saga, the Tribunal's people too, grouped by whose they are.
 
 import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { livingIds } from '../engine/living';
 import type { Character, Covenant } from '../engine/types';
+import { unfold } from './kit';
 import { R, type DiceSub } from './routes';
 
 const Ctx = createContext(false);
@@ -19,9 +20,15 @@ export function AtTable({ children }: { children: ReactNode }) {
 /** Whether this card is at the Game Table (rolls shown) or on a sheet (score kept). */
 export const useAtTable = () => useContext(Ctx);
 
+/** Whether a card's controls show: at the Game Table, or on a sheet still being built. A finished character's sheet is for reference. */
+export function useEditable(c?: Character): boolean {
+  const atTable = useAtTable();
+  return atTable || !c?.creation.finalized;
+}
+
 export const DICE_LABELS: Record<DiceSub, string> = { roll: 'Roll', combat: 'Combat & perils', magic: 'Spellcasting', society: 'Society & the Tribunal' };
 
-type Where = DiceSub | 'recovery' | 'seasons' | 'guild';
+type Where = DiceSub | 'recovery' | 'confidence' | 'seasons' | 'guild' | 'items';
 
 const PLACE: Record<Where, string> = {
   roll: 'Dice',
@@ -29,15 +36,52 @@ const PLACE: Record<Where, string> = {
   magic: 'Dice › Spellcasting',
   society: 'Dice › Society & the Tribunal',
   recovery: 'Overview › Health & recovery',
+  confidence: 'Overview › Confidence & Faith',
   seasons: 'Seasons',
   guild: 'City & Guild',
+  items: 'Possessions',
 };
 
 export function tableLink(sagaId: string, where: Where, who?: string): string {
-  if (where === 'recovery') return R.table(sagaId, 'overview', undefined, { who });
-  if (where === 'seasons') return R.seasonsFor(sagaId, who);
+  if (where === 'recovery') return R.table(sagaId, 'overview', undefined, { who, to: 'table-recovery' });
+  if (where === 'confidence') return R.table(sagaId, 'overview', undefined, { to: 'table-confidence' });
+  if (where === 'items') return R.table(sagaId, 'items', undefined, { who });
+  if (where === 'seasons') return R.seasonsFor(sagaId, who, who ? 'table-plan' : undefined);
   if (where === 'guild') return R.guild(sagaId, { who });
   return R.dice(sagaId, where, who);
+}
+
+/**
+ * A page reached by a link naming one of its cards (?to=): the card, and any card around it, opened
+ * before they are drawn, and the page scrolled to it once they are.
+ */
+export function useLandOn(around: string[] = []): string | null {
+  const [params] = useSearchParams();
+  const to = params.get('to');
+  useState(() => {
+    if (!to) return;
+    for (const k of [...around, to]) unfold(k);
+  });
+  // on a page already open the cards are drawn: open them as a reader would, then scroll
+  const outer = around.join(',');
+  useEffect(() => {
+    if (!to) return;
+    const find = (k: string) => document.querySelector<HTMLElement>(`[data-tour="${CSS.escape(k)}"]`);
+    const open = (k: string) => {
+      const el = find(k);
+      if (el?.classList.contains('folded')) el.querySelector<HTMLButtonElement>(':scope > .card-head > .fold-toggle')?.click();
+    };
+    const t1 = setTimeout(() => outer.split(',').filter(Boolean).forEach(open), 150);
+    const t2 = setTimeout(() => {
+      open(to);
+      find(to)?.scrollIntoView({ block: 'start' });
+    }, 400);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [to, outer, params]);
+  return to;
 }
 
 /** On a sheet, in place of a card's rolls: where at the Game Table they are made. Nothing at the table. */
@@ -93,6 +137,12 @@ export function PeopleOptions({ groups, note }: { groups: PeopleGroup[]; note?: 
 
 /** Who can act at the table: finished, alive. */
 export const canPlay = (c: Character) => c.creation.finalized && !c.wounds.dead;
+
+/** Who can cast spells: a magus, anyone with The Gift, or anyone who knows a spell (a charm, a gift of the Order). */
+export const castsSpells = (c: Character) => c.type === 'magus' || c.virtues.some((v) => v.defId === 'the-gift') || c.spells.length > 0;
+
+/** Who can fight a certamen: a Hermetic magus (DE: certamen is between those who know the Arts of the Order). */
+export const fightsCertamen = (c: Character) => c.type === 'magus';
 
 export function usePeopleGroups(chars: Character[], covs: Covenant[], keep: (c: Character) => boolean = canPlay): PeopleGroup[] {
   return useMemo(() => groupPeople(chars.filter(keep), covs), [chars, covs, keep]);

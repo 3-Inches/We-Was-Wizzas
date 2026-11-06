@@ -4,6 +4,10 @@
 
 import { useState } from 'react';
 import { Card, Field, Stepper } from '../../kit';
+import { RollAtTable, useAtTable } from '../../play';
+import { ensureAbility } from '../../../engine/character/factory';
+import { applySeason, newSeasonEntry } from '../../../engine/longterm';
+import { seasonTaken } from '../../../engine/time';
 import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
 
@@ -11,9 +15,24 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
   const { c, saga, update } = ed;
   const [name, setName] = useState('');
   const [gender, setGender] = useState<'Male' | 'Female'>('Female');
+  // an apprentice is taken and taught as the seasons pass: at the Game Table (Seasons); the sheet shows them
+  const atTable = useAtTable();
   if (!c || !saga || c.type !== 'magus' || !c.creation.finalized) return null;
   const ap = c.apprentice;
   const year = saga.currentYear;
+  if (!atTable) {
+    if (!ap) return null;
+    const left = ap.since + 15 - year;
+    return (
+      <Card title="Apprentice" tour="apprentice">
+        <div className="small">
+          <b>{ap.name || 'The apprentice'}</b>, {ap.age + year - ap.since}, in year {year - ap.since + 1} of 15 of training ({ap.seasons} season{ap.seasons === 1 ? '' : 's'} taught);{' '}
+          {left > 0 ? `the Gauntlet in ${left} year${left === 1 ? '' : 's'} (${ap.since + 15}).` : 'ready for the Gauntlet.'}
+        </div>
+        <RollAtTable sagaId={c.sagaId} who={c.id} where="seasons" what="The apprentice is taught, a season a year, and taken or let go" />
+      </Card>
+    );
+  }
   if (!ap)
     return (
       <Card title="Apprentice" tour="apprentice">
@@ -33,6 +52,18 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
       </Card>
     );
   const set = (fn: (a: NonNullable<typeof ap>) => void) => update((x) => x.apprentice && fn(x.apprentice));
+  // a season with the apprentice: Exposure in Teaching, logged and counted (DE: the Code asks one a year)
+  const taken = seasonTaken(c, year, saga.currentSeason);
+  const teach = () =>
+    update((x) => {
+      if (!x.apprentice) return;
+      const t = ensureAbility(x, 'teaching', {});
+      const e = newSeasonEntry(year, saga.currentSeason, 'other', `Taught ${x.apprentice.name || 'the apprentice'}, the apprentice (Exposure in Teaching)`, { [`ability:${t.uid}`]: 2 });
+      e.priority = 'apprentice';
+      applySeason(x, e, 1);
+      x.seasonLog.push(e);
+      x.apprentice.seasons += 1;
+    });
   const left = ap.since + 15 - year;
   const taught = c.seasonLog.filter((e) => e.year === year && e.priority === 'apprentice').length;
   return (
@@ -60,10 +91,13 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
       <div className="small">
         {ap.name || 'The apprentice'} is {ap.age + year - ap.since}, in year {year - ap.since + 1} of 15 of training;{' '}
         {left > 0 ? `the Gauntlet in ${left} year${left === 1 ? '' : 's'} (${ap.since + 15}).` : 'ready for the Gauntlet.'}
-        {c.priorities?.some((p) => p.kind === 'apprentice') ? ` Taught from the priority list (${taught} season${taught === 1 ? '' : 's'} this year).` : ' The Code asks a season a year of teaching: add “Teach the apprentice” to the priority list, or plan it on the Seasons page.'}
+        {taught ? ` Taught ${taught} season${taught === 1 ? '' : 's'} this year.` : ' The Code asks a season a year of teaching: teach them here, or add “Teach the apprentice” to the priority list.'}
       </div>
       {ap.note && <div className="small muted">{ap.note}</div>}
       <div className="row tight" style={{ marginTop: 6 }}>
+        <button className="small primary" disabled={taken.length > 0} onClick={teach} title={taken.length ? `${saga.currentSeason} ${year} is already spent: ${taken.map((e) => e.summary).join('; ')}` : 'The season, with Exposure in Teaching (2 xp)'}>
+          Teach them this season ({saga.currentSeason} {year})
+        </button>
         <button className="small" onClick={() => update((x) => void (x.apprentice = undefined))} title="Passed the Gauntlet (make their sheet as a new magus), passed to another master, or lost">
           No longer an apprentice
         </button>

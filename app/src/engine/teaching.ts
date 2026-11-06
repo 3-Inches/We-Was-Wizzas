@@ -158,7 +158,7 @@ export interface LessonPlan {
  * for one or two can teach more than one for many. A student who asked for a subject is taught only
  * that one; a teacher set on a subject teaches only it.
  */
-export function bestLesson(t: Learner, pool: Learner[], data: GameData, o: { subject?: string; wants?: Map<string, string | undefined>; labTeaching?: number } = {}): { plan?: LessonPlan; why: Map<string, string> } {
+export function bestLesson(t: Learner, pool: Learner[], data: GameData, o: { subject?: string; wants?: Map<string, string | undefined>; labTeaching?: number; /** the students were chosen: teach them all, as many as Teaching allows, not only those who would gain most */ all?: boolean } = {}): { plan?: LessonPlan; why: Map<string, string> } {
   // why each student is left out, by id
   const why = new Map<string, string>();
   const options = new Map<string, { label: string; isArt: boolean; who: { s: Learner; sub: Teachable }[] }>();
@@ -185,8 +185,10 @@ export function bestLesson(t: Learner, pool: Learner[], data: GameData, o: { sub
   const cap = maxStudents(t);
   let best: LessonPlan | undefined;
   for (const [key, opt] of options) {
-    // an Art one to one; else one, two, or as many as the teacher can take
-    const counts = opt.isArt ? [1] : [...new Set([1, 2, Math.min(cap, opt.who.length)])].filter((n) => n >= 1 && n <= Math.min(cap, opt.who.length));
+    // an Art one to one (DE); else one, two, or as many as the teacher can take; students chosen by
+    // name are all taught, up to what Teaching allows
+    const most = Math.min(cap, opt.who.length);
+    const counts = opt.isArt ? [1] : o.all ? [most] : [...new Set([1, 2, most])].filter((n) => n >= 1 && n <= most);
     for (const n of counts) {
       const ranked = opt.who
         .map((w) => ({ ...w, result: lessonStudy(t, w.s, w.sub, n, o.labTeaching) }))
@@ -200,12 +202,25 @@ export function bestLesson(t: Learner, pool: Learner[], data: GameData, o: { sub
       // a tie goes to fewer students, then to the subject with more room to grow (the teacher's score above the students')
       const room = (x: { students: { sub: Teachable }[] }) => x.students.reduce((r, w) => r + w.sub.teacherScore - w.sub.studentScore, 0);
       const plan = { key, label: opt.label, students, total };
+      // students chosen by name: the subject most of them can learn comes first, then the most in all
+      if (o.all && best && students.length !== best.students.length) {
+        if (students.length > best.students.length) best = plan;
+        continue;
+      }
       if (!best || total > best.total || (total === best.total && (students.length < best.students.length || (students.length === best.students.length && room(plan) > room(best))))) best = plan;
     }
   }
   for (const s of pool) {
     if (why.has(s.c.id) || best?.students.some((w) => w.s.c.id === s.c.id)) continue;
-    why.set(s.c.id, best ? `${t.c.name || 'The teacher'} taught ${best.label} to ${best.students.length > 1 ? 'others' : best.students[0].s.c.name || 'another'}, which teaches more in all.` : `${s.c.name || 'The student'} would gain nothing from ${t.c.name || 'the teacher'}'s lessons.`);
+    const b = best;
+    const couldLearn = !!b && !!options.get(b.key)?.who.some((w) => w.s.c.id === s.c.id);
+    // left out of a lesson they could have learned: an Art is one-to-one, and Teaching sets how many at once
+    const full = b && couldLearn && options.get(b.key)!.isArt
+      ? `${b.label} is a Hermetic Art, taught one-on-one (DE), and ${b.students[0].s.c.name || 'another'} was taught it.`
+      : b && couldLearn && b.students.length >= cap
+        ? `${t.c.name || 'The teacher'} can teach ${cap} at once (${cap === 1 ? 'with no Teaching, one student' : `five for each point of Teaching`}; DE).`
+        : undefined;
+    why.set(s.c.id, full ?? (best ? `${t.c.name || 'The teacher'} taught ${best.label} to ${best.students.length > 1 ? 'others' : best.students[0].s.c.name || 'another'}, which teaches more in all.` : `${s.c.name || 'The student'} would gain nothing from ${t.c.name || 'the teacher'}'s lessons.`));
   }
   return { plan: best, why };
 }

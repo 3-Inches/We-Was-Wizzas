@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES } from '../../../data';
-import { BookBadge, Card, Field, Stepper, signed } from '../../kit';
+import { BookBadge, Card, Field, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
+import { RollAtTable } from '../../play';
 import { EffectsCard } from './EffectsCard';
 import { PurseCard } from './PurseCard';
 import { useSagaCovenants } from '../../../store/hooks';
@@ -101,28 +102,22 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
             </select>
           </Field>
           {c.type !== 'grog' && (
-            <div className="row" style={{ marginTop: 8 }}>
-              <span>Confidence points:</span>
-              <Stepper value={c.confidence.points} min={0} max={99} onChange={(v) => update((x) => void (x.confidence.points = v))} />
-              <button className="small" disabled={c.confidence.points < 1} onClick={() => update((x) => void (x.confidence.points -= 1))} title="Spend a point for +3 to a roll (max Confidence Score points per roll)">
-                Spend 1 (+3)
-              </button>
-              <span className="small muted">Score {c.confidence.score}</span>
+            <div className="small" style={{ marginTop: 8 }}>
+              <b>Confidence:</b> Score {c.confidence.score}, {c.confidence.points} point{c.confidence.points === 1 ? '' : 's'}
+              {d.trueFaith > 0 && (
+                <>
+                  {' · '}
+                  <b>Faith Points:</b> {d.faithPoints} (True Faith {d.trueFaith}, Magic Resistance {d.trueFaith * 10})
+                </>
+              )}
             </div>
           )}
-          {d.trueFaith > 0 && (
-            <div className="row" style={{ marginTop: 8 }} title="Spend like Confidence Points, up to your True Faith Score at once, when acting in accordance with God's will. Each dawn regain points up to your Score (DE p.419).">
-              <span>Faith Points:</span>
-              <Stepper value={d.faithPoints} min={0} max={99} onChange={(v) => update((x) => void (x.faith = { score: d.trueFaith, points: v }))} />
-              <button className="small" disabled={d.faithPoints < 1} onClick={() => update((x) => void (x.faith = { score: d.trueFaith, points: d.faithPoints - 1 }))}>
-                Spend 1 (+3)
-              </button>
-              <button className="small" disabled={d.faithPoints >= d.trueFaith} onClick={() => update((x) => void (x.faith = { score: d.trueFaith, points: Math.max(d.faithPoints, d.trueFaith) }))}>
-                Dawn
-              </button>
-              <span className="small muted">True Faith {d.trueFaith} · Magic Resistance {d.trueFaith * 10}</span>
+          {c.type === 'grog' && d.trueFaith > 0 && (
+            <div className="small" style={{ marginTop: 8 }}>
+              <b>Faith Points:</b> {d.faithPoints} (True Faith {d.trueFaith}, Magic Resistance {d.trueFaith * 10})
             </div>
           )}
+          {(c.type !== 'grog' || d.trueFaith > 0) && <RollAtTable sagaId={c.sagaId} where="confidence" what="Confidence and Faith Points are given and spent" />}
           {d.relicFaith > 0 && (
             <div className="small" style={{ marginTop: 8 }}>
               <b>Relic:</b> Faith {d.relicFaith} (its Faith Points can be used as Confidence) · Magic Resistance {d.relicFaith * 10} · Divine Might {d.relicFaith * 10}, pool refreshed
@@ -153,11 +148,8 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
             </div>
           ))}
           {d.virtues.some((v) => v.cv.defId === 'all-according-to-plan') && (
-            <div className="row small" style={{ marginTop: 6 }}>
+            <div className="small" style={{ marginTop: 6 }}>
               <b>All According to Plan:</b> {c.session?.aatpUsed ? 'used this session' : 'ready (reroll one botch die)'}
-              <button className="small ghost" onClick={() => update((x) => void (x.session = { ...(x.session ?? {}), aatpUsed: !c.session?.aatpUsed }))}>
-                {c.session?.aatpUsed ? 'New session' : 'Mark used'}
-              </button>
             </div>
           )}
           {c.sigil && (

@@ -17,10 +17,14 @@ import { Card, Empty, Field, Stepper } from '../kit';
 import { CovenantEffects } from '../covenant/CovenantEffects';
 import { Hint } from '../Hint';
 import { timeMayMove } from '../advanceGuard';
-import { AtTable, PeopleOptions, canPlay, groupPeople } from '../play';
+import { AtTable, PeopleOptions, canPlay, groupPeople, useLandOn } from '../play';
 import { useCharEditor } from '../character/useChar';
 import AdvancementTab from '../character/sheet/AdvancementTab';
 import { LabProjects } from '../character/sheet/LabProjects';
+import { LongevityCard } from '../character/sheet/LabItemsTab';
+import { OriginalResearch } from '../character/sheet/OriginalResearch';
+import { ApprenticeCard } from '../character/sheet/ApprenticeCard';
+import { SpellMasteryCard } from '../character/sheet/SpellMastery';
 import { R } from '../routes';
 
 const KIND_BADGE: Record<string, string> = { aging: 'aging', crisis: 'bad', warping: 'warn', covenant: '', lab: '', effect: '', reminder: 'warn', money: '', season: '', year: '' };
@@ -53,6 +57,8 @@ export default function SeasonsPage() {
     }, { replace: true });
     requestAnimationFrame(() => document.querySelector('[data-tour="table-plan"]')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   };
+  // a link from elsewhere (?to=) lands on the card it names, in the season in full: a lab project planned on Possessions
+  useLandOn(['table-plan']);
   const derived = useMemo(() => (saga ? new Map(chars.map((c) => [c.id, deriveCharacter(c, data, saga.houseRules)])) : new Map()), [chars, data, saga]);
   if (!saga) return <Empty>Saga not found.</Empty>;
   const { currentYear: year, currentSeason: season } = saga;
@@ -283,10 +289,15 @@ function PlanInFull({ sagaId, chars, covs, who, onPick, season }: { sagaId: stri
 function SeasonFor({ sagaId, charId }: { sagaId: string; charId: string }) {
   const ed = useCharEditor({ sagaId, charId });
   if (!ed.c || !ed.d) return null;
+  const mt = ed.d.abilities.find((a) => a.abilityId === ed.d!.theoryAbility)?.total ?? 0;
   return (
     <AtTable>
       <AdvancementTab ed={ed} />
+      <SpellMasteryCard ed={ed} />
       {ed.d.isMagus && <LabProjects ed={ed} />}
+      {ed.d.isMagus && <OriginalResearch ed={ed} magicTheory={mt} />}
+      <LongevityCard ed={ed} />
+      <ApprenticeCard ed={ed} />
     </AtTable>
   );
 }

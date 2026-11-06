@@ -71,7 +71,7 @@ export default function CharacterSheet() {
       {c.fromBook && (
         <div className="card small no-print">
           {c.fromBook.title ? `${c.fromBook.title}. ` : ''}From <BookBadge book={c.fromBook.book} line={c.fromBook.line} />, built into the saga by the toolkit
-          {c.standing?.kind === 'priorities' ? '; follows a season priority list when the seasons pass (Advancement tab)' : ''}.{' '}
+          {c.standing?.kind === 'priorities' ? '; follows a season priority list when the seasons pass (Game Table › Seasons)' : ''}.{' '}
           <Link to={`/saga/${saga.id}/tribunal`}>The Tribunal page</Link>
         </div>
       )}

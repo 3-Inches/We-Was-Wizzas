@@ -8,6 +8,7 @@ import { covenantOf } from '../../engine/context';
 import { teaches } from '../../engine/covenfolk';
 import { extraSeasonHere, seasonsOf, seasonsUsed } from '../../engine/seasons';
 import { describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
+import { applySeason } from '../../engine/longterm';
 import type { Character, Covenant, Saga } from '../../engine/types';
 import type { GameData } from '../../data';
 import { useStore } from '../../store/store';
@@ -38,6 +39,8 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
         const plan = seasonsOf(c, d);
         const used = seasonsUsed(c, year);
         const extraHere = plan.extra > 0 && extraSeasonHere(plan, season) && !logged.some((e) => e.extra);
+        // a teacher who named this character among their students, and whose own season is free for it
+        const lessonFrom = playing.find((t) => t.id !== c.id && t.standing?.kind === 'teach' && !!t.standing.students?.includes(c.id) && !loggedThisSeason(t, year, season).some((e) => !e.extra));
         return (
           <div key={c.id} className="list-row" style={{ flexWrap: 'wrap' }}>
             <Link to={R.character(saga.id, c)} style={{ minWidth: 120 }}>
@@ -46,8 +49,24 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
             <span className="badge">{c.type}</span>
             {plan.work > 0 && <span className="small muted">{used.free + used.worship} of {plan.free} free seasons used</span>}
             {logged.some((e) => !e.extra) ? (
-              <span className="small">
-                <span className="badge good">logged</span> {logged.filter((e) => !e.extra).map((e) => e.summary).join('; ')}
+              <span className="small row tight" style={{ flexWrap: 'wrap' }}>
+                <span className="badge good">logged</span>
+                {logged
+                  .filter((e) => !e.extra)
+                  .map((e) => (
+                    <span key={e.uid} className="row tight">
+                      {e.summary}
+                      <Unlog c={c} uid={e.uid} />
+                    </span>
+                  ))}
+              </span>
+            ) : lessonFrom ? (
+              // named as a teacher's student: the lesson is their season (DE: a student spends the season being taught)
+              <span className="small row tight" style={{ flexWrap: 'wrap' }}>
+                <span className="badge">taught</span> by <b>{lessonFrom.name || 'a covenant-mate'}</b> this season (set on {lessonFrom.name ? `${lessonFrom.name}’s` : 'their'} row)
+                <button className="small ghost" title="Take them out of the lesson, so their own activity is done instead" onClick={() => updateCharacter(lessonFrom.id, (x) => void (x.standing && x.standing.kind === 'teach' && (x.standing.students = x.standing.students?.filter((id) => id !== c.id))))}>
+                  Leave the lesson
+                </button>
               </span>
             ) : (
               <StandingEditor c={c} d={d} year={year} teachers={teachers} library={cov?.library} team={team} onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))} />
@@ -61,7 +80,7 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
                 <Link to={R.seasonsFor(saga.id, c.id)}>Plan in full</Link>
               )}
             </span>
-            {!logged.length && (
+            {!logged.length && !lessonFrom && (
               <div className="small muted" style={{ flexBasis: '100%' }}>
                 {fill ? `→ ${describeStanding(c, d, resolveStanding(c, d, year))}` : '→ nothing (unplanned seasons are left empty)'}
               </div>
@@ -69,8 +88,9 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
             {logged
               .filter((e) => e.extra)
               .map((e) => (
-                <div key={e.uid} className="small" style={{ flexBasis: '100%' }}>
+                <div key={e.uid} className="small row tight" style={{ flexBasis: '100%' }}>
                   <span className="badge">extra season</span> {e.summary}
+                  <Unlog c={c} uid={e.uid} />
                 </div>
               ))}
             {extraHere && (
@@ -94,5 +114,29 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
       })}
       {drafts.length > 0 && <p className="small muted">Still in creation, so time does not move them: {drafts.map((c) => c.name || 'Unnamed').join(', ')}.</p>}
     </Card>
+  );
+}
+
+/**
+ * Unlog a season logged ahead of time (a book read, a lesson, lab work planned in full): its
+ * experience comes off and the season is free again, to be planned anew or left to the standing
+ * activity. Undo puts it back.
+ */
+export function Unlog({ c, uid }: { c: Character; uid: string }) {
+  const updateCharacter = useStore((s) => s.updateCharacter);
+  return (
+    <button
+      className="small ghost"
+      title="Take this season off the log: its experience comes off, and the season is free again"
+      onClick={() =>
+        updateCharacter(c.id, (x) => {
+          const e = x.seasonLog.find((y) => y.uid === uid);
+          if (e?.applied) applySeason(x, e, -1);
+          x.seasonLog = x.seasonLog.filter((y) => y.uid !== uid);
+        })
+      }
+    >
+      Unlog
+    </button>
   );
 }

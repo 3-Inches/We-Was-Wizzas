@@ -47,6 +47,8 @@ interface Props {
   onInstall?: (item: EnchantedItem) => void;
   /** the lab the item is installed in, if it is */
   installedIn?: (item: EnchantedItem) => string | undefined;
+  /** shown for reference only (a finished character's sheet): no adding, changing or removing */
+  readOnly?: boolean;
 }
 
 export default function ItemsEditor(props: Props) {
@@ -56,7 +58,7 @@ export default function ItemsEditor(props: Props) {
     <Card
       title={props.title ?? 'Enchanted items'}
       actions={
-        <>
+        props.readOnly ? undefined : <>
           <button className="small" onClick={() => onChange((xs) => void xs.push(newItem('invested')))}>
             + Invested device
           </button>
@@ -104,16 +106,19 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
         </span>
         {used > capacity && (it.kind === 'invested' || isTalisman) && <span className="badge bad">over capacity</span>}
         <span style={{ flex: 1 }} />
-        {props.onSetTalisman && it.kind === 'invested' && (
+        {!props.readOnly && props.onSetTalisman && it.kind === 'invested' && (
           <button className="small ghost" onClick={() => props.onSetTalisman!(isTalisman ? undefined : it.uid)}>
             {isTalisman ? 'Unset talisman' : 'Make talisman'}
           </button>
         )}
-        <button className="small ghost" onClick={() => onChange((xs) => void xs.splice(xs.findIndex((y) => y.uid === it.uid), 1))}>
-          ✕
-        </button>
+        {!props.readOnly && (
+          <button className="small ghost" onClick={() => onChange((xs) => void xs.splice(xs.findIndex((y) => y.uid === it.uid), 1))}>
+            ✕
+          </button>
+        )}
       </div>
-      {props.open && (
+      {props.open && props.readOnly && <ItemReference item={it} talisman={isTalisman} smBonuses={smBonuses} />}
+      {props.open && !props.readOnly && (
         <div className="stack" style={{ padding: '6px 0 6px 16px' }}>
           <div className="row">
             <Field label="Name">
@@ -254,6 +259,28 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
           </Field>
         </div>
       )}
+    </div>
+  );
+}
+
+/** An item as it stands, for reference: its attunements, Shape and Material bonuses, effects and notes. */
+function ItemReference({ item: it, talisman, smBonuses }: { item: EnchantedItem; talisman: boolean; smBonuses: { from: string; bonus: number; effect: string }[] }) {
+  return (
+    <div className="small stack" style={{ padding: '6px 0 6px 16px', gap: 4 }}>
+      {talisman && it.attunements.length > 0 && <div>Attunements: {it.attunements.map((a) => `${a.label} +${a.bonus}`).join('; ')} (only the highest applies).</div>}
+      {smBonuses.length > 0 && <div className="soft">Shape and Material: {smBonuses.map((b) => `${b.from} +${b.bonus} ${b.effect}`).join('; ')}.</div>}
+      {it.effects.length === 0 && <div className="muted">No effects yet.</div>}
+      {it.effects.map((e) => (
+        <div key={e.uid}>
+          <b>{e.name}</b> {e.technique}
+          {e.form}
+          {e.requisites.length ? `(${e.requisites.join(', ')})` : ''} level {e.modifiedLevel}: {e.range}, {e.duration}, {e.target}; {e.usesPerDay === 'unlimited' ? 'unlimited uses' : `${e.usesPerDay} a day`}
+          {e.penetration ? `, Penetration ${e.penetration}` : ''}
+          {e.pending ? <span className="warn-text"> (still being instilled)</span> : ''}
+          {e.description ? <div className="muted">{e.description}</div> : null}
+        </div>
+      ))}
+      {it.notes && <div className="muted">{it.notes}</div>}
     </div>
   );
 }

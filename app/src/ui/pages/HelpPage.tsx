@@ -342,10 +342,13 @@ export default function HelpPage() {
         <ul className="small">
           <li>
             <b>The Game Table</b> (in the saga&apos;s menu, under the Saga Overview) is the place to run a session from. Its pages: <b>Overview</b> (what needs attention: money,
-            Loyalty, wounds, a strike, rules problems, idle characters; <b>Health &amp; recovery</b> for everyone; the covenants at a glance; quick changes such as a Loyalty event,
+            Loyalty, wounds, a strike, rules problems, idle characters; <b>Health &amp; recovery</b> for everyone, and for one character damage, Fatigue, a disease and the
+            spells on them; <b>Confidence &amp; Faith</b>, given and spent; the covenants at a glance; quick changes such as a Loyalty event,
             the treasury or vis found; experience and Labor Points after a story, for however many took part; and a list of what comes up in play with a link to where it is
             done), <b>Seasons</b> (what everyone does this season, changed in place, one character&apos;s season in full, and <b>End the season</b>), <b>Dice</b> (Roll, Combat
-            &amp; perils, Spellcasting, Society &amp; the Tribunal), <b>Market &amp; Treasury</b> and <b>City &amp; Guild</b>. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
+            &amp; perils, Spellcasting, Society &amp; the Tribunal), <b>Possessions</b> (what each character owns: things, armor and weapons, enchanted items and the
+            talisman, a familiar, a Redcap&apos;s devices), <b>Market &amp; Treasury</b> and <b>City &amp; Guild</b>. Once a character is finished their sheet is for reference:
+            it shows where they stand, and each card says where at the Game Table it changes. One mechanic, one place. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
             dates), and <b>Stories waiting</b> lists the characters&apos; Story and Personality Flaws and the covenant&apos;s Hooks, the longest untold first, so the toolkit keeps
             the mechanics and the table can play the story. When unsure what to do next, go back to it.
           </li>
@@ -362,7 +365,8 @@ export default function HelpPage() {
             saga or the Tribunal, their Fatigue going on their sheet.
           </li>
           <li>
-            <b>Combat &amp; Health:</b> the sheet keeps the wounds (apply damage against Soak to get one), Fatigue, illness and the combat totals for each weapon. At the Game
+            <b>Combat &amp; Health:</b> the sheet shows the wounds, Fatigue, illness and the combat totals for each weapon. Damage is applied against Soak, Fatigue lost and
+            regained and a disease caught under Health &amp; recovery, choosing who. At the Game
             Table, <b>Dice › Combat &amp; perils</b> rolls a character&apos;s Initiative, Attack and Defense (mounted, exerted or scuffling), <b>Fighting as a group</b> beside
             their own side, a blow from Attack to wound, and the perils. <b>Health &amp; recovery</b> on the Overview lists everyone wounded, tired or ill, the soonest recovery
             first, with their penalty and how near Unconscious or death they are; choose who tends them (as many patients as their Chirurgy, five times that if they give the
@@ -371,10 +375,14 @@ export default function HelpPage() {
           </li>
           <li>
             <b>Seasons:</b> on the Game Table&apos;s Seasons page, <b>Plan in full</b> opens one character&apos;s season (books, teachers, training, practice, vis, adventure, a lab
-            project, writing, an Initiation) and logs it on their sheet, whose Seasons &amp; Aging tab keeps the log; experience is added with Affinities, gain limits and Virtues.
+            project, Spell Mastery, writing, an Initiation, original research, a Longevity Ritual, the apprentice) and logs it on their sheet, whose Seasons &amp; Aging tab
+            keeps the log; experience is added with Affinities, gain limits and Virtues. A season logged by mistake is <b>Unlogged</b> there (its experience taken off).
+            Anyone a Mystagogue will take may be Initiated, not only the Mystery Houses. <b>Spell Mastery</b> puts experience on a spell and asks, at each new level, for
+            the special ability the player chooses (DE). Lab work on an item or a familiar can also be planned from Possessions, which opens the Lab projects card here.
             Aging out of turn and crises are rolled there; Wizard&apos;s Twilight with Spellcasting. Choose a teacher from the saga and the subjects are what they can teach this character (2 in an Ability or 5 in an Art,
             more than the student, a language in common, Arts only to a magus, an Ability the student may learn); logging the lesson logs the teacher&apos;s season too (Exposure
-            in Teaching). <b>Writing and copying</b> begins a summa, tractatus,
+            in Teaching). On <b>This season</b> a teacher may teach anyone in play, several at once (five students for each point of Teaching, one with none; an Art one-on-one);
+            the students named spend their season being taught, and one can leave the lesson. <b>Writing and copying</b> begins a summa, tractatus,
             commentary, copy, lab texts or florilegium and works it a season at a time (or in free seasons), with the covenant&apos;s scribe, binder and illuminator and resonant
             materials under <i>Covenants</i>&apos; rules; the finished work goes to the covenant library. A summa, copy or lab text finished with points to spare leaves the rest of
             the season for the next one begun (a tractatus takes its season), and the season gives the writer 2 xp of Exposure, once. Glossing and clarifying a book are there too. With <i>City &amp; Guild</i>{' '}
@@ -382,8 +390,9 @@ export default function HelpPage() {
             investments bring.
           </li>
           <li>
-            <b>Lab &amp; Items:</b> the lab, the enchanted items made, the Longevity Ritual and the familiar. Everything that takes a season is a <b>Lab project</b>, planned on
-            its card and worked as a season&apos;s activity: inventing a spell (or learning one from a Laboratory Text), preparing and attuning a talisman, instilling effects,
+            <b>Lab &amp; Items:</b> the sheet shows the lab, the enchanted items, the Longevity Ritual and the familiar. Items, the talisman and the familiar are kept on the
+            Game Table&apos;s Possessions. Everything that takes a season is a <b>Lab project</b>, planned on the Lab projects card of the character&apos;s season in full (Game
+            Table › Seasons) and worked as a season&apos;s activity: inventing a spell (or learning one from a Laboratory Text), preparing and attuning a talisman, instilling effects,
             charged items, extracting vis, taming, a Longevity Ritual (for the magus or someone else), binding a familiar, strengthening and empowering the bond, and improving the
             lab itself: its Refinement, a Virtue installed, a Flaw put right. Spells of the same Technique and Form can be invented alongside each other. Each has its
             Lab Total with all the lab gives, its vis, a box to experiment, and the lab&apos;s own rolls for Safety and Warping; what the lab&apos;s Flaws rule out is shown in
@@ -393,8 +402,8 @@ export default function HelpPage() {
             does, its Might not taken off (<i>Realms of Power: Magic</i>).
           </li>
           <li>
-            <b>Spells on a character:</b> the Overview lists effects working on the character (a raised Characteristic, a granted Virtue) with when they end; record one by
-            hand, or cast it from the covenant (below). The <b>purse</b> line shows the character&apos;s own pounds and vis.
+            <b>Spells on a character:</b> the sheet&apos;s Overview lists effects working on the character (a raised Characteristic, a granted Virtue) with when they end; one
+            is recorded, ended or undone at the Game Table (Overview › Health &amp; recovery, choosing who), or cast from the covenant (below). The <b>purse</b> line shows the character&apos;s own pounds and vis.
           </li>
           <li>
             <b>Time:</b> the Game Table&apos;s <b>Seasons</b> page moves the whole saga on: one season, to next Spring, or several years. Each character does what was logged on
@@ -481,7 +490,7 @@ export default function HelpPage() {
           <li>
             <b>Wondrous items</b> (the workshop card): a craftsman with Touched by (Realm) makes an item with a power like a Hermetic effect. The Craft Level is 12 + its
             magnitude + its uses a day; one helper at most; each season adds what the Workshop Total beats the Craft Level by, until the points reach the Craft Level. It
-            works only for the customer it was made for (an Arcane Connection to them) and goes on their Items tab, and stops working once damaged.
+            works only for the customer it was made for (an Arcane Connection to them) and goes among their Possessions, and stops working once damaged.
           </li>
           <li>
             <b>Guilds</b> (the Guild card under it): rank, the Guild Lore each rank needs, the apprentice piece, a journeyman&apos;s contract, a master&apos;s fee and vote,
@@ -514,8 +523,8 @@ export default function HelpPage() {
             <b>At the table</b> (City &amp; Guild): sending someone to market: who goes (with their appraise and bargain totals), appraising the goods, bargaining against a
             kind of seller, paying, and bribes for a word from the locals or a bed; each result under the roll that made it. Damaged goods: one of a character&apos;s things
             or a kind of thing, its damage levels, the check&apos;s modifiers and chance (the user&apos;s Ability from a list; a repaired item&apos;s −1 counts once), repair while
-            damaged, and another item once one breaks. The damage stays on the item, on its owner&apos;s Items tab (Possessions), where things can be added, given to someone
-            else with their damage, or thrown away once broken. A quick court decision on a character&apos;s
+            damaged, and another item once one breaks. The damage stays on the item, among its owner&apos;s things on the Game Table&apos;s <b>Possessions</b>, where things
+            can be added, given to someone else with their damage, or thrown away once broken. A quick court decision on a character&apos;s
             Overview (optional rule). Each roll says whose it is, what it adds and the chance.
           </li>
           <li>
@@ -580,7 +589,7 @@ export default function HelpPage() {
             Tribunal page and their own pages, and their lines in a season&apos;s report are folded under <b>The Tribunal</b>.
           </li>
           <li>
-            <b>Season priorities:</b> each of their magi follows a priority list (Advancement tab → Season priorities): service to the covenant (vis extracted when the covenant lacks
+            <b>Season priorities:</b> each of their magi follows a priority list (Game Table › Seasons, a season in full → Season priorities): service to the covenant (vis extracted when the covenant lacks
             what its Aegis and Longevity Rituals need), politics, travel, writing for the library, the best book or covenant teacher, study from vis, inventing a spell, enchanting an item (a lesser device of one of their spells, or charms), improving the lab, and a
             season a year for an apprentice, and House duties (a Quaesitor&apos;s investigations a season a year, a Gifted Mercere&apos;s season on the road one year in seven).
             Each entry is a season a year, and the first that can be done is taken. A
@@ -669,7 +678,7 @@ export default function HelpPage() {
           governs says whether the saga you last opened uses it.
         </Question>
         <Question q="How do I improve a laboratory once play has begun?">
-          As a lab project on the magus&apos;s <b>Lab, Items &amp; Familiar</b> tab: <b>Raise the lab&apos;s Refinement</b>, <b>Install a lab Virtue</b> or <b>Put a lab Flaw
+          As a lab project, in the magus&apos;s season in full on the Game Table&apos;s Seasons page: <b>Raise the lab&apos;s Refinement</b>, <b>Install a lab Virtue</b> or <b>Put a lab Flaw
           right</b>. Each says what it needs (Magic Theory, free space) and takes its seasons; a rise in Upkeep is paid from the treasury or the purse. A Free Virtue is simply
           added on the covenant&apos;s Laboratories tab.
         </Question>

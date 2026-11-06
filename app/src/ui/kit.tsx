@@ -16,6 +16,14 @@ function readFolds(): Record<string, boolean> {
     return {};
   }
 }
+/** Opens a foldable card before a link takes the reader to it. */
+export function unfold(key: string) {
+  try {
+    localStorage.setItem(FOLDS_KEY, JSON.stringify({ ...readFolds(), [key]: true }));
+  } catch {
+    // blocked storage: the card keeps its own default
+  }
+}
 const narrowScreen = () => typeof window !== 'undefined' && !!window.matchMedia?.('(max-width: 700px)').matches;
 
 /**
