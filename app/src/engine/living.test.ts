@@ -105,7 +105,7 @@ describe('the covenants’ Boons, Hooks and auras', () => {
     expect(crintera.hooksBoons.some((h) => h.name === 'Regio')).toBe(true);
     expect(crintera.notes).toMatch(/auras of 1, 3, 5 and 8/);
     expect(def('triamore').season).toBe('Summer');
-  });
+  }, 30000); // all ten Rhine covenants built: about 2 seconds alone, more while the other test files run
 
   it('lets Oculus Septentrionalis’s magi work under the magestones two seasons a year each, three at a time', () => {
     const s = sagaAt(1220, 'Spring');
@@ -157,7 +157,7 @@ describe('building a covenant from its book', () => {
     }
     // Signum's own list from the book: travel among the trolls before books
     expect(chars[0].priorities!.map((p) => p.kind)).toEqual(['longevity', 'travel', 'read', 'vis', 'invent']);
-  });
+  }, 30000); // Oculus Septentrionalis built and its seasons worked: about a second alone, more while the other test files run
 
   it('leaves out a magus still in apprenticeship when the saga is set earlier, and gives an older one a fitting age', () => {
     const { chars, log } = buildLivingCovenant(RHINE, def('dankmar'), { data, saga: sagaAt(1210), rules }, { seed: 4 });
