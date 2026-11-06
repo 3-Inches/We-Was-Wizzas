@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { R } from '../../routes';
 import { Link } from 'react-router-dom';
 import { StandingEditor, teamOf } from '../StandingEditor';
 import { bestLesson, teachableSubjects } from '../../../engine/teaching';
@@ -21,14 +22,13 @@ import { extraFree, loggedThisSeason, seasonBusy, seasonTaken } from '../../../e
 import { SeasonPlan } from '../SeasonPlan';
 import { seasonsOf, seasonsUsed } from '../../../engine/seasons';
 import { MysteriesCard } from './MysteriesCard';
-import { GuildCard } from './GuildCard';
 import { WritingCard } from './Writing';
-import { WorkshopCard } from './WorkshopCard';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { characterContext } from '../../../engine/context';
 import { deriveCharacter } from '../../../engine/character/derive';
 import { teaches } from '../../../engine/covenfolk';
 import { HAZARDS, hazardPenalty } from '../../../engine/disease';
+import { RollAtTable, useAtTable } from '../../play';
 
 type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'worship' | 'lab' | 'other';
 
@@ -70,6 +70,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   // a covenant-mate teaching: log their season too (Exposure in Teaching)
   const [logTeacher, setLogTeacher] = useState(true);
   const updateCharacter = useStore((s) => s.updateCharacter);
+  // the sheet keeps the record: the season log, aging, Warping; a season is planned at the Game Table (Seasons)
+  const atTable = useAtTable();
   const [labTeaching, setLabTeaching] = useState(0);
   const sagaChars = useSagaCharacters(c?.sagaId);
   const sagaCovs = useSagaCovenants(c?.sagaId);
@@ -334,9 +336,17 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
 
   return (
     <div className="stack">
-      <Card title="Plan a season" className="accent" tour="plan-season">
+      {!atTable && (
+        <Card title={`${season} ${year}`} tour="season-at-table">
+          <p className="small" style={{ margin: 0 }}>
+            {loggedThisSeason(c, year, season).length ? `This season: ${loggedThisSeason(c, year, season).map((e) => e.summary).join('; ')}.` : 'Nothing is logged for this season yet; their standing activity is done when it ends.'}
+          </p>
+          <RollAtTable sagaId={saga.id} who={c.id} where="seasons" what="The season is planned (study, teaching, lab work, writing, an Initiation, what to do when nothing is planned), and aging rolled out of turn," />
+        </Card>
+      )}
+      {atTable && <Card title="Plan a season" className="accent" tour="plan-season">
         <div className="row">
-          <Field label="Season" hint={<Link to={`/saga/${saga.id}/seasons`}>the saga&apos;s current season; time moves on, for everyone, on the Seasons page</Link>}>
+          <Field label="Season" hint={<Link to={R.seasons(saga.id)}>the saga&apos;s current season; time moves on, for everyone, on the Seasons page</Link>}>
             <b>
               {season} {year}
             </b>
@@ -544,7 +554,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                   ) : (
                     `${mate.name || 'The teacher'} has no season free this ${season} to teach in.`
                   )}{' '}
-                  To have it happen when time moves on, set {c.name || 'this character'} to be taught by {mate.name || 'them'} on the Game table, or {mate.name || 'them'} to teach.
+                  To have it happen when time moves on, set {c.name || 'this character'} to be taught by {mate.name || 'them'} on the Game Table’s Seasons page, or {mate.name || 'them'} to teach.
                 </div>
               )}
             </>
@@ -661,9 +671,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           Summae raise a score only up to their level; teachers only up to their own score. Tractatus quality is Com + 6; a character can read each tractatus once. Books, vis and
           teachers can be linked from your covenant (Covenant → Library).
         </HowItWorks>
-      </Card>
+      </Card>}
 
-      <Card title="When nothing is planned" tour="standing">
+      {atTable && <Card title="When nothing is planned" tour="standing">
         <div className="row small">
           <span>Standing activity:</span>
           <StandingEditor
@@ -680,11 +690,11 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           What this character does with a free season when nobody planned one. Once the year&apos;s free seasons are used up, the rest go to work (Exposure) or Worship.
         </p>
         <SeasonPlan c={c} d={d} year={year} update={update} teachers={ctx.covenant?.specialists.filter((x) => teaches(x)) ?? []} team={team} />
-      </Card>
+      </Card>}
 
-      {saga && <PrioritiesCard c={c} d={d} ctx={ctx} saga={saga} data={data} chars={sagaChars} update={update} />}
+      {atTable && saga && <PrioritiesCard c={c} d={d} ctx={ctx} saga={saga} data={data} chars={sagaChars} update={update} />}
 
-      <Card title="Season log">
+      {!atTable && <Card title="Season log">
         {c.seasonLog.length === 0 && <div className="small muted">No seasons logged yet.</div>}
         {c.seasonLog
           .slice()
@@ -715,7 +725,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               </button>
             </div>
           ))}
-      </Card>
+      </Card>}
 
       <div className="grid grid-2">
         <Card title="Aging">
@@ -771,9 +781,13 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               ))}
             </div>
             {d.magicChar && <p className="small muted">A magic character does not age (RoP: Magic), so it makes no aging rolls.</p>}
-            <button onClick={rollAging} disabled={!!d.magicChar || (c.age < 35 && !c.longevity) || agedThisYear} title="Aging is rolled for everyone when the saga's year ends (Seasons page); roll here only out of turn">
-              {agedThisYear ? `Aged for ${year}` : 'Roll aging now'}
-            </button>
+            {atTable ? (
+              <button onClick={rollAging} disabled={!!d.magicChar || (c.age < 35 && !c.longevity) || agedThisYear} title="Aging is rolled for everyone when the saga's year ends; roll here only out of turn">
+                {agedThisYear ? `Aged for ${year}` : 'Roll aging now'}
+              </button>
+            ) : (
+              <span className="small muted">{agedThisYear ? `Aged for ${year}.` : 'Aging is rolled for everyone when the year ends.'}</span>
+            )}
           </div>
           {c.age < 35 && !c.longevity && <p className="small muted">Aging rolls start at age 35 (or earlier with a Longevity Ritual).</p>}
           {aging && (
@@ -798,12 +812,14 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               </button>
             </div>
           )}
-          <div className="row" style={{ marginTop: 8 }}>
-            <button className="small" onClick={rollCrisis}>
-              Roll on Crisis table
-            </button>
-            <span className="small muted">Simple die + age/10 + Decrepitude</span>
-          </div>
+          {atTable && (
+            <div className="row" style={{ marginTop: 8 }}>
+              <button className="small" onClick={rollCrisis}>
+                Roll on Crisis table
+              </button>
+              <span className="small muted">Simple die + age/10 + Decrepitude</span>
+            </div>
+          )}
           {agingText.map((t, i) => (
             <div key={i} className="small">
               {t}
@@ -811,11 +827,10 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           ))}
         </Card>
 
-        <TwilightCard ed={ed} />
+        {!atTable && <TwilightCard ed={ed} />}
         <MysteriesCard ed={ed} />
-        <WritingCard ed={ed} />
-        <WorkshopCard ed={ed} />
-        <GuildCard ed={ed} />
+        {atTable && <WritingCard ed={ed} />}
+        {!atTable && <LivelihoodLine ed={ed} />}
       </div>
     </div>
   );
@@ -827,4 +842,22 @@ function labelFor(key: string, c: NonNullable<CharEditor['c']>, d: NonNullable<C
   if (k === 'ability') return d.abilityByUid.get(id)?.name ?? 'ability';
   if (k === 'mastery') return `Mastery: ${c.spells.find((s) => s.uid === id)?.spell.name ?? 'spell'}`;
   return key;
+}
+
+/** A working character's livelihood, kept on the Game Table's City & Guild page: here, where it stands. */
+function LivelihoodLine({ ed }: { ed: CharEditor }) {
+  const { c, saga } = ed;
+  if (!c || !saga) return null;
+  const trade = c.abilities.some((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
+  if (!c.workshop && !trade && !c.guild) return null;
+  return (
+    <Card title="Livelihood & guild (City & Guild)">
+      <p className="small" style={{ margin: 0 }}>
+        {c.workshop ? `${c.workshop.laborPoints} Labor Points banked; Innovation ${c.workshop.innovation}, Raw Materials ${c.workshop.rawMaterials}. ` : 'Their livelihood is not tracked yet. '}
+        {c.guild ? `${c.guild.rank ? `${c.guild.rank[0].toUpperCase()}${c.guild.rank.slice(1)} of the` : 'Member of the'} ${c.guild.name}. ` : ''}
+        Working a season, assistants, stories and investments, and the guild are on the Game Table&apos;s{' '}
+        <Link to={R.guild(saga.id, { who: c.id })}>City &amp; Guild</Link> page.
+      </p>
+    </Card>
+  );
 }

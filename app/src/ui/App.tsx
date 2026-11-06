@@ -1,11 +1,11 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
-import { NavLink, Route, Routes, useLocation, Link } from 'react-router-dom';
+import { NavLink, Navigate, Route, Routes, useLocation, useParams, useSearchParams, Link } from 'react-router-dom';
 import { useStore } from '../store/store';
-import { usePlayerCharacters, usePlayerCovenants } from '../store/hooks';
 import HomePage from './pages/HomePage';
 import SagaPage from './pages/SagaPage';
 import ImportPage from './pages/ImportPage';
 import { PageErrorBoundary } from './ErrorBoundary';
+import { R, sagaTabForRulesTab } from './routes';
 
 const CharacterWizard = lazy(() => import('./character/CharacterWizard'));
 const CharacterSheet = lazy(() => import('./character/CharacterSheet'));
@@ -14,14 +14,13 @@ const CovenantPage = lazy(() => import('./covenant/CovenantPage'));
 const SpellsPage = lazy(() => import('./pages/SpellsPage'));
 const EnchantPage = lazy(() => import('./pages/EnchantPage'));
 const DicePage = lazy(() => import('./pages/DicePage'));
-const HouseRulesPage = lazy(() => import('./pages/HouseRulesPage'));
 const ReferencePage = lazy(() => import('./pages/ReferencePage'));
 const BookReader = lazy(() => import('./pages/BookReader'));
 const HelpPage = lazy(() => import('./pages/HelpPage'));
 const MechanicsPage = lazy(() => import('./pages/MechanicsPage'));
-const SeasonsPage = lazy(() => import('./pages/SeasonsPage'));
-const DashboardPage = lazy(() => import('./pages/DashboardPage'));
-const MarketPage = lazy(() => import('./pages/MarketPage'));
+const GameTablePage = lazy(() => import('./pages/GameTablePage'));
+const PeoplePage = lazy(() => import('./pages/PeoplePage'));
+const CovenantsPage = lazy(() => import('./pages/CovenantsPage'));
 const TribunalPage = lazy(() => import('./pages/TribunalPage'));
 const QuickBuildPage = lazy(() => import('./pages/QuickBuildPage'));
 const TourPanel = lazy(() => import('./tour/TourPanel'));
@@ -107,13 +106,16 @@ export default function App() {
                 <Route path="/saga/:sagaId/covenant/:covId" element={<CovenantPage />} />
                 <Route path="/saga/:sagaId/spells" element={<SpellsPage />} />
                 <Route path="/saga/:sagaId/enchant" element={<EnchantPage />} />
-                <Route path="/saga/:sagaId/rules" element={<HouseRulesPage />} />
-                <Route path="/saga/:sagaId/seasons" element={<SeasonsPage />} />
-                <Route path="/saga/:sagaId/table" element={<DashboardPage />} />
-                <Route path="/saga/:sagaId/market" element={<MarketPage />} />
+                <Route path="/saga/:sagaId/table" element={<GameTablePage />} />
+                <Route path="/saga/:sagaId/people" element={<PeoplePage />} />
+                <Route path="/saga/:sagaId/covenants" element={<CovenantsPage />} />
+                {/* pages that moved: their old addresses still lead there */}
+                <Route path="/saga/:sagaId/rules" element={<Moved to={(id, q) => R.saga(id, sagaTabForRulesTab(q.get('tab')))} />} />
+                <Route path="/saga/:sagaId/seasons" element={<Moved to={(id) => R.seasons(id)} />} />
+                <Route path="/saga/:sagaId/market" element={<Moved to={(id) => R.market(id)} />} />
                 <Route path="/saga/:sagaId/tribunal" element={<TribunalPage />} />
                 <Route path="/saga/:sagaId/build" element={<QuickBuildPage />} />
-                <Route path="/dice" element={<DicePage />} />
+                <Route path="/dice" element={<DiceMoved />} />
                 <Route path="/reference" element={<ReferencePage />} />
                 <Route path="/reference/book/:bookId" element={<BookReader />} />
                 <Route path="/help" element={<HelpPage />} />
@@ -205,18 +207,31 @@ function Notice() {
   );
 }
 
+/** A page that moved: sends its old address on to where it is now. */
+function Moved({ to }: { to: (sagaId: string, q: URLSearchParams) => string }) {
+  const { sagaId } = useParams();
+  const [q] = useSearchParams();
+  return sagaId ? <Navigate replace to={to(sagaId, q)} /> : <Navigate replace to="/" />;
+}
+
+/** The Dice are a page of the Game Table; with no saga open they stand alone. */
+function DiceMoved() {
+  const active = useStore((s) => s.activeSagaId);
+  const saga = useStore((s) => (active ? s.sagas[active] : undefined));
+  return saga ? <Navigate replace to={R.dice(saga.id)} /> : <DicePage standalone />;
+}
+
 function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const activeSagaId = useStore((s) => s.activeSagaId);
   const saga = useStore((s) => (activeSagaId ? s.sagas[activeSagaId] : undefined));
-  // the Tribunal's living covenants and their people have their own page
-  const chars = usePlayerCharacters(saga?.id);
-  const covs = usePlayerCovenants(saga?.id);
+  const loc = useLocation();
+  // a covenant's page is under Covenants, a character's sheet under People
+  const under = (prefix: string) => (saga ? loc.pathname.startsWith(`/saga/${saga.id}/${prefix}`) : false);
   const openNews = (saga?.tribunalNews ?? []).filter((n) => n.kind === 'approach' && !n.done).length;
   const ui = useStore((s) => s.ui);
   const setTheme = useStore((s) => s.setTheme);
   const setStream = useStore((s) => s.setStreamMode);
   const setHints = useStore((s) => s.setHints);
-  const icon: Record<string, string> = { magus: '✶', companion: '◆', mythic: '✧', grog: '◦' };
   return (
     // on a phone the menu closes on any link, the page already open included
     <aside className={`sidebar no-print ${open ? 'open' : ''}`} onClick={(e) => (e.target as HTMLElement).closest('a') && onClose()}>
@@ -237,60 +252,36 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
         </NavLink>
         {saga && (
           <>
+            {/* the same entries always: the saga's pages, then the tools; what is in them is on their pages */}
             <div className="nav-group">{saga.name}</div>
-            <NavLink to={`/saga/${saga.id}/table`} data-tour="nav-table">
-              ★ Game table
+            <NavLink to={R.saga(saga.id)} end>
+              ▤ Saga Overview
             </NavLink>
-            <NavLink to={`/saga/${saga.id}`} end>
-              ▤ Saga overview
+            <NavLink to={R.table(saga.id)} data-tour="nav-table">
+              ★ Game Table <span className="small muted">· {saga.currentSeason} {saga.currentYear}</span>
             </NavLink>
-            <NavLink to={`/saga/${saga.id}/seasons`}>
-              ⏳ Seasons · {saga.currentSeason} {saga.currentYear}
+            <NavLink to={R.covenants(saga.id)} className={({ isActive }) => (isActive || under('covenant/') ? 'active' : '')} data-tour="nav-covenants">
+              ♜ Covenants
             </NavLink>
-            <NavLink to={`/saga/${saga.id}/market`}>⚖ Market & treasury</NavLink>
-            <NavLink to={`/saga/${saga.id}/tribunal`} data-tour="nav-tribunal">
+            <NavLink to={R.people(saga.id)} className={({ isActive }) => (isActive || under('character/') ? 'active' : '')} data-tour="nav-people">
+              ☺ People
+            </NavLink>
+            <NavLink to={R.tribunal(saga.id)} data-tour="nav-tribunal">
               ⚜ The Tribunal {openNews > 0 && <span className="badge warn" title="Approaches from the Tribunal's covenants waiting for an answer">{openNews}</span>}
             </NavLink>
-            {covs.map((c) => (
-              <NavLink key={c.id} to={`/saga/${saga.id}/covenant/${c.id}`}>
-                ⌂ {c.name || 'Unnamed covenant'}
-              </NavLink>
-            ))}
-            {chars
-              .filter((c) => !c.npc)
-              .map((c) => (
-                <NavLink key={c.id} to={`/saga/${saga.id}/character/${c.id}${c.creation.finalized ? '' : '/create'}`}>
-                  {icon[c.type]} {c.name || '(unnamed)'} {!c.creation.finalized && <span className="badge">draft</span>}
-                </NavLink>
-              ))}
-            {/* the storyguide's characters, folded away from the players' */}
-            {chars.some((c) => c.npc) && (
-              <details className="nav-npcs">
-                <summary>NPCs ({chars.filter((c) => c.npc).length})</summary>
-                {chars
-                  .filter((c) => c.npc)
-                  .map((c) => (
-                    <NavLink key={c.id} to={`/saga/${saga.id}/character/${c.id}${c.creation.finalized ? '' : '/create'}`}>
-                      {icon[c.type]} {c.name || '(unnamed)'}
-                    </NavLink>
-                  ))}
-              </details>
-            )}
             <div className="nav-group">Tools</div>
             <NavLink to={`/saga/${saga.id}/build`} data-tour="nav-build">
-              ✦ Quick build
+              ✦ Quick Build
             </NavLink>
-            <NavLink to={`/saga/${saga.id}/spells`}>✎ Spells & design</NavLink>
+            <NavLink to={`/saga/${saga.id}/spells`}>✎ Spells & Design</NavLink>
             <NavLink to={`/saga/${saga.id}/enchant`}>⚒ Enchantments</NavLink>
-            <NavLink to={`/saga/${saga.id}/rules`}>☰ House rules & books</NavLink>
           </>
         )}
         <div className="nav-group">Reference</div>
-        <NavLink to="/mechanics">⚙ Game mechanics</NavLink>
-        <NavLink to="/reference" end data-tour="nav-reference">❦ Rules reference</NavLink>
+        <NavLink to="/help" data-tour="nav-guide">? Guide</NavLink>
+        <NavLink to="/mechanics">⚙ Game Mechanics</NavLink>
+        <NavLink to="/reference" end data-tour="nav-reference">❦ Rules Reference</NavLink>
         <NavLink to="/reference/book/DE">📖 Definitive Edition</NavLink>
-        <NavLink to="/dice">⚄ Dice</NavLink>
-        <NavLink to="/help">? Guide</NavLink>
       </nav>
       <div className="nav-group">Display</div>
       <div className="stack small" data-tour="display">

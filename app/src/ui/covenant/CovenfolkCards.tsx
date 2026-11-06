@@ -3,6 +3,9 @@
 // covenfolk are organized and who counts among its inhabitants, the Guild Hook, and craft magic
 // cast in place of craftsmen (Covenants ch.2, ch.4, ch.5; DE; Grogs; City & Guild).
 
+import { craftsmanSaving } from '../../engine/covenantRules';
+import { memberCraft } from '../../engine/covenant';
+import { ResultLog } from '../play';
 import { useMemo, useState } from 'react';
 import { pct, stressChance } from '../../engine/dice';
 import { ART_NAMES, type Form, type Technique } from '../../data';
@@ -223,6 +226,37 @@ export function OrganizationCard({ cov, update, dc }: Omit<CovTabProps, 'data'>)
                 {m.name || 'Unnamed'}
               </label>
             ))}
+          </div>
+        </details>
+      )}
+      {dc.members.some((m) => memberCraft(m)) && (
+        <details>
+          <summary className="small">Members who make the covenant&apos;s wares ({dc.members.filter((m) => (cov.finances.craftWork ?? []).includes(m.id)).length})</summary>
+          <p className="small muted" style={{ margin: '4px 0' }}>
+            <i>Covenants</i> counts craftsmen among the covenfolk, so a companion or grog who spends their working seasons making the covenant&apos;s wares is the troupe&apos;s call. Ticked,
+            they save as a craftsman does: 1 + half their Craft (the whole of it for a rare craft), up to the craft&apos;s limit. Their working seasons then go to the covenant, not to
+            their own workshop. Pay: covenfolk are not paid as such; the Wages line, a penny a week for each point of inhabitants (a companion 3 points, a craftsman 2), is their pocket
+            money, and the covenant&apos;s food and roof the rest. Anything more is an allowance from the covenant (Finances, Each year) or their own business.
+          </p>
+          <div className="row small">
+            {dc.members
+              .filter((m) => memberCraft(m))
+              .map((m) => {
+                const best = memberCraft(m)!;
+                const on = (cov.finances.craftWork ?? []).includes(m.id);
+                return (
+                  <label key={m.id} className="inline">
+                    <input
+                      type="checkbox"
+                      checked={on}
+                      disabled={own.has(m.id)}
+                      onChange={(e) => update((x) => void (x.finances.craftWork = e.target.checked ? [...(x.finances.craftWork ?? []), m.id] : (x.finances.craftWork ?? []).filter((u) => u !== m.id)))}
+                    />{' '}
+                    {m.name || 'Unnamed'}: {best.name} {best.score} (saves up to {craftsmanSaving(best.score, best.craft.rare)} £)
+                    {own.has(m.id) ? ' (pays their own way)' : ''}
+                  </label>
+                );
+              })}
           </div>
         </details>
       )}
@@ -653,11 +687,7 @@ export function TurbCard({ cov, update, dc, data }: CovTabProps) {
           </div>
         </>
       )}
-      {msg.map((l, i) => (
-        <div key={i} className="small" style={{ marginTop: 4 }}>
-          {l}
-        </div>
-      ))}
+      <ResultLog lines={msg} />
     </Card>
   );
 }

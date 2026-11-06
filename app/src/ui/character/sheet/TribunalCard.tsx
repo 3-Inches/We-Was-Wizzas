@@ -1,6 +1,7 @@
 // The customs of the saga's Tribunal that the troupe chose to use, as they touch one character: the
 // Rhine's ranks, gilds and forest pacts, Theban citizenship, and a Transylvanian privilege.
 
+import { RollAtTable, useAtTable } from '../../play';
 import { useState } from 'react';
 import { pct, stressChance } from '../../../engine/dice';
 import { addVirtue, ensureAbility } from '../../../engine/character/factory';
@@ -106,6 +107,7 @@ function ForestSection({ ed }: { ed: CharEditor }) {
   const [preset, setPreset] = useState('');
   const [draft, setDraft] = useState<{ spirit: string; size: VFSize; sacrifice: string; quest: string; fruit: string }>({ spirit: '', size: 'Minor', sacrifice: '', quest: '', fruit: '' });
   const [log, setLog] = useState<string[]>([]);
+  const atTable = useAtTable();
   if (!c || !d) return null;
   const fl = d.abilities.find((a) => a.abilityId === 'forest-lore');
   const score = fl?.total ?? 0;
@@ -151,11 +153,12 @@ function ForestSection({ ed }: { ed: CharEditor }) {
         <label className="inline small">
           <input type="checkbox" checked={foreign} onChange={(e) => setForeign(e.target.checked)} /> a foreign forest
         </label>
-        <button className="small" disabled={score < (foreign ? 4 : 1)} title={score < 1 ? 'Needs Forest Lore 1 (4 in a foreign forest)' : undefined}
+        {atTable && <button className="small" disabled={score < (foreign ? 4 : 1)} title={score < 1 ? 'Needs Forest Lore 1 (4 in a foreign forest)' : undefined}
           onClick={() => setLog((l) => [communionRoll(d.characteristics.Int.value, score, foreign).text, ...l].slice(0, 5))}>
           Seek communion: Int + Forest Lore {d.characteristics.Int.value + score} + stress die vs {foreign ? 12 : 9} ({pct(stressChance(d.characteristics.Int.value + score, foreign ? 12 : 9, 1).chance)})
-        </button>
+        </button>}
       </div>
+      <RollAtTable sagaId={c.sagaId} who={c.id} where="society" what={`Seeking communion with a forest’s spirit (Int + Forest Lore ${d.characteristics.Int.value + score} against ${foreign ? 12 : 9}) is rolled`} />
       {log.map((t, i) => (
         <div key={i} className="small">{t}</div>
       ))}

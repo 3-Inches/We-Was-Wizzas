@@ -14,6 +14,7 @@ import {
   soldierTotals, suggestedGuildRank, yearlyEventPounds, newSoldierGroup, soldierKindOf, type SoldierTotals,
 } from './covenfolk';
 import { abilityScoreFromXp } from './xp';
+import { CRAFT_TRAITS, TRAIT_NAMES, characterWorkMod, craftTraitsLine, rollCraftTraits, workingCraft } from './craftTraits';
 import { boonLoyalty, covenantReputations, hookBoonPoints, inhumanUpkeep, isEdifice } from './covenantBoons';
 import { uid as newUid } from '../util/id';
 
@@ -641,8 +642,19 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
     }
     const e = byCraft.get(craft.id) ?? { craft, people: 0, potential: 0 };
     e.people += countOf(s);
-    e.potential += countOf(s) * craftsmanSaving(s.score, s.rare ?? craft.rare);
+    // what they work at: their Craft with what their Virtues and Flaws always add
+    e.potential += countOf(s) * craftsmanSaving(workingCraft(s), s.rare ?? craft.rare);
     byCraft.set(craft.id, e);
+  }
+  // members who make the covenant's wares in their working seasons count as its craftsmen, by their best Craft
+  const work = new Set(cov.finances.craftWork ?? []);
+  for (const m of strike ? [] : counted.filter((x) => work.has(x.id))) {
+    const best = memberCraft(m);
+    if (!best) continue;
+    const e = byCraft.get(best.craft.id) ?? { craft: best.craft, people: 0, potential: 0 };
+    e.people += 1;
+    e.potential += craftsmanSaving(best.score, best.craft.rare);
+    byCraft.set(best.craft.id, e);
   }
   // older files: craft savings entered without a craftsman
   for (const cs of cov.finances.craftSavings ?? []) {
@@ -692,6 +704,16 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
   };
 }
 
+/** A member's best Craft that saves the covenant money, and its score (from experience: Virtues aside). */
+export function memberCraft(m: Character): { craft: CraftDef; score: number; name: string } | undefined {
+  // the Craft they work at: the score, with what their Virtues and Flaws always add (Puissant +2, Palsied Hands −2)
+  return m.abilities
+    .filter((a) => a.abilityId === 'craft-type')
+    .map((a) => ({ craft: findCraft(a.param), score: Math.max(0, abilityScoreFromXp(Object.values(a.xp).reduce<number>((t, v) => t + (v ?? 0), 0)) + characterWorkMod(m, a.param)), name: a.param ?? 'Craft' }))
+    .filter((x): x is { craft: CraftDef; score: number; name: string } => !!x.craft && x.craft.categories.length > 0)
+    .sort((a, b) => b.score - a.score)[0];
+}
+
 function findCraftOrCustom(name: string, category: CostCategory): CraftDef {
   const known = findCraft(name);
   if (known && known.categories.includes(category)) return known;
@@ -704,7 +726,7 @@ function findCraftOrCustom(name: string, category: CostCategory): CraftDef {
  * Works on a light copy (the change may add specialists or alter their counts), so the optimizers can
  * try many changes quickly.
  */
-function expenditureWith(cov: Covenant, members: Character[], labs: DerivedLab[], change: (c: Covenant) => void): number {
+export function expenditureWith(cov: Covenant, members: Character[], labs: DerivedLab[], change: (c: Covenant) => void): number {
   const c: Covenant = { ...cov, covenfolk: { ...cov.covenfolk }, specialists: cov.specialists.map((s) => ({ ...s })), finances: { ...cov.finances } };
   change(c);
   c.covenfolk.servants = 0;
@@ -821,6 +843,40 @@ export function addCostSavingCraftsmen(x: Covenant, members: Character[], labs: 
   const counts = new Map<string, number>();
   for (const s of added()) counts.set(craftOf(s)?.name ?? s.name, (counts.get(craftOf(s)?.name ?? s.name) ?? 0) + countOf(s) - (before.get(s.uid) ?? 0));
   return [...counts].map(([craft, k]) => `${k} ${craft.toLowerCase()}${k > 1 ? 's' : ''}`);
+}
+
+/**
+ * The craftsmen just hired, met as people: each new one may have a Virtue or Flaw that matters at
+ * the work (rollCraftTraits), some lucky and some not. One who has is their own named entry, with the
+ * score they work at setting their savings and their cost; the rest stay in their craft's group.
+ * Returns a line for each one met who stands out.
+ */
+export function meetCraftsmen(cov: Covenant, before: Map<string, number>, rng: () => number, name: () => string): string[] {
+  const lines: string[] = [];
+  const emptied = new Set<string>();
+  for (const s of [...cov.specialists]) {
+    if (s.role !== 'craftsman' || s.hired) continue;
+    const fresh = countOf(s) - (before.get(s.uid) ?? 0);
+    for (let i = 0; i < fresh; i++) {
+      const traits = rollCraftTraits(rng, craftOf(s)?.name);
+      if (!traits.length) continue;
+      let who = s;
+      if (countOf(s) > 1 || before.has(s.uid)) {
+        // one of a group: their own entry from now on
+        s.count = countOf(s) - 1;
+        if (!s.count) emptied.add(s.uid);
+        who = { ...structuredClone(s), uid: newUid(), count: 1, boughtFor: undefined, workshop: undefined, history: undefined };
+        cov.specialists.push(who);
+      }
+      who.name = name();
+      who.traits = traits;
+      const craft = craftOf(who);
+      const line = craftTraitsLine(traits.map((id) => CRAFT_TRAITS.find((t) => t.id === id)!).map((t) => ({ ...t, name: TRAIT_NAMES[t.id] ?? t.id })), who.score);
+      lines.push(`${who.name}, ${craft ? `a ${craft.name.toLowerCase()}` : 'a craftsman'} at Craft ${who.score}: ${line}`);
+    }
+  }
+  cov.specialists = cov.specialists.filter((x) => !emptied.has(x.uid));
+  return lines;
 }
 
 /** One more craftsman of a craft: another in an entry the covenant has at that score, or a new entry. */

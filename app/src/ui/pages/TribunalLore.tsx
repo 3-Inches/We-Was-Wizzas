@@ -150,7 +150,7 @@ function Forest({ saga, data, book }: { saga: Saga; data: GameData; book: string
             </div>
           ))}
           <p className="small muted" style={{ marginBottom: 0 }}>
-            A character may seek communion and a pact with a forest’s spirit by the Paths through the Forest (an optional rule on the House rules page; then on a character’s Overview).
+            A character may seek communion and a pact with a forest’s spirit by the Paths through the Forest (an optional rule, on the Saga Overview; then on a character’s Overview).
           </p>
         </Card>
       </div>

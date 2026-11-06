@@ -1,3 +1,5 @@
+import { RollAtTable } from '../../play';
+import { PossessionsCard } from './PossessionsCard';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
@@ -13,7 +15,6 @@ import { BookBadge, Card, Field, HowItWorks, Stepper, Total, signed } from '../.
 import ItemsEditor, { characterTalismanCapacity, newEffect } from '../../items/ItemEditor';
 import type { CharEditor } from '../useChar';
 import { labContextOf } from '../../../engine/lab';
-import { LabProjects } from './LabProjects';
 import { OriginalResearch } from './OriginalResearch';
 import { describeStress, stressDie } from '../../../engine/dice';
 import { useStore } from '../../../store/store';
@@ -91,6 +92,8 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
 
       {!magus && <RedcapCard ed={ed} />}
 
+      <PossessionsCard ed={ed} />
+
       <ItemsEditor
         items={c.items}
         onChange={(fn) => update((x) => fn(x.items))}
@@ -107,7 +110,14 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
         note={magus ? `Talisman capacity: up to ${characterTalismanCapacity(d)} pawns of Vim vis (highest Technique + highest Form). Instilling effects into your own talisman gives +5 to the Lab Total.` : undefined}
       />
 
-      {magus && <LabProjects ed={ed} />}
+      {magus && (
+        <Card title="Lab projects" tour="lab-projects">
+          <p className="small" style={{ margin: 0 }}>
+            {(c.projects ?? []).length ? `Under way: ${(c.projects ?? []).map((p) => p.name || p.kind).join(', ')}.` : 'No lab project under way.'}
+          </p>
+          <RollAtTable sagaId={c.sagaId} who={c.id} where="seasons" what="A lab project (a spell, an item, a Longevity Ritual, an improvement to the lab) is chosen and worked, a season at a time," />
+        </Card>
+      )}
       {magus && <OriginalResearch ed={ed} magicTheory={mt} />}
 
       <LongevityCard ed={ed} />
@@ -480,7 +490,7 @@ function FamiliarCard({ ed }: { ed: CharEditor }) {
               )}
             </div>
           </details>
-          {bound && <SilverRescue silver={fam.silver} name={fam.name || 'The familiar'} />}
+          {bound && fam.silver > 0 && <RollAtTable sagaId={c.sagaId} who={c.id} where="magic" what={`${fam.name || 'The familiar'} trying to free your mind (the silver cord) is rolled`} />}
           {bound && <BondPowers ed={ed} fam={fam} plan={plan} forbidden={forbidden} />}
           <Field label="Notes">
             <textarea rows={3} value={fam.notes ?? ''} onChange={(e) => setFam((f) => void (f.notes = e.target.value))} />
@@ -492,7 +502,7 @@ function FamiliarCard({ ed }: { ed: CharEditor }) {
 }
 
 /** When the magus's mind is overcome, the familiar may free it: 9+ on a stress die plus the silver cord, once a day (DE, The Three Cords). */
-function SilverRescue({ silver, name }: { silver: number; name: string }) {
+export function SilverRescue({ silver, name }: { silver: number; name: string }) {
   const [out, setOut] = useState('');
   const roll = () => {
     const r = stressDie(1);

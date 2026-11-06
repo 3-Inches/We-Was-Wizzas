@@ -4,6 +4,7 @@
 // Steps explain, and the player does the clicking; a step can also offer to do the work (build a
 // whole draft, apply a package), or to step into another tutorial and come back.
 
+import { R, type DiceSub, type SagaTab, type TableTab } from '../routes';
 import type { CharType } from '../../data';
 import { OPTIONAL_RULES } from '../../engine/optional';
 import { useStore } from '../../store/store';
@@ -72,12 +73,21 @@ export interface PracticeSpec {
   label: string;
 }
 
-const saga = (c: TourCtx) => (c.sagaId ? `/saga/${c.sagaId}` : undefined);
+// a page with tabs is named with its tab, the first one too, so a step goes there from any other tab
+const saga = (c: TourCtx) => (c.sagaId ? `/saga/${c.sagaId}?tab=saga` : undefined);
 const sagaPage = (page: string) => (c: TourCtx) => (c.sagaId ? `/saga/${c.sagaId}/${page}` : undefined);
 const wizard = (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}/create` : undefined);
 const sheet = (tab: string) => (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}?tab=${tab}` : undefined);
 const covenant = (tab: string) => (c: TourCtx) => (c.sagaId && c.covId ? `/saga/${c.sagaId}/covenant/${c.covId}?tab=${tab}` : undefined);
 const page = (path: string) => () => path;
+/** A tab of the Saga Overview. */
+const sagaTab = (tab: SagaTab) => (c: TourCtx) => (c.sagaId ? `${R.saga(c.sagaId)}?tab=${tab}` : undefined);
+/** A page of the Game Table. */
+const table = (tab: TableTab) => (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=${tab}` : undefined);
+/** The Game Table's Seasons page, planning the tour's character's season in full. */
+const plan = (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=seasons${c.charId ? `&who=${c.charId}` : ''}` : undefined);
+/** A part of the Game Table's Dice page, for the tour's character. */
+const dice = (sub: DiceSub) => (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=dice${sub !== 'roll' ? `&sub=${sub}` : ''}${c.charId ? `&who=${c.charId}` : ''}` : undefined);
 const guided = (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}/guided` : undefined);
 const guidedTab = (tab: string) => (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}/guided?tab=${tab}` : undefined);
 
@@ -114,7 +124,7 @@ const finishing: TourStep[] = [
   },
   {
     title: 'The character sheet',
-    body: 'The sheet is for play, and its tabs follow play: **Combat & Health** for fights, **Seasons & Aging** between stories. Click any underlined total to see how it is worked out. **Stat block** gives a printable summary.',
+    body: 'The sheet is built, then keeps the score: wounds and Fatigue on **Combat & Health**, the season log and aging on **Seasons & Aging**. The rolls and the seasons are played at the **Game Table** (Dice, Seasons, Health & recovery), and land back here. Click any underlined total to see how it is worked out. **Stat block** gives a printable summary.',
     at: sheet('overview'), needs: 'character', target: ['tab-combat', 'tab-overview'],
   },
 ];
@@ -156,19 +166,19 @@ export const TOURS: Tour[] = [
         at: page('/reference'), target: 'nav-reference',
       },
       {
-        title: 'The Game table',
-        body: 'Inside a saga, **Game table** is first in the menu: what needs attention, what everyone does this season, the covenants at a glance, ending the season, and a list of what comes up in play with a link to where it is done. Its own tutorial is under In play.',
-        at: sagaPage('table'), needs: 'saga', target: 'nav-table',
+        title: 'The Game Table',
+        body: 'Inside a saga, the **Game Table** comes under the Saga Overview in the menu: what needs attention, what everyone does this season and ending it, every roll, the market and City & Guild, and a list of what comes up in play with a link to where it is done. Its own tutorial is under In play.',
+        at: table('overview'), needs: 'saga', target: 'nav-table',
       },
       {
         title: 'The Tribunal',
         body: '**The Tribunal**, also in the saga’s menu, builds the other covenants of the saga’s Tribunal from its book (the Rhine’s, for now) as living covenants whose magi carry on by themselves as the seasons pass. Its own tutorial is under Storyguide.',
-        at: sagaPage('tribunal'), needs: 'saga', target: 'nav-tribunal',
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: 'nav-tribunal',
       },
       {
         title: 'Dice',
-        body: 'Simple and stress dice with botch dice, rolled and explained. The character sheets roll their own totals too.',
-        at: page('/dice'),
+        body: 'The Game Table’s Dice page: simple and stress dice with botch dice, rolled and explained, for anyone at the table, with their totals from their sheets.',
+        at: (c) => (c.sagaId ? R.dice(c.sagaId) : '/dice'), target: 'tab-dice',
       },
       {
         title: 'Display',
@@ -191,24 +201,24 @@ export const TOURS: Tour[] = [
     steps: [
       {
         title: 'The saga',
-        body: 'A saga holds everything else. Its **Tribunal** brings that Tribunal’s customs and optional rules; the **year and season** set when play begins. After that, time moves on the Seasons page.',
+        body: 'A saga holds everything else. Its **Tribunal** brings that Tribunal’s customs and optional rules; the **starting year and season** say when play begins. After that the current season moves on only on the Game Table’s Seasons page.',
         at: saga, needs: 'saga', target: 'saga-card',
       },
       {
         title: 'Books',
         body: 'Choose the books the troupe uses. Only their Virtues, spells and rules appear in the pickers, so a player cannot take something from a book the saga does not use.',
-        at: sagaPage('rules?tab=books'), needs: 'saga', target: 'tab-books',
+        at: sagaTab('books'), needs: 'saga', target: 'tab-books',
       },
       {
         title: 'Optional rules',
         body: 'Supplement systems the troupe can turn on or off: illness, lab routines, aura variation, agents and the Society tools, House Mysteries, guilds, and the customs of the saga’s Tribunal. Each says what it adds, its book, and where it shows; turn one off and its cards leave the sheets.',
-        at: sagaPage('rules?tab=optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
+        at: sagaTab('optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
         detour: { tour: 'optional', label: 'Show me where each one appears' },
       },
       {
         title: 'Creation rules & rulings',
         body: 'The numbers characters are built by (Characteristic points, Flaw limits, experience) and the troupe’s rulings. Change one and every character in the saga is checked against it.',
-        at: sagaPage('rules?tab=rules'), needs: 'saga', target: 'tab-rules',
+        at: sagaTab('rules'), needs: 'saga', target: 'tab-rules',
       },
       {
         title: 'Keep a copy',
@@ -232,7 +242,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Found it',
         body: 'Press **Found a covenant**. The saga’s characters join it as members; the tutorial follows the new covenant.',
-        at: saga, needs: 'saga', target: 'found-covenant', advance: {},
+        at: sagaPage('covenants'), needs: 'saga', target: 'found-covenant', advance: {},
       },
       {
         title: 'Its season and Build Points',
@@ -273,27 +283,27 @@ export const TOURS: Tour[] = [
       {
         title: 'How the covenfolk live',
         body: 'How they are organized (a noble household, nations, professional guilds…), whether the magi live poorer for fewer points, and who pays their own upkeep. With the **Guild** Hook, its demands and a strike are here, and every craftsman holds a guild rank.',
-        at: covenant('folk'), needs: 'covenant', target: 'covenfolk-organization',
+        at: covenant('folk&sub=people'), needs: 'covenant', target: 'covenfolk-organization',
       },
       {
         title: 'Soldiers',
         body: 'Soldiers from the Residents Boons and Free Choices: how many, their pay (a pound a year for each penny a day), their horses and kit. Those who live at the covenant count among its inhabitants.',
-        at: covenant('folk'), needs: 'covenant', target: 'soldiers',
+        at: covenant('folk&sub=people'), needs: 'covenant', target: 'soldiers',
       },
       {
         title: 'Each year',
         body: 'What the covenant spends every year besides upkeep: Redcap visits, feast days (four or more earn a Loyalty point a year), guests, hired hands. Weapons and armor points can be worked out from the turb.',
-        at: covenant('folk'), needs: 'covenant', target: 'yearly',
+        at: covenant('folk&sub=money'), needs: 'covenant', target: 'yearly',
       },
       {
         title: 'Craft magic',
         body: 'Rego (or Creo) magic in place of craftsmen: design a spell from the craft guidelines or take one a magus knows, then see the Finesse roll, its chance, how many rolls a year, and what it saves.',
-        at: covenant('folk'), needs: 'covenant', target: 'craft-magic',
+        at: covenant('folk&sub=money'), needs: 'covenant', target: 'craft-magic',
       },
       {
         title: 'The turb’s day',
         body: 'Who stands which watch (day or night patrol, four watches, single or double duty) and who is on duty, off duty or asleep at any hour; the rolls to stay awake on sentry and against double duty’s Fatigue; drilling a group faster; and rewards and punishments marked on a grog’s sheet, with the Loyalty Points one a magus orders costs.',
-        at: covenant('folk'), needs: 'covenant', target: 'turb',
+        at: covenant('folk&sub=people'), needs: 'covenant', target: 'turb',
       },
       {
         title: 'Members',
@@ -314,16 +324,16 @@ export const TOURS: Tour[] = [
       {
         title: 'The optional rules',
         body: `Rules from the supplements that add detail, by area: health, the laboratory, the covenant, society and influence, Houses and Mysteries, and the saga’s Tribunal. Each row names its book and where it shows, with the book’s text a click away. Most start on (unless the saga does not use their book); ${list(startOff)} start off. A tick changes the saga for everyone.`,
-        at: sagaPage('rules?tab=optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
+        at: sagaTab('optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
       },
       {
         title: 'The Tribunal’s customs',
-        body: `A saga set in ${list(tribunals.map((t) => (t === 'Transylvan' ? 'Transylvania' : t === 'Theban' ? 'Thebes' : t === 'Rhine' ? 'the Rhine' : t)))} is offered that Tribunal’s own rules here on the saga page, off until ticked. They apply only while the saga is set there.`,
-        at: saga, needs: 'saga', target: ['saga-options', 'saga-card'],
+        body: `A saga set in ${list(tribunals.map((t) => (t === 'Transylvan' ? 'Transylvania' : t === 'Theban' ? 'Thebes' : t === 'Rhine' ? 'the Rhine' : t)))} is offered that Tribunal’s own rules on the Saga Overview’s Optional rules tab, first in the list and off until ticked. They apply only while the saga is set there.`,
+        at: sagaTab('optional'), needs: 'saga', target: ['optional-tribunal', 'optional-rules'],
       },
       {
         title: 'Health',
-        body: 'Each rule shows where it applies. **Disease and illness** is the Illness card on Combat & Health: catching a disease, its penalty, a physician’s Prognosis and the recovery rolls.',
+        body: 'Each rule shows where it applies. **Disease and illness**: the Illness card on Combat & Health keeps what a character suffers and its penalty; catching a disease and its recovery rolls, with a physician, are made at the Game Table under **Health & recovery**.',
         at: sheet('combat'), needs: 'character', target: ['illness', 'tab-combat'],
       },
       {
@@ -333,13 +343,13 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Society and the Tribunal',
-        body: 'The Overview holds **Agents**, the **Society** card (a debate, a petition to the Church, a quick trial, an etiquette performance) and the Tribunal’s customs (ranks and gilds, tokens and shards, privileges), each while its rule is on.',
-        at: sheet('overview'), needs: 'character', target: ['society', 'agents', 'tribunal-customs', 'tab-overview'],
+        body: 'Played at the Game Table’s **Dice › Society & the Tribunal**, for whoever you pick: **Agents**, the **Society** card (a debate, a petition to the Church, a quick trial, an etiquette performance) and the Tribunal’s customs (ranks and gilds, tokens and shards, privileges), each while its rule is on. The sheet’s Overview keeps the agents and the ranks.',
+        at: dice('society'), needs: 'character', target: ['society', 'agents', 'tribunal-customs', 'tab-society'],
       },
       {
         title: 'Seasons, Mysteries and guilds',
-        body: '**Mystery Initiation** is planned on Seasons & Aging, for Bjornaer, Criamon, Merinita and Verditius magi and anyone with a cult Lore. A craftsman in a guild has a **Guild** card beside the workshop. **Extended book Quality** makes the Writing and copying card count skilled artisans and resonant materials by default.',
-        at: sheet('advancement'), needs: 'character', target: ['mysteries', 'guild', 'writing', 'plan-season'],
+        body: '**Mystery Initiation** is planned with the rest of a character’s season, on the Game Table’s Seasons page, for Bjornaer, Criamon, Merinita and Verditius magi and anyone with a cult Lore. A craftsman in a guild has a **Guild** card beside the workshop. **Extended book Quality** makes the Writing and copying card count skilled artisans and resonant materials by default.',
+        at: plan, needs: 'character', target: ['mysteries', 'writing', 'plan-season', 'table-plan'],
       },
       {
         title: 'The covenant',
@@ -349,7 +359,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Turning one off',
         body: 'A rule turned off takes its cards away, unless a character already has something recorded there (an illness, an agent, an Initiation), which stays in sight. Nothing is deleted: turn the rule back on and it is all there. In **Game mechanics**, each topic an optional rule governs says so, and whether this saga uses it.',
-        at: sagaPage('rules?tab=optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
+        at: sagaTab('optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
       },
     ],
   },
@@ -365,7 +375,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Create the magus',
         body: 'Under **Create a character**, press **Magus**. The wizard opens, and the tutorial follows the new character. (For an NPC, **Quick build** makes one whole.)',
-        at: saga, needs: 'saga', target: 'create-magus', advance: {},
+        at: sagaPage('people'), needs: 'saga', target: 'create-magus', advance: {},
       },
       concept('Name, player, age and the idea of the character, and one to three themes (Warrior, Scholar, Healer…). Not sure what to play? The **guided build** asks what you want from the character and suggests a House, Virtues and Abilities.'),
       {
@@ -401,8 +411,13 @@ export const TOURS: Tour[] = [
       ...finishing,
       {
         title: 'Magic in play',
-        body: 'The **Magic** tab has Casting Scores, Lab Totals, Penetration and Magic Resistance. Set the aura (its realm, a regio, the hour for a Dominion or an Infernal aura; one aligned with an Art counts double for it) and the circumstances at the top, and every total follows. **Lab, Items & Familiar** runs lab projects season by season.',
+        body: 'The **Magic** tab has Casting Scores, Lab Totals, Penetration and Magic Resistance. Set the aura (its realm, a regio, the hour for a Dominion or an Infernal aura; one aligned with an Art counts double for it) and the circumstances at the top, and every total follows. Spells are cast, and certamen fought, at the Game Table’s **Dice › Spellcasting**, where the Fatigue, Warping and vis go back on the sheet; lab projects are worked a season at a time on its **Seasons** page.',
         at: sheet('magic'), needs: 'character', target: ['magic-circumstances', 'tab-magic'],
+      },
+      {
+        title: 'Casting at the table',
+        body: 'On **Dice › Spellcasting**, pick the caster: their spells with **Calm** and **Stress** buttons, spontaneous magic, certamen against anyone of the saga or the Tribunal, and Wizard’s Twilight after a botch. Each result shows under the buttons that made it.',
+        at: dice('magic'), needs: 'character', target: ['magic-circumstances', 'tab-magic'],
       },
     ],
   },
@@ -418,7 +433,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Create the companion',
         body: 'Under **Create a character**, press **Companion**. The tutorial follows the new character.',
-        at: saga, needs: 'saga', target: 'create-companion', advance: {},
+        at: sagaPage('people'), needs: 'saga', target: 'create-companion', advance: {},
       },
       concept('Name, player, age and the idea of the character, and one to three themes. The **guided build** can suggest Virtues and Abilities from what you want.'),
       {
@@ -451,7 +466,7 @@ export const TOURS: Tour[] = [
       {
         title: 'Create the grog',
         body: 'Under **Create a character**, press **Grog**. The tutorial follows the new character.',
-        at: saga, needs: 'saga', target: 'create-grog', advance: {},
+        at: sagaPage('people'), needs: 'saga', target: 'create-grog', advance: {},
       },
       concept('A name and a job is enough: guard, cook, groom, scout. Pick a theme such as Warrior or Craftsman.', ['concept-themes', 'step-basics']),
       {
@@ -550,8 +565,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Invent it in play',
-        body: 'A finished magus invents a spell in the laboratory: plan the season on the **Seasons & Aging** tab, or run it from **Lab projects**.',
-        at: sheet('advancement'), needs: 'character', target: 'plan-season',
+        body: 'A finished magus invents a spell in the laboratory, a season at a time: on the Game Table’s **Seasons** page, plan their season in full, or start it under **Lab projects** there.',
+        at: plan, needs: 'character', target: ['lab-projects', 'plan-season', 'table-plan'],
       },
     ],
   },
@@ -620,12 +635,12 @@ export const TOURS: Tour[] = [
       {
         title: 'Improving it in play',
         body: 'Once play begins, the magus improves their own lab as a **Lab project**: raise its Refinement (Magic Theory at least the new Refinement + 3, with a chance of Highly Organized or a Hidden Defect), install a Virtue (a season for a Minor one, two for a Major one), or put a Flaw right. A rise in Upkeep is paid from the treasury. With the optional lab routines, odd hours and overtime add to a season’s Lab Total, at a price.',
-        at: sheet('lab'), needs: 'character', target: ['lab-projects', 'tab-lab'],
+        at: plan, needs: 'character', target: ['lab-projects', 'table-plan'],
       },
       {
         title: 'Enchantments',
         body: 'The Enchantments page designs enchanted devices and talismans, Longevity Rituals and vis extraction, and copies books and lab texts, all from the magus’s Lab Totals.',
-        at: sagaPage('enchant'), needs: 'saga', target: 'tab-items',
+        at: sagaPage('enchant?tab=items'), needs: 'saga', target: 'tab-items',
       },
     ],
   },
@@ -648,7 +663,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Keep the ones you like',
-        body: 'Each result shows its Virtues and Flaws, best Abilities and traits, and **How it was built**. **Keep** adds it to the saga (NPCs are listed apart in the sidebar), **↻** rolls that one again, and Undo takes back anything kept.',
+        body: 'Each result shows its Virtues and Flaws, best Abilities and traits, and **How it was built**. **Keep** adds it to the saga (NPCs are listed apart on the People page), **↻** rolls that one again, and Undo takes back anything kept.',
         at: sagaPage('build?tab=characters'), needs: 'saga', target: 'quick-characters',
       },
       {
@@ -670,55 +685,60 @@ export const TOURS: Tour[] = [
   },
   {
     id: 'table',
-    title: 'Run a session from the Game table',
+    title: 'Run a session from the Game Table',
     blurb: 'One page for the table: what needs attention, what everyone does this season, the covenants at a glance, ending the season, and where to go when something comes up.',
     group: 'In play',
     inSaga: true,
     steps: [
       {
-        title: 'The Game table',
-        body: 'First in the saga’s menu. Come back here whenever you are unsure what to do next: everything on it either changes in place or links straight to the page that does it.',
-        at: sagaPage('table'), needs: 'saga', target: 'nav-table',
+        title: 'The Game Table',
+        body: 'In the saga’s menu, under the Saga Overview. The Game Table is where the saga is played, in five pages along its top: the **Overview** (what needs attention, the covenants, after a story), **Seasons** (what everyone does, and moving time on), **Dice** (every roll at the table), the **Market & Treasury**, and **City & Guild**. Come back here whenever you are unsure what to do next.',
+        at: table('overview'), needs: 'saga', target: 'nav-table',
       },
       {
         title: 'Needs attention',
         body: 'Money running short by the year’s end, low Loyalty, a guild strike, covenant problems, wounds and Fatigue to recover, illness, a workshop short of Labor Points, rules problems on a sheet, and anyone idle this season. Each line links to where it is fixed.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-attention',
+        at: table('overview'), needs: 'saga', target: 'table-attention',
       },
       {
         title: 'At the table',
-        body: 'Quick dice, and **When something comes up in play**: a fight, a spell, a purchase, vis found, a grog punished, a book read, a craftsman’s story, an item at risk, a rule in question. Each opens the page where it is done.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-quick',
+        body: 'Quick dice, links to the Dice page’s parts (Combat & perils, Spellcasting, Society & the Tribunal), and **When something comes up in play**: a fight, a spell, a purchase, vis found, a grog punished, a book read, a craftsman’s story, an item at risk, a rule in question. Each opens the page where it is done.',
+        at: table('overview'), needs: 'saga', target: 'table-quick',
       },
       {
-        title: 'This season',
-        body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here: teaching covenant-mates, being taught by one, helping in a lab, and the extra seasons of one who needs no sleep. Plan, Health, Cast and Lab open their sheet at that tab.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-season',
-      },
-      {
-        title: 'End the season',
-        body: 'Press **End** (the button names the season) to move the whole saga on, with Undo. The report shows aging crises, Warping and reminders first; the rest is folded. The Seasons page has the options and several years at once.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-advance', advance: {},
+        title: 'Health & recovery',
+        body: 'Everyone wounded, tired or ill, the soonest recovery first, with their penalty and how near the edge they are (Fatigue levels from Unconscious, an Incapacitating Wound). Choose who tends them (a chirurgeon tends as many as their Chirurgy, five times that if they give the season to it), add magical aid, and **Pass** to the next recovery or a set time: every Recovery roll is made, and the wounds and Fatigue change on the sheets.',
+        at: table('overview'), needs: 'saga', target: ['table-recovery', 'table-attention'],
       },
       {
         title: 'The covenants',
         body: 'Treasury, the year’s balance, Loyalty, vis and people for each covenant, with the year’s accounts folded underneath and links to each of its tabs.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-covenant',
+        at: table('overview'), needs: 'saga', target: 'table-covenant',
       },
       {
         title: 'Quick changes',
         body: 'What happens at the table, recorded on the spot: a Loyalty event from the book’s table, money into or out of the treasury, vis found. Everything can be undone.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-changes',
+        at: table('overview'), needs: 'saga', target: 'table-changes',
       },
       {
         title: 'After a story',
-        body: 'Adventure experience for each character (at most 5 in any one Art or Ability), logged in the season of the story and sharing it with their other work; Labor Points for a craftsman or merchant whose business the story touched.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-story',
+        body: 'First say **how many characters took part**, then choose each one and what they gained: Adventure experience (at most 5 in any one Art or Ability), logged in the season of the story and sharing it with their other work, and Labor Points for a craftsman or merchant whose business the story touched.',
+        at: table('overview'), needs: 'saga', target: 'table-story',
+      },
+      {
+        title: 'This season',
+        body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here: teaching covenant-mates, being taught by one, helping in a lab, and the extra seasons of one who needs no sleep. **Plan in full** opens their season below, for a particular book, teacher, lab project, writing or an Initiation.',
+        at: table('seasons'), needs: 'saga', target: 'table-season',
+      },
+      {
+        title: 'End the season',
+        body: 'Press **End** (the button names the season) to move the whole saga on, with Undo. The report shows aging crises, Warping and reminders first; the rest is folded. Below the button are the options, and passing several seasons or years at once.',
+        at: table('seasons'), needs: 'saga', target: 'table-advance', advance: {},
       },
       {
         title: 'Travel, trade and intrigue',
         body: 'Folded sections for what City & Guild adds at the table: a journey’s days and cost, cargo and Area Lore, ships in a fight; bribes, hired criminals and sabotage; intrigue against the powerful; a house’s Reputation, largesse and warehouses; a dowry. Costs can be paid from a purse or the treasury.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-trade',
+        at: table('guild'), needs: 'saga', target: 'table-trade',
       },
     ],
   },
@@ -733,59 +753,99 @@ export const TOURS: Tour[] = [
     practice: { type: 'companion', role: 'master-craftsman', folk: true, label: 'a practice master craftsman' },
     steps: [
       {
-        title: 'What this is about',
-        body: '*City & Guild* is for characters who **work for a living**: a companion or grog who is a smith, a weaver, a baker or a merchant. The core rules have such a character work two seasons a year and leave it there. *City & Guild* keeps track of what that work builds up, in **Labor Points**: not money, but the time and effort put into the business. Saved up, they make the business better and the character richer. If nobody in your troupe plays a craftsman or merchant, you can skip this tutorial: nothing else needs it. This tutorial works on a practice master craftsman, whose **Livelihood & workshop** card is on the Seasons & Aging tab.',
-        at: sheet('advancement'), needs: 'character', target: 'workshop',
+        title: 'Your craftsman’s workshop',
+        body: '*City & Guild* is for characters who **work for a living**: a smith, a weaver, a baker or a merchant. It keeps what their work builds up in **Labor Points**: not money, but the time and effort put into the business. This tutorial works on a practice master craftsman and has you use each part as it goes. Their **Livelihood & workshop** card is here, on the Game Table’s City & Guild page (the same card is on their sheet). At the top: **Craft or Profession** is the trade the card works with (a smith who also shoes horses picks the one they live by), and **Primary Characteristic** is the one the trade uses: Dexterity for most crafts, Strength if the troupe says so for a smith, as the book’s swordsmith does. **Wealth** comes from their Virtues (Poor, Wealthy).',
+        at: table('guild'), needs: 'character', target: 'workshop',
       },
       {
-        title: 'Earning Labor Points',
-        body: 'Each season the character **works**, they earn (Characteristic + Craft) Labor Points, times 2 if Poor, 3 if average, 6 if Wealthy (the Poor Flaw or Wealthy Virtue). A merchant uses Communication + Profession. The card shows it as **Labor Points a season**. Say Dexterity +2 and Craft 5: 7, times 3 for an average craftsman, is 21 a season. Their working seasons go to the workshop by themselves when the seasons pass (the Plan shows which seasons they work), or press **Work a season** on the card for one now. The points go into **Labor Points banked**.',
-        at: sheet('advancement'), needs: 'character', target: ['workshop', 'plan-season'],
+        title: 'Labor Points a season',
+        body: 'Each season they **work**, they earn (Characteristic + Craft) Labor Points, times 2 if Poor, 3 if average, 6 if Wealthy; a merchant uses Communication + Profession. Dexterity +2 and Craft 5 make 7, times 3: 21 a season. **Hold the pointer on the number** (or tap it) to see the sum with this craftsman’s own scores. A guild master short of the workers their Leadership calls for loses 3 a season for each one missing.',
+        at: table('guild'), needs: 'character', target: ['workshop-lp', 'workshop'],
       },
       {
-        title: 'The yearly upkeep',
-        body: 'Keeping the business going costs **36 Labor Points a year** (more with better Raw Materials), taken when the saga’s year ends: **Upkeep a year** on the card. Our 21 a season over two seasons is 42: the 36 is paid and 6 are left to save. That is why the rules have an average character work two seasons, a Poor one three and a Wealthy one only one. Their other seasons are their own, to study or adventure. A year that cannot pay the upkeep lets the business slip.',
-        at: sheet('advancement'), needs: 'character', target: 'workshop',
+        title: 'What helps and hurts at the craft',
+        body: 'Craftsmen are people, and some are luckier than others. Under the totals, **At their craft** lists the Virtues and Flaws that matter at the work, green for what helps and red for what holds them back. Some always count, and are in every total: Puissant (Craft) +2, Palsied Hands −2, Clumsy or Arthritis −3. Others count only in some work: Keen Vision +3 or Poor Eyesight −3 on fine work by eye, Free Expression +3 on a new work of art. Tick **this season is…** when the season’s work is that kind. Some help or hurt away from the bench: Leprosy stops any good Craft Reputation, The Gift spoils a sale. Hold the pointer on a badge for the rule and the book. A craftsman with none of these shows no line.',
+        at: table('guild'), needs: 'character', target: ['workshop-traits', 'workshop'],
       },
       {
-        title: 'What saved points buy',
-        body: 'Saved Labor Points are how a craftsman gets ahead. A **better workshop**: Innovation (100 points for +1, 600 in all for +3) and Raw Materials (50 for +1, 300 for +3) make better goods (next step). **More wealth**: 120 points takes a Poor character to average, 360 an average one to Wealthy, who then earns twice as much a season. 1,080 takes a Wealthy one up a Social Status, from craftsman to guild master, say. Each of these takes a season away from the work. So the career runs: work, pay the upkeep, save the rest, then invest it.',
-        at: sheet('advancement'), needs: 'character', target: 'workshop',
+        title: 'Assistants',
+        body: 'Open **Workshop, assistants and this season’s situation** (the tutorial opens it). Every craftsman may have one apprentice, and as many helpers as their Leadership; a guild master’s may be journeymen. Each helper adds **half their Craft** to the Workshop Total (all of them added together, then halved, rounded up). They do not make the goods: the master does, better for the help. Here too are the workshop’s **Innovation** and **Raw Materials**, a craft manual, and what raises this season’s Craft Level (war, famine, scarce materials, an aura, a new employee).\n\n**Try it:** press **+ Assistant**, name them and set their Craft (an apprentice has about 3).',
+        at: table('guild'), needs: 'character', target: 'workshop-assistants', advance: { press: /\+ Assistant/ },
       },
       {
-        title: 'The goods they make',
-        body: 'A season’s work also makes goods, and the card shows how good. The **Workshop Total** (Characteristic + Craft + Innovation + Raw Materials, and half the Craft of any assistants) is set against the **Craft Level**: 6 normally, higher in war, famine, an aura or with scarce materials. Below it the goods are shoddy; at it, standard; 6 above, superior; 9 above, excellent. Superior and excellent goods give whoever uses them a bonus: a better sword, a warmer cloak. Selling them is a Presence + Bargain roll (**Haggle a sale**).',
-        at: sheet('advancement'), needs: 'character', target: 'workshop',
+        title: 'The Workshop Total and the goods',
+        body: 'The **Workshop Total** is the Characteristic + the Craft they work at + Innovation + Raw Materials + the assistants’ half. It is set against the **Craft Level** (6 normally) to say how good the season’s goods are: below it shoddy; at it standard; 6 above superior; 9 above excellent, with +1 more for every 3 beyond. Superior and excellent goods give whoever uses them a bonus. A season 6 or more above earns a point toward a (Craft) Reputation. **Hold the pointer on the Workshop Total** to see what makes it up, the assistant you just added among it. **Exert yourself** adds a simple die, at the cost of a roll on the Exertion chart and an aging roll.',
+        at: table('guild'), needs: 'character', target: ['workshop-total', 'workshop'],
       },
       {
-        title: 'Points from stories',
-        body: 'Labor Points also come from **stories**. A craftsman who helps the magi earns half a season’s worth for a side part, up to two and a half for a story the town or covenant depended on. They are under **Stories and investments** on the card, or **After a story** on the Game table. The same fold spends points on charity, a lawsuit, a marriage and so on, each with its effect, and turns money put into the business into points. Points never turn back into money.',
-        at: sheet('advancement'), needs: 'character', target: 'workshop',
+        title: 'Work a season',
+        body: 'A season at the bench makes the goods and earns the season’s Labor Points. **Work a season** does it now: it logs this season as work (2 Exposure experience in the craft), makes the goods, and adds the points to **Labor Points banked** at once. **Labor Points are there to spend the season they are earned**; the year’s **upkeep** (36, and 5 more for each point of Raw Materials) comes off when the year closes, after Winter. Two seasons at 21 make 42: the 36 is paid and 6 saved.\n\n**Try it:** press **Work a season**, then see the banked points go up.',
+        at: table('guild'), needs: 'character', target: 'workshop-work', advance: { press: /^Work a season/ },
+      },
+      {
+        title: 'Which seasons they work',
+        body: 'An average craftsman works **two** seasons a year and has two free for study or adventure; a Poor one works three, a Wealthy one only one (the Virtues set it; the plan shows it). When time passes and nobody planned their season, **the free seasons come first**: Spring and Summer are their own, and Autumn and Winter go to the workshop, each earning its Labor Points. Plan a season here to change that, say work in Spring and keep Winter free. A season worked with the button counts as one of the year’s working seasons. Working three or more in a year, when not Poor, earns a Reputation for avarice.',
+        at: plan, needs: 'character', target: ['plan-season', 'table-plan'],
+      },
+      {
+        title: 'Move a season on',
+        body: 'Time moves for everyone at once, here on the Seasons page. **End** the season: each character spends it as planned, or on their usual activity, and a craftsman’s working season goes to the workshop by itself. When Winter ends, the year closes: the upkeep is taken from every workshop, and the covenant’s own craftsmen bank the year’s points.\n\n**Try it:** press **End** (the season), then go back to City & Guild and see the workshop’s points and the season log.',
+        at: table('seasons'), needs: 'saga', target: 'seasons-advance', advance: { press: /^End / },
+      },
+      {
+        title: 'Spending Labor Points',
+        body: 'Saved points make the business better. The buttons beside **Work a season**: **Innovation** (100 points for +1, 600 in all for +3; it stays with the workshop) and **Raw Materials** (50 for +1, 300 for +3; lost if they leave, and 5 a point a year to keep). Each takes a season out of the workshop, and the card logs it. **More wealth**: 120 points takes a Poor character to average, 360 an average one to Wealthy, who earns twice as much a season. A button stays grey until enough are banked. **Haggle a sale** sells the season’s goods: Presence + Bargain against 9, or against an important customer.',
+        at: table('guild'), needs: 'character', target: ['workshop-work', 'workshop'],
+      },
+      {
+        title: 'Stories, investments and a boom',
+        body: 'Open **Stories and investments** (the tutorial opens it). **Stories** earn points: half a season’s worth for a side part, up to two and a half for a story the town depended on. **Investments** spend them on charity, a lawsuit, a marriage, each with its effect; money can be **put into the business** as points, but points never come back out as money. A merchant’s convoys, sponsors and blockades are here too.\n\n**Read the market for a boom.** A boom is a sudden demand for something they can supply: arms in a war, a new industry making what was imported. Booms come when the story says so; the roll says whether they saw it coming. Intelligence + Area Lore + a stress die: **18+**, prepared for years, two seasons’ points back for each season’s worth set aside once the boom comes; **15+**, everything put in as it starts, a season and a half back for each, that year; **7–14**, no advantage; **6 or less**, 2 of every 10 points invested are lost; a botch ruins the business.\n\n**Try it:** press **Read the market for a boom**.',
+        at: table('guild'), needs: 'character', target: 'workshop-stories', advance: { press: /^Read the market/ },
+      },
+      {
+        title: 'Wondrous items',
+        body: 'A craftsman with the Major Supernatural Virtue **Touched by (Realm)** (Divine, Faerie, Infernal or Magic, with two Forms; *City & Guild*) can make a **wondrous item**: an item with a power like a Hermetic effect, made with the craft and not with magic. Open **Wondrous item** (the tutorial opens it):\n- the **Craft Level** is 12 + the effect’s magnitude + its uses a day;\n- the Workshop Total adds the aura (by the Realms Interaction Table), half of **one** helper’s Craft (one only), and a shape and material bonus up to their Craft;\n- each season adds the amount the Workshop Total beats the Craft Level by, until the points reach the Craft Level;\n- it works only for the **customer it was made for**, and is an Arcane Connection to them.\n\n**Try it:** name it and its power, choose who it is for, and **Begin it**; **Work a season on it** adds the season’s points. Finished, it goes on the customer’s Items tab. A damaged wondrous item stops working.',
+        at: table('guild'), needs: 'character', target: 'workshop-wonder',
       },
       {
         title: 'The guild',
-        body: 'In a town, each craft is run by its **guild**. With the guild rule on (saga page, optional rules), a craftsman holds a rank:\n- an **apprentice** learns the trade;\n- a **journeyman** works for others by contract;\n- a **master** keeps a workshop and votes in the guild;\n- a **senior master** and the **dean** run it.\n\nEach rank needs Guild Lore and a few other Abilities at a set score; the Guild card says what is missing, and what the next rank costs.',
-        at: sheet('advancement'), needs: 'character', target: ['guild', 'workshop'],
+        body: 'In a town each craft is run by its **guild**. With the guild rule on (Saga Overview → Optional rules), a craftsman holds a rank:\n- an **apprentice** learns the trade;\n- a **journeyman** works for others by contract;\n- a **master** keeps a workshop and votes in the guild;\n- a **senior master** and the **dean** run it.\n\nEach rank needs Guild Lore and a few other Abilities at a set score; the Guild card says what is missing, and what the next rank costs.',
+        at: table('guild'), needs: 'character', target: ['guild', 'workshop'],
       },
       {
         title: 'The covenant’s craftsmen',
-        body: 'Your covenant’s craftsmen (the Covenfolk tab, **Craftsmen**) save it money in the category their craft serves, as in *Covenants*: a carpenter on Buildings, a smith on Consumables. With City & Guild each also earns Labor Points, more simply than a player’s craftsman: the line under each one shows **Labor Points**: a season’s points times the seasons they work (two for an average craftsman), what is left after the 36 upkeep, and how many are **banked** (they are banked when the year closes). An average craftsman needs Dexterity + Craft of 7 or more to save anything. The **Innovation** and **Raw Materials** buttons spend them, and are greyed until enough are banked. A practice covenant has a carpenter and a smith with a year’s points banked; **+ Cost-saving craftsmen** adds more where they would save money, and says what it added or why it added none. With the guild rule, each has a guild rank too.',
-        at: covenant('folk'), needs: 'covenant', target: 'craftsmen',
+        body: 'Your covenant’s craftsmen save it money in the category their craft serves, as in *Covenants*: a carpenter on Buildings, a smith on Consumables (1 + half their Craft a year, the whole Craft for a rare craft). With City & Guild each also earns Labor Points, more simply: the line under each shows a season’s points, the year’s after the 36 upkeep, and those **banked**. A covenant craftsman’s points are banked **when the year closes**, and spent here on **Innovation** and **Raw Materials** (grey until enough are banked). Each one’s Virtues and Flaws at the work show green and red, with the score they work at; ✕ on a Flaw once it is got over in play, healed by magic or a story.',
+        at: table('guild'), needs: 'saga', target: 'craftsmen-work',
+      },
+      {
+        title: 'Hiring and letting go',
+        body: 'A covenant hires more people as the saga goes on: to save more as it grows, to replace one who grows old, or one a Flaw holds back. **Look for** lists the crafts where one more would save money first, with the pounds a year. **Look for a craftsman** brings three who would come, met at random: age, Craft, Dexterity, the score they work at, Labor Points, what they would save, and their Virtues and Flaws. **Hire** takes one on, recruited in play: no Build Points, only an inhabitant’s upkeep (a place at table, and the Wages line). **Let one go** says goodbye; Build Points spent are not returned. Craftsmen bought when the covenant was founded cost the score they work at: a covenant pays for the craftsman it gets. The Tribunal’s covenants hire at each year’s end, and their old craftsmen retire from 60; yours are reminded at 60.\n\n**Try it:** press **Look for a craftsman**.',
+        at: table('guild'), needs: 'saga', target: 'cg-hiring', advance: { press: /^Look (for a craftsman|again)/ },
+      },
+      {
+        title: 'A companion at the covenant’s work',
+        body: '*Covenants* counts craftsmen among the covenfolk, so whether a companion or grog who spends their working seasons making the covenant’s wares counts too is the troupe’s call: tick them under **Members who make the covenant’s wares** on the covenant’s People tab. They save as a craftsman does, by the score they work at, and their working seasons go to the covenant, not their own workshop. They are not paid as such: the **Wages** line (a penny a week for each inhabitant point; a companion counts 3) is their pocket money, the covenant’s food and roof the rest, and anything more is an allowance or their own business.',
+        at: (c) => (c.sagaId && c.covId ? R.covenant(c.sagaId, c.covId, 'folk', 'people') : undefined), needs: 'covenant', target: 'covenfolk-organization',
       },
       {
         title: 'Haggling and bribes',
-        body: 'Magi send a grog or companion to buy for them, since The Gift sets prices soaring. On the Market page, **Sending someone to market**:\n- **Who goes**: the list shows each person’s appraise (Perception + Bargain) and bargain (Communication + Bargain), from their sheet.\n- **1. What are the goods worth?** Set the value and the kind of goods, then **Appraise**: a roll against 9 (6 for common goods or their own trade, 12 for rare ones). Success means they know the real value, so they cannot be overcharged.\n- **2. How low will the seller go?** Pick the kind of seller (a guide to their Communication + Bargain), then **Bargain**: both roll, and every 3 points the buyer wins by takes 10% off, never below half. **Pay** takes it from the buyer chosen at the top of the page.\n- **Bribes** are for something else: getting a local to talk, or a bed for the night. A day’s pay takes 1 off that roll’s Ease, a week’s 3; it is paid when the roll is made.\n\nEach button shows the total it rolls and the chance.',
-        at: sagaPage('market'), needs: 'saga', target: 'haggle',
+        body: 'Magi send a grog or companion to buy for them, since The Gift sets prices soaring. **Sending someone to market**:\n- **Who goes**: each person’s appraise (Perception + Bargain) and bargain (Communication + Bargain), from their sheet.\n- **1. What are the goods worth?** Set the value and the kind of goods, then **Appraise**, against 9 (6 for common goods or their own trade, 12 for rare). Success: they know the real value and cannot be overcharged.\n- **2. How low will the seller go?** Pick the kind of seller, then **Bargain**: each 3 points the buyer wins by takes 10% off, never below half. **Pay** takes it from the buyer chosen at the top.\n- **Bribes** buy a word or a bed for the night: a day’s pay takes 1 off that roll’s Ease, a week’s 3.\n\nEach result shows under its own button.\n\n**Try it:** press **Appraise**.',
+        at: table('guild'), needs: 'saga', target: 'haggle', advance: { press: /^Appraise/ },
       },
       {
         title: 'Damaged goods',
-        body: 'When a botch or rough use puts a valued item at risk (a sword in a botched fight, a cloak used as a rope), it makes a check on the Dice page, **Damaged goods**. Choose **whose** it is and **the item**: one of their weapons, their armor or an enchanted device, or a kind of thing (a lock, a cart, a house). The card says how many **damage levels** it has (from its quality, times more for a big thing, twice for a lock), the modifiers (the user’s Ability with it, its quality, the light, prolonged use) and the chance. **Roll the check**: a stress die plus the modifiers against 15; a failure costs a level, a botch more. It works until the last level goes, then it is broken. **Repair it** while it is only damaged (a craftsman’s season, a Labor Point a level); a broken item cannot be repaired, so **check another item**.',
-        at: page('/dice'), target: 'item-check',
+        body: 'When a botch or rough use puts a valued item at risk (a sword in a botched fight, a cloak used as a rope), check it under **Damaged goods**. Choose **whose** it is and **the item**: one of their things, or a kind of thing not kept. The card shows its **damage levels** (from its quality, more for a big thing, twice for a lock) and the chance. The **Ability** is a list: the item’s own by default, or another of theirs. **Previously repaired** is one −1, however many repairs. **Roll the check**: a stress die and the modifiers against 15; a failure costs a level, a botch more. The damage is **kept on the item**, on its owner’s Items tab, so it is still there when you come back to it. **Repair it** while it is only damaged; a broken item cannot be repaired.\n\n**Try it:** choose your craftsman and an item, then press **Roll the check**.',
+        at: table('guild'), needs: 'saga', target: 'item-check', advance: { press: /^Roll the check/ },
+      },
+      {
+        title: 'What they own',
+        body: 'Everything a character owns is on their sheet’s **Items** tab, under **Possessions**: weapons, shields, armor, enchanted items and other things (tools, a cart, a wondrous item), each with its damage. Add something they own at the bottom; **give** a thing to someone else (its damage goes with it); **Discard** one that is broken. The checks themselves are made at the Game Table.',
+        at: sheet('lab'), needs: 'character', target: 'possessions',
       },
       {
         title: 'Travel, trade and intrigue',
-        body: 'The rest of the book is on the Game table, under **Travel, trade and intrigue**. Choose **who acts** at the top: the list shows their Area Lore, Intrigue and Stealth totals, and the line below gives their scores and purse. Open a part to use it: a journey’s days and cost by road, river or sea, and finding things on the way (Intelligence + Area Lore); ships in a chase; bribes, hired criminals and sabotage; intrigue against nobles; a house’s Reputation; dowries. Each roll says what it adds and the chance, and its result appears in that part. A merchant’s story seeds and investments (a convoy, a sponsor, a blockade) are in the workshop card’s **Stories and investments**. That is the whole of it: a working character’s seasons earn points, the year takes 36, and the rest builds a better business and a better life.',
-        at: sagaPage('table'), needs: 'saga', target: 'table-trade',
+        body: 'The rest of the book is at the bottom of City & Guild, under **Travel, trade and intrigue**. Choose **who acts** at the top; open a part to use it: a journey’s days and cost by road, river or sea, and finding things on the way; ships in a chase; bribes, hired criminals and sabotage; intrigue against nobles; a house’s Reputation; dowries. Each roll says what it adds and the chance, and its result appears in that part. That is the whole of it: a working character’s seasons earn points, the year takes 36, and the rest builds a better business and a better life.',
+        at: table('guild'), needs: 'saga', target: 'table-trade',
       },
     ],
   },
@@ -800,52 +860,52 @@ export const TOURS: Tour[] = [
       {
         title: 'The Tribunal page',
         body: '**The Tribunal** in the saga’s menu holds the other covenants of the saga’s Tribunal. For now the toolkit has the Rhine’s, from *Guardians of the Forests*; a saga set elsewhere is offered the switch: press **Set the saga’s Tribunal to Rhine** to follow along.',
-        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-switch', 'nav-tribunal', 'tribunal-covenants'], advance: { press: /Set the saga’s Tribunal/ },
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: ['tribunal-switch', 'nav-tribunal', 'tribunal-covenants'], advance: { press: /Set the saga’s Tribunal/ },
       },
       {
         title: 'Bringing the covenants in',
         body: 'Press **Add** for one covenant or **Add all**. Each magus the book names is made as a full character with the book’s House, age, rank, gild and traits, strongest in the Arts it gives; the magi it only counts are generated too. Each gets a laboratory, and the covenant its covenfolk, library, vis and accounts. A covenant takes a few seconds; the whole Tribunal some twenty.',
-        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-covenants', advance: { press: /^Add/ },
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: 'tribunal-covenants', advance: { press: /^Add/ },
       },
       {
         title: 'Kept apart',
-        body: 'Their covenants and people stay off the players’ lists: the menu, the saga page, the Game table and Seasons show only yours. Each living covenant has a card here (its magi and what they did last season, its neighbors, how it may come to you) and a page of its own.',
-        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-living', 'tribunal-covenants'],
+        body: 'Their covenants and people stay off the players’ lists: People, Covenants, the Saga Overview and the Game Table show only yours. Each living covenant has a card here (its magi and what they did last season, its neighbors, how it may come to you) and a page of its own.',
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: ['tribunal-living', 'tribunal-covenants'],
       },
       {
         title: 'Season priorities',
         body: 'Their magi follow a **priority list** when the seasons pass: service to the covenant, politics, travel, writing, reading the best book, vis study, a new spell, an enchanted item, the lab, and a season a year for an apprentice. Each entry is a season a year; the first that can be done is taken, and a Longevity Ritual comes when it is needed. Any character can have one: this card is on every Advancement tab.',
-        at: sheet('advancement'), needs: 'character', target: 'priorities',
+        at: plan, needs: 'character', target: ['priorities', 'table-plan'],
       },
       {
         title: 'Gatherings',
         body: 'The Rhine Tribunal meets at Durenmar every seven years from 1221, opening on Walpurgis Night (Spring), in 1227 a year early for the Grand Tribunal; the Bjornaer gather at Crintera every twelve, and the Grand Tribunal meets at Durenmar in 1228. Every living magus spends a gathering’s season there; your magi are expected too. New masters and archmagi are made there, and magi of covenants at odds may settle a quarrel by certamen.',
-        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-gatherings',
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: 'tribunal-gatherings',
       },
       {
         title: 'Motions and votes',
         body: 'The motions the book has coming before the Tribunal (Heorot’s admission, the Praeco, Rügen, a Lotharingian Tribunal, war on the Norse wizards), each gild’s and covenant’s stand, and how the sigils would fall as things stand. Set how your magi vote here; the gathering counts every sigil (a master holds a retired magus’s by proxy, an archmage two, and House Tremere’s exarchs cast the rest of their House’s).',
-        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-votes', 'tribunal-gatherings'],
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: ['tribunal-votes', 'tribunal-gatherings'],
       },
       {
         title: 'Wanderers',
         body: 'Tabanus the Quaesitor stays a few years at each covenant as its guest; Felicia winters at Fengheld and summers on the road. They come with the covenant they start at, keep a laboratory of their own, and may ask to stay with you: **Take them in** here or on their request.',
-        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-wanderers', 'tribunal-gatherings'],
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: ['tribunal-wanderers', 'tribunal-gatherings'],
       },
       {
         title: 'What they bring to you',
-        body: 'At each year’s end a living covenant may come to yours with one of the book’s offers, requests or troubles. They show here and on the Game table, under **Needs attention**, with a link to where each is dealt with; press **Dealt with** once it is played. One left unanswered for two years lapses.',
-        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-news',
+        body: 'At each year’s end a living covenant may come to yours with one of the book’s offers, requests or troubles. They show here and on the Game Table’s Overview, under **Needs attention**, with a link to where each is dealt with; press **Dealt with** once it is played. One left unanswered for two years lapses.',
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: 'tribunal-news',
       },
       {
         title: 'Dealing with them',
         body: 'Open a living covenant’s card and **Deal with** it: trade vis or silver either way, or buy a copy of one of its books for vis or silver. Both covenants’ stores and chronicles change; the storyguide decides the terms.',
-        at: sagaPage('tribunal'), needs: 'saga', target: ['tribunal-living', 'tribunal-covenants'],
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: ['tribunal-living', 'tribunal-covenants'],
       },
       {
         title: 'The Great Library',
         body: 'Durenmar’s library is stocked as the greatest of the Order (six summae on each Art, three copies of Principia Magica, Lab Texts for the standard spells). For a magus who goes to study there: the book’s rolls for a summa of the Level wanted, a tractatus’s Quality, a spell’s or an enchantment’s Lab Text, and the seasons of study a contribution earns.',
-        at: sagaPage('tribunal'), needs: 'saga', target: 'tribunal-library',
+        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: 'tribunal-library',
       },
       {
         title: 'Forests and the Courts of the Seasons',
@@ -874,33 +934,33 @@ export const TOURS: Tour[] = [
     steps: [
       {
         title: 'Plan the season',
-        body: 'On a finished character’s **Seasons & Aging** tab, plan what they do this season: study from a book, practice, train, teach, or a lab project. The toolkit works out the experience.',
-        at: sheet('advancement'), needs: 'character', target: 'plan-season',
+        body: 'On the Game Table’s **Seasons** page, pick a character and plan what they do this season in full: study from a book, practice, train, teach, or a lab project. The toolkit works out the experience and logs it on their sheet.',
+        at: plan, needs: 'character', target: ['plan-season', 'table-plan'],
       },
       {
         title: 'When nothing is planned',
         body: 'A standing activity (practice an Ability, read from the library, work in the lab, teach covenant-mates, be taught by one, help in a covenant-mate’s lab) runs in any season nobody plans, so a fast-forward still advances everyone sensibly. Free seasons come first: a magus has four, a working character two (Wealthy three, Poor one) and works the rest, a Regular gives one to Worship, and one who needs no sleep has two more for study. **Seasons a year** shows them, and can be set by hand.',
-        at: sheet('advancement'), needs: 'character', target: ['season-plan', 'standing'],
+        at: plan, needs: 'character', target: ['season-plan', 'standing', 'table-plan'],
       },
       {
         title: 'Writing and copying',
         body: 'A book, a copy, lab texts or a florilegium is begun here and worked a season at a time, from this card or as the standing activity in free seasons; the finished work goes to the covenant library, and a season with points to spare goes on to the next one begun. Glossing a book read this season and clarifying one are here too.',
-        at: sheet('advancement'), needs: 'character', target: 'writing',
+        at: plan, needs: 'character', target: ['writing', 'table-plan'],
       },
       {
         title: 'Move time on',
         body: '**End** the season for the whole saga at once. Each character does what they planned or their standing activity; the report says what happened.',
-        at: sagaPage('seasons'), needs: 'saga', target: 'seasons-advance',
+        at: table('seasons'), needs: 'saga', target: 'seasons-advance',
       },
       {
         title: 'The year’s end',
         body: 'Winter’s end closes each covenant’s books, gathers the year’s vis, pays allowances, renews wards, rolls aging (the covenant’s best physician tends anyone in a crisis) and adds the year’s Warping. The covenant’s scribes make the copies queued in the scriptorium, and a book being clarified is done once its years in the aura are up. A Dominion grows or fades with its congregation, and with the optional aura variation a Magic aura may move. The checkboxes choose what runs.',
-        at: sagaPage('seasons'), needs: 'saga', target: 'seasons-table',
+        at: table('seasons'), needs: 'saga', target: ['seasons-advance', 'table-season'],
       },
       {
         title: 'The Market',
         body: 'Buy books, teachers, covenfolk, services and vis in play, at the books’ prices, from the covenant’s treasury or a character’s purse. A grog can haggle the price down, and bribes are paid here.',
-        at: sagaPage('market'), needs: 'saga', target: 'market-who',
+        at: table('market'), needs: 'saga', target: 'market-who',
       },
     ],
   },

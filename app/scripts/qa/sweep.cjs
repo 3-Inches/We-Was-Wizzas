@@ -78,17 +78,22 @@ async function sweep(width) {
     report.push(`${issues.length ? 'XX' : 'ok'} ${label}${issues.map((x) => `\n   ${x}`).join('')}`);
   };
   const s = `/saga/${sid}`;
-  await visit('saga', s);
+  for (const t of ['saga', 'books', 'optional', 'rules', 'custom', 'mechanics', 'journal']) await visit(`saga ${t}`, `${s}?tab=${t}`);
   for (const t of ['', '?tab=covenant', '?tab=creatures']) await visit(`build${t}`, `${s}/build${t}`);
-  await visit('table', `${s}/table`);
-  await visit('seasons', `${s}/seasons`);
-  await visit('market', `${s}/market`);
+  for (const t of ['overview', 'seasons', 'dice', 'market', 'guild']) await visit(`table ${t}`, `${s}/table?tab=${t}`);
+  for (const t of ['combat', 'magic', 'society']) await visit(`dice ${t}`, `${s}/table?tab=dice&sub=${t}`);
+  // each character's own turn at the table: their combat, casting, society and season
+  for (const c of bundle.characters.filter((x) => x.creation?.finalized).slice(0, 12))
+    for (const t of ['dice&sub=combat', 'dice&sub=magic', 'dice&sub=society', 'seasons']) await visit(`table ${t} ${c.name}`, `${s}/table?tab=${t}&who=${c.id}`);
+  await visit('people', `${s}/people`);
+  await visit('covenants', `${s}/covenants`);
+  // the old pages lead to where they are now
+  for (const t of ['seasons', 'market', 'rules?tab=books']) await visit(`old ${t}`, `${s}/${t}`);
   for (const t of ['covenants', 'forest', 'places', 'history', 'sagas']) await visit(`tribunal ${t}`, `${s}/tribunal?tab=${t}`);
   for (const t of ['browse', 'design', 'guidelines']) await visit(`spells ${t}`, `${s}/spells?tab=${t}`);
   for (const t of ['items', 'longevity', 'vis', 'writing', 'tables']) await visit(`enchant ${t}`, `${s}/enchant?tab=${t}`);
-  for (const t of ['saga', 'books', 'optional', 'rules', 'custom', 'mechanics']) await visit(`rules ${t}`, `${s}/rules?tab=${t}`);
   for (const cov of bundle.covenants)
-    for (const t of ['overview', 'hooks', 'library', 'labs', 'folk', 'items', 'log']) await visit(`covenant ${cov.name} ${t}`, `${s}/covenant/${cov.id}?tab=${t}`);
+    for (const t of ['overview', 'hooks', 'library', 'labs', 'folk', 'folk&sub=money', 'folk&sub=loyalty', 'items', 'log']) await visit(`covenant ${cov.name} ${t}`, `${s}/covenant/${cov.id}?tab=${t}`);
   for (const c of bundle.characters)
     for (const t of ['overview', 'abilities', 'combat', 'advancement', 'lab', 'summary', 'rules', ...(c.type === 'magus' ? ['magic'] : [])])
       await visit(`${c.type} ${c.name} ${t}`, `${s}/character/${c.id}?tab=${t}`);

@@ -393,7 +393,7 @@ function WriteForm({ e, begin, logged, artisans }: { e: Ed; begin: Begin; logged
         Core rules: Communication + 6 + Virtues (Good Teacher +3), and for a summa written below half the score +1 a Level for an Art, +3 for an Ability, never more than doubling it. Covenants&apos;
         extended rules: Communication + 3, +1 each for a skilled scribe, binder and illuminator (Profession or Craft 6+, the covenant&apos;s own or hired), +1 for bought resonant materials or +2 for
         ones won in a story (Arts and Arcane Abilities only), +1 more once clarified; the Level bonus is then capped at Communication + Virtues + artisans + 3. A lab&apos;s Texts Specialization adds 1 to
-        the language for every 3 points (DE). The artisans work alongside the author, so they add no time. The extended rules can be the saga&apos;s default under House Rules.
+        the language for every 3 points (DE). The artisans work alongside the author, so they add no time. The extended rules can be the saga&apos;s default (Saga Overview → Optional rules).
       </HowItWorks>
     </>
   );

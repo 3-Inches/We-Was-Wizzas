@@ -6,7 +6,6 @@ import DOMPurify from 'dompurify';
 import type { Part } from '../engine/magic';
 import { BOOK_BY_ID } from '../data';
 import { dropEmptyHeads, tidyTables } from './tables';
-import { useStore } from '../store/store';
 
 /** Which foldable cards a viewer has opened or closed, by key (kept in this browser). */
 const FOLDS_KEY = 'arm.folds';
@@ -21,10 +20,10 @@ const narrowScreen = () => typeof window !== 'undefined' && !!window.matchMedia?
 
 /**
  * A card. With `fold` (a key) it can be folded to its title and a one-line `summary`: folded at
- * first on a phone, open on a wider screen, and remembered either way. It opens while a tutorial runs.
+ * first on a phone, open on a wider screen, and remembered either way. A tutorial unfolds the card it
+ * points at with its own toggle, as a reader would; the page looks the same with a tutorial or without.
  */
 export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string; tour?: string; fold?: string; summary?: ReactNode }) {
-  const touring = useStore((s) => !!s.ui.tour);
   const [open, setOpenState] = useState(() => (props.fold ? (readFolds()[props.fold] ?? !narrowScreen()) : true));
   const setOpen = (v: boolean) => {
     setOpenState(v);
@@ -35,14 +34,14 @@ export function Card(props: { title?: ReactNode; actions?: ReactNode; children?:
       // private window or blocked storage: it still folds, just not remembered
     }
   };
-  const folded = !!props.fold && !open && !touring;
+  const folded = !!props.fold && !open;
   return (
     <section className={`card ${props.className ?? ''}${folded ? ' folded' : ''}`} id={props.id} data-tour={props.tour}>
       {(props.title || props.actions || props.fold) && (
         <div className="card-head">
           {typeof props.title === 'string' ? <h3>{props.title}</h3> : props.title}
           {props.actions && !folded && <div className="row tight">{props.actions}</div>}
-          {props.fold && !touring && (
+          {props.fold && (
             <button className="small ghost fold-toggle" aria-expanded={!folded} onClick={() => setOpen(folded)} title={folded ? 'Show this card' : 'Fold it to a line'}>
               {folded ? '▸ Show' : '▾ Fold'}
             </button>

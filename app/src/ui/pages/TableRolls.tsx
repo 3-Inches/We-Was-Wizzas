@@ -6,15 +6,18 @@ import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic, type GameData } from '../../data';
 import { abilityTotal, deriveCharacter, type DerivedCharacter } from '../../engine/character/derive';
 import { allCombatLines, woundFromDamage } from '../../engine/combat';
-import { COVERAGE, DEPRIVATION, HEAT_SOURCES, IMPACTS, OPPOSED_PRESETS, deprivationEase, exchange, fallingBonus, opposedRoll, perilDamage, staminaCheck, type WoundLevel } from '../../engine/rolls';
+import { COVERAGE, DEPRIVATION, HEAT_SOURCES, IMPACTS, OPPOSED_PRESETS, actionPenalties, deprivationEase, exchange, fallingBonus, opposedRoll, penaltyText, perilDamage, staminaCheck, type WoundLevel } from '../../engine/rolls';
 import { DEFAULT_HOUSE_RULES, type Character, type HouseRules } from '../../engine/types';
 import { useStore } from '../../store/store';
 import { Card, Field, Stepper, signed } from '../kit';
+import { PeopleOptions, type PeopleGroup } from '../play';
 
 interface Ctx {
   chars: Character[];
   data: GameData;
   rules?: HouseRules;
+  /** the same people by whose they are: the players', the storyguide's, each of the Tribunal's covenants */
+  groups?: PeopleGroup[];
 }
 
 const derive = (x: Ctx, id?: string) => {
@@ -28,11 +31,15 @@ function CharSelect({ x, value, onChange, label = 'Who' }: { x: Ctx; value?: str
     <Field label={label}>
       <select value={value ?? ''} onChange={(e) => onChange(e.target.value || undefined)}>
         <option value="">— numbers only —</option>
-        {x.chars.map((c) => (
-          <option key={c.id} value={c.id}>
-            {c.name || 'Unnamed'}
-          </option>
-        ))}
+        {x.groups ? (
+          <PeopleOptions groups={x.groups} />
+        ) : (
+          x.chars.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.name || 'Unnamed'}
+            </option>
+          ))
+        )}
       </select>
     </Field>
   );
@@ -61,7 +68,8 @@ interface Side {
 
 function SideFields({ x, side, set, title }: { x: Ctx; side: Side; set: (s: Side) => void; title: string }) {
   const got = derive(x, side.charId);
-  const total = got ? got.d.characteristics[side.k].value + (side.ability ? abilityTotal(got.d, side.ability) : 0) + side.mod : side.mod;
+  const pen = got ? actionPenalties(got.d) : undefined;
+  const total = got ? got.d.characteristics[side.k].value + (side.ability ? abilityTotal(got.d, side.ability) : 0) + (pen?.total ?? 0) + side.mod : side.mod;
   return (
     <div className="stack" style={{ gap: 4 }}>
       <b className="small">{title}</b>
@@ -98,7 +106,11 @@ function SideFields({ x, side, set, title }: { x: Ctx; side: Side; set: (s: Side
           <Stepper value={side.botch} min={0} max={10} width={34} onChange={(v) => set({ ...side, botch: v })} />
         </Field>
       </div>
-      {got && <span className="small muted">Total {total} + a stress die.</span>}
+      {got && (
+        <span className="small muted">
+          Total {total} + a stress die{pen?.parts.length ? `, with ${penaltyText(pen)}` : ''}.{pen?.cannot ? <b className="bad-text"> {got.c.name || 'They'}: {pen.cannot}.</b> : null}
+        </span>
+      )}
     </div>
   );
 }
@@ -109,9 +121,10 @@ export function OpposedCard({ x }: { x: Ctx }) {
   const [a, setA] = useState<Side>({ k: p.a[0], ability: p.a[1], mod: 0, botch: 1 });
   const [b, setB] = useState<Side>({ k: p.b[0], ability: p.b[1], mod: 0, botch: 1 });
   const [out, setOut] = useState<string[]>([]);
+  // the Characteristic and Ability, less what wounds, Fatigue and disease take off (DE)
   const totalOf = (s: Side) => {
     const got = derive(x, s.charId);
-    return got ? got.d.characteristics[s.k].value + (s.ability ? abilityTotal(got.d, s.ability) : 0) + s.mod : s.mod;
+    return got ? got.d.characteristics[s.k].value + (s.ability ? abilityTotal(got.d, s.ability) : 0) + actionPenalties(got.d).total + s.mod : s.mod;
   };
   const nameOf = (s: Side, n: string) => x.chars.find((c) => c.id === s.charId)?.name || n;
   return (

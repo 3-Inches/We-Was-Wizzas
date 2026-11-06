@@ -487,8 +487,11 @@ function addFlaws(
     const ev = evaluate(st, get());
     const fitting = shortlist(ev, 'flaw').filter((f) => f.fit > 0);
     // the rest: Flaws that cost least for this character (nothing the player rated high)
+    // Quick build makes people met at random: a craftsman may be unlucky in their hands, and the
+    // build then says so (craftTraits.ts) rather than keeping every such Flaw from them
+    const unlucky = (f: Scored) => !!inp.rng && !!f.excluded && /^Hurts Crafts and trades/.test(f.excluded);
     const cheap = ev.scored
-      .filter((f) => f.def.kind === 'flaw' && !f.excluded && f.fit >= 0 && !fitting.includes(f) && f.def.source.book === 'DE' && !f.def.categories.includes('Social Status'))
+      .filter((f) => f.def.kind === 'flaw' && (!f.excluded || unlucky(f)) && (f.fit >= 0 || unlucky(f)) && !fitting.includes(f) && f.def.source.book === 'DE' && !f.def.categories.includes('Social Status'))
       .sort((a, b) => (b.strength.seasons ?? -2) - (a.strength.seasons ?? -2));
     return [...fitting, ...cheap].filter((f) => simpleEnough(f) && !dup(f));
   };

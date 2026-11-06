@@ -155,8 +155,15 @@ export default function TourPanel() {
         if (cur && t && cur.id === t.id && cur.startedAt === t.startedAt && cur.step === i) useStore.getState().setTour({ ...cur, step: i + 1 });
       }, 250);
     };
+    // a folded card is opened with its own toggle, as the reader would open it
+    const unfold = (card: Element) => card.querySelector<HTMLButtonElement>(':scope > .card-head > .fold-toggle')?.click();
     const timer = window.setInterval(() => {
       el = findTarget(names);
+      if (el?.matches('.card.folded')) unfold(el);
+      // a closed fold of a card (a <details>) is opened to show what the step is about
+      if (el instanceof HTMLDetailsElement && !el.open) el.open = true;
+      // not found: it may be inside a folded card, so open the page's folded cards
+      if (!el && tries === 4) document.querySelectorAll('main .card.folded').forEach(unfold);
       if (el || ++tries > 25) {
         window.clearInterval(timer);
         if (el) {
@@ -346,7 +353,7 @@ export default function TourPanel() {
 const MISSING: Record<NonNullable<TourStep['needs']>, string> = {
   saga: 'Open a saga first (or make a practice saga on the first step).',
   character: 'Choose the character to work on above, or make a practice one there.',
-  covenant: 'Choose the covenant above, or found one: the saga page has the button.',
+  covenant: 'Choose the covenant above, or found one: the Covenants page has the button.',
 };
 
 /**

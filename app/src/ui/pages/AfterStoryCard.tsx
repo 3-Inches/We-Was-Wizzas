@@ -1,5 +1,6 @@
-// After a story, on the Game table: each character's Adventure experience, logged in the season the story
-// took place (it shares the season with other work), and a craftsman's or merchant's Labor Points from it.
+// After a story, on the Game Table: first how many characters took part, then which ones and what each
+// gained: Adventure experience, logged in the season the story took place (it shares the season with
+// other work), and a craftsman's or merchant's Labor Points from it.
 
 import { useState } from 'react';
 import { ARTS, ART_NAMES, type Art } from '../../data';
@@ -8,25 +9,79 @@ import { applySeason, computeStudy, newSeasonEntry } from '../../engine/longterm
 import type { Character, Season } from '../../engine/types';
 import { STORY_AWARDS, seasonWorth } from '../../engine/workshop';
 import { useStore } from '../../store/store';
-import { Card, Stepper } from '../kit';
+import { Card, Field, Stepper } from '../kit';
 
 export function AfterStoryCard({ people, derived, year, season }: { people: Character[]; derived: Map<string, DerivedCharacter>; year: number; season: Season }) {
   const [msg, setMsg] = useState<string[]>([]);
+  const [count, setCount] = useState(0);
+  const [ids, setIds] = useState<string[]>([]);
+  const chosen = Array.from({ length: count }, (_, i) => ids[i] ?? '');
+  const setAt = (i: number, id: string) =>
+    setIds((l) => {
+      const n = [...l];
+      n[i] = id;
+      return n;
+    });
   return (
     <Card title="After a story" tour="table-story" id="after-story">
       <p className="small muted" style={{ marginTop: 0 }}>
         Adventure experience (at most 5 in any one Art or Ability, usually 5 to 10 in all) is logged in {season} {year} and shares the season with whatever else the character does. Craftsmen and
         merchants also earn Labor Points from a story that touched their business.
       </p>
-      {people.map((c) => {
-        const d = derived.get(c.id);
-        return d ? <StoryRow key={c.id} c={c} d={d} year={year} season={season} say={(t) => setMsg((m) => [t, ...m].slice(0, 8))} /> : null;
+      <div className="row">
+        <Field label="How many characters took part?">
+          <select value={count} onChange={(e) => setCount(Number(e.target.value))} data-tour="story-count">
+            <option value={0}>— choose —</option>
+            {people.map((_, i) => (
+              <option key={i} value={i + 1}>
+                {i + 1}
+                {i + 1 === people.length ? ' (everyone)' : ''}
+              </option>
+            ))}
+          </select>
+        </Field>
+        {count > 0 && chosen.some((x) => !x) && (
+          <button
+            className="small ghost"
+            onClick={() => {
+              const free = people.filter((p) => !chosen.includes(p.id));
+              let k = 0;
+              setIds(chosen.map((x) => x || free[k++]?.id || ''));
+            }}
+          >
+            Fill in the rest in order
+          </button>
+        )}
+      </div>
+      {chosen.map((id, i) => {
+        const taken = new Set(chosen.filter((x, j) => j !== i && x));
+        const c = people.find((p) => p.id === id);
+        const d = c ? derived.get(c.id) : undefined;
+        return (
+          <div key={i} className="list-row" style={{ flexWrap: 'wrap' }}>
+            <select value={id} onChange={(e) => setAt(i, e.target.value)} aria-label={`Who took part (${i + 1} of ${count})`} style={{ minWidth: 130 }}>
+              <option value="">— who? —</option>
+              {people
+                .filter((p) => !taken.has(p.id))
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name || 'Unnamed'}
+                  </option>
+                ))}
+            </select>
+            {c && d ? <StoryRow key={c.id} c={c} d={d} year={year} season={season} say={(t) => setMsg((m) => [t, ...m].slice(0, 8))} /> : <span className="small muted">Choose who took part, then what they gained.</span>}
+          </div>
+        );
       })}
-      {msg.map((l, i) => (
-        <div key={i} className="small" style={{ marginTop: 4 }}>
-          {l}
+      {msg.length > 0 && (
+        <div className="dice-result-lines small" aria-live="polite">
+          {msg.map((l, i) => (
+            <div key={i} className={i ? 'muted' : ''}>
+              {l}
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </Card>
   );
 }
@@ -60,8 +115,7 @@ function StoryRow({ c, d, year, season, say }: { c: Character; d: DerivedCharact
     say(`${c.name || 'Unnamed'}: +${lp} Labor Points (${what.toLowerCase()}).`);
   };
   return (
-    <div className="list-row" style={{ flexWrap: 'wrap' }}>
-      <b style={{ minWidth: 110 }}>{c.name || 'Unnamed'}</b>
+    <>
       <select value={key} onChange={(e) => setTarget(e.target.value)} aria-label="Where the experience goes" style={{ maxWidth: 200 }}>
         {d.isMagus && (
           <optgroup label="Arts">
@@ -95,6 +149,6 @@ function StoryRow({ c, d, year, season, say }: { c: Character; d: DerivedCharact
           ))}
         </span>
       )}
-    </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 // Mysteries & Initiation: the Mystagogue's Initiation Total against the target for a Mystery Virtue,
 // the books' Scripts, Ordeals and their later discount, varying a Script, and the Criamon Paths.
 
+import { RollAtTable, useAtTable } from '../../play';
 import { useMemo, useState } from 'react';
 import { deriveCharacter } from '../../../engine/character/derive';
 import {
@@ -36,7 +37,8 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
   const [earlier, setEarlier] = useState('');
   const [vary, setVary] = useState<{ ok: boolean; text: string; key: string } | null>(null);
   const [log, setLog] = useState<string[]>([]);
-  const [changeEase, setChangeEase] = useState(6);
+  // an Initiation is a season's work: planned at the Game Table (Seasons)
+  const atTable = useAtTable();
   const other = useMemo(() => {
     const t = sagaChars.find((x) => x.id === mysta);
     return t && saga ? deriveCharacter(t, data, saga.houseRules) : undefined;
@@ -140,10 +142,11 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
   const dormant = CRIAMON_STATIONS.filter((s) => s.path !== path && held.has(s.id));
 
   return (
-    <Card title="Mysteries & Initiation" tour="mysteries" actions={<button className="small" onClick={() => setOpen((o) => !o)}>{open ? 'Close' : 'Plan an Initiation'}</button>}>
+    <Card title="Mysteries & Initiation" tour="mysteries" actions={atTable ? <button className="small" onClick={() => setOpen((o) => !o)}>{open ? 'Close' : 'Plan an Initiation'}</button> : undefined}>
       <RulesNote book="DE" line={16467} endLine={16535}>
         The Mystagogue’s Presence + (House) Lore + the Script’s bonus against 15 for a Minor Virtue or 21 for a Major one (18 and 30 for one the Mystagogue lacks). No die.
       </RulesNote>
+      <RollAtTable sagaId={c.sagaId} who={c.id} where="seasons" what="An Initiation, a season’s work, is planned" />
 
       {c.house === 'bjornaer' && (
         <div className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 4 }}>
@@ -151,24 +154,8 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
             <Field label="Heartbeast">
               <input value={c.heartbeast ?? ''} placeholder="wolf, bear, raven…" onChange={(e) => update((x) => void (x.heartbeast = e.target.value || undefined))} style={{ width: 140 }} />
             </Field>
-            <Field label="Change form against magic" hint="Ease Factor about 3 + the magnitude of the magic">
-              <div className="row" style={{ gap: 4 }}>
-                <Stepper value={changeEase} min={3} max={30} onChange={setChangeEase} />
-                <button
-                  className="small"
-                  onClick={() => {
-                    const r = stressDie(1);
-                    const sta = d.characteristics.Sta.value;
-                    const hb = d.abilities.find((a) => a.abilityId === 'heartbeast')?.total ?? 0;
-                    const t = sta + hb + r.value;
-                    setLog((l) => [`Change form: Sta ${sta} + Heartbeast ${hb} + ${describeStress(r)} = ${t} vs ${changeEase}: ${r.botches ? 'botch' : t >= changeEase ? 'the change happens, and the other magic ends' : 'no change'}.`, ...l].slice(0, 6));
-                  }}
-                >
-                  Roll
-                </button>
-              </div>
-            </Field>
           </div>
+          <RollAtTable sagaId={c.sagaId} who={c.id} where="magic" what="Changing form against magic is rolled" />
           <div className="small muted">In heartbeast form the magus is the animal: Animal spells affect it, not Corpus or Mentem, and casting without words or gestures costs −15. No familiar.</div>
         </div>
       )}
@@ -417,6 +404,36 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
           ))}
         </details>
       )}
+    </Card>
+  );
+}
+
+/** A Bjornaer changing form against magic that holds them (DE, The Heartbeast): Stamina + Heartbeast + stress die against about 3 + the magic's magnitude. At the Game Table. */
+export function HeartbeastChange({ ed }: { ed: CharEditor }) {
+  const { c, d } = ed;
+  const [ease, setEase] = useState(6);
+  const [out, setOut] = useState('');
+  if (!c || !d || c.house !== 'bjornaer') return null;
+  const sta = d.characteristics.Sta.value;
+  const hb = d.abilities.find((a) => a.abilityId === 'heartbeast')?.total ?? 0;
+  return (
+    <Card title={`${c.name || 'The magus'} changes form${c.heartbeast ? ` (${c.heartbeast})` : ''}`}>
+      <div className="row small">
+        <Field label="Against magic: Ease Factor" hint="About 3 + the magnitude of the magic">
+          <Stepper value={ease} min={3} max={30} onChange={setEase} />
+        </Field>
+        <button
+          className="small"
+          onClick={() => {
+            const r = stressDie(1);
+            const t = sta + hb + r.value;
+            setOut(`Change form: Sta ${sta} + Heartbeast ${hb} + ${describeStress(r)} = ${t} vs ${ease}: ${r.botches ? 'botch' : t >= ease ? 'the change happens, and the other magic ends' : 'no change'}.`);
+          }}
+        >
+          Roll: Stamina + Heartbeast {sta + hb}
+        </button>
+      </div>
+      {out && <div className="dice-result-lines small">{out}</div>}
     </Card>
   );
 }

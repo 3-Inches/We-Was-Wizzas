@@ -38,7 +38,7 @@ export function NeedsYouCard({ ed }: { ed: CharEditor }) {
           {i.go && <Link to={`${S}?tab=${i.tab}`}>{i.go} →</Link>}
         </div>
       ))}
-      {quiet.length > 0 && <div className="small muted">Mark a story told on the Game table’s Stories waiting when it comes up.</div>}
+      {quiet.length > 0 && <div className="small muted">Mark a story told under Stories waiting, on the Game Table’s Overview, when it comes up.</div>}
     </Card>
   );
 }

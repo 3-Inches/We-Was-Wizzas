@@ -39,6 +39,8 @@ const RARITY: Record<string, number> = {
   'strong-faerie-blood': 0.25, 'bee-king': 0.1, 'blood-of-the-nephilim': 0.15, 'demonic-blood': 0.1, 'giant-blood': 0.2, 'mythic-blood': 0.3, 'faerie-blood': 0.6, 'magical-blood': 0.5,
   'true-faith': 0.15, 'ghostly-warder': 0.3, 'shapeshifter': 0.3, 'guardian-angel': 0.3,
   'age-quickly-flaw': 0.4, 'death-prophecy': 0.3, 'raised-from-the-dead-flaw': 0.2,
+  // the hands' Flaws a craftsman may simply have: now and then
+  'palsied-hands-flaw': 0.5, 'clumsy-flaw': 0.6, 'arthritis-flaw': 0.5,
   'magic-addiction-flaw': 0.3, 'twilight-prone-flaw': 0.4, 'tainted-with-evil-flaw': 0.35, 'cursed-guile-flaw': 0.5, 'nocturnal-flaw': 0.35, 'heroic-personality-flaw': 0.4,
 };
 

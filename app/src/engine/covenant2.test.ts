@@ -273,6 +273,20 @@ describe('craftsmen and cost saving (Covenants ch.5)', () => {
     c.specialists[0].com = 3;
     expect(deriveCovenant(c, data, []).issues.filter((i) => /Tutor/.test(i))).toHaveLength(0);
   });
+  it('counts a companion who works their Craft for the covenant as one of its craftsmen, if the troupe says so', () => {
+    const c = newCovenant('s', 1220);
+    c.covenfolk = { ...c.covenfolk, grogs: 60 };
+    const smith = newCharacter('companion', 's');
+    // Craft: Blacksmith 6 (105 xp)
+    smith.abilities.push({ uid: 'bs', abilityId: 'craft-type', param: 'Blacksmith', xp: { laterLife: 105 } });
+    expect(computeFinances(c, [smith], [], 5).crafts).toEqual([]);
+    c.finances.craftWork = [smith.id];
+    const f = computeFinances(c, [smith], [], 5);
+    const bs = f.crafts.find((x) => x.craft.id === 'blacksmith')!;
+    // a common craftsman saves 1 + half the Craft: 4 pounds, within the craft's limit
+    expect(bs).toMatchObject({ people: 1, potential: 4 });
+    expect(bs.saved).toBeGreaterThan(0);
+  });
   it('moves craft savings from older files to craftsmen', () => {
     const c = newCovenant('s', 1220);
     c.covenfolk.craftsmen = 5;

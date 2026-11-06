@@ -4,6 +4,7 @@
 // magi and what they did last season, and the Great Library's rules for a visiting magus. A book with
 // more (the Rhine's forests, places, timeline and saga ideas) has it on tabs of its own.
 
+import { R } from '../routes';
 import { lazy, Suspense, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ARTS, ART_NAMES, type Art } from '../../data';
@@ -83,7 +84,7 @@ export default function TribunalPage() {
     return (
       <div className="stack">
         <div className="breadcrumbs">
-          <Link to={S}>{saga.name}</Link> › <Link to={`${S}/table`}>Game table</Link> ›
+          <Link to={S}>{saga.name}</Link> › <Link to={`${S}/table`}>Game Table</Link> ›
         </div>
         <h1>The Tribunal</h1>
         <Card title="No Tribunal book for this saga yet" className="accent" tour="tribunal-switch">
@@ -100,7 +101,7 @@ export default function TribunalPage() {
             </div>
           ))}
           <p className="small muted" style={{ marginBottom: 0 }}>
-            The other Tribunals will follow. The saga’s Tribunal is also set on the saga page.
+            The other Tribunals will follow. The saga’s Tribunal is also set on the Saga Overview.
           </p>
         </Card>
       </div>
@@ -113,7 +114,7 @@ export default function TribunalPage() {
   return (
     <div className="stack">
       <div className="breadcrumbs">
-        <Link to={S}>{saga.name}</Link> › <Link to={`${S}/table`}>Game table</Link> ›
+        <Link to={S}>{saga.name}</Link> › <Link to={`${S}/table`}>Game Table</Link> ›
       </div>
       <div className="topbar">
         <h1>
@@ -188,7 +189,7 @@ export default function TribunalPage() {
               {book.tribunal === 'Rhine' && !rhineCustoms(saga) && (
                 <p className="small" style={{ marginBottom: 0 }}>
                   The Rhine’s own customs are off: its magi have no rank or gild and a sigil each, and no peregrinatores stay as guests. Turn on{' '}
-                  <Link to={`${S}/rules?tab=optional`}>Ranks, gilds and voting sigils</Link> to have them; peregrinatores then come to the covenants a few a year.
+                  <Link to={R.saga(saga.id, 'optional')}>Ranks, gilds and voting sigils</Link> to have them; peregrinatores then come to the covenants a few a year.
                 </p>
               )}
             </Card>
@@ -231,11 +232,11 @@ export default function TribunalPage() {
 }
 
 const PAGE_LINK: Record<string, { label: string; to: (S: string, covId?: string) => string }> = {
-  market: { label: 'Market & treasury', to: (S) => `${S}/market` },
+  market: { label: 'Market & Treasury', to: (S) => `${S}/table?tab=market` },
   covenant: { label: 'The covenant', to: (S, id) => (id ? `${S}/covenant/${id}` : S) },
-  seasons: { label: 'Seasons', to: (S) => `${S}/seasons` },
+  seasons: { label: 'Seasons', to: (S) => `${S}/table?tab=seasons` },
   tribunal: { label: 'The Great Library', to: (S) => `${S}/tribunal` },
-  dice: { label: 'Dice', to: () => '/dice' },
+  dice: { label: 'Dice', to: (S) => `${S}/table?tab=dice` },
 };
 
 /** What the Tribunal has brought: approaches waiting for an answer, then the other news. */

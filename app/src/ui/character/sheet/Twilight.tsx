@@ -8,6 +8,7 @@ import { twilightAvoidance, twilightComprehension, twilightEffects, twilightSize
 import { Card, Field, Stepper, HowItWorks } from '../../kit';
 import { AURA_TIME, auraWarping } from '../../../engine/time';
 import type { CharEditor } from '../useChar';
+import { RollAtTable, useAtTable } from '../../play';
 
 /** Adds (or takes away) play experience, never below none at all. */
 function shiftXp(alloc: Partial<Record<string, number>>, xp: number) {
@@ -28,6 +29,8 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
   const [vfId, setVfId] = useState('');
   const [vfSize, setVfSize] = useState<'Minor' | 'Major' | ''>('');
   const [scar, setScar] = useState('');
+  // the sheet keeps the Warping Score and the scars; a Twilight episode is played out at the Game Table
+  const atTable = useAtTable();
   if (!c || !d) return null;
   const aura = ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0;
   const log = (s: string) => setText((t) => [s, ...t].slice(0, 20));
@@ -107,7 +110,8 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
         {d.twilightProne && <span className="badge bad">Twilight Prone: checks on a single Warping Point</span>}
         {d.twilightMastery && <span className="badge good">Twilight Mastery: you choose the effects</span>}
       </div>
-      {(d.isMagus || d.hasGift) && (
+      {(d.isMagus || d.hasGift) && !atTable && <RollAtTable sagaId={c.sagaId} who={c.id} where="magic" what="Wizard’s Twilight, avoided or comprehended, is rolled" />}
+      {(d.isMagus || d.hasGift) && atTable && (
         <>
           <div className="row" style={{ marginTop: 8 }}>
             <Field label="Warping Points from this event">
