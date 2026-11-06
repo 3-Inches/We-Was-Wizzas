@@ -5,12 +5,15 @@
 import { useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { deriveCharacter, type DerivedCharacter } from '../../engine/character/derive';
-import { craftOf, countOf } from '../../engine/covenantRules';
-import { memberCraft } from '../../engine/covenant';
+import { CRAFTS, craftOf, countOf } from '../../engine/covenantRules';
+import { characterCraftTraits, specialistCraftTraits } from '../../engine/craftTraits';
+import { candidateWorth, findCraftsmen, hireCraftsman, hireOptions, letGo, overcomeTrait, savingOf } from '../../engine/hiring';
+import type { GameData } from '../../data';
+import { deriveCovenant, memberCraft } from '../../engine/covenant';
 import { guildRanksApply } from '../../engine/covenfolk';
 import { optionOn } from '../../engine/optional';
 import { inPlay } from '../../engine/time';
-import type { Character, Covenant, Specialist } from '../../engine/types';
+import type { Character, Covenant, Season, Specialist } from '../../engine/types';
 import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { useCharEditor } from '../character/useChar';
@@ -21,7 +24,8 @@ import { Card, Empty, Field } from '../kit';
 import { R } from '../routes';
 import { MarketHaggle } from './MarketPage';
 import { ItemCheck } from './DamagedGoods';
-import { groupPeople } from '../play';
+import { ResultLog, groupPeople } from '../play';
+import { TraitBadges, worksAt } from '../covenant/CraftTraits';
 import { TravelTradeCard } from './TravelTradeCard';
 
 /** A character who lives by a trade: a Craft or Profession, or a livelihood already tracked. */
@@ -96,10 +100,12 @@ export default function CityGuildPage() {
                 </select>
               </Field>
             )}
-            <CraftsmenAtWork cov={cov} guildsOn={optionOn(saga, 'guilds')} members={allChars.filter((m) => (cov.finances.craftWork ?? []).includes(m.id))} />
+            <CraftsmenAtWork cov={cov} guildsOn={optionOn(saga, 'guilds')} members={allChars.filter((m) => (cov.finances.craftWork ?? []).includes(m.id))} data={data} when={{ year: saga.currentYear, season: saga.currentSeason }} />
           </>
         )}
       </Card>
+
+      {cov && <HiringCard cov={cov} chars={allChars} data={data} year={saga.currentYear} season={saga.currentSeason} tribunal={saga.tribunal} />}
 
       <MarketHaggle sagaId={saga.id} />
 
@@ -124,10 +130,11 @@ function Livelihood({ sagaId, charId }: { sagaId: string; charId: string }) {
 
 /**
  * The covenant's craftsmen at their work (City & Guild): each one's Labor Points (a season's, the
- * year's after the upkeep, those banked) and what they buy, and under the guild rules their rank. The
- * craftsmen themselves are hired and counted for the savings on the covenant's People tab.
+ * year's after the upkeep, those banked) and what they buy, under the guild rules their rank, and the
+ * Virtues and Flaws that matter at their work. They are hired in the next card, and counted for the
+ * savings on the covenant's People tab.
  */
-function CraftsmenAtWork({ cov, guildsOn, members }: { cov: Covenant; guildsOn: boolean; members: Character[] }) {
+function CraftsmenAtWork({ cov, guildsOn, members, data, when }: { cov: Covenant; guildsOn: boolean; members: Character[]; data: GameData; when: { year: number; season: Season } }) {
   const updateCovenant = useStore((s) => s.updateCovenant);
   const craftsmen = cov.specialists.filter((s) => s.role === 'craftsman');
   const guild = guildRanksApply(cov, guildsOn);
@@ -141,33 +148,165 @@ function CraftsmenAtWork({ cov, guildsOn, members }: { cov: Covenant; guildsOn: 
       <p className="small muted" style={{ margin: '0 0 6px' }}>
         Each craftsman earns Labor Points in the seasons they work: (Dexterity + Craft) × 3 a season over two seasons a year if average, × 2 over three if Poor, × 6 over one if
         Wealthy. A year&apos;s upkeep is 36 (and 5 for each point of Raw Materials), so an average craftsman needs Dexterity + Craft of 7 or more to save anything. What is left is
-        banked when the year closes (Seasons, ending Winter), and spent here on Innovation and Raw Materials, which make better goods. Hiring them, and what they save the
-        covenant, is on the covenant&apos;s <Link to={R.covenant(cov.sagaId, cov.id, 'folk', 'people')}>People</Link> tab.
+        banked when the year closes (Seasons, ending Winter), and spent here on Innovation and Raw Materials, which make better goods. A Virtue or Flaw that matters at the work
+        is marked green or red, and the score they work at counts (✕ when a Flaw is got over in play). Hiring and letting go is the next card; what each saves the covenant is on
+        its <Link to={R.covenant(cov.sagaId, cov.id, 'folk', 'people')}>People</Link> tab.
       </p>
-      {craftsmen.length === 0 && members.length === 0 && <Empty>No craftsmen at {cov.name || 'the covenant'} yet: hire them on its People tab.</Empty>}
-      {members.map((m) => (
-        <div key={m.id} className="list-row small">
-          <b style={{ minWidth: 130 }}>{m.name || 'Unnamed'}</b>
-          <span>
-            {memberCraft(m)?.name} {memberCraft(m)?.score}, a {m.type} making the covenant&apos;s wares (counted for the savings; set on the covenant&apos;s People tab, How the covenfolk live).
-          </span>
-          <Link to={R.guild(cov.sagaId, { who: m.id })}>Their workshop ›</Link>
-        </div>
-      ))}
-      {craftsmen.map((s) => (
-        <div key={s.uid} className="list-row" style={{ flexWrap: 'wrap' }}>
-          <b style={{ minWidth: 130 }}>
-            {s.name || craftOf(s)?.name || 'Craftsman'}
-            {countOf(s) > 1 ? ` ×${countOf(s)}` : ''}
-          </b>
-          <span className="small muted">
-            Craft {s.score}
-            {s.wealth ? `, ${s.wealth}` : ''}
-          </span>
-          {guild && <GuildLine s={s} set={setter(s.uid)} enforced={guild === 'enforced'} />}
-          <LaborLine s={s} set={setter(s.uid)} />
-        </div>
-      ))}
+      {craftsmen.length === 0 && members.length === 0 && <Empty>No craftsmen at {cov.name || 'the covenant'} yet: hire them in the next card, Hiring and letting go.</Empty>}
+      {members.map((m) => {
+        const best = memberCraft(m);
+        return (
+          <div key={m.id} className="list-row small" style={{ flexWrap: 'wrap' }}>
+            <b style={{ minWidth: 130 }}>{m.name || 'Unnamed'}</b>
+            <span>
+              {best?.name} {best?.score}, a {m.type} making the covenant&apos;s wares (counted for the savings; set on the covenant&apos;s People tab, How the covenfolk live).
+            </span>
+            <TraitBadges traits={characterCraftTraits(m, data, best?.name)} />
+            <Link to={R.guild(cov.sagaId, { who: m.id })}>Their workshop ›</Link>
+          </div>
+        );
+      })}
+      {craftsmen.map((s) => {
+        const traits = specialistCraftTraits(s, data, craftOf(s)?.name);
+        return (
+          <div key={s.uid} className="list-row" style={{ flexWrap: 'wrap' }}>
+            <b style={{ minWidth: 130 }}>
+              {s.name || craftOf(s)?.name || 'Craftsman'}
+              {countOf(s) > 1 ? ` ×${countOf(s)}` : ''}
+            </b>
+            <span className="small muted">
+              {s.name !== craftOf(s)?.name && craftOf(s) ? `${craftOf(s)!.name}, ` : ''}Craft {s.score}
+              {worksAt(traits, s.score) ? `, ${worksAt(traits, s.score)}` : ''}
+              {s.age ? `, aged ${s.age}` : ''}
+            </span>
+            <TraitBadges
+              traits={traits.filter((t) => t.id !== 'wealthy' && t.id !== 'poor-flaw')}
+              onRemove={(id) =>
+                setter(s.uid)((x) => {
+                  const t = traits.find((y) => y.id === id);
+                  overcomeTrait(x, id, when.year, when.season, `${t?.name ?? id} no longer counts at the work`);
+                })
+              }
+            />
+            {guild && <GuildLine s={s} set={setter(s.uid)} enforced={guild === 'enforced'} />}
+            <LaborLine s={s} set={setter(s.uid)} />
+          </div>
+        );
+      })}
     </>
+  );
+}
+
+/**
+ * Hiring and letting go (City & Guild; Covenants ch.5): where another craftsman would save the
+ * covenant most, a few people of that craft who would come, met at random with what helps and
+ * hurts them at the work, and what each would save. Hired in play they cost no Build Points, only a
+ * place among the inhabitants. Any craftsman can be let go from the fold at the card's foot.
+ */
+function HiringCard({ cov, chars, data, year, season, tribunal }: { cov: Covenant; chars: Character[]; data: GameData; year: number; season: Season; tribunal?: string }) {
+  const updateCovenant = useStore((s) => s.updateCovenant);
+  const members = useMemo(() => chars.filter((c) => cov.memberIds.includes(c.id)), [chars, cov.memberIds]);
+  const labs = useMemo(() => deriveCovenant(cov, data, chars).labs, [cov, data, chars]);
+  const options = useMemo(() => hireOptions(cov, members, labs), [cov, members, labs]);
+  const [craftId, setCraftId] = useState('');
+  const [found, setFound] = useState<Specialist[]>([]);
+  const [said, setSaid] = useState<string[]>([]);
+  const chosen = craftId || options[0]?.craft.id || 'carpenter';
+  const craftsmen = cov.specialists.filter((s) => s.role === 'craftsman' && !s.hired);
+  const look = () => setFound(findCraftsmen(cov, chosen, Math.random, { tribunal, taken: chars.map((c) => c.name) }));
+  return (
+    <Card title="Hiring and letting go" tour="cg-hiring" fold="cg-hiring" summary={options.length ? `Another ${options[0].craft.name.toLowerCase()} would save about ${options[0].saving} £ a year.` : 'No craft would save more money just now.'}>
+      <p className="small muted" style={{ marginTop: 0 }}>
+        Craftsmen are people met at random: some are lucky in their hands and eyes, some are not. Hired in play they cost no Build Points (only what any inhabitant costs: a place at
+        table, and the Wages line), so a covenant can take on more as it grows, replace one who grows old, or one a Flaw holds back. What helps and hurts each at the work is marked
+        green and red; the score they work at sets what they save and earn. The Tribunal&apos;s covenants do the same at the end of each year.
+      </p>
+      <div className="row small">
+        <Field label="Look for" hint="Crafts where one more would save money come first">
+          <select value={chosen} onChange={(e) => (setCraftId(e.target.value), setFound([]))}>
+            {options.length > 0 && (
+              <optgroup label="Would save money">
+                {options.map((o) => (
+                  <option key={o.craft.id} value={o.craft.id}>
+                    {o.craft.name}: about {o.saving} £ a year
+                  </option>
+                ))}
+              </optgroup>
+            )}
+            <optgroup label="Any craft">
+              {CRAFTS.filter((c) => !options.some((o) => o.craft.id === c.id)).map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                  {c.categories.length ? '' : ' (no savings)'}
+                </option>
+              ))}
+            </optgroup>
+          </select>
+        </Field>
+        <button className="small primary" onClick={look} data-tour="cg-hire-look">
+          {found.length ? 'Look again' : 'Look for a craftsman'}
+        </button>
+      </div>
+      {found.map((s) => {
+        const traits = specialistCraftTraits(s, data, craftOf(s)?.name);
+        const w = candidateWorth(s);
+        const saving = savingOf(cov, members, labs, s);
+        return (
+          <div key={s.uid} className="list-row small" style={{ flexWrap: 'wrap' }}>
+            <b style={{ minWidth: 110 }}>{s.name}</b>
+            <span>
+              aged {s.age}, Craft {s.score}, Dexterity {s.chars?.Dex ?? 0}
+              {w.works !== s.score ? `; works at ${w.works}` : ''}; {w.labor} Labor Points a season; saves {saving > 0 ? `about ${saving} £ a year` : 'nothing more just now'}
+            </span>
+            <TraitBadges traits={traits} />
+            <button
+              className="small"
+              onClick={() => {
+                let line = '';
+                updateCovenant(cov.id, (x) => void (line = hireCraftsman(x, s, year, season)));
+                setFound((xs) => xs.filter((y) => y.uid !== s.uid));
+                setSaid((l) => [`${line} Undo takes it back.`, ...l]);
+              }}
+            >
+              Hire
+            </button>
+          </div>
+        );
+      })}
+      {craftsmen.length > 0 && (
+        <details style={{ marginTop: 6 }}>
+          <summary className="small">Let one go ({craftsmen.reduce((t, s) => t + countOf(s), 0)} craftsmen)</summary>
+          {craftsmen.map((s) => {
+            const traits = specialistCraftTraits(s, data, craftOf(s)?.name);
+            return (
+              <div key={s.uid} className="list-row small" style={{ flexWrap: 'wrap' }}>
+                <b style={{ minWidth: 110 }}>
+                  {s.name || craftOf(s)?.name}
+                  {countOf(s) > 1 ? ` ×${countOf(s)}` : ''}
+                </b>
+                <span>
+                  {craftOf(s)?.name}, Craft {s.score}
+                  {worksAt(traits, s.score) ? `, ${worksAt(traits, s.score)}` : ''}
+                  {s.age ? `, aged ${s.age}` : ''}
+                </span>
+                <TraitBadges traits={traits} />
+                <button
+                  className="small ghost"
+                  title="They leave the covenant. Build Points spent on them are not returned."
+                  onClick={() => {
+                    let line: string | undefined;
+                    updateCovenant(cov.id, (x) => void (line = letGo(x, s.uid)));
+                    if (line) setSaid((l) => [`${line} Undo takes it back.`, ...l]);
+                  }}
+                >
+                  Let go
+                </button>
+              </div>
+            );
+          })}
+        </details>
+      )}
+      <ResultLog lines={said} />
+    </Card>
   );
 }

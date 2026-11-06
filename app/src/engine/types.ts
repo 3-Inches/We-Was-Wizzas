@@ -1303,6 +1303,8 @@ export interface Specialist {
   guildRank?: 'apprentice' | 'journeyman' | 'master' | 'senior' | 'dean';
   /** craftsmen: the workshop they run for the covenant and its Labor Points (City & Guild ch.2 and ch.4) */
   workshop?: { innovation: number; rawMaterials: number; laborPoints: number };
+  /** the Virtues and Flaws that matter at their work (craftTraits.ts ids): Puissant and Affinity are in their trade */
+  traits?: string[];
 }
 
 /** What a specialist does at the covenant (DE, Covenants ch.5; Grogs ch.2). */

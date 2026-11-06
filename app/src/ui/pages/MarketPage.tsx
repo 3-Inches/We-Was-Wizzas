@@ -499,8 +499,10 @@ function People({ home, chars, data, run, onSundry }: { home: Covenant; chars: C
         </button>
       </div>
       <p className="small muted" style={{ margin: '4px 0 8px' }}>
-        Covenfolk cost no price to recruit: they cost inhabitant points, so buildings, provisions and wages, every year (Covenants ch.5). Named specialists and craftsmen are added on the covenant&apos;s{' '}
-        <Link to={`/saga/${home.sagaId}/covenant/${home.id}?tab=folk&sub=people`}>Covenfolk</Link> tab, marked recruited in play so they cost no Build Points.
+        Covenfolk cost no price to recruit: they cost inhabitant points, so buildings, provisions and wages, every year (Covenants ch.5). Craftsmen are found and hired, each
+        with what helps and hurts them at the work, under <Link to={R.guild(home.sagaId, { cov: home.id })}>City &amp; Guild › Hiring and letting go</Link>; other named specialists
+        are added on the covenant&apos;s <Link to={`/saga/${home.sagaId}/covenant/${home.id}?tab=folk&sub=people`}>Covenfolk</Link> tab, marked recruited in play so they cost no
+        Build Points.
       </p>
       <HireTeacher home={home} data={data} run={run} onSundry={onSundry} />
     </Card>

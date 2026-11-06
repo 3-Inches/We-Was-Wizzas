@@ -35,6 +35,7 @@ import { greatLibraryBooks } from './generate/greatLibraryStock';
 import { pick, seeded } from './generate/random';
 import { newSoldierGroup, soldierBoonsWithoutGroups, soldierKindOf } from './covenfolk';
 import { newLab } from './lab';
+import { livingHiringYearEnd } from './hiring';
 import { defaultPriorities, houseDuty } from './priorities';
 import type { Character, Covenant, EnchantedEffectRecord, EnchantedItem, HouseRules, PriorityKind, Saga, Season, TribunalNews, VisSource } from './types';
 import { addVis, takeVis, visAvailable, visText } from './vis';
@@ -597,6 +598,10 @@ export function livingYearEnd(state: { saga: Saga; characters: Character[]; cove
     for (const c of members) {
       if (c.wounds.dead && wasAlive.has(c.id)) out.push(news(year, 'Winter', { kind: 'death', covenantId: cov.id, characterId: c.id, text: `${c.name} of ${cov.name} has died (aged ${c.age}).` }));
     }
+    // its old craftsmen stop working, and it takes on new ones where they would save it money
+    const labs = deriveCovenant(cov, g.data, state.characters).labs;
+    const taken = [...state.characters.map((c) => c.name), ...state.covenants.flatMap((x) => x.specialists.map((s) => s.name))];
+    for (const t of livingHiringYearEnd(cov, members, labs, rng, cov.finances.treasury > 10, year, state.saga.tribunal, taken)) lines.push({ who: cov.name, tribunal: cov.id, text: t });
     if (!found) continue;
     // a covenant short of the magi its book gives it takes in a new journeyman now and then
     const magi = members.filter((c) => c.type === 'magus' && !c.wounds.dead && !c.retired).length;

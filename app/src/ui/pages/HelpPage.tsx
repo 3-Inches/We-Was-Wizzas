@@ -479,18 +479,43 @@ export default function HelpPage() {
             does it.
           </li>
           <li>
+            <b>Wondrous items</b> (the workshop card): a craftsman with Touched by (Realm) makes an item with a power like a Hermetic effect. The Craft Level is 12 + its
+            magnitude + its uses a day; one helper at most; each season adds what the Workshop Total beats the Craft Level by, until the points reach the Craft Level. It
+            works only for the customer it was made for (an Arcane Connection to them) and goes on their Items tab, and stops working once damaged.
+          </li>
+          <li>
             <b>Guilds</b> (the Guild card under it): rank, the Guild Lore each rank needs, the apprentice piece, a journeyman&apos;s contract, a master&apos;s fee and vote,
             dues and the dean&apos;s stipend.
           </li>
           <li>
-            <b>The covenant&apos;s craftsmen</b>: hired and counted for each craft&apos;s savings on the covenant&apos;s Covenfolk → People tab; at work on City &amp; Guild, each craftsman&apos;s Labor Points (a season&apos;s, the year&apos;s
-            after the 36 upkeep, and those banked) with buttons to spend them on Innovation and Raw Materials, guild ranks under the guild rule, the Guild Hook or professional
-            guilds, and a strike. <b>+ Cost-saving craftsmen</b> says what it added, or why it added none.
+            <b>When the work happens</b>: an average craftsman works two seasons a year (Poor three, Wealthy one). Left to the clock, the free seasons come first, so Spring
+            and Summer are their own and Autumn and Winter go to the workshop; plan a season to change that. A season&apos;s Labor Points are banked the season they are
+            earned and can be spent at once; the year&apos;s upkeep comes off when the year closes, after Winter. The covenant&apos;s craftsmen bank their year&apos;s points then.
+          </li>
+          <li>
+            <b>Virtues and Flaws at the craft</b>: craftsmen are people, some lucky and some not. Each one&apos;s Virtues and Flaws that matter at the work show green and red, with
+            what they do: Puissant (Craft) +2, Palsied Hands −2 and Clumsy or Arthritis −3 always count (in the Workshop Total, Labor Points and savings); Keen Vision or Poor
+            Eyesight on fine work and Free Expression on a new work of art count when the season&apos;s work is that kind; others away from the bench (Leprosy and a Craft
+            Reputation, The Gift at a sale, Affinity with (Craft) learning faster). Quick build gives random craftsmen such Virtues and Flaws as anyone may have, and says what
+            they do at the craft; a covenant&apos;s Quick build meets its craftsmen as people too.
+          </li>
+          <li>
+            <b>The covenant&apos;s craftsmen</b>: counted for each craft&apos;s savings on the covenant&apos;s Covenfolk → People tab, where a Virtue or Flaw can be added; at work on
+            City &amp; Guild, each craftsman&apos;s Labor Points (a season&apos;s, the year&apos;s after the 36 upkeep, and those banked) with buttons to spend them on Innovation and
+            Raw Materials, guild ranks under the guild rule, the Guild Hook or professional guilds, and a strike. A craftsman bought with Build Points costs, saves and earns
+            by the score they work at, so a covenant pays for the craftsman it gets. <b>+ Cost-saving craftsmen</b> says what it added, or why it added none.
+          </li>
+          <li>
+            <b>Hiring and letting go</b> (City &amp; Guild): the crafts where one more craftsman would save money, three people who would come for any craft (lucky or not,
+            with what each would save), hiring one in play (no Build Points, only an inhabitant&apos;s upkeep) and letting one go. The Tribunal&apos;s covenants hire at each year&apos;s
+            end, and their craftsmen retire from 60; yours are reminded at 60. A companion or grog can make the covenant&apos;s wares too (People tab, How the covenfolk live).
           </li>
           <li>
             <b>At the table</b> (City &amp; Guild): sending someone to market: who goes (with their appraise and bargain totals), appraising the goods, bargaining against a
-            kind of seller, paying, and bribes for a word from the locals or a bed. Damaged goods: a character&apos;s weapon, armor or device, or a kind of thing,
-            its damage levels, the check&apos;s modifiers and chance, repair while damaged, and another item once one breaks. A quick court decision on a character&apos;s
+            kind of seller, paying, and bribes for a word from the locals or a bed; each result under the roll that made it. Damaged goods: one of a character&apos;s things
+            or a kind of thing, its damage levels, the check&apos;s modifiers and chance (the user&apos;s Ability from a list; a repaired item&apos;s −1 counts once), repair while
+            damaged, and another item once one breaks. The damage stays on the item, on its owner&apos;s Items tab (Possessions), where things can be added, given to someone
+            else with their damage, or thrown away once broken. A quick court decision on a character&apos;s
             Overview (optional rule). Each roll says whose it is, what it adds and the chance.
           </li>
           <li>

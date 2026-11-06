@@ -24,6 +24,8 @@ import { NO_ALLOWANCE, allowanceRecipients } from '../../engine/economy';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useStore } from '../../store/store';
 import { R } from '../routes';
+import { specialistCraftTraits, workingCraft } from '../../engine/craftTraits';
+import { SpecialistTraitsEditor, worksAt } from './CraftTraits';
 
 const FOLK: { key: keyof CovenfolkCounts; label: string; hint?: string }[] = [
   { key: 'grogs', label: 'Grogs (non-player)' },
@@ -225,7 +227,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
           </p>
         )}
         {craftsmen.map((s) => (
-          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} fit={(x) => fitCovenfolk(x, dc.members, dc.labs)} guild={guildCtx} labor={usesCG} examplesOnly={cov.finances.exampleCraftsOnly} saga={cov.sagaId} />
+          <CraftRow key={s.uid} s={s} update={update} line={f.crafts.find((c) => c.craft.id === craftOf(s)?.id)} optimal={() => optimalCraftsmen(cov, dc.members, dc.labs, s.uid)} fit={(x) => fitCovenfolk(x, dc.members, dc.labs)} guild={guildCtx} labor={usesCG} examplesOnly={cov.finances.exampleCraftsOnly} saga={cov.sagaId} data={data} />
         ))}
         <table className="compact" style={{ marginTop: 8 }}>
           <thead>
@@ -606,11 +608,13 @@ function PersonRow({ s, update, data, labs }: { s: Specialist; update: CovTabPro
   );
 }
 
-function CraftRow({ s, update, line: l, optimal, fit, guild, labor, examplesOnly, saga }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number; fit: (c: Covenant) => void; guild?: 'enforced' | 'shown'; labor?: boolean; examplesOnly?: boolean; saga: string }) {
+function CraftRow({ s, update, line: l, optimal, fit, guild, labor, examplesOnly, saga, data }: { s: Specialist; update: CovTabProps['update']; line?: CraftLine; optimal: () => number; fit: (c: Covenant) => void; guild?: 'enforced' | 'shown'; labor?: boolean; examplesOnly?: boolean; saga: string; data: CovTabProps['data'] }) {
   const set = useSet(update, s.uid);
   const craft = craftOf(s);
   const rare = s.rare ?? craft?.rare ?? false;
-  const each = craftsmanSaving(s.score, rare);
+  const traits = specialistCraftTraits(s, data, craft?.name);
+  // what they work at sets what they save and what they cost: Palsied Hands takes from it, Puissant Craft adds
+  const each = craftsmanSaving(workingCraft(s), rare);
   return (
     <div className="list-row" style={{ flexWrap: 'wrap' }}>
       <input value={s.name} placeholder="Name" style={{ width: 110 }} onChange={(e) => set((x) => void (x.name = e.target.value))} />
@@ -668,7 +672,9 @@ function CraftRow({ s, update, line: l, optimal, fit, guild, labor, examplesOnly
       <label className="inline small" title="Part of the base covenant or recruited in play: no Build Points">
         <input type="checkbox" checked={!!s.free} onChange={(e) => set((x) => void (x.free = e.target.checked))} /> no BP
       </label>
-      <span className="badge">{specialistCost(s)} BP</span>
+      <span className="badge" title={workingCraft(s) !== s.score ? `Bought by the score they work at, ${workingCraft(s)}` : undefined}>
+        {specialistCost(s)} BP
+      </span>
       <SpecChars s={s} set={set} show={['Dex']} />
       {(() => {
         // City & Guild: Dexterity + Craft (+ the workshop's Innovation and Raw Materials) makes the Workshop Total; the quality of what they make for a magus moves the enchanting Lab Total
@@ -691,7 +697,14 @@ function CraftRow({ s, update, line: l, optimal, fit, guild, labor, examplesOnly
           {s.workshop?.laborPoints ? `${s.workshop.laborPoints} Labor Points banked. ` : ''}Their workshop{guild ? ' and guild rank' : ''}: <Link to={R.guild(saga)}>City &amp; Guild ›</Link>
         </span>
       )}
+      {craft && <SpecialistTraitsEditor s={s} set={set} traits={traits} />}
       <span className="small soft" style={{ flexBasis: '100%' }}>
+        {worksAt(traits, s.score) && (
+          <b>
+            {worksAt(traits, s.score).replace(/^./, (x) => x.toUpperCase())}: what they save and earn
+            {s.free ? '' : s.boughtFor !== undefined ? ` (their Build Points stay as bought, ${s.boughtFor})` : ', and their Build Points'}.{' '}
+          </b>
+        )}
         {!craft
           ? 'Pick a craft to count its savings.'
           : !craft.categories.length

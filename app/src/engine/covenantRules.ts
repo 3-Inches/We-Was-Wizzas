@@ -4,6 +4,7 @@
 import type { Characteristic, HookBoonDef } from '../data';
 import type { BudgetKind, Covenant, CovenantHookBoon, IncomeModification, IncomeSource, Specialist } from './types';
 import { troubleIncomeMult } from './calamity';
+import { workingCraft } from './craftTraits';
 
 // ------------------------------------------------------------------------------ Income
 
@@ -176,7 +177,10 @@ const NO_BP_ROLES = new Set<Specialist['role']>(['personal-servant']);
 export function specialistUnitCost(s: Specialist): number {
   if (NO_BP_ROLES.has(s.role)) return 0;
   const com = specChar(s, 'Com') - (s.magicGain?.Com ?? 0);
-  return TEACHING_ROLES.has(s.role) ? com + (s.teaching ?? 0) + specHighest(s) : specHighest(s);
+  if (TEACHING_ROLES.has(s.role)) return com + (s.teaching ?? 0) + specHighest(s);
+  // a craftsman costs what they work at: Puissant Craft adds to it, Palsied Hands takes from it
+  if (s.role === 'craftsman' && s.traits?.length) return Math.max(workingCraft(s), ...specAbilities(s).filter((a) => !/craft/.test(a.id)).map((a) => a.score));
+  return specHighest(s);
 }
 
 /** Build Points for a specialist entry: what they were bought for, if their scores have risen in play since. What magic added is not paid for. */

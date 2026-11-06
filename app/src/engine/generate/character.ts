@@ -32,6 +32,7 @@ import { freshName, homelandGroupFor, regionOf } from './names';
 import { generateFamiliar, pickSpells, type SpellPick } from './spellsAndFamiliars';
 import { COMMON_TRAITS, ROLE_BY_ID, rolesFor, type Role } from './roles';
 import { between, chance, pick, sample, seeded } from './random';
+import { characterCraftTraits, craftTraitsLine } from '../craftTraits';
 import { favoriteArts } from './variety';
 
 /** Concept themes that make a character a mystic of some kind, open to any book's Supernatural Virtues. */
@@ -213,6 +214,12 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   warpBeforePlay(c, rng, log);
   d = derive();
   addTraits(c, role, rng);
+  // a craftsman met at random may be lucky or not at the work: say what helps and what holds them back
+  const trade = c.abilities.filter((a) => a.abilityId === 'craft-type' && a.param).sort((a, b) => Object.values(b.xp).reduce<number>((t, n) => t + (n ?? 0), 0) - Object.values(a.xp).reduce<number>((t, n) => t + (n ?? 0), 0))[0];
+  if (trade) {
+    const line = craftTraitsLine(characterCraftTraits(c, data, trade.param));
+    if (line) log.push(`At their craft (${trade.param}): ${line}.`);
+  }
   addGear(c, d, role, rng, data);
   tribunalCustoms(c, saga, rng, log);
   fillChoices(c, data, rng);

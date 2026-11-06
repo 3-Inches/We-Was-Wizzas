@@ -160,6 +160,8 @@ export default function TourPanel() {
     const timer = window.setInterval(() => {
       el = findTarget(names);
       if (el?.matches('.card.folded')) unfold(el);
+      // a closed fold of a card (a <details>) is opened to show what the step is about
+      if (el instanceof HTMLDetailsElement && !el.open) el.open = true;
       // not found: it may be inside a folded card, so open the page's folded cards
       if (!el && tries === 4) document.querySelectorAll('main .card.folded').forEach(unfold);
       if (el || ++tries > 25) {

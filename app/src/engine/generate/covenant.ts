@@ -10,12 +10,13 @@
 
 import { ARTS, ART_NAMES, type Art, type GameData } from '../../data';
 import type { BudgetKind, Character, Covenant, HouseRules, Saga, Specialist } from '../types';
-import { abilityCapAtAge, CRAFTS, specialistCost } from '../covenantRules';
+import { abilityCapAtAge, CRAFTS, craftOf, specialistCost } from '../covenantRules';
 import {
-  STARTING_RESERVE, VIS_STOCKS, addCostSavingCraftsmen, addGuildAbilities, ageForScore, budgetLeft, deriveCovenant, fitCovenfolk, markResources, optimalLaborers, paidFromPools, payFromPools, summaCost,
+  STARTING_RESERVE, VIS_STOCKS, addCostSavingCraftsmen, meetCraftsmen, addGuildAbilities, ageForScore, budgetLeft, deriveCovenant, fitCovenfolk, markResources, optimalLaborers, paidFromPools, payFromPools, summaCost,
 } from '../covenant';
 import { CRAFT_GUILD_RANKS, FEAST_CYCLE, guildRanksApply, hasGuildHook, newSoldierGroup, soldierBoonsWithoutGroups, soldierKindOf, suggestedGuildRank, weaponArmorEstimate } from '../covenfolk';
 import { optionOn } from '../optional';
+import { CRAFT_TRAITS } from '../craftTraits';
 import { deriveCharacter } from '../character/derive';
 import { abilityXpForScore } from '../xp';
 import { stockLibrary, type LibraryOptions } from './library';
@@ -271,12 +272,28 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
     const purse = o.bought ? budgetLeft(cov, derived(), 'specialist') : undefined;
     const maxEach = purse ? Math.max(purse.own, ...purse.pools.map((p) => p.left)) : Infinity;
     const added = addCostSavingCraftsmen(cov, members(), derived().labs, 'best', room('specialist'), maxEach);
+    // met as people: some lucky, some not, each paid for and saving by the score they work at
+    // each covenant meets its own people (Tribunal covenants are built from the same seed)
+    const meetRng = seeded(o.seed * 7919 + [...(cov.id + cov.name)].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) % 1_000_003, 0));
+    let met = meetCraftsmen(cov, had, meetRng, () => {
+      const n = freshName(meetRng, region, chance(meetRng, 0.5), used);
+      used.add(n);
+      return n;
+    });
     for (const s of cov.specialists.filter((x) => !had.has(x.uid))) shape(s.name, applyCovenfolkBoonsToSpecialist(s, cov, rng, g.data));
     pay('specialist', cov.specialists.filter((s) => !had.has(s.uid)).map((s) => s.uid));
     // a pool takes a craftsman only whole: those it could not, and the budget cannot cover, are not hired
     const pooled = () => paidFromPools(cov);
     let dropped = 0;
     while (over('specialist')) {
+      // one too good for what is left (Puissant Craft costs more): an ordinary craftsman comes in their place
+      const dear = cov.specialists.find((x) => !had.has(x.uid) && (x.traits ?? []).some((id) => (CRAFT_TRAITS.find((t) => t.id === id)?.work ?? 0) > 0));
+      if (dear) {
+        dear.traits = dear.traits!.filter((id) => (CRAFT_TRAITS.find((t) => t.id === id)?.work ?? 0) <= 0);
+        if (!dear.traits.length) dear.traits = undefined;
+        met = met.filter((l) => !l.startsWith(`${dear.name},`));
+        continue;
+      }
       const s = [...cov.specialists].reverse().find((x) => x.role === 'craftsman' && !pooled().has(x.uid) && (x.count ?? 1) > (had.get(x.uid) ?? 0));
       if (!s) break;
       if ((s.count ?? 1) > 1) s.count = (s.count ?? 1) - 1;
@@ -285,9 +302,16 @@ export function fillCovenant(cov0: Covenant, characters: Character[], g: { data:
     }
     const newOnes = cov.specialists.filter((s) => s.role === 'craftsman' && (s.count ?? 1) > (had.get(s.uid) ?? 0));
     const bp = newOnes.reduce((t, s) => t + specialistCost(s) * (1 - (had.get(s.uid) ?? 0) / Math.max(1, s.count ?? 1)), 0);
+    // those met who stand out, and were hired
+    const kept = met.filter((l) => newOnes.some((s) => l.startsWith(`${s.name},`)));
     log.push(
       added.length && newOnes.length
-        ? `Craftsmen (carpenters first, then where each saves most): ${newOnes.map((s) => `${(s.count ?? 1) - (had.get(s.uid) ?? 0)} ${s.name.toLowerCase()}${(s.count ?? 1) - (had.get(s.uid) ?? 0) > 1 ? 's' : ''} at Craft ${s.score}`).join(', ')}${o.bought ? ` (${Math.round(bp)} BP)` : ''}${dropped ? `; ${dropped} more would go past the Build Points, so ${dropped > 1 ? 'are' : 'is'} left to recruit in play` : ''}.`
+        ? `Craftsmen (carpenters first, then where each saves most): ${[...newOnes.reduce((m, s) => {
+            const k = `${(craftOf(s)?.name ?? s.name).toLowerCase()}|${s.score}`;
+            return m.set(k, (m.get(k) ?? 0) + (s.count ?? 1) - (had.get(s.uid) ?? 0));
+          }, new Map<string, number>())].map(([k, n]) => `${n} ${k.split('|')[0]}${n > 1 ? 's' : ''} at Craft ${k.split('|')[1]}`).join(', ')}${o.bought ? ` (${Math.round(bp)} BP)` : ''}${dropped ? `; ${dropped} more would go past the Build Points, so ${dropped > 1 ? 'are' : 'is'} left to recruit in play` : ''}.${
+            kept.length ? ` Among them, ${kept.join('; ')}: each costs and saves by the score they work at.` : ''
+          }`
         : `Craftsmen: ${dropped ? `none within the Build Points left (${dropped} would go past them: recruit in play)` : room('specialist') < 3 ? 'no Build Points left for any' : 'none would save the covenant money'}.`,
     );
     fitCounts();

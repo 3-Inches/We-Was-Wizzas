@@ -6,6 +6,7 @@ import { defaultRng, describeStress, simpleDie, stressDie, type Rng } from './di
 import type { DerivedCharacter } from './character/derive';
 import { applySeason, newSeasonEntry } from './longterm';
 import type { Character, Season, Workshop } from './types';
+import { characterWorkMod, hasTrait } from './craftTraits';
 
 export type Wealth = 'poor' | 'average' | 'wealthy';
 /** Labor Points per season are multiplied by this (C&G, Labor and Livelihood) */
@@ -48,6 +49,8 @@ export interface WorkshopInput {
   manual?: number;
   /** a simple die from exerting oneself */
   exertion?: number;
+  /** a Virtue or Flaw for this season's kind of work (Keen Vision on fine work, Free Expression on a new work of art) */
+  traits?: { label: string; value: number }[];
 }
 
 export function workshopTotal(i: WorkshopInput): { total: number; parts: { label: string; value: number }[] } {
@@ -58,6 +61,7 @@ export function workshopTotal(i: WorkshopInput): { total: number; parts: { label
   if (help) parts.push({ label: `Assistants (half of ${i.assistants.join(' + ')}, rounded up)`, value: help });
   if (i.manual) parts.push({ label: 'Craft manual', value: i.manual });
   if (i.exertion) parts.push({ label: 'Exertion (simple die)', value: i.exertion });
+  for (const t of i.traits ?? []) if (t.value) parts.push(t);
   return { total: parts.reduce((s, p) => s + p.value, 0), parts };
 }
 
@@ -168,23 +172,32 @@ export interface WorkshopFigures {
 }
 
 /** A tracked workshop's numbers this season (City & Guild); `situation` raises the base Craft Level. */
-export function workshopFigures(c: Character, d: DerivedCharacter, situation = 0): WorkshopFigures | null {
+export function workshopFigures(c: Character, d: DerivedCharacter, situation = 0, traits: { label: string; value: number }[] = []): WorkshopFigures | null {
   const w = c.workshop;
   if (!w) return null;
   const trades = d.abilities.filter((a) => a.abilityId.startsWith('craft') || a.abilityId.startsWith('profession'));
   const trade = d.abilityByUid.get(w.abilityUid ?? '') ?? trades[0];
-  const craft = trade?.total ?? 0;
+  // the score they work at: the Craft (Puissant in it already) with what their Flaws always take
+  // from it, Palsied Hands −2, Clumsy or Arthritis −3 (craftTraits.ts)
+  // (a Craft's: a merchant's Profession is not worked with the hands)
   const profession = !!trade?.abilityId.startsWith('profession');
+  const param = trade?.name.replace(/^(Craft|Profession):?\s*/, '') || undefined;
+  const hands = profession ? 0 : characterWorkMod(c, param, { derived: true });
+  // Independent Craftsman: Craft or Profession and Leadership count 3 lower working with others (City & Guild p.73)
+  const alone = hasTrait(c, 'independent-craftsman-flaw') ? -3 : 0;
+  const withHelp = w.assistants.length > 0 ? alone : 0;
+  const craft = Math.max(0, (trade?.total ?? 0) + hands + withHelp);
   const wealth = wealthOf(d);
   const primary = d.characteristics[w.primary].value;
   // Labor Points: (primary + Craft) or (Communication + Profession), times wealth
   const lpChar = profession ? d.characteristics.Com.value : primary;
-  const leadership = d.abilities.find((a) => a.abilityId === 'leadership')?.total ?? 0;
+  const leadership = Math.max(0, (d.abilities.find((a) => a.abilityId === 'leadership')?.total ?? 0) + alone);
   const maxAssistants = Math.max(1, leadership);
   const missing = w.guildMaster ? Math.max(0, leadership - w.assistants.length) : 0;
   const total = workshopTotal({
-    characteristic: { label: CHAR_NAMES[w.primary], value: primary }, ability: { label: trade?.name ?? 'Craft', value: craft },
-    innovation: w.innovation, rawMaterials: w.rawMaterials, assistants: w.assistants.slice(0, maxAssistants).map((a) => a.craft), manual: w.manual,
+    characteristic: { label: CHAR_NAMES[w.primary], value: primary },
+    ability: { label: `${trade?.name ?? 'Craft'}${hands + withHelp ? ` (${trade?.total ?? 0} ${hands + withHelp > 0 ? '+' : '−'} ${Math.abs(hands + withHelp)} for their Flaws)` : ''}`, value: craft },
+    innovation: w.innovation, rawMaterials: w.rawMaterials, assistants: w.assistants.slice(0, maxAssistants).map((a) => a.craft), manual: w.manual, traits,
   });
   return {
     trade: trade ? { uid: trade.uid, name: trade.name, total: trade.total, abilityId: trade.abilityId } : undefined, craft, wealth, lp: laborPoints(lpChar, craft, wealth, missing) + (w.contractLp ?? 0),
@@ -193,8 +206,8 @@ export function workshopFigures(c: Character, d: DerivedCharacter, situation = 0
 }
 
 /** Work a season in the workshop: the goods it makes, Labor Points, Reputation, and the season logged (2 Exposure xp in the craft). */
-export function workshopSeason(c: Character, d: DerivedCharacter, year: number, season: Season, o: { exert?: boolean; situation?: number; rng?: Rng } = {}): string[] {
-  const f = workshopFigures(c, d, o.situation ?? 0);
+export function workshopSeason(c: Character, d: DerivedCharacter, year: number, season: Season, o: { exert?: boolean; situation?: number; traits?: { label: string; value: number }[]; rng?: Rng } = {}): string[] {
+  const f = workshopFigures(c, d, o.situation ?? 0, o.traits);
   const w = c.workshop;
   if (!f || !w) return [];
   const ex = o.exert ? rollExertion(o.rng) : null;

@@ -6,6 +6,7 @@
 
 import type { GameData } from '../data';
 import { abilityXpForScore } from './xp';
+import { workingCraft } from './craftTraits';
 import { countOf, craftOf, specAbilities, specChar, specHighest, specialistUnitCost } from './covenantRules';
 import type { Character, Covenant, CraftMagicUse, SoldierGroup, Specialist, SpecialistRole, YearlyEvent } from './types';
 import { uid } from '../util/id';
@@ -294,7 +295,7 @@ export function workSeasons(s: Specialist): { work: number; free: number } {
 
 /** A covenant craftsman's Labor Points a season: (primary Characteristic + Craft) × 2 Poor, 3 average, 6 Wealthy (City & Guild ch.2), as for any craftsman. */
 export function laborPointsPerSeason(s: Specialist): number {
-  return laborPoints(specChar(s, 'Dex'), s.score, s.wealth ?? 'average');
+  return laborPoints(specChar(s, 'Dex'), workingCraft(s), s.wealth ?? 'average');
 }
 
 /** Keeping a workshop at its level: 36 Labor Points a year, and 5 more for each point of Raw Materials (City & Guild ch.2 and ch.4). */
@@ -302,7 +303,7 @@ export const craftsmanUpkeep = (s: Specialist) => upkeep(s.workshop?.rawMaterial
 
 /** Workshop Total: primary Characteristic + Craft + Innovation + Raw Materials (City & Guild ch.4). */
 export function craftsmanWorkshopTotal(s: Specialist): number {
-  return specChar(s, 'Dex') + s.score + (s.workshop?.innovation ?? 0) + (s.workshop?.rawMaterials ?? 0);
+  return specChar(s, 'Dex') + workingCraft(s) + (s.workshop?.innovation ?? 0) + (s.workshop?.rawMaterials ?? 0);
 }
 
 /** Labor Points to raise Innovation or Raw Materials one point from where it is (City & Guild ch.4), or undefined at +3. */
@@ -422,6 +423,8 @@ export function covenfolkYearEnd(cov: Covenant, year: number): string[] {
     // a teacher's working seasons are the ones spent teaching; any not taught become free study
     const taught = s.role === 'teacher' || s.role === 'drill-sergeant' ? Math.min(work, s.taught?.year === year ? s.taught.seasons : 0) : work;
     const practice = free + (work - taught);
+    // Affinity with their Craft: Advancement Totals in it half again, rounded up (DE)
+    const gain = (a: { id: string }, xp: number) => (s.role === 'craftsman' && /craft/.test(a.id) && s.traits?.includes('affinity-with-ability') ? Math.ceil(xp * 1.5) : xp);
     if (taught) {
       if (s.role === 'teacher' || s.role === 'drill-sergeant') {
         const t = { score: s.teaching ?? 0, xp: s.teachingXp };
@@ -430,14 +433,14 @@ export function covenfolkYearEnd(cov: Covenant, year: number): string[] {
         s.teachingXp = t.xp;
       } else {
         const j = jobAbility();
-        if (addXp(j, EXPOSURE * taught)) notes.push(`${abilityLabel(j)} ${j.score}`);
+        if (addXp(j, gain(j, EXPOSURE * taught))) notes.push(`${abilityLabel(j)} ${j.score}`);
       }
     }
     for (let i = 0; i < practice; i++) {
       const best = top().score;
       const behind = list.filter((a) => a.score < best).sort((a, b) => a.score - b.score)[0];
       const target = behind ?? jobAbility();
-      if (addXp(target, PRACTICE)) notes.push(`${abilityLabel(target)} ${target.score}`);
+      if (addXp(target, gain(target, PRACTICE))) notes.push(`${abilityLabel(target)} ${target.score}`);
     }
     const t = top();
     s.score = t.score;
@@ -449,6 +452,9 @@ export function covenfolkYearEnd(cov: Covenant, year: number): string[] {
     }
     // one of the inhuman covenfolk does not age (Inhuman Residents, Inhuman Covenfolk)
     if (s.age !== undefined && !s.nature) s.age += 1;
+    // the players' covenant: a craftsman this old may soon stop working (the Tribunal's covenants replace theirs at year end)
+    if (!cov.living && s.role === 'craftsman' && s.age !== undefined && !s.nature && [60, 65, 70].includes(s.age))
+      lines.push(`${s.name || roleLabel(s.role)} is ${s.age}: a craftsman this old may soon stop working. Others can be found under City & Guild, Hiring and letting go.`);
     if (notes.length) {
       const text = `A year’s work (${taught} season${taught === 1 ? '' : 's'} at the job, ${practice} free): ${notes.join(', ')}.`;
       s.history = [...(s.history ?? []), { year, season: 'Winter', text }];

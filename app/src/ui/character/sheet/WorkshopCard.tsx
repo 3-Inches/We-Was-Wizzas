@@ -3,6 +3,8 @@
 // improvements they buy, workshop exertion, selling, and wondrous items.
 
 import { PeopleOptions, ResultLog, canPlay, groupPeople } from '../../play';
+import { characterCraftTraits, traitApplies } from '../../../engine/craftTraits';
+import { TraitBadges } from '../../covenant/CraftTraits';
 import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../../data';
 import type { Workshop } from '../../../engine/types';
@@ -42,8 +44,10 @@ const SITUATIONS = [
 ];
 
 export function WorkshopCard({ ed }: { ed: CharEditor }) {
-  const { c, d, update, saga } = ed;
+  const { c, d, update, saga, data } = ed;
   const [situations, setSituations] = useState<string[]>([]);
+  // this season's kind of work, for a Virtue or Flaw that counts only in it (Keen Vision on fine work)
+  const [kinds, setKinds] = useState<string[]>([]);
   const [exert, setExert] = useState(false);
   const [money, setMoney] = useState(10);
   const [band, setBand] = useState('Trivial');
@@ -72,6 +76,15 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
           Optional: for a craftsman or laborer who works for a living. Tracks Labor Points, the Workshop Total and the quality of each season&apos;s goods, and what the points buy
           (City &amp; Guild, ch.2).
         </p>
+        {(() => {
+          const t = characterCraftTraits(c, data, trades[0]?.name.replace(/^(Craft|Profession):?\s*/, '') || undefined);
+          return t.length ? (
+            <div className="row tight small" style={{ flexWrap: 'wrap', marginBottom: 6 }}>
+              <span>At their craft:</span>
+              <TraitBadges traits={t} />
+            </div>
+          ) : null;
+        })()}
         <button className="small" onClick={() => update((x) => void (x.workshop = newWorkshop(trades[0]?.uid, trades[0]?.abilityId.startsWith('profession') ?? false)))}>
           Track this character&apos;s livelihood
         </button>
@@ -79,7 +92,14 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
     );
 
   const situation = situations.reduce((t, id) => t + (SITUATIONS.find((x) => x.id === id)?.value ?? 0), 0);
-  const f = workshopFigures(c, d, situation)!;
+  // what helps and hurts them at this trade (Puissant, Palsied Hands, Keen Vision…), and this season's
+  const tradeAb = d.abilityByUid.get(w.abilityUid ?? '') ?? trades[0];
+  const tradeName = tradeAb?.name.replace(/^(Craft|Profession):?\s*/, '') || undefined;
+  // a merchant's Profession is not worked with the hands: the hands' Flaws do not count there
+  const craftTraits = characterCraftTraits(c, data, tradeName).filter((t) => !tradeAb?.abilityId.startsWith('profession') || !t.work || t.work > 0);
+  const seasonal = craftTraits.filter((t) => t.when && t.id !== 'independent-craftsman-flaw' && (!tradeName || traitApplies(t, tradeName)));
+  const seasonTraits = seasonal.filter((t) => kinds.includes(t.id)).map((t) => ({ label: `${t.name} (${t.when!.work.replace(/ \(.*\)$/, '')})`, value: t.when!.mod }));
+  const f = workshopFigures(c, d, situation, seasonTraits)!;
   const trade = f.trade;
   const craft = f.craft;
   const profession = !!trade?.abilityId.startsWith('profession');
@@ -101,7 +121,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
 
   const workSeason = () => {
     let lines: string[] = [];
-    update((x) => void (lines = workshopSeason(x, d, year, season, { exert, situation })));
+    update((x) => void (lines = workshopSeason(x, d, year, season, { exert, situation, traits: seasonTraits })));
     setExert(false);
     push(`${season} ${year}: ${lines.join(' ')}`);
   };
@@ -255,7 +275,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
       </div>
 
       <div className="row">
-        <div className="stat">
+        <div className="stat" data-tour="workshop-total">
           <span className="v">
             <Total value={wt.total} parts={wt.parts} notes={[]} label="Workshop Total" />
           </span>
@@ -271,7 +291,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
             Goods{q.bonus ? ` (+${q.bonus})` : ''}
           </span>
         </div>
-        <div className="stat">
+        <div className="stat" data-tour="workshop-lp">
           <span className="v" title={`(${CHAR_NAMES[lpChar.key]} ${lpChar.value} + ${trade?.name ?? 'Craft'} ${craft}) × ${wealth === 'poor' ? 2 : wealth === 'wealthy' ? 6 : 3}${missing ? ` − 3 × ${missing} missing workers` : ''}`}>{lp}</span>
           <span className="l">Labor Points a season</span>
         </div>
@@ -280,12 +300,26 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
           <span className="l">Upkeep a year</span>
         </div>
       </div>
+      {craftTraits.length > 0 && (
+        <div className="row tight small" style={{ flexWrap: 'wrap', margin: '2px 0 4px' }} data-tour="workshop-traits">
+          <span>At their craft:</span>
+          <TraitBadges traits={craftTraits} />
+          {seasonal.map((t) => (
+            <label key={t.id} className="inline" title={`${t.text} (${t.ref})`}>
+              <input type="checkbox" checked={kinds.includes(t.id)} onChange={(e) => setKinds((l) => (e.target.checked ? [...l, t.id] : l.filter((x) => x !== t.id)))} /> this season is {t.when!.work.replace(/ \(.*\)$/, '')} (
+              {t.when!.mod > 0 ? '+' : '−'}
+              {Math.abs(t.when!.mod)})
+            </label>
+          ))}
+          {craftTraits.some((t) => t.id === 'independent-craftsman-flaw') && <span className="muted">Independent Craftsman: Craft and Leadership 3 lower {w.assistants.length ? 'with these assistants (counted)' : 'once assistants help'}.</span>}
+        </div>
+      )}
       <p className="small muted" style={{ margin: 0 }}>
         Shoddy below {q.levels.standard}, standard {q.levels.standard}, superior {q.levels.superior} (+1 to one feature for one activity), excellent {q.levels.excellent} (+1, and +1
         for every 3 more, up to +{q.bonusLimit}). A season of {baseLevel + 6}+ earns a point of (Craft) Reputation. Average characters work two seasons a year, Poor three, Wealthy one.
       </p>
 
-      <details>
+      <details data-tour="workshop-assistants">
         <summary className="small">Workshop, assistants and this season&apos;s situation</summary>
         <div className="row" style={{ marginTop: 6 }}>
           <Field label="Innovation (0–3)">
@@ -330,7 +364,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         </button>
       </details>
 
-      <div className="row" style={{ marginTop: 8 }}>
+      <div className="row" style={{ marginTop: 8 }} data-tour="workshop-work">
         <label className="inline small" title="A simple die on the Workshop Total, a roll on the Workshop Exertion chart, and an aging roll">
           <input type="checkbox" checked={exert} onChange={(e) => setExert(e.target.checked)} /> Exert yourself
         </label>
@@ -363,7 +397,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         <Stepper value={w.laborPoints} min={-999} max={99999} width={60} onChange={(v) => set((x) => void (x.laborPoints = v))} />
       </Field>
 
-      <details>
+      <details data-tour="workshop-stories">
         <summary className="small">Stories and investments (City &amp; Guild ch.2 and ch.7)</summary>
         <div className="small" style={{ marginTop: 6 }}>Labor Points from a story the character took part in:</div>
         <div className="row tight small">
@@ -501,7 +535,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         )}
       </details>
 
-      <details>
+      <details data-tour="workshop-wonder">
         <summary className="small">Wondrous item (Touched by a Realm)</summary>
         <div className="row" style={{ marginTop: 6 }}>
           <Field label="Magnitude of the mirroring Hermetic effect" hint="Personal or Touch, up to Sun, Individual">
