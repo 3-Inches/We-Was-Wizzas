@@ -51,7 +51,7 @@ export default function CovenantPage() {
   return (
     <div>
       <div className="breadcrumbs no-print">
-        <Link to="/">Sagas</Link> › <Link to={`/saga/${saga.id}`}>{saga.name}</Link> › <span className="muted">·</span> <Link to={`/saga/${saga.id}/table`}>★ Game Table</Link>
+        <Link to="/">Sagas</Link> › <Link to={`/saga/${saga.id}`}>{saga.name}</Link> <span className="muted">·</span> <Link to={`/saga/${saga.id}/table`}>★ Game Table</Link>
       </div>
       <div className="topbar">
         <h1>

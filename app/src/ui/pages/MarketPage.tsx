@@ -688,7 +688,9 @@ function Haggle({ people, data, run, onSundry, rules, buyer, payer }: { people: 
   const [daily, setDaily] = useState(1);
   const [gifted, setGifted] = useState(false);
   const [out, setOut] = useState<{ step: 'appraise' | 'bargain' | 'advantage' | 'ask'; text: string; price?: number }[]>([]);
-  const [err, setErr] = useState('');
+  // a problem paying, shown by the button pressed
+  const [err, setErrAt] = useState<{ at: 'pay' | 'ask'; text: string }>();
+  const setErr = (at: 'pay' | 'ask', text = '') => setErrAt(text ? { at, text } : undefined);
   // a grog or companion first: The Gift sets prices soaring for a magus
   const c = folk.find((x) => x.id === who) ?? folk.find((x) => x.type === 'grog') ?? folk.find((x) => x.type !== 'magus') ?? folk[0];
   const stats = (x: Character) => {
@@ -712,6 +714,18 @@ function Haggle({ people, data, run, onSundry, rules, buyer, payer }: { people: 
   const short = (pounds: number) => (buyer.kind === 'covenant' && onSundry ? false : funds + 1e-9 < pounds);
   const noMoney = (pounds: number) => `${payerName(buyer)} has ${lsd(funds)}, not ${lsd(pounds)}: give it money under Treasury and purses above, or choose another buyer at the top of the page.`;
   const note = (o: (typeof out)[number]) => setOut((l) => [o, ...l.filter((x) => x.step !== o.step)]);
+  // each roll's result under its own button (on a phone a list at the bottom is out of sight)
+  const Result = ({ steps }: { steps: (typeof out)[number]['step'][] }) => {
+    const mine = out.filter((o) => steps.includes(o.step));
+    return mine.length ? (
+      <div className="dice-result-lines small" aria-live="polite">
+        {mine.map((o) => (
+          <div key={o.step}>{o.text}</div>
+        ))}
+      </div>
+    ) : null;
+  };
+  const Problem = ({ at }: { at: 'pay' | 'ask' }) => (err?.at === at ? <p className="bad small" style={{ margin: '4px 0 0' }}>{err.text}</p> : null);
   const when = (st: SagaState) => ({ year: st.saga.currentYear, season: st.saga.currentSeason });
   const pence = b ? b.pennies(daily) : 0;
   // talking to locals who have met the magi: The Gift's penalty applies to a grog as well (Grogs ch.4)
@@ -765,6 +779,7 @@ function Haggle({ people, data, run, onSundry, rules, buyer, payer }: { people: 
               Appraise: Perception + Bargain {sign(s.appraise)} + die vs {ease} ({pct(simpleChance(s.appraise, ease))})
             </button>
           </div>
+          <Result steps={['appraise']} />
           <p className="small muted" style={{ margin: '2px 0 0' }}>
             Success means they know what the goods are really worth, so the seller cannot pass off a higher price as fair. Failing, they cannot tell, and may pay what the seller asks.
           </p>
@@ -807,6 +822,7 @@ function Haggle({ people, data, run, onSundry, rules, buyer, payer }: { people: 
               Read the seller: Perception + Folk Ken {sign(s.read)} vs {sign(sel.guile)} ({pct(contestChance(s.read, sel.guile))})
             </button>
           </div>
+          <Result steps={['bargain', 'advantage']} />
           <p className="small muted" style={{ margin: '2px 0 0' }}>
             10% off the value for every 3 points (or part of 3) the buyer&apos;s total beats the seller&apos;s, never below half; a tie or worse, nothing off. The book has the storyguide roll for
             the seller in secret. The seller will first ask for more than the value; reading the seller tells the buyer when to stop.
@@ -816,8 +832,8 @@ function Haggle({ people, data, run, onSundry, rules, buyer, payer }: { people: 
               <button
                 className="small"
                 onClick={() => {
-                  if (short(price)) return setErr(noMoney(price));
-                  setErr('');
+                  if (short(price)) return setErr('pay', noMoney(price));
+                  setErr('pay');
                   run((st, p) => pay(p, price, `Bought goods worth ${lsd(value)} for ${lsd(price)} after haggling`, when(st), onSundry), `Paid ${lsd(price)}.`);
                 }}
               >
@@ -826,6 +842,7 @@ function Haggle({ people, data, run, onSundry, rules, buyer, payer }: { people: 
               <span className="muted">{buyer.kind === 'covenant' && onSundry ? 'put on this year’s Sundry' : `has ${lsd(funds)}`}</span>
             </div>
           )}
+          <Problem at="pay" />
 
           <h4 style={{ marginBottom: 4 }}>Bribes: a word from the locals, or a bed</h4>
           <p className="small muted" style={{ margin: '0 0 4px' }}>
@@ -878,8 +895,8 @@ function Haggle({ people, data, run, onSundry, rules, buyer, payer }: { people: 
                   note({ step: 'ask', text: `Communication + Folk Ken ${sign(total)} + ${die} = ${die + total} vs ${askEase}: ${ok ? (a.suspicious ? 'they talk.' : 'they have a place to sleep.') : a.suspicious ? 'they will not say.' : 'no bed tonight.'}${b ? ` The bribe, ${pence}d, is paid.` : ''}` });
                 };
                 if (!b) return roll();
-                if (short(pence / 240)) return setErr(noMoney(pence / 240));
-                setErr('');
+                if (short(pence / 240)) return setErr('ask', noMoney(pence / 240));
+                setErr('ask');
                 if (run((st, p) => pay(p, pence / 240, `A bribe (${b.label.toLowerCase()}, ${pence}d)`, when(st), onSundry), `Bribe of ${pence}d paid.`)) roll();
               }}
             >
@@ -887,14 +904,8 @@ function Haggle({ people, data, run, onSundry, rules, buyer, payer }: { people: 
             </button>
             {gifted && !s.gift && <span className="warn-text">−3: the magi&apos;s Gift, which the locals have met, counts against the grog too (Grogs ch.4)</span>}
           </div>
-          {err && <p className="bad small" style={{ margin: '6px 0 0' }}>{err}</p>}
-          {out.length > 0 && (
-            <ul className="small" style={{ margin: '6px 0 0', paddingLeft: 18 }}>
-              {out.map((o) => (
-                <li key={o.step}>{o.text}</li>
-              ))}
-            </ul>
-          )}
+          <Result steps={['ask']} />
+          <Problem at="ask" />
         </>
       )}
     </Card>

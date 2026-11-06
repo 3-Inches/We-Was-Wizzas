@@ -644,6 +644,16 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
     e.potential += countOf(s) * craftsmanSaving(s.score, s.rare ?? craft.rare);
     byCraft.set(craft.id, e);
   }
+  // members who make the covenant's wares in their working seasons count as its craftsmen, by their best Craft
+  const work = new Set(cov.finances.craftWork ?? []);
+  for (const m of strike ? [] : counted.filter((x) => work.has(x.id))) {
+    const best = memberCraft(m);
+    if (!best) continue;
+    const e = byCraft.get(best.craft.id) ?? { craft: best.craft, people: 0, potential: 0 };
+    e.people += 1;
+    e.potential += craftsmanSaving(best.score, best.craft.rare);
+    byCraft.set(best.craft.id, e);
+  }
   // older files: craft savings entered without a craftsman
   for (const cs of cov.finances.craftSavings ?? []) {
     const craft = findCraftOrCustom(cs.craft, cs.category as CostCategory);
@@ -690,6 +700,15 @@ export function computeFinances(cov: Covenant, members: Character[], labs: Deriv
     income: income.income, incomeLines: income.lines, incomeIssues: income.issues, debt: income.debt, balance: round1(income.income - totalExpenditure), writersCount: writers,
     laborerSaving: round1(laborerSaving), people, soldiers, yearly, strike,
   };
+}
+
+/** A member's best Craft that saves the covenant money, and its score (from experience: Virtues aside). */
+export function memberCraft(m: Character): { craft: CraftDef; score: number; name: string } | undefined {
+  return m.abilities
+    .filter((a) => a.abilityId === 'craft-type')
+    .map((a) => ({ craft: findCraft(a.param), score: abilityScoreFromXp(Object.values(a.xp).reduce<number>((t, v) => t + (v ?? 0), 0)), name: a.param ?? 'Craft' }))
+    .filter((x): x is { craft: CraftDef; score: number; name: string } => !!x.craft && x.craft.categories.length > 0)
+    .sort((a, b) => b.score - a.score)[0];
 }
 
 function findCraftOrCustom(name: string, category: CostCategory): CraftDef {

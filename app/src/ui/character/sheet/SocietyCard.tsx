@@ -1,7 +1,7 @@
 // Society: the optional social contests a troupe uses, each folded until needed: petitioning the
 // Church, a quick trial, an etiquette performance, and a debate against another character.
 
-import { RollAtTable, useAtTable } from '../../play';
+import { RollAtTable, useAtTable, ResultLog } from '../../play';
 import { useMemo, useState } from 'react';
 import { deriveCharacter } from '../../../engine/character/derive';
 import { optionOn } from '../../../engine/optional';
@@ -44,9 +44,7 @@ export function SocietyCard({ ed }: { ed: CharEditor }) {
 function Log({ lines }: { lines: string[] }) {
   return (
     <>
-      {lines.map((t, i) => (
-        <div key={i} className="small">{t}</div>
-      ))}
+      <ResultLog lines={lines} />
     </>
   );
 }

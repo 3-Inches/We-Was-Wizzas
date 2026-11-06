@@ -12,7 +12,7 @@ import { Card, Field, Stepper } from '../../kit';
 import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
 import { optionOn } from '../../../engine/optional';
-import { RollAtTable, useAtTable } from '../../play';
+import { RollAtTable, useAtTable, ResultLog } from '../../play';
 
 export function IllnessCard({ ed }: { ed: CharEditor }) {
   const { c, d, update, ctx, saga } = ed;
@@ -206,11 +206,7 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
         </div>
         </details>
       )}
-      {log.map((l, i) => (
-        <div key={i} className="small list-row">
-          {l}
-        </div>
-      ))}
+      <ResultLog lines={log} />
     </Card>
   );
 }

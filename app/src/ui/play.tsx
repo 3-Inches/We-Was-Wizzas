@@ -3,7 +3,7 @@
 // card says in one line where at the table its rolls are made. The table's pickers offer everyone in
 // the saga, the Tribunal's people too, grouped by whose they are.
 
-import { createContext, useContext, useMemo, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { livingIds } from '../engine/living';
 import type { Character, Covenant } from '../engine/types';
@@ -96,4 +96,55 @@ export const canPlay = (c: Character) => c.creation.finalized && !c.wounds.dead;
 
 export function usePeopleGroups(chars: Character[], covs: Covenant[], keep: (c: Character) => boolean = canPlay): PeopleGroup[] {
   return useMemo(() => groupPeople(chars.filter(keep), covs), [chars, covs, keep]);
+}
+
+/**
+ * A card's results, newest first, where the card shows them. A result that lands while this list is
+ * out of sight (a long card on a phone, the button high above) also shows for a moment at the foot
+ * of the screen, with a link down to the list.
+ */
+export function ResultLog({ lines, max = 12 }: { lines: string[]; max?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [toast, setToast] = useState<string>();
+  const first = lines[0];
+  const seen = useRef(first);
+  useEffect(() => {
+    if (!first || first === seen.current) return;
+    seen.current = first;
+    const r = ref.current?.getBoundingClientRect();
+    const visible = r && r.top < window.innerHeight - 40 && r.bottom > 0;
+    if (visible) return;
+    setToast(first);
+    const t = setTimeout(() => setToast(undefined), 9000);
+    return () => clearTimeout(t);
+  }, [first]);
+  if (!lines.length) return null;
+  return (
+    <>
+      <div ref={ref} className="dice-result-lines small" aria-live="polite">
+        {lines.slice(0, max).map((l, i) => (
+          <div key={i} className={i ? 'muted' : ''}>
+            {l}
+          </div>
+        ))}
+      </div>
+      {toast && (
+        <div className="result-toast small" role="status">
+          <span>{toast}</span>
+          <button
+            className="small ghost"
+            onClick={() => {
+              ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              setToast(undefined);
+            }}
+          >
+            Show ↓
+          </button>
+          <button className="small ghost" aria-label="Close" onClick={() => setToast(undefined)}>
+            ✕
+          </button>
+        </div>
+      )}
+    </>
+  );
 }

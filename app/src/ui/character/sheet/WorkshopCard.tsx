@@ -2,6 +2,7 @@
 // Guild: the Workshop Total and the quality it makes, Labor Points banked season by season, the
 // improvements they buy, workshop exertion, selling, and wondrous items.
 
+import { PeopleOptions, ResultLog, canPlay, groupPeople } from '../../play';
 import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../../data';
 import type { Workshop } from '../../../engine/types';
@@ -26,6 +27,8 @@ import { uid } from '../../../util/id';
 import { Card, Field, Stepper, Total, signed } from '../../kit';
 import { pct, simpleChance, stressChance, stressContestChance } from '../../../engine/dice';
 import type { CharEditor } from '../useChar';
+import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
+import { useStore } from '../../../store/store';
 
 /** situations that raise the base Craft Level (C&G, Finished Goods Craft Levels) */
 const SITUATIONS = [
@@ -527,13 +530,101 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
           gathers the Workshop Total less the Craft Level until the points reach the Craft Level. The item works only for the customer it was made for, and is an Arcane Connection to
           them.
         </p>
+        <WonderProject ed={ed} wondrous={wondrous} magnitude={magnitude} freq={freq} />
       </details>
 
-      {log.map((l, i) => (
-        <div key={log.length - i} className="small list-row">
-          {l}
-        </div>
-      ))}
+      <ResultLog lines={log} />
     </Card>
+  );
+}
+
+/**
+ * A wondrous item made a season at a time (City & Guild, Wondrous Items): it needs the Touched by
+ * (Realm) Virtue, one effect, Personal or Touch, up to Sun, Individual, and is made for one customer.
+ * Each season of work (no other workshop work that season) gathers the Workshop Total less the Craft
+ * Level; once the points reach the Craft Level it is the customer's, on their Items tab.
+ */
+function WonderProject({ ed, wondrous, magnitude, freq }: { ed: CharEditor; wondrous: { craftLevel: number; perSeason: number; seasons: number }; magnitude: number; freq: string }) {
+  const { c, update, saga } = ed;
+  const people = useSagaCharacters(c?.sagaId).filter(canPlay);
+  const covs = useSagaCovenants(c?.sagaId);
+  const groups = groupPeople(people, covs);
+  const putRecords = useStore((s) => s.putRecords);
+  const [draft, setDraft] = useState({ name: '', power: '', forId: '' });
+  const [said, setSaid] = useState('');
+  if (!c?.workshop || !saga) return null;
+  const w = c.workshop.wonder;
+  const year = saga.currentYear;
+  const season = saga.currentSeason;
+  const who = (id?: string) => people.find((x) => x.id === id);
+  if (!w)
+    return (
+      <div className="stack" style={{ gap: 4, marginTop: 6 }}>
+        <b className="small">Make one</b>
+        <div className="row small">
+          <Field label="What it is">
+            <input value={draft.name} placeholder="horseshoes, a cloak…" onChange={(e) => setDraft({ ...draft, name: e.target.value })} style={{ width: 140 }} />
+          </Field>
+          <Field label="Its power" hint="As the Hermetic effect it mirrors">
+            <input value={draft.power} placeholder="the horse never tires…" onChange={(e) => setDraft({ ...draft, power: e.target.value })} style={{ width: 200 }} />
+          </Field>
+          <Field label="Made for" hint="It works only for them, and is an Arcane Connection to them">
+            <select value={draft.forId} onChange={(e) => setDraft({ ...draft, forId: e.target.value })}>
+              <option value="">a customer outside the saga</option>
+              <PeopleOptions groups={groups} />
+            </select>
+          </Field>
+          <button
+            className="small"
+            disabled={!draft.name || wondrous.perSeason <= 0}
+            title={wondrous.perSeason <= 0 ? 'The Workshop Total must be above the Craft Level' : 'Needs the Touched by (Realm) Virtue (City & Guild)'}
+            onClick={() => update((x) => void (x.workshop!.wonder = { name: draft.name, power: draft.power, forId: draft.forId || undefined, magnitude, freq, craftLevel: wondrous.craftLevel, points: 0 }))}
+          >
+            Begin it (Craft Level {wondrous.craftLevel})
+          </button>
+        </div>
+        <span className="small muted">Only a craftsman Touched by a Realm can (the Major Supernatural Virtue, City &amp; Guild); its power stays within that Virtue&apos;s two Forms.</span>
+      </div>
+    );
+  const gain = Math.max(0, wondrous.perSeason);
+  const work = () => {
+    const points = Math.min(w.craftLevel, w.points + gain);
+    const done = points >= w.craftLevel;
+    const maker = structuredClone(c);
+    const entry = newSeasonEntry(year, season, 'other', `Making a wondrous item, ${w.name}: +${gain} points (${points} of ${w.craftLevel})${done ? '; finished' : ''}`, {});
+    applySeason(maker, entry, 1);
+    maker.seasonLog.push(entry);
+    if (!done) {
+      maker.workshop!.wonder = { ...w, points };
+      putRecords({ characters: [maker], covenants: [] }, `${w.name}: a season's work`);
+      setSaid(`${season} ${year}: ${gain} points toward ${w.name}, ${points} of ${w.craftLevel}.`);
+      return;
+    }
+    delete maker.workshop!.wonder;
+    const item = { uid: uid(), name: w.name, kind: 'tool', quality: 'supernatural' as const, wonder: `${w.power}${w.power ? ' ' : ''}(made by ${c.name || 'a craftsman'} for ${who(w.forId)?.name || 'a customer'}; an Arcane Connection to them)`, from: `made by ${c.name || 'a craftsman'}, ${season} ${year}` };
+    const owner = w.forId && w.forId !== c.id ? structuredClone(who(w.forId)!) : maker;
+    owner.possessions = [...(owner.possessions ?? []), item];
+    putRecords({ characters: owner === maker ? [maker] : [maker, owner], covenants: [] }, `${w.name} finished`);
+    setSaid(`${w.name} is finished: it is on ${owner === maker ? `${c.name ? `${c.name}’s` : 'their'} own` : `${owner.name || 'the customer'}’s`} Items tab, a wondrous item (+5 to its stress checks; it stops working once damaged).${w.forId ? '' : ' Its customer is outside the saga: sell it or give it from the Items tab.'}`);
+  };
+  return (
+    <div className="stack" style={{ gap: 4, marginTop: 6 }}>
+      <div className="row small">
+        <b>
+          {w.name}
+          {w.forId ? `, for ${who(w.forId)?.name || 'someone gone'}` : ''}
+        </b>
+        <span>
+          {w.points} of {w.craftLevel} points{w.power ? `: ${w.power}` : ''}
+        </span>
+        <button className="small primary" disabled={gain <= 0} onClick={work} title="A season's workshop work, nothing else in the workshop that season">
+          Work {season} {year} on it (+{gain})
+        </button>
+        <button className="small ghost" onClick={() => update((x) => void delete x.workshop!.wonder)}>
+          Give it up
+        </button>
+      </div>
+      {said && <div className="dice-result-lines small">{said}</div>}
+    </div>
   );
 }

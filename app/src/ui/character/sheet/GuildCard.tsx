@@ -1,6 +1,7 @@
 // Guild membership (City & Guild, ch.3): the rank, the Guild Lore it needs, the apprentice piece, a
 // journeyman's contract (its Labor Points go to the workshop), the road to master, dues and the dean's stipend.
 
+import { ResultLog } from '../../play';
 import { useState } from 'react';
 import { addVirtue, removeVirtue } from '../../../engine/character/factory';
 import { optionOn } from '../../../engine/optional';
@@ -158,9 +159,7 @@ export function GuildCard({ ed }: { ed: CharEditor }) {
         )}
         {rank && rank !== 'apprentice' && <span className="small muted">A craftsman’s stamp on the goods is an Arcane Connection to the maker.</span>}
       </div>
-      {log.map((t, i) => (
-        <div key={i} className="small">{t}</div>
-      ))}
+      <ResultLog lines={log} />
     </Card>
   );
 }

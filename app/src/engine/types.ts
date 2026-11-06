@@ -678,6 +678,8 @@ export interface Workshop {
   miserly?: 'average' | 'poor';
   /** the last year the miser's extra season was counted */
   miserMark?: number;
+  /** a wondrous item under way (City & Guild, Wondrous Items): its power, for whom, and the points gathered toward its Craft Level */
+  wonder?: { name: string; power: string; forId?: string; magnitude: number; freq: string; craftLevel: number; points: number };
 }
 
 export interface LongevityRitual {
@@ -1525,6 +1527,8 @@ export interface Covenant {
     arsenalPoints?: number;
     /** members who pay their own upkeep, or work for one of the income sources: not counted as inhabitants (Covenants ch.5) */
     ownUpkeep?: string[];
+    /** members (a companion, a grog) who spend their working seasons making the covenant's wares, counted as its craftsmen for the cost savings: the troupe's call, since Covenants counts craftsmen among the covenfolk */
+    craftWork?: string[];
     /** magi giving up their privileges: impoverished (a companion's points) or living as covenfolk (a specialist's) (Covenants ch.5) */
     magiLiving?: 'impoverished' | 'pauper';
     /** hire only the crafts the Cost Saving Limits table names as examples, not those from other books */

@@ -6,11 +6,12 @@ import { useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { deriveCharacter, type DerivedCharacter } from '../../engine/character/derive';
 import { craftOf, countOf } from '../../engine/covenantRules';
+import { memberCraft } from '../../engine/covenant';
 import { guildRanksApply } from '../../engine/covenfolk';
 import { optionOn } from '../../engine/optional';
 import { inPlay } from '../../engine/time';
 import type { Character, Covenant, Specialist } from '../../engine/types';
-import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCharacters } from '../../store/hooks';
+import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { useCharEditor } from '../character/useChar';
 import { WorkshopCard } from '../character/sheet/WorkshopCard';
@@ -19,7 +20,8 @@ import { GuildLine, LaborLine } from '../covenant/FinancesTab';
 import { Card, Empty, Field } from '../kit';
 import { R } from '../routes';
 import { MarketHaggle } from './MarketPage';
-import { ItemCheck } from './DicePage';
+import { ItemCheck } from './DamagedGoods';
+import { groupPeople } from '../play';
 import { TravelTradeCard } from './TravelTradeCard';
 
 /** A character who lives by a trade: a Craft or Profession, or a livelihood already tracked. */
@@ -32,6 +34,7 @@ export default function CityGuildPage() {
   const chars = usePlayerCharacters(sagaId);
   const allChars = useSagaCharacters(sagaId);
   const covs = usePlayerCovenants(sagaId);
+  const allCovs = useSagaCovenants(sagaId);
   const tour = useStore((s) => s.ui.tour);
   // opened for a character or a covenant (from a sheet or a covenant's page)
   const [params] = useSearchParams();
@@ -93,14 +96,14 @@ export default function CityGuildPage() {
                 </select>
               </Field>
             )}
-            <CraftsmenAtWork cov={cov} guildsOn={optionOn(saga, 'guilds')} />
+            <CraftsmenAtWork cov={cov} guildsOn={optionOn(saga, 'guilds')} members={allChars.filter((m) => (cov.finances.craftWork ?? []).includes(m.id))} />
           </>
         )}
       </Card>
 
       <MarketHaggle sagaId={saga.id} />
 
-      <ItemCheck x={{ chars: allChars.filter((x) => !x.wounds.dead && x.creation.finalized), data, rules: saga.houseRules }} />
+      <ItemCheck x={{ chars: allChars.filter((x) => !x.wounds.dead && x.creation.finalized), data, rules: saga.houseRules, groups: groupPeople(allChars.filter((x) => !x.wounds.dead && x.creation.finalized), allCovs) }} />
 
       {playing.length > 0 && <TravelTradeCard people={playing} derived={derived} home={home} year={saga.currentYear} season={saga.currentSeason} />}
     </div>
@@ -124,7 +127,7 @@ function Livelihood({ sagaId, charId }: { sagaId: string; charId: string }) {
  * year's after the upkeep, those banked) and what they buy, and under the guild rules their rank. The
  * craftsmen themselves are hired and counted for the savings on the covenant's People tab.
  */
-function CraftsmenAtWork({ cov, guildsOn }: { cov: Covenant; guildsOn: boolean }) {
+function CraftsmenAtWork({ cov, guildsOn, members }: { cov: Covenant; guildsOn: boolean; members: Character[] }) {
   const updateCovenant = useStore((s) => s.updateCovenant);
   const craftsmen = cov.specialists.filter((s) => s.role === 'craftsman');
   const guild = guildRanksApply(cov, guildsOn);
@@ -141,7 +144,16 @@ function CraftsmenAtWork({ cov, guildsOn }: { cov: Covenant; guildsOn: boolean }
         banked when the year closes (Seasons, ending Winter), and spent here on Innovation and Raw Materials, which make better goods. Hiring them, and what they save the
         covenant, is on the covenant&apos;s <Link to={R.covenant(cov.sagaId, cov.id, 'folk', 'people')}>People</Link> tab.
       </p>
-      {craftsmen.length === 0 && <Empty>No craftsmen at {cov.name || 'the covenant'} yet: hire them on its People tab.</Empty>}
+      {craftsmen.length === 0 && members.length === 0 && <Empty>No craftsmen at {cov.name || 'the covenant'} yet: hire them on its People tab.</Empty>}
+      {members.map((m) => (
+        <div key={m.id} className="list-row small">
+          <b style={{ minWidth: 130 }}>{m.name || 'Unnamed'}</b>
+          <span>
+            {memberCraft(m)?.name} {memberCraft(m)?.score}, a {m.type} making the covenant&apos;s wares (counted for the savings; set on the covenant&apos;s People tab, How the covenfolk live).
+          </span>
+          <Link to={R.guild(cov.sagaId, { who: m.id })}>Their workshop ›</Link>
+        </div>
+      ))}
       {craftsmen.map((s) => (
         <div key={s.uid} className="list-row" style={{ flexWrap: 'wrap' }}>
           <b style={{ minWidth: 130 }}>

@@ -1,4 +1,5 @@
 import { RollAtTable } from '../../play';
+import { PossessionsCard } from './PossessionsCard';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../../data';
@@ -90,6 +91,8 @@ export default function LabItemsTab({ ed }: { ed: CharEditor }) {
       )}
 
       {!magus && <RedcapCard ed={ed} />}
+
+      <PossessionsCard ed={ed} />
 
       <ItemsEditor
         items={c.items}

@@ -1,7 +1,7 @@
 // A character's agency (Houses of Hermes: Societates, Appendix: Agencies): agents, their Bond and
 // Resistance, recruiting with agency experience, gifts, and asking one to do something.
 
-import { RollAtTable, useAtTable } from '../../play';
+import { RollAtTable, useAtTable, ResultLog } from '../../play';
 import { useState } from 'react';
 import { AGENCY_POINTS, AGENCY_VIRTUES, AGENT_RISKS, AGENT_TASKS, AGENT_TIMEFRAMES, RESISTANCE_MODIFIERS, STATUS_RESISTANCE, addAgencyXp, agencyCost, giftToAgent, impressRoll, maxAgents, persuasionRoll } from '../../../engine/agency';
 import type { Agent } from '../../../engine/types';
@@ -201,11 +201,7 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
           </Field>
         </div>
       )}
-      {log.map((l, i) => (
-        <div key={i} className="small list-row">
-          {l}
-        </div>
-      ))}
+      <ResultLog lines={log} />
       {recruited.length + agents.filter((a) => a.resistance > 0).length > 0 && <RollAtTable sagaId={c.sagaId} who={c.id} where="society" what="Impressing a would-be agent, and asking an agent for something, are rolled" />}
     </Card>
   );
