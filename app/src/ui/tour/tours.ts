@@ -87,6 +87,7 @@ const table = (tab: TableTab) => (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId
 /** The Game Table's Seasons page, planning the tour's character's season in full. */
 const plan = (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=seasons${c.charId ? `&who=${c.charId}` : ''}` : undefined);
 /** A part of the Game Table's Dice page, for the tour's character. */
+const society = (sub: 'news' | 'agents' | 'society') => (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=society${sub !== 'news' ? `&sub=${sub}` : ''}${c.charId ? `&who=${c.charId}` : ''}` : undefined);
 const dice = (sub: DiceSub) => (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=dice${sub !== 'roll' ? `&sub=${sub}` : ''}${c.charId ? `&who=${c.charId}` : ''}` : undefined);
 const guided = (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}/guided` : undefined);
 const guidedTab = (tab: string) => (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}/guided?tab=${tab}` : undefined);
@@ -343,8 +344,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Society and the Tribunal',
-        body: 'Played at the Game Table’s **Dice › Society & the Tribunal**, for whoever you pick: **Agents**, the **Society** card (a debate, a petition to the Church, a quick trial, an etiquette performance) and the Tribunal’s customs (ranks and gilds, tokens and shards, privileges), each while its rule is on. The sheet’s Overview shows the agents and the ranks as they stand.',
-        at: dice('society'), needs: 'character', target: ['society', 'agents', 'tribunal-customs', 'tab-society'],
+        body: 'Played at the Game Table’s **Society & the Tribunal** page, for whoever you pick: the **Society** card (a debate, a petition to the Church, a quick trial, an etiquette performance) and the Tribunal’s customs (ranks and gilds, tokens and shards, privileges), each while its rule is on; **Agents** have a page of their own beside it. The sheet’s Overview shows the agents and the ranks as they stand.',
+        at: society('society'), needs: 'character', target: ['society', 'tribunal-customs', 'tab-society'],
       },
       {
         title: 'Seasons, Mysteries and guilds',
@@ -736,14 +737,34 @@ export const TOURS: Tour[] = [
         at: table('overview'), needs: 'saga', target: 'table-story',
       },
       {
+        title: 'Plan, end, resolve',
+        body: 'The Seasons page goes in three steps, shown at its top: **Plan** the season from the top down (the covenant first: its year, the Hooks’ stories, its people coming and going; then each player in turn, their magi before their companions, and the grogs last), **End** it at the bottom after reading what to expect, and **Resolve** what it leaves. The order of play is set with the arrows. **Turn back** puts the saga back to before a season or a year passed.',
+        at: table('seasons'), needs: 'saga', target: ['seasons-phases', 'table-season'],
+      },
+      {
         title: 'This season',
-        body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here: teaching anyone in play (a student taught is bound to the lesson), being taught, helping in a lab, and the extra seasons of one who needs no sleep. A season logged by mistake is **Unlogged** here. **Plan in full** opens their season below: a particular book, teacher, lab project, Spell Mastery, writing, an Initiation, a Longevity Ritual or the apprentice.',
+        body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here: teaching anyone in play (a student taught is bound to the lesson), being taught, helping in a lab, and the extra seasons of one who needs no sleep. A season logged by mistake is **Unlogged** here, and everything it did is taken back: experience, Labor Points, vis and pounds spent, a project’s progress. **Plan in full** opens their season below: a particular book, teacher, lab project, the workshop, Spell Mastery, writing, an Initiation, a Longevity Ritual or the apprentice.',
         at: table('seasons'), needs: 'saga', target: 'table-season',
       },
       {
         title: 'End the season',
-        body: 'Press **End** (the button names the season) to move the whole saga on, with Undo. The report shows aging crises, Warping and reminders first; the rest is folded. Below the button are the options, and passing several seasons or years at once.',
+        body: 'Above the button, **what to expect**: a workshop short of Labor Points by the year’s end, lab work without its vis, a covenant spending more than it earns, a ward to cast again, anyone with nothing to do, choices still to settle. Then press **End** (the button names the season) to move the whole saga on, with Undo. Below are the options, and passing several seasons or years at once.',
         at: table('seasons'), needs: 'saga', target: 'table-advance', advance: {},
+      },
+      {
+        title: 'Resolve',
+        body: 'What the season leaves for the troupe to decide waits at the top of the Seasons page, and on the Overview, until it is settled: the Virtue or Flaw a Warping Score brings (chosen from a list), a death in an aging crisis (saved by magic, or not), a Twilight to roll. Under it, the season just ended, told as a story.',
+        at: table('seasons'), needs: 'saga', target: ['seasons-resolve', 'seasons-phases'],
+      },
+      {
+        title: 'The Chronicle',
+        body: 'Each season told as a story, to read aloud: the weather and the feast days, what each character spent it on, who came up the road, the year’s harvest and its vis, the years telling on the old, what the agents heard and the news a Redcap brought. The numbers and every roll are folded beneath each, in the record.',
+        at: table('chronicle'), needs: 'saga', target: 'chronicle',
+      },
+      {
+        title: 'Society & the Tribunal',
+        body: 'The Tribunal’s news and what its covenants bring to yours, what the players’ agents heard, the gatherings to come and the motions to vote on; the **Agents** themselves (won over, strengthened, asked); and the debates, petitions, courts and customs, for whoever you pick.',
+        at: table('society'), needs: 'saga', target: ['tribunal-news', 'agent-reports'],
       },
       {
         title: 'Possessions',
@@ -769,7 +790,7 @@ export const TOURS: Tour[] = [
     steps: [
       {
         title: 'Your craftsman’s workshop',
-        body: '*City & Guild* is for characters who **work for a living**: a smith, a weaver, a baker or a merchant. It keeps what their work builds up in **Labor Points**: not money, but the time and effort put into the business. This tutorial works on a practice master craftsman and has you use each part as it goes. Their **Livelihood & workshop** card is here, on the Game Table’s City & Guild page (the same card is on their sheet). At the top: **Craft or Profession** is the trade the card works with (a smith who also shoes horses picks the one they live by), and **Primary Characteristic** is the one the trade uses: Dexterity for most crafts, Strength if the troupe says so for a smith, as the book’s swordsmith does. **Wealth** comes from their Virtues (Poor, Wealthy).',
+        body: '*City & Guild* is for characters who **work for a living**: a smith, a weaver, a baker or a merchant. It keeps what their work builds up in **Labor Points**: not money, but the time and effort put into the business. This tutorial works on a practice master craftsman and has you use each part as it goes. Their **Livelihood & workshop** card is here, on the Game Table’s City & Guild page (the same card is on their sheet); the seasons spent at the bench are spent on the Seasons page, with the rest of the season. At the top: **Craft or Profession** is the trade the card works with (a smith who also shoes horses picks the one they live by), and **Primary Characteristic** is the one the trade uses: Dexterity for most crafts, Strength if the troupe says so for a smith, as the book’s swordsmith does. **Wealth** comes from their Virtues (Poor, Wealthy).',
         at: table('guild'), needs: 'character', target: 'workshop',
       },
       {
@@ -794,8 +815,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Work a season',
-        body: 'A season at the bench makes the goods and earns the season’s Labor Points. **Work a season** does it now: it logs this season as work (2 Exposure experience in the craft), makes the goods, and adds the points to **Labor Points banked** at once. **Labor Points are there to spend the season they are earned**; the year’s **upkeep** (36, and 5 more for each point of Raw Materials) comes off when the year closes, after Winter. Two seasons at 21 make 42: the 36 is paid and 6 saved.\n\n**Try it:** press **Work a season**, then see the banked points go up.',
-        at: table('guild'), needs: 'character', target: 'workshop-work', advance: { press: /^Work a season/ },
+        body: 'A season at the bench makes the goods and earns the season’s Labor Points. It is spent where every season is, on the **Seasons** page, in the character’s season in full (a season logged by mistake can be Unlogged there, and its points go with it). **Work a season** does it now: it logs this season as work (2 Exposure experience in the craft), makes the goods, and adds the points to **Labor Points banked** at once. **Labor Points are there to spend the season they are earned**; the year’s **upkeep** (36, and 5 more for each point of Raw Materials) comes off when the year closes, after Winter. Two seasons at 21 make 42: the 36 is paid and 6 saved.\n\n**Try it:** press **Work a season**, then see the banked points go up.',
+        at: plan, needs: 'character', target: ['workshop-work', 'table-plan'], advance: { press: /^Work a season/ },
       },
       {
         title: 'Which seasons they work',
@@ -804,13 +825,13 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Move a season on',
-        body: 'Time moves for everyone at once, here on the Seasons page. **End** the season: each character spends it as planned, or on their usual activity, and a craftsman’s working season goes to the workshop by itself. When Winter ends, the year closes: the upkeep is taken from every workshop, and the covenant’s own craftsmen bank the year’s points.\n\n**Try it:** press **End** (the season), then go back to City & Guild and see the workshop’s points and the season log.',
+        body: 'Time moves for everyone at once, here on the Seasons page. **End** the season: each character spends it as planned, or on their usual activity, and a craftsman’s working season goes to the workshop by itself. When Winter ends, the year closes: the upkeep is taken from every workshop, and the covenant’s own craftsmen bank the year’s points.\n\n**Try it:** press **End** (the season), then see the workshop’s points and the season log.',
         at: table('seasons'), needs: 'saga', target: 'seasons-advance', advance: { press: /^End / },
       },
       {
         title: 'Spending Labor Points',
-        body: 'Saved points make the business better. The buttons beside **Work a season**: **Innovation** (100 points for +1, 600 in all for +3; it stays with the workshop) and **Raw Materials** (50 for +1, 300 for +3; lost if they leave, and 5 a point a year to keep). Each takes a season out of the workshop, and the card logs it. **More wealth**: 120 points takes a Poor character to average, 360 an average one to Wealthy, who earns twice as much a season. A button stays grey until enough are banked. **Haggle a sale** sells the season’s goods: Presence + Bargain against 9, or against an important customer.',
-        at: table('guild'), needs: 'character', target: ['workshop-work', 'workshop'],
+        body: 'Saved points make the business better. The buttons beside **Work a season**, on the Seasons page: **Innovation** (100 points for +1, 600 in all for +3; it stays with the workshop) and **Raw Materials** (50 for +1, 300 for +3; lost if they leave, and 5 a point a year to keep). Each takes a season out of the workshop, and the card logs it. **More wealth**: 120 points takes a Poor character to average, 360 an average one to Wealthy, who earns twice as much a season. A button stays grey until enough are banked, or once the season is spent. **Haggle a sale**, on City & Guild, sells the season’s goods: Presence + Bargain against 9, or against an important customer.',
+        at: plan, needs: 'character', target: ['workshop-work', 'table-plan'],
       },
       {
         title: 'Stories, investments and a boom',
@@ -819,8 +840,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Wondrous items',
-        body: 'A craftsman with the Major Supernatural Virtue **Touched by (Realm)** (Divine, Faerie, Infernal or Magic, with two Forms; *City & Guild*) can make a **wondrous item**: an item with a power like a Hermetic effect, made with the craft and not with magic. Open **Wondrous item** (the tutorial opens it):\n- the **Craft Level** is 12 + the effect’s magnitude + its uses a day;\n- the Workshop Total adds the aura (by the Realms Interaction Table), half of **one** helper’s Craft (one only), and a shape and material bonus up to their Craft;\n- each season adds the amount the Workshop Total beats the Craft Level by, until the points reach the Craft Level;\n- it works only for the **customer it was made for**, and is an Arcane Connection to them.\n\n**Try it:** name it and its power, choose who it is for, and **Begin it**; **Work a season on it** adds the season’s points. Finished, it goes on the customer’s Items tab. A damaged wondrous item stops working.',
-        at: table('guild'), needs: 'character', target: 'workshop-wonder',
+        body: 'A craftsman with the Major Supernatural Virtue **Touched by (Realm)** (Divine, Faerie, Infernal or Magic, with two Forms; *City & Guild*) can make a **wondrous item**: an item with a power like a Hermetic effect, made with the craft and not with magic. Open **Wondrous item** (the tutorial opens it):\n- the **Craft Level** is 12 + the effect’s magnitude + its uses a day;\n- the Workshop Total adds the aura (by the Realms Interaction Table), half of **one** helper’s Craft (one only), and a shape and material bonus up to their Craft;\n- each season adds the amount the Workshop Total beats the Craft Level by, until the points reach the Craft Level;\n- it works only for the **customer it was made for**, and is an Arcane Connection to them.\n\n**Try it:** name it and its power, choose who it is for, and **Begin it**; **Work a season on it** adds the season’s points (on the Seasons page, as every season is). Finished, it goes on the customer’s Items tab. A damaged wondrous item stops working.',
+        at: plan, needs: 'character', target: ['workshop-wonder', 'table-plan'],
       },
       {
         title: 'The guild',
@@ -899,8 +920,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Motions and votes',
-        body: 'The motions the book has coming before the Tribunal (Heorot’s admission, the Praeco, Rügen, a Lotharingian Tribunal, war on the Norse wizards), each gild’s and covenant’s stand, and how the sigils would fall as things stand. Set how your magi vote here; the gathering counts every sigil (a master holds a retired magus’s by proxy, an archmage two, and House Tremere’s exarchs cast the rest of their House’s).',
-        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: ['tribunal-votes', 'tribunal-gatherings'],
+        body: 'The motions the book has coming before the Tribunal (Heorot’s admission, the Praeco, Rügen, a Lotharingian Tribunal, war on the Norse wizards), each gild’s and covenant’s stand, and how the sigils would fall as things stand. Set how your magi vote at the Game Table’s **Society & the Tribunal** page; the gathering counts every sigil (a master holds a retired magus’s by proxy, an archmage two, and House Tremere’s exarchs cast the rest of their House’s).',
+        at: society('news'), needs: 'saga', target: ['tribunal-votes', 'society-gatherings'],
       },
       {
         title: 'Wanderers',
@@ -909,8 +930,8 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'What they bring to you',
-        body: 'At each year’s end a living covenant may come to yours with one of the book’s offers, requests or troubles. They show here and on the Game Table’s Overview, under **Needs attention**, with a link to where each is dealt with; press **Dealt with** once it is played. One left unanswered for two years lapses.',
-        at: sagaPage('tribunal?tab=covenants'), needs: 'saga', target: 'tribunal-news',
+        body: 'At each year’s end a living covenant may come to yours with one of the book’s offers, requests or troubles. They show on the Game Table’s **Society & the Tribunal** page, and on its Overview under **Needs attention**, with a link to where each is dealt with; press **Dealt with** once it is played. One left unanswered for two years lapses. Agents bound to your characters may also bring word of the covenants’ own business.',
+        at: society('news'), needs: 'saga', target: 'tribunal-news',
       },
       {
         title: 'Dealing with them',
@@ -964,12 +985,12 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Move time on',
-        body: '**End** the season for the whole saga at once. Each character does what they planned or their standing activity; the report says what happened.',
+        body: 'Read **what to expect** first: what will fall short, what comes due, who has nothing to do. Then **End** the season for the whole saga at once. Each character does what they planned or their standing activity; what it leaves to decide waits at the top, under **Resolve**, and the season is told as a story in the **Chronicle**.',
         at: table('seasons'), needs: 'saga', target: 'seasons-advance',
       },
       {
         title: 'The year’s end',
-        body: 'Winter’s end closes each covenant’s books, gathers the year’s vis, pays allowances, renews wards, rolls aging (the covenant’s best physician tends anyone in a crisis) and adds the year’s Warping. The covenant’s scribes make the copies queued in the scriptorium, and a book being clarified is done once its years in the aura are up. A Dominion grows or fades with its congregation, and with the optional aura variation a Magic aura may move. The checkboxes choose what runs.',
+        body: 'Winter’s end closes each covenant’s books (each source of income rolling its year, if ticked), gathers the year’s vis, pays allowances, renews wards, rolls aging (the covenant’s best physician tends anyone in a crisis) and adds the year’s Warping. The covenant’s scribes make the copies queued in the scriptorium, and a book being clarified is done once its years in the aura are up. A Dominion grows or fades with its congregation, and with the optional aura variation a Magic aura may move. The checkboxes choose what runs.',
         at: table('seasons'), needs: 'saga', target: ['seasons-advance', 'table-season'],
       },
       {

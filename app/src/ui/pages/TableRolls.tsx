@@ -6,7 +6,8 @@ import { useState } from 'react';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic, type GameData } from '../../data';
 import { abilityTotal, deriveCharacter, type DerivedCharacter } from '../../engine/character/derive';
 import { allCombatLines, woundFromDamage } from '../../engine/combat';
-import { COVERAGE, DEPRIVATION, HEAT_SOURCES, IMPACTS, OPPOSED_PRESETS, actionPenalties, deprivationEase, exchange, fallingBonus, opposedRoll, penaltyText, perilDamage, staminaCheck, type WoundLevel } from '../../engine/rolls';
+import { COVERAGE, DEPRIVATION, HEAT_SOURCES, IMPACTS, OPPOSED_PRESETS, actionPenalties, deprivationEase, exchange, exchangeOutcome, fallingBonus, opposedOutcome, opposedRoll, penaltyText, perilDamage, staminaCheck, type Exchange, type ExchangeOptions, type SideRoll, type WoundLevel } from '../../engine/rolls';
+import { AfterRoll } from '../AfterRoll';
 import { DEFAULT_HOUSE_RULES, type Character, type HouseRules } from '../../engine/types';
 import { useStore } from '../../store/store';
 import { Card, Field, Stepper, signed } from '../kit';
@@ -121,6 +122,8 @@ export function OpposedCard({ x }: { x: Ctx }) {
   const [a, setA] = useState<Side>({ k: p.a[0], ability: p.a[1], mod: 0, botch: 1 });
   const [b, setB] = useState<Side>({ k: p.b[0], ability: p.b[1], mod: 0, botch: 1 });
   const [out, setOut] = useState<string[]>([]);
+  // the last contest: each side's roll as it fell, and what Confidence, Faith or All According to Plan made of it
+  const [last, setLast] = useState<{ id: number; a: SideRoll; b: SideRoll; aId?: string; bId?: string; names: [string, string] } | null>(null);
   // the Characteristic and Ability, less what wounds, Fatigue and disease take off (DE)
   const totalOf = (s: Side) => {
     const got = derive(x, s.charId);
@@ -153,15 +156,68 @@ export function OpposedCard({ x }: { x: Ctx }) {
         <SideFields x={x} side={a} set={setA} title="Who acts" />
         <SideFields x={x} side={b} set={setB} title="Who resists" />
       </div>
-      <button className="primary" style={{ marginTop: 6 }} onClick={() => setOut([`${nameOf(a, 'The one acting')} against ${nameOf(b, 'the one resisting')}: ${opposedRoll({ mod: totalOf(a), botch: a.botch }, { mod: totalOf(b), botch: b.botch }).text}`, ...out].slice(0, 8))}>
+      <button
+        className="primary"
+        style={{ marginTop: 6 }}
+        onClick={() => {
+          const r = opposedRoll({ mod: totalOf(a), botch: a.botch }, { mod: totalOf(b), botch: b.botch });
+          const names: [string, string] = [nameOf(a, 'The one acting'), nameOf(b, 'the one resisting')];
+          setLast({ id: Date.now(), a: r.a, b: r.b, aId: a.charId, bId: b.charId, names });
+          setOut([`${names[0]} against ${names[1]}: ${r.text}`, ...out].slice(0, 8));
+        }}
+      >
         Roll both
       </button>
+      {last && <AfterContest x={x} last={last} setLast={setLast} push={(t) => setOut((o) => [t, ...o].slice(0, 8))} />}
       {out.map((t, i) => (
         <div key={i} className={`small ${i ? 'muted' : ''}`}>
           {t}
         </div>
       ))}
     </Card>
+  );
+}
+
+type Contest = { id: number; a: SideRoll; b: SideRoll; aId?: string; bId?: string; names: [string, string] };
+
+/** Confidence, Faith and All According to Plan for each side of a contest just rolled, and who wins now. */
+function AfterContest({ x, last, setLast, push }: { x: Ctx; last: Contest; setLast: (c: Contest) => void; push: (t: string) => void }) {
+  const ga = derive(x, last.aId);
+  const gb = derive(x, last.bId);
+  if (!ga && !gb) return null;
+  const now = opposedOutcome(last.a, last.b);
+  const side = (k: 'a' | 'b', g: NonNullable<ReturnType<typeof derive>>) => {
+    const r = last[k];
+    const other = last[k === 'a' ? 'b' : 'a'];
+    // the first side must beat the other; the one resisting holds on a tie
+    const ease = other.botched ? null : k === 'a' ? other.total + 1 : other.total;
+    const fell = r.botched ? r.base : r.total - (r.bonus ?? 0);
+    return (
+      <AfterRoll
+        key={`${last.id}${k}`}
+        c={g.c}
+        d={g.d}
+        total={fell}
+        ease={ease}
+        botchFaces={r.faces}
+        what={`${g.c.name || 'Their'} total`}
+        onChange={(ch) => {
+          const next: SideRoll = { ...r, botched: ch.botch, faces: ch.faces ?? r.faces, total: ch.botch ? 0 : fell + ch.bonus, bonus: ch.bonus };
+          const after = { ...last, [k]: next };
+          setLast(after);
+          push(`${ch.text} ${last.names[0]} against ${last.names[1]}: ${opposedOutcome(after.a, after.b).text}`);
+        }}
+      />
+    );
+  };
+  return (
+    <div className="stack" style={{ gap: 4, marginTop: 6 }}>
+      {ga && side('a', ga)}
+      {gb && side('b', gb)}
+      <span className="small">
+        Now: <b>{now.text}</b>
+      </span>
+    </div>
   );
 }
 
@@ -178,7 +234,7 @@ export function BlowCard({ x }: { x: Ctx }) {
   const [atkLine, setAtkLine] = useState(0);
   const [dfnLine, setDfnLine] = useState(0);
   const [m, setM] = useState({ atk: 6, dam: 5, dfn: 6, soak: 3, size: 0 });
-  const [res, setRes] = useState<{ text: string; wound: WoundLevel; to?: string }>();
+  const [res, setRes] = useState<{ id: number; text: string; wound: WoundLevel; to?: string; ex: Exchange; o: ExchangeOptions; who: string }>();
   const A = derive(x, atkId);
   const D = derive(x, dfnId);
   const al = A ? lineOptions(x, A.d).filter((l) => l.atk !== null) : [];
@@ -247,12 +303,41 @@ export function BlowCard({ x }: { x: Ctx }) {
         className="primary"
         style={{ marginTop: 6 }}
         onClick={() => {
-          const r = exchange({ atk, dam, dfn, soak, size: m.size, wound: D ? (e) => woundFromDamage(D.d, e) : undefined });
-          setRes({ text: `${A?.c.name ?? 'The attacker'} strikes at ${D?.c.name ?? 'the defender'}. ${r.text}`, wound: r.wound, to: D?.c.id });
+          const o: ExchangeOptions = { atk, dam, dfn, soak, size: m.size, wound: D ? (e) => woundFromDamage(D.d, e) : undefined };
+          const r = exchange(o);
+          const who = `${A?.c.name ?? 'The attacker'} strikes at ${D?.c.name ?? 'the defender'}.`;
+          setRes({ id: Date.now(), text: `${who} ${r.text}`, wound: r.wound, to: D?.c.id, ex: r, o, who });
         }}
       >
         Strike
       </button>
+      {res && (
+        <div className="stack" style={{ gap: 4, marginTop: 6 }}>
+          {(['attack', 'defense'] as const).map((k) => {
+            const g = k === 'attack' ? A : D;
+            if (!g) return null;
+            const r = res.ex[k];
+            const other = res.ex[k === 'attack' ? 'defense' : 'attack'];
+            const fell = r.botched ? r.base : r.total - (r.bonus ?? 0);
+            return (
+              <AfterRoll
+                key={`${res.id}${k}`}
+                c={g.c}
+                d={g.d}
+                total={fell}
+                ease={other.botched ? null : k === 'attack' ? other.total + 1 : other.total}
+                botchFaces={r.faces}
+                what={k === 'attack' ? 'Attack' : 'Defense'}
+                onChange={(ch) => {
+                  const next: SideRoll = { ...r, botched: ch.botch, faces: ch.faces ?? r.faces, total: ch.botch ? 0 : fell + ch.bonus, bonus: ch.bonus };
+                  const ex = exchangeOutcome(k === 'attack' ? next : res.ex.attack, k === 'defense' ? next : res.ex.defense, res.o);
+                  setRes({ ...res, ex, wound: ex.wound, text: `${res.who} ${ex.text}` });
+                }}
+              />
+            );
+          })}
+        </div>
+      )}
       {res && (
         <div className="row small" style={{ marginTop: 6 }}>
           <span style={{ flex: 1 }}>{res.text}</span>
@@ -287,7 +372,8 @@ export function PerilsCard({ x }: { x: Ctx }) {
   const [periods, setPeriods] = useState(1);
   const [manualSoak, setManualSoak] = useState(2);
   const [manualSta, setManualSta] = useState(0);
-  const [res, setRes] = useState<{ text: string; wound?: WoundLevel; fatigue?: 'short' | 'long' }>();
+  // a Stamina check just rolled: Confidence, Faith or All According to Plan may still turn it
+  const [res, setRes] = useState<{ text: string; wound?: WoundLevel; fatigue?: 'short' | 'long'; check?: { id: number; total: number; ease: number; faces?: number[]; harm: { wound?: WoundLevel; fatigue?: 'short' | 'long' } }; applied?: boolean }>();
   const W = derive(x, who);
   const soak = W ? W.d.soak : manualSoak;
   const sta = W ? W.d.characteristics.Sta.value : manualSta;
@@ -308,12 +394,21 @@ export function PerilsCard({ x }: { x: Ctx }) {
     }
     if (peril === 'poison') {
       const r = staminaCheck(sta, ease);
-      return setRes({ text: `Poison or disease (Ease ${ease}): ${r.text}${r.ok ? ' Only minor discomfort.' : ` ${woundText(agentWound)}, treated with Medicine.`}`, wound: r.ok ? undefined : agentWound });
+      return setRes({
+        text: `Poison or disease (Ease ${ease}): ${r.text}${r.ok ? ' Only minor discomfort.' : ` ${woundText(agentWound)}, treated with Medicine.`}`,
+        wound: r.ok ? undefined : agentWound,
+        check: { id: Date.now(), total: r.total, ease, faces: r.faces, harm: { wound: agentWound } },
+      });
     }
     const d = DEPRIVATION[dep];
     const e = deprivationEase(periods);
     const r = staminaCheck(sta, e);
-    setRes({ text: `Without ${d.label.toLowerCase()} (check ${periods}, each ${d.period}; Ease ${e}): ${r.text}${r.ok ? '' : ` A ${d.longTerm ? 'Long-Term' : 'Short-Term'} Fatigue level is lost (once unconscious, a Light Wound instead).`}`, fatigue: r.ok ? undefined : d.longTerm ? 'long' : 'short' });
+    const fatigue = d.longTerm ? ('long' as const) : ('short' as const);
+    setRes({
+      text: `Without ${d.label.toLowerCase()} (check ${periods}, each ${d.period}; Ease ${e}): ${r.text}${r.ok ? '' : ` A ${d.longTerm ? 'Long-Term' : 'Short-Term'} Fatigue level is lost (once unconscious, a Light Wound instead).`}`,
+      fatigue: r.ok ? undefined : fatigue,
+      check: { id: Date.now(), total: r.total, ease: e, faces: r.faces, harm: { fatigue } },
+    });
   };
   return (
     <Card title="Perils: falls, fire, poison, going without">
@@ -423,18 +518,35 @@ export function PerilsCard({ x }: { x: Ctx }) {
           Roll
         </button>
       </div>
+      {res?.check && W && (
+        <AfterRoll
+          key={res.check.id}
+          c={W.c}
+          d={W.d}
+          total={res.check.total}
+          ease={res.check.ease}
+          botchFaces={res.check.faces}
+          what="Stamina total"
+          onChange={(ch) => {
+            const k = res.check!;
+            const ok = !ch.botch && k.total + ch.bonus >= k.ease;
+            const harm = ok || res.applied ? {} : k.harm;
+            setRes({ ...res, wound: harm.wound, fatigue: harm.fatigue, text: `${res.text.split(' After the roll:')[0]} After the roll: ${ch.text} ${ok ? 'Resisted.' : 'It still takes hold.'}` });
+          }}
+        />
+      )}
       {res && (
         <div className="row small" style={{ marginTop: 6 }}>
           <span style={{ flex: 1 }}>{res.text}</span>
           {W && res.wound && res.wound !== 'none' && (
-            <button className="small danger" onClick={() => (apply(W.c.id, res.wound!), setRes({ ...res, wound: undefined }))}>
+            <button className="small danger" onClick={() => (apply(W.c.id, res.wound!), setRes({ ...res, wound: undefined, applied: true }))}>
               Give {W.c.name} {woundText(res.wound)}
             </button>
           )}
           {W && res.fatigue && (
             <button
               className="small danger"
-              onClick={() => (updateCharacter(W.c.id, (c) => void (res.fatigue === 'long' ? (c.longTermFatigueLost = Math.min(5, c.longTermFatigueLost + 1)) : (c.fatigueLost = Math.min(5, c.fatigueLost + 1)))), setRes({ ...res, fatigue: undefined }))}
+              onClick={() => (updateCharacter(W.c.id, (c) => void (res.fatigue === 'long' ? (c.longTermFatigueLost = Math.min(5, c.longTermFatigueLost + 1)) : (c.fatigueLost = Math.min(5, c.fatigueLost + 1)))), setRes({ ...res, fatigue: undefined, applied: true }))}
             >
               {W.c.name} loses a Fatigue level
             </button>

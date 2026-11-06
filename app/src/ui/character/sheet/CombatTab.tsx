@@ -11,6 +11,7 @@ import { IllnessCard } from './IllnessCard';
 import { immunities, immunityFlaw, immunityFlawState } from '../../../engine/covenantBoons';
 import type { CharEditor } from '../useChar';
 import { RollAtTable, groupPeople, useAtTable } from '../../play';
+import { AfterRoll } from '../../AfterRoll';
 
 const WOUND_KEYS: { key: keyof Omit<WoundState, 'dead'>; label: string; pen: number }[] = [
   { key: 'light', label: 'Light', pen: -1 },
@@ -200,6 +201,8 @@ export function CombatRolls({ ed }: { ed: CharEditor }) {
   const [mounted, setMounted] = useState(false);
   const [exertOn, setExertOn] = useState<'none' | 'atk' | 'dfn'>('none');
   const [scuffle, setScuffle] = useState(false);
+  // the last roll, for Confidence, Faith and All According to Plan after it
+  const [lastRoll, setLastRoll] = useState<{ id: number; label: string; total: number; faces?: number[] } | null>(null);
   if (!c || !d) return null;
   const lines = allCombatLines(d, data);
   const pen = d.currentWoundPenalty + d.currentFatiguePenalty + d.currentDiseasePenalty;
@@ -248,6 +251,7 @@ export function CombatRolls({ ed }: { ed: CharEditor }) {
   const roll = (label: string, bonus: number, botch = 1) => {
     const r = stressDie(botch);
     push(`${label}: ${signed(bonus)} + ${describeStress(r)} = ${r.botches ? 'BOTCH' : bonus + r.value}`);
+    setLastRoll(botch ? { id: Date.now(), label, total: bonus + r.value, faces: r.botches ? r.botchFaces : undefined } : null);
   };
   return (
     <Card title={`${c.name || 'Their'} combat rolls`} tour="combat-rolls">
@@ -270,6 +274,7 @@ export function CombatRolls({ ed }: { ed: CharEditor }) {
           {line.dam !== null && <span className="small">Damage on a hit: Attack Advantage + {signed(scuffle ? d.characteristics.Str.value : line.dam)}</span>}
         </div>
       )}
+      {lastRoll && <AfterRoll key={lastRoll.id} c={c} d={d} total={lastRoll.total} botchFaces={lastRoll.faces} what={lastRoll.label.replace(/^.* (Initiative|Attack|Defense)$/, '$1')} onChange={(x) => push(x.text)} />}
       {msg.length > 0 && (
         <div className="stack small" style={{ gap: 2, marginTop: 6 }} aria-live="polite">
           {msg.map((m, i) => (

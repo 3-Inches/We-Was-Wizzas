@@ -19,6 +19,7 @@ import { extraFree, inPlay, seasonBusy, seasonTaken } from '../../../engine/time
 import { type Character, type HouseRules, type LabProject, type LabVirtueEntry, type Season } from '../../../engine/types';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from '../../../engine/labHelp';
 import { bindFamiliarSheets } from '../../../engine/teaching';
+import { labUndo } from '../../../engine/unlog';
 import { deriveCharacter, type DerivedCharacter } from '../../../engine/character/derive';
 import { ensureAbility } from '../../../engine/character/factory';
 import type { GameData } from '../../../data';
@@ -52,11 +53,15 @@ export function useWorkProject(ed: CharEditor): (p: LabProject, helperIds?: stri
         const yd = deriveCharacter(y, data, saga.houseRules);
         return { c: y, d: yd, value: helpValue(yd), familiar: y.creature?.familiarOf === x.id, extra: seasonBusy(y, year, season) };
       });
+    // what Unlog would take back: the project as it was, the vis spent, the Warping
+    const before = structuredClone(x);
+    const covBefore = cov ? structuredClone(cov) : undefined;
     const lines = workProject(x, d, ctx, cov, p.uid, data, year, { chars: state.characters, season, helpers });
     const theory = d.abilities.find((a) => a.abilityId === d.theoryAbility);
     const e = newSeasonEntry(year, season, 'other', `Lab: ${p.name}`, theory ? { [`ability:${theory.uid}`]: 2 } : {});
     e.notes = lines.join(' ');
     e.labKind = p.kind;
+    e.undo = labUndo(before, x, p.uid, covBefore, cov);
     applySeason(x, e, 1);
     x.seasonLog.push(e);
     for (const h of helpers.filter((y) => y.used)) {

@@ -9,6 +9,7 @@ import { validateCharacter } from '../../engine/character/validate';
 import { deriveCovenant, type DerivedCovenant } from '../../engine/covenant';
 import { DEFAULT_YEAR_END, loyaltyAttitude, planYearEnd } from '../../engine/covenantYear';
 import { onStrike } from '../../engine/covenfolk';
+import { laborForecast } from '../../engine/workshop';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import { isDue } from '../../engine/hookEvents';
 import { ComingUpCard, StoriesCard } from './CalendarCards';
@@ -83,24 +84,35 @@ export default function DashboardPage() {
       attention.push({ level: 'info', text: `${who} is still being made; time does not move them.`, to: sheet(c), go: 'Finish' });
       continue;
     }
+    // what the seasons left to settle: a Warping Virtue or Flaw, a death to confirm, a Twilight to roll
+    for (const o of c.owed ?? []) attention.push({ level: 'bad', text: `${who}: ${o.text}`, to: R.seasonsFor(saga.id, undefined, 'seasons-resolve'), go: 'Resolve' });
     if (c.wounds.dead) continue;
     const w = c.wounds;
     const hurt = [w.light && `${w.light} Light`, w.medium && `${w.medium} Medium`, w.heavy && `${w.heavy} Heavy`, w.incapacitating && `${w.incapacitating} Incapacitating`].filter(Boolean);
     if (hurt.length) attention.push({ level: w.heavy || w.incapacitating ? 'bad' : 'warn', text: `${who}: ${hurt.join(', ')} wound${hurt.length > 1 || (w.light ?? 0) > 1 ? 's' : ''} to recover from.`, to: '#table-recovery', go: 'Recovery' });
     if (c.longTermFatigueLost > 0) attention.push({ level: 'warn', text: `${who}: ${c.longTermFatigueLost} Long-Term Fatigue level${c.longTermFatigueLost > 1 ? 's' : ''} lost.`, to: '#table-recovery', go: 'Recovery' });
     if (c.illnesses?.length) attention.push({ level: 'warn', text: `${who} is ill.`, to: '#table-recovery', go: 'Recovery' });
-    if (c.workshop && c.workshop.laborPoints < 0) attention.push({ level: 'warn', text: `${who}'s workshop is short of Labor Points (${c.workshop.laborPoints}).`, to: sheet(c, 'advancement'), go: 'Workshop' });
+    if (c.workshop && c.workshop.laborPoints < 0) attention.push({ level: 'warn', text: `${who}'s workshop is short of Labor Points (${c.workshop.laborPoints}).`, to: R.seasonsFor(saga.id, c.id, 'workshop-season'), go: 'Workshop' });
     if (d) {
+      // the business's year: short by the time the year closes, unless more seasons go to the work
+      const fc = c.workshop && c.workshop.laborPoints >= 0 ? laborForecast(c, d, year, season) : undefined;
+      if (fc?.short)
+        attention.push({
+          level: 'warn',
+          text: `${who}'s workshop will be ${-fc.atYearEnd} Labor Points short when the year closes: ${fc.now} now, ${fc.workSeasons} work season${fc.workSeasons === 1 ? '' : 's'} left at ${fc.perSeason}, upkeep ${fc.upkeep}.`,
+          to: R.seasonsFor(saga.id, c.id, 'workshop-season'),
+          go: 'Plan the work',
+        });
       const errs = validateCharacter(d, data, saga.houseRules).filter((i) => i.severity === 'error').length;
       if (errs) attention.push({ level: 'warn', text: `${who}: ${errs} rules problem${errs > 1 ? 's' : ''} on the sheet.`, to: sheet(c, 'rules'), go: 'Rules check' });
-      if (!loggedThisSeason(c, year, season).length && resolveStanding(c, d, year).kind === 'none') attention.push({ level: 'info', text: `${who} does nothing this season.`, to: sheet(c, 'advancement'), go: 'Plan' });
+      if (!loggedThisSeason(c, year, season).length && resolveStanding(c, d, year).kind === 'none') attention.push({ level: 'info', text: `${who} does nothing this season.`, to: R.seasonsFor(saga.id, c.id, 'table-plan'), go: 'Plan' });
     }
   }
 
   // the Tribunal's approaches waiting for an answer
   const approaches = (saga.tribunalNews ?? []).filter((n) => n.kind === 'approach' && !n.done);
-  for (const n of approaches.slice(0, 3)) attention.push({ level: 'warn', text: `${allCovs.find((c) => c.id === n.covenantId)?.name ?? 'The Tribunal'}: ${n.text}`, to: `${S}/tribunal`, go: 'Tribunal' });
-  if (approaches.length > 3) attention.push({ level: 'info', text: `${approaches.length - 3} more from the Tribunal.`, to: `${S}/tribunal`, go: 'Tribunal' });
+  for (const n of approaches.slice(0, 3)) attention.push({ level: 'warn', text: `${allCovs.find((c) => c.id === n.covenantId)?.name ?? 'The Tribunal'}: ${n.text}`, to: R.table(saga.id, 'society'), go: 'News' });
+  if (approaches.length > 3) attention.push({ level: 'info', text: `${approaches.length - 3} more from the Tribunal.`, to: R.table(saga.id, 'society'), go: 'News' });
 
   const living = allCovs.some((c) => c.living);
 
@@ -135,7 +147,7 @@ export default function DashboardPage() {
             <Link to={R.dice(saga.id)}>Dice ›</Link>
             <Link to={R.dice(saga.id, 'combat')}>Combat &amp; perils ›</Link>
             <Link to={R.dice(saga.id, 'magic')}>Spellcasting ›</Link>
-            <Link to={R.dice(saga.id, 'society')}>Society &amp; the Tribunal ›</Link>
+            <Link to={R.table(saga.id, 'society')}>Society &amp; the Tribunal ›</Link>
           </div>
           <details style={{ marginTop: 6 }}>
             <summary className="small">When something comes up in play: where to go</summary>
@@ -230,7 +242,7 @@ function PlayIndex({ S, sagaId, home, covLink }: { S: string; sagaId: string; ho
     { label: 'Any roll: a Characteristic and an Ability', hint: 'Dice: for anyone at the table, the players’ people or the Tribunal’s, their wounds, Fatigue and disease counted.', to: R.dice(sagaId) },
     { label: 'A fight, a wound, a peril', hint: 'Dice › Combat & perils: a character’s Initiative, Attack and Defense, a group, a blow from Attack to wound, falling, fire, drowning and the other perils.', to: R.dice(sagaId, 'combat') },
     { label: 'A spell is cast, a certamen fought', hint: 'Dice › Spellcasting: the caster, the spell, the aura and what applies; botch dice, Fatigue, Warping and vis put on the sheet; certamen against anyone; Twilight.', to: R.dice(sagaId, 'magic') },
-    { label: 'A debate, a petition, an agent, a forest’s spirit', hint: 'Dice › Society & the Tribunal: debates, petitions to the Church, a court, etiquette, agents, and the Tribunal’s customs.', to: R.dice(sagaId, 'society') },
+    { label: 'A debate, a petition, an agent, a forest’s spirit', hint: 'Society & the Tribunal: the news, the motions, agents and their reports; debates, petitions to the Church, a court, etiquette, and the Tribunal’s customs.', to: R.table(sagaId, 'society', 'society') },
     { label: 'Someone is hurt, tired or ill', hint: 'Health & recovery, on this page: damage taken, Fatigue lost and regained, a disease caught; who tends them, and time passed with every Recovery roll made.', to: '#table-recovery' },
     { label: 'Confidence or Faith is spent, or given', hint: 'Confidence & Faith, on this page: everyone’s points, +3 a point, one given for a story, Faith back at dawn.', to: '#table-confidence' },
     { label: 'Something is found, bought, given or lost', hint: 'Possessions: a character’s things, armor and weapons, enchanted items and talisman, a familiar.', to: R.table(sagaId, 'items') },

@@ -4,7 +4,8 @@
 
 import { abilityTotal, type DerivedCharacter } from './character/derive';
 import { defaultRng, describeStress, simpleDie, stressDie, type Rng } from './dice';
-import type { Agent } from './types';
+import type { Agent, Season, TribunalNews } from './types';
+import { uid } from '../util/id';
 
 const ability = abilityTotal;
 
@@ -63,10 +64,11 @@ export function impressRoll(d: DerivedCharacter, formerBond = 0, rng: Rng = defa
   ];
   const ease = 6 + formerBond;
   const r = stressDie(1, rng);
-  const total = r.botches ? 0 : r.value + parts.reduce((s, p) => s + p.value, 0);
+  const base = parts.reduce((s, p) => s + p.value, 0);
+  const total = r.botches ? 0 : r.value + base;
   const ok = !r.botches && total >= ease;
   return {
-    ok, total, ease,
+    ok, total, ease, base: r.botches ? base : total, ...(r.botches ? { faces: r.botchFaces } : {}),
     text: `stress die ${describeStress(r)} + ${parts.map((p) => `${p.label} ${p.value}`).join(', ')} = ${r.botches ? 'botch' : total} against ${ease}: ${ok ? 'a favorable impression: recruiting may begin' : 'no impression: try again after another story brings them together'}.`,
   };
 }
@@ -110,10 +112,11 @@ export function persuasionRoll(d: DerivedCharacter, agent: Agent, task: number, 
   ];
   const ease = t.ease + tf.mod + rk.mod;
   const base = parts.reduce((s, p) => s + p.value, 0);
-  if (agent.bond < 1) return { ok: false, total: 0, ease, text: `${agent.name || 'The agent'} needs a Bond of at least +1 before being asked anything.` };
+  if (agent.bond < 1) return { ok: false, total: 0, ease, base: 0, text: `${agent.name || 'The agent'} needs a Bond of at least +1 before being asked anything.` };
   let die: number;
   let dieText: string;
   let botch = false;
+  let faces: number[] | undefined;
   if (rk.botch === null) {
     const r = simpleDie(rng);
     die = r.value;
@@ -122,12 +125,13 @@ export function persuasionRoll(d: DerivedCharacter, agent: Agent, task: number, 
     const r = stressDie(rk.botch, rng);
     die = r.value;
     botch = r.botches > 0;
+    if (botch) faces = r.botchFaces;
     dieText = `stress die ${describeStress(r)}`;
   }
   const total = botch ? 0 : die + base;
   const ok = !botch && total >= ease;
   return {
-    ok, total, ease,
+    ok, total, ease, base: botch ? base : total, ...(faces ? { faces } : {}),
     text: `${dieText} + ${parts.map((p) => `${p.label} ${p.value}`).join(', ')} = ${botch ? 'botch' : total} against ${ease} (${t.label}, ${tf.label}, ${rk.label}): ${botch ? 'a botch: the request goes badly wrong' : ok ? 'the agent agrees' : 'the agent refuses'}.`,
   };
 }
@@ -168,4 +172,53 @@ export function giftToAgent(agent: Agent, pounds: number): string {
     agent.xp = 0;
   }
   return agent.bond > before ? text.replace(/Bond \d+ → \d+/, `Bond ${before} → ${agent.bond}`) : text;
+}
+
+// ------------------------------------------------------------------------------ what the agents hear
+
+/** What an agent of each walk of life tends to hear in a season, when the Tribunal gives them nothing better. */
+const RUMORS: { match: RegExp; heard: string[] }[] = [
+  { match: /noble|knight|landed|lord/i, heard: ['the local lord is quarrelling with the bishop over a mill and a stretch of river', 'a marriage is being arranged between two noble houses, and land will change hands with it', 'the count is raising men for a feud in the spring'] },
+  { match: /priest|clerk|monk|friar|clergy|church/i, heard: ['the bishop means to visit the parishes near the covenant this year', 'a relic has been brought to the abbey, and pilgrims are coming to see it', 'the friars are preaching against sorcery in the market towns'] },
+  { match: /merchant|craftsman|guild|trader/i, heard: ['the price of grain will rise: the harvest failed to the south', 'a new toll has been set on the river, and the merchants are furious', 'a company of Italian bankers is lending money in the city'] },
+  { match: /outlaw|criminal|outcast|thief/i, heard: ['a band of brigands has taken to the forest road', 'someone is paying well for news of who comes and goes at the covenant', 'the sheriff’s men are hunting a deserter in the hills'] },
+  { match: /redcap/i, heard: ['a Quaesitor has been asking questions at a covenant nearby', 'letters are going back and forth between two covenants that were never friends'] },
+];
+const COMMON = ['a peddler swore there were lights in the old ruins by night', 'the village headman is stealing from the tithe', 'two families in the village are on the verge of a feud', 'a stranger has been asking about the covenant at the inn'];
+
+/** A line from the Tribunal's own record worth an agent's report: the living covenants' season, not their routine. */
+const WORTH = /invent|enchant|bound|familiar|apprentice|Gauntlet|certamen|Twilight|died|death|wizard|vote|motion|longevity|Breakthrough|discover|feud|quarrel|hired|left|sold|bought|traded|theft|stole|raid|crisis|archmag|master/i;
+
+/**
+ * What the players' agents bring at the end of a season (Houses of Hermes: Societates, Agencies: an
+ * agent watches and listens for the principal). Each agent bound to a principal (Bond +1 or more) may
+ * hear something, the more likely the stronger the Bond: from the Tribunal's covenants' own business
+ * this season (what a Redcap would never tell), else what their walk of life hears. Returns news items.
+ */
+export function agentReports(
+  principals: { id: string; name: string; agents: Agent[] }[],
+  tribunalLines: { who?: string; text: string; covenant?: string }[],
+  year: number,
+  season: Season,
+  rng: Rng = defaultRng,
+): TribunalNews[] {
+  const pool = tribunalLines.filter((l) => l.who && WORTH.test(l.text));
+  const out: TribunalNews[] = [];
+  for (const p of principals)
+    for (const a of p.agents) {
+      if (a.resistance > 0 || a.bond < 1) continue;
+      if (rng() > 0.35 + 0.1 * a.bond) continue;
+      const agent = a.name || 'An agent';
+      let text: string;
+      if (pool.length && rng() < 0.6) {
+        const l = pool.splice(Math.floor(rng() * pool.length), 1)[0];
+        text = `${agent}, ${p.name}’s agent, heard of ${l.covenant ? `${l.covenant}’s business` : 'the Tribunal’s business'}: ${l.who} — ${l.text.replace(/\.$/, '')}.`;
+      } else {
+        const r = RUMORS.find((x) => x.match.test(`${a.status} ${a.role ?? ''}`));
+        const heard = r && rng() < 0.7 ? r.heard : COMMON;
+        text = `${agent}, ${p.name}’s agent, sends word that ${heard[Math.floor(rng() * heard.length)]}.`;
+      }
+      out.push({ uid: uid(), year, season, kind: 'report', text, characterId: p.id, agent: agent });
+    }
+  return out;
 }

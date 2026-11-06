@@ -14,9 +14,24 @@ import { Hint } from '../../Hint';
 import { useStore } from '../../../store/store';
 import { RollAtTable, fightsCertamen, groupPeople, useAtTable, PeopleOptions } from '../../play';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
+import { AfterRoll } from '../../AfterRoll';
+import { owe } from '../../../engine/time';
 import { deriveCharacter } from '../../../engine/character/derive';
 
 const REALMS: Realm[] = ['Magic', 'Faerie', 'Divine', 'Infernal', 'None'];
+
+/** A casting just rolled, for what may be done after it. */
+interface LastCast {
+  id: number;
+  name: string;
+  /** the Casting Total as it fell (for a botch, what a plain zero would have made) */
+  total: number;
+  faces?: number[];
+  /** the Fatigue the casting cost, and what another total would cost (a Formulaic spell or a Ritual) */
+  fatigue?: { levels: number; longTerm: boolean };
+  fatigueFor?: (total: number) => number;
+  judge: (total: number) => string;
+}
 
 /**
  * A magus's magic. On the sheet it keeps the score: the Arts, Casting Scores and Lab Totals under the
@@ -58,8 +73,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [ceremonial, setCeremonial] = useState(false);
   const [declared, setDeclared] = useState(10);
   const [lifeLinkedOn, setLifeLinkedOn] = useState(false);
-  // All According to Plan: once per session, reroll a botch die
-  const [aatp, setAatp] = useState<{ spell: string; faces: number[] } | null>(null);
+  // the last casting's roll: Confidence, Faith and All According to Plan after it (a botch's Warping taken back)
+  const [lastCast, setLastCast] = useState<LastCast | null>(null);
 
   const talismanItem = c?.items.find((i) => i.uid === c.talismanUid);
   const talismanBonus = talismanItem?.attunements[attunement]?.bonus ?? 0;
@@ -95,20 +110,6 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const hasImprovisation = d.virtues.some((v) => v.cv.defId === 'spell-improvisation');
   const conditional = conditionalBonuses(d);
   const spellFocus = (sp: CharSpell) => sp.inFocus ?? !!sp.notes?.includes('[focus]');
-  const aatpReady = d.virtues.some((v) => v.cv.defId === 'all-according-to-plan') && !c.session?.aatpUsed;
-  const useAatp = () => {
-    if (!aatp) return;
-    begin('aatp');
-    const i = aatp.faces.indexOf(0);
-    const again = simpleDie().value % 10;
-    const faces = [...aatp.faces];
-    if (i >= 0) faces[i] = again;
-    const left = faces.filter((f) => f === 0).length;
-    push(`All According to Plan (${aatp.spell}): rerolled a botch die: ${again}. ${left === 0 ? 'No botch left: the roll counts as a 0 instead (take back the Warping Points from the botch).' : `${left} zero${left > 1 ? 's' : ''} remain.`}`);
-    if (left < aatp.faces.filter((f) => f === 0).length) update((x) => void ((x.warpingPoints = Math.max(0, x.warpingPoints - 1)), (x.session = { ...(x.session ?? {}), aatpUsed: true })));
-    else update((x) => void (x.session = { ...(x.session ?? {}), aatpUsed: true }));
-    setAatp(null);
-  };
   const golden = d.char.familiar?.golden ?? 0;
   const push = (s: string) => {
     setLog((l) => [s, ...l].slice(0, 30));
@@ -124,13 +125,44 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
       </div>
     ) : null;
 
+  /** Confidence, Faith and All According to Plan after a casting roll; Fatigue a better total saves is given back */
+  const castAfter = () => {
+    if (!lastCast) return null;
+    const cast = lastCast;
+    return (
+      <AfterRoll
+        key={cast.id}
+        c={c}
+        d={d}
+        total={cast.total}
+        botchFaces={cast.faces}
+        what="Casting total"
+        magical
+        judge={cast.judge}
+        onChange={(x) => {
+          push(`${cast.name}: ${x.text}`);
+          if (!cast.fatigue || !cast.fatigueFor) return;
+          const was = cast.fatigue.levels;
+          const now = cast.fatigueFor(x.botch ? 0 : cast.total + x.bonus);
+          if (now === was) return;
+          const k = cast.fatigue.longTerm ? 'longTermFatigueLost' : 'fatigueLost';
+          update((y) => void (y[k] = Math.max(0, Math.min(5, y[k] + now - was))));
+          setLastCast({ ...cast, fatigue: { ...cast.fatigue, levels: now } });
+          push(`${cast.name}: ${now < was ? `${was - now} Fatigue level${was - now > 1 ? 's' : ''} given back` : `${now - was} more Fatigue level${now - was > 1 ? 's' : ''} lost`}.`);
+        }}
+      />
+    );
+  };
   /** a magical botch: one Warping Point per zero; Twilight is checked on 2+ (1 with Twilight Prone) */
-  const onBotch = (name: string, wp: number, faces: number[]) => {
+  const onBotch = (wp: number) => {
     if (!wp) return;
-    update((x) => void (x.warpingPoints += wp));
     const check = wp >= 2 || (wp >= 1 && d.twilightProne);
+    // the Twilight to roll goes on the Seasons page's Resolve list too, so it is not forgotten once the casting log is gone
+    update((x) => {
+      x.warpingPoints += wp;
+      if (check && x.type === 'magus') owe(x, ed.saga?.currentYear ?? 0, ed.saga?.currentSeason ?? 'Spring', 'twilight', `${wp} Warping Point${wp > 1 ? 's' : ''} from a botched casting: roll for Wizard’s Twilight.`);
+    });
     push(`Botch: ${wp} Warping Point${wp > 1 ? 's' : ''} added.${check ? ` Check for Wizard's Twilight${d.twilightProne && wp < 2 ? ' (Twilight Prone)' : ''}: Warping & Twilight, below (points already added).` : ''}`);
-    if (aatpReady) setAatp({ spell: name, faces });
   };
   /** Fatigue spent on a casting, after Vulnerable and Withstand Casting; Life Boost and Life-Linked levels are added as they are */
   const spendFatigue = (levels: number, longTerm: boolean) => {
@@ -212,7 +244,22 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     const boostText = boost ? ` Life Boost spends ${boost} Fatigue level${boost > 1 ? 's' : ''}${overBy ? `; ${overBy} beyond your Fatigue: Soak ${5 * overBy} + stress die without armor` : ''}.` : '';
     const fatigueText = fatigue !== out.fatigue ? ` Fatigue lost: ${fatigue}${fatigueNote}.` : '';
     push(`${sp.spell.name}: ${res.total} + die ${dieText} = ${total} vs level ${level}. ${botched ? `BOTCH (${botchDice} botch dice). ` : ''}${out.text}${fatigueText}${out.cast ? ` Penetration ${penT}.` : ''}${visText}${visB.text}${boostText}`);
-    onBotch(sp.spell.name, botched ? botchCount : 0, lastBotchFaces);
+    onBotch(botched ? botchCount : 0);
+    const kind = ritual ? ('ritual' as const) : ('formulaic' as const);
+    const fell = res.halved ? Math.ceil(raw / 2) : res.total;
+    const mPen = sp.masteryAbilities.includes('Penetration') ? ms : 0;
+    setLastCast({
+      id: Date.now(),
+      name: sp.spell.name,
+      total: botched ? fell : total,
+      faces: botched ? lastBotchFaces : undefined,
+      fatigue: { levels: fatigue, longTerm: out.longTerm },
+      judge: (n) => {
+        const o = castingOutcome(kind, n, level);
+        return `${o.text}${o.cast ? ` Penetration ${penetrationTotal(d, n, level, { ...pen, masteryScore: mPen })}.` : ''}`;
+      },
+      fatigueFor: (n) => castingFatigue(castingOutcome(kind, n, level).fatigue, rules),
+    });
     const over = spendFatigue(fatigue, out.longTerm);
     if (boost) update((x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + boost)));
     if (over) push(`${sp.spell.name}:${over}`);
@@ -266,7 +313,11 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     if (levels) text += ` Lose ${levels} Fatigue level${levels > 1 ? 's' : ''}${fatigueNote}.`;
     text += boost.text;
     push(text);
-    onBotch(name, botch.n, botch.faces);
+    onBotch(botch.n);
+    if (mode !== 'calm') {
+      const fell = Math.floor(spontaneousTotal(score, mode !== 'calm-stress', 0));
+      setLastCast({ id: Date.now(), name, total: botch.n ? fell : total, faces: botch.n ? botch.faces : undefined, judge: (n) => `reaches level ${n}${target !== null ? ` (declared ${target})` : ''}.` });
+    } else setLastCast(null);
     const over = spendFatigue(levels, false);
     if (over) push(`${name}:${over}${rules.lifeLinked && lifeLinkedOn ? ' Life-Linked: the levels still needed count as Damage beyond your Soak (DE).' : ''}`);
   };
@@ -585,6 +636,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           </div>
         )}
         <Recent from="spells" />
+        {atTable && lastCast && !lastCast.name.startsWith('Spontaneous') && castAfter()}
         {c.spells.length > 0 && <RollAtTable sagaId={c.sagaId} who={c.id} where="seasons" what="Spell Mastery is raised, and the special ability for each level chosen," />}
         <p className="small muted">
           Formulaic: fail by 1–10 and the spell still works at a cost of one Fatigue level. Ritual: always costs long-term Fatigue and 1 pawn of vis per magnitude, and each pawn is a
@@ -675,6 +727,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           </button>
         </div>}
         <Recent from="spont" />
+        {atTable && lastCast?.name.startsWith('Spontaneous') && castAfter()}
         <p className="small muted">Totals are rounded down (the DE default when a rule doesn't say otherwise).</p>
         {rules.weakSpontaneous && rules.difficultSpontaneous && <p className="small bad-text">Weak and Difficult Spontaneous Magic together: you cannot cast spontaneous spells at all.</p>}
         {rules.diedne && <p className="small good-text">Diedne Magic: exerted, your lowest Art counts twice before dividing by two (in the fatiguing total); calm, you may divide by 2 on a stress die instead of by 5.</p>}
@@ -682,21 +735,6 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
 
       {fightsCertamen(c) && <Certamen ed={ed} push={push} begin={begin} recent={<Recent from="certamen" />} />}
 
-      {atTable && aatp && (
-        <div className="issue warning">
-          <span className="badge warn">botch</span>
-          <div className="msg">
-            {aatp.spell} botched (botch dice {aatp.faces.join(', ')}). All According to Plan lets you reroll one botch die once this session: describe the contingency plan.
-          </div>
-          <button className="small" onClick={useAatp}>
-            Reroll a botch die
-          </button>
-          <button className="small ghost" onClick={() => setAatp(null)}>
-            Keep it
-          </button>
-        </div>
-      )}
-      <Recent from="aatp" />
       {atTable && log.length > 0 && (
         <Card title="Casting log" actions={<button className="small ghost" onClick={() => setLog([])}>Clear</button>}>
           {log.map((l, i) => (

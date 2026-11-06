@@ -26,15 +26,21 @@ export interface SideRoll {
   total: number;
   botched: boolean;
   text: string;
+  /** the botch dice, when it botched (All According to Plan rerolls one) */
+  faces?: number[];
+  /** what a plain zero would have made: the total before the die */
+  base: number;
+  /** what Confidence or Faith added after the roll */
+  bonus?: number;
 }
 
 function rollSide(mod: number, botchDice: number, simple: boolean, rng: Rng): SideRoll {
   if (simple) {
     const r = simpleDie(rng);
-    return { total: mod + r.value, botched: false, text: `${mod} + ${r.value}` };
+    return { total: mod + r.value, botched: false, text: `${mod} + ${r.value}`, base: mod };
   }
   const r = stressDie(botchDice, rng);
-  return { total: r.botches ? 0 : mod + r.value, botched: r.botches > 0, text: `${mod} + ${describeStress(r)}` };
+  return { total: r.botches ? 0 : mod + r.value, botched: r.botches > 0, text: `${mod} + ${describeStress(r)}`, base: mod, ...(r.botches ? { faces: r.botchFaces } : {}) };
 }
 
 export interface OpposedResult {
@@ -48,8 +54,11 @@ export interface OpposedResult {
 
 /** Both sides roll; the higher total wins, and a tie goes to the one resisting (the toolkit's convention). */
 export function opposedRoll(a: { mod: number; botch?: number; simple?: boolean }, b: { mod: number; botch?: number; simple?: boolean }, rng: Rng = defaultRng): OpposedResult {
-  const ra = rollSide(a.mod, a.botch ?? 1, !!a.simple, rng);
-  const rb = rollSide(b.mod, b.botch ?? 1, !!b.simple, rng);
+  return opposedOutcome(rollSide(a.mod, a.botch ?? 1, !!a.simple, rng), rollSide(b.mod, b.botch ?? 1, !!b.simple, rng));
+}
+
+/** Who wins two rolls already made (again, once Confidence or All According to Plan changed one). */
+export function opposedOutcome(ra: SideRoll, rb: SideRoll): OpposedResult {
   const winner = ra.botched && !rb.botched ? 'b' : rb.botched && !ra.botched ? 'a' : ra.total > rb.total ? 'a' : 'b';
   const margin = Math.abs(ra.total - rb.total);
   const tie = ra.total === rb.total && ra.botched === rb.botched;
@@ -81,9 +90,21 @@ export interface Exchange {
  * Advantage + the weapon's Damage, less Soak, and the excess gives the wound. A botch on attack
  * misses badly; one on defense lets it land.
  */
-export function exchange(o: { atk: number; dam: number; dfn: number; soak: number; size?: number; wound?: (excess: number) => WoundLevel }, rng: Rng = defaultRng): Exchange {
-  const attack = rollSide(o.atk, 1, false, rng);
-  const defense = rollSide(o.dfn, 1, false, rng);
+export interface ExchangeOptions {
+  atk: number;
+  dam: number;
+  dfn: number;
+  soak: number;
+  size?: number;
+  wound?: (excess: number) => WoundLevel;
+}
+
+export function exchange(o: ExchangeOptions, rng: Rng = defaultRng): Exchange {
+  return exchangeOutcome(rollSide(o.atk, 1, false, rng), rollSide(o.dfn, 1, false, rng), o);
+}
+
+/** A blow from its two rolls (again, once Confidence or All According to Plan changed one). */
+export function exchangeOutcome(attack: SideRoll, defense: SideRoll, o: ExchangeOptions): Exchange {
   const hits = !attack.botched && (defense.botched || attack.total > defense.total);
   const advantage = hits ? Math.max(1, attack.total - (defense.botched ? 0 : defense.total)) : 0;
   const damage = hits ? advantage + o.dam : 0;
@@ -141,11 +162,11 @@ export function perilDamage(bonus: number, soak: number, wound: (excess: number)
 }
 
 /** A Stamina check against a poison, a disease or deprivation: stress die + Stamina (+ any bonus) against the Ease Factor. */
-export function staminaCheck(stamina: number, ease: number, rng: Rng = defaultRng): { ok: boolean; text: string } {
+export function staminaCheck(stamina: number, ease: number, rng: Rng = defaultRng): { ok: boolean; text: string; total: number; faces?: number[] } {
   const r = stressDie(1, rng);
   const total = r.botches ? 0 : stamina + r.value;
   const ok = !r.botches && total >= ease;
-  return { ok, text: `Stamina ${stamina} + ${describeStress(r)} = ${r.botches ? 'botch' : total} against ${ease}: ${ok ? 'resisted' : 'it takes hold'}.` };
+  return { ok, total: r.botches ? stamina : total, ...(r.botches ? { faces: r.botchFaces } : {}), text: `Stamina ${stamina} + ${describeStress(r)} = ${r.botches ? 'botch' : total} against ${ease}: ${ok ? 'resisted' : 'it takes hold'}.` };
 }
 
 /** Going without (DE, Deprivation): air every 30 seconds, water every day, food every three days; the Ease Factor starts at 3 and rises by one each time. */

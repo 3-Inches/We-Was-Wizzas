@@ -111,6 +111,20 @@ export interface Saga {
   playerVotes?: Record<string, Record<string, 'for' | 'against' | 'abstain'>>;
   /** the players' bid for the Tribunal's recognition of their covenant (the Rhine's sponsors from every other covenant) */
   founding?: CovenantFounding;
+  /** the order the players take their turns in as the seasons pass (the Seasons page): player names */
+  playerOrder?: string[];
+}
+
+/** A choice a season left for the troupe to make, kept until it is made (the Seasons page's Resolve). */
+export interface Owed {
+  uid: string;
+  year: number;
+  season: Season;
+  /** a Virtue or Flaw a Warping Score brings, a Twilight to roll, a death to confirm or undo */
+  kind: 'warping' | 'twilight' | 'dying';
+  text: string;
+  /** the Virtue or Flaw it calls for (Warping) */
+  want?: { kind: 'virtue' | 'flaw'; size: VFSize; supernatural?: boolean };
 }
 
 /** A sponsor for the players' new covenant from one covenant of the Tribunal (GotF, On the Founding of Covenants). */
@@ -142,7 +156,9 @@ export interface TribunalNews {
   season: Season;
   /** the living covenant it is about */
   covenantId?: string;
-  kind: 'approach' | 'death' | 'member' | 'gathering' | 'event' | 'vote' | 'certamen' | 'apprentice';
+  kind: 'approach' | 'death' | 'member' | 'gathering' | 'event' | 'vote' | 'certamen' | 'apprentice' | 'report';
+  /** a report: the agent who brought it (the principal is characterId) */
+  agent?: string;
   text: string;
   /** an approach: which one (BookApproach id), its kind, and where it is dealt with */
   approach?: string;
@@ -185,6 +201,8 @@ export interface TimeReport {
   year: number;
   season: Season;
   lines: { who?: string; text: string; kind?: 'season' | 'year' | 'aging' | 'crisis' | 'warping' | 'covenant' | 'lab' | 'effect' | 'reminder' | 'money'; tribunal?: string }[];
+  /** the season told as a story (the Chronicle), in sections */
+  story?: { title: string; text: string }[];
 }
 
 /**
@@ -346,6 +364,12 @@ export interface Agent {
   strength?: number;
   /** when the principal last asked them for sensitive or secret information (no more than once a season) */
   askedFor?: { year: number; season: Season };
+  /** what they do: a merchant, a priest, a castellan's steward… */
+  role?: string;
+  /** a would-be agent the principal has made a favorable first impression on: recruiting may begin */
+  impressed?: boolean;
+  /** what changes their Resistance, chosen when recruiting began (labels of RESISTANCE_MODIFIERS) */
+  modifiers?: string[];
 }
 
 /** A disease a character suffers (Art & Academe, Disease). */
@@ -794,6 +818,42 @@ export interface SeasonLogEntry {
   priority?: PriorityKind;
   /** applied to the character already (so it can be reverted) */
   applied: boolean;
+  /** what else the season changed, so Unlog can take it back (engine/unlog.ts) */
+  undo?: SeasonUndo;
+}
+
+/**
+ * What a logged season changed besides its experience and Warping: Unlog reverses it. A season whose
+ * work finished something (a spell learned, an item made, a familiar bound) is `final`: what it made
+ * stays on the sheet, and the season cannot be unlogged.
+ */
+export interface SeasonUndo {
+  /** Labor Points the season earned (negative: spent) */
+  laborPoints?: number;
+  /** the workshop's counters as they were before */
+  workshop?: Partial<Pick<Workshop, 'seasonsWorked' | 'reputationXp' | 'shoddyStreak' | 'innovation' | 'rawMaterials'>> & { wonder?: Workshop['wonder'] | null };
+  /** the lab project as it was before the season's work */
+  project?: LabProject;
+  /** vis the season spent, and where from */
+  vis?: { from: 'purse' | 'covenant'; covenantId?: string; taken: { art: Art; pawns: number; pair?: Art }[] };
+  /** pounds the season spent from the purse */
+  pounds?: number;
+  /** Warping Points the season's work added outside its gains */
+  warping?: number;
+  /** Virtues the season gave (an Initiation) */
+  virtueUids?: string[];
+  /** the Initiation it recorded */
+  initiationUid?: string;
+  /** a Discovery it stabilized (original research) */
+  discoveryUid?: string;
+  /** a season taught to the apprentice */
+  apprentice?: boolean;
+  /** writing projects' points as they were */
+  writing?: { uid: string; points: number }[];
+  /** a tractatus read: its reader is struck off again */
+  tractatus?: { covenantId: string; bookUid: string };
+  /** why it cannot be unlogged: what its work made */
+  final?: string;
 }
 
 export interface CharacterCreationState {
@@ -893,6 +953,8 @@ export interface Character {
   creature?: CreatureInfo;
   /** things used up once per game session (All According to Plan) */
   session?: { aatpUsed?: boolean };
+  /** choices the seasons left for the troupe to make, kept until they are made (the Seasons page's Resolve) */
+  owed?: Owed[];
   /** the year each of its Story and Personality Flaws last came up in play (by the Virtue's uid): the Game table's stories waiting */
   storiesTold?: Record<string, number>;
   name: string;
@@ -1070,7 +1132,7 @@ export interface CovenantHookBoon {
   /** an Immunity's object; for a Flaw, the share (0–1) of those the toolkit makes for the covenant who have it (all, if unset) */
   immunity?: { kind: ImmunityKind; value: string; share?: number };
   /** Inhuman Residents Boon, Inhuman Covenfolk Hook: what the covenfolk are, and what share of them */
-  inhuman?: { nature: InhumanNature; share: number };
+  inhuman?: { nature: InhumanNature; share: number; /** their usual Might Score: mere covenfolk have little or none */ might?: number };
   /** Useful Curse Boon: the curse, the Ability it makes the cursed better at and by how much, and what share of the covenfolk */
   curse?: { what: string; ability?: string; bonus: number; share: number };
   /** Local Language Boon: the language the covenfolk speak */
@@ -1295,6 +1357,8 @@ export interface Specialist {
   teachingXp?: number;
   /** one of the covenant's inhuman covenfolk (Inhuman Residents Boon, Inhuman Covenfolk Hook): it does not age */
   nature?: InhumanNature;
+  /** its Might Score, taken off each season's Advancement Total (RoP: Magic); unset, its kind's on the Boon */
+  might?: number;
   /** the Build Points paid when they were bought, kept once their scores start to rise in play */
   boughtFor?: number;
   /** a teacher's lab: its Teaching Specialization (at most +3) adds to the Source Quality of teaching done there (Covenants ch.9) */
@@ -1455,6 +1519,8 @@ export interface IncomeSource {
   customPounds?: boolean;
   /** the yearly change set by the storyguide (Covenants ch.5) */
   modification?: IncomeModification;
+  /** the change was rolled at the year's end (a stress die on the table): it is this year's only */
+  rolled?: boolean;
   /** gained or changed in play: its level is not set by Boons and Hooks */
   inPlay?: boolean;
   /** a tenth goes to the Church */
@@ -1466,6 +1532,8 @@ export interface IncomeSource {
 }
 
 export interface Covenant {
+  /** Warping Points a covenfolk who has lived here all along has from the aura (anonymous covenfolk, counted, not on sheets) */
+  folkWarping?: number;
   id: string;
   sagaId: string;
   schemaVersion: number;

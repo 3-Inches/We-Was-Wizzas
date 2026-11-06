@@ -7,6 +7,7 @@ import type { DerivedCharacter } from './character/derive';
 import { applySeason, newSeasonEntry } from './longterm';
 import type { Character, Season, Workshop } from './types';
 import { characterWorkMod, hasTrait } from './craftTraits';
+import { seasonsOf, seasonsUsed } from './seasons';
 
 export type Wealth = 'poor' | 'average' | 'wealthy';
 /** Labor Points per season are multiplied by this (C&G, Labor and Livelihood) */
@@ -218,11 +219,14 @@ export function workshopSeason(c: Character, d: DerivedCharacter, year: number, 
   if (res.reputationXp) lines.push('+1 experience in the (Craft) Reputation.');
   const shoddy = res.quality === 'shoddy';
   if (shoddy && w.shoddyStreak >= 1) lines.push('Shoddy again: −1 experience in the (Craft) Reputation.');
+  // what Unlog takes back: the Labor Points, and the counts as they were
+  const undo = { laborPoints: f.lp, workshop: { seasonsWorked: w.seasonsWorked, reputationXp: w.reputationXp, shoddyStreak: w.shoddyStreak } };
   w.laborPoints += f.lp;
   w.seasonsWorked += 1;
   w.reputationXp += res.reputationXp - (shoddy && w.shoddyStreak >= 1 ? 1 : 0);
   w.shoddyStreak = shoddy ? w.shoddyStreak + 1 : 0;
   const entry = newSeasonEntry(year, season, 'work', `Worked as ${f.trade?.name ?? 'a craftsman'}: ${res.quality} goods, +${f.lp} Labor Points (2 Exposure xp)`, f.trade ? { [`ability:${f.trade.uid}`]: 2 } : {});
+  entry.undo = undo;
   applySeason(c, entry, 1);
   c.seasonLog.push(entry);
   return lines;
@@ -353,3 +357,25 @@ export const newWorkshop = (abilityUid: string | undefined, profession: boolean)
   abilityUid, primary: profession ? 'Str' : 'Dex', innovation: 0, rawMaterials: 0, laborPoints: 0, assistants: [], manual: 0, craftLevelMod: 0,
   seasonsWorked: 0, reputationXp: 0, shoddyStreak: 0,
 });
+
+/**
+ * Where a workshop's Labor Points will stand when the year closes, if the seasons left go as planned:
+ * the work seasons still owed this year (all of them, for one set to work every season), speculation's
+ * return and returns falling due, less the year's upkeep. Short means the business slips at the year's end.
+ */
+export function laborForecast(c: Character, d: DerivedCharacter, year: number, season: Season): { now: number; atYearEnd: number; workSeasons: number; perSeason: number; upkeep: number; short: boolean } | undefined {
+  const w = c.workshop;
+  const f = workshopFigures(c, d);
+  if (!w || !f) return undefined;
+  const order: Season[] = ['Spring', 'Summer', 'Autumn', 'Winter'];
+  const spentNow = c.seasonLog.some((e) => e.year === year && e.season === season && !e.extra && e.activity !== 'adventure');
+  const seasonsLeft = order.length - order.indexOf(season) - (spentNow ? 1 : 0);
+  const plan = seasonsOf(c, d);
+  const used = seasonsUsed(c, year);
+  const workSeasons = c.standing?.kind === 'work' ? seasonsLeft : Math.max(0, Math.min(plan.work - used.work, seasonsLeft));
+  const spec = Math.floor((w.speculation ?? 0) / 10);
+  const due = (w.pending ?? []).filter((p) => p.year <= year).reduce((t, p) => t + p.lp, 0);
+  const keep = upkeep(w.rawMaterials);
+  const atYearEnd = w.laborPoints + workSeasons * f.lp + spec + due - keep;
+  return { now: w.laborPoints, atYearEnd, workSeasons, perSeason: f.lp, upkeep: keep, short: atYearEnd < 0 };
+}

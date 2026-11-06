@@ -33,9 +33,28 @@ export interface YearEndOptions {
   skipVis: string[];
   /** sundry expenses are one-off: clear them for the new year */
   clearSundry: boolean;
+  /** each source of income whose year the storyguide has not set rolls it on the Income Modification table (Covenants ch.5); a rolled change is that year's only */
+  rollIncome?: boolean;
 }
 
-export const DEFAULT_YEAR_END: YearEndOptions = { permanentIncome: true, inflation: true, harvestVis: true, skipVis: [], clearSundry: true };
+export const DEFAULT_YEAR_END: YearEndOptions = { permanentIncome: true, inflation: true, harvestVis: true, skipVis: [], clearSundry: true, rollIncome: true };
+
+/** Roll the year for each source of income the storyguide has not set (Covenants ch.5: "if you wish, … rolling a stress die"). */
+export function rollIncomeYear(cov: Covenant, rng: Rng = defaultRng): { name: string; mod: IncomeModification }[] {
+  const out: { name: string; mod: IncomeModification }[] = [];
+  for (const s of cov.income) {
+    if (s.level === 'None') continue;
+    if (s.modification && s.modification !== 'Status Quo' && !s.rolled) {
+      out.push({ name: s.name, mod: s.modification });
+      continue;
+    }
+    const r = rollIncomeModification(rng);
+    s.modification = r.id;
+    s.rolled = true;
+    out.push({ name: s.name, mod: r.id });
+  }
+  return out;
+}
 
 export interface YearEndPlan {
   income: number;
@@ -67,7 +86,7 @@ export function planYearEnd(cov: Covenant, dc: DerivedCovenant, o: YearEndOption
   else if (cov.finances.inflation > 0) lines.push(`Inflation is off in this saga: the ${cov.finances.inflation} £ a year already counted stays in the spending until it is cleared (Covenfolk & Finances).`);
   const incomeChanges = o.permanentIncome
     ? cov.income
-        .filter((s) => s.modification && s.modification !== 'Status Quo')
+        .filter((s) => s.modification && s.modification !== 'Status Quo' && !s.rolled)
         .map((s) => ({ uid: s.uid, name: s.name, modification: s.modification!, mult: INCOME_MODIFICATIONS.find((m) => m.id === s.modification)?.mult ?? 1 }))
     : [];
   for (const c of incomeChanges) lines.push(`${c.name}: ${c.modification} (×${c.mult}) lasts into the coming years.`);
@@ -105,7 +124,10 @@ export function applyYearEnd(cov: Covenant, plan: YearEndPlan, year: number, o: 
     if (s) s.factor = Math.round((s.factor ?? 1) * c.mult * 1000) / 1000;
   }
   // the coming year starts at Status Quo
-  for (const s of cov.income) if (s.modification) s.modification = 'Status Quo';
+  for (const s of cov.income) {
+    if (s.modification) s.modification = 'Status Quo';
+    delete s.rolled;
+  }
   // the stocks the covenant was founded with keep their Build Points; the year's vis is free
   if (!cov.startingVisStocks) cov.startingVisStocks = structuredClone(cov.visStocks);
   for (const v of plan.vis) {

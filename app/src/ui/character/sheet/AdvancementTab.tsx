@@ -29,6 +29,7 @@ import { deriveCharacter } from '../../../engine/character/derive';
 import { teaches } from '../../../engine/covenfolk';
 import { HAZARDS, hazardPenalty } from '../../../engine/disease';
 import { RollAtTable, useAtTable } from '../../play';
+import { Unlog } from '../Unlog';
 
 type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'worship' | 'lab' | 'other';
 
@@ -195,6 +196,9 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const trainingNotAllowed = kind === 'training' && isArt;
   const visNotAllowed = kind === 'vis' && !isArt;
   const visPawns = art ? visForStudy(d.arts[art].score) : 0;
+  // studying from vis spends it: from the purse when it holds enough of the Art, else the covenant's stocks
+  const visFrom: 'purse' | 'covenant' | undefined =
+    kind !== 'vis' || !art ? undefined : visAvailable(c.purse?.vis ?? [], [art]) >= visPawns ? 'purse' : cov && visAvailable(cov.visStocks, [art]) >= visPawns ? 'covenant' : undefined;
   const tractatusRead = kind === 'tractatus' && bookUid && library.find((b) => b.uid === bookUid)?.readBy?.includes(c.id);
 
   const openProjects = (c.projects ?? []).filter((p) => !p.done);
@@ -227,7 +231,15 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     const entry = newSeasonEntry(year, season, ACTIVITY[kind], asExtra ? `Extra season (needs no sleep): ${text}` : text, gains);
     if (asExtra) entry.extra = true;
     if (res) entry.sourceQuality = res.advancementTotal;
-    if (kind === 'vis' && art) entry.visUsed = [{ art, pawns: visPawns }];
+    if (kind === 'vis' && art) {
+      entry.visUsed = [{ art, pawns: visPawns }];
+      // the vis studied is spent: from the purse, else the covenant's stocks
+      if (visFrom === 'covenant' && cov) {
+        const taken = takeVis(structuredClone(cov.visStocks), [art], visPawns).taken;
+        updateCovenant(cov.id, (x) => void takeVis(x.visStocks, [art], visPawns));
+        entry.undo = { vis: { from: 'covenant', covenantId: cov.id, taken } };
+      } else if (visFrom === 'purse') entry.undo = { vis: { from: 'purse', taken: takeVis(purseOf(structuredClone(c)).vis, [art], visPawns).taken } };
+    }
     // the vis eaten: from the purse if it is there, else from the covenant's stocks
     let ate: { art: Art; pawns: number }[] = [];
     if (eaten && purseVis >= eaten) ate = takeVis(purseOf(structuredClone(c)).vis, [...ARTS], eaten).taken;
@@ -244,6 +256,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     if (bookUid) entry.bookId = bookUid;
     update((x) => {
       if (fromPurse) takeVis(purseOf(x).vis, [...ARTS], eaten);
+      if (kind === 'vis' && art && visFrom === 'purse') takeVis(purseOf(x).vis, [art], visPawns);
       // Magian Lineage: the connected Abilities gain too (added to the character if new)
       for (const l of linked) if (l.xp > 0) entry.gains[`ability:${l.uid ?? ensureAbility(x, l.abilityId).uid}`] = l.xp;
       // Worship begun in Church Lore: the Ability is added
@@ -566,12 +579,14 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
           )}
           {kind === 'vis' && (
             <>
-              <span className="small">
-                Needs {visPawns} pawn{visPawns > 1 ? 's' : ''} of {art ? ART_NAMES[art] : '—'} vis (1 per 5 points of the Art).
+              <span className={`small ${visFrom ? '' : 'bad-text'}`}>
+                Needs {visPawns} pawn{visPawns > 1 ? 's' : ''} of {art ? ART_NAMES[art] : '—'} vis (1 per 5 points of the Art; a botch die for each)
+                {visFrom ? `, from ${visFrom === 'purse' ? 'the purse' : 'the covenant’s stocks'}` : ': not in the purse or the covenant’s stocks'}.
               </span>
               <button
                 onClick={() => {
-                  const r = stressDie(1);
+                  // a botch die for each pawn of vis studied (DE, Studying from Vis)
+                  const r = stressDie(Math.max(1, visPawns));
                   setVisDie(r.botches ? 0 : r.value);
                   setVisBotch(r.botches ? r.botches : 0);
                   setSummary(`Studied ${art ? ART_NAMES[art] : ''} vis: ${describeStress(r)}`);
@@ -647,7 +662,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         )}
         <div className="row" style={{ marginTop: 8 }}>
           <input style={{ flex: 1 }} value={summary} placeholder="Summary for the log (optional)" onChange={(e) => setSummary(e.target.value)} />
-          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || visNotAllowed || (kind === 'vis' && visDie === null) || (kind === 'lab' && (!project || !!projectPlan?.problems.length || doubled))}>
+          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || visNotAllowed || (kind === 'vis' && (visDie === null || !visFrom)) || (kind === 'lab' && (!project || !!projectPlan?.problems.length || doubled))}>
             Log season{res?.xp ? ` & add ${res.xp} xp` : ''}
           </button>
         </div>
@@ -711,21 +726,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 {e.warpingPoints ? <span className="small warn-text"> — {e.warpingPoints} Warping</span> : null}
                 {!e.applied && <span className="badge warn">not applied</span>}
               </span>
-              {atTable && (
-                <button
-                  className="small ghost"
-                  title={e.applied ? 'Take this season off the log: its experience comes off, and the season is free again' : 'Delete'}
-                  onClick={() =>
-                    update((x) => {
-                      const ent = x.seasonLog.find((y) => y.uid === e.uid);
-                      if (ent?.applied) applySeason(x, ent, -1);
-                      x.seasonLog = x.seasonLog.filter((y) => y.uid !== e.uid);
-                    })
-                  }
-                >
-                  Unlog
-                </button>
-              )}
+              {atTable && <Unlog c={c} uid={e.uid} />}
             </div>
           ))}
       </Card>

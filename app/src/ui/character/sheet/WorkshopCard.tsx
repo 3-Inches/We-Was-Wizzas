@@ -6,6 +6,9 @@ import { PeopleOptions, ResultLog, canPlay, groupPeople } from '../../play';
 import { characterCraftTraits, traitApplies } from '../../../engine/craftTraits';
 import { TraitBadges } from '../../covenant/CraftTraits';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { R } from '../../routes';
+import { seasonTaken } from '../../../engine/time';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../../data';
 import type { Workshop } from '../../../engine/types';
 import {
@@ -43,8 +46,16 @@ const SITUATIONS = [
   { id: 'aura', label: 'An Infernal, Faerie or Magic aura', value: 1 },
 ];
 
-export function WorkshopCard({ ed }: { ed: CharEditor }) {
+/**
+ * A character's livelihood. On City & Guild (`where` "guild") what is not a season: the workshop's
+ * figures and assistants, Labor Points from stories, money put in, investments, haggling, the guild.
+ * On the Seasons page ("seasons") the season's work: a season at the bench, improving the workshop,
+ * an investment of time, an entertainment, a wondrous item. Each season so spent is logged, and Unlog
+ * takes back the Labor Points with it.
+ */
+export function WorkshopCard({ ed, where = 'guild' }: { ed: CharEditor; where?: 'guild' | 'seasons' }) {
   const { c, d, update, saga, data } = ed;
+  const forSeasons = where === 'seasons';
   const [situations, setSituations] = useState<string[]>([]);
   // this season's kind of work, for a Virtue or Flaw that counts only in it (Keen Vision on fine work)
   const [kinds, setKinds] = useState<string[]>([]);
@@ -69,6 +80,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
   const push = (s: string) => setLog((l) => [s, ...l].slice(0, 12));
   const set = (fn: (x: Workshop) => void) => update((x) => void (x.workshop && fn(x.workshop)));
 
+  if (!w && forSeasons) return null;
   if (!w)
     return (
       <Card title="Livelihood & workshop (City & Guild)" tour="workshop">
@@ -131,14 +143,15 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
     const cost = table[cur + 1] - table[cur];
     const what = `${kind === 'innovation' ? 'Innovation' : 'Raw Materials'} +${cur + 1}`;
     // the season goes to it: no workshop work, Practice or Adventure experience instead (City & Guild ch.4)
-    const logged = c.seasonLog.some((e) => e.year === year && e.season === season && !e.extra);
     update((x) => {
       if (!x.workshop) return;
       x.workshop.laborPoints -= cost;
       x.workshop[kind] = cur + 1;
-      if (!logged) x.seasonLog.push(newSeasonEntry(year, season, 'other', `Improving the workshop: ${what} (${cost} Labor Points)`));
+      const e = newSeasonEntry(year, season, 'other', `Improving the workshop: ${what} (${cost} Labor Points)`);
+      e.undo = { laborPoints: -cost, workshop: { [kind]: cur } };
+      x.seasonLog.push(e);
     });
-    push(`${what} for ${cost} Labor Points. It takes a season out of the workshop${logged ? `: ${season} ${year} is logged already, so log the next one` : ` (${season} ${year}, logged)`}; Practice or Adventure experience instead.`);
+    push(`${what} for ${cost} Labor Points: ${season} ${year} goes to it (logged), Practice or Adventure experience instead.`);
   };
   const nextCost = (kind: 'innovation' | 'rawMaterials') => {
     const table = kind === 'innovation' ? INNOVATION_COST : RAW_MATERIALS_COST;
@@ -174,12 +187,13 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
     });
     push(`${money} £ put into the business (${band} income): +${lp} Labor Points.`);
   };
-  /** A season spent on an investment of time: logged, and its Labor Points added. */
-  const timeSeason = (lp: number, what: string, extra = '') => {
+  /** A season spent on an investment of time: logged, and its Labor Points added (and any pounds spent, for Unlog). */
+  const timeSeason = (lp: number, what: string, extra = '', spentPounds = 0) => {
     update((x) => {
       if (!x.workshop) return;
       x.workshop.laborPoints += lp;
       const e = newSeasonEntry(year, season, 'other', `${what}: +${lp} Labor Points${extra ? `; ${extra}` : ''}`, {});
+      e.undo = { laborPoints: lp, pounds: spentPounds || undefined };
       applySeason(x, e, 1);
       x.seasonLog.push(e);
     });
@@ -213,19 +227,25 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         p.pounds = Math.round((p.pounds - partyPounds) * 1000) / 1000;
         (p.log ??= []).push({ year, season, text: `Lavish entertainment: ${r.favors} Favors owed`, pounds: -partyPounds });
       });
-    timeSeason(0, `Entertaining (${THEMES[theme].label})`, r.text);
+    timeSeason(0, `Entertaining (${THEMES[theme].label})`, r.text, partyPounds);
   };
   // a wondrous item takes one helper at most
   const wondrous = wondrousItem(wtFor(w.assistants.slice(0, 1).map((a) => a.craft)).total, magnitude, FREQUENCY.find((f) => f.value === freq)?.mod ?? 0, baseLevel - 6);
 
+  // a season's work needs the season: one already spent (logged) leaves nothing to spend
+  const taken = seasonTaken(c, year, season);
+  const busy = taken.length > 0;
+  const busyWhy = busy ? `${season} ${year} is already spent (${taken.map((e) => e.summary).join('; ')}): Unlog it, or move to the next season` : undefined;
   return (
     <Card
-      title="Livelihood & workshop (City & Guild)"
-      tour="workshop"
+      title={forSeasons ? `Livelihood: ${season} ${year}` : 'Livelihood & workshop (City & Guild)'}
+      tour={forSeasons ? 'workshop-season' : 'workshop'}
       actions={
-        <button className="small ghost danger" onClick={() => window.confirm('Stop tracking this livelihood?') && update((x) => void (x.workshop = undefined))}>
-          Remove
-        </button>
+        forSeasons ? undefined : (
+          <button className="small ghost danger" onClick={() => window.confirm('Stop tracking this livelihood?') && update((x) => void (x.workshop = undefined))}>
+            Remove
+          </button>
+        )
       }
     >
       <details className="small">
@@ -246,7 +266,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         </ul>
       </details>
       <div className="row">
-        <Field label="Craft or Profession">
+        {!forSeasons && <><Field label="Craft or Profession">
           <select value={trade?.uid ?? ''} onChange={(e) => set((x) => void (x.abilityUid = e.target.value))}>
             {trades.map((a) => (
               <option key={a.uid} value={a.uid}>
@@ -263,7 +283,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
               </option>
             ))}
           </select>
-        </Field>
+        </Field></>}
         <div className="stat">
           <span className="v">{wealth === 'poor' ? 'Poor' : wealth === 'wealthy' ? 'Wealthy' : 'Average'}</span>
           <span className="l">Wealth (from Virtues)</span>
@@ -364,21 +384,24 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
         </button>
       </details>
 
-      <div className="row" style={{ marginTop: 8 }} data-tour="workshop-work">
+      {forSeasons && <div className="row" style={{ marginTop: 8 }} data-tour="workshop-work">
         <label className="inline small" title="A simple die on the Workshop Total, a roll on the Workshop Exertion chart, and an aging roll">
           <input type="checkbox" checked={exert} onChange={(e) => setExert(e.target.checked)} /> Exert yourself
         </label>
-        <button onClick={workSeason} title={`Logs ${season} ${year} on the season log, with 2 Exposure experience in the craft`}>
+        <button onClick={workSeason} disabled={busy} title={busyWhy ?? `Logs ${season} ${year} on the season log, with 2 Exposure experience in the craft`}>
           Work a season
         </button>
         {(['innovation', 'rawMaterials'] as const).map((k) => {
           const cost = nextCost(k);
           return cost === null ? null : (
-            <button key={k} className="small ghost" disabled={w.laborPoints < cost} onClick={() => improve(k)}>
-              {k === 'innovation' ? 'Innovation' : 'Raw Materials'} +{w[k] + 1} ({cost})
+            <button key={k} className="small ghost" disabled={w.laborPoints < cost || busy} onClick={() => improve(k)} title={busyWhy ?? `A season out of the workshop, and ${cost} Labor Points`}>
+              Improve {k === 'innovation' ? 'Innovation' : 'Raw Materials'} to {w[k] + 1} ({cost}, a season)
             </button>
           );
         })}
+        {busy && <span className="small warn-text">{busyWhy}.</span>}
+      </div>}
+      {!forSeasons && <div className="row" style={{ marginTop: 8 }} data-tour="workshop-sell">
         <button className="small ghost" onClick={() => push(sellGoods(d.characteristics.Pre.value, bargain).text)} title="A typical customer: Presence + Bargain + a simple die against 9; 10% over the standard price for each point above 8, up to 50%">
           Haggle a sale: Presence + Bargain {signed(d.characteristics.Pre.value + bargain)} + die vs 9 ({pct(simpleChance(d.characteristics.Pre.value + bargain, 9))} to get more)
         </button>
@@ -389,15 +412,21 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
             Sell to them: {signed(d.characteristics.Pre.value + bargain)} + stress die against {signed(buyer)} + stress die ({pct(stressContestChance(d.characteristics.Pre.value + bargain, buyer, 1, 'zero'))} to get more)
           </button>
         </span>
-      </div>
+      </div>}
+      {!forSeasons && (
+        <div className="small muted at-table">
+          A season at the bench, improving the workshop, a season&apos;s investment of time, an entertainment or a wondrous item is a season&apos;s work: on the{' '}
+          <Link to={R.seasonsFor(c.sagaId, c.id, 'workshop-season')}>Game Table › Seasons ›</Link>
+        </div>
+      )}
       <p className="small muted" style={{ margin: 0 }}>
         The {keep} Labor Points of upkeep are paid when the saga&apos;s year ends (Seasons page). Rising in wealth: {step.cost} Labor Points to become {step.to}, plus a season (and stories for a Greater or Legendary income). A season&apos;s worth of Labor Points here is {worth}.
       </p>
-      <Field label="Labor Points (adjust by hand)">
+      {!forSeasons && <Field label="Labor Points (adjust by hand)">
         <Stepper value={w.laborPoints} min={-999} max={99999} width={60} onChange={(v) => set((x) => void (x.laborPoints = v))} />
-      </Field>
+      </Field>}
 
-      <details data-tour="workshop-stories">
+      {!forSeasons && <details data-tour="workshop-stories">
         <summary className="small">Stories and investments (City &amp; Guild ch.2 and ch.7)</summary>
         <div className="small" style={{ marginTop: 6 }}>Labor Points from a story the character took part in:</div>
         <div className="row tight small">
@@ -436,9 +465,6 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
           </button>
           <button className="small ghost" title="Intelligence + Area Lore + stress die: 15+ puts everything in as the boom starts, 18+ prepared for it for years; below 7 loses 2 of every 10 invested" onClick={() => push(boomRoll(d.characteristics.Int.value, areaLore))}>
             Read the market for a boom: Int + Area Lore {signed(d.characteristics.Int.value + areaLore)} + stress die ({pct(stressChance(d.characteristics.Int.value + areaLore, 15, 1).chance)} for 15+)
-          </button>
-          <button className="small ghost" title={`Smuggling as an investment of time: (Intelligence + Intrigue) × ${WEALTH_MULT[wealth]} = ${smuggle} Labor Points for the season`} onClick={smuggleSeason}>
-            Smuggle a season (+{smuggle})
           </button>
         </div>
         <div className="row small" style={{ marginTop: 6 }}>
@@ -502,6 +528,26 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
             </button>
           </div>
         )}
+      </details>}
+
+      {forSeasons && (
+        <details data-tour="workshop-time" open>
+          <summary className="small">Or another season&apos;s work: smuggling, an investment of time, an entertainment</summary>
+          <div className="row tight small" style={{ marginTop: 6 }}>
+            <button className="small ghost" disabled={busy} title={busyWhy ?? `Smuggling as an investment of time: (Intelligence + Intrigue) × ${WEALTH_MULT[wealth]} = ${smuggle} Labor Points for the season`} onClick={smuggleSeason}>
+              Smuggle a season (+{smuggle})
+            </button>
+          </div>
+          <div className="small" style={{ marginTop: 8 }}>
+            <b>Merchants (City &amp; Guild ch.7):</b>{' '}
+            <select value={mkind} onChange={(e) => setMkind(e.target.value as MerchantKind)} aria-label="Kind of merchant">
+              {(Object.keys(MERCHANT_KINDS) as MerchantKind[]).map((k) => (
+                <option key={k} value={k}>
+                    {MERCHANT_KINDS[k]}
+                </option>
+              ))}
+            </select>
+          </div>
         {time && (
           <div className="row tight small" style={{ marginTop: 4 }}>
             A season&apos;s investment of time:
@@ -512,7 +558,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
                 </option>
               ))}
             </select>
-            <button className="small ghost" onClick={spendTime} title={time.hint}>
+            <button className="small ghost" disabled={busy} onClick={spendTime} title={time.hint}>
               Spend the season (+{investmentLp(time.id, worth, wealth, { Com: d.characteristics.Com.value, intrigue, leadership: score('leadership') }).lp})
             </button>
           </div>
@@ -528,14 +574,15 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
               ))}
             </select>
             <Stepper value={partyPounds} min={0} max={Math.max(0, intrigue)} width={30} onChange={setPartyPounds} /> £
-            <button className="small ghost" disabled={(c.purse?.pounds ?? 0) < partyPounds} onClick={party}>
+            <button className="small ghost" disabled={busy || (c.purse?.pounds ?? 0) < partyPounds} onClick={party}>
               Throw it (a season)
             </button>
           </div>
         )}
-      </details>
+        </details>
+      )}
 
-      <details data-tour="workshop-wonder">
+      {forSeasons && <details data-tour="workshop-wonder">
         <summary className="small">Wondrous item (Touched by a Realm)</summary>
         <div className="row" style={{ marginTop: 6 }}>
           <Field label="Magnitude of the mirroring Hermetic effect" hint="Personal or Touch, up to Sun, Individual">
@@ -565,7 +612,7 @@ export function WorkshopCard({ ed }: { ed: CharEditor }) {
           them.
         </p>
         <WonderProject ed={ed} wondrous={wondrous} magnitude={magnitude} freq={freq} />
-      </details>
+      </details>}
 
       <ResultLog lines={log} />
     </Card>
@@ -621,11 +668,13 @@ function WonderProject({ ed, wondrous, magnitude, freq }: { ed: CharEditor; wond
       </div>
     );
   const gain = Math.max(0, wondrous.perSeason);
+  const taken = seasonTaken(c, year, season);
   const work = () => {
     const points = Math.min(w.craftLevel, w.points + gain);
     const done = points >= w.craftLevel;
     const maker = structuredClone(c);
     const entry = newSeasonEntry(year, season, 'other', `Making a wondrous item, ${w.name}: +${gain} points (${points} of ${w.craftLevel})${done ? '; finished' : ''}`, {});
+    entry.undo = done ? { final: `This season finished ${w.name}: it is in its owner’s possessions, so the season stays logged.` } : { workshop: { wonder: structuredClone(w) } };
     applySeason(maker, entry, 1);
     maker.seasonLog.push(entry);
     if (!done) {
@@ -651,7 +700,7 @@ function WonderProject({ ed, wondrous, magnitude, freq }: { ed: CharEditor; wond
         <span>
           {w.points} of {w.craftLevel} points{w.power ? `: ${w.power}` : ''}
         </span>
-        <button className="small primary" disabled={gain <= 0} onClick={work} title="A season's workshop work, nothing else in the workshop that season">
+        <button className="small primary" disabled={gain <= 0 || taken.length > 0} onClick={work} title={taken.length ? `${season} ${year} is already spent: ${taken.map((e) => e.summary).join('; ')}` : "A season's workshop work, nothing else in the workshop that season"}>
           Work {season} {year} on it (+{gain})
         </button>
         <button className="small ghost" onClick={() => update((x) => void delete x.workshop!.wonder)}>

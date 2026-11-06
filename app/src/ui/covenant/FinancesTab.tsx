@@ -26,6 +26,7 @@ import { useStore } from '../../store/store';
 import { R } from '../routes';
 import { specialistCraftTraits, workingCraft } from '../../engine/craftTraits';
 import { SpecialistTraitsEditor, worksAt } from './CraftTraits';
+import { inhumanCovenfolk } from '../../engine/covenantBoons';
 
 const FOLK: { key: keyof CovenfolkCounts; label: string; hint?: string }[] = [
   { key: 'grogs', label: 'Grogs (non-player)' },
@@ -48,6 +49,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
   const f = dc.finances;
   const setFin = <K extends keyof Covenant['finances']>(k: K, v: Covenant['finances'][K]) => update((x) => void (x.finances[k] = v));
   const specBP = cov.specialists.reduce((s, x) => s + specialistCost(x), 0);
+  const inhuman = inhumanCovenfolk(cov);
   const people = cov.specialists.filter((s) => s.role !== 'craftsman');
   const craftsmen = cov.specialists.filter((s) => s.role === 'craftsman');
   const hasMiracles = cov.hooksBoons.some((h) => mechanicOf(h) === 'tithing-miracles');
@@ -101,7 +103,7 @@ export default function FinancesTab({ cov, update, dc, data }: CovTabProps) {
       {show('people') && (<>
       <CovenfolkBoonsCard cov={cov} update={update} dc={dc} data={data} />
       <div className="grid grid-2">
-        <Card title="Covenfolk" className="accent" fold="cov-covenfolk" summary={`${Object.values(cov.covenfolk).reduce((t, n) => t + n, 0)} covenfolk (${cov.covenfolk.grogs} grogs, ${cov.covenfolk.servants} servants, ${cov.covenfolk.laborers} laborers, ${cov.covenfolk.teamsters} teamsters); ${f.inhabitantPoints} points of inhabitants.`}>
+        <Card title="Covenfolk" className="accent" fold="cov-covenfolk" summary={`${Object.values(cov.covenfolk).reduce((t, n) => t + n, 0)} covenfolk (${cov.covenfolk.grogs} grogs, ${cov.covenfolk.servants} servants, ${cov.covenfolk.laborers} laborers, ${cov.covenfolk.teamsters} teamsters)${inhuman ? `, about ${Math.round(inhuman.share * 100)}% of them not human` : ''}; ${f.inhabitantPoints} points of inhabitants.`}>
           <div className="grid grid-3">
             {FOLK.map(({ key, label, hint }) => (
               <Field key={key} label={label} hint={hint}>

@@ -43,15 +43,17 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
     const lines = [...res.lines];
     update((x) => {
       x.warpingPoints += res.warpingPoints;
-      if (res.stable) {
+      const found = res.stable ? uid() : undefined;
+      if (found) {
         x.research ??= { goal: '', kind: 'minor', discoveries: [] };
-        x.research.discoveries.push({ uid: uid(), name: name || 'A stabilized Discovery', magnitude, ...when });
+        x.research.discoveries.push({ uid: found, name: name || 'A stabilized Discovery', magnitude, ...when });
       }
       // the season's lab work, logged with its Exposure in Magic Theory
       if (saga) {
         const theory = d?.abilities.find((a) => a.abilityId === d.theoryAbility);
         const e = newSeasonEntry(saga.currentYear, saga.currentSeason, 'other', `Lab: ${res.stable ? 'stabilized' : 'tried to stabilize'} ${name || 'a Discovery'} (original research)`, theory ? { [`ability:${theory.uid}`]: 2 } : {});
         e.notes = lines.join(' ');
+        e.undo = { warping: res.warpingPoints || undefined, discoveryUid: found };
         applySeason(x, e, 1);
         x.seasonLog.push(e);
       }

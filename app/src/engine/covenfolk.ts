@@ -10,6 +10,7 @@ import { workingCraft } from './craftTraits';
 import { countOf, craftOf, specAbilities, specChar, specHighest, specialistUnitCost } from './covenantRules';
 import type { Character, Covenant, CraftMagicUse, SoldierGroup, Specialist, SpecialistRole, YearlyEvent } from './types';
 import { uid } from '../util/id';
+import { inhumanGroups } from './covenantBoons';
 import { INNOVATION_COST, RAW_MATERIALS_COST, laborPoints, upkeep } from './workshop';
 
 // ------------------------------------------------------------------------------ Roles
@@ -421,26 +422,31 @@ export function covenfolkYearEnd(cov: Covenant, year: number): string[] {
       return (job && list.find((a) => a.id === job.id && (a.param ?? '') === (job.param ?? ''))) ?? top();
     };
     // a teacher's working seasons are the ones spent teaching; any not taught become free study
+    // one of the inhuman covenfolk takes its Might Score off each season's Advancement Total (RoP: Magic):
+    // with little or none, as mere covenfolk have, it learns as a person; with more, little or nothing
+    const might = s.nature ? Math.max(0, s.might ?? inhumanGroups(cov).find((g) => g.nature === s.nature)?.might ?? 0) : 0;
+    const exposure = Math.max(0, EXPOSURE - might);
+    const practiceXp = Math.max(0, PRACTICE - might);
     const taught = s.role === 'teacher' || s.role === 'drill-sergeant' ? Math.min(work, s.taught?.year === year ? s.taught.seasons : 0) : work;
-    const practice = free + (work - taught);
+    const practice = practiceXp ? free + (work - taught) : 0;
     // Affinity with their Craft: Advancement Totals in it half again, rounded up (DE)
     const gain = (a: { id: string }, xp: number) => (s.role === 'craftsman' && /craft/.test(a.id) && s.traits?.includes('affinity-with-ability') ? Math.ceil(xp * 1.5) : xp);
     if (taught) {
       if (s.role === 'teacher' || s.role === 'drill-sergeant') {
         const t = { score: s.teaching ?? 0, xp: s.teachingXp };
-        if (addXp(t, EXPOSURE * taught)) notes.push(`Teaching ${t.score}`);
+        if (exposure && addXp(t, exposure * taught)) notes.push(`Teaching ${t.score}`);
         s.teaching = t.score;
         s.teachingXp = t.xp;
       } else {
         const j = jobAbility();
-        if (addXp(j, gain(j, EXPOSURE * taught))) notes.push(`${abilityLabel(j)} ${j.score}`);
+        if (exposure && addXp(j, gain(j, exposure * taught))) notes.push(`${abilityLabel(j)} ${j.score}`);
       }
     }
     for (let i = 0; i < practice; i++) {
       const best = top().score;
       const behind = list.filter((a) => a.score < best).sort((a, b) => a.score - b.score)[0];
       const target = behind ?? jobAbility();
-      if (addXp(target, gain(target, PRACTICE))) notes.push(`${abilityLabel(target)} ${target.score}`);
+      if (addXp(target, gain(target, practiceXp))) notes.push(`${abilityLabel(target)} ${target.score}`);
     }
     const t = top();
     s.score = t.score;

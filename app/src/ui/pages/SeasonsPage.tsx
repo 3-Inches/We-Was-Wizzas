@@ -10,7 +10,7 @@ import { deriveCharacter } from '../../engine/character/derive';
 import { deriveCovenant } from '../../engine/covenant';
 import { DEFAULT_YEAR_END, accountsForecast, planYearEnd, type YearEndOptions } from '../../engine/covenantYear';
 import { optionOn } from '../../engine/optional';
-import { DEFAULT_ADVANCE, REPORTS_IN_FULL, advanceSeasons } from '../../engine/time';
+import { DEFAULT_ADVANCE, advanceSeasons } from '../../engine/time';
 import { allowanceRecipients } from '../../engine/economy';
 import type { Character, Covenant, TimeReport } from '../../engine/types';
 import { Card, Empty, Field, Stepper } from '../kit';
@@ -24,10 +24,14 @@ import { LabProjects } from '../character/sheet/LabProjects';
 import { LongevityCard } from '../character/sheet/LabItemsTab';
 import { OriginalResearch } from '../character/sheet/OriginalResearch';
 import { ApprenticeCard } from '../character/sheet/ApprenticeCard';
+import { WorkshopCard } from '../character/sheet/WorkshopCard';
 import { SpellMasteryCard } from '../character/sheet/SpellMastery';
+import { ComingsCard } from '../covenant/CovenfolkCards';
 import { R } from '../routes';
-
-const KIND_BADGE: Record<string, string> = { aging: 'aging', crisis: 'bad', warping: 'warn', covenant: '', lab: '', effect: '', reminder: 'warn', money: '', season: '', year: '' };
+import { owedInOrder, seasonForecast } from '../../engine/seasonPlan';
+import { ForecastList, ResolveCard, TurnBackControl } from './SeasonResolve';
+import { keepTurnBack } from '../turnBack';
+import { ChronicleEntry } from './ChroniclePage';
 
 export default function SeasonsPage() {
   const { sagaId } = useParams();
@@ -39,6 +43,7 @@ export default function SeasonsPage() {
   const chars = usePlayerCharacters(sagaId);
   const covs = usePlayerCovenants(sagaId);
   const putSagaState = useStore((s) => s.putSagaState);
+  const replaceSagaState = useStore((s) => s.replaceSagaState);
   const updateCovenant = useStore((s) => s.updateCovenant);
   const setNotice = useStore((s) => s.setNotice);
   const [fill, setFill] = useState(true);
@@ -60,30 +65,91 @@ export default function SeasonsPage() {
   // a link from elsewhere (?to=) lands on the card it names, in the season in full: a lab project planned on Possessions
   useLandOn(['table-plan']);
   const derived = useMemo(() => (saga ? new Map(chars.map((c) => [c.id, deriveCharacter(c, data, saga.houseRules)])) : new Map()), [chars, data, saga]);
+  // what to expect when the season ends: what falls short, what comes due, what is left undone
+  const notes = useMemo(
+    () => (saga ? seasonForecast({ saga, characters: allChars, covenants: allCovs }, data, (c) => derived.get(c.id) ?? deriveCharacter(c, data, saga.houseRules)) : []),
+    [saga, allChars, allCovs, data, derived],
+  );
   if (!saga) return <Empty>Saga not found.</Empty>;
+  const owed = owedInOrder(saga, chars).length;
+  const warnings = notes.filter((n) => n.level !== 'info' && n.to !== 'resolve').length;
   const { currentYear: year, currentSeason: season } = saga;
   const toNextYear = ['Spring', 'Summer', 'Autumn', 'Winter'].length - ['Spring', 'Summer', 'Autumn', 'Winter'].indexOf(season);
+  const go = (tour: string) => document.querySelector(`[data-tour="${tour}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  const advance = (n: number) => {
+  const advance = async (n: number) => {
     if (!timeMayMove()) return;
+    if (warnings && n === 1 && !window.confirm(`${warnings} warning${warnings > 1 ? 's' : ''} for this season (below, above the button). End ${season} ${year} all the same?`)) return;
     const before = { saga: structuredClone(saga), characters: structuredClone(allChars), covenants: structuredClone(allCovs) };
-    const { state, reports } = advanceSeasons(before, data, n, { ...DEFAULT_ADVANCE, fillUnplanned: fill, rollAging: aging, yearEnd: ye });
+    const { state, reports } = advanceSeasons(structuredClone(before), data, n, { ...DEFAULT_ADVANCE, fillUnplanned: fill, rollAging: aging, yearEnd: ye });
+    // kept so the saga can be turned back to this season, whatever is done after
+    await keepTurnBack(before, n);
     putSagaState(state);
     setLast(reports);
     const crises = reports.flatMap((r) => r.lines).filter((l) => l.kind === 'crisis').length;
-    setNotice(`${n === 1 ? `${season} ${year} is over` : `${n} seasons have passed`}: it is now ${state.saga.currentSeason} ${state.saga.currentYear}.${crises ? ` ${crises} aging crisis${crises > 1 ? 'es' : ''}: see below.` : ''}`, () => putSagaState(before));
+    const owedNow = state.characters.reduce((t, c) => t + (c.owed?.length ?? 0), 0);
+    setNotice(
+      `${n === 1 ? `${season} ${year} is over` : `${n} seasons have passed`}: it is now ${state.saga.currentSeason} ${state.saga.currentYear}.${crises ? ` ${crises} aging crisis${crises > 1 ? 'es' : ''}.` : ''}${owedNow ? ` ${owedNow} thing${owedNow > 1 ? 's' : ''} to settle, at the top.` : ''}`,
+      () => replaceSagaState(before, 'the season that just ended'),
+    );
+    requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
   };
 
   return (
     <div className="stack">
-      <p className="small muted" style={{ marginTop: 0 }}>
-        Time moves on here, for everyone at once. Each character spends {season} {year} as planned (below, in full), or else on their usual activity. At the end of a year the
-        toolkit also does the covenants&apos; accounts, allowances, wards, aging and Warping.
-      </p>
-      <Hint id="seasons-how">Set what each character does this season below (or plan a particular book, teacher or project in full), then end the season here for everyone at once.</Hint>
+      <div className="phase-bar" data-tour="seasons-phases">
+        <button className="phase" onClick={() => go('table-season')}>
+          <b>1</b> Plan {season} {year}
+        </button>
+        <span className="muted">›</span>
+        <button className={`phase ${warnings ? 'warn' : ''}`} onClick={() => go('seasons-advance')}>
+          <b>2</b> End the season{warnings ? ` (${warnings} warning${warnings > 1 ? 's' : ''})` : ''}
+        </button>
+        <span className="muted">›</span>
+        <button className={`phase ${owed ? 'bad' : ''}`} onClick={() => go('seasons-resolve')} disabled={!owed && !last.length}>
+          <b>3</b> Resolve{owed ? ` (${owed})` : ''}
+        </button>
+        <span style={{ marginLeft: 'auto' }}>
+          <TurnBackControl saga={saga} onTurned={(l) => (setLast([]), setNotice(`Turned back to ${l}.`))} />
+        </span>
+      </div>
+      <Hint id="seasons-how">Plan from the top down: the covenant first, then each player&apos;s characters in turn and the grogs. End the season at the bottom, after its warnings; what it leaves to decide waits at the top until it is settled.</Hint>
 
-      <Card title="Move time on" className="accent" tour="seasons-advance">
-        <div className="row">
+      <ResolveCard
+        saga={saga}
+        data={data}
+        chars={chars}
+        extra={
+          last.length ? (
+            <div className="stack" style={{ gap: 6, marginTop: 8 }}>
+              {last.slice(-2).reverse().map((r) => (
+                <ChronicleEntry key={r.id} r={r} />
+              ))}
+              {last.length > 2 && <span className="small muted">and {last.length - 2} season{last.length > 3 ? 's' : ''} before:</span>}
+              <Link to={R.table(saga.id, 'chronicle')}>The whole Chronicle ›</Link>
+            </div>
+          ) : undefined
+        }
+      />
+
+      {covs.map((cov) => (
+        <CovenantYear key={cov.id} cov={cov} chars={chars} />
+      ))}
+      {covs.map((cov) => (
+        <ComingsCard key={cov.id} cov={cov} year={year} update={(fn) => updateCovenant(cov.id, fn)} />
+      ))}
+
+      <SeasonPlanner saga={saga} data={data} chars={chars} covs={covs} derived={derived} fill={fill} onPlan={plan} />
+
+      <PlanInFull sagaId={saga.id} chars={allChars} covs={allCovs} who={who} onPick={plan} season={`${season} ${year}`} />
+
+      <Card title={`End ${season} ${year}`} className="accent" tour="seasons-advance">
+        <p className="small muted" style={{ marginTop: 0 }}>
+          Each character spends the season as planned above, or else on their usual activity. At the end of a year the toolkit also does the covenants&apos; accounts, allowances,
+          wards, aging and Warping. What to expect:
+        </p>
+        <ForecastList saga={saga} notes={notes} />
+        <div className="row" style={{ marginTop: 10 }}>
           <button className="primary" onClick={() => advance(1)} data-tour="table-advance">
             End {season} {year} ›
           </button>
@@ -112,25 +178,19 @@ export default function SeasonsPage() {
               <input type="checkbox" checked={ye.inflation} onChange={(e) => setYe({ ...ye, inflation: e.target.checked })} /> Inflation rises
             </label>
           )}
-          <label className="inline">
-            <input type="checkbox" checked={ye.permanentIncome} onChange={(e) => setYe({ ...ye, permanentIncome: e.target.checked })} /> Income changes last
+          <label className="inline" title="Each source of income the storyguide has not set rolls a stress die on the Income Modification table (Covenants ch.5); a rolled change is that year's only">
+            <input type="checkbox" checked={!!ye.rollIncome} onChange={(e) => setYe({ ...ye, rollIncome: e.target.checked })} /> Each income source rolls its year
+          </label>
+          <label className="inline" title="A change the storyguide set on a source of income lasts into the coming years">
+            <input type="checkbox" checked={ye.permanentIncome} onChange={(e) => setYe({ ...ye, permanentIncome: e.target.checked })} /> Income changes set by hand last
           </label>
         </div>
-        {last.length > 0 && <Reports reports={last} />}
       </Card>
 
-      <SeasonPlanner saga={saga} data={data} chars={chars} covs={covs} derived={derived} fill={fill} onPlan={plan} />
-
-      <PlanInFull sagaId={saga.id} chars={allChars} covs={allCovs} who={who} onPick={plan} season={`${season} ${year}`} />
-
-      {covs.map((cov) => (
-        <CovenantYear key={cov.id} cov={cov} chars={chars} />
-      ))}
-
       {(saga.timeLog ?? []).length > 0 && (
-        <Card title="Chronicle of time">
-          <Reports reports={(saga.timeLog ?? []).slice(0, REPORTS_IN_FULL)} collapsed />
-        </Card>
+        <p className="small">
+          Every season so far, told as a story with its record beneath: <Link to={R.table(saga.id, 'chronicle')}>the Chronicle ›</Link>
+        </p>
       )}
     </div>
   );
@@ -215,46 +275,6 @@ export default function SeasonsPage() {
   }
 }
 
-function Reports({ reports, collapsed }: { reports: TimeReport[]; collapsed?: boolean }) {
-  return (
-    <div className="stack" style={{ marginTop: 8 }}>
-      {reports.map((r) => {
-        // the living covenants' lines are folded apart from the players'
-        const own = r.lines.filter((l) => !l.tribunal);
-        const tribunal = r.lines.filter((l) => l.tribunal);
-        const line = (l: TimeReport['lines'][number], i: number) => (
-          <div key={i} className="small list-row">
-            {l.who && <b style={{ minWidth: 120 }}>{l.who}</b>}
-            {l.kind && KIND_BADGE[l.kind] !== undefined && KIND_BADGE[l.kind] !== '' && <span className={`badge ${KIND_BADGE[l.kind]}`}>{l.kind}</span>}
-            <span>{l.text}</span>
-          </div>
-        );
-        return (
-          <details key={r.id} open={!collapsed}>
-            <summary>
-              <b>
-                {r.season} {r.year}
-              </b>{' '}
-              <span className="small muted">
-                {own.length} line{own.length === 1 ? '' : 's'}
-                {own.some((l) => l.kind === 'crisis') ? ' · crisis!' : ''}
-                {tribunal.length ? ` · the Tribunal: ${tribunal.length}` : ''}
-              </span>
-            </summary>
-            {own.map(line)}
-            {tribunal.length > 0 && (
-              <details style={{ marginLeft: 12 }}>
-                <summary className="small">The Tribunal’s living covenants ({tribunal.length} lines)</summary>
-                {tribunal.map(line)}
-              </details>
-            )}
-          </details>
-        );
-      })}
-    </div>
-  );
-}
-
 /**
  * One character's season in full, as the sheet once had it: a book, a teacher, training, vis, a lab
  * project, writing or copying, an Initiation, their standing activity and priorities, and aging out of
@@ -298,6 +318,7 @@ function SeasonFor({ sagaId, charId }: { sagaId: string; charId: string }) {
       {ed.d.isMagus && <OriginalResearch ed={ed} magicTheory={mt} />}
       <LongevityCard ed={ed} />
       <ApprenticeCard ed={ed} />
+      <WorkshopCard ed={ed} where="seasons" />
     </AtTable>
   );
 }

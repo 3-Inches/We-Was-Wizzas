@@ -3,7 +3,7 @@
 // Curse, the Local Language, an Edifice's Great Work, and what the loyalty and health Boons do.
 import { useMemo } from 'react';
 import {
-  IMMUNITY_HAZARDS, IMMUNITY_INFLUENCES, INHUMAN, INHUMAN_NATURES, WARP_IMMUNE_NOTE, hookBoonPoints, isEdifice, isImmunity, isInhuman, isLocalLanguage, isRegioHook, isUsefulCurse,
+  IMMUNITY_HAZARDS, IMMUNITY_INFLUENCES, INHUMAN, INHUMAN_NATURES, WARP_IMMUNE_NOTE, hookBoonPoints, inhumanCovenfolk, inhumanDefaultShare, isEdifice, isImmunity, isInhuman, isLocalLanguage, isRegioHook, isUsefulCurse,
 } from '../../engine/covenantBoons';
 import { DISEASES } from '../../engine/disease';
 import type { Covenant, CovenantHookBoon, ImmunityKind, InhumanNature } from '../../engine/types';
@@ -127,8 +127,13 @@ export function BoonControls({ hb, cov, update, dc, data }: CovTabProps & { hb: 
   }
 
   if (isInhuman(hb)) {
-    const v = hb.inhuman ?? { nature: 'faerie' as InhumanNature, share: hb.kind === 'boon' ? 0.6 : 0.25 };
+    // the first Inhuman Residents Boon is the majority; taken again, each brings another kind (Covenants: Calebais)
+    const boons = cov.hooksBoons.filter((h) => isInhuman(h) && h.kind === 'boon');
+    const first = hb.kind === 'boon' && boons[0]?.uid === hb.uid;
+    const v = hb.inhuman ?? { nature: 'faerie' as InhumanNature, share: inhumanDefaultShare(hb, first) };
     const n = INHUMAN[v.nature];
+    const all = inhumanCovenfolk(cov);
+    const mine = all?.groups.find((g) => g.uid === hb.uid);
     return (
       <div className="stack small">
         <div className="row">
@@ -141,14 +146,23 @@ export function BoonControls({ hb, cov, update, dc, data }: CovTabProps & { hb: 
               ))}
             </select>
           </Field>
-          <Field label="Share of the covenfolk (%)" hint={hb.kind === 'boon' ? 'The Boon: the majority' : 'The Hook: enough to draw attention'}>
-            <Stepper value={Math.round(v.share * 100)} min={hb.kind === 'boon' ? 51 : 5} max={100} step={5} width={40} onChange={(x) => edit((h) => void (h.inhuman = { ...v, share: x / 100 }))} />
+          <Field label="Share of the covenfolk (%)" hint={hb.kind === 'boon' ? (first ? 'The Boon: the majority' : 'The Boon taken again: another kind besides') : 'The Hook: enough to draw attention'}>
+            <Stepper value={Math.round(v.share * 100)} min={first ? 51 : 5} max={100} step={5} width={40} onChange={(x) => edit((h) => void (h.inhuman = { ...v, share: x / 100 }))} />
+          </Field>
+          <Field label="Their Might" hint="Taken off each season’s learning: 0 learns as a person, 4 or more nothing">
+            <Stepper value={v.might ?? 0} min={0} max={30} width={36} onChange={(x) => edit((h) => void (h.inhuman = { ...v, might: x || undefined }))} />
           </Field>
         </div>
+        {all && all.groups.length > 1 && (
+          <span>
+            With the covenant&apos;s other inhuman folk: {all.groups.map((g) => `${Math.round(g.share * 100)}% ${INHUMAN[g.nature].label.toLowerCase()}`).join(', ')}, {Math.round(all.share * 100)}% in all
+            {mine && mine.share < v.share ? ` (this one is held to ${Math.round(mine.share * 100)}%: the shares cannot pass the whole)` : ''}.
+          </span>
+        )}
         <span className="muted">
           {n.rules} They are {WARP_IMMUNE_NOTE}. {n.noFood ? 'They eat nothing, so their share is left out of the Provisions bill' : ''}
           {n.noShelter ? ' and the Buildings bill' : ''}
-          {n.noFood ? '. ' : ''}Grogs and specialists the toolkit makes here are one of them at this share; set a sheet&apos;s nature by hand on its Seasons &amp; Aging tab.
+          {n.noFood ? '. ' : ''}{n.learns} Grogs and specialists the toolkit makes here are one of them at this share; set a sheet&apos;s nature by hand on its Seasons &amp; Aging tab.
         </span>
       </div>
     );

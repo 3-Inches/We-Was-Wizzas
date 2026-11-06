@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { ART_NAMES, type LabCharacteristic, type LabVFDef } from '../../data';
-import { deriveLab, labChoiceOptions, newLab } from '../../engine/lab';
+import { deriveLab, labChoiceOptions, labItemBudget, newLab } from '../../engine/lab';
 import { FREE_FORM_CHARS, LAB_OPTIONS } from '../../data/labOptions';
-import type { LabVirtueEntry, Laboratory } from '../../engine/types';
+import type { EnchantedItem, LabVirtueEntry, Laboratory } from '../../engine/types';
 import { useSagaCharacters } from '../../store/hooks';
 import { uid } from '../../util/id';
 import { BookBadge, Card, Field, Markdown, SearchInput, Stepper, Total, HowItWorks } from '../kit';
@@ -73,13 +73,13 @@ export default function LabsTab({ cov, update, dc, data }: CovTabProps) {
       {cov.labs
         .filter((l) => l.uid === open)
         .map((l) => (
-          <LabEditor key={l.uid} lab={l} magi={magi.map((m) => ({ id: m.id, name: m.name }))} update={update} data={data} />
+          <LabEditor key={l.uid} lab={l} magi={magi.map((m) => ({ id: m.id, name: m.name }))} update={update} data={data} items={[...cov.items, ...chars.flatMap((c) => c.items ?? [])]} />
         ))}
     </div>
   );
 }
 
-function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: string; name: string }[]; update: CovTabProps['update']; data: CovTabProps['data'] }) {
+function LabEditor({ lab, magi, update, data, items }: { lab: Laboratory; magi: { id: string; name: string }[]; update: CovTabProps['update']; data: CovTabProps['data']; items: EnchantedItem[] }) {
   const [q, setQ] = useState('');
   const [group, setGroup] = useState<'all' | LabVFDef['group']>('all');
   const [kind, setKind] = useState<'all' | 'virtue' | 'flaw'>('all');
@@ -184,7 +184,7 @@ function LabEditor({ lab, magi, update, data }: { lab: Laboratory; magi: { id: s
           <h4>Virtues & Flaws</h4>
           {lab.virtues.length === 0 && <div className="small muted">None — a standard lab.</div>}
           {lab.virtues.map((v, idx) => (
-            <LabEntryRow key={v.uid} lab={lab} entry={v} idx={idx} set={set} data={data} />
+            <LabEntryRow key={v.uid} lab={lab} entry={v} idx={idx} set={set} data={data} item={v.fromItem ? items.find((i) => i.uid === v.fromItem) : undefined} />
           ))}
           <h4>Custom adjustments (house rulings)</h4>
           <div className="row">
@@ -283,7 +283,8 @@ function spaceNote(v: LabVFDef, dl: ReturnType<typeof deriveLab>): string {
 const specLabel = (k: string) => ART_NAMES[k as keyof typeof ART_NAMES] ?? k;
 
 /** A Virtue or Flaw the lab has, with the choices it needs. */
-function LabEntryRow({ lab, entry: v, idx, set, data }: { lab: Laboratory; entry: LabVirtueEntry; idx: number; set: (fn: (l: Laboratory) => void) => void; data: CovTabProps['data'] }) {
+function LabEntryRow({ lab, entry: v, idx, set, data, item }: { lab: Laboratory; entry: LabVirtueEntry; idx: number; set: (fn: (l: Laboratory) => void) => void; data: CovTabProps['data']; item?: EnchantedItem }) {
+  const budget = v.defId === 'magic-item' ? labItemBudget(v, item) : undefined;
   const [open, setOpen] = useState(false);
   const def = data.labVFById.get(v.defId);
   const opt = LAB_OPTIONS[v.defId];
@@ -317,7 +318,13 @@ function LabEntryRow({ lab, entry: v, idx, set, data }: { lab: Laboratory; entry
       {v.fromItem && (
         <div className="small muted">
           Given by the enchanted item {v.note ? <b>{v.note}</b> : ''}: it takes no space. An item that duplicates a lab Virtue gives that Virtue; otherwise each 10 levels of its effects give a
-          Specialization point, or each 20 levels a Characteristic point (Covenants, Magic Items for Laboratories).
+          Specialization point, or each 20 levels a Characteristic point (Covenants, Magic Items for Laboratories). Its effect must be new to the lab: a second item doing the same gives nothing.
+        </div>
+      )}
+      {budget && (
+        <div className={`small ${budget.used > budget.levels ? 'bad-text' : ''}`}>
+          {item?.name}: {budget.levels} levels of effects; the points set here use {budget.used}
+          {budget.used > budget.levels ? `, ${budget.used - budget.levels} more than the item has: take some off` : budget.levels - budget.used >= 10 ? `, ${budget.levels - budget.used} left (a Specialization point per 10, a Characteristic point per 20)` : ''}.
         </div>
       )}
       {opt?.note && <div className="small muted">{opt.note}</div>}

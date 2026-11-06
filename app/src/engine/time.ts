@@ -8,14 +8,18 @@ import { deriveCharacter, type DerivedCharacter } from './character/derive';
 import { characterContext, covenantAura, covenantOf, labAuraFor, type CharacterContext } from './context';
 import { deriveCovenant } from './covenant';
 import { covenfolkYearEnd } from './covenfolk';
+import { countOf } from './covenantRules';
 import { deriveLab } from './lab';
 import { specAbilities, specChar } from './covenantRules';
-import { DEFAULT_YEAR_END, applyYearEnd, planYearEnd, type YearEndOptions } from './covenantYear';
+import { DEFAULT_YEAR_END, applyYearEnd, planYearEnd, rollIncomeYear, type YearEndOptions } from './covenantYear';
+import { writeChronicle, type ChronicleFacts } from './chronicle';
+import { agentReports } from './agency';
 import { defaultRng, describeStress, stressDie, type Rng } from './dice';
 import { payAllowance } from './economy';
 import { constantWarping, effectExpiry, expireEffects, nextSeason, seasonIndex } from './effects';
 import { hazardPenalty } from './disease';
 import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, sparestCharacteristic, visForStudy } from './longterm';
+import { labUndo } from './unlog';
 import { planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
 import { auraOf, changeAura, dominionYearEnd, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
@@ -26,7 +30,7 @@ import { magicalImprovement } from './livingEconomy';
 import { faceTrouble, troublesYearEnd } from './calamity';
 import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
 import { ensureAbility } from './character/factory';
-import type { ActiveEffect, Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
+import type { ActiveEffect, Character, Covenant, LabProject, Owed, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
 import { rationsModifier } from './turb';
 import { libraryYearEnd, scriptoriumYear, workWriting, writingFor } from './books';
 import { purseOf, takeVis, visText } from './vis';
@@ -237,9 +241,10 @@ function runActivity(c: Character, d: DerivedCharacter, ctx0: CharacterContext, 
 }
 
 function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, s: StandingActivity, chars?: Character[]): string[] {
-  const log = (activity: SeasonLogEntry['activity'], summary: string, gains: Record<string, number>, warping = 0) => {
+  const log = (activity: SeasonLogEntry['activity'], summary: string, gains: Record<string, number>, warping = 0, undo?: SeasonLogEntry['undo']) => {
     const e = newSeasonEntry(year, season, activity, summary, gains);
     if (warping) e.warpingPoints = warping;
+    if (undo) e.undo = undo;
     applySeason(c, e, 1);
     c.seasonLog.push(e);
   };
@@ -302,6 +307,7 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       const e = newSeasonEntry(year, season, 'study-book', `Read ${b.title}: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
       e.bookId = b.uid;
       e.sourceQuality = r.advancementTotal;
+      if (b.kind === 'tractatus' && cov) e.undo = { tractatus: { covenantId: cov.id, bookUid: b.uid } };
       applySeason(c, e, 1);
       c.seasonLog.push(e);
       if (b.kind === 'tractatus') b.readBy = [...(b.readBy ?? []), c.id];
@@ -331,13 +337,15 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       if (!paid.ok) return [`No ${pawns} pawn${pawns > 1 ? 's' : ''} of ${ART_NAMES[art]} vis in ${fromCov ? 'the covenant’s stores' : 'the purse'} to study.`];
       const r = stressDie(pawns, rng);
       const aura = ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0;
+      const spent = { vis: { from: fromCov ? ('covenant' as const) : ('purse' as const), covenantId: fromCov ? cov!.id : undefined, taken: paid.taken } };
       if (r.botches) {
-        log('study-vis', `Studied ${ART_NAMES[art]} vis: ${describeStress(r)}: botch`, {}, r.botches);
+        log('study-vis', `Studied ${ART_NAMES[art]} vis: ${describeStress(r)}: botch`, {}, r.botches, spent);
         return [`Studied ${ART_NAMES[art]} vis (${pawns} pawns): BOTCH, ${r.botches} Warping Point${r.botches > 1 ? 's' : ''}.${r.botches >= 2 ? " A double botch: roll for Wizard's Twilight." : ''}`];
       }
       const res = computeStudy(d, { kind: 'vis', art, dieRoll: r.value, aura }, { art });
       const e = newSeasonEntry(year, season, 'study-vis', `Studied ${ART_NAMES[art]} vis: ${describeStress(r)} (+${res.xp} xp)`, { [`art:${art}`]: res.xp });
       e.visUsed = [{ art, pawns }];
+      e.undo = spent;
       applySeason(c, e, 1);
       c.seasonLog.push(e);
       return [`Studied ${ART_NAMES[art]} from ${pawns} pawn${pawns > 1 ? 's' : ''} of vis: ${describeStress(r)} + aura ${aura}, +${res.xp} xp.`];
@@ -409,11 +417,14 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
         p = open.find((x) => x.kind !== 'extract' && workable(x)) ?? p;
       }
       const helpers = LAB_HELP.get(c);
+      // what Unlog would take back: the project as it was, the vis spent, the Warping
+      const before = p ? structuredClone(c) : undefined;
+      const covBefore = p && cov ? structuredClone(cov) : undefined;
       if (p) lines.push(...workProject(c, d, ctx, cov, p.uid, data, year, { rng, chars, season, helpers }));
       const helped = (helpers ?? []).filter((h) => h.used);
       if (helped.length) lines.push(`Helped by ${helped.map((h) => `${h.c.name || 'an assistant'} (+${h.value})`).join(' and ')}.`);
       const gains: Record<string, number> = theory ? { [`ability:${theory.uid}`]: 2 } : {};
-      log('other', p ? `Lab: ${p.name}` : 'Lab work', gains);
+      log('other', p ? `Lab: ${p.name}` : 'Lab work', gains, 0, p && before ? labUndo(before, c, p.uid, covBefore, cov) : undefined);
       if (p) c.seasonLog[c.seasonLog.length - 1].labKind = p.kind;
       lines.push(theory ? `Lab work: +2 xp Exposure in ${theory.name}.` : 'Lab work.');
       return lines;
@@ -443,6 +454,23 @@ export function covenantAttendants(cov: Covenant, chars: Character[], derive: (c
     .filter((m) => inPlay(m) && cov.memberIds.includes(m.id) && m.abilities.some((a) => a.abilityId === 'medicine'))
     .map((m) => ({ id: m.id, name: m.name || 'a companion', int: m.characteristics.Int, medicine: Math.max(0, ...derive(m).abilities.filter((a) => a.abilityId === 'medicine').map((a) => a.total)) }));
   return [...fromSpecs, ...fromMembers].filter((a) => a.medicine > 0).sort((a, b) => b.medicine - a.medicine || b.int - a.int);
+}
+
+/** What the Chronicle needs to know of a covenant: its aura and its road. */
+function chronicleCovenant(cov: Covenant): ChronicleFacts['covenants'][number] {
+  const hook = (re: RegExp, size?: string) => cov.hooksBoons.some((h) => re.test(h.name) && (!size || h.size === size));
+  return {
+    name: cov.name || 'The covenant',
+    realm: auraOf(cov).realm,
+    road: hook(/^road$/i, 'Major') ? 'major' : hook(/^road$/i) ? 'minor' : undefined,
+    urban: hook(/^urban$/i),
+    remote: hook(/isolated|remote|hidden/i),
+  };
+}
+
+/** A choice left for the troupe, kept on the character until it is made (the Seasons page's Resolve). */
+export function owe(c: Character, year: number, season: Season, kind: Owed['kind'], text: string, want?: Owed['want']): void {
+  (c.owed ??= []).push({ uid: uid(), year, season, kind, text, ...(want ? { want } : {}) });
 }
 
 /** A character's year: a year older, the aging roll, and the year's Warping. */
@@ -482,7 +510,10 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
         n === 3 ? `a second Minor Flaw, again from ${from}` :
         n === 5 ? `a supernatural Minor Virtue attuned to ${from}${aura ? `; an aura of ${ctx.aura.realm} no longer warps it` : ''}` :
         n >= 6 ? `a Major Flaw fitting ${from}` : '';
-      if (what) lines.push({ who, kind: 'warping', text: `Warping Score ${n}: the character gains ${what}. Add it on the sheet; the storyguide picks it (DE, Effects of Warping).` });
+      if (what) {
+        lines.push({ who, kind: 'warping', text: `Warping Score ${n}: the character gains ${what}. The storyguide picks it: settle it on the Seasons page (DE, Effects of Warping).` });
+        if (!ctx.covenant?.living) owe(c, year, 'Winter', 'warping', `Warping Score ${n}: ${what}.`, n === 5 ? { kind: 'virtue', size: 'Minor', supernatural: true } : { kind: 'flaw', size: n >= 6 ? 'Major' : 'Minor' });
+      }
       if (n === 5 && aura && ctx.aura.realm !== 'None') c.warpingAttuned = ctx.aura.realm;
     }
     c.warpingNoted = Math.max(noted, now);
@@ -510,7 +541,8 @@ function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: 
     // a leper takes a Heavy Wound in every aging crisis (Leprosy Flaw)
     if (c.virtues.some((v) => v.defId === 'leprosy-flaw' && !flawHeld(c, v))) ((c.wounds.heavy += 1), (text += ' Leprosy: a Heavy Wound as well.'));
     // a failed roll, or a terminal illness, kills unless magic saves them: marked dead, to be brought back if it does (DE, Aging)
-    const saved = ' Marked dead: if magic saves them, untick Dead on their Combat & Health tab.';
+    const saved = ' Marked dead: settle it on the Seasons page (saved by magic, or not).';
+    const dying = () => !ctx.covenant?.living && owe(c, year, 'Winter', 'dying', `An aging crisis: ${who} dies unless magic saves them (a Creo Corpus ritual).`);
     if (crisis.ease !== undefined) {
       // one attendant's care: Int + Medicine against 6 adds their Medicine; a botch takes 3 off (DE, Aging)
       let care = 0;
@@ -525,10 +557,12 @@ function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: 
       else {
         text += ` Stamina roll ${save} against ${crisis.ease}: the character dies unless a Creo Corpus ${crisis.crco} ritual saves them.${saved}`;
         c.wounds.dead = true;
+        dying();
       }
     } else if (crisis.roll >= 19) {
       text += ` The character dies unless magic saves them.${saved}`;
       c.wounds.dead = true;
+      dying();
     }
     if (c.longevity) {
       lapseLongevity(c, year);
@@ -660,7 +694,10 @@ function auraYearEnd(cov: Covenant, members: Character[], saga: Saga, year: numb
   lines.push({ who: cov.name, kind: 'covenant', text: `Aura: the year's modifier is ${mod.total >= 0 ? '+' : ''}${mod.total} (${why}). ${r.lines.join(' ')}` });
   if (Math.abs(mod.total) >= 4) changeAura(cov, r.delta, r.lines.join(' '), year, 'Winter');
   if (r.warping) {
-    for (const m of members.filter((x) => inPlay(x) && x.auraTime !== 'away')) m.warpingPoints += r.warping;
+    for (const m of members.filter((x) => inPlay(x) && x.auraTime !== 'away')) {
+      m.warpingPoints += r.warping;
+      if (m.type === 'magus' && r.warping >= 2 && !cov.living) owe(m, year, 'Winter', 'twilight', `${r.warping} Warping Points at once from the aura's surge: roll for Wizard's Twilight.`);
+    }
     lines.push({ who: cov.name, kind: 'covenant', text: `${r.warping} Warping Points for everyone living in the aura; magi roll for Twilight.` });
   }
   cov.auraTrack.notes = cov.auraTrack.notes.filter((n) => n.year > year);
@@ -860,16 +897,32 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     if (r.news.length) saga.tribunalNews = [...r.news, ...saga.tribunalNews];
   }
 
+  // what the Chronicle tells of the players' covenants' year
+  const yearFacts = new Map<string, NonNullable<ChronicleFacts['covenants'][number]>>();
+  const owedBefore = new Map(state.characters.map((c) => [c.id, c.owed?.length ?? 0]));
   // the turn of the year (after Winter): covenants, then each character's year
   if (season === 'Winter') {
     const wasAlive = new Set(state.characters.filter(inPlay).map((c) => c.id));
     const yearStart = lines.length;
     for (const cov of state.covenants) {
       const members = state.characters.filter((c) => cov.memberIds.includes(c.id));
+      // each source of income has its year: a stress die on the Income Modification table, unless the storyguide set it
+      const incomes = !cov.living && o.yearEnd.rollIncome ? rollIncomeYear(cov, rng) : undefined;
+      for (const i of incomes?.filter((x) => x.mod !== 'Status Quo') ?? []) lines.push({ who: cov.name, kind: 'money', text: `${i.name}: ${i.mod} this year (Income Modification).` });
       const dc = deriveCovenant(cov, data, state.characters);
       const ye = { ...o.yearEnd, inflation: o.yearEnd.inflation && optionOn(saga, 'inflation') };
-      const plan = planYearEnd(cov, dc, { ...ye, skipVis: [...(o.yearEnd.skipVis ?? []), ...(cov.yearEnd?.skipVis ?? [])] });
+      const skip = [...(o.yearEnd.skipVis ?? []), ...(cov.yearEnd?.skipVis ?? [])];
+      const plan = planYearEnd(cov, dc, { ...ye, skipVis: skip });
       applyYearEnd(cov, plan, year, ye);
+      if (!cov.living)
+        yearFacts.set(cov.id, {
+          ...chronicleCovenant(cov),
+          incomes,
+          vis: ye.harvestVis ? cov.visSources.filter((s) => !skip.includes(s.uid) && s.pawnsPerYear > 0).map((s) => ({ name: s.name, art: s.art, pawns: s.pawnsPerYear })) : [],
+          balance: plan.balance,
+          treasury: cov.finances.treasury,
+          feasts: plan.feasts,
+        });
       lines.push({ who: cov.name, kind: 'covenant', text: plan.lines.join(' ') });
       for (const t of payAllowance(cov, members, plan.balance, plan.vis, year, season)) lines.push({ who: cov.name, kind: 'money', text: t });
       lines.push(...hookReminders(cov, year));
@@ -882,6 +935,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       for (const s of cov.specialists.filter((x) => x.hired && x.hired.until <= year)) lines.push({ who: cov.name, kind: 'covenant', text: `${s.name || 'The hired teacher'} has taught the time paid for, and leaves.` });
       cov.specialists = cov.specialists.filter((x) => !x.hired || x.hired.until > year);
       lines.push(...auraYearEnd(cov, members, saga, year, rng));
+      for (const t of covenfolkWarpingYearEnd(cov, year)) lines.push({ who: cov.name, kind: 'warping', text: t });
     }
     // each covenant's best hand at Medicine tends its people through a crisis
     const attendants = new Map(state.covenants.map((cov) => [cov.id, covenantAttendants(cov, state.characters, derive)]));
@@ -938,6 +992,40 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   saga.currentYear = next.year;
   saga.currentSeason = next.season;
   const report: TimeReport = { id: uid(), year, season, lines };
+  // the season told as a story, for the players' covenants
+  const own = state.covenants.filter((c) => !c.living);
+  if (own.length) {
+    const people = state.characters.filter((c) => c.creation.finalized && own.some((cov) => cov.memberIds.includes(c.id) || c.covenantId === cov.id));
+    // what the players' agents heard: the Tribunal's covenants' own business, or their walk of life's
+    const reports = agentReports(
+      people.filter((c) => inPlay(c) && c.agents?.length).map((c) => ({ id: c.id, name: c.name || 'Unnamed', agents: c.agents! })),
+      lines.filter((l) => l.tribunal).map((l) => ({ who: l.who, text: l.text, covenant: state.covenants.find((x) => x.id === l.tribunal)?.name })),
+      year,
+      season,
+      rng,
+    );
+    if (reports.length) saga.tribunalNews = [...reports, ...(saga.tribunalNews ?? [])].slice(0, 150);
+    const names = (kind: Line['kind']) => [...new Set(lines.filter((l) => l.kind === kind && !l.tribunal && people.some((p) => (p.name || 'Unnamed') === l.who)).map((l) => l.who!))];
+    const facts: ChronicleFacts = {
+      year,
+      season,
+      covenants: own.map((cov) => yearFacts.get(cov.id) ?? chronicleCovenant(cov)),
+      people: people
+        .filter((c) => !c.wounds.dead || lines.some((l) => l.who === c.name && l.kind === 'crisis'))
+        .map((c) => ({ name: c.name || 'Unnamed', type: c.type, did: c.seasonLog.find((e) => e.year === year && e.season === season && !e.extra)?.activity, away: c.auraTime === 'away' })),
+      ...(season === 'Winter'
+        ? {
+            aged: names('aging').filter((n) => lines.some((l) => l.who === n && l.kind === 'aging' && /Aging roll/.test(l.text) && !/No apparent aging/.test(l.text))),
+            crises: names('crisis'),
+            died: people.filter((c) => c.wounds.dead && lines.some((l) => l.who === c.name && l.kind === 'crisis')).map((c) => c.name),
+            warped: people.filter((c) => (c.owed?.length ?? 0) > (owedBefore.get(c.id) ?? 0) && c.owed!.some((x) => x.kind === 'warping')).map((c) => c.name),
+          }
+        : {}),
+      news: (saga.tribunalNews ?? []).filter((n) => n.year === year && n.season === season),
+      reports: reports.map((r) => r.text),
+    };
+    report.story = writeChronicle(facts, rng);
+  }
   saga.timeLog = keepReports([report, ...(saga.timeLog ?? [])]);
   return { state, report };
 }
@@ -971,3 +1059,45 @@ export function advanceSeasons(input: SagaState, data: GameData, seasons: number
 }
 
 export { describeStress };
+
+/** What a Warping Score brings a mundane character, as the covenfolk's (DE, Effects of Warping). */
+function warpingMark(n: number, from: string): string {
+  return n === 1 ? `a Minor Flaw that reflects ${from}` : n === 3 ? `a second Minor Flaw from ${from}` : n === 5 ? `a supernatural Minor Virtue attuned to ${from}` : n >= 6 ? `a Major Flaw fitting ${from}` : '';
+}
+
+/**
+ * The covenfolk in a strong aura (6 or more) are warped like anyone who lives, works and sleeps there
+ * (DE, Living in Strong Auras): each specialist and craftsman by name, and the counted covenfolk as one
+ * who has lived here all along. None warp in a covenant Immune to Warping, nor any of its inhuman folk
+ * (a Might is immune). Returns the year's lines: the marks that show, for the storyguide to describe.
+ */
+export function covenfolkWarpingYearEnd(cov: Covenant, year: number): string[] {
+  const aura = covenantAura(cov);
+  if (aura.realm === 'None' || aura.strength < 6 || immuneToWarping(cov)) return [];
+  const n = AURA_WARPING[Math.min(10, aura.strength)][0];
+  const points = n === 0.5 ? (year % 2 === 0 ? 1 : 0) : n;
+  if (!points) return [];
+  const from = `the ${aura.realm} aura`;
+  const out: string[] = [];
+  for (const s of cov.specialists) {
+    if (s.nature || s.characterId || countOf(s) === 0) continue;
+    const was = warpingScoreFromPoints(s.warpingPoints ?? 0);
+    s.warpingPoints = (s.warpingPoints ?? 0) + points;
+    const now = warpingScoreFromPoints(s.warpingPoints);
+    for (let k = was + 1; k <= now; k++) {
+      const mark = warpingMark(k, from);
+      if (!mark) continue;
+      const text = `Warping Score ${k} from living in ${from}: ${s.name || 'they'} gain${s.name ? 's' : ''} ${mark} (the storyguide describes it).`;
+      s.history = [...(s.history ?? []), { year, season: 'Winter', text }];
+      out.push(`${s.name || 'A specialist'}: ${text}`);
+    }
+  }
+  const was = warpingScoreFromPoints(cov.folkWarping ?? 0);
+  cov.folkWarping = (cov.folkWarping ?? 0) + points;
+  const now = warpingScoreFromPoints(cov.folkWarping);
+  for (let k = was + 1; k <= now; k++) {
+    const mark = warpingMark(k, from);
+    if (mark) out.push(`The covenfolk who have lived here all along reach a Warping Score of ${k}: most bear ${mark}, and newcomers will in time.`);
+  }
+  return out;
+}

@@ -91,6 +91,8 @@ interface Store extends PersistedState {
   putSagaState: (st: { saga: Saga; characters: Character[]; covenants: Covenant[] }) => void;
   /** add characters and covenants together, as one change to undo (a living covenant and its people) */
   putRecords: (r: { characters: Character[]; covenants: Covenant[] }, label: string) => void;
+  /** put a saga back as it was, whole: its characters and covenants made since are removed (turning back a season) */
+  replaceSagaState: (st: { saga: Saga; characters: Character[]; covenants: Covenant[] }, label: string) => void;
   /** remove a covenant and everyone who belongs to it, as one change to undo */
   deleteCovenantWithMembers: (id: string) => void;
   /** remove several covenants and everyone belonging to them, as one change Undo takes back */
@@ -407,6 +409,22 @@ export const useStore = create<Store>()((set, get) => {
       characters: { ...st.characters, ...Object.fromEntries(characters.map((c) => [c.id, c])) },
       covenants: { ...st.covenants, ...Object.fromEntries(covenants.map((c) => [c.id, c])) },
     }));
+    scheduleSave(get);
+  },
+  replaceSagaState: ({ saga, characters, covenants }, label) => {
+    const st0 = get();
+    const nowChars = Object.values(st0.characters).filter((c) => c.sagaId === saga.id).map((c) => c.id);
+    const nowCovs = Object.values(st0.covenants).filter((c) => c.sagaId === saga.id).map((c) => c.id);
+    remember({ sagas: [saga.id], characters: [...new Set([...nowChars, ...characters.map((c) => c.id)])], covenants: [...new Set([...nowCovs, ...covenants.map((c) => c.id)])] }, label);
+    set((st) => {
+      const chars = { ...st.characters };
+      const covs = { ...st.covenants };
+      for (const id of nowChars) delete chars[id];
+      for (const id of nowCovs) delete covs[id];
+      for (const c of characters) chars[c.id] = c;
+      for (const c of covenants) covs[c.id] = c;
+      return { sagas: { ...st.sagas, [saga.id]: { ...saga, updatedAt: new Date().toISOString() } }, characters: chars, covenants: covs };
+    });
     scheduleSave(get);
   },
   putRecords: ({ characters, covenants }, label) => {

@@ -2,15 +2,15 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { describeStress, pct, simpleChance, simpleDie, stressChance, stressDie } from '../../engine/dice';
 import { abilityTotal, deriveCharacter } from '../../engine/character/derive';
-import { optionOn } from '../../engine/optional';
 import { actionPenalties, penaltyText } from '../../engine/rolls';
-import { DEFAULT_HOUSE_RULES, type Character, type HouseRules, type Saga } from '../../engine/types';
+import { DEFAULT_HOUSE_RULES, type Character, type HouseRules } from '../../engine/types';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic, type GameData } from '../../data';
 import { Card, Empty, Field, Stepper, Tabs, signed } from '../kit';
 import { RulesNote } from '../RulesNote';
 import { useStore } from '../../store/store';
 import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { BlowCard, OpposedCard, PerilsCard } from './TableRolls';
+import { AfterRoll, type AfterRollChange } from '../AfterRoll';
 import { AtTable, DICE_LABELS, PeopleOptions, canPlay, castsSpells, groupPeople, type PeopleGroup } from '../play';
 import { DICE_SUBS, R, type DiceSub } from '../routes';
 import { useCharEditor, type CharEditor } from '../character/useChar';
@@ -19,9 +19,6 @@ import MagicTab from '../character/sheet/MagicTab';
 import { TwilightCard } from '../character/sheet/Twilight';
 import { HeartbeastChange } from '../character/sheet/MysteriesCard';
 import { SilverRescue } from '../character/sheet/LabItemsTab';
-import { SocietyCard } from '../character/sheet/SocietyCard';
-import { AgencyCard } from '../character/sheet/AgencyCard';
-import { TribunalCard } from '../character/sheet/TribunalCard';
 
 // Grogs' optional equipment bonuses: the right tool for a task lowers its Ease Factor.
 const EQUIPMENT = { none: 0, minor: 1, major: 3 } as const;
@@ -55,13 +52,18 @@ interface Roll {
   total: number;
   text: string;
   botch: boolean;
+  /** who rolled, and the botch dice when it botched: Confidence, Faith and All According to Plan after it */
+  who?: string;
+  faces?: number[];
+  /** what the roll comes to after Confidence or Faith, when they were spent on it */
+  after?: number;
 }
 
 let seq = 0;
 
 /**
  * The Game Table's Dice page, in four parts: any roll (for anyone, their wounds, Fatigue and disease
- * counted), combat and perils, spellcasting and certamen, and society and the Tribunal's customs. Each
+ * counted), combat and perils, and spellcasting and certamen (society and the Tribunal have a page of their own). Each
  * part picks its character from the saga's people, the Tribunal's too, and what it rolls goes on their
  * sheet. On its own (with a heading) when no saga is open, only the first part.
  */
@@ -96,7 +98,6 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
       {sub === 'roll' && <RollPart x={x} who={who} />}
       {saga && sub === 'combat' && <CombatPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'magic' && <MagicPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
-      {saga && sub === 'society' && <SocietyPart sagaId={saga.id} saga={saga} x={x} who={who} setWho={(id) => set('who', id)} />}
       {!saga && <p className="small muted">Open a saga first and its characters can take part in these rolls, their wounds going on their sheets.</p>}
     </div>
   );
@@ -181,6 +182,7 @@ function RollPart({ x, who }: { x: X; who: string }) {
     let t: number;
     let text: string;
     let botch = false;
+    let faces: number[] | undefined;
     if (kind === 'simple') {
       const r = simpleDie();
       t = r.value + total;
@@ -188,12 +190,17 @@ function RollPart({ x, who }: { x: X; who: string }) {
     } else {
       const r = stressDie(botchDice);
       botch = r.botches > 0;
+      if (botch) faces = r.botchFaces;
       t = r.zero ? total : r.value + total;
       text = describeStress(r);
     }
-    setLog((l) => [{ id: ++seq, label: label || autoLabel || (kind === 'simple' ? 'Simple die' : 'Stress die'), kind, mod: total, ease: useEase ? target : null, equipment, total: t, text, botch }, ...l].slice(0, 50));
+    setLog((l) => [{ id: ++seq, label: label || autoLabel || (kind === 'simple' ? 'Simple die' : 'Stress die'), kind, mod: total, ease: useEase ? target : null, equipment, total: t, text, botch, who: roller?.c.id, faces }, ...l].slice(0, 50));
   };
-  const outcome = (r: Roll) => (r.botch ? 'BOTCH' : r.ease === null ? '' : r.total >= r.ease ? 'success' : 'failure');
+  const outcome = (r: Roll) => (r.botch ? 'BOTCH' : r.ease === null ? '' : (r.after ?? r.total) >= r.ease ? 'success' : 'failure');
+  const lastBy = last?.who ? x.chars.find((c) => c.id === last.who) : undefined;
+  const lastD = useMemo(() => (lastBy ? deriveCharacter(lastBy, x.data, x.rules ?? DEFAULT_HOUSE_RULES) : undefined), [lastBy, x.data, x.rules]);
+  const afterLast = (ch: AfterRollChange) =>
+    setLog((l) => l.map((r) => (r.id === last!.id ? { ...r, botch: ch.botch, after: ch.bonus ? r.total + ch.bonus : undefined, text: ch.faces && !ch.botch ? `0, no botch after All According to Plan (${ch.faces.join(',')})` : r.text } : r)));
 
   return (
     <>
@@ -292,13 +299,15 @@ function RollPart({ x, who }: { x: X; who: string }) {
           </div>
           {last && (
             <div className={`dice-result ${last.botch ? 'bad' : outcome(last) === 'success' ? 'good' : outcome(last) === 'failure' ? 'warn' : ''}`} aria-live="polite">
-              <div className="dice-total">{last.botch ? 'BOTCH' : last.total}</div>
+              <div className="dice-total">{last.botch ? 'BOTCH' : (last.after ?? last.total)}</div>
               <div className="small">
                 {last.label}: {last.text} {signed(last.mod)}
+                {last.after !== undefined && ` ${signed(last.after - last.total)} Confidence or Faith`}
                 {last.ease !== null && ` vs ${last.ease}${last.equipment !== 'none' ? ` (${last.equipment} equipment)` : ''} — ${outcome(last)}`}
               </div>
             </div>
           )}
+          {last && lastBy && lastD && <AfterRoll key={last.id} c={lastBy} d={lastD} total={last.total} ease={last.ease} botchFaces={last.faces} onChange={afterLast} />}
           <p className="small muted">
             Stress die: a 1 means roll again and double (repeatedly); a 0 counts as zero and you roll the botch dice — any 0 on them is a botch. Simple die: 1–10, a 0 counts as 10 (DE
             p.7). Wound, Fatigue and disease penalties count against every roll and total but Soak (DE, Fatigue and Wounds).
@@ -308,7 +317,7 @@ function RollPart({ x, who }: { x: X; who: string }) {
           {log.length === 0 && <div className="small muted">No rolls yet.</div>}
           {log.map((r) => (
             <div key={r.id} className="list-row small">
-              <b style={{ minWidth: 40 }}>{r.botch ? '✖' : r.total}</b>
+              <b style={{ minWidth: 40 }}>{r.botch ? '✖' : (r.after ?? r.total)}</b>
               <span style={{ flex: 1 }}>
                 {r.label} ({r.kind}: {r.text} {signed(r.mod)})
               </span>
@@ -418,34 +427,3 @@ function MagicPart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: stri
   );
 }
 
-const social = (c: Character) => c.type !== 'grog';
-
-/** Society at the table: debates, petitions, a court, etiquette, agents, and the Tribunal's customs. */
-function SocietyPart({ sagaId, saga, x, who, setWho }: { sagaId: string; saga: Saga; x: X; who: string; setWho: (id: string) => void }) {
-  const c = pick(x, who, social);
-  const any = ['debate', 'petitions', 'courts', 'etiquette', 'agents'].some((id) => optionOn(saga, id)) || !!saga.tribunal;
-  return (
-    <>
-      <div className="row">
-        <WhoPicker x={x} value={c?.id} onChange={setWho} keep={social} label="Who" none="Nobody in this saga but grogs." />
-        {c && <CharLink sagaId={sagaId} c={c} tab="overview" />}
-      </div>
-      {!any && (
-        <p className="small muted">
-          None of the society rules is on in this saga: debates, petitions, courts, etiquette and agents are optional rules (<Link to={R.saga(sagaId, 'optional')}>Saga Overview › Optional rules</Link>).
-        </p>
-      )}
-      {c && (
-        <CharAtTable key={c.id} sagaId={sagaId} charId={c.id}>
-          {(ed) => (
-            <>
-              <SocietyCard ed={ed} />
-              <AgencyCard ed={ed} />
-              <TribunalCard ed={ed} />
-            </>
-          )}
-        </CharAtTable>
-      )}
-    </>
-  );
-}
