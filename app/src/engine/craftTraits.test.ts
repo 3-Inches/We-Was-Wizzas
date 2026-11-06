@@ -2,7 +2,10 @@
 // work at (which sets their savings and their Build Points), and hiring as the saga goes on.
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
-import { addVirtue, newCharacter } from './character/factory';
+import { addVirtue, ensureAbility, newCharacter } from './character/factory';
+import { deriveCharacter } from './character/derive';
+import { workshopFigures } from './workshop';
+import { DEFAULT_HOUSE_RULES } from './types';
 import { computeFinances, memberCraft, newCovenant } from './covenant';
 import { CRAFT_BY_ID, specialistCost } from './covenantRules';
 import { covenfolkYearEnd, laborPointsPerSeason } from './covenfolk';
@@ -65,6 +68,24 @@ describe('craft Virtues and Flaws', () => {
     expect(some / 3000).toBeGreaterThan(0.2);
     expect(some / 3000).toBeLessThan(0.45);
     expect(traitApplies(CRAFT_TRAITS.find((x) => x.id === 'free-expression')!, 'Painter')).toBe(true);
+  });
+
+  it('counts a craftsman’s Flaws in their own Workshop Total, but not the hands’ Flaws in a merchant’s Profession', () => {
+    const shop = (abilityId: string, param: string) => {
+      const c = newCharacter('companion', 's');
+      ensureAbility(c, abilityId, { laterLife: 75 }, param); // 5
+      c.workshop = { primary: 'Dex', innovation: 0, rawMaterials: 0, laborPoints: 0, assistants: [], manual: 0, craftLevelMod: 0, seasonsWorked: 0, reputationXp: 0, shoddyStreak: 0 };
+      addVirtue(c, data, 'palsied-hands-flaw', 'Minor');
+      return c;
+    };
+    const smith = shop('craft-type', 'Blacksmith');
+    expect(workshopFigures(smith, deriveCharacter(smith, data, DEFAULT_HOUSE_RULES))!.craft).toBe(3);
+    const trader = shop('profession-type', 'Merchant');
+    expect(workshopFigures(trader, deriveCharacter(trader, data, DEFAULT_HOUSE_RULES))!.craft).toBe(5);
+    // Independent Craftsman: 3 lower once an assistant helps
+    addVirtue(smith, data, 'independent-craftsman-flaw', 'Minor');
+    smith.workshop!.assistants = [{ uid: 'a', name: 'Hans', craft: 3 }];
+    expect(workshopFigures(smith, deriveCharacter(smith, data, DEFAULT_HOUSE_RULES))!.craft).toBe(0);
   });
 
   it('learns faster with Affinity with their Craft', () => {
