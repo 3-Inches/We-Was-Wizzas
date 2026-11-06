@@ -550,6 +550,34 @@ export interface WeaponLoadout {
   /** optional second item (e.g. shield) */
   shieldId?: string;
   quality?: number;
+  /** the damage the weapon has taken, and the shield (City & Guild, Damaged Goods) */
+  condition?: ItemCondition;
+  shieldCondition?: ItemCondition;
+}
+
+/** What an item at risk has suffered (City & Guild, Damaged Goods): kept on the item, so it goes with it. */
+export interface ItemCondition {
+  /** damage levels lost; at its full count the item is broken */
+  lost: number;
+  /** repaired before: −1 to its later checks (the book's one modifier, however often) */
+  repaired?: boolean;
+}
+
+/** Something a character owns besides their weapons, armor and enchanted items: bought, made or given. */
+export interface Possession {
+  uid: string;
+  name: string;
+  /** what kind of thing, for its Size and damage levels (a tool, a cart, a house…) */
+  kind: string;
+  quality: 'shoddy' | 'standard' | 'superior' | 'excellent' | 'supernatural';
+  /** a craftsman's wondrous item (City & Guild): its power, if it has one */
+  wonder?: string;
+  /** the Ability used with it, for its stress checks */
+  ability?: string;
+  notes?: string;
+  condition?: ItemCondition;
+  /** where it came from: bought, made by, given by */
+  from?: string;
 }
 
 export interface EnchantedEffectRecord {
@@ -592,6 +620,8 @@ export interface EnchantedItem {
   notes?: string;
   /** a talisman is attuned only after a season's work (DE, Talisman Attunement); older files count as attuned */
   attuned?: boolean;
+  /** the damage it has taken (City & Guild, Damaged Goods) */
+  condition?: ItemCondition;
   /** bonuses the device gives whoever bears it while it is worn (a constant effect) */
   bearerBonuses?: Effect[];
   worn?: boolean;
@@ -659,6 +689,23 @@ export interface LongevityRitual {
   forMundane?: boolean;
   /** the year an aging crisis ended it (kept while it can be performed again) */
   lapsedYear?: number;
+}
+
+/**
+ * Time passed towards each recovery, in minutes, and what earlier rolls left (DE, Recovering From
+ * Wounds; Fatigue): the wounds of a level roll together at its interval, each keeping its own +3s
+ * from stable rolls; Incapacitation's rolls take a cumulative −1.
+ */
+export interface Recovery {
+  since?: Partial<Record<'light' | 'medium' | 'heavy' | 'incapacitating', number>>;
+  /** each wound's bonus from stable rolls, wound by wound (missing: none) */
+  stable?: Partial<Record<'light' | 'medium' | 'heavy', number[]>>;
+  /** the cumulative −1s of Incapacitation's rolls */
+  incapacitated?: number;
+  /** minutes of rest towards the next Fatigue level */
+  fatigue?: number;
+  /** minutes since each illness's last roll, by illness */
+  illness?: Record<string, number>;
 }
 
 export interface WoundState {
@@ -893,9 +940,13 @@ export interface Character {
     weapons: WeaponLoadout[];
     armorId?: string;
     armorCoverage: 'none' | 'partial' | 'full';
+    /** the damage the armor has taken (City & Guild, Damaged Goods) */
+    armorCondition?: ItemCondition;
     other: string;
   };
   items: EnchantedItem[];
+  /** what else they own: tools, a cart, a craftsman's wondrous item, goods bought at market */
+  possessions?: Possession[];
   talismanUid?: string;
   familiar?: Familiar;
   workshop?: Workshop;
@@ -928,6 +979,8 @@ export interface Character {
   guild?: { name: string; rank?: 'apprentice' | 'journeyman' | 'master' | 'senior' | 'dean'; dues?: number; paidYear?: number; masterVote?: boolean; fined?: boolean };
   /** diseases the character suffers (Art & Academe) */
   illnesses?: Illness[];
+  /** getting better, as time passes at the Game Table (engine/recovery.ts) */
+  recovery?: Recovery;
   /** original research toward a Breakthrough (Houses of Hermes: True Lineages): its goal and the stabilized discoveries so far */
   research?: {
     goal: string;

@@ -7,6 +7,10 @@
 export const TABLE_TABS = ['overview', 'seasons', 'dice', 'market', 'guild'] as const;
 export type TableTab = (typeof TABLE_TABS)[number];
 
+/** The Dice page's parts: any roll, combat and perils, spellcasting and certamen, society and the Tribunal's customs. */
+export const DICE_SUBS = ['roll', 'combat', 'magic', 'society'] as const;
+export type DiceSub = (typeof DICE_SUBS)[number];
+
 /** The Saga Overview's tabs, in order: the saga's settings, its books, optional rules, the troupe's numbers and rulings, its own content, overrides, and its journal. */
 export const SAGA_TABS = ['saga', 'books', 'optional', 'rules', 'custom', 'mechanics', 'journal'] as const;
 export type SagaTab = (typeof SAGA_TABS)[number];
@@ -23,7 +27,10 @@ export const R = {
   saga: (sagaId: string, tab?: SagaTab) => `/saga/${sagaId}${q({ tab: tab && tab !== 'saga' ? tab : undefined })}`,
   table: (sagaId: string, tab?: TableTab, sub?: string, more: Record<string, string | undefined> = {}) => `/saga/${sagaId}/table${q({ tab: tab && tab !== 'overview' ? tab : undefined, sub, ...more })}`,
   seasons: (sagaId: string) => R.table(sagaId, 'seasons'),
-  dice: (sagaId: string, sub?: string) => R.table(sagaId, 'dice', sub),
+  /** the Dice page, on one of its parts, for one character (?who=) */
+  dice: (sagaId: string, sub?: DiceSub, who?: string) => R.table(sagaId, 'dice', sub && sub !== 'roll' ? sub : undefined, { who }),
+  /** the Seasons page, for one character */
+  seasonsFor: (sagaId: string, who?: string) => R.table(sagaId, 'seasons', undefined, { who }),
   market: (sagaId: string) => R.table(sagaId, 'market'),
   /** City & Guild, opened on a character's livelihood or a covenant's craftsmen */
   guild: (sagaId: string, o: { who?: string; cov?: string } = {}) => R.table(sagaId, 'guild', undefined, o),

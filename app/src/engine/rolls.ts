@@ -155,3 +155,45 @@ export const DEPRIVATION: { id: 'air' | 'water' | 'food'; label: string; period:
   { id: 'food', label: 'Food', period: '3 days', longTerm: true },
 ];
 export const deprivationEase = (periods: number) => 3 + Math.max(0, periods - 1);
+
+/**
+ * What a character's state takes off every roll and total they make (DE, Fatigue and Wounds): the
+ * Wound Penalty, the Fatigue level's penalty and a disease's (Art & Academe), all added together, and
+ * Encumbrance on physical tasks. Soak is not an action and takes none of them. Also what keeps them
+ * from acting at all: an Incapacitating Wound, unconsciousness, a disease in crisis.
+ */
+export interface ActionPenalties {
+  total: number;
+  parts: { label: string; value: number }[];
+  /** Encumbrance, for a physical task (Initiative already counts it) */
+  encumbrance: number;
+  /** why they cannot act, if they cannot */
+  cannot?: string;
+}
+
+export function actionPenalties(d: {
+  currentWoundPenalty: number;
+  currentFatiguePenalty: number;
+  currentDiseasePenalty: number;
+  encumbrance: number;
+  char: { wounds: { incapacitating: number; dead?: boolean }; fatigueLost: number; longTermFatigueLost: number; illnesses?: { stage: string }[] };
+}): ActionPenalties {
+  const parts = [
+    { label: 'wounds', value: d.currentWoundPenalty },
+    { label: 'fatigue', value: d.currentFatiguePenalty },
+    { label: 'disease', value: d.currentDiseasePenalty },
+  ].filter((p) => p.value !== 0);
+  const c = d.char;
+  const cannot = c.wounds.dead
+    ? 'dead'
+    : c.wounds.incapacitating > 0
+      ? 'Incapacitated: no actions until the wound improves'
+      : c.fatigueLost + c.longTermFatigueLost >= 5
+        ? 'Unconscious'
+        : (c.illnesses ?? []).some((i) => i.stage === 'Critical')
+          ? 'a disease in crisis: no actions until it passes'
+          : undefined;
+  return { total: parts.reduce((t, p) => t + p.value, 0), parts, encumbrance: d.encumbrance, cannot };
+}
+
+export const penaltyText = (p: ActionPenalties) => p.parts.map((x) => `${x.label} ${x.value}`).join(', ');

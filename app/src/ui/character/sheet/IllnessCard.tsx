@@ -12,6 +12,7 @@ import { Card, Field, Stepper } from '../../kit';
 import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
 import { optionOn } from '../../../engine/optional';
+import { RollAtTable, useAtTable } from '../../play';
 
 export function IllnessCard({ ed }: { ed: CharEditor }) {
   const { c, d, update, ctx, saga } = ed;
@@ -23,6 +24,8 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
   const [town, setTown] = useState(TOWN_DISEASES[0].id);
   const [level, setLevel] = useState(0);
   const [resisted, setResisted] = useState(false);
+  // the sheet keeps the score (what they suffer, its stage); exposure and recovery are rolled at the Game Table
+  const atTable = useAtTable();
   if (!c || !d) return null;
   // turned off for the saga: still shown while the character is ill, so an illness can be cured
   if (!optionOn(saga, 'illness') && !(c.illnesses ?? []).length) return null;
@@ -81,9 +84,11 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
             <label className="inline small">
               <input type="checkbox" checked={!!ill.flawInstead} onChange={(e) => update((x) => { const i = x.illnesses?.find((y) => y.uid === ill.uid); if (i) i.flawInstead = e.target.checked || undefined; })} /> a Flaw instead
             </label>
-            <button className="small primary" onClick={() => recover(ill)} disabled={ill.interval === 'Lifelong'}>
-              Recovery roll
-            </button>
+            {atTable && (
+              <button className="small primary" onClick={() => recover(ill)} disabled={ill.interval === 'Lifelong'}>
+                Recovery roll
+              </button>
+            )}
             <button className="small ghost" onClick={() => update((x) => void (x.illnesses = (x.illnesses ?? []).filter((y) => y.uid !== ill.uid)))} title="Cured by magic or the storyguide">
               Cured
             </button>
@@ -101,9 +106,11 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
             ))}
           </select>
         </Field>
-        <button className="small" onClick={catchIt} title="Stamina + Living Conditions + Corpus/5 + Wound Penalty + stress die against its Stable Ease Factor">
-          Exposed: roll to avoid it
-        </button>
+        {atTable && (
+          <button className="small" onClick={catchIt} title="Stamina + Living Conditions + Corpus/5 + Wound Penalty + stress die against its Stable Ease Factor">
+            Exposed: roll to avoid it
+          </button>
+        )}
         <button className="small ghost" onClick={() => def && add(illnessFrom(def))}>
           + Has it
         </button>
@@ -112,6 +119,8 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
         </button>
       </div>
       {def && ills.length === 0 && <div className="small muted">{def.cause}</div>}
+      <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="Exposure to a disease, and its recovery rolls with a physician, are rolled" />
+      {atTable && (
       <details style={{ marginTop: 8 }}>
         <summary className="small" style={{ cursor: 'pointer' }}>
           Disease in a town (City &amp; Guild)
@@ -164,7 +173,8 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
           </button>
         </div>
       </details>
-      {ills.length > 0 && (
+      )}
+      {atTable && ills.length > 0 && (
         <details style={{ marginTop: 8 }}>
           <summary className="small" style={{ cursor: 'pointer' }}>
             Physician and aid (Prognosis Total {prognosisTotal({ ...doc, living })}){other ? `, other ${other > 0 ? '+' : ''}${other}` : ''}

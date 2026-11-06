@@ -1,6 +1,7 @@
 // Society: the optional social contests a troupe uses, each folded until needed: petitioning the
 // Church, a quick trial, an etiquette performance, and a debate against another character.
 
+import { RollAtTable, useAtTable } from '../../play';
 import { useMemo, useState } from 'react';
 import { deriveCharacter } from '../../../engine/character/derive';
 import { optionOn } from '../../../engine/optional';
@@ -16,9 +17,18 @@ import type { CharEditor } from '../useChar';
 
 export function SocietyCard({ ed }: { ed: CharEditor }) {
   const { c, saga } = ed;
+  const atTable = useAtTable();
   if (!c || !saga || c.type === 'grog') return null;
   const tools = { petitions: optionOn(saga, 'petitions'), courts: optionOn(saga, 'courts'), etiquette: optionOn(saga, 'etiquette'), debate: optionOn(saga, 'debate') };
   if (!Object.values(tools).some(Boolean)) return null;
+  // all of it is played out: on the sheet, only where
+  const names = [tools.debate && 'a debate', tools.petitions && 'a petition to the Church', tools.courts && 'a court’s decision', tools.etiquette && 'etiquette'].filter(Boolean) as string[];
+  if (!atTable)
+    return (
+      <Card title="Society" tour="society">
+        <RollAtTable sagaId={c.sagaId} who={c.id} where="society" what={`${names.join(', ').replace(/^./, (x) => x.toUpperCase())}: played out`} />
+      </Card>
+    );
   return (
     <Card title="Society" tour="society">
       <div className="stack" style={{ gap: 4 }}>

@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { auraRecovery } from '../../../engine/aura';
 import { RECOVERY, SCUFFLE_EFFECTS, allCombatLines, distributeBlows, groupCombat, woundFromDamage, type GroupMember } from '../../../engine/combat';
 import { deriveCharacter } from '../../../engine/character/derive';
-import { useSagaCharacters } from '../../../store/hooks';
+import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { describeStress, stressDie } from '../../../engine/dice';
+import { ailmentsOf, condition, spanText } from '../../../engine/recovery';
 import type { WoundState } from '../../../engine/types';
 import { Card, Field, Stepper, signed } from '../../kit';
 import EquipmentEditor from '../EquipmentEditor';
 import { IllnessCard } from './IllnessCard';
 import { immunities, immunityFlaw, immunityFlawState } from '../../../engine/covenantBoons';
 import type { CharEditor } from '../useChar';
+import { RollAtTable, groupPeople, useAtTable } from '../../play';
 
 const WOUND_KEYS: { key: keyof Omit<WoundState, 'dead'>; label: string; pen: number }[] = [
   { key: 'light', label: 'Light', pen: -1 },
@@ -20,100 +21,29 @@ const WOUND_KEYS: { key: keyof Omit<WoundState, 'dead'>; label: string; pen: num
 
 const FATIGUE_RECOVERY = ['—', '2 minutes', '10 minutes', '30 minutes', '1 hour', '2 hours'];
 
+/**
+ * The sheet's Combat & Health tab keeps the score: wounds and their penalties, Fatigue, illness, the
+ * combat totals and the gear. The rolls are made at the Game Table: recovery for everyone on its
+ * Overview, a fight on Dice › Combat & perils.
+ */
 export default function CombatTab({ ed }: { ed: CharEditor }) {
-  const { c, d, data, update, ctx } = ed;
+  const { c, d, update } = ed;
   const [damage, setDamage] = useState(0);
-  const [msg, setMsg] = useState<string[]>([]);
-  const [medic, setMedic] = useState(0);
-  const [aid, setAid] = useState(0);
-  // a familiar's bronze cord adds to healing rolls (DE, The Three Cords)
-  const bronze = c?.familiar?.bronze ?? 0;
-  // the lab's Health adds to the wound recovery rolls of those who live in it (Covenants)
-  const labHealth = ctx.lab?.characteristics.Health ?? 0;
-  // a Healing aura helps, an Infernal one makes wounds fester (RoP: Magic; RoP: The Infernal)
-  const [atHome, setAtHome] = useState(true);
-  const auraRec = auraRecovery(ctx.aura).parts[0];
-  const auraHeal = atHome ? (auraRec?.value ?? 0) : 0;
-  const [lineIdx, setLineIdx] = useState(0);
-  // DE Combat Options: mounted (+Ride, up to 3, to Attack and Defense), exertion (a Fatigue level for
-  // +Combat Ability to one attack or the round's defense), scuffling (−3 to attack with a real weapon, no weapon damage)
-  const [mounted, setMounted] = useState(false);
-  const [exertOn, setExertOn] = useState<'none' | 'atk' | 'dfn'>('none');
-  const [scuffle, setScuffle] = useState(false);
+  const [msg, setMsg] = useState('');
   if (!c || !d) return null;
-  const lines = allCombatLines(d, data);
-  const baseLine = lines[Math.min(lineIdx, lines.length - 1)];
-  const ride = Math.min(3, d.abilities.find((a) => a.abilityId === 'ride')?.total ?? 0);
-  const unarmed = baseLine?.ability === 'Brawl' && /fist|kick|dodge|unarmed|sap/i.test(baseLine.name);
-  const line = baseLine && {
-    ...baseLine,
-    atk: baseLine.atk === null ? null : baseLine.atk + (mounted ? ride : 0) + (exertOn === 'atk' ? baseLine.abilityScore : 0) + (scuffle && !unarmed ? -3 : 0),
-    dfn: baseLine.dfn + (mounted ? ride : 0) + (exertOn === 'dfn' ? baseLine.abilityScore : 0),
-  };
-  const push = (s: string) => setMsg((m) => [s, ...m].slice(0, 20));
   const lost = Math.min(5, c.fatigueLost + c.longTermFatigueLost);
+  const next = new Map(ailmentsOf(c).map((a) => [a.kind, a.next]));
+  const st = condition(c, d);
 
   const applyDamage = () => {
     const excess = damage - d.soak;
     const w = woundFromDamage(d, excess);
-    if (w === 'none') {
-      push(`Damage ${damage} vs Soak ${d.soak}: no wound.`);
-      return;
-    }
-    push(`Damage ${damage} − Soak ${d.soak} = ${excess}: ${w} wound.`);
+    if (w === 'none') return setMsg(`Damage ${damage} vs Soak ${d.soak}: no wound.`);
+    setMsg(`Damage ${damage} − Soak ${d.soak} = ${excess}: ${w} wound.`);
     update((x) => {
       if (w === 'dead') x.wounds.dead = true;
       else x.wounds[w] += 1;
     });
-  };
-
-  const roll = (label: string, bonus: number, botch = 1) => {
-    const r = stressDie(botch);
-    push(`${label}: ${signed(bonus)} + ${describeStress(r)} = ${r.botches ? 'BOTCH' : bonus + r.value}`);
-  };
-
-  // a disease's penalty hinders the healing of wounds (Art & Academe: "and vice versa")
-  const sick = d.currentDiseasePenalty;
-  const recover = (key: 'light' | 'medium' | 'heavy') => {
-    const r = stressDie(1);
-    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + labHealth + auraHeal + sick + r.value;
-    const rec = RECOVERY[key];
-    let text: string;
-    if (total >= rec.improve) {
-      text = 'improves one level';
-      update((x) => {
-        x.wounds[key] -= 1;
-        if (key === 'medium') x.wounds.light += 1;
-        if (key === 'heavy') x.wounds.medium += 1;
-      });
-    } else if (total >= rec.stable) text = 'stable (+3 to future rolls for this wound)';
-    else {
-      text = 'worsens one level (infection)';
-      update((x) => {
-        x.wounds[key] -= 1;
-        if (key === 'light') x.wounds.medium += 1;
-        if (key === 'medium') x.wounds.heavy += 1;
-        if (key === 'heavy') x.wounds.incapacitating += 1;
-      });
-    }
-    push(`Recovery (${key}, ${rec.interval}): Sta ${d.characteristics.Sta.value} + medic ${medic} + aid ${aid}${bronze ? ` + bronze cord ${bronze}` : ''}${labHealth ? ` ${labHealth > 0 ? '+' : '−'} lab Health ${Math.abs(labHealth)}` : ''}${auraHeal ? ` ${auraHeal > 0 ? '+' : '−'} ${auraRec!.label} ${Math.abs(auraHeal)}` : ''}${sick ? ` − disease ${-sick}` : ''} + ${describeStress(r)} = ${total} vs ${rec.stable}/${rec.improve}: ${text}.`);
-  };
-
-  const recoverIncap = () => {
-    const r = stressDie(1);
-    const total = r.botches ? 0 : d.characteristics.Sta.value + medic + aid + bronze + labHealth + auraHeal + sick + r.value;
-    let text: string;
-    if (total <= 0) {
-      text = 'the character dies';
-      update((x) => void (x.wounds.dead = true));
-    } else if (total >= 9) {
-      text = 'Incapacitating wounds become Heavy';
-      update((x) => {
-        x.wounds.heavy += x.wounds.incapacitating;
-        x.wounds.incapacitating = 0;
-      });
-    } else text = 'condition worsens: cumulative −1 to later rolls';
-    push(`Incapacitation recovery: ${total}: ${text}.`);
   };
 
   return (
@@ -142,6 +72,7 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
             {(c.illnesses ?? []).some((i) => i.stage === 'Critical') && <span className="badge bad" title="A Critical disease: no action until the crisis passes">disease crisis</span>}
             {c.wounds.dead && <span className="badge bad">DEAD</span>}
           </div>
+          {st.danger && !c.wounds.dead && <div className="small bad-text">{st.danger}</div>}
           <div className="table-wrap">
             <table className="compact">
               <thead>
@@ -156,6 +87,8 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
               <tbody>
                 {WOUND_KEYS.map((w) => {
                   const range = w.key === 'incapacitating' ? d.woundRanges.incap : d.woundRanges[w.key];
+                  const rec = w.key === 'incapacitating' ? undefined : RECOVERY[w.key];
+                  const bonus = w.key === 'incapacitating' ? [] : (c.recovery?.stable?.[w.key] ?? []).filter(Boolean);
                   return (
                     <tr key={w.key}>
                       <td>{w.label}</td>
@@ -164,16 +97,11 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
                       <td>
                         <Stepper value={c.wounds[w.key]} min={0} width={36} onChange={(v) => update((x) => void (x.wounds[w.key] = v))} />
                       </td>
-                      <td>
-                        {w.key === 'incapacitating' ? (
-                          <button className="small" disabled={!c.wounds.incapacitating} onClick={recoverIncap} title="Twice daily; 0 or less dies, 9+ becomes Heavy">
-                            Roll
-                          </button>
-                        ) : (
-                          <button className="small" disabled={!c.wounds[w.key]} onClick={() => recover(w.key as 'light' | 'medium' | 'heavy')} title={`${RECOVERY[w.key as 'light'].interval}; stable ${RECOVERY[w.key as 'light'].stable}, improve ${RECOVERY[w.key as 'light'].improve}`}>
-                            Roll ({RECOVERY[w.key as 'light'].interval.toLowerCase()})
-                          </button>
-                        )}
+                      <td className="small">
+                        {rec ? `${rec.interval}; stable ${rec.stable}, improve ${rec.improve}` : 'Twice a day: 0 or less dies, 9+ becomes Heavy'}
+                        {c.wounds[w.key] > 0 && next.has(w.key) && <span className="muted"> · next roll in {spanText(next.get(w.key)!)}</span>}
+                        {bonus.length > 0 && <span className="muted"> · stable {bonus.map((b) => `+${b}`).join(', ')}</span>}
+                        {w.key === 'incapacitating' && c.recovery?.incapacitated ? <span className="muted"> · now {c.recovery.incapacitated}</span> : null}
                       </td>
                     </tr>
                   );
@@ -195,20 +123,9 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
               <Stepper value={damage} min={0} width={50} onChange={setDamage} />
             </Field>
             <button onClick={applyDamage}>Apply damage</button>
-            <Field label="Medic's Chirurgy / Medicine">
-              <Stepper value={medic} min={0} width={36} onChange={setMedic} />
-            </Field>
-            <Field label="Magical aid">
-              <Stepper value={aid} min={0} width={36} onChange={setAid} />
-            </Field>
-            {auraRec && (
-              <label className="inline small">
-                <input type="checkbox" checked={atHome} onChange={(e) => setAtHome(e.target.checked)} /> recovering at the covenant: {auraRec.label} ({auraRec.value > 0 ? '+' : ''}
-                {auraRec.value})
-              </label>
-            )}
+            {msg && <span className="small">{msg}</span>}
           </div>
-          <p className="small muted">Recovery Total = Stamina + medic's Ability + magical aid{bronze ? ` + bronze cord ${bronze}` : ''}{sick ? ` − the Disease Penalty ${-sick}` : ''} + stress die. Wound penalties do not apply (DE p.405).</p>
+          <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="Recovery rolls, with a medic, magical aid and the lab’s Health, are made for everyone" />
         </Card>
 
         <Card title="Fatigue">
@@ -238,72 +155,141 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
               Night's sleep
             </button>
           </div>
-          <p className="small muted">Short-term Fatigue recovers with rest (times above, doubled if active). Long-term Fatigue (Ritual spells, forced march) needs a good night's sleep.</p>
+          <p className="small muted">{st.fatigue}. Short-term Fatigue recovers with rest (times above, doubled if active). Long-term Fatigue (Ritual spells, forced march) needs a good night's sleep.</p>
         </Card>
       </div>
 
       <CovenantImmunity ed={ed} />
       <IllnessCard ed={ed} />
-
-      <Card title="Combat rolls">
-        {lines.length > 0 && line && (
-          <div className="row">
-            <select value={lineIdx} onChange={(e) => setLineIdx(Number(e.target.value))}>
-              {lines.map((l, i) => (
-                <option key={i} value={i}>
-                  {l.name}
-                </option>
-              ))}
-            </select>
-            <button onClick={() => roll(`${line.name} Initiative`, line.init)}>Initiative {signed(line.init)}</button>
-            {line.atk !== null && <button onClick={() => roll(`${line.name} Attack`, line.atk!)}>Attack {signed(line.atk)}</button>}
-            <button onClick={() => roll(`${line.name} Defense`, line.dfn)}>Defense {signed(line.dfn)}</button>
-            <button onClick={() => roll('Soak (fixed)', d.soak, 0)} title="Soak is not rolled; this just logs it">
-              Soak {signed(d.soak)}
-            </button>
-            {line.dam !== null && <span className="small">Damage on a hit: Attack Advantage + {signed(scuffle ? d.characteristics.Str.value : line.dam)}</span>}
-          </div>
-        )}
-        {line && (
-          <div className="row small" style={{ marginTop: 6 }}>
-            <label className="inline" title={`Ride ${ride} (at most +3) to Attack and Defense`}>
-              <input type="checkbox" checked={mounted} onChange={(e) => setMounted(e.target.checked)} /> Mounted (+{ride})
-            </label>
-            <label className="inline" title="Spend a Fatigue level: + your Combat Ability to one attack, or to every defense until your next turn">
-              Exert:
-              <select value={exertOn} onChange={(e) => setExertOn(e.target.value as 'none' | 'atk' | 'dfn')}>
-                <option value="none">no</option>
-                <option value="atk">attack (+{line.abilityScore})</option>
-                <option value="dfn">defense (+{line.abilityScore})</option>
-              </select>
-            </label>
-            {exertOn !== 'none' && (
-              <button className="small ghost" onClick={() => update((x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + 1)))}>
-                Spend the Fatigue level
-              </button>
-            )}
-            <label className="inline" title="Scuffling: −3 to Attack with a real weapon, no weapon Damage; wounds become Fatigue">
-              <input type="checkbox" checked={scuffle} onChange={(e) => setScuffle(e.target.checked)} /> Scuffle
-            </label>
-            {scuffle && (
-              <span className="muted">
-                A scuffling blow: {Object.entries(SCUFFLE_EFFECTS).map(([k, v]) => `${k} → ${v}`).join('; ')}.
-              </span>
-            )}
-          </div>
-        )}
-        <p className="small muted">Attack Advantage = Attack Total − Defense Total. Damage Total = Attack Advantage + weapon damage + Strength; subtract target Soak and look up the wound.</p>
-        {msg.map((m, i) => (
-          <div key={i} className="small list-row">
-            {m}
-          </div>
-        ))}
-      </Card>
-
-      <GroupCombat ed={ed} />
-
+      <CombatRolls ed={ed} />
       <EquipmentEditor ed={ed} />
     </div>
+  );
+}
+
+/**
+ * A character's combat totals, for each weapon (DE p.394), with the Combat Options: mounted, exertion,
+ * scuffling. At the Game Table each total is rolled; on the sheet they are listed.
+ */
+export function CombatRolls({ ed }: { ed: CharEditor }) {
+  const { c, d, data, update } = ed;
+  const atTable = useAtTable();
+  const [msg, setMsg] = useState<string[]>([]);
+  const [lineIdx, setLineIdx] = useState(0);
+  // DE Combat Options: mounted (+Ride, up to 3, to Attack and Defense), exertion (a Fatigue level for
+  // +Combat Ability to one attack or the round's defense), scuffling (−3 to attack with a real weapon, no weapon damage)
+  const [mounted, setMounted] = useState(false);
+  const [exertOn, setExertOn] = useState<'none' | 'atk' | 'dfn'>('none');
+  const [scuffle, setScuffle] = useState(false);
+  if (!c || !d) return null;
+  const lines = allCombatLines(d, data);
+  const pen = d.currentWoundPenalty + d.currentFatiguePenalty + d.currentDiseasePenalty;
+  if (!atTable)
+    return (
+      <Card title="Combat totals">
+        <div className="table-wrap">
+          <table className="compact">
+            <thead>
+              <tr>
+                <th>With</th>
+                <th className="num">Init</th>
+                <th className="num">Attack</th>
+                <th className="num">Defense</th>
+                <th className="num">Damage</th>
+              </tr>
+            </thead>
+            <tbody>
+              {lines.map((l, i) => (
+                <tr key={i}>
+                  <td>{l.name}</td>
+                  <td className="num">{signed(l.init)}</td>
+                  <td className="num">{l.atk === null ? '—' : signed(l.atk)}</td>
+                  <td className="num">{signed(l.dfn)}</td>
+                  <td className="num">{l.dam === null ? '—' : signed(l.dam)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="small muted">
+          Soak {signed(d.soak)}.{pen ? ` The totals include the penalties for wounds, Fatigue and disease (${pen}).` : ''} Damage on a hit: Attack Advantage + the Damage above.
+        </p>
+        <RollAtTable sagaId={c.sagaId} who={c.id} where="combat" what="Initiative, Attack and Defense are rolled, mounted or exerted, alone or as a group," />
+      </Card>
+    );
+  const baseLine = lines[Math.min(lineIdx, lines.length - 1)];
+  const ride = Math.min(3, d.abilities.find((a) => a.abilityId === 'ride')?.total ?? 0);
+  const unarmed = baseLine?.ability === 'Brawl' && /fist|kick|dodge|unarmed|sap/i.test(baseLine.name);
+  const line = baseLine && {
+    ...baseLine,
+    atk: baseLine.atk === null ? null : baseLine.atk + (mounted ? ride : 0) + (exertOn === 'atk' ? baseLine.abilityScore : 0) + (scuffle && !unarmed ? -3 : 0),
+    dfn: baseLine.dfn + (mounted ? ride : 0) + (exertOn === 'dfn' ? baseLine.abilityScore : 0),
+  };
+  const push = (s: string) => setMsg((m) => [s, ...m].slice(0, 20));
+  const roll = (label: string, bonus: number, botch = 1) => {
+    const r = stressDie(botch);
+    push(`${label}: ${signed(bonus)} + ${describeStress(r)} = ${r.botches ? 'BOTCH' : bonus + r.value}`);
+  };
+  return (
+    <Card title={`${c.name || 'Their'} combat rolls`} tour="combat-rolls">
+      {pen !== 0 && <p className="small muted" style={{ marginTop: 0 }}>The totals include {c.name ? `${c.name}’s` : 'their'} penalties for wounds, Fatigue and disease: {pen}.</p>}
+      {lines.length > 0 && line && (
+        <div className="row">
+          <select value={lineIdx} onChange={(e) => setLineIdx(Number(e.target.value))} aria-label="Weapon">
+            {lines.map((l, i) => (
+              <option key={i} value={i}>
+                {l.name}
+              </option>
+            ))}
+          </select>
+          <button onClick={() => roll(`${line.name} Initiative`, line.init)}>Initiative {signed(line.init)}</button>
+          {line.atk !== null && <button onClick={() => roll(`${line.name} Attack`, line.atk!)}>Attack {signed(line.atk)}</button>}
+          <button onClick={() => roll(`${line.name} Defense`, line.dfn)}>Defense {signed(line.dfn)}</button>
+          <button onClick={() => roll('Soak (fixed)', d.soak, 0)} title="Soak is not rolled; this just logs it">
+            Soak {signed(d.soak)}
+          </button>
+          {line.dam !== null && <span className="small">Damage on a hit: Attack Advantage + {signed(scuffle ? d.characteristics.Str.value : line.dam)}</span>}
+        </div>
+      )}
+      {msg.length > 0 && (
+        <div className="stack small" style={{ gap: 2, marginTop: 6 }} aria-live="polite">
+          {msg.map((m, i) => (
+            <div key={i} className={`list-row ${i ? 'muted' : ''}`}>
+              {m}
+            </div>
+          ))}
+        </div>
+      )}
+      {line && (
+        <div className="row small" style={{ marginTop: 6 }}>
+          <label className="inline" title={`Ride ${ride} (at most +3) to Attack and Defense`}>
+            <input type="checkbox" checked={mounted} onChange={(e) => setMounted(e.target.checked)} /> Mounted (+{ride})
+          </label>
+          <label className="inline" title="Spend a Fatigue level: + your Combat Ability to one attack, or to every defense until your next turn">
+            Exert:
+            <select value={exertOn} onChange={(e) => setExertOn(e.target.value as 'none' | 'atk' | 'dfn')}>
+              <option value="none">no</option>
+              <option value="atk">attack (+{line.abilityScore})</option>
+              <option value="dfn">defense (+{line.abilityScore})</option>
+            </select>
+          </label>
+          {exertOn !== 'none' && (
+            <button className="small ghost" onClick={() => update((x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + 1)))}>
+              Spend the Fatigue level
+            </button>
+          )}
+          <label className="inline" title="Scuffling: −3 to Attack with a real weapon, no weapon Damage; wounds become Fatigue">
+            <input type="checkbox" checked={scuffle} onChange={(e) => setScuffle(e.target.checked)} /> Scuffle
+          </label>
+          {scuffle && (
+            <span className="muted">
+              A scuffling blow: {Object.entries(SCUFFLE_EFFECTS).map(([k, v]) => `${k} → ${v}`).join('; ')}.
+            </span>
+          )}
+        </div>
+      )}
+      <p className="small muted">Attack Advantage = Attack Total − Defense Total. Damage Total = Attack Advantage + weapon damage + Strength; subtract target Soak and look up the wound.</p>
+    </Card>
   );
 }
 
@@ -312,16 +298,21 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
  * vanguard's statistics; a trained group adds the others' Combat Abilities, up to three times the
  * leader's Leadership, to Attack or Defense. This character is the vanguard.
  */
-function GroupCombat({ ed }: { ed: CharEditor }) {
+export function GroupCombat({ ed }: { ed: CharEditor }) {
   const { c, d, data, saga } = ed;
   const others = useSagaCharacters(c?.sagaId);
+  const covs = useSagaCovenants(c?.sagaId);
   const [ids, setIds] = useState<string[]>([]);
   const [leaderId, setLeaderId] = useState('');
   const [trained, setTrained] = useState(true);
   const [onAtk, setOnAtk] = useState(true);
   const [blows, setBlows] = useState(0);
   if (!c || !d || !saga) return null;
-  const pool = others.filter((o) => o.id !== c.id && o.type !== 'magus');
+  // those who fight beside the vanguard: their own side, the players' people or the vanguard's own covenant of the Tribunal
+  const groups = groupPeople(others.filter((o) => o.creation.finalized && !o.wounds.dead), covs);
+  const mine = groups.findIndex((g) => g.people.some((o) => o.id === c.id));
+  const side = mine <= 1 ? groups.slice(0, 2).filter((g) => !g.label.includes('Tribunal')) : [groups[mine]];
+  const pool = side.flatMap((g) => g.people).filter((o) => o.id !== c.id && o.type !== 'magus');
   const lead = (x: typeof d) => x.abilities.find((a) => a.abilityId === 'leadership')?.total ?? 0;
   const derived = ids.map((id) => pool.find((o) => o.id === id)).filter((o): o is NonNullable<typeof o> => !!o).map((o) => ({ c: o, d: deriveCharacter(o, data, saga.houseRules) }));
   const all = [{ c, d }, ...derived];

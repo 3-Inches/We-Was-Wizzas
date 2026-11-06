@@ -15,7 +15,7 @@ import { StandingEditor, teamOf } from '../character/StandingEditor';
 import { Card, Empty } from '../kit';
 import { R } from '../routes';
 
-export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true }: { saga: Saga; data: GameData; chars: Character[]; covs: Covenant[]; derived: Map<string, DerivedCharacter>; fill?: boolean }) {
+export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, onPlan }: { saga: Saga; data: GameData; chars: Character[]; covs: Covenant[]; derived: Map<string, DerivedCharacter>; fill?: boolean; /** open the full planner for one character */ onPlan?: (id: string) => void }) {
   const updateCharacter = useStore((s) => s.updateCharacter);
   const { currentYear: year, currentSeason: season } = saga;
   const playing = chars.filter(inPlay);
@@ -23,8 +23,8 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true }:
   return (
     <Card title={`This season: ${season} ${year}`} tour="table-season" fold="table-season" summary={`${playing.length} characters in play.`}>
       <p className="small muted" style={{ marginTop: 0 }}>
-        What each character does this season: what is logged on their sheet, or else their standing activity, which you can change here. A particular book, teacher or lab
-        project is planned on their sheet (Seasons &amp; Aging).
+        What each character does this season: what is logged on their sheet, or else their standing activity, which you can change here. A particular book, teacher, lab
+        project, writing or Initiation: <b>Plan in full</b>, below.
       </p>
       {playing.length === 0 && <Empty>No finished characters yet.</Empty>}
       {playing.map((c) => {
@@ -53,7 +53,13 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true }:
               <StandingEditor c={c} d={d} year={year} teachers={teachers} library={cov?.library} team={team} onChange={(s) => updateCharacter(c.id, (x) => void (x.standing = s))} />
             )}
             <span className="row tight small" style={{ marginLeft: 'auto' }}>
-              <Link to={R.character(saga.id, c, 'advancement')}>Plan on the sheet</Link>
+              {onPlan ? (
+                <button className="small ghost" onClick={() => onPlan(c.id)} title="A particular book, teacher, lab project, writing or Initiation">
+                  Plan in full ↓
+                </button>
+              ) : (
+                <Link to={R.seasonsFor(saga.id, c.id)}>Plan in full</Link>
+              )}
             </span>
             {!logged.length && (
               <div className="small muted" style={{ flexBasis: '100%' }}>

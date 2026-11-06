@@ -353,6 +353,8 @@ button.big { font-size: 1.1em; padding: 10px 22px; }
 .dice-result.good { border-color: var(--good); }
 .dice-result.warn { border-color: var(--warn); }
 .dice-result.bad { border-color: var(--bad); }
+.dice-result-lines { margin: 8px 0; padding: 8px 10px; border-left: 3px solid var(--accent); background: var(--bg-2); border-radius: 4px; display: grid; gap: 2px; }
+.at-table { margin-top: 6px; }
 .dice-total { font-family: var(--font-head); font-size: 3em; line-height: 1.1; color: var(--accent); }
 
 /* ---- book reader ---- */

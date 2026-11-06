@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { auraAtTime, type AuraTime } from '../../../engine/aura';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type Technique } from '../../../data';
 import { castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
@@ -11,11 +11,21 @@ import type { CharEditor } from '../useChar';
 import { masteryScore } from '../steps/SpellsStep';
 import { labContextOf } from '../../../engine/lab';
 import { Hint } from '../../Hint';
+import { useStore } from '../../../store/store';
+import { RollAtTable, groupPeople, useAtTable, PeopleOptions } from '../../play';
+import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
+import { deriveCharacter } from '../../../engine/character/derive';
 
 const REALMS: Realm[] = ['Magic', 'Faerie', 'Divine', 'Infernal', 'None'];
 
+/**
+ * A magus's magic. On the sheet it keeps the score: the Arts, Casting Scores and Lab Totals under the
+ * circumstances chosen, the spells known. At the Game Table (Dice › Spellcasting) the spells are
+ * cast, spontaneous magic worked and certamen fought, Fatigue, Warping and vis put on the sheet.
+ */
 export default function MagicTab({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, ctx } = ed;
+  const atTable = useAtTable();
   const [auraSet, setAura] = useState<AuraState>(ctx.aura);
   // the Dominion and Infernal auras change with the hour and the day (DE; RoP: The Divine, The Infernal)
   const [when, setWhen] = useState<AuraTime>('day');
@@ -33,6 +43,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [tech, setTech] = useState<Technique>('Cr');
   const [form, setForm] = useState<Form>('Co');
   const [log, setLog] = useState<string[]>([]);
+  // what the last press made, shown beside its buttons (a phone would not see a log at the bottom)
+  const [recent, setRecent] = useState<{ from: string; lines: string[] }>();
   // what applies right now: one click instead of doing the arithmetic by hand
   const [focusNow, setFocusNow] = useState(false);
   const [conds, setConds] = useState<string[]>([]);
@@ -86,6 +98,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const aatpReady = d.virtues.some((v) => v.cv.defId === 'all-according-to-plan') && !c.session?.aatpUsed;
   const useAatp = () => {
     if (!aatp) return;
+    begin('aatp');
     const i = aatp.faces.indexOf(0);
     const again = simpleDie().value % 10;
     const faces = [...aatp.faces];
@@ -97,14 +110,26 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     setAatp(null);
   };
   const golden = d.char.familiar?.golden ?? 0;
-  const push = (s: string) => setLog((l) => [s, ...l].slice(0, 30));
+  const push = (s: string) => {
+    setLog((l) => [s, ...l].slice(0, 30));
+    setRecent((r) => (r ? { ...r, lines: [...r.lines, s] } : r));
+  };
+  const begin = (from: string) => setRecent({ from, lines: [] });
+  const Recent = ({ from }: { from: string }) =>
+    atTable && recent?.from === from && recent.lines.length ? (
+      <div className="dice-result-lines small" aria-live="polite">
+        {recent.lines.map((l, i) => (
+          <div key={i}>{l}</div>
+        ))}
+      </div>
+    ) : null;
 
   /** a magical botch: one Warping Point per zero; Twilight is checked on 2+ (1 with Twilight Prone) */
   const onBotch = (name: string, wp: number, faces: number[]) => {
     if (!wp) return;
     update((x) => void (x.warpingPoints += wp));
     const check = wp >= 2 || (wp >= 1 && d.twilightProne);
-    push(`Botch: ${wp} Warping Point${wp > 1 ? 's' : ''} added.${check ? ` Check for Wizard's Twilight${d.twilightProne && wp < 2 ? ' (Twilight Prone)' : ''}: Advancement tab, Warping & Twilight (points already added).` : ''}`);
+    push(`Botch: ${wp} Warping Point${wp > 1 ? 's' : ''} added.${check ? ` Check for Wizard's Twilight${d.twilightProne && wp < 2 ? ' (Twilight Prone)' : ''}: Warping & Twilight, below (points already added).` : ''}`);
     if (aatpReady) setAatp({ spell: name, faces });
   };
   /** Fatigue spent on a casting, after Vulnerable and Withstand Casting; Life Boost and Life-Linked levels are added as they are */
@@ -134,6 +159,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   };
 
   const castSpell = (sp: CharSpell, stress: boolean) => {
+    begin('spells');
     const ms = masteryScore(sp, d);
     // Unstructured Caster: every Formulaic spell is cast as a Ritual, vis and all
     const ritual = !!sp.spell.ritual || rules.unstructured;
@@ -198,6 +224,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
    * stress, and Unpredictable Magic always does.
    */
   const castSpont = (mode: 'calm' | 'calm-stress' | 'diedne' | 'exerted') => {
+    begin('spont');
     const name = `Spontaneous ${tech}${form}${cer ? ' (ceremonial)' : ''}`;
     const boost = visBoostFor(tech, form, 0);
     const score = (mode === 'exerted' ? spontExerted.total : spont.total) + 2 * boost.pawns;
@@ -247,6 +274,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   return (
     <div className="stack">
       <Hint id="magic-circumstances">Set the aura and what applies right now first: every total on this tab follows them.</Hint>
+      <RollAtTable sagaId={c.sagaId} who={c.id} where="magic" what="Spells are cast, spontaneous magic worked and certamen fought, with the Fatigue, Warping and vis they cost," />
       <Card title="Circumstances" className="accent" tour="magic-circumstances">
         <div className="row">
           <Field label="Aura">
@@ -355,7 +383,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         </p>
       </Card>
 
-      <Card title="Arts">
+      {!atTable && <Card title="Arts">
         <div className="table-wrap">
           <table className="compact">
             <thead>
@@ -405,7 +433,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           </table>
         </div>
         <p className="small muted">Click any number to see how it was calculated. Magic Resistance = the highest of Parma Magica × 5 + Form, True Faith × 10, or a relic's Faith × 10; they do not add together (DE p.55, p.221, p.419).</p>
-      </Card>
+      </Card>}
 
       <Card title="Casting Scores and Lab Totals">
         <p className="small muted" style={{ marginTop: 0 }}>
@@ -489,7 +517,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                   <th className="num">Casting Score</th>
                   <th className="num">Pen. (avg die)</th>
                   <th>Mastery</th>
-                  <th>Cast</th>
+                  {atTable && <th>Cast</th>}
                 </tr>
               </thead>
               <tbody>
@@ -546,7 +574,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                             </span>
                           ))}
                         </td>
-                        <td className="nowrap">
+                        {atTable && <td className="nowrap">
                           {(!(sp.spell.ritual || rules.unstructured) || ms > 0) && (
                             <button className="small" onClick={() => castSpell(sp, false)} title="Calm: simple die (or stress die without botch if mastered)">
                               Calm
@@ -555,7 +583,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                           <button className="small" onClick={() => castSpell(sp, true)} title="Stress die with botch dice">
                             Stress
                           </button>
-                        </td>
+                        </td>}
                       </tr>
                     );
                   })}
@@ -563,6 +591,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             </table>
           </div>
         )}
+        <Recent from="spells" />
         <p className="small muted">
           Formulaic: fail by 1–10 and the spell still works at a cost of one Fatigue level. Ritual: always costs long-term Fatigue and 1 pawn of vis per magnitude, and each pawn is a
           botch die; a Ritual always rolls a stress die. Mastery adds its score to the Casting Total and removes a botch die per point.
@@ -633,7 +662,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             </label>
           )}
         </div>
-        <div className="row" style={{ marginTop: 6 }}>
+        {atTable && <div className="row" style={{ marginTop: 6 }}>
           <button onClick={() => castSpont('calm')} disabled={rules.difficultSpontaneous} title={rules.difficultSpontaneous ? 'Difficult Spontaneous Magic: you must exert yourself' : 'Casting Score ÷ 5, no roll'}>
             Cast (no fatigue)
           </button>
@@ -650,15 +679,16 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           <button onClick={() => castSpont('exerted')} disabled={rules.weakSpontaneous} title={rules.weakSpontaneous ? 'Weak Spontaneous Magic: you may not exert yourself' : 'Stress die, ÷ 2, one Fatigue level'}>
             Cast (fatiguing)
           </button>
-        </div>
+        </div>}
+        <Recent from="spont" />
         <p className="small muted">Totals are rounded down (the DE default when a rule doesn't say otherwise).</p>
         {rules.weakSpontaneous && rules.difficultSpontaneous && <p className="small bad-text">Weak and Difficult Spontaneous Magic together: you cannot cast spontaneous spells at all.</p>}
         {rules.diedne && <p className="small good-text">Diedne Magic: exerted, your lowest Art counts twice before dividing by two (in the fatiguing total); calm, you may divide by 2 on a stress die instead of by 5.</p>}
       </Card>
 
-      <Certamen ed={ed} push={push} />
+      <Certamen ed={ed} push={push} begin={begin} recent={<Recent from="certamen" />} />
 
-      {aatp && (
+      {atTable && aatp && (
         <div className="issue warning">
           <span className="badge warn">botch</span>
           <div className="msg">
@@ -672,7 +702,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           </button>
         </div>
       )}
-      {log.length > 0 && (
+      <Recent from="aatp" />
+      {atTable && log.length > 0 && (
         <Card title="Casting log" actions={<button className="small ghost" onClick={() => setLog([])}>Clear</button>}>
           {log.map((l, i) => (
             <div key={i} className="small list-row">
@@ -687,16 +718,29 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
 }
 
 /** Certamen (DE): the totals for the chosen Technique and Form, and a round rolled against an opponent's numbers. */
-function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
-  const { c, d, update } = ed;
+function Certamen({ ed, push, begin, recent }: { ed: CharEditor; push: (s: string) => void; begin: (from: string) => void; recent: ReactNode }) {
+  const { c, d, data, update, saga } = ed;
+  const atTable = useAtTable();
+  const others = useSagaCharacters(c?.sagaId);
+  const covs = useSagaCovenants(c?.sagaId);
+  // an opponent from the saga, the Tribunal's magi too: their totals fill in the numbers
+  const [oppId, setOppId] = useState('');
+  const [oppAttacks, setOppAttacks] = useState<CertamenArt>('technique');
+  const updateCharacter = useStore((s) => s.updateCharacter);
   const [tech, setTech] = useState<Technique>('Re');
   const [form, setForm] = useState<Form>('Te');
   const [attackWith, setAttackWith] = useState<CertamenArt>('technique');
   const [vis, setVis] = useState(0);
-  const [opp, setOpp] = useState({ defense: 10, resistance: 5, attack: 12, weakening: 4 });
+  const [opp0, setOpp] = useState({ defense: 10, resistance: 5, attack: 12, weakening: 4 });
   if (!c || !d) return null;
   const t = certamenTotals(d, tech, form);
   const defendWith: CertamenArt = attackWith === 'technique' ? 'form' : 'technique';
+  // the opponent's numbers from their sheet: they defend with the Art you do not attack with... their choice, so it is theirs to set
+  const groups = groupPeople(others.filter((o) => o.id !== c.id && o.creation.finalized && !o.wounds.dead && (o.type === 'magus' || o.arts)), covs);
+  const oppC = others.find((o) => o.id === oppId);
+  const oppT = oppC && saga ? certamenTotals(deriveCharacter(oppC, data, saga.houseRules), tech, form) : undefined;
+  const oppDefends: CertamenArt = oppAttacks === 'technique' ? 'form' : 'technique';
+  const opp = oppT ? { defense: oppT.defense[oppDefends].total, resistance: oppT.resistance.total, attack: oppT.attack[oppAttacks].total, weakening: oppT.weakening.total } : opp0;
   const artName = (w: CertamenArt) => (w === 'technique' ? ART_NAMES[tech] : ART_NAMES[form]);
   const visMax = (w: CertamenArt) => t.visLimit[w];
   const pawns = (w: CertamenArt) => Math.min(vis, visMax(w));
@@ -705,10 +749,12 @@ function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
     return { r, total: r.botches ? 0 : base + r.value };
   };
   const rollInitiative = () => {
+    begin('certamen');
     const { r, total } = roll(t.initiative.total);
     push(`Certamen initiative: ${t.initiative.total} + ${describeStress(r)} = ${total}.`);
   };
   const attack = () => {
+    begin('certamen');
     const p = pawns(attackWith);
     const { r, total } = roll(t.attack[attackWith].total + 2 * p);
     const adv = total - opp.defense;
@@ -718,8 +764,12 @@ function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
       `Certamen attack with ${artName(attackWith)}: ${t.attack[attackWith].total}${p ? ` + ${p} pawns of vis (+${2 * p})` : ''} + ${describeStress(r)} = ${total} vs Defense ${opp.defense}. ` +
         (r.botches ? 'Botch: the storyguide decides what goes wrong.' : adv > 0 ? `Attack Advantage ${adv}; Weakening ${weak} vs Resistance ${opp.resistance}: the opponent loses ${lost} Fatigue level${lost === 1 ? '' : 's'}.` : 'No damage (the defender wins ties).'),
     );
+    // the opponent's Fatigue goes on their sheet, when they are of the saga
+    if (lost && !r.botches && oppC) updateCharacter(oppC.id, (x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + lost)));
   };
+
   const defend = () => {
+    begin('certamen');
     const p = pawns(defendWith);
     const { r, total } = roll(t.defense[defendWith].total + 2 * p);
     const adv = opp.attack - total;
@@ -772,7 +822,27 @@ function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
         {stat('Weakening', t.weakening)}
         {stat('Resistance', t.resistance)}
       </div>
+      {!atTable && <RollAtTable sagaId={c.sagaId} who={c.id} where="magic" what="A certamen is fought, against anyone of the saga or the Tribunal," />}
+      {atTable && <>
       <h4>A round</h4>
+      {groups.length > 0 && (
+        <div className="row small">
+          <Field label="Against" hint="Their totals for these Arts fill in their numbers">
+            <select value={oppId} onChange={(e) => setOppId(e.target.value)}>
+              <option value="">— numbers only —</option>
+              <PeopleOptions groups={groups} />
+            </select>
+          </Field>
+          {oppT && (
+            <Field label="They attack with">
+              <select value={oppAttacks} onChange={(e) => setOppAttacks(e.target.value as CertamenArt)}>
+                <option value="technique">{ART_NAMES[tech]} (defending with {ART_NAMES[form]})</option>
+                <option value="form">{ART_NAMES[form]} (defending with {ART_NAMES[tech]})</option>
+              </select>
+            </Field>
+          )}
+        </div>
+      )}
       <div className="row">
         <Field label="This round you attack with">
           <select value={attackWith} onChange={(e) => setAttackWith(e.target.value as CertamenArt)}>
@@ -783,18 +853,26 @@ function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
         <Field label="Raw vis this round (+2 a pawn)" hint={`Vis of the Art it boosts, no more pawns than your score in that Art (${visMax('technique')} ${tech}, ${visMax('form')} ${form})`}>
           <Stepper value={vis} min={0} max={Math.max(visMax('technique'), visMax('form'))} width={36} onChange={setVis} />
         </Field>
-        <Field label="Opponent's Defense Total">
-          <Stepper value={opp.defense} min={-20} max={99} width={40} onChange={(v) => setOpp({ ...opp, defense: v })} />
-        </Field>
-        <Field label="Opponent's Resistance">
-          <Stepper value={opp.resistance} min={-10} max={60} width={40} onChange={(v) => setOpp({ ...opp, resistance: v })} />
-        </Field>
-        <Field label="Opponent's Attack Total">
-          <Stepper value={opp.attack} min={-20} max={99} width={40} onChange={(v) => setOpp({ ...opp, attack: v })} />
-        </Field>
-        <Field label="Opponent's Weakening">
-          <Stepper value={opp.weakening} min={-10} max={60} width={40} onChange={(v) => setOpp({ ...opp, weakening: v })} />
-        </Field>
+        {oppT ? (
+          <span className="small">
+            {oppC?.name || 'Their'}: Defense {opp.defense}, Resistance {opp.resistance}, Attack {opp.attack}, Weakening {opp.weakening}.
+          </span>
+        ) : (
+          <>
+            <Field label="Opponent's Defense Total">
+              <Stepper value={opp.defense} min={-20} max={99} width={40} onChange={(v) => setOpp({ ...opp, defense: v })} />
+            </Field>
+            <Field label="Opponent's Resistance">
+              <Stepper value={opp.resistance} min={-10} max={60} width={40} onChange={(v) => setOpp({ ...opp, resistance: v })} />
+            </Field>
+            <Field label="Opponent's Attack Total">
+              <Stepper value={opp.attack} min={-20} max={99} width={40} onChange={(v) => setOpp({ ...opp, attack: v })} />
+            </Field>
+            <Field label="Opponent's Weakening">
+              <Stepper value={opp.weakening} min={-10} max={60} width={40} onChange={(v) => setOpp({ ...opp, weakening: v })} />
+            </Field>
+          </>
+        )}
       </div>
       <div className="row" style={{ marginTop: 6 }}>
         <button className="small" onClick={rollInitiative}>
@@ -807,6 +885,8 @@ function Certamen({ ed, push }: { ed: CharEditor; push: (s: string) => void }) {
           Roll defense
         </button>
       </div>
+      {recent}
+      </>}
       <HowItWorks summary="Attack with one Art and defend with the other; Weakening past Resistance costs Fatigue.">
         Each round, use one Art to attack and the other to defend; you may swap them between rounds. Every 5 points (or fraction) of Weakening over Resistance costs a Fatigue level,
         and Fatigue penalties count against Attack and Defense. Certamen causes no wounds. Win by knocking the opponent unconscious (you may then cast one spell of the duel&apos;s

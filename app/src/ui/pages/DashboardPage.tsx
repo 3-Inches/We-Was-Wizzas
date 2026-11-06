@@ -23,6 +23,7 @@ import { useStore } from '../../store/store';
 import { R } from '../routes';
 import { LoyaltyEvent } from '../covenant/FinancesTab';
 import { AfterStoryCard } from './AfterStoryCard';
+import { RecoveryCard } from './RecoveryCard';
 import { ARTS, ART_NAMES, type Art } from '../../data';
 import { addVis } from '../../engine/vis';
 import { uid } from '../../util/id';
@@ -81,9 +82,9 @@ export default function DashboardPage() {
     if (c.wounds.dead) continue;
     const w = c.wounds;
     const hurt = [w.light && `${w.light} Light`, w.medium && `${w.medium} Medium`, w.heavy && `${w.heavy} Heavy`, w.incapacitating && `${w.incapacitating} Incapacitating`].filter(Boolean);
-    if (hurt.length) attention.push({ level: w.heavy || w.incapacitating ? 'bad' : 'warn', text: `${who}: ${hurt.join(', ')} wound${hurt.length > 1 || (w.light ?? 0) > 1 ? 's' : ''} to recover from.`, to: sheet(c, 'combat'), go: 'Combat & Health' });
-    if (c.longTermFatigueLost > 0) attention.push({ level: 'warn', text: `${who}: ${c.longTermFatigueLost} Long-Term Fatigue level${c.longTermFatigueLost > 1 ? 's' : ''} lost.`, to: sheet(c, 'combat'), go: 'Combat & Health' });
-    if (c.illnesses?.length) attention.push({ level: 'warn', text: `${who} is ill.`, to: sheet(c, 'combat'), go: 'Illness' });
+    if (hurt.length) attention.push({ level: w.heavy || w.incapacitating ? 'bad' : 'warn', text: `${who}: ${hurt.join(', ')} wound${hurt.length > 1 || (w.light ?? 0) > 1 ? 's' : ''} to recover from.`, to: '#table-recovery', go: 'Recovery' });
+    if (c.longTermFatigueLost > 0) attention.push({ level: 'warn', text: `${who}: ${c.longTermFatigueLost} Long-Term Fatigue level${c.longTermFatigueLost > 1 ? 's' : ''} lost.`, to: '#table-recovery', go: 'Recovery' });
+    if (c.illnesses?.length) attention.push({ level: 'warn', text: `${who} is ill.`, to: '#table-recovery', go: 'Recovery' });
     if (c.workshop && c.workshop.laborPoints < 0) attention.push({ level: 'warn', text: `${who}'s workshop is short of Labor Points (${c.workshop.laborPoints}).`, to: sheet(c, 'advancement'), go: 'Workshop' });
     if (d) {
       const errs = validateCharacter(d, data, saga.houseRules).filter((i) => i.severity === 'error').length;
@@ -108,7 +109,7 @@ export default function DashboardPage() {
             <div key={i} className="list-row small">
               <span className={`badge ${a.level === 'bad' ? 'bad' : a.level === 'warn' ? 'warn' : ''}`}>{a.level === 'bad' ? '!' : a.level === 'warn' ? '•' : 'i'}</span>
               <span style={{ flex: '1 1 200px' }}>{a.text}</span>
-              <Link to={a.to}>{a.go} →</Link>
+              {a.to.startsWith('#') ? <GoDown tour={a.to.slice(1)} label={`${a.go} ↓`} /> : <Link to={a.to}>{a.go} →</Link>}
             </div>
           ))}
         </Card>
@@ -126,12 +127,20 @@ export default function DashboardPage() {
             </button>
             {roll && <b className="small">{roll}</b>}
           </div>
+          <div className="row tight small" style={{ marginTop: 6 }}>
+            <Link to={R.dice(saga.id)}>Dice ›</Link>
+            <Link to={R.dice(saga.id, 'combat')}>Combat &amp; perils ›</Link>
+            <Link to={R.dice(saga.id, 'magic')}>Spellcasting ›</Link>
+            <Link to={R.dice(saga.id, 'society')}>Society &amp; the Tribunal ›</Link>
+          </div>
           <details style={{ marginTop: 6 }}>
             <summary className="small">When something comes up in play: where to go</summary>
-            <PlayIndex S={S} sagaId={saga.id} home={home} first={playing[0]} sheet={sheet} covLink={covLink} />
+            <PlayIndex S={S} sagaId={saga.id} home={home} covLink={covLink} />
           </details>
         </Card>
       </div>
+
+      <RecoveryCard saga={saga} data={data} chars={chars} covs={covs} />
 
       <div className="grid grid-2">
         <ComingUpCard saga={saga} characters={allChars} covenants={allCovs} />
@@ -211,11 +220,13 @@ function CovenantGlance({ cov, dc, covLink }: { cov: Covenant; dc: DerivedCovena
 }
 
 /** What comes up during a session, and where in the toolkit it is done. */
-function PlayIndex({ S, sagaId, home, first, sheet, covLink }: { S: string; sagaId: string; home?: Covenant; first?: Character; sheet: (c: Character, tab?: string) => string; covLink: (c: Covenant | undefined, tab?: string) => string }) {
-  const charTab = (tab: string) => (first ? sheet(first, tab) : S);
+function PlayIndex({ S, sagaId, home, covLink }: { S: string; sagaId: string; home?: Covenant; covLink: (c: Covenant | undefined, tab?: string) => string }) {
   const rows: { label: string; hint: string; to: string }[] = [
-    { label: 'A fight, a wound, a peril', hint: 'Dice: an opposed roll, a blow from Attack to wound, falling, fire, drowning and the other perils, for anyone at the table.', to: R.dice(sagaId) },
-    { label: 'A spell is cast', hint: 'Magic on the magus’s sheet: Casting Scores, Penetration, botch dice, Fatigue; vis to boost it.', to: charTab('magic') },
+    { label: 'Any roll: a Characteristic and an Ability', hint: 'Dice: for anyone at the table, the players’ people or the Tribunal’s, their wounds, Fatigue and disease counted.', to: R.dice(sagaId) },
+    { label: 'A fight, a wound, a peril', hint: 'Dice › Combat & perils: a character’s Initiative, Attack and Defense, a group, a blow from Attack to wound, falling, fire, drowning and the other perils.', to: R.dice(sagaId, 'combat') },
+    { label: 'A spell is cast, a certamen fought', hint: 'Dice › Spellcasting: the caster, the spell, the aura and what applies; botch dice, Fatigue, Warping and vis put on the sheet; certamen against anyone; Twilight.', to: R.dice(sagaId, 'magic') },
+    { label: 'A debate, a petition, an agent, a forest’s spirit', hint: 'Dice › Society & the Tribunal: debates, petitions to the Church, a court, etiquette, agents, and the Tribunal’s customs.', to: R.dice(sagaId, 'society') },
+    { label: 'Someone is hurt, tired or ill', hint: 'Health & recovery, on this page: what ails everyone, who tends them, and time passed with every Recovery roll made.', to: '#table-recovery' },
     { label: 'A spell is looked up or designed on the spot', hint: 'Spells & design: every spell, and the guidelines to build one.', to: `${S}/spells` },
     { label: 'Someone buys, sells or hires', hint: 'Market & Treasury: price lists, vis for silver, books, covenfolk, teachers, gifts between purses.', to: R.market(sagaId) },
     { label: 'Someone haggles, or bribes a local', hint: 'City & Guild: sending someone to market, appraising and bargaining, and bribes for a word or a bed.', to: R.guild(sagaId) },
@@ -223,7 +234,7 @@ function PlayIndex({ S, sagaId, home, first, sheet, covLink }: { S: string; saga
     { label: 'The covenfolk are pleased or wronged', hint: 'Loyalty events on Covenfolk & finances: celebrations, punishments, wounds by magic, hardship.', to: covLink(home, 'folk') },
     { label: 'A grog is rewarded or punished, a watch is set', hint: 'The turb’s day, on Covenfolk & finances: watches, sentries, drill, rewards and punishments, retirement.', to: covLink(home, 'folk') },
     { label: 'A spell is cast on the whole covenant', hint: 'The covenant’s Overview: cast a spell, ritual or power on everyone at once.', to: covLink(home, 'overview') },
-    { label: 'A book is read, written or copied', hint: 'Seasons & Aging on the sheet: plan a season of study; Writing and copying for books, copies and lab texts.', to: charTab('advancement') },
+    { label: 'A book is read, written or copied', hint: 'Seasons: plan a character’s season of study, writing or copying.', to: R.seasons(sagaId) },
     { label: 'A craftsman works, earns from a story, or invests', hint: 'City & Guild: a character’s workshop and Labor Points, stories and investments, the guild; the covenant’s craftsmen.', to: R.guild(sagaId) },
     { label: 'A journey, a bribe, a crime, a rumor about a noble', hint: 'City & Guild: travel, trade and intrigue: days and cost of a journey, Area Lore, ships in a fight, bribes, hired criminals, sabotage, intrigue, largesse, a dowry.', to: R.guild(sagaId) },
     { label: 'An item may break', hint: 'City & Guild: damaged goods: damage levels, the check against 15, repair.', to: R.guild(sagaId) },
@@ -240,9 +251,7 @@ function PlayIndex({ S, sagaId, home, first, sheet, covLink }: { S: string; saga
             <div className="muted">{r.hint}</div>
           </span>
           {r.to.startsWith('#') ? (
-            <button className="small ghost" onClick={() => document.getElementById(r.to.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-              Go ↓
-            </button>
+            <GoDown tour={r.to.slice(1)} label="Go ↓" />
           ) : (
             <Link to={r.to}>Go →</Link>
           )}
@@ -321,5 +330,21 @@ function QuickChanges({ covs, home, year, season }: { covs: Covenant[]; home?: C
         <span className="muted">Found, won or given in play: no Build Points. A vis source is added on the Library &amp; Vis tab.</span>
       </div>
     </Card>
+  );
+}
+
+/** A link to a card further down this page, opened if folded. */
+function GoDown({ tour, label }: { tour: string; label: string }) {
+  return (
+    <button
+      className="small ghost"
+      onClick={() => {
+        const el = document.getElementById(tour) ?? document.querySelector<HTMLElement>(`[data-tour="${tour}"]`);
+        if (el?.classList.contains('folded')) el.querySelector<HTMLButtonElement>(':scope > .card-head > .fold-toggle')?.click();
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }}
+    >
+      {label}
+    </button>
   );
 }

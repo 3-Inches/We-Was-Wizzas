@@ -1,14 +1,28 @@
-import { useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { describeStress, pct, simpleChance, simpleDie, stressChance, stressDie } from '../../engine/dice';
 import { abilityTotal, deriveCharacter } from '../../engine/character/derive';
-import { DEFAULT_HOUSE_RULES, type Character, type HouseRules } from '../../engine/types';
+import { optionOn } from '../../engine/optional';
+import { actionPenalties, penaltyText } from '../../engine/rolls';
+import { DEFAULT_HOUSE_RULES, type Character, type HouseRules, type Saga } from '../../engine/types';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic, type GameData } from '../../data';
 import { ITEM_CHECK_MODS, ITEM_QUALITY_MOD, LOCK_PICK_EASE, itemDamageLevels, itemStressCheck, repairNeeds, type ItemQuality } from '../../engine/workshop';
-import { Card, Field, Stepper, signed } from '../kit';
+import { Card, Empty, Field, Stepper, Tabs, signed } from '../kit';
 import { RulesNote } from '../RulesNote';
 import { useStore } from '../../store/store';
-import { useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
+import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { BlowCard, OpposedCard, PerilsCard } from './TableRolls';
+import { AtTable, DICE_LABELS, PeopleOptions, canPlay, groupPeople, type PeopleGroup } from '../play';
+import { DICE_SUBS, R, type DiceSub } from '../routes';
+import { useCharEditor, type CharEditor } from '../character/useChar';
+import { CombatRolls, GroupCombat } from '../character/sheet/CombatTab';
+import MagicTab from '../character/sheet/MagicTab';
+import { TwilightCard } from '../character/sheet/Twilight';
+import { HeartbeastChange } from '../character/sheet/MysteriesCard';
+import { SilverRescue } from '../character/sheet/LabItemsTab';
+import { SocietyCard } from '../character/sheet/SocietyCard';
+import { AgencyCard } from '../character/sheet/AgencyCard';
+import { TribunalCard } from '../character/sheet/TribunalCard';
 
 // Grogs' optional equipment bonuses: the right tool for a task lowers its Ease Factor.
 const EQUIPMENT = { none: 0, minor: 1, major: 3 } as const;
@@ -46,14 +60,89 @@ interface Roll {
 
 let seq = 0;
 
-/** The Game Table's Dice page; on its own (with a heading) when no saga is open. */
+/**
+ * The Game Table's Dice page, in four parts: any roll (for anyone, their wounds, Fatigue and disease
+ * counted), combat and perils, spellcasting and certamen, and society and the Tribunal's customs. Each
+ * part picks its character from the saga's people, the Tribunal's too, and what it rolls goes on their
+ * sheet. On its own (with a heading) when no saga is open, only the first part.
+ */
 export default function DicePage({ standalone }: { standalone?: boolean } = {}) {
-  // the saga last opened: its characters can take part in the rolls below
+  // the saga last opened: its characters take part in the rolls
   const sagaId = useStore((s) => s.activeSagaId);
   const saga = useSaga(sagaId);
   const data = useGameData(saga);
-  const chars = useSagaCharacters(sagaId).filter((c) => !c.wounds.dead && c.creation.finalized);
-  const x = { chars: [...chars.filter((c) => !c.npc), ...chars.filter((c) => c.npc)], data, rules: saga?.houseRules };
+  const all = useSagaCharacters(sagaId);
+  const covs = useSagaCovenants(sagaId);
+  const chars = useMemo(() => all.filter(canPlay), [all]);
+  const groups = useMemo(() => groupPeople(chars, covs), [chars, covs]);
+  const x = { chars: groups.flatMap((g) => g.people), data, rules: saga?.houseRules, groups };
+  const [params, setParams] = useSearchParams();
+  const raw = params.get('sub');
+  const sub: DiceSub = saga && (DICE_SUBS as readonly string[]).includes(raw ?? '') ? (raw as DiceSub) : 'roll';
+  const who = params.get('who') ?? '';
+  const set = (k: 'sub' | 'who', v?: string) =>
+    setParams(
+      (p) => {
+        const n = new URLSearchParams(p);
+        if (v && !(k === 'sub' && v === 'roll')) n.set(k, v);
+        else n.delete(k);
+        return n;
+      },
+      { replace: true },
+    );
+  return (
+    <div className="stack">
+      {standalone && <h1>Dice</h1>}
+      {saga && <Tabs tabs={DICE_SUBS.map((id) => ({ id, label: DICE_LABELS[id] }))} value={sub} onChange={(t) => set('sub', t)} />}
+      {sub === 'roll' && <RollPart x={x} who={who} />}
+      {saga && sub === 'combat' && <CombatPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
+      {saga && sub === 'magic' && <MagicPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
+      {saga && sub === 'society' && <SocietyPart sagaId={saga.id} saga={saga} x={x} who={who} setWho={(id) => set('who', id)} />}
+      {!saga && <p className="small muted">Open a saga first and its characters can take part in these rolls, their wounds going on their sheets.</p>}
+    </div>
+  );
+}
+
+interface X {
+  chars: Character[];
+  data: GameData;
+  rules?: HouseRules;
+  groups: PeopleGroup[];
+}
+
+/** Who acts in a part: one of the saga's people, the players' first, the Tribunal's after. */
+function WhoPicker({ x, value, onChange, keep, label, none }: { x: X; value?: string; onChange: (id: string) => void; keep?: (c: Character) => boolean; label: string; none: string }) {
+  const groups = keep ? x.groups.map((g) => ({ ...g, people: g.people.filter(keep) })).filter((g) => g.people.length) : x.groups;
+  if (!groups.length) return <Empty>{none}</Empty>;
+  return (
+    <Field label={label}>
+      <select value={value ?? ''} onChange={(e) => onChange(e.target.value)}>
+        <PeopleOptions groups={groups} />
+      </select>
+    </Field>
+  );
+}
+
+/** The character a part works on: the one asked for, else the first who fits. */
+const pick = (x: X, who: string, keep: (c: Character) => boolean = () => true) => x.chars.find((c) => c.id === who && keep(c)) ?? x.chars.find(keep);
+
+/** A character's own cards, at the table: their rolls shown, what they cost put on their sheet. */
+function CharAtTable({ sagaId, charId, children }: { sagaId: string; charId: string; children: (ed: CharEditor) => ReactNode }) {
+  const ed = useCharEditor({ sagaId, charId });
+  if (!ed.c || !ed.d) return null;
+  return <AtTable>{children(ed)}</AtTable>;
+}
+
+function CharLink({ sagaId, c, tab }: { sagaId: string; c: Character; tab?: string }) {
+  return (
+    <Link to={R.character(sagaId, c, tab)} className="small">
+      {c.name || 'Their'} sheet ›
+    </Link>
+  );
+}
+
+/** Any roll, for anyone: their Characteristic + Ability, less what wounds, Fatigue and disease take off. */
+function RollPart({ x, who }: { x: X; who: string }) {
   const [label, setLabel] = useState('');
   const [mod, setMod] = useState(0);
   const [botchDice, setBotchDice] = useState(1);
@@ -63,69 +152,66 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
   const target = Math.max(0, ease - EQUIPMENT[equipment]);
   const [log, setLog] = useState<Roll[]>([]);
   const last = log[0];
-  // a character of the saga rolling: their Characteristic + Ability fill in the modifier and the label
-  const [rollerId, setRollerId] = useState('');
+  // a character of the saga rolling: their Characteristic + Ability and penalties make the total
+  const [rollerId, setRollerId] = useState(who && x.chars.some((c) => c.id === who) ? who : '');
   const [rollChar, setRollChar] = useState<Characteristic>('Per');
   const [rollAbility, setRollAbility] = useState('awareness');
-  const rollerOf = (id: string) => {
-    const c = x.chars.find((y) => y.id === id);
-    return c && data ? { c, d: deriveCharacter(c, data, saga?.houseRules ?? DEFAULT_HOUSE_RULES) } : undefined;
-  };
-  const roller = rollerOf(rollerId);
-  const setRoller = (id: string, k: Characteristic, ab: string) => {
-    setRollerId(id);
-    setRollChar(k);
-    setRollAbility(ab);
-    const r = rollerOf(id);
-    if (!r) return;
-    const abName = ab ? r.d.abilities.find((a) => a.abilityId === ab)?.name ?? data?.abilityById.get(ab)?.name ?? ab : '';
-    setMod(r.d.characteristics[k].value + (ab ? abilityTotal(r.d, ab) : 0));
-    setLabel(`${r.c.name || 'They'}: ${CHAR_NAMES[k]}${abName ? ` + ${abName}` : ''}`);
-  };
+  const [withPenalties, setWithPenalties] = useState(true);
+  const [physical, setPhysical] = useState(false);
+  const roller = useMemo(() => {
+    const c = x.chars.find((y) => y.id === rollerId);
+    return c ? { c, d: deriveCharacter(c, x.data, x.rules ?? DEFAULT_HOUSE_RULES) } : undefined;
+  }, [x.chars, x.data, x.rules, rollerId]);
+  const pen = roller ? actionPenalties(roller.d) : undefined;
+  const base = roller ? roller.d.characteristics[rollChar].value + (rollAbility ? abilityTotal(roller.d, rollAbility) : 0) : 0;
+  const penTotal = pen && withPenalties ? pen.total - (physical ? pen.encumbrance : 0) : 0;
+  const total = base + penTotal + mod;
+  const abName = roller && rollAbility ? (roller.d.abilities.find((a) => a.abilityId === rollAbility)?.name ?? x.data.abilityById.get(rollAbility)?.name ?? rollAbility) : '';
+  const autoLabel = roller ? `${roller.c.name || 'They'}: ${CHAR_NAMES[rollChar]}${abName ? ` + ${abName}` : ''}` : '';
+  const breakdown = roller
+    ? [
+        `${CHAR_NAMES[rollChar]} ${signed(roller.d.characteristics[rollChar].value)}`,
+        ...(rollAbility ? [`${abName} ${abilityTotal(roller.d, rollAbility)}`] : []),
+        ...(withPenalties ? pen!.parts.map((p) => `${p.label} ${p.value}`) : []),
+        ...(withPenalties && physical && pen!.encumbrance ? [`Encumbrance −${pen!.encumbrance}`] : []),
+        ...(mod ? [`other ${signed(mod)}`] : []),
+      ].join(', ')
+    : '';
 
   const roll = (kind: 'simple' | 'stress') => {
-    let total: number;
+    let t: number;
     let text: string;
     let botch = false;
     if (kind === 'simple') {
       const r = simpleDie();
-      total = r.value + mod;
+      t = r.value + total;
       text = `${r.value}`;
     } else {
       const r = stressDie(botchDice);
       botch = r.botches > 0;
-      total = r.zero ? mod : r.value + mod;
+      t = r.zero ? total : r.value + total;
       text = describeStress(r);
     }
-    setLog((l) => [{ id: ++seq, label: label || (kind === 'simple' ? 'Simple die' : 'Stress die'), kind, mod, ease: useEase ? target : null, equipment, total, text, botch }, ...l].slice(0, 50));
+    setLog((l) => [{ id: ++seq, label: label || autoLabel || (kind === 'simple' ? 'Simple die' : 'Stress die'), kind, mod: total, ease: useEase ? target : null, equipment, total: t, text, botch }, ...l].slice(0, 50));
   };
-
   const outcome = (r: Roll) => (r.botch ? 'BOTCH' : r.ease === null ? '' : r.total >= r.ease ? 'success' : 'failure');
 
   return (
-    <div className="stack">
-      {standalone && <h1>Dice</h1>}
+    <>
       <div className="grid grid-2">
-        <Card title="Roll" className="accent">
-          <Field label="What is this roll for?">
-            <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="e.g. Per + Awareness, Casting Pilum of Fire" />
-          </Field>
+        <Card title="Roll" className="accent" tour="dice-roll">
           {x.chars.length > 0 && (
-            <div className="row small" style={{ marginTop: 8 }}>
-              <Field label="Who rolls (optional)" hint="Fills in the modifier from their sheet">
-                <select value={rollerId} onChange={(e) => setRoller(e.target.value, rollChar, rollAbility)}>
+            <div className="row small">
+              <Field label="Who rolls (optional)" hint="Their sheet gives the total, and their wounds, Fatigue and disease count">
+                <select value={rollerId} onChange={(e) => setRollerId(e.target.value)}>
                   <option value="">— numbers only —</option>
-                  {x.chars.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.name || 'Unnamed'}
-                    </option>
-                  ))}
+                  <PeopleOptions groups={x.groups} />
                 </select>
               </Field>
               {roller && (
                 <>
                   <Field label="Characteristic">
-                    <select value={rollChar} onChange={(e) => setRoller(rollerId, e.target.value as Characteristic, rollAbility)}>
+                    <select value={rollChar} onChange={(e) => setRollChar(e.target.value as Characteristic)}>
                       {CHARACTERISTICS.map((k) => (
                         <option key={k} value={k}>
                           {CHAR_NAMES[k]} ({signed(roller.d.characteristics[k].value)})
@@ -134,21 +220,44 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
                     </select>
                   </Field>
                   <Field label="Ability">
-                    <select value={rollAbility} onChange={(e) => setRoller(rollerId, rollChar, e.target.value)}>
+                    <select value={rollAbility} onChange={(e) => setRollAbility(e.target.value)}>
                       <option value="">— none —</option>
                       {[...new Map(roller.d.abilities.map((a) => [a.abilityId, a])).values()].map((a) => (
                         <option key={a.abilityId} value={a.abilityId}>
                           {a.name} ({abilityTotal(roller.d, a.abilityId)})
                         </option>
                       ))}
+                      {rollAbility && !roller.d.abilities.some((a) => a.abilityId === rollAbility) && <option value={rollAbility}>{abName} (0)</option>}
                     </select>
                   </Field>
                 </>
               )}
             </div>
           )}
+          {roller && pen && (
+            <div className="small" style={{ marginTop: 4 }}>
+              {pen.cannot && <div className="bad-text">{roller.c.name || 'They'}: {pen.cannot}.</div>}
+              {pen.parts.length > 0 || pen.encumbrance > 0 ? (
+                <div className="row tight">
+                  <label className="inline">
+                    <input type="checkbox" checked={withPenalties} onChange={(e) => setWithPenalties(e.target.checked)} /> their penalties ({penaltyText(pen) || 'none'})
+                  </label>
+                  {pen.encumbrance > 0 && (
+                    <label className="inline" title="Encumbrance counts against physical tasks: climbing, swimming, sneaking, running (Initiative already has it)">
+                      <input type="checkbox" checked={physical} onChange={(e) => setPhysical(e.target.checked)} /> a physical task (Encumbrance −{pen.encumbrance})
+                    </label>
+                  )}
+                </div>
+              ) : (
+                <div className="muted">No wound, Fatigue or disease penalty.</div>
+              )}
+            </div>
+          )}
+          <Field label="What is this roll for?">
+            <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder={autoLabel || 'e.g. Per + Awareness, Casting Pilum of Fire'} />
+          </Field>
           <div className="row" style={{ marginTop: 8 }}>
-            <Field label="Modifier (Characteristic + Ability …)">
+            <Field label={roller ? 'Other modifiers' : 'Modifier (Characteristic + Ability …)'}>
               <Stepper value={mod} width={46} onChange={setMod} />
             </Field>
             <Field label="Botch dice">
@@ -168,6 +277,7 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
             </Field>
             {useEase && equipment !== 'none' && <span className="small muted">Ease Factor {ease} → {target}</span>}
           </div>
+          {roller && <div className="small" style={{ marginTop: 6 }}>Total {signed(total)}: {breakdown || 'nothing to add'}.</div>}
           <div className="row" style={{ marginTop: 10 }}>
             <button className="primary big" onClick={() => roll('stress')}>
               Stress die
@@ -177,12 +287,12 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
             </button>
             {useEase && (
               <span className="small muted">
-                {signed(mod)} against {target}: stress die {pct(stressChance(mod, target, botchDice).chance)} ({pct(stressChance(mod, target, botchDice).botch)} to botch), simple die {pct(simpleChance(mod, target))}
+                {signed(total)} against {target}: stress die {pct(stressChance(total, target, botchDice).chance)} ({pct(stressChance(total, target, botchDice).botch)} to botch), simple die {pct(simpleChance(total, target))}
               </span>
             )}
           </div>
           {last && (
-            <div className={`dice-result ${last.botch ? 'bad' : outcome(last) === 'success' ? 'good' : outcome(last) === 'failure' ? 'warn' : ''}`}>
+            <div className={`dice-result ${last.botch ? 'bad' : outcome(last) === 'success' ? 'good' : outcome(last) === 'failure' ? 'warn' : ''}`} aria-live="polite">
               <div className="dice-total">{last.botch ? 'BOTCH' : last.total}</div>
               <div className="small">
                 {last.label}: {last.text} {signed(last.mod)}
@@ -192,7 +302,7 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
           )}
           <p className="small muted">
             Stress die: a 1 means roll again and double (repeatedly); a 0 counts as zero and you roll the botch dice — any 0 on them is a botch. Simple die: 1–10, a 0 counts as 10 (DE
-            p.7).
+            p.7). Wound, Fatigue and disease penalties count against every roll and total but Soak (DE, Fatigue and Wounds).
           </p>
         </Card>
         <Card title="History" actions={<button className="small ghost" onClick={() => setLog([])}>Clear</button>}>
@@ -208,14 +318,9 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
           ))}
         </Card>
       </div>
-      <div className="grid grid-2">
-        <OpposedCard x={x} />
-        <BlowCard x={x} />
-      </div>
-      <PerilsCard x={x} />
-      {!saga && <p className="small muted">Open a saga first and its characters can take part in these rolls, their wounds going on their sheets.</p>}
+      <OpposedCard x={x} />
 
-      <Card title="Equipment bonuses">
+      <Card title="Equipment bonuses" fold="dice-equipment" summary="The right tool lowers a task's Ease Factor: −1 for a minor bonus, −3 for a major one.">
         <RulesNote book="Grogs" line={1722} endLine={1731}>
           Equipment that suits the task lowers its Ease Factor: by 1 for a minor bonus, by 3 for a major one. Some examples:
         </RulesNote>
@@ -231,7 +336,7 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
           </tbody>
         </table>
       </Card>
-      <Card title="Ease Factors (DE)">
+      <Card title="Ease Factors (DE)" fold="dice-ease" summary="Trivial 0, Simple 3, Easy 6, Average 9, Hard 12, Very Hard 15 and up.">
         <table className="compact">
           <tbody>
             {[
@@ -253,7 +358,95 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
           </tbody>
         </table>
       </Card>
-    </div>
+    </>
+  );
+}
+
+/** A fight: one character's combat rolls and their group, a blow from Attack to wound, and the perils. */
+function CombatPart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: string; setWho: (id: string) => void }) {
+  const c = pick(x, who);
+  return (
+    <>
+      <div className="row">
+        <WhoPicker x={x} value={c?.id} onChange={setWho} label="Who fights" none="Nobody in this saga can fight yet." />
+        {c && <CharLink sagaId={sagaId} c={c} tab="combat" />}
+      </div>
+      {c && (
+        <CharAtTable key={c.id} sagaId={sagaId} charId={c.id}>
+          {(ed) => (
+            <>
+              <CombatRolls ed={ed} />
+              <GroupCombat ed={ed} />
+            </>
+          )}
+        </CharAtTable>
+      )}
+      <BlowCard x={x} />
+      <PerilsCard x={x} />
+    </>
+  );
+}
+
+const casts = (c: Character) => c.type === 'magus' || !!c.spells.length || !!c.arts;
+
+/** Magic at the table: a caster's spells and spontaneous magic, certamen, Wizard's Twilight, a heartbeast's change, a familiar's help. */
+function MagicPart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: string; setWho: (id: string) => void }) {
+  const c = pick(x, who, casts);
+  return (
+    <>
+      <div className="row">
+        <WhoPicker x={x} value={c?.id} onChange={setWho} keep={casts} label="Who casts" none="Nobody in this saga casts spells." />
+        {c && <CharLink sagaId={sagaId} c={c} tab="magic" />}
+      </div>
+      {c && (
+        <CharAtTable key={c.id} sagaId={sagaId} charId={c.id}>
+          {(ed) => (
+            <>
+              <MagicTab ed={ed} />
+              <TwilightCard ed={ed} />
+              <HeartbeastChange ed={ed} />
+              {ed.c?.familiar && ed.c.familiar.silver > 0 && (
+                <Card title={`${ed.c.familiar.name || 'The familiar'} (the silver cord)`}>
+                  <SilverRescue silver={ed.c.familiar.silver} name={ed.c.familiar.name || 'The familiar'} />
+                </Card>
+              )}
+            </>
+          )}
+        </CharAtTable>
+      )}
+    </>
+  );
+}
+
+const social = (c: Character) => c.type !== 'grog';
+
+/** Society at the table: debates, petitions, a court, etiquette, agents, and the Tribunal's customs. */
+function SocietyPart({ sagaId, saga, x, who, setWho }: { sagaId: string; saga: Saga; x: X; who: string; setWho: (id: string) => void }) {
+  const c = pick(x, who, social);
+  const any = ['debate', 'petitions', 'courts', 'etiquette', 'agents'].some((id) => optionOn(saga, id)) || !!saga.tribunal;
+  return (
+    <>
+      <div className="row">
+        <WhoPicker x={x} value={c?.id} onChange={setWho} keep={social} label="Who" none="Nobody in this saga but grogs." />
+        {c && <CharLink sagaId={sagaId} c={c} tab="overview" />}
+      </div>
+      {!any && (
+        <p className="small muted">
+          None of the society rules is on in this saga: debates, petitions, courts, etiquette and agents are optional rules (<Link to={R.saga(sagaId, 'optional')}>Saga Overview › Optional rules</Link>).
+        </p>
+      )}
+      {c && (
+        <CharAtTable key={c.id} sagaId={sagaId} charId={c.id}>
+          {(ed) => (
+            <>
+              <SocietyCard ed={ed} />
+              <AgencyCard ed={ed} />
+              <TribunalCard ed={ed} />
+            </>
+          )}
+        </CharAtTable>
+      )}
+    </>
   );
 }
 

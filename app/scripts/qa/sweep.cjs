@@ -81,6 +81,10 @@ async function sweep(width) {
   for (const t of ['saga', 'books', 'optional', 'rules', 'custom', 'mechanics', 'journal']) await visit(`saga ${t}`, `${s}?tab=${t}`);
   for (const t of ['', '?tab=covenant', '?tab=creatures']) await visit(`build${t}`, `${s}/build${t}`);
   for (const t of ['overview', 'seasons', 'dice', 'market', 'guild']) await visit(`table ${t}`, `${s}/table?tab=${t}`);
+  for (const t of ['combat', 'magic', 'society']) await visit(`dice ${t}`, `${s}/table?tab=dice&sub=${t}`);
+  // each character's own turn at the table: their combat, casting, society and season
+  for (const c of bundle.characters.filter((x) => x.creation?.finalized).slice(0, 12))
+    for (const t of ['dice&sub=combat', 'dice&sub=magic', 'dice&sub=society', 'seasons']) await visit(`table ${t} ${c.name}`, `${s}/table?tab=${t}&who=${c.id}`);
   await visit('people', `${s}/people`);
   await visit('covenants', `${s}/covenants`);
   // the old pages lead to where they are now

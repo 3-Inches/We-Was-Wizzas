@@ -8,7 +8,7 @@ import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, TOURS, nextTour, tourNeeds } from '.
 import { ACTIONS, makePractice } from './actions';
 import { newCovenant } from '../../engine/covenant';
 import { useStore } from '../../store/store';
-import { SAGA_TABS, TABLE_TABS } from '../routes';
+import { SAGA_TABS, TABLE_TABS, DICE_SUBS } from '../routes';
 
 const sources = Object.values(import.meta.glob('../**/*.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>).join('\n');
 
@@ -16,7 +16,7 @@ const sources = Object.values(import.meta.glob('../**/*.tsx', { query: '?raw', i
 function marked(name: string): boolean {
   if (sources.includes(`data-tour="${name}"`) || sources.includes(`tour="${name}"`)) return true;
   const [, kind, id] = name.match(/^(tab|step|create)-(.+)$/) ?? [];
-  if (kind === 'tab') return sources.includes(`id: '${id}'`) || sources.includes(`id: '${id}' as`) || (TABLE_TABS as readonly string[]).includes(id) || (SAGA_TABS as readonly string[]).includes(id);
+  if (kind === 'tab') return sources.includes(`id: '${id}'`) || sources.includes(`id: '${id}' as`) || (TABLE_TABS as readonly string[]).includes(id) || (SAGA_TABS as readonly string[]).includes(id) || (DICE_SUBS as readonly string[]).includes(id);
   if (kind === 'step') return STEPS.some((s) => s.id === id);
   if (kind === 'create') return ['magus', 'companion', 'mythic', 'grog'].includes(id);
   return false;

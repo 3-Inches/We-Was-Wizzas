@@ -1,6 +1,7 @@
 // A character's agency (Houses of Hermes: Societates, Appendix: Agencies): agents, their Bond and
 // Resistance, recruiting with agency experience, gifts, and asking one to do something.
 
+import { RollAtTable, useAtTable } from '../../play';
 import { useState } from 'react';
 import { AGENCY_POINTS, AGENCY_VIRTUES, AGENT_RISKS, AGENT_TASKS, AGENT_TIMEFRAMES, RESISTANCE_MODIFIERS, STATUS_RESISTANCE, addAgencyXp, agencyCost, giftToAgent, impressRoll, maxAgents, persuasionRoll } from '../../../engine/agency';
 import type { Agent } from '../../../engine/types';
@@ -19,6 +20,8 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
   const [risk, setRisk] = useState(0);
   const [xp, setXp] = useState(3);
   const [pounds, setPounds] = useState(1);
+  // the sheet keeps the agents, their Bonds and gifts; impressing one and asking them for something are rolled at the Game Table
+  const atTable = useAtTable();
   if (!c || !d) return null;
   if (!optionOn(saga, 'agents') && !(c.agents ?? []).length) return null;
   const agents = c.agents ?? [];
@@ -59,9 +62,11 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
               <span className="row tight small">
                 <span className="badge warn">recruiting</span> Resistance
                 <Stepper value={a.resistance} min={1} max={30} width={32} onChange={(v) => set(a.uid, (x) => void (x.resistance = v))} />
-                <button className="small" title="Presence + Leadership − the Gift + stress die against 6, before recruiting can begin" onClick={() => note(`${a.name || 'Would-be agent'}: impressing them: ${impressRoll(d).text}`)}>
-                  Impress
-                </button>
+                {atTable && (
+                  <button className="small" title="Presence + Leadership − the Gift + stress die against 6, before recruiting can begin" onClick={() => note(`${a.name || 'Would-be agent'}: impressing them: ${impressRoll(d).text}`)}>
+                    Impress
+                  </button>
+                )}
               </span>
             ) : a.bond < 0 ? (
               <span className="badge bad" title="A Bond below zero: they no longer work for this character">
@@ -74,7 +79,7 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
                 <Stepper value={a.bond} min={-3} max={6} width={32} onChange={(v) => set(a.uid, (x) => void (x.bond = v))} />
               </span>
             )}
-            <button
+            {atTable && <button
               className="small primary"
               disabled={a.resistance > 0 || a.bond < 1}
               title={a.bond < 1 && a.resistance <= 0 ? 'A Bond of at least +1 is needed to ask anything' : undefined}
@@ -87,7 +92,7 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
               }}
             >
               Ask
-            </button>
+            </button>}
             <button className="small" onClick={() => { let t = ''; set(a.uid, (x) => void (t = addAgencyXp(x, xp))); note(t); }} title="Agency experience from a story spent on this agent">
               +{xp} agency xp
             </button>
@@ -159,6 +164,7 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
       </details>
       {recruited.length > 0 && (
         <div className="row" style={{ marginTop: 8 }}>
+          {atTable && (<>
           <Field label="Ask for">
             <select value={task} onChange={(e) => setTask(Number(e.target.value))}>
               {AGENT_TASKS.map((t, i) => (
@@ -186,6 +192,7 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
               ))}
             </select>
           </Field>
+          </>)}
           <Field label="Agency xp to give">
             <Stepper value={xp} min={1} max={30} width={36} onChange={setXp} />
           </Field>
@@ -199,6 +206,7 @@ export function AgencyCard({ ed }: { ed: CharEditor }) {
           {l}
         </div>
       ))}
+      {recruited.length + agents.filter((a) => a.resistance > 0).length > 0 && <RollAtTable sagaId={c.sagaId} who={c.id} where="society" what="Impressing a would-be agent, and asking an agent for something, are rolled" />}
     </Card>
   );
 }

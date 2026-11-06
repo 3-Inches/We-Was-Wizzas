@@ -198,7 +198,9 @@ export default function HelpPage() {
           <b>Quick build</b> (under Tools) makes whole characters, fills out the covenant&apos;s people and rolls creatures from the bestiaries.
         </Step>
         <Step n={5} title="Play">
-          Finish creation to switch to the in-play sheet: casting, labs, seasons, wounds and aging. Click any underlined number to see how it was worked out.
+          Finish creation and the sheet keeps the score: wounds, Fatigue, the season log, aging, Warping. Play happens at the <b>Game Table</b>: the rolls on its Dice page (any
+          roll, combat, spellcasting, society), recovery on its Overview, a season planned in full on its Seasons page; what they change lands on the sheets. Click any underlined
+          number to see how it was worked out.
         </Step>
         <p className="small muted" style={{ marginBottom: 0 }}>
           Nothing is sent to a server. Your data lives in this browser. Use <b>Export</b> on a saga, character or covenant to keep a copy or move it to another device, and{' '}
@@ -340,9 +342,10 @@ export default function HelpPage() {
         <ul className="small">
           <li>
             <b>The Game Table</b> (in the saga&apos;s menu, under the Saga Overview) is the place to run a session from. Its pages: <b>Overview</b> (what needs attention: money,
-            Loyalty, wounds, a strike, rules problems, idle characters; the covenants at a glance; quick changes such as a Loyalty event, the treasury or vis found; experience
-            and Labor Points after a story; and a list of what comes up in play with a link to where it is done), <b>Seasons</b> (what everyone does this season, changed in
-            place, and <b>End the season</b>), <b>Dice</b>, <b>Market &amp; Treasury</b> and <b>City &amp; Guild</b>. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
+            Loyalty, wounds, a strike, rules problems, idle characters; <b>Health &amp; recovery</b> for everyone; the covenants at a glance; quick changes such as a Loyalty event,
+            the treasury or vis found; experience and Labor Points after a story, for however many took part; and a list of what comes up in play with a link to where it is
+            done), <b>Seasons</b> (what everyone does this season, changed in place, one character&apos;s season in full, and <b>End the season</b>), <b>Dice</b> (Roll, Combat
+            &amp; perils, Spellcasting, Society &amp; the Tribunal), <b>Market &amp; Treasury</b> and <b>City &amp; Guild</b>. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
             dates), and <b>Stories waiting</b> lists the characters&apos; Story and Personality Flaws and the covenant&apos;s Hooks, the longest untold first, so the toolkit keeps
             the mechanics and the table can play the story. When unsure what to do next, go back to it.
           </li>
@@ -351,19 +354,25 @@ export default function HelpPage() {
             What they bring to your covenant shows on the Game Table&apos;s Overview. See <Jump to="tribunal">The Tribunal</Jump> below.
           </li>
           <li>
-            <b>Magic:</b> every Casting Score and Lab Total for the current aura, Magic Resistance per Form, Penetration with Arcane Connections, spell casting with the right die,
-            botch dice, fatigue and ritual costs, spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, raw vis,
-            days away from the lab, any other modifier) and it is added to the totals. A botch adds its Warping Points. Casting Virtues and Flaws (Diedne Magic, Weak
-            Spontaneous Magic, Vulnerable Casting…) are applied when you cast; the card lists which, and reminds you of the ones you apply yourself.
+            <b>Magic:</b> the sheet&apos;s Magic tab keeps every Casting Score and Lab Total for the current aura, Magic Resistance per Form and Penetration with Arcane
+            Connections. Spells are cast at the Game Table&apos;s <b>Dice › Spellcasting</b>: pick the caster, then a spell with the right die, botch dice, fatigue and ritual
+            costs, or spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, raw vis, days away from the lab, any
+            other modifier) and it is added to the totals. A botch adds its Warping Points, and Wizard&apos;s Twilight is checked on the same page. Casting Virtues and Flaws
+            (Diedne Magic, Weak Spontaneous Magic, Vulnerable Casting…) are applied when you cast; the card lists which. Certamen is fought there too, against anyone of the
+            saga or the Tribunal, their Fatigue going on their sheet.
           </li>
           <li>
-            <b>Combat &amp; Health:</b> apply damage against Soak to get the wound, track Fatigue, roll recovery (the covenant&apos;s aura adds to it if it heals, and takes from it
-            if it is Infernal). Tick mounted, exertion or scuffling for a round. <b>Fighting as a group</b> picks the saga&apos;s grogs to fight beside this character and works out
-            the group&apos;s totals and how its blows are spread.
+            <b>Combat &amp; Health:</b> the sheet keeps the wounds (apply damage against Soak to get one), Fatigue, illness and the combat totals for each weapon. At the Game
+            Table, <b>Dice › Combat &amp; perils</b> rolls a character&apos;s Initiative, Attack and Defense (mounted, exerted or scuffling), <b>Fighting as a group</b> beside
+            their own side, a blow from Attack to wound, and the perils. <b>Health &amp; recovery</b> on the Overview lists everyone wounded, tired or ill, the soonest recovery
+            first, with their penalty and how near Unconscious or death they are; choose who tends them (as many patients as their Chirurgy, five times that if they give the
+            season to it, Art &amp; Academe), add magical aid, and pass time to the next recovery or by a set span: every roll is made, a stable wound keeps its +3, the aura and
+            the lab&apos;s Health count, and the sheets change.
           </li>
           <li>
-            <b>Seasons &amp; Aging:</b> plan a season (books, teachers, training, practice, vis, adventure) and log it; experience is added with Affinities, gain limits and Virtues.
-            Roll aging, crises and Wizard&apos;s Twilight. Choose a teacher from the saga and the subjects are what they can teach this character (2 in an Ability or 5 in an Art,
+            <b>Seasons:</b> on the Game Table&apos;s Seasons page, <b>Plan in full</b> opens one character&apos;s season (books, teachers, training, practice, vis, adventure, a lab
+            project, writing, an Initiation) and logs it on their sheet, whose Seasons &amp; Aging tab keeps the log; experience is added with Affinities, gain limits and Virtues.
+            Aging out of turn and crises are rolled there; Wizard&apos;s Twilight with Spellcasting. Choose a teacher from the saga and the subjects are what they can teach this character (2 in an Ability or 5 in an Art,
             more than the student, a language in common, Arts only to a magus, an Ability the student may learn); logging the lesson logs the teacher&apos;s season too (Exposure
             in Teaching). <b>Writing and copying</b> begins a summa, tractatus,
             commentary, copy, lab texts or florilegium and works it a season at a time (or in free seasons), with the covenant&apos;s scribe, binder and illuminator and resonant
@@ -437,8 +446,10 @@ export default function HelpPage() {
             Characteristics of every member, teacher, specialist and craftsman at once, or grants a Virtue, and pays for it in vis, Might or Confidence.
           </li>
           <li>
-            The Game Table&apos;s <b>Dice</b> page rolls simple, stress and botch dice for anyone at the table; an opposed roll between two characters of the saga; a blow in
-            combat from Attack to wound, put on the defender&apos;s sheet; and the perils of falls, fire, poison, disease and going without.
+            The Game Table&apos;s <b>Dice</b> page rolls simple, stress and botch dice for anyone at the table, the Tribunal&apos;s people too, with their wounds, Fatigue and
+            disease taken off (and Encumbrance for a physical task); an opposed roll between two of them, penalties counted; a blow in combat from Attack to wound, put on the
+            defender&apos;s sheet; the perils of falls, fire, poison, disease and going without; and, under <b>Society &amp; the Tribunal</b>, debates, petitions, a court,
+            etiquette, agents and the Tribunal&apos;s customs.
           </li>
         </ul>
       </Card>
