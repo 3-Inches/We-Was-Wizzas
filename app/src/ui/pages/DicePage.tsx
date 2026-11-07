@@ -11,6 +11,7 @@ import { useStore } from '../../store/store';
 import { useGameData, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { BlowCard, OpposedCard, PerilsCard } from './TableRolls';
 import { AfterRoll, type AfterRollChange } from '../AfterRoll';
+import { MythicToggle, mythicBonus } from '../MythicToggle';
 import { AtTable, DICE_LABELS, PeopleOptions, canPlay, castsSpells, groupPeople, type PeopleGroup } from '../play';
 import { DICE_SUBS, R, type DiceSub } from '../routes';
 import { useCharEditor, type CharEditor } from '../character/useChar';
@@ -158,22 +159,35 @@ function RollPart({ x, who }: { x: X; who: string }) {
   const [rollAbility, setRollAbility] = useState('awareness');
   const [withPenalties, setWithPenalties] = useState(true);
   const [physical, setPhysical] = useState(false);
+  // Mythic (Characteristic): its specialty applies to this roll
+  const [mythic, setMythic] = useState<string[]>([]);
+  // a Personality Trait rolled in place of Characteristic + Ability, and a familiar's silver cord (DE, The Three Cords)
+  const [trait, setTrait] = useState('');
+  const [silver, setSilver] = useState(false);
   const roller = useMemo(() => {
     const c = x.chars.find((y) => y.id === rollerId);
     return c ? { c, d: deriveCharacter(c, x.data, x.rules ?? DEFAULT_HOUSE_RULES) } : undefined;
   }, [x.chars, x.data, x.rules, rollerId]);
   const pen = roller ? actionPenalties(roller.d) : undefined;
-  const base = roller ? roller.d.characteristics[rollChar].value + (rollAbility ? abilityTotal(roller.d, rollAbility) : 0) : 0;
+  const traitOf = roller && trait ? roller.c.personality.find((t) => t.trait === trait) : undefined;
+  // the cord is the bond's, a bonus for the magus and the familiar both
+  const bond = roller ? (roller.c.familiar ?? x.chars.find((m) => m.id === roller.c.creature?.familiarOf)?.familiar) : undefined;
+  const cord = silver ? (bond?.silver ?? 0) : 0;
+  const base = roller ? (traitOf ? traitOf.score : roller.d.characteristics[rollChar].value + (rollAbility ? abilityTotal(roller.d, rollAbility) : 0)) + cord : 0;
   const penTotal = pen && withPenalties ? pen.total - (physical ? pen.encumbrance : 0) : 0;
-  const total = base + penTotal + mod;
+  const myth = roller && !traitOf ? mythicBonus(roller.d, mythic, rollChar) : 0;
+  const total = base + penTotal + mod + myth;
+  const dice = Math.max(0, botchDice - myth);
   const abName = roller && rollAbility ? (roller.d.abilities.find((a) => a.abilityId === rollAbility)?.name ?? x.data.abilityById.get(rollAbility)?.name ?? rollAbility) : '';
-  const autoLabel = roller ? `${roller.c.name || 'They'}: ${CHAR_NAMES[rollChar]}${abName ? ` + ${abName}` : ''}` : '';
+  const autoLabel = roller ? `${roller.c.name || 'They'}: ${traitOf ? `${traitOf.trait} (Personality)` : `${CHAR_NAMES[rollChar]}${abName ? ` + ${abName}` : ''}`}` : '';
   const breakdown = roller
     ? [
-        `${CHAR_NAMES[rollChar]} ${signed(roller.d.characteristics[rollChar].value)}`,
-        ...(rollAbility ? [`${abName} ${abilityTotal(roller.d, rollAbility)}`] : []),
+        ...(traitOf ? [`${traitOf.trait} ${signed(traitOf.score)}`] : [`${CHAR_NAMES[rollChar]} ${signed(roller.d.characteristics[rollChar].value)}`]),
+        ...(rollAbility && !traitOf ? [`${abName} ${abilityTotal(roller.d, rollAbility)}`] : []),
+        ...(cord ? [`Familiar's silver cord +${cord}`] : []),
         ...(withPenalties ? pen!.parts.map((p) => `${p.label} ${p.value}`) : []),
         ...(withPenalties && physical && pen!.encumbrance ? [`Encumbrance −${pen!.encumbrance}`] : []),
+        ...(myth ? [`Mythic ${CHAR_NAMES[rollChar]} +1`] : []),
         ...(mod ? [`other ${signed(mod)}`] : []),
       ].join(', ')
     : '';
@@ -188,7 +202,7 @@ function RollPart({ x, who }: { x: X; who: string }) {
       t = r.value + total;
       text = `${r.value}`;
     } else {
-      const r = stressDie(botchDice);
+      const r = stressDie(dice);
       botch = r.botches > 0;
       if (botch) faces = r.botchFaces;
       t = r.zero ? total : r.value + total;
@@ -209,7 +223,7 @@ function RollPart({ x, who }: { x: X; who: string }) {
           {x.chars.length > 0 && (
             <div className="row small">
               <Field label="Who rolls (optional)" hint="Their sheet gives the total, and their wounds, Fatigue and disease count">
-                <select value={rollerId} onChange={(e) => setRollerId(e.target.value)}>
+                <select value={rollerId} onChange={(e) => (setRollerId(e.target.value), setTrait(''), setSilver(false))}>
                   <option value="">— numbers only —</option>
                   <PeopleOptions groups={x.groups} />
                 </select>
@@ -225,8 +239,20 @@ function RollPart({ x, who }: { x: X; who: string }) {
                       ))}
                     </select>
                   </Field>
+                  {roller.c.personality.some((t) => t.trait) && (
+                    <Field label="Or a Personality Trait" hint="Rolled alone, in place of Characteristic + Ability">
+                      <select value={trait} onChange={(e) => setTrait(e.target.value)} data-tour="dice-trait">
+                        <option value="">— none —</option>
+                        {roller.c.personality.filter((t) => t.trait).map((t) => (
+                          <option key={t.trait} value={t.trait}>
+                            {t.trait} ({signed(t.score)})
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                  )}
                   <Field label="Ability">
-                    <select value={rollAbility} onChange={(e) => setRollAbility(e.target.value)}>
+                    <select value={rollAbility} disabled={!!traitOf} onChange={(e) => setRollAbility(e.target.value)}>
                       <option value="">— none —</option>
                       {[...new Map(roller.d.abilities.map((a) => [a.abilityId, a])).values()].map((a) => (
                         <option key={a.abilityId} value={a.abilityId}>
@@ -283,7 +309,13 @@ function RollPart({ x, who }: { x: X; who: string }) {
             </Field>
             {useEase && equipment !== 'none' && <span className="small muted">Ease Factor {ease} → {target}</span>}
           </div>
-          {roller && <div className="small" style={{ marginTop: 6 }}>Total {signed(total)}: {breakdown || 'nothing to add'}.</div>}
+          {roller && !traitOf && <MythicToggle d={roller.d} chars={[rollChar]} on={mythic} onChange={setMythic} />}
+          {roller && (bond?.silver ?? 0) > 0 && (
+            <label className="inline small" style={{ marginTop: 6 }} data-tour="silver-cord">
+              <input type="checkbox" checked={silver} onChange={(e) => setSilver(e.target.checked)} /> The familiar bond&rsquo;s silver cord +{bond!.silver}: a Personality roll, or resisting mental influence
+            </label>
+          )}
+          {roller && <div className="small" style={{ marginTop: 6 }}>Total {signed(total)}: {breakdown || 'nothing to add'}.{myth && botchDice ? ` ${dice} botch ${dice === 1 ? 'die' : 'dice'} (one fewer).` : ''}</div>}
           <div className="row" style={{ marginTop: 10 }}>
             <button className="primary big" onClick={() => roll('stress')}>
               Stress die
@@ -293,7 +325,7 @@ function RollPart({ x, who }: { x: X; who: string }) {
             </button>
             {useEase && (
               <span className="small muted">
-                {signed(total)} against {target}: stress die {pct(stressChance(total, target, botchDice).chance)} ({pct(stressChance(total, target, botchDice).botch)} to botch), simple die {pct(simpleChance(total, target))}
+                {signed(total)} against {target}: stress die {pct(stressChance(total, target, dice).chance)} ({pct(stressChance(total, target, dice).botch)} to botch), simple die {pct(simpleChance(total, target))}
               </span>
             )}
           </div>

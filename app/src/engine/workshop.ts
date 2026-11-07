@@ -14,6 +14,9 @@ export type Wealth = 'poor' | 'average' | 'wealthy';
 export const WEALTH_MULT: Record<Wealth, number> = { poor: 2, average: 3, wealthy: 6 };
 /** Labor Points a year to keep a business at its level, plus 5 a point of Raw Materials */
 export const UPKEEP = 36;
+
+/** A trade a livelihood is earned by: a Craft or a Profession, not Crafter's Healing or Craft Amulets (supernatural Abilities). */
+export const isTrade = (abilityId: string): boolean => abilityId === 'craft-type' || abilityId.startsWith('profession');
 /** total Labor Points for Innovation and Raw Materials +1/+2/+3 */
 export const INNOVATION_COST = [0, 100, 300, 600];
 export const RAW_MATERIALS_COST = [0, 50, 150, 300];
@@ -176,7 +179,7 @@ export interface WorkshopFigures {
 export function workshopFigures(c: Character, d: DerivedCharacter, situation = 0, traits: { label: string; value: number }[] = []): WorkshopFigures | null {
   const w = c.workshop;
   if (!w) return null;
-  const trades = d.abilities.filter((a) => a.abilityId.startsWith('craft') || a.abilityId.startsWith('profession'));
+  const trades = d.abilities.filter((a) => isTrade(a.abilityId));
   const trade = d.abilityByUid.get(w.abilityUid ?? '') ?? trades[0];
   // the score they work at: the Craft (Puissant in it already) with what their Flaws always take
   // from it, Palsied Hands −2, Clumsy or Arthritis −3 (craftTraits.ts)

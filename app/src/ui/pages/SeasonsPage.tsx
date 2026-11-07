@@ -26,6 +26,7 @@ import { OriginalResearch } from '../character/sheet/OriginalResearch';
 import { ApprenticeCard } from '../character/sheet/ApprenticeCard';
 import { WorkshopCard } from '../character/sheet/WorkshopCard';
 import { SpellMasteryCard } from '../character/sheet/SpellMastery';
+import { InsightCard } from '../character/sheet/InsightCard';
 import { ComingsCard } from '../covenant/CovenfolkCards';
 import { R } from '../routes';
 import { owedInOrder, seasonForecast } from '../../engine/seasonPlan';
@@ -314,6 +315,7 @@ function SeasonFor({ sagaId, charId }: { sagaId: string; charId: string }) {
     <AtTable>
       <AdvancementTab ed={ed} />
       <SpellMasteryCard ed={ed} />
+      <InsightCard ed={ed} />
       {ed.d.isMagus && <LabProjects ed={ed} />}
       {ed.d.isMagus && <OriginalResearch ed={ed} magicTheory={mt} />}
       <LongevityCard ed={ed} />

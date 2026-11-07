@@ -56,7 +56,7 @@ export function ailmentsOf(c: Character): Ailment[] {
   const out: Ailment[] = [];
   const st = c.fatigueLost;
   const lt = c.longTermFatigueLost;
-  if (st > 0) out.push({ kind: 'fatigue', label: `Fatigue (${st} level${st > 1 ? 's' : ''})`, next: Math.max(0, fatigueStep(st + lt) - (r.fatigue ?? 0)) });
+  if (st > 0) out.push({ kind: 'fatigue', label: `Fatigue (${st} level${st > 1 ? 's' : ''})`, next: Math.max(0, fatigueStep(Math.min(5, st + lt + (c.hungerLost ?? 0))) - (r.fatigue ?? 0)) });
   else if (lt > 0) out.push({ kind: 'rest', label: `Long-Term Fatigue (${lt} level${lt > 1 ? 's' : ''}): a night’s rest each`, next: Math.max(0, DAY - (r.fatigue ?? 0)) });
   if (c.wounds.incapacitating > 0) out.push({ kind: 'incapacitating', label: `Incapacitated${c.wounds.incapacitating > 1 ? ` (${c.wounds.incapacitating} wounds)` : ''}: rolls at sunrise and sunset`, next: Math.max(0, INTERVAL.incapacitating - (r.since?.incapacitating ?? 0)) });
   for (const k of WOUND_LEVELS) {
@@ -268,7 +268,7 @@ export function medicCapacity(score: number, wholeSeason: boolean): number {
 
 /** How near the edge a character is: Fatigue levels before Unconscious, and what an Incapacitating Wound means. */
 export function condition(c: Character, d: DerivedCharacter): { fatigue: string; penalty: number; danger?: string } {
-  const lost = Math.min(5, c.fatigueLost + c.longTermFatigueLost);
+  const lost = Math.min(5, c.fatigueLost + c.longTermFatigueLost + (c.hungerLost ?? 0));
   const level = d.fatigueLevels[lost];
   const toOut = 5 - lost;
   const fatigue = lost >= 5 ? 'Unconscious' : `${level?.name ?? 'Fresh'}${toOut <= 2 ? `, ${toOut} level${toOut > 1 ? 's' : ''} from Unconscious` : ''}`;

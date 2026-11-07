@@ -14,7 +14,7 @@ import { conditionalBonuses } from '../../../engine/magic';
 import { applySeason, computeStudy, newSeasonEntry } from '../../../engine/longterm';
 import { LAB_ROUTINES, ROUTINE_IDS, toggleRoutine } from '../../../engine/labRoutines';
 import { optionOn } from '../../../engine/optional';
-import { LAB_IMPROVEMENTS, PROJECT_KINDS, alongsideCandidates, canExperiment, inventedWith, itemOf, newProject, pawnsUsed, planProject, projectBotchDice, seasonVisLimit, visShort, workProject } from '../../../engine/projects';
+import { LAB_IMPROVEMENTS, PROJECT_KINDS, alongsideCandidates, shapeMaterialChoices, canExperiment, inventedWith, itemOf, newProject, pawnsUsed, planProject, projectBotchDice, seasonVisLimit, visShort, workProject } from '../../../engine/projects';
 import { extraFree, inPlay, seasonBusy, seasonTaken } from '../../../engine/time';
 import { type Character, type HouseRules, type LabProject, type LabVirtueEntry, type Season } from '../../../engine/types';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from '../../../engine/labHelp';
@@ -189,6 +189,8 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
   // spells the saga's players designed come first, then the books'
   const designed = data.spells.filter((sp) => sp.custom && sp.level !== null && !c.spells.some((k) => k.spellId === sp.id));
   const books = data.spells.filter((sp) => !sp.custom && sp.level !== null && !c.spells.some((k) => k.spellId === sp.id));
+  // the covenant library's Laboratory Texts of spells not yet known (DE, Laboratory Texts)
+  const texts = (ctx.covenant?.library ?? []).filter((b) => b.kind === 'labText' && b.spell && !b.corrupt && !c.spells.some((k) => k.spellId === b.spell!.id || k.spell?.name === b.spell!.name));
   return (
     <div className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch', opacity: p.done ? 0.6 : 1 }}>
       <div className="row">
@@ -232,6 +234,28 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
         <div className="row small">
           {p.kind === 'invent' && (
             <>
+              {texts.length > 0 && (
+                <Field label="From the covenant library" hint="A Laboratory Text: learned in one season once the Lab Total reaches its level">
+                  <select
+                    data-tour="lab-text-pick"
+                    value={texts.find((b) => p.fromText && p.spell?.id === b.spell!.id)?.uid ?? ''}
+                    onChange={(e) => {
+                      const b = texts.find((x) => x.uid === e.target.value);
+                      if (!b?.spell) return;
+                      const sp = b.spell;
+                      set((x) => void Object.assign(x, { spell: sp, technique: sp.technique, form: sp.form, level: b.level || sp.level || 5, requisites: sp.requisites, fromText: true, experiment: undefined, name: `Learn ${sp.name}${b.title.replace(/^Lab Text:\s*/, '') === sp.name ? '' : ` (${b.title})`}` }));
+                    }}
+                  >
+                    <option value="">— a Laboratory Text in the library —</option>
+                    {texts.map((b) => (
+                      <option key={b.uid} value={b.uid}>
+                        {b.spell!.name} ({b.spell!.technique}
+                        {b.spell!.form} {b.level || b.spell!.level}){b.author ? `, by ${b.author}` : ''}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+              )}
               <Field label="Spell" hint={<Link to={`/saga/${saga.id}/spells`}>design a new one in the Spell designer ›</Link>}>
                 <select
                   value={p.spell?.id ?? ''}
@@ -335,6 +359,25 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
                   </option>
                 ))}
               </select>
+            </Field>
+          )}
+          {p.kind === 'instill' && it && p.effectUid && shapeMaterialChoices(c, it, data).length > 0 && (
+            <Field
+              label="Shape & Material bonuses that suit the effect"
+              hint={`Those of its shape and material that suit the effect${isTalisman ? ', and the talisman’s attunements' : ''}; the total${c.virtues.some((v) => v.defId === 'verditius-magic') ? ', with your Philosophiae as Verditius runes,' : ''} is held to your Magic Theory`}
+            >
+              <span className="row tight" data-tour="lab-sm">
+                {shapeMaterialChoices(c, it, data).map((b) => (
+                  <label key={b.key} className="inline small">
+                    <input
+                      type="checkbox"
+                      checked={(p.sm ?? []).includes(b.key)}
+                      onChange={(e) => set((x) => void (x.sm = e.target.checked ? [...(x.sm ?? []), b.key] : (x.sm ?? []).filter((k) => k !== b.key)))}
+                    />{' '}
+                    {b.key} +{b.bonus}
+                  </label>
+                ))}
+              </span>
             </Field>
           )}
           {p.kind === 'tame' && (

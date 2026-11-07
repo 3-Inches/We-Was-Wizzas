@@ -85,3 +85,55 @@ describe('covenfolk in a strong aura', () => {
     expect(cov.folkWarping).toBe(2);
   });
 });
+
+describe('a covenant immune to a Flaw', () => {
+  const withImmunity = (size: 'Major' | 'Minor', defId: string): Covenant => {
+    const cov = newCovenant('s', 1220);
+    cov.hooksBoons = [{ uid: 'im', name: 'Immunity', kind: 'boon', size, category: 'Residents', immunity: { kind: 'flaw', value: defId, share: 1 } } as never];
+    cov.visSources = [{ uid: 'v', name: 'the spring', art: 'Aq', pawnsPerYear: 6 } as never];
+    return cov;
+  };
+  it('gives one made there Hunger for (Form) Magic of its vis’s Form, held off whatever the Form, a grog for no points', async () => {
+    const { buildGameData } = await import('../data');
+    const { newCharacter } = await import('./character/factory');
+    const { takeImmunityFlaw, immunityFlawState } = await import('./covenantBoons');
+    const data = buildGameData();
+    const cov = withImmunity('Major', 'hunger-for-form-magic-flaw');
+    const grog = newCharacter('grog', 's');
+    grog.virtues.push({ uid: 'f', defId: 'greedy-flaw', size: 'Minor' });
+    expect(takeImmunityFlaw(grog, cov, data, () => 0.5)).toMatch(/Hunger for \(Form\) Magic \(Aq\).*for no points/);
+    const h = grog.virtues.find((v) => v.defId === 'hunger-for-form-magic-flaw')!;
+    expect(h).toMatchObject({ size: 'Major', param: 'Aq', heldBy: 'im', free: true, noPoints: true });
+    const magus = newCharacter('magus', 's');
+    magus.virtues.push({ uid: 'x', defId: 'hunger-for-form-magic-flaw', size: 'Major', param: 'Ig' });
+    expect(immunityFlawState(cov, magus).unpaired).toHaveLength(1);
+    takeImmunityFlaw(magus, cov, data, () => 0.5);
+    expect(immunityFlawState(cov, magus).paired).toHaveLength(1);
+  });
+  it('lets a Minor Immunity hold off a Minor Flaw', async () => {
+    const { buildGameData } = await import('../data');
+    const { newCharacter } = await import('./character/factory');
+    const { takeImmunityFlaw, hookBoonPoints } = await import('./covenantBoons');
+    const data = buildGameData();
+    const minorFlaw = data.virtuesFlaws.find((v) => v.kind === 'flaw' && v.sizes.includes('Minor') && !v.param && !v.categories.includes('Hermetic'))!;
+    const cov = withImmunity('Minor', minorFlaw.id);
+    const c = newCharacter('companion', 's');
+    expect(takeImmunityFlaw(c, cov, data, () => 0.5)).toBeTruthy();
+    expect(c.virtues.find((v) => v.defId === minorFlaw.id)).toMatchObject({ size: 'Minor', heldBy: 'im' });
+    expect(hookBoonPoints(cov.hooksBoons[0], [c])).toMatchObject({ hook: 1, boon: 0 });
+  });
+  it('makes one away from the aura hunger for a pawn a season', async () => {
+    const { newCharacter } = await import('./character/factory');
+    const { hungerSeason } = await import('./time');
+    const c = newCharacter('companion', 's');
+    c.virtues.push({ uid: 'h', defId: 'hunger-for-form-magic-flaw', size: 'Major', param: 'Ig', heldBy: 'im' });
+    expect(hungerSeason(c)).toEqual([]);
+    c.auraTime = 'away';
+    expect(hungerSeason(c)[0]).toMatch(/no pawn/);
+    expect(c.hungerLost).toBe(1);
+    c.purse = { pounds: 0, vis: [{ art: 'Ig', pawns: 3 }] };
+    expect(hungerSeason(c)[0]).toMatch(/ate a pawn.*win back 1/);
+    expect(c.hungerLost).toBeUndefined();
+    expect(c.purse.vis[0].pawns).toBe(1);
+  });
+});

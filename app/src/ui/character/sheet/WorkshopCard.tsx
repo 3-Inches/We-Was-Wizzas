@@ -14,6 +14,7 @@ import type { Workshop } from '../../../engine/types';
 import {
   INNOVATION_COST, INVESTMENTS, LP_WORTH, RAW_MATERIALS_COST, STORY_AWARDS, WEALTH_MULT, WEALTH_STEP, boomRoll, craftQuality, lpForPounds, seasonWorth, sellGoods, sellOpposed, smugglingLp, upkeep, wondrousItem, workshopFigures,
   newWorkshop, workshopSeason, workshopTotal,
+  isTrade,
 } from '../../../engine/workshop';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { purseOf } from '../../../engine/vis';
@@ -74,7 +75,7 @@ export function WorkshopCard({ ed, where = 'guild' }: { ed: CharEditor; where?: 
   if (!c || !d || !saga) return null;
   const usesCG = saga.enabledBooks.length === 0 || saga.enabledBooks.includes('CG');
   // the Crafts and Professions they could live by, the best first (not Craft Amulets or Crafter's Healing, which are powers)
-  const trades = d.abilities.filter((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type').sort((a, b) => b.score - a.score);
+  const trades = d.abilities.filter((a) => isTrade(a.abilityId)).sort((a, b) => b.score - a.score);
   if (!usesCG || (!c.workshop && !trades.length)) return null;
   const w = c.workshop;
   const push = (s: string) => setLog((l) => [s, ...l].slice(0, 12));
@@ -342,11 +343,12 @@ export function WorkshopCard({ ed, where = 'guild' }: { ed: CharEditor; where?: 
       <details data-tour="workshop-assistants">
         <summary className="small">Workshop, assistants and this season&apos;s situation</summary>
         <div className="row" style={{ marginTop: 6 }}>
-          <Field label="Innovation (0–3)">
-            <Stepper value={w.innovation} min={0} max={3} width={30} onChange={(v) => set((x) => void (x.innovation = v))} />
+          {/* at the Seasons page they are bought with Labor Points and a season (the buttons below); set by hand only as the workshop stands before play */}
+          <Field label="Innovation (0–3)" hint={forSeasons ? 'Improved below, for Labor Points and a season' : 'As the workshop stands; in play it is improved on the Seasons page'}>
+            {forSeasons ? <b>{w.innovation}</b> : <Stepper value={w.innovation} min={0} max={3} width={30} onChange={(v) => set((x) => void (x.innovation = v))} />}
           </Field>
           <Field label="Raw Materials (0–3)" hint="Lost if you leave the workshop; 5 Labor Points a point a year">
-            <Stepper value={w.rawMaterials} min={0} max={3} width={30} onChange={(v) => set((x) => void (x.rawMaterials = v))} />
+            {forSeasons ? <b>{w.rawMaterials}</b> : <Stepper value={w.rawMaterials} min={0} max={3} width={30} onChange={(v) => set((x) => void (x.rawMaterials = v))} />}
           </Field>
           <Field label="Craft manual" hint="One a season, not your own">
             <Stepper value={w.manual} min={0} max={10} width={30} onChange={(v) => set((x) => void (x.manual = v))} />

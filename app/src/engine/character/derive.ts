@@ -691,7 +691,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const w = char.wounds;
   const rawWound = -(w.light * 1 + w.medium * 3 + w.heavy * 5);
   const currentWoundPenalty = rawWound === 0 ? 0 : Math.min(0, rawWound - woundPenaltyAdj);
-  const lost = Math.min(5, char.fatigueLost + char.longTermFatigueLost);
+  const lost = Math.min(5, char.fatigueLost + char.longTermFatigueLost + (char.hungerLost ?? 0));
   const currentFatiguePenalty = fatigueLevels[lost]?.penalty ?? 0;
   const STAGE_PENALTY = { Minor: -1, Serious: -3, Major: -5, Critical: -5 } as const;
   const currentDiseasePenalty = (char.illnesses ?? []).reduce((t, i) => t + (i.flawInstead ? 0 : STAGE_PENALTY[i.stage]), 0);

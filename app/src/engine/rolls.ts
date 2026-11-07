@@ -162,8 +162,8 @@ export function perilDamage(bonus: number, soak: number, wound: (excess: number)
 }
 
 /** A Stamina check against a poison, a disease or deprivation: stress die + Stamina (+ any bonus) against the Ease Factor. */
-export function staminaCheck(stamina: number, ease: number, rng: Rng = defaultRng): { ok: boolean; text: string; total: number; faces?: number[] } {
-  const r = stressDie(1, rng);
+export function staminaCheck(stamina: number, ease: number, rng: Rng = defaultRng, botchDice = 1): { ok: boolean; text: string; total: number; faces?: number[] } {
+  const r = stressDie(botchDice, rng);
   const total = r.botches ? 0 : stamina + r.value;
   const ok = !r.botches && total >= ease;
   return { ok, total: r.botches ? stamina : total, ...(r.botches ? { faces: r.botchFaces } : {}), text: `Stamina ${stamina} + ${describeStress(r)} = ${r.botches ? 'botch' : total} against ${ease}: ${ok ? 'resisted' : 'it takes hold'}.` };
@@ -197,7 +197,7 @@ export function actionPenalties(d: {
   currentFatiguePenalty: number;
   currentDiseasePenalty: number;
   encumbrance: number;
-  char: { wounds: { incapacitating: number; dead?: boolean }; fatigueLost: number; longTermFatigueLost: number; illnesses?: { stage: string }[] };
+  char: { wounds: { incapacitating: number; dead?: boolean }; fatigueLost: number; longTermFatigueLost: number; hungerLost?: number; illnesses?: { stage: string }[] };
 }): ActionPenalties {
   const parts = [
     { label: 'wounds', value: d.currentWoundPenalty },
@@ -209,7 +209,7 @@ export function actionPenalties(d: {
     ? 'dead'
     : c.wounds.incapacitating > 0
       ? 'Incapacitated: no actions until the wound improves'
-      : c.fatigueLost + c.longTermFatigueLost >= 5
+      : c.fatigueLost + c.longTermFatigueLost + (c.hungerLost ?? 0) >= 5
         ? 'Unconscious'
         : (c.illnesses ?? []).some((i) => i.stage === 'Critical')
           ? 'a disease in crisis: no actions until it passes'

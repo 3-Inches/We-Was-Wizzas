@@ -90,7 +90,7 @@ const CHAR_TEXT: Record<Characteristic, string> = {
   Qik: 'quick to react (Quickness)',
 };
 
-const CHAR_PRESETS: Partial<Record<Characteristic, Record<string, number>>> = {
+export const CHAR_PRESETS: Partial<Record<Characteristic, Record<string, number>>> = {
   Int: { scholar: 8, lab: 8, enchanter: 7 }, Per: { rogue: 7, explorer: 7, mystic: 7 }, Str: { warrior: 8 }, Sta: { warrior: 8, 'battle-mage': 7 },
   Pre: { social: 8, noble: 8, politician: 7 }, Com: { social: 8, politician: 8, scholar: 6 }, Dex: { warrior: 7, rogue: 8, craftsman: 7 }, Qik: { warrior: 7, rogue: 7, 'battle-mage': 7 },
 };
@@ -121,7 +121,8 @@ export const QUESTIONS: Question[] = [
     text: 'At the start of play, I’d rather have Virtues that make my magus grow faster than ones that give fixed bonuses now.', low: 'fixed bonuses now', high: 'faster growth', tags: { progression: 1 },
   },
   { id: 'a-house', section: 'A', text: 'I care which House my magus belongs to.', tags: {}, types: MAGI, build: true },
-  { id: 'a-chars', section: 'A', text: 'I care about my character’s Characteristics (Intelligence, Stamina and so on).', tags: { chars: 1 }, build: true },
+  // a theme that lives by some Characteristics (a craftsman's Dexterity) opens their follow-ups: its own presets come from them
+  { id: 'a-chars', section: 'A', text: 'I care about my character’s Characteristics (Intelligence, Stamina and so on).', tags: { chars: 1 }, build: true, presets: Object.fromEntries([...new Set(Object.values(CHAR_PRESETS).flatMap((p) => Object.keys(p ?? {})))].map((t) => [t, 7])) },
   ...CHARACTERISTICS.map((c): Question => ({ id: `a-char-${c}`, section: 'A', parent: 'a-chars', text: `My character is ${CHAR_TEXT[c]}.`, tags: { [`char:${c}`]: 1 }, build: true, presets: CHAR_PRESETS[c] })),
   {
     id: 'a-char-later', section: 'A', parent: 'a-chars', noHint: true, explainer: EXPLAINERS.charsLater,

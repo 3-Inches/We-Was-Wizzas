@@ -250,7 +250,8 @@ export default function HelpPage() {
             show on those made there. The Covenfolk tab says what they make of its people and gives it to those already there; Quick build gives it to those it makes.
           </li>
           <li>
-            An Immunity covers a hazard, a disease, an influence or (Major) a Flaw within the aura: a disease cannot be caught there and a plague passes it by, Warping
+            An Immunity covers a hazard, a disease, an influence or a Flaw within the aura (a Minor Boon a Minor Flaw; a Flaw with a Form, such as Hunger for (Form) Magic, is
+            held off whatever its Form, and one made there takes the Form most of the covenant&apos;s vis is of): a disease cannot be caught there and a plague passes it by, Warping
             does not build up. A Flaw it covers is given, paired with it, to the grogs, companions and magi the toolkit makes for the covenant (at the share you set),
             who spend the Virtue points it gives; a paired Flaw is held off in the aura and is back when they leave (the Combat &amp; Health tab has the box), and pairing
             one makes the Boon a Major Hook. A Regio Hook of another realm is one more Minor Hook. Loyal and Rebellious Covenfolk, the Healthy Feature, Unhealthy
@@ -366,7 +367,9 @@ export default function HelpPage() {
             <b>Magic:</b> the sheet&apos;s Magic tab keeps every Casting Score and Lab Total for the current aura, Magic Resistance per Form and Penetration with Arcane
             Connections. Spells are cast at the Game Table&apos;s <b>Dice › Spellcasting</b>: pick the caster, then a spell with the right die, botch dice, fatigue and ritual
             costs, or spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, raw vis, days away from the lab, any
-            other modifier) and it is added to the totals. A botch adds its Warping Points, and Wizard&apos;s Twilight is checked on the same page. Casting Virtues and Flaws
+            other modifier) and it is added to the totals; fast-casting (−10, with its Speed roll), Flexible Formulaic Magic&apos;s step up or down and a Mythic Characteristic&apos;s
+            specialty are chosen there too. A spell that works can be put on whoever it works on: it is kept on them (Health &amp; recovery) for its Duration, a powerful one with its
+            Warping. A botch adds its Warping Points, and Wizard&apos;s Twilight is checked on the same page. Casting Virtues and Flaws
             (Diedne Magic, Weak Spontaneous Magic, Vulnerable Casting…) are applied when you cast; the card lists which. Certamen is fought there too, against anyone of the
             saga or the Tribunal, their Fatigue going on their sheet.
           </li>
@@ -400,7 +403,8 @@ export default function HelpPage() {
           <li>
             <b>Lab &amp; Items:</b> the sheet shows the lab, the enchanted items, the Longevity Ritual and the familiar. Items, the talisman and the familiar are kept on the
             Game Table&apos;s Possessions. Everything that takes a season is a <b>Lab project</b>, planned on the Lab projects card of the character&apos;s season in full (Game
-            Table › Seasons) and worked as a season&apos;s activity: inventing a spell (or learning one from a Laboratory Text), preparing and attuning a talisman, instilling effects,
+            Table › Seasons) and worked as a season&apos;s activity: inventing a spell (or learning one from a Laboratory Text, picked from the covenant&apos;s library), preparing and attuning a talisman, instilling effects (with the
+            item&apos;s Shape &amp; Material bonuses that suit the effect, and a talisman&apos;s attunements, held to Magic Theory),
             charged items, extracting vis, taming, a Longevity Ritual (for the magus or someone else), binding a familiar, strengthening and empowering the bond, and improving the
             lab itself: its Refinement, a Virtue installed, a Flaw put right. Spells of the same Technique and Form can be invented alongside each other. Each has its
             Lab Total with all the lab gives, its vis, a box to experiment, and the lab&apos;s own rolls for Safety and Warping; what the lab&apos;s Flaws rule out is shown in

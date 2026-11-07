@@ -5,7 +5,7 @@
 // Environment and Vivid Environment give), an Immunity within the aura, a regio of another realm, the
 // covenant's Reputations (Prestige, Infamous) and its Edifices' Great Works.
 
-import type { GameData } from '../data';
+import { FORMS, type GameData } from '../data';
 import type { CharVirtue, Character, Covenant, CovenantHookBoon, ImmunityKind, InhumanNature, Specialist } from './types';
 import { uid } from '../util/id';
 
@@ -325,10 +325,24 @@ export function immuneToDisease(cov: Covenant | undefined, diseaseName: string):
 }
 export const immuneToWarping = (cov: Covenant | undefined) => immunities(cov).some((i) => i.kind === 'influence' && /warping/i.test(i.value));
 
-/** The Major Immunity to a Flaw (Covenants ch.2: "all people and objects are immune to a form of damage, influence, or Flaw"), and the share of those made for the covenant who have it. */
-export function immunityFlaw(cov: Covenant | undefined): { hb: CovenantHookBoon; defId: string; share: number } | undefined {
-  const i = immunities(cov).find((x) => x.kind === 'flaw' && x.hb.size === 'Major');
-  return i ? { hb: i.hb, defId: i.value, share: Math.max(0, Math.min(1, i.hb.immunity?.share ?? 1)) } : undefined;
+/**
+ * The Immunity to a Flaw (Covenants ch.2: "all people and objects are immune to a form of damage,
+ * influence, or Flaw"): the Major Boon's, or (the troupe's ruling) a Minor Boon's to a Minor Flaw. A
+ * Flaw with a choice in it (Hunger for (Form) Magic) is held off whatever the choice. With the share of
+ * those made for the covenant who have it.
+ */
+export function immunityFlaw(cov: Covenant | undefined): { hb: CovenantHookBoon; defId: string; share: number; size: 'Major' | 'Minor' } | undefined {
+  const all = immunities(cov).filter((x) => x.kind === 'flaw');
+  const i = all.find((x) => x.hb.size === 'Major') ?? all[0];
+  return i ? { hb: i.hb, defId: i.value, share: Math.max(0, Math.min(1, i.hb.immunity?.share ?? 1)), size: i.hb.size === 'Major' ? 'Major' : 'Minor' } : undefined;
+}
+
+/** The Form a Flaw like Hunger for (Form) Magic takes for one made at the covenant: the Form most of its vis is of, else one at random. */
+function formForCovenant(cov: Covenant, rng: () => number): string {
+  const count = new Map<string, number>();
+  for (const s of cov.visSources) if ((FORMS as readonly string[]).includes(s.art)) count.set(s.art, (count.get(s.art) ?? 0) + s.pawnsPerYear);
+  const best = [...count].sort((a, b) => b[1] - a[1])[0];
+  return best ? best[0] : FORMS[Math.floor(rng() * FORMS.length) % FORMS.length];
 }
 
 /** Whether a paired Flaw is held off now: the character lives in the covenant's aura and is not away from it. */
@@ -367,15 +381,27 @@ export function takeImmunityFlaw(c: Character, cov: Covenant | undefined, data: 
   }
   if (o.roll !== false && rng() >= im.share) return undefined;
   if (def.categories.includes('Hermetic') && c.type !== 'magus') return undefined;
-  // within the Flaw limits (DE p.61, p.63): a grog 3 points, others 10 points and five Minor Flaws
-  const size = c.type === 'grog' && def.sizes.includes('Minor') ? 'Minor' : def.sizes[0];
+  // the Minor Immunity's Flaw is Minor; the Major's as the Flaw comes, a grog's Minor where it can be
+  const size = im.size === 'Minor' && def.sizes.includes('Minor') ? 'Minor' : c.type === 'grog' && def.sizes.includes('Minor') ? 'Minor' : def.sizes.includes('Major') ? 'Major' : def.sizes[0];
+  // within the Flaw limits (DE p.61, p.63: a grog 3 points, others 10 points and five Minor Flaws) it
+  // gives its Virtue points to spend; past them (a grog's Major Flaw) it is taken all the same, for no points
   const POINTS: Record<string, number> = { Major: 3, Minor: 1 };
   const paid = c.virtues.filter((v) => data.vfById.get(v.defId)?.kind === 'flaw' && !v.free && !v.noPoints);
   const points = paid.reduce((t, v) => t + (POINTS[v.size] ?? 0), 0) + (POINTS[size] ?? 0);
   const minors = paid.filter((v) => v.size === 'Minor').length + (size === 'Minor' ? 1 : 0);
-  if (points > (c.type === 'grog' ? 3 : 10) || (c.type !== 'grog' && minors > 5)) return undefined;
-  c.virtues.push({ uid: uid(), defId: im.defId, size, heldBy: im.hb.uid, why: `${cov!.name || 'the covenant'}'s Immunity holds it off within the aura (Covenants ch.2)` });
-  return `${def.name}, held off within ${cov!.name || 'the covenant'}'s aura by its Immunity`;
+  const within = points <= (c.type === 'grog' ? 3 : 10) && (c.type === 'grog' || minors <= 5);
+  // a Flaw with a Form in it takes the Form most of the covenant's vis is of
+  const param = def.param?.kind === 'form' ? formForCovenant(cov!, rng) : undefined;
+  c.virtues.push({
+    uid: uid(),
+    defId: im.defId,
+    size,
+    ...(param ? { param } : {}),
+    heldBy: im.hb.uid,
+    ...(within ? {} : { free: true, noPoints: true, freeReason: 'the covenant’s Immunity: taken past the Flaw limits, for no points' }),
+    why: `${cov!.name || 'the covenant'}'s Immunity holds it off within the aura (Covenants ch.2)`,
+  });
+  return `${def.name}${param ? ` (${param})` : ''}, held off within ${cov!.name || 'the covenant'}'s aura by its Immunity${within ? '' : ' (past the Flaw limits, so for no points)'}`;
 }
 
 /**
@@ -386,9 +412,9 @@ export function takeImmunityFlaw(c: Character, cov: Covenant | undefined, data: 
 export function hookBoonPoints(hb: CovenantHookBoon, members: Character[]): { hook: number; boon: number; note?: string } {
   const pts = hb.size === 'Major' || (hb.kind === 'hook' && hb.unknown) ? 3 : 1;
   if (hb.kind === 'hook') return isRegioHook(hb) && hb.regioRealm ? { hook: pts + 1, boon: 0, note: `a ${hb.regioRealm} regio: an additional Minor Hook` } : { hook: pts, boon: 0 };
-  if (isImmunity(hb) && hb.size === 'Major' && hb.immunity?.kind === 'flaw') {
+  if (isImmunity(hb) && hb.immunity?.kind === 'flaw') {
     const paired = members.filter((m) => m.virtues.some((v) => v.defId === hb.immunity!.value));
-    if (paired.length) return { hook: 3, boon: 0, note: `paired with ${paired.map((m) => m.name || 'a member').join(', ')}'s Flaw: it becomes a Major Hook` };
+    if (paired.length) return { hook: pts, boon: 0, note: `paired with ${paired.map((m) => m.name || 'a member').join(', ')}'s Flaw: it becomes a ${hb.size === 'Major' ? 'Major' : 'Minor'} Hook` };
   }
   return { hook: 0, boon: pts };
 }

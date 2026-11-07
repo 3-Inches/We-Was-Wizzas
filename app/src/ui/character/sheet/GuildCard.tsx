@@ -7,6 +7,7 @@ import { addVirtue, removeVirtue } from '../../../engine/character/factory';
 import { optionOn } from '../../../engine/optional';
 import { GUILD_RANKS, apprenticePiece, guildLore, guildRank, journeymanContract, type GuildRank } from '../../../engine/society';
 import { purseOf } from '../../../engine/vis';
+import { isTrade } from '../../../engine/workshop';
 import { guildOf } from '../../../data/lists';
 import { Card, Field, Stepper } from '../../kit';
 import { RulesNote } from '../../RulesNote';
@@ -22,7 +23,7 @@ export function GuildCard({ ed }: { ed: CharEditor }) {
   const [other, setOther] = useState(false);
   if (!c || !d || !saga) return null;
   const rank = guildRank(c);
-  const hasCraft = d.abilities.some((a) => a.abilityId.startsWith('craft') || a.abilityId.startsWith('profession'));
+  const hasCraft = d.abilities.some((a) => isTrade(a.abilityId));
   if (!optionOn(saga, 'guilds') && !c.guild) return null;
   if (!rank && !c.guild && !c.workshop && !hasCraft) return null;
 
@@ -30,7 +31,7 @@ export function GuildCard({ ed }: { ed: CharEditor }) {
   const r = rank ? GUILD_RANKS[rank] : undefined;
   const lore = guildLore(d, g.name);
   const age = saga.currentYear - c.birthYear;
-  const trades = d.abilities.filter((a) => a.abilityId.startsWith('craft') || a.abilityId.startsWith('profession'));
+  const trades = d.abilities.filter((a) => isTrade(a.abilityId));
   const trade = d.abilityByUid.get(c.workshop?.abilityUid ?? '') ?? trades[0];
   const craft = trade?.total ?? 0;
   const primary = d.characteristics[c.workshop?.primary ?? 'Dex'].value;

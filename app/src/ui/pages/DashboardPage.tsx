@@ -91,6 +91,7 @@ export default function DashboardPage() {
     const hurt = [w.light && `${w.light} Light`, w.medium && `${w.medium} Medium`, w.heavy && `${w.heavy} Heavy`, w.incapacitating && `${w.incapacitating} Incapacitating`].filter(Boolean);
     if (hurt.length) attention.push({ level: w.heavy || w.incapacitating ? 'bad' : 'warn', text: `${who}: ${hurt.join(', ')} wound${hurt.length > 1 || (w.light ?? 0) > 1 ? 's' : ''} to recover from.`, to: '#table-recovery', go: 'Recovery' });
     if (c.longTermFatigueLost > 0) attention.push({ level: 'warn', text: `${who}: ${c.longTermFatigueLost} Long-Term Fatigue level${c.longTermFatigueLost > 1 ? 's' : ''} lost.`, to: '#table-recovery', go: 'Recovery' });
+    if (c.hungerLost) attention.push({ level: 'warn', text: `${who}: ${c.hungerLost} Fatigue level${c.hungerLost > 1 ? 's' : ''} lost to Hunger for (Form) Magic, back only as vis is eaten.`, to: '#table-recovery', go: 'Recovery' });
     if (c.illnesses?.length) attention.push({ level: 'warn', text: `${who} is ill.`, to: '#table-recovery', go: 'Recovery' });
     if (c.workshop && c.workshop.laborPoints < 0) attention.push({ level: 'warn', text: `${who}'s workshop is short of Labor Points (${c.workshop.laborPoints}).`, to: R.seasonsFor(saga.id, c.id, 'workshop-season'), go: 'Workshop' });
     if (d) {
