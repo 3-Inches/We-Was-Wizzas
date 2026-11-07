@@ -299,6 +299,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   for (const v of virtues) if (v.cv.heldBy && !char.awayFromCovenant && char.auraTime !== 'away') v.held = true;
   const effects = resolveEffects(virtues.filter((v) => !v.held));
   for (const v of virtues.filter((x) => x.held)) notes.push(`${v.name} is held off by the covenant's Immunity while ${char.name || 'the character'} lives in its aura.`);
+  for (const v of virtues) if (v.cv.charm) notes.push(`The Greater Charm is with someone else: ${vfDisplayName(data.vfById.get(v.cv.charm.virtue.defId), v.cv.charm.virtue, data)} is theirs until it is recovered.`);
+  for (const v of virtues) if (v.cv.fromCharm) notes.push(`${v.name}: had by holding another's Greater Charm.`);
   // spells, powers and rituals working on the character, and the devices it wears
   const spellUids = new Set((char.activeEffects ?? []).map((ae) => ae.uid));
   for (const ae of char.activeEffects ?? []) for (const b of ae.bonuses ?? []) effects.push({ ...b, fromUid: ae.uid, fromName: ae.name } as ResolvedEffect);
@@ -345,6 +347,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
         if (v.cv.size === 'Major') tally.majorPersonalityFlaws++;
       }
       if (d.categories.includes('Hermetic')) tally.hermeticFlaws++;
+      // a Greater Charm taken by another: its Virtue is theirs for now, but still the owner's to count (RoP: Faerie)
+      const away = v.cv.charm?.virtue;
+      if (away && !away.free) tally.virtuePoints += SIZE_POINTS[away.size] ?? 0;
     }
   }
   tally.allowedVirtuePoints = char.type === 'mythic' ? tally.flawPoints * rules.mythicVirtueRatio : tally.flawPoints;

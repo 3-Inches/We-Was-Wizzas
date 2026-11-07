@@ -5,7 +5,8 @@
 // Environment and Vivid Environment give), an Immunity within the aura, a regio of another realm, the
 // covenant's Reputations (Prestige, Infamous) and its Edifices' Great Works.
 
-import { FORMS, type GameData } from '../data';
+import type { GameData } from '../data';
+import { paramChoices } from './generate/paramChoices';
 import type { CharVirtue, Character, Covenant, CovenantHookBoon, ImmunityKind, InhumanNature, Specialist } from './types';
 import { uid } from '../util/id';
 
@@ -337,14 +338,6 @@ export function immunityFlaw(cov: Covenant | undefined): { hb: CovenantHookBoon;
   return i ? { hb: i.hb, defId: i.value, share: Math.max(0, Math.min(1, i.hb.immunity?.share ?? 1)), size: i.hb.size === 'Major' ? 'Major' : 'Minor' } : undefined;
 }
 
-/** The Form a Flaw like Hunger for (Form) Magic takes for one made at the covenant: the Form most of its vis is of, else one at random. */
-function formForCovenant(cov: Covenant, rng: () => number): string {
-  const count = new Map<string, number>();
-  for (const s of cov.visSources) if ((FORMS as readonly string[]).includes(s.art)) count.set(s.art, (count.get(s.art) ?? 0) + s.pawnsPerYear);
-  const best = [...count].sort((a, b) => b[1] - a[1])[0];
-  return best ? best[0] : FORMS[Math.floor(rng() * FORMS.length) % FORMS.length];
-}
-
 /** Whether a paired Flaw is held off now: the character lives in the covenant's aura and is not away from it. */
 export const flawHeld = (c: Character, cv: CharVirtue) => !!cv.heldBy && !c.awayFromCovenant && c.auraTime !== 'away';
 
@@ -390,17 +383,20 @@ export function takeImmunityFlaw(c: Character, cov: Covenant | undefined, data: 
   const points = paid.reduce((t, v) => t + (POINTS[v.size] ?? 0), 0) + (POINTS[size] ?? 0);
   const minors = paid.filter((v) => v.size === 'Minor').length + (size === 'Minor' ? 1 : 0);
   const within = points <= (c.type === 'grog' ? 3 : 10) && (c.type === 'grog' || minors <= 5);
-  // a Flaw with a Form in it takes the Form most of the covenant's vis is of
-  const param = def.param?.kind === 'form' ? formForCovenant(cov!, rng) : undefined;
-  c.virtues.push({
+  const cv: CharVirtue = {
     uid: uid(),
     defId: im.defId,
     size,
-    ...(param ? { param } : {}),
     heldBy: im.hb.uid,
     ...(within ? {} : { free: true, noPoints: true, freeReason: 'the covenant’s Immunity: taken past the Flaw limits, for no points' }),
     why: `${cov!.name || 'the covenant'}'s Immunity holds it off within the aura (Covenants ch.2)`,
-  });
+  };
+  // a Flaw with a choice in it (a Form, a Characteristic) takes one at random: the aura holds off any of them, and
+  // those who came to live in it came for that
+  const choices = paramChoices(c, data, cv);
+  const param = choices ? choices[Math.floor(rng() * choices.length)] : undefined;
+  if (param) cv.param = param;
+  c.virtues.push(cv);
   return `${def.name}${param ? ` (${param})` : ''}, held off within ${cov!.name || 'the covenant'}'s aura by its Immunity${within ? '' : ' (past the Flaw limits, so for no points)'}`;
 }
 

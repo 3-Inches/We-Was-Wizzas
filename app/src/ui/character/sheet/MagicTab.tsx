@@ -1,9 +1,10 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { auraAtTime, type AuraTime } from '../../../engine/aura';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type GameData, type Technique } from '../../../data';
-import { castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
+import { SYMPATHIES, castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
 import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
 import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
+import { castingToolText } from '../../../engine/projects';
 import type { ActiveEffect, CharSpell } from '../../../engine/types';
 import { applyEffect, powerfulEffectWarping } from '../../../engine/effects';
 import type { CertamenArt } from '../../../engine/magic';
@@ -81,6 +82,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [mythic, setMythic] = useState<string[]>([]);
   // fast-casting (ArM5): spontaneous magic, or a spell mastered with Fast Casting, at −10, cast when the Speed roll beats the threat's Initiative
   const [fast, setFast] = useState(false);
+  // a Verditius's casting tools are to hand
+  const [tools, setTools] = useState(true);
   // Flexible Formulaic Magic: one of Range, Duration, Target or size moved a step, the spell a magnitude higher or lower
   const [flex, setFlex] = useState(0);
   // the last casting's roll: Confidence, Faith and All According to Plan after it (a botch's Warping taken back)
@@ -128,6 +131,16 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const hasImprovisation = d.virtues.some((v) => v.cv.defId === 'spell-improvisation');
   const conditional = conditionalBonuses(d);
   const spellFocus = (sp: CharSpell) => sp.inFocus ?? !!sp.notes?.includes('[focus]');
+  // a Potent spell: its Casting Items' Potency on the Casting Score, held as it is cast (DE, Potent Magic)
+  const potencyPart = (sp: CharSpell) => [
+    ...(sp.potency?.score ? [{ label: `Potency (holding ${sp.potency.items || 'its Casting Items'})`, value: sp.potency.score }] : []),
+    // an enchanted casting tool's bonus to the casting roll (DE, Enchant Casting Tools)
+    ...(sp.castingTool?.bonus ? [{ label: 'Enchanted casting tool', value: sp.castingTool.bonus }] : []),
+  ];
+  // a Verditius casts Formulaic and Ritual spells only with the casting tools to hand (DE, Verditius)
+  const needsTools = d.virtues.some((v) => v.cv.defId === 'verditius-magic');
+  const potentMagic = d.virtues.some((v) => v.cv.defId === 'potent-magic');
+  const mtScore = d.abilities.find((a) => a.abilityId === 'magic-theory')?.total ?? 0;
   const golden = d.char.familiar?.golden ?? 0;
   const push = (s: string) => {
     setLog((l) => [s, ...l].slice(0, 30));
@@ -217,7 +230,11 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
       push(`${sp.spell.name}: Rigid Magic: you cannot use vis when casting, so you cannot cast Ritual spells.`);
       return;
     }
-    if (fast && (ritual || !sp.masteryAbilities.includes('Fast Casting'))) {
+    if (needsTools && !tools) {
+      push(`${sp.spell.name}: a Verditius needs the casting tools to cast a Formulaic or Ritual spell.`);
+      return;
+    }
+    if (fast && (ritual || !(sp.masteryAbilities.includes('Fast Casting') || sp.castingTool?.fast))) {
       push(`${sp.spell.name}: ${ritual ? 'a Ritual cannot be fast-cast' : 'only a spell mastered with Fast Casting can be fast-cast (spontaneous magic always can)'}.`);
       return;
     }
@@ -228,7 +245,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     const visB = visBoostFor(sp.spell.technique, sp.spell.form, vis.pawns);
     const res = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
       kind: ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
-      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart], visPawns: visB.pawns,
+      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart, ...potencyPart(sp)], visPawns: visB.pawns,
     });
     const botchDice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((res.botchDice ?? 0) + vis.pawns + visB.used, golden, ms) - mythSta);
     // a stress die for stress, for Rituals and mastered spells, and always with Unpredictable Magic; calm and
@@ -450,6 +467,11 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
               </select>
             </Field>
           )}
+          {atTable && needsTools && (
+            <label className="inline small" data-tour="casting-tools" title="Verditius magi need their casting tools for Formulaic and Ritual spells; Spontaneous spells do not (unless a Flaw says so)">
+              <input type="checkbox" checked={tools} onChange={(e) => setTools(e.target.checked)} /> The casting tools are to hand
+            </label>
+          )}
           {atTable && (
             <div className="row tight small" data-tour="fast-cast">
               <label className="inline" title="ArM5, Fast Casting: answering something as it happens. Spontaneous magic, or a Formulaic spell mastered with Fast Casting; never a Ritual.">
@@ -584,7 +606,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
               <option value="indefinite">indefinite (×5)</option>
             </select>
           </Field>
-          <Field label="Sympathetic connections (+multiplier)">
+          <Field label="Other sympathetic connection (+multiplier)" hint="One the troupe allows beyond those listed; none should give more than +2">
             <Stepper value={pen.sympathetic ?? 0} min={0} max={10} width={40} onChange={(v) => setPen({ ...pen, sympathetic: v })} />
           </Field>
           <label className="inline small">
@@ -596,6 +618,20 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             </span>
             <span className="l">Penetration bonus (×{pb.multiplier})</span>
           </div>
+        </div>
+        <div className="stack" style={{ gap: 2, marginTop: 6 }} data-tour="sympathies">
+          <span className="small">Sympathetic connections that apply{pen.arcaneConnection === 'none' ? ' (they need an Arcane Connection first)' : ''}:</span>
+          {SYMPATHIES.filter((x) => !x.faerieMagic || d.abilities.some((a) => a.abilityId === 'faerie-magic' && a.total > 0)).map((x) => (
+            <label key={x.id} className="inline small" title={x.hint}>
+              <input
+                type="checkbox"
+                disabled={pen.arcaneConnection === 'none'}
+                checked={!!pen.sympathies?.includes(x.id)}
+                onChange={(e) => setPen({ ...pen, sympathies: e.target.checked ? [...(pen.sympathies ?? []), x.id] : (pen.sympathies ?? []).filter((y) => y !== x.id) })}
+              />{' '}
+              {x.label} (+{x.bonus}){x.hint ? <span className="muted"> — {x.hint}</span> : null}
+            </label>
+          ))}
         </div>
         <p className="small muted" style={{ marginBottom: 0 }}>Penetration Total = Casting Total + Penetration bonus − spell level (DE p.215).</p>
       </Card>
@@ -625,7 +661,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                     const ms = masteryScore(sp, d);
                     const r = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
                       kind: sp.spell.ritual || rules.unstructured ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
-                      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart],
+                      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart, ...potencyPart(sp)],
                     });
                     const lvl = sp.spell.level ?? 0;
                     const avg = r.total + 5;
@@ -636,6 +672,31 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                         <td>
                           <b>{sp.spell.name}</b>
                           {sp.spell.ritual && <span className="badge accent">Ritual</span>}
+                          {sp.castingTool && (
+                            <span className="badge info" title={`Enchanted casting tool${castingToolText(sp.castingTool)}`}>
+                              tool{sp.castingTool.bonus ? ` +${sp.castingTool.bonus}` : ''}
+                            </span>
+                          )}
+                          {sp.potency?.score ? (
+                            <span className="badge info" title={`A Potent spell: cast holding ${sp.potency.items || 'its Casting Items'}, or it cannot be cast at all`}>
+                              Potent +{sp.potency.score}
+                            </span>
+                          ) : null}
+                          {(potentMagic || sp.potency) && !atTable && (
+                            <details className="small">
+                              <summary>Potent spell</summary>
+                              <div className="row tight">
+                                <input
+                                  value={sp.potency?.items ?? ''}
+                                  placeholder="Casting Items (a wand, magnetite)"
+                                  aria-label="Casting Items"
+                                  onChange={(e) => update((x) => { const z = x.spells.find((y) => y.uid === sp.uid)!; z.potency = { items: e.target.value, score: z.potency?.score ?? 0 }; })}
+                                />
+                                <Stepper value={sp.potency?.score ?? 0} min={0} max={30} width={34} onChange={(v) => update((x) => { const z = x.spells.find((y) => y.uid === sp.uid)!; z.potency = v ? { items: z.potency?.items ?? '', score: v } : undefined; })} />
+                              </div>
+                              <span className="muted">Their Shape &amp; Material bonuses summed; designed no higher than Magic Theory ({mtScore}); learned from a text or teacher as it was written.</span>
+                            </details>
+                          )}
                           {d.magicalFocus !== 'none' && (
                             <label className="inline small" title="This spell is inside your Magical Focus">
                               <input type="checkbox" checked={spellFocus(sp)} onChange={(e) => update((x) => void (x.spells.find((z) => z.uid === sp.uid)!.inFocus = e.target.checked))} /> Focus

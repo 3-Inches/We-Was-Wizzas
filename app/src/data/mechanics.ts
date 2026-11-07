@@ -238,7 +238,12 @@ export const MECHANICS: Record<string, Mechanics> = {
   'deficient-form-flaw': { repeatable: true, param: P.form(), requiresGift: true, effects: [{ type: 'deficientArt', art: '$param', scope: 'notMR' }] },
   'major-magical-focus': { requiresGift: true, param: P.text('Focus (e.g. weather, necromancy, birds)'), effects: [{ type: 'magicalFocus', scope: 'major' }], excludes: ['minor-magical-focus'] },
   'minor-magical-focus': { requiresGift: true, param: P.text('Focus (e.g. healing, self-transformation)'), effects: [{ type: 'magicalFocus', scope: 'minor' }], excludes: ['major-magical-focus'] },
-  'potent-magic': { requiresGift: true, repeatable: true, param: P.text('Field of Potent Magic'), effects: [note('Minor: +3 to Lab Totals and Casting Score in field. Major: +6.')] },
+  // within its field, ticked like Special Circumstances when it applies; only one Potent Magic counts at a time (DE)
+  'potent-magic': {
+    requiresGift: true, repeatable: true, param: P.text('Field of Potent Magic'),
+    // its +3 / +6 (sizeEffects) come from crossRefs.ts
+    effects: [note('Minor: +3 to Lab Totals and Casting Score within the field; Major: +6. Only one Potent Magic applies to an activity; it adds to a Magical Focus. It lets the maga design Potent spells, whose Casting Items add their Potency to the Casting Score.')],
+  },
 
   // ------------------------------------------------------------------ Study & teaching
   'mythic-characteristic': {

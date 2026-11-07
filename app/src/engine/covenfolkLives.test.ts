@@ -93,7 +93,7 @@ describe('a covenant immune to a Flaw', () => {
     cov.visSources = [{ uid: 'v', name: 'the spring', art: 'Aq', pawnsPerYear: 6 } as never];
     return cov;
   };
-  it('gives one made there Hunger for (Form) Magic of its vis’s Form, held off whatever the Form, a grog for no points', async () => {
+  it('gives one made there Hunger for (Form) Magic of a Form at random, held off whatever the Form, a grog for no points', async () => {
     const { buildGameData } = await import('../data');
     const { newCharacter } = await import('./character/factory');
     const { takeImmunityFlaw, immunityFlawState } = await import('./covenantBoons');
@@ -101,14 +101,27 @@ describe('a covenant immune to a Flaw', () => {
     const cov = withImmunity('Major', 'hunger-for-form-magic-flaw');
     const grog = newCharacter('grog', 's');
     grog.virtues.push({ uid: 'f', defId: 'greedy-flaw', size: 'Minor' });
-    expect(takeImmunityFlaw(grog, cov, data, () => 0.5)).toMatch(/Hunger for \(Form\) Magic \(Aq\).*for no points/);
+    expect(takeImmunityFlaw(grog, cov, data, () => 0.5)).toMatch(/Hunger for \(Form\) Magic \((An|Aq|Au|Co|He|Ig|Im|Me|Te|Vi)\).*for no points/);
     const h = grog.virtues.find((v) => v.defId === 'hunger-for-form-magic-flaw')!;
-    expect(h).toMatchObject({ size: 'Major', param: 'Aq', heldBy: 'im', free: true, noPoints: true });
+    expect(h).toMatchObject({ size: 'Major', heldBy: 'im', free: true, noPoints: true });
+    // another seed, another Form: the choice is at random, not the covenant's vis
+    const forms = new Set([0.05, 0.25, 0.45, 0.65, 0.85].map((r) => { const g2 = newCharacter('grog', 's'); takeImmunityFlaw(g2, cov, data, () => r); return g2.virtues.find((v) => v.defId === 'hunger-for-form-magic-flaw')!.param; }));
+    expect(forms.size).toBeGreaterThan(2);
     const magus = newCharacter('magus', 's');
     magus.virtues.push({ uid: 'x', defId: 'hunger-for-form-magic-flaw', size: 'Major', param: 'Ig' });
     expect(immunityFlawState(cov, magus).unpaired).toHaveLength(1);
     takeImmunityFlaw(magus, cov, data, () => 0.5);
     expect(immunityFlawState(cov, magus).paired).toHaveLength(1);
+  });
+  it('gives whatever Flaw is chosen, its choice at random (Poor Characteristic)', async () => {
+    const { buildGameData } = await import('../data');
+    const { newCharacter } = await import('./character/factory');
+    const { takeImmunityFlaw } = await import('./covenantBoons');
+    const data = buildGameData();
+    const cov = withImmunity('Major', 'poor-characteristic-flaw');
+    const chars = new Set([0.1, 0.4, 0.7, 0.95].map((r) => { const c = newCharacter('companion', 's'); takeImmunityFlaw(c, cov, data, () => r); return c.virtues.find((v) => v.defId === 'poor-characteristic-flaw')?.param; }));
+    expect([...chars].every((x) => ['Int', 'Per', 'Str', 'Sta', 'Pre', 'Com', 'Dex', 'Qik'].includes(x!))).toBe(true);
+    expect(chars.size).toBeGreaterThan(1);
   });
   it('lets a Minor Immunity hold off a Minor Flaw', async () => {
     const { buildGameData } = await import('../data');

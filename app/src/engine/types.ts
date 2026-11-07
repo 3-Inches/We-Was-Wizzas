@@ -400,7 +400,7 @@ export type LabRoutine = 'early' | 'nocturnal' | 'addled' | 'overtime' | 'double
 /** A laboratory project that runs over one or more seasons (DE, The Laboratory). */
 export interface LabProject {
   uid: string;
-  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'longevity' | 'bind' | 'strengthen' | 'empower' | 'refine' | 'install' | 'repair' | 'other';
+  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'longevity' | 'bind' | 'strengthen' | 'empower' | 'refine' | 'install' | 'repair' | 'castingTool' | 'other';
   name: string;
   /** invent: the spell; instill: the effect's Technique, Form and level; tame: the creature's Form and Might */
   technique?: Technique;
@@ -438,6 +438,11 @@ export interface LabProject {
   experiment?: { risk: number };
   /** invent: from a Laboratory Text, done in one season once the Lab Total reaches the level; no experimenting */
   fromText?: boolean;
+  /** invent: a Potent spell's Casting Items and Potency (Potent Magic, up to Magic Theory) */
+  potency?: { items: string; score: number };
+  /** castingTool: the known spell (a CharSpell uid) whose casting tool is enchanted, and what it is given */
+  spellUid?: string;
+  tool?: CastingTool;
   /** longevity: the character it is for (the magus, if unset), and extra vis for a stronger ritual */
   subjectId?: string;
   extraVis?: number;
@@ -505,6 +510,10 @@ export interface CharVirtue {
   why?: string;
   /** a Flaw paired with the covenant's Immunity (the Boon's uid): held off while the character lives in its aura, back when they leave (Covenants ch.2) */
   heldBy?: string;
+  /** Greater Charm (the Flaw): the charm is with someone else, who has the charmed Virtue (kept here) until it is recovered (RoP: Faerie) */
+  charm?: { holderId: string; virtue: CharVirtue };
+  /** a Virtue had by holding someone else's Greater Charm: whose, and their Flaw's uid */
+  fromCharm?: { ownerId: string; flawUid: string };
 }
 
 export interface CharPower {
@@ -540,6 +549,16 @@ export interface CharAbility {
   why?: string;
 }
 
+/** What an enchanted casting tool gives its spell (DE, Enchant Casting Tools): a bonus to the casting roll, and mastered-spell abilities. */
+export interface CastingTool {
+  bonus: number;
+  fast?: boolean;
+  /** Quiet Casting, once or twice */
+  quiet?: number;
+  /** Multiple Casting: additional spells */
+  multiple?: number;
+}
+
 export interface CharSpell {
   uid: string;
   spellId?: string; // reference spell, if any
@@ -551,6 +570,10 @@ export interface CharSpell {
   notes?: string;
   /** the caster's Magical Focus applies to it */
   inFocus?: boolean;
+  /** a Potent spell (DE, Potent Magic): its Casting Items, held when it is cast, and their Potency, added to the Casting Score */
+  potency?: { items: string; score: number };
+  /** a Verditius's enchanted casting tool for it (DE, Enchant Casting Tools) */
+  castingTool?: CastingTool;
   /** why the guided build chose it */
   why?: string;
 }
@@ -642,6 +665,8 @@ export interface EnchantedItem {
   charges?: number;
   effects: EnchantedEffectRecord[];
   attunements: { label: string; bonus: number }[];
+  /** Verditius runes (DE, Verditius Magic): crafted by a Verditius, each Shape & Material bonus is raised by that magus's Philosophiae when enchanting it, by anyone */
+  runes?: number;
   creatorId?: string;
   notes?: string;
   /** a talisman is attuned only after a season's work (DE, Talisman Attunement); older files count as attuned */

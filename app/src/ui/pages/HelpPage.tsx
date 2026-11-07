@@ -250,8 +250,8 @@ export default function HelpPage() {
             show on those made there. The Covenfolk tab says what they make of its people and gives it to those already there; Quick build gives it to those it makes.
           </li>
           <li>
-            An Immunity covers a hazard, a disease, an influence or a Flaw within the aura (a Minor Boon a Minor Flaw; a Flaw with a Form, such as Hunger for (Form) Magic, is
-            held off whatever its Form, and one made there takes the Form most of the covenant&apos;s vis is of): a disease cannot be caught there and a plague passes it by, Warping
+            An Immunity covers a hazard, a disease, an influence or a Flaw within the aura (a Minor Boon a Minor Flaw; a Flaw with a choice in it, such as Hunger for (Form)
+            Magic or Weak Characteristic, is held off whatever the choice, and each one made there takes one at random): a disease cannot be caught there and a plague passes it by, Warping
             does not build up. A Flaw it covers is given, paired with it, to the grogs, companions and magi the toolkit makes for the covenant (at the share you set),
             who spend the Virtue points it gives; a paired Flaw is held off in the aura and is back when they leave (the Combat &amp; Health tab has the box), and pairing
             one makes the Boon a Major Hook. A Regio Hook of another realm is one more Minor Hook. Loyal and Rebellious Covenfolk, the Healthy Feature, Unhealthy

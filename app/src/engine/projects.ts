@@ -34,6 +34,7 @@ export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: stri
   { id: 'refine', label: 'Raise the lab’s Refinement', blurb: 'A season: Refinement +1 with Magic Theory at least the new Refinement + 3 (and, as a rule of thumb, years working in the lab equal to its Refinement). An Intelligence + Magic Theory roll may gain Highly Organized or find a Hidden Defect; a Free or Minor Flaw can be put right in the same season.' },
   { id: 'install', label: 'Install a lab Virtue', blurb: 'A season for a Minor Virtue, two for a Major, with Magic Theory at least the Refinement + 3 and free space in the lab (or a Flaw taken to balance it). Another Virtue can come out in the same work.' },
   { id: 'repair', label: 'Put a lab Flaw right', blurb: 'A season for a Free or Minor Flaw, two for a Major, with free space for the occupied Size it adds. Some Flaws come of where the lab is, and cannot be.' },
+  { id: 'castingTool', label: 'Enchant a casting tool (Verditius)', blurb: 'Enchant Casting Tools: one season, a Lab Total (with Philosophiae, Hubris, the spell’s magnitude and Craft) of twice the level of the spell and its powers; a pawn per 10 levels.', activity: 'Items' },
   { id: 'other', label: 'Other lab work', blurb: 'Anything else: the season is recorded with its exposure experience.' },
 ];
 
@@ -111,6 +112,17 @@ export function shapeMaterialChoices(c: Character, it: EnchantedItem, data?: Gam
   });
   if (c.talismanUid === it.uid) for (const a of it.attunements) if (!out.some((x) => x.key === a.label)) out.push({ key: a.label, bonus: a.bonus });
   return out;
+}
+
+/** An enchanted casting tool's effect level: the spell's, +2 for each mastered ability it mirrors, + its bonus to the casting roll (DE, Enchant Casting Tools). */
+export function castingToolLevel(spellLevel: number, t?: { bonus?: number; fast?: boolean; quiet?: number; multiple?: number }): number {
+  return spellLevel + (t?.fast ? 2 : 0) + 2 * (t?.quiet ?? 0) + 2 * (t?.multiple ?? 0) + Math.max(0, t?.bonus ?? 0);
+}
+
+/** What an enchanted casting tool gives, in words. */
+export function castingToolText(t: { bonus?: number; fast?: boolean; quiet?: number; multiple?: number }): string {
+  const bits = [t.bonus ? `+${t.bonus} to the casting roll` : '', t.fast ? 'Fast Casting' : '', t.quiet ? `Quiet Casting${t.quiet > 1 ? ' twice' : ''}` : '', t.multiple ? `Multiple Casting (${t.multiple} more)` : ''].filter(Boolean);
+  return bits.length ? `: ${bits.join(', ')}` : '';
 }
 
 /** May this project be worked by experimentation (DE, Arcane Experimentation)? Not from a Laboratory Text. */
@@ -218,7 +230,11 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       // the Shape and Material bonuses that suit the effect, with a Verditius's runes, held to Magic Theory (ArM5)
       const choices = shapeMaterialChoices(c, it, o.data);
       const sm = (p.sm ?? []).reduce((t, k) => t + (choices.find((x) => x.key === k)?.bonus ?? 0), 0);
-      const runes = sm > 0 && c.virtues.some((v) => v.defId === 'verditius-magic') ? (d.abilities.find((a) => a.abilityId === 'philosophiae')?.total ?? 0) : 0;
+      // the item's Verditius runes raise each bonus used (its maker's Philosophiae); a Verditius crafting a lesser or charged item now adds their own
+      const used = (p.sm ?? []).filter((k) => choices.some((x) => x.key === k)).length;
+      const makesIt = (it.kind === 'lesser' || it.kind === 'charged') && (!it.creatorId || it.creatorId === c.id);
+      const perBonus = it.runes ?? (makesIt && c.virtues.some((v) => v.defId === 'verditius-magic') ? (d.abilities.find((a) => a.abilityId === 'philosophiae')?.total ?? 0) : 0);
+      const runes = sm > 0 ? perBonus * used : 0;
       const total = lt('items', e.technique, e.form, { talisman, requisites: e.requisites, shapeMaterialBonus: sm, verditiusRunes: runes });
       const level = e.modifiedLevel;
       const lesser = it.kind === 'lesser';
@@ -257,6 +273,30 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       if (!gain) short(`The Rego ${ART_NAMES[p.form]} Lab Total (${total.total}) must exceed the creature's Might (${might}).`);
       const left = might - p.progress;
       return { total, target: might, gain, seasonsLeft: gain ? Math.ceil(left / gain) : Infinity, problems, summary: gain ? `+${gain} taming points toward ${might} (${p.progress}/${might}).` : '' };
+    }
+    case 'castingTool': {
+      const sp = c.spells.find((x) => x.uid === p.spellUid);
+      if (!c.virtues.some((v) => v.defId === 'enchant-casting-tools')) problems.push('Only a magus Initiated into Enchant Casting Tools can enchant one.');
+      if (!sp) return { target: 0, gain: 0, seasonsLeft: 0, problems: [...problems, 'Choose the spell the tool is for.'], summary: '' };
+      if (sp.castingTool) problems.push(`${sp.spell.name}'s casting tool is enchanted already: each can be enchanted once.`);
+      const level = castingToolLevel(sp.spell.level ?? 0, p.tool);
+      const base = lt('items', sp.spell.technique, sp.spell.form, { requisites: sp.spell.requisites });
+      const best = (pred: (id: string) => boolean) => d.abilities.filter((a) => pred(a.abilityId)).sort((a, b) => b.total - a.total)[0];
+      const phil = best((id) => id === 'philosophiae');
+      const craft = best((id) => id === 'craft-type');
+      const hubris = c.personality.find((t) => /hubris/i.test(t.trait))?.score ?? 0;
+      const magnitude = Math.ceil((sp.spell.level ?? 0) / 5);
+      const add = [
+        ...(phil?.total ? [{ label: 'Philosophiae (Verditius runes)', value: phil.total }] : []),
+        ...(hubris ? [{ label: 'Hubris', value: hubris }] : []),
+        { label: `Magnitude of ${sp.spell.name}`, value: magnitude },
+        ...(craft?.total ? [{ label: craft.name, value: craft.total }] : []),
+      ];
+      const total = { ...base, total: base.total + add.reduce((t, x) => t + x.value, 0), parts: [...base.parts, ...add] };
+      if (total.total < 2 * level) short(`The Lab Total (${total.total}) must be twice the effect level (${level} × 2 = ${2 * level}), to finish in one season.`);
+      const pawns = Math.ceil(level / 10);
+      visCheck(pawns);
+      return { total, target: 1, gain: 1, vis: { arts: [sp.spell.technique, sp.spell.form], pawns }, seasonsLeft: 1, problems, summary: `Enchant the casting tool of ${sp.spell.name}: effect level ${level}.` };
     }
     case 'extract': {
       const total = lt('visExtraction', 'Cr', 'Vi');
@@ -498,7 +538,7 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
             id: `custom-${x.uid}`, name: x.name, technique: x.technique!, form: x.form!, level: x.level!, general: false, range: '', duration: '', target: '', ritual: x.level! > 50,
             requisites: x.requisites ?? [], text: '', design: null, base: null, source: { book: 'custom', line: 0 }, custom: true,
           };
-          c.spells.push({ uid: uid(), spellId: x.spell?.id, spell: { ...spell, level: x.level! }, masteryXp: {}, masteryAbilities: [], source: 'play' });
+          c.spells.push({ uid: uid(), spellId: x.spell?.id, spell: { ...spell, level: x.level! }, masteryXp: {}, masteryAbilities: [], source: 'play', ...(x.potency?.score ? { potency: { ...x.potency } } : {}) });
           if (x !== p) x.results = [...(x.results ?? []), `${[o.season, year].filter(Boolean).join(' ')}: invented alongside ${p.name}.`.trim()];
         }
         const how = group.every((x) => x.fromText) ? 'learned from the Laboratory Text' : 'invented';
@@ -515,6 +555,8 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
       if (it && plan.vis) {
         it.openedPawns += plan.vis.pawns;
         it.creatorId = it.creatorId ?? c.id;
+        // a Verditius crafts it from raw materials as it is opened, and may carve the runes (DE, Verditius Magic)
+        if (it.creatorId === c.id && it.runes === undefined && c.virtues.some((v) => v.defId === 'verditius-magic')) it.runes = d.abilities.find((a) => a.abilityId === 'philosophiae')?.total ?? 0;
         lines.push(`${head} ${it.name} opened with ${plan.vis.pawns} pawns of Vim (${it.openedPawns} in all).`);
         attune();
       }
@@ -564,6 +606,15 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
         p.done = true;
         lines.push(`${head} tamed. It is Loyal +0 to you, and your notes make a Lab Text of level ${plan.target} for taming creatures of ${ART_NAMES[p.form!]}.`);
       } else lines.push(`${head} ${plan.summary}`);
+      break;
+    }
+    case 'castingTool': {
+      const sp = c.spells.find((x) => x.uid === p.spellUid);
+      if (sp) {
+        sp.castingTool = { bonus: p.tool?.bonus ?? 0, ...(p.tool?.fast ? { fast: true } : {}), ...(p.tool?.quiet ? { quiet: p.tool.quiet } : {}), ...(p.tool?.multiple ? { multiple: p.tool.multiple } : {}) };
+        lines.push(`${head} the casting tool of ${sp.spell.name} is enchanted${castingToolText(sp.castingTool)}.`);
+      }
+      p.done = true;
       break;
     }
     case 'extract': {
