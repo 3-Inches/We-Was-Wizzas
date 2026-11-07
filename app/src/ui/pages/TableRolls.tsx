@@ -8,6 +8,7 @@ import { abilityTotal, deriveCharacter, type DerivedCharacter } from '../../engi
 import { allCombatLines, woundFromDamage } from '../../engine/combat';
 import { COVERAGE, DEPRIVATION, HEAT_SOURCES, IMPACTS, OPPOSED_PRESETS, actionPenalties, deprivationEase, exchange, exchangeOutcome, fallingBonus, opposedOutcome, opposedRoll, penaltyText, perilDamage, staminaCheck, type Exchange, type ExchangeOptions, type SideRoll, type WoundLevel } from '../../engine/rolls';
 import { AfterRoll } from '../AfterRoll';
+import { MythicToggle, mythicBonus } from '../MythicToggle';
 import { DEFAULT_HOUSE_RULES, type Character, type HouseRules } from '../../engine/types';
 import { useStore } from '../../store/store';
 import { Card, Field, Stepper, signed } from '../kit';
@@ -65,12 +66,15 @@ interface Side {
   ability: string;
   mod: number;
   botch: number;
+  /** Mythic (Characteristic): its specialty applies to this roll */
+  mythic?: string[];
 }
 
 function SideFields({ x, side, set, title }: { x: Ctx; side: Side; set: (s: Side) => void; title: string }) {
   const got = derive(x, side.charId);
   const pen = got ? actionPenalties(got.d) : undefined;
-  const total = got ? got.d.characteristics[side.k].value + (side.ability ? abilityTotal(got.d, side.ability) : 0) + (pen?.total ?? 0) + side.mod : side.mod;
+  const myth = got ? mythicBonus(got.d, side.mythic ?? [], side.k) : 0;
+  const total = got ? got.d.characteristics[side.k].value + (side.ability ? abilityTotal(got.d, side.ability) : 0) + (pen?.total ?? 0) + side.mod + myth : side.mod;
   return (
     <div className="stack" style={{ gap: 4 }}>
       <b className="small">{title}</b>
@@ -107,6 +111,7 @@ function SideFields({ x, side, set, title }: { x: Ctx; side: Side; set: (s: Side
           <Stepper value={side.botch} min={0} max={10} width={34} onChange={(v) => set({ ...side, botch: v })} />
         </Field>
       </div>
+      {got && <MythicToggle d={got.d} chars={[side.k]} on={side.mythic ?? []} onChange={(m) => set({ ...side, mythic: m })} />}
       {got && (
         <span className="small muted">
           Total {total} + a stress die{pen?.parts.length ? `, with ${penaltyText(pen)}` : ''}.{pen?.cannot ? <b className="bad-text"> {got.c.name || 'They'}: {pen.cannot}.</b> : null}
@@ -127,8 +132,9 @@ export function OpposedCard({ x }: { x: Ctx }) {
   // the Characteristic and Ability, less what wounds, Fatigue and disease take off (DE)
   const totalOf = (s: Side) => {
     const got = derive(x, s.charId);
-    return got ? got.d.characteristics[s.k].value + (s.ability ? abilityTotal(got.d, s.ability) : 0) + actionPenalties(got.d).total + s.mod : s.mod;
+    return got ? got.d.characteristics[s.k].value + (s.ability ? abilityTotal(got.d, s.ability) : 0) + actionPenalties(got.d).total + s.mod + mythicBonus(got.d, s.mythic ?? [], s.k) : s.mod;
   };
+  const botchOf = (s: Side) => Math.max(0, s.botch - mythicBonus(derive(x, s.charId)?.d, s.mythic ?? [], s.k));
   const nameOf = (s: Side, n: string) => x.chars.find((c) => c.id === s.charId)?.name || n;
   return (
     <Card title="Opposed roll">
@@ -160,7 +166,7 @@ export function OpposedCard({ x }: { x: Ctx }) {
         className="primary"
         style={{ marginTop: 6 }}
         onClick={() => {
-          const r = opposedRoll({ mod: totalOf(a), botch: a.botch }, { mod: totalOf(b), botch: b.botch });
+          const r = opposedRoll({ mod: totalOf(a), botch: botchOf(a) }, { mod: totalOf(b), botch: botchOf(b) });
           const names: [string, string] = [nameOf(a, 'The one acting'), nameOf(b, 'the one resisting')];
           setLast({ id: Date.now(), a: r.a, b: r.b, aId: a.charId, bId: b.charId, names });
           setOut([`${names[0]} against ${names[1]}: ${r.text}`, ...out].slice(0, 8));
@@ -376,7 +382,10 @@ export function PerilsCard({ x }: { x: Ctx }) {
   const [res, setRes] = useState<{ text: string; wound?: WoundLevel; fatigue?: 'short' | 'long'; check?: { id: number; total: number; ease: number; faces?: number[]; harm: { wound?: WoundLevel; fatigue?: 'short' | 'long' } }; applied?: boolean }>();
   const W = derive(x, who);
   const soak = W ? W.d.soak : manualSoak;
-  const sta = W ? W.d.characteristics.Sta.value : manualSta;
+  // Mythic Stamina: its specialty applies to this check (+1, one botch die fewer)
+  const [mythic, setMythic] = useState<string[]>([]);
+  const mythSta = W ? mythicBonus(W.d, mythic, 'Sta') : 0;
+  const sta = (W ? W.d.characteristics.Sta.value : manualSta) + mythSta;
   const wfn = W ? (e: number) => woundFromDamage(W.d, e) : undefined;
   const roll = () => {
     if (peril === 'fall') {
@@ -393,7 +402,7 @@ export function PerilsCard({ x }: { x: Ctx }) {
       return setRes({ text: `${IMPACTS[impact].label}: ${r.text}`, wound: r.wound });
     }
     if (peril === 'poison') {
-      const r = staminaCheck(sta, ease);
+      const r = staminaCheck(sta, ease, undefined, 1 - mythSta);
       return setRes({
         text: `Poison or disease (Ease ${ease}): ${r.text}${r.ok ? ' Only minor discomfort.' : ` ${woundText(agentWound)}, treated with Medicine.`}`,
         wound: r.ok ? undefined : agentWound,
@@ -402,7 +411,7 @@ export function PerilsCard({ x }: { x: Ctx }) {
     }
     const d = DEPRIVATION[dep];
     const e = deprivationEase(periods);
-    const r = staminaCheck(sta, e);
+    const r = staminaCheck(sta, e, undefined, 1 - mythSta);
     const fatigue = d.longTerm ? ('long' as const) : ('short' as const);
     setRes({
       text: `Without ${d.label.toLowerCase()} (check ${periods}, each ${d.period}; Ease ${e}): ${r.text}${r.ok ? '' : ` A ${d.longTerm ? 'Long-Term' : 'Short-Term'} Fatigue level is lost (once unconscious, a Light Wound instead).`}`,
@@ -517,6 +526,7 @@ export function PerilsCard({ x }: { x: Ctx }) {
         <button className="primary" onClick={roll}>
           Roll
         </button>
+        {W && (peril === 'poison' || peril === 'deprivation') && <MythicToggle d={W.d} chars={['Sta']} on={mythic} onChange={setMythic} />}
       </div>
       {res?.check && W && (
         <AfterRoll

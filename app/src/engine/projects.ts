@@ -100,6 +100,19 @@ export interface PlanOptions {
   helpers?: LabHelper[];
 }
 
+/**
+ * The Shape and Material bonuses an item offers an effect instilled in it: those of its shapes and
+ * materials, and a talisman's attunements too (ArM5, Shape and Material Bonuses; Talismans).
+ */
+export function shapeMaterialChoices(c: Character, it: EnchantedItem, data?: GameData): { key: string; bonus: number }[] {
+  const out = it.shapeMaterialIds.flatMap((id) => {
+    const s = data?.shapeMaterial.find((x) => x.id === id);
+    return s ? s.bonuses.map((b) => ({ key: `${s.name}: ${b.effect}`, bonus: b.bonus })) : [];
+  });
+  if (c.talismanUid === it.uid) for (const a of it.attunements) if (!out.some((x) => x.key === a.label)) out.push({ key: a.label, bonus: a.bonus });
+  return out;
+}
+
 /** May this project be worked by experimentation (DE, Arcane Experimentation)? Not from a Laboratory Text. */
 export function canExperiment(p: LabProject): boolean {
   return !!PROJECT_KINDS.find((k) => k.id === p.kind)?.experiment && !p.fromText;
@@ -138,9 +151,10 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
     ...(o.bonus ? [{ label: 'Experimentation (simple die + risk)', value: o.bonus }] : []),
     ...helperParts(o.helpers),
   ];
-  const lt = (activity: LabActivity, te: string, fo: string, x?: { talisman?: boolean; requisites?: Art[]; familiarBond?: 'none' | 'one' | 'both'; fromText?: boolean; forSelfLongevity?: boolean }) =>
+  const lt = (activity: LabActivity, te: string, fo: string, x?: { talisman?: boolean; requisites?: Art[]; familiarBond?: 'none' | 'one' | 'both'; fromText?: boolean; forSelfLongevity?: boolean; shapeMaterialBonus?: number; verditiusRunes?: number }) =>
     labTotal(d, { technique: te as never, form: fo as never, requisites: x?.requisites }, {
       activity, aura: ctx.aura, lab, talisman: x?.talisman, familiarBond: x?.familiarBond, fromText: x?.fromText, forSelfLongevity: x?.forSelfLongevity, experimenting, extra,
+      shapeMaterialBonus: x?.shapeMaterialBonus, verditiusRunes: x?.verditiusRunes,
       inFocus: p.inFocus, circumstance: p.circumstances,
     });
   const limit = seasonVisLimit(d);
@@ -201,7 +215,11 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       const e = it?.effects.find((x) => x.uid === p.effectUid);
       if (!it || !e) return { target: 0, gain: 0, seasonsLeft: 0, problems: ['Choose the item and the effect (add the effect to the item first).'], summary: '' };
       const talisman = c.talismanUid === it.uid;
-      const total = lt('items', e.technique, e.form, { talisman, requisites: e.requisites });
+      // the Shape and Material bonuses that suit the effect, with a Verditius's runes, held to Magic Theory (ArM5)
+      const choices = shapeMaterialChoices(c, it, o.data);
+      const sm = (p.sm ?? []).reduce((t, k) => t + (choices.find((x) => x.key === k)?.bonus ?? 0), 0);
+      const runes = sm > 0 && c.virtues.some((v) => v.defId === 'verditius-magic') ? (d.abilities.find((a) => a.abilityId === 'philosophiae')?.total ?? 0) : 0;
+      const total = lt('items', e.technique, e.form, { talisman, requisites: e.requisites, shapeMaterialBonus: sm, verditiusRunes: runes });
       const level = e.modifiedLevel;
       const lesser = it.kind === 'lesser';
       const pawns = Math.ceil(level / 10);
@@ -483,7 +501,8 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
           c.spells.push({ uid: uid(), spellId: x.spell?.id, spell: { ...spell, level: x.level! }, masteryXp: {}, masteryAbilities: [], source: 'play' });
           if (x !== p) x.results = [...(x.results ?? []), `${[o.season, year].filter(Boolean).join(' ')}: invented alongside ${p.name}.`.trim()];
         }
-        lines.push(group.length > 1 ? `${head} invented, with ${group.slice(1).map((x) => x.name).join(', ')} (levels ${group.map((x) => x.level).join(' + ')})${flaw}.` : `${head} invented (level ${p.level})${flaw}.`);
+        const how = group.every((x) => x.fromText) ? 'learned from the Laboratory Text' : 'invented';
+        lines.push(group.length > 1 ? `${head} ${how}, with ${group.slice(1).map((x) => x.name).join(', ')} (levels ${group.map((x) => x.level).join(' + ')})${flaw}.` : `${head} ${how} (level ${p.level})${flaw}.`);
       } else lines.push(`${head} ${plan.summary}`);
       break;
     }

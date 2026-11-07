@@ -94,6 +94,9 @@ const EXPLICIT: Record<string, Mechanics> = {
   'tormenting-master-flaw': onlyTypes(['magus'], 'This Flaw is only applicable to magi, although other characters could take an analogous Story Flaw.'),
   'divination-and-augury': onlyTypes(['magus'], 'It is only available to Hermetic magi, as it requires the magus to have Hermetic Arts opened.'),
   kabbalist: onlyTypes(['mythic'], 'This is a special Mythic Companion Social Status Virtue and must be taken by all kabbalists.'),
+  // trade-bound craft Virtues: a farrier's horseshoes, a saddler's saddles (Grogs; Between Sand & Sea)
+  'mythic-farrier': { needs: [need(['$craft:Farrier|Blacksmith'], 'a Craft that shoes horses (Farrier or Blacksmith)', { severity: 'warning' })] },
+  'mythic-saddle-maker': { needs: [need(['$craft:Saddler|Saddle-maker|Leatherworker|Woodworker|Carpenter'], 'a Craft that makes saddles (Saddler, Leatherworker or a woodworker)', { severity: 'warning' })] },
   'hermetic-patron-flaw': { needs: [need(['hermetic-magus', 'redcap', 'lone-redcap'], 'being a Redcap or a magus')], restrictionText: 'You must be a Redcap or magus to take this Flaw.' },
 
   // ---------------------------------------------------------------- Houses

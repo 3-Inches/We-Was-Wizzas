@@ -21,6 +21,7 @@ export function NeedsYouCard({ ed }: { ed: CharEditor }) {
   const hurt = [w.light && `${w.light} Light`, w.medium && `${w.medium} Medium`, w.heavy && `${w.heavy} Heavy`, w.incapacitating && `${w.incapacitating} Incapacitating`].filter(Boolean);
   if (hurt.length) items.push({ text: `Wounds to recover from: ${hurt.join(', ')}.`, to: health, go: 'Health & recovery' });
   if (c.longTermFatigueLost > 0) items.push({ text: `${c.longTermFatigueLost} Long-Term Fatigue level${c.longTermFatigueLost > 1 ? 's' : ''} lost.`, to: health, go: 'Health & recovery' });
+  if (c.hungerLost) items.push({ text: `${c.hungerLost} Fatigue level${c.hungerLost > 1 ? 's' : ''} lost to Hunger for (Form) Magic: vis to eat.`, to: health, go: 'Health & recovery' });
   if (c.illnesses?.length) items.push({ text: 'Ill: recovery rolls are due.', to: health, go: 'Health & recovery' });
   const errs = validateCharacter(d, data, saga.houseRules).filter((i) => i.severity === 'error').length;
   if (errs) items.push({ text: `${errs} rules problem${errs > 1 ? 's' : ''} on the sheet.`, to: R.character(saga.id, c, 'rules'), go: 'Rules check' });

@@ -38,7 +38,7 @@ import { bestStudy, choosePriority, focusArts, priorityLabel } from './prioritie
 import { gatheringIn, gatheringNews, houseGatheringIn, livingIds, livingYearEnd } from './living';
 import { redcapYearEnd } from './generate/items';
 import { apprenticesYearEnd, tribunalGathering, wanderersSeasonStart, wanderersYearEnd } from './tribunalLife';
-import { workshopSeason, workshopYearEnd } from './workshop';
+import { isTrade, workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
 import { uid } from '../util/id';
 import { environmentAging, flawHeld, immuneToWarping } from './covenantBoons';
@@ -110,7 +110,7 @@ const WORSHIP_AURA = 4;
 
 /** The Ability a character works with: its Craft or Profession, else its best Ability. */
 function workAbility(d: DerivedCharacter): string | undefined {
-  const trade = d.abilities.filter((a) => a.abilityId.startsWith('craft') || a.abilityId.startsWith('profession')).sort((a, b) => b.total - a.total)[0];
+  const trade = d.abilities.filter((a) => isTrade(a.abilityId)).sort((a, b) => b.total - a.total)[0];
   if (trade) return `ability:${trade.uid}`;
   const best = d.abilities.filter((a) => a.abilityId !== 'living-language' && a.abilityId !== 'dead-language').sort((a, b) => b.total - a.total)[0];
   return best ? `ability:${best.uid}` : undefined;
@@ -454,6 +454,49 @@ export function covenantAttendants(cov: Covenant, chars: Character[], derive: (c
     .filter((m) => inPlay(m) && cov.memberIds.includes(m.id) && m.abilities.some((a) => a.abilityId === 'medicine'))
     .map((m) => ({ id: m.id, name: m.name || 'a companion', int: m.characteristics.Int, medicine: Math.max(0, ...derive(m).abilities.filter((a) => a.abilityId === 'medicine').map((a) => a.total)) }));
   return [...fromSpecs, ...fromMembers].filter((a) => a.medicine > 0).sort((a, b) => b.medicine - a.medicine || b.int - a.int);
+}
+
+/**
+ * Hunger for (Form) Magic (DE): a pawn of the Form's vis each season, from the character's own stores;
+ * a season without one costs a Long-Term Fatigue level that does not come back until a pawn is eaten,
+ * and a pawn more each season gives one back. Nothing while the covenant's Immunity holds it off.
+ */
+export function hungerSeason(c: Character): string[] {
+  const out: string[] = [];
+  for (const cv of c.virtues.filter((v) => v.defId === 'hunger-for-form-magic-flaw')) {
+    if (flawHeld(c, cv)) continue;
+    const form = cv.param as Art | undefined;
+    if (!form) continue;
+    const purse = purseOf(c).vis;
+    const name = ART_NAMES[form] ?? form;
+    if (takeVis(purse, [form], 1).ok) {
+      let back = 0;
+      while ((c.hungerLost ?? 0) > 0 && takeVis(purse, [form], 1).ok) {
+        c.hungerLost = (c.hungerLost ?? 0) - 1;
+        back++;
+      }
+      out.push(`Hunger for ${name} Magic: ate a pawn of ${name} vis${back ? `, and ${back} more to win back ${back} Fatigue level${back > 1 ? 's' : ''}` : ''}.`);
+      if (!c.hungerLost) delete c.hungerLost;
+    } else {
+      c.hungerLost = Math.min(5, (c.hungerLost ?? 0) + 1);
+      out.push(`Hunger for ${name} Magic: no pawn of ${name} vis this season: a Long-Term Fatigue level is lost (${c.hungerLost} in all), back only as vis is eaten.`);
+    }
+  }
+  return out;
+}
+
+/** Hunger for (Form) Magic's lost levels won back now, a pawn of the Form from the purse for each (DE). */
+export function feedHunger(c: Character): string {
+  const lost = c.hungerLost ?? 0;
+  if (!lost) return '';
+  const forms = c.virtues.filter((v) => v.defId === 'hunger-for-form-magic-flaw' && v.param).map((v) => v.param as Art);
+  const purse = purseOf(c).vis;
+  let back = 0;
+  while (back < lost && takeVis(purse, forms, 1).ok) back++;
+  c.hungerLost = lost - back;
+  if (!c.hungerLost) delete c.hungerLost;
+  const names = forms.map((f) => ART_NAMES[f] ?? f).join(' or ');
+  return back ? `Ate ${back} pawn${back > 1 ? 's' : ''} of ${names} vis: ${back} Fatigue level${back > 1 ? 's' : ''} back${c.hungerLost ? `, ${c.hungerLost} still lost` : ''}.` : `No ${names} vis in ${c.name || 'their'} purse to eat.`;
 }
 
 /** What the Chronicle needs to know of a covenant: its aura and its road. */
@@ -973,6 +1016,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   }
   for (const c of state.characters.filter(inPlay)) {
     for (const t of expireEffects(c, next.year, next.season)) lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: t });
+    for (const t of hungerSeason(c)) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
     c.fatigueLost = 0;
     c.longTermFatigueLost = 0;
     if (c.creature) {

@@ -27,9 +27,10 @@ import { ItemCheck } from './DamagedGoods';
 import { ResultLog, groupPeople } from '../play';
 import { TraitBadges, worksAt } from '../covenant/CraftTraits';
 import { TravelTradeCard } from './TravelTradeCard';
+import { isTrade } from '../../engine/workshop';
 
 /** A character who lives by a trade: a Craft or Profession, or a livelihood already tracked. */
-const hasTrade = (c: Character) => !!c.workshop || c.abilities.some((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
+const hasTrade = (c: Character) => !!c.workshop || c.abilities.some((a) => isTrade(a.abilityId));
 
 export default function CityGuildPage() {
   const { sagaId } = useParams();

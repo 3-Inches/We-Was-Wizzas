@@ -1,6 +1,6 @@
 // Long-term events (DE Chapter 10): seasonal advancement, aging, Twilight.
 
-import { CHARACTERISTICS, type Art, type Characteristic, type GameData } from '../data';
+import { CHARACTERISTICS, FORMS, TECHNIQUES, type Art, type Characteristic, type GameData } from '../data';
 import type { Character, SeasonLogEntry, XpSource } from './types';
 import { paramValues, type DerivedCharacter } from './character/derive';
 import { abilityAvailability } from './character/restrictions';
@@ -190,7 +190,36 @@ export function visForStudy(score: number): number {
 }
 
 /** Apply a season log entry's gains to the character ('play' xp). */
+/**
+ * Secondary Insight (DE): a season studying a Technique from a book, a teacher or vis also gives a
+ * single experience point in each of four Forms; studying a Form, in each of two Techniques. The
+ * character's chosen Arts first, then the lowest; never the Art studied, never two points in one Art,
+ * and not raised by Affinities. Returns the extra gains (nothing without the Virtue).
+ */
+export function secondaryInsight(c: Character, entry: Pick<SeasonLogEntry, 'activity' | 'gains'>): Record<string, number> {
+  if (!['study-book', 'study-vis', 'taught'].includes(entry.activity)) return {};
+  if (!c.virtues.some((v) => v.defId === 'secondary-insight')) return {};
+  const studied = Object.keys(entry.gains).filter((k) => k.startsWith('art:') && (entry.gains[k] ?? 0) > 0).map((k) => k.slice(4) as Art);
+  if (studied.length !== 1) return {};
+  const art = studied[0];
+  const isTech = (TECHNIQUES as readonly string[]).includes(art);
+  const pool = (isTech ? FORMS : TECHNIQUES).filter((a) => a !== art) as Art[];
+  const xpOf = (a: Art) => Object.values(c.arts[a] ?? {}).reduce<number>((t, n) => t + (n ?? 0), 0);
+  const chosen = (c.insight ?? []).filter((a) => pool.includes(a));
+  const rest = pool.filter((a) => !chosen.includes(a)).sort((a, b) => xpOf(a) - xpOf(b));
+  return Object.fromEntries([...chosen, ...rest].slice(0, isTech ? 4 : 2).map((a) => [`art:${a}`, 1]));
+}
+
 export function applySeason(c: Character, entry: SeasonLogEntry, sign: 1 | -1 = 1) {
+  // Secondary Insight's points go into the season's own gains, so unlogging it takes them back too
+  if (sign === 1 && !entry.insight && !entry.applied) {
+    const extra = secondaryInsight(c, entry);
+    if (Object.keys(extra).length) {
+      for (const [k, v] of Object.entries(extra)) entry.gains[k] = (entry.gains[k] ?? 0) + v;
+      entry.summary += ` Secondary Insight: +1 xp in ${Object.keys(extra).map((k) => k.slice(4)).join(', ')}.`;
+    }
+    entry.insight = true;
+  }
   for (const [key, xp] of Object.entries(entry.gains)) {
     const [kind, id] = key.split(':');
     if (kind === 'art') {
@@ -300,9 +329,12 @@ const SPARE_ORDER: Record<Character['type'], Characteristic[]> = {
  */
 export function sparestCharacteristic(c: Character): Characteristic {
   const order = SPARE_ORDER[c.type] ?? CHARACTERISTICS;
-  const safe = order.find((k) => (c.agingPoints[k] ?? 0) + 1 <= Math.abs(c.characteristics[k]));
+  // what aging has already taken counts first, so a high Characteristic that soaks points is not lowered again and again
+  const lost = (k: Characteristic) => c.agingLoss?.[k] ?? 0;
+  const first = (ks: Characteristic[]) => [...ks].sort((a, b) => lost(a) - lost(b) || order.indexOf(a) - order.indexOf(b))[0];
+  const safe = first(order.filter((k) => (c.agingPoints[k] ?? 0) + 1 <= Math.abs(c.characteristics[k])));
   if (safe) return safe;
-  return order.find((k) => c.characteristics[k] > -2) ?? [...order].sort((a, b) => c.characteristics[b] - c.characteristics[a])[0];
+  return first(order.filter((k) => c.characteristics[k] > -2)) ?? [...order].sort((a, b) => c.characteristics[b] - c.characteristics[a])[0];
 }
 
 export function decrepitudeScore(points: number): number {

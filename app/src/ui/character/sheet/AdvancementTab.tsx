@@ -15,6 +15,7 @@ import { purseOf, takeVis, visAvailable } from '../../../engine/vis';
 import { Card, Field, HowItWorks, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { useStore } from '../../../store/store';
+import { isTrade } from '../../../engine/workshop';
 import { TwilightCard } from './Twilight';
 import { HelpersRow, previewHelpers, useWorkProject } from './LabProjects';
 import { planProject, visShort } from '../../../engine/projects';
@@ -205,6 +206,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const project = openProjects.find((p) => p.uid === projectUid) ?? openProjects[0];
   // the season a covenant-mate teaching gives: their own if free, else an extra one (needs no sleep)
   const teacherSlot = mate && mateD ? (!seasonBusy(mate, year, season) ? 'main' : extraFree(mate, mateD, year, season) ? 'extra' : undefined) : undefined;
+  // a teacher of the saga with no season left to give cannot teach this season: the same season is not spent twice (DE, Teaching)
+  const teacherBusy = !!mate && !teacherSlot;
   // a season holds one activity, an adventure aside (DE); one who needs no sleep has extra seasons for study, not lab work
   const taken = seasonTaken(c, year, season);
   const plan = seasonsOf(c, d);
@@ -565,7 +568,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                       <input type="checkbox" checked={logTeacher} onChange={(e) => setLogTeacher(e.target.checked)} /> log {mate.name || 'the teacher'}’s {teacherSlot === 'extra' ? 'extra ' : ''}season too (Exposure in Teaching)
                     </label>
                   ) : (
-                    `${mate.name || 'The teacher'} has no season free this ${season} to teach in.`
+                    <span className="warn-text">{`${mate.name || 'The teacher'} has no season free this ${season} to teach in: unlog what they did, or be taught in another season.`}</span>
                   )}{' '}
                   To have it happen when time moves on, set {c.name || 'this character'} to be taught by {mate.name || 'them'} on the Game Table’s Seasons page, or {mate.name || 'them'} to teach.
                 </div>
@@ -662,7 +665,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
         )}
         <div className="row" style={{ marginTop: 8 }}>
           <input style={{ flex: 1 }} value={summary} placeholder="Summary for the log (optional)" onChange={(e) => setSummary(e.target.value)} />
-          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || visNotAllowed || (kind === 'vis' && (visDie === null || !visFrom)) || (kind === 'lab' && (!project || !!projectPlan?.problems.length || doubled))}>
+          <button className="primary" onClick={logSeason} disabled={trainingNotAllowed || visNotAllowed || teacherBusy || (kind === 'vis' && (visDie === null || !visFrom)) || (kind === 'lab' && (!project || !!projectPlan?.problems.length || doubled))}>
             Log season{res?.xp ? ` & add ${res.xp} xp` : ''}
           </button>
         </div>
@@ -862,7 +865,7 @@ function labelFor(key: string, c: NonNullable<CharEditor['c']>, d: NonNullable<C
 function LivelihoodLine({ ed }: { ed: CharEditor }) {
   const { c, saga } = ed;
   if (!c || !saga) return null;
-  const trade = c.abilities.some((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
+  const trade = c.abilities.some((a) => isTrade(a.abilityId));
   if (!c.workshop && !trade && !c.guild) return null;
   return (
     <Card title="Livelihood & guild (City & Guild)">

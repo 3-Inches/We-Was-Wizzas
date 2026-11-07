@@ -86,6 +86,11 @@ export function needMet(need: VFNeed, virtues: CharVirtue[], data: GameData, d?:
     if (t === '$arcane') return d.isMagus || d.abilityAccess.types.has('Arcane');
     if (t === '$martial') return d.isMagus || d.abilityAccess.types.has('Martial');
     if (t === '$supernaturalAbility') return d.abilities.some((a) => a.type === 'Supernatural' && (a.score > 0 || a.granted > 0));
+    // '$craft:Farrier|Blacksmith': a Craft of one of these trades
+    if (t.startsWith('$craft:')) {
+      const trades = t.slice(7).toLowerCase().split('|');
+      return d.char.abilities.some((a) => a.abilityId === 'craft-type' && trades.includes((a.param ?? '').toLowerCase()));
+    }
     return false;
   };
   if (need.anyOf?.some((id) => (id.startsWith('$') ? token(id) : virtues.some((v) => v.defId === id)))) return true;

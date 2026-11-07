@@ -139,7 +139,7 @@ describe('several spells at once (DE, Multiple Laboratory Activities)', () => {
     expect(planProject(b, c, d(c), ctx(), { data }).problems.join(' ')).toMatch(/Invented alongside Lift the Body/);
     expect(inventedWith(b, c)?.uid).toBe(a.uid);
     expect(planProject(a, c, d(c), ctx(), { data }).summary).toMatch(/level 20 \(2 spells, levels 10 \+ 10\)/);
-    expect(work(a).join(' ')).toMatch(/invented, with Hold the Body/);
+    expect(work(a).join(' ')).toMatch(/learned from the Laboratory Text, with Hold the Body/);
     expect(c.spells.map((s) => s.spell?.name).sort()).toEqual(['Hold the Body', 'Lift the Body']);
     expect(b.done).toBe(true);
     // too many levels for the Lab Total

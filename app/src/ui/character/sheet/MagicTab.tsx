@@ -1,12 +1,13 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { auraAtTime, type AuraTime } from '../../../engine/aura';
-import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type Technique } from '../../../data';
+import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type GameData, type Technique } from '../../../data';
 import { castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
 import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
 import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
-import type { CharSpell } from '../../../engine/types';
+import type { ActiveEffect, CharSpell } from '../../../engine/types';
+import { applyEffect, powerfulEffectWarping } from '../../../engine/effects';
 import type { CertamenArt } from '../../../engine/magic';
-import { Card, Field, Stepper, Total, HowItWorks } from '../../kit';
+import { Card, Field, Stepper, Total, HowItWorks, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { masteryScore } from '../steps/SpellsStep';
 import { labContextOf } from '../../../engine/lab';
@@ -15,6 +16,7 @@ import { useStore } from '../../../store/store';
 import { RollAtTable, fightsCertamen, groupPeople, useAtTable, PeopleOptions } from '../../play';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { AfterRoll } from '../../AfterRoll';
+import { MythicToggle, mythicBonus } from '../../MythicToggle';
 import { owe } from '../../../engine/time';
 import { deriveCharacter } from '../../../engine/character/derive';
 
@@ -31,6 +33,8 @@ interface LastCast {
   fatigue?: { levels: number; longTerm: boolean };
   fatigueFor?: (total: number) => number;
   judge: (total: number) => string;
+  /** a Formulaic spell or Ritual that was cast: what it can leave on whoever it works on */
+  spell?: { name: string; level: number; duration: string; ritual: boolean; penetration: number; form: Form };
 }
 
 /**
@@ -73,6 +77,12 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [ceremonial, setCeremonial] = useState(false);
   const [declared, setDeclared] = useState(10);
   const [lifeLinkedOn, setLifeLinkedOn] = useState(false);
+  // Mythic Stamina: its specialty applies to this casting (+1, one botch die fewer)
+  const [mythic, setMythic] = useState<string[]>([]);
+  // fast-casting (ArM5): spontaneous magic, or a spell mastered with Fast Casting, at −10, cast when the Speed roll beats the threat's Initiative
+  const [fast, setFast] = useState(false);
+  // Flexible Formulaic Magic: one of Range, Duration, Target or size moved a step, the spell a magnitude higher or lower
+  const [flex, setFlex] = useState(0);
   // the last casting's roll: Confidence, Faith and All According to Plan after it (a botch's Warping taken back)
   const [lastCast, setLastCast] = useState<LastCast | null>(null);
 
@@ -100,8 +110,16 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   // ceremonial casting needs experience in Artes Liberales or Philosophiae (DE, Ceremonial Casting)
   const canCeremonial = d.abilities.some((a) => (a.abilityId === 'artes-liberales' || a.abilityId === 'philosophiae') && a.effectiveXp > 0);
   const cer = rules.ceremonialSpontaneous || (ceremonial && canCeremonial);
+  const mythSta = mythicBonus(d, mythic, 'Sta');
+  const mythPart = [...(mythSta ? [{ label: 'Mythic Stamina', value: 1 }] : []), ...(fast ? [{ label: 'Fast-cast', value: -10 }] : [])];
+  const fastCaster = d.effects.filter((e) => e.type === 'spellInitiative').reduce((t, e) => t + ('amount' in e ? Number(e.amount) || 0 : 0), 0);
+  const speed = d.characteristics.Qik.value + (d.abilities.filter((a) => a.abilityId === 'finesse').sort((a, b) => b.total - a.total)[0]?.total ?? 0) + fastCaster;
+  const rollSpeed = () => {
+    const r = stressDie(1);
+    push(`Fast-casting Speed: Quickness + Finesse${fastCaster ? ` + Fast Caster ${fastCaster}` : ''} = ${speed} + die ${describeStress(r)} = ${r.botches ? 'BOTCH' : speed + r.value} (it must beat the Initiative of what it answers).`);
+  };
   const spontOpts = {
-    kind: 'spontaneous' as const, aura, wordsGestures: words, talismanBonus: talisman ? talismanBonus : 0, inFocus: focusNow, circumstance: conds, other, ceremonial: cer,
+    kind: 'spontaneous' as const, aura, wordsGestures: words, talismanBonus: talisman ? talismanBonus : 0, inFocus: focusNow, circumstance: conds, other, ceremonial: cer, extra: mythPart,
     similarSpell: similarSp ? { name: similarSp.spell.name, magnitude: Math.ceil((similarSp.spell.level ?? 0) / 5) } : undefined,
   };
   const spont = castingScore(d, { technique: tech, form }, spontOpts);
@@ -167,7 +185,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   /** Fatigue spent on a casting, after Vulnerable and Withstand Casting; Life Boost and Life-Linked levels are added as they are */
   const spendFatigue = (levels: number, longTerm: boolean) => {
     if (!levels) return '';
-    const left = 5 - (c.fatigueLost + c.longTermFatigueLost);
+    const left = 5 - (c.fatigueLost + c.longTermFatigueLost + (c.hungerLost ?? 0));
     const over = Math.max(0, levels - left);
     update((x) => {
       if (longTerm) x.longTermFatigueLost = Math.min(5, x.longTermFatigueLost + levels);
@@ -199,15 +217,20 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
       push(`${sp.spell.name}: Rigid Magic: you cannot use vis when casting, so you cannot cast Ritual spells.`);
       return;
     }
-    const level = sp.spell.level ?? 0;
+    if (fast && (ritual || !sp.masteryAbilities.includes('Fast Casting'))) {
+      push(`${sp.spell.name}: ${ritual ? 'a Ritual cannot be fast-cast' : 'only a spell mastered with Fast Casting can be fast-cast (spontaneous magic always can)'}.`);
+      return;
+    }
+    const flexible = d.virtues.some((v) => v.cv.defId === 'flexible-formulaic-magic') ? flex : 0;
+    const level = Math.max(1, (sp.spell.level ?? 0) + 5 * flexible);
     // a Ritual's vis: a botch die per pawn, including the pawns that make the Ritual possible (DE, Vis Botch Dice)
     const vis = ritual ? ritualVis(level, rules) : { pawns: 0, wasted: 0 };
     const visB = visBoostFor(sp.spell.technique, sp.spell.form, vis.pawns);
     const res = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
       kind: ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
-      talismanBonus: talisman ? talismanBonus : 0, extra: ms ? [{ label: 'Mastery', value: ms }] : [], visPawns: visB.pawns,
+      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart], visPawns: visB.pawns,
     });
-    const botchDice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((res.botchDice ?? 0) + vis.pawns + visB.used, golden, ms));
+    const botchDice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((res.botchDice ?? 0) + vis.pawns + visB.used, golden, ms) - mythSta);
     // a stress die for stress, for Rituals and mastered spells, and always with Unpredictable Magic; calm and
     // mastered means no botch dice, and a calm Ritual still risks a botch unless it is mastered
     const canBotch = stress || (ritual && ms === 0) || rules.unpredictable;
@@ -243,7 +266,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     const overBy = Math.max(0, boost - left);
     const boostText = boost ? ` Life Boost spends ${boost} Fatigue level${boost > 1 ? 's' : ''}${overBy ? `; ${overBy} beyond your Fatigue: Soak ${5 * overBy} + stress die without armor` : ''}.` : '';
     const fatigueText = fatigue !== out.fatigue ? ` Fatigue lost: ${fatigue}${fatigueNote}.` : '';
-    push(`${sp.spell.name}: ${res.total} + die ${dieText} = ${total} vs level ${level}. ${botched ? `BOTCH (${botchDice} botch dice). ` : ''}${out.text}${fatigueText}${out.cast ? ` Penetration ${penT}.` : ''}${visText}${visB.text}${boostText}`);
+    push(`${sp.spell.name}${fast ? ' (fast-cast, −10)' : ''}${flexible ? ` (Flexible Formulaic Magic: a parameter a step ${flexible > 0 ? 'up' : 'down'}, level ${sp.spell.level} → ${level})` : ''}: ${res.total} + die ${dieText} = ${total} vs level ${level}. ${botched ? `BOTCH (${botchDice} botch dice). ` : ''}${out.text}${fatigueText}${out.cast ? ` Penetration ${penT}.` : ''}${visText}${visB.text}${boostText}`);
     onBotch(botched ? botchCount : 0);
     const kind = ritual ? ('ritual' as const) : ('formulaic' as const);
     const fell = res.halved ? Math.ceil(raw / 2) : res.total;
@@ -259,6 +282,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         return `${o.text}${o.cast ? ` Penetration ${penetrationTotal(d, n, level, { ...pen, masteryScore: mPen })}.` : ''}`;
       },
       fatigueFor: (n) => castingFatigue(castingOutcome(kind, n, level).fatigue, rules),
+      spell: out.cast && !botched ? { name: sp.spell.name, level, duration: sp.spell.duration, ritual, penetration: penT, form: sp.spell.form } : undefined,
     });
     const over = spendFatigue(fatigue, out.longTerm);
     if (boost) update((x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + boost)));
@@ -272,10 +296,10 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
    */
   const castSpont = (mode: 'calm' | 'calm-stress' | 'diedne' | 'exerted') => {
     begin('spont');
-    const name = `Spontaneous ${tech}${form}${cer ? ' (ceremonial)' : ''}`;
+    const name = `Spontaneous ${tech}${form}${cer ? ' (ceremonial)' : ''}${fast ? ' (fast-cast, −10)' : ''}`;
     const boost = visBoostFor(tech, form, 0);
     const score = (mode === 'exerted' ? spontExerted.total : spont.total) + 2 * boost.pawns;
-    const dice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((spont.botchDice ?? 0) + boost.used, golden));
+    const dice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((spont.botchDice ?? 0) + boost.used, golden) - mythSta);
     let total: number;
     let text: string;
     let botch = { n: 0, faces: [] as number[] };
@@ -396,6 +420,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             </label>
           )}
         </div>
+        <MythicToggle d={d} chars={['Sta']} on={mythic} onChange={setMythic} />
         <h4>What applies right now</h4>
         <div className="row">
           {d.magicalFocus !== 'none' && (
@@ -415,6 +440,27 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             <Field label="Life Boost: Fatigue levels to spend" hint="+5 each on Formulaic and Ritual Casting Totals; spent when you cast">
               <Stepper value={lifeBoost} min={0} max={10} width={36} onChange={setLifeBoost} />
             </Field>
+          )}
+          {atTable && d.virtues.some((v) => v.cv.defId === 'flexible-formulaic-magic') && (
+            <Field label="Flexible Formulaic Magic" hint="Range, Duration, Target or size moved one step: cast against the new level">
+              <select value={flex} onChange={(e) => setFlex(Number(e.target.value))} data-tour="flexible-formulaic">
+                <option value={0}>as the spell is</option>
+                <option value={1}>a step up (+5 levels)</option>
+                <option value={-1}>a step down (−5 levels)</option>
+              </select>
+            </Field>
+          )}
+          {atTable && (
+            <div className="row tight small" data-tour="fast-cast">
+              <label className="inline" title="ArM5, Fast Casting: answering something as it happens. Spontaneous magic, or a Formulaic spell mastered with Fast Casting; never a Ritual.">
+                <input type="checkbox" checked={fast} onChange={(e) => setFast(e.target.checked)} /> Fast-cast (−10 to the Casting Total; spontaneous magic, or a spell mastered with Fast Casting)
+              </label>
+              {fast && (
+                <button className="small ghost" onClick={rollSpeed}>
+                  Roll the Speed ({signed(speed)})
+                </button>
+              )}
+            </div>
           )}
           <Field label="Other modifier" hint="Anything temporary or obscure; applies to every total here">
             <Stepper value={other} min={-30} max={30} width={40} onChange={setOther} />
@@ -579,7 +625,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                     const ms = masteryScore(sp, d);
                     const r = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
                       kind: sp.spell.ritual || rules.unstructured ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
-                      talismanBonus: talisman ? talismanBonus : 0, extra: ms ? [{ label: 'Mastery', value: ms }] : [],
+                      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart],
                     });
                     const lvl = sp.spell.level ?? 0;
                     const avg = r.total + 5;
@@ -637,6 +683,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         )}
         <Recent from="spells" />
         {atTable && lastCast && !lastCast.name.startsWith('Spontaneous') && castAfter()}
+        {atTable && lastCast?.spell && <WorksOn key={lastCast.id} cast={lastCast.spell} casterId={c.id} sagaId={c.sagaId} data={data} push={push} />}
         {c.spells.length > 0 && <RollAtTable sagaId={c.sagaId} who={c.id} where="seasons" what="Spell Mastery is raised, and the special ability for each level chosen," />}
         <p className="small muted">
           Formulaic: fail by 1–10 and the spell still works at a cost of one Fatigue level. Ritual: always costs long-term Fatigue and 1 pawn of vis per magnitude, and each pawn is a
@@ -745,6 +792,69 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         </Card>
       )}
       <p className="small muted">Botch dice: 1 for a stressful casting, plus the aura strength in a non-Magic aura (doubled in a regio), plus Virtues and Flaws, minus Mastery.</p>
+    </div>
+  );
+}
+
+/** How long a spell's effect is kept on its target: Moon and Year as they are, a Momentary Ritual's for good, the rest until ended. */
+export function spellEffectDuration(duration: string, ritual: boolean): ActiveEffect['duration'] {
+  if (/moon/i.test(duration)) return 'moon';
+  if (/year/i.test(duration)) return 'year';
+  if (ritual && /mom/i.test(duration)) return 'permanent';
+  return 'indefinite';
+}
+
+/**
+ * The spell just cast, put on whoever it works on: kept on them (Game Table › Overview › Health &
+ * recovery) for as long as it lasts, with the Warping a powerful effect gives (DE, Powerful
+ * Supernatural Effects). Their Magic Resistance is weighed against its Penetration first.
+ */
+function WorksOn({ cast, casterId, sagaId, data, push }: { cast: NonNullable<LastCast['spell']>; casterId: string; sagaId: string; data: GameData; push: (s: string) => void }) {
+  const chars = useSagaCharacters(sagaId);
+  const covs = useSagaCovenants(sagaId);
+  const saga = useStore((s) => s.sagas[sagaId]);
+  const updateCharacter = useStore((s) => s.updateCharacter);
+  const groups = useMemo(() => groupPeople(chars.filter((x) => !x.wounds.dead), covs), [chars, covs]);
+  const [on, setOn] = useState<string[]>([]);
+  const [who, setWho] = useState('');
+  const [designed, setDesigned] = useState(false);
+  if (!saga) return null;
+  const target = chars.find((x) => x.id === who);
+  const td = target ? deriveCharacter(target, data, saga.houseRules) : undefined;
+  const mr = td ? magicResistance(td, cast.form).total : 0;
+  const self = who === casterId;
+  const record = () => {
+    if (!target) return;
+    const duration = spellEffectDuration(cast.duration, cast.ritual);
+    const warping = powerfulEffectWarping(cast.level, self, designed);
+    let lines: string[] = [];
+    updateCharacter(target.id, (x) => {
+      lines = applyEffect(x, { name: cast.name, source: chars.find((y) => y.id === casterId)?.name, duration, warping: warping || undefined, notes: `Level ${cast.level}, Penetration ${cast.penetration}${mr && !self ? ` against Magic Resistance ${mr}` : ''}.` }, saga.currentYear, saga.currentSeason, data).lines;
+    });
+    setOn((o) => [...o, target.id]);
+    push(`${cast.name} works on ${target.name || 'them'} (${duration === 'indefinite' ? 'until it ends' : duration === 'permanent' ? 'for good' : `a ${duration}`}).${lines.length ? ` ${lines.join(' ')}` : ''}`);
+  };
+  return (
+    <div className="row small" style={{ marginTop: 6 }} data-tour="works-on">
+      <Field label={`${cast.name} works on`} hint="Kept on them on Health & recovery for as long as it lasts">
+        <select value={who} onChange={(e) => setWho(e.target.value)}>
+          <option value="">— whom —</option>
+          <PeopleOptions groups={groups} />
+        </select>
+      </Field>
+      {target && !self && mr > 0 && (
+        <span className={cast.penetration > mr ? 'good-text' : 'bad-text'}>
+          Magic Resistance {mr}: {cast.penetration > mr ? 'the Penetration gets through' : 'it does not get through, unless they lower it'}
+        </span>
+      )}
+      {target && cast.level >= 30 && !self && (
+        <label className="inline">
+          <input type="checkbox" checked={designed} onChange={(e) => setDesigned(e.target.checked)} /> designed for them (no Warping)
+        </label>
+      )}
+      <button className="small" disabled={!target || on.includes(who)} onClick={record}>
+        {on.includes(who) ? '✓ recorded' : 'Record it on them'}
+      </button>
     </div>
   );
 }

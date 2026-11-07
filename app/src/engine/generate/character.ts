@@ -6,7 +6,7 @@
 // it repeatable.
 
 import { issueRedcapDevices, redcapLevels, servedByMercerHouse } from './items';
-import { ARTS, CHARACTERISTICS, FORMS, TECHNIQUES, type CharType, type GameData } from '../../data';
+import { ARTS, CHARACTERISTICS, FORMS, TECHNIQUES, type CharType, type Characteristic, type GameData } from '../../data';
 import { CRAFTS as LIST_CRAFTS, HOMELANDS, guildOf, relatedCrafts } from '../../data/lists';
 import { HOUSES } from '../../data/houses';
 import type { Character, Covenant, HouseRules, Saga } from '../types';
@@ -16,6 +16,7 @@ import { deriveCharacter, type DerivedCharacter } from '../character/derive';
 import { vfProblems } from '../character/restrictions';
 import { validateCharacter, type Issue } from '../character/validate';
 import { autoBuild } from '../guided/autobuild';
+import { CHAR_PRESETS } from '../guided/questions';
 import { takeImmunityFlaw } from '../covenantBoons';
 import { simulate } from '../guided/simulate';
 import { ageYears } from '../longterm';
@@ -242,7 +243,7 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   if (g.covenant) c.covenantId = g.covenant.id;
 
   // the rules check's own fixes settle anything the steps after the build unbalanced
-  balanceCharacteristics(c, data, rules, log);
+  balanceCharacteristics(c, data, rules, log, role.themes ?? []);
   const fixed = resolveAll(c, data, rules).applied;
   if (fixed.length) log.push(...fixed.map((f) => `Fixed: ${f}`));
   d = derive();
@@ -339,14 +340,16 @@ function warpBeforePlay(c: Character, rng: () => number, log: string[]) {
  * Characteristics each want their Characteristic at +3): lower the others, below 0 if need be,
  * which gives points back (DE p.48). A Characteristic a Virtue needs high is left alone.
  */
-function balanceCharacteristics(c: Character, data: GameData, rules: HouseRules, log: string[]) {
+function balanceCharacteristics(c: Character, data: GameData, rules: HouseRules, log: string[], themes: string[] = []) {
   const needed = new Set(c.virtues.filter((v) => v.defId === 'great-characteristic').map((v) => v.param));
+  // what the role lives by is lowered last: a craftsman's Dexterity, a scholar's Intelligence (the guided build's weights)
+  const weight = (k: Characteristic) => Math.max(0, ...themes.map((t) => CHAR_PRESETS[k]?.[t] ?? 0));
   let d = deriveCharacter(c, data, rules);
   const changed: string[] = [];
   for (let n = 0; n < 24 && d.charPointsSpent > d.charPointsBudget; n++) {
     const lowerable = CHARACTERISTICS.filter((k) => !needed.has(k) && c.characteristics[k] > -3);
     if (!lowerable.length) break;
-    const k = [...lowerable].sort((a, b) => c.characteristics[b] - c.characteristics[a])[0];
+    const k = [...lowerable].sort((a, b) => weight(a) - weight(b) || c.characteristics[b] - c.characteristics[a])[0];
     c.characteristics[k] -= 1;
     changed.push(k);
     d = deriveCharacter(c, data, rules);

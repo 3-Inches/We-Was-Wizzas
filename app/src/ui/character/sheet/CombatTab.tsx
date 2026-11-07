@@ -4,6 +4,7 @@ import { deriveCharacter } from '../../../engine/character/derive';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { describeStress, stressDie } from '../../../engine/dice';
 import { ailmentsOf, condition, spanText } from '../../../engine/recovery';
+import { feedHunger } from '../../../engine/time';
 import type { WoundState } from '../../../engine/types';
 import { Card, Field, Stepper, signed } from '../../kit';
 import EquipmentEditor from '../EquipmentEditor';
@@ -12,6 +13,7 @@ import { immunities, immunityFlaw, immunityFlawState } from '../../../engine/cov
 import type { CharEditor } from '../useChar';
 import { RollAtTable, groupPeople, useAtTable } from '../../play';
 import { AfterRoll } from '../../AfterRoll';
+import { MythicToggle, mythicBonus } from '../../MythicToggle';
 
 const WOUND_KEYS: { key: keyof Omit<WoundState, 'dead'>; label: string; pen: number }[] = [
   { key: 'light', label: 'Light', pen: -1 },
@@ -47,8 +49,9 @@ export function HealthCards({ ed }: { ed: CharEditor }) {
   const atTable = useAtTable();
   const [damage, setDamage] = useState(0);
   const [msg, setMsg] = useState('');
+  const [fed, setFed] = useState('');
   if (!c || !d) return null;
-  const lost = Math.min(5, c.fatigueLost + c.longTermFatigueLost);
+  const lost = Math.min(5, c.fatigueLost + c.longTermFatigueLost + (c.hungerLost ?? 0));
   const next = new Map(ailmentsOf(c).map((a) => [a.kind, a.next]));
   const st = condition(c, d);
 
@@ -176,6 +179,18 @@ export function HealthCards({ ed }: { ed: CharEditor }) {
               Short-term levels lost: <b>{c.fatigueLost}</b>; long-term: <b>{c.longTermFatigueLost}</b>.
             </p>
           )}
+          {(c.hungerLost ?? 0) > 0 && (
+            <p className="small" style={{ margin: '8px 0 0' }}>
+              <b>{c.hungerLost}</b> more level{c.hungerLost! > 1 ? 's' : ''} lost to Hunger for{' '}
+              {c.virtues.filter((v) => v.defId === 'hunger-for-form-magic-flaw').map((v) => v.param ?? '(Form)').join(' or ')} Magic: no rest brings {c.hungerLost! > 1 ? 'them' : 'it'} back, only a pawn of the Form&rsquo;s vis eaten for each.{' '}
+              {atTable && (
+                <button className="small" onClick={() => update((x) => void setFed(feedHunger(x)))} title="Takes the vis from their purse">
+                  Eat vis
+                </button>
+              )}
+            </p>
+          )}
+          {fed && <p className="small">{fed}</p>}
           <p className="small muted">{st.fatigue}. Short-term Fatigue recovers with rest (times above, doubled if active). Long-term Fatigue (Ritual spells, forced march) needs a good night's sleep.</p>
           <RollAtTable sagaId={c.sagaId} who={c.id} where="recovery" what="Fatigue is lost and recovered" />
         </Card>
@@ -203,6 +218,8 @@ export function CombatRolls({ ed }: { ed: CharEditor }) {
   const [scuffle, setScuffle] = useState(false);
   // the last roll, for Confidence, Faith and All According to Plan after it
   const [lastRoll, setLastRoll] = useState<{ id: number; label: string; total: number; faces?: number[] } | null>(null);
+  // Mythic Quickness (Initiative, Defense) or Dexterity (Attack): its specialty applies to these rolls
+  const [mythic, setMythic] = useState<string[]>([]);
   if (!c || !d) return null;
   const lines = allCombatLines(d, data);
   const pen = d.currentWoundPenalty + d.currentFatiguePenalty + d.currentDiseasePenalty;
@@ -248,6 +265,8 @@ export function CombatRolls({ ed }: { ed: CharEditor }) {
     dfn: baseLine.dfn + (mounted ? ride : 0) + (exertOn === 'dfn' ? baseLine.abilityScore : 0),
   };
   const push = (s: string) => setMsg((m) => [s, ...m].slice(0, 20));
+  const qik = mythicBonus(d, mythic, 'Qik');
+  const dex = mythicBonus(d, mythic, 'Dex');
   const roll = (label: string, bonus: number, botch = 1) => {
     const r = stressDie(botch);
     push(`${label}: ${signed(bonus)} + ${describeStress(r)} = ${r.botches ? 'BOTCH' : bonus + r.value}`);
@@ -265,15 +284,16 @@ export function CombatRolls({ ed }: { ed: CharEditor }) {
               </option>
             ))}
           </select>
-          <button onClick={() => roll(`${line.name} Initiative`, line.init)}>Initiative {signed(line.init)}</button>
-          {line.atk !== null && <button onClick={() => roll(`${line.name} Attack`, line.atk!)}>Attack {signed(line.atk)}</button>}
-          <button onClick={() => roll(`${line.name} Defense`, line.dfn)}>Defense {signed(line.dfn)}</button>
+          <button onClick={() => roll(`${line.name} Initiative`, line.init + qik, 1 - qik)}>Initiative {signed(line.init + qik)}</button>
+          {line.atk !== null && <button onClick={() => roll(`${line.name} Attack`, line.atk! + dex, 1 - dex)}>Attack {signed(line.atk + dex)}</button>}
+          <button onClick={() => roll(`${line.name} Defense`, line.dfn + qik, 1 - qik)}>Defense {signed(line.dfn + qik)}</button>
           <button onClick={() => roll('Soak (fixed)', d.soak, 0)} title="Soak is not rolled; this just logs it">
             Soak {signed(d.soak)}
           </button>
           {line.dam !== null && <span className="small">Damage on a hit: Attack Advantage + {signed(scuffle ? d.characteristics.Str.value : line.dam)}</span>}
         </div>
       )}
+      <MythicToggle d={d} chars={['Qik', 'Dex']} on={mythic} onChange={setMythic} />
       {lastRoll && <AfterRoll key={lastRoll.id} c={c} d={d} total={lastRoll.total} botchFaces={lastRoll.faces} what={lastRoll.label.replace(/^.* (Initiative|Attack|Defense)$/, '$1')} onChange={(x) => push(x.text)} />}
       {msg.length > 0 && (
         <div className="stack small" style={{ gap: 2, marginTop: 6 }} aria-live="polite">

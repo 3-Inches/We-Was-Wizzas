@@ -19,7 +19,7 @@ export const GUILD_RANKS: Record<GuildRank, { label: string; virtue: string; lor
   apprentice: { label: 'Apprentice', virtue: 'guild-apprentice', lore: 0, note: 'Seven years living with the master; an apprentice piece ends it.' },
   journeyman: { label: 'Journeyman', virtue: 'journeyman', lore: 1, note: 'Works for a master under a contract, with a maker’s stamp; pays yearly dues or is expelled.' },
   master: { label: 'Guild master', virtue: 'guild-master', lore: 2, note: 'Keeps a workshop and employs up to Leadership apprentices and journeymen (3 Labor Points lost for each one short); needs Artes Liberales for the guild’s documents; pays yearly dues.' },
-  senior: { label: 'Senior master', virtue: 'guild-master', lore: 3, note: 'Ten years a master: may run a second workshop, vote on new masters, and serve six-month terms as a guild official or inquisitor.' },
+  senior: { label: 'Senior master', virtue: 'senior-master', lore: 3, note: 'Ten years a master: may run a second workshop, vote on new masters, and serve six-month terms as a guild official or inquisitor.' },
   dean: { label: 'Dean', virtue: 'guild-dean', lore: 3, note: 'Represents the guild; a stipend of 20 to 40 pounds a year.' },
 };
 
@@ -28,6 +28,7 @@ export function guildRank(c: Character): GuildRank | undefined {
   if (c.guild?.rank) return c.guild.rank;
   const has = (id: string) => c.virtues.some((v) => v.defId === id);
   if (has('guild-dean')) return 'dean';
+  if (has('senior-master')) return 'senior';
   if (has('guild-master')) return 'master';
   if (has('journeyman')) return 'journeyman';
   if (has('guild-apprentice')) return 'apprentice';

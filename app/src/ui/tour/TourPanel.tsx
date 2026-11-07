@@ -10,6 +10,7 @@ import { Markdown } from '../kit';
 import { visibleSteps } from '../character/wizardSteps';
 import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, nextTour, startTour, tourNeeds, type Tour, type TourCtx, type TourStep } from './tours';
 import { ACTIONS, PRACTICE_NOTE, isPracticeCovenant, makePractice } from './actions';
+import { isTrade } from '../../engine/workshop';
 
 /** Open or close the menu, which a phone keeps behind ☰ (App listens). */
 function sidebarOpen(open: boolean) {
@@ -52,7 +53,7 @@ function findTarget(names: string[]): HTMLElement | null {
 }
 
 /** A craftsman's or merchant's livelihood to show. */
-const hasTrade = (c: Character) => !!c.workshop || c.abilities.some((a) => a.abilityId === 'craft-type' || a.abilityId === 'profession-type');
+const hasTrade = (c: Character) => !!c.workshop || c.abilities.some((a) => isTrade(a.abilityId));
 
 /** The saga, character and covenant the tour works on: what it has found so far, else what is open. */
 function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: string): TourCtx {

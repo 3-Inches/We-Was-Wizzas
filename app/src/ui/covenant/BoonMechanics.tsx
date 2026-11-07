@@ -57,8 +57,11 @@ export function BoonControls({ hb, cov, update, dc, data }: CovTabProps & { hb: 
       { id: 'hazard', label: 'a form of damage' },
       { id: 'disease', label: 'a disease' },
       { id: 'influence', label: 'an influence' },
-      ...(hb.size === 'Major' ? [{ id: 'flaw' as ImmunityKind, label: 'a Flaw' }] : []),
+      { id: 'flaw' as ImmunityKind, label: hb.size === 'Major' ? 'a Flaw' : 'a Minor Flaw' },
     ];
+    // the Major Boon may hold off any Flaw; the Minor (the troupe's ruling: the book gives the Minor only damage or influence) a Minor one
+    const flawChoices = hb.size === 'Major' ? flaws : flaws.filter((f) => f.sizes.includes('Minor'));
+    const chosenFlaw = im.kind === 'flaw' ? data.vfById.get(im.value) : undefined;
     return (
       <div className="stack small">
         <span className="muted">
@@ -80,9 +83,10 @@ export function BoonControls({ hb, cov, update, dc, data }: CovTabProps & { hb: 
             {im.kind === 'flaw' ? (
               <select value={im.value} onChange={(e) => set('flaw', e.target.value)}>
                 <option value="">— choose —</option>
-                {flaws.map((f) => (
+                {flawChoices.map((f) => (
                   <option key={f.id} value={f.id}>
                     {f.name}
+                    {hb.size === 'Major' && !f.sizes.includes('Major') ? ' (Minor)' : hb.size === 'Major' && !f.sizes.includes('Minor') ? ' (Major)' : ''}
                   </option>
                 ))}
               </select>
@@ -119,7 +123,7 @@ export function BoonControls({ hb, cov, update, dc, data }: CovTabProps & { hb: 
             : im.kind === 'influence' && /warping/i.test(im.value)
               ? 'Nobody living here gains Warping from the aura at the year’s end.'
               : im.kind === 'flaw'
-                ? `Grogs, companions and magi the toolkit makes for the covenant take this Flaw at that share, paired with the Immunity, and spend the Virtue points it gives; specialists have it noted. A paired Flaw is held off while they live in the aura and is back when they leave (each sheet's Combat & Health tab). ${pts.note ? `Now ${pts.note} (3 Hook points, no Boon points).` : 'A member whose Flaw is paired with it makes the Boon a Major Hook (Covenants ch.2).'}`
+                ? `${chosenFlaw?.param ? `${chosenFlaw.name} is held off whatever its ${chosenFlaw.param.label}; one made here takes the Form most of the covenant’s vis is of. ` : ''}Grogs, companions and magi the toolkit makes for the covenant take this Flaw at that share, paired with the Immunity, and spend the Virtue points it gives; one it would take past their Flaw limits (a grog’s Major Flaw) takes it for no points. Specialists have it noted. A paired Flaw is held off while they live in the aura and is back when they leave (each sheet's Combat & Health tab). ${pts.note ? `Now ${pts.note} (${hb.size === 'Major' ? 3 : 1} Hook point${hb.size === 'Major' ? 's' : ''}, no Boon points).` : `A member whose Flaw is paired with it makes the Boon a ${hb.size === 'Major' ? 'Major' : 'Minor'} Hook (Covenants ch.2).`}`
                 : 'It shows on the sheets of those who live here.'}
         </span>
       </div>

@@ -415,6 +415,8 @@ export interface LabProject {
   pawns?: number;
   /** add a talisman attunement this season (one a season, while preparing or instilling) */
   attunement?: { label: string; bonus: number };
+  /** instill: the item's Shape and Material bonuses (and a talisman's attunements) that suit the effect, by label */
+  sm?: string[];
   /** points gathered toward the level */
   progress: number;
   seasons: number;
@@ -812,6 +814,8 @@ export interface SeasonLogEntry {
   notes?: string;
   /** the kind of lab project worked in the season (vis extraction weakens a Magic aura) */
   labKind?: LabProject['kind'];
+  /** Secondary Insight's points are in its gains already (added once, when the season was first applied) */
+  insight?: boolean;
   /** one of the extra seasons a character who needs no sleep has each year */
   extra?: boolean;
   /** the season priority it was spent on */
@@ -955,6 +959,10 @@ export interface Character {
   session?: { aatpUsed?: boolean };
   /** choices the seasons left for the troupe to make, kept until they are made (the Seasons page's Resolve) */
   owed?: Owed[];
+  /** Secondary Insight: the Arts its extra point goes to first, in order (the lowest otherwise) */
+  insight?: Art[];
+  /** Hunger for (Form) Magic: Long-Term Fatigue levels lost for want of vis, back only as vis is eaten */
+  hungerLost?: number;
   /** the year each of its Story and Personality Flaws last came up in play (by the Virtue's uid): the Game table's stories waiting */
   storiesTold?: Record<string, number>;
   name: string;
