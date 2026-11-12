@@ -21,6 +21,9 @@ export const RANGES: RDTOption[] = [
   { name: 'Sight', magnitude: 3 },
   { name: 'Water-way', magnitude: 3, requires: 'atlantean-magic', note: 'Atlantean Magic' },
   { name: 'Arcane Connection', magnitude: 4 },
+  // Holy Magic's own (RoP: The Divine): a holy extension of oneself by Presence (as Voice), and those joined by a holy ceremony (as Arcane Connection)
+  { name: 'Presence', magnitude: 2, requires: 'holy-magic', note: 'Holy Magic: 100 paces at Presence +4/+5, 50 at +2/+3, 15 at −1 to +1, 5 at −2/−3, the caster alone at −4/−5' },
+  { name: 'Communion', magnitude: 4, requires: 'holy-magic', note: 'Holy Magic: those the caster has holy authority over or is joined to by a holy ceremony' },
 ];
 
 export const DURATIONS: RDTOption[] = [
@@ -41,6 +44,14 @@ export const DURATIONS: RDTOption[] = [
   { name: 'Year', magnitude: 4, ritual: true },
   { name: 'Until (Condition)', magnitude: 4, ritual: true, requires: 'faerie-magic' },
   { name: 'Year + 1', magnitude: 4, ritual: true, requires: 'faerie-magic' },
+  // Holy Magic's own (RoP: The Divine)
+  { name: 'Recitation', magnitude: 1, requires: 'holy-magic', note: 'Holy Magic: while scripture or a prayer is recited' },
+  { name: 'Office', magnitude: 1, requires: 'holy-magic', note: 'Holy Magic: until the next hour of prayer (about three hours); none if cast during one' },
+  { name: 'Devotion', magnitude: 2, requires: 'holy-magic', note: 'Holy Magic: while a religious observance continues' },
+  { name: 'Sabbath', magnitude: 2, requires: 'holy-magic', note: 'Holy Magic: until dawn of the next day of rest; none if cast on it' },
+  { name: '40', magnitude: 3, requires: 'holy-magic', note: 'Holy Magic: forty days and forty nights' },
+  { name: 'Fast', magnitude: 3, requires: 'holy-magic', note: 'Holy Magic: while the caster fasts' },
+  { name: 'Grace', magnitude: 4, ritual: true, requires: 'holy-magic', note: 'Holy Magic: while the caster stays in a state of grace' },
 ];
 
 export const TARGETS: RDTOption[] = [
@@ -58,6 +69,10 @@ export const TARGETS: RDTOption[] = [
   { name: 'Body-of-water', magnitude: 3, kind: 'container', requires: 'atlantean-magic' },
   { name: 'Boundary', magnitude: 4, kind: 'container', ritual: true },
   { name: 'Vision', magnitude: 4, kind: 'sense' },
+  // Holy Magic's own (RoP: The Divine)
+  { name: 'Sin', magnitude: 0, kind: 'object', requires: 'holy-magic', note: 'Holy Magic: one in mortal sin, a demon or an unholy thing; nothing divine or in grace' },
+  { name: 'Faith', magnitude: 2, kind: 'object', requires: 'holy-magic', note: 'Holy Magic: those who worship God, or those who do not' },
+  { name: 'Dominion', magnitude: 4, kind: 'container', ritual: true, requires: 'holy-magic', note: 'Holy Magic: everything in a Divine aura whose source is in range' },
 ];
 
 export function findOpt(list: RDTOption[], name: string): RDTOption | undefined {

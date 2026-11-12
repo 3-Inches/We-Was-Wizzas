@@ -2,7 +2,7 @@
 // reroll of a botch die (DE p.52, p.419; the Virtue).
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
-import { newCharacter } from './character/factory';
+import { addVirtue, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { afterRollMax, rerollBotchDie } from './afterRoll';
 import { DEFAULT_HOUSE_RULES } from './types';
@@ -26,6 +26,8 @@ describe('after the roll', () => {
     const c = newCharacter('companion', 's');
     c.faith = { score: 0, points: 4 };
     expect(afterRollMax(c, deriveCharacter(c, data, DEFAULT_HOUSE_RULES)).faith).toBe(1);
+    // a True Faith Score comes only with the Virtue: taken three times, a score of 3 (RoP: The Divine)
+    for (let i = 0; i < 3; i++) addVirtue(c, data, 'true-faith', 'Major');
     c.faith = { score: 3, points: 4 };
     expect(afterRollMax(c, deriveCharacter(c, data, DEFAULT_HOUSE_RULES)).faith).toBe(3);
   });

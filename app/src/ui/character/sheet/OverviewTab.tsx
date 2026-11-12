@@ -16,6 +16,33 @@ import { ApprenticeCard } from './ApprenticeCard';
 import { TribunalCard } from './TribunalCard';
 import { SocietyCard } from './SocietyCard';
 import { NeedsYouCard } from './NeedsYouCard';
+import { HOLY_TRADITIONS, SOLOMON_RINGS } from '../../../data/divine';
+import { holyMethodsOf, holyPowersOf } from '../../../engine/holy';
+import { divineResistance } from '../../../engine/magic';
+import type { DerivedCharacter } from '../../../engine/character/derive';
+import type { Character } from '../../../engine/types';
+
+/** The holy side, for reference: Methods and Powers, a tradition, a commanding aura, the Divine Ascent, a Ring of Solomon (RoP: The Divine). */
+function HolyLine({ c, d }: { c: Character; d: DerivedCharacter }) {
+  const h = c.holy;
+  const methods = holyMethodsOf(d);
+  const powers = holyPowersOf(d);
+  const parts: string[] = [];
+  if (methods.length || powers.length) parts.push(`${[...methods, ...powers].map((x) => `${x.name} ${x.score}`).join(', ')}`);
+  const tradition = HOLY_TRADITIONS.find((t) => t.id === h?.tradition);
+  if (tradition) parts.push(`${tradition.name} (favored: ${tradition.favored.join(', ')})`);
+  if (h?.commandingAura) parts.push(`commanding aura: Magic Resistance ${divineResistance(d).find((p) => p.label.startsWith('Commanding'))?.value ?? h.commandingAura}, Aura of Rightful Authority at Voice range`);
+  if (h?.ascent) parts.push(`Divine ${h.ascent === 'form' ? 'Form' : h.ascent === 'gloom' ? 'Gloom' : `Unity (${h.unity?.virtue ?? 'a virtue'})`}`);
+  if (h?.notoria?.learned) parts.push(`Rings of Solomon: ${h.notoria.learned} learned${h.notoria.active ? `, the ${SOLOMON_RINGS[h.notoria.active.ring - 1].name} to ${h.notoria.active.untilSeason} ${h.notoria.active.untilYear}` : ''}`);
+  if (h?.tragedies?.length) parts.push(h.tragedies.length === 1 ? 'a tragedy of hubris' : `${h.tragedies.length} tragedies of hubris`);
+  if (!parts.length) return null;
+  return (
+    <div className="small" style={{ marginTop: 8 }} data-tour="sheet-holy">
+      <b>Holy:</b> {parts.join(' · ')}
+      <RollAtTable sagaId={c.sagaId} who={c.id} where="holy" what="Holy powers are called, miracles prayed for and saints invoked" />
+    </div>
+  );
+}
 
 export default function OverviewTab({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, saga } = ed;
@@ -128,6 +155,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
               })()}
             </div>
           )}
+          <HolyLine c={c} d={d} />
           <div className="small" style={{ marginTop: 8 }}>
             <b>Personality:</b>{' '}
             {[...c.personality.map((p) => `${p.trait} ${signed(p.score)}`), ...essentialTraits(c).filter((x) => x.source !== 'its true form' && !x.source.startsWith('a Personality')).map((x) => `${x.trait} ${signed(x.score)}`)].join(', ') || '—'}

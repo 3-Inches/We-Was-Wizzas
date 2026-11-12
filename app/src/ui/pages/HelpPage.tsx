@@ -352,7 +352,7 @@ export default function HelpPage() {
             turning five or coming of age, a retirement, a newcomer, a noble&apos;s relative left in its care by the Dumping Ground Hook), then each player in turn with their magi
             before their companions, and the grogs last;
             <b>End</b> it after reading what to expect; <b>Resolve</b> what it leaves, kept at the top until settled; and <b>Turn back</b> a season or a year), the <b>Chronicle</b> (each
-            season told as a story, its record folded beneath), <b>Dice</b> (Roll, Combat &amp; perils, Spellcasting), <b>Society &amp; the Tribunal</b> (the Tribunal&apos;s news,
+            season told as a story, its record folded beneath), <b>Dice</b> (Roll, Combat &amp; perils, Spellcasting, Faith &amp; miracles), <b>Society &amp; the Tribunal</b> (the Tribunal&apos;s news,
             what the agents heard and the motions; the agents themselves; debates, petitions, courts and customs), <b>Possessions</b> (what each character owns: things, armor and weapons, enchanted items and the
             talisman, a familiar, a Redcap&apos;s devices), <b>Market &amp; Treasury</b> and <b>City &amp; Guild</b>. Once a character is finished their sheet is for reference:
             it shows where they stand, and each card says where at the Game Table it changes. One mechanic, one place. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
@@ -372,6 +372,21 @@ export default function HelpPage() {
             Warping. A botch adds its Warping Points, and Wizard&apos;s Twilight is checked on the same page. Casting Virtues and Flaws
             (Diedne Magic, Weak Spontaneous Magic, Vulnerable Casting…) are applied when you cast; the card lists which. Certamen is fought there too, against anyone of the
             saga or the Tribunal, their Fatigue going on their sheet.
+          </li>
+          <li>
+            <b>Faith &amp; miracles</b> (Realms of Power: The Divine): the Game Table&apos;s <b>Dice › Faith &amp; miracles</b>, for anyone. Set the aura first; a Divine
+            one adds to all of it. <b>Holy powers</b>: a Method (Invocation, Meditation, Purity, or Holy Music, Gematria, Kabbalah, Merkavah, Dream Interpretation working as
+            one) with a Power that goes with it, and an effect from the book&apos;s guidelines and examples, or designed with Range, Duration and Target (what would need a
+            Ritual adds four magnitudes). The Method&apos;s activity is paid (a Confidence Point, an hour of Stamina rolls, a long-term Fatigue level or a Light Wound), and a
+            total short of the level brings a tragedy of hubris, judged on Faith × 10 when that is higher; a botch adds its Warping. <b>Pray for a miracle</b> with a Faith
+            Point, how soon and how great the need setting the level. <b>God&apos;s aid</b> for a scene shows on the Roll card until a roll fails. The <b>saints and holy
+            forbears</b> are invoked against an unseen die, and a Christian saint who refuses may be threatened. <b>Holy influence</b> gives followers a trait; a
+            <b> temper</b> in the Dominion is offered on every roll. The <b>Divine Ascent</b> is checked when two or more Warping Points come at once, and its form (Gloom,
+            Form, Unity) is kept for life: the Divine Form gives Magic Resistance and Soak, as a commanding aura does. The <b>Rings of Solomon</b> add their experience and
+            Characteristics while they last. Kabbalists work <b>amulets, golems, True Names and Shinnui Shem</b> a season at a time, here or on the Seasons page.
+            <b> Holy Magic</b> casts at Dice › Spellcasting: a prayer (Presence + Theology 15+) or a Method&apos;s activity in place of words and gestures, the Dominion
+            counted as a Magic aura, a Method and a Power in Rituals, long-term Fatigue in place of Ritual vis; the spell designer offers its own Ranges, Durations and
+            Targets, and a Hermetic Laboratory Text is halved (as a holy magus&apos;s is for Hermetic magi).
           </li>
           <li>
             <b>Combat &amp; Health:</b> the sheet shows the wounds, Fatigue, illness and the combat totals for each weapon. Damage is applied against Soak, Fatigue lost and
@@ -705,7 +720,8 @@ export default function HelpPage() {
         <Question q="How many Confidence Points can a character hold?">
           As many as they earn: &quot;There is no limit to the number of Confidence Points that a character can have&quot; (DE). The Confidence Score limits how many go on one roll.
           They are spent after the dice show, +3 each, never on a botch (a zero that is not a botch is fine), and never on a roll for a whole season&apos;s work. Faith Points
-          work the same way while acting in God&apos;s will, up to the True Faith Score on a roll (one at a time with no Score), and come back at dawn up to that Score.
+          work the same way while acting in God&apos;s will, up to the True Faith Score on a roll (one at a time with no Score), and come back at dawn up to that Score;
+          with a True Faith Score of 3 each adds +6. A True Faith Score comes only with the True Faith Virtue, one point each time it is taken.
         </Question>
         <Question q="Can I undo a season or a year?">
           Yes. A single character&apos;s season is <b>Unlogged</b> on the Seasons page, and everything it did comes off. The whole saga is turned back with <b>Turn back</b> at

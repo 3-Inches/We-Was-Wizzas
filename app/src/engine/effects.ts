@@ -150,6 +150,8 @@ export function constantWarping(c: Character): { points: number; from: string[] 
   const from = (c.activeEffects ?? []).filter((e) => e.constant).map((e) => e.name);
   if (c.longevity) from.push('Longevity Ritual');
   for (const it of c.items) if (it.worn && it.bearerBonuses?.length) from.push(it.name);
+  // raised from the dead by a miracle: another Warping Point every year of the new life (RoP: The Divine)
+  if (c.virtues.some((v) => v.defId === 'raised-from-the-dead-flaw')) from.push('Raised from the Dead');
   return { points: from.length, from };
 }
 

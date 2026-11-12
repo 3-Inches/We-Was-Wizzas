@@ -243,14 +243,14 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
                       const b = texts.find((x) => x.uid === e.target.value);
                       if (!b?.spell) return;
                       const sp = b.spell;
-                      set((x) => void Object.assign(x, { spell: sp, technique: sp.technique, form: sp.form, level: b.level || sp.level || 5, requisites: sp.requisites, fromText: true, experiment: undefined, name: `Learn ${sp.name}${b.title.replace(/^Lab Text:\s*/, '') === sp.name ? '' : ` (${b.title})`}` }));
+                      set((x) => void Object.assign(x, { spell: sp, technique: sp.technique, form: sp.form, level: b.level || sp.level || 5, requisites: sp.requisites, fromText: true, holyText: b.holy || undefined, experiment: undefined, name: `Learn ${sp.name}${b.title.replace(/^Lab Text:\s*/, '') === sp.name ? '' : ` (${b.title})`}` }));
                     }}
                   >
                     <option value="">— a Laboratory Text in the library —</option>
                     {texts.map((b) => (
                       <option key={b.uid} value={b.uid}>
                         {b.spell!.name} ({b.spell!.technique}
-                        {b.spell!.form} {b.level || b.spell!.level}){b.author ? `, by ${b.author}` : ''}
+                        {b.spell!.form} {b.level || b.spell!.level}){b.author ? `, by ${b.author}` : ''}{b.holy ? ' (holy magic)' : ''}
                       </option>
                     ))}
                   </select>

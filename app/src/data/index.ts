@@ -19,6 +19,7 @@ import { LAB_ONLY_VF, NOT_REAL_VF, RESTRICTIONS } from './restrictions';
 import { buildVfTags, vfHouses } from './vfTags';
 import { mysteryVirtueDefs } from './mysteries';
 import { tribunalAbilityDefs, tribunalVirtueDefs } from './tribunals';
+import { divineAbilityDefs, divineVirtueDefs } from './divine';
 import type {
   AbilityDef, ArmorDef, GuidelineDef, HookBoonDef, LabFeatureDef, LabVFDef, ShapeMaterialDef,
   SpellDef, VirtueFlawDef, WeaponDef, Effect, AbilityType, RuleSection, VFRef,
@@ -30,7 +31,7 @@ export * from './constants';
 const BOOK_VF = (vfJson as unknown as VirtueFlawDef[]).filter((v) => !NOT_REAL_VF.has(v.id) && !LAB_ONLY_VF[v.id]);
 /** with the House Mysteries and Criamon stations (Houses of Hermes: Mystery Cults) and the Tribunal books' Virtues the Virtue list lacks */
 const BOOK_VF_IDS = new Set(BOOK_VF.map((v) => v.id));
-const RAW_VF = [...BOOK_VF, ...mysteryVirtueDefs(BOOK_VF_IDS), ...tribunalVirtueDefs(BOOK_VF_IDS)];
+const RAW_VF = [...BOOK_VF, ...mysteryVirtueDefs(BOOK_VF_IDS), ...tribunalVirtueDefs(BOOK_VF_IDS), ...divineVirtueDefs(BOOK_VF_IDS)];
 /** Laboratory Virtues and Flaws that were extracted with the character ones. */
 /** An aligned Magic aura as a Site Boon or Hook (Realms of Power: Magic, Covenant Boons and Hooks): set its alignment on the covenant's Aura card. */
 const ALIGNED_AURA_HOOKS: HookBoonDef[] = [
@@ -54,7 +55,8 @@ const LAB_FROM_VF: LabVFDef[] = (vfJson as unknown as VirtueFlawDef[])
     source: v.source,
   }));
 const BOOK_ABILITIES = abilitiesJson as unknown as AbilityDef[];
-const RAW_ABILITIES = [...BOOK_ABILITIES, ...tribunalAbilityDefs(new Set(BOOK_ABILITIES.map((a) => a.id)))];
+const BOOK_ABILITY_IDS = new Set(BOOK_ABILITIES.map((a) => a.id));
+const RAW_ABILITIES = [...BOOK_ABILITIES, ...tribunalAbilityDefs(BOOK_ABILITY_IDS), ...divineAbilityDefs(BOOK_ABILITY_IDS)];
 // the extractor took a few enchanted-item headings for spells ("Invested 2 Herbam vis, took 1 season to enchant");
 // some books set spell names in capitals, shown here in title case
 const NOT_SPELLS = /^(enchanted item\b|invested \d)/i;
@@ -275,7 +277,8 @@ export function buildGameData(opts: DataOptions = {}): GameData {
     const cross = CROSS_REF_MECHANICS[v.id];
     const override = opts.mechanicsOverrides?.[v.id] ?? {};
     const mech: Mechanics = { ...addCrossRefs(base, cross), ...override };
-    const effects = override.effects ?? [...(base.effects ?? inferGrant(v, abilityIds)), ...(cross?.effects ?? [])];
+    // a Virtue defined in the app (data/tribunals.ts, data/divine.ts) may carry its own effects
+    const effects = override.effects ?? [...(base.effects ?? v.effects ?? inferGrant(v, abilityIds)), ...(cross?.effects ?? [])];
     const creatureOnly = mech.creatureOnly ?? (CREATURE_NOTE.test(v.notes ?? '') || (v.source.book.startsWith('RoP') && CREATURE_TEXT.test(v.text)));
     return {
       ...v,

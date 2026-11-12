@@ -1,6 +1,7 @@
 // Persisted domain model: sagas, characters, covenants, laboratories.
 // Everything here is plain JSON (it is saved to IndexedDB and exported to files).
 
+import type { HolyState } from './holy';
 import type { Art, Characteristic, CharType, Effect, Form, Technique, VFSize, SpellDef, LabCharacteristic, AbilityType, PowerKind } from '../data/types';
 import type { CustomContent } from '../data';
 import type { Mechanics } from '../data/mechanics';
@@ -438,6 +439,8 @@ export interface LabProject {
   experiment?: { risk: number };
   /** invent: from a Laboratory Text, done in one season once the Lab Total reaches the level; no experimenting */
   fromText?: boolean;
+  /** invent from a Laboratory Text written by a holy magus (halved for Hermetic magi, and Hermetic texts for holy magi) */
+  holyText?: boolean;
   /** invent: a Potent spell's Casting Items and Potency (Potent Magic, up to Magic Theory) */
   potency?: { items: string; score: number };
   /** castingTool: the known spell (a CharSpell uid) whose casting tool is enchanted, and what it is given */
@@ -1006,6 +1009,8 @@ export interface Character {
   powers?: CharPower[];
   /** True Faith score and Faith Points, once play changes them (the Virtue starts at 1 and 1) */
   faith?: { score: number; points: number };
+  /** the holy side of play (Realms of Power: The Divine): the Divine Ascent, a commanding aura, a temper, God's aid, the Rings of Solomon… */
+  holy?: HolyState;
   /** how far aging has lowered each Characteristic (the purchased value is this much higher) */
   agingLoss?: Partial<Record<Characteristic, number>>;
   description: string;
@@ -1184,6 +1189,8 @@ export interface LibraryBook {
   uid: string;
   title: string;
   author?: string;
+  /** written by a holy magus (RoP: The Divine): a Hermetic magus halves a Lab Text of it, as a holy magus halves a Hermetic one */
+  holy?: boolean;
   kind: 'summa' | 'tractatus' | 'labText' | 'castingTablet' | 'mundane';
   subjectType: 'art' | 'ability' | 'spell' | 'other';
   subject: string; // art code, ability id, or spell name

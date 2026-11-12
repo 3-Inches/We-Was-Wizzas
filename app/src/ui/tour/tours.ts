@@ -722,6 +722,11 @@ export const TOURS: Tour[] = [
         at: table('overview'), needs: 'saga', target: ['table-confidence', 'table-recovery'],
       },
       {
+        title: 'Faith & miracles',
+        body: 'On **Dice › Faith & miracles** (Realms of Power: The Divine), pick anyone: holy powers called with a Method and a Power (a tragedy of hubris when they fall short), a prayer for a miracle, God’s aid for a scene, a saint or holy forbear invoked (or threatened), holy influence and tempers in the Dominion, the Divine Ascent, the Rings of Solomon, and a kabbalist’s amulets, golems and True Names. Set the aura here first: a Divine aura adds to all of it.',
+        at: dice('holy'), needs: 'saga', target: ['holy-here', 'tab-dice'],
+      },
+      {
         title: 'The covenants',
         body: 'Treasury, the year’s balance, Loyalty, vis and people for each covenant, with the year’s accounts folded underneath and links to each of its tabs.',
         at: table('overview'), needs: 'saga', target: 'table-covenant',

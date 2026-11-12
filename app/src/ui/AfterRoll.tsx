@@ -55,7 +55,9 @@ export function AfterRoll({
   const [plan, setPlan] = useState('');
   const botches = faces ? faces.filter((f) => f === 0).length : 0;
   const botch = botches > 0;
-  const bonus = 3 * (conf + faith);
+  // a True Faith Score of 3 makes a Faith Point worth +6 (RoP: The Divine, Embodying the Light: Hope)
+  const fv = d.trueFaith >= 3 ? 6 : 3;
+  const bonus = 3 * conf + fv * faith;
   const now = total + bonus;
   const grog = c.type === 'grog';
   const confMore = !grog && conf < c.confidence.score && c.confidence.points > 0;
@@ -70,13 +72,13 @@ export function AfterRoll({
     updateCharacter(c.id, (x) => void (x.confidence.points = Math.max(0, x.confidence.points - n)));
     const k = conf + n;
     setConf(k);
-    tell({ bonus: 3 * (k + faith), text: n > 0 ? `${name} spends a Confidence Point: ${what.toLowerCase()} ${now + 3}.` : `A Confidence Point taken back: ${what.toLowerCase()} ${now - 3}.` });
+    tell({ bonus: 3 * k + fv * faith, text: n > 0 ? `${name} spends a Confidence Point: ${what.toLowerCase()} ${now + 3}.` : `A Confidence Point taken back: ${what.toLowerCase()} ${now - 3}.` });
   };
   const spendFaith = (n: 1 | -1) => {
     updateCharacter(c.id, (x) => void (x.faith = { score: d.trueFaith, points: Math.max(0, d.faithPoints - n) }));
     const k = faith + n;
     setFaith(k);
-    tell({ bonus: 3 * (conf + k), text: n > 0 ? `${name} spends a Faith Point: ${what.toLowerCase()} ${now + 3}.` : `A Faith Point taken back: ${what.toLowerCase()} ${now - 3}.` });
+    tell({ bonus: 3 * conf + fv * k, text: n > 0 ? `${name} spends a Faith Point: ${what.toLowerCase()} ${now + fv}.` : `A Faith Point taken back: ${what.toLowerCase()} ${now - fv}.` });
   };
   const reroll = () => {
     if (!faces) return;
@@ -128,7 +130,7 @@ export function AfterRoll({
             </span>
           )}
           {d.faithPoints + faith > 0 && (
-            <span className="row tight" title={`While acting in accordance with God's will: +3 a point, at most ${faithCap} on one roll${d.trueFaith ? ' (the True Faith Score)' : ' (no True Faith Score: one at a time)'}`}>
+            <span className="row tight" title={`While acting in accordance with God's will: +${fv} a point, at most ${faithCap} on one roll${d.trueFaith ? ' (the True Faith Score)' : ' (no True Faith Score: one at a time)'}`}>
               Faith ({d.faithPoints} left):
               <button className="small" disabled={!faithMore} onClick={() => spendFaith(1)}>
                 Spend a point (+3)

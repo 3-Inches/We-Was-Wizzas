@@ -163,9 +163,9 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
     ...(o.bonus ? [{ label: 'Experimentation (simple die + risk)', value: o.bonus }] : []),
     ...helperParts(o.helpers),
   ];
-  const lt = (activity: LabActivity, te: string, fo: string, x?: { talisman?: boolean; requisites?: Art[]; familiarBond?: 'none' | 'one' | 'both'; fromText?: boolean; forSelfLongevity?: boolean; shapeMaterialBonus?: number; verditiusRunes?: number }) =>
+  const lt = (activity: LabActivity, te: string, fo: string, x?: { talisman?: boolean; requisites?: Art[]; familiarBond?: 'none' | 'one' | 'both'; fromText?: boolean; holyText?: boolean; forSelfLongevity?: boolean; shapeMaterialBonus?: number; verditiusRunes?: number }) =>
     labTotal(d, { technique: te as never, form: fo as never, requisites: x?.requisites }, {
-      activity, aura: ctx.aura, lab, talisman: x?.talisman, familiarBond: x?.familiarBond, fromText: x?.fromText, forSelfLongevity: x?.forSelfLongevity, experimenting, extra,
+      activity, aura: ctx.aura, lab, talisman: x?.talisman, familiarBond: x?.familiarBond, fromText: x?.fromText, textByHolyMagus: x?.holyText, forSelfLongevity: x?.forSelfLongevity, experimenting, extra,
       shapeMaterialBonus: x?.shapeMaterialBonus, verditiusRunes: x?.verditiusRunes,
       inFocus: p.inFocus, circumstance: p.circumstances,
     });
@@ -185,7 +185,7 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       // several spells of the same Technique and Form at once: their levels added, against the lowest of their Lab Totals (DE, Multiple Laboratory Activities)
       const group = [p, ...(p.alongside ?? []).map((u) => c.projects?.find((x) => x.uid === u)).filter((x): x is LabProject => !!x && !x.done)];
       for (const x of group.slice(1)) if (x.kind !== 'invent' || x.technique !== p.technique || x.form !== p.form || !x.level) problems.push(`${x.name} is not a spell of ${ART_NAMES[p.technique]} ${ART_NAMES[p.form]}: take it off.`);
-      const total = group.map((x) => lt('spells', p.technique!, p.form!, { requisites: x.requisites, fromText: x.fromText })).reduce((lo, t) => (t.total < lo.total ? t : lo));
+      const total = group.map((x) => lt('spells', p.technique!, p.form!, { requisites: x.requisites, fromText: x.fromText, holyText: x.holyText })).reduce((lo, t) => (t.total < lo.total ? t : lo));
       const level = group.reduce((t, x) => t + (x.level ?? 0), 0);
       const several = group.length > 1 ? ` (${group.length} spells, levels ${group.map((x) => x.level).join(' + ')})` : '';
       if (group.every((x) => x.fromText)) {
