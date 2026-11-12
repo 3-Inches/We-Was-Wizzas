@@ -6,7 +6,7 @@ import { buildGameData } from '../data';
 import { addVirtue, ensureAbility, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { applyAgingPoint, sparestCharacteristic } from './longterm';
-import { newProject, planProject, shapeMaterialChoices } from './projects';
+import { newProject, planProject, shapeMaterialChoices, workProject } from './projects';
 import { GUILD_RANKS, guildRank } from './society';
 import { feedHunger } from './time';
 import { isTrade } from './workshop';
@@ -49,12 +49,25 @@ describe('instilling with Shape and Material', () => {
     expect(planProject(p, c, d(c), ctx, { data }).total!.total).toBe(base + 2);
     p.sm = ['Silver: Intellego', 'Silver: Terram', 'Ring: constant effect'];
     expect(planProject(p, c, d(c), ctx, { data }).total!.total).toBe(base + 3); // 5, held to Magic Theory 3
-    addVirtue(c, data, 'verditius-magic', 'Minor');
-    ensureAbility(c, 'philosophiae', { apprenticeship: 5 }); // 1
+    // the ring was crafted by a Verditius with Philosophiae 1: each bonus used is one higher, for whoever enchants it
+    c.items[0].runes = 1;
     ensureAbility(c, 'magic-theory', { apprenticeship: 75 }); // 5
     p.sm = ['Silver: Intellego'];
-    const t = planProject(p, c, d(c), ctx, { data }).total!;
-    expect(t.parts.find((x) => /Verditius runes/.test(x.label))?.value).toBe(3);
+    expect(planProject(p, c, d(c), ctx, { data }).total!.parts.find((x) => /Verditius runes/.test(x.label))?.value).toBe(3); // 2 + 1
+    p.sm = ['Silver: Intellego', 'Silver: Terram'];
+    expect(planProject(p, c, d(c), ctx, { data }).total!.parts.find((x) => /Verditius runes/.test(x.label))?.value).toBe(5); // 3 + 2, at Magic Theory 5
+    // a Verditius opening an item crafts it, runes and all
+    const v = newCharacter('magus', 's');
+    addVirtue(v, data, 'verditius-magic', 'Minor');
+    ensureAbility(v, 'philosophiae', { apprenticeship: 15 }); // 2
+    ensureAbility(v, 'magic-theory', { apprenticeship: 75 });
+    v.purse = { pounds: 0, vis: [{ art: 'Vi', pawns: 10 }] };
+    const box = { ...newItem('invested'), name: 'Box', material: 'wood', size: 'small' as const };
+    v.items.push(box);
+    const open = { ...newProject('open'), itemUid: box.uid };
+    v.projects = [open];
+    workProject(v, d(v), ctx, undefined, open.uid, data);
+    expect(v.items[0].runes).toBe(2);
   });
 });
 

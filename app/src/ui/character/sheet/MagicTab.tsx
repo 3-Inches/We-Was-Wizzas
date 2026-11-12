@@ -1,9 +1,11 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { auraAtTime, type AuraTime } from '../../../engine/aura';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type GameData, type Technique } from '../../../data';
-import { castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
+import { SYMPATHIES, bestHolyRite, castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
 import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
 import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
+import { holyMethodsOf, holyPowersOf } from '../../../engine/holy';
+import { castingToolText } from '../../../engine/projects';
 import type { ActiveEffect, CharSpell } from '../../../engine/types';
 import { applyEffect, powerfulEffectWarping } from '../../../engine/effects';
 import type { CertamenArt } from '../../../engine/magic';
@@ -54,8 +56,18 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   // words and gestures, each with its modifier (DE); a Bjornaer in heartbeast form has neither
   const [voice, setVoice] = useState<Voice>('firm');
   const [gestures, setGestures] = useState<Gestures>('bold');
-  const wg = d ? wordsGesturesModifier(d, voice, gestures) : { value: 0, notes: [] };
-  const words = wg.value;
+  // holy magic calls its spells by prayer, not Hermetic words and gestures: a prayer (Presence + Theology
+  // 15+) or a Method's activation serves as both; without either, it is cast with neither (RoP: The Divine)
+  const holyMagus = !!d && d.theoryAbility === 'holy-magic';
+  const [holyCall, setHolyCall] = useState<'prayer' | 'method' | 'none'>('prayer');
+  const [prayed, setPrayed] = useState<boolean | null>(null);
+  const [holyMethod, setHolyMethod] = useState('');
+  const [holyPower, setHolyPower] = useState('');
+  // a holy magus's Ritual: long-term Fatigue levels in place of vis, three pawns each (+1 hour of prayer)
+  const [fatigueVis, setFatigueVis] = useState(0);
+  const wg = d ? (holyMagus ? wordsGesturesModifier(d, 'none', 'none') : wordsGesturesModifier(d, voice, gestures)) : { value: 0, notes: [] };
+  const holyCalled = holyMagus && (holyCall === 'method' || (holyCall === 'prayer' && prayed === true));
+  const words = holyCalled ? 0 : wg.value;
   // the talisman attunement that matches what is being cast (DE: only when touching it, and only the highest that applies)
   const [attunement, setAttunement] = useState(-1);
   const talisman = attunement >= 0;
@@ -81,6 +93,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [mythic, setMythic] = useState<string[]>([]);
   // fast-casting (ArM5): spontaneous magic, or a spell mastered with Fast Casting, at −10, cast when the Speed roll beats the threat's Initiative
   const [fast, setFast] = useState(false);
+  // a Verditius's casting tools are to hand
+  const [tools, setTools] = useState(true);
   // Flexible Formulaic Magic: one of Range, Duration, Target or size moved a step, the spell a magnitude higher or lower
   const [flex, setFlex] = useState(0);
   // the last casting's roll: Confidence, Faith and All According to Plan after it (a botch's Warping taken back)
@@ -107,8 +121,9 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const pb = penetrationBonus(d, pen);
   const similarSp = c.spells.find((x) => x.uid === similar);
   const rules = castingRules(d);
-  // ceremonial casting needs experience in Artes Liberales or Philosophiae (DE, Ceremonial Casting)
-  const canCeremonial = d.abilities.some((a) => (a.abilityId === 'artes-liberales' || a.abilityId === 'philosophiae') && a.effectiveXp > 0);
+  // ceremonial casting needs experience in Artes Liberales or Philosophiae (DE, Ceremonial Casting); a holy magus a Method and a Power instead
+  const holyRite = holyMagus ? bestHolyRite(d, holyMethod || undefined, holyPower || undefined) : undefined;
+  const canCeremonial = holyMagus ? !!holyRite : d.abilities.some((a) => (a.abilityId === 'artes-liberales' || a.abilityId === 'philosophiae') && a.effectiveXp > 0);
   const cer = rules.ceremonialSpontaneous || (ceremonial && canCeremonial);
   const mythSta = mythicBonus(d, mythic, 'Sta');
   const mythPart = [...(mythSta ? [{ label: 'Mythic Stamina', value: 1 }] : []), ...(fast ? [{ label: 'Fast-cast', value: -10 }] : [])];
@@ -119,7 +134,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     push(`Fast-casting Speed: Quickness + Finesse${fastCaster ? ` + Fast Caster ${fastCaster}` : ''} = ${speed} + die ${describeStress(r)} = ${r.botches ? 'BOTCH' : speed + r.value} (it must beat the Initiative of what it answers).`);
   };
   const spontOpts = {
-    kind: 'spontaneous' as const, aura, wordsGestures: words, talismanBonus: talisman ? talismanBonus : 0, inFocus: focusNow, circumstance: conds, other, ceremonial: cer, extra: mythPart,
+    kind: 'spontaneous' as const, aura, wordsGestures: words, talismanBonus: talisman ? talismanBonus : 0, inFocus: focusNow, circumstance: conds, other, ceremonial: cer, extra: mythPart, holyRite,
     similarSpell: similarSp ? { name: similarSp.spell.name, magnitude: Math.ceil((similarSp.spell.level ?? 0) / 5) } : undefined,
   };
   const spont = castingScore(d, { technique: tech, form }, spontOpts);
@@ -128,6 +143,16 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const hasImprovisation = d.virtues.some((v) => v.cv.defId === 'spell-improvisation');
   const conditional = conditionalBonuses(d);
   const spellFocus = (sp: CharSpell) => sp.inFocus ?? !!sp.notes?.includes('[focus]');
+  // a Potent spell: its Casting Items' Potency on the Casting Score, held as it is cast (DE, Potent Magic)
+  const potencyPart = (sp: CharSpell) => [
+    ...(sp.potency?.score ? [{ label: `Potency (holding ${sp.potency.items || 'its Casting Items'})`, value: sp.potency.score }] : []),
+    // an enchanted casting tool's bonus to the casting roll (DE, Enchant Casting Tools)
+    ...(sp.castingTool?.bonus ? [{ label: 'Enchanted casting tool', value: sp.castingTool.bonus }] : []),
+  ];
+  // a Verditius casts Formulaic and Ritual spells only with the casting tools to hand (DE, Verditius)
+  const needsTools = d.virtues.some((v) => v.cv.defId === 'verditius-magic');
+  const potentMagic = d.virtues.some((v) => v.cv.defId === 'potent-magic');
+  const mtScore = d.abilities.find((a) => a.abilityId === 'magic-theory')?.total ?? 0;
   const golden = d.char.familiar?.golden ?? 0;
   const push = (s: string) => {
     setLog((l) => [s, ...l].slice(0, 30));
@@ -217,18 +242,25 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
       push(`${sp.spell.name}: Rigid Magic: you cannot use vis when casting, so you cannot cast Ritual spells.`);
       return;
     }
-    if (fast && (ritual || !sp.masteryAbilities.includes('Fast Casting'))) {
+    if (needsTools && !tools) {
+      push(`${sp.spell.name}: a Verditius needs the casting tools to cast a Formulaic or Ritual spell.`);
+      return;
+    }
+    if (fast && (ritual || !(sp.masteryAbilities.includes('Fast Casting') || sp.castingTool?.fast))) {
       push(`${sp.spell.name}: ${ritual ? 'a Ritual cannot be fast-cast' : 'only a spell mastered with Fast Casting can be fast-cast (spontaneous magic always can)'}.`);
       return;
     }
     const flexible = d.virtues.some((v) => v.cv.defId === 'flexible-formulaic-magic') ? flex : 0;
     const level = Math.max(1, (sp.spell.level ?? 0) + 5 * flexible);
     // a Ritual's vis: a botch die per pawn, including the pawns that make the Ritual possible (DE, Vis Botch Dice)
-    const vis = ritual ? ritualVis(level, rules) : { pawns: 0, wasted: 0 };
+    const vis0 = ritual ? ritualVis(level, rules) : { pawns: 0, wasted: 0 };
+    // holy magic: long-term Fatigue stands for up to three pawns a level, not recovered while the spell lasts
+    const fatigueLevels = ritual && holyMagus ? Math.min(fatigueVis, Math.ceil(vis0.pawns / 3)) : 0;
+    const vis = { pawns: Math.max(0, vis0.pawns - 3 * fatigueLevels), wasted: vis0.wasted };
     const visB = visBoostFor(sp.spell.technique, sp.spell.form, vis.pawns);
     const res = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
-      kind: ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
-      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart], visPawns: visB.pawns,
+      kind: ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost, holyRite,
+      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart, ...potencyPart(sp)], visPawns: visB.pawns,
     });
     const botchDice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((res.botchDice ?? 0) + vis.pawns + visB.used, golden, ms) - mythSta);
     // a stress die for stress, for Rituals and mastered spells, and always with Unpredictable Magic; calm and
@@ -256,8 +288,9 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     if (botched) total = 0;
     const out = castingOutcome(ritual ? 'ritual' : 'formulaic', total, level);
     const penT = out.cast ? penetrationTotal(d, total, level, { ...pen, masteryScore: sp.masteryAbilities.includes('Penetration') ? ms : 0 }) : 0;
+    const fatigueVisText = fatigueLevels ? ` ${fatigueLevels} long-term Fatigue level${fatigueLevels > 1 ? 's' : ''} in place of ${Math.min(vis0.pawns, 3 * fatigueLevels)} pawns of vis (holy magic: ${fatigueLevels} more hour${fatigueLevels > 1 ? 's' : ''} of prayer; not recovered while the spell lasts).` : '';
     const visText = ritual
-      ? ` Vis: ${vis.pawns} pawn${vis.pawns > 1 ? 's' : ''}${rules.ritualVisMultiplier !== 1 ? ' (Mercurian Magic: half, rounded up)' : ''}${vis.wasted ? `, ${vis.wasted} of them wasted (Waster of Vis)` : ''}.${sp.spell.ritual ? '' : ' Unstructured Caster: cast as a Ritual.'}`
+      ? `${fatigueVisText} Vis: ${vis.pawns} pawn${vis.pawns === 1 ? '' : 's'}${rules.ritualVisMultiplier !== 1 ? ' (Mercurian Magic: half, rounded up)' : ''}${vis.wasted ? `, ${vis.wasted} of them wasted (Waster of Vis)` : ''}.${sp.spell.ritual ? '' : ' Unstructured Caster: cast as a Ritual.'}`
       : '';
     const fatigue = castingFatigue(out.fatigue, rules);
     // Life Boost: the Fatigue levels are spent whatever the result; past Unconscious they become damage
@@ -284,7 +317,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
       fatigueFor: (n) => castingFatigue(castingOutcome(kind, n, level).fatigue, rules),
       spell: out.cast && !botched ? { name: sp.spell.name, level, duration: sp.spell.duration, ritual, penetration: penT, form: sp.spell.form } : undefined,
     });
-    const over = spendFatigue(fatigue, out.longTerm);
+    const over = spendFatigue(fatigue + (fatigueLevels && out.longTerm ? fatigueLevels : 0), out.longTerm);
+    if (fatigueLevels && !out.longTerm) spendFatigue(fatigueLevels, true);
     if (boost) update((x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + boost)));
     if (over) push(`${sp.spell.name}:${over}`);
   };
@@ -378,27 +412,73 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
               )}
             </div>
           </Field>
-          <Field label="Words & gestures" hint={`${words >= 0 ? '+' : ''}${words}${wg.notes.length ? ` (${wg.notes.join(', ')})` : ''}`}>
-            <div className="row" style={{ gap: 4 }}>
-              <select value={voice} onChange={(e) => setVoice(e.target.value as Voice)} aria-label="Voice">
-                <option value="loud">loud voice (+1)</option>
-                <option value="firm">firm voice (0)</option>
-                <option value="quiet">quiet voice (−5)</option>
-                <option value="none">no words (−10)</option>
-              </select>
-              <select value={gestures} onChange={(e) => setGestures(e.target.value as Gestures)} aria-label="Gestures">
-                <option value="exaggerated">exaggerated gestures (+1)</option>
-                <option value="bold">bold gestures (0)</option>
-                <option value="subtle">subtle gestures (−2)</option>
-                <option value="none">no gestures (−5)</option>
-              </select>
-              {c?.house === 'bjornaer' && (
-                <button className="small ghost" title="A Bjornaer in heartbeast form cannot speak or gesture (DE, The Heartbeast)" onClick={() => { setVoice('none'); setGestures('none'); }}>
-                  heartbeast form
-                </button>
-              )}
-            </div>
-          </Field>
+          {holyMagus ? (
+            <Field label="Calling the spell (holy magic)" hint={`${words >= 0 ? '+' : ''}${words}${!holyCalled && wg.notes.length ? ` (${wg.notes.join(', ')})` : ''}: no Hermetic words or gestures`}>
+              <div className="row tight" data-tour="holy-call">
+                <select value={holyCall} onChange={(e) => { setHolyCall(e.target.value as typeof holyCall); setPrayed(null); }} aria-label="How the holy magus calls the spell">
+                  <option value="prayer">a prayer in place of words and gestures</option>
+                  <option value="method">a Method’s activation</option>
+                  <option value="none">neither (no words, no gestures)</option>
+                </select>
+                {holyCall === 'prayer' && (
+                  <button className="small" onClick={() => {
+                    const th = Math.max(0, ...d!.abilities.filter((a) => /^theology/.test(a.abilityId)).map((a) => a.total));
+                    const r = simpleDie();
+                    const t = r.value + d!.characteristics.Pre.value + th;
+                    setPrayed(t >= 15);
+                    push(`Prayer for the spell: Presence ${d!.characteristics.Pre.value} + Theology ${th} + die ${r.value} = ${t} vs 15: ${t >= 15 ? 'it serves as words and gestures.' : `it does not; the spell is cast with neither (${wg.value}).`}`);
+                  }}>
+                    Pray (Presence + Theology 15+)
+                  </button>
+                )}
+                {holyCall === 'prayer' && prayed !== null && <span className={`small ${prayed ? 'ok' : 'warn'}`}>{prayed ? 'prayed' : 'the prayer failed'}</span>}
+                {holyCall === 'method' && <span className="small muted">perform the Method’s activity (Invocation: a written prayer and a Confidence Point)</span>}
+              </div>
+            </Field>
+          ) : (
+            <Field label="Words & gestures" hint={`${words >= 0 ? '+' : ''}${words}${wg.notes.length ? ` (${wg.notes.join(', ')})` : ''}`}>
+              <div className="row" style={{ gap: 4 }}>
+                <select value={voice} onChange={(e) => setVoice(e.target.value as Voice)} aria-label="Voice">
+                  <option value="loud">loud voice (+1)</option>
+                  <option value="firm">firm voice (0)</option>
+                  <option value="quiet">quiet voice (−5)</option>
+                  <option value="none">no words (−10)</option>
+                </select>
+                <select value={gestures} onChange={(e) => setGestures(e.target.value as Gestures)} aria-label="Gestures">
+                  <option value="exaggerated">exaggerated gestures (+1)</option>
+                  <option value="bold">bold gestures (0)</option>
+                  <option value="subtle">subtle gestures (−2)</option>
+                  <option value="none">no gestures (−5)</option>
+                </select>
+                {c?.house === 'bjornaer' && (
+                  <button className="small ghost" title="A Bjornaer in heartbeast form cannot speak or gesture (DE, The Heartbeast)" onClick={() => { setVoice('none'); setGestures('none'); }}>
+                    heartbeast form
+                  </button>
+                )}
+              </div>
+            </Field>
+          )}
+          {holyMagus && (
+            <Field label="Rituals and ceremonial casting" hint={holyRite ? `+${holyRite.method + holyRite.power} (${holyRite.methodName} ${holyRite.method} + ${holyRite.powerName} ${holyRite.power}) in place of Artes Liberales and Philosophiae` : 'a Method and a Power are added: this magus has none'}>
+              <div className="row tight" data-tour="holy-rite">
+                <select value={holyMethod} onChange={(e) => setHolyMethod(e.target.value)} aria-label="Method">
+                  <option value="">best Method</option>
+                  {holyMethodsOf(d).map((m) => (
+                    <option key={m.id} value={m.id}>{m.name} {m.score}</option>
+                  ))}
+                </select>
+                <select value={holyPower} onChange={(e) => setHolyPower(e.target.value)} aria-label="Power">
+                  <option value="">best Power</option>
+                  {holyPowersOf(d).map((p) => (
+                    <option key={p.id} value={p.id}>{p.name} {p.score}</option>
+                  ))}
+                </select>
+                <label className="inline small" title="Each long-term Fatigue level stands for up to three pawns of a Ritual's vis, and adds an hour of prayer; it is not recovered while the spell lasts (RoP: The Divine, Holy Magic)">
+                  Fatigue for Ritual vis <Stepper value={fatigueVis} min={0} max={5} width={34} onChange={setFatigueVis} />
+                </label>
+              </div>
+            </Field>
+          )}
           {talismanItem && talismanItem.attunements.length > 0 && (
             <Field label="Talisman attunement" hint="Touching the talisman, for a spell the attunement fits">
               <select value={attunement} onChange={(e) => setAttunement(Number(e.target.value))}>
@@ -449,6 +529,11 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                 <option value={-1}>a step down (−5 levels)</option>
               </select>
             </Field>
+          )}
+          {atTable && needsTools && (
+            <label className="inline small" data-tour="casting-tools" title="Verditius magi need their casting tools for Formulaic and Ritual spells; Spontaneous spells do not (unless a Flaw says so)">
+              <input type="checkbox" checked={tools} onChange={(e) => setTools(e.target.checked)} /> The casting tools are to hand
+            </label>
           )}
           {atTable && (
             <div className="row tight small" data-tour="fast-cast">
@@ -584,7 +669,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
               <option value="indefinite">indefinite (×5)</option>
             </select>
           </Field>
-          <Field label="Sympathetic connections (+multiplier)">
+          <Field label="Other sympathetic connection (+multiplier)" hint="One the troupe allows beyond those listed; none should give more than +2">
             <Stepper value={pen.sympathetic ?? 0} min={0} max={10} width={40} onChange={(v) => setPen({ ...pen, sympathetic: v })} />
           </Field>
           <label className="inline small">
@@ -596,6 +681,20 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             </span>
             <span className="l">Penetration bonus (×{pb.multiplier})</span>
           </div>
+        </div>
+        <div className="stack" style={{ gap: 2, marginTop: 6 }} data-tour="sympathies">
+          <span className="small">Sympathetic connections that apply{pen.arcaneConnection === 'none' ? ' (they need an Arcane Connection first)' : ''}:</span>
+          {SYMPATHIES.filter((x) => !x.faerieMagic || d.abilities.some((a) => a.abilityId === 'faerie-magic' && a.total > 0)).map((x) => (
+            <label key={x.id} className="inline small" title={x.hint}>
+              <input
+                type="checkbox"
+                disabled={pen.arcaneConnection === 'none'}
+                checked={!!pen.sympathies?.includes(x.id)}
+                onChange={(e) => setPen({ ...pen, sympathies: e.target.checked ? [...(pen.sympathies ?? []), x.id] : (pen.sympathies ?? []).filter((y) => y !== x.id) })}
+              />{' '}
+              {x.label} (+{x.bonus}){x.hint ? <span className="muted"> — {x.hint}</span> : null}
+            </label>
+          ))}
         </div>
         <p className="small muted" style={{ marginBottom: 0 }}>Penetration Total = Casting Total + Penetration bonus − spell level (DE p.215).</p>
       </Card>
@@ -624,8 +723,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                   .map((sp) => {
                     const ms = masteryScore(sp, d);
                     const r = castingScore(d, { technique: sp.spell.technique, form: sp.spell.form, requisites: sp.spell.requisites }, {
-                      kind: sp.spell.ritual || rules.unstructured ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost,
-                      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart],
+                      kind: sp.spell.ritual || rules.unstructured ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost, holyRite,
+                      talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart, ...potencyPart(sp)],
                     });
                     const lvl = sp.spell.level ?? 0;
                     const avg = r.total + 5;
@@ -636,6 +735,31 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
                         <td>
                           <b>{sp.spell.name}</b>
                           {sp.spell.ritual && <span className="badge accent">Ritual</span>}
+                          {sp.castingTool && (
+                            <span className="badge info" title={`Enchanted casting tool${castingToolText(sp.castingTool)}`}>
+                              tool{sp.castingTool.bonus ? ` +${sp.castingTool.bonus}` : ''}
+                            </span>
+                          )}
+                          {sp.potency?.score ? (
+                            <span className="badge info" title={`A Potent spell: cast holding ${sp.potency.items || 'its Casting Items'}, or it cannot be cast at all`}>
+                              Potent +{sp.potency.score}
+                            </span>
+                          ) : null}
+                          {(potentMagic || sp.potency) && !atTable && (
+                            <details className="small">
+                              <summary>Potent spell</summary>
+                              <div className="row tight">
+                                <input
+                                  value={sp.potency?.items ?? ''}
+                                  placeholder="Casting Items (a wand, magnetite)"
+                                  aria-label="Casting Items"
+                                  onChange={(e) => update((x) => { const z = x.spells.find((y) => y.uid === sp.uid)!; z.potency = { items: e.target.value, score: z.potency?.score ?? 0 }; })}
+                                />
+                                <Stepper value={sp.potency?.score ?? 0} min={0} max={30} width={34} onChange={(v) => update((x) => { const z = x.spells.find((y) => y.uid === sp.uid)!; z.potency = v ? { items: z.potency?.items ?? '', score: v } : undefined; })} />
+                              </div>
+                              <span className="muted">Their Shape &amp; Material bonuses summed; designed no higher than Magic Theory ({mtScore}); learned from a text or teacher as it was written.</span>
+                            </details>
+                          )}
                           {d.magicalFocus !== 'none' && (
                             <label className="inline small" title="This spell is inside your Magical Focus">
                               <input type="checkbox" checked={spellFocus(sp)} onChange={(e) => update((x) => void (x.spells.find((z) => z.uid === sp.uid)!.inFocus = e.target.checked))} /> Focus
@@ -740,9 +864,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           )}
         </div>
         <div className="row" style={{ marginTop: 6 }}>
-          <label className="inline small" title={canCeremonial ? 'Fifteen minutes per magnitude; the spell is limited to one magnitude per fifteen minutes spent' : 'Needs experience in Artes Liberales or Philosophiae'}>
-            <input type="checkbox" checked={cer} disabled={rules.ceremonialSpontaneous || !canCeremonial} onChange={(e) => setCeremonial(e.target.checked)} /> Ceremonial casting (+Artes Liberales
-            and Philosophiae; 15 minutes a magnitude){rules.ceremonialSpontaneous ? ': required by Ceremonial Spontaneous Magic' : ''}
+          <label className="inline small" title={canCeremonial ? 'Fifteen minutes per magnitude; the spell is limited to one magnitude per fifteen minutes spent' : holyMagus ? 'Holy magic: needs a Method and a Power' : 'Needs experience in Artes Liberales or Philosophiae'}>
+            <input type="checkbox" checked={cer} disabled={rules.ceremonialSpontaneous || !canCeremonial} onChange={(e) => setCeremonial(e.target.checked)} /> Ceremonial casting ({holyMagus ? `+${holyRite?.methodName ?? 'a Method'} and ${holyRite?.powerName ?? 'a Power'}, the Method performed` : '+Artes Liberales and Philosophiae'}; 15 minutes a magnitude){rules.ceremonialSpontaneous ? ': required by Ceremonial Spontaneous Magic' : ''}
           </label>
           {(rules.chaotic || rules.lifeLinked) && (
             <Field label="Declared level" hint={rules.chaotic ? 'Chaotic Magic: declare every spontaneous spell (Penetration levels included)' : 'Life-Linked: may include levels for Penetration'}>
@@ -798,8 +921,9 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
 
 /** How long a spell's effect is kept on its target: Moon and Year as they are, a Momentary Ritual's for good, the rest until ended. */
 export function spellEffectDuration(duration: string, ritual: boolean): ActiveEffect['duration'] {
-  if (/moon/i.test(duration)) return 'moon';
-  if (/year/i.test(duration)) return 'year';
+  // Holy Magic's 40 days and Fast last about as long as a Moon, Grace as long as a Year (RoP: The Divine)
+  if (/moon|^40\b|^fast$/i.test(duration)) return 'moon';
+  if (/year|^grace$/i.test(duration)) return 'year';
   if (ritual && /mom/i.test(duration)) return 'permanent';
   return 'indefinite';
 }

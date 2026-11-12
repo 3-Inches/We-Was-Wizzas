@@ -39,7 +39,7 @@ export interface TotalResult {
 }
 
 /** DE Realm Interaction Table (p.410). */
-export function auraModifier(power: Realm, aura: AuraState | undefined, opts: { faerieMagic?: boolean } = {}): { mod: number; botch: number; note?: string } {
+export function auraModifier(power: Realm, aura: AuraState | undefined, opts: { faerieMagic?: boolean; holyMagic?: boolean } = {}): { mod: number; botch: number; note?: string } {
   if (!aura || aura.realm === 'None' || aura.strength <= 0) return { mod: 0, botch: 0 };
   const n = aura.strength;
   const table: Record<Exclude<Realm, 'None'>, Record<Exclude<Realm, 'None'>, number>> = {
@@ -54,6 +54,14 @@ export function auraModifier(power: Realm, aura: AuraState | undefined, opts: { 
   if (opts.faerieMagic && power === 'Magic' && aura.realm === 'Faerie') {
     mod = n;
     foreign = false;
+  }
+  // holy magic is attuned to the Divine and Magic realms: a Divine aura adds as a Magic one does, an
+  // Infernal aura takes nothing away, a Faerie aura adds half (RoP: The Divine, Holy Magic)
+  if (opts.holyMagic && power === 'Magic') {
+    if (aura.realm === 'Divine') {
+      mod = n;
+      foreign = false;
+    } else if (aura.realm === 'Infernal') mod = 0;
   }
   const botch = foreign ? n * (aura.regio ? 2 : 1) : 0;
   return { mod, botch, note: foreign ? `${aura.realm} aura ${n}` : undefined };
@@ -127,6 +135,8 @@ export interface CastingOptions {
   other?: number;
   extra?: Part[];
   masteryScore?: number; // added to casting total for mastered spells? (not by default)
+  /** a holy magus's Ritual or ceremonial casting: the Method and Power added (the best pair if not given) */
+  holyRite?: HolyRite;
   visPawns?: number; // +2 casting score per pawn
   notTouching?: boolean; // Short-Ranged Magic
 }
@@ -157,6 +167,26 @@ export function wordsGesturesModifier(d: DerivedCharacter, voice: Voice, gesture
   return { value: w + g, notes };
 }
 
+export interface HolyRite {
+  method: number;
+  methodName: string;
+  power: number;
+  powerName: string;
+}
+
+const HOLY_METHOD_IDS: Record<string, string> = { invocation: 'Invocation', meditation: 'Meditation', purity: 'Purity', 'holy-music': 'Holy Music', 'dream-interpretation': 'Dream Interpretation', gematria: 'Gematria', kabbalah: 'Kabbalah', merkavah: 'Merkavah' };
+const HOLY_POWER_IDS: Record<string, string> = { adjuration: 'Adjuration', blessing: 'Blessing', cursing: 'Cursing', intervention: 'Intervention', transcendence: 'Transcendence', understanding: 'Understanding', wonders: 'Wonders' };
+
+/** A holy magus's highest Method and highest Power, for a Ritual or ceremonial casting. */
+export function bestHolyRite(d: DerivedCharacter, method?: string, power?: string): HolyRite | undefined {
+  const pick = (ids: Record<string, string>, want?: string) =>
+    d.abilities.filter((a) => a.abilityId in ids && a.total > 0 && (!want || a.abilityId === want)).sort((a, b) => b.total - a.total)[0];
+  const m = pick(HOLY_METHOD_IDS, method);
+  const p = pick(HOLY_POWER_IDS, power);
+  if (!m && !p) return undefined;
+  return { method: m?.total ?? 0, methodName: m ? HOLY_METHOD_IDS[m.abilityId] : 'No Method', power: p?.total ?? 0, powerName: p ? HOLY_POWER_IDS[p.abilityId] : 'No Power' };
+}
+
 /** Casting Score (no die). Formulaic Casting Total = Casting Score + die. */
 export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOptions): TotalResult {
   const parts: Part[] = [];
@@ -167,8 +197,10 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
   parts.push({ label: `Form (${arts.form}${arts.requisites?.filter(isForm).length ? ' + req.' : ''})`, value: form });
   parts.push({ label: 'Stamina', value: d.characteristics.Sta.value });
   if (o.inFocus && d.magicalFocus !== 'none') parts.push({ label: `Magical Focus (${d.focusText ?? d.magicalFocus})`, value: Math.min(tech, form) });
-  const aura = auraModifier('Magic', o.aura, { faerieMagic: hasFM });
-  if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})`, value: aura.mod });
+  const holy = d.theoryAbility === 'holy-magic';
+  const aura = auraModifier('Magic', o.aura, { faerieMagic: hasFM, holyMagic: holy });
+  if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})${holy && o.aura?.realm === 'Divine' ? ': holy magic' : ''}`, value: aura.mod });
+  else if (holy && o.aura?.realm === 'Infernal' && o.aura.strength > 0) notes.push('Holy magic: no penalty in an Infernal aura.');
   const aligned = alignedPart(o.aura, aura.mod, arts);
   if (aligned) parts.push(aligned);
   if (d.encumbrance) parts.push({ label: 'Encumbrance', value: -d.encumbrance });
@@ -183,7 +215,9 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
   for (const e of effectsOf(d, 'castingScore')) {
     if (e.when === 'all' || (e.when === 'circumstance' && circumstanceApplies(o.circumstance, e))) parts.push({ label: e.fromName, value: e.amount });
   }
-  if (o.diedneExerted && o.kind === 'spontaneous' && d.virtues.some((v) => v.cv.defId === 'diedne-magic')) parts.push({ label: 'Diedne Magic (lowest Art doubled)', value: Math.min(tech, form) });
+  // with a Magical Focus too, the lowest Art counts three times: each doubling adds it once more (RoP: The Infernal, chthonic magic's own example)
+  if (o.diedneExerted && o.kind === 'spontaneous' && d.virtues.some((v) => v.cv.defId === 'diedne-magic'))
+    parts.push({ label: o.inFocus && d.magicalFocus !== 'none' ? 'Diedne Magic (lowest Art once more: three times with the Focus)' : 'Diedne Magic (lowest Art doubled)', value: Math.min(tech, form) });
   if (o.lifeBoost && o.kind !== 'spontaneous' && d.virtues.some((v) => v.cv.defId === 'life-boost')) parts.push({ label: `Life Boost (${o.lifeBoost} Fatigue level${o.lifeBoost > 1 ? 's' : ''})`, value: 5 * o.lifeBoost });
   if (o.similarSpell && o.kind === 'spontaneous' && d.virtues.some((v) => v.cv.defId === 'spell-improvisation')) parts.push({ label: `Spell Improvisation (${o.similarSpell.name})`, value: o.similarSpell.magnitude });
   if (o.other) parts.push({ label: 'Other modifier', value: o.other });
@@ -192,7 +226,14 @@ export function castingScore(d: DerivedCharacter, arts: ArtsUsed, o: CastingOpti
     const ok = w === 'all' || w === o.kind || (w === 'formulaicAndRitual' && o.kind !== 'spontaneous');
     if (ok) parts.push({ label: e.fromName, value: e.amount });
   }
-  if (o.kind === 'ritual' || o.ceremonial) {
+  if ((o.kind === 'ritual' || o.ceremonial) && holy) {
+    // a holy magus adds a Method and a Power, the Method's activity performed (RoP: The Divine, Holy Magic)
+    const rite = o.holyRite ?? bestHolyRite(d);
+    if (rite) {
+      parts.push({ label: rite.methodName, value: rite.method });
+      parts.push({ label: rite.powerName, value: rite.power });
+    } else notes.push('Holy magic: a Ritual or ceremonial casting adds a Method and a Power in place of Artes Liberales and Philosophiae; this magus has neither.');
+  } else if (o.kind === 'ritual' || o.ceremonial) {
     const al = d.abilities.find((a) => a.abilityId === 'artes-liberales');
     const ph = d.abilities.find((a) => a.abilityId === 'philosophiae');
     parts.push({ label: 'Artes Liberales', value: al?.total ?? 0 });
@@ -273,6 +314,8 @@ export interface LabOptions {
   lab?: LabContext;
   inFocus?: boolean;
   fromText?: boolean;
+  /** the Laboratory Text was written by a holy magus */
+  textByHolyMagus?: boolean;
   experimenting?: boolean;
   circumstance?: boolean | string[];
   similarSpellMagnitude?: number;
@@ -322,7 +365,8 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
     (spec && [arts.technique, arts.form].some((a) => spec.includes(artName(a).toLowerCase())));
   if (specHit) parts.push({ label: `${mtName} specialty (${mt?.specialty})`, value: 1 });
   if (o.inFocus && d.magicalFocus !== 'none') parts.push({ label: 'Magical Focus', value: Math.min(tech, form) });
-  const aura = auraModifier('Magic', o.aura, { faerieMagic: hasFM });
+  // a holy magus may do all lab work in the Dominion, its aura adding as a Magic one (RoP: The Divine)
+  const aura = auraModifier('Magic', o.aura, { faerieMagic: hasFM, holyMagic: d.theoryAbility === 'holy-magic' });
   if (aura.mod) parts.push({ label: `Aura (${o.aura?.realm} ${o.aura?.strength})`, value: aura.mod });
   const aligned = alignedPart(o.aura, aura.mod, arts);
   if (aligned) parts.push(aligned);
@@ -369,6 +413,12 @@ export function labTotal(d: DerivedCharacter, arts: ArtsUsed, o: LabOptions): To
     halved = true;
     notes.push('Deficient Art: Lab Total halved.');
   }
+  // a holy magus halves a Hermetic Lab Text; a holy magus's own texts are Incomprehensible to Hermetic magi (RoP: The Divine)
+  if (o.fromText && o.activity !== 'texts' && (d.theoryAbility === 'holy-magic') !== !!o.textByHolyMagus) {
+    total = Math.ceil(total / 2);
+    halved = true;
+    notes.push(d.theoryAbility === 'holy-magic' ? 'Holy magic learning from a Hermetic Laboratory Text: Lab Total halved.' : 'A holy magus’s Laboratory Text is incomprehensible to Hermetic magic: Lab Total halved.');
+  }
   const short = o.lab?.halved?.filter((a) => [arts.technique, arts.form].includes(a as Art));
   if (short?.length) {
     total = Math.ceil(total / 2);
@@ -400,10 +450,28 @@ function artName(a: Art): string {
   return ({ Cr: 'Creo', In: 'Intellego', Mu: 'Muto', Pe: 'Perdo', Re: 'Rego', An: 'Animal', Aq: 'Aquam', Au: 'Auram', Co: 'Corpus', He: 'Herbam', Ig: 'Ignem', Im: 'Imaginem', Me: 'Mentem', Te: 'Terram', Vi: 'Vim' } as Record<Art, string>)[a];
 }
 
+/**
+ * Sympathetic connections (DE, Sympathetic Connections): each adds to the Penetration multiplier once
+ * the caster has an Arcane Connection to the target, and they stack; none gives more than +2. A Faerie
+ * Magic charm is a symbolic representation made with that Ability, one to a spell (DE, Charms).
+ */
+export const SYMPATHIES: { id: string; label: string; bonus: number; hint?: string; faerieMagic?: boolean }[] = [
+  { id: 'blood', label: 'The caster is a blood relative of the target', bonus: 1 },
+  { id: 'signature', label: 'The target’s signature', bonus: 1 },
+  { id: 'name', label: 'The target’s nickname or birth name', bonus: 1, hint: 'A baptismal name cannot be used' },
+  { id: 'secret-name', label: 'The name the target uses in secret magic rituals', bonus: 1 },
+  { id: 'horoscope', label: 'The target’s horoscope for today', bonus: 1, hint: 'Their location known; Int + Artes Liberales (Astronomy) 9+, an hour' },
+  { id: 'nativity', label: 'The target’s nativity horoscope', bonus: 2, hint: 'Their place and time of birth known; Int + Artes Liberales (Astronomy) 9+, a day' },
+  { id: 'representation', label: 'A symbolic representation of the target', bonus: 2, hint: 'An illustration or model the caster made: Dex + Craft 9+ for one use, a month and 12+ for a lasting one' },
+  { id: 'charm', label: 'A Faerie Magic charm', bonus: 2, hint: 'A sympathetic representation made with Faerie Magic: 6+ to compose (9+ permanent); one charm to a spell', faerieMagic: true },
+];
+
 export interface PenetrationOptions {
   arcaneConnection?: 'none' | 'hours' | 'weeks' | 'years' | 'indefinite';
-  sympathetic?: number; // sum of sympathetic connection bonuses
-  charm?: boolean; // Merinita charm: +2 with an AC
+  /** the sympathetic connections that apply (SYMPATHIES ids) */
+  sympathies?: string[];
+  /** any other sympathetic connection the troupe allows: added to the multiplier */
+  sympathetic?: number;
   specialty?: boolean; // Penetration specialty applies
   masteryScore?: number; // Penetration mastery ability adds score
 }
@@ -412,10 +480,13 @@ export function penetrationBonus(d: DerivedCharacter, o: PenetrationOptions = {}
   const pen = d.abilities.find((a) => a.abilityId === 'penetration');
   let score = (pen?.total ?? 0) + (o.specialty ? 1 : 0) + (o.masteryScore ?? 0);
   const acMult = { none: 0, hours: 1, weeks: 2, years: 3, indefinite: 4 }[o.arcaneConnection ?? 'none'];
-  let mult = 1 + acMult + (acMult > 0 ? (o.sympathetic ?? 0) + (o.charm ? 2 : 0) : 0);
+  // sympathies only count with an Arcane Connection
+  const sym = acMult > 0 ? SYMPATHIES.filter((x) => o.sympathies?.includes(x.id)) : [];
+  let mult = 1 + acMult + (acMult > 0 ? (o.sympathetic ?? 0) + sym.reduce((t, x) => t + x.bonus, 0) : 0);
   const parts: Part[] = [{ label: 'Penetration Ability', value: pen?.total ?? 0 }];
   if (o.specialty) parts.push({ label: 'Specialty', value: 1 });
   if (o.masteryScore) parts.push({ label: 'Mastery (Penetration)', value: o.masteryScore });
+  if (acMult) parts.push({ label: `× ${mult}: Arcane Connection +${acMult}${sym.map((x) => `, ${x.label.replace(/^The (caster is a )?/, '').replace(/^target’s /, '')} +${x.bonus}`).join('')}${o.sympathetic ? `, other +${o.sympathetic}` : ''}`, value: 0 });
   if (score < 0) score = 0;
   if (mult < 1) mult = 1;
   return { bonus: score * mult, multiplier: mult, parts };
@@ -483,6 +554,26 @@ export function certamenFatigue(weakeningTotal: number, resistanceTotal: number)
   return over > 0 ? Math.ceil(over / 5) : 0;
 }
 
+/**
+ * The Divine sources of Magic Resistance (each one source; only the highest of all applies): True Faith
+ * (× 10, doubled against Mentem at a True Faith Score of 3; the Divine Form adds the Warping Score), a
+ * relic (Faith × 10), and a commanding aura, to which the best relic's resistance is added (RoP: The Divine).
+ */
+export function divineResistance(d: DerivedCharacter, form?: Form): Part[] {
+  const out: Part[] = [];
+  const holy = d.char.holy;
+  const divineForm = holy?.ascent === 'form' ? d.warpingScore : 0;
+  if (d.trueFaith > 0 || divineForm) {
+    const hope = form === 'Me' && d.trueFaith >= 3;
+    const tf = d.trueFaith * 10 * (hope ? 2 : 1);
+    out.push({ label: `True Faith (${d.trueFaith} × 10${hope ? ', doubled against Mentem' : ''})${divineForm ? ` + Divine Form (Warping Score ${divineForm})` : ''}`, value: tf + divineForm });
+  }
+  const cmd = holy?.commandingAura ?? 0;
+  if (cmd) out.push({ label: `Commanding aura ${cmd}${d.relicFaith ? ` + relic (Faith ${d.relicFaith} × 10)` : ''}`, value: cmd + d.relicFaith * 10 });
+  else if (d.relicFaith > 0) out.push({ label: `Relic (Faith ${d.relicFaith} × 10)`, value: d.relicFaith * 10 });
+  return out;
+}
+
 export function magicResistance(d: DerivedCharacter, form: Form, o: { aura?: AuraState; includeAura?: boolean; sharing?: boolean; vsRealm?: Realm } = {}): TotalResult {
   const parts: Part[] = [];
   const notes: string[] = [];
@@ -507,9 +598,7 @@ export function magicResistance(d: DerivedCharacter, form: Form, o: { aura?: Aur
     if (a.mod) parts.push({ label: 'Aura', value: a.mod });
   }
   // Magic Resistance from different sources does not stack: use the highest (DE p.55)
-  const others: Part[] = [];
-  if (d.trueFaith > 0) others.push({ label: `True Faith (${d.trueFaith} × 10)`, value: d.trueFaith * 10 });
-  if (d.relicFaith > 0) others.push({ label: `Relic (True Faith ${d.relicFaith} × 10)`, value: d.relicFaith * 10 });
+  const others: Part[] = divineResistance(d, form);
   for (const e of effectsOf(d, 'magicResistance')) others.push({ label: e.fromName, value: e.amount });
   // Might gives Magic Resistance: Might + aura modifier (DE Creature Might); a creature's own, or
   // from a Virtue (Strong Angelic Heritage: Divine Might = age / 20)

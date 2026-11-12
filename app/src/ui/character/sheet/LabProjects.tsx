@@ -243,14 +243,14 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
                       const b = texts.find((x) => x.uid === e.target.value);
                       if (!b?.spell) return;
                       const sp = b.spell;
-                      set((x) => void Object.assign(x, { spell: sp, technique: sp.technique, form: sp.form, level: b.level || sp.level || 5, requisites: sp.requisites, fromText: true, experiment: undefined, name: `Learn ${sp.name}${b.title.replace(/^Lab Text:\s*/, '') === sp.name ? '' : ` (${b.title})`}` }));
+                      set((x) => void Object.assign(x, { spell: sp, technique: sp.technique, form: sp.form, level: b.level || sp.level || 5, requisites: sp.requisites, fromText: true, holyText: b.holy || undefined, experiment: undefined, name: `Learn ${sp.name}${b.title.replace(/^Lab Text:\s*/, '') === sp.name ? '' : ` (${b.title})`}` }));
                     }}
                   >
                     <option value="">— a Laboratory Text in the library —</option>
                     {texts.map((b) => (
                       <option key={b.uid} value={b.uid}>
                         {b.spell!.name} ({b.spell!.technique}
-                        {b.spell!.form} {b.level || b.spell!.level}){b.author ? `, by ${b.author}` : ''}
+                        {b.spell!.form} {b.level || b.spell!.level}){b.author ? `, by ${b.author}` : ''}{b.holy ? ' (holy magic)' : ''}
                       </option>
                     ))}
                   </select>
@@ -306,6 +306,20 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
               <label className="inline" title="With a Laboratory Text the spell is learned in one season once the Lab Total reaches its level; no experimenting (DE)">
                 <input type="checkbox" checked={!!p.fromText} onChange={(e) => set((x) => void ((x.fromText = e.target.checked || undefined), e.target.checked && (x.experiment = undefined)))} /> from a Laboratory Text
               </label>
+              {c.virtues.some((v) => v.defId === 'potent-magic') && (
+                <Field label="A Potent spell (Potent Magic)" hint={`Casting Items whose Shape & Material bonuses make its Potency, held when it is cast; no more than Magic Theory (${d.abilities.find((a) => a.abilityId === 'magic-theory')?.total ?? 0})`}>
+                  <span className="row tight" data-tour="lab-potent">
+                    <input value={p.potency?.items ?? ''} placeholder="Casting Items" aria-label="Casting Items" onChange={(e) => set((x) => void (x.potency = { items: e.target.value, score: x.potency?.score ?? 0 }))} />
+                    <Stepper
+                      value={p.potency?.score ?? 0}
+                      min={0}
+                      max={d.abilities.find((a) => a.abilityId === 'magic-theory')?.total ?? 0}
+                      width={34}
+                      onChange={(v) => set((x) => void (x.potency = v ? { items: x.potency?.items ?? '', score: v } : undefined))}
+                    />
+                  </span>
+                </Field>
+              )}
               {!p.fromText && (
                 <Field label="Similar spell or other bonus" hint="+ the magnitude of the highest similar spell you know">
                   <Stepper value={p.bonus ?? 0} min={-20} max={30} width={36} onChange={(v) => set((x) => void (x.bonus = v || undefined))} />
@@ -364,7 +378,7 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
           {p.kind === 'instill' && it && p.effectUid && shapeMaterialChoices(c, it, data).length > 0 && (
             <Field
               label="Shape & Material bonuses that suit the effect"
-              hint={`Those of its shape and material that suit the effect${isTalisman ? ', and the talisman’s attunements' : ''}; the total${c.virtues.some((v) => v.defId === 'verditius-magic') ? ', with your Philosophiae as Verditius runes,' : ''} is held to your Magic Theory`}
+              hint={`Those of its shape and material that suit the effect${isTalisman ? ', and the talisman’s attunements' : ''}; the total${it.runes ? `, each bonus raised by the Verditius runes (+${it.runes}),` : ''} is held to your Magic Theory`}
             >
               <span className="row tight" data-tour="lab-sm">
                 {shapeMaterialChoices(c, it, data).map((b) => (
@@ -379,6 +393,35 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
                 ))}
               </span>
             </Field>
+          )}
+          {p.kind === 'castingTool' && (
+            <>
+              <Field label="The spell" hint="A spell you know, formulaic or Ritual: each casting tool is enchanted once">
+                <select value={p.spellUid ?? ''} onChange={(e) => set((x) => void ((x.spellUid = e.target.value || undefined), (x.name = `Enchant the casting tool of ${c.spells.find((y) => y.uid === e.target.value)?.spell.name ?? 'a spell'}`)))}>
+                  <option value="">— choose —</option>
+                  {c.spells.filter((sp) => !sp.castingTool).map((sp) => (
+                    <option key={sp.uid} value={sp.uid}>
+                      {sp.spell.name} ({sp.spell.technique}
+                      {sp.spell.form} {sp.spell.level})
+                    </option>
+                  ))}
+                </select>
+              </Field>
+              <span className="row tight small" data-tour="lab-casting-tool">
+                <Field label="+ to the casting roll">
+                  <Stepper value={p.tool?.bonus ?? 0} min={0} max={20} width={34} onChange={(v) => set((x) => void (x.tool = { ...(x.tool ?? { bonus: 0 }), bonus: v }))} />
+                </Field>
+                <label className="inline">
+                  <input type="checkbox" checked={!!p.tool?.fast} onChange={(e) => set((x) => void (x.tool = { ...(x.tool ?? { bonus: 0 }), fast: e.target.checked || undefined }))} /> Fast Casting (+2)
+                </label>
+                <Field label="Quiet Casting (+2 each)">
+                  <Stepper value={p.tool?.quiet ?? 0} min={0} max={2} width={30} onChange={(v) => set((x) => void (x.tool = { ...(x.tool ?? { bonus: 0 }), quiet: v || undefined }))} />
+                </Field>
+                <Field label="Multiple Casting (+2 a spell)">
+                  <Stepper value={p.tool?.multiple ?? 0} min={0} max={5} width={30} onChange={(v) => set((x) => void (x.tool = { ...(x.tool ?? { bonus: 0 }), multiple: v || undefined }))} />
+                </Field>
+              </span>
+            </>
           )}
           {p.kind === 'tame' && (
             <>

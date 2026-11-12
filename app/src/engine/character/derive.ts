@@ -1,6 +1,7 @@
 // Computes everything derivable about a character from its stored choices.
 // Pure functions: (character, game data, house rules) -> DerivedCharacter.
 
+import { SOLOMON_RINGS } from '../../data/divine';
 import {
   ARTS, CHARACTERISTICS, CHILDHOOD_ABILITIES, abilityCapForAge, childModifier, charCost,
   abilityMatches, abilityTypeOf, isLanguageAbility,
@@ -299,6 +300,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   for (const v of virtues) if (v.cv.heldBy && !char.awayFromCovenant && char.auraTime !== 'away') v.held = true;
   const effects = resolveEffects(virtues.filter((v) => !v.held));
   for (const v of virtues.filter((x) => x.held)) notes.push(`${v.name} is held off by the covenant's Immunity while ${char.name || 'the character'} lives in its aura.`);
+  for (const v of virtues) if (v.cv.charm) notes.push(`The Greater Charm is with someone else: ${vfDisplayName(data.vfById.get(v.cv.charm.virtue.defId), v.cv.charm.virtue, data)} is theirs until it is recovered.`);
+  for (const v of virtues) if (v.cv.fromCharm) notes.push(`${v.name}: had by holding another's Greater Charm.`);
   // spells, powers and rituals working on the character, and the devices it wears
   const spellUids = new Set((char.activeEffects ?? []).map((ae) => ae.uid));
   for (const ae of char.activeEffects ?? []) for (const b of ae.bonuses ?? []) effects.push({ ...b, fromUid: ae.uid, fromName: ae.name } as ResolvedEffect);
@@ -345,6 +348,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
         if (v.cv.size === 'Major') tally.majorPersonalityFlaws++;
       }
       if (d.categories.includes('Hermetic')) tally.hermeticFlaws++;
+      // a Greater Charm taken by another: its Virtue is theirs for now, but still the owner's to count (RoP: Faerie)
+      const away = v.cv.charm?.virtue;
+      if (away && !away.free) tally.virtuePoints += SIZE_POINTS[away.size] ?? 0;
     }
   }
   tally.allowedVirtuePoints = char.type === 'mythic' ? tally.flawPoints * rules.mythicVirtueRatio : tally.flawPoints;
@@ -378,6 +384,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   let size = eff('size').reduce((s, e) => s + e.amount, 0) + child.size + (magicChar ? magicChar.size : char.creature?.size ?? 0);
   if (has('blood-of-the-nephilim') && char.age >= 100) size += Math.floor(char.age / 100);
 
+  const ring = char.holy?.notoria?.active ? SOLOMON_RINGS.find((r) => r.ring === char.holy!.notoria!.active!.ring) : undefined;
   const characteristics = {} as DerivedCharacter['characteristics'];
   for (const c of CHARACTERISTICS) {
     const { base } = core[c];
@@ -401,6 +408,12 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     }
     // spells and powers raise what the character has now, Qualities and Size included, never past their limit
     for (const b of eff('charBonus')) if (b.char === c && spellUids.has(b.fromUid)) value = charBonus(value, b, cn);
+    // a Ring of Solomon in effect: +3, to +5 at most (RoP: The Divine, Ars Notoria)
+    if (ring?.char?.id === c && value < 5) {
+      const v = Math.min(5, value + ring.char.amount);
+      cn.push(`${ring.name} of Solomon +${v - value}`);
+      value = v;
+    }
     const ov = char.overrides[`char:${c}`];
     if (ov !== undefined) {
       value = ov;
@@ -459,7 +472,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     const affinity = hasAffinity(ab.abilityId, ab.param);
     let mult = affinity ? rules.affinityMultiplier : 1;
     if (linguist && isLanguageAbility(ab.abilityId)) mult += linguist.multiplier - 1;
-    let exp = effectiveXp(ab.xp, mult);
+    // a Ring of Solomon's experience points, while it lasts (RoP: The Divine, Ars Notoria)
+    let exp = effectiveXp(ab.xp, mult) + (ring?.xp?.ability === ab.abilityId ? ring.xp.amount : 0);
     let score = abilityScoreFromXp(exp);
     const ov = char.overrides[`ability:${ab.uid}`];
     if (ov !== undefined) {
@@ -627,12 +641,16 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const agingRollParts = [
     ...(agingRollMod ? [{ label: 'Virtues and Flaws', value: agingRollMod }] : []),
     ...(char.familiar?.bronze ? [{ label: "Familiar's bronze cord", value: -char.familiar.bronze }] : []),
+    // Shinnui Shem: a changed True Name, until the next Aging Point; not with a Longevity Ritual (RoP: The Divine)
+    ...(char.holy?.shinnui && !char.longevity ? [{ label: 'Shinnui Shem', value: -char.holy.shinnui }] : []),
   ];
   const agingStartAge = eff('agingStartAge').reduce((m, e) => Math.max(m, e.age), 35);
   const theoryAbility = eff('labTheory')[0]?.ability ?? 'magic-theory';
-  const faithEff = eff('trueFaith')[0];
-  const trueFaith = char.faith?.score ?? (faithEff ? faithEff.score : 0);
-  const faithPoints = char.faith?.points ?? (faithEff ? faithEff.points : 0);
+  // True Faith: one point of score for each time the Virtue is taken (each more is a Major Virtue), or
+  // more if a story raised it; only the Virtue gives a score (RoP: The Divine, Taking the True Faith Virtue)
+  const faithFromVirtues = eff('trueFaith').reduce((s, e) => s + e.score, 0);
+  const trueFaith = faithFromVirtues > 0 ? Math.max(char.faith?.score ?? 0, faithFromVirtues) : 0;
+  const faithPoints = char.faith?.points ?? trueFaith;
   const relicFaith = eff('relic').reduce((m, e) => Math.max(m, e.faith), 0);
   const personalityMax = eff('personalityRange').reduce((m, e) => Math.max(m, e.max), 3);
   // Might: the highest of a creature's own and the Might Virtues give (Strong Angelic Heritage: age / 20)
@@ -670,7 +688,11 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const burden = burdenFromLoad(load);
   const encumbrance = str > 0 ? Math.max(0, burden - str) : burden;
   const bronze = char.familiar?.bronze ?? 0;
-  let soak = sta + armorProt + eff('soak').reduce((s, e) => s + e.amount, 0) + bronze + (magicChar?.soak ?? 0);
+  // a commanding aura gives Soak of its Magic Resistance ÷ 5 (not a relic's); the Divine Form of the
+  // Warping Score with True Faith's resistance, ÷ 5 (RoP: The Divine)
+  const divineForm = char.holy?.ascent === 'form' ? warpingScore + trueFaith * 10 : 0;
+  const divineSoak = Math.floor(Math.max(char.holy?.commandingAura ?? 0, divineForm) / 5);
+  let soak = sta + armorProt + eff('soak').reduce((s, e) => s + e.amount, 0) + bronze + (magicChar?.soak ?? 0) + divineSoak;
   if (char.overrides.soak !== undefined) soak = char.overrides.soak;
   const woundPenaltyAdj = eff('woundPenalty').reduce((s, e) => s + e.amount, 0);
   const fatiguePenaltyAdj = eff('fatiguePenalty').reduce((s, e) => s + e.amount, 0);

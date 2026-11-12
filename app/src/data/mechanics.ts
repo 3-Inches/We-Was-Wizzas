@@ -238,7 +238,12 @@ export const MECHANICS: Record<string, Mechanics> = {
   'deficient-form-flaw': { repeatable: true, param: P.form(), requiresGift: true, effects: [{ type: 'deficientArt', art: '$param', scope: 'notMR' }] },
   'major-magical-focus': { requiresGift: true, param: P.text('Focus (e.g. weather, necromancy, birds)'), effects: [{ type: 'magicalFocus', scope: 'major' }], excludes: ['minor-magical-focus'] },
   'minor-magical-focus': { requiresGift: true, param: P.text('Focus (e.g. healing, self-transformation)'), effects: [{ type: 'magicalFocus', scope: 'minor' }], excludes: ['major-magical-focus'] },
-  'potent-magic': { requiresGift: true, repeatable: true, param: P.text('Field of Potent Magic'), effects: [note('Minor: +3 to Lab Totals and Casting Score in field. Major: +6.')] },
+  // within its field, ticked like Special Circumstances when it applies; only one Potent Magic counts at a time (DE)
+  'potent-magic': {
+    requiresGift: true, repeatable: true, param: P.text('Field of Potent Magic'),
+    // its +3 / +6 (sizeEffects) come from crossRefs.ts
+    effects: [note('Minor: +3 to Lab Totals and Casting Score within the field; Major: +6. Only one Potent Magic applies to an activity; it adds to a Magical Focus. It lets the maga design Potent spells, whose Casting Items add their Potency to the Casting Score.')],
+  },
 
   // ------------------------------------------------------------------ Study & teaching
   'mythic-characteristic': {
@@ -397,9 +402,11 @@ export const MECHANICS: Record<string, Mechanics> = {
   'crafters-healing': { effects: [{ type: 'grantAbility', ability: 'crafters-healing', score: 1 }], tags: ['supernatural', 'healing', 'craft'] },
   'enchanting-ability': { param: P.text('Artistic ability (e.g. Music)'), effects: [{ type: 'grantAbility', ability: 'enchanting-ability', score: 1 }], tags: ['supernatural', 'social'] },
   'true-faith': {
+    // each True Faith Score above 1 is another Major Virtue (RoP: The Divine, Increased Faith)
+    repeatable: true,
     effects: [
       { type: 'trueFaith', score: 1, points: 1 },
-      note('Spend Faith Points like Confidence (up to your True Faith score at once) when acting in accordance with God\'s will; regain up to your score each dawn. Magic Resistance = True Faith × 10 (DE p.419).'),
+      note('Spend Faith Points like Confidence (up to your True Faith score at once) when acting in accordance with God\'s will; regain up to your score each dawn. Magic Resistance = True Faith × 10 (DE p.419). Taken again, the score rises by one each time (a Mythic Companion\'s). At 2, Premonitions and a Faith Point dispels any illusion or glamour; at 3, Faith Points add +6 and resistance against Mentem is doubled; at 5, an Empyreal aura of (Faith − 4) at Voice range (RoP: The Divine, Embodying the Light).'),
     ],
     tags: ['divine'],
   },
@@ -415,10 +422,22 @@ export const MECHANICS: Record<string, Mechanics> = {
       { type: 'grantAbility', ability: 'holy-magic', score: 1 },
       { type: 'labTheory', ability: 'holy-magic' },
       rep(3, 'Hedge wizard', 'bad', 'Order of Hermes'),
-      note('No Hermetic words or gestures (usually –15 to casting, or a Presence + Theology roll of 15+ to pray instead). Attuned to Divine and Magic auras. Halve Lab Totals learning from Hermetic texts.'),
+      note('No Hermetic words or gestures (−15 to casting, unless a Presence + Theology roll of 15+ prays the spell instead, or a Method\'s activation calls it). Attuned to the Divine and Magic auras (half a Faerie aura, no Infernal penalty); no Warping from living in either. Rituals and ceremonial casting add a Method + Power, not Artes Liberales + Philosophiae, and long-term Fatigue may stand for vis (three pawns a level). Lab work in the Dominion. Lab Totals halved learning from Hermetic texts. Holy Ranges, Durations and Targets (Presence, Communion, Recitation, Office, Devotion, Sabbath, 40, Fast, Grace, Sin, Faith, Dominion). Cannot be used to sin.'),
     ],
     tags: ['divine'],
   },
+  'astrological-magic': { effects: [note('Adds Artes Liberales to Kabbalah totals (RoP: The Divine).')], tags: ['divine'] },
+  'philosophic-magic': { effects: [note('Adds Philosophiae to Kabbalah totals (RoP: The Divine).')], tags: ['divine'] },
+  sufi: {
+    effects: [
+      { type: 'abilityAccess', abilities: ['theology-islam', 'islamic-law', 'dominion-lore'], note: 'Theology: Islam, Islamic Law and Dominion Lore at character creation' },
+      note('A member of a tariqa under a shaykh, who is the Minor Story Flaw Mentor for no points (RoP: The Divine).'),
+    ],
+    tags: ['divine'],
+  },
+  zahid: { forTypes: ['mythic'], requires: ['true-faith', 'meditation', 'understanding', 'second-sight'], tags: ['divine'] },
+  'eremite-flaw': { effects: [note('Belongs to no holy tradition: learns no Supernatural Ability from a tradition, favored or not.')], tags: ['divine'] },
+  'non-traditional-flaw': { effects: [note('No holy tradition: no favored Abilities; Supernatural Abilities learned only with the study penalty, from those willing to teach.')], tags: ['divine'] },
   'heroic-personality-flaw': {
     effects: [{ type: 'confidence', score: 2, points: 5 }, { type: 'personalityRange', max: 5 }, note('The storyguide may occasionally tell you what your character does.')],
   },

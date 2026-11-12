@@ -432,10 +432,11 @@ export function finishWriting(c: Character, cov: Covenant, p: WritingProject, ye
       if (!copy.corrupt && p.make?.resonance === 1 && resonantSubject(copy, data)) cov.finances.sundry = Math.round((cov.finances.sundry + 1) * 1000) / 1000;
     }
   } else if (p.kind === 'labTexts') {
+    const holyAuthor = c.virtues.some((v) => v.defId === 'holy-magic' || v.defId === 'karaite-magic-flaw');
     for (const su of p.spells ?? []) {
       const s = c.spells.find((x) => x.uid === su);
       if (!s) continue;
-      cov.library.push({ uid: uid(), title: `${s.spell.name} (lab text by ${by})`, author: c.name, authorId: c.id, kind: 'labText', subjectType: 'spell', subject: s.spell.name, level: s.spell.level ?? 0, quality: 0, spell: structuredClone(s.spell), language: 'Latin', inPlay: true });
+      cov.library.push({ uid: uid(), title: `${s.spell.name} (lab text by ${by})`, author: c.name, authorId: c.id, ...(holyAuthor ? { holy: true } : {}), kind: 'labText', subjectType: 'spell', subject: s.spell.name, level: s.spell.level ?? 0, quality: 0, spell: structuredClone(s.spell), language: 'Latin', inPlay: true });
     }
     lines.push(`${(p.spells ?? []).length} lab text${(p.spells ?? []).length === 1 ? '' : 's'} written up for others to use (${p.level} levels).`);
   } else if (p.kind === 'copyLabTexts') {

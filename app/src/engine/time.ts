@@ -40,6 +40,7 @@ import { redcapYearEnd } from './generate/items';
 import { apprenticesYearEnd, tribunalGathering, wanderersSeasonStart, wanderersYearEnd } from './tribunalLife';
 import { isTrade, workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
+import { divineAuraWarps, holySeason, isHolyMagus } from './holy';
 import { uid } from '../util/id';
 import { environmentAging, flawHeld, immuneToWarping } from './covenantBoons';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
@@ -575,6 +576,11 @@ function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: 
     const ch = sparestCharacteristic(c);
     notes.push(applyAgingPoint(c, ch, r.anyChar));
   }
+  // Shinnui Shem's protection ends with the next Aging Point (RoP: The Divine)
+  if (c.holy?.shinnui && (r.agingPoints.length || r.anyChar || r.crisis)) {
+    c.holy.shinnui = undefined;
+    notes.push('Shinnui Shem no longer protects.');
+  }
   lines.push({ who, kind: 'aging', text: `Aging roll ${r.roll}: ${r.text}${notes.length ? ' ' + notes.join(' ') : ''}` });
   if (r.crisis) {
     const need = Math.max(1, abilityXpForScore(decrepitudeScore(c.decrepitudePoints) + 1) - c.decrepitudePoints);
@@ -635,7 +641,8 @@ export function auraWarping(c: Character, d: DerivedCharacter, ctx: CharacterCon
   const { realm, strength } = ctx.aura;
   const time = c.auraTime ?? 'always';
   if (strength < 6 || time === 'away' || c.warpingAttuned === realm) return 0;
-  const sameRealm = (d.isMagus && realm === 'Magic') || d.might?.realm === realm || (c.creature && c.creature.realm === realm);
+  // a holy magus lives in the Dominion as in a Magic aura; holy characters and the faithful are not warped by the Divine (RoP: The Divine)
+  const sameRealm = ((d.isMagus || isHolyMagus(d)) && realm === 'Magic') || d.might?.realm === realm || (c.creature && c.creature.realm === realm) || (realm === 'Divine' && !divineAuraWarps(c, d));
   if (sameRealm) return 0;
   const n = AURA_WARPING[Math.min(10, strength)][time === 'always' ? 0 : time === 'half' ? 1 : 2];
   return n === 0.5 ? (year % 2 === 0 ? 1 : 0) : n;
@@ -1017,6 +1024,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
   for (const c of state.characters.filter(inPlay)) {
     for (const t of expireEffects(c, next.year, next.season)) lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: t });
     for (const t of hungerSeason(c)) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
+    for (const t of holySeason(c, next.year, next.season)) lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: t });
     c.fatigueLost = 0;
     c.longTermFatigueLost = 0;
     if (c.creature) {

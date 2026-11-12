@@ -21,6 +21,8 @@ import { AtTable, PeopleOptions, canPlay, groupPeople, useLandOn } from '../play
 import { useCharEditor } from '../character/useChar';
 import AdvancementTab from '../character/sheet/AdvancementTab';
 import { LabProjects } from '../character/sheet/LabProjects';
+import { HolyWorksCard } from './HolyPart';
+import { holyWorksOpen } from '../../engine/holy';
 import { LongevityCard } from '../character/sheet/LabItemsTab';
 import { OriginalResearch } from '../character/sheet/OriginalResearch';
 import { ApprenticeCard } from '../character/sheet/ApprenticeCard';
@@ -318,6 +320,7 @@ function SeasonFor({ sagaId, charId }: { sagaId: string; charId: string }) {
       <InsightCard ed={ed} />
       {ed.d.isMagus && <LabProjects ed={ed} />}
       {ed.d.isMagus && <OriginalResearch ed={ed} magicTheory={mt} />}
+      {holyWorksOpen(ed.d).length > 0 && <HolyWorksCard ed={ed} aura={ed.ctx.aura} />}
       <LongevityCard ed={ed} />
       <ApprenticeCard ed={ed} />
       <WorkshopCard ed={ed} where="seasons" />

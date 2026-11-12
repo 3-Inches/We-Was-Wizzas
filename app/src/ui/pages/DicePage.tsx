@@ -20,6 +20,8 @@ import MagicTab from '../character/sheet/MagicTab';
 import { TwilightCard } from '../character/sheet/Twilight';
 import { HeartbeastChange } from '../character/sheet/MysteriesCard';
 import { SilverRescue } from '../character/sheet/LabItemsTab';
+import HolyPart, { type Fellow } from './HolyPart';
+import { isHolyCharacter } from '../../engine/holy';
 
 // Grogs' optional equipment bonuses: the right tool for a task lowers its Ease Factor.
 const EQUIPMENT = { none: 0, minor: 1, major: 3 } as const;
@@ -99,6 +101,7 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
       {sub === 'roll' && <RollPart x={x} who={who} />}
       {saga && sub === 'combat' && <CombatPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'magic' && <MagicPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
+      {saga && sub === 'holy' && <HolyDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {!saga && <p className="small muted">Open a saga first and its characters can take part in these rolls, their wounds going on their sheets.</p>}
     </div>
   );
@@ -164,6 +167,10 @@ function RollPart({ x, who }: { x: X; who: string }) {
   // a Personality Trait rolled in place of Characteristic + Ability, and a familiar's silver cord (DE, The Three Cords)
   const [trait, setTrait] = useState('');
   const [silver, setSilver] = useState(false);
+  // God's aid invoked for this scene, and a holy temper in the aura where the roll is made (RoP: The Divine)
+  const [useAid, setUseAid] = useState(false);
+  const updateCharacter = useStore((st) => st.updateCharacter);
+  const [temperUse, setTemperUse] = useState('');
   const roller = useMemo(() => {
     const c = x.chars.find((y) => y.id === rollerId);
     return c ? { c, d: deriveCharacter(c, x.data, x.rules ?? DEFAULT_HOUSE_RULES) } : undefined;
@@ -176,7 +183,12 @@ function RollPart({ x, who }: { x: X; who: string }) {
   const base = roller ? (traitOf ? traitOf.score : roller.d.characteristics[rollChar].value + (rollAbility ? abilityTotal(roller.d, rollAbility) : 0)) + cord : 0;
   const penTotal = pen && withPenalties ? pen.total - (physical ? pen.encumbrance : 0) : 0;
   const myth = roller && !traitOf ? mythicBonus(roller.d, mythic, rollChar) : 0;
-  const total = base + penTotal + mod + myth;
+  const aid = roller?.c.holy?.aid;
+  const aidBonus = useAid && aid ? aid.bonus : 0;
+  const tempers = x.chars.flatMap((c) => (c.holy?.temper ? [{ ...c.holy.temper, by: c.id }] : []));
+  const temperPick = tempers.find((t) => temperUse.endsWith(`:${t.by}`));
+  const temperBonus = temperPick ? (temperUse.startsWith('+') ? temperPick.value : -temperPick.value) : 0;
+  const total = base + penTotal + mod + myth + aidBonus + temperBonus;
   const dice = Math.max(0, botchDice - myth);
   const abName = roller && rollAbility ? (roller.d.abilities.find((a) => a.abilityId === rollAbility)?.name ?? x.data.abilityById.get(rollAbility)?.name ?? rollAbility) : '';
   const autoLabel = roller ? `${roller.c.name || 'They'}: ${traitOf ? `${traitOf.trait} (Personality)` : `${CHAR_NAMES[rollChar]}${abName ? ` + ${abName}` : ''}`}` : '';
@@ -188,6 +200,8 @@ function RollPart({ x, who }: { x: X; who: string }) {
         ...(withPenalties ? pen!.parts.map((p) => `${p.label} ${p.value}`) : []),
         ...(withPenalties && physical && pen!.encumbrance ? [`Encumbrance −${pen!.encumbrance}`] : []),
         ...(myth ? [`Mythic ${CHAR_NAMES[rollChar]} +1`] : []),
+        ...(aidBonus ? [`God’s aid +${aidBonus}`] : []),
+        ...(temperBonus ? [`${temperPick!.temper} temper ${signed(temperBonus)}`] : []),
         ...(mod ? [`other ${signed(mod)}`] : []),
       ].join(', ')
     : '';
@@ -209,6 +223,11 @@ function RollPart({ x, who }: { x: X; who: string }) {
       text = describeStress(r);
     }
     setLog((l) => [{ id: ++seq, label: label || autoLabel || (kind === 'simple' ? 'Simple die' : 'Stress die'), kind, mod: total, ease: useEase ? target : null, equipment, total: t, text, botch, who: roller?.c.id, faces }, ...l].slice(0, 50));
+    // God's aid lasts until a roll for its objective fails (Blessed by God, Invoking God's Aid)
+    if (aidBonus && roller && (botch || (useEase && t < target))) {
+      updateCharacter(roller.c.id, (c) => void (c.holy = { ...(c.holy ?? {}), aid: undefined }));
+      setUseAid(false);
+    }
   };
   const outcome = (r: Roll) => (r.botch ? 'BOTCH' : r.ease === null ? '' : (r.after ?? r.total) >= r.ease ? 'success' : 'failure');
   const lastBy = last?.who ? x.chars.find((c) => c.id === last.who) : undefined;
@@ -310,6 +329,24 @@ function RollPart({ x, who }: { x: X; who: string }) {
             {useEase && equipment !== 'none' && <span className="small muted">Ease Factor {ease} → {target}</span>}
           </div>
           {roller && !traitOf && <MythicToggle d={roller.d} chars={[rollChar]} on={mythic} onChange={setMythic} />}
+          {roller && aid && (
+            <label className="inline small" style={{ marginTop: 6 }} data-tour="dice-gods-aid">
+              <input type="checkbox" checked={useAid} onChange={(e) => setUseAid(e.target.checked)} /> God’s aid +{aid.bonus}: this roll serves {aid.objective} (it ends when one fails)
+            </label>
+          )}
+          {tempers.length > 0 && (
+            <Field label="A temper in the aura" hint="Added to rolls that serve it, taken from those that run against it">
+              <select value={temperUse} onChange={(e) => setTemperUse(e.target.value)} data-tour="dice-temper">
+                <option value="">— none —</option>
+                {tempers.map((t) => (
+                  <optgroup key={t.by} label={`${t.place}: ${t.temper} +${t.value}`}>
+                    <option value={`+:${t.by}`}>serves it (+{t.value})</option>
+                    <option value={`-:${t.by}`}>runs against it (−{t.value})</option>
+                  </optgroup>
+                ))}
+              </select>
+            </Field>
+          )}
           {roller && (bond?.silver ?? 0) > 0 && (
             <label className="inline small" style={{ marginTop: 6 }} data-tour="silver-cord">
               <input type="checkbox" checked={silver} onChange={(e) => setSilver(e.target.checked)} /> The familiar bond&rsquo;s silver cord +{bond!.silver}: a Personality roll, or resisting mental influence
@@ -459,3 +496,26 @@ function MagicPart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: stri
   );
 }
 
+
+/**
+ * The holy at the table (Realms of Power: The Divine): anyone may pray or invoke a saint, so everyone
+ * is in the list, the holy first. The others can join a ceremony.
+ */
+function HolyDicePart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: string; setWho: (id: string) => void }) {
+  const fellows = useMemo<Fellow[]>(() => x.chars.map((c) => ({ c, d: deriveCharacter(c, x.data, x.rules ?? DEFAULT_HOUSE_RULES) })), [x.chars, x.data, x.rules]);
+  const holy = useMemo(() => new Set(fellows.filter((f) => isHolyCharacter(f.d) || f.d.trueFaith > 0 || f.d.faithPoints > 0).map((f) => f.c.id)), [fellows]);
+  const c = x.chars.find((y) => y.id === who) ?? x.chars.find((y) => holy.has(y.id)) ?? x.chars[0];
+  return (
+    <>
+      <div className="row">
+        <WhoPicker x={x} value={c?.id} onChange={setWho} label="Who prays" none="Nobody in this saga yet." />
+        {c && <CharLink sagaId={sagaId} c={c} />}
+      </div>
+      {c && (
+        <CharAtTable key={c.id} sagaId={sagaId} charId={c.id}>
+          {(ed) => <HolyPart ed={ed} fellows={fellows} />}
+        </CharAtTable>
+      )}
+    </>
+  );
+}
