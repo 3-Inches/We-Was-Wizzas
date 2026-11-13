@@ -128,7 +128,10 @@ export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, c
   const region = sagaRegion(ctx);
   if (region && rec.regions.length && !rec.regions.includes(region)) return `Belongs to the ${rec.regions.join(' or ')} Tribunal`;
   if (rec.cultures.length && !rec.cultures.includes(c.society)) return `For ${rec.cultures.join(' or ')} characters`;
-  if (!complexityOk && (rec.flags.complexity || rec.flags.spellLike)) return 'Adds complexity';
+  // asked for by name, or a Holy Method or Power when the player wants holy powers: complexity is no bar
+  const named = (st.answers[`vf:${def.id}`] ?? 0) >= FOLLOW_UP_HIGH;
+  const holy = rec.links.some((l) => l.tag === 'holy-power' && l.dir > 0 && l.strength >= 2) && (st.answers['f-divine-powers'] ?? 5) >= FOLLOW_UP_HIGH;
+  if (!complexityOk && (rec.flags.complexity || rec.flags.spellLike) && !named && !holy) return 'Adds complexity';
   if (rec.flags.infernal && (st.answers['f-infernal-taint'] ?? 5) < FOLLOW_UP_HIGH) return 'Infernal taint (only if you want your character tempted or tainted)';
   if (def.sizes.every((z) => z === 'Free') && !def.categories.includes('Social Status')) return 'Given by other rules, not bought';
   if (def.kind === 'flaw' && def.categories.includes('Supernatural') && /\b(supernatural (power|virtue)s?|character's (supernatural )?powers?|one of (the character's|your) powers)\b/i.test(def.text)) {

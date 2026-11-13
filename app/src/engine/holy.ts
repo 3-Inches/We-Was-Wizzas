@@ -126,24 +126,38 @@ export interface CeremonyGroup {
   members: CeremonyMember[];
   /** the leader's Ceremony score: so many others count (no leader: the group modifier instead) */
   leaderCeremony?: number;
+  /** the leader, when it is one of those joining and not the focus character (who has the Method and Power) */
+  leaderName?: string;
   /** the focus character's own Ceremony score, counted in the group modifier */
   focusCeremony?: number;
 }
 
-/** The Ceremony bonus (Blessed by God, Ceremony): led, the leader's score sets how many count; unled, (total Ceremony − participants) is added too. */
+/**
+ * The Ceremony bonus (Blessed by God, Ceremony). The focus character is the one with the Ability
+ * being used; anyone with Ceremony may lead. Led, the leader's score is how many others may add
+ * their (Characteristic + Method): the focus character is one of those others when someone else
+ * leads. Unled, everyone adds, and (total Ceremony − participants) is added too.
+ */
 export function ceremonyParts(g: CeremonyGroup | undefined): Part[] {
   if (!g || !g.members.length) return [];
   const parts: Part[] = [];
   if (g.leaderCeremony !== undefined) {
-    const counted = g.members.slice(0, Math.max(0, g.leaderCeremony));
+    const leader = g.leaderName ? g.members.find((m) => m.name === g.leaderName) : undefined;
+    const rest = g.members.filter((m) => m !== leader);
+    // another's leading takes one of the leader's places for the focus character
+    const places = Math.max(0, g.leaderCeremony - (leader ? 1 : 0));
+    const counted = rest.slice(0, places);
+    if (leader) parts.push({ label: `Ceremony: ${leader.name}, leading`, value: leader.adds });
     for (const m of counted) parts.push({ label: `Ceremony: ${m.name}`, value: m.adds });
-    const left = g.members.length - counted.length;
+    const left = rest.length - counted.length;
     if (left > 0) parts.push({ label: `${left} more join in but do not count (the leader’s Ceremony ${g.leaderCeremony})`, value: 0 });
     return parts;
   }
-  for (const m of g.members) parts.push({ label: `Ceremony: ${m.name}`, value: m.adds });
   // the group modifier counts the focus character among the participants
   const total = g.members.reduce((s, m) => s + m.ceremony, g.focusCeremony ?? 0);
+  // it is the Ceremony Ability that joins the prayers: with nobody who has it, each prays alone
+  if (total <= 0) return [{ label: 'Ceremony: nobody praying has the Ability, so their prayers do not join', value: 0 }];
+  for (const m of g.members) parts.push({ label: `Ceremony: ${m.name}`, value: m.adds });
   parts.push({ label: `Group modifier (Ceremony ${total} − ${g.members.length + 1} praying)`, value: total - (g.members.length + 1) });
   return parts;
 }
@@ -423,19 +437,28 @@ export interface AscentCheck {
   resist: TotalResult;
   /** what the resisting roll is against, before the storyguide's stress die */
   against: TotalResult;
+  /** the resisting total before any Meditation subtracted to welcome the Ascent: the margin of failure is counted from it */
+  plain: number;
+  /** the Meditation score that may be subtracted (0 with none) */
+  meditation: number;
 }
 
 /**
  * Two or more Warping Points at once: Presence + Concentration (or Meditation) + stress die against
  * Warping Score + the points gained + True Faith Score + the local aura + a stress die (no botch).
+ * One with Meditation may subtract it from the roll to welcome the Ascent; that does not add to the
+ * Warping Points the Ascent brings (Meditation).
  */
-export function ascentCheck(d: DerivedCharacter, gained: number, aura?: AuraState): AscentCheck {
+export function ascentCheck(d: DerivedCharacter, gained: number, aura?: AuraState, welcome = false): AscentCheck {
   const conc = score(d, 'concentration');
   const med = Math.max(score(d, 'meditation'), score(d, 'holy-music'), score(d, 'dream-interpretation'), score(d, 'gematria'));
   const resistParts: Part[] = [
     { label: 'Presence', value: d.characteristics.Pre.value },
     med > conc ? { label: 'Meditation', value: med } : { label: 'Concentration', value: conc },
   ];
+  const sum = (ps: Part[]) => ps.reduce((s, x) => s + x.value, 0);
+  const plain = sum(resistParts);
+  if (welcome && med > 0) resistParts.push({ label: 'Welcoming the Ascent (Meditation subtracted)', value: -med });
   const ws = warpingScoreFromPoints(d.warpingPoints + gained);
   const againstParts: Part[] = [
     { label: `Warping Score (with the ${gained} points)`, value: ws },
@@ -443,11 +466,27 @@ export function ascentCheck(d: DerivedCharacter, gained: number, aura?: AuraStat
   ];
   if (d.trueFaith) againstParts.push({ label: 'True Faith Score', value: d.trueFaith });
   if (aura && aura.strength > 0 && aura.realm !== 'None') againstParts.push({ label: `${aura.realm} aura`, value: aura.strength });
-  const sum = (ps: Part[]) => ps.reduce((s, x) => s + x.value, 0);
   return {
-    resist: { total: sum(resistParts), parts: resistParts, halved: false, notes: [] },
+    resist: { total: sum(resistParts), parts: resistParts, halved: false, notes: welcome && med > 0 ? ['Meditation is subtracted to welcome the Ascent; the Warping Points it brings are counted without that.'] : [] },
     against: { total: sum(againstParts), parts: againstParts, halved: false, notes: ['The storyguide adds a stress die (it cannot botch).'] },
+    plain,
+    meditation: med,
   };
+}
+
+/**
+ * What the Ascension roll comes to. The character is held to the world on a total that reaches the
+ * other; else ascends, with as many more Warping Points as the margin of failure (a botched die
+ * counts 0; Meditation subtracted to welcome the Ascent does not add to the margin).
+ */
+export function ascentOutcome(check: AscentCheck, die: { value: number; botches: number }, theirs: number): { ascends: boolean; margin: number; mine: number; against: number } {
+  const rolled = die.botches ? 0 : die.value;
+  const mine = check.resist.total + rolled;
+  const against = check.against.total + theirs;
+  const ascends = die.botches > 0 || mine < against;
+  // the margin from the roll as it stood before Meditation was subtracted: none when only the welcome tipped it
+  const margin = ascends ? Math.max(check.plain === check.resist.total ? 1 : 0, against - (check.plain + rolled)) : 0;
+  return { ascends, margin, mine, against };
 }
 
 /** How long the Ascent lasts: (Warping Score + the points gained) days, less the True Faith Score, at least one; months at Warping Score 6 or more. */

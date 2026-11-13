@@ -487,7 +487,12 @@ function addHolyPair(
       .map((m) => ({ m, s: scored(m.id) }))
       .filter((x): x is { m: (typeof HOLY_METHODS)[number]; s: Scored } => !!x.s && clean(x.s.def, 'Major'))
       .sort((a, b) => b.s.fit + 2 * get().d.characteristics[b.m.char].value - (a.s.fit + 2 * get().d.characteristics[a.m.char].value));
-    const pick = inp.rng && options.length > 1 ? options[Math.floor(inp.rng() * Math.min(3, options.length))] : options[0];
+    // Quick build draws among the best few, unless one stands clear of the rest (it was asked for by name)
+    const rank = (x: (typeof options)[number]) => x.s.fit + 2 * get().d.characteristics[x.m.char].value;
+    const clear = options.length > 1 && rank(options[0]) - rank(options[1]) >= 5;
+    // one asked for by name is taken, whatever else would fit
+    const named = options.find((x) => (st.answers[`vf:${x.m.id}`] ?? 0) >= 7);
+    const pick = named ?? (inp.rng && options.length > 1 && !clear ? options[Math.floor(inp.rng() * Math.min(3, options.length))] : options[0]);
     if (!pick || room() < 3) return;
     take(pick.s);
     method = pick.m;
@@ -499,7 +504,7 @@ function addHolyPair(
     .map((id) => ({ id, s: scored(powerVirtue(id)) }))
     .filter((x): x is { id: string; s: Scored } => !!x.s && clean(x.s.def, 'Major'))
     .sort((a, b) => b.s.fit - a.s.fit || order.indexOf(a.id) - order.indexOf(b.id));
-  const pick = options[0];
+  const pick = options.find((x) => (st.answers[`vf:${powerVirtue(x.id)}`] ?? 0) >= 7) ?? options[0];
   if (!pick || room() < 3) return;
   take(pick.s);
   log.push(`Holy Power: ${pick.s.def.name}, Major — ${method.name} calls it.`);
@@ -584,7 +589,11 @@ function addFlaws(
     const t = get().d.tally;
     const need = Math.ceil(t.virtuePoints / ratio) - t.flawPoints;
     if (need <= 0) break;
-    const f = choose(inp, c, firstPassing(candidates(), (x) => clean(x.def, sizeOf(x, need)) && !(c.type === 'grog' && sizeOf(x, need) === 'Major'), inp.rng ? 12 : 1), (x) => sizeOf(x, need), 12);
+    // when the Minor Flaws still allowed cannot cover what is owed, a Major one must: look at those first
+    const minorRoom = c.type === 'grog' ? Infinity : inp.rules.maxMinorFlaws - t.minorFlaws;
+    const mustBeMajor = need > minorRoom && need >= 3;
+    const pool = mustBeMajor ? candidates().filter((x) => x.def.sizes.includes('Major')) : candidates();
+    const f = choose(inp, c, firstPassing(pool, (x) => clean(x.def, sizeOf(x, need)) && !(c.type === 'grog' && sizeOf(x, need) === 'Major'), inp.rng ? 12 : 1), (x) => sizeOf(x, need), 12);
     if (!f) break;
     const size = sizeOf(f, need);
     add(f, size);

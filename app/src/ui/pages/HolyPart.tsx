@@ -11,7 +11,7 @@ import {
 } from '../../data/divine';
 import { CHAR_NAMES } from '../../data';
 import {
-  ASCENT_FORMS, ascentCheck, ascentDuration, canInvokeGodsAid, divineAidBonus, godsAidTotal, holyEffectLevel, holyEffectTotal, holyMethodsOf,
+  ASCENT_FORMS, ascentCheck, ascentDuration, ascentOutcome, canInvokeGodsAid, divineAidBonus, godsAidTotal, holyEffectLevel, holyEffectTotal, holyMethodsOf,
   holyOutcome, holyPowersOf, influenceTotal, invokeSaintTotal, isHolyCharacter, methodWorksWith, miracleLevel, miracleTotal, ringUntil,
   saintMightLeft, saintPower, schism, temperName, threatEase, threatenSaintTotal, threatResult, threatText, worksHolyEffects, wouldBeRitual,
   holyWorkLabel, holyWorkPlan, holyWorksOpen, workHolySeason,
@@ -97,33 +97,75 @@ function AuraPicker({ value, onChange, when, setWhen }: { value: AuraState; onCh
 }
 
 /**
- * Praying together (the Ceremony Ability): the focus character has it; each who joins adds what the
- * rite asks of them. Led, the leader's Ceremony sets how many count; unled, (total Ceremony −
- * participants) is added too.
+ * Praying together (the Ceremony Ability): each who joins adds what the rite asks of them. Anyone
+ * with Ceremony may lead, and the leader's score sets how many others count; unled, (total Ceremony −
+ * participants) is added too. Someone praying must have the Ability; the faithful who are not on a
+ * sheet can be counted in by number.
  */
 function CeremonyPicker({ focus, fellows, adds, value, onChange }: { focus: DerivedCharacter; fellows: Fellow[]; adds: (f: Fellow) => number; value: CeremonyGroup | undefined; onChange: (g: CeremonyGroup | undefined) => void }) {
   const own = score(focus, 'ceremony');
-  if (!own) return null;
+  const [crowd, setCrowd] = useState({ n: 0, each: 0 });
+  if (!own && !fellows.some((f) => score(f.d, 'ceremony') > 0)) return null;
+  const nameOf = (f: Fellow) => f.c.name || 'Unnamed';
+  const CROWD = /^The faithful \(\d+\)$/;
   const chosen = new Set(value?.members.map((m) => m.name) ?? []);
-  const toggle = (f: Fellow, on: boolean) => {
-    const members: CeremonyMember[] = on
-      ? [...(value?.members ?? []), { name: f.c.name || 'Unnamed', adds: adds(f), ceremony: score(f.d, 'ceremony') }]
-      : (value?.members ?? []).filter((m) => m.name !== (f.c.name || 'Unnamed'));
-    onChange(members.length ? { members, focusCeremony: own, leaderCeremony: value?.leaderCeremony } : undefined);
+  const set = (members: CeremonyMember[], lead: Pick<CeremonyGroup, 'leaderCeremony' | 'leaderName'> = { leaderCeremony: value?.leaderCeremony, leaderName: value?.leaderName }) => {
+    // a leader who left the prayer leads it no longer
+    const gone = lead.leaderName && !members.some((m) => m.name === lead.leaderName);
+    onChange(members.length ? { members, focusCeremony: own, ...(gone ? {} : lead) } : undefined);
   };
+  const toggle = (f: Fellow, on: boolean) =>
+    set(on ? [...(value?.members ?? []), { name: nameOf(f), adds: adds(f), ceremony: score(f.d, 'ceremony') }] : (value?.members ?? []).filter((m) => m.name !== nameOf(f)));
+  // the faithful who join without a sheet: each adds a Characteristic (0 for most), none has Ceremony
+  const setFaithful = (n: number, each: number) => {
+    setCrowd({ n, each });
+    const rest = (value?.members ?? []).filter((m) => !CROWD.test(m.name));
+    set(n > 0 ? [...rest, { name: `The faithful (${n})`, adds: n * each, ceremony: 0 }] : rest);
+  };
+  const leaders = [...(own ? [{ id: '', label: `the one calling the effect (Ceremony ${own})`, score: own }] : []), ...fellows.filter((f) => chosen.has(nameOf(f)) && score(f.d, 'ceremony') > 0).map((f) => ({ id: nameOf(f), label: `${nameOf(f)} (Ceremony ${score(f.d, 'ceremony')})`, score: score(f.d, 'ceremony') }))];
+  const led = value?.leaderCeremony !== undefined;
+  const anyCeremony = own > 0 || (value?.members ?? []).some((m) => m.ceremony > 0);
   return (
     <details className="small" data-tour="holy-ceremony">
-      <summary>Ceremony: pray together (Ceremony {own}){value?.members.length ? `, ${value.members.length} joining` : ''}</summary>
+      <summary>Ceremony: pray together{own ? ` (Ceremony ${own})` : ''}{value?.members.length ? `, ${value.members.length} joining` : ''}</summary>
+      <p className="small muted" style={{ margin: '4px 0' }}>
+        Each who joins adds their Characteristic + the same Method (the Characteristic alone without it). Someone praying must have the Ceremony Ability.
+      </p>
       <div className="row small" style={{ flexWrap: 'wrap' }}>
         {fellows.map((f) => (
           <label key={f.c.id} className="inline">
-            <input type="checkbox" checked={chosen.has(f.c.name || 'Unnamed')} onChange={(e) => toggle(f, e.target.checked)} /> {f.c.name || 'Unnamed'} (+{adds(f)})
+            <input type="checkbox" checked={chosen.has(nameOf(f))} onChange={(e) => toggle(f, e.target.checked)} /> {nameOf(f)} (+{adds(f)}
+            {score(f.d, 'ceremony') > 0 ? `, Ceremony ${score(f.d, 'ceremony')}` : ''})
           </label>
         ))}
       </div>
-      <label className="inline small">
-        <input type="checkbox" checked={value?.leaderCeremony !== undefined} disabled={!value} onChange={(e) => value && onChange({ ...value, leaderCeremony: e.target.checked ? own : undefined })} /> led by the focus character (only so many count as the leader’s Ceremony; no group modifier)
-      </label>
+      <div className="row small">
+        <Field label="Others of the faithful" hint="A congregation, monks, pilgrims: those with no sheet in the saga">
+          <Stepper value={crowd.n} min={0} max={200} width={40} onChange={(n) => setFaithful(n, crowd.each)} />
+        </Field>
+        <Field label="each adds" hint="Their Characteristic (and the Method, if they have it)">
+          <Stepper value={crowd.each} min={-3} max={10} width={34} onChange={(e) => setFaithful(crowd.n, e)} />
+        </Field>
+        <Field label="Led by" hint="The leader’s Ceremony is how many others count; with no leader everyone counts, and (total Ceremony − those praying) is added">
+          <select
+            value={led ? (value?.leaderName ?? '') : '__none'}
+            disabled={!value}
+            onChange={(e) => {
+              if (!value) return;
+              const l = leaders.find((x) => x.id === e.target.value);
+              set(value.members, e.target.value === '__none' || !l ? { leaderCeremony: undefined, leaderName: undefined } : { leaderCeremony: l.score, leaderName: l.id || undefined });
+            }}
+          >
+            <option value="__none">no leader</option>
+            {leaders.map((l) => (
+              <option key={l.id} value={l.id}>
+                {l.label}
+              </option>
+            ))}
+          </select>
+        </Field>
+      </div>
+      {value && !anyCeremony && <div className="small warn-text">Nobody praying has the Ceremony Ability: their prayers do not join the effect.</div>}
     </details>
   );
 }
@@ -1026,28 +1068,28 @@ function AscentCard({ ed, aura, gained: fromPower }: { ed: CharEditor; aura: Aur
   const [virtue, setVirtue] = useState('Temperance');
   const [trait, setTrait] = useState('Temperate');
   const [gloom, setGloom] = useState<{ points: number; to: string; from: string } | null>(null);
+  const [welcome, setWelcome] = useState(false);
+  const [later, setLater] = useState(1);
   const [lines, show] = useLines();
   if (!c || !d) return null;
   const pts = onSheet ? Math.max(0, d.warpingPoints - gained) : d.warpingPoints;
-  const check = ascentCheck({ ...d, warpingPoints: pts }, gained, aura);
+  const check = ascentCheck({ ...d, warpingPoints: pts }, gained, aura, welcome);
   const roll = () => {
     const mine = stressDie(1);
     const theirs = stressDie(0, undefined, true);
-    const my = check.resist.total + mine.value;
-    const tw = check.against.total + theirs.value;
-    const out = [`Presence + ${check.resist.parts[1].label} ${check.resist.total} + ${describeStress(mine)} = ${mine.botches ? 'BOTCH' : my}, against ${check.against.total} + the storyguide’s ${theirs.value} = ${tw}.`];
-    if (!mine.botches && my > tw) {
+    const r = ascentOutcome(check, mine, theirs.value);
+    const out = [`${check.resist.parts.map((x) => x.label).join(' + ')} ${check.resist.total} + ${describeStress(mine)} = ${mine.botches ? 'BOTCH' : r.mine}, against ${check.against.total} + the storyguide’s ${theirs.value} = ${r.against}.`];
+    if (!r.ascends) {
       if (!onSheet) update((x) => void (x.warpingPoints += gained));
       out.push('Too tied to the world: no Ascent.');
       return show(out);
     }
-    const margin = Math.max(1, tw - (mine.botches ? 0 : my));
     const before = check.against.parts[0].value;
-    const dur = ascentDuration(before, gained + margin, d.trueFaith);
-    update((x) => void (x.warpingPoints += margin + (onSheet ? 0 : gained)));
-    out.push(`The Divine Ascent: ${margin} more Warping Point${margin > 1 ? 's' : ''}, lifted into the Divine for ${dur.n} ${dur.unit}. The body stays, untouched by any power, illness or want, or vanishes until it returns.`);
+    const dur = ascentDuration(before, gained + r.margin, d.trueFaith);
+    update((x) => void (x.warpingPoints += r.margin + (onSheet ? 0 : gained)));
+    out.push(`The Divine Ascent: ${r.margin ? `${r.margin} more Warping Point${r.margin > 1 ? 's' : ''}` : 'no more Warping Points (welcomed, not failed)'}, lifted into the Divine for ${dur.n} ${dur.unit}. The body stays, untouched by any power, illness or want, or vanishes until it returns.`);
     const chosen = c.holy?.ascent;
-    if (chosen === 'gloom') setGloom({ points: gained + margin, to: '', from: '' });
+    if (chosen === 'gloom') setGloom({ points: gained + r.margin, to: '', from: '' });
     if (!chosen) out.push('Choose the form of the Ascent below: it is the same for the rest of the character’s life.');
     show(out);
   };
@@ -1086,7 +1128,23 @@ function AscentCard({ ed, aura, gained: fromPower }: { ed: CharEditor; aura: Aur
         </span>
         <button onClick={roll}>Roll</button>
       </div>
+      {check.meditation > 0 && (
+        <label className="inline small" title="Realms of Power: The Divine, Meditation: “You may subtract your score in Meditation from your roll to avoid Divine Ascent, and this does not increase the number of additional Warping points you receive.”">
+          <input type="checkbox" checked={welcome} onChange={(e) => setWelcome(e.target.checked)} /> Welcome the Ascent: subtract Meditation ({check.meditation}) from the roll; the Warping Points it brings are not increased
+        </label>
+      )}
       <Lines lines={lines} />
+      {c.holy?.ascent === 'gloom' && !gloom && (
+        <div className="row small" data-tour="holy-gloom">
+          <span className="muted">Divine Gloom: every gain of Warping Points, from any cause, moves as many experience points from mundane Abilities to holy ones.</span>
+          <Field label="Warping Points gained">
+            <Stepper value={later} min={1} max={30} width={36} onChange={setLater} />
+          </Field>
+          <button className="small" onClick={() => setGloom({ points: later, to: '', from: '' })}>
+            Move the experience
+          </button>
+        </div>
+      )}
       {gloom && (
         <div className="row small">
           Divine Gloom: {gloom.points} experience points

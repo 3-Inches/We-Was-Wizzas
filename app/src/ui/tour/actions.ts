@@ -3,7 +3,7 @@
 // store, so it can be undone like any other change. Loaded with the tutorial panel only.
 
 import { applyBaseCovenant, newCovenant } from '../../engine/covenant';
-import { newCharacter } from '../../engine/character/factory';
+import { addVirtue, newCharacter } from '../../engine/character/factory';
 import { generateCharacter } from '../../engine/generate/character';
 import { sumAlloc } from '../../engine/character/derive';
 import { newWorkshop } from '../../engine/workshop';
@@ -144,7 +144,11 @@ export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean
       ch = newCharacter(p!.type, saga.id, saga.currentYear);
       ch.name = `Practice ${p!.type}`;
     } else {
-      ch = generateCharacter({ type: p!.type, role: p!.role, variety: 'focused', npc: false, finished: true, seed: newSeed(), avoidNames: names }, { data: gameDataFor(saga), saga, rules: saga.houseRules, covenant: cov }).c;
+      ch = generateCharacter({ type: p!.type, role: p!.role, answers: p!.answers, variety: 'focused', npc: false, finished: true, seed: newSeed(), avoidNames: names }, { data: gameDataFor(saga), saga, rules: saga.houseRules, covenant: cov }).c;
+      // what the tutorial is about, if the build spent its points elsewhere: given for practice, at no cost
+      for (const id of p!.ensure ?? []) {
+        if (!ch.virtues.some((v) => v.defId === id)) addVirtue(ch, gameDataFor(saga), id, undefined, undefined, { free: true, freeReason: 'For practice' });
+      }
     }
     ch.notes = [ch.notes, tag].filter(Boolean).join('\n');
     // a craftsman's livelihood tracked from the start, for the tutorial to show

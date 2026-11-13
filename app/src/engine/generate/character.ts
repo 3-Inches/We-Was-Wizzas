@@ -201,6 +201,8 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     { c, d: derive(), data, rules, saga, covenant: g.covenant, archetypes: c.creation.archetypes },
   ).state;
   if (house) st.house = house;
+  // Virtues and Flaws asked for by name ('vf:<id>') are answers too: the quiz never asks them, so they are carried over
+  for (const [k, v] of Object.entries({ ...role.answers, ...o.answers })) if (k.startsWith('vf:')) st.answers[k] = v;
   // a craftsman, knight or merchant is no hedge wizard: the Supernatural Virtues of the hedge
   // traditions and the Realms books (Craft Amulets, Mythic Alchemy, Type Refining) go to characters
   // whose concept is mystical; the core book's (Second Sight, Eye of Hephaestus) stay open to anyone

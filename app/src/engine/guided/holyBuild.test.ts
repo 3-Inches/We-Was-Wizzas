@@ -115,6 +115,16 @@ describe('the guided build and the Divine', () => {
     }
   });
 
+  it('takes the Method and Power asked for by name, as the Divine tutorial’s practice character does', () => {
+    for (const seed of [1, 2, 3, 4, 5, 6]) {
+      const g = generateCharacter(
+        { type: 'companion', role: 'holy-worker', answers: { 'f-divine-powers': 10, 'vf:invocation': 10, 'vf:blessing-power': 10, 'vf:true-faith': 10 }, variety: 'focused', npc: false, seed },
+        { data, saga, rules },
+      );
+      expect(has(g.c, 'invocation') && has(g.c, 'blessing-power'), `seed ${seed}: ${g.c.virtues.map((v) => v.defId).join(', ')}`).toBe(true);
+    }
+  });
+
   it('does not take holy powers unasked, nor for a grog', () => {
     const c = newCharacter('companion', 's');
     autoBuild(c, { answers: {}, declined: [] }, { data, rules, saga, archetypes: ['faith'] });
