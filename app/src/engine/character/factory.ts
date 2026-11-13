@@ -4,6 +4,7 @@ import { SCHEMA_VERSION, type CharAbility, type Character, type CharVirtue, type
 import { uid } from '../../util/id';
 import { needMet } from './restrictions';
 import { QUALITY_RULES } from './magicCharacter';
+import { MYTHIC_TYPES } from '../../data/mythic';
 
 export function newCharacter(type: CharType, sagaId: string, year = 1220): Character {
   const now = new Date().toISOString();
@@ -249,40 +250,37 @@ export function applyExMiscTradition(c: Character, data: GameData, traditionId: 
   if (flaw) addVirtue(c, data, flaw, 'Major', picks?.flawParam ?? t.majorHermeticFlawParam, { free: true, freeReason: 'Ex Miscellanea', noPoints: true });
 }
 
-export const MYTHIC_TYPES: Record<string, { label: string; virtue: string; requiredVirtues: string[]; requiredFlaws: string[]; minAbilities: Record<string, number>; freeMinor: string }> = {
-  'devil-child': {
-    label: 'Devil Child', virtue: 'devil-child', requiredVirtues: ['demonic-blood', 'puissant-ability'], requiredFlaws: ['tragic-life-flaw'],
-    minAbilities: {}, freeMinor: 'demonic-might',
-  },
-  'faerie-doctor': {
-    label: 'Faerie Doctor', virtue: 'faerie-doctor', requiredVirtues: ['wise-one', 'curse-throwing'], requiredFlaws: ['faerie-friend-flaw', 'dutybound-flaw'],
-    minAbilities: { 'curse-throwing': 4, dowsing: 1, 'faerie-lore': 3, 'profession-type': 1 }, freeMinor: 'dowsing',
-  },
-  nephilim: {
-    label: 'Nephilim', virtue: 'nephilim', requiredVirtues: ['blood-of-the-nephilim', 'greater-immunity', 'great-characteristic', 'improved-characteristics', 'sense-holiness-and-unholiness'], requiredFlaws: [],
-    minAbilities: { 'dominion-lore': 4, penetration: 1, 'sense-holiness-and-unholiness': 3 }, freeMinor: 'strong-angelic-heritage',
-  },
-  'spirit-votary': {
-    label: 'Spirit Votary', virtue: 'spirit-votary', requiredVirtues: ['spiritual-pact'], requiredFlaws: ['pagan-flaw'],
-    minAbilities: { 'area-lore': 1, 'magic-lore': 4, penetration: 1, 'second-sight': 3 }, freeMinor: 'second-sight',
-  },
-};
+export { MYTHIC_TYPES, mythicAbility, type MythicFlaw, type MythicType } from '../../data/mythic';
 
 export function applyMythicType(c: Character, data: GameData, typeId: string) {
-  // clear previous
+  // clear the type before, with the free Minor Virtue and the Virtues and Flaws it required
+  for (const tv of c.virtues.filter((v) => v.freeReason === 'Mythic Companion')) {
+    for (const v of c.virtues.filter((x) => x.requiredBy === tv.uid)) removeVirtue(c, data, v.uid);
+  }
   for (const v of c.virtues.filter((v) => v.freeReason === 'Mythic Companion' || v.freeReason === 'Mythic Companion free Minor Virtue')) removeVirtue(c, data, v.uid);
   const t = MYTHIC_TYPES[typeId];
   if (!t) return;
-  c.virtues.push({ uid: uid(), defId: t.virtue, size: 'Free', free: true, freeReason: 'Mythic Companion' });
-  if (!c.virtues.some((v) => v.defId === t.freeMinor)) addVirtue(c, data, t.freeMinor, 'Minor', undefined, { free: true, freeReason: 'Mythic Companion free Minor Virtue' });
-  for (const v of t.requiredVirtues) {
-    if (c.virtues.some((x) => x.defId === v)) continue;
-    const def = data.vfById.get(v);
-    const param = v === 'puissant-ability' ? 'guile' : v === 'greater-immunity' ? 'Disease' : undefined;
-    addVirtue(c, data, v, def?.sizes[0], param);
-    if (v === 'great-characteristic') addVirtue(c, data, v, 'Minor', 'Str');
+  const type: CharVirtue = { uid: uid(), defId: t.virtue, size: 'Free', free: true, freeReason: 'Mythic Companion' };
+  c.virtues.push(type);
+  if (t.society && (!c.society || c.society === 'Western Christendom')) c.society = t.society;
+  // what the type's Virtue gives free comes first (the Nephilim's Strong Angelic Heritage), so the free Minor Virtue is not given twice
+  syncImpliedVirtues(c, data);
+  const given = t.freeMinor ? c.virtues.find((v) => v.defId === t.freeMinor && v.grantedBy === type.uid) : undefined;
+  if (given) given.freeReason = 'Mythic Companion free Minor Virtue';
+  else if (t.freeMinor && !c.virtues.some((v) => v.defId === t.freeMinor)) addVirtue(c, data, t.freeMinor, 'Minor', undefined, { free: true, freeReason: 'Mythic Companion free Minor Virtue' });
+  for (const rv of t.requiredVirtues) {
+    const { id, param } = typeof rv === 'string' ? { id: rv, param: undefined } : rv;
+    if (c.virtues.some((x) => x.defId === id && (param === undefined || x.param === param))) continue;
+    const def = data.vfById.get(id);
+    if (!def) continue;
+    addVirtue(c, data, id, def.sizes.find((z) => z !== 'Free') ?? def.sizes[0], param, { requiredBy: type.uid });
   }
-  for (const f of t.requiredFlaws) if (!c.virtues.some((x) => x.defId === f)) addVirtue(c, data, f, data.vfById.get(f)?.sizes[0]);
+  for (const rf of t.requiredFlaws) {
+    const { id, size, param } = typeof rf === 'string' ? { id: rf, size: undefined, param: undefined } : rf;
+    if (c.virtues.some((x) => x.defId === id)) continue;
+    const def = data.vfById.get(id);
+    if (def) addVirtue(c, data, id, size ?? def.sizes[0], param, { requiredBy: type.uid });
+  }
 }
 
 export function recomputeAge(c: Character, currentYear: number) {

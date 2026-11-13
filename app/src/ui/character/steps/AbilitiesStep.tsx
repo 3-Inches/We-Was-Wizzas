@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ART_NAMES, FORMS, LIVING_LANGUAGES, DEAD_LANGUAGES, PARAMETERIZED_ABILITIES, SAMPLE_CHILDHOODS, abilityTypeOf, type GameData } from '../../../data';
-import { AREAS, CRAFTS, MYSTERY_CULTS, ORGANIZATIONS, PROFESSIONS } from '../../../data/lists';
+import { AREAS, CRAFTS, MYSTERY_CULTS, ORGANIZATIONS, PROFESSIONS, nativeLanguageFor } from '../../../data/lists';
 import { abilityAvailability } from '../../../engine/character/restrictions';
 import { CREATION_SOURCES, canSpend, sumAlloc, type DerivedCharacter, type XpBudget } from '../../../engine/character/derive';
 import { ensureAbility } from '../../../engine/character/factory';
@@ -39,6 +39,8 @@ export default function AbilitiesStep({ ed }: { ed: CharEditor }) {
   if (!c || !d || !saga) return null;
   const pool = budgets.find((b) => b.id === poolId) ?? budgets[0];
   const native = c.abilities.find((a) => a.native);
+  // the tongue of the homeland chosen on the Concept step, offered as the first choice
+  const suggested = nativeLanguageFor(c.nationality);
 
   return (
     <>
@@ -73,6 +75,11 @@ export default function AbilitiesStep({ ed }: { ed: CharEditor }) {
               ariaLabel="Native language"
               onChange={(v) => v && update((x) => { const a = ensureAbility(x, 'living-language', { native: saga.houseRules.nativeLanguageXp }, v); a.native = true; })}
             />
+            {suggested && (
+              <button className="small" data-tour="native-suggested" onClick={() => update((x) => { const a = ensureAbility(x, 'living-language', { native: saga.houseRules.nativeLanguageXp }, suggested); a.native = true; })}>
+                {suggested} ({c.nationality})
+              </button>
+            )}
             <span className="small muted">75 xp → score 5.</span>
           </div>
         </Card>

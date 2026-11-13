@@ -89,9 +89,11 @@ export const TAGS: OutcomeTag[] = [
   t('activity', 'stealth', 'Stealth and sleight of hand'),
   t('activity', 'performance', 'Music and performance'),
   t('activity', 'senses', 'Sensing the supernatural'),
+  t('activity', 'holy-power', 'Holy powers: wonders worked through prayer'),
   // themes: what Story and Personality material is about
   t('theme', 'church', 'The Church'),
   t('theme', 'good', 'Doing right'),
+  t('theme', 'piety', 'A living faith'),
   t('theme', 'nobility', 'Nobility and lordship'),
   t('theme', 'order', 'The Order of Hermes'),
   t('theme', 'family', 'Family'),

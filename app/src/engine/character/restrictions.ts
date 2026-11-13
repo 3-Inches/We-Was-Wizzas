@@ -361,6 +361,8 @@ export function abilityAvailability(d: DerivedCharacter, data: GameData, ability
   if (def && !data.isBookEnabled(def.source.book)) return { ok: false, reason: 'Book not enabled for this saga' };
   const type = def?.type ?? 'General';
   const access = d.abilityAccess;
+  // "Unless you have The Gift, you cannot learn Parma Magica" (DE, Arcane Lore)
+  if (abilityId === 'parma-magica' && !d.hasGift) return { ok: false, reason: 'Parma Magica cannot be learned without The Gift' };
   if (access.abilities.has(abilityId)) return { ok: true };
   const houses = HOUSE_ABILITIES[abilityId];
   if (houses && !(d.isMagus && houses.includes(d.char.house ?? ''))) {

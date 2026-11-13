@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { HOUSES, HOUSE_BY_ID, EX_MISC_TRADITIONS } from '../../../data/houses';
-import { applyExMiscTradition, applyMythicType, MYTHIC_TYPES, setHouse } from '../../../engine/character/factory';
+import { applyExMiscTradition, applyMythicType, mythicAbility, MYTHIC_TYPES, setHouse } from '../../../engine/character/factory';
 import { Card, BookBadge } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { vfDisplayName } from '../../../engine/character/derive';
@@ -169,7 +169,18 @@ function HouseTemplateInfo({ houseId }: { houseId: string }) {
 function MythicTypeStep({ ed }: { ed: CharEditor }) {
   const { c, update, data } = ed;
   if (!c) return null;
-  const current = Object.entries(MYTHIC_TYPES).find(([, t]) => c.virtues.some((v) => v.defId === t.virtue));
+  const current = Object.entries(MYTHIC_TYPES).find(([, t]) => c.virtues.some((v) => v.defId === t.virtue && v.freeReason === 'Mythic Companion'));
+  const idOf = (x: string | { id: string }) => (typeof x === 'string' ? x : x.id);
+  const nameOf = (x: string | { id: string; param?: string }) => {
+    const def = data.vfById.get(idOf(x));
+    const param = typeof x === 'string' ? undefined : x.param;
+    return def ? vfDisplayName(def, { uid: '', defId: def.id, size: def.sizes[0], param }, data) : idOf(x);
+  };
+  const abilityName = (key: string) => {
+    const { id, param } = mythicAbility(key);
+    const name = data.abilityById.get(id)?.name ?? id;
+    return param ? name.replace(/\([^)]*\)/, param).replace(/^Organization Lore$/, `${param} Lore`) : name;
+  };
   return (
     <Card title="Mythic Companion type" className="accent">
       <p className="small soft">
@@ -179,22 +190,23 @@ function MythicTypeStep({ ed }: { ed: CharEditor }) {
         {Object.entries(MYTHIC_TYPES).map(([id, t]) => {
           const def = data.vfById.get(t.virtue);
           return (
-            <div key={id} className={`vf-item clickable ${current?.[0] === id ? 'taken' : ''}`} onClick={() => update((x) => applyMythicType(x, data, id))}>
+            <div key={id} className={`vf-item clickable ${current?.[0] === id ? 'taken' : ''}`} onClick={() => update((x) => applyMythicType(x, data, id))} data-tour={`mythic-${id}`}>
               <div className="row between">
                 <span className="name">{t.label}</span>
-                {def && <BookBadge book={def.source.book} anchor={def.source.anchor} />}
+                {def && <BookBadge book={t.book ?? def.source.book} anchor={t.book ? undefined : def.source.anchor} />}
               </div>
               <div className="small">
-                <b>Required:</b> {[...t.requiredVirtues, ...t.requiredFlaws].map((x) => data.vfById.get(x)?.name ?? x).join(', ')}
+                <b>Required:</b> {[...t.requiredVirtues, ...t.requiredFlaws].map(nameOf).join(', ')}
               </div>
               <div className="small">
-                <b>Free Minor:</b> {data.vfById.get(t.freeMinor)?.name}
+                <b>Free Minor:</b> {t.freeMinor ? data.vfById.get(t.freeMinor)?.name : 'one of your choice (tick Free on it in the next step)'}
               </div>
               {Object.keys(t.minAbilities).length > 0 && (
                 <div className="small muted">
-                  Minimum Abilities: {Object.entries(t.minAbilities).map(([a, s]) => `${data.abilityById.get(a)?.name ?? a} ${s}`).join(', ')}
+                  Minimum Abilities: {Object.entries(t.minAbilities).map(([a, s]) => `${abilityName(a)} ${s}`).join(', ')}
                 </div>
               )}
+              {t.note && <div className="small muted">{t.note}</div>}
             </div>
           );
         })}

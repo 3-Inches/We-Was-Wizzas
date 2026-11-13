@@ -13,7 +13,7 @@ import { canSpend, purchasedCharacteristic, sumAlloc, type DerivedCharacter } fr
 import { creationSpellLimit } from '../magic';
 import { HOUSE_BY_ID } from '../../data/houses';
 import { abilityAvailability, statusesCompatible, vfProblems } from './restrictions';
-import { hasFaerieVirtue } from './factory';
+import { MYTHIC_TYPES, hasFaerieVirtue, mythicAbility } from './factory';
 import { POWER_KINDS, POWER_KIND_ORDER, masteryPools, powerSpending, powerStats } from './powers';
 import type { PowerKind } from '../../data';
 
@@ -160,12 +160,25 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
 
   // --------------------------------------------------------------- mythic companions
   if (type === 'mythic') {
-    const mc = d.virtues.filter((v) => v.def?.categories.includes('Mythic Companion'));
-    if (mc.length === 0) add({ id: 'mythic-type', severity: 'error', step: 'virtues', message: 'Mythic Companions must take the Free Virtue defining their type (Devil Child, Faerie Doctor, Nephilim, Spirit Votary, or another agreed with the troupe).', ref: 'DE p.63' });
+    // the type's Free Virtue: one in the Mythic Companion category, or one a type gives as its own (Perfectus, Kabbalist)
+    const mc = d.virtues.filter((v) => v.def?.categories.includes('Mythic Companion') || v.cv.freeReason === 'Mythic Companion');
+    if (mc.length === 0) add({ id: 'mythic-type', severity: 'error', step: 'virtues', message: `Mythic Companions must take the Free Virtue defining their type (${Object.values(MYTHIC_TYPES).map((t) => t.label).join(', ')}, or another agreed with the troupe).`, ref: 'DE p.63' });
     if (mc.length > 1) add({ id: 'mythic-type-many', severity: 'error', step: 'virtues', message: 'Mythic Companion Virtues are incompatible with each other.', ref: 'DE p.55' });
     if (d.hasGift) add({ id: 'mythic-gift', severity: 'error', step: 'virtues', message: 'Mythic Companion Virtues are incompatible with The Gift.', ref: 'DE p.55' });
     const freeMinor = c.virtues.filter((v) => v.free && v.freeReason === 'Mythic Companion free Minor Virtue');
     if (freeMinor.length === 0) add({ id: 'mythic-free-minor', severity: 'info', step: 'virtues', message: 'Mythic Companions gain a free Minor Virtue, normally specified by their type.', ref: 'DE p.55' });
+    // the least Ability scores the type begins with (part of the 90 experience points agreed with the troupe)
+    const mt = Object.values(MYTHIC_TYPES).find((t) => c.virtues.some((v) => v.defId === t.virtue && v.freeReason === 'Mythic Companion'));
+    if (mt && creating) {
+      const short = Object.entries(mt.minAbilities).flatMap(([key, min]) => {
+        const { id, param } = mythicAbility(key);
+        const mine = new Set(c.abilities.filter((a) => a.abilityId === id && (!param || (a.param ?? '').toLowerCase() === param.toLowerCase())).map((a) => a.uid));
+        const have = d.abilities.filter((a) => mine.has(a.uid)).reduce((m, a) => Math.max(m, a.score), 0);
+        const name = (data.abilityById.get(id)?.name ?? id).replace(/\([^)]*\)/, param ?? '$&').replace(/^Organization Lore$/, param ? `${param} Lore` : '$&');
+        return have < min ? [`${name} ${min}${have ? ` (now ${have})` : ''}`] : [];
+      });
+      if (short.length) add({ id: 'mythic-min-abilities', severity: 'info', step: 'abilities', message: `A ${mt.label} begins with at least: ${short.join(', ')}.`, ref: mt.book === 'RoP_D' ? 'RoP: The Divine, Mythic Companions' : 'DE p.63' });
+    }
   }
 
   // --------------------------------------------------------------- per virtue checks
