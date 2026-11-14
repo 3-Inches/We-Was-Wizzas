@@ -13,7 +13,7 @@ import { canSpend, deriveCharacter } from '../character/derive';
 import { abilityAvailability } from '../character/restrictions';
 import { validateCharacter } from '../character/validate';
 import { generateCharacter } from '../generate/character';
-import { holyMethodsOf, holyPowersOf, worksHolyEffects } from '../holy';
+import { holyMethodsOf, holyPowersOf, suitedTradition, traditionsFor, worksHolyEffects } from '../holy';
 import { autoBuild } from './autobuild';
 import { evaluate, shortlist, type GuidedContext } from './score';
 
@@ -219,5 +219,24 @@ describe('small rules of the Divine and its relics', () => {
     addVirtue(c, data, 'powerful-relic', 'Major');
     const issue = validateCharacter(derive(c), data, rules).find((i) => i.id === 'two-relics');
     expect(issue?.severity).toBe('warning');
+  });
+});
+
+describe('the holy tradition', () => {
+  it('a built holy character belongs to the tradition whose favored Abilities they have, of their faith', () => {
+    const g = generateCharacter({ type: 'mythic', role: 'mythic-zahid', variety: 'focused', npc: false, seed: 3 } as never, { data, saga, rules });
+    expect(g.c.holy?.tradition).toBe('sufis');
+    const k = generateCharacter({ type: 'mythic', role: 'mythic-kabbalist', variety: 'focused', npc: false, seed: 3 } as never, { data, saga, rules });
+    expect(['kabbalists', 'baal-shem']).toContain(k.c.holy?.tradition);
+  }, 120_000);
+
+  it("offers only the traditions of the character's faith, and a Holy Societas only to the Gifted", () => {
+    const c = newCharacter('companion', 's');
+    c.society = 'Islamic';
+    expect(traditionsFor(c).every((t) => !t.faith || t.faith === 'Muslim')).toBe(true);
+    expect(traditionsFor(c).some((t) => t.societas)).toBe(false);
+    addVirtue(c, data, 'meditation', 'Major');
+    addVirtue(c, data, 'understanding', 'Major');
+    expect(suitedTradition(c)?.id).toBe('sufis');
   });
 });

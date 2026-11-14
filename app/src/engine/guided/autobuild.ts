@@ -18,6 +18,9 @@ import { abilityScoreFromXp, abilityXpForScore, artScoreFromXp, artXpForScore } 
 import { uid } from '../../util/id';
 import type { Rng } from '../dice';
 import { HOUSE_ARTS, markGroup, rarity, weightedPick } from '../generate/variety';
+import { optionOn } from '../optional';
+import { beastFor } from '../heartbeast';
+import { suitedTradition } from '../holy';
 import { abilityTag } from './records';
 import { QUESTION_BY_ID } from './questions';
 import { answerOf, evaluate, recommendHouses, shortlist, statusShortlist, tagWeights, traceOf, type GuidedContext, type Scored } from './score';
@@ -170,6 +173,7 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
       let best = 0;
       let bestFit = -Infinity;
       h.benefitOptions.forEach((b, i) => {
+        if (b.rule && !optionOn(inp.saga, b.rule)) return;
         const s = ev.scored.find((x) => x.def.id === b.virtueId);
         if (s && s.fit > bestFit) {
           bestFit = s.fit;
@@ -200,7 +204,7 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
       if (pick === 'ex-miscellanea') {
         const fitOf = (id: string) => ev.scored.find((x) => x.def.id === id)?.fit ?? 0;
         // a tradition whose book the saga uses and whose Virtues the data has
-        const known = (t: (typeof EX_MISC_TRADITIONS)[number]) => inp.data.isBookEnabled(t.source) && [t.majorNonHermetic, t.minorHermetic, t.majorHermeticFlaw].every((id) => inp.data.vfById.get(id));
+        const known = (t: (typeof EX_MISC_TRADITIONS)[number]) => !(t.womenOnly && c.gender === 'Male') && inp.data.isBookEnabled(t.source) && [t.majorNonHermetic, t.minorHermetic, t.majorHermeticFlaw].every((id) => inp.data.vfById.get(id));
         const trad = [...EX_MISC_TRADITIONS.filter((t) => t.id !== 'custom' && known(t))].sort(
           (a, b) => fitOf(b.majorNonHermetic) + fitOf(b.minorHermetic) - fitOf(b.majorHermeticFlaw) - (fitOf(a.majorNonHermetic) + fitOf(a.minorHermetic) - fitOf(a.majorHermeticFlaw)),
         )[0];
@@ -210,7 +214,11 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
         }
       }
       // Quick build's Bjornaer has a heartbeast; a player's own is theirs to choose (the House step asks)
-      if (pick === 'bjornaer' && !c.heartbeast && inp.rng) c.heartbeast = HEARTBEASTS[Math.floor(inp.rng() * HEARTBEASTS.length)];
+      // a player's Bjornaer: one of the core book's beasts, whose statistics the sheet can show in heartbeast form
+      if (pick === 'bjornaer' && !c.heartbeast && inp.rng) {
+        const book = HEARTBEASTS.filter((h) => beastFor(h));
+        c.heartbeast = book[Math.floor(inp.rng() * book.length)];
+      }
       why.house = st.house ? 'you chose it' : 'from: the best fit for your answers';
       log.push(`House ${h.name} (${why.house}).`);
       refresh();
@@ -467,6 +475,14 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   balance(c, inp, get, refresh, log, taken);
   // the Flaws' points not yet spent buy Minor Virtues that suit the character
   spendVirtuePoints(c, st, inp, get, log, add, clean, dup, simpleEnough);
+  // a holy character belongs to the tradition whose favored Abilities they have (RoP: The Divine, Holy Traditions)
+  if (!c.holy?.tradition) {
+    const t = suitedTradition(c);
+    if (t) {
+      c.holy = { ...(c.holy ?? {}), tradition: t.id };
+      log.push(`Holy tradition: ${t.name} (favored: ${t.favored.join(', ')}).`);
+    }
+  }
 }
 
 /** The Virtue that gives a Holy Power its Ability (Blessing's is named apart from the gruagach's Form). */

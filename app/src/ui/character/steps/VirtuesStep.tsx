@@ -13,6 +13,8 @@ import type { CharEditor } from '../useChar';
 import { LaterNote } from '../../LaterNote';
 import { VFText } from '../../VFText';
 import { Hint } from '../../Hint';
+import { HOLY_TRADITIONS } from '../../../data/divine';
+import { favoredHeld, isHolyCharacter, suitedTradition, traditionsFor } from '../../../engine/holy';
 
 const CATS: VFCategory[] = ['General', 'Hermetic', 'Supernatural', 'Social Status', 'Personality', 'Story', 'Mythic Companion', 'Heroic', 'Mystery', 'Special'];
 
@@ -53,6 +55,7 @@ export default function VirtuesStep({ ed }: { ed: CharEditor }) {
       {/* a magic character's Qualities give its power levels: design both here */}
       {c?.creature && <CreatureCard ed={ed} />}
       <PowersCard ed={ed} />
+      <HolyTraditionCard ed={ed} />
       <VirtueBrowser ed={ed} />
       {data && null}
     </>
@@ -345,3 +348,60 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
 }
 
 export { vfDisplayName };
+
+/**
+ * A holy character's tradition, chosen at creation (RoP: The Divine, Holy Traditions): its favored
+ * Abilities are learned without the Supernatural study penalty by one with True Faith. Offered to a
+ * character with a Holy Method or Power, True Faith or Holy Magic; the list keeps to their faith.
+ */
+function HolyTraditionCard({ ed }: { ed: CharEditor }) {
+  const { c, d, update } = ed;
+  if (!c || !d) return null;
+  const holy = d.trueFaith > 0 || isHolyCharacter(d) || c.virtues.some((v) => v.defId === 'holy-magic');
+  if (!holy && !c.holy?.tradition) return null;
+  const options = traditionsFor(c);
+  const chosen = HOLY_TRADITIONS.find((t) => t.id === c.holy?.tradition);
+  const suited = suitedTradition(c);
+  return (
+    <Card title="Holy tradition" tour="holy-tradition">
+      <div className="row">
+        <select
+          value={c.holy?.tradition ?? ''}
+          aria-label="Holy tradition"
+          onChange={(e) => update((x) => void (x.holy = { ...(x.holy ?? {}), tradition: e.target.value || undefined }))}
+        >
+          <option value="">none (an unaffiliated holy character)</option>
+          {options.map((t) => (
+            <option key={t.id} value={t.id}>
+              {t.name}
+              {t.societas ? ' (Holy Societas)' : t.faith ? ` (${t.faith})` : ''} — has {favoredHeld(c, t).length} of {t.favored.length}
+            </option>
+          ))}
+        </select>
+        {suited && suited.id !== chosen?.id && (
+          <button className="small" onClick={() => update((x) => void (x.holy = { ...(x.holy ?? {}), tradition: suited.id }))}>
+            Take {suited.name}, which suits the Virtues taken
+          </button>
+        )}
+      </div>
+      {chosen ? (
+        <p className="small" style={{ marginBottom: 0 }}>
+          {chosen.text} <b>Favored:</b>{' '}
+          {chosen.favored.map((f, i) => (
+            <span key={f}>
+              {i ? ', ' : ''}
+              <span className={favoredHeld(c, chosen).includes(f) ? 'good-text' : 'muted'}>{f.replace(/-/g, ' ')}</span>
+            </span>
+          ))}
+          . With True Faith they are learned without the Supernatural study penalty; the rest of the tradition&apos;s favored Abilities can be taken here as Virtues.
+        </p>
+      ) : (
+        <p className="small muted" style={{ marginBottom: 0 }}>
+          A holy tradition teaches its favored Abilities; with True Faith they are learned without the Supernatural study penalty. A holy character outside every tradition learns
+          them from others with a penalty.
+        </p>
+      )}
+    </Card>
+  );
+}
+

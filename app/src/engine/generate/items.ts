@@ -57,11 +57,26 @@ function effectOf(sp: SpellDef, uses: string): EnchantedEffectRecord {
  * once a day, the most useful first (no effect over 30 with Magic Items), each in a thing of its own.
  * Returns the names of what was added.
  */
-export function issueRedcapDevices(c: Character, data: GameData, rng: Rng): string[] {
+/** The courier's effects a Redcap could still take from the House: ones not had yet, within the levels left. */
+export function redcapDeviceChoices(c: Character, data: GameData): (SpellDef & { level: number })[] {
+  const r = c.redcap;
+  if (!r) return [];
+  const have = new Set(c.items.flatMap((i) => i.effects.map((e) => norm(e.name))));
+  const cap = c.virtues.some((v) => v.defId === 'magic-items') ? 30 : Infinity;
+  return COURIER_SPELLS.map((n) => data.spells.find((s) => norm(s.name) === norm(n)))
+    .filter((s): s is SpellDef & { level: number } => !!s && !!s.level && s.level <= cap && s.level <= r.levels - r.spent && !have.has(norm(s.name)));
+}
+
+/**
+ * Spend a Redcap's unspent levels on new devices: effects for carrying messages they do not have yet,
+ * once a day, the most useful first (no effect over 30 with Magic Items), each in a thing of its own.
+ * With `only`, that one effect (the player's pick), if it fits. Returns the names of what was added.
+ */
+export function issueRedcapDevices(c: Character, data: GameData, rng: Rng, only?: string): string[] {
   const r = (c.redcap ??= { levels: 0, spent: 0 });
   const have = new Set(c.items.flatMap((i) => i.effects.map((e) => norm(e.name))));
   const cap = c.virtues.some((v) => v.defId === 'magic-items') ? 30 : Infinity;
-  const spells = COURIER_SPELLS.map((n) => data.spells.find((s) => norm(s.name) === norm(n))).filter((s): s is SpellDef & { level: number } => !!s && !!s.level && s.level <= cap);
+  const spells = COURIER_SPELLS.filter((n) => !only || norm(n) === norm(only)).map((n) => data.spells.find((s) => norm(s.name) === norm(n))).filter((s): s is SpellDef & { level: number } => !!s && !!s.level && s.level <= cap);
   const added: string[] = [];
   for (;;) {
     const left = r.levels - r.spent;

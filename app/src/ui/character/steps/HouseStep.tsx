@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { HEARTBEASTS, HOUSES, HOUSE_BY_ID, EX_MISC_TRADITIONS } from '../../../data/houses';
 import { applyExMiscTradition, applyMythicType, mythicAbility, MYTHIC_TYPES, setHouse } from '../../../engine/character/factory';
 import { Card, BookBadge } from '../../kit';
+import { optionOn } from '../../../engine/optional';
 import type { CharEditor } from '../useChar';
 import { vfDisplayName } from '../../../engine/character/derive';
 import { VFText } from '../../VFText';
@@ -52,12 +53,20 @@ function MagusHouseStep({ ed }: { ed: CharEditor }) {
       {house && house.benefitOptions.length > 1 && (
         <Card title={`${house.name}: choose your House Virtue`}>
           <div className="row">
-            {house.benefitOptions.map((o, i) => (
-              <button key={i} className={c.creation.houseBenefit === i ? 'selected' : ''} onClick={() => update((x) => setHouse(x, data, house.id, i))}>
-                {o.label}
-              </button>
-            ))}
+            {house.benefitOptions.map((o, i) =>
+              // a choice an optional rule offers shows only when the saga uses it (Flambeau's schools)
+              o.rule && !optionOn(ed.saga, o.rule) ? null : (
+                <button key={i} className={c.creation.houseBenefit === i ? 'selected' : ''} onClick={() => update((x) => setHouse(x, data, house.id, i))}>
+                  {o.label}
+                </button>
+              ),
+            )}
           </div>
+          {house.benefitOptions.some((o) => o.rule === 'flambeauSchools') && !optionOn(ed.saga, 'flambeauSchools') && (
+            <p className="small muted" style={{ marginBottom: 0 }}>
+              With the storyguide&apos;s leave, a magus of the Schools of Ramius, Sebastian or Vilano may take the school&apos;s Virtue instead (optional rule <i>Flambeau schools of magical combat</i>, Saga Overview › Optional rules).
+            </p>
+          )}
         </Card>
       )}
 

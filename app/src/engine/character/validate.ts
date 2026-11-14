@@ -151,6 +151,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       const hasMinor = pkg.some((v) => (v.defId === trad?.minorHermetic || def(v)?.categories.includes('Hermetic')) && v.size === 'Minor' && def(v)?.kind === 'virtue');
       const hasMajor = pkg.some((v) => (v.defId === trad?.majorNonHermetic || !def(v)?.categories.includes('Hermetic')) && v.size === 'Major' && def(v)?.kind === 'virtue');
       const hasFlaw = pkg.some((v) => (v.defId === trad?.majorHermeticFlaw || def(v)?.categories.includes('Hermetic')) && v.size === 'Major' && def(v)?.kind === 'flaw');
+      if (trad?.womenOnly && c.gender === 'Male') add({ id: 'exmisc-women', severity: 'warning', step: 'house', message: `The ${trad.name} take only women as apprentices.`, ref: 'HoH:S, Ex Miscellanea' });
       if (!hasMinor || !hasMajor || !hasFlaw) add({ id: 'exmisc-package', severity: 'warning', step: 'house', message: 'Ex Miscellanea magi get a free Minor Hermetic Virtue, a free Major non-Hermetic Virtue, and a compulsory Major Hermetic Flaw.', ref: 'DE p.44' });
     }
     if (c.house === 'merinita' && (creating || c.seasonLog.length === 0)) {

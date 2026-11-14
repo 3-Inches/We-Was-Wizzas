@@ -9,6 +9,7 @@ import type { WoundState } from '../../../engine/types';
 import { Card, Field, Stepper, signed } from '../../kit';
 import EquipmentEditor from '../EquipmentEditor';
 import { IllnessCard } from './IllnessCard';
+import { HeartbeastFormCard } from './HeartbeastFormCard';
 import { immunities, immunityFlaw, immunityFlawState } from '../../../engine/covenantBoons';
 import type { CharEditor } from '../useChar';
 import { RollAtTable, groupPeople, useAtTable } from '../../play';
@@ -34,6 +35,7 @@ export default function CombatTab({ ed }: { ed: CharEditor }) {
     <div className="stack">
       <HealthCards ed={ed} />
       <CombatRolls ed={ed} />
+      <HeartbeastFormCard ed={ed} />
       <EquipmentEditor ed={ed} />
     </div>
   );

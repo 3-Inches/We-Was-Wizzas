@@ -169,3 +169,40 @@ describe("one House's Mysteries stay out of another's builds", () => {
     }
   }, 240_000);
 });
+
+describe('House options of the supplements', () => {
+  const sagaWith = (options: Record<string, boolean>) => ({ ...saga, options }) as Saga;
+
+  it("Flambeau's schools offer the school's Virtue only when the troupe uses the optional rule", () => {
+    const h = HOUSE_BY_ID.flambeau;
+    const schools = h.benefitOptions.filter((o) => o.rule === 'flambeauSchools');
+    expect(schools.map((o) => o.virtueId)).toEqual(['warrior', 'minor-magical-focus', 'puissant-ability', 'cautious-with-ability']);
+    // taking one as the House Virtue: free, as the House's
+    const c = newCharacter('magus', 's');
+    setHouse(c, data, 'flambeau', h.benefitOptions.findIndex((o) => o.virtueId === 'warrior'));
+    expect(c.virtues.find((v) => v.freeReason === 'House Virtue')?.defId).toBe('warrior');
+    expect(issues(c).some((i) => i.id === 'house-virtue')).toBe(false);
+    // the builder keeps to Puissant Perdo or Ignem unless the rule is on
+    for (const seed of [1, 2, 3]) {
+      const off = generateCharacter({ type: 'magus', house: 'flambeau', variety: 'varied', npc: false, seed }, { data, saga, rules });
+      expect(off.c.virtues.find((v) => v.freeReason === 'House Virtue')?.defId).toBe('puissant-art');
+    }
+    const warrior = generateCharacter({ type: 'magus', house: 'flambeau', variety: 'focused', npc: false, seed: 4, answers: { 'h-combat': 10, 'h-weapons': 10 } } as never, { data, saga: sagaWith({ flambeauSchools: true }), rules });
+    expect(['puissant-art', 'warrior', 'minor-magical-focus', 'puissant-ability', 'cautious-with-ability']).toContain(warrior.c.virtues.find((v) => v.freeReason === 'House Virtue')?.defId);
+  }, 120_000);
+
+  it('the Seirenes, the Cult of Orpheus and the Witches of Thessaly apply whole, the Seirenes to women only', () => {
+    for (const id of ['seirenes', 'orpheus', 'thessaly']) {
+      const c = magus('ex-miscellanea');
+      c.gender = 'Female';
+      applyExMiscTradition(c, data, id);
+      expect(issues(c).filter((i) => i.step === 'house' && i.severity !== 'info'), id).toEqual([]);
+    }
+    const m = magus('ex-miscellanea');
+    m.gender = 'Male';
+    applyExMiscTradition(m, data, 'seirenes');
+    expect(issues(m).some((i) => i.id === 'exmisc-women')).toBe(true);
+    expect(derive(m).abilities.find((a) => a.abilityId === 'siren-song')?.score).toBe(1);
+  });
+});
+
