@@ -20,6 +20,8 @@ export interface HouseDef {
   benefitOptions: HouseBenefitChoice[];
   /** Jerbiton: free choice among a list of minor virtues */
   freeChoiceFrom?: string[];
+  /** Jerbiton: the Abilities that suit a free Virtue tied to one (Houses of Hermes: Societates, Free Virtue) */
+  freeChoiceAbilities?: string[];
   exMiscellanea?: boolean;
   notes?: string[];
   domusMagna: string;
@@ -85,12 +87,19 @@ export const HOUSES: HouseDef[] = [
     description: 'Nobles, scholars, and artists.',
     benefitText: 'A Minor Virtue relating to scholarship, arts, or mundane interaction.',
     benefitOptions: [],
+    // the list in Houses of Hermes: Societates first, then others of the core book that fit the theme
     freeChoiceFrom: [
-      'educated', 'free-expression', 'privileged-upbringing', 'social-contacts', 'temporal-influence',
-      'venus-blessing', 'puissant-ability', 'affinity-with-ability', 'book-learner', 'good-teacher',
-      'inspirational', 'gossip', 'well-traveled', 'clear-thinker', 'linguist', 'aristotelian-training',
-      'academic-concentration-subject', 'knows-people', 'natural-leader', 'student-of-realm', 'arcane-lore',
-      'mystical-choreography', 'performance-magic', 'subtle-magic', 'quiet-magic', 'gentleman-woman',
+      'affinity-with-ability', 'apt-student', 'book-learner', 'cautious-with-ability', 'educated', 'enchanting-ability', 'free-expression',
+      'good-teacher', 'gossip', 'inspirational', 'learn-ability-from-mistakes', 'light-touch', 'long-winded', 'piercing-gaze',
+      'privileged-upbringing', 'protection', 'puissant-ability', 'social-contacts', 'temporal-influence', 'troupe-upbringing',
+      'true-love-pc', 'venus-blessing', 'well-traveled',
+      'linguist', 'aristotelian-training', 'academic-concentration-subject', 'knows-people', 'natural-leader', 'arcane-lore',
+      'student-of-realm', 'clear-thinker', 'mystical-choreography', 'performance-magic',
+    ],
+    freeChoiceAbilities: [
+      'area-lore', 'artes-liberales', 'bargain', 'carouse', 'charm', 'civil-and-canon-law', 'common-law', 'craft-type', 'dead-language',
+      'enchanting-ability', 'etiquette', 'folk-ken', 'guile', 'infernal-lore', 'intrigue', 'leadership', 'legerdemain', 'living-language',
+      'magic-lore', 'music', 'organization-lore', 'philosophiae', 'profession-type', 'theology-christian', 'theology-islam', 'theology-judaism',
     ],
     tags: ['social', 'scholar', 'art', 'mundane'],
   },
@@ -140,6 +149,9 @@ export const HOUSES: HouseDef[] = [
   },
 ];
 
+/** Common heartbeasts for a Bjornaer (HoH: Mystery Cults lists many more): one mundane creature, usually a noble one. */
+export const HEARTBEASTS = ['wolf', 'bear', 'boar', 'stag', 'raven', 'owl', 'fox', 'badger', 'hawk', 'otter', 'lynx', 'eagle', 'horse', 'hare', 'wildcat', 'beaver'];
+
 export const HOUSE_BY_ID: Record<string, HouseDef> = Object.fromEntries(HOUSES.map((h) => [h.id, h]));
 
 /**
@@ -165,11 +177,16 @@ export interface ExMiscTradition {
   id: string;
   name: string;
   majorNonHermetic: string; // V&F id
+  majorParam?: string;
   minorHermetic: string;
+  /** the choice the Minor Hermetic Virtue takes (an Art, a focus, a circumstance) */
+  minorParam?: string;
   majorHermeticFlaw: string;
   majorHermeticFlawParam?: string;
-  required?: string[];
-  requiredFlaws?: string[];
+  /** Virtues the tradition's magi must also have, at their usual cost */
+  required?: { id: string; param?: string }[];
+  /** Flaws they must also have, which give their points as usual */
+  requiredFlaws?: { id: string; param?: string; size?: 'Minor' | 'Major' }[];
   notes?: string;
   source: string;
 }
@@ -177,27 +194,90 @@ export interface ExMiscTradition {
 export const EX_MISC_TRADITIONS: ExMiscTradition[] = [
   {
     id: 'beast-masters', name: 'Beast Masters',
-    majorNonHermetic: 'summon-animals', minorHermetic: 'inoffensive-to-beings', majorHermeticFlaw: 'study-requirement-flaw',
-    required: ['animal-ken', 'minor-magical-focus'], requiredFlaws: ['incompatible-arts-flaw'],
-    notes: 'Inoffensive to Animals. Required: Animal Ken, Minor Magical Focus (a group of animals); Incompatible Arts (MuCo & PeAn).',
+    majorNonHermetic: 'summon-animals', minorHermetic: 'inoffensive-to-beings', minorParam: 'animals', majorHermeticFlaw: 'study-requirement-flaw',
+    required: [{ id: 'animal-ken' }, { id: 'minor-magical-focus', param: 'a group of animals (to be chosen)' }], requiredFlaws: [{ id: 'incompatible-arts-flaw', param: 'MuCo and PeAn' }],
+    notes: 'Summon and command wild creatures. Also Animal Ken and a Minor Magical Focus in a group of animals; never taught to take animal form or to harm animals (Incompatible Arts: MuCo and PeAn).',
     source: 'DE',
   },
   {
     id: 'nemthengacha', name: 'Nemthengacha',
     majorNonHermetic: 'embitterment', minorHermetic: 'subtle-magic', majorHermeticFlaw: 'deficient-technique-flaw', majorHermeticFlawParam: 'Re',
-    notes: 'Deficient Technique (Rego).',
+    notes: 'Poison-tongues who turn listeners against one another. Deficient Technique (Rego).',
     source: 'DE',
   },
   {
     id: 'tempestaria', name: 'Tempestaria (Weather Witch)',
-    majorNonHermetic: 'whistle-up-the-wind', minorHermetic: 'affinity-with-art', majorHermeticFlaw: 'necessary-condition-flaw',
-    notes: 'Affinity with Auram; Necessary Condition (tools for their magic).',
+    majorNonHermetic: 'whistle-up-the-wind', minorHermetic: 'affinity-with-art', minorParam: 'Au', majorHermeticFlaw: 'necessary-condition-flaw', majorHermeticFlawParam: 'tools with a sympathy to the spell (feathers, a drum, scattered sand)',
+    notes: 'Weather witches of the Saxon lands. Affinity with Auram; their magic needs simple tools.',
     source: 'DE',
+  },
+  // Houses of Hermes: Societates, House Ex Miscellanea
+  {
+    id: 'columbae', name: 'Columbae',
+    majorNonHermetic: 'warding', minorHermetic: 'ring-circle-magic', majorHermeticFlaw: 'necessary-condition-flaw', majorHermeticFlawParam: 'the target must be marked',
+    notes: 'The “pigeons”, warding wizards whose craft gave Hermetic magic its wards.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'damhadh-duidsan', name: 'Damhadh-Duidsan',
+    majorNonHermetic: 'giant-blood', minorHermetic: 'puissant-art', minorParam: 'Co', majorHermeticFlaw: 'necessary-condition-flaw', majorHermeticFlawParam: 'runes carved or drawn',
+    notes: 'Gaelic rune-writers who curse and heal with Ogam. Giant Blood is common; Shapeshifter or Incantation (Realms of Power: The Infernal) in its place for some.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'donatores', name: 'Donatores Requietis Aeternae',
+    majorNonHermetic: 'banishing', minorHermetic: 'minor-magical-focus', minorParam: 'spirits and ghosts', majorHermeticFlaw: 'restriction-flaw', majorHermeticFlawParam: 'on consecrated ground',
+    notes: 'Givers of eternal rest, who lay the dead. The focus may be the animated dead (Corpus) instead.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'haruspexes', name: 'Hermetic Haruspexes',
+    majorNonHermetic: 'divination-and-augury', minorHermetic: 'affinity-with-art', minorParam: 'In', majorHermeticFlaw: 'twilight-prone-flaw',
+    notes: 'Keepers of the Etruscan Art: omens read in the entrails of sacrifices. Often Premonitions or Visions.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'karaites', name: 'Karaites',
+    majorNonHermetic: 'holy-magic', minorHermetic: 'craft-amulets', majorHermeticFlaw: 'karaite-magic-flaw',
+    requiredFlaws: [{ id: 'outsider-flaw', param: 'Jew', size: 'Major' }],
+    notes: 'Jewish holy magi who read the scriptures alone (Realms of Power: The Divine). Holy Magic stands as the tradition\'s Major Virtue, and Outsider (Major, Jew) is required.',
+    source: 'RoP_D',
+  },
+  {
+    id: 'malocchi', name: 'Malocchi',
+    majorNonHermetic: 'entrancement', minorHermetic: 'special-circumstances', minorParam: 'eye contact', majorHermeticFlaw: 'weak-magic-resistance-flaw', majorHermeticFlawParam: 'when someone stands on their shadow',
+    required: [{ id: 'piercing-gaze' }],
+    notes: 'Italian magi of the evil eye. Piercing Gaze is required.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'pharmacopoeians', name: 'Pharmacopoeians',
+    majorNonHermetic: 'mythic-herbalism', minorHermetic: 'root-cutter', majorHermeticFlaw: 'deficient-technique-flaw', majorHermeticFlawParam: 'Pe',
+    notes: 'Herbalists and root-cutters, healers before all else. Deficient Technique (Perdo).',
+    source: 'HoH_S',
+  },
+  {
+    id: 'pralicians', name: 'The Lineage of Pralix',
+    majorNonHermetic: 'comprehend-magic', minorHermetic: 'minor-magical-focus', minorParam: 'exotic (non-Hermetic) magic', majorHermeticFlaw: 'weak-magic-resistance-flaw', majorHermeticFlawParam: 'against a caster not yet analyzed with Comprehend Magic',
+    notes: 'Students of other traditions’ magic, who bring hedge wizards into the Order.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'rustic-magi', name: 'Rustic Magi',
+    majorNonHermetic: 'craft-magic', minorHermetic: 'spell-foci', majorHermeticFlaw: 'weak-spontaneous-magic-flaw',
+    notes: 'Craftsmen-wizards who work magic through the things they make.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'hermetic-sahirs', name: 'Hermetic Sahirs',
+    majorNonHermetic: 'sihr', minorHermetic: 'minor-magical-focus', minorParam: 'jinn', majorHermeticFlaw: 'twilight-prone-flaw',
+    notes: 'Summoners of the jinn from the Arabic tradition.',
+    source: 'HoH_S',
   },
   {
     id: 'custom', name: 'Other tradition (choose freely)',
     majorNonHermetic: '', minorHermetic: '', majorHermeticFlaw: '',
-    notes: 'Houses of Hermes: Societates describes many more traditions. Choose any Major non-Hermetic Virtue, Minor Hermetic Virtue, and Major Hermetic Flaw.',
+    notes: 'Houses of Hermes: Societates describes more (Seirenes, the Cult of Orpheus, the Witches of Thessaly), and a tradition may be your own. Choose any Major non-Hermetic Virtue that shows the tradition, a Minor Hermetic Virtue, and a Major Hermetic Flaw.',
     source: 'HoH_S',
   },
 ];

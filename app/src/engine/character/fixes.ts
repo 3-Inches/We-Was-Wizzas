@@ -210,6 +210,8 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
       return [{ kind: 'apply', label: 'Set Warping Points to 1', auto: true, apply: (x) => void (x.warpingPoints = 1) }];
     case 'merinita-warping-faerie':
       return [{ kind: 'apply', label: 'Set Warping Points to 0', auto: true, apply: (x) => void (x.warpingPoints = 0) }];
+    case 'bjornaer-heartbeast':
+      return [goto('house', 'Choose the heartbeast')];
     case 'bjornaer-familiar':
       return [{ kind: 'apply', label: 'Release the familiar', apply: (x) => void (x.familiar = undefined) }, { kind: 'goto', label: 'Open Lab & familiar', step: 'sheet', tab: 'lab' }];
 

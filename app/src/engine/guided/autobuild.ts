@@ -5,7 +5,7 @@
 // draft is clean. Every item records why it was chosen.
 
 import { ARTS, CHARACTERISTICS, CHILDHOOD_ABILITIES, SAMPLE_CHILDHOODS, TECHNIQUES, type Art, type Characteristic, type Form, type Technique, type GameData, type VFSize, type VirtueFlawDef } from '../../data';
-import { EX_MISC_TRADITIONS, HOUSE_BY_ID } from '../../data/houses';
+import { EX_MISC_TRADITIONS, HEARTBEASTS, HOUSE_BY_ID } from '../../data/houses';
 import { CHAR_DESCRIPTORS, nativeLanguageFor } from '../../data/lists';
 import type { CharSpell, Character, Covenant, GuidedState, HouseRules, Saga, XpSource } from '../types';
 import { canSpend, deriveCharacter, sumAlloc, type DerivedCharacter, type XpBudget } from '../character/derive';
@@ -111,8 +111,8 @@ function neededCharacteristics(w: Record<string, number>, def: VirtueFlawDef, c?
  * marks a character out (two disfigurements, two faerie bloodlines).
  */
 function choose(inp: BuildInput, c: Character, xs: Scored[], sizeOf: (s: Scored) => VFSize | undefined, top = 8): Scored | undefined {
-  if (!inp.rng) return xs[0];
   const marked = new Set(c.virtues.map((v) => inp.data.vfById.get(v.defId)).map((d) => d && markGroup(d)).filter(Boolean));
+  if (!inp.rng) return xs.find((s) => !marked.has(markGroup(s.def)));
   const pool = xs.filter((s) => !marked.has(markGroup(s.def))).slice(0, top);
   return weightedPick(inp.rng, pool, (s) => rarity(s.def, c.type, sizeOf(s)) * Math.sqrt(Math.max(1, s.fit)));
 }
@@ -185,14 +185,23 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
           .sort((a, b) => b.fit - a.fit);
         const choice = fits[0];
         if (choice) {
-          setHouse(c, inp.data, pick, best, { defId: choice.def.id, param: paramFor(choice) });
+          // tied to an Ability: one of scholarship, art or dealing with people (Societates, Free Virtue), the one that matters most
+          let param = paramFor(choice);
+          if (choice.def.param?.kind === 'ability' && h.freeChoiceAbilities && !h.freeChoiceAbilities.includes(param ?? '')) {
+            const w = tagWeights(st, ctx);
+            const suits = h.freeChoiceAbilities.filter((id) => !id.endsWith('-type') && inp.data.abilityById.get(id) && abilityAvailability(ctx.d, inp.data, id).ok);
+            param = [...suits].sort((x, y) => (w[abilityTag(y, inp.data.abilityById.get(y)?.type)] ?? 0) - (w[abilityTag(x, inp.data.abilityById.get(x)?.type)] ?? 0))[0];
+          }
+          setHouse(c, inp.data, pick, best, { defId: choice.def.id, param });
           log.push(`Jerbiton's free Virtue: ${choice.def.name}.`);
         }
       }
       // Ex Miscellanea: the tradition whose Virtues fit best, and whose Flaw hurts least
       if (pick === 'ex-miscellanea') {
         const fitOf = (id: string) => ev.scored.find((x) => x.def.id === id)?.fit ?? 0;
-        const trad = [...EX_MISC_TRADITIONS.filter((t) => t.id !== 'custom')].sort(
+        // a tradition whose book the saga uses and whose Virtues the data has
+        const known = (t: (typeof EX_MISC_TRADITIONS)[number]) => inp.data.isBookEnabled(t.source) && [t.majorNonHermetic, t.minorHermetic, t.majorHermeticFlaw].every((id) => inp.data.vfById.get(id));
+        const trad = [...EX_MISC_TRADITIONS.filter((t) => t.id !== 'custom' && known(t))].sort(
           (a, b) => fitOf(b.majorNonHermetic) + fitOf(b.minorHermetic) - fitOf(b.majorHermeticFlaw) - (fitOf(a.majorNonHermetic) + fitOf(a.minorHermetic) - fitOf(a.majorHermeticFlaw)),
         )[0];
         if (trad) {
@@ -200,6 +209,8 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
           log.push(`Ex Miscellanea tradition: ${trad.name}.`);
         }
       }
+      // Quick build's Bjornaer has a heartbeast; a player's own is theirs to choose (the House step asks)
+      if (pick === 'bjornaer' && !c.heartbeast && inp.rng) c.heartbeast = HEARTBEASTS[Math.floor(inp.rng() * HEARTBEASTS.length)];
       why.house = st.house ? 'you chose it' : 'from: the best fit for your answers';
       log.push(`House ${h.name} (${why.house}).`);
       refresh();
@@ -395,7 +406,10 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   // options with a subsystem of their own go into a draft only when the player asked for them
   // holy Methods and Powers are asked for by their own question, whatever was said of complexity
   const wantsHoly = () => c.type !== 'grog' && (tagWeights(st, get())['holy-power'] ?? 0) >= 2;
-  const simpleEnough = (s: Scored) => complexityOk || !(s.rec.flags.complexity || s.rec.flags.spellLike) || (st.answers[`vf:${s.def.id}`] ?? 0) >= 7 || (isHolyVirtue(s.def.id) && wantsHoly());
+  const named = (id: string) => (st.answers[`vf:${id}`] ?? 0) >= 7;
+  // Holy Magic remakes a magus's whole craft (no Magic Theory, every spell by a Method): never by chance
+  const simpleEnough = (s: Scored) => (s.def.id === 'holy-magic' ? named(s.def.id) || wantsHoly()
+    : complexityOk || !(s.rec.flags.complexity || s.rec.flags.spellLike) || named(s.def.id) || (isHolyVirtue(s.def.id) && wantsHoly()));
   const sizeFor = (s: Scored, room: number) => {
     const sizes = s.def.sizes.filter((z) => z !== 'Free' || s.def.sizes.length === 1);
     if (c.type === 'grog') return sizes.includes('Minor') ? 'Minor' : undefined;

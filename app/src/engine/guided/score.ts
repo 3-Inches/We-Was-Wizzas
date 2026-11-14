@@ -12,7 +12,7 @@ export { DEFAULT_SAGA_SETTINGS };
 
 export type { GuidedState, SagaGuidedSettings };
 import type { DerivedCharacter } from '../character/derive';
-import { vfProblems } from '../character/restrictions';
+import { abilityAvailability, vfProblems } from '../character/restrictions';
 import { abilityTag, vfRecords, type TagLink, type VFRecord } from './records';
 import { QUESTIONS, SECTIONS, childrenOf, type Question } from './questions';
 import { isThemeTag, tagLabel } from './tags';
@@ -220,7 +220,8 @@ function paramChoice(def: VirtueFlawDef, rec: VFRecord, w: Record<string, number
   }
   // Abilities: the one this character can use that the player cares most about
   const abilities = ctx.data.abilities.filter((a) => (!spec.abilityTypes || spec.abilityTypes.includes(a.type)) && (!spec.options || spec.options.includes(a.id)) && a.source.book === 'DE' && !a.id.endsWith('-type'));
-  const usable = abilities.filter((a) => ctx.c.abilities.some((x) => x.abilityId === a.id) || (a.type === 'General' || ctx.d.isMagus || ctx.d.abilityAccess.types.has(a.type)));
+  // one the character has, or may learn: not another House's own Ability (Heartbeast for a Tremere), nor Parma Magica without The Gift
+  const usable = abilities.filter((a) => ctx.c.abilities.some((x) => x.abilityId === a.id) || ((a.type === 'General' || ctx.d.isMagus || ctx.d.abilityAccess.types.has(a.type)) && abilityAvailability(ctx.d, ctx.data, a.id).ok));
   const rank = (id: string) => {
     const i = DEFAULT_ABILITY[ctx.c.type].indexOf(id);
     if (i >= 0) return i;

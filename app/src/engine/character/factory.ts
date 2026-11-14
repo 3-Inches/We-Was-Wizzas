@@ -238,16 +238,30 @@ export function setHouse(c: Character, data: GameData, houseId: string, benefitI
 }
 
 export function applyExMiscTradition(c: Character, data: GameData, traditionId: string, picks?: { major?: string; minor?: string; minorParam?: string; flaw?: string; flawParam?: string }) {
-  for (const v of c.virtues.filter((v) => v.freeReason === 'Ex Miscellanea')) removeVirtue(c, data, v.uid);
+  // the tradition before goes, with the Virtues and Flaws it required
+  for (const v of c.virtues.filter((v) => v.freeReason === 'Ex Miscellanea')) {
+    for (const r of c.virtues.filter((x) => x.requiredBy === v.uid)) removeVirtue(c, data, r.uid);
+    removeVirtue(c, data, v.uid);
+  }
   c.creation.exMiscTradition = traditionId;
   const t = EX_MISC_TRADITIONS.find((x) => x.id === traditionId);
   if (!t) return;
   const major = picks?.major ?? t.majorNonHermetic;
   const minor = picks?.minor ?? t.minorHermetic;
   const flaw = picks?.flaw ?? t.majorHermeticFlaw;
-  if (major) addVirtue(c, data, major, 'Major', undefined, { free: true, freeReason: 'Ex Miscellanea' });
-  if (minor) addVirtue(c, data, minor, 'Minor', picks?.minorParam ?? (traditionId === 'tempestaria' ? 'Au' : traditionId === 'beast-masters' ? 'animals' : undefined), { free: true, freeReason: 'Ex Miscellanea' });
-  if (flaw) addVirtue(c, data, flaw, 'Major', picks?.flawParam ?? t.majorHermeticFlawParam, { free: true, freeReason: 'Ex Miscellanea', noPoints: true });
+  const has = (id: string) => !!data.vfById.get(id);
+  const first = major && has(major) ? addVirtue(c, data, major, 'Major', t.majorParam, { free: true, freeReason: 'Ex Miscellanea' }) : undefined;
+  if (minor && has(minor)) addVirtue(c, data, minor, 'Minor', picks?.minorParam ?? t.minorParam, { free: true, freeReason: 'Ex Miscellanea' });
+  if (flaw && has(flaw)) addVirtue(c, data, flaw, 'Major', picks?.flawParam ?? t.majorHermeticFlawParam, { free: true, freeReason: 'Ex Miscellanea', noPoints: true });
+  // what its magi must also have, at the usual cost (a Beast Master's Animal Ken and Incompatible Arts)
+  if (picks) return;
+  for (const r of [...(t.required ?? []), ...(t.requiredFlaws ?? [])]) {
+    const def = data.vfById.get(r.id);
+    if (!def || c.virtues.some((v) => v.defId === r.id)) continue;
+    const asked = (r as { size?: VFSize }).size;
+    const size: VFSize = asked ?? (def.sizes.includes('Minor') ? 'Minor' : def.sizes[0]);
+    addVirtue(c, data, r.id, size, r.param, first ? { requiredBy: first.uid } : {});
+  }
 }
 
 export { MYTHIC_TYPES, mythicAbility, type MythicFlaw, type MythicType } from '../../data/mythic';

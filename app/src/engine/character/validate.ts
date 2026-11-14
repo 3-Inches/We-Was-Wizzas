@@ -11,7 +11,7 @@ import { LAB_ONLY_VF } from '../../data/restrictions';
 import type { Character, HouseRules } from '../types';
 import { canSpend, purchasedCharacteristic, sumAlloc, type DerivedCharacter } from './derive';
 import { creationSpellLimit } from '../magic';
-import { HOUSE_BY_ID } from '../../data/houses';
+import { EX_MISC_TRADITIONS, HOUSE_BY_ID } from '../../data/houses';
 import { abilityAvailability, statusesCompatible, vfProblems } from './restrictions';
 import { MYTHIC_TYPES, hasFaerieVirtue, mythicAbility } from './factory';
 import { POWER_KINDS, POWER_KIND_ORDER, masteryPools, powerSpending, powerStats } from './powers';
@@ -145,9 +145,12 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (house && !house.exMiscellanea && !c.virtues.some((v) => v.free && v.freeReason === 'House Virtue')) add({ id: 'house-virtue', severity: 'warning', step: 'house', message: `Choose the free House Virtue for ${house.name}: ${house.benefitText}`, ref: 'DE p.44' });
     if (house?.exMiscellanea) {
       const pkg = c.virtues.filter((v) => v.freeReason === 'Ex Miscellanea');
-      const hasMinor = pkg.some((v) => data.vfById.get(v.defId)?.categories.includes('Hermetic') && v.size === 'Minor' && data.vfById.get(v.defId)?.kind === 'virtue');
-      const hasMajor = pkg.some((v) => !data.vfById.get(v.defId)?.categories.includes('Hermetic') && v.size === 'Major' && data.vfById.get(v.defId)?.kind === 'virtue');
-      const hasFlaw = pkg.some((v) => data.vfById.get(v.defId)?.categories.includes('Hermetic') && v.size === 'Major' && data.vfById.get(v.defId)?.kind === 'flaw');
+      // a book's tradition may name a Virtue of another kind for a place (the Karaites' Holy Magic and Craft Amulets)
+      const trad = EX_MISC_TRADITIONS.find((x) => x.id === c.creation.exMiscTradition);
+      const def = (v: { defId: string }) => data.vfById.get(v.defId);
+      const hasMinor = pkg.some((v) => (v.defId === trad?.minorHermetic || def(v)?.categories.includes('Hermetic')) && v.size === 'Minor' && def(v)?.kind === 'virtue');
+      const hasMajor = pkg.some((v) => (v.defId === trad?.majorNonHermetic || !def(v)?.categories.includes('Hermetic')) && v.size === 'Major' && def(v)?.kind === 'virtue');
+      const hasFlaw = pkg.some((v) => (v.defId === trad?.majorHermeticFlaw || def(v)?.categories.includes('Hermetic')) && v.size === 'Major' && def(v)?.kind === 'flaw');
       if (!hasMinor || !hasMajor || !hasFlaw) add({ id: 'exmisc-package', severity: 'warning', step: 'house', message: 'Ex Miscellanea magi get a free Minor Hermetic Virtue, a free Major non-Hermetic Virtue, and a compulsory Major Hermetic Flaw.', ref: 'DE p.44' });
     }
     if (c.house === 'merinita' && (creating || c.seasonLog.length === 0)) {
@@ -156,6 +159,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       if (faerie && c.warpingPoints === 1) add({ id: 'merinita-warping-faerie', severity: 'warning', step: 'house', message: 'This Merinita magus has a faerie-related Virtue or Flaw, so does not take the Warping Point the House gives to magi without one.', ref: 'DE p.44', fix: 'Set Warping Points to 0 (unless another rule gave the point).' });
     }
     if (c.house === 'bjornaer' && c.familiar) add({ id: 'bjornaer-familiar', severity: 'warning', step: 'sheet', message: 'Bjornaer magi cannot bind familiars.', ref: 'DE p.233' });
+    if (c.house === 'bjornaer' && !c.heartbeast?.trim()) add({ id: 'bjornaer-heartbeast', severity: 'info', step: 'house', message: 'Choose the heartbeast: the one creature a Bjornaer magus is as well as human.', ref: 'DE, Bjornaer: The Heartbeast' });
   }
 
   // --------------------------------------------------------------- mythic companions
@@ -199,6 +203,13 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (!def.sizes.includes(v.cv.size) && !v.cv.free) add({ id: `size-${v.cv.uid}`, code: 'size', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${def.name} is normally ${def.sizes.join(' or ')}, taken as ${v.cv.size}.` });
     if (def.param && !def.param.optional && !v.cv.param) add({ id: `param-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${def.name}: choose the ${def.param.label}.` });
     for (const p of vfProblems(d, data, def, v.cv)) add({ id: p.id, code: p.code, vf: v.cv.uid, other: p.other, needIndex: p.needIndex, severity: p.severity, step: 'virtues', message: p.message, ref: p.ref, fix: p.fix });
+    // a Virtue or Flaw about an Ability the character cannot learn (Puissant Heartbeast outside House Bjornaer), unless it is what gives the Ability
+    if (def.param?.kind === 'ability' && !def.param.multiple && v.cv.param && data.abilityById.get(v.cv.param) && !def.effects?.some((e) => e.type === 'grantAbility' || e.type === 'abilityAccess')) {
+      const av = abilityAvailability(d, data, v.cv.param);
+      if (!av.ok && !c.abilities.some((a) => a.abilityId === v.cv.param)) {
+        add({ id: `vf-ability-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${v.name}: this character cannot learn ${data.abilityById.get(v.cv.param)?.name} (${av.reason ?? 'not open to them'}).` });
+      }
+    }
     if (!data.isBookEnabled(def.source.book)) add({ id: `book-${v.cv.uid}`, severity: 'info', step: 'virtues', message: `${def.name} comes from ${def.source.book}, which is not enabled for this saga.` });
     if (def.id === 'great-characteristic' && v.cv.param) {
       const base = purchasedCharacteristic(c, v.cv.param as keyof typeof c.characteristics);

@@ -68,6 +68,8 @@ export function rarity(def: VirtueFlawDef, type: CharType, size?: string): numbe
 export function markGroup(def: VirtueFlawDef): string | undefined {
   if (def.id.startsWith('horrifying-appearance') || BODY_MAJOR.includes(def.id) || BODY_MINOR.includes(def.id)) return 'body';
   if (BLOODLINES.includes(def.id)) return 'blood';
+  // only one relic helps at a time, so a second is points thrown away
+  if (def.id === 'relic' || def.id === 'powerful-relic') return 'relic';
   return undefined;
 }
 
