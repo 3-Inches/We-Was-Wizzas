@@ -3,10 +3,11 @@
 // creation numbers and rulings, its own content, overrides of a Virtue's or Flaw's mechanics, and its
 // journal. Play happens on the Game Table; characters and covenants have their own pages.
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useStore, exportSaga, exportSagaRules } from '../../store/store';
-import { usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCovenants } from '../../store/hooks';
+import { useStore, exportCharacters, exportSaga, exportSagaRules } from '../../store/store';
+import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCovenants } from '../../store/hooks';
+import { troupeOf, type CharacterStanding, type TroupePlayer } from '../../engine/troupe';
 import { sagaStart } from '../../engine/time';
 import type { Saga } from '../../engine/types';
 import { SEASONS } from '../../data';
@@ -115,6 +116,87 @@ function SagaFiles({ saga, onInvite }: { saga: Saga; onInvite: () => void }) {
   );
 }
 
+const STANDING: Record<CharacterStanding, { label: string; cls: string }> = {
+  creation: { label: 'in creation', cls: 'warn' },
+  fix: { label: 'rules to fix', cls: 'bad' },
+  finished: { label: 'finished', cls: 'good' },
+};
+
+/**
+ * The troupe: each player, their characters and how far along each is, with their sheets to save
+ * and send back after a session. Players named on the Seasons page's turn order with no character
+ * yet show as not started.
+ */
+function TroupeCard({ saga, update }: { saga: Saga; update: (fn: (s: Saga) => void) => void }) {
+  const chars = usePlayerCharacters(saga.id);
+  const data = useGameData(saga);
+  const troupe = useMemo(() => troupeOf(saga, chars, data), [saga, chars, data]);
+  const [name, setName] = useState('');
+  const save = (p: TroupePlayer) => downloadJson(`${safeFilename(saga.name)}_${safeFilename(p.name || 'unclaimed')}.arm5char.json`, exportCharacters(p.characters.map((x) => x.c.id)));
+  const withSheets = troupe.filter((p) => p.name && p.characters.length);
+  const saveAll = async () => {
+    for (const p of withSheets) {
+      save(p);
+      // one file a player; a short pause keeps the browser from dropping a download
+      await new Promise((r) => setTimeout(r, 400));
+    }
+  };
+  const addPlayer = () => {
+    const n = name.trim();
+    if (!n) return;
+    update((s) => void (s.playerOrder = [...(s.playerOrder ?? []).filter((x) => x.trim().toLowerCase() !== n.toLowerCase()), n]));
+    setName('');
+  };
+  return (
+    <Card title="The troupe" tour="troupe-card" fold="saga-troupe" summary={`${troupe.filter((p) => p.name).length} players, ${chars.filter((c) => !c.npc).length} characters`}>
+      {troupe.length === 0 && <Empty>No players yet. Add their names below, or set a player on each character&apos;s first step.</Empty>}
+      {troupe.map((p) => (
+        <div key={p.name || '__none'} className="list-row" style={{ alignItems: 'flex-start' }} data-tour="troupe-player">
+          <div style={{ flex: 1 }}>
+            <b>{p.name || 'No player named'}</b>
+            {p.characters.length === 0 ? (
+              <div className="small muted">Not started. Send them the saga&apos;s rules with Invite players.</div>
+            ) : (
+              <div className="chip-row" style={{ marginTop: 3 }}>
+                {p.characters.map((x) => (
+                  <Link key={x.c.id} to={R.character(saga.id, x.c)} className="small" title={x.errors || x.warnings ? `${x.errors} to fix, ${x.warnings} to look at` : undefined}>
+                    {x.c.name || 'Unnamed'} <span className="muted">({x.c.type === 'mythic' ? 'Mythic Companion' : x.c.type})</span> <span className={`badge ${STANDING[x.standing].cls}`}>{STANDING[x.standing].label}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          {p.name && p.characters.length > 0 && (
+            <button className="small" onClick={() => save(p)} title={`Save ${p.name}'s characters as one file, to send back to them`}>
+              Save their sheets
+            </button>
+          )}
+          {p.name && p.characters.length === 0 && (
+            <button className="small ghost" onClick={() => update((s) => void (s.playerOrder = (s.playerOrder ?? []).filter((x) => x.trim().toLowerCase() !== p.name.toLowerCase())))} aria-label={`Remove ${p.name}`}>
+              ✕
+            </button>
+          )}
+        </div>
+      ))}
+      <div className="row" style={{ marginTop: 8 }}>
+        <input value={name} placeholder="A player's name" onChange={(e) => setName(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && addPlayer()} aria-label="A player's name" style={{ flex: '1 1 160px' }} />
+        <button onClick={addPlayer} disabled={!name.trim()}>
+          Add player
+        </button>
+        {withSheets.length > 1 && (
+          <button onClick={saveAll} data-tour="troupe-save-all" title="One file for each player, named for them: their sheets as they stand after the session">
+            Save every player&apos;s sheets
+          </button>
+        )}
+      </div>
+      <p className="small muted" style={{ marginBottom: 0 }}>
+        After a session, save each player&apos;s sheets and send them back: opening the file replaces their copies with yours, and shows them what changed. A character&apos;s player is set
+        on its first step; the order here is the turn order on the Seasons page.
+      </p>
+    </Card>
+  );
+}
+
 /** The saga itself: its name, Tribunal, description, when it began, the guided build's settings, and what it holds. */
 function SagaSettings({ saga, update }: { saga: Saga; update: (fn: (s: Saga) => void) => void }) {
   const chars = usePlayerCharacters(saga.id);
@@ -163,6 +245,7 @@ function SagaSettings({ saga, update }: { saga: Saga; update: (fn: (s: Saga) => 
           <textarea rows={4} value={saga.description} onChange={(e) => update((s) => void (s.description = e.target.value))} />
         </Field>
       </Card>
+      <TroupeCard saga={saga} update={update} />
       <Card title="What the saga holds">
         <div className="list-row">
           <span style={{ flex: 1 }}>

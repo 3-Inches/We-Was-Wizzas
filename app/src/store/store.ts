@@ -611,6 +611,12 @@ export function exportSagaRules(sagaId: string): ExportBundle {
   return { format: 'arm5-toolkit', kind: 'saga', version: SCHEMA_VERSION, exportedAt: new Date().toISOString(), rulesOnly: true, saga };
 }
 
+/** Several characters in one file: a player's sheets, sent back after a session. */
+export function exportCharacters(ids: string[]): ExportBundle {
+  const st = useStore.getState();
+  return { format: 'arm5-toolkit', kind: 'character', version: SCHEMA_VERSION, exportedAt: new Date().toISOString(), characters: ids.map((id) => st.characters[id]).filter(Boolean) };
+}
+
 export function exportCharacter(id: string): ExportBundle {
   const c = useStore.getState().characters[id];
   return { format: 'arm5-toolkit', kind: 'character', version: SCHEMA_VERSION, exportedAt: new Date().toISOString(), characters: [c] };

@@ -339,6 +339,11 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .chip.muted { opacity: 0.45; cursor: not-allowed; }
 .warn-text { color: var(--warn); }
 ol.steps { margin: 0 0 6px; padding-left: 1.3em; }
+ul.changes { margin: 4px 0; padding-left: 1.1em; list-style: none; }
+ul.changes li { margin: 1px 0; }
+ul.changes .change-added b { color: var(--good, green); }
+ul.changes .change-removed b { color: var(--bad, crimson); }
+ul.changes .change-changed b { color: var(--accent); }
 ol.steps li { margin-bottom: 5px; }
 .bad-text { color: var(--bad); }
 .good-text { color: var(--good); }

@@ -40,6 +40,7 @@ export default function HomePage() {
             Begin a new saga
           </button>
           <button
+            data-tour="import-file"
             onClick={async () => {
               try {
                 const b = await pickJsonFile();
@@ -99,6 +100,9 @@ export default function HomePage() {
             <li>Create your character on the saga's <b>People</b> page. The guided build asks what you want to play and drafts it with you.</li>
             <li>On the character sheet press <b>Share</b> and send the file to your storyguide.</li>
           </ol>
+          <p className="small">
+            The Guide&apos;s tutorial <Link to="/help#tutorials">For players: make your character and send it to the storyguide</Link> walks through it.
+          </p>
           <p className="small muted">Everything is stored in this browser. Export regularly to keep backups.</p>
         </Card>
         <Card title="For storyguides">
