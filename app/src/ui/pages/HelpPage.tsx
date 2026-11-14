@@ -775,10 +775,17 @@ export default function HelpPage() {
             </li>
             <li>
               <b>The storyguide</b> opens what was sent, or uses <b>Import character / covenant…</b> on the Saga Overview. The Import page shows each character before it joins
-              and can place it in the covenant.
+              and can place it in the covenant. A character sent again shows <b>What changed</b> against the copy already there before it replaces it.
+            </li>
+            <li>
+              <b>After a session</b>, the Saga Overview&apos;s <b>Troupe</b> card saves each player&apos;s characters as a file named for them (<b>Save their sheets</b>), to send
+              back so their copies stay current. The card also shows how far along each character is.
             </li>
             <li>A player who would rather not: build the character for them with Quick build or the guided build, set their name as the player, and Share it to them to look over.</li>
           </ol>
+          <p className="small">
+            New players can take the tutorial <b>For players: make your character and send it to the storyguide</b> (under Start here), which walks from the invitation to sending the file.
+          </p>
           <ul className="small">
             <li>
               <b>Send files, not links,</b> for anything but the smallest sheet: a finished magus makes a link several times longer than a Discord message allows, and it arrives
