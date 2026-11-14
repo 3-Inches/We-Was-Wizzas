@@ -72,6 +72,11 @@ export interface GenOptions {
   /** a magus: a familiar, bound before play if the Lab Total reaches it */
   familiar?: boolean;
   variety: Variety;
+  /**
+   * plain: the Virtues and Flaws of the core book only, whatever books the saga uses (those its role
+   * or Mythic type, the House or its tradition require, and the saga's own, still come)
+   */
+  coreOnly?: boolean;
   /** a storyguide's NPC, finished and ready to play; else a player's draft at the Review step */
   npc: boolean;
   /** finished and ready to play without being an NPC (the covenant's grogs) */
@@ -210,6 +215,13 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     const hedge = data.virtuesFlaws.filter((d) => d.kind === 'virtue' && d.categories.includes('Supernatural') && !MUNDANE_BOOKS.includes(d.source.book)).map((d) => d.id);
     // unless the player asked for one by name
     st.declined = [...new Set([...st.declined, ...hedge.filter((id) => o.answers?.[`vf:${id}`] === undefined)])];
+  }
+  if (o.coreOnly) {
+    const custom = new Set(saga.custom?.virtuesFlaws?.map((v) => v.id) ?? []);
+    const asked = (id: string) => o.answers?.[`vf:${id}`] !== undefined || role.answers?.[`vf:${id}`] !== undefined;
+    const beyond = data.virtuesFlaws.filter((d) => d.source.book !== 'DE' && !d.alsoIn?.some((a) => a.book === 'DE') && !custom.has(d.id) && !asked(d.id)).map((d) => d.id);
+    st.declined = [...new Set([...st.declined, ...beyond])];
+    log.push('Plain: the core book’s Virtues and Flaws only.');
   }
   const res = autoBuild(c, st, { data, rules, saga, covenant: g.covenant, archetypes: c.creation.archetypes, rng });
   if (favorites.length) log.unshift(`Favorite Arts: ${favorites.join(', ')}.`);
