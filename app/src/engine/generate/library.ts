@@ -239,7 +239,7 @@ export function stockLibrary(cov: Covenant, members: Character[], g: { data: Gam
       if (budget < 2) break;
       // spread: no Technique or Form more than twice
       if ((perArt.get(p.t) ?? 0) >= 2 || (perArt.get(p.f) ?? 0) >= 2) continue;
-      const pool = g.data.spells.filter((s) => s.technique === p.t && s.form === p.f && s.level !== null && !s.general && s.level >= 10 && s.level <= Math.min(p.lt, maxText) && !known.has(s.id) && g.data.isBookEnabled(s.source.book));
+      const pool = g.data.spells.filter((s) => s.technique === p.t && s.form === p.f && s.level !== null && !s.general && s.level >= 10 && s.level <= Math.min(p.lt, maxText) && !known.has(s.id) && g.data.inBooks(s));
       const s = pool.sort((a, b) => b.level! - a.level!).slice(0, 4)[between(rng, 0, Math.min(3, pool.length - 1))];
       if (!s) continue;
       const cost = Math.ceil(s.level! / 5);

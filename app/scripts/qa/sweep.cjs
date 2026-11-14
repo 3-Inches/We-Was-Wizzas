@@ -54,6 +54,8 @@ async function sweep(width) {
   await page.waitForSelector('text=Begin a new saga');
   const [chooser] = await Promise.all([page.waitForEvent('filechooser'), page.getByRole('button', { name: 'Import file…' }).click()]);
   await chooser.setFiles(file);
+  // the Import page shows what the file holds; the saga comes in when that is confirmed
+  await page.locator('[data-tour="import-go"]').click();
   await page.waitForURL(/\/saga\//);
   await page.waitForTimeout(800);
   const sid = page.url().split('?')[0].split('/saga/')[1];

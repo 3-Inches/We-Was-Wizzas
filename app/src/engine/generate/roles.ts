@@ -49,6 +49,7 @@ const COMPANIONS: Role[] = [
   { id: 'redcap', label: 'Redcap', type: 'companion', blurb: 'A messenger of House Mercere without the Gift, who carries the Order’s letters and news.', themes: ['explorer', 'social'], answers: { 'h-outdoors': 7, 'h-social': 7 }, status: 'redcap', gear: 'light', traits: ['Well-Traveled', 'Talkative', 'Loyal to the Order'], ages: [20, 60] },
   { id: 'scholar', label: 'Scholar', type: 'companion', blurb: 'Learned in the liberal arts, law or theology.', themes: ['scholar'], answers: { 'h-scholar': 10, 'e-study': 7 }, gear: 'light', traits: ['Curious', 'Pedantic'], ages: [22, 50] },
   { id: 'priest', label: 'Priest', type: 'companion', blurb: 'Serves the Church, and perhaps the covenant’s conscience.', themes: ['faith', 'scholar'], answers: { 'g-church': 9, 'f-divine': 7, 'h-scholar': 6 }, status: 'priest', gear: 'light', traits: ['Pious', 'Charitable'], ages: [25, 55] },
+  { id: 'holy-worker', label: 'Holy wonder-worker', type: 'companion', blurb: 'Works wonders through prayer: a Holy Method and a Power it calls, and the faith behind them (Realms of Power: The Divine).', themes: ['faith'], answers: { 'f-divine': 10, 'f-divine-faith': 10, 'f-divine-powers': 10, 'g-good': 8 }, gear: 'light', traits: ['Pious', 'Humble', 'Compassionate', 'Patient'], ages: [25, 50] },
   { id: 'merchant', label: 'Merchant', type: 'companion', blurb: 'Buys, sells and knows the price of everything.', themes: ['craftsman', 'noble'], answers: { 'g-wealth': 8, 'h-social': 7 }, status: 'merchant', profession: 'Merchant', gear: 'light', traits: ['Shrewd', 'Greedy', 'Generous'], ages: [22, 50] },
   { id: 'master-craftsman', label: 'Master craftsman', type: 'companion', blurb: 'Runs a workshop; perhaps a guild master.', themes: ['craftsman'], answers: { 'h-craft': 10, 'h-lead': 6 }, craft: true, gear: 'light', traits: ['Proud of their work', 'Thrifty'], ages: [30, 55] },
   { id: 'spy', label: 'Spy or thief', type: 'companion', blurb: 'Goes where others cannot, and hears what others miss.', themes: ['rogue'], answers: { 'h-stealth': 10, 'h-social': 6, 'g-secret': 6 }, gear: 'light', traits: ['Sly', 'Cautious'], ages: [18, 40] },
@@ -64,7 +65,7 @@ const MAGI: Role[] = ARCHETYPES.filter((a) => !a.forTypes || a.forTypes.includes
 }));
 
 const MYTHIC: Role[] = Object.entries(MYTHIC_TYPES).map(([id, t]) => ({
-  id: `mythic-${id}`, label: t.label, type: 'mythic', blurb: `A Mythic Companion: ${t.label}.`, themes: [], mythic: id, traits: [], ages: [20, 40],
+  id: `mythic-${id}`, label: t.label, type: 'mythic', blurb: `A Mythic Companion: ${t.label}.`, themes: t.themes ?? [], answers: t.answers, status: t.status, mythic: id, traits: [], ages: [20, 40],
 }));
 
 export const ROLES: Role[] = [...GROGS, ...COMPANIONS, ...MAGI, ...MYTHIC];

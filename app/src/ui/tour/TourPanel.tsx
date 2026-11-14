@@ -11,6 +11,7 @@ import { visibleSteps } from '../character/wizardSteps';
 import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, nextTour, startTour, tourNeeds, type Tour, type TourCtx, type TourStep } from './tours';
 import { ACTIONS, PRACTICE_NOTE, isPracticeCovenant, makePractice } from './actions';
 import { isTrade } from '../../engine/workshop';
+import { HOLY_METHODS, HOLY_POWERS } from '../../data/divine';
 
 /** Open or close the menu, which a phone keeps behind ☰ (App listens). */
 function sidebarOpen(open: boolean) {
@@ -55,6 +56,11 @@ function findTarget(names: string[]): HTMLElement | null {
 /** A craftsman's or merchant's livelihood to show. */
 const hasTrade = (c: Character) => !!c.workshop || c.abilities.some((a) => isTrade(a.abilityId));
 
+/** One who works holy powers: a Holy Method and a Holy Power (the Virtues; whether they go together the page says). */
+const HOLY_METHOD_IDS = new Set(HOLY_METHODS.map((m) => m.id));
+const HOLY_POWER_IDS = new Set(HOLY_POWERS.map((p) => (p.id === 'blessing' ? 'blessing-power' : p.id)));
+const hasHoly = (c: Character) => c.virtues.some((v) => HOLY_METHOD_IDS.has(v.defId)) && c.virtues.some((v) => HOLY_POWER_IDS.has(v.defId));
+
 /** The saga, character and covenant the tour works on: what it has found so far, else what is open. */
 function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: string): TourCtx {
   const characters = useStore((s) => s.characters);
@@ -83,8 +89,10 @@ function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: stri
       : tour.wantsDraft
         ? (made ?? newest(drafts))
         : (made ??
-          // a tutorial about a livelihood follows only someone who has one (else it offers a practice craftsman)
-          (tour.prefersTrade ? newest(finished.filter(hasTrade)) : newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga)));
+          // a tutorial about a livelihood follows by itself only someone whose workshop is set up: its steps press the
+          // workshop's own controls (one with a trade and no workshop yet can still be chosen; else a practice craftsman)
+          // one about holy powers follows only someone who works them (else it offers a practice wonder-worker)
+          (tour.prefersTrade ? newest(finished.filter((c) => !!c.workshop)) : tour.prefersHoly ? newest(finished.filter(hasHoly)) : newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga)));
     const charId = fits(t.charId) ? t.charId : m?.[2] === 'character' && fits(m[3]) ? m[3] : fallback?.id;
     const covs = Object.values(covenants).filter((c) => c.sagaId === sagaId && !c.living);
     const covId = t.covId && covenants[t.covId]?.sagaId === sagaId ? t.covId : m?.[2] === 'covenant' && covenants[m[3]] ? m[3] : newest(covs)?.id;
@@ -375,7 +383,7 @@ function WorkingOn({ tour, ctx }: { tour: Tour; ctx: TourCtx }) {
   const livingIds = new Set(living.map((c) => c.id));
   const chars = Object.values(characters)
     .filter((c) => c.sagaId === ctx.sagaId && !npcs.has(c.id) && !(c.covenantId && livingIds.has(c.covenantId)) && !c.wounds.dead)
-    .filter((c) => (!tour.charType || c.type === tour.charType) && (tour.wantsDraft ? !c.creation.finalized : c.creation.finalized) && (!tour.prefersTrade || hasTrade(c)))
+    .filter((c) => (!tour.charType || c.type === tour.charType) && (tour.wantsDraft ? !c.creation.finalized : c.creation.finalized) && (!tour.prefersTrade || hasTrade(c)) && (!tour.prefersHoly || hasHoly(c)))
     .sort((a, b) => a.name.localeCompare(b.name));
   const covs = Object.values(covenants).filter((c) => c.sagaId === ctx.sagaId && !c.living);
   // go on to the step's page with what was chosen

@@ -55,7 +55,7 @@ export default function SpellsPage() {
       <Hint id="spells-how"><b>Browse spells</b> to find and learn them; <b>Design a spell</b> works one out from a guideline, Range, Duration and Target. Pick a magus above to see their Casting Scores.</Hint>
       <Tabs
         tabs={[
-          { id: 'browse', label: `Browse spells (${data.spells.filter((s) => data.isBookEnabled(s.source.book)).length})` },
+          { id: 'browse', label: `Browse spells (${data.spells.filter((s) => data.inBooks(s)).length})` },
           { id: 'design', label: 'Design a spell' },
           { id: 'guidelines', label: 'Guidelines' },
         ]}
@@ -100,7 +100,7 @@ function Browse({ charId, onMsg }: { charId: string; onMsg: (s: string) => void 
   const results = useMemo(() => {
     const qq = q.toLowerCase();
     return data.spells
-      .filter((s) => data.isBookEnabled(s.source.book))
+      .filter((s) => data.inBooks(s))
       .filter((s) => (!te || s.technique === te) && (!fo || s.form === fo || s.requisites.includes(fo as Art)))
       .filter((s) => s.general || ((s.level ?? 0) >= minL && (s.level ?? 0) <= maxL))
       .filter((s) => ritual === 'any' || (ritual === 'yes') === s.ritual)

@@ -30,6 +30,7 @@ import { abilityXpForScore } from '../xp';
 import { CRAFTS as COVENANT_CRAFTS } from '../covenantRules';
 import { uid } from '../../util/id';
 import { visibleSteps } from '../../ui/character/wizardSteps';
+import { MYTHIC_TYPES } from '../../data/mythic';
 import { freshName, homelandGroupFor, regionOf } from './names';
 import { generateFamiliar, pickSpells, type SpellPick } from './spellsAndFamiliars';
 import { COMMON_TRAITS, ROLE_BY_ID, rolesFor, type Role } from './roles';
@@ -131,7 +132,9 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     female = !female;
     c.gender = female ? 'Female' : 'Male';
   }
-  const group = HOMELANDS.find((h) => h.label === o.homeland) ?? homelandGroupFor(saga.tribunal) ?? pick(rng, HOMELANDS);
+  // a zahid is of Muslim lands and a kabbalist of a Jewish community, wherever the saga is set
+  const typeSociety = role.mythic ? MYTHIC_TYPES[role.mythic]?.society : undefined;
+  const group = HOMELANDS.find((h) => h.label === o.homeland) ?? (typeSociety ? HOMELANDS.find((h) => h.culture === typeSociety) : undefined) ?? homelandGroupFor(saga.tribunal) ?? pick(rng, HOMELANDS);
   c.nationality = pick(rng, group.options);
   c.society = group.culture;
   c.name = freshName(rng, o.type === 'magus' ? 'latin' : regionOf(group), female, o.avoidNames);
@@ -198,6 +201,8 @@ function attempt(o: GenOptions, g: GenContext): Generated {
     { c, d: derive(), data, rules, saga, covenant: g.covenant, archetypes: c.creation.archetypes },
   ).state;
   if (house) st.house = house;
+  // Virtues and Flaws asked for by name ('vf:<id>') are answers too: the quiz never asks them, so they are carried over
+  for (const [k, v] of Object.entries({ ...role.answers, ...o.answers })) if (k.startsWith('vf:')) st.answers[k] = v;
   // a craftsman, knight or merchant is no hedge wizard: the Supernatural Virtues of the hedge
   // traditions and the Realms books (Craft Amulets, Mythic Alchemy, Type Refining) go to characters
   // whose concept is mystical; the core book's (Second Sight, Eye of Hephaestus) stay open to anyone

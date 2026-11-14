@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { HOUSES, HOUSE_BY_ID, EX_MISC_TRADITIONS } from '../../../data/houses';
-import { applyExMiscTradition, applyMythicType, MYTHIC_TYPES, setHouse } from '../../../engine/character/factory';
+import { HEARTBEASTS, HOUSES, HOUSE_BY_ID, EX_MISC_TRADITIONS } from '../../../data/houses';
+import { applyExMiscTradition, applyMythicType, mythicAbility, MYTHIC_TYPES, setHouse } from '../../../engine/character/factory';
 import { Card, BookBadge } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { vfDisplayName } from '../../../engine/character/derive';
 import { VFText } from '../../VFText';
+import ParamInput from '../ParamInput';
 
 export default function HouseStep({ ed }: { ed: CharEditor }) {
   const { c } = ed;
@@ -16,7 +17,9 @@ function MagusHouseStep({ ed }: { ed: CharEditor }) {
   const { c, update, data } = ed;
   const [jerbitonPick, setJerbitonPick] = useState('');
   const [jerbitonParam, setJerbitonParam] = useState('');
+  const [jerbitonAny, setJerbitonAny] = useState(false);
   if (!c) return null;
+  const jerbitonSpec = jerbitonPick ? data.vfById.get(jerbitonPick)?.param : undefined;
   const house = c.house ? HOUSE_BY_ID[c.house] : undefined;
   const houseFree = c.virtues.filter((v) => v.freeReason === 'House Virtue' || v.freeReason === 'Ex Miscellanea');
   return (
@@ -28,7 +31,8 @@ function MagusHouseStep({ ed }: { ed: CharEditor }) {
             <div
               key={h.id}
               className={`vf-item clickable ${c.house === h.id ? 'taken' : ''}`}
-              onClick={() => update((x) => setHouse(x, data, h.id, 0))}
+              // choosing the House again would take back the Virtue or tradition already chosen for it
+              onClick={() => c.house !== h.id && update((x) => setHouse(x, data, h.id, 0))}
             >
               <div className="row between">
                 <span className="name" style={{ fontFamily: 'var(--font-head)' }}>
@@ -60,7 +64,7 @@ function MagusHouseStep({ ed }: { ed: CharEditor }) {
       {house?.freeChoiceFrom && (
         <Card title="Jerbiton: choose a Minor Virtue relating to scholarship, arts, or mundane interaction">
           <div className="row">
-            <select value={jerbitonPick} onChange={(e) => setJerbitonPick(e.target.value)}>
+            <select value={jerbitonPick} aria-label="Jerbiton House Virtue" onChange={(e) => { setJerbitonPick(e.target.value); setJerbitonParam(''); }}>
               <option value="">— choose —</option>
               {house.freeChoiceFrom.map((id) => {
                 const v = data.vfById.get(id);
@@ -71,14 +75,25 @@ function MagusHouseStep({ ed }: { ed: CharEditor }) {
                 ) : null;
               })}
             </select>
-            {jerbitonPick && data.vfById.get(jerbitonPick)?.param && (
-              <input placeholder={data.vfById.get(jerbitonPick)?.param?.label} value={jerbitonParam} onChange={(e) => setJerbitonParam(e.target.value)} />
+            {jerbitonSpec && (
+              <ParamInput
+                // an Ability of scholarship, art or dealing with people, unless the troupe agrees to another
+                spec={jerbitonSpec.kind === 'ability' && !jerbitonAny ? { ...jerbitonSpec, options: house.freeChoiceAbilities } : jerbitonSpec}
+                value={jerbitonParam}
+                data={data}
+                onChange={setJerbitonParam}
+              />
             )}
-            <button disabled={!jerbitonPick} onClick={() => update((x) => setHouse(x, data, 'jerbiton', 0, { defId: jerbitonPick, param: jerbitonParam || undefined }))}>
+            {jerbitonSpec?.kind === 'ability' && (
+              <label className="small">
+                <input type="checkbox" checked={jerbitonAny} onChange={(e) => setJerbitonAny(e.target.checked)} /> any Ability (with the troupe's agreement)
+              </label>
+            )}
+            <button disabled={!jerbitonPick || (!!jerbitonSpec && !jerbitonParam)} onClick={() => update((x) => setHouse(x, data, 'jerbiton', 0, { defId: jerbitonPick, param: jerbitonParam || undefined }))}>
               Take as House Virtue
             </button>
           </div>
-          <p className="small muted">The list is a suggestion; any Minor Virtue fitting the theme is allowed with the troupe's approval (use the Virtues step and mark it free).</p>
+          <p className="small muted">The list is the one in Houses of Hermes: Societates, with others of the core book that fit. Any Minor Virtue fitting the theme is allowed with the troupe's approval (use the Virtues step and mark it free).</p>
         </Card>
       )}
 
@@ -88,13 +103,17 @@ function MagusHouseStep({ ed }: { ed: CharEditor }) {
             You receive a free Minor Hermetic Virtue, a free Major non-Hermetic Virtue, and a compulsory Major Hermetic Flaw (which gives no Virtue points). These are in addition to your normal allowance.
           </p>
           <div className="grid grid-2">
-            {EX_MISC_TRADITIONS.map((t) => (
+            {EX_MISC_TRADITIONS.filter((t) => t.id === 'custom' || (data.isBookEnabled(t.source) && [t.majorNonHermetic, t.minorHermetic, t.majorHermeticFlaw].every((id) => data.vfById.get(id)))).map((t) => (
               <div key={t.id} className={`vf-item clickable ${c.creation.exMiscTradition === t.id ? 'taken' : ''}`} onClick={() => update((x) => applyExMiscTradition(x, data, t.id))}>
-                <div className="name">{t.name}</div>
+                <div className="row between">
+                  <span className="name">{t.name}</span>
+                  {t.id !== 'custom' && <BookBadge book={t.source} />}
+                </div>
                 <div className="small soft">{t.notes}</div>
                 {t.majorNonHermetic && (
                   <div className="small">
-                    {data.vfById.get(t.majorNonHermetic)?.name} · {data.vfById.get(t.minorHermetic)?.name} · {data.vfById.get(t.majorHermeticFlaw)?.name}
+                    {[[t.majorNonHermetic, t.majorParam], [t.minorHermetic, t.minorParam], [t.majorHermeticFlaw, t.majorHermeticFlawParam]].map(([id, param]) => vfDisplayName(data.vfById.get(id!), { uid: '', defId: id!, size: 'Minor', param }, data)).join(' · ')}
+                    {(t.required?.length || t.requiredFlaws?.length) ? <span className="muted"> · also {[...(t.required ?? []), ...(t.requiredFlaws ?? [])].map((r) => data.vfById.get(r.id)?.name).join(', ')}</span> : null}
                   </div>
                 )}
               </div>
@@ -115,6 +134,18 @@ function MagusHouseStep({ ed }: { ed: CharEditor }) {
             <b>Free Virtues granted:</b>{' '}
             {houseFree.length ? houseFree.map((v) => vfDisplayName(data.vfById.get(v.defId), v, data)).join(', ') : <i>none yet</i>}
           </div>
+          {house.id === 'bjornaer' && (
+            <label className="field" data-tour="heartbeast" style={{ maxWidth: 320 }}>
+              <span>Your heartbeast</span>
+              <input list="heartbeasts" value={c.heartbeast ?? ''} placeholder="wolf, bear, raven…" onChange={(e) => update((x) => void (x.heartbeast = e.target.value || undefined))} />
+              <datalist id="heartbeasts">
+                {HEARTBEASTS.map((b) => (
+                  <option key={b} value={b} />
+                ))}
+              </datalist>
+              <span className="small muted">The one mundane creature the magus is as well as human: usually a noble beast or bird, and a mirror of their nature. It cannot be changed later.</span>
+            </label>
+          )}
           <p className="small muted">Domus Magna: {house.domusMagna}</p>
           <HouseTemplateInfo houseId={house.id} />
         </Card>
@@ -169,7 +200,18 @@ function HouseTemplateInfo({ houseId }: { houseId: string }) {
 function MythicTypeStep({ ed }: { ed: CharEditor }) {
   const { c, update, data } = ed;
   if (!c) return null;
-  const current = Object.entries(MYTHIC_TYPES).find(([, t]) => c.virtues.some((v) => v.defId === t.virtue));
+  const current = Object.entries(MYTHIC_TYPES).find(([, t]) => c.virtues.some((v) => v.defId === t.virtue && v.freeReason === 'Mythic Companion'));
+  const idOf = (x: string | { id: string }) => (typeof x === 'string' ? x : x.id);
+  const nameOf = (x: string | { id: string; param?: string }) => {
+    const def = data.vfById.get(idOf(x));
+    const param = typeof x === 'string' ? undefined : x.param;
+    return def ? vfDisplayName(def, { uid: '', defId: def.id, size: def.sizes[0], param }, data) : idOf(x);
+  };
+  const abilityName = (key: string) => {
+    const { id, param } = mythicAbility(key);
+    const name = data.abilityById.get(id)?.name ?? id;
+    return param ? name.replace(/\([^)]*\)/, param).replace(/^Organization Lore$/, `${param} Lore`) : name;
+  };
   return (
     <Card title="Mythic Companion type" className="accent">
       <p className="small soft">
@@ -179,22 +221,23 @@ function MythicTypeStep({ ed }: { ed: CharEditor }) {
         {Object.entries(MYTHIC_TYPES).map(([id, t]) => {
           const def = data.vfById.get(t.virtue);
           return (
-            <div key={id} className={`vf-item clickable ${current?.[0] === id ? 'taken' : ''}`} onClick={() => update((x) => applyMythicType(x, data, id))}>
+            <div key={id} className={`vf-item clickable ${current?.[0] === id ? 'taken' : ''}`} onClick={() => update((x) => applyMythicType(x, data, id))} data-tour={`mythic-${id}`}>
               <div className="row between">
                 <span className="name">{t.label}</span>
-                {def && <BookBadge book={def.source.book} anchor={def.source.anchor} />}
+                {def && <BookBadge book={t.book ?? def.source.book} anchor={t.book ? undefined : def.source.anchor} />}
               </div>
               <div className="small">
-                <b>Required:</b> {[...t.requiredVirtues, ...t.requiredFlaws].map((x) => data.vfById.get(x)?.name ?? x).join(', ')}
+                <b>Required:</b> {[...t.requiredVirtues, ...t.requiredFlaws].map(nameOf).join(', ')}
               </div>
               <div className="small">
-                <b>Free Minor:</b> {data.vfById.get(t.freeMinor)?.name}
+                <b>Free Minor:</b> {t.freeMinor ? data.vfById.get(t.freeMinor)?.name : 'one of your choice (tick Free on it in the next step)'}
               </div>
               {Object.keys(t.minAbilities).length > 0 && (
                 <div className="small muted">
-                  Minimum Abilities: {Object.entries(t.minAbilities).map(([a, s]) => `${data.abilityById.get(a)?.name ?? a} ${s}`).join(', ')}
+                  Minimum Abilities: {Object.entries(t.minAbilities).map(([a, s]) => `${abilityName(a)} ${s}`).join(', ')}
                 </div>
               )}
+              {t.note && <div className="small muted">{t.note}</div>}
             </div>
           );
         })}

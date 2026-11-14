@@ -435,7 +435,14 @@ export const MECHANICS: Record<string, Mechanics> = {
     ],
     tags: ['divine'],
   },
-  zahid: { forTypes: ['mythic'], requires: ['true-faith', 'meditation', 'understanding', 'second-sight'], tags: ['divine'] },
+  zahid: {
+    forTypes: ['mythic'], requires: ['true-faith', 'meditation', 'understanding', 'second-sight'], tags: ['divine'],
+    effects: [{ type: 'abilityAccess', abilities: ['dominion-lore', 'islamic-law', 'theology-islam'], note: 'Dominion Lore, Islamic Law and Theology: Islam, the least scores a zahid begins with' }],
+  },
+  // "compatible with all other Social Status Virtues and Flaws"; its least scores include Dominion Lore
+  // who the character is among strangers, beside what they do: the books give Jews and Muslims in Christian lands Outsider and a status of their own (RoP: The Divine, Mythic Judaism)
+  'outsider-flaw': { compatibleStatuses: ['*'] },
+  kabbalist: { compatibleStatuses: ['*'], effects: [{ type: 'abilityAccess', abilities: ['dominion-lore'], note: 'Dominion Lore, among the least scores a kabbalist begins with' }], tags: ['divine'] },
   'eremite-flaw': { effects: [note('Belongs to no holy tradition: learns no Supernatural Ability from a tradition, favored or not.')], tags: ['divine'] },
   'non-traditional-flaw': { effects: [note('No holy tradition: no favored Abilities; Supernatural Abilities learned only with the study penalty, from those willing to teach.')], tags: ['divine'] },
   'heroic-personality-flaw': {

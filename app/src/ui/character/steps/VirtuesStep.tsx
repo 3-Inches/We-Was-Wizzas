@@ -188,7 +188,7 @@ function VirtueBrowser({ ed }: { ed: CharEditor }) {
       .filter((v) => (kind === 'all' ? true : v.kind === kind))
       .filter((v) => (cats.length ? v.categories.some((x) => cats.includes(x)) : true))
       .filter((v) => (size === 'all' ? true : v.sizes.includes(size)))
-      .filter((v) => (source === 'DE' ? v.source.book === 'DE' : source === 'enabled' ? data.isBookEnabled(v.source.book) : true))
+      .filter((v) => (source === 'DE' ? v.source.book === 'DE' : source === 'enabled' ? data.inBooks(v) : true))
       .filter((v) => showCreature || !v.creatureOnly)
       .filter((v) => tagFilter.every((t) => v.ruleTags?.some((x) => x.id === t.id)))
       .filter((v) => quick.every((id) => quicks.find((f) => f.id === id)?.test(v) ?? true))

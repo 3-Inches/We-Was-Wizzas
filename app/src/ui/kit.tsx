@@ -31,8 +31,8 @@ const narrowScreen = () => typeof window !== 'undefined' && !!window.matchMedia?
  * first on a phone, open on a wider screen, and remembered either way. A tutorial unfolds the card it
  * points at with its own toggle, as a reader would; the page looks the same with a tutorial or without.
  */
-export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string; tour?: string; fold?: string; summary?: ReactNode }) {
-  const [open, setOpenState] = useState(() => (props.fold ? (readFolds()[props.fold] ?? !narrowScreen()) : true));
+export function Card(props: { title?: ReactNode; actions?: ReactNode; children?: ReactNode; className?: string; id?: string; tour?: string; fold?: string; summary?: ReactNode; /** open on a phone too until the reader folds it: the one thing to do on an empty page */ startOpen?: boolean }) {
+  const [open, setOpenState] = useState(() => (props.fold ? (readFolds()[props.fold] ?? (props.startOpen || !narrowScreen())) : true));
   const setOpen = (v: boolean) => {
     setOpenState(v);
     if (!props.fold) return;

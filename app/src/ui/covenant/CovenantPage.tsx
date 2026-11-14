@@ -6,6 +6,7 @@ import type { Covenant } from '../../engine/types';
 import { exportCovenant, useStore } from '../../store/store';
 import { useDerivedCovenant, useGameData, useSaga, useSagaCharacters } from '../../store/hooks';
 import { bundleToShareLink, downloadJson, safeFilename } from '../../util/files';
+import ShareCard from '../ShareCard';
 import { uid } from '../../util/id';
 import { BookBadge, Card, Empty, Field, Meter, SelectOrType, Stepper, Tabs, HowItWorks } from '../kit';
 import { TRIBUNALS } from '../../data/lists';
@@ -58,8 +59,9 @@ export default function CovenantPage() {
           {cov.name || 'Unnamed covenant'} <span className="badge">{cov.season}</span> <span className="badge">{cov.powerLevel}</span>
         </h1>
         <div className="row no-print">
-          <button onClick={() => downloadJson(`${safeFilename(cov.name)}.arm5cov.json`, exportCovenant(cov.id))}>Export</button>
-          <button onClick={() => setShare(bundleToShareLink(exportCovenant(cov.id)))}>Share link</button>
+          <button onClick={() => setShare(bundleToShareLink(exportCovenant(cov.id)))} title="Send this covenant and its members to someone, as a file or a link">
+            Share / Export
+          </button>
           <button onClick={() => window.print()}>Print</button>
           <button
             className="danger"
@@ -88,13 +90,9 @@ export default function CovenantPage() {
         </div>
       )}
       {share && (
-        <Card title="Share this covenant" actions={<button className="small ghost" onClick={() => setShare('')}>✕</button>}>
-          <div className="row">
-            <input readOnly value={share} style={{ flex: 1 }} onFocus={(e) => e.target.select()} />
-            <button onClick={() => navigator.clipboard?.writeText(share)}>Copy</button>
-          </div>
-          <p className="small muted">{share.length.toLocaleString()} characters. For big covenants use Export and send the file.</p>
-        </Card>
+        <ShareCard title={`Send ${cov.name || 'this covenant'} to someone`} link={share} onClose={() => setShare('')} onDownload={() => downloadJson(`${safeFilename(cov.name)}.arm5cov.json`, exportCovenant(cov.id))}>
+          <p className="small">The covenant goes with its members' character sheets. Whoever opens it chooses the saga it joins.</p>
+        </ShareCard>
       )}
       <div className="row" style={{ marginBottom: 10 }}>
         {/* a living covenant is built from its book, not bought with Build Points, and its Boons and Hooks need not balance */}

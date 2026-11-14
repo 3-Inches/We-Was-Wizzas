@@ -4,15 +4,16 @@
 // journal. Play happens on the Game Table; characters and covenants have their own pages.
 
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useStore, exportSaga } from '../../store/store';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useStore, exportSaga, exportSagaRules } from '../../store/store';
 import { usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCovenants } from '../../store/hooks';
 import { sagaStart } from '../../engine/time';
 import type { Saga } from '../../engine/types';
 import { SEASONS } from '../../data';
 import { TRIBUNALS } from '../../data/lists';
 import { Card, Empty, Field, SelectOrType, Stepper, Tabs } from '../kit';
-import { downloadJson, isBundle, pickJsonFile, safeFilename } from '../../util/files';
+import { bundleToShareLink, downloadJson, isBundle, pickJsonFile, safeFilename, setPendingImport } from '../../util/files';
+import ShareCard from '../ShareCard';
 import { uid } from '../../util/id';
 import { OptionalRulesPanel, SagaOptionsCard } from '../OptionalRules';
 import { BooksTab, CustomTab, GuidedSettingsCard, MechanicsTab, RulesTab } from './SagaRules';
@@ -36,6 +37,7 @@ export default function SagaPage() {
   const updateSaga = useStore((s) => s.updateSaga);
   const setActive = useStore((s) => s.setActiveSaga);
   const [tab, setTab] = useTabParam<SagaTab>('saga');
+  const [invite, setInvite] = useState('');
   useEffect(() => {
     if (sagaId) setActive(sagaId);
   }, [sagaId, setActive]);
@@ -49,8 +51,17 @@ export default function SagaPage() {
       </div>
       <div className="topbar">
         <h1>{saga.name}</h1>
-        <SagaFiles saga={saga} />
+        <SagaFiles saga={saga} onInvite={() => setInvite(bundleToShareLink(exportSagaRules(saga.id)))} />
       </div>
+      {invite && (
+        <ShareCard title="Invite players: the saga's rules" link={invite} onClose={() => setInvite('')} onDownload={() => downloadJson(`${safeFilename(saga.name)}.arm5rules.json`, exportSagaRules(saga.id))}>
+          <p className="small">
+            Send this to each player. It holds the saga's books, creation rules and rulings, optional rules and custom content, so the character they build on their own is built under the same rules.
+            It holds <b>none</b> of the saga's characters, covenants, journal or Tribunal. Changed a rule later? Send it again: their copy of the saga takes the change and keeps their characters.
+          </p>
+          <p className="small soft">When a character comes back, open the link or use <b>Import character / covenant…</b> above.</p>
+        </ShareCard>
+      )}
       <Hint id="saga-next">A saga holds everything else. Set its Tribunal and when it begins here, its books and optional rules in the tabs, then found the covenant (Covenants) and create the characters (People).</Hint>
       <Tabs tabs={SAGA_TABS.map((id) => ({ id, label: id === 'books' ? `Books (${saga.enabledBooks.length ? saga.enabledBooks.length : 'all'})` : TAB_LABEL[id] }))} value={t} onChange={setTab} />
       {t === 'saga' && <SagaSettings saga={saga} update={update} />}
@@ -71,29 +82,33 @@ export default function SagaPage() {
   );
 }
 
-/** Exporting the saga, and bringing a player's character or a covenant into it. */
-function SagaFiles({ saga }: { saga: Saga }) {
-  const importBundle = useStore((s) => s.importBundle);
+/** Exporting the saga, sending its rules to the players, and bringing a player's character or a covenant into it. */
+function SagaFiles({ saga, onInvite }: { saga: Saga; onInvite: () => void }) {
+  const nav = useNavigate();
   const [msg, setMsg] = useState('');
   return (
     <span className="row tight">
-      <button onClick={() => downloadJson(`${safeFilename(saga.name)}.arm5saga.json`, exportSaga(saga.id))} data-tour="saga-export">
-        Export saga
+      <button onClick={onInvite} data-tour="saga-invite" title="Send your players the saga's books and rules, so the characters they build on their own fit it">
+        Invite players
       </button>
       <button
-        title="A player's finished character, or a covenant, from a file the toolkit exported"
+        title="A player's character, or a covenant, from a file the toolkit exported"
+        data-tour="saga-import"
         onClick={async () => {
           try {
             const b = await pickJsonFile();
             if (!isBundle(b)) throw new Error('that file is not one the toolkit exported (a saga, character or covenant)');
-            const r = importBundle({ ...b, saga: undefined }, { intoSagaId: saga.id });
-            setMsg(`Imported ${r.characters} character(s), ${r.covenants} covenant(s) into this saga.`);
+            setPendingImport(b);
+            nav(`/import?into=${saga.id}`);
           } catch (e) {
             setMsg(`Import failed: ${(e as Error).message}`);
           }
         }}
       >
         Import character / covenant…
+      </button>
+      <button onClick={() => downloadJson(`${safeFilename(saga.name)}.arm5saga.json`, exportSaga(saga.id))} data-tour="saga-export" title="The whole saga as a file: a backup, or to move it to another browser">
+        Export saga
       </button>
       {msg && <span className="small">{msg}</span>}
     </span>

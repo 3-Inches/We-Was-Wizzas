@@ -89,7 +89,7 @@ function LabEditor({ lab, magi, update, data, items }: { lab: Laboratory; magi: 
   const list = useMemo(() => {
     const qq = q.toLowerCase();
     return data.labVirtuesFlaws
-      .filter((v) => data.isBookEnabled(v.source.book))
+      .filter((v) => data.inBooks(v))
       .filter((v) => (group === 'all' || v.group === group) && (kind === 'all' || v.kind === kind))
       .filter((v) => !qq || v.name.toLowerCase().includes(qq) || v.modText.toLowerCase().includes(qq))
       .sort((a, b) => a.name.localeCompare(b.name));

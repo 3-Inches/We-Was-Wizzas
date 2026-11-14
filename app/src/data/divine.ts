@@ -551,7 +551,7 @@ const DIVINE_VF: VirtueFlawDef[] = [
     effects: [{ type: 'grantAbility', ability: 'blessing', score: 1 }],
   },
   {
-    id: 'zahid', name: 'Zahid', kind: 'virtue', sizes: ['Free'], categories: ['Social Status'], tainted: false,
+    id: 'zahid', name: 'Zahid', kind: 'virtue', sizes: ['Free'], categories: ['Mythic Companion'], tainted: false,
     notes: 'Mythic Companion', source: { book: 'RoP_D', line: 5907 },
     text: 'An exceptionally ascetic Sufi who works karamas, miraculous acts. Must take True Faith, Meditation, Understanding and Second Sight, and a Social Status (Wise One or ’Alim in Muslim lands, Outsider (Muslim) elsewhere); a shaykh takes Ceremony and Dependent (a tariqa). 90 experience points in Concentration 1, Dominion Lore 1, Islamic Law 1, Meditation 3, Second Sight 2, Theology: Islam 2, Understanding 2.',
   },

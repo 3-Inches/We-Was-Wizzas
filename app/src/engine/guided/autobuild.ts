@@ -5,8 +5,8 @@
 // draft is clean. Every item records why it was chosen.
 
 import { ARTS, CHARACTERISTICS, CHILDHOOD_ABILITIES, SAMPLE_CHILDHOODS, TECHNIQUES, type Art, type Characteristic, type Form, type Technique, type GameData, type VFSize, type VirtueFlawDef } from '../../data';
-import { EX_MISC_TRADITIONS, HOUSE_BY_ID } from '../../data/houses';
-import { CHAR_DESCRIPTORS } from '../../data/lists';
+import { EX_MISC_TRADITIONS, HEARTBEASTS, HOUSE_BY_ID } from '../../data/houses';
+import { CHAR_DESCRIPTORS, nativeLanguageFor } from '../../data/lists';
 import type { CharSpell, Character, Covenant, GuidedState, HouseRules, Saga, XpSource } from '../types';
 import { canSpend, deriveCharacter, sumAlloc, type DerivedCharacter, type XpBudget } from '../character/derive';
 import { addVirtue, applyExMiscTradition, applyMythicType, ensureAbility, MYTHIC_TYPES, removeVirtue, setHouse } from '../character/factory';
@@ -22,6 +22,8 @@ import { abilityTag } from './records';
 import { QUESTION_BY_ID } from './questions';
 import { answerOf, evaluate, recommendHouses, shortlist, statusShortlist, tagWeights, traceOf, type GuidedContext, type Scored } from './score';
 import { tagLabel } from './tags';
+import { HOLY_METHODS, HOLY_POWERS, METHOD_POWERS } from '../../data/divine';
+import { mythicAbility } from '../character/factory';
 
 export interface BuildInput {
   data: GameData;
@@ -109,8 +111,8 @@ function neededCharacteristics(w: Record<string, number>, def: VirtueFlawDef, c?
  * marks a character out (two disfigurements, two faerie bloodlines).
  */
 function choose(inp: BuildInput, c: Character, xs: Scored[], sizeOf: (s: Scored) => VFSize | undefined, top = 8): Scored | undefined {
-  if (!inp.rng) return xs[0];
   const marked = new Set(c.virtues.map((v) => inp.data.vfById.get(v.defId)).map((d) => d && markGroup(d)).filter(Boolean));
+  if (!inp.rng) return xs.find((s) => !marked.has(markGroup(s.def)));
   const pool = xs.filter((s) => !marked.has(markGroup(s.def))).slice(0, top);
   return weightedPick(inp.rng, pool, (s) => rarity(s.def, c.type, sizeOf(s)) * Math.sqrt(Math.max(1, s.fit)));
 }
@@ -137,7 +139,7 @@ export const mythicTypeOf = (c: Character) => {
  */
 export function resetChoices(c: Character) {
   const mt = c.type === 'mythic' ? MYTHIC_TYPES[mythicTypeOf(c) ?? ''] : undefined;
-  const keep = new Set(mt ? [mt.virtue, mt.freeMinor, ...mt.requiredVirtues, ...mt.requiredFlaws] : []);
+  const keep = new Set(mt ? [mt.virtue, mt.freeMinor, ...[...mt.requiredVirtues, ...mt.requiredFlaws].map((x) => (typeof x === 'string' ? x : x.id))] : []);
   c.virtues = c.virtues.filter((v) => ['the-gift', 'hermetic-magus'].includes(v.defId) || (c.type === 'grog' && v.defId === 'covenfolk') || keep.has(v.defId));
   if (c.type === 'magus') c.house = undefined;
   c.abilities = c.abilities.filter((a) => a.native);
@@ -183,14 +185,23 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
           .sort((a, b) => b.fit - a.fit);
         const choice = fits[0];
         if (choice) {
-          setHouse(c, inp.data, pick, best, { defId: choice.def.id, param: paramFor(choice) });
+          // tied to an Ability: one of scholarship, art or dealing with people (Societates, Free Virtue), the one that matters most
+          let param = paramFor(choice);
+          if (choice.def.param?.kind === 'ability' && h.freeChoiceAbilities && !h.freeChoiceAbilities.includes(param ?? '')) {
+            const w = tagWeights(st, ctx);
+            const suits = h.freeChoiceAbilities.filter((id) => !id.endsWith('-type') && inp.data.abilityById.get(id) && abilityAvailability(ctx.d, inp.data, id).ok);
+            param = [...suits].sort((x, y) => (w[abilityTag(y, inp.data.abilityById.get(y)?.type)] ?? 0) - (w[abilityTag(x, inp.data.abilityById.get(x)?.type)] ?? 0))[0];
+          }
+          setHouse(c, inp.data, pick, best, { defId: choice.def.id, param });
           log.push(`Jerbiton's free Virtue: ${choice.def.name}.`);
         }
       }
       // Ex Miscellanea: the tradition whose Virtues fit best, and whose Flaw hurts least
       if (pick === 'ex-miscellanea') {
         const fitOf = (id: string) => ev.scored.find((x) => x.def.id === id)?.fit ?? 0;
-        const trad = [...EX_MISC_TRADITIONS.filter((t) => t.id !== 'custom')].sort(
+        // a tradition whose book the saga uses and whose Virtues the data has
+        const known = (t: (typeof EX_MISC_TRADITIONS)[number]) => inp.data.isBookEnabled(t.source) && [t.majorNonHermetic, t.minorHermetic, t.majorHermeticFlaw].every((id) => inp.data.vfById.get(id));
+        const trad = [...EX_MISC_TRADITIONS.filter((t) => t.id !== 'custom' && known(t))].sort(
           (a, b) => fitOf(b.majorNonHermetic) + fitOf(b.minorHermetic) - fitOf(b.majorHermeticFlaw) - (fitOf(a.majorNonHermetic) + fitOf(a.minorHermetic) - fitOf(a.majorHermeticFlaw)),
         )[0];
         if (trad) {
@@ -198,6 +209,8 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
           log.push(`Ex Miscellanea tradition: ${trad.name}.`);
         }
       }
+      // Quick build's Bjornaer has a heartbeast; a player's own is theirs to choose (the House step asks)
+      if (pick === 'bjornaer' && !c.heartbeast && inp.rng) c.heartbeast = HEARTBEASTS[Math.floor(inp.rng() * HEARTBEASTS.length)];
       why.house = st.house ? 'you chose it' : 'from: the best fit for your answers';
       log.push(`House ${h.name} (${why.house}).`);
       refresh();
@@ -213,10 +226,21 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
     const tie = types.every(([, x]) => fitOf(x.virtue) + fitOf(x.freeMinor) === fitOf(t.virtue) + fitOf(t.freeMinor));
     // with nothing to go on: what the concept names, else one at random
     const text = `${c.creation.concept ?? ''} ${c.description ?? ''}`.toLowerCase();
-    const named = types.find(([k]) => ({ 'devil-child': /devil|demon|infernal|hell/, 'faerie-doctor': /faerie|fairy|fey|cunning/, nephilim: /angel|nephil|giant|holy/, 'spirit-votary': /spirit|pagan|votary|ancestor/ })[k]?.test(text));
-    const [pid, pt] = !tie ? [id, t] : (named ?? types[Math.floor((inp.rng ?? Math.random)() * types.length)]);
+    const NAMES: Record<string, RegExp> = {
+      'devil-child': /devil|demon|infernal|hell/, 'faerie-doctor': /faerie|fairy|fey|cunning/, nephilim: /angel|nephil|giant/, 'spirit-votary': /spirit|pagan|votary|ancestor/,
+      kabbalist: /kabbal|golem|rabbi|jewish/, perfectus: /perfect|cathar/, zahid: /zahid|sufi|dervish|ascetic/,
+    };
+    const named = types.find(([k]) => NAMES[k]?.test(text));
+    // a holy concept is one of the Divine's own types, by the character's faith: a zahid among Muslims, a kabbalist among Jews, else a Nephilim or a perfectus
+    const w = ev.weights;
+    const devout = (w.piety ?? 0) >= 2 || (w['holy-power'] ?? 0) >= 2 || (w['realm:divine'] ?? 0) >= 4;
+    const holyTypes = c.society === 'Islamic' ? ['zahid'] : c.society === 'Jewish' ? ['kabbalist'] : (w['holy-power'] ?? 0) >= 2 || c.society === 'Provençal' ? ['perfectus', 'nephilim'] : ['nephilim', 'perfectus'];
+    const holy = devout && !named ? types.find(([k]) => k === holyTypes[0]) : undefined;
+    // a type of another faith is not drawn at random for a character of this one
+    const ofFaith = types.filter(([, x]) => !x.society || x.society === c.society);
+    const [pid, pt] = named ?? holy ?? (!tie ? [id, t] : ofFaith[Math.floor((inp.rng ?? Math.random)() * ofFaith.length)]);
     applyMythicType(c, inp.data, pid);
-    why.mythicType = !tie ? 'the best fit for your answers' : named ? 'what your concept names' : 'none fits your answers better than another, so one at random';
+    why.mythicType = named ? 'what your concept names' : holy ? 'a holy concept, by the character’s faith' : !tie ? 'the best fit for your answers' : 'none fits your answers better than another, so one at random';
     log.push(`Mythic Companion type ${pt.label} (${why.mythicType}).`);
     refresh();
   }
@@ -380,7 +404,13 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   // the same Virtue twice only when it can be repeated with a different choice
   const dup = (s: Scored) => c.virtues.some((v) => v.defId === s.def.id && (!s.def.repeatable || v.param === paramFor(s)));
   // options with a subsystem of their own go into a draft only when the player asked for them
-  const simpleEnough = (s: Scored) => complexityOk || !(s.rec.flags.complexity || s.rec.flags.spellLike) || (st.answers[`vf:${s.def.id}`] ?? 0) >= 7;
+  // holy Methods and Powers are asked for by their own question, whatever was said of complexity
+  const wantsHoly = () => c.type !== 'grog' && (tagWeights(st, get())['holy-power'] ?? 0) >= 2;
+  const named = (id: string) => (st.answers[`vf:${id}`] ?? 0) >= 7;
+  // Holy Magic remakes a magus's whole craft (no Magic Theory, every spell by a Method), and a Holy
+  // Method or Power does nothing without its other half and a life of faith: none of them by chance
+  const simpleEnough = (s: Scored) => (s.def.id === 'holy-magic' || isHolyVirtue(s.def.id) ? named(s.def.id) || wantsHoly()
+    : complexityOk || !(s.rec.flags.complexity || s.rec.flags.spellLike) || named(s.def.id));
   const sizeFor = (s: Scored, room: number) => {
     const sizes = s.def.sizes.filter((z) => z !== 'Free' || s.def.sizes.length === 1);
     if (c.type === 'grog') return sizes.includes('Minor') ? 'Minor' : undefined;
@@ -390,6 +420,9 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   // Personality Flaws first, for as many points as the rules allow: one Major and one Minor (a grog
   // two Minor). They tell the troupe how the character acts, and pay for Virtues (DE, Personality Flaws)
   addPersonalityFlaws(c, st, inp, get, log, add, clean, dup, simpleEnough, maxFlaws);
+
+  // holy powers: a Method and a Power that go together, before anything else takes their points
+  if (wantsHoly()) addHolyPair(c, st, inp, get, log, add, clean, maxFlaws * ratio);
 
   // Virtues: best fit first, while there is room (a Major only when it fits clearly better)
   const ev = evaluate(st, get());
@@ -416,6 +449,8 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
     if (anyFit && s.fit <= 0) break;
     if (!anyFit && t.virtuePoints >= 6) break; // neutral answers: a modest, well-rounded set
     if (dup(s)) continue;
+    // a pair works wonders; more Methods and Powers would leave no room for the faith behind them (a Mythic Companion has room for a third)
+    if (isHolyVirtue(s.def.id) && c.virtues.filter((v) => isHolyVirtue(v.defId)).length >= (c.type === 'mythic' ? 3 : 2)) continue;
     const size = sizeFor(s, cap - t.virtuePoints);
     if (!size || t.virtuePoints + SIZE_POINTS[size] > cap) continue;
     if (s.def.categories.includes('Mystery') && !c.virtues.some((v) => v.defId === 'cabal-legacy-flaw')) continue;
@@ -429,6 +464,65 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   balance(c, inp, get, refresh, log, taken);
   // the Flaws' points not yet spent buy Minor Virtues that suit the character
   spendVirtuePoints(c, st, inp, get, log, add, clean, dup, simpleEnough);
+}
+
+/** The Virtue that gives a Holy Power its Ability (Blessing's is named apart from the gruagach's Form). */
+const powerVirtue = (abilityId: string) => (abilityId === 'blessing' ? 'blessing-power' : abilityId);
+const HOLY_VIRTUES = new Set([...HOLY_METHODS.map((m) => m.id), ...HOLY_POWERS.map((p) => powerVirtue(p.id))]);
+const isHolyVirtue = (id: string) => HOLY_VIRTUES.has(id);
+/** The Power each kind of Method calls first when nothing else decides. */
+const FIRST_POWER: Record<string, string[]> = { invocation: ['blessing', 'wonders', 'adjuration', 'cursing'], meditation: ['understanding', 'blessing', 'intervention', 'transcendence'], purity: ['intervention', 'transcendence', 'adjuration', 'cursing'] };
+
+/**
+ * A Holy Method and a Holy Power that work together (RoP: The Divine): the Method that fits the
+ * answers and the character's Characteristics, and the Power it calls that fits best. One alone
+ * does nothing, so a half the character already has is completed rather than a new pair begun.
+ */
+function addHolyPair(
+  c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, log: string[],
+  add: (s: Scored, size: VFSize) => { why?: string }, clean: (def: VirtueFlawDef, size: VFSize) => boolean, cap: number,
+) {
+  const has = (id: string) => c.virtues.some((v) => v.defId === id);
+  const methods = () => HOLY_METHODS.filter((m) => has(m.id));
+  const powers = () => HOLY_POWERS.filter((p) => has(powerVirtue(p.id)));
+  if (methods().some((m) => powers().some((p) => METHOD_POWERS[m.as].includes(p.id)))) return;
+  const ev = evaluate(st, get());
+  const scored = (id: string) => ev.scored.find((x) => x.def.id === id && !x.excluded);
+  const room = () => cap - get().d.tally.virtuePoints;
+  const why = 'from: your wish to work wonders through prayer (a Holy Method and a Power it calls)';
+  const take = (s: Scored) => {
+    const cv = add(s, 'Major');
+    cv.why = why;
+  };
+  let method = methods()[0];
+  if (!method) {
+    // the Method: the best fit, then the Characteristic it prays with
+    const own = powers();
+    const options = HOLY_METHODS.filter((m) => !own.length || own.some((p) => METHOD_POWERS[m.as].includes(p.id)))
+      .map((m) => ({ m, s: scored(m.id) }))
+      .filter((x): x is { m: (typeof HOLY_METHODS)[number]; s: Scored } => !!x.s && clean(x.s.def, 'Major'))
+      .sort((a, b) => b.s.fit + 2 * get().d.characteristics[b.m.char].value - (a.s.fit + 2 * get().d.characteristics[a.m.char].value));
+    // Quick build draws among the best few, unless one stands clear of the rest (it was asked for by name)
+    const rank = (x: (typeof options)[number]) => x.s.fit + 2 * get().d.characteristics[x.m.char].value;
+    const clear = options.length > 1 && rank(options[0]) - rank(options[1]) >= 5;
+    // one asked for by name is taken, whatever else would fit
+    const named = options.find((x) => (st.answers[`vf:${x.m.id}`] ?? 0) >= 7);
+    const pick = named ?? (inp.rng && options.length > 1 && !clear ? options[Math.floor(inp.rng() * Math.min(3, options.length))] : options[0]);
+    if (!pick || room() < 3) return;
+    take(pick.s);
+    method = pick.m;
+    log.push(`Holy Method: ${pick.m.name}, Major — ${why}.`);
+  }
+  if (powers().some((p) => METHOD_POWERS[method.as].includes(p.id))) return;
+  const order = FIRST_POWER[method.as];
+  const options = METHOD_POWERS[method.as]
+    .map((id) => ({ id, s: scored(powerVirtue(id)) }))
+    .filter((x): x is { id: string; s: Scored } => !!x.s && clean(x.s.def, 'Major'))
+    .sort((a, b) => b.s.fit - a.s.fit || order.indexOf(a.id) - order.indexOf(b.id));
+  const pick = options.find((x) => (st.answers[`vf:${powerVirtue(x.id)}`] ?? 0) >= 7) ?? options[0];
+  if (!pick || room() < 3) return;
+  take(pick.s);
+  log.push(`Holy Power: ${pick.s.def.name}, Major — ${method.name} calls it.`);
 }
 
 /** A Personality Flaw that says how the character acts: not an upbringing, nor Weak Personality (which allows no other). */
@@ -510,7 +604,11 @@ function addFlaws(
     const t = get().d.tally;
     const need = Math.ceil(t.virtuePoints / ratio) - t.flawPoints;
     if (need <= 0) break;
-    const f = choose(inp, c, firstPassing(candidates(), (x) => clean(x.def, sizeOf(x, need)) && !(c.type === 'grog' && sizeOf(x, need) === 'Major'), inp.rng ? 12 : 1), (x) => sizeOf(x, need), 12);
+    // when the Minor Flaws still allowed cannot cover what is owed, a Major one must: look at those first
+    const minorRoom = c.type === 'grog' ? Infinity : inp.rules.maxMinorFlaws - t.minorFlaws;
+    const mustBeMajor = need > minorRoom && need >= 3;
+    const pool = mustBeMajor ? candidates().filter((x) => x.def.sizes.includes('Major')) : candidates();
+    const f = choose(inp, c, firstPassing(pool, (x) => clean(x.def, sizeOf(x, need)) && !(c.type === 'grog' && sizeOf(x, need) === 'Major'), inp.rng ? 12 : 1), (x) => sizeOf(x, need), 12);
     if (!f) break;
     const size = sizeOf(f, need);
     add(f, size);
@@ -581,7 +679,8 @@ function abilityParam(id: string, c: Character, inp: BuildInput): string | undef
     // the character's own trade, raised rather than a second one begun
     case 'craft-type': return bestParam(c, 'craft-type') ?? 'Blacksmith';
     case 'profession-type': return bestParam(c, 'profession-type') ?? (c.type === 'magus' ? 'Scribe' : c.virtues.some((v) => v.defId === 'merchant') ? 'Merchant' : 'Steward');
-    case 'living-language': return TRIBUNAL_LANGUAGE[region] ?? 'French';
+    // the tongue of the character's own people, wherever the saga is set (a Syrian in the Rhine speaks Arabic)
+    case 'living-language': return nativeLanguageFor(c.nationality) ?? TRIBUNAL_LANGUAGE[region] ?? 'French';
     case 'dead-language': return 'Latin';
     case 'organization-lore': return 'Order of Hermes';
     default: return undefined;
@@ -599,6 +698,15 @@ function rankedAbilities(c: Character, st: GuidedState, ctx: GuidedContext): { i
   for (const [tag, ids] of Object.entries(ABILITY_CHOICES)) ids.forEach((id, i) => bump(id, (w[tag] ?? 0) - i * 0.5, tag));
   const base = c.type === 'magus' ? MAGUS_BASE : c.type === 'grog' ? GROG_BASE : COMPANION_BASE;
   base.forEach((id, i) => bump(id, 1.5 - i * 0.2, 'base'));
+  // a Holy Method or Power the character has is what they pray with: raised whatever else was said
+  const holy = [...HOLY_METHODS, ...HOLY_POWERS].filter((x) => c.abilities.some((a) => a.abilityId === x.id) && c.virtues.some((v) => v.defId === powerVirtue(x.id)));
+  for (const x of holy) bump(x.id, 3 + (w['holy-power'] ?? 0), 'holy-power');
+  // the devout: Dominion Lore, their faith's Theology where they may learn it, Concentration to pray for a miracle
+  const piety = Math.max(w.piety ?? 0, holy.length ? 2 : 0);
+  if (piety > 0) {
+    const theology = c.society === 'Islamic' ? 'theology-islam' : c.society === 'Jewish' ? 'theology-judaism' : 'theology-christian';
+    ['dominion-lore', 'concentration', theology].forEach((id, i) => bump(id, piety - i * 0.5, 'piety'));
+  }
   return [...score.entries()].map(([id, v]) => ({ id, ...v })).filter((x) => x.w > 0).sort((a, b) => b.w - a.w);
 }
 
@@ -608,7 +716,7 @@ function spendPoolOnAbilities(c: Character, budget: XpBudget, xp: number, ranked
   const allowed = (id: string) => {
     const def = inp.data.abilityById.get(id);
     const have = c.abilities.some((a) => a.abilityId === id);
-    return !!def && inp.data.isBookEnabled(def.source.book) && !secondTrade(c, id) && (have || abilityAvailability(get().d, inp.data, id).ok) && canSpend(get().d, inp.data, budget, { abilityId: id, param: abilityParam(id, c, inp) }).ok;
+    return !!def && inp.data.inBooks(def) && !secondTrade(c, id) && (have || abilityAvailability(get().d, inp.data, id).ok) && canSpend(get().d, inp.data, budget, { abilityId: id, param: abilityParam(id, c, inp) }).ok;
   };
   const usable = ranked.filter((r) => allowed(r.id)).slice(0, width);
   if (!usable.length) return 0;
@@ -653,6 +761,33 @@ function spendPoolOnAbilities(c: Character, budget: XpBudget, xp: number, ranked
   return xp - left;
 }
 
+/** Raise each Ability to the least score a Mythic Companion type begins with, from later life (or the first pool that may buy it). */
+function spendMinimums(c: Character, mins: Record<string, number>, label: string, inp: BuildInput, get: () => GuidedContext, refresh: () => void, log: string[]) {
+  const done: string[] = [];
+  for (const [key, min] of Object.entries(mins)) {
+    const { id, param: named } = mythicAbility(key);
+    const def = inp.data.abilityById.get(id);
+    if (!def || !inp.data.inBooks(def)) continue;
+    const param = named ?? abilityParam(id, c, inp);
+    const have = c.abilities.some((a) => a.abilityId === id && (!named || (a.param ?? '').toLowerCase() === named.toLowerCase()));
+    const pools = get().d.budgets.filter((b) => !['native', 'childhood'].includes(b.id) && b.kind !== 'art+ability' && b.total - b.spent > 0);
+    const pool = pools.find((b) => (have || abilityAvailability(get().d, inp.data, id).ok || b.abilities?.length || b.abilityTypes?.length) && canSpend(get().d, inp.data, b, { abilityId: id, param }).ok);
+    if (!pool) continue;
+    const ab = ensureAbility(c, id, {}, param);
+    const cur = sumAlloc(ab.xp);
+    const want = abilityXpForScore(min) - cur;
+    if (want <= 0) continue;
+    const spend = Math.min(want, pool.total - pool.spent);
+    if (spend <= 0) continue;
+    ab.xp[pool.id] = (ab.xp[pool.id] ?? 0) + spend;
+    ab.why ??= `from: a ${label} begins with at least ${min}`;
+    done.push(`${def.name.replace(/\([^)]*\)/, named ?? '$&')} ${min}`);
+    refresh();
+  }
+  c.abilities = c.abilities.filter((a) => sumAlloc(a.xp) > 0 || a.native);
+  if (done.length) log.push(`${label}: its least Ability scores first (${done.join(', ')}).`);
+}
+
 function artRanking(st: GuidedState, ctx: GuidedContext): { art: Art; w: number }[] {
   const w = tagWeights(st, ctx);
   const prior: Partial<Record<Art, number>> = { Cr: 1, Re: 1, In: 0.8, Co: 0.6, Vi: 0.6, Mu: 0.5, Pe: 0.5, Ig: 0.4, Te: 0.4, Me: 0.4 };
@@ -679,6 +814,9 @@ function spendExperience(c: Character, st: GuidedState, inp: BuildInput, get: ()
   const focus = answer('a-focus', st, get());
   const width = focus >= 8 ? 3 : focus >= 6 ? 4 : focus <= 3 ? 7 : 5;
   const ranked = rankedAbilities(c, st, get());
+  // a Mythic Companion's least scores (the 90 experience points its type sets) before anything else
+  const mt = c.type === 'mythic' ? MYTHIC_TYPES[mythicTypeOf(c) ?? ''] : undefined;
+  if (mt) spendMinimums(c, mt.minAbilities, mt.label, inp, get, refresh, log);
 
   // childhood: the sample childhood that fits best
   const child = get().d.budgets.find((b) => b.id === 'childhood');
@@ -886,7 +1024,7 @@ function chooseSpells(c: Character, st: GuidedState, inp: BuildInput, get: () =>
       if ((perCombo.get(cb.t + cb.f) ?? 0) >= most) continue;
       const limit = creationSpellLimit(get().d, { technique: cb.t as Technique, form: cb.f as Form }, inp.rules.spellLevelLimitBonus).total;
       const cands = inp.data.spells
-        .filter((s) => s.technique === cb.t && s.form === cb.f && s.level !== null && !s.general && s.level <= Math.min(limit, left) && (ritualOk || !s.ritual) && !s.requisites.length && inp.data.isBookEnabled(s.source.book))
+        .filter((s) => s.technique === cb.t && s.form === cb.f && s.level !== null && !s.general && s.level <= Math.min(limit, left) && (ritualOk || !s.ritual) && !s.requisites.length && inp.data.inBooks(s))
         .filter((s) => !c.spells.some((x) => x.spell.name === s.name))
         .sort((a, b) => (b.source.book === 'DE' ? 1 : 0) - (a.source.book === 'DE' ? 1 : 0) || (b.level ?? 0) - (a.level ?? 0));
       // Quick build: one of the few highest, not always the same one

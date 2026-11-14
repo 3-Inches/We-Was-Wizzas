@@ -28,7 +28,7 @@ export default function ReferencePage() {
       </div>
       <Tabs
         tabs={[
-          { id: 'vf', label: `Virtues & Flaws (${data.virtuesFlaws.filter((v) => data.isBookEnabled(v.source.book)).length})` },
+          { id: 'vf', label: `Virtues & Flaws (${data.virtuesFlaws.filter((v) => data.inBooks(v)).length})` },
           { id: 'abilities', label: `Abilities (${data.abilities.length})` },
           { id: 'houses', label: 'Houses of Hermes' },
           { id: 'labvf', label: `Laboratory V&F (${data.labVirtuesFlaws.length})` },
@@ -42,8 +42,8 @@ export default function ReferencePage() {
       {tab === 'vf' && <VFRef data={data} />}
       {tab === 'abilities' && <AbilityRef data={data} />}
       {tab === 'houses' && <HouseRef />}
-      {tab === 'labvf' && <SimpleList items={data.labVirtuesFlaws.filter((v) => data.isBookEnabled(v.source.book)).map((v) => ({ id: v.id, name: v.name, tags: [`${v.size} ${v.kind}`, v.group], sub: v.modText, text: v.text, source: v.source }))} />}
-      {tab === 'hooks' && <SimpleList items={data.hooksBoons.filter((v) => data.isBookEnabled(v.source.book)).map((v) => ({ id: v.id, name: v.name, tags: [`${v.size} ${v.kind}`, v.category ?? ''], sub: v.requires ? `Requires ${v.requires}` : '', text: v.deText ?? v.text, source: v.source }))} />}
+      {tab === 'labvf' && <SimpleList items={data.labVirtuesFlaws.filter((v) => data.inBooks(v)).map((v) => ({ id: v.id, name: v.name, tags: [`${v.size} ${v.kind}`, v.group], sub: v.modText, text: v.text, source: v.source }))} />}
+      {tab === 'hooks' && <SimpleList items={data.hooksBoons.filter((v) => data.inBooks(v)).map((v) => ({ id: v.id, name: v.name, tags: [`${v.size} ${v.kind}`, v.category ?? ''], sub: v.requires ? `Requires ${v.requires}` : '', text: v.deText ?? v.text, source: v.source }))} />}
       {tab === 'weapons' && <WeaponRef data={data} />}
       {tab === 'books' && <BookList />}
       <p className="small muted" style={{ marginTop: 12 }}>
@@ -68,7 +68,7 @@ function VFRef({ data }: { data: Data }) {
   const list = useMemo(() => {
     const qq = q.toLowerCase();
     return data.virtuesFlaws
-      .filter((v) => data.isBookEnabled(v.source.book))
+      .filter((v) => data.inBooks(v))
       .filter((v) => (!kind || v.kind === kind) && (!size || v.sizes.includes(size as VirtueFlawDef['sizes'][number])) && (!cat || v.categories.includes(cat as VirtueFlawDef['categories'][number])) && (!book || v.source.book === book))
       .filter((v) => !qq || v.name.toLowerCase().includes(qq) || v.text.toLowerCase().includes(qq))
       .sort((a, b) => a.name.localeCompare(b.name));
