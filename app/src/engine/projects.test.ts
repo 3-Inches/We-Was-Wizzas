@@ -1,7 +1,7 @@
 // Lab projects season by season (DE): inventing, preparing and attuning a talisman, instilling, extracting vis, taming.
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
-import { newCharacter, ensureAbility } from './character/factory';
+import { addVirtue, newCharacter, ensureAbility } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { newProject, planProject, workProject } from './projects';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
@@ -33,6 +33,51 @@ describe('lab projects', () => {
     for (let i = 0; i < 4; i++) workProject(c, d(c), ctx, undefined, p.uid, data);
     expect(c.projects[0].done).toBe(true);
     expect(c.spells.some((s) => s.spell.name === 'Ward' && s.spell.level === 25)).toBe(true);
+  });
+  it("a Verditius's craft cuts the vis to open an item of their making, and adds to every Lab Total for it (DE, Verditius Magic)", () => {
+    const v = magus();
+    addVirtue(v, data, 'verditius-magic', 'Minor');
+    ensureAbility(v, 'craft-type', { apprenticeship: 30 }, 'Goldsmith'); // 3
+    const it = { ...newItem('invested'), material: 'silver', size: 'small' } as ReturnType<typeof newItem>;
+    v.items.push(it);
+    const open = { ...newProject('open'), itemUid: it.uid };
+    v.projects = [open];
+    const plan = planProject(open, v, d(v), ctx);
+    const cap = plan.opens!;
+    expect(cap).toBeGreaterThan(3);
+    expect(plan.vis!.pawns).toBe(cap - 3);
+    expect(plan.summary).toMatch(/Goldsmith.* 3 off the cost/);
+    workProject(v, d(v), ctx, undefined, open.uid, data);
+    // it holds the full number, for fewer pawns spent
+    expect(v.items[0].openedPawns).toBe(cap);
+    expect(v.purse!.vis.find((x) => x.art === 'Vi')?.pawns).toBe(20 - (cap - 3));
+    const e = { ...newEffect(), technique: 'Re' as const, form: 'Vi' as const, modifiedLevel: 20, pending: true };
+    v.items[0].effects.push(e);
+    const inst = { ...newProject('instill'), itemUid: it.uid, effectUid: e.uid };
+    v.projects.push(inst);
+    const total = planProject(inst, v, d(v), ctx).total!;
+    expect(total.parts.find((x) => /Verditius craft/.test(x.label))?.value).toBe(3);
+
+    // the cost never falls below one pawn, however fine the craft
+    const master = magus();
+    addVirtue(master, data, 'verditius-magic', 'Minor');
+    ensureAbility(master, 'craft-type', { apprenticeship: 1000 }, 'Goldsmith');
+    const ring = newItem('invested');
+    master.items.push(ring);
+    const o2 = { ...newProject('open'), itemUid: ring.uid };
+    master.projects = [o2];
+    expect(planProject(o2, master, d(master), ctx).vis!.pawns).toBe(1);
+
+    // a magus of another House pays in full and gains nothing from a Craft
+    const other = magus();
+    ensureAbility(other, 'craft-type', { apprenticeship: 30 }, 'Goldsmith');
+    const it2 = { ...newItem('invested'), material: 'silver', size: 'small' } as ReturnType<typeof newItem>;
+    other.items.push(it2);
+    const o3 = { ...newProject('open'), itemUid: it2.uid };
+    other.projects = [o3];
+    const p3 = planProject(o3, other, d(other), ctx);
+    expect(p3.vis!.pawns).toBe(cap);
+    expect(p3.opens).toBe(cap);
   });
   it('opens a talisman a little at a time, attunes it, and instills an effect with +5', () => {
     const c = magus();
