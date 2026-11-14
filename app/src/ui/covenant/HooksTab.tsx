@@ -19,7 +19,7 @@ export default function HooksTab({ cov, update, dc, data }: CovTabProps) {
   const list = useMemo(() => {
     const qq = q.toLowerCase();
     return data.hooksBoons
-      .filter((h) => data.isBookEnabled(h.source.book))
+      .filter((h) => data.inBooks(h))
       .filter((h) => kind === 'all' || h.kind === kind)
       .filter((h) => !qq || h.name.toLowerCase().includes(qq) || h.text.toLowerCase().includes(qq) || (h.category ?? '').toLowerCase().includes(qq));
   }, [data, q, kind]);

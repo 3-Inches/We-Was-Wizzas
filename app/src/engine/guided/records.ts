@@ -326,7 +326,26 @@ const MANUAL_TAGS: Record<string, [string, number][]> = {
   'favored-slave-flaw': [['outsider', 2], ['duty', 1]],
   disjunction: [['magic-resistance', 1]],
   dislocation: [['travel', 2]],
+  // the Holy Methods and Powers (RoP: The Divine): each is half of a pair that works wonders through prayer
+  invocation: [['holy-power', 3], ['realm:divine', 1]], meditation: [['holy-power', 3], ['realm:divine', 1]], purity: [['holy-power', 3], ['realm:divine', 1]],
+  'holy-music': [['holy-power', 3], ['performance', 1]], 'dream-interpretation': [['holy-power', 2], ['visions', 2]],
+  gematria: [['holy-power', 2], ['scholarship', 1]], kabbalah: [['holy-power', 3]], merkavah: [['holy-power', 2], ['visions', 1]],
+  adjuration: [['holy-power', 3], ['realm:divine', 1]], 'blessing-power': [['holy-power', 3], ['realm:divine', 1]], cursing: [['holy-power', 3], ['realm:divine', 1]],
+  intervention: [['holy-power', 3], ['realm:divine', 1], ['healing', 1]], transcendence: [['holy-power', 3], ['realm:divine', 1]],
+  understanding: [['holy-power', 3], ['realm:divine', 1], ['visions', 1]], wonders: [['holy-power', 3], ['realm:divine', 1]],
+  'holy-magic': [['holy-power', 2]], 'craft-amulets': [['holy-power', 1], ['crafts', 1]],
+  'true-faith': [['piety', 2]], 'pious-flaw': [['piety', 2]],
 };
+
+/**
+ * Flaws at odds with a living faith: one who turns from religion, was never baptized or was cast out
+ * of the Church does not also live by prayer. They stay story hooks about the Church for anyone else.
+ */
+const AGAINST_PIETY = new Set([
+  'depraved-flaw', 'pagan-flaw', 'unbaptized-flaw', 'excommunicate-flaw', 'a-deal-with-the-devil-flaw', 'uncertain-faith-flaw',
+  // powers learned from Hell sit ill beside powers asked of Heaven
+  'demonic-familiar-flaw', 'corrupted-abilities-flaw', 'corrupted-arts-flaw', 'corrupted-spells-flaw',
+]);
 
 // ------------------------------------------------------------------ text → tags
 
@@ -489,6 +508,8 @@ export function buildRecord(def: VirtueFlawDef, data: GameData): VFRecord {
     const prev = byTag.get(dr.tag);
     if (!prev || dr.strength > prev.strength) byTag.set(dr.tag, { tag: dr.tag, dir, strength: dr.strength, why: dr.why, ...(hook ? { hook } : {}) });
   }
+  // set against a living faith whatever else its words say (not a hook: it rules the Flaw out for the devout)
+  if (AGAINST_PIETY.has(def.id)) byTag.set('piety', { tag: 'piety', dir: -1, strength: 2, why: 'at odds with a living faith' });
   const links = [...byTag.values()];
   addRankedLinks(def, links);
 

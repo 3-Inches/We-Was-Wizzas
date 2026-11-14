@@ -48,7 +48,7 @@ export default function SpellsStep({ ed }: { ed: CharEditor }) {
     if (!d) return [];
     const qq = q.toLowerCase();
     return data.spells
-      .filter((s) => data.isBookEnabled(s.source.book))
+      .filter((s) => data.inBooks(s))
       .filter((s) => (!te || s.technique === te) && (!fo || s.form === fo))
       .filter((s) => !qq || s.name.toLowerCase().includes(qq) || s.text.toLowerCase().includes(qq))
       .filter((s) => !withinLimit || (s.level ?? 0) <= creationSpellLimit(d, { technique: s.technique, form: s.form, requisites: s.requisites }, bonus).total)

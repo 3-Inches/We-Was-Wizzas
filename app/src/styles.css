@@ -338,6 +338,8 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .chip.on { background: var(--accent-2); border-color: var(--accent-2); color: #fff; }
 .chip.muted { opacity: 0.45; cursor: not-allowed; }
 .warn-text { color: var(--warn); }
+ol.steps { margin: 0 0 6px; padding-left: 1.3em; }
+ol.steps li { margin-bottom: 5px; }
 .bad-text { color: var(--bad); }
 .good-text { color: var(--good); }
 

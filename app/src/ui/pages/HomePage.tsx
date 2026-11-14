@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStore, exportSaga } from '../../store/store';
 import { Card, Confirm, Empty } from '../kit';
-import { downloadJson, isBundle, pickJsonFile, safeFilename } from '../../util/files';
+import { downloadJson, isBundle, pickJsonFile, safeFilename, setPendingImport } from '../../util/files';
 import { Hint } from '../Hint';
 
 export default function HomePage() {
@@ -12,8 +12,7 @@ export default function HomePage() {
   const createSaga = useStore((s) => s.createSaga);
   const deleteSaga = useStore((s) => s.deleteSaga);
   const setActive = useStore((s) => s.setActiveSaga);
-  const importBundle = useStore((s) => s.importBundle);
-  const nav = useNavigate();
+    const nav = useNavigate();
   const [name, setName] = useState('');
   const [msg, setMsg] = useState('');
 
@@ -44,10 +43,10 @@ export default function HomePage() {
             onClick={async () => {
               try {
                 const b = await pickJsonFile();
-                if (!isBundle(b)) throw new Error('that file is not one the toolkit exported (a saga, character or covenant)');
-                const r = importBundle(b);
-                setMsg(`Imported ${r.characters} character(s) and ${r.covenants} covenant(s).`);
-                if (r.sagaId) nav(`/saga/${r.sagaId}`);
+                if (!isBundle(b)) throw new Error('that file is not one the toolkit exported (a saga, its rules for players, a character or a covenant)');
+                // shown before anything is brought in: what it holds, where it goes, what it would replace
+                setPendingImport(b);
+                nav('/import');
               } catch (e) {
                 setMsg(`Import failed: ${(e as Error).message}`);
               }
@@ -95,11 +94,20 @@ export default function HomePage() {
 
       <div className="grid grid-3" style={{ marginTop: 14 }}>
         <Card title="For players">
-          <p>Your storyguide can send you a link or file. Build your character here, then use <b>Share</b> on the character sheet to send it back.</p>
+          <ol className="small steps">
+            <li>Open the link or file your storyguide sent: it adds the saga with its books and rules. (None sent? Begin a saga of your own.)</li>
+            <li>Create your character on the saga's <b>People</b> page. The guided build asks what you want to play and drafts it with you.</li>
+            <li>On the character sheet press <b>Share</b> and send the file to your storyguide.</li>
+          </ol>
           <p className="small muted">Everything is stored in this browser. Export regularly to keep backups.</p>
         </Card>
         <Card title="For storyguides">
-          <p>Create a saga, set its books and house rules, found the covenant, and import your players' characters. Turn on <b>Stream mode</b> to share your screen on Discord.</p>
+          <ol className="small steps">
+            <li>Create a saga, set its books and house rules, and found the covenant.</li>
+            <li>On the Saga Overview press <b>Invite players</b> and send them the saga's rules.</li>
+            <li>Import each character they send back: you see it before it joins, and it can go straight into the covenant. Or build one for a player with <b>Quick build</b> or the guided build, and Share it to them.</li>
+          </ol>
+          <p className="small muted">Turn on <b>Stream mode</b> to share your screen on Discord.</p>
         </Card>
         <Card title="Rules fidelity">
           <p>Totals show their full calculation when clicked, every Virtue links to its source text, and any rule can be overridden as a troupe ruling.</p>

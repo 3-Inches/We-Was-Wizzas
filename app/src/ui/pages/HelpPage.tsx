@@ -203,8 +203,8 @@ export default function HelpPage() {
           number to see how it was worked out.
         </Step>
         <p className="small muted" style={{ marginBottom: 0 }}>
-          Nothing is sent to a server. Your data lives in this browser. Use <b>Export</b> on a saga, character or covenant to keep a copy or move it to another device, and{' '}
-          <Link to="/import">Import</Link> to load one.
+          Nothing is sent to a server. Your data lives in this browser. Use <b>Export saga</b> on the Saga Overview to keep a copy or move it to another device, <b>Share / Export</b> on
+          a character or covenant to send one sheet, and <Link to="/import">Import</Link> to load any of them. Playing with others? See <a href="#discord">Playing with a troupe</a>.
         </p>
       </Card>
 
@@ -313,6 +313,17 @@ export default function HelpPage() {
           <li>
             A Virtue that gives another (Strong Faerie Blood → Second Sight, Magical Blood by the kind of magic being) adds it free. Open any Virtue or Flaw to see <b>Rules it
             refers to</b>: the Virtues, Flaws and book sections its text points to, quoted in place.
+          </li>
+          <li>
+            <b>A magus&apos;s House</b> gives its Virtue as you choose it. A Jerbiton picks the free Virtue from a list (one tied to an Ability takes an Ability of scholarship, art
+            or dealing with people); a Bjornaer names the heartbeast; Ex Miscellanea lists the traditions of the saga&apos;s books and applies the one you pick whole, with
+            whatever else it requires. The House&apos;s own rules are used where they come up: the heartbeast and certamen at <b>Dice › Spellcasting</b>, Enigmatic Wisdom in
+            Twilight, Faerie Magic&apos;s ranges and durations in spell design, a Verditius&apos;s casting tools and craft in the lab.
+          </li>
+          <li>
+            <b>A holy character</b> (<i>Realms of Power: The Divine</i>): answer the guided build&apos;s question about working wonders through prayer and it takes a Holy Method
+            and a Holy Power that go together; or choose a Mythic Companion of the Divine (Kabbalist, Perfectus, Zahid, Nephilim). The tutorial <b>Faith, miracles and holy
+            powers</b> plays one at the Game Table.
           </li>
           <li>
             Powers from Greater, Lesser, Personal or Ritual Power and Heroes&apos; Birthright are designed on the Virtues step: pick a spell within the level budget (click its name
@@ -736,20 +747,47 @@ export default function HelpPage() {
           Enable it on the <b>Saga Overview</b>&apos;s Books tab. Books marked WIP are still being transcribed. Anything else can be added as custom content per saga.
         </Question>
         <Question q="How do I move a saga to another computer?">
-          <b>Export</b> it and <Link to="/import">Import</Link> the file on the other computer. <b>Share link</b> on a character or covenant does the same for one sheet.
+          <b>Export saga</b> (Saga Overview) and <Link to="/import">Import</Link> the file on the other computer. <b>Share / Export</b> on a character or covenant does the same for
+          one sheet.
+        </Question>
+        <Question q="How do my players build their characters on their own and send them to me?">
+          On the Saga Overview press <b>Invite players</b> and send each player the file or link: it carries the saga&apos;s books, rules and custom content, and none of its
+          characters or covenants. They build in their own browser and send the character back with <b>Share / Export</b> on its sheet. Importing shows you the character first
+          (finished or not, what the rules check says under your saga, what it would replace) and can put it straight into the covenant. See{' '}
+          <a href="#discord">Playing with a troupe</a>.
+        </Question>
+        <Question q="A player sent a newer version of a character I already imported.">
+          Import it again: it takes the place of the one in the saga and keeps its place in the covenant. The Import page says so first, and what you changed on your copy since
+          is lost, so agree who keeps the sheet once play begins (usually the storyguide&apos;s saga). Tick <b>Keep what is here</b> to bring it in as a second copy instead.
         </Question>
       </Card>
 
       <div className="grid grid-2">
-        <Card title="Playing over Discord" id="discord">
+        <Card title="Playing with a troupe (and over Discord)" id="discord">
+          <ol className="small steps">
+            <li>
+              <b>The storyguide</b> creates the saga, sets its books and rules, and presses <b>Invite players</b> on the Saga Overview. The file (or link) holds the saga&apos;s rules
+              only.
+            </li>
+            <li>
+              <b>Each player</b> opens it, which adds the saga to their own browser, creates a character on its People page, and sends it back with <b>Share / Export</b> on the
+              character sheet.
+            </li>
+            <li>
+              <b>The storyguide</b> opens what was sent, or uses <b>Import character / covenant…</b> on the Saga Overview. The Import page shows each character before it joins
+              and can place it in the covenant.
+            </li>
+            <li>A player who would rather not: build the character for them with Quick build or the guided build, set their name as the player, and Share it to them to look over.</li>
+          </ol>
           <ul className="small">
             <li>
-              Turn on <b>Stream mode</b> (sidebar) for larger text when screen-sharing.
+              <b>Send files, not links,</b> for anything but the smallest sheet: a finished magus makes a link several times longer than a Discord message allows, and it arrives
+              cut off. The Share card says which will work.
             </li>
             <li>
-              <b>Share link</b> on a character or covenant makes a link that imports a copy into the recipient&apos;s browser. For large sagas, use Export and send the file instead.
+              Turn on <b>Stream mode</b> (sidebar) for larger text when screen-sharing. A storyguide can run everything from one browser at the Game Table while the players keep
+              their own copies to read from.
             </li>
-            <li>A GM can run everything from one browser and act as proxy for players; players can keep their own copies and send updates as files.</li>
           </ul>
         </Card>
         <Card title="Overrides and house rules" id="house">

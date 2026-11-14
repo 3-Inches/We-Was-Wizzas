@@ -7,7 +7,7 @@ import { SAINTS } from '../data/divine';
 import { addVirtue, ensureAbility, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import {
-  ascentCheck, ascentDuration, ceremonyParts, divineAidBonus, divineAuraWarps, godsAidTotal, holyEffectLevel, holyEffectTotal, holyWorkTotal, workHolySeason,
+  ascentCheck, ascentDuration, ascentOutcome, ceremonyParts, divineAidBonus, divineAuraWarps, godsAidTotal, holyEffectLevel, holyEffectTotal, holyWorkTotal, workHolySeason,
   holyOutcome, miracleLevel, miracleTotal, schism, threatEase, threatResult,
 } from './holy';
 import { castingScore, divineResistance, labTotal, magicResistance } from './magic';
@@ -120,6 +120,34 @@ describe('prayers, God’s aid and the saints', () => {
   });
 });
 
+describe('Ceremony: praying together', () => {
+  const members = [
+    { name: 'A', adds: 4, ceremony: 0 },
+    { name: 'B', adds: 3, ceremony: 2 },
+    { name: 'C', adds: 2, ceremony: 0 },
+  ];
+  const sum = (g: Parameters<typeof ceremonyParts>[0]) => ceremonyParts(g).reduce((t, p) => t + p.value, 0);
+
+  it('unled: everyone adds, with (total Ceremony − those praying)', () => {
+    // 4 + 3 + 2, and Ceremony 2 + the focus character's 1 − 4 praying
+    expect(sum({ members, focusCeremony: 1 })).toBe(9 + (3 - 4));
+  });
+
+  it('led by the focus character: as many others count as the leader’s Ceremony', () => {
+    expect(sum({ members, focusCeremony: 2, leaderCeremony: 2 })).toBe(4 + 3);
+  });
+
+  it('led by another who has Ceremony: the leader counts, and the focus character takes one of the places', () => {
+    // B leads with Ceremony 2: B's 3, and one place left after the focus character's (A's 4)
+    expect(sum({ members, leaderCeremony: 2, leaderName: 'B' })).toBe(3 + 4);
+    expect(ceremonyParts({ members, leaderCeremony: 2, leaderName: 'B' }).at(-1)?.label).toMatch(/1 more join/);
+  });
+
+  it('with nobody who has the Ability, the prayers do not join', () => {
+    expect(sum({ members: [members[0], members[2]], focusCeremony: 0 })).toBe(0);
+  });
+});
+
 describe('the Divine Ascent and the Divine Form', () => {
   it('Dominia: three Warping Points in an Empyreal aura of 5, with True Faith 1', () => {
     const c = holyCompanion();
@@ -130,6 +158,30 @@ describe('the Divine Ascent and the Divine Form', () => {
     // failed by 10: 13 points gained in all, twelve days in the Divine
     expect(ascentDuration(0, 13, 1)).toEqual({ n: 12, unit: 'days' });
     expect(ascentDuration(6, 2, 0).unit).toBe('months');
+  });
+
+  it('the Ascension roll: a total that reaches the other holds; a botched die counts 0; a welcome adds no Warping', () => {
+    const c = holyCompanion();
+    addVirtue(c, data, 'meditation', 'Major');
+    ensureAbility(c, 'meditation', { laterLife: 30 }); // Meditation 3 with the Virtue's 1
+    const plain = ascentCheck(d(c), 2);
+    const med = plain.meditation;
+    expect(med).toBeGreaterThan(0);
+    // Presence 2 + Meditation against Warping Score 0 + 2 gained
+    expect(plain.resist.total).toBe(2 + med);
+    expect(ascentOutcome(plain, { value: 0, botches: 0 }, plain.resist.total - plain.against.total)).toMatchObject({ ascends: false, margin: 0 });
+    // one short: ascends, by one
+    expect(ascentOutcome(plain, { value: 1, botches: 0 }, plain.resist.total - plain.against.total + 2)).toMatchObject({ ascends: true, margin: 1 });
+    // a botch always ascends: the die counts 0, not the whole total lost
+    const b = ascentOutcome(plain, { value: 0, botches: 2 }, 9);
+    expect(b.ascends).toBe(true);
+    expect(b.margin).toBe(Math.max(1, plain.against.total + 9 - plain.resist.total));
+    // welcoming: Meditation comes off the roll, but the points the Ascent brings are counted without that
+    const w = ascentCheck(d(c), 2, undefined, true);
+    expect(w.resist.total).toBe(plain.resist.total - med);
+    const theirs = plain.resist.total - plain.against.total; // a tie without the welcome
+    expect(ascentOutcome(w, { value: 0, botches: 0 }, theirs)).toMatchObject({ ascends: true, margin: 0 });
+    expect(ascentOutcome(w, { value: 0, botches: 0 }, theirs + 3)).toMatchObject({ ascends: true, margin: 3 });
   });
 
   it('Arshaq’s Divine Form: Magic Resistance 11 and Soak +2 at Warping Score 1 and True Faith 1', () => {

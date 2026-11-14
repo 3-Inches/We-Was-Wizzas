@@ -6,7 +6,7 @@
 // The first fix is the one a click on the issue performs. Fixes marked `auto` are safe for
 // "Resolve all": they never need a choice and never make another budget overspend.
 
-import { ART_NAMES, CHAR_NAMES, type Art, type Characteristic, type GameData, type ParamSpec, type VFSize, type VirtueFlawDef } from '../../data';
+import { ART_NAMES, CHAR_NAMES, STATUS_CULTURES, type Art, type Characteristic, type GameData, type ParamSpec, type VFSize, type VirtueFlawDef } from '../../data';
 import type { Character, HouseRules, XpSource } from '../types';
 import { deriveCharacter, canSpend, type DerivedCharacter, type XpBudget } from './derive';
 import { addVirtue, applyMythicType, MYTHIC_TYPES, removeQualities, removeVirtue } from './factory';
@@ -171,7 +171,12 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
       return gift ? [remove(gift.uid, 'The Gift')] : [];
     }
     case 'status-none': {
-      const opts = available((v) => v.categories.includes('Social Status'));
+      // the statuses of the character's own society first in mind: another culture's ('Alim for a Western Christian) is left to the list
+      const ofCulture = (v: VirtueFlawDef) => {
+        const cult = STATUS_CULTURES[v.name];
+        return !cult || cult.includes('All Cultures') || !c.society || cult.includes(c.society);
+      };
+      const opts = available((v) => v.categories.includes('Social Status') && ofCulture(v));
       return list(
         c.type === 'grog' && add('covenfolk', { size: 'Free', auto: true }),
         opts.length > 0 && { kind: 'choose', label: 'Take a Social Status', options: opts, apply: (x, id) => void addVirtue(x, data, id) },
@@ -185,13 +190,28 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
         goto('house', 'Go to Mythic type'),
       );
     case 'mythic-type-many':
-      return list(chooseRemove('Keep one type: drop', (v) => !!v.def?.categories.includes('Mythic Companion')));
+      return list(chooseRemove('Keep one type: drop', (v) => !!v.def?.categories.includes('Mythic Companion') || v.cv.freeReason === 'Mythic Companion'));
+    case 'mythic-free-minor': {
+      // a Minor Virtue already taken becomes the free one (the type names none: a kabbalist's is the player's choice)
+      const minors = d.virtues.filter((v) => v.def?.kind === 'virtue' && v.cv.size === 'Minor' && !v.cv.free && !v.cv.noPoints && !v.def.categories.includes('Social Status'));
+      return list(
+        minors.length > 0 && {
+          kind: 'choose', label: 'Make a Minor Virtue the free one', options: minors.map((v) => ({ value: v.cv.uid, label: v.name })),
+          apply: (x, id) => { const y = x.virtues.find((z) => z.uid === id); if (y) Object.assign(y, { free: true, freeReason: 'Mythic Companion free Minor Virtue' }); },
+        },
+        goto('virtues'),
+      );
+    }
+    case 'mythic-min-abilities':
+      return [goto('abilities')];
     case 'house-virtue': case 'exmisc-package':
       return [goto('house')];
     case 'merinita-warping':
       return [{ kind: 'apply', label: 'Set Warping Points to 1', auto: true, apply: (x) => void (x.warpingPoints = 1) }];
     case 'merinita-warping-faerie':
       return [{ kind: 'apply', label: 'Set Warping Points to 0', auto: true, apply: (x) => void (x.warpingPoints = 0) }];
+    case 'bjornaer-heartbeast':
+      return [goto('house', 'Choose the heartbeast')];
     case 'bjornaer-familiar':
       return [{ kind: 'apply', label: 'Release the familiar', apply: (x) => void (x.familiar = undefined) }, { kind: 'goto', label: 'Open Lab & familiar', step: 'sheet', tab: 'lab' }];
 

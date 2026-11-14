@@ -52,6 +52,14 @@ export function shareLinkToBundle(packed: string): ExportBundle | null {
   }
 }
 
+/** The longest message Discord sends without Nitro: a link longer than this is cut off there. */
+export const CHAT_LINK_LIMIT = 2000;
+
+// A file chosen for import waits here while the Import page shows what it holds (a link carries its own).
+let pending: ExportBundle | undefined;
+export const setPendingImport = (b: ExportBundle | undefined) => void (pending = b);
+export const pendingImport = () => pending;
+
 export function safeFilename(name: string): string {
   return (name || 'untitled').replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '_') || 'untitled';
 }

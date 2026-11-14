@@ -70,7 +70,7 @@ export function recommend(d: DerivedCharacter, data: GameData, archetypeIds: str
     if (s.id && (s.kind === 'virtue' || s.kind === 'flaw')) {
       const def = data.vfById.get(s.id);
       if (!def || !allowed(d, def, data)) return;
-      if (!data.isBookEnabled(def.source.book)) return;
+      if (!data.inBooks(def)) return;
       if (has(d, s.id, s.param)) return;
     }
     if (!out.some((o) => o.kind === s.kind && o.id === s.id && o.param === s.param && o.title === s.title)) out.push(s);
@@ -124,7 +124,7 @@ export function recommend(d: DerivedCharacter, data: GameData, archetypeIds: str
   if (tags.size) {
     const scored: { v: VirtueFlawDef; s: number }[] = [];
     for (const v of data.virtuesFlaws) {
-      if (!allowed(d, v, data) || !data.isBookEnabled(v.source.book)) continue;
+      if (!allowed(d, v, data) || !data.inBooks(v)) continue;
       const overlap = (v.tags ?? []).filter((x) => tags.has(x)).length;
       if (!overlap) continue;
       let s = overlap * 2;

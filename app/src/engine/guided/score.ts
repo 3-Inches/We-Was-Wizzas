@@ -12,7 +12,7 @@ export { DEFAULT_SAGA_SETTINGS };
 
 export type { GuidedState, SagaGuidedSettings };
 import type { DerivedCharacter } from '../character/derive';
-import { vfProblems } from '../character/restrictions';
+import { abilityAvailability, vfProblems } from '../character/restrictions';
 import { abilityTag, vfRecords, type TagLink, type VFRecord } from './records';
 import { QUESTIONS, SECTIONS, childrenOf, type Question } from './questions';
 import { isThemeTag, tagLabel } from './tags';
@@ -121,14 +121,17 @@ export function sagaRegion(ctx: GuidedContext): string | undefined {
 export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, ctx: GuidedContext, complexityOk: boolean): string | null {
   const { c, d, data } = ctx;
   if (def.creatureOnly) return 'Creature only';
-  if (!data.isBookEnabled(def.source.book)) return 'Book not enabled';
+  if (!data.inBooks(def)) return 'Book not enabled';
   if (def.id === 'the-gift' || def.id === 'hermetic-magus') return 'Given by the character type';
   if (st.declined.includes(def.id)) return 'You turned it down';
   if (!def.repeatable && c.virtues.some((v) => v.defId === def.id)) return 'Already taken';
   const region = sagaRegion(ctx);
   if (region && rec.regions.length && !rec.regions.includes(region)) return `Belongs to the ${rec.regions.join(' or ')} Tribunal`;
   if (rec.cultures.length && !rec.cultures.includes(c.society)) return `For ${rec.cultures.join(' or ')} characters`;
-  if (!complexityOk && (rec.flags.complexity || rec.flags.spellLike)) return 'Adds complexity';
+  // asked for by name, or a Holy Method or Power when the player wants holy powers: complexity is no bar
+  const named = (st.answers[`vf:${def.id}`] ?? 0) >= FOLLOW_UP_HIGH;
+  const holy = rec.links.some((l) => l.tag === 'holy-power' && l.dir > 0 && l.strength >= 2) && (st.answers['f-divine-powers'] ?? 5) >= FOLLOW_UP_HIGH;
+  if (!complexityOk && (rec.flags.complexity || rec.flags.spellLike) && !named && !holy) return 'Adds complexity';
   if (rec.flags.infernal && (st.answers['f-infernal-taint'] ?? 5) < FOLLOW_UP_HIGH) return 'Infernal taint (only if you want your character tempted or tainted)';
   if (def.sizes.every((z) => z === 'Free') && !def.categories.includes('Social Status')) return 'Given by other rules, not bought';
   if (def.kind === 'flaw' && def.categories.includes('Supernatural') && /\b(supernatural (power|virtue)s?|character's (supernatural )?powers?|one of (the character's|your) powers)\b/i.test(def.text)) {
@@ -217,7 +220,8 @@ function paramChoice(def: VirtueFlawDef, rec: VFRecord, w: Record<string, number
   }
   // Abilities: the one this character can use that the player cares most about
   const abilities = ctx.data.abilities.filter((a) => (!spec.abilityTypes || spec.abilityTypes.includes(a.type)) && (!spec.options || spec.options.includes(a.id)) && a.source.book === 'DE' && !a.id.endsWith('-type'));
-  const usable = abilities.filter((a) => ctx.c.abilities.some((x) => x.abilityId === a.id) || (a.type === 'General' || ctx.d.isMagus || ctx.d.abilityAccess.types.has(a.type)));
+  // one the character has, or may learn: not another House's own Ability (Heartbeast for a Tremere), nor Parma Magica without The Gift
+  const usable = abilities.filter((a) => ctx.c.abilities.some((x) => x.abilityId === a.id) || ((a.type === 'General' || ctx.d.isMagus || ctx.d.abilityAccess.types.has(a.type)) && abilityAvailability(ctx.d, ctx.data, a.id).ok));
   const rank = (id: string) => {
     const i = DEFAULT_ABILITY[ctx.c.type].indexOf(id);
     if (i >= 0) return i;
@@ -657,7 +661,7 @@ export function recommendHouses(ev: Evaluation, ctx: GuidedContext): HouseRec[] 
     if (best > -Infinity) score += Math.max(0, best);
     if (bestReason) reasons.push(bestReason);
     // Virtues only its members can take
-    const houseOnly = ctx.data.virtuesFlaws.filter((v) => v.houses?.includes(h.id) && v.kind === 'virtue' && ctx.data.isBookEnabled(v.source.book));
+    const houseOnly = ctx.data.virtuesFlaws.filter((v) => v.houses?.includes(h.id) && v.kind === 'virtue' && ctx.data.inBooks(v));
     const fits = houseOnly.map((v) => scoreOption(v, recs.get(v.id)!, st, ev.weights, ctx)).filter((s) => s.fit > 0).sort((a, b) => b.fit - a.fit).slice(0, 3);
     for (const f of fits) {
       score += f.fit / 2;

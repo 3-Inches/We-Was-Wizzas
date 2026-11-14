@@ -36,6 +36,32 @@ export const HOMELANDS: (ChoiceGroup & { culture: string })[] = [
   { label: 'Jewish communities', culture: 'Jewish', options: ['Ashkenazi Jew', 'Sephardi Jew', 'Romaniote Jew'] },
 ];
 
+/** The tongue most people of a homeland group grow up speaking. */
+const GROUP_LANGUAGE: Record<string, string> = {
+  'Stonehenge (England & Wales)': 'English', 'Loch Leglean (Scotland)': 'Scots Gaelic', 'Hibernian (Ireland)': 'Irish Gaelic', 'Normandy (northern France)': 'French',
+  'Provençal (southern France)': 'Occitan', 'Iberian (Spain & Portugal)': 'Castilian', 'Rhine (Germany & the Low Countries)': 'German', 'Greater Alps': 'German',
+  'Rome (Italy)': 'Italian', 'Theban (Greece & the Aegean)': 'Greek', 'Transylvanian (Hungary & the Carpathians)': 'Hungarian', 'Novgorod (the Rus & the Baltic)': 'Russian',
+  'Levant (the Holy Land)': 'Arabic', 'North Africa & beyond': 'Arabic', 'Jewish communities': 'German',
+};
+/** Peoples whose tongue is not their group's. */
+const PEOPLE_LANGUAGE: Record<string, string> = {
+  'Anglo-Norman': 'French', Welsh: 'Welsh', 'Lowland Scot': 'English', 'Norse of the Isles': 'Norse', 'Hiberno-Norse': 'Norse', 'Anglo-Norman (Irish)': 'French',
+  Breton: 'Breton', Flemish: 'Flemish', 'Catalan (Roussillon)': 'Catalan', Catalan: 'Catalan', Basque: 'Basque', Galician: 'Portuguese', Portuguese: 'Portuguese',
+  Mozarab: 'Arabic', 'Andalusian (Moorish)': 'Arabic', Frisian: 'Frisian', 'Brabançon': 'Flemish', Savoyard: 'French', Burgundian: 'French', 'Lombard (Alpine)': 'Italian',
+  'Latin settler (Frank)': 'French', 'Venetian colonist': 'Italian', 'Transylvanian Saxon': 'German', Slovak: 'Czech', Bohemian: 'Czech', Pole: 'Polish', Cuman: 'Turkish',
+  Swede: 'Swedish', Dane: 'Danish', Norwegian: 'Norse', Icelander: 'Norse', 'Armenian (Cilician)': 'Armenian', 'Frank of Outremer': 'French', 'Seljuk Turk': 'Turkish', Persian: 'Persian',
+  'Sephardi Jew': 'Castilian', 'Romaniote Jew': 'Greek',
+};
+
+/** The native language that goes with a homeland (a people from HOMELANDS), if the toolkit knows it. */
+export function nativeLanguageFor(nationality: string | undefined): string | undefined {
+  if (!nationality) return undefined;
+  if (PEOPLE_LANGUAGE[nationality]) return PEOPLE_LANGUAGE[nationality];
+  const group = HOMELANDS.find((h) => h.options.includes(nationality));
+  return group ? GROUP_LANGUAGE[group.label] : undefined;
+}
+
+
 export const CRAFTS = [
   'Blacksmith', 'Armorer', 'Weaponsmith', 'Goldsmith', 'Silversmith', 'Farrier', 'Carpenter', 'Woodworker', 'Cooper', 'Mason', 'Sculptor', 'Painter', 'Glassblower', 'Potter',
   'Leatherworker', 'Tanner', 'Shoemaker', 'Weaver', 'Tailor', 'Dyer', 'Baker', 'Brewer', 'Cook', 'Boatbuilder', 'Bookbinder', 'Illuminator', 'Jeweler', 'Bowyer', 'Fletcher',

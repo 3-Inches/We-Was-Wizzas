@@ -41,7 +41,7 @@ import type { Character, Covenant, EnchantedEffectRecord, EnchantedItem, HouseRu
 import { addVis, takeVis, visAvailable, visText } from './vis';
 import { transfer } from './market';
 import { uid } from '../util/id';
-import { HOUSE_BY_ID } from '../data/houses';
+import { HEARTBEASTS, HOUSE_BY_ID } from '../data/houses';
 
 /** A House's name, from its id ("Ex Miscellanea" for ex-miscellanea). */
 export const houseName = (id?: string) => HOUSE_BY_ID[id ?? '']?.name ?? id ?? '';
@@ -133,8 +133,6 @@ function bookMagus(m: BookMagus, book: TribunalBook, def: BookCovenant, cov: Cov
 /** The Houses peregrinatores come from (a Gifted Mercere is rare, and has the Mercer Houses to stay at). */
 const PEREGRINE_HOUSES = ['bonisagus', 'tremere', 'flambeau', 'jerbiton', 'merinita', 'ex-miscellanea', 'verditius', 'criamon', 'tytalus', 'guernicus', 'bjornaer'];
 
-/** Common heartbeasts for a Bjornaer the book does not give one (HoH:MC lists many more). */
-const HEARTBEASTS = ['wolf', 'bear', 'boar', 'stag', 'raven', 'owl', 'fox', 'badger', 'hawk', 'otter', 'lynx', 'eagle', 'horse', 'hare', 'wildcat', 'beaver'];
 
 /**
  * What a living magus has beyond their sheet: the book's items and familiar, the House Mysteries

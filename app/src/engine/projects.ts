@@ -80,6 +80,8 @@ export interface ProjectPlan {
   gain: number;
   /** vis it needs this season */
   vis?: { arts: Art[]; pawns: number };
+  /** the pawns of capacity an opening gives, when a Verditius's craft makes it cost fewer pawns of vis than that */
+  opens?: number;
   /** seasons left, counting this one */
   seasonsLeft: number;
   problems: string[];
@@ -153,6 +155,16 @@ export function visShort(p: LabProject, c: Character, ctx: CharacterContext, pla
   return have < plan.vis.pawns ? `It needs ${plan.vis.pawns} pawn${plan.vis.pawns > 1 ? 's' : ''} of ${plan.vis.arts.map((a) => ART_NAMES[a]).join(' or ')} vis; ${fromCov ? 'the covenant’s stocks have' : 'the purse has'} ${have}.` : undefined;
 }
 
+/**
+ * The Craft a Verditius works an item with (DE, Verditius Magic): the best Craft Ability they have,
+ * as it stands now. A magus without the Mystery, or without a Craft, has none.
+ */
+export function verditiusCraft(c: Character, d: DerivedCharacter): { name: string; score: number } | undefined {
+  if (!c.virtues.some((v) => v.defId === 'verditius-magic')) return undefined;
+  const best = d.abilities.filter((a) => a.abilityId === 'craft-type' && a.total > 0).sort((a, b) => b.total - a.total)[0];
+  return best ? { name: best.name, score: best.total } : undefined;
+}
+
 function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: CharacterContext, o: PlanOptions): ProjectPlan {
   const problems: string[] = [];
   const lab = ctx.lab ? labContextOf(ctx.lab) : undefined;
@@ -163,10 +175,10 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
     ...(o.bonus ? [{ label: 'Experimentation (simple die + risk)', value: o.bonus }] : []),
     ...helperParts(o.helpers),
   ];
-  const lt = (activity: LabActivity, te: string, fo: string, x?: { talisman?: boolean; requisites?: Art[]; familiarBond?: 'none' | 'one' | 'both'; fromText?: boolean; holyText?: boolean; forSelfLongevity?: boolean; shapeMaterialBonus?: number; verditiusRunes?: number }) =>
+  const lt = (activity: LabActivity, te: string, fo: string, x?: { talisman?: boolean; requisites?: Art[]; familiarBond?: 'none' | 'one' | 'both'; fromText?: boolean; holyText?: boolean; forSelfLongevity?: boolean; shapeMaterialBonus?: number; verditiusRunes?: number; craftBonus?: number }) =>
     labTotal(d, { technique: te as never, form: fo as never, requisites: x?.requisites }, {
       activity, aura: ctx.aura, lab, talisman: x?.talisman, familiarBond: x?.familiarBond, fromText: x?.fromText, textByHolyMagus: x?.holyText, forSelfLongevity: x?.forSelfLongevity, experimenting, extra,
-      shapeMaterialBonus: x?.shapeMaterialBonus, verditiusRunes: x?.verditiusRunes,
+      shapeMaterialBonus: x?.shapeMaterialBonus, verditiusRunes: x?.verditiusRunes, craftBonus: x?.craftBonus,
       inFocus: p.inFocus, circumstance: p.circumstances,
     });
   const limit = seasonVisLimit(d);
@@ -213,8 +225,15 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       // an invested device is opened all at once; a talisman a pawn or more at a time
       const pawns = talisman ? Math.min(p.pawns ?? room, room) : it.openedPawns ? 0 : cap;
       if (!pawns) problems.push(talisman ? `The talisman holds ${cap} pawns and ${it.openedPawns} are opened.` : 'This item is already prepared.');
-      if (pawns > limit) problems.push(`${pawns} pawns is more than you can handle in a season (twice Magic Theory: ${limit}).`);
-      return { target: 1, gain: pawns ? 1 : 0, vis: { arts: ['Vi'], pawns }, seasonsLeft: 1, problems, summary: pawns ? `Open ${pawns} pawn${pawns > 1 ? 's' : ''} of Vim into ${it.name}${talisman ? ` (${it.openedPawns + pawns}/${cap})` : ''}.` : '' };
+      // a Verditius who crafts the item as it is first opened needs fewer pawns, by the Craft score, and never fewer than one (DE, Verditius Magic)
+      const craft = !it.openedPawns && (!it.creatorId || it.creatorId === c.id) ? verditiusCraft(c, d) : undefined;
+      const cost = pawns && craft?.score ? Math.max(1, pawns - craft.score) : pawns;
+      if (cost > limit) problems.push(`${cost} pawns is more than you can handle in a season (twice Magic Theory: ${limit}).`);
+      const saved = cost < pawns ? ` for ${cost} pawn${cost > 1 ? 's' : ''} of Vim (${craft!.name} ${craft!.score} off the cost)` : '';
+      return {
+        target: 1, gain: pawns ? 1 : 0, vis: { arts: ['Vi'], pawns: cost }, opens: pawns, seasonsLeft: 1, problems,
+        summary: pawns ? (saved ? `Open ${it.name} to hold ${pawns} pawn${pawns > 1 ? 's' : ''}${saved}.` : `Open ${pawns} pawn${pawns > 1 ? 's' : ''} of Vim into ${it.name}${talisman ? ` (${it.openedPawns + pawns}/${cap})` : ''}.`) : '',
+      };
     }
     case 'attune': {
       if (!it) return { target: 0, gain: 0, seasonsLeft: 0, problems: ['Choose the item.'], summary: '' };
@@ -235,7 +254,9 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       const makesIt = (it.kind === 'lesser' || it.kind === 'charged') && (!it.creatorId || it.creatorId === c.id);
       const perBonus = it.runes ?? (makesIt && c.virtues.some((v) => v.defId === 'verditius-magic') ? (d.abilities.find((a) => a.abilityId === 'philosophiae')?.total ?? 0) : 0);
       const runes = sm > 0 ? perBonus * used : 0;
-      const total = lt('items', e.technique, e.form, { talisman, requisites: e.requisites, shapeMaterialBonus: sm, verditiusRunes: runes });
+      // a Verditius adds the Craft score to every Lab Total for an item of their own making, as it stands now (DE, Verditius Magic)
+      const ownWork = it.creatorId === c.id || makesIt;
+      const total = lt('items', e.technique, e.form, { talisman, requisites: e.requisites, shapeMaterialBonus: sm, verditiusRunes: runes, craftBonus: ownWork ? (verditiusCraft(c, d)?.score ?? 0) : 0 });
       const level = e.modifiedLevel;
       const lesser = it.kind === 'lesser';
       const pawns = Math.ceil(level / 10);
@@ -553,11 +574,12 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
       break;
     case 'open': {
       if (it && plan.vis) {
-        it.openedPawns += plan.vis.pawns;
+        const opened = plan.opens ?? plan.vis.pawns;
+        it.openedPawns += opened;
         it.creatorId = it.creatorId ?? c.id;
         // a Verditius crafts it from raw materials as it is opened, and may carve the runes (DE, Verditius Magic)
         if (it.creatorId === c.id && it.runes === undefined && c.virtues.some((v) => v.defId === 'verditius-magic')) it.runes = d.abilities.find((a) => a.abilityId === 'philosophiae')?.total ?? 0;
-        lines.push(`${head} ${it.name} opened with ${plan.vis.pawns} pawns of Vim (${it.openedPawns} in all).`);
+        lines.push(`${head} ${it.name} opened with ${plan.vis.pawns} pawn${plan.vis.pawns > 1 ? 's' : ''} of Vim${opened > plan.vis.pawns ? `, crafted by hand to hold ${opened}` : ''} (${it.openedPawns} in all).`);
         attune();
       }
       p.done = true;

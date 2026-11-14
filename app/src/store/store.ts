@@ -86,7 +86,7 @@ interface Store extends PersistedState {
   dismissHint: (id: string) => void;
   resetHints: () => void;
   setTour: (t?: UiPrefs['tour']) => void;
-  importBundle: (b: ExportBundle, opts?: { intoSagaId?: string }) => { sagaId?: string; characters: number; covenants: number };
+  importBundle: (b: ExportBundle, opts?: ImportOptions) => ImportResult;
   /** put a saga with its characters and covenants in place at once (the saga's clock moves them together) */
   putSagaState: (st: { saga: Saga; characters: Character[]; covenants: Covenant[] }) => void;
   /** add characters and covenants together, as one change to undo (a living covenant and its people) */
@@ -107,7 +107,32 @@ export interface ExportBundle {
   saga?: Saga;
   characters?: Character[];
   covenants?: Covenant[];
+  /** a saga's settings alone, for players to build their characters under: none of its people, covenants or notes */
+  rulesOnly?: boolean;
 }
+
+export interface ImportOptions {
+  intoSagaId?: string;
+  /** keep what is already here and bring these in beside it, under new ids */
+  copy?: boolean;
+  /** the covenant of the saga the characters join, when they come without one of their own */
+  covenantId?: string;
+}
+
+export interface ImportResult {
+  sagaId?: string;
+  characters: number;
+  covenants: number;
+  /** the characters as they are now filed */
+  characterIds: string[];
+  /** how many characters and covenants took the place of ones already in the saga */
+  replaced: number;
+  /** a saga already here was brought up to date with the storyguide's settings */
+  rulesUpdated?: boolean;
+}
+
+/** What a saga's settings file carries: the rules a character is built under, and nothing of the play. */
+const RULE_FIELDS = ['name', 'description', 'tribunal', 'enabledBooks', 'houseRules', 'mechanicsOverrides', 'custom', 'guided', 'economy', 'options', 'startYear', 'startSeason'] as const;
 
 /** A record with every id in it (as a value or a key) that was given anew changed to its new one. */
 function swapIds<T>(x: T, m: Map<string, string>): T {
@@ -491,14 +516,27 @@ export const useStore = create<Store>()((set, get) => {
       return id;
     };
     const imported: { sagas: string[]; characters: string[]; covenants: string[] } = { sagas: [], characters: [], covenants: [] };
-    if (b.saga && !sagaId) {
+    let replaced = 0;
+    let rulesUpdated = false;
+    const mine = b.rulesOnly && b.saga && !sagaId ? sagas[b.saga.id] : undefined;
+    if (mine && b.saga) {
+      // the storyguide's settings sent again: the saga here takes them, and keeps its characters
+      const s = migrateSaga(clone(b.saga));
+      const next = { ...mine, updatedAt: new Date().toISOString() } as Saga;
+      for (const k of RULE_FIELDS) (next as unknown as Record<string, unknown>)[k] = s[k];
+      // a saga that has not been played here follows the storyguide's calendar
+      if (!mine.timeLog?.length) Object.assign(next, { currentYear: s.currentYear, currentSeason: s.currentSeason });
+      sagas[mine.id] = next;
+      sagaId = mine.id;
+      rulesUpdated = true;
+    } else if (b.saga && !sagaId) {
       const s = migrateSaga(clone(b.saga));
       if (!s.id || sagas[s.id]) s.id = renew(s.id);
       sagas[s.id] = s;
       sagaId = s.id;
       imported.sagas.push(s.id);
     }
-    if (!sagaId) sagaId = st.activeSagaId;
+    if (!sagaId) sagaId = st.activeSagaId && sagas[st.activeSagaId] ? st.activeSagaId : undefined;
     if (!sagaId) {
       const s = newSaga('Imported Saga');
       sagas[s.id] = s;
@@ -506,14 +544,22 @@ export const useStore = create<Store>()((set, get) => {
     }
     for (const raw of b.characters ?? []) {
       const c = migrateCharacter(clone(raw));
-      if (!c.id || (characters[c.id] && characters[c.id].sagaId !== sagaId)) c.id = renew(c.id);
+      const here = c.id ? characters[c.id] : undefined;
+      if (!c.id || opts.copy || (here && here.sagaId !== sagaId)) c.id = renew(c.id);
+      else if (here) {
+        replaced++;
+        // a player's character sent again keeps the place the storyguide gave it in the covenant
+        if (!c.covenantId || covenants[c.covenantId]?.sagaId !== sagaId) c.covenantId = here.covenantId;
+      }
       c.sagaId = sagaId;
       characters[c.id] = c;
       imported.characters.push(c.id);
     }
     for (const raw of b.covenants ?? []) {
       const c = migrateCovenant(clone(raw));
-      if (!c.id || (covenants[c.id] && covenants[c.id].sagaId !== sagaId)) c.id = renew(c.id);
+      const here = c.id ? covenants[c.id] : undefined;
+      if (!c.id || opts.copy || (here && here.sagaId !== sagaId)) c.id = renew(c.id);
+      else if (here) replaced++;
       c.sagaId = sagaId;
       c.memberIds = c.memberIds ?? [];
       covenants[c.id] = c;
@@ -524,11 +570,21 @@ export const useStore = create<Store>()((set, get) => {
       for (const id of imported.characters) characters[id] = swapIds(characters[id], idMap);
       for (const id of imported.covenants) covenants[id] = swapIds(covenants[id], idMap);
     }
+    // a covenant left behind in the sender's own saga is not one of this saga's: the character
+    // comes without it, and may be given a place in one that is
+    const join = opts.covenantId && covenants[opts.covenantId]?.sagaId === sagaId ? opts.covenantId : undefined;
+    for (const id of imported.characters) {
+      let c = characters[id];
+      if (c.covenantId && covenants[c.covenantId]?.sagaId !== sagaId) c = characters[id] = { ...c, covenantId: undefined };
+      if (!c.covenantId && join) c = characters[id] = { ...c, covenantId: join };
+      const cov = c.covenantId ? covenants[c.covenantId] : undefined;
+      if (cov && !cov.memberIds.includes(id)) covenants[cov.id] = { ...cov, memberIds: [...cov.memberIds, id] };
+    }
     const touched = (a: Record<string, unknown>, b: Record<string, unknown>) => Object.keys(a).filter((k) => a[k] !== b[k]);
     remember({ sagas: touched(sagas, st.sagas), characters: touched(characters, st.characters), covenants: touched(covenants, st.covenants) }, 'the import');
     set({ sagas, characters, covenants, activeSagaId: sagaId });
     scheduleSave(get);
-    return { sagaId, characters: b.characters?.length ?? 0, covenants: b.covenants?.length ?? 0 };
+    return { sagaId, characters: b.characters?.length ?? 0, covenants: b.covenants?.length ?? 0, characterIds: imported.characters, replaced, rulesUpdated };
   },
   };
 });
@@ -541,6 +597,18 @@ export function exportSaga(sagaId: string): ExportBundle {
     characters: Object.values(st.characters).filter((c) => c.sagaId === sagaId),
     covenants: Object.values(st.covenants).filter((c) => c.sagaId === sagaId),
   };
+}
+
+/**
+ * The saga's settings for its players: the books, the troupe's rules and rulings, the optional rules
+ * and the saga's own content, so a character built elsewhere is built under the same rules. Nothing
+ * of the play goes with it: no characters, covenants, journal, calendar or news of the Tribunal.
+ */
+export function exportSagaRules(sagaId: string): ExportBundle {
+  const s = useStore.getState().sagas[sagaId];
+  const saga = { id: s.id, currentYear: s.currentYear, currentSeason: s.currentSeason, createdAt: s.createdAt, updatedAt: s.updatedAt, schemaVersion: s.schemaVersion, journal: [] } as unknown as Saga;
+  for (const k of RULE_FIELDS) (saga as unknown as Record<string, unknown>)[k] = s[k];
+  return { format: 'arm5-toolkit', kind: 'saga', version: SCHEMA_VERSION, exportedAt: new Date().toISOString(), rulesOnly: true, saga };
 }
 
 export function exportCharacter(id: string): ExportBundle {

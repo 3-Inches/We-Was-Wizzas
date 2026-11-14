@@ -163,6 +163,15 @@ function autoTags(v: VirtueFlawDef): string[] {
 }
 
 /**
+ * Virtues several books give, whose quoted text only points into the book it was taken from: the
+ * text a reader of any of them can use.
+ */
+const VF_TEXT_FIXES: Record<string, string> = {
+  ceremony:
+    'You have the Supernatural Ability Ceremony, with an initial score of 1. It lets you lead a group in a rite so that their efforts add together. In Realms of Power: The Divine it focuses a group of people on holy prayer, making it possible for them to bring about greater holy effects together (Game Table › Dice › Faith & miracles); Realms of Power: Faerie and The Infernal give the same Ability for the rites of those realms.',
+};
+
+/**
  * Combine the restriction data, the hand-written mechanics and a saga's override for one
  * Virtue/Flaw. Later layers win, except that the lists of prerequisites and incompatibilities
  * from the first two layers are combined (an override replaces them outright).
@@ -249,6 +258,8 @@ export interface GameData {
   armor: ArmorDef[];
   armorById: Map<string, ArmorDef>;
   isBookEnabled: (book: string) => boolean;
+  /** whether the saga uses a book this is printed in: the one its text is quoted from, or another that carries it too */
+  inBooks: (x: { source: { book: string }; alsoIn?: { book: string }[] }) => boolean;
   /** sections of the books that Virtues and Flaws cite for their rules */
   ruleSections: Record<string, RuleSection>;
 }
@@ -263,6 +274,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
   if (hit) return hit;
   const enabled = opts.enabledBooks ? new Set([...opts.enabledBooks, 'DE', 'custom']) : null;
   const isBookEnabled = (b: string) => !enabled || enabled.has(b);
+  const inBooks: GameData['inBooks'] = (x) => isBookEnabled(x.source.book) || !!x.alsoIn?.some((a) => isBookEnabled(a.book));
   const custom = opts.custom ?? emptyCustomContent();
 
   const abilities: AbilityDef[] = [...RAW_ABILITIES, ...custom.abilities].map((a) => ({
@@ -282,6 +294,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
     const creatureOnly = mech.creatureOnly ?? (CREATURE_NOTE.test(v.notes ?? '') || (v.source.book.startsWith('RoP') && CREATURE_TEXT.test(v.text)));
     return {
       ...v,
+      ...(VF_TEXT_FIXES[v.id] ? { text: VF_TEXT_FIXES[v.id] } : {}),
       ...mech,
       effects,
       refs: v.refs ?? VF_REFS.refs[v.id],
@@ -333,6 +346,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
     armor,
     armorById: new Map(armor.map((a) => [a.id, a])),
     isBookEnabled,
+    inBooks,
   };
   cache.set(key, data);
   return data;

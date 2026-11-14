@@ -2,6 +2,7 @@
 // Pure functions: (character, game data, house rules) -> DerivedCharacter.
 
 import { SOLOMON_RINGS } from '../../data/divine';
+import { MYTHIC_TYPES, mythicAbility } from '../../data/mythic';
 import {
   ARTS, CHARACTERISTICS, CHILDHOOD_ABILITIES, abilityCapForAge, childModifier, charCost,
   abilityMatches, abilityTypeOf, isLanguageAbility,
@@ -435,6 +436,10 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     if (a.fromName.startsWith('Student of') && a.param) access.abilities.add(`${a.param.toLowerCase()}-lore`.replace('divine-lore', 'dominion-lore'));
   }
   for (const g of eff('grantAbility')) access.abilities.add(g.ability);
+  // a Mythic Companion's type opens the Abilities its least scores are in, Arcane and Academic ones too
+  // ("the character must buy appropriate Virtues to take other Abilities of these types", RoP: The Divine)
+  const mythicType = char.type === 'mythic' ? Object.values(MYTHIC_TYPES).find((t) => char.virtues.some((v) => v.defId === t.virtue && v.freeReason === 'Mythic Companion')) : undefined;
+  for (const key of Object.keys(mythicType?.minAbilities ?? {})) access.abilities.add(mythicAbility(key).id);
   // Magical Meditation and (Form) Resistance come with their Qualities (RoP: Magic)
   for (const g of magicChar?.grants ?? []) access.abilities.add(g.ability);
   if (isMagus) {
@@ -719,8 +724,10 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const currentDiseasePenalty = (char.illnesses ?? []).reduce((t, i) => t + (i.flawInstead ? 0 : STAGE_PENALTY[i.stage]), 0);
 
   // ---------------------------------------------------------------- magic flags
-  const focus = eff('magicalFocus')[0];
-  const focusVirtue = focus ? virtues.find((v) => v.cv.uid === focus.fromUid) : undefined;
+  // a focus in certamen (House Tremere) doubles an Art in the duel alone: it is no focus for spells or the lab
+  const focusOf = (f: { fromUid?: string }) => virtues.find((v) => v.cv.uid === f.fromUid);
+  const focus = eff('magicalFocus').find((f) => !/^\s*certamen\s*$/i.test(focusOf(f)?.cv.param ?? ''));
+  const focusVirtue = focus ? focusOf(focus) : undefined;
   const socialPenalty = giftType === 'blatant' ? -6 : giftType === 'normal' || giftType === 'suppressed' ? -3 : 0;
 
   return {
@@ -764,6 +771,8 @@ export function canSpend(
 ): { ok: boolean; reason?: string } {
   const type = abilityTypeOf(data, ab.abilityId);
   const id = ab.abilityId;
+  // "Unless you have The Gift, you cannot learn Parma Magica" (DE, Arcane Lore), from any pool
+  if (id === 'parma-magica' && !d.hasGift) return { ok: false, reason: 'Parma Magica cannot be learned without The Gift' };
   if (budget.id === 'native') return ab.native ? { ok: true } : { ok: false, reason: 'Only your native language' };
   if (budget.id === 'childhood') {
     if (ab.native) return { ok: false, reason: 'Native language uses its own 75 xp' };
