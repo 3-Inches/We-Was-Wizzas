@@ -7,6 +7,7 @@ import { CharIssueList } from './CharIssues';
 import { HOUSE_BY_ID } from '../../data/houses';
 import { exportCharacter, useStore } from '../../store/store';
 import { bundleToShareLink, downloadJson, safeFilename } from '../../util/files';
+import ShareCard from '../ShareCard';
 import OverviewTab from './sheet/OverviewTab';
 import AbilitiesTab from './sheet/AbilitiesTab';
 import MagicTab from './sheet/MagicTab';
@@ -52,8 +53,9 @@ export default function CharacterSheet() {
         </h1>
         <div className="row no-print">
           <button onClick={() => nav(`/saga/${saga.id}/character/${c.id}/create`)}>{c.creation.finalized ? 'Edit creation' : 'Continue creation'}</button>
-          <button onClick={() => downloadJson(`${safeFilename(c.name)}.arm5char.json`, exportCharacter(c.id))}>Export</button>
-          <button onClick={() => setShare(bundleToShareLink(exportCharacter(c.id)))}>Share link</button>
+          <button onClick={() => setShare(bundleToShareLink(exportCharacter(c.id)))} data-tour="sheet-share" title="Send this character to your storyguide or a player, as a file or a link">
+            Share / Export
+          </button>
           <button onClick={() => window.print()}>Print</button>
           <button
             className="danger"
@@ -76,14 +78,12 @@ export default function CharacterSheet() {
         </div>
       )}
       {share && (
-        <Card title="Share this character" actions={<button className="small ghost" onClick={() => setShare('')}>✕</button>}>
-          <p className="small">Send this link (e.g. on Discord). Opening it imports a copy of the character into the recipient's browser.</p>
-          <div className="row">
-            <input readOnly value={share} style={{ flex: 1 }} onFocus={(e) => e.target.select()} />
-            <button onClick={() => navigator.clipboard?.writeText(share)}>Copy</button>
-          </div>
-          <p className="small muted">{share.length.toLocaleString()} characters. Very long links may be cut off by some chat apps — use Export instead.</p>
-        </Card>
+        <ShareCard title={`Send ${c.name || 'this character'} to someone`} link={share} onClose={() => setShare('')} onDownload={() => downloadJson(`${safeFilename(c.name)}.arm5char.json`, exportCharacter(c.id))}>
+          <p className="small">
+            Your storyguide imports it into the saga, where it joins the covenant; you keep your own copy here. Sending it again later replaces theirs with the newer one, and they are told so first.
+            {!c.creation.finalized && <b> This character is still in creation: finish the Review step first, or send it as a draft to be looked over.</b>}
+          </p>
+        </ShareCard>
       )}
       <Tabs tabs={tabs} value={tab} onChange={setTab} />
       <Hint id="sheet-tabs">Click a total to see how it is worked out. The tabs follow play: <b>Magic</b> for casting, <b>Combat &amp; Health</b> for fights, <b>Seasons &amp; Aging</b> between stories.</Hint>

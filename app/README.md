@@ -224,8 +224,10 @@ It runs locally in the browser. Data is stored in IndexedDB and shared as files 
 
 **Sharing:**
 
-- Export or import a saga, character or covenant as a file.
-- Share links that import a copy (useful on Discord).
+- **Invite players** sends a saga's books, rules and custom content alone (none of its characters, covenants or notes), so players build on their own under the saga's rules.
+- **Share / Export** on a character or covenant offers a file, or a link when it is short enough for a chat message (a finished magus rarely is, and the card says so).
+- Importing shows what a file or link holds before anything is brought in: each character, whether it is finished, what the rules check says under the target saga, what it would replace, and the covenant it joins. A character sent again replaces the earlier one and keeps its covenant; a covenant from the sender's own saga is dropped.
+- Export or import a whole saga as a file, for backups or another device.
 - Stream mode with large text for screen sharing, and a print layout.
 
 ## Not yet automated

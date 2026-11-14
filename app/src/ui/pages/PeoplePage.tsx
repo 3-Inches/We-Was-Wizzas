@@ -86,7 +86,7 @@ export default function PeoplePage() {
         <h1>People</h1>
         <SearchInput value={q} onChange={setQ} placeholder="Find by name, House, player, concept…" />
       </div>
-      <Card title="Create a character" fold="people-create" summary="A magus, companion, Mythic Companion or grog.">
+      <Card title="Create a character" fold="people-create" summary="A magus, companion, Mythic Companion or grog." startOpen={chars.length === 0}>
         <div className="grid grid-2">
           {ORDER.map((t) => (
             <button key={t} onClick={() => create(t)} data-tour={`create-${t}`} style={{ flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', gap: 2 }}>
