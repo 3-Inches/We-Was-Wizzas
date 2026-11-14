@@ -111,6 +111,8 @@ export interface DerivedCharacter {
     notes: string[];
     /** abilities a magus can only have learned in apprenticeship (from a Hermetic or House Virtue) */
     apprenticeshipOnly: Set<string>;
+    /** abilities open for one choice only, by id: a Nephilim's Hebrew, not every dead language (lower case) */
+    onlyAs: Map<string, Set<string>>;
   };
   laterLifeYears: number;
   ageCap: number;
@@ -427,7 +429,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const charPointsSpent = CHARACTERISTICS.reduce((s, c) => s + charCost(Math.max(-3, Math.min(3, purchasedCharacteristic(char, c)))), 0);
 
   // ---------------------------------------------------------------- ability access
-  const access = { types: new Set<AbilityType>(['General']), abilities: new Set<string>(), notes: [] as string[], apprenticeshipOnly: new Set<string>() };
+  const access = { types: new Set<AbilityType>(['General']), abilities: new Set<string>(), notes: [] as string[], apprenticeshipOnly: new Set<string>(), onlyAs: new Map<string, Set<string>>() };
   for (const a of eff('abilityAccess')) {
     const chosen = a.param && ['Martial', 'Academic', 'Arcane'].includes(a.param) ? [a.param as AbilityType] : a.abilityTypes;
     for (const t of chosen ?? []) access.types.add(t);
@@ -439,7 +441,12 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   // a Mythic Companion's type opens the Abilities its least scores are in, Arcane and Academic ones too
   // ("the character must buy appropriate Virtues to take other Abilities of these types", RoP: The Divine)
   const mythicType = char.type === 'mythic' ? Object.values(MYTHIC_TYPES).find((t) => char.virtues.some((v) => v.defId === t.virtue && v.freeReason === 'Mythic Companion')) : undefined;
-  for (const key of Object.keys(mythicType?.minAbilities ?? {})) access.abilities.add(mythicAbility(key).id);
+  for (const key of Object.keys(mythicType?.minAbilities ?? {})) {
+    const { id, param } = mythicAbility(key);
+    // a least score in one language opens that language, not the rest
+    if (param) access.onlyAs.set(id, new Set([...(access.onlyAs.get(id) ?? []), param.toLowerCase()]));
+    else access.abilities.add(id);
+  }
   // Magical Meditation and (Form) Resistance come with their Qualities (RoP: Magic)
   for (const g of magicChar?.grants ?? []) access.abilities.add(g.ability);
   if (isMagus) {
@@ -794,6 +801,9 @@ export function canSpend(
   }
   if (type === 'General') return { ok: true };
   if (d.abilityAccess.abilities.has(id)) return { ok: true };
+  const only = d.abilityAccess.onlyAs.get(id);
+  if (only?.has((ab.param ?? '').trim().toLowerCase())) return { ok: true };
+  if (only && !d.abilityAccess.types.has(type)) return { ok: false, reason: `Open only as ${[...only].map((x) => x[0].toUpperCase() + x.slice(1)).join(' or ')}; any other needs a Virtue (e.g. Educated)` };
   if (type === 'Supernatural') return supernaturalOk ? { ok: true } : { ok: false, reason: 'Requires the Virtue granting this Supernatural Ability' };
   if (d.abilityAccess.types.has(type)) return { ok: true };
   // languages: dead languages are Academic, living are General

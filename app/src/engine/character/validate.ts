@@ -162,6 +162,16 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (c.house === 'bjornaer' && !c.heartbeast?.trim()) add({ id: 'bjornaer-heartbeast', severity: 'info', step: 'house', message: 'Choose the heartbeast: the one creature a Bjornaer magus is as well as human.', ref: 'DE, Bjornaer: The Heartbeast' });
   }
 
+  // only one relic helps at a time (DE, Relic): a second is points that buy nothing
+  const relics = c.virtues.filter((v) => v.defId === 'relic' || v.defId === 'powerful-relic');
+  if (relics.length > 1) {
+    add({
+      id: 'two-relics', severity: 'warning', step: 'virtues',
+      message: 'Only one relic helps at a time: its Faith Points and Magic Resistance do not add to another\'s. Keep the stronger one, unless the troupe agrees the second has some other use in the saga.',
+      ref: 'DE, Relic', fix: 'Remove the lesser relic.',
+    });
+  }
+
   // --------------------------------------------------------------- mythic companions
   if (type === 'mythic') {
     // the type's Free Virtue: one in the Mythic Companion category, or one a type gives as its own (Perfectus, Kabbalist)
