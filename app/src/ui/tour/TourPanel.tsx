@@ -89,9 +89,10 @@ function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: stri
       : tour.wantsDraft
         ? (made ?? newest(drafts))
         : (made ??
-          // a tutorial about a livelihood follows only someone who has one (else it offers a practice craftsman)
+          // a tutorial about a livelihood follows by itself only someone whose workshop is set up: its steps press the
+          // workshop's own controls (one with a trade and no workshop yet can still be chosen; else a practice craftsman)
           // one about holy powers follows only someone who works them (else it offers a practice wonder-worker)
-          (tour.prefersTrade ? newest(finished.filter(hasTrade)) : tour.prefersHoly ? newest(finished.filter(hasHoly)) : newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga)));
+          (tour.prefersTrade ? newest(finished.filter((c) => !!c.workshop)) : tour.prefersHoly ? newest(finished.filter(hasHoly)) : newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga)));
     const charId = fits(t.charId) ? t.charId : m?.[2] === 'character' && fits(m[3]) ? m[3] : fallback?.id;
     const covs = Object.values(covenants).filter((c) => c.sagaId === sagaId && !c.living);
     const covId = t.covId && covenants[t.covId]?.sagaId === sagaId ? t.covId : m?.[2] === 'covenant' && covenants[m[3]] ? m[3] : newest(covs)?.id;
