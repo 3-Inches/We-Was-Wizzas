@@ -164,3 +164,22 @@ describe('rules that came up on the way', () => {
     expect(nativeLanguageFor('Elsewhere')).toBeUndefined();
   });
 });
+
+describe('a Virtue printed in several books', () => {
+  it('is open to a saga that uses any one of them: Ceremony with The Divine and without Realms of Power: Faerie', () => {
+    const divine = buildGameData({ enabledBooks: ['DE', 'RoP_D'] });
+    const ceremony = divine.vfById.get('ceremony')!;
+    expect(ceremony.source.book).not.toBe('RoP_D');
+    expect(divine.isBookEnabled(ceremony.source.book)).toBe(false);
+    expect(divine.inBooks(ceremony)).toBe(true);
+    const c = newCharacter('companion', 's');
+    addVirtue(c, divine, 'ceremony', 'Minor');
+    const d = deriveCharacter(c, divine, rules);
+    expect(validateCharacter(d, divine, rules).some((i) => i.id.startsWith('book-'))).toBe(false);
+    // its text speaks of holy prayer, not only of the faerie chapter it was first quoted from
+    expect(ceremony.text).toMatch(/holy prayer/);
+    // and it is closed to a saga that uses none of them
+    const core = buildGameData({ enabledBooks: ['DE'] });
+    expect(core.inBooks(core.vfById.get('ceremony')!)).toBe(false);
+  });
+});

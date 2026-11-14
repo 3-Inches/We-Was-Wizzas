@@ -210,7 +210,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
         add({ id: `vf-ability-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${v.name}: this character cannot learn ${data.abilityById.get(v.cv.param)?.name} (${av.reason ?? 'not open to them'}).` });
       }
     }
-    if (!data.isBookEnabled(def.source.book)) add({ id: `book-${v.cv.uid}`, severity: 'info', step: 'virtues', message: `${def.name} comes from ${def.source.book}, which is not enabled for this saga.` });
+    if (!data.inBooks(def)) add({ id: `book-${v.cv.uid}`, severity: 'info', step: 'virtues', message: `${def.name} comes from ${def.source.book}, which is not enabled for this saga.` });
     if (def.id === 'great-characteristic' && v.cv.param) {
       const base = purchasedCharacteristic(c, v.cv.param as keyof typeof c.characteristics);
       if (base !== undefined && base < 3) add({ id: `great-${v.cv.uid}`, code: 'great', vf: v.cv.uid, other: v.cv.param, severity: 'error', step: 'characteristics', message: `Great ${CHAR_NAMES[v.cv.param as keyof typeof CHAR_NAMES]} requires a purchased score of at least +3 (have ${base}).`, ref: 'DE p.83' });

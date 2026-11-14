@@ -24,7 +24,7 @@ function check(c: Character, saga: Saga | undefined): { errors: number; warnings
     const rules = saga?.houseRules ?? DEFAULT_HOUSE_RULES;
     const d = deriveCharacter(migrateCharacter(structuredClone(c)), data, rules);
     const issues = validateCharacter(d, data, rules);
-    const books = [...new Set(d.virtues.map((v) => v.def?.source.book).filter((b): b is string => !!b && !data.isBookEnabled(b)))];
+    const books = [...new Set(d.virtues.filter((v) => v.def && !data.inBooks(v.def)).map((v) => v.def!.source.book))];
     return { errors: issues.filter((i) => i.severity === 'error').length, warnings: issues.filter((i) => i.severity === 'warning').length, books };
   } catch {
     return undefined;

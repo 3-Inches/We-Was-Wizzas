@@ -279,7 +279,7 @@ function AddAbility(props: {
   const { data, d, pool } = props;
   // what the character can learn at all, and (unless "show all") what the chosen pool can buy
   const list = data.abilities
-    .filter((a) => data.isBookEnabled(a.source.book))
+    .filter((a) => data.inBooks(a))
     .filter((a) => props.showAll || (abilityAvailability(d, data, a.id).ok && (!pool || canSpend(d, data, pool, { abilityId: a.id }).ok || a.id === 'living-language' || a.id === 'dead-language')))
     .sort((a, b) => a.name.localeCompare(b.name));
   const why = props.value ? abilityAvailability(d, data, props.value) : undefined;

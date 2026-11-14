@@ -121,7 +121,7 @@ export function sagaRegion(ctx: GuidedContext): string | undefined {
 export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, ctx: GuidedContext, complexityOk: boolean): string | null {
   const { c, d, data } = ctx;
   if (def.creatureOnly) return 'Creature only';
-  if (!data.isBookEnabled(def.source.book)) return 'Book not enabled';
+  if (!data.inBooks(def)) return 'Book not enabled';
   if (def.id === 'the-gift' || def.id === 'hermetic-magus') return 'Given by the character type';
   if (st.declined.includes(def.id)) return 'You turned it down';
   if (!def.repeatable && c.virtues.some((v) => v.defId === def.id)) return 'Already taken';
@@ -661,7 +661,7 @@ export function recommendHouses(ev: Evaluation, ctx: GuidedContext): HouseRec[] 
     if (best > -Infinity) score += Math.max(0, best);
     if (bestReason) reasons.push(bestReason);
     // Virtues only its members can take
-    const houseOnly = ctx.data.virtuesFlaws.filter((v) => v.houses?.includes(h.id) && v.kind === 'virtue' && ctx.data.isBookEnabled(v.source.book));
+    const houseOnly = ctx.data.virtuesFlaws.filter((v) => v.houses?.includes(h.id) && v.kind === 'virtue' && ctx.data.inBooks(v));
     const fits = houseOnly.map((v) => scoreOption(v, recs.get(v.id)!, st, ev.weights, ctx)).filter((s) => s.fit > 0).sort((a, b) => b.fit - a.fit).slice(0, 3);
     for (const f of fits) {
       score += f.fit / 2;

@@ -716,7 +716,7 @@ function spendPoolOnAbilities(c: Character, budget: XpBudget, xp: number, ranked
   const allowed = (id: string) => {
     const def = inp.data.abilityById.get(id);
     const have = c.abilities.some((a) => a.abilityId === id);
-    return !!def && inp.data.isBookEnabled(def.source.book) && !secondTrade(c, id) && (have || abilityAvailability(get().d, inp.data, id).ok) && canSpend(get().d, inp.data, budget, { abilityId: id, param: abilityParam(id, c, inp) }).ok;
+    return !!def && inp.data.inBooks(def) && !secondTrade(c, id) && (have || abilityAvailability(get().d, inp.data, id).ok) && canSpend(get().d, inp.data, budget, { abilityId: id, param: abilityParam(id, c, inp) }).ok;
   };
   const usable = ranked.filter((r) => allowed(r.id)).slice(0, width);
   if (!usable.length) return 0;
@@ -767,7 +767,7 @@ function spendMinimums(c: Character, mins: Record<string, number>, label: string
   for (const [key, min] of Object.entries(mins)) {
     const { id, param: named } = mythicAbility(key);
     const def = inp.data.abilityById.get(id);
-    if (!def || !inp.data.isBookEnabled(def.source.book)) continue;
+    if (!def || !inp.data.inBooks(def)) continue;
     const param = named ?? abilityParam(id, c, inp);
     const have = c.abilities.some((a) => a.abilityId === id && (!named || (a.param ?? '').toLowerCase() === named.toLowerCase()));
     const pools = get().d.budgets.filter((b) => !['native', 'childhood'].includes(b.id) && b.kind !== 'art+ability' && b.total - b.spent > 0);
@@ -1024,7 +1024,7 @@ function chooseSpells(c: Character, st: GuidedState, inp: BuildInput, get: () =>
       if ((perCombo.get(cb.t + cb.f) ?? 0) >= most) continue;
       const limit = creationSpellLimit(get().d, { technique: cb.t as Technique, form: cb.f as Form }, inp.rules.spellLevelLimitBonus).total;
       const cands = inp.data.spells
-        .filter((s) => s.technique === cb.t && s.form === cb.f && s.level !== null && !s.general && s.level <= Math.min(limit, left) && (ritualOk || !s.ritual) && !s.requisites.length && inp.data.isBookEnabled(s.source.book))
+        .filter((s) => s.technique === cb.t && s.form === cb.f && s.level !== null && !s.general && s.level <= Math.min(limit, left) && (ritualOk || !s.ritual) && !s.requisites.length && inp.data.inBooks(s))
         .filter((s) => !c.spells.some((x) => x.spell.name === s.name))
         .sort((a, b) => (b.source.book === 'DE' ? 1 : 0) - (a.source.book === 'DE' ? 1 : 0) || (b.level ?? 0) - (a.level ?? 0));
       // Quick build: one of the few highest, not always the same one

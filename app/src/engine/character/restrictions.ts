@@ -267,7 +267,7 @@ export function vfProblems(d: DerivedCharacter, data: GameData, def: VirtueFlawD
 
   // ---------------------------------------------------------------- picker-only
   if (adding) {
-    if (!data.isBookEnabled(def.source.book)) push('book', 'error', 'Book not enabled for this saga', `${def.source.book} is not enabled for this saga.`);
+    if (!data.inBooks(def)) push('book', 'error', 'Book not enabled for this saga', `${def.source.book} is not enabled for this saga.`);
     if (!def.repeatable && !def.param && c.virtues.some((x) => x.defId === def.id)) push('taken', 'error', 'Already taken', `${def.name} is already taken.`);
     if (def.categories.includes('Social Status')) statusSwap(d, def, push);
     if (opts.rules && !c.creation.finalized) limitChecks(d, def, opts.size ?? cheapestSize(def), opts.rules, push);
@@ -358,7 +358,7 @@ const HOUSE_ABILITIES: Record<string, string[]> = {
  */
 export function abilityAvailability(d: DerivedCharacter, data: GameData, abilityId: string): { ok: boolean; reason?: string } {
   const def = data.abilityById.get(abilityId);
-  if (def && !data.isBookEnabled(def.source.book)) return { ok: false, reason: 'Book not enabled for this saga' };
+  if (def && !data.inBooks(def)) return { ok: false, reason: 'Book not enabled for this saga' };
   const type = def?.type ?? 'General';
   const access = d.abilityAccess;
   // "Unless you have The Gift, you cannot learn Parma Magica" (DE, Arcane Lore)

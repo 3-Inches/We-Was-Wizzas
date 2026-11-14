@@ -33,7 +33,7 @@ export function pickSpells(c: Character, data: GameData, rules: HouseRules, o: S
   const picked: string[] = [];
   const pool = data.spells.filter(
     (s) =>
-      s.level !== null && !s.general && (fits(s.technique as Art) || fits(s.form as Art)) && (o.rituals || !s.ritual) && s.level >= (o.minLevel ?? 0) && s.level <= (o.maxLevel ?? 999) && !s.requisites.length && data.isBookEnabled(s.source.book),
+      s.level !== null && !s.general && (fits(s.technique as Art) || fits(s.form as Art)) && (o.rituals || !s.ritual) && s.level >= (o.minLevel ?? 0) && s.level <= (o.maxLevel ?? 999) && !s.requisites.length && data.inBooks(s),
   );
   for (const s of sample(rng, pool, pool.length)) {
     const b = budget()!;
