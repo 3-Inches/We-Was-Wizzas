@@ -10,6 +10,7 @@ import { addVirtue, applyExMiscTradition, newCharacter, setHouse } from './facto
 import { deriveCharacter } from './derive';
 import { validateCharacter } from './validate';
 import { fixesFor } from './fixes';
+import { certamenTotals } from '../magic';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -44,6 +45,26 @@ describe('the House benefit', () => {
     expect(derive(magus('guernicus')).reputations.some((r) => r.score === 4 && /Hermetic Prestige/.test(r.text))).toBe(true);
     // a Merinita without faerie blood carries the Warping Point of the Initiation
     expect(magus('merinita').warpingPoints).toBe(1);
+  });
+
+  it("a Tremere's focus in certamen doubles the lower Art in the duel, and is no focus for spells", () => {
+    const c = magus('tremere');
+    c.arts.Re.laterLife = 55; // 10
+    c.arts.Me.laterLife = 15; // 5
+    const d = derive(c);
+    // not offered where spells are cast or designed
+    expect(d.magicalFocus).toBe('none');
+    const t = certamenTotals(d, 'Re', 'Me');
+    expect(t.attack.form.total - d.characteristics.Pre.value).toBe(10);
+    expect(t.attack.technique.total - d.characteristics.Pre.value).toBe(10);
+    // another magus's focus still is one, and does nothing in certamen
+    const f = magus('flambeau');
+    f.arts.Re.laterLife = 55;
+    f.arts.Me.laterLife = 15;
+    addVirtue(f, data, 'minor-magical-focus', 'Minor', 'fire');
+    const df = derive(f);
+    expect(df.magicalFocus).toBe('minor');
+    expect(certamenTotals(df, 'Re', 'Me').attack.form.total - df.characteristics.Pre.value).toBe(5);
   });
 
   it('a Bjornaer is asked for the heartbeast until one is chosen', () => {

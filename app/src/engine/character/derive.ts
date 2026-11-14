@@ -724,8 +724,10 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const currentDiseasePenalty = (char.illnesses ?? []).reduce((t, i) => t + (i.flawInstead ? 0 : STAGE_PENALTY[i.stage]), 0);
 
   // ---------------------------------------------------------------- magic flags
-  const focus = eff('magicalFocus')[0];
-  const focusVirtue = focus ? virtues.find((v) => v.cv.uid === focus.fromUid) : undefined;
+  // a focus in certamen (House Tremere) doubles an Art in the duel alone: it is no focus for spells or the lab
+  const focusOf = (f: { fromUid?: string }) => virtues.find((v) => v.cv.uid === f.fromUid);
+  const focus = eff('magicalFocus').find((f) => !/^\s*certamen\s*$/i.test(focusOf(f)?.cv.param ?? ''));
+  const focusVirtue = focus ? focusOf(focus) : undefined;
   const socialPenalty = giftType === 'blatant' ? -6 : giftType === 'normal' || giftType === 'suppressed' ? -3 : 0;
 
   return {

@@ -315,6 +315,17 @@ export default function HelpPage() {
             refers to</b>: the Virtues, Flaws and book sections its text points to, quoted in place.
           </li>
           <li>
+            <b>A magus&apos;s House</b> gives its Virtue as you choose it. A Jerbiton picks the free Virtue from a list (one tied to an Ability takes an Ability of scholarship, art
+            or dealing with people); a Bjornaer names the heartbeast; Ex Miscellanea lists the traditions of the saga&apos;s books and applies the one you pick whole, with
+            whatever else it requires. The House&apos;s own rules are used where they come up: the heartbeast and certamen at <b>Dice › Spellcasting</b>, Enigmatic Wisdom in
+            Twilight, Faerie Magic&apos;s ranges and durations in spell design, a Verditius&apos;s casting tools and craft in the lab.
+          </li>
+          <li>
+            <b>A holy character</b> (<i>Realms of Power: The Divine</i>): answer the guided build&apos;s question about working wonders through prayer and it takes a Holy Method
+            and a Holy Power that go together; or choose a Mythic Companion of the Divine (Kabbalist, Perfectus, Zahid, Nephilim). The tutorial <b>Faith, miracles and holy
+            powers</b> plays one at the Game Table.
+          </li>
+          <li>
             Powers from Greater, Lesser, Personal or Ritual Power and Heroes&apos; Birthright are designed on the Virtues step: pick a spell within the level budget (click its name
             to read what it does) or describe your own.
           </li>

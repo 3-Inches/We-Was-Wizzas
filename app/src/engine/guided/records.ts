@@ -341,7 +341,11 @@ const MANUAL_TAGS: Record<string, [string, number][]> = {
  * Flaws at odds with a living faith: one who turns from religion, was never baptized or was cast out
  * of the Church does not also live by prayer. They stay story hooks about the Church for anyone else.
  */
-const AGAINST_PIETY = new Set(['depraved-flaw', 'pagan-flaw', 'unbaptized-flaw', 'excommunicate-flaw', 'a-deal-with-the-devil-flaw', 'uncertain-faith-flaw']);
+const AGAINST_PIETY = new Set([
+  'depraved-flaw', 'pagan-flaw', 'unbaptized-flaw', 'excommunicate-flaw', 'a-deal-with-the-devil-flaw', 'uncertain-faith-flaw',
+  // powers learned from Hell sit ill beside powers asked of Heaven
+  'demonic-familiar-flaw', 'corrupted-abilities-flaw', 'corrupted-arts-flaw', 'corrupted-spells-flaw',
+]);
 
 // ------------------------------------------------------------------ text → tags
 

@@ -407,9 +407,10 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   // holy Methods and Powers are asked for by their own question, whatever was said of complexity
   const wantsHoly = () => c.type !== 'grog' && (tagWeights(st, get())['holy-power'] ?? 0) >= 2;
   const named = (id: string) => (st.answers[`vf:${id}`] ?? 0) >= 7;
-  // Holy Magic remakes a magus's whole craft (no Magic Theory, every spell by a Method): never by chance
-  const simpleEnough = (s: Scored) => (s.def.id === 'holy-magic' ? named(s.def.id) || wantsHoly()
-    : complexityOk || !(s.rec.flags.complexity || s.rec.flags.spellLike) || named(s.def.id) || (isHolyVirtue(s.def.id) && wantsHoly()));
+  // Holy Magic remakes a magus's whole craft (no Magic Theory, every spell by a Method), and a Holy
+  // Method or Power does nothing without its other half and a life of faith: none of them by chance
+  const simpleEnough = (s: Scored) => (s.def.id === 'holy-magic' || isHolyVirtue(s.def.id) ? named(s.def.id) || wantsHoly()
+    : complexityOk || !(s.rec.flags.complexity || s.rec.flags.spellLike) || named(s.def.id));
   const sizeFor = (s: Scored, room: number) => {
     const sizes = s.def.sizes.filter((z) => z !== 'Free' || s.def.sizes.length === 1);
     if (c.type === 'grog') return sizes.includes('Minor') ? 'Minor' : undefined;

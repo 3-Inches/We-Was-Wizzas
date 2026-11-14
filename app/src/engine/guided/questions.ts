@@ -209,7 +209,7 @@ export const QUESTIONS: Question[] = [
   { id: 'f-divine-faith', section: 'F', parent: 'f-divine', text: 'My character’s own faith should matter: prayer, relics, miracles.', tags: { church: 0.5, good: 0.5, 'realm:divine': 0.5, piety: 1 }, presets: { faith: 9 } },
   {
     id: 'f-divine-powers', section: 'F', parent: 'f-divine', build: true, types: NOT_GROGS,
-    text: 'I’d like my character to work wonders through prayer: blessings, curses and miracles of their own.', tags: { 'holy-power': 1, 'realm:divine': 0.3 },
+    text: 'I’d like my character to work wonders through prayer: blessings, curses and miracles of their own.', tags: { 'holy-power': 1, 'realm:divine': 0.3, piety: 0.7 },
     hint: 'A Holy Method and a Holy Power that go together, each a Major Virtue (Realms of Power: The Divine): Invocation with Blessing, say. They have rules of their own, used on the Game Table’s Faith & miracles page.',
     explainer: 'Holy powers are worked with two Abilities together: a Method (how the character prays: Invocation aloud, Meditation in silence, Purity through hardship) and a Power (what the prayer does: Blessing, Cursing, Adjuration, Intervention, Transcendence, Understanding, Wonders). Each is a Major Supernatural Virtue, and a Method only calls some Powers, so the build takes a pair that works. The effect total is a die + Characteristic + Method + Power + the Dominion aura against the effect’s level; falling short risks a tragedy of hubris. True Faith is separate: it gives Faith Points and Magic Resistance, and makes the tragedies less likely.',
   },
