@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { MUNDANE_BEASTS } from '../data/beasts';
 import { HEARTBEASTS } from '../data/houses';
-import { newCharacter, setHouse } from './character/factory';
+import { addVirtue, newCharacter, setHouse } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { generateCharacter } from './generate/character';
 import { beastFor, blendCharacteristic, heartbeastForm } from './heartbeast';
@@ -19,7 +19,14 @@ describe('the heartbeast form', () => {
     expect(beastFor('Wolf')?.id).toBe('wolf');
     expect(beastFor('a wild boar')?.id).toBe('boar-wild');
     expect(beastFor('horse')?.id).toBe('horse-courser');
+    expect(beastFor('a great grey wolf')?.id).toBe('wolf');
+    expect(beastFor('wildcat')?.id).toBe('cat');
+    expect(beastFor('wild cat')?.id).toBe('cat');
+    expect(beastFor('aurochs')?.id).toBe('bull');
     expect(beastFor('raven')).toBeUndefined();
+    // the whole name must be the beast's: these are not the boar or the lion
+    expect(beastFor('wild goat')).toBeUndefined();
+    expect(beastFor('sea lion')).toBeUndefined();
   });
 
   it('folds the magus’s Characteristics in by the book’s rule, as in its example of Ulf', () => {
@@ -41,14 +48,26 @@ describe('the heartbeast form', () => {
     // a stronger magus hits harder in wolf form: Str +2 and the wolf's -1 add to +1, two above the wolf's
     c.characteristics.Str = 2;
     expect(heartbeastForm(deriveCharacter(c, data, rules))!.combat[0].damage).toBe(2);
+    // the magus's own Virtues still apply in beast form (Mystery Cults, step 4): Tough is +3 Soak
+    addVirtue(c, data, 'tough', 'Minor');
+    const tough = heartbeastForm(deriveCharacter(c, data, rules))!;
+    expect(tough.soak).toBe(7);
+    expect(tough.soakFrom.join()).toMatch(/Tough \+3/);
+    // a Size Virtue makes a notably large beast of its kind, without changing the beast's Size
+    addVirtue(c, data, 'large', 'Minor');
+    const large = heartbeastForm(deriveCharacter(c, data, rules))!;
+    expect(large.size).toBe(-1);
+    expect(large.sizeNote).toMatch(/notably large wolf/);
   });
 
-  it('a Quick-built Bjornaer takes a beast the book gives', () => {
+  it('a Quick-built Bjornaer takes a wild beast of Mythic Europe that the book gives', () => {
     const saga = { id: 's', name: 'S', currentYear: 1220, currentSeason: 'Spring', tribunal: 'Rhine', enabledBooks: [], houseRules: rules, mechanicsOverrides: {}, custom: { virtuesFlaws: [], abilities: [], spells: [] } } as unknown as Saga;
     for (const seed of [1, 2, 3]) {
       const g = generateCharacter({ type: 'magus', house: 'bjornaer', variety: 'varied', npc: false, seed }, { data, saga, rules });
       expect(beastFor(g.c.heartbeast), g.c.heartbeast).toBeTruthy();
     }
-    expect(HEARTBEASTS.filter((h) => beastFor(h)).length).toBeGreaterThanOrEqual(9);
+    expect(HEARTBEASTS.filter((h) => beastFor(h)).length).toBeGreaterThanOrEqual(8);
+    // no domesticated animal, and nothing from beyond Mythic Europe (Mystery Cults, Choosing a Heartbeast)
+    for (const h of ['hound', 'cat', 'bull', 'horse', 'lion']) expect(HEARTBEASTS, h).not.toContain(h);
   }, 120_000);
 });

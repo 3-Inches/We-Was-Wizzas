@@ -260,6 +260,8 @@ export interface AbilityDef {
   name: string;
   type: AbilityType;
   restricted: boolean; // asterisked: cannot use without a score
+  /** advances as an Art does (score n for n(n+1)/2 xp) and opens at 0: the Goetic Arts (RoP: The Infernal) */
+  asArt?: boolean;
   specialties: string[];
   text: string;
   source: SourceRef;

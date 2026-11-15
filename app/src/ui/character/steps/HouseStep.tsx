@@ -54,14 +54,23 @@ function MagusHouseStep({ ed }: { ed: CharEditor }) {
         <Card title={`${house.name}: choose your House Virtue`}>
           <div className="row">
             {house.benefitOptions.map((o, i) =>
-              // a choice an optional rule offers shows only when the saga uses it (Flambeau's schools)
-              o.rule && !optionOn(ed.saga, o.rule) ? null : (
+              // a choice an optional rule offers shows only when the saga uses it (Flambeau's schools); one already taken stays in view
+              o.rule && !optionOn(ed.saga, o.rule) && c.creation.houseBenefit !== i ? null : (
                 <button key={i} className={c.creation.houseBenefit === i ? 'selected' : ''} onClick={() => update((x) => setHouse(x, data, house.id, i))}>
                   {o.label}
                 </button>
               ),
             )}
           </div>
+          {(() => {
+            const taken = house.benefitOptions[c.creation.houseBenefit ?? -1];
+            return taken?.rule && !optionOn(ed.saga, taken.rule) ? (
+              <p className="small warn-text" style={{ marginBottom: 0 }}>
+                {taken.label} is a choice of the optional rule <i>Flambeau schools of magical combat</i>, which this saga does not use: choose Puissant Perdo or Ignem, or ask the storyguide to
+                turn the rule on (Saga Overview › Optional rules).
+              </p>
+            ) : null;
+          })()}
           {house.benefitOptions.some((o) => o.rule === 'flambeauSchools') && !optionOn(ed.saga, 'flambeauSchools') && (
             <p className="small muted" style={{ marginBottom: 0 }}>
               With the storyguide&apos;s leave, a magus of the Schools of Ramius, Sebastian or Vilano may take the school&apos;s Virtue instead (optional rule <i>Flambeau schools of magical combat</i>, Saga Overview › Optional rules).

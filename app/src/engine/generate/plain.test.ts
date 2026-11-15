@@ -28,6 +28,19 @@ describe('Quick build for players', () => {
     }
   }, 300_000);
 
+  it('adds that magic only where the Virtue choices left none: most magi reach their own', () => {
+    let added = 0;
+    let magi = 0;
+    for (const h of HOUSES) {
+      for (const seed of [1, 2, 3]) {
+        const g = generateCharacter({ type: 'magus', house: h.id, variety: 'varied', npc: false, seed }, { data, saga, rules });
+        magi++;
+        if (g.log.some((l) => /magic of their own/.test(l))) added++;
+      }
+    }
+    expect(added).toBeLessThan(magi / 2);
+  }, 300_000);
+
   it('a plain build keeps to the core book, whatever the saga uses', () => {
     for (const [type, house] of [['magus', 'jerbiton'], ['magus', 'flambeau'], ['companion', undefined], ['grog', undefined]] as const) {
       for (const seed of [1, 2, 3]) {

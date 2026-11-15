@@ -156,9 +156,13 @@ export const HOUSES: HouseDef[] = [
   },
 ];
 
-/** Common heartbeasts for a Bjornaer (HoH: Mystery Cults lists many more): one mundane creature, usually a noble one. */
-// the core book's mundane beasts first (their statistics are on the sheet in heartbeast form), then others to work out with the storyguide
-export const HEARTBEASTS = ['wolf', 'bear', 'boar', 'stag', 'falcon', 'hound', 'cat', 'lion', 'bull', 'horse', 'raven', 'owl', 'fox', 'badger', 'hawk', 'otter', 'lynx', 'eagle', 'hare', 'beaver'];
+/**
+ * Common heartbeasts for a Bjornaer (HoH: Mystery Cults lists many more): one mundane creature, a
+ * noble and a wild one. Domesticated animals are not available ("they always take the wild versions
+ * of these beasts"), and a creature from beyond Mythic Europe is an unlikely choice.
+ */
+// those whose statistics the core book gives first (the sheet shows them in heartbeast form), then others to work out with the storyguide
+export const HEARTBEASTS = ['wolf', 'bear', 'boar', 'stag', 'falcon', 'wildcat', 'aurochs', 'wild horse', 'raven', 'owl', 'fox', 'badger', 'hawk', 'otter', 'lynx', 'eagle', 'hare', 'beaver'];
 
 export const HOUSE_BY_ID: Record<string, HouseDef> = Object.fromEntries(HOUSES.map((h) => [h.id, h]));
 
@@ -197,6 +201,10 @@ export interface ExMiscTradition {
   requiredFlaws?: { id: string; param?: string; size?: 'Minor' | 'Major' }[];
   /** the tradition takes only women as apprentices (the Seirenes) */
   womenOnly?: boolean;
+  /** Virtues its magi may not have (a Seirene's spells must be sung: no Quiet Magic) */
+  forbids?: string[];
+  /** the least scores its magi need in mundane Abilities for their own Ability to work (a Seirene's Music limits her Siren Song) */
+  minAbilities?: Record<string, number>;
   notes?: string;
   source: string;
 }
@@ -247,9 +255,9 @@ export const EX_MISC_TRADITIONS: ExMiscTradition[] = [
     source: 'HoH_S',
   },
   {
-    id: 'seirenes', name: 'Seirenes', womenOnly: true,
+    id: 'seirenes', name: 'Seirenes', womenOnly: true, forbids: ['quiet-magic'], minAbilities: { music: 1 },
     majorNonHermetic: 'siren-song', minorHermetic: 'minor-magical-focus', minorParam: 'Mentem: an emotion', majorHermeticFlaw: 'necessary-condition-flaw', majorHermeticFlawParam: 'all spells must be sung',
-    notes: 'Magae of lyrical magic taught by the sirens of legend; strongest sung in a trio. They take only women as apprentices, and Music limits Siren Song.',
+    notes: 'Magae of lyrical magic taught by the sirens of legend; strongest sung in a trio. They take only women as apprentices; they may not have Quiet Magic, and Music limits Siren Song.',
     source: 'HoH_S',
   },
   {

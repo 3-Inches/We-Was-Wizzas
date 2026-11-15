@@ -3,7 +3,7 @@
 
 import { ARTS, ART_NAMES, type Art, type GameData } from '../../data';
 import type { Character, HouseRules, XpAlloc, XpSource } from '../types';
-import { abilityScoreFromXp, abilityXpForScore, withAffinity } from '../xp';
+import { abilityScore, abilityXp, withAffinity } from '../xp';
 import { CREATION_SOURCES, abilityDisplayName, deriveCharacter, effectiveXp } from './derive';
 import { ensureAbility } from './factory';
 
@@ -50,7 +50,7 @@ export function rawForAbilityScore(c: Character, data: GameData, rules: HouseRul
   const mult = multiplied ? da.multiplier : 1;
   const eff = (x: number) => (mult !== 1 ? withAffinity(x, mult) : x);
   const base = da.effectiveXp - eff(ab.xp[pool] ?? 0);
-  const target = abilityXpForScore(score);
+  const target = abilityXp(score, da.def?.asArt);
   let raw = 0;
   while (base + eff(raw) < target) raw++;
   return raw;
@@ -76,7 +76,7 @@ export function lowerAbilityTo(c: Character, data: GameData, rules: HouseRules, 
   const da = d.abilityByUid.get(abUid);
   if (!ab || !da) return [];
   const order: XpSource[] = ['postGauntlet', 'apprenticeship', 'laterLife', 'childhood', ...(Object.keys(ab.xp).filter((s) => s.startsWith('pool:')) as XpSource[]), 'native'];
-  const scoreOf = () => abilityScoreFromXp(effectiveXp(ab.xp, da.multiplier));
+  const scoreOf = () => abilityScore(effectiveXp(ab.xp, da.multiplier), da.def?.asArt);
   const out: XpChange[] = [];
   for (const s of order) {
     let taken = 0;

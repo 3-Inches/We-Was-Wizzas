@@ -3,22 +3,49 @@
 // folded in. Intelligence is kept; for each other Characteristic, both negative takes the lower,
 // both positive the higher, and otherwise the two are added. Size is the beast's. The beast's
 // attacks and Soak move with the Characteristics that make them (Quickness for Initiative and
-// Defense, Dexterity for Attack, Strength for Damage, Stamina for Soak).
+// Defense, Dexterity for Attack, Strength for Damage, Stamina for Soak). The magus's own Virtues that
+// bear on the body (Tough) still apply, once.
 
 import { MUNDANE_BEASTS, type BeastAttack, type MundaneBeast } from '../data/beasts';
 import type { DerivedCharacter } from './character/derive';
 
 const CHARS = ['Per', 'Pre', 'Com', 'Str', 'Sta', 'Dex', 'Qik'] as const;
 
-/** The book's beast a heartbeast name stands for ("wolf", "a grey wolf", "Horse"), if the core book gives it. */
+/**
+ * The names a heartbeast may go by for each of the core book's beasts. A Bjornaer's heartbeast is a
+ * wild creature (HoH: Mystery Cults, Choosing a Heartbeast), so the wildcat stands on the cat's
+ * statistics, the aurochs on the bull's and the wild horse on the courser's.
+ */
+const BEAST_NAMES: Record<string, string[]> = {
+  bear: ['bear'],
+  'boar-wild': ['boar', 'wild boar'],
+  bull: ['bull', 'wild bull', 'aurochs'],
+  cat: ['cat', 'wildcat', 'wild cat'],
+  falcon: ['falcon'],
+  'horse-courser': ['horse', 'wild horse', 'courser'],
+  'horse-destrier': ['destrier'],
+  hound: ['hound'],
+  lion: ['lion'],
+  stag: ['stag', 'deer', 'red deer', 'hart'],
+  wolf: ['wolf', 'wolves'],
+};
+/** words that describe the one animal without making it another ("a great grey wolf") */
+const DESCRIBING = /^(a|an|the|great|large|big|small|old|young|grey|gray|black|brown|white|red|golden|silver|mountain|forest|northern)$/;
+
+/**
+ * The book's beast a heartbeast name stands for ("wolf", "a grey wolf", "Wild boar"), if the core
+ * book gives it. The whole name must be the beast's: a wild goat is no boar, and a sea lion no lion.
+ */
 export function beastFor(heartbeast: string | undefined): MundaneBeast | undefined {
   const h = (heartbeast ?? '').trim().toLowerCase();
   if (!h) return undefined;
   const exact = MUNDANE_BEASTS.find((b) => b.name.toLowerCase() === h || b.id === h || b.latin.toLowerCase() === h);
   if (exact) return exact;
-  // a word of the name: "boar" for "Boar, Wild", "destrier" or "horse" for the horses (the courser first)
-  const words = h.split(/[^a-z]+/).filter(Boolean);
-  return MUNDANE_BEASTS.find((b) => b.name.toLowerCase().split(/[^a-z]+/).some((w) => words.includes(w) || words.includes(`${w}s`)));
+  const words = h.split(/[^a-z]+/).filter((w) => w && !DESCRIBING.test(w));
+  const name = words.join(' ');
+  const singular = name.replace(/s$/, '');
+  const id = Object.keys(BEAST_NAMES).find((k) => BEAST_NAMES[k].includes(name) || BEAST_NAMES[k].includes(singular));
+  return id ? MUNDANE_BEASTS.find((b) => b.id === id) : undefined;
 }
 
 /** One Characteristic in heartbeast form: both negative the lower, both positive the higher, else the sum. */
@@ -36,6 +63,10 @@ export interface HeartbeastForm {
   notes: Record<string, string>;
   size: number;
   soak: number;
+  /** what the magus's own Virtues add to the beast's Soak (Tough), named for the sheet */
+  soakFrom: string[];
+  /** a Size Virtue or Flaw of the magus's makes a notably large or small beast of its kind */
+  sizeNote?: string;
   combat: BeastAttack[];
 }
 
@@ -61,5 +92,20 @@ export function heartbeastForm(d: DerivedCharacter, heartbeast?: string): Heartb
     defense: a.defense + delta('Qik'),
     damage: a.damage === null ? null : a.damage + delta('Str'),
   }));
-  return { beast, characteristics, notes, size: beast.size, soak: beast.soak + delta('Sta'), combat };
+  // "Apply all the Virtues and Flaws of the animal form while shapechanged, as well as all Virtues and
+  // Flaws of the human form, if applicable ... If the animal form already has [one], it applies only once."
+  const beastHas = (name: string) => new RegExp(`\\b${name}\\b`, 'i').test(beast.virtues);
+  let ownSoak = 0;
+  const soakFrom: string[] = [];
+  for (const e of d.effects) {
+    if (e.type !== 'soak' || !e.amount) continue;
+    const from = d.virtues.find((v) => v.cv.uid === e.fromUid);
+    if (!from || beastHas(from.name)) continue;
+    ownSoak += e.amount;
+    soakFrom.push(`${from.name} ${e.amount > 0 ? '+' : ''}${e.amount}`);
+  }
+  // Size: the human's has no effect on the beast's, but within Size -4 to 0 a Size Virtue or Flaw shows
+  const ownSize = d.effects.reduce((t, e) => t + (e.type === 'size' ? e.amount : 0), 0);
+  const sizeNote = ownSize && beast.size >= -4 && beast.size <= 0 ? `a notably ${ownSize > 0 ? 'large' : 'small'} ${beast.name.toLowerCase().replace(/,.*/, '')} for its kind` : undefined;
+  return { beast, characteristics, notes, size: beast.size, soak: beast.soak + delta('Sta') + ownSoak, soakFrom, sizeNote, combat };
 }

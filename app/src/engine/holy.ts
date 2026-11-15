@@ -23,40 +23,61 @@ const has = (d: DerivedCharacter, id: string) => d.virtues.some((v) => v.cv.defI
 export type OwnMethod = HolyMethod & { score: number; specialty?: string };
 export type OwnPower = HolyPower & { score: number; specialty?: string };
 
-/** The faith a society keeps, as the holy traditions name it. */
+/** The faith a society keeps, as the holy traditions name it. Mixed lands (Iberia) and "All Cultures" name none. */
 export function faithOfSociety(society: string | undefined): 'Christian' | 'Muslim' | 'Jewish' | undefined {
   if (!society) return undefined;
-  if (/christendom|hibernia|iberia|proven/i.test(society)) return 'Christian';
+  if (/christendom|hibernia|proven/i.test(society)) return 'Christian';
   if (/islam|north africa/i.test(society)) return 'Muslim';
   if (/jewish/i.test(society)) return 'Jewish';
   return undefined;
 }
 
 /**
+ * A character's faith: what their own Virtues and Flaws say first (an Outsider who is a Jew or a
+ * Muslim in a Christian land, a Kabbalist, a Zahid), else their society's. Undefined when neither says.
+ */
+export function faithOf(c: Character): 'Christian' | 'Muslim' | 'Jewish' | undefined {
+  const outsider = c.virtues.find((v) => v.defId === 'outsider-flaw' && /jew|muslim|moor|saracen/i.test(v.param ?? ''));
+  if (outsider) return /jew/i.test(outsider.param ?? '') ? 'Jewish' : 'Muslim';
+  if (c.virtues.some((v) => v.defId === 'kabbalist' || v.defId === 'karaite-magic-flaw')) return 'Jewish';
+  if (c.virtues.some((v) => v.defId === 'zahid')) return 'Muslim';
+  return faithOfSociety(c.society);
+}
+
+/**
  * The holy traditions open to a character (RoP: The Divine, Holy Traditions): those of their faith
- * or of none in particular, and a Holy Societas (one that teaches Holy Magic) only for the Gifted.
+ * or of none in particular. A Holy Societas teaches Holy Magic but takes the unGifted too ("can
+ * also accept unGifted characters like any holy tradition").
  */
 export function traditionsFor(c: Character): HolyTradition[] {
-  const faith = faithOfSociety(c.society);
-  const gifted = c.virtues.some((v) => v.defId === 'the-gift');
-  return HOLY_TRADITIONS.filter((t) => (!t.faith || !faith || t.faith === faith) && (!t.societas || gifted));
+  const faith = faithOf(c);
+  return HOLY_TRADITIONS.filter((t) => !t.faith || !faith || t.faith === faith);
 }
 
 /** The favored Abilities of a tradition a character has, as Abilities or the Virtues that give them. */
 export function favoredHeld(c: Character, t: HolyTradition): string[] {
   const virtueOf = (id: string) => (id === 'blessing' ? 'blessing-power' : id);
-  return t.favored.filter((id) => c.virtues.some((v) => v.defId === virtueOf(id)) || c.abilities.some((a) => a.abilityId === id));
+  // the Cantores favor Enchanting Music, not any Enchanting (Ability)
+  const fits = (id: string, param?: string) => id !== 'enchanting-ability' || /music|sing/i.test(param ?? '');
+  return t.favored.filter((id) => c.virtues.some((v) => v.defId === virtueOf(id) && fits(id, v.param)) || c.abilities.some((a) => a.abilityId === id && fits(id, a.param)));
 }
+
+/** Favored Abilities that are the Divine's own (a Holy Method or Power, or Holy Magic), not ones any tradition of magic might teach. */
+const DIVINE_OWN = new Set<string>([...HOLY_METHODS.map((m) => m.id), ...HOLY_POWERS.map((p) => p.id), 'holy-magic', 'holy-music', 'craft-amulets']);
 
 /**
  * The tradition that suits a holy character best: the one most of whose favored Abilities they
- * already have (ties to one of their own faith), when they have at least one. None otherwise.
+ * already have (ties to one of their own faith). They must hold at least one that is the Divine's
+ * own: Second Sight or Premonitions alone make nobody an Ascetic. None otherwise.
  */
 export function suitedTradition(c: Character): HolyTradition | undefined {
-  const faith = faithOfSociety(c.society);
+  const faith = faithOf(c);
+  const gifted = c.virtues.some((v) => v.defId === 'the-gift');
   return traditionsFor(c)
-    .map((t) => ({ t, n: favoredHeld(c, t).length + (t.faith && t.faith === faith ? 0.5 : 0) }))
-    .filter((x) => x.n >= 1)
+    .map((t) => ({ t, held: favoredHeld(c, t) }))
+    .filter((x) => x.held.some((id) => DIVINE_OWN.has(id)))
+    // a Holy Societas takes the unGifted, but it is a house of holy magi: it suits them less than a tradition of their own kind
+    .map((x) => ({ t: x.t, n: x.held.length + (x.t.faith && x.t.faith === faith ? 0.5 : 0) - (x.t.societas && !gifted ? 1 : 0) }))
     .sort((a, b) => b.n - a.n)[0]?.t;
 }
 

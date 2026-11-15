@@ -2,8 +2,8 @@
 // folded in (Houses of Hermes: Mystery Cults, Statistics of Shapechangers).
 
 import { CHAR_NAMES } from '../../../data';
-import { MUNDANE_BEASTS } from '../../../data/beasts';
-import { heartbeastForm } from '../../../engine/heartbeast';
+import { HEARTBEASTS } from '../../../data/houses';
+import { beastFor, heartbeastForm } from '../../../engine/heartbeast';
 import { BookBadge, Card, signed } from '../../kit';
 import type { CharEditor } from '../useChar';
 
@@ -17,8 +17,8 @@ export function HeartbeastFormCard({ ed }: { ed: CharEditor }) {
     <Card title={<h3>In heartbeast form{c.heartbeast ? `: ${c.heartbeast}` : ''} <BookBadge book="HoH_MC" line={818} /></h3>} tour="heartbeast-form" fold="heartbeast-form">
       {!form ? (
         <p className="small" style={{ margin: 0 }}>
-          {c.heartbeast ? `The core book gives no statistics for “${c.heartbeast}”.` : 'No heartbeast chosen yet (the House step).'} It gives these mundane beasts, whose statistics the toolkit folds the
-          magus’s into: {MUNDANE_BEASTS.map((b) => b.name.toLowerCase()).join(', ')}. For another, work the beast out with the storyguide from <i>Creating Mundane Beasts</i> (DE) or the
+          {c.heartbeast ? `The core book gives no statistics for “${c.heartbeast}”.` : 'No heartbeast chosen yet (the House step).'} The toolkit folds the magus’s statistics into the
+          beasts it does give: {HEARTBEASTS.filter((h) => beastFor(h)).join(', ')} (the wildcat on the cat’s, the aurochs on the bull’s, the wild horse on the courser’s). For another, work the beast out with the storyguide from <i>Creating Mundane Beasts</i> (DE) or the
           appendix of <i>Houses of Hermes: Mystery Cults</i>.
         </p>
       ) : (
@@ -33,11 +33,13 @@ export function HeartbeastFormCard({ ed }: { ed: CharEditor }) {
                 <b>{CHAR_NAMES[k as keyof typeof CHAR_NAMES] ?? k}</b> {signed(form.characteristics[k])}
               </span>
             ))}
-            <span>
+            <span title={form.sizeNote}>
               <b>Size</b> {signed(form.size)}
+              {form.sizeNote ? ` (${form.sizeNote})` : ''}
             </span>
-            <span>
+            <span title={form.soakFrom.length ? `with the magus's own ${form.soakFrom.join(', ')}` : undefined}>
               <b>Soak</b> {signed(form.soak)}
+              {form.soakFrom.length ? ` (with ${form.soakFrom.join(', ')})` : ''}
             </span>
           </div>
           <table className="small" style={{ marginTop: 6 }}>
@@ -64,10 +66,10 @@ export function HeartbeastFormCard({ ed }: { ed: CharEditor }) {
           </table>
           <div className="small" style={{ marginTop: 6 }}>
             <div>
-              <b>Abilities (the beast’s General ones; Academic, Arcane and Supernatural ones stay):</b> {form.beast.abilities}
+              <b>Abilities (the beast’s General ones; the magus keeps languages, lores, and Academic, Arcane and Supernatural Abilities):</b> {form.beast.abilities}
             </div>
             <div>
-              <b>Virtues and Flaws (the beast’s, and the magus’s that apply):</b> {form.beast.virtues}
+              <b>Virtues and Flaws (the beast’s, and the magus’s own that still apply, each once: a Lame magus is a lame beast):</b> {form.beast.virtues}
             </div>
             <div>
               <b>Qualities:</b> {form.beast.qualities}

@@ -152,6 +152,10 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       const hasMajor = pkg.some((v) => (v.defId === trad?.majorNonHermetic || !def(v)?.categories.includes('Hermetic')) && v.size === 'Major' && def(v)?.kind === 'virtue');
       const hasFlaw = pkg.some((v) => (v.defId === trad?.majorHermeticFlaw || def(v)?.categories.includes('Hermetic')) && v.size === 'Major' && def(v)?.kind === 'flaw');
       if (trad?.womenOnly && c.gender === 'Male') add({ id: 'exmisc-women', severity: 'warning', step: 'house', message: `The ${trad.name} take only women as apprentices.`, ref: 'HoH:S, Ex Miscellanea' });
+      for (const id of trad?.forbids ?? []) {
+        const held = d.virtues.find((v) => v.cv.defId === id);
+        if (held) add({ id: `exmisc-forbids-${id}`, severity: 'warning', step: 'virtues', message: `A magus of the ${trad!.name} may not have ${held.name}${trad!.id === 'seirenes' ? ': all her spells must be sung' : ''}.`, ref: 'HoH:S, Ex Miscellanea', fix: `Remove ${held.name}.` });
+      }
       if (!hasMinor || !hasMajor || !hasFlaw) add({ id: 'exmisc-package', severity: 'warning', step: 'house', message: 'Ex Miscellanea magi get a free Minor Hermetic Virtue, a free Major non-Hermetic Virtue, and a compulsory Major Hermetic Flaw.', ref: 'DE p.44' });
     }
     if (c.house === 'merinita' && (creating || c.seasonLog.length === 0)) {
@@ -163,13 +167,20 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (c.house === 'bjornaer' && !c.heartbeast?.trim()) add({ id: 'bjornaer-heartbeast', severity: 'info', step: 'house', message: 'Choose the heartbeast: the one creature a Bjornaer magus is as well as human.', ref: 'DE, Bjornaer: The Heartbeast' });
   }
 
-  // only one relic helps at a time (DE, Relic): a second is points that buy nothing
+  // "a Seirene's score in Music limits her skill in Siren Song" (HoH:S, Seirenes)
+  const siren = d.abilities.find((a) => a.abilityId === 'siren-song');
+  if (siren) {
+    const music = d.abilities.filter((a) => a.abilityId === 'music').reduce((m, a) => Math.max(m, a.score), 0);
+    if (siren.score > music) add({ id: 'siren-song-music', severity: 'warning', step: 'abilities', message: `Siren Song ${siren.score} is limited by Music ${music}: raise Music to ${siren.score} for the song to work at its full score.`, ref: 'HoH:S, Seirenes' });
+  }
+
+  // only one relic helps at a time (DE, Realms: Relics): a second is points that buy nothing
   const relics = c.virtues.filter((v) => v.defId === 'relic' || v.defId === 'powerful-relic');
   if (relics.length > 1) {
     add({
       id: 'two-relics', severity: 'warning', step: 'virtues',
       message: 'Only one relic helps at a time: its Faith Points and Magic Resistance do not add to another\'s. Keep the stronger one, unless the troupe agrees the second has some other use in the saga.',
-      ref: 'DE, Relic', fix: 'Remove the lesser relic.',
+      ref: 'DE, Relics (Realms)', fix: 'Remove the lesser relic.',
     });
   }
 

@@ -72,12 +72,17 @@ export interface ChangeLine {
   text: string;
 }
 
-const vfLabel = (d: DerivedCharacter) => new Map(d.virtues.map((v) => [`${v.cv.defId}|${v.cv.param ?? ''}`, `${v.name} (${v.cv.size})`]));
+// a Virtue or Flaw that changed size (Minor to Major) is one removed and one added
+const vfLabel = (d: DerivedCharacter) => new Map(d.virtues.map((v) => [`${v.cv.defId}|${v.cv.param ?? ''}|${v.cv.size}`, `${v.name} (${v.cv.size})`]));
 
 /**
  * What a character sent again changes, against the copy already here: name, age, Characteristics,
- * Virtues and Flaws, Ability and Art scores, spells, Warping, Decrepitude and the seasons logged.
- * The storyguide reads it before the new version takes the old one's place.
+ * Virtues and Flaws, Ability and Art scores and experience, spells and their mastery, Confidence,
+ * Personality Traits, Reputations, what they carry and own, wounds, Warping, Decrepitude, the
+ * seasons logged, and the two things a storyguide most wants to see: numbers set by hand and rules
+ * problems waved through as troupe rulings. Anything else that differs is said in one line, so the
+ * page never says nothing changed when something did. The storyguide reads it before the new
+ * version takes the old one's place.
  */
 export function characterChanges(before: Character, after: Character, data: GameData, rules: HouseRules): ChangeLine[] {
   const out: ChangeLine[] = [];
@@ -110,14 +115,77 @@ export function characterChanges(before: Character, after: Character, data: Game
     const x = a.arts[art];
     const y = b.arts[art];
     if (x.score !== y.score) changed(`${ART_NAMES[art]} ${x.score} → ${y.score}`);
+    else if (x.effectiveXp !== y.effectiveXp) changed(`${ART_NAMES[art]} ${x.score} (${x.effectiveXp} → ${y.effectiveXp} xp)`);
   }
   const spells = (c: Character) => new Map(c.spells.map((s) => [`${s.spell.name}|${s.spell.level}`, `${s.spell.name} (${s.spell.technique}${s.spell.form} ${s.spell.level ?? 'gen'})`]));
   const sa = spells(before);
   const sb = spells(after);
   for (const [k, label] of sb) if (!sa.has(k)) out.push({ kind: 'added', text: `Spell: ${label}` });
   for (const [k, label] of sa) if (!sb.has(k)) out.push({ kind: 'removed', text: `Spell: ${label}` });
+  // spell mastery
+  const mastery = (c: Character) => new Map(c.spells.map((sp) => [`${sp.spell.name}|${sp.spell.level}`, Object.values(sp.masteryXp ?? {}).reduce<number>((t, v) => t + (v ?? 0), 0)]));
+  const ma = mastery(before);
+  for (const [k, y] of mastery(after)) {
+    const x = ma.get(k);
+    if (x !== undefined && x !== y) changed(`Mastery of ${k.split('|')[0]}: ${x} → ${y} xp`);
+  }
+  // numbers set by hand, and rules problems allowed as troupe rulings
+  const label = (path: string) => {
+    const [kind, id] = path.split(':');
+    if (kind === 'ability') return b.abilityByUid.get(id)?.name ?? a.abilityByUid.get(id)?.name ?? 'an Ability';
+    if (kind === 'art') return ART_NAMES[id as keyof typeof ART_NAMES] ?? id;
+    return path;
+  };
+  for (const k of new Set([...Object.keys(before.overrides ?? {}), ...Object.keys(after.overrides ?? {})])) {
+    const x = before.overrides?.[k];
+    const y = after.overrides?.[k];
+    if (x === y) continue;
+    if (x === undefined) out.push({ kind: 'added', text: `Set by hand: ${label(k)} = ${y}` });
+    else if (y === undefined) out.push({ kind: 'removed', text: `No longer set by hand: ${label(k)} (was ${x})` });
+    else changed(`Set by hand: ${label(k)} ${x} → ${y}`);
+  }
+  const ackA = new Set(before.acknowledgedIssues ?? []);
+  const ackB = new Set(after.acknowledgedIssues ?? []);
+  const newAck = [...ackB].filter((k) => !ackA.has(k)).length;
+  const goneAck = [...ackA].filter((k) => !ackB.has(k)).length;
+  if (newAck) out.push({ kind: 'added', text: `${newAck} rules problem${newAck > 1 ? 's' : ''} allowed as a troupe ruling on the sender's copy` });
+  if (goneAck) out.push({ kind: 'removed', text: `${goneAck} troupe ruling${goneAck > 1 ? 's' : ''} you allowed here ${goneAck > 1 ? 'are' : 'is'} not on the sender's copy` });
+  // Confidence and Faith
+  const conf = (c: Character) => `${c.confidence?.score ?? 0} (${c.confidence?.points ?? 0})`;
+  if (conf(before) !== conf(after)) changed(`Confidence ${conf(before)} → ${conf(after)}`);
+  const faith = (c: Character) => (c.faith ? `${c.faith.score} (${c.faith.points})` : 'none');
+  if (faith(before) !== faith(after)) changed(`Faith ${faith(before)} → ${faith(after)}`);
+  // Personality Traits and Reputations
+  const listed = <T,>(xs: T[] | undefined, key: (x: T) => string, show: (x: T) => string) => new Map((xs ?? []).map((x) => [key(x), show(x)]));
+  const compare = (what: string, x: Map<string, string>, y: Map<string, string>) => {
+    for (const [k, v] of y) {
+      if (!x.has(k)) out.push({ kind: 'added', text: `${what}: ${v}` });
+      else if (x.get(k) !== v) changed(`${what}: ${x.get(k)} → ${v}`);
+    }
+    for (const [k, v] of x) if (!y.has(k)) out.push({ kind: 'removed', text: `${what}: ${v}` });
+  };
+  compare('Personality Trait', listed(before.personality, (t) => t.trait.trim().toLowerCase(), (t) => `${t.trait} ${t.score >= 0 ? '+' : ''}${t.score}`), listed(after.personality, (t) => t.trait.trim().toLowerCase(), (t) => `${t.trait} ${t.score >= 0 ? '+' : ''}${t.score}`));
+  compare('Reputation', listed(before.reputations, (r) => `${r.text}|${r.scope}`.toLowerCase(), (r) => `${r.text} ${r.score} (${r.scope})`), listed(after.reputations, (r) => `${r.text}|${r.scope}`.toLowerCase(), (r) => `${r.text} ${r.score} (${r.scope})`));
+  // enchanted items and other possessions, by name
+  compare('Enchanted item', listed(before.items, (i) => i.uid, (i) => `${i.name} (${i.effects.length} effect${i.effects.length === 1 ? '' : 's'})`), listed(after.items, (i) => i.uid, (i) => `${i.name} (${i.effects.length} effect${i.effects.length === 1 ? '' : 's'})`));
+  compare('Possession', listed(before.possessions, (x) => x.uid, (x) => x.name), listed(after.possessions, (x) => x.uid, (x) => x.name));
+  const same = (x: unknown, y: unknown) => JSON.stringify(x ?? null) === JSON.stringify(y ?? null);
+  if (!same(before.equipment, after.equipment)) changed('Weapons, armor or other equipment');
+  if (!same(before.familiar, after.familiar)) changed(after.familiar ? (before.familiar ? 'The familiar' : 'A familiar bound') : 'The familiar is gone');
+  if (!same(before.wounds, after.wounds) || before.fatigueLost !== after.fatigueLost || before.longTermFatigueLost !== after.longTermFatigueLost) changed('Wounds or Fatigue');
+  if (!same(before.agingPoints, after.agingPoints)) changed('Aging Points');
+  if (!same(before.twilightScars, after.twilightScars)) changed(`Twilight scars ${before.twilightScars?.length ?? 0} → ${after.twilightScars?.length ?? 0}`);
   if (before.warpingPoints !== after.warpingPoints) changed(`Warping Points ${before.warpingPoints} → ${after.warpingPoints}`);
   if (before.decrepitudePoints !== after.decrepitudePoints) changed(`Decrepitude Points ${before.decrepitudePoints} → ${after.decrepitudePoints}`);
   if (before.seasonLog.length !== after.seasonLog.length) changed(`Seasons logged ${before.seasonLog.length} → ${after.seasonLog.length}`);
+  else if (!same(before.seasonLog, after.seasonLog)) changed('A logged season was changed');
+  if ((before.player ?? '') !== (after.player ?? '')) changed(`Player: ${before.player || '(none)'} → ${after.player || '(none)'}`);
+  if ((before.description ?? '') !== (after.description ?? '')) changed('Description');
+  if ((before.notes ?? '') !== (after.notes ?? '')) changed('Notes');
+  // whatever else differs, so that "nothing differs" is only said when it is true
+  if (!out.length) {
+    const rest = (c: Character) => JSON.stringify({ ...c, updatedAt: undefined, createdAt: undefined, sagaId: undefined, covenantId: undefined, schemaVersion: undefined });
+    if (rest(before) !== rest(after)) changed('Other details of the sheet differ (nothing the rules count)');
+  }
   return out;
 }

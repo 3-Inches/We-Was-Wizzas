@@ -333,7 +333,7 @@ const MANUAL_TAGS: Record<string, [string, number][]> = {
   adjuration: [['holy-power', 3], ['realm:divine', 1]], 'blessing-power': [['holy-power', 3], ['realm:divine', 1]], cursing: [['holy-power', 3], ['realm:divine', 1]],
   intervention: [['holy-power', 3], ['realm:divine', 1], ['healing', 1]], transcendence: [['holy-power', 3], ['realm:divine', 1]],
   understanding: [['holy-power', 3], ['realm:divine', 1], ['visions', 1]], wonders: [['holy-power', 3], ['realm:divine', 1]],
-  'sanguine-humors-blessing': [['social', 2], ['love', 1]], 'siren-song': [['social', 2], ['performance', 2]], 'goetic-summoning': [['realm:infernal', 2]],
+  'sanguine-humors-blessing': [['social', 2], ['love', 1]], 'siren-song': [['social', 2], ['performance', 2]], 'goetic-summoning': [['lore', 2], ['realm:magic', 1]],
   'holy-magic': [['holy-power', 2]], 'craft-amulets': [['holy-power', 1], ['crafts', 1]],
   'true-faith': [['piety', 2]], 'pious-flaw': [['piety', 2]],
 };
