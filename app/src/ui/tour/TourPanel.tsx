@@ -10,7 +10,6 @@ import { Markdown } from '../kit';
 import { visibleSteps } from '../character/wizardSteps';
 import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, nextTour, startTour, tourNeeds, type Tour, type TourCtx, type TourStep } from './tours';
 import { ACTIONS, PRACTICE_NOTE, isPracticeCovenant, makePractice } from './actions';
-import { isTrade } from '../../engine/workshop';
 import { HOLY_METHODS, HOLY_POWERS } from '../../data/divine';
 
 /** Open or close the menu, which a phone keeps behind ☰ (App listens). */
@@ -54,7 +53,8 @@ function findTarget(names: string[]): HTMLElement | null {
 }
 
 /** A craftsman's or merchant's livelihood to show. */
-const hasTrade = (c: Character) => !!c.workshop || c.abilities.some((a) => isTrade(a.abilityId));
+// the City & Guild tutorial's steps point at a workshop's parts: a character with a trade but no workshop set up has none of them
+const hasWorkshop = (c: Character) => !!c.workshop;
 
 /** One who works holy powers: a Holy Method and a Holy Power (the Virtues; whether they go together the page says). */
 const HOLY_METHOD_IDS = new Set(HOLY_METHODS.map((m) => m.id));
@@ -383,7 +383,7 @@ function WorkingOn({ tour, ctx }: { tour: Tour; ctx: TourCtx }) {
   const livingIds = new Set(living.map((c) => c.id));
   const chars = Object.values(characters)
     .filter((c) => c.sagaId === ctx.sagaId && !npcs.has(c.id) && !(c.covenantId && livingIds.has(c.covenantId)) && !c.wounds.dead)
-    .filter((c) => (!tour.charType || c.type === tour.charType) && (tour.wantsDraft ? !c.creation.finalized : c.creation.finalized) && (!tour.prefersTrade || hasTrade(c)) && (!tour.prefersHoly || hasHoly(c)))
+    .filter((c) => (!tour.charType || c.type === tour.charType) && (tour.wantsDraft ? !c.creation.finalized : c.creation.finalized) && (!tour.prefersTrade || hasWorkshop(c)) && (!tour.prefersHoly || hasHoly(c)))
     .sort((a, b) => a.name.localeCompare(b.name));
   const covs = Object.values(covenants).filter((c) => c.sagaId === ctx.sagaId && !c.living);
   // go on to the step's page with what was chosen
