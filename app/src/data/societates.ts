@@ -22,15 +22,20 @@ const SOCIETATES_VF: VirtueFlawDef[] = [
     id: 'goetic-summoning', name: 'Summoning (Goetic Art)', kind: 'virtue', sizes: ['Major'], categories: ['Supernatural'], tainted: false,
     source: { book: 'RoP_I', line: 4335 },
     text:
-      'The primary Art of the Ars Goetia: the character begins with the Art of Summoning at 0 and may raise it by study and practice. With the other Goetic Arts she can bind, destroy and control demons and other spirits (Realms of Power: The Infernal, Ars Goetia). Summoning Total: stress die + Presence + Summoning + (Realm) Lore + aura (+ Penetration); the Target Level is the spirit’s Might × 2. The Witches of Thessaly take it as their Major non-Hermetic Virtue.',
+      'The primary Art of the Ars Goetia: the character begins with the Art of Summoning at 0 and may raise it by study and practice. With the other Goetic Arts she can bind, destroy and control demons and other spirits (Realms of Power: The Infernal, Ars Goetia). It is not of itself an Infernal power: like other Supernatural powers it may belong to Magic or Faerie. Summoning Total: stress die + Presence + Summoning + (Realm) Lore + aura (+ Penetration); the Target Level is the spirit’s Might × 2. The Witches of Thessaly take it as their Major non-Hermetic Virtue.',
   },
 ];
 
 const SOCIETATES_ABILITIES: AbilityDef[] = [
   {
     id: 'siren-song', name: 'Siren Song', type: 'Supernatural', restricted: true, specialties: ['men', 'children', 'rats'],
-    text: 'Communication + Music + Siren Song is no part of the roll: Communication + Music against the target’s Stamina issues a command, and the Siren Song score is limited by Music (Houses of Hermes: Societates, Seirenes).',
+    text: 'Music that commands those who hear it. Roll Communication + Music against the target’s Stamina roll to issue a command, which holds while the music lasts; a new command needs a new roll. The target adds to the roll by how bad the command is (Innocuous +0, Questionable +3, Dangerous +6, Heinous +9, Suicidal +12). Up to two other musicians add their Music scores, each no more than the singer’s. The Siren Song score cannot be higher than Music (Houses of Hermes: Societates, Seirenes).',
     source: { book: 'HoH_S', line: 5627 },
+  },
+  {
+    id: 'goetic-summoning', name: 'Summoning (Goetic Art)', type: 'Supernatural', restricted: true, asArt: true, specialties: ['demons', 'ghosts', 'spirits of a place', 'scouring'],
+    text: 'The first Art of the Ars Goetia: drawing a spirit into a circle to bargain with it. It opens at 0 and rises as an Art does (1 xp for a score of 1, 3 for 2, 6 for 3). Summoning Total: stress die + Presence + Summoning + (Realm) Lore + aura + (Penetration × its multiplier), against the spirit’s Might × 2; a specific spirit needs an Arcane Connection (for a demon, its True Name). Under double the Target Level, dealing with the spirit takes Stamina + Concentration rolls to hold the circle (Realms of Power: The Infernal, Ars Goetia).',
+    source: { book: 'RoP_I', line: 5813 },
   },
 ];
 

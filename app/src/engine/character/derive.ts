@@ -10,7 +10,7 @@ import {
 } from '../../data';
 import type { Character, CharAbility, CharVirtue, HouseRules, XpAlloc, XpSource } from '../types';
 import { deriveMagicCharacter, SEASON_AGE, type MagicCharacterDerived } from './magicCharacter';
-import { abilityScoreFromXp, abilityXpRemainder, artScoreFromXp, artXpRemainder, withAffinity, warpingScoreFromPoints } from '../xp';
+import { abilityScore, abilityXp, abilityXpRemainder, artScoreFromXp, artXpRemainder, withAffinity, warpingScoreFromPoints } from '../xp';
 
 export type ResolvedEffect = Effect & { fromUid: string; fromName: string; param?: string };
 
@@ -486,11 +486,12 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     if (linguist && isLanguageAbility(ab.abilityId)) mult += linguist.multiplier - 1;
     // a Ring of Solomon's experience points, while it lasts (RoP: The Divine, Ars Notoria)
     let exp = effectiveXp(ab.xp, mult) + (ring?.xp?.ability === ab.abilityId ? ring.xp.amount : 0);
-    let score = abilityScoreFromXp(exp);
+    // a Goetic Art advances on the Art table (RoP: The Infernal, The Goetic Arts)
+    let score = abilityScore(exp, def?.asArt);
     const ov = char.overrides[`ability:${ab.uid}`];
     if (ov !== undefined) {
       score = ov;
-      exp = Math.max(exp, (5 * ov * (ov + 1)) / 2);
+      exp = Math.max(exp, abilityXp(ov, def?.asArt));
     }
     const bonus = abilityBonus(ab.abilityId, ab.param);
     return {
@@ -504,7 +505,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
       xp: ab.xp,
       effectiveXp: exp,
       score,
-      remainder: ov !== undefined ? 0 : abilityXpRemainder(exp),
+      remainder: ov !== undefined ? 0 : def?.asArt ? artXpRemainder(exp) : abilityXpRemainder(exp),
       bonus,
       total: score + bonus,
       affinity,

@@ -31,6 +31,16 @@ export function abilityXpRemainder(xp: number): number {
   return xp - abilityXpForScore(abilityScoreFromXp(xp));
 }
 
+/** An Ability's score from its xp: on the Ability table, or the Art table for one that advances as an Art (a Goetic Art). */
+export function abilityScore(xp: number, asArt?: boolean): number {
+  return asArt ? artScoreFromXp(xp) : abilityScoreFromXp(xp);
+}
+
+/** The xp an Ability needs for a score, on its own table. */
+export function abilityXp(score: number, asArt?: boolean): number {
+  return asArt ? artXpForScore(score) : abilityXpForScore(score);
+}
+
 /** Warping score from points: like an Ability (5 × triangular). Decrepitude is the same. */
 export const warpingScoreFromPoints = abilityScoreFromXp;
 

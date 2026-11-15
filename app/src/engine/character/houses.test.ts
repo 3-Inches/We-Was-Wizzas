@@ -204,5 +204,35 @@ describe('House options of the supplements', () => {
     expect(issues(m).some((i) => i.id === 'exmisc-women')).toBe(true);
     expect(derive(m).abilities.find((a) => a.abilityId === 'siren-song')?.score).toBe(1);
   });
+
+  it('a Seirene may not have Quiet Magic, and her Music limits her Siren Song', () => {
+    const c = magus('ex-miscellanea');
+    c.gender = 'Female';
+    applyExMiscTradition(c, data, 'seirenes');
+    expect(issues(c).some((i) => i.id === 'siren-song-music')).toBe(true);
+    c.abilities.push({ uid: 'mu', abilityId: 'music', xp: { apprenticeship: 5 } } as never);
+    expect(issues(c).some((i) => i.id === 'siren-song-music')).toBe(false);
+    addVirtue(c, data, 'quiet-magic', 'Minor');
+    expect(issues(c).some((i) => i.id === 'exmisc-forbids-quiet-magic')).toBe(true);
+    // the builder gives her Music and no Quiet Magic
+    for (const seed of [1, 2, 3]) {
+      const g = generateCharacter({ type: 'magus', house: 'ex-miscellanea', gender: 'Female', variety: 'varied', npc: false, seed, answers: { 'vf:siren-song': 10, 'h-performance': 10 } } as never, { data, saga: { ...saga, enabledBooks: ['HoH_S'] } as Saga, rules });
+      if (g.c.creation.exMiscTradition !== 'seirenes') continue;
+      expect(g.c.virtues.some((v) => v.defId === 'quiet-magic'), `#${seed}`).toBe(false);
+      expect(derive(g.c).abilities.find((a) => a.abilityId === 'music')?.score ?? 0, `#${seed}`).toBeGreaterThanOrEqual(1);
+    }
+  }, 120_000);
+
+  it("a Witch of Thessaly's Summoning is an Art: it opens at 0 and rises on the Art table", () => {
+    const c = magus('ex-miscellanea');
+    applyExMiscTradition(c, data, 'thessaly');
+    const art = () => derive(c).abilities.find((a) => a.abilityId === 'goetic-summoning');
+    expect(art()?.score).toBe(0);
+    const ab = c.abilities.find((a) => a.abilityId === 'goetic-summoning')!;
+    ab.xp.postGauntlet = 6; // 1 + 2 + 3
+    expect(art()?.score).toBe(3);
+    ab.xp.postGauntlet = 9;
+    expect([art()?.score, art()?.remainder]).toEqual([3, 3]);
+  });
 });
 

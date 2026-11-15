@@ -85,6 +85,8 @@ export function migrateCovenant(c: Covenant): Covenant {
   }
   // income entered by hand keeps its figure; otherwise the book value for its level is used
   out.income = out.income.map((i) => (i.customPounds === undefined ? { ...i, customPounds: i.pounds !== INCOME_LEVEL_POUNDS[i.level] } : i));
+  // an Ability printed twice is one Ability: a book on Rabbinical Law (The Divine) is on the core book's Rabbinic Law
+  out.library = (out.library ?? []).map((b) => (b.subjectType === 'ability' && ABILITY_ALIASES[b.subject] ? { ...b, subject: ABILITY_ALIASES[b.subject] } : b));
   return out;
 }
 

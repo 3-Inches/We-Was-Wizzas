@@ -4,7 +4,7 @@ import { AREAS, CRAFTS, MYSTERY_CULTS, ORGANIZATIONS, PROFESSIONS, nativeLanguag
 import { abilityAvailability } from '../../../engine/character/restrictions';
 import { CREATION_SOURCES, canSpend, sumAlloc, type DerivedCharacter, type XpBudget } from '../../../engine/character/derive';
 import { ensureAbility } from '../../../engine/character/factory';
-import { abilityXpForScore, withAffinity } from '../../../engine/xp';
+import { abilityXp, abilityXpForScore, withAffinity } from '../../../engine/xp';
 import type { Character, XpSource } from '../../../engine/types';
 import { Card, Meter, SelectOrType, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
@@ -16,7 +16,7 @@ export function rawNeeded(c: Character, d: DerivedCharacter, abUid: string, src:
   const ab = c.abilities.find((a) => a.uid === abUid);
   const da = d.abilityByUid.get(abUid);
   if (!ab || !da) return 0;
-  const target = abilityXpForScore(targetScore);
+  const target = abilityXp(targetScore, da.def?.asArt);
   const cur = ab.xp[src] ?? 0;
   // Affinity and Linguist multiply creation and Virtue-pool xp, not free/play/adjust xp
   const multiplied = CREATION_SOURCES.includes(src) || src.startsWith('pool:');

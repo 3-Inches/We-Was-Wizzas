@@ -20,7 +20,7 @@ import type { Rng } from '../dice';
 import { HOUSE_ARTS, markGroup, rarity, weightedPick } from '../generate/variety';
 import { optionOn } from '../optional';
 import { beastFor } from '../heartbeast';
-import { suitedTradition } from '../holy';
+import { isHolyCharacter, suitedTradition } from '../holy';
 import { abilityTag } from './records';
 import { QUESTION_BY_ID } from './questions';
 import { answerOf, evaluate, recommendHouses, shortlist, statusShortlist, tagWeights, traceOf, type GuidedContext, type Scored } from './score';
@@ -212,6 +212,11 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
           applyExMiscTradition(c, inp.data, trad.id);
           log.push(`Ex Miscellanea tradition: ${trad.name}.`);
         }
+      }
+      // what a tradition's magi may not have is not offered to them (a Seirene and Quiet Magic)
+      const mine = EX_MISC_TRADITIONS.find((t) => t.id === c.creation.exMiscTradition);
+      if (pick === 'ex-miscellanea' && mine?.forbids?.length) {
+        st.declined = [...new Set([...st.declined, ...mine.forbids])];
       }
       // Quick build's Bjornaer has a heartbeast; a player's own is theirs to choose (the House step asks)
       // a player's Bjornaer: one of the core book's beasts, whose statistics the sheet can show in heartbeast form
@@ -432,9 +437,6 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   // holy powers: a Method and a Power that go together, before anything else takes their points
   if (wantsHoly()) addHolyPair(c, st, inp, get, log, add, clean, maxFlaws * ratio);
 
-  // a magus's magic of their own: an Affinity or Puissance in the Art they are best at (DE, Quick and Easy Virtues and Flaws)
-  if (c.type === 'magus') addMagicalIdentity(c, st, inp, get, log, add, clean, maxFlaws * ratio);
-
   // Virtues: best fit first, while there is room (a Major only when it fits clearly better)
   const ev = evaluate(st, get());
   let virtues = shortlist(ev, 'virtue').filter((s) => simpleEnough(s));
@@ -462,21 +464,28 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
     if (dup(s)) continue;
     // a pair works wonders; more Methods and Powers would leave no room for the faith behind them (a Mythic Companion has room for a third)
     if (isHolyVirtue(s.def.id) && c.virtues.filter((v) => isHolyVirtue(v.defId)).length >= (c.type === 'mythic' ? 3 : 2)) continue;
-    const size = sizeFor(s, cap - t.virtuePoints);
-    if (!size || t.virtuePoints + SIZE_POINTS[size] > cap) continue;
+    // a magus with no Hermetic Virtue of their own yet keeps a point back for one (see addMagicalIdentity)
+    const held = c.type === 'magus' && !isOwnHermetic(s.def) && !hasOwnHermeticVirtue(c, data) ? 1 : 0;
+    const size = sizeFor(s, cap - held - t.virtuePoints);
+    if (!size || t.virtuePoints + SIZE_POINTS[size] > cap - held) continue;
     if (s.def.categories.includes('Mystery') && !c.virtues.some((v) => v.defId === 'cabal-legacy-flaw')) continue;
     if (!clean(s.def, size)) continue;
     add(s, size);
     log.push(`Virtue: ${s.def.name}${c.virtues.at(-1)?.param ? ` (${c.virtues.at(-1)!.param})` : ''}, ${size} — ${c.virtues.at(-1)!.why}.`);
   }
 
+  // a magus the choices above left with no magic of their own gets an Affinity or Puissance in the Art they care most about
+  if (c.type === 'magus') addMagicalIdentity(c, st, inp, get, log, add, clean, cap);
+
   // Flaws: enough points to pay for the Virtues, by the direction rules
   addFlaws(c, st, inp, get, log, add, clean, dup, simpleEnough, ratio);
   balance(c, inp, get, refresh, log, taken);
   // the Flaws' points not yet spent buy Minor Virtues that suit the character
   spendVirtuePoints(c, st, inp, get, log, add, clean, dup, simpleEnough);
-  // a holy character belongs to the tradition whose favored Abilities they have (RoP: The Divine, Holy Traditions)
-  if (!c.holy?.tradition) {
+  // a holy character belongs to the tradition whose favored Abilities they have (RoP: The Divine, Holy Traditions);
+  // one with no faith behind their Second Sight or Premonitions belongs to none
+  const dHoly = get().d;
+  if (!c.holy?.tradition && (dHoly.trueFaith > 0 || isHolyCharacter(dHoly))) {
     const t = suitedTradition(c);
     if (t) {
       c.holy = { ...(c.holy ?? {}), tradition: t.id };
@@ -497,24 +506,28 @@ const FIRST_POWER: Record<string, string[]> = { invocation: ['blessing', 'wonder
  * answers and the character's Characteristics, and the Power it calls that fits best. One alone
  * does nothing, so a half the character already has is completed rather than a new pair begun.
  */
+/** A Hermetic Virtue that is the magus's own: not The Gift, and not the House's free one (an Ex Miscellanea tradition's counts). */
+const isOwnHermetic = (def: VirtueFlawDef | undefined) => !!def && def.kind === 'virtue' && def.categories.includes('Hermetic') && def.id !== 'the-gift';
+function hasOwnHermeticVirtue(c: Character, data: BuildInput['data']): boolean {
+  return c.virtues.some((v) => isOwnHermetic(data.vfById.get(v.defId)) && (!v.free || v.freeReason === 'Ex Miscellanea'));
+}
+
 /**
- * Every magus has some magic of their own beyond the House's gift: the core book's quick guidelines
- * give one a Magical Focus, and Puissant and Affinity in a Technique and Form that suit it. A magus
- * with no Hermetic Virtue of their own (the House's free one aside, though an Ex Miscellanea
- * tradition's counts) is given an Affinity with, or Puissance in, the Art they care most about: the
- * one the answers weigh highest, else the House's own Puissant Art, else the best of the House's Arts.
- * It is skipped when there is no room, or the player turned both Virtues down.
+ * A fallback, so that no built magus is without magic of their own beyond the House's gift. The core
+ * book's quick guidelines give a magus a Minor Magical Focus, and Puissant and Affinity in one
+ * Technique that overlaps it (DE, Quick and Easy Virtues and Flaws); most builds reach something of
+ * the kind through the answers. A magus the Virtue choices left with no Hermetic Virtue of their own
+ * (the House's free one aside, though an Ex Miscellanea tradition's counts) is given an Affinity
+ * with, or Puissance in, the Art they care most about: the one the answers weigh highest, else the
+ * House's own Puissant Art, else the best of the House's Arts. The Virtue choices keep a point back
+ * for it. It is skipped when the player turned both Virtues down.
  */
 function addMagicalIdentity(
   c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, log: string[],
   add: (s: Scored, size: VFSize) => { why?: string; param?: string }, clean: (def: VirtueFlawDef, size: VFSize) => boolean, cap: number,
 ) {
   const data = inp.data;
-  const own = c.virtues.some((v) => {
-    const def = data.vfById.get(v.defId);
-    return def?.kind === 'virtue' && def.categories.includes('Hermetic') && v.defId !== 'the-gift' && (!v.free || v.freeReason === 'Ex Miscellanea');
-  });
-  if (own || cap - get().d.tally.virtuePoints < 1) return;
+  if (hasOwnHermeticVirtue(c, data) || cap - get().d.tally.virtuePoints < 1) return;
   const d = get().d;
   const w = tagWeights(st, get());
   const deficient = new Set(c.virtues.filter((v) => v.defId === 'deficient-technique-flaw' || v.defId === 'deficient-form-flaw').map((v) => v.param));
@@ -878,6 +891,18 @@ function spendExperience(c: Character, st: GuidedState, inp: BuildInput, get: ()
   // a Mythic Companion's least scores (the 90 experience points its type sets) before anything else
   const mt = c.type === 'mythic' ? MYTHIC_TYPES[mythicTypeOf(c) ?? ''] : undefined;
   if (mt) spendMinimums(c, mt.minAbilities, mt.label, inp, get, refresh, log);
+  // a tradition's own Ability rests on a mundane one (a Seirene's Music limits her Siren Song)
+  const tradition = c.house === 'ex-miscellanea' ? EX_MISC_TRADITIONS.find((t) => t.id === c.creation.exMiscTradition) : undefined;
+  for (const [id, min] of Object.entries(tradition?.minAbilities ?? {})) {
+    const ab = ensureAbility(c, id, {});
+    const want = abilityXpForScore(min) - sumAlloc(ab.xp);
+    const pool = get().d.budgets.find((x) => x.id === 'apprenticeship' && x.total - x.spent >= want);
+    if (want > 0 && pool) {
+      ab.xp.apprenticeship = (ab.xp.apprenticeship ?? 0) + want;
+      ab.why ??= `from: a magus of the ${tradition!.name} needs at least ${min}`;
+      refresh();
+    } else if (!sumAlloc(ab.xp)) c.abilities = c.abilities.filter((x) => x !== ab);
+  }
 
   // childhood: the sample childhood that fits best
   const child = get().d.budgets.find((b) => b.id === 'childhood');
@@ -1116,7 +1141,8 @@ function cleanUp(c: Character, inp: BuildInput, log: string[]): Issue[] {
     for (const a of res.applied) log.push(`Fixed: ${a}`);
     // an Ability a fix emptied (one the character turned out unable to learn) goes, rather than stay at 0
     const before = deriveCharacter(c, data, rules);
-    c.abilities = c.abilities.filter((a) => a.native || sumAlloc(a.xp) > 0 || before.abilityByUid.get(a.uid)?.granted);
+    // an Art a Virtue opens at 0 (a Goetic Art) stays, with nothing in it yet
+    c.abilities = c.abilities.filter((a) => a.native || sumAlloc(a.xp) > 0 || before.abilityByUid.get(a.uid)?.granted || data.abilityById.get(a.abilityId)?.asArt);
     const d = deriveCharacter(c, data, rules);
     const issues = validateCharacter(d, data, rules).filter((i) => i.severity !== 'info' && !IGNORED.has(i.code ?? i.id));
     if (!issues.length) return [];

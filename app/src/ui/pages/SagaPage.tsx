@@ -132,6 +132,9 @@ function TroupeCard({ saga, update }: { saga: Saga; update: (fn: (s: Saga) => vo
   const data = useGameData(saga);
   const troupe = useMemo(() => troupeOf(saga, chars, data), [saga, chars, data]);
   const [name, setName] = useState('');
+  const [showAll, setShowAll] = useState(false);
+  const unclaimed = troupe.find((p) => !p.name)?.characters.length ?? 0;
+  const claimed = troupe.reduce((n, p) => n + (p.name ? p.characters.length : 0), 0);
   const save = (p: TroupePlayer) => downloadJson(`${safeFilename(saga.name)}_${safeFilename(p.name || 'unclaimed')}.arm5char.json`, exportCharacters(p.characters.map((x) => x.c.id)));
   const withSheets = troupe.filter((p) => p.name && p.characters.length);
   const saveAll = async () => {
@@ -148,7 +151,7 @@ function TroupeCard({ saga, update }: { saga: Saga; update: (fn: (s: Saga) => vo
     setName('');
   };
   return (
-    <Card title="The troupe" tour="troupe-card" fold="saga-troupe" summary={`${troupe.filter((p) => p.name).length} players, ${chars.filter((c) => !c.npc).length} characters`}>
+    <Card title="The troupe" tour="troupe-card" fold="saga-troupe" summary={`${troupe.filter((p) => p.name).length} players, ${claimed} characters${unclaimed ? `, ${unclaimed} with no player` : ''}`}>
       {troupe.length === 0 && <Empty>No players yet. Add their names below, or set a player on each character&apos;s first step.</Empty>}
       {troupe.map((p) => (
         <div key={p.name || '__none'} className="list-row" style={{ alignItems: 'flex-start' }} data-tour="troupe-player">
@@ -156,6 +159,15 @@ function TroupeCard({ saga, update }: { saga: Saga; update: (fn: (s: Saga) => vo
             <b>{p.name || 'No player named'}</b>
             {p.characters.length === 0 ? (
               <div className="small muted">Not started. Send them the saga&apos;s rules with Invite players.</div>
+            ) : !p.name && p.characters.length > 6 && !showAll ? (
+              // the covenant's grogs and other characters nobody plays: a count, not a wall of names
+              <div className="small muted">
+                {p.characters.length} characters (the covenant&apos;s grogs and others nobody has claimed).{' '}
+                <button className="small ghost" onClick={() => setShowAll(true)}>
+                  Show them
+                </button>{' '}
+                or see <Link to={R.people(saga.id)}>People</Link>.
+              </div>
             ) : (
               <div className="chip-row" style={{ marginTop: 3 }}>
                 {p.characters.map((x) => (
@@ -190,8 +202,9 @@ function TroupeCard({ saga, update }: { saga: Saga; update: (fn: (s: Saga) => vo
         )}
       </div>
       <p className="small muted" style={{ marginBottom: 0 }}>
-        After a session, save each player&apos;s sheets and send them back: opening the file replaces their copies with yours, and shows them what changed. A character&apos;s player is set
-        on its first step; the order here is the turn order on the Seasons page.
+        After a session, save each player&apos;s sheets and send them back: opening the file replaces their copies with yours, and shows them what changed. A sheet goes whole, its
+        Notes included, so keep what the player should not read in the saga&apos;s Journal. A character&apos;s player is set on its first step; the order here is the turn order on the
+        Seasons page.
       </p>
     </Card>
   );

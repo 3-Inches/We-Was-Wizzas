@@ -236,7 +236,7 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
                 ))}
               </select>
             </Field>
-            <Field label="Virtues & Flaws" hint="Plain keeps to the core book's, whatever books the saga uses: good for player characters">
+            <Field label="Virtues & Flaws" hint="Plain keeps to the core book's, whatever books the saga uses: good for player characters. What a role, a Mythic type or an Ex Miscellanea tradition requires still comes with it">
               <select value={coreOnly ? 'core' : 'saga'} onChange={(e) => setCoreOnly(e.target.value === 'core')} data-tour="quick-plain">
                 <option value="saga">From the saga&apos;s books</option>
                 <option value="core">Plain: the core book&apos;s only</option>

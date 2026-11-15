@@ -230,13 +230,45 @@ describe('the holy tradition', () => {
     expect(['kabbalists', 'baal-shem']).toContain(k.c.holy?.tradition);
   }, 120_000);
 
-  it("offers only the traditions of the character's faith, and a Holy Societas only to the Gifted", () => {
+  it("offers only the traditions of the character's faith, and a Holy Societas to the unGifted too", () => {
     const c = newCharacter('companion', 's');
     c.society = 'Islamic';
     expect(traditionsFor(c).every((t) => !t.faith || t.faith === 'Muslim')).toBe(true);
-    expect(traditionsFor(c).some((t) => t.societas)).toBe(false);
+    // "can also accept unGifted characters like any holy tradition" (RoP: The Divine, Holy Societates)
+    expect(traditionsFor(c).some((t) => t.societas)).toBe(true);
+    // the faith is the character's own before the society's: a Jew in a Christian land, and mixed Iberia names none
+    const j = newCharacter('companion', 's');
+    j.society = 'Western Christendom';
+    expect(traditionsFor(j).some((t) => t.id === 'kabbalists')).toBe(false);
+    addVirtue(j, data, 'outsider-flaw', 'Major', 'Jew');
+    expect(traditionsFor(j).some((t) => t.id === 'kabbalists')).toBe(true);
+    expect(traditionsFor(j).some((t) => t.id === 'cantores')).toBe(false);
+    const i = newCharacter('companion', 's');
+    i.society = 'Iberia';
+    expect(['sufis', 'kabbalists', 'cantores'].every((id) => traditionsFor(i).some((t) => t.id === id))).toBe(true);
     addVirtue(c, data, 'meditation', 'Major');
     addVirtue(c, data, 'understanding', 'Major');
     expect(suitedTradition(c)?.id).toBe('sufis');
   });
+
+  it('gives no tradition to a character with no faith behind their Second Sight, Premonitions or music', () => {
+    // these favored Abilities are ordinary Virtues: alone they make nobody an Ascetic or a Cantor
+    const c = newCharacter('companion', 's');
+    c.society = 'Western Christendom';
+    addVirtue(c, data, 'second-sight', 'Minor');
+    addVirtue(c, data, 'premonitions', 'Minor');
+    addVirtue(c, data, 'enchanting-ability', 'Major', 'Music');
+    expect(suitedTradition(c)).toBeUndefined();
+    // with a Holy Power beside them, the tradition that favors both
+    addVirtue(c, data, 'purity', 'Major');
+    expect(suitedTradition(c)?.id).toBe('ascetics');
+    // and the builders give one only to a holy character
+    for (const type of ['companion', 'grog', 'magus'] as const) {
+      for (let seed = 1; seed <= 12; seed++) {
+        const g = generateCharacter({ type, variety: 'varied', npc: true, seed }, { data, saga, rules });
+        const d = derive(g.c);
+        if (!(d.trueFaith > 0 || holyMethodsOf(d).length || holyPowersOf(d).length || g.c.virtues.some((v) => v.defId === 'holy-magic'))) expect(g.c.holy?.tradition, `${type} #${seed}`).toBeUndefined();
+      }
+    }
+  }, 240_000);
 });
