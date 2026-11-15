@@ -415,7 +415,7 @@ export function* livingCovenantSteps(book: TribunalBook, def: BookCovenant, g: L
   }
   cov.visSources = sources;
   cov.visStocks = [];
-  for (const s of sources) addVis(cov.visStocks, s.art, s.pawnsPerYear);
+  for (const s of sources) addVis(cov.visStocks, s.art, s.pawnsPerYear, undefined, s.realm);
   for (const a of ['Cr', 'Co', 'Vi'] as Art[]) addVis(cov.visStocks, a, Math.ceil(chars.length * (def.vis === 'scarce' ? 1 : 3)));
   cov.startingVisStocks = structuredClone(cov.visStocks);
   log.push(`Vis: ${plan0.visPerYear} pawns a year from ${sources.length} sources, about ${plan0.visPerMagus} a magus (DE p.218: low vis up to 5 a magus, moderate about 10, high about 20).`);

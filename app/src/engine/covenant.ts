@@ -49,7 +49,7 @@ export const visSourceCost = (s: VisSource) => (s.inPlay ? 0 : Math.ceil((s.dedi
 /** Dedicated vis is worth half again as much as plain vis, in Build Points and in trade. */
 export const DEDICATED_WEIGHT = 1.5;
 /** How a vis stock or source is named: an Art, or a dedicated Technique + Form. */
-export const visLabel = (v: { art: Art; pair?: Art }) => (v.pair ? `dedicated ${TECHNIQUE_IDS.has(v.art) ? v.art + v.pair : v.pair + v.art}` : v.art);
+export const visLabel = (v: { art: Art; pair?: Art; realm?: string }) => `${v.pair ? `dedicated ${TECHNIQUE_IDS.has(v.art) ? v.art + v.pair : v.pair + v.art}` : v.art}${v.realm ? ` (${v.realm})` : ''}`;
 const TECHNIQUE_IDS = new Set<string>(['Cr', 'In', 'Mu', 'Pe', 'Re']);
 
 /** Build Point lines that are not one thing on a list, so a Hidden, Flawed or Illusory Resource can still take them. */

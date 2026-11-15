@@ -39,7 +39,10 @@ const DEAD_LANGUAGES = ['Latin', 'Classical Greek', 'Ancient Greek', 'Biblical H
 const ABILITY_ALIASES: Record<string, [string, string?]> = {
   theology: ['theology-christian'], 'order of hermes lore': ['organization-lore', 'Order of Hermes'], 'church lore': ['organization-lore', 'Church'], 'civil & canon law': ['civil-and-canon-law'],
   'canon law': ['civil-and-canon-law'], 'heartbeast': ['heartbeast'], 'heart beast': ['heartbeast'], 'hermes lore': ['organization-lore', 'Order of Hermes'],
+  'great weapons': ['great-weapon'], 'single weapons': ['single-weapon'],
 };
+/** Virtue and Flaw names the books spell otherwise (the core book's templates). */
+const VF_ALIASES: Record<string, string> = { 'latent magical ability': 'latent-magic-ability', 'venus s blessing': 'venus-blessing' };
 
 /** Split at the separators that are not inside brackets. */
 export function splitTop(s: string, sep: string): string[] {
@@ -116,6 +119,12 @@ function resolveVF(raw: string, data: GameData, idx: ReturnType<typeof vfIndex>)
   }
   // "(…, with Mythic Blood)", "(gained from Twilight)": how it was had, not a choice
   let paren: string | undefined;
+  // a size written beside a name that has its own choice: Driven (Major) (prove herself)
+  const mid = s.match(/\s*\((Major|Minor)\)(?=\s*\()/i);
+  if (mid) {
+    fixed = (mid[1][0].toUpperCase() + mid[1].slice(1).toLowerCase()) as VFSize;
+    s = (s.slice(0, mid.index) + s.slice(mid.index! + mid[0].length)).trim();
+  }
   const p = s.match(/\s*\(([^()]*)\)\s*$/);
   if (p) {
     paren = p[1].trim();
@@ -124,6 +133,11 @@ function resolveVF(raw: string, data: GameData, idx: ReturnType<typeof vfIndex>)
       free = via[1].trim();
       paren = paren.slice(0, via.index).replace(/,\s*$/, '').trim() || undefined;
     }
+  }
+  // "Compassionate (Major)": the size, not a choice
+  if (paren && /^(Major|Minor)$/i.test(paren)) {
+    fixed = (paren[0].toUpperCase() + paren.slice(1).toLowerCase()) as VFSize;
+    paren = undefined;
   }
   const base = (p ? s.slice(0, p.index).trim() : s).replace(/^Deft Art$/i, 'Deft Form');
   const n = loose(base);
@@ -134,7 +148,11 @@ function resolveVF(raw: string, data: GameData, idx: ReturnType<typeof vfIndex>)
   // the Rhine's gilds
   const gild = base.match(/^(Oak|Hawthorn|Ash|Elder|Linden|Apple) Gild (Trained|Enmity)$/i);
   if (gild) return out(def(gild[2].toLowerCase() === 'trained' ? 'gild-trained' : 'gild-enmity'), `${gild[1][0].toUpperCase()}${gild[1].slice(1).toLowerCase()} Gild`);
+  const aliased = VF_ALIASES[n] && def(VF_ALIASES[n]);
+  if (aliased) return out(aliased, paren ?? tail);
   const pa = base.match(/^(Puissant|Affinity with) (.+)$/i);
+  // one craft or profession: Affinity with Craft (metalsmith)
+  if (pa && paren && /^(craft|profession)$/i.test(pa[2])) return out(def(`${pa[1].toLowerCase() === 'puissant' ? 'puissant' : 'affinity-with'}-ability`), `${pa[2].toLowerCase()}-type:${paren}`);
   if (pa && !paren) {
     const kind = pa[1].toLowerCase() === 'puissant' ? 'puissant' : 'affinity-with';
     const a = art(pa[2]);
@@ -144,6 +162,18 @@ function resolveVF(raw: string, data: GameData, idx: ReturnType<typeof vfIndex>)
   }
   const gp = base.match(/^(Great|Poor) (\w+)$/i);
   if (gp && CHAR_NAMES[gp[2].toLowerCase()]) return out(def(gp[1].toLowerCase() === 'great' ? 'great-characteristic' : 'poor-characteristic-flaw'), CHAR_NAMES[gp[2].toLowerCase()]);
+  // Deficient Auram, Deft Imaginem: the Art named in place of its kind
+  const named1 = base.match(/^(Deficient|Deft) (\w+)$/i);
+  const namedArt = named1 && !paren ? art(named1[2]) : undefined;
+  if (named1 && namedArt) {
+    if (named1[1].toLowerCase() === 'deft') return out(def('deft-form'), namedArt);
+    return out(def((TECHNIQUES as readonly string[]).includes(namedArt) ? 'deficient-technique-flaw' : 'deficient-form-flaw'), namedArt);
+  }
+  // Plagued by Angel, Vow of Celibacy: the general Flaw with what it names
+  const plagued = base.match(/^Plagued by (?!Supernatural Entity$)(.+)$/i);
+  if (plagued) return out(def('plagued-by-supernatural-entity-flaw'), plagued[1]);
+  const vow = base.match(/^Vow of (.+)$/i);
+  if (vow) return out(def('vow-flaw'), vow[1]);
   const df = base.match(/^Deficient (Form|Technique)$/i);
   if (df && paren && art(paren)) return out(def(df[1].toLowerCase() === 'form' ? 'deficient-form-flaw' : 'deficient-technique-flaw'), art(paren));
   if (/^(Major|Minor) Magical Focus$/i.test(base)) return out(def(base.toLowerCase().startsWith('major') ? 'major-magical-focus' : 'minor-magical-focus'), paren ?? tail);
@@ -240,19 +270,24 @@ export function applyStatBlock(c: Character, sb: StatBlock, data: GameData, rule
   const house = c.house ? HOUSE_BY_ID[c.house] : undefined;
   if (house && c.house) {
     const starred = items.filter((x) => x.house);
-    const i = house.benefitOptions.findIndex((b) => starred.some((x) => x.def.id === b.virtueId && (!b.param || b.param === x.param)));
+    const i = house.benefitOptions.findIndex((b) => starred.some((x) => x.def.id === b.virtueId && (!b.param || b.param.toLowerCase() === (x.param ?? '').toLowerCase())));
     // Jerbiton's free Minor Virtue from the House's list
     const free = house.freeChoiceFrom ? starred.find((x) => house.freeChoiceFrom!.includes(x.def.id)) : undefined;
     setHouse(c, data, c.house, Math.max(0, i), free ? { defId: free.def.id, param: free.param } : undefined);
   }
   for (const x of items) {
     for (let k = 0; k < x.count; k++) {
-      const have = c.virtues.filter((v) => v.defId === x.def.id && (v.param ?? '') === (x.param ?? '')).length;
+      const have = c.virtues.filter((v) => v.defId === x.def.id && (v.param ?? '').toLowerCase() === (x.param ?? '').toLowerCase()).length;
       if (have > k) continue;
       // one that came with another (Mythic Blood's Minor Magical Focus): its choice, not a second
       const came = x.free ? c.virtues.find((v) => v.defId === x.def.id && !v.param && v.free) : undefined;
       if (came) {
         came.param = x.param;
+        continue;
+      }
+      // an Ex Miscellanea magus's starred Virtues and Flaw are the tradition's: free, and the Flaw gives no points (DE, Ex Miscellanea)
+      if (x.house && house?.exMiscellanea) {
+        addVirtue(c, data, x.def.id, x.size, x.param, { free: true, freeReason: 'Ex Miscellanea', ...(x.def.kind === 'flaw' ? { noPoints: true } : {}) });
         continue;
       }
       addVirtue(c, data, x.def.id, x.size, x.param, x.free ? { free: true, freeReason: x.free } : {});
@@ -270,7 +305,9 @@ export function applyStatBlock(c: Character, sb: StatBlock, data: GameData, rule
   // Abilities, at the scores the book gives (a correction outside the creation budgets)
   let native = false;
   for (const raw of splitTop(sb.abilities.replace(/<br>/g, ''), ',')) {
-    const m = raw.match(/^(.+?)\s+(\d+)(?:\s*\+\s*\d+)?\s*(?:\((.+)\))?\s*$/);
+    // the score before the specialty (Brawl 2 (dodge)), or now and then after it (Etiquette (noble) 3)
+    const swapped = raw.trim().match(/^([^()]+?)\s*\(([^)]+)\)\s+(\d+)$/);
+    const m = swapped && !/^(craft|profession|organization lore)$/i.test(swapped[1].trim()) ? [raw, swapped[1], swapped[3], swapped[2]] : raw.match(/^(.+?)\s+(\d+)(?:\s*\+\s*\d+)?\s*(?:\((.+)\))?\s*$/);
     if (!m) {
       problems.push(`Ability “${raw}”`);
       continue;
@@ -325,7 +362,10 @@ export function applyStatBlock(c: Character, sb: StatBlock, data: GameData, rule
   if (cf) c.confidence = { score: cf.score, points: cf.extra };
   for (const raw of sb.reputations && !/^none$/i.test(sb.reputations.trim()) ? splitTop(sb.reputations, ',') : []) {
     const m = raw.match(/^(.+?)\s+(\d+)\s*\(([^)]+)\)$/);
+    // the core book writes some the other way about: Quaesitor (Hermetic) 3.
+    const m2 = m ? undefined : raw.trim().replace(/\.$/, '').match(/^(.+?)\s*\(([^)]+)\)\s+(\d+)$/);
     if (m) c.reputations.push({ uid: uid(), text: m[1].trim(), score: Number(m[2]), scope: m[3].trim() });
+    else if (m2) c.reputations.push({ uid: uid(), text: m2[1].trim(), score: Number(m2[3]), scope: m2[2].trim() });
     else problems.push(`Reputation “${raw}”`);
   }
   if (sb.longevity) c.longevity = { labTotal: sb.longevity * 5, bonus: sb.longevity, extraVis: 0, createdYear: c.birthYear + 35 };

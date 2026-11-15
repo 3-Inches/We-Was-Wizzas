@@ -1,7 +1,7 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { auraAtTime, type AuraTime } from '../../../engine/aura';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type GameData, type Technique } from '../../../data';
-import { SYMPATHIES, bestHolyRite, castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
+import { BOTCH_SUGGESTIONS, SYMPATHIES, bestHolyRite, castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
 import { describeStress, stressDie, simpleDie } from '../../../engine/dice';
 import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
 import { holyMethodsOf, holyPowersOf } from '../../../engine/holy';
@@ -84,6 +84,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   const [daysAway, setDaysAway] = useState(0);
   // raw vis spent to raise a Casting Score: +2 a pawn, a botch die each (DE, Vis Boost to Casting Score)
   const [visBoost, setVisBoost] = useState(0);
+  // the vis cast with is Infernal-tainted: twice the botch dice it brings (DE, Tainted Vis)
+  const [infernalVis, setInfernalVis] = useState(false);
   const [similar, setSimilar] = useState('');
   // spontaneous casting: ceremonial casting, and the level declared for Life-Linked or Chaotic Magic
   const [ceremonial, setCeremonial] = useState(false);
@@ -206,6 +208,9 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
       if (check && x.type === 'magus') owe(x, ed.saga?.currentYear ?? 0, ed.saga?.currentSeason ?? 'Spring', 'twilight', `${wp} Warping Point${wp > 1 ? 's' : ''} from a botched casting: roll for Wizard’s Twilight.`);
     });
     push(`Botch: ${wp} Warping Point${wp > 1 ? 's' : ''} added.${check ? ` Check for Wizard's Twilight${d.twilightProne && wp < 2 ? ' (Twilight Prone)' : ''}: Warping & Twilight, below (points already added).` : ''}`);
+    // the spell still goes off, beyond the caster's control: one of the book's suggestions to start from
+    const s = BOTCH_SUGGESTIONS[Math.floor(Math.random() * BOTCH_SUGGESTIONS.length)];
+    push(`What the botch might do (a suggestion from the core book; the storyguide decides${wp > 1 ? ', and more zeros make it worse' : ''}): ${s.name}. ${s.text}`);
   };
   /** Fatigue spent on a casting, after Vulnerable and Withstand Casting; Life Boost and Life-Linked levels are added as they are */
   const spendFatigue = (levels: number, longTerm: boolean) => {
@@ -262,7 +267,9 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
       kind: ritual ? 'ritual' : 'formulaic', aura, inFocus: spellFocus(sp), wordsGestures: words, circumstance: conds, other, lifeBoost, holyRite,
       talismanBonus: talisman ? talismanBonus : 0, extra: [...(ms ? [{ label: 'Mastery', value: ms }] : []), ...mythPart, ...potencyPart(sp)], visPawns: visB.pawns,
     });
-    const botchDice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((res.botchDice ?? 0) + vis.pawns + visB.used, golden, ms) - mythSta);
+    // Infernal vis: twice as many botch dice as usual for the vis (DE, Tainted Vis)
+    const visDice = (vis.pawns + visB.used) * (infernalVis ? 2 : 1);
+    const botchDice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((res.botchDice ?? 0) + visDice, golden, ms) - mythSta);
     // a stress die for stress, for Rituals and mastered spells, and always with Unpredictable Magic; calm and
     // mastered means no botch dice, and a calm Ritual still risks a botch unless it is mastered
     const canBotch = stress || (ritual && ms === 0) || rules.unpredictable;
@@ -333,7 +340,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
     const name = `Spontaneous ${tech}${form}${cer ? ' (ceremonial)' : ''}${fast ? ' (fast-cast, −10)' : ''}`;
     const boost = visBoostFor(tech, form, 0);
     const score = (mode === 'exerted' ? spontExerted.total : spont.total) + 2 * boost.pawns;
-    const dice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((spont.botchDice ?? 0) + boost.used, golden) - mythSta);
+    const dice = Math.max(rules.unpredictable ? 1 : 0, magicBotchDice((spont.botchDice ?? 0) + boost.used * (infernalVis ? 2 : 1), golden) - mythSta);
     let total: number;
     let text: string;
     let botch = { n: 0, faces: [] as number[] };
@@ -553,6 +560,9 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           <Field label="Raw vis to boost a casting" hint={rules.rigid ? 'Rigid Magic: none' : '+2 Casting Score a pawn, a botch die each; up to your Technique + Form'}>
             <Stepper value={visBoost} min={0} max={30} width={36} onChange={setVisBoost} />
           </Field>
+          <label className="inline small" title="Vis gathered in an Infernal aura: twice as many botch dice as usual for the vis spent, a Ritual's and a boost's (DE, Tainted Vis)">
+            <input type="checkbox" checked={infernalVis} onChange={(e) => setInfernalVis(e.target.checked)} data-tour="infernal-vis" /> The vis is Infernal-tainted
+          </label>
           <Field label="Days away from the lab" hint={daysAway > 20 ? 'Past twenty: no lab work this season' : daysAway > 10 ? `Lab Totals ${10 + 2 * (daysAway - 10) > 30 ? -30 : -(10 + 2 * (daysAway - 10))}` : 'Up to ten cost nothing'}>
             <Stepper value={daysAway} min={0} max={30} width={36} onChange={setDaysAway} />
           </Field>
@@ -675,6 +685,9 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
           <label className="inline small">
             <input type="checkbox" checked={!!pen.specialty} onChange={(e) => setPen({ ...pen, specialty: e.target.checked })} /> Penetration specialty applies
           </label>
+          <label className="inline small" title="The spell is cast with no more effort than avoids Fatigue: its Penetration Total is 0 at most, so it will not affect anyone with Magic Resistance (magi in a tournament, or caught in a wide Target)">
+            <input type="checkbox" checked={!!pen.forceless} onChange={(e) => setPen({ ...pen, forceless: e.target.checked })} data-tour="forceless" /> Forceless casting (Penetration 0)
+          </label>
           <div className="stat">
             <span className="v">
               <Total value={pb.bonus} parts={pb.parts} label={`× ${pb.multiplier}`} />
@@ -696,7 +709,7 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
             </label>
           ))}
         </div>
-        <p className="small muted" style={{ marginBottom: 0 }}>Penetration Total = Casting Total + Penetration bonus − spell level (DE p.215).</p>
+        <p className="small muted" style={{ marginBottom: 0 }}>Penetration Total = Casting Total + Penetration bonus − spell level (DE p.215).{pen.forceless ? ' Cast forcelessly: no more than 0, so anyone with Magic Resistance is untouched unless the spell botches.' : ''}</p>
       </Card>
 
       <Card title="Spells">

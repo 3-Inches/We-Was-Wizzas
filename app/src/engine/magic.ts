@@ -455,6 +455,27 @@ function artName(a: Art): string {
  * the caster has an Arcane Connection to the target, and they stack; none gives more than +2. A Faerie
  * Magic charm is a symbolic representation made with that Ability, one to a spell (DE, Charms).
  */
+/**
+ * What a botched spell may do (DE, Botch Suggestions): "the spell still goes off. The magic is beyond the
+ * maga's control". The storyguide chooses, or rolls; the toolkit offers one to start from.
+ */
+export const BOTCH_SUGGESTIONS: { name: string; text: string }[] = [
+  { name: 'Attract unwanted attention', text: 'The attention of someone or something, perhaps the target of the spell, is drawn to the caster.' },
+  { name: 'Caster addled', text: 'The caster is rendered insane, confused or demented, and takes the Flaw Simple-Minded for an indefinite duration.' },
+  { name: 'Caster overwhelmed', text: 'The caster is overwhelmed by their own magic: a Stamina stress roll of 6+ or be knocked unconscious.' },
+  { name: 'Connection with target', text: 'The target becomes aware of the caster’s investigations, and may learn something of them through the arcane link briefly made.' },
+  { name: 'Debilitating', text: 'The spell pushes the target too hard and does lasting damage (a Rego Animal spell leaves a beast without its instincts).' },
+  { name: 'Flawed creation', text: 'A creation is heavily flawed, though the flaw may not show until it is needed for its purpose.' },
+  { name: 'Incomplete or improper effect', text: 'A spell to turn the caster into a wolf turns only the head and hands.' },
+  { name: 'Out of control', text: 'The spell creates or calls forth something beyond the caster’s ability to control.' },
+  { name: 'Related but unwanted effect', text: 'A spell to turn the caster into a wolf turns them into another animal.' },
+  { name: 'Reverse effect', text: 'The spell does exactly the opposite of what was intended.' },
+  { name: 'Spell affects caster', text: 'The caster, not the intended target, is affected.' },
+  { name: 'Too powerful', text: 'The spell does more than it should, and so causes problems.' },
+  { name: 'Undying spell', text: 'The spell does not end at its time, and resists being dispelled.' },
+  { name: 'Wrong target', text: 'A new target, picked at random.' },
+];
+
 export const SYMPATHIES: { id: string; label: string; bonus: number; hint?: string; faerieMagic?: boolean }[] = [
   { id: 'blood', label: 'The caster is a blood relative of the target', bonus: 1 },
   { id: 'signature', label: 'The target’s signature', bonus: 1 },
@@ -474,6 +495,8 @@ export interface PenetrationOptions {
   sympathetic?: number;
   specialty?: boolean; // Penetration specialty applies
   masteryScore?: number; // Penetration mastery ability adds score
+  /** forceless casting (DE, Forceless Casting): the maga ensures the Penetration Total does not exceed 0 */
+  forceless?: boolean;
 }
 
 export function penetrationBonus(d: DerivedCharacter, o: PenetrationOptions = {}): { bonus: number; multiplier: number; parts: Part[] } {
@@ -497,6 +520,8 @@ export function penetrationTotal(d: DerivedCharacter, castingTotal: number, leve
   const { bonus } = penetrationBonus(d, o);
   let p = castingTotal + bonus - level;
   if (d.effects.some((e) => e.type === 'penetrationMultiplier')) p = Math.floor(p / 2);
+  // "a maga can deliberately ensure the Penetration Total of a spell does not exceed 0": no other number may be chosen
+  if (o.forceless) p = Math.min(p, 0);
   return p;
 }
 

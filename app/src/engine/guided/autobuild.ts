@@ -53,7 +53,7 @@ export interface BuildResult {
 
 const SIZE_POINTS: Record<VFSize, number> = { Major: 3, Minor: 1, Free: 0 };
 
-const TRIBUNAL_LANGUAGE: Record<string, string> = {
+export const TRIBUNAL_LANGUAGE: Record<string, string> = {
   Rhine: 'German', 'Greater Alps': 'German', Stonehenge: 'English', Normandy: 'French', 'Provençal': 'Occitan', Iberian: 'Castilian', Rome: 'Italian',
   Hibernian: 'Irish Gaelic', 'Loch Leglean': 'Scots Gaelic', Theban: 'Greek', Transylvanian: 'Hungarian', Novgorod: 'Russian', Levant: 'Arabic',
 };

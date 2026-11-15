@@ -62,7 +62,7 @@ export function payAllowance(cov: Covenant, members: Character[], surplus: numbe
 }
 
 function takeVisExact(stocks: VisStock[], v: VisStock, pawns: number): boolean {
-  const s = stocks.find((x) => x.art === v.art && x.pair === v.pair);
+  const s = stocks.find((x) => x.art === v.art && x.pair === v.pair && x.realm === v.realm);
   if (!s || s.pawns < pawns) return false;
   s.pawns -= pawns;
   if (s.pawns <= 0) stocks.splice(stocks.indexOf(s), 1);

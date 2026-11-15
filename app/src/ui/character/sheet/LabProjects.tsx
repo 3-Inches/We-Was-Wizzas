@@ -423,6 +423,11 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
               </span>
             </>
           )}
+          {p.kind === 'fixConnection' && (
+            <Field label="What the Arcane Connection is to" hint="A person, a place, a creature: a lock of hair, a stone from the hill, a feather">
+              <input value={p.connectionTo ?? ''} onChange={(e) => set((x) => void (x.connectionTo = e.target.value))} placeholder="e.g. the Bishop of Mainz" />
+            </Field>
+          )}
           {p.kind === 'tame' && (
             <>
               <Field label="The creature's Form">

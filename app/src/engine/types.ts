@@ -401,7 +401,9 @@ export type LabRoutine = 'early' | 'nocturnal' | 'addled' | 'overtime' | 'double
 /** A laboratory project that runs over one or more seasons (DE, The Laboratory). */
 export interface LabProject {
   uid: string;
-  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'longevity' | 'bind' | 'strengthen' | 'empower' | 'refine' | 'install' | 'repair' | 'castingTool' | 'other';
+  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'longevity' | 'bind' | 'strengthen' | 'empower' | 'refine' | 'install' | 'repair' | 'castingTool' | 'fixConnection' | 'other';
+  /** fixConnection: what the Arcane Connection is to (a person, a place, a creature) */
+  connectionTo?: string;
   name: string;
   /** invent: the spell; instill: the effect's Technique, Form and level; tame: the creature's Form and Might */
   technique?: Technique;
@@ -1319,6 +1321,8 @@ export interface VisSource {
   uid: string;
   name: string;
   art: Art;
+  /** in an aura of another realm, its vis tainted by it (DE, Tainted Vis); Magic when unset */
+  realm?: VisTaint;
   pawnsPerYear: number;
   season?: string;
   description?: string;
@@ -1349,9 +1353,14 @@ export interface Allowance {
   visShare: number;
 }
 
+/** The realm vis came from when not Magic (DE, Tainted Vis): Faerie vis is mostly safe, Divine vis makes magi nervous, Infernal vis twists what it is used for. */
+export type VisTaint = 'Faerie' | 'Divine' | 'Infernal';
+
 export interface VisStock {
   art: Art;
   pawns: number;
+  /** found in an aura of another realm; plain Magic vis when unset */
+  realm?: VisTaint;
   /** dedicated vis: the other Art of its Technique + Form (each pawn works as two for that combination) */
   pair?: Art;
 }
