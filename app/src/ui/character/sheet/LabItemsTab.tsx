@@ -14,7 +14,7 @@ import { labTotal } from '../../../engine/magic';
 import { newProject, renewLongevity, renewLongevityCost } from '../../../engine/projects';
 import { purseOf, visAvailable } from '../../../engine/vis';
 import { generateFamiliar } from '../../../engine/generate/spellsAndFamiliars';
-import { issueRedcapDevices, redcapLevels, servedByMercerHouse } from '../../../engine/generate/items';
+import { issueRedcapDevices, redcapDeviceChoices, redcapLevels, servedByMercerHouse } from '../../../engine/generate/items';
 import { newSeed, seeded } from '../../../engine/generate/random';
 import type { Character, Familiar, LabProject } from '../../../engine/types';
 import { BookBadge, Card, Field, HowItWorks, Stepper, Total, signed, unfold } from '../../kit';
@@ -184,10 +184,10 @@ export function RedcapCard({ ed }: { ed: CharEditor }) {
   const r = c.redcap;
   const service = years ?? Math.max(0, c.age - 25);
   const extra = c.virtues.filter((v) => v.defId === 'magic-items').length;
-  const issue = (fn: (x: Character) => void) =>
+  const issue = (fn: (x: Character) => void, only?: string) =>
     update((x) => {
       fn(x);
-      const got = issueRedcapDevices(x, data, seeded(newSeed()));
+      const got = issueRedcapDevices(x, data, seeded(newSeed()), only);
       setSaid(got.length ? `New from the House: ${got.join(', ')}.` : 'No effect for carrying messages fits in the levels left.');
     });
   const ritual = () =>
@@ -215,6 +215,17 @@ export function RedcapCard({ ed }: { ed: CharEditor }) {
           <button className="small" disabled={r.levels - r.spent < 5} onClick={() => issue(() => {})}>
             New devices with the levels left
           </button>
+          {redcapDeviceChoices(c, data).length > 0 && (
+            <select value="" onChange={(e) => e.target.value && issue(() => {}, e.target.value)} aria-label="Take a particular device" data-tour="redcap-pick">
+              <option value="">Or take a particular one…</option>
+              {redcapDeviceChoices(c, data).map((sp) => (
+                <option key={sp.id} value={sp.name}>
+                  {sp.name} ({sp.technique}
+                  {sp.form} {sp.level})
+                </option>
+              ))}
+            </select>
+          )}
           <button className="small ghost" title="Stop keeping the House’s levels (the devices stay)" onClick={() => update((x) => void delete x.redcap)}>
             Stop keeping count
           </button>

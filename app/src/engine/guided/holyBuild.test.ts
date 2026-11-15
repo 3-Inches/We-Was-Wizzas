@@ -7,12 +7,13 @@ import { buildGameData } from '../../data';
 import { nativeLanguageFor } from '../../data/lists';
 import { MYTHIC_TYPES } from '../../data/mythic';
 import { DEFAULT_HOUSE_RULES, type Character, type Saga } from '../types';
+import { migrateCharacter } from '../../store/migrate';
 import { addVirtue, applyMythicType, newCharacter } from '../character/factory';
 import { canSpend, deriveCharacter } from '../character/derive';
 import { abilityAvailability } from '../character/restrictions';
 import { validateCharacter } from '../character/validate';
 import { generateCharacter } from '../generate/character';
-import { holyMethodsOf, holyPowersOf, worksHolyEffects } from '../holy';
+import { holyMethodsOf, holyPowersOf, suitedTradition, traditionsFor, worksHolyEffects } from '../holy';
 import { autoBuild } from './autobuild';
 import { evaluate, shortlist, type GuidedContext } from './score';
 
@@ -181,5 +182,61 @@ describe('a Virtue printed in several books', () => {
     // and it is closed to a saga that uses none of them
     const core = buildGameData({ enabledBooks: ['DE'] });
     expect(core.inBooks(core.vfById.get('ceremony')!)).toBe(false);
+  });
+});
+
+describe('small rules of the Divine and its relics', () => {
+  it("a Nephilim's least score in Hebrew opens Hebrew, not every dead language", () => {
+    const c = newCharacter('mythic', 's');
+    applyMythicType(c, data, 'nephilim');
+    const d = derive(c);
+    expect(abilityAvailability(d, data, 'dead-language', 'Hebrew').ok).toBe(true);
+    expect(abilityAvailability(d, data, 'dead-language', 'Latin').ok).toBe(false);
+    const pool = d.budgets.find((b) => b.id === 'laterLife')!;
+    expect(canSpend(d, data, pool, { abilityId: 'dead-language', param: 'Hebrew' }).ok).toBe(true);
+    expect(canSpend(d, data, pool, { abilityId: 'dead-language', param: 'Latin' }).ok).toBe(false);
+    // with an education, every dead language is open as usual
+    addVirtue(c, data, 'educated', 'Minor');
+    expect(canSpend(derive(c), data, pool, { abilityId: 'dead-language', param: 'Latin' }).ok).toBe(true);
+  });
+
+  it('Rabbinic Law is one Ability, printed in the core book and The Divine, and old sheets are moved over', () => {
+    expect(data.abilityById.get('rabbinical-law')).toBeUndefined();
+    const law = data.abilityById.get('rabbinic-law')!;
+    expect(law.source.book).toBe('DE');
+    expect(law.alsoIn?.some((s) => s.book === 'RoP_D')).toBe(true);
+    const old = newCharacter('mythic', 's');
+    old.abilities.push({ uid: 'x', abilityId: 'rabbinical-law', xp: { laterLife: 5 } } as never);
+    expect(migrateCharacter(old).abilities.find((a) => a.uid === 'x')?.abilityId).toBe('rabbinic-law');
+    // the kabbalist's least score names the one Ability
+    expect(Object.keys(MYTHIC_TYPES.kabbalist.minAbilities)).toContain('rabbinic-law');
+  });
+
+  it('two relics are flagged, since only one helps at a time', () => {
+    const c = newCharacter('companion', 's');
+    addVirtue(c, data, 'relic', 'Minor');
+    expect(validateCharacter(derive(c), data, rules).some((i) => i.id === 'two-relics')).toBe(false);
+    addVirtue(c, data, 'powerful-relic', 'Major');
+    const issue = validateCharacter(derive(c), data, rules).find((i) => i.id === 'two-relics');
+    expect(issue?.severity).toBe('warning');
+  });
+});
+
+describe('the holy tradition', () => {
+  it('a built holy character belongs to the tradition whose favored Abilities they have, of their faith', () => {
+    const g = generateCharacter({ type: 'mythic', role: 'mythic-zahid', variety: 'focused', npc: false, seed: 3 } as never, { data, saga, rules });
+    expect(g.c.holy?.tradition).toBe('sufis');
+    const k = generateCharacter({ type: 'mythic', role: 'mythic-kabbalist', variety: 'focused', npc: false, seed: 3 } as never, { data, saga, rules });
+    expect(['kabbalists', 'baal-shem']).toContain(k.c.holy?.tradition);
+  }, 120_000);
+
+  it("offers only the traditions of the character's faith, and a Holy Societas only to the Gifted", () => {
+    const c = newCharacter('companion', 's');
+    c.society = 'Islamic';
+    expect(traditionsFor(c).every((t) => !t.faith || t.faith === 'Muslim')).toBe(true);
+    expect(traditionsFor(c).some((t) => t.societas)).toBe(false);
+    addVirtue(c, data, 'meditation', 'Major');
+    addVirtue(c, data, 'understanding', 'Major');
+    expect(suitedTradition(c)?.id).toBe('sufis');
   });
 });

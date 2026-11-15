@@ -1,6 +1,6 @@
 // Forward-compatible loading: fill in any fields added since a file was saved.
 
-import { ARTS, CHARACTERISTICS, emptyCustomContent } from '../data';
+import { ABILITY_ALIASES, ARTS, CHARACTERISTICS, emptyCustomContent } from '../data';
 import { DEFAULT_HOUSE_RULES, SCHEMA_VERSION, type Character, type Covenant, type Saga } from '../engine/types';
 import { newCovenant } from '../engine/covenant';
 import { INCOME_LEVEL_POUNDS, findCraft } from '../engine/covenantRules';
@@ -36,7 +36,8 @@ export function migrateCharacter(c: Character): Character {
     arts,
     characteristics: chars,
     virtues: c.virtues ?? [],
-    abilities: c.abilities ?? [],
+    // an Ability printed twice is one Ability (Rabbinical Law of The Divine is the core book's Rabbinic Law)
+    abilities: (c.abilities ?? []).map((a) => (ABILITY_ALIASES[a.abilityId] ? { ...a, abilityId: ABILITY_ALIASES[a.abilityId] } : a)),
     spells: c.spells ?? [],
     personality: c.personality ?? [],
     reputations: c.reputations ?? [],

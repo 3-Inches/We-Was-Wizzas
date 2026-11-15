@@ -356,7 +356,7 @@ const HOUSE_ABILITIES: Record<string, string[]> = {
  * Virtue that grants it (or The Gift, for hedge wizards). Spell Mastery: magi. Mystery Cult Lore:
  * initiates (a Mystery House, or Cabal Legacy). Heartbeast, Enigmatic Wisdom, Faerie Magic: their House.
  */
-export function abilityAvailability(d: DerivedCharacter, data: GameData, abilityId: string): { ok: boolean; reason?: string } {
+export function abilityAvailability(d: DerivedCharacter, data: GameData, abilityId: string, param?: string): { ok: boolean; reason?: string } {
   const def = data.abilityById.get(abilityId);
   if (def && !data.inBooks(def)) return { ok: false, reason: 'Book not enabled for this saga' };
   const type = def?.type ?? 'General';
@@ -364,6 +364,9 @@ export function abilityAvailability(d: DerivedCharacter, data: GameData, ability
   // "Unless you have The Gift, you cannot learn Parma Magica" (DE, Arcane Lore)
   if (abilityId === 'parma-magica' && !d.hasGift) return { ok: false, reason: 'Parma Magica cannot be learned without The Gift' };
   if (access.abilities.has(abilityId)) return { ok: true };
+  // open for one choice only (a Nephilim's Hebrew): any other choice needs the usual Virtue
+  const only = access.onlyAs.get(abilityId);
+  if (only && (param === undefined || only.has(param.trim().toLowerCase()))) return { ok: true };
   const houses = HOUSE_ABILITIES[abilityId];
   if (houses && !(d.isMagus && houses.includes(d.char.house ?? ''))) {
     return { ok: false, reason: `Only magi of House ${houses.map((h) => HOUSE_BY_ID[h]?.name ?? h).join(' or ')} can learn it` };

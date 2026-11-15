@@ -53,7 +53,7 @@ export const MYTHIC_TYPES: Record<string, MythicType> = {
   // RoP: The Divine, Mythic Judaism: a favored Method (Gematria, Kabbalah or Merkavah), two Powers and Educated (Hebrew)
   kabbalist: {
     label: 'Kabbalist', virtue: 'kabbalist', requiredVirtues: ['educated-hebrew', 'kabbalah', 'wonders', 'blessing-power'], requiredFlaws: [{ id: 'outsider-flaw', size: 'Major', param: 'Jew' }],
-    minAbilities: { 'artes-liberales': 1, 'dominion-lore': 1, 'dead-language:Hebrew': 4, 'judaic-lore': 1, 'theology-judaism': 3, 'rabbinical-law': 1 }, freeMinor: '', society: 'Jewish', book: 'RoP_D',
+    minAbilities: { 'artes-liberales': 1, 'dominion-lore': 1, 'dead-language:Hebrew': 4, 'judaic-lore': 1, 'theology-judaism': 3, 'rabbinic-law': 1 }, freeMinor: '', society: 'Jewish', book: 'RoP_D',
     themes: ['faith', 'scholar'], answers: { 'f-divine': 9, 'f-divine-faith': 8, 'f-divine-powers': 9, 'h-scholar': 8, 'h-lore': 6 },
     note: 'Any one of Gematria, Kabbalah or Merkavah, and any two Holy Powers: swap Kabbalah, Wonders and Blessing for others on the Virtues step. A further Social Status says where the kabbalist stands in the community, and the free Minor Virtue is yours to choose.',
   },

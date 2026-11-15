@@ -204,12 +204,16 @@ export function fixesFor(issue: Issue, d: DerivedCharacter, data: GameData, rule
     }
     case 'mythic-min-abilities':
       return [goto('abilities')];
-    case 'house-virtue': case 'exmisc-package':
+    case 'house-virtue': case 'exmisc-package': case 'exmisc-women':
       return [goto('house')];
     case 'merinita-warping':
       return [{ kind: 'apply', label: 'Set Warping Points to 1', auto: true, apply: (x) => void (x.warpingPoints = 1) }];
     case 'merinita-warping-faerie':
       return [{ kind: 'apply', label: 'Set Warping Points to 0', auto: true, apply: (x) => void (x.warpingPoints = 0) }];
+    case 'two-relics': {
+      const lesser = d.virtues.find((v) => v.cv.defId === 'relic');
+      return list(lesser && remove(lesser.cv.uid, `${lesser.name} (keep the Powerful Relic)`, false), goto('virtues'));
+    }
     case 'bjornaer-heartbeast':
       return [goto('house', 'Choose the heartbeast')];
     case 'bjornaer-familiar':

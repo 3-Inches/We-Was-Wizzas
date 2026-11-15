@@ -4,7 +4,7 @@
 // Every total carries its parts, as in engine/magic.ts. The data is data/divine.ts.
 
 import {
-  DIVINE_AID_TABLE, HOLY_METHODS, HOLY_POWERS, HOLY_RITUAL_MAGNITUDES, METHOD_POWERS, SAINT_POWERS, TEMPERS,
+  DIVINE_AID_TABLE, HOLY_METHODS, HOLY_POWERS, HOLY_TRADITIONS, type HolyTradition, HOLY_RITUAL_MAGNITUDES, METHOD_POWERS, SAINT_POWERS, TEMPERS,
   type HolyMethod, type HolyPower, type MethodKind, type Saint, type SaintPower, type TragedyKind,
 } from '../data/divine';
 import type { DerivedCharacter } from './character/derive';
@@ -22,6 +22,43 @@ const has = (d: DerivedCharacter, id: string) => d.virtues.some((v) => v.cv.defI
 
 export type OwnMethod = HolyMethod & { score: number; specialty?: string };
 export type OwnPower = HolyPower & { score: number; specialty?: string };
+
+/** The faith a society keeps, as the holy traditions name it. */
+export function faithOfSociety(society: string | undefined): 'Christian' | 'Muslim' | 'Jewish' | undefined {
+  if (!society) return undefined;
+  if (/christendom|hibernia|iberia|proven/i.test(society)) return 'Christian';
+  if (/islam|north africa/i.test(society)) return 'Muslim';
+  if (/jewish/i.test(society)) return 'Jewish';
+  return undefined;
+}
+
+/**
+ * The holy traditions open to a character (RoP: The Divine, Holy Traditions): those of their faith
+ * or of none in particular, and a Holy Societas (one that teaches Holy Magic) only for the Gifted.
+ */
+export function traditionsFor(c: Character): HolyTradition[] {
+  const faith = faithOfSociety(c.society);
+  const gifted = c.virtues.some((v) => v.defId === 'the-gift');
+  return HOLY_TRADITIONS.filter((t) => (!t.faith || !faith || t.faith === faith) && (!t.societas || gifted));
+}
+
+/** The favored Abilities of a tradition a character has, as Abilities or the Virtues that give them. */
+export function favoredHeld(c: Character, t: HolyTradition): string[] {
+  const virtueOf = (id: string) => (id === 'blessing' ? 'blessing-power' : id);
+  return t.favored.filter((id) => c.virtues.some((v) => v.defId === virtueOf(id)) || c.abilities.some((a) => a.abilityId === id));
+}
+
+/**
+ * The tradition that suits a holy character best: the one most of whose favored Abilities they
+ * already have (ties to one of their own faith), when they have at least one. None otherwise.
+ */
+export function suitedTradition(c: Character): HolyTradition | undefined {
+  const faith = faithOfSociety(c.society);
+  return traditionsFor(c)
+    .map((t) => ({ t, n: favoredHeld(c, t).length + (t.faith && t.faith === faith ? 0.5 : 0) }))
+    .filter((x) => x.n >= 1)
+    .sort((a, b) => b.n - a.n)[0]?.t;
+}
 
 /** The Methods a character can call holy effects with: a score of 1 or more (none works at 0). */
 export function holyMethodsOf(d: DerivedCharacter): OwnMethod[] {

@@ -86,6 +86,7 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
   const [npc, setNpc] = useState(true);
   const [count, setCount] = useState(3);
   const [variety, setVariety] = useState<Variety>('varied');
+  const [coreOnly, setCoreOnly] = useState(false);
   const [gender, setGender] = useState('');
   const [homeland, setHomeland] = useState('');
   const [covChoice, setCovChoice] = useState<string | undefined>();
@@ -110,7 +111,7 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
     seed,
     g: generateCharacter(
       {
-        type, role: role || undefined, house: house || undefined, gender: (gender || undefined) as 'Male' | 'Female' | undefined, homeland: homeland || undefined, variety, npc, seed, avoidNames: [...sagaChars.map((c) => c.name), ...taken],
+        type, role: role || undefined, house: house || undefined, gender: (gender || undefined) as 'Male' | 'Female' | undefined, homeland: homeland || undefined, variety, coreOnly, npc, seed, avoidNames: [...sagaChars.map((c) => c.name), ...taken],
         spells: type === 'magus' && askSpells ? { arts: spellArts, maxLevel: spellMax || undefined, rituals } : undefined,
         familiar: type === 'magus' && familiar,
       },
@@ -233,6 +234,12 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
                     {v.label}
                   </option>
                 ))}
+              </select>
+            </Field>
+            <Field label="Virtues & Flaws" hint="Plain keeps to the core book's, whatever books the saga uses: good for player characters">
+              <select value={coreOnly ? 'core' : 'saga'} onChange={(e) => setCoreOnly(e.target.value === 'core')} data-tour="quick-plain">
+                <option value="saga">From the saga&apos;s books</option>
+                <option value="core">Plain: the core book&apos;s only</option>
               </select>
             </Field>
             <Field label="Gender">

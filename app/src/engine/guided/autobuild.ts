@@ -17,7 +17,10 @@ import { creationSpellLimit } from '../magic';
 import { abilityScoreFromXp, abilityXpForScore, artScoreFromXp, artXpForScore } from '../xp';
 import { uid } from '../../util/id';
 import type { Rng } from '../dice';
-import { markGroup, rarity, weightedPick } from '../generate/variety';
+import { HOUSE_ARTS, markGroup, rarity, weightedPick } from '../generate/variety';
+import { optionOn } from '../optional';
+import { beastFor } from '../heartbeast';
+import { suitedTradition } from '../holy';
 import { abilityTag } from './records';
 import { QUESTION_BY_ID } from './questions';
 import { answerOf, evaluate, recommendHouses, shortlist, statusShortlist, tagWeights, traceOf, type GuidedContext, type Scored } from './score';
@@ -170,6 +173,7 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
       let best = 0;
       let bestFit = -Infinity;
       h.benefitOptions.forEach((b, i) => {
+        if (b.rule && !optionOn(inp.saga, b.rule)) return;
         const s = ev.scored.find((x) => x.def.id === b.virtueId);
         if (s && s.fit > bestFit) {
           bestFit = s.fit;
@@ -200,7 +204,7 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
       if (pick === 'ex-miscellanea') {
         const fitOf = (id: string) => ev.scored.find((x) => x.def.id === id)?.fit ?? 0;
         // a tradition whose book the saga uses and whose Virtues the data has
-        const known = (t: (typeof EX_MISC_TRADITIONS)[number]) => inp.data.isBookEnabled(t.source) && [t.majorNonHermetic, t.minorHermetic, t.majorHermeticFlaw].every((id) => inp.data.vfById.get(id));
+        const known = (t: (typeof EX_MISC_TRADITIONS)[number]) => !(t.womenOnly && c.gender === 'Male') && inp.data.isBookEnabled(t.source) && [t.majorNonHermetic, t.minorHermetic, t.majorHermeticFlaw].every((id) => inp.data.vfById.get(id));
         const trad = [...EX_MISC_TRADITIONS.filter((t) => t.id !== 'custom' && known(t))].sort(
           (a, b) => fitOf(b.majorNonHermetic) + fitOf(b.minorHermetic) - fitOf(b.majorHermeticFlaw) - (fitOf(a.majorNonHermetic) + fitOf(a.minorHermetic) - fitOf(a.majorHermeticFlaw)),
         )[0];
@@ -210,7 +214,11 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
         }
       }
       // Quick build's Bjornaer has a heartbeast; a player's own is theirs to choose (the House step asks)
-      if (pick === 'bjornaer' && !c.heartbeast && inp.rng) c.heartbeast = HEARTBEASTS[Math.floor(inp.rng() * HEARTBEASTS.length)];
+      // a player's Bjornaer: one of the core book's beasts, whose statistics the sheet can show in heartbeast form
+      if (pick === 'bjornaer' && !c.heartbeast && inp.rng) {
+        const book = HEARTBEASTS.filter((h) => beastFor(h));
+        c.heartbeast = book[Math.floor(inp.rng() * book.length)];
+      }
       why.house = st.house ? 'you chose it' : 'from: the best fit for your answers';
       log.push(`House ${h.name} (${why.house}).`);
       refresh();
@@ -424,6 +432,9 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   // holy powers: a Method and a Power that go together, before anything else takes their points
   if (wantsHoly()) addHolyPair(c, st, inp, get, log, add, clean, maxFlaws * ratio);
 
+  // a magus's magic of their own: an Affinity or Puissance in the Art they are best at (DE, Quick and Easy Virtues and Flaws)
+  if (c.type === 'magus') addMagicalIdentity(c, st, inp, get, log, add, clean, maxFlaws * ratio);
+
   // Virtues: best fit first, while there is room (a Major only when it fits clearly better)
   const ev = evaluate(st, get());
   let virtues = shortlist(ev, 'virtue').filter((s) => simpleEnough(s));
@@ -464,6 +475,14 @@ function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, ge
   balance(c, inp, get, refresh, log, taken);
   // the Flaws' points not yet spent buy Minor Virtues that suit the character
   spendVirtuePoints(c, st, inp, get, log, add, clean, dup, simpleEnough);
+  // a holy character belongs to the tradition whose favored Abilities they have (RoP: The Divine, Holy Traditions)
+  if (!c.holy?.tradition) {
+    const t = suitedTradition(c);
+    if (t) {
+      c.holy = { ...(c.holy ?? {}), tradition: t.id };
+      log.push(`Holy tradition: ${t.name} (favored: ${t.favored.join(', ')}).`);
+    }
+  }
 }
 
 /** The Virtue that gives a Holy Power its Ability (Blessing's is named apart from the gruagach's Form). */
@@ -478,6 +497,48 @@ const FIRST_POWER: Record<string, string[]> = { invocation: ['blessing', 'wonder
  * answers and the character's Characteristics, and the Power it calls that fits best. One alone
  * does nothing, so a half the character already has is completed rather than a new pair begun.
  */
+/**
+ * Every magus has some magic of their own beyond the House's gift: the core book's quick guidelines
+ * give one a Magical Focus, and Puissant and Affinity in a Technique and Form that suit it. A magus
+ * with no Hermetic Virtue of their own (the House's free one aside, though an Ex Miscellanea
+ * tradition's counts) is given an Affinity with, or Puissance in, the Art they care most about: the
+ * one the answers weigh highest, else the House's own Puissant Art, else the best of the House's Arts.
+ * It is skipped when there is no room, or the player turned both Virtues down.
+ */
+function addMagicalIdentity(
+  c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, log: string[],
+  add: (s: Scored, size: VFSize) => { why?: string; param?: string }, clean: (def: VirtueFlawDef, size: VFSize) => boolean, cap: number,
+) {
+  const data = inp.data;
+  const own = c.virtues.some((v) => {
+    const def = data.vfById.get(v.defId);
+    return def?.kind === 'virtue' && def.categories.includes('Hermetic') && v.defId !== 'the-gift' && (!v.free || v.freeReason === 'Ex Miscellanea');
+  });
+  if (own || cap - get().d.tally.virtuePoints < 1) return;
+  const d = get().d;
+  const w = tagWeights(st, get());
+  const deficient = new Set(c.virtues.filter((v) => v.defId === 'deficient-technique-flaw' || v.defId === 'deficient-form-flaw').map((v) => v.param));
+  const houseFree = c.virtues.find((v) => v.freeReason === 'House Virtue' && v.defId === 'puissant-art')?.param as Art | undefined;
+  const known = (c.house && HOUSE_ARTS[c.house]) || [...ARTS];
+  const ranked = [...ARTS]
+    .filter((a) => !deficient.has(a))
+    .sort((a, b) => (w[`art:${b}`] ?? 0) - (w[`art:${a}`] ?? 0) || +(b === houseFree) - +(a === houseFree) || +known.includes(b) - +known.includes(a) || d.arts[b].score - d.arts[a].score);
+  const art = ranked[0];
+  if (!art) return;
+  const ev = evaluate(st, get());
+  const scored = (id: string) => ev.scored.find((x) => x.def.id === id && !x.excluded && !st.declined.includes(id));
+  // Affinity where the House already makes the Art Puissant; else whichever fits the answers better
+  const options = (houseFree === art ? ['affinity-with-art'] : ['affinity-with-art', 'puissant-art'])
+    .map(scored)
+    .filter((x): x is Scored => !!x && clean(x.def, 'Minor') && !c.virtues.some((v) => v.defId === x.def.id && v.param === art))
+    .sort((a, b) => b.fit - a.fit);
+  const pick = inp.rng && options.length > 1 && Math.abs(options[0].fit - options[1].fit) < 5 ? options[Math.floor(inp.rng() * options.length)] : options[0];
+  if (!pick) return;
+  const cv = add({ ...pick, param: art }, 'Minor');
+  cv.why = `from: a magus's magic of their own, in the Art ${art === houseFree ? 'the House already favors' : 'they care most about'}`;
+  log.push(`Virtue: ${pick.def.name} (${art}), Minor — a magus's magic of their own.`);
+}
+
 function addHolyPair(
   c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, log: string[],
   add: (s: Scored, size: VFSize) => { why?: string }, clean: (def: VirtueFlawDef, size: VFSize) => boolean, cap: number,

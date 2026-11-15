@@ -8,6 +8,8 @@ export interface HouseBenefitChoice {
   virtueId: string;
   label: string;
   param?: string;
+  /** offered only when the saga uses this optional rule (engine/optional.ts) */
+  rule?: string;
 }
 
 export interface HouseDef {
@@ -72,6 +74,11 @@ export const HOUSES: HouseDef[] = [
     benefitOptions: [
       { virtueId: 'puissant-art', label: 'Puissant Perdo', param: 'Pe' },
       { virtueId: 'puissant-art', label: 'Puissant Ignem', param: 'Ig' },
+      // the schools of magical combat (Houses of Hermes: Societates), with the storyguide's leave
+      { virtueId: 'warrior', label: 'Warrior (School of Ramius)', rule: 'flambeauSchools' },
+      { virtueId: 'minor-magical-focus', label: 'Minor Magical Focus (a School of Sebastian: name the focus)', rule: 'flambeauSchools' },
+      { virtueId: 'puissant-ability', label: 'Puissant Finesse (School of Vilano)', param: 'finesse', rule: 'flambeauSchools' },
+      { virtueId: 'cautious-with-ability', label: 'Cautious with Finesse (School of Vilano)', param: 'finesse', rule: 'flambeauSchools' },
     ],
     tags: ['combat', 'fire', 'destruction'],
   },
@@ -150,7 +157,8 @@ export const HOUSES: HouseDef[] = [
 ];
 
 /** Common heartbeasts for a Bjornaer (HoH: Mystery Cults lists many more): one mundane creature, usually a noble one. */
-export const HEARTBEASTS = ['wolf', 'bear', 'boar', 'stag', 'raven', 'owl', 'fox', 'badger', 'hawk', 'otter', 'lynx', 'eagle', 'horse', 'hare', 'wildcat', 'beaver'];
+// the core book's mundane beasts first (their statistics are on the sheet in heartbeast form), then others to work out with the storyguide
+export const HEARTBEASTS = ['wolf', 'bear', 'boar', 'stag', 'falcon', 'hound', 'cat', 'lion', 'bull', 'horse', 'raven', 'owl', 'fox', 'badger', 'hawk', 'otter', 'lynx', 'eagle', 'hare', 'beaver'];
 
 export const HOUSE_BY_ID: Record<string, HouseDef> = Object.fromEntries(HOUSES.map((h) => [h.id, h]));
 
@@ -187,6 +195,8 @@ export interface ExMiscTradition {
   required?: { id: string; param?: string }[];
   /** Flaws they must also have, which give their points as usual */
   requiredFlaws?: { id: string; param?: string; size?: 'Minor' | 'Major' }[];
+  /** the tradition takes only women as apprentices (the Seirenes) */
+  womenOnly?: boolean;
   notes?: string;
   source: string;
 }
@@ -234,6 +244,24 @@ export const EX_MISC_TRADITIONS: ExMiscTradition[] = [
     id: 'haruspexes', name: 'Hermetic Haruspexes',
     majorNonHermetic: 'divination-and-augury', minorHermetic: 'affinity-with-art', minorParam: 'In', majorHermeticFlaw: 'twilight-prone-flaw',
     notes: 'Keepers of the Etruscan Art: omens read in the entrails of sacrifices. Often Premonitions or Visions.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'seirenes', name: 'Seirenes', womenOnly: true,
+    majorNonHermetic: 'siren-song', minorHermetic: 'minor-magical-focus', minorParam: 'Mentem: an emotion', majorHermeticFlaw: 'necessary-condition-flaw', majorHermeticFlawParam: 'all spells must be sung',
+    notes: 'Magae of lyrical magic taught by the sirens of legend; strongest sung in a trio. They take only women as apprentices, and Music limits Siren Song.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'orpheus', name: 'The Cult of Orpheus',
+    majorNonHermetic: 'sanguine-humors-blessing', minorHermetic: 'orphic-magic', majorHermeticFlaw: 'restriction-true-feeling-flaw',
+    notes: 'Orphic magoi who draw on the True Feelings of their Story Flaws; their spells reach those they love through the Adelphixis Range. They should take a Story Flaw of True Feeling.',
+    source: 'HoH_S',
+  },
+  {
+    id: 'thessaly', name: 'Witches of Thessaly',
+    majorNonHermetic: 'goetic-summoning', minorHermetic: 'affinity-with-art', minorParam: 'Vi', majorHermeticFlaw: 'painful-magic-flaw',
+    notes: 'Sorcerers, necromancers and cursers of the underworld’s gods; Trianoma was of their tradition. Summoning is the Goetic Art of Realms of Power: The Infernal.',
     source: 'HoH_S',
   },
   {

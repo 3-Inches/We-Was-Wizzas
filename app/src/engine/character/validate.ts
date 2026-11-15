@@ -151,6 +151,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       const hasMinor = pkg.some((v) => (v.defId === trad?.minorHermetic || def(v)?.categories.includes('Hermetic')) && v.size === 'Minor' && def(v)?.kind === 'virtue');
       const hasMajor = pkg.some((v) => (v.defId === trad?.majorNonHermetic || !def(v)?.categories.includes('Hermetic')) && v.size === 'Major' && def(v)?.kind === 'virtue');
       const hasFlaw = pkg.some((v) => (v.defId === trad?.majorHermeticFlaw || def(v)?.categories.includes('Hermetic')) && v.size === 'Major' && def(v)?.kind === 'flaw');
+      if (trad?.womenOnly && c.gender === 'Male') add({ id: 'exmisc-women', severity: 'warning', step: 'house', message: `The ${trad.name} take only women as apprentices.`, ref: 'HoH:S, Ex Miscellanea' });
       if (!hasMinor || !hasMajor || !hasFlaw) add({ id: 'exmisc-package', severity: 'warning', step: 'house', message: 'Ex Miscellanea magi get a free Minor Hermetic Virtue, a free Major non-Hermetic Virtue, and a compulsory Major Hermetic Flaw.', ref: 'DE p.44' });
     }
     if (c.house === 'merinita' && (creating || c.seasonLog.length === 0)) {
@@ -160,6 +161,16 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     }
     if (c.house === 'bjornaer' && c.familiar) add({ id: 'bjornaer-familiar', severity: 'warning', step: 'sheet', message: 'Bjornaer magi cannot bind familiars.', ref: 'DE p.233' });
     if (c.house === 'bjornaer' && !c.heartbeast?.trim()) add({ id: 'bjornaer-heartbeast', severity: 'info', step: 'house', message: 'Choose the heartbeast: the one creature a Bjornaer magus is as well as human.', ref: 'DE, Bjornaer: The Heartbeast' });
+  }
+
+  // only one relic helps at a time (DE, Relic): a second is points that buy nothing
+  const relics = c.virtues.filter((v) => v.defId === 'relic' || v.defId === 'powerful-relic');
+  if (relics.length > 1) {
+    add({
+      id: 'two-relics', severity: 'warning', step: 'virtues',
+      message: 'Only one relic helps at a time: its Faith Points and Magic Resistance do not add to another\'s. Keep the stronger one, unless the troupe agrees the second has some other use in the saga.',
+      ref: 'DE, Relic', fix: 'Remove the lesser relic.',
+    });
   }
 
   // --------------------------------------------------------------- mythic companions

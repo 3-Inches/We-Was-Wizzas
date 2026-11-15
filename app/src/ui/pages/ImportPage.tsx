@@ -11,6 +11,7 @@ import { migrateCharacter } from '../../store/migrate';
 import { HOUSE_BY_ID } from '../../data/houses';
 import { deriveCharacter } from '../../engine/character/derive';
 import { validateCharacter } from '../../engine/character/validate';
+import { characterChanges } from '../../engine/troupe';
 import { DEFAULT_HOUSE_RULES, type Character, type Saga } from '../../engine/types';
 import { isBundle, pendingImport, pickJsonFile, setPendingImport, shareLinkToBundle } from '../../util/files';
 import { Card } from '../kit';
@@ -29,6 +30,34 @@ function check(c: Character, saga: Saga | undefined): { errors: number; warnings
   } catch {
     return undefined;
   }
+}
+
+/** What the version sent changes, against the one here: the storyguide reads it before replacing. */
+function Changes({ before, after, saga }: { before: Character; after: Character; saga: Saga }) {
+  const lines = useMemo(() => {
+    try {
+      return characterChanges(migrateCharacter(structuredClone(before)), migrateCharacter(structuredClone(after)), gameDataFor(saga), saga.houseRules);
+    } catch {
+      return undefined;
+    }
+  }, [before, after, saga]);
+  if (!lines) return null;
+  if (!lines.length) return <div className="small soft">Nothing on the sheet differs from the copy here.</div>;
+  const mark = { added: '+', removed: '−', changed: '~' } as const;
+  return (
+    <details className="small" open={lines.length <= 8} data-tour="import-changes">
+      <summary>
+        What changed: {lines.length} difference{lines.length > 1 ? 's' : ''} from the copy here
+      </summary>
+      <ul className="changes">
+        {lines.map((l, i) => (
+          <li key={i} className={`change-${l.kind}`}>
+            <b>{mark[l.kind]}</b> {l.text}
+          </li>
+        ))}
+      </ul>
+    </details>
+  );
 }
 
 export default function ImportPage() {
@@ -163,9 +192,12 @@ export default function ImportPage() {
                 </div>
               )}
               {old && (
-                <div className="small warn-text">
-                  Replaces {old.name || 'the character'} already in this saga{old.updatedAt ? ` (last changed here ${new Date(old.updatedAt).toLocaleDateString()})` : ''}: what was changed here since it was sent is lost.
-                </div>
+                <>
+                  <div className="small warn-text">
+                    Replaces {old.name || 'the character'} already in this saga{old.updatedAt ? ` (last changed here ${new Date(old.updatedAt).toLocaleDateString()})` : ''}: what was changed here since it was sent is lost.
+                  </div>
+                  <Changes before={old} after={c} saga={targetSaga!} />
+                </>
               )}
             </div>
           </div>
