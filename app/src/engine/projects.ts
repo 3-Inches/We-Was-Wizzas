@@ -15,7 +15,7 @@ import { planLabImprovement, workLabImprovement } from './labImprove';
 import { recordRoutines, routineClash, routineParts } from './labRoutines';
 import { labTotal, type LabActivity, type TotalResult } from './magic';
 import type { Character, Covenant, EnchantedItem, LabProject, VisStock } from './types';
-import { addVis, purseOf, takeVis, visAvailable, visText } from './vis';
+import { addVis, infernalPawns, purseOf, taintNote, takeVis, visAvailable, visText } from './vis';
 import { uid } from '../util/id';
 import { helperParts, type LabHelper } from './labHelp';
 import { flawHeld } from './covenantBoons';
@@ -35,6 +35,7 @@ export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: stri
   { id: 'install', label: 'Install a lab Virtue', blurb: 'A season for a Minor Virtue, two for a Major, with Magic Theory at least the Refinement + 3 and free space in the lab (or a Flaw taken to balance it). Another Virtue can come out in the same work.' },
   { id: 'repair', label: 'Put a lab Flaw right', blurb: 'A season for a Free or Minor Flaw, two for a Major, with free space for the occupied Size it adds. Some Flaws come of where the lab is, and cannot be.' },
   { id: 'castingTool', label: 'Enchant a casting tool (Verditius)', blurb: 'Enchant Casting Tools: one season, a Lab Total (with Philosophiae, Hubris, the spell’s magnitude and Craft) of twice the level of the spell and its powers; a pawn per 10 levels.', activity: 'Items' },
+  { id: 'fixConnection', label: 'Fix an Arcane Connection', blurb: 'A season and a pawn of Vim make an active Arcane Connection permanent. No Lab Total, but it is laboratory work. The connection must still be active when the season begins.' },
   { id: 'other', label: 'Other lab work', blurb: 'Anything else: the season is recorded with its exposure experience.' },
 ];
 
@@ -295,6 +296,12 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       const left = might - p.progress;
       return { total, target: might, gain, seasonsLeft: gain ? Math.ceil(left / gain) : Infinity, problems, summary: gain ? `+${gain} taming points toward ${might} (${p.progress}/${might}).` : '' };
     }
+    case 'fixConnection': {
+      // DE, Fixing Arcane Connections: a season of laboratory work and one pawn of Vim vis, not based on a Lab Total
+      const to = p.connectionTo?.trim();
+      if (!to) problems.push('Say what the Arcane Connection is to.');
+      return { target: 1, gain: to ? 1 : 0, vis: { arts: ['Vi'], pawns: 1 }, seasonsLeft: 1, problems, summary: `Make the Arcane Connection to ${to || '…'} permanent.` };
+    }
     case 'castingTool': {
       const sp = c.spells.find((x) => x.uid === p.spellUid);
       if (!c.virtues.some((v) => v.defId === 'enchant-casting-tools')) problems.push('Only a magus Initiated into Enchant Casting Tools can enchant one.');
@@ -423,7 +430,9 @@ function payVis(c: Character, cov: Covenant | undefined, p: LabProject, need: { 
   const from = p.visFrom === 'covenant' && cov ? cov.visStocks : purseOf(c).vis;
   const r = takeVis(from, need.arts, need.pawns);
   if (!r.ok) return null;
-  return `Spent ${visText(r.taken)} vis${p.visFrom === 'covenant' && cov ? ' from the covenant' : ''}.`;
+  const enchantment = ['instill', 'open', 'attune', 'empower', 'castingTool'].includes(p.kind);
+  const note = taintNote(r.taken, enchantment);
+  return `Spent ${visText(r.taken)} vis${p.visFrom === 'covenant' && cov ? ' from the covenant' : ''}.${note ? ` ${note}` : ''}`;
 }
 
 /** A subject with no Gift and no Supernatural Virtue gains less from a Longevity Ritual (DE). */
@@ -474,7 +483,12 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
   const hz = lab ? labSeasonHazards({ safety: lab.characteristics.Safety, warping: lab.characteristics.Warping }, rng) : undefined;
   // experimentation: a simple die (+ risk) on the Lab Total and a roll on the Extraordinary Results Chart (DE)
   const risk = Math.max(0, Math.min(3, p.experiment?.risk ?? 0));
-  const xr = p.experiment && canExperiment(p) ? rollExperiment({ risk, auraStrength: ctx.aura.strength, enchantment, safety: lab?.characteristics.Safety ?? 0, goldenCord: goldenCordFor(c, ctx) }, rng) : undefined;
+  // Infernal vis in an enchantment "requires a roll on the experimental results chart" (DE, Tainted Vis): the vis
+  // this season would take, looked at before it is taken
+  const willTake = base.vis?.pawns ? takeVis(structuredClone(stocks), base.vis.arts, base.vis.pawns).taken : [];
+  const tainted = enchantment && infernalPawns(willTake) > 0 && !(p.experiment && canExperiment(p));
+  if (tainted) lines.push('Infernal vis in the enchantment: a roll on the Extraordinary Results Chart, as if experimenting (DE, Tainted Vis).');
+  const xr = (p.experiment && canExperiment(p)) || tainted ? rollExperiment({ risk, auraStrength: ctx.aura.strength, enchantment, safety: lab?.characteristics.Safety ?? 0, goldenCord: goldenCordFor(c, ctx) }, rng) : undefined;
   if (hz?.lines.length) lines.push(...hz.lines);
   if (xr) lines.push(`Experimenting${risk ? ` (risk +${risk})` : ''}:`, ...xr.lines.map((l) => `  ${l}`));
   record([...(hz?.lines ?? []), ...(xr?.lines ?? [])]);
@@ -483,9 +497,10 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
     c.warpingPoints += wp;
     lines.push(`${wp} Warping Point${wp > 1 ? 's' : ''} for ${c.name || 'the magus'}.${wp >= 2 ? " Roll for Wizard's Twilight." : ''}`);
   }
-  const bonus = xr && !xr.noBenefit ? xr.labBonus : 0;
+  // the chart rolled only for Infernal vis adds no die to the Lab Total: it is not an experiment
+  const bonus = xr && !xr.noBenefit && !tainted ? xr.labBonus : 0;
   // No Benefit: the Lab Total without the die and risk; if that falls short, the project is abandoned (DE)
-  if (xr?.noBenefit && planProject(p, c, d, ctx, { subject, data, helpers, strict: true }).problems.length) {
+  if (xr?.noBenefit && !tainted && planProject(p, c, d, ctx, { subject, data, helpers, strict: true }).problems.length) {
     p.seasons += 1;
     p.done = true;
     p.failed = true;
@@ -628,6 +643,14 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
         p.done = true;
         lines.push(`${head} tamed. It is Loyal +0 to you, and your notes make a Lab Text of level ${plan.target} for taming creatures of ${ART_NAMES[p.form!]}.`);
       } else lines.push(`${head} ${plan.summary}`);
+      break;
+    }
+    case 'fixConnection': {
+      const to = p.connectionTo?.trim() || 'its subject';
+      // kept with what they own: an Arcane Connection that lasts indefinitely, the best Penetration multiplier (×5)
+      (c.possessions ??= []).push({ uid: uid(), name: `Arcane Connection to ${to} (fixed)`, kind: 'arcane connection', quality: 'standard', notes: 'Made permanent with a season of lab work and a pawn of Vim (DE, Fixing Arcane Connections): it lasts indefinitely, a Penetration multiplier of ×5.', from: `fixed by ${c.name || 'the magus'}` });
+      lines.push(`${head} the Arcane Connection to ${to} is fixed: it lasts indefinitely (Penetration ×5), and is kept with what ${c.name || 'the magus'} owns.`);
+      p.done = true;
       break;
     }
     case 'castingTool': {

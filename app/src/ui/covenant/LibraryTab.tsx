@@ -3,7 +3,7 @@ import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art } from '../../data';
 import { summaCost, visLabel, visSourceCost, type BPLine, type DerivedCovenant } from '../../engine/covenant';
 import { VIS_YIELDS, bookPrice, type BookTier } from '../../engine/covenantYear';
 import { mechanicOf, miracleMultiplierOf, receivedAfterTithe } from '../../engine/covenantRules';
-import type { Covenant } from '../../engine/types';
+import type { Covenant, VisTaint } from '../../engine/types';
 import type { LibraryBook } from '../../engine/types';
 import { uid } from '../../util/id';
 import { addVis } from '../../engine/vis';
@@ -267,6 +267,17 @@ export default function LibraryTab({ cov, update, dc, data }: CovTabProps) {
                   ))}
                 </select>
               )}
+              <select
+                value={s.realm ?? ''}
+                aria-label="The realm of the aura it is found in"
+                title="Vis found in an aura of another realm is tainted by it (DE, Tainted Vis): Faerie vis is mostly safe; Divine vis may anger the Church; Infernal vis doubles botch dice when cast with and twists enchantments"
+                onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.realm = (e.target.value || undefined) as VisTaint | undefined))}
+              >
+                <option value="">Magic</option>
+                <option value="Faerie">Faerie-tainted</option>
+                <option value="Divine">Divine-tainted</option>
+                <option value="Infernal">Infernal-tainted</option>
+              </select>
               <input value={s.season ?? ''} placeholder="when" style={{ width: 80 }} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.season = e.target.value))} />
               <label className="inline small" title="Found, won or granted in play: no Build Points">
                 <input type="checkbox" checked={!!s.inPlay} onChange={(e) => update((x) => void (x.visSources.find((y) => y.uid === s.uid)!.inPlay = e.target.checked || undefined))} /> in play

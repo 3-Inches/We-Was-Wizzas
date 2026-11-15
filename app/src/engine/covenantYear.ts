@@ -101,9 +101,10 @@ export function planYearEnd(cov: Covenant, dc: DerivedCovenant, o: YearEndOption
       const got = receivedAfterTithe(s.pawnsPerYear, !!s.tithed, !!s.miracle && miracles, mult).received;
       if (!got) continue;
       const pair = s.dedicated ? s.pair : undefined;
-      const v = vis.find((x) => x.art === s.art && x.pair === pair);
+      // vis from an aura of another realm stays apart, tainted by it (DE, Tainted Vis)
+      const v = vis.find((x) => x.art === s.art && x.pair === pair && x.realm === s.realm);
       if (v) v.pawns += got;
-      else vis.push(pair ? { art: s.art, pawns: got, pair } : { art: s.art, pawns: got });
+      else vis.push({ art: s.art, pawns: got, ...(pair ? { pair } : {}), ...(s.realm ? { realm: s.realm } : {}) });
     }
     if (vis.length) lines.push(`Vis gathered: ${vis.map((v) => `${v.pawns} ${visLabel(v)}`).join(', ')}.`);
   }
@@ -131,7 +132,7 @@ export function applyYearEnd(cov: Covenant, plan: YearEndPlan, year: number, o: 
   // the stocks the covenant was founded with keep their Build Points; the year's vis is free
   if (!cov.startingVisStocks) cov.startingVisStocks = structuredClone(cov.visStocks);
   for (const v of plan.vis) {
-    const st = cov.visStocks.find((x) => x.art === v.art && x.pair === v.pair);
+    const st = cov.visStocks.find((x) => x.art === v.art && x.pair === v.pair && x.realm === v.realm);
     if (st) st.pawns += v.pawns;
     else cov.visStocks.push({ ...v });
   }

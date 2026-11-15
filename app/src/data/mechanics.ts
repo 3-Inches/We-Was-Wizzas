@@ -561,6 +561,8 @@ export const MECHANICS: Record<string, Mechanics> = {
   'necessary-condition-flaw': { param: P.text('Condition') },
   'vulnerable-magic-flaw': { repeatable: true, param: P.text('Condition') },
   'deft-form': { param: P.form() },
+  // the core book's Bjornaer template takes it twice (and the casting counts each), though the Definitive Edition's entry no longer says it may be
+  'quiet-magic': { repeatable: true },
   'performance-magic': { param: P.ability('Performance Ability') },
   'skinchanger': { param: P.text('Animal') },
   'greater-immunity': { param: P.text('Hazard') },

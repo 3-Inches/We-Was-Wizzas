@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import type { CharType } from '../../data';
 import { HOUSE_BY_ID } from '../../data/houses';
 import { newCharacter } from '../../engine/character/factory';
+import { CHARACTER_TEMPLATES, characterFromTemplate } from '../../engine/templates';
 import { deriveCharacter } from '../../engine/character/derive';
 import { summarize, validateCharacter } from '../../engine/character/validate';
 import type { Character } from '../../engine/types';
@@ -41,6 +42,16 @@ export default function PeoplePage() {
 
   const create = (type: CharType) => {
     const c = newCharacter(type, saga.id, saga.currentYear);
+    if (covs.length === 1) c.covenantId = covs[0].id;
+    putCharacter(c);
+    if (covs.length === 1) useStore.getState().updateCovenant(covs[0].id, (cv) => cv.memberIds.push(c.id));
+    nav(R.character(saga.id, c));
+  };
+  // one of the core book's ready-made characters, finished and ready to play: it needs a name
+  const fromTemplate = (id: string) => {
+    const t = CHARACTER_TEMPLATES.find((x) => x.id === id);
+    if (!t) return;
+    const { c } = characterFromTemplate(t, saga.id, saga.currentYear, data, saga.houseRules, saga.tribunal);
     if (covs.length === 1) c.covenantId = covs[0].id;
     putCharacter(c);
     if (covs.length === 1) useStore.getState().updateCovenant(covs[0].id, (cv) => cv.memberIds.push(c.id));
@@ -94,6 +105,21 @@ export default function PeoplePage() {
               <span className="small soft">{TYPE_INFO[t].blurb}</span>
             </button>
           ))}
+        </div>
+        <div className="row" style={{ marginTop: 8 }}>
+          <select value="" onChange={(e) => e.target.value && fromTemplate(e.target.value)} aria-label="Start from one of the core book's templates" data-tour="people-template">
+            <option value="">Or start from one of the core book&apos;s templates…</option>
+            {(['magus', 'companion', 'grog'] as const).map((type) => (
+              <optgroup key={type} label={TYPE_INFO[type].plural}>
+                {CHARACTER_TEMPLATES.filter((t) => t.type === type).map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.house ? `A magus of ${t.name}` : t.name}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+          <span className="small muted">Finished and ready to play, as the book gives them: they need a name, and the sheet keeps the book&apos;s notes on changing them.</span>
         </div>
         <p className="small muted" style={{ marginBottom: 0 }}>
           Or let the toolkit make them: <Link to={`/saga/${saga.id}/build`}>Quick build ›</Link>. A player&apos;s finished sheet can be brought in with Import on the Saga Overview.
