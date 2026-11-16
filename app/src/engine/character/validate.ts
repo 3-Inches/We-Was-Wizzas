@@ -71,6 +71,12 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (lack.length) add({ id: 'learned-arts', severity: 'error', step: 'virtues', message: `A mathematicus must have ${lack.join(' and ')} of the tradition.`, fix: 'Take the Virtue of each Art (a Technique is Major, a Form Minor), or The Gift, opened to all six.', ref: 'Hedge Magic, Learned Magicians' });
     if (t.socialStatuses.length === 1) add({ id: 'learned-status', severity: 'warning', step: 'virtues', message: 'A mathematicus also takes a Social Status for their place in mundane society (a clerk, a magister in artibus, a mendicant friar, a priest…).', ref: 'Hedge Magic, Learned Magicians' });
   }
+  // --------------------------------------------------------------- gruagachan (Hedge Magic)
+  if (c.virtues.some((v) => v.defId === 'gruagach') && !d.hasGift) {
+    const body = ['giant-blood', 'large', 'shapeshifter'].some((id) => c.virtues.some((v) => v.defId === id));
+    const pair = ['gruagach-give', 'gruagach-take'].some((id) => d.abilities.some((a) => a.abilityId === id)) && ['gruagach-blessing', 'gruagach-curse', 'gruagach-shape', 'gruagach-vision'].some((id) => d.abilities.some((a) => a.abilityId === id));
+    if (!body || !pair) add({ id: 'gruagach-needs', severity: 'error', step: 'virtues', message: `An unGifted gruagach needs ${[!body ? 'Giant Blood, Large or Shapeshifter' : '', !pair ? 'a gruagach Technique and Form (their Virtues)' : ''].filter(Boolean).join(' and ')}.`, ref: 'Hedge Magic, Gruagachan' });
+  }
   // --------------------------------------------------------------- folk witches (Hedge Magic)
   if (c.virtues.some((v) => v.defId === 'folk-witch')) {
     const magicFlaw = c.virtues.some((v) => {

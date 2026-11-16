@@ -3,6 +3,7 @@
 
 import { LEARNED_ART_IDS } from '../../data/hedgeLearned';
 import { WITCH_POWERS } from '../../data/hedgeFolkWitch';
+import { GRUAGACH_ART_IDS } from '../../data/hedgeGruagach';
 import { SOLOMON_RINGS } from '../../data/divine';
 import { MYTHIC_TYPES, mythicAbility } from '../../data/mythic';
 import {
@@ -233,6 +234,8 @@ function resolveEffects(virtues: ResolvedVirtue[]): ResolvedEffect[] {
 export const LEARNED_TRAINING = 'pool:learned-training' as XpSource;
 /** A folk witch's apprenticeship: 200 experience points for any Abilities (Hedge Magic, Folk Witches). */
 export const FOLK_APPRENTICESHIP = 'pool:folk-apprenticeship' as XpSource;
+/** A gruagach's apprenticeship: experience and levels of spells (Hedge Magic, Gruagachan). */
+export const GRUAGACH_APPRENTICESHIP = 'pool:gruagach-apprenticeship' as XpSource;
 export const CREATION_SOURCES: XpSource[] = ['native', 'childhood', 'laterLife', 'apprenticeship', 'postGauntlet'];
 
 export function effectiveXp(alloc: XpAlloc, multiplier: number): number {
@@ -454,6 +457,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   // a Gifted learned magician's Gift is opened to all six Arts of the tradition (Hedge Magic, Learned Magicians)
   const mathematicus = has('mathematicus-of-bologna');
   if (mathematicus && hasGift) for (const id of LEARNED_ART_IDS) access.abilities.add(id);
+  // a Gifted gruagach's Gift is opened to the six gruagach Arts (Hedge Magic, Gruagachan)
+  const gruagach = has('gruagach');
+  if (gruagach && hasGift) for (const id of GRUAGACH_ART_IDS) access.abilities.add(id);
   // a Gifted folk witch's Gift is opened to the seven favored powers, but those her Flawed Opening names (Hedge Magic, Folk Witches)
   const folkWitch = has('folk-witch');
   if (folkWitch && hasGift) {
@@ -583,9 +589,11 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   // ---------------------------------------------------------------- budgets
   // a learned magician's years with a master come out of the later-life years, at 30 a year (Hedge Magic)
   const trainingYears = !isMagus && (mathematicus || char.learned?.trainingYears) ? Math.max(0, Math.min(char.learned?.trainingYears ?? 0, char.age - 5)) : 0;
+  // a gruagach's apprenticeship: about ten years for the Gifted, three to five for the unGifted (Hedge Magic)
+  const gruagachYears = !isMagus && gruagach ? Math.max(0, Math.min(char.gruagach?.apprenticeYears ?? (hasGift ? 10 : 4), char.age - 5 - trainingYears)) : 0;
   // a folk witch's apprenticeship (about ten years from age ten) gives 200 points in place of those years (Hedge Magic)
-  const witchYears = !isMagus && folkWitch ? Math.max(0, Math.min(char.folkWitch?.apprenticeYears ?? 10, char.age - 5 - trainingYears)) : 0;
-  const laterLifeYears = isMagus ? Math.max(0, char.creation.apprenticeshipStartAge - 5) : Math.max(0, char.age - 5 - trainingYears - witchYears);
+  const witchYears = !isMagus && folkWitch ? Math.max(0, Math.min(char.folkWitch?.apprenticeYears ?? 10, char.age - 5 - trainingYears - gruagachYears)) : 0;
+  const laterLifeYears = isMagus ? Math.max(0, char.creation.apprenticeshipStartAge - 5) : Math.max(0, char.age - 5 - trainingYears - witchYears - gruagachYears);
   let rate = rules.laterLifeXpPerYear;
   for (const l of eff('laterLifeXpPerYear')) rate = l.amount === 20 ? rules.wealthyXpPerYear : l.amount === 10 ? rules.poorXpPerYear : l.amount;
   if (has('savantism-flaw')) rate = Math.floor(rate / 2);
@@ -631,6 +639,19 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
       id: LEARNED_TRAINING, label: `Training under a master (${parts.join(' ')})`, total, spent: spentBy(LEARNED_TRAINING) + Math.ceil(charmLevels / 5),
       allows: `Academic and Arcane Abilities, the hedge Arts${hasGift ? '' : ' of your Virtues'}, and charms at 5 levels a point (Hedge Magic)`, kind: 'ability',
       abilityTypes: ['Academic', 'Arcane'], abilities: LEARNED_ART_IDS.filter((id) => access.abilities.has(id)),
+    });
+  }
+  if (gruagachYears) {
+    const well = char.virtues.filter((v) => v.defId === 'well-trained-gruagach').length;
+    const poor = char.virtues.filter((v) => v.defId === 'poorly-trained-gruagach-flaw').length;
+    const xp = hasGift ? 160 : 16 * gruagachYears;
+    const levels = hasGift ? 80 : 8 * gruagachYears;
+    const spellsSpent = (char.gruagach?.spells ?? []).filter((x) => x.source === 'training').reduce((t, x) => t + x.level, 0);
+    budgets.push({
+      id: GRUAGACH_APPRENTICESHIP, label: `Gruagach apprenticeship (${gruagachYears} yrs${hasGift ? '' : ' × 16'}${well ? `, +${50 * well} Well-Trained` : ''}${poor ? `, −${50 * poor} Poorly Trained` : ''})`,
+      total: Math.max(Math.min(xp, 5), xp + 50 * well - 50 * poor), spent: spentBy(GRUAGACH_APPRENTICESHIP),
+      spellLevels: { total: Math.max(0, levels + 25 * well - 25 * poor), spent: spellsSpent },
+      allows: `Any Abilities, the gruagach Arts${hasGift ? '' : ' of your Virtues'} among them, and levels of spells (Hedge Magic)`, kind: 'ability',
     });
   }
   if (!isMagus && folkWitch) {

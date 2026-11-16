@@ -584,6 +584,26 @@ export const MECHANICS: Record<string, Mechanics> = {
   'faerie-antipathy-flaw': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A negative Sympathy Trait: −1 as a Minor Flaw, −3 as a Major, less the Warping Score at the end of creation. It comes off any Ability it applies to, and adds a botch die.')] },
   'faerie-background': { tags: ['realm:faerie'], effects: [note('Two Sympathy Traits, one positive and one negative, each as high as the Warping Score. The Warping Score may be raised freely at creation.')] },
 
+  // ------------------------------------------------------------------ Gruagachan (Hedge Magic)
+  // Spells are cast and tattoos made on the Game Table, Dice › Hedge magic; spells known are kept on the sheet.
+  ...Object.fromEntries(
+    ([['give', 'gruagach-give'], ['take', 'gruagach-take'], ['blessing', 'gruagach-blessing'], ['curse', 'gruagach-curse'], ['shape', 'gruagach-shape'], ['vision', 'gruagach-vision']] as const).map(([v, id]) => [
+      v,
+      { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: id, score: 0 }, note(['give', 'take'].includes(v) ? 'A gruagach Technique: a Difficult Art, opened at 0 and raised as an Ability. With a Form it casts spells and enchants tattoos (Game Table, Dice › Hedge magic).' : 'A gruagach Form: opened at 0 and raised as an Art. With a Technique it casts spells and enchants tattoos (Game Table, Dice › Hedge magic).')] } as Mechanics,
+    ]),
+  ),
+  gruagach: { compatibleStatuses: ['*'], effects: [{ type: 'abilityAccess', abilities: ['dead-language', 'organization-lore'], note: 'Pictish and Gruagach Lore' }, note('A Gifted gruagach’s apprenticeship (about ten years) gives 160 experience points and 80 levels of spells; an unGifted one 16 points and 8 levels a year of training (three to five). Set it on the sheet’s Gruagach card. Pictish stands for Magic Theory and caps the Arts: 5 at 1, 15 at 2, 30 at 3, none at 4.')] },
+  'cailleach-magic': { effects: [note('A spontaneous spell doubles its lowest Art before the total is halved.')] },
+  'flexible-gruagach-magic': { excludes: ['inflexible-magic-flaw'], effects: [note('Known spells vary by 3 magnitudes, not 2.')] },
+  'inflexible-magic-flaw': { effects: [note('Known spells vary by 1 magnitude, not 2.')] },
+  'tattoo-mastery': { effects: [note('A tattoo’s vis costs Pictish less, never below half.')] },
+  'weak-tattoo-magic-flaw': { excludes: ['no-tattoo-magic-flaw'], effects: [note('The Lab Total is halved for tattoos.')] },
+  'no-tattoo-magic-flaw': { effects: [note('Makes and investigates no tattoos.')] },
+  'transformation-prone-flaw': { effects: [note('Rolls against transformation on any botch, not only a double one.')] },
+  'well-trained-gruagach': { repeatable: true, effects: [note('+50 experience points for the gruagach Arts and +25 levels of spells in apprenticeship.')] },
+  'poorly-trained-gruagach-flaw': { repeatable: true, effects: [note('−50 experience points for the gruagach Arts and −25 levels of spells in apprenticeship.')] },
+  'external-soul': { effects: [note('No Incapacitating or fatal Wound while the soul’s object is whole: the damage is spread over lesser Wounds, each spread a Warping Point unless Stamina + Pictish + stress die reaches 9. Unaging, at a Warping Point a year. Damage to the object kills.')] },
+
   // ------------------------------------------------------------------ Folk Witches (Hedge Magic)
   // Powers are cast, potions brewed and fetishes made on the Game Table, Dice › Hedge magic; the Witch Moon there too.
   'folk-witch': { compatibleStatuses: ['*'], effects: [{ type: 'abilityAccess', abilities: ['folk-witch-magic-theory', 'organization-lore'], note: 'Folk Witch Magic Theory and the coven’s Organization Lore' }, note('An apprenticeship of about ten years from age ten: 200 experience points for any Abilities (set the years on the sheet’s Folk witch card). A Gifted folk witch may raise all seven folk witch powers without their Virtues. She must take at least one Flaw that limits her magic.')] },

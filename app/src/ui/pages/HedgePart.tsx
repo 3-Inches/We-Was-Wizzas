@@ -26,10 +26,11 @@ import { ElementalTraitsCard } from '../character/ElementalTraitsCard';
 import { ElementalCard, RefiningCard } from './ElementalPart';
 import { FolkWitchSheetCard, KitchenCard, WitchMoonCard, WitchPowerCard, WitchThingsCard } from './FolkWitchPart';
 import { isFolkWitch, witchPowers } from '../../engine/folkWitch';
+import { GruagachCastCard, GruagachSeasonCard, GruagachSheetCard, hasGruagach } from './GruagachPart';
 
 const ELEMENTAL_IDS = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining'];
 /** Someone this page is for: a learned magician or an elementalist. */
-export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || isFolkWitch(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
+export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || isFolkWitch(c) || hasGruagach(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
 
 type CalledRealm = Exclude<Realm, 'None'>;
 const REALMS: Realm[] = ['None', 'Magic', 'Faerie', 'Divine', 'Infernal'];
@@ -127,6 +128,9 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
       {isFolkWitch(c) && <KitchenCard ed={ed} aura={aura} />}
       {isFolkWitch(c) && <WitchMoonCard ed={ed} />}
       {isFolkWitch(c) && <FolkWitchSheetCard ed={ed} />}
+      {hasGruagach(c) && <GruagachCastCard ed={ed} aura={aura} />}
+      {hasGruagach(c) && <GruagachSeasonCard ed={ed} aura={aura} />}
+      {hasGruagach(c) && <GruagachSheetCard ed={ed} />}
     </>
   );
 }

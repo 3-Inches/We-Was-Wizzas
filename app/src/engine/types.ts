@@ -1140,6 +1140,8 @@ export interface Character {
   learned?: LearnedMagic;
   /** a folk witch's apprenticeship, fetishes, potions and Witch Moon (Hedge Magic, Folk Witches) */
   folkWitch?: FolkWitchInfo;
+  /** a gruagach's apprenticeship and spells known (Hedge Magic, Gruagachan); the spells use the charm record */
+  gruagach?: { apprenticeYears?: number; spells?: LearnedCharm[] };
   /** The Great Elixir (The Mysteries): attempts so far, and once it works, the age it fixed and the Magic Might it gave */
   greatElixir?: { attempts?: number; transformedAge?: number; might?: number };
   /** spells, powers and rituals working on the character, or that changed it for good */

@@ -407,6 +407,11 @@ export default function HelpPage() {
             Warping, and a faerie&apos;s change of role through a creative human.
           </li>
           <li>
+            <b>Gruagachan</b> (<i>Hedge Magic, Revised Edition</i>): Give and Take with Blessing, Curse, Shape and Vision; the sheet keeps the apprenticeship and the spells
+            known (from the book or designed with the Geas and Limit Durations). On <b>Dice › Hedge magic</b>: a Formulaic spell varied within its magnitudes, or a
+            spontaneous one; transformation after a double botch; a season enchanting a <b>tattoo</b>, inventing a spell or drawing vis.
+          </li>
+          <li>
             <b>Folk witches</b> (<i>Hedge Magic, Revised Edition</i>): the Folk Witch Social Status, the tradition&apos;s Virtues and Flaws, and Folk Witch Magic Theory; a
             Gifted witch has the seven favored powers, and the sheet keeps her apprenticeship (200 experience points). On <b>Dice › Hedge magic</b>: a power used by
             incantation or fetish against its Ease Factor, potions drunk, a <b>season in the kitchen</b> (potions, fetishes, curses, vis, a longevity ritual, a
