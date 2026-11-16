@@ -37,10 +37,12 @@ export function CharmDesigner({ pairs, device, onAdd, label = 'Add the charm' }:
   const [target, setTarget] = useState('Individual');
   const [extra, setExtra] = useState(0);
   const [name, setName] = useState('');
-  const book = LEARNED_CHARMS.filter((x) => pairs.includes(x.tf as LearnedArts) && !x.general);
+  const params = device ? DEVICE_PARAMS : CHARM_PARAMS;
+  // a device takes only its own parameters: always Touch, and no Diameter
+  const fits = (x: { range: string; duration: string; target: string }) => params.ranges.some((p) => p.name === x.range) && params.durations.some((p) => p.name === x.duration) && params.targets.some((p) => p.name === x.target);
+  const book = LEARNED_CHARMS.filter((x) => pairs.includes(x.tf as LearnedArts) && !x.general && fits(x));
   const guides = LEARNED_GUIDELINES.filter((x) => x.tf === (pairs.includes(tf) ? tf : pairs[0]));
   const guide = guides[Math.min(gi, guides.length - 1)];
-  const params = device ? DEVICE_PARAMS : CHARM_PARAMS;
   const lv = learnedLevel(guide?.general ? base : (guide?.level ?? 1), { range, duration, target, extra }, !!device);
   if (!pairs.length) return <p className="small warn-text">A Technique and a Form of the tradition are needed first.</p>;
   const pick = book[Math.min(bi, book.length - 1)];

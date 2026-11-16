@@ -137,7 +137,7 @@ export function entreatTotal(d: DerivedCharacter, called: Exclude<Realm, 'None'>
   const offset = Math.min(-penalty, Math.max(0, divided));
   const text = !penalty
     ? 'No hostile aura here: entreaty does nothing.'
-    : `${raw}${own ? '' : ` ÷ ${strength} (the aura’s realm is not called)`} = ${divided}, offsetting ${offset} of ${-penalty}.`;
+    : `${raw}${own ? '' : ` ÷ ${strength} (the aura’s realm is not called) = ${divided}`}, offsetting ${offset} of the aura’s ${penalty}.`;
   return { raw, offset, extraBotch: called.length, parts, text };
 }
 
