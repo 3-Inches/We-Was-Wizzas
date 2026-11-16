@@ -497,3 +497,25 @@ button.fix-primary { border-color: var(--accent-2); color: var(--accent-2); font
   .tour-pill { right: 8px; bottom: 8px; }
   .main.touring { padding-bottom: 40vh; }
 }
+
+/* The Guide's pages on playing the game (RoleplayGuide): reading text, so a comfortable measure. */
+.rp-guide { max-width: 800px; }
+.rp-guide .card > p, .rp-guide .card li, .rp-guide .card .stack > p { line-height: 1.5; }
+.rp-guide .card > p { margin: 8px 0; }
+.rp-aside { border-left: 3px solid var(--gold); background: var(--panel-2); padding: 8px 12px; border-radius: 0 6px 6px 0; margin: 12px 0 4px; }
+.rp-sources { margin-top: 12px; padding-top: 8px; border-top: 1px solid var(--line); line-height: 1.5; }
+.rp-table { margin: 4px 0 8px; }
+.rp-table thead th { position: static; }
+.rp-table tbody th { position: static; font-family: var(--font-body); font-size: 1em; letter-spacing: 0; color: var(--ink); background: transparent; font-weight: 600; white-space: normal; min-width: 7.5em; }
+.rp-table td { line-height: 1.45; }
+/* On a phone a table of several columns reads as a list: each row a block, each cell under its column's name. */
+@media (max-width: 700px) {
+  .rp-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .rp-table, .rp-table tbody, .rp-table tr, .rp-table th, .rp-table td { display: block; width: auto; }
+  .rp-table tr { padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .rp-table tbody th, .rp-table td { border: none; padding: 1px 0; }
+  .rp-table td[data-label]::before { content: attr(data-label) ': '; color: var(--muted); font-size: 0.9em; }
+  .rp-table.two td[data-label]::before { content: none; }
+  /* the folded cards are the contents list there */
+  .rp-guide nav { display: none; }
+}

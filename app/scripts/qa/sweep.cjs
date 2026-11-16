@@ -100,7 +100,7 @@ async function sweep(width) {
   for (const c of bundle.characters)
     for (const t of ['overview', 'abilities', 'combat', 'advancement', 'lab', 'summary', 'rules', ...(c.type === 'magus' ? ['magic'] : [])])
       await visit(`${c.type} ${c.name} ${t}`, `${s}/character/${c.id}?tab=${t}`);
-  for (const p of ['/', '/dice', '/reference', '/help', '/mechanics', '/mechanics/lab']) await visit(p, p);
+  for (const p of ['/', '/dice', '/reference', '/help', '/help?tab=players', '/help?tab=storyguides', '/mechanics', '/mechanics/lab']) await visit(p, p);
   for (const t of ['vf', 'abilities', 'houses', 'labvf', 'hooks', 'weapons', 'books']) await visit(`reference ${t}`, `/reference?tab=${t}`);
   await b.close();
   return report;
