@@ -565,6 +565,25 @@ export const MECHANICS: Record<string, Mechanics> = {
   'quiet-magic': { repeatable: true },
   'performance-magic': { param: P.ability('Performance Ability') },
 
+  // ------------------------------------------------------------------ Faerie wizardry (Realms of Power: Faerie)
+  // Rites and bargaining are worked on the Game Table, Dice › Faerie; Sympathy Traits are kept on the sheet.
+  ...Object.fromEntries(
+    (['evocation', 'enchantment', 'empathy', 'beguile', 'conjure', 'dream', 'grant', 'portage', 'ware', 'weal', 'woe'] as const).map((id) => [
+      id,
+      { tags: ['supernatural', 'realm:faerie'], effects: [{ type: 'grantAbility', ability: id, score: 1 }, note(['evocation', 'enchantment', 'empathy'].includes(id) ? 'A Faerie Method: with a Faerie Power and an applicable Sympathy Trait it casts a faerie rite (Game Table, Dice › Faerie).' : 'A Faerie Power: with a Faerie Method and an applicable Sympathy Trait it casts a faerie rite (Game Table, Dice › Faerie). Choose the circumstance that dispels its effects (iron, running water, salt, the Dominion…).')] } as Mechanics,
+    ]),
+  ),
+  ...Object.fromEntries(
+    (['summoning', 'bonding', 'captivating', 'dismissing'] as const).map((id) => [
+      id,
+      { tags: ['supernatural', 'realm:faerie'], effects: [{ type: 'grantAbility', ability: id === 'summoning' ? 'faerie-summoning' : id, score: 0 }, note('An Art of the Ars Fabulosa: it opens at 0 and rises as an Art. Rolled on the Game Table, Dice › Faerie, against a faerie’s Might up to 5 × the applicable Sympathy Traits.')] } as Mechanics,
+    ]),
+  ),
+  ceremony: { tags: ['supernatural', 'realm:faerie'], effects: [{ type: 'grantAbility', ability: 'ceremony', score: 1 }] },
+  'faerie-sympathy': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A positive Sympathy Trait: +1 as a Minor Virtue, +3 as a Major, raised by experience up to its first score + the Warping Score. Add it on the sheet’s Sympathy Traits card. The Warping Score may be raised freely at creation.')] },
+  'faerie-antipathy-flaw': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A negative Sympathy Trait: −1 as a Minor Flaw, −3 as a Major, less the Warping Score at the end of creation. It comes off any Ability it applies to, and adds a botch die.')] },
+  'faerie-background': { tags: ['realm:faerie'], effects: [note('Two Sympathy Traits, one positive and one negative, each as high as the Warping Score. The Warping Score may be raised freely at creation.')] },
+
   // ------------------------------------------------------------------ The Mysteries (Revised Edition)
   // Worked in the lab (Lab projects: horoscopes, alchemy, the elixirs) and at the Game Table (Dice › Mysteries).
   'hermetic-alchemy': { requiresGift: true, tags: ['lab', 'vis'], effects: [note('Vis extraction into a crafted vessel: its Shape and Material bonuses add to the Creo Vim Lab Total (no more than Magic Theory). Form vis: the Form as a requisite, a pawn per 20 points. Set on an Extract vis project.')] },

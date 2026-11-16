@@ -31,7 +31,7 @@ const BEINGS: Record<string, string[]> = {
     'slow-might-recovery-flaw', 'might-recovery-requires-vitality-flaw', 'negative-reaction-flaw', 'positive-folktales', 'infiltrator', 'huge', 'little-flaw',
     'faerie-beast', 'humanoid-faerie', 'hybrid-form', 'immune-to-source-of-damage', 'improved-damage', 'improved-initiative', 'improved-soak', 'puissant-pretense',
     'residual-power', 'poor-combatant-flaw', 'reduced-damage-flaw', 'reduced-initiative-flaw', 'reduced-soak-flaw', 'role-requires-suffering-flaw',
-    'susceptible-to-deprivation-flaw',
+    'susceptible-to-deprivation-flaw', 'decreased-might-flaw', 'restricted-might-flaw',
   ],
   'magic beings (Realms of Power: Magic, Chapter 4)': ['bound-to-magic-flaw', 'essential-flaw-flaw', 'magical-friend-flaw', 'magical-monster-flaw'],
   'jinn and other faerie beings (The Cradle & the Crescent, Lands of the Jinn)': [

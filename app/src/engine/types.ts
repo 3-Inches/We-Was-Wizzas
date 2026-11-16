@@ -600,6 +600,15 @@ export interface CharSpell {
   why?: string;
 }
 
+/** A Sympathy Trait (Realms of Power: Faerie, Sympathy): raised like an Ability, its experience toward the next point kept. */
+export interface SympathyTrait {
+  uid: string;
+  trait: string;
+  score: number;
+  /** experience toward the next point up */
+  xp?: number;
+}
+
 export interface PersonalityTrait {
   uid: string;
   trait: string;
@@ -964,6 +973,8 @@ export interface CreatureInfo {
   form?: Art;
   /** built with the Magic Character Creation rules of Realms of Power: Magic */
   magicCharacter?: MagicCharacterInfo;
+  /** built with the Faerie Character rules of Realms of Power: Faerie */
+  faerieCharacter?: import('./character/faerieCharacter').FaerieCharacterInfo;
   /** Might Points spent from the pool (it refreshes over a day; with Temporary Might, only slowly) */
   poolSpent?: number;
   /** Might Score lost to Ritual Powers, returning only slowly (RoP: Magic, Ritual Power) */
@@ -1078,6 +1089,8 @@ export interface Character {
   longevity?: LongevityRitual;
   /** a ritual an aging crisis ended, which can be performed again from its Laboratory Text */
   longevityLapsed?: LongevityRitual;
+  /** Sympathy Traits (Realms of Power: Faerie): a bond through the Faerie realm with a class of subjects, positive or negative */
+  sympathy?: SympathyTrait[];
   /** The Great Elixir (The Mysteries): attempts so far, and once it works, the age it fixed and the Magic Might it gave */
   greatElixir?: { attempts?: number; transformedAge?: number; might?: number };
   /** spells, powers and rituals working on the character, or that changed it for good */

@@ -16,6 +16,7 @@ import { abilityAvailability, statusesCompatible, vfProblems } from './restricti
 import { MYTHIC_TYPES, hasFaerieVirtue, mythicAbility } from './factory';
 import { POWER_KINDS, POWER_KIND_ORDER, masteryPools, powerSpending, powerStats } from './powers';
 import type { PowerKind } from '../../data';
+import { FAERIE_SOCIAL } from './faerieCharacter';
 
 export type Severity = 'error' | 'warning' | 'info';
 export type Step = 'basics' | 'house' | 'virtues' | 'characteristics' | 'abilities' | 'arts' | 'spells' | 'personality' | 'equipment' | 'sheet';
@@ -64,8 +65,20 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (type === 'magus' && !c.virtues.some((v) => v.defId === 'hermetic-magus')) add({ id: 'magus-status', severity: 'error', step: 'virtues', message: 'Magi must take the Hermetic Magus Social Status.', ref: 'DE p.63', fix: 'Add Hermetic Magus (free).' });
   if (t.socialStatuses.length === 0) add({ id: 'status-none', severity: 'error', step: 'virtues', message: 'Every character must take one Social Status.', ref: 'DE p.63', fix: d.magicChar ? 'A magic character takes Magical Master, Champion, Covenfolk, Friend or Monster.' : type === 'grog' ? 'Covenfolk is the usual choice.' : 'Covenfolk, Wanderer or a status fitting the concept.' });
   // --------------------------------------------------------------- magic characters (RoP: Magic)
-  if (c.creature && c.creature.realm !== 'None' && !d.magicChar) {
-    add({ id: 'magic-rules', code: 'magic-rules', severity: 'info', step: 'basics', message: 'A magical being: the Magic Character Creation rules of Realms of Power: Magic give its experience by Season (not age), its Might by the saga\'s power level and role, and Qualities. Turn them on in the Creature card on the sheet.', ref: 'RoP: Magic, Magic Character Creation' });
+  // --------------------------------------------------------------- faerie characters (RoP: Faerie)
+  for (const f of d.faerieChar?.issues ?? []) add({ id: f.id, severity: f.severity, step: 'virtues', message: f.message, fix: f.fix, ref: 'RoP: Faerie, Faerie Characters' });
+  if (d.faerieChar) {
+    // a faerie's Social Interaction Virtues and Flaws replace human Social Status (RoP: Faerie, Inappropriate Virtues and Flaws)
+    const human = t.socialStatuses.filter((v) => !FAERIE_SOCIAL.includes(v.cv.defId));
+    if (human.length) add({ id: 'faerie-status', severity: 'error', step: 'virtues', message: `Faeries do not have human Social Status: ${human.map((v) => v.name).join(', ')}.`, fix: 'A faerie that lives as a human takes Infiltrator, which costs as the status it mimics.', ref: 'RoP: Faerie, Inappropriate Virtues and Flaws' });
+    const hermetic = d.virtues.filter((v) => !v.cv.free && v.def?.categories.includes('Hermetic'));
+    if (hermetic.length) add({ id: 'faerie-hermetic', severity: 'error', step: 'virtues', message: `Faeries may not have Hermetic Virtues or Flaws: ${hermetic.map((v) => v.name).join(', ')}.`, ref: 'RoP: Faerie, Inappropriate Virtues and Flaws' });
+    const otherRealm = d.virtues.filter((v) => v.def?.categories.includes('Supernatural') && (v.def.tags ?? []).some((x) => /^realm:(divine|infernal|magic)$/.test(x)));
+    if (otherRealm.length) add({ id: 'faerie-realm-power', severity: 'error', step: 'virtues', message: `Faeries may not have powers of the Divine, Infernal or Magic realms: ${otherRealm.map((v) => v.name).join(', ')}.`, ref: 'RoP: Faerie, Inappropriate Virtues and Flaws' });
+    if (t.personalityFlaws > 4 || t.majorPersonalityFlaws > 1) add({ id: 'faerie-personality', severity: 'warning', step: 'virtues', message: 'A faerie may have up to three Minor Personality Flaws and one Major, so long as all come into play.', ref: 'RoP: Faerie, Personality Flaws' });
+  }
+  if (c.creature && c.creature.realm !== 'None' && !d.magicChar && !d.faerieChar) {
+    add({ id: 'magic-rules', code: 'magic-rules', severity: 'info', step: 'basics', message: c.creature.realm === 'Faerie' ? 'A faerie: the Faerie Character rules of Realms of Power: Faerie give its Might, its Pretenses in place of Abilities and its required Virtues and Flaws. Turn them on in the Creature card on the sheet.' : 'A magical being: the Magic Character Creation rules of Realms of Power: Magic give its experience by Season (not age), its Might by the saga\'s power level and role, and Qualities. Turn them on in the Creature card on the sheet.', ref: 'RoP: Magic, Magic Character Creation' });
   }
   if (d.magicChar) {
     for (const [i, m] of d.magicChar.issues.entries()) {
@@ -303,7 +316,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       }
     }
     const native = c.abilities.filter((a) => a.native);
-    if (creating && native.length === 0 && !d.magicChar) add({ id: 'native-lang', severity: 'warning', step: 'abilities', message: 'Choose a native language (75 xp, normally score 5).', ref: 'DE p.48' });
+    if (creating && native.length === 0 && !d.magicChar && !d.faerieChar) add({ id: 'native-lang', severity: 'warning', step: 'abilities', message: 'Choose a native language (75 xp, normally score 5).', ref: 'DE p.48' });
   }
 
   // magus minimum abilities

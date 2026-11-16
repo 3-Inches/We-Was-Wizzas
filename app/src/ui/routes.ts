@@ -8,7 +8,7 @@ export const TABLE_TABS = ['overview', 'seasons', 'chronicle', 'dice', 'society'
 export type TableTab = (typeof TABLE_TABS)[number];
 
 /** The Dice page's parts: any roll, combat and perils, spellcasting and certamen, and the holy: miracles, saints, God's aid (RoP: The Divine). */
-export const DICE_SUBS = ['roll', 'combat', 'magic', 'holy', 'mysteries'] as const;
+export const DICE_SUBS = ['roll', 'combat', 'magic', 'holy', 'faerie', 'mysteries'] as const;
 export type DiceSub = (typeof DICE_SUBS)[number];
 
 /** The Saga Overview's tabs, in order: the saga's settings, its books, optional rules, the troupe's numbers and rulings, its own content, overrides, and its journal. */

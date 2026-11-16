@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { ART_NAMES, FORMS, type PowerKind, type SpellDef } from '../../data';
 import { COMMON_MAGIC_POWERS, ELEMENTAL_FORMS, type CommonPower } from '../../data/commonPowers';
+import { FAERIE_POWERS_COMMON } from '../../data/faeriePowers';
 import { DETERIORATING_KINDS, POWER_KINDS, POWER_KIND_ORDER, VARIABLE_KINDS, masteryPools, powerCost, powerSpending, powerStats, varianceLabel, variedLevel, type VarianceInputs } from '../../engine/character/powers';
 import type { CharPower, VarianceBy } from '../../engine/types';
 import { MASTERY_XP_ABILITIES, setMasteryXp } from '../../engine/character/factory';
@@ -241,15 +242,18 @@ function AddPower({ ed, kind, left }: { ed: CharEditor; kind: PowerKind; left: n
   const common = useMemo(() => {
     if (!open) return [];
     const qq = q.trim().toLowerCase();
-    return COMMON_MAGIC_POWERS.filter((p) => p.kind === kind && p.level <= cap && (!qq || `${p.name} ${p.text} ${p.design}`.toLowerCase().includes(qq)));
-  }, [open, q, kind, cap]);
+    // a faerie's are the book's sample faerie powers; a Greater one can be taken as a Lesser (RoP: Faerie)
+    const faerie = ed.c?.creature?.realm === 'Faerie';
+    const list = faerie ? FAERIE_POWERS_COMMON : COMMON_MAGIC_POWERS;
+    return list.filter((p) => (p.kind === kind || (faerie && kind === 'lesser' && p.kind === 'greater')) && p.level <= cap && (!qq || `${p.name} ${p.text} ${p.design}`.toLowerCase().includes(qq)));
+  }, [open, q, kind, cap, ed.c?.creature?.realm]);
   const takeCommon = (p: CommonPower, choice: string) => {
     add({
       name: choice ? p.name.replace(/\([^)]*\)/, choice) : p.name,
       level: p.level,
       // the mastery the book spends comes from a magic character's spare levels
       mastery: ed.d?.magicChar && p.mastery ? { ...p.mastery } : undefined,
-      notes: `${p.stats}; ${p.rdt}. ${p.text} (${p.design}; RoP: Magic, Common Magic Powers)`,
+      notes: `${p.stats}${p.rdt ? `; ${p.rdt}` : ''}. ${p.text} (${p.design}; ${ed.c?.creature?.realm === 'Faerie' ? `RoP: Faerie${kind === 'lesser' && p.kind === 'greater' ? ', taken as a Lesser Power: twice the Might cost, a slower Initiative' : ''}` : 'RoP: Magic, Common Magic Powers'})`,
     });
     setOpen(false);
     setQ('');
@@ -277,7 +281,15 @@ function AddPower({ ed, kind, left }: { ed: CharEditor; kind: PowerKind; left: n
           {common.length > 0 && (
             <>
               <div className="small">
-                <b>Common magic powers</b> <BookBadge book="RoP_M" line={1728} /> <span className="muted">as the book builds them, with its mastery</span>
+                {ed.c?.creature?.realm === 'Faerie' ? (
+                  <>
+                    <b>Sample faerie powers</b> <BookBadge book="RoP_F" line={2828} /> <span className="muted">as the book builds them, as Greater Powers</span>
+                  </>
+                ) : (
+                  <>
+                    <b>Common magic powers</b> <BookBadge book="RoP_M" line={1728} /> <span className="muted">as the book builds them, with its mastery</span>
+                  </>
+                )}
               </div>
               {common.map((p) => (
                 <CommonPowerRow key={p.name} p={p} open={shown === p.name} onToggle={() => setShown(shown === p.name ? null : p.name)} onTake={(choice) => takeCommon(p, choice)} />

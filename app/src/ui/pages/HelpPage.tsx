@@ -400,6 +400,13 @@ export default function HelpPage() {
             Targets, and a Hermetic Laboratory Text is halved (as a holy magus&apos;s is for Hermetic magi).
           </li>
           <li>
+            <b>Faerie</b> (<i>Realms of Power: Faerie</i>): a <b>faerie character</b> is made from the People page (a companion, or in place of a magus): Might 5 and its
+            Virtues, Pretenses bought from one pool with no Virtue needed, and a form, a cognizance, a social Virtue or Flaw and a taboo, which the rules check asks for.
+            A faerie wizard&apos;s <b>Sympathy Traits</b> and Faerie Rank are kept on the sheet. On <b>Dice › Faerie</b>: a <b>faerie rite</b> (a Method and a Power, its level
+            held to five times the Sympathy Traits that apply), the Ars Fabulosa&apos;s <b>bargaining</b> Arts against a faerie&apos;s Might, <b>Faerie Calling</b> after
+            Warping, and a faerie&apos;s change of role through a creative human.
+          </li>
+          <li>
             <b>The Mysteries</b> (<i>The Mysteries, Revised Edition</i>): on a lab project, a magus with Planetary Magic (for enchanting) or Celestial Magic (for any lab work)
             chooses a <b>Laboratory Horoscope</b> of +1 to +5, rolled as the season begins against three times the bonus; a botch wastes the season. A charged item can be
             made <b>as a periapt</b>. <b>Extract vis</b> takes a vessel&apos;s Shape and Material bonus with Hermetic Alchemy, Form vis at a pawn per 20 points, and with
