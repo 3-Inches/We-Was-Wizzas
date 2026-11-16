@@ -14,7 +14,7 @@ import { conditionalBonuses } from '../../../engine/magic';
 import { applySeason, computeStudy, newSeasonEntry } from '../../../engine/longterm';
 import { LAB_ROUTINES, ROUTINE_IDS, toggleRoutine } from '../../../engine/labRoutines';
 import { optionOn } from '../../../engine/optional';
-import { LAB_IMPROVEMENTS, PROJECT_KINDS, alongsideCandidates, shapeMaterialChoices, canExperiment, inventedWith, itemOf, newProject, pawnsUsed, planProject, projectBotchDice, seasonVisLimit, visShort, workProject } from '../../../engine/projects';
+import { LAB_IMPROVEMENTS, PROJECT_KINDS, hopedHoroscope, alongsideCandidates, shapeMaterialChoices, canExperiment, inventedWith, itemOf, newProject, pawnsUsed, planProject, projectBotchDice, seasonVisLimit, visShort, workProject } from '../../../engine/projects';
 import { extraFree, inPlay, seasonBusy, seasonTaken } from '../../../engine/time';
 import { type Character, type HouseRules, type LabProject, type LabVirtueEntry, type Season } from '../../../engine/types';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from '../../../engine/labHelp';
@@ -28,6 +28,7 @@ import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
 import { Card, Field, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
+import { digestSeasons, holds, horoscopeFor, longevityModifier, periaptMaxLevel } from '../../../engine/hermeticMysteries';
 
 /**
  * A season's work on a project, logged for the saga's current season with Exposure in Magic Theory:
@@ -133,7 +134,7 @@ export function LabProjects({ ed }: { ed: CharEditor }) {
       actions={
         <span className="row tight">
           <select value={kind} onChange={(e) => setKind(e.target.value as LabProject['kind'])} aria-label="Kind of project">
-            {PROJECT_KINDS.map((k) => (
+            {PROJECT_KINDS.filter((k) => k.id !== 'elixir' || holds(c, 'the-lesser-elixir')).map((k) => (
               <option key={k.id} value={k.id} title={k.blurb}>
                 {k.label}
                 {k.activity && ruled.includes(k.activity) ? ' (not in this lab)' : ''}
@@ -173,7 +174,7 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
   const [history, setHistory] = useState(false);
   if (!c || !d || !saga) return null;
   const subject = p.subjectId ? chars.find((x) => x.id === p.subjectId) : undefined;
-  const plan0 = planProject(p, c, d, ctx, { subject, data, helpers });
+  const plan0 = planProject(p, c, d, ctx, { subject, data, helpers, horoscope: hopedHoroscope(c, p) });
   // the vis is checked where it comes from before the season is worked
   const short = visShort(p, c, ctx, plan0);
   const plan = short ? { ...plan0, problems: [...plan0.problems, short] } : plan0;
@@ -465,7 +466,7 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
               <Field label="Extra vis" hint="+1 to the Lab Total each, and the same again whenever the ritual is renewed">
                 <Stepper value={p.extraVis ?? 0} min={0} width={36} onChange={(v) => set((x) => void (x.extraVis = v || undefined))} />
               </Field>
-              {(subject ?? c).longevity && <span className="muted">Current ritual: −{(subject ?? c).longevity!.bonus}; a new one replaces it.</span>}
+              {(subject ?? c).longevity && <span className="muted">Current ritual: −{longevityModifier((subject ?? c).longevity)}; a new one replaces it{(subject ?? c).longevity?.elixir ? ', keeping its Lesser Elixir' : ''}.</span>}
             </>
           )}
           {(p.kind === 'bind' || p.kind === 'strengthen') && fam && (
@@ -572,6 +573,7 @@ function ProjectRow({ p, ed, chars, set, onWork, busy, helpers }: { p: LabProjec
               </span>
             </Field>
           )}
+          <MysteryFields p={p} ed={ed} set={set} />
           {plan.pounds ? (
             <Field label="Pounds from">
               <select value={p.visFrom ?? 'covenant'} onChange={(e) => set((x) => void (x.visFrom = e.target.value as 'purse' | 'covenant'))}>
@@ -775,5 +777,103 @@ export function HelpersRow({ c, d, chars, ed, helperIds, setHelperIds }: { c: Ch
         </span>
       ))}
     </div>
+  );
+}
+
+/**
+ * The Mysteries (Revised Edition) on a project: a Laboratory Horoscope (Planetary or Celestial Magic),
+ * a periapt, Hermetic and Philosophic Alchemy's vessel, Form vis and digestion, a Lesser Elixir's
+ * ingredient, and how spaces opened by alchemy count when the item is opened.
+ */
+function MysteryFields({ p, ed, set }: { p: LabProject; ed: CharEditor; set: (fn: (p: LabProject) => void) => void }) {
+  const { c, d } = ed;
+  if (!c || !d) return null;
+  const scope = horoscopeFor(c, p.kind);
+  const it = itemOf(c, p);
+  const alch = holds(c, 'hermetic-alchemy') && p.kind === 'extract';
+  const digest = digestSeasons(c);
+  const a = p.alchemy ?? {};
+  const setA = (fn: (a: NonNullable<LabProject['alchemy']>) => void) => set((x) => { const n = { ...(x.alchemy ?? {}) }; fn(n); x.alchemy = Object.values(n).some((v) => v !== undefined && v !== 0 && v !== false) ? n : undefined; });
+  const openable = c.items.filter((i) => !i.openedPawns && i.kind !== 'charged');
+  return (
+    <>
+      {scope && (
+        <Field label="Laboratory Horoscope" hint={`Stress die + Intelligence + Artes Liberales (astronomy) against 3 × the bonus, rolled as the season begins. A failure loses only the bonus; a botch wastes the season and its vis. A whole day away from the lab loses the bonus.${scope === 'celestial' && p.kind === 'open' ? ' Celestial Magic: the bonus comes off the vis to open the device (never below a pawn).' : ''}`}>
+          <select value={p.horoscope ?? 0} onChange={(e) => set((x) => void (x.horoscope = Number(e.target.value) || undefined))} data-tour="lab-horoscope">
+            <option value={0}>none</option>
+            {[1, 2, 3, 4, 5].map((n) => (
+              <option key={n} value={n}>
+                +{n} (Ease Factor {3 * n})
+              </option>
+            ))}
+          </select>
+        </Field>
+      )}
+      {p.kind === 'instill' && it?.kind === 'charged' && holds(c, 'periapt') && (
+        <label className="inline" title={`A Periapt Horoscope (Intelligence + Astronomy + stress die against 9) at the season's start: the charges are the whole Lab Total / 5. The effect can be no higher than ${periaptMaxLevel(d)} (5 × Astronomy). A faulty horoscope leaves an ordinary charged item; a botch wastes the season.`}>
+          <input type="checkbox" checked={!!p.periapt} onChange={(e) => set((x) => void (x.periapt = e.target.checked || undefined))} /> as a periapt
+        </label>
+      )}
+      {alch && (
+        <>
+          <Field label="Vessel’s Shape & Material bonus" hint="The bonuses its shapes and materials would give one effect of the Form wanted; no more in all than Magic Theory">
+            <Stepper value={a.sm ?? 0} min={0} max={30} width={36} onChange={(v) => setA((n) => void (n.sm = v || undefined))} />
+          </Field>
+          {!a.itemUid && (
+            <Field label="Vis of" hint="Form vis: the Form as a requisite, a pawn for every 20 points. Technique vis cannot be extracted.">
+              <select value={a.form ?? ''} onChange={(e) => setA((n) => void (n.form = (e.target.value || undefined) as Form | undefined))}>
+                <option value="">Vim</option>
+                {FORMS.filter((f) => f !== 'Vi').map((f) => (
+                  <option key={f} value={f}>
+                    {ART_NAMES[f]}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          )}
+          {digest > 0 && (
+            <label className="inline" title={`Philosophic Alchemy: the vessel digests on its own beside the other lab work of ${digest === 1 ? 'the season' : 'four seasons in a row, the lowest Lab Total counting'}. Each season of lab work moves it on; a season away from the lab, a second extraction or an experiment loses it.`}>
+              <input type="checkbox" checked={!!a.automatic} onChange={(e) => setA((n) => void ((n.automatic = e.target.checked || undefined), !e.target.checked && (n.itemUid = undefined)))} /> leave it to digest
+            </label>
+          )}
+          {a.automatic && openable.length > 0 && (
+            <Field label="Make instead" hint="Ready-opened enchantment spaces in an item, as many as the pawns of Vim it would give">
+              <select value={a.itemUid ?? ''} onChange={(e) => setA((n) => void ((n.itemUid = e.target.value || undefined), e.target.value && (n.form = undefined)))}>
+                <option value="">vis</option>
+                {openable.map((i) => (
+                  <option key={i.uid} value={i.uid}>
+                    spaces in {i.name}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          )}
+        </>
+      )}
+      {p.kind === 'open' && it?.alchemyOpened && it.openedPawns <= it.alchemyOpened && c.talismanUid !== it.uid ? (
+        <Field label="Spaces opened by alchemy" hint={`${it.alchemyOpened} spaces are open already: count them off the vis, or open the item fully and keep them as room on top`}>
+          <select value={p.pawns === -1 ? 'bonus' : 'vis'} onChange={(e) => set((x) => void (x.pawns = e.target.value === 'bonus' ? -1 : undefined))}>
+            <option value="vis">fewer pawns of vis</option>
+            <option value="bonus">room on top</option>
+          </select>
+        </Field>
+      ) : null}
+      {p.kind === 'elixir' && (
+        <>
+          <Field label="Special ingredient" hint="Something fit for the potion’s form and work (Creo, Corpus, long life, healing), or for the magus’s own magic">
+            <input value={p.ingredient?.name ?? ''} onChange={(e) => set((x) => void (x.ingredient = { ...(x.ingredient ?? { bonus: 0 }), name: e.target.value }))} placeholder="e.g. bloodstone" />
+          </Field>
+          <Field label="Its Shape & Material bonus">
+            <Stepper value={p.ingredient?.bonus ?? 0} min={0} max={20} width={36} onChange={(v) => set((x) => void (x.ingredient = { ...(x.ingredient ?? { name: '' }), bonus: v }))} />
+          </Field>
+          {holds(c, 'vulgar-alchemy') && (
+            <label className="inline" title="A bonus the alchemist found by Vulgar Alchemy counts double (no more than Magic Theory)">
+              <input type="checkbox" checked={!!p.ingredient?.own} onChange={(e) => set((x) => void (x.ingredient = { ...(x.ingredient ?? { name: '', bonus: 0 }), own: e.target.checked || undefined }))} /> my own Vulgar Alchemy find
+            </label>
+          )}
+          {c.longevity?.elixir && <span className="muted">Already in it: {c.longevity.elixir.ingredients.map((i) => `${i.name} (${i.points})`).join(', ')}.</span>}
+        </>
+      )}
+    </>
   );
 }

@@ -2,6 +2,7 @@ import { CHARACTERISTICS, CHAR_NAMES, type Characteristic } from '../../data';
 import { ageYears, decrepitudeScore } from '../../engine/longterm';
 import { Card, Field, Stepper, signed } from '../kit';
 import type { CharEditor } from './useChar';
+import { longevityModifier } from '../../engine/hermeticMysteries';
 
 /**
  * Aging before play (DE p.50): characters older than 35 make an aging roll for each year before
@@ -21,7 +22,7 @@ export default function AgingBeforePlay({ ed }: { ed: CharEditor }) {
   const lc = c.creation.agingLivingConditions ?? autoLc;
   const anyChar: Characteristic = c.creation.agingAnyChar ?? 'Qik';
   const renew = c.creation.renewLongevity ?? d.isMagus;
-  const lr = c.longevity?.bonus ?? 0;
+  const lr = longevityModifier(c.longevity);
 
   const roll = (to: number) =>
     change((x) => {

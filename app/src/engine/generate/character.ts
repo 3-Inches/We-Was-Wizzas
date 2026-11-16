@@ -37,6 +37,7 @@ import { COMMON_TRAITS, ROLE_BY_ID, rolesFor, type Role } from './roles';
 import { between, chance, pick, sample, seeded } from './random';
 import { characterCraftTraits, craftTraitsLine } from '../craftTraits';
 import { favoriteArts } from './variety';
+import { longevityModifier } from '../hermeticMysteries';
 
 /** Concept themes that make a character a mystic of some kind, open to any book's Supernatural Virtues. */
 const MYSTIC_THEMES = ['mystic', 'faerie', 'faith', 'demon-hunter'];
@@ -329,12 +330,12 @@ function ageBeforePlay(c: Character, d: DerivedCharacter, rng: () => number, log
     const bonus = longevityBonus(lt, 0, false);
     if (bonus > 0) c.longevity = { labTotal: lt, bonus, extraVis: 0, createdYear: c.birthYear + 35 };
   }
-  const plan = { livingConditions: c.type === 'magus' ? 1 : 0, longevity: c.longevity?.bonus ?? 0, extra: d.agingRollParts, anyChar: 'sparest' as const, renewLongevity: true };
+  const plan = { livingConditions: c.type === 'magus' ? 1 : 0, longevity: longevityModifier(c.longevity), extra: d.agingRollParts, anyChar: 'sparest' as const, renewLongevity: true };
   // a year that would kill is rolled again, as a player may; one that keeps killing is left for the
   // storyguide (the rules check then says which years are still to roll)
   const done = () => c.creation.agedThrough ?? d.agingStartAge - 1;
   for (let tries = 0; done() < c.age - 1 && tries < 10; tries++) ageYears(c, Math.max(d.agingStartAge, done() + 1), c.age - 1, plan, rng);
-  log.push(`Aged from ${d.agingStartAge} to ${done() + 1}${c.longevity ? ` with a Longevity Ritual (+${c.longevity.bonus})` : ''}: ${c.decrepitudePoints} Decrepitude points.`);
+  log.push(`Aged from ${d.agingStartAge} to ${done() + 1}${c.longevity ? ` with a Longevity Ritual (+${longevityModifier(c.longevity)})` : ''}: ${c.decrepitudePoints} Decrepitude points.`);
 }
 
 /**

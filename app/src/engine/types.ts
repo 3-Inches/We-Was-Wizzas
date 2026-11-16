@@ -401,7 +401,24 @@ export type LabRoutine = 'early' | 'nocturnal' | 'addled' | 'overtime' | 'double
 /** A laboratory project that runs over one or more seasons (DE, The Laboratory). */
 export interface LabProject {
   uid: string;
-  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'longevity' | 'bind' | 'strengthen' | 'empower' | 'refine' | 'install' | 'repair' | 'castingTool' | 'fixConnection' | 'other';
+  kind: 'invent' | 'open' | 'attune' | 'instill' | 'extract' | 'tame' | 'longevity' | 'bind' | 'strengthen' | 'empower' | 'refine' | 'install' | 'repair' | 'castingTool' | 'fixConnection' | 'elixir' | 'other';
+  /** a Laboratory Horoscope each season, for this bonus (1 to 5): Planetary Magic for an enchantment, Celestial Magic for any work (The Mysteries) */
+  horoscope?: number;
+  /** instill a charged item as a periapt (Periapt, The Mysteries): its horoscope rolled at the season's start */
+  periapt?: boolean;
+  /** extract by Hermetic Alchemy (The Mysteries): the vessel's Shape and Material bonus, a Form for Form vis, and Philosophic Alchemy's digestion */
+  alchemy?: {
+    sm?: number;
+    form?: Form;
+    /** left to digest by Philosophic Alchemy beside other lab work */
+    automatic?: boolean;
+    /** the Lab Total of each season digested so far (a Minor Philosophic Alchemy takes the lowest of four) */
+    totals?: number[];
+    /** opens enchantment spaces in this item instead of making vis */
+    itemUid?: string;
+  };
+  /** elixir: the special ingredient added to the Lesser Elixir this season */
+  ingredient?: { name: string; bonus: number; own?: boolean };
   /** fixConnection: what the Arcane Connection is to (a person, a place, a creature) */
   connectionTo?: string;
   name: string;
@@ -667,6 +684,8 @@ export interface EnchantedItem {
   size: 'tiny' | 'small' | 'medium' | 'large' | 'huge';
   shapeMaterialIds: string[];
   openedPawns: number;
+  /** enchantment spaces opened by Philosophic Alchemy, before it was opened in the usual way (The Mysteries) */
+  alchemyOpened?: number;
   charges?: number;
   effects: EnchantedEffectRecord[];
   attunements: { label: string; bonus: number }[];
@@ -747,6 +766,8 @@ export interface LongevityRitual {
   forMundane?: boolean;
   /** the year an aging crisis ended it (kept while it can be performed again) */
   lapsedYear?: number;
+  /** a Lesser Elixir made on it (The Mysteries): its ingredients and the Elixir Level that adds to the bonus */
+  elixir?: { level: number; points: number; ingredients: { name: string; points: number }[] };
 }
 
 /**
@@ -1057,6 +1078,8 @@ export interface Character {
   longevity?: LongevityRitual;
   /** a ritual an aging crisis ended, which can be performed again from its Laboratory Text */
   longevityLapsed?: LongevityRitual;
+  /** The Great Elixir (The Mysteries): attempts so far, and once it works, the age it fixed and the Magic Might it gave */
+  greatElixir?: { attempts?: number; transformedAge?: number; might?: number };
   /** spells, powers and rituals working on the character, or that changed it for good */
   activeEffects?: ActiveEffect[];
   /** Characteristic points raised by magic (the purchased value is this much lower) */

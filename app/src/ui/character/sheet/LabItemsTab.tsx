@@ -27,6 +27,7 @@ import { describeStress, stressDie } from '../../../engine/dice';
 import { useStore } from '../../../store/store';
 import { useSagaCharacters } from '../../../store/hooks';
 import { uid } from '../../../util/id';
+import { longevityModifier } from '../../../engine/hermeticMysteries';
 
 const newFamiliar = (): Familiar => ({
   name: '', species: '', might: 5, size: -2, realm: 'Magic', bindingTechnique: 'Re', bindingForm: 'An', bindingLabTotal: 0, golden: 0, silver: 0, bronze: 0, pawnsSpent: 0, powers: [],
@@ -306,7 +307,8 @@ export function LongevityCard({ ed }: { ed: CharEditor }) {
       <div className="row">
         {!edit ? (
           <span className="small">
-            Ritual: <b>{c.longevity ? `−${c.longevity.bonus} to aging rolls` : 'none'}</b>
+            Ritual: <b>{c.longevity ? `−${longevityModifier(c.longevity)} to aging rolls` : 'none'}</b>
+            {c.longevity?.elixir ? ` (the ritual −${c.longevity.bonus}, its Lesser Elixir −${c.longevity.elixir.level}: ${c.longevity.elixir.ingredients.map((i) => i.name).join(', ')})` : ''}
           </span>
         ) : <Field label="Ritual bonus now" hint="A ritual made before play, or by another magus, can be entered here">
           <Stepper
@@ -323,7 +325,7 @@ export function LongevityCard({ ed }: { ed: CharEditor }) {
           </span>
         )}
       </div>
-      {c.longevityLapsed && !c.longevity && (atTable ? <LapsedRitual ed={ed} onSaid={setSaid} /> : <div className="small warn-text">The ritual (−{c.longevityLapsed.bonus}) ended with an aging crisis; it can be performed again from its Laboratory Text.</div>)}
+      {c.longevityLapsed && !c.longevity && (atTable ? <LapsedRitual ed={ed} onSaid={setSaid} /> : <div className="small warn-text">The ritual (−{longevityModifier(c.longevityLapsed)}) ended with an aging crisis; it can be performed again from its Laboratory Text.</div>)}
       {said && <div className="small good-text">{said}</div>}
       {magus && (
         <div className="row" style={{ marginTop: 6 }}>
