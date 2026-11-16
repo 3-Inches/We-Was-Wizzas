@@ -609,6 +609,63 @@ export interface SympathyTrait {
   xp?: number;
 }
 
+/** A learned magician's charm (Hedge Magic): known by heart, cast in seconds. */
+export interface LearnedCharm {
+  uid: string;
+  name: string;
+  /** its Technique and Form, e.g. TuFa */
+  tf: string;
+  level: number;
+  range: string;
+  duration: string;
+  target: string;
+  text?: string;
+  /** learned in training (5 levels an experience point) or in play */
+  source: 'training' | 'play';
+}
+
+/** A vitki's rune script (Hedge Magic, Vitkir): its runes, by name, effect first. */
+export interface RuneScript {
+  uid: string;
+  name: string;
+  runes: string[];
+  level: number;
+  method: 'I' | 'II' | 'III';
+  text?: string;
+  /** learned in apprenticeship (from its 120 levels) or in play */
+  source: 'training' | 'play';
+}
+
+export interface LearnedMagic {
+  /** years trained under a master: 30 experience points each, from the later-life years */
+  trainingYears?: number;
+  charms?: LearnedCharm[];
+  /** a charm being invented: the points gathered so far (the Lab Total × 5 less its level, each season) */
+  inventing?: { charm: LearnedCharm; progress: number; seasons: number };
+}
+
+/** A folk witch's fetish (a dowsing rod, a broom, a knitted skin) or a brew of potions (Hedge Magic). */
+export interface WitchThing {
+  uid: string;
+  power: string;
+  name: string;
+  kind: 'fetish' | 'potion';
+  /** a potion: the Brew Potency and the doses left */
+  potency?: number;
+  doses?: number;
+  /** a potion's effect: a curse, a Wound or Fatigue level, an animal */
+  effect?: string;
+  madeYear?: number;
+}
+
+export interface FolkWitchInfo {
+  /** years of apprenticeship (about ten from age ten): 200 experience points in all, from the later-life years */
+  apprenticeYears?: number;
+  things?: WitchThing[];
+  /** the Witch Moon under way: the months so far and the Warping Score it began at */
+  witchMoon?: { months: number; warpingScore: number; pointsGained: number };
+}
+
 export interface PersonalityTrait {
   uid: string;
   trait: string;
@@ -1091,6 +1148,20 @@ export interface Character {
   longevityLapsed?: LongevityRitual;
   /** Sympathy Traits (Realms of Power: Faerie): a bond through the Faerie realm with a class of subjects, positive or negative */
   sympathy?: SympathyTrait[];
+  /** a learned magician's training, charms and charm inventions (Hedge Magic, Learned Magicians) */
+  learned?: LearnedMagic;
+  /** a folk witch's apprenticeship, fetishes, potions and Witch Moon (Hedge Magic, Folk Witches) */
+  folkWitch?: FolkWitchInfo;
+  /** a gruagach's apprenticeship and spells known (Hedge Magic, Gruagachan); the spells use the charm record */
+  gruagach?: { apprenticeYears?: number; spells?: LearnedCharm[] };
+  /** Devotions to the saints, in Devotion Points (The Church) */
+  devotions?: { uid: string; saint: string; points: number }[];
+  /** a pilgrimage under way: its aim, Target Level and the Oppositional Elements overcome (The Church) */
+  pilgrimage?: { aim: string; target: number; overcome: { label: string; value: number; once?: 'abroad' }[] };
+  /** a contemplative mystic's Spiritual Path: the Revelation sought, its Path Total and the Quest Components done (The Church) */
+  spiritualPath?: { revelation: string; total: number; components: { label: string; value: number }[] };
+  /** a vitki's apprenticeship and rune scripts known (Hedge Magic, Vitkir) */
+  vitki?: { apprenticeYears?: number; scripts?: RuneScript[] };
   /** The Great Elixir (The Mysteries): attempts so far, and once it works, the age it fixed and the Magic Might it gave */
   greatElixir?: { attempts?: number; transformedAge?: number; might?: number };
   /** spells, powers and rituals working on the character, or that changed it for good */

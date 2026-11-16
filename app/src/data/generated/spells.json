@@ -13269,6 +13269,1848 @@
   }
  },
  {
+  "name": "Scent of Ash",
+  "technique": "In",
+  "form": "Au",
+  "requisites": [],
+  "level": 15,
+  "general": false,
+  "range": "Personal",
+  "duration": "Concentration",
+  "target": "Smell",
+  "ritual": false,
+  "text": "The caster can smell and identify, on the breath of the air, the ash that has carried from volcanoes. This is enough information for the caster to determine the approximate direction and distance to each of the volcanoes he detects. A dormant volcano can be detected in this way from within one league (three miles), a volcano that has erupted within the last 100 years can be detected from within seven leagues (21 miles), and a volcano that has erupted in the last season can be detected from within 100 miles. Dormant volcanoes are\n\ndetectable in this way because ash from their violent eruption is still present in the environment. The ash may have fallen to the ground, but some small (but detectable via Hermetic magic) fraction has been\n\nOf course, the huge plume of ash from a large on-going eruption can easily be identified without the aid of magic from many hundreds of miles away.\n\nblown up into the air again.\n\nRequired Lab Total to invent spell: One Season (30), Two Seasons (23), Three Seasons (20), Four Seasons (19).",
+  "design": "Base 4, +1 Concentration, +2 Smell",
+  "source": {
+   "book": "HP",
+   "line": 626,
+   "anchor": "scent-of-ash"
+  },
+  "id": "scent-of-ash-inau-15",
+  "base": 4
+ },
+ {
+  "name": "Trail of Ember",
+  "technique": "In",
+  "form": "Te",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Arcane Connection",
+  "duration": "Momentary",
+  "target": "Individual The caster of this spell throws a piece of volcanic rock onto a map. The rock lands on the location of the volcano it was expelled from. If the volcano's location is not bounded by the map",
+  "ritual": false,
+  "text": ", then the rock rolls off in the direction that the volcano lies.\n\nIf the rock thrown onto the map is not volcanic, then it just lands somewhere at random. The caster can confirm this by casting the spell several times: a volcanic rock will always land on the same spot on the map.\n\nNote that a volcanic rock created via Creo Terram magic will not reveal what volcano it came from when thrown onto the map with the Trail of Ember spell. This is because such a magically created volcanic rock did not in fact come from a volcano.",
+  "design": "Base 4, +4 Arcane",
+  "source": {
+   "book": "HP",
+   "line": 664,
+   "anchor": "trail-of-ember"
+  },
+  "id": "trail-of-ember-inte-20",
+  "base": 4
+ },
+ {
+  "name": "Tear the Earth Asunder",
+  "technique": "Cr",
+  "form": "Te",
+  "requisites": [],
+  "level": 65,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "The caster of this ritual stabs a dagger into the ground: from the wound a volcano rises, and lava and scalding gases erupt. Over a period of a day, the volcano erupts, darkening the sky with plumes of ash, and forming a large volcanic crater.\n\nObviously, the eruption of the volcano devastates villages, towns, monasteries, covenants, or other settlements built in its shadow. Once the spell has been cast, there is no active magical effect; the eruption is natural and does not need to Penetrate Magic Resistance, and consequent rivers of lava and falling ash can also pass unhindered through an Aegis of the Hearth. The caster of the ritual also needs some form of protection to avoid being killed in the eruption.\n\nThe volcano region can be up to 20 miles in diameter (though the crater will be a fraction of this size), and the peak can be up to 15,000 feet high (which would make it one of the taller mountains in Mythic Europe).",
+  "design": "Base 3, +1 Touch, +13 Size",
+  "source": {
+   "book": "HP",
+   "line": 702,
+   "anchor": "tear-the-earth-asunder"
+  },
+  "id": "tear-the-earth-asunder-crte-65",
+  "base": 3
+ },
+ {
+  "name": "Awaken Sleeping Giant!",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [
+   "Ig"
+  ],
+  "level": 45,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Part",
+  "ritual": true,
+  "text": "This spell is cast in the crater of a dormant volcano, and causes the volcano to erupt into life again. The volcanic crater can be up to two miles across, and the spell has no effect if cast in a location other than a volcanic crater. Obviously, the caster will be caught in the eruption, which may be a problem if he is not protected by appropriate wards.\n\nOnce the spell has been cast there is no active magical effect; the eruption is natural and does not need to Penetrate Magic Resistance. The effect is considered \"slightly unnatural,\" as it is natural for a volcano to erupt, but the spell artificially triggered the eruption.",
+  "design": "Base 2, +1 Touch, +1 Part, +8 Size, +1 affect Volcano (same as stone)",
+  "source": {
+   "book": "HP",
+   "line": 718,
+   "anchor": "awaken-sleeping-giant"
+  },
+  "id": "awaken-sleeping-giant-rete-45",
+  "base": 2
+ },
+ {
+  "name": "Steed of Vesuvius",
+  "technique": "Mu",
+  "form": "An",
+  "requisites": [
+   "Ig"
+  ],
+  "level": 45,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spell magically transforms a horse so that he is able to gallop across molten lava as if it were a cobbled road. The horse also has no fear of the heat or fumes expelled by the lava, and he does not suffer from the heat of the lava or the toxicity of the fumes. The rider of the horse does not receive any protection from this spell.\n\nWhen the spell expires, the horse suffers a Long-Term Fatigue level.\n\nThe requisite is free because it is part of the guideline and required for the effect.",
+  "design": "Base 25, +1 Touch, +2 Sun, +1 Size, free requisite",
+  "source": {
+   "book": "HP",
+   "line": 800,
+   "anchor": "steed-of-vesuvius"
+  },
+  "id": "steed-of-vesuvius-muan-45",
+  "base": 25
+ },
+ {
+  "name": "Creeping Earth",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [],
+  "level": 25,
+  "general": false,
+  "range": "Touch",
+  "duration": "Moon",
+  "target": "Part",
+  "ritual": false,
+  "text": "The caster of this spell stamps his foot on the ground and a patch of earth, centered on his position and 35 paces across, slowly but inexorably rises up for the duration of the spell. The earth rises at a rate of about one inch per day (up to three feet over the spell duration).\n\nThis is fast enough for people to observe if they watch the earth for more than a Diameter, and the movement can destroy buildings and other structures — even the strongest castle walls run the risk of collapse.\n\nThis spell only works when cast within a league of a volcano (three miles). This is because this movement is only a slightly unnatural property of the earth in such regions, whereas it is a grossly unnatural property of earth elsewhere.",
+  "design": "Base 2, +1 Touch, +3 Moon, +1 Part, +2 Size",
+  "source": {
+   "book": "HP",
+   "line": 869,
+   "anchor": "creeping-earth"
+  },
+  "id": "creeping-earth-rete-25",
+  "base": 2
+ },
+ {
+  "name": "Flame Tongue",
+  "technique": "Re",
+  "form": "Aq",
+  "requisites": [
+   "Ig"
+  ],
+  "level": 25,
+  "general": false,
+  "range": "Voice",
+  "duration": "Momentary",
+  "target": "Part",
+  "ritual": false,
+  "text": "This spell causes a glutinous glob of lava (from a lake or river of magma) to leap out and hit something. The volume of lava moved is about 2 cubic feet, and it can be moved to hit any location within Voice range. Whatever the lava hits takes between +15 and +60 damage, depend-\n\nThe heat of the lava is also sufficient to ignite anything flammable that it hits.\n\nFlame Tongue is an Aimed spell, with a +6 bonus to hit due to the size of the volume of lava.\n\nIf the caster tries to totally immerse a person with the lava projectile, there is a –6 penalty to the Aiming Roll (effectively canceling the +6 size bonus). There is no penalty to the Aiming Roll if the objective is to merely splash someone. In some circumstances, the storyguide may decide that a missed attack to immerse a character results in a splash.",
+  "design": "Base 10, +2 Voice, +1 Size",
+  "source": {
+   "book": "HP",
+   "line": 885,
+   "anchor": "flame-tongue"
+  },
+  "id": "flame-tongue-reaq-25",
+  "base": 10
+ },
+ {
+  "name": "Scorn of Aphrodite's Tears",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [
+   "Ig"
+  ],
+  "level": 70,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This ritual is cast when the eruption of a volcano is imminent, and it climaxes with a vial of pure water being poured into the crater mouth. The ritual prevents the volcano from erupting.\n\nThe volcano region can be up to 20 miles in diameter (although the crater will be only a fraction of this size), and the peak can be up to 15,000 feet high.",
+  "design": "Base 3, +1 Touch, +13 Size, +1 affect a volcano (equivalent to affecting stone)",
+  "source": {
+   "book": "HP",
+   "line": 904,
+   "anchor": "scorn-of-aphrodites-tears"
+  },
+  "id": "scorn-of-aphrodites-tears-rete-70",
+  "base": 3
+ },
+ {
+  "name": "The Heart That Could Move Stone",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [],
+  "level": 25,
+  "general": false,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Structure",
+  "ritual": false,
+  "text": "The caster can move stone buildings with incredible force. This usually causes the stone building to collapse, as it is torn from its foundations. Anyone inside takes +10 damage from the falling structure.\n\nHowever, if the building is floating (through the Repulsion of Earth effect, for example), then the character can push the building to a new location. Characters inside the building when it is being moved must make Dexterity rolls against an Ease Factor of 6, each round, or lose their footing. Unless special precautions are taken, laboratories inside the building are disrupted by the movement, which ruins any laboratory activities being conducted that season. It takes a season to reorganize a laboratory disrupted in this way.",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 1033,
+   "anchor": "the-heart-that-could-move-stone"
+  },
+  "id": "the-heart-that-could-move-stone-rete-25",
+  "base": null
+ },
+ {
+  "name": "Sculpt the Stone Machine",
+  "technique": "Cr",
+  "form": "Te",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This ritual creates a machine made of stone that is suitable for use as the invested item Stone Harvester. The machine appears to be a large stone beetle about one pace in length. Until it is invested with the Stone Harvester suite of effects, the machine is merely a very elaborate statue.",
+  "design": "Base 3, +1 Touch, +3 elaborate design, +1 minimum ritual effect magnitude",
+  "source": {
+   "book": "HP",
+   "line": 1087,
+   "anchor": "sculpt-the-stone-machine"
+  },
+  "id": "sculpt-the-stone-machine-crte-20",
+  "base": 3
+ },
+ {
+  "name": "Basalt Cage",
+  "technique": "Cr",
+  "form": "Te",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This ritual creates a large cage made out of basalt stone with a single gate (also made of basalt) that can be opened and shut. The cage is large enough to hold ten man-sized creatures. Individuals in the cage may find it difficult to escape, if the gate is somehow locked or barred. However, the main purpose of the ritual is to create a cage which is subsequently enchanted as an item with the effect The Entrapped Flame.\n\nNote that, if your character is talented at Rego magics, he may find it easier to use a Rego Terram craft effect to sculpt such a cage from a hunk of basalt. However, remember to consider that the magus must make a Finesse roll against an Ease Factor of 24 to succeed in casting such a Rego craft effect, as it would be hard for a mundane craftsman to sculpt such an item and it would take him a long time to do so (see Covenants page 49).",
+  "design": "Base 3, +1 Touch, +1 Size, +1 complex structure, +2 minimum level of a ritual",
+  "source": {
+   "book": "HP",
+   "line": 1350,
+   "anchor": "basalt-cage"
+  },
+  "id": "basalt-cage-crte-20",
+  "base": 3
+ },
+ {
+  "name": "Sense the Hearts of Fire",
+  "technique": "In",
+  "form": "Ig",
+  "requisites": [],
+  "level": 30,
+  "general": false,
+  "range": "Personal",
+  "duration": "Sun",
+  "target": "Vision",
+  "ritual": false,
+  "text": "The caster detects whether creatures he can see have an Ignem Form Might. This is a magical property of a creature made of flame. It has no effect on creatures that are not made of Ignem, regardless of whether they have a Might or not. Creatures apparently made of flame (creatures of another Form, illusions, or the effects of Hermetic Rego Ignem magic) who do not have an Ignem Form Might are also not detected by this effect.\n\nObviously, this spell needs to Penetrate the Magic Resistance of the detected creatures.",
+  "design": "Base 4, +2 Sun, +4 Vision",
+  "source": {
+   "book": "HP",
+   "line": 1417,
+   "anchor": "sense-the-hearts-of-fire"
+  },
+  "id": "sense-the-hearts-of-fire-inig-30",
+  "base": 4
+ },
+ {
+  "name": "Sublimation of Flame",
+  "technique": "Mu",
+  "form": "Ig",
+  "requisites": [
+   "Au"
+  ],
+  "level": 30,
+  "general": false,
+  "range": "Voice",
+  "duration": "Diameter",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spell changes a fire elemental (or another creature made of fire) into air for a short period of time. This renders the fire elemental incapable of using many of its powers for the duration of the spell.\n\nIf the target is in a well-ventilated area (such as outside), then the air that forms its body disperses. This inflicts an Incapacitating Wound on the fire elemental, and when its body returns to fire, numerous small fires erupt throughout the volume it has filled (about 50 paces across). These small fires cause +3 damage to anyone in the volume, and ignite flammable materials.\n\nIf the target is in an enclosed area (such as inside a room), then the air is closely contained, and the creature suffers no damage. When the fire elemental's body returns to flame anyone else remaining within the room immediately takes either +10 or +Might damage (whichever is greater) as the elemental's incandescent body of flame coalesces.\n\nThis spell must Penetrate the Magic Resistance of the fire elemental. This spell is able to affect creatures of up to Size +6 (this includes fire elementals of up to Might 25)\n\nRequired Lab Total to invent spell: One Season (60), Two Seasons (45), Three Seasons (40), Four Seasons (38).",
+  "design": "Base 5, +2 Voice, +1 Diameter, +2 size",
+  "source": {
+   "book": "HP",
+   "line": 1460,
+   "anchor": "sublimation-of-flame"
+  },
+  "id": "sublimation-of-flame-muig-30",
+  "base": 5
+ },
+ {
+  "name": "Conjuring the Great Tower",
+  "technique": "Cr",
+  "form": "Te",
+  "requisites": [],
+  "level": 55,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This ritual creates the foundations and first two levels of the tower. As the ritual concludes, the walls of a vast tower rise from the ground, surrounding those taking part in the ritual. The walls are vast, but the real power of the spell is shown below ground. The foundations extend deep into the earth, forming cellars, crypts, and cisterns between the immense stone pillars driven into the ground.\n\nThe time taken to develop this ritual is spent not only in learning how to draw the complex magical forces together, but also in designing the foundations and the lowest levels of the tower, which are filled with rooms, cloisters, courtyards, and arcades.\n\nCreo magic that creates artificial things, such as this huge tower, requires an Int + Finesse stress roll against an Ease Factor, in this case, of 12. If the roll fails, the tower is still successfully conjured but may require additional work to improve its appearance or to repair defects introduced by the casting. A failed Finesse roll creates a section of tower of shoddy quality, while a successful roll creates a standard quality section. If the Finesse roll botches, the foundations are not strong enough to support the tower and a stress check against damage is required each year.\n\nThe +7 magnitudes for size creates a circular tower of two levels, 2,000 feet in diameter, standing 40 feet above ground level. The high modifier for the elaborate design is required for the precise placement of the foundations, a hugely important factor in a tower this large.\n\nCasting this ritual causes a +1 preternatural tether, as per Realms of Power: Magic, page 10. If the site has no supernatural aura, this creates a level one Magic aura.\n\nThe high Lab Total required to invent this ritual may persuade a magus to invest time in designing a laboratory to help with this and later effects. And even after such bonuses as that provides, experimentation may still be an attractive option. Side effects may include the over-expression of the magus' sigil or per-\n\nsonality in the tower, or the tower may be made of an unknown stone, the properties of which the magus must investigate. They may also make the Finesse roll more difficult as the magical energies strain away from where the magus tries to direct them.",
+  "design": "Base 3, +1 Touch, +7 size, +4 elaborate design",
+  "source": {
+   "book": "HP",
+   "line": 1993,
+   "anchor": "conjuring-the-great-tower"
+  },
+  "id": "conjuring-the-great-tower-crte-55",
+  "base": 3
+ },
+ {
+  "name": "Heights of the Great Tower",
+  "technique": "Cr",
+  "form": "Te",
+  "requisites": [],
+  "level": 50,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This ritual conjures four fully-formed levels of the Great Tower, each 20 feet in height and building directly onto the level below, adding 80 feet to the tower in an instant. As with conjuring the foundations, this ritual requires an Int + Finesse stress roll against an Ease Factor of 12. A failed Finesse roll creates a section of tower of shoddy quality, while a successful roll creates a standard quality section. Botch dice on this Finesse roll are equal to 1 + 1 for each other level where the magus failed to meet the Finesse roll (failures should be recorded for future reference). This represents the inherent complexities and dangers of the project.\n\nBotches on this roll should be handled as story events, but clearly a botch in creating and assembling several thousand tons of stone is going to be significant. As the tower grows, the complexity of controlling the magic also grows, as does the risk of disaster, which may act as a limiting factor on the number of levels a magus would feel safe in conjuring.\n\nNote that by increasing the level of this spell by one magnitude, 40 levels of the tower could be produced, and 400 levels could be produced by increasing the spell by two magnitudes. But doing so should have a direct impact on the number of botch dice for the required Finesse roll. For each additional magnitude of size, add +3 to both the botch dice and the Finesse roll Ease Factor.\n\nCasting this spell creates a preternatural tether of 1 and adds +1 to the aura variation modifier.",
+  "design": "Base 3, +1 Touch, +7 size, +3 elaborate design",
+  "source": {
+   "book": "HP",
+   "line": 2018,
+   "anchor": "heights-of-the-great-tower"
+  },
+  "id": "heights-of-the-great-tower-crte-50",
+  "base": 3
+ },
+ {
+  "name": "The Quarryman's Gift of (Stone)",
+  "technique": "Cr",
+  "form": "Te",
+  "requisites": [],
+  "level": 35,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "Safer than conjuring thousands of tons of stone atop an already growing tower, this spell creates enough stone for quarrymen and stone cutters to keep mundane craftsmen supplied for as long as it takes to build one new level. The amount of stone created is vast, something like ten million tons, or a block of stone 215 paces on each side.\n\nThe type of stone created is particular to the ritual's design, so variants must be designed for each of granite, limestone, and marble, for instance.",
+  "design": "Base 3, +1 Touch, +7 size",
+  "source": {
+   "book": "HP",
+   "line": 2036,
+   "anchor": "the-quarrymans-gift-of-stone"
+  },
+  "id": "the-quarrymans-gift-of-stone-crte-35",
+  "base": 3
+ },
+ {
+  "name": "A Season's Inning",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [
+   "Aq"
+  ],
+  "level": 25,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Boundary",
+  "ritual": true,
+  "text": "Some waterways, especially those near estuaries, are surrounded by marshland. However, there are techniques for building up and draining the land. This can take many seasons of work, with a large team of laborers working in very difficult conditions. The draining of marshland through the digging of drainage channels and the building of dykes is known as inning. This ritual allows the magus to drain an area 300 by 300 paces to the point that it is dry and stable, as though a season had been spent inning the land. The Aquam requisite is used to move the standing water outside the spell boundary, which makes the inning work easier than normal.\n\nThis spell uses the rules for Rego Craft Magic (Covenants, page 49) and as such the\n\nriver barge, or a larger waterway to take a\n\nmagus must make a Perception + Finesse roll to determine the success and quality of his work. In this case, the Ease Factor is 15 (base 9 + 6 for a season's work). Failure means that, while the drainage ditches may have been dug, they are either too shallow or too few to drain the land. If left, the land is likely to remain waterlogged and building on it is impossible.\n\n(Base 2, +1 Touch, +4 Boundary, +1 Size, +1 Aquam requisite)\n\nRemote Shipyards\n\nbuss or cog.\n\nto affect stone)\n\nSome magi or covenants may choose to build or enchant a ship, either without a shipyard or with a shipyard built some way distant from a waterway. While this makes things more complicated, Hermetic magic can overcome most difficulties.\n\nThere are many reasons for building ships away from rivers and the sea. For one, it allows the construction work to be carried out unseen by curious eyes, and for another, the magus is less restricted with regards to Magical auras.\n\nA secluded lake allows the Hermetic shipwright to test the boats he makes, and there are almost certainly streams and rivers that drain the lake that can be",
+  "design": "Base 3, +1 Touch, +1 Part; +3 size, +1",
+  "source": {
+   "book": "HP",
+   "line": 2826,
+   "anchor": "a-seasons-inning"
+  },
+  "id": "a-seasons-inning-rete-25",
+  "base": 3
+ },
+ {
+  "name": "Follow the Route I Command",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [],
+  "level": 25,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Part",
+  "ritual": false,
+  "text": "This spell carves a new channel in the ground with both ends connected to an existing waterway. As the spell completes, the water flushes into this new section and the spoil from the work starts to fill the old channel. The magus must be touching the ground that he wants the new channel to pass through.\n\nThe movement of a large amount of earth, while time-consuming, requires little skill. A Perception + Finesse roll against Ease Factor 12 is needed. Failure means that the channel is incomplete, or the old route is still flooded. If the Finesse roll botches, the work appears complete but the land is now liable to flooding, causing damage to crops and homes alike.",
+  "design": "Base 3, +1 Touch, +1 Part, +3 size, +1 to affect stone",
+  "source": {
+   "book": "HP",
+   "line": 2862,
+   "anchor": "follow-the-route-i-command"
+  },
+  "id": "follow-the-route-i-command-rete-25",
+  "base": 3
+ },
+ {
+  "name": "A Mightier Channel",
+  "technique": "Pe",
+  "form": "Te",
+  "requisites": [],
+  "level": 25,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Part",
+  "ritual": false,
+  "text": "On casting this spell while touching the river bank, the river is dredged, deepening and widening it as required by the casting magus. A single casting is enough to prepare a small waterway to take a large",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 2876,
+   "anchor": "a-mightier-channel"
+  },
+  "id": "a-mightier-channel-pete-25",
+  "base": null
+ },
+ {
+  "name": "The Unseen Shipwright",
+  "technique": "Re",
+  "form": "He",
+  "requisites": [
+   "Te"
+  ],
+  "level": 30,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Group",
+  "ritual": false,
+  "text": "The magus selects a pile of wood and formed iron fixtures, and the spell cuts, carves, and joins the wood into the hull of a target ship, repairing splits and holes under the magus' direction. The worst damage is repaired first so that the vessel is always left seaworthy and the repairs are practically seamless.\n\nA Perception + Finesse roll is required against an Ease Factor set by the storyguide. The table on Covenants, page 49, is a useful guide, but a rule of thumb is that repairing a small leak or a splintered rudder is a task of average difficulty taking no more than a day for an Ease Factor of 12, while refloating a wrecked ship is almost impossible, with an Ease Factor of at least 27 (plus any modifiers that the storyguide imposes based on how long it might take a mundane shipwright to refloat the vessel).\n\nThe magus must have appropriate materials to hand in order to make repairs.\n\nNo shape or material bonuses apply\n\nbut appropriate laboratory bonuses can be applied. Experiment side effects might include the repairs being obvious or weakened, or the Ease Factors for the Finesse rolls may be modified.",
+  "design": "Base 5, +1 Touch, +2 Group, +1 size, +1 flexibility",
+  "source": {
+   "book": "HP",
+   "line": 3213,
+   "anchor": "the-unseen-shipwright"
+  },
+  "id": "the-unseen-shipwright-rehe-30",
+  "base": 5
+ },
+ {
+  "name": "Running Repairs",
+  "technique": "Cr",
+  "form": "He",
+  "requisites": [
+   "Te"
+  ],
+  "level": 30,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Structure",
+  "ritual": true,
+  "text": "This ritual repairs a single damage level to a vessel, represented by the magus identifying and targeting the damaged area of the ship. This ritual may be cast on a ship that has lost multiple damage levels, but only one of those levels will be repaired. A Terram requisite is required to mend or replace bolts, nails, and other fixtures.\n\nIf cast on a ship with at least one remaining damage level, any enchantments in the ship are preserved. If the ship has no damage levels remaining, then the enchantments are lost.",
+  "design": "Base 3, +1 Touch, +3 Structure, +2 for treated and processed Herbam, +1 Terram requisite",
+  "source": {
+   "book": "HP",
+   "line": 3323,
+   "anchor": "running-repairs"
+  },
+  "id": "running-repairs-crhe-30",
+  "base": 3
+ },
+ {
+  "name": "Lifting the Storm",
+  "technique": "Re",
+  "form": "Au",
+  "requisites": [],
+  "level": 45,
+  "general": false,
+  "range": "Voice",
+  "duration": "Sun",
+  "target": "Group",
+  "ritual": false,
+  "text": "Poor weather can keep ships anchored in harbor for weeks, while their captains wait for the weather to turn. This spell controls even the strongest of storms, carving a channel through the weather through which ships can sail.\n\nNote that the spell is powerful enough to lift a storm across a harbor, but the effect is somewhat localized. This means that the weather may still be problematic out to sea, but at least the ships are able to safely leave the more treacherous inshore waters. The Sun duration allows multiple ships to sail under a single casting.\n\nIf designed in the Hermetic Shipyard, this spell benefits from a +1 bonus to the laboratory total for each of Rego and Auram.",
+  "design": "Base 5, +2 Voice, +2 Sun, +2 Group, +2 size",
+  "source": {
+   "book": "HP",
+   "line": 3873,
+   "anchor": "lifting-the-storm"
+  },
+  "id": "lifting-the-storm-reau-45",
+  "base": 5
+ },
+ {
+  "name": "The Minute of Reckoning",
+  "technique": "Re",
+  "form": "Vi",
+  "requisites": [],
+  "level": null,
+  "general": true,
+  "range": "Arcane Connection",
+  "duration": "Diameter",
+  "target": "Individual This spells opens a magical tunnel between the caster and the target. Spells cast through this tunnel can be up to the level of this spell",
+  "ritual": false,
+  "text": "Unlike the Opening the Intangible Tunnel spell, the caster does not need to maintain concentration on this spell; this spell has\n\nNote that, despite the name of this spell, a Diameter duration spell actually lasts for two minutes.",
+  "design": "Base effect, +4 Arc, +1 Diameter",
+  "source": {
+   "book": "HP",
+   "line": 4078,
+   "anchor": "the-minute-of-reckoning"
+  },
+  "id": "the-minute-of-reckoning-revi-gen",
+  "base": null
+ },
+ {
+  "name": "The Cursèd Day",
+  "technique": "Re",
+  "form": "Vi",
+  "requisites": [],
+  "level": null,
+  "general": true,
+  "range": "Arcane Connection",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spells opens a magical tunnel between the caster and the target. Spells cast through this tunnel must be at least one magnitude less than the level of this spell.\n\nThis spell has duration of Sun. (Base effect, +4 Arc, +2 Sun)",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 4093,
+   "anchor": "the-cursèd-day"
+  },
+  "id": "the-cursed-day-revi-gen",
+  "base": null
+ },
+ {
+  "name": "The Evil Eye",
+  "technique": "Re",
+  "form": "Vi",
+  "requisites": [],
+  "level": null,
+  "general": true,
+  "range": "Sight",
+  "duration": "Diameter",
+  "target": "Individual Sometimes a magus cannot acquire an Arcane Connection to his quarry. This spell opens a tunnel between the magus",
+  "ritual": false,
+  "text": "and any target within Sight Range.\n\nThe advantage of this is that it lowers the effective range between the magus and the target — which means that lower magnitude effects can be used on the target, which should increase the effective Penetration Total.\n\nEffects cast through The Evil Eye tunnel can be up to one magnitude greater than the magnitude of The Evil Eye spell.\n\nRequired Lab Total to invent spell: depends upon level.",
+  "design": "Base effect, +3 Sight, +1 Diameter",
+  "source": {
+   "book": "HP",
+   "line": 4119,
+   "anchor": "the-evil-eye"
+  },
+  "id": "the-evil-eye-revi-gen",
+  "base": null
+ },
+ {
+  "name": "The Master's Message",
+  "technique": "Re",
+  "form": "Vi",
+  "requisites": [],
+  "level": null,
+  "general": true,
+  "range": "Touch",
+  "duration": "Moon",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spell opens a tunnel between the magus and a character that he touches.\n\nOnce it is cast, the tunnel remains in place, even if the characters break contact. The purpose of this spell is to enable the magus to open a tunnel between himself and a grog. The grog can then depart on a mission, and the magus is able to monitor his progress and cast spells through the tunnel as required.\n\nEven if the grog character has no Magic Resistance, it is a good idea to record the Penetration of this spell, as the grog may try to pass through a hostile Aegis.\n\nEffects cast through The Master's Message tunnel can be up to one magnitude greater than the magnitude of The Master's Message spell.",
+  "design": "Base effect, +1 Touch, +3 Moon",
+  "source": {
+   "book": "HP",
+   "line": 4135,
+   "anchor": "the-masters-message"
+  },
+  "id": "the-masters-message-revi-gen",
+  "base": null
+ },
+ {
+  "name": "Arcane Seal",
+  "technique": "Re",
+  "form": "Vi",
+  "requisites": [],
+  "level": null,
+  "general": true,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spell can be cast on a magical tunnel created by an Intangible Tunnel-style of effect, but it may only be cast by the magus who originally cast the Intangible Tunnel\n\neffect, because this spell uses the \"suppress own spell\" guideline (see ArM5, page 161).\n\nThe tunnel is sealed for the duration of this spell, and spells can no longer be cast through the tunnel in either direction.\n\nWhen this spell expires, or it is ended some other way, the tunnel may be used again (if it has not expired in the meantime). This spell may be used to seal Intangible Tunnel type effects of a level up to one magnitude less than this spell. The seal itself appears as a Hermetic sigil emblazoned in the air.\n\nNote that the seal itself is a spell, and so can be dispelled. However, the seal is only present at the caster's end of the Intangible Tunnel. There is nothing to dispel at the other end.",
+  "design": "Base effect, +1 Touch, + 2 Sun",
+  "source": {
+   "book": "HP",
+   "line": 4167,
+   "anchor": "arcane-seal"
+  },
+  "id": "arcane-seal-revi-gen",
+  "base": null
+ },
+ {
+  "name": "Break the Siege",
+  "technique": "Re",
+  "form": "Vi",
+  "requisites": [],
+  "level": null,
+  "general": true,
+  "range": "Voice",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spell suppresses a magical tunnel created by Hermetic Vim magic, if the level of the magical tunnel creating spell is less than or equal to half the level of this spell + 1 magnitude. For the duration of this spell, spells can no longer be cast\n\nthrough the tunnel, in either direction. When this spell expires, or it is ended some other way, the tunnel may be used again (if it has not expired in the meantime).\n\nIt is a good idea to master this spell taking the Fast Casting mastery (ArM5, page 87).\n\nThis spell can be cast at either end of the magical tunnel. However, note that, without the aid of magical senses, only the original caster of the magical tunnel can target it. Of course, the Break the Siege effect is a spell, and can be dispelled itself. However, the Break the Siege spell is only present at the end which it was cast at. There is nothing to dispel at the other end.",
+  "design": "Base effect, +2 Voice, +2 Sun",
+  "source": {
+   "book": "HP",
+   "line": 4187,
+   "anchor": "break-the-siege"
+  },
+  "id": "break-the-siege-revi-gen",
+  "base": null
+ },
+ {
+  "name": "Listen to the Bells",
+  "technique": "In",
+  "form": "Te",
+  "requisites": [],
+  "level": 30,
+  "general": false,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Individual The caster of spell holds a bell and he can sense whatever the bell can sense with its magical senses. Usually a bell has",
+  "ritual": false,
+  "text": "no magical senses, but this spell is useful if the bell has been enchanted with some, as is the Assassin's Bell.\n\nIn the case of the Assassin's Bell, using the bell's senses provides enough information to use or target tunnels that the bell can hear.",
+  "design": "Base 20, +1 Touch, +1 Diameter",
+  "source": {
+   "book": "HP",
+   "line": 4249,
+   "anchor": "listen-to-the-bells"
+  },
+  "id": "listen-to-the-bells-inte-30",
+  "base": 20
+ },
+ {
+  "name": "Eyes for the Lurking Assassin",
+  "technique": "In",
+  "form": "Vi",
+  "requisites": [],
+  "level": 45,
+  "general": false,
+  "range": "Personal",
+  "duration": "Diameter",
+  "target": "Vision",
+  "ritual": false,
+  "text": "This spell detects the presence of an Intangible Tunnel-style tunnel, and reveals its sigil. This is sufficient information to use the tunnel or target the tunnel itself with spells.\n\nNote that a general Intellego Vim spell to detect magic might be used to provide similar information. This spell, however, specifically detects only Intangible Tunnel effects. This is useful because, as a magus is likely to be often among a lot of magical effects, he does not want to take time to scan his surroundings individually identifying specific effects as he searches for an Intangible Tunnel (see See the Light of Magic). This is important because, if the magus suspects he is under attack by an Intangible Tunnel, he may only have moments to react.",
+  "design": "Base 5, +1 Diameter, +4 Vision, +3 detailed information",
+  "source": {
+   "book": "HP",
+   "line": 4263,
+   "anchor": "eyes-for-the-lurking-assassin"
+  },
+  "id": "eyes-for-the-lurking-assassin-invi-45",
+  "base": 5
+ },
+ {
+  "name": "Flesh Crawls at the Intangible Touch",
+  "technique": "In",
+  "form": "Vi",
+  "requisites": [],
+  "level": 30,
+  "general": false,
+  "range": "Personal",
+  "duration": "Diameter",
+  "target": "Touch",
+  "ritual": false,
+  "text": "The caster feels his skin crawling when he is the target of an Intangible Tunnel-style tunnel. This provides sufficient information to use the tunnel or target the tunnel itself with spells.\n\nHowever, note that this only works if the caster is himself the target of the tunnel. It does not work on tunnels that are cast on other characters. As with Eyes for the Lurking Assassin, a general detection spell might be useful too, but would perhaps make it more difficult to rapidly identify the tunnel in an emergency situation.",
+  "design": "Base 5, +1 Diameter, +1 Touch, +3 detailed information",
+  "source": {
+   "book": "HP",
+   "line": 4277,
+   "anchor": "flesh-crawls-at-the-intangible-touch"
+  },
+  "id": "flesh-crawls-at-the-intangible-touch-invi-30",
+  "base": 5
+ },
+ {
+  "name": "See the Light of Magic",
+  "technique": "In",
+  "form": "Vi",
+  "requisites": [],
+  "level": 30,
+  "general": false,
+  "range": "Personal",
+  "duration": "Diameter",
+  "target": "Vision",
+  "ritual": false,
+  "text": "The caster can detect all active magical effects. Spells appear as glowing lights with a brightness proportional to their magnitude. This spell provides sufficient information to target the sensed magical effects, but the magus does not receive any information about the magical effects, and therefore he does not know which effect is which, if he is looking for a particular one. However, if the caster has used this spell previously, he can identify the presence of a new effect. If there is a large number of effects present, the troupe may rule that a Perception + Awareness roll is required to notice this detail — the Ease Factor should be modified by the total number of effects the caster can perceive and the magnitude of the new effect (relative to the other effects).\n\nThere may be a large number of magical effects active within the vicinity of the magus — Parma Magica, longevity rituals, Aegis of the Hearth, familiar bonds, enchanted items, and of course, any active spells will all be detected. Active, non-Hermetic, but magical, effects are also detected.",
+  "design": "Base 5, +1 Diameter, +4 Vision",
+  "source": {
+   "book": "HP",
+   "line": 4293,
+   "anchor": "see-the-light-of-magic"
+  },
+  "id": "see-the-light-of-magic-invi-30",
+  "base": 5
+ },
+ {
+  "name": "Sense of the Lodestone",
+  "technique": "In",
+  "form": "Co",
+  "requisites": [],
+  "level": 5,
+  "general": false,
+  "range": "Touch",
+  "duration": "Concentration",
+  "target": "Individual The caster senses the distance and direction to the target. The caster must have an Arcane Connection to the target",
+  "ritual": false,
+  "text": "A Momentary duration version of this spell would actually be sufficient to determine the distance and direction of the target. However, by concentrating for several rounds, the caster can also use this spell to estimate the speed and direction of the target (if the target is in motion).\n\nRequired Lab Total to invent spell: One Season (10), Two Seasons (8), Three Seasons (7).",
+  "design": "Base 3, +1 Touch, +1 Concentration",
+  "source": {
+   "book": "HP",
+   "line": 4320,
+   "anchor": "sense-of-the-lodestone"
+  },
+  "id": "sense-of-the-lodestone-inco-5",
+  "base": 3,
+  "alsoIn": [
+   {
+    "book": "TtA",
+    "line": 6025,
+    "anchor": "sense-of-the-lodestone"
+   }
+  ]
+ },
+ {
+  "name": "Befuddled Speaker",
+  "technique": "Re",
+  "form": "Co",
+  "requisites": [],
+  "level": 5,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "The target stutters and slurs. Communication rolls made for the target are at –3, and he has a –6 penalty to spoken spellcasting (and an additional botch die).",
+  "design": "Base 2, +1 Touch, +2 Sun",
+  "source": {
+   "book": "HP",
+   "line": 4330,
+   "anchor": "befuddled-speaker"
+  },
+  "id": "befuddled-speaker-reco-5",
+  "base": 2
+ },
+ {
+  "name": "Searing Touch",
+  "technique": "Cr",
+  "form": "Ig",
+  "requisites": [],
+  "level": 5,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual The caster's fingers burn the target",
+  "ritual": false,
+  "text": ", leaving a brand in the shape of the caster's hand. The target takes +5 damage. Note that if this spell is not cast through an Intangible Tunnel, the caster will receive damage too.",
+  "design": "Base 4, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4342,
+   "anchor": "searing-touch"
+  },
+  "id": "searing-touch-crig-5",
+  "base": 4
+ },
+ {
+  "name": "Chill Touch of Exposure",
+  "technique": "Pe",
+  "form": "Ig",
+  "requisites": [],
+  "level": 5,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual The target shivers like an unwanted baby left alone in a cold and frosty dell",
+  "ritual": false,
+  "text": ", losing a Fatigue level. Repeated casting of this spell can cause the character to eventually become unconscious; this usually takes 5 castings. Mastering this spell with the Multiple Casting mastery can reduce the time that this takes. Once the target is unconscious, additional castings of the spell increase the length of time that the target naturally remains unconscious (see ArM5, page 179)\n\nIf the target is unconscious at either sunrise or sunset, then his Parma Magica will go down.",
+  "design": "Base 4, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4352,
+   "anchor": "chill-touch-of-exposure"
+  },
+  "id": "chill-touch-of-exposure-peig-5",
+  "base": 4
+ },
+ {
+  "name": "Fingers for Eyes",
+  "technique": "In",
+  "form": "Im",
+  "requisites": [],
+  "level": 5,
+  "general": false,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Room",
+  "ritual": false,
+  "text": "The caster can see the Room that the person he touches is in. The spell can be used by a blind magus to \"see,\" by moving around with his hand on the shoulder of a servant. It can also be used to see the location that an Intangible Tunnel-style effect terminates in.\n\nThis spell only works if the person touched is actually in a Room. This spell must Penetrate in order to sense creatures with Magic Resistance.",
+  "design": "Base 1, +1 Touch, +1 Diameter, +2 Room",
+  "source": {
+   "book": "HP",
+   "line": 4364,
+   "anchor": "fingers-for-eyes"
+  },
+  "id": "fingers-for-eyes-inim-5",
+  "base": 1
+ },
+ {
+  "name": "Breath of the Sleeper",
+  "technique": "In",
+  "form": "Me",
+  "requisites": [],
+  "level": 5,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": false,
+  "text": "asleep or not.",
+  "design": "Base 4, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4378,
+   "anchor": "breath-of-the-sleeper"
+  },
+  "id": "breath-of-the-sleeper-inme-5",
+  "base": 4
+ },
+ {
+  "name": "Nails of Iron",
+  "technique": "Pe",
+  "form": "Vi",
+  "requisites": [],
+  "level": 5,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual The touch of the caster tears at the fabric of stories. The target faerie is weakened and loses 10 Might Score. This must Penetrate the faerie's Magic Resistance. If the faerie is reduced to 0 Might it is destroyed",
+  "ritual": false,
+  "text": "Note that this spell is of little use in a Wizard's War. However, it is a good way to attack a faerie if the magus has discovered an Arcane Connection to it (and can therefore open an Intangible Tunnel to the faerie). Similar spells can be used to attack creatures of other realms.",
+  "design": "Base 4, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4391,
+   "anchor": "nails-of-iron"
+  },
+  "id": "nails-of-iron-pevi-5",
+  "base": 4
+ },
+ {
+  "name": "Sulfurous Membrane",
+  "technique": "Mu",
+  "form": "Au",
+  "requisites": [
+   "Co"
+  ],
+  "level": 10,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Part",
+  "ritual": false,
+  "text": "This effect transforms the air entering the character's lungs into a noxious sulfur vapor that causes +1 damage each round.",
+  "design": "Base 1, +1 Touch, +2 Sun , +1 Part, +1 Corpus requisite",
+  "source": {
+   "book": "HP",
+   "line": 4407,
+   "anchor": "sulfurous-membrane"
+  },
+  "id": "sulfurous-membrane-muau-10",
+  "base": 1
+ },
+ {
+  "name": "Claw of the Gladiator",
+  "technique": "Pe",
+  "form": "Co",
+  "requisites": [],
+  "level": 10,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual This spell opens a bloody wound on the target",
+  "ritual": false,
+  "text": ", which serves as a Light Wound. (Base 5, +1 Touch)",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 4421,
+   "anchor": "claw-of-the-gladiator"
+  },
+  "id": "claw-of-the-gladiator-peco-10",
+  "base": null
+ },
+ {
+  "name": "Close the Black Gate",
+  "technique": "Pe",
+  "form": "Co",
+  "requisites": [],
+  "level": 10,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual This spell destroys a corpse",
+  "ritual": false,
+  "text": ", turning it into a black pool of sticky, viscous liquid. This effect can be used to stop the sodales of a Wizard's War victim from using a Whispers Through the Black Gate to ask his ghost how he was attacked.\n\nObviously, there are other techniques for communicating with a ghost. However, Whispers Through the Black Gate is the most common such spell in use in the Order.",
+  "design": "Base 5, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4429,
+   "anchor": "close-the-black-gate"
+  },
+  "id": "close-the-black-gate-peco-10",
+  "base": 5
+ },
+ {
+  "name": "Snatched Voice",
+  "technique": "Pe",
+  "form": "Im",
+  "requisites": [],
+  "level": 10,
+  "general": false,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Individual",
+  "ritual": false,
+  "text": "The target loses the ability to make sound. If she is a maga and attempts to cast spells, she suffers the penalties for silent casting.",
+  "design": "Base 3, +1 Touch, +1 Diameter, +1 changing image",
+  "source": {
+   "book": "HP",
+   "line": 4441,
+   "anchor": "snatched-voice"
+  },
+  "id": "snatched-voice-peim-10",
+  "base": 3
+ },
+ {
+  "name": "Slap of Absent Magic",
+  "technique": "Pe",
+  "form": "Me",
+  "requisites": [],
+  "level": 10,
+  "general": false,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Individual",
+  "ritual": false,
+  "text": "The target forgets how to consciously use one Form for the duration of the spell. This includes casting spontaneous, formulaic, and ritual spells of the Form. It also includes spells that use the Form as a requisite. Unconscious use of the Form (for example, the Form bonus to Magic Resistance) is unaffected.\n\nWhen this spell ends, the target recalls how to use the Form.",
+  "design": "Base 4, +1 Touch, +1 Diameter",
+  "source": {
+   "book": "HP",
+   "line": 4453,
+   "anchor": "slap-of-absent-magic"
+  },
+  "id": "slap-of-absent-magic-peme-10",
+  "base": 4
+ },
+ {
+  "name": "Touch of Falling Feathers",
+  "technique": "Re",
+  "form": "Me",
+  "requisites": [],
+  "level": 10,
+  "general": false,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Individual",
+  "ritual": false,
+  "text": "The target rapidly falls into a deep sleep. As the spell has a non-Momentary duration, the target cannot be naturally wakened until either this spell is dispelled, or the duration expires.\n\nIf the target is asleep either at sunrise or at sunset, then his Parma Magica will go down.",
+  "design": "Base 4, +1 Touch, +1 Diameter",
+  "source": {
+   "book": "HP",
+   "line": 4469,
+   "anchor": "touch-of-falling-feathers"
+  },
+  "id": "touch-of-falling-feathers-reme-10",
+  "base": 4
+ },
+ {
+  "name": "Break the Shield",
+  "technique": "Pe",
+  "form": "Vi",
+  "requisites": [],
+  "level": 10,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual This spell dispels the Parma Magica of the target. The target's Parma Magica Score must be less than (25 + stress die) divided by 5. The target can",
+  "ritual": false,
+  "text": ", of course, recast his Parma Magica in subsequent rounds, but the target may not notice that his Parma Magic has been dispelled until it is too late.\n\nObviously, this spell is only really useful for attacking other magi. Thus, some tribunals may view magi who are known to have invented this spell with suspicion. On the other hand, there are legitimate reasons for knowing this spell — prosecuting Wizard's War and hunting Marched magi are entirely legal and uncontroversial pursuits.\n\nLike all spells, this spell must Penetrate to be effective.\n\nHigher-level versions of this are possible for attacking targets with greater Parma Magica scores.\n\nNote that this spell uses the Perdo Vim guideline, which dispels magic effects of a specific type (ArM5, page 160). Parma Magica is an example of a magical effect of a specific type, which all Hermetic magi are familiar with. This is why Wind of Mundane Silence (ArM5, page 161), which dispels all magical effects is effective against Parma Magica. This spell does not dispel Magic Resistance generated via other sources, nor is this spell effective against any other sorts of magic.",
+  "design": "Base 5, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4483,
+   "anchor": "break-the-shield"
+  },
+  "id": "break-the-shield-pevi-10",
+  "base": 5
+ },
+ {
+  "name": "Trap of Amber",
+  "technique": "Re",
+  "form": "Co",
+  "requisites": [],
+  "level": 15,
+  "general": false,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Individual",
+  "ritual": false,
+  "text": "The caster freezes the target in place for the duration of the spell. As well as being unable to move, the target can neither speak nor use gestures in spell casting, and he takes the appropriate penalties if he does try to cast spells regardless.",
+  "design": "Base 5, +1 Touch, +1 Diameter",
+  "source": {
+   "book": "HP",
+   "line": 4505,
+   "anchor": "trap-of-amber"
+  },
+  "id": "trap-of-amber-reco-15",
+  "base": 5
+ },
+ {
+  "name": "Fading Star of Evening",
+  "technique": "Cr",
+  "form": "Vi",
+  "requisites": [],
+  "level": 15,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual This spell causes wild",
+  "ritual": false,
+  "text": ", uncontrolled magic to course through the target. He gains two Warping Points, and if he is a magus, he must check to see whether he enters Twilight.",
+  "design": "Base 10, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4530,
+   "anchor": "fading-star-of-evening"
+  },
+  "id": "fading-star-of-evening-crvi-15",
+  "base": 10
+ },
+ {
+  "name": "Lungs of Drowning",
+  "technique": "Cr",
+  "form": "Aq",
+  "requisites": [
+   "Co"
+  ],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Part",
+  "ritual": false,
+  "text": "This spell fills the target's lungs with water, causing him to experience the sensation of drowning. The character begins to suffer deprivation due to lack of air (see ArM5, page 180), but as the spell only lasts for Diameter duration (two minutes), the character is unlikely\n\nto die unless the spell is repeatedly cast on him.",
+  "design": "Base 4, +1 Touch, +1 Diameter, +1 Part, +1 Corpus requisite",
+  "source": {
+   "book": "HP",
+   "line": 4544,
+   "anchor": "lungs-of-drowning"
+  },
+  "id": "lungs-of-drowning-craq-20",
+  "base": 4
+ },
+ {
+  "name": "Fist of Crippling",
+  "technique": "Pe",
+  "form": "Co",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual This spell inflicts a Heavy Wound on the target",
+  "ritual": false,
+  "text": "",
+  "design": "Base 15, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4574,
+   "anchor": "fist-of-crippling"
+  },
+  "id": "fist-of-crippling-peco-20",
+  "base": 15
+ },
+ {
+  "name": "Kiss of Aging",
+  "technique": "Pe",
+  "form": "Co",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual The target instantly ages five years. If the target is age 35 or older for any of these accelerated years",
+  "ritual": false,
+  "text": ", immediately make an aging roll for each such year as normal.",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 4584,
+   "anchor": "kiss-of-aging"
+  },
+  "id": "kiss-of-aging-peco-20",
+  "base": null
+ },
+ {
+  "name": "Paralysis of The Gift",
+  "technique": "Pe",
+  "form": "Vi",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Individual The target feels The Gift becoming dull and moribund. Reduce all the Casting Totals of the target by 10",
+  "ritual": false,
+  "text": "",
+  "design": "Base effect, +1 Touch, +1 Diameter",
+  "source": {
+   "book": "HP",
+   "line": 4593,
+   "anchor": "paralysis-of-the-gift"
+  },
+  "id": "paralysis-of-the-gift-pevi-20",
+  "base": null
+ },
+ {
+  "name": "Eyes of the Hawk",
+  "technique": "Mu",
+  "form": "Co",
+  "requisites": [
+   "An"
+  ],
+  "level": 4,
+  "general": false,
+  "range": "Personal",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "The caster gains the eyes of a hawk, which allows him to clearly see for vast distances.",
+  "design": "Base 2, +2 Sun, free requisite",
+  "source": {
+   "book": "HP",
+   "line": 4623,
+   "anchor": "eyes-of-the-hawk"
+  },
+  "id": "eyes-of-the-hawk-muco-4",
+  "base": 2
+ },
+ {
+  "name": "Licking the Blade",
+  "technique": "Re",
+  "form": "Co",
+  "requisites": [],
+  "level": 40,
+  "general": false,
+  "range": "Sight",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": false,
+  "text": "",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 4635,
+   "anchor": "licking-the-blade"
+  },
+  "id": "licking-the-blade-reco-40",
+  "base": null
+ },
+ {
+  "name": "Breath of the Glassworker",
+  "technique": "Cr",
+  "form": "Te",
+  "requisites": [],
+  "level": 15,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "The caster of this spell makes an \"O\" shape with his thumb and index finger, into which he then blows. This forms and inflates a small glass phial. The phial only lasts for a day, but this is often long enough to hold a sample of some substance until it is either used or taken to the magi's laboratory and repackaged.",
+  "design": "Base 3, +1 Touch, +2 Sun, +1 elaborate shape",
+  "source": {
+   "book": "HP",
+   "line": 4690,
+   "anchor": "breath-of-the-glassworker"
+  },
+  "id": "breath-of-the-glassworker-crte-15",
+  "base": 3
+ },
+ {
+  "name": "The Shattered Goblet",
+  "technique": "Cr",
+  "form": "Te",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Group",
+  "ritual": true,
+  "text": "At the conclusion of this ritual, the caster throws a glass goblet onto the ground which splits into thousands of sharp glass shards, with many times the volume of the original goblet (about 1,000 cubic paces).\n\nIf spread about on the ground, the glass shards cause +5 damage to anyone who walks over the ground, but this damage can be totally avoided by wearing hard-soled boots or shoes. The glass can cover an area about 60 paces across in glass 1 foot deep.\n\nThe glass shards are intended to be used with the Crystal Rain spell. The glass shards can be reduced in size to be more easily carried, using the Miniaturist of Venice spell.\n\nRequired Lab Total to invent spell: One Season (40), Two Seasons (30), Three Seasons (27), Four Seasons (25).",
+  "design": "Base 3, +1 Touch, +2 Group, +2 Size",
+  "source": {
+   "book": "HP",
+   "line": 4702,
+   "anchor": "the-shattered-goblet"
+  },
+  "id": "the-shattered-goblet-crte-20",
+  "base": 3
+ },
+ {
+  "name": "The Thirsty Dagger",
+  "technique": "Cr",
+  "form": "Te",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This ritual creates a metal dagger. The blade contains cleverly designed gutters that feed into a reservoir in the hilt. This means that if anyone is injured by the dagger (takes a Wound), then a sample of their blood is collected in the dagger's hilt. A version of this ritual could be created with as a spell with a duration (such as Sun) for use in emergency circumstances. However, the dagger created with the ritual is not magical, so it does not need to Penetrate Magic Resistance to harm a target (which a spell with a non-Momentary duration would need to do).\n\nThe dagger can be used as either a thrown or melee weapon. It is less useful in Defense than a normal dagger, and less aerodynamic than a throwing knife. In both cases, this is because The Thirsty Dagger is oddly weighted due to the blood reservoir. The dagger's weapon characteristics are:\n\nAbility: Brawl, Init: +0, Atk: +2, Dfn: –1, Dam: +3, Str: –1, Load: 0 Ability: Thrown, Init: –1, Atk: 0, Dfn: –1, Dam: +2, Str: –1, Load: 0",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 4716,
+   "anchor": "the-thirsty-dagger"
+  },
+  "id": "the-thirsty-dagger-crte-20",
+  "base": null
+ },
+ {
+  "name": "Crystal Rain",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [],
+  "level": 30,
+  "general": false,
+  "range": "Sight",
+  "duration": "Momentary",
+  "target": "Group",
+  "ritual": false,
+  "text": "This spell causes a vast cloud of sharp shards of glass fly to a point in the sky, and then fall to the earth. From a distance, as the light refracts through the plunging glass, it looks like a curious sort of localized rain. The area covered by the falling glass is about 10 paces across, and anyone in (or passing through) the area takes +10 damage. If a wound is caused, blood from the victim falls onto the earth.\n\nThis is an Aimed spell that consequently bypasses Magic Resistance, and there is a +12 bonus to the Aiming roll to hit due to the number of glass shards (see ArM5, page 86). This Aiming bonus is for a cloud of shards that contains 100 cubic paces of glass. If the cloud of shards contains only 10 cubic paces of glass, the Aiming bonus is reduced to only +6. Remember to count Defense bonuses because of shields.\n\nThis spell requires that the caster has large collection of sharp glass shards, which need to be mundane in order to bypass Magic Resistance in this way. The shards could be created using a momentary Creo Terram ritual (such as The Shattered Goblet), or they could be acquired from a mundane craftsman, although this is probably more expensive and inconvenient for most magi. As long as the fallen glass shards remain within Sight range of the caster, the same shards can be used to cast the effect again in a subsequent round.",
+  "design": "Base 3, +3 Sight, +2 Group, +1 Size, +1 affect glass",
+  "source": {
+   "book": "HP",
+   "line": 4765,
+   "anchor": "crystal-rain"
+  },
+  "id": "crystal-rain-rete-30",
+  "base": 3
+ },
+ {
+  "name": "Glass Broom",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [],
+  "level": 30,
+  "general": false,
+  "range": "Sight",
+  "duration": "Concentration",
+  "target": "Group",
+  "ritual": false,
+  "text": "This spell moves a lot of glass objects around. The spell can be used to move around glass created by The Shattered Goblet. It can also be used to move other glass around.\n\nIf a Finesse Roll against an Ease Factor of 9 is failed, then the glass is broken during transit (which is not a problem if the glass is just glass shards).",
+  "design": "Base 3, +3 Sight, +1 Concentration, +2 Group, +1 affect glass",
+  "source": {
+   "book": "HP",
+   "line": 4781,
+   "anchor": "glass-broom"
+  },
+  "id": "glass-broom-rete-30",
+  "base": 3
+ },
+ {
+  "name": "The Prodigal Returns",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [],
+  "level": 25,
+  "general": false,
+  "range": "Sight",
+  "duration": "Concentration",
+  "target": "Individual This spell causes a metal weapon (such as a sword or dagger) to fly through the air",
+  "ritual": false,
+  "text": ", safely returning to the outstretched hand of the caster.\n\nOne Season (50), Two Seasons (38), Three Seasons (34), Four Seasons (32).",
+  "design": "Base 3, +3 Sight, +1 Concentration +2 affect metal",
+  "source": {
+   "book": "HP",
+   "line": 4797,
+   "anchor": "the-prodigal-returns"
+  },
+  "id": "the-prodigal-returns-rete-25",
+  "base": 3
+ },
+ {
+  "name": "Blood of My Enemy",
+  "technique": "Mu",
+  "form": "Co",
+  "requisites": [],
+  "level": 10,
+  "general": false,
+  "range": "Personal",
+  "duration": "Sun",
+  "target": "Part",
+  "ritual": false,
+  "text": "The caster of this spell eats a small piece of bread dipped in the blood of another character, although any Arcane Connection to the other character will work. The spell changes the blood of the character so that he becomes a blood relative of the character from whom the consumed blood came. This effect only lasts for the duration of this spell. This does not stop the character from also being a blood relative to his natural relations. Being a blood relative is worth a +1 Sympathetic Connection (ArM5, page 84).\n\nThis spell is possible because, although being a blood relative is a part of a character's essential nature, Muto spells can violate a character's essential nature (turn a man into a wolf, for example); the character's true essential nature merely returns when the Muto spell ends.",
+  "design": "Base 3, +2 Sun, +1 Part",
+  "source": {
+   "book": "HP",
+   "line": 4863,
+   "anchor": "blood-of-my-enemy"
+  },
+  "id": "blood-of-my-enemy-muco-10",
+  "base": 3
+ },
+ {
+  "name": "Wizard's Breath Stolen",
+  "technique": "Re",
+  "form": "Au",
+  "requisites": [],
+  "level": 4,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual This spell traps the breath of a character and seals it into a glass phial held by the caster. The target's breath is a shortlived Arcane Connection to him (lasts hours; ArM5 page 84)",
+  "ritual": false,
+  "text": ", but if the caster can quickly get to a Laboratory, he can fix the Arcane Connection.\n\nThis spell must Penetrate the Magic Resistance of the target to be effective.",
+  "design": "Base 3, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4888,
+   "anchor": "wizards-breath-stolen"
+  },
+  "id": "wizards-breath-stolen-reau-4",
+  "base": 3
+ },
+ {
+  "name": "Convergence of Birth",
+  "technique": "In",
+  "form": "Co",
+  "requisites": [],
+  "level": 10,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual This spell",
+  "ritual": false,
+  "text": ", which can use an astrolabe, determines the birth place and time of the target. This is sufficient information to calculate the nativity horoscope of the target, for a +2 Sympathetic Connection; Int + Artes Liberales (astronomy) roll against an Ease Factor of 9 (see ArM5, page 84). Calculating the horoscope itself takes a day.\n\nThis spell must Penetrate the Magic Resistance of the target to be effective. This spell is intended to be cast through an Intangible Tunnel.",
+  "design": "Base 5, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4906,
+   "anchor": "convergence-of-birth"
+  },
+  "id": "convergence-of-birth-inco-10",
+  "base": 5
+ },
+ {
+  "name": "Convergence of Place",
+  "technique": "In",
+  "form": "Co",
+  "requisites": [],
+  "level": 4,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual This spell",
+  "ritual": false,
+  "text": ", which can use an astrolabe, determines the current celestial location of the target. This is sufficient information to calculate a daily horoscope for the target, for a +1 Sympathetic Connection; Int + Artes Liberales (astronomy) roll against an Ease Factor of 9 (see ArM5, page 84). Calculating the horoscope itself takes an hour.\n\nThis spell must Penetrate the Magic Resistance of the target to be effective. This spell is intended to be cast through an Intangible Tunnel.",
+  "design": "Base 3, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 4919,
+   "anchor": "convergence-of-place"
+  },
+  "id": "convergence-of-place-inco-4",
+  "base": 3
+ },
+ {
+  "name": "Sense the Heavens",
+  "technique": "In",
+  "form": "Im",
+  "requisites": [],
+  "level": 24,
+  "general": false,
+  "range": "Personal",
+  "duration": "Sun",
+  "target": "Hearing",
+  "ritual": false,
+  "text": "0 Pen, constant effect\n\nThis effect gives the device the sense to listen to the barely-perceptible sounds of the celestial bodies in motion (see Art and Academe, page 16).",
+  "design": "Base 3, +2 Sun, +3 Hearing; +4 constant effect",
+  "source": {
+   "book": "HP",
+   "line": 4937,
+   "anchor": "sense-the-heavens"
+  },
+  "id": "sense-the-heavens-inim-24",
+  "base": 3
+ },
+ {
+  "name": "Move the Wheels",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [],
+  "level": 37,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Group",
+  "ritual": false,
+  "text": "0 Pen, constant effect\n\nThis effect is triggered by the Sense the Heavens effect, and constantly moves the wheels in a way that represents the movement of the celestial bodies. This allows a character with an Artes Liberales Score of at least 1 to read the astrolabe.\n\nThe birth or nickname of a character can be used as a +1 Sympathetic Connection. The secret ritual name of a character can also be used as a +1 Sympathetic Connection. It is relatively easy to discover the nickname of a character, but a Christian magus is often careful to ensure that his nickname is his baptismal name. This is because a baptismal name cannot be used as a Sympathetic Connection.\n\nA spell like Posing the Silent Question (see ArM5, page 149) might be used to lift the birth or secret ritual name of a character from either his own mind or the mind of others who know him well.",
+  "design": "Base 3, +1 Touch +2 Sun, +2 Group +2 affect metal; +4 constant effect +3 linked trigger",
+  "source": {
+   "book": "HP",
+   "line": 4951,
+   "anchor": "move-the-wheels"
+  },
+  "id": "move-the-wheels-rete-37",
+  "base": 3
+ },
+ {
+  "name": "Absent Mind of the Scholar",
+  "technique": "Mu",
+  "form": "Me",
+  "requisites": [],
+  "level": 10,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spell changes the target's memory so that he believes that Wizard's War was declared on him one month prior to when it actually was.\n\nThe intent is that this spell is cast via\n\nan Intangible Tunnel-style effect while the Wizard's War is legitimately in progress, and the target (believing that the Wizard's War occurred during the previous month) stops taking protective measures, and leaves the sanctuary of the Aegis of the Hearth. Obviously, this strategy will fail if the target is convinced by another character that their memory is in error. However, it might be very difficult to convince a magus that their memory is incorrect, and to be effective this strategy only requires the magus to make a single absent-minded mistake, such as briefly leaving the Aegis of the Hearth.",
+  "design": "Base 3, +1 Touch, +2 Sun",
+  "source": {
+   "book": "HP",
+   "line": 5059,
+   "anchor": "absent-mind-of-the-scholar"
+  },
+  "id": "absent-mind-of-the-scholar-mume-10",
+  "base": 3
+ },
+ {
+  "name": "Guttering of the Home-Fires",
+  "technique": "Re",
+  "form": "Vi",
+  "requisites": [],
+  "level": null,
+  "general": true,
+  "range": "Touch",
+  "duration": "Diameter",
+  "target": "Individual This spell temporarily suppresses an Aegis of the Hearth effect. The Aegis of the Hearth effect must be less than half the level of this spell + 3 magnitudes. The known Lab Texts of this spell incorporate a side effect: while the Aegis of the Hearth is lowered",
+  "ritual": false,
+  "text": ", the temperature within the affected boundary is lowered slightly, which sensitive characters might notice.\n\nThis spell must penetrate the Aegis of the Hearth effect, of course.\n\nNote that if the Aegis of the Hearth is of a high level, then this spell may need to be a ritual.\n\nRequired Lab Total to invent spell: depends upon level (see insert earlier).",
+  "design": "Base effect, +1 Touch, +1 Diameter",
+  "source": {
+   "book": "HP",
+   "line": 5075,
+   "anchor": "guttering-of-the-home-fires"
+  },
+  "id": "guttering-of-the-home-fires-revi-gen",
+  "base": null
+ },
+ {
+  "name": "Removing the Hearth's Keystone",
+  "technique": "Pe",
+  "form": "Vi",
+  "requisites": [],
+  "level": null,
+  "general": true,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual The caster dispels an Aegis of the Hearth effect. There is no other evidence that the Aegis is absent",
+  "ritual": false,
+  "text": ", but alert magi crossing\n\nthe supposed boundary of the Aegis may notice that they do not feel the characteristic tingle which indicates the pres-\n\nstone spell + 3 magnitudes + stress die. This spell must penetrate the Aegis of the Hearth effect, of course.\n\nNote that if the Aegis of the Hearth is of a high level, then this spell may need to be a ritual.\n\nence of an Aegis. The Aegis of the Hearth effect must be less than the level of the Removing the Key-",
+  "design": "Base effect, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 5087,
+   "anchor": "removing-the-hearths-keystone"
+  },
+  "id": "removing-the-hearths-keystone-pevi-gen",
+  "base": null
+ },
+ {
+  "name": "Animate the Slumbering Corpse",
+  "technique": "Re",
+  "form": "Co",
+  "requisites": [
+   "Me"
+  ],
+  "level": 35,
+  "general": false,
+  "range": "Voice",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "A variant of Awaken the Slumbering Corpse (ArM5, page 134), this spell allows a caster to control a corpse through mental, rather than verbal, commands.",
+  "design": "Base 10, +2 Voice, +2 Day, +1 Mentem requisite",
+  "source": {
+   "book": "HP",
+   "line": 5146,
+   "anchor": "animate-the-slumbering-corpse"
+  },
+  "id": "animate-the-slumbering-corpse-reco-35",
+  "base": 10
+ },
+ {
+  "name": "Passing the Reins of Corpus",
+  "technique": "Mu",
+  "form": "Vi",
+  "requisites": [],
+  "level": null,
+  "general": true,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": false,
+  "text": "Cast at the same time as another spell, this spell lets the caster pass control of the",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 5158,
+   "anchor": "passing-the-reins-of-corpus"
+  },
+  "id": "passing-the-reins-of-corpus-muvi-gen",
+  "base": null
+ },
+ {
+  "name": "Imprison a Ghost in a Vessel",
+  "technique": "Re",
+  "form": "Me",
+  "requisites": [],
+  "level": 25,
+  "general": false,
+  "range": "Voice",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spell forces a ghost into a container of some type. The spirit remains bound within the vessel for the duration of the spell. While the spirit cannot affect its prison with magic to force its release, its powers are not otherwise limited.",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 5170,
+   "anchor": "imprison-a-ghost-in-a-vessel"
+  },
+  "id": "imprison-a-ghost-in-a-vessel-reme-25",
+  "base": null
+ },
+ {
+  "name": "Bequeathing Salome's Request",
+  "technique": "Cr",
+  "form": "Co",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Part",
+  "ritual": true,
+  "text": "This spell creates a human head, complete with skin, eyes, teeth, and hair. The particulars of the head's appearance are up to the spell's inventor. Castor of Sicily's version of the spell makes created heads look like his own. The spell is named after Salome, the stepdaughter of King Herod, who asked for and received the head of John the Baptist, according to Biblical history.\n\nBase Level Interpretation: According to Magi of Hermes, page 84, the base level to create part of a corpse is the same as the base level to create the whole corpse, adjusted by the increased Target: Part.",
+  "design": "Base 5, +1 Touch, +1 Part: however the lowest level a ritual can be is 20",
+  "source": {
+   "book": "HP",
+   "line": 5511,
+   "anchor": "bequeathing-salomes-request"
+  },
+  "id": "bequeathing-salomes-request-crco-20",
+  "base": 5
+ },
+ {
+  "name": "Forging the Bone Cover",
+  "technique": "Mu",
+  "form": "Co",
+  "requisites": [],
+  "level": 5,
+  "general": false,
+  "range": "Touch",
+  "duration": "Concentration",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spell changes the inelastic nature of bone, making it elastic and able to be reshaped under pressure. The skull becomes as pliable as clay for the duration of the spell. Once this spell is cast, a human skull can be pressed into a book-shaped wooden frame. When the spell ends, the skull reverts to its inelastic property, but retains its new shape. If later used in an enchanted item, the reshaped skull still gives the magus the same Shape & Material bonus (ArM5, page 110).\n\nBase Level Interpretation: A base level 1 Muto Terram spell will change one property of dirt. The base level to create dirt is Creo Terram 1, and the base level to create stone is base level 3. A base level 3 Muto Terram would change one property of stone. Bone is harder than dirt but softer than stone, so a base level 1 would not be enough, but base level 3 would. Thus: Muto Corpus base level 3, change one property of bone.\n\nno longer protected by the ghost's Magic Resistance. Note that once the living corpse is created, the book does not have to touch the revenant to allow the ghost to control it.",
+  "design": "Base 3, +1 Touch, +1 Conc",
+  "source": {
+   "book": "HP",
+   "line": 5525,
+   "anchor": "forging-the-bone-cover"
+  },
+  "id": "forging-the-bone-cover-muco-5",
+  "base": 3
+ },
+ {
+  "name": "Create a Human Corpse",
+  "technique": "Cr",
+  "form": "Co",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This ritual creates a human corpse. The lowest level a ritual spell can be is 20.",
+  "design": "Base 5, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 5956,
+   "anchor": "create-a-human-corpse"
+  },
+  "id": "create-a-human-corpse-crco-20",
+  "base": 5
+ },
+ {
+  "name": "Create a Dead Turb",
+  "technique": "Cr",
+  "form": "Co",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Group",
+  "ritual": true,
+  "text": "This ritual creates ten human corpses. (Base 5, +1 Touch, +2 Group)",
+  "design": null,
+  "source": {
+   "book": "HP",
+   "line": 5966,
+   "anchor": "create-a-dead-turb"
+  },
+  "id": "create-a-dead-turb-crco-20",
+  "base": null
+ },
+ {
+  "name": "Control the Dead Turb",
+  "technique": "Re",
+  "form": "Co",
+  "requisites": [],
+  "level": 40,
+  "general": false,
+  "range": "Voice",
+  "duration": "Sun",
+  "target": "Group",
+  "ritual": false,
+  "text": "A group of ten corpses animate and follow the caster's verbal commands.\n\nIndividual commands cannot be issued to a particular member of the group; every corpse follows the caster's command. While they each perform the same task, they are not considered a trained group for combat purposes.\n\nRequired Lab Total: 1 season (80), 2 seasons (60), 3 seasons (54), 4 seasons (50)",
+  "design": "Base 10, +2 Voice, +2 Sun, +2 Group",
+  "source": {
+   "book": "HP",
+   "line": 5996,
+   "anchor": "control-the-dead-turb"
+  },
+  "id": "control-the-dead-turb-reco-40",
+  "base": 10
+ },
+ {
+  "name": "Conjure a Dead Army",
+  "technique": "Cr",
+  "form": "Co",
+  "requisites": [],
+  "level": 25,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Group",
+  "ritual": true,
+  "text": "This ritual creates 100 corpses.",
+  "design": "Base 5, +1 Touch, +2 Group, +1 for larger group",
+  "source": {
+   "book": "HP",
+   "line": 6040,
+   "anchor": "conjure-a-dead-army"
+  },
+  "id": "conjure-a-dead-army-crco-25",
+  "base": 5
+ },
+ {
+  "name": "Control the Dead Army",
+  "technique": "Re",
+  "form": "Co",
+  "requisites": [],
+  "level": 45,
+  "general": false,
+  "range": "Voice",
+  "duration": "Sun",
+  "target": "Group",
+  "ritual": false,
+  "text": "This spell causes 100 corpses to animate and follow the caster's verbal commands.\n\nIndividual commands cannot be issued to a particular member of the group; every corpse follows the caster's command. While\n\nthey each perform the same task, they are not considered a trained group for combat purposes.",
+  "design": "Base 10, +2 Voice, +2 Sun, +2 Group, +1 for larger group",
+  "source": {
+   "book": "HP",
+   "line": 6050,
+   "anchor": "control-the-dead-army"
+  },
+  "id": "control-the-dead-army-reco-45",
+  "base": 10
+ },
+ {
+  "name": "Conjure the Horde of the Dead",
+  "technique": "Cr",
+  "form": "Co",
+  "requisites": [],
+  "level": 30,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This ritual creates 1,000 corpses.",
+  "design": "Base 5, +1 Touch, +2 Group, +2 for larger group",
+  "source": {
+   "book": "HP",
+   "line": 6068,
+   "anchor": "conjure-the-horde-of-the-dead"
+  },
+  "id": "conjure-the-horde-of-the-dead-crco-30",
+  "base": 5
+ },
+ {
+  "name": "Conjure the Walking Dead",
+  "technique": "Cr",
+  "form": "Co",
+  "requisites": [],
+  "level": 50,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "Req: Auram, Terram, Vim\n\nThis ritual creates a revenant — one of the magical walking dead. Different from an animated corpse, a revenant is a malefic creature with a Magic Might of 9. While it is lacking intelligence, a revenant possesses a violent personality and, if not immediately magically controlled, it attacks\n\nthe nearest living creature. The Auram and Terram requisites are necessary for instilling the revenant's magic powers.\n\nBase Level Interpretation: A level 10 Creo Animal spell creates the corpse of a mundane animal, while a base level 5 Creo Corpus spell creates a mundane human corpse. A level 50 Creo Animal spell will create a magical beast, meaning that a level 45 Creo Corpus spell will create a magical human.",
+  "design": "Base 45, +1 Touch",
+  "source": {
+   "book": "HP",
+   "line": 6092,
+   "anchor": "conjure-the-walking-dead"
+  },
+  "id": "conjure-the-walking-dead-crco-50",
+  "base": 45
+ },
+ {
+  "name": "Conjure the Colossus",
+  "technique": "Cr",
+  "form": "Co",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This ritual creates a huge human corpse of Size +4. It is similar to a regular conjured corpse in every way except size. Spells designed to control a colossus must also take into account its larger Size.",
+  "design": "Base 5, +1 Touch, +1 Size increase, min level 20 for a Ritual",
+  "source": {
+   "book": "HP",
+   "line": 6110,
+   "anchor": "conjure-the-colossus"
+  },
+  "id": "conjure-the-colossus-crco-20",
+  "base": 5
+ },
+ {
+  "name": "Awaken the Colossus",
+  "technique": "Re",
+  "form": "Co",
+  "requisites": [],
+  "level": 35,
+  "general": false,
+  "range": "Voice",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This spells causes the Size +4 colossus corpse to animate and follow the caster's verbal commands.",
+  "design": "Base 10, +2 Voice, +2 Sun, +1 Size increase",
+  "source": {
+   "book": "HP",
+   "line": 6122,
+   "anchor": "awaken-the-colossus"
+  },
+  "id": "awaken-the-colossus-reco-35",
+  "base": 10
+ },
+ {
+  "name": "Conjure the Mighty Barn",
+  "technique": "Cr",
+  "form": "He",
+  "requisites": [],
+  "level": 25,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This spell creates a large barn constructed entirely of wood, including paddocks, stalls, and a loft. The barn is 100 paces long and wide, and twenty feet high. The interior's design is determined by the caster.",
+  "design": "Base 3, +1 Touch, +3 size, +2 elaborate design",
+  "source": {
+   "book": "HP",
+   "line": 6300,
+   "anchor": "conjure-the-mighty-barn"
+  },
+  "id": "conjure-the-mighty-barn-crhe-25",
+  "base": 3
+ },
+ {
+  "name": "Fashion the Ancient Worm",
+  "technique": "Cr",
+  "form": "An",
+  "requisites": [
+   "Co",
+   "Ig",
+   "Me",
+   "Vi"
+  ],
+  "level": 80,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This spell creates a dragon, which has the same statistics and powers as Stellatus (ArM5, page 194). This dragon is not actually Stellatus, who is an individual, but the creature mirrors his powers and Abilities.",
+  "design": "Base 50, +1 Touch, +2 Size increase, +3 Corpus, Ignem, and Mentem requisites",
+  "source": {
+   "book": "HP",
+   "line": 6480,
+   "anchor": "fashion-the-ancient-worm"
+  },
+  "id": "fashion-the-ancient-worm-cran-80",
+  "base": 50
+ },
+ {
+  "name": "The Breath of Life Returned",
+  "technique": "Cr",
+  "form": "An",
+  "requisites": [],
+  "level": 80,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": true,
+  "text": "This spell returns a mundane animal of up to Size +1 to life.",
+  "design": "Base 75, +1 Touch, Ritual",
+  "source": {
+   "book": "HP",
+   "line": 6654,
+   "anchor": "the-breath-of-life-returned"
+  },
+  "id": "the-breath-of-life-returned-cran-80",
+  "base": 75
+ },
+ {
   "id": "scales-of-the-scorpions-muan-40",
   "name": "Scales of the Scorpions",
   "technique": "Mu",
@@ -24504,27 +26346,6 @@
    "book": "TtA",
    "line": 5946,
    "anchor": "sword-ward"
-  }
- },
- {
-  "id": "sense-of-the-lodestone-inco-5",
-  "name": "Sense of the Lodestone",
-  "technique": "In",
-  "form": "Co",
-  "level": 5,
-  "general": false,
-  "range": "Touch",
-  "duration": "Concentration",
-  "target": "Individual",
-  "ritual": false,
-  "requisites": [],
-  "text": "The caster senses the distance and direction to the target. The caster must have an Arcane Connection to the target. Ariane casts this spell through an Intangible Tunnel.",
-  "design": "Base 3, +1 Touch, +1 Concentration",
-  "base": 3,
-  "source": {
-   "book": "TtA",
-   "line": 6025,
-   "anchor": "sense-of-the-lodestone"
   }
  },
  {

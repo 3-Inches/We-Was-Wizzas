@@ -207,6 +207,13 @@ function effectLinks(e: Effect, data: GameData): Draft[] {
 const MANUAL_TAGS: Record<string, [string, number][]> = {
   // hedge and mystery traditions extracted in a later pass (each is a power of its own tradition)
   'type-divining': [['visions', 2], ['spell-like', 1]],
+  // Folk Witches (Hedge Magic)
+  'flawed-folk-witch-gift-opening': [['spell-like', 1]],
+  'painless-moon': [['spell-like', 1], ['healing', 1]],
+  'harsh-moon-flaw': [['spell-like', 1]],
+  'primitive-tradition-flaw': [['crafts', 1], ['spell-like', 1]],
+  'rarefied-tradition-flaw': [['crafts', 1], ['spell-like', 1]],
+  'unstable-magic-flaw': [['crafts', 1], ['spell-like', 1]],
   'type-refining': [['crafts', 2], ['spell-like', 1]],
   succurro: [['healing', 2], ['spell-like', 1]],
   tueor: [['magic-resistance', 2], ['spell-like', 1]],

@@ -17,7 +17,7 @@ import { creationSpellLimit } from '../magic';
 import { abilityScoreFromXp, abilityXpForScore, artScoreFromXp, artXpForScore } from '../xp';
 import { uid } from '../../util/id';
 import type { Rng } from '../dice';
-import { HOUSE_ARTS, markGroup, rarity, weightedPick } from '../generate/variety';
+import { HOUSE_ARTS, isStriking, markGroup, rarity, weightedPick } from '../generate/variety';
 import { optionOn } from '../optional';
 import { beastFor } from '../heartbeast';
 import { isHolyCharacter, suitedTradition } from '../holy';
@@ -114,9 +114,13 @@ function neededCharacteristics(w: Record<string, number>, def: VirtueFlawDef, c?
  * marks a character out (two disfigurements, two faerie bloodlines).
  */
 function choose(inp: BuildInput, c: Character, xs: Scored[], sizeOf: (s: Scored) => VFSize | undefined, top = 8): Scored | undefined {
-  const marked = new Set(c.virtues.map((v) => inp.data.vfById.get(v.defId)).map((d) => d && markGroup(d)).filter(Boolean));
-  if (!inp.rng) return xs.find((s) => !marked.has(markGroup(s.def)));
-  const pool = xs.filter((s) => !marked.has(markGroup(s.def))).slice(0, top);
+  const held = c.virtues.map((v) => inp.data.vfById.get(v.defId)).filter((d): d is NonNullable<typeof d> => !!d);
+  const marked = new Set(held.map((d) => markGroup(d)).filter(Boolean));
+  // and only one striking mark in all: a grave bodily Flaw, a bloodline or True Faith
+  const struck = held.some(isStriking);
+  const free = (s: Scored) => !marked.has(markGroup(s.def)) && !(struck && isStriking(s.def));
+  if (!inp.rng) return xs.find(free);
+  const pool = xs.filter(free).slice(0, top);
   return weightedPick(inp.rng, pool, (s) => rarity(s.def, c.type, sizeOf(s)) * Math.sqrt(Math.max(1, s.fit)));
 }
 

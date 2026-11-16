@@ -51,8 +51,18 @@ const TRADITIONS: Record<string, string[]> = {
     'well-trained-gruagach', 'no-tattoo-magic-flaw', 'transformation-prone-flaw', 'incompatible-hedge-arts-flaw', 'inflexible-magic-flaw', 'poorly-trained-gruagach-flaw',
     'weak-tattoo-magic-flaw',
   ],
+  'Elementalists (Hedge Magic)': [
+    'elemental-affinity', 'elementalist-air', 'elementalist-earth', 'elementalist-fire', 'elementalist-water', 'elementalist-magic', 'elemental-medicine', 'elemental-philosophiae',
+    'elemental-theurgy', 'type-controlling', 'type-divining', 'type-refining', 'type-summoning', 'weak-elemental-resistance-flaw',
+  ],
+  'Folk Witches (Hedge Magic)': [
+    'folk-witch', 'flawed-folk-witch-gift-opening', 'life-linked-folk-witch-magic', 'concentrated-potions', 'expert-potion-brewer', 'painless-moon', 'well-trained-folk-witch',
+    'primitive-tradition-flaw', 'rarefied-tradition-flaw', 'harsh-moon-flaw', 'short-ranged-curses-flaw', 'silent-tradition-flaw', 'unstable-magic-flaw', 'poorly-trained-folk-witch-flaw',
+  ],
   'Learned Magicians (Hedge Magic)': [
-    'mathematicus-of-bologna', 'entreat-the-powers', 'mythic-alchemy', 'charm-magician-flaw', 'intervention-prone-flaw', 'laboratory-magician-flaw', 'weak-verbal-charms-flaw',
+    // Mythic Alchemy, Mythic Herbalism and Natural Magician suit others too (Hedge Magic)
+    'mathematicus-of-bologna', 'entreat-the-powers', 'entreat-the-realm-powers', 'strong-amulet-magic', 'strong-verbal-charms', 'tueor', 'succurro', 'vulnero', 'fortunam', 'magicam',
+    'salutem', 'skilled-master', 'charm-magician-flaw', 'intervention-prone-flaw', 'laboratory-magician-flaw', 'weak-verbal-charms-flaw',
     'no-chartae-making-flaw', 'no-text-casting-flaw', 'poorly-trained-magician-flaw', 'weak-amulets-flaw', 'weak-chartae-flaw',
   ],
   'hedge wizards (Hedge Magic)': ['greater-magical-defenses', 'known-hedge-wizard-flaw', 'no-magical-defenses-flaw'],

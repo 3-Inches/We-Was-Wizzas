@@ -5,6 +5,7 @@
 //
 // Saga house rules can override any of this at runtime (see engine/houseRules.ts).
 
+import { RUNES, VITKAR_FOCI } from './hedgeVitkir';
 import type { AbilityType, CharType, Effect, ParamSpec, VirtueFlawDef } from './types';
 import { CHARACTERISTICS, CHAR_NAMES } from './constants';
 
@@ -37,6 +38,8 @@ export interface Mechanics {
   sizeEffects?: VirtueFlawDef['sizeEffects'];
   restrictionText?: string;
 }
+
+const RUNE_NAMES = RUNES.map((r) => r.name);
 
 const P = {
   ability: (label = 'Ability', abilityTypes?: AbilityType[]): ParamSpec => ({ kind: 'ability', label, abilityTypes }),
@@ -583,6 +586,109 @@ export const MECHANICS: Record<string, Mechanics> = {
   'faerie-sympathy': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A positive Sympathy Trait: +1 as a Minor Virtue, +3 as a Major, raised by experience up to its first score + the Warping Score. Add it on the sheet’s Sympathy Traits card. The Warping Score may be raised freely at creation.')] },
   'faerie-antipathy-flaw': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A negative Sympathy Trait: −1 as a Minor Flaw, −3 as a Major, less the Warping Score at the end of creation. It comes off any Ability it applies to, and adds a botch die.')] },
   'faerie-background': { tags: ['realm:faerie'], effects: [note('Two Sympathy Traits, one positive and one negative, each as high as the Warping Score. The Warping Score may be raised freely at creation.')] },
+
+  // ------------------------------------------------------------------ Nightwalkers (Hedge Magic)
+  nightwalker: { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'second-sight', score: 1 }, note('Straying: the spirit leaves the insensible body and takes form elsewhere (Game Table, Dice › Hedge magic). Second Sight 1 in spirit form (the Second Sight Virtue’s score in both). Magical Air in spirit form; must answer every battle or procession; wounds in spirit show on the body; no Magic Resistance or Might.')] },
+
+  // ------------------------------------------------------------------ Gruagachan (Hedge Magic)
+  // Spells are cast and tattoos made on the Game Table, Dice › Hedge magic; spells known are kept on the sheet.
+  ...Object.fromEntries(
+    ([['give', 'gruagach-give'], ['take', 'gruagach-take'], ['blessing', 'gruagach-blessing'], ['curse', 'gruagach-curse'], ['shape', 'gruagach-shape'], ['vision', 'gruagach-vision']] as const).map(([v, id]) => [
+      v,
+      { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: id, score: 0 }, note(['give', 'take'].includes(v) ? 'A gruagach Technique: a Difficult Art, opened at 0 and raised as an Ability. With a Form it casts spells and enchants tattoos (Game Table, Dice › Hedge magic).' : 'A gruagach Form: opened at 0 and raised as an Art. With a Technique it casts spells and enchants tattoos (Game Table, Dice › Hedge magic).')] } as Mechanics,
+    ]),
+  ),
+  gruagach: { compatibleStatuses: ['*'], effects: [{ type: 'abilityAccess', abilities: ['dead-language', 'organization-lore'], note: 'Pictish and Gruagach Lore' }, note('A Gifted gruagach’s apprenticeship (about ten years) gives 160 experience points and 80 levels of spells; an unGifted one 16 points and 8 levels a year of training (three to five). Set it on the sheet’s Gruagach card. Pictish stands for Magic Theory and caps the Arts: 5 at 1, 15 at 2, 30 at 3, none at 4.')] },
+  'cailleach-magic': { effects: [note('A spontaneous spell doubles its lowest Art before the total is halved.')] },
+  'flexible-gruagach-magic': { excludes: ['inflexible-magic-flaw'], effects: [note('Known spells vary by 3 magnitudes, not 2.')] },
+  'inflexible-magic-flaw': { effects: [note('Known spells vary by 1 magnitude, not 2.')] },
+  'tattoo-mastery': { effects: [note('A tattoo’s vis costs Pictish less, never below half.')] },
+  'weak-tattoo-magic-flaw': { excludes: ['no-tattoo-magic-flaw'], effects: [note('The Lab Total is halved for tattoos.')] },
+  'no-tattoo-magic-flaw': { effects: [note('Makes and investigates no tattoos.')] },
+  'transformation-prone-flaw': { effects: [note('Rolls against transformation on any botch, not only a double one.')] },
+  'well-trained-gruagach': { repeatable: true, effects: [note('+50 experience points for the gruagach Arts and +25 levels of spells in apprenticeship.')] },
+  'poorly-trained-gruagach-flaw': { repeatable: true, effects: [note('−50 experience points for the gruagach Arts and −25 levels of spells in apprenticeship.')] },
+  'external-soul': { effects: [note('No Incapacitating or fatal Wound while the soul’s object is whole: the damage is spread over lesser Wounds, each spread a Warping Point unless Stamina + Pictish + stress die reaches 9. Unaging, at a Warping Point a year. Damage to the object kills.')] },
+
+  // ------------------------------------------------------------------ Vitkir (Hedge Magic)
+  // Rune scripts are cast and invented on the Game Table, Dice › Hedge magic; scripts known are kept on the sheet.
+  vitki: { requiresGift: true, effects: [note('A vitki’s apprenticeship (about fifteen years) opens the 24 runes at 0 and gives 240 experience points, at least half on the runes, and 120 levels of rune scripts (set the years on the sheet’s Vitki card). Craft: Runes 2, Old Norse 3 and Rune Magic 1 are the least needed. Nátt-thel, the loss of The Gift, takes the place of Twilight.')] },
+  'deft-rune': { repeatable: true, param: P.text('Rune', RUNE_NAMES), effects: [note('No penalty for leaving the name or the description off a script with this rune.')] },
+  'mastered-rune': { repeatable: true, param: P.text('Rune', RUNE_NAMES), effects: [note('With this rune: three fewer botch dice (at least one) and the casting penalties halved.')] },
+  'minor-rune-focus': { param: P.text('Rune', RUNE_NAMES), effects: [note('The rune’s score doubles for a script of the focus’s purpose cut into its material (the Vitkar Magic Foci).')] },
+  'major-rune-focus': { excludes: ['minor-rune-focus'], param: P.text('Focus', VITKAR_FOCI.map((f) => `${f.name} (${f.norse})`)), effects: [note('Any rune’s score doubles for a script of the focus’s purpose cut into its material.')] },
+  'nameless-runes': { effects: [note('No penalty for leaving the name off a script (and no bonus for writing it).')] },
+  'secret-runes': { repeatable: true, effects: [note('No penalty for hiding the description, only −5 for leaving it off; taken twice, no penalty at all.')] },
+  'minor-magical-deficiency-flaw': { param: P.text('Runes (three, or one for a grave deficiency)'), effects: [note('The Casting Total is halved for a script with these runes; a grave deficiency with one rune bars it altogether.')] },
+  'major-magical-deficiency-flaw': { excludes: ['minor-magical-deficiency-flaw'], param: P.text('Aett (Freya’s aett, Heimdall’s aett, Tyr’s aett) or three runes for a grave deficiency'), effects: [note('The Casting Total is halved for a script with a rune of this aett; a grave deficiency with three runes bars them altogether.')] },
+  'natt-thel-prone-flaw': { effects: [note('Nátt-thel follows any supernatural botch, not only a double one.')] },
+  'short-lived-runes-flaw': { effects: [note('The runes fade: the storyguide rolls each effect’s duration on the Nátt-thel chart (+1 a pawn or Confidence Point spent).')] },
+
+  // ------------------------------------------------------------------ Folk Witches (Hedge Magic)
+  // Powers are cast, potions brewed and fetishes made on the Game Table, Dice › Hedge magic; the Witch Moon there too.
+  'folk-witch': { compatibleStatuses: ['*'], effects: [{ type: 'abilityAccess', abilities: ['folk-witch-magic-theory', 'organization-lore'], note: 'Folk Witch Magic Theory and the coven’s Organization Lore' }, note('An apprenticeship of about ten years from age ten: 200 experience points for any Abilities (set the years on the sheet’s Folk witch card). A Gifted folk witch may raise all seven folk witch powers without their Virtues. She must take at least one Flaw that limits her magic.')] },
+  'witch-cursing': { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'witch-cursing', score: 1 }] },
+  'witch-healing': { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'witch-healing', score: 1 }] },
+  'witch-flight': { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'witch-flight', score: 1 }] },
+  'animal-healer': { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'animal-healing', score: 1 }] },
+  'flawed-folk-witch-gift-opening': { requiresGift: true, repeatable: true, tags: ['supernatural'], param: P.text('Power', ['Animal Ken', 'Cursing', 'Dowsing', 'Flight', 'Healing', 'Second Sight', 'Shapeshifter']), effects: [note('That power is not favored: not learned at creation, and −1 on its totals once learned.')] },
+  'well-trained-folk-witch': { repeatable: true, effects: [note('+50 experience points of apprenticeship.')] },
+  'poorly-trained-folk-witch-flaw': { repeatable: true, effects: [note('−50 experience points of apprenticeship.')] },
+  'silent-tradition-flaw': { excludes: ['rarefied-tradition-flaw'] },
+  'painless-moon': { tags: ['supernatural'] },
+  'harsh-moon-flaw': { tags: ['supernatural'] },
+  'primitive-tradition-flaw': { tags: ['lab'] },
+  'rarefied-tradition-flaw': { tags: ['supernatural'] },
+  'unstable-magic-flaw': { tags: ['lab'] },
+
+  // ------------------------------------------------------------------ Elementalists (Hedge Magic)
+  // Each Art opens at 0; the Elemental Traits, totals and seasons are on the Game Table, Dice › Hedge magic.
+  ...Object.fromEntries(
+    (['summoning', 'controlling', 'divining', 'refining'] as const).map((t) => [
+      `type-${t}`,
+      {
+        repeatable: true, param: P.text('Type of target', ['Medicinal', 'Philosophical', 'Theurgical']), tags: ['supernatural'],
+        effects: [{ type: 'grantAbility', ability: `elemental-${t}`, score: 0 }, note('An Elementalist Technique, opened at 0 and raised as an Ability (a Difficult Art). Taken again (Minor) for another type of target; all types share one score. Used with an Elementalist Form on the Game Table, Dice › Hedge magic.')],
+      } as Mechanics,
+    ]),
+  ),
+  ...Object.fromEntries(
+    (['air', 'earth', 'fire', 'water'] as const).map((e) => [
+      `elementalist-${e}`,
+      { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: `elementalist-${e}`, score: 0 }, note(`An Elementalist Form, opened at 0 and raised as an Ability (a Difficult Art). It brings the ${({ air: 'Sanguine', earth: 'Melancholic', fire: 'Choleric', water: 'Phlegmatic' } as const)[e]} Trait: the Warping Score + the Form ÷ 5 (rounded up), added to Soak against the element.`)] } as Mechanics,
+    ]),
+  ),
+  'elemental-affinity': { repeatable: true, param: P.text('Ability', ['Medicine', 'Philosophiae', 'Magic Lore', 'Faerie Lore', 'Dominion Lore', 'Infernal Lore']), effects: [note('Experience gained in the chosen Ability gives half as much again, shared among the Elementalist Forms.')] },
+  'elementalist-magic': { effects: [note('A season studying one Elementalist Form gives a point to each of the other three; with several elements, the highest Form counts, not the lowest.')] },
+  'elemental-medicine': { effects: [note('A season studying Medicine gives a point to each Elementalist Form; with several elements, the highest Form counts, held to Medicine.')] },
+  'elemental-philosophiae': { effects: [note('A season studying Philosophiae gives a point to each Elementalist Form; with several elements, the highest Form counts, held to Philosophiae.')] },
+  'elemental-theurgy': { param: P.text('Realm', ['Magic', 'Faerie', 'Divine', 'Infernal']), effects: [note('A season studying the realm’s Lore gives a point to each Elementalist Form; with several elements, the highest Form counts, held to that Lore.')] },
+  'weak-elemental-resistance-flaw': { effects: [note('The Elemental Traits add nothing to Soak against the elements.')] },
+
+  // ------------------------------------------------------------------ Learned Magicians (Hedge Magic)
+  // Charms are cast at the Game Table, Dice › Hedge magic; amulets are made there in a season; the charms known are kept on the sheet.
+  ...Object.fromEntries(
+    (['tueor', 'succurro', 'vulnero', 'fortunam', 'magicam', 'salutem'] as const).map((id) => [
+      id,
+      { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: id, score: 0 }, note(['tueor', 'succurro', 'vulnero'].includes(id) ? 'A learned magician’s Technique: a Difficult Art, opened at 0 and raised as an Ability. With one of the Forms it casts charms and makes chartae and amulets (Game Table, Dice › Hedge magic).' : 'A learned magician’s Form: opened at 0 and raised as an Art. With one of the Techniques it casts charms and makes chartae and amulets (Game Table, Dice › Hedge magic).')] } as Mechanics,
+    ]),
+  ),
+  'mathematicus-of-bologna': { compatibleStatuses: ['*'], effects: [note('Needs a Hedge Technique and a Form of the tradition, and a second Social Status for the character’s place in mundane society (a clerk, a magister in artibus, a priest…). Each year trained under a master gives 30 experience points for Academic and Arcane Abilities, the hedge Arts and charms (5 levels a point): set the years on the sheet’s Learned magic card.')] },
+  'entreat-the-powers': { effects: [note('Stress die + Presence + (Realm) Lore, added to a charm’s Casting Score or a Lab Total, offsets a hostile aura’s penalty and no more. Called aloud, never with Quiet Magic. Calling a realm not the aura’s divides it by the aura.')] },
+  'entreat-the-realm-powers': { param: P.text('Realm', ['Divine', 'Faerie', 'Infernal', 'Magic']), effects: [note('As Entreat the Powers, calling on the one realm chosen.')] },
+  'natural-magician': { effects: [note('Season-long work only: Philosophiae added to the Casting or Lab Total offsets a Divine or Infernal aura’s penalty and no more; never in Faerie or Magic auras, never for Penetration.')] },
+  'strong-amulet-magic': { tags: ['lab'], effects: [note('+10 to Lab Totals for chartae and amulets.')] },
+  'strong-verbal-charms': { effects: [note('A known charm’s total is the Casting Score + die, not halved; one read from a text is halved instead of divided by five.')] },
+  'skilled-master': { repeatable: true, effects: [note('+50 experience points of training for Arts, Abilities and charms (the sheet’s Learned magic card).')] },
+  'poorly-trained-magician-flaw': { repeatable: true, effects: [note('−50 experience points of training for Arts and charms, never to zero.')] },
+  'weak-verbal-charms-flaw': { excludes: ['strong-verbal-charms'], effects: [note('A charm’s total is always divided by five, known or read.')] },
+  'weak-amulets-flaw': { tags: ['lab'], effects: [note('−5 to Lab Totals for amulets.')] },
+  'weak-chartae-flaw': { tags: ['lab'], effects: [note('−5 to Lab Totals for chartae.')] },
+  'charm-magician-flaw': { effects: [note('Makes no amulets (chartae still).')] },
+  'no-chartae-making-flaw': { effects: [note('Makes no chartae (amulets still).')] },
+  'laboratory-magician-flaw': { effects: [note('Memorizes no charms: casts only from a text.')] },
+  'no-text-casting-flaw': { effects: [note('Casts no charms from a text.')] },
+  'intervention-prone-flaw': { effects: [note('Rolls to avoid intervention on any botch of a charm, not only a double botch.')] },
 
   // ------------------------------------------------------------------ The Mysteries (Revised Edition)
   // Worked in the lab (Lab projects: horoscopes, alchemy, the elixirs) and at the Game Table (Dice › Mysteries).

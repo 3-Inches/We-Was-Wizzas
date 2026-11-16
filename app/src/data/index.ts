@@ -23,6 +23,12 @@ import { divineAbilityDefs, divineVirtueDefs } from './divine';
 import { societatesAbilityDefs, societatesVirtueDefs } from './societates';
 import { tmreAbilityDefs, tmreVirtueDefs } from './tmre';
 import { faerieAbilityDefs, faerieVirtueDefs } from './faerie';
+import { learnedAbilityDefs } from './hedgeLearned';
+import { elementalAbilityDefs } from './hedgeElemental';
+import { folkWitchAbilityDefs, folkWitchVirtueDefs } from './hedgeFolkWitch';
+import { gruagachAbilityDefs } from './hedgeGruagach';
+import { vitkirAbilityDefs } from './hedgeVitkir';
+import { HP_LAB_FEATURES, HP_LAB_VF, HP_SHAPE_MATERIAL } from './hermeticProjects';
 import type {
   AbilityDef, ArmorDef, GuidelineDef, HookBoonDef, LabFeatureDef, LabVFDef, ShapeMaterialDef,
   SpellDef, VirtueFlawDef, WeaponDef, Effect, AbilityType, RuleSection, VFRef,
@@ -34,7 +40,7 @@ export * from './constants';
 const BOOK_VF = (vfJson as unknown as VirtueFlawDef[]).filter((v) => !NOT_REAL_VF.has(v.id) && !LAB_ONLY_VF[v.id]);
 /** with the House Mysteries and Criamon stations (Houses of Hermes: Mystery Cults) and the Tribunal books' Virtues the Virtue list lacks */
 const BOOK_VF_IDS = new Set(BOOK_VF.map((v) => v.id));
-const RAW_VF = [...BOOK_VF, ...mysteryVirtueDefs(BOOK_VF_IDS), ...tribunalVirtueDefs(BOOK_VF_IDS), ...divineVirtueDefs(BOOK_VF_IDS), ...societatesVirtueDefs(BOOK_VF_IDS), ...tmreVirtueDefs(BOOK_VF_IDS), ...faerieVirtueDefs(BOOK_VF_IDS)];
+const RAW_VF = [...BOOK_VF, ...mysteryVirtueDefs(BOOK_VF_IDS), ...tribunalVirtueDefs(BOOK_VF_IDS), ...divineVirtueDefs(BOOK_VF_IDS), ...societatesVirtueDefs(BOOK_VF_IDS), ...tmreVirtueDefs(BOOK_VF_IDS), ...faerieVirtueDefs(BOOK_VF_IDS), ...folkWitchVirtueDefs(BOOK_VF_IDS)];
 /** Laboratory Virtues and Flaws that were extracted with the character ones. */
 /** An aligned Magic aura as a Site Boon or Hook (Realms of Power: Magic, Covenant Boons and Hooks): set its alignment on the covenant's Aura card. */
 const ALIGNED_AURA_HOOKS: HookBoonDef[] = [
@@ -64,7 +70,7 @@ const BOOK_ABILITY_IDS = new Set(BOOK_ABILITIES.map((a) => a.id));
  * other book as a second source. Saved characters are moved over (store/migrate).
  */
 export const ABILITY_ALIASES: Record<string, string> = { 'rabbinical-law': 'rabbinic-law' };
-const RAW_ABILITIES = [...BOOK_ABILITIES, ...tribunalAbilityDefs(BOOK_ABILITY_IDS), ...divineAbilityDefs(BOOK_ABILITY_IDS), ...societatesAbilityDefs(BOOK_ABILITY_IDS), ...tmreAbilityDefs(BOOK_ABILITY_IDS), ...faerieAbilityDefs(BOOK_ABILITY_IDS)]
+const RAW_ABILITIES = [...BOOK_ABILITIES, ...tribunalAbilityDefs(BOOK_ABILITY_IDS), ...divineAbilityDefs(BOOK_ABILITY_IDS), ...societatesAbilityDefs(BOOK_ABILITY_IDS), ...tmreAbilityDefs(BOOK_ABILITY_IDS), ...faerieAbilityDefs(BOOK_ABILITY_IDS), ...learnedAbilityDefs(BOOK_ABILITY_IDS), ...elementalAbilityDefs(BOOK_ABILITY_IDS), ...folkWitchAbilityDefs(BOOK_ABILITY_IDS), ...gruagachAbilityDefs(BOOK_ABILITY_IDS), ...vitkirAbilityDefs(BOOK_ABILITY_IDS)]
   .filter((a) => !ABILITY_ALIASES[a.id])
   .map((a) => {
     const others = BOOK_ABILITIES.filter((b) => ABILITY_ALIASES[b.id] === a.id);
@@ -330,7 +336,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
   }
 
   const spells = [...RAW_SPELLS, ...custom.spells];
-  const labVF = [...(labVFJson as unknown as LabVFDef[]), ...LAB_FROM_VF, ...custom.labVirtuesFlaws];
+  const labVF = [...(labVFJson as unknown as LabVFDef[]), ...HP_LAB_VF, ...LAB_FROM_VF, ...custom.labVirtuesFlaws];
   const hb = [...(hooksBoonsJson as unknown as HookBoonDef[]), ...ALIGNED_AURA_HOOKS, ...custom.hooksBoons].map((h) => ({
     ...h,
     requires: h.requires ?? (/shell keep|tower keep|curtain walls/i.test(h.name) ? 'Castle' : null),
@@ -350,10 +356,10 @@ export function buildGameData(opts: DataOptions = {}): GameData {
     guidelineNotes: guidelineNotesJson as GameData['guidelineNotes'],
     labVirtuesFlaws: labVF,
     labVFById: new Map(labVF.map((l) => [l.id, l])),
-    labFeatures: labFeaturesJson as unknown as LabFeatureDef[],
+    labFeatures: [...(labFeaturesJson as unknown as LabFeatureDef[]), ...HP_LAB_FEATURES],
     hooksBoons: hb,
     hookBoonById: new Map(hb.map((h) => [h.id, h])),
-    shapeMaterial: [...(shapeMaterialJson as unknown as ShapeMaterialDef[]), ...custom.shapeMaterial],
+    shapeMaterial: [...(shapeMaterialJson as unknown as ShapeMaterialDef[]), ...HP_SHAPE_MATERIAL, ...custom.shapeMaterial],
     weapons,
     weaponById: new Map(weapons.map((w) => [w.id, w])),
     armor,

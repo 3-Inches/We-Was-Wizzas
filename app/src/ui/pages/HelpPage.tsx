@@ -407,6 +407,49 @@ export default function HelpPage() {
             Warping, and a faerie&apos;s change of role through a creative human.
           </li>
           <li>
+            <b>Nightwalkers</b> (<i>Hedge Magic, Revised Edition</i>): on <b>Dice › Hedge magic</b>, spirit travel by how well the place is known, leading others
+            astray, the chapter&apos;s other rolls, and a fertility battle&apos;s outcome set as the year&apos;s harvest on the covenant&apos;s land.
+          </li>
+          <li>
+            <b>The Church</b>: on <b>Dice › Faith &amp; miracles</b>, Devotions to the saints in Devotion Points (they add to invoking the saint, with a relic&apos;s Faith Points × 2), a
+            pilgrimage&apos;s Oppositional Elements against its Target Level, a contemplative&apos;s Spiritual Path, and a monistic mystic&apos;s Revelation after Divine Ascent.
+          </li>
+          <li>
+            <b>Hermetic Projects</b>: its spells are in the spell list (each row shows the Lab Total to invent it in one to four seasons), and its enchantments can be added to an item
+            with <b>+ From the books…</b>. Its ships and a great tower can be kept as possessions. On <b>Possessions</b>, the <b>Great projects</b> card gives a mason&apos;s building
+            progress, a building&apos;s stress check, and a menagerie&apos;s breeding, birthing and young.
+          </li>
+          <li>
+            <b>Vitkir</b> (<i>Hedge Magic, Revised Edition</i>): the 24 runes, raised as Arts; the sheet keeps the apprenticeship (240 experience points and 120 levels of scripts)
+            and the scripts known (the book&apos;s or designed from a rune&apos;s guideline). On <b>Dice › Hedge magic</b>: a script cast with its name and description written,
+            hidden or left off, vis and a rune focus; a season inventing scripts or learning them from a teacher; <b>Nátt-thel</b>, the loss of The Gift, after two Warping
+            Points at once.
+          </li>
+          <li>
+            <b>Gruagachan</b> (<i>Hedge Magic, Revised Edition</i>): Give and Take with Blessing, Curse, Shape and Vision; the sheet keeps the apprenticeship and the spells
+            known (from the book or designed with the Geas and Limit Durations). On <b>Dice › Hedge magic</b>: a Formulaic spell varied within its magnitudes, or a
+            spontaneous one; transformation after a double botch; a season enchanting a <b>tattoo</b>, inventing a spell or drawing vis.
+          </li>
+          <li>
+            <b>Folk witches</b> (<i>Hedge Magic, Revised Edition</i>): the Folk Witch Social Status, the tradition&apos;s Virtues and Flaws, and Folk Witch Magic Theory; a
+            Gifted witch has the seven favored powers, and the sheet keeps her apprenticeship (200 experience points). On <b>Dice › Hedge magic</b>: a power used by
+            incantation or fetish against its Ease Factor, potions drunk, a <b>season in the kitchen</b> (potions, fetishes, curses, vis, a longevity ritual, a
+            familiar), and the <b>Witch Moon</b> that a new Warping Score brings.
+          </li>
+          <li>
+            <b>Elementalists</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the four Techniques (each for a type of target: Medicinal, Philosophical or
+            Theurgical) and the four Elementalist Forms open them at 0. The sheet shows the <b>Elemental Traits</b> that Warping and the Forms bring. On <b>Dice › Hedge
+            magic</b>: Summoning, Controlling and Divining rolled with the elements and vis chosen, and what the total reaches; and a season of <b>Refining</b> (a
+            longevity potion, vis from an aura, vis moved, a being&apos;s Might).
+          </li>
+          <li>
+            <b>Learned magicians</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the six Arts open them at 0 (a Gifted Mathematicus of Bologna has all six); the
+            sheet&apos;s <b>Learned magic</b> card keeps the years under a master (30 experience points each) and the charms known. On <b>Dice › Hedge magic</b>: a{' '}
+            <b>charm</b> cast from memory or read from a formulary, with Entreat the Powers against a hostile aura, Fatigue when it falls short, and Warping and
+            intervention after a botch; a <b>charta</b> written in hours; an <b>amulet</b> made in a season, put on the sheet with its charges; and a season inventing a
+            charm or learning charms from a teacher.
+          </li>
+          <li>
             <b>The Mysteries</b> (<i>The Mysteries, Revised Edition</i>): on a lab project, a magus with Planetary Magic (for enchanting) or Celestial Magic (for any lab work)
             chooses a <b>Laboratory Horoscope</b> of +1 to +5, rolled as the season begins against three times the bonus; a botch wastes the season. A charged item can be
             made <b>as a periapt</b>. <b>Extract vis</b> takes a vessel&apos;s Shape and Material bonus with Hermetic Alchemy, Form vis at a pawn per 20 points, and with

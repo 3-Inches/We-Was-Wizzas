@@ -19,6 +19,7 @@ import { CombatRolls, GroupCombat } from '../character/sheet/CombatTab';
 import MagicTab from '../character/sheet/MagicTab';
 import MysteriesPart, { hasTableMystery } from './MysteriesPart';
 import FaeriePart, { hasFaerieTable } from './FaeriePart';
+import HedgePart, { hasHedgeMagic } from './HedgePart';
 import { TwilightCard } from '../character/sheet/Twilight';
 import { HeartbeastChange } from '../character/sheet/MysteriesCard';
 import { SilverRescue } from '../character/sheet/LabItemsTab';
@@ -99,12 +100,13 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
   return (
     <div className="stack">
       {standalone && <h1>Dice</h1>}
-      {saga && <Tabs tabs={DICE_SUBS.filter((id) => (id !== 'mysteries' || x.chars.some(hasTableMystery)) && (id !== 'faerie' || x.chars.some(hasFaerieTable))).map((id) => ({ id, label: DICE_LABELS[id] }))} value={sub} onChange={(t) => set('sub', t)} />}
+      {saga && <Tabs tabs={DICE_SUBS.filter((id) => (id !== 'mysteries' || x.chars.some(hasTableMystery)) && (id !== 'faerie' || x.chars.some(hasFaerieTable)) && (id !== 'hedge' || x.chars.some(hasHedgeMagic))).map((id) => ({ id, label: DICE_LABELS[id] }))} value={sub} onChange={(t) => set('sub', t)} />}
       {sub === 'roll' && <RollPart x={x} who={who} />}
       {saga && sub === 'combat' && <CombatPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'magic' && <MagicPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'holy' && <HolyDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'faerie' && <FaerieDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
+      {saga && sub === 'hedge' && <HedgeDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'mysteries' && <MysteriesDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {!saga && <p className="small muted">Open a saga first and its characters can take part in these rolls, their wounds going on their sheets.</p>}
     </div>
@@ -513,6 +515,24 @@ function FaerieDicePart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who:
       {c && (
         <CharAtTable key={c.id} sagaId={sagaId} charId={c.id}>
           {(ed) => <FaeriePart ed={ed} />}
+        </CharAtTable>
+      )}
+    </>
+  );
+}
+
+/** The learned magicians at the table (Hedge Magic): charms, chartae, amulets and seasons of charms. */
+function HedgeDicePart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: string; setWho: (id: string) => void }) {
+  const c = pick(x, who, hasHedgeMagic);
+  return (
+    <>
+      <div className="row">
+        <WhoPicker x={x} value={c?.id} onChange={setWho} keep={hasHedgeMagic} label="Who" none="Nobody in this saga works hedge magic (a learned magician or an elementalist)." />
+        {c && <CharLink sagaId={sagaId} c={c} />}
+      </div>
+      {c && (
+        <CharAtTable key={c.id} sagaId={sagaId} charId={c.id}>
+          {(ed) => <HedgePart ed={ed} />}
         </CharAtTable>
       )}
     </>

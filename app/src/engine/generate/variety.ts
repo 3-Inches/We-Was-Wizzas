@@ -64,6 +64,11 @@ export function rarity(def: VirtueFlawDef, type: CharType, size?: string): numbe
   return r;
 }
 
+/** What marks a character out at a glance: a grave bodily Flaw, a bloodline, True Faith. A character takes at most one of these in all. */
+export function isStriking(def: VirtueFlawDef): boolean {
+  return def.id.startsWith('horrifying-appearance') || BODY_MAJOR.includes(def.id) || BLOODLINES.includes(def.id) || def.id === 'true-faith';
+}
+
 /** Kinds of option a character takes at most one of, because two make a caricature. */
 export function markGroup(def: VirtueFlawDef): string | undefined {
   if (def.id.startsWith('horrifying-appearance') || BODY_MAJOR.includes(def.id) || BODY_MINOR.includes(def.id)) return 'body';

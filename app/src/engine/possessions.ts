@@ -4,6 +4,7 @@
 
 import type { GameData } from '../data';
 import type { Character, ItemCondition, Possession } from './types';
+import { SHIP_SIZES } from './greatProjects';
 import { itemDamageLevels, type ItemQuality } from './workshop';
 
 /** Kinds of thing whose damage is worth tracking (City & Guild, Damaged Goods: most items Size −1, great weapons 0, a house +5, a ship up to +8, a castle +10). */
@@ -19,7 +20,10 @@ export const ITEM_KINDS: { id: string; label: string; size: number; lock?: boole
   { id: 'cart', label: 'A cart or wagon', size: 2 },
   { id: 'house', label: 'A house', size: 5 },
   { id: 'ship', label: 'A ship', size: 8 },
+  // the book's ships (Hermetic Projects, The Hermetic Shipyard)
+  ...SHIP_SIZES.map((x) => ({ id: x.id, label: `${x.label} (Size +${x.size}, ${x.capacity}, crew ${x.crew})`, size: x.size })),
   { id: 'castle', label: 'A castle', size: 10 },
+  { id: 'tower', label: 'A great tower or other great building (Hermetic Projects; its stress check adds Craft: Mason)', size: 10 },
 ];
 export const kindOf = (id: string) => ITEM_KINDS.find((k) => k.id === id) ?? ITEM_KINDS.find((k) => k.id === 'tool')!;
 

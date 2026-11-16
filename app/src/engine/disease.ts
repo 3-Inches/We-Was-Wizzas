@@ -2,6 +2,7 @@
 // Disease Penalty, the Disease Recovery roll at each interval, crises, and a physician's Prognosis.
 
 import diseasesJson from '../data/generated/diseases.json';
+import { HP_DISEASES } from '../data/hermeticProjects';
 import { auraRecovery } from './aura';
 import type { DerivedCharacter } from './character/derive';
 import { defaultRng, describeStress, stressDie, type Rng } from './dice';
@@ -24,7 +25,7 @@ export interface DiseaseDef {
   source: { book: string; line: number };
 }
 
-export const DISEASES = diseasesJson as unknown as DiseaseDef[];
+export const DISEASES = [...(diseasesJson as unknown as DiseaseDef[]), ...HP_DISEASES];
 export const STAGES: IllnessStage[] = ['Minor', 'Serious', 'Major', 'Critical'];
 /** The Disease Penalty of each stage; a Critical disease allows no action at all. */
 export const STAGE_PENALTY: Record<IllnessStage, number | null> = { Minor: -1, Serious: -3, Major: -5, Critical: null };

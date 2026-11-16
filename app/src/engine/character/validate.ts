@@ -9,7 +9,7 @@
 import { CHARACTERISTICS, CHAR_NAMES, STATUS_CULTURES, abilityTypeOf, type GameData } from '../../data';
 import { LAB_ONLY_VF } from '../../data/restrictions';
 import type { Character, HouseRules } from '../types';
-import { canSpend, purchasedCharacteristic, sumAlloc, type DerivedCharacter } from './derive';
+import { VITKI_APPRENTICESHIP, canSpend, purchasedCharacteristic, sumAlloc, type DerivedCharacter } from './derive';
 import { creationSpellLimit } from '../magic';
 import { EX_MISC_TRADITIONS, HOUSE_BY_ID } from '../../data/houses';
 import { abilityAvailability, statusesCompatible, vfProblems } from './restrictions';
@@ -17,6 +17,8 @@ import { MYTHIC_TYPES, hasFaerieVirtue, mythicAbility } from './factory';
 import { POWER_KINDS, POWER_KIND_ORDER, masteryPools, powerSpending, powerStats } from './powers';
 import type { PowerKind } from '../../data';
 import { FAERIE_SOCIAL } from './faerieCharacter';
+import { RUNE_IDS } from '../../data/hedgeVitkir';
+import { vitkiAbilities } from '../vitkir';
 
 export type Severity = 'error' | 'warning' | 'info';
 export type Step = 'basics' | 'house' | 'virtues' | 'characteristics' | 'abilities' | 'arts' | 'spells' | 'personality' | 'equipment' | 'sheet';
@@ -64,6 +66,44 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (type === 'grog' && d.hasGift) add({ id: 'grog-gift', severity: 'error', step: 'virtues', message: 'Grogs may not have The Gift.', ref: 'DE p.63' });
   if (type === 'magus' && !c.virtues.some((v) => v.defId === 'hermetic-magus')) add({ id: 'magus-status', severity: 'error', step: 'virtues', message: 'Magi must take the Hermetic Magus Social Status.', ref: 'DE p.63', fix: 'Add Hermetic Magus (free).' });
   if (t.socialStatuses.length === 0) add({ id: 'status-none', severity: 'error', step: 'virtues', message: 'Every character must take one Social Status.', ref: 'DE p.63', fix: d.magicChar ? 'A magic character takes Magical Master, Champion, Covenfolk, Friend or Monster.' : type === 'grog' ? 'Covenfolk is the usual choice.' : 'Covenfolk, Wanderer or a status fitting the concept.' });
+  // --------------------------------------------------------------- learned magicians (Hedge Magic)
+  if (c.virtues.some((v) => v.defId === 'mathematicus-of-bologna')) {
+    const opened = (ids: string[]) => d.hasGift || ids.some((id) => d.abilities.some((a) => a.abilityId === id));
+    const lack = [!opened(['tueor', 'succurro', 'vulnero']) ? 'a Technique (Tueor, Succurro or Vulnero)' : '', !opened(['fortunam', 'magicam', 'salutem']) ? 'a Form (Fortunam, Magicam or Salutem)' : ''].filter(Boolean);
+    if (lack.length) add({ id: 'learned-arts', severity: 'error', step: 'virtues', message: `A mathematicus must have ${lack.join(' and ')} of the tradition.`, fix: 'Take the Virtue of each Art (a Technique is Major, a Form Minor), or The Gift, opened to all six.', ref: 'Hedge Magic, Learned Magicians' });
+    if (t.socialStatuses.length === 1) add({ id: 'learned-status', severity: 'warning', step: 'virtues', message: 'A mathematicus also takes a Social Status for their place in mundane society (a clerk, a magister in artibus, a mendicant friar, a priest…).', ref: 'Hedge Magic, Learned Magicians' });
+  }
+  // --------------------------------------------------------------- gruagachan (Hedge Magic)
+  if (c.virtues.some((v) => v.defId === 'gruagach') && !d.hasGift) {
+    const body = ['giant-blood', 'large', 'shapeshifter'].some((id) => c.virtues.some((v) => v.defId === id));
+    const pair = ['gruagach-give', 'gruagach-take'].some((id) => d.abilities.some((a) => a.abilityId === id)) && ['gruagach-blessing', 'gruagach-curse', 'gruagach-shape', 'gruagach-vision'].some((id) => d.abilities.some((a) => a.abilityId === id));
+    if (!body || !pair) add({ id: 'gruagach-needs', severity: 'error', step: 'virtues', message: `An unGifted gruagach needs ${[!body ? 'Giant Blood, Large or Shapeshifter' : '', !pair ? 'a gruagach Technique and Form (their Virtues)' : ''].filter(Boolean).join(' and ')}.`, ref: 'Hedge Magic, Gruagachan' });
+  }
+  // --------------------------------------------------------------- vitkir (Hedge Magic)
+  if (c.virtues.some((v) => v.defId === 'vitki')) {
+    const pool = d.budgets.find((b) => b.id === VITKI_APPRENTICESHIP);
+    const onRunes = c.abilities.filter((a) => RUNE_IDS.includes(a.abilityId)).reduce((t, a) => t + (a.xp[VITKI_APPRENTICESHIP] ?? 0), 0);
+    if (pool && pool.spent >= pool.total && onRunes < pool.total / 2) add({ id: 'vitki-runes', severity: 'warning', step: 'abilities', message: `A vitki's apprenticeship puts at least half its experience into the runes: ${onRunes} of ${pool.total} here.`, ref: 'Hedge Magic, Vitkir' });
+    const { runeMagic, craftRunes, oldNorse } = vitkiAbilities(c, d);
+    const lack = [craftRunes < 2 ? 'Craft: Runes 2' : '', oldNorse < 3 ? 'Old Norse 3' : '', runeMagic < 1 ? 'Rune Magic 1' : ''].filter(Boolean);
+    if (lack.length) add({ id: 'vitki-abilities', severity: 'warning', step: 'abilities', message: `A vitki needs ${lack.join(', ')} to study and practice rune magic.`, fix: 'About 50 experience points of the apprenticeship.', ref: 'Hedge Magic, Vitkir' });
+    const high = d.abilities.filter((a) => RUNE_IDS.includes(a.abilityId) && a.total > 10);
+    if (!c.creation.finalized && high.length) add({ id: 'vitki-rune-ten', severity: 'info', step: 'abilities', message: `A score of 10 in a rune is the practical most just out of apprenticeship: ${high.map((a) => `${a.name} ${a.total}`).join(', ')}.`, ref: 'Hedge Magic, Vitkir' });
+  }
+  // --------------------------------------------------------------- folk witches (Hedge Magic)
+  if (c.virtues.some((v) => v.defId === 'folk-witch')) {
+    const magicFlaw = c.virtues.some((v) => {
+      const def = data.vfById.get(v.defId);
+      return def?.kind === 'flaw' && (def.categories.includes('Supernatural') || def.categories.includes('Hermetic'));
+    });
+    if (!magicFlaw) add({ id: 'folk-witch-flaw', severity: 'warning', step: 'virtues', message: 'A folk witch must take at least one Flaw that limits her magic.', fix: 'Silent Tradition, Unstable Magic, Harsh Moon, Short-Ranged Curses, Primitive or Rarefied Tradition, or a Hermetic Flaw for a Gifted witch.', ref: 'Hedge Magic, Folk Witches' });
+  }
+  // --------------------------------------------------------------- elementalists (Hedge Magic)
+  {
+    const tech = ['elemental-summoning', 'elemental-controlling', 'elemental-divining', 'elemental-refining'].some((id) => d.abilities.some((a) => a.abilityId === id));
+    const form = ['elementalist-air', 'elementalist-earth', 'elementalist-fire', 'elementalist-water'].some((id) => d.abilities.some((a) => a.abilityId === id));
+    if (tech !== form) add({ id: 'elemental-arts', severity: 'warning', step: 'virtues', message: `An elementalist's Arts work only together: this character has ${tech ? 'a Technique but no Elementalist Form' : 'an Elementalist Form but no Technique'}.`, fix: tech ? 'Take Elementalist Air, Earth, Fire or Water (Minor).' : 'Take (Type) Summoning, Controlling, Divining or Refining (Major for the first type).', ref: 'Hedge Magic, Elementalists' });
+  }
   // --------------------------------------------------------------- magic characters (RoP: Magic)
   // --------------------------------------------------------------- faerie characters (RoP: Faerie)
   for (const f of d.faerieChar?.issues ?? []) add({ id: f.id, severity: f.severity, step: 'virtues', message: f.message, fix: f.fix, ref: 'RoP: Faerie, Faerie Characters' });

@@ -30,6 +30,8 @@ import { Card, Field, HowItWorks, Stepper, Total, signed } from '../kit';
 import { uid } from '../../util/id';
 import { AfterRoll } from '../AfterRoll';
 import type { CharEditor } from '../character/useChar';
+import { ChurchCards } from './ChurchPart';
+import { devotionScore, relicDevotionBonus } from '../../engine/church';
 
 const REALMS: Realm[] = ['Divine', 'Magic', 'Faerie', 'Infernal', 'None'];
 const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
@@ -195,6 +197,7 @@ export default function HolyPart({ ed, fellows }: { ed: CharEditor; fellows: Fel
       {d.faithPoints > 0 && <MiracleCard ed={ed} aura={aura} fellows={others} />}
       <GodsAidCard ed={ed} fellows={others} />
       <SaintsCard ed={ed} aura={aura} />
+      <ChurchCards ed={ed} />
       <InfluenceCard ed={ed} fellows={fellows} />
       {isHolyCharacter(d) && <AscentCard ed={ed} aura={aura} gained={gained} />}
       {score(d, 'ars-notoria') > 0 && <NotoriaCard ed={ed} />}
@@ -800,6 +803,7 @@ function SaintsCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const [mods, setMods] = useState<Record<string, number>>({});
   const [threatMods, setThreatMods] = useState<Record<string, number>>({});
   const [trait, setTrait] = useState(0);
+  const [relic, setRelic] = useState(0);
   const [refused, setRefused] = useState<string | null>(null);
   const [answered, setAnswered] = useState<string | null>(null);
   const [used, setUsed] = useState<Record<string, string[]>>({});
@@ -809,7 +813,13 @@ function SaintsCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const saint: Saint = sid === 'own' ? { id: 'own', name: own.name, faith: 'christian', might: own.might, where: '', powers: [] } : SAINTS.find((s) => s.id === sid)!;
   const muslim = saint.faith === 'muslim';
   const list = muslim ? FORBEAR_INVOCATION_MODS : SAINT_INVOCATION_MODS;
-  const total = invokeSaintTotal(d, saint, { aura, mods: modParts(list, mods), muslimTrait: muslim ? trait : undefined });
+  // Devotion to this saint, and a relic of the saint (The Church)
+  const dev = (c.devotions ?? []).find((x) => x.saint === saint.id || x.saint.toLowerCase() === saint.name.toLowerCase());
+  const devParts: Part[] = [
+    ...(dev ? [{ label: `Devotion to ${saint.name} (${dev.points} Devotion Points)`, value: devotionScore(dev.points) }] : []),
+    ...(!muslim && relic ? [{ label: `A relic of the saint (${relic} Faith Points × 2, once a day)`, value: relicDevotionBonus(relic) }] : []),
+  ];
+  const total = invokeSaintTotal(d, saint, { aura, mods: [...modParts(list, mods), ...devParts], muslimTrait: muslim ? trait : undefined });
   const threat = threatenSaintTotal(d, modParts(SAINT_THREAT_MODS, threatMods));
   const silent = c.holy?.silent?.[saint.id];
   const left = saintMightLeft(saint, used[saint.id] ?? []);
@@ -880,6 +890,11 @@ function SaintsCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
               </select>
             </Field>
           </>
+        )}
+        {!muslim && (
+          <Field label="A relic of the saint (Faith Points)" hint="+2 a Faith Point to the Devotion Total, once a day; no −15 for an unfamiliar saint">
+            <Stepper value={relic} min={0} max={10} width={30} onChange={setRelic} />
+          </Field>
         )}
         {muslim && (
           <Field label="Highest Muslim Personality Trait">

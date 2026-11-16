@@ -291,6 +291,13 @@ def main():
         if not book[5] or book[0] == "DE":
             continue
         found = extract_supplement(book[0])
+        if book[0] == "HP":
+            # Hermetic Projects sets its spells out differently (see extract_hp.py)
+            from extract_hp import extract as extract_hp
+            hp_spells, hp_items = extract_hp()
+            found = found + hp_spells
+            write_json("enchantments.json", hp_items)
+            print(f"HP      enchantments {len(hp_items)}")
         added = 0
         for sp in found:
             key = (sp["name"].lower(), sp["technique"], sp["form"])

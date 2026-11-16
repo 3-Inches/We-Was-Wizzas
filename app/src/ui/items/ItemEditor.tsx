@@ -4,6 +4,7 @@ import type { DerivedCharacter } from '../../engine/character/derive';
 import { FREQUENCY, MATERIAL_BASE, SIZE_MULT, chargedItemCharges, investEffect, modifiedEffectLevel, openingCost, talismanCapacity } from '../../engine/enchant';
 import { labTotal, type AuraState, type LabContext } from '../../engine/magic';
 import { itemMagnitudes } from '../../engine/covenant';
+import { BOOK_ENCHANTMENTS, enchantmentToEffect } from '../../engine/bookEnchantments';
 import type { EnchantedEffectRecord, EnchantedItem } from '../../engine/types';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
@@ -89,6 +90,7 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
   const used = it.effects.reduce((s, e) => s + Math.ceil(e.modifiedLevel / 10), 0);
   const capacity = it.openedPawns;
   const smBonuses = it.shapeMaterialIds.flatMap((id) => data.shapeMaterial.find((s) => s.id === id)?.bonuses.map((b) => ({ ...b, from: data.shapeMaterial.find((s) => s.id === id)!.name })) ?? []);
+  const bookEffects = BOOK_ENCHANTMENTS.filter((b) => data.inBooks(b));
   const weakMagic = !!d?.effects.some((e) => e.type === 'penetrationMultiplier');
   return (
     <div className="list-row" style={{ flexDirection: 'column', alignItems: 'stretch' }}>
@@ -253,6 +255,24 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
             >
               + Effect
             </button>
+          )}
+          {(it.kind !== 'lesser' || it.effects.length === 0) && bookEffects.length > 0 && (
+            <select
+              value=""
+              aria-label="Add an effect from the books"
+              style={{ marginLeft: 6, maxWidth: 260 }}
+              onChange={(ev) => {
+                const b = bookEffects.find((x) => x.id === ev.target.value);
+                if (b) set((x) => void x.effects.push({ ...enchantmentToEffect(b), pending: props.onPlan ? true : undefined }));
+              }}
+            >
+              <option value="">+ From the books…</option>
+              {bookEffects.map((b) => (
+                <option key={b.id} value={b.id}>
+                  {b.name} ({b.technique}{b.form} {b.level}, {b.source.book})
+                </option>
+              ))}
+            </select>
           )}
           <Field label="Notes">
             <textarea rows={2} value={it.notes ?? ''} onChange={(e) => set((x) => void (x.notes = e.target.value))} />

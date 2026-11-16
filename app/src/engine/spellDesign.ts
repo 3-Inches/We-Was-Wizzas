@@ -175,6 +175,9 @@ export function inventionSeasons(labTotal: number, level: number, opts: { fromTe
   return { possible: true, seasons: Math.ceil(level / per), perSeason: per };
 }
 
+/** The Lab Total that invents a spell (or instills an effect) of this level in n seasons: the level + level ÷ n, rounded up (as Hermetic Projects lists it). */
+export const labTotalForSeasons = (level: number, seasons: number) => level + Math.ceil(level / Math.max(1, seasons));
+
 /** Spell Mastery special abilities (DE p.225–226). The Mastery score itself adds to the
  *  Casting Score of the spell and subtracts from its botch dice. */
 export const MASTERY_ABILITIES = [
