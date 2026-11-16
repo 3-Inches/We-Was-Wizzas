@@ -28,6 +28,7 @@ import { elementalAbilityDefs } from './hedgeElemental';
 import { folkWitchAbilityDefs, folkWitchVirtueDefs } from './hedgeFolkWitch';
 import { gruagachAbilityDefs } from './hedgeGruagach';
 import { vitkirAbilityDefs } from './hedgeVitkir';
+import { HP_LAB_FEATURES, HP_LAB_VF, HP_SHAPE_MATERIAL } from './hermeticProjects';
 import type {
   AbilityDef, ArmorDef, GuidelineDef, HookBoonDef, LabFeatureDef, LabVFDef, ShapeMaterialDef,
   SpellDef, VirtueFlawDef, WeaponDef, Effect, AbilityType, RuleSection, VFRef,
@@ -335,7 +336,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
   }
 
   const spells = [...RAW_SPELLS, ...custom.spells];
-  const labVF = [...(labVFJson as unknown as LabVFDef[]), ...LAB_FROM_VF, ...custom.labVirtuesFlaws];
+  const labVF = [...(labVFJson as unknown as LabVFDef[]), ...HP_LAB_VF, ...LAB_FROM_VF, ...custom.labVirtuesFlaws];
   const hb = [...(hooksBoonsJson as unknown as HookBoonDef[]), ...ALIGNED_AURA_HOOKS, ...custom.hooksBoons].map((h) => ({
     ...h,
     requires: h.requires ?? (/shell keep|tower keep|curtain walls/i.test(h.name) ? 'Castle' : null),
@@ -355,10 +356,10 @@ export function buildGameData(opts: DataOptions = {}): GameData {
     guidelineNotes: guidelineNotesJson as GameData['guidelineNotes'],
     labVirtuesFlaws: labVF,
     labVFById: new Map(labVF.map((l) => [l.id, l])),
-    labFeatures: labFeaturesJson as unknown as LabFeatureDef[],
+    labFeatures: [...(labFeaturesJson as unknown as LabFeatureDef[]), ...HP_LAB_FEATURES],
     hooksBoons: hb,
     hookBoonById: new Map(hb.map((h) => [h.id, h])),
-    shapeMaterial: [...(shapeMaterialJson as unknown as ShapeMaterialDef[]), ...custom.shapeMaterial],
+    shapeMaterial: [...(shapeMaterialJson as unknown as ShapeMaterialDef[]), ...HP_SHAPE_MATERIAL, ...custom.shapeMaterial],
     weapons,
     weaponById: new Map(weapons.map((w) => [w.id, w])),
     armor,
