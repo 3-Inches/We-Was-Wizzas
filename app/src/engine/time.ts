@@ -529,7 +529,7 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
   // character under 35 then rolls too
   const routine = routineYear(c, year);
   // an immortal of the Great Elixir no longer ages (The Mysteries)
-  const ages = !c.creature?.magicCharacter && !c.inhuman && c.greatElixir?.might === undefined && (c.age >= d.agingStartAge || !!c.longevity || routine.living < 0 || routine.extraRolls > 0);
+  const ages = !c.creature?.magicCharacter && !c.inhuman && c.greatElixir?.might === undefined && !c.creature?.faerieCharacter && (c.age >= d.agingStartAge || !!c.longevity || routine.living < 0 || routine.extraRolls > 0);
   const due = roll && ages && c.lastAgedYear !== year;
   if (due) {
     if (routine.from.length) lines.push({ who, kind: 'aging', text: `Lab routines this year (${routine.from.join(', ')}): Living Conditions ${routine.living}${routine.extraRolls ? `, ${routine.extraRolls} extra Aging roll${routine.extraRolls > 1 ? 's' : ''}` : ''}.` });

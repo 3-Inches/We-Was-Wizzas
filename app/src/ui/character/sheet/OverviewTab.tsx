@@ -21,6 +21,7 @@ import { holyMethodsOf, holyPowersOf } from '../../../engine/holy';
 import { divineResistance } from '../../../engine/magic';
 import type { DerivedCharacter } from '../../../engine/character/derive';
 import type { Character } from '../../../engine/types';
+import { SympathyCard } from '../SympathyCard';
 
 /** The holy side, for reference: Methods and Powers, a tradition, a commanding aura, the Divine Ascent, a Ring of Solomon (RoP: The Divine). */
 function HolyLine({ c, d }: { c: Character; d: DerivedCharacter }) {
@@ -223,6 +224,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
       </Card>
       {c.creature && <CreatureCard ed={ed} />}
       <EssentialTraitsCard ed={ed} />
+      <SympathyCard ed={ed} />
       {!hasEffects && <EffectsCard ed={ed} />}
       <AgencyCard ed={ed} />
       <TribunalCard ed={ed} />

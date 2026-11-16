@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import type { CharType } from '../../data';
 import { HOUSE_BY_ID } from '../../data/houses';
-import { newCharacter } from '../../engine/character/factory';
+import { addVirtue, newCharacter } from '../../engine/character/factory';
+import { newFaerieCreature } from '../../engine/character/faerieCharacter';
 import { CHARACTER_TEMPLATES, characterFromTemplate } from '../../engine/templates';
 import { deriveCharacter } from '../../engine/character/derive';
 import { summarize, validateCharacter } from '../../engine/character/validate';
@@ -42,6 +43,21 @@ export default function PeoplePage() {
 
   const create = (type: CharType) => {
     const c = newCharacter(type, saga.id, saga.currentYear);
+    if (covs.length === 1) c.covenantId = covs[0].id;
+    putCharacter(c);
+    if (covs.length === 1) useStore.getState().updateCovenant(covs[0].id, (cv) => cv.memberIds.push(c.id));
+    nav(R.character(saga.id, c));
+  };
+  // a faerie (RoP: Faerie, Chapter Three): a companion's sheet on the Faerie Character rules, its Pretenses
+  // priced by the saga's magi's average age, with the free choices taken (Narrowly Cognizant, Passes for Human)
+  const faerie = (replaces: 'companion' | 'magus') => {
+    const c = newCharacter('companion', saga.id, saga.currentYear);
+    const magi = chars.filter((x) => x.type === 'magus' && !x.npc);
+    const age = magi.length ? Math.round(magi.reduce((t, x) => t + x.age, 0) / magi.length) : 21;
+    c.creature = newFaerieCreature(replaces, age);
+    c.virtues = c.virtues.filter((v) => !data.vfById.get(v.defId)?.categories.includes('Social Status'));
+    for (const id of ['narrowly-cognizant', 'passes-for-human']) addVirtue(c, data, id, 'Free');
+    c.creation.concept = replaces === 'magus' ? 'A faerie in place of a magus' : 'A faerie companion';
     if (covs.length === 1) c.covenantId = covs[0].id;
     putCharacter(c);
     if (covs.length === 1) useStore.getState().updateCovenant(covs[0].id, (cv) => cv.memberIds.push(c.id));
@@ -120,6 +136,14 @@ export default function PeoplePage() {
             ))}
           </select>
           <span className="small muted">Finished and ready to play, as the book gives them: they need a name, and the sheet keeps the book&apos;s notes on changing them.</span>
+        </div>
+        <div className="row" style={{ marginTop: 8 }}>
+          <select value="" onChange={(e) => e.target.value && faerie(e.target.value as 'companion' | 'magus')} aria-label="Make a faerie character" data-tour="people-faerie">
+            <option value="">Or a faerie (Realms of Power: Faerie)…</option>
+            <option value="companion">a faerie companion</option>
+            <option value="magus">a faerie in place of a magus</option>
+          </select>
+          <span className="small muted">Might 5, Pretenses in place of Abilities, a form, a cognizance, a social Virtue or Flaw and a taboo to choose.</span>
         </div>
         <p className="small muted" style={{ marginBottom: 0 }}>
           Or let the toolkit make them: <Link to={`/saga/${saga.id}/build`}>Quick build ›</Link>. A player&apos;s finished sheet can be brought in with Import on the Saga Overview.

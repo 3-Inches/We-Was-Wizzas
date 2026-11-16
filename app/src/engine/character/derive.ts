@@ -10,6 +10,7 @@ import {
 } from '../../data';
 import type { Character, CharAbility, CharVirtue, HouseRules, XpAlloc, XpSource } from '../types';
 import { deriveMagicCharacter, SEASON_AGE, type MagicCharacterDerived } from './magicCharacter';
+import { deriveFaerieCharacter, faerieAllowedVirtuePoints, type FaerieCharDerived } from './faerieCharacter';
 import { abilityScore, abilityXp, abilityXpRemainder, artScoreFromXp, artXpRemainder, withAffinity, warpingScoreFromPoints } from '../xp';
 
 export type ResolvedEffect = Effect & { fromUid: string; fromName: string; param?: string };
@@ -138,6 +139,8 @@ export interface DerivedCharacter {
   might: { realm: 'Magic' | 'Faerie' | 'Divine' | 'Infernal'; score: number; form?: string; source: string } | null;
   /** built with the Realms of Power: Magic character rules */
   magicChar: MagicCharacterDerived | null;
+  /** built with the Faerie Character rules (RoP: Faerie) */
+  faerieChar: FaerieCharDerived | null;
   /** largest starting Personality Trait (3, or more with e.g. Heroic Personality) */
   personalityMax: number;
   /** levels available for each kind of supernatural power */
@@ -357,6 +360,10 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     }
   }
   tally.allowedVirtuePoints = char.type === 'mythic' ? tally.flawPoints * rules.mythicVirtueRatio : tally.flawPoints;
+  // a faerie character (RoP: Faerie): Might, Pretense points and its own Virtue budget
+  const fcInfo = char.creature?.realm === 'Faerie' ? char.creature.faerieCharacter : undefined;
+  const faerieChar = fcInfo ? deriveFaerieCharacter(char, fcInfo, tally) : null;
+  if (fcInfo) tally.allowedVirtuePoints = faerieAllowedVirtuePoints(fcInfo, tally.flawPoints);
 
   // ---------------------------------------------------------------- size & characteristics
   // a magic character (RoP: Magic) has no childhood: Season replaces age; its true form sets Size
@@ -438,6 +445,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     if (a.fromName.startsWith('Student of') && a.param) access.abilities.add(`${a.param.toLowerCase()}-lore`.replace('divine-lore', 'dominion-lore'));
   }
   for (const g of eff('grantAbility')) access.abilities.add(g.ability);
+  // a faerie needs no Virtue for any Pretense: its Abilities are copied from people (RoP: Faerie)
+  if (faerieChar) for (const t of ['Martial', 'Academic', 'Arcane'] as const) access.types.add(t);
   // a Mythic Companion's type opens the Abilities its least scores are in, Arcane and Academic ones too
   // ("the character must buy appropriate Virtues to take other Abilities of these types", RoP: The Divine)
   const mythicType = char.type === 'mythic' ? Object.values(MYTHIC_TYPES).find((t) => char.virtues.some((v) => v.defId === t.virtue && v.freeReason === 'Mythic Companion')) : undefined;
@@ -570,7 +579,10 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     return t;
   };
   const budgets: XpBudget[] = [];
-  if (magicChar) {
+  if (faerieChar) {
+    // RoP: Faerie: Pretenses, bought like Abilities from one pool, languages included
+    budgets.push({ id: 'laterLife', label: `Pretenses: ${faerieChar.pretenseParts.map((p) => `${p.label} ${p.value}`).join(', ')}`, total: faerieChar.pretensePoints, spent: spentBy('laterLife'), allows: 'Any Ability, as a Pretense: no Virtue is needed (RoP: Faerie)', kind: 'ability' });
+  } else if (magicChar) {
     // RoP: Magic: Season, not age, gives a magic character its experience (languages included)
     budgets.push({
       id: 'laterLife', label: `Season: ${magicChar.xpParts.map((p) => `${p.label} ${p.value > 0 && p !== magicChar.xpParts[0] ? '+' : ''}${p.value}`).join(', ')}`,
@@ -638,6 +650,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     const base = char.creature.intelligence === 'grog' ? { score: 0, points: 0 } : { score: 1, points: 3 };
     confidence = { score: base.score + magicChar.confidence.score, points: base.points + magicChar.confidence.points };
   }
+  // faeries have no Confidence; Reputation as Confidence gives false points instead (RoP: Faerie)
+  if (faerieChar) confidence = { score: 0, points: 0 };
   if (char.creation.finalized || char.creation.confidenceSet) confidence = { ...char.confidence };
   const reputations = [
     ...eff('reputation').map((r) => ({ text: r.label + (r.kind === 'bad' ? ' (bad)' : ''), scope: r.scope ?? 'General', score: r.score, fromVirtue: r.fromName })),
@@ -671,7 +685,8 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const cr = char.creature;
   // Might Score spent on Ritual Powers comes back only slowly (RoP: Magic, Ritual Power)
   const mightLost = cr?.mightLost ?? 0;
-  if (cr && magicChar) might = { realm: cr.realm === 'None' ? 'Magic' : cr.realm, score: Math.max(0, magicChar.might - mightLost), form: magicChar.form, source: 'creature' };
+  if (cr && faerieChar) might = { realm: 'Faerie', score: Math.max(0, faerieChar.might - mightLost), form: cr.form, source: 'creature' };
+  else if (cr && magicChar) might = { realm: cr.realm === 'None' ? 'Magic' : cr.realm, score: Math.max(0, magicChar.might - mightLost), form: magicChar.form, source: 'creature' };
   else if (cr && cr.realm !== 'None' && cr.might > 0) might = { realm: cr.realm, score: Math.max(0, cr.might - mightLost), form: cr.form, source: 'creature' };
   for (const m of eff('mightScore')) {
     const score = m.perYears ? Math.floor(char.age / m.perYears) : m.score;
@@ -750,6 +765,7 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
       ...(magicChar?.monstrous ? [{ vs: 'mundane humans and animals', amount: -6, from: 'Monstrous Appearance (magic character)' }] : []),
     ],
     magicChar,
+    faerieChar,
     charSpecialties: virtues.filter((v) => v.cv.defId === 'mythic-characteristic' && v.cv.param).map((v) => ({ char: v.cv.param!, text: v.cv.note ?? '', from: v.name })),
     twilightProne: has('twilight-prone-flaw'),
     twilightMastery: has('twilight-mastery'),

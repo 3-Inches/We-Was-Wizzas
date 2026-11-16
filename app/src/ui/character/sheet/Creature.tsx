@@ -133,13 +133,41 @@ export function CreatureCard({ ed }: { ed: CharEditor }) {
             <option value="magus">magus-level: condescending or wild, acts on its own</option>
           </select>
         </Field>
-        {!cr.magicCharacter && cr.realm !== 'None' && (
+        {!cr.magicCharacter && !cr.faerieCharacter && cr.realm !== 'None' && (
           <Field label={`${cr.realm} Might`}>
             <Stepper value={cr.might} min={0} max={100} width={40} onChange={(v) => set((x) => void (x.might = v))} />
           </Field>
         )}
       </div>
-      {cr.realm !== 'None' && (
+      {cr.realm === 'Faerie' && !cr.magicCharacter && (
+        <label className="inline small">
+          <input
+            type="checkbox"
+            checked={!!cr.faerieCharacter}
+            onChange={(e) => set((x) => void (x.faerieCharacter = e.target.checked ? { replaces: x.intelligence === 'magus' ? 'magus' : 'companion', magiAge: 21 } : undefined))}
+            data-tour="faerie-rules"
+          />{' '}
+          Build with the Faerie Character rules of Realms of Power: Faerie (Might 5 and its Virtues, Pretenses in place of Abilities, a form, cognizance, social Virtue and taboo)
+        </label>
+      )}
+      {cr.faerieCharacter && d.faerieChar && (
+        <div className="row small">
+          <Field label="In place of">
+            <select value={cr.faerieCharacter.replaces} onChange={(e) => set((x) => void (x.faerieCharacter!.replaces = e.target.value as 'companion' | 'magus'))}>
+              <option value="companion">a companion: up to 10 points of Virtues, balanced by Flaws</option>
+              <option value="magus">a magus: 1 free, then up to 20 points of Virtues, two for each Flaw point</option>
+            </select>
+          </Field>
+          <Field label="The magi's average age" hint="Sets the Pretense points: 15 × (age − 5) + 120 (20 Pretentious, 25 Ostentatious, 10 Aloof)">
+            <Stepper value={cr.faerieCharacter.magiAge} min={5} max={120} width={40} onChange={(v) => set((x) => void (x.faerieCharacter!.magiAge = v))} />
+          </Field>
+          <span>
+            Faerie Might <b>{d.faerieChar.might}</b> ({d.faerieChar.mightParts.map((p) => `${p.label} ${p.value}`).join(', ')}), its Magic Resistance too; <b>{d.faerieChar.pretensePoints}</b> Pretense points.
+            It has no Confidence, does not age or tire, regenerates, and refills its Might Points over a day.
+          </span>
+        </div>
+      )}
+      {cr.realm !== 'None' && !cr.faerieCharacter && (
         <label className="inline small">
           <input
             type="checkbox"
