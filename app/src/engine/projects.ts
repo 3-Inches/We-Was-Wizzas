@@ -19,6 +19,7 @@ import { addVis, infernalPawns, purseOf, taintNote, takeVis, visAvailable, visTe
 import { uid } from '../util/id';
 import { helperParts, type LabHelper } from './labHelp';
 import { flawHeld } from './covenantBoons';
+import { alchemyYield, digestSeasons, longevityModifier, elixirLevel, holds as hasMystery, horoscopeFor, ingredientPoints, periaptCharges, periaptMaxLevel, rollHoroscope, rollPeriaptHoroscope } from './hermeticMysteries';
 
 export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: string; /** DE: may be done by experimentation */ experiment?: boolean; /** the lab work it is, for a lab's restrictions */ activity?: string }[] = [
   { id: 'invent', label: 'Invent a spell', blurb: 'Each season the Lab Total beats the spell’s level by some points; they add up until they reach the level, and the spell is learned. From a Laboratory Text it takes one season, once the Lab Total reaches the level.', experiment: true, activity: 'Spells' },
@@ -35,6 +36,7 @@ export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: stri
   { id: 'install', label: 'Install a lab Virtue', blurb: 'A season for a Minor Virtue, two for a Major, with Magic Theory at least the Refinement + 3 and free space in the lab (or a Flaw taken to balance it). Another Virtue can come out in the same work.' },
   { id: 'repair', label: 'Put a lab Flaw right', blurb: 'A season for a Free or Minor Flaw, two for a Major, with free space for the occupied Size it adds. Some Flaws come of where the lab is, and cannot be.' },
   { id: 'castingTool', label: 'Enchant a casting tool (Verditius)', blurb: 'Enchant Casting Tools: one season, a Lab Total (with Philosophiae, Hubris, the spell’s magnitude and Craft) of twice the level of the spell and its powers; a pawn per 10 levels.', activity: 'Items' },
+  { id: 'elixir', label: 'Devise the Lesser Elixir', blurb: 'The Lesser Elixir (The Mysteries): a season and a dose of your own Longevity Ritual (its vis for your age) add a special ingredient. Each adds its Shape and Material bonus in Elixir Points (doubled for one of your own Vulgar Alchemy finds, never above Magic Theory); the Elixir Level, read from the points as an Art from experience and no higher than Magic Theory, adds to the ritual’s bonus.', activity: 'Longevity Rituals' },
   { id: 'fixConnection', label: 'Fix an Arcane Connection', blurb: 'A season and a pawn of Vim make an active Arcane Connection permanent. No Lab Total, but it is laboratory work. The connection must still be active when the season begins.' },
   { id: 'other', label: 'Other lab work', blurb: 'Anything else: the season is recorded with its exposure experience.' },
 ];
@@ -102,6 +104,10 @@ export interface PlanOptions {
   strict?: boolean;
   /** those helping in the lab this season (labHelp.ts) */
   helpers?: LabHelper[];
+  /** the bonus a Laboratory Horoscope gained this season (The Mysteries) */
+  horoscope?: number;
+  /** the season's Periapt Horoscope came out right */
+  periapt?: boolean;
 }
 
 /**
@@ -175,6 +181,7 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
     ...routineParts(p.routines),
     ...(o.bonus ? [{ label: 'Experimentation (simple die + risk)', value: o.bonus }] : []),
     ...helperParts(o.helpers),
+    ...(o.horoscope ? [{ label: 'Laboratory Horoscope', value: o.horoscope }] : []),
   ];
   const lt = (activity: LabActivity, te: string, fo: string, x?: { talisman?: boolean; requisites?: Art[]; familiarBond?: 'none' | 'one' | 'both'; fromText?: boolean; holyText?: boolean; forSelfLongevity?: boolean; shapeMaterialBonus?: number; verditiusRunes?: number; craftBonus?: number }) =>
     labTotal(d, { technique: te as never, form: fo as never, requisites: x?.requisites }, {
@@ -224,13 +231,19 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       const cap = talisman ? talismanCapacity(highest(d, TECHNIQUES), highest(d, FORMS)) : openingCost(it.material, it.size);
       const room = Math.max(0, cap - it.openedPawns);
       // an invested device is opened all at once; a talisman a pawn or more at a time
-      const pawns = talisman ? Math.min(p.pawns ?? room, room) : it.openedPawns ? 0 : cap;
-      if (!pawns) problems.push(talisman ? `The talisman holds ${cap} pawns and ${it.openedPawns} are opened.` : 'This item is already prepared.');
+      // spaces Philosophic Alchemy opened count against the vis, or (chosen on the project) as room on top (The Mysteries)
+      const alch = !talisman && it.alchemyOpened && it.openedPawns <= it.alchemyOpened ? it.alchemyOpened : 0;
+      const pawns = talisman ? Math.min(p.pawns ?? room, room) : alch ? (p.pawns === -1 ? cap : Math.max(0, cap - alch)) : it.openedPawns ? 0 : cap;
+      if (!pawns) problems.push(talisman ? `The talisman holds ${cap} pawns and ${it.openedPawns} are opened.` : alch ? `Philosophic Alchemy has already opened ${alch} spaces, as many as ${it.name} takes.` : 'This item is already prepared.');
       // a Verditius who crafts the item as it is first opened needs fewer pawns, by the Craft score, and never fewer than one (DE, Verditius Magic)
       const craft = !it.openedPawns && (!it.creatorId || it.creatorId === c.id) ? verditiusCraft(c, d) : undefined;
-      const cost = pawns && craft?.score ? Math.max(1, pawns - craft.score) : pawns;
+      const crafted = pawns && craft?.score ? Math.max(1, pawns - craft.score) : pawns;
+      // Celestial Magic: the season's horoscope bonus comes off the vis to open an invested device, never below a pawn (The Mysteries)
+      const stars = crafted && o.horoscope && !talisman && hasMystery(c, 'celestial-magic') ? Math.min(o.horoscope, crafted - 1) : 0;
+      const cost = crafted - stars;
       if (cost > limit) problems.push(`${cost} pawns is more than you can handle in a season (twice Magic Theory: ${limit}).`);
-      const saved = cost < pawns ? ` for ${cost} pawn${cost > 1 ? 's' : ''} of Vim (${craft!.name} ${craft!.score} off the cost)` : '';
+      const off = [crafted < pawns ? `${craft!.name} ${craft!.score}` : '', stars ? `the horoscope ${stars}` : ''].filter(Boolean).join(', ');
+      const saved = cost < pawns ? ` for ${cost} pawn${cost > 1 ? 's' : ''} of Vim (${off} off the cost)` : '';
       return {
         target: 1, gain: pawns ? 1 : 0, vis: { arts: ['Vi'], pawns: cost }, opens: pawns, seasonsLeft: 1, problems,
         summary: pawns ? (saved ? `Open ${it.name} to hold ${pawns} pawn${pawns > 1 ? 's' : ''}${saved}.` : `Open ${pawns} pawn${pawns > 1 ? 's' : ''} of Vim into ${it.name}${talisman ? ` (${it.openedPawns + pawns}/${cap})` : ''}.`) : '',
@@ -262,10 +275,16 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       const lesser = it.kind === 'lesser';
       const pawns = Math.ceil(level / 10);
       if (it.kind === 'charged') {
+        // a periapt: its charges are the whole Lab Total / 5, for an effect no higher than 5 × Astronomy (The Mysteries, Periapt)
+        if (p.periapt) {
+          if (!hasMystery(c, 'periapt')) problems.push('Only a magus Initiated into Periapt can make one.');
+          const max = periaptMaxLevel(d);
+          if (level > max) problems.push(`A periapt's effect can be no higher than 5 × Artes Liberales (astronomy): ${max}.`);
+        }
         // charged items: one season and no vis, Lab Total at least the level, a charge per 5 points (or part) over it (DE)
-        const charges = chargedItemCharges(total.total, level);
+        const charges = p.periapt && o.periapt !== false && total.total >= level ? periaptCharges(total.total) : chargedItemCharges(total.total, level);
         if (!charges) short(`The Lab Total (${total.total}) must reach the level (${level}).`);
-        return { total, target: level, gain: charges ? level : 0, seasonsLeft: 1, problems, summary: charges ? `${charges} charge${charges > 1 ? 's' : ''} of ${e.name} in one season.` : '' };
+        return { total, target: level, gain: charges ? level : 0, seasonsLeft: 1, problems, summary: charges ? `${charges} charge${charges > 1 ? 's' : ''} of ${e.name} in one season${p.periapt ? ' as a periapt, if its horoscope comes out right' : ''}.` : '' };
       }
       const inv = investEffect(total.total, level, lesser ? 'lesser' : talisman ? 'talisman' : 'invested', e.expiry);
       if (!inv.possible) short(inv.reason ?? 'The Lab Total is too low.');
@@ -327,10 +346,40 @@ function planKind(p: LabProject, c: Character, d: DerivedCharacter, ctx: Charact
       return { total, target: 1, gain: 1, vis: { arts: [sp.spell.technique, sp.spell.form], pawns }, seasonsLeft: 1, problems, summary: `Enchant the casting tool of ${sp.spell.name}: effect level ${level}.` };
     }
     case 'extract': {
-      const total = lt('visExtraction', 'Cr', 'Vi');
-      const pawns = Math.ceil(Math.max(0, total.total) / 10);
+      const a = p.alchemy;
+      // Hermetic Alchemy: the vessel's Shape and Material bonuses (held to Magic Theory), and Form vis with the Form as a requisite (The Mysteries)
+      if (a && !hasMystery(c, 'hermetic-alchemy')) problems.push('Only a magus with Hermetic Alchemy can extract into a vessel or extract Form vis.');
+      if (a?.automatic && !digestSeasons(c)) problems.push('Leaving an extraction to digest needs Philosophic Alchemy.');
+      const item = a?.itemUid ? c.items.find((x) => x.uid === a.itemUid) : undefined;
+      if (a?.itemUid && !a.automatic) problems.push('Ready-opened spaces come only from an extraction left to digest by Philosophic Alchemy.');
+      if (item && item.openedPawns) problems.push(`${item.name} is already opened for enchantment.`);
+      const form = item ? undefined : a?.form;
+      const total = lt('visExtraction', 'Cr', 'Vi', { requisites: form ? [form] : undefined, shapeMaterialBonus: a?.sm });
+      const seasons = a?.automatic ? digestSeasons(c) : 1;
+      const done = a?.totals ?? [];
+      const low = done.length ? Math.min(total.total, ...done) : total.total;
+      const pawns = alchemyYield(low, form);
       if (!pawns) problems.push('No Creo Vim Lab Total.');
-      return { total, target: 1, gain: pawns, seasonsLeft: 1, problems, summary: `${pawns} pawn${pawns === 1 ? '' : 's'} of Vim vis.` };
+      const what = item ? `${pawns} enchantment space${pawns === 1 ? '' : 's'} ready-opened in ${item.name}` : `${pawns} pawn${pawns === 1 ? '' : 's'} of ${form ? ART_NAMES[form] : 'Vim'} vis`;
+      const digest = a?.automatic ? ` Left to digest beside other lab work${seasons > 1 ? ` for a year (season ${Math.min(done.length + 1, seasons)} of ${seasons}; the lowest season's Lab Total counts)` : ' for the season'}: a seven-day distraction, and no experimenting meanwhile.` : '';
+      return { total, target: 1, gain: pawns, seasonsLeft: Math.max(1, seasons - done.length), problems, summary: `${what}.${digest}` };
+    }
+    case 'elixir': {
+      if (!hasMystery(c, 'the-lesser-elixir')) problems.push('Only a magus Initiated into the Lesser Elixir can devise one.');
+      const lr = c.longevity;
+      if (!lr) problems.push('The Lesser Elixir is added to a dose of your own Longevity Ritual: make one first (or renew the lapsed one).');
+      const mt = d.abilities.find((x) => x.abilityId === d.theoryAbility)?.total ?? 0;
+      const ing = p.ingredient;
+      if (!ing?.name.trim() || !ing.bonus) problems.push('Name the special ingredient and its Shape and Material bonus.');
+      const pts = ing ? ingredientPoints(ing.bonus, !!ing.own, mt) : 0;
+      const points = (lr?.elixir?.points ?? 0) + pts;
+      const level = elixirLevel(points, mt);
+      const pawns = longevityVisCost(c.age, lr?.extraVis ?? 0);
+      visCheck(pawns);
+      return {
+        target: 1, gain: 1, vis: { arts: ['Cr', 'Co', 'Vi'], pawns }, seasonsLeft: 1, problems,
+        summary: `${ing?.name || 'The ingredient'} adds ${pts} Elixir Point${pts === 1 ? '' : 's'} (${points} in all): Elixir Level ${level}, so −${(lr?.bonus ?? 0) + level} on aging rolls.`,
+      };
     }
     case 'longevity': {
       const subject = p.subjectId && p.subjectId !== c.id ? o.subject : c;
@@ -461,22 +510,96 @@ export interface WorkOptions {
  */
 export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, projectUid: string, data: GameData, year?: number, o: WorkOptions = {}): string[] {
   const p = c.projects?.find((x) => x.uid === projectUid);
+  // a season the project could not be worked at all is no season of lab work for a digestion either
+  const worked = !!p && !p.done && !planProject(p, c, d, ctx, { subject: p.subjectId ? o.chars?.find((x) => x.id === p.subjectId) : undefined, data, helpers: o.helpers, horoscope: hopedHoroscope(c, p) }).problems.length;
+  const lines = workOne(c, d, ctx, cov, projectUid, data, year, o);
+  if (!p || !lines.length || !worked) return lines;
+  // Philosophic Alchemy: an extraction left to digest goes on beside the season's other lab work (The Mysteries)
+  if (p.kind === 'extract' && p.alchemy?.automatic) return lines;
+  const x = (c.projects ?? []).find((y) => !y.done && y.kind === 'extract' && y.alchemy?.automatic);
+  if (!x) return lines;
+  const head = `${x.name}:`;
+  if (p.kind === 'extract') return [...lines, ...spoil(x, `${head} only one vis extraction a season, so the digestion is lost.`)];
+  if (p.experiment && canExperiment(p)) return [...lines, ...spoil(x, `${head} experimenting while it digests unsettles the aura: the extraction fails.`)];
+  const plan = planProject(x, c, d, ctx, { data });
+  if (plan.problems.length) return [...lines, `${head} does not digest this season. ${plan.problems.join(' ')}`];
+  return [...lines, ...digestSeason(c, cov, x, plan)];
+}
+
+/** The bonus a project's Laboratory Horoscope is made for, when the magus can make one for it: what the season is planned on. */
+export function hopedHoroscope(c: Character, p: LabProject): number | undefined {
+  return p.horoscope && horoscopeFor(c, p.kind) ? p.horoscope : undefined;
+}
+
+/** An extraction left to digest is lost: begun again next season, if it is begun at all (The Mysteries, Philosophic Alchemy). */
+function spoil(x: LabProject, line: string): string[] {
+  if (!x.alchemy?.totals?.length) return [line.replace(/, so the digestion is lost|: the extraction fails/, ': it does not digest this season')];
+  x.alchemy = { ...x.alchemy, totals: [] };
+  x.logMark = undefined;
+  return [line];
+}
+
+/**
+ * A season of digestion: its Lab Total recorded, in an unbroken run of seasons (a season away from the
+ * lab loses it); once the run is long enough, the vis (or the ready-opened spaces) from the lowest.
+ */
+function digestSeason(c: Character, cov: Covenant | undefined, x: LabProject, plan: ProjectPlan): string[] {
+  const a = x.alchemy!;
+  const head = `${x.name}:`;
+  const out: string[] = [];
+  if (a.totals?.length && x.logMark !== undefined && c.seasonLog.length !== x.logMark + 1) {
+    out.push(`${head} a season away from the lab broke the digestion; it begins again.`);
+    a.totals = [];
+  }
+  a.totals = [...(a.totals ?? []), plan.total?.total ?? 0];
+  x.seasons += 1;
+  x.logMark = c.seasonLog.length;
+  const need = digestSeasons(c);
+  if (a.totals.length < need) return [...out, `${head} digesting, season ${a.totals.length} of ${need} (Lab Total ${plan.total?.total ?? 0}).`];
+  const low = Math.min(...a.totals);
+  const item = a.itemUid ? c.items.find((i) => i.uid === a.itemUid) : undefined;
+  const n = alchemyYield(low, item ? undefined : a.form);
+  a.totals = [];
+  x.logMark = undefined;
+  if (item) {
+    item.openedPawns += n;
+    item.alchemyOpened = (item.alchemyOpened ?? 0) + n;
+    item.creatorId = item.creatorId ?? c.id;
+    x.done = true;
+    return [...out, `${head} ${item.name} comes out of the digestion with ${n} enchantment space${n === 1 ? '' : 's'} open (from a Lab Total of ${low}). It can be enchanted now, or opened in the usual way next season with these counted against the vis.`];
+  }
+  const to = cov && x.visFrom === 'covenant' ? cov.visStocks : purseOf(c).vis;
+  addVis(to, a.form ?? 'Vi', n);
+  return [...out, `${head} the digestion is done: ${n} pawn${n === 1 ? '' : 's'} of ${a.form ? ART_NAMES[a.form] : 'Vim'} vis${cov && x.visFrom === 'covenant' ? ' for the covenant' : ''} (from a Lab Total of ${low}). Another can begin next season.`];
+}
+
+function workOne(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, projectUid: string, data: GameData, year?: number, o: WorkOptions = {}): string[] {
+  const p = c.projects?.find((x) => x.uid === projectUid);
   if (!p || p.done) return [];
   const rng = o.rng ?? defaultRng;
   const subject = p.subjectId && p.subjectId !== c.id ? o.chars?.find((x) => x.id === p.subjectId) : undefined;
   const helpers = o.helpers;
-  const base = planProject(p, c, d, ctx, { subject, data, helpers });
+  // planned on the horoscope's bonus: what the season can do if the heavens favor it
+  const base0 = planProject(p, c, d, ctx, { subject, data, helpers, horoscope: hopedHoroscope(c, p) });
   const head = `${p.name}:`;
   // the helpers spent the season at a Lab Total, whatever came of it
-  if (base.total) for (const h of helpers ?? []) h.used = p.name;
-  if (base.problems.length) return [`${head} no progress. ${base.problems.join(' ')}`];
+  if (base0.total) for (const h of helpers ?? []) h.used = p.name;
+  if (base0.problems.length) return [`${head} no progress. ${base0.problems.join(' ')}`];
   // nothing is rolled for a season the vis cannot pay for
   const stocks = p.visFrom === 'covenant' && cov ? cov.visStocks : (c.purse?.vis ?? []);
-  if (base.vis?.pawns && visAvailable(stocks, base.vis.arts) < base.vis.pawns)
-    return [`${head} no progress: it needs ${base.vis.pawns} pawn${base.vis.pawns > 1 ? 's' : ''} of ${base.vis.arts.map((a) => ART_NAMES[a]).join(' or ')} vis${p.visFrom === 'covenant' && cov ? ' in the covenant stocks' : ' in your purse'}.`];
+  if (base0.vis?.pawns && visAvailable(stocks, base0.vis.arts) < base0.vis.pawns)
+    return [`${head} no progress: it needs ${base0.vis.pawns} pawn${base0.vis.pawns > 1 ? 's' : ''} of ${base0.vis.arts.map((a) => ART_NAMES[a]).join(' or ')} vis${p.visFrom === 'covenant' && cov ? ' in the covenant stocks' : ' in your purse'}.`];
   const lines: string[] = [];
   const when = [o.season, year].filter(Boolean).join(' ');
   const record = (xs: string[]) => xs.length && (p.results = [...(p.results ?? []), ...xs.map((l) => (when ? `${when}: ${l}` : l))].slice(-40));
+  // the season's horoscopes, made as it begins (The Mysteries): a Laboratory Horoscope's bonus, a periapt's
+  const hs = p.horoscope && horoscopeFor(c, p.kind) ? rollHoroscope(d, p.horoscope, rng) : undefined;
+  const ph = p.periapt && itemOf(c, p)?.kind === 'charged' ? rollPeriaptHoroscope(d, rng) : undefined;
+  const astro: PlanOptions = { horoscope: hs?.bonus || undefined, periapt: ph ? !ph.botched && ph.total >= ph.ease : undefined };
+  const base = hs || ph ? planProject(p, c, d, ctx, { subject, data, helpers, ...astro }) : base0;
+  for (const h of [hs, ph]) if (h) lines.push(h.line);
+  record([hs?.line, ph?.line].filter((x): x is string => !!x));
+  if (base.problems.length && !hs?.botched) return [...lines, `${head} no progress without the horoscope's bonus. ${base.problems.join(' ')}`];
   const enchantment = p.kind === 'instill' || p.kind === 'open' || p.kind === 'bind' || p.kind === 'strengthen' || p.kind === 'empower';
   // the lab itself: an unsafe lab may have an accident, a warped one warps what is made (Covenants)
   const lab = ctx.lab;
@@ -500,13 +623,13 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
   // the chart rolled only for Infernal vis adds no die to the Lab Total: it is not an experiment
   const bonus = xr && !xr.noBenefit && !tainted ? xr.labBonus : 0;
   // No Benefit: the Lab Total without the die and risk; if that falls short, the project is abandoned (DE)
-  if (xr?.noBenefit && !tainted && planProject(p, c, d, ctx, { subject, data, helpers, strict: true }).problems.length) {
+  if (xr?.noBenefit && !tainted && planProject(p, c, d, ctx, { subject, data, helpers, strict: true, ...astro }).problems.length) {
     p.seasons += 1;
     p.done = true;
     p.failed = true;
     return [...lines, `${head} the experiment brought no benefit, and without it the Lab Total falls short: the project is abandoned.`, ...recordRoutines(c, p.routines, year)];
   }
-  let plan = bonus ? planProject(p, c, d, ctx, { subject, data, helpers, bonus }) : base;
+  let plan = bonus ? planProject(p, c, d, ctx, { subject, data, helpers, bonus, ...astro }) : base;
   // the vis is spent whatever comes of the season (an item's is lost on a failure, DE)
   const need = plan.vis;
   if (need && need.pawns) {
@@ -544,8 +667,8 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
     lines.push(`${head} ${r.text}`);
     return [...lines, ...routineLines];
   }
-  if (hz?.wasted || xr?.wasted) {
-    lines.push(`${head} the season is wasted.`);
+  if (hz?.wasted || xr?.wasted || hs?.botched || ph?.botched) {
+    lines.push(`${head} the season is wasted${hs?.botched || ph?.botched ? ' working to faulty alignments of the heavens' : ''}.`);
     return [...lines, ...routineLines];
   }
   if (plan.problems.length) {
@@ -613,7 +736,9 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
     case 'instill': {
       const e = it?.effects.find((x) => x.uid === p.effectUid);
       if (it?.kind === 'charged' && e) {
-        const charges = chargedItemCharges(plan.total?.total ?? 0, e.modifiedLevel);
+        const lt = plan.total?.total ?? 0;
+        const periapt = !!p.periapt && astro.periapt !== false && lt >= e.modifiedLevel;
+        const charges = periapt ? periaptCharges(lt) : chargedItemCharges(lt, e.modifiedLevel);
         it.charges = (it.charges ?? 0) + charges;
         e.pending = false;
         p.progress = plan.target;
@@ -663,9 +788,26 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
       break;
     }
     case 'extract': {
+      if (p.alchemy?.automatic) {
+        p.seasons -= 1; // digestSeason counts it
+        lines.push(...digestSeason(c, cov, p, plan));
+        break;
+      }
       const to = cov && p.visFrom === 'covenant' ? cov.visStocks : purseOf(c).vis;
-      addVis(to, 'Vi', plan.gain);
-      lines.push(`${head} ${plan.gain} pawn${plan.gain === 1 ? '' : 's'} of Vim vis${cov && p.visFrom === 'covenant' ? ' for the covenant' : ''}.`);
+      const form = p.alchemy?.form;
+      addVis(to, form ?? 'Vi', plan.gain);
+      lines.push(`${head} ${plan.gain} pawn${plan.gain === 1 ? '' : 's'} of ${form ? ART_NAMES[form] : 'Vim'} vis${cov && p.visFrom === 'covenant' ? ' for the covenant' : ''}.`);
+      break;
+    }
+    case 'elixir': {
+      const lr = c.longevity!;
+      const ing = p.ingredient!;
+      const mt = d.abilities.find((x) => x.abilityId === d.theoryAbility)?.total ?? 0;
+      const pts = ingredientPoints(ing.bonus, !!ing.own, mt);
+      const points = (lr.elixir?.points ?? 0) + pts;
+      lr.elixir = { points, level: elixirLevel(points, mt), ingredients: [...(lr.elixir?.ingredients ?? []), { name: ing.name.trim(), points: pts }] };
+      p.done = true;
+      lines.push(`${head} ${ing.name.trim()} joins the Lesser Elixir (${pts} Elixir Point${pts === 1 ? '' : 's'}, ${points} in all): Elixir Level ${lr.elixir.level}, so −${lr.bonus + lr.elixir.level} on your aging rolls${flaw}.`);
       break;
     }
     case 'longevity': {
@@ -673,9 +815,11 @@ export function workProject(c: Character, d: DerivedCharacter, ctx: CharacterCon
       const total = plan.total?.total ?? 0;
       const extraVis = Math.max(0, p.extraVis ?? 0);
       const mundane = who !== c && isMundane(who, data);
-      who.longevity = { labTotal: total + extraVis, bonus: longevityBonus(total, extraVis, mundane), extraVis, createdYear: year, createdBy: c.name, forMundane: mundane || undefined };
+      // a magus's own Lesser Elixir goes on with the new ritual: its ingredients are the magus's formula (The Mysteries)
+      const elixir = who === c ? (c.longevity?.elixir ?? c.longevityLapsed?.elixir) : undefined;
+      who.longevity = { labTotal: total + extraVis, bonus: longevityBonus(total, extraVis, mundane), extraVis, createdYear: year, createdBy: c.name, forMundane: mundane || undefined, elixir };
       p.done = true;
-      lines.push(`${head} ${who === c ? 'your' : `${who.name || 'the subject'}'s`} Longevity Ritual gives −${who.longevity.bonus} on aging rolls${flaw}.`);
+      lines.push(`${head} ${who === c ? 'your' : `${who.name || 'the subject'}'s`} Longevity Ritual gives −${longevityModifier(who.longevity)} on aging rolls${who.longevity.elixir ? ` with the Lesser Elixir` : ''}${flaw}.`);
       break;
     }
     case 'bind':

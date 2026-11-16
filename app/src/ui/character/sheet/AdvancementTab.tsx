@@ -31,6 +31,7 @@ import { teaches } from '../../../engine/covenfolk';
 import { HAZARDS, hazardPenalty } from '../../../engine/disease';
 import { RollAtTable, useAtTable } from '../../play';
 import { Unlog } from '../Unlog';
+import { longevityModifier } from '../../../engine/hermeticMysteries';
 
 type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'worship' | 'lab' | 'other';
 
@@ -314,7 +315,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const labHealth = ctx.lab ? Math.floor(ctx.lab.characteristics.Health / 2) : 0;
   const autoLc = baseLc + (cov?.finances.livingConditions ?? 0) + d.livingConditionsMod + labHealth - hazardPenalty(c);
   const lc = lcOverride ?? autoLc;
-  const lr = c.longevity?.bonus ?? 0;
+  const lr = longevityModifier(c.longevity);
 
   const rollAging = () => {
     const r = agingRoll(c.age, lc, lr, d.agingRollParts, undefined, !!c.longevity && c.age < 35);

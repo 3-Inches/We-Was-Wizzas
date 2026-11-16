@@ -20,7 +20,7 @@ import { constantWarping, effectExpiry, expireEffects, nextSeason, seasonIndex }
 import { hazardPenalty } from './disease';
 import { agingRoll, applyAgingPoint, applySeason, computeStudy, crisisRoll, decrepitudeScore, lapseLongevity, newSeasonEntry, sparestCharacteristic, visForStudy } from './longterm';
 import { labUndo } from './unlog';
-import { planProject, visShort, workProject } from './projects';
+import { hopedHoroscope, planProject, visShort, workProject } from './projects';
 import { routineYear } from './labRoutines';
 import { auraOf, changeAura, dominionYearEnd, newAuraTrack, noteVisRitual, rollAuraYear, yearlyAuraModifier } from './aura';
 import { optionOn } from './optional';
@@ -45,6 +45,7 @@ import { uid } from '../util/id';
 import { environmentAging, flawHeld, immuneToWarping } from './covenantBoons';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from './labHelp';
+import { longevityModifier } from './hermeticMysteries';
 
 export interface SagaState {
   saga: Saga;
@@ -411,7 +412,7 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       // left to the clock, or once the project set for every season is done, a magus works the first project the lab and the vis allow
       if (c.standing?.kind !== 'lab' || !p) {
         const workable = (x: LabProject) => {
-          const plan = planProject(x, c, d, ctx, { subject: chars?.find((y) => y.id === x.subjectId), data });
+          const plan = planProject(x, c, d, ctx, { subject: chars?.find((y) => y.id === x.subjectId), data, horoscope: hopedHoroscope(c, x) });
           return !plan.problems.length && !visShort(x, c, ctx, plan);
         };
         // vis extraction only by choice (a priority, or the project set): never left to the clock
@@ -527,7 +528,8 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
   // lab routines (Covenants) worsen the year's Living Conditions, and overtime can add Aging rolls; a
   // character under 35 then rolls too
   const routine = routineYear(c, year);
-  const ages = !c.creature?.magicCharacter && !c.inhuman && (c.age >= d.agingStartAge || !!c.longevity || routine.living < 0 || routine.extraRolls > 0);
+  // an immortal of the Great Elixir no longer ages (The Mysteries)
+  const ages = !c.creature?.magicCharacter && !c.inhuman && c.greatElixir?.might === undefined && (c.age >= d.agingStartAge || !!c.longevity || routine.living < 0 || routine.extraRolls > 0);
   const due = roll && ages && c.lastAgedYear !== year;
   if (due) {
     if (routine.from.length) lines.push({ who, kind: 'aging', text: `Lab routines this year (${routine.from.join(', ')}): Living Conditions ${routine.living}${routine.extraRolls ? `, ${routine.extraRolls} extra Aging roll${routine.extraRolls > 1 ? 's' : ''}` : ''}.` });
@@ -567,7 +569,7 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
 
 /** One Aging roll and what it brings (DE, Aging). */
 function ageOnce(c: Character, d: DerivedCharacter, ctx: CharacterContext, rng: Rng, livingMod: number, who: string, lines: Line[], year: number, attendant?: Attendant): void {
-  const lr = c.longevity?.bonus ?? 0;
+  const lr = longevityModifier(c.longevity);
   const r = agingRoll(c.age, livingConditions(d, ctx) + livingMod + rationsModifier(c, year), lr, d.agingRollParts, rng, !!c.longevity && c.age < 35);
   const notes: string[] = [];
   if (r.apparentAging) c.apparentAge = (c.apparentAge ?? c.age - 1) + 1;

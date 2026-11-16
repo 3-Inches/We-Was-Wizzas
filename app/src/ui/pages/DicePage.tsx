@@ -17,6 +17,7 @@ import { DICE_SUBS, R, type DiceSub } from '../routes';
 import { useCharEditor, type CharEditor } from '../character/useChar';
 import { CombatRolls, GroupCombat } from '../character/sheet/CombatTab';
 import MagicTab from '../character/sheet/MagicTab';
+import MysteriesPart, { hasTableMystery } from './MysteriesPart';
 import { TwilightCard } from '../character/sheet/Twilight';
 import { HeartbeastChange } from '../character/sheet/MysteriesCard';
 import { SilverRescue } from '../character/sheet/LabItemsTab';
@@ -97,11 +98,12 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
   return (
     <div className="stack">
       {standalone && <h1>Dice</h1>}
-      {saga && <Tabs tabs={DICE_SUBS.map((id) => ({ id, label: DICE_LABELS[id] }))} value={sub} onChange={(t) => set('sub', t)} />}
+      {saga && <Tabs tabs={DICE_SUBS.filter((id) => id !== 'mysteries' || x.chars.some(hasTableMystery)).map((id) => ({ id, label: DICE_LABELS[id] }))} value={sub} onChange={(t) => set('sub', t)} />}
       {sub === 'roll' && <RollPart x={x} who={who} />}
       {saga && sub === 'combat' && <CombatPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'magic' && <MagicPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'holy' && <HolyDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
+      {saga && sub === 'mysteries' && <MysteriesDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {!saga && <p className="small muted">Open a saga first and its characters can take part in these rolls, their wounds going on their sheets.</p>}
     </div>
   );
@@ -496,6 +498,24 @@ function MagicPart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: stri
   );
 }
 
+
+/** The Mysteries at the table (The Mysteries, Revised Edition): only those who hold one rolled here. */
+function MysteriesDicePart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: string; setWho: (id: string) => void }) {
+  const c = pick(x, who, hasTableMystery);
+  return (
+    <>
+      <div className="row">
+        <WhoPicker x={x} value={c?.id} onChange={setWho} keep={hasTableMystery} label="Who" none="Nobody in this saga holds a Mystery rolled here." />
+        {c && <CharLink sagaId={sagaId} c={c} tab="lab" />}
+      </div>
+      {c && (
+        <CharAtTable key={c.id} sagaId={sagaId} charId={c.id}>
+          {(ed) => <MysteriesPart ed={ed} />}
+        </CharAtTable>
+      )}
+    </>
+  );
+}
 
 /**
  * The holy at the table (Realms of Power: The Divine): anyone may pray or invoke a saint, so everyone

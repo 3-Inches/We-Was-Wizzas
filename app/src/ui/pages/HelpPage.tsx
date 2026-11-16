@@ -400,6 +400,14 @@ export default function HelpPage() {
             Targets, and a Hermetic Laboratory Text is halved (as a holy magus&apos;s is for Hermetic magi).
           </li>
           <li>
+            <b>The Mysteries</b> (<i>The Mysteries, Revised Edition</i>): on a lab project, a magus with Planetary Magic (for enchanting) or Celestial Magic (for any lab work)
+            chooses a <b>Laboratory Horoscope</b> of +1 to +5, rolled as the season begins against three times the bonus; a botch wastes the season. A charged item can be
+            made <b>as a periapt</b>. <b>Extract vis</b> takes a vessel&apos;s Shape and Material bonus with Hermetic Alchemy, Form vis at a pawn per 20 points, and with
+            Philosophic Alchemy can be left to digest beside other lab work, or make ready-opened spaces in an item. <b>Devise the Lesser Elixir</b> adds an ingredient a
+            season, its Elixir Level adding to the Longevity Ritual. The rolls made in play (a favorable hour, Astrological Durations, divination and dreams, the Great
+            Elixir&apos;s test, an invoked daimon, Empowerment, rotes and synthemata) are on <b>Dice › Mysteries</b>, which shows only for those who hold one.
+          </li>
+          <li>
             <b>Combat &amp; Health:</b> the sheet shows the wounds, Fatigue, illness and the combat totals for each weapon. Damage is applied against Soak, Fatigue lost and
             regained and a disease caught under Health &amp; recovery, choosing who. At the Game
             Table, <b>Dice › Combat &amp; perils</b> rolls a character&apos;s Initiative, Attack and Defense (mounted, exerted or scuffling), <b>Fighting as a group</b> beside
