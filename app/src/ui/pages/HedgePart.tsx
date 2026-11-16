@@ -24,10 +24,12 @@ import { ELEMENTAL_ART_IDS } from '../../data/hedgeElemental';
 import { elementalArts } from '../../engine/elementalMagic';
 import { ElementalTraitsCard } from '../character/ElementalTraitsCard';
 import { ElementalCard, RefiningCard } from './ElementalPart';
+import { FolkWitchSheetCard, KitchenCard, WitchMoonCard, WitchPowerCard, WitchThingsCard } from './FolkWitchPart';
+import { isFolkWitch, witchPowers } from '../../engine/folkWitch';
 
 const ELEMENTAL_IDS = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining'];
 /** Someone this page is for: a learned magician or an elementalist. */
-export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
+export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || isFolkWitch(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
 
 type CalledRealm = Exclude<Realm, 'None'>;
 const REALMS: Realm[] = ['None', 'Magic', 'Faerie', 'Divine', 'Infernal'];
@@ -91,6 +93,7 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
         Hedge magic is of the Magic realm: a Magic aura adds, others take away as for Hermetic magic ({signed(a.mod)} here
         {a.botch ? `, ${a.botch} more botch dice` : ''}).{learned ? ' A learned magician’s charms and years of training are kept on the sheet.' : ''}
         {isElemental ? ' An elementalist’s Elemental Traits are kept on the sheet.' : ''}
+        {isFolkWitch(c) ? ' A folk witch’s apprenticeship is kept on the sheet; her potions and fetishes here.' : ''}
       </p>
       <div className="row">
         <Field label="Aura">
@@ -118,6 +121,12 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
       {isElemental && elemental.forms.length > 0 && <ElementalCard ed={ed} aura={aura} />}
       {isElemental && elemental.forms.length > 0 && <RefiningCard ed={ed} aura={aura} />}
       {isElemental && <ElementalTraitsCard ed={ed} />}
+      {isFolkWitch(c) && witchPowers(c, d).length === 0 && <p className="small warn-text">No folk witch powers yet: take their Virtues on the sheet (a Gifted folk witch has all seven).</p>}
+      {isFolkWitch(c) && <WitchPowerCard ed={ed} aura={aura} />}
+      {isFolkWitch(c) && <WitchThingsCard ed={ed} />}
+      {isFolkWitch(c) && <KitchenCard ed={ed} aura={aura} />}
+      {isFolkWitch(c) && <WitchMoonCard ed={ed} />}
+      {isFolkWitch(c) && <FolkWitchSheetCard ed={ed} />}
     </>
   );
 }

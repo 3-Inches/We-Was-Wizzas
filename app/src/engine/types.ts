@@ -632,6 +632,28 @@ export interface LearnedMagic {
   inventing?: { charm: LearnedCharm; progress: number; seasons: number };
 }
 
+/** A folk witch's fetish (a dowsing rod, a broom, a knitted skin) or a brew of potions (Hedge Magic). */
+export interface WitchThing {
+  uid: string;
+  power: string;
+  name: string;
+  kind: 'fetish' | 'potion';
+  /** a potion: the Brew Potency and the doses left */
+  potency?: number;
+  doses?: number;
+  /** a potion's effect: a curse, a Wound or Fatigue level, an animal */
+  effect?: string;
+  madeYear?: number;
+}
+
+export interface FolkWitchInfo {
+  /** years of apprenticeship (about ten from age ten): 200 experience points in all, from the later-life years */
+  apprenticeYears?: number;
+  things?: WitchThing[];
+  /** the Witch Moon under way: the months so far and the Warping Score it began at */
+  witchMoon?: { months: number; warpingScore: number; pointsGained: number };
+}
+
 export interface PersonalityTrait {
   uid: string;
   trait: string;
@@ -1116,6 +1138,8 @@ export interface Character {
   sympathy?: SympathyTrait[];
   /** a learned magician's training, charms and charm inventions (Hedge Magic, Learned Magicians) */
   learned?: LearnedMagic;
+  /** a folk witch's apprenticeship, fetishes, potions and Witch Moon (Hedge Magic, Folk Witches) */
+  folkWitch?: FolkWitchInfo;
   /** The Great Elixir (The Mysteries): attempts so far, and once it works, the age it fixed and the Magic Might it gave */
   greatElixir?: { attempts?: number; transformedAge?: number; might?: number };
   /** spells, powers and rituals working on the character, or that changed it for good */

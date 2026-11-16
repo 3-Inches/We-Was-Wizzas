@@ -407,6 +407,12 @@ export default function HelpPage() {
             Warping, and a faerie&apos;s change of role through a creative human.
           </li>
           <li>
+            <b>Folk witches</b> (<i>Hedge Magic, Revised Edition</i>): the Folk Witch Social Status, the tradition&apos;s Virtues and Flaws, and Folk Witch Magic Theory; a
+            Gifted witch has the seven favored powers, and the sheet keeps her apprenticeship (200 experience points). On <b>Dice › Hedge magic</b>: a power used by
+            incantation or fetish against its Ease Factor, potions drunk, a <b>season in the kitchen</b> (potions, fetishes, curses, vis, a longevity ritual, a
+            familiar), and the <b>Witch Moon</b> that a new Warping Score brings.
+          </li>
+          <li>
             <b>Elementalists</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the four Techniques (each for a type of target: Medicinal, Philosophical or
             Theurgical) and the four Elementalist Forms open them at 0. The sheet shows the <b>Elemental Traits</b> that Warping and the Forms bring. On <b>Dice › Hedge
             magic</b>: Summoning, Controlling and Divining rolled with the elements and vis chosen, and what the total reaches; and a season of <b>Refining</b> (a

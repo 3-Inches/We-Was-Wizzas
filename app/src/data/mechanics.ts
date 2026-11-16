@@ -584,6 +584,23 @@ export const MECHANICS: Record<string, Mechanics> = {
   'faerie-antipathy-flaw': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A negative Sympathy Trait: −1 as a Minor Flaw, −3 as a Major, less the Warping Score at the end of creation. It comes off any Ability it applies to, and adds a botch die.')] },
   'faerie-background': { tags: ['realm:faerie'], effects: [note('Two Sympathy Traits, one positive and one negative, each as high as the Warping Score. The Warping Score may be raised freely at creation.')] },
 
+  // ------------------------------------------------------------------ Folk Witches (Hedge Magic)
+  // Powers are cast, potions brewed and fetishes made on the Game Table, Dice › Hedge magic; the Witch Moon there too.
+  'folk-witch': { compatibleStatuses: ['*'], effects: [{ type: 'abilityAccess', abilities: ['folk-witch-magic-theory', 'organization-lore'], note: 'Folk Witch Magic Theory and the coven’s Organization Lore' }, note('An apprenticeship of about ten years from age ten: 200 experience points for any Abilities (set the years on the sheet’s Folk witch card). A Gifted folk witch may raise all seven folk witch powers without their Virtues. She must take at least one Flaw that limits her magic.')] },
+  'witch-cursing': { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'witch-cursing', score: 1 }] },
+  'witch-healing': { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'witch-healing', score: 1 }] },
+  'witch-flight': { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'witch-flight', score: 1 }] },
+  'animal-healer': { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'animal-healing', score: 1 }] },
+  'flawed-folk-witch-gift-opening': { requiresGift: true, repeatable: true, tags: ['supernatural'], param: P.text('Power', ['Animal Ken', 'Cursing', 'Dowsing', 'Flight', 'Healing', 'Second Sight', 'Shapeshifter']), effects: [note('That power is not favored: not learned at creation, and −1 on its totals once learned.')] },
+  'well-trained-folk-witch': { repeatable: true, effects: [note('+50 experience points of apprenticeship.')] },
+  'poorly-trained-folk-witch-flaw': { repeatable: true, effects: [note('−50 experience points of apprenticeship.')] },
+  'silent-tradition-flaw': { excludes: ['rarefied-tradition-flaw'] },
+  'painless-moon': { tags: ['supernatural'] },
+  'harsh-moon-flaw': { tags: ['supernatural'] },
+  'primitive-tradition-flaw': { tags: ['lab'] },
+  'rarefied-tradition-flaw': { tags: ['supernatural'] },
+  'unstable-magic-flaw': { tags: ['lab'] },
+
   // ------------------------------------------------------------------ Elementalists (Hedge Magic)
   // Each Art opens at 0; the Elemental Traits, totals and seasons are on the Game Table, Dice › Hedge magic.
   ...Object.fromEntries(

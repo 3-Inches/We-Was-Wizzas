@@ -71,6 +71,14 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (lack.length) add({ id: 'learned-arts', severity: 'error', step: 'virtues', message: `A mathematicus must have ${lack.join(' and ')} of the tradition.`, fix: 'Take the Virtue of each Art (a Technique is Major, a Form Minor), or The Gift, opened to all six.', ref: 'Hedge Magic, Learned Magicians' });
     if (t.socialStatuses.length === 1) add({ id: 'learned-status', severity: 'warning', step: 'virtues', message: 'A mathematicus also takes a Social Status for their place in mundane society (a clerk, a magister in artibus, a mendicant friar, a priest…).', ref: 'Hedge Magic, Learned Magicians' });
   }
+  // --------------------------------------------------------------- folk witches (Hedge Magic)
+  if (c.virtues.some((v) => v.defId === 'folk-witch')) {
+    const magicFlaw = c.virtues.some((v) => {
+      const def = data.vfById.get(v.defId);
+      return def?.kind === 'flaw' && (def.categories.includes('Supernatural') || def.categories.includes('Hermetic'));
+    });
+    if (!magicFlaw) add({ id: 'folk-witch-flaw', severity: 'warning', step: 'virtues', message: 'A folk witch must take at least one Flaw that limits her magic.', fix: 'Silent Tradition, Unstable Magic, Harsh Moon, Short-Ranged Curses, Primitive or Rarefied Tradition, or a Hermetic Flaw for a Gifted witch.', ref: 'Hedge Magic, Folk Witches' });
+  }
   // --------------------------------------------------------------- elementalists (Hedge Magic)
   {
     const tech = ['elemental-summoning', 'elemental-controlling', 'elemental-divining', 'elemental-refining'].some((id) => d.abilities.some((a) => a.abilityId === id));
