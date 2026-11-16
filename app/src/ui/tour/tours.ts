@@ -193,6 +193,11 @@ export const TOURS: Tour[] = [
         target: 'display',
       },
       {
+        title: 'Playing the game',
+        body: 'The Guide has two pages that are not about the toolkit at all. **Playing the game** is for players: how to play a magus, a companion and a grog, and what a person of 1220 knows that you do not. **Running the game** is for storyguides: agreeing a saga, finding stories, and challenging wizards.',
+        at: page('/help'), target: 'guide-tabs',
+      },
+      {
         title: 'More tutorials',
         body: 'Each of the big jobs has its own tutorial: starting a saga and choosing its optional rules, founding the covenant (its aura too), making a magus, companion or grog, the guided build, designing spells and powers, building a laboratory and improving it in play, playing a season, and Quick build for whole characters, covenfolk and creatures.',
         at: page('/help'), target: 'tutorials',

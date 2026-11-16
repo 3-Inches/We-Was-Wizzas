@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react';
 import { R } from '../routes';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { BOOK_BY_ID } from '../../data';
 import { OPTIONAL_RULES, OPTION_GROUPS, optionOn, tribunalMatches, tribunalName } from '../../engine/optional';
-import { Card } from '../kit';
+import { Card, Tabs } from '../kit';
+import { PLAYER_GUIDE, STORYGUIDE_GUIDE } from '../../data/roleplay';
+import { RoleplayGuide } from './RoleplayGuide';
 import { useGameData } from '../../store/hooks';
 import { MAGIC_QUALITIES } from '../../engine/character/magicCharacter';
 import { useStore } from '../../store/store';
@@ -156,14 +158,60 @@ function Tutorials() {
   );
 }
 
+/** The Guide's three pages: using the toolkit, playing the game, and running it. */
+const GUIDE_TABS = ['toolkit', 'players', 'storyguides'] as const;
+type GuideTab = (typeof GUIDE_TABS)[number];
+const GUIDE_TAB_LABELS: Record<GuideTab, string> = { toolkit: 'Using the toolkit', players: PLAYER_GUIDE.tab, storyguides: STORYGUIDE_GUIDE.tab };
+
 export default function HelpPage() {
+  const [params, setParams] = useSearchParams();
+  const raw = params.get('tab');
+  const tab: GuideTab = (GUIDE_TABS as readonly string[]).includes(raw ?? '') ? (raw as GuideTab) : 'toolkit';
+  const setTab = (t: GuideTab) => {
+    setParams(t === 'toolkit' ? {} : { tab: t }, { replace: true });
+    window.scrollTo({ top: 0 });
+  };
+  return (
+    <div className="stack" style={{ maxWidth: 960 }}>
+      <div>
+        <h1 style={{ marginBottom: 8 }}>Guide</h1>
+        <div data-tour="guide-tabs">
+          <Tabs tabs={GUIDE_TABS.map((id) => ({ id, label: GUIDE_TAB_LABELS[id] }))} value={tab} onChange={setTab} />
+        </div>
+      </div>
+      {tab === 'toolkit' && <ToolkitGuide />}
+      {tab === 'players' && (
+        <RoleplayGuide
+          guide={PLAYER_GUIDE}
+          intro={
+            <p className="small muted">
+              Running the saga? The <a href="#/help?tab=storyguides">storyguide&apos;s page</a> is next door, and builds on this one.
+            </p>
+          }
+        />
+      )}
+      {tab === 'storyguides' && (
+        <RoleplayGuide
+          guide={STORYGUIDE_GUIDE}
+          intro={
+            <p className="small muted">
+              Start with the <a href="#/help?tab=players">players&apos; page</a>: what characters know about their world is yours to bring to life.
+            </p>
+          }
+        />
+      )}
+    </div>
+  );
+}
+
+/** Using the toolkit: tutorials, where things are, and how each part works. */
+function ToolkitGuide() {
   // the rules data the toolkit holds, with every book (the counts in "About the rules data")
   const data = useGameData();
   const n = (xs: readonly unknown[]) => xs.length.toLocaleString('en');
   return (
-    <div className="stack" style={{ maxWidth: 960 }}>
+    <>
       <div>
-        <h1 style={{ marginBottom: 4 }}>Guide</h1>
         <p className="muted" style={{ marginTop: 0 }}>
           A saga toolkit for <i>Ars Magica</i> Fifth Edition (Definitive Edition rules) that runs entirely in your browser. It builds characters and covenants step by step with the
           rules checked as you go, then keeps doing the arithmetic in play: Casting Totals, Lab Totals, Penetration, Magic Resistance, wounds, study, aging and Twilight.
@@ -225,6 +273,10 @@ export default function HelpPage() {
         <p className="small" style={{ marginBottom: 0 }}>
           The <Link to="/reference">Rules reference</Link> lists the pieces you choose from: Virtues and Flaws, Abilities, Houses, laboratory Virtues, Hooks and Boons, weapons and
           books, each with its rules text. The <Link to="/reference/book/DE">book reader</Link> has the full text of every book, searchable, with a contents list.
+        </p>
+        <p className="small" style={{ marginBottom: 0 }}>
+          The game is more than its rules. <Link to="/help?tab=players">Playing the game</Link> is about playing a person of Mythic Europe, and what that person knows that you do
+          not. <Link to="/help?tab=storyguides">Running the game</Link> is for storyguides: agreeing a saga, finding stories and challenging wizards.
         </p>
       </Card>
 
@@ -903,7 +955,7 @@ export default function HelpPage() {
           . The published books, with their art and layout, are available from Atlas Games.
         </p>
       </Card>
-    </div>
+    </>
   );
 }
 
