@@ -407,6 +407,13 @@ export default function HelpPage() {
             Warping, and a faerie&apos;s change of role through a creative human.
           </li>
           <li>
+            <b>Learned magicians</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the six Arts open them at 0 (a Gifted Mathematicus of Bologna has all six); the
+            sheet&apos;s <b>Learned magic</b> card keeps the years under a master (30 experience points each) and the charms known. On <b>Dice › Hedge magic</b>: a{' '}
+            <b>charm</b> cast from memory or read from a formulary, with Entreat the Powers against a hostile aura, Fatigue when it falls short, and Warping and
+            intervention after a botch; a <b>charta</b> written in hours; an <b>amulet</b> made in a season, put on the sheet with its charges; and a season inventing a
+            charm or learning charms from a teacher.
+          </li>
+          <li>
             <b>The Mysteries</b> (<i>The Mysteries, Revised Edition</i>): on a lab project, a magus with Planetary Magic (for enchanting) or Celestial Magic (for any lab work)
             chooses a <b>Laboratory Horoscope</b> of +1 to +5, rolled as the season begins against three times the bonus; a botch wastes the season. A charged item can be
             made <b>as a periapt</b>. <b>Extract vis</b> takes a vessel&apos;s Shape and Material bonus with Hermetic Alchemy, Form vis at a pawn per 20 points, and with

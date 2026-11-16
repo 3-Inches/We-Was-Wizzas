@@ -609,6 +609,29 @@ export interface SympathyTrait {
   xp?: number;
 }
 
+/** A learned magician's charm (Hedge Magic): known by heart, cast in seconds. */
+export interface LearnedCharm {
+  uid: string;
+  name: string;
+  /** its Technique and Form, e.g. TuFa */
+  tf: string;
+  level: number;
+  range: string;
+  duration: string;
+  target: string;
+  text?: string;
+  /** learned in training (5 levels an experience point) or in play */
+  source: 'training' | 'play';
+}
+
+export interface LearnedMagic {
+  /** years trained under a master: 30 experience points each, from the later-life years */
+  trainingYears?: number;
+  charms?: LearnedCharm[];
+  /** a charm being invented: the points gathered so far (the Lab Total × 5 less its level, each season) */
+  inventing?: { charm: LearnedCharm; progress: number; seasons: number };
+}
+
 export interface PersonalityTrait {
   uid: string;
   trait: string;
@@ -1091,6 +1114,8 @@ export interface Character {
   longevityLapsed?: LongevityRitual;
   /** Sympathy Traits (Realms of Power: Faerie): a bond through the Faerie realm with a class of subjects, positive or negative */
   sympathy?: SympathyTrait[];
+  /** a learned magician's training, charms and charm inventions (Hedge Magic, Learned Magicians) */
+  learned?: LearnedMagic;
   /** The Great Elixir (The Mysteries): attempts so far, and once it works, the age it fixed and the Magic Might it gave */
   greatElixir?: { attempts?: number; transformedAge?: number; might?: number };
   /** spells, powers and rituals working on the character, or that changed it for good */

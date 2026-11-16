@@ -64,6 +64,13 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
   if (type === 'grog' && d.hasGift) add({ id: 'grog-gift', severity: 'error', step: 'virtues', message: 'Grogs may not have The Gift.', ref: 'DE p.63' });
   if (type === 'magus' && !c.virtues.some((v) => v.defId === 'hermetic-magus')) add({ id: 'magus-status', severity: 'error', step: 'virtues', message: 'Magi must take the Hermetic Magus Social Status.', ref: 'DE p.63', fix: 'Add Hermetic Magus (free).' });
   if (t.socialStatuses.length === 0) add({ id: 'status-none', severity: 'error', step: 'virtues', message: 'Every character must take one Social Status.', ref: 'DE p.63', fix: d.magicChar ? 'A magic character takes Magical Master, Champion, Covenfolk, Friend or Monster.' : type === 'grog' ? 'Covenfolk is the usual choice.' : 'Covenfolk, Wanderer or a status fitting the concept.' });
+  // --------------------------------------------------------------- learned magicians (Hedge Magic)
+  if (c.virtues.some((v) => v.defId === 'mathematicus-of-bologna')) {
+    const opened = (ids: string[]) => d.hasGift || ids.some((id) => d.abilities.some((a) => a.abilityId === id));
+    const lack = [!opened(['tueor', 'succurro', 'vulnero']) ? 'a Technique (Tueor, Succurro or Vulnero)' : '', !opened(['fortunam', 'magicam', 'salutem']) ? 'a Form (Fortunam, Magicam or Salutem)' : ''].filter(Boolean);
+    if (lack.length) add({ id: 'learned-arts', severity: 'error', step: 'virtues', message: `A mathematicus must have ${lack.join(' and ')} of the tradition.`, fix: 'Take the Virtue of each Art (a Technique is Major, a Form Minor), or The Gift, opened to all six.', ref: 'Hedge Magic, Learned Magicians' });
+    if (t.socialStatuses.length === 1) add({ id: 'learned-status', severity: 'warning', step: 'virtues', message: 'A mathematicus also takes a Social Status for their place in mundane society (a clerk, a magister in artibus, a mendicant friar, a priest…).', ref: 'Hedge Magic, Learned Magicians' });
+  }
   // --------------------------------------------------------------- magic characters (RoP: Magic)
   // --------------------------------------------------------------- faerie characters (RoP: Faerie)
   for (const f of d.faerieChar?.issues ?? []) add({ id: f.id, severity: f.severity, step: 'virtues', message: f.message, fix: f.fix, ref: 'RoP: Faerie, Faerie Characters' });

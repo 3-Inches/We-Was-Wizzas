@@ -1,6 +1,7 @@
 // Computes everything derivable about a character from its stored choices.
 // Pure functions: (character, game data, house rules) -> DerivedCharacter.
 
+import { LEARNED_ART_IDS } from '../../data/hedgeLearned';
 import { SOLOMON_RINGS } from '../../data/divine';
 import { MYTHIC_TYPES, mythicAbility } from '../../data/mythic';
 import {
@@ -227,6 +228,8 @@ function resolveEffects(virtues: ResolvedVirtue[]): ResolvedEffect[] {
   return out;
 }
 
+/** The experience a learned magician's years with a master give (Hedge Magic, Learned Magicians). */
+export const LEARNED_TRAINING = 'pool:learned-training' as XpSource;
 export const CREATION_SOURCES: XpSource[] = ['native', 'childhood', 'laterLife', 'apprenticeship', 'postGauntlet'];
 
 export function effectiveXp(alloc: XpAlloc, multiplier: number): number {
@@ -445,6 +448,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     if (a.fromName.startsWith('Student of') && a.param) access.abilities.add(`${a.param.toLowerCase()}-lore`.replace('divine-lore', 'dominion-lore'));
   }
   for (const g of eff('grantAbility')) access.abilities.add(g.ability);
+  // a Gifted learned magician's Gift is opened to all six Arts of the tradition (Hedge Magic, Learned Magicians)
+  const mathematicus = has('mathematicus-of-bologna');
+  if (mathematicus && hasGift) for (const id of LEARNED_ART_IDS) access.abilities.add(id);
   // a faerie needs no Virtue for any Pretense: its Abilities are copied from people (RoP: Faerie)
   if (faerieChar) for (const t of ['Martial', 'Academic', 'Arcane'] as const) access.types.add(t);
   // a Mythic Companion's type opens the Abilities its least scores are in, Arcane and Academic ones too
@@ -566,7 +572,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   }
 
   // ---------------------------------------------------------------- budgets
-  const laterLifeYears = isMagus ? Math.max(0, char.creation.apprenticeshipStartAge - 5) : Math.max(0, char.age - 5);
+  // a learned magician's years with a master come out of the later-life years, at 30 a year (Hedge Magic)
+  const trainingYears = !isMagus && (mathematicus || char.learned?.trainingYears) ? Math.max(0, Math.min(char.learned?.trainingYears ?? 0, char.age - 5)) : 0;
+  const laterLifeYears = isMagus ? Math.max(0, char.creation.apprenticeshipStartAge - 5) : Math.max(0, char.age - 5 - trainingYears);
   let rate = rules.laterLifeXpPerYear;
   for (const l of eff('laterLifeXpPerYear')) rate = l.amount === 20 ? rules.wealthyXpPerYear : l.amount === 10 ? rules.poorXpPerYear : l.amount;
   if (has('savantism-flaw')) rate = Math.floor(rate / 2);
@@ -599,6 +607,20 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
     budgets.push({ id: 'native', label: 'Native Language', total: rules.nativeLanguageXp, spent: spentBy('native'), allows: 'Your native language only', kind: 'ability' });
     budgets.push({ id: 'childhood', label: 'Early Childhood', total: rules.childhoodXp, spent: spentBy('childhood'), allows: 'Area Lore, Athletics, Awareness, Brawl, Charm, Folk Ken, Guile, a second Living Language, Stealth, Survival, Swim', kind: 'ability', abilities: CHILDHOOD_ABILITIES });
     budgets.push({ id: 'laterLife', label: `Later Life (${laterLifeYears} yrs × ${rate})`, total: laterLifeYears * rate, spent: spentBy('laterLife'), allows: 'Any Ability your Virtues allow', kind: 'ability' });
+  }
+  if (trainingYears) {
+    const skilled = char.virtues.filter((v) => v.defId === 'skilled-master').length;
+    const poor = char.virtues.filter((v) => v.defId === 'poorly-trained-magician-flaw').length;
+    const parts = [`${trainingYears} yrs × 30`, skilled ? `+${50 * skilled} Skilled Master` : '', poor ? `−${50 * poor} Poorly Trained` : ''].filter(Boolean);
+    const base = 30 * trainingYears;
+    // Poorly Trained may not take it to zero
+    const total = Math.max(Math.min(base, 5), base + 50 * skilled - 50 * poor);
+    const charmLevels = (char.learned?.charms ?? []).filter((x) => x.source === 'training').reduce((t, x) => t + x.level, 0);
+    budgets.push({
+      id: LEARNED_TRAINING, label: `Training under a master (${parts.join(' ')})`, total, spent: spentBy(LEARNED_TRAINING) + Math.ceil(charmLevels / 5),
+      allows: `Academic and Arcane Abilities, the hedge Arts${hasGift ? '' : ' of your Virtues'}, and charms at 5 levels a point (Hedge Magic)`, kind: 'ability',
+      abilityTypes: ['Academic', 'Arcane'], abilities: LEARNED_ART_IDS.filter((id) => access.abilities.has(id)),
+    });
   }
   for (const p of eff('xpPool')) {
     const id = `pool:${p.fromUid}` as XpSource;
