@@ -584,6 +584,9 @@ export const MECHANICS: Record<string, Mechanics> = {
   'faerie-antipathy-flaw': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A negative Sympathy Trait: −1 as a Minor Flaw, −3 as a Major, less the Warping Score at the end of creation. It comes off any Ability it applies to, and adds a botch die.')] },
   'faerie-background': { tags: ['realm:faerie'], effects: [note('Two Sympathy Traits, one positive and one negative, each as high as the Warping Score. The Warping Score may be raised freely at creation.')] },
 
+  // ------------------------------------------------------------------ Nightwalkers (Hedge Magic)
+  nightwalker: { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: 'second-sight', score: 1 }, note('Straying: the spirit leaves the insensible body and takes form elsewhere (Game Table, Dice › Hedge magic). Second Sight 1 in spirit form (the Second Sight Virtue’s score in both). Magical Air in spirit form; must answer every battle or procession; wounds in spirit show on the body; no Magic Resistance or Might.')] },
+
   // ------------------------------------------------------------------ Gruagachan (Hedge Magic)
   // Spells are cast and tattoos made on the Game Table, Dice › Hedge magic; spells known are kept on the sheet.
   ...Object.fromEntries(
