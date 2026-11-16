@@ -165,16 +165,25 @@ export function KitchenCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const fwmt = score(d, 'folk-witch-magic-theory');
   const brewable = powers.filter((p) => p.methods.includes('potion'));
   const fetishable = powers.filter((p) => WITCH_FETISHES[p.id]);
-  const pickFrom = work === 'brew' ? brewable : work === 'fetish' ? fetishable : powers;
+  const works: [KitchenWork, string][] = [
+    ...(brewable.length && !c.virtues.some((v) => v.defId === 'primitive-tradition-flaw') ? ([['brew', 'brew potions']] as [KitchenWork, string][]) : []),
+    ...(fetishable.length ? ([['fetish', 'make a fetish']] as [KitchenWork, string][]) : []),
+    ...(powers.some((x) => x.id === 'witch-cursing') ? ([['curse', 'weave a curse']] as [KitchenWork, string][]) : []),
+    ['vis', 'draw vis from the aura'],
+    ...(powers.some((x) => x.id === 'witch-healing') ? ([['longevity', 'a longevity ritual']] as [KitchenWork, string][]) : []),
+    ...(powers.some((x) => x.id === 'animal-ken') ? ([['familiar', 'bind a familiar']] as [KitchenWork, string][]) : []),
+  ];
+  const w = works.some(([k]) => k === work) ? work : works[0][0];
+  const pickFrom = w === 'brew' ? brewable : w === 'fetish' ? fetishable : powers;
   const p = pickFrom.find((x) => x.id === power) ?? pickFrom[0];
   const effects = p ? effectsOf(p.id) : [];
   const eff = effects[Math.min(ei, effects.length - 1)];
   const abilityFor: Record<KitchenWork, string | undefined> = { brew: p?.id, fetish: undefined, curse: 'witch-cursing', vis: undefined, longevity: 'witch-healing', familiar: 'animal-ken' };
-  const lt = kitchenLabTotal(c, d, abilityFor[work], aura, { potion: work === 'brew', familiar });
-  const limit = Math.min(kitchenVisLimit(c, fwmt, work === 'brew'), visOnHand);
+  const lt = kitchenLabTotal(c, d, abilityFor[w], aura, { potion: w === 'brew', familiar });
+  const limit = Math.min(kitchenVisLimit(c, fwmt, w === 'brew'), visOnHand);
   const b = brew(fwmt, eff?.vis ?? 0, limit, { labText });
   const plan = (): string => {
-    switch (work) {
+    switch (w) {
       case 'brew':
         return p ? `Brew Potency ${lt.total}: ${b.doses} of ${b.maxDoses} doses for ${b.vis} pawns (a pawn a dose${eff?.vis ? ` + ${eff.vis} for the effect` : ''}; the season allows ${kitchenVisLimit(c, fwmt, true)}). Drunk: the potency + a stress die${['animal-ken', 'second-sight', 'dowsing', 'witch-flight'].includes(p.id) ? `, or the Ability at ${potionAbility(lt.total).score}` : ''}.` : '';
       case 'fetish':
@@ -193,27 +202,18 @@ export function KitchenCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
     const text = `${plan()} Lab Total ${lt.total}.`;
     update((x) => {
       const things = [...(x.folkWitch?.things ?? [])];
-      if (work === 'brew' && p && b.doses) things.push({ uid: uid(), kind: 'potion', power: p.id, name: `${p.name} potion${eff ? `: ${eff.label.replace(/ \(.*/, '')}` : what.trim() ? `: ${what.trim()}` : ''}`, potency: lt.total, doses: b.doses, effect: eff?.label ?? what.trim(), madeYear: year });
-      if (work === 'fetish' && p) things.push({ uid: uid(), kind: 'fetish', power: p.id, name: `${WITCH_FETISHES[p.id].name}${what.trim() ? ` (${what.trim()})` : ''}`, madeYear: year });
-      if (work === 'longevity' && Math.ceil(lt.total / 5) > (x.longevity?.lapsedYear ? 0 : (x.longevity?.bonus ?? 0))) x.longevity = { labTotal: lt.total, bonus: Math.ceil(lt.total / 5), extraVis: 0, createdYear: year, createdBy: x.name };
+      if (w === 'brew' && p && b.doses) things.push({ uid: uid(), kind: 'potion', power: p.id, name: `${p.name} potion${eff ? `: ${eff.label.replace(/ \(.*/, '')}` : what.trim() ? `: ${what.trim()}` : ''}`, potency: lt.total, doses: b.doses, effect: eff?.label ?? what.trim(), madeYear: year });
+      if (w === 'fetish' && p) things.push({ uid: uid(), kind: 'fetish', power: p.id, name: `${WITCH_FETISHES[p.id].name}${what.trim() ? ` (${what.trim()})` : ''}`, madeYear: year });
+      if (w === 'longevity' && Math.ceil(lt.total / 5) > (x.longevity?.lapsedYear ? 0 : (x.longevity?.bonus ?? 0))) x.longevity = { labTotal: lt.total, bonus: Math.ceil(lt.total / 5), extraVis: 0, createdYear: year, createdBy: x.name };
       x.folkWitch = { ...(x.folkWitch ?? {}), things };
-      const ab = abilityFor[work] ? x.abilities.find((a) => a.abilityId === abilityFor[work]) : x.abilities.find((a) => a.abilityId === 'folk-witch-magic-theory');
-      const e = newSeasonEntry(year, season, 'other', `Witch's kitchen: ${({ brew: 'a brew of potions', fetish: 'a fetish', curse: 'a curse woven', vis: 'vis from the aura', longevity: 'a longevity ritual', familiar: 'a familiar bound' } as const)[work]}`, ab ? { [`ability:${ab.uid}`]: 2 } : {});
+      const ab = abilityFor[w] ? x.abilities.find((a) => a.abilityId === abilityFor[w]) : x.abilities.find((a) => a.abilityId === 'folk-witch-magic-theory');
+      const e = newSeasonEntry(year, season, 'other', `Witch's kitchen: ${({ brew: 'a brew of potions', fetish: 'a fetish', curse: 'a curse woven', vis: 'vis from the aura', longevity: 'a longevity ritual', familiar: 'a familiar bound' } as const)[w]}`, ab ? { [`ability:${ab.uid}`]: 2 } : {});
       e.notes = text;
       applySeason(x, e, 1);
       x.seasonLog.push(e);
     });
     setLines([text, `${season} ${year} logged. Take the vis from the stores by hand.`]);
   };
-  const works: [KitchenWork, string][] = [
-    ...(brewable.length && !c.virtues.some((v) => v.defId === 'primitive-tradition-flaw') ? ([['brew', 'brew potions']] as [KitchenWork, string][]) : []),
-    ...(fetishable.length ? ([['fetish', 'make a fetish']] as [KitchenWork, string][]) : []),
-    ...(powers.some((x) => x.id === 'witch-cursing') ? ([['curse', 'weave a curse']] as [KitchenWork, string][]) : []),
-    ['vis', 'draw vis from the aura'],
-    ...(powers.some((x) => x.id === 'witch-healing') ? ([['longevity', 'a longevity ritual']] as [KitchenWork, string][]) : []),
-    ...(powers.some((x) => x.id === 'animal-ken') ? ([['familiar', 'bind a familiar']] as [KitchenWork, string][]) : []),
-  ];
-  const w = works.some(([k]) => k === work) ? work : works[0][0];
   return (
     <Card title="A season in the kitchen" tour="witch-kitchen" fold="witch-kitchen" summary={`Folk Witch Magic Theory ${fwmt}`}>
       <div className="row">
