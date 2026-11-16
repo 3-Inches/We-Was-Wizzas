@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { ART_NAMES, FORMS, TECHNIQUES, type SpellDef } from '../../../data';
 import { creationSpellLimit } from '../../../engine/magic';
-import { MASTERY_ABILITIES } from '../../../engine/spellDesign';
+import { MASTERY_ABILITIES, labTotalForSeasons } from '../../../engine/spellDesign';
 import { abilityScoreFromXp } from '../../../engine/xp';
 import type { CharSpell, Character } from '../../../engine/types';
 import type { DerivedCharacter } from '../../../engine/character/derive';
@@ -169,6 +169,11 @@ export function FragmentRow(props: { s: SpellDef; open: boolean; onToggle: () =>
           <td colSpan={6}>
             <Markdown text={s.text} />
             {s.design && <div className="small muted">({s.design})</div>}
+            {s.level ? (
+              <div className="small muted">
+                Lab Total to invent it: {[1, 2, 3, 4].map((n) => `${n === 1 ? 'one season' : `${['', '', 'two', 'three', 'four'][n]} seasons`} ${labTotalForSeasons(s.level!, n)}`).join(', ')}.
+              </div>
+            ) : null}
           </td>
         </tr>
       )}
