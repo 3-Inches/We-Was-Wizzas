@@ -38,12 +38,12 @@ export const withName = (text: string, name: string) => text.replace(/\(the rune
 const short = (s: RuneScript | { runes: string[]; level: number; method: string }) => `${s.runes.join(' + ')} ${s.level || 'General'}, Method ${s.method}`;
 
 /** Choose a script from the book's samples, or design one from a rune's guideline. */
-function ScriptDesigner({ runes, who, onAdd, label, maxLevel }: { runes: RuneScore[]; who: string; onAdd: (s: RuneScript) => void; label: string; maxLevel?: number }) {
+function ScriptDesigner({ runes, who, onAdd, label, maxLevel, capText }: { runes: RuneScore[]; who: string; onAdd: (s: RuneScript) => void; label: string; maxLevel?: number; capText?: string }) {
   const open = runes.map((r) => r.name);
   const book = RUNE_SCRIPTS.filter((s) => s.runes.every((n) => open.includes(n)));
   const [from, setFrom] = useState<'book' | 'design'>(book.length ? 'book' : 'design');
   const [bi, setBi] = useState(0);
-  const [effect, setEffect] = useState(open[0] ?? 'Fehu');
+  const [effect, setEffect] = useState('');
   const [target, setTarget] = useState('');
   const [method, setMethod] = useState<'I' | 'II' | 'III'>('I');
   const [gi, setGi] = useState(0);
@@ -51,7 +51,7 @@ function ScriptDesigner({ runes, who, onAdd, label, maxLevel }: { runes: RuneSco
   const [name, setName] = useState('');
   if (!runes.length) return <p className="small warn-text">The runes must be opened first.</p>;
   const pick = book[Math.min(bi, book.length - 1)];
-  const eff = open.includes(effect) ? effect : open[0];
+  const eff = open.includes(effect) ? effect : runes.reduce((m, r) => (r.score > m.score ? r : m), runes[0]).name;
   const guides = RUNE_GUIDELINES.filter((g) => g.rune === eff);
   const guide = guides[Math.min(gi, guides.length - 1)];
   // a General guideline takes any level, its magnitude the bonus; the others set it
@@ -131,7 +131,7 @@ function ScriptDesigner({ runes, who, onAdd, label, maxLevel }: { runes: RuneSco
       <button className="small" onClick={add} disabled={over}>
         {label} (level {lvl})
       </button>
-      {over && <span className="small warn-text">Above the Lab Total of {maxLevel} for these runes.</span>}
+      {over && <span className="small warn-text">Above {capText ?? 'the Lab Total for these runes'} ({maxLevel}).</span>}
     </div>
   );
 }
@@ -223,7 +223,7 @@ export function VitkiCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
       out.push(`BOTCH ×${botches}: the runes miscarry (the storyguide says how); ${botches} Warping Point${botches === 1 ? '' : 's'}.`);
     } else {
       if (res.outcome !== 'works') fatigue = 1;
-      const p = runePenetration(res.total, script.level, pen);
+      const p = Math.max(0, runePenetration(res.total, script.level, pen));
       out.push(res.outcome === 'works' ? `It is cast. Penetration ${p} against Magic Resistance.` : res.outcome === 'fatigue' ? `It is cast, for a Fatigue level. Penetration ${p}.` : 'It is not cast, and costs a Fatigue level.');
       if (res.outcome !== 'fails') {
         out.push('The effect is real and natural while the runes last; the inscription becomes an Arcane Connection to the vitki, both ways.');
@@ -316,7 +316,8 @@ export function VitkiSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraState 
   const year = saga?.currentYear ?? 1220;
   const season = saga?.currentSeason ?? 'Spring';
   const busy = seasonBusy(c, year, season);
-  const eff = runes.some((r) => r.name === effect) ? effect : runes[0].name;
+  const best = runes.reduce((m, r) => (r.score > m.score ? r : m), runes[0]);
+  const eff = runes.some((r) => r.name === effect) ? effect : best.name;
   const set = [eff, ...(target && target !== eff ? [target] : [])];
   const lt = vitkiLabTotal(c, d, set, aura);
   const levels = mode === 'invent' ? inventedLevels(lt.total, months) : Math.max(0, teacher);
@@ -381,6 +382,7 @@ export function VitkiSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraState 
         who={c.name}
         label="Add to this season"
         maxLevel={mode === 'taught' ? lt.total : Math.max(0, levels - used)}
+        capText={mode === 'taught' ? 'your own Lab Total for these runes' : 'the levels left this season'}
         onAdd={(s) => (allowed(s) ? setPending((p) => [...p, s]) : setLines(['That script uses runes outside this season’s.']))}
       />
       {pending.map((p) => (
