@@ -430,7 +430,7 @@ export function NattThelCard({ ed }: { ed: CharEditor }) {
         Interruptions add the Concentration table&apos;s Ease Factors.
       </p>
       <div className="row">
-        <Field label="Warping Points gained">
+        <Field label="Warping Points gained" hint="Added to the sheet; a botch cast above adds its own">
           <Stepper value={gained} min={1} max={20} width={32} onChange={setGained} />
         </Field>
         <Field label="Effects kept alive" hint="A Warping Point each, if it comes">
