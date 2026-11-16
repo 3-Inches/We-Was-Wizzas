@@ -179,14 +179,16 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
   const doSeason = () => {
     const text = `Refining (${ty}): total ${tot.total}. ${result()}`;
     update((x) => {
-      if (work === 'longevity' && potion.bonus > 0) x.longevity = { labTotal: tot.total, bonus: potion.bonus, extraVis: 0, createdYear: year, createdBy: 'an elementalist’s longevity potion' };
+      // the potion stands as the longevity ritual, unless the one already taken is better
+      if (work === 'longevity' && potion.bonus > (x.longevity?.lapsedYear ? 0 : (x.longevity?.bonus ?? 0))) x.longevity = { labTotal: tot.total, bonus: potion.bonus, extraVis: 0, createdYear: year, createdBy: 'an elementalist’s longevity potion' };
       const ab = x.abilities.find((a) => a.abilityId === 'elemental-refining');
       const e = newSeasonEntry(year, season, 'other', `Elemental refining: ${work === 'longevity' ? 'a longevity potion' : work === 'extract' ? 'vis from the aura' : work === 'move' ? 'moving vis' : work === 'might' ? 'a being’s Might' : 'a refining'}`, ab ? { [`ability:${ab.uid}`]: 2 } : {});
       e.notes = text;
       applySeason(x, e, 1);
       x.seasonLog.push(e);
     });
-    setLines([text, `${season} ${year} logged${work === 'longevity' && potion.bonus > 0 ? '; the potion is on the sheet as the character’s longevity ritual' : ''}. Take the vis from the stores by hand.`]);
+    const kept = !!c.longevity && !c.longevity.lapsedYear && c.longevity.bonus >= potion.bonus;
+    setLines([text, `${season} ${year} logged${work === 'longevity' && potion.bonus > 0 ? (kept ? '; the longevity ritual already taken is as good or better, and is kept' : '; the potion is on the sheet as the character’s longevity ritual') : ''}. Take the vis from the stores by hand.`]);
   };
   const works: [RefineWork, string][] = [
     ['longevity', 'a longevity potion'],
