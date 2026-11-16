@@ -411,6 +411,12 @@ export default function HelpPage() {
             astray, the chapter&apos;s other rolls, and a fertility battle&apos;s outcome set as the year&apos;s harvest on the covenant&apos;s land.
           </li>
           <li>
+            <b>Vitkir</b> (<i>Hedge Magic, Revised Edition</i>): the 24 runes, raised as Arts; the sheet keeps the apprenticeship (240 experience points and 120 levels of scripts)
+            and the scripts known (the book&apos;s or designed from a rune&apos;s guideline). On <b>Dice › Hedge magic</b>: a script cast with its name and description written,
+            hidden or left off, vis and a rune focus; a season inventing scripts or learning them from a teacher; <b>Nátt-thel</b>, the loss of The Gift, after two Warping
+            Points at once.
+          </li>
+          <li>
             <b>Gruagachan</b> (<i>Hedge Magic, Revised Edition</i>): Give and Take with Blessing, Curse, Shape and Vision; the sheet keeps the apprenticeship and the spells
             known (from the book or designed with the Geas and Limit Durations). On <b>Dice › Hedge magic</b>: a Formulaic spell varied within its magnitudes, or a
             spontaneous one; transformation after a double botch; a season enchanting a <b>tattoo</b>, inventing a spell or drawing vis.

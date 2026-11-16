@@ -9,7 +9,7 @@
 import { CHARACTERISTICS, CHAR_NAMES, STATUS_CULTURES, abilityTypeOf, type GameData } from '../../data';
 import { LAB_ONLY_VF } from '../../data/restrictions';
 import type { Character, HouseRules } from '../types';
-import { canSpend, purchasedCharacteristic, sumAlloc, type DerivedCharacter } from './derive';
+import { VITKI_APPRENTICESHIP, canSpend, purchasedCharacteristic, sumAlloc, type DerivedCharacter } from './derive';
 import { creationSpellLimit } from '../magic';
 import { EX_MISC_TRADITIONS, HOUSE_BY_ID } from '../../data/houses';
 import { abilityAvailability, statusesCompatible, vfProblems } from './restrictions';
@@ -17,6 +17,8 @@ import { MYTHIC_TYPES, hasFaerieVirtue, mythicAbility } from './factory';
 import { POWER_KINDS, POWER_KIND_ORDER, masteryPools, powerSpending, powerStats } from './powers';
 import type { PowerKind } from '../../data';
 import { FAERIE_SOCIAL } from './faerieCharacter';
+import { RUNE_IDS } from '../../data/hedgeVitkir';
+import { vitkiAbilities } from '../vitkir';
 
 export type Severity = 'error' | 'warning' | 'info';
 export type Step = 'basics' | 'house' | 'virtues' | 'characteristics' | 'abilities' | 'arts' | 'spells' | 'personality' | 'equipment' | 'sheet';
@@ -76,6 +78,17 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     const body = ['giant-blood', 'large', 'shapeshifter'].some((id) => c.virtues.some((v) => v.defId === id));
     const pair = ['gruagach-give', 'gruagach-take'].some((id) => d.abilities.some((a) => a.abilityId === id)) && ['gruagach-blessing', 'gruagach-curse', 'gruagach-shape', 'gruagach-vision'].some((id) => d.abilities.some((a) => a.abilityId === id));
     if (!body || !pair) add({ id: 'gruagach-needs', severity: 'error', step: 'virtues', message: `An unGifted gruagach needs ${[!body ? 'Giant Blood, Large or Shapeshifter' : '', !pair ? 'a gruagach Technique and Form (their Virtues)' : ''].filter(Boolean).join(' and ')}.`, ref: 'Hedge Magic, Gruagachan' });
+  }
+  // --------------------------------------------------------------- vitkir (Hedge Magic)
+  if (c.virtues.some((v) => v.defId === 'vitki')) {
+    const pool = d.budgets.find((b) => b.id === VITKI_APPRENTICESHIP);
+    const onRunes = c.abilities.filter((a) => RUNE_IDS.includes(a.abilityId)).reduce((t, a) => t + (a.xp[VITKI_APPRENTICESHIP] ?? 0), 0);
+    if (pool && pool.spent >= pool.total && onRunes < pool.total / 2) add({ id: 'vitki-runes', severity: 'warning', step: 'abilities', message: `A vitki's apprenticeship puts at least half its experience into the runes: ${onRunes} of ${pool.total} here.`, ref: 'Hedge Magic, Vitkir' });
+    const { runeMagic, craftRunes, oldNorse } = vitkiAbilities(c, d);
+    const lack = [craftRunes < 2 ? 'Craft: Runes 2' : '', oldNorse < 3 ? 'Old Norse 3' : '', runeMagic < 1 ? 'Rune Magic 1' : ''].filter(Boolean);
+    if (lack.length) add({ id: 'vitki-abilities', severity: 'warning', step: 'abilities', message: `A vitki needs ${lack.join(', ')} to study and practice rune magic.`, fix: 'About 50 experience points of the apprenticeship.', ref: 'Hedge Magic, Vitkir' });
+    const high = d.abilities.filter((a) => RUNE_IDS.includes(a.abilityId) && a.total > 10);
+    if (!c.creation.finalized && high.length) add({ id: 'vitki-rune-ten', severity: 'info', step: 'abilities', message: `A score of 10 in a rune is the practical most just out of apprenticeship: ${high.map((a) => `${a.name} ${a.total}`).join(', ')}.`, ref: 'Hedge Magic, Vitkir' });
   }
   // --------------------------------------------------------------- folk witches (Hedge Magic)
   if (c.virtues.some((v) => v.defId === 'folk-witch')) {

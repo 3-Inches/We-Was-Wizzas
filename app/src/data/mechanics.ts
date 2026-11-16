@@ -5,6 +5,7 @@
 //
 // Saga house rules can override any of this at runtime (see engine/houseRules.ts).
 
+import { RUNES, VITKAR_FOCI } from './hedgeVitkir';
 import type { AbilityType, CharType, Effect, ParamSpec, VirtueFlawDef } from './types';
 import { CHARACTERISTICS, CHAR_NAMES } from './constants';
 
@@ -37,6 +38,8 @@ export interface Mechanics {
   sizeEffects?: VirtueFlawDef['sizeEffects'];
   restrictionText?: string;
 }
+
+const RUNE_NAMES = RUNES.map((r) => r.name);
 
 const P = {
   ability: (label = 'Ability', abilityTypes?: AbilityType[]): ParamSpec => ({ kind: 'ability', label, abilityTypes }),
@@ -606,6 +609,20 @@ export const MECHANICS: Record<string, Mechanics> = {
   'well-trained-gruagach': { repeatable: true, effects: [note('+50 experience points for the gruagach Arts and +25 levels of spells in apprenticeship.')] },
   'poorly-trained-gruagach-flaw': { repeatable: true, effects: [note('−50 experience points for the gruagach Arts and −25 levels of spells in apprenticeship.')] },
   'external-soul': { effects: [note('No Incapacitating or fatal Wound while the soul’s object is whole: the damage is spread over lesser Wounds, each spread a Warping Point unless Stamina + Pictish + stress die reaches 9. Unaging, at a Warping Point a year. Damage to the object kills.')] },
+
+  // ------------------------------------------------------------------ Vitkir (Hedge Magic)
+  // Rune scripts are cast and invented on the Game Table, Dice › Hedge magic; scripts known are kept on the sheet.
+  vitki: { requiresGift: true, effects: [note('A vitki’s apprenticeship (about fifteen years) opens the 24 runes at 0 and gives 240 experience points, at least half on the runes, and 120 levels of rune scripts (set the years on the sheet’s Vitki card). Craft: Runes 2, Old Norse 3 and Rune Magic 1 are the least needed. Nátt-thel, the loss of The Gift, takes the place of Twilight.')] },
+  'deft-rune': { repeatable: true, param: P.text('Rune', RUNE_NAMES), effects: [note('No penalty for leaving the name or the description off a script with this rune.')] },
+  'mastered-rune': { repeatable: true, param: P.text('Rune', RUNE_NAMES), effects: [note('With this rune: three fewer botch dice (at least one) and the casting penalties halved.')] },
+  'minor-rune-focus': { param: P.text('Rune', RUNE_NAMES), effects: [note('The rune’s score doubles for a script of the focus’s purpose cut into its material (the Vitkar Magic Foci).')] },
+  'major-rune-focus': { excludes: ['minor-rune-focus'], param: P.text('Focus', VITKAR_FOCI.map((f) => `${f.name} (${f.norse})`)), effects: [note('Any rune’s score doubles for a script of the focus’s purpose cut into its material.')] },
+  'nameless-runes': { effects: [note('No penalty for leaving the name off a script (and no bonus for writing it).')] },
+  'secret-runes': { repeatable: true, effects: [note('No penalty for hiding the description, only −5 for leaving it off; taken twice, no penalty at all.')] },
+  'minor-magical-deficiency-flaw': { param: P.text('Runes (three, or one for a grave deficiency)'), effects: [note('The Casting Total is halved for a script with these runes; a grave deficiency with one rune bars it altogether.')] },
+  'major-magical-deficiency-flaw': { excludes: ['minor-magical-deficiency-flaw'], param: P.text('Aett (Freya’s aett, Heimdall’s aett, Tyr’s aett) or three runes for a grave deficiency'), effects: [note('The Casting Total is halved for a script with a rune of this aett; a grave deficiency with three runes bars them altogether.')] },
+  'natt-thel-prone-flaw': { effects: [note('Nátt-thel follows any supernatural botch, not only a double one.')] },
+  'short-lived-runes-flaw': { effects: [note('The runes fade: the storyguide rolls each effect’s duration on the Nátt-thel chart (+1 a pawn or Confidence Point spent).')] },
 
   // ------------------------------------------------------------------ Folk Witches (Hedge Magic)
   // Powers are cast, potions brewed and fetishes made on the Game Table, Dice › Hedge magic; the Witch Moon there too.

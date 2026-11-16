@@ -26,6 +26,7 @@ import { LearnedCard } from '../LearnedCard';
 import { ElementalTraitsCard } from '../ElementalTraitsCard';
 import { FolkWitchSheetCard } from '../../pages/FolkWitchPart';
 import { GruagachSheetCard } from '../../pages/GruagachPart';
+import { VitkiSheetCard } from '../../pages/VitkirPart';
 
 /** The holy side, for reference: Methods and Powers, a tradition, a commanding aura, the Divine Ascent, a Ring of Solomon (RoP: The Divine). */
 function HolyLine({ c, d }: { c: Character; d: DerivedCharacter }) {
@@ -233,6 +234,7 @@ export default function OverviewTab({ ed }: { ed: CharEditor }) {
       <ElementalTraitsCard ed={ed} />
       <FolkWitchSheetCard ed={ed} />
       <GruagachSheetCard ed={ed} />
+      <VitkiSheetCard ed={ed} />
       {!hasEffects && <EffectsCard ed={ed} />}
       <AgencyCard ed={ed} />
       <TribunalCard ed={ed} />

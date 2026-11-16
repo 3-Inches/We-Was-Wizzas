@@ -27,6 +27,7 @@ import { learnedAbilityDefs } from './hedgeLearned';
 import { elementalAbilityDefs } from './hedgeElemental';
 import { folkWitchAbilityDefs, folkWitchVirtueDefs } from './hedgeFolkWitch';
 import { gruagachAbilityDefs } from './hedgeGruagach';
+import { vitkirAbilityDefs } from './hedgeVitkir';
 import type {
   AbilityDef, ArmorDef, GuidelineDef, HookBoonDef, LabFeatureDef, LabVFDef, ShapeMaterialDef,
   SpellDef, VirtueFlawDef, WeaponDef, Effect, AbilityType, RuleSection, VFRef,
@@ -68,7 +69,7 @@ const BOOK_ABILITY_IDS = new Set(BOOK_ABILITIES.map((a) => a.id));
  * other book as a second source. Saved characters are moved over (store/migrate).
  */
 export const ABILITY_ALIASES: Record<string, string> = { 'rabbinical-law': 'rabbinic-law' };
-const RAW_ABILITIES = [...BOOK_ABILITIES, ...tribunalAbilityDefs(BOOK_ABILITY_IDS), ...divineAbilityDefs(BOOK_ABILITY_IDS), ...societatesAbilityDefs(BOOK_ABILITY_IDS), ...tmreAbilityDefs(BOOK_ABILITY_IDS), ...faerieAbilityDefs(BOOK_ABILITY_IDS), ...learnedAbilityDefs(BOOK_ABILITY_IDS), ...elementalAbilityDefs(BOOK_ABILITY_IDS), ...folkWitchAbilityDefs(BOOK_ABILITY_IDS), ...gruagachAbilityDefs(BOOK_ABILITY_IDS)]
+const RAW_ABILITIES = [...BOOK_ABILITIES, ...tribunalAbilityDefs(BOOK_ABILITY_IDS), ...divineAbilityDefs(BOOK_ABILITY_IDS), ...societatesAbilityDefs(BOOK_ABILITY_IDS), ...tmreAbilityDefs(BOOK_ABILITY_IDS), ...faerieAbilityDefs(BOOK_ABILITY_IDS), ...learnedAbilityDefs(BOOK_ABILITY_IDS), ...elementalAbilityDefs(BOOK_ABILITY_IDS), ...folkWitchAbilityDefs(BOOK_ABILITY_IDS), ...gruagachAbilityDefs(BOOK_ABILITY_IDS), ...vitkirAbilityDefs(BOOK_ABILITY_IDS)]
   .filter((a) => !ABILITY_ALIASES[a.id])
   .map((a) => {
     const others = BOOK_ABILITIES.filter((b) => ABILITY_ALIASES[b.id] === a.id);

@@ -4,6 +4,7 @@
 import { LEARNED_ART_IDS } from '../../data/hedgeLearned';
 import { WITCH_POWERS } from '../../data/hedgeFolkWitch';
 import { GRUAGACH_ART_IDS } from '../../data/hedgeGruagach';
+import { RUNE_IDS } from '../../data/hedgeVitkir';
 import { SOLOMON_RINGS } from '../../data/divine';
 import { MYTHIC_TYPES, mythicAbility } from '../../data/mythic';
 import {
@@ -234,6 +235,8 @@ function resolveEffects(virtues: ResolvedVirtue[]): ResolvedEffect[] {
 export const LEARNED_TRAINING = 'pool:learned-training' as XpSource;
 /** A folk witch's apprenticeship: 200 experience points for any Abilities (Hedge Magic, Folk Witches). */
 export const FOLK_APPRENTICESHIP = 'pool:folk-apprenticeship' as XpSource;
+/** A vitki's apprenticeship: 240 experience points and 120 levels of rune scripts (Hedge Magic, Vitkir). */
+export const VITKI_APPRENTICESHIP = 'pool:vitki-apprenticeship' as XpSource;
 /** A gruagach's apprenticeship: experience and levels of spells (Hedge Magic, Gruagachan). */
 export const GRUAGACH_APPRENTICESHIP = 'pool:gruagach-apprenticeship' as XpSource;
 export const CREATION_SOURCES: XpSource[] = ['native', 'childhood', 'laterLife', 'apprenticeship', 'postGauntlet'];
@@ -460,6 +463,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   // a Gifted gruagach's Gift is opened to the six gruagach Arts (Hedge Magic, Gruagachan)
   const gruagach = has('gruagach');
   if (gruagach && hasGift) for (const id of GRUAGACH_ART_IDS) access.abilities.add(id);
+  // a vitki's master opens all 24 runes (Hedge Magic, Vitkir)
+  const vitki = has('vitki');
+  if (vitki && hasGift) for (const id of RUNE_IDS) access.abilities.add(id);
   // a Gifted folk witch's Gift is opened to the seven favored powers, but those her Flawed Opening names (Hedge Magic, Folk Witches)
   const folkWitch = has('folk-witch');
   if (folkWitch && hasGift) {
@@ -593,7 +599,9 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   const gruagachYears = !isMagus && gruagach ? Math.max(0, Math.min(char.gruagach?.apprenticeYears ?? (hasGift ? 10 : 4), char.age - 5 - trainingYears)) : 0;
   // a folk witch's apprenticeship (about ten years from age ten) gives 200 points in place of those years (Hedge Magic)
   const witchYears = !isMagus && folkWitch ? Math.max(0, Math.min(char.folkWitch?.apprenticeYears ?? 10, char.age - 5 - trainingYears - gruagachYears)) : 0;
-  const laterLifeYears = isMagus ? Math.max(0, char.creation.apprenticeshipStartAge - 5) : Math.max(0, char.age - 5 - trainingYears - witchYears - gruagachYears);
+  // a vitki's apprenticeship: about fifteen years, as a magus's (Hedge Magic)
+  const vitkiYears = !isMagus && vitki ? Math.max(0, Math.min(char.vitki?.apprenticeYears ?? 15, char.age - 5 - trainingYears - gruagachYears - witchYears)) : 0;
+  const laterLifeYears = isMagus ? Math.max(0, char.creation.apprenticeshipStartAge - 5) : Math.max(0, char.age - 5 - trainingYears - witchYears - gruagachYears - vitkiYears);
   let rate = rules.laterLifeXpPerYear;
   for (const l of eff('laterLifeXpPerYear')) rate = l.amount === 20 ? rules.wealthyXpPerYear : l.amount === 10 ? rules.poorXpPerYear : l.amount;
   if (has('savantism-flaw')) rate = Math.floor(rate / 2);
@@ -652,6 +660,14 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
       total: Math.max(Math.min(xp, 5), xp + 50 * well - 50 * poor), spent: spentBy(GRUAGACH_APPRENTICESHIP),
       spellLevels: { total: Math.max(0, levels + 25 * well - 25 * poor), spent: spellsSpent },
       allows: `Any Abilities, the gruagach Arts${hasGift ? '' : ' of your Virtues'} among them, and levels of spells (Hedge Magic)`, kind: 'ability',
+    });
+  }
+  if (vitkiYears) {
+    const scriptLevels = (char.vitki?.scripts ?? []).filter((x) => x.source === 'training').reduce((t, x) => t + x.level, 0);
+    budgets.push({
+      id: VITKI_APPRENTICESHIP, label: `Vitki apprenticeship (${vitkiYears} yrs)`, total: 240, spent: spentBy(VITKI_APPRENTICESHIP),
+      spellLevels: { total: 120, spent: scriptLevels },
+      allows: 'Any Abilities, at least half on the runes; Craft: Runes 2, Old Norse 3 and Rune Magic 1 at least; and 120 levels of rune scripts (Hedge Magic)', kind: 'ability',
     });
   }
   if (!isMagus && folkWitch) {

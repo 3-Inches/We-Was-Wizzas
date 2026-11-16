@@ -28,10 +28,11 @@ import { FolkWitchSheetCard, KitchenCard, WitchMoonCard, WitchPowerCard, WitchTh
 import { isFolkWitch, witchPowers } from '../../engine/folkWitch';
 import { GruagachCastCard, GruagachSeasonCard, GruagachSheetCard, hasGruagach } from './GruagachPart';
 import { NightwalkerCard, hasNightwalker } from './NightwalkerPart';
+import { NattThelCard, VitkiCastCard, VitkiSeasonCard, VitkiSheetCard, hasVitki } from './VitkirPart';
 
 const ELEMENTAL_IDS = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining'];
 /** Someone this page is for: a learned magician or an elementalist. */
-export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || isFolkWitch(c) || hasGruagach(c) || hasNightwalker(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
+export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || isFolkWitch(c) || hasGruagach(c) || hasNightwalker(c) || hasVitki(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
 
 type CalledRealm = Exclude<Realm, 'None'>;
 const REALMS: Realm[] = ['None', 'Magic', 'Faerie', 'Divine', 'Infernal'];
@@ -133,6 +134,10 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
       {hasGruagach(c) && <GruagachSeasonCard ed={ed} aura={aura} />}
       {hasGruagach(c) && <GruagachSheetCard ed={ed} />}
       {hasNightwalker(c) && <NightwalkerCard ed={ed} />}
+      {hasVitki(c) && <VitkiCastCard ed={ed} aura={aura} />}
+      {hasVitki(c) && <VitkiSeasonCard ed={ed} aura={aura} />}
+      {hasVitki(c) && <NattThelCard ed={ed} />}
+      {hasVitki(c) && <VitkiSheetCard ed={ed} />}
     </>
   );
 }

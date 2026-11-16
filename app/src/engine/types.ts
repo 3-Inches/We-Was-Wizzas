@@ -624,6 +624,18 @@ export interface LearnedCharm {
   source: 'training' | 'play';
 }
 
+/** A vitki's rune script (Hedge Magic, Vitkir): its runes, by name, effect first. */
+export interface RuneScript {
+  uid: string;
+  name: string;
+  runes: string[];
+  level: number;
+  method: 'I' | 'II' | 'III';
+  text?: string;
+  /** learned in apprenticeship (from its 120 levels) or in play */
+  source: 'training' | 'play';
+}
+
 export interface LearnedMagic {
   /** years trained under a master: 30 experience points each, from the later-life years */
   trainingYears?: number;
@@ -1142,6 +1154,8 @@ export interface Character {
   folkWitch?: FolkWitchInfo;
   /** a gruagach's apprenticeship and spells known (Hedge Magic, Gruagachan); the spells use the charm record */
   gruagach?: { apprenticeYears?: number; spells?: LearnedCharm[] };
+  /** a vitki's apprenticeship and rune scripts known (Hedge Magic, Vitkir) */
+  vitki?: { apprenticeYears?: number; scripts?: RuneScript[] };
   /** The Great Elixir (The Mysteries): attempts so far, and once it works, the age it fixed and the Magic Might it gave */
   greatElixir?: { attempts?: number; transformedAge?: number; might?: number };
   /** spells, powers and rituals working on the character, or that changed it for good */
