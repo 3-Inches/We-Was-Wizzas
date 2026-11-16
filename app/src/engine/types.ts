@@ -1154,6 +1154,12 @@ export interface Character {
   folkWitch?: FolkWitchInfo;
   /** a gruagach's apprenticeship and spells known (Hedge Magic, Gruagachan); the spells use the charm record */
   gruagach?: { apprenticeYears?: number; spells?: LearnedCharm[] };
+  /** Devotions to the saints, in Devotion Points (The Church) */
+  devotions?: { uid: string; saint: string; points: number }[];
+  /** a pilgrimage under way: its aim, Target Level and the Oppositional Elements overcome (The Church) */
+  pilgrimage?: { aim: string; target: number; overcome: { label: string; value: number; once?: 'abroad' }[] };
+  /** a contemplative mystic's Spiritual Path: the Revelation sought, its Path Total and the Quest Components done (The Church) */
+  spiritualPath?: { revelation: string; total: number; components: { label: string; value: number }[] };
   /** a vitki's apprenticeship and rune scripts known (Hedge Magic, Vitkir) */
   vitki?: { apprenticeYears?: number; scripts?: RuneScript[] };
   /** The Great Elixir (The Mysteries): attempts so far, and once it works, the age it fixed and the Magic Might it gave */

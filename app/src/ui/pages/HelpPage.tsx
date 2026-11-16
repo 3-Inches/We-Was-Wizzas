@@ -411,6 +411,10 @@ export default function HelpPage() {
             astray, the chapter&apos;s other rolls, and a fertility battle&apos;s outcome set as the year&apos;s harvest on the covenant&apos;s land.
           </li>
           <li>
+            <b>The Church</b>: on <b>Dice › Faith &amp; miracles</b>, Devotions to the saints in Devotion Points (they add to invoking the saint, with a relic&apos;s Faith Points × 2), a
+            pilgrimage&apos;s Oppositional Elements against its Target Level, a contemplative&apos;s Spiritual Path, and a monistic mystic&apos;s Revelation after Divine Ascent.
+          </li>
+          <li>
             <b>Hermetic Projects</b>: its spells are in the spell list (each row shows the Lab Total to invent it in one to four seasons), and its enchantments can be added to an item
             with <b>+ From the books…</b>. Its ships and a great tower can be kept as possessions. On <b>Possessions</b>, the <b>Great projects</b> card gives a mason&apos;s building
             progress, a building&apos;s stress check, and a menagerie&apos;s breeding, birthing and young.
