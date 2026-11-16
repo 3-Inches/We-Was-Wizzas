@@ -71,6 +71,12 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (lack.length) add({ id: 'learned-arts', severity: 'error', step: 'virtues', message: `A mathematicus must have ${lack.join(' and ')} of the tradition.`, fix: 'Take the Virtue of each Art (a Technique is Major, a Form Minor), or The Gift, opened to all six.', ref: 'Hedge Magic, Learned Magicians' });
     if (t.socialStatuses.length === 1) add({ id: 'learned-status', severity: 'warning', step: 'virtues', message: 'A mathematicus also takes a Social Status for their place in mundane society (a clerk, a magister in artibus, a mendicant friar, a priest…).', ref: 'Hedge Magic, Learned Magicians' });
   }
+  // --------------------------------------------------------------- elementalists (Hedge Magic)
+  {
+    const tech = ['elemental-summoning', 'elemental-controlling', 'elemental-divining', 'elemental-refining'].some((id) => d.abilities.some((a) => a.abilityId === id));
+    const form = ['elementalist-air', 'elementalist-earth', 'elementalist-fire', 'elementalist-water'].some((id) => d.abilities.some((a) => a.abilityId === id));
+    if (tech !== form) add({ id: 'elemental-arts', severity: 'warning', step: 'virtues', message: `An elementalist's Arts work only together: this character has ${tech ? 'a Technique but no Elementalist Form' : 'an Elementalist Form but no Technique'}.`, fix: tech ? 'Take Elementalist Air, Earth, Fire or Water (Minor).' : 'Take (Type) Summoning, Controlling, Divining or Refining (Major for the first type).', ref: 'Hedge Magic, Elementalists' });
+  }
   // --------------------------------------------------------------- magic characters (RoP: Magic)
   // --------------------------------------------------------------- faerie characters (RoP: Faerie)
   for (const f of d.faerieChar?.issues ?? []) add({ id: f.id, severity: f.severity, step: 'virtues', message: f.message, fix: f.fix, ref: 'RoP: Faerie, Faerie Characters' });

@@ -584,6 +584,30 @@ export const MECHANICS: Record<string, Mechanics> = {
   'faerie-antipathy-flaw': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A negative Sympathy Trait: −1 as a Minor Flaw, −3 as a Major, less the Warping Score at the end of creation. It comes off any Ability it applies to, and adds a botch die.')] },
   'faerie-background': { tags: ['realm:faerie'], effects: [note('Two Sympathy Traits, one positive and one negative, each as high as the Warping Score. The Warping Score may be raised freely at creation.')] },
 
+  // ------------------------------------------------------------------ Elementalists (Hedge Magic)
+  // Each Art opens at 0; the Elemental Traits, totals and seasons are on the Game Table, Dice › Hedge magic.
+  ...Object.fromEntries(
+    (['summoning', 'controlling', 'divining', 'refining'] as const).map((t) => [
+      `type-${t}`,
+      {
+        repeatable: true, param: P.text('Type of target', ['Medicinal', 'Philosophical', 'Theurgical']), tags: ['supernatural'],
+        effects: [{ type: 'grantAbility', ability: `elemental-${t}`, score: 0 }, note('An Elementalist Technique, opened at 0 and raised as an Ability (a Difficult Art). Taken again (Minor) for another type of target; all types share one score. Used with an Elementalist Form on the Game Table, Dice › Hedge magic.')],
+      } as Mechanics,
+    ]),
+  ),
+  ...Object.fromEntries(
+    (['air', 'earth', 'fire', 'water'] as const).map((e) => [
+      `elementalist-${e}`,
+      { tags: ['supernatural'], effects: [{ type: 'grantAbility', ability: `elementalist-${e}`, score: 0 }, note(`An Elementalist Form, opened at 0 and raised as an Ability (a Difficult Art). It brings the ${({ air: 'Sanguine', earth: 'Melancholic', fire: 'Choleric', water: 'Phlegmatic' } as const)[e]} Trait: the Warping Score + the Form ÷ 5 (rounded up), added to Soak against the element.`)] } as Mechanics,
+    ]),
+  ),
+  'elemental-affinity': { repeatable: true, param: P.text('Ability', ['Medicine', 'Philosophiae', 'Magic Lore', 'Faerie Lore', 'Dominion Lore', 'Infernal Lore']), effects: [note('Experience gained in the chosen Ability gives half as much again, shared among the Elementalist Forms.')] },
+  'elementalist-magic': { effects: [note('A season studying one Elementalist Form gives a point to each of the other three; with several elements, the highest Form counts, not the lowest.')] },
+  'elemental-medicine': { effects: [note('A season studying Medicine gives a point to each Elementalist Form; with several elements, the highest Form counts, held to Medicine.')] },
+  'elemental-philosophiae': { effects: [note('A season studying Philosophiae gives a point to each Elementalist Form; with several elements, the highest Form counts, held to Philosophiae.')] },
+  'elemental-theurgy': { param: P.text('Realm', ['Magic', 'Faerie', 'Divine', 'Infernal']), effects: [note('A season studying the realm’s Lore gives a point to each Elementalist Form; with several elements, the highest Form counts, held to that Lore.')] },
+  'weak-elemental-resistance-flaw': { effects: [note('The Elemental Traits add nothing to Soak against the elements.')] },
+
   // ------------------------------------------------------------------ Learned Magicians (Hedge Magic)
   // Charms are cast at the Game Table, Dice › Hedge magic; amulets are made there in a season; the charms known are kept on the sheet.
   ...Object.fromEntries(

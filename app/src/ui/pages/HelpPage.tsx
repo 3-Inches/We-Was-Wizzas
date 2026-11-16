@@ -407,6 +407,12 @@ export default function HelpPage() {
             Warping, and a faerie&apos;s change of role through a creative human.
           </li>
           <li>
+            <b>Elementalists</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the four Techniques (each for a type of target: Medicinal, Philosophical or
+            Theurgical) and the four Elementalist Forms open them at 0. The sheet shows the <b>Elemental Traits</b> that Warping and the Forms bring. On <b>Dice › Hedge
+            magic</b>: Summoning, Controlling and Divining rolled with the elements and vis chosen, and what the total reaches; and a season of <b>Refining</b> (a
+            longevity potion, vis from an aura, vis moved, a being&apos;s Might).
+          </li>
+          <li>
             <b>Learned magicians</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the six Arts open them at 0 (a Gifted Mathematicus of Bologna has all six); the
             sheet&apos;s <b>Learned magic</b> card keeps the years under a master (30 experience points each) and the charms known. On <b>Dice › Hedge magic</b>: a{' '}
             <b>charm</b> cast from memory or read from a formulary, with Entreat the Powers against a hostile aura, Fatigue when it falls short, and Warping and

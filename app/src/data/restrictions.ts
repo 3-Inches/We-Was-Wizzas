@@ -51,6 +51,10 @@ const TRADITIONS: Record<string, string[]> = {
     'well-trained-gruagach', 'no-tattoo-magic-flaw', 'transformation-prone-flaw', 'incompatible-hedge-arts-flaw', 'inflexible-magic-flaw', 'poorly-trained-gruagach-flaw',
     'weak-tattoo-magic-flaw',
   ],
+  'Elementalists (Hedge Magic)': [
+    'elemental-affinity', 'elementalist-air', 'elementalist-earth', 'elementalist-fire', 'elementalist-water', 'elementalist-magic', 'elemental-medicine', 'elemental-philosophiae',
+    'elemental-theurgy', 'type-controlling', 'type-divining', 'type-refining', 'type-summoning', 'weak-elemental-resistance-flaw',
+  ],
   'Learned Magicians (Hedge Magic)': [
     // Mythic Alchemy, Mythic Herbalism and Natural Magician suit others too (Hedge Magic)
     'mathematicus-of-bologna', 'entreat-the-powers', 'entreat-the-realm-powers', 'strong-amulet-magic', 'strong-verbal-charms', 'tueor', 'succurro', 'vulnero', 'fortunam', 'magicam',

@@ -20,8 +20,14 @@ import { warpingScoreFromPoints } from '../../engine/xp';
 import { Card, Field, Stepper, Total, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
 import { CharmDesigner, LearnedCard, artPairs, hasLearnedMagic } from '../character/LearnedCard';
+import { ELEMENTAL_ART_IDS } from '../../data/hedgeElemental';
+import { elementalArts } from '../../engine/elementalMagic';
+import { ElementalTraitsCard } from '../character/ElementalTraitsCard';
+import { ElementalCard, RefiningCard } from './ElementalPart';
 
-export { hasLearnedMagic };
+const ELEMENTAL_IDS = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining'];
+/** Someone this page is for: a learned magician or an elementalist. */
+export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
 
 type CalledRealm = Exclude<Realm, 'None'>;
 const REALMS: Realm[] = ['None', 'Magic', 'Faerie', 'Divine', 'Infernal'];
@@ -76,11 +82,15 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
   if (!c || !d) return null;
   const pairs = artPairs(c, d);
   const a = learnedAura(aura);
+  const learned = hasLearnedMagic(c);
+  const elemental = elementalArts(c, d);
+  const isElemental = elemental.techniques.length > 0 || elemental.forms.length > 0;
   return (
     <>
       <p className="small muted">
-        The learned magicians’ magic is of the Magic realm: a Magic aura adds, others take away as for Hermetic magic ({signed(a.mod)} here
-        {a.botch ? `, ${a.botch} more botch dice` : ''}). Charms known and the years of training are kept on the sheet.
+        Hedge magic is of the Magic realm: a Magic aura adds, others take away as for Hermetic magic ({signed(a.mod)} here
+        {a.botch ? `, ${a.botch} more botch dice` : ''}).{learned ? ' A learned magician’s charms and years of training are kept on the sheet.' : ''}
+        {isElemental ? ' An elementalist’s Elemental Traits are kept on the sheet.' : ''}
       </p>
       <div className="row">
         <Field label="Aura">
@@ -96,12 +106,18 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
           </Field>
         )}
       </div>
-      {pairs.length === 0 && <p className="small warn-text">No Technique and Form of the tradition yet: take their Virtues on the sheet (a Gifted mathematicus has all six).</p>}
+      {learned && pairs.length === 0 && <p className="small warn-text">No Technique and Form of the learned magicians yet: take their Virtues on the sheet (a Gifted mathematicus has all six).</p>}
       {pairs.length > 0 && <CharmCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <ChartaCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <AmuletCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <CharmSeasonCard ed={ed} aura={aura} pairs={pairs} />}
-      <LearnedCard ed={ed} />
+      {learned && <LearnedCard ed={ed} />}
+      {isElemental && (!elemental.techniques.length || !elemental.forms.length) && (
+        <p className="small warn-text">An elementalist needs a Technique and a Form: take their Virtues on the sheet.</p>
+      )}
+      {isElemental && elemental.forms.length > 0 && <ElementalCard ed={ed} aura={aura} />}
+      {isElemental && elemental.forms.length > 0 && <RefiningCard ed={ed} aura={aura} />}
+      {isElemental && <ElementalTraitsCard ed={ed} />}
     </>
   );
 }
