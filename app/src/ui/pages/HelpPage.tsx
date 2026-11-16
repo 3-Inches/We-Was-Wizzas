@@ -411,6 +411,11 @@ export default function HelpPage() {
             astray, the chapter&apos;s other rolls, and a fertility battle&apos;s outcome set as the year&apos;s harvest on the covenant&apos;s land.
           </li>
           <li>
+            <b>Hermetic Projects</b>: its spells are in the spell list (each row shows the Lab Total to invent it in one to four seasons), and its enchantments can be added to an item
+            with <b>+ From the books…</b>. Its ships and a great tower can be kept as possessions. On <b>Possessions</b>, the <b>Great projects</b> card gives a mason&apos;s building
+            progress, a building&apos;s stress check, and a menagerie&apos;s breeding, birthing and young.
+          </li>
+          <li>
             <b>Vitkir</b> (<i>Hedge Magic, Revised Edition</i>): the 24 runes, raised as Arts; the sheet keeps the apprenticeship (240 experience points and 120 levels of scripts)
             and the scripts known (the book&apos;s or designed from a rune&apos;s guideline). On <b>Dice › Hedge magic</b>: a script cast with its name and description written,
             hidden or left off, vis and a rune focus; a season inventing scripts or learning them from a teacher; <b>Nátt-thel</b>, the loss of The Gift, after two Warping

@@ -1,0 +1,53 @@
+// Hermetic Projects: a great building's progress and stress check, ships' damage levels, and a
+// menagerie's breeding, birthing and young.
+import { describe, expect, it } from 'vitest';
+import { birthingIntervalHours, breedingForBest, breedingModifiers, breedingRoll, juvenileMight, masonProgress, seasonsToHeight, SHIP_SIZES, structureCheckModifiers } from './greatProjects';
+import { itemDamageLevels } from './workshop';
+import type { StressResult } from './dice';
+
+const seq = (...xs: number[]) => () => (xs.shift() ?? 0) / 10 + 0.01;
+const stress = (value: number, zero = false, botches = 0): StressResult => ({ kind: 'stress', faces: [value], value, multiplier: 1, zero, botchDice: zero ? 1 : 0, botchFaces: [], botches, exploded: false });
+
+describe('the Great Tower', () => {
+  it('a level of 20 feet a season at Craft: Mason 5, two at 10, three at 15; craft magic held to the score', () => {
+    expect(masonProgress(5)).toEqual({ effective: 5, levelsPerSeason: 1, feetPerSeason: 20, feetPerYear: 80 });
+    expect(masonProgress(5, 10).levelsPerSeason).toBe(2);
+    expect([masonProgress(10).feetPerYear, masonProgress(15).feetPerYear]).toEqual([160, 240]);
+    // 560 feet between Tribunals at Craft 5: seven years
+    expect(seasonsToHeight(560, 20)).toBe(28);
+  });
+  it('damage levels: standard work at Size 10 or more has 8, excellent 16; the stress check adds Craft: Mason', () => {
+    expect([itemDamageLevels('shoddy', 10), itemDamageLevels('standard', 10), itemDamageLevels('excellent', 10)]).toEqual([4, 8, 16]);
+    expect(structureCheckModifiers(5, 3, true)).toBe(7);
+  });
+  it('the book’s ships: a grain barge (Size +8) of standard quality has 6 damage levels', () => {
+    const barge = SHIP_SIZES.find((s) => s.id === 'ship-grain-barge')!;
+    expect(itemDamageLevels('standard', barge.size)).toBe(6);
+    expect(SHIP_SIZES).toHaveLength(8);
+  });
+});
+
+describe('the menagerie', () => {
+  it('breeding modifiers: a tamed herbivore, well fed, with a handler of Animal Handling 6: +7; a magical beast of Might 15: −3', () => {
+    const m = breedingModifiers({ tamed: true, herbivore: true, adequateDiet: true, animalHandling: 6 });
+    expect(m.reduce((s, x) => s + x.value, 0)).toBe(7);
+    expect(breedingModifiers({ might: 15 })[0].value).toBe(-3);
+  });
+  it('the roll: stress die + modifiers against 9', () => {
+    expect(breedingRoll(3, seq(6)).success).toBe(true);
+    expect(breedingRoll(3, seq(5)).success).toBe(false);
+  });
+  it('breeding for the best, by the roll', () => {
+    expect(breedingForBest(stress(0, true, 1))).toMatch(/Major Supernatural Flaw/);
+    expect(breedingForBest(stress(0, true, 0))).toMatch(/Minor Supernatural Flaw/);
+    expect(breedingForBest(stress(2))).toMatch(/Weak/);
+    expect(breedingForBest(stress(8))).toMatch(/resembles/);
+    expect(breedingForBest(stress(14))).toMatch(/hardy/);
+    expect(breedingForBest(stress(16))).toMatch(/Minor Supernatural Virtue/);
+    expect(breedingForBest(stress(20))).toMatch(/Major Supernatural Virtue/);
+  });
+  it('birthing every two hours at Size 0, doubling a Size; young Might a fifth of the adult’s', () => {
+    expect([birthingIntervalHours(-1), birthingIntervalHours(0), birthingIntervalHours(2)]).toEqual([2, 2, 8]);
+    expect([juvenileMight(20), juvenileMight(15, 3)]).toEqual([4, 5]);
+  });
+});
