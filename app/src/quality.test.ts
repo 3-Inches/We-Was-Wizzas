@@ -31,10 +31,10 @@ const LIMITS = {
   guideLongestSentence: 34,
   /** its paragraphs over 85 words (the principle) */
   guideLongBlocks: 0,
-  /** tutorial steps over 70 words (they fill a phone's screen) */
-  tutorialLongSteps: 56,
+  /** tutorial steps over 60 words (they fill a phone's screen and hide the control; roadmap 1.7) */
+  tutorialLongSteps: 0,
   /** the longest tutorial step, in words */
-  tutorialLongestStep: 185,
+  tutorialLongestStep: 60,
   /** the README, in characters (rounded up a little, so a line of news can be swapped in) */
   readmeChars: 14200,
   /** the README's longest line, in characters */
@@ -60,7 +60,6 @@ const BIG_FILES: string[] = [
   'src/ui/pages/HolyPart.tsx',
   'src/ui/pages/MarketPage.tsx',
   'src/ui/pages/QuickBuildPage.tsx',
-  'src/ui/tour/tours.ts',
 ];
 
 describe('limits that may only go down', () => {
@@ -80,7 +79,7 @@ describe('limits that may only go down', () => {
     guideWords: blocks.reduce((t, b) => t + guideWords(b), 0),
     guideLongestSentence: Math.max(...blocks.flatMap((b) => guideSentences(b).map(guideWords))),
     guideLongBlocks: blocks.filter((b) => guideWords(b) > 85).length,
-    tutorialLongSteps: steps.filter((n) => n > 70).length,
+    tutorialLongSteps: steps.filter((n) => n > 60).length,
     tutorialLongestStep: Math.max(...steps),
     readmeChars: readme.length,
     readmeLongestLine: Math.max(...readme.split('\n').map((l) => l.length)),

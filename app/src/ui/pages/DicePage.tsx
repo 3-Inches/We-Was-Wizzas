@@ -70,8 +70,10 @@ interface Roll {
 let seq = 0;
 
 /**
- * The Game Table's Dice page, in four parts: any roll (for anyone, their wounds, Fatigue and disease
- * counted), combat and perils, and spellcasting and certamen (society and the Tribunal have a page of their own). Each
+ * The Game Table's Dice page, in seven parts: any roll (for anyone, their wounds, Fatigue and disease
+ * counted), combat and perils, spellcasting and certamen, and Faith & miracles; then Faerie, Hedge magic
+ * and the Mysteries, each shown only when someone in the saga has them (society and the Tribunal have a
+ * page of their own). Each
  * part picks its character from the saga's people, the Tribunal's too, and what it rolls goes on their
  * sheet. On its own (with a heading) when no saga is open, only the first part.
  */
