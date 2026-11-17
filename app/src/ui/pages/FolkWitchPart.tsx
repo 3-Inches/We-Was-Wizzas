@@ -15,6 +15,8 @@ import type { Art } from '../../data';
 import type { AuraState } from '../../engine/magic';
 import type { WitchThing } from '../../engine/types';
 import { warpingScoreFromPoints } from '../../engine/xp';
+import { nowOf, owedReaction } from '../../engine/warping';
+import { settle } from '../../engine/seasonPlan';
 import { FOLK_APPRENTICESHIP } from '../../engine/character/derive';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
@@ -82,14 +84,14 @@ export function WitchPowerCard({ ed, aura }: { ed: CharEditor; aura: AuraState }
     const botches = r.zero ? r.botches : 0;
     const total = tot.total + r.value;
     const out = [`${p.name} by ${method}: stress die ${describeStress(r)} + ${tot.total} = ${total}, against ${ef}${eff ? ` (${eff.label})` : ''}.`];
-    if (botches) out.push(`BOTCH ×${botches}: the effect happens, uncontrolled and not as she meant; ${botches} Warping Point${botches === 1 ? '' : 's'}.`);
+    if (botches) out.push(`BOTCH ×${botches}: the effect happens, uncontrolled and not as the witch meant; ${botches} Warping Point${botches === 1 ? '' : 's'}.`);
     else if (total >= ef) out.push(`It works. Penetration ${witchPenetration(total, ef, pen)} (the total + Penetration ${pen} − the Ease Factor).${eff?.vis ? ` It costs ${eff.vis} pawns of ${def.form} vis.` : ''}`);
     else out.push('It fails.');
     let moon: string | undefined;
     update((x) => {
       if (p.id === 'witch-flight' && p.methods.includes('fetish')) x.longTermFatigueLost = Math.min(5, x.longTermFatigueLost + 1 + botches);
       if (fatigue) x.fatigueLost = Math.min(5, x.fatigueLost + fatigue);
-      if (botches) moon = witchWarping(x, botches);
+      if (botches) moon = witchWarping(x, botches, { ...nowOf(ed.saga), why: `from a botched ${p.name}` });
     });
     if (p.id === 'witch-flight') out.push(`Flying with a fetish costs a long-term Fatigue level${botches ? `, and ${botches} more for the botch` : ''}.`);
     if (moon) out.push(moon);
@@ -387,6 +389,7 @@ export function WitchMoonCard({ ed }: { ed: CharEditor }) {
   const moon = c.folkWitch?.witchMoon;
   const ws = warpingScoreFromPoints(c.warpingPoints);
   const wound = witchMoonWound(c);
+  const owed = owedReaction(c, 'witch-moon');
   const month = () => {
     if (!moon) return;
     const r = stressDie(1);
@@ -401,6 +404,9 @@ export function WitchMoonCard({ ed }: { ed: CharEditor }) {
         const o = witchMoonOutcome(months, moon.warpingScore, gained);
         out.push(`It passes. ${o.text}`);
         x.folkWitch = { ...(x.folkWitch ?? {}), witchMoon: undefined };
+        // settled on the Seasons page's Resolve list too
+        const t = owedReaction(x, 'witch-moon');
+        if (t) settle(x, t.uid);
       } else {
         const add = 1 + botches;
         gained += add;
@@ -412,16 +418,22 @@ export function WitchMoonCard({ ed }: { ed: CharEditor }) {
     setLines(out);
   };
   return (
-    <Card title="The Witch Moon" tour="witch-moon" fold="witch-moon" summary={moon ? `Under the Witch Moon, ${moon.months} month${moon.months === 1 ? '' : 's'} so far` : `Warping Score ${ws}`}>
+    <Card title="The Witch Moon" tour="witch-moon" fold="witch-moon" startOpen={!!moon} summary={moon ? `Under the Witch Moon, ${moon.months} month${moon.months === 1 ? '' : 's'} so far` : `Warping Score ${ws}`}>
       <p className="small muted" style={{ marginTop: 0 }}>
-        Each time her Warping Score rises, a folk witch suffers the Witch Moon in place of Twilight: for at least a month she loses her Supernatural Abilities (potions still work){wound ? ` and suffers a ${wound} Wound of fever` : ''}. At each month&apos;s end, Stamina − Warping Score + stress die against 6 ends it; a failure adds a Warping Point and another month.
+        Each time a folk witch&apos;s Warping Score rises, they suffer the Witch Moon in place of Twilight. For at least a month they lose their Supernatural Abilities (potions still work){wound ? ` and suffer a ${wound} Wound of fever` : ''}. At each month&apos;s end, Stamina − Warping Score + stress die against 6 ends it; a failure adds a Warping Point and another month.
       </p>
       {moon ? (
-        <button onClick={month}>Roll the month&apos;s end</button>
+        <>
+          {owed && <p className="small" style={{ marginTop: 0 }}>{owed.text}</p>}
+          <button onClick={month}>Roll the month&apos;s end</button>
+        </>
       ) : (
-        <button className="small" onClick={() => update((x) => void (x.folkWitch = { ...(x.folkWitch ?? {}), witchMoon: { months: 0, warpingScore: ws, pointsGained: 0 } }))}>
-          Begin the Witch Moon (a new Warping Score)
-        </button>
+        <div className="row tight small">
+          <span className="muted">It begins by itself when the toolkit adds Warping Points.</span>
+          <button className="small ghost" title="When the Warping Score was raised by hand on the sheet" onClick={() => update((x) => void (x.folkWitch = { ...(x.folkWitch ?? {}), witchMoon: { months: 0, warpingScore: ws, pointsGained: 0 } }))}>
+            Begin it by hand
+          </button>
+        </div>
       )}
       <Lines lines={lines} />
     </Card>

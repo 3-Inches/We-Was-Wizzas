@@ -12,6 +12,7 @@ import { optionOn } from '../../../engine/optional';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { seasonTaken } from '../../../engine/time';
 import { RollAtTable, useAtTable, useEditable } from '../../play';
+import { gainWarping, nowOf } from '../../../engine/warping';
 
 export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicTheory: number }) {
   const { c, d, update, ctx, saga } = ed;
@@ -41,8 +42,10 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
   const stabilize = () => {
     const res = rollStabilization({ risk: Math.min(risk, maxRisk), adjust, magnitude, auraStrength: ctx.aura.strength, originalResearch: true, safety: ctx.lab?.characteristics.Safety ?? 0 });
     const lines = [...res.lines];
+    let follows: string | undefined;
     update((x) => {
-      x.warpingPoints += res.warpingPoints;
+      // two or more points from the experiment: roll to avoid Twilight (DE, Original Research), owed on the Resolve list
+      follows = d ? gainWarping(x, d, { points: res.warpingPoints, why: 'from stabilizing a Discovery', ...nowOf(saga) }) : ((x.warpingPoints += res.warpingPoints), undefined);
       const found = res.stable ? uid() : undefined;
       if (found) {
         x.research ??= { goal: '', kind: 'minor', discoveries: [] };
@@ -59,7 +62,7 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
       }
     });
     lines.push(res.stable ? `Stabilized: +${magnitude} toward the Breakthrough, and a Laboratory Text of the discovery.` : 'Not stabilized: you may try again next season.');
-    if (res.warpingPoints) lines.push(`${res.warpingPoints} Warping Point${res.warpingPoints > 1 ? 's' : ''} added.${res.warpingPoints >= 2 ? " Roll for Wizard's Twilight at the Game Table (Dice › Spellcasting)." : ''}`);
+    if (res.warpingPoints) lines.push(`${res.warpingPoints} Warping Point${res.warpingPoints > 1 ? 's' : ''} added.${follows ? ` ${follows}` : ''}`);
     setLog((l) => [lines, ...l].slice(0, 8));
   };
 

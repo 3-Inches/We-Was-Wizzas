@@ -14,12 +14,13 @@ import { labContextOf } from './lab';
 import { planLabImprovement, workLabImprovement } from './labImprove';
 import { recordRoutines, routineClash, routineParts } from './labRoutines';
 import { labTotal, type LabActivity, type TotalResult } from './magic';
-import type { Character, Covenant, EnchantedItem, LabProject, VisStock } from './types';
+import type { Character, Covenant, EnchantedItem, LabProject, Season, VisStock } from './types';
 import { addVis, infernalPawns, purseOf, taintNote, takeVis, visAvailable, visText } from './vis';
 import { uid } from '../util/id';
 import { helperParts, type LabHelper } from './labHelp';
 import { flawHeld } from './covenantBoons';
 import { alchemyYield, digestSeasons, longevityModifier, elixirLevel, holds as hasMystery, horoscopeFor, ingredientPoints, periaptCharges, periaptMaxLevel, rollHoroscope, rollPeriaptHoroscope } from './hermeticMysteries';
+import { gainWarping } from './warping';
 
 export const PROJECT_KINDS: { id: LabProject['kind']; label: string; blurb: string; /** DE: may be done by experimentation */ experiment?: boolean; /** the lab work it is, for a lab's restrictions */ activity?: string }[] = [
   { id: 'invent', label: 'Invent a spell', blurb: 'Each season the Lab Total beats the spell’s level by some points; they add up until they reach the level, and the spell is learned. From a Laboratory Text it takes one season, once the Lab Total reaches the level.', experiment: true, activity: 'Spells' },
@@ -617,8 +618,9 @@ function workOne(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: 
   record([...(hz?.lines ?? []), ...(xr?.lines ?? [])]);
   const wp = (hz?.warpingPoints ?? 0) + (xr?.warpingPoints ?? 0);
   if (wp) {
-    c.warpingPoints += wp;
-    lines.push(`${wp} Warping Point${wp > 1 ? 's' : ''} for ${c.name || 'the magus'}.${wp >= 2 ? " Roll for Wizard's Twilight." : ''}`);
+    // a single event: Twilight follows on two or more, owed on the Resolve list (warping.ts)
+    const follows = year !== undefined && o.season ? gainWarping(c, d, { points: wp, why: 'from the lab', year, season: o.season as Season }) : ((c.warpingPoints += wp), wp >= 2 ? "Roll for Wizard's Twilight." : undefined);
+    lines.push(`${wp} Warping Point${wp > 1 ? 's' : ''} for ${c.name || 'the magus'}.${follows ? ` ${follows}` : ''}`);
   }
   // the chart rolled only for Infernal vis adds no die to the Lab Total: it is not an experiment
   const bonus = xr && !xr.noBenefit && !tainted ? xr.labBonus : 0;

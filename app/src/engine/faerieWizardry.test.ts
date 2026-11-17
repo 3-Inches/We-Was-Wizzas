@@ -5,7 +5,7 @@ import { addVirtue, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import {
-  bargainPenetration, bargainTotal, callingResolveEase, creativityCost, expectedTraits, faerieArts, faerieRank, riteLevel, riteMaxLevel, riteOptions, riteTotal, sympathyBotchDice, sympathyCanRise, sympathyCap, sympathyStep, sympathyXp,
+  bargainPenetration, bargainTotal, callingResolveEase, creativityCost, expectedTraits, faerieArts, faerieRank, riteLevel, riteMaxLevel, riteOptions, riteTotal, sympathyBotchDice, sympathyCanRise, sympathyOnRoll, sympathyCap, sympathyStep, sympathyXp,
 } from './faerieWizardry';
 
 const data = buildGameData();
@@ -58,6 +58,29 @@ describe('Sympathy Traits', () => {
     expect(sympathyCap(c, d(c))).toBe(1 + 3 + 3);
     addVirtue(c, data, 'faerie-antipathy-flaw', 'Minor');
     expect(expectedTraits(c).map((x) => x.score)).toEqual([3, -1]);
+  });
+});
+
+describe('Sympathy Traits on an ordinary roll', () => {
+  const t = (trait: string, score: number) => ({ uid: trait, trait, score });
+  it('a positive trait stands in for a specialty and calls for a stress die (RoP: Faerie line 5844)', () => {
+    // the faerie huntsman: Animal Handling 3 and Hounds +3 make Animal Handling 6 when the dogs are sent out
+    const r = sympathyOnRoll([t('Hounds', 3)], ['Hounds']);
+    expect(3 + r.total).toBe(6);
+    expect(r.stressOnly).toBe(true);
+  });
+  it('only the highest positive trait that applies counts (line 5846)', () => {
+    // Ice +2 and Storms +1: at most +2 on a roll about hailstorms
+    expect(sympathyOnRoll([t('Ice', 2), t('Storms', 1)], ['Ice', 'Storms']).total).toBe(2);
+  });
+  it('the worst negative trait that applies comes off the Ability (line 5848)', () => {
+    // Iron −3: Single Weapon takes −3 when fighting with an iron weapon
+    const r = sympathyOnRoll([t('Iron', -3), t('Bells', -1)], ['Iron', 'Bells']);
+    expect(r.total).toBe(-3);
+    expect(r.stressOnly).toBe(false);
+  });
+  it('a trait not ticked does nothing', () => {
+    expect(sympathyOnRoll([t('Hounds', 3), t('Iron', -3)], []).total).toBe(0);
   });
 });
 

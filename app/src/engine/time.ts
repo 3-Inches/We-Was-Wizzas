@@ -42,6 +42,7 @@ import { isTrade, workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
 import { divineAuraWarps, holySeason, isHolyMagus } from './holy';
 import { seasonEndRolls } from './seasonRolls';
+import { gainWarping, warpingReaction } from './warping';
 import { uid } from '../util/id';
 import { environmentAging, flawHeld, immuneToWarping } from './covenantBoons';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
@@ -541,13 +542,19 @@ export function ageCharacter(c: Character, d: DerivedCharacter, ctx: CharacterCo
   const cw = c.inhuman ? { points: 0, from: [] as string[] } : constantWarping(c);
   const aura = auraWarping(c, d, ctx, year);
   const wp = cw.points + aura;
+  // prolonged exposure: of the traditions' reactions only the Witch Moon follows (warping.ts)
+  const reaction = d.isMagus || c.inhuman ? undefined : warpingReaction(c, d);
   if (wp) {
-    c.warpingPoints += wp;
+    if (ctx.covenant?.living) c.warpingPoints += wp;
+    else gainWarping(c, d, { points: wp, why: 'for the year', year, season: 'Winter', prolonged: true });
     const where = `${{ always: 'living in', half: 'half the time in', visits: 'frequent visits to', away: '' }[c.auraTime ?? 'always']} a ${ctx.aura.realm} aura of ${ctx.aura.strength}`;
     lines.push({ who, kind: 'warping', text: `+${wp} Warping Point${wp > 1 ? 's' : ''} for the year (${[...cw.from, ...(aura ? [where] : [])].join(', ')}).` });
   }
-  // a non-magus changes as its Warping Score rises; Hermetic magi are drawn to Twilight instead (DE, Effects of Warping)
-  if (!d.isMagus && !d.might) {
+  // a non-magus changes as its Warping Score rises; Hermetic magi are drawn to Twilight instead (DE, Effects of
+  // Warping), a folk witch suffers the Witch Moon instead (HMRE line 2071), and one with Sympathy Traits Faerie
+  // Calling (RoP: Faerie line 6685)
+  if (reaction === 'witch-moon' || reaction === 'calling') c.warpingNoted = warpingScoreFromPoints(c.warpingPoints);
+  else if (!d.isMagus && !d.might) {
     const now = warpingScoreFromPoints(c.warpingPoints);
     const noted = c.warpingNoted ?? warpingScoreFromPoints(c.warpingPoints - wp);
     const from = aura ? `the ${ctx.aura.realm} aura` : cw.from.length ? cw.from.join(', ') : 'the magic that warped it';
@@ -730,7 +737,7 @@ function renewCovenantEffects(cov: Covenant, chars: Character[], year: number, s
  * (RoP: Magic) a Magic aura's yearly modifier, and its roll if one is called for, with the Warping a
  * fracturing regio gives everyone living in it.
  */
-function auraYearEnd(cov: Covenant, members: Character[], saga: Saga, year: number, rng: Rng): Line[] {
+function auraYearEnd(cov: Covenant, members: Character[], saga: Saga, year: number, rng: Rng, derive: (c: Character) => DerivedCharacter): Line[] {
   const lines: Line[] = [];
   const t = cov.auraTrack;
   if (t?.flickerYear !== undefined && t.flickerYear <= year) {
@@ -747,11 +754,12 @@ function auraYearEnd(cov: Covenant, members: Character[], saga: Saga, year: numb
   lines.push({ who: cov.name, kind: 'covenant', text: `Aura: the year's modifier is ${mod.total >= 0 ? '+' : ''}${mod.total} (${why}). ${r.lines.join(' ')}` });
   if (Math.abs(mod.total) >= 4) changeAura(cov, r.delta, r.lines.join(' '), year, 'Winter');
   if (r.warping) {
+    // a single event, so each tradition's reaction follows (warping.ts): Twilight, Nátt-thel, Faerie Calling
     for (const m of members.filter((x) => inPlay(x) && x.auraTime !== 'away')) {
-      m.warpingPoints += r.warping;
-      if (m.type === 'magus' && r.warping >= 2 && !cov.living) owe(m, year, 'Winter', 'twilight', `${r.warping} Warping Points at once from the aura's surge: roll for Wizard's Twilight.`);
+      if (cov.living) m.warpingPoints += r.warping;
+      else gainWarping(m, derive(m), { points: r.warping, why: 'at once from the aura’s surge', year, season: 'Winter' });
     }
-    lines.push({ who: cov.name, kind: 'covenant', text: `${r.warping} Warping Points for everyone living in the aura; magi roll for Twilight.` });
+    lines.push({ who: cov.name, kind: 'covenant', text: `${r.warping} Warping Points for everyone living in the aura; magi roll for Twilight${cov.living ? '' : ' (Seasons › Resolve)'}.` });
   }
   cov.auraTrack.notes = cov.auraTrack.notes.filter((n) => n.year > year);
   return lines;
@@ -987,7 +995,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       for (const t of [...scriptoriumYear(cov, data), ...libraryYearEnd(cov, year, data)]) lines.push({ who: cov.name, kind: 'covenant', text: t });
       for (const s of cov.specialists.filter((x) => x.hired && x.hired.until <= year)) lines.push({ who: cov.name, kind: 'covenant', text: `${s.name || 'The hired teacher'} has taught the time paid for, and leaves.` });
       cov.specialists = cov.specialists.filter((x) => !x.hired || x.hired.until > year);
-      lines.push(...auraYearEnd(cov, members, saga, year, rng));
+      lines.push(...auraYearEnd(cov, members, saga, year, rng, derive));
       for (const t of covenfolkWarpingYearEnd(cov, year)) lines.push({ who: cov.name, kind: 'warping', text: t });
     }
     // each covenant's best hand at Medicine tends its people through a crisis

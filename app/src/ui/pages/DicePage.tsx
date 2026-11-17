@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { describeStress, pct, simpleChance, simpleDie, stressChance, stressDie } from '../../engine/dice';
 import { abilityTotal, deriveCharacter } from '../../engine/character/derive';
 import { actionPenalties, penaltyText } from '../../engine/rolls';
-import { DEFAULT_HOUSE_RULES, type Character, type HouseRules } from '../../engine/types';
+import { DEFAULT_HOUSE_RULES, type Character, type HouseRules, type Saga } from '../../engine/types';
 import { CHARACTERISTICS, CHAR_NAMES, type Characteristic, type GameData } from '../../data';
 import { Card, Empty, Field, Stepper, Tabs, signed } from '../kit';
 import { RulesNote } from '../RulesNote';
@@ -25,7 +25,8 @@ import { HeartbeastChange } from '../character/sheet/MysteriesCard';
 import { SilverRescue } from '../character/sheet/LabItemsTab';
 import HolyPart, { type Fellow } from './HolyPart';
 import { isHolyCharacter } from '../../engine/holy';
-import { sympathyBotchDice } from '../../engine/faerieWizardry';
+import { sympathyBotchDice, sympathyOnRoll } from '../../engine/faerieWizardry';
+import { gainWarping, nowOf } from '../../engine/warping';
 
 // Grogs' optional equipment bonuses: the right tool for a task lowers its Ease Factor.
 const EQUIPMENT = { none: 0, minor: 1, major: 3 } as const;
@@ -83,7 +84,7 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
   const covs = useSagaCovenants(sagaId);
   const chars = useMemo(() => all.filter(canPlay), [all]);
   const groups = useMemo(() => groupPeople(chars, covs), [chars, covs]);
-  const x = { chars: groups.flatMap((g) => g.people), data, rules: saga?.houseRules, groups };
+  const x = { chars: groups.flatMap((g) => g.people), data, rules: saga?.houseRules, groups, saga };
   const [params, setParams] = useSearchParams();
   const raw = params.get('sub');
   const sub: DiceSub = saga && (DICE_SUBS as readonly string[]).includes(raw ?? '') ? (raw as DiceSub) : 'roll';
@@ -119,6 +120,7 @@ interface X {
   data: GameData;
   rules?: HouseRules;
   groups: PeopleGroup[];
+  saga?: Saga;
 }
 
 /** Who acts in a part: one of the saga's people, the players' first, the Tribunal's after. */
@@ -176,6 +178,8 @@ function RollPart({ x, who }: { x: X; who: string }) {
   const [silver, setSilver] = useState(false);
   // God's aid invoked for this scene, and a holy temper in the aura where the roll is made (RoP: The Divine)
   const [useAid, setUseAid] = useState(false);
+  // Sympathy Traits that fit the roll (RoP: Faerie): by the trait's uid
+  const [sym, setSym] = useState<string[]>([]);
   const updateCharacter = useStore((st) => st.updateCharacter);
   const [temperUse, setTemperUse] = useState('');
   const roller = useMemo(() => {
@@ -195,7 +199,10 @@ function RollPart({ x, who }: { x: X; who: string }) {
   const tempers = x.chars.flatMap((c) => (c.holy?.temper ? [{ ...c.holy.temper, by: c.id }] : []));
   const temperPick = tempers.find((t) => temperUse.endsWith(`:${t.by}`));
   const temperBonus = temperPick ? (temperUse.startsWith('+') ? temperPick.value : -temperPick.value) : 0;
-  const total = base + penTotal + mod + myth + aidBonus + temperBonus;
+  // on a non-Supernatural Ability only, not a Personality Trait
+  const symTraits = roller && !traitOf && rollAbility && x.data.abilityById.get(rollAbility)?.type !== 'Supernatural' ? (roller.c.sympathy ?? []).filter((t) => t.trait && t.score) : [];
+  const symRoll = sympathyOnRoll(symTraits, sym);
+  const total = base + penTotal + mod + myth + aidBonus + temperBonus + symRoll.total;
   // a negative Sympathy Trait adds its size in botch dice to every botch roll (RoP: Faerie, Sympathy Traits)
   const symBotch = sympathyBotchDice(roller?.c ?? {});
   const dice = Math.max(0, botchDice - myth) + symBotch.dice;
@@ -211,6 +218,7 @@ function RollPart({ x, who }: { x: X; who: string }) {
         ...(myth ? [`Mythic ${CHAR_NAMES[rollChar]} +1`] : []),
         ...(aidBonus ? [`God’s aid +${aidBonus}`] : []),
         ...(temperBonus ? [`${temperPick!.temper} temper ${signed(temperBonus)}`] : []),
+        ...symRoll.parts.map((p) => `${p.label} ${signed(p.value)}`),
         ...(mod ? [`other ${signed(mod)}`] : []),
       ].join(', ')
     : '';
@@ -230,6 +238,12 @@ function RollPart({ x, who }: { x: X; who: string }) {
       if (botch) faces = r.botchFaces;
       t = r.zero ? total : r.value + total;
       text = describeStress(r);
+      // a botch on a roll a positive Sympathy Trait helped gives Warping Points, a point for each zero
+      if (botch && symRoll.stressOnly && roller) {
+        let follows: string | undefined;
+        updateCharacter(roller.c.id, (c) => void (follows = gainWarping(c, roller.d, { points: r.botches, why: 'from a botch with a Sympathy Trait', botch: true, ...nowOf(x.saga) })));
+        text += `; ${r.botches} Warping Point${r.botches === 1 ? '' : 's'} (a Sympathy Trait was used)${follows ? `. ${follows}` : ''}`;
+      }
     }
     setLog((l) => [{ id: ++seq, label: label || autoLabel || (kind === 'simple' ? 'Simple die' : 'Stress die'), kind, mod: total, ease: useEase ? target : null, equipment, total: t, text, botch, who: roller?.c.id, faces }, ...l].slice(0, 50));
     // God's aid lasts until a roll for its objective fails (Blessed by God, Invoking God's Aid)
@@ -251,7 +265,7 @@ function RollPart({ x, who }: { x: X; who: string }) {
           {x.chars.length > 0 && (
             <div className="row small">
               <Field label="Who rolls (optional)" hint="Their sheet gives the total, and their wounds, Fatigue and disease count">
-                <select value={rollerId} onChange={(e) => (setRollerId(e.target.value), setTrait(''), setSilver(false))}>
+                <select value={rollerId} onChange={(e) => (setRollerId(e.target.value), setTrait(''), setSilver(false), setSym([]))}>
                   <option value="">— numbers only —</option>
                   <PeopleOptions groups={x.groups} />
                 </select>
@@ -338,6 +352,16 @@ function RollPart({ x, who }: { x: X; who: string }) {
             {useEase && equipment !== 'none' && <span className="small muted">Ease Factor {ease} → {target}</span>}
           </div>
           {roller && !traitOf && <MythicToggle d={roller.d} chars={[rollChar]} on={mythic} onChange={setMythic} />}
+          {symTraits.length > 0 && (
+            <div className="row tight small" style={{ marginTop: 6 }} data-tour="dice-sympathy">
+              <span className="muted">Sympathy Traits that fit this roll:</span>
+              {symTraits.map((t) => (
+                <label key={t.uid} className="inline" title={t.score > 0 ? 'Added in place of a specialty; the highest one counts, and the roll must be a stress die' : 'Taken off the Ability; the worst one counts'}>
+                  <input type="checkbox" checked={sym.includes(t.uid)} onChange={(e) => setSym((v) => (e.target.checked ? [...v, t.uid] : v.filter((u) => u !== t.uid)))} /> {t.trait} {signed(t.score)}
+                </label>
+              ))}
+            </div>
+          )}
           {roller && aid && (
             <label className="inline small" style={{ marginTop: 6 }} data-tour="dice-gods-aid">
               <input type="checkbox" checked={useAid} onChange={(e) => setUseAid(e.target.checked)} /> God’s aid +{aid.bonus}: this roll serves {aid.objective} (it ends when one fails)
@@ -366,9 +390,10 @@ function RollPart({ x, who }: { x: X; who: string }) {
             <button className="primary big" onClick={() => roll('stress')}>
               Stress die
             </button>
-            <button className="big" onClick={() => roll('simple')}>
+            <button className="big" onClick={() => roll('simple')} disabled={symRoll.stressOnly}>
               Simple die
             </button>
+            {symRoll.stressOnly && <span className="small muted">A positive Sympathy Trait calls for a stress die; a botch gives Warping Points.</span>}
             {useEase && (
               <span className="small muted">
                 {signed(total)} against {target}: stress die {pct(stressChance(total, target, dice).chance)} ({pct(stressChance(total, target, dice).botch)} to botch), simple die {pct(simpleChance(total, target))}

@@ -17,6 +17,7 @@ import { useGameData, useSaga, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
 import { uid } from '../../util/id';
 import { Field, Stepper } from '../kit';
+import { gainWarping, nowOf } from '../../engine/warping';
 
 export function CovenantEffects({ cov, chars }: { cov: Covenant; chars: Character[] }) {
   const saga = useSaga(cov.sagaId);
@@ -183,8 +184,8 @@ export function CovenantRitual({ cov, chars }: { cov: Covenant; chars: Character
       if (out.longTerm) c.longTermFatigueLost = Math.min(5, c.longTermFatigueLost + fat);
       else c.fatigueLost = Math.min(5, c.fatigueLost + fat);
       if (r.botches) {
-        c.warpingPoints += r.botches;
-        lines.push(`Botch: ${r.botches} Warping Point${r.botches > 1 ? 's' : ''}; the ritual goes awry (the storyguide decides how).`);
+        const follows = d ? gainWarping(c, d, { points: r.botches, why: 'from a botched ritual', botch: true, ...nowOf(saga) }) : ((c.warpingPoints += r.botches), undefined);
+        lines.push(`Botch: ${r.botches} Warping Point${r.botches > 1 ? 's' : ''}; the ritual goes awry (the storyguide decides how).${follows ? ` ${follows}` : ''}`);
       }
       ok = out.cast && !r.botches;
     }

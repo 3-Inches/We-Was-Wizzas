@@ -8,7 +8,8 @@ import { ARTS, ART_NAMES, FORMS } from '../data/constants';
 import type { Art } from '../data/types';
 import type { DerivedCharacter } from './character/derive';
 import { auraModifier, type AuraState, type Part } from './magic';
-import type { Character } from './types';
+import type { Character, Season } from './types';
+import { uid } from '../util/id';
 import { warpingScoreFromPoints } from './xp';
 
 const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
@@ -163,16 +164,20 @@ export function witchMoonOutcome(months: number, warpingScore: number, pointsGai
   return { good: false, text: `A bad experience: ${2 * pointsGained} experience points lost in a Supernatural Ability or Folk Witch Magic Theory (not below 0), or a Minor Flaw (the storyguide chooses).` };
 }
 
-/** Warping Points gained by a folk witch: a new Warping Score brings the Witch Moon (HMRE, The Witch Moon). Changes `x`; returns the line that says so. */
-export function witchWarping(x: Character, points: number): string | undefined {
+/**
+ * Warping Points gained by a folk witch: a new Warping Score brings the Witch Moon, whatever the source
+ * (HMRE, The Witch Moon, line 2069). It begins at once and is owed on the Seasons page's Resolve list until
+ * it passes. Changes `x`; returns the line that says so.
+ */
+export function witchWarping(x: Character, points: number, when: { year: number; season: Season; why?: string }): string | undefined {
   const before = warpingScoreFromPoints(x.warpingPoints);
   x.warpingPoints += points;
   const after = warpingScoreFromPoints(x.warpingPoints);
-  if (after > before && !x.folkWitch?.witchMoon) {
-    x.folkWitch = { ...(x.folkWitch ?? {}), witchMoon: { months: 0, warpingScore: after, pointsGained: 0 } };
-    return `Warping Score ${after}: the Witch Moon begins (the Witch Moon card).`;
-  }
-  return undefined;
+  if (after <= before || x.folkWitch?.witchMoon) return undefined;
+  x.folkWitch = { ...(x.folkWitch ?? {}), witchMoon: { months: 0, warpingScore: after, pointsGained: 0 } };
+  const gained = `${points} Warping Point${points === 1 ? '' : 's'}${when.why ? ` ${when.why}` : ''}`;
+  (x.owed ??= []).push({ uid: uid(), year: when.year, season: when.season, kind: 'witch-moon', text: `Warping Score ${after} (${gained}): the Witch Moon begins. Roll at the end of each month until it passes.`, points });
+  return `Warping Score ${after}: the Witch Moon begins. It waits on Game Table › Seasons, under Resolve.`;
 }
 
 /**
@@ -188,8 +193,8 @@ export function rollWovenCurse(x: Character, die: { value: number; zero: boolean
   const who = k.target ? ` on ${k.target}` : '';
   const out = [`The curse of ${k.name}${who}: stress die ${die.text} + Casting Score ${k.score} = ${total}, against ${k.ease}.`];
   if (die.zero && die.botches) {
-    out.push(`BOTCH ×${die.botches}: the curse goes astray, uncontrolled and not as she meant; ${die.botches} Warping Point${die.botches === 1 ? '' : 's'}.`);
-    const moon = witchWarping(x, die.botches);
+    out.push(`BOTCH ×${die.botches}: the curse goes astray, uncontrolled and not as the witch meant; ${die.botches} Warping Point${die.botches === 1 ? '' : 's'}.`);
+    const moon = witchWarping(x, die.botches, { year: k.year, season: k.season, why: 'from a botched curse' });
     if (moon) out.push(moon);
   } else if (total >= k.ease) out.push(`It takes hold. Penetration ${witchPenetration(total, k.ease, k.penetration)} (the total + Penetration ${k.penetration} − the Ease Factor), against the target's Magic Resistance.`);
   else out.push('It fails; the fabric is spent.');

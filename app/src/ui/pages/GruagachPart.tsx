@@ -23,6 +23,7 @@ import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
 import { useSeasonWork, useVisSource } from '../seasonWork';
+import { gainWarping, nowOf } from '../../engine/warping';
 
 function Lines({ lines }: { lines: string[] }) {
   if (!lines.length) return null;
@@ -281,7 +282,8 @@ export function GruagachCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState
     }
     update((x) => {
       if (fatigue) x.fatigueLost = Math.min(5, x.fatigueLost + fatigue);
-      if (points) x.warpingPoints += points;
+      // the Curse of Gruagach is rolled above, where the points came
+      if (points) gainWarping(x, d, { points, why: 'from a gruagach spell', botch: botches > 0, handled: true, ...nowOf(ed.saga) });
     });
     if (avoid) out.push(avoid);
     if (binds && !botches) out.push(`The victim's Stamina roll to resist takes ${signed(pj.modifier)} (poetic justice: ${pj.text.toLowerCase()}).`);

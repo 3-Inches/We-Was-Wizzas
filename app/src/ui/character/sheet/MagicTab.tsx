@@ -1,4 +1,5 @@
 import { useMemo, useState, type ReactNode } from 'react';
+import { gainWarping, nowOf } from '../../../engine/warping';
 import { auraAtTime, type AuraTime } from '../../../engine/aura';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type GameData, type Technique } from '../../../data';
 import { BOTCH_SUGGESTIONS, SYMPATHIES, bestHolyRite, castingFatigue, castingOutcome, castingRules, castingScore, certamenFatigue, certamenTotals, conditionalBonuses, labTotal, lifeLinkedFatigue, magicBotchDice, magicResistance, ritualVis, visWithWaste, penetrationBonus, penetrationTotal, spontaneousTotal, type AuraState, type PenetrationOptions, type Realm, wordsGesturesModifier, type Gestures, type Voice } from '../../../engine/magic';
@@ -19,7 +20,6 @@ import { RollAtTable, fightsCertamen, groupPeople, useAtTable, PeopleOptions } f
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { AfterRoll } from '../../AfterRoll';
 import { MythicToggle, mythicBonus } from '../../MythicToggle';
-import { owe } from '../../../engine/time';
 import { deriveCharacter } from '../../../engine/character/derive';
 
 const REALMS: Realm[] = ['Magic', 'Faerie', 'Divine', 'Infernal', 'None'];
@@ -201,13 +201,10 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
   /** a magical botch: one Warping Point per zero; Twilight is checked on 2+ (1 with Twilight Prone) */
   const onBotch = (wp: number) => {
     if (!wp) return;
-    const check = wp >= 2 || (wp >= 1 && d.twilightProne);
-    // the Twilight to roll goes on the Seasons page's Resolve list too, so it is not forgotten once the casting log is gone
-    update((x) => {
-      x.warpingPoints += wp;
-      if (check && x.type === 'magus') owe(x, ed.saga?.currentYear ?? 0, ed.saga?.currentSeason ?? 'Spring', 'twilight', `${wp} Warping Point${wp > 1 ? 's' : ''} from a botched casting: roll for Wizard’s Twilight.`);
-    });
-    push(`Botch: ${wp} Warping Point${wp > 1 ? 's' : ''} added.${check ? ` Check for Wizard's Twilight${d.twilightProne && wp < 2 ? ' (Twilight Prone)' : ''}: Warping & Twilight, below (points already added).` : ''}`);
+    // what follows (Twilight for a magus) goes on the Seasons page's Resolve list, so it is not forgotten once the casting log is gone
+    let follows: string | undefined;
+    update((x) => void (follows = gainWarping(x, d, { points: wp, why: 'from a botched casting', botch: true, ...nowOf(ed.saga) })));
+    push(`Botch: ${wp} Warping Point${wp > 1 ? 's' : ''} added.${follows ? ` ${follows}${d.isMagus ? ` Or roll it now: Warping & Twilight, below (points already added)${d.twilightProne && wp < 2 ? '; Twilight Prone' : ''}.` : ''}` : ''}`);
     // the spell still goes off, beyond the caster's control: one of the book's suggestions to start from
     const s = BOTCH_SUGGESTIONS[Math.floor(Math.random() * BOTCH_SUGGESTIONS.length)];
     push(`What the botch might do (a suggestion from the core book; the storyguide decides${wp > 1 ? ', and more zeros make it worse' : ''}): ${s.name}. ${s.text}`);

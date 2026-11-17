@@ -15,7 +15,7 @@ import { owedInOrder, playersInOrder, settle, type PlanNote } from '../../engine
 import type { Character, Owed, Saga } from '../../engine/types';
 import { useStore } from '../../store/store';
 import { Card } from '../kit';
-import { R } from '../routes';
+import { R, type DiceSub } from '../routes';
 import { forgetFrom, turnBacks, type TurnBack } from '../turnBack';
 
 /** Where a forecast line is dealt with. */
@@ -90,6 +90,19 @@ export function PlayerOrder({ saga, chars }: { saga: Saga; chars: Character[] })
   );
 }
 
+/** The badge for each kind of thing owed. */
+const OWED_BADGE: Record<Owed['kind'], string> = {
+  warping: 'Warping', twilight: 'Twilight', 'witch-moon': 'Witch Moon', 'natt-thel': 'Nátt-thel', calling: 'Faerie Calling', curse: 'a curse', ring: 'Ars Notoria', search: 'a search', dying: 'dying',
+};
+
+/** Where what follows Warping is rolled: its card, with the character chosen. */
+const REACTION_AT: Partial<Record<Owed['kind'], { sub: DiceSub; go: string }>> = {
+  twilight: { sub: 'magic', go: 'Roll it (Warping & Twilight)' },
+  'witch-moon': { sub: 'hedge', go: 'Roll the month’s end (the Witch Moon)' },
+  'natt-thel': { sub: 'hedge', go: 'Roll it (Nátt-thel)' },
+  calling: { sub: 'faerie', go: 'Play it out (Faerie Calling)' },
+};
+
 /** One choice owed, with its quick resolution. */
 function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Character; o: Owed }) {
   const updateCharacter = useStore((s) => s.updateCharacter);
@@ -139,7 +152,7 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
       <Link to={R.character(saga.id, c)} style={{ minWidth: 110 }}>
         <b>{c.name || 'Unnamed'}</b>
       </Link>
-      <span className={`badge ${o.kind === 'dying' ? 'bad' : 'warn'}`}>{o.kind === 'warping' ? 'Warping' : o.kind === 'twilight' ? 'Twilight' : o.kind === 'curse' ? 'a curse' : o.kind === 'ring' ? 'Ars Notoria' : o.kind === 'search' ? 'a search' : 'dying'}</span>
+      <span className={`badge ${o.kind === 'dying' ? 'bad' : 'warn'}`}>{OWED_BADGE[o.kind]}</span>
       <span style={{ flex: '1 1 220px' }}>
         {o.text} <span className="muted">({o.season} {o.year})</span>
       </span>
@@ -166,7 +179,7 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
           </button>
         </span>
       )}
-      {o.kind === 'twilight' && <Link to={R.dice(saga.id, 'magic', c.id)}>Roll it (Warping &amp; Twilight) →</Link>}
+      {REACTION_AT[o.kind] && <Link to={R.dice(saga.id, REACTION_AT[o.kind]!.sub, c.id)}>{REACTION_AT[o.kind]!.go} →</Link>}
       {isSeasonRoll(o.kind) && (
         <button className="small primary" onClick={rollIt} disabled={!seasonRollText(c, o.kind)} title={seasonRollText(c, o.kind)}>
           {o.kind === 'curse' ? 'Roll the curse' : o.kind === 'ring' ? 'Roll the recitation' : 'Roll the search'}
