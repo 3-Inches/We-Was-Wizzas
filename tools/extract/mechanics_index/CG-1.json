@@ -2,8 +2,8 @@
  {
   "title": "Becoming a Townsman (Citizenship and Sympathetic Connection)",
   "heading": "Becoming a Townsman",
-  "line": 482,
-  "endLine": 486,
+  "line": 476,
+  "endLine": 480,
   "category": "setting",
   "topic": "Town charters",
   "audience": [
@@ -25,8 +25,8 @@
  {
   "title": "Minor Covenant Boon: Chartered Town",
   "heading": "Minor Covenant Boon: Chartered Town",
-  "line": 502,
-  "endLine": 507,
+  "line": 496,
+  "endLine": 501,
   "category": "covenant",
   "topic": "Covenant boons and hooks",
   "audience": [
@@ -47,8 +47,8 @@
  {
   "title": "Major Covenant Hook: Charter Lord",
   "heading": "Major Covenant Look: Charter Lord",
-  "line": 509,
-  "endLine": 512,
+  "line": 503,
+  "endLine": 506,
   "category": "covenant",
   "topic": "Covenant boons and hooks",
   "audience": [
@@ -67,8 +67,8 @@
  {
   "title": "Ecclesiastical Lords and Town Divine Aura",
   "heading": "Ecclesiastical Lords",
-  "line": 520,
-  "endLine": 524,
+  "line": 514,
+  "endLine": 518,
   "category": "realms",
   "topic": "Town charters",
   "audience": [
@@ -88,8 +88,8 @@
  {
   "title": "Supernatural Charter Lords (Faerie and Demonic Charters)",
   "heading": "Supernatural Lords",
-  "line": 526,
-  "endLine": 542,
+  "line": 520,
+  "endLine": 536,
   "category": "realms",
   "topic": "Town charters",
   "audience": [
@@ -109,8 +109,8 @@
  {
   "title": "Town Officials as a Virtue",
   "heading": "Town Officials",
-  "line": 579,
-  "endLine": 580,
+  "line": 573,
+  "endLine": 574,
   "category": "social",
   "topic": "Town charters",
   "audience": [
@@ -131,8 +131,8 @@
  {
   "title": "Town Defenses and Relic Processions",
   "heading": "Defenses",
-  "line": 633,
-  "endLine": 641,
+  "line": 627,
+  "endLine": 635,
   "category": "realms",
   "topic": "Town charters",
   "audience": [
@@ -152,8 +152,8 @@
  {
   "title": "Town Occupations Table",
   "heading": "Occupations",
-  "line": 756,
-  "endLine": 762,
+  "line": 750,
+  "endLine": 756,
   "category": "setting",
   "topic": "Town populace",
   "audience": [
@@ -171,8 +171,8 @@
  {
   "title": "Disease in Towns (Humors and Exposure)",
   "heading": "Disease",
-  "line": 797,
-  "endLine": 801,
+  "line": 791,
+  "endLine": 795,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -195,8 +195,8 @@
  {
   "title": "Leprosy",
   "heading": "Leprosy",
-  "line": 806,
-  "endLine": 835,
+  "line": 800,
+  "endLine": 829,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -219,8 +219,8 @@
  {
   "title": "Living Condition Modifiers for Disease and Trade",
   "heading": "Living Condition Modifier",
-  "line": 820,
-  "endLine": 832,
+  "line": 814,
+  "endLine": 826,
   "category": "aging",
   "topic": "Living Conditions",
   "audience": [
@@ -241,8 +241,8 @@
  {
   "title": "The Ague",
   "heading": "The Ague",
-  "line": 837,
-  "endLine": 841,
+  "line": 831,
+  "endLine": 835,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -260,8 +260,8 @@
  {
   "title": "St. Anthony's Fire",
   "heading": "St. Anthony's Fire",
-  "line": 843,
-  "endLine": 849,
+  "line": 837,
+  "endLine": 843,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -280,8 +280,8 @@
  {
   "title": "Tarantism",
   "heading": "Tarantism",
-  "line": 851,
-  "endLine": 857,
+  "line": 845,
+  "endLine": 851,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -300,8 +300,8 @@
  {
   "title": "Childbed Fever",
   "heading": "Childbed Fever",
-  "line": 862,
-  "endLine": 866,
+  "line": 856,
+  "endLine": 860,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -319,8 +319,8 @@
  {
   "title": "The Bloody Flux",
   "heading": "The Bloody Flux",
-  "line": 868,
-  "endLine": 872,
+  "line": 862,
+  "endLine": 866,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -338,8 +338,8 @@
  {
   "title": "Worms",
   "heading": "Worms",
-  "line": 874,
-  "endLine": 878,
+  "line": 868,
+  "endLine": 872,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -357,8 +357,8 @@
  {
   "title": "Abscesses (Deprivation Wounds)",
   "heading": "Abscesses",
-  "line": 880,
-  "endLine": 882,
+  "line": 874,
+  "endLine": 876,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -378,8 +378,8 @@
  {
   "title": "Court Decisions (Quick Trial Roll)",
   "heading": "Court Decisions",
-  "line": 903,
-  "endLine": 912,
+  "line": 897,
+  "endLine": 906,
   "category": "social",
   "topic": "Trials and courts",
   "audience": [
@@ -392,15 +392,15 @@
   "summary": "A quick method to decide a trial: a social roll of Communication plus the relevant law Ability against an Ease Factor adjusted by the defendant's guilt, reputation and witnesses.",
   "quotes": [
    "make a Communication + Civil and Canon Law roll against an Ease Factor of 6, on behalf of the defendant or his proxy",
-   "Defendant actually is innocent | \u20133"
+   "Defendant actually is innocent | –3"
   ],
   "related": []
  },
  {
   "title": "Trial by Ordeal",
   "heading": "Trial by Ordeal",
-  "line": 917,
-  "endLine": 926,
+  "line": 911,
+  "endLine": 920,
   "category": "social",
   "topic": "Trials and courts",
   "audience": [
@@ -420,8 +420,8 @@
  {
   "title": "Income Bands (Trivial to Legendary)",
   "heading": "Chapter Two: Labor",
-  "line": 1048,
-  "endLine": 1070,
+  "line": 1042,
+  "endLine": 1064,
   "category": "social",
   "topic": "Wealth and income bands",
   "audience": [
@@ -443,8 +443,8 @@
  {
   "title": "Labor and Livelihood (Labor Points)",
   "heading": "Labor and Livelihood",
-  "line": 1072,
-  "endLine": 1076,
+  "line": 1066,
+  "endLine": 1070,
   "category": "seasons",
   "topic": "Labor Points",
   "audience": [
@@ -466,8 +466,8 @@
  {
   "title": "Improving Wealth and Social Status",
   "heading": "Improving Wealth and Social Status",
-  "line": 1078,
-  "endLine": 1090,
+  "line": 1072,
+  "endLine": 1084,
   "category": "seasons",
   "topic": "Labor Points",
   "audience": [
@@ -488,8 +488,8 @@
  {
   "title": "Overwork (Reputation Penalties)",
   "heading": "Overwork",
-  "line": 1092,
-  "endLine": 1098,
+  "line": 1086,
+  "endLine": 1092,
   "category": "social",
   "topic": "Labor Points",
   "audience": [
@@ -509,8 +509,8 @@
  {
   "title": "Labor Points from Stories",
   "heading": "Labor Points from Stories",
-  "line": 1110,
-  "endLine": 1126,
+  "line": 1104,
+  "endLine": 1120,
   "category": "seasons",
   "topic": "Labor Points",
   "audience": [
@@ -530,8 +530,8 @@
  {
   "title": "Investing Time",
   "heading": "Investing Time",
-  "line": 1128,
-  "endLine": 1130,
+  "line": 1122,
+  "endLine": 1124,
   "category": "seasons",
   "topic": "Labor Points",
   "audience": [
@@ -550,8 +550,8 @@
  {
   "title": "Money and Investment (Labor Points to Pounds)",
   "heading": "Money and Investment",
-  "line": 1132,
-  "endLine": 1145,
+  "line": 1126,
+  "endLine": 1139,
   "category": "social",
   "topic": "Wealth and income bands",
   "audience": [
@@ -573,8 +573,8 @@
  {
   "title": "Guild Member Ages and Abilities",
   "heading": "Guild Member Ages & Abilities",
-  "line": 1165,
-  "endLine": 1175,
+  "line": 1159,
+  "endLine": 1169,
   "category": "creation",
   "topic": "Guild characters",
   "audience": [
@@ -594,8 +594,8 @@
  {
   "title": "Abusive Lengths of Apprenticeship",
   "heading": "Abusive Lengths of Apprenticeship",
-  "line": 1178,
-  "endLine": 1188,
+  "line": 1172,
+  "endLine": 1182,
   "category": "creation",
   "topic": "Guild characters",
   "audience": [
@@ -614,8 +614,8 @@
  {
   "title": "Guild Members (Ranks, Roster and Required Abilities)",
   "heading": "Guild Members",
-  "line": 1190,
-  "endLine": 1198,
+  "line": 1184,
+  "endLine": 1192,
   "category": "social",
   "topic": "Guilds",
   "audience": [
@@ -635,8 +635,8 @@
  {
   "title": "Guild Lore (Ability)",
   "heading": "Guild Lore",
-  "line": 1200,
-  "endLine": 1202,
+  "line": 1194,
+  "endLine": 1196,
   "category": "basics",
   "topic": "Guild Lore",
   "audience": [
@@ -655,8 +655,8 @@
  {
   "title": "Guild Apprentices (Advancement and Apprentice Piece)",
   "heading": "Guild Apprentices",
-  "line": 1204,
-  "endLine": 1224,
+  "line": 1198,
+  "endLine": 1218,
   "category": "creation",
   "topic": "Guild characters",
   "audience": [
@@ -679,8 +679,8 @@
  {
   "title": "Journeymen (Requirements, Contracts and Promotion)",
   "heading": "Journeymen",
-  "line": 1268,
-  "endLine": 1306,
+  "line": 1262,
+  "endLine": 1300,
   "category": "creation",
   "topic": "Guild characters",
   "audience": [
@@ -701,8 +701,8 @@
  {
   "title": "Making a Journeyman Contract",
   "heading": "Making a Contract: Communication + Bargain + (Age/10, rounded up) + a stress die",
-  "line": 1280,
-  "endLine": 1297,
+  "line": 1274,
+  "endLine": 1291,
   "category": "seasons",
   "topic": "Labor Points",
   "audience": [
@@ -721,9 +721,9 @@
  },
  {
   "title": "Craftsman's Stamp (Arcane Connection and Forgery)",
-  "heading": "Craftsman\u2019s Stamp",
-  "line": 1307,
-  "endLine": 1315,
+  "heading": "Craftsman’s Stamp",
+  "line": 1301,
+  "endLine": 1309,
   "category": "magic",
   "topic": "Arcane Connections",
   "audience": [
@@ -743,8 +743,8 @@
  {
   "title": "Guild Masters",
   "heading": "Guild Masters",
-  "line": 1363,
-  "endLine": 1373,
+  "line": 1357,
+  "endLine": 1367,
   "category": "creation",
   "topic": "Guild characters",
   "audience": [
@@ -765,8 +765,8 @@
  {
   "title": "Senior Masters",
   "heading": "Senior Masters",
-  "line": 1417,
-  "endLine": 1423,
+  "line": 1411,
+  "endLine": 1417,
   "category": "creation",
   "topic": "Guild characters",
   "audience": [
@@ -785,8 +785,8 @@
  {
   "title": "Guild Officials and Inquisitors",
   "heading": "Guild Officials",
-  "line": 1425,
-  "endLine": 1441,
+  "line": 1419,
+  "endLine": 1435,
   "category": "social",
   "topic": "Guilds",
   "audience": [
@@ -806,8 +806,8 @@
  {
   "title": "Guild Dean",
   "heading": "Guild Dean",
-  "line": 1443,
-  "endLine": 1455,
+  "line": 1437,
+  "endLine": 1449,
   "category": "creation",
   "topic": "Guild characters",
   "audience": [
@@ -828,8 +828,8 @@
  {
   "title": "Craftswomen and the Male Guild Sponsor",
   "heading": "Craftswomen",
-  "line": 1503,
-  "endLine": 1521,
+  "line": 1497,
+  "endLine": 1515,
   "category": "social",
   "topic": "Guilds",
   "audience": [
@@ -850,8 +850,8 @@
  {
   "title": "Craft Guilds",
   "heading": "Craft Guilds",
-  "line": 1551,
-  "endLine": 1561,
+  "line": 1545,
+  "endLine": 1555,
   "category": "social",
   "topic": "Guilds",
   "audience": [
@@ -869,8 +869,8 @@
  {
   "title": "Number of Guilds in a Town",
   "heading": "Number of Guilds in a Town",
-  "line": 1563,
-  "endLine": 1569,
+  "line": 1557,
+  "endLine": 1563,
   "category": "social",
   "topic": "Guilds",
   "audience": [
@@ -881,15 +881,15 @@
   "requires": "",
   "summary": "A rough table of how many guilds a town has by population size and by saga date.",
   "quotes": [
-   "1,000 or less  | 0\u20131"
+   "1,000 or less  | 0–1"
   ],
   "related": []
  },
  {
   "title": "Service Guilds",
   "heading": "Service Guilds",
-  "line": 1571,
-  "endLine": 1577,
+  "line": 1565,
+  "endLine": 1571,
   "category": "social",
   "topic": "Guilds",
   "audience": [
@@ -909,8 +909,8 @@
  {
   "title": "Craftsmen (Regular Craftsman Characters)",
   "heading": "Craftsmen",
-  "line": 1746,
-  "endLine": 1758,
+  "line": 1740,
+  "endLine": 1752,
   "category": "creation",
   "topic": "Craftsmen and workshops",
   "audience": [
@@ -932,8 +932,8 @@
  {
   "title": "Companions vs. Grogs for Craftsmen",
   "heading": "Companions vs. Grogs",
-  "line": 1760,
-  "endLine": 1762,
+  "line": 1754,
+  "endLine": 1756,
   "category": "creation",
   "topic": "Craftsmen and workshops",
   "audience": [
@@ -952,8 +952,8 @@
  {
   "title": "Laborers (Laborer Characters)",
   "heading": "Laborers",
-  "line": 1764,
-  "endLine": 1768,
+  "line": 1758,
+  "endLine": 1762,
   "category": "creation",
   "topic": "Craftsmen and workshops",
   "audience": [
@@ -973,8 +973,8 @@
  {
   "title": "Covenant Craftsmen",
   "heading": "Covenant Craftsmen",
-  "line": 1770,
-  "endLine": 1778,
+  "line": 1764,
+  "endLine": 1772,
   "category": "covenant",
   "topic": "Craftsmen and workshops",
   "audience": [
@@ -995,8 +995,8 @@
  {
   "title": "Crafting Items (Seasonal Production)",
   "heading": "Crafting Items",
-  "line": 1780,
-  "endLine": 1786,
+  "line": 1774,
+  "endLine": 1780,
   "category": "seasons",
   "topic": "Craftsmen and workshops",
   "audience": [
@@ -1016,8 +1016,8 @@
  {
   "title": "The Craft Ability (Defined by Vocation)",
   "heading": "The Craft Ability",
-  "line": 1788,
-  "endLine": 1806,
+  "line": 1782,
+  "endLine": 1800,
   "category": "basics",
   "topic": "Craft Abilities",
   "audience": [
@@ -1038,8 +1038,8 @@
  {
   "title": "Working with Related Material",
   "heading": "Working with Related Material",
-  "line": 1808,
-  "endLine": 1812,
+  "line": 1802,
+  "endLine": 1806,
   "category": "seasons",
   "topic": "Craftsmen and workshops",
   "audience": [
@@ -1059,8 +1059,8 @@
  {
   "title": "The Workshop",
   "heading": "The Workshop",
-  "line": 1814,
-  "endLine": 1822,
+  "line": 1808,
+  "endLine": 1816,
   "category": "seasons",
   "topic": "Craftsmen and workshops",
   "audience": [
@@ -1082,8 +1082,8 @@
  {
   "title": "Craft Specialization",
   "heading": "Specialization",
-  "line": 1824,
-  "endLine": 1826,
+  "line": 1818,
+  "endLine": 1820,
   "category": "basics",
   "topic": "Craft Abilities",
   "audience": [
@@ -1102,8 +1102,8 @@
  {
   "title": "Workshop Innovation",
   "heading": "Workshop Innovation",
-  "line": 1828,
-  "endLine": 1842,
+  "line": 1822,
+  "endLine": 1836,
   "category": "seasons",
   "topic": "Craftsmen and workshops",
   "audience": [
@@ -1123,8 +1123,8 @@
  {
   "title": "Raw Materials (Workshop Raw Materials Score)",
   "heading": "Raw Materials",
-  "line": 1844,
-  "endLine": 1858,
+  "line": 1838,
+  "endLine": 1852,
   "category": "seasons",
   "topic": "Craftsmen and workshops",
   "audience": [

@@ -2,8 +2,8 @@
  {
   "title": "Indulgences",
   "heading": "Indulgences",
-  "line": 683,
-  "endLine": 693,
+  "line": 689,
+  "endLine": 699,
   "category": "seasons",
   "topic": "Indulgences",
   "audience": [
@@ -23,8 +23,8 @@
  {
   "title": "Example of Creating a Devout Character",
   "heading": "Example of Creating a Devout Character",
-  "line": 703,
-  "endLine": 705,
+  "line": 709,
+  "endLine": 711,
   "category": "realms",
   "topic": "Devotion",
   "audience": [
@@ -40,8 +40,8 @@
  {
   "title": "Vigils & Fasting",
   "heading": "Vigils & Fasting",
-  "line": 707,
-  "endLine": 713,
+  "line": 713,
+  "endLine": 719,
   "category": "realms",
   "topic": "Devotion",
   "audience": [
@@ -62,8 +62,8 @@
  {
   "title": "Devotion",
   "heading": "Devotion",
-  "line": 715,
-  "endLine": 723,
+  "line": 721,
+  "endLine": 729,
   "category": "realms",
   "topic": "Devotion",
   "audience": [
@@ -84,8 +84,8 @@
  {
   "title": "The Benefits of Devotion",
   "heading": "The Benefits of Devotion",
-  "line": 725,
-  "endLine": 737,
+  "line": 731,
+  "endLine": 743,
   "category": "realms",
   "topic": "Devotion",
   "audience": [
@@ -97,7 +97,7 @@
   "summary": "A Devoted character can invoke any saint he has Devotion in; the Devotion score is added to the invocation roll. Also explains sacramentals as ordinary invocations of an appropriate saint, which avoid the unknown-saint penalty.",
   "quotes": [
    "Communication + Charm + modifiers\\* + a simple die vs. 15 + a simple die",
-   "the \u201315 penalty for invoking an unknown saint is not applied"
+   "the –15 penalty for invoking an unknown saint is not applied"
   ],
   "related": [
    "Realms of Power: The Divine p.87 Invoking a saint"
@@ -106,8 +106,8 @@
  {
   "title": "Relics & Devotion",
   "heading": "Relics & Devotion",
-  "line": 739,
-  "endLine": 743,
+  "line": 745,
+  "endLine": 749,
   "category": "realms",
   "topic": "Devotion",
   "audience": [
@@ -125,8 +125,8 @@
  {
   "title": "The Costs of Devotion",
   "heading": "The Costs of Devotion",
-  "line": 745,
-  "endLine": 747,
+  "line": 751,
+  "endLine": 753,
   "category": "realms",
   "topic": "Devotion",
   "audience": [
@@ -144,8 +144,8 @@
  {
   "title": "Patron Saints",
   "heading": "Patron Saints",
-  "line": 749,
-  "endLine": 755,
+  "line": 755,
+  "endLine": 761,
   "category": "realms",
   "topic": "Devotion",
   "audience": [
@@ -163,8 +163,8 @@
  {
   "title": "Gaining Devotion Points",
   "heading": "Gaining Devotion Points",
-  "line": 757,
-  "endLine": 803,
+  "line": 763,
+  "endLine": 809,
   "category": "realms",
   "topic": "Devotion",
   "audience": [
@@ -189,8 +189,8 @@
  {
   "title": "False Devotion",
   "heading": "False Devotion",
-  "line": 805,
-  "endLine": 809,
+  "line": 811,
+  "endLine": 815,
   "category": "realms",
   "topic": "Devotion",
   "audience": [
@@ -206,8 +206,8 @@
  {
   "title": "Becoming a Saint",
   "heading": "Becoming a Saint",
-  "line": 811,
-  "endLine": 821,
+  "line": 817,
+  "endLine": 827,
   "category": "realms",
   "topic": "Saints",
   "audience": [
@@ -228,8 +228,8 @@
  {
   "title": "The Mechanics of a Pilgrimage Story",
   "heading": "The Mechanics of a Pilgrimage Story",
-  "line": 833,
-  "endLine": 854,
+  "line": 839,
+  "endLine": 860,
   "category": "seasons",
   "topic": "Pilgrimage",
   "audience": [
@@ -251,8 +251,8 @@
  {
   "title": "Oppositional Elements",
   "heading": "Oppositional Elements",
-  "line": 856,
-  "endLine": 888,
+  "line": 862,
+  "endLine": 894,
   "category": "seasons",
   "topic": "Pilgrimage",
   "audience": [
@@ -273,8 +273,8 @@
  {
   "title": "An Example of a Pilgrimage Story",
   "heading": "An Example of a Pilgrimage Story",
-  "line": 890,
-  "endLine": 906,
+  "line": 896,
+  "endLine": 912,
   "category": "seasons",
   "topic": "Pilgrimage",
   "audience": [
@@ -290,8 +290,8 @@
  {
   "title": "Pilgrimage & Devotion",
   "heading": "Pilgrimage & Devotion",
-  "line": 908,
-  "endLine": 910,
+  "line": 914,
+  "endLine": 916,
   "category": "realms",
   "topic": "Pilgrimage",
   "audience": [
@@ -307,8 +307,8 @@
  {
   "title": "Taking the Cross",
   "heading": "Taking the Cross",
-  "line": 918,
-  "endLine": 922,
+  "line": 924,
+  "endLine": 928,
   "category": "social",
   "topic": "Crusades",
   "audience": [
@@ -328,8 +328,8 @@
  {
   "title": "Christian Mysticism",
   "heading": "Christian Mysticism",
-  "line": 924,
-  "endLine": 946,
+  "line": 930,
+  "endLine": 952,
   "category": "traditions",
   "topic": "Christian mysticism",
   "audience": [
@@ -350,8 +350,8 @@
  {
   "title": "Experiencing Divine Ascent",
   "heading": "Experiencing Divine Ascent",
-  "line": 948,
-  "endLine": 954,
+  "line": 954,
+  "endLine": 960,
   "category": "realms",
   "topic": "Divine Ascent",
   "audience": [
@@ -372,8 +372,8 @@
  {
   "title": "Personality Traits, Sins, and Tempers",
   "heading": "Personality Traits, Sins, and Tempers",
-  "line": 956,
-  "endLine": 988,
+  "line": 962,
+  "endLine": 994,
   "category": "basics",
   "topic": "Personality traits",
   "audience": [
@@ -393,8 +393,8 @@
  {
   "title": "Contemplative Mysticism",
   "heading": "Contemplative Mysticism",
-  "line": 990,
-  "endLine": 998,
+  "line": 996,
+  "endLine": 1004,
   "category": "traditions",
   "topic": "Christian mysticism",
   "audience": [
@@ -415,8 +415,8 @@
  {
   "title": "Divine Warping and the Contemplative Mystic",
   "heading": "Divine Warping and the Contemplative Mystic",
-  "line": 1000,
-  "endLine": 1015,
+  "line": 1006,
+  "endLine": 1021,
   "category": "realms",
   "topic": "Divine Ascent",
   "audience": [
@@ -438,8 +438,8 @@
  {
   "title": "Spiritual Paths and Revelations",
   "heading": "Spiritual Paths and Revelations",
-  "line": 1017,
-  "endLine": 1067,
+  "line": 1023,
+  "endLine": 1073,
   "category": "traditions",
   "topic": "Christian mysticism",
   "audience": [
@@ -450,7 +450,7 @@
   "requires": "Contemplative mysticism",
   "summary": "A contemplative mystic gains new Virtues, Methods, Powers or Supernatural Abilities by following a Spiritual Path: a Path Total is set by the Revelation sought, reduced by the character's Pious score to a Path Target, and met by completing Quest Components of listed values.",
   "quotes": [
-   "**Path Target** = Path Total \u2013 score in Personality Trait Pious",
+   "**Path Target** = Path Total – score in Personality Trait Pious",
    "**Total Quest Component Values** = Path Total"
   ],
   "related": [
@@ -460,8 +460,8 @@
  {
   "title": "Monistic Mysticism",
   "heading": "Monistic Mysticism",
-  "line": 1069,
-  "endLine": 1075,
+  "line": 1075,
+  "endLine": 1081,
   "category": "traditions",
   "topic": "Christian mysticism",
   "audience": [
@@ -481,8 +481,8 @@
  {
   "title": "Advantages of Pursuing Monistic Mysticism",
   "heading": "Advantages of Pursuing Monistic Mysticism",
-  "line": 1077,
-  "endLine": 1090,
+  "line": 1083,
+  "endLine": 1096,
   "category": "traditions",
   "topic": "Christian mysticism",
   "audience": [
@@ -503,8 +503,8 @@
  {
   "title": "Divine Warping and the Monistic Mystic",
   "heading": "Divine Warping and the Monistic Mystic",
-  "line": 1092,
-  "endLine": 1105,
+  "line": 1098,
+  "endLine": 1111,
   "category": "realms",
   "topic": "Divine Ascent",
   "audience": [
@@ -524,8 +524,8 @@
  {
   "title": "Improving True Faith",
   "heading": "Improving True Faith",
-  "line": 1107,
-  "endLine": 1119,
+  "line": 1113,
+  "endLine": 1125,
   "category": "realms",
   "topic": "True Faith",
   "audience": [
@@ -547,8 +547,8 @@
  {
   "title": "Clergy as Player Characters",
   "heading": "Clergy as Player Characters",
-  "line": 1165,
-  "endLine": 1175,
+  "line": 1171,
+  "endLine": 1181,
   "category": "creation",
   "topic": "Clergy characters",
   "audience": [
@@ -567,8 +567,8 @@
  {
   "title": "Vows",
   "heading": "Vows",
-  "line": 1239,
-  "endLine": 1245,
+  "line": 1247,
+  "endLine": 1253,
   "category": "creation",
   "topic": "Clergy characters",
   "audience": [
@@ -586,8 +586,8 @@
  {
   "title": "Faith Points",
   "heading": "Faith Points",
-  "line": 1247,
-  "endLine": 1249,
+  "line": 1255,
+  "endLine": 1257,
   "category": "realms",
   "topic": "Faith Points",
   "audience": [
@@ -608,8 +608,8 @@
  {
   "title": "Worship",
   "heading": "Worship",
-  "line": 1255,
-  "endLine": 1261,
+  "line": 1263,
+  "endLine": 1269,
   "category": "seasons",
   "topic": "Church seasonal activities",
   "audience": [
@@ -627,8 +627,8 @@
  {
   "title": "Good Works",
   "heading": "Good Works",
-  "line": 1263,
-  "endLine": 1267,
+  "line": 1271,
+  "endLine": 1275,
   "category": "seasons",
   "topic": "Church seasonal activities",
   "audience": [
@@ -646,8 +646,8 @@
  {
   "title": "Care of Souls",
   "heading": "Care of Souls",
-  "line": 1269,
-  "endLine": 1275,
+  "line": 1277,
+  "endLine": 1283,
   "category": "seasons",
   "topic": "Church seasonal activities",
   "audience": [
@@ -667,8 +667,8 @@
  {
   "title": "Recommended and Required Virtues, Flaws, and Abilities",
   "heading": "Recommended and Required Virtues, Flaws, and Abilities",
-  "line": 1277,
-  "endLine": 1303,
+  "line": 1285,
+  "endLine": 1311,
   "category": "creation",
   "topic": "Clergy characters",
   "audience": [
@@ -687,8 +687,8 @@
  {
   "title": "Election of the Bishop",
   "heading": "Election of the Bishop",
-  "line": 1314,
-  "endLine": 1322,
+  "line": 1322,
+  "endLine": 1330,
   "category": "social",
   "topic": "Church hierarchy",
   "audience": [
@@ -708,8 +708,8 @@
  {
   "title": "Proctors",
   "heading": "Proctors",
-  "line": 1402,
-  "endLine": 1406,
+  "line": 1410,
+  "endLine": 1414,
   "category": "social",
   "topic": "Petitioning the Church",
   "audience": [
@@ -730,8 +730,8 @@
  {
   "title": "Ordination",
   "heading": "Ordination",
-  "line": 1490,
-  "endLine": 1538,
+  "line": 1494,
+  "endLine": 1542,
   "category": "seasons",
   "topic": "Ordination",
   "audience": [
@@ -754,8 +754,8 @@
  {
   "title": "Rapid Ordinations",
   "heading": "Rapid Ordinations",
-  "line": 1540,
-  "endLine": 1542,
+  "line": 1544,
+  "endLine": 1546,
   "category": "seasons",
   "topic": "Ordination",
   "audience": [
@@ -771,8 +771,8 @@
  {
   "title": "Possession and Exorcism",
   "heading": "Possession and Exorcism",
-  "line": 1564,
-  "endLine": 1574,
+  "line": 1568,
+  "endLine": 1578,
   "category": "realms",
   "topic": "Exorcism",
   "audience": [
@@ -795,8 +795,8 @@
  {
   "title": "Canon Courts",
   "heading": "Canon Courts",
-  "line": 1612,
-  "endLine": 1634,
+  "line": 1616,
+  "endLine": 1638,
   "category": "social",
   "topic": "Canon law",
   "audience": [
@@ -815,8 +815,8 @@
  {
   "title": "Punishment",
   "heading": "Punishment",
-  "line": 1636,
-  "endLine": 1656,
+  "line": 1640,
+  "endLine": 1660,
   "category": "social",
   "topic": "Canon law",
   "audience": [
@@ -836,8 +836,8 @@
  {
   "title": "Shedding of Blood",
   "heading": "Shedding of Blood",
-  "line": 1662,
-  "endLine": 1672,
+  "line": 1666,
+  "endLine": 1676,
   "category": "social",
   "topic": "Canon law",
   "audience": [
@@ -858,8 +858,8 @@
  {
   "title": "Sanctuary",
   "heading": "Sanctuary",
-  "line": 1678,
-  "endLine": 1680,
+  "line": 1682,
+  "endLine": 1684,
   "category": "social",
   "topic": "Canon law",
   "audience": [
@@ -877,8 +877,8 @@
  {
   "title": "Simony",
   "heading": "Simony",
-  "line": 1692,
-  "endLine": 1694,
+  "line": 1696,
+  "endLine": 1698,
   "category": "social",
   "topic": "Canon law",
   "audience": [
@@ -897,8 +897,8 @@
  {
   "title": "Relics",
   "heading": "Relics",
-  "line": 1696,
-  "endLine": 1704,
+  "line": 1700,
+  "endLine": 1708,
   "category": "realms",
   "topic": "Relics",
   "audience": [
@@ -919,8 +919,8 @@
  {
   "title": "Tithes",
   "heading": "Tithes",
-  "line": 1722,
-  "endLine": 1724,
+  "line": 1726,
+  "endLine": 1728,
   "category": "covenant",
   "topic": "Tithes",
   "audience": [
@@ -939,8 +939,8 @@
  {
   "title": "Sorcery and Witchcraft",
   "heading": "Sorcery and Witchcraft",
-  "line": 1730,
-  "endLine": 1732,
+  "line": 1734,
+  "endLine": 1736,
   "category": "social",
   "topic": "Canon law",
   "audience": [
@@ -958,8 +958,8 @@
  {
   "title": "Church Auras",
   "heading": "Church Auras",
-  "line": 1756,
-  "endLine": 1767,
+  "line": 1760,
+  "endLine": 1771,
   "category": "realms",
   "topic": "Divine auras",
   "audience": [
@@ -978,8 +978,8 @@
  {
   "title": "Spells in Church",
   "heading": "Spells in Church",
-  "line": 1769,
-  "endLine": 1771,
+  "line": 1773,
+  "endLine": 1775,
   "category": "magic",
   "topic": "Targeting buildings",
   "audience": [
@@ -999,8 +999,8 @@
  {
   "title": "Hermetic Magic and the Sacraments",
   "heading": "Hermetic Magic and the Sacraments",
-  "line": 1783,
-  "endLine": 1787,
+  "line": 1787,
+  "endLine": 1791,
   "category": "magic",
   "topic": "Sacraments",
   "audience": [
@@ -1018,8 +1018,8 @@
  {
   "title": "The Sacraments",
   "heading": "The Sacraments",
-  "line": 1793,
-  "endLine": 1809,
+  "line": 1797,
+  "endLine": 1813,
   "category": "realms",
   "topic": "Sacraments",
   "audience": [
@@ -1040,8 +1040,8 @@
  {
   "title": "The Benefice",
   "heading": "The Benefice",
-  "line": 1843,
-  "endLine": 1855,
+  "line": 1847,
+  "endLine": 1859,
   "category": "social",
   "topic": "Church benefices",
   "audience": [
@@ -1061,8 +1061,8 @@
  {
   "title": "Spells to Affect a Parish",
   "heading": "Spells to Affect a Parish",
-  "line": 1867,
-  "endLine": 1871,
+  "line": 1871,
+  "endLine": 1875,
   "category": "magic",
   "topic": "Targeting areas",
   "audience": [
@@ -1082,8 +1082,8 @@
  {
   "title": "Visitations",
   "heading": "Visitations",
-  "line": 1955,
-  "endLine": 1971,
+  "line": 1959,
+  "endLine": 1975,
   "category": "seasons",
   "topic": "Church seasonal activities",
   "audience": [
@@ -1101,8 +1101,8 @@
  {
   "title": "The Petition Total",
   "heading": "The Petition Total",
-  "line": 1995,
-  "endLine": 2083,
+  "line": 1999,
+  "endLine": 2087,
   "category": "social",
   "topic": "Petitioning the Church",
   "audience": [
@@ -1126,8 +1126,8 @@
  {
   "title": "Modifiers to the Petition Total",
   "heading": "Modifiers to the Petition Total",
-  "line": 2003,
-  "endLine": 2039,
+  "line": 2007,
+  "endLine": 2043,
   "category": "social",
   "topic": "Petitioning the Church",
   "audience": [
@@ -1146,8 +1146,8 @@
  {
   "title": "Henri of Toulouse's Petition",
   "heading": "Henri of Toulouse's Petition",
-  "line": 2085,
-  "endLine": 2096,
+  "line": 2089,
+  "endLine": 2100,
   "category": "social",
   "topic": "Petitioning the Church",
   "audience": [
@@ -1163,8 +1163,8 @@
  {
   "title": "The Petition of the Parish of Long Melford",
   "heading": "The Petition of the Parish of Long Melford",
-  "line": 2098,
-  "endLine": 2105,
+  "line": 2102,
+  "endLine": 2109,
   "category": "social",
   "topic": "Petitioning the Church",
   "audience": [
@@ -1180,8 +1180,8 @@
  {
   "title": "Acting Without Authority",
   "heading": "Acting Without Authority",
-  "line": 2107,
-  "endLine": 2115,
+  "line": 2111,
+  "endLine": 2119,
   "category": "social",
   "topic": "Petitioning the Church",
   "audience": [
@@ -1200,8 +1200,8 @@
  {
   "title": "Appealing a Petition",
   "heading": "Appealing a Petition",
-  "line": 2117,
-  "endLine": 2127,
+  "line": 2121,
+  "endLine": 2131,
   "category": "social",
   "topic": "Petitioning the Church",
   "audience": [
@@ -1214,16 +1214,16 @@
   "summary": "An appeal is itself a petition whose Ease Factor to overturn is based on the original Petition Total, with a compromise offered if it falls only slightly short, and a penalty for appealing after the original season.",
   "quotes": [
    "**Ease Factor to Overturn a Petition:** Original Petition Total + 3",
-   "**Ease Factor to Open Negotiations for Compromise:** Original Petition Total \u2013 3",
-   "If an appeal is not made in the same season as the original petition, then the appeal has a \u20133 penalty to its Petition Total."
+   "**Ease Factor to Open Negotiations for Compromise:** Original Petition Total – 3",
+   "If an appeal is not made in the same season as the original petition, then the appeal has a –3 penalty to its Petition Total."
   ],
   "related": []
  },
  {
   "title": "Creating Game Statistics for a Church",
   "heading": "Creating Game Statistics for a Church",
-  "line": 2129,
-  "endLine": 2131,
+  "line": 2133,
+  "endLine": 2135,
   "category": "covenant",
   "topic": "Church statistics",
   "audience": [
@@ -1241,8 +1241,8 @@
  {
   "title": "Basic Church Features",
   "heading": "Basic Church Features",
-  "line": 2133,
-  "endLine": 2151,
+  "line": 2137,
+  "endLine": 2155,
   "category": "covenant",
   "topic": "Church statistics",
   "audience": [
@@ -1263,8 +1263,8 @@
  {
   "title": "Resources",
   "heading": "Resources",
-  "line": 2153,
-  "endLine": 2201,
+  "line": 2157,
+  "endLine": 2205,
   "category": "covenant",
   "topic": "Church statistics",
   "audience": [
@@ -1285,8 +1285,8 @@
  {
   "title": "Hooks and Boons",
   "heading": "Hooks and Boons",
-  "line": 2203,
-  "endLine": 2205,
+  "line": 2207,
+  "endLine": 2209,
   "category": "covenant",
   "topic": "Church statistics",
   "audience": [
@@ -1307,8 +1307,8 @@
  {
   "title": "Becoming a Monk or Nun",
   "heading": "Becoming a Monk or Nun",
-  "line": 2293,
-  "endLine": 2311,
+  "line": 2297,
+  "endLine": 2315,
   "category": "setting",
   "topic": "Monastic life",
   "audience": [
@@ -1327,8 +1327,8 @@
  {
   "title": "The Opus Dei, Divine Office",
   "heading": "The Opus Dei, Divine Office",
-  "line": 2321,
-  "endLine": 2341,
+  "line": 2325,
+  "endLine": 2345,
   "category": "setting",
   "topic": "Monastic life",
   "audience": [
@@ -1346,8 +1346,8 @@
  {
   "title": "Sign Language (Monastery)",
   "heading": "Sign Language (Monastery)",
-  "line": 2399,
-  "endLine": 2401,
+  "line": 2401,
+  "endLine": 2403,
   "category": "basics",
   "topic": "Abilities",
   "audience": [
@@ -1358,15 +1358,15 @@
   "requires": "Monastic or convent life",
   "summary": "A language Ability specific to a monastery or nunnery, with a fluency scale and defaults to the sign languages of related and unrelated houses at different penalties.",
   "quotes": [
-   "It defaults to an Ability in the language of other monasteries of the same order at \u20133"
+   "It defaults to an Ability in the language of other monasteries of the same order at –3"
   ],
   "related": []
  },
  {
   "title": "Monastic Roles and Positions",
   "heading": "Monastic Roles and Positions",
-  "line": 2432,
-  "endLine": 2562,
+  "line": 2433,
+  "endLine": 2563,
   "category": "setting",
   "topic": "Monastic life",
   "audience": [
@@ -1387,8 +1387,8 @@
  {
   "title": "The Religious in Your Saga",
   "heading": "The Religious in Your Saga",
-  "line": 2564,
-  "endLine": 2576,
+  "line": 2565,
+  "endLine": 2577,
   "category": "creation",
   "topic": "Monastic life",
   "audience": [
@@ -1407,8 +1407,8 @@
  {
   "title": "Female Religious in the Covenant",
   "heading": "Female Religious in the Covenant",
-  "line": 2586,
-  "endLine": 2594,
+  "line": 2587,
+  "endLine": 2595,
   "category": "creation",
   "topic": "Women in the Church",
   "audience": [
@@ -1431,8 +1431,8 @@
  {
   "title": "Options for Absent Players",
   "heading": "Options for Absent Players",
-  "line": 2596,
-  "endLine": 2600,
+  "line": 2597,
+  "endLine": 2601,
   "category": "creation",
   "topic": "Women in the Church",
   "audience": [

@@ -2,8 +2,8 @@
  {
   "title": "Jinn (Free Virtue)",
   "heading": "Jinn",
-  "line": 18763,
-  "endLine": 18765,
+  "line": 18779,
+  "endLine": 18781,
   "category": "beings",
   "topic": "Jinn",
   "audience": [
@@ -23,8 +23,8 @@
  {
   "title": "Essential Traits",
   "heading": "Essential Traits",
-  "line": 18814,
-  "endLine": 18816,
+  "line": 18832,
+  "endLine": 18834,
   "category": "beings",
   "topic": "Magic creatures",
   "audience": [
@@ -45,8 +45,8 @@
  {
   "title": "Daimons and Aspects",
   "heading": "Daimons",
-  "line": 18818,
-  "endLine": 18834,
+  "line": 18836,
+  "endLine": 18852,
   "category": "beings",
   "topic": "Daimons",
   "audience": [
@@ -70,8 +70,8 @@
  {
   "title": "True Names and Synthemata",
   "heading": "True Names and Synthemata",
-  "line": 18836,
-  "endLine": 18842,
+  "line": 18854,
+  "endLine": 18860,
   "category": "beings",
   "topic": "True Names",
   "audience": [
@@ -94,8 +94,8 @@
  {
   "title": "Elementals: Rarefication",
   "heading": "Elementals",
-  "line": 19094,
-  "endLine": 19100,
+  "line": 19112,
+  "endLine": 19118,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -114,8 +114,8 @@
  {
   "title": "Elementals and Might",
   "heading": "Elementals and Might",
-  "line": 19102,
-  "endLine": 19104,
+  "line": 19120,
+  "endLine": 19122,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -134,8 +134,8 @@
  {
   "title": "Size, Might and Characteristics of Elementals",
   "heading": "Size, Might, and Characteristics of Elementals",
-  "line": 19106,
-  "endLine": 19122,
+  "line": 19124,
+  "endLine": 19140,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -153,8 +153,8 @@
  {
   "title": "Magic and Elementals",
   "heading": "Magic and Elementals",
-  "line": 19124,
-  "endLine": 19128,
+  "line": 19142,
+  "endLine": 19146,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -174,8 +174,8 @@
  {
   "title": "Elemental Combat",
   "heading": "Elemental Combat",
-  "line": 19130,
-  "endLine": 19136,
+  "line": 19148,
+  "endLine": 19154,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -188,15 +188,15 @@
   "quotes": [
    "each wound also reduces the elemental's Might Pool by a number of points equal to the Wound Penalty",
    "An Incapacitating Wound removes 5 Might points, just like a Heavy Wound.",
-   "a number of pawns equal to ((total Wound penalty /5) \u2013 the number of pawns already lost)"
+   "a number of pawns equal to ((total Wound penalty /5) – the number of pawns already lost)"
   ],
   "related": []
  },
  {
   "title": "Elemental Powers",
   "heading": "Elemental Powers",
-  "line": 19138,
-  "endLine": 19140,
+  "line": 19156,
+  "endLine": 19158,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -214,8 +214,8 @@
  {
   "title": "Earth Elementals (Genomi)",
   "heading": "Earth Elementals",
-  "line": 19162,
-  "endLine": 19168,
+  "line": 19180,
+  "endLine": 19186,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -234,8 +234,8 @@
  {
   "title": "Earth Elemental Sample Powers",
   "heading": "Earth Elemental Sample Powers",
-  "line": 19170,
-  "endLine": 19189,
+  "line": 19188,
+  "endLine": 19207,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -253,8 +253,8 @@
  {
   "title": "Water Elementals (Lymphae)",
   "heading": "Water Elementals",
-  "line": 19225,
-  "endLine": 19231,
+  "line": 19243,
+  "endLine": 19249,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -273,8 +273,8 @@
  {
   "title": "Water Elemental Sample Powers",
   "heading": "Water Clemental Sample Powers",
-  "line": 19233,
-  "endLine": 19252,
+  "line": 19251,
+  "endLine": 19270,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -294,8 +294,8 @@
  {
   "title": "Air Elementals (Zephyri)",
   "heading": "Air Elementals",
-  "line": 19293,
-  "endLine": 19299,
+  "line": 19311,
+  "endLine": 19317,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -313,8 +313,8 @@
  {
   "title": "Air Elemental Sample Powers",
   "heading": "Air Elemental Sample Powers",
-  "line": 19301,
-  "endLine": 19320,
+  "line": 19319,
+  "endLine": 19338,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -335,8 +335,8 @@
  {
   "title": "Fire Elementals (Phlegethi)",
   "heading": "Fire Elementals",
-  "line": 19360,
-  "endLine": 19366,
+  "line": 19378,
+  "endLine": 19384,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -357,8 +357,8 @@
  {
   "title": "Fire Elemental Sample Powers",
   "heading": "Fire Elemental Sample Powers",
-  "line": 19368,
-  "endLine": 19387,
+  "line": 19386,
+  "endLine": 19405,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -377,8 +377,8 @@
  {
   "title": "Revenants, the Walking Dead",
   "heading": "Revenants, the Walking Dead",
-  "line": 19684,
-  "endLine": 19694,
+  "line": 19712,
+  "endLine": 19722,
   "category": "beings",
   "topic": "Revenants",
   "audience": [
@@ -396,8 +396,8 @@
  {
   "title": "Fighting the Walking Dead",
   "heading": "Fighting the Walking Dead",
-  "line": 19696,
-  "endLine": 19708,
+  "line": 19724,
+  "endLine": 19736,
   "category": "beings",
   "topic": "Revenants",
   "audience": [
@@ -416,8 +416,8 @@
  {
   "title": "Option: Resistance to Piercing Weapons",
   "heading": "Option: Resistance to Piercing Weapons",
-  "line": 19710,
-  "endLine": 19714,
+  "line": 19738,
+  "endLine": 19742,
   "category": "beings",
   "topic": "Revenants",
   "audience": [
@@ -435,8 +435,8 @@
  {
   "title": "Animating Corpses with Magic",
   "heading": "Animating Corpses with Magic",
-  "line": 19716,
-  "endLine": 19728,
+  "line": 19744,
+  "endLine": 19756,
   "category": "magic",
   "topic": "Revenants",
   "audience": [
@@ -458,8 +458,8 @@
  {
   "title": "Creatures of Faerie: Roles and Pretenses",
   "heading": "Creatures of Faerie",
-  "line": 20001,
-  "endLine": 20011,
+  "line": 20029,
+  "endLine": 20039,
   "category": "beings",
   "topic": "Faerie characters",
   "audience": [
@@ -481,8 +481,8 @@
  {
   "title": "Faerie Virtues and Flaws (Cognizance, Wards, Faerie Sight and Speech)",
   "heading": "New Virtues and Flaws",
-  "line": 20013,
-  "endLine": 20027,
+  "line": 20041,
+  "endLine": 20055,
   "category": "beings",
   "topic": "Faerie characters",
   "audience": [
@@ -505,8 +505,8 @@
  {
   "title": "Infernal Creatures: Demon Basics",
   "heading": "Infernal Creatures",
-  "line": 20525,
-  "endLine": 20531,
+  "line": 20553,
+  "endLine": 20559,
   "category": "beings",
   "topic": "Demons",
   "audience": [
@@ -527,8 +527,8 @@
  {
   "title": "Demonic Powers (Coagulation, Obsession, Envisioning, Possession)",
   "heading": "Demonic Powers",
-  "line": 20533,
-  "endLine": 20561,
+  "line": 20561,
+  "endLine": 20589,
   "category": "beings",
   "topic": "Demons",
   "audience": [
@@ -550,8 +550,8 @@
  {
   "title": "Demons and Magic",
   "heading": "Demons and Magic",
-  "line": 20563,
-  "endLine": 20577,
+  "line": 20591,
+  "endLine": 20605,
   "category": "beings",
   "topic": "Demons",
   "audience": [
@@ -574,8 +574,8 @@
  {
   "title": "Demonic Weaknesses",
   "heading": "Demonic Weaknesses",
-  "line": 20579,
-  "endLine": 20597,
+  "line": 20607,
+  "endLine": 20625,
   "category": "beings",
   "topic": "Demons",
   "audience": [
@@ -596,8 +596,8 @@
  {
   "title": "Demons and Free Will",
   "heading": "Demons and Free Will",
-  "line": 20599,
-  "endLine": 20603,
+  "line": 20627,
+  "endLine": 20631,
   "category": "beings",
   "topic": "Demons",
   "audience": [
@@ -618,8 +618,8 @@
  {
   "title": "Religious Limitations on Demons",
   "heading": "Religious Limitations on Demons",
-  "line": 20605,
-  "endLine": 20611,
+  "line": 20633,
+  "endLine": 20639,
   "category": "beings",
   "topic": "Demons",
   "audience": [
@@ -637,8 +637,8 @@
  {
   "title": "Demons, Auras and Regiones",
   "heading": "Demons, Auras and Regiones",
-  "line": 20613,
-  "endLine": 20623,
+  "line": 20641,
+  "endLine": 20651,
   "category": "realms",
   "topic": "Demons",
   "audience": [
@@ -658,8 +658,8 @@
  {
   "title": "Corrupt Beasts",
   "heading": "Corrupt Beasts",
-  "line": 21066,
-  "endLine": 21070,
+  "line": 21094,
+  "endLine": 21098,
   "category": "beings",
   "topic": "Corrupt beasts",
   "audience": [
@@ -678,8 +678,8 @@
  {
   "title": "Virtues and Flaws for Corrupted Beasts",
   "heading": "Virtues and Flaws for Corrupted Beasts",
-  "line": 21072,
-  "endLine": 21076,
+  "line": 21100,
+  "endLine": 21104,
   "category": "beings",
   "topic": "Corrupt beasts",
   "audience": [
@@ -697,8 +697,8 @@
  {
   "title": "Corrupted Beast (Flaw)",
   "heading": "Corrupted Beast",
-  "line": 21078,
-  "endLine": 21082,
+  "line": 21106,
+  "endLine": 21110,
   "category": "beings",
   "topic": "Corrupt beasts",
   "audience": [
@@ -717,8 +717,8 @@
  {
   "title": "Greater Infernal Power (Corrupted Beasts)",
   "heading": "Greater Infernal Power",
-  "line": 21108,
-  "endLine": 21114,
+  "line": 21136,
+  "endLine": 21142,
   "category": "beings",
   "topic": "Corrupt beasts",
   "audience": [
@@ -739,8 +739,8 @@
  {
   "title": "Lesser Infernal Power (Corrupted Beasts)",
   "heading": "Lesser Infernal Power",
-  "line": 21116,
-  "endLine": 21120,
+  "line": 21144,
+  "endLine": 21148,
   "category": "beings",
   "topic": "Corrupt beasts",
   "audience": [
@@ -761,8 +761,8 @@
  {
   "title": "Creatures of the Divine: General Rules",
   "heading": "Creatures of the Divine",
-  "line": 21196,
-  "endLine": 21204,
+  "line": 21224,
+  "endLine": 21232,
   "category": "beings",
   "topic": "Divine creatures",
   "audience": [
@@ -784,8 +784,8 @@
  {
   "title": "Angelic Powers",
   "heading": "Angelic Powers",
-  "line": 21206,
-  "endLine": 21217,
+  "line": 21234,
+  "endLine": 21245,
   "category": "beings",
   "topic": "Divine creatures",
   "audience": [
@@ -804,8 +804,8 @@
  {
   "title": "Un-Fun History (Adjusting the Setting)",
   "heading": "Un-Fun History",
-  "line": 21510,
-  "endLine": 21518,
+  "line": 21540,
+  "endLine": 21548,
   "category": "setting",
   "topic": "Saga setting options",
   "audience": [
@@ -823,8 +823,8 @@
  {
   "title": "Magic and Sin (Saga Decision)",
   "heading": "Magic and Sin",
-  "line": 21552,
-  "endLine": 21558,
+  "line": 21582,
+  "endLine": 21588,
   "category": "realms",
   "topic": "Magic and the Divine",
   "audience": [
@@ -844,8 +844,8 @@
  {
   "title": "Hermetic Magic and the Sacraments",
   "heading": "Hermetic Magic and the Sacraments",
-  "line": 21602,
-  "endLine": 21606,
+  "line": 21632,
+  "endLine": 21636,
   "category": "realms",
   "topic": "Sacraments",
   "audience": [
@@ -865,8 +865,8 @@
  {
   "title": "Miracles",
   "heading": "Miracles",
-  "line": 21723,
-  "endLine": 21741,
+  "line": 21753,
+  "endLine": 21771,
   "category": "realms",
   "topic": "Miracles",
   "audience": [
@@ -887,8 +887,8 @@
  {
   "title": "Mythic Options: The Nobility",
   "heading": "Mythic Options",
-  "line": 21821,
-  "endLine": 21835,
+  "line": 21851,
+  "endLine": 21865,
   "category": "setting",
   "topic": "Mythic options",
   "audience": [
@@ -906,8 +906,8 @@
  {
   "title": "Mythic Options: Towns and Trade",
   "heading": "Mythic Options",
-  "line": 21887,
-  "endLine": 21893,
+  "line": 21917,
+  "endLine": 21923,
   "category": "setting",
   "topic": "Mythic options",
   "audience": [
@@ -925,8 +925,8 @@
  {
   "title": "Public Power for Women",
   "heading": "Public Power for Women",
-  "line": 21905,
-  "endLine": 21909,
+  "line": 21935,
+  "endLine": 21939,
   "category": "social",
   "topic": "Women and public power",
   "audience": [
@@ -947,8 +947,8 @@
  {
   "title": "Dressing As A Man",
   "heading": "Dressing As A Man",
-  "line": 21911,
-  "endLine": 21915,
+  "line": 21941,
+  "endLine": 21945,
   "category": "social",
   "topic": "Women and public power",
   "audience": [
@@ -969,8 +969,8 @@
  {
   "title": "Holding Land (Women)",
   "heading": "Holding Land",
-  "line": 21917,
-  "endLine": 21951,
+  "line": 21947,
+  "endLine": 21981,
   "category": "social",
   "topic": "Women and public power",
   "audience": [
@@ -990,8 +990,8 @@
  {
   "title": "Variable Outcomes",
   "heading": "Variable Outcomes",
-  "line": 22025,
-  "endLine": 22031,
+  "line": 22055,
+  "endLine": 22061,
   "category": "setting",
   "topic": "Story design",
   "audience": [
@@ -1009,8 +1009,8 @@
  {
   "title": "Story Types (Reactive, Proactive, Soap Opera)",
   "heading": "Story Types",
-  "line": 22051,
-  "endLine": 22083,
+  "line": 22081,
+  "endLine": 22113,
   "category": "setting",
   "topic": "Story design",
   "audience": [
@@ -1030,8 +1030,8 @@
  {
   "title": "Saga Background: History",
   "heading": "History",
-  "line": 22205,
-  "endLine": 22217,
+  "line": 22235,
+  "endLine": 22247,
   "category": "setting",
   "topic": "Saga setup",
   "audience": [
@@ -1051,8 +1051,8 @@
  {
   "title": "Saga Background: The Order of Hermes",
   "heading": "The Order of Hermes",
-  "line": 22219,
-  "endLine": 22225,
+  "line": 22249,
+  "endLine": 22255,
   "category": "order",
   "topic": "Saga setup",
   "audience": [
@@ -1070,8 +1070,8 @@
  {
   "title": "Rules Questions (House Rules)",
   "heading": "Rules Questions",
-  "line": 22227,
-  "endLine": 22245,
+  "line": 22257,
+  "endLine": 22275,
   "category": "setting",
   "topic": "House rules",
   "audience": [
@@ -1092,8 +1092,8 @@
  {
   "title": "Saga Background: The Church",
   "heading": "The Church",
-  "line": 22247,
-  "endLine": 22255,
+  "line": 22277,
+  "endLine": 22285,
   "category": "setting",
   "topic": "Saga setup",
   "audience": [
@@ -1113,8 +1113,8 @@
  {
   "title": "Saga Background: The Fate of Magic",
   "heading": "The Fate of Magic",
-  "line": 22263,
-  "endLine": 22273,
+  "line": 22293,
+  "endLine": 22303,
   "category": "realms",
   "topic": "Saga setup",
   "audience": [
@@ -1132,8 +1132,8 @@
  {
   "title": "Resources (Vis and Books Guidelines)",
   "heading": "Resources",
-  "line": 22275,
-  "endLine": 22293,
+  "line": 22305,
+  "endLine": 22323,
   "category": "covenant",
   "topic": "Saga resources",
   "audience": [
@@ -1153,8 +1153,8 @@
  {
   "title": "Saga Speed",
   "heading": "Saga Speed",
-  "line": 22295,
-  "endLine": 22297,
+  "line": 22325,
+  "endLine": 22327,
   "category": "setting",
   "topic": "Saga speed",
   "audience": [
@@ -1174,8 +1174,8 @@
  {
   "title": "Slow Saga",
   "heading": "Slow Saga",
-  "line": 22299,
-  "endLine": 22305,
+  "line": 22329,
+  "endLine": 22335,
   "category": "setting",
   "topic": "Saga speed",
   "audience": [
@@ -1193,8 +1193,8 @@
  {
   "title": "Medium Saga",
   "heading": "Medium Saga",
-  "line": 22307,
-  "endLine": 22313,
+  "line": 22337,
+  "endLine": 22343,
   "category": "setting",
   "topic": "Saga speed",
   "audience": [
@@ -1212,8 +1212,8 @@
  {
   "title": "Fast Saga",
   "heading": "Fast Saga",
-  "line": 22315,
-  "endLine": 22321,
+  "line": 22345,
+  "endLine": 22351,
   "category": "setting",
   "topic": "Saga speed",
   "audience": [
@@ -1231,8 +1231,8 @@
  {
   "title": "Pulsed Saga",
   "heading": "Pulsed Saga",
-  "line": 22323,
-  "endLine": 22329,
+  "line": 22353,
+  "endLine": 22359,
   "category": "setting",
   "topic": "Saga speed",
   "audience": [
@@ -1250,8 +1250,8 @@
  {
   "title": "Troupe-Style Roleplaying",
   "heading": "Troupe-Style Roleplaying",
-  "line": 22331,
-  "endLine": 22343,
+  "line": 22361,
+  "endLine": 22373,
   "category": "setting",
   "topic": "Troupe-style play",
   "audience": [
@@ -1270,8 +1270,8 @@
  {
   "title": "Alternative Characters (Troupe Style)",
   "heading": "Alternative Characters",
-  "line": 22345,
-  "endLine": 22351,
+  "line": 22375,
+  "endLine": 22381,
   "category": "setting",
   "topic": "Troupe-style play",
   "audience": [
@@ -1290,8 +1290,8 @@
  {
   "title": "Pooled Characters (Troupe Style)",
   "heading": "Pooled Characters",
-  "line": 22353,
-  "endLine": 22369,
+  "line": 22383,
+  "endLine": 22399,
   "category": "setting",
   "topic": "Troupe-style play",
   "audience": [
@@ -1311,8 +1311,8 @@
  {
   "title": "Guest Storyguiding",
   "heading": "Guest Storyguiding",
-  "line": 22371,
-  "endLine": 22379,
+  "line": 22401,
+  "endLine": 22409,
   "category": "setting",
   "topic": "Troupe-style play",
   "audience": [
@@ -1332,8 +1332,8 @@
  {
   "title": "Alpha and Beta Storyguides",
   "heading": "Alpha and Beta Storyguides",
-  "line": 22381,
-  "endLine": 22389,
+  "line": 22411,
+  "endLine": 22419,
   "category": "setting",
   "topic": "Troupe-style play",
   "audience": [
@@ -1351,8 +1351,8 @@
  {
   "title": "Pure Troupe Style",
   "heading": "Pure Troupe Style",
-  "line": 22391,
-  "endLine": 22397,
+  "line": 22421,
+  "endLine": 22427,
   "category": "setting",
   "topic": "Troupe-style play",
   "audience": [
@@ -1370,8 +1370,8 @@
  {
   "title": "Researching a Setting",
   "heading": "Researching a Setting",
-  "line": 22399,
-  "endLine": 22433,
+  "line": 22429,
+  "endLine": 22463,
   "category": "setting",
   "topic": "Saga setup",
   "audience": [
@@ -1391,8 +1391,8 @@
  {
   "title": "Saga Styles",
   "heading": "Saga Styles",
-  "line": 22435,
-  "endLine": 22465,
+  "line": 22465,
+  "endLine": 22495,
   "category": "setting",
   "topic": "Saga setup",
   "audience": [
@@ -1410,8 +1410,8 @@
  {
   "title": "Saga Priorities",
   "heading": "Saga Priorities",
-  "line": 22467,
-  "endLine": 22479,
+  "line": 22497,
+  "endLine": 22509,
   "category": "setting",
   "topic": "Saga setup",
   "audience": [
@@ -1431,8 +1431,8 @@
  {
   "title": "Fourth Edition Conversion: What Changed",
   "heading": "The Long Answer",
-  "line": 22551,
-  "endLine": 22611,
+  "line": 22581,
+  "endLine": 22641,
   "category": "creation",
   "topic": "Fourth Edition conversion",
   "audience": [
@@ -1453,8 +1453,8 @@
  {
   "title": "Fourth Edition Character Conversion",
   "heading": "Character Conversion",
-  "line": 22613,
-  "endLine": 22627,
+  "line": 22643,
+  "endLine": 22657,
   "category": "creation",
   "topic": "Fourth Edition conversion",
   "audience": [

@@ -2,8 +2,8 @@
  {
   "title": "Hawking",
   "heading": "Hawking",
-  "line": 2481,
-  "endLine": 2507,
+  "line": 2491,
+  "endLine": 2517,
   "category": "setting",
   "topic": "Hawking and Falconry",
   "audience": [
@@ -24,8 +24,8 @@
  {
   "title": "Birds and Aging",
   "heading": "Birds and Aging",
-  "line": 2508,
-  "endLine": 2510,
+  "line": 2518,
+  "endLine": 2520,
   "category": "aging",
   "topic": "Hawking and Falconry",
   "audience": [
@@ -44,8 +44,8 @@
  {
   "title": "Some Typical Prey Animals",
   "heading": "Some Typical Prey Animals",
-  "line": 2512,
-  "endLine": 2521,
+  "line": 2522,
+  "endLine": 2531,
   "category": "beings",
   "topic": "Hawking and Falconry",
   "audience": [
@@ -61,8 +61,8 @@
  {
   "title": "Running an Establishment",
   "heading": "Running an Establishment",
-  "line": 2525,
-  "endLine": 2596,
+  "line": 2535,
+  "endLine": 2606,
   "category": "setting",
   "topic": "Kennels, Mews, and Stables",
   "audience": [
@@ -84,8 +84,8 @@
  {
   "title": "The Kennels",
   "heading": "The Kennels",
-  "line": 2598,
-  "endLine": 2602,
+  "line": 2608,
+  "endLine": 2612,
   "category": "setting",
   "topic": "Kennels, Mews, and Stables",
   "audience": [
@@ -103,8 +103,8 @@
  {
   "title": "Kennels, Mews, and Stables Tables",
   "heading": "Kennels, Mews, and Stables Tables",
-  "line": 2612,
-  "endLine": 2643,
+  "line": 2622,
+  "endLine": 2653,
   "category": "setting",
   "topic": "Kennels, Mews, and Stables",
   "audience": [
@@ -121,8 +121,8 @@
  {
   "title": "Living Conditions and Specialists",
   "heading": "Living Conditions and Specialists",
-  "line": 2645,
-  "endLine": 2649,
+  "line": 2655,
+  "endLine": 2659,
   "category": "setting",
   "topic": "Kennels, Mews, and Stables",
   "audience": [
@@ -142,8 +142,8 @@
  {
   "title": "Is Love True?",
   "heading": "Is Love True?",
-  "line": 2718,
-  "endLine": 2726,
+  "line": 2728,
+  "endLine": 2736,
   "category": "social",
   "topic": "Courtly Love",
   "audience": [
@@ -161,8 +161,8 @@
  {
   "title": "Patronage",
   "heading": "Patronage",
-  "line": 2728,
-  "endLine": 2754,
+  "line": 2738,
+  "endLine": 2764,
   "category": "social",
   "topic": "Patronage",
   "audience": [
@@ -186,8 +186,8 @@
  {
   "title": "The Tournament",
   "heading": "The Tournament",
-  "line": 2756,
-  "endLine": 2772,
+  "line": 2766,
+  "endLine": 2782,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -204,8 +204,8 @@
  {
   "title": "Staging a Tournament",
   "heading": "Staging a Tournament",
-  "line": 2774,
-  "endLine": 2776,
+  "line": 2784,
+  "endLine": 2786,
   "category": "setting",
   "topic": "Tournaments",
   "audience": [
@@ -216,15 +216,15 @@
   "requires": "",
   "summary": "How often tournaments of different sizes occur and when in the year they are held.",
   "quotes": [
-   "a large tournament \u2014 in excess of a thousand knights \u2014 can be found on average once per season"
+   "a large tournament — in excess of a thousand knights — can be found on average once per season"
   ],
   "related": []
  },
  {
   "title": "Bohorts, Tirocinia, and Jousts",
   "heading": "Bohorts, Tirocinia, and Jousts",
-  "line": 2778,
-  "endLine": 2784,
+  "line": 2788,
+  "endLine": 2794,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -245,8 +245,8 @@
  {
   "title": "Costs",
   "heading": "Costs",
-  "line": 2796,
-  "endLine": 2810,
+  "line": 2806,
+  "endLine": 2820,
   "category": "social",
   "topic": "Tournaments",
   "audience": [
@@ -267,8 +267,8 @@
  {
   "title": "Team Sponsors",
   "heading": "Team Sponsors",
-  "line": 2812,
-  "endLine": 2814,
+  "line": 2822,
+  "endLine": 2824,
   "category": "social",
   "topic": "Tournaments",
   "audience": [
@@ -287,8 +287,8 @@
  {
   "title": "Rules of Melee",
   "heading": "Rules of Melee",
-  "line": 2846,
-  "endLine": 2850,
+  "line": 2856,
+  "endLine": 2860,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -305,8 +305,8 @@
  {
   "title": "Ransom",
   "heading": "Ransom",
-  "line": 2852,
-  "endLine": 2858,
+  "line": 2862,
+  "endLine": 2868,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -326,8 +326,8 @@
  {
   "title": "Companies of Men",
   "heading": "Companies of Men",
-  "line": 2860,
-  "endLine": 2864,
+  "line": 2870,
+  "endLine": 2874,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -349,8 +349,8 @@
  {
   "title": "Profession Herald",
   "heading": "Profession Herald",
-  "line": 2866,
-  "endLine": 2868,
+  "line": 2876,
+  "endLine": 2878,
   "category": "basics",
   "topic": "Abilities",
   "audience": [
@@ -369,8 +369,8 @@
  {
   "title": "Tournament Combat",
   "heading": "Tournament Combat",
-  "line": 2885,
-  "endLine": 2889,
+  "line": 2893,
+  "endLine": 2897,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -391,8 +391,8 @@
  {
   "title": "Jousting",
   "heading": "Jousting",
-  "line": 2895,
-  "endLine": 2897,
+  "line": 2903,
+  "endLine": 2905,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -413,8 +413,8 @@
  {
   "title": "Melee Events Table",
   "heading": "Melee Events Table",
-  "line": 2899,
-  "endLine": 2913,
+  "line": 2907,
+  "endLine": 2921,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -434,8 +434,8 @@
  {
   "title": "The Grand Charge",
   "heading": "The Grand Charge",
-  "line": 2923,
-  "endLine": 2929,
+  "line": 2931,
+  "endLine": 2937,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -455,8 +455,8 @@
  {
   "title": "High Ambition",
   "heading": "High Ambition",
-  "line": 2931,
-  "endLine": 2942,
+  "line": 2939,
+  "endLine": 2950,
   "category": "combat",
   "topic": "Tournaments",
   "audience": [
@@ -476,8 +476,8 @@
  {
   "title": "Gaining and Losing Reputation",
   "heading": "Gaining and Losing Reputation",
-  "line": 2944,
-  "endLine": 2953,
+  "line": 2952,
+  "endLine": 2961,
   "category": "social",
   "topic": "Reputation",
   "audience": [
@@ -498,8 +498,8 @@
  {
   "title": "Company Reputations",
   "heading": "Company Reputations",
-  "line": 2955,
-  "endLine": 2959,
+  "line": 2963,
+  "endLine": 2967,
   "category": "social",
   "topic": "Reputation",
   "audience": [
@@ -518,8 +518,8 @@
  {
   "title": "Patronage",
   "heading": "Patronage",
-  "line": 2965,
-  "endLine": 2970,
+  "line": 2973,
+  "endLine": 2978,
   "category": "social",
   "topic": "Reputation",
   "audience": [
@@ -540,8 +540,8 @@
  {
   "title": "Tournaments as Income",
   "heading": "Tournaments as Income",
-  "line": 2972,
-  "endLine": 2996,
+  "line": 2980,
+  "endLine": 3004,
   "category": "seasons",
   "topic": "Labor Points",
   "audience": [
@@ -562,8 +562,8 @@
  {
   "title": "Awards",
   "heading": "Awards",
-  "line": 2998,
-  "endLine": 3004,
+  "line": 3006,
+  "endLine": 3012,
   "category": "social",
   "topic": "Tournaments",
   "audience": [
@@ -581,8 +581,8 @@
  {
   "title": "The Simple System, From the Core Rulebook",
   "heading": "The Simple System, From the Core Rulebook",
-  "line": 3010,
-  "endLine": 3018,
+  "line": 3018,
+  "endLine": 3026,
   "category": "social",
   "topic": "Wealth and Money",
   "audience": [
@@ -603,8 +603,8 @@
  {
   "title": "The Mythic Pound System, From Covenants",
   "heading": "The Mythic Pound System, From Covenants",
-  "line": 3020,
-  "endLine": 3030,
+  "line": 3028,
+  "endLine": 3038,
   "category": "social",
   "topic": "Wealth and Money",
   "audience": [
@@ -628,8 +628,8 @@
  {
   "title": "The Manor: The Model Fief",
   "heading": "The Manor: The Model Fief",
-  "line": 3052,
-  "endLine": 3056,
+  "line": 3060,
+  "endLine": 3064,
   "category": "setting",
   "topic": "Manors and Fiefs",
   "audience": [
@@ -648,10 +648,10 @@
   ]
  },
  {
-  "title": "How Big is a\u2026?",
-  "heading": "How Big is a\u2026?",
-  "line": 3062,
-  "endLine": 3090,
+  "title": "How Big is a…?",
+  "heading": "How Big is a…?",
+  "line": 3070,
+  "endLine": 3096,
   "category": "setting",
   "topic": "Manors and Fiefs",
   "audience": [
@@ -674,8 +674,8 @@
  {
   "title": "Story Seed: The Foundation Charm",
   "heading": "Story Seed: The Foundation Charm",
-  "line": 3118,
-  "endLine": 3124,
+  "line": 3124,
+  "endLine": 3130,
   "category": "traditions",
   "topic": "Witch bottles",
   "audience": [
@@ -695,8 +695,8 @@
  {
   "title": "Farmland",
   "heading": "Farmland",
-  "line": 3186,
-  "endLine": 3192,
+  "line": 3192,
+  "endLine": 3198,
   "category": "setting",
   "topic": "Manors and Fiefs",
   "audience": [
@@ -715,8 +715,8 @@
  {
   "title": "Arable",
   "heading": "Arable",
-  "line": 3194,
-  "endLine": 3200,
+  "line": 3200,
+  "endLine": 3206,
   "category": "setting",
   "topic": "Farming",
   "audience": [
@@ -735,8 +735,8 @@
  {
   "title": "Pasture",
   "heading": "Pasture",
-  "line": 3206,
-  "endLine": 3218,
+  "line": 3212,
+  "endLine": 3224,
   "category": "setting",
   "topic": "Farming",
   "audience": [
@@ -755,8 +755,8 @@
  {
   "title": "The Lord's Portion: The Demesne",
   "heading": "The Lord's Portion: The Demesne",
-  "line": 3220,
-  "endLine": 3226,
+  "line": 3226,
+  "endLine": 3232,
   "category": "setting",
   "topic": "Manors and Fiefs",
   "audience": [
@@ -777,8 +777,8 @@
  {
   "title": "Waste",
   "heading": "Waste",
-  "line": 3260,
-  "endLine": 3264,
+  "line": 3266,
+  "endLine": 3270,
   "category": "realms",
   "topic": "Manors and Fiefs",
   "audience": [
@@ -796,8 +796,8 @@
  {
   "title": "Warrens",
   "heading": "Warrens",
-  "line": 3292,
-  "endLine": 3296,
+  "line": 3298,
+  "endLine": 3302,
   "category": "setting",
   "topic": "Manorial rights",
   "audience": [
@@ -816,8 +816,8 @@
  {
   "title": "Mineral Rights",
   "heading": "Mineral Rights",
-  "line": 3298,
-  "endLine": 3300,
+  "line": 3304,
+  "endLine": 3306,
   "category": "setting",
   "topic": "Manorial rights",
   "audience": [
@@ -836,8 +836,8 @@
  {
   "title": "Heriot, Mortuary, and Laity Objects",
   "heading": "Heriot, Mortuary, and Laity Objects",
-  "line": 3310,
-  "endLine": 3322,
+  "line": 3316,
+  "endLine": 3328,
   "category": "setting",
   "topic": "Manorial rights",
   "audience": [
@@ -857,8 +857,8 @@
  {
   "title": "Tallage",
   "heading": "Tallage",
-  "line": 3324,
-  "endLine": 3338,
+  "line": 3330,
+  "endLine": 3344,
   "category": "setting",
   "topic": "Manorial rights",
   "audience": [
@@ -877,8 +877,8 @@
  {
   "title": "The Manor Court",
   "heading": "The Manor Court",
-  "line": 3340,
-  "endLine": 3342,
+  "line": 3346,
+  "endLine": 3348,
   "category": "setting",
   "topic": "Manor Court",
   "audience": [
@@ -897,8 +897,8 @@
  {
   "title": "Juries",
   "heading": "Juries",
-  "line": 3350,
-  "endLine": 3360,
+  "line": 3356,
+  "endLine": 3366,
   "category": "setting",
   "topic": "Manor Court",
   "audience": [
@@ -917,8 +917,8 @@
  {
   "title": "Disputes",
   "heading": "Disputes",
-  "line": 3362,
-  "endLine": 3364,
+  "line": 3368,
+  "endLine": 3370,
   "category": "setting",
   "topic": "Manor Court",
   "audience": [
@@ -937,8 +937,8 @@
  {
   "title": "Disputes Based on Weights and Measures",
   "heading": "Disputes Based on Weights and Measures",
-  "line": 3366,
-  "endLine": 3372,
+  "line": 3372,
+  "endLine": 3378,
   "category": "setting",
   "topic": "Manor Court",
   "audience": [
@@ -956,8 +956,8 @@
  {
   "title": "Seizure",
   "heading": "Seizure",
-  "line": 3394,
-  "endLine": 3396,
+  "line": 3400,
+  "endLine": 3402,
   "category": "setting",
   "topic": "Manorial fines",
   "audience": [
@@ -975,8 +975,8 @@
  {
   "title": "Sex Taxes: Merchet, Leywrite, Childwrite, and Fines for Celibacy",
   "heading": "Sex Taxes: Merchet, Leywrite, Childwrite, and Fines for Celibacy",
-  "line": 3406,
-  "endLine": 3420,
+  "line": 3412,
+  "endLine": 3426,
   "category": "setting",
   "topic": "Manorial fines",
   "audience": [
@@ -995,8 +995,8 @@
  {
   "title": "Fines for Being Fined",
   "heading": "Fines for Being Fined",
-  "line": 3422,
-  "endLine": 3424,
+  "line": 3428,
+  "endLine": 3430,
   "category": "setting",
   "topic": "Manorial fines",
   "audience": [
@@ -1014,8 +1014,8 @@
  {
   "title": "Trade",
   "heading": "Trade",
-  "line": 3426,
-  "endLine": 3432,
+  "line": 3432,
+  "endLine": 3438,
   "category": "setting",
   "topic": "Wealth and Money",
   "audience": [
@@ -1036,8 +1036,8 @@
  {
   "title": "Church",
   "heading": "Church",
-  "line": 3436,
-  "endLine": 3444,
+  "line": 3442,
+  "endLine": 3450,
   "category": "setting",
   "topic": "Manorial Church",
   "audience": [
@@ -1058,8 +1058,8 @@
  {
   "title": "Improvement",
   "heading": "Improvement",
-  "line": 3484,
-  "endLine": 3486,
+  "line": 3490,
+  "endLine": 3492,
   "category": "setting",
   "topic": "Improving Fiefs",
   "audience": [
@@ -1076,8 +1076,8 @@
  {
   "title": "Assarting",
   "heading": "Assarting",
-  "line": 3488,
-  "endLine": 3496,
+  "line": 3494,
+  "endLine": 3502,
   "category": "setting",
   "topic": "Improving Fiefs",
   "audience": [
@@ -1096,8 +1096,8 @@
  {
   "title": "Land Management",
   "heading": "Land Management",
-  "line": 3504,
-  "endLine": 3508,
+  "line": 3510,
+  "endLine": 3514,
   "category": "setting",
   "topic": "Improving Fiefs",
   "audience": [
@@ -1118,8 +1118,8 @@
  {
   "title": "Purchase",
   "heading": "Purchase",
-  "line": 3514,
-  "endLine": 3516,
+  "line": 3520,
+  "endLine": 3522,
   "category": "setting",
   "topic": "Improving Fiefs",
   "audience": [
@@ -1139,8 +1139,8 @@
  {
   "title": "Discuss Poverty in Your Saga",
   "heading": "Discuss Poverty in Your Saga",
-  "line": 3554,
-  "endLine": 3578,
+  "line": 3558,
+  "endLine": 3582,
   "category": "setting",
   "topic": "Saga tone",
   "audience": [
@@ -1158,8 +1158,8 @@
  {
   "title": "The Unemployed and Day Workers",
   "heading": "The Unemployed and Day Workers",
-  "line": 3590,
-  "endLine": 3598,
+  "line": 3594,
+  "endLine": 3602,
   "category": "social",
   "topic": "Peasant classes",
   "audience": [
@@ -1179,8 +1179,8 @@
  {
   "title": "Famuli and Other Retained Servants",
   "heading": "Famuli and Other Retained Servants",
-  "line": 3600,
-  "endLine": 3610,
+  "line": 3604,
+  "endLine": 3614,
   "category": "social",
   "topic": "Peasant classes",
   "audience": [
@@ -1199,8 +1199,8 @@
  {
   "title": "Serf or Villein",
   "heading": "Serf or Villein",
-  "line": 3612,
-  "endLine": 3628,
+  "line": 3616,
+  "endLine": 3630,
   "category": "social",
   "topic": "Peasant classes",
   "audience": [
@@ -1220,8 +1220,8 @@
  {
   "title": "Offices for Villeins",
   "heading": "Offices for Villeins",
-  "line": 3630,
-  "endLine": 3658,
+  "line": 3632,
+  "endLine": 3660,
   "category": "social",
   "topic": "Peasant classes",
   "audience": [
@@ -1241,8 +1241,8 @@
  {
   "title": "Free Peasants",
   "heading": "Free Peasants",
-  "line": 3668,
-  "endLine": 3674,
+  "line": 3670,
+  "endLine": 3676,
   "category": "social",
   "topic": "Peasant classes",
   "audience": [
@@ -1261,8 +1261,8 @@
  {
   "title": "Officers",
   "heading": "Officers",
-  "line": 3676,
-  "endLine": 3694,
+  "line": 3678,
+  "endLine": 3696,
   "category": "social",
   "topic": "Peasant classes",
   "audience": [
@@ -1282,8 +1282,8 @@
  {
   "title": "Peasant Loyalty",
   "heading": "Peasant Loyalty",
-  "line": 3712,
-  "endLine": 3718,
+  "line": 3714,
+  "endLine": 3720,
   "category": "social",
   "topic": "Loyalty",
   "audience": [
@@ -1305,8 +1305,8 @@
  {
   "title": "Community Loyalty",
   "heading": "Community Loyalty",
-  "line": 3720,
-  "endLine": 3722,
+  "line": 3722,
+  "endLine": 3724,
   "category": "social",
   "topic": "Loyalty",
   "audience": [
@@ -1325,8 +1325,8 @@
  {
   "title": "Flight and Rebellion",
   "heading": "Flight and Rebellion",
-  "line": 3724,
-  "endLine": 3730,
+  "line": 3726,
+  "endLine": 3732,
   "category": "social",
   "topic": "Loyalty",
   "audience": [
@@ -1348,8 +1348,8 @@
  {
   "title": "Nothing Grows for the Wicked",
   "heading": "Nothing Grows for the Wicked",
-  "line": 3732,
-  "endLine": 3736,
+  "line": 3734,
+  "endLine": 3738,
   "category": "social",
   "topic": "Loyalty",
   "audience": [
@@ -1370,8 +1370,8 @@
  {
   "title": "Improvement in Living Standards",
   "heading": "Improvement in Living Standards",
-  "line": 3753,
-  "endLine": 3755,
+  "line": 3755,
+  "endLine": 3757,
   "category": "social",
   "topic": "Peasant sins and wealth",
   "audience": [
@@ -1389,8 +1389,8 @@
  {
   "title": "Paying Tithes Inadequately",
   "heading": "Paying Tithes Inadequately",
-  "line": 3757,
-  "endLine": 3771,
+  "line": 3759,
+  "endLine": 3773,
   "category": "social",
   "topic": "Tithes",
   "audience": [
@@ -1409,8 +1409,8 @@
  {
   "title": "The Economics of Tithing",
   "heading": "The Economics of Tithing",
-  "line": 3773,
-  "endLine": 3779,
+  "line": 3775,
+  "endLine": 3781,
   "category": "social",
   "topic": "Tithes",
   "audience": [
@@ -1430,8 +1430,8 @@
  {
   "title": "Manumission by Lay Lords",
   "heading": "Manumission by Lay Lords",
-  "line": 3894,
-  "endLine": 3902,
+  "line": 3896,
+  "endLine": 3904,
   "category": "social",
   "topic": "Freedom and manumission",
   "audience": [
@@ -1451,8 +1451,8 @@
  {
   "title": "Manumission by Membership of a Town's Guild",
   "heading": "Manumission by Membership of a Town's Guild",
-  "line": 3910,
-  "endLine": 3912,
+  "line": 3912,
+  "endLine": 3914,
   "category": "social",
   "topic": "Freedom and manumission",
   "audience": [
@@ -1473,8 +1473,8 @@
  {
   "title": "The Agricultural Year",
   "heading": "The Agricultural Year",
-  "line": 3918,
-  "endLine": 3920,
+  "line": 3920,
+  "endLine": 3922,
   "category": "seasons",
   "topic": "Farming",
   "audience": [
@@ -1493,8 +1493,8 @@
  {
   "title": "Two or Three Field Rotation",
   "heading": "Two or Three Field Rotation",
-  "line": 3922,
-  "endLine": 3930,
+  "line": 3924,
+  "endLine": 3932,
   "category": "setting",
   "topic": "Farming",
   "audience": [
@@ -1513,8 +1513,8 @@
  {
   "title": "May",
   "heading": "May",
-  "line": 4032,
-  "endLine": 4054,
+  "line": 4034,
+  "endLine": 4056,
   "category": "traditions",
   "topic": "Farming",
   "audience": [
@@ -1537,8 +1537,8 @@
  {
   "title": "June",
   "heading": "June",
-  "line": 4056,
-  "endLine": 4064,
+  "line": 4058,
+  "endLine": 4066,
   "category": "setting",
   "topic": "Farming",
   "audience": [
@@ -1557,8 +1557,8 @@
  {
   "title": "Medieval Armies",
   "heading": "Medieval Armies",
-  "line": 4074,
-  "endLine": 4086,
+  "line": 4076,
+  "endLine": 4088,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1570,7 +1570,7 @@
   "requires": "",
   "summary": "The categories of troops in an army, the Living Conditions and disease cost of campaigning, the usual mix of units, and the baggage units an army needs, with a Leadership penalty when they are missing.",
   "quotes": [
-   "Characters suffer a \u20131 Living Conditions modifier for each year during which they spend at least one season in a campaigning army.",
+   "Characters suffer a –1 Living Conditions modifier for each year during which they spend at least one season in a campaigning army.",
    "For every ten units in an army (rounded up) the army also needs one unit of baggage."
   ],
   "related": [
@@ -1580,8 +1580,8 @@
  {
   "title": "Vassals",
   "heading": "Vassals",
-  "line": 4092,
-  "endLine": 4106,
+  "line": 4094,
+  "endLine": 4108,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1600,8 +1600,8 @@
  {
   "title": "Allies",
   "heading": "Allies",
-  "line": 4108,
-  "endLine": 4110,
+  "line": 4110,
+  "endLine": 4112,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1620,8 +1620,8 @@
  {
   "title": "Affinity",
   "heading": "Affinity",
-  "line": 4112,
-  "endLine": 4116,
+  "line": 4114,
+  "endLine": 4118,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1640,8 +1640,8 @@
  {
   "title": "The Articles of War",
   "heading": "The Articles of War",
-  "line": 4118,
-  "endLine": 4122,
+  "line": 4120,
+  "endLine": 4124,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1659,8 +1659,8 @@
  {
   "title": "Chevauchee",
   "heading": "Chevauchee",
-  "line": 4124,
-  "endLine": 4128,
+  "line": 4126,
+  "endLine": 4130,
   "category": "hazards",
   "topic": "Mass combat",
   "audience": [
@@ -1671,7 +1671,7 @@
   "requires": "",
   "summary": "A scorched-earth raiding tactic, with a Living Conditions penalty to the Aging rolls of those who return to the ravaged land and a possible Infernal aura in extreme cases.",
   "quotes": [
-   "Those returning to such an area suffer a \u20132 Living Conditions modifier (in addition to any existing modifiers) to their next Aging roll."
+   "Those returning to such an area suffer a –2 Living Conditions modifier (in addition to any existing modifiers) to their next Aging roll."
   ],
   "related": [
    "Realms of Power: The Infernal pp.11, 15"
@@ -1680,8 +1680,8 @@
  {
   "title": "Mercenary Budget",
   "heading": "Mercenary Budget",
-  "line": 4130,
-  "endLine": 4197,
+  "line": 4132,
+  "endLine": 4199,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1704,8 +1704,8 @@
  {
   "title": "Allied Troops Table",
   "heading": "Allied Troops Table",
-  "line": 4136,
-  "endLine": 4166,
+  "line": 4138,
+  "endLine": 4168,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1724,8 +1724,8 @@
  {
   "title": "Mercenary Units",
   "heading": "Mercenary Units",
-  "line": 4177,
-  "endLine": 4187,
+  "line": 4179,
+  "endLine": 4189,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1747,8 +1747,8 @@
  {
   "title": "Winning the Battle from Afar",
   "heading": "Winning the Battle from Afar",
-  "line": 4199,
-  "endLine": 4201,
+  "line": 4201,
+  "endLine": 4203,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1766,8 +1766,8 @@
  {
   "title": "Crusaders",
   "heading": "Crusaders",
-  "line": 4203,
-  "endLine": 4205,
+  "line": 4205,
+  "endLine": 4207,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1787,8 +1787,8 @@
  {
   "title": "Heroic Endeavors",
   "heading": "Heroic Endeavors",
-  "line": 4207,
-  "endLine": 4211,
+  "line": 4209,
+  "endLine": 4213,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1810,8 +1810,8 @@
  {
   "title": "Territorial Advantage",
   "heading": "Territorial Advantage",
-  "line": 4213,
-  "endLine": 4240,
+  "line": 4215,
+  "endLine": 4242,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1824,7 +1824,7 @@
   "summary": "Each army generates a Deployment Total, and the difference gives territorial advantage; commanders may delegate the roll to a lieutenant, and the battlefield's features and auras affect events.",
   "quotes": [
    "Deployment Total: Intelligence + Area Lore + Stress Die",
-   "Territorial Advantage: Deployment Total \u2013 Enemy Deployment Total"
+   "Territorial Advantage: Deployment Total – Enemy Deployment Total"
   ],
   "related": [
    "Realms of Power: The Infernal p.10"
@@ -1833,8 +1833,8 @@
  {
   "title": "The Flow of Battle",
   "heading": "The Flow of Battle",
-  "line": 4223,
-  "endLine": 4230,
+  "line": 4225,
+  "endLine": 4232,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1853,8 +1853,8 @@
  {
   "title": "Knights Banneret and Mercenary Captains",
   "heading": "Knights Banneret and Mercenary Captains",
-  "line": 4232,
-  "endLine": 4234,
+  "line": 4234,
+  "endLine": 4236,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1872,8 +1872,8 @@
  {
   "title": "Using Magic to Seize Advantage",
   "heading": "Using Magic to Seize Advantage",
-  "line": 4242,
-  "endLine": 4244,
+  "line": 4244,
+  "endLine": 4246,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1891,8 +1891,8 @@
  {
   "title": "Weight of Numbers",
   "heading": "Weight of Numbers",
-  "line": 4246,
-  "endLine": 4258,
+  "line": 4248,
+  "endLine": 4260,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1911,8 +1911,8 @@
  {
   "title": "Battlefield Events",
   "heading": "Battlefield Events",
-  "line": 4260,
-  "endLine": 4286,
+  "line": 4262,
+  "endLine": 4288,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1933,8 +1933,8 @@
  {
   "title": "Maneuver",
   "heading": "Maneuver",
-  "line": 4288,
-  "endLine": 4300,
+  "line": 4290,
+  "endLine": 4302,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1953,8 +1953,8 @@
  {
   "title": "Size",
   "heading": "Size",
-  "line": 4302,
-  "endLine": 4316,
+  "line": 4304,
+  "endLine": 4318,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1973,8 +1973,8 @@
  {
   "title": "Enemy",
   "heading": "Enemy",
-  "line": 4318,
-  "endLine": 4330,
+  "line": 4320,
+  "endLine": 4332,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1993,8 +1993,8 @@
  {
   "title": "Wounds and Attrition",
   "heading": "Wounds and Attrition",
-  "line": 4332,
-  "endLine": 4340,
+  "line": 4334,
+  "endLine": 4342,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -2016,8 +2016,8 @@
  {
   "title": "Example Battlefield Events",
   "heading": "Example Battlefield Events",
-  "line": 4342,
-  "endLine": 4446,
+  "line": 4344,
+  "endLine": 4444,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -2038,8 +2038,8 @@
  {
   "title": "The Aftermath of Battle",
   "heading": "The Aftermath of Battle",
-  "line": 4448,
-  "endLine": 4454,
+  "line": 4446,
+  "endLine": 4452,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -2061,8 +2061,8 @@
  {
   "title": "Standard Combat Groups",
   "heading": "Standard Combat Groups",
-  "line": 4456,
-  "endLine": 4474,
+  "line": 4454,
+  "endLine": 4472,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -2082,8 +2082,8 @@
  {
   "title": "Mercenary Troops",
   "heading": "Mercenary Troops",
-  "line": 4476,
-  "endLine": 4480,
+  "line": 4474,
+  "endLine": 4478,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [

@@ -2,8 +2,8 @@
  {
   "title": "Daimons and Aspects",
   "heading": "Daimons and Aspects",
-  "line": 588,
-  "endLine": 594,
+  "line": 592,
+  "endLine": 598,
   "category": "beings",
   "topic": "Daimons and Aspects",
   "audience": [
@@ -24,8 +24,8 @@
  {
   "title": "Criamon Player Characters in the End of Time",
   "heading": "Criamon Player Characters",
-  "line": 636,
-  "endLine": 648,
+  "line": 640,
+  "endLine": 652,
   "category": "setting",
   "topic": "House Criamon plot",
   "audience": [
@@ -45,8 +45,8 @@
  {
   "title": "Divine and Infernal Player Characters in the End of Time",
   "heading": "Divine and Infernal Player Characters",
-  "line": 650,
-  "endLine": 654,
+  "line": 654,
+  "endLine": 658,
   "category": "setting",
   "topic": "House Criamon plot",
   "audience": [
@@ -64,8 +64,8 @@
  {
   "title": "Everything is a Lie: What Criamon Know of the Plan",
   "heading": "Everything is a Lie",
-  "line": 656,
-  "endLine": 669,
+  "line": 660,
+  "endLine": 673,
   "category": "order",
   "topic": "House Criamon plot",
   "audience": [
@@ -87,8 +87,8 @@
  {
   "title": "Advancing the Antagonists (Aetheric Magic after the breakthrough)",
   "heading": "Advancing the Antagonists",
-  "line": 726,
-  "endLine": 728,
+  "line": 730,
+  "endLine": 732,
   "category": "mysteries",
   "topic": "Aetheric Magic",
   "audience": [
@@ -106,8 +106,8 @@
  {
   "title": "Cosmology of the Spheres",
   "heading": "Cosmology",
-  "line": 1078,
-  "endLine": 1092,
+  "line": 1139,
+  "endLine": 1153,
   "category": "magic",
   "topic": "Cosmology and the Lunar Sphere",
   "audience": [
@@ -128,8 +128,8 @@
  {
   "title": "Properties of the Axis Mundi",
   "heading": "Properties of the Axis Mundi",
-  "line": 1104,
-  "endLine": 1112,
+  "line": 1165,
+  "endLine": 1173,
   "category": "realms",
   "topic": "Axis Mundi",
   "audience": [
@@ -148,8 +148,8 @@
  {
   "title": "The Fallen Star: Searing Light of Heaven",
   "heading": "The Fallen Star",
-  "line": 1509,
-  "endLine": 1519,
+  "line": 1581,
+  "endLine": 1591,
   "category": "hazards",
   "topic": "Aetheric hazards",
   "audience": [
@@ -170,8 +170,8 @@
  {
   "title": "Interrupting the Criamon Ritual",
   "heading": "Interrupting the Ritual",
-  "line": 1705,
-  "endLine": 1721,
+  "line": 1777,
+  "endLine": 1793,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -189,8 +189,8 @@
  {
   "title": "The End of All Moments",
   "heading": "The End of All Moments",
-  "line": 1752,
-  "endLine": 1758,
+  "line": 1824,
+  "endLine": 1830,
   "category": "magic",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -211,8 +211,8 @@
  {
   "title": "Designing the Ritual: Hold the Sky in Thrall",
   "heading": "Designing the Ritual",
-  "line": 1776,
-  "endLine": 1797,
+  "line": 1848,
+  "endLine": 1869,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -232,8 +232,8 @@
  {
   "title": "The Falling of the World into Ruin (Moon Fragment Strikes)",
   "heading": "The Falling of the World into Ruin",
-  "line": 1829,
-  "endLine": 1835,
+  "line": 1901,
+  "endLine": 1907,
   "category": "hazards",
   "topic": "Apocalypse of the Moon",
   "audience": [
@@ -252,8 +252,8 @@
  {
   "title": "Apocalypse Condition: Sickness",
   "heading": "Sickness",
-  "line": 1845,
-  "endLine": 1849,
+  "line": 1917,
+  "endLine": 1921,
   "category": "aging",
   "topic": "Apocalypse of the Moon",
   "audience": [
@@ -265,7 +265,7 @@
   "requires": "After the Criamon ritual succeeds",
   "summary": "Smoke and ash cause non-natural sickness, raising the frequency of choleric diseases and imposing a modifier on aging rolls, even within covenants, which may in turn affect covenfolk loyalty.",
   "quotes": [
-   "These conditions that promote sickness also impose a \u20132 aging roll modifier."
+   "These conditions that promote sickness also impose a –2 aging roll modifier."
   ],
   "related": [
    "ArM5 Art & Academe pp.47-51",
@@ -276,8 +276,8 @@
  {
   "title": "Apocalypse Condition: Lunacy",
   "heading": "Lunacy",
-  "line": 1851,
-  "endLine": 1855,
+  "line": 1923,
+  "endLine": 1927,
   "category": "hazards",
   "topic": "Apocalypse of the Moon",
   "audience": [
@@ -295,8 +295,8 @@
  {
   "title": "Apocalypse Condition: Famine",
   "heading": "Famine",
-  "line": 1857,
-  "endLine": 1863,
+  "line": 1929,
+  "endLine": 1935,
   "category": "hazards",
   "topic": "Apocalypse of the Moon",
   "audience": [
@@ -308,15 +308,15 @@
   "requires": "After the Criamon ritual succeeds",
   "summary": "Food becomes scarce, imposing a cumulative annual living standards modifier that covenants can offset with magical resources for their covenfolk and protected areas.",
   "quotes": [
-   "Each year after the first, a cumulative \u20131 living standards modifier is imposed as food becomes more scarce and less nutritious."
+   "Each year after the first, a cumulative –1 living standards modifier is imposed as food becomes more scarce and less nutritious."
   ],
   "related": []
  },
  {
   "title": "Apocalypse Condition: Loss of Rule",
   "heading": "Loss of Rule",
-  "line": 1865,
-  "endLine": 1869,
+  "line": 1937,
+  "endLine": 1941,
   "category": "social",
   "topic": "Apocalypse of the Moon",
   "audience": [
@@ -334,8 +334,8 @@
  {
   "title": "Apocalypse Condition: Aetheric Storms",
   "heading": "Aetheric Storms",
-  "line": 1871,
-  "endLine": 1877,
+  "line": 1943,
+  "endLine": 1949,
   "category": "hazards",
   "topic": "Apocalypse of the Moon",
   "audience": [
@@ -354,8 +354,8 @@
  {
   "title": "Creatures of Lunar Fire",
   "heading": "Creatures of Lunar Fire",
-  "line": 1913,
-  "endLine": 1919,
+  "line": 1985,
+  "endLine": 1991,
   "category": "beings",
   "topic": "Lunar creatures",
   "audience": [
@@ -376,8 +376,8 @@
  {
   "title": "New Animal Quality: Lunar",
   "heading": "New Animal Quality: Lunar",
-  "line": 1927,
-  "endLine": 1933,
+  "line": 1999,
+  "endLine": 2005,
   "category": "beings",
   "topic": "Lunar creatures",
   "audience": [
@@ -395,8 +395,8 @@
  {
   "title": "Lunar Poisoned Waters",
   "heading": "The Poisoned Waters",
-  "line": 1921,
-  "endLine": 1925,
+  "line": 1993,
+  "endLine": 1997,
   "category": "hazards",
   "topic": "Lunar creatures",
   "audience": [
@@ -418,8 +418,8 @@
  {
   "title": "Forests of the Dead (Lunar Plants)",
   "heading": "Forests of the Dead",
-  "line": 1969,
-  "endLine": 1982,
+  "line": 2041,
+  "endLine": 2054,
   "category": "beings",
   "topic": "Lunar creatures",
   "audience": [
@@ -440,8 +440,8 @@
  {
   "title": "The Lunar Infection (disease)",
   "heading": "**The Lunar Infection**",
-  "line": 1983,
-  "endLine": 1988,
+  "line": 2055,
+  "endLine": 2060,
   "category": "hazards",
   "topic": "Lunar creatures",
   "audience": [
@@ -461,8 +461,8 @@
  {
   "title": "Magic After the Apocalypse",
   "heading": "Magic After the Apocalypse",
-  "line": 2064,
-  "endLine": 2068,
+  "line": 2136,
+  "endLine": 2140,
   "category": "magic",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -481,8 +481,8 @@
  {
   "title": "The Lunar Aura",
   "heading": "The Lunar Aura",
-  "line": 2070,
-  "endLine": 2076,
+  "line": 2142,
+  "endLine": 2148,
   "category": "realms",
   "topic": "Lunar Aura",
   "audience": [
@@ -503,8 +503,8 @@
  {
   "title": "Impact on Hermetic Magic",
   "heading": "Impact on Hermetic Magic",
-  "line": 2078,
-  "endLine": 2080,
+  "line": 2150,
+  "endLine": 2152,
   "category": "magic",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -523,8 +523,8 @@
  {
   "title": "Lunar Realm Interaction",
   "heading": "Realm Interaction",
-  "line": 2082,
-  "endLine": 2086,
+  "line": 2154,
+  "endLine": 2158,
   "category": "realms",
   "topic": "Lunar Aura",
   "audience": [
@@ -543,8 +543,8 @@
  {
   "title": "Durations After the Apocalypse",
   "heading": "Durations",
-  "line": 2088,
-  "endLine": 2090,
+  "line": 2160,
+  "endLine": 2162,
   "category": "magic",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -563,8 +563,8 @@
  {
   "title": "Parma Magica and the Aegis of the Hearth After the Apocalypse",
   "heading": "Parma Magica and the Aegis of the Hearth",
-  "line": 2092,
-  "endLine": 2094,
+  "line": 2164,
+  "endLine": 2166,
   "category": "magic",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -583,8 +583,8 @@
  {
   "title": "New Lunar Durations",
   "heading": "New Lunar Durations",
-  "line": 2096,
-  "endLine": 2110,
+  "line": 2168,
+  "endLine": 2182,
   "category": "magic",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -606,8 +606,8 @@
  {
   "title": "Summary of Durations after the Apocalypse",
   "heading": "Summary of Durations",
-  "line": 2112,
-  "endLine": 2126,
+  "line": 2184,
+  "endLine": 2198,
   "category": "magic",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -626,8 +626,8 @@
  {
   "title": "New Realm Interaction Table (Lunar)",
   "heading": "New Realm Interaction Table",
-  "line": 2128,
-  "endLine": 2134,
+  "line": 2200,
+  "endLine": 2206,
   "category": "realms",
   "topic": "Lunar Aura",
   "audience": [
@@ -649,8 +649,8 @@
  {
   "title": "Exotic Magic and Supernatural Beasts after the Apocalypse",
   "heading": "Exotic Magic and Supernatural Beasts",
-  "line": 2136,
-  "endLine": 2140,
+  "line": 2208,
+  "endLine": 2212,
   "category": "magic",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -668,8 +668,8 @@
  {
   "title": "Infernal and Divine Powers after the Apocalypse",
   "heading": "Infernal and Divine Powers",
-  "line": 2142,
-  "endLine": 2144,
+  "line": 2214,
+  "endLine": 2216,
   "category": "realms",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -687,8 +687,8 @@
  {
   "title": "Initiation Script: Aetheric Magic",
   "heading": "Initiation Script: Aetheric Magic",
-  "line": 2164,
-  "endLine": 2168,
+  "line": 2236,
+  "endLine": 2240,
   "category": "mysteries",
   "topic": "Aetheric Magic",
   "audience": [
@@ -710,8 +710,8 @@
  {
   "title": "Regiones and the Supernatural Realms as Refuge",
   "heading": "Regiones and the Supernatural Realms",
-  "line": 2177,
-  "endLine": 2185,
+  "line": 2249,
+  "endLine": 2257,
   "category": "realms",
   "topic": "Magic After the Apocalypse",
   "audience": [
@@ -732,8 +732,8 @@
  {
   "title": "Touching the Sky: Breakthrough Points for Aetheric Research",
   "heading": "Appendix: Touching the Sky",
-  "line": 2187,
-  "endLine": 2205,
+  "line": 2259,
+  "endLine": 2277,
   "category": "magic",
   "topic": "Hermetic Breakthroughs",
   "audience": [
@@ -757,8 +757,8 @@
  {
   "title": "Hermetic Breakthrough: Aetheric Magic",
   "heading": "Hermetic Breakthrough: Aetheric Magic",
-  "line": 2207,
-  "endLine": 2215,
+  "line": 2279,
+  "endLine": 2287,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -779,8 +779,8 @@
  {
   "title": "Aetheric Magic Virtue and the Form of Aether",
   "heading": "Appendix: Aetheric Magic",
-  "line": 2217,
-  "endLine": 2221,
+  "line": 2289,
+  "endLine": 2293,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -798,8 +798,8 @@
  {
   "title": "Aetheric Spells and Magic Resistance",
   "heading": "New Spells",
-  "line": 2227,
-  "endLine": 2231,
+  "line": 2299,
+  "endLine": 2303,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -818,8 +818,8 @@
  {
   "title": "Endurance of the Witch Moon (fallback Witch Moon rule)",
   "heading": "Endurance of the Witch Moon",
-  "line": 2293,
-  "endLine": 2309,
+  "line": 2365,
+  "endLine": 2381,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -830,7 +830,7 @@
   "requires": "Aetheric research project; Hedge Magic: Revised Edition optional",
   "summary": "A research spell that forces a target to endure the Witch Moon, with a fallback procedure for troupes without the hedge magic rules: a fever, a month without the Gift, and a Stamina-based roll each month to end it, with failures adding Warping.",
   "quotes": [
-   "To End Witch Moon: Stamina \u2013 Warping Score + stress die vs Ease Factor 6"
+   "To End Witch Moon: Stamina – Warping Score + stress die vs Ease Factor 6"
   ],
   "related": [
    "Hedge Magic: Revised Edition p.42 Witch Moon",
@@ -840,8 +840,8 @@
  {
   "title": "Sample Aetheric Magic Projects",
   "heading": "Sample Aetheric Magic Projects",
-  "line": 2275,
-  "endLine": 2410,
+  "line": 2347,
+  "endLine": 2482,
   "category": "magic",
   "topic": "Hermetic Breakthroughs",
   "audience": [
@@ -863,8 +863,8 @@
  {
   "title": "Arcane Knowledge: Aether Books and Lunar Lore",
   "heading": "Arcane Knowledge",
-  "line": 2416,
-  "endLine": 2420,
+  "line": 2488,
+  "endLine": 2492,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -885,8 +885,8 @@
  {
   "title": "The Form of Aether (Ae)",
   "heading": "The Form of Aether (Ae)",
-  "line": 2422,
-  "endLine": 2437,
+  "line": 2494,
+  "endLine": 2509,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -907,8 +907,8 @@
  {
   "title": "Creo Aethera Guidelines",
   "heading": "Creo Aethera Guidelines",
-  "line": 2439,
-  "endLine": 2453,
+  "line": 2511,
+  "endLine": 2525,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -926,8 +926,8 @@
  {
   "title": "Intellego Aethera Guidelines",
   "heading": "Intellego Aethera Guidelines",
-  "line": 2454,
-  "endLine": 2466,
+  "line": 2526,
+  "endLine": 2538,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -945,8 +945,8 @@
  {
   "title": "Muto Aethera Guidelines",
   "heading": "Muto Aethera Guidelines",
-  "line": 2467,
-  "endLine": 2479,
+  "line": 2539,
+  "endLine": 2551,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -964,8 +964,8 @@
  {
   "title": "Perdo Aethera Guidelines",
   "heading": "Perdo Aethera Guidelines",
-  "line": 2481,
-  "endLine": 2491,
+  "line": 2553,
+  "endLine": 2563,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -983,8 +983,8 @@
  {
   "title": "Rego Aethera Guidelines",
   "heading": "Rego Aethera Guidelines",
-  "line": 2493,
-  "endLine": 2500,
+  "line": 2565,
+  "endLine": 2572,
   "category": "magic",
   "topic": "Aetheric Magic",
   "audience": [
@@ -1002,8 +1002,8 @@
  {
   "title": "Seasons of Conflict: Pacing the Fimbulwinter Saga",
   "heading": "Seasons of Conflict: Saga Pacing and Structure",
-  "line": 2599,
-  "endLine": 2607,
+  "line": 2671,
+  "endLine": 2679,
   "category": "setting",
   "topic": "Saga pacing",
   "audience": [
@@ -1021,8 +1021,8 @@
  {
   "title": "How did the Irminsul get There? (Irminsul Rules)",
   "heading": "How did the Irminsul get There?",
-  "line": 2629,
-  "endLine": 2635,
+  "line": 2701,
+  "endLine": 2707,
   "category": "realms",
   "topic": "Irminsul",
   "audience": [
@@ -1040,8 +1040,8 @@
  {
   "title": "The Price of Ignorance (First Stage)",
   "heading": "The Price of Ignorance",
-  "line": 2668,
-  "endLine": 2677,
+  "line": 2740,
+  "endLine": 2749,
   "category": "setting",
   "topic": "Saga pacing",
   "audience": [
@@ -1059,8 +1059,8 @@
  {
   "title": "The End State (First Stage)",
   "heading": "The End State",
-  "line": 2679,
-  "endLine": 2685,
+  "line": 2751,
+  "endLine": 2757,
   "category": "setting",
   "topic": "Saga pacing",
   "audience": [
@@ -1078,8 +1078,8 @@
  {
   "title": "The Alien Aura (Lunar Aura Effects)",
   "heading": "The Alien Aura",
-  "line": 1483,
-  "endLine": 1487,
+  "line": 1555,
+  "endLine": 1559,
   "category": "realms",
   "topic": "Lunar Aura",
   "audience": [
@@ -1091,15 +1091,15 @@
   "requires": "Lunar aura around fallen lunar material",
   "summary": "A fallen star creates a Lunar aura that penalises casting totals, cannot be identified by Intellego Vim as any of the four known auras, stays when the object moves, and fades over a season once the Dominion reasserts itself.",
   "quotes": [
-   "This Lunar Aura is of strength 3 and imposes a \u201315 penalty on casting totals generated within it."
+   "This Lunar Aura is of strength 3 and imposes a –15 penalty on casting totals generated within it."
   ],
   "related": []
  },
  {
   "title": "What is Insight? (Muspelli sources of Insight)",
   "heading": "What is Insight?",
-  "line": 2732,
-  "endLine": 2734,
+  "line": 2804,
+  "endLine": 2806,
   "category": "magic",
   "topic": "Hermetic Breakthroughs",
   "audience": [
@@ -1121,8 +1121,8 @@
  {
   "title": "When Do Other Muspelli Find Irminsul?",
   "heading": "When Do Other Muspelli Find Irminsul?",
-  "line": 2774,
-  "endLine": 2778,
+  "line": 2846,
+  "endLine": 2850,
   "category": "setting",
   "topic": "Saga pacing",
   "audience": [
@@ -1140,8 +1140,8 @@
  {
   "title": "The Price of Ignorance (Second Stage)",
   "heading": "The Price of Ignorance",
-  "line": 2790,
-  "endLine": 2792,
+  "line": 2862,
+  "endLine": 2864,
   "category": "setting",
   "topic": "Saga pacing",
   "audience": [
@@ -1159,8 +1159,8 @@
  {
   "title": "The End State (Second Stage)",
   "heading": "The End State",
-  "line": 2794,
-  "endLine": 2800,
+  "line": 2866,
+  "endLine": 2872,
   "category": "setting",
   "topic": "Saga pacing",
   "audience": [
@@ -1178,8 +1178,8 @@
  {
   "title": "Corrupting Auras (Trolldomur)",
   "heading": "Corrupting Auras",
-  "line": 2870,
-  "endLine": 2872,
+  "line": 2942,
+  "endLine": 2944,
   "category": "realms",
   "topic": "Muspelli aura corruption",
   "audience": [
@@ -1199,8 +1199,8 @@
  {
   "title": "Death Which Does Not Die (Muspelli Walking Dead)",
   "heading": "Death Which Does Not Die",
-  "line": 2910,
-  "endLine": 2914,
+  "line": 2980,
+  "endLine": 2984,
   "category": "beings",
   "topic": "Walking Dead",
   "audience": [

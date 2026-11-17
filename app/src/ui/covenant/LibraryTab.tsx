@@ -414,7 +414,7 @@ function LibraryResearch() {
   };
   return (
     <Card title="Research in the library">
-      <RulesNote book="Cov" line={5252} endLine={5263}>
+      <RulesNote book="Cov" line={5306} endLine={5317}>
         Intelligence + a fitting Ability + the library&apos;s bonus + a stress die, against the storyguide&apos;s Ease Factor.
       </RulesNote>
       <div className="row">
@@ -651,8 +651,8 @@ function Scriptorium({ cov, update, data }: Pick<CovTabProps, 'cov' | 'update' |
     <Card title={`Scriptorium${queue.length ? ` (${queue.length})` : ''}`}>
       <RulesNote
         book="Cov"
-        line={4842}
-        endLine={4848}
+        line={4896}
+        endLine={4902}
         detail={
           <>
             Covenants that trade books keep a copyist to make copies for the exchange: they copy in their working seasons at 6 + Profession: Scribe points a season toward a summa (a tractatus a season;

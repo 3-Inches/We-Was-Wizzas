@@ -2,8 +2,8 @@
  {
   "title": "Using Experience Points",
   "heading": "Using Experience Points",
-  "line": 16022,
-  "endLine": 16029,
+  "line": 16038,
+  "endLine": 16045,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -22,8 +22,8 @@
  {
   "title": "Advancement Tables",
   "heading": "Advancement Tables",
-  "line": 16030,
-  "endLine": 16057,
+  "line": 16046,
+  "endLine": 16073,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -41,8 +41,8 @@
  {
   "title": "Advancement Total",
   "heading": "Advancement",
-  "line": 16059,
-  "endLine": 16065,
+  "line": 16075,
+  "endLine": 16081,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -60,8 +60,8 @@
  {
   "title": "Calculating Experience Points",
   "heading": "Calculating Experience Points",
-  "line": 16067,
-  "endLine": 16077,
+  "line": 16083,
+  "endLine": 16093,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -77,8 +77,8 @@
  {
   "title": "Assigning Seasons",
   "heading": "Assigning Seasons",
-  "line": 16079,
-  "endLine": 16083,
+  "line": 16095,
+  "endLine": 16099,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -95,8 +95,8 @@
  {
   "title": "Gain Limit",
   "heading": "Limits",
-  "line": 16085,
-  "endLine": 16087,
+  "line": 16101,
+  "endLine": 16103,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -114,8 +114,8 @@
  {
   "title": "Exposure",
   "heading": "Exposure",
-  "line": 16089,
-  "endLine": 16100,
+  "line": 16105,
+  "endLine": 16116,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -133,8 +133,8 @@
  {
   "title": "Adventure Experience",
   "heading": "Adventure",
-  "line": 16102,
-  "endLine": 16110,
+  "line": 16118,
+  "endLine": 16126,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -146,15 +146,15 @@
   "requires": "",
   "summary": "Adventures give a whole season of experience with a Source Quality set by the storyguide, which can be split among Abilities used and Arts used on stage.",
   "quotes": [
-   "ADVENTURE SOURCE QUALITY: 5\u201310"
+   "ADVENTURE SOURCE QUALITY: 5–10"
   ],
   "related": []
  },
  {
   "title": "Practice",
   "heading": "Practice",
-  "line": 16112,
-  "endLine": 16131,
+  "line": 16128,
+  "endLine": 16147,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -165,15 +165,15 @@
   "requires": "",
   "summary": "Full-time self-directed study of an Ability, with special higher Source Qualities for native-tongue languages, Area Lore, feedback-rich crafts and practising spells for mastery; Arts cannot be raised this way.",
   "quotes": [
-   "PRACTICE SOURCE QUALITY: 4\u20138, usually 4"
+   "PRACTICE SOURCE QUALITY: 4–8, usually 4"
   ],
   "related": []
  },
  {
   "title": "Training",
   "heading": "Training",
-  "line": 16133,
-  "endLine": 16145,
+  "line": 16149,
+  "endLine": 16161,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -192,8 +192,8 @@
  {
   "title": "Worship",
   "heading": "Worship",
-  "line": 16147,
-  "endLine": 16155,
+  "line": 16163,
+  "endLine": 16171,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -211,8 +211,8 @@
  {
   "title": "Teaching",
   "heading": "Teaching",
-  "line": 16157,
-  "endLine": 16171,
+  "line": 16173,
+  "endLine": 16187,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -232,8 +232,8 @@
  {
   "title": "Studying From Books",
   "heading": "Books",
-  "line": 16173,
-  "endLine": 16191,
+  "line": 16189,
+  "endLine": 16207,
   "category": "seasons",
   "topic": "Books",
   "audience": [
@@ -254,8 +254,8 @@
  {
   "title": "Vis Study",
   "heading": "Vis",
-  "line": 16193,
-  "endLine": 16201,
+  "line": 16209,
+  "endLine": 16217,
   "category": "seasons",
   "topic": "Vis study",
   "audience": [
@@ -275,8 +275,8 @@
  {
   "title": "Distractions",
   "heading": "Distractions",
-  "line": 16203,
-  "endLine": 16214,
+  "line": 16219,
+  "endLine": 16230,
   "category": "seasons",
   "topic": "Advancement",
   "audience": [
@@ -295,8 +295,8 @@
  {
   "title": "Standard Texts (Roots and Branches of the Arts)",
   "heading": "Standard Texts",
-  "line": 16220,
-  "endLine": 16230,
+  "line": 16236,
+  "endLine": 16246,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -315,8 +315,8 @@
  {
   "title": "Writing Books",
   "heading": "Writing Books",
-  "line": 16232,
-  "endLine": 16243,
+  "line": 16248,
+  "endLine": 16259,
   "category": "seasons",
   "topic": "Writing books",
   "audience": [
@@ -336,8 +336,8 @@
  {
   "title": "Writing Summae",
   "heading": "Summae",
-  "line": 16244,
-  "endLine": 16255,
+  "line": 16260,
+  "endLine": 16271,
   "category": "seasons",
   "topic": "Writing books",
   "audience": [
@@ -356,8 +356,8 @@
  {
   "title": "Writing Tractatus",
   "heading": "Tractatus",
-  "line": 16256,
-  "endLine": 16261,
+  "line": 16272,
+  "endLine": 16277,
   "category": "seasons",
   "topic": "Writing books",
   "audience": [
@@ -376,8 +376,8 @@
  {
   "title": "Copying Books",
   "heading": "Copying Books",
-  "line": 16262,
-  "endLine": 16271,
+  "line": 16278,
+  "endLine": 16287,
   "category": "seasons",
   "topic": "Writing books",
   "audience": [
@@ -397,8 +397,8 @@
  {
   "title": "Corrupted Copies",
   "heading": "Corrupted Copies",
-  "line": 16272,
-  "endLine": 16281,
+  "line": 16288,
+  "endLine": 16297,
   "category": "seasons",
   "topic": "Writing books",
   "audience": [
@@ -417,8 +417,8 @@
  {
   "title": "Hermetic Books: Definition of Categories of Value",
   "heading": "Hermetic Books: Definition of Categories of Value",
-  "line": 16282,
-  "endLine": 16294,
+  "line": 16298,
+  "endLine": 16310,
   "category": "seasons",
   "topic": "Books",
   "audience": [
@@ -430,15 +430,15 @@
   "requires": "",
   "summary": "Sidebar giving typical Quality ranges for summae and tractatus (excellent, sound, vain, discarded and legendary books) as a function of Level.",
   "quotes": [
-   "These Summae have a Quality of (25 \u2013 Level) or below."
+   "These Summae have a Quality of (25 – Level) or below."
   ],
   "related": []
  },
  {
   "title": "Acquiring Books",
   "heading": "Acquisition",
-  "line": 16296,
-  "endLine": 16299,
+  "line": 16312,
+  "endLine": 16315,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -457,8 +457,8 @@
  {
   "title": "The Sale of Hermetic Books",
   "heading": "The Sale of Hermetic Books",
-  "line": 16300,
-  "endLine": 16313,
+  "line": 16316,
+  "endLine": 16329,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -475,8 +475,8 @@
  {
   "title": "Prices for Books and the Cow and Calf Oath",
   "heading": "Prices for Books",
-  "line": 16314,
-  "endLine": 16317,
+  "line": 16330,
+  "endLine": 16333,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -493,8 +493,8 @@
  {
   "title": "Mundane Book Prices",
   "heading": "Mundane Books",
-  "line": 16318,
-  "endLine": 16321,
+  "line": 16334,
+  "endLine": 16337,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -511,8 +511,8 @@
  {
   "title": "Hermetic Book Trade as Barter",
   "heading": "Books Concerning the Arts and Arcane Abilities",
-  "line": 16322,
-  "endLine": 16325,
+  "line": 16338,
+  "endLine": 16341,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -530,8 +530,8 @@
  {
   "title": "Least Expensive Books",
   "heading": "Least Expensive Books",
-  "line": 16326,
-  "endLine": 16329,
+  "line": 16342,
+  "endLine": 16345,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -550,8 +550,8 @@
  {
   "title": "Vain Book Prices",
   "heading": "Vain Books",
-  "line": 16330,
-  "endLine": 16335,
+  "line": 16346,
+  "endLine": 16351,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -570,8 +570,8 @@
  {
   "title": "Sound Book Prices",
   "heading": "Sound Books",
-  "line": 16336,
-  "endLine": 16339,
+  "line": 16352,
+  "endLine": 16355,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -590,8 +590,8 @@
  {
   "title": "Excellent Books",
   "heading": "Excellent Books",
-  "line": 16340,
-  "endLine": 16347,
+  "line": 16356,
+  "endLine": 16363,
   "category": "order",
   "topic": "Books",
   "audience": [
@@ -608,8 +608,8 @@
  {
   "title": "Learning Supernatural Abilities",
   "heading": "Learning Supernatural Abilities",
-  "line": 16348,
-  "endLine": 16362,
+  "line": 16364,
+  "endLine": 16378,
   "category": "seasons",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -630,8 +630,8 @@
  {
   "title": "Training Creatures (Overview)",
   "heading": "Training Creatures",
-  "line": 16364,
-  "endLine": 16367,
+  "line": 16380,
+  "endLine": 16383,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -649,8 +649,8 @@
  {
   "title": "Taming Animals",
   "heading": "Taming Animals",
-  "line": 16368,
-  "endLine": 16377,
+  "line": 16384,
+  "endLine": 16393,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -670,8 +670,8 @@
  {
   "title": "Taming Mundane Beasts",
   "heading": "Taming Mundane Beasts",
-  "line": 16378,
-  "endLine": 16381,
+  "line": 16394,
+  "endLine": 16397,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -691,8 +691,8 @@
  {
   "title": "A Hermetic Tamer",
   "heading": "A Hermetic Tamer",
-  "line": 16382,
-  "endLine": 16391,
+  "line": 16398,
+  "endLine": 16407,
   "category": "lab",
   "topic": "Taming and training animals",
   "audience": [
@@ -703,15 +703,15 @@
   "requires": "",
   "summary": "A magus tames an animal as a laboratory activity using a Rego (Form) Lab Total, producing a Lab Text that can later be reused to tame another creature of the same species.",
   "quotes": [
-   "TAMING POINTS ACCUMULATED EACH SEASON: Re(Fo) Lab Total \u2013 Creature's Might"
+   "TAMING POINTS ACCUMULATED EACH SEASON: Re(Fo) Lab Total – Creature's Might"
   ],
   "related": []
  },
  {
   "title": "Hermetic Bonuses to Taming Lab Total",
   "heading": "Hermetic Bonuses to Taming Lab Total",
-  "line": 16392,
-  "endLine": 16399,
+  "line": 16408,
+  "endLine": 16415,
   "category": "lab",
   "topic": "Taming and training animals",
   "audience": [
@@ -730,8 +730,8 @@
  {
   "title": "A Magical Trainer",
   "heading": "A Magical Trainer",
-  "line": 16401,
-  "endLine": 16407,
+  "line": 16417,
+  "endLine": 16423,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -743,15 +743,15 @@
   "requires": "Virtue: Master of (Form) Creatures",
   "summary": "Taming points per season for a character with the Master of (Form) Creatures Virtue, using Might, Animal Handling and Animal Ken minus the creature's Might.",
   "quotes": [
-   "Trainer's Might + Trainer's Animal Handling + Trainer's Animal Ken \u2013 Creature's Might"
+   "Trainer's Might + Trainer's Animal Handling + Trainer's Animal Ken – Creature's Might"
   ],
   "related": []
  },
  {
   "title": "A Mundane Trainer",
   "heading": "A Mundane Trainer",
-  "line": 16409,
-  "endLine": 16415,
+  "line": 16425,
+  "endLine": 16431,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -764,15 +764,15 @@
   "requires": "",
   "summary": "Taming points per season for a mundane handler, who can usually only tame beasts with a small Magic Might.",
   "quotes": [
-   "Int + Animal Handling + Animal Ken \u2013 Creature's Might"
+   "Int + Animal Handling + Animal Ken – Creature's Might"
   ],
   "related": []
  },
  {
   "title": "Tricks, Stunts, and Tasks",
   "heading": "Tricks, Stunts, and Tasks",
-  "line": 16417,
-  "endLine": 16419,
+  "line": 16433,
+  "endLine": 16435,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -790,8 +790,8 @@
  {
   "title": "Loyalty",
   "heading": "Loyalty",
-  "line": 16421,
-  "endLine": 16427,
+  "line": 16437,
+  "endLine": 16443,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -811,8 +811,8 @@
  {
   "title": "Training Animal Abilities",
   "heading": "Training Abilities",
-  "line": 16429,
-  "endLine": 16433,
+  "line": 16445,
+  "endLine": 16449,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -832,8 +832,8 @@
  {
   "title": "Trained Groups of Animals",
   "heading": "Trained Groups",
-  "line": 16435,
-  "endLine": 16437,
+  "line": 16451,
+  "endLine": 16453,
   "category": "combat",
   "topic": "Taming and training animals",
   "audience": [
@@ -855,8 +855,8 @@
  {
   "title": "Commanding a Creature",
   "heading": "Commanding a Creature",
-  "line": 16439,
-  "endLine": 16453,
+  "line": 16455,
+  "endLine": 16469,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -876,8 +876,8 @@
  {
   "title": "Animal Ken and Animals",
   "heading": "Animal Ken",
-  "line": 16455,
-  "endLine": 16457,
+  "line": 16471,
+  "endLine": 16473,
   "category": "beings",
   "topic": "Taming and training animals",
   "audience": [
@@ -896,8 +896,8 @@
  {
   "title": "Changing Reputations",
   "heading": "Changing Reputations",
-  "line": 16459,
-  "endLine": 16465,
+  "line": 16475,
+  "endLine": 16481,
   "category": "basics",
   "topic": "Reputation",
   "audience": [
@@ -916,8 +916,8 @@
  {
   "title": "Mystery Initiation",
   "heading": "Mystery Initiation",
-  "line": 16467,
-  "endLine": 16499,
+  "line": 16483,
+  "endLine": 16515,
   "category": "mysteries",
   "topic": "Mystery initiation",
   "audience": [
@@ -940,8 +940,8 @@
  {
   "title": "The Initiation Script",
   "heading": "The Initiation Script",
-  "line": 16501,
-  "endLine": 16503,
+  "line": 16517,
+  "endLine": 16519,
   "category": "mysteries",
   "topic": "Mystery initiation",
   "audience": [
@@ -960,8 +960,8 @@
  {
   "title": "Example Elements of an Initiation Script",
   "heading": "Example Elements of an Initiation Script",
-  "line": 16505,
-  "endLine": 16518,
+  "line": 16521,
+  "endLine": 16534,
   "category": "mysteries",
   "topic": "Mystery initiation",
   "audience": [
@@ -980,8 +980,8 @@
  {
   "title": "Varying a Script",
   "heading": "Varying a Script",
-  "line": 16520,
-  "endLine": 16534,
+  "line": 16536,
+  "endLine": 16550,
   "category": "mysteries",
   "topic": "Mystery initiation",
   "audience": [
@@ -1000,8 +1000,8 @@
  {
   "title": "Warping",
   "heading": "Warping",
-  "line": 16536,
-  "endLine": 16549,
+  "line": 16552,
+  "endLine": 16565,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -1020,8 +1020,8 @@
  {
   "title": "Warping and Non-Humans",
   "heading": "Warping and Non-Humans",
-  "line": 16551,
-  "endLine": 16557,
+  "line": 16567,
+  "endLine": 16573,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -1039,8 +1039,8 @@
  {
   "title": "Gaining Warping Points",
   "heading": "Gaining Warping Points",
-  "line": 16559,
-  "endLine": 16570,
+  "line": 16575,
+  "endLine": 16586,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -1059,8 +1059,8 @@
  {
   "title": "Warping from Living in Strong Auras",
   "heading": "Living in Strong Auras",
-  "line": 16572,
-  "endLine": 16588,
+  "line": 16588,
+  "endLine": 16604,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -1079,8 +1079,8 @@
  {
   "title": "Warping from Powerful Supernatural Effects",
   "heading": "Powerful Supernatural Effects",
-  "line": 16590,
-  "endLine": 16592,
+  "line": 16606,
+  "endLine": 16608,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -1099,8 +1099,8 @@
  {
   "title": "Warping from Constant Supernatural Effects",
   "heading": "Constant Supernatural Effects",
-  "line": 16594,
-  "endLine": 16615,
+  "line": 16610,
+  "endLine": 16631,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -1119,8 +1119,8 @@
  {
   "title": "Warping from Supernatural Botches",
   "heading": "Supernatural Botches",
-  "line": 16617,
-  "endLine": 16619,
+  "line": 16633,
+  "endLine": 16635,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -1139,8 +1139,8 @@
  {
   "title": "Effects of Warping",
   "heading": "Effects of Warping",
-  "line": 16621,
-  "endLine": 16635,
+  "line": 16637,
+  "endLine": 16651,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -1159,8 +1159,8 @@
  {
   "title": "Aging",
   "heading": "Aging",
-  "line": 16637,
-  "endLine": 16714,
+  "line": 16653,
+  "endLine": 16730,
   "category": "aging",
   "topic": "Aging",
   "audience": [
@@ -1183,8 +1183,8 @@
  {
   "title": "Combat Scores",
   "heading": "Combat Scores",
-  "line": 16728,
-  "endLine": 16744,
+  "line": 16744,
+  "endLine": 16760,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1206,8 +1206,8 @@
  {
   "title": "Combat Botches",
   "heading": "Combat Botches",
-  "line": 16746,
-  "endLine": 16750,
+  "line": 16762,
+  "endLine": 16766,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1228,8 +1228,8 @@
  {
   "title": "Combat Sequence",
   "heading": "Combat Sequence",
-  "line": 16752,
-  "endLine": 16766,
+  "line": 16768,
+  "endLine": 16782,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1248,8 +1248,8 @@
  {
   "title": "Length of a Combat Round",
   "heading": "Length of a Combat Round",
-  "line": 16768,
-  "endLine": 16770,
+  "line": 16784,
+  "endLine": 16786,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1268,8 +1268,8 @@
  {
   "title": "Spell Damage",
   "heading": "Spell Damage",
-  "line": 16772,
-  "endLine": 16774,
+  "line": 16788,
+  "endLine": 16790,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1287,8 +1287,8 @@
  {
   "title": "Damage Table",
   "heading": "Damage Table",
-  "line": 16776,
-  "endLine": 16789,
+  "line": 16792,
+  "endLine": 16805,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1306,8 +1306,8 @@
  {
   "title": "Initiative Ties",
   "heading": "Initiative Ties",
-  "line": 16791,
-  "endLine": 16793,
+  "line": 16807,
+  "endLine": 16809,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1325,8 +1325,8 @@
  {
   "title": "Combat: Simple Example",
   "heading": "Combat: Simple Example",
-  "line": 16795,
-  "endLine": 16813,
+  "line": 16811,
+  "endLine": 16829,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1342,8 +1342,8 @@
  {
   "title": "Missile Combat",
   "heading": "Missile Combat",
-  "line": 16815,
-  "endLine": 16821,
+  "line": 16831,
+  "endLine": 16837,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1361,7 +1361,7 @@
  {
   "title": "Moving in Combat",
   "heading": "Moving in Combat",
-  "line": 16823,
+  "line": 16839,
   "category": "combat",
   "topic": "Combat",
   "audience": [
@@ -1372,17 +1372,17 @@
   "requires": "",
   "summary": "Three movement speeds in combat (walk, hurry, run) with pace-per-round formulas, and the length of a pace.",
   "quotes": [
-   "WALK: 10 + Qik \u2013 Encumbrance paces per round",
-   "HURRY: 2 x (10 + Qik \u2013 Encumbrance) paces per round",
-   "RUN: 4 x (10 + Qik \u2013 Encumbrance) paces per round"
+   "WALK: 10 + Qik – Encumbrance paces per round",
+   "HURRY: 2 x (10 + Qik – Encumbrance) paces per round",
+   "RUN: 4 x (10 + Qik – Encumbrance) paces per round"
   ],
   "related": []
  },
  {
   "title": "Groups",
   "heading": "Groups",
-  "line": 16843,
-  "endLine": 16853,
+  "line": 16859,
+  "endLine": 16869,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -1401,8 +1401,8 @@
  {
   "title": "Group Damage",
   "heading": "Group Damage",
-  "line": 16855,
-  "endLine": 16861,
+  "line": 16871,
+  "endLine": 16877,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -1421,8 +1421,8 @@
  {
   "title": "Untrained Group",
   "heading": "Untrained Group",
-  "line": 16863,
-  "endLine": 16865,
+  "line": 16879,
+  "endLine": 16881,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -1441,8 +1441,8 @@
  {
   "title": "Trained Group",
   "heading": "Trained Group",
-  "line": 16867,
-  "endLine": 16877,
+  "line": 16883,
+  "endLine": 16893,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -1461,8 +1461,8 @@
  {
   "title": "Defender",
   "heading": "Defender",
-  "line": 16879,
-  "endLine": 16883,
+  "line": 16895,
+  "endLine": 16899,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -1482,8 +1482,8 @@
  {
   "title": "Defenders Without Groups",
   "heading": "Defenders Without Groups",
-  "line": 16885,
-  "endLine": 16887,
+  "line": 16901,
+  "endLine": 16903,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -1502,8 +1502,8 @@
  {
   "title": "Disengaging",
   "heading": "Disengaging",
-  "line": 16893,
-  "endLine": 16899,
+  "line": 16909,
+  "endLine": 16915,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1521,8 +1521,8 @@
  {
   "title": "Exertion",
   "heading": "Exertion",
-  "line": 16901,
-  "endLine": 16903,
+  "line": 16917,
+  "endLine": 16919,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1540,8 +1540,8 @@
  {
   "title": "Magic in Combat",
   "heading": "Magic",
-  "line": 16905,
-  "endLine": 16909,
+  "line": 16921,
+  "endLine": 16925,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1561,8 +1561,8 @@
  {
   "title": "Mounted Combat",
   "heading": "Mounted Combat",
-  "line": 16911,
-  "endLine": 16913,
+  "line": 16927,
+  "endLine": 16929,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1580,8 +1580,8 @@
  {
   "title": "Non-Lethal Combat (Scuffling and Grappling)",
   "heading": "Non-Lethal Combat",
-  "line": 16915,
-  "endLine": 16931,
+  "line": 16931,
+  "endLine": 16947,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -1600,8 +1600,8 @@
  {
   "title": "Scuffle Effects",
   "heading": "Scuffle Effects",
-  "line": 16933,
-  "endLine": 16941,
+  "line": 16949,
+  "endLine": 16957,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -1617,8 +1617,8 @@
  {
   "title": "Special Combat Effects (Maneuvers)",
   "heading": "Special Effects",
-  "line": 16943,
-  "endLine": 16947,
+  "line": 16959,
+  "endLine": 16963,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1636,8 +1636,8 @@
  {
   "title": "Sample Advantages for Maneuvers",
   "heading": "Sample Advantages",
-  "line": 16949,
-  "endLine": 16956,
+  "line": 16965,
+  "endLine": 16972,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1653,8 +1653,8 @@
  {
   "title": "Splitting Groups",
   "heading": "Splitting Groups",
-  "line": 16958,
-  "endLine": 16964,
+  "line": 16974,
+  "endLine": 16980,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -1673,8 +1673,8 @@
  {
   "title": "Combat: Complex Example",
   "heading": "Combat: Complex Example",
-  "line": 16966,
-  "endLine": 17000,
+  "line": 16982,
+  "endLine": 17016,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -1691,8 +1691,8 @@
  {
   "title": "Armor",
   "heading": "Armor",
-  "line": 17002,
-  "endLine": 17004,
+  "line": 17018,
+  "endLine": 17020,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -1710,8 +1710,8 @@
  {
   "title": "Armor Outfittings",
   "heading": "Outfittings",
-  "line": 17010,
-  "endLine": 17012,
+  "line": 17026,
+  "endLine": 17028,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -1729,8 +1729,8 @@
  {
   "title": "Armor Table",
   "heading": "Armor Table",
-  "line": 17014,
-  "endLine": 17027,
+  "line": 17030,
+  "endLine": 17043,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -1748,8 +1748,8 @@
  {
   "title": "Melee Weapon Statistics",
   "heading": "Melee Weapon Statistics",
-  "line": 17029,
-  "endLine": 17073,
+  "line": 17045,
+  "endLine": 17089,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -1767,8 +1767,8 @@
  {
   "title": "Missile Weapon Statistics",
   "heading": "Missile Weapon Statistics",
-  "line": 17075,
-  "endLine": 17097,
+  "line": 17091,
+  "endLine": 17113,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -1786,8 +1786,8 @@
  {
   "title": "Weapon Descriptions",
   "heading": "Weapon Descriptions",
-  "line": 17099,
-  "endLine": 17175,
+  "line": 17115,
+  "endLine": 17191,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -1805,8 +1805,8 @@
  {
   "title": "Encumbrance",
   "heading": "Encumbrance",
-  "line": 17177,
-  "endLine": 17197,
+  "line": 17193,
+  "endLine": 17213,
   "category": "combat",
   "topic": "Encumbrance",
   "audience": [
@@ -1827,8 +1827,8 @@
  {
   "title": "Fatigue Levels",
   "heading": "Fatigue",
-  "line": 17199,
-  "endLine": 17203,
+  "line": 17215,
+  "endLine": 17219,
   "category": "combat",
   "topic": "Fatigue",
   "audience": [
@@ -1847,8 +1847,8 @@
  {
   "title": "Short-Term Fatigue",
   "heading": "Short-Term Fatigue",
-  "line": 17205,
-  "endLine": 17208,
+  "line": 17221,
+  "endLine": 17224,
   "category": "combat",
   "topic": "Fatigue",
   "audience": [
@@ -1860,7 +1860,7 @@
   "requires": "",
   "summary": "Strenuous actions require a Fatigue roll on Stamina minus Encumbrance against an Ease Factor; failure costs a Short-Term Fatigue level and a botch costs two, with combat and magic using their own rules.",
   "quotes": [
-   "roll Stamina \u2014 Encumbrance on a stress die against an Ease Factor of 6"
+   "roll Stamina — Encumbrance on a stress die against an Ease Factor of 6"
   ],
   "related": [
    "ArM5 p.213 Spontaneous casting fatigue",
@@ -1871,8 +1871,8 @@
  {
   "title": "Recovery from Short-Term Fatigue",
   "heading": "Recovery from Short-Term Fatigue",
-  "line": 17209,
-  "endLine": 17213,
+  "line": 17225,
+  "endLine": 17229,
   "category": "combat",
   "topic": "Fatigue",
   "audience": [
@@ -1890,8 +1890,8 @@
  {
   "title": "Long-Term Fatigue",
   "heading": "Long-Term Fatigue",
-  "line": 17215,
-  "endLine": 17219,
+  "line": 17231,
+  "endLine": 17235,
   "category": "combat",
   "topic": "Fatigue",
   "audience": [
@@ -1910,8 +1910,8 @@
  {
   "title": "Fatigue Recovery Chart",
   "heading": "Fatigue Recovery Chart",
-  "line": 17221,
-  "endLine": 17229,
+  "line": 17237,
+  "endLine": 17245,
   "category": "combat",
   "topic": "Fatigue",
   "audience": [
@@ -1927,8 +1927,8 @@
  {
   "title": "Wounds",
   "heading": "Wounds",
-  "line": 17231,
-  "endLine": 17239,
+  "line": 17247,
+  "endLine": 17255,
   "category": "combat",
   "topic": "Wounds",
   "audience": [
@@ -1946,8 +1946,8 @@
  {
   "title": "Damage Table (Wounds)",
   "heading": "Damage Table",
-  "line": 17241,
-  "endLine": 17254,
+  "line": 17257,
+  "endLine": 17270,
   "category": "combat",
   "topic": "Wounds",
   "audience": [
@@ -1965,8 +1965,8 @@
  {
   "title": "Wound Table",
   "heading": "Wound Table",
-  "line": 17256,
-  "endLine": 17265,
+  "line": 17272,
+  "endLine": 17281,
   "category": "combat",
   "topic": "Wounds",
   "audience": [
@@ -1984,8 +1984,8 @@
  {
   "title": "Activities While Injured",
   "heading": "Activities While Injured",
-  "line": 17267,
-  "endLine": 17277,
+  "line": 17283,
+  "endLine": 17293,
   "category": "combat",
   "topic": "Wounds",
   "audience": [
@@ -2004,8 +2004,8 @@
  {
   "title": "Recovering From Wounds",
   "heading": "Recovering From Wounds",
-  "line": 17279,
-  "endLine": 17297,
+  "line": 17295,
+  "endLine": 17313,
   "category": "combat",
   "topic": "Wounds",
   "audience": [
@@ -2024,8 +2024,8 @@
  {
   "title": "Recovery from Incapacitation",
   "heading": "Recovery from Incapacitation",
-  "line": 17298,
-  "endLine": 17302,
+  "line": 17314,
+  "endLine": 17318,
   "category": "combat",
   "topic": "Wounds",
   "audience": [
@@ -2044,8 +2044,8 @@
  {
   "title": "Medical Attention",
   "heading": "Medical Attention",
-  "line": 17304,
-  "endLine": 17308,
+  "line": 17320,
+  "endLine": 17324,
   "category": "combat",
   "topic": "Wounds",
   "audience": [
@@ -2066,8 +2066,8 @@
  {
   "title": "Healing Spells",
   "heading": "Healing Spells",
-  "line": 17310,
-  "endLine": 17314,
+  "line": 17326,
+  "endLine": 17330,
   "category": "combat",
   "topic": "Wounds",
   "audience": [
@@ -2088,8 +2088,8 @@
  {
   "title": "Debilitation",
   "heading": "Debilitation",
-  "line": 17318,
-  "endLine": 17323,
+  "line": 17334,
+  "endLine": 17339,
   "category": "hazards",
   "topic": "Disease and poison",
   "audience": [
@@ -2108,8 +2108,8 @@
  {
   "title": "Diseases",
   "heading": "Diseases",
-  "line": 17324,
-  "endLine": 17336,
+  "line": 17340,
+  "endLine": 17352,
   "category": "hazards",
   "topic": "Disease and poison",
   "audience": [
@@ -2129,8 +2129,8 @@
  {
   "title": "Disease Table",
   "heading": "Disease Table",
-  "line": 17338,
-  "endLine": 17345,
+  "line": 17354,
+  "endLine": 17361,
   "category": "hazards",
   "topic": "Disease and poison",
   "audience": [
@@ -2146,8 +2146,8 @@
  {
   "title": "Poisons",
   "heading": "Poisons",
-  "line": 17347,
-  "endLine": 17349,
+  "line": 17363,
+  "endLine": 17365,
   "category": "hazards",
   "topic": "Disease and poison",
   "audience": [
@@ -2167,8 +2167,8 @@
  {
   "title": "Poison Table",
   "heading": "Poison Table",
-  "line": 17351,
-  "endLine": 17358,
+  "line": 17367,
+  "endLine": 17374,
   "category": "hazards",
   "topic": "Disease and poison",
   "audience": [
@@ -2184,8 +2184,8 @@
  {
   "title": "Deprivation",
   "heading": "Deprivation",
-  "line": 17360,
-  "endLine": 17364,
+  "line": 17376,
+  "endLine": 17380,
   "category": "hazards",
   "topic": "Deprivation",
   "audience": [
@@ -2204,8 +2204,8 @@
  {
   "title": "Deprivation Table",
   "heading": "Deprivation Table",
-  "line": 17366,
-  "endLine": 17372,
+  "line": 17382,
+  "endLine": 17388,
   "category": "hazards",
   "topic": "Deprivation",
   "audience": [
@@ -2222,8 +2222,8 @@
  {
   "title": "Injuries (Non-Combat Damage)",
   "heading": "Injuries",
-  "line": 17374,
-  "endLine": 17384,
+  "line": 17390,
+  "endLine": 17400,
   "category": "hazards",
   "topic": "Non-combat damage",
   "audience": [
@@ -2243,8 +2243,8 @@
  {
   "title": "Heat and Corrosion",
   "heading": "Heat and Corrosion",
-  "line": 17386,
-  "endLine": 17390,
+  "line": 17402,
+  "endLine": 17406,
   "category": "hazards",
   "topic": "Non-combat damage",
   "audience": [
@@ -2263,8 +2263,8 @@
  {
   "title": "Heat and Corrosion Table",
   "heading": "Heat and Corrosion Table",
-  "line": 17392,
-  "endLine": 17404,
+  "line": 17408,
+  "endLine": 17420,
   "category": "hazards",
   "topic": "Non-combat damage",
   "audience": [
@@ -2281,8 +2281,8 @@
  {
   "title": "Impact",
   "heading": "Impact",
-  "line": 17406,
-  "endLine": 17418,
+  "line": 17422,
+  "endLine": 17434,
   "category": "hazards",
   "topic": "Non-combat damage",
   "audience": [
@@ -2301,8 +2301,8 @@
  {
   "title": "Travel",
   "heading": "Travel",
-  "line": 17420,
-  "endLine": 17432,
+  "line": 17436,
+  "endLine": 17448,
   "category": "hazards",
   "topic": "Travel",
   "audience": [
@@ -2323,8 +2323,8 @@
  {
   "title": "Realms: Belonging and Affiliation",
   "heading": "Chapter 12: Realms",
-  "line": 17436,
-  "endLine": 17446,
+  "line": 17452,
+  "endLine": 17462,
   "category": "realms",
   "topic": "Realms",
   "audience": [
@@ -2343,8 +2343,8 @@
  {
   "title": "Realm Auras",
   "heading": "Realm Auras",
-  "line": 17462,
-  "endLine": 17469,
+  "line": 17478,
+  "endLine": 17485,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2365,8 +2365,8 @@
  {
   "title": "Realm Interaction",
   "heading": "Realm Interaction",
-  "line": 17470,
-  "endLine": 17475,
+  "line": 17486,
+  "endLine": 17491,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2386,8 +2386,8 @@
  {
   "title": "Realm Interaction Table",
   "heading": "Realm Interaction Table",
-  "line": 17476,
-  "endLine": 17487,
+  "line": 17492,
+  "endLine": 17503,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2407,8 +2407,8 @@
  {
   "title": "Supernatural Activity Rolls Modified by Aura",
   "heading": "Supernatural Activity Rolls Modified by Aura",
-  "line": 17489,
-  "endLine": 17499,
+  "line": 17505,
+  "endLine": 17515,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2428,8 +2428,8 @@
  {
   "title": "Creatures of a Realm",
   "heading": "Creatures of a Realm",
-  "line": 17501,
-  "endLine": 17505,
+  "line": 17517,
+  "endLine": 17521,
   "category": "beings",
   "topic": "Realms",
   "audience": [
@@ -2447,8 +2447,8 @@
  {
   "title": "Magic Resistance and Penetration of Creatures",
   "heading": "Magic Resistance and Penetration",
-  "line": 17507,
-  "endLine": 17521,
+  "line": 17523,
+  "endLine": 17537,
   "category": "beings",
   "topic": "Magic Resistance and Penetration",
   "audience": [
@@ -2460,8 +2460,8 @@
   "summary": "Creatures with a Might Score derive Magic Resistance and Penetration from it, and characters with non-Hermetic supernatural abilities have their own Penetration formula.",
   "quotes": [
    "CREATURE MAGIC RESISTANCE: Might Score + Aura Modifier",
-   "CREATURE PENETRATION: Might Score \u2013 (5 x Might Points spent on power) + Penetration Bonus + Aura Modifier",
-   "CHARACTER PENETRATION: Effect Roll \u2013 Ease Factor + Penetration Bonus + Aura Modifier"
+   "CREATURE PENETRATION: Might Score – (5 x Might Points spent on power) + Penetration Bonus + Aura Modifier",
+   "CHARACTER PENETRATION: Effect Roll – Ease Factor + Penetration Bonus + Aura Modifier"
   ],
   "related": [
    "ArM5 p.215 Penetration"
@@ -2470,8 +2470,8 @@
  {
   "title": "Magical Auras",
   "heading": "Magical Auras",
-  "line": 17539,
-  "endLine": 17547,
+  "line": 17555,
+  "endLine": 17563,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2493,8 +2493,8 @@
  {
   "title": "Sources of Magical Auras",
   "heading": "Sources of Magical Auras",
-  "line": 17549,
-  "endLine": 17555,
+  "line": 17565,
+  "endLine": 17571,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2513,8 +2513,8 @@
  {
   "title": "Infernal Creatures",
   "heading": "Infernal Creatures",
-  "line": 17581,
-  "endLine": 17587,
+  "line": 17597,
+  "endLine": 17603,
   "category": "realms",
   "topic": "Infernal realm",
   "audience": [
@@ -2532,8 +2532,8 @@
  {
   "title": "Infernal Auras",
   "heading": "Infernal Auras",
-  "line": 17589,
-  "endLine": 17595,
+  "line": 17605,
+  "endLine": 17611,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2554,8 +2554,8 @@
  {
   "title": "Sources of Infernal Auras",
   "heading": "Sources of Infernal Auras",
-  "line": 17597,
-  "endLine": 17601,
+  "line": 17613,
+  "endLine": 17617,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2573,8 +2573,8 @@
  {
   "title": "Faerie Creatures",
   "heading": "Faerie Creatures",
-  "line": 17611,
-  "endLine": 17619,
+  "line": 17627,
+  "endLine": 17635,
   "category": "realms",
   "topic": "Faerie realm",
   "audience": [
@@ -2594,8 +2594,8 @@
  {
   "title": "Faerie Auras",
   "heading": "Faerie Auras",
-  "line": 17621,
-  "endLine": 17631,
+  "line": 17637,
+  "endLine": 17647,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2616,8 +2616,8 @@
  {
   "title": "Sources of Faerie Auras",
   "heading": "Sources of Faerie Auras",
-  "line": 17633,
-  "endLine": 17637,
+  "line": 17649,
+  "endLine": 17653,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2635,8 +2635,8 @@
  {
   "title": "Divine Auras",
   "heading": "Divine Auras",
-  "line": 17661,
-  "endLine": 17667,
+  "line": 17677,
+  "endLine": 17683,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2655,8 +2655,8 @@
  {
   "title": "Sources of Divine Auras",
   "heading": "Sources of Divine Auras",
-  "line": 17669,
-  "endLine": 17675,
+  "line": 17685,
+  "endLine": 17691,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2676,8 +2676,8 @@
  {
   "title": "True Faith",
   "heading": "True Faith",
-  "line": 17677,
-  "endLine": 17691,
+  "line": 17693,
+  "endLine": 17707,
   "category": "realms",
   "topic": "True Faith",
   "audience": [
@@ -2699,8 +2699,8 @@
  {
   "title": "Relics",
   "heading": "Relics",
-  "line": 17693,
-  "endLine": 17701,
+  "line": 17709,
+  "endLine": 17717,
   "category": "realms",
   "topic": "Relics",
   "audience": [
@@ -2721,8 +2721,8 @@
  {
   "title": "Miracles",
   "heading": "Miracles",
-  "line": 17709,
-  "endLine": 17711,
+  "line": 17725,
+  "endLine": 17727,
   "category": "realms",
   "topic": "Divine realm",
   "audience": [
@@ -2742,8 +2742,8 @@
  {
   "title": "Magic Resistance For Church Officers and Sovereigns",
   "heading": "Magic Resistance For Church Officers and Sovereigns",
-  "line": 17713,
-  "endLine": 17727,
+  "line": 17729,
+  "endLine": 17743,
   "category": "realms",
   "topic": "Magic Resistance and Penetration",
   "audience": [
@@ -2763,8 +2763,8 @@
  {
   "title": "The Mundane",
   "heading": "The Mundane",
-  "line": 17730,
-  "endLine": 17734,
+  "line": 17746,
+  "endLine": 17750,
   "category": "realms",
   "topic": "Auras",
   "audience": [
@@ -2782,8 +2782,8 @@
  {
   "title": "Regiones",
   "heading": "Regiones",
-  "line": 17736,
-  "endLine": 17746,
+  "line": 17752,
+  "endLine": 17762,
   "category": "realms",
   "topic": "Regiones",
   "audience": [
@@ -2802,8 +2802,8 @@
  {
   "title": "Entering and Leaving Regiones",
   "heading": "Entering and Leaving Regiones",
-  "line": 17748,
-  "endLine": 17770,
+  "line": 17764,
+  "endLine": 17786,
   "category": "realms",
   "topic": "Regiones",
   "audience": [
@@ -2816,15 +2816,15 @@
   "summary": "The three ways into a regio (being led, entering voluntarily by sight or path, or getting lost) and the roll and Ease Factor for seeing into a regio level.",
   "quotes": [
    "REGIO SIGHT ROLL: Perception + Appropriate Ability + Stress Die",
-   "EASE FACTOR: 5 + (2 \u00d7 difference between current level's aura and sought level's aura)"
+   "EASE FACTOR: 5 + (2 × difference between current level's aura and sought level's aura)"
   ],
   "related": []
  },
  {
   "title": "Magic in Regiones",
   "heading": "Magic in Regiones",
-  "line": 17772,
-  "endLine": 17774,
+  "line": 17788,
+  "endLine": 17790,
   "category": "realms",
   "topic": "Regiones",
   "audience": [
@@ -2843,8 +2843,8 @@
  {
   "title": "The Origins of Regiones",
   "heading": "The Origins of Regiones",
-  "line": 17776,
-  "endLine": 17782,
+  "line": 17792,
+  "endLine": 17798,
   "category": "realms",
   "topic": "Regiones",
   "audience": [
@@ -2860,8 +2860,8 @@
  {
   "title": "Vis Sources",
   "heading": "Vis Sources",
-  "line": 17784,
-  "endLine": 17790,
+  "line": 17800,
+  "endLine": 17806,
   "category": "covenant",
   "topic": "Vis sources",
   "audience": [
@@ -2883,8 +2883,8 @@
  {
   "title": "Tainted Vis",
   "heading": "Tainted Vis",
-  "line": 17805,
-  "endLine": 17811,
+  "line": 17821,
+  "endLine": 17827,
   "category": "realms",
   "topic": "Vis sources",
   "audience": [
@@ -2906,8 +2906,8 @@
  {
   "title": "Creature Might",
   "heading": "Creature Might",
-  "line": 17825,
-  "endLine": 17835,
+  "line": 17841,
+  "endLine": 17851,
   "category": "beings",
   "topic": "Creature Might",
   "audience": [
@@ -2927,8 +2927,8 @@
  {
   "title": "Creature Powers",
   "heading": "Creature Powers",
-  "line": 17837,
-  "endLine": 17859,
+  "line": 17853,
+  "endLine": 17875,
   "category": "beings",
   "topic": "Creature powers",
   "audience": [
@@ -2940,7 +2940,7 @@
   "summary": "Creature powers have no levels and instead cost Might points, with a standard format, a Penetration formula based on Might and cost, and a dispelling level equal to Might.",
   "quotes": [
    "Power Name, X points, Init Y, Form: Description.",
-   "CREATURE POWER PENETRATION: Might Score \u2013 (5 x Might Point cost of the power) + Penetration Bonus",
+   "CREATURE POWER PENETRATION: Might Score – (5 x Might Point cost of the power) + Penetration Bonus",
    "CREATURE POWER LEVEL FOR DISPELLING: Creature's Might Score"
   ],
   "related": [
@@ -2950,8 +2950,8 @@
  {
   "title": "Creature Format",
   "heading": "Creature Format",
-  "line": 17861,
-  "endLine": 17901,
+  "line": 17877,
+  "endLine": 17917,
   "category": "beings",
   "topic": "Creature statistics",
   "audience": [
@@ -2974,8 +2974,8 @@
  {
   "title": "Size Examples",
   "heading": "Size Examples",
-  "line": 17903,
-  "endLine": 17930,
+  "line": 17919,
+  "endLine": 17946,
   "category": "beings",
   "topic": "Creature statistics",
   "audience": [
@@ -2993,8 +2993,8 @@
  {
   "title": "Creating Creatures",
   "heading": "Creating Creatures",
-  "line": 17932,
-  "endLine": 17948,
+  "line": 17948,
+  "endLine": 17964,
   "category": "beings",
   "topic": "Creature creation",
   "audience": [
@@ -3012,8 +3012,8 @@
  {
   "title": "Beasts in Combat",
   "heading": "Beasts in Combat",
-  "line": 17954,
-  "endLine": 17960,
+  "line": 17970,
+  "endLine": 17976,
   "category": "beings",
   "topic": "Mundane beasts",
   "audience": [
@@ -3031,8 +3031,8 @@
  {
   "title": "Creating Mundane Beasts",
   "heading": "Creating Mundane Beasts",
-  "line": 18440,
-  "endLine": 18442,
+  "line": 18456,
+  "endLine": 18458,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3049,8 +3049,8 @@
  {
   "title": "Beast Creation Step 1: Type and Size",
   "heading": "1. Type and Size",
-  "line": 18444,
-  "endLine": 18446,
+  "line": 18460,
+  "endLine": 18462,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3069,8 +3069,8 @@
  {
   "title": "Beast Creation Step 2: Characteristics",
   "heading": "2. Characteristics",
-  "line": 18448,
-  "endLine": 18463,
+  "line": 18464,
+  "endLine": 18479,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3091,8 +3091,8 @@
  {
   "title": "Mental Characteristics of Creatures",
   "heading": "Mental Characteristics of Creatures",
-  "line": 18465,
-  "endLine": 18472,
+  "line": 18481,
+  "endLine": 18488,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3109,8 +3109,8 @@
  {
   "title": "Example Physical Characteristics of Creatures",
   "heading": "Example Physical Characteristics of Creatures",
-  "line": 18474,
-  "endLine": 18486,
+  "line": 18490,
+  "endLine": 18502,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3127,8 +3127,8 @@
  {
   "title": "Creatures of Non-Standard Size",
   "heading": "Creatures of Non-Standard Size",
-  "line": 18488,
-  "endLine": 18490,
+  "line": 18504,
+  "endLine": 18506,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3147,8 +3147,8 @@
  {
   "title": "Beast Creation Step 3: Virtues and Flaws",
   "heading": "3. Virtues and Flaws",
-  "line": 18492,
-  "endLine": 18498,
+  "line": 18508,
+  "endLine": 18514,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3167,8 +3167,8 @@
  {
   "title": "Suitable Virtues and Flaws for Beasts",
   "heading": "Suitable Virtues and Flaws",
-  "line": 18500,
-  "endLine": 18506,
+  "line": 18516,
+  "endLine": 18522,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3187,8 +3187,8 @@
  {
   "title": "Beast Creation Step 4: Basic Abilities",
   "heading": "4. Basic Abilities",
-  "line": 18508,
-  "endLine": 18523,
+  "line": 18524,
+  "endLine": 18539,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3207,8 +3207,8 @@
  {
   "title": "Beast Creation Step 5: Qualities",
   "heading": "5. Qualities",
-  "line": 18525,
-  "endLine": 18621,
+  "line": 18541,
+  "endLine": 18637,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3230,8 +3230,8 @@
  {
   "title": "Beast Creation Step 6: Combat Statistics",
   "heading": "6. Combat Statistics",
-  "line": 18623,
-  "endLine": 18625,
+  "line": 18639,
+  "endLine": 18641,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3250,8 +3250,8 @@
  {
   "title": "Natural Weapons Table",
   "heading": "Natural Weapons Table",
-  "line": 18631,
-  "endLine": 18646,
+  "line": 18647,
+  "endLine": 18662,
   "category": "beings",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3270,8 +3270,8 @@
  {
   "title": "Aging of Animals",
   "heading": "Aging",
-  "line": 18648,
-  "endLine": 18652,
+  "line": 18664,
+  "endLine": 18668,
   "category": "aging",
   "topic": "Creating mundane beasts",
   "audience": [
@@ -3292,8 +3292,8 @@
  {
   "title": "Statistics of Shapechangers",
   "heading": "Statistics of Shapechangers",
-  "line": 18654,
-  "endLine": 18656,
+  "line": 18670,
+  "endLine": 18672,
   "category": "beings",
   "topic": "Shapechanger statistics",
   "audience": [
@@ -3310,8 +3310,8 @@
  {
   "title": "Shapechanger Step 1: Characteristics",
   "heading": "1. Characteristics",
-  "line": 18658,
-  "endLine": 18665,
+  "line": 18674,
+  "endLine": 18681,
   "category": "beings",
   "topic": "Shapechanger statistics",
   "audience": [
@@ -3331,8 +3331,8 @@
  {
   "title": "Shapechanger Step 2: Cunning Versus Intelligence",
   "heading": "2. Cunning Vs. Intelligence",
-  "line": 18667,
-  "endLine": 18695,
+  "line": 18683,
+  "endLine": 18711,
   "category": "beings",
   "topic": "Shapechanger statistics",
   "audience": [
@@ -3351,8 +3351,8 @@
  {
   "title": "Shapechanger Step 3: Size",
   "heading": "3. Size",
-  "line": 18697,
-  "endLine": 18699,
+  "line": 18713,
+  "endLine": 18715,
   "category": "beings",
   "topic": "Shapechanger statistics",
   "audience": [
@@ -3371,8 +3371,8 @@
  {
   "title": "Shapechanger Step 4: Virtues and Flaws",
   "heading": "4. Virtues & Flaws",
-  "line": 18701,
-  "endLine": 18703,
+  "line": 18717,
+  "endLine": 18719,
   "category": "beings",
   "topic": "Shapechanger statistics",
   "audience": [
@@ -3391,8 +3391,8 @@
  {
   "title": "Shapechanger Step 5: General Abilities",
   "heading": "5. General Abilities",
-  "line": 18705,
-  "endLine": 18707,
+  "line": 18721,
+  "endLine": 18723,
   "category": "beings",
   "topic": "Shapechanger statistics",
   "audience": [
@@ -3411,8 +3411,8 @@
  {
   "title": "Shapechanger Step 6: Communicating",
   "heading": "6. Communicating",
-  "line": 18709,
-  "endLine": 18711,
+  "line": 18725,
+  "endLine": 18727,
   "category": "beings",
   "topic": "Shapechanger statistics",
   "audience": [
@@ -3431,8 +3431,8 @@
  {
   "title": "Shapechanger Step 7: Wounds and Experience",
   "heading": "7. Wounds & Experience",
-  "line": 18713,
-  "endLine": 18717,
+  "line": 18729,
+  "endLine": 18733,
   "category": "beings",
   "topic": "Shapechanger statistics",
   "audience": [

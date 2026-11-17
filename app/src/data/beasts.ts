@@ -34,7 +34,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'bear',
     name: 'Bear',
     latin: 'Ursus',
-    line: 18001,
+    line: 18017,
     characteristics: {
       Cun: 1,
       Per: 0,
@@ -80,7 +80,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'boar-wild',
     name: 'Boar, Wild',
     latin: 'Aper',
-    line: 18046,
+    line: 18062,
     characteristics: {
       Cun: 0,
       Per: 0,
@@ -119,7 +119,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'bull',
     name: 'Bull',
     latin: 'Taurus',
-    line: 18087,
+    line: 18103,
     characteristics: {
       Cun: -2,
       Per: 0,
@@ -151,7 +151,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'cat',
     name: 'Cat',
     latin: 'Felis',
-    line: 18127,
+    line: 18143,
     characteristics: {
       Cun: 0,
       Per: 1,
@@ -190,7 +190,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'falcon',
     name: 'Falcon',
     latin: 'Falco',
-    line: 18167,
+    line: 18183,
     characteristics: {
       Cun: -1,
       Per: 3,
@@ -229,7 +229,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'horse-courser',
     name: 'Horse, Courser',
     latin: 'Equus',
-    line: 18205,
+    line: 18221,
     characteristics: {
       Cun: -2,
       Per: 0,
@@ -261,7 +261,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'horse-destrier',
     name: 'Horse, Destrier',
     latin: 'Equus',
-    line: 18243,
+    line: 18259,
     characteristics: {
       Cun: -2,
       Per: 0,
@@ -293,7 +293,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'hound',
     name: 'Hound',
     latin: 'Canis',
-    line: 18281,
+    line: 18297,
     characteristics: {
       Cun: 0,
       Per: 2,
@@ -325,7 +325,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'lion',
     name: 'Lion',
     latin: 'Leo',
-    line: 18319,
+    line: 18335,
     characteristics: {
       Cun: 2,
       Per: 0,
@@ -364,7 +364,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'stag',
     name: 'Stag',
     latin: 'Cervus',
-    line: 18359,
+    line: 18375,
     characteristics: {
       Cun: -2,
       Per: 2,
@@ -403,7 +403,7 @@ export const MUNDANE_BEASTS: MundaneBeast[] = [
     id: 'wolf',
     name: 'Wolf',
     latin: 'Lupus',
-    line: 18398,
+    line: 18414,
     characteristics: {
       Cun: 2,
       Per: 0,

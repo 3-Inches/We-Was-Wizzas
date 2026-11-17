@@ -150,7 +150,7 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
 
   return (
     <Card title="Mysteries & Initiation" tour="mysteries" actions={atTable ? <button className="small" onClick={() => setOpen((o) => !o)}>{open ? 'Close' : 'Plan an Initiation'}</button> : undefined}>
-      <RulesNote book="DE" line={16467} endLine={16535}>
+      <RulesNote book="DE" line={16483} endLine={16551}>
         The Mystagogue’s Presence + (House) Lore + the Script’s bonus against 15 for a Minor Virtue or 21 for a Major one (18 and 30 for one the Mystagogue lacks). No die.
       </RulesNote>
       <RollAtTable sagaId={c.sagaId} who={c.id} where="seasons" what="An Initiation, a season’s work, is planned" />

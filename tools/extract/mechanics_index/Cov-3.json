@@ -2,8 +2,8 @@
  {
   "title": "Laboratory Personalization Rules",
   "heading": "Laboratory Personalization Rules",
-  "line": 5662,
-  "endLine": 5668,
+  "line": 5716,
+  "endLine": 5722,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -22,8 +22,8 @@
  {
   "title": "Laboratory Characteristics",
   "heading": "Laboratory Characteristics",
-  "line": 5670,
-  "endLine": 5680,
+  "line": 5724,
+  "endLine": 5734,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -43,8 +43,8 @@
  {
   "title": "Second Laboratories",
   "heading": "Second Laboratories",
-  "line": 5682,
-  "endLine": 5686,
+  "line": 5736,
+  "endLine": 5740,
   "category": "order",
   "topic": "Laboratory personalization",
   "audience": [
@@ -64,8 +64,8 @@
  {
   "title": "Laboratory Size",
   "heading": "Size",
-  "line": 5688,
-  "endLine": 5712,
+  "line": 5742,
+  "endLine": 5766,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -85,8 +85,8 @@
  {
   "title": "Size and Refinement Summary",
   "heading": "Size and Refinement Summary",
-  "line": 5714,
-  "endLine": 5722,
+  "line": 5768,
+  "endLine": 5776,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -98,15 +98,15 @@
   "requires": "",
   "summary": "Sidebar summarising the limit on Virtue points, occupied Size and base Safety in terms of Size and Refinement.",
   "quotes": [
-   "Base Safety of lab: Refinement \u2013 occupied Size (if greater than zero)"
+   "Base Safety of lab: Refinement – occupied Size (if greater than zero)"
   ],
   "related": []
  },
  {
   "title": "Laboratory Refinement",
   "heading": "Refinement",
-  "line": 5724,
-  "endLine": 5736,
+  "line": 5778,
+  "endLine": 5790,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -126,8 +126,8 @@
  {
   "title": "Laboratory General Quality",
   "heading": "General Quality",
-  "line": 5738,
-  "endLine": 5740,
+  "line": 5792,
+  "endLine": 5794,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -146,8 +146,8 @@
  {
   "title": "Laboratory Upkeep",
   "heading": "Upkeep",
-  "line": 5742,
-  "endLine": 5748,
+  "line": 5796,
+  "endLine": 5802,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -169,8 +169,8 @@
  {
   "title": "Laboratory Safety",
   "heading": "Safety",
-  "line": 5750,
-  "endLine": 5756,
+  "line": 5804,
+  "endLine": 5810,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -192,8 +192,8 @@
  {
   "title": "Laboratory Warping",
   "heading": "Warping",
-  "line": 5758,
-  "endLine": 5762,
+  "line": 5812,
+  "endLine": 5816,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -214,8 +214,8 @@
  {
   "title": "Laboratory Health",
   "heading": "Health",
-  "line": 5764,
-  "endLine": 5768,
+  "line": 5818,
+  "endLine": 5822,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -234,8 +234,8 @@
  {
   "title": "Laboratory Aesthetics",
   "heading": "Aesthetics",
-  "line": 5770,
-  "endLine": 5774,
+  "line": 5824,
+  "endLine": 5828,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -254,8 +254,8 @@
  {
   "title": "Laboratory Specializations",
   "heading": "Laboratory Specializations",
-  "line": 5776,
-  "endLine": 5798,
+  "line": 5830,
+  "endLine": 5852,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -274,8 +274,8 @@
  {
   "title": "Laboratory Virtues and Flaws",
   "heading": "Laboratory Virtues and Flaws",
-  "line": 5848,
-  "endLine": 5852,
+  "line": 5902,
+  "endLine": 5906,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -294,8 +294,8 @@
  {
   "title": "Installing and Removing Laboratory Virtues",
   "heading": "Virtues",
-  "line": 5854,
-  "endLine": 5860,
+  "line": 5908,
+  "endLine": 5914,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -315,8 +315,8 @@
  {
   "title": "Taking and Removing Laboratory Flaws",
   "heading": "Flaws",
-  "line": 5862,
-  "endLine": 5866,
+  "line": 5916,
+  "endLine": 5920,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -335,8 +335,8 @@
  {
   "title": "Build Point Cost for Starting Laboratories",
   "heading": "Build Point Cost for Starting Laboratories",
-  "line": 5892,
-  "endLine": 5902,
+  "line": 5946,
+  "endLine": 5956,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -358,8 +358,8 @@
  {
   "title": "Taking Over a Laboratory",
   "heading": "Taking Over a Laboratory",
-  "line": 6078,
-  "endLine": 6080,
+  "line": 6132,
+  "endLine": 6134,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -372,7 +372,7 @@
   "summary": "Sidebar on moving into a lab previously owned by someone else: when the new owner can start work at once, and when a season of rearrangement is needed, including the secret Perception + Magic Theory roll that may leave the Predecessor or Hidden Defect Flaw.",
   "quotes": [
    "Finally, the storyguide should secretly make a Perception + Magic Theory roll against an Ease Factor of three times the lab's original Refinement for the maga.",
-   "the resulting Refinement score of the lab is equal to its old Refinement, or the new owner's Magic Theory \u2013 3, whichever is lower."
+   "the resulting Refinement score of the lab is equal to its old Refinement, or the new owner's Magic Theory – 3, whichever is lower."
   ],
   "related": [
    "Laboratory Refinement"
@@ -381,8 +381,8 @@
  {
   "title": "Moving a Laboratory",
   "heading": "Moving a Laboratory",
-  "line": 6174,
-  "endLine": 6176,
+  "line": 6228,
+  "endLine": 6230,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -403,8 +403,8 @@
  {
   "title": "Laboratory Features",
   "heading": "Laboratory Features",
-  "line": 6192,
-  "endLine": 6268,
+  "line": 6246,
+  "endLine": 6322,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -424,8 +424,8 @@
  {
   "title": "Magic Items for Laboratories",
   "heading": "Magic Items for Laboratories",
-  "line": 6270,
-  "endLine": 6279,
+  "line": 6324,
+  "endLine": 6333,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -447,8 +447,8 @@
  {
   "title": "Common Laboratory Items",
   "heading": "Common Laboratory Items",
-  "line": 6315,
-  "endLine": 6317,
+  "line": 6369,
+  "endLine": 6371,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -467,8 +467,8 @@
  {
   "title": "Spells for Laboratories",
   "heading": "Spells for Laboratories",
-  "line": 6361,
-  "endLine": 6368,
+  "line": 6415,
+  "endLine": 6422,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -488,8 +488,8 @@
  {
   "title": "Sample Covenant Charter: Oath of Covenant",
   "heading": "The Oath of Covenant of ...",
-  "line": 6485,
-  "endLine": 6491,
+  "line": 6543,
+  "endLine": 6549,
   "category": "covenant",
   "topic": "Covenant charter",
   "audience": [
@@ -511,8 +511,8 @@
  {
   "title": "Charter: Membership",
   "heading": "Membership",
-  "line": 6493,
-  "endLine": 6503,
+  "line": 6551,
+  "endLine": 6561,
   "category": "covenant",
   "topic": "Covenant charter",
   "audience": [
@@ -534,8 +534,8 @@
  {
   "title": "Charter: Governance",
   "heading": "Governance of this Covenant",
-  "line": 6505,
-  "endLine": 6513,
+  "line": 6563,
+  "endLine": 6571,
   "category": "covenant",
   "topic": "Covenant charter",
   "audience": [
@@ -559,8 +559,8 @@
  {
   "title": "Charter: Resources",
   "heading": "Resources Owned by this Covenant",
-  "line": 6515,
-  "endLine": 6529,
+  "line": 6573,
+  "endLine": 6587,
   "category": "covenant",
   "topic": "Covenant charter",
   "audience": [
@@ -582,8 +582,8 @@
  {
   "title": "Charter: Rights of Members",
   "heading": "Rights of the Members of this Covenant",
-  "line": 6531,
-  "endLine": 6537,
+  "line": 6589,
+  "endLine": 6595,
   "category": "covenant",
   "topic": "Covenant charter",
   "audience": [
@@ -605,8 +605,8 @@
  {
   "title": "Charter: Responsibilities of Members",
   "heading": "Responsibilities of the Members of this Covenant",
-  "line": 6539,
-  "endLine": 6549,
+  "line": 6597,
+  "endLine": 6607,
   "category": "covenant",
   "topic": "Covenant charter",
   "audience": [
@@ -628,8 +628,8 @@
  {
   "title": "Charter: Censure and Expulsion",
   "heading": "Censure of the Members of this Covenant",
-  "line": 6551,
-  "endLine": 6555,
+  "line": 6609,
+  "endLine": 6613,
   "category": "covenant",
   "topic": "Covenant charter",
   "audience": [

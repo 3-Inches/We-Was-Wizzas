@@ -29,9 +29,9 @@ BOOKS = [
     ("AM", "reviewed/Ars Magica 5e - Magic - Ancient Magic.md", "Ancient Magic", "AM", "magic", True),
     ("HMRE", "reviewed/Ars Magica 5e - Magic - Hedge Magic (Revised).md", "Hedge Magic (Revised Edition)", "HMRE", "magic", True),
     ("App", "reviewed/Ars Magica 5e - Magic - Apprentices.md", "Apprentices", "App", "magic", True),
-    ("RM", "wip/Ars Magica 5e - Magic - Rival Magic.md", "Rival Magic", "RM", "magic", True),
+    ("RM", "reviewed/Ars Magica 5e - Magic - Rival Magic.md", "Rival Magic", "RM", "magic", True),
     ("CC", "wip/Ars Magica 5e - Magic - The Cradle & the Crescent.md", "The Cradle & the Crescent", "C&C", "magic", True),
-    ("HP", "wip/Ars Magica 5e - Magic - Hermetic Projects.md", "Hermetic Projects", "HP", "magic", True),
+    ("HP", "reviewed/Ars Magica 5e - Magic - Hermetic Projects.md", "Hermetic Projects", "HP", "magic", True),
     ("MoH", "wip/Ars Magica 5e - Magi of Hermes.md", "Magi of Hermes", "MoH", "magic", True),
     ("LoH", "reviewed/Ars Magica 5e - Legends of Hermes.md", "Legends of Hermes", "LoH", "magic", True),
     ("RoP_M", "reviewed/Ars Magica 5e - Realms of Power - Magic.md", "Realms of Power: Magic", "RoP:M", "realms", True),
@@ -56,8 +56,8 @@ BOOKS = [
     ("LaL", "reviewed/Ars Magica 5e - The Lion and the Lily - The Normandy Tribunal.md", "The Lion and the Lily (Normandy Tribunal)", "L&L", "tribunal", True),
     ("SE", "reviewed/Ars Magica 5e - The Sundered Eagle - The Theban Tribunal.md", "The Sundered Eagle (Theban Tribunal)", "SE", "tribunal", True),
     ("LotN", "reviewed/Ars Magica 5e - Lands of the Nile - Egypt, Ethiopia & Nubia.md", "Lands of the Nile", "LotN", "tribunal", True),
-    ("FF", "wip/Ars Magica 5e - Faith & Flame - The Provencal Tribunal.md", "Faith & Flame (Provençal Tribunal)", "F&F", "tribunal", True),
-    ("CI", "wip/Ars Magica 5e - The Contested Isle - The Hibernian Tribunal.md", "The Contested Isle (Hibernian Tribunal)", "CI", "tribunal", True),
+    ("FF", "reviewed/Ars Magica 5e - Faith & Flame - The Provencal Tribunal.md", "Faith & Flame (Provençal Tribunal)", "F&F", "tribunal", True),
+    ("CI", "reviewed/Ars Magica 5e - The Contested Isle - The Hibernian Tribunal.md", "The Contested Isle (Hibernian Tribunal)", "CI", "tribunal", True),
     ("BSS", "wip/Ars Magica 5e - Between Sand & Sea - Mythic Africa.md", "Between Sand & Sea (Mythic Africa)", "BS&S", "tribunal", True),
 ]
 

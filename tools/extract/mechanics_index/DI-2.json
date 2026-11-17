@@ -2,8 +2,8 @@
  {
   "title": "Summoning Aspects of Fimbulwinter (Utiseta)",
   "heading": "Calling Winter",
-  "line": 2928,
-  "endLine": 2938,
+  "line": 2998,
+  "endLine": 3008,
   "category": "traditions",
   "topic": "Muspelli Trolldomur",
   "audience": [
@@ -26,8 +26,8 @@
  {
   "title": "Winter's Bite (Fimbulwinter exposure)",
   "heading": "Winter's Bite",
-  "line": 3211,
-  "endLine": 3213,
+  "line": 3280,
+  "endLine": 3282,
   "category": "hazards",
   "topic": "Fimbulwinter",
   "audience": [
@@ -45,8 +45,8 @@
  {
   "title": "Researching Muspelli Magic as a Hermetic Breakthrough",
   "heading": "The Source of the Effects",
-  "line": 3271,
-  "endLine": 3273,
+  "line": 3340,
+  "endLine": 3342,
   "category": "traditions",
   "topic": "Muspelli Trolldomur",
   "audience": [
@@ -65,8 +65,8 @@
  {
   "title": "Hunting the Muspelli: Arcane Connections to the Jotnar",
   "heading": "Chasing the Culprits",
-  "line": 3275,
-  "endLine": 3279,
+  "line": 3344,
+  "endLine": 3348,
   "category": "traditions",
   "topic": "Muspelli Trolldomur",
   "audience": [
@@ -86,8 +86,8 @@
  {
   "title": "Destroying Irminsul and Using Them as Arcane Connections",
   "heading": "Hunting Irminsul",
-  "line": 3285,
-  "endLine": 3287,
+  "line": 3354,
+  "endLine": 3356,
   "category": "traditions",
   "topic": "Muspelli Trolldomur",
   "audience": [
@@ -106,8 +106,8 @@
  {
   "title": "Daimon of Fimbulwinter and Perdo Vim",
   "heading": "Into the Heart of Winter",
-  "line": 3289,
-  "endLine": 3291,
+  "line": 3358,
+  "endLine": 3360,
   "category": "beings",
   "topic": "Muspelli Trolldomur",
   "audience": [
@@ -125,8 +125,8 @@
  {
   "title": "Magically Created Food and Deprivation (Covenant Survival)",
   "heading": "Riding the Storm",
-  "line": 3297,
-  "endLine": 3303,
+  "line": 3366,
+  "endLine": 3372,
   "category": "hazards",
   "topic": "Magical food deprivation",
   "audience": [
@@ -140,7 +140,7 @@
   "summary": "Covenants hiding from Fimbulwinter face attacks if the site is not concealed, and magically created food made without vis builds up a Deprivation debt of Long-Term Fatigue with escalating Stamina Ease Factors and a Living Conditions penalty.",
   "quotes": [
    "Each successive month of magical food increases the Ease Factor by 9 with the loss of three Long-Term Fatigue levels.",
-   "anyone living in such an environment suffers a \u20132 Living Conditions modifier"
+   "anyone living in such an environment suffers a –2 Living Conditions modifier"
   ],
   "related": [
    "ArM5 p.180 Deprivation"
@@ -149,8 +149,8 @@
  {
   "title": "Penetrating Cold (Penetration of Created Weather)",
   "heading": "Penetrating Cold",
-  "line": 3364,
-  "endLine": 3366,
+  "line": 3433,
+  "endLine": 3435,
   "category": "magic",
   "topic": "Penetration",
   "audience": [
@@ -169,8 +169,8 @@
  {
   "title": "Gandar and Utiseta (Storing and Casting Utiseta)",
   "heading": "Gandar and Utiseta",
-  "line": 3588,
-  "endLine": 3592,
+  "line": 3663,
+  "endLine": 3667,
   "category": "traditions",
   "topic": "Muspelli Trolldomur",
   "audience": [
@@ -192,8 +192,8 @@
  {
   "title": "Geography of the Magic Realm (Boundaries, Vestiges, Twilight Void)",
   "heading": "The Geography of the Magic Realm",
-  "line": 3716,
-  "endLine": 3718,
+  "line": 3793,
+  "endLine": 3795,
   "category": "realms",
   "topic": "Magic Realm geography",
   "audience": [
@@ -213,8 +213,8 @@
  {
   "title": "Prognosis Total for Diagnosing Disease",
   "heading": "Fangs in the Night",
-  "line": 3726,
-  "endLine": 3738,
+  "line": 3803,
+  "endLine": 3815,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -235,9 +235,9 @@
  },
  {
   "title": "The Great Pestilence: Overview and Order of Forms",
-  "heading": "Pr\u00e9cis",
-  "line": 3748,
-  "endLine": 3756,
+  "heading": "Précis",
+  "line": 3825,
+  "endLine": 3833,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -259,8 +259,8 @@
  {
   "title": "Treating Disease: Aid, Magic and Divine Cures",
   "heading": "The Plague",
-  "line": 3810,
-  "endLine": 3816,
+  "line": 3887,
+  "endLine": 3893,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -283,8 +283,8 @@
  {
   "title": "Dealing with Disease (Avoidance, Recovery and Crisis)",
   "heading": "Dealing with Disease",
-  "line": 3856,
-  "endLine": 3874,
+  "line": 3933,
+  "endLine": 3951,
   "category": "hazards",
   "topic": "Disease",
   "audience": [
@@ -308,8 +308,8 @@
  {
   "title": "Accidentally Creating the Great Pestilence in the Lab",
   "heading": "Not Hellix, but One of the Covenant's Magi",
-  "line": 4036,
-  "endLine": 4040,
+  "line": 4113,
+  "endLine": 4117,
   "category": "lab",
   "topic": "Great Pestilence",
   "audience": [
@@ -331,8 +331,8 @@
  {
   "title": "Plant Diseases in the 13th Century",
   "heading": "Plant Diseases in the 13th Century",
-  "line": 4042,
-  "endLine": 4080,
+  "line": 4119,
+  "endLine": 4157,
   "category": "hazards",
   "topic": "Plant diseases",
   "audience": [
@@ -354,8 +354,8 @@
  {
   "title": "New Spell Guidelines: Rego Herbam (Plant Disease Wards)",
   "heading": "New Guidelines: Rego Herbam",
-  "line": 4090,
-  "endLine": 4094,
+  "line": 4167,
+  "endLine": 4171,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -375,8 +375,8 @@
  {
   "title": "New Spell Guidelines: Creo Herbam (Healing Plants)",
   "heading": "New Guidelines: Creo Herbam",
-  "line": 4096,
-  "endLine": 4110,
+  "line": 4173,
+  "endLine": 4187,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -395,8 +395,8 @@
  {
   "title": "Great Pestilence Penetration vs Magic Resistance",
   "heading": "What about Magic Resistance?",
-  "line": 4139,
-  "endLine": 4141,
+  "line": 4216,
+  "endLine": 4218,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -415,8 +415,8 @@
  {
   "title": "Warning Signs: Premonitions and Visions",
   "heading": "Four Months of Contagion",
-  "line": 4147,
-  "endLine": 4149,
+  "line": 4224,
+  "endLine": 4226,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -435,8 +435,8 @@
  {
   "title": "Rotting Vis: The Moon of Herbam Rot",
   "heading": "The Moon of Herbam Rot",
-  "line": 4155,
-  "endLine": 4165,
+  "line": 4232,
+  "endLine": 4242,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -457,8 +457,8 @@
  {
   "title": "Sickness of Magic Creatures: The Moon of Herbam Sickness",
   "heading": "The Moon of Herbam Sickness",
-  "line": 4167,
-  "endLine": 4177,
+  "line": 4244,
+  "endLine": 4254,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -479,8 +479,8 @@
  {
   "title": "The Great (Form) Pestilence (Disease)",
   "heading": "The Great (Form) Pestilence",
-  "line": 4179,
-  "endLine": 4182,
+  "line": 4256,
+  "endLine": 4259,
   "category": "hazards",
   "topic": "Great Pestilence",
   "audience": [
@@ -498,8 +498,8 @@
  {
   "title": "Miasmas: The Herbam Miasma Moon",
   "heading": "The Herbam Miasma Moon",
-  "line": 4184,
-  "endLine": 4204,
+  "line": 4261,
+  "endLine": 4281,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -511,16 +511,16 @@
   "summary": "Third month of infection: every Magic aura and regio spawns a drifting invisible miasma that blights things of the attacked Form, lasts a year, has no Might and Penetration Total 0, and penalises Aging rolls for each circulating cycle.",
   "quotes": [
    "A miasma has a life span of 1 year.",
-   "each miasma penalizes Aging rolls by \u20132",
-   "impose a \u20132 penalty for every active cycle of Formtype miasmas circulating through Mythic Europe at that time"
+   "each miasma penalizes Aging rolls by –2",
+   "impose a –2 penalty for every active cycle of Formtype miasmas circulating through Mythic Europe at that time"
   ],
   "related": []
  },
  {
   "title": "Miasma Sizes (Targeting Spells at Miasmas)",
   "heading": "Miasma Sizes",
-  "line": 4206,
-  "endLine": 4211,
+  "line": 4283,
+  "endLine": 4288,
   "category": "magic",
   "topic": "Great Pestilence",
   "audience": [
@@ -540,8 +540,8 @@
  {
   "title": "Miasmas and Regiones",
   "heading": "Miasmas and Regiones",
-  "line": 4212,
-  "endLine": 4217,
+  "line": 4289,
+  "endLine": 4294,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -559,8 +559,8 @@
  {
   "title": "Detecting Miasmas and Aegis Protection",
   "heading": "\"We are Doomed!\"",
-  "line": 4218,
-  "endLine": 4227,
+  "line": 4295,
+  "endLine": 4304,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -580,8 +580,8 @@
  {
   "title": "Handling Multiple Miasmas (Wind and Arrival Tables)",
   "heading": "Handling Multiple Miasmas",
-  "line": 4228,
-  "endLine": 4251,
+  "line": 4305,
+  "endLine": 4328,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -599,8 +599,8 @@
  {
   "title": "Form Ceases to Work: The Herbam Death Moon",
   "heading": "The Herbam Death Moon",
-  "line": 4253,
-  "endLine": 4257,
+  "line": 4330,
+  "endLine": 4334,
   "category": "magic",
   "topic": "Great Pestilence",
   "audience": [
@@ -620,8 +620,8 @@
  {
   "title": "Tribunal Debate and Hellix's Trial",
   "heading": "The Tribunal Response",
-  "line": 4259,
-  "endLine": 4271,
+  "line": 4336,
+  "endLine": 4348,
   "category": "order",
   "topic": "Tribunal debate",
   "audience": [
@@ -643,8 +643,8 @@
  {
   "title": "Slowing the Rate of Infection (Optional Rule)",
   "heading": "The Rate of Infection and a Slower World End",
-  "line": 4275,
-  "endLine": 4279,
+  "line": 4352,
+  "endLine": 4356,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -662,8 +662,8 @@
  {
   "title": "Twilight Tears",
   "heading": "The Twilight Tear",
-  "line": 4356,
-  "endLine": 4363,
+  "line": 4433,
+  "endLine": 4440,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -682,8 +682,8 @@
  {
   "title": "Marking Time: New Moons and Seasons",
   "heading": "Marking Time: New Moons and Seasons",
-  "line": 4372,
-  "endLine": 4378,
+  "line": 4449,
+  "endLine": 4455,
   "category": "setting",
   "topic": "Great Pestilence",
   "audience": [
@@ -701,8 +701,8 @@
  {
   "title": "Effect of Destroyed Forms on Supernatural Abilities and Other Traditions",
   "heading": "Hedge Wizards, Witches, Elementalists, and Supernatural Abilities",
-  "line": 4380,
-  "endLine": 4386,
+  "line": 4457,
+  "endLine": 4463,
   "category": "traditions",
   "topic": "Great Pestilence",
   "audience": [
@@ -720,8 +720,8 @@
  {
   "title": "Corpus Infection (Corpus Pestilence and Miasma)",
   "heading": "The Corpus Infection",
-  "line": 4388,
-  "endLine": 4420,
+  "line": 4465,
+  "endLine": 4497,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -744,8 +744,8 @@
  {
   "title": "Mentem Infection (Mentem Blight)",
   "heading": "The Mentem Infection",
-  "line": 4422,
-  "endLine": 4435,
+  "line": 4499,
+  "endLine": 4512,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -756,7 +756,7 @@
   "requires": "Great Pestilence saga",
   "summary": "Third Form attacked: Mentem miasmas strip people without Magic Resistance of their intellect, replacing Intelligence with Cunning, and the Aging roll penalty from earlier miasmas accumulates.",
   "quotes": [
-   "Aging rolls are penalized by a cumulative \u20134",
+   "Aging rolls are penalized by a cumulative –4",
    "Substitute Cunning for Intelligence to those affected."
   ],
   "related": []
@@ -764,8 +764,8 @@
  {
   "title": "Vim Infection (Vim Blight)",
   "heading": "The Vim Infection",
-  "line": 4437,
-  "endLine": 4448,
+  "line": 4514,
+  "endLine": 4525,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -787,8 +787,8 @@
  {
   "title": "Divine, Infernal, and Faerie Vis (Tainted Vis Substitutes)",
   "heading": "Divine, Infernal, and Faerie Vis",
-  "line": 4450,
-  "endLine": 4454,
+  "line": 4527,
+  "endLine": 4531,
   "category": "magic",
   "topic": "Tainted vis",
   "audience": [
@@ -808,8 +808,8 @@
  {
   "title": "Aquam Infection (Aquam Blight and Rain Clouds)",
   "heading": "The Aquam Infection",
-  "line": 4456,
-  "endLine": 4469,
+  "line": 4533,
+  "endLine": 4546,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -829,8 +829,8 @@
  {
   "title": "Auram Infection (Foul Air)",
   "heading": "The Auram Infection",
-  "line": 4487,
-  "endLine": 4500,
+  "line": 4564,
+  "endLine": 4577,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -841,16 +841,16 @@
   "requires": "Great Pestilence saga",
   "summary": "Sixth Form attacked: Auram miasmas foul the air so that breathers are weakened rather than killed, with a physical-activity penalty, Fatigue loss from exertion and a larger Aging roll penalty from the active miasmas.",
   "quotes": [
-   "Impose a \u20136 penalty to Aging rolls.",
-   "suffers a \u20133 penalty on all rolls involving physical activity"
+   "Impose a –6 penalty to Aging rolls.",
+   "suffers a –3 penalty on all rolls involving physical activity"
   ],
   "related": []
  },
  {
   "title": "Animal Infection (Animal Blight)",
   "heading": "The Animal Infection",
-  "line": 4502,
-  "endLine": 4515,
+  "line": 4579,
+  "endLine": 4592,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -868,8 +868,8 @@
  {
   "title": "Imaginem Infection (Imaginem Blight)",
   "heading": "The Imaginem Infection",
-  "line": 4517,
-  "endLine": 4528,
+  "line": 4594,
+  "endLine": 4605,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -887,8 +887,8 @@
  {
   "title": "Terram Infection (Terram Blight)",
   "heading": "The Terram Infection",
-  "line": 4530,
-  "endLine": 4545,
+  "line": 4607,
+  "endLine": 4620,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -900,15 +900,15 @@
   "summary": "Ninth Form attacked: Terram miasmas strip the topsoil and drop structures into a pit, with simple-roll Ease Factors for collapse by structure size, descent rate of the miasma and a large cumulative Aging roll penalty.",
   "quotes": [
    "Wooden buildings and small trees collapse on a simple roll against an Ease Factor of 3.",
-   "Aging rolls made this Winter are penalized by a cumulative \u201310 for 5 active types of miasmas"
+   "Aging rolls made this Winter are penalized by a cumulative –10 for 5 active types of miasmas"
   ],
   "related": []
  },
  {
   "title": "Ignem Infection (Ignem Blight)",
   "heading": "The Ignem Infection",
-  "line": 4547,
-  "endLine": 4558,
+  "line": 4622,
+  "endLine": 4633,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -926,8 +926,8 @@
  {
   "title": "After the Great Pestilence (Postmortem)",
   "heading": "Postmortem: Life after the Great Pestilence",
-  "line": 4560,
-  "endLine": 4564,
+  "line": 4635,
+  "endLine": 4639,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -938,15 +938,15 @@
   "requires": "Great Pestilence saga",
   "summary": "Describes the end state after all ten Forms are consumed, including the lingering miasmas and the Living Condition modifier applied to the following Aging rolls.",
   "quotes": [
-   "The Living Condition penalty is modified by \u20136 for the next set of Aging rolls in the coming Winter."
+   "The Living Condition penalty is modified by –6 for the next set of Aging rolls in the coming Winter."
   ],
   "related": []
  },
  {
   "title": "Bookkeeping the Great Pestilence",
   "heading": "Bookkeeping",
-  "line": 4566,
-  "endLine": 4570,
+  "line": 4641,
+  "endLine": 4645,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -964,8 +964,8 @@
  {
   "title": "Protective Walls Against Miasmas",
   "heading": "Building Protective Barriers",
-  "line": 4619,
-  "endLine": 4621,
+  "line": 4694,
+  "endLine": 4696,
   "category": "magic",
   "topic": "Great Pestilence",
   "audience": [
@@ -984,8 +984,8 @@
  {
   "title": "Seeing, Moving and Destroying Miasmas (Spell Design)",
   "heading": "Affecting the Miasmas",
-  "line": 4623,
-  "endLine": 4654,
+  "line": 4698,
+  "endLine": 4729,
   "category": "magic",
   "topic": "Great Pestilence",
   "audience": [
@@ -1004,8 +1004,8 @@
  {
   "title": "Changing the Order of Plagues (Optional Rule)",
   "heading": "Changing the Order of Plagues",
-  "line": 4636,
-  "endLine": 4638,
+  "line": 4711,
+  "endLine": 4713,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -1023,8 +1023,8 @@
  {
   "title": "Deducing the Order of Forms Attacked",
   "heading": "Puzzling Out the Order of Forms Attacked",
-  "line": 4656,
-  "endLine": 4660,
+  "line": 4731,
+  "endLine": 4735,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -1044,8 +1044,8 @@
  {
   "title": "Healing Blighted Auras (Creo Vim Guideline)",
   "heading": "Curing Auras, Regiones, and Magic Beings",
-  "line": 4662,
-  "endLine": 4673,
+  "line": 4737,
+  "endLine": 4748,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -1063,8 +1063,8 @@
  {
   "title": "Curing Diseased Magic Beings",
   "heading": "Save the Magic Beings",
-  "line": 4675,
-  "endLine": 4679,
+  "line": 4750,
+  "endLine": 4754,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -1082,8 +1082,8 @@
  {
   "title": "New Spell Guidelines: Creo Animal (Animal Diseases)",
   "heading": "New Guidelines: Creo Animal",
-  "line": 4688,
-  "endLine": 4700,
+  "line": 4763,
+  "endLine": 4775,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -1101,8 +1101,8 @@
  {
   "title": "Researching a Way to Affect the Magic Realm (Breakthrough and Insight)",
   "heading": "Discovering the Means of Attack",
-  "line": 4702,
-  "endLine": 4711,
+  "line": 4777,
+  "endLine": 4786,
   "category": "lab",
   "topic": "Hermetic breakthroughs",
   "audience": [
@@ -1124,8 +1124,8 @@
  {
   "title": "Cutting an Aura's Link to the Magic Realm",
   "heading": "Seeking the Thread of Power",
-  "line": 4712,
-  "endLine": 4721,
+  "line": 4787,
+  "endLine": 4796,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [
@@ -1144,8 +1144,8 @@
  {
   "title": "Inventing the Great Barrier (Ward Against the Great Pestilence)",
   "heading": "Inventing the Great Barrier",
-  "line": 4730,
-  "endLine": 4741,
+  "line": 4805,
+  "endLine": 4816,
   "category": "magic",
   "topic": "Great Pestilence",
   "audience": [
@@ -1163,8 +1163,8 @@
  {
   "title": "Reaching the Arcana Centrum: Lore Rolls and Casting Bonuses",
   "heading": "Invading the Arcana Centrum",
-  "line": 4769,
-  "endLine": 4777,
+  "line": 4844,
+  "endLine": 4852,
   "category": "realms",
   "topic": "Magic Realm geography",
   "audience": [
@@ -1185,8 +1185,8 @@
  {
   "title": "Entering the Magic Realm: Vestiges, Arcane Connections and Twilight Tears",
   "heading": "Finding the Arcane Doorway",
-  "line": 4779,
-  "endLine": 4796,
+  "line": 4854,
+  "endLine": 4871,
   "category": "realms",
   "topic": "Magic Realm geography",
   "audience": [
@@ -1206,8 +1206,8 @@
  {
   "title": "Boundary, Vestige and Twilight Void Travel",
   "heading": "The Path to the Arcana Centrum",
-  "line": 4798,
-  "endLine": 4838,
+  "line": 4873,
+  "endLine": 4913,
   "category": "realms",
   "topic": "Magic Realm geography",
   "audience": [
@@ -1219,7 +1219,7 @@
   "requires": "Ability: Magic Might, Second Sight or Magic Sensitivity",
   "summary": "Travel roll to pass a vestige or boundary, a familiarity table, a Speed Level chart converting the result into elapsed mundane time, the Twilight Void Travel roll, and the rule that Magic Realm adventuring yields vis instead of experience.",
   "quotes": [
-   "Boundary and Vestige Travel: Stress die + Perception + appropriate Ability + Form bonus vs. ((10 \u2013 level of boundary or vestige) x 3) \u2013 Familiarity modifier",
+   "Boundary and Vestige Travel: Stress die + Perception + appropriate Ability + Form bonus vs. ((10 – level of boundary or vestige) x 3) – Familiarity modifier",
    "Twilight Void Travel: stress die + Stamina + Concentration + Form bonus",
    "travelers do not gain experience points while adventuring inside the Realm"
   ],
@@ -1230,8 +1230,8 @@
  {
   "title": "New Spell Guideline: Perdo Vim (Destroying Raw Vis) and Leaving the Arcana Centrum",
   "heading": "New Guideline: Perdo Vim",
-  "line": 4890,
-  "endLine": 4893,
+  "line": 4965,
+  "endLine": 4968,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -1249,8 +1249,8 @@
  {
   "title": "After the Great Pestilence: Forms, Auras and Vis Recover",
   "heading": "The Aftermath",
-  "line": 4905,
-  "endLine": 4909,
+  "line": 4980,
+  "endLine": 4984,
   "category": "realms",
   "topic": "Great Pestilence",
   "audience": [

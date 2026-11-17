@@ -2,8 +2,8 @@
  {
   "title": "Craftsman Workshop Total and Craft Level",
   "heading": "Basic Craftsman Production",
-  "line": 1860,
-  "endLine": 1869,
+  "line": 1854,
+  "endLine": 1863,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -22,8 +22,8 @@
  {
   "title": "Primary Characteristic of a Craft",
   "heading": "Primary Characteristic",
-  "line": 1870,
-  "endLine": 1872,
+  "line": 1864,
+  "endLine": 1866,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -41,8 +41,8 @@
  {
   "title": "Finished Goods and Quality Craft Levels",
   "heading": "Finished Goods",
-  "line": 1874,
-  "endLine": 1884,
+  "line": 1868,
+  "endLine": 1878,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -62,8 +62,8 @@
  {
   "title": "Modifying the Craft Level (situation table)",
   "heading": "Finished Goods Craft Levels",
-  "line": 1886,
-  "endLine": 1898,
+  "line": 1880,
+  "endLine": 1892,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -83,8 +83,8 @@
  {
   "title": "Seasonal Production Chart (scaling output by Craft score)",
   "heading": "Seasonal Production Chart",
-  "line": 1900,
-  "endLine": 1905,
+  "line": 1894,
+  "endLine": 1899,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -103,8 +103,8 @@
  {
   "title": "Standard Quality Items Constructed in a Season (table)",
   "heading": "Standard Quality Items Constructed in a Season",
-  "line": 1906,
-  "endLine": 1939,
+  "line": 1900,
+  "endLine": 1933,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -122,8 +122,8 @@
  {
   "title": "Shoddy Quality Items",
   "heading": "Shoddy Quality Items",
-  "line": 1941,
-  "endLine": 1943,
+  "line": 1935,
+  "endLine": 1937,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -141,8 +141,8 @@
  {
   "title": "Superior Quality Items",
   "heading": "Superior Items",
-  "line": 1945,
-  "endLine": 1949,
+  "line": 1939,
+  "endLine": 1943,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -160,8 +160,8 @@
  {
   "title": "Crafted Item Quality and Enchanting",
   "heading": "Regarding Enchanted Items",
-  "line": 1951,
-  "endLine": 1957,
+  "line": 1945,
+  "endLine": 1951,
   "category": "lab",
   "topic": "Enchanting crafted items",
   "audience": [
@@ -180,8 +180,8 @@
  {
   "title": "Excellent Quality Items",
   "heading": "Excellent Quality Items",
-  "line": 1959,
-  "endLine": 1967,
+  "line": 1953,
+  "endLine": 1961,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -200,8 +200,8 @@
  {
   "title": "Wondrous Items (craftsman-made minor enchantments)",
   "heading": "Wondrous Items",
-  "line": 1969,
-  "endLine": 1993,
+  "line": 1963,
+  "endLine": 1987,
   "category": "traditions",
   "topic": "Wondrous items",
   "audience": [
@@ -226,8 +226,8 @@
  {
   "title": "Craftsmen Supernatural Virtues (Eye of Hephaestus, Touched by (Realm), Crafter's Healing)",
   "heading": "Craftsmen Supernatural Virtues",
-  "line": 2023,
-  "endLine": 2035,
+  "line": 2017,
+  "endLine": 2029,
   "category": "traditions",
   "topic": "Wondrous items",
   "audience": [
@@ -249,8 +249,8 @@
  {
   "title": "Workshop Assistants",
   "heading": "Assistants",
-  "line": 2037,
-  "endLine": 2041,
+  "line": 2031,
+  "endLine": 2035,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -268,8 +268,8 @@
  {
   "title": "Craftsman Manuals",
   "heading": "Craftsman Manuals",
-  "line": 2043,
-  "endLine": 2053,
+  "line": 2037,
+  "endLine": 2047,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -288,8 +288,8 @@
  {
   "title": "Workshop Exertion",
   "heading": "Workshop Exertion",
-  "line": 2055,
-  "endLine": 2061,
+  "line": 2049,
+  "endLine": 2055,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -308,8 +308,8 @@
  {
   "title": "Workshop Exertion Results (table)",
   "heading": "Workshop Exertion Results",
-  "line": 2063,
-  "endLine": 2090,
+  "line": 2057,
+  "endLine": 2084,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -328,8 +328,8 @@
  {
   "title": "Craftsman Reputations",
   "heading": "Reputations",
-  "line": 2092,
-  "endLine": 2098,
+  "line": 2086,
+  "endLine": 2092,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -347,8 +347,8 @@
  {
   "title": "Selling Finished Goods",
   "heading": "Selling Finished Goods",
-  "line": 2100,
-  "endLine": 2114,
+  "line": 2094,
+  "endLine": 2108,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -367,8 +367,8 @@
  {
   "title": "Basic Laborer's Service",
   "heading": "Basic Laborer's Service",
-  "line": 2134,
-  "endLine": 2138,
+  "line": 2128,
+  "endLine": 2132,
   "category": "seasons",
   "topic": "Craftsman production",
   "audience": [
@@ -386,8 +386,8 @@
  {
   "title": "Damaged Goods: Stress Checks and Damage Levels",
   "heading": "Damaged Goods",
-  "line": 2140,
-  "endLine": 2191,
+  "line": 2134,
+  "endLine": 2185,
   "category": "combat",
   "topic": "Item damage and repair",
   "audience": [
@@ -409,8 +409,8 @@
  {
   "title": "Locks and Keys (making, breaking, picking)",
   "heading": "Locks and Keys",
-  "line": 2193,
-  "endLine": 2217,
+  "line": 2187,
+  "endLine": 2211,
   "category": "seasons",
   "topic": "Locks and keys",
   "audience": [
@@ -428,8 +428,8 @@
  {
   "title": "Repairing Damaged Goods",
   "heading": "Repairing Damaged Goods",
-  "line": 2219,
-  "endLine": 2223,
+  "line": 2213,
+  "endLine": 2217,
   "category": "seasons",
   "topic": "Item damage and repair",
   "audience": [
@@ -447,8 +447,8 @@
  {
   "title": "Means of Transport (relative costs of sea, river and road)",
   "heading": "Means of Transport",
-  "line": 2231,
-  "endLine": 2235,
+  "line": 2225,
+  "endLine": 2229,
   "category": "setting",
   "topic": "Travel and transport",
   "audience": [
@@ -465,8 +465,8 @@
  {
   "title": "Area Lore: The Hinterland as a Resource",
   "heading": "Area Lore: The Hinterland as a Resource",
-  "line": 2296,
-  "endLine": 2298,
+  "line": 2290,
+  "endLine": 2292,
   "category": "basics",
   "topic": "Area Lore",
   "audience": [
@@ -483,8 +483,8 @@
  {
   "title": "Vessels and Cargo Capacity",
   "heading": "Vessels",
-  "line": 2300,
-  "endLine": 2302,
+  "line": 2294,
+  "endLine": 2296,
   "category": "setting",
   "topic": "Travel and transport",
   "audience": [
@@ -501,8 +501,8 @@
  {
   "title": "Land Vessels (pack animals and carts)",
   "heading": "Land Vessels",
-  "line": 2304,
-  "endLine": 2308,
+  "line": 2298,
+  "endLine": 2302,
   "category": "setting",
   "topic": "Travel and transport",
   "audience": [
@@ -519,8 +519,8 @@
  {
   "title": "River Barges",
   "heading": "River Barges",
-  "line": 2310,
-  "endLine": 2314,
+  "line": 2304,
+  "endLine": 2308,
   "category": "setting",
   "topic": "Travel and transport",
   "audience": [
@@ -537,8 +537,8 @@
  {
   "title": "Area Lore Ease Factors (table)",
   "heading": "Area Lore Ease Factors",
-  "line": 2316,
-  "endLine": 2345,
+  "line": 2310,
+  "endLine": 2339,
   "category": "basics",
   "topic": "Area Lore",
   "audience": [
@@ -556,8 +556,8 @@
  {
   "title": "Seagoing Ships (buss, cog, galley, nef)",
   "heading": "Seagoing Ships",
-  "line": 2347,
-  "endLine": 2363,
+  "line": 2341,
+  "endLine": 2357,
   "category": "setting",
   "topic": "Travel and transport",
   "audience": [
@@ -574,8 +574,8 @@
  {
   "title": "Comparison of Traveling Speeds",
   "heading": "Comparison of Traveling Speeds",
-  "line": 2365,
-  "endLine": 2376,
+  "line": 2359,
+  "endLine": 2370,
   "category": "setting",
   "topic": "Travel and transport",
   "audience": [
@@ -593,8 +593,8 @@
  {
   "title": "Comparison of Traveling Costs",
   "heading": "Comparison of Traveling Costs",
-  "line": 2378,
-  "endLine": 2390,
+  "line": 2372,
+  "endLine": 2384,
   "category": "setting",
   "topic": "Travel and transport",
   "audience": [
@@ -612,8 +612,8 @@
  {
   "title": "Ship Combat",
   "heading": "Ship Combat",
-  "line": 2392,
-  "endLine": 2394,
+  "line": 2386,
+  "endLine": 2388,
   "category": "combat",
   "topic": "Ship combat",
   "audience": [
@@ -628,8 +628,8 @@
  {
   "title": "Softening the Enemy (artillery, ramming, shearing oars)",
   "heading": "Softening the Enemy",
-  "line": 2396,
-  "endLine": 2402,
+  "line": 2390,
+  "endLine": 2396,
   "category": "combat",
   "topic": "Ship combat",
   "audience": [
@@ -646,8 +646,8 @@
  {
   "title": "Boarding and Melee",
   "heading": "Boarding and Melee",
-  "line": 2404,
-  "endLine": 2410,
+  "line": 2398,
+  "endLine": 2404,
   "category": "combat",
   "topic": "Ship combat",
   "audience": [
@@ -668,8 +668,8 @@
  {
   "title": "Sea Monsters (attacks on ships)",
   "heading": "Sea Monsters",
-  "line": 2416,
-  "endLine": 2420,
+  "line": 2410,
+  "endLine": 2414,
   "category": "combat",
   "topic": "Ship combat",
   "audience": [
@@ -686,8 +686,8 @@
  {
   "title": "Adding Places to the Land Trade Map and Naval Trade Tables",
   "heading": "Adding Places to the Land Trade Map and Naval Trade Tables",
-  "line": 2432,
-  "endLine": 2440,
+  "line": 2426,
+  "endLine": 2434,
   "category": "setting",
   "topic": "Travel and transport",
   "audience": [
@@ -705,8 +705,8 @@
  {
   "title": "Naval Trade Tables",
   "heading": "Naval Trade Tables",
-  "line": 2442,
-  "endLine": 2512,
+  "line": 2436,
+  "endLine": 2506,
   "category": "setting",
   "topic": "Travel and transport",
   "audience": [
@@ -723,8 +723,8 @@
  {
   "title": "Weights and Measures (unit conversions)",
   "heading": "Weights and Measures",
-  "line": 2562,
-  "endLine": 2595,
+  "line": 2556,
+  "endLine": 2589,
   "category": "setting",
   "topic": "Weights and measures",
   "audience": [
@@ -742,8 +742,8 @@
  {
   "title": "Grant of a Fair",
   "heading": "Grant of a Fair",
-  "line": 2697,
-  "endLine": 2702,
+  "line": 2691,
+  "endLine": 2696,
   "category": "covenant",
   "topic": "Fairs",
   "audience": [
@@ -765,8 +765,8 @@
  {
   "title": "The Champagne Cycle (fair calendar and trading order)",
   "heading": "The Champagne Cycle",
-  "line": 2807,
-  "endLine": 2818,
+  "line": 2801,
+  "endLine": 2812,
   "category": "setting",
   "topic": "Fairs",
   "audience": [
@@ -784,8 +784,8 @@
  {
   "title": "The English Fair Cycle (fair calendar and owners)",
   "heading": "The English Fair Cycle",
-  "line": 2824,
-  "endLine": 2838,
+  "line": 2818,
+  "endLine": 2832,
   "category": "setting",
   "topic": "Fairs",
   "audience": [
@@ -803,8 +803,8 @@
  {
   "title": "Hermetic Mid-Summer Fair",
   "heading": "Hermetic Mid-Summer Fair",
-  "line": 2858,
-  "endLine": 2864,
+  "line": 2852,
+  "endLine": 2858,
   "category": "order",
   "topic": "Hermetic trade",
   "audience": [
@@ -822,8 +822,8 @@
  {
   "title": "Virtues and Flaws for Traders (Social Status choices)",
   "heading": "Virtues and Flaws for Traders",
-  "line": 2894,
-  "endLine": 2900,
+  "line": 2888,
+  "endLine": 2894,
   "category": "creation",
   "topic": "Merchant characters",
   "audience": [
@@ -842,8 +842,8 @@
  {
   "title": "Trading Companies (capo, partners, factors)",
   "heading": "Companies",
-  "line": 2902,
-  "endLine": 2912,
+  "line": 2896,
+  "endLine": 2906,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -861,8 +861,8 @@
  {
   "title": "The Urban Merchant",
   "heading": "The Urban Merchant",
-  "line": 2978,
-  "endLine": 2982,
+  "line": 2972,
+  "endLine": 2976,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -880,8 +880,8 @@
  {
   "title": "Urban Merchant Scale of Affluence",
   "heading": "Scale of Affluence",
-  "line": 2984,
-  "endLine": 2990,
+  "line": 2978,
+  "endLine": 2984,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -899,8 +899,8 @@
  {
   "title": "Investments Suited to All Merchants",
   "heading": "Investments Suited to all Merchants",
-  "line": 2992,
-  "endLine": 2994,
+  "line": 2986,
+  "endLine": 2988,
   "category": "seasons",
   "topic": "Merchant investments",
   "audience": [
@@ -918,8 +918,8 @@
  {
   "title": "Charity (investing Labor Points)",
   "heading": "Charity",
-  "line": 2996,
-  "endLine": 3002,
+  "line": 2990,
+  "endLine": 2996,
   "category": "seasons",
   "topic": "Merchant investments",
   "audience": [
@@ -937,8 +937,8 @@
  {
   "title": "Commodity Speculation (investing Labor Points)",
   "heading": "Commodity Speculation",
-  "line": 3004,
-  "endLine": 3008,
+  "line": 2998,
+  "endLine": 3002,
   "category": "seasons",
   "topic": "Merchant investments",
   "audience": [
@@ -956,8 +956,8 @@
  {
   "title": "Drawings (trading Labor Points for fine goods)",
   "heading": "Drawings",
-  "line": 3010,
-  "endLine": 3014,
+  "line": 3004,
+  "endLine": 3008,
   "category": "seasons",
   "topic": "Merchant investments",
   "audience": [
@@ -975,8 +975,8 @@
  {
   "title": "Marriage Broker (investing seasons)",
   "heading": "Marriage Broker",
-  "line": 3016,
-  "endLine": 3018,
+  "line": 3010,
+  "endLine": 3012,
   "category": "seasons",
   "topic": "Merchant investments",
   "audience": [
@@ -994,8 +994,8 @@
  {
   "title": "Market Changes (booms, crop failure, new products)",
   "heading": "Market Changes",
-  "line": 3028,
-  "endLine": 3073,
+  "line": 3022,
+  "endLine": 3067,
   "category": "seasons",
   "topic": "Merchant investments",
   "audience": [
@@ -1015,8 +1015,8 @@
  {
   "title": "Marriage and Dowries",
   "heading": "Marriage and Dowries",
-  "line": 3075,
-  "endLine": 3083,
+  "line": 3069,
+  "endLine": 3077,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1034,8 +1034,8 @@
  {
   "title": "Calculating Dowries for Merchants' Daughters",
   "heading": "Calculating Dowries For Merchants’ Daughters",
-  "line": 3085,
-  "endLine": 3103,
+  "line": 3079,
+  "endLine": 3097,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1053,8 +1053,8 @@
  {
   "title": "Legal Action (investment of time)",
   "heading": "Legal Action",
-  "line": 3109,
-  "endLine": 3113,
+  "line": 3103,
+  "endLine": 3107,
   "category": "social",
   "topic": "Merchant investments",
   "audience": [
@@ -1072,8 +1072,8 @@
  {
   "title": "The Local Carrier",
   "heading": "The Local Carrier",
-  "line": 3163,
-  "endLine": 3169,
+  "line": 3157,
+  "endLine": 3163,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1091,8 +1091,8 @@
  {
   "title": "Local Carrier Scale of Abundance",
   "heading": "Scale of Abundance",
-  "line": 3171,
-  "endLine": 3177,
+  "line": 3165,
+  "endLine": 3171,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1110,8 +1110,8 @@
  {
   "title": "Smuggling (setting up and investing time)",
   "heading": "Smuggling",
-  "line": 3206,
-  "endLine": 3210,
+  "line": 3200,
+  "endLine": 3204,
   "category": "seasons",
   "topic": "Merchant investments",
   "audience": [
@@ -1129,8 +1129,8 @@
  {
   "title": "The Merchant Adventurer",
   "heading": "The Merchant Adventurer",
-  "line": 3230,
-  "endLine": 3236,
+  "line": 3224,
+  "endLine": 3230,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1148,8 +1148,8 @@
  {
   "title": "Ventures (planning a trading voyage)",
   "heading": "Ventures",
-  "line": 3246,
-  "endLine": 3253,
+  "line": 3240,
+  "endLine": 3247,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1170,8 +1170,8 @@
  {
   "title": "Convoys and Caravans",
   "heading": "Convoys and Caravans",
-  "line": 3269,
-  "endLine": 3273,
+  "line": 3263,
+  "endLine": 3267,
   "category": "social",
   "topic": "Merchant investments",
   "audience": [
@@ -1189,8 +1189,8 @@
  {
   "title": "Finding Investors",
   "heading": "Finding Investors",
-  "line": 3279,
-  "endLine": 3285,
+  "line": 3273,
+  "endLine": 3279,
   "category": "social",
   "topic": "Merchant investments",
   "audience": [
@@ -1208,8 +1208,8 @@
  {
   "title": "Warfare and Blockades (blockade running)",
   "heading": "Warfare and Blockades",
-  "line": 3305,
-  "endLine": 3309,
+  "line": 3299,
+  "endLine": 3303,
   "category": "social",
   "topic": "Merchant investments",
   "audience": [
@@ -1227,8 +1227,8 @@
  {
   "title": "The Factor",
   "heading": "The Factor",
-  "line": 3311,
-  "endLine": 3319,
+  "line": 3305,
+  "endLine": 3313,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1246,8 +1246,8 @@
  {
   "title": "Factor Scale of Affluence",
   "heading": "Scale of Affluence",
-  "line": 3321,
-  "endLine": 3327,
+  "line": 3315,
+  "endLine": 3321,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1265,8 +1265,8 @@
  {
   "title": "Change of Government (investment of time)",
   "heading": "Change of Government",
-  "line": 3333,
-  "endLine": 3335,
+  "line": 3327,
+  "endLine": 3329,
   "category": "social",
   "topic": "Merchant investments",
   "audience": [
@@ -1284,8 +1284,8 @@
  {
   "title": "Company Neighborhood (warehouses and guards)",
   "heading": "Company Neighborhood",
-  "line": 3337,
-  "endLine": 3345,
+  "line": 3331,
+  "endLine": 3339,
   "category": "covenant",
   "topic": "Trading house assets",
   "audience": [
@@ -1304,8 +1304,8 @@
  {
   "title": "House Reputation (advocates and largesse)",
   "heading": "House Reputation",
-  "line": 3361,
-  "endLine": 3373,
+  "line": 3355,
+  "endLine": 3367,
   "category": "social",
   "topic": "House Reputation",
   "audience": [
@@ -1324,8 +1324,8 @@
  {
   "title": "Skullduggery (hiring criminals with Intrigue)",
   "heading": "Skullduggery",
-  "line": 3375,
-  "endLine": 3378,
+  "line": 3369,
+  "endLine": 3372,
   "category": "social",
   "topic": "Skullduggery",
   "audience": [
@@ -1343,8 +1343,8 @@
  {
   "title": "Assassination, Beatings and Kidnapping (costs)",
   "heading": "Assassination",
-  "line": 3379,
-  "endLine": 3384,
+  "line": 3373,
+  "endLine": 3378,
   "category": "social",
   "topic": "Skullduggery",
   "audience": [
@@ -1362,8 +1362,8 @@
  {
   "title": "Bribes",
   "heading": "Bribes",
-  "line": 3385,
-  "endLine": 3395,
+  "line": 3379,
+  "endLine": 3389,
   "category": "social",
   "topic": "Skullduggery",
   "audience": [
@@ -1381,8 +1381,8 @@
  {
   "title": "Sabotage",
   "heading": "Sabotage",
-  "line": 3400,
-  "endLine": 3405,
+  "line": 3394,
+  "endLine": 3399,
   "category": "social",
   "topic": "Skullduggery",
   "audience": [
@@ -1400,8 +1400,8 @@
  {
   "title": "Sabotage Table",
   "heading": "Sabotage Table",
-  "line": 3406,
-  "endLine": 3414,
+  "line": 3400,
+  "endLine": 3408,
   "category": "social",
   "topic": "Skullduggery",
   "audience": [
@@ -1417,8 +1417,8 @@
  {
   "title": "Spying",
   "heading": "Spying",
-  "line": 3416,
-  "endLine": 3418,
+  "line": 3410,
+  "endLine": 3412,
   "category": "social",
   "topic": "Skullduggery",
   "audience": [
@@ -1436,8 +1436,8 @@
  {
   "title": "Theft",
   "heading": "Theft",
-  "line": 3420,
-  "endLine": 3422,
+  "line": 3414,
+  "endLine": 3416,
   "category": "social",
   "topic": "Skullduggery",
   "audience": [
@@ -1455,8 +1455,8 @@
  {
   "title": "Largesse: The Costs of Excellent Building (table)",
   "heading": "Largesse: The Costs of Excellent Building",
-  "line": 3428,
-  "endLine": 3439,
+  "line": 3422,
+  "endLine": 3433,
   "category": "social",
   "topic": "House Reputation",
   "audience": [
@@ -1472,8 +1472,8 @@
  {
   "title": "Intrigue and the Art of Indirect Action",
   "heading": "Intrigue and the Art of Indirect Action",
-  "line": 3457,
-  "endLine": 3489,
+  "line": 3451,
+  "endLine": 3483,
   "category": "social",
   "topic": "Intrigue",
   "audience": [
@@ -1491,8 +1491,8 @@
  {
   "title": "Young Talent (investment of time)",
   "heading": "Young Talent",
-  "line": 3498,
-  "endLine": 3500,
+  "line": 3492,
+  "endLine": 3494,
   "category": "social",
   "topic": "Merchant investments",
   "audience": [
@@ -1510,8 +1510,8 @@
  {
   "title": "The Capo",
   "heading": "The Capo",
-  "line": 3502,
-  "endLine": 3510,
+  "line": 3496,
+  "endLine": 3504,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1529,8 +1529,8 @@
  {
   "title": "Capo Scale of Affluence",
   "heading": "Scale of Affluence",
-  "line": 3512,
-  "endLine": 3516,
+  "line": 3506,
+  "endLine": 3510,
   "category": "social",
   "topic": "Merchant characters",
   "audience": [
@@ -1548,8 +1548,8 @@
  {
   "title": "Personal Pleasure and Aggrandizement (entertaining guests)",
   "heading": "Personal Pleasure and Aggrandizement",
-  "line": 3526,
-  "endLine": 3536,
+  "line": 3520,
+  "endLine": 3530,
   "category": "social",
   "topic": "Merchant investments",
   "audience": [
@@ -1568,8 +1568,8 @@
  {
   "title": "Trade and the Order of Hermes",
   "heading": "Trade and the Order of Hermes",
-  "line": 3550,
-  "endLine": 3552,
+  "line": 3544,
+  "endLine": 3546,
   "category": "order",
   "topic": "Hermetic trade",
   "audience": [
@@ -1590,8 +1590,8 @@
  {
   "title": "Creating Wealth Using Magic",
   "heading": "Creating Wealth Using Magic",
-  "line": 3554,
-  "endLine": 3564,
+  "line": 3548,
+  "endLine": 3558,
   "category": "order",
   "topic": "Hermetic trade",
   "audience": [
@@ -1609,8 +1609,8 @@
  {
   "title": "Novelties (optional technologies for trade)",
   "heading": "Novelties",
-  "line": 3566,
-  "endLine": 3600,
+  "line": 3560,
+  "endLine": 3594,
   "category": "setting",
   "topic": "Trade novelties",
   "audience": [
@@ -1628,8 +1628,8 @@
  {
   "title": "Commercial Sources of Trade Goods (reading the lists)",
   "heading": "Commercial Sources of Trade Goods",
-  "line": 3782,
-  "endLine": 3786,
+  "line": 3776,
+  "endLine": 3780,
   "category": "setting",
   "topic": "Trade goods",
   "audience": [
@@ -1647,8 +1647,8 @@
  {
   "title": "Prices of Goods",
   "heading": "Prices of Goods",
-  "line": 3873,
-  "endLine": 3877,
+  "line": 3867,
+  "endLine": 3871,
   "category": "covenant",
   "topic": "Trade goods",
   "audience": [
@@ -1670,8 +1670,8 @@
  {
   "title": "Trade Weights and Measures (ton, tun, pound, yard)",
   "heading": "Weights and Measures",
-  "line": 3879,
-  "endLine": 3892,
+  "line": 3873,
+  "endLine": 3886,
   "category": "covenant",
   "topic": "Weights and measures",
   "audience": [
@@ -1690,8 +1690,8 @@
  {
   "title": "Prices of Goods Table",
   "heading": "Prices of Goods Table",
-  "line": 3894,
-  "endLine": 3943,
+  "line": 3888,
+  "endLine": 3937,
   "category": "covenant",
   "topic": "Trade goods",
   "audience": [
@@ -1708,8 +1708,8 @@
  {
   "title": "Medieval Money",
   "heading": "Medieval Money",
-  "line": 3951,
-  "endLine": 3961,
+  "line": 3945,
+  "endLine": 3955,
   "category": "social",
   "topic": "Money and prices",
   "audience": [
@@ -1727,8 +1727,8 @@
  {
   "title": "Price List (common goods and quality multipliers)",
   "heading": "Price List",
-  "line": 3963,
-  "endLine": 4013,
+  "line": 3957,
+  "endLine": 4007,
   "category": "social",
   "topic": "Money and prices",
   "audience": [

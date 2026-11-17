@@ -39,8 +39,8 @@ export function SoldiersCard({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
     <Card title={`Soldiers (${t.people})`} tour="soldiers" fold="cov-soldiers" summary={t.people ? `${t.people} soldiers.` : 'None: a soldier Boon or a Free Choice brings them.'}>
       <RulesNote
         book="Cov"
-        line={640}
-        endLine={728}
+        line={643}
+        endLine={731}
         detail={
           <>
             Soldiers from the Residents Boons and Free Choices: paid soldiers cost a pound a year for each penny a day (Covenants ch.5); those who live at the covenant count as grogs among the
@@ -157,8 +157,8 @@ export function YearlyCard({ cov, update, dc }: Omit<CovTabProps, 'data'>) {
     <Card title={`Each year (${Math.round(total * 10) / 10} £)`} tour="yearly" fold="cov-yearly" summary={`Feasts, guests, festivals and Redcap visits: ${Math.round(total * 10) / 10} £ a year.`}>
       <RulesNote
         book="Cov"
-        line={3926}
-        endLine={4060}
+        line={3978}
+        endLine={4112}
         detail="From the price list (Covenants ch.5). Unlike Sundry, these stay from year to year. A regular cycle of four or more feast days earns a Loyalty point every year (Covenants ch.4)."
       >
         What the covenant spends each year besides its upkeep: feasts, guests, festivals. It feeds about {dc.finances.people} people.
@@ -312,8 +312,8 @@ export function CraftMagicCard({ cov, update, dc, data }: CovTabProps) {
     <Card title={`Craft magic${uses.length ? ` (${uses.length})` : ''}`} tour="craft-magic" fold="cov-craft-magic" summary={uses.length ? `${uses.length} craft spell${uses.length > 1 ? 's' : ''} at work.` : 'Spells that do the covenant’s craft work, in place of craftsmen.'}>
       <RulesNote
         book="Cov"
-        line={2697}
-        endLine={2860}
+        line={2732}
+        endLine={2895}
         detail={
           <>
             Rego can do any craftsman’s work from materials at hand, with a Perception + Finesse roll at least 3 above the craft’s Ease Factor: +3 for a month’s work in one casting, +6 a season’s,

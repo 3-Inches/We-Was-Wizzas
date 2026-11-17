@@ -2,8 +2,8 @@
  {
   "title": "Gruagach Character Generation",
   "heading": "Character Generation",
-  "line": 2784,
-  "endLine": 2797,
+  "line": 2786,
+  "endLine": 2799,
   "category": "creation",
   "topic": "Gruagach",
   "audience": [
@@ -26,8 +26,8 @@
  {
   "title": "Gruagach Training",
   "heading": "Training",
-  "line": 2803,
-  "endLine": 2806,
+  "line": 2805,
+  "endLine": 2808,
   "category": "traditions",
   "topic": "Gruagach",
   "audience": [
@@ -46,7 +46,7 @@
  {
   "title": "Typical Gruagach Abilities",
   "heading": "Typical Gruagach Abilities",
-  "line": 2807,
+  "line": 2809,
   "category": "creation",
   "topic": "Gruagach",
   "audience": [
@@ -65,7 +65,7 @@
  {
   "title": "Gruagach Abilities (Gruagach Lore and Pictish Language)",
   "heading": "Gruagach Abilities",
-  "line": 2813,
+  "line": 2815,
   "category": "traditions",
   "topic": "Gruagach",
   "audience": [
@@ -86,7 +86,7 @@
  {
   "title": "Hermetic Virtues and Flaws for Gruagachan",
   "heading": "Hermetic Virtues and Flaws for Gruagachan",
-  "line": 2939,
+  "line": 2941,
   "category": "creation",
   "topic": "Gruagach",
   "audience": [
@@ -104,8 +104,8 @@
  {
   "title": "Gruagach Arts",
   "heading": "Gruagach Arts",
-  "line": 2957,
-  "endLine": 2960,
+  "line": 2959,
+  "endLine": 2962,
   "category": "traditions",
   "topic": "Gruagach",
   "audience": [
@@ -122,8 +122,8 @@
  {
   "title": "Gruagach Techniques (Give and Take)",
   "heading": "Techniques",
-  "line": 2961,
-  "endLine": 2970,
+  "line": 2963,
+  "endLine": 2972,
   "category": "traditions",
   "topic": "Gruagach",
   "audience": [
@@ -140,8 +140,8 @@
  {
   "title": "Gruagach Forms (Blessing, Curse, Shape, Vision)",
   "heading": "Forms",
-  "line": 2971,
-  "endLine": 2988,
+  "line": 2973,
+  "endLine": 2990,
   "category": "traditions",
   "topic": "Gruagach",
   "audience": [
@@ -158,8 +158,8 @@
  {
   "title": "Gruagach Spellcasting",
   "heading": "Gruagach Spells",
-  "line": 2989,
-  "endLine": 3004,
+  "line": 2991,
+  "endLine": 3006,
   "category": "magic",
   "topic": "Gruagach",
   "audience": [
@@ -182,8 +182,8 @@
  {
   "title": "Gruagach Spell Mastery",
   "heading": "Spell Mastery",
-  "line": 3005,
-  "endLine": 3008,
+  "line": 3007,
+  "endLine": 3010,
   "category": "magic",
   "topic": "Gruagach",
   "audience": [
@@ -202,8 +202,8 @@
  {
   "title": "Gruagach Flexible Casting Mastery",
   "heading": "Flexible Casting",
-  "line": 3009,
-  "endLine": 3012,
+  "line": 3011,
+  "endLine": 3014,
   "category": "magic",
   "topic": "Gruagach",
   "audience": [
@@ -222,8 +222,8 @@
  {
   "title": "Gruagach Ranges, Durations, and Targets",
   "heading": "Ranges, Durations, and Targets",
-  "line": 3013,
-  "endLine": 3032,
+  "line": 3015,
+  "endLine": 3034,
   "category": "magic",
   "topic": "Gruagach",
   "audience": [
@@ -243,8 +243,8 @@
  {
   "title": "Gruagach Laboratory Activities",
   "heading": "Gruagach Laboratory Activities",
-  "line": 3033,
-  "endLine": 3040,
+  "line": 3035,
+  "endLine": 3042,
   "category": "lab",
   "topic": "Gruagach",
   "audience": [
@@ -264,8 +264,8 @@
  {
   "title": "Gruagach Learning and Inventing Spells",
   "heading": "Learning and Inventing New Spells",
-  "line": 3041,
-  "endLine": 3044,
+  "line": 3043,
+  "endLine": 3046,
   "category": "lab",
   "topic": "Gruagach",
   "audience": [
@@ -283,8 +283,8 @@
  {
   "title": "Enchanting Tattoos",
   "heading": "Enchanting Tattoos",
-  "line": 3045,
-  "endLine": 3062,
+  "line": 3047,
+  "endLine": 3064,
   "category": "lab",
   "topic": "Gruagach",
   "audience": [
@@ -304,8 +304,8 @@
  {
   "title": "Gruagach Shape Bonuses",
   "heading": "Gruagach Shape Bonuses",
-  "line": 3063,
-  "endLine": 3093,
+  "line": 3065,
+  "endLine": 3095,
   "category": "lab",
   "topic": "Gruagach",
   "audience": [
@@ -324,8 +324,8 @@
  {
   "title": "Gruagach Vis Use",
   "heading": "Vis",
-  "line": 3095,
-  "endLine": 3102,
+  "line": 3097,
+  "endLine": 3104,
   "category": "lab",
   "topic": "Gruagach",
   "audience": [
@@ -348,8 +348,8 @@
  {
   "title": "Gruagach Laboratory Texts",
   "heading": "Laboratory Texts",
-  "line": 3103,
-  "endLine": 3108,
+  "line": 3105,
+  "endLine": 3110,
   "category": "lab",
   "topic": "Gruagach",
   "audience": [
@@ -369,8 +369,8 @@
  {
   "title": "Gifted Gruagach Initiations",
   "heading": "Gifted Gruagach Initiations",
-  "line": 3109,
-  "endLine": 3116,
+  "line": 3111,
+  "endLine": 3118,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -391,8 +391,8 @@
  {
   "title": "Ritual of Calling the Fetch",
   "heading": "Ritual of Calling the Fetch",
-  "line": 3117,
-  "endLine": 3123,
+  "line": 3119,
+  "endLine": 3125,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -415,8 +415,8 @@
  {
   "title": "Spirit Magic (gruagach sidebar)",
   "heading": "Spirit Magic",
-  "line": 3125,
-  "endLine": 3127,
+  "line": 3127,
+  "endLine": 3129,
   "category": "traditions",
   "topic": "Gruagach",
   "audience": [
@@ -437,8 +437,8 @@
  {
   "title": "Extractions of the Soul from its Husk",
   "heading": "Extractions of the Soul from its Husk",
-  "line": 3129,
-  "endLine": 3133,
+  "line": 3131,
+  "endLine": 3135,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -457,8 +457,8 @@
  {
   "title": "UnGifted Gruagach Initiations",
   "heading": "UnGifted Gruagach Initiations",
-  "line": 3139,
-  "endLine": 3146,
+  "line": 3141,
+  "endLine": 3148,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -479,8 +479,8 @@
  {
   "title": "Initiation into the Give Technique",
   "heading": "Initiation into the Give Technique",
-  "line": 3147,
-  "endLine": 3152,
+  "line": 3149,
+  "endLine": 3154,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -499,8 +499,8 @@
  {
   "title": "Initiation into the Take Technique",
   "heading": "Initiation into the Take Technique",
-  "line": 3153,
-  "endLine": 3158,
+  "line": 3155,
+  "endLine": 3160,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -519,8 +519,8 @@
  {
   "title": "Initiation into the Blessing Form",
   "heading": "Initiation into the Blessing Form",
-  "line": 3159,
-  "endLine": 3164,
+  "line": 3161,
+  "endLine": 3166,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -539,8 +539,8 @@
  {
   "title": "Initiation into the Curse Form",
   "heading": "Initiation into the Curse Form",
-  "line": 3165,
-  "endLine": 3170,
+  "line": 3167,
+  "endLine": 3172,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -559,8 +559,8 @@
  {
   "title": "Initiation into the Shape Form",
   "heading": "Initiation Into The Shape Form",
-  "line": 3171,
-  "endLine": 3176,
+  "line": 3173,
+  "endLine": 3178,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -579,8 +579,8 @@
  {
   "title": "Initiation into the Vision Form",
   "heading": "Initiation into the Vision Form",
-  "line": 3177,
-  "endLine": 3182,
+  "line": 3179,
+  "endLine": 3184,
   "category": "mysteries",
   "topic": "Gruagach initiation",
   "audience": [
@@ -599,8 +599,8 @@
  {
   "title": "Gruagach Magical Defenses",
   "heading": "Magical Defenses",
-  "line": 3183,
-  "endLine": 3210,
+  "line": 3185,
+  "endLine": 3212,
   "category": "magic",
   "topic": "Hedge magical defenses",
   "audience": [
@@ -623,8 +623,8 @@
  {
   "title": "Geas and Limit Durations",
   "heading": "Geas and Limit Durations",
-  "line": 3219,
-  "endLine": 3222,
+  "line": 3221,
+  "endLine": 3224,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -646,8 +646,8 @@
  {
   "title": "Geas and Limit Duration Magnitudes",
   "heading": "Geas and Limit Duration Magnitudes",
-  "line": 3223,
-  "endLine": 3228,
+  "line": 3225,
+  "endLine": 3230,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -666,8 +666,8 @@
  {
   "title": "Geas (Condition) Duration",
   "heading": "Geas (Condition) Duration",
-  "line": 3230,
-  "endLine": 3237,
+  "line": 3232,
+  "endLine": 3239,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -687,8 +687,8 @@
  {
   "title": "Limit (Condition) Duration",
   "heading": "Limit (Condition) Duration",
-  "line": 3238,
-  "endLine": 3243,
+  "line": 3240,
+  "endLine": 3245,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -707,8 +707,8 @@
  {
   "title": "Sweeping Prohibitions",
   "heading": "Sweeping Progibitions",
-  "line": 3244,
-  "endLine": 3247,
+  "line": 3246,
+  "endLine": 3249,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -727,8 +727,8 @@
  {
   "title": "General Prohibitions",
   "heading": "General Prohibitions",
-  "line": 3248,
-  "endLine": 3251,
+  "line": 3250,
+  "endLine": 3253,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -747,8 +747,8 @@
  {
   "title": "Specific Prohibitions",
   "heading": "Specific Prohibitions",
-  "line": 3252,
-  "endLine": 3255,
+  "line": 3254,
+  "endLine": 3257,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -767,8 +767,8 @@
  {
   "title": "Poetic Justice (geas and curse resistance)",
   "heading": "Poetic Justice",
-  "line": 3256,
-  "endLine": 3270,
+  "line": 3258,
+  "endLine": 3272,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -788,8 +788,8 @@
  {
   "title": "Geas and Limit Durations in Play",
   "heading": "Geas and Limit Durations in Play",
-  "line": 3271,
-  "endLine": 3282,
+  "line": 3273,
+  "endLine": 3284,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -809,8 +809,8 @@
  {
   "title": "Gruagach Alternative (all spells use Limit or Geas)",
   "heading": "Gruagach Alternative",
-  "line": 3283,
-  "endLine": 3285,
+  "line": 3285,
+  "endLine": 3287,
   "category": "magic",
   "topic": "Geas and Limit durations",
   "audience": [
@@ -828,8 +828,8 @@
  {
   "title": "Blessing Spell Guidelines Overview",
   "heading": "Blessings",
-  "line": 3291,
-  "endLine": 3294,
+  "line": 3293,
+  "endLine": 3296,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -845,8 +845,8 @@
  {
   "title": "Give Blessing Guidelines",
   "heading": "Give Blessing Guidelines",
-  "line": 3297,
-  "endLine": 3331,
+  "line": 3299,
+  "endLine": 3333,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -865,8 +865,8 @@
  {
   "title": "Take Blessing Guidelines",
   "heading": "Take Blessing Guidelines",
-  "line": 3355,
-  "endLine": 3377,
+  "line": 3357,
+  "endLine": 3379,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -885,8 +885,8 @@
  {
   "title": "Curse Spell Guidelines Overview",
   "heading": "Curses",
-  "line": 3399,
-  "endLine": 3402,
+  "line": 3401,
+  "endLine": 3404,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -902,8 +902,8 @@
  {
   "title": "Give Curse Guidelines",
   "heading": "Give Curse Guidelines",
-  "line": 3405,
-  "endLine": 3447,
+  "line": 3407,
+  "endLine": 3449,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -922,8 +922,8 @@
  {
   "title": "Take Curse Guidelines",
   "heading": "Take Curse Guidelines",
-  "line": 3491,
-  "endLine": 3501,
+  "line": 3493,
+  "endLine": 3503,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -943,8 +943,8 @@
  {
   "title": "Shape Spell Guidelines Overview",
   "heading": "Shape Spells",
-  "line": 3519,
-  "endLine": 3522,
+  "line": 3521,
+  "endLine": 3524,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -960,8 +960,8 @@
  {
   "title": "Give Shape Guidelines",
   "heading": "Give Shape Guidelines",
-  "line": 3525,
-  "endLine": 3545,
+  "line": 3527,
+  "endLine": 3547,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -979,8 +979,8 @@
  {
   "title": "Take Shape Guidelines",
   "heading": "Take Shape Guidelines",
-  "line": 3573,
-  "endLine": 3591,
+  "line": 3575,
+  "endLine": 3593,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -998,8 +998,8 @@
  {
   "title": "Vision Spell Guidelines Overview",
   "heading": "Vision Spells",
-  "line": 3633,
-  "endLine": 3636,
+  "line": 3635,
+  "endLine": 3638,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -1015,8 +1015,8 @@
  {
   "title": "Give Vision Guidelines",
   "heading": "Give Vision Guidelines",
-  "line": 3639,
-  "endLine": 3655,
+  "line": 3641,
+  "endLine": 3657,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -1034,8 +1034,8 @@
  {
   "title": "Take Vision Guidelines",
   "heading": "Take Vision Guidelines",
-  "line": 3675,
-  "endLine": 3691,
+  "line": 3677,
+  "endLine": 3693,
   "category": "magic",
   "topic": "Gruagach spell guidelines",
   "audience": [
@@ -1053,8 +1053,8 @@
  {
   "title": "Gruagach Botches",
   "heading": "Botches",
-  "line": 3721,
-  "endLine": 3724,
+  "line": 3723,
+  "endLine": 3726,
   "category": "magic",
   "topic": "Gruagach magical dangers",
   "audience": [
@@ -1075,8 +1075,8 @@
  {
   "title": "Gruagach Transformation (the Curse of Gruagach)",
   "heading": "Transformation",
-  "line": 3725,
-  "endLine": 3734,
+  "line": 3727,
+  "endLine": 3736,
   "category": "magic",
   "topic": "Gruagach magical dangers",
   "audience": [
@@ -1097,8 +1097,8 @@
  {
   "title": "Effects of Transformation",
   "heading": "Effects of Transforamtion",
-  "line": 3735,
-  "endLine": 3742,
+  "line": 3737,
+  "endLine": 3744,
   "category": "magic",
   "topic": "Gruagach magical dangers",
   "audience": [
@@ -1118,8 +1118,8 @@
  {
   "title": "Gruagach Good Transformation Experiences",
   "heading": "Good Experiences",
-  "line": 3743,
-  "endLine": 3750,
+  "line": 3745,
+  "endLine": 3752,
   "category": "magic",
   "topic": "Gruagach magical dangers",
   "audience": [
@@ -1138,8 +1138,8 @@
  {
   "title": "Gruagach Bad Transformation Experiences",
   "heading": "Bad Experiences",
-  "line": 3751,
-  "endLine": 3759,
+  "line": 3753,
+  "endLine": 3761,
   "category": "magic",
   "topic": "Gruagach magical dangers",
   "audience": [
@@ -1160,8 +1160,8 @@
  {
   "title": "Gruagachan in Play (covenant involvement)",
   "heading": "Gruagachan in Play",
-  "line": 3831,
-  "endLine": 3834,
+  "line": 3833,
+  "endLine": 3836,
   "category": "covenant",
   "topic": "Gruagach",
   "audience": [
@@ -1178,8 +1178,8 @@
  {
   "title": "Major Covenant Boon: Friendly Gruagach Collective",
   "heading": "Major Covenant Boon: Friendly Gruagach Collective",
-  "line": 3835,
-  "endLine": 3840,
+  "line": 3837,
+  "endLine": 3842,
   "category": "covenant",
   "topic": "Covenant boons and hooks",
   "audience": [
@@ -1199,8 +1199,8 @@
  {
   "title": "Major Covenant Hook: Hostile Gruagach Collective",
   "heading": "Major Covenant Hook: Hostile Gruagach Collective",
-  "line": 3841,
-  "endLine": 3846,
+  "line": 3843,
+  "endLine": 3848,
   "category": "covenant",
   "topic": "Covenant boons and hooks",
   "audience": [
@@ -1216,8 +1216,8 @@
  {
   "title": "Minor Covenant Boon: Gruagach Ally",
   "heading": "Minor Covenant Boon: Gruagach Ally",
-  "line": 3847,
-  "endLine": 3852,
+  "line": 3849,
+  "endLine": 3854,
   "category": "covenant",
   "topic": "Covenant boons and hooks",
   "audience": [
@@ -1233,8 +1233,8 @@
  {
   "title": "Minor Covenant Hook: Gruagach Resident",
   "heading": "Minor Covenant Hook: Gruagach Resident",
-  "line": 3853,
-  "endLine": 3858,
+  "line": 3855,
+  "endLine": 3860,
   "category": "covenant",
   "topic": "Covenant boons and hooks",
   "audience": [
@@ -1250,8 +1250,8 @@
  {
   "title": "Hermetic Gruagachan",
   "heading": "Hermetic Gruagachan",
-  "line": 3859,
-  "endLine": 3862,
+  "line": 3861,
+  "endLine": 3864,
   "category": "creation",
   "topic": "Gruagach",
   "audience": [
@@ -1270,8 +1270,8 @@
  {
   "title": "Trollsynir Tradition",
   "heading": "Trollsynir",
-  "line": 3980,
-  "endLine": 3989,
+  "line": 3982,
+  "endLine": 3991,
   "category": "traditions",
   "topic": "Trollsynir",
   "audience": [
@@ -1291,8 +1291,8 @@
  {
   "title": "Trollsynir Magic",
   "heading": "Magic",
-  "line": 4002,
-  "endLine": 4009,
+  "line": 4004,
+  "endLine": 4011,
   "category": "traditions",
   "topic": "Trollsynir",
   "audience": [
@@ -1311,8 +1311,8 @@
  {
   "title": "Trollsynir Characters",
   "heading": "Characterss",
-  "line": 4010,
-  "endLine": 4017,
+  "line": 4012,
+  "endLine": 4019,
   "category": "creation",
   "topic": "Trollsynir",
   "audience": [
@@ -1329,8 +1329,8 @@
  {
   "title": "Kolduni Tradition",
   "heading": "Kolduni",
-  "line": 4018,
-  "endLine": 4024,
+  "line": 4020,
+  "endLine": 4026,
   "category": "traditions",
   "topic": "Kolduni",
   "audience": [
@@ -1350,8 +1350,8 @@
  {
   "title": "Koldun Magic",
   "heading": "Magic",
-  "line": 4031,
-  "endLine": 4046,
+  "line": 4033,
+  "endLine": 4048,
   "category": "traditions",
   "topic": "Kolduni",
   "audience": [
@@ -1371,8 +1371,8 @@
  {
   "title": "Koldun Characters",
   "heading": "Characters",
-  "line": 4047,
-  "endLine": 4050,
+  "line": 4049,
+  "endLine": 4052,
   "category": "creation",
   "topic": "Kolduni",
   "audience": [
@@ -1391,8 +1391,8 @@
  {
   "title": "Integration of Gruagach Magic",
   "heading": "Integration of Gruagach Magic",
-  "line": 4051,
-  "endLine": 4054,
+  "line": 4053,
+  "endLine": 4056,
   "category": "magic",
   "topic": "Integration of hedge magic",
   "audience": [
@@ -1409,8 +1409,8 @@
  {
   "title": "Integration: Cailleach Magic",
   "heading": "Cailleach Magic",
-  "line": 4055,
-  "endLine": 4072,
+  "line": 4057,
+  "endLine": 4074,
   "category": "magic",
   "topic": "Integration of hedge magic",
   "audience": [
@@ -1430,8 +1430,8 @@
  {
   "title": "Integration: Flexible Formulaic Magic",
   "heading": "Flexible Formulaic Magic",
-  "line": 4073,
-  "endLine": 4090,
+  "line": 4075,
+  "endLine": 4092,
   "category": "magic",
   "topic": "Integration of hedge magic",
   "audience": [
@@ -1453,8 +1453,8 @@
  {
   "title": "Integration: Improved Voice Range",
   "heading": "Improved Voice Range",
-  "line": 4091,
-  "endLine": 4108,
+  "line": 4093,
+  "endLine": 4110,
   "category": "magic",
   "topic": "Integration of hedge magic",
   "audience": [
@@ -1474,8 +1474,8 @@
  {
   "title": "Learned Magician Character Generation",
   "heading": "Character Generation",
-  "line": 4115,
-  "endLine": 4128,
+  "line": 4117,
+  "endLine": 4130,
   "category": "creation",
   "topic": "Learned Magicians",
   "audience": [
@@ -1498,8 +1498,8 @@
  {
   "title": "Learned Magician Training",
   "heading": "Training",
-  "line": 4129,
-  "endLine": 4132,
+  "line": 4131,
+  "endLine": 4134,
   "category": "traditions",
   "topic": "Learned Magicians",
   "audience": [
@@ -1518,8 +1518,8 @@
  {
   "title": "Typical Learned Magician Abilities",
   "heading": "Typical Learned Magician Abilities",
-  "line": 4133,
-  "endLine": 4140,
+  "line": 4135,
+  "endLine": 4142,
   "category": "creation",
   "topic": "Learned Magicians",
   "audience": [
@@ -1538,8 +1538,8 @@
  {
   "title": "Lore of the Mathematici",
   "heading": "Lore of the Mathematici",
-  "line": 4141,
-  "endLine": 4143,
+  "line": 4143,
+  "endLine": 4145,
   "category": "traditions",
   "topic": "Learned Magicians",
   "audience": [
@@ -1556,8 +1556,8 @@
  {
   "title": "Mythic Alchemy and Mythic Herbalism (Learned Magician Virtues)",
   "heading": "Virtues of the Learned Magicians",
-  "line": 4149,
-  "endLine": 4268,
+  "line": 4151,
+  "endLine": 4270,
   "category": "traditions",
   "topic": "Mythic Alchemy and Herbalism",
   "audience": [
@@ -1580,8 +1580,8 @@
  {
   "title": "New Reagent Guidelines",
   "heading": "New Reagent Guidelines",
-  "line": 4180,
-  "endLine": 4188,
+  "line": 4182,
+  "endLine": 4190,
   "category": "lab",
   "topic": "Mythic Alchemy and Herbalism",
   "audience": [
@@ -1599,8 +1599,8 @@
  {
   "title": "Hermetic Virtues and Flaws for Learned Magicians",
   "heading": "Hermetic Virtues and Flaws for Learned Magicians",
-  "line": 4380,
-  "endLine": 4391,
+  "line": 4382,
+  "endLine": 4393,
   "category": "creation",
   "topic": "Learned Magicians",
   "audience": [
@@ -1618,8 +1618,8 @@
  {
   "title": "Magic of the Learned Magicians (charms, amulets and chartae)",
   "heading": "Magic of the Learned Magicians",
-  "line": 4392,
-  "endLine": 4397,
+  "line": 4394,
+  "endLine": 4399,
   "category": "traditions",
   "topic": "Learned Magicians",
   "audience": [
@@ -1636,8 +1636,8 @@
  {
   "title": "Learned Magician Arts",
   "heading": "The Arts",
-  "line": 4398,
-  "endLine": 4401,
+  "line": 4400,
+  "endLine": 4403,
   "category": "traditions",
   "topic": "Learned Magicians",
   "audience": [
@@ -1654,8 +1654,8 @@
  {
   "title": "Learned Magician Techniques (Tueor, Succurro, Vulnero)",
   "heading": "Techniques",
-  "line": 4402,
-  "endLine": 4426,
+  "line": 4404,
+  "endLine": 4428,
   "category": "traditions",
   "topic": "Learned Magicians",
   "audience": [
@@ -1672,8 +1672,8 @@
  {
   "title": "Learned Magician Forms (Fortunam, Magicam, Salutem)",
   "heading": "Forms",
-  "line": 4427,
-  "endLine": 4445,
+  "line": 4429,
+  "endLine": 4447,
   "category": "traditions",
   "topic": "Learned Magicians",
   "audience": [
@@ -1690,8 +1690,8 @@
  {
   "title": "Charms Overview",
   "heading": "Charms",
-  "line": 4446,
-  "endLine": 4449,
+  "line": 4448,
+  "endLine": 4451,
   "category": "magic",
   "topic": "Learned Magicians charms",
   "audience": [
@@ -1708,8 +1708,8 @@
  {
   "title": "Charm Design and Casting Totals",
   "heading": "Charm Design",
-  "line": 4450,
-  "endLine": 4461,
+  "line": 4452,
+  "endLine": 4463,
   "category": "magic",
   "topic": "Learned Magicians charms",
   "audience": [
@@ -1730,8 +1730,8 @@
  {
   "title": "Ranges, Durations, & Targets for Charms",
   "heading": "Ranges, Ourations, & Targets for Charms",
-  "line": 4462,
-  "endLine": 4468,
+  "line": 4464,
+  "endLine": 4470,
   "category": "magic",
   "topic": "Learned Magicians charms",
   "audience": [
@@ -1750,8 +1750,8 @@
  {
   "title": "Reading Charms from Text",
   "heading": "Reading Charms from Text",
-  "line": 4470,
-  "endLine": 4479,
+  "line": 4472,
+  "endLine": 4481,
   "category": "magic",
   "topic": "Learned Magicians charms",
   "audience": [
@@ -1770,8 +1770,8 @@
  {
   "title": "Charm Ranges, Durations, and Targets",
   "heading": "Ranges, Durations, and Targets",
-  "line": 4480,
-  "endLine": 4483,
+  "line": 4482,
+  "endLine": 4485,
   "category": "magic",
   "topic": "Learned Magicians charms",
   "audience": [
@@ -1793,8 +1793,8 @@
  {
   "title": "Learned Magician Vis Use",
   "heading": "Vis Use",
-  "line": 4484,
-  "endLine": 4489,
+  "line": 4486,
+  "endLine": 4491,
   "category": "magic",
   "topic": "Learned Magicians charms",
   "audience": [
@@ -1815,8 +1815,8 @@
  {
   "title": "Learned Magician Laboratory Activities",
   "heading": "Laboratory Activities",
-  "line": 4490,
-  "endLine": 4493,
+  "line": 4492,
+  "endLine": 4495,
   "category": "lab",
   "topic": "Amulets and chartae",
   "audience": [
@@ -1832,8 +1832,8 @@
  {
   "title": "Amulet and Charta Design",
   "heading": "Amulet and Charta Design",
-  "line": 4494,
-  "endLine": 4515,
+  "line": 4496,
+  "endLine": 4517,
   "category": "lab",
   "topic": "Amulets and chartae",
   "audience": [
@@ -1845,7 +1845,7 @@
   "summary": "Gives the learned magician Lab Total, how many charges an amulet holds, the Charta Total, creation time, and rules for incomplete chartae prepared for an unknown recipient.",
   "quotes": [
    "Hedge Technique + Hedge Form + Intelligence + Artes Liberales + Aura Modifier",
-   "(Lab Total \u2013 Amulet Level of Effect) / 5 (rounded up)",
+   "(Lab Total – Amulet Level of Effect) / 5 (rounded up)",
    "Lab Total/2"
   ],
   "related": [
@@ -1855,8 +1855,8 @@
  {
   "title": "Ranges, Durations, and Targets for Amulets and Chartae",
   "heading": "Ranges, Durations, and Targets for Amulets and Chartae",
-  "line": 4516,
-  "endLine": 4521,
+  "line": 4518,
+  "endLine": 4523,
   "category": "lab",
   "topic": "Amulets and chartae",
   "audience": [
@@ -1874,8 +1874,8 @@
  {
   "title": "Astronomical Requirements",
   "heading": "Astronomial Requirements",
-  "line": 4523,
-  "endLine": 4528,
+  "line": 4525,
+  "endLine": 4530,
   "category": "lab",
   "topic": "Amulets and chartae",
   "audience": [
@@ -1893,8 +1893,8 @@
  {
   "title": "Amulet and Chartae Ranges, Durations, and Targets",
   "heading": "Ranges, Durations, and Targets",
-  "line": 4529,
-  "endLine": 4536,
+  "line": 4531,
+  "endLine": 4538,
   "category": "lab",
   "topic": "Amulets and chartae",
   "audience": [
@@ -1914,8 +1914,8 @@
  {
   "title": "Amulet and Charta Effects",
   "heading": "Amulet and Charta Effects",
-  "line": 4537,
-  "endLine": 4542,
+  "line": 4539,
+  "endLine": 4544,
   "category": "lab",
   "topic": "Amulets and chartae",
   "audience": [
@@ -1933,8 +1933,8 @@
  {
   "title": "Learned Magician Laboratory Requirements",
   "heading": "Laboratory Requirements",
-  "line": 4543,
-  "endLine": 4546,
+  "line": 4545,
+  "endLine": 4548,
   "category": "lab",
   "topic": "Amulets and chartae",
   "audience": [
@@ -1950,8 +1950,8 @@
  {
   "title": "Learned Magician Laboratory Texts",
   "heading": "Laboratory Texts",
-  "line": 4547,
-  "endLine": 4554,
+  "line": 4549,
+  "endLine": 4556,
   "category": "lab",
   "topic": "Amulets and chartae",
   "audience": [
@@ -1971,8 +1971,8 @@
  {
   "title": "Inventing and Learning New Charms",
   "heading": "Inventing and Learning New Charms",
-  "line": 4555,
-  "endLine": 4560,
+  "line": 4557,
+  "endLine": 4562,
   "category": "lab",
   "topic": "Amulets and chartae",
   "audience": [
@@ -1992,8 +1992,8 @@
  {
   "title": "Mitigation of Realm Interaction Effects (Entreat the Powers)",
   "heading": "Mitigation of Realm Interaction Effects",
-  "line": 4561,
-  "endLine": 4576,
+  "line": 4563,
+  "endLine": 4578,
   "category": "realms",
   "topic": "Entreat the Powers",
   "audience": [
@@ -2014,8 +2014,8 @@
  {
   "title": "UnGifted Mathematicus Initiations",
   "heading": "UnGifted Mathematicus Initiations",
-  "line": 4577,
-  "endLine": 4580,
+  "line": 4579,
+  "endLine": 4582,
   "category": "mysteries",
   "topic": "Learned magician initiation",
   "audience": [
@@ -2036,8 +2036,8 @@
  {
   "title": "Initiation into the Tueor Technique",
   "heading": "Initiation into the Tueor Technique",
-  "line": 4581,
-  "endLine": 4587,
+  "line": 4583,
+  "endLine": 4589,
   "category": "mysteries",
   "topic": "Learned magician initiation",
   "audience": [
@@ -2056,8 +2056,8 @@
  {
   "title": "Initiation into the Fortunam Form",
   "heading": "Initiation into the Fortunam Form",
-  "line": 4588,
-  "endLine": 4594,
+  "line": 4590,
+  "endLine": 4596,
   "category": "mysteries",
   "topic": "Learned magician initiation",
   "audience": [
@@ -2076,8 +2076,8 @@
  {
   "title": "Initiation into the Magicam Form",
   "heading": "Initiation into the Magicam Form",
-  "line": 4595,
-  "endLine": 4601,
+  "line": 4597,
+  "endLine": 4603,
   "category": "mysteries",
   "topic": "Learned magician initiation",
   "audience": [
@@ -2096,8 +2096,8 @@
  {
   "title": "Initiation into the Salutem Form",
   "heading": "Initiation into the Salutem Form",
-  "line": 4602,
-  "endLine": 4608,
+  "line": 4604,
+  "endLine": 4610,
   "category": "mysteries",
   "topic": "Learned magician initiation",
   "audience": [
@@ -2116,8 +2116,8 @@
  {
   "title": "Initiation into the Entreat the Divine Powers Ability",
   "heading": "Initiation into the Entreat the Divine Powers Ability",
-  "line": 4609,
-  "endLine": 4615,
+  "line": 4611,
+  "endLine": 4617,
   "category": "mysteries",
   "topic": "Learned magician initiation",
   "audience": [
@@ -2136,8 +2136,8 @@
  {
   "title": "Learned Magician Magical Defenses",
   "heading": "Magical Defenses",
-  "line": 4616,
-  "endLine": 4644,
+  "line": 4618,
+  "endLine": 4646,
   "category": "magic",
   "topic": "Hedge magical defenses",
   "audience": [
@@ -2159,8 +2159,8 @@
  {
   "title": "Fortunam Charms and Magic Resistance",
   "heading": "Fortunam",
-  "line": 4649,
-  "endLine": 4654,
+  "line": 4651,
+  "endLine": 4656,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2178,8 +2178,8 @@
  {
   "title": "Tueor Fortunam Guidelines",
   "heading": "Tueor Fortunam Guidelines",
-  "line": 4657,
-  "endLine": 4677,
+  "line": 4659,
+  "endLine": 4679,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2197,8 +2197,8 @@
  {
   "title": "Succurro Fortunam Guidelines",
   "heading": "Succurro Fortunam Guidelines",
-  "line": 4705,
-  "endLine": 4727,
+  "line": 4707,
+  "endLine": 4729,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2218,8 +2218,8 @@
  {
   "title": "Vulnero Fortunam Guidelines",
   "heading": "Vulnero Fortunam Guidelines",
-  "line": 4757,
-  "endLine": 4773,
+  "line": 4759,
+  "endLine": 4775,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2237,8 +2237,8 @@
  {
   "title": "Magicam Charms Overview",
   "heading": "Magicam",
-  "line": 4799,
-  "endLine": 4806,
+  "line": 4801,
+  "endLine": 4808,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2254,8 +2254,8 @@
  {
   "title": "Tueor Magicam Guidelines",
   "heading": "Tueor Magicam Guidelines",
-  "line": 4809,
-  "endLine": 4817,
+  "line": 4811,
+  "endLine": 4819,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2273,8 +2273,8 @@
  {
   "title": "Succurro Magicam Guidelines",
   "heading": "Succurro Magicam Guidelines",
-  "line": 4845,
-  "endLine": 4867,
+  "line": 4847,
+  "endLine": 4869,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2292,8 +2292,8 @@
  {
   "title": "Vulnero Magicam Guidelines",
   "heading": "Vulnero Magicam Guidelines",
-  "line": 4895,
-  "endLine": 4901,
+  "line": 4897,
+  "endLine": 4903,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2311,8 +2311,8 @@
  {
   "title": "Salutem Charms Overview",
   "heading": "Salutem",
-  "line": 4919,
-  "endLine": 4922,
+  "line": 4921,
+  "endLine": 4924,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2328,8 +2328,8 @@
  {
   "title": "Tueor Salutem Guidelines",
   "heading": "Tueor Salutem Guidelines",
-  "line": 4925,
-  "endLine": 4951,
+  "line": 4927,
+  "endLine": 4953,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2349,8 +2349,8 @@
  {
   "title": "Succurro Salutem Guidelines",
   "heading": "Succurro Salutem Guidelines",
-  "line": 4979,
-  "endLine": 5007,
+  "line": 4981,
+  "endLine": 5009,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2370,8 +2370,8 @@
  {
   "title": "Vulnero Salutem Guidelines",
   "heading": "Vulnero Salutem Guidelines",
-  "line": 5035,
-  "endLine": 5061,
+  "line": 5037,
+  "endLine": 5063,
   "category": "magic",
   "topic": "Learned Magician spell guidelines",
   "audience": [
@@ -2391,8 +2391,8 @@
  {
   "title": "Learned Magician Botches",
   "heading": "Botches",
-  "line": 5108,
-  "endLine": 5111,
+  "line": 5110,
+  "endLine": 5113,
   "category": "magic",
   "topic": "Learned magician magical dangers",
   "audience": [
@@ -2409,8 +2409,8 @@
  {
   "title": "Learned Magician Warping",
   "heading": "Warping",
-  "line": 5112,
-  "endLine": 5115,
+  "line": 5114,
+  "endLine": 5117,
   "category": "magic",
   "topic": "Learned magician magical dangers",
   "audience": [
@@ -2431,8 +2431,8 @@
  {
   "title": "Intervention (learned magician Twilight analogue)",
   "heading": "Intervention",
-  "line": 5116,
-  "endLine": 5131,
+  "line": 5118,
+  "endLine": 5133,
   "category": "magic",
   "topic": "Learned magician magical dangers",
   "audience": [
@@ -2452,8 +2452,8 @@
  {
   "title": "Abduction",
   "heading": "Abduction",
-  "line": 5132,
-  "endLine": 5135,
+  "line": 5134,
+  "endLine": 5137,
   "category": "magic",
   "topic": "Learned magician magical dangers",
   "audience": [
@@ -2473,8 +2473,8 @@
  {
   "title": "Epistolary Community (Gifted mathematici and correspondence)",
   "heading": "Epistolary Community",
-  "line": 5170,
-  "endLine": 5175,
+  "line": 5172,
+  "endLine": 5177,
   "category": "social",
   "topic": "Learned Magicians",
   "audience": [
@@ -2495,8 +2495,8 @@
  {
   "title": "Learned Magicians in Play (covenant involvement)",
   "heading": "Learned Magicians in Play",
-  "line": 5192,
-  "endLine": 5195,
+  "line": 5194,
+  "endLine": 5197,
   "category": "covenant",
   "topic": "Learned Magicians",
   "audience": [
@@ -2513,8 +2513,8 @@
  {
   "title": "Minor Covenant Boon: Mathematicus Ally",
   "heading": "Minor Covenant Boon: Mathematicus Ally",
-  "line": 5196,
-  "endLine": 5201,
+  "line": 5198,
+  "endLine": 5203,
   "category": "covenant",
   "topic": "Covenant boons and hooks",
   "audience": [
@@ -2530,8 +2530,8 @@
  {
   "title": "Minor Covenant Hook: Mathematicus Resident",
   "heading": "Minor Covenant Hook: Mathematicus Resident",
-  "line": 5202,
-  "endLine": 5207,
+  "line": 5204,
+  "endLine": 5209,
   "category": "covenant",
   "topic": "Covenant boons and hooks",
   "audience": [
@@ -2547,8 +2547,8 @@
  {
   "title": "Hermetic Learned Magicians",
   "heading": "Hermetic Learned Magicains",
-  "line": 5208,
-  "endLine": 5211,
+  "line": 5210,
+  "endLine": 5213,
   "category": "creation",
   "topic": "Learned Magicians",
   "audience": [
@@ -2567,8 +2567,8 @@
  {
   "title": "Mythic Alchemists Tradition",
   "heading": "Mythic Alchemists",
-  "line": 5356,
-  "endLine": 5363,
+  "line": 5358,
+  "endLine": 5365,
   "category": "traditions",
   "topic": "Mythic Alchemists",
   "audience": [
@@ -2588,8 +2588,8 @@
  {
   "title": "Mythic Alchemist Magic",
   "heading": "Magic",
-  "line": 5372,
-  "endLine": 5385,
+  "line": 5374,
+  "endLine": 5387,
   "category": "lab",
   "topic": "Mythic Alchemists",
   "audience": [
@@ -2612,8 +2612,8 @@
  {
   "title": "Mythic Alchemist Characters",
   "heading": "Characters",
-  "line": 5386,
-  "endLine": 5389,
+  "line": 5388,
+  "endLine": 5391,
   "category": "creation",
   "topic": "Mythic Alchemists",
   "audience": [
@@ -2630,8 +2630,8 @@
  {
   "title": "Cunning-Folk Tradition",
   "heading": "Cunning-Folk",
-  "line": 5390,
-  "endLine": 5397,
+  "line": 5392,
+  "endLine": 5399,
   "category": "traditions",
   "topic": "Cunning-Folk",
   "audience": [
@@ -2651,8 +2651,8 @@
  {
   "title": "Cunning-Folk Magic",
   "heading": "Magic",
-  "line": 5404,
-  "endLine": 5411,
+  "line": 5406,
+  "endLine": 5413,
   "category": "traditions",
   "topic": "Cunning-Folk",
   "audience": [
@@ -2672,8 +2672,8 @@
  {
   "title": "Cunning-Folk Characters",
   "heading": "Characters",
-  "line": 5416,
-  "endLine": 5421,
+  "line": 5418,
+  "endLine": 5423,
   "category": "creation",
   "topic": "Cunning-Folk",
   "audience": [
@@ -2694,8 +2694,8 @@
  {
   "title": "Integrating the Learned Magicians' Magic",
   "heading": "Integrating the Learned Magicians' Magic",
-  "line": 5422,
-  "endLine": 5425,
+  "line": 5424,
+  "endLine": 5427,
   "category": "magic",
   "topic": "Integration of hedge magic",
   "audience": [
@@ -2712,8 +2712,8 @@
  {
   "title": "Integration: Single-Use Charged Items",
   "heading": "Single-Use Charged Items",
-  "line": 5426,
-  "endLine": 5443,
+  "line": 5428,
+  "endLine": 5445,
   "category": "magic",
   "topic": "Integration of hedge magic",
   "audience": [
@@ -2733,8 +2733,8 @@
  {
   "title": "Nightwalker Characters",
   "heading": "Characters",
-  "line": 5452,
-  "endLine": 5455,
+  "line": 5454,
+  "endLine": 5457,
   "category": "creation",
   "topic": "Nightwalkers",
   "audience": [
@@ -2753,8 +2753,8 @@
  {
   "title": "Nightwalker New Virtues (regional traditions)",
   "heading": "New Virtues",
-  "line": 5456,
-  "endLine": 5459,
+  "line": 5458,
+  "endLine": 5461,
   "category": "creation",
   "topic": "Nightwalkers",
   "audience": [
@@ -2773,8 +2773,8 @@
  {
   "title": "Nightwalker (Virtue powers and limitations)",
   "heading": "Nightwalker<br>",
-  "line": 5460,
-  "endLine": 5487,
+  "line": 5462,
+  "endLine": 5489,
   "category": "traditions",
   "topic": "Nightwalkers",
   "audience": [
@@ -2793,8 +2793,8 @@
  {
   "title": "Born With a Caul",
   "heading": "Born With a Caul",
-  "line": 5548,
-  "endLine": 5566,
+  "line": 5550,
+  "endLine": 5568,
   "category": "creation",
   "topic": "Nightwalkers",
   "audience": [

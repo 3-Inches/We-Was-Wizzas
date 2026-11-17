@@ -2,8 +2,8 @@
  {
   "title": "Straying (Ekstasis) Overview",
   "heading": "Powers in Detail",
-  "line": 5572,
-  "endLine": 5575,
+  "line": 5574,
+  "endLine": 5577,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -22,8 +22,8 @@
  {
   "title": "Preparation for Straying",
   "heading": "Preparation for Straying",
-  "line": 5580,
-  "endLine": 5584,
+  "line": 5582,
+  "endLine": 5586,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -35,7 +35,7 @@
   "requires": "Virtue: Nightwalker",
   "summary": "How a nightwalker induces insensibility so the spirit can stray: sleep, illness, asceticism, Hermetic sleep spells or drugs. Drugs take a time that depends on Concentration, and a poisoned victim may resist with a Stamina roll.",
   "quotes": [
-   "a character using drugs takes (10 \u2013 Concentration) minutes to reach insensibility, with a minimum time of one minute",
+   "a character using drugs takes (10 – Concentration) minutes to reach insensibility, with a minimum time of one minute",
    "Stamina roll against an Ease Factor of 6"
   ],
   "related": [
@@ -45,8 +45,8 @@
  {
   "title": "The Insensate Body and Straying Fatigue",
   "heading": "The Insensate Body",
-  "line": 5586,
-  "endLine": 5592,
+  "line": 5588,
+  "endLine": 5594,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -66,8 +66,8 @@
  {
   "title": "The Phantasticum",
   "heading": "The Phantasticum: A Spiritual Yet Corporeal Form",
-  "line": 5594,
-  "endLine": 5600,
+  "line": 5596,
+  "endLine": 5602,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -86,8 +86,8 @@
  {
   "title": "Second Sight and Magical Air in Spirit Form",
   "heading": "Second Sight and Magical Air",
-  "line": 5602,
-  "endLine": 5606,
+  "line": 5604,
+  "endLine": 5608,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -106,8 +106,8 @@
  {
   "title": "Travel Through Straying",
   "heading": "Travel Through Straying",
-  "line": 5608,
-  "endLine": 5633,
+  "line": 5610,
+  "endLine": 5635,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -127,8 +127,8 @@
  {
   "title": "Combat Statistics for Animal Phantastica",
   "heading": "Combat Statistics for Animal Phantastica",
-  "line": 5635,
-  "endLine": 5651,
+  "line": 5637,
+  "endLine": 5653,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -150,8 +150,8 @@
  {
   "title": "Communications Through Straying",
   "heading": "Communications Through Straying",
-  "line": 5653,
-  "endLine": 5657,
+  "line": 5655,
+  "endLine": 5659,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -170,8 +170,8 @@
  {
   "title": "Leading Others Astray",
   "heading": "Leading Others Astray",
-  "line": 5659,
-  "endLine": 5665,
+  "line": 5661,
+  "endLine": 5667,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -191,8 +191,8 @@
  {
   "title": "Combat and the Straying Spirit",
   "heading": "Combat and the Straying Spirit",
-  "line": 5667,
-  "endLine": 5671,
+  "line": 5669,
+  "endLine": 5673,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -211,8 +211,8 @@
  {
   "title": "Drowsiness",
   "heading": "Drowsiness",
-  "line": 5673,
-  "endLine": 5675,
+  "line": 5675,
+  "endLine": 5677,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -231,8 +231,8 @@
  {
   "title": "Fertility Battles",
   "heading": "Fertility Battles",
-  "line": 5677,
-  "endLine": 5679,
+  "line": 5679,
+  "endLine": 5681,
   "category": "traditions",
   "topic": "Fertility battles",
   "audience": [
@@ -251,8 +251,8 @@
  {
   "title": "Giving Battle",
   "heading": "Giving Battle",
-  "line": 5681,
-  "endLine": 5704,
+  "line": 5683,
+  "endLine": 5706,
   "category": "traditions",
   "topic": "Fertility battles",
   "audience": [
@@ -262,7 +262,7 @@
   "prevalence": 4,
   "creation": false,
   "requires": "Virtue: Nightwalker",
-  "summary": "How a night battle is run: either the player rolls for a disciplined militia or the character seeks individual foes in a m\u00eal\u00e9e, using Perception + Awareness to find enemies.",
+  "summary": "How a night battle is run: either the player rolls for a disciplined militia or the character seeks individual foes in a mêlée, using Perception + Awareness to find enemies.",
   "quotes": [
    "Perception + Awareness roll of 9 or more"
   ],
@@ -271,8 +271,8 @@
  {
   "title": "Covenants Supplement Modifiers (Fertility Battle Outcomes)",
   "heading": "Covenants Supplement Modifiers",
-  "line": 5685,
-  "endLine": 5697,
+  "line": 5687,
+  "endLine": 5699,
   "category": "traditions",
   "topic": "Fertility battles",
   "audience": [
@@ -293,8 +293,8 @@
  {
   "title": "Night Battle Enemies",
   "heading": "Enemeis",
-  "line": 5714,
-  "endLine": 5730,
+  "line": 5716,
+  "endLine": 5732,
   "category": "traditions",
   "topic": "Fertility battles",
   "audience": [
@@ -316,8 +316,8 @@
  {
   "title": "Musters Out of Season and Recognising Fellow Nightwalkers",
   "heading": "Musters Out of Season",
-  "line": 5732,
-  "endLine": 5740,
+  "line": 5734,
+  "endLine": 5742,
   "category": "traditions",
   "topic": "Fertility battles",
   "audience": [
@@ -336,8 +336,8 @@
  {
   "title": "Returning Home and Spiritual Nourishment",
   "heading": "Returning Home",
-  "line": 5762,
-  "endLine": 5770,
+  "line": 5764,
+  "endLine": 5772,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -356,8 +356,8 @@
  {
   "title": "Processions of the Dead",
   "heading": "The Processions of the Dead",
-  "line": 5776,
-  "endLine": 5792,
+  "line": 5778,
+  "endLine": 5794,
   "category": "traditions",
   "topic": "Nightwalker processions",
   "audience": [
@@ -376,8 +376,8 @@
  {
   "title": "Celebratory Processions",
   "heading": "Celebratory Processions",
-  "line": 5808,
-  "endLine": 5810,
+  "line": 5810,
+  "endLine": 5812,
   "category": "traditions",
   "topic": "Nightwalker processions",
   "audience": [
@@ -396,8 +396,8 @@
  {
   "title": "Nightwalker Taboo on Waking Contests",
   "heading": "Battling Infernal Witches While Awake And Taboos",
-  "line": 5816,
-  "endLine": 5818,
+  "line": 5818,
+  "endLine": 5820,
   "category": "traditions",
   "topic": "Fertility battles",
   "audience": [
@@ -416,8 +416,8 @@
  {
   "title": "Benandanti Tradition",
   "heading": "Benandanti",
-  "line": 5824,
-  "endLine": 5858,
+  "line": 5826,
+  "endLine": 5860,
   "category": "traditions",
   "topic": "Nightwalker traditions",
   "audience": [
@@ -436,8 +436,8 @@
  {
   "title": "Hounds of God Tradition",
   "heading": "The Hounds of God",
-  "line": 5872,
-  "endLine": 5892,
+  "line": 5874,
+  "endLine": 5894,
   "category": "traditions",
   "topic": "Nightwalker traditions",
   "audience": [
@@ -459,8 +459,8 @@
  {
   "title": "Kresniki and Kudlaki Tradition",
   "heading": "Kresniki and Kudlaki",
-  "line": 5894,
-  "endLine": 5914,
+  "line": 5896,
+  "endLine": 5916,
   "category": "traditions",
   "topic": "Nightwalker traditions",
   "audience": [
@@ -479,8 +479,8 @@
  {
   "title": "Mazzeru Tradition",
   "heading": "Mazzeru",
-  "line": 5916,
-  "endLine": 5920,
+  "line": 5918,
+  "endLine": 5922,
   "category": "traditions",
   "topic": "Nightwalker traditions",
   "audience": [
@@ -498,9 +498,9 @@
  },
  {
   "title": "Taltos Tradition",
-  "heading": "Talt\u00f3s",
-  "line": 5930,
-  "endLine": 5952,
+  "heading": "Taltós",
+  "line": 5932,
+  "endLine": 5954,
   "category": "traditions",
   "topic": "Nightwalker traditions",
   "audience": [
@@ -509,10 +509,10 @@
   ],
   "prevalence": 4,
   "creation": true,
-  "requires": "Virtue: Nightwalker (Talt\u00f3s)",
-  "summary": "Hungarian nightwalkers who fight in the sky as horses, bulls or flames. Covers the childhood coma and initiation, the battle schedule, recovery by eating, and the fact that most talt\u00f3s lose their powers at some age.",
+  "requires": "Virtue: Nightwalker (Taltós)",
+  "summary": "Hungarian nightwalkers who fight in the sky as horses, bulls or flames. Covers the childhood coma and initiation, the battle schedule, recovery by eating, and the fact that most taltós lose their powers at some age.",
   "quotes": [
-   "Talt\u00f3s fight in the forms of horses, bulls, or flames"
+   "Taltós fight in the forms of horses, bulls, or flames"
   ],
   "related": [
    "Houses of Hermes: Societates p.169"
@@ -521,8 +521,8 @@
  {
   "title": "Statistics and Abilities for Flame Shape",
   "heading": "Statistics and Abilities for Flame Shape",
-  "line": 5954,
-  "endLine": 5964,
+  "line": 5956,
+  "endLine": 5966,
   "category": "traditions",
   "topic": "Nightwalker straying",
   "audience": [
@@ -531,7 +531,7 @@
   ],
   "prevalence": 4,
   "creation": true,
-  "requires": "Virtue: Nightwalker (Talt\u00f3s, flame form)",
+  "requires": "Virtue: Nightwalker (Taltós, flame form)",
   "summary": "Rules for a taltos in the form of a ball or wheel of flame, built from the characteristics of an elemental: fixed Characteristics, Abilities that can be used, fire Damage, fire vulnerability immunities and a Hungry Personality trait.",
   "quotes": [
    "suffer +5 burn damage for each attack (Penetration 0)",
@@ -544,8 +544,8 @@
  {
   "title": "Hermetic Nightwalkers and Certamen Origins",
   "heading": "Partial Integration in Progress",
-  "line": 5980,
-  "endLine": 5992,
+  "line": 5982,
+  "endLine": 5994,
   "category": "order",
   "topic": "Hermetic integration of nightwalking",
   "audience": [
@@ -566,8 +566,8 @@
  {
   "title": "Path of Seeming Spirit Travel",
   "heading": "Path of Seeming",
-  "line": 5994,
-  "endLine": 6002,
+  "line": 5996,
+  "endLine": 6004,
   "category": "mysteries",
   "topic": "Hermetic integration of nightwalking",
   "audience": [
@@ -586,8 +586,8 @@
  {
   "title": "Vitkir as Characters",
   "heading": "Vitkir as Characters",
-  "line": 6142,
-  "endLine": 6146,
+  "line": 6144,
+  "endLine": 6148,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -610,8 +610,8 @@
  {
   "title": "Vitkar Magic Foci",
   "heading": "Vitkar Magic Foci",
-  "line": 6222,
-  "endLine": 6242,
+  "line": 6224,
+  "endLine": 6244,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -630,8 +630,8 @@
  {
   "title": "Craft: Runes",
   "heading": "Craft: Runes",
-  "line": 6330,
-  "endLine": 6332,
+  "line": 6332,
+  "endLine": 6334,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -649,8 +649,8 @@
  {
   "title": "Rune Magic Ability",
   "heading": "Rune Magic",
-  "line": 6334,
-  "endLine": 6336,
+  "line": 6336,
+  "endLine": 6338,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -668,10 +668,10 @@
   ]
  },
  {
-  "title": "N\u00e1tt-thel",
-  "heading": "N\u00e1tt-thel",
-  "line": 6342,
-  "endLine": 6370,
+  "title": "Nátt-thel",
+  "heading": "Nátt-thel",
+  "line": 6344,
+  "endLine": 6372,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -693,8 +693,8 @@
  {
   "title": "Odin's Sacrifice",
   "heading": "Odin's Sacrifice",
-  "line": 6372,
-  "endLine": 6380,
+  "line": 6374,
+  "endLine": 6382,
   "category": "mysteries",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -714,8 +714,8 @@
  {
   "title": "Learning Vitkar Magic",
   "heading": "Learning Vitkar Magic",
-  "line": 6382,
-  "endLine": 6386,
+  "line": 6384,
+  "endLine": 6388,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -733,8 +733,8 @@
  {
   "title": "Vitkar Magic: How Rune Spells Work",
   "heading": "Vitkar Magic",
-  "line": 6388,
-  "endLine": 6403,
+  "line": 6390,
+  "endLine": 6405,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -756,8 +756,8 @@
  {
   "title": "Vitkar Rune Scripts",
   "heading": "Vitkar Rune Scripts",
-  "line": 6405,
-  "endLine": 6407,
+  "line": 6407,
+  "endLine": 6409,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -775,8 +775,8 @@
  {
   "title": "Rune Script Method I",
   "heading": "METHOD I: \"I, [NAME], [EFFECT].\"",
-  "line": 6409,
-  "endLine": 6411,
+  "line": 6411,
+  "endLine": 6413,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -794,8 +794,8 @@
  {
   "title": "Rune Script Method II",
   "heading": "METHOD II: \"[NAME] [EFFECT] [TARGET].\"",
-  "line": 6413,
-  "endLine": 6415,
+  "line": 6415,
+  "endLine": 6417,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -813,8 +813,8 @@
  {
   "title": "Rune Script Method III and Vitkar Lab Total",
   "heading": "METHOD III: \"[Name], [TARGET].\"",
-  "line": 6417,
-  "endLine": 6427,
+  "line": 6419,
+  "endLine": 6429,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -833,8 +833,8 @@
  {
   "title": "Casting Rune Spells",
   "heading": "Casting Rune Spells",
-  "line": 6429,
-  "endLine": 6445,
+  "line": 6431,
+  "endLine": 6447,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -854,8 +854,8 @@
  {
   "title": "The Runes: Effects and Bonuses",
   "heading": "The Runes",
-  "line": 6447,
-  "endLine": 6455,
+  "line": 6449,
+  "endLine": 6457,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -874,8 +874,8 @@
  {
   "title": "Rune Casting Variations",
   "heading": "Rune Casting Variations",
-  "line": 6457,
-  "endLine": 6470,
+  "line": 6459,
+  "endLine": 6472,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -893,8 +893,8 @@
  {
   "title": "The Older Futhark (Rune Table)",
   "heading": "The Older Futhark",
-  "line": 6472,
-  "endLine": 6513,
+  "line": 6474,
+  "endLine": 6515,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -912,8 +912,8 @@
  {
   "title": "Ansuz Rune Guidelines",
   "heading": "A, Ansuz, \"Mouth\"",
-  "line": 6515,
-  "endLine": 6535,
+  "line": 6517,
+  "endLine": 6537,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -931,8 +931,8 @@
  {
   "title": "Berkanan Rune Guidelines",
   "heading": "B, Berkanan, \"Birch\"",
-  "line": 6549,
-  "endLine": 6581,
+  "line": 6551,
+  "endLine": 6583,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -950,8 +950,8 @@
  {
   "title": "Dagaz Rune Guidelines",
   "heading": "D, Dagaz, \"Day\"",
-  "line": 6595,
-  "endLine": 6613,
+  "line": 6597,
+  "endLine": 6615,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -969,8 +969,8 @@
  {
   "title": "Ehwaz Rune Guidelines",
   "heading": "E, Ehwaz, \"Horse\"",
-  "line": 6627,
-  "endLine": 6645,
+  "line": 6629,
+  "endLine": 6647,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -988,8 +988,8 @@
  {
   "title": "Fehu Rune Guidelines",
   "heading": "F, Fehu, \"Wealth\"",
-  "line": 6659,
-  "endLine": 6675,
+  "line": 6661,
+  "endLine": 6677,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1007,8 +1007,8 @@
  {
   "title": "Gebo Rune Guidelines",
   "heading": "G, Gebo, \"Gift\"",
-  "line": 6693,
-  "endLine": 6711,
+  "line": 6695,
+  "endLine": 6713,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1026,8 +1026,8 @@
  {
   "title": "Hagalaz Rune Guidelines",
   "heading": "H, Hagalaz, \"Hail\"",
-  "line": 6725,
-  "endLine": 6743,
+  "line": 6727,
+  "endLine": 6745,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1038,15 +1038,15 @@
   "requires": "Tradition: Vitkir",
   "summary": "Hagalaz governs destructive weather and hail, mostly Auram or Aquam. Guidelines give Damage bonuses, a general hail attack and summoning or intensifying storms.",
   "quotes": [
-   "inflicting damage equal to a stress die + (the Level of the effect \u2013 15)"
+   "inflicting damage equal to a stress die + (the Level of the effect – 15)"
   ],
   "related": []
  },
  {
   "title": "Isa Rune Guidelines",
   "heading": "I, Isa, \"Ice\"",
-  "line": 6757,
-  "endLine": 6773,
+  "line": 6759,
+  "endLine": 6775,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1057,15 +1057,15 @@
   "requires": "Tradition: Vitkir",
   "summary": "Isa governs ice, cold and cold emotions. Guidelines give bonuses to cold-related rolls, a chilling Damage effect, freezing or melting water, apathy, holding a target motionless and icing a surface.",
   "quotes": [
-   "Chill a target, doing Damage equal to (the level of the effect \u2013 20)"
+   "Chill a target, doing Damage equal to (the level of the effect – 20)"
   ],
   "related": []
  },
  {
   "title": "Jera Rune Guidelines",
   "heading": "J, Jera, \"Year\"",
-  "line": 6787,
-  "endLine": 6801,
+  "line": 6789,
+  "endLine": 6803,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1084,8 +1084,8 @@
  {
   "title": "Kauno Rune Guidelines",
   "heading": "K, Kauno, \"Pain\"",
-  "line": 6815,
-  "endLine": 6855,
+  "line": 6817,
+  "endLine": 6857,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1104,8 +1104,8 @@
  {
   "title": "Laguz Rune Guidelines",
   "heading": "L, Laguz, \"Water\"",
-  "line": 6869,
-  "endLine": 6889,
+  "line": 6871,
+  "endLine": 6891,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1123,8 +1123,8 @@
  {
   "title": "Mannaz Rune Guidelines",
   "heading": "M, Mannaz, \"Man\"",
-  "line": 6903,
-  "endLine": 6919,
+  "line": 6905,
+  "endLine": 6921,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1142,8 +1142,8 @@
  {
   "title": "Naudiz Rune Guidelines",
   "heading": "N, Naudiz, \"Need\"",
-  "line": 6933,
-  "endLine": 6950,
+  "line": 6935,
+  "endLine": 6951,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1161,8 +1161,8 @@
  {
   "title": "Ingwaz Rune Guidelines",
   "heading": "Ng, Ingwaz, \"Lord\"",
-  "line": 6964,
-  "endLine": 6978,
+  "line": 6965,
+  "endLine": 6979,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1180,8 +1180,8 @@
  {
   "title": "Othila Rune Guidelines",
   "heading": "O, Othila, \"Inheritance\"",
-  "line": 6992,
-  "endLine": 7004,
+  "line": 6993,
+  "endLine": 7005,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1199,8 +1199,8 @@
  {
   "title": "Perth Rune Guidelines",
   "heading": "P, Perth, \"Cup\"",
-  "line": 7018,
-  "endLine": 7038,
+  "line": 7019,
+  "endLine": 7039,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1219,8 +1219,8 @@
  {
   "title": "Raido Rune Guidelines",
   "heading": "R, Raido, \"Riding\"",
-  "line": 7052,
-  "endLine": 7074,
+  "line": 7053,
+  "endLine": 7075,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1238,8 +1238,8 @@
  {
   "title": "Sowilo Rune Guidelines",
   "heading": "S, Sowilo, \"Sun\"",
-  "line": 7088,
-  "endLine": 7110,
+  "line": 7089,
+  "endLine": 7111,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1257,8 +1257,8 @@
  {
   "title": "Tiwaz Rune Guidelines",
   "heading": "T, Tiwaz, \"Tyr\"",
-  "line": 7124,
-  "endLine": 7142,
+  "line": 7125,
+  "endLine": 7143,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1269,15 +1269,15 @@
   "requires": "Tradition: Vitkir",
   "summary": "Tiwaz governs truth, justice and battle for companions, tied to Mentem. Guidelines give bonuses to positive Personality rolls and Attack or Defense, a Confidence boost, and sensing people, motives, and lies.",
   "quotes": [
-   "as long as his Confidence Score is no greater than (the magnitude of this effect \u2013 3)"
+   "as long as his Confidence Score is no greater than (the magnitude of this effect – 3)"
   ],
   "related": []
  },
  {
   "title": "Thurisaz Rune Guidelines",
   "heading": "Th, Thurisaz, \"Ogre\"",
-  "line": 7156,
-  "endLine": 7180,
+  "line": 7157,
+  "endLine": 7181,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1288,15 +1288,15 @@
   "requires": "Tradition: Vitkir",
   "summary": "Thurisaz governs ogres, thorns, evil and shapeshifting, tied to Vim and Herbam. Guidelines give bonuses to negative Personality rolls, reducing supernatural Might, brambles, destroying plants and transformations between living and nonliving things.",
   "quotes": [
-   "Might Score is reduced by (the level of this effect \u2013 10)"
+   "Might Score is reduced by (the level of this effect – 10)"
   ],
   "related": []
  },
  {
   "title": "Uruz Rune Guidelines",
   "heading": "U, Uruz, \"Auroch\"",
-  "line": 7194,
-  "endLine": 7220,
+  "line": 7195,
+  "endLine": 7221,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1314,8 +1314,8 @@
  {
   "title": "Wunjo Rune Guidelines",
   "heading": "W, Wunjo, \"Joy\"",
-  "line": 7234,
-  "endLine": 7250,
+  "line": 7235,
+  "endLine": 7251,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1333,8 +1333,8 @@
  {
   "title": "Ihwaz Rune Guidelines",
   "heading": "Y, Ihwaz, \"Yew\"",
-  "line": 7264,
-  "endLine": 7290,
+  "line": 7265,
+  "endLine": 7291,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1345,15 +1345,15 @@
   "requires": "Tradition: Vitkir",
   "summary": "Ihwaz governs yew trees, bows, the dead and graves. Guidelines give Intelligence bonuses, sensing and summoning supernatural beings by Might, sensing plants and corpses, animating and summoning corpses, speaking with the dead and summoning a tree.",
   "quotes": [
-   "Summon a supernatural being with Might Score less than or equal to (the level of this effect \u2013 10)."
+   "Summon a supernatural being with Might Score less than or equal to (the level of this effect – 10)."
   ],
   "related": []
  },
  {
   "title": "Algiz Rune Guidelines",
   "heading": "Z, Algiz, \"Elk\"",
-  "line": 7304,
-  "endLine": 7318,
+  "line": 7305,
+  "endLine": 7319,
   "category": "traditions",
   "topic": "Vitkir rune guidelines",
   "audience": [
@@ -1371,8 +1371,8 @@
  {
   "title": "Modified Runes (Younger Futhark and Futhorc)",
   "heading": "Modified Runes",
-  "line": 7332,
-  "endLine": 7338,
+  "line": 7333,
+  "endLine": 7339,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -1391,8 +1391,8 @@
  {
   "title": "Hermetic Integration of Rune Magic",
   "heading": "Hermetic Integration",
-  "line": 7340,
-  "endLine": 7344,
+  "line": 7341,
+  "endLine": 7345,
   "category": "order",
   "topic": "Hermetic integration of rune magic",
   "audience": [
@@ -1413,8 +1413,8 @@
  {
   "title": "The Anglo-Saxon Futhorc",
   "heading": "The Anglo-Saxon Futhorc",
-  "line": 7346,
-  "endLine": 7383,
+  "line": 7347,
+  "endLine": 7384,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [
@@ -1432,8 +1432,8 @@
  {
   "title": "The Younger Futhark",
   "heading": "The Younger Futhark",
-  "line": 7385,
-  "endLine": 7406,
+  "line": 7386,
+  "endLine": 7407,
   "category": "traditions",
   "topic": "Vitkir (rune magic)",
   "audience": [

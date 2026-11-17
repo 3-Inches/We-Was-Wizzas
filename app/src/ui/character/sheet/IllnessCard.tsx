@@ -136,8 +136,8 @@ export function IllnessCard({ ed }: { ed: CharEditor }) {
         </summary>
         <RulesNote
           book="CG"
-          line={805}
-          endLine={895}
+          line={799}
+          endLine={889}
           detail={
             <>
               Towns are full of humoral imbalance: smoke, dyes, dung, sewage, tanneries and butcheries. A newcomer is tested once or twice in the first season; long-time residents fall ill

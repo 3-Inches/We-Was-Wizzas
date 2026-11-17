@@ -84,8 +84,8 @@ export function WritingCard({ ed }: { ed: CharEditor }) {
     <Card title="Writing and copying" tour="writing">
       <RulesNote
         book="DE"
-        line={16232}
-        endLine={16290}
+        line={16248}
+        endLine={16306}
         detail={
           <>
             An author needs 5 in an Art or 2 in an Ability, and 5 in the language. A summa gains Communication + Language points a season toward its Level (five times the Level for an
@@ -507,8 +507,8 @@ function LabTextForm({ e, begin, logged, copy }: { e: Ed; begin: Begin; logged: 
     <>
       <RulesNote
         book="DE"
-        line={10763}
-        endLine={10770}
+        line={10779}
+        endLine={10786}
         detail={
           <>
             One&apos;s own lab texts are full of private shorthand: a season rewrites Latin × 20 levels of them for others to use. Copying lab texts already written plainly goes at Profession: Scribe × 60 levels a
@@ -561,8 +561,8 @@ function FlorilegiumForm({ e, begin, logged }: { e: Ed; begin: Begin; logged: bo
     <>
       <RulesNote
         book="Cov"
-        line={4858}
-        endLine={4862}
+        line={4912}
+        endLine={4916}
         detail={
           <>
             A season binding tractatus on one subject into an anthology: each gains +1 Quality (+2 from an authority, 10 in the Ability or 35 in the Art, with a peerless collection). The editor needs 6 in
@@ -618,7 +618,7 @@ function AnnotateForm({ e, begin, logged }: { e: Ed; begin: Begin; logged: boole
   if (!mine.length) return <div className="small muted">None of {c.name || 'the character'}&apos;s summae written here are in the library.</div>;
   return (
     <>
-      <RulesNote book="Cov" line={4870} endLine={4872}>
+      <RulesNote book="Cov" line={4924} endLine={4926}>
         An inspeximus: the author rereads and glosses their own summa for a season, raising its Level by a third of the score gained since writing it.
       </RulesNote>
       <div className="row small">
@@ -655,8 +655,8 @@ function GlossForm({ e, run }: { e: Ed; run: Run }) {
     <>
       <RulesNote
         book="Cov"
-        line={4864}
-        endLine={4866}
+        line={4918}
+        endLine={4920}
         detail={
           <>
             A reader at least half as skilled as the book&apos;s Level, with a higher Communication than its author, glosses it during their season of reading: +1 Quality, once. Glosses cannot be combined with
@@ -708,8 +708,8 @@ function ClarifyForm({ e, run, logged }: { e: Ed; run: Run; logged: boolean }) {
     <>
       <RulesNote
         book="Cov"
-        line={4776}
-        endLine={4778}
+        line={4830}
+        endLine={4832}
         detail={
           <>
             A magus with 15 in the book&apos;s Art opens it to enchantment as an invested device (a season and 8 pawns of Vim: material 2 × size 4). Left in a Magic aura for 12 / aura years, it sheds its mundane

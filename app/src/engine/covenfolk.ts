@@ -201,13 +201,13 @@ export const keepsFeastCycle = (cov: Covenant) => (cov.finances.yearly ?? []).so
 // ------------------------------------------------------------------------------ Organization and the Guild Hook
 
 export const ORGANIZATIONS: { id: NonNullable<Covenant['organization']>; label: string; text: string; line: number }[] = [
-  { id: 'household', label: 'Noble household', text: 'A hierarchy under a steward (lands, keep and specialists), a chamberlain (treasury and servants) and a marshal (the men-at-arms and the stables). Least work for the magi.', line: 8714 },
-  { id: 'military', label: 'Military hierarchy', text: 'Squads of soldiers with their auxiliary staff under a marshal and a captain; suits military covenants and those split over several sites.', line: 8728 },
-  { id: 'nations', label: 'Nations', text: 'Groups that cut across roles, by lot, sponsor, contest or birth; members may have a Loyalty Trait to their nation as well as the covenant.', line: 8736 },
-  { id: 'guilds', label: 'Guilds (by function)', text: 'Servants, specialists and soldiers, or finer groups; craftsmen tend to band together on their own. Not necessarily a body that can strike.', line: 8748 },
-  { id: 'professional-guilds', label: 'Professional guilds', text: 'Modelled on craft guilds: a dean, aldermen, masters, journeymen and apprentices, with funds for the sick, the old and funerals. Craftsmen take guild ranks (City & Guild ch.3).', line: 8756 },
-  { id: 'monastery', label: 'Monastery', text: 'An abbot names officials for each department, who call on the others as needed; good for a small covenant.', line: 8764 },
-  { id: 'none', label: 'No formal structure', text: 'Only for a few covenfolk: tasks are forgotten unless they form a close group.', line: 8770 },
+  { id: 'household', label: 'Noble household', text: 'A hierarchy under a steward (lands, keep and specialists), a chamberlain (treasury and servants) and a marshal (the men-at-arms and the stables). Least work for the magi.', line: 8730 },
+  { id: 'military', label: 'Military hierarchy', text: 'Squads of soldiers with their auxiliary staff under a marshal and a captain; suits military covenants and those split over several sites.', line: 8744 },
+  { id: 'nations', label: 'Nations', text: 'Groups that cut across roles, by lot, sponsor, contest or birth; members may have a Loyalty Trait to their nation as well as the covenant.', line: 8752 },
+  { id: 'guilds', label: 'Guilds (by function)', text: 'Servants, specialists and soldiers, or finer groups; craftsmen tend to band together on their own. Not necessarily a body that can strike.', line: 8764 },
+  { id: 'professional-guilds', label: 'Professional guilds', text: 'Modelled on craft guilds: a dean, aldermen, masters, journeymen and apprentices, with funds for the sick, the old and funerals. Craftsmen take guild ranks (City & Guild ch.3).', line: 8772 },
+  { id: 'monastery', label: 'Monastery', text: 'An abbot names officials for each department, who call on the others as needed; good for a small covenant.', line: 8780 },
+  { id: 'none', label: 'No formal structure', text: 'Only for a few covenfolk: tasks are forgotten unless they form a close group.', line: 8786 },
 ];
 
 /** The Guild Hook (Covenants ch.2, Residents): the covenfolk can strike for better wages, hours and conditions. */

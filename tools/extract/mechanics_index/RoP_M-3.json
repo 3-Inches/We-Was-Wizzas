@@ -2,8 +2,8 @@
  {
   "title": "Florae and Fauni",
   "heading": "Florae and Fauni",
-  "line": 6200,
-  "endLine": 6208,
+  "line": 6201,
+  "endLine": 6209,
   "category": "beings",
   "topic": "Airy Spirits",
   "audience": [
@@ -20,8 +20,8 @@
  {
   "title": "Spirits of the Elements",
   "heading": "Spirits of the Elements",
-  "line": 6239,
-  "endLine": 6255,
+  "line": 6240,
+  "endLine": 6256,
   "category": "beings",
   "topic": "Airy Spirits",
   "audience": [
@@ -38,8 +38,8 @@
  {
   "title": "Imagines, Spirits of Sensation",
   "heading": "Imagines, the Spirits of Sensation",
-  "line": 6275,
-  "endLine": 6283,
+  "line": 6276,
+  "endLine": 6284,
   "category": "beings",
   "topic": "Airy Spirits",
   "audience": [
@@ -56,8 +56,8 @@
  {
   "title": "Eidolons, Spirits of Emotions",
   "heading": "Eidolons, the Spirits of Emotions",
-  "line": 6323,
-  "endLine": 6331,
+  "line": 6324,
+  "endLine": 6332,
   "category": "beings",
   "topic": "Airy Spirits",
   "audience": [
@@ -75,8 +75,8 @@
  {
   "title": "Spell Spirits",
   "heading": "Spell Spirits",
-  "line": 6363,
-  "endLine": 6365,
+  "line": 6364,
+  "endLine": 6366,
   "category": "mysteries",
   "topic": "Spirit magic",
   "audience": [
@@ -93,8 +93,8 @@
  {
   "title": "Spirits of Place, Genii Loci",
   "heading": "Spirits of Place, Genii Loci",
-  "line": 6367,
-  "endLine": 6375,
+  "line": 6368,
+  "endLine": 6376,
   "category": "beings",
   "topic": "Airy Spirits",
   "audience": [
@@ -111,8 +111,8 @@
  {
   "title": "Jinn",
   "heading": "Jinn",
-  "line": 6377,
-  "endLine": 6385,
+  "line": 6378,
+  "endLine": 6386,
   "category": "beings",
   "topic": "Airy Spirits",
   "audience": [
@@ -129,8 +129,8 @@
  {
   "title": "Lugra, Spirits of Hardship",
   "heading": "Lugra, Spirits of Hardship",
-  "line": 6387,
-  "endLine": 6393,
+  "line": 6388,
+  "endLine": 6394,
   "category": "beings",
   "topic": "Airy Spirits",
   "audience": [
@@ -145,8 +145,8 @@
  {
   "title": "The Named Spirits (Daimons and Aspects)",
   "heading": "The Named Spirits",
-  "line": 6403,
-  "endLine": 6409,
+  "line": 6404,
+  "endLine": 6410,
   "category": "beings",
   "topic": "Daimons",
   "audience": [
@@ -163,8 +163,8 @@
  {
   "title": "Spirits and Hermetic Magic",
   "heading": "Spirits and Hermetic Magic",
-  "line": 6489,
-  "endLine": 6493,
+  "line": 6490,
+  "endLine": 6494,
   "category": "magic",
   "topic": "Spirit magic",
   "audience": [
@@ -184,8 +184,8 @@
  {
   "title": "Arcane Connections, True Names, and Synthemata (Spirits)",
   "heading": "Arcane Connections, True Names, and Synthemata",
-  "line": 6495,
-  "endLine": 6501,
+  "line": 6496,
+  "endLine": 6502,
   "category": "magic",
   "topic": "True Names and synthemata",
   "audience": [
@@ -207,8 +207,8 @@
  {
   "title": "Spirits and Non-Hermetic Magic (Goetic Arts)",
   "heading": "Spirits and Non-Hermetic Magic",
-  "line": 6503,
-  "endLine": 6509,
+  "line": 6504,
+  "endLine": 6510,
   "category": "traditions",
   "topic": "Goetic Arts",
   "audience": [
@@ -219,7 +219,7 @@
   "requires": "Tradition: Goetic Arts",
   "summary": "Summary of the four Goetic Arts used by non-Hermetic sorcerers to summon, drain, bind and command spirits, and which Realms each is aligned to.",
   "quotes": [
-   "There are four Goetic Arts \u2014 namely Summoning, Ablating, Binding, and Commanding"
+   "There are four Goetic Arts — namely Summoning, Ablating, Binding, and Commanding"
   ],
   "related": [
    "Realms of Power: The Infernal, Chapter 11: Ars Goetia"
@@ -228,8 +228,8 @@
  {
   "title": "New Spirit Spells and Spell Guidelines",
   "heading": "New Spirit Spells and Spell Guidelines",
-  "line": 6511,
-  "endLine": 6513,
+  "line": 6512,
+  "endLine": 6514,
   "category": "magic",
   "topic": "Spirit spell guidelines",
   "audience": [
@@ -246,8 +246,8 @@
  {
   "title": "Intellego (Form) Spirit Guidelines",
   "heading": "Intellego (Form)",
-  "line": 6515,
-  "endLine": 6527,
+  "line": 6516,
+  "endLine": 6528,
   "category": "magic",
   "topic": "Spirit spell guidelines",
   "audience": [
@@ -264,8 +264,8 @@
  {
   "title": "Rego (Form) Spirit Guidelines",
   "heading": "Rego (Form)",
-  "line": 6537,
-  "endLine": 6543,
+  "line": 6538,
+  "endLine": 6544,
   "category": "magic",
   "topic": "Spirit spell guidelines",
   "audience": [
@@ -283,8 +283,8 @@
  {
   "title": "Rego Vim Spirit Guidelines",
   "heading": "Rego Vim",
-  "line": 6545,
-  "endLine": 6551,
+  "line": 6546,
+  "endLine": 6552,
   "category": "magic",
   "topic": "Spirit spell guidelines",
   "audience": [
@@ -301,8 +301,8 @@
  {
   "title": "Characters Touched by Spirits of Place",
   "heading": "Example Spirits of Places",
-  "line": 6553,
-  "endLine": 6557,
+  "line": 6554,
+  "endLine": 6558,
   "category": "beings",
   "topic": "Spirits of place",
   "audience": [
@@ -322,8 +322,8 @@
  {
   "title": "Ghosts (Apparitions, Shades, Spectres)",
   "heading": "Ghosts",
-  "line": 6831,
-  "endLine": 6857,
+  "line": 6832,
+  "endLine": 6858,
   "category": "beings",
   "topic": "Ghosts",
   "audience": [
@@ -341,8 +341,8 @@
  {
   "title": "Ghosts as Characters",
   "heading": "Ghosts as Characters",
-  "line": 6869,
-  "endLine": 6873,
+  "line": 6870,
+  "endLine": 6874,
   "category": "beings",
   "topic": "Ghosts",
   "audience": [
@@ -359,8 +359,8 @@
  {
   "title": "Designing a Ghost: Concept",
   "heading": "Concept",
-  "line": 6875,
-  "endLine": 6889,
+  "line": 6876,
+  "endLine": 6890,
   "category": "beings",
   "topic": "Ghosts",
   "audience": [
@@ -380,8 +380,8 @@
  {
   "title": "Designing a Ghost: Season and Abilities",
   "heading": "Season and Abilities",
-  "line": 6891,
-  "endLine": 6899,
+  "line": 6892,
+  "endLine": 6900,
   "category": "beings",
   "topic": "Ghosts",
   "audience": [
@@ -398,8 +398,8 @@
  {
   "title": "Extraordinary Vis",
   "heading": "Extraordinary Vis",
-  "line": 7004,
-  "endLine": 7010,
+  "line": 7005,
+  "endLine": 7011,
   "category": "realms",
   "topic": "Extraordinary vis",
   "audience": [
@@ -421,8 +421,8 @@
  {
   "title": "Lesser Enchantment Vis",
   "heading": "Lesser Enchantment Vis",
-  "line": 7012,
-  "endLine": 7016,
+  "line": 7013,
+  "endLine": 7017,
   "category": "realms",
   "topic": "Extraordinary vis",
   "audience": [
@@ -443,8 +443,8 @@
  {
   "title": "Spell-like Vis",
   "heading": "Spell-like Vis",
-  "line": 7111,
-  "endLine": 7113,
+  "line": 7112,
+  "endLine": 7114,
   "category": "realms",
   "topic": "Extraordinary vis",
   "audience": [
@@ -462,8 +462,8 @@
  {
   "title": "Dedicated Vis",
   "heading": "Dedicated Vis",
-  "line": 7213,
-  "endLine": 7217,
+  "line": 7214,
+  "endLine": 7218,
   "category": "lab",
   "topic": "Dedicated vis",
   "audience": [
@@ -480,8 +480,8 @@
  {
   "title": "Dedicated Vis in Spell Use",
   "heading": "Spell Use",
-  "line": 7219,
-  "endLine": 7221,
+  "line": 7220,
+  "endLine": 7222,
   "category": "magic",
   "topic": "Dedicated vis",
   "audience": [
@@ -498,8 +498,8 @@
  {
   "title": "Studying Dedicated Vis",
   "heading": "Study",
-  "line": 7223,
-  "endLine": 7229,
+  "line": 7224,
+  "endLine": 7230,
   "category": "seasons",
   "topic": "Dedicated vis",
   "audience": [
@@ -516,8 +516,8 @@
  {
   "title": "Dedicated Vis in Enchantment Creation",
   "heading": "Enchantment Creation",
-  "line": 7231,
-  "endLine": 7235,
+  "line": 7232,
+  "endLine": 7236,
   "category": "lab",
   "topic": "Dedicated vis",
   "audience": [
@@ -538,8 +538,8 @@
  {
   "title": "Vis Storage",
   "heading": "Vis Storage",
-  "line": 7237,
-  "endLine": 7273,
+  "line": 7238,
+  "endLine": 7274,
   "category": "covenant",
   "topic": "Vis storage",
   "audience": [
@@ -557,8 +557,8 @@
  {
   "title": "Extraordinary and Dedicated Vis Costs (Covenant Creation)",
   "heading": "Covenant Creation Costs",
-  "line": 7275,
-  "endLine": 7287,
+  "line": 7276,
+  "endLine": 7288,
   "category": "covenant",
   "topic": "Vis storage",
   "audience": [
@@ -577,8 +577,8 @@
  {
   "title": "Insubstantial Vis",
   "heading": "Insubstantial Vis",
-  "line": 7289,
-  "endLine": 7291,
+  "line": 7290,
+  "endLine": 7292,
   "category": "lab",
   "topic": "Extraordinary vis",
   "audience": [
@@ -595,8 +595,8 @@
  {
   "title": "Enriching a Thing of Virtue",
   "heading": "Enriching a Thing of Virtue",
-  "line": 7308,
-  "endLine": 7322,
+  "line": 7309,
+  "endLine": 7323,
   "category": "traditions",
   "topic": "Things of Virtue",
   "audience": [
@@ -620,8 +620,8 @@
  {
   "title": "Hedge Magicians and Enriched Things of Virtue",
   "heading": "Hedge Magicians and Enriched Things of Virtue",
-  "line": 7324,
-  "endLine": 7326,
+  "line": 7325,
+  "endLine": 7327,
   "category": "traditions",
   "topic": "Things of Virtue",
   "audience": [
@@ -638,8 +638,8 @@
  {
   "title": "Hermetic Magi and Enriched Things of Virtue",
   "heading": "Hermetic Magi and Enriched Things of Virtue",
-  "line": 7328,
-  "endLine": 7332,
+  "line": 7329,
+  "endLine": 7333,
   "category": "lab",
   "topic": "Things of Virtue",
   "audience": [
@@ -656,8 +656,8 @@
  {
   "title": "Shape and Material Bonuses for Herbs of Virtue",
   "heading": "Shape and Material Bonuses for Herbs of Virtue",
-  "line": 7364,
-  "endLine": 7376,
+  "line": 7365,
+  "endLine": 7377,
   "category": "lab",
   "topic": "Shape and material bonuses",
   "audience": [
@@ -674,8 +674,8 @@
  {
   "title": "Objects of Virtue",
   "heading": "Objects of Virtue",
-  "line": 7378,
-  "endLine": 7380,
+  "line": 7379,
+  "endLine": 7381,
   "category": "traditions",
   "topic": "Things of Virtue",
   "audience": [
@@ -693,8 +693,8 @@
  {
   "title": "Shape and Material Bonuses for Objects of Virtue",
   "heading": "Shape and Material Bonuses for Objects of Virtue",
-  "line": 7456,
-  "endLine": 7470,
+  "line": 7457,
+  "endLine": 7471,
   "category": "lab",
   "topic": "Shape and material bonuses",
   "audience": [
@@ -711,8 +711,8 @@
  {
   "title": "Awakened Trees",
   "heading": "Awakened Trees",
-  "line": 7472,
-  "endLine": 7478,
+  "line": 7473,
+  "endLine": 7479,
   "category": "realms",
   "topic": "Awakened trees",
   "audience": [
@@ -732,8 +732,8 @@
  {
   "title": "Animated Trees",
   "heading": "Animated Trees",
-  "line": 7480,
-  "endLine": 7482,
+  "line": 7481,
+  "endLine": 7483,
   "category": "beings",
   "topic": "Awakened trees",
   "audience": [
@@ -750,8 +750,8 @@
  {
   "title": "Character Guide: An Animated Tree",
   "heading": "Character Guide: An Animated Tree",
-  "line": 7484,
-  "endLine": 7518,
+  "line": 7485,
+  "endLine": 7519,
   "category": "beings",
   "topic": "Awakened trees",
   "audience": [
@@ -771,8 +771,8 @@
  {
   "title": "Option: Brawl Skill for Animated Trees",
   "heading": "Option: Brawl Skill for Animated Trees",
-  "line": 7520,
-  "endLine": 7524,
+  "line": 7521,
+  "endLine": 7525,
   "category": "beings",
   "topic": "Awakened trees",
   "audience": [
@@ -789,8 +789,8 @@
  {
   "title": "Trees of Virtue",
   "heading": "Trees of Virtue",
-  "line": 7530,
-  "endLine": 7536,
+  "line": 7531,
+  "endLine": 7537,
   "category": "traditions",
   "topic": "Things of Virtue",
   "audience": [
@@ -807,8 +807,8 @@
  {
   "title": "Elementals and Rarefication",
   "heading": "Elementals",
-  "line": 7764,
-  "endLine": 7770,
+  "line": 7765,
+  "endLine": 7771,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -826,8 +826,8 @@
  {
   "title": "Magic and Elementals",
   "heading": "Magic and Elementals",
-  "line": 7778,
-  "endLine": 7782,
+  "line": 7779,
+  "endLine": 7783,
   "category": "magic",
   "topic": "Elementals",
   "audience": [
@@ -844,8 +844,8 @@
  {
   "title": "New Elementals Spells and Spell Guidelines",
   "heading": "New Elementals Spells and Spell Guidelines",
-  "line": 7784,
-  "endLine": 7800,
+  "line": 7785,
+  "endLine": 7801,
   "category": "magic",
   "topic": "Elementals",
   "audience": [
@@ -863,8 +863,8 @@
  {
   "title": "Designing Elementals",
   "heading": "Designing Elementals",
-  "line": 7820,
-  "endLine": 7826,
+  "line": 7821,
+  "endLine": 7827,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -881,8 +881,8 @@
  {
   "title": "Elemental Concept and Characteristics",
   "heading": "Concept",
-  "line": 7828,
-  "endLine": 7845,
+  "line": 7829,
+  "endLine": 7846,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -899,8 +899,8 @@
  {
   "title": "Elemental Season and Abilities",
   "heading": "Season and Abilities",
-  "line": 7861,
-  "endLine": 7863,
+  "line": 7862,
+  "endLine": 7864,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -917,8 +917,8 @@
  {
   "title": "Elemental Might and Qualities",
   "heading": "Might and Qualities",
-  "line": 7865,
-  "endLine": 7869,
+  "line": 7866,
+  "endLine": 7870,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -935,8 +935,8 @@
  {
   "title": "Elemental Combat",
   "heading": "Elemental Combat",
-  "line": 7871,
-  "endLine": 7877,
+  "line": 7872,
+  "endLine": 7878,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -953,8 +953,8 @@
  {
   "title": "Elemental Powers",
   "heading": "Elemental Powers",
-  "line": 7879,
-  "endLine": 7881,
+  "line": 7880,
+  "endLine": 7882,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -969,8 +969,8 @@
  {
   "title": "Size, Might, and Characteristics of Elementals",
   "heading": "Size, Might, and Characteristics of Elementals",
-  "line": 7883,
-  "endLine": 7899,
+  "line": 7884,
+  "endLine": 7900,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -987,8 +987,8 @@
  {
   "title": "Earth Elementals",
   "heading": "Earth Elementals",
-  "line": 7901,
-  "endLine": 7907,
+  "line": 7902,
+  "endLine": 7908,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -1005,8 +1005,8 @@
  {
   "title": "Water Elementals",
   "heading": "Water Elementals",
-  "line": 7980,
-  "endLine": 7986,
+  "line": 7981,
+  "endLine": 7987,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -1023,8 +1023,8 @@
  {
   "title": "Air Elementals",
   "heading": "Air Elementals",
-  "line": 8060,
-  "endLine": 8066,
+  "line": 8061,
+  "endLine": 8067,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -1041,8 +1041,8 @@
  {
   "title": "Fire Elementals",
   "heading": "Fire Elementals",
-  "line": 8140,
-  "endLine": 8146,
+  "line": 8141,
+  "endLine": 8147,
   "category": "beings",
   "topic": "Elementals",
   "audience": [
@@ -1059,8 +1059,8 @@
  {
   "title": "Beast Statistics",
   "heading": "Beast Statistics",
-  "line": 8224,
-  "endLine": 8232,
+  "line": 8225,
+  "endLine": 8233,
   "category": "beings",
   "topic": "Mundane beasts",
   "audience": [
@@ -1071,7 +1071,7 @@
   "requires": "",
   "summary": "Rules for mundane beast statistics: Characteristics outside the human range need no Virtue, Cunning replaces Intelligence, beasts cannot learn new Abilities without training, and they have no Might or vis.",
   "quotes": [
-   "Beasts do not need a Virtue or Flaw to have Characteristics outside the normal human range of \u20133 to +3."
+   "Beasts do not need a Virtue or Flaw to have Characteristics outside the normal human range of –3 to +3."
   ],
   "related": [
    "ArM5 p.191"
@@ -1080,8 +1080,8 @@
  {
   "title": "Modifying Beast Sizes",
   "heading": "Modifying Beast Sizes",
-  "line": 8234,
-  "endLine": 8236,
+  "line": 8235,
+  "endLine": 8237,
   "category": "beings",
   "topic": "Mundane beasts",
   "audience": [
@@ -1098,8 +1098,8 @@
  {
   "title": "Beast Virtues, Flaws, and Qualities",
   "heading": "Beast Virtues, Flaws, and Qualities",
-  "line": 8238,
-  "endLine": 8244,
+  "line": 8239,
+  "endLine": 8245,
   "category": "beings",
   "topic": "Mundane beasts",
   "audience": [
@@ -1119,8 +1119,8 @@
  {
   "title": "New Virtues for Beasts (Ferocity)",
   "heading": "New Virtues for Beasts",
-  "line": 8246,
-  "endLine": 8251,
+  "line": 8247,
+  "endLine": 8252,
   "category": "beings",
   "topic": "Mundane beasts",
   "audience": [
@@ -1137,8 +1137,8 @@
  {
   "title": "Beasts in Combat",
   "heading": "Beasts in Combat",
-  "line": 8253,
-  "endLine": 8259,
+  "line": 8254,
+  "endLine": 8260,
   "category": "combat",
   "topic": "Mundane beasts",
   "audience": [
