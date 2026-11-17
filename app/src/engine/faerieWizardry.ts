@@ -36,16 +36,32 @@ export function sympathyCap(c: Character, d: DerivedCharacter): number {
 }
 
 /** Experience to raise a trait one point: 5 × (the score + 1) upward from 0; from −n toward 0, 5 × (n + 1) (10 from −1, 15 from −2). */
-export const sympathyStep = (s: number) => 5 * (Math.abs(s < 0 ? s : s) + 1);
+export const sympathyStep = (s: number) => 5 * (Math.abs(s) + 1);
 
 /**
- * Experience gained or lost in a trait: a 1 on the stress die gives a point to each trait used, a
- * botch takes one away (RoP: Faerie, Increasing Sympathy Traits). Returns the trait changed.
+ * Extra botch dice from negative Sympathy Traits: as many as the worst one, on every botch roll the
+ * character makes, whether or not the trait applies (RoP: Faerie, Sympathy Traits: "a character with an
+ * Iron −3 Sympathy Trait would always roll at least three additional botch dice").
  */
-export function sympathyXp(t: SympathyTrait, delta: number, cap = Infinity): SympathyTrait {
+export function sympathyBotchDice(c: Pick<Character, 'sympathy'>): { dice: number; trait?: SympathyTrait } {
+  const worst = (c.sympathy ?? []).reduce<SympathyTrait | undefined>((w, t) => (t.score < 0 && (!w || t.score < w.score) ? t : w), undefined);
+  return { dice: worst ? -worst.score : 0, trait: worst };
+}
+
+/** Whether experience can raise a trait a point: a positive trait up to the cap; a negative one only while the Warping Score exceeds its size (RoP: Faerie, Increasing Sympathy Traits). */
+export const sympathyCanRise = (score: number, cap: number, warping: number) => (score >= 0 ? score < cap : -score < warping);
+
+/**
+ * Experience gained or lost in a trait. Practice is held by `limit` (the cap for positive traits, the
+ * Warping Score for negative ones). The 1s and botches of play are not: "these fluctuations are not
+ * limited by the character's Warping Score" (RoP: Faerie, Increasing Sympathy Traits), so leave it out
+ * for them. A 1 gives each trait used a point, a botch takes one away for each 0 rolled. Returns the trait changed.
+ */
+export function sympathyXp(t: SympathyTrait, delta: number, limit?: { cap: number; warping: number }): SympathyTrait {
+  const canRise = (s: number) => !limit || sympathyCanRise(s, limit.cap, limit.warping);
   let score = t.score;
   let xp = (t.xp ?? 0) + delta;
-  while (xp >= sympathyStep(score) && score < cap) {
+  while (xp >= sympathyStep(score) && canRise(score)) {
     xp -= sympathyStep(score);
     score += 1;
   }
@@ -53,7 +69,7 @@ export function sympathyXp(t: SympathyTrait, delta: number, cap = Infinity): Sym
     score -= 1;
     xp += sympathyStep(score);
   }
-  return { ...t, score, xp: score >= cap ? Math.min(xp, sympathyStep(score) - 1) : xp };
+  return { ...t, score, xp: canRise(score) ? xp : Math.min(xp, sympathyStep(score) - 1) };
 }
 
 /** A character with Sympathy Traits, or a Virtue or Flaw that gives them. */

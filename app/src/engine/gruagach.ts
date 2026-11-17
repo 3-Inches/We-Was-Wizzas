@@ -9,7 +9,7 @@ import type { DerivedCharacter } from './character/derive';
 import { languageScore } from './books';
 import { auraModifier, type AuraState, type Part } from './magic';
 import { addMagnitudes } from './spellDesign';
-import type { Character } from './types';
+import type { Character, LearnedCharm } from './types';
 
 const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
 const has = (c: Pick<Character, 'virtues'>, id: string) => c.virtues.some((v) => v.defId === id);
@@ -149,10 +149,46 @@ export function gruagachLabTotal(c: Character, d: DerivedCharacter, tf: Gruagach
 }
 
 /** A tattoo is a lesser enchantment: its effect (with any uses a day) no higher than half the Lab Total; vis a pawn for each 10 levels, Tattoo Mastery taking Pictish off (never below half). */
-export function tattoo(labTotal: number, level: number, pictishScore: number, mastery: boolean): { ok: boolean; maxLevel: number; vis: number } {
-  const base = Math.max(1, Math.ceil(level / 10));
+export function tattoo(
+  labTotal: number,
+  level: number,
+  pictishScore: number,
+  mastery: boolean,
+  o: { usesMod?: number; sizeMult?: number } = {},
+): { ok: boolean; maxLevel: number; vis: number; level: number; capacity: number; problems: string[] } {
+  // more uses a day add to the effect's level, as for a Hermetic lesser enchantment (ArM5 p. 99): the book's
+  // boar tattoo spends its spare level on 2 uses a day
+  const total = level + (o.usesMod ?? 0);
+  const base = Math.max(1, Math.ceil(total / 10));
   const vis = mastery ? Math.max(Math.ceil(base / 2), base - pictishScore) : base;
-  return { ok: labTotal >= 2 * level, maxLevel: Math.floor(labTotal / 2), vis };
+  // the tattoo's material holds 2 pawns × its size; a season's work takes no more than twice Pictish
+  const capacity = 2 * (o.sizeMult ?? 1);
+  const problems: string[] = [];
+  if (vis > capacity) problems.push(`It needs ${vis} pawns, but a tattoo this size holds ${capacity}: make it larger.`);
+  if (vis > gruagachVisLimit(pictishScore)) problems.push(`It needs ${vis} pawns, more than the ${gruagachVisLimit(pictishScore)} a season allows (twice Pictish).`);
+  return { ok: labTotal >= 2 * total && !problems.length, maxLevel: Math.floor(labTotal / 2), vis, level: total, capacity, problems };
+}
+
+/**
+ * A season inventing a spell, "exactly as their Hermetic counterparts do" (HMRE, Learning and Inventing New
+ * Spells; ArM5 p. 95): the Lab Total less the level is gained each season, and the spell is known when the
+ * points reach its level (in one season when the Lab Total is twice the level). The work under way is kept
+ * on the character, so a spell can take several seasons. Changes `c`; returns what happened.
+ */
+export function gruagachInventSeason(c: Character, labTotal: number, spell: LearnedCharm): string {
+  const g = c.gruagach ?? {};
+  const same = g.inventing && g.inventing.spell.name === spell.name && g.inventing.spell.level === spell.level && g.inventing.spell.tf === spell.tf;
+  const inv = same ? { ...g.inventing! } : { spell, progress: 0, seasons: 0 };
+  const gain = Math.max(0, labTotal - spell.level);
+  if (!gain) return `${spell.name}: the Lab Total ${labTotal} does not beat its level ${spell.level}; nothing gained.`;
+  inv.progress += gain;
+  inv.seasons += 1;
+  if (inv.progress >= spell.level) {
+    c.gruagach = { ...g, spells: [...(g.spells ?? []), { ...spell, source: 'play' }], inventing: undefined };
+    return `${spell.name} is invented (+${gain} this season, ${inv.progress} of ${spell.level}${inv.seasons > 1 ? ` after ${inv.seasons} seasons` : ''}).`;
+  }
+  c.gruagach = { ...g, inventing: inv };
+  return `${spell.name}: +${gain} this season, ${inv.progress} of ${spell.level}. Another season will continue it.`;
 }
 
 /** Vis in a season: twice Pictish. Extracted from an aura: the Take Vision Lab Total ÷ 10. */
@@ -162,8 +198,14 @@ export const gruagachExtraction = (takeVisionLabTotal: number) => Math.max(0, Ma
 // ------------------------------------------------------------------------------------------------
 // Transformation
 
-/** A double botch (a single one when Transformation Prone) may bring transformation. */
-export const transformationFollows = (c: Pick<Character, 'virtues'>, botches: number) => botches >= 2 || (botches >= 1 && has(c, 'transformation-prone-flaw'));
+/** Warping Points from a botched spell: one for each 0, doubled for a Vision spell ("every Vision botch inflicts double the normal Warping Points", HMRE, Botches). */
+export const botchWarpingPoints = (tf: GruagachArts, botches: number) => botches * (tf.endsWith('Vs') ? 2 : 1);
+
+/**
+ * Two or more Warping Points from a single botch may bring transformation; any botch does when
+ * Transformation Prone (HMRE, Transformation). Takes the points gained, so a single Vision botch (2 points) counts.
+ */
+export const transformationFollows = (c: Pick<Character, 'virtues'>, points: number) => points >= 2 || (points >= 1 && has(c, 'transformation-prone-flaw'));
 
 /** Avoiding it: Stamina + Concentration + the Vision Magic Defense bonus + stress die, against Warping Score + the points gained + aura + stress die. */
 export function transformationAvoid(d: DerivedCharacter, warpingScore: number, gained: number, aura: AuraState | undefined, visionDefense = 0): { total: number; against: number } {

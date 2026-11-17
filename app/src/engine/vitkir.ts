@@ -80,7 +80,17 @@ export interface CastingOptions {
   vis?: number;
   /** the runes are cut into the focus's material for its purpose */
   focus?: boolean;
+  /** hidden with care: twice as long, and Dexterity + Craft: Runes made 6 on a simple die, so hiding costs nothing */
+  hiddenWithCare?: boolean;
 }
+
+/**
+ * Hiding the runes with care (HMRE, Casting Rune Spells): twice the time, and Dexterity + Craft: Runes of 6
+ * or better on a simple die hides them any way the vitki wishes with no penalty. The result is what another
+ * vitki's Intelligence + Rune Magic must beat to read them. Returns the total without the die.
+ */
+export const hideRunesTotal = (c: Character, d: DerivedCharacter) => d.characteristics.Dex.value + vitkiAbilities(c, d).craftRunes;
+export const HIDE_RUNES_EASE = 6;
 
 /** Casting Total (without the die): Stamina + the lowest rune + aura, with the variations. */
 export function vitkiCastingTotal(c: Character, d: DerivedCharacter, runes: string[], aura: AuraState | undefined, o: CastingOptions = {}): VitkiTotal {
@@ -100,6 +110,11 @@ export function vitkiCastingTotal(c: Character, d: DerivedCharacter, runes: stri
   const desc = o.description ?? 'written';
   let namePen = NAME_PENALTY[name];
   let descPen = DESCRIPTION_PENALTY[desc];
+  if (o.hiddenWithCare && (name === 'hidden' || desc === 'hidden')) {
+    if (name === 'hidden') namePen = 0;
+    if (desc === 'hidden') descPen = 0;
+    notes.push('Hidden with care: no penalty for hiding the runes.');
+  }
   if (namePen && (deft || has(c, 'nameless-runes'))) {
     notes.push(deft ? 'Deft Rune: no penalty for leaving off the name.' : 'Nameless Runes: no penalty for leaving off the name.');
     namePen = 0;

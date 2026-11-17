@@ -106,3 +106,18 @@ export const LEARNED_INITIATIONS: { art: string; ease: number; script: number; t
   { art: 'Salutem', ease: 15, script: 14, test: 'Medicine 2', flaws: 'No Magical Defenses, Incompatible Hedge Arts (Vulnero and Salutem) (Minor)' },
   { art: 'Entreat the Divine Powers', ease: 15, script: 14, test: 'Divine Lore 2', flaws: 'Intervention Prone (Major)' },
 ];
+
+/**
+ * Mythic Herbalism (HMRE, the learned magicians' Virtues): what a concoction does at each Ease Factor, as a
+ * cure, a poison (the poison's own Ease Factor and the wound it deals) or a potion of physical vigor.
+ */
+export const HERBALISM_TABLE: { ease: number; healing: string; poison: string; physical: string; source: { book: string; line: number } }[] = [
+  { ease: 3, healing: 'Mythic Herbalism added to the Stamina roll to resist all disease', poison: 'Ease Factor 6, sleep', physical: '+2 to Fatigue rolls', source: src(4219) },
+  { ease: 6, healing: 'None of the patient’s Wounds grows worse for a day', poison: 'Ease Factor 6, a Light Wound', physical: 'Ignore Wound penalties up to Medium Wounds', source: src(4224) },
+  { ease: 9, healing: 'Mythic Herbalism × 2 to a Recovery roll', poison: 'Ease Factor 9, a Medium Wound', physical: '+3 to Soak', source: src(4229) },
+  { ease: 12, healing: 'Mythic Herbalism × 3 to a Recovery roll', poison: 'Ease Factor 9, a Heavy Wound', physical: 'Ignore one level of Fatigue', source: src(4234) },
+  { ease: 15, healing: 'Mythic Herbalism × 4 to a Recovery roll', poison: 'Ease Factor 9, an Incapacitating Wound', physical: '+5 to Soak', source: src(4239) },
+  { ease: 18, healing: 'Heal the lasting aftereffects of a disease, poison or injury', poison: 'Ease Factor 9, death', physical: 'One physical Characteristic from negative to 0', source: src(4244) },
+  { ease: 21, healing: 'Resolve a major aging crisis', poison: 'Antidote: heal a Medium Wound caused by poison', physical: 'One physical Characteristic to +1', source: src(4249) },
+  { ease: 24, healing: 'Resolve one terminal aging crisis', poison: 'Antidote: heal an Incapacitating Wound caused by poison', physical: 'One physical Characteristic to +2', source: src(4254) },
+];

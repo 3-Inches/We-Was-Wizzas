@@ -118,7 +118,7 @@ export function WitchPowerCard({ ed, aura }: { ed: CharEditor; aura: AuraState }
           </Field>
         )}
         {d.hasGift && (
-          <Field label="Vis" hint={`+1 a pawn of ${def.form} vis, up to the Ability + the effect's own cost`}>
+          <Field label="Vis" hint={`+1 a pawn of ${def.form} vis, up to the Ability + the effect's own cost. Take it from the purse by hand.`}>
             <Stepper value={vis} min={0} max={p.score + (eff?.vis ?? 0)} width={32} onChange={setVis} />
           </Field>
         )}

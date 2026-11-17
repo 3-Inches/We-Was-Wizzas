@@ -3,7 +3,7 @@
 // (opposition). They come from Faerie Sympathy, Antipathy and Background, and from Faerie Calling; the
 // rolls that change them in play are on the Game Table, Dice › Faerie.
 
-import { expectedTraits, faerieRank, hasSympathy, sympathyCap, sympathyStep } from '../../engine/faerieWizardry';
+import { expectedTraits, faerieRank, hasSympathy, sympathyBotchDice, sympathyCanRise, sympathyCap, sympathyStep } from '../../engine/faerieWizardry';
 import { uid } from '../../util/id';
 import type { SympathyTrait } from '../../engine/types';
 import { Card, Field, Stepper, signed } from '../kit';
@@ -17,13 +17,15 @@ export function SympathyCard({ ed }: { ed: CharEditor }) {
   const want = expectedTraits(c);
   const missing = want.length - traits.length;
   const rank = faerieRank(traits);
+  const botch = sympathyBotchDice(c);
   const set = (u: string, fn: (t: SympathyTrait) => void) => update((x) => { const t = x.sympathy?.find((y) => y.uid === u); if (t) fn(t); });
   return (
     <Card title="Sympathy Traits" tour="sympathy" fold="sympathy" summary={`${traits.map((t) => `${t.trait || '…'} ${signed(t.score)}`).join(', ') || 'none yet'} · Faerie Rank ${signed(rank)}`}>
       <p className="small muted" style={{ marginTop: 0 }}>
         A subject the Faerie realm ties this character to, narrower than a Form (Dawn, Hounds, Iron). A positive trait can stand in for an Ability&apos;s specialty, adding its score; the
-        worst negative one that applies comes off the Ability and adds a botch die. Raised by experience up to {cap} here (the Warping Score, with Faerie Blood or Upbringing and Faerie
-        Sympathy). <b>Faerie Rank {signed(rank)}</b>: the highest positive trait with the lowest negative one.
+        worst negative one that applies comes off the Ability. The worst negative trait also adds as many botch dice as its size to every botch roll{botch.dice ? ` (${botch.dice} here)` : ''}.
+        Raised by experience up to {cap} here (the Warping Score, with Faerie Blood or Upbringing and Faerie Sympathy); a negative trait only while the Warping Score ({d.warpingScore}) is
+        above its size. <b>Faerie Rank {signed(rank)}</b>: the highest positive trait with the lowest negative one.
       </p>
       {traits.map((t) => (
         <div key={t.uid} className="row">
@@ -36,7 +38,9 @@ export function SympathyCard({ ed }: { ed: CharEditor }) {
           <span className="small muted">
             {t.xp ?? 0}/{sympathyStep(t.score)} xp to {signed(t.score + 1)}
           </span>
-          {Math.abs(t.score) > cap && t.score > 0 && <span className="small warn-text">above {cap}: experience will not raise it further</span>}
+          {!sympathyCanRise(t.score, cap, d.warpingScore) && (
+            <span className="small muted">{t.score >= 0 ? `practice will not raise it past ${cap}` : `practice cannot raise it until the Warping Score is above ${-t.score}`}</span>
+          )}
           <button className="small ghost" aria-label="Remove the trait" onClick={() => update((x) => void (x.sympathy = x.sympathy?.filter((y) => y.uid !== t.uid)))}>
             ✕
           </button>

@@ -3,23 +3,24 @@
 // spontaneous one; a season enchanting a tattoo, inventing a spell or drawing vis; transformation.
 
 import { useState } from 'react';
-import { GRUAGACH_FORMS, GRUAGACH_PARAMS, GRUAGACH_SHAPES, GRUAGACH_TECHNIQUES, TATTOO_SIZES, gruagachArtName, type GruagachArts, type Prohibition } from '../../data/hedgeGruagach';
+import { GRUAGACH_FORMS, GRUAGACH_PARAMS, GRUAGACH_SHAPES, POETIC_JUSTICE, GRUAGACH_TECHNIQUES, TATTOO_SIZES, gruagachArtName, type GruagachArts, type Prohibition } from '../../data/hedgeGruagach';
 import { GRUAGACH_GUIDELINES, GRUAGACH_SPELLS } from '../../data/gruagachSpells';
 import { GRUAGACH_APPRENTICESHIP } from '../../engine/character/derive';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
   TRANSFORMATION_BAD, TRANSFORMATION_GOOD, durationProblem, gruagachArtCap, gruagachArts, gruagachCastingScore, gruagachExtraction, gruagachFlex, gruagachLabTotal, gruagachLevel, gruagachVisLimit,
-  pictish, spontaneousTotal, tattoo, transformationAvoid, transformationFollows, understandingTransformation,
+  pictish, spontaneousTotal, tattoo, transformationAvoid, transformationFollows, botchWarpingPoints, gruagachInventSeason, understandingTransformation,
 } from '../../engine/gruagach';
 import { charmOutcome } from '../../engine/learnedMagic';
 import { applySeason, newSeasonEntry } from '../../engine/longterm';
 import { seasonBusy } from '../../engine/time';
+import { FREQUENCY } from '../../engine/enchant';
 import { addMagnitudes } from '../../engine/spellDesign';
 import type { AuraState } from '../../engine/magic';
 import type { Character, LearnedCharm } from '../../engine/types';
 import { warpingScoreFromPoints } from '../../engine/xp';
 import { uid } from '../../util/id';
-import { Card, Field, Stepper, Total } from '../kit';
+import { Card, Field, Stepper, Total, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
 
 function Lines({ lines }: { lines: string[] }) {
@@ -215,6 +216,8 @@ export function GruagachCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState
   const [tf, setTf] = useState<GruagachArts>('GvBl');
   const [level, setLevel] = useState(10);
   const [vis, setVis] = useState(0);
+  const [stressOn, setStressOn] = useState(true);
+  const [justice, setJustice] = useState(2);
   const [lines, setLines] = useState<string[]>([]);
   if (!c || !d) return null;
   const pairs = gruagachPairs(c, d);
@@ -227,15 +230,19 @@ export function GruagachCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState
   const varied = spell ? addMagnitudes(spell.level, shift) : 0;
   const targetLevel = mode === 'formulaic' ? varied : level;
   const pen = d.abilities.filter((x) => x.abilityId === 'penetration').reduce((m, x) => Math.max(m, x.total), 0);
+  // a geas or a curse: how well its terms fit the story moves the victim's Stamina roll against it (HMRE, Poetic Justice)
+  const binds = pair.endsWith('Cu') || (mode === 'formulaic' && !!spell && /geas/i.test(spell.duration));
+  const pj = POETIC_JUSTICE[justice];
   const cast = () => {
-    const stress = mode === 'spontaneous' || vis > 0;
+    const stress = mode === 'spontaneous' || stressOn || vis > 0;
     const r = stress ? stressDie(1 + score.auraBotch + vis) : simpleDie();
     const botches = r.kind === 'stress' && r.zero ? r.botches : 0;
     const raw = score.total + r.value + 2 * vis;
     const total = mode === 'spontaneous' ? spontaneousTotal(score.total + 2 * vis, r.value) : raw;
     const out = [`${mode === 'formulaic' ? spell?.name : gruagachArtName(pair)} (${pair} ${targetLevel}): ${r.kind === 'stress' ? `stress die ${describeStress(r)}` : `simple die ${r.value}`} + ${score.total}${vis ? ` + ${2 * vis} vis` : ''}${mode === 'spontaneous' ? ` ÷ 2 = ${total}` : ` = ${total}`}.`];
     let fatigue = mode === 'spontaneous' ? 1 : 0;
-    if (botches) out.push(`BOTCH ×${botches}: a Blessing or Curse may turn on the wrong target or the wrong act, a Shape take the wrong form, a Vision foretell falsely; ${botches} Warping Point${botches === 1 ? '' : 's'}.`);
+    const points = botchWarpingPoints(pair, botches);
+    if (botches) out.push(`BOTCH ×${botches}: a Blessing or Curse may turn on the wrong target or the wrong act, a Shape take the wrong form, a Vision foretell falsely; ${points} Warping Point${points === 1 ? '' : 's'}${points > botches ? ' (doubled for a Vision spell)' : ''}.`);
     else if (mode === 'spontaneous') out.push(total >= targetLevel ? `It works (a Fatigue level, as every spontaneous spell). Penetration ${Math.floor(total - targetLevel + pen)}.` : `Too weak for level ${targetLevel} (a Fatigue level spent).`);
     else {
       const o = charmOutcome(total, targetLevel);
@@ -243,9 +250,9 @@ export function GruagachCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState
       out.push(o === 'works' ? `It works. Penetration ${total - targetLevel + pen}.` : o === 'fatigue' ? `It works, for a Fatigue level. Penetration ${Math.max(0, total - targetLevel + pen)}.` : 'It fails, for a Fatigue level.');
     }
     let avoid: string | undefined;
-    if (botches && transformationFollows(c, botches)) {
-      const ws = warpingScoreFromPoints(c.warpingPoints + botches);
-      const t = transformationAvoid(d, ws, botches, aura);
+    if (botches && transformationFollows(c, points)) {
+      const ws = warpingScoreFromPoints(c.warpingPoints + points);
+      const t = transformationAvoid(d, ws, points, aura);
       const mine = stressDie(1);
       const theirs = stressDie(0, undefined, true);
       if (t.total + mine.value > t.against + theirs.value) avoid = `Transformation avoided (${t.total + mine.value} against ${t.against + theirs.value}).`;
@@ -258,9 +265,10 @@ export function GruagachCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState
     }
     update((x) => {
       if (fatigue) x.fatigueLost = Math.min(5, x.fatigueLost + fatigue);
-      if (botches) x.warpingPoints += botches;
+      if (points) x.warpingPoints += points;
     });
     if (avoid) out.push(avoid);
+    if (binds && !botches) out.push(`The victim's Stamina roll to resist takes ${signed(pj.modifier)} (poetic justice: ${pj.text.toLowerCase()}).`);
     setLines(out);
   };
   return (
@@ -299,7 +307,12 @@ export function GruagachCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState
             </Field>
           </>
         )}
-        <Field label="Vis" hint="+2 a pawn, a botch die each, as for Hermetic magic">
+        {mode === 'formulaic' && (
+          <label className="inline small" title="A simple die out of stress: no botch">
+            <input type="checkbox" checked={stressOn || vis > 0} disabled={vis > 0} onChange={(e) => setStressOn(e.target.checked)} /> stress die{vis > 0 ? ' (vis is spent)' : ''}
+          </label>
+        )}
+        <Field label="Vis" hint="+2 a pawn, a botch die each, as for Hermetic magic. Take it from the purse by hand.">
           <Stepper value={vis} min={0} max={20} width={32} onChange={setVis} />
         </Field>
       </div>
@@ -307,6 +320,15 @@ export function GruagachCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState
         Casting Score <Total value={score.total} parts={score.parts} notes={score.notes} label="Casting Score" /> + {mode === 'spontaneous' ? 'stress die, ÷ 2,' : 'die'} against level {targetLevel}.
         {mode === 'formulaic' ? ' Within 10 below, it works for a Fatigue level.' : ' Spontaneous spells always cost a Fatigue level.'}
       </p>
+      {binds && (
+        <Field label="Poetic justice" hint="How well the geas or curse fits what the victim did: the troupe decides. It changes the victim's Stamina roll to resist.">
+          <select value={justice} onChange={(e) => setJustice(Number(e.target.value))}>
+            {POETIC_JUSTICE.map((x, i) => (
+              <option key={x.modifier} value={i}>{signed(x.modifier)}: {x.text}</option>
+            ))}
+          </select>
+        </Field>
+      )}
       {score.notes.map((n) => (
         <p key={n} className="small warn-text">{n}</p>
       ))}
@@ -325,45 +347,54 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
   const [shape, setShape] = useState(0);
   const [size, setSize] = useState(1);
   const [similar, setSimilar] = useState(0);
+  const [uses, setUses] = useState('1');
   const [lines, setLines] = useState<string[]>([]);
   if (!c || !d) return null;
   const pairs = gruagachPairs(c, d);
   if (!pairs.length) return null;
+  const inventing = c.gruagach?.inventing;
+  // a spell under way is the one continued unless another is chosen
+  const chosen = effect ?? (work === 'invent' ? inventing?.spell : undefined);
   const year = saga?.currentYear ?? 1220;
   const season = saga?.currentSeason ?? 'Spring';
   const busy = seasonBusy(c, year, season);
   const pi = pictish(c, d);
-  const tf = (work === 'vis' ? 'TaVs' : (effect?.tf ?? pairs[0])) as GruagachArts;
+  const tf = (work === 'vis' ? 'TaVs' : (chosen?.tf ?? pairs[0])) as GruagachArts;
   const lt = gruagachLabTotal(c, d, tf, aura, { tattoo: work === 'tattoo', shape: GRUAGACH_SHAPES[shape] ? Number((GRUAGACH_SHAPES[shape].bonuses.match(/\+(\d+)/) ?? ['', '0'])[1]) : 0, similar });
-  const tat = effect ? tattoo(lt.total, effect.level, pi, c.virtues.some((v) => v.defId === 'tattoo-mastery')) : undefined;
+  const usesMod = FREQUENCY.find((f) => f.value === uses)?.mod ?? 0;
+  const tat = effect ? tattoo(lt.total, effect.level, pi, c.virtues.some((v) => v.defId === 'tattoo-mastery'), { usesMod, sizeMult: TATTOO_SIZES[size].mult }) : undefined;
+  const under = inventing && chosen && inventing.spell.name === chosen.name && inventing.spell.level === chosen.level ? inventing : undefined;
   const plan = (): string => {
     if (work === 'vis') return `${gruagachExtraction(lt.total)} pawns of Vim vis from the aura (the Take Vision Lab Total ÷ 10); a season uses up to ${gruagachVisLimit(pi)} pawns (twice Pictish).`;
-    if (!effect) return 'Design the effect first.';
-    if (work === 'tattoo') return tat!.ok ? `A tattoo of ${effect.name} (level ${effect.level}, up to ${tat!.maxLevel}): a season and ${tat!.vis} pawns of vis. Material ${2 * TATTOO_SIZES[size].mult} for ${TATTOO_SIZES[size].name}.` : `The Lab Total must be twice the level (${2 * effect.level}); it allows up to level ${tat!.maxLevel}.`;
-    const gain = Math.max(0, lt.total - effect.level);
-    return gain ? `Inventing ${effect.name}: +${gain} a season toward ${effect.level} (as Hermetic spells).` : `The Lab Total must beat the level (${effect.level}).`;
+    if (work === 'tattoo') {
+      if (!effect || !tat) return 'Design the effect first.';
+      if (lt.total < 2 * tat.level) return `The Lab Total must be twice the level (${2 * tat.level}${usesMod ? `: ${effect.level} + ${usesMod} for ${uses} uses a day` : ''}); it allows up to level ${tat.maxLevel}.`;
+      return `A tattoo of ${effect.name}, level ${tat.level}${usesMod ? ` (${effect.level} + ${usesMod} for ${uses} uses a day)` : ''}, up to ${tat.maxLevel}: a season and ${tat.vis} pawns of vis. ${TATTOO_SIZES[size].name} holds ${tat.capacity}.${tat.problems.length ? ` ${tat.problems.join(' ')}` : ''}`;
+    }
+    if (!chosen) return 'Design the effect first.';
+    const gain = Math.max(0, lt.total - chosen.level);
+    if (!gain) return `The Lab Total must beat the level (${chosen.level}).`;
+    const have = under?.progress ?? 0;
+    return `Inventing ${chosen.name}: +${gain} a season toward ${chosen.level}, as for a Hermetic spell${have ? ` (${have} so far, after ${under!.seasons} season${under!.seasons === 1 ? '' : 's'})` : ''}${have + gain >= chosen.level ? ': done this season' : ''}.`;
   };
   const doSeason = () => {
-    const text = `${plan()} Lab Total ${lt.total}.`;
+    let text = `${plan()} Lab Total ${lt.total}.`;
     update((x) => {
       if (work === 'tattoo' && effect && tat?.ok) {
         x.items.push({
           uid: uid(), name: `Tattoo: ${effect.name}`, kind: 'lesser', material: `dyes (${GRUAGACH_SHAPES[shape]?.shape ?? 'a design'})`, size: 'tiny', shapeMaterialIds: [], openedPawns: 0, attunements: [], creatorId: x.id,
           notes: `A gruagach tattoo (${gruagachArtName(effect.tf as GruagachArts)}), ${TATTOO_SIZES[size].name}: it is part of its bearer, Personal and Individual.`,
-          effects: [{ uid: uid(), name: effect.name, technique: effect.tf.startsWith('Gv') ? 'Cr' : 'Pe', form: effect.tf.endsWith('Sh') ? 'An' : effect.tf.endsWith('Vs') ? 'Im' : 'Co', requisites: [], baseLevel: effect.level, range: 'Personal', duration: effect.duration, target: 'Individual', usesPerDay: '1', penetration: 0, concentration: false, effectUse: false, environmentalTrigger: false, fastTrigger: false, linkedTrigger: false, expiry: 'none', modifiedLevel: effect.level, description: effect.text }],
+          effects: [{ uid: uid(), name: effect.name, technique: effect.tf.startsWith('Gv') ? 'Cr' : 'Pe', form: effect.tf.endsWith('Sh') ? 'An' : effect.tf.endsWith('Vs') ? 'Im' : 'Co', requisites: [], baseLevel: effect.level, range: 'Personal', duration: effect.duration, target: 'Individual', usesPerDay: uses, penetration: 0, concentration: false, effectUse: false, environmentalTrigger: false, fastTrigger: false, linkedTrigger: false, expiry: 'none', modifiedLevel: tat.level, description: effect.text }],
         });
       }
-      if (work === 'invent' && effect && lt.total > effect.level) {
-        // most spells are invented in one season when the Lab Total is twice the level; otherwise the points are noted
-        if (lt.total >= 2 * effect.level) x.gruagach = { ...(x.gruagach ?? {}), spells: [...(x.gruagach?.spells ?? []), { ...effect, source: 'play' }] };
-      }
+      if (work === 'invent' && chosen) text = `${gruagachInventSeason(x, lt.total, chosen)} Lab Total ${lt.total}.`;
       const t = x.abilities.find((a) => a.abilityId === (tf.startsWith('Gv') ? 'gruagach-give' : 'gruagach-take'));
-      const e = newSeasonEntry(year, season, 'other', `Gruagach: ${work === 'tattoo' ? `a tattoo of ${effect?.name}` : work === 'invent' ? `inventing ${effect?.name}` : 'vis from the aura'}`, t ? { [`ability:${t.uid}`]: 2 } : {});
+      const e = newSeasonEntry(year, season, 'other', `Gruagach: ${work === 'tattoo' ? `a tattoo of ${effect?.name}` : work === 'invent' ? `inventing ${chosen?.name}` : 'vis from the aura'}`, t ? { [`ability:${t.uid}`]: 2 } : {});
       e.notes = text;
       applySeason(x, e, 1);
       x.seasonLog.push(e);
     });
-    setLines([text, `${season} ${year} logged.${work === 'invent' && effect && lt.total < 2 * effect.level ? ' The spell needs more seasons: note the points on the season.' : ''}`]);
+    setLines([text, `${season} ${year} logged.`]);
   };
   return (
     <Card title="A gruagach's season" tour="gruagach-season" fold="gruagach-season" summary="Tattoos, spells invented, vis drawn">
@@ -384,10 +415,17 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
                 ))}
               </select>
             </Field>
-            <Field label="Size">
+            <Field label="Size" hint="It holds 2 pawns of vis for each step of size">
               <select value={size} onChange={(e) => setSize(Number(e.target.value))}>
                 {TATTOO_SIZES.map((s, i) => (
-                  <option key={s.name} value={i}>{s.name}</option>
+                  <option key={s.name} value={i}>{s.name} (holds {2 * s.mult})</option>
+                ))}
+              </select>
+            </Field>
+            <Field label="Uses a day" hint="More uses add to the level, as for a lesser enchantment">
+              <select value={uses} onChange={(e) => setUses(e.target.value)}>
+                {FREQUENCY.filter((f) => f.value !== 'unlimited').map((f) => (
+                  <option key={f.value} value={f.value}>{f.value} (+{f.mod})</option>
                 ))}
               </select>
             </Field>
@@ -400,11 +438,17 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
         )}
       </div>
       {work !== 'vis' && <SpellDesigner pairs={pairs} label="Use this effect" onAdd={setEffect} />}
-      {effect && work !== 'vis' && <p className="small">Effect: <b>{effect.name}</b>, {effect.tf} {effect.level}.</p>}
+      {chosen && work !== 'vis' && <p className="small">Effect: <b>{chosen.name}</b>, {chosen.tf} {chosen.level}.</p>}
+      {work === 'invent' && inventing && (
+        <p className="small muted">
+          Under way: <b>{inventing.spell.name}</b>, {inventing.progress} of {inventing.spell.level} after {inventing.seasons} season{inventing.seasons === 1 ? '' : 's'}.{' '}
+          <button className="small danger" onClick={() => update((x) => void (x.gruagach = { ...(x.gruagach ?? {}), inventing: undefined }))}>Abandon it</button>
+        </p>
+      )}
       <p className="small">
         Lab Total <Total value={lt.total} parts={lt.parts} notes={lt.notes} label="Lab Total" />. {plan()}
       </p>
-      <button onClick={doSeason} disabled={busy || (work !== 'vis' && !effect) || (work === 'tattoo' && !tat?.ok)} title={busy ? `${season} ${year} is already spent` : undefined}>
+      <button onClick={doSeason} disabled={busy || (work !== 'vis' && !chosen) || (work === 'tattoo' && !tat?.ok)} title={busy ? `${season} ${year} is already spent` : undefined}>
         Work the season
       </button>
       {busy && <span className="small muted"> {season} {year} is already spent.</span>}

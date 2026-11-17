@@ -34,10 +34,15 @@ export function characterFromTemplate(t: CharacterTemplate, sagaId: string, year
     c.creation.apprenticeshipStartAge = Math.max(5, t.age - 15);
     c.creation.yearsPostGauntlet = 0;
   }
-  // "Native Language 5", "Living Language 5": the tongue of where the saga is set
-  const tongue = TRIBUNAL_LANGUAGE[tribunal ?? ''] ?? 'French';
+  // "Native Language 5", "Living Language 5": the tongue of where the saga is set. With no Tribunal to say
+  // which, the language is left unnamed for the player (the rules check asks for it).
+  const known = TRIBUNAL_LANGUAGE[tribunal ?? ''];
+  const tongue = known ?? 'French';
   const sheet = { ...t.sheet, abilities: t.sheet.abilities.replace(/\b(Native|Living) Language(?=\s+\d)/g, tongue) };
   const { problems } = applyStatBlock(c, sheet, data, rules);
+  if (!known && /\b(Native|Living) Language\s+\d/.test(t.sheet.abilities)) {
+    for (const a of c.abilities) if (a.abilityId === 'living-language' && a.param === tongue) a.param = '';
+  }
   c.personality = personalityFrom(t.personality);
   c.creation.concept = t.house ? `A magus of ${t.name}` : t.name.replace(/^The /, '');
   c.description = `From the core book's template ${t.name}. ${t.notes}`.trim();

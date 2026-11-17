@@ -176,7 +176,7 @@ function PilgrimageCard({ ed }: { ed: CharEditor }) {
               </select>
             </Field>
             <button className="small" onClick={() => set((x) => void (x.pilgrimage = { ...x.pilgrimage!, overcome: [...x.pilgrimage!.overcome, OPPOSITIONAL_ELEMENTS[el]] }))}>Add</button>
-            <button className="small ghost" onClick={() => set((x) => void (x.pilgrimage = undefined))}>
+            <button className={prog!.done ? 'small' : 'small danger'} onClick={() => set((x) => void (x.pilgrimage = undefined))}>
               {prog!.done ? 'Done' : 'Abandon'}
             </button>
           </div>
@@ -253,7 +253,7 @@ function MysticCard({ ed }: { ed: CharEditor }) {
               </select>
             </Field>
             <button className="small" onClick={() => set((y) => void (y.spiritualPath = { ...y.spiritualPath!, components: [...y.spiritualPath!.components, QUEST_COMPONENTS[qc]] }))}>Add</button>
-            <button className="small ghost" onClick={() => set((y) => void (y.spiritualPath = undefined))}>{done >= targetPts ? 'Done' : 'Abandon'}</button>
+            <button className={done >= targetPts ? 'small' : 'small danger'} onClick={() => set((y) => void (y.spiritualPath = undefined))}>{done >= targetPts ? 'Done' : 'Abandon'}</button>
           </div>
         </>
       )}

@@ -25,6 +25,7 @@ import { HeartbeastChange } from '../character/sheet/MysteriesCard';
 import { SilverRescue } from '../character/sheet/LabItemsTab';
 import HolyPart, { type Fellow } from './HolyPart';
 import { isHolyCharacter } from '../../engine/holy';
+import { sympathyBotchDice } from '../../engine/faerieWizardry';
 
 // Grogs' optional equipment bonuses: the right tool for a task lowers its Ease Factor.
 const EQUIPMENT = { none: 0, minor: 1, major: 3 } as const;
@@ -195,7 +196,9 @@ function RollPart({ x, who }: { x: X; who: string }) {
   const temperPick = tempers.find((t) => temperUse.endsWith(`:${t.by}`));
   const temperBonus = temperPick ? (temperUse.startsWith('+') ? temperPick.value : -temperPick.value) : 0;
   const total = base + penTotal + mod + myth + aidBonus + temperBonus;
-  const dice = Math.max(0, botchDice - myth);
+  // a negative Sympathy Trait adds its size in botch dice to every botch roll (RoP: Faerie, Sympathy Traits)
+  const symBotch = sympathyBotchDice(roller?.c ?? {});
+  const dice = Math.max(0, botchDice - myth) + symBotch.dice;
   const abName = roller && rollAbility ? (roller.d.abilities.find((a) => a.abilityId === rollAbility)?.name ?? x.data.abilityById.get(rollAbility)?.name ?? rollAbility) : '';
   const autoLabel = roller ? `${roller.c.name || 'They'}: ${traitOf ? `${traitOf.trait} (Personality)` : `${CHAR_NAMES[rollChar]}${abName ? ` + ${abName}` : ''}`}` : '';
   const breakdown = roller
@@ -358,7 +361,7 @@ function RollPart({ x, who }: { x: X; who: string }) {
               <input type="checkbox" checked={silver} onChange={(e) => setSilver(e.target.checked)} /> The familiar bond&rsquo;s silver cord +{bond!.silver}: a Personality roll, or resisting mental influence
             </label>
           )}
-          {roller && <div className="small" style={{ marginTop: 6 }}>Total {signed(total)}: {breakdown || 'nothing to add'}.{myth && botchDice ? ` ${dice} botch ${dice === 1 ? 'die' : 'dice'} (one fewer).` : ''}</div>}
+          {roller && <div className="small" style={{ marginTop: 6 }}>Total {signed(total)}: {breakdown || 'nothing to add'}.{myth && botchDice ? ` ${dice - symBotch.dice} botch ${dice - symBotch.dice === 1 ? 'die' : 'dice'} (one fewer).` : ''}{symBotch.trait ? ` ${symBotch.dice} more botch ${symBotch.dice === 1 ? 'die' : 'dice'} from ${symBotch.trait.trait || 'a negative Sympathy Trait'} ${signed(symBotch.trait.score)}: ${dice} in all.` : ''}</div>}
           <div className="row" style={{ marginTop: 10 }}>
             <button className="primary big" onClick={() => roll('stress')}>
               Stress die

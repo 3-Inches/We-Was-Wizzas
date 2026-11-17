@@ -9,7 +9,7 @@ import { VITKI_APPRENTICESHIP, deriveCharacter } from './character/derive';
 import { validateCharacter } from './character/validate';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import {
-  aettPartners, inventedLevels, nattThelAvoid, nattThelDuration, nattThelFollows, runeCast, runeLevelFromHermetic, taughtLevels, vitkiBotchDice, vitkiCastingTotal, vitkiLabTotal, vitkirRunes,
+  aettPartners, inventedLevels, nattThelAvoid, nattThelDuration, nattThelFollows, hideRunesTotal, runeCast, vitkiAbilities, runeLevelFromHermetic, taughtLevels, vitkiBotchDice, vitkiCastingTotal, vitkiLabTotal, vitkirRunes,
 } from './vitkir';
 
 const data = buildGameData();
@@ -79,6 +79,15 @@ describe('casting', () => {
     const f = eirik();
     addVirtue(f, data, 'deft-rune', 'Minor', 'Berkanan');
     expect(t(f)).toBe(9);
+  });
+  it('hiding: −2 for the name, −5 for the description, or none when hidden with care', () => {
+    const c = eirik();
+    const t = (care: boolean) => vitkiCastingTotal(c, d(c), ['Berkanan'], undefined, { name: 'hidden', description: 'hidden', hiddenWithCare: care }).total;
+    expect(t(false)).toBe(8 - 2 - 5);
+    expect(t(true)).toBe(8);
+    // only what is hidden is waived: a name left off still costs 5
+    expect(vitkiCastingTotal(c, d(c), ['Berkanan'], undefined, { name: 'none', description: 'hidden', hiddenWithCare: true }).total).toBe(8 - 5);
+    expect(hideRunesTotal(c, d(c))).toBe(c.characteristics.Dex + vitkiAbilities(c, d(c)).craftRunes);
   });
   it('vis +2 a pawn, held to the rune’s score; within 10 below, it works for a Fatigue level; a deficiency halves', () => {
     const c = eirik();

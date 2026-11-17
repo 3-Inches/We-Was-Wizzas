@@ -7,12 +7,13 @@ import { useState } from 'react';
 import { ELEMENTS, ELEMENTAL_TECHNIQUES, type ElementId, type ElementalTechniqueId, type ElementalType } from '../../data/hedgeElemental';
 import { describeStress, stressDie } from '../../engine/dice';
 import {
-  controlledEmotion, controlledSoak, diviningAid, elementalArts, elementalTotal, elementalVisLimit, longevityPotion, moveVis, refineMight, refiningExtraction, summoningNeeds, summoningReach,
+  characteristicPotion, controlledEmotion, controlledSoak, formFor, POTION_CHARACTERISTICS, diviningAid, elementalArts, elementalTotal, elementalVisLimit, longevityPotion, moveVis, potionVisOk, refineMight, refiningExtraction, THEURGY_REALMS, type MightRelation, summoningNeeds, summoningReach,
 } from '../../engine/elementalMagic';
 import { applySeason, newSeasonEntry } from '../../engine/longterm';
 import { seasonBusy } from '../../engine/time';
 import type { AuraState } from '../../engine/magic';
-import { Card, Field, Stepper, Total } from '../kit';
+import { Card, Field, Stepper, Total, signed } from '../kit';
+import { CHAR_NAMES } from '../../data';
 import type { CharEditor } from '../character/useChar';
 
 function Lines({ lines }: { lines: string[] }) {
@@ -107,7 +108,7 @@ export function ElementalCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
             ))}
           </select>
         </Field>
-        <Field label="Vis" hint={`+2 a pawn of the element's vis (Aquam, Auram, Ignem, Terram), up to ${visMax} (the four Forms); a botch die each`}>
+        <Field label="Vis" hint={`+2 a pawn of the element's vis (Aquam, Auram, Ignem, Terram), up to ${visMax} (the four Forms); a botch die each. Take it from the purse by hand.`}>
           <Stepper value={Math.min(vis, visMax)} min={0} max={visMax} width={32} onChange={setVis} />
         </Field>
       </div>
@@ -136,7 +137,7 @@ export function ElementalCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
   );
 }
 
-type RefineWork = 'longevity' | 'extract' | 'move' | 'might' | 'other';
+type RefineWork = 'longevity' | 'characteristic' | 'extract' | 'move' | 'might' | 'other';
 
 export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const { c, d, update, saga } = ed;
@@ -148,20 +149,42 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
   const [pawns, setPawns] = useState(5);
   const [same, setSame] = useState(true);
   const [might, setMight] = useState(10);
+  const [pool, setPool] = useState(10);
+  const [relation, setRelation] = useState<MightRelation>('own');
+  const [drainOther, setDrainOther] = useState(false);
+  const [realmLore, setRealmLore] = useState<string>('magic-lore');
+  const [forOther, setForOther] = useState(false);
+  const [otherAge, setOtherAge] = useState(30);
+  const [charac, setCharac] = useState<string>('');
+  const [current, setCurrent] = useState(0);
   const [lines, setLines] = useState<string[]>([]);
   if (!c || !d || !refining) return null;
   const ty = (type && refining.types.includes(type) ? type : refining.types[0]) ?? 'Philosophical';
   // the longevity potion takes the lowest Form as a requisite
   const potionEls = work === 'longevity' ? arts.forms.map((f) => f.id) : els;
-  const tot = elementalTotal(c, d, 'refining', potionEls, aura, { type: ty });
+  // a theurgist adds the Lore of the target's realm
+  const tot = elementalTotal(c, d, 'refining', potionEls, aura, { type: ty, realmLore: ty === 'Theurgical' && work !== 'longevity' ? realmLore : undefined });
+  const el = ELEMENTS.find((e) => e.id === els[0]);
+  const opposed = el && ELEMENTS.find((e) => e.id === el.opposes);
+  const others = el && ELEMENTS.filter((e) => e.id !== el.id && e.id !== el.opposes);
   const year = saga?.currentYear ?? 1220;
   const season = saga?.currentSeason ?? 'Spring';
   const busy = seasonBusy(c, year, season);
-  const potion = longevityPotion(tot.total, c.age);
+  // a physician makes the potions for another too: the vis follows the drinker's age
+  const other = ty === 'Medicinal' && (forOther || work === 'characteristic');
+  const age = other ? otherAge : c.age;
+  const potion = longevityPotion(tot.total, age);
+  const chars = el ? POTION_CHARACTERISTICS[el.id] : [];
+  const ch = (chars as string[]).includes(charac) ? charac : chars[0];
+  const cp = characteristicPotion(tot.total, formFor(c, d, els).value, current, age);
+  const visLimit = elementalVisLimit(d);
+  const potionShort = (work === 'longevity' || work === 'characteristic') && !potionVisOk(d, potion.vis);
   const result = (): string => {
     switch (work) {
       case 'longevity':
-        return `A longevity potion: +${potion.bonus} to Aging rolls until a crisis, for ${potion.vis} pawns of vis (the age ÷ 5).${ty === 'Medicinal' ? ' A physician can make it for another.' : ''}`;
+        return `A longevity potion${other ? ' for another' : ''}: +${potion.bonus} to Aging rolls until a crisis, for ${potion.vis} pawns of vis (the drinker's age ${age} ÷ 5).`;
+      case 'characteristic':
+        return `A potion for a year: ${ch ? CHAR_NAMES[ch as keyof typeof CHAR_NAMES] : 'a Characteristic'} ${signed(current)} → ${signed(cp.result)} (+${cp.bonus}, the total ÷ 5, but no higher than ${signed(cp.cap)}, half the Form). ${cp.vis} pawns of vis (the drinker's age ${age} ÷ 5).`;
       case 'extract':
         return `${refiningExtraction(tot.total)} pawns of ${ELEMENTS.find((e) => e.id === els[0])?.hermetic ?? 'the element’s'} vis drawn from the aura.`;
       case 'move': {
@@ -169,8 +192,9 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
         return m.ok ? `${pawns} pawns moved; ${m.arrive} arrive as the element’s vis.` : `Too weak: moving ${pawns} pawns needs ${5 * pawns}.`;
       }
       case 'might': {
-        const r = refineMight(tot.total, might);
-        return r.points ? `${r.points} Might Points restored (the being’s own element) or drained (the opposed one); ${r.vis} pawns of vis form.` : `The total must beat the being’s Might (${might}).`;
+        const r = refineMight(tot.total, might, relation, { drain: drainOther, pool });
+        if (!r.points) return `The total must beat the being’s Might (${might})${relation === 'other' ? ' by 2 or more' : ''}.`;
+        return `${r.changed} Might Points ${r.drain ? 'drained' : 'restored'}${relation === 'other' ? ' (half the excess: another element)' : ''}${r.points > r.changed ? `; ${r.points - r.changed} more ${r.drain ? 'than it had' : 'than its pool holds'}` : ''}. ${r.vis ? `${r.vis} pawn${r.vis === 1 ? '' : 's'} of ${el?.hermetic ?? 'the element’s'} vis form${r.vis === 1 ? 's' : ''} in the material it animates.` : 'No vis forms.'}`;
       }
       default:
         return 'Another refining of the type, as the troupe rules.';
@@ -180,18 +204,19 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
     const text = `Refining (${ty}): total ${tot.total}. ${result()}`;
     update((x) => {
       // the potion stands as the longevity ritual, unless the one already taken is better
-      if (work === 'longevity' && potion.bonus > (x.longevity?.lapsedYear ? 0 : (x.longevity?.bonus ?? 0))) x.longevity = { labTotal: tot.total, bonus: potion.bonus, extraVis: 0, createdYear: year, createdBy: 'an elementalist’s longevity potion' };
+      if (work === 'longevity' && !other && potion.bonus > (x.longevity?.lapsedYear ? 0 : (x.longevity?.bonus ?? 0))) x.longevity = { labTotal: tot.total, bonus: potion.bonus, extraVis: 0, createdYear: year, createdBy: 'an elementalist’s longevity potion' };
       const ab = x.abilities.find((a) => a.abilityId === 'elemental-refining');
-      const e = newSeasonEntry(year, season, 'other', `Elemental refining: ${work === 'longevity' ? 'a longevity potion' : work === 'extract' ? 'vis from the aura' : work === 'move' ? 'moving vis' : work === 'might' ? 'a being’s Might' : 'a refining'}`, ab ? { [`ability:${ab.uid}`]: 2 } : {});
+      const e = newSeasonEntry(year, season, 'other', `Elemental refining: ${work === 'longevity' ? 'a longevity potion' : work === 'characteristic' ? 'a potion of vigor' : work === 'extract' ? 'vis from the aura' : work === 'move' ? 'moving vis' : work === 'might' ? 'a being’s Might' : 'a refining'}`, ab ? { [`ability:${ab.uid}`]: 2 } : {});
       e.notes = text;
       applySeason(x, e, 1);
       x.seasonLog.push(e);
     });
     const kept = !!c.longevity && !c.longevity.lapsedYear && c.longevity.bonus >= potion.bonus;
-    setLines([text, `${season} ${year} logged${work === 'longevity' && potion.bonus > 0 ? (kept ? '; the longevity ritual already taken is as good or better, and is kept' : '; the potion is on the sheet as the character’s longevity ritual') : ''}. Take the vis from the stores by hand.`]);
+    setLines([text, `${season} ${year} logged${work === 'longevity' && other ? '; give the potion to its drinker and note it on their sheet' : work === 'characteristic' ? '; note the potion on the drinker’s sheet' : work === 'longevity' && potion.bonus > 0 ? (kept ? '; the longevity ritual already taken is as good or better, and is kept' : '; the potion is on the sheet as the character’s longevity ritual') : ''}. Take the vis from the stores by hand.`]);
   };
   const works: [RefineWork, string][] = [
     ['longevity', 'a longevity potion'],
+    ...(ty === 'Medicinal' ? ([['characteristic', 'a potion that raises a Characteristic']] as [RefineWork, string][]) : []),
     ...(ty === 'Philosophical' ? ([['extract', 'vis from the aura'], ['move', 'moving vis']] as [RefineWork, string][]) : []),
     ...(ty === 'Theurgical' || ty === 'Philosophical' ? ([['might', 'a being’s Might']] as [RefineWork, string][]) : []),
     ['other', 'another refining'],
@@ -213,6 +238,30 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
             ))}
           </select>
         </Field>
+        {work === 'longevity' && ty === 'Medicinal' && (
+          <label className="inline small">
+            <input type="checkbox" checked={forOther} onChange={(e) => setForOther(e.target.checked)} /> for someone else
+          </label>
+        )}
+        {other && (
+          <Field label="The drinker's age" hint="Sets the vis: the age ÷ 5">
+            <Stepper value={otherAge} min={1} max={150} width={36} onChange={setOtherAge} />
+          </Field>
+        )}
+        {work === 'characteristic' && (
+          <>
+            <Field label="Characteristic" hint="Those the element's temperament governs">
+              <select value={ch} onChange={(e) => setCharac(e.target.value)}>
+                {chars.map((x) => (
+                  <option key={x} value={x}>{CHAR_NAMES[x]}</option>
+                ))}
+              </select>
+            </Field>
+            <Field label="The drinker's score now">
+              <Stepper value={current} min={-5} max={5} width={32} onChange={setCurrent} />
+            </Field>
+          </>
+        )}
         {work === 'move' && (
           <>
             <Field label="Pawns">
@@ -224,19 +273,50 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
           </>
         )}
         {work === 'might' && (
-          <Field label="The being's Might">
-            <Stepper value={might} min={0} max={100} width={36} onChange={setMight} />
+          <>
+            <Field label="The being's Might">
+              <Stepper value={might} min={0} max={100} width={36} onChange={(v) => ((setMight(v)), setPool(Math.min(pool, v)))} />
+            </Field>
+            <Field label="Might Points it has now" hint="Its Might Pool, at most its Might Score">
+              <Stepper value={Math.min(pool, might)} min={0} max={might} width={36} onChange={setPool} />
+            </Field>
+          </>
+        )}
+        {ty === 'Theurgical' && (work === 'might' || work === 'other') && (
+          <Field label="The target's realm" hint="Its realm's Lore is added to the Refining Total">
+            <select value={realmLore} onChange={(e) => setRealmLore(e.target.value)}>
+              {THEURGY_REALMS.map((r) => (
+                <option key={r.lore} value={r.lore}>{r.realm}</option>
+              ))}
+            </select>
           </Field>
         )}
       </div>
+      {work === 'might' && el && (
+        <div className="row">
+          <Field label={`The being's element, against ${el.name}`}>
+            <select value={relation} onChange={(e) => setRelation(e.target.value as MightRelation)}>
+              <option value="own">the same ({el.name.replace('Elementalist ', '')}): restores Might</option>
+              <option value="opposed">the opposed one ({opposed?.name.replace('Elementalist ', '')}): drains Might</option>
+              <option value="other">another ({others?.map((e) => e.name.replace('Elementalist ', '')).join(' or ')}): half, either way</option>
+            </select>
+          </Field>
+          {relation === 'other' && (
+            <label className="inline small">
+              <input type="checkbox" checked={drainOther} onChange={(e) => setDrainOther(e.target.checked)} /> drain it (otherwise restore)
+            </label>
+          )}
+        </div>
+      )}
       {work !== 'longevity' && <ElementPicker forms={arts.forms} value={els} onChange={setEls} />}
       <p className="small">
         Refining Total <Total value={tot.total} parts={tot.parts} label="Refining Total" /> (no die){work === 'longevity' ? ', the lowest Form a requisite' : ''}. {result()}
       </p>
-      <button onClick={doSeason} disabled={busy || (work !== 'longevity' && !els.length)} title={busy ? `${season} ${year} is already spent` : undefined}>
+      <button onClick={doSeason} disabled={busy || potionShort || (work !== 'longevity' && !els.length)} title={busy ? `${season} ${year} is already spent` : undefined}>
         Refine (a season)
       </button>
       {busy && <span className="small muted"> {season} {year} is already spent.</span>}
+      {!busy && potionShort && <span className="small warn-text"> The potion needs {potion.vis} pawns, but an elementalist can spend only {visLimit} (the Elementalist Forms added together).</span>}
       <Lines lines={lines} />
     </Card>
   );

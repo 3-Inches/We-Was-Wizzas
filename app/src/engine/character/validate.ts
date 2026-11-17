@@ -71,6 +71,9 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     const opened = (ids: string[]) => d.hasGift || ids.some((id) => d.abilities.some((a) => a.abilityId === id));
     const lack = [!opened(['tueor', 'succurro', 'vulnero']) ? 'a Technique (Tueor, Succurro or Vulnero)' : '', !opened(['fortunam', 'magicam', 'salutem']) ? 'a Form (Fortunam, Magicam or Salutem)' : ''].filter(Boolean);
     if (lack.length) add({ id: 'learned-arts', severity: 'error', step: 'virtues', message: `A mathematicus must have ${lack.join(' and ')} of the tradition.`, fix: 'Take the Virtue of each Art (a Technique is Major, a Form Minor), or The Gift, opened to all six.', ref: 'Hedge Magic, Learned Magicians' });
+    // "All magicians must possess minimum scores of 1 in Latin to learn charms" (HMRE, Learned Magicians)
+    const latin = c.abilities.filter((a) => a.abilityId === 'dead-language' && /^latin$/i.test((a.param ?? '').trim())).reduce((m, a) => Math.max(m, d.abilityByUid.get(a.uid)?.score ?? 0), 0);
+    if (latin < 1) add({ id: 'learned-latin', severity: 'error', step: 'abilities', message: 'A mathematicus needs Latin 1 to learn charms.', fix: 'Give the character Latin (a Dead Language) at 1 or more.', ref: 'Hedge Magic, Learned Magicians' });
     if (t.socialStatuses.length === 1) add({ id: 'learned-status', severity: 'warning', step: 'virtues', message: 'A mathematicus also takes a Social Status for their place in mundane society (a clerk, a magister in artibus, a mendicant friar, a priest…).', ref: 'Hedge Magic, Learned Magicians' });
   }
   // --------------------------------------------------------------- gruagachan (Hedge Magic)
@@ -344,6 +347,9 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
       }
       if (creating && da && rules.enforceAbilityAgeCap && da.score > da.cap && !c.virtues.some((v) => v.defId === 'mentored-by-demons')) {
         add({ id: `cap-${ab.uid}`, code: 'cap', ability: ab.uid, severity: 'error', step: 'abilities', message: `${da.name} ${da.score} exceeds the age-based maximum of ${da.cap} at character creation.`, ref: 'DE p.48' });
+      }
+      if (ab.abilityId === 'living-language' && !(ab.param ?? '').trim()) {
+        add({ id: `lang-name-${ab.uid}`, severity: 'warning', step: 'abilities', message: `Name this language: ${ab.native ? 'the native tongue' : 'a Living Language'} has no name yet.`, fix: 'Write the language on the Abilities step (French, German, Occitan…).' });
       }
       if (creating && da?.type === 'Academic' && !ab.abilityId.includes('language') && !c.abilities.some((x) => (x.abilityId === 'dead-language' && /latin|greek|hebrew|arabic/i.test(x.param ?? '')) && (d.abilityByUid.get(x.uid)?.score ?? 0) >= 3)) {
         if (da.score > 0) add({ id: `academic-lang-${ab.uid}`, severity: 'info', step: 'abilities', message: `Learning ${da.name} normally requires Latin, Greek, Hebrew, or Arabic of at least 3.`, ref: 'DE p.158' });

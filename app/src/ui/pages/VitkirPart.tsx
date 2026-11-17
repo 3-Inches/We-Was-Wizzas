@@ -12,7 +12,7 @@ import { seasonBusy } from '../../engine/time';
 import type { AuraState } from '../../engine/magic';
 import type { Character, RuneScript } from '../../engine/types';
 import {
-  inventedLevels, nattThelAvoid, nattThelDuration, nattThelFollows, runeCast, runePenetration, runeWarps, vitkiBotchDice, vitkiCastingTotal, vitkiLabTotal, vitkirRunes, type RuneScore,
+  inventedLevels, nattThelAvoid, nattThelDuration, nattThelFollows, runeCast, runePenetration, runeWarps, vitkiBotchDice, vitkiCastingTotal, hideRunesTotal, HIDE_RUNES_EASE, vitkiLabTotal, vitkirRunes, type RuneScore,
 } from '../../engine/vitkir';
 import { warpingScoreFromPoints } from '../../engine/xp';
 import { uid } from '../../util/id';
@@ -202,6 +202,7 @@ export function VitkiCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
   const [focus, setFocus] = useState(false);
   const [vis, setVis] = useState(0);
   const [onSelf, setOnSelf] = useState(true);
+  const [care, setCare] = useState(false);
   const [lines, setLines] = useState<string[]>([]);
   if (!c || !d) return null;
   const runes = vitkirRunes(c, d);
@@ -210,13 +211,24 @@ export function VitkiCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
   const focusVirtue = c.virtues.some((v) => v.defId === 'major-rune-focus' || v.defId === 'minor-rune-focus');
   const t = script ? vitkiCastingTotal(c, d, script.runes, aura, { name, description: desc, extraEffort: effort, emphasis, vis, focus }) : undefined;
   const pen = d.abilities.filter((x) => x.abilityId === 'penetration').reduce((m, x) => Math.max(m, x.total), 0);
+  const hiding = name === 'hidden' || desc === 'hidden';
+  const hideTotal = hideRunesTotal(c, d);
   const cast = () => {
     if (!script || !t) return;
-    const pawns = Math.min(vis, t.lowest);
-    const r = stressDie(vitkiBotchDice(c, script.runes, pawns, t.auraBotch));
+    // hidden with care: twice as long, and Dexterity + Craft: Runes + a simple die of 6 waives the penalty
+    const hide = hiding && care ? simpleDie().value + hideTotal : undefined;
+    const hidden = hide !== undefined && hide >= HIDE_RUNES_EASE;
+    const tt = hidden ? vitkiCastingTotal(c, d, script.runes, aura, { name, description: desc, extraEffort: effort, emphasis, vis, focus, hiddenWithCare: true }) : t;
+    const pawns = Math.min(vis, tt.lowest);
+    const r = stressDie(vitkiBotchDice(c, script.runes, pawns, tt.auraBotch));
     const botches = r.zero ? r.botches : 0;
-    const res = runeCast(t, r.value, script.level);
-    const out = [`${script.name} (${short(script)}): stress die ${describeStress(r)} + ${t.total}${t.halved ? ', halved,' : ''} = ${res.total} against ${script.level}.`];
+    const res = runeCast(tt, r.value, script.level);
+    const out = [
+      ...(hide !== undefined
+        ? [`Hiding the runes with care (twice as long): Dexterity + Craft: Runes ${hideTotal} + simple die = ${hide} against ${HIDE_RUNES_EASE}: ${hidden ? `hidden at no penalty; another vitki's Intelligence + Rune Magic must beat ${hide} to read them` : 'not well enough, so the usual hiding penalty applies'}.`]
+        : []),
+      `${script.name} (${short(script)}): stress die ${describeStress(r)} + ${tt.total}${tt.halved ? ', halved,' : ''} = ${res.total} against ${script.level}.`,
+    ];
     let fatigue = 0;
     if (botches) {
       fatigue = 1;
@@ -274,7 +286,7 @@ export function VitkiCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
                 ))}
               </select>
             </Field>
-            <Field label="Vis" hint="+2 a pawn of fitting vis, no more than the rune's score; a botch die each">
+            <Field label="Vis" hint="+2 a pawn of fitting vis, no more than the rune's score; a botch die each. Take it from the purse by hand.">
               <Stepper value={vis} min={0} max={20} width={32} onChange={setVis} />
             </Field>
           </div>
@@ -283,6 +295,11 @@ export function VitkiCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
             <label><input type="checkbox" checked={emphasis} onChange={(e) => setEmphasis(e.target.checked)} /> Emphasis (+1)</label>
             {focusVirtue && <label><input type="checkbox" checked={focus} onChange={(e) => setFocus(e.target.checked)} /> Cut into the focus&apos;s material for its purpose</label>}
             <label><input type="checkbox" checked={onSelf} onChange={(e) => setOnSelf(e.target.checked)} /> On the vitki (the caster)</label>
+            {hiding && (
+              <label>
+                <input type="checkbox" checked={care} onChange={(e) => setCare(e.target.checked)} /> Hide them with care: twice as long, and no hiding penalty if Dexterity + Craft: Runes ({hideTotal}) + a simple die reaches {HIDE_RUNES_EASE}
+              </label>
+            )}
           </div>
           {t && (
             <p className="small">
