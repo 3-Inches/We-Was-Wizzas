@@ -1,0 +1,54 @@
+{
+ "learned": {
+  "what": "a learned magician (Hedge Magic)",
+  "dice": "hedge",
+  "who": {
+   "w": "70fe0036f986"
+  }
+ },
+ "elem": {
+  "what": "an elementalist",
+  "dice": "hedge",
+  "who": {
+   "w": "1f8d2137a573"
+  }
+ },
+ "witch": {
+  "what": "a folk witch",
+  "dice": "hedge",
+  "who": {
+   "w": "2f21ffa5c86f"
+  }
+ },
+ "gru": {
+  "what": "a gruagach",
+  "dice": "hedge",
+  "who": {
+   "w": "bf5f92f9a31e"
+  }
+ },
+ "vit": {
+  "what": "a vitki (w) and a nightwalker (n)",
+  "dice": "hedge",
+  "who": {
+   "w": "bd0eb3c7df9e",
+   "n": "21208df916be"
+  }
+ },
+ "faerie": {
+  "what": "a faerie wizard (w) and a faerie character (f)",
+  "dice": "faerie",
+  "who": {
+   "w": "e7c79e8943af",
+   "f": "ef0b391a20b8"
+  }
+ },
+ "tmre": {
+  "what": "two magi with Mysteries (a, b)",
+  "dice": "mysteries",
+  "who": {
+   "a": "9efd2275a229",
+   "b": "ee0d38fc184e"
+  }
+ }
+}

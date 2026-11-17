@@ -1,7 +1,12 @@
 """Regenerate every JSON data file under app/src/data/generated from the markdown corpus.
 
-Usage:  python3 tools/extract/run_all.py
+Usage:  python3 -I tools/extract/run_all.py
 """
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # so that it also runs with -I
+
 import extract_abilities
 import extract_covlab
 import extract_diseases
