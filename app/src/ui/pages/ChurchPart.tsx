@@ -209,7 +209,12 @@ function MysticCard({ ed }: { ed: CharEditor }) {
     const ok = !mine.botches && total >= ws + theirs.value;
     setLines([
       `Integrating the Revelation: Intelligence + Concentration ${monisticIntegration(d)} + ${describeStress(mine)} = ${total} against Warping Score ${ws} + ${theirs.value}.`,
-      ok ? `Integrated. Choose one: ${monisticRevelations(gained, first).join(' / ')}` : 'Not integrated: Divine Gloom as usual.',
+      ok
+        ? (() => {
+            const r = monisticRevelations(gained, first);
+            return r.length > 1 ? `Integrated. Choose one: ${r.join(' / ')}` : `Integrated: ${r[0]}`;
+          })()
+        : 'Not integrated: Divine Gloom as usual, so each Warping Point also moves an experience point from a mundane Ability to Dominion Lore or a Holy Ability.',
     ]);
   };
   return (
@@ -259,7 +264,8 @@ function MysticCard({ ed }: { ed: CharEditor }) {
       )}
       <h4>Monistic: a Revelation after Divine Ascent</h4>
       <p className="small muted">
-        Needs Visions or True Faith and a positive Pious. A single Warping Point brings Divine Ascent (as Twilight Prone), and practicing a Holy Ability gives experience equal to Concentration, not 4.
+        <b>Divine Ascent</b> is a Divine character&apos;s Warping experience, as Twilight is a magus&apos;s; for a monistic mystic it brings <b>Divine Gloom</b>, which trades mundane
+        knowledge for holy. Needs Visions or True Faith and a positive Pious. A single Warping Point brings Divine Ascent (as Twilight Prone), and practicing a Holy Ability gives experience equal to Concentration, not 4.
       </p>
       <div className="row">
         <Field label="Warping Points gained">

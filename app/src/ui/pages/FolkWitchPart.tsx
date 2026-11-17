@@ -43,6 +43,17 @@ function effectsOf(power: string): { label: string; ease: number; vis: number }[
     ]);
   }
   if (power === 'witch-flight') return [{ label: 'Take to the air (9)', ease: 9, vis: 0 }];
+  // the core book's Ease Factors for the powers the folk witch chapter sends there (DE: Dowsing, Second Sight, Shapeshifter)
+  if (power === 'dowsing') {
+    return [
+      { label: 'Something common, like water, within 25 paces (9)', ease: 9, vis: 0 },
+      { label: 'Something rarer or farther, like gold within 100 paces (15)', ease: 15, vis: 0 },
+    ];
+  }
+  if (power === 'shapeshifter') return [{ label: 'Change shape, or change back (9)', ease: 9, vis: 0 }];
+  if (power === 'second-sight') {
+    return [1, 2, 3, 4, 5, 6].map((m) => ({ label: `Through an illusion of magnitude ${m}: Might ${5 * m - 4}–${5 * m}, or a level ${5 * m} spell (${6 + m})`, ease: 6 + m, vis: 0 }));
+  }
   return [];
 }
 
@@ -71,7 +82,8 @@ export function WitchPowerCard({ ed, aura }: { ed: CharEditor; aura: AuraState }
   const p = powers.find((x) => x.id === power) ?? powers[0];
   const def = WITCH_POWERS.find((x) => x.id === p.id)!;
   const effects = effectsOf(p.id);
-  const eff = effects[Math.min(ei, effects.length - 1)];
+  // the last choice of the list is a free Ease Factor
+  const eff = ei < effects.length ? effects[ei] : undefined;
   const ef = eff?.ease ?? ease;
   const tot = witchCastingScore(c, d, p.id, aura, { vis, fatigue });
   const method = p.methods.filter((m) => m !== 'potion').join(' or ');
@@ -104,16 +116,18 @@ export function WitchPowerCard({ ed, aura }: { ed: CharEditor; aura: AuraState }
             ))}
           </select>
         </Field>
-        {effects.length > 0 ? (
+        {effects.length > 0 && (
           <Field label="Effect">
             <select value={ei} onChange={(e) => setEi(Number(e.target.value))}>
               {effects.map((x, i) => (
                 <option key={x.label} value={i}>{x.label}</option>
               ))}
+              <option value={effects.length}>another Ease Factor (the storyguide decides)</option>
             </select>
           </Field>
-        ) : (
-          <Field label="Ease Factor" hint="As the Ability's own rules (ArM5) set it">
+        )}
+        {!eff && (
+          <Field label="Ease Factor" hint="The storyguide sets it by how hard the thing is">
             <Stepper value={ease} min={0} max={30} width={36} onChange={setEase} />
           </Field>
         )}
@@ -136,7 +150,7 @@ export function WitchPowerCard({ ed, aura }: { ed: CharEditor; aura: AuraState }
         <p key={n} className="small warn-text">{n}</p>
       ))}
       <button onClick={cast} disabled={!!c.folkWitch?.witchMoon}>
-        Use {p.name}
+        Roll {p.name}
       </button>
       <Lines lines={lines} />
     </Card>
@@ -277,7 +291,7 @@ export function KitchenCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
         Lab Total <Total value={lt.total} parts={lt.parts} notes={lt.notes} label="Kitchen Lab Total" />. {plan()}
       </p>
       <button onClick={doSeason} disabled={busy || (w === 'brew' && !b.doses)} title={busy ? `${season} ${year} is already spent` : undefined}>
-        Work the season
+        {({ brew: 'Brew', fetish: 'Make the fetish', curse: 'Weave the curse', vis: 'Draw vis', longevity: 'Make the ritual', familiar: 'Bind the familiar' } as const)[w]} (a season)
       </button>
       {busy && <span className="small muted"> {season} {year} is already spent.</span>}
       <Lines lines={lines} />
@@ -384,8 +398,8 @@ export function FolkWitchSheetCard({ ed }: { ed: CharEditor }) {
   return (
     <Card title="Folk witch" tour="folk-witch-card" fold="folk-witch-card" summary={budget ? `${budget.spent} of ${budget.total} apprenticeship experience spent` : 'A folk witch'}>
       <p className="small muted" style={{ marginTop: 0 }}>
-        Adopted by a witch at about ten, she is apprenticed for about ten years: those years give 200 experience points for any Abilities in place of their later-life experience
-        (Well-Trained adds 50, Poorly Trained takes 50). She must take at least one Flaw that limits her magic. Powers, potions and the kitchen are on the Game Table, Dice › Hedge magic.
+        Adopted by a witch at about ten, a folk witch is apprenticed for about ten years: those years give 200 experience points for any Abilities in place of their later-life experience
+        (Well-Trained adds 50, Poorly Trained takes 50). They must take at least one Flaw that limits their magic. Powers, potions and the kitchen are on the Game Table, Dice › Hedge magic.
       </p>
       <div className="row">
         <Field label="Years of apprenticeship">

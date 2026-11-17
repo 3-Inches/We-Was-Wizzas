@@ -104,7 +104,7 @@ export function ElementalCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
         <Field label="Type of target">
           <select value={ty} onChange={(e) => setType(e.target.value as ElementalType)}>
             {(t.types.length ? t.types : ['Philosophical' as const]).map((x) => (
-              <option key={x} value={x}>{x}</option>
+              <option key={x} value={x}>{x}: {TYPE_GLOSS[x]}</option>
             ))}
           </select>
         </Field>
@@ -136,6 +136,9 @@ export function ElementalCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
     </Card>
   );
 }
+
+/** What each type of elemental magic works on (HMRE, Elementalists). */
+const TYPE_GLOSS: Record<ElementalType, string> = { Medicinal: 'bodies and their humors', Philosophical: 'natural things and animals', Theurgical: 'elemental spirits' };
 
 type RefineWork = 'longevity' | 'characteristic' | 'extract' | 'move' | 'might' | 'other';
 
@@ -227,7 +230,7 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
         <Field label="Type">
           <select value={ty} onChange={(e) => setType(e.target.value as ElementalType)}>
             {(refining.types.length ? refining.types : ['Philosophical' as const]).map((x) => (
-              <option key={x} value={x}>{x}</option>
+              <option key={x} value={x}>{x}: {TYPE_GLOSS[x]}</option>
             ))}
           </select>
         </Field>

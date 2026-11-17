@@ -1,5 +1,5 @@
 // The Nightwalkers (Hedge Magic, Revised Edition, Chapter Six) at the Game Table: straying to a place
-// and leading others, the chapter's other rolls, and a fertility battle's outcome set as the year's
+// and leading others, the other rolls of the night, and a fertility battle's outcome set as the year's
 // harvest on the covenant's land.
 
 import { useState } from 'react';
@@ -75,7 +75,7 @@ export function NightwalkerCard({ ed }: { ed: CharEditor }) {
         </>
       )}
       <details className="small">
-        <summary>The chapter&apos;s other rolls</summary>
+        <summary>Other rolls of the night</summary>
         {NIGHTWALKER_ROLLS.map((r) => (
           <div key={r.what}>
             {r.what}: {r.roll} against {r.ease}.

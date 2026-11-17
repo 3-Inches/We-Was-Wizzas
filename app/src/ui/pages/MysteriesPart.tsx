@@ -183,7 +183,7 @@ function DivinationCard({ c, d, aura }: { c: Character; d: DerivedCharacter; aur
             <select value={method} onChange={(e) => setMethod(e.target.value)} disabled={dreamsOnly}>
               {AUGURY_METHODS.map((x) => (
                 <option key={x.name} value={x.name}>
-                  {x.name}
+                  {x.name} ({x.seen})
                 </option>
               ))}
             </select>

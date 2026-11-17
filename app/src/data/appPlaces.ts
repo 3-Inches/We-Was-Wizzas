@@ -16,6 +16,11 @@ const COV = 'Covenant';
 const CREATURES: AppPlace = { text: 'Quick build → Creatures & encounters', page: 'build', tab: 'creatures' };
 const HOUSE: AppPlace = { text: 'Character wizard → House' };
 const MYSTERIES: AppPlace = { text: `${SHEET} → Seasons & Aging → Mysteries & Initiation` };
+const HEDGE: AppPlace = { text: 'Game Table › Dice › Hedge magic: the tradition’s rolls and its seasons of work', page: 'dice', tab: 'hedge' };
+const HEDGE_SHEET = (what: string): AppPlace => ({ text: `${SHEET} → Overview → ${what} (the apprenticeship, and what is known)` });
+const FAERIE: AppPlace = { text: 'Game Table › Dice › Faerie: rites, bargaining with faeries, Faerie Calling', page: 'dice', tab: 'faerie' };
+const MYSTERY_TABLE = (what: string): AppPlace => ({ text: `Game Table › Dice › Mysteries: ${what}`, page: 'dice', tab: 'mysteries' });
+const LAB = (what: string): AppPlace => ({ text: `Game Table › Seasons → Lab projects: ${what}`, page: 'seasons' });
 
 export const APP_PLACES: Record<string, AppPlace[]> = {
   // the basics and creation
@@ -134,7 +139,12 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'trade-money-and-wealth': [{ text: 'Game Table → City & Guild: haggling and bribes; a character’s workshop → Stories and investments (merchants’ story seeds and investments of time); travel, trade and intrigue: a house’s Reputation, largesse, warehouses, dowries', page: 'guild' }, { text: 'Game Table → Market & Treasury', page: 'market' }],
   'intrigue-and-agents': [{ text: `${SHEET} → Overview → Agents` }, { text: 'Game Table → City & Guild → Travel, trade and intrigue: bribes, hired criminals, sabotage, intrigue against the powerful', page: 'guild' }],
   'debate-and-influence': [{ text: `${SHEET} → Overview → Society → Debate` }],
-  'the-church': [{ text: `${SHEET} → Overview → Society → Petition the Church` }, { text: `${SHEET} → Seasons & Aging → Plan a season (Worship)` }],
+  'the-church': [
+    { text: 'Game Table › Dice › Faith & miracles: devotion to the saints, pilgrimages, the mystic’s path', page: 'dice', tab: 'holy' },
+    { text: 'Game Table › Society & the Tribunal → Debates, petitions & customs (petition the Church)', page: 'table', tab: 'society' },
+    { text: 'Game Table › Seasons: a season of Worship', page: 'seasons' },
+  ],
+  pilgrimage: [{ text: 'Game Table › Dice › Faith & miracles → A pilgrimage', page: 'dice', tab: 'holy' }],
   'social-standing': [{ text: 'Character wizard → Virtues & Flaws (Social Status)' }, { text: `${SHEET} → Seasons & Aging → When nothing is planned (free and working seasons)` }],
   'courtly-life-and-leisure': [{ text: `${SHEET} → Overview → Society → Etiquette` }],
   'hermetic-politics': [{ text: `${SHEET} → Overview → Society → Debate (at Tribunal)` }, { text: 'The Tribunal: the living covenants, their gilds and neighbors, and the gatherings', page: 'tribunal' }],
@@ -166,4 +176,21 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'merinita-mysteries': [MYSTERIES],
   'verditius-mysteries': [MYSTERIES],
   'the-paths-through-the-forest': [{ text: `${SHEET} → Overview → Rhine Tribunal customs` }],
+  // the Mysteries at the table
+  'hermetic-alchemy': [MYSTERY_TABLE('the Great Elixir'), LAB('the Lesser Elixir and alchemical reagents')],
+  'hermetic-astrology': [MYSTERY_TABLE('Celestial Magic (a favorable hour, astrological Durations)'), LAB('Laboratory Horoscopes')],
+  'divination-and-augury': [MYSTERY_TABLE('Hermetic Divination, and dream interpretation')],
+  'hermetic-theurgy': [MYSTERY_TABLE('invoked daimons, Hermetic Empowerment, Synthemata')],
+  'arithmetic-magic': [MYSTERY_TABLE('the numerologist’s rotes')],
+  // hedge magic and faerie wizardry
+  'hedge-magic': [HEDGE],
+  'hedge-wizards-other-traditions': [HEDGE],
+  elementalists: [HEDGE, { text: `${SHEET} → Overview → Elemental Traits` }],
+  'folk-witches': [HEDGE, HEDGE_SHEET('Folk witch')],
+  gruagachan: [HEDGE, HEDGE_SHEET('Gruagach')],
+  'learned-magicians': [HEDGE, HEDGE_SHEET('Learned magic')],
+  nightwalkers: [HEDGE],
+  vitkir: [HEDGE, HEDGE_SHEET('Vitki')],
+  'faerie-wizards': [FAERIE, { text: `${SHEET} → Overview → Sympathy Traits` }],
+  'faerie-characters': [{ text: 'People → a faerie companion, or a faerie in place of a magus', page: 'people' }, { ...FAERIE, text: 'Game Table › Dice › Faerie: change through a creative human' }],
 };
