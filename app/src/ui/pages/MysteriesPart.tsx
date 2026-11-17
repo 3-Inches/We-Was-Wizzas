@@ -379,7 +379,7 @@ function NumerologyCard({ d, aura }: { d: DerivedCharacter; aura: number }) {
         </Field>
       </div>
       <p className="small">
-        Casting score {r.casting} (Stamina + Arts + Arithmetic + book + aura {aura}); casting total <b>{r.total}</b>, no die: {r.total >= level ? 'cast' : `short of ${level}`}. Rotes up to level {r.maxLevel} can be devised (rote Lab Total {r.labTotal} / 5).
+        Casting score {r.casting} (Stamina + Arts + Arithmetic + book + aura {aura}); casting total <b>{r.total}</b>, no die: {r.total >= level ? 'cast' : `short of ${level}`}. Rotes up to level {r.maxLevel} can be devised (rote Lab Total {r.labTotal} / 5, rounded up{r.labArith < r.arith ? `; Arithmetic adds only ${r.labArith} to it, held to Magic Theory` : ''}).
       </p>
     </Card>
   );

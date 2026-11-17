@@ -7,7 +7,7 @@ import { deriveCharacter, LEARNED_TRAINING } from './character/derive';
 import { validateCharacter } from './character/validate';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import {
-  amuletCharges, amuletItem, castingScore, chartaTime, chartaWorks, charmDivisor, charmOutcome, entreatTotal, interventionFollows, inventGain, inventSeason, isLearnedMagician, learnedArts, learnedLabTotal,
+  amuletCharges, amuletItem, barredPair, castingScore, herbalismBrew, chartaTime, chartaWorks, charmDivisor, charmOutcome, entreatTotal, interventionFollows, inventGain, inventSeason, isLearnedMagician, learnedArts, learnedLabTotal,
   learnedLevel, naturalMagicianOffset, readingCharm,
 } from './learnedMagic';
 
@@ -61,12 +61,30 @@ describe('the Arts of the learned magicians', () => {
     expect(b.spent).toBe(2);
     expect(dc.budgets.find((x) => x.id === 'laterLife')!.total).toBe((25 - 5 - 4) * 15);
   });
+  it('Incompatible Hedge Arts bars one pair: the Salutem Initiation’s Vulnero and Salutem, not Succurro Salutem', () => {
+    const c = magician();
+    addVirtue(c, data, 'vulnero', 'Major');
+    addVirtue(c, data, 'incompatible-hedge-arts-flaw', 'Minor', 'Vulnero and Salutem');
+    expect(barredPair(c, 'VuSa')).toBe(true);
+    expect(barredPair(c, 'SuSa')).toBe(false);
+    const dc = d(c);
+    expect(castingScore(c, dc, 'VuSa', undefined).notes.join(' ')).toMatch(/Incompatible Hedge Arts/);
+    expect(learnedLabTotal(c, dc, 'VuSa', undefined, { kind: 'amulet' }).notes.join(' ')).toMatch(/Incompatible Hedge Arts/);
+    expect(castingScore(c, dc, 'SuSa', undefined).notes).toEqual([]);
+  });
   it('the rules check asks a mathematicus for a Technique and a Form', () => {
     const c = newCharacter('companion', 'n');
     addVirtue(c, data, 'mathematicus-of-bologna', 'Free');
     addVirtue(c, data, 'fortunam', 'Minor');
     const ids = validateCharacter(d(c), data, DEFAULT_HOUSE_RULES).map((i) => i.id);
     expect(ids).toContain('learned-arts');
+  });
+  it('the rules check asks for Latin 1 to learn charms', () => {
+    const c = magician();
+    const ids = () => validateCharacter(d(c), data, DEFAULT_HOUSE_RULES).map((i) => i.id);
+    expect(ids()).toContain('learned-latin');
+    ensureAbility(c, 'dead-language', { laterLife: 5 }, 'Latin');
+    expect(ids()).not.toContain('learned-latin');
   });
 });
 
@@ -136,6 +154,13 @@ describe('Entreat the Powers', () => {
     expect(e.offset).toBe(3);
     expect(e.extraBotch).toBe(3);
   });
+  it('the aura’s own realm called among others: its Lore counts in full, the foreign Lore is divided', () => {
+    const c = giacomo();
+    // Dominion 3: die 6 + Presence 1 + Divine Lore 3 = 10 in full, Magic Lore 2 ÷ 3 = 0
+    const e = entreatTotal(d(c), ['Divine', 'Magic'], { realm: 'Divine', strength: 3 }, 0);
+    expect(e.raw).toBe(6);
+    expect(entreatTotal(d(c), ['Divine', 'Magic'], { realm: 'Divine', strength: 3 }, 3).offset).toBe(3 + 1 + 3 + 0);
+  });
   it('Natural Magician: Philosophiae against a Divine or Infernal penalty only', () => {
     const c = magician();
     addVirtue(c, data, 'natural-magician', 'Minor');
@@ -189,5 +214,17 @@ describe('amulets and chartae', () => {
     inventSeason(c, 6);
     expect(c.learned.inventing).toBeUndefined();
     expect(c.learned.charms?.map((x) => x.name)).toEqual(['Ward of the Hearth']);
+  });
+});
+
+describe('Mythic Herbalism', () => {
+  it('days of a third of the Ease Factor; a dose more adds 1 to it but no time; a contact poison adds 3', () => {
+    const c = newCharacter('companion', 'h');
+    c.characteristics.Int = 2;
+    addVirtue(c, data, 'mythic-herbalism', 'Major');
+    const dc = d(c);
+    expect(herbalismBrew(dc, 9)).toEqual({ ease: 9, days: 3, total: 2 + 1 });
+    expect(herbalismBrew(dc, 9, 4)).toMatchObject({ ease: 12, days: 3 });
+    expect(herbalismBrew(dc, 6, 1, true)).toMatchObject({ ease: 9, days: 3 });
   });
 });

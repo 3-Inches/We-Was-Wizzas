@@ -1153,7 +1153,7 @@ export interface Character {
   /** a folk witch's apprenticeship, fetishes, potions and Witch Moon (Hedge Magic, Folk Witches) */
   folkWitch?: FolkWitchInfo;
   /** a gruagach's apprenticeship and spells known (Hedge Magic, Gruagachan); the spells use the charm record */
-  gruagach?: { apprenticeYears?: number; spells?: LearnedCharm[] };
+  gruagach?: { apprenticeYears?: number; spells?: LearnedCharm[]; /** a spell being invented over several seasons */ inventing?: { spell: LearnedCharm; progress: number; seasons: number } };
   /** Devotions to the saints, in Devotion Points (The Church) */
   devotions?: { uid: string; saint: string; points: number }[];
   /** a pilgrimage under way: its aim, Target Level and the Oppositional Elements overcome (The Church) */

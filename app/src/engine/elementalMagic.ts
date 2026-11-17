@@ -94,10 +94,14 @@ export function elementalTotal(
   return { total: parts.reduce((s, p) => s + p.value, 0), parts, auraBotch: a.botch };
 }
 
-/** What a total reaches on the Summoning chart: the target's greatest Might and Size. */
+/**
+ * What a total reaches on the Summoning chart: the target's greatest Might and Size. The chart's Might
+ * column equals its Total, so a total reaches Might up to itself (7 reaches Might 7, as `summoningNeeds`
+ * agrees); Size goes by the chart's rows (7 reaches only Size −6).
+ */
 export function summoningReach(total: number): { might: number; size: number; note: string } {
   const row = [...SUMMONING_CHART].reverse().find((r) => total >= r.total) ?? SUMMONING_CHART[0];
-  return { might: row.total, size: row.size, note: row.note };
+  return { might: Math.max(0, total), size: row.size, note: row.note };
 }
 
 /** The total a target needs on the chart: enough for both its Might and its Size. */
@@ -151,16 +155,78 @@ export const diviningAid = (total: number) => Math.floor(Math.max(0, total) / 5)
 /** The longevity potion: the Refining Total (the lowest Form a requisite) ÷ 5 to Aging rolls until a crisis; vis of the age ÷ 5, rounded up. */
 export const longevityPotion = (refiningTotal: number, age: number) => ({ bonus: Math.floor(Math.max(0, refiningTotal) / 5), vis: Math.ceil(age / 5) });
 
+/** The Characteristics a physician's potion can raise with each element (HMRE, Medicinal). */
+export const POTION_CHARACTERISTICS: Record<ElementId, ('Int' | 'Per' | 'Pre' | 'Com' | 'Str' | 'Sta' | 'Dex' | 'Qik')[]> = {
+  air: ['Int', 'Per', 'Pre', 'Com'],
+  earth: ['Str', 'Sta', 'Dex', 'Qik'],
+  fire: ['Pre', 'Com', 'Dex', 'Qik'],
+  water: ['Int', 'Per', 'Str', 'Sta'],
+};
+
+/**
+ * Medicinal Refining's other potion: a year's boost to one Characteristic of the element, the Refining
+ * Total ÷ 5, but never above half the elementalist's score in the Form used; vis as the longevity potion,
+ * the drinker's age ÷ 5 (HMRE, Medicinal: a lowest Form of 4 and a total of 25 give "five levels, but no higher than +2").
+ */
+export function characteristicPotion(refiningTotal: number, formScore: number, current: number, age: number): { bonus: number; cap: number; result: number; vis: number } {
+  const bonus = Math.floor(Math.max(0, refiningTotal) / 5);
+  const cap = Math.floor(formScore / 2);
+  return { bonus, cap, result: Math.max(current, Math.min(current + bonus, cap)), vis: Math.ceil(age / 5) };
+}
+
 /** Philosophical Refining: vis from an aura, the total ÷ 10. */
 export const refiningExtraction = (total: number) => Math.floor(Math.max(0, total) / 10);
 
-/** Moving vis: the total must reach 5 × the pawns; vis of another Form changes to the element's, losing half (rounded down). */
+/**
+ * Moving vis: the total must reach 5 × the pawns; vis of another Form changes to the element's and half is
+ * lost. The book contradicts itself here (HMRE, Philosophical): its text says half "(rounded down) is lost",
+ * which would leave 3 of 5 pawns, but its own example leaves 2 ("5 pawns of Vim vis … leaving 2 pawns of
+ * Auram vis"). This follows the example: half arrive, rounded down.
+ */
 export function moveVis(total: number, pawns: number, sameForm: boolean): { ok: boolean; arrive: number } {
-  return { ok: total >= 5 * pawns, arrive: sameForm ? pawns : pawns - Math.floor(pawns / 2) };
+  return { ok: total >= 5 * pawns, arrive: sameForm ? pawns : Math.floor(pawns / 2) };
 }
 
-/** Theurgical Refining: the excess over the being's Might is restored (its own element) or drained (the opposed one); vis forms at a pawn for 5 points, no more than Might ÷ 5. */
-export function refineMight(total: number, might: number): { points: number; vis: number } {
-  const points = Math.max(0, total - might);
-  return { points, vis: Math.min(Math.floor(points / 5), Math.floor(might / 5)) };
+/** How the element of the Form used stands to the being's: the same, its opposite (air and earth, fire and water), or another. */
+export type MightRelation = 'own' | 'opposed' | 'other';
+
+export interface RefinedMight {
+  /** the excess over the being's Might, halved (rounded down) for another element */
+  points: number;
+  /** whether the points come off its Might Pool */
+  drain: boolean;
+  /** points that change its Might Pool: all of a drain down to 0, or a restore up to its Might Score */
+  changed: number;
+  /** pawns of vis that form */
+  vis: number;
 }
+
+/**
+ * Theurgical Refining (and a philosopher's on supernatural animals), HMRE, Theurgical: the excess of the
+ * Refining Total over the being's Might restores Might Points when the Form used is its own element,
+ * drains them when it is the opposed one, and otherwise moves half (rounded down) either way, as the
+ * elementalist chooses. Vis forms only when the being loses Might Points, or would gain more than its pool
+ * holds: a pawn for 5 points, no more than its Might Score ÷ 5. The book's "1 pawn for every 5 Might
+ * Points given" is read as the points lost, or the points beyond the pool.
+ * `pool` is the Might Points it has now (full, its Might Score, unless given).
+ */
+export function refineMight(total: number, might: number, relation: MightRelation, o: { drain?: boolean; pool?: number } = {}): RefinedMight {
+  const excess = Math.max(0, total - might);
+  const points = relation === 'other' ? Math.floor(excess / 2) : excess;
+  const drain = relation === 'opposed' || (relation === 'other' && !!o.drain);
+  const pool = Math.max(0, Math.min(might, o.pool ?? might));
+  const changed = drain ? Math.min(points, pool) : Math.min(points, might - pool);
+  const toVis = drain ? changed : points - changed;
+  return { points, drain, changed, vis: Math.min(Math.floor(toVis / 5), Math.floor(might / 5)) };
+}
+
+/** The Lore a theurgist adds to Refining: that of the target's realm (HMRE, Theurgical). */
+export const THEURGY_REALMS = [
+  { realm: 'Magic', lore: 'magic-lore' },
+  { realm: 'Faerie', lore: 'faerie-lore' },
+  { realm: 'Divine', lore: 'dominion-lore' },
+  { realm: 'Infernal', lore: 'infernal-lore' },
+] as const;
+
+/** The longevity potion's vis is held to the sum of the Elementalist Forms (HMRE, Refining). */
+export const potionVisOk = (d: DerivedCharacter, vis: number) => vis <= elementalVisLimit(d);

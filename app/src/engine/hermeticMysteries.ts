@@ -225,10 +225,16 @@ export const NUMEROLOGY_BOOKS = [
   { id: 'greater', label: 'Greater book (+8)', bonus: 8 },
 ] as const;
 
-/** A rote: casting score = Stamina + Technique + Form + Arithmetic + book + aura, its total half that rounded up; no rote above the rote Lab Total / 5. */
+/**
+ * A rote: casting score = Stamina + Technique + Form + Arithmetic + book + aura, its total half that
+ * rounded up. Rote Lab Total = Technique + Form + Intelligence + Magic Theory + Arithmetic (held to Magic
+ * Theory) + book + aura; no rote above the Rote Lab Total / 5, rounded up (TMRE, Rotes).
+ */
 export function roteTotals(d: DerivedCharacter, technique: number, form: number, book: number, aura: number) {
   const arith = liberalArt(d, 'arithmetic');
+  const theory = best(d, d.theoryAbility)?.total ?? 0;
   const casting = d.characteristics.Sta.value + technique + form + arith + book + aura;
-  const lab = technique + form + d.characteristics.Int.value + (best(d, d.theoryAbility)?.total ?? 0) + arith + book + aura;
-  return { arith, casting, total: Math.ceil(casting / 2), labTotal: lab, maxLevel: Math.floor(lab / 5) };
+  const labArith = Math.min(arith, theory);
+  const lab = technique + form + d.characteristics.Int.value + theory + labArith + book + aura;
+  return { arith, labArith, casting, total: Math.ceil(casting / 2), labTotal: lab, maxLevel: Math.ceil(lab / 5) };
 }

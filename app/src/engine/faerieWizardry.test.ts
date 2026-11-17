@@ -5,7 +5,7 @@ import { addVirtue, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import {
-  bargainPenetration, bargainTotal, callingResolveEase, creativityCost, expectedTraits, faerieArts, faerieRank, riteLevel, riteMaxLevel, riteOptions, riteTotal, sympathyCap, sympathyStep, sympathyXp,
+  bargainPenetration, bargainTotal, callingResolveEase, creativityCost, expectedTraits, faerieArts, faerieRank, riteLevel, riteMaxLevel, riteOptions, riteTotal, sympathyBotchDice, sympathyCanRise, sympathyCap, sympathyStep, sympathyXp,
 } from './faerieWizardry';
 
 const data = buildGameData();
@@ -26,8 +26,28 @@ describe('Sympathy Traits', () => {
     expect(sympathyXp({ ...t('Dawn', 1), xp: 9 }, 1)).toMatchObject({ score: 2, xp: 0 });
     expect(sympathyXp({ ...t('Dawn', 1), xp: 0 }, -1)).toMatchObject({ score: 0, xp: 4 });
     expect(sympathyXp({ ...t('Iron', -1), xp: 9 }, 1)).toMatchObject({ score: 0, xp: 0 });
-    // held at the cap
-    expect(sympathyXp({ ...t('Dawn', 2), xp: 14 }, 1, 2)).toMatchObject({ score: 2, xp: 14 });
+    // practice is held at the cap
+    expect(sympathyXp({ ...t('Dawn', 2), xp: 14 }, 1, { cap: 2, warping: 2 })).toMatchObject({ score: 2, xp: 14 });
+    // the 1s and botches of play are not: "These fluctuations are not limited by the character's Warping Score"
+    expect(sympathyXp({ ...t('Dawn', 2), xp: 14 }, 1)).toMatchObject({ score: 3, xp: 0 });
+  });
+  it('a negative trait rises by practice only while the Warping Score exceeds its size (the book: Warping 2 raises −1, not −2)', () => {
+    expect(sympathyCanRise(-1, 2, 2)).toBe(true);
+    expect(sympathyCanRise(-2, 2, 2)).toBe(false);
+    expect(sympathyCanRise(-3, 2, 2)).toBe(false);
+    expect(sympathyXp({ ...t('Iron', -2), xp: 14 }, 1, { cap: 2, warping: 2 })).toMatchObject({ score: -2, xp: 14 });
+    expect(sympathyXp({ ...t('Iron', -1), xp: 9 }, 1, { cap: 2, warping: 2 })).toMatchObject({ score: 0, xp: 0 });
+  });
+  it('a botch costs an experience point for each 0 rolled', () => {
+    expect(sympathyXp({ ...t('Dawn', 1), xp: 3 }, -3)).toMatchObject({ score: 1, xp: 0 });
+    expect(sympathyXp({ ...t('Dawn', 1), xp: 3 }, -4)).toMatchObject({ score: 0, xp: 4 });
+    // reversed for a negative trait: a botch deepens the penalty
+    expect(sympathyXp({ ...t('Iron', -1), xp: 0 }, -2)).toMatchObject({ score: -2, xp: 13 });
+  });
+  it('the worst negative trait adds its size in botch dice to every botch roll (the book: Iron −3, three more)', () => {
+    expect(sympathyBotchDice({ sympathy: [t('Iron', -3), t('Winter', 4), t('Bells', -1)] })).toMatchObject({ dice: 3, trait: { trait: 'Iron' } });
+    expect(sympathyBotchDice({ sympathy: [t('Winter', 4)] }).dice).toBe(0);
+    expect(sympathyBotchDice({}).dice).toBe(0);
   });
   it('the cap: Warping Score, +1 Faerie Blood, +3 Strong Faerie Blood, + the Faerie Sympathy Virtue', () => {
     const c = newCharacter('companion', 's');

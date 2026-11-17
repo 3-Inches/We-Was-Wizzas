@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { CHARM_PARAMS, DEVICE_PARAMS, LEARNED_FORMS, LEARNED_TECHNIQUES, learnedArtName, type LearnedArts } from '../../data/hedgeLearned';
 import { LEARNED_CHARMS, LEARNED_GUIDELINES } from '../../data/learnedCharms';
 import { LEARNED_TRAINING } from '../../engine/character/derive';
-import { charmXp, learnedArts, learnedLevel } from '../../engine/learnedMagic';
+import { barredPair, charmXp, learnedArts, learnedLevel } from '../../engine/learnedMagic';
 import type { Character, LearnedCharm } from '../../engine/types';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper } from '../kit';
@@ -19,10 +19,10 @@ const LM_IDS = ['mathematicus-of-bologna', ...LEARNED_TECHNIQUES.map((t) => t.id
 export const hasLearnedMagic = (c: Character) =>
   !!c.learned?.charms?.length || !!c.learned?.trainingYears || c.virtues.some((v) => LM_IDS.includes(v.defId)) || c.abilities.some((a) => LM_IDS.includes(a.abilityId));
 
-/** The Technique and Form pairs this magician can use. */
+/** The Technique and Form pairs this magician can use: not the one barred by Incompatible Hedge Arts. */
 export function artPairs(c: Character, d: NonNullable<CharEditor['d']>): LearnedArts[] {
   const a = learnedArts(c, d);
-  return a.techniques.flatMap((t) => a.forms.map((f) => `${t.abbr}${f.abbr}` as LearnedArts));
+  return a.techniques.flatMap((t) => a.forms.map((f) => `${t.abbr}${f.abbr}` as LearnedArts)).filter((p) => !barredPair(c, p));
 }
 
 /** Design a charm from the book's examples or its guidelines; the result is handed back. */

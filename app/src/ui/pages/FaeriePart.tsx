@@ -8,7 +8,7 @@ import { BARGAIN_ARTS, FAERIE_GUIDELINES, FAERIE_METHODS, FAERIE_POWERS, type Ba
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
   CREATIVITY_TABLE, bargainPenetration, bargainTotal, callingActEase, callingApplies, callingResolveEase, creativityCost, enchantmentEase, evocationVisLimit, faerieArts,
-  faerieRank, riteLevel, riteMaxLevel, riteOptions, riteTotal, riteWarps, sympathyCap, sympathySum, sympathyXp,
+  faerieRank, riteLevel, riteMaxLevel, riteOptions, riteTotal, riteWarps, sympathyBotchDice, sympathySum, sympathyXp,
 } from '../../engine/faerieWizardry';
 import { auraModifier } from '../../engine/magic';
 import type { Character, SympathyTrait } from '../../engine/types';
@@ -49,14 +49,19 @@ function TraitPicker({ traits, value, onChange }: { traits: SympathyTrait[]; val
   );
 }
 
-/** A 1 adds an experience point to each trait used, a botch takes one away (negative traits the same way: toward or away from 0). */
+/**
+ * A 1 adds an experience point to each trait used, each 0 of a botch takes one away (negative traits the
+ * same way: toward or away from 0). Not held by the Warping Score: these are fluctuations, not practice.
+ */
 function useSympathyXp(ed: CharEditor) {
   return (used: string[], delta: number) =>
     ed.update((x) => {
-      const cap = ed.d ? sympathyCap(x, ed.d) : Infinity;
-      x.sympathy = x.sympathy?.map((t) => (used.includes(t.uid) ? sympathyXp(t, delta, cap) : t));
+      x.sympathy = x.sympathy?.map((t) => (used.includes(t.uid) ? sympathyXp(t, delta) : t));
     });
 }
+
+/** The line that says where the extra botch dice come from. */
+const negBotchText = (n: ReturnType<typeof sympathyBotchDice>) => (n.dice ? `${n.dice} more botch ${n.dice === 1 ? 'die' : 'dice'} from ${n.trait!.trait || 'a negative trait'} ${signed(n.trait!.score)}` : '');
 
 export default function FaeriePart({ ed }: { ed: CharEditor }) {
   const { c, d, ctx } = ed;
@@ -69,7 +74,7 @@ export default function FaeriePart({ ed }: { ed: CharEditor }) {
     <>
       <p className="small muted">
         Faerie Rank <b>{signed(rank)}</b>; a Faerie effect here takes the aura as {signed(aura)}. Sympathy Traits are kept on the sheet; a 1 on the stress die gives each trait used an
-        experience point, and a botch takes one away.
+        experience point, and each 0 of a botch takes one away.
       </p>
       <SympathyCard ed={ed} />
       {arts.methods.length > 0 && arts.powers.length > 0 && <RiteCard ed={ed} aura={aura} />}
@@ -112,11 +117,11 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
   const m = FAERIE_METHODS.find((x) => x.id === method)!;
   const visMax = evocationVisLimit(d, power);
   const canVis = d.abilities.some((a) => a.abilityId === 'evocation');
-  const negBotch = traits.filter((t) => t.score < 0).length;
+  const negBotch = sympathyBotchDice(c);
   const enchEase = enchantmentEase(lv.level);
   const cast = () => {
     const useSimple = simple && d.abilities.some((a) => a.abilityId === 'enchantment');
-    const r = useSimple ? simpleDie() : stressDie(1 + negBotch + (canVis ? vis : 0));
+    const r = useSimple ? simpleDie() : stressDie(1 + negBotch.dice + (canVis ? vis : 0));
     const v = useSimple ? r.value : r.value;
     const total = tot.total + v + (canVis ? 2 * vis : 0);
     const botched = r.kind === 'stress' && r.botches > 0;
@@ -124,7 +129,7 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
     const works = !botched && reached >= lv.level;
     const out = [
       `${m.name}/${FAERIE_POWERS.find((x) => x.id === power)!.name}: ${useSimple ? `simple die ${r.value}` : `stress die ${describeStress(r as ReturnType<typeof stressDie>)}`} + ${tot.total}${canVis && vis ? ` + ${2 * vis} (${vis} vis)` : ''} = ${total}${total > max ? `, held to ${max} by the Sympathy Traits` : ''}, against level ${lv.level}${ritual ? ' (a ritual: 15 minutes a magnitude, no vis needed)' : ''}.`,
-      botched ? `BOTCH (${(r as ReturnType<typeof stressDie>).botches}): the rite goes wrong${traits.length ? '; each trait used loses an experience point' : ''}, and a Warping Point for each botch die that came up 0.` : works ? `The rite works at level ${lv.level}.${riteWarps(lv.level) ? ' At level 30 or more it Warps its target.' : ''}` : `Too weak: it reaches ${reached}.`,
+      botched ? `BOTCH (${(r as ReturnType<typeof stressDie>).botches}): the rite goes wrong${traits.length ? `; each trait used loses ${(r as ReturnType<typeof stressDie>).botches} experience point${(r as ReturnType<typeof stressDie>).botches > 1 ? 's' : ''}` : ''}, and a Warping Point for each botch die that came up 0.` : works ? `The rite works at level ${lv.level}.${riteWarps(lv.level) ? ' At level 30 or more it Warps its target.' : ''}` : `Too weak: it reaches ${reached}.`,
     ];
     const cost: string[] = [];
     update((x) => {
@@ -149,7 +154,7 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
       xp(used, 1);
       out.push('A 1 on the die: each trait used gains an experience point.');
     }
-    if (botched && traits.length) xp(used, -1);
+    if (botched && traits.length) xp(used, -(r as ReturnType<typeof stressDie>).botches);
     setLines(out);
   };
   return (
@@ -225,7 +230,7 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
           </label>
         )}
         {canVis && (
-          <Field label="Vis" hint={`+2 a pawn, up to ${visMax}; a botch die each unless Faerie vis`}>
+          <Field label="Vis" hint={`+2 a pawn, up to ${visMax}; a botch die each unless Faerie vis. Take it from the purse by hand.`}>
             <Stepper value={vis} min={0} max={visMax} width={32} onChange={setVis} />
           </Field>
         )}
@@ -246,7 +251,7 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
       <p className="small">
         Level <b>{lv.level}</b> {lv.design}
         {ritual ? ', a ritual' : ''}. Highest level these traits allow: <b>{max}</b> (5 × {sympathySum(traits)}{method === 'empathy' && extended ? ' × 2' : ''}). Casting:{' '}
-        {tot.parts.map((p) => `${p.label} ${p.value}`).join(' + ')} = {tot.total} + die. Cost: {m.cost}.
+        {tot.parts.map((p) => `${p.label} ${p.value}`).join(' + ')} = {tot.total} + die. Cost: {m.cost}.{negBotch.dice > 0 && ` ${negBotchText(negBotch)}.`}
       </p>
       {lv.level > max && <p className="small warn-text">Its level is above what the chosen traits allow: tick more traits, or a lower level.</p>}
       <div className="row">
@@ -275,8 +280,9 @@ function BargainCard({ ed, aura: aura0, rank, arts }: { ed: CharEditor; aura: nu
   const best = Math.max(0, ...traits.map((t) => t.score));
   const tot = bargainTotal(d, art, rank, aura);
   const a = BARGAIN_ARTS.find((x) => x.id === art)!;
+  const negBotch = sympathyBotchDice(c);
   const roll = () => {
-    const r = stressDie(1 + traits.filter((t) => t.score < 0).length);
+    const r = stressDie(1 + negBotch.dice);
     const total = tot.total + r.value;
     const botched = r.botches > 0;
     const penTotal = bargainPenetration(total, might, pen, best, art !== 'summoning' && held);
@@ -291,10 +297,10 @@ function BargainCard({ ed, aura: aura0, rank, arts }: { ed: CharEditor; aura: nu
     update((x) => void (x.fatigueLost = Math.min(5, x.fatigueLost + 1)));
     setLines([
       `${a.name}: stress die ${describeStress(r)} + ${tot.total} = ${total} against Might ${might}; Penetration ${penTotal}${art !== 'summoning' && held ? ' (held by a Summoning: the effect counts as level 0)' : ''}. A Fatigue level spent.`,
-      botched ? `BOTCH: ${art === 'summoning' ? 'a faerie still appears, hostile, or not the one called' : 'the Art goes wrong'}.` : ok ? what[art][0] : what[art][1],
+      botched ? `BOTCH (${r.botches}): ${art === 'summoning' ? 'a faerie still appears, hostile, or not the one called' : 'the Art goes wrong'}${traits.length ? `; each trait used loses ${r.botches} experience point${r.botches > 1 ? 's' : ''}` : ''}.` : ok ? what[art][0] : what[art][1],
       ...(art === 'summoning' ? ['When the summoning ends: a bargain made gives an appropriate trait an experience point; none made takes one away.'] : []),
     ]);
-    if (botched && traits.length) xp(used, -1);
+    if (botched && traits.length) xp(used, -r.botches);
     else if (r.exploded && traits.length) xp(used, 1);
   };
   return (
@@ -326,7 +332,7 @@ function BargainCard({ ed, aura: aura0, rank, arts }: { ed: CharEditor; aura: nu
       </div>
       <TraitPicker traits={c.sympathy ?? []} value={used} onChange={setUsed} />
       <p className="small">
-        {tot.parts.map((p) => `${p.label} ${p.value}`).join(' + ')} = {tot.total} + stress die. It can reach Might up to <b>{max}</b> (5 × the traits ticked); the best positive trait adds {best} to Penetration.
+        {tot.parts.map((p) => `${p.label} ${p.value}`).join(' + ')} = {tot.total} + stress die. It can reach Might up to <b>{max}</b> (5 × the traits ticked); the best positive trait adds {best} to Penetration.{negBotch.dice > 0 && ` ${negBotchText(negBotch)}.`}
       </p>
       {might > max && <p className="small warn-text">This faerie’s Might is above what the traits ticked allow.</p>}
       <button onClick={roll} disabled={!traits.length || might > max}>

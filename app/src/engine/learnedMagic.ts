@@ -55,6 +55,18 @@ export interface LearnedTotal {
   auraBotch: number;
 }
 
+/**
+ * Incompatible Hedge Arts (HMRE, the learned magicians' Flaws): one Technique and Form the magician cannot
+ * use together, named in the Flaw ("Vulnero and Salutem"). The gruagach's Flaw is checked the same way.
+ */
+export function barredPair(c: Pick<Character, 'virtues'>, tf: LearnedArts): boolean {
+  const t = LEARNED_TECHNIQUES.find((x) => x.abbr === tf.slice(0, 2))?.name.toLowerCase();
+  const f = LEARNED_FORMS.find((x) => x.abbr === tf.slice(2))?.name.toLowerCase();
+  return !!t && !!f && c.virtues.some((v) => v.defId === 'incompatible-hedge-arts-flaw' && (v.param ?? '').toLowerCase().includes(t) && (v.param ?? '').toLowerCase().includes(f));
+}
+
+const barredNote = (tf: LearnedArts) => `Incompatible Hedge Arts: this magician cannot use ${learnedArtName(tf)}.`;
+
 /** The magic is of the Magic realm: an aura modifies it as it does Hermetic magic. */
 export const learnedAura = (aura: AuraState | undefined) => auraModifier('Magic', aura);
 
@@ -63,6 +75,7 @@ export function castingScore(c: Character, d: DerivedCharacter, tf: LearnedArts,
   const { t, f } = artScore(c, d, tf);
   const notes: string[] = [];
   if (!t || !f) notes.push('The magician lacks this Technique or Form.');
+  if (barredPair(c, tf)) notes.push(barredNote(tf));
   const a = learnedAura(aura);
   const parts: Part[] = [
     { label: t?.name ?? tf.slice(0, 2), value: t?.score ?? 0 },
@@ -132,12 +145,18 @@ export function entreatTotal(d: DerivedCharacter, called: Exclude<Realm, 'None'>
   const raw = die + parts.reduce((s, p) => s + p.value, 0);
   const penalty = Math.min(0, learnedAura(aura).mod);
   const strength = aura?.strength ?? 0;
-  const own = !!aura && aura.realm !== 'None' && called.includes(aura.realm as Exclude<Realm, 'None'>);
-  const divided = !own && strength > 0 ? Math.floor(raw / strength) : raw;
+  const native = aura && aura.realm !== 'None' ? (aura.realm as Exclude<Realm, 'None'>) : undefined;
+  const own = !!native && called.includes(native);
+  // "If the learned magician calls upon a power other than the one in which the magic occurs, the Entreat
+  // the Powers total is divided by the hostile aura", and with several realms "the Entreat the Powers totals
+  // of the different realms" are added (HMRE, Mitigation of Realm Interaction Effects). The book's examples
+  // call either the aura's realm alone or only foreign ones. When the aura's realm is called among others,
+  // this reads it as: the die, Presence and that realm's Lore count in full, each foreign realm's Lore is divided.
+  const foreign = own ? called.filter((r) => r !== native).reduce((t, r) => t + score(d, REALM_LORE[r]), 0) : 0;
+  const divided = strength <= 0 ? raw : own ? raw - foreign + Math.floor(foreign / strength) : Math.floor(raw / strength);
   const offset = Math.min(-penalty, Math.max(0, divided));
-  const text = !penalty
-    ? 'No hostile aura here: entreaty does nothing.'
-    : `${raw}${own ? '' : ` ÷ ${strength} (the aura’s realm is not called) = ${divided}`}, offsetting ${offset} of the aura’s ${penalty}.`;
+  const how = own ? (foreign ? `, the foreign realms’ Lore ${foreign} ÷ ${strength} = ${divided}` : '') : ` ÷ ${strength} (the aura’s realm is not called) = ${divided}`;
+  const text = !penalty ? 'No hostile aura here: entreaty does nothing.' : `${raw}${how}, offsetting ${offset} of the aura’s ${penalty}.`;
   return { raw, offset, extraBotch: called.length, parts, text };
 }
 
@@ -216,6 +235,7 @@ export function learnedLabTotal(
   const { t, f } = artScore(c, d, tf);
   const notes: string[] = [];
   if (!t || !f) notes.push('The magician lacks this Technique or Form.');
+  if (barredPair(c, tf)) notes.push(barredNote(tf));
   const a = learnedAura(aura);
   const parts: Part[] = [
     { label: t?.name ?? tf.slice(0, 2), value: t?.score ?? 0 },
@@ -303,4 +323,17 @@ export function inventSeason(c: Character, labTotal: number): string {
     return `${inv.charm.name} is invented (Lab Total ${labTotal} × 5 − ${inv.charm.level} = ${gain} this season).`;
   }
   return gain ? `${inv.charm.name}: +${gain} (${inv.progress} of ${inv.charm.level}).` : `${inv.charm.name}: the Lab Total × 5 (${5 * labTotal}) does not beat its level ${inv.charm.level}; nothing gained.`;
+}
+
+// ------------------------------------------------------------------------------------------------
+// Mythic Herbalism
+
+/**
+ * Brewing with Mythic Herbalism (HMRE, the learned magicians' Virtues): days of one-third the effect's
+ * Ease Factor; each dose past the first adds 1 to the Ease Factor but no time; a contact poison adds 3.
+ * The roll is Intelligence + Mythic Herbalism + a stress die: a failure is useless, a botch may poison.
+ */
+export function herbalismBrew(d: DerivedCharacter, ease: number, doses = 1, contact = false): { ease: number; days: number; total: number } {
+  const base = ease + (contact ? 3 : 0);
+  return { ease: base + Math.max(0, doses - 1), days: Math.ceil(base / 3), total: d.characteristics.Int.value + score(d, 'mythic-herbalism') };
 }

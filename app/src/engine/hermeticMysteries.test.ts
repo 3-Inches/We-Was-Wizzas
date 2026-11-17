@@ -216,4 +216,18 @@ describe('spirits, theurgy and numerology', () => {
     expect(r.casting).toBe(2 + 10 + 10 + 4 + 4 + 5);
     expect(r.total).toBe(Math.ceil(r.casting / 2));
   });
+  it('the Rote Lab Total / 5 is rounded up: a Lab Total of 28 allows a level 6 rote', () => {
+    const r = roteTotals(d(magus()), 8, 8, 0, 0); // 8 + 8 + Int 3 + Magic Theory 5 + Arithmetic 4
+    expect(r.labTotal).toBe(28);
+    expect(r.maxLevel).toBe(6);
+  });
+  it('Arithmetic adds to the Rote Lab Total only up to Magic Theory', () => {
+    const c = magus();
+    ensureAbility(c, 'magic-theory').xp = { apprenticeship: 15 }; // 2
+    const r = roteTotals(d(c), 8, 8, 0, 0);
+    expect(r.arith).toBe(4);
+    expect(r.labArith).toBe(2);
+    expect(r.labTotal).toBe(8 + 8 + 3 + 2 + 2);
+    expect(r.casting).toBe(2 + 8 + 8 + 4); // the casting score keeps the whole Arithmetic
+  });
 });

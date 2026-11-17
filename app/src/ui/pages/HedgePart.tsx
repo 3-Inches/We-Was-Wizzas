@@ -4,6 +4,7 @@
 // made in a season; a season inventing a charm or learning charms from a teacher.
 
 import { useState } from 'react';
+import { HerbalismCard, hasHerbalism } from './HerbalismCard';
 import { LEARNED_CHARMS } from '../../data/learnedCharms';
 import { learnedArtName, type LearnedArts } from '../../data/hedgeLearned';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
@@ -32,7 +33,7 @@ import { NattThelCard, VitkiCastCard, VitkiSeasonCard, VitkiSheetCard, hasVitki 
 
 const ELEMENTAL_IDS = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining'];
 /** Someone this page is for: a learned magician or an elementalist. */
-export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || isFolkWitch(c) || hasGruagach(c) || hasNightwalker(c) || hasVitki(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
+export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || hasHerbalism(c) || isFolkWitch(c) || hasGruagach(c) || hasNightwalker(c) || hasVitki(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
 
 type CalledRealm = Exclude<Realm, 'None'>;
 const REALMS: Realm[] = ['None', 'Magic', 'Faerie', 'Divine', 'Infernal'];
@@ -76,6 +77,7 @@ function useEntreaty(ed: CharEditor, aura: AuraState) {
           Roll the entreaty
         </button>
         {roll && <span className={roll.botch ? 'warn-text' : 'good-text'}>{roll.text}</span>}
+        <span className="muted" style={{ flexBasis: '100%' }}>For a charm the powers are named aloud: no Quiet Magic or silent casting. On an amulet or charta their names are written.</span>
       </div>
     ) : null;
   return { called: roll ? called : [], offset: roll?.offset ?? 0, node, reset: () => setRoll(undefined) };
@@ -90,34 +92,41 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
   const learned = hasLearnedMagic(c);
   const elemental = elementalArts(c, d);
   const isElemental = elemental.techniques.length > 0 || elemental.forms.length > 0;
+  // a nightwalker's and a herbalist's rolls take no aura: show its controls only to those whose magic does
+  const usesAura = learned || isElemental || isFolkWitch(c) || hasGruagach(c) || hasVitki(c);
   return (
     <>
-      <p className="small muted">
-        Hedge magic is of the Magic realm: a Magic aura adds, others take away as for Hermetic magic ({signed(a.mod)} here
-        {a.botch ? `, ${a.botch} more botch dice` : ''}).{learned ? ' A learned magician’s charms and years of training are kept on the sheet.' : ''}
-        {isElemental ? ' An elementalist’s Elemental Traits are kept on the sheet.' : ''}
-        {isFolkWitch(c) ? ' A folk witch’s apprenticeship is kept on the sheet; her potions and fetishes here.' : ''}
-      </p>
-      <div className="row">
-        <Field label="Aura">
-          <select value={aura.realm} onChange={(e) => setAura({ ...aura, realm: e.target.value as Realm })}>
-            {REALMS.map((r) => (
-              <option key={r} value={r}>{r === 'None' ? 'no aura' : r}</option>
-            ))}
-          </select>
-        </Field>
-        {aura.realm !== 'None' && (
-          <Field label="Strength">
-            <Stepper value={aura.strength} min={0} max={10} width={32} onChange={(v) => setAura({ ...aura, strength: v })} />
+      {usesAura && (
+        <p className="small muted">
+          Hedge magic is of the Magic realm: a Magic aura adds, others take away as for Hermetic magic ({signed(a.mod)} here
+          {a.botch ? `, ${a.botch} more botch dice` : ''}).{learned ? ' A learned magician’s charms and years of training are kept on the sheet.' : ''}
+          {isElemental ? ' An elementalist’s Elemental Traits are kept on the sheet.' : ''}
+          {isFolkWitch(c) ? ' A folk witch’s apprenticeship is kept on the sheet; their potions and fetishes are here.' : ''}
+        </p>
+      )}
+      {usesAura && (
+        <div className="row">
+          <Field label="Aura">
+            <select value={aura.realm} onChange={(e) => setAura({ ...aura, realm: e.target.value as Realm })}>
+              {REALMS.map((r) => (
+                <option key={r} value={r}>{r === 'None' ? 'no aura' : r}</option>
+              ))}
+            </select>
           </Field>
-        )}
-      </div>
+          {aura.realm !== 'None' && (
+            <Field label="Strength">
+              <Stepper value={aura.strength} min={0} max={10} width={32} onChange={(v) => setAura({ ...aura, strength: v })} />
+            </Field>
+          )}
+        </div>
+      )}
       {learned && pairs.length === 0 && <p className="small warn-text">No Technique and Form of the learned magicians yet: take their Virtues on the sheet (a Gifted mathematicus has all six).</p>}
       {pairs.length > 0 && <CharmCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <ChartaCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <AmuletCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <CharmSeasonCard ed={ed} aura={aura} pairs={pairs} />}
       {learned && <LearnedCard ed={ed} />}
+      {hasHerbalism(c) && <HerbalismCard ed={ed} />}
       {isElemental && (!elemental.techniques.length || !elemental.forms.length) && (
         <p className="small warn-text">An elementalist needs a Technique and a Form: take their Virtues on the sheet.</p>
       )}
@@ -231,7 +240,7 @@ function CharmCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState; pairs
             <input type="checkbox" checked={stress} onChange={(e) => setStress(e.target.checked)} /> stress die
           </label>
         )}
-        <Field label="Vis" hint="+2 a pawn, a botch die each, as for Hermetic magic">
+        <Field label="Vis" hint="+2 a pawn, a botch die each, as for Hermetic magic. Take it from the purse by hand.">
           <Stepper value={vis} min={0} max={20} width={32} onChange={setVis} />
         </Field>
       </div>
@@ -467,7 +476,7 @@ function CharmSeasonCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState;
               <button onClick={work} disabled={s.busy}>
                 Work a season
               </button>
-              <button className="small ghost" onClick={() => update((x) => void (x.learned = { ...(x.learned ?? {}), inventing: undefined }))}>
+              <button className="small danger" onClick={() => update((x) => void (x.learned = { ...(x.learned ?? {}), inventing: undefined }))}>
                 Give it up
               </button>
             </div>

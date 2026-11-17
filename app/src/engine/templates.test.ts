@@ -27,4 +27,12 @@ describe('the core book’s character templates', () => {
     }
     expect(report).toEqual([]);
   });
+  it('takes the native language from the saga’s Tribunal, and leaves it for the player to name when there is none', () => {
+    const t = CHARACTER_TEMPLATES.find((x) => /\b(Native|Living) Language\s+\d/.test(x.sheet.abilities))!;
+    const lang = (tribunal?: string) => characterFromTemplate(t, 's', 1220, data, rules, tribunal).c.abilities.filter((a) => a.abilityId === 'living-language').map((a) => a.param);
+    expect(lang('Rhine')).toContain('German');
+    expect(lang()).toContain('');
+    const c = characterFromTemplate(t, 's', 1220, data, rules).c;
+    expect(validateCharacter(deriveCharacter(c, data, rules), data, rules).some((i) => i.id.startsWith('lang-name-'))).toBe(true);
+  });
 });
