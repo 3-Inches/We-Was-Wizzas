@@ -19,6 +19,7 @@ import { Card, Empty } from '../kit';
 import { R } from '../routes';
 import { hedgeSeasonWorks } from './HedgePart';
 import { holyWorksOpen } from '../../engine/holy';
+import { devotionSeasonWorks } from './DevotionSeasonsCard';
 
 export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, onPlan }: { saga: Saga; data: GameData; chars: Character[]; covs: Covenant[]; derived: Map<string, DerivedCharacter>; fill?: boolean; /** open the full planner for one character */ onPlan?: (id: string) => void }) {
   const updateCharacter = useStore((s) => s.updateCharacter);
@@ -58,7 +59,7 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
     // a teacher who named this character among their students, and whose own season is free for it
     const lessonFrom = playing.find((t) => t.id !== c.id && t.standing?.kind === 'teach' && !!t.standing.students?.includes(c.id) && !loggedThisSeason(t, year, season).some((e) => !e.extra));
     // their own magic's seasons of work, worked from Plan in full
-    const own = [...hedgeSeasonWorks(c, d), ...(holyWorksOpen(d).length ? ['holy work'] : [])];
+    const own = [...hedgeSeasonWorks(c, d), ...(holyWorksOpen(d).length ? ['holy work'] : []), ...devotionSeasonWorks(c, d)];
     return (
       <div key={c.id} className="list-row" style={{ flexWrap: 'wrap' }}>
         <Link to={R.character(saga.id, c)} style={{ minWidth: 120 }}>
@@ -103,7 +104,7 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
             {fill ? `→ ${describeStanding(c, d, resolveStanding(c, d, year))}` : '→ nothing (unplanned seasons are left empty)'}
             {own.length > 0 && (
               <>
-                {' '}Or their own magic: {own.join(', ')}, in <b>Plan in full</b>.
+                {' '}Or, in <b>Plan in full</b>: {own.join(', ')}.
               </>
             )}
           </div>

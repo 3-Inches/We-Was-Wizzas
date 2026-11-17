@@ -27,14 +27,14 @@ export const creationDevotionPoints = (c: Pick<Character, 'personality' | 'virtu
 /** A relic of the saint adds its Faith Points × 2 to the Devotion Total, once a day, and waives the unfamiliar saint’s −15. */
 export const relicDevotionBonus = (faithPoints: number) => 2 * Math.max(0, faithPoints);
 
-/** Ways to gain Devotion Points, with the book's amounts. */
-export const DEVOTION_GAINS: { id: string; label: string; min: number; max: number; text: string }[] = [
-  { id: 'season', label: 'A season of personal devotion at the saint’s shrine', min: 5, max: 5, text: 'Exposure in Dominion or Church Lore the only experience.' },
+/** Ways to gain Devotion Points, with the book's amounts. Those marked `season` take a season, and are worked on the Seasons page. */
+export const DEVOTION_GAINS: { id: string; label: string; min: number; max: number; text: string; season?: true }[] = [
+  { id: 'season', label: 'A season of personal devotion at the saint’s shrine', min: 5, max: 5, text: 'Exposure in Dominion or Church Lore the only experience.', season: true },
   { id: 'endow', label: 'Endowing a church, chapel or monastery to the saint', min: 5, max: 50, text: '5 for a small chapel without a story, 50 for a cathedral at the center of a saga.' },
   { id: 'guild', label: 'The saint’s guild', min: 2, max: 3, text: '3 on joining, 2 on becoming a journeyman, 2 a master.' },
   { id: 'site', label: 'Visiting a site of the saint (tomb, relic, martyrdom, miracle)', min: 1, max: 10, text: '1 in one’s home town; 5 or more for a season’s journey or out of the way; 10 for a hazardous story of a season.' },
   { id: 'art', label: 'Sponsoring church art of the saint', min: 1, max: 20, text: 'Its Aesthetic Quality; only the best work for each saint counts.' },
-  { id: 'hagiography', label: 'A season studying the saint’s hagiography', min: 1, max: 10, text: 'Its Quality ÷ 2 (a general work on the saints, 1 once per saint; a work by the saint, 5 a season).' },
+  { id: 'hagiography', label: 'A season studying the saint’s hagiography', min: 1, max: 10, text: 'Its Quality ÷ 2 (a general work on the saints, 1 once per saint; a work by the saint, 5 a season).', season: true },
   { id: 'cultus', label: 'Furthering the saint’s cultus', min: 3, max: 30, text: 'The Petition Ease Factor: recognition, a work accepted, a church consecrated.' },
   { id: 'miracle', label: 'Witnessing a genuine miracle of the saint', min: 5, max: 10, text: '10 when it saved one’s life; none if invoked trivially.' },
   { id: 'procession', label: 'The saint’s feast-day procession', min: 1, max: 6, text: '1 if part of a story or a hardship, 1 to 5 more for honoring the saint beyond the usual.' },
@@ -109,18 +109,43 @@ export const PATH_TOTALS: { total: number; label: string }[] = [
 /** The Path Target: the Path Total less the Pious score. */
 export const pathTarget = (pathTotal: number, pious: number) => Math.max(0, pathTotal - Math.max(0, pious));
 
-export const QUEST_COMPONENTS: { value: number; label: string }[] = [
-  { value: 1, label: 'A season serving the poor or the Church' },
-  { value: 1, label: 'A season of personal devotion (a Devotion Point, exposure in Dominion Lore)' },
-  { value: 3, label: 'A season preaching the Gospel (once)' },
+/** Quest Components (The Church, Spiritual Paths). Those marked `season` take a season, and are worked on the Seasons page; `once` counts only once. */
+export const QUEST_COMPONENTS: { value: number; label: string; season?: true; once?: true }[] = [
+  { value: 1, label: 'A season serving the poor or the Church', season: true },
+  { value: 1, label: 'A season of personal devotion (a Devotion Point, exposure in Dominion Lore)', season: true },
+  { value: 3, label: 'A season preaching the Gospel (once)', season: true, once: true },
   { value: 6, label: 'A minor pilgrimage to a fitting shrine (a story)' },
   { value: 6, label: 'A Vow (a new Minor Flaw)' },
   { value: 6, label: 'A quest (a story: a supernatural foe, protecting innocents, healing)' },
-  { value: 9, label: 'A season preaching to heretics, pagans or infidels (a story)' },
+  { value: 9, label: 'A season preaching to heretics, pagans or infidels (a story)', season: true },
   { value: 9, label: 'Exposing error or corruption and having it put right (a story)' },
   { value: 9, label: 'Giving away one’s wealth (lose Wealthy, or gain Poor)' },
   { value: 9, label: 'A year on a Church-sanctioned crusade' },
 ];
+
+/** A season at a saint's shrine: "5 Devotion Points. The only Experience Points gained are exposure in Church Lore or Dominion Lore" (The Church, line 769). */
+export const SHRINE_SEASON_POINTS = 5;
+
+export type HagiographyKind = 'about' | 'by' | 'general';
+
+/**
+ * Devotion Points for a season with a hagiography (The Church, line 789): Quality ÷ 2 for a work entirely
+ * about the saint, or by the saint (the City of God, Quality 10, gives 5); a general work on the saints 1,
+ * once for each saint. The book does not say how an odd Quality rounds; it is rounded down here.
+ */
+export function hagiographyPoints(kind: HagiographyKind, quality: number, generalBefore = false): number {
+  if (kind === 'general') return generalBefore ? 0 : 1;
+  return Math.floor(Math.max(0, quality) / 2);
+}
+
+/**
+ * Which Church cards can apply: "an impious character does not possess Devotions" (The Church, line 727),
+ * and both mystic's paths need a positive Pious. What is already under way is always shown.
+ */
+export function churchCardsOpen(c: Pick<Character, 'personality' | 'virtues' | 'devotions' | 'spiritualPath'>): { devotions: boolean; mystic: boolean } {
+  const pious = piousScore(c) > 0;
+  return { devotions: pious || !!c.devotions?.length, mystic: pious || !!c.spiritualPath };
+}
 
 /** Who may walk a contemplative's path: positive Pious, no sinful traits, the Divine's. */
 export function contemplativeProblems(c: Character, d: DerivedCharacter): string[] {

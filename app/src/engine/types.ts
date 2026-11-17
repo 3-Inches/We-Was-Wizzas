@@ -121,8 +121,8 @@ export interface Owed {
   uid: string;
   year: number;
   season: Season;
-  /** a Virtue or Flaw a Warping Score brings, a Twilight to roll, a death to confirm or undo, a woven curse to roll */
-  kind: 'warping' | 'twilight' | 'dying' | 'curse';
+  /** a Virtue or Flaw a Warping Score brings, a Twilight to roll, a death to confirm or undo; a roll a season's work leaves (seasonRolls.ts) */
+  kind: 'warping' | 'twilight' | 'dying' | 'curse' | 'ring' | 'search';
   text: string;
   /** the Virtue or Flaw it calls for (Warping) */
   want?: { kind: 'virtue' | 'flaw'; size: VFSize; supernatural?: boolean };
@@ -1159,7 +1159,7 @@ export interface Character {
   /** a gruagach's apprenticeship and spells known (Hedge Magic, Gruagachan); the spells use the charm record */
   gruagach?: { apprenticeYears?: number; spells?: LearnedCharm[]; /** a spell being invented over several seasons */ inventing?: { spell: LearnedCharm; progress: number; seasons: number } };
   /** Devotions to the saints, in Devotion Points (The Church) */
-  devotions?: { uid: string; saint: string; points: number }[];
+  devotions?: { uid: string; saint: string; points: number; /** a general work on the saints read for it: 1 Devotion Point, once (The Church) */ general?: boolean }[];
   /** a pilgrimage under way: its aim, Target Level and the Oppositional Elements overcome (The Church) */
   pilgrimage?: { aim: string; target: number; overcome: { label: string; value: number; once?: 'abroad' }[] };
   /** a contemplative mystic's Spiritual Path: the Revelation sought, its Path Total and the Quest Components done (The Church) */

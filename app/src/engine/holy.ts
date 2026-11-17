@@ -583,6 +583,10 @@ export interface HolyState {
   tragedies?: { year: number; season: Season; kind: TragedyKind; text: string }[];
   /** the Rings of Solomon learned (1–7) and the one in effect */
   notoria?: { learned: number; active?: { ring: number; untilYear: number; untilSeason: Season; disease?: string } };
+  /** a ring first recited in a season, rolled when the season ends (the Seasons page's Resolve) */
+  recitation?: { ring: number; seasons: number; score: number; ease: number; disease?: string; year: number; season: Season; entryUid: string };
+  /** a season's search for the Book of Solomon, rolled when the season ends */
+  search?: { score: number; year: number; season: Season; entryUid: string };
   /** seasonal holy works under way or done: Major amulets, golems, True Names (Mythic Judaism) */
   works?: HolyWork[];
   /** Shinnui Shem: a bonus to aging rolls until the next Aging Point */
@@ -811,6 +815,23 @@ export function workHolySeason(c: Character, d: DerivedCharacter, uid: string, a
 
 const SEASON_ORDER: Season[] = ['Spring', 'Summer', 'Autumn', 'Winter'];
 const seasonNo = (year: number, season: Season) => year * 4 + SEASON_ORDER.indexOf(season);
+
+// Divine Supernatural Abilities, which do not count against a recitation
+const DIVINE_SUPERNATURAL = /^(adjuration|blessing|cursing|intervention|transcendence|understanding|wonders|invocation|meditation|purity|ceremony|holy-music|holy-magic|sense-holiness-and-unholiness|gematria|kabbalah|merkavah|dream-interpretation|craft-amulets|ars-notoria)$/;
+
+/**
+ * A recitation score (RoP: The Divine, The Rings of Solomon): Intelligence + Ars Notoria + how the season
+ * before was lived (the modifiers chosen), less each other Supernatural Ability's score.
+ */
+export function recitationParts(d: DerivedCharacter, mods: Part[]): Part[] {
+  const otherSupernatural = d.abilities.filter((a) => a.type === 'Supernatural' && !DIVINE_SUPERNATURAL.test(a.abilityId)).reduce((s, a) => s + a.total, 0);
+  return [
+    { label: 'Intelligence', value: d.characteristics.Int.value },
+    { label: 'Ars Notoria', value: score(d, 'ars-notoria') },
+    ...mods,
+    ...(otherSupernatural ? [{ label: 'Other Supernatural Abilities', value: -otherSupernatural }] : []),
+  ];
+}
 
 /** The season a ring recited now for so many seasons runs to (its last season). */
 export function ringUntil(year: number, season: Season, seasons: number): { untilYear: number; untilSeason: Season } {

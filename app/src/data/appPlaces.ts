@@ -142,6 +142,7 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'debate-and-influence': [{ text: `${SHEET} → Overview → Society → Debate` }],
   'the-church': [
     { text: 'Game Table › Dice › Faith & miracles: devotion to the saints, pilgrimages, the mystic’s path', page: 'dice', tab: 'holy' },
+    { text: 'Game Table › Seasons → a season in full → Seasons of devotion: a season at a shrine, a hagiography, the mystic’s path', page: 'seasons' },
     { text: 'Game Table › Society & the Tribunal → Debates, petitions & customs (petition the Church)', page: 'table', tab: 'society' },
     { text: 'Game Table › Seasons: a season of Worship', page: 'seasons' },
   ],

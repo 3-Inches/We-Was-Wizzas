@@ -10,12 +10,12 @@ import { R } from '../routes';
 import {
   ARS_NOTORIA_MODS, COMMANDING_AURA_RANKS, FORBEAR_INVOCATION_MODS, HOLY_EXAMPLES, HOLY_GUIDELINES, HOLY_POWERS, HOLY_TRADITIONS,
   MIRACLE_NEED, MIRACLE_TIMELINESS, SAINTS, SAINT_INVOCATION_MODS, SAINT_THREAT_MODS, SAINT_TIERS, SOLOMON_RINGS, TEMPERS, TRAGEDIES,
-  type InvocationMod, type Saint,
+  type Saint,
 } from '../../data/divine';
 import { CHAR_NAMES } from '../../data';
 import {
   ASCENT_FORMS, ascentCheck, ascentDuration, ascentOutcome, canInvokeGodsAid, divineAidBonus, godsAidTotal, holyEffectLevel, holyEffectTotal, holyMethodsOf,
-  holyOutcome, holyPowersOf, influenceTotal, invokeSaintTotal, isHolyCharacter, methodWorksWith, miracleLevel, miracleTotal, ringUntil,
+  holyOutcome, holyPowersOf, influenceTotal, invokeSaintTotal, isHolyCharacter, methodWorksWith, miracleLevel, miracleTotal, recitationParts, ringUntil,
   saintMightLeft, saintPower, schism, temperName, threatEase, threatenSaintTotal, threatResult, threatText, worksHolyEffects, wouldBeRitual,
   holyWorkLabel, holyWorkPlan, holyWorksOpen, workHolySeason,
   type ActiveTemper, type AscentForm, type CeremonyGroup, type CeremonyMember, type HolyWork, type HolyWorkKind,
@@ -34,7 +34,9 @@ import { uid } from '../../util/id';
 import { AfterRoll } from '../AfterRoll';
 import type { CharEditor } from '../character/useChar';
 import { ChurchCards } from './ChurchPart';
-import { devotionScore, relicDevotionBonus } from '../../engine/church';
+import { ModList, modParts } from './holyMods';
+import { devotionSeasonWorks } from './DevotionSeasonsCard';
+import { churchCardsOpen, devotionScore, relicDevotionBonus } from '../../engine/church';
 
 const REALMS: Realm[] = ['Divine', 'Magic', 'Faerie', 'Infernal', 'None'];
 const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
@@ -187,6 +189,20 @@ export default function HolyPart({ ed, fellows }: { ed: CharEditor; fellows: Fel
   const [gained, setGained] = useState(0);
   if (!c || !d) return null;
   const others = fellows.filter((f) => f.c.id !== c.id);
+  // God's aid costs a Confidence Point (or a Faith Point): a grog, or one with Low Self-Esteem, has none to spend
+  const aidBarred = !(d.trueFaith > 0 && d.faithPoints > 0) && (c.type === 'grog' || c.virtues.some((v) => v.defId === 'low-self-esteem-flaw'));
+  const church = churchCardsOpen(c);
+  // the cards that cannot apply, and why: one line at the foot of the page
+  const hidden: [string, string][] = [
+    ...(worksHolyEffects(d) ? [] : ([['holy powers', 'no Holy Method and Power that work together']] as [string, string][])),
+    ...(d.faithPoints > 0 ? [] : ([['a prayer for a miracle', 'no Faith Points']] as [string, string][])),
+    ...(aidBarred ? ([['God’s aid', c.type === 'grog' ? 'a grog has no Confidence to spend' : 'Low Self-Esteem: no Confidence to spend']] as [string, string][]) : []),
+    ...(church.devotions ? [] : ([['Devotions', 'no Pious trait']] as [string, string][])),
+    ...(church.mystic ? [] : ([['the mystic’s path', 'no Pious trait']] as [string, string][])),
+    ...(isHolyCharacter(d) ? [] : ([['the Divine Ascent', 'no Holy Method, Power or Ars Notoria']] as [string, string][])),
+    ...(score(d, 'ars-notoria') > 0 ? [] : ([['the Rings of Solomon', 'no Ars Notoria']] as [string, string][])),
+  ];
+  const seasonWorks = [...(holyWorksOpen(d).length ? ['holy work: Major amulets, golems, True Names, Shinnui Shem'] : []), ...devotionSeasonWorks(c, d)];
   return (
     <div className="stack">
       <Card title="Here and now" className="accent" tour="holy-here">
@@ -195,22 +211,27 @@ export default function HolyPart({ ed, fellows }: { ed: CharEditor; fellows: Fel
           <FaithLine ed={ed} />
         </div>
       </Card>
+      {seasonWorks.length > 0 && ed.saga && (
+        <p className="small">
+          A season&apos;s work ({seasonWorks.join(', ')}) is planned on{' '}
+          <Link to={R.seasonsFor(ed.saga.id, c.id, 'table-plan')}>Game Table › Seasons, in {c.name ? `${c.name}’s` : 'their'} season in full ›</Link>
+        </p>
+      )}
       <StandingCard ed={ed} />
       {worksHolyEffects(d) && <HolyPowerCard ed={ed} aura={aura} fellows={others} onWarping={setGained} />}
       {d.faithPoints > 0 && <MiracleCard ed={ed} aura={aura} fellows={others} />}
-      <GodsAidCard ed={ed} fellows={others} />
+      {!aidBarred && <GodsAidCard ed={ed} fellows={others} />}
       <SaintsCard ed={ed} aura={aura} />
       <ChurchCards ed={ed} />
       <InfluenceCard ed={ed} fellows={fellows} />
       {isHolyCharacter(d) && <AscentCard ed={ed} aura={aura} gained={gained} />}
       {score(d, 'ars-notoria') > 0 && <NotoriaCard ed={ed} />}
-      {holyWorksOpen(d).length > 0 && ed.saga && (
-        <p className="small">
-          Seasons of holy work (Major amulets, golems, True Names, Shinnui Shem) are planned on{' '}
-          <Link to={R.seasonsFor(ed.saga.id, c.id, 'holy-works')}>Game Table › Seasons, in {c.name ? `${c.name}’s` : 'their'} season in full ›</Link>
+      <RitesCard ed={ed} aura={aura} />
+      {hidden.length > 0 && (
+        <p className="small muted" data-tour="holy-hidden">
+          Not open to {c.name || 'this character'}, so not shown: {hidden.map(([what, why]) => `${what} (${why})`).join(', ')}.
         </p>
       )}
-      <RitesCard ed={ed} aura={aura} />
     </div>
   );
 }
@@ -783,26 +804,6 @@ function GodsAidCard({ ed, fellows }: { ed: CharEditor; fellows: Fellow[] }) {
 // ------------------------------------------------------------------------------------------------
 // The saints and holy forbears
 
-function ModList({ mods, value, onChange }: { mods: InvocationMod[]; value: Record<string, number>; onChange: (v: Record<string, number>) => void }) {
-  return (
-    <div className="row small" style={{ flexWrap: 'wrap', gap: '2px 12px' }}>
-      {mods.map((m) => (
-        <label key={m.id} className="inline">
-          <input type="checkbox" checked={m.id in value} onChange={(e) => {
-            const v = { ...value };
-            if (e.target.checked) v[m.id] = m.mod;
-            else delete v[m.id];
-            onChange(v);
-          }} />{' '}
-          {m.label} ({m.min !== undefined ? `${signed(m.min)} to ${signed(m.max!)}` : signed(m.mod)})
-          {m.id in value && m.min !== undefined && <Stepper value={value[m.id]} min={m.min} max={m.max} width={30} onChange={(n) => onChange({ ...value, [m.id]: n })} />}
-        </label>
-      ))}
-    </div>
-  );
-}
-
-const modParts = (mods: InvocationMod[], v: Record<string, number>): Part[] => mods.filter((m) => m.id in v).map((m) => ({ label: m.label, value: v[m.id] }));
 
 function SaintsCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const { c, d, update } = ed;
@@ -1227,8 +1228,7 @@ function AscentCard({ ed, aura, gained: fromPower }: { ed: CharEditor; aura: Aur
 // ------------------------------------------------------------------------------------------------
 // The Rings of Solomon
 
-const DIVINE_SUPERNATURAL = /^(adjuration|blessing|cursing|intervention|transcendence|understanding|wonders|invocation|meditation|purity|ceremony|holy-music|holy-magic|sense-holiness-and-unholiness|gematria|kabbalah|merkavah|dream-interpretation|craft-amulets|ars-notoria)$/;
-
+/** The Rings of Solomon recited in play: a known ring, in 10 − Ars Notoria days. A ring's first recitation takes a season, on the Seasons page. */
 function NotoriaCard({ ed }: { ed: CharEditor }) {
   const { c, d, update, saga } = ed;
   const [ring, setRing] = useState(1);
@@ -1240,91 +1240,79 @@ function NotoriaCard({ ed }: { ed: CharEditor }) {
   const n = c.holy?.notoria;
   const learned = n?.learned ?? 0;
   const active = n?.active;
-  const r = SOLOMON_RINGS.find((x) => x.ring === Math.min(ring, learned + 1))!;
-  const first = r.ring > learned;
-  const ease = (first ? 6 : 3) + 3 * r.ring + seasons;
+  const r = SOLOMON_RINGS.find((x) => x.ring === Math.max(1, Math.min(ring, learned)))!;
+  const ease = 3 + 3 * r.ring + seasons;
   const season = saga?.currentSeason ?? 'Spring';
   const year = saga?.currentYear ?? 1220;
-  const wrongSeason = first && r.seasons && !r.seasons.includes(season.toLowerCase() as never);
-  // other Supernatural Abilities count against it; Divine ones do not
-  const otherSupernatural = d.abilities.filter((a) => a.type === 'Supernatural' && !DIVINE_SUPERNATURAL.test(a.abilityId)).reduce((s, a) => s + a.total, 0);
-  const parts: Part[] = [
-    { label: 'Intelligence', value: d.characteristics.Int.value },
-    { label: 'Ars Notoria', value: score(d, 'ars-notoria') },
-    ...modParts(ARS_NOTORIA_MODS, mods),
-    ...(otherSupernatural ? [{ label: 'Other Supernatural Abilities', value: -otherSupernatural }] : []),
-  ];
-  const busy = first && seasonBusy(c, year, season);
+  const parts = recitationParts(d, modParts(ARS_NOTORIA_MODS, mods));
   const recite = () => {
     const die = stressDie(1);
     const tot = sum(parts) + die.value;
-    const out = [`${r.name} of Solomon${first ? ' (first recitation: the whole season)' : ` (known: ${Math.max(1, 10 - score(d, 'ars-notoria'))} days)`}: ${sum(parts)} + ${describeStress(die)} = ${die.botches ? 'BOTCH' : tot} against ${ease}.`];
+    const out = [`${r.name} of Solomon (known: ${Math.max(1, 10 - score(d, 'ars-notoria'))} days): ${sum(parts)} + ${describeStress(die)} = ${die.botches ? 'BOTCH' : tot} against ${ease}.`];
     if (die.botches) out.push('Deemed unworthy: the storyguide may take experience in Ars Notoria (as many as the Ease Factor), give a Minor Flaw until atoned, end the benefits, or forbid orations for a while.');
     else if (tot >= ease) {
-      // a first recitation takes the season itself: the ring's seasons begin after it
-      const until = ringUntil(year, season, seasons + (first ? 1 : 0));
+      const until = ringUntil(year, season, seasons);
       update((x) => {
-        x.holy = { ...(x.holy ?? {}), notoria: { learned: Math.max(learned, r.ring), active: { ring: r.ring, ...until, ...(r.ring === 3 ? { disease } : {}) } } };
+        x.holy = { ...(x.holy ?? {}), notoria: { learned, active: { ring: r.ring, ...until, ...(r.ring === 3 ? { disease } : {}) } } };
         if (r.xp) ensureAbility(x, r.xp.ability);
       });
       out.push(`It works until the end of ${until.untilSeason} ${until.untilYear}: ${r.text}${r.ring === 3 ? ` (the disease: ${disease})` : ''}`);
     } else out.push('It fails; it may be tried again next season.');
-    if (first) {
-      // the first recitation of a ring is the season's work, its days of rest included
-      update((x) => {
-        const ab = x.abilities.find((a) => a.abilityId === 'ars-notoria');
-        const e = newSeasonEntry(year, season, 'other', `Ars Notoria: ${r.name} of Solomon`, ab ? { [`ability:${ab.uid}`]: 2 } : {});
-        e.notes = out.join(' ');
-        applySeason(x, e, 1);
-        x.seasonLog.push(e);
-      });
-      out.push(`${season} ${year} logged, +2 xp Exposure in Ars Notoria.`);
-    }
     show(out);
   };
+  const seasonsLink = saga && learned < SOLOMON_RINGS.length && (
+    <>
+      {' '}A ring&apos;s first recitation takes a season:{' '}
+      <Link to={R.seasonsFor(saga.id, c.id, 'holy-seasons')}>Game Table › Seasons, Seasons of devotion ›</Link>
+    </>
+  );
   return (
     <Card title="Ars Notoria: the Rings of Solomon" tour="holy-notoria" fold="holy-notoria" summary={active ? `the ${SOLOMON_RINGS[active.ring - 1].name} in effect to ${active.untilSeason} ${active.untilYear}` : `${learned} ring${learned === 1 ? '' : 's'} learned`}>
-      <p className="small muted">Intelligence + Ars Notoria + how the season before was lived + stress die. The rings are first learned in order, each in a season; known ones take 10 − Ars Notoria days. Under a ring, a Divine aura warps no more, and Ars Notoria takes 3 a point off the Divine aura’s penalty to other magic.</p>
+      <p className="small muted">
+        Intelligence + Ars Notoria + how the season before was lived + stress die. A ring learned is recited again in 10 − Ars Notoria days. Under a ring, a Divine aura warps no more, and Ars Notoria takes 3 a point
+        off the Divine aura’s penalty to other magic.{seasonsLink}
+      </p>
       {active && (
         <p className="small ok">
           In effect: {SOLOMON_RINGS[active.ring - 1].name}, to the end of {active.untilSeason} {active.untilYear}. {SOLOMON_RINGS[active.ring - 1].text}
           {active.disease ? ` (${active.disease})` : ''}
         </p>
       )}
-      <div className="row">
-        <Field label="Ring" hint={r.seasons ? `First recited in ${r.seasons.join(' or ')}${wrongSeason ? ` — not ${season}` : ''}` : 'Any season'}>
-          <select value={r.ring} onChange={(e) => setRing(Number(e.target.value))}>
-            {SOLOMON_RINGS.filter((x) => x.ring <= learned + 1).map((x) => (
-              <option key={x.ring} value={x.ring}>
-                {x.name}
-                {x.ring > learned ? ' (first time)' : ''}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <Field label="For seasons" hint="+1 to the Ease Factor a season">
-          <Stepper value={seasons} min={1} max={8} width={34} onChange={setSeasons} />
-        </Field>
-        {r.ring === 3 && (
-          <Field label="The disease">
-            <input value={disease} onChange={(e) => setDisease(e.target.value)} />
-          </Field>
-        )}
-      </div>
-      <ModList mods={ARS_NOTORIA_MODS} value={mods} onChange={setMods} />
-      <div className="row">
-        <span>
-          Recitation score <Total value={sum(parts)} parts={parts} label="Recitation" /> + stress die against <b>{ease}</b>
-        </span>
-        <button onClick={recite} disabled={!!wrongSeason || busy} title={busy ? `${season} ${year} is already spent: a first recitation takes the season` : undefined}>
-          Recite
-        </button>
-        {active && (
-          <button className="small ghost" onClick={() => update((x) => void (x.holy = { ...(x.holy ?? {}), notoria: { learned } }))}>
-            End the ring
-          </button>
-        )}
-      </div>
+      {learned === 0 ? (
+        <p className="small">No ring learned yet.</p>
+      ) : (
+        <>
+          <div className="row">
+            <Field label="Ring">
+              <select value={r.ring} onChange={(e) => setRing(Number(e.target.value))}>
+                {SOLOMON_RINGS.filter((x) => x.ring <= learned).map((x) => (
+                  <option key={x.ring} value={x.ring}>{x.name}</option>
+                ))}
+              </select>
+            </Field>
+            <Field label="For seasons" hint="+1 to the Ease Factor a season">
+              <Stepper value={seasons} min={1} max={8} width={34} onChange={setSeasons} />
+            </Field>
+            {r.ring === 3 && (
+              <Field label="The disease">
+                <input value={disease} onChange={(e) => setDisease(e.target.value)} />
+              </Field>
+            )}
+          </div>
+          <ModList mods={ARS_NOTORIA_MODS} value={mods} onChange={setMods} />
+          <div className="row">
+            <span>
+              Recitation score <Total value={sum(parts)} parts={parts} label="Recitation" /> + stress die against <b>{ease}</b>
+            </span>
+            <button onClick={recite}>Recite</button>
+            {active && (
+              <button className="small ghost" onClick={() => update((x) => void (x.holy = { ...(x.holy ?? {}), notoria: { learned } }))}>
+                End the ring
+              </button>
+            )}
+          </div>
+        </>
+      )}
       <Lines lines={lines} />
     </Card>
   );
@@ -1347,7 +1335,7 @@ function RitesCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const rite = d.characteristics.Com.value + theology;
   const parma = score(d, 'parma-magica');
   const steady = d.characteristics.Sta.value + Math.max(score(d, 'dominion-lore'), parma);
-  const roll = (what: 'rite' | 'regio' | 'notoria') => {
+  const roll = (what: 'rite' | 'regio') => {
     const r = stressDie(1);
     if (what === 'rite') {
       const t = rite + r.value;
@@ -1355,7 +1343,7 @@ function RitesCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
         `Dominion rite: Communication + ${theology === score(d, 'dominion-lore') && theology ? 'Dominion Lore' : 'Theology'} ${rite} + ${describeStress(r)} = ${r.botches ? 'BOTCH' : t} against 6.`,
         r.botches ? 'A botch: Warping, divine displeasure, or Infernal attention.' : t >= 6 ? 'Done. The first rite consecrates the place; a second lets the Dominion in: an aura of 3 at the service’s end, 4 after a year of weekly worship, 5 after a decade for a great church.' : 'The rite fails.',
       ]);
-    } else if (what === 'regio') {
+    } else {
       const t = steady + r.value;
       const ok = !r.botches && t >= regio * 3;
       show([
@@ -1363,13 +1351,10 @@ function RitesCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
         ok ? 'Able to act normally.' : `Bewildered and overwhelmed until leaving: −${regio * 3} to every roll.`,
         `After ${d.characteristics.Sta.value + parma + 3} hours, a Fatigue level an hour; unconscious, ${regio} Warping Point${regio > 1 ? 's' : ''} an hour (two or more may bring the Divine Ascent)${d.trueFaith ? '; True Faith makes the hours days' : ''}.`,
       ]);
-    } else {
-      const t = d.characteristics.Int.value + score(d, 'dominion-lore') + r.value;
-      show([`A season’s search for the Book of Solomon: Intelligence + Dominion Lore ${d.characteristics.Int.value + score(d, 'dominion-lore')} + ${describeStress(r)} = ${r.botches ? 'BOTCH' : t} against 21.`, r.botches ? 'A distant journey and a different book: a heretic’s manuscript, or a demon’s ruse.' : t >= 21 ? 'A copy found: a tractatus of Quality 20 (Divine Lore to the unGifted; the Gifted may learn Ars Notoria from it, with Latin, Greek, Hebrew, Chaldean and Artes Liberales at 4).' : 'Not found this season.']);
     }
   };
   return (
-    <Card title="Rites and holy places" tour="holy-rites" fold="holy-rites" summary={`a Dominion rite, a celestial regio, the search for the Book of Solomon${ca > 0 ? ', a Minor amulet' : ''}`}>
+    <Card title="Rites and holy places" tour="holy-rites" fold="holy-rites" summary={`a Dominion rite, a celestial regio${ca > 0 ? ', a Minor amulet' : ''}`}>
       {ca > 0 && (
         <div className="row small" data-tour="holy-minor-amulet">
           <b>A Minor amulet</b> (one person, Touch, worn):
@@ -1410,14 +1395,6 @@ function RitesCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
           Spend a Faith Point
         </button>
       </div>
-      {(d.hasGift || d.isMagus) && (
-        <div className="row">
-          <span>Searching for a copy of the Ars Notoria: Intelligence + Dominion Lore + stress die against 21 (a season)</span>
-          <button className="small" onClick={() => roll('notoria')}>
-            Search
-          </button>
-        </div>
-      )}
       <Lines lines={lines} />
     </Card>
   );

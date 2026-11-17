@@ -5,7 +5,7 @@
 import { useState } from 'react';
 import { SAINTS } from '../../data/divine';
 import {
-  DEVOTIONAL_PRACTICES, DEVOTION_GAINS, OPPOSITIONAL_ELEMENTS, PATH_TOTALS, PILGRIMAGE_AIMS, QUEST_COMPONENTS, contemplativeProblems, creationDevotionPoints, devotionScore,
+  DEVOTIONAL_PRACTICES, DEVOTION_GAINS, churchCardsOpen, OPPOSITIONAL_ELEMENTS, PATH_TOTALS, PILGRIMAGE_AIMS, QUEST_COMPONENTS, contemplativeProblems, creationDevotionPoints, devotionScore,
   monisticIntegration, monisticRevelations, pathTarget, piousScore, pilgrimageProgress,
 } from '../../engine/church';
 import { describeStress, stressDie } from '../../engine/dice';
@@ -27,6 +27,8 @@ function Lines({ lines }: { lines: string[] }) {
 }
 
 const CHRISTIAN_SAINTS = SAINTS.filter((s) => s.faith === 'christian');
+// the Quest Components won in play; those that take a season are worked on the Seasons page
+const QUESTS_IN_PLAY = QUEST_COMPONENTS.filter((x) => !x.season);
 const saintName = (id: string) => CHRISTIAN_SAINTS.find((s) => s.id === id)?.name ?? id;
 
 function DevotionsCard({ ed }: { ed: CharEditor }) {
@@ -34,14 +36,16 @@ function DevotionsCard({ ed }: { ed: CharEditor }) {
   const [pick, setPick] = useState(CHRISTIAN_SAINTS[0]?.id ?? 'mary');
   const [other, setOther] = useState('');
   const [gain, setGain] = useState(0);
-  const [amount, setAmount] = useState(DEVOTION_GAINS[0].min);
+  const [amount, setAmount] = useState(DEVOTION_GAINS.find((x) => !x.season)!.min);
   const [to, setTo] = useState('');
   const [lines, setLines] = useState<string[]>([]);
   if (!c) return null;
   const devs = c.devotions ?? [];
   const pious = piousScore(c);
   const start = creationDevotionPoints(c);
-  const g = DEVOTION_GAINS[gain];
+  // a season at a shrine and a hagiography take a season: they are on the Seasons page
+  const gains = DEVOTION_GAINS.filter((x) => !x.season);
+  const g = gains[Math.min(gain, gains.length - 1)];
   const target = devs.find((x) => x.uid === to) ?? devs[0];
   const set = (fn: (x: Character) => void) => update(fn);
   const add = () => {
@@ -93,8 +97,8 @@ function DevotionsCard({ ed }: { ed: CharEditor }) {
       {devs.length > 0 && (
         <div className="row">
           <Field label="Devotion Points for" hint={g.text}>
-            <select value={gain} onChange={(e) => ((setGain(Number(e.target.value))), setAmount(DEVOTION_GAINS[Number(e.target.value)].min))} style={{ maxWidth: 300 }}>
-              {DEVOTION_GAINS.map((x, i) => (
+            <select value={gain} onChange={(e) => ((setGain(Number(e.target.value))), setAmount(gains[Number(e.target.value)].min))} style={{ maxWidth: 300 }}>
+              {gains.map((x, i) => (
                 <option key={x.id} value={i}>{x.label} ({x.min === x.max ? x.min : `${x.min} to ${x.max}`})</option>
               ))}
             </select>
@@ -252,12 +256,12 @@ function MysticCard({ ed }: { ed: CharEditor }) {
           <div className="row">
             <Field label="Quest Component">
               <select value={qc} onChange={(e) => setQc(Number(e.target.value))} style={{ maxWidth: 320 }}>
-                {QUEST_COMPONENTS.map((x, i) => (
+                {QUESTS_IN_PLAY.map((x, i) => (
                   <option key={i} value={i}>+{x.value} {x.label}</option>
                 ))}
               </select>
             </Field>
-            <button className="small" onClick={() => set((y) => void (y.spiritualPath = { ...y.spiritualPath!, components: [...y.spiritualPath!.components, QUEST_COMPONENTS[qc]] }))}>Add</button>
+            <button className="small" onClick={() => set((y) => void (y.spiritualPath = { ...y.spiritualPath!, components: [...y.spiritualPath!.components, QUESTS_IN_PLAY[qc]] }))}>Add</button>
             <button className={done >= targetPts ? 'small' : 'small danger'} onClick={() => set((y) => void (y.spiritualPath = undefined))}>{done >= targetPts ? 'Done' : 'Abandon'}</button>
           </div>
         </>
@@ -282,11 +286,12 @@ function MysticCard({ ed }: { ed: CharEditor }) {
 }
 
 export function ChurchCards({ ed }: { ed: CharEditor }) {
+  const open = ed.c ? churchCardsOpen(ed.c) : { devotions: false, mystic: false };
   return (
     <>
-      <DevotionsCard ed={ed} />
+      {open.devotions && <DevotionsCard ed={ed} />}
       <PilgrimageCard ed={ed} />
-      <MysticCard ed={ed} />
+      {open.mystic && <MysticCard ed={ed} />}
     </>
   );
 }

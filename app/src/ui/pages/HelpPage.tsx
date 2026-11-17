@@ -445,8 +445,9 @@ function ToolkitGuide() {
             Point, how soon and how great the need setting the level. <b>God&apos;s aid</b> for a scene shows on the Roll card until a roll fails. The <b>saints and holy
             forbears</b> are invoked against an unseen die, and a Christian saint who refuses may be threatened. <b>Holy influence</b> gives followers a trait; a
             <b> temper</b> in the Dominion is offered on every roll. The <b>Divine Ascent</b> is checked when two or more Warping Points come at once, and its form (Gloom,
-            Form, Unity) is kept for life: the Divine Form gives Magic Resistance and Soak, as a commanding aura does. The <b>Rings of Solomon</b> add their experience and
-            Characteristics while they last. Kabbalists work <b>amulets, golems, True Names and Shinnui Shem</b> a season at a time, on <b>Seasons</b>.
+            Form, Unity) is kept for life: the Divine Form gives Magic Resistance and Soak. The <b>Rings of Solomon</b> add their experience and
+            Characteristics while they last. On <b>Seasons</b>: a ring first recited, the search for the Book of Solomon, a kabbalist&apos;s amulets, golems, True
+            Names and Shinnui Shem.
             <b> Holy Magic</b> casts at Dice › Spellcasting: a prayer (Presence + Theology 15+) or a Method&apos;s activity in place of words and gestures, the Dominion
             counted as a Magic aura, a Method and a Power in Rituals, long-term Fatigue in place of Ritual vis; the spell designer offers its own Ranges, Durations and
             Targets, and a Hermetic Laboratory Text is halved (as a holy magus&apos;s is for Hermetic magi).
@@ -465,6 +466,7 @@ function ToolkitGuide() {
           <li>
             <b>The Church</b>: on <b>Dice › Faith &amp; miracles</b>, Devotions to the saints in Devotion Points (they add to invoking the saint, with a relic&apos;s Faith Points × 2), a
             pilgrimage&apos;s Oppositional Elements against its Target Level, a contemplative&apos;s Spiritual Path, and a monistic mystic&apos;s Revelation after Divine Ascent.
+            On <b>Seasons</b>: a season at a shrine, a hagiography, the path&apos;s seasons.
           </li>
           <li>
             <b>Hermetic Projects</b>: its spells are in the spell list (each row shows the Lab Total to invent it in one to four seasons), and its enchantments can be added to an item
