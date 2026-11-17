@@ -23,7 +23,7 @@ Run from `app/`. In a new container, run `npm ci` there first.
 | Build | `npm run build` |
 | Serve the build | `npx vite preview --port 4173 --strictPort` (in the background) |
 | Look at the hedge magic, Faerie and Mysteries pages | `node scripts/qa/shots.cjs [width] [fixture]` (see `scripts/qa/fixtures/index.json`) |
-| Run every tutorial | `node scripts/qa/tutorials.cjs 1280` and `390`. Clean is "errors: none" with 3 "no target" steps (steps that explain without pointing at a control). |
+| Run every tutorial | `node scripts/qa/tutorials.cjs 1280` and `390`. Clean is "errors: none" with 2 "no target" steps (Welcome, and "Design the power"). |
 | Visit every page | `node scripts/qa/sweep.cjs --width 1280`, then `--width 390`. One width at a time. |
 | Regenerate data from the books | `cd .. && python3 -I tools/extract/run_all.py` |
 | Rebuild the Game Mechanics index | `cd .. && python3 -I tools/extract/build_mechanics.py --report` |

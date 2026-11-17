@@ -1,6 +1,7 @@
 // Usage: node scripts/qa/tutorials.cjs [width]   (the built app must be served: npx vite preview --port 4173 --strictPort)
-// Writes scripts/qa/out/tutorials-<width>.txt. A clean run ends with "errors: none"; the three steps that
-// report "no target" are steps that explain without pointing at a control.
+// Writes scripts/qa/out/tutorials-<width>.txt. A clean run ends with "errors: none", and two steps
+// report "no target": the toolkit's Welcome, and the power tutorial's "Design the power" (its card shows only once the
+// character has a power, and the practice draft has none). A tutorial it skips is not looked at.
 // Take every tutorial in turn from a fresh browser, as a player would: press what the steps ask,
 // use practice options where something is missing, skip the magus and grog. Note for each step whether its
 // control was found and in view, whether the menu opened for it, where the page was scrolled, and whether a
