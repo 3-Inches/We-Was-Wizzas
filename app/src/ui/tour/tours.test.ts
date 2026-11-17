@@ -9,12 +9,15 @@ import { ACTIONS, makePractice } from './actions';
 import { newCovenant } from '../../engine/covenant';
 import { useStore } from '../../store/store';
 import { SAGA_TABS, TABLE_TABS, DICE_SUBS } from '../routes';
+import { TOOLKIT_GUIDE } from '../../data/toolkitGuide';
 
 const sources = Object.values(import.meta.glob('../**/*.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>).join('\n');
 
 /** The data-tour names the app marks: written out, or made from a tab, wizard step or character type. */
 function marked(name: string): boolean {
   if (sources.includes(`data-tour="${name}"`) || sources.includes(`tour="${name}"`)) return true;
+  // a card of the Guide's toolkit page, whose text is data
+  if (TOOLKIT_GUIDE.sections.some((s) => s.tour === name)) return true;
   const [, kind, id] = name.match(/^(tab|step|create)-(.+)$/) ?? [];
   if (kind === 'tab') return sources.includes(`id: '${id}'`) || sources.includes(`id: '${id}' as`) || (TABLE_TABS as readonly string[]).includes(id) || (SAGA_TABS as readonly string[]).includes(id) || (DICE_SUBS as readonly string[]).includes(id);
   if (kind === 'step') return STEPS.some((s) => s.id === id);

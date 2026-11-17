@@ -39,10 +39,16 @@ export interface RpSection {
   blocks: RpBlock[];
   sources?: RpSource[];
   links?: RpLink[];
+  /** a part the page draws itself, shown after the text (the toolkit page's tutorials, optional rules) */
+  live?: string;
+  /** the card's tutorial target */
+  tour?: string;
+  /** open on a phone too, until the reader folds it */
+  startOpen?: boolean;
 }
 
 export interface RpGuide {
-  id: 'players' | 'storyguides';
+  id: 'players' | 'storyguides' | 'toolkit';
   tab: string;
   title: string;
   lead: string;

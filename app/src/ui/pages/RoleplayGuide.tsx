@@ -1,6 +1,7 @@
-// The Guide's pages on playing the game itself: for players, and for storyguides. The text is data
-// (src/data/roleplay.ts); each card folds to its one-line summary, names the book sections it draws
-// on (each opens the reader there), and lists any outside reading.
+// The Guide's pages, drawn from data: using the toolkit (src/data/toolkitGuide.ts), and playing the
+// game, for players and for storyguides (src/data/roleplay.ts). Each card folds to its one-line
+// summary, names the book sections it draws on (each opens the reader there), and lists any outside
+// reading. A section's `live` part is drawn by the page that shows the guide.
 
 import { useMemo, type ReactNode } from 'react';
 import { marked } from 'marked';
@@ -9,9 +10,9 @@ import { BOOK_BY_ID } from '../../data';
 import type { RpBlock, RpGuide, RpSection } from '../../data/roleplay';
 import { Card } from '../kit';
 
-/** Inline markdown (bold, italic) as sanitized HTML. */
+/** Inline markdown (bold, italic, links) as sanitized HTML. A link outside the toolkit opens in a new tab. */
 function Md({ text }: { text: string }) {
-  const html = useMemo(() => DOMPurify.sanitize(marked.parseInline(text, { async: false }) as string), [text]);
+  const html = useMemo(() => DOMPurify.sanitize(marked.parseInline(text, { async: false }) as string).replace(/<a href="https:/g, '<a target="_blank" rel="noopener noreferrer" href="https:'), [text]);
   return <span dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
@@ -130,7 +131,7 @@ function Sources({ s }: { s: RpSection }) {
   );
 }
 
-export function RoleplayGuide({ guide, intro }: { guide: RpGuide; intro?: ReactNode }) {
+export function RoleplayGuide({ guide, intro, live }: { guide: RpGuide; intro?: ReactNode; live?: Record<string, ReactNode> }) {
   return (
     <div className="stack rp-guide">
       <div>
@@ -156,10 +157,11 @@ export function RoleplayGuide({ guide, intro }: { guide: RpGuide; intro?: ReactN
         </nav>
       </div>
       {guide.sections.map((s) => (
-        <Card key={s.id} title={s.title} id={`${guide.id}-${s.id}`} fold={`rp-${guide.id}-${s.id}`} summary={s.summary}>
+        <Card key={s.id} title={s.title} id={`${guide.id}-${s.id}`} tour={s.tour} startOpen={s.startOpen} fold={`rp-${guide.id}-${s.id}`} summary={<Md text={s.summary} />}>
           {s.blocks.map((b, i) => (
             <Block key={i} b={b} />
           ))}
+          {s.live && live?.[s.live]}
           <Sources s={s} />
         </Card>
       ))}

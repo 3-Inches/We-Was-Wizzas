@@ -42,11 +42,12 @@ Every item refers to `audit-2026-11.md` by its number. That file has the detail:
   - The season-long work moves to one "Seasons of devotion" card on Seasons, with `useSeasonWork`: a season of devotion at a shrine, a saint's hagiography, the mystic's path's seasons, a pilgrimage's season, the first recitation of a Ring of Solomon, the search for the Book of Solomon. The Faith page keeps the records and what happens in play, with a link.
 - [x] **1.4b Prompts after Warping, and Sympathy Traits on rolls.** *Judgment.* C8. When Warping Points come, offer what follows, as Twilight is offered: the Witch Moon, Nátt-thel, Faerie Calling. A roll the book makes when a season ends waits in Resolve. On the Roll page, a tick per Sympathy Trait for a character who has them.
   - Done as: `gainWarping` (`src/engine/warping.ts`) adds the points and owes the tradition's reaction on the Resolve list, linked to its card, which opens on it. `quality.test.ts` lists the files still allowed to add Warping Points directly, each with its reason. The year's Warping (prolonged) brings only the Witch Moon, and gives a folk witch or a faerie-touched character no ordinary Warping Virtues or Flaws.
-- [ ] **1.4c Where Great projects lives.** *Judgment.* C10, and a mason's building season split from 1.3 (C1): logged and checked by `seasonBusy`, the building's progress kept where C10 puts it.
+- [x] **1.4c Where Great projects lives.** *Judgment.* C10, and a mason's building season split from 1.3 (C1): logged and checked by `seasonBusy`, the building's progress kept where C10 puts it.
   - Decided by the owner (17 November 2026): the building and the menagerie go to the covenant, in one **Great projects** card on its Overview tab. The covenant keeps each building's record: its height, the quality of its weakest and its latest work, and damage taken. The card's stress check uses the covenant's best mason and records a lost damage level. The menagerie's handler is chosen from the members.
   - The mason's season is on Seasons, in a character's season in full: **Build (a season)** raises the building by the mason's pace, its quality from the Workshop Total (Int + Craft: Mason + Innovation + Raw Materials against 3, 6, 12, 15). **Repair (a season)** mends one damage level, or brings shoddy work up to standard. Both are logged with `useSeasonWork`, and Unlog restores the building.
   - Possessions loses the card.
-- [ ] **1.5 The Guide, rewritten as steps.** *Judgment.* D2. Model: `src/data/roleplay.ts`. Each system gets "make one, use it, spend a season, what to watch for". Move the Guide's text into data, as the roleplay pages are, so the same tests can check it. Targets: under 6,000 words, no sentence over 40 words, no block over 85.
+- [x] **1.5 The Guide, rewritten as steps.** *Judgment.* D2. Model: `src/data/roleplay.ts`. Each system gets "make one, use it, spend a season, what to watch for". Move the Guide's text into data, as the roleplay pages are, so the same tests can check it. Targets: under 6,000 words, no sentence over 40 words, no block over 85.
+  - Done as: the page's text is `src/data/toolkitGuide.ts`, drawn by the roleplay pages' renderer, one folding card a system. 3,529 words (from 9,431), longest sentence 34, no block over 85. `toolkitGuide.test.ts` holds it there, and checks that each system is written as numbered steps and names the Game Table's pages as the app does. `src/data/guideText.ts` measures the Guide one way for its tests and for `quality.test.ts`. Complete lists (every Boon's effect, every living covenant's custom) were cut: the cards and Game Mechanics hold them. `HelpPage.tsx` keeps only what it draws live (the tutorials, Game Mechanics' subjects, the optional rules, the data counts), and fell from 998 lines to 200.
 - [ ] **1.6 The README, cut to what a visitor needs.** *Judgment.* D3. Targets: under 25,000 characters, no line over 600. Keep: what it is, what it covers (one line a system), how to run it, how it is built, what is not automated. The long descriptions go to the Guide or are deleted.
 - [ ] **1.7 Tutorials.** *Judgment.* D4 and E1. Shorten every step over 60 words (56 of them now). Add one tutorial for hedge magic and one for Faerie and the Mysteries, each on its practice saga in `scripts/qa/fixtures/`. Fix the stale sidebar step.
 
@@ -95,7 +96,7 @@ The Tribunals covered only by Third or Fourth Edition books are not built.
 
 Not items to schedule. Do them when a change touches the place.
 
-- **Files over 800 lines** are listed in `quality.test.ts`. When you add to one, split it first. `tours.ts` splits by tutorial, `HelpPage.tsx` empties as the Guide moves into data (1.5), and each `*Part.tsx` splits by card.
+- **Files over 800 lines** are listed in `quality.test.ts`. When you add to one, split it first. `tours.ts` splits by tutorial, and each `*Part.tsx` splits by card.
 - **Two audits a year,** or after every five or six systems: read what was added against the books and against the design principles, as `audit-2026-11.md` did. Write the findings as numbered items with file, line and fix, then add them here as a stage.
 - **When a rule of work changes,** change `CLAUDE.md` or the design principles in the same pull request. They are the only memory a new session has.
 
@@ -109,5 +110,7 @@ Not items to schedule. Do them when a change touches the place.
 - 2026-11: hedge magic's and holy work's seasons on the Seasons page, their vis from the stores (1.3).
 - 2026-11: the Faith page shows only what applies; the seasons of devotion on Seasons (1.4).
 - 2026-11: prompts after Warping wait in Resolve; Sympathy Traits on the Roll page (1.4b).
+- 2026-11: great buildings and the menagerie on the covenant; a mason's season on Seasons (1.4c).
+- 2026-11: the Guide's toolkit page rewritten as steps, its text moved into data (1.5).
 - 2026-11: the books brought in step with upstream (2.1). *Hermetic Projects*' errata are in, four books moved to `reviewed/`, and the reader gained shelves for earlier editions and third-party books.
 - Earlier work is in the merged pull requests and the README.
