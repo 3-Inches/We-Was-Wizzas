@@ -74,7 +74,7 @@ The toolkit keeps the sheets, the covenant's stores and the calendar. Use them.
 - Say what the toolkit does, not what it "allows" or "supports".
 - Numbers come with their unit and their source: "9 pawns of vis (the age ÷ 5)".
 
-The Guide's three pages are written to these rules and are tested against them: **Using the toolkit** (`src/data/toolkitGuide.ts`, `toolkitGuide.test.ts`), **Playing the game** and **Running the game** (`src/data/roleplay.ts`, `roleplay.test.ts`). Use them as the model. A new system's Guide entry is a card in `toolkitGuide.ts`, its steps a numbered list. The README is older and does not yet meet them: see the audit, section D, and the limits in `src/quality.test.ts`.
+The Guide's three pages are written to these rules and are tested against them: **Using the toolkit** (`src/data/toolkitGuide.ts`, `toolkitGuide.test.ts`), **Playing the game** and **Running the game** (`src/data/roleplay.ts`, `roleplay.test.ts`). Use them as the model. A new system's Guide entry is a card in `toolkitGuide.ts`, its steps a numbered list. The README is a page: a new system adds one row to its table, not a description.
 
 **Check:** read it aloud. Then ask of every sentence: would a new player miss it if it were gone?
 
@@ -85,7 +85,7 @@ A system that is built but cannot be found is not finished. Each system from a b
 - a **Guide entry**, written as steps (make one, use it, spend a season, what to watch for);
 - an **"In the app" pointer** on its Game Mechanics topic (`src/data/appPlaces.ts`);
 - a **tutorial**, or a step in an existing one, if it adds a page or a new kind of play;
-- a line in the README's list of what the toolkit does, and anything left out listed under "Not yet automated".
+- a row in the README's table of what the toolkit covers, and anything left out listed under "Not yet automated".
 
 ## 9. Faithful to the books, and honest about the gaps.
 
@@ -143,7 +143,7 @@ Use these words for these things, everywhere.
 - [ ] Its cards are on the page a player would look on (principle 4), and season-long work is on Seasons.
 - [ ] Each card passes the card checklist below.
 - [ ] It has a Guide entry written as steps, an "In the app" pointer, and tutorial coverage if it adds a page.
-- [ ] The README lists it in one line, and lists what was left out under "Not yet automated".
+- [ ] The README has a row for it, and lists what was left out under "Not yet automated".
 - [ ] The four checks in `CLAUDE.md` pass, ending with the tutorials and the sweeps at both widths.
 - [ ] The roadmap is ticked.
 
