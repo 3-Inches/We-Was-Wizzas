@@ -1,10 +1,10 @@
 import { useState, type ReactNode } from 'react';
-import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art, type Form, type GameData, type Technique } from '../../data';
+import { ARTS, ART_NAMES, BOOKS, BOOK_BY_ID, FORMS, TECHNIQUES, type Art, type Form, type GameData, type Technique } from '../../data';
 import type { DerivedCharacter } from '../../engine/character/derive';
 import { FREQUENCY, MATERIAL_BASE, SIZE_MULT, chargedItemCharges, investEffect, modifiedEffectLevel, openingCost, talismanCapacity } from '../../engine/enchant';
 import { labTotal, type AuraState, type LabContext } from '../../engine/magic';
 import { itemMagnitudes } from '../../engine/covenant';
-import { BOOK_ENCHANTMENTS, enchantmentToEffect } from '../../engine/bookEnchantments';
+import { BOOK_ENCHANTMENTS, enchantmentToEffect, type BookEnchantment } from '../../engine/bookEnchantments';
 import type { EnchantedEffectRecord, EnchantedItem } from '../../engine/types';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
@@ -267,10 +267,14 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
               }}
             >
               <option value="">+ From the books…</option>
-              {bookEffects.map((b) => (
-                <option key={b.id} value={b.id}>
-                  {b.name} ({b.technique}{b.form} {b.level}, {b.source.book})
-                </option>
+              {bookEffectsByBook(bookEffects).map(([book, effects]) => (
+                <optgroup key={book} label={BOOK_BY_ID[book]?.title ?? book}>
+                  {effects.map((b) => (
+                    <option key={b.id} value={b.id}>
+                      {b.name} ({b.technique}{b.form} {b.level})
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           )}
@@ -281,6 +285,16 @@ function ItemRow(props: Props & { item: EnchantedItem; open: boolean; onToggle: 
       )}
     </div>
   );
+}
+
+/** The books' effects for the picker: by book, in the order of the book list, and by name within each. */
+function bookEffectsByBook(effects: BookEnchantment[]): [string, BookEnchantment[]][] {
+  const order = new Map(BOOKS.map((b, i) => [b.id, i]));
+  const groups = new Map<string, BookEnchantment[]>();
+  for (const e of effects) groups.set(e.source.book, [...(groups.get(e.source.book) ?? []), e]);
+  return [...groups.entries()]
+    .sort(([a], [b]) => (order.get(a) ?? 99) - (order.get(b) ?? 99))
+    .map(([book, list]) => [book, [...list].sort((x, y) => x.name.localeCompare(y.name))]);
 }
 
 /** An item as it stands, for reference: its attunements, Shape and Material bonuses, effects and notes. */

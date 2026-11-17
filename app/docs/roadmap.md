@@ -48,7 +48,7 @@ When stage 1 is done, lower every limit in `quality.test.ts` to what was reached
 - [x] **2.1 The update.** *Judgment.* Done against upstream of 16 November 2026. `tools/books/README.md` has the procedure, and what that run found.
 - [ ] **2.2 After each later upstream change,** the weekly check opens an issue. Follow `tools/books/README.md`. It will be far smaller. This item is never ticked.
 
-- [ ] **2.3 Item effects in the spell catalog.** *Mechanical.* Found during 2.1, older than it. About 140 entries of `spells.json` are enchanted-item effects that the general pass of `extract_spells.py` read as spells, mostly from *Magi of Hermes*, *Legends of Hermes* and *Through the Aegis*. A player can pick them as formulaic spells. The signs: a level above 5 that is not a multiple of 5, a duration of "Constant" or "always on", a "Pen" line beside R/D/T, and names such as "Pen +30, 6/day". Teach the general pass to tell them apart, as `extract_hp.py` does for *Hermetic Projects*. Send those with a design line to `enchantments.json`, and give each one that leaves its reason in the pull request.
+- [x] **2.3 Item effects in the spell catalog.** *Mechanical.* Found during 2.1. `extract_spells.py` now tells an item effect from a spell by the book's marks, as `extract_hp.py` does for *Hermetic Projects*: 273 effects from fourteen other books moved to `enchantments.json`, and the item editor groups them by book.
 
 Do stage 2 before stage 3: building more on text that is about to shift doubles the work.
 

@@ -1,4 +1,5 @@
-// Enchantments printed in the books (Hermetic Projects so far), as effects an item can take:
+// Enchantments printed in the books (Hermetic Projects' devices, and the item effects other books
+// set out like spells: see tools/extract/extract_spells.py), as effects an item can take:
 // the effect level is rebuilt from the book's design (its base and the magnitudes before the item
 // modifiers), and the uses, Penetration and triggers from what the book says of the item.
 
