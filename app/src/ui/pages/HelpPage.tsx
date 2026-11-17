@@ -432,8 +432,8 @@ function ToolkitGuide() {
             costs, or spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, raw vis, days away from the lab, any
             other modifier) and it is added to the totals; fast-casting (−10, with its Speed roll), Flexible Formulaic Magic&apos;s step up or down and a Mythic Characteristic&apos;s
             specialty are chosen there too. A spell that works can be put on whoever it works on: it is kept on them (Health &amp; recovery) for its Duration, a powerful one with its
-            Warping. A botch adds its Warping Points, and Wizard&apos;s Twilight is checked on the same page. Casting Virtues and Flaws
-            (Diedne Magic, Weak Spontaneous Magic, Vulnerable Casting…) are applied when you cast; the card lists which. Certamen is fought there too, against anyone of the
+            Warping. A botch adds its Warping Points. Twilight, or what a tradition suffers in its place, waits in Seasons › Resolve. Casting Virtues and Flaws
+            (Diedne Magic, Vulnerable Casting…) apply when you cast; the card lists which. Certamen is fought there too, against anyone of the
             saga or the Tribunal, their Fatigue going on their sheet.
           </li>
           <li>
@@ -456,8 +456,8 @@ function ToolkitGuide() {
             <b>Faerie</b> (<i>Realms of Power: Faerie</i>): a <b>faerie character</b> is made from the People page (a companion, or in place of a magus): Might 5 and its
             Virtues, Pretenses bought from one pool with no Virtue needed, and a form, a cognizance, a social Virtue or Flaw and a taboo, which the rules check asks for.
             A faerie wizard&apos;s <b>Sympathy Traits</b> and Faerie Rank are kept on the sheet. On <b>Dice › Faerie</b>: a <b>faerie rite</b> (a Method and a Power, its level
-            held to five times the Sympathy Traits that apply), the Ars Fabulosa&apos;s <b>bargaining</b> Arts against a faerie&apos;s Might, <b>Faerie Calling</b> after
-            Warping, and a faerie&apos;s change of role through a creative human.
+            held to five times the Sympathy Traits that apply), the Ars Fabulosa&apos;s <b>bargaining</b> Arts against a faerie&apos;s Might, <b>Faerie Calling</b>, and a
+            faerie&apos;s change of role through a creative human. On <b>Dice › Roll</b>: a tick for each Sympathy Trait that fits.
           </li>
           <li>
             <b>Nightwalkers</b> (<i>Hedge Magic, Revised Edition</i>): on <b>Dice › Hedge magic</b>, spirit travel by how well the place is known, leading others
@@ -476,8 +476,7 @@ function ToolkitGuide() {
           <li>
             <b>Vitkir</b> (<i>Hedge Magic, Revised Edition</i>): the 24 runes, raised as Arts; the sheet keeps the apprenticeship (240 experience points and 120 levels of scripts)
             and the scripts known (the book&apos;s or designed from a rune&apos;s guideline). On <b>Dice › Hedge magic</b>: a script cast with its name and description written,
-            hidden or left off, vis and a rune focus; <b>Nátt-thel</b>, the loss of The Gift, after two Warping Points at once. On <b>Seasons</b>: scripts invented or
-            taught.
+            hidden or left off, vis and a rune focus; <b>Nátt-thel</b>, the loss of The Gift. On <b>Seasons</b>: scripts invented or taught.
           </li>
           <li>
             <b>Gruagachan</b> (<i>Hedge Magic, Revised Edition</i>): Give and Take with Blessing, Curse, Shape and Vision; the sheet keeps the apprenticeship and the spells
@@ -486,8 +485,8 @@ function ToolkitGuide() {
           </li>
           <li>
             <b>Folk witches</b> (<i>Hedge Magic, Revised Edition</i>): the Folk Witch Social Status, the tradition&apos;s Virtues and Flaws, and Folk Witch Magic Theory; a
-            Gifted witch has the seven favored powers, and the sheet keeps her apprenticeship (200 experience points). On <b>Dice › Hedge magic</b>: a power used by
-            incantation or fetish against its Ease Factor, potions drunk, and the <b>Witch Moon</b> that a new Warping Score brings. On <b>Seasons</b>: a season in the
+            Gifted witch has the seven favored powers, and the sheet keeps their apprenticeship (200 experience points). On <b>Dice › Hedge magic</b>: a power used by
+            incantation or fetish against its Ease Factor, potions drunk, and the <b>Witch Moon</b>. On <b>Seasons</b>: a season in the
             <b>kitchen</b> (potions, fetishes, a curse rolled in Resolve, vis, a longevity ritual, a familiar).
           </li>
           <li>

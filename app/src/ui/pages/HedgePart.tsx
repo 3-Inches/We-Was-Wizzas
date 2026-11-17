@@ -32,6 +32,7 @@ import { isFolkWitch, witchPowers } from '../../engine/folkWitch';
 import { GruagachCastCard, GruagachSeasonCard, GruagachSheetCard, hasGruagach } from './GruagachPart';
 import { NightwalkerCard, hasNightwalker } from './NightwalkerPart';
 import { NattThelCard, VitkiCastCard, VitkiSeasonCard, VitkiSheetCard, hasVitki } from './VitkirPart';
+import { gainWarping, nowOf } from '../../engine/warping';
 
 const ELEMENTAL_IDS = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining'];
 /** Someone this page is for: a learned magician or an elementalist. */
@@ -237,7 +238,8 @@ function CharmCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState; pairs
     }
     update((x) => {
       if (outcome !== 'works') x.fatigueLost = Math.min(5, x.fatigueLost + 1);
-      if (botches) x.warpingPoints += botches;
+      // Intervention is rolled above, where the points came
+      if (botches) gainWarping(x, d, { points: botches, why: `from a botched ${charm.name}`, botch: true, handled: true, ...nowOf(ed.saga) });
     });
     if (avoid) out.push(avoid);
     ent.reset();

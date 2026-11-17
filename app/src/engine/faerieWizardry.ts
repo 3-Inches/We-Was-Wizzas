@@ -4,6 +4,7 @@
 
 import { FAERIE_DURATIONS, FAERIE_RANGES, FAERIE_TARGETS, bargainAbilityId, type BargainArtId, type FaerieMethodId, type FaeriePowerId } from '../data/faerie';
 import type { DerivedCharacter } from './character/derive';
+import type { Part } from './magic';
 import { DURATIONS, RANGES, TARGETS, addMagnitudes, type RDTOption } from './spellDesign';
 import type { Character, SympathyTrait } from './types';
 
@@ -46,6 +47,22 @@ export const sympathyStep = (s: number) => 5 * (Math.abs(s) + 1);
 export function sympathyBotchDice(c: Pick<Character, 'sympathy'>): { dice: number; trait?: SympathyTrait } {
   const worst = (c.sympathy ?? []).reduce<SympathyTrait | undefined>((w, t) => (t.score < 0 && (!w || t.score < w.score) ? t : w), undefined);
   return { dice: worst ? -worst.score : 0, trait: worst };
+}
+
+/**
+ * Sympathy Traits on an ordinary Ability roll (RoP: Faerie, Sympathy Traits, lines 5844 to 5848). Of the
+ * traits that apply, the highest positive one stands in for a specialty, adding its score; it calls for a
+ * stress die, and a botch gives Warping Points. They are not cumulative. The worst negative one that applies
+ * comes off the Ability.
+ */
+export function sympathyOnRoll(traits: readonly SympathyTrait[], applies: readonly string[]): { total: number; parts: Part[]; stressOnly: boolean } {
+  const on = traits.filter((t) => applies.includes(t.uid));
+  const best = on.reduce<SympathyTrait | undefined>((b, t) => (t.score > 0 && (!b || t.score > b.score) ? t : b), undefined);
+  const worst = on.reduce<SympathyTrait | undefined>((w, t) => (t.score < 0 && (!w || t.score < w.score) ? t : w), undefined);
+  const parts: Part[] = [];
+  if (best) parts.push({ label: `${best.trait || 'Sympathy Trait'} (Sympathy, as a specialty)`, value: best.score });
+  if (worst) parts.push({ label: `${worst.trait || 'Sympathy Trait'} (Sympathy)`, value: worst.score });
+  return { total: parts.reduce((t, p) => t + p.value, 0), parts, stressOnly: !!best };
 }
 
 /** Whether experience can raise a trait a point: a positive trait up to the cap; a negative one only while the Warping Score exceeds its size (RoP: Faerie, Increasing Sympathy Traits). */

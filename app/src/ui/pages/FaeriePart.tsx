@@ -17,6 +17,8 @@ import { Card, Field, Stepper, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
 import { SympathyCard } from '../character/SympathyCard';
 import { uid } from '../../util/id';
+import { settle } from '../../engine/seasonPlan';
+import { gainWarping, nowOf, owedReaction } from '../../engine/warping';
 
 // the Ranges, Durations and Targets faerie rites add to the Hermetic ones, listed apart in the rite card
 const FAERIE_ONLY = new Set([...FAERIE_RANGES, ...FAERIE_DURATIONS, ...FAERIE_TARGETS].map((o) => o.name).filter((n) => ![...RANGES, ...DURATIONS, ...TARGETS].some((h) => h.name.toLowerCase() === n.toLowerCase())));
@@ -137,13 +139,16 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
       botched ? `BOTCH (${(r as ReturnType<typeof stressDie>).botches}): the rite goes wrong${traits.length ? `; each trait used loses ${(r as ReturnType<typeof stressDie>).botches} experience point${(r as ReturnType<typeof stressDie>).botches > 1 ? 's' : ''}` : ''}, and a Warping Point for each botch die that came up 0.` : works ? `The rite works at level ${lv.level}.${riteWarps(lv.level) ? ' At level 30 or more it Warps its target.' : ''}` : `Too weak: it reaches ${reached}.`,
     ];
     const cost: string[] = [];
+    let follows: string | undefined;
     update((x) => {
+      // the rite's Warping is one event: evocation's point and the botch's, together (Faerie Calling on 2 or more)
+      let warp = 0;
       if (method === 'evocation') {
         if (x.confidence.points > 0 && !botched) {
           x.confidence.points -= 1;
           cost.push('a Confidence Point spent');
         } else {
-          x.warpingPoints += 1;
+          warp += 1;
           cost.push('a Warping Point gained');
         }
       }
@@ -152,9 +157,11 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
         x.fatigueLost = Math.min(5, x.fatigueLost + levels);
         cost.push(`${levels} Fatigue level${levels > 1 ? 's' : ''} spent`);
       }
-      if (botched) x.warpingPoints += (r as ReturnType<typeof stressDie>).botches;
+      if (botched) warp += (r as ReturnType<typeof stressDie>).botches;
+      follows = gainWarping(x, d, { points: warp, why: 'from a faerie rite', botch: botched, ...nowOf(ed.saga) });
     });
     if (cost.length) out.push(`Method: ${cost.join(', ')}.`);
+    if (follows) out.push(follows);
     if (!useSimple && r.kind === 'stress' && (r as ReturnType<typeof stressDie>).exploded && traits.length) {
       xp(used, 1);
       out.push('A 1 on the die: each trait used gains an experience point.');
@@ -364,9 +371,12 @@ function BargainCard({ ed, aura: aura0, rank, arts }: { ed: CharEditor; aura: nu
 
 function CallingCard({ ed, rank }: { ed: CharEditor; rank: number }) {
   const { c, d, update } = ed;
-  const [gained, setGained] = useState(2);
+  const owed = c ? owedReaction(c, 'calling') : undefined;
+  const [picked, setGained] = useState(2);
   const [lines, setLines] = useState<string[]>([]);
   if (!c || !d) return null;
+  // the points that brought the Calling owed on the Resolve list, or those set here
+  const gained = owed?.points ?? picked;
   const awareness = d.abilities.find((a) => a.abilityId === 'awareness')?.total ?? 0;
   const concentration = d.abilities.find((a) => a.abilityId === 'concentration')?.total ?? 0;
   const per = d.characteristics.Per.value;
@@ -382,6 +392,8 @@ function CallingCard({ ed, rank }: { ed: CharEditor; rank: number }) {
     const t = per + concentration + r.value;
     const good = !r.botches && t > resolveEase;
     update((x) => {
+      const t = owedReaction(x, 'calling');
+      if (t) settle(x, t.uid);
       const list = [...(x.sympathy ?? [])];
       if (good) list.push({ uid: uid(), trait: 'new (from the Calling)', score: 1 });
       else list.push({ uid: uid(), trait: 'new (from the Calling)', score: -1 });
@@ -395,15 +407,18 @@ function CallingCard({ ed, rank }: { ed: CharEditor; rank: number }) {
     ]);
   };
   return (
-    <Card title="Faerie Calling" tour="faerie-calling" fold="faerie-calling" summary="When 2 or more Warping Points come at once">
+    <Card title="Faerie Calling" tour="faerie-calling" fold="faerie-calling" startOpen={!!owed} summary={owed ? `Called: ${gained} Warping Points, to resolve` : 'When 2 or more Warping Points come at once'}>
       <p className="small muted" style={{ marginTop: 0 }}>
         The Faerie realm comes calling when 2 or more Warping Points are gained at once: a dream scene played out with the troupe, the character dazed until it is resolved. The scene&apos;s
         setting and conflict come from the Sympathy Traits; its mood from the Faerie Rank ({signed(rank)}).
       </p>
+      {owed && <p className="small">{owed.text}</p>}
       <div className="row">
-        <Field label="Warping Points just gained">
-          <Stepper value={gained} min={2} max={20} width={32} onChange={setGained} />
-        </Field>
+        {!owed && (
+          <Field label="Warping Points just gained" hint="Points the toolkit adds bring the Calling here by themselves">
+            <Stepper value={gained} min={2} max={20} width={32} onChange={setGained} />
+          </Field>
+        )}
         <button onClick={act}>Try to act (Ease Factor {actEase})</button>
         <button onClick={resolve}>Resolve the Calling (Ease Factor {resolveEase})</button>
       </div>

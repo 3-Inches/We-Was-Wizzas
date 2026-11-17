@@ -18,6 +18,8 @@ import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
 import type { CharEditor } from '../character/useChar';
 import { useSeasonWork } from '../seasonWork';
+import { settle } from '../../engine/seasonPlan';
+import { gainWarping, nowOf, owedReaction } from '../../engine/warping';
 
 function Lines({ lines }: { lines: string[] }) {
   if (!lines.length) return null;
@@ -277,7 +279,8 @@ export function VitkiCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
     }
     update((x) => {
       if (fatigue) x.fatigueLost = Math.min(5, x.fatigueLost + fatigue);
-      if (botches) x.warpingPoints += botches;
+      // Nátt-thel is rolled above, where the points came
+      if (botches) gainWarping(x, d, { points: botches, why: 'from a botched rune script', botch: true, handled: true, ...nowOf(ed.saga) });
     });
     setLines(out);
   };
@@ -436,38 +439,54 @@ export function VitkiSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraState 
 /** Nátt-thel from any source of two or more Warping Points at once; and the runes' foci for reference. */
 export function NattThelCard({ ed }: { ed: CharEditor }) {
   const { c, d, update } = ed;
-  const [gained, setGained] = useState(2);
+  const [picked, setGained] = useState(2);
   const [kept, setKept] = useState(0);
   const [lines, setLines] = useState<string[]>([]);
   if (!c || !d || !vitkirRunes(c, d).length) return null;
+  // owed on the Resolve list when the toolkit added the points: they are on the sheet already
+  const owed = owedReaction(c, 'natt-thel');
+  const gained = owed?.points ?? picked;
+  const before = c.warpingPoints - (owed ? gained : 0);
   const roll = () => {
-    const pts = gained + kept;
-    const ws = warpingScoreFromPoints(c.warpingPoints + gained);
+    const ws = warpingScoreFromPoints(before + gained);
     const a = nattThelAvoid(d, ws);
     const r = stressDie(1);
+    const follows = !!owed || nattThelFollows(c, gained);
+    const lost = follows && a.total + r.value < a.ease;
     const out = [`${gained} Warping Point${gained === 1 ? '' : 's'} (Warping Score ${ws}): Stamina + Concentration ${a.total} + ${describeStress(r)} = ${a.total + r.value} against ${a.ease}.`];
-    if (!nattThelFollows(c, gained)) out.push('Fewer than two points at once: no Nátt-thel (unless Nátt-thel Prone and from a botch).');
-    else if (a.total + r.value >= a.ease) out.push('The vitki keeps control of the magic.');
+    if (!follows) out.push('Fewer than two points at once: no Nátt-thel (unless Nátt-thel Prone and from a botch).');
+    else if (!lost) out.push('The vitki keeps control of the magic.');
     else {
-      const wsKept = warpingScoreFromPoints(c.warpingPoints + pts);
+      // each effect kept alive adds a point, counted in the Warping Score and the multiplier (HMRE line 6372)
+      const pts = gained + kept;
+      const wsKept = warpingScoreFromPoints(before + pts);
       const die = simpleDie().value;
       const dur = nattThelDuration(die + wsKept, pts);
       out.push(`Nátt-thel: the vitki loses The Gift (not its social penalties) and the vitkar Virtues and Flaws for ${dur.text} (simple die ${die} + Warping Score ${wsKept}).${kept ? ` ${kept} effect${kept === 1 ? '' : 's'} kept alive, a Warping Point each.` : ' Every rune effect ends.'}`);
     }
-    update((x) => void (x.warpingPoints += nattThelFollows(c, gained) ? pts : gained));
+    const add = (owed ? 0 : gained) + (lost ? kept : 0);
+    update((x) => {
+      x.warpingPoints += add;
+      const t = owedReaction(x, 'natt-thel');
+      if (t) settle(x, t.uid);
+    });
+    if (add) out.push(`${add} Warping Point${add === 1 ? '' : 's'} added to the sheet.`);
     setLines(out);
   };
   return (
-    <Card title="Nátt-thel" tour="vitki-natt-thel" fold="vitki-natt-thel" summary="Losing The Gift">
+    <Card title="Nátt-thel" tour="vitki-natt-thel" fold="vitki-natt-thel" startOpen={!!owed} summary={owed ? `${gained} Warping Points: roll to avoid it` : 'Losing The Gift'}>
       <p className="small muted" style={{ marginTop: 0 }}>
         In place of Twilight: two or more Warping Points from one event (a single botch for the Nátt-thel Prone) call for Stamina + Concentration + stress die against Warping Score × 3.
         Interruptions add the Concentration table&apos;s Ease Factors.
       </p>
+      {owed && <p className="small">{owed.text} They are on the sheet already.</p>}
       <div className="row">
-        <Field label="Warping Points gained" hint="Added to the sheet; a botch cast above adds its own">
-          <Stepper value={gained} min={1} max={20} width={32} onChange={setGained} />
-        </Field>
-        <Field label="Effects kept alive" hint="A Warping Point each, if it comes">
+        {!owed && (
+          <Field label="Warping Points gained" hint="Points the toolkit adds bring Nátt-thel here by themselves">
+            <Stepper value={gained} min={1} max={20} width={32} onChange={setGained} />
+          </Field>
+        )}
+        <Field label="Effects kept alive" hint="A Warping Point each, if control is lost">
           <Stepper value={kept} min={0} max={10} width={32} onChange={setKept} />
         </Field>
         <button onClick={roll}>Roll</button>

@@ -113,3 +113,31 @@ describe('limits that may only go down', () => {
     expect(BIG_FILES.filter((p) => !big.has(p)), 'these are no longer over 800 lines: take them off BIG_FILES').toEqual([]);
   });
 });
+
+// ------------------------------------------------------------------------------------------------
+// What follows Warping (Twilight, the Witch Moon, Nátt-thel, Faerie Calling) is owed on the Resolve list by
+// gainWarping (engine/warping.ts). These files add Warping Points directly, each for its reason.
+const RAW_WARPING: Record<string, string> = {
+  'src/engine/warping.ts': 'gainWarping itself',
+  'src/engine/folkWitch.ts': 'witchWarping, which gainWarping calls for a folk witch',
+  'src/engine/time.ts': 'a living covenant’s people, for whom nothing is owed',
+  'src/engine/projects.ts': 'a project worked with no season given',
+  'src/engine/experiment.ts': 'it counts the points; its caller adds them',
+  'src/engine/labRoutines.ts': 'a point a few seasons: prolonged, and only magi keep lab routines',
+  'src/engine/effects.ts': 'a powerful effect’s point: prolonged',
+  'src/engine/generate/character.ts': 'a generated character’s past',
+  'src/ui/covenant/CovenantEffects.tsx': 'a caster with no sheet to derive',
+  'src/ui/character/sheet/OriginalResearch.tsx': 'a magus with no sheet to derive',
+  'src/ui/character/sheet/Twilight.tsx': 'Twilight’s own card',
+  'src/ui/pages/FolkWitchPart.tsx': 'the Witch Moon’s own card',
+  'src/ui/pages/VitkirPart.tsx': 'Nátt-thel’s own card',
+  'src/ui/pages/HolyPart.tsx': 'the Divine Ascent, rolled on its own card',
+};
+
+describe('Warping', () => {
+  it('is added through gainWarping, so what follows it is not forgotten', () => {
+    const raw = sources.filter(([, text]) => /warpingPoints \+=/.test(text)).map(([path]) => path.replace(/^\.\//, 'src/'));
+    expect(raw.filter((p) => !RAW_WARPING[p]), 'add Warping Points with gainWarping (engine/warping.ts), or give the reason here').toEqual([]);
+    expect(Object.keys(RAW_WARPING).filter((p) => !raw.includes(p)), 'these no longer add Warping Points directly: take them off RAW_WARPING').toEqual([]);
+  });
+});

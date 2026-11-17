@@ -121,9 +121,11 @@ export interface Owed {
   uid: string;
   year: number;
   season: Season;
-  /** a Virtue or Flaw a Warping Score brings, a Twilight to roll, a death to confirm or undo; a roll a season's work leaves (seasonRolls.ts) */
-  kind: 'warping' | 'twilight' | 'dying' | 'curse' | 'ring' | 'search';
+  /** a Virtue or Flaw a Warping Score brings, a death to confirm or undo; what follows Warping in each tradition (warping.ts); a roll a season's work leaves (seasonRolls.ts) */
+  kind: 'warping' | 'twilight' | 'witch-moon' | 'natt-thel' | 'calling' | 'dying' | 'curse' | 'ring' | 'search';
   text: string;
+  /** the Warping Points that brought it (Twilight, Nátt-thel, Faerie Calling): the roll needs them */
+  points?: number;
   /** the Virtue or Flaw it calls for (Warping) */
   want?: { kind: 'virtue' | 'flaw'; size: VFSize; supernatural?: boolean };
 }

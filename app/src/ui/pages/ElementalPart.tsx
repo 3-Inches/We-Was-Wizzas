@@ -16,6 +16,7 @@ import type { AuraState } from '../../engine/magic';
 import { Card, Field, Stepper, Total, signed } from '../kit';
 import { ARTS, ART_NAMES, CHAR_NAMES, type Art } from '../../data';
 import type { CharEditor } from '../character/useChar';
+import { gainWarping, nowOf } from '../../engine/warping';
 
 function Lines({ lines }: { lines: string[] }) {
   if (!lines.length) return null;
@@ -87,7 +88,7 @@ export function ElementalCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
     update((x) => {
       if (t.id === 'summoning') x.longTermFatigueLost = Math.min(5, x.longTermFatigueLost + 1);
       if (t.id === 'controlling') x.fatigueLost = Math.min(5, x.fatigueLost + 1);
-      if (botch) x.warpingPoints += r.botches;
+      if (botch) gainWarping(x, d, { points: r.botches, why: `from a botched ${t.name}`, botch: true, ...nowOf(ed.saga) });
     });
     if (def.cost !== 'no Fatigue') out.push(`Cost: ${def.cost}.`);
     setLines(out);

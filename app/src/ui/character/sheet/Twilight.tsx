@@ -28,8 +28,10 @@ function settleTwilight(x: Character): void {
 
 export function TwilightCard({ ed }: { ed: CharEditor }) {
   const { c, d, data, update, ctx, saga } = ed;
-  const [gain, setGain] = useState(2);
-  const [added, setAdded] = useState(false);
+  // a Twilight owed on the Resolve list: its points, already on the sheet
+  const owedT = c?.owed?.find((o) => o.kind === 'twilight');
+  const [gain, setGain] = useState(owedT?.points ?? 2);
+  const [added, setAdded] = useState(!!owedT?.points);
   const [text, setText] = useState<string[]>([]);
   const [stage, setStage] = useState<Stage>({ kind: 'idle' });
   const [effect, setEffect] = useState<TwilightEffect | ''>('');
