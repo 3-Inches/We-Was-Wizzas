@@ -2,6 +2,8 @@
 // Tower), and a menagerie's breeding, birthing and young (Chapter Seven).
 
 import { defaultRng, describeStress, stressDie, type Rng, type StressResult } from './dice';
+import type { GreatBuilding } from './types';
+import { ITEM_QUALITY_MOD, craftQuality, itemDamageLevels, itemStressCheck } from './workshop';
 
 // ------------------------------------------------------------------------------------------------
 // Building
@@ -25,6 +27,66 @@ export const STRUCTURE_EVENTS = ['Severe storms and hurricane winds', 'Fire, ins
 /** A structure's stress check: stress die + Craft: Mason + the quality's modifier (−1 if repaired before), against 15. */
 export function structureCheckModifiers(craftMason: number, qualityMod: number, repaired: boolean, other = 0): number {
   return craftMason + qualityMod - (repaired ? 1 : 0) + other;
+}
+
+export type BuildQuality = GreatBuilding['weakest'];
+const QUALITY_RANK: BuildQuality[] = ['shoddy', 'standard', 'superior', 'excellent'];
+const poorer = (a: BuildQuality, b: BuildQuality) => (QUALITY_RANK.indexOf(a) <= QUALITY_RANK.indexOf(b) ? a : b);
+
+/** A great building's damage levels: by its poorest work, ×4 for Size 10 or more (Hermetic Projects, Damage and Disrepair, line 1569). */
+export const buildingDamageLevels = (b: Pick<GreatBuilding, 'weakest'>) => itemDamageLevels(b.weakest, 10);
+
+/** Damage levels it has left. */
+export const buildingLevelsLeft = (b: Pick<GreatBuilding, 'weakest' | 'damage'>) => Math.max(0, buildingDamageLevels(b) - b.damage);
+
+/** Its stress check's modifiers: the mason's Craft, the latest work's quality, −1 if repaired before (line 1575). */
+export const buildingCheckModifiers = (b: Pick<GreatBuilding, 'latest' | 'repaired'>, craftMason: number, other = 0) => structureCheckModifiers(craftMason, ITEM_QUALITY_MOD[b.latest], !!b.repaired, other);
+
+/** The stress check, with the damage levels it costs put on the record. */
+export function buildingStressCheck(b: GreatBuilding, craftMason: number, other = 0, rng: Rng = defaultRng): { building: GreatBuilding; lost: number; text: string } {
+  const r = itemStressCheck(buildingCheckModifiers(b, craftMason, other), rng);
+  const building = { ...b, damage: b.damage + r.lost };
+  const left = buildingLevelsLeft(building);
+  const tail = !r.lost ? '' : left > 0 ? ` A partial collapse: ${left} of ${buildingDamageLevels(b)} damage levels left. A master mason’s season repairs one.` : ' Every damage level is gone: the building falls, as the storyguide decides.';
+  return { building, lost: r.lost, text: `${r.text}${tail}` };
+}
+
+/** The Workshop Total for building: Intelligence + Craft: Mason + Innovation + Raw Materials (line 1527), against 3, 6, 12 and 15. */
+export function buildingWorkQuality(total: number, craftMason: number): BuildQuality {
+  return craftQuality(total, 6, craftMason).quality;
+}
+
+/**
+ * A master mason's season of building (line 1493): the building rises by the mason's pace, with craft
+ * magic held to the score. Its damage levels follow its poorest work (line 1571); its stress check follows
+ * the latest (line 1541). Refused when the mason cannot raise a level.
+ */
+export function buildSeason(b: GreatBuilding, craftMason: number, quality: BuildQuality): { building?: GreatBuilding; text: string } {
+  const p = masonProgress(craftMason, b.tools ?? 0);
+  if (!p.levelsPerSeason) return { text: `A master mason needs Craft: Mason 5 or more, with craft magic, to raise a level of 20 feet in a season (${p.effective} now).` };
+  const building: GreatBuilding = { ...b, height: b.height + p.feetPerSeason, latest: quality, weakest: b.height > 0 ? poorer(b.weakest, quality) : quality };
+  const was = buildingDamageLevels(b);
+  const now = buildingDamageLevels(building);
+  return {
+    building,
+    text: `${building.name} rises ${p.feetPerSeason} feet, to ${building.height} feet, in ${quality} work.${b.height > 0 && now !== was ? ` Its poorest work is now ${building.weakest}: ${now} damage levels, not ${was}.` : ''}`,
+  };
+}
+
+/**
+ * A master mason's season of repairs (lines 1571 and 1601): one damage level mended; with none lost, shoddy
+ * work brought up to standard. Either way it counts as repaired before (−1 to stress checks).
+ */
+export function repairSeason(b: GreatBuilding): { building?: GreatBuilding; text: string } {
+  if (b.damage > 0) {
+    const building = { ...b, damage: b.damage - 1, repaired: true };
+    return { building, text: `One damage level of ${b.name} repaired: ${buildingLevelsLeft(building)} of ${buildingDamageLevels(building)} left.` };
+  }
+  if (b.weakest === 'shoddy') {
+    const building: GreatBuilding = { ...b, weakest: 'standard', latest: b.latest === 'shoddy' ? 'standard' : b.latest, repaired: true };
+    return { building, text: `${b.name}’s shoddy work brought up to standard: ${buildingDamageLevels(building)} damage levels.` };
+  }
+  return { text: `${b.name} has no damage and no shoddy work to repair.` };
 }
 
 // ------------------------------------------------------------------------------------------------

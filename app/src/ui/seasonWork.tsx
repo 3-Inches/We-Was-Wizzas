@@ -1,6 +1,6 @@
 // A season's work done from a card: logged on the character with the experience it brings, its vis taken
 // from the purse or the covenant's stores (or put there), as one change that Undo and Unlog take back.
-// The hedge traditions' season cards use it, on the Seasons page, in a character's season in full.
+// The hedge traditions', the holy and the mason's season cards use it, on the Seasons page, in a character's season in full.
 
 import { useState } from 'react';
 import { ART_NAMES, type Art } from '../data';
@@ -8,7 +8,7 @@ import { applySeason, newSeasonEntry } from '../engine/longterm';
 import { seasonBusy } from '../engine/time';
 import { visUndo } from '../engine/unlog';
 import { artsText, fullerPlace, visInPlaces, visShortText, type VisPlace } from '../engine/vis';
-import type { Character, Covenant } from '../engine/types';
+import type { Character, Covenant, SeasonUndo } from '../engine/types';
 import { useStore } from '../store/store';
 import type { CharEditor } from './character/useChar';
 import { Field } from './kit';
@@ -23,6 +23,8 @@ export interface SeasonWorkResult {
   /** experience the season gives besides its Exposure (`ability:<uid>` → points), and how to say it */
   gains?: Record<string, number>;
   gainText?: string;
+  /** what else Unlog must put back (a great building's progress) */
+  undo?: SeasonUndo;
 }
 
 /** A season's work for the character being edited: this season, whether it is spent, their covenant, and the work itself. */
@@ -50,7 +52,7 @@ export function useSeasonWork(ed: CharEditor) {
     const lines = r.lines.filter(Boolean);
     if (r.gains) for (const [k, v] of Object.entries(r.gains)) e.gains[k] = (e.gains[k] ?? 0) + v;
     e.notes = lines.join(' ');
-    const u = { ...visUndo(c, x, cov, k), ...(r.made ? { final: `This season made ${r.made}, which is on the sheet, so the season stays logged (remove what it made by hand if it must go).` } : {}) };
+    const u = { ...visUndo(c, x, cov, k), ...r.undo, ...(r.made ? { final: `This season made ${r.made}, which is on the sheet, so the season stays logged (remove what it made by hand if it must go).` } : {}) };
     if (Object.keys(u).length) e.undo = u;
     applySeason(x, e, 1);
     x.seasonLog.push(e);

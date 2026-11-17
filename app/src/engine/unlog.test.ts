@@ -10,6 +10,8 @@ import { DEFAULT_HOUSE_RULES } from './types';
 import { labUndo, unlogSeason } from './unlog';
 import { purseOf } from './vis';
 import { workshopSeason } from './workshop';
+import { newCovenant } from './covenant';
+import { buildSeason } from './greatProjects';
 
 const data = buildGameData();
 
@@ -28,6 +30,21 @@ describe('unlogging a season', () => {
     expect(c.workshop.seasonsWorked).toBe(0);
     expect(craft.xp.play ?? 0).toBe(0);
     expect(c.seasonLog).toHaveLength(0);
+  });
+
+  it('puts a great building back as it was before a mason’s season, or takes away one the season began', () => {
+    const c = newCharacter('companion', 's');
+    const cov = newCovenant('s', 1220);
+    const tower = { uid: 't', name: 'The tower', height: 40, weakest: 'standard' as const, latest: 'standard' as const, damage: 0 };
+    cov.buildings = [buildSeason(tower, 5, 'shoddy').building!, { ...tower, uid: 'n' }];
+    const e = newSeasonEntry(1220, 'Spring', 'other', 'Building: The tower');
+    e.undo = { building: { covenantId: cov.id, uid: 't', before: tower } };
+    const f = newSeasonEntry(1220, 'Summer', 'other', 'Building: a new one');
+    f.undo = { building: { covenantId: cov.id, uid: 'n' } };
+    c.seasonLog.push(e, f);
+    expect(unlogSeason(c, f.uid, [cov]).covenants).toEqual([cov]);
+    unlogSeason(c, e.uid, [cov]);
+    expect(cov.buildings).toEqual([tower]);
   });
 
   it('gives back the vis a season spent and puts a lab project back as it was', () => {

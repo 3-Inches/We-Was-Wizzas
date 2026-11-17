@@ -22,6 +22,7 @@ import { Hint } from '../Hint';
 import { AuraCard } from './AuraCard';
 import { auraOf } from '../../engine/aura';
 import { TroublesCard } from './TroublesCard';
+import { GreatBuildingsCard, MenagerieCard } from './GreatProjectsCard';
 
 type TabId = 'overview' | 'hooks' | 'library' | 'labs' | 'folk' | 'items' | 'log';
 
@@ -323,6 +324,10 @@ function OverviewTab({ cov, update, dc, sagaId, setTab }: TabProps & { sagaId: s
         </div>
       </Card>
       {!hasMagic && magicCard}
+      <div className="grid grid-2">
+        <GreatBuildingsCard cov={cov} update={update} />
+        <MenagerieCard cov={cov} />
+      </div>
       <CovenantTribunalCard cov={cov} update={update} saga={saga} />
     </div>
   );

@@ -24,6 +24,7 @@ import { LabProjects } from '../character/sheet/LabProjects';
 import { HolyWorksCard } from './HolyPart';
 import { HedgeSeasonCards } from './HedgePart';
 import { DevotionSeasonsCard } from './DevotionSeasonsCard';
+import { MasonSeasonCard } from './MasonSeasonCard';
 import { holyWorksOpen } from '../../engine/holy';
 import { LongevityCard } from '../character/sheet/LabItemsTab';
 import { OriginalResearch } from '../character/sheet/OriginalResearch';
@@ -292,7 +293,7 @@ function PlanInFull({ sagaId, chars, covs, who, onPick, season }: { sagaId: stri
   const all = groups.flatMap((g) => g.people);
   const c = all.find((x) => x.id === who) ?? all[0];
   return (
-    <Card title={c ? `${c.name || 'Unnamed'}: ${season} in full` : 'A season in full'} tour="table-plan" fold="table-plan" summary="One character's season: a book, a teacher, a lab project, hedge magic or holy work, writing, an Initiation; aging out of turn.">
+    <Card title={c ? `${c.name || 'Unnamed'}: ${season} in full` : 'A season in full'} tour="table-plan" fold="table-plan" summary="One character's season: a book, a teacher, a lab project, hedge magic or holy work, a mason's building, writing, an Initiation; aging out of turn.">
       {!c ? (
         <Empty>No character in play yet.</Empty>
       ) : (
@@ -326,6 +327,7 @@ function SeasonFor({ sagaId, charId }: { sagaId: string; charId: string }) {
       <HedgeSeasonCards ed={ed} aura={ed.ctx.aura} />
       {holyWorksOpen(ed.d).length > 0 && <HolyWorksCard ed={ed} aura={ed.ctx.aura} />}
       <DevotionSeasonsCard ed={ed} />
+      <MasonSeasonCard ed={ed} />
       <LongevityCard ed={ed} />
       <ApprenticeCard ed={ed} />
       <WorkshopCard ed={ed} where="seasons" />

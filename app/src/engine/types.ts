@@ -721,6 +721,24 @@ export interface Possession {
   from?: string;
 }
 
+/** A great building the covenant is raising (Hermetic Projects, the Great Tower): its record, kept on the covenant. */
+export interface GreatBuilding {
+  uid: string;
+  name: string;
+  /** its height, in feet */
+  height: number;
+  /** the poorest work in it, which sets its damage levels (shoddy 4, standard 8, superior 12, excellent 16 at Size 10 or more) */
+  weakest: 'shoddy' | 'standard' | 'superior' | 'excellent';
+  /** the latest work's quality, which sets the stress check's modifier (shoddy −1, superior +1, excellent +3) */
+  latest: 'shoddy' | 'standard' | 'superior' | 'excellent';
+  /** damage levels lost and not yet repaired */
+  damage: number;
+  /** repaired before: −1 to stress checks */
+  repaired?: boolean;
+  /** enchanted building tools in use, each +1 to Craft: Mason for the pace of work */
+  tools?: number;
+}
+
 export interface EnchantedEffectRecord {
   uid: string;
   name: string;
@@ -979,6 +997,8 @@ export interface SeasonUndo {
   writing?: { uid: string; points: number }[];
   /** a tractatus read: its reader is struck off again */
   tractatus?: { covenantId: string; bookUid: string };
+  /** a great building as it was before the season's work (none: the season began it) */
+  building?: { covenantId: string; uid: string; before?: GreatBuilding };
   /** why it cannot be unlogged: what its work made */
   final?: string;
 }
@@ -1793,6 +1813,8 @@ export interface Covenant {
   troubles?: Trouble[];
   /** spells and powers cast on the covenant, newest last, for undoing */
   casts?: CastRecord[];
+  /** great buildings under way (Hermetic Projects): a mason's seasons raise and repair them */
+  buildings?: GreatBuilding[];
   /** what the covenant gives its members each year */
   allowance?: Allowance;
   /** the last year a Hook's story was played (Indiscreet Resource: one every five years) */
