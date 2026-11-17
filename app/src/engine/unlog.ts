@@ -1,7 +1,7 @@
 // Unlogging a season: a season logged by mistake taken back, whole. Its experience and Warping come
 // off (applySeason), and whatever else it recorded in its `undo`: the Labor Points it earned and the
 // workshop's counts, a lab project's progress and the vis the work spent, the purse's pounds, a Virtue
-// an Initiation gave, a Discovery, a season taught to the apprentice. A season whose work finished
+// an Initiation gave, a Discovery, a season taught to the apprentice, a great building's progress. A season whose work finished
 // something (a spell learned, an item made, a familiar bound) is final: what it made is on the sheet,
 // so it is not unlogged (Undo at the top takes back the last change instead).
 
@@ -141,6 +141,16 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
       const b = cov?.library.find((x) => x.uid === u.tractatus!.bookUid);
       if (cov && b?.readBy?.includes(c.id)) {
         b.readBy = b.readBy.filter((id) => id !== c.id);
+        if (!changed.includes(cov)) changed.push(cov);
+      }
+    }
+    if (u.building) {
+      const cov = covs.find((x) => x.id === u.building!.covenantId);
+      if (cov) {
+        const { uid: id, before } = u.building;
+        const rest = (cov.buildings ?? []).filter((b) => b.uid !== id);
+        cov.buildings = before ? (cov.buildings ?? []).map((b) => (b.uid === id ? structuredClone(before) : b)) : rest;
+        if (before && !cov.buildings.some((b) => b.uid === id)) cov.buildings.push(structuredClone(before));
         if (!changed.includes(cov)) changed.push(cov);
       }
     }

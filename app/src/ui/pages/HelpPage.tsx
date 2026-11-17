@@ -470,8 +470,8 @@ function ToolkitGuide() {
           </li>
           <li>
             <b>Hermetic Projects</b>: its spells are in the spell list (each row shows the Lab Total to invent it in one to four seasons), and its enchantments can be added to an item
-            with <b>+ From the books…</b>. Its ships and a great tower can be kept as possessions. On <b>Possessions</b>, the <b>Great projects</b> card gives a mason&apos;s building
-            progress, a building&apos;s stress check, and a menagerie&apos;s breeding, birthing and young.
+            with <b>+ From the books…</b>. Its ships can be kept as possessions. A covenant&apos;s Overview keeps its <b>Great buildings</b>, with their stress check, and
+            <b>A menagerie</b>&apos;s rolls. A mason raises or repairs a building with <b>Build (a season)</b> on <b>Seasons</b>.
           </li>
           <li>
             <b>Vitkir</b> (<i>Hedge Magic, Revised Edition</i>): the 24 runes, raised as Arts; the sheet keeps the apprenticeship (240 experience points and 120 levels of scripts)

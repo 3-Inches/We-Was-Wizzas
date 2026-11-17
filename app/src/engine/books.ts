@@ -216,18 +216,20 @@ export interface Artisan {
   from: 'specialist' | 'member';
 }
 
+/** The covenant's best at a Craft or Profession (`re` matches its name), among its specialists and members. */
+export function bestArtisan(cov: Covenant, members: { c: Character; d: DerivedCharacter }[], re: RegExp): Artisan | undefined {
+  const fromSpecs = cov.specialists.flatMap((s) =>
+    specAbilities(s)
+      .filter((a) => ((a.id === 'profession-type' || a.id === 'craft-type') && re.test(a.param ?? '')) || re.test(a.label ?? '') || (re === BINDER && s.craft === 'bookbinder') || (re === ILLUMINATOR && s.craft === 'illuminator'))
+      .map((a) => ({ name: s.name || 'the covenant’s', score: a.score, from: 'specialist' as const })),
+  );
+  const fromMembers = members.map(({ c, d }) => ({ name: c.name || 'a member', score: tradeScore(c, d, re), from: 'member' as const })).filter((a) => a.score > 0);
+  return [...fromSpecs, ...fromMembers].sort((a, b) => b.score - a.score)[0];
+}
+
 /** The covenant's best scribe, binder and illuminator, among its specialists and members. */
 export function covenantArtisans(cov: Covenant, members: { c: Character; d: DerivedCharacter }[]): Record<'scribe' | 'binder' | 'illuminator', Artisan | undefined> {
-  const best = (re: RegExp): Artisan | undefined => {
-    const fromSpecs = cov.specialists.flatMap((s) =>
-      specAbilities(s)
-        .filter((a) => ((a.id === 'profession-type' || a.id === 'craft-type') && re.test(a.param ?? '')) || re.test(a.label ?? '') || (re === BINDER && s.craft === 'bookbinder') || (re === ILLUMINATOR && s.craft === 'illuminator'))
-        .map((a) => ({ name: s.name || 'the covenant’s', score: a.score, from: 'specialist' as const })),
-    );
-    const fromMembers = members.map(({ c, d }) => ({ name: c.name || 'a member', score: tradeScore(c, d, re), from: 'member' as const })).filter((a) => a.score > 0);
-    return [...fromSpecs, ...fromMembers].sort((a, b) => b.score - a.score)[0];
-  };
-  return { scribe: best(SCRIBE), binder: best(BINDER), illuminator: best(ILLUMINATOR) };
+  return { scribe: bestArtisan(cov, members, SCRIBE), binder: bestArtisan(cov, members, BINDER), illuminator: bestArtisan(cov, members, ILLUMINATOR) };
 }
 
 // ------------------------------------------------------------------------------ Copying

@@ -136,7 +136,7 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'the-transylvanian-tribunal': [{ text: 'Saga Overview → Tribunal: Transylvanian → its customs (Optional rules)', page: 'saga' }],
   // society
   'towns-and-guilds': [{ text: `${SHEET} → Seasons & Aging → Guild` }, { text: `${COV} → Covenfolk, Finances & Loyalty → Craftsmen (guild ranks and Labor Points)` }],
-  'crafts-and-workshops': [{ text: 'Game Table → City & Guild: a character’s workshop, the covenant’s craftsmen at work, damaged goods', page: 'guild' }, { text: `${COV} → Covenfolk, Finances & Loyalty → Craftsmen (hiring them, and what they save)` }],
+  'crafts-and-workshops': [{ text: 'Game Table → City & Guild: a character’s workshop, the covenant’s craftsmen at work, damaged goods', page: 'guild' }, { text: `${COV} → Covenfolk, Finances & Loyalty → Craftsmen (hiring them, and what they save)` }, { text: `${COV} → Overview → Great buildings: a building's height, damage and stress check` }, { text: 'Game Table › Seasons → a season in full: a mason’s season, Build or Repair', page: 'seasons' }],
   'trade-money-and-wealth': [{ text: 'Game Table → City & Guild: haggling and bribes; a character’s workshop → Stories and investments (merchants’ story seeds and investments of time); travel, trade and intrigue: a house’s Reputation, largesse, warehouses, dowries', page: 'guild' }, { text: 'Game Table → Market & Treasury', page: 'market' }],
   'intrigue-and-agents': [{ text: `${SHEET} → Overview → Agents` }, { text: 'Game Table → City & Guild → Travel, trade and intrigue: bribes, hired criminals, sabotage, intrigue against the powerful', page: 'guild' }],
   'debate-and-influence': [{ text: `${SHEET} → Overview → Society → Debate` }],

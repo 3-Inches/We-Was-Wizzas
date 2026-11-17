@@ -16,7 +16,6 @@ import { PossessionsCard } from '../character/sheet/PossessionsCard';
 import EquipmentEditor from '../character/EquipmentEditor';
 import { CharItems, FamiliarCard, RedcapCard } from '../character/sheet/LabItemsTab';
 import { CharmCard } from '../character/sheet/CharmCard';
-import { GreatProjectsCard } from './GreatProjectsCard';
 
 export default function PossessionsPage() {
   const sagaId = useStore((s) => s.activeSagaId);
@@ -68,7 +67,6 @@ function Owned({ sagaId, charId }: { sagaId: string; charId: string }) {
       <CharItems ed={ed} />
       {ed.d.isMagus ? <FamiliarCard ed={ed} /> : <RedcapCard ed={ed} />}
       <CharmCard ed={ed} />
-      <GreatProjectsCard ed={ed} />
     </AtTable>
   );
 }
