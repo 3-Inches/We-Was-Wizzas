@@ -3,7 +3,7 @@
 // Each entry has a short summary, the key rules quoted from the book, and the book's own text
 // on demand (loaded from the book file by its heading).
 
-import { R, type SagaTab, type TableTab } from '../routes';
+import { R, type DiceSub, type SagaTab, type TableTab } from '../routes';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { BOOK_BY_ID } from '../../data';
@@ -487,7 +487,8 @@ function InTheApp({ topic }: { topic: string }) {
     : !sagaId ? (p.page === 'dice' ? '/dice' : undefined)
     : p.page === 'saga' ? R.saga(sagaId, p.tab as SagaTab | undefined)
     : p.page === 'table' ? R.table(sagaId, p.tab as TableTab | undefined)
-    : p.page === 'dice' || p.page === 'seasons' || p.page === 'market' || p.page === 'guild' ? R.table(sagaId, p.page)
+    : p.page === 'dice' ? R.dice(sagaId, p.tab as DiceSub | undefined)
+    : p.page === 'seasons' || p.page === 'market' || p.page === 'guild' ? R.table(sagaId, p.page)
     : p.page === 'people' ? R.people(sagaId)
     : p.page === 'covenants' ? R.covenants(sagaId)
     : `/saga/${sagaId}/${p.page}${p.tab ? `?tab=${p.tab}` : ''}`;

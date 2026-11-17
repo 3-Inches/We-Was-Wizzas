@@ -4,18 +4,22 @@
 // creative human. Sympathy experience from a 1 or a botch, Fatigue, Confidence and Warping go on the sheet.
 
 import { useState } from 'react';
-import { BARGAIN_ARTS, FAERIE_GUIDELINES, FAERIE_METHODS, FAERIE_POWERS, type BargainArtId, type FaerieMethodId, type FaeriePowerId } from '../../data/faerie';
+import { BARGAIN_ARTS, FAERIE_DURATIONS, FAERIE_RANGES, FAERIE_TARGETS, FAERIE_GUIDELINES, FAERIE_METHODS, FAERIE_POWERS, type BargainArtId, type FaerieMethodId, type FaeriePowerId } from '../../data/faerie';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
   CREATIVITY_TABLE, bargainPenetration, bargainTotal, callingActEase, callingApplies, callingResolveEase, creativityCost, enchantmentEase, evocationVisLimit, faerieArts,
   faerieRank, riteLevel, riteMaxLevel, riteOptions, riteTotal, riteWarps, sympathyBotchDice, sympathySum, sympathyXp,
 } from '../../engine/faerieWizardry';
 import { auraModifier } from '../../engine/magic';
+import { DURATIONS, RANGES, TARGETS } from '../../engine/spellDesign';
 import type { Character, SympathyTrait } from '../../engine/types';
 import { Card, Field, Stepper, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
 import { SympathyCard } from '../character/SympathyCard';
 import { uid } from '../../util/id';
+
+// the Ranges, Durations and Targets faerie rites add to the Hermetic ones, listed apart in the rite card
+const FAERIE_ONLY = new Set([...FAERIE_RANGES, ...FAERIE_DURATIONS, ...FAERIE_TARGETS].map((o) => o.name).filter((n) => ![...RANGES, ...DURATIONS, ...TARGETS].some((h) => h.name.toLowerCase() === n.toLowerCase())));
 
 const WIZARDRY = ['evocation', 'enchantment', 'empathy', 'beguile', 'conjure', 'dream', 'grant', 'portage', 'ware', 'weal', 'woe', 'faerie-summoning', 'bonding', 'captivating', 'dismissing'];
 
@@ -73,7 +77,7 @@ export default function FaeriePart({ ed }: { ed: CharEditor }) {
   return (
     <>
       <p className="small muted">
-        Faerie Rank <b>{signed(rank)}</b>; a Faerie effect here takes the aura as {signed(aura)}. Sympathy Traits are kept on the sheet; a 1 on the stress die gives each trait used an
+        Faerie Rank <b>{signed(rank)}</b>. Faerie aura here: {signed(aura)} to faerie effects. Sympathy Traits are kept on the sheet; a 1 on the stress die gives each trait used an
         experience point, and each 0 of a botch takes one away.
       </p>
       <SympathyCard ed={ed} />
@@ -90,7 +94,8 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
   const arts = d ? faerieArts(d) : { methods: [], powers: [] };
   const [method, setMethod] = useState<FaerieMethodId>(arts.methods[0] ?? 'evocation');
   const [power, setPower] = useState<FaeriePowerId>(arts.powers[0] ?? 'beguile');
-  const [used, setUsed] = useState<string[]>([]);
+  // a character with a single trait has it ticked for them
+  const [used, setUsed] = useState<string[]>(() => (c?.sympathy?.length === 1 ? [c.sympathy[0].uid] : []));
   const [gi, setGi] = useState(0);
   const [base, setBase] = useState(1);
   const [range, setRange] = useState('Touch');
@@ -211,10 +216,19 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
         ).map(([label, val, set, list]) => (
           <Field key={label} label={label} hint={list.find((o) => o.name === val)?.note}>
             <select value={val} onChange={(e) => set(e.target.value)}>
-              {list.map((o) => (
-                <option key={o.name} value={o.name}>
-                  {o.name} (+{o.magnitude}){o.ritual ? ', Ritual' : ''}
-                </option>
+              {(
+                [
+                  ['As in Hermetic magic', list.filter((o) => !FAERIE_ONLY.has(o.name))],
+                  ['Faerie only', list.filter((o) => FAERIE_ONLY.has(o.name))],
+                ] as const
+              ).map(([group, opts]) => (
+                <optgroup key={group} label={group}>
+                  {opts.map((o) => (
+                    <option key={o.name} value={o.name}>
+                      {o.name} (+{o.magnitude}){o.ritual ? ', Ritual' : ''}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </Field>
@@ -253,11 +267,12 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
         {ritual ? ', a ritual' : ''}. Highest level these traits allow: <b>{max}</b> (5 × {sympathySum(traits)}{method === 'empathy' && extended ? ' × 2' : ''}). Casting:{' '}
         {tot.parts.map((p) => `${p.label} ${p.value}`).join(' + ')} = {tot.total} + die. Cost: {m.cost}.{negBotch.dice > 0 && ` ${negBotchText(negBotch)}.`}
       </p>
-      {lv.level > max && <p className="small warn-text">Its level is above what the chosen traits allow: tick more traits, or a lower level.</p>}
+      {traits.length > 0 && lv.level > max && <p className="small warn-text">Its level is above what the chosen traits allow: tick more traits, or a lower level.</p>}
       <div className="row">
         <button onClick={cast} disabled={!traits.length || lv.level > max || (method === 'enchantment' && performance < enchEase)}>
           Perform the rite
         </button>
+        {!traits.length && (c.sympathy?.length ?? 0) > 0 && <span className="small muted">Tick the Sympathy Traits that fit this effect.</span>}
       </div>
       <Lines lines={lines} />
     </Card>
@@ -267,7 +282,8 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
 function BargainCard({ ed, aura: aura0, rank, arts }: { ed: CharEditor; aura: number; rank: number; arts: BargainArtId[] }) {
   const { c, d, update } = ed;
   const [art, setArt] = useState<BargainArtId>(arts[0]);
-  const [used, setUsed] = useState<string[]>([]);
+  // a character with a single trait has it ticked for them
+  const [used, setUsed] = useState<string[]>(() => (c?.sympathy?.length === 1 ? [c.sympathy[0].uid] : []));
   const [might, setMight] = useState(10);
   const [held, setHeld] = useState(false);
   const [aura, setAura] = useState(aura0);
@@ -334,10 +350,13 @@ function BargainCard({ ed, aura: aura0, rank, arts }: { ed: CharEditor; aura: nu
       <p className="small">
         {tot.parts.map((p) => `${p.label} ${p.value}`).join(' + ')} = {tot.total} + stress die. It can reach Might up to <b>{max}</b> (5 × the traits ticked); the best positive trait adds {best} to Penetration.{negBotch.dice > 0 && ` ${negBotchText(negBotch)}.`}
       </p>
-      {might > max && <p className="small warn-text">This faerie’s Might is above what the traits ticked allow.</p>}
-      <button onClick={roll} disabled={!traits.length || might > max}>
-        Use {a.name}
-      </button>
+      {traits.length > 0 && might > max && <p className="small warn-text">This faerie’s Might is above what the traits ticked allow: tick more traits.</p>}
+      <div className="row">
+        <button onClick={roll} disabled={!traits.length || might > max}>
+          Roll {a.name}
+        </button>
+        {!traits.length && (c.sympathy?.length ?? 0) > 0 && <span className="small muted">Tick the Sympathy Traits that fit this faerie.</span>}
+      </div>
       <Lines lines={lines} />
     </Card>
   );

@@ -2,7 +2,7 @@
 // apprenticeship and spells known; a Formulaic spell cast (varied within its magnitudes) or a
 // spontaneous one; a season enchanting a tattoo, inventing a spell or drawing vis; transformation.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GRUAGACH_FORMS, GRUAGACH_PARAMS, GRUAGACH_SHAPES, POETIC_JUSTICE, GRUAGACH_TECHNIQUES, TATTOO_SIZES, gruagachArtName, type GruagachArts, type Prohibition } from '../../data/hedgeGruagach';
 import { GRUAGACH_GUIDELINES, GRUAGACH_SPELLS } from '../../data/gruagachSpells';
 import { GRUAGACH_APPRENTICESHIP } from '../../engine/character/derive';
@@ -42,8 +42,8 @@ export function gruagachPairs(c: Character, d: NonNullable<CharEditor['d']>): Gr
   return a.techniques.flatMap((t) => a.forms.map((f) => `${t.abbr}${f.abbr}` as GruagachArts));
 }
 
-/** Design a spell from the book's spells or a guideline, with the Geas and Limit Durations. */
-function SpellDesigner({ pairs, onAdd, label }: { pairs: GruagachArts[]; onAdd: (s: LearnedCharm) => void; label: string }) {
+/** Design a spell from the book's spells or a guideline, with the Geas and Limit Durations. With `live`, a book spell is handed back as soon as it is chosen. */
+function SpellDesigner({ pairs, onAdd, label, live }: { pairs: GruagachArts[]; onAdd: (s: LearnedCharm) => void; label: string; live?: boolean }) {
   const [from, setFrom] = useState<'book' | 'design'>('book');
   const [bi, setBi] = useState(0);
   const [tf, setTf] = useState<GruagachArts>(pairs[0] ?? 'GvBl');
@@ -61,10 +61,14 @@ function SpellDesigner({ pairs, onAdd, label }: { pairs: GruagachArts[]; onAdd: 
   const guide = guides[Math.min(gi, guides.length - 1)];
   const lv = gruagachLevel(pair, guide?.general ? base : (guide?.level ?? 1), { range, duration, target, geas, limit });
   const problem = durationProblem(pair, duration);
-  if (!pairs.length) return <p className="small warn-text">A Technique and a Form of the tradition are needed first.</p>;
   const pick = book[Math.min(bi, book.length - 1)];
+  const fromBook = () => pick && onAdd({ uid: uid(), name: pick.name, tf: pick.tf, level: pick.level, range: pick.range, duration: pick.duration, target: pick.target, text: pick.text, source: 'play' });
+  const liveBook = !!live && from === 'book' && !!pick;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => void (liveBook && fromBook()), [liveBook, pick?.name]);
+  if (!pairs.length) return <p className="small warn-text">A Technique and a Form of the tradition are needed first.</p>;
   const add = () => {
-    if (from === 'book' && pick) onAdd({ uid: uid(), name: pick.name, tf: pick.tf, level: pick.level, range: pick.range, duration: pick.duration, target: pick.target, text: pick.text, source: 'play' });
+    if (from === 'book' && pick) fromBook();
     else onAdd({ uid: uid(), name: name.trim() || `${gruagachArtName(pair)} ${lv.level}`, tf: pair, level: lv.level, range, duration: duration === 'Geas' ? `Geas (${geas}) / Limit (${limit})` : duration === 'Limit' ? `Limit (${limit})` : duration, target, text: guide ? `${guide.text} ${lv.design}` : lv.design, source: 'play' });
     setName('');
   };
@@ -149,17 +153,20 @@ function SpellDesigner({ pairs, onAdd, label }: { pairs: GruagachArts[]; onAdd: 
           </Field>
         </>
       )}
-      <button className="small" onClick={add} disabled={from === 'design' && !!problem}>
-        {label}
-        {from === 'design' ? ` (level ${lv.level})` : ''}
-      </button>
+      {!liveBook && (
+        <button className="small" onClick={add} disabled={from === 'design' && !!problem}>
+          {label}
+          {from === 'design' ? ` (level ${lv.level})` : ''}
+        </button>
+      )}
       {from === 'design' && problem && <span className="small warn-text">{problem}</span>}
     </div>
   );
 }
 
 /** On the sheet: the apprenticeship and the spells known. */
-export function GruagachSheetCard({ ed }: { ed: CharEditor }) {
+/** The gruagach's card: on the sheet with the apprenticeship; at the table (`atTable`) only the spells known, and one added as learned in play. */
+export function GruagachSheetCard({ ed, atTable }: { ed: CharEditor; atTable?: boolean }) {
   const { c, d, update } = ed;
   if (!c || !d || !hasGruagach(c) || c.type === 'magus') return null;
   const budget = d.budgets.find((b) => b.id === GRUAGACH_APPRENTICESHIP);
@@ -169,40 +176,48 @@ export function GruagachSheetCard({ ed }: { ed: CharEditor }) {
   const over = gruagachArts(c, d).techniques.concat(gruagachArts(c, d).forms).filter((a) => a.score > cap);
   const set = (fn: (x: Character) => void) => update(fn);
   return (
-    <Card title="Gruagach" tour="gruagach-card" fold="gruagach-card" summary={`${spells.length} spell${spells.length === 1 ? '' : 's'} · Pictish ${pi}`}>
-      <p className="small muted" style={{ marginTop: 0 }}>
-        A gruagach&apos;s apprenticeship gives 160 experience points and 80 levels of spells to the Gifted (about ten years), or 16 points and 8 levels a year to the unGifted (three to five),
-        in place of those later-life years. Pictish stands for Magic Theory and caps the Arts at {cap === Infinity ? 'nothing (Pictish 4)' : cap}. Spells are cast and tattoos made on the
-        Game Table, Dice › Hedge magic.
-      </p>
-      <div className="row">
-        <Field label="Years of apprenticeship">
-          <Stepper value={c.gruagach?.apprenticeYears ?? (d.hasGift ? 10 : 4)} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), apprenticeYears: v }))} />
-        </Field>
-        {budget && (
-          <span className="small">
-            {budget.spent} of {budget.total} experience; {budget.spellLevels?.spent ?? 0} of {budget.spellLevels?.total ?? 0} levels of spells.
-          </span>
-        )}
-      </div>
-      {over.length > 0 && <p className="small warn-text">Above Pictish {pi}&apos;s cap of {cap}: {over.map((a) => `${a.name} ${a.score}`).join(', ')}.</p>}
+    <Card title={atTable ? 'Spells known' : 'Gruagach'} tour="gruagach-card" fold="gruagach-card" summary={`${spells.length} spell${spells.length === 1 ? '' : 's'} · Pictish ${pi}`}>
+      {atTable ? (
+        <p className="small muted" style={{ marginTop: 0 }}>The spells this gruagach knows. The apprenticeship is on the sheet.</p>
+      ) : (
+        <p className="small muted" style={{ marginTop: 0 }}>
+          A gruagach&apos;s apprenticeship gives 160 experience points and 80 levels of spells to the Gifted (about ten years), or 16 points and 8 levels a year to the unGifted (three to five),
+          in place of those later-life years. Pictish stands for Magic Theory and caps the Arts at {cap === Infinity ? 'nothing (Pictish 4)' : cap}. Spells are cast and tattoos made on the
+          Game Table, Dice › Hedge magic.
+        </p>
+      )}
+      {!atTable && (
+        <div className="row">
+          <Field label="Years of apprenticeship">
+            <Stepper value={c.gruagach?.apprenticeYears ?? (d.hasGift ? 10 : 4)} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), apprenticeYears: v }))} />
+          </Field>
+          {budget && (
+            <span className="small">
+              {budget.spent} of {budget.total} experience; {budget.spellLevels?.spent ?? 0} of {budget.spellLevels?.total ?? 0} levels of spells.
+            </span>
+          )}
+        </div>
+      )}
+      {!atTable && over.length > 0 && <p className="small warn-text">Above Pictish {pi}&apos;s cap of {cap}: {over.map((a) => `${a.name} ${a.score}`).join(', ')}.</p>}
       {spells.map((s) => (
         <div key={s.uid} className="row small" style={{ borderTop: '1px solid var(--line)', paddingTop: 4 }}>
           <b>{s.name}</b>
           <span>
             {s.tf} {s.level} · R: {s.range}, D: {s.duration}, T: {s.target}
           </span>
-          <select value={s.source} aria-label="Where it was learned" onChange={(e) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: (x.gruagach?.spells ?? []).map((y) => (y.uid === s.uid ? { ...y, source: e.target.value as LearnedCharm['source'] } : y)) }))}>
-            <option value="training">in apprenticeship</option>
-            <option value="play">in play</option>
-          </select>
+          {!atTable && (
+            <select value={s.source} aria-label="Where it was learned" onChange={(e) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: (x.gruagach?.spells ?? []).map((y) => (y.uid === s.uid ? { ...y, source: e.target.value as LearnedCharm['source'] } : y)) }))}>
+              <option value="training">in apprenticeship</option>
+              <option value="play">in play</option>
+            </select>
+          )}
           <button className="small ghost" aria-label="Remove the spell" onClick={() => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: (x.gruagach?.spells ?? []).filter((y) => y.uid !== s.uid) }))}>
             ✕
           </button>
           {s.text && <div className="soft" style={{ flexBasis: '100%' }}>{s.text}</div>}
         </div>
       ))}
-      <SpellDesigner pairs={gruagachPairs(c, d)} label="Add a spell known" onAdd={(s) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: [...(x.gruagach?.spells ?? []), { ...s, source: x.creation.finalized ? 'play' : 'training' }] }))} />
+      <SpellDesigner pairs={gruagachPairs(c, d)} label={atTable ? 'Add one learned in play' : 'Add a spell known'} onAdd={(s) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: [...(x.gruagach?.spells ?? []), { ...s, source: atTable || x.creation.finalized ? 'play' : 'training' }] }))} />
     </Card>
   );
 }
@@ -348,13 +363,15 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
   const [size, setSize] = useState(1);
   const [similar, setSimilar] = useState(0);
   const [uses, setUses] = useState('1');
+  const [another, setAnother] = useState(false);
   const [lines, setLines] = useState<string[]>([]);
   if (!c || !d) return null;
   const pairs = gruagachPairs(c, d);
   if (!pairs.length) return null;
   const inventing = c.gruagach?.inventing;
-  // a spell under way is the one continued unless another is chosen
-  const chosen = effect ?? (work === 'invent' ? inventing?.spell : undefined);
+  // a spell under way is the one continued unless the player asks to invent another
+  const continuing = work === 'invent' && !!inventing && !another;
+  const chosen = continuing ? inventing!.spell : effect;
   const year = saga?.currentYear ?? 1220;
   const season = saga?.currentSeason ?? 'Spring';
   const busy = seasonBusy(c, year, season);
@@ -437,11 +454,16 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
           </Field>
         )}
       </div>
-      {work !== 'vis' && <SpellDesigner pairs={pairs} label="Use this effect" onAdd={setEffect} />}
+      {work !== 'vis' && !continuing && <SpellDesigner pairs={pairs} live label="Use this design" onAdd={setEffect} />}
       {chosen && work !== 'vis' && <p className="small">Effect: <b>{chosen.name}</b>, {chosen.tf} {chosen.level}.</p>}
       {work === 'invent' && inventing && (
         <p className="small muted">
           Under way: <b>{inventing.spell.name}</b>, {inventing.progress} of {inventing.spell.level} after {inventing.seasons} season{inventing.seasons === 1 ? '' : 's'}.{' '}
+          {continuing ? (
+            <button className="small" onClick={() => setAnother(true)}>Invent another</button>
+          ) : (
+            <button className="small" onClick={() => setAnother(false)}>Continue it</button>
+          )}{' '}
           <button className="small danger" onClick={() => update((x) => void (x.gruagach = { ...(x.gruagach ?? {}), inventing: undefined }))}>Abandon it</button>
         </p>
       )}
@@ -449,7 +471,7 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
         Lab Total <Total value={lt.total} parts={lt.parts} notes={lt.notes} label="Lab Total" />. {plan()}
       </p>
       <button onClick={doSeason} disabled={busy || (work !== 'vis' && !chosen) || (work === 'tattoo' && !tat?.ok)} title={busy ? `${season} ${year} is already spent` : undefined}>
-        Work the season
+        {work === 'tattoo' ? 'Enchant the tattoo' : work === 'invent' ? 'Invent' : 'Draw vis'} (a season)
       </button>
       {busy && <span className="small muted"> {season} {year} is already spent.</span>}
       <Lines lines={lines} />

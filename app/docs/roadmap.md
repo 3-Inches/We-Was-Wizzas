@@ -33,7 +33,7 @@ The owner may call it finished sooner. These are deliberately out of scope:
 
 Every item refers to `audit-2026-11.md` by its number. That file has the detail: file, line, the book's text, and the fix.
 
-- [ ] **1.1 Rules fixes.** *Mechanical.* A1 to A7, all of B, all of F. Each fix gets a test built on the book's own example. One pull request.
+- [x] **1.1 Rules fixes.** *Mechanical.* A1 to A7, all of B, all of F. Each fix gets a test built on the book's own example. One pull request.
 - [ ] **1.2 Small fixes to how cards behave.** *Mechanical.* C3 (pickers that need a second button), C4 (creation settings at the table), C5 (cards that open on a warning), C7 (numbers the player must already know), C9 (one wording for one act: use the vocabulary table). Then E2: an "In the app" pointer for every topic the new pages cover. `topicsWithoutPointer` in `quality.test.ts` must go down.
 - [ ] **1.3 Season work is reachable from the Seasons page, and spends from the stores.** *Judgment.* C1 and C2. Every card that takes a season (hedge magic, Faerie, the Mysteries, Great projects) is offered among the season's activities and is checked by `seasonBusy`. Vis and silver come out of the covenant's stores or the character's own, and the result says so.
 - [ ] **1.4 Fewer cards, better placed.** *Judgment.* C6 (Faith & miracles shows nine cards to everyone), C8 (what the toolkit could prompt for), C10 (where Great projects lives).

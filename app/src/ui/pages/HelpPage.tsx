@@ -460,7 +460,7 @@ function ToolkitGuide() {
           </li>
           <li>
             <b>Nightwalkers</b> (<i>Hedge Magic, Revised Edition</i>): on <b>Dice › Hedge magic</b>, spirit travel by how well the place is known, leading others
-            astray, the chapter&apos;s other rolls, and a fertility battle&apos;s outcome set as the year&apos;s harvest on the covenant&apos;s land.
+            astray, the night&apos;s other rolls, and a fertility battle&apos;s outcome set as the year&apos;s harvest on the covenant&apos;s land.
           </li>
           <li>
             <b>The Church</b>: on <b>Dice › Faith &amp; miracles</b>, Devotions to the saints in Devotion Points (they add to invoking the saint, with a relic&apos;s Faith Points × 2), a

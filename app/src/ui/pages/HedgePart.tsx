@@ -25,7 +25,7 @@ import { ELEMENTAL_ART_IDS } from '../../data/hedgeElemental';
 import { elementalArts } from '../../engine/elementalMagic';
 import { ElementalTraitsCard } from '../character/ElementalTraitsCard';
 import { ElementalCard, RefiningCard } from './ElementalPart';
-import { FolkWitchSheetCard, KitchenCard, WitchMoonCard, WitchPowerCard, WitchThingsCard } from './FolkWitchPart';
+import { KitchenCard, WitchMoonCard, WitchPowerCard, WitchThingsCard } from './FolkWitchPart';
 import { isFolkWitch, witchPowers } from '../../engine/folkWitch';
 import { GruagachCastCard, GruagachSeasonCard, GruagachSheetCard, hasGruagach } from './GruagachPart';
 import { NightwalkerCard, hasNightwalker } from './NightwalkerPart';
@@ -125,7 +125,7 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
       {pairs.length > 0 && <ChartaCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <AmuletCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <CharmSeasonCard ed={ed} aura={aura} pairs={pairs} />}
-      {learned && <LearnedCard ed={ed} />}
+      {learned && <LearnedCard ed={ed} atTable />}
       {hasHerbalism(c) && <HerbalismCard ed={ed} />}
       {isElemental && (!elemental.techniques.length || !elemental.forms.length) && (
         <p className="small warn-text">An elementalist needs a Technique and a Form: take their Virtues on the sheet.</p>
@@ -138,15 +138,14 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
       {isFolkWitch(c) && <WitchThingsCard ed={ed} />}
       {isFolkWitch(c) && <KitchenCard ed={ed} aura={aura} />}
       {isFolkWitch(c) && <WitchMoonCard ed={ed} />}
-      {isFolkWitch(c) && <FolkWitchSheetCard ed={ed} />}
       {hasGruagach(c) && <GruagachCastCard ed={ed} aura={aura} />}
       {hasGruagach(c) && <GruagachSeasonCard ed={ed} aura={aura} />}
-      {hasGruagach(c) && <GruagachSheetCard ed={ed} />}
+      {hasGruagach(c) && <GruagachSheetCard ed={ed} atTable />}
       {hasNightwalker(c) && <NightwalkerCard ed={ed} />}
       {hasVitki(c) && <VitkiCastCard ed={ed} aura={aura} />}
       {hasVitki(c) && <VitkiSeasonCard ed={ed} aura={aura} />}
       {hasVitki(c) && <NattThelCard ed={ed} />}
-      {hasVitki(c) && <VitkiSheetCard ed={ed} />}
+      {hasVitki(c) && <VitkiSheetCard ed={ed} atTable />}
     </>
   );
 }
@@ -288,13 +287,13 @@ function HoroscopePick({ value, onChange, d }: { value: Horoscope; onChange: (h:
 function DeviceDesign({ pairs, value, onChange }: { pairs: LearnedArts[]; value?: LearnedCharm; onChange: (ch: LearnedCharm) => void }) {
   return (
     <>
-      <CharmDesigner pairs={pairs} device label="Use this effect" onAdd={onChange} />
+      <CharmDesigner pairs={pairs} device live label="Use this design" onAdd={onChange} />
       {value ? (
         <p className="small">
           Effect: <b>{value.name}</b>, {value.tf} {value.level} (R: {value.range}, D: {value.duration}, T: {value.target}).
         </p>
       ) : (
-        <p className="small muted">Design the effect, then use it.</p>
+        <p className="small muted">Choose a charm from the book, or design one from a guideline and use the design.</p>
       )}
     </>
   );
@@ -414,7 +413,7 @@ function AmuletCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState; pair
         <p key={n} className="small warn-text">{n}</p>
       ))}
       <button onClick={make} disabled={!effect || !charges || s.busy || lt.notes.some((n) => /makes no|need/.test(n))} title={s.busy ? `${s.season} ${s.year} is already spent` : undefined}>
-        Make it (a season)
+        Make the amulet (a season)
       </button>
       {s.busy && <span className="small muted"> {s.season} {s.year} is already spent.</span>}
       <Lines lines={lines} />
@@ -474,7 +473,7 @@ function CharmSeasonCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState;
                 <Stepper value={similar} min={0} max={10} width={32} onChange={setSimilar} />
               </Field>
               <button onClick={work} disabled={s.busy}>
-                Work a season
+                Invent (a season)
               </button>
               <button className="small danger" onClick={() => update((x) => void (x.learned = { ...(x.learned ?? {}), inventing: undefined }))}>
                 Give it up

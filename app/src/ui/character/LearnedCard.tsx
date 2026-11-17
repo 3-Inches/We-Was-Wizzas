@@ -3,7 +3,7 @@
 // heart, taken from the book's examples or designed from its guidelines. Casting, chartae and amulets
 // are on the Game Table, Dice › Hedge magic.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CHARM_PARAMS, DEVICE_PARAMS, LEARNED_FORMS, LEARNED_TECHNIQUES, learnedArtName, type LearnedArts } from '../../data/hedgeLearned';
 import { LEARNED_CHARMS, LEARNED_GUIDELINES } from '../../data/learnedCharms';
 import { LEARNED_TRAINING } from '../../engine/character/derive';
@@ -25,8 +25,12 @@ export function artPairs(c: Character, d: NonNullable<CharEditor['d']>): Learned
   return a.techniques.flatMap((t) => a.forms.map((f) => `${t.abbr}${f.abbr}` as LearnedArts)).filter((p) => !barredPair(c, p));
 }
 
-/** Design a charm from the book's examples or its guidelines; the result is handed back. */
-export function CharmDesigner({ pairs, device, onAdd, label = 'Add the charm' }: { pairs: LearnedArts[]; device?: boolean; onAdd: (ch: LearnedCharm) => void; label?: string }) {
+/**
+ * Design a charm from the book's examples or its guidelines; the result is handed back. With `live`, a
+ * charm from the book is handed back as soon as it is chosen; only a design from a guideline, which has
+ * several fields to fill first, waits for the button.
+ */
+export function CharmDesigner({ pairs, device, onAdd, label = 'Add the charm', live }: { pairs: LearnedArts[]; device?: boolean; onAdd: (ch: LearnedCharm) => void; label?: string; live?: boolean }) {
   const [from, setFrom] = useState<'book' | 'design'>('book');
   const [bi, setBi] = useState(0);
   const [tf, setTf] = useState<LearnedArts>(pairs[0] ?? 'TuFa');
@@ -44,11 +48,15 @@ export function CharmDesigner({ pairs, device, onAdd, label = 'Add the charm' }:
   const guides = LEARNED_GUIDELINES.filter((x) => x.tf === (pairs.includes(tf) ? tf : pairs[0]));
   const guide = guides[Math.min(gi, guides.length - 1)];
   const lv = learnedLevel(guide?.general ? base : (guide?.level ?? 1), { range, duration, target, extra }, !!device);
-  if (!pairs.length) return <p className="small warn-text">A Technique and a Form of the tradition are needed first.</p>;
   const pick = book[Math.min(bi, book.length - 1)];
+  const fromBook = () => pick && onAdd({ uid: uid(), name: pick.name, tf: pick.tf, level: pick.level, range: pick.range, duration: pick.duration, target: pick.target, text: pick.text, source: 'play' });
+  const liveBook = !!live && from === 'book' && !!pick;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => void (liveBook && fromBook()), [liveBook, pick?.name]);
+  if (!pairs.length) return <p className="small warn-text">A Technique and a Form of the tradition are needed first.</p>;
   const add = () => {
     if (from === 'book' && pick) {
-      onAdd({ uid: uid(), name: pick.name, tf: pick.tf, level: pick.level, range: pick.range, duration: pick.duration, target: pick.target, text: pick.text, source: 'play' });
+      fromBook();
       return;
     }
     const pair = pairs.includes(tf) ? tf : pairs[0];
@@ -122,15 +130,18 @@ export function CharmDesigner({ pairs, device, onAdd, label = 'Add the charm' }:
           </Field>
         </>
       )}
-      <button className="small" onClick={add}>
-        {label}
-        {from === 'design' ? ` (level ${lv.level})` : ''}
-      </button>
+      {!liveBook && (
+        <button className="small" onClick={add}>
+          {label}
+          {from === 'design' ? ` (level ${lv.level})` : ''}
+        </button>
+      )}
     </div>
   );
 }
 
-export function LearnedCard({ ed }: { ed: CharEditor }) {
+/** The learned magician's card: on the sheet with the years under a master; at the table (`atTable`) only the charms known, and one added as learned in play. */
+export function LearnedCard({ ed, atTable }: { ed: CharEditor; atTable?: boolean }) {
   const { c, d, update } = ed;
   if (!c || !d || !hasLearnedMagic(c) || c.type === 'magus') return null;
   const charms = c.learned?.charms ?? [];
@@ -139,35 +150,43 @@ export function LearnedCard({ ed }: { ed: CharEditor }) {
   const set = (fn: (x: Character) => void) => update(fn);
   const trainingLevels = charms.filter((x) => x.source === 'training').reduce((t, x) => t + x.level, 0);
   return (
-    <Card title="Learned magic" tour="learned-card" fold="learned-card" summary={`${charms.length} charm${charms.length === 1 ? '' : 's'}${c.learned?.trainingYears ? ` · ${c.learned.trainingYears} years with a master` : ''}`}>
-      <p className="small muted" style={{ marginTop: 0 }}>
-        A learned magician (Hedge Magic) casts verbal charms from memory or reads them from a formulary, and writes chartae and amulets. Each year under a master gives 30 experience points,
-        taken from the later-life years, for Academic and Arcane Abilities, the hedge Arts and charms (5 levels a point). Charms are cast and devices made on the Game Table, Dice › Hedge magic.
-      </p>
-      <div className="row">
-        <Field label="Years under a master" hint="30 experience points a year; Skilled Master adds 50, Poorly Trained takes 50">
-          <Stepper value={c.learned?.trainingYears ?? 0} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.learned = { ...(x.learned ?? {}), trainingYears: v }))} />
-        </Field>
-        {budget && (
-          <span className="small">
-            Training: {budget.spent} of {budget.total} experience spent{trainingLevels ? ` (charms ${trainingLevels} levels = ${charmXp(trainingLevels)})` : ''}.
-          </span>
-        )}
-      </div>
+    <Card title={atTable ? 'Charms known' : 'Learned magic'} tour="learned-card" fold="learned-card" summary={`${charms.length} charm${charms.length === 1 ? '' : 's'}${!atTable && c.learned?.trainingYears ? ` · ${c.learned.trainingYears} years with a master` : ''}`}>
+      {atTable ? (
+        <p className="small muted" style={{ marginTop: 0 }}>The charms this magician knows. Years under a master are on the sheet.</p>
+      ) : (
+        <p className="small muted" style={{ marginTop: 0 }}>
+          A learned magician (Hedge Magic) casts verbal charms from memory or reads them from a formulary, and writes chartae and amulets. Each year under a master gives 30 experience points,
+          taken from the later-life years, for Academic and Arcane Abilities, the hedge Arts and charms (5 levels a point). Charms are cast and devices made on the Game Table, Dice › Hedge magic.
+        </p>
+      )}
+      {!atTable && (
+        <div className="row">
+          <Field label="Years under a master" hint="30 experience points a year; Skilled Master adds 50, Poorly Trained takes 50">
+            <Stepper value={c.learned?.trainingYears ?? 0} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.learned = { ...(x.learned ?? {}), trainingYears: v }))} />
+          </Field>
+          {budget && (
+            <span className="small">
+              Training: {budget.spent} of {budget.total} experience spent{trainingLevels ? ` (charms ${trainingLevels} levels = ${charmXp(trainingLevels)})` : ''}.
+            </span>
+          )}
+        </div>
+      )}
       {charms.map((ch) => (
         <div key={ch.uid} className="row small" style={{ borderTop: '1px solid var(--line)', paddingTop: 4 }}>
           <b>{ch.name}</b>
           <span>
             {ch.tf} {ch.level} · R: {ch.range}, D: {ch.duration}, T: {ch.target}
           </span>
-          <select
-            value={ch.source}
-            aria-label="Where it was learned"
-            onChange={(e) => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: (x.learned?.charms ?? []).map((y) => (y.uid === ch.uid ? { ...y, source: e.target.value as LearnedCharm['source'] } : y)) }))}
-          >
-            <option value="training">in training ({charmXp(ch.level)} xp)</option>
-            <option value="play">in play</option>
-          </select>
+          {!atTable && (
+            <select
+              value={ch.source}
+              aria-label="Where it was learned"
+              onChange={(e) => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: (x.learned?.charms ?? []).map((y) => (y.uid === ch.uid ? { ...y, source: e.target.value as LearnedCharm['source'] } : y)) }))}
+            >
+              <option value="training">in training ({charmXp(ch.level)} xp)</option>
+              <option value="play">in play</option>
+            </select>
+          )}
           <button className="small ghost" aria-label="Remove the charm" onClick={() => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: (x.learned?.charms ?? []).filter((y) => y.uid !== ch.uid) }))}>
             ✕
           </button>
@@ -176,8 +195,8 @@ export function LearnedCard({ ed }: { ed: CharEditor }) {
       ))}
       <CharmDesigner
         pairs={pairs}
-        label="Add a charm known"
-        onAdd={(ch) => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: [...(x.learned?.charms ?? []), { ...ch, source: x.creation.finalized ? 'play' : 'training' }] }))}
+        label={atTable ? 'Add one learned in play' : 'Add a charm known'}
+        onAdd={(ch) => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: [...(x.learned?.charms ?? []), { ...ch, source: atTable || x.creation.finalized ? 'play' : 'training' }] }))}
       />
     </Card>
   );
