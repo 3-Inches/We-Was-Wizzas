@@ -3,10 +3,13 @@
 // Magic, the kitchen's Lab Total, potions (Brew Potency, doses, vis), fetishes, vis extraction, a
 // familiar's binding, and the Witch Moon that comes with each new Warping Score.
 
-import { WITCH_HEALING, WITCH_POWERS, type WitchMethod } from '../data/hedgeFolkWitch';
+import { WITCH_FETISHES, WITCH_HEALING, WITCH_POWERS, type WitchMethod } from '../data/hedgeFolkWitch';
+import { ARTS, ART_NAMES, FORMS } from '../data/constants';
+import type { Art } from '../data/types';
 import type { DerivedCharacter } from './character/derive';
 import { auraModifier, type AuraState, type Part } from './magic';
 import type { Character } from './types';
+import { warpingScoreFromPoints } from './xp';
 
 const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
 const has = (c: Pick<Character, 'virtues'>, id: string) => c.virtues.some((v) => v.defId === id);
@@ -107,6 +110,27 @@ export function brew(fwmt: number, effectVis: number, visLimit: number, o: { lab
   return { doses, vis: doses ? doses + effectVis : 0, maxDoses };
 }
 
+/**
+ * The vis a brew takes: "one pawn per dose (of the Form appropriate for the Ability)" (HMRE, Potion
+ * Brewing, line 1966). Dowsing's Form is that of what is sought, so any Form serves; Cursing's is the curse's.
+ */
+export function potionVisArts(power: string): Art[] {
+  const form = WITCH_POWERS.find((p) => p.id === power)?.form ?? '';
+  if (/by the target/.test(form)) return [...FORMS];
+  return ARTS.filter((a) => new RegExp(`\\b${ART_NAMES[a]}\\b`).test(form));
+}
+
+/** A fetish's pawn: Intellego for a dowsing rod, Auram for a flying aid, Animal for a knitted skin (HMRE, lines 1950–1958). */
+export const fetishVisArt = (power: string): Art | undefined => ARTS.find((a) => ART_NAMES[a] === WITCH_FETISHES[power]?.vis);
+
+/**
+ * A folk witch's Longevity Ritual, by "the same rules used by a Hermetic magus" (HMRE, line 2025): a
+ * pawn of Creo, Corpus or Vim vis for every five years of age, rounded up (ArM5, Longevity Rituals).
+ * Unlike a magus's, it is held to the kitchen's limit on vis, twice Folk Witch Magic Theory (line 1928).
+ */
+export const WITCH_LONGEVITY_ARTS: Art[] = ['Cr', 'Co', 'Vi'];
+export const witchLongevityVis = (age: number) => Math.ceil(Math.max(0, age) / 5);
+
 /** What a potion gives: an Ability of the potency ÷ 5 (rounded up) for days equal to the potency (Animal Ken, Second Sight, a Shapeshifter's form), or for one search or flight. */
 export const potionAbility = (potency: number) => ({ score: Math.ceil(Math.max(0, potency) / 5), days: Math.max(0, potency) });
 
@@ -137,4 +161,38 @@ export function witchMoonOutcome(months: number, warpingScore: number, pointsGai
     return { good: true, text: `A good experience: ${5 * months} experience points in a Supernatural Ability or Folk Witch Magic Theory, a Minor Virtue, or a new Supernatural Ability at 1 (the storyguide chooses).` };
   }
   return { good: false, text: `A bad experience: ${2 * pointsGained} experience points lost in a Supernatural Ability or Folk Witch Magic Theory (not below 0), or a Minor Flaw (the storyguide chooses).` };
+}
+
+/** Warping Points gained by a folk witch: a new Warping Score brings the Witch Moon (HMRE, The Witch Moon). Changes `x`; returns the line that says so. */
+export function witchWarping(x: Character, points: number): string | undefined {
+  const before = warpingScoreFromPoints(x.warpingPoints);
+  x.warpingPoints += points;
+  const after = warpingScoreFromPoints(x.warpingPoints);
+  if (after > before && !x.folkWitch?.witchMoon) {
+    x.folkWitch = { ...(x.folkWitch ?? {}), witchMoon: { months: 0, warpingScore: after, pointsGained: 0 } };
+    return `Warping Score ${after}: the Witch Moon begins (the Witch Moon card).`;
+  }
+  return undefined;
+}
+
+/**
+ * A curse fabric is complete when the season of weaving ends, and its curse takes effect then (HMRE, Curse
+ * Fetish Weaving): rolled as the power is, the Casting Score at the weaving + a stress die against the
+ * curse's Ease Factor, its Penetration the total + Penetration − the Ease Factor. Changes `x` (a botch's
+ * Warping); returns what happened.
+ */
+export function rollWovenCurse(x: Character, die: { value: number; zero: boolean; botches: number; text: string }): string[] {
+  const k = x.folkWitch?.curse;
+  if (!k) return [];
+  const total = k.score + die.value;
+  const who = k.target ? ` on ${k.target}` : '';
+  const out = [`The curse of ${k.name}${who}: stress die ${die.text} + Casting Score ${k.score} = ${total}, against ${k.ease}.`];
+  if (die.zero && die.botches) {
+    out.push(`BOTCH ×${die.botches}: the curse goes astray, uncontrolled and not as she meant; ${die.botches} Warping Point${die.botches === 1 ? '' : 's'}.`);
+    const moon = witchWarping(x, die.botches);
+    if (moon) out.push(moon);
+  } else if (total >= k.ease) out.push(`It takes hold. Penetration ${witchPenetration(total, k.ease, k.penetration)} (the total + Penetration ${k.penetration} − the Ease Factor), against the target's Magic Resistance.`);
+  else out.push('It fails; the fabric is spent.');
+  x.folkWitch = { ...(x.folkWitch ?? {}), curse: undefined };
+  return out;
 }

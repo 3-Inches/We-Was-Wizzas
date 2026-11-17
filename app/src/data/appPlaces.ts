@@ -16,7 +16,8 @@ const COV = 'Covenant';
 const CREATURES: AppPlace = { text: 'Quick build → Creatures & encounters', page: 'build', tab: 'creatures' };
 const HOUSE: AppPlace = { text: 'Character wizard → House' };
 const MYSTERIES: AppPlace = { text: `${SHEET} → Seasons & Aging → Mysteries & Initiation` };
-const HEDGE: AppPlace = { text: 'Game Table › Dice › Hedge magic: the tradition’s rolls and its seasons of work', page: 'dice', tab: 'hedge' };
+const HEDGE: AppPlace = { text: 'Game Table › Dice › Hedge magic: the tradition’s rolls', page: 'dice', tab: 'hedge' };
+const HEDGE_SEASONS: AppPlace = { text: 'Game Table › Seasons → a season in full: the tradition’s seasons of work, their vis from the stores', page: 'seasons' };
 const HEDGE_SHEET = (what: string): AppPlace => ({ text: `${SHEET} → Overview → ${what} (the apprenticeship, and what is known)` });
 const FAERIE: AppPlace = { text: 'Game Table › Dice › Faerie: rites, bargaining with faeries, Faerie Calling', page: 'dice', tab: 'faerie' };
 const MYSTERY_TABLE = (what: string): AppPlace => ({ text: `Game Table › Dice › Mysteries: ${what}`, page: 'dice', tab: 'mysteries' });
@@ -183,14 +184,14 @@ export const APP_PLACES: Record<string, AppPlace[]> = {
   'hermetic-theurgy': [MYSTERY_TABLE('invoked daimons, Hermetic Empowerment, Synthemata')],
   'arithmetic-magic': [MYSTERY_TABLE('the numerologist’s rotes')],
   // hedge magic and faerie wizardry
-  'hedge-magic': [HEDGE],
-  'hedge-wizards-other-traditions': [HEDGE],
-  elementalists: [HEDGE, { text: `${SHEET} → Overview → Elemental Traits` }],
-  'folk-witches': [HEDGE, HEDGE_SHEET('Folk witch')],
-  gruagachan: [HEDGE, HEDGE_SHEET('Gruagach')],
-  'learned-magicians': [HEDGE, HEDGE_SHEET('Learned magic')],
+  'hedge-magic': [HEDGE, HEDGE_SEASONS],
+  'hedge-wizards-other-traditions': [HEDGE, HEDGE_SEASONS],
+  elementalists: [HEDGE, HEDGE_SEASONS, { text: `${SHEET} → Overview → Elemental Traits` }],
+  'folk-witches': [HEDGE, HEDGE_SEASONS, HEDGE_SHEET('Folk witch')],
+  gruagachan: [HEDGE, HEDGE_SEASONS, HEDGE_SHEET('Gruagach')],
+  'learned-magicians': [HEDGE, HEDGE_SEASONS, HEDGE_SHEET('Learned magic')],
   nightwalkers: [HEDGE],
-  vitkir: [HEDGE, HEDGE_SHEET('Vitki')],
+  vitkir: [HEDGE, HEDGE_SEASONS, HEDGE_SHEET('Vitki')],
   'faerie-wizards': [FAERIE, { text: `${SHEET} → Overview → Sympathy Traits` }],
   'faerie-characters': [{ text: 'People → a faerie companion, or a faerie in place of a magus', page: 'people' }, { ...FAERIE, text: 'Game Table › Dice › Faerie: change through a creative human' }],
 };

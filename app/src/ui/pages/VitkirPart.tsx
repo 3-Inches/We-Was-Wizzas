@@ -1,14 +1,13 @@
 // The Vitkir (Hedge Magic, Revised Edition, Chapter Seven) on the sheet and at the Game Table: the
-// apprenticeship and the rune scripts known; casting a script with the inscription variations; a season
-// inventing scripts or learning them from a teacher; Nátt-thel, the loss of The Gift.
+// apprenticeship and the rune scripts known; casting a script with the inscription variations and
+// Nátt-thel, the loss of The Gift, on Dice › Hedge magic; a season inventing scripts or learning them
+// from a teacher, on the Seasons page.
 
 import { useState } from 'react';
 import { RUNES, RUNE_METHODS, VITKAR_FOCI, type Inscription } from '../../data/hedgeVitkir';
 import { RUNE_GUIDELINES, RUNE_SCRIPTS, RUNE_TEXTS } from '../../data/vitkirRunes';
 import { VITKI_APPRENTICESHIP } from '../../engine/character/derive';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
-import { applySeason, newSeasonEntry } from '../../engine/longterm';
-import { seasonBusy } from '../../engine/time';
 import type { AuraState } from '../../engine/magic';
 import type { Character, RuneScript } from '../../engine/types';
 import {
@@ -18,6 +17,7 @@ import { warpingScoreFromPoints } from '../../engine/xp';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
 import type { CharEditor } from '../character/useChar';
+import { useSeasonWork } from '../seasonWork';
 
 function Lines({ lines }: { lines: string[] }) {
   if (!lines.length) return null;
@@ -342,7 +342,7 @@ export function VitkiCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
 }
 
 export function VitkiSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
-  const { c, d, update, saga } = ed;
+  const { c, d } = ed;
   const [mode, setMode] = useState<'invent' | 'taught'>('invent');
   const [effect, setEffect] = useState('');
   const [target, setTarget] = useState('');
@@ -350,12 +350,11 @@ export function VitkiSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraState 
   const [teacher, setTeacher] = useState(20);
   const [pending, setPending] = useState<RuneScript[]>([]);
   const [lines, setLines] = useState<string[]>([]);
+  const sw = useSeasonWork(ed);
   if (!c || !d) return null;
   const runes = vitkirRunes(c, d);
   if (!runes.length) return null;
-  const year = saga?.currentYear ?? 1220;
-  const season = saga?.currentSeason ?? 'Spring';
-  const busy = seasonBusy(c, year, season);
+  const { year, season, busy } = sw;
   const best = runes.reduce((m, r) => (r.score > m.score ? r : m), runes[0]);
   const eff = runes.some((r) => r.name === effect) ? effect : best.name;
   const set = [eff, ...(target && target !== eff ? [target] : [])];
@@ -365,15 +364,12 @@ export function VitkiSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraState 
   const allowed = (s: RuneScript) => s.runes.every((n) => set.includes(n));
   const doSeason = () => {
     const text = `${mode === 'invent' ? `Inventing rune scripts with ${set.join(' and ')} (Lab Total ${lt.total}${months < 3 ? `, ${months} month${months === 1 ? '' : 's'}` : ''})` : `Taught rune scripts (the teacher's Lab Total ${teacher})`}: ${pending.map((p) => `${p.name} (${p.level})`).join(', ') || 'none finished'}; ${used} of ${levels} levels.`;
-    update((x) => {
-      x.vitki = { ...(x.vitki ?? {}), scripts: [...(x.vitki?.scripts ?? []), ...pending.map((p) => ({ ...p, source: 'play' as const }))] };
-      const rune = x.abilities.find((a) => a.abilityId === RUNES.find((r) => r.name === eff)?.id);
-      const e = newSeasonEntry(year, season, 'other', `Vitki: ${mode === 'invent' ? 'inventing rune scripts' : 'learning rune scripts'}`, mode === 'invent' && rune ? { [`ability:${rune.uid}`]: 2 } : {});
-      e.notes = text;
-      applySeason(x, e, 1);
-      x.seasonLog.push(e);
-    });
-    setLines([text, `${season} ${year} logged.`]);
+    setLines(
+      sw.work(`Vitki: ${mode === 'invent' ? 'inventing rune scripts' : 'learning rune scripts'}`, mode === 'invent' ? RUNES.find((r) => r.name === eff)?.id : undefined, (x) => {
+        x.vitki = { ...(x.vitki ?? {}), scripts: [...(x.vitki?.scripts ?? []), ...pending.map((p) => ({ ...p, source: 'play' as const }))] };
+        return { lines: [text], made: pending.length ? 'rune scripts' : undefined };
+      }),
+    );
     setPending([]);
   };
   return (
@@ -428,7 +424,7 @@ export function VitkiSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraState 
         </div>
       ))}
       {used > levels && <p className="small warn-text">{used} levels chosen, but the season gives {levels}.</p>}
-      <button onClick={doSeason} disabled={busy || used > levels} title={busy ? `${season} ${year} is already spent` : undefined}>
+      <button onClick={doSeason} disabled={busy || used > levels}>
         {mode === 'invent' ? 'Invent scripts' : 'Learn scripts'} (a season)
       </button>
       {busy && <span className="small muted"> {season} {year} is already spent.</span>}

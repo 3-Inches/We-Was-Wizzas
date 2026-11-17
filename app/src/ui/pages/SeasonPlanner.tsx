@@ -17,6 +17,8 @@ import { StandingEditor, teamOf } from '../character/StandingEditor';
 import { Unlog } from '../character/Unlog';
 import { Card, Empty } from '../kit';
 import { R } from '../routes';
+import { hedgeSeasonWorks } from './HedgePart';
+import { holyWorksOpen } from '../../engine/holy';
 
 export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, onPlan }: { saga: Saga; data: GameData; chars: Character[]; covs: Covenant[]; derived: Map<string, DerivedCharacter>; fill?: boolean; /** open the full planner for one character */ onPlan?: (id: string) => void }) {
   const updateCharacter = useStore((s) => s.updateCharacter);
@@ -28,7 +30,7 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
     <Card title={`Each character's ${season} ${year}`} tour="table-season" fold="table-season" summary={`${playing.length} characters in play, player by player.`}>
       <p className="small muted" style={{ marginTop: 0 }}>
         Player by player, magi first, then companions; the grogs last. What each one does this season: what is logged, or else their standing activity, changed here. A
-        particular book, teacher, lab project, writing or Initiation: <b>Plan in full</b>, below.
+        particular book, teacher, lab project, hedge magic or holy work, writing or Initiation: <b>Plan in full</b>, below.
       </p>
       <PlayerOrder saga={saga} chars={playing} />
       {playing.length === 0 && <Empty>No finished characters yet.</Empty>}
@@ -55,6 +57,8 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
     const extraHere = plan.extra > 0 && extraSeasonHere(plan, season) && !logged.some((e) => e.extra);
     // a teacher who named this character among their students, and whose own season is free for it
     const lessonFrom = playing.find((t) => t.id !== c.id && t.standing?.kind === 'teach' && !!t.standing.students?.includes(c.id) && !loggedThisSeason(t, year, season).some((e) => !e.extra));
+    // their own magic's seasons of work, worked from Plan in full
+    const own = [...hedgeSeasonWorks(c, d), ...(holyWorksOpen(d).length ? ['holy work'] : [])];
     return (
       <div key={c.id} className="list-row" style={{ flexWrap: 'wrap' }}>
         <Link to={R.character(saga.id, c)} style={{ minWidth: 120 }}>
@@ -87,7 +91,7 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
         )}
         <span className="row tight small" style={{ marginLeft: 'auto' }}>
           {onPlan ? (
-            <button className="small ghost" onClick={() => onPlan(c.id)} title="A particular book, teacher, lab project, writing or Initiation">
+            <button className="small ghost" onClick={() => onPlan(c.id)} title={`A particular book, teacher, lab project, writing or Initiation${own.length ? `, or ${own.join(', ')}` : ''}`}>
               Plan in full ↓
             </button>
           ) : (
@@ -97,6 +101,11 @@ export function SeasonPlanner({ saga, data, chars, covs, derived, fill = true, o
         {!logged.length && !lessonFrom && (
           <div className="small muted" style={{ flexBasis: '100%' }}>
             {fill ? `→ ${describeStanding(c, d, resolveStanding(c, d, year))}` : '→ nothing (unplanned seasons are left empty)'}
+            {own.length > 0 && (
+              <>
+                {' '}Or their own magic: {own.join(', ')}, in <b>Plan in full</b>.
+              </>
+            )}
           </div>
         )}
         {logged

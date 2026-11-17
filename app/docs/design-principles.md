@@ -41,8 +41,9 @@ The toolkit keeps the sheets, the covenant's stores and the calendar. Use them.
 - **Play is at the Game Table.** Rolls on Dice, the season's work on Seasons, belongings on Possessions.
 - **A sheet is for reference** once the character is finished. It shows where the character stands and says where each thing changes.
 - **Creation settings stay in the builder and on the sheet.** They do not appear on the Game Table.
-- **Anything that takes a season is reachable from the Seasons page,** whatever page its card lives on.
-- A mechanic is never offered in two places that can disagree.
+- **Anything that takes a season is worked on the Seasons page,** in the character's season in full. The page that has the tradition's rolls links there.
+- **A roll the book makes when a season ends** (a woven curse) waits in the Seasons page's **Resolve** step until it is rolled.
+- **A card lives in one place.** Another page links to it. It does not show it again.
 
 **Check:** where would a player look for this first? Is it there, or is there a link from there?
 
@@ -139,7 +140,7 @@ Use these words for these things, everywhere.
 
 - [ ] Its data cites book and line, and its engine module has tests built on the book's worked examples.
 - [ ] Every formula was checked against the book's formula line, and every Virtue and Flaw of the chapter that changes a number is applied.
-- [ ] Its cards are on the page a player would look on (principle 4), and season-long work is reachable from Seasons.
+- [ ] Its cards are on the page a player would look on (principle 4), and season-long work is on Seasons.
 - [ ] Each card passes the card checklist below.
 - [ ] It has a Guide entry written as steps, an "In the app" pointer, and tutorial coverage if it adds a page.
 - [ ] The README lists it in one line, and lists what was left out under "Not yet automated".

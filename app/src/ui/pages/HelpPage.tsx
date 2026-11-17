@@ -446,7 +446,7 @@ function ToolkitGuide() {
             forbears</b> are invoked against an unseen die, and a Christian saint who refuses may be threatened. <b>Holy influence</b> gives followers a trait; a
             <b> temper</b> in the Dominion is offered on every roll. The <b>Divine Ascent</b> is checked when two or more Warping Points come at once, and its form (Gloom,
             Form, Unity) is kept for life: the Divine Form gives Magic Resistance and Soak, as a commanding aura does. The <b>Rings of Solomon</b> add their experience and
-            Characteristics while they last. Kabbalists work <b>amulets, golems, True Names and Shinnui Shem</b> a season at a time, here or on the Seasons page.
+            Characteristics while they last. Kabbalists work <b>amulets, golems, True Names and Shinnui Shem</b> a season at a time, on <b>Seasons</b>.
             <b> Holy Magic</b> casts at Dice › Spellcasting: a prayer (Presence + Theology 15+) or a Method&apos;s activity in place of words and gestures, the Dominion
             counted as a Magic aura, a Method and a Power in Rituals, long-term Fatigue in place of Ritual vis; the spell designer offers its own Ranges, Durations and
             Targets, and a Hermetic Laboratory Text is halved (as a holy magus&apos;s is for Hermetic magi).
@@ -474,32 +474,32 @@ function ToolkitGuide() {
           <li>
             <b>Vitkir</b> (<i>Hedge Magic, Revised Edition</i>): the 24 runes, raised as Arts; the sheet keeps the apprenticeship (240 experience points and 120 levels of scripts)
             and the scripts known (the book&apos;s or designed from a rune&apos;s guideline). On <b>Dice › Hedge magic</b>: a script cast with its name and description written,
-            hidden or left off, vis and a rune focus; a season inventing scripts or learning them from a teacher; <b>Nátt-thel</b>, the loss of The Gift, after two Warping
-            Points at once.
+            hidden or left off, vis and a rune focus; <b>Nátt-thel</b>, the loss of The Gift, after two Warping Points at once. On <b>Seasons</b>: scripts invented or
+            taught.
           </li>
           <li>
             <b>Gruagachan</b> (<i>Hedge Magic, Revised Edition</i>): Give and Take with Blessing, Curse, Shape and Vision; the sheet keeps the apprenticeship and the spells
             known (from the book or designed with the Geas and Limit Durations). On <b>Dice › Hedge magic</b>: a Formulaic spell varied within its magnitudes, or a
-            spontaneous one; transformation after a double botch; a season enchanting a <b>tattoo</b>, inventing a spell or drawing vis.
+            spontaneous one; transformation after a double botch. On <b>Seasons</b>: a <b>tattoo</b>, a spell invented or vis drawn.
           </li>
           <li>
             <b>Folk witches</b> (<i>Hedge Magic, Revised Edition</i>): the Folk Witch Social Status, the tradition&apos;s Virtues and Flaws, and Folk Witch Magic Theory; a
             Gifted witch has the seven favored powers, and the sheet keeps her apprenticeship (200 experience points). On <b>Dice › Hedge magic</b>: a power used by
-            incantation or fetish against its Ease Factor, potions drunk, a <b>season in the kitchen</b> (potions, fetishes, curses, vis, a longevity ritual, a
-            familiar), and the <b>Witch Moon</b> that a new Warping Score brings.
+            incantation or fetish against its Ease Factor, potions drunk, and the <b>Witch Moon</b> that a new Warping Score brings. On <b>Seasons</b>: a season in the
+            <b>kitchen</b> (potions, fetishes, a curse rolled in Resolve, vis, a longevity ritual, a familiar).
           </li>
           <li>
             <b>Elementalists</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the four Techniques (each for a type of target: Medicinal, Philosophical or
             Theurgical) and the four Elementalist Forms open them at 0. The sheet shows the <b>Elemental Traits</b> that Warping and the Forms bring. On <b>Dice › Hedge
-            magic</b>: Summoning, Controlling and Divining rolled with the elements and vis chosen, and what the total reaches; and a season of <b>Refining</b> (a
+            magic</b>: Summoning, Controlling and Divining rolled with the elements and vis chosen, and what the total reaches. On <b>Seasons</b>: <b>Refining</b> (a
             longevity potion, vis from an aura, vis moved, a being&apos;s Might).
           </li>
           <li>
             <b>Learned magicians</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the six Arts open them at 0 (a Gifted Mathematicus of Bologna has all six); the
             sheet&apos;s <b>Learned magic</b> card keeps the years under a master (30 experience points each) and the charms known. On <b>Dice › Hedge magic</b>: a{' '}
             <b>charm</b> cast from memory or read from a formulary, with Entreat the Powers against a hostile aura, Fatigue when it falls short, and Warping and
-            intervention after a botch; a <b>charta</b> written in hours; an <b>amulet</b> made in a season, put on the sheet with its charges; and a season inventing a
-            charm or learning charms from a teacher.
+            intervention after a botch; a <b>charta</b> written in hours. On <b>Seasons</b>: an <b>amulet</b>, put on the sheet with its charges, and charms invented or
+            taught.
           </li>
           <li>
             <b>The Mysteries</b> (<i>The Mysteries, Revised Edition</i>): on a lab project, a magus with Planetary Magic (for enchanting) or Celestial Magic (for any lab work)

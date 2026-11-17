@@ -8,8 +8,11 @@ import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import { validateCharacter } from './character/validate';
 import {
   brew, familiarBinding, healingCost, kitchenLabTotal, kitchenVisLimit, methodsFor, potionAbility, witchCastingScore, witchMoonEnds, witchMoonOutcome, witchMoonWound, witchPenetration, witchPowers,
-  witchVisExtraction,
+  witchVisExtraction, rollWovenCurse,
 } from './folkWitch';
+import { newSaga } from '../store/store';
+import { newSeasonEntry } from './longterm';
+import { advanceSeason, DEFAULT_ADVANCE } from './time';
 
 const data = buildGameData();
 const d = (c: Character) => deriveCharacter(c, data, DEFAULT_HOUSE_RULES);
@@ -100,5 +103,48 @@ describe('the Witch Moon', () => {
     expect(witchMoonWound(c)).toBe('Medium');
     addVirtue(c, data, 'harsh-moon-flaw', 'Minor');
     expect(witchMoonWound(c)).toBe('Heavy');
+  });
+});
+
+describe('a curse woven in the kitchen (HMRE, Curse Fetish Weaving)', () => {
+  // the fabric is complete when the season ends, and the curse is rolled then: on the Seasons page, in Resolve
+  function weaving(logged = true) {
+    const s = newSaga('T');
+    s.currentYear = 1220;
+    s.currentSeason = 'Spring';
+    const c = witch(true);
+    c.sagaId = s.id;
+    c.creation.finalized = true;
+    const e = newSeasonEntry(1220, 'Spring', 'other', "Witch's kitchen: a curse woven");
+    if (logged) c.seasonLog.push(e);
+    c.folkWitch = { curse: { name: 'Disease', ease: 9, target: 'the reeve', score: 6, auraBotch: 0, penetration: 2, year: 1220, season: 'Spring', entryUid: e.uid } };
+    return { s, c };
+  }
+  it('is owed when its season ends, and not before', () => {
+    const { s, c } = weaving();
+    expect(c.owed).toBeUndefined();
+    const { state } = advanceSeason({ saga: s, characters: [c], covenants: [] }, data, DEFAULT_ADVANCE);
+    const w = state.characters[0];
+    expect(w.owed).toEqual([expect.objectContaining({ kind: 'curse', year: 1220, season: 'Spring', text: 'The curse of Disease on the reeve is woven: roll it.' })]);
+    expect(w.folkWitch?.curse?.name).toBe('Disease');
+  });
+  it('is dropped when the season of weaving was unlogged', () => {
+    const { s, c } = weaving(false);
+    const { state } = advanceSeason({ saga: s, characters: [c], covenants: [] }, data, DEFAULT_ADVANCE);
+    expect(state.characters[0].owed).toBeUndefined();
+    expect(state.characters[0].folkWitch?.curse).toBeUndefined();
+  });
+  it('rolls the Casting Score at the weaving + a stress die against the curse; Penetration as for a power', () => {
+    const { c } = weaving();
+    const out = rollWovenCurse(c, { value: 5, zero: false, botches: 0, text: '5' });
+    expect(out.join(' ')).toBe('The curse of Disease on the reeve: stress die 5 + Casting Score 6 = 11, against 9. It takes hold. Penetration 4 (the total + Penetration 2 − the Ease Factor), against the target\'s Magic Resistance.');
+    expect(c.folkWitch?.curse).toBeUndefined();
+  });
+  it('a botch brings Warping Points, and a new Warping Score the Witch Moon', () => {
+    const { c } = weaving();
+    c.warpingPoints = 4;
+    const out = rollWovenCurse(c, { value: 0, zero: true, botches: 2, text: '0 (2 botches)' });
+    expect(c.warpingPoints).toBe(6);
+    expect(out.join(' ')).toMatch(/BOTCH ×2.*2 Warping Points.*Warping Score 1: the Witch Moon begins/);
   });
 });

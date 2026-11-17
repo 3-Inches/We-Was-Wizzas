@@ -1,9 +1,11 @@
 // Game Table › Dice › Hedge magic (Hedge Magic, Revised Edition): the learned magicians. A charm
 // cast from memory or read from a formulary, with Entreat the Powers against a hostile aura, Fatigue,
-// Warping from botches and intervention after a double botch; a charta written in hours; an amulet
-// made in a season; a season inventing a charm or learning charms from a teacher.
+// Warping from botches and intervention after a double botch; a charta written in hours. The seasons of
+// every hedge tradition (an amulet, charms invented or taught, a brew, a refining, a tattoo, rune
+// scripts) are not here: they are on the Seasons page, in a character's season in full (HedgeSeasonCards).
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { HerbalismCard, hasHerbalism } from './HerbalismCard';
 import { LEARNED_CHARMS } from '../../data/learnedCharms';
 import { learnedArtName, type LearnedArts } from '../../data/hedgeLearned';
@@ -13,13 +15,13 @@ import {
   entreatTotal, formularySearch, horoscopeRoll, interventionAvoid, interventionFollows, inventGain, inventSeason, learnFromTeacher, learnedAura, learnedLabTotal, naturalMagicianOffset, readingCharm,
   type Horoscope,
 } from '../../engine/learnedMagic';
-import { applySeason, newSeasonEntry } from '../../engine/longterm';
-import { seasonBusy } from '../../engine/time';
 import type { AuraState, Realm } from '../../engine/magic';
 import type { Character, LearnedCharm } from '../../engine/types';
 import { warpingScoreFromPoints } from '../../engine/xp';
 import { Card, Field, Stepper, Total, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
+import { useSeasonWork } from '../seasonWork';
+import { R } from '../routes';
 import { CharmDesigner, LearnedCard, artPairs, hasLearnedMagic } from '../character/LearnedCard';
 import { ELEMENTAL_ART_IDS } from '../../data/hedgeElemental';
 import { elementalArts } from '../../engine/elementalMagic';
@@ -94,6 +96,7 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
   const isElemental = elemental.techniques.length > 0 || elemental.forms.length > 0;
   // a nightwalker's and a herbalist's rolls take no aura: show its controls only to those whose magic does
   const usesAura = learned || isElemental || isFolkWitch(c) || hasGruagach(c) || hasVitki(c);
+  const works = hedgeSeasonWorks(c, d);
   return (
     <>
       {usesAura && (
@@ -120,32 +123,64 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
           )}
         </div>
       )}
+      {works.length > 0 && ed.saga && (
+        <p className="small">
+          A season&apos;s work ({works.join(', ')}) is planned on <Link to={R.seasonsFor(ed.saga.id, c.id, 'table-plan')}>Game Table › Seasons, in {c.name ? `${c.name}’s` : 'their'} season in full ›</Link>
+        </p>
+      )}
       {learned && pairs.length === 0 && <p className="small warn-text">No Technique and Form of the learned magicians yet: take their Virtues on the sheet (a Gifted mathematicus has all six).</p>}
       {pairs.length > 0 && <CharmCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <ChartaCard ed={ed} aura={aura} pairs={pairs} />}
-      {pairs.length > 0 && <AmuletCard ed={ed} aura={aura} pairs={pairs} />}
-      {pairs.length > 0 && <CharmSeasonCard ed={ed} aura={aura} pairs={pairs} />}
       {learned && <LearnedCard ed={ed} atTable />}
       {hasHerbalism(c) && <HerbalismCard ed={ed} />}
       {isElemental && (!elemental.techniques.length || !elemental.forms.length) && (
         <p className="small warn-text">An elementalist needs a Technique and a Form: take their Virtues on the sheet.</p>
       )}
       {isElemental && elemental.forms.length > 0 && <ElementalCard ed={ed} aura={aura} />}
-      {isElemental && elemental.forms.length > 0 && <RefiningCard ed={ed} aura={aura} />}
       {isElemental && <ElementalTraitsCard ed={ed} />}
       {isFolkWitch(c) && witchPowers(c, d).length === 0 && <p className="small warn-text">No folk witch powers yet: take their Virtues on the sheet (a Gifted folk witch has all seven).</p>}
       {isFolkWitch(c) && <WitchPowerCard ed={ed} aura={aura} />}
       {isFolkWitch(c) && <WitchThingsCard ed={ed} />}
-      {isFolkWitch(c) && <KitchenCard ed={ed} aura={aura} />}
       {isFolkWitch(c) && <WitchMoonCard ed={ed} />}
       {hasGruagach(c) && <GruagachCastCard ed={ed} aura={aura} />}
-      {hasGruagach(c) && <GruagachSeasonCard ed={ed} aura={aura} />}
       {hasGruagach(c) && <GruagachSheetCard ed={ed} atTable />}
       {hasNightwalker(c) && <NightwalkerCard ed={ed} />}
       {hasVitki(c) && <VitkiCastCard ed={ed} aura={aura} />}
-      {hasVitki(c) && <VitkiSeasonCard ed={ed} aura={aura} />}
       {hasVitki(c) && <NattThelCard ed={ed} />}
       {hasVitki(c) && <VitkiSheetCard ed={ed} atTable />}
+    </>
+  );
+}
+
+/** The seasons of work a character's hedge magic offers, named as their cards are. */
+export function hedgeSeasonWorks(c: Character, d: NonNullable<CharEditor['d']>): string[] {
+  const elemental = elementalArts(c, d);
+  return [
+    ...(artPairs(c, d).length ? ['an amulet', 'a season of charms'] : []),
+    ...(isFolkWitch(c) && witchPowers(c, d).length ? ['a season in the kitchen'] : []),
+    ...(elemental.forms.length && elemental.techniques.some((t) => t.id === 'refining') ? ['a season of Refining'] : []),
+    ...(hasGruagach(c) ? ['a gruagach’s season'] : []),
+    ...(hasVitki(c) ? ['a vitki’s season'] : []),
+  ];
+}
+
+/**
+ * A character's seasons of hedge magic, on the Seasons page: each tradition's season card, worked in the
+ * aura where the character lives (their covenant's), its vis from the purse or the covenant's stores.
+ */
+export function HedgeSeasonCards({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
+  const { c, d } = ed;
+  if (!c || !d) return null;
+  const pairs = artPairs(c, d);
+  const elemental = elementalArts(c, d);
+  return (
+    <>
+      {pairs.length > 0 && <AmuletCard ed={ed} aura={aura} pairs={pairs} />}
+      {pairs.length > 0 && <CharmSeasonCard ed={ed} aura={aura} pairs={pairs} />}
+      {isFolkWitch(c) && <KitchenCard ed={ed} aura={aura} />}
+      {elemental.forms.length > 0 && <RefiningCard ed={ed} aura={aura} />}
+      {hasGruagach(c) && <GruagachSeasonCard ed={ed} aura={aura} />}
+      {hasVitki(c) && <VitkiSeasonCard ed={ed} aura={aura} />}
     </>
   );
 }
@@ -349,32 +384,17 @@ function ChartaCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState; pair
   );
 }
 
-function useSeason(ed: CharEditor) {
-  const year = ed.saga?.currentYear ?? 1220;
-  const season = ed.saga?.currentSeason ?? 'Spring';
-  const busy = !!ed.c && seasonBusy(ed.c, year, season);
-  /** log the season, with 2 experience points to the Technique (exposure) */
-  const log = (x: Character, title: string, notes: string, technique?: string) => {
-    const ab = technique ? x.abilities.find((a) => a.abilityId === technique) : undefined;
-    const e = newSeasonEntry(year, season, 'other', title, ab ? { [`ability:${ab.uid}`]: 2 } : {});
-    e.notes = notes;
-    applySeason(x, e, 1);
-    x.seasonLog.push(e);
-  };
-  return { year, season, busy, log };
-}
-
 const TECHNIQUE_ID: Record<string, string> = { Tu: 'tueor', Su: 'succurro', Vu: 'vulnero' };
 
 function AmuletCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState; pairs: LearnedArts[] }) {
-  const { c, d, update } = ed;
+  const { c, d } = ed;
   const [effect, setEffect] = useState<LearnedCharm | undefined>();
   const [horoscope, setHoroscope] = useState<Horoscope>('nativity');
   const [other, setOther] = useState(0);
   const [bearer, setBearer] = useState('');
   const [lines, setLines] = useState<string[]>([]);
   const ent = useEntreaty(ed, aura);
-  const s = useSeason(ed);
+  const s = useSeasonWork(ed);
   if (!c || !d) return null;
   const tf = (effect?.tf ?? pairs[0]) as LearnedArts;
   const natural = naturalMagicianOffset(c, d, aura, ent.offset);
@@ -384,12 +404,12 @@ function AmuletCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState; pair
     if (!effect || !charges) return;
     const name = `Amulet: ${effect.name}${bearer.trim() ? ` (for ${bearer.trim()})` : ''}`;
     const text = `${name}: Lab Total ${lt.total} against level ${effect.level}, ${charges} charge${charges === 1 ? '' : 's'}.`;
-    update((x) => {
+    const out = s.work(`Learned magic: ${name}`, TECHNIQUE_ID[effect.tf.slice(0, 2)], (x) => {
       x.items.push(amuletItem(name, effect, charges, x.id));
-      s.log(x, `Learned magic: ${name}`, text, TECHNIQUE_ID[effect.tf.slice(0, 2)]);
+      return { lines: [text, 'The amulet is on the sheet’s items.'], made: 'an amulet' };
     });
     ent.reset();
-    setLines([text, `${s.season} ${s.year} logged; the amulet is on the sheet’s items, +2 experience to the Technique.`]);
+    setLines(out);
   };
   return (
     <Card title="Make an amulet" tour="hedge-amulet" fold="hedge-amulet" summary="A season: a charge for every 5 points, or part of 5, the Lab Total beats its level">
@@ -428,27 +448,27 @@ function CharmSeasonCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState;
   const [lessons, setLessons] = useState<LearnedCharm[]>([]);
   const [similar, setSimilar] = useState(0);
   const [lines, setLines] = useState<string[]>([]);
-  const s = useSeason(ed);
+  const s = useSeasonWork(ed);
   if (!c || !d) return null;
   const inv = c.learned?.inventing;
   const tf = (inv?.charm.tf ?? pairs[0]) as LearnedArts;
   const lt = learnedLabTotal(c, d, tf, aura, { kind: 'charm', similar });
   const cap = learnFromTeacher(teacherLt);
   const levels = lessons.reduce((t, x) => t + x.level, 0);
-  const work = () => {
-    let msg = '';
-    update((x) => {
-      msg = inventSeason(x, lt.total);
-      s.log(x, `Learned magic: inventing ${inv?.charm.name ?? 'a charm'}`, msg, TECHNIQUE_ID[tf.slice(0, 2)]);
-    });
-    setLines([msg, `${s.season} ${s.year} logged.`]);
-  };
+  const work = () =>
+    setLines(
+      s.work(`Learned magic: inventing ${inv?.charm.name ?? 'a charm'}`, TECHNIQUE_ID[tf.slice(0, 2)], (x) => {
+        const msg = inventSeason(x, lt.total);
+        return { lines: [msg], made: x.learned?.inventing ? undefined : `the charm ${inv?.charm.name ?? ''}`.trim() };
+      }),
+    );
   const learn = () => {
-    update((x) => {
-      x.learned = { ...(x.learned ?? {}), charms: [...(x.learned?.charms ?? []), ...lessons.map((l) => ({ ...l, source: 'play' as const }))] };
-      s.log(x, 'Learned magic: charms from a teacher', `${lessons.map((l) => l.name).join(', ')} (${levels} levels of ${cap}).`);
-    });
-    setLines([`Learned ${lessons.length} charm${lessons.length === 1 ? '' : 's'} (${levels} levels). ${s.season} ${s.year} logged.`]);
+    setLines(
+      s.work('Learned magic: charms from a teacher', undefined, (x) => {
+        x.learned = { ...(x.learned ?? {}), charms: [...(x.learned?.charms ?? []), ...lessons.map((l) => ({ ...l, source: 'play' as const }))] };
+        return { lines: [`Learned ${lessons.length} charm${lessons.length === 1 ? '' : 's'}: ${lessons.map((l) => l.name).join(', ')} (${levels} levels of ${cap}).`], made: 'charms learned' };
+      }),
+    );
     setLessons([]);
   };
   return (

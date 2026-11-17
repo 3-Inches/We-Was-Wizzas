@@ -121,8 +121,8 @@ export interface Owed {
   uid: string;
   year: number;
   season: Season;
-  /** a Virtue or Flaw a Warping Score brings, a Twilight to roll, a death to confirm or undo */
-  kind: 'warping' | 'twilight' | 'dying';
+  /** a Virtue or Flaw a Warping Score brings, a Twilight to roll, a death to confirm or undo, a woven curse to roll */
+  kind: 'warping' | 'twilight' | 'dying' | 'curse';
   text: string;
   /** the Virtue or Flaw it calls for (Warping) */
   want?: { kind: 'virtue' | 'flaw'; size: VFSize; supernatural?: boolean };
@@ -664,6 +664,8 @@ export interface FolkWitchInfo {
   things?: WitchThing[];
   /** the Witch Moon under way: the months so far and the Warping Score it began at */
   witchMoon?: { months: number; warpingScore: number; pointsGained: number };
+  /** a curse fabric woven in a season, rolled when that season ends (the Seasons page's Resolve) */
+  curse?: { name: string; ease: number; target?: string; score: number; auraBotch: number; penetration: number; year: number; season: Season; entryUid: string };
 }
 
 export interface PersonalityTrait {
@@ -957,6 +959,8 @@ export interface SeasonUndo {
   project?: LabProject;
   /** vis the season spent, and where from */
   vis?: { from: 'purse' | 'covenant'; covenantId?: string; taken: { art: Art; pawns: number; pair?: Art }[] };
+  /** vis the season put in the purse or the covenant's stores (drawn from an aura, or moved), and where */
+  visAdded?: { to: 'purse' | 'covenant'; covenantId?: string; added: { art: Art; pawns: number; pair?: Art }[] };
   /** pounds the season spent from the purse */
   pounds?: number;
   /** Warping Points the season's work added outside its gains */

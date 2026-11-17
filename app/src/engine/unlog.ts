@@ -9,7 +9,7 @@ import { applySeason } from './longterm';
 import { PROJECT_KINDS } from './projects';
 import type { Art } from '../data';
 import type { Character, Covenant, SeasonLogEntry, SeasonUndo, VisStock } from './types';
-import { addVis, purseOf } from './vis';
+import { addVis, purseOf, takeVis, visAvailable } from './vis';
 
 /** The vis gone from one set of stocks to another, by Art (and pair): what a season spent. */
 function visGone(before: VisStock[], after: VisStock[]): { art: Art; pawns: number; pair?: Art }[] {
@@ -29,6 +29,25 @@ function visGone(before: VisStock[], after: VisStock[]): { art: Art; pawns: numb
 }
 
 /**
+ * What a season did to the vis in the purse and the covenant's stores, from both before and after: the
+ * pawns it took, from one place (the covenant's when it took from both), and the pawns it put in.
+ */
+export function visUndo(before: Character, after: Character, covBefore?: Covenant, covAfter?: Covenant): Pick<SeasonUndo, 'vis' | 'visAdded'> {
+  const u: Pick<SeasonUndo, 'vis' | 'visAdded'> = {};
+  const purseB = before.purse?.vis ?? [];
+  const purseA = after.purse?.vis ?? [];
+  const fromPurse = visGone(purseB, purseA);
+  const fromCov = covBefore && covAfter ? visGone(covBefore.visStocks, covAfter.visStocks) : [];
+  if (fromCov.length) u.vis = { from: 'covenant', covenantId: covAfter!.id, taken: fromCov };
+  else if (fromPurse.length) u.vis = { from: 'purse', taken: fromPurse };
+  const toPurse = visGone(purseA, purseB);
+  const toCov = covBefore && covAfter ? visGone(covAfter.visStocks, covBefore.visStocks) : [];
+  if (toCov.length) u.visAdded = { to: 'covenant', covenantId: covAfter!.id, added: toCov };
+  else if (toPurse.length) u.visAdded = { to: 'purse', added: toPurse };
+  return u;
+}
+
+/**
  * What a season's work on a lab project changed, worked out from the character (and its covenant)
  * before and after: the project as it was, the vis it spent, the Warping it brought. A project the
  * season finished is final: what it made (a spell, an enchantment, a bond) is on the sheet.
@@ -38,10 +57,8 @@ export function labUndo(before: Character, after: Character, projectUid: string,
   const now = after.projects?.find((p) => p.uid === projectUid);
   const u: SeasonUndo = {};
   if (was) u.project = structuredClone(was);
-  const fromPurse = visGone(before.purse?.vis ?? [], after.purse?.vis ?? []);
-  const fromCov = covBefore && covAfter ? visGone(covBefore.visStocks, covAfter.visStocks) : [];
-  if (fromCov.length) u.vis = { from: 'covenant', covenantId: covAfter!.id, taken: fromCov };
-  else if (fromPurse.length) u.vis = { from: 'purse', taken: fromPurse };
+  const { vis } = visUndo(before, after, covBefore, covAfter);
+  if (vis) u.vis = vis;
   const wp = after.warpingPoints - before.warpingPoints;
   if (wp > 0) u.warping = wp;
   if (now?.done && !was?.done) {
@@ -100,6 +117,15 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
           changed.push(cov);
         }
       } else for (const v of u.vis.taken) addVis(purseOf(c).vis, v.art, v.pawns, v.pair);
+    }
+    // vis the season put in the stores comes out again, as far as it is still there
+    if (u.visAdded?.added.length) {
+      const cov = u.visAdded.to === 'covenant' ? covs.find((x) => x.id === u.visAdded!.covenantId) : undefined;
+      const stocks = u.visAdded.to === 'covenant' ? cov?.visStocks : purseOf(c).vis;
+      if (stocks) {
+        for (const v of u.visAdded.added) takeVis(stocks, [v.art], Math.min(v.pawns, visAvailable(stocks, [v.art])));
+        if (cov && !changed.includes(cov)) changed.push(cov);
+      }
     }
     if (u.pounds) {
       const p = purseOf(c);

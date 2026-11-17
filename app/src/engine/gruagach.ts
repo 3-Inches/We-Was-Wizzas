@@ -9,6 +9,7 @@ import type { DerivedCharacter } from './character/derive';
 import { languageScore } from './books';
 import { auraModifier, type AuraState, type Part } from './magic';
 import { addMagnitudes } from './spellDesign';
+import type { Art } from '../data/types';
 import type { Character, LearnedCharm } from './types';
 
 const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
@@ -193,6 +194,18 @@ export function gruagachInventSeason(c: Character, labTotal: number, spell: Lear
 
 /** Vis in a season: twice Pictish. Extracted from an aura: the Take Vision Lab Total ÷ 10. */
 export const gruagachVisLimit = (pictishScore: number) => 2 * pictishScore;
+
+/**
+ * The Hermetic Arts whose vis serves a gruagach Art (HMRE, Vis, line 3101): Give with Rego or Creo, Take
+ * with Intellego, Rego or Perdo; Blessing and Curse with Corpus, Mentem or the target's Form; Shape with
+ * Muto and the Forms of the target and its new shape; Vision with Imaginem, or Vim for visions granted.
+ * The book leaves the rest to the storyguide's common sense. Animal is listed for Blessing and Curse
+ * because the book's own boar tattoo takes "two pawns of Animal or Corpus vis" (line 3063).
+ */
+const GRUAGACH_VIS: Record<string, Art[]> = { Gv: ['Cr', 'Re'], Ta: ['In', 'Re', 'Pe'], Bl: ['Co', 'Me', 'An'], Cu: ['Co', 'Me', 'An'], Sh: ['Mu', 'An', 'Co'], Vs: ['Im', 'Vi'] };
+
+/** The vis a tattoo of this gruagach Art can take: its Technique's and its Form's. */
+export const tattooVisArts = (tf: GruagachArts): Art[] => [...new Set([...(GRUAGACH_VIS[tf.slice(0, 2)] ?? []), ...(GRUAGACH_VIS[tf.slice(2)] ?? [])])];
 export const gruagachExtraction = (takeVisionLabTotal: number) => Math.max(0, Math.floor(takeVisionLabTotal / 10));
 
 // ------------------------------------------------------------------------------------------------

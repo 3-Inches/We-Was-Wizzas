@@ -22,6 +22,7 @@ import { useCharEditor } from '../character/useChar';
 import AdvancementTab from '../character/sheet/AdvancementTab';
 import { LabProjects } from '../character/sheet/LabProjects';
 import { HolyWorksCard } from './HolyPart';
+import { HedgeSeasonCards } from './HedgePart';
 import { holyWorksOpen } from '../../engine/holy';
 import { LongevityCard } from '../character/sheet/LabItemsTab';
 import { OriginalResearch } from '../character/sheet/OriginalResearch';
@@ -280,8 +281,9 @@ export default function SeasonsPage() {
 
 /**
  * One character's season in full, as the sheet once had it: a book, a teacher, training, vis, a lab
- * project, writing or copying, an Initiation, their standing activity and priorities, and aging out of
- * turn. What is planned is logged in their season log; the season ends for everyone above.
+ * project, a hedge tradition's season (a brew, a refining, a tattoo, rune scripts, an amulet, charms) or a
+ * season of holy work, writing or copying, an Initiation, their standing activity and priorities, and
+ * aging out of turn. What is planned is logged in their season log; the season ends for everyone above.
  */
 function PlanInFull({ sagaId, chars, covs, who, onPick, season }: { sagaId: string; chars: Character[]; covs: Covenant[]; who: string; onPick: (id: string) => void; season: string }) {
   // the players' people first; the Tribunal's magi too, for their priorities
@@ -289,7 +291,7 @@ function PlanInFull({ sagaId, chars, covs, who, onPick, season }: { sagaId: stri
   const all = groups.flatMap((g) => g.people);
   const c = all.find((x) => x.id === who) ?? all[0];
   return (
-    <Card title={c ? `${c.name || 'Unnamed'}: ${season} in full` : 'A season in full'} tour="table-plan" fold="table-plan" summary="One character's season: a book, a teacher, a lab project, writing, an Initiation; aging out of turn.">
+    <Card title={c ? `${c.name || 'Unnamed'}: ${season} in full` : 'A season in full'} tour="table-plan" fold="table-plan" summary="One character's season: a book, a teacher, a lab project, hedge magic or holy work, writing, an Initiation; aging out of turn.">
       {!c ? (
         <Empty>No character in play yet.</Empty>
       ) : (
@@ -320,6 +322,7 @@ function SeasonFor({ sagaId, charId }: { sagaId: string; charId: string }) {
       <InsightCard ed={ed} />
       {ed.d.isMagus && <LabProjects ed={ed} />}
       {ed.d.isMagus && <OriginalResearch ed={ed} magicTheory={mt} />}
+      <HedgeSeasonCards ed={ed} aura={ed.ctx.aura} />
       {holyWorksOpen(ed.d).length > 0 && <HolyWorksCard ed={ed} aura={ed.ctx.aura} />}
       <LongevityCard ed={ed} />
       <ApprenticeCard ed={ed} />
