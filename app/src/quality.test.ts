@@ -60,7 +60,6 @@ const BIG_FILES: string[] = [
   'src/ui/pages/HolyPart.tsx',
   'src/ui/pages/MarketPage.tsx',
   'src/ui/pages/QuickBuildPage.tsx',
-  'src/ui/tour/tours.ts',
 ];
 
 describe('limits that may only go down', () => {
