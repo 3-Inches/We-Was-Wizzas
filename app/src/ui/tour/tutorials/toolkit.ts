@@ -19,7 +19,7 @@ export const toolkitTour: Tour = {
     },
     {
       title: 'The sidebar',
-      body: 'With a saga open, the sidebar lists its pages: the overview, Seasons, the Market, the covenant and every character, then the Tools. On a phone it is behind the **☰** menu.',
+      body: 'With a saga open, the sidebar lists its pages: the **Saga Overview**, the **Game Table** (where play happens), **Covenants**, **People** and **The Tribunal**. Then come the Tools and the Reference. On a phone it is behind the **☰** menu.',
       target: 'nav',
     },
     {
@@ -49,7 +49,7 @@ export const toolkitTour: Tour = {
     },
     {
       title: 'Dice',
-      body: 'The Game Table’s Dice page: simple and stress dice with botch dice, rolled and explained, for anyone at the table, with their totals from their sheets.',
+      body: 'The Game Table’s Dice page: simple and stress dice with botch dice, rolled and explained, with totals from the sheets. Its parts are any roll, combat, spellcasting, and Faith & miracles. **Faerie**, **Hedge magic** and **Mysteries** appear only when someone in the saga has them.',
       at: (c) => (c.sagaId ? R.dice(c.sagaId) : '/dice'), target: 'tab-dice',
     },
     {

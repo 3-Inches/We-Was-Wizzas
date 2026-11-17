@@ -16,12 +16,12 @@ export const seasonTour: Tour = {
     },
     {
       title: 'When nothing is planned',
-      body: 'A standing activity (practice an Ability, read from the library, work in the lab, teach covenant-mates, be taught by one, help in a covenant-mate’s lab) runs in any season nobody plans, so a fast-forward still advances everyone sensibly. Free seasons come first: a magus has four, a working character two (Wealthy three, Poor one) and works the rest, a Regular gives one to Worship, and one who needs no sleep has two more for study. **Seasons a year** shows them, and can be set by hand.',
+      body: 'A **standing activity** (practice, reading, lab work, teaching, being taught) runs in any season nobody plans, so a fast-forward still advances everyone sensibly. A magus has four free seasons; a working character two (Wealthy three, Poor one) and works the rest. **Seasons a year** shows them, and can be set by hand.',
       at: plan, needs: 'character', target: ['season-plan', 'standing', 'table-plan'],
     },
     {
       title: 'Writing and copying',
-      body: 'A book, a copy, lab texts or a florilegium is begun here and worked a season at a time, from this card or as the standing activity in free seasons; the finished work goes to the covenant library, and a season with points to spare goes on to the next one begun. Glossing a book read this season and clarifying one are here too.',
+      body: 'A book, a copy, lab texts or a florilegium is begun here and worked a season at a time, from this card or as the standing activity. The finished work goes to the covenant library. Glossing a book read this season and clarifying one are here too.',
       at: plan, needs: 'character', target: ['writing', 'table-plan'],
     },
     {
@@ -31,7 +31,7 @@ export const seasonTour: Tour = {
     },
     {
       title: 'The year’s end',
-      body: 'Winter’s end closes each covenant’s books (each source of income rolling its year, if ticked), gathers the year’s vis, pays allowances, renews wards, rolls aging (the covenant’s best physician tends anyone in a crisis) and adds the year’s Warping. The covenant’s scribes make the copies queued in the scriptorium, and a book being clarified is done once its years in the aura are up. A Dominion grows or fades with its congregation, and with the optional aura variation a Magic aura may move. The checkboxes choose what runs.',
+      body: 'Winter’s end closes each covenant’s books, gathers the year’s vis, pays allowances, renews wards, rolls aging and adds the year’s Warping. The scribes make the copies queued in the scriptorium. A Dominion grows or fades with its congregation, and with aura variation a Magic aura may move. The checkboxes choose what runs.',
       at: table('seasons'), needs: 'saga', target: ['seasons-advance', 'table-season'],
     },
     {

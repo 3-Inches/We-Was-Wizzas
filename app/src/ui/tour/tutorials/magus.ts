@@ -49,7 +49,7 @@ export const magusTour: Tour = {
     ...finishing,
     {
       title: 'Magic in play',
-      body: 'The **Magic** tab has Casting Scores, Lab Totals, Penetration and Magic Resistance. Set the aura (its realm, a regio, the hour for a Dominion or an Infernal aura; one aligned with an Art counts double for it) and the circumstances at the top, and every total follows. Spells are cast, and certamen fought, at the Game Table’s **Dice › Spellcasting**, where the Fatigue, Warping and vis go back on the sheet; lab projects are worked a season at a time on its **Seasons** page.',
+      body: 'The **Magic** tab has Casting Scores, Lab Totals, Penetration and Magic Resistance. Set the aura and the circumstances at the top, and every total follows. Spells are cast at **Game Table › Dice › Spellcasting**, where Fatigue, Warping and vis go back on the sheet. Lab projects are worked a season at a time on **Game Table › Seasons**.',
       at: sheet('magic'), needs: 'character', target: ['magic-circumstances', 'tab-magic'],
     },
     {

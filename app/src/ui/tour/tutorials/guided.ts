@@ -22,7 +22,7 @@ export const guidedTour: Tour = {
     },
     {
       title: 'The questions',
-      body: 'Rate each statement from 0 (not at all) to 10 (very much); one you skip counts as 5. An answer of 7 or more, or 3 or less, opens follow-up questions about it. **?** explains a statement, and the numbers after a question show what its best options give. A magus can name a House here, or leave it to the build.',
+      body: 'Rate each statement from 0 (not at all) to 10 (very much); one you skip counts as 5. An answer of 7 or more, or 3 or less, opens follow-up questions. **?** explains a statement. A magus can name a House here, or leave it to the build.',
       at: guidedTab('questions'), needs: 'character', target: ['guided-main', 'tab-questions'],
     },
     {

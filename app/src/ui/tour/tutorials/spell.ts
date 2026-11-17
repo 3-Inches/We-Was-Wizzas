@@ -37,7 +37,7 @@ export const spellTour: Tour = {
     },
     {
       title: 'Master it',
-      body: 'Each spell has a **Mastery** score: it adds to the Casting Total and takes a botch die off, and each level brings a special ability the player chooses (Fast Casting, Penetration, Quiet Casting…). The **Spell Mastery** card, in the same season in full, puts experience on a spell (a season’s practice adds its own) and asks for the ability when a new level comes.',
+      body: 'Each spell has a **Mastery** score: it adds to the Casting Total and takes a botch die off. Each level brings a special ability the player chooses (Fast Casting, Quiet Casting…). The **Spell Mastery** card, in the same season in full, puts experience on a spell and asks for the ability when a new level comes.',
       at: plan, needs: 'character', target: ['spell-mastery', 'table-plan'],
     },
   ],

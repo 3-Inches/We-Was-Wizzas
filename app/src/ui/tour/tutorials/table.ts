@@ -10,7 +10,7 @@ export const tableTour: Tour = {
   steps: [
     {
       title: 'The Game Table',
-      body: 'In the saga’s menu, under the Saga Overview. The Game Table is where the saga is played, in six pages along its top: the **Overview** (what needs attention, health, Confidence, the covenants, after a story), **Seasons** (what everyone does, and moving time on), **Dice** (every roll at the table), **Possessions** (what each one owns), the **Market & Treasury**, and **City & Guild**. Come back here whenever you are unsure what to do next. The character sheets are for reference: what changes in play changes here.',
+      body: 'The Game Table is where the saga is played, in pages along its top: the **Overview** (what needs attention), **Seasons** (what everyone does, and moving time on), **Dice** (every roll), **Possessions**, the **Market & Treasury**, and **City & Guild**. Come back here whenever you are unsure what to do next. What changes in play changes here, not on the sheets.',
       at: table('overview'), needs: 'saga', target: 'nav-table',
     },
     {
@@ -25,7 +25,7 @@ export const tableTour: Tour = {
     },
     {
       title: 'Health & recovery',
-      body: 'Everyone wounded, tired or ill, the soonest recovery first, with their penalty and how near the edge they are (Fatigue levels from Unconscious, an Incapacitating Wound). Choose who tends them (a chirurgeon tends as many as their Chirurgy, five times that if they give the season to it), add magical aid, and **Pass** to the next recovery or a set time: every Recovery roll is made, and the wounds and Fatigue change on the sheets. At the foot, **choose someone** to apply damage, take or regain Fatigue, catch or cure a disease, or record a spell working on them.',
+      body: 'Everyone wounded, tired or ill, the soonest recovery first. Choose who tends them, add magical aid, and **Pass** to the next recovery or a set time: every Recovery roll is made, and the sheets change. At the foot, **choose someone** to apply damage, take or regain Fatigue, catch or cure a disease, or record a spell working on them.',
       at: table('overview'), needs: 'saga', target: ['table-recovery', 'table-attention'],
     },
     {
@@ -35,7 +35,7 @@ export const tableTour: Tour = {
     },
     {
       title: 'Faith & miracles',
-      body: 'On **Dice › Faith & miracles** (Realms of Power: The Divine), pick anyone: holy powers called with a Method and a Power (a tragedy of hubris when they fall short), a prayer for a miracle, God’s aid for a scene, a saint or holy forbear invoked (or threatened), holy influence and tempers in the Dominion, the Divine Ascent, and the Rings of Solomon. Set the aura here first: a Divine aura adds to all of it.',
+      body: 'On **Dice › Faith & miracles** (*Realms of Power: The Divine*), pick anyone: holy powers called with a Method and a Power, a prayer for a miracle, God’s aid for a scene, a saint invoked, holy influence in the Dominion, and the Divine Ascent. Set the aura here first: a Divine aura adds to all of it.',
       at: dice('holy'), needs: 'saga', target: ['holy-here', 'tab-dice'],
     },
     {
@@ -55,22 +55,22 @@ export const tableTour: Tour = {
     },
     {
       title: 'Plan, end, resolve',
-      body: 'The Seasons page goes in three steps, shown at its top: **Plan** the season from the top down (the covenant first: its year, the Hooks’ stories, its people coming and going; then each player in turn, their magi before their companions, and the grogs last), **End** it at the bottom after reading what to expect, and **Resolve** what it leaves. The order of play is set with the arrows. **Turn back** puts the saga back to before a season or a year passed.',
+      body: 'The Seasons page goes in three steps, shown at its top. **Plan** the season from the top down: the covenant first, then each player in turn, magi before companions, grogs last. **End** it at the bottom after reading what to expect. **Resolve** what it leaves. **Turn back** puts the saga back to before a season or a year passed.',
       at: table('seasons'), needs: 'saga', target: ['seasons-phases', 'table-season'],
     },
     {
       title: 'This season',
-      body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here: teaching anyone in play (a student taught is bound to the lesson), being taught, helping in a lab, and the extra seasons of one who needs no sleep. A season logged by mistake is **Unlogged** here, and everything it did is taken back: experience, Labor Points, vis and pounds spent, a project’s progress. **Plan in full** opens their season below: a particular book, teacher, lab project, the workshop, Spell Mastery, writing, an Initiation, a Longevity Ritual or the apprentice.',
+      body: 'What each character does when the season ends: what is logged on their sheet, or their standing activity, which you can change right here. A season logged by mistake is **Unlogged** here, and everything it did is taken back. **Plan in full** opens their season below: a book, a teacher, a lab project, writing, a Longevity Ritual.',
       at: table('seasons'), needs: 'saga', target: 'table-season',
     },
     {
       title: 'End the season',
-      body: 'Above the button, **what to expect**: a workshop short of Labor Points by the year’s end, lab work without its vis, a covenant spending more than it earns, a ward to cast again, anyone with nothing to do, choices still to settle. Then press **End** (the button names the season) to move the whole saga on, with Undo. Below are the options, and passing several seasons or years at once.',
+      body: 'Above the button, **what to expect**: lab work without its vis, a covenant spending more than it earns, anyone with nothing to do, choices still to settle. Then press **End** (the button names the season) to move the whole saga on, with Undo. Below are the options, and passing several seasons or years at once.',
       at: table('seasons'), needs: 'saga', target: 'table-advance', advance: {},
     },
     {
       title: 'Resolve',
-      body: 'What the season leaves for the troupe to decide waits at the top of the Seasons page, and on the Overview, until it is settled: the Virtue or Flaw a Warping Score brings (chosen from a list), a death in an aging crisis (saved by magic, or not), a Twilight to roll. Under it, the season just ended, told as a story.',
+      body: 'What the season leaves for the troupe to decide waits at the top of the Seasons page, and on the Overview, until it is settled: a Warping Virtue or Flaw to choose, a death in an aging crisis, a Twilight to roll. Under it, the season just ended, told as a story.',
       at: table('seasons'), needs: 'saga', target: ['seasons-resolve', 'seasons-phases'],
     },
     {

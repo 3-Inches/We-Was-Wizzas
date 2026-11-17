@@ -33,7 +33,7 @@ export const labTour: Tour = {
     },
     {
       title: 'Improving it in play',
-      body: 'Once play begins, the magus improves their own lab as a **Lab project**: raise its Refinement (Magic Theory at least the new Refinement + 3, with a chance of Highly Organized or a Hidden Defect), install a Virtue (a season for a Minor one, two for a Major one), or put a Flaw right. A rise in Upkeep is paid from the treasury. With the optional lab routines, odd hours and overtime add to a season’s Lab Total, at a price.',
+      body: 'Once play begins, the magus improves their lab as a **Lab project**: raise its Refinement, install a Virtue, or put a Flaw right. A rise in Upkeep is paid from the treasury. With the optional lab routines, odd hours and overtime add to a season’s Lab Total, at a price.',
       at: plan, needs: 'character', target: ['lab-projects', 'table-plan'],
     },
     {

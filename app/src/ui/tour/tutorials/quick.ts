@@ -15,7 +15,7 @@ export const quickTour: Tour = {
     },
     {
       title: 'Characters',
-      body: 'Pick the kind (grog, companion, magus or Mythic Companion) and a role, or leave the role to chance. **For** decides whether you get a finished NPC or a draft for a player; **Variety** how much is left to chance. A magus in the Rhine, Thebes or Transylvania gets that Tribunal’s rank, citizenship or privilege when its customs are on, and craftsmen a guild rank.',
+      body: 'Pick the kind (grog, companion, magus or Mythic Companion) and a role, or leave the role to chance. **For** decides whether you get a finished NPC or a draft for a player; **Variety** how much is left to chance. A Tribunal’s rank or a guild rank is given when its rule is on.',
       at: sagaPage('build?tab=characters'), needs: 'saga', target: 'quick-characters',
     },
     {
@@ -25,7 +25,7 @@ export const quickTour: Tour = {
     },
     {
       title: 'Fill out the covenant',
-      body: 'Choose the covenant, then what to fill: staff, a teacher of several Abilities the covenant’s people lack, a bookbinder and illuminator, sergeants, craftsmen (carpenters first), grogs, soldiers for its Boons, servants, teamsters, laborers and horses, its weapons and armor and yearly feasts, a library chosen for what it gives the magi, and where the Build Points left go. **Show me** previews it all with the Build Points each costs and what each resource pool pays for; nothing changes until you add it.',
+      body: 'Choose the covenant, then what to fill: staff and a teacher, craftsmen, grogs and soldiers, servants and horses, arms and feasts, a library chosen for what it gives the magi, and where the Build Points left go. **Show me** previews it all with what each costs; nothing changes until you add it.',
       at: sagaPage('build?tab=covenant'), needs: 'saga', target: 'quick-covenant',
     },
     {

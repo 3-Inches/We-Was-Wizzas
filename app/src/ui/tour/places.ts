@@ -26,7 +26,7 @@ export const guidedTab = (tab: string) => (c: TourCtx) => (c.sagaId && c.charId 
 // the Concept step of every character tour: the guided build to step into, or a whole draft made at once
 export const concept = (body: string, target: string[] = ['guided-build', 'step-basics']): TourStep => ({
   title: 'Concept',
-  body: `${body} Short of time? **Build the whole character for me** makes a complete, legal draft from the themes you picked, and every choice says why.`,
+  body: `${body} Short of time? **Build the whole character for me** drafts it all from your themes.`,
   at: wizard, needs: 'character', wizard: 'basics', target,
   actions: [{ id: 'buildDraft', label: 'Build the whole character for me' }],
   detour: { tour: 'guided', label: 'Walk me through the guided build' },
@@ -56,7 +56,7 @@ export const finishing: TourStep[] = [
   },
   {
     title: 'The character sheet',
-    body: 'Once finished, the sheet is for reference: where the character stands. Wounds and Fatigue on **Combat & Health**, the season log and aging on **Seasons & Aging**, what they own on **Lab, Items & Familiar**. What happens in play is done at the **Game Table** (Dice, Seasons, Possessions, Health & recovery) and lands back here; each card says where. Click any underlined total to see how it is worked out. **Stat block** gives a printable summary.',
+    body: 'Once finished, the sheet is for reference: where the character stands, tab by tab. Play happens at the **Game Table** (Dice, Seasons, Possessions, Health & recovery), and what it changes lands back here; each card says where. Click any underlined total to see how it is worked out. **Stat block** gives a printable summary.',
     at: sheet('overview'), needs: 'character', target: ['tab-combat', 'tab-overview'],
   },
 ];

@@ -12,7 +12,7 @@ export const optionalTour: Tour = {
   steps: [
     {
       title: 'The optional rules',
-      body: `Rules from the supplements that add detail, by area: health, the laboratory, the covenant, society and influence, Houses and Mysteries, and the saga’s Tribunal. Each row names its book and where it shows, with the book’s text a click away. Most start on (unless the saga does not use their book); ${list(startOff)} start off. A tick changes the saga for everyone.`,
+      body: `Rules from the supplements, grouped by area. Each row names its book and where it shows. Most start on; ${list(startOff)} start off. A tick changes the saga for everyone.`,
       at: sagaTab('optional'), needs: 'saga', target: ['optional-rules', 'tab-optional'],
     },
     {
@@ -32,12 +32,12 @@ export const optionalTour: Tour = {
     },
     {
       title: 'Society and the Tribunal',
-      body: 'Played at the Game Table’s **Society & the Tribunal** page, for whoever you pick: the **Society** card (a debate, a petition to the Church, a quick trial, an etiquette performance) and the Tribunal’s customs (ranks and gilds, tokens and shards, privileges), each while its rule is on; **Agents** have a page of their own beside it. The sheet’s Overview shows the agents and the ranks as they stand.',
+      body: 'Played at **Game Table › Society & the Tribunal**: the **Society** card (a debate, a petition to the Church, a trial) and the Tribunal’s customs, each while its rule is on. **Agents** have a page of their own beside it. The sheet’s Overview shows the agents and ranks as they stand.',
       at: society('society'), needs: 'character', target: ['society', 'tribunal-customs', 'tab-society'],
     },
     {
       title: 'Seasons, Mysteries and guilds',
-      body: '**Mystery Initiation** is planned with the rest of a character’s season, on the Game Table’s Seasons page, for anyone a Mystagogue will Initiate: a magus of a Mystery House, a cult’s member, or someone the storyguide’s Mystagogue takes in. A craftsman in a guild has a **Guild** card beside the workshop. **Extended book Quality** makes the Writing and copying card count skilled artisans and resonant materials by default.',
+      body: '**Mystery Initiation** is planned on **Game Table › Seasons**, for anyone a Mystagogue will Initiate. A craftsman in a guild has a **Guild** card beside the workshop. **Extended book Quality** makes the Writing and copying card count skilled artisans and resonant materials.',
       at: plan, needs: 'character', target: ['mysteries', 'writing', 'plan-season', 'table-plan'],
     },
     {

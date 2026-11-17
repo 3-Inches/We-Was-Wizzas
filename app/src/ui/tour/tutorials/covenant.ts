@@ -31,7 +31,7 @@ export const covenantTour: Tour = {
     },
     {
       title: 'The aura',
-      body: 'The **Aura** card shows the aura as it stands: the Aura Boons and Hooks, and each change recorded with its reason (a creature settling, a battle, a church built nearby). A Magic aura can be **aligned**, with an Art it counts double for or with Healing, Luck and the like; a Dominion can follow the **congregation** that keeps it, growing with its years of worship. With the optional **Aura variation** rule a Magic aura also drifts from year to year.',
+      body: 'The **Aura** card shows the aura as it stands, with each change and its reason (a battle, a church built nearby). A Magic aura can be **aligned** with an Art, which it counts double for. A Dominion can follow the **congregation** that keeps it. With the optional **Aura variation** rule, a Magic aura drifts from year to year.',
       at: covenant('overview'), needs: 'covenant', target: 'aura',
     },
     {
