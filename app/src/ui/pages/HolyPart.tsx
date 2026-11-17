@@ -1,9 +1,12 @@
 // Game Table › Dice › Holy: the Divine at the table (Realms of Power: The Divine). Holy powers worked
 // with a Method and a Power, a prayer for a miracle, God's aid, the saints and holy forbears, holy
-// influence and tempers, the Divine Ascent, the Rings of Solomon, a Dominion rite and a celestial
-// regio. What each costs (Confidence, Faith, Fatigue, wounds, Warping) goes on the sheet.
+// influence and tempers, the Divine Ascent, the Rings of Solomon, a Dominion rite, a celestial regio and
+// a Minor amulet. What each costs (Confidence, Faith, Fatigue, wounds, Warping) goes on the sheet. The
+// seasons of holy work (Major amulets, golems, True Names, Shinnui Shem) are on the Seasons page.
 
 import { useMemo, useState, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
+import { R } from '../routes';
 import {
   ARS_NOTORIA_MODS, COMMANDING_AURA_RANKS, FORBEAR_INVOCATION_MODS, HOLY_EXAMPLES, HOLY_GUIDELINES, HOLY_POWERS, HOLY_TRADITIONS,
   MIRACLE_NEED, MIRACLE_TIMELINESS, SAINTS, SAINT_INVOCATION_MODS, SAINT_THREAT_MODS, SAINT_TIERS, SOLOMON_RINGS, TEMPERS, TRAGEDIES,
@@ -201,8 +204,13 @@ export default function HolyPart({ ed, fellows }: { ed: CharEditor; fellows: Fel
       <InfluenceCard ed={ed} fellows={fellows} />
       {isHolyCharacter(d) && <AscentCard ed={ed} aura={aura} gained={gained} />}
       {score(d, 'ars-notoria') > 0 && <NotoriaCard ed={ed} />}
-      {holyWorksOpen(d).length > 0 && <HolyWorksCard ed={ed} aura={aura} />}
-      <RitesCard ed={ed} />
+      {holyWorksOpen(d).length > 0 && ed.saga && (
+        <p className="small">
+          Seasons of holy work (Major amulets, golems, True Names, Shinnui Shem) are planned on{' '}
+          <Link to={R.seasonsFor(ed.saga.id, c.id, 'holy-works')}>Game Table › Seasons, in {c.name ? `${c.name}’s` : 'their'} season in full ›</Link>
+        </p>
+      )}
+      <RitesCard ed={ed} aura={aura} />
     </div>
   );
 }
@@ -1325,11 +1333,16 @@ function NotoriaCard({ ed }: { ed: CharEditor }) {
 // ------------------------------------------------------------------------------------------------
 // A Dominion rite, a celestial regio, a copy of the Ars Notoria
 
-function RitesCard({ ed }: { ed: CharEditor }) {
+function RitesCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const { c, d, update } = ed;
   const [regio, setRegio] = useState(3);
+  const [minorLevel, setMinorLevel] = useState(5);
+  const [minorSM, setMinorSM] = useState(0);
   const [lines, show] = useLines();
   if (!c || !d) return null;
+  // a Minor amulet is made in hours, not a season (Mythic Judaism): it is here, the Major ones on the Seasons page
+  const ca = score(d, 'craft-amulets');
+  const minorTotal = d.characteristics.Dex.value + ca + Math.min(minorSM, ca) + (aura.realm === 'Divine' ? aura.strength : 0);
   const theology = Math.max(score(d, 'dominion-lore'), ...d.abilities.filter((a) => /^theology/.test(a.abilityId)).map((a) => a.total));
   const rite = d.characteristics.Com.value + theology;
   const parma = score(d, 'parma-magica');
@@ -1356,7 +1369,21 @@ function RitesCard({ ed }: { ed: CharEditor }) {
     }
   };
   return (
-    <Card title="Rites and holy places" tour="holy-rites" fold="holy-rites" summary="a Dominion rite, a celestial regio, the search for the Book of Solomon">
+    <Card title="Rites and holy places" tour="holy-rites" fold="holy-rites" summary={`a Dominion rite, a celestial regio, the search for the Book of Solomon${ca > 0 ? ', a Minor amulet' : ''}`}>
+      {ca > 0 && (
+        <div className="row small" data-tour="holy-minor-amulet">
+          <b>A Minor amulet</b> (one person, Touch, worn):
+          <Field label="Level">
+            <Stepper value={minorLevel} min={1} max={50} width={36} onChange={setMinorLevel} />
+          </Field>
+          <Field label="Shape and material">
+            <Stepper value={minorSM} min={0} max={20} width={34} onChange={setMinorSM} />
+          </Field>
+          <span>
+            Dexterity + Craft Amulets + materials{aura.realm === 'Divine' && aura.strength ? ' + Dominion' : ''} = {minorTotal}: {minorTotal >= 2 * minorLevel ? `made in ${Math.max(1, 12 - ca)} hours` : `needs ${2 * minorLevel}`}; it lasts days or weeks.
+          </span>
+        </div>
+      )}
       <div className="row">
         <span>
           Dominion rite: Communication + Theology (or Dominion Lore) <b>{rite}</b> + stress die against 6
@@ -1406,19 +1433,14 @@ export function HolyWorksCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
   const [kind, setKind] = useState<HolyWorkKind | ''>('');
   const [name, setName] = useState('');
   const [target, setTarget] = useState(10);
-  const [minorLevel, setMinorLevel] = useState(5);
-  const [minorSM, setMinorSM] = useState(0);
   const [lines, show] = useLines();
   if (!c || !d) return null;
   const open = holyWorksOpen(d);
   const works = c.holy?.works ?? [];
   const year = saga?.currentYear ?? 1220;
   const season = saga?.currentSeason ?? 'Spring';
-  const ca = score(d, 'craft-amulets');
-  const divine = aura.realm === 'Divine' ? aura.strength : 0;
   // a season's work is the season: one already logged leaves none for this (as lab work)
   const busy = seasonBusy(c, year, season);
-  const minorTotal = d.characteristics.Dex.value + ca + Math.min(minorSM, ca) + divine;
   const start = () => {
     if (!kind) return;
     const w: HolyWork = {
@@ -1450,20 +1472,6 @@ export function HolyWorksCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
   };
   return (
     <Card title="Seasons of holy work" tour="holy-works" fold="holy-works" summary={works.filter((w) => !w.done).map((w) => w.name).join(' · ') || 'Major amulets, golems, True Names, Shinnui Shem'}>
-      {ca > 0 && (
-        <div className="row small" data-tour="holy-minor-amulet">
-          <b>A Minor amulet</b> (one person, Touch, worn):
-          <Field label="Level">
-            <Stepper value={minorLevel} min={1} max={50} width={36} onChange={setMinorLevel} />
-          </Field>
-          <Field label="Shape and material">
-            <Stepper value={minorSM} min={0} max={20} width={34} onChange={setMinorSM} />
-          </Field>
-          <span>
-            Dexterity + Craft Amulets + materials{divine ? ' + Dominion' : ''} = {minorTotal}: {minorTotal >= 2 * minorLevel ? `made in ${Math.max(1, 12 - ca)} hours` : `needs ${2 * minorLevel}`}; it lasts days or weeks.
-          </span>
-        </div>
-      )}
       {works.map((w) => {
         const plan = holyWorkPlan(d, w, aura);
         return (

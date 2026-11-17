@@ -7,6 +7,8 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import type { GameData } from '../../data';
 import { addVirtue } from '../../engine/character/factory';
+import { describeStress, stressDie } from '../../engine/dice';
+import { rollWovenCurse } from '../../engine/folkWitch';
 import { owedInOrder, playersInOrder, settle, type PlanNote } from '../../engine/seasonPlan';
 import type { Character, Owed, Saga } from '../../engine/types';
 import { useStore } from '../../store/store';
@@ -89,8 +91,21 @@ export function PlayerOrder({ saga, chars }: { saga: Saga; chars: Character[] })
 /** One choice owed, with its quick resolution. */
 function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Character; o: Owed }) {
   const updateCharacter = useStore((s) => s.updateCharacter);
+  const setNotice = useStore((s) => s.setNotice);
   const [pick, setPick] = useState('');
   const done = (fn?: (x: Character) => void) => updateCharacter(c.id, (x) => void (fn?.(x), settle(x, o.uid)));
+  // a woven curse: rolled here as its season ends, the result kept in the season log beside the weaving
+  const rollCurse = () => {
+    const r = stressDie(1 + (c.folkWitch?.curse?.auraBotch ?? 0));
+    let out: string[] = [];
+    done((x) => {
+      const entryUid = x.folkWitch?.curse?.entryUid;
+      out = rollWovenCurse(x, { value: r.value, zero: r.zero, botches: r.botches, text: describeStress(r) });
+      const e = x.seasonLog.find((y) => y.uid === entryUid);
+      if (e) e.notes = [e.notes, ...out].filter(Boolean).join(' ');
+    });
+    setNotice(`${c.name || 'The witch'}: ${out.join(' ')}`);
+  };
   const want = o.want;
   const options = want
     ? data.virtuesFlaws
@@ -106,7 +121,7 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
       <Link to={R.character(saga.id, c)} style={{ minWidth: 110 }}>
         <b>{c.name || 'Unnamed'}</b>
       </Link>
-      <span className={`badge ${o.kind === 'dying' ? 'bad' : 'warn'}`}>{o.kind === 'warping' ? 'Warping' : o.kind === 'twilight' ? 'Twilight' : 'dying'}</span>
+      <span className={`badge ${o.kind === 'dying' ? 'bad' : 'warn'}`}>{o.kind === 'warping' ? 'Warping' : o.kind === 'twilight' ? 'Twilight' : o.kind === 'curse' ? 'a curse' : 'dying'}</span>
       <span style={{ flex: '1 1 220px' }}>
         {o.text} <span className="muted">({o.season} {o.year})</span>
       </span>
@@ -134,6 +149,11 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
         </span>
       )}
       {o.kind === 'twilight' && <Link to={R.dice(saga.id, 'magic', c.id)}>Roll it (Warping &amp; Twilight) →</Link>}
+      {o.kind === 'curse' && (
+        <button className="small primary" onClick={rollCurse} disabled={!c.folkWitch?.curse} title={`Casting Score ${c.folkWitch?.curse?.score ?? 0} + a stress die against ${c.folkWitch?.curse?.ease ?? 0}`}>
+          Roll the curse
+        </button>
+      )}
       {o.kind === 'dying' && (
         <>
           <button className="small" title="A Creo Corpus ritual, or another magic, saved them" onClick={() => done((x) => void (x.wounds.dead = false))}>
@@ -145,7 +165,11 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
         </>
       )}
       {o.kind !== 'dying' && (
-        <button className="small ghost" title={o.kind === 'warping' ? 'Chosen and added on the sheet by hand' : 'Rolled and settled'} onClick={() => done()}>
+        <button
+          className="small ghost"
+          title={o.kind === 'warping' ? 'Chosen and added on the sheet by hand' : o.kind === 'curse' ? 'Rolled by hand, or set aside: the curse is dropped' : 'Rolled and settled'}
+          onClick={() => done(o.kind === 'curse' ? (x) => void (x.folkWitch = { ...(x.folkWitch ?? {}), curse: undefined }) : undefined)}
+        >
           Done
         </button>
       )}

@@ -45,7 +45,7 @@ Stop at the first step that fails. Each step costs more than the one before.
 
 - **The books are the authority.** Every rule in the engine cites its book and line. Check a formula against the book's own formula line and its worked example, and build the test on that example.
 - **Fifth Edition only.** Books of the Third and Fourth Editions, and third-party books, are in the reader on shelves of their own. Take no rules from them.
-- **Play happens at the Game Table.** A character sheet is built, then is for reference. Season-long work is reached from the Seasons page.
+- **Play happens at the Game Table.** A character sheet is built, then is for reference. Season-long work is done on the Seasons page, and a roll the book makes when a season ends is made in its Resolve step. A card is shown in one place only; other pages link to it.
 - **Text for players is plain and gender-neutral.** Use "they". Use American spelling, as the books do. Follow the writing rules in the design principles.
 - **The repository is public.** Never commit a user's saga or character files. Fixtures in `scripts/qa/fixtures/` are generated practice sagas.
 - **Scratch tests** are named `zz_*.test.ts` and are deleted before committing.
@@ -75,7 +75,7 @@ Patterns to copy, not reinvent:
 - **A new system from a book:** data in `src/data/<system>.ts` with `source: { book, line }`, rules in `src/engine/<system>.ts` with `<system>.test.ts`, cards in `src/ui/pages/<System>Part.tsx`. Look at `folkWitch` for a complete small example.
 - **A card:** `<Card title tour fold summary>` from `src/ui/kit`. `fold` makes it collapse to its `summary` line, and it starts folded on a phone.
 - **A total:** return `{ total, parts }` from the engine and show it with `<Total>`, so a click shows the breakdown.
-- **A season's work:** `newSeasonEntry` and `applySeason`; check `seasonBusy` first.
+- **A season's work:** `useSeasonWork` (`src/ui/seasonWork.tsx`) checks `seasonBusy`, logs the season, and records what Unlog needs; `useVisSource` takes its vis from the purse or the covenant's stores. Underneath are `newSeasonEntry` and `applySeason`.
 - **A pointer into a book:** `{ book, line }` opens the reader at that line. `<RulesNote>` shows the book's text in place.
 
 ## Working efficiently

@@ -1027,6 +1027,12 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     for (const t of expireEffects(c, next.year, next.season)) lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: t });
     for (const t of hungerSeason(c)) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
     for (const t of holySeason(c, next.year, next.season)) lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: t });
+    // a curse fabric woven this season is complete: its curse is rolled in Resolve (HMRE, Curse Fetish Weaving)
+    const curse = c.folkWitch?.curse;
+    if (curse && curse.year === year && curse.season === season) {
+      if (c.seasonLog.some((e) => e.uid === curse.entryUid)) owe(c, year, season, 'curse', `The curse of ${curse.name}${curse.target ? ` on ${curse.target}` : ''} is woven: roll it.`);
+      else c.folkWitch = { ...c.folkWitch, curse: undefined };
+    }
     c.fatigueLost = 0;
     c.longTermFatigueLost = 0;
     if (c.creature) {

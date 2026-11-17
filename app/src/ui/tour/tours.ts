@@ -1032,7 +1032,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Rites and works of a season',
-        body: '**Rites and holy places** holds what takes a ceremony or a season: a **Dominion rite** to consecrate a place, a celestial regio entered, the search for the *Ars Notoria*. Characters with the right Abilities see more cards: the **Rings of Solomon** (the Ars Notoria’s orations, each lasting for seasons), and a kabbalist’s **amulets, golems, True Names and Shinnui Shem**, worked a season at a time here or on the Seasons page.',
+        body: '**Rites and holy places** holds what takes a ceremony or a season: a **Dominion rite** to consecrate a place, a celestial regio entered, the search for the *Ars Notoria*. Characters with the right Abilities see more cards: the **Rings of Solomon** (the Ars Notoria’s orations, each lasting for seasons), and a kabbalist’s **Minor amulets**. The **Major amulets, golems, True Names and Shinnui Shem** are worked a season at a time, on the Seasons page.',
         at: dice('holy'), needs: 'character', target: 'holy-rites',
       },
       {

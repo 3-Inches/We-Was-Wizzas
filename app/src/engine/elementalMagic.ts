@@ -6,6 +6,8 @@
 import { ELEMENTS, ELEMENTAL_MASTERY, ELEMENTAL_TECHNIQUES, REFINING_ABILITY, SUMMONING_CHART, TECHNIQUE_VIRTUE, type ElementId, type ElementalTechniqueId, type ElementalType } from '../data/hedgeElemental';
 import type { DerivedCharacter } from './character/derive';
 import { auraModifier, type AuraState, type Part } from './magic';
+import { ARTS, ART_NAMES } from '../data/constants';
+import type { Art } from '../data/types';
 import type { Character } from './types';
 import { warpingScoreFromPoints } from './xp';
 
@@ -172,6 +174,19 @@ export function characteristicPotion(refiningTotal: number, formScore: number, c
   const bonus = Math.floor(Math.max(0, refiningTotal) / 5);
   const cap = Math.floor(formScore / 2);
   return { bonus, cap, result: Math.max(current, Math.min(current + bonus, cap)), vis: Math.ceil(age / 5) };
+}
+
+/** The Hermetic Form of an element's vis: Elementalist Water yields Aquam vis, Fire Ignem (HMRE, line 1302). */
+export const elementVisArt = (el: ElementId): Art => ARTS.find((a) => ART_NAMES[a] === ELEMENTS.find((e) => e.id === el)?.hermetic) ?? 'Vi';
+
+/**
+ * The vis a refining potion takes: "vis of any Form he possesses" (HMRE, line 1304), the Forms of the
+ * elementalist's elements. An elemental philosopher may "use vis associated with any Art in his
+ * elemental magic" (line 1328).
+ */
+export function refiningVisArts(forms: ElementId[], type: ElementalType): Art[] {
+  if (type === 'Philosophical') return [...ARTS];
+  return [...new Set(forms.map(elementVisArt))];
 }
 
 /** Philosophical Refining: vis from an aura, the total ÷ 10. */

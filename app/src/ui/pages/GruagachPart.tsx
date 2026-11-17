@@ -1,6 +1,7 @@
 // The Gruagachan (Hedge Magic, Revised Edition, Chapter Four) on the sheet and at the Game Table: the
 // apprenticeship and spells known; a Formulaic spell cast (varied within its magnitudes) or a
-// spontaneous one; a season enchanting a tattoo, inventing a spell or drawing vis; transformation.
+// spontaneous one, and transformation, on Dice › Hedge magic; a season enchanting a tattoo, inventing a
+// spell or drawing vis, on the Seasons page, its vis from the purse or the covenant's stores.
 
 import { useEffect, useState } from 'react';
 import { GRUAGACH_FORMS, GRUAGACH_PARAMS, GRUAGACH_SHAPES, POETIC_JUSTICE, GRUAGACH_TECHNIQUES, TATTOO_SIZES, gruagachArtName, type GruagachArts, type Prohibition } from '../../data/hedgeGruagach';
@@ -9,11 +10,10 @@ import { GRUAGACH_APPRENTICESHIP } from '../../engine/character/derive';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
   TRANSFORMATION_BAD, TRANSFORMATION_GOOD, durationProblem, gruagachArtCap, gruagachArts, gruagachCastingScore, gruagachExtraction, gruagachFlex, gruagachLabTotal, gruagachLevel, gruagachVisLimit,
-  pictish, spontaneousTotal, tattoo, transformationAvoid, transformationFollows, botchWarpingPoints, gruagachInventSeason, understandingTransformation,
+  pictish, spontaneousTotal, tattoo, tattooVisArts, transformationAvoid, transformationFollows, botchWarpingPoints, gruagachInventSeason, understandingTransformation,
 } from '../../engine/gruagach';
 import { charmOutcome } from '../../engine/learnedMagic';
-import { applySeason, newSeasonEntry } from '../../engine/longterm';
-import { seasonBusy } from '../../engine/time';
+import { putInto, spendFrom } from '../../engine/vis';
 import { FREQUENCY } from '../../engine/enchant';
 import { addMagnitudes } from '../../engine/spellDesign';
 import type { AuraState } from '../../engine/magic';
@@ -22,6 +22,7 @@ import { warpingScoreFromPoints } from '../../engine/xp';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
+import { useSeasonWork, useVisSource } from '../seasonWork';
 
 function Lines({ lines }: { lines: string[] }) {
   if (!lines.length) return null;
@@ -355,8 +356,9 @@ export function GruagachCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState
 
 type Work = 'tattoo' | 'invent' | 'vis';
 
+/** A gruagach's season, on the Seasons page: a tattoo's vis from the purse or the covenant's stores, vis drawn put there. */
 export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
-  const { c, d, update, saga } = ed;
+  const { c, d, update } = ed;
   const [work, setWork] = useState<Work>('tattoo');
   const [effect, setEffect] = useState<LearnedCharm | undefined>();
   const [shape, setShape] = useState(0);
@@ -365,6 +367,9 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
   const [uses, setUses] = useState('1');
   const [another, setAnother] = useState(false);
   const [lines, setLines] = useState<string[]>([]);
+  const sw = useSeasonWork(ed);
+  const src = useVisSource(c, sw.cov, effect ? tattooVisArts(effect.tf as GruagachArts) : []);
+  const dest = useVisSource(c, sw.cov, ['Vi']);
   if (!c || !d) return null;
   const pairs = gruagachPairs(c, d);
   if (!pairs.length) return null;
@@ -372,9 +377,7 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
   // a spell under way is the one continued unless the player asks to invent another
   const continuing = work === 'invent' && !!inventing && !another;
   const chosen = continuing ? inventing!.spell : effect;
-  const year = saga?.currentYear ?? 1220;
-  const season = saga?.currentSeason ?? 'Spring';
-  const busy = seasonBusy(c, year, season);
+  const { year, season, busy } = sw;
   const pi = pictish(c, d);
   const tf = (work === 'vis' ? 'TaVs' : (chosen?.tf ?? pairs[0])) as GruagachArts;
   const lt = gruagachLabTotal(c, d, tf, aura, { tattoo: work === 'tattoo', shape: GRUAGACH_SHAPES[shape] ? Number((GRUAGACH_SHAPES[shape].bonuses.match(/\+(\d+)/) ?? ['', '0'])[1]) : 0, similar });
@@ -394,25 +397,40 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
     const have = under?.progress ?? 0;
     return `Inventing ${chosen.name}: +${gain} a season toward ${chosen.level}, as for a Hermetic spell${have ? ` (${have} so far, after ${under!.seasons} season${under!.seasons === 1 ? '' : 's'})` : ''}${have + gain >= chosen.level ? ': done this season' : ''}.`;
   };
-  const doSeason = () => {
-    let text = `${plan()} Lab Total ${lt.total}.`;
-    update((x) => {
-      if (work === 'tattoo' && effect && tat?.ok) {
-        x.items.push({
-          uid: uid(), name: `Tattoo: ${effect.name}`, kind: 'lesser', material: `dyes (${GRUAGACH_SHAPES[shape]?.shape ?? 'a design'})`, size: 'tiny', shapeMaterialIds: [], openedPawns: 0, attunements: [], creatorId: x.id,
-          notes: `A gruagach tattoo (${gruagachArtName(effect.tf as GruagachArts)}), ${TATTOO_SIZES[size].name}: it is part of its bearer, Personal and Individual.`,
-          effects: [{ uid: uid(), name: effect.name, technique: effect.tf.startsWith('Gv') ? 'Cr' : 'Pe', form: effect.tf.endsWith('Sh') ? 'An' : effect.tf.endsWith('Vs') ? 'Im' : 'Co', requisites: [], baseLevel: effect.level, range: 'Personal', duration: effect.duration, target: 'Individual', usesPerDay: uses, penetration: 0, concentration: false, effectUse: false, environmentalTrigger: false, fastTrigger: false, linkedTrigger: false, expiry: 'none', modifiedLevel: tat.level, description: effect.text }],
-        });
-      }
-      if (work === 'invent' && chosen) text = `${gruagachInventSeason(x, lt.total, chosen)} Lab Total ${lt.total}.`;
-      const t = x.abilities.find((a) => a.abilityId === (tf.startsWith('Gv') ? 'gruagach-give' : 'gruagach-take'));
-      const e = newSeasonEntry(year, season, 'other', `Gruagach: ${work === 'tattoo' ? `a tattoo of ${effect?.name}` : work === 'invent' ? `inventing ${chosen?.name}` : 'vis from the aura'}`, t ? { [`ability:${t.uid}`]: 2 } : {});
-      e.notes = text;
-      applySeason(x, e, 1);
-      x.seasonLog.push(e);
-    });
-    setLines([text, `${season} ${year} logged.`]);
-  };
+  const need = work === 'tattoo' && tat?.ok ? tat.vis : 0;
+  const drawn = work === 'vis' ? gruagachExtraction(lt.total) : 0;
+  // why the season cannot be worked as set, said beside the button
+  const why =
+    busy ? `${season} ${year} is already spent.`
+    : work !== 'vis' && !chosen ? 'Design the effect first.'
+    : work === 'tattoo' && !tat?.ok ? 'The tattoo cannot be made as designed (above).'
+    : need ? src.short(need) : undefined;
+  const doSeason = () =>
+    setLines(
+      sw.work(`Gruagach: ${work === 'tattoo' ? `a tattoo of ${effect?.name}` : work === 'invent' ? `inventing ${chosen?.name}` : 'vis from the aura'}`, tf.startsWith('Gv') ? 'gruagach-give' : 'gruagach-take', (x, cov) => {
+        const out = [`${plan()} Lab Total ${lt.total}.`];
+        if (need) {
+          const r = spendFrom(x, cov, src.place, src.arts, need);
+          if (!r.ok) return { lines: [], refused: r.text };
+          out.push(r.text);
+        }
+        if (drawn) out.push(putInto(x, cov, dest.place, 'Vi', drawn));
+        let made: string | undefined;
+        if (work === 'tattoo' && effect && tat?.ok) {
+          x.items.push({
+            uid: uid(), name: `Tattoo: ${effect.name}`, kind: 'lesser', material: `dyes (${GRUAGACH_SHAPES[shape]?.shape ?? 'a design'})`, size: 'tiny', shapeMaterialIds: [], openedPawns: 0, attunements: [], creatorId: x.id,
+            notes: `A gruagach tattoo (${gruagachArtName(effect.tf as GruagachArts)}), ${TATTOO_SIZES[size].name}: it is part of its bearer, Personal and Individual.`,
+            effects: [{ uid: uid(), name: effect.name, technique: effect.tf.startsWith('Gv') ? 'Cr' : 'Pe', form: effect.tf.endsWith('Sh') ? 'An' : effect.tf.endsWith('Vs') ? 'Im' : 'Co', requisites: [], baseLevel: effect.level, range: 'Personal', duration: effect.duration, target: 'Individual', usesPerDay: uses, penetration: 0, concentration: false, effectUse: false, environmentalTrigger: false, fastTrigger: false, linkedTrigger: false, expiry: 'none', modifiedLevel: tat.level, description: effect.text }],
+          });
+          made = `a tattoo of ${effect.name}`;
+        }
+        if (work === 'invent' && chosen) {
+          out[0] = `${gruagachInventSeason(x, lt.total, chosen)} Lab Total ${lt.total}.`;
+          if (!x.gruagach?.inventing) made = `the spell ${chosen.name}`;
+        }
+        return { lines: out, made };
+      }),
+    );
   return (
     <Card title="A gruagach's season" tour="gruagach-season" fold="gruagach-season" summary="Tattoos, spells invented, vis drawn">
       <div className="row">
@@ -467,13 +485,14 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
           <button className="small danger" onClick={() => update((x) => void (x.gruagach = { ...(x.gruagach ?? {}), inventing: undefined }))}>Abandon it</button>
         </p>
       )}
+      {(work === 'tattoo' && effect) || work === 'vis' ? <div className="row">{work === 'vis' ? dest.node(true) : src.node()}</div> : null}
       <p className="small">
-        Lab Total <Total value={lt.total} parts={lt.parts} notes={lt.notes} label="Lab Total" />. {plan()}
+        Lab Total <Total value={lt.total} parts={lt.parts} notes={lt.notes} label="Lab Total" />. {plan()} {src.line(need)}
       </p>
-      <button onClick={doSeason} disabled={busy || (work !== 'vis' && !chosen) || (work === 'tattoo' && !tat?.ok)} title={busy ? `${season} ${year} is already spent` : undefined}>
+      <button onClick={doSeason} disabled={!!why}>
         {work === 'tattoo' ? 'Enchant the tattoo' : work === 'invent' ? 'Invent' : 'Draw vis'} (a season)
       </button>
-      {busy && <span className="small muted"> {season} {year} is already spent.</span>}
+      {why && <span className="small muted"> {why}</span>}
       <Lines lines={lines} />
     </Card>
   );
