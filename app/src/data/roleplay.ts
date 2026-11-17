@@ -69,8 +69,8 @@ const YEAR_1220: RpBlock = {
       ['The south of France', 'The Albigensian Crusade: northern lords and the Church against the Cathar heresy and the Counts of Toulouse. Eleven years of war, and not over.'],
       ['Egypt and the Holy Land', 'The Fifth Crusade holds the port of Damietta on the Nile. Jerusalem has been in Muslim hands since 1187.'],
       ['Constantinople', 'Taken and sacked by crusaders in 1204. A Latin emperor rules there now. Greek rulers in exile, at Nicaea and in Epirus, mean to take it back.'],
-      ['The Baltic', 'German and Danish crusaders are conquering and baptising the last pagan peoples of Europe.'],
-      ['Far to the east', 'Rumours of a great army destroying the Muslim kingdoms of Persia. Some hope it is the Christian king Prester John. It is Genghis Khan.'],
+      ['The Baltic', 'German and Danish crusaders are conquering and baptizing the last pagan peoples of Europe.'],
+      ['Far to the east', 'Rumors of a great army destroying the Muslim kingdoms of Persia. Some hope it is the Christian king Prester John. It is Genghis Khan.'],
       ['New things', 'Friars: the followers of Francis of Assisi and of Dominic, who beg, preach and own nothing. Universities at Bologna, Paris and Oxford. Aristotle, newly translated from Arabic, exciting the schools and worrying the bishops.'],
     ],
   },
@@ -92,7 +92,7 @@ export const PLAYER_GUIDE: RpGuide = {
           points: [
             ['You play more than one character.', 'Usually a magus, a companion and a share of the grogs, one at a time. This is called troupe play. Everyone gets a wizard, and nobody has to bring theirs to every story.'],
             ['The characters are unequal on purpose.', 'A magus is far more powerful than a knight. The balance is that the spotlight moves: this week your magus leads, next week your companion follows someone else’s.'],
-            ['Home matters more than the road.', 'The covenant, where your characters live, is the centre of the saga. Stories come to it, grow out of it and change it. Treat it as a character you all share.'],
+            ['Home matters more than the road.', 'The covenant, where your characters live, is the center of the saga. Stories come to it, grow out of it and change it. Treat it as a character you all share.'],
             ['Time passes.', 'A story is an interruption in a life of study. Seasons and years go by between adventures. Characters learn, grow old and die. Your magus at seventy will not be the person they were at twenty-five.'],
           ],
         },
@@ -148,10 +148,10 @@ export const PLAYER_GUIDE: RpGuide = {
         { heading: 'How the world works' },
         {
           points: [
-            ['The Earth stands still at the centre.', 'It is a sphere. The Sun, Moon, planets and stars are carried round it on great spheres. Above the Moon nothing ever changes, and Hermetic magic cannot reach past it.'],
+            ['The Earth stands still at the center.', 'It is a sphere. The Sun, Moon, planets and stars are carried round it on great spheres. Above the Moon nothing ever changes, and Hermetic magic cannot reach past it.'],
             ['Everything is made of four elements:', 'earth, water, air and fire. A body is healthy when its four humors are in balance. Illness is an imbalance, not an infection. Nobody has heard of germs, because here there are none.'],
             ['Things are as they seem.', 'A moving thing stops unless something keeps pushing it. Heavy things fall because down is where they belong. Worms and flies are born from rotting matter.'],
-            ['God is a fact.', 'Almost everyone in the West is a baptised Christian. Jews are the main exception, with Muslims too in Spain and Sicily. The Church touches every part of life: the bells that mark the hours, the saints’ days that mark the year, the tithe, the yearly confession before Easter. More people have seen a miracle than have seen a wizard cast a spell.'],
+            ['God is a fact.', 'Almost everyone in the West is a baptized Christian. Jews are the main exception, with Muslims too in Spain and Sicily. The Church touches every part of life: the bells that mark the hours, the saints’ days that mark the year, the tithe, the yearly confession before Easter. More people have seen a miracle than have seen a wizard cast a spell.'],
             ['So is the Devil, and so are the faeries.', 'Demons tempt. Faeries draw people into their stories. Old magic lives in wild places. Hardly a village is without some touch of it: a pool with a virtue, a thing in the wood that must be left its share.'],
           ],
         },
@@ -295,7 +295,7 @@ export const PLAYER_GUIDE: RpGuide = {
       title: 'The year is 1220',
       summary: 'Who rules where, and what people are talking about',
       blocks: [
-        { p: 'The usual starting year. Your character would know the names nearest home, and would have heard the rest as rumour. This is real history, so an encyclopedia will tell you more about any line of it.' },
+        { p: 'The usual starting year. Your character would know the names nearest home, and would have heard the rest as rumor. This is real history, so an encyclopedia will tell you more about any line of it.' },
         YEAR_1220,
         { p: 'You do not need any of this to play. The core book says so itself: if historical accuracy is spoiling the fun, you need less of it.' },
       ],
@@ -371,11 +371,11 @@ export const STORYGUIDE_GUIDE: RpGuide = {
     {
       id: 'job',
       title: 'Your job',
-      summary: 'The player characters are the centre, fun comes first, and you are not alone',
+      summary: 'The player characters are the center, fun comes first, and you are not alone',
       blocks: [
         {
           points: [
-            ['The player characters are the centre.', 'They need not be the most powerful people in the story. The story is about what they do, and how it ends depends on them. If someone has to be rescued, let another player’s character do the rescuing.'],
+            ['The player characters are the center.', 'They need not be the most powerful people in the story. The story is about what they do, and how it ends depends on them. If someone has to be rescued, let another player’s character do the rescuing.'],
             ['Fun comes before accuracy.', 'The core book says it twice. If historical accuracy is spoiling the fun, you need less of it. Any way your troupe enjoys playing counts as playing properly.'],
             ['You are not alone.', 'In this game the storyguide’s chair is meant to be shared. See *Sharing the chair*, below.'],
             ['Describe, ask, answer.', 'You say what the world does. They say what they do. The world answers. When you do not know the rule, make a ruling, note it down, and look it up afterwards.'],
@@ -532,9 +532,9 @@ export const STORYGUIDE_GUIDE: RpGuide = {
     {
       id: 'medieval',
       title: 'Making it feel medieval',
-      summary: 'Put one true medieval thing at the centre of each story',
+      summary: 'Put one true medieval thing at the center of each story',
       blocks: [
-        { p: 'You do not get a medieval feel by avoiding mistakes. You get it by putting one true medieval thing at the centre of each story.' },
+        { p: 'You do not get a medieval feel by avoiding mistakes. You get it by putting one true medieval thing at the center of each story.' },
         { p: 'The method is the core book’s. Find a single fact that interests you. People stole relics from shrines. A widow could carry on her husband’s trade, and was resented for it. A great lord’s visit could beggar his host. Then build the story so that it turns on that fact. You need to know one thing, not the whole period, and the players look where you point.' },
         {
           title: 'Ten medieval things to hang a story on',
@@ -553,7 +553,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
         },
         {
           points: [
-            ['The Church is the quickest medieval colour.', 'It is in every village and every week of the year. Play clergy as people, not as saints or villains.'],
+            ['The Church is the quickest medieval color.', 'It is in every village and every week of the year. Play clergy as people, not as saints or villains.'],
             ['Miracles happen.', 'How often is yours to set. The book’s default is that almost everyone knows someone who has seen one.'],
             ['Mistakes do not matter', 'unless they break the mood. A wristwatch does; the wrong cut of tunic does not. If a player knows the period better than you, make them your adviser. If you find you gave the king the wrong name, change it and move on.'],
             ['You need no research at all.', 'Pick a Tribunal, invent the local lord and the parish, and begin. Or open a Tribunal book and let its authors do the reading for you.'],
@@ -638,7 +638,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
         },
         {
           points: [
-            ['Enjoy the botch.', 'A botched spell is not a spell that fails. It goes off, wrongly. Ask the player what the worst fitting thing would be. They are usually crueller than you are.'],
+            ['Enjoy the botch.', 'A botched spell is not a spell that fails. It goes off, wrongly. Ask the player what the worst fitting thing would be. They are usually crueler than you are.'],
             ['Move the spotlight on purpose.', 'Notice who has not spoken for a while, and turn the next scene toward their character.'],
             ['Begin with what happened; end on a choice.', 'Open each session by asking a player to tell the story so far. Close on a decision or a revelation, not on the walk home.'],
             ['Keep a way to stop.', 'Agree before play how anyone can pause or skip a scene. Use it yourself once, so the others know it is safe.'],

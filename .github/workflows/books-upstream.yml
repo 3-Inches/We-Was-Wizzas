@@ -1,0 +1,42 @@
+name: Books - check upstream
+
+# Once a week, compare our copies of the books with the repository they came from.
+# When they differ, open an issue (or refresh the one already open) listing what changed.
+# This only reads upstream, with an anonymous clone. It changes nothing here but the issue.
+
+on:
+  schedule:
+    - cron: '23 5 * * 1' # Mondays, early
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare our books with upstream
+        id: compare
+        run: |
+          set +e
+          python3 -I tools/books/compare.py --markdown > report.md
+          code=$?
+          set -e
+          cat report.md
+          grep -q '^Upstream is at commit' report.md || { echo 'The comparison did not run.'; exit 1; }
+          if [ "$code" = 1 ]; then echo "differs=yes" >> "$GITHUB_OUTPUT"; fi
+      - name: Open or refresh the issue
+        if: steps.compare.outputs.differs == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title='The books have changed upstream'
+          number=$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body-file report.md
+          else
+            gh issue create --title "$title" --body-file report.md
+          fi
