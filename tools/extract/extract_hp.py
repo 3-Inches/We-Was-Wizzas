@@ -19,13 +19,9 @@ R/D/T on one line), which the book had before upstream reviewed it.
 import re
 from books import read_book
 from common import clean_inline, strip_quote, github_anchor, slug
-from extract_spells import RDT_RE, norm, RANGE_NORM, DUR_NORM, TGT_NORM
+from extract_spells import RDT_RE, norm, RANGE_NORM, DUR_NORM, TGT_NORM, item_terms
 
 BOOK = "HP"
-USES = [(r"unlimited", "unlimited"), (r"\b50\b", "50"), (r"\b24\b", "24"), (r"\b12\b", "12"), (r"\bsix\b|\b6\b", "6"),
-        (r"\bthree\b|\b3\b", "3"), (r"\btwo\b|\b2\b", "2"), (r"\bonce\b|\bone\b|\b1\b", "1")]
-
-
 def text_of(lines):
     out, para = [], []
     for l in lines:
@@ -160,26 +156,13 @@ def extract():
             "source": {"book": BOOK, "line": i + 1, "anchor": github_anchor(name)},
         }
         if pen is not None:
-            p = re.match(r"^[+]?(\d+)", pen)
-            if re.search(r"constant", pen, re.I):
-                uses = "constant"
-            else:
-                um = re.search(r"(\d+)\s*(/day|uses?|times)", pen) or re.search(r",\s*(\d+)\s*$", pen)
-                uses = "unlimited" if re.search(r"unlimited", pen, re.I) else (um.group(1) if um else next((v for pat, v in USES if re.search(pat, pen, re.I)), None))
-            rec.update({"id": slug(f"{name}-{rec['technique']}{rec['form']}-item"), "penetration": int(p.group(1)) if p else 0, "uses": uses, "itemNotes": pen})
+            penetration, uses = item_terms(pen)
+            rec.update({"id": slug(f"{name}-{rec['technique']}{rec['form']}-item"), "penetration": penetration, "uses": uses, "itemNotes": pen})
             items.append(rec)
         else:
             bm = re.match(r"^Base\s+(\d+)", design or "")
             rec.update({"id": slug(f"{name}-{rec['technique']}{rec['form']}-{rec['level'] if rec['level'] is not None else 'gen'}"), "base": int(bm.group(1)) if bm else None})
             spells.append(rec)
-    # the book gives two devices the same name in two chapters: the later one's id says so
-    ids = set()
-    for rec in items:
-        base, k = rec["id"], 2
-        while rec["id"] in ids:
-            rec["id"] = f"{base}-{k}"
-            k += 1
-        ids.add(rec["id"])
     return spells, items
 
 
