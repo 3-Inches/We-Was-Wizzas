@@ -42,7 +42,7 @@ Every item refers to `audit-2026-11.md` by its number. That file has the detail:
   - The season-long work moves to one "Seasons of devotion" card on Seasons, with `useSeasonWork`: a season of devotion at a shrine, a saint's hagiography, the mystic's path's seasons, a pilgrimage's season, the first recitation of a Ring of Solomon, the search for the Book of Solomon. The Faith page keeps the records and what happens in play, with a link.
 - [x] **1.4b Prompts after Warping, and Sympathy Traits on rolls.** *Judgment.* C8. When Warping Points come, offer what follows, as Twilight is offered: the Witch Moon, Nátt-thel, Faerie Calling. A roll the book makes when a season ends waits in Resolve. On the Roll page, a tick per Sympathy Trait for a character who has them.
   - Done as: `gainWarping` (`src/engine/warping.ts`) adds the points and owes the tradition's reaction on the Resolve list, linked to its card, which opens on it. `quality.test.ts` lists the files still allowed to add Warping Points directly, each with its reason. The year's Warping (prolonged) brings only the Witch Moon, and gives a folk witch or a faerie-touched character no ordinary Warping Virtues or Flaws.
-- [ ] **1.4c Where Great projects lives.** *Judgment.* C10, and a mason's building season split from 1.3 (C1): logged and checked by `seasonBusy`, the building's progress kept where C10 puts it.
+- [x] **1.4c Where Great projects lives.** *Judgment.* C10, and a mason's building season split from 1.3 (C1): logged and checked by `seasonBusy`, the building's progress kept where C10 puts it.
   - Decided by the owner (17 November 2026): the building and the menagerie go to the covenant, in one **Great projects** card on its Overview tab. The covenant keeps each building's record: its height, the quality of its weakest and its latest work, and damage taken. The card's stress check uses the covenant's best mason and records a lost damage level. The menagerie's handler is chosen from the members.
   - The mason's season is on Seasons, in a character's season in full: **Build (a season)** raises the building by the mason's pace, its quality from the Workshop Total (Int + Craft: Mason + Innovation + Raw Materials against 3, 6, 12, 15). **Repair (a season)** mends one damage level, or brings shoddy work up to standard. Both are logged with `useSeasonWork`, and Unlog restores the building.
   - Possessions loses the card.
@@ -109,5 +109,6 @@ Not items to schedule. Do them when a change touches the place.
 - 2026-11: hedge magic's and holy work's seasons on the Seasons page, their vis from the stores (1.3).
 - 2026-11: the Faith page shows only what applies; the seasons of devotion on Seasons (1.4).
 - 2026-11: prompts after Warping wait in Resolve; Sympathy Traits on the Roll page (1.4b).
+- 2026-11: great buildings and the menagerie on the covenant; a mason's season on Seasons (1.4c).
 - 2026-11: the books brought in step with upstream (2.1). *Hermetic Projects*' errata are in, four books moved to `reviewed/`, and the reader gained shelves for earlier editions and third-party books.
 - Earlier work is in the merged pull requests and the README.
